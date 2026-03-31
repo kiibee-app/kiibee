@@ -1,0 +1,130 @@
+name: Server CI/CD
+
+on:
+  push:
+    branches: [main, dev]
+    paths:
+      - "apps/server/**"
+      - "packages/**"
+      - "pnpm-lock.yaml"
+  pull_request:
+    branches: [main, dev]
+    paths:
+      - "apps/server/**"
+      - "packages/**"
+      - "pnpm-lock.yaml"
+
+env:
+  NODE_VERSION: "18"
+  PNPM_VERSION: "10.2.0"
+
+jobs:
+  build-and-test:
+    name: 🏗️ Build & Test Server
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: foodime_test_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping" --health-interval 10s --health-timeout
+          5s --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+      - name: 🧹 Clear GitHub Actions cache
+        if: github.event_name == 'pull_request'
+        run: |
+          gh extension install actions/gh-actions-cache
+
+          REPO=${{ github.repository }}
+          BRANCH="refs/pull/${{ github.event.pull_request.number }}/merge"
+
+          echo "Fetching list of cache key"
+          cacheKeysForPR=$(gh actions-cache list -R $REPO -B $BRANCH | cut -f 1 )
+
+          ## Setting this to not fail the workflow while deleting cache keys. 
+          set +e
+          echo "Deleting caches..."
+          for cacheKey in $cacheKeysForPR
+          do
+              gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm
+          done
+          echo "Done"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🛒 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🔍 Lint
+        run: pnpm --filter=server lint
+
+      - name: 🔍 Type check
+        run: pnpm --filter=server typecheck
+
+      - name: 🏗️ Build
+        run: pnpm --filter=server build
+
+      - name: 🗄️ Setup Database
+        run: |
+          echo "Setting up database for CI..."
+          echo "Database URL: $DATABASE_URL"
+
+          # Test database connection first
+          echo "Testing database connection..."
+          PGPASSWORD=password psql -h localhost -U postgres -d foodime_test_db -c "SELECT version();"
+
+          # Use direct SQL script for reliable CI setup
+          echo "Setting up database schema with SQL script..."
+          PGPASSWORD=password psql -h localhost -U postgres -d foodime_test_db -f apps/server/scripts/setup-test-db.sql
+
+          # Verify tables were created
+          echo "Verifying database schema..."
+          PGPASSWORD=password psql -h localhost -U postgres -d foodime_test_db -c "\dt"
+          PGPASSWORD=password psql -h localhost -U postgres -d foodime_test_db -c "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_name;"
+        env:
+          NODE_ENV: test
+          DATABASE_URL: postgresql://postgres:password@localhost:5432/foodime_test_db
+
+      - name: 🧪 Run tests
+        run: pnpm --filter=server test:ci
+        env:
+          NODE_ENV: test
+          CI: true
+          DATABASE_URL: postgresql://postgres:password@localhost:5432/foodime_test_db
+          REDIS_URL: redis://localhost:6379
+          JWT_SECRET: test-jwt-secret-for-ci
+          SENTRY_DSN: ""
+          AUTH0_CONNECTION: ""
+          AUTH0_SCOPE: ""
+          AI_SERVICE_URL: http://localhost:3002
+          TWILIO_ACCOUNT_SID: ""
+          TWILIO_AUTH_TOKEN: ""
+          TWILIO_WEBHOOK_SECRET: ""

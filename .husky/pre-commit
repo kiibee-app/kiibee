@@ -1,0 +1,204 @@
+#!/usr/bin/env sh
+
+echo '🏗️👷 Running checks before committing 👷‍♂️🏗️'
+echo 'please be patient, this may take a while...'
+
+# Function to detect which apps have been touched
+get_touched_apps() {
+  # Get all staged files
+  STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
+  
+  # Find apps that have touched files
+  TOUCHED_APPS=""
+  for file in $STAGED_FILES; do
+    if echo "$file" | grep -q "^apps/"; then
+      app=$(echo "$file" | sed -E 's|^apps/([^/]+).*|\1|')
+      # Only add to list if app directory exists and is one of our tracked apps
+      if [ -d "apps/$app" ]; then
+        case "$app" in
+          admin|web|pos|server|foodime-ai|mobile)
+            if ! echo "$TOUCHED_APPS" | grep -q "$app"; then
+              TOUCHED_APPS="$TOUCHED_APPS $app"
+            fi
+            ;;
+        esac
+      fi
+    fi
+  done
+  
+  # Remove leading space
+  TOUCHED_APPS=$(echo "$TOUCHED_APPS" | sed 's/^ *//')
+  
+  # If no apps were touched, check if any config files changed (affects all apps)
+  if [ -z "$TOUCHED_APPS" ]; then
+    for file in $STAGED_FILES; do
+      case "$file" in
+        package.json|pnpm-lock.yaml|turbo.json|.eslintrc*|prettier.config.*|*.config.js|*.config.mjs)
+          echo "⚠️  Config file changed: $file - running checks for all apps"
+          TOUCHED_APPS="admin web pos server foodime-ai mobile"
+          break
+          ;;
+      esac
+    done
+  fi
+  
+  echo "$TOUCHED_APPS"
+}
+
+# Get touched apps
+TOUCHED_APPS=$(get_touched_apps)
+
+if [ -z "$TOUCHED_APPS" ]; then
+  echo "ℹ️  No app files touched - skipping app checks"
+else
+  echo "🎯 Found touched apps: $TOUCHED_APPS"
+  
+  # 1) Run lint for touched apps only
+  echo "🔎 Running lint for touched apps..."
+  for app in $TOUCHED_APPS; do
+    if [ -d "apps/$app" ] && [ -f "apps/$app/package.json" ]; then
+      # Skip lint for mobile app
+      if [ "$app" = "mobile" ]; then
+        echo "⏭️  Skipping lint for apps/mobile (excluded by configuration)"
+        continue
+      fi
+      echo "🔍 Linting apps/$app..."
+      if ! (cd "apps/$app" && pnpm run lint); then
+        echo "❌ Lint failed for apps/$app — aborting commit"
+        exit 1
+      else
+        echo "✅ Lint passed for apps/$app"
+      fi
+    else
+      echo "⚠️  Skipping lint for apps/$app (no package.json found)"
+    fi
+  done
+  
+  # 2) Run build only for pos and web when they are touched
+  echo "🏗️ Running build for touched pos and web apps..."
+  BUILD_APPS=""
+  
+  # Only add pos and web to build list if they were touched
+  for app in $TOUCHED_APPS; do
+    if [ "$app" = "pos" ] || [ "$app" = "web" ]; then
+      if [ -d "apps/$app" ] && [ -f "apps/$app/package.json" ]; then
+        # Check if app has a build script by examining package.json directly
+        if grep -q '"build"' "apps/$app/package.json"; then
+          BUILD_APPS="$BUILD_APPS $app"
+        fi
+      fi
+    fi
+  done
+  
+  # Remove leading space
+  BUILD_APPS=$(echo "$BUILD_APPS" | sed 's/^ *//')
+  
+  if [ -n "$BUILD_APPS" ]; then
+    echo "🔨 Building: $BUILD_APPS"
+    for app in $BUILD_APPS; do
+      echo "🔨 Building apps/$app..."
+      if ! (cd "apps/$app" && pnpm run build); then
+        echo "❌ Build failed for apps/$app — aborting commit"
+        exit 1
+      else
+        echo "✅ Build passed for apps/$app"
+      fi
+    done
+  else
+    echo "ℹ️  No pos or web apps with build scripts were touched - skipping build"
+  fi
+  
+  # 3) Run tests for touched apps only
+  echo "🧪 Running tests for touched apps..."
+  for app in $TOUCHED_APPS; do
+    if [ -d "apps/$app" ] && [ -f "apps/$app/package.json" ]; then
+      # Skip tests for mobile app
+      if [ "$app" = "mobile" ]; then
+        echo "⏭️  Skipping tests for apps/mobile (excluded by configuration)"
+        continue
+      fi
+      echo "🧪 Testing apps/$app..."
+      # Check if test script exists by checking package.json directly
+      if [ -f "apps/$app/package.json" ] && grep -q '"test"' "apps/$app/package.json"; then
+        # Test script exists, run it with proper error handling
+        if ! (cd "apps/$app" && pnpm run test 2>/dev/null || pnpm run test:ci 2>/dev/null); then
+          echo "❌ Tests failed for apps/$app — aborting commit"
+          exit 1
+        else
+          echo "✅ Tests passed for apps/$app"
+        fi
+      else
+        echo "ℹ️  No test script found for apps/$app - skipping tests"
+      fi
+    else
+      echo "⚠️  Skipping tests for apps/$app (no package.json found)"
+    fi
+  done
+fi
+
+echo '🏗️👷 Styling and formatting your project before committing👷‍♂️🏗️'
+echo 'please be patient, this may take a while...'
+
+# Get all staged JS/TS files
+STAGED_JS_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx)$' || true)
+STAGED_JSON_MD_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(json|md|yml|yaml)$' || true)
+
+# Process JS/TS files
+if [ -n "$STAGED_JS_FILES" ]; then
+  echo '🎨 Formatting and linting staged JS/TS files...'
+  
+  for file in $STAGED_JS_FILES; do
+    echo "Processing: $file"
+    
+    # Format files
+    if npx prettier --config prettier.config.cjs --write "$file" 2>/dev/null; then
+      echo "✅ Formatted: $file"
+    else
+      echo "⚠️  Could not format: $file (continuing...)"
+    fi
+    
+    # Find the appropriate directory for ESLint
+    if echo "$file" | grep -q "^apps/server/"; then
+      if [ -f "apps/server/eslint.config.mjs" ]; then
+        (cd apps/server && npx eslint --fix "../../$file" 2>/dev/null) || echo "⚠️  ESLint issues in $file"
+      fi
+    elif echo "$file" | grep -q "^apps/web/"; then
+      if [ -f "apps/web/eslint.config.mjs" ]; then
+        (cd apps/web && npx eslint --fix "../../$file" 2>/dev/null) || echo "⚠️  ESLint issues in $file"
+      fi
+    elif echo "$file" | grep -q "^apps/"; then
+      app_dir=$(echo "$file" | sed -E 's|^(apps/[^/]+).*|\1|')
+      if [ -f "$app_dir/eslint.config.mjs" ]; then
+        (cd "$app_dir" && npx eslint --fix "../../$file" 2>/dev/null) || echo "⚠️  ESLint issues in $file"
+      fi
+    elif echo "$file" | grep -q "^packages/"; then
+      pkg_dir=$(echo "$file" | sed -E 's|^(packages/[^/]+).*|\1|')
+      if [ -f "$pkg_dir/eslint.config.mjs" ]; then
+        (cd "$pkg_dir" && npx eslint --fix "../../$file" 2>/dev/null) || echo "⚠️  ESLint issues in $file"
+      else
+        # For packages without eslint config, use root prettier only
+        echo "ℹ️  No ESLint config found for $pkg_dir, skipping lint"
+      fi
+    fi
+    
+    # Re-stage the file
+    git add "$file"
+  done
+fi
+
+# Process JSON/MD files
+if [ -n "$STAGED_JSON_MD_FILES" ]; then
+  echo '🎨 Formatting staged JSON/MD files...'
+  
+  for file in $STAGED_JSON_MD_FILES; do
+    echo "Processing: $file"
+    if npx prettier --write "$file" 2>/dev/null; then
+      echo "✅ Formatted: $file"
+      git add "$file"
+    else
+      echo "⚠️  Could not format: $file (continuing...)"
+    fi
+  done
+fi
+
+echo '🎉 All checks passed: committing this now.... ✨🚀🏄‍♂️🍻'

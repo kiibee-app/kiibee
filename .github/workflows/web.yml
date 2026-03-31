@@ -1,0 +1,131 @@
+name: Web CI/CD
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+    paths:
+      - "apps/web/**"
+      - "packages/**"
+      - "pnpm-lock.yaml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "18"
+  PNPM_VERSION: "10.18.0"
+
+jobs:
+  build-and-test:
+    name: 🏗️ Build & Test Web
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 🧹 Clear GitHub Actions cache
+        if: github.event_name == 'pull_request'
+        run: |
+          gh extension install actions/gh-actions-cache
+
+          REPO=${{ github.repository }}
+          BRANCH="refs/pull/${{ github.event.pull_request.number }}/merge"
+
+          echo "Fetching list of cache key"
+          cacheKeysForPR=$(gh actions-cache list -R $REPO -B $BRANCH | cut -f 1 )
+
+          ## Setting this to not fail the workflow while deleting cache keys. 
+          set +e
+          echo "Deleting caches..."
+          for cacheKey in $cacheKeysForPR
+          do
+              gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm
+          done
+          echo "Done"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🛒 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Install pnpm
+        shell: bash
+        run: |
+          npm i -g pnpm@${{ env.PNPM_VERSION }}
+          echo "$(npm bin -g)" >> "$GITHUB_PATH"
+          pnpm -v
+
+      - name: 📥 Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          CI: true
+
+      - name: 🔍 Lint
+        run: pnpm --filter=web lint
+
+      - name: 🔍 Type check
+        run: pnpm --filter=web typecheck
+
+      - name: 🏗️ Build
+        run: pnpm --filter=web build
+
+      - name: 🧪 Run tests
+        run: pnpm --filter=web test:ci
+        env:
+          NODE_ENV: test
+          CI: true
+
+  security-checks:
+    name: 🔐 Security Checks (web only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 🛒 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 📦 Install pnpm
+        shell: bash
+        run: |
+          npm i -g pnpm@${{ env.PNPM_VERSION }}
+          echo "$(npm bin -g)" >> "$GITHUB_PATH"
+          pnpm -v
+
+      - name: 📥 Install dependencies (root)
+        run: pnpm install --frozen-lockfile
+        env:
+          CI: true
+
+      - name: 🔍 Run security linting (web)
+        working-directory: apps/web
+        shell: bash
+        run: |
+          if [ -f ".eslintrc.security.js" ]; then
+            pnpm run lint:security
+          else
+            echo "No .eslintrc.security.js in apps/web; skipping security lint."
+          fi
+      - name: 📎 Upload security artifacts (web)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-reports-web
+          path: |
+            reports/web/**
+          if-no-files-found: ignore
