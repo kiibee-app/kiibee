@@ -13,8 +13,7 @@ FORMATTABLE_FILES=$(printf '%s\n' "$STAGED_FILES" | grep -E '\.(js|jsx|ts|tsx|js
 
 if [ -n "$FORMATTABLE_FILES" ]; then
   echo "Formatting staged files..."
-  printf '%s\n' "$FORMATTABLE_FILES" | while IFS= read -r file; do
-    [ -n "$file" ] || continue
+  for file in $FORMATTABLE_FILES; do
     pnpm exec prettier --write "$file" || exit 1
     git add "$file"
   done
