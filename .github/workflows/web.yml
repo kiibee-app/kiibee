@@ -15,8 +15,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: "18"
-  PNPM_VERSION: "10.18.0"
+  NODE_VERSION: "20.9.0"
+  PNPM_VERSION: "9.0.0"
 
 jobs:
   build-and-test:

@@ -3,12 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./theme": "./src/theme/index.ts",
+    "./theme/types": "./src/theme/types.ts",
+    "./theme/ThemeProvider": "./src/theme/ThemeProvider.tsx",
     "./*": "./src/*.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "styled-components": "^6.1.17"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -18,9 +26,5 @@
     "@types/react-dom": "19.2.2",
     "eslint": "^9.39.1",
     "typescript": "5.9.2"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
   }
 }
