@@ -18,9 +18,27 @@ jobs:
       - uses: pnpm/action-setup@v4
 
       - run: pnpm install --frozen-lockfile
-      - run: npx playwright install --with-deps
+
+      - name: Detect Playwright project
+        id: playwright_check
+        shell: bash
+        run: |
+          if [ -f "playwright.config.ts" ] || [ -f "playwright.config.js" ] || [ -f "playwright.config.mjs" ] || [ -f "playwright.config.cjs" ]; then
+            echo "has_playwright=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_playwright=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Playwright browsers
+        if: steps.playwright_check.outputs.has_playwright == 'true'
+        run: npx playwright install --with-deps
 
       - name: Run Percy snapshots
+        if: steps.playwright_check.outputs.has_playwright == 'true'
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-        run: pnpm exec percy exec -- pnpm exec playwright test
+        run: npx percy exec -- npx playwright test
+
+      - name: Skip Percy (no Playwright config)
+        if: steps.playwright_check.outputs.has_playwright != 'true'
+        run: echo "No Playwright config found, skipping Percy visual tests."
