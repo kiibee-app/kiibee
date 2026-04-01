@@ -9,8 +9,7 @@ on:
       - "pnpm-lock.yaml"
 
 env:
-  NODE_VERSION: "18"
-  PNPM_VERSION: "9.0.0"
+  NODE_VERSION: "20.9.0"
 
 jobs:
   build-and-test:
@@ -28,8 +27,6 @@ jobs:
 
       - name: 📦 Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: 📥 Install dependencies
         run: pnpm install --frozen-lockfile
