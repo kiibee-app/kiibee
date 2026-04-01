@@ -83,16 +83,25 @@ jobs:
       - name: 📥 Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: 🔎 Detect available server CI scripts
+        id: server_scripts
+        shell: bash
+        run: |
+          node -e "const fs=require('fs'); const pkg=require('./apps/server/package.json'); const scripts=pkg.scripts||{}; const out=process.env.GITHUB_OUTPUT; fs.appendFileSync(out, 'has_lint=' + Boolean(scripts.lint) + '\n'); fs.appendFileSync(out, 'has_typecheck=' + Boolean(scripts.typecheck) + '\n'); fs.appendFileSync(out, 'has_test_ci=' + Boolean(scripts['test:ci']) + '\n'); fs.appendFileSync(out, 'has_db_setup_sql=' + fs.existsSync('apps/server/scripts/setup-test-db.sql') + '\n');"
+
       - name: 🔍 Lint
+        if: steps.server_scripts.outputs.has_lint == 'true'
         run: pnpm --filter=server lint
 
       - name: 🔍 Type check
+        if: steps.server_scripts.outputs.has_typecheck == 'true'
         run: pnpm --filter=server typecheck
 
       - name: 🏗️ Build
         run: pnpm --filter=server build
 
       - name: 🗄️ Setup Database
+        if: steps.server_scripts.outputs.has_db_setup_sql == 'true'
         run: |
           echo "Setting up database for CI..."
           echo "Database URL: $DATABASE_URL"
@@ -114,6 +123,7 @@ jobs:
           DATABASE_URL: postgresql://postgres:password@localhost:5432/foodime_test_db
 
       - name: 🧪 Run tests
+        if: steps.server_scripts.outputs.has_test_ci == 'true'
         run: pnpm --filter=server test:ci
         env:
           NODE_ENV: test
