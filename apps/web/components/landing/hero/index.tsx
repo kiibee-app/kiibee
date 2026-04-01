@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Hero, Inner, Content, Title, Subtitle, CTAWrap } from "./styles";
 import Image from "next/image";
 import { Background } from "./styles";
@@ -8,6 +9,7 @@ import hero from "../../../assets/images/hero.png";
 import GenericButton from "../../UI/GenericButton";
 
 export default function HeroSection() {
+  const { t } = useTranslation();
   return (
     <Hero>
       <Background>
@@ -21,18 +23,12 @@ export default function HeroSection() {
       </Background>
       <Inner>
         <Content>
-          <Title>
-            Discover and enjoy unique digital content from your favorite
-            creators.
-          </Title>
-          <Subtitle>
-            Watch, listen, and learn directly from independent creators. Rent or
-            buy exclusive content in just a few clicks
-          </Subtitle>
+          <Title>{t("hero.title")}</Title>
+          <Subtitle>{t("hero.subtitle")}</Subtitle>
 
           <CTAWrap>
             <GenericButton asAnchor href="#" variant="primary">
-              Join Kiibee now
+              {t("hero.cta")}
             </GenericButton>
           </CTAWrap>
         </Content>

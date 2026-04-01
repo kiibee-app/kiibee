@@ -1,33 +1,42 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import { Header, Inner, Left, Logo, Nav, Actions } from "./styles";
 import logo from "../../../assets/images/logo.png";
 import GenericButton from "@/components/UI/GenericButton";
 
 export default function NavBar() {
+  const { t } = useTranslation();
+
   return (
     <Header>
       <Inner>
         <Left>
           <Logo>
-            <Image src={logo} alt="Kiibee" width={80} height={25} priority />
+            <Image
+              src={logo}
+              alt={t("nav.logoAlt")}
+              width={80}
+              height={25}
+              priority
+            />
           </Logo>
         </Left>
 
         <Nav>
-          <a href="#">How it works</a>
-          <a href="#">Explore creators</a>
-          <a href="#">About Kiibee</a>
+          <a href="#">{t("nav.howItWorks")}</a>
+          <a href="#">{t("nav.exploreCreators")}</a>
+          <a href="#">{t("nav.about")}</a>
         </Nav>
 
         <Actions>
           <GenericButton asAnchor href="#" variant="secondary">
-            Log in
+            {t("nav.login")}
           </GenericButton>
           <GenericButton asAnchor href="#" variant="primary">
-            Start creating
+            {t("nav.startCreating")}
           </GenericButton>
         </Actions>
       </Inner>
