@@ -17,3 +17,11 @@ export const Main = styled.main`
   align-items: center;
   justify-content: center;
 `;
+
+export const Footer = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+`;
