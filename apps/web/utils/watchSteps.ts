@@ -12,24 +12,20 @@ export type Creator = {
 
 export type Step = {
   number: string;
-  label: string;
-  description: string;
+  translationKey: string;
 };
 
 export const steps: Step[] = [
   {
     number: "01",
-    label: "Browse",
-    description: "Discover creators and collections that match your interests.",
+    translationKey: "browse",
   },
   {
     number: "02",
-    label: "Choose",
-    description: "Rent, buy, or access the content directly on Kiibee.",
+    translationKey: "choose",
   },
   {
     number: "03",
-    label: "Enjoy",
-    description: "Stream or download instantly, anytime, anywhere.",
+    translationKey: "enjoy",
   },
 ];

@@ -5,11 +5,32 @@
     "cta": "Deltag i Kiibee nu"
   },
   "nav": {
-    "howItWorks": "Sådan fungerer det",
-    "exploreCreators": "Udforsk skabere",
-    "about": "Om Kiibee",
+    "items": {
+      "howItWorks": "Sådan fungerer det",
+      "exploreCreators": "Udforsk skabere",
+      "about": "Om Kiibee"
+    },
     "login": "Log ind",
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee"
+  },
+  "watchingSteps": {
+    "heading": "Sådan fungerer det",
+    "tagline": "Begynd at se på få trin.",
+    "previewAlt": "Sådan fungerer det",
+    "steps": {
+      "browse": {
+        "label": "Gennemse",
+        "description": "Find skabere og samlinger, der matcher dine interesser."
+      },
+      "choose": {
+        "label": "Vælg",
+        "description": "Lej, køb eller få adgang til indholdet direkte på Kiibee."
+      },
+      "enjoy": {
+        "label": "Nyd",
+        "description": "Stream eller download med det samme, når som helst, hvor som helst."
+      }
+    }
   }
 }

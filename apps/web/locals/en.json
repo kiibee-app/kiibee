@@ -5,11 +5,32 @@
     "cta": "Join Kiibee now"
   },
   "nav": {
-    "howItWorks": "How it works",
-    "exploreCreators": "Explore creators",
-    "about": "About Kiibee",
+    "items": {
+      "howItWorks": "How it works",
+      "exploreCreators": "Explore creators",
+      "about": "About Kiibee"
+    },
     "login": "Log in",
     "startCreating": "Start creating",
     "logoAlt": "Kiibee"
+  },
+  "watchingSteps": {
+    "heading": "How it works",
+    "tagline": "Start watching in just a few steps.",
+    "previewAlt": "How it works",
+    "steps": {
+      "browse": {
+        "label": "Browse",
+        "description": "Discover creators and collections that match your interests."
+      },
+      "choose": {
+        "label": "Choose",
+        "description": "Rent, buy, or access the content directly on Kiibee."
+      },
+      "enjoy": {
+        "label": "Enjoy",
+        "description": "Stream or download instantly, anytime, anywhere."
+      }
+    }
   }
 }

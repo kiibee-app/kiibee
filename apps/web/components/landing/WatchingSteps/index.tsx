@@ -1,7 +1,7 @@
 "use client";
 
 import GenericButton from "@/components/UI/GenericButton";
-import { steps } from "@/utils/aiSectionData";
+import { steps } from "@/utils/watchSteps";
 import {
   Section,
   Content,
@@ -18,26 +18,30 @@ import {
   CTAWrapper,
 } from "./styles";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import Steps from "../../../assets/images/steps.png";
 
 export default function WatchingSteps() {
+  const { t } = useTranslation();
   return (
     <Section>
       <Content>
         <Header>
-          <Heading>How it works</Heading>
-          <Tagline>Start watching in just a few steps.</Tagline>
+          <Heading>{t("watchingSteps.heading")}</Heading>
+          <Tagline>{t("watchingSteps.tagline")}</Tagline>
         </Header>
         <Layout>
           <PreviewPanel>
             <Image
-              src="/images/steps.png"
-              alt="How it works"
+              src={Steps}
+              alt={t("watchingSteps.previewAlt")}
               width={640}
               height={479}
               style={{
                 width: "640px",
                 height: "479px",
-                aspectRatio: "159 / 119 , border-radius: 8px",
+                aspectRatio: "159 / 119",
+                borderRadius: 8,
               }}
             />
           </PreviewPanel>
@@ -46,8 +50,14 @@ export default function WatchingSteps() {
               <StepCard key={step.number}>
                 <StepNumber>{step.number}</StepNumber>
                 <div>
-                  <StepLabel>{step.label}</StepLabel>
-                  <StepDescription>{step.description}</StepDescription>
+                  <StepLabel>
+                    {t(`watchingSteps.steps.${step.translationKey}.label`)}
+                  </StepLabel>
+                  <StepDescription>
+                    {t(
+                      `watchingSteps.steps.${step.translationKey}.description`,
+                    )}
+                  </StepDescription>
                 </div>
               </StepCard>
             ))}
