@@ -1,13 +1,14 @@
 import HeroSection from "@/components/landing/Hero";
 import NavBar from "@/components/Layout/Navbar";
+import { PageContainer, Main } from "./styles";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-50 font-sans">
+    <PageContainer>
       <NavBar />
-      <main className="flex flex-1 w-full items-center justify-center">
+      <Main>
         <HeroSection />
-      </main>
-    </div>
+      </Main>
+    </PageContainer>
   );
 }
