@@ -25,12 +25,13 @@
       },
       "choose": {
         "label": "Choose",
-        "description": "Rent, buy, or access the content directly on Kiibee."
+        "description": "Rent, buy, or access content directly on Kiibee."
       },
       "enjoy": {
         "label": "Enjoy",
         "description": "Stream or download instantly, anytime, anywhere."
       }
-    }
+    },
+    "cta": "Learn more"
   }
 }

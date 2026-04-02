@@ -6,7 +6,7 @@ export const Section = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
   color: ${({ theme }) => theme.colors.neutral.WHITE};
-  padding: clamp(3rem, 4vw, 5rem) clamp(1.5rem, 4vw, 3rem) 4rem;
+  padding: clamp(3rem, 4vw, 5rem) clamp(1.5rem, 4vw, 3rem) 10rem;
 `;
 
 export const Content = styled.div`
@@ -37,12 +37,13 @@ export const Tagline = styled.p`
 export const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4rem;
 
   @media (min-width: 1024px) {
     flex-direction: row;
     align-items: flex-start;
-    gap: 3rem;
+    justify-content: space-between;
+    gap: 4rem;
   }
 `;
 
@@ -51,7 +52,7 @@ export const PreviewPanel = styled.div`
 `;
 
 export const StepsColumn = styled.div`
-  flex: 0 0 320px;
+  flex: 0 0 440px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -63,7 +64,8 @@ export const StepCard = styled.article`
   padding: 0.9375rem;
   border: 1px solid ${({ theme }) => theme.colors.primary.GREEN_30};
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 9rem;
 `;
 
 export const StepNumber = styled.span`
@@ -85,6 +87,12 @@ export const StepDescription = styled.p`
 `;
 
 export const CTAWrapper = styled.div`
-  margin-top: 0.5rem;
+  margin-top: 1.875rem;
   align-self: flex-start;
+`;
+
+export const NumberPart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 `;

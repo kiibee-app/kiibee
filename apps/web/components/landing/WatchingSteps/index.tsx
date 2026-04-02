@@ -16,6 +16,7 @@ import {
   StepLabel,
   StepDescription,
   CTAWrapper,
+  NumberPart,
 } from "./styles";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
@@ -48,11 +49,13 @@ export default function WatchingSteps() {
           <StepsColumn>
             {steps.map((step) => (
               <StepCard key={step.number}>
-                <StepNumber>{step.number}</StepNumber>
-                <div>
+                <NumberPart>
+                  <StepNumber>{step.number}</StepNumber>
                   <StepLabel>
                     {t(`watchingSteps.steps.${step.translationKey}.label`)}
                   </StepLabel>
+                </NumberPart>
+                <div>
                   <StepDescription>
                     {t(
                       `watchingSteps.steps.${step.translationKey}.description`,
@@ -63,7 +66,7 @@ export default function WatchingSteps() {
             ))}
             <CTAWrapper>
               <GenericButton asAnchor href="#" variant="primary">
-                Learn more
+                {t("watchingSteps.cta")}
               </GenericButton>
             </CTAWrapper>
           </StepsColumn>
