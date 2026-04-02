@@ -51,7 +51,7 @@ export const Nav = styled.nav`
   }
 
   a:hover {
-    background: ${({ theme }) => theme.colors.primary.BLACK};
+    background: ${({ theme }) => theme.colors.primary.WHITE_18};
   }
 
   @media (min-width: 640px) {
