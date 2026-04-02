@@ -3,10 +3,13 @@ export type ColorScale = Record<number | string, string>;
 export interface ColorPalette {
   primary: {
     WHITE: string;
+    WHITE_10: string;
+    WHITE_90: string;
+    WHITE_18: string;
     BLACK: string;
+    BLACK_90: string;
     GREEN: string;
     RED: string;
-    WHITE_10: string;
   };
   secondary: {
     LIGHT: string;
@@ -26,7 +29,10 @@ export const COLORS: ColorPalette = {
   primary: {
     WHITE: "rgb(255,255,255)",
     WHITE_10: "rgba(255,255,255,0.1)",
+    WHITE_90: "rgba(255,255,255,0.9)",
+    WHITE_18: "rgba(255,255,255,0.18)",
     BLACK: "rgb(0,0,0)",
+    BLACK_90: "rgba(0,0,0,0.9)",
     GREEN: "rgb(83,186,169)",
     RED: "rgb(220,38,38)",
   },

@@ -35,7 +35,7 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
 
   @media (min-width: 640px) {
     align-items: flex-start;
@@ -46,7 +46,7 @@ export const Content = styled.div`
 
 export const Title = styled.h1`
   margin: 0 0 1rem 0;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   font-weight: 700;
   line-height: 1.02;
   font-size: clamp(2.25rem, 6vw, 4rem);
@@ -57,7 +57,7 @@ export const Subtitle = styled.p`
   margin: 0 0 2rem 0;
   max-width: 32rem;
   font-size: clamp(1rem, 2.2vw, 1.125rem);
-  color: rgba(255, 255, 255, 0.9);
+  color: ${({ theme }) => theme.colors.primary.WHITE_90};
 `;
 
 export const CTAWrap = styled.div`
@@ -79,8 +79,8 @@ export const Primary = styled.a`
   height: 3rem;
   padding: 0 1.25rem;
   border-radius: 0.5rem;
-  background: rgba(0, 0, 0, 0.9);
-  color: #fff;
+  background: ${({ theme }) => theme.colors.primary.BLACK_90};
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   text-decoration: none;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
 `;
@@ -92,8 +92,8 @@ export const Secondary = styled.a`
   height: 3rem;
   padding: 0 1.25rem;
   border-radius: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid ${({ theme }) => theme.colors.primary.WHITE_18};
   background: transparent;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   text-decoration: none;
 `;
