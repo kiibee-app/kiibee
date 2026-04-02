@@ -4,7 +4,8 @@ export const Section = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
   color: ${({ theme }) => theme.colors.primary.WHITE};
-  padding: clamp(3rem, 4vw, 5rem) clamp(1.5rem, 4vw, 3rem) 10rem;
+  padding: clamp(2.5rem, 4vw, 4rem) clamp(1.5rem, 4vw, 3rem)
+    clamp(3.5rem, 5vw, 6rem);
 `;
 
 export const Content = styled.div`
@@ -12,7 +13,7 @@ export const Content = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
 `;
 
 export const Header = styled.div`
@@ -35,18 +36,20 @@ export const Tagline = styled.p`
 export const Layout = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: clamp(2rem, 4vw, 4rem);
 
   @media (min-width: 1024px) {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 4rem;
   }
 `;
 
 export const PreviewPanel = styled.div`
-  border-radius: 8px;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 640px;
 `;
 
 export const StepsColumn = styled.div`
