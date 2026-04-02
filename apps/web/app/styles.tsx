@@ -17,3 +17,6 @@ export const Main = styled.main`
   align-items: center;
   justify-content: center;
 `;
+export const Footer = styled.footer`
+  display: flex;
+`;
