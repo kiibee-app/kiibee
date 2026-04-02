@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-const accent = "#8ee5bf";
-
 export const Section = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   padding: clamp(3rem, 4vw, 5rem) clamp(1.5rem, 4vw, 3rem) 10rem;
 `;
 
@@ -29,7 +27,7 @@ export const Heading = styled.h2`
 
 export const Tagline = styled.p`
   margin: 0;
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   opacity: 0.8;
   font-size: 1rem;
 `;
@@ -65,13 +63,13 @@ export const StepCard = styled.article`
   border: 1px solid ${({ theme }) => theme.colors.primary.GREEN_30};
   display: flex;
   justify-content: space-between;
-  gap: 9rem;
+  gap: 8rem;
 `;
 
 export const StepNumber = styled.span`
   font-size: 1.3rem;
   font-weight: 700;
-  color: ${accent};
+  color: ${({ theme }) => theme.colors.primary.PALE_GREEN};
 `;
 
 export const StepLabel = styled.h4`
@@ -83,7 +81,7 @@ export const StepLabel = styled.h4`
 export const StepDescription = styled.p`
   margin: 0.35rem 0 0;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
 export const CTAWrapper = styled.div`
