@@ -10,6 +10,9 @@ export interface ColorPalette {
     BLACK_90: string;
     GREEN: string;
     RED: string;
+    GREEN_10: string;
+    GREEN_30: string;
+    GREEN_100: string;
   };
   secondary: {
     LIGHT: string;
@@ -35,6 +38,9 @@ export const COLORS: ColorPalette = {
     BLACK_90: "rgba(0,0,0,0.9)",
     GREEN: "rgb(83,186,169)",
     RED: "rgb(220,38,38)",
+    GREEN_10: "rgba(255, 255, 255, 0.10)",
+    GREEN_30: "rgba(246, 246, 246, 0.30)",
+    GREEN_100: "rgba(4, 41, 11, 1)",
   },
 
   secondary: {

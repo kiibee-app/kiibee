@@ -16,41 +16,6 @@ export type Step = {
   description: string;
 };
 
-export const trendingContent: TrendingContentItem[] = [
-  {
-    category: "Design",
-    title: "Adobe Lightroom guide",
-    creator: "Vera Hells",
-    action: "Free",
-  },
-  {
-    category: "Design",
-    title: "Knitting pattern",
-    creator: "Helle Hansen",
-    action: "Rent 2x",
-  },
-  {
-    category: "Educational",
-    title: "Sculpture Mastery",
-    creator: "Vera Kloss",
-    action: "Buy 4x",
-  },
-  {
-    category: "Design",
-    title: "Greatest Book Cover",
-    creator: "Catharina Klass",
-    action: "New Drop",
-  },
-];
-
-export const creators: Creator[] = [
-  { name: "Chefi", detail: "24K Subscribers" },
-  { name: "Morten Binde", detail: "39K Subscribers" },
-  { name: "Kammas Kantine", detail: "10K Subscribers" },
-  { name: "Simon Talbot", detail: "46K Subscribers" },
-  { name: "Jacob Tarnhoff", detail: "68K Subscribers" },
-];
-
 export const steps: Step[] = [
   {
     number: "01",
