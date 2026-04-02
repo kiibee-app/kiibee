@@ -1,4 +1,4 @@
-import HeroSection from "@/components/landing/hero";
+import HeroSection from "@/components/landing/Hero";
 import NavBar from "@/components/Layout/Navbar";
 
 export default function Home() {
