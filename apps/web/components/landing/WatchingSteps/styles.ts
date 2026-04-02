@@ -53,7 +53,7 @@ export const PreviewPanel = styled.div`
 `;
 
 export const StepsColumn = styled.div`
-  flex: 0 0 440px;
+  flex: 0 0 441px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
