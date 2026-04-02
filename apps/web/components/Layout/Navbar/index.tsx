@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import { Header, Inner, Left, Logo, Nav, Actions } from "./styles";
 import NAV_ITEMS from "@/utils/navItems";
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../assets/images/kiibee-wordmark.png";
 import GenericButton from "@/components/UI/GenericButton";
 
 export default function NavBar() {

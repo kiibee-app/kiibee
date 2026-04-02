@@ -73,16 +73,26 @@ export const CTAWrap = styled.div`
 `;
 
 export const Primary = styled.a`
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  padding: 16px 20px;
   justify-content: center;
-  height: 3rem;
-  padding: 0 1.25rem;
-  border-radius: 0.5rem;
-  background: ${({ theme }) => theme.colors.primary.BLACK_90};
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: var(--Black, #060606);
+  border: 2px solid transparent;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   text-decoration: none;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+
+  &:hover {
+    background: transparent;
+    border-color: #060606;
+    color: #060606;
+  }
 `;
 
 export const Secondary = styled.a`

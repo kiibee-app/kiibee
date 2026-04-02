@@ -2,12 +2,18 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Hero, Inner, Content, Title, Subtitle, CTAWrap } from "./styles";
+import {
+  Hero,
+  Inner,
+  Content,
+  Title,
+  Subtitle,
+  CTAWrap,
+  Primary,
+  Background,
+} from "./styles";
 import Image from "next/image";
-import hero from "../../../assets/images/hero.png";
-import GenericButton from "../../UI/GenericButton";
-import { Background } from "./styles";
-
+import hero from "../../../assets/images/hero-background.png";
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -28,9 +34,7 @@ export default function HeroSection() {
           <Subtitle>{t("hero.subtitle")}</Subtitle>
 
           <CTAWrap>
-            <GenericButton asAnchor href="#" variant="primary">
-              {t("hero.cta")}
-            </GenericButton>
+            <Primary href="#">{t("hero.cta")}</Primary>
           </CTAWrap>
         </Content>
       </Inner>
