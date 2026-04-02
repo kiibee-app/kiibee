@@ -8,7 +8,7 @@ export const Header = styled.header`
   height: 72px;
   display: block;
   backdrop-filter: blur(15px);
-  background: rgba(255, 255, 255, 0.1);
+  background: ${({ theme }) => theme.colors.primary.WHITE_10};
   transition:
     background 180ms ease,
     backdrop-filter 180ms ease;
@@ -33,6 +33,7 @@ export const Left = styled.div`
 export const Logo = styled.span`
   font-weight: 700;
   font-size: 1.125rem;
+  font-family: ${({ theme }) => theme.typography.fontFamily};
 `;
 
 export const Nav = styled.nav`
@@ -40,7 +41,7 @@ export const Nav = styled.nav`
   gap: 1.25rem;
 
   a {
-    color: rgba(0, 0, 0, 0.85);
+    color: ${({ theme }) => theme.colors.primary.BLACK};
     text-decoration: none;
     padding: 0.5rem 0.75rem;
     border-radius: 0.375rem;
@@ -50,7 +51,7 @@ export const Nav = styled.nav`
   }
 
   a:hover {
-    background: rgba(0, 0, 0, 0.04);
+    background: ${({ theme }) => theme.colors.primary.BLACK};
   }
 
   @media (min-width: 640px) {
@@ -64,7 +65,7 @@ export const Actions = styled.div`
   gap: 0.75rem;
 
   .login {
-    color: rgba(0, 0, 0, 0.8);
+    color: ${({ theme }) => theme.colors.primary.BLACK};
     text-decoration: none;
     padding: 0.375rem 0.75rem;
     border-radius: 0.375rem;
