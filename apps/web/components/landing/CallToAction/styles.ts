@@ -6,7 +6,7 @@ export const Section = styled.section`
   height: 100vh;
   margin: 0;
   overflow: hidden;
-  background: #06210f;
+  background: ${({ theme }) => theme.colors.gredint.CANVAS_BG};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,8 +37,8 @@ export const Card = styled.div<{
   position: absolute;
   overflow: hidden;
   border-radius: 14px;
-  background: rgba(0, 0, 0, 0.45);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  background: ${({ theme }) => theme.colors.gredint.CARD_BG};
+  box-shadow: 0 8px 24px ${({ theme }) => theme.colors.gredint.CARD_SHADOW};
 
   @media (max-width: 900px) {
     position: ${({ $mobileOnly }) => ($mobileOnly ? "relative" : "absolute")};
@@ -89,7 +89,7 @@ export const CardImage = styled.img`
 export const CardTint = styled.div`
   position: absolute;
   inset: 0;
-  background: rgba(4, 34, 14, 0.36);
+  background: ${({ theme }) => theme.colors.gredint.CARD_TINT};
 `;
 
 export const GradientOverlay = styled.div`
@@ -99,17 +99,17 @@ export const GradientOverlay = styled.div`
   background:
     linear-gradient(
       180deg,
-      rgba(3, 24, 10, 0.66) 0%,
-      rgba(3, 20, 9, 0.36) 45%,
-      rgba(3, 20, 9, 0.72) 100%
+      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_START} 0%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_MID} 45%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_END} 100%
     ),
     linear-gradient(
       90deg,
-      rgba(3, 41, 12, 0.9) 0%,
-      rgba(3, 41, 12, 0.46) 22%,
-      rgba(3, 41, 12, 0.06) 48%,
-      rgba(3, 41, 12, 0.46) 78%,
-      rgba(3, 41, 12, 0.9) 100%
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_SOLID} 0%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_MID} 22%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_FADE} 48%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_MID} 78%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_SOLID} 100%
     );
 `;
 
@@ -120,15 +120,15 @@ export const VignetteOverlay = styled.div`
   background:
     radial-gradient(
       circle at 50% 45%,
-      rgba(0, 0, 0, 0.02) 0%,
-      rgba(0, 0, 0, 0.42) 100%
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_INNER} 0%,
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_OUTER} 100%
     ),
     linear-gradient(
       90deg,
-      rgba(5, 35, 14, 0.35) 0%,
-      rgba(5, 35, 14, 0) 14%,
-      rgba(5, 35, 14, 0) 86%,
-      rgba(5, 35, 14, 0.35) 100%
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_SIDE} 0%,
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_SIDE_CLEAR} 14%,
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_SIDE_CLEAR} 86%,
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_SIDE} 100%
     );
 `;
 
@@ -145,7 +145,7 @@ export const Content = styled.div`
   align-items: center;
   flex-direction: column;
   text-align: center;
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   box-sizing: border-box;
 
   @media (max-width: 1280px) {
@@ -192,7 +192,7 @@ export const BrandLogo = styled.span`
 
 export const Heading = styled.h1`
   margin: 0 0 30px;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   text-align: center;
   font-family: "Reddit Sans", sans-serif;
   font-size: 40px;
@@ -209,7 +209,7 @@ export const Heading = styled.h1`
 export const Subtitle = styled.p`
   margin: 0 0 50px;
   max-width: 760px;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   text-align: center;
   font-family: "Reddit Sans", sans-serif;
   font-size: 16px;
@@ -232,9 +232,9 @@ export const CTAButton = styled.button`
   align-items: center;
   gap: 10px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #060606;
-  color: #fff;
+  border: 1px solid ${({ theme }) => theme.colors.gredint.WHITE_08};
+  background: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   font-family: "Reddit Sans", sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -247,8 +247,8 @@ export const CTAButton = styled.button`
     border-color 160ms ease;
 
   &:hover {
-    background: transparent;
-    color: #fff;
-    border-color: #060606;
+    background: ${({ theme }) => theme.colors.gredint.TRANSPARENT};
+    color: ${({ theme }) => theme.colors.primary.WHITE};
+    border-color: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
   }
 `;
