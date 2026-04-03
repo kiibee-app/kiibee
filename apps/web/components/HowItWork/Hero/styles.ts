@@ -6,7 +6,7 @@ export const Hero = styled.section`
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 95vh;
+  min-height: 90vh;
 
   &::before {
     content: "";
@@ -66,6 +66,7 @@ export const Title = styled.h1`
   font-size: clamp(2rem, 6.5vw, 4.8rem);
   line-height: 1.02;
   font-weight: 600;
+  font-size: 64px;
 `;
 
 export const Subtitle = styled.p`
