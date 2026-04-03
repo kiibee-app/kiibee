@@ -42,10 +42,8 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
         />
         <Content>
           <Title>{tutorial.title}</Title>
-          <MetaRow>
-            <MetaItem>{tutorial.creator}</MetaItem>
-            <MetaItem $isMuted>{tutorial.published}</MetaItem>
-          </MetaRow>
+          <MetaItem>{tutorial.creator}</MetaItem>
+          <MetaItem $isMuted>{tutorial.published}</MetaItem>
           <Description>{tutorial.focus}</Description>
           <Footer>
             <FormatBadge>
