@@ -2,17 +2,19 @@
 
 import React from "react";
 import NavBar from "@/components/Layout/Navbar";
-import { PageContainer, Main } from "../styles";
+import { PageContainer, Main, Section } from "../../styles";
 import HowHero from "@/components/HowItWork/Hero";
+import HowSteps from "@/components/HowItWork/Steps";
 
 export default function HowItWorksPage() {
   return (
     <PageContainer>
       <NavBar />
       <Main>
-        <div style={{ width: "100%" }}>
+        <Section>
           <HowHero />
-        </div>
+          <HowSteps />
+        </Section>
       </Main>
     </PageContainer>
   );
