@@ -6,7 +6,7 @@ export const CardShell = styled.div`
   padding: 1.125rem 1.25rem;
   display: flex;
   justify-content: center;
-  box-shadow: 0 20px 45px ${({ theme }) => theme.colors.neutral.OVERLAY};
+  box-shadow: 0 20px 45px ${({ theme }) => theme.colors.neutral.GRAY_300};
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_100};
 
   @media (max-width: ${({ theme }) => theme.media.sm}) {
