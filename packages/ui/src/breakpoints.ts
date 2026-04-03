@@ -1,9 +1,3 @@
-// Detailed breakpoint scale + a media helper object for convenience.
-// This file exports:
-// - `breakpoints` (raw pixel/string values)
-// - `media` (helper strings like `@media (max-width: ...)` or `@media (min-width: ...)`)
-// - default export is `breakpoints` for backwards compatibility with the theme.
-
 export const breakpoints = {
   mobile: "320px",
   tablet: "768px",
