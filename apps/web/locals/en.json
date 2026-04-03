@@ -12,7 +12,7 @@
     },
     "login": "Log in",
     "startCreating": "Start creating",
-    "logoAlt": "Kiibee",
+    "logoAlt": "Kiibee"
   },
   "how": {
     "heroAlt": "Kiibee hero image",
@@ -28,6 +28,7 @@
       "accessTitle": "Get Instant Access",
       "accessText": "Stream or download — it's yours to keep"
     }
+  },
   "watchingSteps": {
     "heading": "How it works",
     "tagline": "Start watching in just a few steps.",

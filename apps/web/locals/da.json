@@ -12,7 +12,7 @@
     },
     "login": "Log ind",
     "startCreating": "Begynd at skabe",
-    "logoAlt": "Kiibee",
+    "logoAlt": "Kiibee"
   },
   "how": {
     "heroAlt": "Kiibee hero-billede",
@@ -27,23 +27,26 @@
       "chooseText": "Køb eller lej enkeltindhold eller samlinger",
       "accessTitle": "Få øjeblikkelig adgang",
       "accessText": "Stream eller download — det er dit at beholde"
+    }
+  },
   "watchingSteps": {
-    "heading": "Sådan fungerer det",
-    "tagline": "Begynd at se på få trin.",
-    "previewAlt": "Sådan fungerer det",
+    "heading": "How it works",
+    "tagline": "Start watching in just a few steps.",
+    "previewAlt": "How it works",
     "steps": {
       "browse": {
-        "label": "Gennemse",
-        "description": "Find skabere og samlinger, der matcher dine interesser."
+        "label": "Browse",
+        "description": "Discover creators and collections that match your interests."
       },
       "choose": {
-        "label": "Vælg",
-        "description": "Lej, køb eller få adgang til indholdet direkte på Kiibee."
+        "label": "Choose",
+        "description": "Rent, buy, or access content directly on Kiibee."
       },
       "enjoy": {
-        "label": "Nyd",
-        "description": "Stream eller download med det samme, når som helst, hvor som helst."
+        "label": "Enjoy",
+        "description": "Stream or download instantly, anytime, anywhere."
       }
-    }
+    },
+    "cta": "Learn more"
   }
 }
