@@ -11,5 +11,11 @@
     "login": "Log in",
     "startCreating": "Start creating",
     "logoAlt": "Kiibee"
+  },
+  "how": {
+    "heroAlt": "Kiibee hero image",
+    "title": "Stream or own the content you love",
+    "subtitle": "Access content from your favorite creators. Subscribe, support, and enjoy experiences.",
+    "cta": "Explore content"
   }
 }

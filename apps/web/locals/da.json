@@ -11,5 +11,11 @@
     "login": "Log ind",
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee"
+  },
+  "how": {
+    "heroAlt": "Kiibee hero-billede",
+    "title": "Stream eller ej — indholdet du elsker",
+    "subtitle": "Få adgang til indhold fra dine yndlingsskabere. Abonner, støt, og nyd oplevelser.",
+    "cta": "Udforsk indhold"
   }
 }
