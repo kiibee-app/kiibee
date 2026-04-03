@@ -1,6 +1,7 @@
 import HeroSection from "@/components/landing/Hero";
 import NavBar from "@/components/Layout/Navbar";
 import { PageContainer, Main } from "./styles";
+import WatchingSteps from "@/components/landing/WatchingSteps";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Main>
         <HeroSection />
       </Main>
+      <WatchingSteps />
     </PageContainer>
   );
 }
