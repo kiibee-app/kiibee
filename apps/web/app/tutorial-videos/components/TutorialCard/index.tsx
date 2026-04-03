@@ -16,6 +16,7 @@ import {
   FormatBadge,
   FormatIcon,
   AccessPill,
+  MetaDate,
 } from "./styles";
 
 interface TutorialCardProps {
@@ -43,7 +44,7 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
         <Content>
           <Title>{tutorial.title}</Title>
           <MetaItem>{tutorial.creator}</MetaItem>
-          <MetaItem $isMuted>{tutorial.published}</MetaItem>
+          <MetaDate>{tutorial.published}</MetaDate>
           <Description>{tutorial.focus}</Description>
           <Footer>
             <FormatBadge>

@@ -68,14 +68,12 @@ export const MetaRow = styled.div`
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
 `;
 
-interface MetaItemProps {
-  $isMuted?: boolean;
-}
-
-export const MetaItem = styled.span<MetaItemProps>`
-  color: ${({ theme, $isMuted }) =>
-    $isMuted ? theme.colors.primary.BLACK_90 : theme.colors.primary.BLACK};
-  font-weight: ${({ $isMuted }) => ($isMuted ? 500 : 600)};
+export const MetaItem = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const Description = styled.p`
@@ -138,4 +136,12 @@ export const AccessPill = styled.button`
     transform: translateY(-1px);
     box-shadow: 0 8px 20px ${({ theme }) => theme.colors.neutral.OVERLAY};
   }
+`;
+
+export const MetaDate = styled.span`
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
