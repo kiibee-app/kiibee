@@ -5,11 +5,9 @@
     "cta": "Deltag i Kiibee nu"
   },
   "nav": {
-    "items": {
-      "howItWorks": "Sådan fungerer det",
-      "exploreCreators": "Udforsk skabere",
-      "about": "Om Kiibee"
-    },
+    "howItWorks": "Sådan fungerer det",
+    "exploreCreators": "Udforsk skabere",
+    "about": "Om Kiibee",
     "login": "Log ind",
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee"
