@@ -1,6 +1,7 @@
 import HeroSection from "@/components/landing/Hero";
+import TestimonialSection from "@/components/landing/Testimonial";
 import NavBar from "@/components/Layout/Navbar";
-import { PageContainer, Main } from "./styles";
+import { Main, PageContainer } from "./styles";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <NavBar />
       <Main>
         <HeroSection />
+        <TestimonialSection />
       </Main>
     </PageContainer>
   );
