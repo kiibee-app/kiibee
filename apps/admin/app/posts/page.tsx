@@ -1,13 +1,13 @@
 "use client";
 
-export default function Home() {
+export default function PostsPage() {
   return (
     <div>
       <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#111827" }}>
-        Dashboard Example
+        Posts / Articles Example
       </h2>
       <p style={{ color: "#6B7280", marginTop: "8px" }}>
-        This is an example dashboard route with sample title and description.
+        This route is ready for posts and articles management content.
       </p>
     </div>
   );
