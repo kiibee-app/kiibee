@@ -13,6 +13,7 @@ import {
   SectionTag,
   SectionLink,
 } from "./styles";
+import LeftIcon from "@/assets/images/icons/left";
 
 export default function TutorialVideosPage() {
   const { t } = useTranslation();
@@ -28,10 +29,10 @@ export default function TutorialVideosPage() {
         <SectionHeader>
           <SectionLabel>
             <SectionTag>{t("tutorialVideos.sectionTag")}</SectionTag>
+            <LeftIcon />
           </SectionLabel>
-          <SectionLink href="#">
-            {t("tutorialVideos.sectionLink")}
-            <span aria-hidden="true">→</span>
+          <SectionLink>
+            <LeftIcon />
           </SectionLink>
         </SectionHeader>
         <TutorialsShowcase />

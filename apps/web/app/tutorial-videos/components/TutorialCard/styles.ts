@@ -53,7 +53,8 @@ export const Content = styled.div`
 
 export const Title = styled.h3`
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
+  font-weight: 600;
   line-height: 1.3;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;

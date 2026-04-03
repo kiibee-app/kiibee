@@ -43,28 +43,26 @@ export const SectionHeader = styled.div`
 export const SectionLabel = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.25rem;
   font-weight: 600;
   font-size: 1.05rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const SectionTag = styled.span`
-  padding: 0.35rem 1rem;
+  padding: 0.35rem 0;
   font-size: 1.375rem;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const SectionLink = styled.a`
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 0.25rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  text-decoration: none;
-  padding: 0.35rem 0.65rem;
-  border-radius: 999px;
-  transition: background 150ms ease;
+  width: 1.766rem;
+  padding: 0.432rem 0.353rem;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  border-radius: 100%;
 `;
