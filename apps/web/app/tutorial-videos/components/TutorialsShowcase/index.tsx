@@ -1,6 +1,7 @@
 "use client";
+
+import { tutorialVideos } from "@/utils/data";
 import TutorialCard from "../TutorialCard";
-import { tutorialVideos } from "@/app/tutorial-videos/data/tutorialVideos";
 import { Grid } from "./styles";
 
 export default function TutorialsShowcase() {

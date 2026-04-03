@@ -15,6 +15,8 @@ export const HeroBlock = styled.section`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  padding: 4rem 0;
+  text-align: center;
 `;
 
 export const HeroTitle = styled.h1`

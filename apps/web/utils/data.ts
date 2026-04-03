@@ -1,14 +1,8 @@
-export type TutorialVideo = {
-  id: string;
-  title: string;
-  category: string;
-  creator: string;
-  published: string;
-  focus: string;
-  level: string;
-  formatLabel: string;
-  image: string;
-};
+import { TutorialVideo } from "./type";
+import design from "../assets/images/design.png";
+import design1 from "../assets/images/design1.png";
+import design2 from "../assets/images/design2.png";
+import education from "../assets/images/education.png";
 
 export const tutorialVideos: TutorialVideo[] = [
   {
@@ -20,8 +14,7 @@ export const tutorialVideos: TutorialVideo[] = [
     focus: "Plan content, scenes, and publishing cadence before you go live.",
     level: "Free",
     formatLabel: "Video",
-    image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80",
+    image: design,
   },
   {
     id: "del-3",
@@ -33,8 +26,7 @@ export const tutorialVideos: TutorialVideo[] = [
       "Fine-tune the look and pacing of your livestream and on-demand drops.",
     level: "Free",
     formatLabel: "Video",
-    image:
-      "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80",
+    image: design1,
   },
   {
     id: "del-4",
@@ -46,19 +38,18 @@ export const tutorialVideos: TutorialVideo[] = [
       "Connect billing, payouts, and compliance tools for a smooth launch.",
     level: "Free",
     formatLabel: "Video",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+    image: design2,
   },
   {
     id: "del-5",
-    title: "Del 5: Udbetaling, notifikationer",
-    category: "Design",
+    title: "Del 5: Udbetaling, notifikationer og eksporter",
+    category: "Educational",
     creator: "Kiibee",
-    published: "9 days ago",
-    focus: "Automate payouts and keep creators informed with clean alerts.",
+    published: "1 year ago",
+    focus:
+      "Connect billing, payouts, and compliance tools for a smooth launch.",
     level: "Free",
     formatLabel: "Video",
-    image:
-      "https://images.unsplash.com/photo-1474631245212-32dc3c8310c6?auto=format&fit=crop&w=1200&q=80",
-  },
+    image: education,
+  }
 ];

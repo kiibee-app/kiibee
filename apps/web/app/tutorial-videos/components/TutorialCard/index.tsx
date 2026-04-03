@@ -1,5 +1,7 @@
 "use client";
-import type { TutorialVideo } from "@/app/tutorial-videos/data/tutorialVideos";
+
+import { TutorialVideo } from "@/utils/type";
+import { resolveImageUrl } from "@/utils/Constants";
 import {
   Card,
   Media,
@@ -19,11 +21,13 @@ interface TutorialCardProps {
 }
 
 export default function TutorialCard({ tutorial }: TutorialCardProps) {
+  const imageUrl = resolveImageUrl(tutorial.image);
+
   return (
     <Card>
       <Media
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.65)), url(${tutorial.image})`,
+          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.65)), url(${imageUrl})`,
         }}
       >
         <Tag>{tutorial.category}</Tag>
