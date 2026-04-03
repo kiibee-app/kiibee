@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useTranslation } from "react-i18next";
-
 import {
   Container,
   Top,
@@ -19,10 +17,8 @@ import {
   CardWrapper,
   LinkRow,
 } from "./styles";
-
 import logo from "../../../assets/images/logo.png";
 import card from "../../../assets/images/card.png";
-
 import { FacebookIcon } from "@/assets/icons/facebookIcon";
 import { TwitterIcon } from "@/assets/icons/twitterIcon";
 import { YouTubeIcon } from "@/assets/icons/youTubeIcon";
@@ -30,7 +26,6 @@ import { footerConfig } from "@/utils/footerConfig";
 
 const Footer = () => {
   const { t } = useTranslation();
-
   const year = new Date().getFullYear();
 
   return (
@@ -46,7 +41,6 @@ const Footer = () => {
               priority
             />
           </LogoRow>
-
           <IconRow>
             <FacebookIcon />
             <TwitterIcon />
@@ -57,7 +51,6 @@ const Footer = () => {
         {footerConfig.map((col) => (
           <Column key={col.title}>
             <Title>{t(col.title)}</Title>
-
             {col.items.map((item, idx) =>
               item.href ? (
                 <LinkItem key={`${col.title}-${idx}`} href={item.href}>
@@ -70,19 +63,16 @@ const Footer = () => {
           </Column>
         ))}
       </Top>
-
       <Divider />
 
       <Bottom>
         <BottomLeft>{t("footer.copyright", { year })}</BottomLeft>
-
         <BottomRight>
           <LinkRow>
             <span>{t("footer.privacyPolicy")}</span>
             <span>{t("footer.termsOfService")}</span>
             <span>{t("footer.cookieSettings")}</span>
           </LinkRow>
-
           <CardWrapper>
             <Image
               src={card}

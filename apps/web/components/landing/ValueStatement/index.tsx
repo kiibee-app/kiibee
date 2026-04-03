@@ -25,9 +25,7 @@ export default function ValueStatement() {
       <Inner>
         <Content>
           <Title>{t("value.title")}</Title>
-
           <Subtitle>{t("value.subtitle")}</Subtitle>
-
           <GenericButton asAnchor href="#" variant="primary-lite">
             {t("value.cta")}
           </GenericButton>

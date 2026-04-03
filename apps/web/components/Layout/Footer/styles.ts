@@ -19,7 +19,7 @@ export const Top = styled.div`
     padding: 60px 40px 20px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 30px;
     padding: 40px 20px;
@@ -36,9 +36,6 @@ export const Title = styled.h4`
   font-weight: 500;
   line-height: normal;
   margin-bottom: 14px;
-  @media (max-width: 640px) {
-    font-size: 15px;
-  }
 `;
 
 export const LogoRow = styled.div`
@@ -98,7 +95,7 @@ export const Bottom = styled.div`
     gap: 20px;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     padding: 20px;
     font-size: 12px;
     align-items: left;
@@ -109,7 +106,7 @@ export const Bottom = styled.div`
 export const BottomLeft = styled.div`
   max-width: 100%;
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     text-align: center;
   }
 `;
@@ -146,11 +143,7 @@ export const LinkRow = styled.div`
     margin-right: 8px;
   }
 
-  @media (max-width: 1024px) {
-    justify-content: flex-start;
-  }
-
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -164,11 +157,7 @@ export const CardWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  @media (max-width: 1024px) {
-    justify-content: flex-start;
-  }
-
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     justify-content: flex-start;
     width: 100%;
   }
