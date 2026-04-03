@@ -26,10 +26,10 @@ export const HeroTitle = styled.h1`
 `;
 
 export const HeroSubtitle = styled.p`
-  text-align: center;
   max-width: 56rem;
   font-size: 1.1rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  margin: 0 auto;
 `;
 
 export const SectionHeader = styled.div`
@@ -69,8 +69,4 @@ export const SectionLink = styled.a`
   padding: 0.35rem 0.65rem;
   border-radius: 999px;
   transition: background 150ms ease;
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
 `;
