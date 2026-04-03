@@ -12,9 +12,9 @@ export default function Home() {
       <Main>
         <HeroSection />
       </Main>
+      <WatchingSteps />
       <ValueStatement />
       <Footer />
-      <WatchingSteps />
     </PageContainer>
   );
 }

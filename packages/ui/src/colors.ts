@@ -14,6 +14,7 @@ export interface ColorPalette {
     GREEN_30: string;
     GREEN_100: string;
     PALE_GREEN: string;
+    GRAY: string;
   };
   secondary: {
     LIGHT: string;
@@ -44,6 +45,7 @@ export const COLORS: ColorPalette = {
     GREEN_30: "rgba(246, 246, 246, 0.30)",
     GREEN_100: "rgba(4, 41, 11, 1)",
     PALE_GREEN: "rgba(207, 240, 192, 1)",
+    GRAY: "rgba(235, 235, 237, 1)",
   },
 
   secondary: {
