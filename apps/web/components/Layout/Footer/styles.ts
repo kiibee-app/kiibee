@@ -32,10 +32,10 @@ export const Column = styled.div`
 `;
 
 export const Title = styled.h4`
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 16px;
-
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 14px;
   @media (max-width: 640px) {
     font-size: 15px;
   }
@@ -62,13 +62,14 @@ export const IconRow = styled.div`
 
 export const LinkItem = styled(Link)`
   display: inline-block;
-  opacity: 0.75;
-  font-size: 14px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: normal;
   margin: 6px 0;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
-
+  gap: 6px;
   &:hover {
     opacity: 1;
   }
@@ -84,57 +85,77 @@ export const Bottom = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 15px;
-
-  font-size: 13px;
-  opacity: 0.75;
-
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   padding: 30px 60px;
 
   @media (max-width: 1024px) {
     padding: 25px 40px;
     flex-direction: column;
     align-items: flex-start;
+    gap: 20px;
   }
 
   @media (max-width: 640px) {
     padding: 20px;
     font-size: 12px;
+    align-items: left;
+    text-align: center;
   }
 `;
 
 export const BottomLeft = styled.div`
   max-width: 100%;
+
+  @media (max-width: 640px) {
+    text-align: center;
+  }
 `;
 
 export const BottomRight = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 13px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: normal;
+  align-items: flex-end;
+
+  @media (max-width: 1024px) {
+    align-items: flex-start;
+  }
 `;
 
 export const LinkRow = styled.div`
   display: flex;
   align-items: center;
-  flex-wrap: nowrap;
   gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 
-  a {
+  span {
     display: inline-flex;
     align-items: center;
-    text-decoration: none;
-    color: inherit;
-    opacity: 0.75;
-
-    &:hover {
-      opacity: 1;
-    }
+    white-space: nowrap;
   }
 
-  a:not(:first-child)::before {
+  span::before {
     content: "•";
-    margin-right: 12px;
-    opacity: 0.5;
+    margin-right: 8px;
+  }
+
+  @media (max-width: 1024px) {
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 0;
   }
 `;
 
@@ -142,4 +163,13 @@ export const CardWrapper = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: flex-end;
+
+  @media (max-width: 1024px) {
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 640px) {
+    justify-content: flex-start;
+    width: 100%;
+  }
 `;

@@ -26,35 +26,12 @@ import card from "../../../assets/images/card.png";
 import { FacebookIcon } from "@/assets/icons/facebookIcon";
 import { TwitterIcon } from "@/assets/icons/twitterIcon";
 import { YouTubeIcon } from "@/assets/icons/youTubeIcon";
+import { footerConfig } from "@/utils/footerConfig";
 
 const Footer = () => {
   const { t } = useTranslation();
 
   const year = new Date().getFullYear();
-
-  const columns = [
-    {
-      title: "Information",
-      items: [
-        { label: "About us", href: null },
-        { label: "How it works", href: null },
-        { label: "For creators", href: null },
-        { label: "Explore creators", href: null },
-        { label: "Pricing", href: null },
-      ],
-    },
-    {
-      title: "Helpful Links",
-      items: [
-        { label: "Tutorial videos", href: null },
-        { label: "User guides", href: null },
-      ],
-    },
-    {
-      title: "Contact Us",
-      items: [{ label: "Support", href: null }],
-    },
-  ];
 
   return (
     <Container>
@@ -77,15 +54,19 @@ const Footer = () => {
           </IconRow>
         </Column>
 
-        {columns.map((col) => (
+        {footerConfig.map((col) => (
           <Column key={col.title}>
-            <Title>{col.title}</Title>
+            <Title>{t(col.title)}</Title>
 
-            {col.items.map((item, idx) => (
-              <LinkItem key={`${col.title}-${idx}`} href={item.href ?? "#"}>
-                {item.label}
-              </LinkItem>
-            ))}
+            {col.items.map((item, idx) =>
+              item.href ? (
+                <LinkItem key={`${col.title}-${idx}`} href={item.href}>
+                  {t(item.label)}
+                </LinkItem>
+              ) : (
+                <span key={`${col.title}-${idx}`}>{t(item.label)}</span>
+              ),
+            )}
           </Column>
         ))}
       </Top>
@@ -93,15 +74,13 @@ const Footer = () => {
       <Divider />
 
       <Bottom>
-        <BottomLeft>
-          © {year} Kiibee ApS - CVR: 34898634 - info@kiibee.dk
-        </BottomLeft>
+        <BottomLeft>{t("footer.copyright", { year })}</BottomLeft>
 
         <BottomRight>
           <LinkRow>
-            <span>.Privacy Policy</span>
-            <span>Terms of Service</span>
-            <span>Cookie Settings</span>
+            <span>{t("footer.privacyPolicy")}</span>
+            <span>{t("footer.termsOfService")}</span>
+            <span>{t("footer.cookieSettings")}</span>
           </LinkRow>
 
           <CardWrapper>

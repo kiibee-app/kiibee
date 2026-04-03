@@ -15,7 +15,7 @@ export default function ValueStatement() {
       <Background>
         <Image
           src={valueBg}
-          alt="Value background"
+          alt={t("value.bgAlt")}
           fill
           priority
           style={{ objectFit: "cover", objectPosition: "center" }}
@@ -24,14 +24,12 @@ export default function ValueStatement() {
 
       <Inner>
         <Content>
-          <Title>
-            {t("value.title", {
-              defaultValue: "What you know is worth something",
-            })}
-          </Title>
-          <Subtitle>Turn expertise into earnings</Subtitle>
+          <Title>{t("value.title")}</Title>
+
+          <Subtitle>{t("value.subtitle")}</Subtitle>
+
           <GenericButton asAnchor href="#" variant="primary-lite">
-            {t("value.cta", { defaultValue: "Join kiibee today" })}
+            {t("value.cta")}
           </GenericButton>
         </Content>
       </Inner>
