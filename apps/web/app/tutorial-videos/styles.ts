@@ -50,12 +50,10 @@ export const SectionLabel = styled.div`
 `;
 
 export const SectionTag = styled.span`
-  background: ${({ theme }) => theme.colors.primary.GREEN_10};
-  border-radius: 999px;
   padding: 0.35rem 1rem;
-  font-size: 0.85rem;
+  font-size: 1.375rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.primary.GREEN};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const SectionLink = styled.a`

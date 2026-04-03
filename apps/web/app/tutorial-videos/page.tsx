@@ -28,7 +28,6 @@ export default function TutorialVideosPage() {
         <SectionHeader>
           <SectionLabel>
             <SectionTag>{t("tutorialVideos.sectionTag")}</SectionTag>
-            <span>{t("tutorialVideos.sectionLabel")}</span>
           </SectionLabel>
           <SectionLink href="#">
             {t("tutorialVideos.sectionLink")}
