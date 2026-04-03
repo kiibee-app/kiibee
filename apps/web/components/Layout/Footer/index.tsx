@@ -51,15 +51,11 @@ const Footer = () => {
         {footerConfig.map((col) => (
           <Column key={col.title}>
             <Title>{t(col.title)}</Title>
-            {col.items.map((item, idx) =>
-              item.href ? (
-                <LinkItem key={`${col.title}-${idx}`} href={item.href}>
-                  {t(item.label)}
-                </LinkItem>
-              ) : (
-                <span key={`${col.title}-${idx}`}>{t(item.label)}</span>
-              ),
-            )}
+            {col.items.map((item, idx) => (
+              <LinkItem key={`${col.title}-${idx}`} href={item.href ?? "#"}>
+                {t(item.label)}
+              </LinkItem>
+            ))}
           </Column>
         ))}
       </Top>
