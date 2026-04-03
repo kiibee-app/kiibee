@@ -14,30 +14,11 @@ import {
   CardText,
 } from "./styles";
 import { useTranslation } from "react-i18next";
-import step1 from "../../../assets/images/steps/step1.png";
-import step2 from "../../../assets/images/steps/step2.png";
-import step3 from "../../../assets/images/steps/step3.png";
+import steps from "../../../utils/StepsData";
 
 export default function HowSteps() {
   const { t } = useTranslation();
-
-  const items = [
-    {
-      title: t("how.steps.browseTitle"),
-      text: t("how.steps.browseText"),
-      img: step1,
-    },
-    {
-      title: t("how.steps.chooseTitle"),
-      text: t("how.steps.chooseText"),
-      img: step2,
-    },
-    {
-      title: t("how.steps.accessTitle"),
-      text: t("how.steps.accessText"),
-      img: step3,
-    },
-  ];
+  const items = steps;
 
   return (
     <StepsSection>
@@ -50,14 +31,14 @@ export default function HowSteps() {
               <ImgWrap>
                 <Image
                   src={it.img}
-                  alt={it.title}
+                  alt={t(it.titleKey)}
                   fill
                   sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
                   style={{ objectFit: "cover" }}
                 />
               </ImgWrap>
-              <CardTitle>{it.title}</CardTitle>
-              <CardText>{it.text}</CardText>
+              <CardTitle>{t(it.titleKey)}</CardTitle>
+              <CardText>{t(it.textKey)}</CardText>
             </Card>
           ))}
         </Grid>
