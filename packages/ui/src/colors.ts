@@ -24,6 +24,7 @@ export interface ColorPalette {
     WHITE: string;
     BLACK: string;
     GRAY_100: string;
+    GRAY_200: string;
     DUSTY_TEAL: string;
     OVERLAY: string;
   };
@@ -55,6 +56,7 @@ export const COLORS: ColorPalette = {
     WHITE: "rgb(255,255,255)",
     BLACK: "rgb(0,0,0)",
     GRAY_100: "rgb(243,244,246)",
+    GRAY_200: "rgba(235, 235, 237, 1)",
     DUSTY_TEAL: "rgb(88,157,150)",
     OVERLAY: "rgba(15,23,42,0.6)",
   },

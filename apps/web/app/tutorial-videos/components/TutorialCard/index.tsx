@@ -2,8 +2,11 @@
 
 import { TutorialVideo } from "@/utils/type";
 import { resolveImageUrl } from "@/utils/Constants";
+import Image from "next/image";
+
 import {
   Card,
+  CardShell,
   Media,
   Tag,
   Content,
@@ -13,6 +16,7 @@ import {
   Description,
   Footer,
   FormatBadge,
+  FormatIcon,
   AccessPill,
 } from "./styles";
 
@@ -24,28 +28,34 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
   const imageUrl = resolveImageUrl(tutorial.image);
 
   return (
-    <Card>
-      <Media
-        style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.65)), url(${imageUrl})`,
-        }}
-      >
-        <Tag>{tutorial.category}</Tag>
-      </Media>
-      <Content>
-        <Title>{tutorial.title}</Title>
-        <MetaRow>
+    <CardShell>
+      <Card>
+        <Image
+          src={imageUrl}
+          alt={tutorial.title}
+          width={250}
+          height={190}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "0",
+          }}
+        />
+        <Content>
+          <Title>{tutorial.title}</Title>
           <MetaItem>{tutorial.creator}</MetaItem>
           <MetaItem $isMuted>{tutorial.published}</MetaItem>
-        </MetaRow>
-        <Description>{tutorial.focus}</Description>
-        <Footer>
-          <FormatBadge>
-            <span>{tutorial.formatLabel}</span>
-          </FormatBadge>
-          <AccessPill>{tutorial.level}</AccessPill>
-        </Footer>
-      </Content>
-    </Card>
+          <Description>{tutorial.focus}</Description>
+          <Footer>
+            <FormatBadge>
+              <FormatIcon aria-hidden="true">▶</FormatIcon>
+              <span>{tutorial.formatLabel}</span>
+            </FormatBadge>
+            <AccessPill type="button">{tutorial.level}</AccessPill>
+          </Footer>
+        </Content>
+      </Card>
+    </CardShell>
   );
 }
