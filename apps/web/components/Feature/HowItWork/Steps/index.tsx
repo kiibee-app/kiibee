@@ -14,7 +14,7 @@ import {
   CardText,
 } from "./styles";
 import { useTranslation } from "react-i18next";
-import steps from "../../../utils/StepsData";
+import steps from "../../../../utils/StepsData";
 
 export default function HowSteps() {
   const { t } = useTranslation();

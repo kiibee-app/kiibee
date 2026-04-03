@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Hero, Inner, Content, Title, Subtitle, CTAWrap } from "./styles";
 import Image from "next/image";
 import hero from "../../../assets/images/hero.png";
-import GenericButton from "../../UI/GenericButton";
+import GenericButton from "../../../UI/GenericButton";
 import { Background } from "./styles";
 
 export default function HeroSection() {
