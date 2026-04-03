@@ -12,8 +12,6 @@ export const Content = styled.main`
 `;
 
 export const HeroBlock = styled.section`
-  display: flex;
-  flex-direction: column;
   gap: 0.75rem;
   padding: 4rem 0;
   text-align: center;
@@ -28,10 +26,10 @@ export const HeroTitle = styled.h1`
 `;
 
 export const HeroSubtitle = styled.p`
-  margin: 0;
+  text-align: center;
   max-width: 56rem;
   font-size: 1.1rem;
-  color: rgba(15, 23, 42, 0.8);
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const SectionHeader = styled.div`
