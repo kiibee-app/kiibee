@@ -7,8 +7,6 @@ import Image from "next/image";
 import {
   Card,
   CardShell,
-  Media,
-  Tag,
   Content,
   Title,
   MetaRow,
@@ -44,8 +42,10 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
         />
         <Content>
           <Title>{tutorial.title}</Title>
-          <MetaItem>{tutorial.creator}</MetaItem>
-          <MetaItem $isMuted>{tutorial.published}</MetaItem>
+          <MetaRow>
+            <MetaItem>{tutorial.creator}</MetaItem>
+            <MetaItem $isMuted>{tutorial.published}</MetaItem>
+          </MetaRow>
           <Description>{tutorial.focus}</Description>
           <Footer>
             <FormatBadge>

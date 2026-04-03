@@ -6,7 +6,12 @@ export const CardShell = styled.div`
   padding: 1.125rem 1.25rem;
   display: flex;
   justify-content: center;
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 20px 45px ${({ theme }) => theme.colors.neutral.OVERLAY};
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_100};
+
+  @media (max-width: ${({ theme }) => theme.media.sm}) {
+    padding: 0.75rem;
+  }
 `;
 
 export const Card = styled.div`
@@ -15,15 +20,13 @@ export const Card = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-`;
+  min-height: 460px;
+  width: min(360px, 100%);
 
-export const Media = styled.div`
-  position: relative;
-  width: 100%;
-  padding-top: 60%;
-  background-size: cover;
-  background-position: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  @media (max-width: ${({ theme }) => theme.media.sm}) {
+    min-height: 420px;
+    border-radius: 28px;
+  }
 `;
 
 export const Tag = styled.span`
@@ -36,8 +39,8 @@ export const Tag = styled.span`
   font-weight: 600;
   padding: 0.35rem 0.9rem;
   border-radius: 999px;
-  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.12);
-  border: 1px solid rgba(15, 23, 42, 0.15);
+  box-shadow: 0 8px 16px ${({ theme }) => theme.colors.neutral.OVERLAY};
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
 export const Content = styled.div`
@@ -61,7 +64,7 @@ export const MetaRow = styled.div`
   justify-content: space-between;
   gap: 0.75rem;
   font-size: 0.85rem;
-  color: rgba(15, 23, 42, 0.6);
+  color: ${({ theme }) => theme.colors.primary.BLACK_90};
 `;
 
 interface MetaItemProps {
@@ -70,13 +73,13 @@ interface MetaItemProps {
 
 export const MetaItem = styled.span<MetaItemProps>`
   color: ${({ theme, $isMuted }) =>
-    $isMuted ? "rgba(15, 23, 42, 0.55)" : theme.colors.primary.BLACK};
+    $isMuted ? theme.colors.primary.BLACK_90 : theme.colors.primary.BLACK};
   font-weight: ${({ $isMuted }) => ($isMuted ? 500 : 600)};
 `;
 
 export const Description = styled.p`
   margin: 0;
-  color: rgba(15, 23, 42, 0.65);
+  color: ${({ theme }) => theme.colors.primary.BLACK_90};
   font-size: 0.95rem;
   line-height: 1.4;
 `;
@@ -95,19 +98,19 @@ export const FormatBadge = styled.span`
   justify-content: flex-start;
   padding: 0.85rem 1rem;
   border-radius: 14px;
-  background: rgba(243, 244, 246, 0.9);
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   font-size: 0.95rem;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   width: 100%;
-  border: 1px solid rgba(226, 232, 240, 1);
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_100};
 `;
 
 export const FormatIcon = styled.span`
   width: 30px;
   height: 30px;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.9);
+  background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.neutral.WHITE};
   display: inline-flex;
   align-items: center;
@@ -119,20 +122,19 @@ export const AccessPill = styled.button`
   font-size: 0.95rem;
   font-weight: 600;
   padding: 0.85rem 1rem;
-  margin: 1.125rem 1.25rem;
   border-radius: 100px;
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   text-align: center;
   width: 100%;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 12px ${({ theme }) => theme.colors.neutral.OVERLAY};
   transition:
     transform 120ms ease,
     box-shadow 120ms ease;
 
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 8px 20px ${({ theme }) => theme.colors.neutral.OVERLAY};
   }
 `;
