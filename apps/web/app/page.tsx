@@ -1,6 +1,8 @@
 import HeroSection from "@/components/landing/Hero";
 import NavBar from "@/components/Layout/Navbar";
 import { PageContainer, Main } from "./styles";
+import ValueStatement from "@/components/landing/ValueStatement";
+import Footer from "@/components/Layout/Footer";
 
 export default function Home() {
   return (
@@ -9,6 +11,8 @@ export default function Home() {
       <Main>
         <HeroSection />
       </Main>
+      <ValueStatement />
+      <Footer />
     </PageContainer>
   );
 }

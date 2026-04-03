@@ -15,6 +15,7 @@ export interface ColorPalette {
     LIGHT: string;
     DEFAULT: string;
     DARK: string;
+    MEDIUM_GREEN: string;
   };
   neutral: {
     WHITE: string;
@@ -41,6 +42,7 @@ export const COLORS: ColorPalette = {
     LIGHT: "rgb(191,219,254)",
     DEFAULT: "rgb(59,130,246)",
     DARK: "rgb(30,58,138)",
+    MEDIUM_GREEN: "rgb(146, 179, 129)",
   },
 
   neutral: {
