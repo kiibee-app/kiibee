@@ -4,7 +4,7 @@ export const Hero = styled.section`
   width: 100%;
   position: relative;
   display: block;
-  min-height: 100vh;
+  min-height: 95vh;
 
   &::before {
     content: "";
@@ -26,6 +26,7 @@ export const Background = styled.div`
   position: absolute;
   left: 0;
   right: 0;
+  top: -72px;
   height: calc(100% + 72px);
   z-index: 0;
 `;
