@@ -4,20 +4,8 @@ import { TutorialVideo } from "@/utils/type";
 import { resolveImageUrl } from "@/utils/Constants";
 import Image from "next/image";
 
-import {
-  Card,
-  CardShell,
-  Content,
-  Title,
-  MetaRow,
-  MetaItem,
-  Description,
-  Footer,
-  FormatBadge,
-  FormatIcon,
-  AccessPill,
-  MetaDate,
-} from "./styles";
+import { Card, CardShell, Content, Title, MetaItem, MetaDate } from "./styles";
+import GenericButton from "@/components/UI/GenericButton";
 
 interface TutorialCardProps {
   tutorial: TutorialVideo;
@@ -38,21 +26,14 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            borderRadius: "0",
+            borderRadius: "0.75rem 0.75rem 0 0",
           }}
         />
         <Content>
           <Title>{tutorial.title}</Title>
           <MetaItem>{tutorial.creator}</MetaItem>
           <MetaDate>{tutorial.published}</MetaDate>
-          <Description>{tutorial.focus}</Description>
-          <Footer>
-            <FormatBadge>
-              <FormatIcon aria-hidden="true">▶</FormatIcon>
-              <span>{tutorial.formatLabel}</span>
-            </FormatBadge>
-            <AccessPill type="button">{tutorial.level}</AccessPill>
-          </Footer>
+          <GenericButton>Free</GenericButton>
         </Content>
       </Card>
     </CardShell>
