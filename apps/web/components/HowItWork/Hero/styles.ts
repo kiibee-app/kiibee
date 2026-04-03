@@ -65,14 +65,15 @@ export const Title = styled.h1`
   margin: 0 0 0.75rem 0;
   font-size: clamp(2rem, 6.5vw, 4.8rem);
   line-height: 1.02;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 export const Subtitle = styled.p`
   margin: 0 0 1.25rem 0;
-  font-size: 1rem;
-  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
-  max-width: 620px;
+  font-size: 20px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  max-width: 500px;
 
   @media (max-width: calc(${breakpoints.tablet} - 1px)) {
     max-width: 100%;

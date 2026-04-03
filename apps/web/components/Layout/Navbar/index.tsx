@@ -23,6 +23,7 @@ export default function NavBar() {
               width={80}
               height={25}
               priority
+              style={{ width: "auto", height: "auto" }}
             />
           </Logo>
         </Left>
