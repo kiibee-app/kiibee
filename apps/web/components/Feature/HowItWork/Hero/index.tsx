@@ -11,7 +11,7 @@ import {
   Subtitle,
   CTAWrap,
 } from "./styles";
-import heroImg from "../../../assets/images/hero2.png";
+import heroImg from "../../../../assets/images/hero2.png";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 
