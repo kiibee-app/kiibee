@@ -16,6 +16,15 @@
     "heroAlt": "Kiibee hero image",
     "title": "Stream or own the content you love",
     "subtitle": "Access content from your favorite creators. Subscribe, support, and enjoy experiences.",
-    "cta": "Explore content"
+    "cta": "Explore content",
+    "stepsSubtitle": "Three steps to access courses, tutorials, and resources across 50+ categories",
+    "steps": {
+      "browseTitle": "Browse & Discover",
+      "browseText": "Explore 50+ categories and 500+ creators",
+      "chooseTitle": "Choose & Buy",
+      "chooseText": "Buy or rent individual content or collections",
+      "accessTitle": "Get Instant Access",
+      "accessText": "Stream or download — it's yours to keep"
+    }
   }
 }
