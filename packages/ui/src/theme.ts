@@ -1,12 +1,8 @@
 import COLORS, { ColorPalette } from "./colors";
 import typography from "./typography";
+import breakpoints from "./breakpoints";
 
-export type BreakPoints = {
-  sm: string;
-  md: string;
-  lg: string;
-  xl: string;
-};
+export type BreakPoints = typeof breakpoints;
 
 export type TypographyOptions = {
   fontFamily: string;
@@ -83,12 +79,7 @@ const spacing = createSpacing(spacingScale);
 export const theme: Theme = {
   colors: COLORS,
   typography,
-  media: {
-    sm: "640px",
-    md: "768px",
-    lg: "1024px",
-    xl: "1280px",
-  },
+  media: breakpoints,
   spacing: spacing as unknown as Record<string, string> &
     ((n: number) => string),
   radius: borderRadius,
