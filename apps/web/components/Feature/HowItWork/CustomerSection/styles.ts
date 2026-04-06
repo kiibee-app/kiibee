@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import breakpoints from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "../../../../../../packages/ui/src/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
@@ -16,7 +16,7 @@ export const Inner = styled.div`
   grid-template-columns: 1fr 1fr;
   align-items: center;
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     grid-template-columns: 1fr;
     padding: 2rem 1.25rem;
     gap: 1.5rem;
@@ -30,7 +30,7 @@ export const ImgWrap = styled.div`
   border-radius: 10px;
   overflow: hidden;
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     height: 300px;
     width: 100%;
   }
@@ -41,7 +41,7 @@ export const Content = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     align-items: center;
   }
 `;
@@ -52,7 +52,7 @@ export const Title = styled.h2`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     text-align: center;
     font-size: 28px;
   }
@@ -65,7 +65,7 @@ export const Text = styled.p`
   font-size: 16px;
   line-height: 1.6;
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     max-width: 100%;
     text-align: center;
   }
