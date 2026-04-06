@@ -30,7 +30,13 @@
     "customerTitle": "En kort historie om Kiibee",
     "customerLead": "Kiibee blev grundlagt i 2017 for at gøre det nemmere for skabere og virksomheder at sælge og distribuere digitalt indhold direkte til deres publikum.",
     "customerBody": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer — og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
-    "customerCta": "Læs mere om Kiibee"
+    "customerCta": "Læs mere om Kiibee",
+    "getStarted": {
+      "heading": "Kom godt i gang med Kiibee",
+      "sub": "Lær, hvordan du opretter din profil og administrerer dit indhold med vores trin-for-trin-vejledninger.",
+      "tutorial": "Videovejledninger",
+      "guide": "Brugervejledning"
+    }
   },
   "watchingSteps": {
     "heading": "How it works",

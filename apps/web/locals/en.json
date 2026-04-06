@@ -30,7 +30,13 @@
     "customerTitle": "A short story about Kiibee",
     "customerLead": "Kiibee was founded in 2017 to make it easier for creators and businesses to sell and distribute digital content directly to their audience.",
     "customerBody": "We saw great content being shared for free or locked behind complicated systems — and consumers struggling to access quality content in a simple way. Kiibee was built to change that.",
-    "customerCta": "Read more about Kiibee"
+    "customerCta": "Read more about Kiibee",
+    "getStarted": {
+      "heading": "Get started with Kiibee",
+      "sub": "Learn how to set up your profile and manage your content with our step-by-step tutorials.",
+      "tutorial": "Tutorial videos",
+      "guide": "User guide"
+    }
   },
   "watchingSteps": {
     "heading": "How it works",
