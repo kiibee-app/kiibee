@@ -27,3 +27,9 @@ export const Footer = styled.footer`
   padding: 1rem;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
 `;
+
+export const Section = styled.section`
+  width: 100%;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  padding: 3rem 0;
+`;

@@ -88,6 +88,29 @@
     "quote": "As a graphic designer, I'm always looking to expand my skills and stay inspired. Kiibe has been a game-changer for me. Its content is practical, creative, and easy to follow. I've picked up new techniques and design tips I wouldn't have found anywhere else. It's like having a mini design workshop right at my fingertips!",
     "author": "Kamma, freelance graphic designer"
   },
+  "about": {
+    "hero": {
+      "title": "Empowering creativity. Connecting people.",
+      "subtitle": "Kiibee is a digital platform where creators share their knowledge, passion, and stories, and where viewers can easily discover, rent, or buy inspiring content.",
+      "cta": {
+        "explore": "Explore Content",
+        "creator": "Join as Creator"
+      }
+    },
+    "ourStory": {
+      "title": "Our story",
+      "left": {
+        "intro": "Kiibee was founded in 2017 after we identified a growing gap in the digital content market.",
+        "marketGap": "More and more high-quality digital content was being created - courses, talks, shows, training programs and educational material - but much of it was either locked behind complex technical solutions or shared for free on platforms not designed for direct sales.",
+        "consumerNeed": "At the same time, everyday consumers wanted access to professional, niche and high-quality content, without having to navigate complicated platforms or rigid subscriptions.",
+        "bridge": "Kiibee was created to bridge that gap."
+      },
+      "right": {
+        "mission": "From the beginning, our goal has been to make it simple for creators and businesses to distribute and sell digital content directly to their audience — while making that content easy and intuitive for consumers to access.",
+        "evolution": "Since 2017, Kiibee has evolved into a flexible platform used by a wide range of creators and organisations."
+      }
+    }
+  },
   "features": {
     "heading": "More than just content",
     "sub": "Explore our features",
