@@ -17,7 +17,7 @@ import {
   CardWrapper,
   LinkRow,
 } from "./styles";
-import logo from "../../../assets/images/kiibee-wordmark.png";
+import logo from "../../../assets/images/kiibee-logo.svg";
 import card from "../../../assets/images/card.png";
 import { FacebookIcon } from "@/assets/icons/facebookIcon";
 import { TwitterIcon } from "@/assets/icons/twitterIcon";

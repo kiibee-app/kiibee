@@ -49,7 +49,7 @@ export const shared = css<{ $variant: Variant }>`
         return css`
           background: transparent;
           color: ${({ theme }) => theme.colors.primary.BLACK};
-          border: 1px solid rgba(0, 0, 0, 0.12);
+          border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
           &:hover {
             background: ${({ theme }) => theme.colors.primary.BLACK};
             color: ${({ theme }) => theme.colors.primary.WHITE};
