@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import breakpoints from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "../../../../../../packages/ui/src/breakpoints";
 
 export const SectionWrapper = styled.section`
   width: 100%;
@@ -20,10 +20,11 @@ export const Grid = styled.div`
   gap: 30px 60px;
   align-items: start;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     grid-template-columns: 1fr;
   }
 `;
+
 export const Container = styled.div`
   max-width: 1218px;
   display: flex;
@@ -31,6 +32,7 @@ export const Container = styled.div`
   gap: 60px;
   color: ${({ theme }) => theme.colors.neutral.BLACK};
 `;
+
 export const Title = styled.h2`
   font-size: 64px;
   font-weight: 600;

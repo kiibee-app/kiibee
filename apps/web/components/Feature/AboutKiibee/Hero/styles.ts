@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import breakpoints from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "../../../../../../packages/ui/src/breakpoints";
 
 export const Hero = styled.section`
   width: 100%;
@@ -65,9 +65,9 @@ export const Subtitle = styled.p`
   max-width: 57rem;
   color: ${({ theme }) => theme.colors.primary.WHITE};
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     max-width: 100%;
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 `;
 
