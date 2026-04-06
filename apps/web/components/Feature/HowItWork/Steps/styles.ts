@@ -83,11 +83,22 @@ export const Card = styled.div`
 export const CardTitle = styled.h3`
   font-size: 32px;
   font-weight: 600;
+  padding: 1rem 0 0 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+    font-size: 25px;
+    padding: 0.5rem 0 0 0;
+  }
 `;
 
 export const CardText = styled.p`
   margin: 0;
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
   font-size: 20px;
+
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+    font-size: 18px;
+    padding-bottom: 1rem;
+  }
 `;

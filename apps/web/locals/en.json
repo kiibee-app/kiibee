@@ -25,7 +25,12 @@
       "chooseText": "Buy or rent individual content or collections",
       "accessTitle": "Get Instant Access",
       "accessText": "Stream or download — it's yours to keep"
-    }
+    },
+    "customerAlt": "Customer image",
+    "customerTitle": "A short story about Kiibee",
+    "customerLead": "Kiibee was founded in 2017 to make it easier for creators and businesses to sell and distribute digital content directly to their audience.",
+    "customerBody": "We saw great content being shared for free or locked behind complicated systems — and consumers struggling to access quality content in a simple way. Kiibee was built to change that.",
+    "customerCta": "Read more about Kiibee"
   },
   "watchingSteps": {
     "heading": "How it works",
@@ -69,5 +74,12 @@
     "title": "What you know is worth something",
     "subtitle": "Turn expertise into earnings",
     "cta": "Join kiibee today"
+  },
+  "testimonial": {
+    "backgroundAlt": "Creator testimonial background",
+    "prevAriaLabel": "Previous testimonial",
+    "nextAriaLabel": "Next testimonial",
+    "quote": "As a graphic designer, I'm always looking to expand my skills and stay inspired. Kiibe has been a game-changer for me. Its content is practical, creative, and easy to follow. I've picked up new techniques and design tips I wouldn't have found anywhere else. It's like having a mini design workshop right at my fingertips!",
+    "author": "Kamma, freelance graphic designer"
   }
 }

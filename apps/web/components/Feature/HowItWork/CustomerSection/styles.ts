@@ -1,0 +1,76 @@
+import styled from "styled-components";
+import breakpoints from "../../../../../../packages/ui/src/breakpoints";
+
+export const Section = styled.section`
+  width: 100%;
+  background: ${({ theme }) => theme.colors.primary.GREEN_50};
+  padding: 3.5rem 0;
+`;
+
+export const Inner = styled.div`
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.25rem;
+    gap: 1.5rem;
+  }
+`;
+
+export const ImgWrap = styled.div`
+  position: relative;
+  width: 93%;
+  height: 530px;
+  border-radius: 10px;
+  overflow: hidden;
+
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+    height: 300px;
+    width: 100%;
+  }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+    align-items: center;
+  }
+`;
+
+export const Title = styled.h2`
+  margin: 0;
+  font-size: 40px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+    text-align: center;
+    font-size: 28px;
+  }
+`;
+
+export const Text = styled.p`
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  max-width: 595px;
+  font-size: 16px;
+  line-height: 1.6;
+
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+    max-width: 100%;
+    text-align: center;
+  }
+`;
+
+export const CTAWrap = styled.div`
+  margin-top: 1rem;
+`;
