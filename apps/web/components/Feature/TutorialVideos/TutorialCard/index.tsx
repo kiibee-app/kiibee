@@ -11,6 +11,7 @@ import {
   ImageWrapper,
 } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
+import { useTranslation } from "react-i18next";
 import { TutorialVideo } from "@/utils/types";
 
 interface TutorialCardProps {
@@ -19,6 +20,7 @@ interface TutorialCardProps {
 
 export default function TutorialCard({ tutorial }: TutorialCardProps) {
   const imageUrl = resolveImageUrl(tutorial.image);
+  const { t } = useTranslation();
 
   return (
     <CardShell>
@@ -38,7 +40,7 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
           <Title>{tutorial.title}</Title>
           <MetaItem>{tutorial.creator}</MetaItem>
           <MetaDate>{tutorial.published}</MetaDate>
-          <GenericButton>Free</GenericButton>
+          <GenericButton>{t("tutorialVideos.buttonFreeLabel")}</GenericButton>
         </Content>
       </Card>
     </CardShell>
