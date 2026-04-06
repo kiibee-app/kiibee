@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import breakpoints from "../../../../../packages/ui/src/breakpoints";
 
 export const Section = styled.section`
   position: relative;
@@ -21,7 +22,7 @@ export const SectionInner = styled.div`
   margin: 0 auto;
   padding: 0 1.25rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
     height: auto;
     min-height: 620px;
     padding: 0 1rem 5rem;
@@ -65,7 +66,7 @@ export const ArrowButton = styled.button<{ $left?: boolean }>`
     outline-offset: 2px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
     top: auto;
     bottom: 1rem;
     transform: none;
@@ -109,13 +110,23 @@ export const Card = styled.div`
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 
-  @media (max-width: 992px) {
+  @media (max-width: calc(${breakpoints.desktop} - 1px)) {
     right: 1rem;
     left: 1rem;
     width: auto;
     top: 1.5rem;
     padding: 1.25rem;
     gap: 1rem;
+  }
+
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+    left: 50%;
+    right: auto;
+    top: 50%;
+    width: min(520px, calc(100% - 2rem));
+    transform: translate(-50%, -50%);
+    align-items: center;
+    text-align: center;
   }
 `;
 
