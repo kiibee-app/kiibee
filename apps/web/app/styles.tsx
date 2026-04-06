@@ -14,8 +14,9 @@ export const Main = styled.main`
   display: flex;
   flex: 1;
   width: 100%;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
 `;
 
 export const Section = styled.section`

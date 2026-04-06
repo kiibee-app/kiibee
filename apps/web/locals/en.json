@@ -51,5 +51,12 @@
       }
     },
     "cta": "Learn more"
+  },
+  "testimonial": {
+    "backgroundAlt": "Creator testimonial background",
+    "prevAriaLabel": "Previous testimonial",
+    "nextAriaLabel": "Next testimonial",
+    "quote": "As a graphic designer, I'm always looking to expand my skills and stay inspired. Kiibe has been a game-changer for me. Its content is practical, creative, and easy to follow. I've picked up new techniques and design tips I wouldn't have found anywhere else. It's like having a mini design workshop right at my fingertips!",
+    "author": "Kamma, freelance graphic designer"
   }
 }

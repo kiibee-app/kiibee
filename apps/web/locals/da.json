@@ -51,5 +51,12 @@
       }
     },
     "cta": "Learn more"
+  },
+  "testimonial": {
+    "backgroundAlt": "Baggrund til skaberudtalelse",
+    "prevAriaLabel": "Forrige udtalelse",
+    "nextAriaLabel": "Næste udtalelse",
+    "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibe har været en gamechanger for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
+    "author": "Kamma, freelance grafisk designer"
   }
 }
