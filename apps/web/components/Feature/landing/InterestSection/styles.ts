@@ -13,7 +13,7 @@ export const Section = styled.section`
 `;
 
 export const Title = styled.h2`
-  color: #ffffff;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 600;
   margin-bottom: 3.5rem;
@@ -31,20 +31,20 @@ export const PillsWrapper = styled.div`
 
 const variants = {
   white: css`
-    background: #ffffff;
-    color: #0b2d1c;
+    background: ${({ theme }) => theme.colors.primary.WHITE};
+    color: ${({ theme }) => theme.colors.primary.BLACK};
   `,
   light: css`
-    background: #cfe8c7;
-    color: #0b2d1c;
+    background: ${({ theme }) => theme.colors.primary.PALE_GREEN};
+    color: ${({ theme }) => theme.colors.primary.GREEN_100};
   `,
   green: css`
-    background: #9ec28f;
-    color: #0b2d1c;
+    background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
+    color: ${({ theme }) => theme.colors.primary.WHITE};
   `,
   dark: css`
-    background: #0b0b0b;
-    color: #ffffff;
+    background: ${({ theme }) => theme.colors.primary.BLACK};
+    color: ${({ theme }) => theme.colors.primary.WHITE};
   `,
 };
 
@@ -59,9 +59,4 @@ export const Pill = styled.span<{ variant: keyof typeof variants }>`
     box-shadow 0.2s ease;
 
   ${({ variant }) => variants[variant]};
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-  }
 `;
