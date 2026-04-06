@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import breakpoints from "../../../../../../packages/ui/src/breakpoints";
+import breakpoints from "../../../../../packages/ui/src/breakpoints";
 
 export const Section = styled.section`
   width: 100%;

@@ -4,8 +4,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Section, Inner, Content, Title, Background, Subtitle } from "./styles";
 import Image from "next/image";
-import valueBg from "../../../../../web/assets/images/cta-buttom.png";
-import GenericButton from "../../../UI/GenericButton";
+import valueBg from "../../../assets/images/cta-buttom.png";
+import GenericButton from "../../UI/GenericButton";
 
 export default function ValueStatement() {
   const { t } = useTranslation();
