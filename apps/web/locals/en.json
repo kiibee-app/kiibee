@@ -105,6 +105,32 @@
       }
     }
   },
+  "features": {
+    "heading": "More than just content",
+    "sub": "Explore our features",
+    "items": [
+      {
+        "title": "Free user account",
+        "text": "Create and update your profile at any time.",
+        "imageAlt": "product screenshot"
+      },
+      {
+        "title": "Personalized recommendations",
+        "text": "Get content suggestions based on your interests and viewing preferences.",
+        "imageAlt": "recommendations preview"
+      },
+      {
+        "title": "All purchases in one place",
+        "text": "After buying or renting, you're redirected to your purchase page. You'll also receive a receipt by email with a direct link to your content.",
+        "imageAlt": "purchase history"
+      },
+      {
+        "title": "Watch anytime, on any device",
+        "text": "Access your content whenever you want: stream online or download, across mobile, tablet, and desktop.",
+        "imageAlt": "devices preview"
+      }
+    ]
+  },
   "tutorialVideos": {
     "heroTitle": "Tutorial videos",
     "heroSubtitle": "Step-by-step guides to help you succeed with Kiibee and get the most out of every launch.",
