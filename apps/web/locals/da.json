@@ -89,5 +89,12 @@
     "sectionLabel": "Foundational chapters",
     "sectionLink": "View playlist",
     "buttonFreeLabel": "Free"
+  "callToAction": {
+    "logoAlt": "Kiibee",
+    "creatorAlt": "Skaber",
+    "titleLine1": "Er du en skaber?",
+    "titleLine2": "Bliv en del af Kiibee i dag",
+    "subtitle": "Del dit arbejde, opbyg dit publikum, og tjen direkte på dit indhold. Kiibee hjælper dig med at udgive, promovere og sælge på én enkel platform.",
+    "cta": "Begynd at skabe"
   }
 }

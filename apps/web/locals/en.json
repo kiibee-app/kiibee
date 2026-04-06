@@ -89,5 +89,12 @@
     "sectionLabel": "Foundational chapters",
     "sectionLink": "View playlist",
     "buttonFreeLabel": "Free"
+  "callToAction": {
+    "logoAlt": "Kiibee",
+    "creatorAlt": "Creator",
+    "titleLine1": "Are you a creator?",
+    "titleLine2": "Join Kiibee today",
+    "subtitle": "Share your work, build your audience, and earn directly from your content. Kiibee helps you publish, promote, and sell in one simple platform.",
+    "cta": "Start creating"
   }
 }
