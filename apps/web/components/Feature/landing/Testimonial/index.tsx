@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { LeftArrowIcon, RightArrowIcon } from "../../../assets/icons";
-import creator from "../../../assets/images/testimonial/creator.jpg";
+import { LeftArrowIcon, RightArrowIcon } from "../../../../assets/icons";
+import creator from "../../../../assets/images/testimonial/creator.jpg";
 import {
   ArrowButton,
   ArrowIcon,

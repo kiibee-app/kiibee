@@ -12,8 +12,8 @@ import {
   Background,
 } from "./styles";
 import Image from "next/image";
-import hero from "../../../assets/images/hero-background.png";
-import GenericButton from "../../UI/GenericButton";
+import hero from "../../../../assets/images/hero-background.png";
+import GenericButton from "../../../UI/GenericButton";
 
 export default function HeroSection() {
   const { t } = useTranslation();
