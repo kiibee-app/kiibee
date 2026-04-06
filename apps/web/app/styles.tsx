@@ -19,6 +19,12 @@ export const Main = styled.main`
   justify-content: flex-start;
 `;
 
+export const Section = styled.section`
+  width: 100%;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  padding: 3rem 0;
+`;
+
 export const Footer = styled.footer`
   display: flex;
   align-items: center;

@@ -4,10 +4,9 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Hero, Inner, Content, Title, Subtitle, CTAWrap } from "./styles";
 import Image from "next/image";
-import hero from "../../../assets/images/hero.png";
-import GenericButton from "../../UI/GenericButton";
+import hero from "../../../../assets/images/hero.png";
+import GenericButton from "../../../UI/GenericButton";
 import { Background } from "./styles";
-
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -16,10 +15,10 @@ export default function HeroSection() {
       <Background>
         <Image
           src={hero}
-          alt="Hero background"
+          alt={t("hero.heroAlt")}
           fill
           priority
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
         />
       </Background>
       <Inner>

@@ -7,7 +7,7 @@ export const shared = css<{ $variant: Variant }>`
   justify-content: center;
   gap: 0.5rem;
   height: 40px;
-  padding: 0 18px;
+  padding: 7px 18px;
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 600;
@@ -18,21 +18,29 @@ export const shared = css<{ $variant: Variant }>`
   ${({ $variant }) =>
     $variant === "primary"
       ? css`
-          background: #000;
-          color: #fff;
-          border: 1px solid rgba(0, 0, 0, 0.08);
+          background: ${({ theme }) => theme.colors.primary.BLACK};
+          color: ${({ theme }) => theme.colors.primary.WHITE};
+          border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
           box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
           &:hover {
-            transform: translateY(-1px);
-            opacity: 0.98;
+            background: transparent;
+            color: ${({ theme }) => theme.colors.primary.BLACK};
+            box-shadow: none;
+            transform: none;
+            opacity: 1;
           }
         `
       : css`
           background: transparent;
-          color: #111;
+          color: ${({ theme }) => theme.colors.primary.BLACK};
           border: 1px solid rgba(0, 0, 0, 0.12);
           &:hover {
-            background: rgba(0, 0, 0, 0.04);
+            background: ${({ theme }) => theme.colors.primary.BLACK};
+            color: ${({ theme }) => theme.colors.primary.WHITE};
+            border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+            opacity: 0.98;
           }
         `}
 `;
