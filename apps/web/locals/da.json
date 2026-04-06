@@ -52,6 +52,29 @@
     },
     "cta": "Learn more"
   },
+  "footer": {
+    "information": "Information",
+    "about": "Om os",
+    "howItWorks": "Sådan fungerer det",
+    "forCreators": "For skabere",
+    "exploreCreators": "Udforsk skabere",
+    "pricing": "Priser",
+    "helpfulLinks": "Nyttige links",
+    "tutorialVideos": "Videovejledninger",
+    "userGuides": "Brugervejledninger",
+    "contactUs": "Kontakt os",
+    "support": "Support",
+    "privacyPolicy": "Privatlivspolitik",
+    "termsOfService": "Servicevilkår",
+    "cookieSettings": "Cookie-indstillinger",
+    "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
+  },
+  "value": {
+    "bgAlt": "Baggrundsbillede",
+    "title": "Det du ved, er noget værd",
+    "subtitle": "Gør din ekspertise til indtjening",
+    "cta": "Tilmeld Kiibee i dag"
+  },
   "testimonial": {
     "backgroundAlt": "Baggrund til skaberudtalelse",
     "prevAriaLabel": "Forrige udtalelse",
