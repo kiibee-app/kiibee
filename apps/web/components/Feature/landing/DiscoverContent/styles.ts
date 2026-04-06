@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import breakpoints from "../../../../../../packages/ui/src/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
@@ -32,6 +33,10 @@ export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
+
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const Card = styled.article`
@@ -113,6 +118,10 @@ export const ActionsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
+
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const ActionButton = styled.button`
@@ -138,7 +147,7 @@ export const BottomCtaSection = styled.div`
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 
-  @media (max-width: 640px) {
+  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
     grid-template-columns: 1fr;
   }
 `;
