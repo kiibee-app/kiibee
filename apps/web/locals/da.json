@@ -104,5 +104,21 @@
         "evolution": "Siden 2017 har Kiibee udviklet sig til en fleksibel platform, der bruges af en bred vifte af skabere og organisationer."
       }
     }
+  },
+  "tutorialVideos": {
+    "heroTitle": "Tutorial videos",
+    "heroSubtitle": "Step-by-step guides to help you succeed with Kiibee and get the most out of every launch.",
+    "sectionTag": "Getting started",
+    "sectionLabel": "Foundational chapters",
+    "sectionLink": "View playlist",
+    "buttonFreeLabel": "Free"
+  },
+  "callToAction": {
+    "logoAlt": "Kiibee",
+    "creatorAlt": "Skaber",
+    "titleLine1": "Er du en skaber?",
+    "titleLine2": "Bliv en del af Kiibee i dag",
+    "subtitle": "Del dit arbejde, opbyg dit publikum, og tjen direkte på dit indhold. Kiibee hjælper dig med at udgive, promovere og sælge på én enkel platform.",
+    "cta": "Begynd at skabe"
   }
 }
