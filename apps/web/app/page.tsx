@@ -15,7 +15,7 @@ export default function Home() {
         <HeroSection />
         <TestimonialSection />
       </Main>
-
+      
       <WatchingSteps />
       <ValueStatement />
       <CallToAction />
