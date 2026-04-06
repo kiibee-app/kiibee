@@ -1,5 +1,13 @@
-import type { StaticImageData } from "next/image";
-export type Variant = "primary" | "secondary";
+export type StaticImageData = {
+  src: string;
+  height: number;
+  width: number;
+  blurDataURL?: string;
+  blurWidth?: number;
+  blurHeight?: number;
+};
+
+export type Variant = "primary" | "primary-lite" | "secondary";
 
 export function resolveImageUrl(image: string | StaticImageData) {
   return typeof image === "string" ? image : image.src;
