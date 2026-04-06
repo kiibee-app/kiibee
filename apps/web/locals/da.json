@@ -45,6 +45,13 @@
         "description": "Stream or download instantly, anytime, anywhere."
       }
     },
-    "cta": "Learn more"
+    "cta": "Lær mere"
+  },
+  "tutorialVideos": {
+    "heroTitle": "Tutorial-videoer",
+    "heroSubtitle": "Trin-for-trin vejledninger, der hjælper dig med at få succes med Kiibee og få mest muligt ud af hver lancering.",
+    "sectionTag": "Kom godt i gang",
+    "sectionLabel": "Grundlæggende kapitler",
+    "sectionLink": "Se playliste"
   }
 }

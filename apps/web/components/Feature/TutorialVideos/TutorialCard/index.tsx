@@ -1,0 +1,46 @@
+"use client";
+import { resolveImageUrl } from "@/utils/Constants";
+import Image from "next/image";
+import {
+  Card,
+  CardShell,
+  Content,
+  Title,
+  MetaItem,
+  MetaDate,
+  ImageWrapper,
+} from "./styles";
+import GenericButton from "@/components/UI/GenericButton";
+import { TutorialVideo } from "@/utils/types";
+
+interface TutorialCardProps {
+  tutorial: TutorialVideo;
+}
+
+export default function TutorialCard({ tutorial }: TutorialCardProps) {
+  const imageUrl = resolveImageUrl(tutorial.image);
+
+  return (
+    <CardShell>
+      <Card>
+        <ImageWrapper>
+          <Image
+            src={imageUrl}
+            alt={tutorial.title}
+            fill
+            style={{
+              objectFit: "cover",
+            }}
+            priority
+          />
+        </ImageWrapper>
+        <Content>
+          <Title>{tutorial.title}</Title>
+          <MetaItem>{tutorial.creator}</MetaItem>
+          <MetaDate>{tutorial.published}</MetaDate>
+          <GenericButton>Free</GenericButton>
+        </Content>
+      </Card>
+    </CardShell>
+  );
+}
