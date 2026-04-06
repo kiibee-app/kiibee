@@ -52,6 +52,29 @@
     },
     "cta": "Learn more"
   },
+  "footer": {
+    "information": "Information",
+    "about": "About us",
+    "howItWorks": "How it works",
+    "forCreators": "For creators",
+    "exploreCreators": "Explore creators",
+    "pricing": "Pricing",
+    "helpfulLinks": "Helpful Links",
+    "tutorialVideos": "Tutorial videos",
+    "userGuides": "User guides",
+    "contactUs": "Contact Us",
+    "support": "Support",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookieSettings": "Cookie Settings",
+    "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
+  },
+  "value": {
+    "bgAlt": "Value background",
+    "title": "What you know is worth something",
+    "subtitle": "Turn expertise into earnings",
+    "cta": "Join kiibee today"
+  },
   "testimonial": {
     "backgroundAlt": "Creator testimonial background",
     "prevAriaLabel": "Previous testimonial",

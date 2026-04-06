@@ -15,9 +15,10 @@ export const shared = css<{ $variant: Variant }>`
   text-decoration: none;
   transition: all 120ms ease;
 
-  ${({ $variant }) =>
-    $variant === "primary"
-      ? css`
+  ${({ $variant }) => {
+    switch ($variant) {
+      case "primary":
+        return css`
           background: ${({ theme }) => theme.colors.primary.BLACK};
           color: ${({ theme }) => theme.colors.primary.WHITE};
           border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
@@ -29,8 +30,23 @@ export const shared = css<{ $variant: Variant }>`
             transform: none;
             opacity: 1;
           }
-        `
-      : css`
+        `;
+
+      case "primary-lite":
+        return css`
+          background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
+          color: ${({ theme }) => theme.colors.primary.BLACK};
+          border: 1px solid transparent;
+          border-radius: 0.5rem;
+          &:hover {
+            background: transparent;
+            border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
+            opacity: 1;
+          }
+        `;
+
+      default:
+        return css`
           background: transparent;
           color: ${({ theme }) => theme.colors.primary.BLACK};
           border: 1px solid rgba(0, 0, 0, 0.12);
@@ -42,7 +58,9 @@ export const shared = css<{ $variant: Variant }>`
             transform: translateY(-1px);
             opacity: 0.98;
           }
-        `}
+        `;
+    }
+  }}
 `;
 
 export const ButtonEl = styled.button<{ $variant: Variant }>`
