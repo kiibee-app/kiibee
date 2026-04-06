@@ -1,0 +1,33 @@
+export type FooterItem = {
+  label: string;
+  href: string | null;
+};
+
+export type FooterColumn = {
+  title: string;
+  items: FooterItem[];
+};
+
+export const footerConfig: FooterColumn[] = [
+  {
+    title: "footer.information",
+    items: [
+      { label: "footer.about", href: null },
+      { label: "footer.howItWorks", href: null },
+      { label: "footer.forCreators", href: null },
+      { label: "footer.exploreCreators", href: null },
+      { label: "footer.pricing", href: null },
+    ],
+  },
+  {
+    title: "footer.helpfulLinks",
+    items: [
+      { label: "footer.tutorialVideos", href: null },
+      { label: "footer.userGuides", href: null },
+    ],
+  },
+  {
+    title: "footer.contactUs",
+    items: [{ label: "footer.support", href: null }],
+  },
+];

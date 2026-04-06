@@ -52,6 +52,29 @@
     },
     "cta": "Learn more"
   },
+  "footer": {
+    "information": "Information",
+    "about": "Om os",
+    "howItWorks": "Sådan fungerer det",
+    "forCreators": "For skabere",
+    "exploreCreators": "Udforsk skabere",
+    "pricing": "Priser",
+    "helpfulLinks": "Nyttige links",
+    "tutorialVideos": "Videovejledninger",
+    "userGuides": "Brugervejledninger",
+    "contactUs": "Kontakt os",
+    "support": "Support",
+    "privacyPolicy": "Privatlivspolitik",
+    "termsOfService": "Servicevilkår",
+    "cookieSettings": "Cookie-indstillinger",
+    "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
+  },
+  "value": {
+    "bgAlt": "Baggrundsbillede",
+    "title": "Det du ved, er noget værd",
+    "subtitle": "Gør din ekspertise til indtjening",
+    "cta": "Tilmeld Kiibee i dag"
+  },
   "testimonial": {
     "backgroundAlt": "Baggrund til skaberudtalelse",
     "prevAriaLabel": "Forrige udtalelse",
@@ -83,6 +106,21 @@
         "text": "Access your content whenever you want: stream online or download, across mobile, tablet, and desktop.",
         "imageAlt": "enheder preview"
       }
-    ]
+    ],
+  "tutorialVideos": {
+    "heroTitle": "Tutorial videos",
+    "heroSubtitle": "Step-by-step guides to help you succeed with Kiibee and get the most out of every launch.",
+    "sectionTag": "Getting started",
+    "sectionLabel": "Foundational chapters",
+    "sectionLink": "View playlist",
+    "buttonFreeLabel": "Free"
+  },
+  "callToAction": {
+    "logoAlt": "Kiibee",
+    "creatorAlt": "Skaber",
+    "titleLine1": "Er du en skaber?",
+    "titleLine2": "Bliv en del af Kiibee i dag",
+    "subtitle": "Del dit arbejde, opbyg dit publikum, og tjen direkte på dit indhold. Kiibee hjælper dig med at udgive, promovere og sælge på én enkel platform.",
+    "cta": "Begynd at skabe"
   }
 }
