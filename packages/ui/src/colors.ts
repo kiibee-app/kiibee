@@ -93,7 +93,7 @@ export const COLORS: ColorPalette = {
     main: "rgb(17,24,39)",
     muted: "rgb(107,114,128)",
     border: "rgb(243,244,246)",
-    MEDIUM_GREEN: "rgb(146, 179, 129)",
+    MEDIUM_GREEN: "rgba(146, 179, 129, 1)",
   },
 
   neutral: {
