@@ -38,12 +38,12 @@ export const Title = styled.h2`
   margin-bottom: 10px;
 `;
 
-export const Text = styled.p`
+export const Text = styled.p<{ $isLast?: boolean }>`
   font-size: 1rem;
   font-weight: 400;
   line-height: normal;
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  margin-bottom: 25px;
+  margin-bottom: ${({ $isLast }) => ($isLast ? "0" : "25px")};
 `;
 
 export const ImageWrapper = styled.div`

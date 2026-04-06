@@ -3,6 +3,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { SectionWrapper, Grid, Title, Text, Inner, Container } from "./styles";
+import { leftTexts, rightTexts } from "@/utils/ourStory";
 
 export default function OurStorySection() {
   const { t } = useTranslation();
@@ -15,18 +16,17 @@ export default function OurStorySection() {
 
           <Grid>
             <div>
-              <Text>{t("about.ourStory.left.intro")}</Text>
-              <Text>{t("about.ourStory.left.marketGap")}</Text>
-              <Text>
-                {t("about.ourStory.left.consumerNeed")}
-                <br />
-                {t("about.ourStory.left.bridge")}
-              </Text>
+              {leftTexts.map((key, index) => (
+                <Text key={key} $isLast={index === leftTexts.length - 2}>
+                  {t(key)}
+                </Text>
+              ))}
             </div>
 
             <div>
-              <Text>{t("about.ourStory.right.mission")}</Text>
-              <Text>{t("about.ourStory.right.evolution")}</Text>
+              {rightTexts.map((key) => (
+                <Text key={key}>{t(key)}</Text>
+              ))}
             </div>
           </Grid>
         </Container>
