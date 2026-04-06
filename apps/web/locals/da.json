@@ -25,7 +25,12 @@
       "chooseText": "Køb eller lej enkeltindhold eller samlinger",
       "accessTitle": "Få øjeblikkelig adgang",
       "accessText": "Stream eller download — det er dit at beholde"
-    }
+    },
+    "customerAlt": "Kunde billede",
+    "customerTitle": "En kort historie om Kiibee",
+    "customerLead": "Kiibee blev grundlagt i 2017 for at gøre det nemmere for skabere og virksomheder at sælge og distribuere digitalt indhold direkte til deres publikum.",
+    "customerBody": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer — og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
+    "customerCta": "Læs mere om Kiibee"
   },
   "watchingSteps": {
     "heading": "How it works",
