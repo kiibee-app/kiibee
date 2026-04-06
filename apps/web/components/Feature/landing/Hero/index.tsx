@@ -9,11 +9,11 @@ import {
   Title,
   Subtitle,
   CTAWrap,
-  Primary,
   Background,
 } from "./styles";
 import Image from "next/image";
-import hero from "../../../assets/images/hero-background.png";
+import hero from "../../../../assets/images/hero.png";
+import GenericButton from "../../../UI/GenericButton";
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -22,10 +22,10 @@ export default function HeroSection() {
       <Background>
         <Image
           src={hero}
-          alt="Hero background"
+          alt={t("hero.heroAlt")}
           fill
           priority
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
         />
       </Background>
       <Inner>
@@ -34,7 +34,9 @@ export default function HeroSection() {
           <Subtitle>{t("hero.subtitle")}</Subtitle>
 
           <CTAWrap>
-            <Primary href="#">{t("hero.cta")}</Primary>
+            <GenericButton asAnchor href="#" variant="primary">
+              {t("hero.cta")}
+            </GenericButton>
           </CTAWrap>
         </Content>
       </Inner>

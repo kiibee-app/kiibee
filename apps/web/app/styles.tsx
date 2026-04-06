@@ -14,6 +14,20 @@ export const Main = styled.main`
   display: flex;
   flex: 1;
   width: 100%;
-  flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Section = styled.section`
+  width: 100%;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  padding: 3rem 0;
+`;
+
+export const Footer = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
 `;
