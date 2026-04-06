@@ -32,19 +32,15 @@ export default function AboutHero() {
 
       <Inner>
         <Content>
-          <Title>Empowering creativity. Connecting people.</Title>
-          <Subtitle>
-            Kiibee is a digital platform where creators share their knowledge,
-            passion, and stories, and where viewers can easily discover, rent,
-            or buy inspiring content.
-          </Subtitle>
+          <Title>{t("about.hero.title")}</Title>
+          <Subtitle>{t("about.hero.subtitle")}</Subtitle>
           <CTAWrap>
             <GenericButton asAnchor href="/explore" variant="primary">
-              Explore Content
+              {t("about.hero.cta.explore")}
             </GenericButton>
 
             <GenericButton asAnchor href="/creator" variant="secondary">
-              Join as Creator
+              {t("about.hero.cta.creator")}
             </GenericButton>
           </CTAWrap>
         </Content>

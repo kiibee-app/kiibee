@@ -81,5 +81,28 @@
     "nextAriaLabel": "Næste udtalelse",
     "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibe har været en gamechanger for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
     "author": "Kamma, freelance grafisk designer"
+  },
+  "about": {
+    "hero": {
+      "title": "Styrker kreativitet. Forbinder mennesker.",
+      "subtitle": "Kiibee er en digital platform, hvor skabere deler deres viden, passion og historier, og hvor seere nemt kan opdage, leje eller købe inspirerende indhold.",
+      "cta": {
+        "explore": "Udforsk indhold",
+        "creator": "Bliv skaber"
+      }
+    },
+    "ourStory": {
+      "title": "Vores historie",
+      "left": {
+        "intro": "Kiibee blev grundlagt i 2017, efter at vi identificerede et voksende hul i markedet for digitalt indhold.",
+        "marketGap": "Der blev skabt mere og mere digitalt indhold af høj kvalitet – kurser, talks, shows, træningsprogrammer og undervisningsmateriale – men meget af det var enten låst bag komplekse tekniske løsninger eller delt gratis på platforme, der ikke var designet til direkte salg.",
+        "consumerNeed": "Samtidig ønskede almindelige forbrugere adgang til professionelt, nichepræget og kvalitetsindhold uden at skulle navigere i komplicerede platforme eller stive abonnementer.",
+        "bridge": "Kiibee blev skabt for at bygge bro over dette hul."
+      },
+      "right": {
+        "mission": "Fra begyndelsen har vores mål været at gøre det nemt for skabere og virksomheder at distribuere og sælge digitalt indhold direkte til deres publikum – samtidig med at det er let og intuitivt for forbrugerne at få adgang til.",
+        "evolution": "Siden 2017 har Kiibee udviklet sig til en fleksibel platform, der bruges af en bred vifte af skabere og organisationer."
+      }
+    }
   }
 }

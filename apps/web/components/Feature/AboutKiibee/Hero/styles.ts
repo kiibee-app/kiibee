@@ -40,7 +40,6 @@ export const Inner = styled.div`
 `;
 
 export const Content = styled.div`
-  max-width: 750px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -52,17 +51,19 @@ export const Content = styled.div`
 export const Title = styled.h1`
   margin: 0 0 0.75rem 0;
   font-size: clamp(2rem, 6.5vw, 4.8rem);
-  line-height: 1.02;
+  font-size: 2.5rem;
   font-weight: 600;
-  font-size: 64px;
+  line-height: normal;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
 `;
 
 export const Subtitle = styled.p`
   margin: 0 0 1.25rem 0;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  max-width: 500px;
+  line-height: normal;
+  max-width: 57rem;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
 
   @media (max-width: calc(${breakpoints.tablet} - 1px)) {
     max-width: 100%;
