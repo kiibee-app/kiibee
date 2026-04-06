@@ -5,6 +5,7 @@ import { PageContainer, Main } from "./styles";
 import ValueStatement from "@/components/Feature/landing/ValueStatement";
 import Footer from "@/components/Layout/Footer";
 import WatchingSteps from "@/components/Feature/landing/WatchingSteps";
+import DiscoverContent from "@/components/Feature/landing/DiscoverContent";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Main>
         <HeroSection />
         <TestimonialSection />
+        <DiscoverContent />
       </Main>
       <WatchingSteps />
       <ValueStatement />
