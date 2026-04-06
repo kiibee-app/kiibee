@@ -3,6 +3,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
+import Link from "next/link";
 import { Header, Inner, Left, Logo, Nav, Actions } from "./styles";
 import NAV_ITEMS from "@/utils/navItems";
 import logo from "../../../assets/images/logo.png";
@@ -22,15 +23,16 @@ export default function NavBar() {
               width={80}
               height={25}
               priority
+              style={{ width: "auto", height: "auto" }}
             />
           </Logo>
         </Left>
 
         <Nav>
           {NAV_ITEMS.map((item) => (
-            <a key={item.key} href={item.href}>
+            <Link key={item.key} href={item.href}>
               {t(item.key)}
-            </a>
+            </Link>
           ))}
         </Nav>
 
