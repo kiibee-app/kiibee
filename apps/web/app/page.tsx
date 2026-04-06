@@ -6,6 +6,7 @@ import ValueStatement from "@/components/Feature/landing/ValueStatement";
 import Footer from "@/components/Layout/Footer";
 import WatchingSteps from "@/components/Feature/landing/WatchingSteps";
 import DiscoverContent from "@/components/Feature/landing/DiscoverContent";
+import CallToAction from "@/components/landing/CallToAction";
 
 export default function Home() {
   return (
@@ -16,8 +17,10 @@ export default function Home() {
         <TestimonialSection />
         <DiscoverContent />
       </Main>
+
       <WatchingSteps />
       <ValueStatement />
+      <CallToAction />
       <Footer />
     </PageContainer>
   );
