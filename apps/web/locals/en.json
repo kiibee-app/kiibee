@@ -52,6 +52,55 @@
     },
     "cta": "Learn more"
   },
+  "discoverContent": {
+    "title": "Discover content",
+    "subtitle": "Browse hundreds of videos, audio files, and e-books.",
+    "ctaPrimary": "Join now",
+    "ctaSecondary": "View all creators",
+    "mediaTypes": {
+      "video": "Video",
+      "epub": "E-pub"
+    },
+    "items": {
+      "1": {
+        "category": "Comedy",
+        "title": "Krøllehjern",
+        "author": "Jacob Taarnhøj",
+        "date": "7 days ago",
+        "actions": {
+          "rent": "Rent 39 kr",
+          "buy": "Buy 99 kr"
+        }
+      },
+      "2": {
+        "category": "Podcast",
+        "title": "Tech Talks",
+        "author": "Nuebros",
+        "date": "6 days ago",
+        "actions": {
+          "free": "Free"
+        }
+      },
+      "3": {
+        "category": "Course",
+        "title": "Vegetable recipes",
+        "author": "Kammas kantine",
+        "date": "10 days ago",
+        "actions": {
+          "shopCollection": "Shop collection 99 kr"
+        }
+      },
+      "4": {
+        "category": "Educational",
+        "title": "ADD/ADHD",
+        "author": "Nate Hansen",
+        "date": "1 day ago",
+        "actions": {
+          "buy": "Buy xx kr"
+        }
+      }
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "About us",

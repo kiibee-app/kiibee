@@ -52,6 +52,55 @@
     },
     "cta": "Learn more"
   },
+  "discoverContent": {
+    "title": "Opdag indhold",
+    "subtitle": "Gennemse hundredvis af videoer, lydfiler og e-bøger.",
+    "ctaPrimary": "Deltag nu",
+    "ctaSecondary": "Se alle skabere",
+    "mediaTypes": {
+      "video": "Video",
+      "epub": "E-pub"
+    },
+    "items": {
+      "1": {
+        "category": "Komedie",
+        "title": "Krøllehjern",
+        "author": "Jacob Taarnhøj",
+        "date": "For 7 dage siden",
+        "actions": {
+          "rent": "Lej 39 kr",
+          "buy": "Køb 99 kr"
+        }
+      },
+      "2": {
+        "category": "Podcast",
+        "title": "Tech Talks",
+        "author": "Nuebros",
+        "date": "For 6 dage siden",
+        "actions": {
+          "free": "Gratis"
+        }
+      },
+      "3": {
+        "category": "Kursus",
+        "title": "Vegetabilske opskrifter",
+        "author": "Kammas kantine",
+        "date": "For 10 dage siden",
+        "actions": {
+          "shopCollection": "Shop kollektion 99 kr"
+        }
+      },
+      "4": {
+        "category": "Uddannelse",
+        "title": "ADD/ADHD",
+        "author": "Nate Hansen",
+        "date": "For 1 dag siden",
+        "actions": {
+          "buy": "Køb xx kr"
+        }
+      }
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "Om os",

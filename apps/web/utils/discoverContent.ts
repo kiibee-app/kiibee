@@ -4,60 +4,79 @@ import imageThree from "@/assets/images/discover-content/52c1c126e76296e3c8e39b9
 import imageFour from "@/assets/images/discover-content/c9051991a79ffc5a50dd15afe7b8c86e09f7faad.jpg";
 
 export type DiscoverContentAction = {
-  label: string;
+  labelKey: string;
   fullWidth?: boolean;
 };
 
+export type DiscoverContentMediaType = "video" | "epub";
+
 export type DiscoverContentItem = {
   id: number;
-  category: string;
+  categoryKey: string;
   image: typeof imageOne;
-  title: string;
-  author: string;
-  date: string;
-  mediaType: "Video" | "E-pub";
+  titleKey: string;
+  authorKey: string;
+  dateKey: string;
+  mediaType: DiscoverContentMediaType;
+  mediaTypeKey: string;
   actions: DiscoverContentAction[];
 };
 
 export const discoverContentData: DiscoverContentItem[] = [
   {
     id: 1,
-    category: "Comedy",
+    categoryKey: "discoverContent.items.1.category",
     image: imageTwo,
-    title: "Krøllehjern",
-    author: "Jacob Taarnhøj",
-    date: "7 days ago",
-    mediaType: "Video",
-    actions: [{ label: "Rent 39 kr" }, { label: "Buy 99 kr" }],
+    titleKey: "discoverContent.items.1.title",
+    authorKey: "discoverContent.items.1.author",
+    dateKey: "discoverContent.items.1.date",
+    mediaType: "video",
+    mediaTypeKey: "discoverContent.mediaTypes.video",
+    actions: [
+      { labelKey: "discoverContent.items.1.actions.rent" },
+      { labelKey: "discoverContent.items.1.actions.buy" },
+    ],
   },
   {
     id: 2,
-    category: "Podcast",
+    categoryKey: "discoverContent.items.2.category",
     image: imageOne,
-    title: "Tech Talks",
-    author: "Nuebros",
-    date: "6 days ago",
-    mediaType: "Video",
-    actions: [{ label: "Free", fullWidth: true }],
+    titleKey: "discoverContent.items.2.title",
+    authorKey: "discoverContent.items.2.author",
+    dateKey: "discoverContent.items.2.date",
+    mediaType: "video",
+    mediaTypeKey: "discoverContent.mediaTypes.video",
+    actions: [
+      { labelKey: "discoverContent.items.2.actions.free", fullWidth: true },
+    ],
   },
   {
     id: 3,
-    category: "Course",
+    categoryKey: "discoverContent.items.3.category",
     image: imageThree,
-    title: "Vegetable recipes",
-    author: "Kammas kantine",
-    date: "10 days ago",
-    mediaType: "Video",
-    actions: [{ label: "Shop collection 99 kr", fullWidth: true }],
+    titleKey: "discoverContent.items.3.title",
+    authorKey: "discoverContent.items.3.author",
+    dateKey: "discoverContent.items.3.date",
+    mediaType: "video",
+    mediaTypeKey: "discoverContent.mediaTypes.video",
+    actions: [
+      {
+        labelKey: "discoverContent.items.3.actions.shopCollection",
+        fullWidth: true,
+      },
+    ],
   },
   {
     id: 4,
-    category: "Educational",
+    categoryKey: "discoverContent.items.4.category",
     image: imageFour,
-    title: "ADD/ADHD",
-    author: "Nate Hansen",
-    date: "1 day ago",
-    mediaType: "E-pub",
-    actions: [{ label: "Buy xx kr", fullWidth: true }],
+    titleKey: "discoverContent.items.4.title",
+    authorKey: "discoverContent.items.4.author",
+    dateKey: "discoverContent.items.4.date",
+    mediaType: "epub",
+    mediaTypeKey: "discoverContent.mediaTypes.epub",
+    actions: [
+      { labelKey: "discoverContent.items.4.actions.buy", fullWidth: true },
+    ],
   },
 ];

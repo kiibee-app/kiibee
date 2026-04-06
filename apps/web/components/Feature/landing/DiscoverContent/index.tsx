@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTheme } from "styled-components";
+import { useTranslation } from "react-i18next";
 import { BookIcon, PlayIcon } from "@/assets/icons";
 import { discoverContentData } from "@/utils/discoverContent";
 import {
@@ -30,37 +31,36 @@ import {
 
 export default function DiscoverContent() {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <Section>
       <HeaderSection>
-        <Title>Discover content</Title>
-        <Subtitle>
-          Browse hundreds of videos, audio files, and e-books.
-        </Subtitle>
+        <Title>{t("discoverContent.title")}</Title>
+        <Subtitle>{t("discoverContent.subtitle")}</Subtitle>
       </HeaderSection>
 
       <GridContainer>
         {discoverContentData.map((item) => (
           <Card key={item.id}>
             <ImageContainer>
-              <CategoryBadge>{item.category}</CategoryBadge>
+              <CategoryBadge>{t(item.categoryKey)}</CategoryBadge>
               <Image
                 src={item.image}
-                alt={item.title}
+                alt={t(item.titleKey)}
                 fill
                 style={{ objectFit: "cover" }}
               />
             </ImageContainer>
 
             <TextSection>
-              <CardTitle>{item.title}</CardTitle>
-              <CardAuthor>{item.author}</CardAuthor>
-              <CardDate>{item.date}</CardDate>
+              <CardTitle>{t(item.titleKey)}</CardTitle>
+              <CardAuthor>{t(item.authorKey)}</CardAuthor>
+              <CardDate>{t(item.dateKey)}</CardDate>
 
               <MediaTypeBox>
                 <IconFrame>
-                  {item.mediaType === "E-pub" ? (
+                  {item.mediaType === "epub" ? (
                     <BookIcon
                       bg={theme.colors.neutral.BLACK}
                       fg={theme.colors.neutral.WHITE}
@@ -72,18 +72,20 @@ export default function DiscoverContent() {
                     />
                   )}
                 </IconFrame>
-                <MediaTypeText>{item.mediaType}</MediaTypeText>
+                <MediaTypeText>{t(item.mediaTypeKey)}</MediaTypeText>
               </MediaTypeBox>
             </TextSection>
 
             <ActionsContainer>
               {item.actions.map((action) =>
                 action.fullWidth ? (
-                  <FullWidthAction key={action.label}>
-                    {action.label}
+                  <FullWidthAction key={action.labelKey}>
+                    {t(action.labelKey)}
                   </FullWidthAction>
                 ) : (
-                  <ActionButton key={action.label}>{action.label}</ActionButton>
+                  <ActionButton key={action.labelKey}>
+                    {t(action.labelKey)}
+                  </ActionButton>
                 ),
               )}
             </ActionsContainer>
@@ -92,8 +94,10 @@ export default function DiscoverContent() {
       </GridContainer>
 
       <BottomCtaSection>
-        <PrimaryCtaButton>Join now</PrimaryCtaButton>
-        <SecondaryCtaButton>View all creators</SecondaryCtaButton>
+        <PrimaryCtaButton>{t("discoverContent.ctaPrimary")}</PrimaryCtaButton>
+        <SecondaryCtaButton>
+          {t("discoverContent.ctaSecondary")}
+        </SecondaryCtaButton>
       </BottomCtaSection>
     </Section>
   );
