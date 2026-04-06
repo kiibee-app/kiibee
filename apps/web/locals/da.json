@@ -58,5 +58,31 @@
     "nextAriaLabel": "Næste udtalelse",
     "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibe har været en gamechanger for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
     "author": "Kamma, freelance grafisk designer"
+  },
+  "features": {
+    "heading": "Mere end bare indhold",
+    "sub": "Udforsk vores funktioner",
+    "items": [
+      {
+        "title": "Gratis brugerkonto",
+        "text": "Create and update your profile at any time.",
+        "imageAlt": "produkt skærmbillede"
+      },
+      {
+        "title": "Personlige anbefalinger",
+        "text": "Get content suggestions based on your interests and viewing preferences.",
+        "imageAlt": "anbefalinger preview"
+      },
+      {
+        "title": "Alle køb samlet ét sted",
+        "text": "After buying or renting, you're redirected to your purchase page. You'll also receive a receipt by email with a direct link to your content.",
+        "imageAlt": "købshistorik"
+      },
+      {
+        "title": "Se når som helst, på enhver enhed",
+        "text": "Access your content whenever you want: stream online or download, across mobile, tablet, and desktop.",
+        "imageAlt": "enheder preview"
+      }
+    ]
   }
 }
