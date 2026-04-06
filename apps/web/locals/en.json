@@ -82,6 +82,14 @@
     "quote": "As a graphic designer, I'm always looking to expand my skills and stay inspired. Kiibe has been a game-changer for me. Its content is practical, creative, and easy to follow. I've picked up new techniques and design tips I wouldn't have found anywhere else. It's like having a mini design workshop right at my fingertips!",
     "author": "Kamma, freelance graphic designer"
   },
+  "tutorialVideos": {
+    "heroTitle": "Tutorial videos",
+    "heroSubtitle": "Step-by-step guides to help you succeed with Kiibee and get the most out of every launch.",
+    "sectionTag": "Getting started",
+    "sectionLabel": "Foundational chapters",
+    "sectionLink": "View playlist",
+    "buttonFreeLabel": "Free"
+  },
   "callToAction": {
     "logoAlt": "Kiibee",
     "creatorAlt": "Creator",

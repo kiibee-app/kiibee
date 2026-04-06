@@ -82,6 +82,14 @@
     "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibe har været en gamechanger for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
     "author": "Kamma, freelance grafisk designer"
   },
+  "tutorialVideos": {
+    "heroTitle": "Tutorial videos",
+    "heroSubtitle": "Step-by-step guides to help you succeed with Kiibee and get the most out of every launch.",
+    "sectionTag": "Getting started",
+    "sectionLabel": "Foundational chapters",
+    "sectionLink": "View playlist",
+    "buttonFreeLabel": "Free"
+  },
   "callToAction": {
     "logoAlt": "Kiibee",
     "creatorAlt": "Skaber",
