@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import breakpoints from "../../../../../../packages/ui/src/breakpoints";
+import breakpoints, {
+  media,
+} from "../../../../../../packages/ui/src/breakpoints";
 
 export const Hero = styled.section`
   width: 100%;
@@ -37,7 +39,7 @@ export const Inner = styled.div`
   align-items: center;
   justify-content: flex-start;
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     padding: 3rem 1.25rem;
     align-items: center;
     justify-content: center;
@@ -55,7 +57,7 @@ export const Content = styled.div`
     align-items: flex-start;
     text-align: left;
   }
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     align-items: center;
     text-align: center;
   }
@@ -67,6 +69,11 @@ export const Title = styled.h1`
   line-height: 1.02;
   font-weight: 600;
   font-size: 64px;
+
+  ${media.tablet} {
+    max-width: 100%;
+    font-size: 3rem;
+  }
 `;
 
 export const Subtitle = styled.p`
@@ -76,7 +83,7 @@ export const Subtitle = styled.p`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   max-width: 500px;
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     max-width: 100%;
     font-size: 0.95rem;
   }
