@@ -19,6 +19,7 @@ import {
 } from "./styles";
 import featureData from "@/utils/featureHighlights";
 import { useState } from "react";
+import { KEY_ENTER } from "@/utils/Constants";
 import { useTranslation } from "react-i18next";
 
 export default function FeatureHighlights() {
@@ -43,7 +44,7 @@ export default function FeatureHighlights() {
               role="button"
               tabIndex={0}
               onClick={() => setActive(i)}
-              onKeyDown={(e) => (e.key === "Enter" ? setActive(i) : null)}
+              onKeyDown={(e) => (e.key === KEY_ENTER ? setActive(i) : null)}
               $active={active === i}
             >
               <Index>{i + 1}.</Index>
