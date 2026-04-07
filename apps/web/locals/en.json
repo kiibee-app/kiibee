@@ -215,6 +215,15 @@
         "creators": "Creators should be able to own their work, control how it’s shared, and get paid without technical complexity.",
         "viewers": "Viewers should be able to access content easily, pay only for what they want, and enjoy a smooth experience."
       }
+    },
+    "platform": {
+      "title": "More than a platform",
+      "intro": "Kiibee is not just a technical solution.",
+      "description": "It’s a bridge between creators and their audience, built to support long-term value, sustainable content distribution and a better experience for everyone involved."
+    },
+    "value": {
+      "title": "Join the Kiibee movement",
+      "subtitle": "Whether you’re a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you."
     }
   },
   "features": {
