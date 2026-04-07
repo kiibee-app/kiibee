@@ -115,7 +115,7 @@ export const StyledInput = styled.input<{
   }
 
   ${media.mobile} {
-    font-size: 16px; // Prevent zoom on iOS
+    font-size: 16px;
   }
 
   &[type="number"] {
