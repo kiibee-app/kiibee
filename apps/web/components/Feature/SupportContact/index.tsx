@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { SuccessCheckIcon } from "@/assets/icons";
 import InputField from "@/components/UI/InputFields";
 import {
   getSupportContactFields,
@@ -85,7 +86,9 @@ export default function SupportContact() {
         {isSuccess ? (
           <SuccessState>
             <SuccessCard>
-              <SuccessIcon>✓</SuccessIcon>
+              <SuccessIcon>
+                <SuccessCheckIcon />
+              </SuccessIcon>
               <SuccessTitle>{t("supportPage.success.title")}</SuccessTitle>
               <SuccessText>
                 {t("supportPage.success.description", {
