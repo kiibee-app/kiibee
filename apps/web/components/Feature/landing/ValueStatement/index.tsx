@@ -40,7 +40,6 @@ export default function ValueStatement({
         <Content>
           <Title>{title || t("value.title")}</Title>
           <Subtitle>{subtitle || t("value.subtitle")}</Subtitle>
-
           <GenericButton asAnchor href={ctaHref || "#"} variant="primary-lite">
             {ctaText || t("value.cta")}
           </GenericButton>
