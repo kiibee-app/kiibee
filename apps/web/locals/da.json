@@ -77,6 +77,13 @@
     "paymentSolutions": {
       "alt": "Kvinde i graa jakke",
       "title": "Betalingsloesninger"
+    },
+    "shortStory": {
+      "imageAlt": "Person working at a desk with monitors and a microphone",
+      "title": "En kort historie om Kiibee",
+      "lead": "Kiibee blev grundlagt i 2017 for at gøre det nemmere for skabere og virksomheder at sælge og distribuere digitalt indhold direkte til deres publikum.",
+      "body": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer - og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
+      "cta": "Læs mere om Kiibee"
     }
   },
   "footer": {
