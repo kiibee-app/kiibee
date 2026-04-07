@@ -109,6 +109,15 @@
         "mission": "From the beginning, our goal has been to make it simple for creators and businesses to distribute and sell digital content directly to their audience — while making that content easy and intuitive for consumers to access.",
         "evolution": "Since 2017, Kiibee has evolved into a flexible platform used by a wide range of creators and organisations."
       }
+    },
+    "believe": {
+      "title": "What we believe",
+      "alt": "Creative professionals working on digital content",
+      "content": {
+        "quality": "We believe that quality content deserves a professional home.",
+        "creators": "Creators should be able to own their work, control how it’s shared, and get paid without technical complexity.",
+        "viewers": "Viewers should be able to access content easily, pay only for what they want, and enjoy a smooth experience."
+      }
     }
   },
   "features": {
