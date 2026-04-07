@@ -9,15 +9,24 @@ import {
   RequiredIndicator,
   LabelFontStyle,
 } from "./styles";
-import { INPUT_TYPE, InputType } from "@/utils/ui";
+import {
+  INPUT_TYPE,
+  INPUT_FIELD_CONTAINER_TAGS,
+  INPUT_FIELD_LABEL_TAGS,
+  INPUT_FIELD_ROLES,
+  AriaInvalidValue,
+  InputType,
+  InputModeValue,
+  AutoCompleteValue,
+} from "@/utils/ui";
 
 export type InputFieldProps = {
   label?: string;
   type?: InputType;
   value?: string | string[] | number;
   placeholder?: string | string[];
-  inputMode?: React.InputHTMLAttributes<HTMLInputElement>["inputMode"];
-  autoComplete?: React.InputHTMLAttributes<HTMLInputElement>["autoComplete"];
+  inputMode?: InputModeValue;
+  autoComplete?: AutoCompleteValue;
   disabled?: boolean | undefined;
   width?: string;
   tabIndex?: number;
@@ -34,7 +43,7 @@ export type InputFieldProps = {
   height?: string;
   required?: boolean;
   id?: string;
-  "aria-invalid"?: boolean | "false" | "true" | "grammar" | "spelling";
+  "aria-invalid"?: AriaInvalidValue;
   "aria-describedby"?: string | undefined;
   "data-test-id"?: string;
   iconDataTestId?: string | undefined;
@@ -84,6 +93,13 @@ export default React.forwardRef<
   const generatedId = useId();
   const inputId = id || generatedId;
   const isMulti = multi && Array.isArray(value);
+  const containerElement = isMulti
+    ? INPUT_FIELD_CONTAINER_TAGS.FIELDSET
+    : INPUT_FIELD_CONTAINER_TAGS.DIV;
+  const labelElement = isMulti
+    ? INPUT_FIELD_LABEL_TAGS.LEGEND
+    : INPUT_FIELD_LABEL_TAGS.LABEL;
+  const multiRole = isMulti ? INPUT_FIELD_ROLES.GROUP : undefined;
 
   const handleChange = (index: number, val: string) => {
     if (!isMulti) return;
@@ -113,16 +129,12 @@ export default React.forwardRef<
     ariaDescribedby || `${inputId}-error ${inputId}-help`.trim();
 
   return (
-    <Container
-      width={width || ""}
-      as={isMulti ? "fieldset" : "div"}
-      role={isMulti ? "group" : undefined}
-    >
+    <Container width={width || ""} as={containerElement} role={multiRole}>
       <Label
         $labelFontStyle={labelFontStyle || "Body_Title6"}
         $paddingLeft={labelPaddingLeft || ""}
         $marginTop={labelMarginTop || ""}
-        as={isMulti ? "legend" : "label"}
+        as={labelElement}
         htmlFor={isMulti ? undefined : inputId}
       >
         {label}
