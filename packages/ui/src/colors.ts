@@ -28,6 +28,7 @@ export interface ColorPalette {
   };
   neutral: {
     WHITE: string;
+    OFF_WHITE: string;
     BLACK: string;
     GRAY: string;
     GRAY_100: string;
@@ -98,6 +99,7 @@ export const COLORS: ColorPalette = {
 
   neutral: {
     WHITE: "rgb(255,255,255)",
+    OFF_WHITE: "rgba(246, 246, 246, 1)",
     BLACK: "rgb(0,0,0)",
     GRAY: "rgba(6, 6, 6, 0.6)",
     GRAY_100: "rgb(243,244,246)",

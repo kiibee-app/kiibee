@@ -51,3 +51,12 @@ export type InputModeValue = InputHTMLAttributes<
 export type AutoCompleteValue = InputHTMLAttributes<
   HTMLInputElement | HTMLTextAreaElement
 >["autoComplete"];
+
+export const Directions = {
+  UP: "up",
+  DOWN: "down",
+  LEFT: "left",
+  RIGHT: "right",
+} as const;
+
+export type Direction = (typeof Directions)[keyof typeof Directions];
