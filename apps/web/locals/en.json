@@ -124,6 +124,48 @@
     "cookieSettings": "Cookie Settings",
     "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
   },
+  "supportPage": {
+    "eyebrow": "Contact support",
+    "title": "Contact us",
+    "description": "We're here to help. Whether you have a question about our services, need assistance with your account, or want to provide feedback, our team is ready to assist you.",
+    "resourcesLead": "You can also check out our",
+    "resourcesMiddle": "and",
+    "resourcesEnd": "for quick answers.",
+    "tutorialVideos": "tutorial videos",
+    "userGuides": "user guides",
+    "supportTitle": "Support",
+    "supportEmail": "support@kiibee.dk",
+    "salesTitle": "Sales & partnerships",
+    "salesEmail": "info@kiibee.dk",
+    "success": {
+      "title": "Thank you for contacting us!",
+      "description": "We've received your message and will get back to you soon. Check your inbox at {{email}} for our response."
+    },
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "companyName": "Company name",
+      "phoneNumber": "Phone number",
+      "email": "Email Address",
+      "message": "How can we help you?",
+      "placeholders": {
+        "firstName": "Enter your first name",
+        "lastName": "Enter your last name",
+        "companyName": "Enter company name",
+        "phoneNumber": "Enter phone number",
+        "email": "Enter email address",
+        "message": "Enter your message..."
+      },
+      "errors": {
+        "firstNameRequired": "First name is required",
+        "emailRequired": "Email address is required",
+        "emailInvalid": "Enter a valid email address",
+        "phoneInvalid": "Enter a valid phone number",
+        "messageRequired": "Message is required"
+      },
+      "submit": "Send message"
+    }
+  },
   "value": {
     "bgAlt": "Value background",
     "title": "What you know is worth something",

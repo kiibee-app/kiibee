@@ -124,6 +124,48 @@
     "cookieSettings": "Cookie-indstillinger",
     "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
   },
+  "supportPage": {
+    "eyebrow": "Kontakt support",
+    "title": "Kontakt os",
+    "description": "Vi er her for at hjælpe. Uanset om du har spørgsmål til vores services, har brug for hjælp til din konto eller vil give feedback, står vores team klar til at hjælpe dig.",
+    "resourcesLead": "Du kan også se vores",
+    "resourcesMiddle": "og",
+    "resourcesEnd": "for hurtige svar.",
+    "tutorialVideos": "videovejledninger",
+    "userGuides": "brugervejledninger",
+    "supportTitle": "Support",
+    "supportEmail": "support@kiibee.dk",
+    "salesTitle": "Salg og partnerskab",
+    "salesEmail": "info@kiibee.dk",
+    "success": {
+      "title": "Tak for din henvendelse!",
+      "description": "Vi har modtaget din besked og vender tilbage hurtigst muligt. Tjek din indbakke på {{email}} for vores svar."
+    },
+    "form": {
+      "firstName": "Fornavn",
+      "lastName": "Efternavn",
+      "companyName": "Firmanavn",
+      "phoneNumber": "Telefonnummer",
+      "email": "E-mailadresse",
+      "message": "Hvordan kan vi hjælpe dig?",
+      "placeholders": {
+        "firstName": "Indtast dit fornavn",
+        "lastName": "Indtast dit efternavn",
+        "companyName": "Indtast firmanavn",
+        "phoneNumber": "Indtast telefonnummer",
+        "email": "Indtast e-mailadresse",
+        "message": "Skriv din besked..."
+      },
+      "errors": {
+        "firstNameRequired": "Fornavn er påkrævet",
+        "emailRequired": "E-mailadresse er påkrævet",
+        "emailInvalid": "Indtast en gyldig e-mailadresse",
+        "phoneInvalid": "Indtast et gyldigt telefonnummer",
+        "messageRequired": "Besked er påkrævet"
+      },
+      "submit": "Send besked"
+    }
+  },
   "value": {
     "bgAlt": "Baggrundsbillede",
     "title": "Det du ved, er noget værd",
