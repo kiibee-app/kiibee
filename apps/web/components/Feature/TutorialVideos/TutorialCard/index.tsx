@@ -40,7 +40,9 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
           <Title>{tutorial.title}</Title>
           <MetaItem>{tutorial.creator}</MetaItem>
           <MetaDate>{tutorial.published}</MetaDate>
-          <GenericButton>{t("tutorialVideos.buttonFreeLabel")}</GenericButton>
+          <GenericButton asAnchor href="/tutorial-videos" variant="secondary">
+            {t("tutorialVideos.buttonFreeLabel")}
+          </GenericButton>
         </Content>
       </Card>
     </CardShell>

@@ -16,7 +16,6 @@ export const CardShell = styled.div`
 
 export const Card = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
-  border-radius: 32px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
