@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { media } from "../../../../../../packages/ui/src/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
@@ -8,8 +9,13 @@ export const Section = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 119px 370px 119px 369px;
+  padding: 80px 60px;
   text-align: center;
+
+  ${media.tablet} {
+    padding: 60px 30px;
+    min-height: auto;
+  }
 `;
 
 export const Title = styled.h2`
@@ -17,8 +23,12 @@ export const Title = styled.h2`
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 600;
   margin-bottom: 3.5rem;
-  max-width: 55rem;
   line-height: 1.15;
+
+  ${media.tablet} {
+    margin-bottom: 2.5rem;
+    max-width: 100%;
+  }
 `;
 
 export const PillsWrapper = styled.div`
@@ -27,6 +37,10 @@ export const PillsWrapper = styled.div`
   gap: 1rem;
   justify-content: center;
   max-width: 1000px;
+
+  ${media.tablet} {
+    gap: 0.75rem;
+  }
 `;
 
 const variants = {
@@ -59,4 +73,9 @@ export const Pill = styled.span<{ variant: keyof typeof variants }>`
     box-shadow 0.2s ease;
 
   ${({ variant }) => variants[variant]};
+
+  ${media.tablet} {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.9rem;
+  }
 `;

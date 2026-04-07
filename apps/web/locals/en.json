@@ -152,5 +152,22 @@
     "titleLine2": "Join Kiibee today",
     "subtitle": "Share your work, build your audience, and earn directly from your content. Kiibee helps you publish, promote, and sell in one simple platform.",
     "cta": "Start creating"
+  },
+  "interests": {
+    "title": "Explore content made for every interest",
+    "ebooks": "E-books",
+    "lectures": "Lectures",
+    "courses": "Courses and tutorials",
+    "podcasts": "Podcasts",
+    "comedies": "Comedies",
+    "photography": "Photography",
+    "audiobooks": "Audiobooks",
+    "music": "Music",
+    "artwork": "Illustrations and artwork",
+    "meditation": "Guided meditations",
+    "fitness": "Fitness",
+    "theater": "Theater",
+    "sound": "Sound effects and loops",
+    "articles": "Articles & essays"
   }
 }
