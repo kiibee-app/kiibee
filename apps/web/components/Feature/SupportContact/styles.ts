@@ -9,7 +9,7 @@ export const Section = styled.section`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   @media (max-width: ${breakpoints.tablet}) {
-    padding: 16px 16px 64px;
+    padding: 90px 16px 64px;
   }
 `;
 
