@@ -167,6 +167,11 @@
         "creators": "Skabere bør kunne eje deres arbejde, kontrollere hvordan det deles, og blive betalt uden teknisk kompleksitet.",
         "viewers": "Seere bør nemt kunne få adgang til indhold, betale kun for det, de ønsker, og få en god oplevelse."
       }
+    },
+    "platform": {
+      "title": "Mere end en platform",
+      "intro": "Kiibee er ikke bare en teknisk løsning.",
+      "description": "Det er en bro mellem skabere og deres publikum, bygget til at understøtte langsigtet værdi, bæredygtig indholdsdistribution og en bedre oplevelse for alle involverede."
     }
   },
   "features": {

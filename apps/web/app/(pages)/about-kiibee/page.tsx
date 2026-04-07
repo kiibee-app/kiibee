@@ -6,6 +6,7 @@ import AboutHero from "@/components/Feature/AboutKiibee/Hero";
 import AboutStorySection from "@/components/Feature/AboutKiibee/AboutStorySection";
 import { Main, PageContainer, Section } from "@/app/styles";
 import WhatWeBelieveSection from "@/components/Feature/AboutKiibee/WhatWeBelieveSection";
+import MoreThanPlatformSection from "@/components/Feature/AboutKiibee/MorePlatform";
 
 export default function AboutKiibeePage() {
   return (
@@ -16,6 +17,7 @@ export default function AboutKiibeePage() {
           <AboutHero />
           <AboutStorySection />
           <WhatWeBelieveSection />
+          <MoreThanPlatformSection />
         </Section>
       </Main>
     </PageContainer>
