@@ -36,6 +36,11 @@ export const LogoRow = styled.div`
   margin-bottom: 18px;
   padding-left: 6rem;
 
+  img {
+    width: 90px;
+    height: auto;
+  }
+
   @media (max-width: ${breakpoints.tablet}) {
     padding-left: 0;
   }
@@ -122,4 +127,9 @@ export const CardWrapper = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: flex-end;
+
+  img {
+    height: 28px;
+    width: auto;
+  }
 `;
