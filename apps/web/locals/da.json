@@ -158,6 +158,15 @@
         "mission": "Fra begyndelsen har vores mål været at gøre det nemt for skabere og virksomheder at distribuere og sælge digitalt indhold direkte til deres publikum – samtidig med at det er let og intuitivt for forbrugerne at få adgang til.",
         "evolution": "Siden 2017 har Kiibee udviklet sig til en fleksibel platform, der bruges af en bred vifte af skabere og organisationer."
       }
+    },
+    "believe": {
+      "title": "Hvad vi tror på",
+      "alt": "Kreative fagfolk arbejder med digitalt indhold",
+      "content": {
+        "quality": "Vi tror på, at kvalitetsindhold fortjener et professionelt hjem.",
+        "creators": "Skabere bør kunne eje deres arbejde, kontrollere hvordan det deles, og blive betalt uden teknisk kompleksitet.",
+        "viewers": "Seere bør nemt kunne få adgang til indhold, betale kun for det, de ønsker, og få en god oplevelse."
+      }
     }
   },
   "features": {

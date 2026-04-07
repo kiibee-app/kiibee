@@ -1,0 +1,53 @@
+import styled from "styled-components";
+import { media } from "../../../../../../packages/ui/src/breakpoints";
+
+export const SectionWrapper = styled.section`
+  width: 100%;
+  padding: 0rem 1.25rem 4.5rem;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+`;
+export const Inner = styled.div`
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1.25rem;
+`;
+
+export const Container = styled.div`
+  max-width: 1218px;
+  color: ${({ theme }) => theme.colors.neutral.BLACK};
+`;
+
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+
+  ${media.tablet} {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const Title = styled.h2`
+  font-size: 40px;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 20px;
+`;
+
+export const Text = styled.p`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  margin-bottom: 12px;
+`;
+
+export const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 519px;
+  border-radius: 8px;
+  overflow: hidden;
+`;
