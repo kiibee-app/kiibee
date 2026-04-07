@@ -16,13 +16,13 @@ export default function Home() {
       <NavBar />
       <Main>
         <HeroSection />
+        <InterestSection />
+        <DiscoverContent />
         <WatchingSteps />
         <SecurePaymentSection />
         <TestimonialSection />
         <CallToAction />
         <ValueStatement />
-        <InterestSection />
-        <DiscoverContent />
       </Main>
       <Footer />
     </PageContainer>
