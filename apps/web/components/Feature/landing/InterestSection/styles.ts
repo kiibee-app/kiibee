@@ -3,17 +3,16 @@ import { media } from "../../../../../../packages/ui/src/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
-  min-height: 85vh;
+  min-height: 80vh;
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 80px 60px;
+  padding: 60px 30px;
   text-align: center;
 
   ${media.tablet} {
-    padding: 60px 30px;
     min-height: auto;
   }
 `;
@@ -36,7 +35,7 @@ export const PillsWrapper = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  max-width: 1000px;
+  max-width: 850px;
 
   ${media.tablet} {
     gap: 0.75rem;
