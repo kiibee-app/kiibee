@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import breakpoints, {
-  media,
-} from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "../../../../../../packages/ui/src/breakpoints";
 
 export const Hero = styled.section`
   width: 100%;
@@ -37,56 +35,45 @@ export const Inner = styled.div`
   padding: 6rem 2rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-
-  ${media.tablet} {
-    padding: 3rem 1.25rem;
-    align-items: center;
-    justify-content: center;
-  }
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Content = styled.div`
-  max-width: 750px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   color: ${({ theme }) => theme.colors.neutral.BLACK};
-
-  @media (min-width: ${breakpoints.tablet}) {
-    align-items: flex-start;
-    text-align: left;
-  }
-  ${media.tablet} {
-    align-items: center;
-    text-align: center;
-  }
+  align-items: center;
+  text-align: center;
 `;
 
 export const Title = styled.h1`
   margin: 0 0 0.75rem 0;
   font-size: clamp(2rem, 6.5vw, 4.8rem);
-  line-height: 1.02;
+  font-size: 2.5rem;
   font-weight: 600;
-  font-size: 64px;
-
-  ${media.tablet} {
-    max-width: 100%;
-    font-size: 3rem;
-  }
+  line-height: normal;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
 `;
 
 export const Subtitle = styled.p`
   margin: 0 0 1.25rem 0;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  max-width: 500px;
+  line-height: normal;
+  max-width: 57rem;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
 
   ${media.tablet} {
     max-width: 100%;
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 `;
 
-export const CTAWrap = styled.div``;
+export const CTAWrap = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+`;

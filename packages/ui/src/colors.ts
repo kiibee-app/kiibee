@@ -21,12 +21,19 @@ export interface ColorPalette {
     LIGHT: string;
     DEFAULT: string;
     DARK: string;
+    main: string;
+    muted: string;
+    border: string;
     MEDIUM_GREEN: string;
   };
   neutral: {
     WHITE: string;
     BLACK: string;
+    GRAY: string;
     GRAY_100: string;
+    GRAY_200: string;
+    GRAY_300: string;
+    GRAY_400: string;
     GRAY_700: string;
     DUSTY_TEAL: string;
     OVERLAY: string;
@@ -83,13 +90,20 @@ export const COLORS: ColorPalette = {
     LIGHT: "rgb(191,219,254)",
     DEFAULT: "rgb(59,130,246)",
     DARK: "rgb(30,58,138)",
-    MEDIUM_GREEN: "rgb(146, 179, 129)",
+    main: "rgb(17,24,39)",
+    muted: "rgb(107,114,128)",
+    border: "rgb(243,244,246)",
+    MEDIUM_GREEN: "rgba(146, 179, 129, 1)",
   },
 
   neutral: {
     WHITE: "rgb(255,255,255)",
     BLACK: "rgb(0,0,0)",
+    GRAY: "rgba(6, 6, 6, 0.6)",
     GRAY_100: "rgb(243,244,246)",
+    GRAY_200: "rgba(235, 235, 237, 1)",
+    GRAY_300: "rgba(0, 0, 0, 0.08)",
+    GRAY_400: "rgba(6, 6, 6, 0.5)",
     GRAY_700: "rgb(55,65,81)",
     DUSTY_TEAL: "rgb(88,157,150)",
     OVERLAY: "rgba(15,23,42,0.6)",

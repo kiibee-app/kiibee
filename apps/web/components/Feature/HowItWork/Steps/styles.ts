@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import breakpoints from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "../../../../../../packages/ui/src/breakpoints";
 
 export const StepsSection = styled.section`
   width: 100%;
@@ -37,7 +37,7 @@ export const Grid = styled.div`
   align-items: end;
   justify-content: center;
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     grid-template-columns: 1fr;
   }
 `;
@@ -86,7 +86,7 @@ export const CardTitle = styled.h3`
   padding: 1rem 0 0 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     font-size: 25px;
     padding: 0.5rem 0 0 0;
   }
@@ -97,7 +97,7 @@ export const CardText = styled.p`
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
   font-size: 20px;
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     font-size: 18px;
     padding-bottom: 1rem;
   }
