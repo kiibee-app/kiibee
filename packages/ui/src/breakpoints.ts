@@ -7,9 +7,9 @@ export const breakpoints = {
 
 export const media = {
   mobile: `@media (max-width: ${breakpoints.mobile})`,
-  tablet: `@media (min-width: ${breakpoints.tablet})`,
-  desktop: `@media (min-width: ${breakpoints.desktop})`,
-  desktopLg: `@media (min-width: ${breakpoints.desktopLg})`,
+  tablet: `@media (max-width: ${breakpoints.tablet})`,
+  desktop: `@media (max-width: ${breakpoints.desktop})`,
+  desktopLg: `@media (max-width: ${breakpoints.desktopLg})`,
 } as const;
 
 export default breakpoints;

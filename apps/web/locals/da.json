@@ -30,7 +30,13 @@
     "customerTitle": "En kort historie om Kiibee",
     "customerLead": "Kiibee blev grundlagt i 2017 for at gøre det nemmere for skabere og virksomheder at sælge og distribuere digitalt indhold direkte til deres publikum.",
     "customerBody": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer — og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
-    "customerCta": "Læs mere om Kiibee"
+    "customerCta": "Læs mere om Kiibee",
+    "getStarted": {
+      "heading": "Kom godt i gang med Kiibee",
+      "sub": "Lær, hvordan du opretter din profil og administrerer dit indhold med vores trin-for-trin-vejledninger.",
+      "tutorial": "Videovejledninger",
+      "guide": "Brugervejledning"
+    }
   },
   "watchingSteps": {
     "heading": "How it works",
@@ -81,6 +87,55 @@
     "nextAriaLabel": "Næste udtalelse",
     "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibe har været en gamechanger for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
     "author": "Kamma, freelance grafisk designer"
+  },
+  "about": {
+    "hero": {
+      "title": "Styrker kreativitet. Forbinder mennesker.",
+      "subtitle": "Kiibee er en digital platform, hvor skabere deler deres viden, passion og historier, og hvor seere nemt kan opdage, leje eller købe inspirerende indhold.",
+      "cta": {
+        "explore": "Udforsk indhold",
+        "creator": "Bliv skaber"
+      }
+    },
+    "ourStory": {
+      "title": "Vores historie",
+      "left": {
+        "intro": "Kiibee blev grundlagt i 2017, efter at vi identificerede et voksende hul i markedet for digitalt indhold.",
+        "marketGap": "Der blev skabt mere og mere digitalt indhold af høj kvalitet – kurser, talks, shows, træningsprogrammer og undervisningsmateriale – men meget af det var enten låst bag komplekse tekniske løsninger eller delt gratis på platforme, der ikke var designet til direkte salg.",
+        "consumerNeed": "Samtidig ønskede almindelige forbrugere adgang til professionelt, nichepræget og kvalitetsindhold uden at skulle navigere i komplicerede platforme eller stive abonnementer.",
+        "bridge": "Kiibee blev skabt for at bygge bro over dette hul."
+      },
+      "right": {
+        "mission": "Fra begyndelsen har vores mål været at gøre det nemt for skabere og virksomheder at distribuere og sælge digitalt indhold direkte til deres publikum – samtidig med at det er let og intuitivt for forbrugerne at få adgang til.",
+        "evolution": "Siden 2017 har Kiibee udviklet sig til en fleksibel platform, der bruges af en bred vifte af skabere og organisationer."
+      }
+    }
+  },
+  "features": {
+    "heading": "Mere end bare indhold",
+    "sub": "Udforsk vores funktioner",
+    "items": [
+      {
+        "title": "Gratis brugerkonto",
+        "text": "Create and update your profile at any time.",
+        "imageAlt": "produkt skærmbillede"
+      },
+      {
+        "title": "Personlige anbefalinger",
+        "text": "Get content suggestions based on your interests and viewing preferences.",
+        "imageAlt": "anbefalinger preview"
+      },
+      {
+        "title": "Alle køb samlet ét sted",
+        "text": "After buying or renting, you're redirected to your purchase page. You'll also receive a receipt by email with a direct link to your content.",
+        "imageAlt": "købshistorik"
+      },
+      {
+        "title": "Se når som helst, på enhver enhed",
+        "text": "Access your content whenever you want: stream online or download, across mobile, tablet, and desktop.",
+        "imageAlt": "enheder preview"
+      }
+    ]
   },
   "tutorialVideos": {
     "heroTitle": "Tutorial videos",

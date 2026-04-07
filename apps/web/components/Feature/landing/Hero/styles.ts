@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import breakpoints from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "../../../../../../packages/ui/src/breakpoints";
 
 export const Hero = styled.section`
   width: 100%;
@@ -27,7 +27,7 @@ export const Inner = styled.div`
   align-items: center;
   justify-content: flex-start;
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     padding: 3rem 1.25rem;
     align-items: center;
     justify-content: center;

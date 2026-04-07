@@ -8,7 +8,7 @@ export const Section = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5rem 1.5rem;
+  padding: 119px 370px 119px 369px;
   text-align: center;
 `;
 
