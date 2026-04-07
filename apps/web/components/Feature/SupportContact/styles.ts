@@ -67,24 +67,6 @@ export const SuccessCard = styled.div`
   }
 `;
 
-export const SuccessIcon = styled.span`
-  width: 48px;
-  height: 48px;
-  border-radius: 9999px;
-  background: ${({ theme }) => theme.colors.primary.GREEN_100};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  font-size: 1.8rem;
-  line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-`;
-
 export const SuccessTitle = styled.h2`
   margin: 0;
   font-size: 1.8rem;

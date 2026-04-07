@@ -1,45 +1,27 @@
+import { ICON_DEFAULT_COLOR } from "@/utils/Constants";
+
 type SuccessCheckIconProps = {
   size?: number;
-  bgColor?: string;
-  sideColor?: string;
-  checkColor?: string;
-  sideWidth?: number;
+  color?: string;
 };
 
 export default function SuccessCheckIcon({
-  size = 24,
-  bgColor = "transparent",
-  sideColor = "transparent",
-  checkColor = "currentColor",
-  sideWidth = 0,
+  size = 40,
+  color = ICON_DEFAULT_COLOR,
 }: SuccessCheckIconProps) {
-  const center = 10;
-  const radius = 6;
-
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 24 24"
+      viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       focusable="false"
     >
-      <circle
-        cx={center}
-        cy={center}
-        r={radius}
-        fill={bgColor}
-        stroke={sideColor}
-        strokeWidth={sideWidth}
-      />
       <path
-        d="M4 12.5L9.5 18.5L20 6"
-        stroke={checkColor}
-        strokeWidth="3.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="M20 40C14.6957 40 9.60859 37.8929 5.85786 34.1421C2.10714 30.3914 0 25.3043 0 20C0 14.6957 2.10714 9.60859 5.85786 5.85786C9.60859 2.10714 14.6957 0 20 0C25.3043 0 30.3914 2.10714 34.1421 5.85786C37.8929 9.60859 40 14.6957 40 20C40 25.3043 37.8929 30.3914 34.1421 34.1421C30.3914 37.8929 25.3043 40 20 40ZM16 30L34 13L31 10L16 24L9 17L6 20L16 30Z"
+        fill={color}
       />
     </svg>
   );

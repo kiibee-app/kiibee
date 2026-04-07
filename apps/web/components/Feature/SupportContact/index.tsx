@@ -28,7 +28,6 @@ import {
   ResourceCopy,
   Section,
   SuccessCard,
-  SuccessIcon,
   SuccessState,
   SuccessText,
   SuccessTitle,
@@ -86,9 +85,7 @@ export default function SupportContact() {
         {isSuccess ? (
           <SuccessState>
             <SuccessCard>
-              <SuccessIcon>
-                <SuccessCheckIcon />
-              </SuccessIcon>
+              <SuccessCheckIcon size={48} color="rgb(4,41,11)" />
               <SuccessTitle>{t("supportPage.success.title")}</SuccessTitle>
               <SuccessText>
                 {t("supportPage.success.description", {
