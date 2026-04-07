@@ -58,6 +58,55 @@
     },
     "cta": "Learn more"
   },
+  "discoverContent": {
+    "title": "Opdag indhold",
+    "subtitle": "Gennemse hundredvis af videoer, lydfiler og e-bøger.",
+    "ctaPrimary": "Deltag nu",
+    "ctaSecondary": "Se alle skabere",
+    "mediaTypes": {
+      "video": "Video",
+      "epub": "E-pub"
+    },
+    "items": {
+      "1": {
+        "category": "Komedie",
+        "title": "Krøllehjern",
+        "author": "Jacob Taarnhøj",
+        "date": "For 7 dage siden",
+        "actions": {
+          "rent": "Lej 39 kr",
+          "buy": "Køb 99 kr"
+        }
+      },
+      "2": {
+        "category": "Podcast",
+        "title": "Tech Talks",
+        "author": "Nuebros",
+        "date": "For 6 dage siden",
+        "actions": {
+          "free": "Gratis"
+        }
+      },
+      "3": {
+        "category": "Kursus",
+        "title": "Vegetabilske opskrifter",
+        "author": "Kammas kantine",
+        "date": "For 10 dage siden",
+        "actions": {
+          "shopCollection": "Shop kollektion 99 kr"
+        }
+      },
+      "4": {
+        "category": "Uddannelse",
+        "title": "ADD/ADHD",
+        "author": "Nate Hansen",
+        "date": "For 1 dag siden",
+        "actions": {
+          "buy": "Køb xx kr"
+        }
+      }
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "Om os",
@@ -115,6 +164,15 @@
         "mission": "Fra begyndelsen har vores mål været at gøre det nemt for skabere og virksomheder at distribuere og sælge digitalt indhold direkte til deres publikum – samtidig med at det er let og intuitivt for forbrugerne at få adgang til.",
         "evolution": "Siden 2017 har Kiibee udviklet sig til en fleksibel platform, der bruges af en bred vifte af skabere og organisationer."
       }
+    },
+    "believe": {
+      "title": "Hvad vi tror på",
+      "alt": "Kreative fagfolk arbejder med digitalt indhold",
+      "content": {
+        "quality": "Vi tror på, at kvalitetsindhold fortjener et professionelt hjem.",
+        "creators": "Skabere bør kunne eje deres arbejde, kontrollere hvordan det deles, og blive betalt uden teknisk kompleksitet.",
+        "viewers": "Seere bør nemt kunne få adgang til indhold, betale kun for det, de ønsker, og få en god oplevelse."
+      }
     }
   },
   "features": {
@@ -158,5 +216,22 @@
     "titleLine2": "Bliv en del af Kiibee i dag",
     "subtitle": "Del dit arbejde, opbyg dit publikum, og tjen direkte på dit indhold. Kiibee hjælper dig med at udgive, promovere og sælge på én enkel platform.",
     "cta": "Begynd at skabe"
+  },
+  "interests": {
+    "title": "Udforsk indhold til enhver interesse",
+    "ebooks": "E-bøger",
+    "lectures": "Foredrag",
+    "courses": "Kurser og tutorials",
+    "podcasts": "Podcasts",
+    "comedies": "Komedier",
+    "photography": "Fotografi",
+    "audiobooks": "Lydbøger",
+    "music": "Musik",
+    "artwork": "Illustrationer og kunstværker",
+    "meditation": "Guidede meditationer",
+    "fitness": "Fitness",
+    "theater": "Teater",
+    "sound": "Lydeffekter og loops",
+    "articles": "Artikler og essays"
   }
 }

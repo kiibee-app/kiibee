@@ -7,6 +7,8 @@ import Footer from "@/components/Layout/Footer";
 import WatchingSteps from "@/components/Feature/landing/WatchingSteps";
 import CallToAction from "@/components/Feature/landing/CallToAction";
 import SecurePaymentSection from "@/components/Feature/landing/SecurePayment";
+import InterestSection from "@/components/Feature/landing/InterestSection";
+import DiscoverContent from "@/components/Feature/landing/DiscoverContent";
 
 export default function Home() {
   return (
@@ -19,6 +21,8 @@ export default function Home() {
         <TestimonialSection />
         <CallToAction />
         <ValueStatement />
+        <InterestSection />
+        <DiscoverContent />
       </Main>
       <Footer />
     </PageContainer>

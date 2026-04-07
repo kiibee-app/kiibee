@@ -58,6 +58,55 @@
     },
     "cta": "Learn more"
   },
+  "discoverContent": {
+    "title": "Discover content",
+    "subtitle": "Browse hundreds of videos, audio files, and e-books.",
+    "ctaPrimary": "Join now",
+    "ctaSecondary": "View all creators",
+    "mediaTypes": {
+      "video": "Video",
+      "epub": "E-pub"
+    },
+    "items": {
+      "1": {
+        "category": "Comedy",
+        "title": "Krøllehjern",
+        "author": "Jacob Taarnhøj",
+        "date": "7 days ago",
+        "actions": {
+          "rent": "Rent 39 kr",
+          "buy": "Buy 99 kr"
+        }
+      },
+      "2": {
+        "category": "Podcast",
+        "title": "Tech Talks",
+        "author": "Nuebros",
+        "date": "6 days ago",
+        "actions": {
+          "free": "Free"
+        }
+      },
+      "3": {
+        "category": "Course",
+        "title": "Vegetable recipes",
+        "author": "Kammas kantine",
+        "date": "10 days ago",
+        "actions": {
+          "shopCollection": "Shop collection 99 kr"
+        }
+      },
+      "4": {
+        "category": "Educational",
+        "title": "ADD/ADHD",
+        "author": "Nate Hansen",
+        "date": "1 day ago",
+        "actions": {
+          "buy": "Buy xx kr"
+        }
+      }
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "About us",
@@ -115,6 +164,15 @@
         "mission": "From the beginning, our goal has been to make it simple for creators and businesses to distribute and sell digital content directly to their audience — while making that content easy and intuitive for consumers to access.",
         "evolution": "Since 2017, Kiibee has evolved into a flexible platform used by a wide range of creators and organisations."
       }
+    },
+    "believe": {
+      "title": "What we believe",
+      "alt": "Creative professionals working on digital content",
+      "content": {
+        "quality": "We believe that quality content deserves a professional home.",
+        "creators": "Creators should be able to own their work, control how it’s shared, and get paid without technical complexity.",
+        "viewers": "Viewers should be able to access content easily, pay only for what they want, and enjoy a smooth experience."
+      }
     }
   },
   "features": {
@@ -158,5 +216,22 @@
     "titleLine2": "Join Kiibee today",
     "subtitle": "Share your work, build your audience, and earn directly from your content. Kiibee helps you publish, promote, and sell in one simple platform.",
     "cta": "Start creating"
+  },
+  "interests": {
+    "title": "Explore content made for every interest",
+    "ebooks": "E-books",
+    "lectures": "Lectures",
+    "courses": "Courses and tutorials",
+    "podcasts": "Podcasts",
+    "comedies": "Comedies",
+    "photography": "Photography",
+    "audiobooks": "Audiobooks",
+    "music": "Music",
+    "artwork": "Illustrations and artwork",
+    "meditation": "Guided meditations",
+    "fitness": "Fitness",
+    "theater": "Theater",
+    "sound": "Sound effects and loops",
+    "articles": "Articles & essays"
   }
 }
