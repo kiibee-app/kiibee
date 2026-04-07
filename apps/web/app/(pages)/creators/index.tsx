@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import creatorMainImage from "../../../assets/images/creators/creator-woman-orange.jpg";
@@ -25,6 +25,16 @@ import {
 export default function CreatorsSection() {
   const { t } = useTranslation();
   const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mediaQuery.matches);
+
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
 
   const cards = [
     {
@@ -53,6 +63,11 @@ export default function CreatorsSection() {
     },
   ];
 
+  const activeWidth = isMobile ? "56vw" : 498;
+  const inactiveWidth = isMobile ? "18vw" : 154;
+  const activePadding = isMobile ? [20, 16, 18, 14] : [34, 54, 26, 20];
+  const inactivePadding = isMobile ? [18, 0, 18, 0] : [26, 0, 26, 0];
+
   return (
     <Section>
       <Container>
@@ -80,14 +95,22 @@ export default function CreatorsSection() {
                 $narrowBgPosition={card.narrowBgPosition}
                 $narrowBgSize={card.narrowBgSize}
                 aria-label={card.alt}
-                onMouseEnter={() => setActiveCardIndex(index)}
+                onMouseEnter={() => {
+                  if (!isMobile) setActiveCardIndex(index);
+                }}
+                onClick={() => setActiveCardIndex(index)}
+                onTouchStart={() => setActiveCardIndex(index)}
                 initial={false}
                 animate={{
-                  width: isActive ? 498 : 154,
-                  paddingTop: isActive ? 34 : 26,
-                  paddingRight: isActive ? 54 : 0,
-                  paddingBottom: 26,
-                  paddingLeft: isActive ? 20 : 0,
+                  width: isActive ? activeWidth : inactiveWidth,
+                  paddingTop: isActive ? activePadding[0] : inactivePadding[0],
+                  paddingRight: isActive
+                    ? activePadding[1]
+                    : inactivePadding[1],
+                  paddingBottom: isActive
+                    ? activePadding[2]
+                    : inactivePadding[2],
+                  paddingLeft: isActive ? activePadding[3] : inactivePadding[3],
                 }}
                 transition={{
                   width: {

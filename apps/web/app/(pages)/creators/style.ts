@@ -26,6 +26,11 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
   }
+
+  ${media.tablet} {
+    gap: 1.25rem;
+    padding: 0 1rem;
+  }
 `;
 
 export const LeftColumn = styled.div`
@@ -34,6 +39,11 @@ export const LeftColumn = styled.div`
   align-items: flex-start;
   gap: 2.5rem;
   flex: 1;
+
+  ${media.tablet} {
+    width: 100%;
+    gap: 1.25rem;
+  }
 `;
 
 export const Heading = styled.h2`
@@ -44,6 +54,11 @@ export const Heading = styled.h2`
   font-style: normal;
   font-weight: 600;
   line-height: 75px;
+
+  ${media.tablet} {
+    font-size: 48px;
+    line-height: 56px;
+  }
 `;
 
 export const CTAButton = styled.button`
@@ -86,8 +101,19 @@ export const RightColumn = styled.div`
   }
 
   ${media.tablet} {
-    flex-direction: column;
-    gap: 0.75rem;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
@@ -124,6 +150,12 @@ export const Card = styled.div<CardProps>`
 
   ${media.desktop} {
     width: min(498px, 100%);
+  }
+
+  ${media.tablet} {
+    min-width: 96px;
+    height: 320px;
+    border-radius: 8px;
   }
 `;
 
@@ -208,6 +240,7 @@ export const NarrowCardText = styled.p<{ $visible?: boolean }>`
   pointer-events: none;
 
   ${media.tablet} {
-    font-size: 1rem;
+    font-size: 1.05rem;
+    bottom: 1rem;
   }
 `;
