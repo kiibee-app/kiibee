@@ -39,6 +39,7 @@ const Footer = () => {
               width={90}
               height={28}
               priority
+              style={{ width: "auto", height: "auto" }}
             />
           </LogoRow>
           <IconRow>
@@ -74,8 +75,9 @@ const Footer = () => {
               src={card}
               alt={t("nav.logoAlt")}
               width={200}
-              height={60}
+              height={28}
               priority
+              style={{ width: "auto", height: "auto" }}
             />
           </CardWrapper>
         </BottomRight>

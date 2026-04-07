@@ -14,7 +14,7 @@ export default function InterestSection() {
 
       <PillsWrapper>
         {interests.map((item, index) => (
-          <Pill key={index} variant={item.variant}>
+          <Pill key={index} $variant={item.variant}>
             {t(item.label)}
           </Pill>
         ))}

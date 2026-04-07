@@ -64,6 +64,7 @@ export default function CallToAction() {
               alt={t("callToAction.logoAlt")}
               fill
               priority
+              sizes="(max-width: 767px) 116px, 126px"
               style={{ objectFit: "contain" }}
             />
           </BrandLogo>

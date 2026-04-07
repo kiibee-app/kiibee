@@ -26,6 +26,7 @@ export default function HowHero() {
           alt={t("how.heroAlt")}
           fill
           priority
+          sizes="100vw"
           style={{ objectFit: "cover", objectPosition: "center top" }}
         />
       </Background>

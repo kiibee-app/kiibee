@@ -61,7 +61,7 @@ const variants = {
   `,
 };
 
-export const Pill = styled.span<{ variant: keyof typeof variants }>`
+export const Pill = styled.span<{ $variant: keyof typeof variants }>`
   padding: 0.8rem 1.6rem;
   border-radius: 999px;
   font-size: 0.95rem;
@@ -71,7 +71,7 @@ export const Pill = styled.span<{ variant: keyof typeof variants }>`
     transform 0.2s ease,
     box-shadow 0.2s ease;
 
-  ${({ variant }) => variants[variant]};
+  ${({ $variant }) => variants[$variant]};
 
   ${media.tablet} {
     padding: 0.7rem 1.3rem;
