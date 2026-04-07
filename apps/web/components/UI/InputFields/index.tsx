@@ -8,6 +8,7 @@ import {
   StyledTextArea,
   RequiredIndicator,
   LabelFontStyle,
+  ErrorText,
 } from "./styles";
 import {
   INPUT_TYPE,
@@ -43,6 +44,7 @@ export type InputFieldProps = {
   height?: string;
   required?: boolean;
   id?: string;
+  errorText?: string;
   "aria-invalid"?: AriaInvalidValue;
   "aria-describedby"?: string | undefined;
   "data-test-id"?: string;
@@ -52,6 +54,7 @@ export type InputFieldProps = {
   onKeyDown?: React.KeyboardEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
+  onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 };
 
 export default React.forwardRef<
@@ -80,11 +83,13 @@ export default React.forwardRef<
     height = "",
     required = false,
     id,
+    errorText,
     "aria-invalid": ariaInvalid,
     "aria-describedby": ariaDescribedby,
     "data-test-id": dataTestId,
     iconDataTestId,
     onKeyDown,
+    onBlur,
     max,
     min,
   },
@@ -118,6 +123,12 @@ export default React.forwardRef<
     e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     onKeyDown?.(e);
+  };
+
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    onBlur?.(e);
   };
 
   const normalizeError = (err: boolean | undefined) => !!err;
@@ -167,6 +178,7 @@ export default React.forwardRef<
                 aria-describedby={`${multiInputId}-error ${multiInputId}-help`}
                 data-test-id={dataTestId ? `${dataTestId}-${i}` : undefined}
                 onKeyDown={onKeyDown}
+                onBlur={handleBlur}
                 min={min}
               />
             );
@@ -190,6 +202,7 @@ export default React.forwardRef<
             data-test-id={dataTestId}
             maxLength={max}
             onKeyDown={handleKeyDown}
+            onBlur={handleBlur}
           />
         ) : (
           <>
@@ -215,6 +228,7 @@ export default React.forwardRef<
               data-test-id={dataTestId}
               maxLength={max}
               onKeyDown={handleKeyDown}
+              onBlur={handleBlur}
               min={min}
             />
             {icon && (
@@ -225,6 +239,7 @@ export default React.forwardRef<
           </>
         )}
       </InputWrapper>
+      {errorText && <ErrorText id={`${inputId}-error`}>{errorText}</ErrorText>}
     </Container>
   );
 });

@@ -81,9 +81,17 @@ export const StyledInput = styled.input<{
       : $locked
         ? theme.colors.neutral.GRAY_200
         : theme.colors.neutral.GRAY_100};
+  border: 1px solid
+    ${({ $hasError, theme }) =>
+      $hasError ? theme.colors.primary.RED : "transparent"};
   border-radius: ${({ theme }) => theme.radius.lg};
   outline: none;
   width: 100%;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
   opacity: ${({ $locked }) => ($locked ? 0.8 : 1)};
   cursor: ${({ $locked }) => ($locked ? "not-allowed" : "text")};
 
@@ -98,7 +106,7 @@ export const StyledInput = styled.input<{
         ? theme.colors.primary.RED
         : $locked
           ? theme.colors.neutral.GRAY_400
-          : theme.colors.secondary.DEFAULT};
+          : theme.colors.primary.BLACK};
   }
 
   ${media.mobile} {
@@ -109,7 +117,7 @@ export const StyledInput = styled.input<{
             ? theme.colors.primary.RED
             : $locked
               ? theme.colors.neutral.GRAY_400
-              : theme.colors.secondary.DEFAULT};
+              : theme.colors.primary.BLACK};
       outline-offset: 2px;
     }
   }
@@ -148,27 +156,30 @@ export const StyledTextArea = styled.textarea<{
   padding: 10px 12px;
   border: 1px solid
     ${({ $hasError, theme }) =>
-      $hasError ? theme.colors.primary.RED : theme.colors.neutral.GRAY_400};
+      $hasError ? theme.colors.primary.RED : "transparent"};
   border-radius: ${({ theme }) => theme.radius.lg};
   background-color: ${({ $locked, theme }) =>
     $locked ? theme.colors.neutral.GRAY_200 : theme.colors.neutral.GRAY_100};
   resize: vertical;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
   ${inputFontStyles};
   line-height: 1.5;
   outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
 
   &:focus {
     border-color: ${({ $hasError, theme }) =>
-      $hasError ? theme.colors.primary.RED : theme.colors.secondary.DEFAULT};
+      $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
   }
 
   ${media.mobile} {
     &:focus-visible {
       outline: 2px solid
         ${({ $hasError, theme }) =>
-          $hasError
-            ? theme.colors.primary.RED
-            : theme.colors.secondary.DEFAULT};
+          $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
       outline-offset: 2px;
     }
   }
@@ -180,8 +191,16 @@ export const StyledTextArea = styled.textarea<{
 
   ${media.mobile} {
     padding: ${({ theme }) => theme.spacing[4]};
-    font-size: 16px; 
+    font-size: 16px;
   }
+`;
+
+export const ErrorText = styled.span`
+  margin-top: 6px;
+  font-family: ${({ theme }) => theme.typography.fontFamily};
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: ${({ theme }) => theme.colors.primary.RED};
 `;
 
 export const RequiredIndicator = styled.span`
