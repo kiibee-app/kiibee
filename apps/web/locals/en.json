@@ -86,6 +86,55 @@
       "cta": "Read more about Kiibee"
     }
   },
+  "discoverContent": {
+    "title": "Discover content",
+    "subtitle": "Browse hundreds of videos, audio files, and e-books.",
+    "ctaPrimary": "Join now",
+    "ctaSecondary": "View all creators",
+    "mediaTypes": {
+      "video": "Video",
+      "epub": "E-pub"
+    },
+    "items": {
+      "1": {
+        "category": "Comedy",
+        "title": "Krøllehjern",
+        "author": "Jacob Taarnhøj",
+        "date": "7 days ago",
+        "actions": {
+          "rent": "Rent 39 kr",
+          "buy": "Buy 99 kr"
+        }
+      },
+      "2": {
+        "category": "Podcast",
+        "title": "Tech Talks",
+        "author": "Nuebros",
+        "date": "6 days ago",
+        "actions": {
+          "free": "Free"
+        }
+      },
+      "3": {
+        "category": "Course",
+        "title": "Vegetable recipes",
+        "author": "Kammas kantine",
+        "date": "10 days ago",
+        "actions": {
+          "shopCollection": "Shop collection 99 kr"
+        }
+      },
+      "4": {
+        "category": "Educational",
+        "title": "ADD/ADHD",
+        "author": "Nate Hansen",
+        "date": "1 day ago",
+        "actions": {
+          "buy": "Buy xx kr"
+        }
+      }
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "About us",
@@ -103,6 +152,48 @@
     "cookieSettings": "Cookie Settings",
     "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
   },
+  "supportPage": {
+    "eyebrow": "Contact support",
+    "title": "Contact us",
+    "description": "We're here to help. Whether you have a question about our services, need assistance with your account, or want to provide feedback, our team is ready to assist you.",
+    "resourcesLead": "You can also check out our",
+    "resourcesMiddle": "and",
+    "resourcesEnd": "for quick answers.",
+    "tutorialVideos": "tutorial videos",
+    "userGuides": "user guides",
+    "supportTitle": "Support",
+    "supportEmail": "support@kiibee.dk",
+    "salesTitle": "Sales & partnerships",
+    "salesEmail": "info@kiibee.dk",
+    "success": {
+      "title": "Thank you for contacting us!",
+      "description": "We've received your message and will get back to you soon. Check your inbox at {{email}} for our response."
+    },
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "companyName": "Company name",
+      "phoneNumber": "Phone number",
+      "email": "Email Address",
+      "message": "How can we help you?",
+      "placeholders": {
+        "firstName": "Enter your first name",
+        "lastName": "Enter your last name",
+        "companyName": "Enter company name",
+        "phoneNumber": "Enter phone number",
+        "email": "Enter email address",
+        "message": "Enter your message..."
+      },
+      "errors": {
+        "firstNameRequired": "First name is required",
+        "emailRequired": "Email address is required",
+        "emailInvalid": "Enter a valid email address",
+        "phoneInvalid": "Enter a valid phone number",
+        "messageRequired": "Message is required"
+      },
+      "submit": "Send message"
+    }
+  },
   "value": {
     "bgAlt": "Value background",
     "title": "What you know is worth something",
@@ -115,6 +206,12 @@
     "nextAriaLabel": "Next testimonial",
     "quote": "As a graphic designer, I'm always looking to expand my skills and stay inspired. Kiibe has been a game-changer for me. Its content is practical, creative, and easy to follow. I've picked up new techniques and design tips I wouldn't have found anywhere else. It's like having a mini design workshop right at my fingertips!",
     "author": "Kamma, freelance graphic designer"
+  },
+  "securePayment": {
+    "title": "Secure and instant payment with MobilePay",
+    "description": "No complicated checkouts or foreign payment processors. Pay securely with MobilePay in seconds, or use Dankort and credit cards. Supporting creators has never been easier.",
+    "heroImageAlt": "Mobile payment preview",
+    "creatorImageAlt": "Creator working on laptop"
   },
   "about": {
     "hero": {
@@ -137,6 +234,24 @@
         "mission": "From the beginning, our goal has been to make it simple for creators and businesses to distribute and sell digital content directly to their audience — while making that content easy and intuitive for consumers to access.",
         "evolution": "Since 2017, Kiibee has evolved into a flexible platform used by a wide range of creators and organisations."
       }
+    },
+    "believe": {
+      "title": "What we believe",
+      "alt": "Creative professionals working on digital content",
+      "content": {
+        "quality": "We believe that quality content deserves a professional home.",
+        "creators": "Creators should be able to own their work, control how it's shared, and get paid without technical complexity.",
+        "viewers": "Viewers should be able to access content easily, pay only for what they want, and enjoy a smooth experience."
+      }
+    },
+    "platform": {
+      "title": "More than a platform",
+      "intro": "Kiibee is not just a technical solution.",
+      "description": "It's a bridge between creators and their audience, built to support long-term value, sustainable content distribution and a better experience for everyone involved."
+    },
+    "value": {
+      "title": "Join the Kiibee movement",
+      "subtitle": "Whether you're a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you."
     }
   },
   "features": {
@@ -180,5 +295,22 @@
     "titleLine2": "Join Kiibee today",
     "subtitle": "Share your work, build your audience, and earn directly from your content. Kiibee helps you publish, promote, and sell in one simple platform.",
     "cta": "Start creating"
+  },
+  "interests": {
+    "title": "Explore content made for every interest",
+    "ebooks": "E-books",
+    "lectures": "Lectures",
+    "courses": "Courses and tutorials",
+    "podcasts": "Podcasts",
+    "comedies": "Comedies",
+    "photography": "Photography",
+    "audiobooks": "Audiobooks",
+    "music": "Music",
+    "artwork": "Illustrations and artwork",
+    "meditation": "Guided meditations",
+    "fitness": "Fitness",
+    "theater": "Theater",
+    "sound": "Sound effects and loops",
+    "articles": "Articles & essays"
   }
 }

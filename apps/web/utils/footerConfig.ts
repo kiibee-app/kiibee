@@ -12,8 +12,8 @@ export const footerConfig: FooterColumn[] = [
   {
     title: "footer.information",
     items: [
-      { label: "footer.about", href: null },
-      { label: "footer.howItWorks", href: null },
+      { label: "footer.about", href: "/about-kiibee" },
+      { label: "footer.howItWorks", href: "/how-it-works" },
       { label: "footer.forCreators", href: null },
       { label: "footer.exploreCreators", href: null },
       { label: "footer.pricing", href: null },
@@ -22,12 +22,12 @@ export const footerConfig: FooterColumn[] = [
   {
     title: "footer.helpfulLinks",
     items: [
-      { label: "footer.tutorialVideos", href: null },
+      { label: "footer.tutorialVideos", href: "/tutorial-videos" },
       { label: "footer.userGuides", href: null },
     ],
   },
   {
     title: "footer.contactUs",
-    items: [{ label: "footer.support", href: null }],
+    items: [{ label: "footer.support", href: "/support" }],
   },
 ];

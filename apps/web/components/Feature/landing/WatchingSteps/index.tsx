@@ -39,9 +39,8 @@ export default function WatchingSteps() {
               width={640}
               height={479}
               style={{
-                width: "640px",
-                height: "449px",
-                aspectRatio: "159 / 119",
+                width: "100%",
+                height: "auto",
                 borderRadius: 8,
               }}
             />

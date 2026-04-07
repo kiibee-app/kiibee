@@ -45,6 +45,7 @@ function createSpacing(scale: number[]) {
 const borderRadius = {
   none: "0",
   sm: "4px",
+  xl: "6px",
   md: "8px",
   lg: "12px",
   full: "9999px",
