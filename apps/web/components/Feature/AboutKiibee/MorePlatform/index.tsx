@@ -39,6 +39,7 @@ export default function MoreThanPlatformSection() {
                 style={{
                   objectFit: "cover",
                 }}
+                sizes="(max-width: 767px) 116px, 126px"
                 priority
               />
             </Card>

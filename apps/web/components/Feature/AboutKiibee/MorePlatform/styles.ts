@@ -38,8 +38,8 @@ export const Grid = styled.div`
 export const Card = styled.div`
   position: relative;
   width: 100%;
-  min-height: 220px;
-  border-radius: 16px;
+  min-height: 18.35938rem;
+  border-radius: 0.75rem;
   overflow: hidden;
 `;
 
