@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import kiibeeLogo from "../../../../assets/images/kiibee-logo.svg";
-import { desktopCards, mobileCards } from "./utils/cards";
 import {
   Section,
   Backdrop,
@@ -21,6 +20,7 @@ import {
   Subtitle,
   CTAButton,
 } from "./styles";
+import { desktopCards, mobileCards } from "@/utils/cards";
 
 export default function CallToAction() {
   const { t } = useTranslation();
@@ -64,6 +64,7 @@ export default function CallToAction() {
               alt={t("callToAction.logoAlt")}
               fill
               priority
+              sizes="(max-width: 767px) 116px, 126px"
               style={{ objectFit: "contain" }}
             />
           </BrandLogo>

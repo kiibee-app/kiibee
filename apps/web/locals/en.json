@@ -137,6 +137,12 @@
     "quote": "As a graphic designer, I'm always looking to expand my skills and stay inspired. Kiibe has been a game-changer for me. Its content is practical, creative, and easy to follow. I've picked up new techniques and design tips I wouldn't have found anywhere else. It's like having a mini design workshop right at my fingertips!",
     "author": "Kamma, freelance graphic designer"
   },
+  "securePayment": {
+    "title": "Secure and instant payment with MobilePay",
+    "description": "No complicated checkouts or foreign payment processors. Pay securely with MobilePay in seconds, or use Dankort and credit cards. Supporting creators has never been easier.",
+    "heroImageAlt": "Mobile payment preview",
+    "creatorImageAlt": "Creator working on laptop"
+  },
   "about": {
     "hero": {
       "title": "Empowering creativity. Connecting people.",
