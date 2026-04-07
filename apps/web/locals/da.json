@@ -201,5 +201,22 @@
     "titleLine2": "Bliv en del af Kiibee i dag",
     "subtitle": "Del dit arbejde, opbyg dit publikum, og tjen direkte på dit indhold. Kiibee hjælper dig med at udgive, promovere og sælge på én enkel platform.",
     "cta": "Begynd at skabe"
+  },
+  "interests": {
+    "title": "Udforsk indhold til enhver interesse",
+    "ebooks": "E-bøger",
+    "lectures": "Foredrag",
+    "courses": "Kurser og tutorials",
+    "podcasts": "Podcasts",
+    "comedies": "Komedier",
+    "photography": "Fotografi",
+    "audiobooks": "Lydbøger",
+    "music": "Musik",
+    "artwork": "Illustrationer og kunstværker",
+    "meditation": "Guidede meditationer",
+    "fitness": "Fitness",
+    "theater": "Teater",
+    "sound": "Lydeffekter og loops",
+    "articles": "Artikler og essays"
   }
 }
