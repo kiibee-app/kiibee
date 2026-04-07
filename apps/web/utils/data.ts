@@ -4,6 +4,13 @@ import design2 from "../assets/images/design2.png";
 import education from "../assets/images/education.png";
 import { TutorialVideo } from "./types";
 
+export type TutorialVideoSection = {
+  id: string;
+  title: string;
+  videoIds: string[];
+  gridMaxWidth?: string;
+};
+
 export const tutorialVideos: TutorialVideo[] = [
   {
     id: "del-2",
@@ -42,7 +49,7 @@ export const tutorialVideos: TutorialVideo[] = [
   },
   {
     id: "del-5",
-    title: "Del 5: Udbetaling, notifikationer og eksporter",
+    title: "Del 5: Udbetaling, notifikationer og",
     category: "Educational",
     creator: "Kiibee",
     published: "1 year ago",
@@ -51,5 +58,24 @@ export const tutorialVideos: TutorialVideo[] = [
     level: "Free",
     formatLabel: "Video",
     image: education,
+  },
+];
+
+export const tutorialVideoSections: TutorialVideoSection[] = [
+  {
+    id: "getting-started",
+    title: "Getting started",
+    videoIds: ["del-2", "del-3", "del-4", "del-5"],
+  },
+  {
+    id: "how-to-videos",
+    title: "How-to-videos",
+    videoIds: ["del-2", "del-3", "del-4", "del-5"],
+  },
+  {
+    id: "user-guides",
+    title: "User guides",
+    videoIds: ["del-4", "del-5"],
+    gridMaxWidth: "min(640px, 100%)",
   },
 ];
