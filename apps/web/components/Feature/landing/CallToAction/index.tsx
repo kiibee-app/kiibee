@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import kiibeeLogo from "../../../assets/images/kiibee-logo.svg";
-import { desktopCards, mobileCards } from "./utils/cards";
+import kiibeeLogo from "../../../../assets/images/kiibee-logo.svg";
 import {
   Section,
   Backdrop,
@@ -21,6 +20,7 @@ import {
   Subtitle,
   CTAButton,
 } from "./styles";
+import { desktopCards, mobileCards } from "@/utils/cards";
 
 export default function CallToAction() {
   const { t } = useTranslation();

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../../../packages/ui/src/breakpoints";
+import { media } from "../../../../../../packages/ui/src/breakpoints";
 
 export const Section = styled.section`
   position: relative;
