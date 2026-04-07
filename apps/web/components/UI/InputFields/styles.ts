@@ -180,7 +180,7 @@ export const StyledTextArea = styled.textarea<{
 
   ${media.mobile} {
     padding: ${({ theme }) => theme.spacing[4]};
-    font-size: 16px; // Prevent zoom on iOS
+    font-size: 16px; 
   }
 `;
 
