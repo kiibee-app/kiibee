@@ -90,3 +90,22 @@ export const ImageWrapper = styled.div`
   overflow: hidden;
   border-radius: 0.75rem 0.75rem 0 0;
 `;
+
+export const VideoBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.313rem;
+  width: 100%;
+  height: 33px;
+  padding: 0.313rem 0.75rem;
+  background-color: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  border-radius: ${({ theme }) => theme.radius.xl};
+  margin: 0.75rem 0 1.25rem 0;
+`;
+
+export const VideoLabel = styled.span`
+  font-size: 0.688rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
