@@ -1,7 +1,7 @@
-import imageOne from "../../../../assets/images/call_to_action/creator-1.jpg";
-import imageTwo from "../../../../assets/images/call_to_action/creator-2.png";
-import imageThree from "../../../../assets/images/call_to_action/creator-3.png";
-import imageFour from "../../../../assets/images/call_to_action/creator-4.png";
+import imageOne from "../assets/images/call_to_action/creator-1.jpg";
+import imageTwo from "../assets/images/call_to_action/creator-2.png";
+import imageThree from "../assets/images/call_to_action/creator-3.png";
+import imageFour from "../assets/images/call_to_action/creator-4.png";
 
 const orderedImages = {
   1: imageFour.src,
