@@ -58,6 +58,27 @@
     },
     "cta": "Learn more"
   },
+  "creators": {
+    "heading": {
+      "lineOne": "Upload.",
+      "lineTwo": "Market.",
+      "lineThree": "Earn."
+    },
+    "cta": "Tilmeld Kiibee i dag",
+    "mainCard": {
+      "alt": "Mand optager podcast",
+      "title": "Indbyggede funktioner",
+      "subtitle": "Alt hvad du skal bruge for at saelge"
+    },
+    "salesInsights": {
+      "alt": "Smilende kvinde",
+      "title": "Salgsindsigter"
+    },
+    "paymentSolutions": {
+      "alt": "Kvinde i graa jakke",
+      "title": "Betalingsloesninger"
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "Om os",

@@ -58,6 +58,27 @@
     },
     "cta": "Learn more"
   },
+  "creators": {
+    "heading": {
+      "lineOne": "Upload.",
+      "lineTwo": "Market.",
+      "lineThree": "Earn."
+    },
+    "cta": "Join kiibee today",
+    "mainCard": {
+      "alt": "Man recording podcast",
+      "title": "Built-in Features",
+      "subtitle": "Everything you need to sell"
+    },
+    "salesInsights": {
+      "alt": "Woman smiling",
+      "title": "Sales Insights"
+    },
+    "paymentSolutions": {
+      "alt": "Woman in grey jacket",
+      "title": "Payment Solutions"
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "About us",
