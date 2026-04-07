@@ -88,6 +88,12 @@
     "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibe har været en gamechanger for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
     "author": "Kamma, freelance grafisk designer"
   },
+  "securePayment": {
+    "title": "Sikker og øjeblikkelig betaling med MobilePay",
+    "description": "Ingen komplicerede checkouts eller udenlandske betalingsløsninger. Betal sikkert med MobilePay på få sekunder, eller brug Dankort og kreditkort. Det har aldrig været nemmere at støtte skabere.",
+    "heroImageAlt": "Mobil betalingsvisning",
+    "creatorImageAlt": "Skaber, der arbejder på bærbar"
+  },
   "about": {
     "hero": {
       "title": "Styrker kreativitet. Forbinder mennesker.",
