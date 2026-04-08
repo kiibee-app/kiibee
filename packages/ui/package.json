@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./colors": "./src/colors.ts",
     "./theme": "./src/theme/index.ts",
     "./theme/types": "./src/theme/types.ts",
     "./theme/ThemeProvider": "./src/theme/ThemeProvider.tsx",
