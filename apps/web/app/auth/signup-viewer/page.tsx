@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslation } from "react-i18next";
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
