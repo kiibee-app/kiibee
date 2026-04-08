@@ -15,7 +15,7 @@ import Image from "next/image";
 import hero from "../../../../assets/images/hero-background.png";
 import GenericButton from "../../../UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
-import COLORS from "../../../../../../packages/ui/src/colors";
+import COLORS from "@repo/ui/colors";
 
 export default function HeroSection() {
   const { t } = useTranslation();

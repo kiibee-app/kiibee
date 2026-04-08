@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { typography } from "../../../../../packages/ui/src/typography";
+import { typography } from "@repo/ui/typography";
 
 type TypographyKey = keyof typeof typography;
 

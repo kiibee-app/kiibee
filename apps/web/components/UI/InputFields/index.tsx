@@ -19,7 +19,7 @@ import {
   InputModeValue,
   AutoCompleteValue,
 } from "@/utils/ui";
-import { typography } from "../../../../../packages/ui/src/typography";
+import { typography } from "@repo/ui/typography";
 
 export type InputFieldProps = {
   label?: string;

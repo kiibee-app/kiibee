@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import { typography } from "../../../../../packages/ui/src/typography";
 import { MonoText } from "../Monotext";
 import { media } from "@repo/ui/breakpoints";
+import { typography } from "@repo/ui/typography";
 
 export const Container = styled.div<{ width?: string | undefined }>`
   display: flex;
