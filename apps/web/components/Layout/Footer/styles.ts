@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import breakpoints from "../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const Container = styled.footer`
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
@@ -14,7 +14,7 @@ export const Top = styled.div`
   align-items: flex-start;
   padding: 70px 60px 30px;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     padding: 50px 30px 20px;
@@ -36,7 +36,7 @@ export const LogoRow = styled.div`
   margin-bottom: 18px;
   padding-left: 6rem;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     padding-left: 0;
   }
 `;
@@ -46,7 +46,7 @@ export const IconRow = styled.div`
   gap: 12px;
   padding-left: 6rem;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     padding-left: 0;
   }
 `;
@@ -75,7 +75,7 @@ export const Bottom = styled.div`
   font-weight: 500;
   padding: 30px 60px;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     flex-direction: column;
     align-items: flex-start;
     padding: 25px 30px;
@@ -94,7 +94,7 @@ export const BottomRight = styled.div`
   font-weight: 500;
   align-items: flex-end;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     align-items: flex-start;
   }
 `;

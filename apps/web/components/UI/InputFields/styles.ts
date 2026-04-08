@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { media } from "../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 const labelFontStyles = {
   Body_Title6: css`

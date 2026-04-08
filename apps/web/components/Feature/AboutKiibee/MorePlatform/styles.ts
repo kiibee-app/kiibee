@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const SectionWrapper = styled.section`
   background: ${({ theme }) => theme.colors.primary.GREEN_100};

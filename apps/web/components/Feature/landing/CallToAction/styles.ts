@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import breakpoints from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   position: relative;
@@ -19,7 +19,7 @@ export const Backdrop = styled.div`
   z-index: 0;
   pointer-events: none;
 
-  @media (max-width: calc(${breakpoints.tablet} + 132px)) {
+  ${media.desktop} {
     display: none;
   }
 `;
@@ -41,7 +41,7 @@ export const Card = styled.div<{
   background: ${({ theme }) => theme.colors.gredint.CARD_BG};
   box-shadow: 0 8px 24px ${({ theme }) => theme.colors.gredint.CARD_SHADOW};
 
-  @media (max-width: calc(${breakpoints.tablet} + 132px)) {
+  ${media.desktop} {
     position: ${({ $mobileOnly }) => ($mobileOnly ? "relative" : "absolute")};
     left: auto;
     top: auto;
@@ -57,7 +57,7 @@ export const MobileBackdrop = styled.div`
   z-index: 0;
   pointer-events: none;
 
-  @media (max-width: calc(${breakpoints.tablet} + 132px)) {
+  ${media.desktop} {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,7 +73,7 @@ export const MobileGrid = styled.div`
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 6px;
 
-  @media (max-width: calc(${breakpoints.tablet} - 228px)) {
+  ${media.mobile} {
     width: 118%;
     margin-left: -9%;
   }
@@ -149,19 +149,19 @@ export const Content = styled.div`
   color: ${({ theme }) => theme.colors.primary.WHITE};
   box-sizing: border-box;
 
-  @media (max-width: calc(${breakpoints.desktopLg} - 160px)) {
+  ${media.desktopLg} {
     width: 100%;
     height: auto;
     padding: 100px 240px;
   }
 
-  @media (max-width: calc(${breakpoints.tablet} + 132px)) {
+  ${media.desktop} {
     width: 100%;
     height: auto;
     padding: 72px 48px;
   }
 
-  @media (max-width: calc(${breakpoints.tablet} - 128px)) {
+  ${media.tablet} {
     width: 100%;
     height: auto;
     padding: 64px 24px;
@@ -174,7 +174,7 @@ export const Brand = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (max-width: calc(${breakpoints.tablet} - 128px)) {
+  ${media.tablet} {
     margin-bottom: 32px;
   }
 `;
@@ -185,7 +185,7 @@ export const BrandLogo = styled.span`
   width: 126px;
   height: 37px;
 
-  @media (max-width: calc(${breakpoints.tablet} - 128px)) {
+  ${media.tablet} {
     width: 116px;
     height: 34px;
   }
@@ -201,7 +201,7 @@ export const Heading = styled.h1`
   font-weight: 600;
   line-height: normal;
 
-  @media (max-width: calc(${breakpoints.tablet} - 128px)) {
+  ${media.tablet} {
     font-size: 32px;
     margin-bottom: 22px;
   }
@@ -218,7 +218,7 @@ export const Subtitle = styled.p`
   font-weight: 500;
   line-height: normal;
 
-  @media (max-width: calc(${breakpoints.tablet} - 1px)) {
+  ${media.tablet} {
     max-width: 100%;
     font-size: 0.95rem;
     margin-bottom: 32px;
