@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import {
   Overlay,
   Content,
@@ -28,25 +28,14 @@ export default function GenericLoader({
   onClose,
   className,
 }: GenericLoaderProps) {
-  useEffect(() => {
-    if (!closeOnEsc || !onClose) return;
+  const handleEscape = useCallback(() => {
+    onClose?.();
+  }, [onClose]);
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === KEYBOARD.ESCAPE) onClose();
-    };
-
-    document.addEventListener(EVENT.KEYDOWN, handleKeyDown);
-    return () => document.removeEventListener(EVENT.KEYDOWN, handleKeyDown);
-  }, [closeOnEsc, onClose]);
-
-  useEffect(() => {
-    if (variant === LOADER_VARIANT.OVERLAY && isOpen) {
-      document.body.style.overflow = CSS_VALUE.HIDDEN;
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [variant, isOpen]);
+  useEscapeToClose({ closeOnEsc, onClose: handleEscape });
+  useLockBodyScroll({
+    enabled: isOpen && variant === LOADER_VARIANT.OVERLAY,
+  });
 
   if (!isOpen) return null;
 
@@ -77,7 +66,10 @@ export default function GenericLoader({
     <Overlay
       $isTransparent={isTransparent}
       className={className}
-      onClick={closeOnEsc ? onClose : undefined}
+      role="status"
+      aria-label={label || "Loading"}
+      aria-live="polite"
+      onClick={onClose}
     >
       <Content>
         {spinner}
@@ -85,4 +77,41 @@ export default function GenericLoader({
       </Content>
     </Overlay>
   );
+}
+
+type EscapeToCloseOptions = {
+  closeOnEsc: boolean;
+  onClose?: () => void;
+};
+
+function useEscapeToClose({ closeOnEsc, onClose }: EscapeToCloseOptions) {
+  useEffect(() => {
+    if (!closeOnEsc || !onClose) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === KEYBOARD.ESCAPE) {
+        event.preventDefault();
+        onClose();
+      }
+    };
+
+    document.addEventListener(EVENT.KEYDOWN, handleKeyDown);
+
+    return () => {
+      document.removeEventListener(EVENT.KEYDOWN, handleKeyDown);
+    };
+  }, [closeOnEsc, onClose]);
+}
+
+function useLockBodyScroll({ enabled }: { enabled: boolean }) {
+  useEffect(() => {
+    if (!enabled) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = CSS_VALUE.HIDDEN;
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [enabled]);
 }
