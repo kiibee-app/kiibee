@@ -1,27 +1,7 @@
 import styled, { css } from "styled-components";
 import { media } from "../../../../../packages/ui/src/breakpoints";
-
-const labelFontStyles = {
-  Body_Title6: css`
-    font-size: 0.875rem;
-    line-height: 1.4;
-    font-weight: 600;
-  `,
-  Body_Title7: css`
-    font-size: 0.8125rem;
-    line-height: 1.4;
-    font-weight: 600;
-  `,
-} as const;
-
-const inputFontStyles = css`
-  font-family: ${({ theme }) => theme.typography.fontFamily};
-  font-size: 0.875rem;
-  line-height: 1.4;
-  font-weight: 400;
-`;
-
-export type LabelFontStyle = keyof typeof labelFontStyles;
+import { typography } from "../../../../../packages/ui/src/typography";
+import { MonoText } from "../Monotext";
 
 export const Container = styled.div<{ width?: string | undefined }>`
   display: flex;
@@ -32,8 +12,13 @@ export const Container = styled.div<{ width?: string | undefined }>`
   margin: 0;
 `;
 
-export const Label = styled.label<{
-  $labelFontStyle?: LabelFontStyle;
+export const Label = styled(MonoText).attrs<{
+  $use?: keyof typeof typography;
+  $paddingLeft?: string | undefined;
+  $marginTop?: string | undefined;
+}>(({ $use }) => ({
+  $use: $use || "Body_Medium",
+}))<{
   $paddingLeft?: string;
   $marginTop?: string;
 }>`
@@ -44,10 +29,8 @@ export const Label = styled.label<{
   display: block;
   float: left;
   width: 100%;
-  font-family: ${({ theme }) => theme.typography.fontFamily};
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  ${({ $labelFontStyle }) => labelFontStyles[$labelFontStyle || "Body_Title6"]};
-
+  ${({ theme }) => theme.typography.Body_Regular};
   ${media.mobile} {
     margin-bottom: ${({ theme }) => theme.spacing[4]};
     font-size: 14px;
@@ -73,7 +56,7 @@ export const StyledInput = styled.input<{
     css`
       padding-right: 46px;
     `}
-  ${inputFontStyles};
+  ${({ theme }) => theme.typography.Body_Regular};
   height: ${({ $height }) => $height || "40px"};
   background: ${({ $hasError, $locked, theme }) =>
     $hasError
@@ -97,7 +80,7 @@ export const StyledInput = styled.input<{
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.neutral.GRAY_400};
-    ${inputFontStyles};
+    ${({ theme }) => theme.typography.Body_Regular};
   }
 
   &:focus {
@@ -162,7 +145,7 @@ export const StyledTextArea = styled.textarea<{
     $locked ? theme.colors.neutral.GRAY_200 : theme.colors.neutral.GRAY_100};
   resize: vertical;
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  ${inputFontStyles};
+  ${({ theme }) => theme.typography.Body_Regular};
   line-height: 1.5;
   outline: none;
   transition:
@@ -186,7 +169,7 @@ export const StyledTextArea = styled.textarea<{
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.neutral.GRAY_400};
-    ${inputFontStyles};
+    ${({ theme }) => theme.typography.Body_Regular};
   }
 
   ${media.mobile} {
@@ -197,9 +180,7 @@ export const StyledTextArea = styled.textarea<{
 
 export const ErrorText = styled.span`
   margin-top: 6px;
-  font-family: ${({ theme }) => theme.typography.fontFamily};
-  font-size: 0.75rem;
-  line-height: 1.4;
+  ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.RED};
 `;
 

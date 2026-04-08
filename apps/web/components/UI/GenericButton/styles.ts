@@ -9,12 +9,10 @@ export const shared = css<{ $variant: Variant }>`
   height: 40px;
   padding: 7px 18px;
   border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 600;
   cursor: pointer;
   text-decoration: none;
   transition: all 120ms ease;
-
+  ${({ theme }) => theme.typography.Body_Medium}
   ${({ $variant }) => {
     switch ($variant) {
       case "primary":

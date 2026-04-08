@@ -33,7 +33,7 @@ export const Left = styled.div`
 export const Logo = styled.span`
   font-weight: 700;
   font-size: 1.125rem;
-  font-family: ${({ theme }) => theme.typography.fontFamily};
+  font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
 `;
 
 export const Nav = styled.nav`
