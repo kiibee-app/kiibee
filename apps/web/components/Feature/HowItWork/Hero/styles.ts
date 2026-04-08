@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import breakpoints, {
-  media,
-} from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const Hero = styled.section`
   width: 100%;
@@ -53,10 +51,9 @@ export const Content = styled.div`
   gap: 0.75rem;
   color: ${({ theme }) => theme.colors.neutral.BLACK};
 
-  @media (min-width: ${breakpoints.tablet}) {
-    align-items: flex-start;
-    text-align: left;
-  }
+  align-items: flex-start;
+  text-align: left;
+
   ${media.tablet} {
     align-items: center;
     text-align: center;

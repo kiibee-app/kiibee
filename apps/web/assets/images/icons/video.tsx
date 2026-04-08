@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 import React from "react";
-import { COLORS } from "../../../../../packages/ui/src/colors";
+import { COLORS } from "@repo/ui/colors";
 import { ICON_SVG_PROP_NAMES, SVG_XMLNS } from "@/utils/Constants";
 
 type VideoIconBaseProps = Omit<

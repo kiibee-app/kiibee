@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 import React from "react";
-import { COLORS } from "../../../../../packages/ui/src/colors";
+import { COLORS } from "@repo/ui/colors";
 import {
   CATEGORY_ICON_HEIGHT,
   CATEGORY_ICON_WIDTH,

@@ -198,6 +198,9 @@ importers:
 
   apps/web:
     dependencies:
+      "@repo/ui":
+        specifier: workspace:*
+        version: link:../../packages/ui
       i18next:
         specifier: ^26.0.3
         version: 26.0.3(typescript@5.9.2)
