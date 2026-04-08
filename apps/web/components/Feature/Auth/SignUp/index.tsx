@@ -30,15 +30,8 @@ export default function SignUpSection() {
       <Inner>
         <Left>
           <Content>
-            <Title>
-              {t("auth.title", "The place where creators and supporters meet")}
-            </Title>
-            <Subtitle>
-              {t(
-                "auth.subtitle",
-                "Creators earn by sharing content. Viewers discover and support the work they love. Join a community where creativity thrives on both sides.",
-              )}
-            </Subtitle>
+            <Title>{t("auth.title")}</Title>
+            <Subtitle>{t("auth.subtitle")}</Subtitle>
 
             <CTAWrap>
               <GenericButton
@@ -46,16 +39,16 @@ export default function SignUpSection() {
                 href="/auth/signup-creator"
                 variant="primary"
               >
-                {t("auth.signupCreator", "Sign up as a creator")}
+                {t("auth.signupCreator")}
               </GenericButton>
               <GenericButton asAnchor href="#" variant="secondary">
-                {t("auth.signupViewer", "Sign up as a viewer")}
+                {t("auth.signupViewer")}
               </GenericButton>
             </CTAWrap>
 
             <AccountText>
-              {t("auth.haveAccount", "Already have an account?")}{" "}
-              <LoginLink href="#">{t("auth.login", "Log in")}</LoginLink>
+              {t("auth.haveAccount")}{" "}
+              <LoginLink href="#">{t("auth.login")}</LoginLink>
             </AccountText>
           </Content>
         </Left>
@@ -65,7 +58,7 @@ export default function SignUpSection() {
             <BackCard>
               <Image
                 src={mediaCard1}
-                alt={t("auth.mediaCard1Alt", "Creator media card")}
+                alt={t("auth.mediaCard1Alt")}
                 priority
                 style={{ width: "100%", height: "auto" }}
               />
@@ -73,7 +66,7 @@ export default function SignUpSection() {
             <FrontCard>
               <Image
                 src={mediaCard2}
-                alt={t("auth.mediaCard2Alt", "Creator recipes media card")}
+                alt={t("auth.mediaCard2Alt")}
                 priority
                 style={{ width: "100%", height: "auto" }}
               />

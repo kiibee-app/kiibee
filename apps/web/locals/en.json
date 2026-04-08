@@ -12,6 +12,16 @@
     "startCreating": "Start creating",
     "logoAlt": "Kiibee"
   },
+  "auth": {
+    "title": "The place where creators and supporters meet",
+    "subtitle": "Creators earn by sharing content. Viewers discover and support the work they love. Join a community where creativity thrives on both sides.",
+    "signupCreator": "Sign up as a creator",
+    "signupViewer": "Sign up as a viewer",
+    "haveAccount": "Already have an account?",
+    "login": "Log in",
+    "mediaCard1Alt": "Creator media card",
+    "mediaCard2Alt": "Creator recipes media card"
+  },
   "how": {
     "heroAlt": "Kiibee hero image",
     "title": "Stream or own the content you love",
