@@ -180,14 +180,16 @@ export const Brand = styled.div`
 `;
 
 export const BrandLogo = styled.span`
-  position: relative;
   display: block;
   width: 126px;
-  height: 37px;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 
   ${media.tablet} {
     width: 116px;
-    height: 34px;
   }
 `;
 
