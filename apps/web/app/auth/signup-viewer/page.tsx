@@ -1,15 +1,18 @@
+import { useTranslation } from "react-i18next";
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { PageContainer, Main } from "../styles";
 
 export default function ViewerSignupPage() {
+  const { t } = useTranslation();
+
   return (
     <PageContainer>
       <NavBar />
       <Main>
         <div style={{ padding: "4rem 2rem", textAlign: "center" }}>
-          <h1>Create Viewer Account</h1>
-          <p>Viewer signup form coming soon...</p>
+          <h1>{t("viewerSignup.heading")}</h1>
+          <p>{t("viewerSignup.description")}</p>
         </div>
       </Main>
       <Footer />

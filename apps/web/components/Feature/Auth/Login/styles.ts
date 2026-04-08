@@ -10,6 +10,9 @@ export const PageLayout = styled.div`
   @media (max-width: 900px) {
     flex-direction: column;
   }
+  @media (max-width: 1100px) {
+    align-items: stretch;
+  }
 `;
 
 export const FormPanel = styled.section`
@@ -23,11 +26,15 @@ export const FormPanel = styled.section`
   @media (max-width: 900px) {
     padding: 2rem 1rem;
   }
+  @media (max-width: 1100px) {
+    flex: 5;
+    padding: 2.25rem 1.25rem;
+  }
 `;
 
 export const SlidePanel = styled.section`
-  flex: 0 0 550px;
-  max-width: 550px;
+  flex: 0 0 520px;
+  max-width: 520px;
   background: ${({ theme }) => theme.colors.gredint.DEEP_GREEN};
   display: flex;
   align-items: center;
@@ -40,5 +47,11 @@ export const SlidePanel = styled.section`
     width: 100%;
     flex: 0 0 auto;
     padding: 2.5rem 1.5rem;
+  }
+  @media (max-width: 1100px) {
+    flex: 0 0 360px;
+    max-width: 360px;
+    padding: 180px 55px 90px;
+    justify-content: center;
   }
 `;

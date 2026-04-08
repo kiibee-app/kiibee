@@ -32,6 +32,10 @@
     "footer": "Har du ikke en konto?",
     "signUp": "Tilmeld dig"
   },
+  "viewerSignup": {
+    "heading": "Opret seerkonto",
+    "description": "Viewer-tilmeldingsformular kommer snart..."
+  },
   "authSlide": {
     "carousel": [
       {
