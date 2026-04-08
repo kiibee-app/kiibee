@@ -7,6 +7,7 @@ import { getCreatorCards } from "../../../utils/creatorCardData";
 import {
   getCardDimensions,
   createCardTransition,
+  getCardAnimation,
 } from "../../../utils/creatorAnimations";
 import { useCreatorCards } from "../../../utils/useCreatorCards";
 import {
@@ -70,17 +71,12 @@ export default function CreatorsSection() {
                 onClick={() => handleCardClick(index)}
                 onTouchStart={() => handleCardClick(index)}
                 initial={false}
-                animate={{
-                  width: isActive ? activeWidth : inactiveWidth,
-                  paddingTop: isActive ? activePadding[0] : inactivePadding[0],
-                  paddingRight: isActive
-                    ? activePadding[1]
-                    : inactivePadding[1],
-                  paddingBottom: isActive
-                    ? activePadding[2]
-                    : inactivePadding[2],
-                  paddingLeft: isActive ? activePadding[3] : inactivePadding[3],
-                }}
+                animate={getCardAnimation(isActive, {
+                  activeWidth,
+                  inactiveWidth,
+                  activePadding,
+                  inactivePadding,
+                })}
                 transition={cardTransition}
               >
                 <MainGradientOverlay $visible={isActive} />

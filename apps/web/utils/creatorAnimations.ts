@@ -39,3 +39,31 @@ export const createCardTransition = (): {
   paddingLeft: springTransition,
   paddingBottom: springTransition,
 });
+
+export interface CardAnimation {
+  width: string | number;
+  paddingTop: number;
+  paddingRight: number;
+  paddingBottom: number;
+  paddingLeft: number;
+  [key: `--${string}`]: string | number;
+}
+
+export const getCardAnimation = (
+  isActive: boolean,
+  dimensions: CardDimensions,
+): CardAnimation => ({
+  width: isActive ? dimensions.activeWidth : dimensions.inactiveWidth,
+  paddingTop: isActive
+    ? dimensions.activePadding[0]
+    : dimensions.inactivePadding[0],
+  paddingRight: isActive
+    ? dimensions.activePadding[1]
+    : dimensions.inactivePadding[1],
+  paddingBottom: isActive
+    ? dimensions.activePadding[2]
+    : dimensions.inactivePadding[2],
+  paddingLeft: isActive
+    ? dimensions.activePadding[3]
+    : dimensions.inactivePadding[3],
+});
