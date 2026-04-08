@@ -4,7 +4,18 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import InputField from "@/components/UI/InputFields";
-import { INPUT_TYPE } from "@/utils/ui";
+import {
+  ADDRESS_FIELDS,
+  CONTACT_FIELDS,
+  CONTENT_FIELD,
+  CreatorFieldConfig,
+  CreatorFormValues,
+  EMAIL_FIELD,
+  INITIAL_CREATOR_FORM,
+  NAME_FIELDS,
+  REQUIRED_CREATOR_FIELD_KEYS,
+  WORK_LINK_FIELD,
+} from "@/utils/authCreatorForm";
 import { useTheme } from "styled-components";
 import {
   BackButton,
@@ -27,50 +38,18 @@ import {
   TopBar,
 } from "./styles";
 
-type CreatorFormValues = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  cvr: string;
-  address: string;
-  city: string;
-  postalCode: string;
-  workLink: string;
-  contentDescription: string;
-  agreed: boolean;
-};
-
-const INITIAL_FORM: CreatorFormValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  cvr: "",
-  address: "",
-  city: "",
-  postalCode: "",
-  workLink: "",
-  contentDescription: "",
-  agreed: false,
-};
-
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
   const theme = useTheme();
-  const [formValues, setFormValues] = useState<CreatorFormValues>(INITIAL_FORM);
+  const [formValues, setFormValues] =
+    useState<CreatorFormValues>(INITIAL_CREATOR_FORM);
 
   const isSubmitEnabled = useMemo(() => {
-    return (
-      Boolean(formValues.firstName.trim()) &&
-      Boolean(formValues.lastName.trim()) &&
-      Boolean(formValues.email.trim()) &&
-      Boolean(formValues.address.trim()) &&
-      Boolean(formValues.city.trim()) &&
-      Boolean(formValues.postalCode.trim()) &&
-      Boolean(formValues.contentDescription.trim()) &&
-      formValues.agreed
+    const hasRequiredValues = REQUIRED_CREATOR_FIELD_KEYS.every((fieldKey) =>
+      Boolean(formValues[fieldKey].trim()),
     );
+
+    return hasRequiredValues && formValues.agreed;
   }, [formValues]);
 
   const updateField = (
@@ -87,6 +66,24 @@ export default function SignUpCreatorSection() {
       return;
     }
   };
+
+  const normalizeFieldValue = (value: string | string[]) =>
+    Array.isArray(value) ? value.join(" ") : value;
+
+  const renderField = (field: CreatorFieldConfig) => (
+    <InputField
+      key={field.key}
+      id={`creator-${field.key}`}
+      label={t(field.labelKey)}
+      labelFontStyle="Body_Title7"
+      labelMarginTop="0"
+      type={field.type}
+      placeholder={field.placeholderKey ? t(field.placeholderKey) : undefined}
+      value={formValues[field.key]}
+      onChange={(value) => updateField(field.key, normalizeFieldValue(value))}
+      required={field.required}
+    />
+  );
 
   return (
     <ContentWrap>
@@ -106,167 +103,30 @@ export default function SignUpCreatorSection() {
       <FormIntro>{t("authCreator.subtitle")}</FormIntro>
 
       <Form onSubmit={handleSubmit}>
-        <Grid>
-          <InputField
-            id="creator-first-name"
-            label={t("authCreator.form.firstName")}
-            labelFontStyle="Body_Title7"
-            labelMarginTop="0"
-            value={formValues.firstName}
-            onChange={(value) =>
-              updateField(
-                "firstName",
-                Array.isArray(value) ? value.join(" ") : value,
-              )
-            }
-            required
-          />
-          <InputField
-            id="creator-last-name"
-            label={t("authCreator.form.lastName")}
-            labelFontStyle="Body_Title7"
-            labelMarginTop="0"
-            value={formValues.lastName}
-            onChange={(value) =>
-              updateField(
-                "lastName",
-                Array.isArray(value) ? value.join(" ") : value,
-              )
-            }
-            required
-          />
-        </Grid>
+        <Grid>{NAME_FIELDS.map((field) => renderField(field))}</Grid>
 
-        <FullRow>
-          <InputField
-            id="creator-email"
-            label={t("authCreator.form.email")}
-            labelFontStyle="Body_Title7"
-            labelMarginTop="0"
-            type={INPUT_TYPE.EMAIL}
-            value={formValues.email}
-            onChange={(value) =>
-              updateField(
-                "email",
-                Array.isArray(value) ? value.join(" ") : value,
-              )
-            }
-            required
-          />
-        </FullRow>
+        <FullRow>{renderField(EMAIL_FIELD)}</FullRow>
 
         <Grid>
-          <InputField
-            id="creator-phone"
-            label={t("authCreator.form.phone")}
-            labelFontStyle="Body_Title7"
-            labelMarginTop="0"
-            type={INPUT_TYPE.TEL}
-            value={formValues.phone}
-            onChange={(value) =>
-              updateField(
-                "phone",
-                Array.isArray(value) ? value.join(" ") : value,
-              )
-            }
-          />
-          <div>
-            <InputField
-              id="creator-cvr"
-              label={t("authCreator.form.cvr")}
-              labelFontStyle="Body_Title7"
-              labelMarginTop="0"
-              value={formValues.cvr}
-              onChange={(value) =>
-                updateField(
-                  "cvr",
-                  Array.isArray(value) ? value.join(" ") : value,
-                )
-              }
-            />
-            <HelpText>{t("authCreator.form.cvrHelp")}</HelpText>
-          </div>
+          {CONTACT_FIELDS.map((field) =>
+            field.key === "cvr" ? (
+              <div key={field.key}>
+                {renderField(field)}
+                <HelpText>{t("authCreator.form.cvrHelp")}</HelpText>
+              </div>
+            ) : (
+              renderField(field)
+            ),
+          )}
         </Grid>
 
         <TernaryRow>
-          <InputField
-            id="creator-address"
-            label={t("authCreator.form.address")}
-            labelFontStyle="Body_Title7"
-            labelMarginTop="0"
-            value={formValues.address}
-            onChange={(value) =>
-              updateField(
-                "address",
-                Array.isArray(value) ? value.join(" ") : value,
-              )
-            }
-            required
-          />
-          <InputField
-            id="creator-city"
-            label={t("authCreator.form.city")}
-            labelFontStyle="Body_Title7"
-            labelMarginTop="0"
-            value={formValues.city}
-            onChange={(value) =>
-              updateField(
-                "city",
-                Array.isArray(value) ? value.join(" ") : value,
-              )
-            }
-            required
-          />
-          <InputField
-            id="creator-postal"
-            label={t("authCreator.form.postalCode")}
-            labelFontStyle="Body_Title7"
-            labelMarginTop="0"
-            value={formValues.postalCode}
-            onChange={(value) =>
-              updateField(
-                "postalCode",
-                Array.isArray(value) ? value.join(" ") : value,
-              )
-            }
-            required
-          />
+          {ADDRESS_FIELDS.map((field) => renderField(field))}
         </TernaryRow>
 
-        <FullRow>
-          <InputField
-            id="creator-work-link"
-            label={t("authCreator.form.workLink")}
-            labelFontStyle="Body_Title7"
-            labelMarginTop="0"
-            value={formValues.workLink}
-            onChange={(value) =>
-              updateField(
-                "workLink",
-                Array.isArray(value) ? value.join(" ") : value,
-              )
-            }
-          />
-        </FullRow>
+        <FullRow>{renderField(WORK_LINK_FIELD)}</FullRow>
 
-        <FullRow>
-          <InputField
-            id="creator-content-description"
-            label={t("authCreator.form.contentLabel")}
-            labelFontStyle="Body_Title7"
-            labelMarginTop="0"
-            type={INPUT_TYPE.TEXTAREA}
-            placeholder={t("authCreator.form.contentPlaceholder")}
-            value={formValues.contentDescription}
-            onChange={(value) =>
-              updateField(
-                "contentDescription",
-                Array.isArray(value) ? value.join(" ") : value,
-              )
-            }
-            required
-          />
-        </FullRow>
+        <FullRow>{renderField(CONTENT_FIELD)}</FullRow>
 
         <CheckboxRow>
           <Checkbox
