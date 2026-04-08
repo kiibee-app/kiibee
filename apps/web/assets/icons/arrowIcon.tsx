@@ -1,7 +1,7 @@
 import { SVG_XMLNS } from "@/utils/Constants";
 import { Direction, Directions } from "@/utils/ui";
+import COLORS from "@repo/ui/colors";
 import React from "react";
-import COLORS from "../../../../packages/ui/src/colors";
 
 type ArrowIconProps = {
   width?: number | string;

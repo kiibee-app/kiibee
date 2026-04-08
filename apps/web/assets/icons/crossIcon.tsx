@@ -1,6 +1,6 @@
 import React from "react";
-import COLORS from "../../../../packages/ui/src/colors";
 import { SVG_XMLNS } from "@/utils/Constants";
+import COLORS from "@repo/ui/colors";
 
 type IconProps = {
   width?: number | string;
