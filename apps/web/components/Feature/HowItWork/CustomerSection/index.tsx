@@ -14,6 +14,7 @@ import {
 import heroImg from "../../../../assets/images/steps/cameraman.png";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
+import { MonoText } from "@/components/UI/Monotext";
 
 export default function CustomerSection() {
   const { t } = useTranslation();
@@ -33,7 +34,9 @@ export default function CustomerSection() {
         </ImgWrap>
 
         <Content>
-          <Title>{t("how.customerTitle")}</Title>
+          <Title>
+            <MonoText $use="Heading2">{t("how.customerTitle")}</MonoText>
+          </Title>
           <Text>{t("how.customerLead")}</Text>
           <Text>{t("how.customerBody")}</Text>
 

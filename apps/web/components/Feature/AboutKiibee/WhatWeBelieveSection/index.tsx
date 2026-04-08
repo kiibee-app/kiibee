@@ -14,6 +14,7 @@ import {
 
 import beliefImg from "../../../../assets/images/believe.png";
 import { useTranslation } from "react-i18next";
+import { MonoText } from "@/components/UI/Monotext";
 
 export default function WhatWeBelieveSection() {
   const { t } = useTranslation();
@@ -35,8 +36,9 @@ export default function WhatWeBelieveSection() {
             </ImageWrapper>
 
             <div>
-              <Title>{t("about.believe.title")}</Title>
-
+              <Title>
+                <MonoText $use="Heading2">{t("about.believe.title")}</MonoText>
+              </Title>
               <Text>{t("about.believe.content.quality")}</Text>
               <Text>{t("about.believe.content.creators")}</Text>
               <Text>{t("about.believe.content.viewers")}</Text>

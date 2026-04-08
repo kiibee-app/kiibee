@@ -17,6 +17,8 @@ import img1 from "../../../../assets/images/platform/platform1.png";
 import img2 from "../../../../assets/images/platform/platform2.png";
 import img3 from "../../../../assets/images/platform/platform3.png";
 import img4 from "../../../../assets/images/platform/platform4.png";
+import COLORS from "@repo/ui/colors";
+import { MonoText } from "@/components/UI/Monotext";
 
 export default function MoreThanPlatformSection() {
   const { t } = useTranslation();
@@ -24,7 +26,11 @@ export default function MoreThanPlatformSection() {
   return (
     <SectionWrapper>
       <Inner>
-        <Title>{t("about.platform.title")}</Title>
+        <Title>
+          <MonoText $use="Heading2" color={COLORS.primary.PALE_GREEN}>
+            {t("about.platform.title")}
+          </MonoText>
+        </Title>
         <Subtitle>
           <Text>{t("about.platform.intro")}</Text>
           <Text>{t("about.platform.description")}</Text>

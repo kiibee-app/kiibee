@@ -54,9 +54,6 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 600;
-  line-height: normal;
   margin-bottom: 20px;
 `;
 

@@ -6,6 +6,8 @@ import { Section, Inner, Content, Title, Background, Subtitle } from "./styles";
 import Image, { StaticImageData } from "next/image";
 import valueBg from "../../../../assets/images/cta-buttom.png";
 import GenericButton from "../../../UI/GenericButton";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 type Props = {
   bgImage?: StaticImageData;
@@ -38,8 +40,16 @@ export default function ValueStatement({
 
       <Inner>
         <Content>
-          <Title>{title || t("value.title")}</Title>
-          <Subtitle>{subtitle || t("value.subtitle")}</Subtitle>
+          <Title>
+            <MonoText $use="Heading2" color={COLORS.primary.WHITE}>
+              {title || t("value.title")}
+            </MonoText>
+          </Title>
+          <Subtitle>
+            <MonoText $use="H5_Regular" color={COLORS.primary.WHITE}>
+              {subtitle || t("value.subtitle")}
+            </MonoText>
+          </Subtitle>
           <GenericButton asAnchor href={ctaHref || "#"} variant="primary-lite">
             {ctaText || t("value.cta")}
           </GenericButton>

@@ -20,9 +20,6 @@ export const Inner = styled.div`
 
 export const Heading = styled.h2`
   margin: 0 0 1rem 0;
-  font-size: 40px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
 
   ${media.tablet} {
     font-size: 32px;
@@ -31,9 +28,6 @@ export const Heading = styled.h2`
 
 export const Sub = styled.p`
   margin: 0 0 1.75rem 0;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  font-size: 20px;
-  line-height: 1.6;
   padding: 1rem 0;
 
   ${media.tablet} {

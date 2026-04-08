@@ -12,8 +12,6 @@ import {
   PreviewPanel,
   StepsColumn,
   StepCard,
-  StepNumber,
-  StepLabel,
   StepDescription,
   CTAWrapper,
   NumberPart,
@@ -21,6 +19,8 @@ import {
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import Steps from "../../../../assets/images/steps.png";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 export default function WatchingSteps() {
   const { t } = useTranslation();
@@ -28,8 +28,16 @@ export default function WatchingSteps() {
     <Section>
       <Content>
         <Header>
-          <Heading>{t("watchingSteps.heading")}</Heading>
-          <Tagline>{t("watchingSteps.tagline")}</Tagline>
+          <Heading>
+            <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+              {t("watchingSteps.heading")}
+            </MonoText>
+          </Heading>
+          <Tagline>
+            <MonoText $use="H4_Medium" color={COLORS.primary.WHITE}>
+              {t("watchingSteps.tagline")}
+            </MonoText>
+          </Tagline>
         </Header>
         <Layout>
           <PreviewPanel>
@@ -50,16 +58,20 @@ export default function WatchingSteps() {
             {steps.map((step) => (
               <StepCard key={step.number}>
                 <NumberPart>
-                  <StepNumber>{step.number}</StepNumber>
-                  <StepLabel>
+                  <MonoText $use="H5_Medium" color={COLORS.primary.PALE_GREEN}>
+                    {step.number}
+                  </MonoText>
+                  <MonoText $use="H4_SemiBold" color={COLORS.primary.WHITE}>
                     {t(`watchingSteps.steps.${step.translationKey}.label`)}
-                  </StepLabel>
+                  </MonoText>
                 </NumberPart>
                 <div>
                   <StepDescription>
-                    {t(
-                      `watchingSteps.steps.${step.translationKey}.description`,
-                    )}
+                    <MonoText $use="Body_Regular" color={COLORS.primary.WHITE}>
+                      {t(
+                        `watchingSteps.steps.${step.translationKey}.description`,
+                      )}
+                    </MonoText>
                   </StepDescription>
                 </div>
               </StepCard>

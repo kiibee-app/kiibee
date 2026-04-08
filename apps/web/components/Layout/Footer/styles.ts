@@ -23,8 +23,6 @@ export const Column = styled.div`
   flex-direction: column;
 `;
 export const Title = styled.h4`
-  font-size: 1.25rem;
-  font-weight: 500;
   margin-bottom: 14px;
 `;
 export const LogoRow = styled.div`
@@ -48,8 +46,6 @@ export const IconRow = styled.div`
 `;
 export const LinkItem = styled(Link)`
   display: inline-block;
-  font-size: 1rem;
-  font-weight: 500;
   margin: 6px 0;
   cursor: pointer;
   text-decoration: none;
@@ -80,8 +76,6 @@ export const BottomRight = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 0.75rem;
-  font-weight: 500;
   align-items: flex-end;
   ${media.tablet} {
     align-items: flex-start;
