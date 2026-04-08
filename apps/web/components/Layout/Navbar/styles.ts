@@ -34,6 +34,8 @@ export const Logo = styled.span`
   font-weight: 700;
   font-size: 1.125rem;
   font-family: ${({ theme }) => theme.typography.fontFamily};
+  display: flex;
+  align-items: center;
 `;
 
 export const Nav = styled.nav`
