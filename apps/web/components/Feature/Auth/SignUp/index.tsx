@@ -52,7 +52,6 @@ export default function SignUpSection() {
             </AccountText>
           </Content>
         </Left>
-
         <Right>
           <CardsWrap>
             <BackCard>

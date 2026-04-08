@@ -10,4 +10,5 @@ export const PageContainer = styled.div`
 export const Main = styled.main`
   flex: 1;
   width: 100%;
+  background: ${({ theme }) => theme?.colors?.primary?.WHITE ?? "#fff"};
 `;

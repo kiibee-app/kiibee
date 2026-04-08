@@ -1,5 +1,6 @@
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
+import SignUpCreatorSection from "@/components/Feature/Auth/SignUpCreator";
 import { PageContainer, Main } from "../styles";
 
 export default function CreatorSignupPage() {
@@ -7,10 +8,7 @@ export default function CreatorSignupPage() {
     <PageContainer>
       <NavBar />
       <Main>
-        <div style={{ padding: "4rem 2rem", textAlign: "center" }}>
-          <h1>Create Creator Account</h1>
-          <p>Creator signup form coming soon...</p>
-        </div>
+        <SignUpCreatorSection />
       </Main>
       <Footer />
     </PageContainer>

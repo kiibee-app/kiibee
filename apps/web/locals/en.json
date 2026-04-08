@@ -22,6 +22,32 @@
     "mediaCard1Alt": "Creator media card",
     "mediaCard2Alt": "Creator recipes media card"
   },
+  "authCreator": {
+    "backAria": "Back",
+    "title": "Request to become a Kiibee creator",
+    "subtitle": "We're excited you want to join Kiibee! Before getting started, please fill out the form below. We review all creator requests to ensure high-quality content on the platform.",
+    "haveAccount": "Already have an account?",
+    "login": "Log in",
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "phone": "Phone number (optional)",
+      "cvr": "CVR (optional)",
+      "cvrHelp": "8 digits - only if you run a business",
+      "address": "Address",
+      "city": "City",
+      "postalCode": "Postal code",
+      "workLink": "Link to example work (YouTube, WeTransfer, etc.)",
+      "contentLabel": "Tell us about your content",
+      "contentPlaceholder": "Tell us a bit about your content and what you'd like to share on Kiibee.",
+      "consentPrefix": "I agree to Kiibee's",
+      "terms": "Terms of Use",
+      "and": "and",
+      "privacy": "Privacy Policy",
+      "submit": "Submit request"
+    }
+  },
   "how": {
     "heroAlt": "Kiibee hero image",
     "title": "Stream or own the content you love",

@@ -22,6 +22,32 @@
     "mediaCard1Alt": "Mediekort for skaber",
     "mediaCard2Alt": "Opskriftskort for skaber"
   },
+  "authCreator": {
+    "backAria": "Tilbage",
+    "title": "Anmod om at blive Kiibee-skaber",
+    "subtitle": "Vi er glade for, at du vil være med på Kiibee! Før du går i gang, bedes du udfylde formularen nedenfor. Vi gennemgår alle skaberanmodninger for at sikre indhold af høj kvalitet på platformen.",
+    "haveAccount": "Har du allerede en konto?",
+    "login": "Log ind",
+    "form": {
+      "firstName": "Fornavn",
+      "lastName": "Efternavn",
+      "email": "E-mailadresse",
+      "phone": "Telefonnummer (valgfrit)",
+      "cvr": "CVR (valgfrit)",
+      "cvrHelp": "8 cifre - kun hvis du driver en virksomhed",
+      "address": "Adresse",
+      "city": "By",
+      "postalCode": "Postnummer",
+      "workLink": "Link til eksempel på arbejde (YouTube, WeTransfer osv.)",
+      "contentLabel": "Fortæl os om dit indhold",
+      "contentPlaceholder": "Fortæl lidt om dit indhold, og hvad du gerne vil dele på Kiibee.",
+      "consentPrefix": "Jeg accepterer Kiibees",
+      "terms": "Vilkår for brug",
+      "and": "og",
+      "privacy": "Privatlivspolitik",
+      "submit": "Send anmodning"
+    }
+  },
   "how": {
     "heroAlt": "Kiibee hero-billede",
     "title": "Stream eller ej — indholdet du elsker",
