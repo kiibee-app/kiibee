@@ -98,24 +98,14 @@ export const Content = styled.div`
 
 export const Title = styled.h1`
   margin: 0 0 16px;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.05;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const Description = styled.p`
   margin: 0 0 18px;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const ResourceCopy = styled.p`
   margin: 0 0 36px;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const InlineLink = styled(Link)`
@@ -147,9 +137,6 @@ export const ContactTitle = styled.h2`
 
 export const EmailLink = styled.a`
   width: fit-content;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  font-size: 1.2rem;
-  line-height: 1.5;
   text-decoration: underline;
   text-underline-offset: 4px;
 `;

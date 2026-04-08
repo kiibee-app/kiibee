@@ -197,11 +197,6 @@ export const Heading = styled.h1`
   margin: 0 0 30px;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   text-align: center;
-  font-family: "Reddit Sans", sans-serif;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
 
   ${media.tablet} {
     font-size: 32px;
@@ -214,11 +209,6 @@ export const Subtitle = styled.p`
   max-width: 760px;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   text-align: center;
-  font-family: "Reddit Sans", sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
 
   ${media.tablet} {
     max-width: 100%;

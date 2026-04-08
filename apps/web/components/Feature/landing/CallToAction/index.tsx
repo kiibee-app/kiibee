@@ -20,6 +20,8 @@ import {
   CTAButton,
 } from "./styles";
 import { desktopCards, mobileCards } from "@/utils/cards";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 export default function CallToAction() {
   const { t } = useTranslation();
@@ -65,11 +67,16 @@ export default function CallToAction() {
           </BrandLogo>
         </Brand>
         <Heading>
-          {t("callToAction.titleLine1")}
-          <br />
-          {t("callToAction.titleLine2")}
+          <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+            {t("callToAction.titleLine1")}
+            {t("callToAction.titleLine2")}
+          </MonoText>
         </Heading>
-        <Subtitle>{t("callToAction.subtitle")}</Subtitle>
+        <Subtitle>
+          <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+            {t("callToAction.subtitle")}
+          </MonoText>
+        </Subtitle>
         <CTAButton type="button">{t("callToAction.cta")}</CTAButton>
       </Content>
     </Section>

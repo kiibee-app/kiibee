@@ -3,7 +3,6 @@ import {
   Content,
   HeroBlock,
   HeroSubtitle,
-  HeroTitle,
   SectionHeader,
   SectionLabel,
   SectionLink,
@@ -13,6 +12,7 @@ import TutorialsShowcase from "../TutorialsShowcase";
 import { useTranslation } from "react-i18next";
 import { tutorialVideoSections, tutorialVideos } from "@/utils/data";
 import type { TutorialVideo } from "@/utils/types";
+import { MonoText } from "@/components/UI/Monotext";
 
 type SectionWithTutorials = (typeof tutorialVideoSections)[number] & {
   tutorials: TutorialVideo[];
@@ -35,14 +35,20 @@ export default function TutorialContent() {
   return (
     <Content>
       <HeroBlock>
-        <HeroTitle>{t("tutorialVideos.heroTitle")}</HeroTitle>
-        <HeroSubtitle>{t("tutorialVideos.heroSubtitle")}</HeroSubtitle>
+        <MonoText $use="Heading1">{t("tutorialVideos.heroTitle")}</MonoText>
+        <HeroSubtitle>
+          <MonoText $use="H4_Medium">
+            {t("tutorialVideos.heroSubtitle")}
+          </MonoText>
+        </HeroSubtitle>
       </HeroBlock>
       {sections.map((section) => (
         <section key={section.id}>
           <SectionHeader>
             <SectionLabel>
-              <SectionTag>{section.title}</SectionTag>
+              <SectionTag>
+                <MonoText $use="H4_Medium">{section.title}</MonoText>
+              </SectionTag>
               <LeftIcon />
             </SectionLabel>
             <SectionLink href="/tutorial-videos">

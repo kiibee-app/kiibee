@@ -17,16 +17,11 @@ export const Inner = styled.div`
 export const Heading = styled.h2`
   margin: 0 0 0.5rem 0;
   text-align: center;
-  font-size: 40px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const Subtitle = styled.p`
   margin: 0 auto 2rem auto;
   text-align: center;
-  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
-  font-size: 20px;
   max-width: 580px;
 `;
 
@@ -81,8 +76,6 @@ export const Card = styled.div`
 `;
 
 export const CardTitle = styled.h3`
-  font-size: 32px;
-  font-weight: 600;
   padding: 1rem 0 0 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 

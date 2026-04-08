@@ -50,18 +50,11 @@ export const Content = styled.div`
 
 export const Title = styled.h1`
   margin: 0 0 0.75rem 0;
-  font-size: clamp(2rem, 6.5vw, 4.8rem);
-  font-size: 2.5rem;
-  font-weight: 600;
-  line-height: normal;
   color: ${({ theme }) => theme.colors.primary.WHITE};
 `;
 
 export const Subtitle = styled.p`
   margin: 0 0 1.25rem 0;
-  font-size: 1.25rem;
-  font-weight: 500;
-  line-height: normal;
   max-width: 57rem;
   color: ${({ theme }) => theme.colors.primary.WHITE};
 

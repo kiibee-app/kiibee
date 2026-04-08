@@ -1,21 +1,9 @@
 import COLORS, { ColorPalette } from "./colors";
-import typography from "./typography";
+import { typography as TypographySystem } from "./typography";
 import breakpoints from "./breakpoints";
 
 export type BreakPoints = typeof breakpoints;
-
-export type TypographyOptions = {
-  fontFamily: string;
-  fontSizes: string[];
-  Heading7?: string;
-  fontWeights: {
-    light: number;
-    regular: number;
-    medium: number;
-    semibold: number;
-    bold: number;
-  };
-};
+export type TypographyOptions = typeof TypographySystem;
 
 export interface Theme {
   colors: ColorPalette;
@@ -73,13 +61,11 @@ const heights = {
   footer: "72px",
 };
 
-export { typography };
-
 const spacing = createSpacing(spacingScale);
 
 export const theme: Theme = {
   colors: COLORS,
-  typography,
+  typography: TypographySystem,
   media: breakpoints,
   spacing: spacing as unknown as Record<string, string> &
     ((n: number) => string),
