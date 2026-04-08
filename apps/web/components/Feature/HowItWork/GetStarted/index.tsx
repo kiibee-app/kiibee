@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import GenericButton from "@/components/UI/GenericButton";
 import { Section, Inner, Heading, Sub, CTAWrap } from "./styles";
+import { MonoText } from "@/components/UI/Monotext";
 
 export default function GetStarted() {
   const { t } = useTranslation();
@@ -11,8 +12,12 @@ export default function GetStarted() {
   return (
     <Section>
       <Inner>
-        <Heading>{t("how.getStarted.heading")}</Heading>
-        <Sub>{t("how.getStarted.sub")}</Sub>
+        <Heading>
+          <MonoText $use="Heading2">{t("how.getStarted.heading")}</MonoText>
+        </Heading>
+        <Sub>
+          <MonoText $use="H5_Regular">{t("how.getStarted.sub")}</MonoText>
+        </Sub>
 
         <CTAWrap>
           <GenericButton variant="primary">

@@ -7,7 +7,7 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
-  font-family: ${({ theme }) => theme.typography.fontFamily};
+  font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
 `;
 
 export const Main = styled.main`

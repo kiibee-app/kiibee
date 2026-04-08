@@ -22,8 +22,6 @@ export const Header = styled.div`
 
 export const Heading = styled.h2`
   margin: 5rem 0 0.75rem;
-  font-size: clamp(2.25rem, 3vw, 3rem);
-  font-weight: 700;
 `;
 
 export const Tagline = styled.p`
@@ -83,8 +81,6 @@ export const StepLabel = styled.h4`
 
 export const StepDescription = styled.p`
   margin: 0.35rem 0 0;
-  font-size: 0.9rem;
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
 export const CTAWrapper = styled.div`

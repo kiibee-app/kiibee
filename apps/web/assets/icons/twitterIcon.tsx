@@ -1,6 +1,6 @@
 import { SVG_XMLNS } from "@/utils/Constants";
 import React from "react";
-import { COLORS } from "../../../../packages/ui/src/colors";
+import { COLORS } from "@repo/ui/colors";
 
 interface IconProps {
   width?: number;

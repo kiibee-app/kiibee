@@ -21,6 +21,8 @@ import featureData from "@/utils/featureHighlights";
 import { useState } from "react";
 import { KEY_ENTER } from "@/utils/Constants";
 import { useTranslation } from "react-i18next";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 export default function FeatureHighlights() {
   const { t } = useTranslation();
@@ -33,8 +35,14 @@ export default function FeatureHighlights() {
     <Section>
       <Inner>
         <HeadingWrap>
-          <Heading>{t("features.heading")}</Heading>
-          <Sub>{t("features.sub")}</Sub>
+          <Heading>
+            <MonoText $use="Heading2" color={COLORS.secondary.main}>
+              {t("features.heading")}
+            </MonoText>
+          </Heading>
+          <Sub>
+            <MonoText $use="H4_Medium">{t("features.sub")}</MonoText>
+          </Sub>
         </HeadingWrap>
 
         <FeaturesRow>
@@ -47,9 +55,17 @@ export default function FeatureHighlights() {
               onKeyDown={(e) => (e.key === KEY_ENTER ? setActive(i) : null)}
               $active={active === i}
             >
-              <Index>{i + 1}.</Index>
+              <Index>
+                <MonoText $use="H5_Medium" color={COLORS.neutral.GRAY}>
+                  {i + 1}.
+                </MonoText>
+              </Index>
               <TopBar />
-              <Label>{f.title}</Label>
+              <Label>
+                <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY}>
+                  {f.title}
+                </MonoText>
+              </Label>
             </FeatureItem>
           ))}
         </FeaturesRow>
@@ -68,11 +84,19 @@ export default function FeatureHighlights() {
                 />
               </MockImageWrap>
 
-              <MockText>{t(featureData[active]?.textKey)}</MockText>
+              <MockText>
+                <MonoText $use="Heading3" color={COLORS.neutral.GRAY}>
+                  {t(featureData[active]?.textKey)}
+                </MonoText>
+              </MockText>
             </>
           ) : (
             <>
-              <MockText>{t(featureData[active]?.textKey)}</MockText>
+              <MockText>
+                <MonoText $use="Heading3" color={COLORS.neutral.GRAY}>
+                  {t(featureData[active]?.textKey)}
+                </MonoText>
+              </MockText>
 
               <MockImageWrap $active={true}>
                 <Image
