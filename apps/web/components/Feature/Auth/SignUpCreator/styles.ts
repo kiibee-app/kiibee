@@ -17,14 +17,10 @@ export const TopBar = styled.div`
 `;
 
 export const BackButton = styled(Link)`
-  width: 34px;
-  height: 34px;
-  border-radius: 9999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  line-height: 0;
 `;
 
 export const BrandMark = styled.span`
@@ -62,7 +58,7 @@ export const FormIntro = styled.p`
 
 export const Form = styled.form`
   width: 100%;
-  max-width: 610px;
+  max-width: 750px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

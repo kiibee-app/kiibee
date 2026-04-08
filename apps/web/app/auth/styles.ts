@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import COLORS from "../../../../packages/ui/src/colors";
 
 export const PageContainer = styled.div`
   width: 100%;
@@ -10,5 +11,6 @@ export const PageContainer = styled.div`
 export const Main = styled.main`
   flex: 1;
   width: 100%;
-  background: ${({ theme }) => theme?.colors?.primary?.WHITE ?? "#fff"};
+  background: ${({ theme }) =>
+    theme?.colors?.primary?.WHITE ?? COLORS.primary.WHITE};
 `;

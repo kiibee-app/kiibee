@@ -2,9 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { LeftArrowIcon } from "@/assets/icons";
+import { BackButtonIcon } from "@/assets/icons";
 import InputField from "@/components/UI/InputFields";
 import { INPUT_TYPE } from "@/utils/ui";
+import { useTheme } from "styled-components";
 import {
   BackButton,
   BrandMark,
@@ -56,6 +57,7 @@ const INITIAL_FORM: CreatorFormValues = {
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
+  const theme = useTheme();
   const [formValues, setFormValues] = useState<CreatorFormValues>(INITIAL_FORM);
 
   const isSubmitEnabled = useMemo(() => {
@@ -90,27 +92,24 @@ export default function SignUpCreatorSection() {
     <ContentWrap>
       <TopBar>
         <BackButton href="/auth" aria-label={t("authCreator.backAria", "Back")}>
-          <LeftArrowIcon width={10} height={18} />
+          <BackButtonIcon
+            size={40}
+            backgroundColor={theme?.colors?.neutral?.GRAY_200}
+            strokeColor={theme?.colors?.primary?.BLACK}
+          />
         </BackButton>
       </TopBar>
 
       <BrandMark aria-hidden="true">k</BrandMark>
 
-      <FormTitle>
-        {t("authCreator.title", "Request to become a Kiibee creator")}
-      </FormTitle>
-      <FormIntro>
-        {t(
-          "authCreator.subtitle",
-          "We're excited you want to join Kiibee! Before getting started, please fill out the form below. We review all creator requests to ensure high-quality content on the platform.",
-        )}
-      </FormIntro>
+      <FormTitle>{t("authCreator.title")}</FormTitle>
+      <FormIntro>{t("authCreator.subtitle")}</FormIntro>
 
       <Form onSubmit={handleSubmit}>
         <Grid>
           <InputField
             id="creator-first-name"
-            label={t("authCreator.form.firstName", "First name")}
+            label={t("authCreator.form.firstName")}
             labelFontStyle="Body_Title7"
             labelMarginTop="0"
             value={formValues.firstName}
@@ -124,7 +123,7 @@ export default function SignUpCreatorSection() {
           />
           <InputField
             id="creator-last-name"
-            label={t("authCreator.form.lastName", "Last name")}
+            label={t("authCreator.form.lastName")}
             labelFontStyle="Body_Title7"
             labelMarginTop="0"
             value={formValues.lastName}
@@ -141,7 +140,7 @@ export default function SignUpCreatorSection() {
         <FullRow>
           <InputField
             id="creator-email"
-            label={t("authCreator.form.email", "Email address")}
+            label={t("authCreator.form.email")}
             labelFontStyle="Body_Title7"
             labelMarginTop="0"
             type={INPUT_TYPE.EMAIL}
@@ -159,7 +158,7 @@ export default function SignUpCreatorSection() {
         <Grid>
           <InputField
             id="creator-phone"
-            label={t("authCreator.form.phone", "Phone number (optional)")}
+            label={t("authCreator.form.phone")}
             labelFontStyle="Body_Title7"
             labelMarginTop="0"
             type={INPUT_TYPE.TEL}
@@ -174,7 +173,7 @@ export default function SignUpCreatorSection() {
           <div>
             <InputField
               id="creator-cvr"
-              label={t("authCreator.form.cvr", "CVR (optional)")}
+              label={t("authCreator.form.cvr")}
               labelFontStyle="Body_Title7"
               labelMarginTop="0"
               value={formValues.cvr}
@@ -185,19 +184,14 @@ export default function SignUpCreatorSection() {
                 )
               }
             />
-            <HelpText>
-              {t(
-                "authCreator.form.cvrHelp",
-                "8 digits - only if you run a business",
-              )}
-            </HelpText>
+            <HelpText>{t("authCreator.form.cvrHelp")}</HelpText>
           </div>
         </Grid>
 
         <TernaryRow>
           <InputField
             id="creator-address"
-            label={t("authCreator.form.address", "Address")}
+            label={t("authCreator.form.address")}
             labelFontStyle="Body_Title7"
             labelMarginTop="0"
             value={formValues.address}
@@ -211,7 +205,7 @@ export default function SignUpCreatorSection() {
           />
           <InputField
             id="creator-city"
-            label={t("authCreator.form.city", "City")}
+            label={t("authCreator.form.city")}
             labelFontStyle="Body_Title7"
             labelMarginTop="0"
             value={formValues.city}
@@ -225,7 +219,7 @@ export default function SignUpCreatorSection() {
           />
           <InputField
             id="creator-postal"
-            label={t("authCreator.form.postalCode", "Postal code")}
+            label={t("authCreator.form.postalCode")}
             labelFontStyle="Body_Title7"
             labelMarginTop="0"
             value={formValues.postalCode}
@@ -242,10 +236,7 @@ export default function SignUpCreatorSection() {
         <FullRow>
           <InputField
             id="creator-work-link"
-            label={t(
-              "authCreator.form.workLink",
-              "Link to example work (YouTube, WeTransfer, etc.)",
-            )}
+            label={t("authCreator.form.workLink")}
             labelFontStyle="Body_Title7"
             labelMarginTop="0"
             value={formValues.workLink}
@@ -261,17 +252,11 @@ export default function SignUpCreatorSection() {
         <FullRow>
           <InputField
             id="creator-content-description"
-            label={t(
-              "authCreator.form.contentLabel",
-              "Tell us about your content",
-            )}
+            label={t("authCreator.form.contentLabel")}
             labelFontStyle="Body_Title7"
             labelMarginTop="0"
             type={INPUT_TYPE.TEXTAREA}
-            placeholder={t(
-              "authCreator.form.contentPlaceholder",
-              "Tell us a bit about your content and what you'd like to share on Kiibee.",
-            )}
+            placeholder={t("authCreator.form.contentPlaceholder")}
             value={formValues.contentDescription}
             onChange={(value) =>
               updateField(
@@ -293,27 +278,21 @@ export default function SignUpCreatorSection() {
             }
           />
           <ConsentText htmlFor="creator-consent">
-            {t("authCreator.form.consentPrefix", "I agree to Kiibee's")}{" "}
-            <TermsLink href="#">
-              {t("authCreator.form.terms", "Terms of Use")}
-            </TermsLink>{" "}
-            {t("authCreator.form.and", "and")}{" "}
-            <TermsLink href="#">
-              {t("authCreator.form.privacy", "Privacy Policy")}
-            </TermsLink>
+            {t("authCreator.form.consentPrefix")}{" "}
+            <TermsLink href="#">{t("authCreator.form.terms")}</TermsLink>{" "}
+            {t("authCreator.form.and")}{" "}
+            <TermsLink href="#">{t("authCreator.form.privacy")}</TermsLink>
           </ConsentText>
         </CheckboxRow>
 
         <SubmitButton type="submit" disabled={!isSubmitEnabled}>
-          {t("authCreator.form.submit", "Submit request")}
+          {t("authCreator.form.submit")}
         </SubmitButton>
       </Form>
 
       <LinkRow>
-        {t("authCreator.haveAccount", "Already have an account?")}{" "}
-        <LoginLink href="/auth/login">
-          {t("authCreator.login", "Log in")}
-        </LoginLink>
+        {t("authCreator.haveAccount")}{" "}
+        <LoginLink href="/auth/login">{t("authCreator.login")}</LoginLink>
       </LinkRow>
     </ContentWrap>
   );
