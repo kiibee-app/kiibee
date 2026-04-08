@@ -22,6 +22,31 @@
     "mediaCard1Alt": "Mediekort for skaber",
     "mediaCard2Alt": "Opskriftskort for skaber"
   },
+  "authForm": {
+    "title": "Log ind",
+    "emailLabel": "E-mailadresse",
+    "passwordLabel": "Adgangskode",
+    "remember": "Husk mig",
+    "forgot": "Glemt din adgangskode?",
+    "submit": "Log ind",
+    "footer": "Har du ikke en konto?",
+    "signUp": "Tilmeld dig"
+  },
+  "authSlide": {
+    "carousel": [
+      {
+        "title": "Se eller skab",
+        "description": "Støt de skabere, du elsker, eller byg dit eget fællesskab af støtter."
+      },
+      {
+        "title": "Bliv inspireret",
+        "description": "Opdag historier og idéer fra Kiibee-fællesskabet."
+      }
+    ],
+    "imageAlt": "{{title}} dias",
+    "dotsLabel": "Diasindikator",
+    "slideFallback": "dias"
+  },
   "authCreator": {
     "backAria": "Tilbage",
     "title": "Anmod om at blive Kiibee-skaber",

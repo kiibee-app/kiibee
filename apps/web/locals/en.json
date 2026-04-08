@@ -22,6 +22,31 @@
     "mediaCard1Alt": "Creator media card",
     "mediaCard2Alt": "Creator recipes media card"
   },
+  "authForm": {
+    "title": "Log in",
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "remember": "Remember me",
+    "forgot": "Forgot your password?",
+    "submit": "Log in",
+    "footer": "Don’t have an account?",
+    "signUp": "Sign up"
+  },
+  "authSlide": {
+    "carousel": [
+      {
+        "title": "Watch or create",
+        "description": "Support creators you love or build your own community of supporters."
+      },
+      {
+        "title": "Stay inspired",
+        "description": "Discover stories and ideas shared by the Kiibee community."
+      }
+    ],
+    "imageAlt": "{{title}} slide",
+    "dotsLabel": "Slide indicator",
+    "slideFallback": "slide"
+  },
   "authCreator": {
     "backAria": "Back",
     "title": "Request to become a Kiibee creator",

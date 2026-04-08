@@ -37,7 +37,7 @@ export default function NavBar() {
         </Nav>
 
         <Actions>
-          <GenericButton asAnchor href="#" variant="secondary">
+          <GenericButton asAnchor href="/auth/login" variant="secondary">
             {t("nav.login")}
           </GenericButton>
           <GenericButton asAnchor href="/auth" variant="primary">

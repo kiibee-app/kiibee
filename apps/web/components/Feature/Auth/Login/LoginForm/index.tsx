@@ -1,22 +1,25 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import {
   Card,
   FooterText,
   Form,
   ForgotLink,
-  LogoCircle,
   OptionsRow,
   RememberLabel,
   SignUpLink,
-  SubmitButton,
   Title,
   Wrapper,
 } from "./styles";
+import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
+import Image from "next/image";
+import GenericButton from "@/components/UI/GenericButton";
 
 export default function LoginForm() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
@@ -26,28 +29,26 @@ export default function LoginForm() {
     if (!email.trim() || !password.trim()) {
       return;
     }
-
-    console.log({ email, password, remember });
   };
 
   return (
     <Wrapper>
       <Card>
-        <LogoCircle>k</LogoCircle>
-        <Title>Log in</Title>
+        <Image src={logo} alt="Kiibee Logo" width={42} height={42} />
+        <Title>{t("authForm.title")}</Title>
         <Form onSubmit={handleSubmit}>
           <InputField
             id="login-email"
             type="email"
-            placeholder="Email address"
+            placeholder={t("authForm.emailLabel")}
             value={email}
             onChange={(nextValue) => setEmail(nextValue as string)}
             autoComplete="email"
           />
           <InputField
             id="login-password"
-            // type="password"
-            placeholder="Password"
+            type="password"
+            placeholder={t("authForm.passwordLabel")}
             value={password}
             onChange={(nextValue) => setPassword(nextValue as string)}
             autoComplete="current-password"
@@ -59,15 +60,15 @@ export default function LoginForm() {
                 checked={remember}
                 onChange={() => setRemember((prev) => !prev)}
               />
-              Remember me
+              {t("authForm.remember")}
             </RememberLabel>
           </OptionsRow>
-          <SubmitButton type="submit">Log in</SubmitButton>
+          <GenericButton type="submit">{t("authForm.submit")}</GenericButton>
         </Form>
-        <ForgotLink href="/forgot-password">Forgot your password?</ForgotLink>
+        <ForgotLink href="/forgot-password">{t("authForm.forgot")}</ForgotLink>
         <FooterText>
-          Don’t have an account?
-          <SignUpLink href="/sign-up">Sign up</SignUpLink>
+          {t("authForm.footer")}
+          <SignUpLink href="/sign-up">{t("authForm.signUp")}</SignUpLink>
         </FooterText>
       </Card>
     </Wrapper>

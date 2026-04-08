@@ -2,6 +2,10 @@ import design from "../assets/images/design.png";
 import design1 from "../assets/images/design1.png";
 import design2 from "../assets/images/design2.png";
 import education from "../assets/images/education.png";
+import loginSlide from "../assets/images/auth/loginSlide.png";
+import loginSlide1 from "../assets/images/auth/loginSlide1.png";
+import loginSlide2 from "../assets/images/auth/loginSlide2.png";
+
 import { TutorialVideo } from "./types";
 
 export type TutorialVideoSection = {
@@ -77,5 +81,32 @@ export const tutorialVideoSections: TutorialVideoSection[] = [
     title: "User guides",
     videoIds: ["del-4", "del-5"],
     gridMaxWidth: "min(640px, 100%)",
+  },
+];
+
+export const slideImages = [
+  {
+    id: "primary",
+    src: loginSlide,
+    offsetX: "-8px",
+    offsetY: "0px",
+    z: 3,
+    height: "320px",
+  },
+  {
+    id: "secondary",
+    src: loginSlide1,
+    offsetX: "2px",
+    offsetY: "22px",
+    z: 2,
+    height: "300px",
+  },
+  {
+    id: "tertiary",
+    src: loginSlide2,
+    offsetX: "4px",
+    offsetY: "44px",
+    z: 1,
+    height: "280px",
   },
 ];
