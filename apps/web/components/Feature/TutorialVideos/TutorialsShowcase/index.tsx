@@ -3,11 +3,20 @@
 import { tutorialVideos } from "@/utils/data";
 import { Grid } from "./styles";
 import TutorialCard from "../TutorialCard";
+import type { TutorialVideo } from "@/utils/types";
 
-export default function TutorialsShowcase() {
+interface TutorialsShowcaseProps {
+  videos?: TutorialVideo[];
+  maxWidth?: string;
+}
+
+export default function TutorialsShowcase({
+  videos = tutorialVideos,
+  maxWidth,
+}: TutorialsShowcaseProps) {
   return (
-    <Grid>
-      {tutorialVideos.map((tutorial) => (
+    <Grid $maxWidth={maxWidth}>
+      {videos.map((tutorial) => (
         <TutorialCard key={tutorial.id} tutorial={tutorial} />
       ))}
     </Grid>

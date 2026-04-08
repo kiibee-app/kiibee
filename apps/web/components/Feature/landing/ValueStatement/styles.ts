@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "../../../../../../packages/ui/src/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
@@ -7,12 +8,34 @@ export const Section = styled.section`
   min-height: 100vh;
   overflow: hidden;
   display: flex;
+  padding: 0rem 24rem 4.5rem;
+
+  ${media.tablet} {
+    padding: 120px 40px;
+  }
 `;
 
 export const Background = styled.div`
   position: absolute;
   inset: 0;
   z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    z-index: 1;
+  }
+
+  img {
+    position: relative;
+    z-index: 0;
+  }
 `;
 
 export const Inner = styled.div`

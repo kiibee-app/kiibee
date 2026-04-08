@@ -124,6 +124,48 @@
     "cookieSettings": "Cookie-indstillinger",
     "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
   },
+  "supportPage": {
+    "eyebrow": "Kontakt support",
+    "title": "Kontakt os",
+    "description": "Vi er her for at hjælpe. Uanset om du har spørgsmål til vores services, har brug for hjælp til din konto eller vil give feedback, står vores team klar til at hjælpe dig.",
+    "resourcesLead": "Du kan også se vores",
+    "resourcesMiddle": "og",
+    "resourcesEnd": "for hurtige svar.",
+    "tutorialVideos": "videovejledninger",
+    "userGuides": "brugervejledninger",
+    "supportTitle": "Support",
+    "supportEmail": "support@kiibee.dk",
+    "salesTitle": "Salg og partnerskab",
+    "salesEmail": "info@kiibee.dk",
+    "success": {
+      "title": "Tak for din henvendelse!",
+      "description": "Vi har modtaget din besked og vender tilbage hurtigst muligt. Tjek din indbakke på {{email}} for vores svar."
+    },
+    "form": {
+      "firstName": "Fornavn",
+      "lastName": "Efternavn",
+      "companyName": "Firmanavn",
+      "phoneNumber": "Telefonnummer",
+      "email": "E-mailadresse",
+      "message": "Hvordan kan vi hjælpe dig?",
+      "placeholders": {
+        "firstName": "Indtast dit fornavn",
+        "lastName": "Indtast dit efternavn",
+        "companyName": "Indtast firmanavn",
+        "phoneNumber": "Indtast telefonnummer",
+        "email": "Indtast e-mailadresse",
+        "message": "Skriv din besked..."
+      },
+      "errors": {
+        "firstNameRequired": "Fornavn er påkrævet",
+        "emailRequired": "E-mailadresse er påkrævet",
+        "emailInvalid": "Indtast en gyldig e-mailadresse",
+        "phoneInvalid": "Indtast et gyldigt telefonnummer",
+        "messageRequired": "Besked er påkrævet"
+      },
+      "submit": "Send besked"
+    }
+  },
   "value": {
     "bgAlt": "Baggrundsbillede",
     "title": "Det du ved, er noget værd",
@@ -173,6 +215,15 @@
         "creators": "Skabere bør kunne eje deres arbejde, kontrollere hvordan det deles, og blive betalt uden teknisk kompleksitet.",
         "viewers": "Seere bør nemt kunne få adgang til indhold, betale kun for det, de ønsker, og få en god oplevelse."
       }
+    },
+    "platform": {
+      "title": "Mere end en platform",
+      "intro": "Kiibee er ikke bare en teknisk løsning.",
+      "description": "Det er en bro mellem skabere og deres publikum, bygget til at understøtte langsigtet værdi, bæredygtig indholdsdistribution og en bedre oplevelse for alle involverede."
+    },
+    "value": {
+      "title": "Bliv en del af Kiibee-bevægelsen",
+      "subtitle": "Uanset om du er en seer, der ønsker at lære noget nyt, eller en skaber, der er klar til at dele din passion, er Kiibee stedet for dig."
     }
   },
   "features": {

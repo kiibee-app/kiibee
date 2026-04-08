@@ -3,18 +3,32 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Section, Inner, Content, Title, Background, Subtitle } from "./styles";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import valueBg from "../../../../assets/images/cta-buttom.png";
 import GenericButton from "../../../UI/GenericButton";
 
-export default function ValueStatement() {
+type Props = {
+  bgImage?: StaticImageData;
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaHref?: string;
+};
+
+export default function ValueStatement({
+  bgImage,
+  title,
+  subtitle,
+  ctaText,
+  ctaHref,
+}: Props) {
   const { t } = useTranslation();
 
   return (
     <Section>
       <Background>
         <Image
-          src={valueBg}
+          src={bgImage || valueBg}
           alt={t("value.bgAlt")}
           fill
           priority
@@ -24,10 +38,10 @@ export default function ValueStatement() {
 
       <Inner>
         <Content>
-          <Title>{t("value.title")}</Title>
-          <Subtitle>{t("value.subtitle")}</Subtitle>
-          <GenericButton asAnchor href="#" variant="primary-lite">
-            {t("value.cta")}
+          <Title>{title || t("value.title")}</Title>
+          <Subtitle>{subtitle || t("value.subtitle")}</Subtitle>
+          <GenericButton asAnchor href={ctaHref || "#"} variant="primary-lite">
+            {ctaText || t("value.cta")}
           </GenericButton>
         </Content>
       </Inner>

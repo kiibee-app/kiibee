@@ -2,6 +2,7 @@ import type { InputHTMLAttributes } from "react";
 
 export const INPUT_TYPE = {
   TEXT: "text",
+  EMAIL: "email",
   NUMBER: "number",
   TEL: "tel",
   TEXTAREA: "textarea",

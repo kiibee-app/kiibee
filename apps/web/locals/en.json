@@ -124,6 +124,48 @@
     "cookieSettings": "Cookie Settings",
     "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
   },
+  "supportPage": {
+    "eyebrow": "Contact support",
+    "title": "Contact us",
+    "description": "We're here to help. Whether you have a question about our services, need assistance with your account, or want to provide feedback, our team is ready to assist you.",
+    "resourcesLead": "You can also check out our",
+    "resourcesMiddle": "and",
+    "resourcesEnd": "for quick answers.",
+    "tutorialVideos": "tutorial videos",
+    "userGuides": "user guides",
+    "supportTitle": "Support",
+    "supportEmail": "support@kiibee.dk",
+    "salesTitle": "Sales & partnerships",
+    "salesEmail": "info@kiibee.dk",
+    "success": {
+      "title": "Thank you for contacting us!",
+      "description": "We've received your message and will get back to you soon. Check your inbox at {{email}} for our response."
+    },
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "companyName": "Company name",
+      "phoneNumber": "Phone number",
+      "email": "Email Address",
+      "message": "How can we help you?",
+      "placeholders": {
+        "firstName": "Enter your first name",
+        "lastName": "Enter your last name",
+        "companyName": "Enter company name",
+        "phoneNumber": "Enter phone number",
+        "email": "Enter email address",
+        "message": "Enter your message..."
+      },
+      "errors": {
+        "firstNameRequired": "First name is required",
+        "emailRequired": "Email address is required",
+        "emailInvalid": "Enter a valid email address",
+        "phoneInvalid": "Enter a valid phone number",
+        "messageRequired": "Message is required"
+      },
+      "submit": "Send message"
+    }
+  },
   "value": {
     "bgAlt": "Value background",
     "title": "What you know is worth something",
@@ -173,6 +215,15 @@
         "creators": "Creators should be able to own their work, control how it’s shared, and get paid without technical complexity.",
         "viewers": "Viewers should be able to access content easily, pay only for what they want, and enjoy a smooth experience."
       }
+    },
+    "platform": {
+      "title": "More than a platform",
+      "intro": "Kiibee is not just a technical solution.",
+      "description": "It’s a bridge between creators and their audience, built to support long-term value, sustainable content distribution and a better experience for everyone involved."
+    },
+    "value": {
+      "title": "Join the Kiibee movement",
+      "subtitle": "Whether you’re a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you."
     }
   },
   "features": {
