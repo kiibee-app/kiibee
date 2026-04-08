@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Header, Inner, Left, Logo, Nav, Actions } from "./styles";
 import NAV_ITEMS from "@/utils/navItems";
-import logo from "../../../assets/images/kiibee-wordmark.png";
+import logo from "@/assets/images/kiibee-wordmark.png";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 

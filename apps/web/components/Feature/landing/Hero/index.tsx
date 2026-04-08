@@ -12,8 +12,8 @@ import {
   Background,
 } from "./styles";
 import Image from "next/image";
-import hero from "../../../../assets/images/hero-background.png";
-import GenericButton from "../../../UI/GenericButton";
+import hero from "@/assets/images/hero-background.png";
+import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 

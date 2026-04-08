@@ -4,6 +4,7 @@
   "private": true,
   "exports": {
     "./colors": "./src/colors.ts",
+    "./images": "./src/images.ts",
     "./typography": "./src/typography.ts",
     "./theme": "./src/theme/index.ts",
     "./theme/types": "./src/theme/types.ts",

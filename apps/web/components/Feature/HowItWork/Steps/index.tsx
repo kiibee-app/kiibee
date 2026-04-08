@@ -14,7 +14,7 @@ import {
   CardText,
 } from "./styles";
 import { useTranslation } from "react-i18next";
-import steps from "../../../../utils/StepsData";
+import steps from "@/utils/StepsData";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 

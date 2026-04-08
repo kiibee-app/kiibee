@@ -19,13 +19,10 @@ import {
   CardAuthor,
   CardDate,
   MediaTypeBox,
-  MediaTypeText,
   ActionsContainer,
   ActionButton,
   FullWidthAction,
   BottomCtaSection,
-  PrimaryCtaButton,
-  SecondaryCtaButton,
   IconFrame,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";

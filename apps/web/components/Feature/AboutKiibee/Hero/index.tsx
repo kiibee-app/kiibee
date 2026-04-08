@@ -15,7 +15,7 @@ import heroImg from "@/assets/images/hero3.png";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
-import COLORS from "../../../../../../packages/ui/src/colors";
+import COLORS from "@repo/ui/colors";
 
 export default function AboutHero() {
   const { t } = useTranslation();
