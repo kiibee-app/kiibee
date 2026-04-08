@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import {
   Container,
@@ -33,14 +32,7 @@ const Footer = () => {
       <Top>
         <Column>
           <LogoRow>
-            <Image
-              src={logo}
-              alt={t("nav.logoAlt")}
-              width={90}
-              height={28}
-              priority
-              style={{ width: "auto", height: "auto" }}
-            />
+            <img src={logo.src ?? logo} alt={t("nav.logoAlt")} />
           </LogoRow>
           <IconRow>
             <FacebookIcon />
@@ -71,14 +63,7 @@ const Footer = () => {
             <span>{t("footer.cookieSettings")}</span>
           </LinkRow>
           <CardWrapper>
-            <Image
-              src={card}
-              alt={t("nav.logoAlt")}
-              width={200}
-              height={28}
-              priority
-              style={{ width: "auto", height: "auto" }}
-            />
+            <img src={card.src ?? card} alt={t("nav.logoAlt")} />
           </CardWrapper>
         </BottomRight>
       </Bottom>
