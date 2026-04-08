@@ -52,3 +52,30 @@ export type InputModeValue = InputHTMLAttributes<
 export type AutoCompleteValue = InputHTMLAttributes<
   HTMLInputElement | HTMLTextAreaElement
 >["autoComplete"];
+
+export const KEYBOARD = {
+  ESCAPE: "Escape",
+} as const;
+
+export const EVENT = {
+  KEYDOWN: "keydown",
+} as const;
+
+export const CSS_VALUE = {
+  HIDDEN: "hidden",
+  OVERFLOW: "overflow",
+} as const;
+
+export const LOADER_VARIANT = {
+  OVERLAY: "overlay",
+  INLINE: "inline",
+  FULLPAGE: "fullpage",
+} as const;
+
+export const LOADER_SIZE = {
+  SM: "sm",
+  MD: "md",
+  LG: "lg",
+} as const;
+
+export const DEFAULT_LOADER_SIZE = LOADER_SIZE.MD;

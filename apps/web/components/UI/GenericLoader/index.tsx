@@ -9,25 +9,19 @@ import {
   InlineWrapper,
   FullPageWrapper,
 } from "./styles";
-import type { LoaderSize } from "./styles";
-
-export type GenericLoaderVariant = "overlay" | "inline" | "fullpage";
-
-export interface GenericLoaderProps {
-  isOpen?: boolean;
-  variant?: GenericLoaderVariant;
-  size?: LoaderSize;
-  label?: string;
-  isTransparent?: boolean;
-  closeOnEsc?: boolean;
-  onClose?: () => void;
-  className?: string;
-}
+import type { GenericLoaderProps } from "@/utils/types";
+import {
+  KEYBOARD,
+  EVENT,
+  CSS_VALUE,
+  LOADER_VARIANT,
+  DEFAULT_LOADER_SIZE,
+} from "@/utils/ui";
 
 export default function GenericLoader({
   isOpen = true,
-  variant = "overlay",
-  size = "md",
+  variant = LOADER_VARIANT.OVERLAY,
+  size = DEFAULT_LOADER_SIZE,
   label,
   isTransparent = false,
   closeOnEsc = false,
@@ -38,16 +32,16 @@ export default function GenericLoader({
     if (!closeOnEsc || !onClose) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === KEYBOARD.ESCAPE) onClose();
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    document.addEventListener(EVENT.KEYDOWN, handleKeyDown);
+    return () => document.removeEventListener(EVENT.KEYDOWN, handleKeyDown);
   }, [closeOnEsc, onClose]);
 
   useEffect(() => {
-    if (variant === "overlay" && isOpen) {
-      document.body.style.overflow = "hidden";
+    if (variant === LOADER_VARIANT.OVERLAY && isOpen) {
+      document.body.style.overflow = CSS_VALUE.HIDDEN;
     }
     return () => {
       document.body.style.overflow = "";
@@ -59,7 +53,7 @@ export default function GenericLoader({
   const spinner = <Spinner $size={size} />;
   const content = label ? <Label>{label}</Label> : null;
 
-  if (variant === "inline") {
+  if (variant === LOADER_VARIANT.INLINE) {
     return (
       <InlineWrapper $size={size} className={className}>
         {spinner}
@@ -68,7 +62,7 @@ export default function GenericLoader({
     );
   }
 
-  if (variant === "fullpage") {
+  if (variant === LOADER_VARIANT.FULLPAGE) {
     return (
       <FullPageWrapper className={className}>
         <Content>
