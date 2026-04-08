@@ -38,6 +38,7 @@ export default function WatchingSteps() {
               alt={t("watchingSteps.previewAlt")}
               width={640}
               height={479}
+              loading="eager"
               style={{
                 width: "100%",
                 height: "auto",

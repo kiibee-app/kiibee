@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import kiibeeLogo from "../../../../assets/images/kiibee-logo.svg";
+import kiibeeLogo from "@/assets/images/kiibee-logo.svg";
 import {
   Section,
   Backdrop,
@@ -59,13 +58,9 @@ export default function CallToAction() {
       <Content>
         <Brand>
           <BrandLogo>
-            <Image
-              src={kiibeeLogo}
+            <img
+              src={kiibeeLogo.src ?? kiibeeLogo}
               alt={t("callToAction.logoAlt")}
-              fill
-              priority
-              sizes="(max-width: 767px) 116px, 126px"
-              style={{ objectFit: "contain" }}
             />
           </BrandLogo>
         </Brand>
