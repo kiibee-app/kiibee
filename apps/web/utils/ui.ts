@@ -61,3 +61,8 @@ export const Directions = {
 } as const;
 
 export type Direction = (typeof Directions)[keyof typeof Directions];
+
+export const KEYBOARD_KEYS = {
+  ENTER: "Enter",
+  ESCAPE: "Escape",
+} as const;

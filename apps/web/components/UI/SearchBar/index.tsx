@@ -4,6 +4,7 @@ import React, { useState, useCallback } from "react";
 import { ClearButton, LeftIconWrapper, StyledInput, Wrapper } from "./styles";
 import { CrossIcon } from "@/assets/icons/crossIcon";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
+import { INPUT_TYPE, KEYBOARD_KEYS } from "@/utils/ui";
 
 type SearchBarProps = {
   placeholder?: string;
@@ -37,8 +38,8 @@ export default function SearchBar({
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === "Enter") onSubmit?.(value);
-      if (e.key === "Escape") handleClear();
+      if (e.key === KEYBOARD_KEYS.ENTER) onSubmit?.(value);
+      if (e.key === KEYBOARD_KEYS.ESCAPE) handleClear();
     },
     [handleClear, onSubmit, value],
   );
@@ -50,7 +51,7 @@ export default function SearchBar({
       </LeftIconWrapper>
 
       <StyledInput
-        type="text"
+        type={INPUT_TYPE.TEXT}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}

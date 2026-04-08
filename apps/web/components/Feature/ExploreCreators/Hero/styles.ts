@@ -39,7 +39,7 @@ export const Content = styled.div`
 export const Title = styled.h1`
   font-size: 48px;
   font-weight: 600;
-  color: white;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   text-align: center;
 `;
 
