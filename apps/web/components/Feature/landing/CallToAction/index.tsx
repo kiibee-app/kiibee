@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import kiibeeLogo from "../../../../assets/images/kiibee-logo.svg";
+import kiibeeLogo from "@/assets/images/kiibee-logo.svg";
 import {
   Section,
   Backdrop,
