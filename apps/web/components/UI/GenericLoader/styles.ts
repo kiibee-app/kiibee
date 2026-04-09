@@ -49,7 +49,7 @@ export const Spinner = styled.div<{ $size: LoaderSize }>`
 `;
 
 export const Label = styled.span`
-  font-family: ${({ theme }) => theme.typography.fontFamily};
+  font-family: ${({ theme }) => theme.typography.Body_Regular.fontFamily};
   font-size: 0.9rem;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.primary.WHITE};
