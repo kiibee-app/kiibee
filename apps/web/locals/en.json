@@ -153,7 +153,9 @@
     "title": "All creators",
     "filter": "Filter",
     "search": "Search for posts",
-    "sort": "Sort by: a-z"
+    "sort": "Sort by: a-z",
+    "viewProfile": "View profile",
+    "loadMore": "Load more"
   },
   "discoverContent": {
     "title": "Discover content",
