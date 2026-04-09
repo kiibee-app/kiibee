@@ -16,7 +16,7 @@ export const footerConfig: FooterColumn[] = [
       { label: "footer.howItWorks", href: "/how-it-works" },
       { label: "footer.forCreators", href: "/creators" },
       { label: "footer.exploreCreators", href: null },
-      { label: "footer.pricing", href: null },
+      { label: "footer.pricing", href: "/pricing" },
     ],
   },
   {
