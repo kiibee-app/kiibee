@@ -140,12 +140,13 @@ export const FeatureText = styled.span`
 
 export const PlanButton = styled.button`
   margin-top: auto;
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 180px;
   padding: 12px 0;
-  border: none;
+  border: 1px solid ${({ theme }) => theme.colors.gredint.TRANSPARENT};
   border-radius: ${({ theme }) => theme.radius.full};
   background: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE};
@@ -155,9 +156,14 @@ export const PlanButton = styled.button`
   font-style: ${typography.H5_Medium.fontStyle};
   font-weight: 500;
   line-height: normal;
-  transition: opacity ${({ theme }) => theme.animations.fast};
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast},
+    color ${({ theme }) => theme.animations.fast};
 
   &:hover {
-    opacity: 0.8;
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    border-color: ${({ theme }) => theme.colors.neutral.BLACK};
+    color: ${({ theme }) => theme.colors.neutral.BLACK};
   }
 `;
