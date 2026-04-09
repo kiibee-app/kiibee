@@ -346,5 +346,22 @@
         ]
       }
     }
+  },
+  "pricingFaq": {
+    "title": "FAQ",
+    "items": [
+      {
+        "question": "Can I sell content with the free plan?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      },
+      {
+        "question": "Can I change or cancel my plan?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      },
+      {
+        "question": "Do viewers need a subscription?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      }
+    ]
   }
 }

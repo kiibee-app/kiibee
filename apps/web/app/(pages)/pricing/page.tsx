@@ -1,6 +1,7 @@
 "use client";
 
 import Footer from "@/components/Layout/Footer";
+import FaqSection from "@/components/Feature/Pricing/FaqSection";
 import PricingPlansSection from "@/components/Feature/Pricing/PlansSection";
 import NavBar from "@/components/Layout/Navbar";
 import { Main, PageContainer } from "@/app/styles";
@@ -40,6 +41,7 @@ export default function PricingPage() {
           </Container>
         </Hero>
         <PricingPlansSection />
+        <FaqSection />
       </Main>
       <Footer />
     </PageContainer>
