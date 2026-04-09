@@ -153,7 +153,12 @@
     "title": "All creators",
     "filter": "Filter",
     "search": "Search for posts",
-    "sort": "Sort by: a-z"
+    "sort": "Sort by: a-z",
+    "recentlyAdded": {
+      "badge": "Recently added",
+      "heading": "Recently added content",
+      "tag": "Recently added"
+    }
   },
   "discoverContent": {
     "title": "Discover content",

@@ -153,7 +153,12 @@
     "title": "All creators",
     "filter": "Filter",
     "search": "Search for posts",
-    "sort": "Sort by: a-z"
+    "sort": "Sort by: a-z",
+    "recentlyAdded": {
+      "badge": "Senest tilføjet",
+      "heading": "Senest tilføjet indhold",
+      "tag": "Senest tilføjet"
+    }
   },
   "discoverContent": {
     "title": "Opdag indhold",
