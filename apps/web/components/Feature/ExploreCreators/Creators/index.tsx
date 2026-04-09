@@ -13,9 +13,13 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
-import { creators } from "@/utils/dummyData/creators.data";
+import { CreatorProfile } from "@/utils/sortOptions";
 
-export default function ExploreCreators() {
+type Props = {
+  creators: CreatorProfile[];
+};
+
+export default function ExploreCreators({ creators }: Props) {
   const { t } = useTranslation();
   return (
     <PageWrapper>

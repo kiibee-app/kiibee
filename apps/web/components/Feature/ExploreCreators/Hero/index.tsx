@@ -3,6 +3,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
+import { ArrowIcon } from "@/assets/icons/arrowIcon";
+import { FilterIcon } from "@/assets/icons/filterIcon";
+import SearchBar from "@/components/UI/SearchBar";
+import SortDropdown from "@/components/UI/SortDropdown";
+import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
+import { Directions, INPUT_TYPE, KEYBOARD_KEYS } from "@/utils/ui";
 import {
   CheckboxControl,
   CheckboxInput,
@@ -39,15 +45,9 @@ import {
   SectionIcon,
   ShowMoreButton,
   ShowMoreText,
-  SortBox,
-  SortText,
   StarIcon,
   StarIconWrap,
 } from "./styles";
-import SearchBar from "@/components/UI/SearchBar";
-import { FilterIcon } from "@/assets/icons/filterIcon";
-import { ArrowIcon } from "@/assets/icons/arrowIcon";
-import { Directions, INPUT_TYPE, KEYBOARD_KEYS } from "@/utils/ui";
 
 type FilterGroupKey = "creators" | "categories" | "formats";
 type FilterSectionKey = FilterGroupKey | "price" | "rating";
@@ -93,7 +93,11 @@ const FORMAT_OPTION_KEYS = [
 const RATING_OPTIONS = [5, 4, 3, 2, 1] as const;
 const DEFAULT_VISIBLE_CREATORS = 10;
 
-export default function ExploreCreatorsHero() {
+type Props = {
+  setSortBy: (value: SortValue) => void;
+};
+
+export default function ExploreCreatorsHero({ setSortBy }: Props) {
   const { t } = useTranslation();
   const theme = useTheme();
   const filterButtonRef = useRef<HTMLButtonElement>(null);
@@ -522,13 +526,11 @@ export default function ExploreCreatorsHero() {
               ) : null}
             </FilterControlWrap>
             <SearchBar placeholder={t("creators.search")} />
-            <SortBox>
-              <SortText>{t("creators.sort")}</SortText>
-              <ArrowIcon
-                color={theme.colors.primary.BLACK}
-                direction={Directions.DOWN}
-              />
-            </SortBox>
+            <SortDropdown
+              options={SORT_OPTIONS}
+              value={DEFAULT_SORT}
+              onChange={setSortBy}
+            />
           </Controls>
         </Content>
       </Inner>
