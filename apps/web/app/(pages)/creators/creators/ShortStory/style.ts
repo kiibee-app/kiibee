@@ -86,7 +86,7 @@ export const ReadMoreButton = styled.button`
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE};
   font-size: 0.9375rem;
-  font-weight: ${({ theme }) => theme.typography.fontWeights.medium};
+  font-weight: ${({ theme }) => theme.typography.Body_Medium.fontWeight};
   cursor: pointer;
   transition: opacity 0.2s ease;
 
