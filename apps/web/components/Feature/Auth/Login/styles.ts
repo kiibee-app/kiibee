@@ -24,10 +24,10 @@ export const FormPanel = styled.section`
   justify-content: center;
   padding: 3rem 1.5rem;
 
-  @media (max-width: 900px) {
+  ${media.tablet} {
     padding: 2rem 1rem;
   }
-  @media (max-width: 1100px) {
+  ${media.desktop} {
     flex: 5;
     padding: 2.25rem 1.25rem;
   }
@@ -44,12 +44,12 @@ export const SlidePanel = styled.section`
   border-radius: 0 0 0 0;
   position: relative;
 
-  @media (max-width: 900px) {
+  ${media.tablet} {
     width: 100%;
     flex: 0 0 auto;
     padding: 2.5rem 1.5rem;
   }
-  @media (max-width: 1100px) {
+  ${media.desktop} {
     flex: 0 0 360px;
     max-width: 360px;
     padding: 180px 55px 90px;
