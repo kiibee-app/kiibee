@@ -8,6 +8,20 @@ export type TutorialButton = {
   variant?: Variant;
   href?: string;
 };
+import type { LoaderSize } from "@/components/UI/GenericLoader/styles";
+
+export type GenericLoaderVariant = "overlay" | "inline" | "fullpage";
+
+export interface GenericLoaderProps {
+  isOpen?: boolean;
+  variant?: GenericLoaderVariant;
+  size?: LoaderSize;
+  label?: string;
+  isTransparent?: boolean;
+  closeOnEsc?: boolean;
+  onClose?: () => void;
+  className?: string;
+}
 
 export type TutorialVideo = {
   id: string;
