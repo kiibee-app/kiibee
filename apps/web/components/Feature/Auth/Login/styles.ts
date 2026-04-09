@@ -1,3 +1,4 @@
+import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
 export const PageLayout = styled.div`
@@ -7,10 +8,10 @@ export const PageLayout = styled.div`
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   gap: 0;
 
-  @media (max-width: 900px) {
+  ${media.tablet} {
     flex-direction: column;
   }
-  @media (max-width: 1100px) {
+  ${media.desktop} {
     align-items: stretch;
   }
 `;
