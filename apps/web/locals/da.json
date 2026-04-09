@@ -1,274 +1,4 @@
-{
-  "hero": {
-    "title": "Opdag og nyd unikt digitalt indhold fra dine foretrukne skabere.",
-    "subtitle": "Se, lyt og lær direkte fra uafhængige skabere. Lej eller køb eksklusivt indhold med få klik.",
-    "cta": "Deltag i Kiibee nu"
-  },
-  "nav": {
-    "howItWorks": "Sådan fungerer det",
-    "exploreCreators": "Udforsk skabere",
-    "about": "Om Kiibee",
-    "login": "Log ind",
-    "startCreating": "Begynd at skabe",
-    "logoAlt": "Kiibee"
-  },
-  "how": {
-    "heroAlt": "Kiibee hero-billede",
-    "title": "Stream eller ej — indholdet du elsker",
-    "subtitle": "Få adgang til indhold fra dine yndlingsskabere. Abonner, støt, og nyd oplevelser.",
-    "cta": "Udforsk indhold",
-    "stepsSubtitle": "Tre trin for at få adgang til kurser, tutorials og ressourcer på tværs af 50+ kategorier",
-    "steps": {
-      "browseTitle": "Gennemse & opdag",
-      "browseText": "Udforsk 50+ kategorier og 500+ skabere",
-      "chooseTitle": "Vælg & køb",
-      "chooseText": "Køb eller lej enkeltindhold eller samlinger",
-      "accessTitle": "Få øjeblikkelig adgang",
-      "accessText": "Stream eller download — det er dit at beholde"
-    },
-    "customerAlt": "Kunde billede",
-    "customerTitle": "En kort historie om Kiibee",
-    "customerLead": "Kiibee blev grundlagt i 2017 for at gøre det nemmere for skabere og virksomheder at sælge og distribuere digitalt indhold direkte til deres publikum.",
-    "customerBody": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer — og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
-    "customerCta": "Læs mere om Kiibee",
-    "getStarted": {
-      "heading": "Kom godt i gang med Kiibee",
-      "sub": "Lær, hvordan du opretter din profil og administrerer dit indhold med vores trin-for-trin-vejledninger.",
-      "tutorial": "Videovejledninger",
-      "guide": "Brugervejledning"
-    }
-  },
-  "watchingSteps": {
-    "heading": "How it works",
-    "tagline": "Start watching in just a few steps.",
-    "previewAlt": "How it works",
-    "steps": {
-      "browse": {
-        "label": "Browse",
-        "description": "Discover creators and collections that match your interests."
-      },
-      "choose": {
-        "label": "Choose",
-        "description": "Rent, buy, or access content directly on Kiibee."
-      },
-      "enjoy": {
-        "label": "Enjoy",
-        "description": "Stream or download instantly, anytime, anywhere."
-      }
-    },
-    "cta": "Learn more"
-  },
-  "discoverContent": {
-    "title": "Opdag indhold",
-    "subtitle": "Gennemse hundredvis af videoer, lydfiler og e-bøger.",
-    "ctaPrimary": "Deltag nu",
-    "ctaSecondary": "Se alle skabere",
-    "mediaTypes": {
-      "video": "Video",
-      "epub": "E-pub"
-    },
-    "items": {
-      "1": {
-        "category": "Komedie",
-        "title": "Krøllehjern",
-        "author": "Jacob Taarnhøj",
-        "date": "For 7 dage siden",
-        "actions": {
-          "rent": "Lej 39 kr",
-          "buy": "Køb 99 kr"
-        }
-      },
-      "2": {
-        "category": "Podcast",
-        "title": "Tech Talks",
-        "author": "Nuebros",
-        "date": "For 6 dage siden",
-        "actions": {
-          "free": "Gratis"
-        }
-      },
-      "3": {
-        "category": "Kursus",
-        "title": "Vegetabilske opskrifter",
-        "author": "Kammas kantine",
-        "date": "For 10 dage siden",
-        "actions": {
-          "shopCollection": "Shop kollektion 99 kr"
-        }
-      },
-      "4": {
-        "category": "Uddannelse",
-        "title": "ADD/ADHD",
-        "author": "Nate Hansen",
-        "date": "For 1 dag siden",
-        "actions": {
-          "buy": "Køb xx kr"
-        }
-      }
-    }
-  },
-  "footer": {
-    "information": "Information",
-    "about": "Om os",
-    "howItWorks": "Sådan fungerer det",
-    "forCreators": "For skabere",
-    "exploreCreators": "Udforsk skabere",
-    "pricing": "Priser",
-    "helpfulLinks": "Nyttige links",
-    "tutorialVideos": "Videovejledninger",
-    "userGuides": "Brugervejledninger",
-    "contactUs": "Kontakt os",
-    "support": "Support",
-    "privacyPolicy": "Privatlivspolitik",
-    "termsOfService": "Servicevilkår",
-    "cookieSettings": "Cookie-indstillinger",
-    "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
-  },
-  "supportPage": {
-    "eyebrow": "Kontakt support",
-    "title": "Kontakt os",
-    "description": "Vi er her for at hjælpe. Uanset om du har spørgsmål til vores services, har brug for hjælp til din konto eller vil give feedback, står vores team klar til at hjælpe dig.",
-    "resourcesLead": "Du kan også se vores",
-    "resourcesMiddle": "og",
-    "resourcesEnd": "for hurtige svar.",
-    "tutorialVideos": "videovejledninger",
-    "userGuides": "brugervejledninger",
-    "supportTitle": "Support",
-    "supportEmail": "support@kiibee.dk",
-    "salesTitle": "Salg og partnerskab",
-    "salesEmail": "info@kiibee.dk",
-    "success": {
-      "title": "Tak for din henvendelse!",
-      "description": "Vi har modtaget din besked og vender tilbage hurtigst muligt. Tjek din indbakke på {{email}} for vores svar."
-    },
-    "form": {
-      "firstName": "Fornavn",
-      "lastName": "Efternavn",
-      "companyName": "Firmanavn",
-      "phoneNumber": "Telefonnummer",
-      "email": "E-mailadresse",
-      "message": "Hvordan kan vi hjælpe dig?",
-      "placeholders": {
-        "firstName": "Indtast dit fornavn",
-        "lastName": "Indtast dit efternavn",
-        "companyName": "Indtast firmanavn",
-        "phoneNumber": "Indtast telefonnummer",
-        "email": "Indtast e-mailadresse",
-        "message": "Skriv din besked..."
-      },
-      "errors": {
-        "firstNameRequired": "Fornavn er påkrævet",
-        "emailRequired": "E-mailadresse er påkrævet",
-        "emailInvalid": "Indtast en gyldig e-mailadresse",
-        "phoneInvalid": "Indtast et gyldigt telefonnummer",
-        "messageRequired": "Besked er påkrævet"
-      },
-      "submit": "Send besked"
-    }
-  },
-  "value": {
-    "bgAlt": "Baggrundsbillede",
-    "title": "Det du ved, er noget værd",
-    "subtitle": "Gør din ekspertise til indtjening",
-    "cta": "Tilmeld Kiibee i dag"
-  },
-  "testimonial": {
-    "backgroundAlt": "Baggrund til skaberudtalelse",
-    "prevAriaLabel": "Forrige udtalelse",
-    "nextAriaLabel": "Næste udtalelse",
-    "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibe har været en gamechanger for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
-    "author": "Kamma, freelance grafisk designer"
-  },
-  "securePayment": {
-    "title": "Sikker og øjeblikkelig betaling med MobilePay",
-    "description": "Ingen komplicerede checkouts eller udenlandske betalingsløsninger. Betal sikkert med MobilePay på få sekunder, eller brug Dankort og kreditkort. Det har aldrig været nemmere at støtte skabere.",
-    "heroImageAlt": "Mobil betalingsvisning",
-    "creatorImageAlt": "Skaber, der arbejder på bærbar"
-  },
-  "about": {
-    "hero": {
-      "title": "Styrker kreativitet. Forbinder mennesker.",
-      "subtitle": "Kiibee er en digital platform, hvor skabere deler deres viden, passion og historier, og hvor seere nemt kan opdage, leje eller købe inspirerende indhold.",
-      "cta": {
-        "explore": "Udforsk indhold",
-        "creator": "Bliv skaber"
-      }
-    },
-    "ourStory": {
-      "title": "Vores historie",
-      "left": {
-        "intro": "Kiibee blev grundlagt i 2017, efter at vi identificerede et voksende hul i markedet for digitalt indhold.",
-        "marketGap": "Der blev skabt mere og mere digitalt indhold af høj kvalitet – kurser, talks, shows, træningsprogrammer og undervisningsmateriale – men meget af det var enten låst bag komplekse tekniske løsninger eller delt gratis på platforme, der ikke var designet til direkte salg.",
-        "consumerNeed": "Samtidig ønskede almindelige forbrugere adgang til professionelt, nichepræget og kvalitetsindhold uden at skulle navigere i komplicerede platforme eller stive abonnementer.",
-        "bridge": "Kiibee blev skabt for at bygge bro over dette hul."
-      },
-      "right": {
-        "mission": "Fra begyndelsen har vores mål været at gøre det nemt for skabere og virksomheder at distribuere og sælge digitalt indhold direkte til deres publikum – samtidig med at det er let og intuitivt for forbrugerne at få adgang til.",
-        "evolution": "Siden 2017 har Kiibee udviklet sig til en fleksibel platform, der bruges af en bred vifte af skabere og organisationer."
-      }
-    },
-    "believe": {
-      "title": "Hvad vi tror på",
-      "alt": "Kreative fagfolk arbejder med digitalt indhold",
-      "content": {
-        "quality": "Vi tror på, at kvalitetsindhold fortjener et professionelt hjem.",
-        "creators": "Skabere bør kunne eje deres arbejde, kontrollere hvordan det deles, og blive betalt uden teknisk kompleksitet.",
-        "viewers": "Seere bør nemt kunne få adgang til indhold, betale kun for det, de ønsker, og få en god oplevelse."
-      }
-    },
-    "platform": {
-      "title": "Mere end en platform",
-      "intro": "Kiibee er ikke bare en teknisk løsning.",
-      "description": "Det er en bro mellem skabere og deres publikum, bygget til at understøtte langsigtet værdi, bæredygtig indholdsdistribution og en bedre oplevelse for alle involverede."
-    },
-    "value": {
-      "title": "Bliv en del af Kiibee-bevægelsen",
-      "subtitle": "Uanset om du er en seer, der ønsker at lære noget nyt, eller en skaber, der er klar til at dele din passion, er Kiibee stedet for dig."
-    }
-  },
-  "features": {
-    "heading": "Mere end bare indhold",
-    "sub": "Udforsk vores funktioner",
-    "items": [
-      {
-        "title": "Gratis brugerkonto",
-        "text": "Create and update your profile at any time.",
-        "imageAlt": "produkt skærmbillede"
-      },
-      {
-        "title": "Personlige anbefalinger",
-        "text": "Get content suggestions based on your interests and viewing preferences.",
-        "imageAlt": "anbefalinger preview"
-      },
-      {
-        "title": "Alle køb samlet ét sted",
-        "text": "After buying or renting, you're redirected to your purchase page. You'll also receive a receipt by email with a direct link to your content.",
-        "imageAlt": "købshistorik"
-      },
-      {
-        "title": "Se når som helst, på enhver enhed",
-        "text": "Access your content whenever you want: stream online or download, across mobile, tablet, and desktop.",
-        "imageAlt": "enheder preview"
-      }
-    ]
-  },
-  "tutorialVideos": {
-    "heroTitle": "Tutorial videos",
-    "heroSubtitle": "Step-by-step guides to help you succeed with Kiibee and get the most out of every launch.",
-    "sectionTag": "Getting started",
-    "sectionLabel": "Foundational chapters",
-    "sectionLink": "View playlist",
-    "buttonFreeLabel": "Free"
-  },
-  "callToAction": {
-    "logoAlt": "Kiibee",
-    "creatorAlt": "Skaber",
-    "titleLine1": "Er du en skaber?",
-    "titleLine2": "Bliv en del af Kiibee i dag",
-    "subtitle": "Del dit arbejde, opbyg dit publikum, og tjen direkte på dit indhold. Kiibee hjælper dig med at udgive, promovere og sælge på én enkel platform.",
-    "cta": "Begynd at skabe"
-  },
-  "interests": {
+"interests": {
     "title": "Udforsk indhold til enhver interesse",
     "ebooks": "E-bøger",
     "lectures": "Foredrag",
@@ -285,12 +15,6 @@
     "sound": "Lydeffekter og loops",
     "articles": "Artikler og essays"
   },
-  "creators": {
-    "title": "All creators",
-    "filter": "Filter",
-    "search": "Search for posts",
-    "sort": "Sort by: a-z"
-  },
   "pricingPage": {
     "title": "Find the perfect plan for your creative business",
     "descriptionLine1": "Choose the plan that fits your goals. Start small, grow big, and sell your content your way.",
@@ -305,7 +29,7 @@
         "title": "Launch",
         "price": "0 kr/md",
         "desc1": "Kom hurtigt i gang med at sælge dit digitale indhold.",
-        "desc2": "Perfekt til dig, der vil teste en id\u00e9, lancere dit f\u00f8rste produkt eller komme online uden risiko.",
+        "desc2": "Perfekt til dig, der vil teste en idé, lancere dit første produkt eller komme online uden risiko.",
         "features": [
           "Eget site & shop med op til to filer.",
           "Betalingsmodul (Dankort, kreditkort og mobilepay)",
@@ -317,8 +41,8 @@
       "growth": {
         "title": "Growth",
         "price": "129 kr/md",
-        "desc1": "Skabt til dig, der udgiver løbende og vil samle dit indhold \u00e9t sted.",
-        "desc2": "F\u00e5 mere frihed, mere plads til v\u00e6kst og en l\u00f8sning, der f\u00f8lger med dit momentum.",
+        "desc1": "Skabt til dig, der udgiver løbende og vil samle dit indhold ét sted.",
+        "desc2": "Få mere frihed, mere plads til vækst og en løsning, der følger med dit momentum.",
         "features": [
           "Eget site & shop",
           "Betalingsmodul (Dankort, kreditkort og mobilepay)",
@@ -332,8 +56,8 @@
       "pro": {
         "title": "Pro",
         "price": "399 kr/md",
-        "desc1": "Til professionelle creators og virksomheder med st\u00f8rre ambitioner.",
-        "desc2": "F\u00e5 maksimal fleksibilitet, ekstra support og hj\u00e6lp til ops\u00e6tning \u2013 s\u00e5 du kan fokusere p\u00e5 salg og skalering.",
+        "desc1": "Til professionelle creators og virksomheder med større ambitioner.",
+        "desc2": "Få maksimal fleksibilitet, ekstra support og hjælp til opsætning – så du kan fokusere på salg og skalering.",
         "features": [
           "Eget site & shop",
           "Betalingsmodul (Dankort, kreditkort og mobilepay)",
