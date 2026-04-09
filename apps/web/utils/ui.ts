@@ -6,6 +6,7 @@ export const INPUT_TYPE = {
   NUMBER: "number",
   TEL: "tel",
   TEXTAREA: "textarea",
+  PASSWORD: "password",
 } as const;
 
 export type InputType = (typeof INPUT_TYPE)[keyof typeof INPUT_TYPE];
