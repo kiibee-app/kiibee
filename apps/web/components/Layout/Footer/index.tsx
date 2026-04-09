@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import {
   Container,
@@ -23,6 +22,8 @@ import { FacebookIcon } from "@/assets/icons/facebookIcon";
 import { TwitterIcon } from "@/assets/icons/twitterIcon";
 import { YouTubeIcon } from "@/assets/icons/youTubeIcon";
 import { footerConfig } from "@/utils/footerConfig";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -33,14 +34,7 @@ const Footer = () => {
       <Top>
         <Column>
           <LogoRow>
-            <Image
-              src={logo}
-              alt={t("nav.logoAlt")}
-              width={90}
-              height={28}
-              priority
-              style={{ width: "auto", height: "auto" }}
-            />
+            <img src={logo.src ?? logo} alt={t("nav.logoAlt")} />
           </LogoRow>
           <IconRow>
             <FacebookIcon />
@@ -51,10 +45,16 @@ const Footer = () => {
 
         {footerConfig.map((col) => (
           <Column key={col.title}>
-            <Title>{t(col.title)}</Title>
+            <Title>
+              <MonoText $use="H5_Medium" color={COLORS.primary.WHITE}>
+                {t(col.title)}
+              </MonoText>
+            </Title>
             {col.items.map((item, idx) => (
               <LinkItem key={`${col.title}-${idx}`} href={item.href ?? "#"}>
-                {t(item.label)}
+                <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                  {t(item.label)}
+                </MonoText>
               </LinkItem>
             ))}
           </Column>
@@ -66,19 +66,18 @@ const Footer = () => {
         <BottomLeft>{t("footer.copyright", { year })}</BottomLeft>
         <BottomRight>
           <LinkRow>
-            <span>{t("footer.privacyPolicy")}</span>
-            <span>{t("footer.termsOfService")}</span>
-            <span>{t("footer.cookieSettings")}</span>
+            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+              {t("footer.privacyPolicy")}
+            </MonoText>
+            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+              {t("footer.termsOfService")}
+            </MonoText>
+            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+              {t("footer.cookieSettings")}
+            </MonoText>
           </LinkRow>
           <CardWrapper>
-            <Image
-              src={card}
-              alt={t("nav.logoAlt")}
-              width={200}
-              height={28}
-              priority
-              style={{ width: "auto", height: "auto" }}
-            />
+            <img src={card.src ?? card} alt={t("nav.logoAlt")} />
           </CardWrapper>
         </BottomRight>
       </Bottom>

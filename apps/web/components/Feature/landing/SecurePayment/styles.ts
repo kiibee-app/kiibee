@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
@@ -43,11 +43,7 @@ export const Title = styled.h2`
 export const Description = styled.p`
   margin: 3.3rem 0 0 0;
   max-width: 34rem;
-  color: ${({ theme }) => theme.colors.primary.WHITE_90};
-  font-size: 18px;
   width: 435px;
-  line-height: 1.55;
-
   ${media.tablet} {
     width: 100%;
     margin: 1.5rem 0 0 0;

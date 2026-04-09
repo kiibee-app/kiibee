@@ -12,8 +12,9 @@ import {
   Section,
   SectionInner,
   TextColumn,
-  Title,
 } from "./styles";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 export default function SecurePaymentSection() {
   const { t } = useTranslation();
@@ -22,8 +23,14 @@ export default function SecurePaymentSection() {
     <Section>
       <SectionInner>
         <TextColumn>
-          <Title>{t("securePayment.title")}</Title>
-          <Description>{t("securePayment.description")}</Description>
+          <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+            {t("securePayment.title")}
+          </MonoText>
+          <Description>
+            <MonoText $use="Body_Regular" color={COLORS.primary.WHITE}>
+              {t("securePayment.description")}
+            </MonoText>
+          </Description>
         </TextColumn>
 
         <ImageColumn>

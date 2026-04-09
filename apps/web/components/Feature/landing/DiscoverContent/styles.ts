@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
@@ -15,9 +15,6 @@ export const HeaderSection = styled.div`
 
 export const Title = styled.h2`
   margin: 0 0 1rem;
-  font-size: clamp(2rem, 6vw, 2.75rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
   color: ${({ theme }) => theme.colors.neutral.BLACK};
 `;
 
@@ -66,9 +63,6 @@ export const CategoryBadge = styled.span`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border-radius: 6px;
   padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.primary.BLACK_90};
   box-shadow: ${({ theme }) => theme.shadows.sm};
 `;
 
@@ -80,21 +74,14 @@ export const TextSection = styled.div`
 
 export const CardTitle = styled.h3`
   margin: 0 0 0.25rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.neutral.BLACK};
 `;
 
 export const CardAuthor = styled.p`
   margin: 0 0 0.25rem;
-  font-size: 0.875rem;
-  color: ${({ theme }) => theme.colors.primary.BLACK_90};
 `;
 
 export const CardDate = styled.p`
   margin: 0 0 1rem;
-  font-size: 0.75rem;
-  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
 `;
 
 export const MediaTypeBox = styled.div`

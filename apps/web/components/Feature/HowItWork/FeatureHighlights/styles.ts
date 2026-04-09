@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { media } from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
@@ -22,15 +22,10 @@ export const HeadingWrap = styled.div`
 
 export const Heading = styled.h2`
   margin: 0 0 0.5rem 0;
-  font-size: 40px;
-  font-weight: 600;
   color: ${({ theme }) => theme.colors.secondary.main};
 `;
 
 export const Sub = styled.div`
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  font-size: 22px;
-  font-weight: 500;
   padding: 0.5rem 0;
 `;
 
@@ -46,9 +41,6 @@ export const FeaturesRow = styled.div`
 `;
 
 export const Index = styled.span`
-  font-weight: 600;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.neutral.GRAY};
   display: inline-block;
   margin-bottom: 8px;
 `;
@@ -71,8 +63,6 @@ export const TopBar = styled.div`
 `;
 
 export const Label = styled.div`
-  color: ${({ theme }) => theme.colors.neutral.GRAY};
-  font-size: 14px;
   margin-top: 0;
   transition:
     color 180ms ease,
@@ -136,10 +126,7 @@ export const MockImageWrap = styled.div<{ $active?: boolean }>`
 `;
 
 export const MockText = styled.div`
-  font-size: 33px;
-  font-weight: 600;
   max-width: 415px;
-  color: ${({ theme }) => theme.colors.neutral.GRAY};
   padding: 0 1rem;
 
   ${media.tablet} {

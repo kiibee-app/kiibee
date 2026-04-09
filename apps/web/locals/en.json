@@ -284,5 +284,11 @@
     "theater": "Theater",
     "sound": "Sound effects and loops",
     "articles": "Articles & essays"
+  },
+  "creators": {
+    "title": "All creators",
+    "filter": "Filter",
+    "search": "Search for posts",
+    "sort": "Sort by: a-z"
   }
 }

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const Hero = styled.section`
   width: 100%;
@@ -60,20 +60,14 @@ export const Content = styled.div`
 export const Title = styled.h1`
   margin: 0 0 1rem 0;
   color: ${({ theme }) => theme.colors.primary.WHITE};
-  font-weight: 600;
+
   max-width: 64px;
-  line-height: 1.02;
-  font-size: clamp(2.25rem, 6vw, 4rem);
   max-width: 58rem;
 `;
 
 export const Subtitle = styled.p`
   margin: 0 0 2rem 0;
   max-width: 32rem;
-  font-weight: 500;
-  font-size: 20px;
-  font-size: clamp(1rem, 2.2vw, 1.125rem);
-  color: ${({ theme }) => theme.colors.primary.WHITE_90};
 `;
 
 export const CTAWrap = styled.div`

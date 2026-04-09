@@ -7,7 +7,6 @@ import {
   InputWrapper,
   StyledTextArea,
   RequiredIndicator,
-  LabelFontStyle,
   ErrorText,
 } from "./styles";
 import {
@@ -20,6 +19,7 @@ import {
   InputModeValue,
   AutoCompleteValue,
 } from "@/utils/ui";
+import { typography } from "@repo/ui/typography";
 
 export type InputFieldProps = {
   label?: string;
@@ -38,7 +38,7 @@ export type InputFieldProps = {
   hasError?: boolean | boolean[];
   locked?: boolean | undefined;
   multi?: boolean;
-  labelFontStyle?: LabelFontStyle;
+  labelFontStyle?: keyof typeof typography;
   labelPaddingLeft?: string | undefined;
   labelMarginTop?: string | undefined;
   height?: string;
@@ -142,7 +142,7 @@ export default React.forwardRef<
   return (
     <Container width={width || ""} as={containerElement} role={multiRole}>
       <Label
-        $labelFontStyle={labelFontStyle || "Body_Title6"}
+        $use={labelFontStyle || "Body_Medium"}
         $paddingLeft={labelPaddingLeft || ""}
         $marginTop={labelMarginTop || ""}
         as={labelElement}
