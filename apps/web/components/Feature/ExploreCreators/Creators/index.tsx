@@ -12,7 +12,6 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
-import { CreatorProfile } from "@/utils/sortOptions";
 import { useTranslation } from "react-i18next";
 import { creators } from "@/utils/dummyData/creators.data";
 
