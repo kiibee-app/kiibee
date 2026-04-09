@@ -14,7 +14,6 @@ import {
 import {
   ContactBlock,
   ContactList,
-  ContactTitle,
   Content,
   Description,
   EmailLink,
@@ -34,6 +33,7 @@ import {
   SubmitButton,
   Title,
 } from "./styles";
+import { MonoText } from "@/components/UI/Monotext";
 
 export default function SupportContact() {
   const { t } = useTranslation();
@@ -97,30 +97,48 @@ export default function SupportContact() {
         ) : (
           <>
             <Content>
-              <Title>{t("supportPage.title")}</Title>
-              <Description>{t("supportPage.description")}</Description>
+              <Title>
+                <MonoText $use="Heading2">{t("supportPage.title")}</MonoText>
+              </Title>
+              <Description>
+                <MonoText $use="Body_Regular">
+                  {t("supportPage.description")}
+                </MonoText>
+              </Description>
               <ResourceCopy>
-                {t("supportPage.resourcesLead")}{" "}
-                <InlineLink href="/tutorial-videos">
-                  {t("supportPage.tutorialVideos")}
-                </InlineLink>{" "}
-                {t("supportPage.resourcesMiddle")}{" "}
-                <InlineLink href="#">{t("supportPage.userGuides")}</InlineLink>{" "}
-                {t("supportPage.resourcesEnd")}
+                <MonoText $use="Body_Regular">
+                  {t("supportPage.resourcesLead")}{" "}
+                  <InlineLink href="/tutorial-videos">
+                    {t("supportPage.tutorialVideos")}
+                  </InlineLink>{" "}
+                  {t("supportPage.resourcesMiddle")}{" "}
+                  <InlineLink href="#">
+                    {t("supportPage.userGuides")}
+                  </InlineLink>{" "}
+                  {t("supportPage.resourcesEnd")}
+                </MonoText>
               </ResourceCopy>
 
               <ContactList>
                 <ContactBlock>
-                  <ContactTitle>{t("supportPage.supportTitle")}</ContactTitle>
+                  <MonoText $use="Heading3">
+                    {t("supportPage.supportTitle")}
+                  </MonoText>
                   <EmailLink href={`mailto:${t("supportPage.supportEmail")}`}>
-                    {t("supportPage.supportEmail")}
+                    <MonoText $use="H5_Medium">
+                      {t("supportPage.supportEmail")}
+                    </MonoText>
                   </EmailLink>
                 </ContactBlock>
 
                 <ContactBlock>
-                  <ContactTitle>{t("supportPage.salesTitle")}</ContactTitle>
+                  <MonoText $use="Heading3">
+                    {t("supportPage.salesTitle")}
+                  </MonoText>
                   <EmailLink href={`mailto:${t("supportPage.salesEmail")}`}>
-                    {t("supportPage.salesEmail")}
+                    <MonoText $use="H5_Medium">
+                      {t("supportPage.salesEmail")}
+                    </MonoText>
                   </EmailLink>
                 </ContactBlock>
               </ContactList>
@@ -134,7 +152,7 @@ export default function SupportContact() {
                       <InputField
                         id={`support-${field.key}`}
                         label={field.label}
-                        labelFontStyle="Body_Title7"
+                        labelFontStyle="Body_Regular"
                         labelMarginTop="0"
                         placeholder={field.placeholder}
                         value={formValues[field.key as ContactFormField]}

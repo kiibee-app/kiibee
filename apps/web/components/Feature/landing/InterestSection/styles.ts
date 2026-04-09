@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
-import { media } from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
+import { MonoText } from "@/components/UI/Monotext";
 
 export const Section = styled.section`
   width: 100%;
@@ -18,11 +19,7 @@ export const Section = styled.section`
 `;
 
 export const Title = styled.h2`
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 600;
   margin-bottom: 3.5rem;
-  line-height: 1.15;
 
   ${media.tablet} {
     margin-bottom: 2.5rem;
@@ -61,11 +58,12 @@ const variants = {
   `,
 };
 
-export const Pill = styled.span<{ $variant: keyof typeof variants }>`
+export const Pill = styled(MonoText)<{
+  $variant: keyof typeof variants;
+}>`
+  ${({ theme }) => theme.typography.Body_Medium};
   padding: 0.8rem 1.6rem;
   border-radius: 999px;
-  font-size: 0.95rem;
-  font-weight: 500;
   white-space: nowrap;
   transition:
     transform 0.2s ease,

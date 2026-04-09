@@ -7,13 +7,12 @@ import creator from "../../../../assets/images/testimonial/creator.jpg";
 import {
   ArrowButton,
   ArrowIcon,
-  Author,
   Background,
   Card,
-  Quote,
   Section,
   SectionInner,
 } from "./styles";
+import { MonoText } from "@/components/UI/Monotext";
 
 export default function TestimonialSection() {
   const { t } = useTranslation();
@@ -44,9 +43,8 @@ export default function TestimonialSection() {
 
       <SectionInner>
         <Card>
-          <Quote>{t("testimonial.quote")}</Quote>
-
-          <Author>{t("testimonial.author")}</Author>
+          <MonoText $use="Body_Medium">{t("testimonial.quote")}</MonoText>
+          <MonoText $use="Body_Regular">{t("testimonial.author")}</MonoText>
         </Card>
       </SectionInner>
     </Section>

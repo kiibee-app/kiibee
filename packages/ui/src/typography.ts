@@ -1,40 +1,109 @@
 import "./fonts.css";
+import { fluid } from "./helperTypography";
 
 export const FontFamily = {
-  Poppins_Regular: "Poppins-Regular",
-  Poppins_Medium: "Poppins-Medium",
-  Poppins_SemiBold: "Poppins-SemiBold",
-  Poppins_Bold: "Poppins-Bold",
+  Default: "Reddit Sans",
 } as const;
 
-export type FontKey = keyof typeof FontFamily;
-export type FontFamilyType = typeof FontFamily;
-
-function fluid(min: number, max: number) {
-  const minPx = `${min}px`;
-  const maxPx = `${max}px`;
-  const slope = (max - min) / 100;
-  const preferred = `${(min / 16).toFixed(4)}rem + ${slope.toFixed(4)}vw`;
-  return `clamp(${minPx}, ${preferred}, ${maxPx})`;
-}
-
 export const typography = {
-  fontFamily: "var(--ui-font-family)",
-  fontSizes: ["12px", "14px", "16px", "20px", "24px", "32px"],
-  Heading7: `font-size: 0.875rem; line-height: 1.25; font-weight: 600;`,
-  Heading0: {
-    fontSize: fluid(26, 48),
-    fontFamily: FontFamily.Poppins_Medium,
-    lineHeight: "120%",
+  Heading1: {
+    fontSize: fluid(48, 64),
+    fontFamily: FontFamily.Default,
+    fontWeight: 600,
+    lineHeight: "75px",
+    fontStyle: "normal",
     letterSpacing: "0px",
   },
-  fontWeights: {
-    light: 300,
-    regular: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
-  },
-};
 
-export default typography;
+  Heading2: {
+    fontSize: fluid(32, 40),
+    fontFamily: FontFamily.Default,
+    fontWeight: 600,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+
+  Heading3: {
+    fontSize: fluid(24, 32),
+    fontFamily: FontFamily.Default,
+    fontWeight: 600,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+
+  H4_SemiBold: {
+    fontSize: fluid(20, 22),
+    fontFamily: FontFamily.Default,
+    fontWeight: 600,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+
+  H4_Medium: {
+    fontSize: fluid(20, 22),
+    fontFamily: FontFamily.Default,
+    fontWeight: 500,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+
+  H5_Regular: {
+    fontSize: fluid(18, 20),
+    fontFamily: FontFamily.Default,
+    fontWeight: 400,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+
+  H5_Medium: {
+    fontSize: fluid(18, 20),
+    fontFamily: FontFamily.Default,
+    fontWeight: 500,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+
+  Body_Regular: {
+    fontSize: fluid(14, 16),
+    fontFamily: FontFamily.Default,
+    fontWeight: 400,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+
+  Body_Medium: {
+    fontSize: fluid(12, 14),
+    fontFamily: FontFamily.Default,
+    fontWeight: 500,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+
+  Body_Small: {
+    fontSize: fluid(10, 11),
+    fontFamily: FontFamily.Default,
+    fontWeight: 500,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+
+  Body_Bold: {
+    fontSize: fluid(10, 11),
+    fontFamily: FontFamily.Default,
+    fontWeight: 700,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+} as const;
+
+export type TypographyOptions = typeof typography;

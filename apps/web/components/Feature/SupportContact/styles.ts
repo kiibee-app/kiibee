@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import breakpoints from "../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 import GenericButton from "@/components/UI/GenericButton";
 
 export const Section = styled.section`
@@ -8,7 +8,7 @@ export const Section = styled.section`
   padding: 120px 28px 88px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     padding: 90px 16px 64px;
   }
 `;
@@ -27,7 +27,7 @@ export const Panel = styled.div`
   grid-template-columns: minmax(280px, 1fr) minmax(380px, 1.1fr);
   gap: 36px;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     grid-template-columns: 1fr;
     padding: 28px 20px;
     gap: 28px;
@@ -41,7 +41,7 @@ export const SuccessState = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     min-height: 420px;
   }
 `;
@@ -60,7 +60,7 @@ export const SuccessCard = styled.div`
   gap: 16px;
   text-align: center;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     min-height: 320px;
     padding: 40px 24px;
     gap: 12px;
@@ -74,7 +74,7 @@ export const SuccessTitle = styled.h2`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     font-size: 1.75rem;
   }
 `;
@@ -86,7 +86,7 @@ export const SuccessText = styled.p`
   line-height: 1.6;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     max-width: 100%;
     font-size: 0.95rem;
   }
@@ -98,24 +98,14 @@ export const Content = styled.div`
 
 export const Title = styled.h1`
   margin: 0 0 16px;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.05;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const Description = styled.p`
   margin: 0 0 18px;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const ResourceCopy = styled.p`
   margin: 0 0 36px;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const InlineLink = styled(Link)`
@@ -147,9 +137,6 @@ export const ContactTitle = styled.h2`
 
 export const EmailLink = styled.a`
   width: fit-content;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  font-size: 1.2rem;
-  line-height: 1.5;
   text-decoration: underline;
   text-underline-offset: 4px;
 `;
@@ -160,7 +147,7 @@ export const FormCard = styled.div`
   padding: 28px;
   box-shadow: ${({ theme }) => theme.shadows.md};
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     padding: 20px;
   }
 `;
@@ -176,7 +163,7 @@ export const FormGrid = styled.div`
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px 14px;
 
-  @media (max-width: ${breakpoints.tablet}) {
+  ${media.tablet} {
     grid-template-columns: 1fr;
   }
 `;

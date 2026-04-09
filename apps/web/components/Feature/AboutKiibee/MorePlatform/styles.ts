@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const SectionWrapper = styled.section`
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
@@ -13,10 +13,6 @@ export const Inner = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: ${({ theme }) => theme.colors.primary.PALE_GREEN};
-  font-size: 40px;
-  font-weight: 600;
-  line-height: normal;
   margin-bottom: 25px;
 `;
 
@@ -44,9 +40,7 @@ export const Card = styled.div`
 `;
 
 export const Text = styled.p`
-  font-size: 16px;
-  font-weight: 400;
-  line-height: normal;
+  ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.WHITE};
   margin-bottom: 12px;
 `;
