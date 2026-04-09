@@ -9,7 +9,7 @@ import { FilterIcon } from "@/assets/icons/filterIcon";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import { SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
+import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 
 type Props = {
   setSortBy: (value: SortValue) => void;
@@ -38,7 +38,7 @@ export default function ExploreCreatorsHero({ setSortBy }: Props) {
 
             <SortDropdown
               options={SORT_OPTIONS}
-              value="a-z"
+              value={DEFAULT_SORT}
               onChange={setSortBy}
             />
           </Controls>
