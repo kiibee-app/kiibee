@@ -290,5 +290,11 @@
     "filter": "Filter",
     "search": "Search for posts",
     "sort": "Sort by: a-z"
+  },
+  "pricingPage": {
+    "title": "Find the perfect plan for your creative business",
+    "descriptionLine1": "Choose the plan that fits your goals. Start small, grow big, and sell your content your way.",
+    "descriptionLine2": "No hidden fees, no complicated setup, just creativity made simple.",
+    "cta": "Get started for free"
   }
 }
