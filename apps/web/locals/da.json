@@ -381,5 +381,78 @@
     "theater": "Teater",
     "sound": "Lydeffekter og loops",
     "articles": "Artikler og essays"
+  },
+  "pricingPage": {
+    "title": "Find the perfect plan for your creative business",
+    "descriptionLine1": "Choose the plan that fits your goals. Start small, grow big, and sell your content your way.",
+    "descriptionLine2": "No hidden fees, no complicated setup, just creativity made simple.",
+    "cta": "Get started for free"
+  },
+  "pricingPlans": {
+    "title": "Pricing plans overview",
+    "cta": "Get started",
+    "plans": {
+      "launch": {
+        "title": "Launch",
+        "price": "0 kr/md",
+        "desc1": "Kom hurtigt i gang med at sælge dit digitale indhold.",
+        "desc2": "Perfekt til dig, der vil teste en idé, lancere dit første produkt eller komme online uden risiko.",
+        "features": [
+          "Eget site & shop med op til to filer.",
+          "Betalingsmodul (Dankort, kreditkort og mobilepay)",
+          "Til Streaming og download",
+          "Salgs- og visningsstatistik",
+          "Opsamling af e-mail eller kode på indhold"
+        ]
+      },
+      "growth": {
+        "title": "Growth",
+        "price": "129 kr/md",
+        "desc1": "Skabt til dig, der udgiver løbende og vil samle dit indhold ét sted.",
+        "desc2": "Få mere frihed, mere plads til vækst og en løsning, der følger med dit momentum.",
+        "features": [
+          "Eget site & shop",
+          "Betalingsmodul (Dankort, kreditkort og mobilepay)",
+          "Til Streaming og download",
+          "Salgs- og visningsstatistik",
+          "Opsamling af e-mail eller kode på indhold",
+          "Sæt rabatkoder på dit indhold",
+          "Kommunikerer på dine kunder direkte"
+        ]
+      },
+      "pro": {
+        "title": "Pro",
+        "price": "399 kr/md",
+        "desc1": "Til professionelle creators og virksomheder med større ambitioner.",
+        "desc2": "Få maksimal fleksibilitet, ekstra support og hjælp til opsætning – så du kan fokusere på salg og skalering.",
+        "features": [
+          "Eget site & shop",
+          "Betalingsmodul (Dankort, kreditkort og mobilepay)",
+          "Til Streaming og download",
+          "Salgs- og visningsstatistik",
+          "Opsamling af e-mail eller kode på indhold",
+          "Sæt rabatkoder på dit indhold",
+          "Kommunikerer på dine kunder direkte",
+          "Integrer med et hav af apps via Zapier.com"
+        ]
+      }
+    }
+  },
+  "pricingFaq": {
+    "title": "FAQ",
+    "items": [
+      {
+        "question": "Can I sell content with the free plan?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      },
+      {
+        "question": "Can I change or cancel my plan?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      },
+      {
+        "question": "Do viewers need a subscription?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      }
+    ]
   }
 }

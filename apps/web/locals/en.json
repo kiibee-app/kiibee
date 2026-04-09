@@ -29,7 +29,7 @@
     "remember": "Remember me",
     "forgot": "Forgot your password?",
     "submit": "Log in",
-    "footer": "Don’t have an account?",
+    "footer": "Don't have an account?",
     "signUp": "Sign up"
   },
   "viewerSignup": {
@@ -381,5 +381,78 @@
     "theater": "Theater",
     "sound": "Sound effects and loops",
     "articles": "Articles & essays"
+  },
+  "pricingPage": {
+    "title": "Find the perfect plan for your creative business",
+    "descriptionLine1": "Choose the plan that fits your goals. Start small, grow big, and sell your content your way.",
+    "descriptionLine2": "No hidden fees, no complicated setup, just creativity made simple.",
+    "cta": "Get started for free"
+  },
+  "pricingPlans": {
+    "title": "Pricing plans overview",
+    "cta": "Get started",
+    "plans": {
+      "launch": {
+        "title": "Launch",
+        "price": "0 kr/md",
+        "desc1": "Get started quickly selling your digital content.",
+        "desc2": "Perfect if you want to test an idea, launch your first product, or go online without risk.",
+        "features": [
+          "Own site & shop with up to two files.",
+          "Payment module (Dankort, credit card and MobilePay)",
+          "For streaming and download",
+          "Sales and view statistics",
+          "Collect e-mail or code on content"
+        ]
+      },
+      "growth": {
+        "title": "Growth",
+        "price": "129 kr/md",
+        "desc1": "Built for creators who publish regularly and want all content in one place.",
+        "desc2": "Get more freedom, more room to grow, and a setup that follows your momentum.",
+        "features": [
+          "Own site & shop",
+          "Payment module (Dankort, credit card and MobilePay)",
+          "For streaming and download",
+          "Sales and view statistics",
+          "Collect e-mail or code on content",
+          "Set discount codes on your content",
+          "Communicate directly with your customers"
+        ]
+      },
+      "pro": {
+        "title": "Pro",
+        "price": "399 kr/md",
+        "desc1": "For professional creators and companies with bigger ambitions.",
+        "desc2": "Get maximum flexibility, extra support, and setup help so you can focus on sales and scaling.",
+        "features": [
+          "Own site & shop",
+          "Payment module (Dankort, credit card and MobilePay)",
+          "For streaming and download",
+          "Sales and view statistics",
+          "Collect e-mail or code on content",
+          "Set discount codes on your content",
+          "Communicate directly with your customers",
+          "Integrate with many apps through Zapier.com"
+        ]
+      }
+    }
+  },
+  "pricingFaq": {
+    "title": "FAQ",
+    "items": [
+      {
+        "question": "Can I sell content with the free plan?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      },
+      {
+        "question": "Can I change or cancel my plan?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      },
+      {
+        "question": "Do viewers need a subscription?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      }
+    ]
   }
 }
