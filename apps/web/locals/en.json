@@ -123,6 +123,38 @@
     },
     "cta": "Learn more"
   },
+  "creators": {
+    "heading": {
+      "lineOne": "Upload.",
+      "lineTwo": "Market.",
+      "lineThree": "Earn."
+    },
+    "cta": "Join kiibee today",
+    "mainCard": {
+      "alt": "Man recording podcast",
+      "title": "Built-in Features",
+      "subtitle": "Everything you need to sell"
+    },
+    "salesInsights": {
+      "alt": "Woman smiling",
+      "title": "Sales Insights"
+    },
+    "paymentSolutions": {
+      "alt": "Woman in grey jacket",
+      "title": "Payment Solutions"
+    },
+    "shortStory": {
+      "imageAlt": "Person working at a desk with monitors and a microphone",
+      "title": "A short story about Kiibee",
+      "lead": "Kiibee was founded in 2017 to make it easier for creators and businesses to sell and distribute digital content directly to their audience.",
+      "body": "We saw great content being shared for free or locked behind complicated systems - and consumers struggling to access quality content in a simple way. Kiibee was built to change that.",
+      "cta": "Read more about Kiibee"
+    },
+    "title": "All creators",
+    "filter": "Filter",
+    "search": "Search for posts",
+    "sort": "Sort by: a-z"
+  },
   "discoverContent": {
     "title": "Discover content",
     "subtitle": "Browse hundreds of videos, audio files, and e-books.",
@@ -277,18 +309,18 @@
       "alt": "Creative professionals working on digital content",
       "content": {
         "quality": "We believe that quality content deserves a professional home.",
-        "creators": "Creators should be able to own their work, control how it’s shared, and get paid without technical complexity.",
+        "creators": "Creators should be able to own their work, control how it's shared, and get paid without technical complexity.",
         "viewers": "Viewers should be able to access content easily, pay only for what they want, and enjoy a smooth experience."
       }
     },
     "platform": {
       "title": "More than a platform",
       "intro": "Kiibee is not just a technical solution.",
-      "description": "It’s a bridge between creators and their audience, built to support long-term value, sustainable content distribution and a better experience for everyone involved."
+      "description": "It's a bridge between creators and their audience, built to support long-term value, sustainable content distribution and a better experience for everyone involved."
     },
     "value": {
       "title": "Join the Kiibee movement",
-      "subtitle": "Whether you’re a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you."
+      "subtitle": "Whether you're a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you."
     }
   },
   "features": {
@@ -349,11 +381,5 @@
     "theater": "Theater",
     "sound": "Sound effects and loops",
     "articles": "Articles & essays"
-  },
-  "creators": {
-    "title": "All creators",
-    "filter": "Filter",
-    "search": "Search for posts",
-    "sort": "Sort by: a-z"
   }
 }
