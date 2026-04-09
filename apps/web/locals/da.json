@@ -12,6 +12,71 @@
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee"
   },
+  "auth": {
+    "title": "Stedet hvor skabere og støtter mødes",
+    "subtitle": "Skabere tjener ved at dele indhold. Seere opdager og støtter det arbejde, de elsker. Bliv en del af et fællesskab, hvor kreativitet trives på begge sider.",
+    "signupCreator": "Tilmeld dig som skaber",
+    "signupViewer": "Tilmeld dig som seer",
+    "haveAccount": "Har du allerede en konto?",
+    "login": "Log ind",
+    "mediaCard1Alt": "Mediekort for skaber",
+    "mediaCard2Alt": "Opskriftskort for skaber"
+  },
+  "authForm": {
+    "title": "Log ind",
+    "emailLabel": "E-mailadresse",
+    "passwordLabel": "Adgangskode",
+    "remember": "Husk mig",
+    "forgot": "Glemt din adgangskode?",
+    "submit": "Log ind",
+    "footer": "Har du ikke en konto?",
+    "signUp": "Tilmeld dig"
+  },
+  "viewerSignup": {
+    "heading": "Opret seerkonto",
+    "description": "Viewer-tilmeldingsformular kommer snart..."
+  },
+  "authSlide": {
+    "carousel": [
+      {
+        "title": "Se eller skab",
+        "description": "Støt de skabere, du elsker, eller byg dit eget fællesskab af støtter."
+      },
+      {
+        "title": "Bliv inspireret",
+        "description": "Opdag historier og idéer fra Kiibee-fællesskabet."
+      }
+    ],
+    "imageAlt": "{{title}} dias",
+    "dotsLabel": "Diasindikator",
+    "slideFallback": "dias"
+  },
+  "authCreator": {
+    "backAria": "Tilbage",
+    "title": "Anmod om at blive Kiibee-skaber",
+    "subtitle": "Vi er glade for, at du vil være med på Kiibee! Før du går i gang, bedes du udfylde formularen nedenfor. Vi gennemgår alle skaberanmodninger for at sikre indhold af høj kvalitet på platformen.",
+    "haveAccount": "Har du allerede en konto?",
+    "login": "Log ind",
+    "form": {
+      "firstName": "Fornavn",
+      "lastName": "Efternavn",
+      "email": "E-mailadresse",
+      "phone": "Telefonnummer (valgfrit)",
+      "cvr": "CVR (valgfrit)",
+      "cvrHelp": "8 cifre - kun hvis du driver en virksomhed",
+      "address": "Adresse",
+      "city": "By",
+      "postalCode": "Postnummer",
+      "workLink": "Link til eksempel på arbejde (YouTube, WeTransfer osv.)",
+      "contentLabel": "Fortæl os om dit indhold",
+      "contentPlaceholder": "Fortæl lidt om dit indhold, og hvad du gerne vil dele på Kiibee.",
+      "consentPrefix": "Jeg accepterer Kiibees",
+      "terms": "Vilkår for brug",
+      "and": "og",
+      "privacy": "Privatlivspolitik",
+      "submit": "Send anmodning"
+    }
+  },
   "how": {
     "heroAlt": "Kiibee hero-billede",
     "title": "Stream eller ej — indholdet du elsker",

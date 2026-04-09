@@ -12,6 +12,71 @@
     "startCreating": "Start creating",
     "logoAlt": "Kiibee"
   },
+  "auth": {
+    "title": "The place where creators and supporters meet",
+    "subtitle": "Creators earn by sharing content. Viewers discover and support the work they love. Join a community where creativity thrives on both sides.",
+    "signupCreator": "Sign up as a creator",
+    "signupViewer": "Sign up as a viewer",
+    "haveAccount": "Already have an account?",
+    "login": "Log in",
+    "mediaCard1Alt": "Creator media card",
+    "mediaCard2Alt": "Creator recipes media card"
+  },
+  "authForm": {
+    "title": "Log in",
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "remember": "Remember me",
+    "forgot": "Forgot your password?",
+    "submit": "Log in",
+    "footer": "Don’t have an account?",
+    "signUp": "Sign up"
+  },
+  "viewerSignup": {
+    "heading": "Create Viewer Account",
+    "description": "Viewer signup form coming soon..."
+  },
+  "authSlide": {
+    "carousel": [
+      {
+        "title": "Watch or create",
+        "description": "Support creators you love or build your own community of supporters."
+      },
+      {
+        "title": "Stay inspired",
+        "description": "Discover stories and ideas shared by the Kiibee community."
+      }
+    ],
+    "imageAlt": "{{title}} slide",
+    "dotsLabel": "Slide indicator",
+    "slideFallback": "slide"
+  },
+  "authCreator": {
+    "backAria": "Back",
+    "title": "Request to become a Kiibee creator",
+    "subtitle": "We're excited you want to join Kiibee! Before getting started, please fill out the form below. We review all creator requests to ensure high-quality content on the platform.",
+    "haveAccount": "Already have an account?",
+    "login": "Log in",
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "phone": "Phone number (optional)",
+      "cvr": "CVR (optional)",
+      "cvrHelp": "8 digits - only if you run a business",
+      "address": "Address",
+      "city": "City",
+      "postalCode": "Postal code",
+      "workLink": "Link to example work (YouTube, WeTransfer, etc.)",
+      "contentLabel": "Tell us about your content",
+      "contentPlaceholder": "Tell us a bit about your content and what you'd like to share on Kiibee.",
+      "consentPrefix": "I agree to Kiibee's",
+      "terms": "Terms of Use",
+      "and": "and",
+      "privacy": "Privacy Policy",
+      "submit": "Submit request"
+    }
+  },
   "how": {
     "heroAlt": "Kiibee hero image",
     "title": "Stream or own the content you love",
