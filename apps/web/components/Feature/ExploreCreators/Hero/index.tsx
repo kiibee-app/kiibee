@@ -15,6 +15,8 @@ import SearchBar from "@/components/UI/SearchBar";
 import { FilterIcon } from "@/assets/icons/filterIcon";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { Directions } from "@/utils/ui";
+import { MonoText } from "@/components/UI/Monotext";
+import { COLORS } from "@kiibee/ui/colors";
 
 export default function ExploreCreatorsHero() {
   const { t } = useTranslation();
@@ -23,7 +25,11 @@ export default function ExploreCreatorsHero() {
     <Hero>
       <Inner>
         <Content>
-          <Title>{t("creators.title")}</Title>
+          <Title>
+            <MonoText $use="Heading2" color={COLORS.neutral.OFF_WHITE}>
+              {t("creators.title")}
+            </MonoText>
+          </Title>{" "}
           <Controls>
             <FilterBtn>
               <FilterIcon />
