@@ -111,26 +111,13 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 28px;
-  font-weight: 500;
   margin-bottom: 1.5rem;
-  line-height: 1.2;
   max-width: 100%;
-  color: #1a1a1a;
-
-  ${media.tablet} {
-    font-size: 2rem;
-  }
-
-  ${media.mobile} {
-    font-size: 1.5rem;
-  }
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const Subtitle = styled.p`
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: #505050;
+  color: ${({ theme }) => theme.colors.primary.BLACK_90};
   margin-bottom: 5rem;
   max-width: 100%;
 
@@ -159,16 +146,11 @@ export const CTAWrap = styled.div`
 export const AccountText = styled.p`
   margin-top: 2rem;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5;
   text-align: center;
 `;
 
 export const LoginLink = styled.a`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  font-size: 1rem;
-  font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 2px;
 `;

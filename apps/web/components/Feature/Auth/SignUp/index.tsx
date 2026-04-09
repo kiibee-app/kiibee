@@ -21,6 +21,7 @@ import {
 import GenericButton from "../../../UI/GenericButton";
 import mediaCard1 from "../../../../assets/images/auth/mediaCard1.png";
 import mediaCard2 from "../../../../assets/images/auth/mediaCard2.png";
+import { MonoText } from "@/components/UI/Monotext";
 
 export default function SignUpSection() {
   const { t } = useTranslation();
@@ -30,8 +31,12 @@ export default function SignUpSection() {
       <Inner>
         <Left>
           <Content>
-            <Title>{t("auth.title")}</Title>
-            <Subtitle>{t("auth.subtitle")}</Subtitle>
+            <Title>
+              <MonoText $use="H4_Medium">{t("auth.title")}</MonoText>
+            </Title>
+            <Subtitle>
+              <MonoText $use="Body_Regular">{t("auth.subtitle")}</MonoText>
+            </Subtitle>
 
             <CTAWrap>
               <GenericButton
@@ -47,8 +52,12 @@ export default function SignUpSection() {
             </CTAWrap>
 
             <AccountText>
-              {t("auth.haveAccount")}{" "}
-              <LoginLink href="#">{t("auth.login")}</LoginLink>
+              <MonoText $use="Body_Medium">
+                {t("auth.alreadyHaveAccount")}
+              </MonoText>
+              <LoginLink href="#">
+                <MonoText $use="Body_Medium">{t("auth.login")} </MonoText>
+              </LoginLink>
             </AccountText>
           </Content>
         </Left>

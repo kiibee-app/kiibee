@@ -26,27 +26,9 @@ export const BackButton = styled(Link)`
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
 `;
 
-export const BrandMark = styled.span`
-  width: 42px;
-  height: 42px;
-  margin: 0 auto 16px;
-  border-radius: 9999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  font-size: 1.75rem;
-  font-weight: 700;
-  line-height: 1;
-`;
-
 export const FormTitle = styled.h1`
   margin: 0;
   text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.2;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
@@ -145,13 +127,11 @@ export const SubmitButton = styled.button`
 export const LinkRow = styled.p`
   margin: 16px 0 0;
   text-align: center;
-  font-size: 0.95rem;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
 `;
 
 export const LoginLink = styled(Link)`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 2px;
 `;
