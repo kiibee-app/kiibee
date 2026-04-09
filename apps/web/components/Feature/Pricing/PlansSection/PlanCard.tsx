@@ -1,5 +1,6 @@
 "use client";
 
+import type { PlanCardProps } from "@/types/planCard";
 import {
   Card,
   Description,
@@ -12,16 +13,6 @@ import {
   PlanTitle,
   TickIcon,
 } from "./styles";
-
-interface PlanCardProps {
-  title: string;
-  price: string;
-  desc1: string;
-  desc2: string;
-  features: string[];
-  cta: string;
-  highlight?: boolean;
-}
 
 export default function PlanCard({
   title,
