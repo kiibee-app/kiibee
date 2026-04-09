@@ -19,7 +19,6 @@ import {
 import { useTheme } from "styled-components";
 import {
   BackButton,
-  BrandMark,
   Checkbox,
   CheckboxRow,
   ConsentText,
@@ -37,6 +36,9 @@ import {
   TermsLink,
   TopBar,
 } from "./styles";
+import Image from "next/image";
+import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
+import { MonoText } from "@/components/UI/Monotext";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
@@ -75,7 +77,7 @@ export default function SignUpCreatorSection() {
       key={field.key}
       id={`creator-${field.key}`}
       label={t(field.labelKey)}
-      labelFontStyle="Body_Title7"
+      labelFontStyle="Body_Regular"
       labelMarginTop="0"
       type={field.type}
       placeholder={field.placeholderKey ? t(field.placeholderKey) : undefined}
@@ -96,11 +98,14 @@ export default function SignUpCreatorSection() {
           />
         </BackButton>
       </TopBar>
+      <Image src={logo} alt="Kiibee Logo" width={42} height={42} />
 
-      <BrandMark aria-hidden="true">k</BrandMark>
-
-      <FormTitle>{t("authCreator.title")}</FormTitle>
-      <FormIntro>{t("authCreator.subtitle")}</FormIntro>
+      <FormTitle>
+        <MonoText $use="H4_Medium">{t("authCreator.title")}</MonoText>
+      </FormTitle>
+      <FormIntro>
+        <MonoText $use="Body_Regular">{t("authCreator.subtitle")}</MonoText>
+      </FormIntro>
 
       <Form onSubmit={handleSubmit}>
         <Grid>{NAME_FIELDS.map((field) => renderField(field))}</Grid>
@@ -138,10 +143,12 @@ export default function SignUpCreatorSection() {
             }
           />
           <ConsentText htmlFor="creator-consent">
-            {t("authCreator.form.consentPrefix")}{" "}
-            <TermsLink href="#">{t("authCreator.form.terms")}</TermsLink>{" "}
-            {t("authCreator.form.and")}{" "}
-            <TermsLink href="#">{t("authCreator.form.privacy")}</TermsLink>
+            <MonoText $use="Body_Small">
+              {t("authCreator.form.consentPrefix")}
+              <TermsLink href="#">{t("authCreator.form.terms")}</TermsLink>
+              {t("authCreator.form.and")}
+              <TermsLink href="#">{t("authCreator.form.privacy")}</TermsLink>
+            </MonoText>
           </ConsentText>
         </CheckboxRow>
 
@@ -151,8 +158,10 @@ export default function SignUpCreatorSection() {
       </Form>
 
       <LinkRow>
-        {t("authCreator.haveAccount")}{" "}
-        <LoginLink href="/auth/login">{t("authCreator.login")}</LoginLink>
+        <MonoText $use="Body_Medium">{t("authCreator.haveAccount")}</MonoText>
+        <LoginLink href="/auth/login">
+          <MonoText $use="Body_Medium">{t("authCreator.login")}</MonoText>
+        </LoginLink>
       </LinkRow>
     </ContentWrap>
   );

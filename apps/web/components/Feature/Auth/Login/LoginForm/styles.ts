@@ -31,8 +31,6 @@ export const LogoCircle = styled.div`
 `;
 export const Title = styled.h2`
   margin: 0;
-  font-size: 1.75rem;
-  font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 export const Form = styled.form`
@@ -70,7 +68,6 @@ export const RememberLabel = styled.label`
   }
 `;
 export const ForgotLink = styled(Link)`
-  font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-decoration: underline;
   margin: 1.25rem 0 3.75rem 0;
@@ -95,11 +92,9 @@ export const SubmitButton = styled.button`
 `;
 export const FooterText = styled.p`
   margin: 1.25rem 0 0;
-  font-size: 0.9rem;
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
 `;
 export const SignUpLink = styled(Link)`
-  font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-decoration: underline;
   margin-left: 0.2rem;

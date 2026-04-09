@@ -7,16 +7,17 @@ import {
   Card,
   FooterText,
   Form,
-  ForgotLink,
   OptionsRow,
   RememberLabel,
   SignUpLink,
   Title,
   Wrapper,
+  ForgotLink,
 } from "./styles";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import Image from "next/image";
 import GenericButton from "@/components/UI/GenericButton";
+import { MonoText } from "@/components/UI/Monotext";
 
 export default function LoginForm() {
   const { t } = useTranslation();
@@ -35,7 +36,9 @@ export default function LoginForm() {
     <Wrapper>
       <Card>
         <Image src={logo} alt="Kiibee Logo" width={42} height={42} />
-        <Title>{t("authForm.title")}</Title>
+        <Title>
+          <MonoText $use="H4_Medium">{t("authForm.title")}</MonoText>
+        </Title>
         <Form onSubmit={handleSubmit}>
           <InputField
             id="login-email"
@@ -65,10 +68,14 @@ export default function LoginForm() {
           </OptionsRow>
           <GenericButton type="submit">{t("authForm.submit")}</GenericButton>
         </Form>
-        <ForgotLink href="/forgot-password">{t("authForm.forgot")}</ForgotLink>
+        <ForgotLink href="/forgot-password">
+          <MonoText $use="Body_Small">{t("authForm.forgot")}</MonoText>
+        </ForgotLink>
         <FooterText>
-          {t("authForm.footer")}
-          <SignUpLink href="/sign-up">{t("authForm.signUp")}</SignUpLink>
+          <MonoText $use="Body_Medium"> {t("authForm.footer")}</MonoText>
+          <SignUpLink href="/auth/signup-creator">
+            <MonoText $use="Body_Medium">{t("authForm.signUp")}</MonoText>
+          </SignUpLink>
         </FooterText>
       </Card>
     </Wrapper>

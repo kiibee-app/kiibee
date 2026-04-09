@@ -8,8 +8,10 @@ import {
   SlideDots,
   SlideImage,
   SlideLayout,
+  SlideTitle,
 } from "./styles";
-import { useSlideData } from "../../../../../utils/useSlideData";
+import { MonoText } from "@/components/UI/Monotext";
+import { useSlideData } from "@/utils/useSlideData";
 
 export default function LoginSlide() {
   const { slidesText, activeSlide, fallbackSlideLabel, stack, t } =
@@ -41,8 +43,12 @@ export default function LoginSlide() {
         ))}
       </ImageStack>
       <SlideContent>
-        <h3>{activeSlide.title}</h3>
-        <p>{activeSlide.description}</p>
+        <SlideTitle>
+          <MonoText $use="H4_Medium">{activeSlide.title}</MonoText>
+        </SlideTitle>
+        <SlideTitle>
+          <MonoText $use="Body_Medium">{activeSlide.description}</MonoText>
+        </SlideTitle>
       </SlideContent>
       <SlideDots>
         {slidesText.map((slide, index) => (

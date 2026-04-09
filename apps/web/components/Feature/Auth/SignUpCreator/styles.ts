@@ -23,27 +23,9 @@ export const BackButton = styled(Link)`
   line-height: 0;
 `;
 
-export const BrandMark = styled.span`
-  width: 42px;
-  height: 42px;
-  margin: 0 auto 16px;
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  font-size: 1.75rem;
-  font-weight: 700;
-  line-height: 1;
-`;
-
 export const FormTitle = styled.h1`
   margin: 0;
   text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.2;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
@@ -51,8 +33,6 @@ export const FormIntro = styled.p`
   width: min(100%, 560px);
   margin: 10px auto 26px;
   text-align: center;
-  font-size: 1rem;
-  line-height: 1.5;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
 `;
 
@@ -92,15 +72,13 @@ export const FullRow = styled.div`
 
 export const HelpText = styled.p`
   margin: 6px 0 0;
-  font-size: 0.75rem;
-  line-height: 1.3;
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
 `;
 
 export const CheckboxRow = styled.div`
   margin-top: 4px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
 `;
 
@@ -112,8 +90,6 @@ export const Checkbox = styled.input`
 `;
 
 export const ConsentText = styled.label`
-  font-size: 0.75rem;
-  line-height: 1.4;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
 `;
 
@@ -146,13 +122,11 @@ export const LinkRow = styled.p`
   margin: 16px 0 0;
   width: 100%;
   text-align: center;
-  font-size: 0.95rem;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
 `;
 
 export const LoginLink = styled(Link)`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 2px;
 `;

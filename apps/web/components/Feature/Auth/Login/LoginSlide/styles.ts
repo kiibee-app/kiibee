@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MonoText } from "@/components/UI/Monotext";
 
 export const SlideLayout = styled.div`
   width: 100%;
@@ -57,18 +58,14 @@ export const SlideContent = styled.div`
   flex-direction: column;
   gap: 0.35rem;
   align-items: center;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+`;
 
-  h3 {
-    margin: 0;
-    font-size: 1.4rem;
-    font-weight: 600;
-  }
+export const SlideTitle = styled.h3`
+  color: ${({ theme }) => theme.colors.primary.WHITE};
 
-  p {
-    margin: 0;
-    color: ${({ theme }) => theme.colors.primary.WHITE};
-    opacity: 0.85;
-    line-height: 1.6;
+  ${MonoText} {
+    color: inherit;
   }
 `;
 
