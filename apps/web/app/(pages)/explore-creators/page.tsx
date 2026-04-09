@@ -4,7 +4,6 @@ import React from "react";
 import NavBar from "@/components/Layout/Navbar";
 import { Main, PageContainer, Section } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
-import ExploreCreators from "@/components/Feature/ExploreCreators/Creators";
 
 export default function ExploreCreatorsPage() {
   return (
@@ -13,7 +12,6 @@ export default function ExploreCreatorsPage() {
       <Main>
         <Section>
           <ExploreCreatorsHero />
-          <ExploreCreators />
         </Section>
       </Main>
     </PageContainer>
