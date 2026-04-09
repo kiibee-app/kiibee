@@ -11,21 +11,17 @@ import {
   Text,
 } from "@/components/Feature/ExploreCreators/Hero/styles";
 import { MonoText } from "../Monotext";
-
-type Option = {
-  label: string;
-  value: string;
-};
+import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 
 type Props = {
-  options: Option[];
-  value?: string;
-  onChange?: (value: string) => void;
+  options: typeof SORT_OPTIONS;
+  value?: SortValue;
+  onChange?: (value: SortValue) => void;
 };
 
 export default function SortDropdown({
   options,
-  value = "a-z",
+  value = DEFAULT_SORT,
   onChange,
 }: Props) {
   const { t } = useTranslation();
@@ -46,7 +42,7 @@ export default function SortDropdown({
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  const handleSelect = (val: string) => {
+  const handleSelect = (val: SortValue) => {
     setSelected(val);
     onChange?.(val);
     setOpen(false);

@@ -9,16 +9,22 @@ import {
   Badge,
   PageWrapper,
 } from "./styles";
-import { CreatorProfile, creators } from "@/utils/dummyData/creators.data";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
+import { CreatorProfile } from "@/utils/sortOptions";
+import { useTranslation } from "react-i18next";
 
-export default function ExploreCreators() {
+type Props = {
+  creators: CreatorProfile[];
+};
+
+export default function ExploreCreators({ creators }: Props) {
+  const { t } = useTranslation();
   return (
     <PageWrapper>
       <Grid>
-        {creators.map((creator: CreatorProfile) => (
+        {creators.map((creator) => (
           <Card key={creator.id}>
             <ImageWrapper>
               <Badge>
@@ -38,17 +44,18 @@ export default function ExploreCreators() {
 
             <Content>
               <MonoText $use="Body_Medium">{creator.name}</MonoText>
-
               <MonoText $use="Body_Small">{creator.uploads} uploads</MonoText>
             </Content>
-            <GenericButton asAnchor href="#creators" variant="secondary">
-              View Profile
+
+            <GenericButton asAnchor href="#profile" variant="secondary">
+              {t("creators.viewProfile")}
             </GenericButton>
           </Card>
         ))}
       </Grid>
+
       <GenericButton asAnchor href="#load" variant="primary">
-        Load more
+        {t("creators.loadMore")}
       </GenericButton>
     </PageWrapper>
   );

@@ -290,8 +290,10 @@
     "filter": "Filter",
     "search": "Search for posts",
     "sort": "Sort by:",
-    "a-z": "A-Z",
-    "subscribers": "Subscribers",
-    "newest": "Newest"
+    "a-z": "a-z",
+    "subscribers": "subscribers",
+    "newest": "newest",
+    "viewProfile": "View profile",
+    "loadMore": "Load more"
   }
 }

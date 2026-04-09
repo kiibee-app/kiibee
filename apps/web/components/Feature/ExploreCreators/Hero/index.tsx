@@ -3,20 +3,20 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Hero, Inner, Content, Title, Controls, FilterBtn } from "./styles";
+
 import SearchBar from "@/components/UI/SearchBar";
 import { FilterIcon } from "@/assets/icons/filterIcon";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 
-export default function ExploreCreatorsHero() {
+type Props = {
+  setSortBy: (value: SortValue) => void;
+};
+
+export default function ExploreCreatorsHero({ setSortBy }: Props) {
   const { t } = useTranslation();
-
-  const options = [
-    { label: "a-z", value: "a-z" },
-    { label: "subscribers", value: "subscribers" },
-    { label: "newest", value: "newest" },
-  ];
 
   return (
     <Hero>
@@ -27,19 +27,19 @@ export default function ExploreCreatorsHero() {
               {t("creators.title")}
             </MonoText>
           </Title>
+
           <Controls>
             <FilterBtn>
               <FilterIcon />
               {t("creators.filter")}
             </FilterBtn>
+
             <SearchBar placeholder={t("creators.search")} />
 
             <SortDropdown
-              options={options}
+              options={SORT_OPTIONS}
               value="a-z"
-              onChange={(val) => {
-                console.log("Selected:", val);
-              }}
+              onChange={setSortBy}
             />
           </Controls>
         </Content>

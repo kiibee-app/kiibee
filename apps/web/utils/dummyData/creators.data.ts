@@ -2,17 +2,9 @@ import simon from "@/assets/images/call_to_action/creator-1.jpg";
 import chief from "@/assets/images/call_to_action/creator-2.png";
 import morten from "@/assets/images/call_to_action/creator-3.png";
 import kammas from "@/assets/images/call_to_action/creator-4.png";
-import { StaticImageData } from "next/image";
+import { CreatorProfile } from "../sortOptions";
 
-export type CreatorCategory = "Comedy" | "Music" | "Publication" | "Cooking";
-
-export type CreatorProfile = {
-  id: string;
-  name: string;
-  category: CreatorCategory;
-  uploads: number;
-  image: string | StaticImageData;
-};
+const baseTime = Date.now();
 
 export const creators: CreatorProfile[] = [
   {
@@ -21,6 +13,7 @@ export const creators: CreatorProfile[] = [
     category: "Comedy",
     uploads: 10,
     image: simon,
+    createdAt: baseTime - 1000 * 60 * 60 * 1,
   },
   {
     id: "2",
@@ -28,6 +21,7 @@ export const creators: CreatorProfile[] = [
     category: "Music",
     uploads: 20,
     image: chief,
+    createdAt: baseTime - 1000 * 60 * 60 * 2,
   },
   {
     id: "3",
@@ -35,6 +29,7 @@ export const creators: CreatorProfile[] = [
     category: "Publication",
     uploads: 15,
     image: morten,
+    createdAt: baseTime - 1000 * 60 * 60 * 3,
   },
   {
     id: "4",
@@ -42,6 +37,7 @@ export const creators: CreatorProfile[] = [
     category: "Cooking",
     uploads: 40,
     image: kammas,
+    createdAt: baseTime - 1000 * 60 * 60 * 4,
   },
   {
     id: "5",
@@ -49,6 +45,7 @@ export const creators: CreatorProfile[] = [
     category: "Comedy",
     uploads: 23,
     image: simon,
+    createdAt: baseTime - 1000 * 60 * 60 * 5,
   },
   {
     id: "6",
@@ -56,6 +53,7 @@ export const creators: CreatorProfile[] = [
     category: "Music",
     uploads: 56,
     image: chief,
+    createdAt: baseTime - 1000 * 60 * 60 * 6,
   },
   {
     id: "7",
@@ -63,6 +61,7 @@ export const creators: CreatorProfile[] = [
     category: "Publication",
     uploads: 41,
     image: morten,
+    createdAt: baseTime - 1000 * 60 * 60 * 7,
   },
   {
     id: "8",
@@ -70,6 +69,7 @@ export const creators: CreatorProfile[] = [
     category: "Cooking",
     uploads: 13,
     image: kammas,
+    createdAt: baseTime - 1000 * 60 * 60 * 8,
   },
   {
     id: "9",
@@ -77,6 +77,7 @@ export const creators: CreatorProfile[] = [
     category: "Comedy",
     uploads: 12,
     image: simon,
+    createdAt: baseTime - 1000 * 60 * 60 * 9,
   },
   {
     id: "10",
@@ -84,6 +85,7 @@ export const creators: CreatorProfile[] = [
     category: "Music",
     uploads: 78,
     image: chief,
+    createdAt: baseTime - 1000 * 60 * 60 * 10,
   },
   {
     id: "11",
@@ -91,6 +93,7 @@ export const creators: CreatorProfile[] = [
     category: "Publication",
     uploads: 21,
     image: morten,
+    createdAt: baseTime - 1000 * 60 * 60 * 11,
   },
   {
     id: "12",
@@ -98,6 +101,7 @@ export const creators: CreatorProfile[] = [
     category: "Cooking",
     uploads: 40,
     image: kammas,
+    createdAt: baseTime - 1000 * 60 * 60 * 12,
   },
   {
     id: "13",
@@ -105,6 +109,7 @@ export const creators: CreatorProfile[] = [
     category: "Comedy",
     uploads: 67,
     image: simon,
+    createdAt: baseTime - 1000 * 60 * 60 * 13,
   },
   {
     id: "14",
@@ -112,6 +117,7 @@ export const creators: CreatorProfile[] = [
     category: "Music",
     uploads: 43,
     image: chief,
+    createdAt: baseTime - 1000 * 60 * 60 * 14,
   },
   {
     id: "15",
@@ -119,6 +125,7 @@ export const creators: CreatorProfile[] = [
     category: "Publication",
     uploads: 27,
     image: morten,
+    createdAt: baseTime - 1000 * 60 * 60 * 15,
   },
   {
     id: "16",
@@ -126,6 +133,7 @@ export const creators: CreatorProfile[] = [
     category: "Cooking",
     uploads: 89,
     image: kammas,
+    createdAt: baseTime - 1000 * 60 * 60 * 16,
   },
   {
     id: "17",
@@ -133,6 +141,7 @@ export const creators: CreatorProfile[] = [
     category: "Comedy",
     uploads: 75,
     image: simon,
+    createdAt: baseTime - 1000 * 60 * 60 * 17,
   },
   {
     id: "18",
@@ -140,6 +149,7 @@ export const creators: CreatorProfile[] = [
     category: "Music",
     uploads: 83,
     image: chief,
+    createdAt: baseTime - 1000 * 60 * 60 * 18,
   },
   {
     id: "19",
@@ -147,6 +157,7 @@ export const creators: CreatorProfile[] = [
     category: "Publication",
     uploads: 37,
     image: morten,
+    createdAt: baseTime - 1000 * 60 * 60 * 19,
   },
   {
     id: "20",
@@ -154,14 +165,15 @@ export const creators: CreatorProfile[] = [
     category: "Cooking",
     uploads: 93,
     image: kammas,
+    createdAt: baseTime - 1000 * 60 * 60 * 20,
   },
-
   {
     id: "21",
     name: "Simon Talbot",
     category: "Comedy",
     uploads: 37,
     image: simon,
+    createdAt: baseTime - 1000 * 60 * 60 * 21,
   },
   {
     id: "22",
@@ -169,6 +181,7 @@ export const creators: CreatorProfile[] = [
     category: "Music",
     uploads: 28,
     image: chief,
+    createdAt: baseTime - 1000 * 60 * 60 * 22,
   },
   {
     id: "23",
@@ -176,6 +189,7 @@ export const creators: CreatorProfile[] = [
     category: "Publication",
     uploads: 83,
     image: morten,
+    createdAt: baseTime - 1000 * 60 * 60 * 23,
   },
   {
     id: "24",
@@ -183,5 +197,6 @@ export const creators: CreatorProfile[] = [
     category: "Cooking",
     uploads: 27,
     image: kammas,
+    createdAt: baseTime - 1000 * 60 * 60 * 24,
   },
 ];

@@ -292,6 +292,8 @@
     "sort": "Sort by:",
     "a-z": "a-z",
     "subscribers": "subscribers",
-    "newest": "newest"
+    "newest": "newest",
+    "viewProfile": "View profile",
+    "loadMore": "Load more"
   }
 }
