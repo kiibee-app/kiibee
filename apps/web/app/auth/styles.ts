@@ -1,5 +1,5 @@
+import COLORS from "@repo/ui/colors";
 import styled from "styled-components";
-import COLORS from "../../../../packages/ui/src/colors";
 
 export const PageContainer = styled.div`
   width: 100%;
