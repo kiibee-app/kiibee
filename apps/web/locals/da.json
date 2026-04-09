@@ -296,5 +296,55 @@
     "descriptionLine1": "Choose the plan that fits your goals. Start small, grow big, and sell your content your way.",
     "descriptionLine2": "No hidden fees, no complicated setup, just creativity made simple.",
     "cta": "Get started for free"
+  },
+  "pricingPlans": {
+    "title": "Pricing plans overview",
+    "cta": "Get started",
+    "plans": {
+      "launch": {
+        "title": "Launch",
+        "price": "0 kr/md",
+        "desc1": "Kom hurtigt i gang med at sælge dit digitale indhold.",
+        "desc2": "Perfekt til dig, der vil teste en id\u00e9, lancere dit f\u00f8rste produkt eller komme online uden risiko.",
+        "features": [
+          "Eget site & shop med op til to filer.",
+          "Betalingsmodul (Dankort, kreditkort og mobilepay)",
+          "Til Streaming og download",
+          "Salgs- og visningsstatistik",
+          "Opsamling af e-mail eller kode på indhold"
+        ]
+      },
+      "growth": {
+        "title": "Growth",
+        "price": "129 kr/md",
+        "desc1": "Skabt til dig, der udgiver løbende og vil samle dit indhold \u00e9t sted.",
+        "desc2": "F\u00e5 mere frihed, mere plads til v\u00e6kst og en l\u00f8sning, der f\u00f8lger med dit momentum.",
+        "features": [
+          "Eget site & shop",
+          "Betalingsmodul (Dankort, kreditkort og mobilepay)",
+          "Til Streaming og download",
+          "Salgs- og visningsstatistik",
+          "Opsamling af e-mail eller kode på indhold",
+          "Sæt rabatkoder på dit indhold",
+          "Kommunikerer på dine kunder direkte"
+        ]
+      },
+      "pro": {
+        "title": "Pro",
+        "price": "399 kr/md",
+        "desc1": "Til professionelle creators og virksomheder med st\u00f8rre ambitioner.",
+        "desc2": "F\u00e5 maksimal fleksibilitet, ekstra support og hj\u00e6lp til ops\u00e6tning \u2013 s\u00e5 du kan fokusere p\u00e5 salg og skalering.",
+        "features": [
+          "Eget site & shop",
+          "Betalingsmodul (Dankort, kreditkort og mobilepay)",
+          "Til Streaming og download",
+          "Salgs- og visningsstatistik",
+          "Opsamling af e-mail eller kode på indhold",
+          "Sæt rabatkoder på dit indhold",
+          "Kommunikerer på dine kunder direkte",
+          "Integrer med et hav af apps via Zapier.com"
+        ]
+      }
+    }
   }
 }
