@@ -1,6 +1,6 @@
-import creatorMainImage from "../assets/images/creators/creator-woman-orange.jpg";
-import creatorSideImageOne from "../assets/images/creators/creator-man-podcast.jpg";
-import creatorSideImageTwo from "../assets/images/creators/creator-woman-gray-jacket.jpg";
+import creatorMainImage from "@/assets/images/creators/creator-woman-orange.jpg";
+import creatorSideImageOne from "@/assets/images/creators/creator-man-podcast.jpg";
+import creatorSideImageTwo from "@/assets/images/creators/creator-woman-gray-jacket.jpg";
 
 export interface CreatorCard {
   image: string;

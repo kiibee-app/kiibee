@@ -84,7 +84,11 @@
       "lead": "Kiibee blev grundlagt i 2017 for at gøre det nemmere for skabere og virksomheder at sælge og distribuere digitalt indhold direkte til deres publikum.",
       "body": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer - og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
       "cta": "Læs mere om Kiibee"
-    }
+    },
+    "title": "All creators",
+    "filter": "Filter",
+    "search": "Search for posts",
+    "sort": "Sort by: a-z"
   },
   "discoverContent": {
     "title": "Opdag indhold",
@@ -312,11 +316,5 @@
     "theater": "Teater",
     "sound": "Lydeffekter og loops",
     "articles": "Artikler og essays"
-  },
-  "creators": {
-    "title": "All creators",
-    "filter": "Filter",
-    "search": "Search for posts",
-    "sort": "Sort by: a-z"
   }
 }

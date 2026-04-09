@@ -84,7 +84,11 @@
       "lead": "Kiibee was founded in 2017 to make it easier for creators and businesses to sell and distribute digital content directly to their audience.",
       "body": "We saw great content being shared for free or locked behind complicated systems - and consumers struggling to access quality content in a simple way. Kiibee was built to change that.",
       "cta": "Read more about Kiibee"
-    }
+    },
+    "title": "All creators",
+    "filter": "Filter",
+    "search": "Search for posts",
+    "sort": "Sort by: a-z"
   },
   "discoverContent": {
     "title": "Discover content",
@@ -312,11 +316,5 @@
     "theater": "Theater",
     "sound": "Sound effects and loops",
     "articles": "Articles & essays"
-  },
-  "creators": {
-    "title": "All creators",
-    "filter": "Filter",
-    "search": "Search for posts",
-    "sort": "Sort by: a-z"
   }
 }

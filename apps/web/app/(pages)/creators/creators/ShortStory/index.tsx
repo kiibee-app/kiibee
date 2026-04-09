@@ -4,6 +4,11 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import creatorsStoryImage from "@/assets/images/creators/678d923e2e28b14f2986cc4127abeb6348d4937c.jpg";
 import {
+  DEFAULT_WINDOW_WIDTH,
+  MOBILE_BREAKPOINT,
+  WINDOW_RESIZE_EVENT,
+} from "./utils/constants";
+import {
   Section,
   ContentWrapper,
   ImageSection,
@@ -16,7 +21,8 @@ import {
 
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
-    width: typeof window !== "undefined" ? window.innerWidth : 1200,
+    width:
+      typeof window !== "undefined" ? window.innerWidth : DEFAULT_WINDOW_WIDTH,
   });
 
   useEffect(() => {
@@ -24,10 +30,10 @@ const useWindowSize = () => {
       setWindowSize({ width: window.innerWidth });
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener(WINDOW_RESIZE_EVENT, handleResize);
     handleResize();
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener(WINDOW_RESIZE_EVENT, handleResize);
   }, []);
 
   return windowSize;
@@ -36,7 +42,7 @@ const useWindowSize = () => {
 export default function ShortStory() {
   const { t } = useTranslation();
   const { width } = useWindowSize();
-  const isMobile = width < 860;
+  const isMobile = width < MOBILE_BREAKPOINT;
 
   return (
     <Section>

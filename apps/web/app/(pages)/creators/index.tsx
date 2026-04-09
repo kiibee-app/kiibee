@@ -2,14 +2,14 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { useIsMobile } from "../../../utils/useIsMobile";
-import { getCreatorCards } from "../../../utils/creatorCardData";
+import { useIsMobile } from "@/utils/useIsMobile";
+import { getCreatorCards } from "@/utils/creatorCardData";
 import {
   getCardDimensions,
   createCardTransition,
   getCardAnimation,
-} from "../../../utils/creatorAnimations";
-import { useCreatorCards } from "../../../utils/useCreatorCards";
+} from "@/utils/creatorAnimations";
+import { useCreatorCards } from "@/utils/useCreatorCards";
 import {
   Section,
   Container,
