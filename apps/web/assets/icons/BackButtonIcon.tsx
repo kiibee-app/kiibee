@@ -1,5 +1,5 @@
+import COLORS from "@repo/ui/colors";
 import * as React from "react";
-import COLORS from "../../../../packages/ui/src/colors";
 
 type BackButtonIconProps = {
   size?: number;

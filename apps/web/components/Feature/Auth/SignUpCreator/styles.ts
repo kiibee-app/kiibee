@@ -1,6 +1,6 @@
+import breakpoints from "@repo/ui/breakpoints";
 import Link from "next/link";
 import styled from "styled-components";
-import breakpoints from "../../../../../../packages/ui/src/breakpoints";
 
 export const ContentWrap = styled.section`
   width: 100%;
