@@ -154,6 +154,11 @@
     "filter": "Filter",
     "search": "Search for posts",
     "sort": "Sort by: a-z",
+    "recentlyAdded": {
+      "badge": "Recently added",
+      "heading": "Recently added content",
+      "tag": "Recently added"
+    },
     "viewProfile": "View profile",
     "loadMore": "Load more"
   },

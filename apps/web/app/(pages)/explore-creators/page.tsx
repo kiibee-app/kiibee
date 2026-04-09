@@ -1,9 +1,7 @@
-"use client";
-
-import React from "react";
 import NavBar from "@/components/Layout/Navbar";
 import { Main, PageContainer, Section } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
+import RecentlyAdded from "@/components/Feature/ExploreCreators/RecentlyAdded";
 import Footer from "@/components/Layout/Footer";
 
 export default function ExploreCreatorsPage() {
@@ -14,6 +12,7 @@ export default function ExploreCreatorsPage() {
         <Section>
           <ExploreCreatorsHero />
         </Section>
+        <RecentlyAdded />
       </Main>
       <Footer />
     </PageContainer>

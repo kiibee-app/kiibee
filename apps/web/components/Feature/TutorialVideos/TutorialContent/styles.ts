@@ -22,6 +22,7 @@ export const SectionHeader = styled.div`
   justify-content: space-between;
   gap: 1.25rem;
   flex-wrap: wrap;
+  margin-bottom: 1rem;
 `;
 export const SectionLabel = styled.div`
   display: flex;
