@@ -37,9 +37,6 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 48px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.primary.WHITE};
   text-align: center;
 `;
 
@@ -75,23 +72,46 @@ export const FilterBtn = styled.div`
 `;
 
 export const SortBox = styled.div`
+  position: relative;
   width: 100%;
   max-width: 200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
+  padding: 13px 20px;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
-  font-size: 14px;
-  font-weight: 400;
-  line-height: normal;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   cursor: pointer;
-  transition: background 0.2s ease;
+`;
 
-  ${media.tablet} {
-    flex: 0 0 150px;
-  }
+export const Dropdown = styled.div`
+  position: absolute;
+  top: 120%;
+  right: 0;
+  width: 100%;
+  max-width: 200px;
+  padding: 12px;
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 100;
+`;
+
+export const DropdownItem = styled.div`
+  padding: 12px 14px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition: all 0.2s ease;
+`;
+
+export const Text = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
