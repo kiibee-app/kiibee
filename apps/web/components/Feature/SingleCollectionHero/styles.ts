@@ -26,7 +26,7 @@ export const ActionButton = styled.button`
   width: fit-content;
   padding: 10px 18px;
   border-radius: 8px;
-  background: black;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.neutral.WHITE};
   border: none;
   cursor: pointer;
@@ -79,11 +79,11 @@ export const HeroImage = styled.div`
   aspect-ratio: 16 / 10;
   border-radius: 12px;
   overflow: hidden;
-  height: 350px;
+  max-height: 350px;
 
   ${media.tablet} {
     min-width: 100%;
-    height: 280px;
+    max-height: 280px;
   }
 `;
 
