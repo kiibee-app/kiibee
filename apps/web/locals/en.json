@@ -327,7 +327,8 @@
     },
     "value": {
       "title": "Join the Kiibee movement",
-      "subtitle": "Whether you're a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you."
+      "subtitle": "Whether you're a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you.",
+      "cta": "Join kiibee today"
     }
   },
   "features": {
@@ -461,5 +462,14 @@
         "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
       }
     ]
+  },
+  "startCreating": {
+    "heading": "Start creating with Kiibee today",
+    "description1": "Join hundreds of creators sharing their work and growing their audience on Kiibee.",
+    "description2": "You can start for free, and upgrade when you're ready.",
+    "cta": "Get started for free"
+  },
+  "ctaSection": {
+    "bgAlt": "CTA background"
   }
 }
