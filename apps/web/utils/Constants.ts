@@ -19,3 +19,6 @@ export const CATEGORY_ICON_WIDTH = 18;
 export const CATEGORY_ICON_HEIGHT = 18;
 export const ICON_SVG_PROP_NAMES = ["width", "height", "color"] as const;
 export const KEY_ENTER = "Enter";
+export const DEFAULT_WINDOW_WIDTH = 1200;
+export const MOBILE_BREAKPOINT = 860;
+export const WINDOW_RESIZE_EVENT = "resize";
