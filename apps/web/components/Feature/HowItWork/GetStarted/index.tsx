@@ -31,10 +31,10 @@ export default function GetStarted({
         </Sub>
 
         <CTAWrap>
-          <GenericButton variant="primary">
+          <GenericButton asAnchor href="/tutorial-videos" variant="primary">
             {t(`${translationPrefix}.tutorial`)}
           </GenericButton>
-          <GenericButton variant="secondary">
+          <GenericButton asAnchor href="/tutorial-videos" variant="secondary">
             {t(`${translationPrefix}.guide`)}
           </GenericButton>
         </CTAWrap>
