@@ -470,6 +470,7 @@
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
-    "seeContent": "Se indhold"
+    "seeContent": "Se indhold",
+    "notFound": "Samling ikke fundet"
   }
 }
