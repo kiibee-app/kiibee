@@ -11,9 +11,11 @@ import {
   Subtitle,
   CTAWrap,
 } from "./styles";
-import heroImg from "../../../../assets/images/hero3.png";
+import heroImg from "@/assets/images/hero3.png";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 export default function AboutHero() {
   const { t } = useTranslation();
@@ -33,8 +35,16 @@ export default function AboutHero() {
 
       <Inner>
         <Content>
-          <Title>{t("about.hero.title")}</Title>
-          <Subtitle>{t("about.hero.subtitle")}</Subtitle>
+          <Title>
+            <MonoText $use="Heading2" color={COLORS.primary.WHITE}>
+              {t("about.hero.title")}
+            </MonoText>
+          </Title>
+          <Subtitle>
+            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+              {t("about.hero.subtitle")}
+            </MonoText>
+          </Subtitle>
           <CTAWrap>
             <GenericButton asAnchor href="/explore" variant="primary">
               {t("about.hero.cta.explore")}

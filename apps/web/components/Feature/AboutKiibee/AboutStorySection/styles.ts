@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const SectionWrapper = styled.section`
   width: 100%;
@@ -34,9 +34,6 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 64px;
-  font-weight: 600;
-  line-height: 75px;
   margin-bottom: 10px;
 `;
 

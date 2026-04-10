@@ -12,6 +12,71 @@
     "startCreating": "Start creating",
     "logoAlt": "Kiibee"
   },
+  "auth": {
+    "title": "The place where creators and supporters meet",
+    "subtitle": "Creators earn by sharing content. Viewers discover and support the work they love. Join a community where creativity thrives on both sides.",
+    "signupCreator": "Sign up as a creator",
+    "signupViewer": "Sign up as a viewer",
+    "haveAccount": "Already have an account?",
+    "login": "Log in",
+    "mediaCard1Alt": "Creator media card",
+    "mediaCard2Alt": "Creator recipes media card"
+  },
+  "authForm": {
+    "title": "Log in",
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "remember": "Remember me",
+    "forgot": "Forgot your password?",
+    "submit": "Log in",
+    "footer": "Don't have an account?",
+    "signUp": "Sign up"
+  },
+  "viewerSignup": {
+    "heading": "Create Viewer Account",
+    "description": "Viewer signup form coming soon..."
+  },
+  "authSlide": {
+    "carousel": [
+      {
+        "title": "Watch or create",
+        "description": "Support creators you love or build your own community of supporters."
+      },
+      {
+        "title": "Stay inspired",
+        "description": "Discover stories and ideas shared by the Kiibee community."
+      }
+    ],
+    "imageAlt": "{{title}} slide",
+    "dotsLabel": "Slide indicator",
+    "slideFallback": "slide"
+  },
+  "authCreator": {
+    "backAria": "Back",
+    "title": "Request to become a Kiibee creator",
+    "subtitle": "We're excited you want to join Kiibee! Before getting started, please fill out the form below. We review all creator requests to ensure high-quality content on the platform.",
+    "haveAccount": "Already have an account?",
+    "login": "Log in",
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "phone": "Phone number (optional)",
+      "cvr": "CVR (optional)",
+      "cvrHelp": "8 digits - only if you run a business",
+      "address": "Address",
+      "city": "City",
+      "postalCode": "Postal code",
+      "workLink": "Link to example work (YouTube, WeTransfer, etc.)",
+      "contentLabel": "Tell us about your content",
+      "contentPlaceholder": "Tell us a bit about your content and what you'd like to share on Kiibee.",
+      "consentPrefix": "I agree to Kiibee's",
+      "terms": "Terms of Use",
+      "and": "and",
+      "privacy": "Privacy Policy",
+      "submit": "Submit request"
+    }
+  },
   "how": {
     "heroAlt": "Kiibee hero image",
     "title": "Stream or own the content you love",
@@ -57,6 +122,48 @@
       }
     },
     "cta": "Learn more"
+  },
+  "creators": {
+    "heading": {
+      "lineOne": "Upload.",
+      "lineTwo": "Market.",
+      "lineThree": "Earn."
+    },
+    "cta": "Join kiibee today",
+    "mainCard": {
+      "alt": "Man recording podcast",
+      "title": "Built-in Features",
+      "subtitle": "Everything you need to sell"
+    },
+    "salesInsights": {
+      "alt": "Woman smiling",
+      "title": "Sales Insights"
+    },
+    "paymentSolutions": {
+      "alt": "Woman in grey jacket",
+      "title": "Payment Solutions"
+    },
+    "shortStory": {
+      "imageAlt": "Person working at a desk with monitors and a microphone",
+      "title": "A short story about Kiibee",
+      "lead": "Kiibee was founded in 2017 to make it easier for creators and businesses to sell and distribute digital content directly to their audience.",
+      "body": "We saw great content being shared for free or locked behind complicated systems - and consumers struggling to access quality content in a simple way. Kiibee was built to change that.",
+      "cta": "Read more about Kiibee"
+    },
+    "title": "All creators",
+    "filter": "Filter",
+    "search": "Search for posts",
+    "sort": "Sort by:",
+    "recentlyAdded": {
+      "badge": "Recently added",
+      "heading": "Recently added content",
+      "tag": "Recently added"
+    },
+    "viewProfile": "View profile",
+    "loadMore": "Load more",
+    "a-z": "A-Z",
+    "subscribers": "Subscribers",
+    "newest": "Newest"
   },
   "discoverContent": {
     "title": "Discover content",
@@ -212,18 +319,18 @@
       "alt": "Creative professionals working on digital content",
       "content": {
         "quality": "We believe that quality content deserves a professional home.",
-        "creators": "Creators should be able to own their work, control how it’s shared, and get paid without technical complexity.",
+        "creators": "Creators should be able to own their work, control how it's shared, and get paid without technical complexity.",
         "viewers": "Viewers should be able to access content easily, pay only for what they want, and enjoy a smooth experience."
       }
     },
     "platform": {
       "title": "More than a platform",
       "intro": "Kiibee is not just a technical solution.",
-      "description": "It’s a bridge between creators and their audience, built to support long-term value, sustainable content distribution and a better experience for everyone involved."
+      "description": "It's a bridge between creators and their audience, built to support long-term value, sustainable content distribution and a better experience for everyone involved."
     },
     "value": {
       "title": "Join the Kiibee movement",
-      "subtitle": "Whether you’re a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you."
+      "subtitle": "Whether you're a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you."
     }
   },
   "features": {
@@ -284,5 +391,78 @@
     "theater": "Theater",
     "sound": "Sound effects and loops",
     "articles": "Articles & essays"
+  },
+  "pricingPage": {
+    "title": "Find the perfect plan for your creative business",
+    "descriptionLine1": "Choose the plan that fits your goals. Start small, grow big, and sell your content your way.",
+    "descriptionLine2": "No hidden fees, no complicated setup, just creativity made simple.",
+    "cta": "Get started for free"
+  },
+  "pricingPlans": {
+    "title": "Pricing plans overview",
+    "cta": "Get started",
+    "plans": {
+      "launch": {
+        "title": "Launch",
+        "price": "0 kr/md",
+        "desc1": "Get started quickly selling your digital content.",
+        "desc2": "Perfect if you want to test an idea, launch your first product, or go online without risk.",
+        "features": [
+          "Own site & shop with up to two files.",
+          "Payment module (Dankort, credit card and MobilePay)",
+          "For streaming and download",
+          "Sales and view statistics",
+          "Collect e-mail or code on content"
+        ]
+      },
+      "growth": {
+        "title": "Growth",
+        "price": "129 kr/md",
+        "desc1": "Built for creators who publish regularly and want all content in one place.",
+        "desc2": "Get more freedom, more room to grow, and a setup that follows your momentum.",
+        "features": [
+          "Own site & shop",
+          "Payment module (Dankort, credit card and MobilePay)",
+          "For streaming and download",
+          "Sales and view statistics",
+          "Collect e-mail or code on content",
+          "Set discount codes on your content",
+          "Communicate directly with your customers"
+        ]
+      },
+      "pro": {
+        "title": "Pro",
+        "price": "399 kr/md",
+        "desc1": "For professional creators and companies with bigger ambitions.",
+        "desc2": "Get maximum flexibility, extra support, and setup help so you can focus on sales and scaling.",
+        "features": [
+          "Own site & shop",
+          "Payment module (Dankort, credit card and MobilePay)",
+          "For streaming and download",
+          "Sales and view statistics",
+          "Collect e-mail or code on content",
+          "Set discount codes on your content",
+          "Communicate directly with your customers",
+          "Integrate with many apps through Zapier.com"
+        ]
+      }
+    }
+  },
+  "pricingFaq": {
+    "title": "FAQ",
+    "items": [
+      {
+        "question": "Can I sell content with the free plan?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      },
+      {
+        "question": "Can I change or cancel my plan?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      },
+      {
+        "question": "Do viewers need a subscription?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      }
+    ]
   }
 }

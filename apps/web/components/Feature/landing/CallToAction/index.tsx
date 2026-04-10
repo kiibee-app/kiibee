@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import kiibeeLogo from "../../../../assets/images/kiibee-logo.svg";
+import kiibeeLogo from "@/assets/images/kiibee-logo.svg";
 import {
   Section,
   Backdrop,
@@ -21,6 +20,8 @@ import {
   CTAButton,
 } from "./styles";
 import { desktopCards, mobileCards } from "@/utils/cards";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 export default function CallToAction() {
   const { t } = useTranslation();
@@ -59,22 +60,23 @@ export default function CallToAction() {
       <Content>
         <Brand>
           <BrandLogo>
-            <Image
-              src={kiibeeLogo}
+            <img
+              src={kiibeeLogo.src ?? kiibeeLogo}
               alt={t("callToAction.logoAlt")}
-              fill
-              priority
-              sizes="(max-width: 767px) 116px, 126px"
-              style={{ objectFit: "contain" }}
             />
           </BrandLogo>
         </Brand>
         <Heading>
-          {t("callToAction.titleLine1")}
-          <br />
-          {t("callToAction.titleLine2")}
+          <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+            {t("callToAction.titleLine1")}
+            {t("callToAction.titleLine2")}
+          </MonoText>
         </Heading>
-        <Subtitle>{t("callToAction.subtitle")}</Subtitle>
+        <Subtitle>
+          <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+            {t("callToAction.subtitle")}
+          </MonoText>
+        </Subtitle>
         <CTAButton type="button">{t("callToAction.cta")}</CTAButton>
       </Content>
     </Section>

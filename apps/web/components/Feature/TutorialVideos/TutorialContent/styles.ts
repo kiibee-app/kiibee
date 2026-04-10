@@ -14,8 +14,6 @@ export const HeroTitle = styled.h1`
 `;
 export const HeroSubtitle = styled.p`
   max-width: 56rem;
-  font-size: 1.1rem;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
   margin: 0 auto;
 `;
 export const SectionHeader = styled.div`
@@ -24,6 +22,7 @@ export const SectionHeader = styled.div`
   justify-content: space-between;
   gap: 1.25rem;
   flex-wrap: wrap;
+  margin-bottom: 1rem;
 `;
 export const SectionLabel = styled.div`
   display: flex;
@@ -35,9 +34,6 @@ export const SectionLabel = styled.div`
 `;
 export const SectionTag = styled.span`
   padding: 0.35rem 0;
-  font-size: 1.375rem;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 export const SectionLink = styled.a`
   display: flex;

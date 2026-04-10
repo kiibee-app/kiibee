@@ -19,15 +19,15 @@ import {
   CardAuthor,
   CardDate,
   MediaTypeBox,
-  MediaTypeText,
   ActionsContainer,
   ActionButton,
   FullWidthAction,
   BottomCtaSection,
-  PrimaryCtaButton,
-  SecondaryCtaButton,
   IconFrame,
 } from "./styles";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
+import GenericButton from "@/components/UI/GenericButton";
 
 export default function DiscoverContent() {
   const theme = useTheme();
@@ -36,15 +36,24 @@ export default function DiscoverContent() {
   return (
     <Section>
       <HeaderSection>
-        <Title>{t("discoverContent.title")}</Title>
-        <Subtitle>{t("discoverContent.subtitle")}</Subtitle>
+        <Title>
+          <MonoText $use="Heading2">{t("discoverContent.title")}</MonoText>
+        </Title>
+        <Subtitle>
+          <MonoText $use="H4_Medium">{t("discoverContent.subtitle")}</MonoText>
+        </Subtitle>
       </HeaderSection>
 
       <GridContainer>
         {discoverContentData.map((item) => (
           <Card key={item.id}>
             <ImageContainer>
-              <CategoryBadge>{t(item.categoryKey)}</CategoryBadge>
+              <CategoryBadge>
+                <MonoText
+                  $use="Body_Bold"
+                  color={COLORS.primary.BLACK_90}
+                ></MonoText>
+              </CategoryBadge>
               <Image
                 src={item.image}
                 alt={t(item.titleKey)}
@@ -55,9 +64,19 @@ export default function DiscoverContent() {
             </ImageContainer>
 
             <TextSection>
-              <CardTitle>{t(item.titleKey)}</CardTitle>
-              <CardAuthor>{t(item.authorKey)}</CardAuthor>
-              <CardDate>{t(item.dateKey)}</CardDate>
+              <CardTitle>
+                <MonoText $use="H5_Medium">{t(item.titleKey)}</MonoText>
+              </CardTitle>
+              <CardAuthor>
+                <MonoText $use="Body_Medium" color={COLORS.primary.BLACK_90}>
+                  {t(item.authorKey)}
+                </MonoText>
+              </CardAuthor>
+              <CardDate>
+                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+                  {t(item.dateKey)}
+                </MonoText>
+              </CardDate>
 
               <MediaTypeBox>
                 <IconFrame>
@@ -73,7 +92,9 @@ export default function DiscoverContent() {
                     />
                   )}
                 </IconFrame>
-                <MediaTypeText>{t(item.mediaTypeKey)}</MediaTypeText>
+                <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
+                  {t(item.mediaTypeKey)}
+                </MonoText>
               </MediaTypeBox>
             </TextSection>
 
@@ -95,10 +116,10 @@ export default function DiscoverContent() {
       </GridContainer>
 
       <BottomCtaSection>
-        <PrimaryCtaButton>{t("discoverContent.ctaPrimary")}</PrimaryCtaButton>
-        <SecondaryCtaButton>
+        <GenericButton>{t("discoverContent.ctaPrimary")}</GenericButton>
+        <GenericButton variant="secondary">
           {t("discoverContent.ctaSecondary")}
-        </SecondaryCtaButton>
+        </GenericButton>
       </BottomCtaSection>
     </Section>
   );

@@ -14,9 +14,9 @@ export const footerConfig: FooterColumn[] = [
     items: [
       { label: "footer.about", href: "/about-kiibee" },
       { label: "footer.howItWorks", href: "/how-it-works" },
-      { label: "footer.forCreators", href: null },
-      { label: "footer.exploreCreators", href: null },
-      { label: "footer.pricing", href: null },
+      { label: "footer.forCreators", href: "/creators" },
+      { label: "footer.exploreCreators", href: "/explore-creators" },
+      { label: "footer.pricing", href: "/pricing" },
     ],
   },
   {

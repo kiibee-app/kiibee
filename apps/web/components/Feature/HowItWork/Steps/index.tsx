@@ -14,7 +14,9 @@ import {
   CardText,
 } from "./styles";
 import { useTranslation } from "react-i18next";
-import steps from "../../../../utils/StepsData";
+import steps from "@/utils/StepsData";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 export default function HowSteps() {
   const { t } = useTranslation();
@@ -23,8 +25,14 @@ export default function HowSteps() {
   return (
     <StepsSection>
       <Inner>
-        <Heading>{t("nav.howItWorks")}</Heading>
-        <Subtitle>{t("how.stepsSubtitle")}</Subtitle>
+        <Heading>
+          <MonoText $use="Heading2">{t("nav.howItWorks")}</MonoText>
+        </Heading>
+        <Subtitle>
+          <MonoText $use="H4_Medium" color={COLORS.neutral.GRAY_700}>
+            {t("how.stepsSubtitle")}
+          </MonoText>
+        </Subtitle>
         <Grid>
           {items.map((it, idx) => (
             <Card key={idx}>
@@ -37,8 +45,12 @@ export default function HowSteps() {
                   style={{ objectFit: "cover" }}
                 />
               </ImgWrap>
-              <CardTitle>{t(it.titleKey)}</CardTitle>
-              <CardText>{t(it.textKey)}</CardText>
+              <CardTitle>
+                <MonoText $use="Heading3">{t(it.titleKey)}</MonoText>
+              </CardTitle>
+              <CardText>
+                <MonoText $use="H5_Regular">{t(it.textKey)}</MonoText>
+              </CardText>
             </Card>
           ))}
         </Grid>

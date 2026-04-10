@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { SectionWrapper, Grid, Title, Text, Inner, Container } from "./styles";
 import { leftTexts, rightTexts } from "@/utils/ourStory";
+import { MonoText } from "@/components/UI/Monotext";
 
 export default function OurStorySection() {
   const { t } = useTranslation();
@@ -12,7 +13,9 @@ export default function OurStorySection() {
     <SectionWrapper>
       <Inner>
         <Container>
-          <Title>{t("about.ourStory.title")}</Title>
+          <Title>
+            <MonoText $use="Heading1">{t("about.ourStory.title")}</MonoText>
+          </Title>
 
           <Grid>
             <div>

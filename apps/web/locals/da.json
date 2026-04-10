@@ -12,6 +12,71 @@
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee"
   },
+  "auth": {
+    "title": "Stedet hvor skabere og støtter mødes",
+    "subtitle": "Skabere tjener ved at dele indhold. Seere opdager og støtter det arbejde, de elsker. Bliv en del af et fællesskab, hvor kreativitet trives på begge sider.",
+    "signupCreator": "Tilmeld dig som skaber",
+    "signupViewer": "Tilmeld dig som seer",
+    "haveAccount": "Har du allerede en konto?",
+    "login": "Log ind",
+    "mediaCard1Alt": "Mediekort for skaber",
+    "mediaCard2Alt": "Opskriftskort for skaber"
+  },
+  "authForm": {
+    "title": "Log ind",
+    "emailLabel": "E-mailadresse",
+    "passwordLabel": "Adgangskode",
+    "remember": "Husk mig",
+    "forgot": "Glemt din adgangskode?",
+    "submit": "Log ind",
+    "footer": "Har du ikke en konto?",
+    "signUp": "Tilmeld dig"
+  },
+  "viewerSignup": {
+    "heading": "Opret seerkonto",
+    "description": "Viewer-tilmeldingsformular kommer snart..."
+  },
+  "authSlide": {
+    "carousel": [
+      {
+        "title": "Se eller skab",
+        "description": "Støt de skabere, du elsker, eller byg dit eget fællesskab af støtter."
+      },
+      {
+        "title": "Bliv inspireret",
+        "description": "Opdag historier og idéer fra Kiibee-fællesskabet."
+      }
+    ],
+    "imageAlt": "{{title}} dias",
+    "dotsLabel": "Diasindikator",
+    "slideFallback": "dias"
+  },
+  "authCreator": {
+    "backAria": "Tilbage",
+    "title": "Anmod om at blive Kiibee-skaber",
+    "subtitle": "Vi er glade for, at du vil være med på Kiibee! Før du går i gang, bedes du udfylde formularen nedenfor. Vi gennemgår alle skaberanmodninger for at sikre indhold af høj kvalitet på platformen.",
+    "haveAccount": "Har du allerede en konto?",
+    "login": "Log ind",
+    "form": {
+      "firstName": "Fornavn",
+      "lastName": "Efternavn",
+      "email": "E-mailadresse",
+      "phone": "Telefonnummer (valgfrit)",
+      "cvr": "CVR (valgfrit)",
+      "cvrHelp": "8 cifre - kun hvis du driver en virksomhed",
+      "address": "Adresse",
+      "city": "By",
+      "postalCode": "Postnummer",
+      "workLink": "Link til eksempel på arbejde (YouTube, WeTransfer osv.)",
+      "contentLabel": "Fortæl os om dit indhold",
+      "contentPlaceholder": "Fortæl lidt om dit indhold, og hvad du gerne vil dele på Kiibee.",
+      "consentPrefix": "Jeg accepterer Kiibees",
+      "terms": "Vilkår for brug",
+      "and": "og",
+      "privacy": "Privatlivspolitik",
+      "submit": "Send anmodning"
+    }
+  },
   "how": {
     "heroAlt": "Kiibee hero-billede",
     "title": "Stream eller ej — indholdet du elsker",
@@ -57,6 +122,48 @@
       }
     },
     "cta": "Learn more"
+  },
+  "creators": {
+    "heading": {
+      "lineOne": "Upload.",
+      "lineTwo": "Market.",
+      "lineThree": "Earn."
+    },
+    "cta": "Tilmeld Kiibee i dag",
+    "mainCard": {
+      "alt": "Mand optager podcast",
+      "title": "Indbyggede funktioner",
+      "subtitle": "Alt hvad du skal bruge for at saelge"
+    },
+    "salesInsights": {
+      "alt": "Smilende kvinde",
+      "title": "Salgsindsigter"
+    },
+    "paymentSolutions": {
+      "alt": "Kvinde i graa jakke",
+      "title": "Betalingsloesninger"
+    },
+    "shortStory": {
+      "imageAlt": "Person working at a desk with monitors and a microphone",
+      "title": "En kort historie om Kiibee",
+      "lead": "Kiibee blev grundlagt i 2017 for at gøre det nemmere for skabere og virksomheder at sælge og distribuere digitalt indhold direkte til deres publikum.",
+      "body": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer - og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
+      "cta": "Læs mere om Kiibee"
+    },
+    "title": "All creators",
+    "filter": "Filter",
+    "search": "Search for posts",
+    "sort": "Sort by:",
+    "recentlyAdded": {
+      "badge": "Senest tilføjet",
+      "heading": "Senest tilføjet indhold",
+      "tag": "Senest tilføjet"
+    },
+    "viewProfile": "View profile",
+    "loadMore": "Load more",
+    "a-z": "A-z",
+    "subscribers": "Subscribers",
+    "newest": "Newest"
   },
   "discoverContent": {
     "title": "Opdag indhold",
@@ -284,5 +391,78 @@
     "theater": "Teater",
     "sound": "Lydeffekter og loops",
     "articles": "Artikler og essays"
+  },
+  "pricingPage": {
+    "title": "Find the perfect plan for your creative business",
+    "descriptionLine1": "Choose the plan that fits your goals. Start small, grow big, and sell your content your way.",
+    "descriptionLine2": "No hidden fees, no complicated setup, just creativity made simple.",
+    "cta": "Get started for free"
+  },
+  "pricingPlans": {
+    "title": "Pricing plans overview",
+    "cta": "Get started",
+    "plans": {
+      "launch": {
+        "title": "Launch",
+        "price": "0 kr/md",
+        "desc1": "Kom hurtigt i gang med at sælge dit digitale indhold.",
+        "desc2": "Perfekt til dig, der vil teste en idé, lancere dit første produkt eller komme online uden risiko.",
+        "features": [
+          "Eget site & shop med op til to filer.",
+          "Betalingsmodul (Dankort, kreditkort og mobilepay)",
+          "Til Streaming og download",
+          "Salgs- og visningsstatistik",
+          "Opsamling af e-mail eller kode på indhold"
+        ]
+      },
+      "growth": {
+        "title": "Growth",
+        "price": "129 kr/md",
+        "desc1": "Skabt til dig, der udgiver løbende og vil samle dit indhold ét sted.",
+        "desc2": "Få mere frihed, mere plads til vækst og en løsning, der følger med dit momentum.",
+        "features": [
+          "Eget site & shop",
+          "Betalingsmodul (Dankort, kreditkort og mobilepay)",
+          "Til Streaming og download",
+          "Salgs- og visningsstatistik",
+          "Opsamling af e-mail eller kode på indhold",
+          "Sæt rabatkoder på dit indhold",
+          "Kommunikerer på dine kunder direkte"
+        ]
+      },
+      "pro": {
+        "title": "Pro",
+        "price": "399 kr/md",
+        "desc1": "Til professionelle creators og virksomheder med større ambitioner.",
+        "desc2": "Få maksimal fleksibilitet, ekstra support og hjælp til opsætning – så du kan fokusere på salg og skalering.",
+        "features": [
+          "Eget site & shop",
+          "Betalingsmodul (Dankort, kreditkort og mobilepay)",
+          "Til Streaming og download",
+          "Salgs- og visningsstatistik",
+          "Opsamling af e-mail eller kode på indhold",
+          "Sæt rabatkoder på dit indhold",
+          "Kommunikerer på dine kunder direkte",
+          "Integrer med et hav af apps via Zapier.com"
+        ]
+      }
+    }
+  },
+  "pricingFaq": {
+    "title": "FAQ",
+    "items": [
+      {
+        "question": "Can I sell content with the free plan?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      },
+      {
+        "question": "Can I change or cancel my plan?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      },
+      {
+        "question": "Do viewers need a subscription?",
+        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+      }
+    ]
   }
 }

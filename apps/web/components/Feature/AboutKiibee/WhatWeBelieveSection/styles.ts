@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "../../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const SectionWrapper = styled.section`
   width: 100%;
@@ -37,9 +37,7 @@ export const Title = styled.h2`
 `;
 
 export const Text = styled.p`
-  font-size: 16px;
-  font-weight: 400;
-  line-height: normal;
+  ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   margin-bottom: 12px;
 `;
