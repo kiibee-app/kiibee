@@ -2,18 +2,10 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import GenericButton from "@/components/UI/GenericButton";
 import { Section, Background, Inner, Content, Title, Subtitle } from "./styles";
-
-type Props = {
-  bgImage?: StaticImageData;
-  title: string;
-  subtitle?: string;
-  subtitleLines?: string[];
-  ctaText?: string;
-  ctaHref?: string;
-};
+import type { CtaSectionProps } from "@/types/ctaSection";
 
 export default function CtaSection({
   bgImage,
@@ -22,7 +14,7 @@ export default function CtaSection({
   subtitleLines,
   ctaText,
   ctaHref,
-}: Props) {
+}: CtaSectionProps) {
   const { t } = useTranslation();
 
   return (
