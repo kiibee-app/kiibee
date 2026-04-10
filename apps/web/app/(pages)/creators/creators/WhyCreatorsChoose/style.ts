@@ -42,13 +42,22 @@ export const BackgroundImage = styled.div<{ $image: string }>`
 
 export const GradientOverlay = styled.div`
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    ${({ theme }) => theme.colors.primary.GREEN_100} 0%,
-    ${({ theme }) => theme.colors.gredint.DEEP_GREEN_80} 50%,
-    ${({ theme }) => theme.colors.primary.GREEN_100} 100%
-  );
+  opacity: 0;
+  background:
+    linear-gradient(
+      180deg,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_START} 0%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_MID} 45%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_END} 100%
+    ),
+    linear-gradient(
+      90deg,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_SOLID} 0%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_MID} 18%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_FADE} 50%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_MID} 82%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_SOLID} 100%
+    );
 `;
 
 export const Content = styled.div`
