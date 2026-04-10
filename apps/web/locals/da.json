@@ -163,7 +163,10 @@
     "loadMore": "Load more",
     "a-z": "A-z",
     "subscribers": "Subscribers",
-    "newest": "Newest"
+    "newest": "Newest",
+    "topCreators": "Topskabere",
+    "seeAll": "Se alle skabere",
+    "subscribersCount": "{{count}}K abonnenter"
   },
   "discoverContent": {
     "title": "Opdag indhold",
