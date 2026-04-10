@@ -16,6 +16,5 @@ export const Content = styled.div`
 
 export const SectionTag = styled.span`
   padding: 0.35rem 0.75rem;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   border-radius: ${({ theme }) => theme.radius.sm};
 `;
