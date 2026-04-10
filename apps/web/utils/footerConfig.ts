@@ -8,6 +8,11 @@ export type FooterColumn = {
   items: FooterItem[];
 };
 
+const tutorialItem = {
+  label: "footer.tutorialVideos",
+  href: "/tutorial-videos",
+};
+
 export const footerConfig: FooterColumn[] = [
   {
     title: "footer.information",
@@ -22,8 +27,8 @@ export const footerConfig: FooterColumn[] = [
   {
     title: "footer.helpfulLinks",
     items: [
-      { label: "footer.tutorialVideos", href: "/tutorial-videos" },
-      { label: "footer.userGuides", href: "/tutorial-videos" },
+      tutorialItem,
+      { label: "footer.userGuides", href: tutorialItem.href },
     ],
   },
   {
