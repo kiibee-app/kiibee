@@ -33,7 +33,7 @@ export default function ExploreCreatorsPage() {
       <Main>
         <Section>
           <ExploreCreatorsHero setSortBy={setSortBy} />
-          <ExploreCreators creators={sortedCreators} />{" "}
+          <ExploreCreators creators={sortedCreators} />
         </Section>
         <RecentlyAdded />
       </Main>

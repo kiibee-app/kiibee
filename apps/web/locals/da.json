@@ -152,6 +152,45 @@
     },
     "title": "All creators",
     "filter": "Filter",
+    "filters": {
+      "title": "Filtre",
+      "showMore": "Vis flere",
+      "sections": {
+        "creators": "Skabere",
+        "categories": "Kategorier",
+        "formats": "Formater",
+        "price": "Pris",
+        "rating": "Bedømmelse"
+      },
+      "price": {
+        "minimum": "Minimumspris",
+        "maximum": "Maksimumspris",
+        "currency": "DKK"
+      },
+      "options": {
+        "categories": {
+          "all": "Alle kategorier",
+          "business": "Business",
+          "comedyShows": "Comedy shows",
+          "musicAndAudio": "Musik og lyd",
+          "educational": "Uddannelse",
+          "fitnessAndHealth": "Fitness og sundhed",
+          "food": "Mad",
+          "podcasts": "Podcasts",
+          "theater": "Teater",
+          "tutorials": "Tutorials",
+          "publications": "Publikationer"
+        },
+        "formats": {
+          "all": "Alle formater",
+          "video": "Video",
+          "ePublication": "E-publikation",
+          "pdf": "PDF",
+          "audioFile": "Lydfil",
+          "webContent": "Webindhold"
+        }
+      }
+    },
     "search": "Search for posts",
     "sort": "Sort by:",
     "recentlyAdded": {

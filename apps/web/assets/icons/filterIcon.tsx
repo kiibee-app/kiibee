@@ -5,11 +5,13 @@ import React from "react";
 type IconProps = {
   width?: number | string;
   height?: number | string;
+  color?: string;
 };
 
 export const FilterIcon: React.FC<IconProps> = ({
   width = 24,
   height = 24,
+  color,
 }) => {
   return (
     <svg
@@ -21,7 +23,7 @@ export const FilterIcon: React.FC<IconProps> = ({
     >
       <path
         d="M4.5 7H19.5M7 12H17M10 17H14"
-        stroke={COLORS.primary.BLACK}
+        stroke={color ?? COLORS.primary.BLACK}
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

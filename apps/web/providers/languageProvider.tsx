@@ -12,6 +12,18 @@ const resources = {
   da: { translation: da },
 };
 
+const syncResources = () => {
+  Object.entries(resources).forEach(([language, resource]) => {
+    i18n.addResourceBundle(
+      language,
+      "translation",
+      resource.translation,
+      true,
+      true,
+    );
+  });
+};
+
 if (!i18n.isInitialized) {
   const opts: InitOptions & { initImmediate?: boolean } = {
     resources: resources as unknown as InitOptions["resources"],
@@ -22,7 +34,11 @@ if (!i18n.isInitialized) {
   };
 
   i18n.use(initReactI18next).init(opts);
+} else {
+  syncResources();
 }
+
+syncResources();
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
