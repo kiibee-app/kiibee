@@ -4,11 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import creatorsStoryImage from "@/assets/images/creators/678d923e2e28b14f2986cc4127abeb6348d4937c.jpg";
 import {
-  DEFAULT_WINDOW_WIDTH,
-  MOBILE_BREAKPOINT,
-  WINDOW_RESIZE_EVENT,
-} from "./utils/constants";
-import {
   Section,
   ContentWrapper,
   ImageSection,
@@ -18,6 +13,7 @@ import {
   Paragraph,
   ReadMoreButton,
 } from "./style";
+import { DEFAULT_WINDOW_WIDTH, MOBILE_BREAKPOINT, WINDOW_RESIZE_EVENT } from "@/utils/Constants";
 
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
