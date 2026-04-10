@@ -5,6 +5,7 @@ import Footer from "@/components/Layout/Footer";
 import { PageContainer, Main } from "../../styles";
 import CreatorsSection from "./index";
 import ShortStory from "./creators/ShortStory";
+import WhyCreatorsChoose from "./creators/WhyCreatorsChoose";
 
 export default function CreatorsPage() {
   return (
@@ -13,6 +14,7 @@ export default function CreatorsPage() {
       <Main>
         <CreatorsSection />
         <ShortStory />
+        <WhyCreatorsChoose />
       </Main>
       <Footer />
     </PageContainer>
