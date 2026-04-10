@@ -59,13 +59,9 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h2`
+  ${({ theme }) => theme.typography.Heading2}
   color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   text-align: center;
-  font-family: "Reddit Sans", sans-serif;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
   margin: 0;
 
   ${media.tablet} {
@@ -78,13 +74,9 @@ export const Title = styled.h2`
 `;
 
 export const Subtitle = styled.p`
+  ${({ theme }) => theme.typography.H5_Regular}
   color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   text-align: center;
-  font-family: "Reddit Sans", sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
   margin: 0;
   max-width: 800px;
 
