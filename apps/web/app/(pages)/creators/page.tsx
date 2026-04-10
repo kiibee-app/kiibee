@@ -3,8 +3,9 @@
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { PageContainer, Main } from "../../styles";
-import CreatorsSection from "./index";
-import ShortStory from "./creators/ShortStory";
+import CreatorsSection from "@/components/Feature/ForCreator/CreatorsSection";
+import ShortStory from "../../../components/Feature/ForCreator/ShortStory";
+import PricingPlansSection from "@/components/Feature/Pricing/PlansSection";
 
 export default function CreatorsPage() {
   return (
@@ -13,6 +14,7 @@ export default function CreatorsPage() {
       <Main>
         <CreatorsSection />
         <ShortStory />
+        <PricingPlansSection titleKey="pricingPage.title" />
       </Main>
       <Footer />
     </PageContainer>
