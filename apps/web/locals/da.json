@@ -143,6 +143,39 @@
       "alt": "Kvinde i graa jakke",
       "title": "Betalingsloesninger"
     },
+    "marketing": {
+      "title": "Vi hjælper dig med at markedsføre dit indhold",
+      "description": "Kiibee er ikke kun en hostingplatform - den hjælper dig aktivt med at promovere og vækste dit indhold. Du kan nemt integrere din egen salgsside eller shop i dit eksisterende setup, samtidig med at du får ekstra synlighed via Kiibees portal, nyhedsbreve og sociale medier.",
+      "listIntro": "Med Kiibee kan du:",
+      "list": [
+        "Dele dit indhold overalt på nettet",
+        "Oprette din egen kanal eller side med kuraterede samlinger",
+        "Styre adgang med betalinger, koder eller e-mailtilmeldinger",
+        "Indsamle e-mailtilladelser til nyhedsbreve og markedsføring",
+        "Integrere eller præsentere dit indhold direkte på din egen hjemmeside"
+      ],
+      "summary": "Dit indhold. Dit publikum. Dine regler.",
+      "cta": "Kom gratis i gang",
+      "images": {
+        "creatorsAlt": "Skabere, der arbejder sammen",
+        "downloadsAlt": "Instruktør, der præsenterer",
+        "setupAlt": "Skaber, der planlægger indhold"
+      },
+      "stats": {
+        "products": {
+          "value": "50.000+",
+          "label": "produkter solgt af vores skabere"
+        },
+        "downloads": {
+          "value": "2,4M",
+          "label": "Kundedownloads har nået"
+        },
+        "setup": {
+          "value": "5 minutter",
+          "label": "Få dit første produkt live på under"
+        }
+      }
+    },
     "shortStory": {
       "imageAlt": "Person working at a desk with monitors and a microphone",
       "title": "En kort historie om Kiibee",

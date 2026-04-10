@@ -143,6 +143,39 @@
       "alt": "Woman in grey jacket",
       "title": "Payment Solutions"
     },
+    "marketing": {
+      "title": "We help you market your content",
+      "description": "Kiibee is not just a hosting platform - it helps you actively promote and grow your content. You can easily integrate your own sales site or shop into your existing setup, while also gaining extra exposure through Kiibee's portal, newsletters, and social media channels.",
+      "listIntro": "With Kiibee, you can:",
+      "list": [
+        "Share your content anywhere on the web",
+        "Create your own channel or site with curated collections",
+        "Control access with payments, codes, or email signups",
+        "Collect email permissions for newsletters and marketing",
+        "Embed or present your content directly on your own website"
+      ],
+      "summary": "Your content. Your audience. Your rules.",
+      "cta": "Get started free",
+      "images": {
+        "creatorsAlt": "Creators working together",
+        "downloadsAlt": "Instructor presenting",
+        "setupAlt": "Creator planning content"
+      },
+      "stats": {
+        "products": {
+          "value": "50,000+",
+          "label": "products sold by our creators"
+        },
+        "downloads": {
+          "value": "2,4M",
+          "label": "Customer download has reached"
+        },
+        "setup": {
+          "value": "5 minutes",
+          "label": "Get your first product live in under"
+        }
+      }
+    },
     "shortStory": {
       "imageAlt": "Person working at a desk with monitors and a microphone",
       "title": "A short story about Kiibee",
