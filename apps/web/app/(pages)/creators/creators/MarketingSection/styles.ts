@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
@@ -140,6 +141,15 @@ export const ImageCard = styled.div`
   ${media.tablet} {
     min-height: 16rem;
   }
+`;
+
+export const TallImage = styled(Image)`
+  object-fit: cover;
+  object-position: right center;
+`;
+
+export const CardImage = styled(Image)`
+  object-fit: cover;
 `;
 
 export const OverlayTall = styled.div`

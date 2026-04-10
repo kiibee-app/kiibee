@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import creatorsWorkingImage from "@/assets/images/we-help-you/marketing-tall.jpg";
 import instructorImage from "@/assets/images/we-help-you/marketing-top.jpg";
@@ -20,6 +19,8 @@ import {
   LeftImageWrap,
   RightImagesWrap,
   ImageCard,
+  TallImage,
+  CardImage,
   OverlayTall,
   OverlayCard,
   StatText,
@@ -54,12 +55,11 @@ export default function MarketingSection() {
         <ImagesColumn>
           <LeftImageWrap>
             <ImageCard>
-              <Image
+              <TallImage
                 src={creatorsWorkingImage}
                 alt={t("creators.marketing.images.creatorsAlt")}
                 fill
                 sizes="(max-width: 768px) 100vw, 42vw"
-                style={{ objectFit: "cover", objectPosition: "right center" }}
               />
               <OverlayTall>
                 <StatText>
@@ -74,12 +74,11 @@ export default function MarketingSection() {
 
           <RightImagesWrap>
             <ImageCard>
-              <Image
+              <CardImage
                 src={instructorImage}
                 alt={t("creators.marketing.images.downloadsAlt")}
                 fill
                 sizes="(max-width: 768px) 100vw, 24vw"
-                style={{ objectFit: "cover" }}
               />
               <OverlayCard>
                 <SupportText>
@@ -92,12 +91,11 @@ export default function MarketingSection() {
             </ImageCard>
 
             <ImageCard>
-              <Image
+              <CardImage
                 src={writingImage}
                 alt={t("creators.marketing.images.setupAlt")}
                 fill
                 sizes="(max-width: 768px) 100vw, 24vw"
-                style={{ objectFit: "cover" }}
               />
               <OverlayCard>
                 <SupportText>
