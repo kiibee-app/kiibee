@@ -5,12 +5,18 @@ import PlanCard from "./PlanCard";
 import { CardsWrapper, Section, SectionTitle } from "./styles";
 import { planOrder } from "@/utils/pricingPlanKeys";
 
-export default function PricingPlansSection() {
+type PricingPlansSectionProps = {
+  titleKey?: string;
+};
+
+export default function PricingPlansSection({
+  titleKey = "pricingPlans.title",
+}: PricingPlansSectionProps) {
   const { t } = useTranslation();
 
   return (
     <Section>
-      <SectionTitle>{t("pricingPlans.title")}</SectionTitle>
+      <SectionTitle>{t(titleKey)}</SectionTitle>
       <CardsWrapper>
         {planOrder.map((planKey) => {
           const baseKey = `pricingPlans.plans.${planKey}`;
