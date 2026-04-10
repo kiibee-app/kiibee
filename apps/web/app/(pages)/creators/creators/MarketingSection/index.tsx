@@ -59,7 +59,6 @@ export default function MarketingSection() {
                 src={creatorsWorkingImage}
                 alt={t("creators.marketing.images.creatorsAlt")}
                 fill
-                sizes="(max-width: 768px) 100vw, 42vw"
               />
               <OverlayTall>
                 <StatText>
@@ -78,7 +77,6 @@ export default function MarketingSection() {
                 src={instructorImage}
                 alt={t("creators.marketing.images.downloadsAlt")}
                 fill
-                sizes="(max-width: 768px) 100vw, 24vw"
               />
               <OverlayCard>
                 <SupportText>
@@ -95,7 +93,6 @@ export default function MarketingSection() {
                 src={writingImage}
                 alt={t("creators.marketing.images.setupAlt")}
                 fill
-                sizes="(max-width: 768px) 100vw, 24vw"
               />
               <OverlayCard>
                 <SupportText>

@@ -143,12 +143,16 @@ export const ImageCard = styled.div`
   }
 `;
 
-export const TallImage = styled(Image)`
+export const TallImage = styled(Image).attrs({
+  sizes: "(max-width: 768px) 100vw, 42vw",
+})`
   object-fit: cover;
   object-position: right center;
 `;
 
-export const CardImage = styled(Image)`
+export const CardImage = styled(Image).attrs({
+  sizes: "(max-width: 768px) 100vw, 24vw",
+})`
   object-fit: cover;
 `;
 
