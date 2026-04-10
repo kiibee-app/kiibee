@@ -5,26 +5,37 @@ import { useTranslation } from "react-i18next";
 import GenericButton from "@/components/UI/GenericButton";
 import { Section, Inner, Heading, Sub, CTAWrap } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
+import { BG_GREEN, type BgVariant } from "@/utils/Constants";
 
-export default function GetStarted() {
+type GetStartedProps = {
+  translationPrefix?: string;
+  bgVariant?: BgVariant;
+};
+
+export default function GetStarted({
+  translationPrefix = "how.getStarted",
+  bgVariant = BG_GREEN,
+}: GetStartedProps) {
   const { t } = useTranslation();
 
   return (
-    <Section>
+    <Section $bgVariant={bgVariant}>
       <Inner>
         <Heading>
-          <MonoText $use="Heading2">{t("how.getStarted.heading")}</MonoText>
+          <MonoText $use="Heading2">
+            {t(`${translationPrefix}.heading`)}
+          </MonoText>
         </Heading>
         <Sub>
-          <MonoText $use="H5_Regular">{t("how.getStarted.sub")}</MonoText>
+          <MonoText $use="H5_Regular">{t(`${translationPrefix}.sub`)}</MonoText>
         </Sub>
 
         <CTAWrap>
           <GenericButton variant="primary">
-            {t("how.getStarted.tutorial")}
+            {t(`${translationPrefix}.tutorial`)}
           </GenericButton>
           <GenericButton variant="secondary">
-            {t("how.getStarted.guide")}
+            {t(`${translationPrefix}.guide`)}
           </GenericButton>
         </CTAWrap>
       </Inner>

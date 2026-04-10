@@ -6,6 +6,8 @@ import { PageContainer, Main } from "../../styles";
 import CreatorsSection from "@/components/Feature/ForCreator/CreatorsSection";
 import ShortStory from "../../../components/Feature/ForCreator/ShortStory";
 import PricingPlansSection from "@/components/Feature/Pricing/PlansSection";
+import GetStarted from "@/components/Feature/HowItWork/GetStarted";
+import { BG_WHITE } from "@/utils/Constants";
 
 export default function CreatorsPage() {
   return (
@@ -15,6 +17,10 @@ export default function CreatorsPage() {
         <CreatorsSection />
         <ShortStory />
         <PricingPlansSection titleKey="pricingPage.title" />
+        <GetStarted
+          translationPrefix="creators.getStarted"
+          bgVariant={BG_WHITE}
+        />
       </Main>
       <Footer />
     </PageContainer>
