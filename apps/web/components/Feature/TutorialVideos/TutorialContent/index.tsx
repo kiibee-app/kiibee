@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { tutorialVideoSections, tutorialVideos } from "@/utils/data";
 import type { TutorialVideo } from "@/utils/types";
 import { MonoText } from "@/components/UI/Monotext";
+import { useRouter } from "next/navigation";
 
 type SectionWithTutorials = (typeof tutorialVideoSections)[number] & {
   tutorials: TutorialVideo[];
@@ -20,7 +21,7 @@ type SectionWithTutorials = (typeof tutorialVideoSections)[number] & {
 
 export default function TutorialContent() {
   const { t } = useTranslation();
-
+  const router = useRouter();
   const sections: SectionWithTutorials[] = tutorialVideoSections.map(
     (section) => ({
       ...section,
@@ -31,7 +32,9 @@ export default function TutorialContent() {
         .filter((tutorial): tutorial is TutorialVideo => Boolean(tutorial)),
     }),
   );
-
+  const handleClick = (id: string) => {
+    router.push(`/single-collection?id=${id}`);
+  };
   return (
     <Content>
       <HeroBlock>
@@ -51,7 +54,7 @@ export default function TutorialContent() {
               </SectionTag>
               <LeftIcon />
             </SectionLabel>
-            <SectionLink href="/tutorial-videos">
+            <SectionLink onClick={() => handleClick(section.id)}>
               <LeftIcon />
             </SectionLink>
           </SectionHeader>

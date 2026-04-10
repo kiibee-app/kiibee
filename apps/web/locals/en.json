@@ -464,5 +464,12 @@
         "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
       }
     ]
+  },
+  "common": {
+    "share": "Share"
+  },
+  "singleCollection": {
+    "subtitle": "Learn how to use our platform",
+    "seeContent": "See content"
   }
 }
