@@ -154,6 +154,11 @@
     "filter": "Filter",
     "search": "Search for posts",
     "sort": "Sort by:",
+    "recentlyAdded": {
+      "badge": "Senest tilføjet",
+      "heading": "Senest tilføjet indhold",
+      "tag": "Senest tilføjet"
+    },
     "viewProfile": "View profile",
     "loadMore": "Load more",
     "a-z": "A-z",

@@ -4,6 +4,7 @@ import React, { useMemo, useState } from "react";
 import NavBar from "@/components/Layout/Navbar";
 import { Main, PageContainer, Section } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
+import RecentlyAdded from "@/components/Feature/ExploreCreators/RecentlyAdded";
 import Footer from "@/components/Layout/Footer";
 import ExploreCreators from "@/components/Feature/ExploreCreators/Creators";
 import { creators } from "@/utils/dummyData/creators.data";
@@ -34,6 +35,7 @@ export default function ExploreCreatorsPage() {
           <ExploreCreatorsHero setSortBy={setSortBy} />
           <ExploreCreators creators={sortedCreators} />{" "}
         </Section>
+        <RecentlyAdded />
       </Main>
       <Footer />
     </PageContainer>

@@ -109,3 +109,16 @@ export const VideoLabel = styled.span`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
+
+export const ActionRow = styled.div`
+  margin-top: 0.85rem;
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+
+  > * {
+    flex: 1;
+    min-width: 0;
+  }
+`;
