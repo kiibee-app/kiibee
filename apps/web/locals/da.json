@@ -330,7 +330,8 @@
     },
     "value": {
       "title": "Bliv en del af Kiibee-bevægelsen",
-      "subtitle": "Uanset om du er en seer, der ønsker at lære noget nyt, eller en skaber, der er klar til at dele din passion, er Kiibee stedet for dig."
+      "subtitle": "Uanset om du er en seer, der ønsker at lære noget nyt, eller en skaber, der er klar til at dele din passion, er Kiibee stedet for dig.",
+      "cta": "Tilmeld Kiibee i dag"
     }
   },
   "features": {
@@ -464,5 +465,14 @@
         "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
       }
     ]
+  },
+  "startCreating": {
+    "heading": "Start creating with Kiibee today",
+    "description1": "Join hundreds of creators sharing their work and growing their audience on Kiibee.",
+    "description2": "You can start for free, and upgrade when you're ready.",
+    "cta": "Get started for free"
+  },
+  "ctaSection": {
+    "bgAlt": "CTA background"
   }
 }
