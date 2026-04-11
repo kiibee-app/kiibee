@@ -13,6 +13,7 @@ import {
   CheckboxControl,
   CheckboxInput,
   Hero,
+  HeroTitleText,
   Inner,
   Content,
   Title,
@@ -47,8 +48,6 @@ import {
   StarIcon,
   StarIconWrap,
 } from "./styles";
-import { COLORS } from "@kiibee/ui/colors";
-import { MonoText } from "@/components/UI/Monotext";
 
 type FilterGroupKey = "creators" | "categories" | "formats";
 type FilterSectionKey = FilterGroupKey | "price" | "rating";
@@ -256,9 +255,7 @@ export default function ExploreCreatorsHero({
         <Content>
           {showControls && (
             <Title>
-              <MonoText $use="Heading2" color={COLORS.neutral.OFF_WHITE}>
-                {t("creators.title")}
-              </MonoText>
+              <HeroTitleText>{t("creators.title")}</HeroTitleText>
             </Title>
           )}
           <Controls>
