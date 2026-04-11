@@ -1,9 +1,17 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import { BG_WHITE, type BgVariant } from "@/utils/Constants";
 
-export const Section = styled.section`
+type SectionProps = {
+  $bgVariant: BgVariant;
+};
+
+export const Section = styled.section<SectionProps>`
   width: 100%;
-  background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
+  background: ${({ theme, $bgVariant }) =>
+    $bgVariant === BG_WHITE
+      ? theme.colors.neutral.WHITE
+      : theme.colors.secondary.MEDIUM_GREEN};
   padding: 3.5rem 0 1rem;
 `;
 
@@ -29,6 +37,7 @@ export const Heading = styled.h2`
 export const Sub = styled.p`
   margin: 0 0 1.75rem 0;
   padding: 1rem 0;
+  max-width: 1100px;
 
   ${media.tablet} {
     font-size: 0.95rem;

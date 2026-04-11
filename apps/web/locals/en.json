@@ -150,6 +150,12 @@
       "body": "We saw great content being shared for free or locked behind complicated systems - and consumers struggling to access quality content in a simple way. Kiibee was built to change that.",
       "cta": "Read more about Kiibee"
     },
+    "getStarted": {
+      "heading": "Need help with the setup?",
+      "sub": "Setting up is simple, but we're here if you need us. Watch our tutorial videos for step-by-step guidance, or contact our support team for help with technical questions, best practices, and getting your first products live.",
+      "tutorial": "Tutorial videos",
+      "guide": "User guide"
+    },
     "whyChoose": {
       "heading": "Why creators choose Kiibee",
       "leftItems": [

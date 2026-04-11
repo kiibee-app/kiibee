@@ -25,18 +25,6 @@ const syncResources = () => {
   });
 };
 
-const syncResources = () => {
-  Object.entries(resources).forEach(([language, resource]) => {
-    i18n.addResourceBundle(
-      language,
-      "translation",
-      resource.translation,
-      true,
-      true,
-    );
-  });
-};
-
 if (!i18n.isInitialized) {
   const opts: InitOptions & { initImmediate?: boolean } = {
     resources: resources as unknown as InitOptions["resources"],
