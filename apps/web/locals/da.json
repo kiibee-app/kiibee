@@ -533,6 +533,14 @@
       }
     ]
   },
+  "common": {
+    "share": "Del"
+  },
+  "singleCollection": {
+    "subtitle": "Lær hvordan du bruger vores platform",
+    "seeContent": "Se indhold",
+    "notFound": "Samling ikke fundet"
+  },
   "startCreating": {
     "heading": "Start creating with Kiibee today",
     "description1": "Join hundreds of creators sharing their work and growing their audience on Kiibee.",

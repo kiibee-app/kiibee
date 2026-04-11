@@ -533,6 +533,14 @@
       }
     ]
   },
+  "common": {
+    "share": "Share"
+  },
+  "singleCollection": {
+    "subtitle": "Learn how to use our platform",
+    "seeContent": "See content",
+    "notFound": "Collection not found"
+  },
   "startCreating": {
     "heading": "Start creating with Kiibee today",
     "description1": "Join hundreds of creators sharing their work and growing their audience on Kiibee.",
