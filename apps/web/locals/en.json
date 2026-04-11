@@ -155,7 +155,7 @@
       "sub": "Setting up is simple, but we're here if you need us. Watch our tutorial videos for step-by-step guidance, or contact our support team for help with technical questions, best practices, and getting your first products live.",
       "tutorial": "Tutorial videos",
       "guide": "User guide"
-          },
+    },
     "whyChoose": {
       "heading": "Why creators choose Kiibee",
       "leftItems": [
@@ -177,6 +177,7 @@
         "Sell and show your content anywhere on the web",
         "Create your own channel or site with curated collections"
       ]
+    },
     "title": "All creators",
     "filter": "Filter",
     "filters": {
