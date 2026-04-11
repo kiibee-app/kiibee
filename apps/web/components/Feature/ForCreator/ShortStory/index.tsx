@@ -13,7 +13,11 @@ import {
   Paragraph,
   ReadMoreButton,
 } from "./style";
-import { DEFAULT_WINDOW_WIDTH, MOBILE_BREAKPOINT, WINDOW_RESIZE_EVENT } from "@/utils/Constants";
+import {
+  DEFAULT_WINDOW_WIDTH,
+  MOBILE_BREAKPOINT,
+  WINDOW_RESIZE_EVENT,
+} from "@/utils/Constants";
 
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({

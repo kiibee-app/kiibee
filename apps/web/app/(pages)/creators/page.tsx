@@ -8,6 +8,7 @@ import ShortStory from "../../../components/Feature/ForCreator/ShortStory";
 import PricingPlansSection from "@/components/Feature/Pricing/PlansSection";
 import GetStarted from "@/components/Feature/HowItWork/GetStarted";
 import { BG_WHITE } from "@/utils/Constants";
+import WhyCreatorsChoose from "@/components/Feature/ExploreCreators/Creators/WhyCreatorsChoose";
 
 export default function CreatorsPage() {
   return (
@@ -16,6 +17,7 @@ export default function CreatorsPage() {
       <Main>
         <CreatorsSection />
         <ShortStory />
+        <WhyCreatorsChoose />
         <PricingPlansSection titleKey="pricingPage.title" />
         <GetStarted
           translationPrefix="creators.getStarted"
