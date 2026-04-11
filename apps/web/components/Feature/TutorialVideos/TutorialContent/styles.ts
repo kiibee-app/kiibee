@@ -42,7 +42,6 @@ export const SectionLink = styled.a`
   align-items: center;
   width: 1.766rem;
   padding: 0.432rem 0.353rem;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   border-radius: 100%;
 `;
 export const Content = styled.main`

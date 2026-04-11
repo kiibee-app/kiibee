@@ -94,10 +94,14 @@ const RATING_OPTIONS = [5, 4, 3, 2, 1] as const;
 const DEFAULT_VISIBLE_CREATORS = 10;
 
 type Props = {
-  setSortBy: (value: SortValue) => void;
+  showControls?: boolean;
+  setSortBy?: (value: SortValue) => void;
 };
 
-export default function ExploreCreatorsHero({ setSortBy }: Props) {
+export default function ExploreCreatorsHero({
+  showControls = true,
+  setSortBy,
+}: Props) {
   const { t } = useTranslation();
   const theme = useTheme();
   const filterButtonRef = useRef<HTMLButtonElement>(null);
@@ -249,288 +253,302 @@ export default function ExploreCreatorsHero({ setSortBy }: Props) {
     <Hero>
       <Inner>
         <Content>
-          <Title>
-            <HeroTitleText>{t("creators.title")}</HeroTitleText>
-          </Title>
+          {showControls && (
+            <Title>
+              <HeroTitleText>{t("creators.title")}</HeroTitleText>
+            </Title>
+          )}
           <Controls>
-            <FilterControlWrap>
-              <FilterBtn
-                ref={filterButtonRef}
-                type="button"
-                $active={isFilterOpen}
-                onClick={toggleFilter}
-                aria-expanded={isFilterOpen}
-                aria-controls="creator-filters-overlay"
-              >
-                <FilterIcon color={theme.colors.primary.BLACK} />
-                <FilterButtonText>{t("creators.filter")}</FilterButtonText>
-              </FilterBtn>
-              {isFilterOpen ? (
-                <FilterOverlay
-                  id="creator-filters-overlay"
-                  ref={filterOverlayRef}
-                  role="region"
-                  aria-label={t("creators.filters.title")}
+            {showControls && (
+              <FilterControlWrap>
+                <FilterBtn
+                  ref={filterButtonRef}
+                  type="button"
+                  $active={isFilterOpen}
+                  onClick={toggleFilter}
+                  aria-expanded={isFilterOpen}
+                  aria-controls="creator-filters-overlay"
                 >
-                  <FilterHeader>
-                    <FilterTitle as="h2">
-                      {t("creators.filters.title")}
-                    </FilterTitle>
-                  </FilterHeader>
-                  <FilterSections>
-                    <FilterSection>
-                      <FilterSectionButton
-                        type="button"
-                        onClick={() => toggleSection("creators")}
-                        aria-expanded={expandedSection === "creators"}
-                      >
-                        <FilterSectionTitle>
-                          {t("creators.filters.sections.creators")}
-                        </FilterSectionTitle>
-                        <SectionIcon>
-                          <ArrowIcon
-                            color={theme.colors.neutral.GRAY_400}
-                            width={18}
-                            height={10}
-                            direction={
-                              expandedSection === "creators"
-                                ? Directions.DOWN
-                                : Directions.RIGHT
-                            }
-                          />
-                        </SectionIcon>
-                      </FilterSectionButton>
-                      <FilterSectionBody $open={expandedSection === "creators"}>
-                        <FilterSectionBodyInner
+                  <FilterIcon color={theme.colors.primary.BLACK} />
+                  <FilterButtonText>{t("creators.filter")}</FilterButtonText>
+                </FilterBtn>
+                {isFilterOpen ? (
+                  <FilterOverlay
+                    id="creator-filters-overlay"
+                    ref={filterOverlayRef}
+                    role="region"
+                    aria-label={t("creators.filters.title")}
+                  >
+                    <FilterHeader>
+                      <FilterTitle as="h2">
+                        {t("creators.filters.title")}
+                      </FilterTitle>
+                    </FilterHeader>
+                    <FilterSections>
+                      <FilterSection>
+                        <FilterSectionButton
+                          type="button"
+                          onClick={() => toggleSection("creators")}
+                          aria-expanded={expandedSection === "creators"}
+                        >
+                          <FilterSectionTitle>
+                            {t("creators.filters.sections.creators")}
+                          </FilterSectionTitle>
+                          <SectionIcon>
+                            <ArrowIcon
+                              color={theme.colors.neutral.GRAY_400}
+                              width={18}
+                              height={10}
+                              direction={
+                                expandedSection === "creators"
+                                  ? Directions.DOWN
+                                  : Directions.RIGHT
+                              }
+                            />
+                          </SectionIcon>
+                        </FilterSectionButton>
+                        <FilterSectionBody
                           $open={expandedSection === "creators"}
                         >
-                          {renderOptionList("creators", visibleCreators)}
-                          {CREATOR_OPTIONS.length > DEFAULT_VISIBLE_CREATORS &&
-                          !showAllCreators ? (
-                            <ShowMoreButton
-                              type="button"
-                              onClick={() => setShowAllCreators(true)}
-                            >
-                              <ShowMoreText>
-                                {t("creators.filters.showMore")}
-                              </ShowMoreText>
-                            </ShowMoreButton>
-                          ) : null}
-                        </FilterSectionBodyInner>
-                      </FilterSectionBody>
-                    </FilterSection>
+                          <FilterSectionBodyInner
+                            $open={expandedSection === "creators"}
+                          >
+                            {renderOptionList("creators", visibleCreators)}
+                            {CREATOR_OPTIONS.length >
+                              DEFAULT_VISIBLE_CREATORS && !showAllCreators ? (
+                              <ShowMoreButton
+                                type="button"
+                                onClick={() => setShowAllCreators(true)}
+                              >
+                                <ShowMoreText>
+                                  {t("creators.filters.showMore")}
+                                </ShowMoreText>
+                              </ShowMoreButton>
+                            ) : null}
+                          </FilterSectionBodyInner>
+                        </FilterSectionBody>
+                      </FilterSection>
 
-                    <FilterSection>
-                      <FilterSectionButton
-                        type="button"
-                        onClick={() => toggleSection("categories")}
-                        aria-expanded={expandedSection === "categories"}
-                      >
-                        <FilterSectionTitle>
-                          {t("creators.filters.sections.categories")}
-                        </FilterSectionTitle>
-                        <SectionIcon>
-                          <ArrowIcon
-                            color={theme.colors.neutral.GRAY_400}
-                            width={18}
-                            height={10}
-                            direction={
-                              expandedSection === "categories"
-                                ? Directions.DOWN
-                                : Directions.RIGHT
-                            }
-                          />
-                        </SectionIcon>
-                      </FilterSectionButton>
-                      <FilterSectionBody
-                        $open={expandedSection === "categories"}
-                      >
-                        <FilterSectionBodyInner
+                      <FilterSection>
+                        <FilterSectionButton
+                          type="button"
+                          onClick={() => toggleSection("categories")}
+                          aria-expanded={expandedSection === "categories"}
+                        >
+                          <FilterSectionTitle>
+                            {t("creators.filters.sections.categories")}
+                          </FilterSectionTitle>
+                          <SectionIcon>
+                            <ArrowIcon
+                              color={theme.colors.neutral.GRAY_400}
+                              width={18}
+                              height={10}
+                              direction={
+                                expandedSection === "categories"
+                                  ? Directions.DOWN
+                                  : Directions.RIGHT
+                              }
+                            />
+                          </SectionIcon>
+                        </FilterSectionButton>
+                        <FilterSectionBody
                           $open={expandedSection === "categories"}
                         >
-                          {renderOptionList("categories", categoryOptions)}
-                        </FilterSectionBodyInner>
-                      </FilterSectionBody>
-                    </FilterSection>
+                          <FilterSectionBodyInner
+                            $open={expandedSection === "categories"}
+                          >
+                            {renderOptionList("categories", categoryOptions)}
+                          </FilterSectionBodyInner>
+                        </FilterSectionBody>
+                      </FilterSection>
 
-                    <FilterSection>
-                      <FilterSectionButton
-                        type="button"
-                        onClick={() => toggleSection("formats")}
-                        aria-expanded={expandedSection === "formats"}
-                      >
-                        <FilterSectionTitle>
-                          {t("creators.filters.sections.formats")}
-                        </FilterSectionTitle>
-                        <SectionIcon>
-                          <ArrowIcon
-                            color={theme.colors.neutral.GRAY_400}
-                            width={18}
-                            height={10}
-                            direction={
-                              expandedSection === "formats"
-                                ? Directions.DOWN
-                                : Directions.RIGHT
-                            }
-                          />
-                        </SectionIcon>
-                      </FilterSectionButton>
-                      <FilterSectionBody $open={expandedSection === "formats"}>
-                        <FilterSectionBodyInner
+                      <FilterSection>
+                        <FilterSectionButton
+                          type="button"
+                          onClick={() => toggleSection("formats")}
+                          aria-expanded={expandedSection === "formats"}
+                        >
+                          <FilterSectionTitle>
+                            {t("creators.filters.sections.formats")}
+                          </FilterSectionTitle>
+                          <SectionIcon>
+                            <ArrowIcon
+                              color={theme.colors.neutral.GRAY_400}
+                              width={18}
+                              height={10}
+                              direction={
+                                expandedSection === "formats"
+                                  ? Directions.DOWN
+                                  : Directions.RIGHT
+                              }
+                            />
+                          </SectionIcon>
+                        </FilterSectionButton>
+                        <FilterSectionBody
                           $open={expandedSection === "formats"}
                         >
-                          {renderOptionList("formats", formatOptions)}
-                        </FilterSectionBodyInner>
-                      </FilterSectionBody>
-                    </FilterSection>
-
-                    <FilterSection>
-                      <FilterSectionButton
-                        type="button"
-                        onClick={() => toggleSection("price")}
-                        aria-expanded={expandedSection === "price"}
-                      >
-                        <FilterSectionTitle>
-                          {t("creators.filters.sections.price")}
-                        </FilterSectionTitle>
-                        <SectionIcon>
-                          <ArrowIcon
-                            color={theme.colors.neutral.GRAY_400}
-                            width={18}
-                            height={10}
-                            direction={
-                              expandedSection === "price"
-                                ? Directions.DOWN
-                                : Directions.RIGHT
-                            }
-                          />
-                        </SectionIcon>
-                      </FilterSectionButton>
-                      <FilterSectionBody $open={expandedSection === "price"}>
-                        <FilterSectionBodyInner
-                          $open={expandedSection === "price"}
-                        >
-                          <PriceFields>
-                            <PriceField>
-                              <PriceFieldLabel>
-                                {t("creators.filters.price.minimum")}
-                              </PriceFieldLabel>
-                              <PriceInputWrapper>
-                                <PriceValue>
-                                  {t("creators.filters.price.currency")}
-                                </PriceValue>
-                                <PriceInput
-                                  type={INPUT_TYPE.TEXT}
-                                  inputMode="numeric"
-                                  placeholder="0"
-                                  value={priceRange.min}
-                                  onChange={handlePriceChange("min")}
-                                />
-                              </PriceInputWrapper>
-                            </PriceField>
-                            <PriceField>
-                              <PriceFieldLabel>
-                                {t("creators.filters.price.maximum")}
-                              </PriceFieldLabel>
-                              <PriceInputWrapper>
-                                <PriceValue>
-                                  {t("creators.filters.price.currency")}
-                                </PriceValue>
-                                <PriceInput
-                                  type={INPUT_TYPE.TEXT}
-                                  inputMode="numeric"
-                                  placeholder="0"
-                                  value={priceRange.max}
-                                  onChange={handlePriceChange("max")}
-                                />
-                              </PriceInputWrapper>
-                            </PriceField>
-                          </PriceFields>
-                        </FilterSectionBodyInner>
-                      </FilterSectionBody>
-                    </FilterSection>
-
-                    <FilterSection>
-                      <FilterSectionButton
-                        type="button"
-                        onClick={() => toggleSection("rating")}
-                        aria-expanded={expandedSection === "rating"}
-                      >
-                        <FilterSectionTitle>
-                          {t("creators.filters.sections.rating")}
-                        </FilterSectionTitle>
-                        <SectionIcon>
-                          <ArrowIcon
-                            color={theme.colors.neutral.GRAY_400}
-                            width={18}
-                            height={10}
-                            direction={
-                              expandedSection === "rating"
-                                ? Directions.DOWN
-                                : Directions.RIGHT
-                            }
-                          />
-                        </SectionIcon>
-                      </FilterSectionButton>
-                      <FilterSectionBody $open={expandedSection === "rating"}>
-                        <FilterSectionBodyInner
-                          $open={expandedSection === "rating"}
-                        >
-                          <RatingList
-                            role="radiogroup"
-                            aria-label={t("creators.filters.sections.rating")}
+                          <FilterSectionBodyInner
+                            $open={expandedSection === "formats"}
                           >
-                            {RATING_OPTIONS.map((ratingValue) => {
-                              const isSelected = selectedRating === ratingValue;
+                            {renderOptionList("formats", formatOptions)}
+                          </FilterSectionBodyInner>
+                        </FilterSectionBody>
+                      </FilterSection>
 
-                              return (
-                                <RatingOption key={ratingValue}>
-                                  <OptionText>
-                                    <RatingStars aria-hidden="true">
-                                      {Array.from({ length: 5 }, (_, index) => (
-                                        <StarIconWrap key={index}>
-                                          <StarIcon
-                                            viewBox="0 0 24 24"
-                                            $filled={index < ratingValue}
-                                          >
-                                            <path d="M12 2.25L14.91 8.15L21.42 9.1L16.71 13.68L17.82 20.15L12 17.09L6.18 20.15L7.29 13.68L2.58 9.1L9.09 8.15L12 2.25Z" />
-                                          </StarIcon>
-                                        </StarIconWrap>
-                                      ))}
-                                    </RatingStars>
-                                  </OptionText>
-                                  <CheckboxInput
-                                    type="radio"
-                                    name="creator-rating-filter"
-                                    aria-label={`${ratingValue} ${t(
-                                      "creators.filters.sections.rating",
-                                    )}`}
-                                    checked={isSelected}
-                                    onChange={() =>
-                                      setSelectedRating(ratingValue)
-                                    }
+                      <FilterSection>
+                        <FilterSectionButton
+                          type="button"
+                          onClick={() => toggleSection("price")}
+                          aria-expanded={expandedSection === "price"}
+                        >
+                          <FilterSectionTitle>
+                            {t("creators.filters.sections.price")}
+                          </FilterSectionTitle>
+                          <SectionIcon>
+                            <ArrowIcon
+                              color={theme.colors.neutral.GRAY_400}
+                              width={18}
+                              height={10}
+                              direction={
+                                expandedSection === "price"
+                                  ? Directions.DOWN
+                                  : Directions.RIGHT
+                              }
+                            />
+                          </SectionIcon>
+                        </FilterSectionButton>
+                        <FilterSectionBody $open={expandedSection === "price"}>
+                          <FilterSectionBodyInner
+                            $open={expandedSection === "price"}
+                          >
+                            <PriceFields>
+                              <PriceField>
+                                <PriceFieldLabel>
+                                  {t("creators.filters.price.minimum")}
+                                </PriceFieldLabel>
+                                <PriceInputWrapper>
+                                  <PriceValue>
+                                    {t("creators.filters.price.currency")}
+                                  </PriceValue>
+                                  <PriceInput
+                                    type={INPUT_TYPE.TEXT}
+                                    inputMode="numeric"
+                                    placeholder="0"
+                                    value={priceRange.min}
+                                    onChange={handlePriceChange("min")}
                                   />
-                                  <CheckboxControl
-                                    $checked={isSelected}
-                                    $round
+                                </PriceInputWrapper>
+                              </PriceField>
+                              <PriceField>
+                                <PriceFieldLabel>
+                                  {t("creators.filters.price.maximum")}
+                                </PriceFieldLabel>
+                                <PriceInputWrapper>
+                                  <PriceValue>
+                                    {t("creators.filters.price.currency")}
+                                  </PriceValue>
+                                  <PriceInput
+                                    type={INPUT_TYPE.TEXT}
+                                    inputMode="numeric"
+                                    placeholder="0"
+                                    value={priceRange.max}
+                                    onChange={handlePriceChange("max")}
                                   />
-                                </RatingOption>
-                              );
-                            })}
-                          </RatingList>
-                        </FilterSectionBodyInner>
-                      </FilterSectionBody>
-                    </FilterSection>
-                  </FilterSections>
-                </FilterOverlay>
-              ) : null}
-            </FilterControlWrap>
+                                </PriceInputWrapper>
+                              </PriceField>
+                            </PriceFields>
+                          </FilterSectionBodyInner>
+                        </FilterSectionBody>
+                      </FilterSection>
+
+                      <FilterSection>
+                        <FilterSectionButton
+                          type="button"
+                          onClick={() => toggleSection("rating")}
+                          aria-expanded={expandedSection === "rating"}
+                        >
+                          <FilterSectionTitle>
+                            {t("creators.filters.sections.rating")}
+                          </FilterSectionTitle>
+                          <SectionIcon>
+                            <ArrowIcon
+                              color={theme.colors.neutral.GRAY_400}
+                              width={18}
+                              height={10}
+                              direction={
+                                expandedSection === "rating"
+                                  ? Directions.DOWN
+                                  : Directions.RIGHT
+                              }
+                            />
+                          </SectionIcon>
+                        </FilterSectionButton>
+                        <FilterSectionBody $open={expandedSection === "rating"}>
+                          <FilterSectionBodyInner
+                            $open={expandedSection === "rating"}
+                          >
+                            <RatingList
+                              role="radiogroup"
+                              aria-label={t("creators.filters.sections.rating")}
+                            >
+                              {RATING_OPTIONS.map((ratingValue) => {
+                                const isSelected =
+                                  selectedRating === ratingValue;
+
+                                return (
+                                  <RatingOption key={ratingValue}>
+                                    <OptionText>
+                                      <RatingStars aria-hidden="true">
+                                        {Array.from(
+                                          { length: 5 },
+                                          (_, index) => (
+                                            <StarIconWrap key={index}>
+                                              <StarIcon
+                                                viewBox="0 0 24 24"
+                                                $filled={index < ratingValue}
+                                              >
+                                                <path d="M12 2.25L14.91 8.15L21.42 9.1L16.71 13.68L17.82 20.15L12 17.09L6.18 20.15L7.29 13.68L2.58 9.1L9.09 8.15L12 2.25Z" />
+                                              </StarIcon>
+                                            </StarIconWrap>
+                                          ),
+                                        )}
+                                      </RatingStars>
+                                    </OptionText>
+                                    <CheckboxInput
+                                      type="radio"
+                                      name="creator-rating-filter"
+                                      aria-label={`${ratingValue} ${t(
+                                        "creators.filters.sections.rating",
+                                      )}`}
+                                      checked={isSelected}
+                                      onChange={() =>
+                                        setSelectedRating(ratingValue)
+                                      }
+                                    />
+                                    <CheckboxControl
+                                      $checked={isSelected}
+                                      $round
+                                    />
+                                  </RatingOption>
+                                );
+                              })}
+                            </RatingList>
+                          </FilterSectionBodyInner>
+                        </FilterSectionBody>
+                      </FilterSection>
+                    </FilterSections>
+                  </FilterOverlay>
+                ) : null}
+              </FilterControlWrap>
+            )}
             <SearchBar placeholder={t("creators.search")} />
-            <SortDropdown
-              options={SORT_OPTIONS}
-              value={DEFAULT_SORT}
-              onChange={setSortBy}
-            />
+            {showControls && (
+              <SortDropdown
+                options={SORT_OPTIONS}
+                value={DEFAULT_SORT}
+                onChange={setSortBy}
+              />
+            )}
           </Controls>
         </Content>
       </Inner>

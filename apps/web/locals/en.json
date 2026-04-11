@@ -230,7 +230,10 @@
     "loadMore": "Load more",
     "a-z": "A-Z",
     "subscribers": "Subscribers",
-    "newest": "Newest"
+    "newest": "Newest",
+    "topCreators": "Top creators",
+    "seeAll": "See all creators",
+    "subscribersCount": "{{count}}K Subscribers"
   },
   "discoverContent": {
     "title": "Discover content",
