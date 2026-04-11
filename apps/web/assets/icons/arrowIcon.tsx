@@ -13,6 +13,7 @@ type ArrowIconProps = {
 export const ArrowIcon: React.FC<ArrowIconProps> = ({
   width = 12,
   height = 6,
+  color,
   direction = Directions.LEFT,
 }) => {
   const rotationMap: Record<Direction, string> = {
@@ -38,7 +39,7 @@ export const ArrowIcon: React.FC<ArrowIconProps> = ({
     >
       <path
         d="M0 0.660378L6 6L12 0.660378L11.2474 0L6 4.66981L0.75265 0L0 0.660378Z"
-        fill={COLORS.primary.BLACK}
+        fill={color ?? COLORS.primary.BLACK}
       />
     </svg>
   );
