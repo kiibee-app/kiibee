@@ -7,9 +7,9 @@ import AboutStorySection from "@/components/Feature/AboutKiibee/AboutStorySectio
 import { Main, PageContainer, Section } from "@/app/styles";
 import WhatWeBelieveSection from "@/components/Feature/AboutKiibee/WhatWeBelieveSection";
 import MoreThanPlatformSection from "@/components/Feature/AboutKiibee/MorePlatform";
-import ValueStatement from "@/components/Feature/landing/ValueStatement";
+import CtaSection from "@/components/Feature/CtaSection";
 import Footer from "@/components/Layout/Footer";
-import valueBg from "../../../assets/images/cta-buttom1.png";
+import ctaImage from "@/assets/images/cta-buttom1.png";
 import { useTranslation } from "react-i18next";
 
 export default function AboutKiibeePage() {
@@ -26,10 +26,11 @@ export default function AboutKiibeePage() {
           <MoreThanPlatformSection />
         </Section>
       </Main>
-      <ValueStatement
-        bgImage={valueBg}
+      <CtaSection
+        bgImage={ctaImage}
         title={t("about.value.title")}
         subtitle={t("about.value.subtitle")}
+        ctaText={t("about.value.cta")}
       />
 
       <Footer />

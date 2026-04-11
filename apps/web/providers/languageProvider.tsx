@@ -10,6 +10,31 @@ import da from "../locals/da.json";
 const resources = {
   en: { translation: en },
   da: { translation: da },
+  dn: { translation: da },
+};
+
+const syncResources = () => {
+  Object.entries(resources).forEach(([language, bundle]) => {
+    i18n.addResourceBundle(
+      language,
+      "translation",
+      bundle.translation,
+      true,
+      true,
+    );
+  });
+};
+
+const syncResources = () => {
+  Object.entries(resources).forEach(([language, resource]) => {
+    i18n.addResourceBundle(
+      language,
+      "translation",
+      resource.translation,
+      true,
+      true,
+    );
+  });
 };
 
 if (!i18n.isInitialized) {
@@ -22,11 +47,17 @@ if (!i18n.isInitialized) {
   };
 
   i18n.use(initReactI18next).init(opts);
+} else {
+  syncResources();
 }
+
+syncResources();
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    const currentLang = i18n.language || "en";
+    syncResources();
+
+    const currentLang = i18n.resolvedLanguage || i18n.language || "en";
     document.documentElement.lang = currentLang;
   }, []);
 

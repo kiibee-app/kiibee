@@ -150,8 +150,69 @@
       "body": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer - og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
       "cta": "Læs mere om Kiibee"
     },
+    "whyChoose": {
+      "heading": "Why creators choose Kiibee",
+      "leftItems": [
+        "Get your own digital content website in just a few clicks",
+        "Collect content from multiple platforms (YouTube, Vimeo, Dropbox, etc.) in one place",
+        "Sell content or offer it for free",
+        "Protect content with access codes or email signups",
+        "Use your own payment module (Dankort, credit card, MobilePay)",
+        "Offer content as downloads or online streaming",
+        "Create online programs and digital courses",
+        "Take payment for live streaming events"
+      ],
+      "rightItems": [
+        "See statistics on views and sales",
+        "Show content on all devices — mobile, tablet and desktop",
+        "Sell multiple formats (video, PDF, ePub, MP3, audio)",
+        "Store content securely on Danish servers, fully GDPR compliant",
+        "Get tailored solutions based on your needs",
+        "Sell and show your content anywhere on the web",
+        "Create your own channel or site with curated collections"
+      ]
+    },
     "title": "All creators",
     "filter": "Filter",
+    "filters": {
+      "title": "Filtre",
+      "showMore": "Vis flere",
+      "sections": {
+        "creators": "Skabere",
+        "categories": "Kategorier",
+        "formats": "Formater",
+        "price": "Pris",
+        "rating": "Bedømmelse"
+      },
+      "price": {
+        "minimum": "Minimumspris",
+        "maximum": "Maksimumspris",
+        "currency": "DKK"
+      },
+      "options": {
+        "categories": {
+          "all": "Alle kategorier",
+          "business": "Business",
+          "comedyShows": "Comedy shows",
+          "musicAndAudio": "Musik og lyd",
+          "educational": "Uddannelse",
+          "fitnessAndHealth": "Fitness og sundhed",
+          "food": "Mad",
+          "podcasts": "Podcasts",
+          "theater": "Teater",
+          "tutorials": "Tutorials",
+          "publications": "Publikationer"
+        },
+        "formats": {
+          "all": "Alle formater",
+          "video": "Video",
+          "ePublication": "E-publikation",
+          "pdf": "PDF",
+          "audioFile": "Lydfil",
+          "webContent": "Webindhold"
+        }
+      }
+    },
     "search": "Search for posts",
     "sort": "Sort by:",
     "recentlyAdded": {
@@ -330,7 +391,8 @@
     },
     "value": {
       "title": "Bliv en del af Kiibee-bevægelsen",
-      "subtitle": "Uanset om du er en seer, der ønsker at lære noget nyt, eller en skaber, der er klar til at dele din passion, er Kiibee stedet for dig."
+      "subtitle": "Uanset om du er en seer, der ønsker at lære noget nyt, eller en skaber, der er klar til at dele din passion, er Kiibee stedet for dig.",
+      "cta": "Tilmeld Kiibee i dag"
     }
   },
   "features": {
@@ -472,5 +534,14 @@
     "subtitle": "Lær hvordan du bruger vores platform",
     "seeContent": "Se indhold",
     "notFound": "Samling ikke fundet"
+  },
+  "startCreating": {
+    "heading": "Start creating with Kiibee today",
+    "description1": "Join hundreds of creators sharing their work and growing their audience on Kiibee.",
+    "description2": "You can start for free, and upgrade when you're ready.",
+    "cta": "Get started for free"
+  },
+  "ctaSection": {
+    "bgAlt": "CTA background"
   }
 }
