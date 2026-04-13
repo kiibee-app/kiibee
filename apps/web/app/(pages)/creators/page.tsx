@@ -6,11 +6,11 @@ import { PageContainer, Main } from "../../styles";
 import CreatorsSection from "@/components/Feature/ForCreator/CreatorsSection";
 import ShortStory from "../../../components/Feature/ForCreator/ShortStory";
 import PricingPlansSection from "@/components/Feature/Pricing/PlansSection";
-import ContentPerform from "@/components/Feature/ExploreCreators/Creators/ContentPerform";
-import MarketingSection from "./creators/MarketingSection";
+import ContentPerform from "@/components/Feature/ForCreator/ContentPerform";
+import MarketingSection from "../../../components/Feature/ForCreator/MarketingSection";
 import GetStarted from "@/components/Feature/HowItWork/GetStarted";
 import { BG_WHITE } from "@/utils/Constants";
-import WhyCreatorsChoose from "@/components/Feature/ExploreCreators/Creators/WhyCreatorsChoose";
+import WhyCreatorsChoose from "@/components/Feature/ForCreator/WhyCreatorsChoose";
 
 export default function CreatorsPage() {
   return (
@@ -18,9 +18,9 @@ export default function CreatorsPage() {
       <NavBar />
       <Main>
         <CreatorsSection />
-        <ContentPerform />
         <ShortStory />
         <MarketingSection />
+        <ContentPerform />
         <WhyCreatorsChoose />
         <PricingPlansSection titleKey="pricingPage.title" />
         <GetStarted

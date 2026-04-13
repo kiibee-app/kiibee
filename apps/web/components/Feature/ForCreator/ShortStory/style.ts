@@ -14,41 +14,48 @@ export const Section = styled.section`
 `;
 
 export const ContentWrapper = styled.div<{ $isMobile: boolean }>`
-  width: 90rem;
+  width: min(100%, 90rem);
   max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: ${({ $isMobile }) => ($isMobile ? "2rem" : "2.5rem")};
-  flex-direction: ${({ $isMobile }) => ($isMobile ? "column" : "row")};
   flex: 1 0 0;
+
+  ${media.tablet} {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: stretch;
+  }
 `;
 
 export const ImageSection = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 0.625rem;
-  width: 37.0625rem;
-  height: 32.4375rem;
+  width: min(100%, 37.0625rem);
+  height: auto;
   padding: 0.625rem;
   border-radius: 0.5rem;
 
   ${media.tablet} {
     width: 100%;
-    height: auto;
+    padding: 0;
   }
 `;
 
 export const StoryImage = styled.img`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 37.0625 / 32.4375;
   border-radius: 0.5rem;
   object-fit: cover;
 `;
 
 export const TextSection = styled.div`
   flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -74,7 +81,7 @@ export const Paragraph = styled.p`
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 1.5;
 `;
 
 export const ReadMoreButton = styled.button`
