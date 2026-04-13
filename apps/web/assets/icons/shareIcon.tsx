@@ -1,18 +1,13 @@
 import { SVG_XMLNS } from "@/utils/Constants";
-import COLORS from "@repo/ui/colors";
 import React from "react";
+import COLORS from "@repo/ui/colors";
 
 type IconProps = {
   width?: number | string;
   height?: number | string;
-  color?: string;
 };
 
-export const FilterIcon: React.FC<IconProps> = ({
-  width = 24,
-  height = 24,
-  color,
-}) => {
+export const ShareIcon: React.FC<IconProps> = ({ width = 24, height = 24 }) => {
   return (
     <svg
       xmlns={SVG_XMLNS}
@@ -22,9 +17,9 @@ export const FilterIcon: React.FC<IconProps> = ({
       fill="none"
     >
       <path
-        d="M4.5 7H19.5M7 12H17M10 17H14"
-        stroke={color ?? COLORS.primary.BLACK}
-        strokeWidth="1.5"
+        d="M15 5L12 2M12 2L9 5M12 2V14M6 9H4V18C4 18.5304 4.21071 19.0391 4.58579 19.4142C4.96086 19.7893 5.46957 20 6 20H18C18.5304 20 19.0391 19.7893 19.4142 19.4142C19.7893 19.0391 20 18.5304 20 18V9H18"
+        stroke={COLORS.primary.BLACK}
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

@@ -32,3 +32,8 @@ export const Section = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
+
+export const ExploreSection = styled.section`
+  width: 100%;
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+`;

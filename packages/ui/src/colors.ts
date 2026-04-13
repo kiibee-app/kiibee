@@ -65,6 +65,7 @@ export interface ColorPalette {
     VIGNETTE_SIDE_CLEAR: string;
     WHITE_08: string;
     NEAR_BLACK: string;
+    DEEP_GREEN_80: string;
     TRANSPARENT: string;
   };
 }
@@ -137,6 +138,7 @@ export const COLORS: ColorPalette = {
     VIGNETTE_SIDE_CLEAR: "rgba(5,35,14,0)",
     WHITE_08: "rgba(255,255,255,0.08)",
     NEAR_BLACK: "rgb(6,6,6)",
+    DEEP_GREEN_80: "rgba(4, 41, 11, 0.8)",
     TRANSPARENT: "rgba(0,0,0,0)",
   },
 };
