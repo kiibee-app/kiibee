@@ -10,7 +10,7 @@ export const Section = styled.section`
   background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
 
   ${media.tablet} {
-    padding: 2rem 0.1rem;
+    padding: 2rem 1rem;
   }
 `;
 
@@ -18,7 +18,7 @@ export const ContentWrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  align-items: center;
+  align-items: flex-start;
   gap: clamp(2rem, 4vw, 4rem);
 
   ${media.desktop} {

@@ -13,6 +13,7 @@ export const Section = styled.section`
 
   ${media.tablet} {
     display: flex;
+    justify-content: flex-start;
     padding: 0 1.25rem;
   }
 `;
@@ -36,7 +37,7 @@ export const Container = styled.div`
 
 export const TextColumn = styled.div`
   flex: 1;
-  max-width: 30rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

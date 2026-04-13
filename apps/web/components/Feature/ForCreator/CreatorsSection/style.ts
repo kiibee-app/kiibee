@@ -11,9 +11,13 @@ export const Section = styled.section`
   padding: 2.5rem 8.5rem;
   box-sizing: border-box;
 
+  ${media.desktop} {
+    padding: 2.5rem 2.5rem;
+  }
+
   ${media.tablet} {
     min-height: auto;
-    padding: 3rem 1rem;
+    padding: 2rem 0.5rem;
     border-radius: 0;
   }
 `;
@@ -30,11 +34,15 @@ export const Container = styled.div`
   ${media.desktop} {
     flex-direction: column;
     align-items: flex-start;
+    gap: 2rem;
+    padding: 0 1.5rem;
   }
 
   ${media.tablet} {
+    flex-direction: column;
+    align-items: stretch;
     gap: 1.25rem;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -45,9 +53,16 @@ export const LeftColumn = styled.div`
   gap: 2.5rem;
   flex: 1;
 
+  ${media.desktop} {
+    width: 100%;
+    gap: 2rem;
+  }
+
   ${media.tablet} {
     width: 100%;
     gap: 1.25rem;
+    padding-top: 5rem;
+    align-items: stretch;
   }
 `;
 
@@ -60,9 +75,14 @@ export const Heading = styled.h2`
   font-weight: 600;
   line-height: 75px;
 
+  ${media.desktop} {
+    font-size: 54px;
+    line-height: 62px;
+  }
+
   ${media.tablet} {
-    font-size: 48px;
-    line-height: 56px;
+    font-size: 32px;
+    line-height: 40px;
   }
 `;
 
@@ -103,6 +123,7 @@ export const RightColumn = styled.div`
   ${media.desktop} {
     width: 100%;
     justify-content: flex-start;
+    gap: 1rem;
   }
 
   ${media.tablet} {
@@ -154,12 +175,18 @@ export const Card = styled.div<CardProps>`
     } / ${$isActive ? "cover" : $narrowBgSize} no-repeat`};
 
   ${media.desktop} {
-    width: min(498px, 100%);
+    width: ${({ $isActive }) => ($isActive ? "380px" : "120px")};
+    height: 420px;
+    padding: ${({ $isActive }) =>
+      $isActive ? "24px 32px 18px 12px" : "18px 0"};
+    border-radius: 10px;
   }
 
   ${media.tablet} {
     min-width: 96px;
-    height: 320px;
+    width: ${({ $isActive }) => ($isActive ? "220px" : "96px")};
+    height: 220px;
+    padding: ${({ $isActive }) => ($isActive ? "12px 12px 10px 8px" : "8px 0")};
     border-radius: 8px;
   }
 `;
@@ -218,6 +245,14 @@ export const MainCardTitle = styled.h3`
   font-size: 1.625rem;
   font-weight: 600;
   letter-spacing: -0.0313rem;
+
+  ${media.desktop} {
+    font-size: 1.25rem;
+  }
+
+  ${media.tablet} {
+    font-size: 1rem;
+  }
 `;
 
 export const MainCardSubtitle = styled.p`
@@ -225,6 +260,14 @@ export const MainCardSubtitle = styled.p`
   font-size: 0.9375rem;
   color: ${({ theme }) => theme.colors.primary.WHITE_90};
   font-weight: 400;
+
+  ${media.desktop} {
+    font-size: 0.85rem;
+  }
+
+  ${media.tablet} {
+    font-size: 0.75rem;
+  }
 `;
 
 export const NarrowCardText = styled.p<{ $visible?: boolean }>`
@@ -244,8 +287,13 @@ export const NarrowCardText = styled.p<{ $visible?: boolean }>`
   transition: opacity 0.28s ease;
   pointer-events: none;
 
-  ${media.tablet} {
-    font-size: 1.05rem;
+  ${media.desktop} {
+    font-size: 1rem;
     bottom: 1rem;
+  }
+
+  ${media.tablet} {
+    font-size: 0.85rem;
+    bottom: 0.5rem;
   }
 `;
