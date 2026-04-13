@@ -32,6 +32,14 @@
     "footer": "Don't have an account?",
     "signUp": "Sign up"
   },
+  "forgotPassword": {
+    "title": "Forgot password",
+    "description": "Enter your email address and we will send you a link to reset your password.",
+    "emailLabel": "Email address",
+    "submit": "Submit",
+    "rememberPassword": "Remember your password?",
+    "login": "Log in"
+  },
   "viewerSignup": {
     "heading": "Create Viewer Account",
     "description": "Viewer signup form coming soon..."
