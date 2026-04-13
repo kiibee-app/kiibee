@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { BackButtonIcon } from "@/assets/icons";
 import InputField from "@/components/UI/InputFields";
+import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import {
   ADDRESS_FIELDS,
   CONTACT_FIELDS,
@@ -16,9 +16,7 @@ import {
   REQUIRED_CREATOR_FIELD_KEYS,
   WORK_LINK_FIELD,
 } from "@/utils/authCreatorForm";
-import { useTheme } from "styled-components";
 import {
-  BackButton,
   Checkbox,
   CheckboxRow,
   ConsentText,
@@ -34,7 +32,6 @@ import {
   SubmitButton,
   TernaryRow,
   TermsLink,
-  TopBar,
 } from "./styles";
 import Image from "next/image";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
@@ -42,7 +39,6 @@ import { MonoText } from "@/components/UI/Monotext";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
-  const theme = useTheme();
   const [formValues, setFormValues] =
     useState<CreatorFormValues>(INITIAL_CREATOR_FORM);
 
@@ -89,15 +85,7 @@ export default function SignUpCreatorSection() {
 
   return (
     <ContentWrap>
-      <TopBar>
-        <BackButton href="/auth" aria-label={t("authCreator.backAria", "Back")}>
-          <BackButtonIcon
-            size={40}
-            backgroundColor={theme?.colors?.neutral?.GRAY_200}
-            strokeColor={theme?.colors?.primary?.BLACK}
-          />
-        </BackButton>
-      </TopBar>
+      <AuthBackButton href="/auth/signup" />
       <Image src={logo} alt="Kiibee Logo" width={42} height={42} />
 
       <FormTitle>

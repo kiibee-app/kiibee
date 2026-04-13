@@ -1,6 +1,6 @@
 import NavBar from "@/components/Layout/Navbar";
 import SignUpSection from "@/components/Feature/Auth/SignUp";
-import { PageContainer, Main } from "./styles";
+import { Main, PageContainer } from "@/app/styles";
 
 export default function AuthPage() {
   return (

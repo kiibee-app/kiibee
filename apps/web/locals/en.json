@@ -33,8 +33,25 @@
     "signUp": "Sign up"
   },
   "viewerSignup": {
+    "title": "Create viewer account",
     "heading": "Create Viewer Account",
-    "description": "Viewer signup form coming soon..."
+    "description": "Viewer signup form coming soon...",
+    "haveAccount": "Already have an account?",
+    "login": "Log in",
+    "form": {
+      "email": "Email address",
+      "emailPlaceholder": "Enter your email address",
+      "password": "Password",
+      "passwordPlaceholder": "Enter new password",
+      "repeatPassword": "Repeat password",
+      "repeatPasswordPlaceholder": "Repeat new password",
+      "passwordMismatch": "Passwords do not match",
+      "consentPrefix": "I agree to Kiibee's",
+      "terms": "Terms of Use",
+      "and": " and ",
+      "privacy": "Privacy Policy",
+      "submit": "Continue"
+    }
   },
   "authSlide": {
     "carousel": [
