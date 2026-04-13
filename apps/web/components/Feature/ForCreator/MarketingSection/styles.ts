@@ -19,8 +19,8 @@ export const Section = styled.section`
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 68.75rem;
   display: flex;
+  padding: 4.5rem 3rem;
   align-items: center;
   gap: 3.75rem;
 

@@ -5,21 +5,15 @@ export const Section = styled.section`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 0 1.5rem 6.5625rem;
   box-sizing: border-box;
-
-  ${media.tablet} {
-    padding: 0 1rem 2.5rem;
-  }
 `;
 
 export const SectionInner = styled.div`
   position: relative;
   width: 100%;
-  max-width: 1440px;
   min-height: 43rem;
   overflow: hidden;
-  border-radius: 0.75rem;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,7 +24,7 @@ export const SectionInner = styled.div`
   ${media.tablet} {
     min-height: auto;
     padding: 3rem 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0;
   }
 `;
 

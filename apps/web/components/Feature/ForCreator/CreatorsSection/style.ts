@@ -8,8 +8,14 @@ export const Section = styled.section`
   min-height: 100vh;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.primary.GRAY};
-  padding: 2.5rem 0;
+  padding: 2.5rem 8.5rem;
   box-sizing: border-box;
+
+  ${media.tablet} {
+    min-height: auto;
+    padding: 3rem 1rem;
+    border-radius: 0;
+  }
 `;
 
 export const Container = styled.div`
@@ -17,7 +23,6 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 1440px;
   padding: 0 1.5rem;
   box-sizing: border-box;
   gap: 3.75rem;

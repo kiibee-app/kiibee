@@ -16,9 +16,8 @@ export const Header = styled.header`
 `;
 
 export const Inner = styled.div`
-  max-width: 1440px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 1rem 5.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

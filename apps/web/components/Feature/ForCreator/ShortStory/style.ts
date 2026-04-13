@@ -6,21 +6,21 @@ export const Section = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6.5625rem 6.9375rem;
+  padding: 2.5rem 9rem;
 
   ${media.tablet} {
     padding: 2.5rem 1.25rem;
   }
 `;
 
-export const ContentWrapper = styled.div<{ $isMobile: boolean }>`
-  width: min(100%, 90rem);
+export const ContentWrapper = styled.div`
+  width: 100%;
   max-width: 100%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: ${({ $isMobile }) => ($isMobile ? "2rem" : "2.5rem")};
-  flex: 1 0 0;
+  gap: 2.5rem;
 
   ${media.tablet} {
     flex-direction: column;
@@ -33,7 +33,7 @@ export const ImageSection = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 0.625rem;
-  width: min(100%, 37.0625rem);
+  width: 100%;
   height: auto;
   padding: 0.625rem;
   border-radius: 0.5rem;
@@ -54,23 +54,30 @@ export const StoryImage = styled.img`
 `;
 
 export const TextSection = styled.div`
-  flex: 1;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
+
+  ${media.tablet} {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
-export const Title = styled.h2<{ $isMobile: boolean }>`
+export const Title = styled.h2`
   margin: 0;
   align-self: stretch;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   font-family: "Reddit Sans", sans-serif;
-  font-size: ${({ $isMobile }) => ($isMobile ? "2rem" : "2.5rem")};
+  font-size: 2.5rem;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+
+  ${media.tablet} {
+    font-size: 2rem;
+  }
 `;
 
 export const Paragraph = styled.p`
