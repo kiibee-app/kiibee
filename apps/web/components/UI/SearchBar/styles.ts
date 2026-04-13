@@ -1,12 +1,12 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ $width?: string }>`
+  width: ${({ $width }) => $width || "100%"};
   max-height: 50px;
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 100%;
   max-width: 31.6875rem;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border: 1px solid ${({ theme }) => theme.colors.primary.GRAY};

@@ -19,6 +19,7 @@ import VideoIcon from "@/assets/images/icons/video";
 import { EpubIcon } from "@/assets/images/icons/epub";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { Badge } from "../../ExploreCreators/Creators/styles";
 
 interface TutorialCardProps {
   tutorial: TutorialVideo;
@@ -56,6 +57,12 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
     <CardShell>
       <Card>
         <ImageWrapper>
+          <Badge>
+            <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
+              {tutorial.category}
+            </MonoText>
+          </Badge>
+
           <Image
             src={imageUrl}
             alt={tutorial.title}

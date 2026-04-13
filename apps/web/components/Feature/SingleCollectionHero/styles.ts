@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { media } from "@kiibee/ui/breakpoints";
 
 export const HeroWrapper = styled.div`
-  padding: 110px;
+  padding: 110px 110px 0;
 
   ${media.tablet} {
-    padding: 60px 40px;
+    padding: 80px 40px 0;
   }
 `;
 
@@ -95,4 +95,29 @@ export const LogoRow = styled.div`
   ${media.tablet} {
     gap: 6px;
   }
+`;
+
+export const TitleGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0;
+  gap: 16px;
+`;
+
+export const Section = styled.div`
+  padding: 0px 110px;
+  ${media.tablet} {
+    padding: 0px 40px;
+  }
+`;
+
+export const ShowcaseWrapper = styled.div`
+  margin-bottom: 60px;
 `;
