@@ -613,7 +613,9 @@
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
     "seeContent": "Se indhold",
-    "notFound": "Samling ikke fundet"
+    "notFound": "Samling ikke fundet",
+    "inCollection": "I denne samling",
+    "uploads": "uploads"
   },
   "startCreating": {
     "heading": "Start creating with Kiibee today",
