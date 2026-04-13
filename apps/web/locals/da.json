@@ -236,6 +236,51 @@
         "Create your own channel or site with curated collections"
       ]
     },
+    "howToGetStarted": {
+      "title": "Sådan kommer du i gang som skaber",
+      "steps": {
+        "requestAccess": {
+          "title": "1. Anmod om adgang",
+          "description": "Tilmeld dig som skaber og anmod om adgang til at deltage i Kiibee."
+        },
+        "getApproved": {
+          "title": "2. Bliv godkendt og vælg en plan",
+          "description": "Når du er godkendt, vælger du den plan, der passer til dine behov."
+        },
+        "dashboard": {
+          "title": "3. Dashboard oversigt",
+          "description": "Få et komplet overblik over dit indholds præstation og salg."
+        },
+        "contentCollections": {
+          "title": "4. Indhold og samlinger",
+          "description": "Under Indhold kan du:",
+          "list": [
+            "Oprette samlinger",
+            "Uploade indhold",
+            "Personliggøre din skaberprofil",
+            "Vælge hvordan indhold tilgås (gratis, betalt, kodebaseret)",
+            "Oprette rabat- eller adgangskoder"
+          ]
+        },
+        "usersSales": {
+          "title": "5. Brugere og salg",
+          "description": "Under Brugere kan du:",
+          "list": [
+            "Se brugere, der er tilmeldt e-mails",
+            "Se brugere, der har købt indhold",
+            "Få et klart salgsoverblik"
+          ]
+        },
+        "settingsPayouts": {
+          "title": "6. Indstillinger og udbetalinger",
+          "description": "Under Indstillinger kan du anmode om udbetalinger og administrere betalingsoplysninger."
+        },
+        "profileSettings": {
+          "title": "7. Profilindstillinger",
+          "description": "Opdater dine personlige og virksomhedsoplysninger direkte fra din profil."
+        }
+      }
+    },
     "title": "All creators",
     "filter": "Filter",
     "filters": {

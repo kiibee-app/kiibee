@@ -10,6 +10,7 @@ import MarketingSection from "./creators/MarketingSection";
 import GetStarted from "@/components/Feature/HowItWork/GetStarted";
 import { BG_WHITE } from "@/utils/Constants";
 import WhyCreatorsChoose from "@/components/Feature/ExploreCreators/Creators/WhyCreatorsChoose";
+import HowToGetStarted from "@/components/Feature/ForCreator/HowToGetStarted";
 
 export default function CreatorsPage() {
   return (
@@ -19,6 +20,7 @@ export default function CreatorsPage() {
         <CreatorsSection />
         <ShortStory />
         <MarketingSection />
+        <HowToGetStarted />
         <WhyCreatorsChoose />
         <PricingPlansSection titleKey="pricingPage.title" />
         <GetStarted
