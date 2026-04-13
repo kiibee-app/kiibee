@@ -56,9 +56,7 @@ export default function SignUpSection() {
             </CTAWrap>
 
             <AccountText>
-              <MonoText $use="Body_Medium">
-                {t("auth.alreadyHaveAccount")}
-              </MonoText>
+              <MonoText $use="Body_Medium">{t("auth.haveAccount")}</MonoText>
               <LoginLink href="/auth/login">
                 <MonoText $use="Body_Medium">{t("auth.login")} </MonoText>
               </LoginLink>

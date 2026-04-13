@@ -23,6 +23,16 @@ export const BackButton = styled(Link)`
   line-height: 0;
 `;
 
+export const LogoWrap = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  img {
+    display: block;
+  }
+`;
+
 export const FormTitle = styled.h1`
   margin: 0;
   text-align: center;

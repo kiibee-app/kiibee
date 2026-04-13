@@ -29,6 +29,7 @@ import {
   HelpText,
   LinkRow,
   LoginLink,
+  LogoWrap,
   SubmitButton,
   TernaryRow,
   TermsLink,
@@ -86,7 +87,9 @@ export default function SignUpCreatorSection() {
   return (
     <ContentWrap>
       <AuthBackButton href="/auth/signup" />
-      <Image src={logo} alt="Kiibee Logo" width={42} height={42} />
+      <LogoWrap>
+        <Image src={logo} alt="Kiibee Logo" width={42} height={42} />
+      </LogoWrap>
 
       <FormTitle>
         <MonoText $use="H4_Medium">{t("authCreator.title")}</MonoText>
