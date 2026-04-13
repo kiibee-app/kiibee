@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { steps } from "./data";
+import { intersectionObserverConfig } from "@/utils/intersectionObserverConfig";
 import {
   Section,
   Container,
@@ -29,33 +30,21 @@ export default function HowToGetStarted() {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: "-30% 0px -50% 0px",
-      threshold: 0,
-    };
+    const observer = new IntersectionObserver((entries) => {
+      const visibleEntry = entries.find((entry) => entry.isIntersecting);
+      if (!visibleEntry) return;
 
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = sectionRefs.current.indexOf(
-            entry.target as HTMLDivElement,
-          );
-          if (index !== -1) {
-            setActiveIndex(index);
-          }
-        }
-      });
-    };
+      const index = sectionRefs.current.indexOf(
+        visibleEntry.target as HTMLDivElement,
+      );
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions,
-    );
+      if (index !== -1) {
+        setActiveIndex(index);
+      }
+    }, intersectionObserverConfig);
 
-    sectionRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
+    const elements = sectionRefs.current.filter(Boolean);
+    elements.forEach((el) => observer.observe(el!));
 
     return () => observer.disconnect();
   }, []);
