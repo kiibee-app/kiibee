@@ -28,9 +28,11 @@ export default function CollectionContent({ videos, maxWidth }: Props) {
     <Section>
       <Header>
         <TitleGroup>
-          <MonoText $use="Body_Medium">In this collection</MonoText>
+          <MonoText $use="Body_Medium">
+            {t("singleCollection.inCollection")}
+          </MonoText>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            {filteredVideos.length} uploads
+            {filteredVideos.length} {t("singleCollection.uploads")}
           </MonoText>
         </TitleGroup>
 

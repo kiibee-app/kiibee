@@ -600,7 +600,9 @@
   "singleCollection": {
     "subtitle": "Learn how to use our platform",
     "seeContent": "See content",
-    "notFound": "Collection not found"
+    "notFound": "Collection not found",
+    "inCollection": "In this collection",
+    "uploads": "uploads"
   },
   "startCreating": {
     "heading": "Start creating with Kiibee today",
