@@ -208,6 +208,19 @@
       "body": "We saw great content being shared for free or locked behind complicated systems - and consumers struggling to access quality content in a simple way. Kiibee was built to change that.",
       "cta": "Read more about Kiibee"
     },
+    "contentPerform": {
+      "imageAlt": "Creator dashboard preview",
+      "title": "See how your content performs",
+      "intro": "With Kiibee, you get clear insights into how your content is doing.",
+      "listIntro": "In your dashboard, you can:",
+      "points": [
+        "Track views and sales",
+        "See which content performs best",
+        "Monitor purchases and user activity",
+        "Get a clear overview of your revenue"
+      ],
+      "outro": "This helps you make better decisions about pricing, formats and future content."
+    },
     "getStarted": {
       "heading": "Need help with the setup?",
       "sub": "Setting up is simple, but we're here if you need us. Watch our tutorial videos for step-by-step guidance, or contact our support team for help with technical questions, best practices, and getting your first products live.",

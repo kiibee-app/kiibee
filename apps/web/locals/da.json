@@ -208,6 +208,19 @@
       "body": "Vi så fantastisk indhold blive delt gratis eller låst bag komplicerede systemer - og forbrugere kæmpe for at få adgang til kvalitetsindhold på en enkel måde. Kiibee blev bygget for at ændre det.",
       "cta": "Læs mere om Kiibee"
     },
+    "contentPerform": {
+      "imageAlt": "Forhåndsvisning af creator-dashboard",
+      "title": "Se, hvordan dit indhold klarer sig",
+      "intro": "Med Kiibee får du klare indsigter i, hvordan dit indhold klarer sig.",
+      "listIntro": "I dit dashboard kan du:",
+      "points": [
+        "Følge visninger og salg",
+        "Se hvilket indhold der klarer sig bedst",
+        "Overvåge køb og brugeraktivitet",
+        "Få et klart overblik over din omsætning"
+      ],
+      "outro": "Det hjælper dig med at træffe bedre beslutninger om priser, formater og fremtidigt indhold."
+    },
     "getStarted": {
       "heading": "Brug for hjælp til opsætningen?",
       "sub": "Det er nemt at komme i gang, men vi er her, hvis du har brug for os. Se vores videovejledninger med trin-for-trin hjælp, eller kontakt supportteamet for hjælp til tekniske spørgsmål, best practices og at få dine første produkter live.",
