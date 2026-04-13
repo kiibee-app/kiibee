@@ -32,6 +32,14 @@
     "footer": "Don't have an account?",
     "signUp": "Sign up"
   },
+  "forgotPassword": {
+    "title": "Forgot password",
+    "description": "Enter your email address and we will send you a link to reset your password.",
+    "emailLabel": "Email address",
+    "submit": "Submit",
+    "rememberPassword": "Remember your password?",
+    "login": "Log in"
+  },
   "viewerSignup": {
     "heading": "Create Viewer Account",
     "description": "Viewer signup form coming soon..."
@@ -143,6 +151,39 @@
       "alt": "Woman in grey jacket",
       "title": "Payment Solutions"
     },
+    "marketing": {
+      "title": "We help you market your content",
+      "description": "Kiibee is not just a hosting platform - it helps you actively promote and grow your content. You can easily integrate your own sales site or shop into your existing setup, while also gaining extra exposure through Kiibee's portal, newsletters, and social media channels.",
+      "listIntro": "With Kiibee, you can:",
+      "list": [
+        "Share your content anywhere on the web",
+        "Create your own channel or site with curated collections",
+        "Control access with payments, codes, or email signups",
+        "Collect email permissions for newsletters and marketing",
+        "Embed or present your content directly on your own website"
+      ],
+      "summary": "Your content. Your audience. Your rules.",
+      "cta": "Get started free",
+      "images": {
+        "creatorsAlt": "Creators working together",
+        "downloadsAlt": "Instructor presenting",
+        "setupAlt": "Creator planning content"
+      },
+      "stats": {
+        "products": {
+          "value": "50,000+",
+          "label": "products sold by our creators"
+        },
+        "downloads": {
+          "value": "2,4M",
+          "label": "Customer download has reached"
+        },
+        "setup": {
+          "value": "5 minutes",
+          "label": "Get your first product live in under"
+        }
+      }
+    },
     "shortStory": {
       "imageAlt": "Person working at a desk with monitors and a microphone",
       "title": "A short story about Kiibee",
@@ -162,9 +203,75 @@
         "Get a clear overview of your revenue"
       ],
       "outro": "This helps you make better decisions about pricing, formats and future content."
+    "getStarted": {
+      "heading": "Need help with the setup?",
+      "sub": "Setting up is simple, but we're here if you need us. Watch our tutorial videos for step-by-step guidance, or contact our support team for help with technical questions, best practices, and getting your first products live.",
+      "tutorial": "Tutorial videos",
+      "guide": "User guide"
+    },
+    "whyChoose": {
+      "heading": "Why creators choose Kiibee",
+      "leftItems": [
+        "Get your own digital content website in just a few clicks",
+        "Collect content from multiple platforms (YouTube, Vimeo, Dropbox, etc.) in one place",
+        "Sell content or offer it for free",
+        "Protect content with access codes or email signups",
+        "Use your own payment module (Dankort, credit card, MobilePay)",
+        "Offer content as downloads or online streaming",
+        "Create online programs and digital courses",
+        "Take payment for live streaming events"
+      ],
+      "rightItems": [
+        "See statistics on views and sales",
+        "Show content on all devices — mobile, tablet and desktop",
+        "Sell multiple formats (video, PDF, ePub, MP3, audio)",
+        "Store content securely on Danish servers, fully GDPR compliant",
+        "Get tailored solutions based on your needs",
+        "Sell and show your content anywhere on the web",
+        "Create your own channel or site with curated collections"
+      ]
     },
     "title": "All creators",
     "filter": "Filter",
+    "filters": {
+      "title": "Filters",
+      "showMore": "Show more",
+      "sections": {
+        "creators": "Creators",
+        "categories": "Categories",
+        "formats": "Formats",
+        "price": "Price",
+        "rating": "Rating"
+      },
+      "price": {
+        "minimum": "Minimum price",
+        "maximum": "Maximum price",
+        "currency": "DKK"
+      },
+      "options": {
+        "categories": {
+          "all": "All categories",
+          "business": "Business",
+          "comedyShows": "Comedy shows",
+          "musicAndAudio": "Music and audio",
+          "educational": "Educational",
+          "fitnessAndHealth": "Fitness and health",
+          "food": "Food",
+          "podcasts": "Podcasts",
+          "theater": "Theater",
+          "tutorials": "Tutorials",
+          "publications": "Publications"
+        },
+        "formats": {
+          "all": "All Formats",
+          "video": "Video",
+          "ePublication": "E-publication",
+          "pdf": "PDF",
+          "audioFile": "Audio file",
+          "webContent": "Web content"
+        }
+      }
+    },
     "search": "Search for posts",
     "sort": "Sort by:",
     "recentlyAdded": {
@@ -176,7 +283,10 @@
     "loadMore": "Load more",
     "a-z": "A-Z",
     "subscribers": "Subscribers",
-    "newest": "Newest"
+    "newest": "Newest",
+    "topCreators": "Top creators",
+    "seeAll": "See all creators",
+    "subscribersCount": "{{count}}K Subscribers"
   },
   "discoverContent": {
     "title": "Discover content",
@@ -343,7 +453,8 @@
     },
     "value": {
       "title": "Join the Kiibee movement",
-      "subtitle": "Whether you're a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you."
+      "subtitle": "Whether you're a viewer looking to learn something new or a creator ready to share your passion, Kiibee is the place for you.",
+      "cta": "Join kiibee today"
     }
   },
   "features": {
@@ -477,5 +588,22 @@
         "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
       }
     ]
+  },
+  "common": {
+    "share": "Share"
+  },
+  "singleCollection": {
+    "subtitle": "Learn how to use our platform",
+    "seeContent": "See content",
+    "notFound": "Collection not found"
+  },
+  "startCreating": {
+    "heading": "Start creating with Kiibee today",
+    "description1": "Join hundreds of creators sharing their work and growing their audience on Kiibee.",
+    "description2": "You can start for free, and upgrade when you're ready.",
+    "cta": "Get started for free"
+  },
+  "ctaSection": {
+    "bgAlt": "CTA background"
   }
 }

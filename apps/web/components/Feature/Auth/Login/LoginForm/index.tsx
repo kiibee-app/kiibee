@@ -68,7 +68,7 @@ export default function LoginForm() {
           </OptionsRow>
           <GenericButton type="submit">{t("authForm.submit")}</GenericButton>
         </Form>
-        <ForgotLink href="/forgot-password">
+        <ForgotLink href="/auth/forget-password">
           <MonoText $use="Body_Small">{t("authForm.forgot")}</MonoText>
         </ForgotLink>
         <FooterText>

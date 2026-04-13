@@ -117,7 +117,7 @@ export default function DiscoverContent() {
 
       <BottomCtaSection>
         <GenericButton>{t("discoverContent.ctaPrimary")}</GenericButton>
-        <GenericButton variant="secondary">
+        <GenericButton href="/explore-creators" variant="secondary">
           {t("discoverContent.ctaSecondary")}
         </GenericButton>
       </BottomCtaSection>

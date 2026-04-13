@@ -69,6 +69,7 @@ export interface ColorPalette {
     FRAME_BORDER: string;
     FRAME_GLOW: string;
     FRAME_SHADOW: string;
+    DEEP_GREEN_80: string;
     TRANSPARENT: string;
   };
 }
@@ -145,6 +146,7 @@ export const COLORS: ColorPalette = {
     FRAME_BORDER: "rgba(15, 23, 42, 0.08)",
     FRAME_GLOW: "rgba(197, 219, 184, 0.22)",
     FRAME_SHADOW: "rgba(67, 87, 59, 0.24)",
+    DEEP_GREEN_80: "rgba(4, 41, 11, 0.8)",
     TRANSPARENT: "rgba(0,0,0,0)",
   },
 };

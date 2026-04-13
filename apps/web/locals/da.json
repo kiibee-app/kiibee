@@ -32,6 +32,14 @@
     "footer": "Har du ikke en konto?",
     "signUp": "Tilmeld dig"
   },
+  "forgotPassword": {
+    "title": "Nulstil adgangskode",
+    "description": "Indtast din e-mailadresse, saa sender vi et link til at nulstille din adgangskode.",
+    "emailLabel": "E-mailadresse",
+    "submit": "Indsende",
+    "rememberPassword": "Kan du huske din adgangskode?",
+    "login": "Log ind"
+  },
   "viewerSignup": {
     "heading": "Opret seerkonto",
     "description": "Viewer-tilmeldingsformular kommer snart..."
@@ -143,6 +151,39 @@
       "alt": "Kvinde i graa jakke",
       "title": "Betalingsloesninger"
     },
+    "marketing": {
+      "title": "Vi hjælper dig med at markedsføre dit indhold",
+      "description": "Kiibee er ikke kun en hostingplatform - den hjælper dig aktivt med at promovere og vækste dit indhold. Du kan nemt integrere din egen salgsside eller shop i dit eksisterende setup, samtidig med at du får ekstra synlighed via Kiibees portal, nyhedsbreve og sociale medier.",
+      "listIntro": "Med Kiibee kan du:",
+      "list": [
+        "Dele dit indhold overalt på nettet",
+        "Oprette din egen kanal eller side med kuraterede samlinger",
+        "Styre adgang med betalinger, koder eller e-mailtilmeldinger",
+        "Indsamle e-mailtilladelser til nyhedsbreve og markedsføring",
+        "Integrere eller præsentere dit indhold direkte på din egen hjemmeside"
+      ],
+      "summary": "Dit indhold. Dit publikum. Dine regler.",
+      "cta": "Kom gratis i gang",
+      "images": {
+        "creatorsAlt": "Skabere, der arbejder sammen",
+        "downloadsAlt": "Instruktør, der præsenterer",
+        "setupAlt": "Skaber, der planlægger indhold"
+      },
+      "stats": {
+        "products": {
+          "value": "50.000+",
+          "label": "produkter solgt af vores skabere"
+        },
+        "downloads": {
+          "value": "2,4M",
+          "label": "Kundedownloads har nået"
+        },
+        "setup": {
+          "value": "5 minutter",
+          "label": "Få dit første produkt live på under"
+        }
+      }
+    },
     "shortStory": {
       "imageAlt": "Person working at a desk with monitors and a microphone",
       "title": "En kort historie om Kiibee",
@@ -162,9 +203,75 @@
         "Få et klart overblik over din omsætning"
       ],
       "outro": "Det hjælper dig med at træffe bedre beslutninger om priser, formater og fremtidigt indhold."
+    "getStarted": {
+      "heading": "Brug for hjælp til opsætningen?",
+      "sub": "Det er nemt at komme i gang, men vi er her, hvis du har brug for os. Se vores videovejledninger med trin-for-trin hjælp, eller kontakt supportteamet for hjælp til tekniske spørgsmål, best practices og at få dine første produkter live.",
+      "tutorial": "Videovejledninger",
+      "guide": "Brugervejledning"
+    },
+    "whyChoose": {
+      "heading": "Why creators choose Kiibee",
+      "leftItems": [
+        "Get your own digital content website in just a few clicks",
+        "Collect content from multiple platforms (YouTube, Vimeo, Dropbox, etc.) in one place",
+        "Sell content or offer it for free",
+        "Protect content with access codes or email signups",
+        "Use your own payment module (Dankort, credit card, MobilePay)",
+        "Offer content as downloads or online streaming",
+        "Create online programs and digital courses",
+        "Take payment for live streaming events"
+      ],
+      "rightItems": [
+        "See statistics on views and sales",
+        "Show content on all devices — mobile, tablet and desktop",
+        "Sell multiple formats (video, PDF, ePub, MP3, audio)",
+        "Store content securely on Danish servers, fully GDPR compliant",
+        "Get tailored solutions based on your needs",
+        "Sell and show your content anywhere on the web",
+        "Create your own channel or site with curated collections"
+      ]
     },
     "title": "All creators",
     "filter": "Filter",
+    "filters": {
+      "title": "Filtre",
+      "showMore": "Vis flere",
+      "sections": {
+        "creators": "Skabere",
+        "categories": "Kategorier",
+        "formats": "Formater",
+        "price": "Pris",
+        "rating": "Bedømmelse"
+      },
+      "price": {
+        "minimum": "Minimumspris",
+        "maximum": "Maksimumspris",
+        "currency": "DKK"
+      },
+      "options": {
+        "categories": {
+          "all": "Alle kategorier",
+          "business": "Business",
+          "comedyShows": "Comedy shows",
+          "musicAndAudio": "Musik og lyd",
+          "educational": "Uddannelse",
+          "fitnessAndHealth": "Fitness og sundhed",
+          "food": "Mad",
+          "podcasts": "Podcasts",
+          "theater": "Teater",
+          "tutorials": "Tutorials",
+          "publications": "Publikationer"
+        },
+        "formats": {
+          "all": "Alle formater",
+          "video": "Video",
+          "ePublication": "E-publikation",
+          "pdf": "PDF",
+          "audioFile": "Lydfil",
+          "webContent": "Webindhold"
+        }
+      }
+    },
     "search": "Search for posts",
     "sort": "Sort by:",
     "recentlyAdded": {
@@ -176,7 +283,10 @@
     "loadMore": "Load more",
     "a-z": "A-z",
     "subscribers": "Subscribers",
-    "newest": "Newest"
+    "newest": "Newest",
+    "topCreators": "Topskabere",
+    "seeAll": "Se alle skabere",
+    "subscribersCount": "{{count}}K abonnenter"
   },
   "discoverContent": {
     "title": "Opdag indhold",
@@ -343,7 +453,8 @@
     },
     "value": {
       "title": "Bliv en del af Kiibee-bevægelsen",
-      "subtitle": "Uanset om du er en seer, der ønsker at lære noget nyt, eller en skaber, der er klar til at dele din passion, er Kiibee stedet for dig."
+      "subtitle": "Uanset om du er en seer, der ønsker at lære noget nyt, eller en skaber, der er klar til at dele din passion, er Kiibee stedet for dig.",
+      "cta": "Tilmeld Kiibee i dag"
     }
   },
   "features": {
@@ -477,5 +588,22 @@
         "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
       }
     ]
+  },
+  "common": {
+    "share": "Del"
+  },
+  "singleCollection": {
+    "subtitle": "Lær hvordan du bruger vores platform",
+    "seeContent": "Se indhold",
+    "notFound": "Samling ikke fundet"
+  },
+  "startCreating": {
+    "heading": "Start creating with Kiibee today",
+    "description1": "Join hundreds of creators sharing their work and growing their audience on Kiibee.",
+    "description2": "You can start for free, and upgrade when you're ready.",
+    "cta": "Get started for free"
+  },
+  "ctaSection": {
+    "bgAlt": "CTA background"
   }
 }

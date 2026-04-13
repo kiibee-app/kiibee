@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   max-width: 31.6875rem;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
-  padding: 0 16px;
+  padding: 15px 16px;
   border-radius: 0.75rem;
 
   ${media.tablet} {
