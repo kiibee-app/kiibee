@@ -8,11 +8,14 @@ export const Section = styled.section`
   justify-content: center;
   padding: 2.5rem 9rem;
   background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
+
+  ${media.tablet} {
+    padding: 2rem 0.1rem;
+  }
 `;
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  padding: 0 clamp(1rem, 4vw, 2rem);
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   align-items: center;

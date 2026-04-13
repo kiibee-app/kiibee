@@ -57,7 +57,8 @@ export const GradientOverlay = styled.div`
 export const Content = styled.div`
   position: relative;
   z-index: 1;
-  width: min(100%, 77.5rem);
+  width: 100%;
+  padding: 0 9rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,6 +66,7 @@ export const Content = styled.div`
 
   ${media.tablet} {
     gap: 1.5rem;
+    padding: 0;
   }
 `;
 

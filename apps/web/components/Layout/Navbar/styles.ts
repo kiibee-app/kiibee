@@ -5,7 +5,7 @@ export const Header = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  height: 72px;
+  height: 88px;
   display: block;
   backdrop-filter: blur(15px);
   background: ${({ theme }) => theme.colors.primary.WHITE_10};
@@ -17,10 +17,14 @@ export const Header = styled.header`
 
 export const Inner = styled.div`
   margin: 0 auto;
-  padding: 1rem 5.5rem;
+  padding: 0.75rem clamp(1rem, 6vw, 5.5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+  }
 `;
 
 export const Left = styled.div`
@@ -30,9 +34,21 @@ export const Left = styled.div`
 `;
 
 export const Logo = styled.span`
-  font-weight: 700;
-  font-size: 1.125rem;
   font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
+  display: inline-block;
+
+  img {
+    display: block;
+    width: auto;
+    max-width: 340px;
+    height: auto;
+  }
+  @media (max-width: 768px) {
+    img {
+      max-width: 220px;
+      height: auto;
+    }
+  }
 `;
 
 export const Nav = styled.nav`

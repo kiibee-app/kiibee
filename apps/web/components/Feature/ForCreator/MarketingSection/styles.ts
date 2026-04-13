@@ -11,9 +11,9 @@ export const Section = styled.section`
   align-items: center;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
-  ${media.desktop} {
+  ${media.tablet} {
     display: flex;
-    padding: 2.5rem 1.25rem;
+    padding: 0 1.25rem;
   }
 `;
 
@@ -27,6 +27,10 @@ export const Container = styled.div`
   ${media.desktop} {
     flex-direction: column;
     gap: 2rem;
+  }
+
+  ${media.tablet} {
+    padding: 1rem 0.1rem;
   }
 `;
 

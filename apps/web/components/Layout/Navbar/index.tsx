@@ -21,10 +21,9 @@ export default function NavBar() {
             <Image
               src={logo}
               alt={t("nav.logoAlt")}
-              width={220}
-              height={25}
+              width={320}
+              height={40}
               priority
-              style={{ width: "auto", height: "auto" }}
             />
           </Logo>
         </Left>
