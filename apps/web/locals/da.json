@@ -41,8 +41,25 @@
     "login": "Log ind"
   },
   "viewerSignup": {
+    "title": "Opret seerkonto",
     "heading": "Opret seerkonto",
-    "description": "Viewer-tilmeldingsformular kommer snart..."
+    "description": "Viewer-tilmeldingsformular kommer snart...",
+    "haveAccount": "Har du allerede en konto?",
+    "login": "Log ind",
+    "form": {
+      "email": "E-mailadresse",
+      "emailPlaceholder": "Indtast din e-mailadresse",
+      "password": "Adgangskode",
+      "passwordPlaceholder": "Indtast ny adgangskode",
+      "repeatPassword": "Gentag adgangskode",
+      "repeatPasswordPlaceholder": "Gentag ny adgangskode",
+      "passwordMismatch": "Adgangskoderne matcher ikke",
+      "consentPrefix": "Jeg accepterer Kiibees",
+      "terms": "Vilkår for brug",
+      "and": " og ",
+      "privacy": "Privatlivspolitik",
+      "submit": "Fortsæt"
+    }
   },
   "authSlide": {
     "carousel": [

@@ -6,7 +6,7 @@ export const ContentWrap = styled.section`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 118px 24px 96px;
+  padding: 30px 24px 96px;
   background: transparent;
 `;
 
@@ -21,6 +21,16 @@ export const BackButton = styled(Link)`
   align-items: center;
   justify-content: center;
   line-height: 0;
+`;
+
+export const LogoWrap = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  img {
+    display: block;
+  }
 `;
 
 export const FormTitle = styled.h1`

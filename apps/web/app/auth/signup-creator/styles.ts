@@ -6,7 +6,7 @@ export const ContentWrap = styled.section`
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
-  padding: 118px 24px 96px;
+  padding: 30px 24px 96px;
 `;
 
 export const TopBar = styled.div`
