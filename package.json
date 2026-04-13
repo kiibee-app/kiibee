@@ -26,8 +26,11 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "packageManager": "pnpm@9.15.4",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "engines": {
-    "node": ">=18"
+    "node": "20.x"
   }
 }

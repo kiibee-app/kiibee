@@ -1,0 +1,8 @@
+{
+  "buildCommand": "yarn build",
+  "devCommand": "yarn dev",
+  "installCommand": "yarn install",
+  "engines": {
+    "node": "20.x"
+  }
+}
