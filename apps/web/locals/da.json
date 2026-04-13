@@ -47,6 +47,8 @@
     "haveAccount": "Har du allerede en konto?",
     "login": "Log ind",
     "form": {
+      "fullName": "Fulde navn",
+      "fullNamePlaceholder": "Indtast dit fulde navn",
       "email": "E-mailadresse",
       "emailPlaceholder": "Indtast din e-mailadresse",
       "password": "Adgangskode",

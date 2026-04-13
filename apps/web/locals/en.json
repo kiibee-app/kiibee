@@ -47,6 +47,8 @@
     "haveAccount": "Already have an account?",
     "login": "Log in",
     "form": {
+      "fullName": "Full name",
+      "fullNamePlaceholder": "Enter your full name",
       "email": "Email address",
       "emailPlaceholder": "Enter your email address",
       "password": "Password",
