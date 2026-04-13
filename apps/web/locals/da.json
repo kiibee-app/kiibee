@@ -32,6 +32,14 @@
     "footer": "Har du ikke en konto?",
     "signUp": "Tilmeld dig"
   },
+  "forgotPassword": {
+    "title": "Nulstil adgangskode",
+    "description": "Indtast din e-mailadresse, saa sender vi et link til at nulstille din adgangskode.",
+    "emailLabel": "E-mailadresse",
+    "submit": "Indsende",
+    "rememberPassword": "Kan du huske din adgangskode?",
+    "login": "Log ind"
+  },
   "viewerSignup": {
     "heading": "Opret seerkonto",
     "description": "Viewer-tilmeldingsformular kommer snart..."
