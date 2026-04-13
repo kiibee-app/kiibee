@@ -47,7 +47,7 @@ export const StickyImageWrapper = styled.div`
   aspect-ratio: 16/10;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px ${COLORS.primary.GRAY};
   background: ${COLORS.primary.WHITE};
 `;
 
@@ -116,7 +116,7 @@ export const MobileStepImage = styled.div`
   aspect-ratio: 16/10;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px ${COLORS.primary.GRAY};
   background: ${COLORS.primary.WHITE};
   margin-bottom: 1.5rem;
   position: relative;
