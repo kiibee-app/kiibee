@@ -65,6 +65,10 @@ export interface ColorPalette {
     VIGNETTE_SIDE_CLEAR: string;
     WHITE_08: string;
     NEAR_BLACK: string;
+    FRAME_BG: string;
+    FRAME_BORDER: string;
+    FRAME_GLOW: string;
+    FRAME_SHADOW: string;
     DEEP_GREEN_80: string;
     TRANSPARENT: string;
   };
@@ -138,6 +142,10 @@ export const COLORS: ColorPalette = {
     VIGNETTE_SIDE_CLEAR: "rgba(5,35,14,0)",
     WHITE_08: "rgba(255,255,255,0.08)",
     NEAR_BLACK: "rgb(6,6,6)",
+    FRAME_BG: "rgba(15, 23, 42, 0.12)",
+    FRAME_BORDER: "rgba(15, 23, 42, 0.08)",
+    FRAME_GLOW: "rgba(197, 219, 184, 0.22)",
+    FRAME_SHADOW: "rgba(67, 87, 59, 0.24)",
     DEEP_GREEN_80: "rgba(4, 41, 11, 0.8)",
     TRANSPARENT: "rgba(0,0,0,0)",
   },
