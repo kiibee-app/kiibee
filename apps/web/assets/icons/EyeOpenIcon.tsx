@@ -1,3 +1,4 @@
+import { SVG_XMLNS } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import * as React from "react";
 
@@ -16,7 +17,7 @@ export default function EyeOpenIcon({
 }: EyeOpenIconProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
+      xmlns={SVG_XMLNS}
       width={width}
       height={height}
       viewBox="0 0 14 9"
