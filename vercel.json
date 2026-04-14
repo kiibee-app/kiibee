@@ -1,11 +1,12 @@
 {
   "version": 2,
+  "installCommand": "npm install",
   "builds": [
     {
       "src": "apps/web/package.json",
       "use": "@vercel/next",
       "config": {
-        "includeFiles": ["apps/web/**"],
+        "includeFiles": ["apps/web/**", "packages/**"],
         "runtime": "nodejs24.x"
       }
     }
