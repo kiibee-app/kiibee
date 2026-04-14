@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
-    "@repo/ui": "file:../../packages/ui",
+    "@repo/ui": "workspace:*",
     "i18next": "^26.0.3",
     "next": "16.2.1",
     "react": "19.2.4",
