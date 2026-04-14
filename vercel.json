@@ -2,18 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "apps/server/package.json",
-      "use": "@vercel/node",
+      "src": "apps/web/package.json",
+      "use": "@vercel/next",
       "config": {
-        "includeFiles": ["apps/server/**"],
-        "runtime": "nodejs20.x"
+        "includeFiles": ["apps/web/**"]
       }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/apps/server/$1"
     }
   ]
 }
