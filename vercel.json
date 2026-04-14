@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "npm install",
+  "nodeVersion": "18",
   "builds": [
     {
       "src": "apps/web/package.json",
