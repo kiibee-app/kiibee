@@ -6,7 +6,7 @@
       "use": "@vercel/next",
       "config": {
         "includeFiles": ["apps/web/**"],
-        "runtime": "nodejs18.x"
+        "runtime": "nodejs24.x"
       }
     }
   ]
