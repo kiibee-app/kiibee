@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "nodeVersion": "18",
   "builds": [
     {
       "src": "apps/web/package.json",
       "use": "@vercel/next",
       "config": {
-        "includeFiles": ["apps/web/**"]
+        "includeFiles": ["apps/web/**"],
+        "runtime": "nodejs18.x"
       }
     }
   ]
