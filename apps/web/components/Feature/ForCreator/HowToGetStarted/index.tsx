@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { steps } from "./data";
+import { steps } from "@/utils/steps";
 import { intersectionObserverConfig } from "@/utils/intersectionObserverConfig";
 import {
   Section,
