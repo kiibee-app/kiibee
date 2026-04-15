@@ -9,6 +9,7 @@ import GenericLoader from "@/components/UI/GenericLoader";
 import ctaImage from "@/assets/images/cta-buttom.png";
 import { LOADER_SIZE, LOADER_VARIANT } from "@/utils/ui";
 import { useTranslation } from "react-i18next";
+import Footer from "@/components/Layout/Footer";
 
 const InterestSection = dynamic(
   () => import("@/components/Feature/landing/InterestSection"),
@@ -35,9 +36,6 @@ const CallToAction = dynamic(
   { loading: () => <SectionLoader /> },
 );
 const CtaSection = dynamic(() => import("@/components/Feature/CtaSection"), {
-  loading: () => <SectionLoader />,
-});
-const Footer = dynamic(() => import("@/components/Layout/Footer"), {
   loading: () => <SectionLoader />,
 });
 
@@ -86,9 +84,7 @@ export default function Home() {
           />
         </LazySection>
       </Main>
-      <LazySection minHeight={280}>
-        <Footer />
-      </LazySection>
+      <Footer />
     </PageContainer>
   );
 }
