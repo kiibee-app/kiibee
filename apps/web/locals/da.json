@@ -46,6 +46,11 @@
     "description": "Viewer-tilmeldingsformular kommer snart...",
     "haveAccount": "Har du allerede en konto?",
     "login": "Log ind",
+    "preference": {
+      "title": "Lad os tilpasse din oplevelse",
+      "description": "Fortæl os, hvad du kan lide, så vi kan anbefale skabere og indhold, du vil elske. Du kan altid opdatere dine præferencer senere i dine profilindstillinger.",
+      "submit": "Fortsæt"
+    },
     "form": {
       "fullName": "Fulde navn",
       "fullNamePlaceholder": "Indtast dit fulde navn",

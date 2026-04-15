@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
@@ -42,6 +43,7 @@ const isPasswordField = (
   PASSWORD_FIELD_KEYS.includes(fieldKey as PasswordFieldKey);
 
 export default function SignUpViewer() {
+  const router = useRouter();
   const { t } = useTranslation();
   const [formValues, setFormValues] =
     useState<ViewerFormValues>(INITIAL_VIEWER_FORM);
@@ -68,9 +70,7 @@ export default function SignUpViewer() {
     event.preventDefault();
     setSubmitted(true);
 
-    if (!isSubmitEnabled) {
-      return;
-    }
+    router.push("/auth/signup-viewer/preferences");
   };
 
   const updateField = (
@@ -166,7 +166,7 @@ export default function SignUpViewer() {
               </ConsentText>
             </CheckboxRow>
 
-            <GenericButton type="submit" disabled={!isSubmitEnabled}>
+            <GenericButton type="submit">
               {t("viewerSignup.form.submit")}
             </GenericButton>
           </Form>
