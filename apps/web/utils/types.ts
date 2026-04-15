@@ -1,7 +1,7 @@
 import type { StaticImageData } from "next/image";
 import type { Variant } from "@/utils/Constants";
 
-export type FormatType = "video" | "pdf" | "epub";
+export type FormatType = "video" | "pdf" | "epub" | "web";
 
 export type TutorialButton = {
   label: string;
