@@ -46,6 +46,11 @@
     "description": "Viewer signup form coming soon...",
     "haveAccount": "Already have an account?",
     "login": "Log in",
+    "preference": {
+      "title": "Let's personalize your experience",
+      "description": "Tell us what you like so we can recommend creators and content you'll love. You can always update your preferences later in your profile settings.",
+      "submit": "Continue"
+    },
     "form": {
       "email": "Email address",
       "emailPlaceholder": "Enter your email address",

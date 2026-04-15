@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
@@ -23,6 +24,7 @@ import {
 import { ContentWrap } from "@/app/auth/signup-creator/styles";
 
 export default function SignUpViewer() {
+  const router = useRouter();
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,9 +49,7 @@ export default function SignUpViewer() {
     event.preventDefault();
     setSubmitted(true);
 
-    if (!isSubmitEnabled) {
-      return;
-    }
+    router.push("/auth/signup-viewer/preferences");
   };
 
   return (
@@ -125,7 +125,7 @@ export default function SignUpViewer() {
               </ConsentText>
             </CheckboxRow>
 
-            <GenericButton type="submit" disabled={!isSubmitEnabled}>
+            <GenericButton type="submit">
               {t("viewerSignup.form.submit")}
             </GenericButton>
           </Form>
