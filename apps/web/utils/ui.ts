@@ -50,6 +50,9 @@ export const CSS_VALUE = {
   HIDDEN: "hidden",
   OVERFLOW: "overflow",
 } as const;
+export const BROWSER_API = {
+  INTERSECTION_OBSERVER: "IntersectionObserver",
+} as const;
 export const LOADER_VARIANT = {
   OVERLAY: "overlay",
   INLINE: "inline",
