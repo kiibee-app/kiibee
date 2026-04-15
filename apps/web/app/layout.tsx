@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "../providers/languageProvider";
 import { ThemeProvider } from "../providers/themeProvider";
+import { SmoothScrollProvider } from "../providers/smoothScrollProvider";
 import StyledComponentsRegistry from "@/lib/registry";
 
 const geistSans = Geist({
@@ -31,7 +32,9 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <LanguageProvider>
-            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+            <SmoothScrollProvider>
+              <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+            </SmoothScrollProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>
