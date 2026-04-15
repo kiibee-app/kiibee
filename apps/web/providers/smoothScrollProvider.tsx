@@ -13,13 +13,10 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       autoRaf: false,
       smoothWheel: true,
       syncTouch: true,
-      // Lower lerp = more inertia/float, higher = snappier. 0.08 is the sweet spot.
       lerp: 0.08,
       wheelMultiplier: 1.0,
       touchMultiplier: 1.0,
-      // Expo ease-out: fast start, ultra-smooth deceleration tail
       easing: (t: number) => 1 - Math.pow(1 - t, 5),
-      // Prevents janky scroll on overscroll-behavior
       overscroll: false,
     });
 
@@ -32,7 +29,6 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 
     rafId = requestAnimationFrame(raf);
 
-    // Pause Lenis when tab is hidden to save CPU
     const handleVisibilityChange = () => {
       if (document.hidden) {
         lenis.stop();
