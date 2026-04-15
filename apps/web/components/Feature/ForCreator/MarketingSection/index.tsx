@@ -1,9 +1,9 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import creatorsWorkingImage from "@/assets/images/we-help-you/marketing-tall.jpg";
-import instructorImage from "@/assets/images/we-help-you/marketing-top.jpg";
-import writingImage from "@/assets/images/we-help-you/marketing-bottom.jpg";
+import creatorsWorkingImage from "@/assets/images/we-help-you/marketing-tall.webp";
+import instructorImage from "@/assets/images/we-help-you/marketing-top.webp";
+import writingImage from "@/assets/images/we-help-you/marketing-bottom.webp";
 import {
   Section,
   Container,

@@ -18,7 +18,7 @@ import {
 } from "./styles";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import Steps from "@/assets/images/steps.png";
+import Steps from "@/assets/images/steps.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 

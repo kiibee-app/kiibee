@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import hero from "../../../../assets/images/mobilePay.png";
-import creator from "../../../../assets/images/laptopMan.png";
+import hero from "../../../../assets/images/mobilePay.webp";
+import creator from "../../../../assets/images/laptopMan.webp";
 import {
   Description,
   HeroImageWrap,
