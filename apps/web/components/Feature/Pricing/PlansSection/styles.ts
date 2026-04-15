@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
-import pricingCheckmark from "@/assets/icons/pricing-checkmark.png";
+import pricingCheckmark from "@/assets/icons/pricing-checkmark.webp";
 
 export const Section = styled.section`
   width: 100%;

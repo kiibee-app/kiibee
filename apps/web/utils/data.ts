@@ -1,14 +1,14 @@
-import design from "../assets/images/design.png";
-import design1 from "../assets/images/design1.png";
-import design2 from "../assets/images/design2.png";
-import education from "../assets/images/education.png";
-import loginSlide from "../assets/images/auth/loginSlide.png";
-import loginSlide1 from "../assets/images/auth/loginSlide1.png";
-import loginSlide2 from "../assets/images/auth/loginSlide2.png";
-import recentCreator from "@/assets/images/creators/recent_creator.png";
-import recentCreator1 from "@/assets/images/creators/recent_creator1.png";
-import recentCreator2 from "@/assets/images/creators/recent_creator2.png";
-import recentCreator3 from "@/assets/images/creators/recent_creator3.png";
+import design from "../assets/images/design.webp";
+import design1 from "../assets/images/design1.webp";
+import design2 from "../assets/images/design2.webp";
+import education from "../assets/images/education.webp";
+import loginSlide from "../assets/images/auth/loginSlide.webp";
+import loginSlide1 from "../assets/images/auth/loginSlide1.webp";
+import loginSlide2 from "../assets/images/auth/loginSlide2.webp";
+import recentCreator from "@/assets/images/creators/recent_creator.webp";
+import recentCreator1 from "@/assets/images/creators/recent_creator1.webp";
+import recentCreator2 from "@/assets/images/creators/recent_creator2.webp";
+import recentCreator3 from "@/assets/images/creators/recent_creator3.webp";
 
 import { TutorialVideo } from "./types";
 

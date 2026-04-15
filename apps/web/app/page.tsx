@@ -11,7 +11,7 @@ import CallToAction from "@/components/Feature/landing/CallToAction";
 import SecurePaymentSection from "@/components/Feature/landing/SecurePayment";
 import InterestSection from "@/components/Feature/landing/InterestSection";
 import DiscoverContent from "@/components/Feature/landing/DiscoverContent";
-import ctaImage from "@/assets/images/cta-buttom.png";
+import ctaImage from "@/assets/images/cta-buttom.webp";
 import { useTranslation } from "react-i18next";
 
 export default function Home() {

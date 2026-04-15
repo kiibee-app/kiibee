@@ -13,7 +13,7 @@ import {
 } from "./styles";
 import { BackButtonIcon } from "@/assets/icons";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
-import collection from "@/assets/images/singleCollection.jpg";
+import collection from "@/assets/images/singleCollection.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { useRouter } from "next/navigation";
