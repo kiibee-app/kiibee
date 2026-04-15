@@ -1,18 +1,53 @@
 import styled, { css } from "styled-components";
 import type { Variant } from "@/utils/Constants";
 
-export const shared = css<{ $variant: Variant }>`
+export type ButtonSize = "sm" | "md" | "lg";
+
+type ButtonStyleProps = {
+  $variant: Variant;
+  $size: ButtonSize;
+  $fullWidth: boolean;
+  $minWidth?: string;
+};
+
+const sizeStyles = {
+  sm: css`
+    min-height: 23px;
+    padding: 6px 14px;
+    ${({ theme }) => theme.typography.Body_Bold}
+  `,
+  md: css`
+    min-height: 40px;
+    padding: 7px 18px;
+    ${({ theme }) => theme.typography.Body_Medium}
+  `,
+  lg: css`
+    min-height: 49px;
+    padding: 14px 24px;
+    ${({ theme }) => theme.typography.Body_Medium}
+  `,
+};
+
+export const shared = css<ButtonStyleProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  height: 40px;
-  padding: 7px 18px;
+  width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "auto")};
+  min-width: ${({ $minWidth }) => $minWidth ?? "0"};
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
   transition: all 120ms ease;
-  ${({ theme }) => theme.typography.Body_Medium}
+  ${({ $size }) => sizeStyles[$size]}
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
   ${({ $variant }) => {
     switch ($variant) {
       case "primary":
@@ -61,10 +96,10 @@ export const shared = css<{ $variant: Variant }>`
   }}
 `;
 
-export const ButtonEl = styled.button<{ $variant: Variant }>`
+export const ButtonEl = styled.button<ButtonStyleProps>`
   ${shared}
 `;
 
-export const AnchorEl = styled.a<{ $variant: Variant }>`
+export const AnchorEl = styled.a<ButtonStyleProps>`
   ${shared}
 `;
