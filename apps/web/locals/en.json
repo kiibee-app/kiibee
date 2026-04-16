@@ -251,6 +251,51 @@
         "Create your own channel or site with curated collections"
       ]
     },
+    "howToGetStarted": {
+      "title": "How to get started as a creator",
+      "steps": {
+        "requestAccess": {
+          "title": "1. Request access",
+          "description": "Sign up as a creator and request access to join Kiibee."
+        },
+        "getApproved": {
+          "title": "2. Get approved & choose a plan",
+          "description": "Once approved, you select the plan that fits your needs."
+        },
+        "dashboard": {
+          "title": "3. Dashboard overview",
+          "description": "Get a full overview of your content performance and sales."
+        },
+        "contentCollections": {
+          "title": "4. Content & collections",
+          "description": "Under Content, you can:",
+          "list": [
+            "Create collections",
+            "Upload content",
+            "Personalize your creator profile",
+            "Choose how content is accessed (free, paid, code-based)",
+            "Create discount or access codes"
+          ]
+        },
+        "usersSales": {
+          "title": "5. Users & sales",
+          "description": "Under Users, you can:",
+          "list": [
+            "See users subscribed to emails",
+            "See users who have purchased content",
+            "Get a clear sales overview"
+          ]
+        },
+        "settingsPayouts": {
+          "title": "6. Settings & payouts",
+          "description": "Under Settings, you can request payouts and manage payment details."
+        },
+        "profileSettings": {
+          "title": "7. Profile settings",
+          "description": "Update your personal and company information directly from your profile."
+        }
+      }
+    },
     "title": "All creators",
     "filter": "Filter",
     "filters": {

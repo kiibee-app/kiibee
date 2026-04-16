@@ -11,6 +11,7 @@ import MarketingSection from "../../../components/Feature/ForCreator/MarketingSe
 import GetStarted from "@/components/Feature/HowItWork/GetStarted";
 import { BG_WHITE } from "@/utils/Constants";
 import WhyCreatorsChoose from "@/components/Feature/ForCreator/WhyCreatorsChoose";
+import HowToGetStarted from "@/components/Feature/ForCreator/HowToGetStarted";
 
 export default function CreatorsPage() {
   return (
@@ -21,12 +22,10 @@ export default function CreatorsPage() {
         <ShortStory />
         <MarketingSection />
         <ContentPerform />
+        <HowToGetStarted />
         <WhyCreatorsChoose />
         <PricingPlansSection titleKey="pricingPage.title" />
-        <GetStarted
-          translationPrefix="creators.getStarted"
-          bgVariant={BG_WHITE}
-        />
+        <GetStarted translationPrefix="creators.getStarted" bgVariant={BG_WHITE} />
       </Main>
       <Footer />
     </PageContainer>
