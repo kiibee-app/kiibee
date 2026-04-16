@@ -6,7 +6,7 @@ import { Main, PageContainer, Section } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
 import Footer from "@/components/Layout/Footer";
 import ExploreCreators from "@/components/Feature/ExploreCreators/Creators";
-import { creators } from "@/utils/dummyData/creators.data";
+import { creators } from "@/utils/dummyData/creatorsData";
 import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 
 export default function ExploreCreatorsPage() {

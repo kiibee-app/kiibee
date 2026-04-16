@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { SidebarHeader } from "@/components/Layout/Sidebar/styles";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
-import DashboardContent from "@/components/Feature/Dashboard/DashboardContent";
+import OverviewContent from "@/components/Feature/OverView/OverviewContents";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
 
 export default function DashboardCreatorsPage() {
@@ -17,7 +17,7 @@ export default function DashboardCreatorsPage() {
   };
 
   const renderContent = () => {
-    if (activePage === CREATORS_LABELS.OVERVIEW) return <DashboardContent />;
+    if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   };
 

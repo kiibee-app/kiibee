@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Wrapper, Header, SeeAll, List, Card, Avatar } from "./styles";
-import { creators } from "@/utils/dummyData/creators.data";
+import { creators } from "@/utils/dummyData/creatorsData";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@kiibee/ui/colors";
 import { useTranslation } from "react-i18next";
