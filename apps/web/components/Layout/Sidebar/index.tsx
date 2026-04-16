@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import {
   SidebarWrapper,
   SidebarHeader,
@@ -13,7 +13,7 @@ import {
   IconWrapper,
   SidebarContent,
 } from "./styles";
-import { creatorsItems } from "@/utils/SidebarItems";
+import { CREATOR_SECTIONS, creatorsItems } from "@/utils/SidebarItems";
 import logo from "@/assets/images/kiibee-wordmark.png";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
@@ -27,19 +27,59 @@ const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
-  const handleClick = (label: string) => {
-    onSelect(label);
-    setOpen(false);
-  };
+  const { mainItems, settingsItems } = useMemo(() => {
+    return {
+      mainItems: creatorsItems.filter(
+        (i) => i.section === CREATOR_SECTIONS.TOP,
+      ),
+      settingsItems: creatorsItems.filter(
+        (i) => i.section === CREATOR_SECTIONS.BOTTOM,
+      ),
+    };
+  }, []);
 
-  const mainItems = creatorsItems.filter((i) => i.section === "top");
-  const settingsItems = creatorsItems.filter((i) => i.section === "bottom");
+  const handleClick = useCallback(
+    (label: string) => {
+      onSelect(label);
+      setOpen(false);
+    },
+    [onSelect],
+  );
+
+  const toggleSidebar = useCallback(() => {
+    setOpen((p) => !p);
+  }, []);
+
+  const closeSidebar = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  const renderItems = useCallback(
+    (items: typeof creatorsItems) =>
+      items.map((item) => (
+        <SidebarItemStyled
+          key={item.label}
+          onClick={() => handleClick(item.label)}
+          $active={activeItem === item.label}
+          $variant={item.variant}
+        >
+          {item.icon && <IconWrapper>{item.icon}</IconWrapper>}
+          <SidebarText
+            $active={activeItem === item.label}
+            $variant={item.variant}
+          >
+            {item.label}
+          </SidebarText>
+        </SidebarItemStyled>
+      )),
+    [activeItem, handleClick],
+  );
 
   return (
     <>
-      <MobileToggle onClick={() => setOpen((p) => !p)} />
+      <MobileToggle onClick={toggleSidebar} />
 
-      {open && <Overlay onClick={() => setOpen(false)} />}
+      {open && <Overlay onClick={closeSidebar} />}
 
       <SidebarWrapper $open={open}>
         <SidebarHeader>
@@ -54,43 +94,9 @@ const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
         </SidebarHeader>
 
         <SidebarContent>
-          <SidebarMenu>
-            {mainItems.map((item) => (
-              <SidebarItemStyled
-                key={item.label}
-                onClick={() => handleClick(item.label)}
-                $active={activeItem === item.label}
-                $variant={item.variant}
-              >
-                {item.icon && <IconWrapper>{item.icon}</IconWrapper>}
-                <SidebarText
-                  $active={activeItem === item.label}
-                  $variant={item.variant}
-                >
-                  {item.label}
-                </SidebarText>
-              </SidebarItemStyled>
-            ))}
-          </SidebarMenu>
+          <SidebarMenu>{renderItems(mainItems)}</SidebarMenu>
 
-          <BottomMenu>
-            {settingsItems.map((item) => (
-              <SidebarItemStyled
-                key={item.label}
-                onClick={() => handleClick(item.label)}
-                $active={activeItem === item.label}
-                $variant={item.variant}
-              >
-                {item.icon && <IconWrapper>{item.icon}</IconWrapper>}
-                <SidebarText
-                  $active={activeItem === item.label}
-                  $variant={item.variant}
-                >
-                  {item.label}
-                </SidebarText>
-              </SidebarItemStyled>
-            ))}
-          </BottomMenu>
+          <BottomMenu>{renderItems(settingsItems)}</BottomMenu>
         </SidebarContent>
       </SidebarWrapper>
     </>

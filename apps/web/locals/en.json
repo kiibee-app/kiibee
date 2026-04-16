@@ -625,5 +625,10 @@
   },
   "ctaSection": {
     "bgAlt": "CTA background"
+  },
+  "dashboard": {
+    "overview": "Overview",
+    "noData": "No Data Found",
+    "contentPerformance": "Content Performance"
   }
 }

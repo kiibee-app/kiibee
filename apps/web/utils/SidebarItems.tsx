@@ -18,32 +18,52 @@ export const CREATORS_LABELS = {
 export type CreatorsLabel =
   (typeof CREATORS_LABELS)[keyof typeof CREATORS_LABELS];
 
+export const CREATOR_SECTIONS = {
+  TOP: "top",
+  BOTTOM: "bottom",
+} as const;
+
+export type CreatorSection =
+  (typeof CREATOR_SECTIONS)[keyof typeof CREATOR_SECTIONS];
+
 type CreatorItem = {
   label: CreatorsLabel;
   icon?: React.ReactNode;
-  section: "top" | "bottom";
+  section: CreatorSection;
   variant?: "danger";
 };
 
 export const creatorsItems: CreatorItem[] = [
-  { label: CREATORS_LABELS.OVERVIEW, icon: <HomeIcon />, section: "top" },
+  {
+    label: CREATORS_LABELS.OVERVIEW,
+    icon: <HomeIcon />,
+    section: CREATOR_SECTIONS.TOP,
+  },
   {
     label: CREATORS_LABELS.CONTENTS,
     icon: <ShoppingBagIcon />,
-    section: "top",
+    section: CREATOR_SECTIONS.TOP,
   },
-  { label: CREATORS_LABELS.USERS, icon: <UsersIcon />, section: "top" },
+  {
+    label: CREATORS_LABELS.USERS,
+    icon: <UsersIcon />,
+    section: CREATOR_SECTIONS.TOP,
+  },
 
   {
     label: CREATORS_LABELS.SETTINGS,
     icon: <SettingsIcon />,
-    section: "bottom",
+    section: CREATOR_SECTIONS.BOTTOM,
   },
-  { label: CREATORS_LABELS.HELP, icon: <QuestionIcon />, section: "bottom" },
+  {
+    label: CREATORS_LABELS.HELP,
+    icon: <QuestionIcon />,
+    section: CREATOR_SECTIONS.BOTTOM,
+  },
   {
     label: CREATORS_LABELS.LOG_OUT,
     icon: <LogoutIcon />,
-    section: "bottom",
+    section: CREATOR_SECTIONS.BOTTOM,
     variant: "danger",
   },
 ];
