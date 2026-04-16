@@ -16,6 +16,7 @@ import {
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import { HomeIcon } from "@/assets/icons/homeIcon";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   onToggleSidebar?: () => void;
@@ -29,13 +30,20 @@ const headerInfo = {
 const getInitial = (email: string) => email.charAt(0).toUpperCase();
 
 const DashboardHeader = ({ onToggleSidebar }: Props) => {
+  const { t } = useTranslation();
   return (
     <HeaderWrapper>
       <Left>
         <MobileToggle onClick={onToggleSidebar}>
           <HomeIcon width={24} height={24} />
         </MobileToggle>
-        <Image src={logo} alt="logo" width={90} height={28} />
+        <Image
+          src={logo}
+          alt={t("nav.logoAlt")}
+          width={80}
+          height={25}
+          priority
+        />
       </Left>
 
       <Right>

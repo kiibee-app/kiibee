@@ -9,7 +9,6 @@ export const SidebarWrapper = styled.aside<{ $open: boolean }>`
   position: fixed;
   top: 70px;
   left: 0;
-
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.primary.WHITE};
@@ -54,6 +53,8 @@ export const SidebarText = styled(MonoText).attrs({
   $variant?: CreatorVariant;
 }>`
   margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
   color: ${({ $variant, $active, theme }) =>
     $variant === CREATOR_VARIANTS.DANGER
       ? theme.colors.primary.RED
@@ -72,14 +73,13 @@ export const SidebarItemStyled = styled.div<{
   padding: 12px 16px;
   border-radius: 10px;
   cursor: pointer;
-
+  transition: all 0.2s;
   color: ${({ $variant, $active, theme }) =>
     $variant === CREATOR_VARIANTS.DANGER
       ? theme.colors.primary.RED
       : $active
         ? theme.colors.primary.BLACK
         : theme.colors.neutral.GRAY};
-
   background: ${({ $active, theme }) =>
     $active ? theme.colors.primary.GRAY : "transparent"};
 
