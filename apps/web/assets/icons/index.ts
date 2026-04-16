@@ -15,3 +15,5 @@ export { default as BackButtonIcon } from "./BackButtonIcon";
 export { default as PlayIcon } from "./PlayIcon";
 export { default as BookIcon } from "./BookIcon";
 export { default as SuccessCheckIcon } from "./SuccessCheckIcon";
+export { default as AudioFileIcon } from "./AudioFileIcon";
+export { default as EditProfileIcon } from "./EditProfileIcon";

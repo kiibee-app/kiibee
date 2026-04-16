@@ -1,4 +1,5 @@
 import * as React from "react";
+import { CURRENT_COLOR } from "@/utils/Constants";
 
 type Props = React.SVGProps<SVGSVGElement> & {
   width?: number | string;
@@ -10,7 +11,7 @@ type Props = React.SVGProps<SVGSVGElement> & {
 export default function PlaylistIcon({
   width = 24,
   height = 24,
-  color = "currentColor",
+  color = CURRENT_COLOR,
   title,
   ...props
 }: Props) {

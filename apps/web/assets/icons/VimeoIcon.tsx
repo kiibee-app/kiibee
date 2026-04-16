@@ -1,4 +1,5 @@
 import * as React from "react";
+import { CURRENT_COLOR } from "@/utils/Constants";
 
 type Props = React.SVGProps<SVGSVGElement> & {
   width?: number | string;
@@ -11,7 +12,7 @@ type Props = React.SVGProps<SVGSVGElement> & {
 export default function VimeoIcon({
   width = 22,
   height = 22,
-  color = "currentColor",
+  color = CURRENT_COLOR,
   strokeWidth = 1.5,
   title,
   ...props
