@@ -1,4 +1,4 @@
-import ViewerPreference from "@/components/Feature/Auth/SignUpViewer/ViewersPreference";
+import ViewerPreference from "@/components/Feature/Auth/SignUpViewer/viewersPreference";
 import { PageContainer, Main } from "../../signup/styles";
 
 export default function ViewerPreferencesPage() {
