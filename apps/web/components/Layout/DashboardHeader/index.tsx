@@ -47,7 +47,7 @@ const DashboardHeader = ({ onToggleSidebar }: Props) => {
       </Left>
 
       <Right>
-        <ChannelText $use="Body_Medium">{headerInfo.channel}</ChannelText>{" "}
+        <ChannelText $use="Body_Medium">{headerInfo.channel}</ChannelText>
         <Divider />
         <ProfileCircle>
           <InitialAvatar>{getInitial(headerInfo.email)}</InitialAvatar>
