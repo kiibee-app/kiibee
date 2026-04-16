@@ -1,14 +1,14 @@
-import design from "../assets/images/design.png";
-import design1 from "../assets/images/design1.png";
-import design2 from "../assets/images/design2.png";
-import education from "../assets/images/education.png";
-import loginSlide from "../assets/images/auth/loginSlide.png";
-import loginSlide1 from "../assets/images/auth/loginSlide1.png";
-import loginSlide2 from "../assets/images/auth/loginSlide2.png";
-import recentCreator from "@/assets/images/creators/recent_creator.png";
-import recentCreator1 from "@/assets/images/creators/recent_creator1.png";
-import recentCreator2 from "@/assets/images/creators/recent_creator2.png";
-import recentCreator3 from "@/assets/images/creators/recent_creator3.png";
+import design from "../assets/images/design.webp";
+import design1 from "../assets/images/design1.webp";
+import design2 from "../assets/images/design2.webp";
+import education from "../assets/images/education.webp";
+import loginSlide from "../assets/images/auth/loginSlide.webp";
+import loginSlide1 from "../assets/images/auth/loginSlide1.webp";
+import loginSlide2 from "../assets/images/auth/loginSlide2.webp";
+import recentCreator from "@/assets/images/creators/recent_creator.webp";
+import recentCreator1 from "@/assets/images/creators/recent_creator1.webp";
+import recentCreator2 from "@/assets/images/creators/recent_creator2.webp";
+import recentCreator3 from "@/assets/images/creators/recent_creator3.webp";
 
 import { TutorialVideo } from "./types";
 
@@ -228,5 +228,89 @@ export const recentlyAddedVideos: TutorialVideo[] = [
       },
     ],
     image: recentCreator3,
+  },
+];
+
+export const trendingContentVideos: TutorialVideo[] = [
+  {
+    id: "adobe-lightroom-guide",
+    title: "Adobe Lightroom guide",
+    category: "Design",
+    creator: "Vera Heiss",
+    published: "9 months ago",
+    focus: "Build a cleaner editing workflow for polished visual content.",
+    level: "Free",
+    formatLabel: "Video",
+    formatType: "video",
+    buttons: [
+      {
+        label: "Free",
+        variant: "secondary",
+        href: "/tutorial-videos/adobe-lightroom-guide",
+      },
+    ],
+    image: recentCreator,
+  },
+  {
+    id: "trending-knitting-pattern",
+    title: "Knitting pattern",
+    category: "Design",
+    creator: "Helle Hansen",
+    published: "4 days ago",
+    focus: "Combine textures and light to elevate fiber stories.",
+    level: "Free",
+    formatLabel: "PDF",
+    formatType: "pdf",
+    buttons: [
+      {
+        label: "Rent 39 kr",
+        variant: "secondary",
+        href: "/tutorial-videos/knitting-pattern#rent",
+      },
+      {
+        label: "Buy 139 kr",
+        variant: "secondary",
+        href: "/tutorial-videos/knitting-pattern#buy",
+      },
+    ],
+    image: recentCreator2,
+  },
+  {
+    id: "trending-sculpture",
+    title: "Sculpture",
+    category: "Educational",
+    creator: "Vera Kloss",
+    published: "1 year ago",
+    focus: "Document sculpting rituals and studio safety tips.",
+    level: "Free",
+    formatLabel: "E-pub",
+    formatType: "epub",
+    buttons: [
+      {
+        label: "Buy 49 kr",
+        variant: "secondary",
+        href: "/tutorial-videos/sculpture",
+      },
+    ],
+    image: recentCreator3,
+  },
+  {
+    id: "trending-greatest-book-cover",
+    title: "Greatest Book Cover",
+    category: "Design",
+    creator: "Catharina Kloss",
+    published: "9 days ago",
+    focus: "Explore typography and layout choices for bold covers.",
+    level: "Free",
+    formatLabel: "Web content",
+    formatType: "web",
+    buttons: [
+      {
+        label: "Buy 49 kr",
+        variant: "secondary",
+        href: "/tutorial-videos/greatest-book-cover",
+      },
+    ],
+    image: recentCreator1,
   },
 ];

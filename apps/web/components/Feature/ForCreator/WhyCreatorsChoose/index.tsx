@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import creatorChooseImage from "@/assets/images/creators/creator_choose.png";
+import creatorChooseImage from "@/assets/images/creators/creator_choose.webp";
 import {
   Section,
   SectionInner,

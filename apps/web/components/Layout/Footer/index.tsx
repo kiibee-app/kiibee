@@ -18,7 +18,7 @@ import {
   BottomLink,
 } from "./styles";
 import logo from "../../../assets/images/kiibee-logo.svg";
-import card from "../../../assets/images/card.png";
+import card from "../../../assets/images/card.webp";
 import { FacebookIcon } from "@/assets/icons/facebookIcon";
 import { TwitterIcon } from "@/assets/icons/twitterIcon";
 import { YouTubeIcon } from "@/assets/icons/youTubeIcon";

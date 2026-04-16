@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import creatorDashboardImage from "@/assets/images/creators/creator_dashboard.png";
+import creatorDashboardImage from "@/assets/images/creators/creator_dashboard.webp";
 import {
   Section,
   ContentWrapper,

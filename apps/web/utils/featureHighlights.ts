@@ -1,4 +1,4 @@
-import mockImg from "../assets/images/steps/content.png";
+import mockImg from "../assets/images/steps/content.webp";
 
 export const featureData = [
   {
