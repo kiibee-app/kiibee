@@ -625,5 +625,10 @@
   },
   "ctaSection": {
     "bgAlt": "CTA background"
+  },
+  "dashboard": {
+    "overview": "Oversigt",
+    "noData": "Ingen data fundet",
+    "contentPerformance": "Indholdsydelse"
   }
 }
