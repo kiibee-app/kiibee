@@ -26,11 +26,18 @@ export const CREATOR_SECTIONS = {
 export type CreatorSection =
   (typeof CREATOR_SECTIONS)[keyof typeof CREATOR_SECTIONS];
 
+export const CREATOR_VARIANTS = {
+  DANGER: "danger",
+} as const;
+
+export type CreatorVariant =
+  (typeof CREATOR_VARIANTS)[keyof typeof CREATOR_VARIANTS];
+
 type CreatorItem = {
   label: CreatorsLabel;
   icon?: React.ReactNode;
   section: CreatorSection;
-  variant?: "danger";
+  variant?: CreatorVariant;
 };
 
 export const creatorsItems: CreatorItem[] = [
@@ -64,6 +71,6 @@ export const creatorsItems: CreatorItem[] = [
     label: CREATORS_LABELS.LOG_OUT,
     icon: <LogoutIcon />,
     section: CREATOR_SECTIONS.BOTTOM,
-    variant: "danger",
+    variant: CREATOR_VARIANTS.DANGER,
   },
 ];

@@ -1,4 +1,5 @@
 import { MonoText } from "@/components/UI/Monotext";
+import { CREATOR_VARIANTS, CreatorVariant } from "@/utils/SidebarItems";
 import { media } from "@kiibee/ui/breakpoints";
 import styled from "styled-components";
 
@@ -35,12 +36,14 @@ export const SidebarMenu = styled.div`
   padding: 16px;
   gap: 16px;
 `;
+
 export const SidebarContent = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
   border-right: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 `;
+
 export const BottomMenu = styled.div`
   margin-top: auto;
   display: flex;
@@ -55,13 +58,13 @@ export const SidebarText = styled(MonoText).attrs({
   $use: "Body_Medium",
 })<{
   $active?: boolean;
-  $variant?: "danger";
+  $variant?: CreatorVariant;
 }>`
   margin-left: 10px;
   display: inline-flex;
   align-items: center;
   color: ${({ $variant, $active, theme }) =>
-    $variant === "danger"
+    $variant === CREATOR_VARIANTS.DANGER
       ? theme.colors.primary.RED
       : $active
         ? theme.colors.primary.BLACK
@@ -70,7 +73,7 @@ export const SidebarText = styled(MonoText).attrs({
 
 export const SidebarItemStyled = styled.div<{
   $active?: boolean;
-  $variant?: "danger";
+  $variant?: CreatorVariant;
 }>`
   display: flex;
   align-items: center;
@@ -82,7 +85,7 @@ export const SidebarItemStyled = styled.div<{
   transition: all 0.2s;
 
   color: ${({ $variant, $active, theme }) =>
-    $variant === "danger"
+    $variant === CREATOR_VARIANTS.DANGER
       ? theme.colors.primary.RED
       : $active
         ? theme.colors.primary.BLACK
