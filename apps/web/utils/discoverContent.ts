@@ -1,7 +1,7 @@
-import imageOne from "@/assets/images/discover-content/3545227dd1e7a9cd6faf3b14586708d85137ed35.png";
-import imageTwo from "@/assets/images/discover-content/4ccc137164285071261595311fa290373bc45c72.jpg";
-import imageThree from "@/assets/images/discover-content/52c1c126e76296e3c8e39b9ac60f6d9a34156583.png";
-import imageFour from "@/assets/images/discover-content/c9051991a79ffc5a50dd15afe7b8c86e09f7faad.jpg";
+import imageOne from "@/assets/images/discover-content/3545227dd1e7a9cd6faf3b14586708d85137ed35.webp";
+import imageTwo from "@/assets/images/discover-content/4ccc137164285071261595311fa290373bc45c72.webp";
+import imageThree from "@/assets/images/discover-content/52c1c126e76296e3c8e39b9ac60f6d9a34156583.webp";
+import imageFour from "@/assets/images/discover-content/c9051991a79ffc5a50dd15afe7b8c86e09f7faad.webp";
 
 export type DiscoverContentAction = {
   labelKey: string;

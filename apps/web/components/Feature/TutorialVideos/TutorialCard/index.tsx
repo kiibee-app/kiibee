@@ -17,6 +17,7 @@ import type { FormatType, TutorialButton, TutorialVideo } from "@/utils/types";
 import { PdfIcon } from "@/assets/images/icons/pdf";
 import VideoIcon from "@/assets/images/icons/video";
 import { EpubIcon } from "@/assets/images/icons/epub";
+import { WebIcon } from "@/assets/images/icons/web";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { Badge } from "../../ExploreCreators/Creators/styles";
@@ -36,6 +37,7 @@ const formatIconMap: Record<FormatType, IconComponent> = {
   video: VideoIcon,
   pdf: PdfIcon,
   epub: EpubIcon,
+  web: WebIcon,
 };
 
 export default function TutorialCard({ tutorial }: TutorialCardProps) {

@@ -6,8 +6,8 @@ import CtaSection from "@/components/Feature/CtaSection";
 import PricingPlansSection from "@/components/Feature/Pricing/PlansSection";
 import NavBar from "@/components/Layout/Navbar";
 import { Main, PageContainer } from "@/app/styles";
-import pricingHeroImage from "@/assets/images/pricing/pricing-hero.jpg";
-import ctaImage from "@/assets/images/cta-buttom1.png";
+import pricingHeroImage from "@/assets/images/pricing/pricing-hero.webp";
+import ctaImage from "@/assets/images/cta-buttom1.webp";
 import { useTranslation } from "react-i18next";
 import {
   Container,

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { ArrowIcon as ArrowSvg } from "@/assets/icons/arrowIcon";
 import { Directions } from "@/utils/ui";
-import creator from "../../../../assets/images/testimonial/creator.jpg";
+import creator from "../../../../assets/images/testimonial/creator.webp";
 import {
   ArrowButton,
   ArrowIcon,

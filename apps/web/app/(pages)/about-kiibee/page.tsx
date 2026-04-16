@@ -9,7 +9,7 @@ import WhatWeBelieveSection from "@/components/Feature/AboutKiibee/WhatWeBelieve
 import MoreThanPlatformSection from "@/components/Feature/AboutKiibee/MorePlatform";
 import CtaSection from "@/components/Feature/CtaSection";
 import Footer from "@/components/Layout/Footer";
-import ctaImage from "@/assets/images/cta-buttom1.png";
+import ctaImage from "@/assets/images/cta-buttom1.webp";
 import { useTranslation } from "react-i18next";
 
 export default function AboutKiibeePage() {

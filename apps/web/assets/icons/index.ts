@@ -18,3 +18,5 @@ export { default as SuccessCheckIcon } from "./SuccessCheckIcon";
 export { default as AudioFileIcon } from "./AudioFileIcon";
 export { default as EditProfileIcon } from "./EditProfileIcon";
 export { default as EbookIcon } from "./EbookIcon";
+export { default as EyeOpenIcon } from "./EyeOpenIcon";
+export { default as EyeClosedIcon } from "./EyeClosedIcon";
