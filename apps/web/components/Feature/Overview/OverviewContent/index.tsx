@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Wrapper,
   TopRow,
@@ -19,11 +20,12 @@ import OVERVIEW_STATS, {
 } from "@/utils/dummyData/overviewData";
 
 export default function OverviewContent() {
+  const { t } = useTranslation();
   const [range, setRange] = useState<string>("Day");
 
   return (
     <Wrapper>
-      <Title>Overview</Title>
+      <Title>{t("dashboard.overview")}</Title>
       <TopRow>
         <div />
         <RangeGroup>
