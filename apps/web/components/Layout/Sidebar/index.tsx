@@ -3,7 +3,6 @@
 import React, { useState, useMemo, useCallback } from "react";
 import {
   SidebarWrapper,
-  SidebarHeader,
   SidebarMenu,
   BottomMenu,
   SidebarItemStyled,
@@ -14,8 +13,6 @@ import {
   SidebarContent,
 } from "./styles";
 import { CREATOR_SECTIONS, creatorsItems } from "@/utils/SidebarItems";
-import logo from "@/assets/images/kiibee-wordmark.png";
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { HomeIcon } from "@/assets/icons/homeIcon";
 
@@ -83,16 +80,6 @@ const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
       </MobileToggle>
       {open && <Overlay onClick={closeSidebar} />}
       <SidebarWrapper $open={open}>
-        <SidebarHeader>
-          <Image
-            src={logo}
-            alt={t("nav.logoAlt")}
-            width={80}
-            height={25}
-            priority
-            style={{ width: "auto", height: "auto" }}
-          />
-        </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>{renderItems(mainItems)}</SidebarMenu>
           <BottomMenu>{renderItems(settingsItems)}</BottomMenu>

@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { SidebarHeader } from "@/components/Layout/Sidebar/styles";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import DashboardContent from "@/components/Feature/Dashboard/DashboardContent";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
+import DashboardHeader from "@/components/Layout/DashboardHeader";
 
 export default function DashboardCreatorsPage() {
   const [activePage, setActivePage] = useState<string>(
@@ -13,7 +13,7 @@ export default function DashboardCreatorsPage() {
   );
 
   const renderHeader = () => {
-    return <SidebarHeader title={activePage} />;
+    return <DashboardHeader />;
   };
 
   const renderContent = () => {

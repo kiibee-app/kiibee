@@ -5,10 +5,11 @@ import styled from "styled-components";
 
 export const SidebarWrapper = styled.aside<{ $open: boolean }>`
   width: 250px;
-  height: 100vh;
+  height: calc(100vh - 70px); /* header height minus */
   position: fixed;
-  top: 0;
+  top: 70px; /* header এর নিচে */
   left: 0;
+
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.primary.WHITE};
@@ -45,6 +46,7 @@ export const SidebarContent = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  border-top: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
   border-right: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 `;
 
