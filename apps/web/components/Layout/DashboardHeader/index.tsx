@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import logo from "@/assets/images/kiibee-wordmark.png";
+import logo from "@/assets/images/kiibee-wordmark.webp";
 import {
   HeaderWrapper,
   Right,
