@@ -17,6 +17,7 @@ import { CREATOR_SECTIONS, creatorsItems } from "@/utils/SidebarItems";
 import logo from "@/assets/images/kiibee-wordmark.png";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { HomeIcon } from "@/assets/icons/homeIcon";
 
 type SidebarProps = {
   activeItem: string;
@@ -77,10 +78,10 @@ const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
 
   return (
     <>
-      <MobileToggle onClick={toggleSidebar} />
-
+      <MobileToggle onClick={toggleSidebar}>
+        <HomeIcon />
+      </MobileToggle>
       {open && <Overlay onClick={closeSidebar} />}
-
       <SidebarWrapper $open={open}>
         <SidebarHeader>
           <Image
@@ -92,10 +93,8 @@ const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
             style={{ width: "auto", height: "auto" }}
           />
         </SidebarHeader>
-
         <SidebarContent>
           <SidebarMenu>{renderItems(mainItems)}</SidebarMenu>
-
           <BottomMenu>{renderItems(settingsItems)}</BottomMenu>
         </SidebarContent>
       </SidebarWrapper>

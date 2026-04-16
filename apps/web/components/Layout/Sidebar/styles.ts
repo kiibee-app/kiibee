@@ -27,7 +27,11 @@ export const SidebarHeader = styled.div`
   align-items: center;
   padding: 18px 35px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
-  border-right: none;
+  overflow: hidden;
+
+  ${media.tablet} {
+    padding-left: 70px;
+  }
 `;
 
 export const SidebarMenu = styled.div`
@@ -79,18 +83,15 @@ export const SidebarItemStyled = styled.div<{
   align-items: center;
   gap: 10px;
   padding: 12px 16px;
-
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
-
   color: ${({ $variant, $active, theme }) =>
     $variant === CREATOR_VARIANTS.DANGER
       ? theme.colors.primary.RED
       : $active
         ? theme.colors.primary.BLACK
         : theme.colors.neutral.GRAY};
-
   background: ${({ $active, theme }) =>
     $active ? theme.colors.primary.GRAY : "transparent"};
 
@@ -102,8 +103,8 @@ export const SidebarItemStyled = styled.div<{
 export const MobileToggle = styled.button`
   display: none;
   position: fixed;
-  top: 15px;
-  left: 15px;
+  top: 35px;
+  left: 35px;
   z-index: 110;
   background: none;
   border: none;
