@@ -10,8 +10,13 @@ import {
   MobileToggle,
   Overlay,
   SidebarText,
+  IconWrapper,
+  SidebarContent,
 } from "./styles";
 import { creatorsItems } from "@/utils/SidebarItems";
+import logo from "@/assets/images/kiibee-wordmark.png";
+import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 type SidebarProps = {
   activeItem: string;
@@ -19,6 +24,7 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   const handleClick = (label: string) => {
@@ -36,46 +42,56 @@ const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
       {open && <Overlay onClick={() => setOpen(false)} />}
 
       <SidebarWrapper $open={open}>
-        <SidebarHeader>kiibee</SidebarHeader>
+        <SidebarHeader>
+          <Image
+            src={logo}
+            alt={t("nav.logoAlt")}
+            width={80}
+            height={25}
+            priority
+            style={{ width: "auto", height: "auto" }}
+          />
+        </SidebarHeader>
 
-        {/* MAIN MENU */}
-        <SidebarMenu>
-          {mainItems.map((item) => (
-            <SidebarItemStyled
-              key={item.label}
-              onClick={() => handleClick(item.label)}
-              $active={activeItem === item.label}
-              $variant={item.variant}
-            >
-              {item.icon && <span>{item.icon}</span>}
-              <SidebarText
+        <SidebarContent>
+          <SidebarMenu>
+            {mainItems.map((item) => (
+              <SidebarItemStyled
+                key={item.label}
+                onClick={() => handleClick(item.label)}
                 $active={activeItem === item.label}
                 $variant={item.variant}
               >
-                {item.label}
-              </SidebarText>
-            </SidebarItemStyled>
-          ))}
-        </SidebarMenu>
+                {item.icon && <IconWrapper>{item.icon}</IconWrapper>}
+                <SidebarText
+                  $active={activeItem === item.label}
+                  $variant={item.variant}
+                >
+                  {item.label}
+                </SidebarText>
+              </SidebarItemStyled>
+            ))}
+          </SidebarMenu>
 
-        <BottomMenu>
-          {settingsItems.map((item) => (
-            <SidebarItemStyled
-              key={item.label}
-              onClick={() => handleClick(item.label)}
-              $active={activeItem === item.label}
-              $variant={item.variant}
-            >
-              {item.icon && <span>{item.icon}</span>}
-              <SidebarText
+          <BottomMenu>
+            {settingsItems.map((item) => (
+              <SidebarItemStyled
+                key={item.label}
+                onClick={() => handleClick(item.label)}
                 $active={activeItem === item.label}
                 $variant={item.variant}
               >
-                {item.label}
-              </SidebarText>
-            </SidebarItemStyled>
-          ))}
-        </BottomMenu>
+                {item.icon && <IconWrapper>{item.icon}</IconWrapper>}
+                <SidebarText
+                  $active={activeItem === item.label}
+                  $variant={item.variant}
+                >
+                  {item.label}
+                </SidebarText>
+              </SidebarItemStyled>
+            ))}
+          </BottomMenu>
+        </SidebarContent>
       </SidebarWrapper>
     </>
   );

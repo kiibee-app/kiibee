@@ -11,7 +11,6 @@ export const SidebarWrapper = styled.aside<{ $open: boolean }>`
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.primary.WHITE};
-  border-right: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
   z-index: 90;
   transition: transform 0.3s ease;
 
@@ -22,22 +21,32 @@ export const SidebarWrapper = styled.aside<{ $open: boolean }>`
 `;
 
 export const SidebarHeader = styled.div`
-  height: 60px;
+  height: 90px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 18px 35px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+  border-right: none;
 `;
 
 export const SidebarMenu = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px 16px;
-  gap: 4px;
+  padding: 16px;
+  gap: 16px;
 `;
-
+export const SidebarContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-right: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+`;
 export const BottomMenu = styled.div`
   margin-top: auto;
+  display: flex;
+  flex-direction: column;
   padding: 16px;
+  gap: 16px;
   padding-bottom: 110px;
   border-top: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 `;
@@ -51,7 +60,6 @@ export const SidebarText = styled(MonoText).attrs({
   margin-left: 10px;
   display: inline-flex;
   align-items: center;
-
   color: ${({ $variant, $active, theme }) =>
     $variant === "danger"
       ? theme.colors.primary.RED
@@ -66,30 +74,25 @@ export const SidebarItemStyled = styled.div<{
 }>`
   display: flex;
   align-items: center;
-  padding: 12px 14px;
+  gap: 10px;
+  padding: 12px 16px;
+
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
+
   color: ${({ $variant, $active, theme }) =>
     $variant === "danger"
       ? theme.colors.primary.RED
       : $active
         ? theme.colors.primary.BLACK
         : theme.colors.neutral.GRAY};
+
   background: ${({ $active, theme }) =>
     $active ? theme.colors.primary.GRAY : "transparent"};
 
   &:hover {
     background: ${({ theme }) => theme.colors.primary.GRAY};
-  }
-
-  span:first-child {
-    display: flex;
-    align-items: center;
-  }
-
-  span:last-child {
-    margin-left: 10px;
   }
 `;
 
@@ -114,4 +117,13 @@ export const Overlay = styled.div`
     background: ${({ theme }) => theme.colors.neutral.OVERLAY};
     z-index: 80;
   }
+`;
+
+export const IconWrapper = styled.span`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 `;
