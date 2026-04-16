@@ -97,3 +97,26 @@ export const LoginLink = styled(Link)`
   font-weight: 700;
   text-decoration: none;
 `;
+
+export const Description = styled.p`
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  text-align: center;
+  padding-bottom: 20px;
+`;
+
+export const PrepCard = styled(Card)`
+  padding: 2.2rem;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border-radius: 12px;
+
+  button {
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+`;
+
+export const PreContentWrap = styled.div`
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  width: 100%;
+  height: 100vh;
+`;
