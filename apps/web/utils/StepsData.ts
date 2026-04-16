@@ -1,6 +1,6 @@
-import step1 from "../assets/images/steps/step1.png";
-import step2 from "../assets/images/steps/step2.png";
-import step3 from "../assets/images/steps/step3.png";
+import step1 from "../assets/images/steps/step1.webp";
+import step2 from "../assets/images/steps/step2.webp";
+import step3 from "../assets/images/steps/step3.webp";
 
 export const steps = [
   {
