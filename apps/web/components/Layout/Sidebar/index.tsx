@@ -6,25 +6,21 @@ import {
   SidebarMenu,
   BottomMenu,
   SidebarItemStyled,
-  MobileToggle,
   Overlay,
   SidebarText,
   IconWrapper,
   SidebarContent,
 } from "./styles";
 import { CREATOR_SECTIONS, creatorsItems } from "@/utils/SidebarItems";
-import { useTranslation } from "react-i18next";
-import { HomeIcon } from "@/assets/icons/homeIcon";
 
 type SidebarProps = {
   activeItem: string;
   onSelect: (label: string) => void;
+  open: boolean;
+  onClose: () => void;
 };
 
-const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
-  const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
-
+const Sidebar = ({ activeItem, onSelect, open, onClose }: SidebarProps) => {
   const { mainItems, settingsItems } = useMemo(() => {
     return {
       mainItems: creatorsItems.filter(
@@ -39,18 +35,10 @@ const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
   const handleClick = useCallback(
     (label: string) => {
       onSelect(label);
-      setOpen(false);
+      onClose();
     },
-    [onSelect],
+    [onSelect, onClose],
   );
-
-  const toggleSidebar = useCallback(() => {
-    setOpen((p) => !p);
-  }, []);
-
-  const closeSidebar = useCallback(() => {
-    setOpen(false);
-  }, []);
 
   const renderItems = useCallback(
     (items: typeof creatorsItems) =>
@@ -75,10 +63,8 @@ const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
 
   return (
     <>
-      <MobileToggle onClick={toggleSidebar}>
-        <HomeIcon />
-      </MobileToggle>
-      {open && <Overlay onClick={closeSidebar} />}
+      {open && <Overlay onClick={onClose} />}
+
       <SidebarWrapper $open={open}>
         <SidebarContent>
           <SidebarMenu>{renderItems(mainItems)}</SidebarMenu>

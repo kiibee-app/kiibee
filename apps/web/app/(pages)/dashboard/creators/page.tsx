@@ -11,9 +11,10 @@ export default function DashboardCreatorsPage() {
   const [activePage, setActivePage] = useState<string>(
     CREATORS_LABELS.OVERVIEW,
   );
+  const [open, setOpen] = useState(false);
 
   const renderHeader = () => {
-    return <DashboardHeader />;
+    return <DashboardHeader onToggleSidebar={() => setOpen((p) => !p)} />;
   };
 
   const renderContent = () => {
@@ -24,7 +25,14 @@ export default function DashboardCreatorsPage() {
   return (
     <DashboardLayout
       header={renderHeader()}
-      sidebar={<Sidebar activeItem={activePage} onSelect={setActivePage} />}
+      sidebar={
+        <Sidebar
+          open={open}
+          onClose={() => setOpen(false)}
+          activeItem={activePage}
+          onSelect={setActivePage}
+        />
+      }
     >
       {renderContent()}
     </DashboardLayout>

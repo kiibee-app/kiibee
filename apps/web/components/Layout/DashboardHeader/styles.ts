@@ -1,4 +1,5 @@
 import { MonoText } from "@/components/UI/Monotext";
+import { media } from "@kiibee/ui/breakpoints";
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.header`
@@ -14,24 +15,54 @@ export const HeaderWrapper = styled.header`
   justify-content: space-between;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+
+  ${media.tablet} {
+    justify-content: center;
+  }
 `;
 
 export const Left = styled.div`
   display: flex;
   align-items: center;
   padding-left: 16px;
+
+  ${media.tablet} {
+    padding-left: 0;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const Right = styled.div`
   display: flex;
   align-items: center;
   gap: 24px;
+
+  ${media.tablet} {
+    position: absolute;
+    right: 16px;
+  }
 `;
 
 export const Divider = styled.span`
   width: 1px;
   height: 54px;
   background: ${({ theme }) => theme.colors.primary.GRAY};
+
+  ${media.tablet} {
+    display: none;
+  }
+`;
+
+export const EmailWrapper = styled.div`
+  margin-right: 10px;
+
+  ${media.tablet} {
+    display: none;
+  }
 `;
 
 export const ProfileCircle = styled.div`
@@ -51,6 +82,22 @@ export const InitialAvatar = styled(MonoText).attrs({
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const EmailWrapper = styled.div`
-  margin-right: 10px;
+export const MobileToggle = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  ${media.tablet} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 16px;
+  }
+`;
+export const ChannelText = styled(MonoText)`
+  ${media.tablet} {
+    display: none;
+  }
 `;

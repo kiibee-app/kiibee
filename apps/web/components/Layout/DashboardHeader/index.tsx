@@ -11,8 +11,15 @@ import {
   InitialAvatar,
   EmailWrapper,
   Left,
+  MobileToggle,
+  ChannelText,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
+import { HomeIcon } from "@/assets/icons/homeIcon";
+
+type Props = {
+  onToggleSidebar?: () => void;
+};
 
 const headerInfo = {
   channel: "My channel",
@@ -21,26 +28,22 @@ const headerInfo = {
 
 const getInitial = (email: string) => email.charAt(0).toUpperCase();
 
-const DashboardHeader = () => {
+const DashboardHeader = ({ onToggleSidebar }: Props) => {
   return (
     <HeaderWrapper>
       <Left>
-        <Image
-          src={logo}
-          alt="logo"
-          width={90}
-          height={28}
-          style={{ width: "auto", height: "auto" }}
-        />
+        <MobileToggle onClick={onToggleSidebar}>
+          <HomeIcon width={24} height={24} />
+        </MobileToggle>
+        <Image src={logo} alt="logo" width={90} height={28} />
       </Left>
 
       <Right>
-        <MonoText $use="Body_Medium">{headerInfo.channel}</MonoText>
+        <ChannelText $use="Body_Medium">{headerInfo.channel}</ChannelText>{" "}
         <Divider />
         <ProfileCircle>
           <InitialAvatar>{getInitial(headerInfo.email)}</InitialAvatar>
         </ProfileCircle>
-
         <EmailWrapper>
           <MonoText $use="Body_Medium">{headerInfo.email}</MonoText>
         </EmailWrapper>
