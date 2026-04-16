@@ -3,7 +3,7 @@
 import { Variant } from "@/utils/Constants";
 import React from "react";
 import { ButtonEl, AnchorEl } from "./styles";
-import type { ButtonSize } from "./styles";
+import type { ButtonSize } from "./variants";
 
 type ButtonOrAnchorProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   React.AnchorHTMLAttributes<HTMLAnchorElement>;
