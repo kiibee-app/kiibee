@@ -94,6 +94,7 @@ export const Overlay = styled.div`
     inset: 0;
     background: ${({ theme }) => theme.colors.neutral.OVERLAY};
     z-index: 80;
+    flex-shrink: 0;
   }
 `;
 
