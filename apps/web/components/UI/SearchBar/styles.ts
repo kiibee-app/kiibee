@@ -1,6 +1,5 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
-import GenericButton from "@/components/UI/GenericButton";
 
 export const Wrapper = styled.div<{ $width?: string }>`
   width: ${({ $width }) => $width || "100%"};
@@ -44,9 +43,7 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const ClearButton = styled(GenericButton).attrs({
-  size: "sm",
-})`
+export const ClearButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;

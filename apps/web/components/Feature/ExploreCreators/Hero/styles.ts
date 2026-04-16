@@ -1,6 +1,5 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
-import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 
 export const Hero = styled.section`
@@ -150,9 +149,7 @@ export const FilterSection = styled.section`
   border-top: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
-export const FilterSectionButton = styled(GenericButton).attrs({
-  size: "md",
-})`
+export const FilterSectionButton = styled.button`
   width: 100%;
   padding: 18px 0;
   display: flex;
@@ -263,9 +260,7 @@ export const CheckboxControl = styled.span<{
   }
 `;
 
-export const ShowMoreButton = styled(GenericButton).attrs({
-  size: "sm",
-})`
+export const ShowMoreButton = styled.button`
   margin-top: 14px;
   padding: 0;
   border: none;

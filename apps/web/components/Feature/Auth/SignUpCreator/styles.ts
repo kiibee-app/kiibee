@@ -117,6 +117,7 @@ export const SubmitButton = styled(GenericButton).attrs({
   width: 100%;
   max-width: 280px;
   height: 42px;
+  border: none;
   margin: 8px auto 0;
   border-radius: 8px;
   font-size: 0.95rem;

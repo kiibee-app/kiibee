@@ -2,7 +2,6 @@ import { MonoText } from "@/components/UI/Monotext";
 import { CREATOR_VARIANTS, CreatorVariant } from "@/utils/SidebarItems";
 import { media } from "@kiibee/ui/breakpoints";
 import styled from "styled-components";
-import GenericButton from "@/components/UI/GenericButton";
 
 export const SidebarWrapper = styled.aside<{ $open: boolean }>`
   width: 250px;
@@ -101,9 +100,7 @@ export const SidebarItemStyled = styled.div<{
   }
 `;
 
-export const MobileToggle = styled(GenericButton).attrs({
-  size: "sm",
-})`
+export const MobileToggle = styled.button`
   display: none;
   position: fixed;
   top: 35px;
