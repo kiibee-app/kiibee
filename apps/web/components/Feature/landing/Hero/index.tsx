@@ -12,7 +12,7 @@ import {
   Background,
 } from "./styles";
 import Image from "next/image";
-import hero from "@/assets/images/hero-background.png";
+import hero from "@/assets/images/hero-background.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";

@@ -2,17 +2,30 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
 import { MonoText } from "@/components/UI/Monotext";
+import { INPUT_TYPE } from "@/utils/ui";
+import {
+  INITIAL_VIEWER_FORM,
+  PASSWORD_FIELD_KEYS,
+  PasswordVisibility,
+  VIEWER_FIELDS,
+  ViewerFieldConfig,
+  ViewerFieldKey,
+  ViewerFormValues,
+} from "@/utils/signup";
 import {
   Card,
   Checkbox,
   CheckboxRow,
   ConsentText,
+  ContentWrap,
   Form,
   LoginLink,
   LoginRow,
@@ -20,36 +33,103 @@ import {
   Title,
   Wrapper,
 } from "./styles";
-import { ContentWrap } from "@/app/auth/signup-creator/styles";
+import { REPEAT_PASSWORD } from "@/utils/Constants";
+
+type PasswordFieldKey = keyof PasswordVisibility;
+
+const isPasswordField = (
+  fieldKey: ViewerFieldKey,
+): fieldKey is PasswordFieldKey =>
+  PASSWORD_FIELD_KEYS.includes(fieldKey as PasswordFieldKey);
 
 export default function SignUpViewer() {
+  const router = useRouter();
   const { t } = useTranslation();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-  const [agreed, setAgreed] = useState(false);
+  const [formValues, setFormValues] =
+    useState<ViewerFormValues>(INITIAL_VIEWER_FORM);
+  const [passwordVisibility, setPasswordVisibility] =
+    useState<PasswordVisibility>({
+      password: false,
+      repeatPassword: false,
+    });
   const [submitted, setSubmitted] = useState(false);
 
   const passwordsDoNotMatch =
-    repeatPassword.length > 0 && password !== repeatPassword;
+    formValues.repeatPassword.length > 0 &&
+    formValues.password !== formValues.repeatPassword;
 
   const isSubmitEnabled = useMemo(
     () =>
-      Boolean(email.trim()) &&
-      Boolean(password.trim()) &&
-      Boolean(repeatPassword.trim()) &&
-      agreed &&
+      VIEWER_FIELDS.every((field) => Boolean(formValues[field.key].trim())) &&
+      formValues.agreed &&
       !passwordsDoNotMatch,
-    [agreed, email, password, passwordsDoNotMatch, repeatPassword],
+    [formValues, passwordsDoNotMatch],
   );
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(true);
 
-    if (!isSubmitEnabled) {
-      return;
-    }
+    router.push("/auth/signup-viewer/preferences");
+  };
+
+  const updateField = (
+    field: keyof ViewerFormValues,
+    value: string | boolean,
+  ) => {
+    setFormValues((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const renderField = (field: ViewerFieldConfig) => {
+    const hasPasswordMismatch =
+      submitted && field.key === REPEAT_PASSWORD && passwordsDoNotMatch;
+    const passwordFieldKey = isPasswordField(field.key) ? field.key : null;
+    const isPasswordVisible = passwordFieldKey
+      ? passwordVisibility[passwordFieldKey]
+      : false;
+    const inputType = passwordFieldKey
+      ? isPasswordVisible
+        ? INPUT_TYPE.TEXT
+        : INPUT_TYPE.PASSWORD
+      : field.type;
+
+    return (
+      <InputField
+        key={field.key}
+        id={`viewer-${field.key}`}
+        label={t(field.labelKey)}
+        labelFontStyle="Body_Regular"
+        labelMarginTop="0"
+        type={inputType}
+        placeholder={t(field.placeholderKey)}
+        value={formValues[field.key]}
+        onChange={(nextValue) => updateField(field.key, nextValue as string)}
+        autoComplete={field.autoComplete}
+        icon={
+          passwordFieldKey && isPasswordVisible ? (
+            <EyeOpenIcon />
+          ) : passwordFieldKey ? (
+            <EyeClosedIcon />
+          ) : undefined
+        }
+        onIconClick={
+          passwordFieldKey
+            ? () =>
+                setPasswordVisibility((prev) => ({
+                  ...prev,
+                  [passwordFieldKey]: !prev[passwordFieldKey],
+                }))
+            : undefined
+        }
+        hasError={hasPasswordMismatch}
+        errorText={
+          hasPasswordMismatch
+            ? t("viewerSignup.form.passwordMismatch")
+            : undefined
+        }
+        required
+      />
+    );
   };
 
   return (
@@ -63,55 +143,16 @@ export default function SignUpViewer() {
           </Title>
 
           <Form onSubmit={handleSubmit}>
-            <InputField
-              id="viewer-email"
-              label={t("viewerSignup.form.email")}
-              labelFontStyle="Body_Regular"
-              labelMarginTop="0"
-              type="email"
-              placeholder={t("viewerSignup.form.emailPlaceholder")}
-              value={email}
-              onChange={(nextValue) => setEmail(nextValue as string)}
-              autoComplete="email"
-              required
-            />
-            <InputField
-              id="viewer-password"
-              label={t("viewerSignup.form.password")}
-              labelFontStyle="Body_Regular"
-              labelMarginTop="0"
-              type="password"
-              placeholder={t("viewerSignup.form.passwordPlaceholder")}
-              value={password}
-              onChange={(nextValue) => setPassword(nextValue as string)}
-              autoComplete="new-password"
-              required
-            />
-            <InputField
-              id="viewer-repeat-password"
-              label={t("viewerSignup.form.repeatPassword")}
-              labelFontStyle="Body_Regular"
-              labelMarginTop="0"
-              type="password"
-              placeholder={t("viewerSignup.form.repeatPasswordPlaceholder")}
-              value={repeatPassword}
-              onChange={(nextValue) => setRepeatPassword(nextValue as string)}
-              autoComplete="new-password"
-              hasError={submitted && passwordsDoNotMatch}
-              errorText={
-                submitted && passwordsDoNotMatch
-                  ? t("viewerSignup.form.passwordMismatch")
-                  : undefined
-              }
-              required
-            />
+            {VIEWER_FIELDS.map((field) => renderField(field))}
 
             <CheckboxRow>
               <Checkbox
                 id="viewer-consent"
                 type="checkbox"
-                checked={agreed}
-                onChange={(event) => setAgreed(event.target.checked)}
+                checked={formValues.agreed}
+                onChange={(event) =>
+                  updateField("agreed", event.target.checked)
+                }
               />
               <ConsentText htmlFor="viewer-consent">
                 <MonoText $use="Body_Small">
@@ -125,7 +166,7 @@ export default function SignUpViewer() {
               </ConsentText>
             </CheckboxRow>
 
-            <GenericButton type="submit" disabled={!isSubmitEnabled}>
+            <GenericButton type="submit">
               {t("viewerSignup.form.submit")}
             </GenericButton>
           </Form>

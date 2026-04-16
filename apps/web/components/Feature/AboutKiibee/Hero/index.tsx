@@ -11,7 +11,7 @@ import {
   Subtitle,
   CTAWrap,
 } from "./styles";
-import heroImg from "@/assets/images/hero3.png";
+import heroImg from "@/assets/images/hero3.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";

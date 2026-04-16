@@ -1,7 +1,7 @@
-import simon from "@/assets/images/call_to_action/creator-1.jpg";
-import chief from "@/assets/images/call_to_action/creator-2.png";
-import morten from "@/assets/images/call_to_action/creator-3.png";
-import kammas from "@/assets/images/call_to_action/creator-4.png";
+import simon from "@/assets/images/call_to_action/creator-1.webp";
+import chief from "@/assets/images/call_to_action/creator-2.webp";
+import morten from "@/assets/images/call_to_action/creator-3.webp";
+import kammas from "@/assets/images/call_to_action/creator-4.webp";
 import { CreatorProfile } from "../sortOptions";
 
 const baseTime = Date.now();

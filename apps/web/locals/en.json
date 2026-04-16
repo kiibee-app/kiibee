@@ -46,7 +46,14 @@
     "description": "Viewer signup form coming soon...",
     "haveAccount": "Already have an account?",
     "login": "Log in",
+    "preference": {
+      "title": "Let's personalize your experience",
+      "description": "Tell us what you like so we can recommend creators and content you'll love. You can always update your preferences later in your profile settings.",
+      "submit": "Continue"
+    },
     "form": {
+      "fullName": "Full name",
+      "fullNamePlaceholder": "Enter your full name",
       "email": "Email address",
       "emailPlaceholder": "Enter your email address",
       "password": "Password",
@@ -248,6 +255,51 @@
         "Sell and show your content anywhere on the web",
         "Create your own channel or site with curated collections"
       ]
+    },
+    "howToGetStarted": {
+      "title": "How to get started as a creator",
+      "steps": {
+        "requestAccess": {
+          "title": "1. Request access",
+          "description": "Sign up as a creator and request access to join Kiibee."
+        },
+        "getApproved": {
+          "title": "2. Get approved & choose a plan",
+          "description": "Once approved, you select the plan that fits your needs."
+        },
+        "dashboard": {
+          "title": "3. Dashboard overview",
+          "description": "Get a full overview of your content performance and sales."
+        },
+        "contentCollections": {
+          "title": "4. Content & collections",
+          "description": "Under Content, you can:",
+          "list": [
+            "Create collections",
+            "Upload content",
+            "Personalize your creator profile",
+            "Choose how content is accessed (free, paid, code-based)",
+            "Create discount or access codes"
+          ]
+        },
+        "usersSales": {
+          "title": "5. Users & sales",
+          "description": "Under Users, you can:",
+          "list": [
+            "See users subscribed to emails",
+            "See users who have purchased content",
+            "Get a clear sales overview"
+          ]
+        },
+        "settingsPayouts": {
+          "title": "6. Settings & payouts",
+          "description": "Under Settings, you can request payouts and manage payment details."
+        },
+        "profileSettings": {
+          "title": "7. Profile settings",
+          "description": "Update your personal and company information directly from your profile."
+        }
+      }
     },
     "title": "All creators",
     "filter": "Filter",

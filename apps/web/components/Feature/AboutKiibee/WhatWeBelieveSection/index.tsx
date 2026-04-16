@@ -12,7 +12,7 @@ import {
   Inner,
 } from "./styles";
 
-import beliefImg from "@/assets/images/believe.png";
+import beliefImg from "@/assets/images/believe.webp";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 
