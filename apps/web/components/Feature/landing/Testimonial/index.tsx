@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { LeftArrowIcon, RightArrowIcon } from "../../../../assets/icons";
+import { ArrowIcon as ArrowSvg } from "@/assets/icons/arrowIcon";
+import { Directions } from "@/utils/ui";
 import creator from "../../../../assets/images/testimonial/creator.jpg";
 import {
   ArrowButton,
@@ -31,13 +32,13 @@ export default function TestimonialSection() {
 
       <ArrowButton aria-label={t("testimonial.prevAriaLabel")} $left>
         <ArrowIcon>
-          <LeftArrowIcon />
+          <ArrowSvg direction={Directions.LEFT} />
         </ArrowIcon>
       </ArrowButton>
 
       <ArrowButton aria-label={t("testimonial.nextAriaLabel")}>
         <ArrowIcon>
-          <RightArrowIcon />
+          <ArrowSvg direction={Directions.RIGHT} />
         </ArrowIcon>
       </ArrowButton>
 
