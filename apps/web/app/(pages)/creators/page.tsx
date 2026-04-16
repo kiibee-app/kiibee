@@ -25,10 +25,7 @@ export default function CreatorsPage() {
         <HowToGetStarted />
         <WhyCreatorsChoose />
         <PricingPlansSection titleKey="pricingPage.title" />
-        <GetStarted
-          translationPrefix="creators.getStarted"
-          bgVariant={BG_WHITE}
-        />
+        <GetStarted translationPrefix="creators.getStarted" bgVariant={BG_WHITE} />
       </Main>
       <Footer />
     </PageContainer>
