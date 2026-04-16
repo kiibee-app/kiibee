@@ -1,6 +1,7 @@
 import breakpoints from "@repo/ui/breakpoints";
 import Link from "next/link";
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
 
 export const ContentWrap = styled.section`
   width: 100%;
@@ -105,18 +106,17 @@ export const TermsLink = styled(Link)`
   text-underline-offset: 2px;
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled(GenericButton).attrs({
+  variant: "primary",
+  size: "md",
+})`
   width: 100%;
   max-width: 280px;
   height: 42px;
   margin: 8px auto 0;
-  border: none;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
   font-size: 0.95rem;
   font-weight: 600;
-  cursor: pointer;
 
   &:disabled {
     background: ${({ theme }) => theme.colors.neutral.GRAY_400};

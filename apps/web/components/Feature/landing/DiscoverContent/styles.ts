@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
@@ -111,16 +112,12 @@ export const ActionsContainer = styled.div`
   }
 `;
 
-export const ActionButton = styled.button`
+export const ActionButton = styled(GenericButton).attrs({
+  size: "sm",
+})`
   border-radius: 9999px;
   border: 1px solid ${({ theme }) => theme.colors.primary.GREEN_30};
-  background: transparent;
-  color: ${({ theme }) => theme.colors.primary.BLACK_90};
-  font-size: 0.8125rem;
-  font-weight: 600;
-  text-align: center;
   padding: 0.625rem 0.75rem;
-  cursor: pointer;
 `;
 
 export const FullWidthAction = styled(ActionButton)`
@@ -139,38 +136,17 @@ export const BottomCtaSection = styled.div`
   }
 `;
 
-export const PrimaryCtaButton = styled.button`
-  display: flex;
-  height: 49px;
-  padding: 14px 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border: none;
+export const PrimaryCtaButton = styled(GenericButton).attrs({
+  variant: "primary",
+  size: "lg",
+})`
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.neutral.BLACK};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.875rem 1.5rem;
-  cursor: pointer;
 `;
 
-export const SecondaryCtaButton = styled.button`
-  display: flex;
-  height: 49px;
-  padding: 14px 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid ${({ theme }) => theme.colors.neutral.BLACK};
+export const SecondaryCtaButton = styled(GenericButton).attrs({
+  size: "lg",
+})`
   border-radius: 8px;
-  background: transparent;
-  color: ${({ theme }) => theme.colors.neutral.BLACK};
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.875rem 1.5rem;
-  cursor: pointer;
 `;
 
 export const IconFrame = styled.span`

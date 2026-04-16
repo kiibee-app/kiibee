@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
 import pricingCheckmark from "@/assets/icons/pricing-checkmark.webp";
@@ -138,32 +139,13 @@ export const FeatureText = styled.span`
   line-height: normal;
 `;
 
-export const PlanButton = styled.button`
+export const PlanButton = styled(GenericButton).attrs({
+  variant: "primary",
+  size: "md",
+})`
   margin-top: auto;
   align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   width: 180px;
   padding: 12px 0;
-  border: 1px solid ${({ theme }) => theme.colors.gredint.TRANSPARENT};
   border-radius: ${({ theme }) => theme.radius.full};
-  background: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  cursor: pointer;
-  font-family: ${typography.H5_Medium.fontFamily};
-  font-size: 13px;
-  font-style: ${typography.H5_Medium.fontStyle};
-  font-weight: 500;
-  line-height: normal;
-  transition:
-    background ${({ theme }) => theme.animations.fast},
-    border-color ${({ theme }) => theme.animations.fast},
-    color ${({ theme }) => theme.animations.fast};
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
-    border-color: ${({ theme }) => theme.colors.neutral.BLACK};
-    color: ${({ theme }) => theme.colors.neutral.BLACK};
-  }
 `;

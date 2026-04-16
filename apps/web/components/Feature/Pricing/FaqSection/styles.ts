@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
 
@@ -37,7 +38,9 @@ export const List = styled.div`
   gap: 20px;
 `;
 
-export const Item = styled.button`
+export const Item = styled(GenericButton).attrs({
+  size: "md",
+})`
   width: 100%;
   border: none;
   border-radius: 12px;

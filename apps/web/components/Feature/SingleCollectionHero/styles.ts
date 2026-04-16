@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
 import { media } from "@kiibee/ui/breakpoints";
 
 export const HeroWrapper = styled.div`
@@ -22,14 +23,14 @@ export const HeroContent = styled.div`
   }
 `;
 
-export const ActionButton = styled.button`
+export const ActionButton = styled(GenericButton).attrs({
+  variant: "primary",
+  size: "md",
+})`
   width: fit-content;
   padding: 10px 18px;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
   border: none;
-  cursor: pointer;
 
   &:hover {
     opacity: 0.85;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
 export const Wrapper = styled.div`
   width: 100%;
   min-height: 100%;
@@ -72,9 +73,10 @@ export const ForgotLink = styled(Link)`
   text-decoration: underline;
   margin: 1.25rem 0 3.75rem 0;
 `;
-export const SubmitButton = styled.button`
+export const SubmitButton = styled(GenericButton).attrs({
+  size: "md",
+})`
   width: 100%;
-  border: none;
   border-radius: 999px;
   height: 46px;
   font-size: 1rem;
