@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 import type { Variant } from "@/utils/Constants";
+import type { ButtonSize } from "@/components/UI/GenericButton/styles";
 
 export type FormatType = "video" | "pdf" | "epub" | "web";
 
@@ -7,6 +8,9 @@ export type TutorialButton = {
   label: string;
   variant?: Variant;
   href?: string;
+  fullWidth?: boolean;
+  size?: ButtonSize;
+  minWidth?: string;
 };
 import type { LoaderSize } from "@/components/UI/GenericLoader/styles";
 
