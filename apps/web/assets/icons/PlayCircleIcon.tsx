@@ -9,8 +9,8 @@ type Props = React.SVGProps<SVGSVGElement> & {
 };
 
 export default function PlayCircleIcon({
-  width = 22,
-  height = 22,
+  width = 16,
+  height = 16,
   color = CURRENT_COLOR,
   title,
   ...props

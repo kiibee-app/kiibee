@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
-import { BookIcon, PlayIcon } from "@/assets/icons";
+import { EbookIcon, VideoIcon } from "@/assets/icons";
 import { discoverContentData } from "@/utils/discoverContent";
 import {
   Section,
@@ -81,15 +81,13 @@ export default function DiscoverContent() {
               <MediaTypeBox>
                 <IconFrame>
                   {item.mediaType === "epub" ? (
-                    <BookIcon
-                      bg={theme.colors.neutral.BLACK}
-                      fg={theme.colors.neutral.WHITE}
+                    <EbookIcon
+                      width={24}
+                      height={24}
+                      color={theme.colors.neutral.BLACK}
                     />
                   ) : (
-                    <PlayIcon
-                      bg={theme.colors.neutral.BLACK}
-                      fg={theme.colors.neutral.WHITE}
-                    />
+                    <VideoIcon color={theme.colors.neutral.BLACK} />
                   )}
                 </IconFrame>
                 <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>

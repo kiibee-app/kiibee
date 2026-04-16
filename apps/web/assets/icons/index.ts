@@ -17,3 +17,4 @@ export { default as BookIcon } from "./BookIcon";
 export { default as SuccessCheckIcon } from "./SuccessCheckIcon";
 export { default as AudioFileIcon } from "./AudioFileIcon";
 export { default as EditProfileIcon } from "./EditProfileIcon";
+export { default as EbookIcon } from "./EbookIcon";
