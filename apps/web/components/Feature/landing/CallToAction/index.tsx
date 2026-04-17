@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import kiibeeLogo from "@/assets/images/kiibee-logo.svg";
 import { resolveImageUrl } from "@/utils/Constants";
@@ -67,9 +68,13 @@ export default function CallToAction() {
       <Content>
         <Brand>
           <BrandLogo>
-            <img
-              src={resolveImageUrl(kiibeeLogo)}
+            <Image
+              src={kiibeeLogo}
               alt={t("callToAction.logoAlt")}
+              width={kiibeeLogo.width}
+              height={kiibeeLogo.height}
+              style={{ width: "100%", height: "auto" }}
+              priority
             />
           </BrandLogo>
         </Brand>

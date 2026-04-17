@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import {
   Container,
@@ -22,7 +23,6 @@ import { FacebookIcon } from "@/assets/icons/facebookIcon";
 import { TwitterIcon } from "@/assets/icons/twitterIcon";
 import { YouTubeIcon } from "@/assets/icons/youTubeIcon";
 import { footerConfig } from "@/utils/footerConfig";
-import { resolveImageUrl } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 
@@ -35,7 +35,14 @@ const Footer = () => {
       <Top>
         <Column>
           <LogoRow>
-            <img src={resolveImageUrl(logo)} alt={t("nav.logoAlt")} />
+            <Image
+              src={logo}
+              alt={t("nav.logoAlt")}
+              width={logo.width}
+              height={logo.height}
+              style={{ width: 90, height: "auto" }}
+              priority
+            />
           </LogoRow>
           <IconRow>
             <FacebookIcon />
@@ -78,7 +85,13 @@ const Footer = () => {
             </MonoText>
           </LinkRow>
           <CardWrapper>
-            <img src={resolveImageUrl(card)} alt={t("nav.logoAlt")} />
+            <Image
+              src={card}
+              alt={t("footer.paymentMethodsAlt", "Accepted payment methods")}
+              width={card.width}
+              height={card.height}
+              style={{ width: "auto", height: 28 }}
+            />
           </CardWrapper>
         </BottomRight>
       </Bottom>
