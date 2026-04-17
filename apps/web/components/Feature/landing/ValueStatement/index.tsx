@@ -8,6 +8,7 @@ import valueBg from "@/assets/images/cta-buttom.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { VARIANT } from "@/utils/Constants";
 
 type Props = {
   bgImage?: StaticImageData;
@@ -50,7 +51,11 @@ export default function ValueStatement({
               {subtitle || t("value.subtitle")}
             </MonoText>
           </Subtitle>
-          <GenericButton asAnchor href={ctaHref || "#"} variant="primary-lite">
+          <GenericButton
+            asAnchor
+            href={ctaHref || "#"}
+            variant={VARIANT.PRIMARY_LITE}
+          >
             {ctaText || t("value.cta")}
           </GenericButton>
         </Content>

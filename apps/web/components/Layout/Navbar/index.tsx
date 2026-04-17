@@ -9,6 +9,7 @@ import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
+import { VARIANT } from "@/utils/Constants";
 
 export default function NavBar() {
   const { t } = useTranslation();
@@ -40,10 +41,14 @@ export default function NavBar() {
         </Nav>
 
         <Actions>
-          <GenericButton asAnchor href="/auth/login" variant="secondary">
+          <GenericButton
+            asAnchor
+            href="/auth/login"
+            variant={VARIANT.SECONDARY}
+          >
             {t("nav.login")}
           </GenericButton>
-          <GenericButton asAnchor href="/auth" variant="primary">
+          <GenericButton asAnchor href="/auth" variant={VARIANT.PRIMARY}>
             {t("nav.startCreating")}
           </GenericButton>
         </Actions>

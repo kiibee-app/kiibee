@@ -15,6 +15,7 @@ import heroImg from "@/assets/images/steps/cameraman.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
+import { VARIANT } from "@/utils/Constants";
 
 export default function CustomerSection() {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ export default function CustomerSection() {
           <Text>{t("how.customerBody")}</Text>
 
           <CTAWrap>
-            <GenericButton asAnchor href="#" variant="primary">
+            <GenericButton asAnchor href="#" variant={VARIANT.PRIMARY}>
               {t("how.customerCta")}
             </GenericButton>
           </CTAWrap>
