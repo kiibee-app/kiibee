@@ -1,6 +1,6 @@
 "use client";
 
-import { getImageSrc } from "@/utils/Constants";
+import { resolveImageUrl } from "@/utils/Constants";
 import Image from "next/image";
 import {
   ActionRow,
@@ -41,7 +41,7 @@ const formatIconMap: Record<FormatType, IconComponent> = {
 };
 
 export default function TutorialCard({ tutorial }: TutorialCardProps) {
-  const imageUrl = getImageSrc(tutorial.image);
+  const imageUrl = resolveImageUrl(tutorial.image);
   const { t } = useTranslation();
   const formatType: FormatType = tutorial.formatType ?? "video";
   const FormatIcon = formatIconMap[formatType];

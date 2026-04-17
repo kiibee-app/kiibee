@@ -4,7 +4,7 @@ export type ImageSource = StaticImageData | string;
 
 export type Variant = "primary" | "primary-lite" | "secondary";
 
-export function getImageSrc(image: ImageSource) {
+export function resolveImageUrl(image: ImageSource) {
   return typeof image === "string" ? image : image.src;
 }
 
