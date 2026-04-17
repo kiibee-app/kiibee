@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import { steps } from "@/utils/steps";
 import { intersectionObserverConfig } from "@/utils/intersectionObserverConfig";

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import Link from "next/link";
 import { Header, Inner, Left, Logo, Nav, Actions } from "./styles";
 import NAV_ITEMS from "@/utils/navItems";
