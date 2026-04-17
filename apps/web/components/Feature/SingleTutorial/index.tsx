@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { MonoText } from "@/components/UI/Monotext";
 import type { TutorialVideo } from "@/utils/types";
 import BackButtonIcon from "@/assets/icons/BackButtonIcon";
 import { ShareIcon } from "@/assets/icons/shareIcon";
@@ -11,7 +10,6 @@ import logo from "@/assets/images/logo.png";
 import contentImage from "@/assets/images/single-tutorial/Content image.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
-import COLORS from "@repo/ui/colors";
 import {
   BackButton,
   BrandLogo,
@@ -25,17 +23,25 @@ import {
   MainTitle,
   Hero,
   HeroTag,
+  HeroTagText,
   HeroVideoTag,
+  HeroVideoText,
   InfoTag,
+  InfoTagText,
   MainAction,
+  MainActionText,
   MetaKey,
+  MetaLabelText,
   MetaRow,
   MetaSection,
+  MetaValueText,
   Preview,
   ShareButton,
+  ShareText,
   TagRow,
   TopBar,
   TrailerButton,
+  TrailerText,
   Wrapper,
 } from "./styles";
 
@@ -57,7 +63,7 @@ export default function SingleTutorial({ tutorial }: Props) {
 
           <ShareButton>
             <ShareIcon width={16} height={16} />
-            <MonoText $use="Body_Medium">{t("common.share")}</MonoText>
+            <ShareText>{t("common.share")}</ShareText>
           </ShareButton>
         </TopBar>
 
@@ -67,7 +73,7 @@ export default function SingleTutorial({ tutorial }: Props) {
           </Preview>
 
           <HeroTag>
-            <MonoText $use="Body_Bold">{tutorial.category}</MonoText>
+            <HeroTagText>{tutorial.category}</HeroTagText>
           </HeroTag>
 
           <HeroVideoTag>
@@ -77,14 +83,12 @@ export default function SingleTutorial({ tutorial }: Props) {
               width={16}
               height={16}
             />
-            <MonoText $use="Body_Bold">{tutorial.formatLabel}</MonoText>
+            <HeroVideoText>{tutorial.formatLabel}</HeroVideoText>
           </HeroVideoTag>
 
           <TrailerButton>
             <Image src={playIcon} alt="Play" width={15} height={15} />
-            <MonoText $use="Body_Medium" color={COLORS.neutral.WHITE}>
-              {t("singleTutorial.playTrailer")}
-            </MonoText>
+            <TrailerText>{t("singleTutorial.playTrailer")}</TrailerText>
           </TrailerButton>
         </Hero>
 
@@ -111,51 +115,45 @@ export default function SingleTutorial({ tutorial }: Props) {
 
           <TagRow>
             <InfoTag>
-              <MonoText $use="Body_Medium">
-                {t("singleTutorial.tags.guide")}
-              </MonoText>
+              <InfoTagText>{t("singleTutorial.tags.guide")}</InfoTagText>
             </InfoTag>
             <InfoTag>
-              <MonoText $use="Body_Medium">
-                {t("singleTutorial.tags.tutorials")}
-              </MonoText>
+              <InfoTagText>{t("singleTutorial.tags.tutorials")}</InfoTagText>
             </InfoTag>
           </TagRow>
 
           <MainAction>
-            <MonoText $use="Body_Bold" color={COLORS.neutral.WHITE}>
-              {t("singleTutorial.seeContent")}
-            </MonoText>
+            <MainActionText>{t("singleTutorial.seeContent")}</MainActionText>
           </MainAction>
 
           <MetaSection>
             <MetaRow>
               <MetaKey>
-                <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY_700}>
+                <MetaLabelText>
                   {t("singleTutorial.meta.publishedLabel")}
-                </MonoText>
+                </MetaLabelText>
               </MetaKey>
-              <MonoText $use="Body_Bold">{tutorial.published}</MonoText>
+              <MetaValueText>{tutorial.published}</MetaValueText>
             </MetaRow>
 
             <MetaRow>
               <MetaKey>
-                <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY_700}>
+                <MetaLabelText>
                   {t("singleTutorial.meta.publishedByLabel")}
-                </MonoText>
+                </MetaLabelText>
               </MetaKey>
-              <MonoText $use="Body_Bold">{tutorial.creator}</MonoText>
+              <MetaValueText>{tutorial.creator}</MetaValueText>
             </MetaRow>
 
             <MetaRow>
               <MetaKey>
-                <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY_700}>
+                <MetaLabelText>
                   {t("singleTutorial.meta.durationLabel")}
-                </MonoText>
+                </MetaLabelText>
               </MetaKey>
-              <MonoText $use="Body_Bold">
+              <MetaValueText>
                 {t("singleTutorial.meta.durationValue")}
-              </MonoText>
+              </MetaValueText>
             </MetaRow>
           </MetaSection>
         </ContentShell>

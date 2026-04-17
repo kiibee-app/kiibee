@@ -42,6 +42,10 @@ export const ShareButton = styled.button`
   cursor: pointer;
 `;
 
+export const ShareText = styled.span`
+  ${({ theme }) => theme.typography.Body_Medium}
+`;
+
 export const Hero = styled.div`
   position: relative;
   width: min(920px, 78%);
@@ -78,6 +82,10 @@ export const HeroTag = styled.span`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
+export const HeroTagText = styled.span`
+  ${({ theme }) => theme.typography.Body_Bold}
+`;
+
 export const HeroVideoTag = styled.span`
   position: absolute;
   left: 1.5rem;
@@ -89,6 +97,10 @@ export const HeroVideoTag = styled.span`
   padding: 0.4rem 0.7rem;
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
+`;
+
+export const HeroVideoText = styled.span`
+  ${({ theme }) => theme.typography.Body_Bold}
 `;
 
 export const TrailerButton = styled.button`
@@ -110,6 +122,11 @@ export const TrailerButton = styled.button`
     right: 1rem;
     bottom: 1rem;
   }
+`;
+
+export const TrailerText = styled.span`
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  ${({ theme }) => theme.typography.Body_Medium}
 `;
 
 export const ContentShell = styled.div`
@@ -195,6 +212,11 @@ export const InfoTag = styled.span`
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
 `;
 
+export const InfoTagText = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_Medium}
+`;
+
 export const MainAction = styled.button`
   display: inline-flex;
   align-items: center;
@@ -207,6 +229,11 @@ export const MainAction = styled.button`
   color: ${({ theme }) => theme.colors.neutral.WHITE};
   cursor: pointer;
   margin-bottom: 2rem;
+`;
+
+export const MainActionText = styled.span`
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  ${({ theme }) => theme.typography.Body_Bold}
 `;
 
 export const MetaSection = styled.div`
@@ -227,6 +254,16 @@ export const MetaRow = styled.div`
 
 export const MetaKey = styled.span`
   width: 95px;
+`;
+
+export const MetaLabelText = styled.span`
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  ${({ theme }) => theme.typography.Body_Regular}
+`;
+
+export const MetaValueText = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_Bold}
 `;
 
 export const Card = styled.article`
