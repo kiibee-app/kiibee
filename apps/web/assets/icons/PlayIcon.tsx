@@ -1,18 +1,49 @@
-type PlayIconProps = {
-  bg: string;
-  fg: string;
+import * as React from "react";
+import { CURRENT_COLOR } from "@/utils/Constants";
+
+type Props = React.SVGProps<SVGSVGElement> & {
+  width?: number | string;
+  height?: number | string;
+  color?: string;
+  strokeWidth?: number | string;
+  title?: string;
+  bg?: string;
+  fg?: string;
 };
 
-export default function PlayIcon({ bg, fg }: PlayIconProps) {
+export default function PlayIcon({
+  width = 24,
+  height = 24,
+  color = CURRENT_COLOR,
+  strokeWidth = 1.5,
+  title,
+  bg,
+  fg,
+  ...props
+}: Props) {
+  const fgColor = fg ?? color;
+
   return (
     <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
       xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden={title ? undefined : true}
+      role={title ? "img" : undefined}
+      {...props}
     >
-      <rect width="16" height="16" rx="3" fill={bg} />
-      <polygon points="6,4 12,8 6,12" fill={fg} />
+      {title ? <title>{title}</title> : null}
+      {bg ? <circle cx="12" cy="12" r="12" fill={bg} /> : null}
+      <path
+        d="M6.906 4.53702C6.81491 4.48301 6.71114 4.45407 6.60524 4.45315C6.49934 4.45222 6.39508 4.47934 6.30306 4.53175C6.21104 4.58417 6.13452 4.66 6.0813 4.75155C6.02807 4.84311 6.00002 4.94712 6 5.05302V18.947C6.00002 19.0529 6.02807 19.1569 6.0813 19.2485C6.13452 19.34 6.21104 19.4159 6.30306 19.4683C6.39508 19.5207 6.49934 19.5478 6.60524 19.5469C6.71114 19.546 6.81491 19.517 6.906 19.463L18.629 12.516C18.7185 12.4629 18.7927 12.3874 18.8442 12.2969C18.8957 12.2064 18.9228 12.1041 18.9228 12C18.9228 11.8959 18.8957 11.7936 18.8442 11.7031C18.7927 11.6127 18.7185 11.5371 18.629 11.484L6.906 4.53702Z"
+        fill={fgColor}
+        stroke={fgColor}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }

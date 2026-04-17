@@ -3,9 +3,9 @@
 import React, { useCallback, useState } from "react";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
-import DashboardContent from "@/components/Feature/Dashboard/DashboardContent";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
+import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 
 export default function DashboardCreatorsPage() {
   const [activePage, setActivePage] = useState<string>(
@@ -26,7 +26,7 @@ export default function DashboardCreatorsPage() {
   };
 
   const renderContent = () => {
-    if (activePage === CREATORS_LABELS.OVERVIEW) return <DashboardContent />;
+    if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   };
 

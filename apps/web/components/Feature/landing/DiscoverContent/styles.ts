@@ -175,6 +175,4 @@ export const SecondaryCtaButton = styled.button`
 
 export const IconFrame = styled.span`
   display: inline-flex;
-  width: 16px;
-  height: 16px;
 `;

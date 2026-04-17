@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useMemo, useCallback } from "react";
 import {
   SidebarWrapper,
   SidebarMenu,
