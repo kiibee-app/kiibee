@@ -13,6 +13,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
+import { CREATORS } from "@/utils/translationKeys";
 import { CreatorProfile } from "@/utils/sortOptions";
 
 type Props = {
@@ -48,14 +49,14 @@ export default function ExploreCreators({ creators }: Props) {
             </Content>
 
             <GenericButton asAnchor href="#profile" variant="secondary">
-              {t("creators.viewProfile")}
+              {t(CREATORS.viewProfile)}
             </GenericButton>
           </Card>
         ))}
       </Grid>
 
       <GenericButton asAnchor href="#load" variant="primary">
-        {t("creators.loadMore")}
+        {t(CREATORS.loadMore)}
       </GenericButton>
     </PageWrapper>
   );

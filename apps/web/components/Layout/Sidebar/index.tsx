@@ -17,6 +17,7 @@ import { CREATOR_SECTIONS, creatorsItems } from "@/utils/SidebarItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { NAV } from "@/utils/translationKeys";
 import { HomeIcon } from "@/assets/icons/homeIcon";
 
 type SidebarProps = {
@@ -86,7 +87,7 @@ const Sidebar = ({ activeItem, onSelect }: SidebarProps) => {
         <SidebarHeader>
           <Image
             src={logo}
-            alt={t("nav.logoAlt")}
+            alt={t(NAV.logoAlt)}
             width={80}
             height={25}
             priority

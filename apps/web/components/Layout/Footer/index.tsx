@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import { NAV } from "@/utils/translationKeys";
 import {
   Container,
   Top,
@@ -34,7 +35,7 @@ const Footer = () => {
       <Top>
         <Column>
           <LogoRow>
-            <img src={logo.src ?? logo} alt={t("nav.logoAlt")} />
+            <img src={logo.src ?? logo} alt={t(NAV.logoAlt)} />
           </LogoRow>
           <IconRow>
             <FacebookIcon />
@@ -77,7 +78,7 @@ const Footer = () => {
             </MonoText>
           </LinkRow>
           <CardWrapper>
-            <img src={card.src ?? card} alt={t("nav.logoAlt")} />
+            <img src={card.src ?? card} alt={t(NAV.logoAlt)} />
           </CardWrapper>
         </BottomRight>
       </Bottom>

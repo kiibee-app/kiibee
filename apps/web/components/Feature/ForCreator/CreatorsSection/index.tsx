@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { CREATORS } from "@/utils/translationKeys";
 import { useIsMobile } from "@/utils/useIsMobile";
 import { getCreatorCards } from "@/utils/creatorCardData";
 import {
@@ -45,13 +46,13 @@ export default function CreatorsSection() {
       <Container>
         <LeftColumn>
           <Heading>
-            {t("creators.heading.lineOne")}
+            {t(CREATORS.heading.lineOne)}
             <br />
-            {t("creators.heading.lineTwo")}
+            {t(CREATORS.heading.lineTwo)}
             <br />
-            {t("creators.heading.lineThree")}
+            {t(CREATORS.heading.lineThree)}
           </Heading>
-          <CTAButton type="button">{t("creators.cta")}</CTAButton>
+          <CTAButton type="button">{t(CREATORS.cta)}</CTAButton>
         </LeftColumn>
 
         <RightColumn onMouseLeave={handleMouseLeave}>

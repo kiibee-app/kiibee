@@ -6,15 +6,16 @@ import { creators } from "@/utils/dummyData/creators.data";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@kiibee/ui/colors";
 import { useTranslation } from "react-i18next";
+import { CREATORS } from "@/utils/translationKeys";
 
 export default function TopCreators() {
   const { t } = useTranslation();
   return (
     <Wrapper>
       <Header>
-        <MonoText $use="H4_Medium">{t("creators.topCreators")}</MonoText>
+        <MonoText $use="H4_Medium">{t(CREATORS.topCreators)}</MonoText>
         <SeeAll href="/explore-creators">
-          <MonoText $use="Body_Medium">{t("creators.seeAll")}</MonoText>
+          <MonoText $use="Body_Medium">{t(CREATORS.seeAll)}</MonoText>
         </SeeAll>
       </Header>
 
@@ -32,7 +33,7 @@ export default function TopCreators() {
 
             <MonoText $use="Body_Medium">{creator.name}</MonoText>
             <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-              {t("creators.subscribersCount", { count: creator.uploads })}
+              {t(CREATORS.subscribersCount, { count: creator.uploads })}
             </MonoText>
           </Card>
         ))}
