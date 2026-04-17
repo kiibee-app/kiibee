@@ -34,8 +34,8 @@ export default function HowSteps() {
           </MonoText>
         </Subtitle>
         <Grid>
-          {items.map((it, idx) => (
-            <Card key={idx}>
+          {items.map((it) => (
+            <Card key={it.id}>
               <ImgWrap>
                 <Image
                   src={it.img}
