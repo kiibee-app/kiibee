@@ -1,4 +1,4 @@
-import { StaticImageData } from "next/image";
+import type { ImageSource } from "@/utils/Constants";
 
 export type CreatorCategory = "Comedy" | "Music" | "Publication" | "Cooking";
 
@@ -7,7 +7,7 @@ export type CreatorProfile = {
   name: string;
   category: CreatorCategory;
   uploads: number;
-  image: string | StaticImageData;
+  image: ImageSource;
   createdAt: number;
 };
 

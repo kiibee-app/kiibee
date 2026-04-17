@@ -1,5 +1,4 @@
-import type { StaticImageData } from "next/image";
-import type { Variant } from "@/utils/Constants";
+import type { ImageSource, Variant } from "@/utils/Constants";
 import type { ButtonSize } from "@/components/UI/GenericButton/styles";
 
 export type FormatType = "video" | "pdf" | "epub" | "web";
@@ -38,5 +37,5 @@ export type TutorialVideo = {
   formatLabel: string;
   formatType?: FormatType;
   buttons?: TutorialButton[];
-  image: string | StaticImageData;
+  image: ImageSource;
 };

@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import kiibeeLogo from "@/assets/images/kiibee-logo.svg";
+import { getImageSrc } from "@/utils/Constants";
 import {
   Section,
   Backdrop,
@@ -31,13 +32,16 @@ export default function CallToAction() {
       <Backdrop>
         {desktopCards.map((card, index) => (
           <Card
-            key={`${card.src}-${index}`}
+            key={`${getImageSrc(card.src)}-${index}`}
             $left={card.left}
             $top={card.top}
             $width={card.width}
             $height={card.height}
           >
-            <CardImage src={card.src} alt={t("callToAction.creatorAlt")} />
+            <CardImage
+              src={getImageSrc(card.src)}
+              alt={t("callToAction.creatorAlt")}
+            />
             <CardTint />
           </Card>
         ))}
@@ -46,8 +50,11 @@ export default function CallToAction() {
       <MobileBackdrop>
         <MobileGrid>
           {mobileCards.map((src, index) => (
-            <Card key={`${src}-mobile-${index}`} $mobileOnly>
-              <CardImage src={src} alt={t("callToAction.creatorAlt")} />
+            <Card key={`${getImageSrc(src)}-mobile-${index}`} $mobileOnly>
+              <CardImage
+                src={getImageSrc(src)}
+                alt={t("callToAction.creatorAlt")}
+              />
               <CardTint />
             </Card>
           ))}
@@ -61,7 +68,7 @@ export default function CallToAction() {
         <Brand>
           <BrandLogo>
             <img
-              src={kiibeeLogo.src ?? kiibeeLogo}
+              src={getImageSrc(kiibeeLogo)}
               alt={t("callToAction.logoAlt")}
             />
           </BrandLogo>

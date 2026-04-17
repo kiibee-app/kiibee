@@ -22,6 +22,7 @@ import { FacebookIcon } from "@/assets/icons/facebookIcon";
 import { TwitterIcon } from "@/assets/icons/twitterIcon";
 import { YouTubeIcon } from "@/assets/icons/youTubeIcon";
 import { footerConfig } from "@/utils/footerConfig";
+import { getImageSrc } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 
@@ -34,7 +35,7 @@ const Footer = () => {
       <Top>
         <Column>
           <LogoRow>
-            <img src={logo.src ?? logo} alt={t("nav.logoAlt")} />
+            <img src={getImageSrc(logo)} alt={t("nav.logoAlt")} />
           </LogoRow>
           <IconRow>
             <FacebookIcon />
@@ -77,7 +78,7 @@ const Footer = () => {
             </MonoText>
           </LinkRow>
           <CardWrapper>
-            <img src={card.src ?? card} alt={t("nav.logoAlt")} />
+            <img src={getImageSrc(card)} alt={t("nav.logoAlt")} />
           </CardWrapper>
         </BottomRight>
       </Bottom>

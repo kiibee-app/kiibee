@@ -1,9 +1,10 @@
 import creatorMainImage from "@/assets/images/creators/creator-woman-orange.webp";
 import creatorSideImageOne from "@/assets/images/creators/creator-man-podcast.webp";
 import creatorSideImageTwo from "@/assets/images/creators/creator-woman-gray-jacket.webp";
+import type { ImageSource } from "@/utils/Constants";
 
 export interface CreatorCard {
-  image: string;
+  image: ImageSource;
   alt: string;
   title: string;
   subtitle: string;
@@ -17,7 +18,7 @@ export interface CreatorCardData {
 
 export const getCreatorCards = (t: (key: string) => string): CreatorCard[] => [
   {
-    image: creatorMainImage.src,
+    image: creatorMainImage,
     alt: t("creators.mainCard.alt"),
     title: t("creators.mainCard.title"),
     subtitle: t("creators.mainCard.subtitle"),
@@ -25,7 +26,7 @@ export const getCreatorCards = (t: (key: string) => string): CreatorCard[] => [
     narrowBgSize: "320% 100.235%",
   },
   {
-    image: creatorSideImageOne.src,
+    image: creatorSideImageOne,
     alt: t("creators.salesInsights.alt"),
     title: t("creators.salesInsights.title"),
     subtitle: "",
@@ -33,7 +34,7 @@ export const getCreatorCards = (t: (key: string) => string): CreatorCard[] => [
     narrowBgSize: "661.917% 106.472%",
   },
   {
-    image: creatorSideImageTwo.src,
+    image: creatorSideImageTwo,
     alt: t("creators.paymentSolutions.alt"),
     title: t("creators.paymentSolutions.title"),
     subtitle: "",
