@@ -2,7 +2,14 @@ import type { StaticImageData } from "next/image";
 import type { Variant } from "@/utils/Constants";
 import type { ButtonSize } from "@/components/UI/GenericButton/styles";
 
-export type FormatType = "video" | "pdf" | "epub" | "web";
+export const FORMAT_TYPE = {
+  VIDEO: "video",
+  PDF: "pdf",
+  EPUB: "epub",
+  WEB: "web",
+} as const;
+
+export type FormatType = (typeof FORMAT_TYPE)[keyof typeof FORMAT_TYPE];
 
 export type TutorialButton = {
   label: string;
@@ -25,4 +32,11 @@ export type TutorialVideo = {
   formatType?: FormatType;
   buttons?: TutorialButton[];
   image: string | StaticImageData;
+};
+
+export type TutorialVideoSection = {
+  id: string;
+  title: string;
+  videoIds: string[];
+  gridMaxWidth?: string;
 };
