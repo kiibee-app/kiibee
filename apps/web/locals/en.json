@@ -669,6 +669,24 @@
     "inCollection": "In this collection",
     "uploads": "uploads"
   },
+  "singleTutorial": {
+    "title": "Del 1. Oprettelse af profil og kanal & site",
+    "descriptionPrimary": "I denne video viser vi hvordan du starter op efter oprettelse og tilpasser din site eller kanal.",
+    "descriptionSecondary": "Skulle videokvaliteten være grumset, kan det skyldes at din netforbindelse er dårlig. Du forbedre kvaliteten ved at trykke på tandhjulet i playeren og sætte opløsningen til 1080p i Chrome, Firefox og Microsoft Edge / Explorer browsere.",
+    "playTrailer": "Play trailer",
+    "seeContent": "See content",
+    "notFound": "Tutorial not found",
+    "tags": {
+      "guide": "User guide",
+      "tutorials": "Tutorials"
+    },
+    "meta": {
+      "publishedLabel": "Published:",
+      "publishedByLabel": "Published by:",
+      "durationLabel": "Duration:",
+      "durationValue": "12 min"
+    }
+  },
   "startCreating": {
     "heading": "Start creating with Kiibee today",
     "description1": "Join hundreds of creators sharing their work and growing their audience on Kiibee.",
