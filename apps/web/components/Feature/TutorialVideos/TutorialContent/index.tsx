@@ -1,3 +1,5 @@
+"use client";
+
 import LeftIcon from "@/assets/images/icons/left";
 import {
   Content,
