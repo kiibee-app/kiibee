@@ -1,6 +1,6 @@
 import { MonoText } from "@/components/UI/Monotext";
 import { CREATOR_VARIANTS, CreatorVariant } from "@/utils/SidebarItems";
-import { media } from "@kiibee/ui/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
 export const SidebarWrapper = styled.aside<{ $open: boolean }>`
