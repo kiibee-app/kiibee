@@ -21,6 +21,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import { useLoginFormSchema } from "@/utils/useLoginFormSchema";
 import type { LoginFormErrors } from "@/utils/authLoginFormSchema";
+import { ALERT } from "@/utils/common";
 
 export default function LoginForm() {
   const { t } = useTranslation();
@@ -108,7 +109,7 @@ export default function LoginForm() {
               {t("authForm.remember")}
             </RememberLabel>
           </OptionsRow>
-          {formError && <FormMessage role="alert">{formError}</FormMessage>}
+          {formError && <FormMessage role={ALERT}>{formError}</FormMessage>}
           <GenericButton type="submit">{t("authForm.submit")}</GenericButton>
         </Form>
         <ForgotLink href="/auth/forget-password">
