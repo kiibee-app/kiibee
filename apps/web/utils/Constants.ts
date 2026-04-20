@@ -26,3 +26,7 @@ export const BG_GREEN = "green";
 export const BG_WHITE = "white";
 export type BgVariant = typeof BG_GREEN | typeof BG_WHITE;
 export const REPEAT_PASSWORD = "repeatPassword";
+
+const KEY_SPACE = " ";
+const KEY_SPACEBAR = "Spacebar";
+export const FAQ_TOGGLE_KEYS = [KEY_ENTER, KEY_SPACE, KEY_SPACEBAR];
