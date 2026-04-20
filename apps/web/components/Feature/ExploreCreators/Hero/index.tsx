@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
@@ -70,15 +70,23 @@ export default function ExploreCreatorsHero({
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const filterOverlayRef = useRef<HTMLDivElement>(null);
 
-  const categoryLabels = CATEGORY_OPTION_KEYS.map((key) => ({
-    key,
-    label: t(`creators.filters.options.categories.${key}`),
-  }));
+  const categoryLabels = useMemo(
+    () =>
+      CATEGORY_OPTION_KEYS.map((key) => ({
+        key,
+        label: t(`creators.filters.options.categories.${key}`),
+      })),
+    [t],
+  );
 
-  const formatLabels = FORMAT_OPTION_KEYS.map((key) => ({
-    key,
-    label: t(`creators.filters.options.formats.${key}`),
-  }));
+  const formatLabels = useMemo(
+    () =>
+      FORMAT_OPTION_KEYS.map((key) => ({
+        key,
+        label: t(`creators.filters.options.formats.${key}`),
+      })),
+    [t],
+  );
 
   const {
     isFilterOpen,

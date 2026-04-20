@@ -9,7 +9,6 @@ import {
   InlineWrapper,
   FullPageWrapper,
 } from "./styles";
-import type { GenericLoaderProps } from "@/utils/types";
 import {
   KEYBOARD,
   EVENT,
@@ -17,6 +16,7 @@ import {
   LOADER_VARIANT,
   DEFAULT_LOADER_SIZE,
 } from "@/utils/ui";
+import { GenericLoaderProps } from "@/types/genericLoader";
 
 export default function GenericLoader({
   isOpen = true,

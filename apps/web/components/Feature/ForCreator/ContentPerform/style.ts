@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "@kiibee/ui/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 
 export const Section = styled.section`

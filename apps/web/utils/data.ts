@@ -10,14 +10,7 @@ import recentCreator1 from "@/assets/images/creators/recent_creator1.webp";
 import recentCreator2 from "@/assets/images/creators/recent_creator2.webp";
 import recentCreator3 from "@/assets/images/creators/recent_creator3.webp";
 
-import { TutorialVideo } from "./types";
-
-export type TutorialVideoSection = {
-  id: string;
-  title: string;
-  videoIds: string[];
-  gridMaxWidth?: string;
-};
+import { TutorialVideo, TutorialVideoSection } from "./types";
 
 export const tutorialVideos: TutorialVideo[] = [
   {
