@@ -1,6 +1,12 @@
 import type { StaticImageData } from "next/image";
 
-export type Variant = "primary" | "primary-lite" | "secondary";
+export const VARIANT = {
+  PRIMARY: "primary",
+  PRIMARY_LITE: "primary-lite",
+  SECONDARY: "secondary",
+} as const;
+
+export type Variant = (typeof VARIANT)[keyof typeof VARIANT];
 
 export function resolveImageUrl(image: string | StaticImageData) {
   return typeof image === "string" ? image : image.src;
