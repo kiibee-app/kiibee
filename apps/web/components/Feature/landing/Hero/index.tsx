@@ -47,7 +47,7 @@ export default function HeroSection() {
           </Subtitle>
 
           <CTAWrap>
-            <GenericButton asAnchor href="#" vvariant={VARIANT.PRIMARY}
+            <GenericButton asAnchor href="#" variant={VARIANT.PRIMARY}>
               {t(HERO.cta)}
             </GenericButton>
           </CTAWrap>
