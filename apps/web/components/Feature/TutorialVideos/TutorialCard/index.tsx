@@ -1,6 +1,6 @@
 "use client";
 
-import { resolveImageUrl } from "@/utils/Constants";
+import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import Image from "next/image";
 import {
   ActionRow,
@@ -48,7 +48,7 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
   const singleTutorialHref = `/single-tutorial?id=${tutorial.id}`;
   const defaultButton: TutorialButton = {
     label: t("tutorialVideos.buttonFreeLabel"),
-    variant: "secondary",
+    variant: VARIANT.SECONDARY,
     href: singleTutorialHref,
   };
   const buttons =
@@ -98,7 +98,7 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
                 key={`${button.label}-${index}`}
                 asAnchor
                 href={resolveButtonHref(button.href)}
-                variant={button.variant ?? "secondary"}
+                variant={button.variant ?? VARIANT.SECONDARY}
               >
                 {button.label}
               </GenericButton>
