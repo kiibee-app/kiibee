@@ -1,3 +1,4 @@
+import { MonoText } from "@/components/UI/Monotext";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -6,16 +7,17 @@ export const Wrapper = styled.div`
 
 export const Tabs = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 25px;
   margin: 16px 0;
   padding-top: 10px;
   align-items: center;
 `;
 
-export const TabButton = styled.button<{
+export const TabButton = styled.div<{
   $active?: boolean;
   $isIcon?: boolean;
 }>`
+  position: relative;
   background: none;
   border: none;
   cursor: pointer;
@@ -27,5 +29,16 @@ export const TabButton = styled.button<{
     $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY};
   border-bottom: ${({ $active, $isIcon }) =>
     !$isIcon && $active ? "2px solid black" : "2px solid transparent"};
-  transition: all 0.2s ease;
+
+  ${MonoText} {
+    color: inherit;
+  }
+`;
+
+export const SearchWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
 `;
