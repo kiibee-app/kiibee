@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { media } from "../../../../../packages/ui/src/breakpoints";
+import { LoaderSize, sizeMap } from "@/types/genericLoader";
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -10,14 +11,6 @@ const pulse = keyframes`
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
 `;
-
-const sizeMap = {
-  sm: { spinner: 24, border: 3 },
-  md: { spinner: 40, border: 4 },
-  lg: { spinner: 56, border: 5 },
-} as const;
-
-export type LoaderSize = keyof typeof sizeMap;
 
 export const Overlay = styled.div<{ $isTransparent?: boolean }>`
   position: fixed;
