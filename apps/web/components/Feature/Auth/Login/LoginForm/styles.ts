@@ -90,6 +90,12 @@ export const SubmitButton = styled.button`
     transform: translateY(-1px);
   }
 `;
+export const FormMessage = styled.p`
+  width: 100%;
+  margin: 0.25rem 0 0;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.RED};
+`;
 export const FooterText = styled.p`
   margin: 1.25rem 0 0;
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};

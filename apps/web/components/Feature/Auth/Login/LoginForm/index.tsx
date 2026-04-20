@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import {
   Card,
+  FormMessage,
   FooterText,
   Form,
   OptionsRow,
@@ -18,17 +19,54 @@ import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import Image from "next/image";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
+import { useLoginFormSchema } from "@/utils/useLoginFormSchema";
+import type { LoginFormErrors } from "@/utils/authLoginFormSchema";
 
 export default function LoginForm() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
+  const [fieldErrors, setFieldErrors] = useState<LoginFormErrors>({});
+  const [formError, setFormError] = useState("");
+  const loginSchema = useLoginFormSchema();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!email.trim() || !password.trim()) {
+
+    const parsedValues = loginSchema.safeParse({
+      email,
+      password,
+    });
+
+    if (!parsedValues.success) {
+      const flattenedErrors = parsedValues.error.flatten().fieldErrors;
+
+      setFieldErrors({
+        email: flattenedErrors.email?.[0],
+        password: flattenedErrors.password?.[0],
+      });
+      setFormError(t("authForm.errors.fixHighlightedFields"));
       return;
+    }
+
+    setFormError("");
+    setFieldErrors({});
+  };
+
+  const handleEmailChange = (nextValue: string) => {
+    setEmail(nextValue);
+    if (fieldErrors.email || formError) {
+      setFieldErrors((prev) => ({ ...prev, email: undefined }));
+      setFormError("");
+    }
+  };
+
+  const handlePasswordChange = (nextValue: string) => {
+    setPassword(nextValue);
+    if (fieldErrors.password || formError) {
+      setFieldErrors((prev) => ({ ...prev, password: undefined }));
+      setFormError("");
     }
   };
 
@@ -45,16 +83,20 @@ export default function LoginForm() {
             type="email"
             placeholder={t("authForm.emailLabel")}
             value={email}
-            onChange={(nextValue) => setEmail(nextValue as string)}
+            onChange={(nextValue) => handleEmailChange(nextValue as string)}
             autoComplete="email"
+            hasError={Boolean(fieldErrors.email)}
+            errorText={fieldErrors.email}
           />
           <InputField
             id="login-password"
             type="password"
             placeholder={t("authForm.passwordLabel")}
             value={password}
-            onChange={(nextValue) => setPassword(nextValue as string)}
+            onChange={(nextValue) => handlePasswordChange(nextValue as string)}
             autoComplete="current-password"
+            hasError={Boolean(fieldErrors.password)}
+            errorText={fieldErrors.password}
           />
           <OptionsRow>
             <RememberLabel>
@@ -66,6 +108,7 @@ export default function LoginForm() {
               {t("authForm.remember")}
             </RememberLabel>
           </OptionsRow>
+          {formError && <FormMessage role="alert">{formError}</FormMessage>}
           <GenericButton type="submit">{t("authForm.submit")}</GenericButton>
         </Form>
         <ForgotLink href="/auth/forget-password">
