@@ -12,11 +12,6 @@ import {
   SidebarContent,
 } from "./styles";
 import { CREATOR_SECTIONS, creatorsItems } from "@/utils/SidebarItems";
-import logo from "@/assets/images/kiibee-wordmark.webp";
-import Image from "next/image";
-import { useTranslation } from "react-i18next";
-import { NAV } from "@/utils/translationKeys";
-import { HomeIcon } from "@/assets/icons/homeIcon";
 
 type SidebarProps = {
   activeItem: string;
@@ -71,16 +66,6 @@ const Sidebar = ({ activeItem, onSelect, open, onClose }: SidebarProps) => {
       {open && <Overlay onClick={onClose} />}
 
       <SidebarWrapper $open={open}>
-        <SidebarHeader>
-          <Image
-            src={logo}
-            alt={t(NAV.logoAlt)}
-            width={80}
-            height={25}
-            priority
-            style={{ width: "auto", height: "auto" }}
-          />
-        </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>{renderItems(mainItems)}</SidebarMenu>
           <BottomMenu>{renderItems(settingsItems)}</BottomMenu>
