@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
-import { media } from "@kiibee/ui/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   width: 100%;

@@ -1,11 +1,4 @@
-export type StaticImageData = {
-  src: string;
-  height: number;
-  width: number;
-  blurDataURL?: string;
-  blurWidth?: number;
-  blurHeight?: number;
-};
+import type { StaticImageData } from "next/image";
 
 export type Variant = "primary" | "primary-lite" | "secondary";
 
@@ -22,7 +15,7 @@ export const KEY_ENTER = "Enter";
 export const DEFAULT_WINDOW_WIDTH = 1200;
 export const MOBILE_BREAKPOINT = 860;
 export const WINDOW_RESIZE_EVENT = "resize";
-
+export const CURRENT_COLOR = "currentColor";
 export const BG_GREEN = "green";
 export const BG_WHITE = "white";
 export type BgVariant = typeof BG_GREEN | typeof BG_WHITE;

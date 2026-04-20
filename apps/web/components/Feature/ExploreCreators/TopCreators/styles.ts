@@ -1,4 +1,4 @@
-import { media } from "@kiibee/ui/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
 export const Wrapper = styled.section`

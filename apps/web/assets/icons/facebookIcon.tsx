@@ -8,11 +8,11 @@ interface IconProps {
   color?: string;
 }
 
-export const FacebookIcon: React.FC<IconProps> = ({
+export default function FacebookIcon({
   width = 25,
   height = 25,
   color = COLORS.secondary.MEDIUM_GREEN,
-}) => {
+}: IconProps) {
   return (
     <svg
       width={width}
@@ -28,4 +28,4 @@ export const FacebookIcon: React.FC<IconProps> = ({
       />
     </svg>
   );
-};
+}
