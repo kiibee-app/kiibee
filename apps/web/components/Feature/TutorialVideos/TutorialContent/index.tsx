@@ -1,6 +1,6 @@
 "use client";
 
-import LeftIcon from "@/assets/images/icons/left";
+import { LeftIcon } from "@/assets/icons";
 import {
   Content,
   HeroBlock,
