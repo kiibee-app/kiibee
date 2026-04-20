@@ -9,7 +9,7 @@ import {
   SectionLink,
 } from "../../TutorialVideos/TutorialContent/styles";
 import { MonoText } from "@/components/UI/Monotext";
-import LeftIcon from "@/assets/images/icons/left";
+import { LeftIcon } from "@/assets/icons";
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { recentlyAddedVideos } from "@/utils/data";
 

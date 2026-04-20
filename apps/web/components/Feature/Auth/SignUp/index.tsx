@@ -23,6 +23,7 @@ import GenericButton from "../../../UI/GenericButton";
 import mediaCard1 from "../../../../assets/images/auth/mediaCard1.webp";
 import mediaCard2 from "../../../../assets/images/auth/mediaCard2.webp";
 import { MonoText } from "@/components/UI/Monotext";
+import { VARIANT } from "@/utils/Constants";
 
 export default function SignUpSection() {
   const { t } = useTranslation();
@@ -43,14 +44,14 @@ export default function SignUpSection() {
               <GenericButton
                 asAnchor
                 href="/auth/signup-creator"
-                variant="primary"
+                variant={VARIANT.PRIMARY}
               >
                 {t(AUTH.signupCreator)}
               </GenericButton>
               <GenericButton
                 asAnchor
                 href="/auth/signup-viewer"
-                variant="secondary"
+                variant={VARIANT.SECONDARY}
               >
                 {t(AUTH.signupViewer)}
               </GenericButton>

@@ -16,6 +16,7 @@ import {
   Divider,
   CardWrapper,
   LinkRow,
+  BottomLink,
 } from "./styles";
 import Image from "next/image";
 import logo from "../../../assets/images/kiibee-logo.svg";
@@ -71,15 +72,21 @@ const Footer = () => {
         <BottomLeft>{t("footer.copyright", { year })}</BottomLeft>
         <BottomRight>
           <LinkRow>
-            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-              {t("footer.privacyPolicy")}
-            </MonoText>
-            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-              {t("footer.termsOfService")}
-            </MonoText>
-            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-              {t("footer.cookieSettings")}
-            </MonoText>
+            <BottomLink href="/privacy-policy">
+              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                {t("footer.privacyPolicy")}
+              </MonoText>
+            </BottomLink>
+            <BottomLink href="/terms-of-service">
+              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                {t("footer.termsOfService")}
+              </MonoText>
+            </BottomLink>
+            <BottomLink href="/cookie-settings">
+              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                {t("footer.cookieSettings")}
+              </MonoText>
+            </BottomLink>
           </LinkRow>
           <CardWrapper>
             <Image

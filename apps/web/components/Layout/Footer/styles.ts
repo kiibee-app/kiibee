@@ -51,6 +51,13 @@ export const LinkItem = styled(Link)`
   text-decoration: none;
   color: inherit;
 `;
+export const BottomLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+`;
 export const Divider = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 `;
@@ -87,12 +94,12 @@ export const LinkRow = styled.div`
   gap: 12px;
   flex-wrap: wrap;
   justify-content: flex-end;
-  span {
+  a {
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
   }
-  span::before {
+  a::before {
     content: "•";
     margin-right: 8px;
   }

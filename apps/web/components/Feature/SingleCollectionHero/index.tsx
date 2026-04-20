@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
+import { VARIANT } from "@/utils/Constants";
 
 type Props = {
   title: string;
@@ -38,7 +39,7 @@ export default function SingleCollectionHero({ title }: Props) {
           <BackButtonIcon />
         </BackButtonWrapper>
 
-        <GenericButton variant="primary-lite" href="#">
+        <GenericButton variant={VARIANT.PRIMARY_LITE} href="#">
           <ShareIcon />
           {t("common.share")}
         </GenericButton>
