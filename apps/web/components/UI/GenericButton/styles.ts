@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { VARIANT, type Variant } from "@/utils/Constants";
+import type { Variant } from "@/utils/Constants";
 
 export type ButtonSize = "sm" | "md" | "lg";
 
@@ -50,7 +50,7 @@ export const shared = css<ButtonStyleProps>`
 
   ${({ $variant }) => {
     switch ($variant) {
-      case VARIANT.PRIMARY:
+      case "primary":
         return css`
           background: ${({ theme }) => theme.colors.primary.BLACK};
           color: ${({ theme }) => theme.colors.primary.WHITE};
@@ -65,7 +65,7 @@ export const shared = css<ButtonStyleProps>`
           }
         `;
 
-      case VARIANT.PRIMARY_LITE:
+      case "primary-lite":
         return css`
           background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
           color: ${({ theme }) => theme.colors.primary.BLACK};
