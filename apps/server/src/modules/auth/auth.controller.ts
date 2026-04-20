@@ -22,10 +22,8 @@ export class AuthController {
 
   @Post('signup')
   async viewerSignUp(@Body() dto: ViewerSignUpDto, @Req() req: any) {
-    // First create user to get the ID
     const result = await this.authService.viewerSignUp(dto);
 
-    // Then generate tokens if successful
     if (result.success && result.data) {
       const tokens = await this.tokenService.generateAuthTokens({
         id: result.data.id,
@@ -36,7 +34,6 @@ export class AuthController {
       const ipAddress = req.ip || req.connection?.remoteAddress;
       const userAgent = req.headers['user-agent'];
 
-      // Store session with refresh token
       await this.authService.createSession(
         result.data.id,
         tokens.refreshToken,
@@ -59,10 +56,8 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() dto: LoginDto, @Req() req: any) {
-    // First validate credentials
     const result = await this.authService.login(dto);
 
-    // Then generate tokens if successful
     if (result.success && result.data) {
       const tokens = await this.tokenService.generateAuthTokens({
         id: result.data.id,
@@ -73,7 +68,6 @@ export class AuthController {
       const ipAddress = req.ip || req.connection?.remoteAddress;
       const userAgent = req.headers['user-agent'];
 
-      // Store session with refresh token
       await this.authService.createSession(
         result.data.id,
         tokens.refreshToken,

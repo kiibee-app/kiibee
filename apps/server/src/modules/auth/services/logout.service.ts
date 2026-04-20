@@ -16,7 +16,7 @@ export const logoutService = async (
     const refreshTokenHash = await bcrypt.hash(refreshToken, 12);
     const sessionId = randomUUID();
     const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + 7); // 7 days
+    expiresAt.setDate(expiresAt.getDate() + 7);
 
     await db.insert(userSessions).values({
       id: sessionId,
