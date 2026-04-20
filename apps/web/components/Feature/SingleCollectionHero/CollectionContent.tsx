@@ -6,7 +6,7 @@ import TutorialsShowcase from "@/components/Feature/TutorialVideos/TutorialsShow
 import { Header, Section, ShowcaseWrapper, TitleGroup } from "./styles";
 import type { TutorialVideo } from "@/utils/types";
 import SearchBar from "@/components/UI/SearchBar";
-import COLORS from "@kiibee/ui/colors";
+import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
 
 type Props = {

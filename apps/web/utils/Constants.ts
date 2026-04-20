@@ -1,11 +1,4 @@
-export type StaticImageData = {
-  src: string;
-  height: number;
-  width: number;
-  blurDataURL?: string;
-  blurWidth?: number;
-  blurHeight?: number;
-};
+import type { StaticImageData } from "next/image";
 
 export const VARIANT = {
   PRIMARY: "primary",

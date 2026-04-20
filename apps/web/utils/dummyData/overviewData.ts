@@ -1,4 +1,4 @@
-import COLORS from "@kiibee/ui/colors";
+import COLORS from "@repo/ui/colors";
 
 export const OVERVIEW_STATS = [
   { id: "total", label: "Total", value: 66, color: COLORS.primary.BLACK },

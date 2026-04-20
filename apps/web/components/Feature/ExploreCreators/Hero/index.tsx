@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
@@ -123,11 +123,19 @@ export default function ExploreCreatorsHero({
   });
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
 
-  const categoryOptions = CATEGORY_OPTION_KEYS.map((optionKey) =>
-    t(`creators.filters.options.categories.${optionKey}`),
+  const categoryOptions = useMemo(
+    () =>
+      CATEGORY_OPTION_KEYS.map((optionKey) =>
+        t(`creators.filters.options.categories.${optionKey}`),
+      ),
+    [t],
   );
-  const formatOptions = FORMAT_OPTION_KEYS.map((optionKey) =>
-    t(`creators.filters.options.formats.${optionKey}`),
+  const formatOptions = useMemo(
+    () =>
+      FORMAT_OPTION_KEYS.map((optionKey) =>
+        t(`creators.filters.options.formats.${optionKey}`),
+      ),
+    [t],
   );
 
   useEffect(() => {
