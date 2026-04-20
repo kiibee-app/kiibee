@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
@@ -219,8 +220,8 @@ export const Subtitle = styled.p`
 `;
 
 export const CTAButton = styled(GenericButton).attrs({
-  variant: "primary",
-  size: "lg",
+  variant: VARIANT.PRIMARY,
+  size: SIZE.LG,
 })`
   margin-top: 0;
   border-radius: 8px;

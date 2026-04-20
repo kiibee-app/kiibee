@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
 
@@ -78,8 +79,8 @@ export const Description = styled.p`
 `;
 
 export const PrimaryButton = styled(GenericButton).attrs({
-  variant: "primary",
-  size: "lg",
+  variant: VARIANT.PRIMARY,
+  size: SIZE.LG,
 })`
   border-radius: ${({ theme }) => theme.radius.md};
   box-shadow: ${({ theme }) => theme.shadows.md};

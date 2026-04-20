@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
@@ -113,7 +114,7 @@ export const ActionsContainer = styled.div`
 `;
 
 export const ActionButton = styled(GenericButton).attrs({
-  size: "sm",
+  size: SIZE.SM,
 })`
   border-radius: 9999px;
   border: 1px solid ${({ theme }) => theme.colors.primary.GREEN_30};
@@ -137,14 +138,14 @@ export const BottomCtaSection = styled.div`
 `;
 
 export const PrimaryCtaButton = styled(GenericButton).attrs({
-  variant: "primary",
-  size: "lg",
+  variant: VARIANT.PRIMARY,
+  size: SIZE.LG,
 })`
   border-radius: 8px;
 `;
 
 export const SecondaryCtaButton = styled(GenericButton).attrs({
-  size: "lg",
+  size: SIZE.LG,
 })`
   border-radius: 8px;
 `;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import Image from "next/image";
 import { media } from "@repo/ui/breakpoints";
 
@@ -80,8 +81,8 @@ export const Summary = styled.p`
 `;
 
 export const CtaButton = styled(GenericButton).attrs({
-  variant: "primary",
-  size: "lg",
+  variant: VARIANT.PRIMARY,
+  size: SIZE.LG,
 })`
   border-radius: 8px;
 `;

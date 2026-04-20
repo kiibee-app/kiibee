@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
 import pricingCheckmark from "@/assets/icons/pricing-checkmark.webp";
@@ -140,8 +141,8 @@ export const FeatureText = styled.span`
 `;
 
 export const PlanButton = styled(GenericButton).attrs({
-  variant: "primary",
-  size: "md",
+  variant: VARIANT.PRIMARY,
+  size: SIZE.MD,
 })`
   margin-top: auto;
   align-self: flex-start;

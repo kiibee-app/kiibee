@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
@@ -86,8 +87,8 @@ export const Paragraph = styled.p`
 `;
 
 export const ReadMoreButton = styled(GenericButton).attrs({
-  variant: "primary",
-  size: "sm",
+  variant: VARIANT.PRIMARY,
+  size: SIZE.SM,
 })`
   align-self: flex-start;
   margin-top: 0.625rem;

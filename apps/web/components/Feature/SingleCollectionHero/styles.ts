@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const HeroWrapper = styled.div`
@@ -24,8 +25,8 @@ export const HeroContent = styled.div`
 `;
 
 export const ActionButton = styled(GenericButton).attrs({
-  variant: "primary",
-  size: "md",
+  variant: VARIANT.PRIMARY,
+  size: SIZE.MD,
 })`
   width: fit-content;
   padding: 10px 18px;

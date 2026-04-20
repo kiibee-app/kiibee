@@ -2,6 +2,7 @@ import breakpoints from "@repo/ui/breakpoints";
 import Link from "next/link";
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 
 export const ContentWrap = styled.section`
   width: 100%;
@@ -111,8 +112,8 @@ export const TermsLink = styled(Link)`
 `;
 
 export const SubmitButton = styled(GenericButton).attrs({
-  variant: "primary",
-  size: "md",
+  variant: VARIANT.PRIMARY,
+  size: SIZE.MD,
 })`
   width: 100%;
   max-width: 280px;
