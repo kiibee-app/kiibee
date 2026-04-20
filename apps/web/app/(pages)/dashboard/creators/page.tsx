@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import CreatorProfile from "@/components/Feature/CreatorProfile";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
@@ -25,7 +27,29 @@ export default function DashboardCreatorsPage() {
     return <DashboardHeader onToggleSidebar={toggleSidebar} />;
   };
 
+  const searchParams = useSearchParams();
+  const view = searchParams?.get("view");
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleSelect = useCallback(
+    (label: string) => {
+      setActivePage(label);
+
+      const params = new URLSearchParams(searchParams?.toString() ?? "");
+      if (params.has("view")) {
+        params.delete("view");
+        const qs = params.toString();
+        const href = qs ? `${pathname}?${qs}` : pathname;
+        router.replace(href);
+      }
+    },
+    [pathname, router, searchParams],
+  );
+
   const renderContent = () => {
+    if (view === "profile") return <CreatorProfile />;
     if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   };
@@ -38,7 +62,7 @@ export default function DashboardCreatorsPage() {
           open={open}
           onClose={closeSidebar}
           activeItem={activePage}
-          onSelect={setActivePage}
+          onSelect={handleSelect}
         />
       }
     >

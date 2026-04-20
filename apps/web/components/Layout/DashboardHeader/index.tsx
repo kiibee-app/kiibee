@@ -17,6 +17,8 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import { HomeIcon } from "@/assets/icons/homeIcon";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
+import styled from "styled-components";
 
 type Props = {
   onToggleSidebar?: () => void;
@@ -49,15 +51,30 @@ const DashboardHeader = ({ onToggleSidebar }: Props) => {
       <Right>
         <ChannelText $use="Body_Medium">{headerInfo.channel}</ChannelText>
         <Divider />
-        <ProfileCircle>
-          <InitialAvatar>{getInitial(headerInfo.email)}</InitialAvatar>
-        </ProfileCircle>
-        <EmailWrapper>
-          <MonoText $use="Body_Medium">{headerInfo.email}</MonoText>
-        </EmailWrapper>
+        <Link
+          href="/dashboard/creators?view=profile"
+          aria-label="Creator profile"
+        >
+          <RightProfileWrapper>
+            <ProfileCircle>
+              <InitialAvatar>{getInitial(headerInfo.email)}</InitialAvatar>
+            </ProfileCircle>
+            <EmailWrapper>
+              <MonoText $use="Body_Medium">{headerInfo.email}</MonoText>
+            </EmailWrapper>
+          </RightProfileWrapper>
+        </Link>
       </Right>
     </HeaderWrapper>
   );
 };
+
+const RightProfileWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+`;
 
 export default DashboardHeader;
