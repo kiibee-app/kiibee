@@ -6,6 +6,7 @@ import Image from "@/components/UI/SafeImage";
 import GenericButton from "@/components/UI/GenericButton";
 import { Section, Background, Inner, Content, Title, Subtitle } from "./styles";
 import type { CtaSectionProps } from "@/types/ctaSection";
+import { VARIANT } from "@/utils/Constants";
 
 export default function CtaSection({
   bgImage,
@@ -43,7 +44,7 @@ export default function CtaSection({
             <GenericButton
               asAnchor
               href={ctaHref || "#"}
-              variant="primary-lite"
+              variant={VARIANT.PRIMARY_LITE}
             >
               {ctaText}
             </GenericButton>

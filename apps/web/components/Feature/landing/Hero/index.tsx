@@ -16,6 +16,7 @@ import hero from "@/assets/images/hero-background.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { VARIANT } from "@/utils/Constants";
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -45,7 +46,7 @@ export default function HeroSection() {
           </Subtitle>
 
           <CTAWrap>
-            <GenericButton asAnchor href="#" variant="primary">
+            <GenericButton asAnchor href="#" variant={VARIANT.PRIMARY}>
               {t("hero.cta")}
             </GenericButton>
           </CTAWrap>

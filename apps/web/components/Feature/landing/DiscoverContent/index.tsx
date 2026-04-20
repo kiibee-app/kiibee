@@ -28,6 +28,7 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT } from "@/utils/Constants";
 
 export default function DiscoverContent() {
   const theme = useTheme();
@@ -115,7 +116,7 @@ export default function DiscoverContent() {
 
       <BottomCtaSection>
         <GenericButton>{t("discoverContent.ctaPrimary")}</GenericButton>
-        <GenericButton href="/explore-creators" variant="secondary">
+        <GenericButton href="/explore-creators" variant={VARIANT.SECONDARY}>
           {t("discoverContent.ctaSecondary")}
         </GenericButton>
       </BottomCtaSection>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Variant } from "@/utils/Constants";
+import { VARIANT, Variant } from "@/utils/Constants";
 import React from "react";
 import { ButtonEl, AnchorEl } from "./styles";
 import type { ButtonSize } from "./styles";
@@ -19,7 +19,7 @@ export interface GenericButtonProps extends ButtonOrAnchorProps {
 }
 
 export default function GenericButton({
-  variant = "primary",
+  variant = VARIANT.PRIMARY,
   size = "md",
   fullWidth = false,
   minWidth,

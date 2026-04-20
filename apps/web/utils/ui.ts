@@ -72,3 +72,7 @@ export const KEYBOARD_KEYS = {
   ENTER: "Enter",
   ESCAPE: "Escape",
 } as const;
+
+export const BROWSER_API = {
+  INTERSECTION_OBSERVER: "IntersectionObserver",
+} as const;

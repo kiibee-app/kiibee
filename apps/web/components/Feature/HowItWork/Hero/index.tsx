@@ -15,6 +15,7 @@ import heroImg from "@/assets/images/hero2.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
+import { VARIANT } from "@/utils/Constants";
 
 export default function HowHero() {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ export default function HowHero() {
             <MonoText $use="H5_Medium">{t("how.subtitle")}</MonoText>
           </Subtitle>
           <CTAWrap>
-            <GenericButton asAnchor href="#" variant="primary">
+            <GenericButton asAnchor href="#" variant={VARIANT.PRIMARY}>
               {t("how.cta")}
             </GenericButton>
           </CTAWrap>

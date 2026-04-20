@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { FilterIcon } from "@/assets/icons/filterIcon";
 import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
-import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
+import { DEFAULT_SORT, SORT_OPTIONS } from "@/utils/sortOptions";
 import { Directions, INPUT_TYPE, KEYBOARD_KEYS } from "@/utils/ui";
+
 import {
   CheckboxControl,
   CheckboxInput,
@@ -49,94 +50,62 @@ import {
   StarIconWrap,
 } from "./styles";
 
-type FilterGroupKey = "creators" | "categories" | "formats";
-type FilterSectionKey = FilterGroupKey | "price" | "rating";
-
-const CREATOR_OPTIONS = [
-  "Kammas kantine",
-  "Chief1",
-  "Morten Bonde",
-  "Simon Talbot",
-  "Amin Jensen",
-  "ADHDfokus",
-  "Jacob Taarnhoj",
-  "Tjeles venner",
-  "Helt vild, kogebog",
-  "Comedy-TV",
-  "The Fit Lab",
-  "Business Daily",
-];
-
-const CATEGORY_OPTION_KEYS = [
-  "all",
-  "business",
-  "comedyShows",
-  "musicAndAudio",
-  "educational",
-  "fitnessAndHealth",
-  "food",
-  "podcasts",
-  "theater",
-  "tutorials",
-  "publications",
-] as const;
-
-const FORMAT_OPTION_KEYS = [
-  "all",
-  "video",
-  "ePublication",
-  "pdf",
-  "audioFile",
-  "webContent",
-] as const;
-
-const RATING_OPTIONS = [5, 4, 3, 2, 1] as const;
-const DEFAULT_VISIBLE_CREATORS = 10;
-
-type Props = {
-  showControls?: boolean;
-  setSortBy?: (value: SortValue) => void;
-};
+import { useCreatorFilters } from "@/hooks/useCreatorFilters";
+import {
+  CATEGORY_OPTION_KEYS,
+  CREATOR_OPTIONS,
+  FilterGroupKey,
+  filterGroupMap,
+  FORMAT_OPTION_KEYS,
+  RATING_OPTIONS,
+} from "@/utils/creatorFilters";
+import { ExploreCreatorsHeroProps } from "@/types/filters";
 
 export default function ExploreCreatorsHero({
   showControls = true,
   setSortBy,
-}: Props) {
+}: ExploreCreatorsHeroProps) {
   const { t } = useTranslation();
   const theme = useTheme();
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const filterOverlayRef = useRef<HTMLDivElement>(null);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [expandedSection, setExpandedSection] =
-    useState<FilterSectionKey | null>(null);
-  const [showAllCreators, setShowAllCreators] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<
-    Record<FilterGroupKey, string[]>
-  >({
-    creators: [],
-    categories: [],
-    formats: [],
-  });
-  const [priceRange, setPriceRange] = useState({
-    min: "",
-    max: "",
-  });
-  const [selectedRating, setSelectedRating] = useState<number | null>(null);
 
-  const categoryOptions = useMemo(
+  const categoryLabels = useMemo(
     () =>
-      CATEGORY_OPTION_KEYS.map((optionKey) =>
-        t(`creators.filters.options.categories.${optionKey}`),
-      ),
+      CATEGORY_OPTION_KEYS.map((key) => ({
+        key,
+        label: t(`creators.filters.options.categories.${key}`),
+      })),
     [t],
   );
-  const formatOptions = useMemo(
+
+  const formatLabels = useMemo(
     () =>
-      FORMAT_OPTION_KEYS.map((optionKey) =>
-        t(`creators.filters.options.formats.${optionKey}`),
-      ),
+      FORMAT_OPTION_KEYS.map((key) => ({
+        key,
+        label: t(`creators.filters.options.formats.${key}`),
+      })),
     [t],
   );
+
+  const {
+    isFilterOpen,
+    expandedSection,
+    showAllCreators,
+    selectedOptions,
+    priceRange,
+    selectedRating,
+    setShowAllCreators,
+    setSelectedRating,
+    toggleFilter,
+    toggleSection,
+    toggleOption,
+    handlePriceChange,
+    DEFAULT_VISIBLE_CREATORS,
+  } = useCreatorFilters({
+    categoryOptions: [...CATEGORY_OPTION_KEYS],
+    formatOptions: [...FORMAT_OPTION_KEYS],
+  });
 
   useEffect(() => {
     if (!isFilterOpen) {
@@ -153,12 +122,12 @@ export default function ExploreCreatorsHero({
         return;
       }
 
-      setIsFilterOpen(false);
+      toggleFilter();
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === KEYBOARD_KEYS.ESCAPE) {
-        setIsFilterOpen(false);
+        toggleFilter();
       }
     };
 
@@ -169,86 +138,32 @@ export default function ExploreCreatorsHero({
       document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isFilterOpen]);
-
-  const toggleFilter = () => {
-    setIsFilterOpen((previousValue) => {
-      const nextValue = !previousValue;
-
-      if (nextValue) {
-        setExpandedSection(null);
-      }
-
-      return nextValue;
-    });
-  };
-
-  const toggleSection = (sectionKey: FilterSectionKey) => {
-    setExpandedSection((previousValue) =>
-      previousValue === sectionKey ? null : sectionKey,
-    );
-  };
-
-  const toggleOption = (group: FilterGroupKey, option: string) => {
-    setSelectedOptions((previousValue) => {
-      const currentOptions = previousValue[group];
-      const isSelected = currentOptions.includes(option);
-      const allOption =
-        group === "categories"
-          ? categoryOptions[0]
-          : group === "formats"
-            ? formatOptions[0]
-            : null;
-
-      if (allOption && option === allOption) {
-        return {
-          ...previousValue,
-          [group]: isSelected ? [] : [option],
-        };
-      }
-
-      const nextOptions = isSelected
-        ? currentOptions.filter((currentOption) => currentOption !== option)
-        : [
-            ...currentOptions.filter(
-              (currentOption) => currentOption !== allOption,
-            ),
-            option,
-          ];
-
-      return {
-        ...previousValue,
-        [group]: nextOptions,
-      };
-    });
-  };
-
-  const handlePriceChange =
-    (field: "min" | "max") => (event: React.ChangeEvent<HTMLInputElement>) => {
-      const nextValue = event.target.value.replace(/[^\d]/g, "");
-
-      setPriceRange((previousValue) => ({
-        ...previousValue,
-        [field]: nextValue,
-      }));
-    };
+  }, [isFilterOpen, toggleFilter]);
 
   const visibleCreators = showAllCreators
     ? CREATOR_OPTIONS
     : CREATOR_OPTIONS.slice(0, DEFAULT_VISIBLE_CREATORS);
 
-  const renderOptionList = (group: FilterGroupKey, options: string[]) => (
+  const creatorLabels = visibleCreators.map((key) => ({
+    key,
+    label: key,
+  }));
+
+  const renderOptionList = (
+    group: FilterGroupKey,
+    options: { key: string; label: string }[],
+  ) => (
     <OptionList>
       {options.map((option) => {
-        const isSelected = selectedOptions[group].includes(option);
+        const isSelected = selectedOptions[group].includes(option.key);
 
         return (
-          <OptionLabel key={option}>
-            <OptionText>{option}</OptionText>
+          <OptionLabel key={option.key}>
+            <OptionText>{option.label}</OptionText>
             <CheckboxInput
               type="checkbox"
               checked={isSelected}
-              onChange={() => toggleOption(group, option)}
+              onChange={() => toggleOption(group, option.key)}
             />
             <CheckboxControl $checked={isSelected} />
           </OptionLabel>
@@ -296,8 +211,10 @@ export default function ExploreCreatorsHero({
                       <FilterSection>
                         <FilterSectionButton
                           type="button"
-                          onClick={() => toggleSection("creators")}
-                          aria-expanded={expandedSection === "creators"}
+                          onClick={() => toggleSection(filterGroupMap.creators)}
+                          aria-expanded={
+                            expandedSection === filterGroupMap.creators
+                          }
                         >
                           <FilterSectionTitle>
                             {t("creators.filters.sections.creators")}
@@ -308,7 +225,7 @@ export default function ExploreCreatorsHero({
                               width={18}
                               height={10}
                               direction={
-                                expandedSection === "creators"
+                                expandedSection === filterGroupMap.creators
                                   ? Directions.DOWN
                                   : Directions.RIGHT
                               }
@@ -316,12 +233,15 @@ export default function ExploreCreatorsHero({
                           </SectionIcon>
                         </FilterSectionButton>
                         <FilterSectionBody
-                          $open={expandedSection === "creators"}
+                          $open={expandedSection === filterGroupMap.creators}
                         >
                           <FilterSectionBodyInner
-                            $open={expandedSection === "creators"}
+                            $open={expandedSection === filterGroupMap.creators}
                           >
-                            {renderOptionList("creators", visibleCreators)}
+                            {renderOptionList(
+                              filterGroupMap.creators,
+                              creatorLabels,
+                            )}
                             {CREATOR_OPTIONS.length >
                               DEFAULT_VISIBLE_CREATORS && !showAllCreators ? (
                               <ShowMoreButton
@@ -340,8 +260,12 @@ export default function ExploreCreatorsHero({
                       <FilterSection>
                         <FilterSectionButton
                           type="button"
-                          onClick={() => toggleSection("categories")}
-                          aria-expanded={expandedSection === "categories"}
+                          onClick={() =>
+                            toggleSection(filterGroupMap.categories)
+                          }
+                          aria-expanded={
+                            expandedSection === filterGroupMap.categories
+                          }
                         >
                           <FilterSectionTitle>
                             {t("creators.filters.sections.categories")}
@@ -352,7 +276,7 @@ export default function ExploreCreatorsHero({
                               width={18}
                               height={10}
                               direction={
-                                expandedSection === "categories"
+                                expandedSection === filterGroupMap.categories
                                   ? Directions.DOWN
                                   : Directions.RIGHT
                               }
@@ -360,12 +284,17 @@ export default function ExploreCreatorsHero({
                           </SectionIcon>
                         </FilterSectionButton>
                         <FilterSectionBody
-                          $open={expandedSection === "categories"}
+                          $open={expandedSection === filterGroupMap.categories}
                         >
                           <FilterSectionBodyInner
-                            $open={expandedSection === "categories"}
+                            $open={
+                              expandedSection === filterGroupMap.categories
+                            }
                           >
-                            {renderOptionList("categories", categoryOptions)}
+                            {renderOptionList(
+                              filterGroupMap.categories,
+                              categoryLabels,
+                            )}
                           </FilterSectionBodyInner>
                         </FilterSectionBody>
                       </FilterSection>
@@ -373,8 +302,10 @@ export default function ExploreCreatorsHero({
                       <FilterSection>
                         <FilterSectionButton
                           type="button"
-                          onClick={() => toggleSection("formats")}
-                          aria-expanded={expandedSection === "formats"}
+                          onClick={() => toggleSection(filterGroupMap.formats)}
+                          aria-expanded={
+                            expandedSection === filterGroupMap.formats
+                          }
                         >
                           <FilterSectionTitle>
                             {t("creators.filters.sections.formats")}
@@ -385,7 +316,7 @@ export default function ExploreCreatorsHero({
                               width={18}
                               height={10}
                               direction={
-                                expandedSection === "formats"
+                                expandedSection === filterGroupMap.formats
                                   ? Directions.DOWN
                                   : Directions.RIGHT
                               }
@@ -393,12 +324,15 @@ export default function ExploreCreatorsHero({
                           </SectionIcon>
                         </FilterSectionButton>
                         <FilterSectionBody
-                          $open={expandedSection === "formats"}
+                          $open={expandedSection === filterGroupMap.formats}
                         >
                           <FilterSectionBodyInner
-                            $open={expandedSection === "formats"}
+                            $open={expandedSection === filterGroupMap.formats}
                           >
-                            {renderOptionList("formats", formatOptions)}
+                            {renderOptionList(
+                              filterGroupMap.formats,
+                              formatLabels,
+                            )}
                           </FilterSectionBodyInner>
                         </FilterSectionBody>
                       </FilterSection>

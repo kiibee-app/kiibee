@@ -23,3 +23,5 @@ export { default as EyeClosedIcon } from "./EyeClosedIcon";
 export { default as FacebookIcon } from "./facebookIcon";
 export { default as TwitterIcon } from "./twitterIcon";
 export { default as YouTubeIcon } from "./youTubeIcon";
+export { default as EpubIcon } from "./EpubIcon";
+export { default as LeftIcon } from "./LeftIcon";

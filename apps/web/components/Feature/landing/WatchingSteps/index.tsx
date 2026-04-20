@@ -21,6 +21,7 @@ import { useTranslation } from "react-i18next";
 import Steps from "@/assets/images/steps.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { VARIANT } from "@/utils/Constants";
 
 export default function WatchingSteps() {
   const { t } = useTranslation();
@@ -77,7 +78,7 @@ export default function WatchingSteps() {
               </StepCard>
             ))}
             <CTAWrapper>
-              <GenericButton asAnchor href="#" variant="primary">
+              <GenericButton asAnchor href="#" variant={VARIANT.PRIMARY}>
                 {t("watchingSteps.cta")}
               </GenericButton>
             </CTAWrapper>
