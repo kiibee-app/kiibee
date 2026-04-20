@@ -21,6 +21,7 @@ import {
 } from "./styles";
 import { desktopCards, mobileCards } from "@/utils/cards";
 import { MonoText } from "@/components/UI/Monotext";
+import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
 
 export default function CallToAction() {
@@ -60,10 +61,7 @@ export default function CallToAction() {
       <Content>
         <Brand>
           <BrandLogo>
-            <img
-              src={kiibeeLogo.src ?? kiibeeLogo}
-              alt={t("callToAction.logoAlt")}
-            />
+            <SafeImage src={kiibeeLogo} alt={t("callToAction.logoAlt")} />
           </BrandLogo>
         </Brand>
         <Heading>

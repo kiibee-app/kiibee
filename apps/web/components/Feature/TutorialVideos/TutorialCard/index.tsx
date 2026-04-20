@@ -1,7 +1,7 @@
 "use client";
 
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import {
   ActionRow,
   Card,

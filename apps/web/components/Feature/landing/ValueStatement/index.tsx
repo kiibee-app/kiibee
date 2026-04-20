@@ -3,7 +3,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Section, Inner, Content, Title, Background, Subtitle } from "./styles";
-import Image, { StaticImageData } from "next/image";
+import type { StaticImageData } from "next/image";
+import Image from "@/components/UI/SafeImage";
 import valueBg from "@/assets/images/cta-buttom.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";

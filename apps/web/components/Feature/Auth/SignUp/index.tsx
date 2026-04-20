@@ -3,7 +3,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { AUTH } from "@/utils/translationKeys";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import {
   Container,
   Inner,
