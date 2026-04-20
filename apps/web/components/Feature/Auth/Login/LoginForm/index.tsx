@@ -15,7 +15,7 @@ import {
   ForgotLink,
 } from "./styles";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 

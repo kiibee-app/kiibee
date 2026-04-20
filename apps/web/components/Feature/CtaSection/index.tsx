@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import GenericButton from "@/components/UI/GenericButton";
 import { Section, Background, Inner, Content, Title, Subtitle } from "./styles";
 import type { CtaSectionProps } from "@/types/ctaSection";
