@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { FilterIcon } from "@/assets/icons/filterIcon";
+import { useClickOutside } from "@/hooks/useClickOutside";
 import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
@@ -137,24 +138,21 @@ export default function ExploreCreatorsHero({
       ),
     [t],
   );
+  const filterClickOutsideRefs = useMemo(
+    () => [filterButtonRef, filterOverlayRef],
+    [],
+  );
+
+  useClickOutside({
+    refs: filterClickOutsideRefs,
+    enabled: isFilterOpen,
+    handler: () => setIsFilterOpen(false),
+  });
 
   useEffect(() => {
     if (!isFilterOpen) {
       return;
     }
-
-    const handlePointerDown = (event: MouseEvent) => {
-      const target = event.target as Node;
-
-      if (
-        filterButtonRef.current?.contains(target) ||
-        filterOverlayRef.current?.contains(target)
-      ) {
-        return;
-      }
-
-      setIsFilterOpen(false);
-    };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === KEYBOARD_KEYS.ESCAPE) {
@@ -162,11 +160,9 @@ export default function ExploreCreatorsHero({
       }
     };
 
-    document.addEventListener("mousedown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isFilterOpen]);
