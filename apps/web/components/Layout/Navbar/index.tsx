@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { NAV } from "@/utils/translationKeys";
 import Image from "next/image";
 import Link from "next/link";
 import { Header, Inner, Left, Logo, Nav, Actions } from "./styles";
@@ -21,7 +22,7 @@ export default function NavBar() {
           <Logo>
             <Image
               src={logo}
-              alt={t("nav.logoAlt")}
+              alt={t(NAV.logoAlt)}
               width={80}
               height={25}
               priority
@@ -41,15 +42,11 @@ export default function NavBar() {
         </Nav>
 
         <Actions>
-          <GenericButton
-            asAnchor
-            href="/auth/login"
-            variant={VARIANT.SECONDARY}
-          >
-            {t("nav.login")}
+          <GenericButton asAnchor href="/auth/login" variant={VARIANT.SECONDARY}>
+            {t(NAV.login)}
           </GenericButton>
           <GenericButton asAnchor href="/auth/signup" variant={VARIANT.PRIMARY}>
-            {t("nav.startCreating")}
+             {t(NAV.startCreating)}
           </GenericButton>
         </Actions>
       </Inner>

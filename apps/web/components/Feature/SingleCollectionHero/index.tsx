@@ -19,6 +19,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { useRouter } from "next/navigation";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import { useTranslation } from "react-i18next";
+import { NAV } from "@/utils/translationKeys";
 import { VARIANT } from "@/utils/Constants";
 
 type Props = {
@@ -47,7 +48,7 @@ export default function SingleCollectionHero({ title }: Props) {
         <HeroContent>
           <LogoRow>
             <Image src={logo} alt="Kiibee Logo" width={30} height={30} />
-            <MonoText $use="H4_Medium">{t("nav.logoAlt")}</MonoText>
+            <MonoText $use="H4_Medium">{t(NAV.logoAlt)}</MonoText>
           </LogoRow>
 
           <MonoText $use="Heading2">{title}</MonoText>

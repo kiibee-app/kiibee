@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { CREATORS } from "@/utils/translationKeys";
 import creatorsStoryImage from "@/assets/images/creators/678d923e2e28b14f2986cc4127abeb6348d4937c.webp";
 import {
   Section,
@@ -50,18 +51,18 @@ export default function ShortStory() {
         <ImageSection>
           <StoryImage
             src={creatorsStoryImage.src}
-            alt={t("creators.shortStory.imageAlt")}
+            alt={t(CREATORS.shortStory.imageAlt)}
           />
         </ImageSection>
 
         <TextSection>
-          <Title $isMobile={isMobile}>{t("creators.shortStory.title")}</Title>
+          <Title $isMobile={isMobile}>{t(CREATORS.shortStory.title)}</Title>
 
-          <Paragraph>{t("creators.shortStory.lead")}</Paragraph>
-          <Paragraph>{t("creators.shortStory.body")}</Paragraph>
+          <Paragraph>{t(CREATORS.shortStory.lead)}</Paragraph>
+          <Paragraph>{t(CREATORS.shortStory.body)}</Paragraph>
 
           <ReadMoreButton type="button">
-            {t("creators.shortStory.cta")}
+            {t(CREATORS.shortStory.cta)}
           </ReadMoreButton>
         </TextSection>
       </ContentWrapper>

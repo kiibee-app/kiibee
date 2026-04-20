@@ -14,6 +14,7 @@ import {
   CardText,
 } from "./styles";
 import { useTranslation } from "react-i18next";
+import { NAV } from "@/utils/translationKeys";
 import steps from "@/utils/StepsData";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
@@ -26,7 +27,7 @@ export default function HowSteps() {
     <StepsSection>
       <Inner>
         <Heading>
-          <MonoText $use="Heading2">{t("nav.howItWorks")}</MonoText>
+          <MonoText $use="Heading2">{t(NAV.howItWorks)}</MonoText>
         </Heading>
         <Subtitle>
           <MonoText $use="H4_Medium" color={COLORS.neutral.GRAY_700}>

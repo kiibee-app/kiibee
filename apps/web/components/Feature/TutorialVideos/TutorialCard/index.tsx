@@ -12,6 +12,7 @@ import {
 } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
+import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { ComponentType } from "react";
 import type { FormatType, TutorialButton, TutorialVideo } from "@/utils/types";
 import { EpubIcon, PdfIcon, VideoIcon, WebIcon } from "@/assets/icons";
@@ -44,7 +45,7 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
   const FormatIcon = formatIconMap[formatType];
   const singleTutorialHref = `/single-tutorial?id=${tutorial.id}`;
   const defaultButton: TutorialButton = {
-    label: t("tutorialVideos.buttonFreeLabel"),
+    label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
     variant: VARIANT.SECONDARY,
     href: singleTutorialHref,
   };

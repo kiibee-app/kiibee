@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { AUTH } from "@/utils/translationKeys";
 import Image from "next/image";
 import {
   Container,
@@ -33,10 +34,10 @@ export default function SignUpSection() {
         <Left>
           <Content>
             <Title>
-              <MonoText $use="H4_Medium">{t("auth.title")}</MonoText>
+              <MonoText $use="H4_Medium">{t(AUTH.title)}</MonoText>
             </Title>
             <Subtitle>
-              <MonoText $use="Body_Regular">{t("auth.subtitle")}</MonoText>
+              <MonoText $use="Body_Regular">{t(AUTH.subtitle)}</MonoText>
             </Subtitle>
 
             <CTAWrap>
@@ -45,21 +46,21 @@ export default function SignUpSection() {
                 href="/auth/signup-creator"
                 variant={VARIANT.PRIMARY}
               >
-                {t("auth.signupCreator")}
+                {t(AUTH.signupCreator)}
               </GenericButton>
               <GenericButton
                 asAnchor
                 href="/auth/signup-viewer"
                 variant={VARIANT.SECONDARY}
               >
-                {t("auth.signupViewer")}
+                {t(AUTH.signupViewer)}
               </GenericButton>
             </CTAWrap>
 
             <AccountText>
-              <MonoText $use="Body_Medium">{t("auth.haveAccount")}</MonoText>
+              <MonoText $use="Body_Medium">{t(AUTH.haveAccount)}</MonoText>
               <LoginLink href="/auth/login">
-                <MonoText $use="Body_Medium">{t("auth.login")} </MonoText>
+                <MonoText $use="Body_Medium">{t(AUTH.login)} </MonoText>
               </LoginLink>
             </AccountText>
           </Content>
@@ -69,7 +70,7 @@ export default function SignUpSection() {
             <BackCard>
               <Image
                 src={mediaCard1}
-                alt={t("auth.mediaCard1Alt")}
+                alt={t(AUTH.mediaCard1Alt)}
                 priority
                 style={{ width: "100%", height: "auto" }}
               />
@@ -77,7 +78,7 @@ export default function SignUpSection() {
             <FrontCard>
               <Image
                 src={mediaCard2}
-                alt={t("auth.mediaCard2Alt")}
+                alt={t(AUTH.mediaCard2Alt)}
                 priority
                 style={{ width: "100%", height: "auto" }}
               />
