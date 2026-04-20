@@ -3,24 +3,26 @@
 import React, { useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import { TabButton, Tabs, Wrapper, SearchWrapper } from "./styles";
-import { TabKey, TABS } from "@/utils/settingsTabs";
+import { TAB_KEYS, TabKey, TABS } from "@/utils/settingsTabs";
 import SearchBar from "@/components/UI/SearchBar";
 import { useTranslation } from "react-i18next";
 
 export default function SettingsContent() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<TabKey>("payout");
+
+  const [activeTab, setActiveTab] = useState<TabKey>(TAB_KEYS.payout);
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
 
   return (
     <Wrapper>
-      <MonoText $use="H4_SemiBold">Settings</MonoText>
+      <MonoText $use="H4_SemiBold">{t("settings.title")}</MonoText>
 
       <Tabs>
         {TABS.map((tab) => {
-          const isSearch = tab.key === "search";
+          const isSearch = tab.key === TAB_KEYS.search;
           const isActive = activeTab === tab.key;
+
           return (
             <TabButton
               key={tab.key}
@@ -43,8 +45,12 @@ export default function SettingsContent() {
                     onChange={setSearchValue}
                   />
                 </SearchWrapper>
+              ) : tab.icon ? (
+                tab.icon
               ) : (
-                <MonoText $use="Body_SemiBold">{tab.label}</MonoText>
+                <MonoText $use="Body_SemiBold">
+                  {tab.labelKey ? t(tab.labelKey) : ""}
+                </MonoText>
               )}
             </TabButton>
           );
