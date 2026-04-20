@@ -60,7 +60,14 @@
     "forgot": "Forgot your password?",
     "submit": "Log in",
     "footer": "Don't have an account?",
-    "signUp": "Sign up"
+    "signUp": "Sign up",
+    "errors": {
+      "emailRequired": "Email address is required",
+      "emailInvalid": "Enter a valid email address",
+      "passwordRequired": "Password is required",
+      "fixHighlightedFields": "Please fix the highlighted fields.",
+      "submitFailed": "We couldn't log you in right now. Please try again."
+    }
   },
   "forgotPassword": {
     "title": "Forgot password",

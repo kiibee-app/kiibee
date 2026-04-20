@@ -60,7 +60,14 @@
     "forgot": "Glemt din adgangskode?",
     "submit": "Log ind",
     "footer": "Har du ikke en konto?",
-    "signUp": "Tilmeld dig"
+    "signUp": "Tilmeld dig",
+    "errors": {
+      "emailRequired": "E-mailadresse er påkrævet",
+      "emailInvalid": "Indtast en gyldig e-mailadresse",
+      "passwordRequired": "Adgangskode er påkrævet",
+      "fixHighlightedFields": "Ret venligst de fremhævede felter.",
+      "submitFailed": "Vi kunne ikke logge dig ind lige nu. Prøv igen."
+    }
   },
   "forgotPassword": {
     "title": "Nulstil adgangskode",
