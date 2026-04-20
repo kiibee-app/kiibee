@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import styled from "styled-components";
-import { media } from "@repo/ui/breakpoints";
+import breakpoints, { media } from "@repo/ui/breakpoints";
 
 export const Container = styled.footer`
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
@@ -101,8 +102,16 @@ export const CardWrapper = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: flex-end;
-  img {
-    height: 28px;
-    width: auto;
+  width: min(45vw, 14rem);
+
+  ${media.tablet} {
+    width: min(60vw, 12rem);
   }
+`;
+
+export const PaymentCardImage = styled(Image).attrs({
+  sizes: `(max-width: ${breakpoints.tablet}) 60vw, 45vw`,
+})`
+  width: 100%;
+  height: auto;
 `;
