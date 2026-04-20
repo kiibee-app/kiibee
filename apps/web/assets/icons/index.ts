@@ -20,3 +20,6 @@ export { default as EditProfileIcon } from "./EditProfileIcon";
 export { default as EbookIcon } from "./EbookIcon";
 export { default as EyeOpenIcon } from "./EyeOpenIcon";
 export { default as EyeClosedIcon } from "./EyeClosedIcon";
+export { default as FacebookIcon } from "./facebookIcon";
+export { default as TwitterIcon } from "./twitterIcon";
+export { default as YouTubeIcon } from "./youTubeIcon";

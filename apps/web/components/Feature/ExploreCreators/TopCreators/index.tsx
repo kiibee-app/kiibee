@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Wrapper, Header, SeeAll, List, Card, Avatar } from "./styles";
 import { creators } from "@/utils/dummyData/creators.data";
 import { MonoText } from "@/components/UI/Monotext";
-import COLORS from "@kiibee/ui/colors";
+import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 

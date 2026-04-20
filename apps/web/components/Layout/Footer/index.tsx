@@ -17,11 +17,10 @@ import {
   CardWrapper,
   LinkRow,
 } from "./styles";
+import Image from "next/image";
 import logo from "../../../assets/images/kiibee-logo.svg";
 import card from "../../../assets/images/card.webp";
-import { FacebookIcon } from "@/assets/icons/facebookIcon";
-import { TwitterIcon } from "@/assets/icons/twitterIcon";
-import { YouTubeIcon } from "@/assets/icons/youTubeIcon";
+import { FacebookIcon, TwitterIcon, YouTubeIcon } from "@/assets/icons";
 import { footerConfig } from "@/utils/footerConfig";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
@@ -35,7 +34,12 @@ const Footer = () => {
       <Top>
         <Column>
           <LogoRow>
-            <img src={logo.src ?? logo} alt={t(NAV.logoAlt)} />
+            <Image
+              src={logo.src ?? logo}
+              alt={t(NAV.logoAlt)} 
+              width={120}
+              height={32}
+            />
           </LogoRow>
           <IconRow>
             <FacebookIcon />
@@ -78,7 +82,12 @@ const Footer = () => {
             </MonoText>
           </LinkRow>
           <CardWrapper>
-            <img src={card.src ?? card} alt={t(NAV.logoAlt)} />
+            <Image
+              src={card.src ?? card}
+              alt={t(NAV.logoAlt)} 
+              width={48}
+              height={32}
+            />
           </CardWrapper>
         </BottomRight>
       </Bottom>

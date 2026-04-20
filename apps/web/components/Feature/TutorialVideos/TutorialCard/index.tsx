@@ -46,15 +46,22 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
   const { t } = useTranslation();
   const formatType: FormatType = tutorial.formatType ?? "video";
   const FormatIcon = formatIconMap[formatType];
+  const singleTutorialHref = `/single-tutorial?id=${tutorial.id}`;
   const defaultButton: TutorialButton = {
     label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
     variant: "secondary",
-    href: "/tutorial-videos",
+    href: singleTutorialHref,
   };
   const buttons =
     tutorial.buttons && tutorial.buttons.length
       ? tutorial.buttons
       : [defaultButton];
+
+  const resolveButtonHref = (href?: string) => {
+    if (!href) return singleTutorialHref;
+    if (href.startsWith("/tutorial-videos")) return singleTutorialHref;
+    return href;
+  };
 
   return (
     <CardShell>
@@ -91,7 +98,7 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
               <GenericButton
                 key={`${button.label}-${index}`}
                 asAnchor
-                href={button.href ?? "/tutorial-videos"}
+                href={resolveButtonHref(button.href)}
                 variant={button.variant ?? "secondary"}
               >
                 {button.label}

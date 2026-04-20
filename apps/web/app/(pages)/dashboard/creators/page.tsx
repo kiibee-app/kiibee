@@ -1,19 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
-import { SidebarHeader } from "@/components/Layout/Sidebar/styles";
+import React, { useCallback, useState } from "react";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
+import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 
 export default function DashboardCreatorsPage() {
   const [activePage, setActivePage] = useState<string>(
     CREATORS_LABELS.OVERVIEW,
   );
+  const [open, setOpen] = useState<boolean>(false);
+
+  const toggleSidebar = useCallback(() => {
+    setOpen((p) => !p);
+  }, []);
+
+  const closeSidebar = useCallback(() => {
+    setOpen(false);
+  }, []);
 
   const renderHeader = () => {
-    return <SidebarHeader title={activePage} />;
+    return <DashboardHeader onToggleSidebar={toggleSidebar} />;
   };
 
   const renderContent = () => {
@@ -24,7 +33,14 @@ export default function DashboardCreatorsPage() {
   return (
     <DashboardLayout
       header={renderHeader()}
-      sidebar={<Sidebar activeItem={activePage} onSelect={setActivePage} />}
+      sidebar={
+        <Sidebar
+          open={open}
+          onClose={closeSidebar}
+          activeItem={activePage}
+          onSelect={setActivePage}
+        />
+      }
     >
       {renderContent()}
     </DashboardLayout>

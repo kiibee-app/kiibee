@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "@kiibee/ui/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   display: flex;
