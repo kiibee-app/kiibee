@@ -38,6 +38,7 @@ const Footer = () => {
               alt={t("nav.logoAlt")}
               width={120}
               height={32}
+              priority
             />
           </LogoRow>
           <IconRow>
@@ -86,6 +87,7 @@ const Footer = () => {
               alt={t("nav.logoAlt")}
               width={48}
               height={32}
+              priority
             />
           </CardWrapper>
         </BottomRight>

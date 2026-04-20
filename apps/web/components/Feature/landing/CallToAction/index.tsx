@@ -22,6 +22,8 @@ import {
 import { desktopCards, mobileCards } from "@/utils/cards";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { resolveImageUrl } from "@/utils/Constants";
+import Image from "next/image";
 
 export default function CallToAction() {
   const { t } = useTranslation();
@@ -31,13 +33,16 @@ export default function CallToAction() {
       <Backdrop>
         {desktopCards.map((card, index) => (
           <Card
-            key={`${card.src}-${index}`}
+            key={`${resolveImageUrl(card.src)}-${index}`}
             $left={card.left}
             $top={card.top}
             $width={card.width}
             $height={card.height}
           >
-            <CardImage src={card.src} alt={t("callToAction.creatorAlt")} />
+            <CardImage
+              src={resolveImageUrl(card.src)}
+              alt={t("callToAction.creatorAlt")}
+            />
             <CardTint />
           </Card>
         ))}
@@ -46,8 +51,11 @@ export default function CallToAction() {
       <MobileBackdrop>
         <MobileGrid>
           {mobileCards.map((src, index) => (
-            <Card key={`${src}-mobile-${index}`} $mobileOnly>
-              <CardImage src={src} alt={t("callToAction.creatorAlt")} />
+            <Card key={`${resolveImageUrl(src)}-${index}`} $mobileOnly>
+              <CardImage
+                src={resolveImageUrl(src)}
+                alt={t("callToAction.creatorAlt")}
+              />
               <CardTint />
             </Card>
           ))}
@@ -60,9 +68,13 @@ export default function CallToAction() {
       <Content>
         <Brand>
           <BrandLogo>
-            <img
+            <Image
               src={kiibeeLogo.src ?? kiibeeLogo}
               alt={t("callToAction.logoAlt")}
+              width={kiibeeLogo.width}
+              height={kiibeeLogo.height}
+              style={{ width: "100%", height: "auto" }}
+              priority
             />
           </BrandLogo>
         </Brand>

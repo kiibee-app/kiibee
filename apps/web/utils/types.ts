@@ -1,5 +1,4 @@
-import type { StaticImageData } from "next/image";
-import type { Variant } from "@/utils/Constants";
+import type { ImageSource, Variant } from "@/utils/Constants";
 import type { ButtonSize } from "@/components/UI/GenericButton/styles";
 
 export const FORMAT_TYPE = {
@@ -31,7 +30,7 @@ export type TutorialVideo = {
   formatLabel: string;
   formatType?: FormatType;
   buttons?: TutorialButton[];
-  image: string | StaticImageData;
+  image: ImageSource;
 };
 
 export type TutorialVideoSection = {

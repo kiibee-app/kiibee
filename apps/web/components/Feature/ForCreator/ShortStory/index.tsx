@@ -16,6 +16,7 @@ import {
 import {
   DEFAULT_WINDOW_WIDTH,
   MOBILE_BREAKPOINT,
+  resolveImageUrl,
   WINDOW_RESIZE_EVENT,
 } from "@/utils/Constants";
 
@@ -49,7 +50,7 @@ export default function ShortStory() {
       <ContentWrapper $isMobile={isMobile}>
         <ImageSection>
           <StoryImage
-            src={creatorsStoryImage.src}
+            src={resolveImageUrl(creatorsStoryImage)}
             alt={t("creators.shortStory.imageAlt")}
           />
         </ImageSection>

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/utils/useIsMobile";
+import { resolveImageUrl } from "@/utils/Constants";
 import { getCreatorCards } from "@/utils/creatorCardData";
 import {
   getCardDimensions,
@@ -63,7 +64,7 @@ export default function CreatorsSection() {
                 key={card.title}
                 as={motion.div}
                 $isActive={isActive}
-                $image={card.image}
+                $image={resolveImageUrl(card.image)}
                 $narrowBgPosition={card.narrowBgPosition}
                 $narrowBgSize={card.narrowBgSize}
                 aria-label={card.alt}
