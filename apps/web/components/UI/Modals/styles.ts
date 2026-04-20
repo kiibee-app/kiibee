@@ -1,11 +1,10 @@
 import { media } from "@repo/ui/breakpoints";
-import COLORS from "@repo/ui/colors";
 import styled from "styled-components";
 
 export const Overlay = styled.div`
   position: fixed;
   inset: 0;
-  background: ${COLORS.gredint.VIGNETTE_OUTER};
+  background: ${({ theme }) => theme.colors.gredint.VIGNETTE_OUTER};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +15,7 @@ export const ModalContainer = styled.div`
   position: relative;
   width: 100%;
   max-width: 480px;
-  background: ${COLORS.primary.WHITE};
+  background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 12px;
   padding: 40px 60px;
   text-align: center;
