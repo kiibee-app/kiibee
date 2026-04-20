@@ -10,7 +10,37 @@
     "about": "Om Kiibee",
     "login": "Log ind",
     "startCreating": "Begynd at skabe",
-    "logoAlt": "Kiibee"
+    "logoAlt": "Kiibee",
+    "explore": {
+      "allContentTitle": "Alt indhold",
+      "everything": "Alle",
+      "newReleases": "Nyudgivelser",
+      "popular": "Populært",
+      "freeContent": "Gratis indhold",
+      "formatTitle": "Format",
+      "format": {
+        "video": "Video",
+        "audio": "Audio",
+        "pdf": "PDF",
+        "epub": "ePub",
+        "web": "Webindhold"
+      },
+      "categoryTitle": "Kategori",
+      "category": {
+        "comedy": "Comedy",
+        "education": "Uddannelse & Kurser",
+        "business": "Business & Marketing",
+        "arts": "Kunst & Kultur",
+        "tech": "Tech & Digital"
+      },
+      "creatorTitle": "Skaber",
+      "creator": {
+        "allCreators": "Alle skabere",
+        "featured": "Fremhævede skabere",
+        "newCreators": "Nye skabere",
+        "popular": "Mest populære"
+      }
+    }
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",

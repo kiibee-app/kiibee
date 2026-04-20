@@ -10,7 +10,37 @@
     "about": "About Kiibee",
     "login": "Log in",
     "startCreating": "Start creating",
-    "logoAlt": "Kiibee"
+    "logoAlt": "Kiibee",
+    "explore": {
+      "allContentTitle": "All content",
+      "everything": "Everything",
+      "newReleases": "New releases",
+      "popular": "Popular",
+      "freeContent": "Free content",
+      "formatTitle": "Format",
+      "format": {
+        "video": "Video",
+        "audio": "Audio",
+        "pdf": "PDF",
+        "epub": "ePub",
+        "web": "Web content"
+      },
+      "categoryTitle": "Category",
+      "category": {
+        "comedy": "Comedy",
+        "education": "Education & Courses",
+        "business": "Business & Marketing",
+        "arts": "Arts & Culture",
+        "tech": "Tech & Digital"
+      },
+      "creatorTitle": "Creator",
+      "creator": {
+        "allCreators": "All creators",
+        "featured": "Featured creators",
+        "newCreators": "New creators",
+        "popular": "Most popular"
+      }
+    }
   },
   "auth": {
     "title": "The place where creators and supporters meet",
