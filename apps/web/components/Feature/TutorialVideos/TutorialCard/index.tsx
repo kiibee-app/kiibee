@@ -1,6 +1,6 @@
 "use client";
 
-import { resolveImageUrl } from "@/utils/Constants";
+import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import Image from "next/image";
 import {
   ActionRow,
@@ -12,12 +12,10 @@ import {
 } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
+import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { ComponentType } from "react";
 import type { FormatType, TutorialButton, TutorialVideo } from "@/utils/types";
-import { PdfIcon } from "@/assets/images/icons/pdf";
-import VideoIcon from "@/assets/images/icons/video";
-import { EpubIcon } from "@/assets/images/icons/epub";
-import { WebIcon } from "@/assets/images/icons/web";
+import { EpubIcon, PdfIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { Badge } from "../../ExploreCreators/Creators/styles";
@@ -47,8 +45,8 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
   const FormatIcon = formatIconMap[formatType];
   const singleTutorialHref = `/single-tutorial?id=${tutorial.id}`;
   const defaultButton: TutorialButton = {
-    label: t("tutorialVideos.buttonFreeLabel"),
-    variant: "secondary",
+    label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
+    variant: VARIANT.SECONDARY,
     href: singleTutorialHref,
   };
   const buttons =
@@ -98,7 +96,7 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
                 key={`${button.label}-${index}`}
                 asAnchor
                 href={resolveButtonHref(button.href)}
-                variant={button.variant ?? "secondary"}
+                variant={button.variant ?? VARIANT.SECONDARY}
               >
                 {button.label}
               </GenericButton>

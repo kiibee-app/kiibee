@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import Image from "next/image";
 import { media } from "@repo/ui/breakpoints";
 
@@ -78,27 +80,11 @@ export const Summary = styled.p`
   ${({ theme }) => theme.typography.Body_Regular};
 `;
 
-export const CtaButton = styled.button`
-  display: flex;
-  height: 49px;
-  padding: 14px 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
+export const CtaButton = styled(GenericButton).attrs({
+  variant: VARIANT.PRIMARY,
+  size: SIZE.LG,
+})`
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
-  ${({ theme }) => theme.typography.Body_Medium};
-  cursor: pointer;
-  transition:
-    background ${({ theme }) => theme.animations.fast},
-    color ${({ theme }) => theme.animations.fast};
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
-    color: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
-  }
 `;
 
 export const ImagesColumn = styled.div`

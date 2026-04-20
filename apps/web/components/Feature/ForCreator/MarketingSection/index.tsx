@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import { CREATORS } from "@/utils/translationKeys";
 import creatorsWorkingImage from "@/assets/images/we-help-you/marketing-tall.webp";
 import instructorImage from "@/assets/images/we-help-you/marketing-top.webp";
 import writingImage from "@/assets/images/we-help-you/marketing-bottom.webp";
@@ -34,10 +35,10 @@ export default function MarketingSection() {
     <Section>
       <Container>
         <TextColumn>
-          <Title>{t("creators.marketing.title")}</Title>
-          <Description>{t("creators.marketing.description")}</Description>
+          <Title>{t(CREATORS.marketing.title)}</Title>
+          <Description>{t(CREATORS.marketing.description)}</Description>
 
-          <ListIntro>{t("creators.marketing.listIntro")}</ListIntro>
+          <ListIntro>{t(CREATORS.marketing.listIntro)}</ListIntro>
           <BulletList>
             {(
               t("creators.marketing.list", {

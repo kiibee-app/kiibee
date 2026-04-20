@@ -1,5 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
+import { SIZE } from "@/utils/Constants";
 export const Wrapper = styled.div`
   width: 100%;
   min-height: 100%;
@@ -72,9 +74,10 @@ export const ForgotLink = styled(Link)`
   text-decoration: underline;
   margin: 1.25rem 0 3.75rem 0;
 `;
-export const SubmitButton = styled.button`
+export const SubmitButton = styled(GenericButton).attrs({
+  size: SIZE.MD,
+})`
   width: 100%;
-  border: none;
   border-radius: 999px;
   height: 46px;
   font-size: 1rem;
@@ -89,6 +92,12 @@ export const SubmitButton = styled.button`
     background: ${({ theme }) => theme.colors.neutral.GRAY_400};
     transform: translateY(-1px);
   }
+`;
+export const FormMessage = styled.p`
+  width: 100%;
+  margin: 0.25rem 0 0;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.RED};
 `;
 export const FooterText = styled.p`
   margin: 1.25rem 0 0;

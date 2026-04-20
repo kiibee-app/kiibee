@@ -12,6 +12,10 @@ import {
   SidebarContent,
 } from "./styles";
 import { CREATOR_SECTIONS, creatorsItems } from "@/utils/SidebarItems";
+import logo from "@/assets/images/kiibee-wordmark.webp";
+import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import { HomeIcon } from "@/assets/icons/homeIcon";
 
 type SidebarProps = {
   activeItem: string;

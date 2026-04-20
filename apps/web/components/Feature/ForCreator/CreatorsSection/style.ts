@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
@@ -61,32 +63,13 @@ export const Heading = styled.h2`
   }
 `;
 
-export const CTAButton = styled.button`
-  display: inline-flex;
-  height: 49px;
-  padding: 14px 24px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.primary.BLACK_90};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  border: none;
-  border-radius: 8px;
-  font-family: "Reddit Sans", sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  cursor: pointer;
-  width: auto;
+export const CTAButton = styled(GenericButton).attrs({
+  variant: VARIANT.PRIMARY,
+  size: SIZE.LG,
+})`
   align-self: flex-start;
   box-shadow: none;
   transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.85;
-  }
 `;
 
 export const RightColumn = styled.div`

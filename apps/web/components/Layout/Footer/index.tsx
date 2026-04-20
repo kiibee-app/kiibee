@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import { NAV } from "@/utils/translationKeys";
 import {
   Container,
   Top,
@@ -15,6 +16,7 @@ import {
   Divider,
   CardWrapper,
   LinkRow,
+  BottomLink,
 } from "./styles";
 import Image from "next/image";
 import logo from "../../../assets/images/kiibee-logo.svg";
@@ -35,7 +37,7 @@ const Footer = () => {
           <LogoRow>
             <Image
               src={logo.src ?? logo}
-              alt={t("nav.logoAlt")}
+              alt={t(NAV.logoAlt)} 
               width={120}
               height={32}
             />
@@ -70,20 +72,26 @@ const Footer = () => {
         <BottomLeft>{t("footer.copyright", { year })}</BottomLeft>
         <BottomRight>
           <LinkRow>
-            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-              {t("footer.privacyPolicy")}
-            </MonoText>
-            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-              {t("footer.termsOfService")}
-            </MonoText>
-            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-              {t("footer.cookieSettings")}
-            </MonoText>
+            <BottomLink href="/privacy-policy">
+              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                {t("footer.privacyPolicy")}
+              </MonoText>
+            </BottomLink>
+            <BottomLink href="/terms-of-service">
+              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                {t("footer.termsOfService")}
+              </MonoText>
+            </BottomLink>
+            <BottomLink href="/cookie-settings">
+              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                {t("footer.cookieSettings")}
+              </MonoText>
+            </BottomLink>
           </LinkRow>
           <CardWrapper>
             <Image
               src={card.src ?? card}
-              alt={t("nav.logoAlt")}
+              alt={t(NAV.logoAlt)} 
               width={48}
               height={32}
             />

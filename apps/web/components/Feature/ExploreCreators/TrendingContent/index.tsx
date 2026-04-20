@@ -1,7 +1,7 @@
 "use client";
 
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
-import LeftIcon from "@/assets/images/icons/left";
+import { LeftIcon } from "@/assets/icons";
 import { MonoText } from "@/components/UI/Monotext";
 import { trendingContentVideos } from "@/utils/data";
 import { Section, SectionTag } from "../RecentlyAdded/styles";

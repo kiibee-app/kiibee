@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import GenericButton from "@/components/UI/GenericButton";
 import { Section, Inner, Heading, Sub, CTAWrap } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
-import { BG_GREEN, type BgVariant } from "@/utils/Constants";
+import { BG_GREEN, VARIANT, type BgVariant } from "@/utils/Constants";
 
 type GetStartedProps = {
   translationPrefix?: string;
@@ -31,10 +31,18 @@ export default function GetStarted({
         </Sub>
 
         <CTAWrap>
-          <GenericButton asAnchor href="/tutorial-videos" variant="primary">
+          <GenericButton
+            asAnchor
+            href="/tutorial-videos"
+            variant={VARIANT.PRIMARY}
+          >
             {t(`${translationPrefix}.tutorial`)}
           </GenericButton>
-          <GenericButton asAnchor href="/tutorial-videos" variant="secondary">
+          <GenericButton
+            asAnchor
+            href="/tutorial-videos"
+            variant={VARIANT.SECONDARY}
+          >
             {t(`${translationPrefix}.guide`)}
           </GenericButton>
         </CTAWrap>

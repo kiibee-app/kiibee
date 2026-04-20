@@ -10,7 +10,37 @@
     "about": "Om Kiibee",
     "login": "Log ind",
     "startCreating": "Begynd at skabe",
-    "logoAlt": "Kiibee"
+    "logoAlt": "Kiibee",
+    "explore": {
+      "allContentTitle": "Alt indhold",
+      "everything": "Alle",
+      "newReleases": "Nyudgivelser",
+      "popular": "Populært",
+      "freeContent": "Gratis indhold",
+      "formatTitle": "Format",
+      "format": {
+        "video": "Video",
+        "audio": "Audio",
+        "pdf": "PDF",
+        "epub": "ePub",
+        "web": "Webindhold"
+      },
+      "categoryTitle": "Kategori",
+      "category": {
+        "comedy": "Comedy",
+        "education": "Uddannelse & Kurser",
+        "business": "Business & Marketing",
+        "arts": "Kunst & Kultur",
+        "tech": "Tech & Digital"
+      },
+      "creatorTitle": "Skaber",
+      "creator": {
+        "allCreators": "Alle skabere",
+        "featured": "Fremhævede skabere",
+        "newCreators": "Nye skabere",
+        "popular": "Mest populære"
+      }
+    }
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",
@@ -30,7 +60,14 @@
     "forgot": "Glemt din adgangskode?",
     "submit": "Log ind",
     "footer": "Har du ikke en konto?",
-    "signUp": "Tilmeld dig"
+    "signUp": "Tilmeld dig",
+    "errors": {
+      "emailRequired": "E-mailadresse er påkrævet",
+      "emailInvalid": "Indtast en gyldig e-mailadresse",
+      "passwordRequired": "Adgangskode er påkrævet",
+      "fixHighlightedFields": "Ret venligst de fremhævede felter.",
+      "submitFailed": "Vi kunne ikke logge dig ind lige nu. Prøv igen."
+    }
   },
   "forgotPassword": {
     "title": "Nulstil adgangskode",
@@ -695,6 +732,68 @@
   },
   "ctaSection": {
     "bgAlt": "CTA background"
+  },
+  "legalPages": {
+    "privacyPolicy": {
+      "updatedAt": "Sidst opdateret: April 15, 2026",
+      "intro": "Kiibee respekterer dit privatliv. Denne politik forklarer hvilke oplysninger vi indsamler, hvordan vi bruger dem, og hvilke valg du har, nar du bruger vores website og tjenester.",
+      "sections": {
+        "collect": {
+          "title": "Oplysninger vi indsamler",
+          "body": "Vi kan indsamle kontooplysninger som navn og e-mail, betalings- og ordreoplysninger, supporthenvendelser samt tekniske data som enhedstype, browser og brugsaktivitet."
+        },
+        "use": {
+          "title": "Hvordan vi bruger oplysninger",
+          "body": "Vi bruger dine oplysninger til at levere Kiibees tjenester, behandle kob, yde support, forbedre produktkvalitet og sende vigtige konto- og serviceopdateringer."
+        },
+        "share": {
+          "title": "Hvordan oplysninger deles",
+          "body": "Vi deler kun oplysninger med betroede leverandorer, der er nodvendige for at drive Kiibee, fx betalings-, hosting- og analysepartnere. Vi saelger ikke persondata."
+        },
+        "rights": {
+          "title": "Dine rettigheder",
+          "body": "Du kan anmode om indsigt, rettelse eller sletning af dine personoplysninger, og du kan kontakte os med sporgsmal om, hvordan dine data behandles."
+        },
+        "contact": {
+          "title": "Kontakt",
+          "body": "Har du sporgsmal om privatliv, kan du kontakte os pa support@kiibee.dk."
+        }
+      }
+    },
+    "termsOfService": {
+      "updatedAt": "Sidst opdateret: April 15, 2026",
+      "intro": "Disse vilkar gaelder, nar du tilgar eller bruger Kiibee. Ved at bruge tjenesten accepterer du disse vilkar og gaeldende lovgivning.",
+      "sections": {
+        "acceptance": {
+          "title": "Brug af tjenesten",
+          "body": "Du ma kun bruge Kiibee til lovlige formal og i overensstemmelse med disse vilkar. Misbrug af platformen, herunder svindel eller uautoriseret adgang, er forbudt."
+        },
+        "accounts": {
+          "title": "Konti og sikkerhed",
+          "body": "Du er ansvarlig for at holde dine loginoplysninger sikre og for aktivitet, der sker under din konto."
+        },
+        "payments": {
+          "title": "Betaling og kob",
+          "body": "Betalt indhold er underlagt de priser, der vises ved checkout. Kob kan vaere engangskob, leje eller abonnement afhængigt af skaberens opsaetning."
+        },
+        "content": {
+          "title": "Indhold og immaterielle rettigheder",
+          "body": "Skabere bevarer ejerskabet af deres indhold. Du ma ikke kopiere, distribuere eller genbruge indhold, medmindre skaberen eller loven tillader det."
+        },
+        "liability": {
+          "title": "Ansvarsfraskrivelse",
+          "body": "Kiibee leverer tjenesten som den er tilgaengelig. I det omfang loven tillader det, er Kiibee ikke ansvarlig for indirekte tab eller folgeskader ved brug af tjenesten."
+        },
+        "contact": {
+          "title": "Kontakt",
+          "body": "Har du sporgsmal til disse vilkar, kan du kontakte os pa support@kiibee.dk."
+        }
+      }
+    },
+    "cookieSettings": {
+      "body1": "Cookie-indstillinger bliver tilgaengelige her.",
+      "body2": "Hvis du har brug for hjaelp nu, kan du kontakte os via supportsiden."
+    }
   },
   "dashboard": {
     "overview": "Oversigt",
