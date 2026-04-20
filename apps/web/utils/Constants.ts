@@ -36,3 +36,6 @@ export type SIZE = (typeof SIZE)[keyof typeof SIZE];
 const KEY_SPACE = " ";
 const KEY_SPACEBAR = "Spacebar";
 export const FAQ_TOGGLE_KEYS = [KEY_ENTER, KEY_SPACE, KEY_SPACEBAR];
+export const KEYDOWN = "keydown";
+export const ESCAPE = "Escape";
+export const BUTTON = "button";
