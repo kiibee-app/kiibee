@@ -1,4 +1,4 @@
-import { media } from "@kiibee/ui/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
 export const LayoutWrapper = styled.div`
@@ -14,6 +14,7 @@ export const MainWrapper = styled.div`
   flex-direction: column;
   margin-left: 240px;
   overflow: hidden;
+  padding-top: 70px;
 
   ${media.tablet} {
     margin-left: 1px;

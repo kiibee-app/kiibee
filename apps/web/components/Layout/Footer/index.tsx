@@ -18,9 +18,7 @@ import {
 } from "./styles";
 import logo from "../../../assets/images/kiibee-logo.svg";
 import card from "../../../assets/images/card.webp";
-import { FacebookIcon } from "@/assets/icons/facebookIcon";
-import { TwitterIcon } from "@/assets/icons/twitterIcon";
-import { YouTubeIcon } from "@/assets/icons/youTubeIcon";
+import { FacebookIcon, TwitterIcon, YouTubeIcon } from "@/assets/icons";
 import { footerConfig } from "@/utils/footerConfig";
 import { MonoText } from "@/components/UI/Monotext";
 import SafeImage from "@/components/UI/SafeImage";

@@ -1,13 +1,13 @@
 import { MonoText } from "@/components/UI/Monotext";
 import { CREATOR_VARIANTS, CreatorVariant } from "@/utils/SidebarItems";
-import { media } from "@kiibee/ui/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
 export const SidebarWrapper = styled.aside<{ $open: boolean }>`
   width: 250px;
-  height: 100vh;
+  height: calc(100vh - 70px);
   position: fixed;
-  top: 0;
+  top: 70px;
   left: 0;
   display: flex;
   flex-direction: column;
@@ -18,19 +18,6 @@ export const SidebarWrapper = styled.aside<{ $open: boolean }>`
   ${media.tablet} {
     transform: ${({ $open }) =>
       $open ? "translateX(0)" : "translateX(-100%)"};
-  }
-`;
-
-export const SidebarHeader = styled.div`
-  height: 90px;
-  display: flex;
-  align-items: center;
-  padding: 18px 35px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
-  overflow: hidden;
-
-  ${media.tablet} {
-    padding-left: 70px;
   }
 `;
 
@@ -45,6 +32,7 @@ export const SidebarContent = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  border-top: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
   border-right: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 `;
 
@@ -100,22 +88,8 @@ export const SidebarItemStyled = styled.div<{
   }
 `;
 
-export const MobileToggle = styled.button`
-  display: none;
-  position: fixed;
-  top: 35px;
-  left: 35px;
-  z-index: 110;
-  background: none;
-  border: none;
-
-  ${media.tablet} {
-    display: block;
-  }
-`;
-
 export const Overlay = styled.div`
-  ${media.mobile} {
+  ${media.tablet} {
     position: fixed;
     inset: 0;
     background: ${({ theme }) => theme.colors.neutral.OVERLAY};
