@@ -1,5 +1,5 @@
+import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
-import { media } from "@kiibee/ui/breakpoints";
 
 export const Wrapper = styled.section`
   width: 100%;

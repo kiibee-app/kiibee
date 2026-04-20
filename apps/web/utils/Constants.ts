@@ -1,12 +1,12 @@
 import type { StaticImageData } from "next/image";
 
-export type Variant = "primary" | "primary-lite" | "secondary";
 export const VARIANT = {
   PRIMARY: "primary",
   PRIMARY_LITE: "primary-lite",
   SECONDARY: "secondary",
 } as const;
-export type VARIANT = (typeof VARIANT)[keyof typeof VARIANT];
+
+export type Variant = (typeof VARIANT)[keyof typeof VARIANT];
 
 export function resolveImageUrl(image: string | StaticImageData) {
   return typeof image === "string" ? image : image.src;
@@ -33,3 +33,6 @@ export const SIZE = {
   SM: "sm",
 } as const;
 export type SIZE = (typeof SIZE)[keyof typeof SIZE];
+const KEY_SPACE = " ";
+const KEY_SPACEBAR = "Spacebar";
+export const FAQ_TOGGLE_KEYS = [KEY_ENTER, KEY_SPACE, KEY_SPACEBAR];

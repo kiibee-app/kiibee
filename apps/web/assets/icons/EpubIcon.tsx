@@ -1,28 +1,15 @@
-import type { SVGProps } from "react";
-import React from "react";
 import { COLORS } from "@repo/ui/colors";
-import { ICON_SVG_PROP_NAMES, SVG_XMLNS } from "@/utils/Constants";
+import { SVG_XMLNS } from "@/utils/Constants";
+import type { IconProps } from "./types";
 
-type EpubIconBaseProps = Omit<
-  SVGProps<SVGSVGElement>,
-  (typeof ICON_SVG_PROP_NAMES)[number]
->;
-
-export interface EpubIconProps extends EpubIconBaseProps {
-  width?: number;
-  height?: number;
-  color?: string;
-}
-
-export const EpubIcon: React.FC<EpubIconProps> = ({
+export default function EpubIcon({
   width = 16,
   height = 18,
-  color,
+  color = COLORS.primary.BLACK,
   className,
-  ...rest
-}) => {
-  const iconColor = color ?? COLORS.primary.BLACK;
-
+  title,
+  ...props
+}: IconProps) {
   return (
     <svg
       width={width}
@@ -31,12 +18,15 @@ export const EpubIcon: React.FC<EpubIconProps> = ({
       fill="none"
       xmlns={SVG_XMLNS}
       className={className}
-      aria-label="E-pub"
-      {...rest}
+      aria-hidden={title ? undefined : true}
+      aria-label={title || "E-pub"}
+      role={title ? "img" : undefined}
+      {...props}
     >
+      {title ? <title>{title}</title> : null}
       <path
         d="M1.5 0C0.67 0 0 .67 0 1.5V15c0 .83.67 1.5 1.5 1.5H10c.83 0 1.5-.67 1.5-1.5V4.5L10 0H1.5Z"
-        fill={iconColor}
+        fill={color}
       />
       <text
         x="2.2"
@@ -52,6 +42,4 @@ export const EpubIcon: React.FC<EpubIconProps> = ({
       </text>
     </svg>
   );
-};
-
-export default EpubIcon;
+}
