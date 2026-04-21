@@ -88,7 +88,7 @@ export default function SignUpCreatorSection() {
     <ContentWrap>
       <AuthBackButton href="/auth/signup" />
       <LogoWrap>
-        <Image src={logo} alt="Kiibee Logo" width={42} height={42} />
+        <Image src={logo} alt="Kiibee Logo" width={42} height={42} priority />
       </LogoWrap>
 
       <FormTitle>

@@ -28,6 +28,7 @@ export default function TopCreators() {
                 alt={creator.name}
                 fill
                 style={{ objectFit: "cover" }}
+                priority
               />
             </Avatar>
 

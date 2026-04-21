@@ -41,6 +41,7 @@ export default function SecurePaymentSection() {
               fill
               sizes="(max-width: 1024px) 100vw, 42vw"
               style={{ objectFit: "cover", objectPosition: "center" }}
+              priority
             />
           </HeroImageWrap>
 
@@ -51,6 +52,7 @@ export default function SecurePaymentSection() {
               fill
               sizes="(max-width: 1024px) 100vw, 42vw"
               style={{ objectFit: "cover", objectPosition: "center" }}
+              priority
             />
           </ImageCard>
         </ImageColumn>

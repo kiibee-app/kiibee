@@ -101,13 +101,16 @@ export const LoginLink = styled(Link)`
 export const Description = styled.p`
   color: ${({ theme }) => theme.colors.secondary.muted};
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 `;
 
 export const PrepCard = styled(Card)`
-  padding: 2.2rem;
+  padding: 3.625rem 5.125rem;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border-radius: 12px;
+  width: min(100%, 620px);
+  max-width: none;
+  margin: 0 auto;
 
   button {
     width: 100%;

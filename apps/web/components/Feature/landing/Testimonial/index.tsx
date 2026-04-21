@@ -27,6 +27,7 @@ export default function TestimonialSection() {
           fill
           sizes="100vw"
           style={{ objectFit: "cover", objectPosition: "center" }}
+          priority
         />
       </Background>
 
