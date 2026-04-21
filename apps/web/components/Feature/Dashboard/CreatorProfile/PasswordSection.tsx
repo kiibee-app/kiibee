@@ -5,12 +5,7 @@ import InputField from "@/components/UI/InputFields";
 import { PasswordFields } from "./styles";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import { useTranslation } from "react-i18next";
-
-type Passwords = {
-  current: string;
-  next: string;
-  confirm: string;
-};
+import { Passwords } from "@/utils/creatorProfile";
 
 type Props = {
   passwords: Passwords;

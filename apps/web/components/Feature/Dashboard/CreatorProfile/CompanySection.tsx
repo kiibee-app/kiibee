@@ -4,8 +4,7 @@ import React from "react";
 import InputField from "@/components/UI/InputFields";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import { Card, Fields, SectionTitle, Optional, OptionalSmall } from "./styles";
-
-type CompanyKeys = "company" | "phone" | "cvr" | "address" | "city" | "postal";
+import { CompanyKeys } from "@/utils/creatorProfile";
 
 type CompanyProps = {
   form: {

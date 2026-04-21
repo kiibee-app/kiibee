@@ -10,8 +10,7 @@ import {
   TwoColumnRow,
 } from "./styles";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
-
-type PaymentKeys = "reg" | "account";
+import { PaymentKeys } from "@/utils/creatorProfile";
 
 type PaymentProps = {
   form: {
