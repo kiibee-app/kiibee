@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
@@ -11,6 +11,7 @@ import {
   SortBox,
   Text,
 } from "@/components/Feature/ExploreCreators/Hero/styles";
+import { useClickOutside } from "@/hooks/useClickOutside";
 import { MonoText } from "../Monotext";
 import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 
@@ -32,16 +33,12 @@ export default function SortDropdown({
 
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+  useClickOutside({
+    ref,
+    enabled: open,
+    eventType: "click",
+    handler: () => setOpen(false),
+  });
 
   const handleSelect = (val: SortValue) => {
     setSelected(val);
