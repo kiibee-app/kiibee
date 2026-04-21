@@ -33,6 +33,11 @@ export const SIZE = {
   SM: "sm",
 } as const;
 export type SIZE = (typeof SIZE)[keyof typeof SIZE];
+export const MEDIA_TYPE = {
+  VIDEO: "video",
+  EPUB: "epub",
+} as const;
+export type MediaType = (typeof MEDIA_TYPE)[keyof typeof MEDIA_TYPE];
 const KEY_SPACE = " ";
 const KEY_SPACEBAR = "Spacebar";
 export const FAQ_TOGGLE_KEYS = [KEY_ENTER, KEY_SPACE, KEY_SPACEBAR];

@@ -5,6 +5,7 @@ import { memo } from "react";
 import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { EbookIcon, VideoIcon } from "@/assets/icons";
+import { MEDIA_TYPE } from "@/utils/Constants";
 import type { DiscoverContentItem } from "@/utils/discoverContent";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
@@ -65,7 +66,7 @@ function DiscoverCard({ item }: Props) {
 
         <MediaTypeBox>
           <IconFrame>
-            {item.mediaType === "epub" ? (
+            {item.mediaType === MEDIA_TYPE.EPUB ? (
               <EbookIcon
                 width={24}
                 height={24}
