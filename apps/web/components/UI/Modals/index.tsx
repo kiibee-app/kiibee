@@ -15,11 +15,13 @@ import GenericButton from "../GenericButton";
 import { MonoText } from "../Monotext";
 import { BUTTON, ESCAPE, KEYDOWN } from "@/utils/Constants";
 import { CrossIcon } from "@/assets/icons/crossIcon";
+import { ModalAlign } from "@/utils/ui";
 
 type GenericModalProps = {
   visible: boolean;
   title?: string;
-  message: string;
+  message?: string;
+  children?: React.ReactNode;
   buttonRow?: boolean;
   icon?: React.ReactNode;
   confirmLabel?: string;
@@ -27,12 +29,16 @@ type GenericModalProps = {
   onConfirm?: () => void;
   onCancel?: () => void;
   onClose?: () => void;
+  width?: string;
+  buttonAlign?: ModalAlign;
+  textAlign?: ModalAlign;
 };
 
 export const GenericModal: React.FC<GenericModalProps> = ({
   visible,
   title,
   message,
+  children,
   icon,
   buttonRow = false,
   confirmLabel,
@@ -40,6 +46,9 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   onConfirm,
   onCancel,
   onClose,
+  width,
+  buttonAlign,
+  textAlign,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -82,7 +91,12 @@ export const GenericModal: React.FC<GenericModalProps> = ({
       aria-describedby="generic-modal-message"
       data-testid="generic-modal-overlay"
     >
-      <ModalContainer ref={ref} data-testid="generic-modal-container">
+      <ModalContainer
+        $width={width}
+        $align={textAlign}
+        ref={ref}
+        data-testid="generic-modal-container"
+      >
         {onClose && (
           <CloseButton
             type="button"
@@ -104,13 +118,18 @@ export const GenericModal: React.FC<GenericModalProps> = ({
           </Title>
         )}
 
-        <Message id="generic-modal-message" data-testid="generic-modal-message">
-          <MonoText $use="Body_Medium">{message}</MonoText>
+        <Message id="generic-modal-message">
+          {children ? (
+            children
+          ) : (
+            <MonoText $use="Body_Medium">{message}</MonoText>
+          )}
         </Message>
 
         {(confirmLabel || (cancelLabel && onCancel)) && (
           <ButtonGroup
             $row={buttonRow}
+            $align={buttonAlign}
             data-testid="generic-modal-button-group"
           >
             {cancelLabel && onCancel && (
