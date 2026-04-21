@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
@@ -84,20 +86,12 @@ export const Paragraph = styled.p`
   line-height: 1.5;
 `;
 
-export const ReadMoreButton = styled.button`
+export const ReadMoreButton = styled(GenericButton).attrs({
+  variant: VARIANT.PRIMARY,
+  size: SIZE.SM,
+})`
   align-self: flex-start;
   margin-top: 0.625rem;
   padding: 0.875rem 1.75rem;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
-  background: ${({ theme }) => theme.colors.primary.BLACK};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  font-size: 0.9375rem;
-  font-weight: ${({ theme }) => theme.typography.Body_Medium.fontWeight};
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.8;
-  }
 `;

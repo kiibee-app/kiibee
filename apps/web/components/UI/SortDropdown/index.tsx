@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { CREATORS } from "@/utils/translationKeys";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { Directions } from "@/utils/ui";
 import {
@@ -51,9 +52,9 @@ export default function SortDropdown({
   return (
     <SortBox ref={ref} onClick={() => setOpen((prev) => !prev)}>
       <Text>
-        <MonoText $use="Body_Regular">{t("creators.sort")}</MonoText>
+        <MonoText $use="Body_Regular">{t(CREATORS.sort)}</MonoText>
         <MonoText $use="Body_Regular">
-          {t(`creators.${selected}`).toLowerCase()}
+          {t(CREATORS.value(selected)).toLowerCase()}
         </MonoText>
       </Text>
 
@@ -72,9 +73,9 @@ export default function SortDropdown({
                 }}
               >
                 <Text>
-                  <MonoText $use="Body_Regular">{t("creators.sort")}</MonoText>
+                  <MonoText $use="Body_Regular">{t(CREATORS.sort)}</MonoText>
                   <MonoText $use="Body_Regular">
-                    {t(`creators.${opt.value}`).toLowerCase()}
+                    {t(CREATORS.value(opt.value)).toLowerCase()}
                   </MonoText>
                 </Text>
               </DropdownItem>

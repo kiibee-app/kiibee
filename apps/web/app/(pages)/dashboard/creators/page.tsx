@@ -6,6 +6,7 @@ import Sidebar from "@/components/Layout/Sidebar";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
+import SettingsContent from "@/components/Feature/Settings";
 
 export default function DashboardCreatorsPage() {
   const [activePage, setActivePage] = useState<string>(
@@ -27,6 +28,7 @@ export default function DashboardCreatorsPage() {
 
   const renderContent = () => {
     if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
+    if (activePage === CREATORS_LABELS.SETTINGS) return <SettingsContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   };
 

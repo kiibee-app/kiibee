@@ -1,12 +1,6 @@
 import * as React from "react";
 import { CURRENT_COLOR } from "@/utils/Constants";
-
-type Props = React.SVGProps<SVGSVGElement> & {
-  width?: number | string;
-  height?: number | string;
-  color?: string;
-  title?: string;
-};
+import type { IconProps } from "./types";
 
 export default function PdfIcon({
   width = 22,
@@ -14,7 +8,7 @@ export default function PdfIcon({
   color = CURRENT_COLOR,
   title,
   ...props
-}: Props) {
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

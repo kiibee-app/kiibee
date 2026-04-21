@@ -1,6 +1,8 @@
 "use client";
 
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
 
@@ -76,34 +78,15 @@ export const Description = styled.p`
   }
 `;
 
-export const PrimaryButton = styled.button`
-  display: inline-flex;
-  height: 49px;
-  padding: 14px 24px;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid ${({ theme }) => theme.colors.gredint.TRANSPARENT};
+export const PrimaryButton = styled(GenericButton).attrs({
+  variant: VARIANT.PRIMARY,
+  size: SIZE.LG,
+})`
   border-radius: ${({ theme }) => theme.radius.md};
-  background: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  cursor: pointer;
-  font-family: ${typography.H4_Medium.fontFamily};
-  font-size: 16px;
-  font-style: ${typography.H4_Medium.fontStyle};
-  font-weight: 500;
-  line-height: normal;
   box-shadow: ${({ theme }) => theme.shadows.md};
   transition:
     background ${({ theme }) => theme.animations.fast},
     color ${({ theme }) => theme.animations.fast},
     border-color ${({ theme }) => theme.animations.fast},
     box-shadow ${({ theme }) => theme.animations.fast};
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.primary.WHITE_10};
-    border-color: ${({ theme }) => theme.colors.neutral.BLACK};
-    color: ${({ theme }) => theme.colors.neutral.BLACK};
-    box-shadow: none;
-  }
 `;

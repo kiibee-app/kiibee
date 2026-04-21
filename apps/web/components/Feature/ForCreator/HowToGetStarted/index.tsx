@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { CREATORS } from "@/utils/translationKeys";
 import { steps } from "@/utils/steps";
 import { intersectionObserverConfig } from "@/utils/intersectionObserverConfig";
 import {
@@ -73,7 +74,7 @@ export default function HowToGetStarted() {
         </ImageContainer>
 
         <ContentContainer>
-          <Title>{t("creators.howToGetStarted.title")}</Title>
+          <Title>{t(CREATORS.howToGetStarted.title)}</Title>
 
           <StepsContainer>
             {steps.map((step, index) => {
