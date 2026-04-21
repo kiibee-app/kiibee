@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { HERO } from "@/utils/translationKeys";
 import {
   Hero,
   Inner,
@@ -16,6 +17,7 @@ import hero from "@/assets/images/hero-background.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { VARIANT } from "@/utils/Constants";
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -24,7 +26,7 @@ export default function HeroSection() {
       <Background>
         <Image
           src={hero}
-          alt={t("hero.heroAlt")}
+          alt={t(HERO.heroAlt)}
           fill
           priority
           sizes="100vw"
@@ -35,18 +37,18 @@ export default function HeroSection() {
         <Content>
           <Title>
             <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
-              {t("hero.title")}
+              {t(HERO.title)}
             </MonoText>
           </Title>
           <Subtitle>
             <MonoText $use="H5_Regular" color={COLORS.primary.WHITE_90}>
-              {t("hero.subtitle")}
+              {t(HERO.subtitle)}
             </MonoText>
           </Subtitle>
 
           <CTAWrap>
-            <GenericButton asAnchor href="#" variant="primary">
-              {t("hero.cta")}
+            <GenericButton asAnchor href="#" variant={VARIANT.PRIMARY}>
+              {t(HERO.cta)}
             </GenericButton>
           </CTAWrap>
         </Content>

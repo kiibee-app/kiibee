@@ -15,6 +15,15 @@ export default function SettingsContent() {
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
 
+  const handleTabClick = (tabKey: TabKey, isSearch?: boolean) => {
+    if (isSearch) {
+      setOpenSearch((prev) => !prev);
+    } else {
+      setActiveTab(tabKey);
+      setOpenSearch(false);
+    }
+  };
+
   return (
     <Wrapper>
       <MonoText $use="H4_SemiBold">{t("settings.title")}</MonoText>
@@ -29,14 +38,7 @@ export default function SettingsContent() {
               key={tab.key}
               $active={isActive}
               $isIcon={isSearch}
-              onClick={() => {
-                if (isSearch) {
-                  setOpenSearch((prev) => !prev);
-                } else {
-                  setActiveTab(tab.key);
-                  setOpenSearch(false);
-                }
-              }}
+              onClick={() => handleTabClick(tab.key, isSearch)}
             >
               {isSearch && openSearch ? (
                 <SearchWrapper onClick={(e) => e.stopPropagation()}>

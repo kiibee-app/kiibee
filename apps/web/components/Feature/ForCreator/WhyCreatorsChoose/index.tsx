@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import { CREATORS } from "@/utils/translationKeys";
 import creatorChooseImage from "@/assets/images/creators/creator_choose.webp";
 import {
   Section,
@@ -44,10 +45,10 @@ const getItems = (value: unknown): string[] =>
 export default function WhyCreatorsChoose() {
   const { t } = useTranslation();
   const leftItems = getItems(
-    t("creators.whyChoose.leftItems", { returnObjects: true }),
+    t(CREATORS.whyChoose.leftItems, { returnObjects: true }),
   );
   const rightItems = getItems(
-    t("creators.whyChoose.rightItems", { returnObjects: true }),
+    t(CREATORS.whyChoose.rightItems, { returnObjects: true }),
   );
   const safeLeftItems = leftItems.length > 0 ? leftItems : LEFT_ITEMS_FALLBACK;
   const safeRightItems =
@@ -61,7 +62,7 @@ export default function WhyCreatorsChoose() {
 
         <Content>
           <Heading>
-            {t("creators.whyChoose.heading", {
+            {t(CREATORS.whyChoose.heading, {
               defaultValue: HEADING_FALLBACK,
             })}
           </Heading>

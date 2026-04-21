@@ -23,6 +23,7 @@ export const users = pgTable(
       .default('pending_setup'),
 
     isEmailVerified: boolean('is_email_verified').notNull().default(false),
+    isActive: boolean('is_active').notNull().default(true),
 
     ...softDeleteFields,
     ...baseTimestamps,

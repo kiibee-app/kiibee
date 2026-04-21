@@ -16,6 +16,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { VARIANT } from "@/utils/Constants";
 
 export default function AboutHero() {
   const { t } = useTranslation();
@@ -46,11 +47,11 @@ export default function AboutHero() {
             </MonoText>
           </Subtitle>
           <CTAWrap>
-            <GenericButton asAnchor href="/explore" variant="primary">
+            <GenericButton asAnchor href="/explore" variant={VARIANT.PRIMARY}>
               {t("about.hero.cta.explore")}
             </GenericButton>
 
-            <GenericButton asAnchor href="/creator" variant="secondary">
+            <GenericButton asAnchor href="/creator" variant={VARIANT.SECONDARY}>
               {t("about.hero.cta.creator")}
             </GenericButton>
           </CTAWrap>

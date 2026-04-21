@@ -10,7 +10,37 @@
     "about": "About Kiibee",
     "login": "Log in",
     "startCreating": "Start creating",
-    "logoAlt": "Kiibee"
+    "logoAlt": "Kiibee",
+    "explore": {
+      "allContentTitle": "All content",
+      "everything": "Everything",
+      "newReleases": "New releases",
+      "popular": "Popular",
+      "freeContent": "Free content",
+      "formatTitle": "Format",
+      "format": {
+        "video": "Video",
+        "audio": "Audio",
+        "pdf": "PDF",
+        "epub": "ePub",
+        "web": "Web content"
+      },
+      "categoryTitle": "Category",
+      "category": {
+        "comedy": "Comedy",
+        "education": "Education & Courses",
+        "business": "Business & Marketing",
+        "arts": "Arts & Culture",
+        "tech": "Tech & Digital"
+      },
+      "creatorTitle": "Creator",
+      "creator": {
+        "allCreators": "All creators",
+        "featured": "Featured creators",
+        "newCreators": "New creators",
+        "popular": "Most popular"
+      }
+    }
   },
   "auth": {
     "title": "The place where creators and supporters meet",
@@ -30,7 +60,14 @@
     "forgot": "Forgot your password?",
     "submit": "Log in",
     "footer": "Don't have an account?",
-    "signUp": "Sign up"
+    "signUp": "Sign up",
+    "errors": {
+      "emailRequired": "Email address is required",
+      "emailInvalid": "Enter a valid email address",
+      "passwordRequired": "Password is required",
+      "fixHighlightedFields": "Please fix the highlighted fields.",
+      "submitFailed": "We couldn't log you in right now. Please try again."
+    }
   },
   "forgotPassword": {
     "title": "Forgot password",
@@ -696,9 +733,79 @@
   "ctaSection": {
     "bgAlt": "CTA background"
   },
+  "legalPages": {
+    "privacyPolicy": {
+      "updatedAt": "Last updated: April 15, 2026",
+      "intro": "Kiibee respects your privacy. This policy explains what information we collect, how we use it, and the choices you have when using our website and services.",
+      "sections": {
+        "collect": {
+          "title": "Information we collect",
+          "body": "We may collect account details such as name and email, payment and order details, support messages, and technical data like device type, browser, and usage activity."
+        },
+        "use": {
+          "title": "How we use your information",
+          "body": "We use your information to provide Kiibee services, process purchases, deliver support, improve product quality, and communicate important account and service updates."
+        },
+        "share": {
+          "title": "How information is shared",
+          "body": "We only share information with trusted service providers needed to run Kiibee, such as payment, hosting, and analytics partners. We do not sell personal data."
+        },
+        "rights": {
+          "title": "Your rights and choices",
+          "body": "You can request access, correction, or deletion of your personal information, and you may contact us to ask questions about how your data is handled."
+        },
+        "contact": {
+          "title": "Contact",
+          "body": "For privacy questions, contact us at support@kiibee.dk."
+        }
+      }
+    },
+    "termsOfService": {
+      "updatedAt": "Last updated: April 15, 2026",
+      "intro": "These terms apply when you access or use Kiibee. By using the service, you agree to follow these terms and all applicable laws.",
+      "sections": {
+        "acceptance": {
+          "title": "Use of the service",
+          "body": "You may use Kiibee only for lawful purposes and in accordance with these terms. Misuse of the platform, including fraud or unauthorized access, is prohibited."
+        },
+        "accounts": {
+          "title": "Accounts and security",
+          "body": "You are responsible for keeping your account credentials secure and for activity that happens under your account."
+        },
+        "payments": {
+          "title": "Payments and purchases",
+          "body": "Paid content is subject to pricing shown at checkout. Purchases may be one-time, rental, or subscription-based depending on creator settings."
+        },
+        "content": {
+          "title": "Creator content and intellectual property",
+          "body": "Creators keep ownership of their content. You may not copy, redistribute, or reuse content unless the creator or law allows it."
+        },
+        "liability": {
+          "title": "Disclaimers and liability",
+          "body": "Kiibee provides the service as available. To the extent permitted by law, Kiibee is not liable for indirect or consequential losses arising from use of the service."
+        },
+        "contact": {
+          "title": "Contact",
+          "body": "For questions about these terms, contact us at support@kiibee.dk."
+        }
+      }
+    },
+    "cookieSettings": {
+      "body1": "Cookie preferences will be configurable here.",
+      "body2": "If you need help now, please reach out via the support page."
+    }
+  },
   "dashboard": {
     "overview": "Overview",
     "noData": "No Data Found",
     "contentPerformance": "Content Performance"
+  },
+  "settings": {
+    "title": "Settings",
+    "tabs": {
+      "payout": "Payout",
+      "notifications": "Notifications",
+      "export": "Export"
+    }
   }
 }

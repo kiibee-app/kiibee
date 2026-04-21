@@ -13,7 +13,9 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
+import { CREATORS } from "@/utils/translationKeys";
 import { CreatorProfile } from "@/utils/sortOptions";
+import { VARIANT } from "@/utils/Constants";
 
 type Props = {
   creators: CreatorProfile[];
@@ -47,15 +49,15 @@ export default function ExploreCreators({ creators }: Props) {
               <MonoText $use="Body_Small">{creator.uploads} uploads</MonoText>
             </Content>
 
-            <GenericButton asAnchor href="#profile" variant="secondary">
-              {t("creators.viewProfile")}
+            <GenericButton asAnchor href="#profile" variant={VARIANT.SECONDARY}>
+              {t(CREATORS.viewProfile)}
             </GenericButton>
           </Card>
         ))}
       </Grid>
 
-      <GenericButton asAnchor href="#load" variant="primary">
-        {t("creators.loadMore")}
+      <GenericButton asAnchor href="#load" variant={VARIANT.PRIMARY}>
+        {t(CREATORS.loadMore)}
       </GenericButton>
     </PageWrapper>
   );

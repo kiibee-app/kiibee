@@ -1,4 +1,5 @@
-import { ValidationPipe } from '@nestjs/common';
+import 'dotenv/config';
+import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -7,6 +8,7 @@ import {
 import helmet from '@fastify/helmet';
 import { AppModule } from './app.module';
 import { pool } from './database/db';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
   try {
@@ -30,8 +32,18 @@ async function bootstrap() {
         whitelist: true,
         transform: true,
         forbidNonWhitelisted: true,
+        exceptionFactory: (errors) => {
+          const firstError = errors[0];
+          const firstMessage = firstError?.constraints
+            ? Object.values(firstError.constraints)[0]
+            : 'Validation failed';
+
+          return new BadRequestException(firstMessage);
+        },
       }),
     );
+
+    app.useGlobalFilters(new HttpExceptionFilter());
 
     app.enableCors({
       origin: true,

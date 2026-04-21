@@ -1,6 +1,12 @@
 import type { StaticImageData } from "next/image";
 
-export type Variant = "primary" | "primary-lite" | "secondary";
+export const VARIANT = {
+  PRIMARY: "primary",
+  PRIMARY_LITE: "primary-lite",
+  SECONDARY: "secondary",
+} as const;
+
+export type Variant = (typeof VARIANT)[keyof typeof VARIANT];
 
 export function resolveImageUrl(image: string | StaticImageData) {
   return typeof image === "string" ? image : image.src;
@@ -20,3 +26,21 @@ export const BG_GREEN = "green";
 export const BG_WHITE = "white";
 export type BgVariant = typeof BG_GREEN | typeof BG_WHITE;
 export const REPEAT_PASSWORD = "repeatPassword";
+
+export const SIZE = {
+  LG: "lg",
+  MD: "md",
+  SM: "sm",
+} as const;
+export type SIZE = (typeof SIZE)[keyof typeof SIZE];
+export const MEDIA_TYPE = {
+  VIDEO: "video",
+  EPUB: "epub",
+} as const;
+export type MediaType = (typeof MEDIA_TYPE)[keyof typeof MEDIA_TYPE];
+const KEY_SPACE = " ";
+const KEY_SPACEBAR = "Spacebar";
+export const FAQ_TOGGLE_KEYS = [KEY_ENTER, KEY_SPACE, KEY_SPACEBAR];
+export const KEYDOWN = "keydown";
+export const ESCAPE = "Escape";
+export const BUTTON = "button";
