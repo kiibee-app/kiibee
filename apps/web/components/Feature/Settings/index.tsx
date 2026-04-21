@@ -59,7 +59,7 @@ export default function SettingsContent() {
           );
         })}
       </Tabs>
-      <Content>{activeTab === "payout" && <PayoutContent />}</Content>
+      <Content>{activeTab === TAB_KEYS.payout && <PayoutContent />}</Content>
     </Wrapper>
   );
 }

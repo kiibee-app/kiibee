@@ -805,6 +805,10 @@
       "payout": "Udbetaling",
       "notifications": "Notifikationer",
       "export": "Eksport"
+    },
+    "payout": {
+      "title": "Payout",
+      "description": "When you click the button, a statement is created that you can cash out. Click on payout to view your credit note."
     }
   }
 }

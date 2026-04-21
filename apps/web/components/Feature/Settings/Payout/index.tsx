@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import {
@@ -14,6 +14,7 @@ import {
 } from "./styles";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT } from "@/utils/Constants";
 
 type StatItem = {
   label: string;
@@ -23,32 +24,31 @@ type StatItem = {
 export default function PayoutContent() {
   const { t } = useTranslation();
 
-  const stats: StatItem[] = [
-    { label: "Balance", value: "14.51 kr." },
-    { label: "Purchase", value: 94 },
-    { label: "Rent", value: 39 },
-  ];
+  const stats: StatItem[] = useMemo(
+    () => [
+      { label: "Balance", value: "14.51 kr." },
+      { label: "Purchase", value: 94 },
+      { label: "Rent", value: 39 },
+    ],
+    [],
+  );
 
-  const [balance, ...restStats] = stats;
+  const balance = stats[0];
+  const restStats = stats.slice(1);
 
   return (
     <Card>
       <CardTop>
         <TextBlock>
-          <MonoText $use="Body_SemiBold">
-            {t("payout.title", "Payout")}
-          </MonoText>
+          <MonoText $use="Body_SemiBold">{t("payout.title")}</MonoText>
 
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            {t(
-              "payout.description",
-              "When you click the button, a statement is created that you can pay out, click on pay out to see your credit note.",
-            )}
+            {t("payout.description")}
           </MonoText>
         </TextBlock>
 
-        <GenericButton variant="primary">
-          {t("payout.button", "Payout")}
+        <GenericButton variant={VARIANT.PRIMARY}>
+          {t("payout.title")}
         </GenericButton>
       </CardTop>
 
@@ -57,6 +57,7 @@ export default function PayoutContent() {
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
             {t("payout.balance", balance.label)}
           </MonoText>
+
           <MonoText $use="H4_SemiBold">{balance.value}</MonoText>
         </BalanceCard>
 
@@ -66,6 +67,7 @@ export default function PayoutContent() {
               <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
                 {item.label}
               </MonoText>
+
               <MonoText $use="H4_SemiBold">{item.value}</MonoText>
             </SmallCard>
           ))}
