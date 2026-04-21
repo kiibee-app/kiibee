@@ -3,3 +3,7 @@ export * from './users/userProfiles.schema';
 export * from './users/userSessions.schema';
 export * from './users/accountSetupTokens.schema';
 export * from './users/creatorApplicationRequests.schema';
+export * from './content/contentCategories.schema';
+export * from './content/contentTypes.schema';
+export * from './users/userContentTypes.shema';
+export * from './users/userContentCategories.shema';
