@@ -24,34 +24,42 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { BUTTON } from "@/utils/Constants";
 
+type CTAImageCard = {
+  src: string;
+  left?: number;
+  top?: number;
+  width?: number;
+  height?: number;
+};
+
 export default function CallToAction() {
   const { t } = useTranslation();
+
+  const renderCard = (card: CTAImageCard, index: number, mobile = false) => (
+    <Card
+      key={`${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
+      $left={!mobile ? card.left : undefined}
+      $top={!mobile ? card.top : undefined}
+      $width={!mobile ? card.width : undefined}
+      $height={!mobile ? card.height : undefined}
+      $mobileOnly={mobile}
+    >
+      <CardImage src={card.src} alt={t("callToAction.creatorAlt")} />
+      <CardTint />
+    </Card>
+  );
 
   return (
     <Section>
       <Backdrop>
-        {desktopCards.map((card, index) => (
-          <Card
-            key={`${card.src}-${index}`}
-            $left={card.left}
-            $top={card.top}
-            $width={card.width}
-            $height={card.height}
-          >
-            <CardImage src={card.src} alt={t("callToAction.creatorAlt")} />
-            <CardTint />
-          </Card>
-        ))}
+        {desktopCards.map((card, index) =>
+          renderCard(card as CTAImageCard, index),
+        )}
       </Backdrop>
 
       <MobileBackdrop>
         <MobileGrid>
-          {mobileCards.map((src, index) => (
-            <Card key={`${src}-mobile-${index}`} $mobileOnly>
-              <CardImage src={src} alt={t("callToAction.creatorAlt")} />
-              <CardTint />
-            </Card>
-          ))}
+          {mobileCards.map((src, index) => renderCard({ src }, index, true))}
         </MobileGrid>
       </MobileBackdrop>
 
