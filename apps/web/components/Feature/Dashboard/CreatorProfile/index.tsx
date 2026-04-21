@@ -24,6 +24,7 @@ import InputField from "@/components/UI/InputFields";
 import PasswordSection from "./PasswordSection";
 import CompanySection from "./CompanySection";
 import PaymentSection from "./PaymentSection";
+import { INPUT_VARIANTS } from "@/utils/Constants";
 
 type Props = {
   name?: string;
@@ -125,12 +126,14 @@ export default function CreatorProfile({
             label={t(CREATOR_PROFILE.firstName)}
             value={form.firstName}
             onChange={onChange("firstName")}
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
           />
 
           <InputField
             label={t(CREATOR_PROFILE.lastName)}
             value={form.lastName}
             onChange={onChange("lastName")}
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
             labelMarginTop="16px"
           />
 

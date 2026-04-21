@@ -5,6 +5,7 @@ import InputField from "@/components/UI/InputFields";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import { Card, Fields, SectionTitle, Optional, OptionalSmall } from "./styles";
 import { CompanyKeys } from "@/utils/creatorProfile";
+import { INPUT_VARIANTS } from "@/utils/Constants";
 
 type CompanyProps = {
   form: {
@@ -34,6 +35,7 @@ export default function CompanySection({ form, onChange, t }: CompanyProps) {
           value={form.company}
           onChange={onChange("company")}
           labelFontStyle="Body_Regular"
+          variant={INPUT_VARIANTS.PRIMARY_GRAY}
         />
 
         <InputField
@@ -42,6 +44,7 @@ export default function CompanySection({ form, onChange, t }: CompanyProps) {
           onChange={onChange("phone")}
           labelMarginTop="16px"
           labelFontStyle="Body_Regular"
+          variant={INPUT_VARIANTS.PRIMARY_GRAY}
         />
 
         <InputField
@@ -56,6 +59,7 @@ export default function CompanySection({ form, onChange, t }: CompanyProps) {
           onChange={onChange("cvr")}
           labelMarginTop="16px"
           labelFontStyle="Body_Regular"
+          variant={INPUT_VARIANTS.PRIMARY_GRAY}
         />
 
         <InputField
@@ -64,6 +68,7 @@ export default function CompanySection({ form, onChange, t }: CompanyProps) {
           onChange={onChange("address")}
           labelMarginTop="16px"
           labelFontStyle="Body_Regular"
+          variant={INPUT_VARIANTS.PRIMARY_GRAY}
         />
 
         <div style={{ marginTop: 12 }}>
@@ -72,12 +77,14 @@ export default function CompanySection({ form, onChange, t }: CompanyProps) {
             value={form.city}
             onChange={onChange("city")}
             labelFontStyle="Body_Regular"
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
           />
           <InputField
             label={t(CREATOR_PROFILE.postal)}
             value={form.postal}
             onChange={onChange("postal")}
             labelFontStyle="Body_Regular"
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
           />
         </div>
       </Fields>

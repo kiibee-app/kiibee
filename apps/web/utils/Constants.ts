@@ -45,3 +45,9 @@ export const FAQ_TOGGLE_KEYS = [KEY_ENTER, KEY_SPACE, KEY_SPACEBAR];
 export const KEYDOWN = "keydown";
 export const ESCAPE = "Escape";
 export const BUTTON = "button";
+
+export const INPUT_VARIANTS = {
+  DEFAULT: "default",
+  PRIMARY_GRAY: "primaryGray",
+} as const;
+export type InputVariant = (typeof INPUT_VARIANTS)[keyof typeof INPUT_VARIANTS];

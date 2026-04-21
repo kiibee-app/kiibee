@@ -11,6 +11,7 @@ import {
 } from "./styles";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import { PaymentKeys } from "@/utils/creatorProfile";
+import { INPUT_VARIANTS } from "@/utils/Constants";
 
 type PaymentProps = {
   form: {
@@ -34,6 +35,7 @@ export default function PaymentSection({ form, onChange, t }: PaymentProps) {
             value={form.reg}
             onChange={onChange("reg")}
             labelFontStyle="Body_Regular"
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
           />
 
           <InputField
@@ -41,6 +43,7 @@ export default function PaymentSection({ form, onChange, t }: PaymentProps) {
             value={form.account}
             onChange={onChange("account")}
             labelFontStyle="Body_Regular"
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
           />
         </TwoColumnRow>
       </Fields>

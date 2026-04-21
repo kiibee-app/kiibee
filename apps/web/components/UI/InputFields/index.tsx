@@ -22,7 +22,7 @@ import {
   AutoCompleteValue,
 } from "@/utils/ui";
 import { typography } from "@repo/ui/typography";
-import { STRING } from "@/utils/Constants";
+import { INPUT_VARIANTS, InputVariant, STRING } from "@/utils/Constants";
 
 export type InputFieldProps = {
   label?: React.ReactNode;
@@ -41,6 +41,7 @@ export type InputFieldProps = {
   onClick?: () => void;
   hasError?: boolean | boolean[];
   locked?: boolean | undefined;
+  variant?: InputVariant;
   multi?: boolean;
   labelFontStyle?: keyof typeof typography;
   labelPaddingLeft?: string | undefined;
@@ -86,6 +87,7 @@ export default React.forwardRef<
     onClick,
     hasError = false,
     locked = false,
+    variant = INPUT_VARIANTS.DEFAULT,
     multi = false,
     labelFontStyle,
     labelPaddingLeft = "",
@@ -209,6 +211,7 @@ export default React.forwardRef<
                 onClick={onClick}
                 $hasError={hasMultiError}
                 $locked={locked}
+                $variant={variant}
                 aria-invalid={hasMultiError}
                 required={required}
                 aria-required={required}
@@ -266,6 +269,7 @@ export default React.forwardRef<
               $hasError={normalizeError(hasErrorValue)}
               $locked={locked}
               $height={height}
+              $variant={variant}
               $hasIcon={!!icon}
               required={required}
               aria-required={required}
