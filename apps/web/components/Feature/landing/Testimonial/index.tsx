@@ -25,6 +25,7 @@ export default function TestimonialSection() {
           src={creator}
           alt={t("testimonial.backgroundAlt")}
           fill
+          priority
           sizes="100vw"
           style={{ objectFit: "cover", objectPosition: "center" }}
         />

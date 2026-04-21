@@ -58,6 +58,7 @@ export default function DiscoverContent() {
                 src={item.image}
                 alt={t(item.titleKey)}
                 fill
+                priority
                 sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
                 style={{ objectFit: "cover" }}
               />
