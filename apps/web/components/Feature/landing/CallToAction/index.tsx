@@ -22,6 +22,7 @@ import {
 import { desktopCards, mobileCards } from "@/utils/cards";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { BUTTON } from "@/utils/Constants";
 
 export default function CallToAction() {
   const { t } = useTranslation();
@@ -68,8 +69,7 @@ export default function CallToAction() {
         </Brand>
         <Heading>
           <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
-            {t("callToAction.titleLine1")}
-            {t("callToAction.titleLine2")}
+            {t("callToAction.title")}
           </MonoText>
         </Heading>
         <Subtitle>
@@ -77,7 +77,7 @@ export default function CallToAction() {
             {t("callToAction.subtitle")}
           </MonoText>
         </Subtitle>
-        <CTAButton type="button">{t("callToAction.cta")}</CTAButton>
+        <CTAButton type={BUTTON}>{t("callToAction.cta")}</CTAButton>
       </Content>
     </Section>
   );
