@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import {
@@ -27,10 +27,18 @@ export default function LoginForm() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(true);
+  const [remember, setRemember] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<LoginFormErrors>({});
   const [formError, setFormError] = useState("");
   const loginSchema = useLoginFormSchema();
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    isMounted.current = true;
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -42,32 +50,39 @@ export default function LoginForm() {
 
     if (!parsedValues.success) {
       const flattenedErrors = parsedValues.error.flatten().fieldErrors;
-
-      setFieldErrors({
-        email: flattenedErrors.email?.[0],
-        password: flattenedErrors.password?.[0],
-      });
-      setFormError(t("authForm.errors.fixHighlightedFields"));
+      if (isMounted.current) {
+        setFieldErrors({
+          email: flattenedErrors.email?.[0],
+          password: flattenedErrors.password?.[0],
+        });
+        setFormError(t("authForm.errors.fixHighlightedFields"));
+      }
       return;
     }
 
-    setFormError("");
-    setFieldErrors({});
+    if (isMounted.current) {
+      setFormError("");
+      setFieldErrors({});
+    }
   };
 
   const handleEmailChange = (nextValue: string) => {
     setEmail(nextValue);
     if (fieldErrors.email || formError) {
-      setFieldErrors((prev) => ({ ...prev, email: undefined }));
-      setFormError("");
+      if (isMounted.current) {
+        setFieldErrors((prev) => ({ ...prev, email: undefined }));
+        setFormError("");
+      }
     }
   };
 
   const handlePasswordChange = (nextValue: string) => {
     setPassword(nextValue);
     if (fieldErrors.password || formError) {
-      setFieldErrors((prev) => ({ ...prev, password: undefined }));
-      setFormError("");
+      if (isMounted.current) {
+        setFieldErrors((prev) => ({ ...prev, password: undefined }));
+        setFormError("");
+      }
     }
   };
 

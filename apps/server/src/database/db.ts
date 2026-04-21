@@ -1,9 +1,15 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
+import * as schema from './schema';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || '',
+const databaseUrl = process.env.DATABASE_URL;
+
+if (!databaseUrl) {
+  throw new Error('DATABASE_URL is missing in environment variables');
+}
+
+export const pool = new Pool({
+  connectionString: databaseUrl,
 });
 
-export const db = drizzle(pool);
-export { pool };
+export const db = drizzle(pool, { schema });
