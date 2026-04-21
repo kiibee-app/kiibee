@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Container,
   Title,
@@ -9,21 +10,20 @@ import {
   Avatar,
   Name,
   Fields,
-  TwoColumnRow,
   Action,
   Button,
   SecondaryButton,
   HeaderRow,
   MonoText,
-  SectionTitle,
-  PaymentText,
-  Optional,
   InlineLabel,
   EmailText,
   HeaderActions,
-  PasswordFields,
 } from "./styles";
+import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import InputField from "@/components/UI/InputFields";
+import PasswordSection from "./PasswordSection";
+import CompanySection from "./CompanySection";
+import PaymentSection from "./PaymentSection";
 
 type Props = {
   name?: string;
@@ -62,6 +62,8 @@ export default function CreatorProfile({
     confirm: "",
   });
 
+  const { t } = useTranslation();
+
   const [saved, setSaved] = useState(() => ({ ...initial }));
 
   const dirty = useMemo(() => {
@@ -76,9 +78,6 @@ export default function CreatorProfile({
   const onChange = (key: keyof typeof form) => (value: string | string[]) => {
     setForm((s) => ({ ...s, [key]: String(value) }));
   };
-
-  const onPasswordChange = (field: keyof typeof passwords) => (val: string) =>
-    setPasswords((p) => ({ ...p, [field]: val }));
 
   const handleCancel = () => {
     setForm({ ...saved });
@@ -100,7 +99,7 @@ export default function CreatorProfile({
   return (
     <Container>
       <HeaderRow>
-        <Title>My account</Title>
+        <Title>{t(CREATOR_PROFILE.title)}</Title>
         <HeaderActions>
           <SecondaryButton onClick={handleCancel}>Cancel</SecondaryButton>
           <Button onClick={handleSave} disabled={!dirty}>
@@ -123,134 +122,37 @@ export default function CreatorProfile({
 
         <Fields>
           <InputField
-            label="First name"
+            label={t(CREATOR_PROFILE.firstName)}
             value={form.firstName}
             onChange={onChange("firstName")}
           />
 
           <InputField
-            label="Last name"
+            label={t(CREATOR_PROFILE.lastName)}
             value={form.lastName}
             onChange={onChange("lastName")}
             labelMarginTop="16px"
           />
 
           <Action>
-            <InlineLabel>Password</InlineLabel>
+            <InlineLabel>{t(CREATOR_PROFILE.passwordLabel)}</InlineLabel>
             <Button onClick={() => setShowPassword((s) => !s)}>
-              Change password
+              {t(CREATOR_PROFILE.changePassword)}
             </Button>
           </Action>
 
           {showPassword && (
-            <PasswordFields>
-              <InputField
-                label="Current password"
-                type="password"
-                value={passwords.current}
-                onChange={(v) => onPasswordChange("current")(String(v))}
-              />
-              <InputField
-                label="New password"
-                type="password"
-                value={passwords.next}
-                onChange={(v) => onPasswordChange("next")(String(v))}
-                labelMarginTop="12px"
-              />
-              <InputField
-                label="Confirm password"
-                type="password"
-                value={passwords.confirm}
-                onChange={(v) => onPasswordChange("confirm")(String(v))}
-                labelMarginTop="12px"
-              />
-            </PasswordFields>
+            <PasswordSection
+              passwords={passwords}
+              onPasswordChange={(field, val) =>
+                setPasswords((p) => ({ ...p, [field]: val ?? "" }))
+              }
+            />
           )}
         </Fields>
       </Card>
-
-      <Card>
-        <SectionTitle>
-          Company Name<Optional>(optional)</Optional>
-        </SectionTitle>
-        <Fields>
-          <InputField
-            label="Company name"
-            placeholder="Enter company name"
-            value={form.company}
-            onChange={onChange("company")}
-            labelFontStyle="Body_Regular"
-          />
-
-          <InputField
-            label="Phone number"
-            value={form.phone}
-            onChange={onChange("phone")}
-            labelMarginTop="16px"
-            labelFontStyle="Body_Regular"
-          />
-
-          <InputField
-            label={
-              <>
-                CVR<Optional> (optional)</Optional>
-              </>
-            }
-            placeholder="8 digits - only if you run a business"
-            value={form.cvr}
-            onChange={onChange("cvr")}
-            labelMarginTop="16px"
-            labelFontStyle="Body_Regular"
-          />
-
-          <InputField
-            label="Address"
-            value={form.address}
-            onChange={onChange("address")}
-            labelMarginTop="16px"
-            labelFontStyle="Body_Regular"
-          />
-
-          <TwoColumnRow>
-            <InputField
-              label="City"
-              value={form.city}
-              onChange={onChange("city")}
-              labelFontStyle="Body_Regular"
-            />
-            <InputField
-              label="Postal code"
-              value={form.postal}
-              onChange={onChange("postal")}
-              labelFontStyle="Body_Regular"
-            />
-          </TwoColumnRow>
-        </Fields>
-      </Card>
-
-      <Card>
-        <SectionTitle>Payment information</SectionTitle>
-        <PaymentText>
-          We need your payment information so we can pay out your earnings.
-        </PaymentText>
-
-        <Fields>
-          <TwoColumnRow>
-            <InputField
-              label="Reg. no."
-              value={form.reg}
-              onChange={onChange("reg")}
-              labelFontStyle="Body_Regular"
-            />
-            <InputField
-              label="Account no."
-              value={form.account}
-              onChange={onChange("account")}
-              labelFontStyle="Body_Regular"
-            />
-          </TwoColumnRow>
-        </Fields>
-      </Card>
+      <CompanySection form={form} onChange={onChange} t={t} />
+      <PaymentSection form={form} onChange={onChange} t={t} />
     </Container>
   );
 }

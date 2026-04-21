@@ -139,6 +139,12 @@ export const Optional = styled.span`
   color: ${(p) => p.theme.colors.neutral.GRAY_400};
 `;
 
+export const OptionalSmall = styled.span`
+  margin-left: 8px;
+  font-size: 13px;
+  color: ${(p) => p.theme.colors.neutral.GRAY_400};
+`;
+
 export const InlineLabel = styled.span`
   display: inline-block;
   padding-left: 4px;
