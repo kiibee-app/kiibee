@@ -16,6 +16,10 @@ import {
   HeaderRow,
   MonoText,
   SectionTitle,
+  PaymentText,
+  Optional,
+  InlineLabel,
+  EmailText,
 } from "./styles";
 import InputField from "@/components/UI/InputFields";
 
@@ -116,7 +120,7 @@ export default function CreatorProfile({
 
           <div>
             <Name>{name}</Name>
-            <MonoText $use="Body_Medium">{email}</MonoText>
+            <EmailText $use="Body_Medium">{email}</EmailText>
           </div>
         </Row>
 
@@ -135,6 +139,7 @@ export default function CreatorProfile({
           />
 
           <Action>
+            <InlineLabel>Password</InlineLabel>
             <Button onClick={() => setShowPassword((s) => !s)}>
               Change password
             </Button>
@@ -168,7 +173,9 @@ export default function CreatorProfile({
       </Card>
 
       <Card>
-        <SectionTitle>Company Name (Optional)</SectionTitle>
+        <SectionTitle>
+          Company Name<Optional>(optional)</Optional>
+        </SectionTitle>
         <Fields>
           <InputField
             label="Company name"
@@ -187,7 +194,11 @@ export default function CreatorProfile({
           />
 
           <InputField
-            label="CVR"
+            label={
+              <>
+                CVR<Optional> (optional)</Optional>
+              </>
+            }
             placeholder="8 digits - only if you run a business"
             value={form.cvr}
             onChange={onChange("cvr")}
@@ -222,9 +233,9 @@ export default function CreatorProfile({
 
       <Card>
         <SectionTitle>Payment information</SectionTitle>
-        <MonoText $use="Body_Regular">
+        <PaymentText>
           We need your payment information so we can pay out your earnings.
-        </MonoText>
+        </PaymentText>
 
         <Fields>
           <TwoColumnRow>

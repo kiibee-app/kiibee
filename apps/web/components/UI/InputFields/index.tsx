@@ -22,7 +22,7 @@ import {
 import { typography } from "@repo/ui/typography";
 
 export type InputFieldProps = {
-  label?: string;
+  label?: React.ReactNode;
   type?: InputType;
   value?: string | string[] | number;
   placeholder?: string | string[];
@@ -139,6 +139,13 @@ export default React.forwardRef<
   const describedBy =
     ariaDescribedby || `${inputId}-error ${inputId}-help`.trim();
 
+  const placeholderText = (() => {
+    if (Array.isArray(placeholder)) return undefined;
+    if (typeof placeholder === "string") return placeholder;
+    if (typeof label === "string") return label;
+    return undefined;
+  })();
+
   return (
     <Container width={width || ""} as={containerElement} role={multiRole}>
       <Label
@@ -188,7 +195,7 @@ export default React.forwardRef<
             ref={ref as React.Ref<HTMLTextAreaElement>}
             id={inputId}
             value={value as string}
-            placeholder={(placeholder as string) || label}
+            placeholder={placeholderText || ""}
             disabled={disabled}
             onChange={handleSingleChange}
             onClick={onClick}
@@ -213,7 +220,7 @@ export default React.forwardRef<
               inputMode={inputMode}
               autoComplete={autoComplete}
               value={value as string}
-              placeholder={(placeholder as string) || label}
+              placeholder={placeholderText || ""}
               disabled={disabled}
               onChange={handleSingleChange}
               onClick={onClick}

@@ -2,7 +2,7 @@
 
 import React, { useCallback, useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import CreatorProfile from "@/components/Feature/CreatorProfile";
+import CreatorProfile from "@/components/Feature/Dashboard/CreatorProfile";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";

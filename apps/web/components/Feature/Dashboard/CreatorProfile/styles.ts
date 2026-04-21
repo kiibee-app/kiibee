@@ -29,7 +29,7 @@ export const Card = styled.section`
 export const SectionTitle = styled.h3`
   margin: 0 0 8px 0;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   color: ${(p) => p.theme.colors.primary.BLACK};
 `;
 
@@ -51,14 +51,14 @@ export const Avatar = styled.div`
 
 export const Name = styled.h3`
   margin: 0;
-  font-size: 28px;
-  font-weight: 800;
+  font-size: 32px;
+  font-weight: 600;
   color: ${(p) => p.theme.colors.primary.BLACK};
 `;
 
 export const Fields = styled.div`
   margin-top: 24px;
-  max-width: 640px;
+  max-width: 540px;
 `;
 
 export const TwoColumnRow = styled.div`
@@ -89,6 +89,9 @@ export const Input = styled.input`
 
 export const Action = styled.div`
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 `;
 
 export const Button = styled.button`
@@ -107,3 +110,28 @@ export const SecondaryButton = styled(Button)`
 `;
 
 export { MonoText };
+
+export const PaymentText = styled(MonoText)`
+  font-size: 14px;
+  font-weight: 500;
+  color: ${(p) => p.theme.colors.neutral.GRAY_400};
+`;
+
+export const Optional = styled.span`
+  margin-left: 8px;
+  font-size: 13px;
+  color: ${(p) => p.theme.colors.neutral.GRAY_400};
+`;
+
+export const InlineLabel = styled.span`
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 13px;
+  color: ${(p) => p.theme.colors.neutral.GRAY_400};
+  line-height: 1;
+`;
+
+export const EmailText = styled(MonoText)`
+  font-weight: 500;
+  color: ${(p) => p.theme.colors.neutral.GRAY_400};
+`;
