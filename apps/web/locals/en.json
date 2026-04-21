@@ -808,7 +808,10 @@
     },
     "payout": {
       "title": "Payout",
-      "description": "When you click the button, a statement is created that you can pay out, click on pay out to see your credit note."
+      "description": "When you click the button, a statement is created that you can pay out, click on pay out to see your credit note.",
+      "balance": "Balance",
+      "purchase": "Purchase",
+      "rent": "Rent"
     }
   }
 }

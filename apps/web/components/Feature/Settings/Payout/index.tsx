@@ -26,11 +26,11 @@ export default function PayoutContent() {
 
   const stats: StatItem[] = useMemo(
     () => [
-      { label: "Balance", value: "14.51 kr." },
-      { label: "Purchase", value: 94 },
-      { label: "Rent", value: 39 },
+      { label: t("settings.payout.balance"), value: "14.51 kr." },
+      { label: t("settings.payout.purchase"), value: 94 },
+      { label: t("settings.payout.rent"), value: 39 },
     ],
-    [],
+    [t],
   );
 
   const balance = stats[0];
@@ -40,22 +40,22 @@ export default function PayoutContent() {
     <Card>
       <CardTop>
         <TextBlock>
-          <MonoText $use="Body_SemiBold">{t("payout.title")}</MonoText>
+          <MonoText $use="Body_SemiBold">{t("settings.payout.title")}</MonoText>
 
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            {t("payout.description")}
+            {t("settings.payout.description")}
           </MonoText>
         </TextBlock>
 
         <GenericButton variant={VARIANT.PRIMARY}>
-          {t("payout.title")}
+          {t("settings.payout.title")}
         </GenericButton>
       </CardTop>
 
       <Stats>
         <BalanceCard>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            {t("payout.balance", balance.label)}
+            {balance.label}
           </MonoText>
 
           <MonoText $use="H4_SemiBold">{balance.value}</MonoText>
