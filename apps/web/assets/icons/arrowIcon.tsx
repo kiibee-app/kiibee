@@ -1,5 +1,8 @@
+"use client";
+
 import { SVG_XMLNS } from "@/utils/Constants";
 import { Direction, Directions } from "@/utils/ui";
+import { useDirection } from "@/utils/useDirection";
 import COLORS from "@repo/ui/colors";
 import React from "react";
 
@@ -16,14 +19,7 @@ export const ArrowIcon: React.FC<ArrowIconProps> = ({
   color,
   direction = Directions.LEFT,
 }) => {
-  const rotationMap: Record<Direction, string> = {
-    [Directions.DOWN]: "0deg",
-    [Directions.UP]: "180deg",
-    [Directions.RIGHT]: "-90deg",
-    [Directions.LEFT]: "90deg",
-  };
-
-  const rotation = rotationMap[direction] || "0deg";
+  const rotation = useDirection(direction);
 
   return (
     <svg
