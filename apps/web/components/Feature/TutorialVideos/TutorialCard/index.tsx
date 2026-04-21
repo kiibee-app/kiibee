@@ -1,15 +1,7 @@
 "use client";
 
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
-import Image from "next/image";
-import {
-  ActionRow,
-  Card,
-  CardShell,
-  Content,
-  ImageWrapper,
-  VideoBox,
-} from "./styles";
+import { ActionRow, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
@@ -18,7 +10,7 @@ import type { FormatType, TutorialButton, TutorialVideo } from "@/utils/types";
 import { EpubIcon, PdfIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import { Badge } from "../../ExploreCreators/Creators/styles";
+import GenericCard from "@/components/UI/GenericCard";
 
 interface TutorialCardProps {
   tutorial: TutorialVideo;
@@ -49,10 +41,8 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
     variant: VARIANT.SECONDARY,
     href: singleTutorialHref,
   };
-  const buttons =
-    tutorial.buttons && tutorial.buttons.length
-      ? tutorial.buttons
-      : [defaultButton];
+
+  const buttons = tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
 
   const resolveButtonHref = (href?: string) => {
     if (!href) return singleTutorialHref;
@@ -61,49 +51,38 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
   };
 
   return (
-    <CardShell>
-      <Card>
-        <ImageWrapper>
-          <Badge>
-            <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
-              {tutorial.category}
-            </MonoText>
-          </Badge>
+    <GenericCard
+      image={imageUrl}
+      badge={
+        <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
+          {tutorial.category}
+        </MonoText>
+      }
+      title={<MonoText $use="H5_Medium">{tutorial.title}</MonoText>}
+      subtitle={<MonoText $use="Body_Medium">{tutorial.creator}</MonoText>}
+      footer={
+        <ActionRow>
+          {buttons.map((button, index) => (
+            <GenericButton
+              key={`${button.label}-${index}`}
+              asAnchor
+              href={resolveButtonHref(button.href)}
+              variant={button.variant ?? VARIANT.SECONDARY}
+            >
+              {button.label}
+            </GenericButton>
+          ))}
+        </ActionRow>
+      }
+    >
+      <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+        {tutorial.published}
+      </MonoText>
 
-          <Image
-            src={imageUrl}
-            alt={tutorial.title}
-            fill
-            style={{
-              objectFit: "cover",
-            }}
-            priority
-          />
-        </ImageWrapper>
-        <Content>
-          <MonoText $use="H5_Medium">{tutorial.title}</MonoText>
-          <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
-          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-            {tutorial.published}
-          </MonoText>
-          <VideoBox>
-            <FormatIcon width={22} height={22} color={COLORS.primary.BLACK} />
-            <MonoText $use="Body_Bold">{tutorial.formatLabel}</MonoText>
-          </VideoBox>
-          <ActionRow>
-            {buttons.map((button, index) => (
-              <GenericButton
-                key={`${button.label}-${index}`}
-                asAnchor
-                href={resolveButtonHref(button.href)}
-                variant={button.variant ?? VARIANT.SECONDARY}
-              >
-                {button.label}
-              </GenericButton>
-            ))}
-          </ActionRow>
-        </Content>
-      </Card>
-    </CardShell>
+      <VideoBox>
+        <FormatIcon width={22} height={22} />
+        <MonoText $use="Body_Bold">{tutorial.formatLabel}</MonoText>
+      </VideoBox>
+    </GenericCard>
   );
 }
