@@ -27,7 +27,6 @@ export const Label = styled(MonoText).attrs<{
   margin-top: ${({ $marginTop }) => $marginTop || "12px"};
   text-align: left;
   display: block;
-  float: left;
   width: 100%;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.Body_Regular};
@@ -179,9 +178,22 @@ export const StyledTextArea = styled.textarea<{
 `;
 
 export const ErrorText = styled.span`
-  margin-top: 6px;
+  display: block;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.RED};
+`;
+
+export const HelperText = styled.span`
+  display: block;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+`;
+
+export const FieldMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
 `;
 
 export const RequiredIndicator = styled.span`
