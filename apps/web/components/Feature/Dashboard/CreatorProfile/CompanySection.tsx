@@ -2,91 +2,35 @@
 
 import React from "react";
 import InputField from "@/components/UI/InputFields";
-import { CREATOR_PROFILE } from "@/utils/translationKeys";
-import { Card, Fields, Optional, OptionalSmall } from "./styles";
+import { Card, Fields } from "./styles";
 import { CompanyKeys } from "@/utils/creatorProfile";
 import { INPUT_VARIANTS } from "@/utils/Constants";
+import { getCompanyFields } from "@/utils/creatorProfilefields";
 
 type CompanyProps = {
-  form: {
-    company: string;
-    phone: string;
-    cvr: string;
-    address: string;
-    city: string;
-    postal: string;
-  };
+  form: Record<string, string>;
   onChange: (key: CompanyKeys) => (value: string | string[]) => void;
   t: (key: string) => string;
 };
 
 export default function CompanySection({ form, onChange, t }: CompanyProps) {
+  const fields = getCompanyFields(t);
+
   return (
     <Card>
       <Fields>
-        <InputField
-          label={
-            <>
-              {t(CREATOR_PROFILE.companyName)}
-              <Optional>({t("common.optional")})</Optional>
-            </>
-          }
-          placeholder={t(CREATOR_PROFILE.companyPlaceholder)}
-          value={form.company}
-          onChange={onChange("company")}
-          labelFontStyle="Body_Regular"
-          variant={INPUT_VARIANTS.PRIMARY_GRAY}
-        />
-
-        <InputField
-          label={t(CREATOR_PROFILE.phone)}
-          value={form.phone}
-          onChange={onChange("phone")}
-          labelMarginTop="16px"
-          labelFontStyle="Body_Regular"
-          variant={INPUT_VARIANTS.PRIMARY_GRAY}
-        />
-
-        <InputField
-          label={
-            <>
-              {t(CREATOR_PROFILE.cvr)}
-              <OptionalSmall> ({t("common.optional")})</OptionalSmall>
-            </>
-          }
-          placeholder={t(CREATOR_PROFILE.cvrPlaceholder)}
-          value={form.cvr}
-          onChange={onChange("cvr")}
-          labelMarginTop="16px"
-          labelFontStyle="Body_Regular"
-          variant={INPUT_VARIANTS.PRIMARY_GRAY}
-        />
-
-        <InputField
-          label={t(CREATOR_PROFILE.address)}
-          value={form.address}
-          onChange={onChange("address")}
-          labelMarginTop="16px"
-          labelFontStyle="Body_Regular"
-          variant={INPUT_VARIANTS.PRIMARY_GRAY}
-        />
-
-        <div style={{ marginTop: 12 }}>
+        {fields.map((field, index) => (
           <InputField
-            label={t(CREATOR_PROFILE.city)}
-            value={form.city}
-            onChange={onChange("city")}
+            key={field.key}
+            label={field.label}
+            placeholder={field.placeholder}
+            value={form[field.key]}
+            onChange={onChange(field.key)}
             labelFontStyle="Body_Regular"
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            labelMarginTop={index !== 0 ? "16px" : undefined}
           />
-          <InputField
-            label={t(CREATOR_PROFILE.postal)}
-            value={form.postal}
-            onChange={onChange("postal")}
-            labelFontStyle="Body_Regular"
-            variant={INPUT_VARIANTS.PRIMARY_GRAY}
-          />
-        </div>
+        ))}
       </Fields>
     </Card>
   );

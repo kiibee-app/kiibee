@@ -31,6 +31,7 @@ import { PasswordState, ProfileForm } from "@/types/creatorProfile";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { getProfileFields } from "@/utils/creatorProfilefields";
 
 type Props = {
   name?: string;
@@ -80,16 +81,11 @@ export default function CreatorProfile({
 
   const handleSave = () => {
     if (!dirty) return;
-
-    console.log("Saving:", {
-      ...form,
-      passwords: showPassword ? passwords : undefined,
-    });
-
     setSaved(form);
     setPasswords(emptyPasswords);
     setShowPassword(false);
   };
+  const fields = useMemo(() => getProfileFields(t), [t]);
 
   return (
     <Container>
@@ -101,7 +97,6 @@ export default function CreatorProfile({
           <SecondaryButton onClick={handleCancel}>
             <MonoText $use="Body_Medium">{t("common.cancel")}</MonoText>
           </SecondaryButton>
-
           <Button onClick={handleSave} disabled={!dirty}>
             <MonoText $use="Body_Medium">{t("common.save")}</MonoText>
           </Button>
@@ -115,7 +110,6 @@ export default function CreatorProfile({
           </Avatar>
           <NameBlock>
             <MonoText $use="Heading3">{name}</MonoText>
-
             <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
               {email}
             </MonoText>
@@ -123,20 +117,16 @@ export default function CreatorProfile({
         </Row>
 
         <Fields>
-          <InputField
-            label={t(CREATOR_PROFILE.firstName)}
-            value={form.firstName}
-            onChange={onChange("firstName")}
-            variant={INPUT_VARIANTS.PRIMARY_GRAY}
-          />
-
-          <InputField
-            label={t(CREATOR_PROFILE.lastName)}
-            value={form.lastName}
-            onChange={onChange("lastName")}
-            variant={INPUT_VARIANTS.PRIMARY_GRAY}
-            labelMarginTop="16px"
-          />
+          {fields.map((field, index) => (
+            <InputField
+              key={field.key}
+              label={field.label}
+              value={form[field.key as keyof ProfileForm]}
+              onChange={onChange(field.key as keyof ProfileForm)}
+              variant={INPUT_VARIANTS.PRIMARY_GRAY}
+              labelMarginTop={index ? "16px" : undefined}
+            />
+          ))}
 
           <Action>
             <InlineLabel>{t(CREATOR_PROFILE.passwordLabel)}</InlineLabel>

@@ -8,17 +8,17 @@ import { PaymentKeys } from "@/utils/creatorProfile";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { getPaymentFields } from "@/utils/creatorProfilefields";
 
 type PaymentProps = {
-  form: {
-    reg: string;
-    account: string;
-  };
+  form: Record<string, string>;
   onChange: (key: PaymentKeys) => (value: string | string[]) => void;
   t: (key: string) => string;
 };
 
 export default function PaymentSection({ form, onChange, t }: PaymentProps) {
+  const fields = getPaymentFields(t);
+
   return (
     <Card>
       <Title>
@@ -26,27 +26,23 @@ export default function PaymentSection({ form, onChange, t }: PaymentProps) {
           {t(CREATOR_PROFILE.paymentTitle)}
         </MonoText>
       </Title>
+
       <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
         {t(CREATOR_PROFILE.paymentText)}
       </MonoText>
 
       <Fields>
         <TwoColumnRow>
-          <InputField
-            label={t(CREATOR_PROFILE.regLabel)}
-            value={form.reg}
-            onChange={onChange("reg")}
-            labelFontStyle="Body_Regular"
-            variant={INPUT_VARIANTS.PRIMARY_GRAY}
-          />
-
-          <InputField
-            label={t(CREATOR_PROFILE.accountLabel)}
-            value={form.account}
-            onChange={onChange("account")}
-            labelFontStyle="Body_Regular"
-            variant={INPUT_VARIANTS.PRIMARY_GRAY}
-          />
+          {fields.map((field) => (
+            <InputField
+              key={field.key}
+              label={field.label}
+              value={form[field.key]}
+              onChange={onChange(field.key as PaymentKeys)}
+              labelFontStyle="Body_Regular"
+              variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            />
+          ))}
         </TwoColumnRow>
       </Fields>
     </Card>

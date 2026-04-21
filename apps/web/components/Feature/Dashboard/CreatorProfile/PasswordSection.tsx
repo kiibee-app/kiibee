@@ -3,10 +3,10 @@
 import React from "react";
 import InputField from "@/components/UI/InputFields";
 import { PasswordFields } from "./styles";
-import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import { useTranslation } from "react-i18next";
-import { Passwords } from "@/utils/creatorProfile";
 import { INPUT_VARIANTS } from "@/utils/Constants";
+import { Passwords } from "@/utils/creatorProfile";
+import { getPasswordFields } from "@/utils/creatorProfilefields";
 
 type Props = {
   passwords: Passwords;
@@ -18,34 +18,24 @@ export default function PasswordSection({
   onPasswordChange,
 }: Props) {
   const { t } = useTranslation();
-  const handleChange = (field: keyof Passwords) => (val: string) =>
-    onPasswordChange(field, val);
+
+  const fields = getPasswordFields(t);
 
   return (
     <PasswordFields>
-      <InputField
-        label={t(CREATOR_PROFILE.currentPassword)}
-        type="password"
-        value={passwords.current}
-        onChange={(v) => handleChange("current")(String(v))}
-        variant={INPUT_VARIANTS.PRIMARY_GRAY}
-      />
-      <InputField
-        label={t(CREATOR_PROFILE.newPassword)}
-        type="password"
-        value={passwords.next}
-        onChange={(v) => handleChange("next")(String(v))}
-        labelMarginTop="12px"
-        variant={INPUT_VARIANTS.PRIMARY_GRAY}
-      />
-      <InputField
-        label={t(CREATOR_PROFILE.confirmPassword)}
-        type="password"
-        value={passwords.confirm}
-        onChange={(v) => handleChange("confirm")(String(v))}
-        labelMarginTop="12px"
-        variant={INPUT_VARIANTS.PRIMARY_GRAY}
-      />
+      {fields.map((field, index) => (
+        <InputField
+          key={field.key}
+          label={field.label}
+          type="password"
+          value={passwords[field.key as keyof Passwords]}
+          onChange={(val) =>
+            onPasswordChange(field.key as keyof Passwords, String(val))
+          }
+          labelMarginTop={index !== 0 ? "12px" : undefined}
+          variant={INPUT_VARIANTS.PRIMARY_GRAY}
+        />
+      ))}
     </PasswordFields>
   );
 }
