@@ -21,7 +21,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "seed": "tsx src/database/seed/index.ts"
   },
   "dependencies": {
     "@fastify/cors": "^11.2.0",

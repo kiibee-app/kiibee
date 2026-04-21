@@ -101,7 +101,7 @@ export const VideoBox = styled.div`
   padding: 0.313rem 0.75rem;
   background-color: ${({ theme }) => theme.colors.neutral.GRAY_100};
   border-radius: ${({ theme }) => theme.radius.xl};
-  margin: 0.75rem 0 1.25rem 0;
+  margin-top: 0.75rem;
 `;
 
 export const VideoLabel = styled.span`
