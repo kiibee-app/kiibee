@@ -799,5 +799,13 @@
     "overview": "Overview",
     "noData": "No Data Found",
     "contentPerformance": "Content Performance"
+  },
+  "settings": {
+    "title": "Settings",
+    "tabs": {
+      "payout": "Payout",
+      "notifications": "Notifications",
+      "export": "Export"
+    }
   }
 }

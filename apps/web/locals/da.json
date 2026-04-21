@@ -799,5 +799,13 @@
     "overview": "Oversigt",
     "noData": "Ingen data fundet",
     "contentPerformance": "Indholdsydelse"
+  },
+  "settings": {
+    "title": "Indstillinger",
+    "tabs": {
+      "payout": "Udbetaling",
+      "notifications": "Notifikationer",
+      "export": "Eksport"
+    }
   }
 }

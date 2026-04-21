@@ -104,6 +104,15 @@ export const typography = {
     fontStyle: "normal",
     letterSpacing: "0px",
   },
+
+  Body_SemiBold: {
+    fontSize: fluid(16, 16),
+    fontFamily: FontFamily.Default,
+    fontWeight: 600,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
 } as const;
 
 export type TypographyOptions = typeof typography;
