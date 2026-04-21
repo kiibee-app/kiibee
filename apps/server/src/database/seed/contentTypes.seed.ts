@@ -30,8 +30,6 @@ export const seedContentTypes = async () => {
   ];
 
   await db.insert(contentTypes).values(types).onConflictDoNothing();
-
-  console.log('Content types seeded successfully');
 };
 
 seedContentTypes()
