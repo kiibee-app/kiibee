@@ -8,16 +8,14 @@ import {
   Card,
   Row,
   Avatar,
-  Name,
   Fields,
   Action,
   Button,
   SecondaryButton,
   HeaderRow,
-  MonoText,
   InlineLabel,
-  EmailText,
   HeaderActions,
+  NameBlock,
 } from "./styles";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import InputField from "@/components/UI/InputFields";
@@ -31,6 +29,8 @@ import {
 } from "@/utils/dummyData/profile.data";
 import { PasswordState, ProfileForm } from "@/types/creatorProfile";
 import GenericButton from "@/components/UI/GenericButton";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 type Props = {
   name?: string;
@@ -94,7 +94,9 @@ export default function CreatorProfile({
   return (
     <Container>
       <HeaderRow>
-        <Title>{t(CREATOR_PROFILE.title)}</Title>
+        <Title>
+          <MonoText $use="H4_SemiBold">{t(CREATOR_PROFILE.title)}</MonoText>
+        </Title>
         <HeaderActions>
           <SecondaryButton onClick={handleCancel}>
             <MonoText $use="Body_Medium">{t("common.cancel")}</MonoText>
@@ -111,11 +113,13 @@ export default function CreatorProfile({
           <Avatar>
             <MonoText $use="Heading2">{getInitial(email)}</MonoText>
           </Avatar>
+          <NameBlock>
+            <MonoText $use="Heading3">{name}</MonoText>
 
-          <div>
-            <Name>{name}</Name>
-            <EmailText $use="Body_Medium">{email}</EmailText>
-          </div>
+            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+              {email}
+            </MonoText>
+          </NameBlock>
         </Row>
 
         <Fields>

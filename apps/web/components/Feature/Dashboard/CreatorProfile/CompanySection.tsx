@@ -3,7 +3,7 @@
 import React from "react";
 import InputField from "@/components/UI/InputFields";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
-import { Card, Fields, SectionTitle, Optional, OptionalSmall } from "./styles";
+import { Card, Fields, Optional, OptionalSmall } from "./styles";
 import { CompanyKeys } from "@/utils/creatorProfile";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 
@@ -23,14 +23,14 @@ type CompanyProps = {
 export default function CompanySection({ form, onChange, t }: CompanyProps) {
   return (
     <Card>
-      <SectionTitle>
-        {t(CREATOR_PROFILE.companyName)}
-        <Optional>({t("common.optional")})</Optional>
-      </SectionTitle>
-
       <Fields>
         <InputField
-          label={t(CREATOR_PROFILE.companyName)}
+          label={
+            <>
+              {t(CREATOR_PROFILE.companyName)}
+              <Optional>({t("common.optional")})</Optional>
+            </>
+          }
           placeholder={t(CREATOR_PROFILE.companyPlaceholder)}
           value={form.company}
           onChange={onChange("company")}

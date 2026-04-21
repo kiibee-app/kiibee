@@ -20,9 +20,6 @@ export const HeaderActions = styled.div`
 
 export const Title = styled.h2`
   margin: 0 0 8px 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: ${(p) => p.theme.colors.primary.BLACK};
 `;
 
 export const Card = styled.section`
@@ -30,13 +27,6 @@ export const Card = styled.section`
   background: ${(p) => p.theme.colors.neutral.OFF_WHITE};
   border-radius: 12px;
   padding: 28px;
-`;
-
-export const SectionTitle = styled.h3`
-  margin: 0 0 8px 0;
-  font-size: 16px;
-  font-weight: 500;
-  color: ${(p) => p.theme.colors.primary.BLACK};
 `;
 
 export const Row = styled.div`
@@ -55,15 +45,7 @@ export const Avatar = styled.div`
   justify-content: center;
 `;
 
-export const Name = styled.h3`
-  margin: 0;
-  font-size: 32px;
-  font-weight: 600;
-  color: ${(p) => p.theme.colors.primary.BLACK};
-`;
-
 export const Fields = styled.div`
-  margin-top: 24px;
   max-width: 540px;
 `;
 
@@ -128,14 +110,6 @@ export const PasswordFields = styled.div`
   max-width: 420px;
 `;
 
-export { MonoText };
-
-export const PaymentText = styled(MonoText)`
-  font-size: 14px;
-  font-weight: 500;
-  color: ${(p) => p.theme.colors.neutral.GRAY_400};
-`;
-
 export const Optional = styled.span`
   margin-left: 8px;
   font-size: 13px;
@@ -156,7 +130,8 @@ export const InlineLabel = styled.span`
   line-height: 1;
 `;
 
-export const EmailText = styled(MonoText)`
-  font-weight: 500;
-  color: ${(p) => p.theme.colors.neutral.GRAY_400};
+export const NameBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 `;
