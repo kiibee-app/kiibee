@@ -17,6 +17,7 @@ import {
   CardWrapper,
   LinkRow,
   BottomLink,
+  PaymentCardImage,
 } from "./styles";
 import Image from "next/image";
 import logo from "../../../assets/images/kiibee-logo.svg";
@@ -37,7 +38,7 @@ const Footer = () => {
           <LogoRow>
             <Image
               src={logo.src ?? logo}
-              alt={t(NAV.logoAlt)} 
+              alt={t(NAV.logoAlt)}
               width={120}
               height={32}
             />
@@ -89,11 +90,11 @@ const Footer = () => {
             </BottomLink>
           </LinkRow>
           <CardWrapper>
-            <Image
-              src={card.src ?? card}
-              alt={t(NAV.logoAlt)} 
-              width={48}
-              height={32}
+            <PaymentCardImage
+              src={card}
+              alt={t(NAV.logoAlt)}
+              width={card.width}
+              height={card.height}
             />
           </CardWrapper>
         </BottomRight>
