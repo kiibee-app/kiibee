@@ -175,13 +175,6 @@ export default React.forwardRef<
       ? { value: value as string }
       : { defaultValue: defaultValue as string | number | readonly string[] };
 
-  const placeholderText = (() => {
-    if (Array.isArray(placeholder)) return undefined;
-    if (typeof placeholder === "string") return placeholder;
-    if (typeof label === "string") return label;
-    return undefined;
-  })();
-
   return (
     <Container width={width || ""} as={containerElement} role={multiRole}>
       <Label

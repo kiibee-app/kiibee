@@ -8,6 +8,7 @@ import Sidebar from "@/components/Layout/Sidebar";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
+import SettingsContent from "../Settings";
 
 export default function ClientDashboardCreators() {
   const [activePage, setActivePage] = useState<string>(
@@ -51,6 +52,7 @@ export default function ClientDashboardCreators() {
   const renderContent = () => {
     if (view === "profile") return <CreatorProfile />;
     if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
+    if (activePage === CREATORS_LABELS.SETTINGS) return <SettingsContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   };
 
