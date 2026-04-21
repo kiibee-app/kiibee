@@ -16,7 +16,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 
 export default function DiscoverContent() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <Section>
@@ -31,7 +31,7 @@ export default function DiscoverContent() {
 
       <GridContainer>
         {discoverContentData.map((item) => (
-          <DiscoverCard key={item.id} item={item} />
+          <DiscoverCard key={item.id} item={item} lng={i18n.language} />
         ))}
       </GridContainer>
 

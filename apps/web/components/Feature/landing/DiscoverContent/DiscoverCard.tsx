@@ -26,6 +26,7 @@ import {
 
 type Props = {
   item: DiscoverContentItem;
+  lng?: string;
 };
 
 function DiscoverCard({ item }: Props) {
@@ -99,4 +100,8 @@ function DiscoverCard({ item }: Props) {
   );
 }
 
-export default memo(DiscoverCard, (prev, next) => prev.item === next.item);
+export default memo(
+  DiscoverCard,
+  (prev: Readonly<Props>, next: Readonly<Props>) =>
+    prev.item === next.item && prev.lng === next.lng,
+);
