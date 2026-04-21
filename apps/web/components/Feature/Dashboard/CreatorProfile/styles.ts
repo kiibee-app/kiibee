@@ -12,6 +12,12 @@ export const HeaderRow = styled.div`
   gap: 16px;
 `;
 
+export const HeaderActions = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+`;
+
 export const Title = styled.h2`
   margin: 0 0 8px 0;
   font-size: 20px;
@@ -88,9 +94,10 @@ export const Input = styled.input`
 `;
 
 export const Action = styled.div`
-  margin-top: 20px;
+  margin-top: 25px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
 `;
 
@@ -101,12 +108,21 @@ export const Button = styled.button`
   color: ${(p) => p.theme.colors.primary.WHITE};
   border: none;
   cursor: pointer;
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `;
 
 export const SecondaryButton = styled(Button)`
   background: ${(p) => p.theme.colors.neutral.OFF_WHITE};
   color: ${(p) => p.theme.colors.primary.BLACK};
   border: 1px solid ${(p) => p.theme.colors.primary.GRAY};
+`;
+
+export const PasswordFields = styled.div`
+  margin-top: 12px;
+  max-width: 420px;
 `;
 
 export { MonoText };
@@ -125,9 +141,9 @@ export const Optional = styled.span`
 
 export const InlineLabel = styled.span`
   display: inline-block;
-  margin-right: 8px;
-  font-size: 13px;
-  color: ${(p) => p.theme.colors.neutral.GRAY_400};
+  padding-left: 4px;
+  font-size: 16px;
+  color: ${(p) => p.theme.colors.primary.BLACK};
   line-height: 1;
 `;
 

@@ -20,6 +20,8 @@ import {
   Optional,
   InlineLabel,
   EmailText,
+  HeaderActions,
+  PasswordFields,
 } from "./styles";
 import InputField from "@/components/UI/InputFields";
 
@@ -90,7 +92,6 @@ export default function CreatorProfile({
       ...form,
       passwords: showPassword ? passwords : undefined,
     });
-    // After successful save, update saved snapshot and clear password inputs
     setSaved({ ...form });
     setPasswords({ current: "", next: "", confirm: "" });
     setShowPassword(false);
@@ -100,16 +101,12 @@ export default function CreatorProfile({
     <Container>
       <HeaderRow>
         <Title>My account</Title>
-        <div style={{ display: "flex", gap: 12 }}>
+        <HeaderActions>
           <SecondaryButton onClick={handleCancel}>Cancel</SecondaryButton>
-          <Button
-            onClick={handleSave}
-            disabled={!dirty}
-            style={{ opacity: dirty ? 1 : 0.6 }}
-          >
+          <Button onClick={handleSave} disabled={!dirty}>
             Save
           </Button>
-        </div>
+        </HeaderActions>
       </HeaderRow>
 
       <Card>
@@ -146,7 +143,7 @@ export default function CreatorProfile({
           </Action>
 
           {showPassword && (
-            <div style={{ marginTop: 12, maxWidth: 420 }}>
+            <PasswordFields>
               <InputField
                 label="Current password"
                 type="password"
@@ -167,7 +164,7 @@ export default function CreatorProfile({
                 onChange={(v) => onPasswordChange("confirm")(String(v))}
                 labelMarginTop="12px"
               />
-            </div>
+            </PasswordFields>
           )}
         </Fields>
       </Card>
