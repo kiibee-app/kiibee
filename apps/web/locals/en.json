@@ -697,7 +697,9 @@
   },
   "common": {
     "share": "Share",
-    "optional": "optional"
+    "optional": "optional",
+    "save": "Save",
+    "cancel": "Cancel"
   },
   "creatorProfile": {
     "title": "My account",

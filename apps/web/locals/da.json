@@ -697,7 +697,9 @@
   },
   "common": {
     "share": "Del",
-    "optional": "valgfrit"
+    "optional": "valgfrit",
+    "save": "Save",
+    "cancel": "Cancel"
   },
   "creatorProfile": {
     "title": "Min konto",

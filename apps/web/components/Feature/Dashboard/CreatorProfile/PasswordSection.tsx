@@ -6,6 +6,7 @@ import { PasswordFields } from "./styles";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import { useTranslation } from "react-i18next";
 import { Passwords } from "@/utils/creatorProfile";
+import { INPUT_VARIANTS } from "@/utils/Constants";
 
 type Props = {
   passwords: Passwords;
@@ -27,6 +28,7 @@ export default function PasswordSection({
         type="password"
         value={passwords.current}
         onChange={(v) => handleChange("current")(String(v))}
+        variant={INPUT_VARIANTS.PRIMARY_GRAY}
       />
       <InputField
         label={t(CREATOR_PROFILE.newPassword)}
@@ -34,6 +36,7 @@ export default function PasswordSection({
         value={passwords.next}
         onChange={(v) => handleChange("next")(String(v))}
         labelMarginTop="12px"
+        variant={INPUT_VARIANTS.PRIMARY_GRAY}
       />
       <InputField
         label={t(CREATOR_PROFILE.confirmPassword)}
@@ -41,6 +44,7 @@ export default function PasswordSection({
         value={passwords.confirm}
         onChange={(v) => handleChange("confirm")(String(v))}
         labelMarginTop="12px"
+        variant={INPUT_VARIANTS.PRIMARY_GRAY}
       />
     </PasswordFields>
   );

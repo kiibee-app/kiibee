@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Container,
@@ -24,7 +24,13 @@ import InputField from "@/components/UI/InputFields";
 import PasswordSection from "./PasswordSection";
 import CompanySection from "./CompanySection";
 import PaymentSection from "./PaymentSection";
-import { INPUT_VARIANTS } from "@/utils/Constants";
+import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
+import {
+  createInitialProfileData,
+  emptyPasswords,
+} from "@/utils/dummyData/profile.data";
+import { PasswordState, ProfileForm } from "@/types/creatorProfile";
+import GenericButton from "@/components/UI/GenericButton";
 
 type Props = {
   name?: string;
@@ -38,62 +44,50 @@ export default function CreatorProfile({
   name = "Lena Petersen",
   email = "lena@gmail.com",
 }: Props) {
-  const initial = useMemo(
-    () => ({
-      firstName: "Lena",
-      lastName: "Jakobssen",
-      company: "",
-      phone: "+4567321145",
-      cvr: "45672345",
-      address: "Jagtvej 17",
-      city: "Copenhagen",
-      postal: "2400",
-      reg: "3120",
-      account: "5555",
-      email,
-    }),
-    [email],
-  );
-
-  const [form, setForm] = useState(() => ({ ...initial }));
-  const [showPassword, setShowPassword] = useState(false);
-  const [passwords, setPasswords] = useState({
-    current: "",
-    next: "",
-    confirm: "",
-  });
-
   const { t } = useTranslation();
 
-  const [saved, setSaved] = useState(() => ({ ...initial }));
+  const initial = useMemo(() => createInitialProfileData(email), [email]);
+  const [form, setForm] = useState<ProfileForm>(initial);
+  const [saved, setSaved] = useState<ProfileForm>(initial);
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwords, setPasswords] = useState<PasswordState>(emptyPasswords);
 
   const dirty = useMemo(() => {
-    return (
-      JSON.stringify(form) !== JSON.stringify(saved) ||
-      passwords.current !== "" ||
-      passwords.next !== "" ||
-      passwords.confirm !== ""
-    );
-  }, [form, passwords, saved]);
+    const formChanged = JSON.stringify(form) !== JSON.stringify(saved);
+    const passwordChanged = Object.values(passwords).some(Boolean);
+    return formChanged || passwordChanged;
+  }, [form, saved, passwords]);
 
-  const onChange = (key: keyof typeof form) => (value: string | string[]) => {
-    setForm((s) => ({ ...s, [key]: String(value) }));
-  };
+  const onChange = useCallback(
+    (key: keyof ProfileForm) => (value: string | string[]) => {
+      setForm((prev) => ({ ...prev, [key]: String(value) }));
+    },
+    [],
+  );
+
+  const onPasswordChange = useCallback(
+    (field: keyof PasswordState, value?: string) => {
+      setPasswords((prev) => ({ ...prev, [field]: value ?? "" }));
+    },
+    [],
+  );
 
   const handleCancel = () => {
-    setForm({ ...saved });
-    setPasswords({ current: "", next: "", confirm: "" });
+    setForm(saved);
+    setPasswords(emptyPasswords);
     setShowPassword(false);
   };
 
   const handleSave = () => {
     if (!dirty) return;
-    console.log("Saving", {
+
+    console.log("Saving:", {
       ...form,
       passwords: showPassword ? passwords : undefined,
     });
-    setSaved({ ...form });
-    setPasswords({ current: "", next: "", confirm: "" });
+
+    setSaved(form);
+    setPasswords(emptyPasswords);
     setShowPassword(false);
   };
 
@@ -102,9 +96,12 @@ export default function CreatorProfile({
       <HeaderRow>
         <Title>{t(CREATOR_PROFILE.title)}</Title>
         <HeaderActions>
-          <SecondaryButton onClick={handleCancel}>Cancel</SecondaryButton>
+          <SecondaryButton onClick={handleCancel}>
+            <MonoText $use="Body_Medium">{t("common.cancel")}</MonoText>
+          </SecondaryButton>
+
           <Button onClick={handleSave} disabled={!dirty}>
-            Save
+            <MonoText $use="Body_Medium">{t("common.save")}</MonoText>
           </Button>
         </HeaderActions>
       </HeaderRow>
@@ -139,17 +136,18 @@ export default function CreatorProfile({
 
           <Action>
             <InlineLabel>{t(CREATOR_PROFILE.passwordLabel)}</InlineLabel>
-            <Button onClick={() => setShowPassword((s) => !s)}>
+            <GenericButton
+              variant={VARIANT.PRIMARY}
+              onClick={() => setShowPassword((s) => !s)}
+            >
               {t(CREATOR_PROFILE.changePassword)}
-            </Button>
+            </GenericButton>
           </Action>
 
           {showPassword && (
             <PasswordSection
               passwords={passwords}
-              onPasswordChange={(field, val) =>
-                setPasswords((p) => ({ ...p, [field]: val ?? "" }))
-              }
+              onPasswordChange={onPasswordChange}
             />
           )}
         </Fields>

@@ -104,13 +104,16 @@ export const Action = styled.div`
 export const Button = styled.button`
   padding: 10px 22px;
   border-radius: 10px;
-  background: ${(p) => p.theme.colors.primary.BLACK};
-  color: ${(p) => p.theme.colors.primary.WHITE};
+  background: ${(p) => p.theme.colors.neutral.GRAY};
+  color: ${(p) => p.theme.colors.neutral.OFF_WHITE};
   border: none;
   cursor: pointer;
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+  ${MonoText} {
+    color: inherit;
   }
 `;
 
