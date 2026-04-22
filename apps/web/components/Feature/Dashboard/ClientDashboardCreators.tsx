@@ -9,6 +9,7 @@ import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "../Settings";
+import { VIEW } from "@/utils/Constants";
 
 export default function ClientDashboardCreators() {
   const [activePage, setActivePage] = useState<string>(
@@ -29,7 +30,7 @@ export default function ClientDashboardCreators() {
   };
 
   const searchParams = useSearchParams();
-  const view = searchParams?.get("view");
+  const view = searchParams?.get(VIEW);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -39,8 +40,8 @@ export default function ClientDashboardCreators() {
       setActivePage(label);
 
       const params = new URLSearchParams(searchParams?.toString() ?? "");
-      if (params.has("view")) {
-        params.delete("view");
+      if (params.has(VIEW)) {
+        params.delete(VIEW);
         const qs = params.toString();
         const href = qs ? `${pathname}?${qs}` : pathname;
         router.replace(href);
@@ -50,7 +51,7 @@ export default function ClientDashboardCreators() {
   );
 
   const renderContent = () => {
-    if (view === "profile") return <CreatorProfile />;
+    if (view === CREATORS_LABELS.PROFILE) return <CreatorProfile />;
     if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
     if (activePage === CREATORS_LABELS.SETTINGS) return <SettingsContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;

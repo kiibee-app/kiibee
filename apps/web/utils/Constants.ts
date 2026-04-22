@@ -51,3 +51,5 @@ export const INPUT_VARIANTS = {
   PRIMARY_GRAY: "primaryGray",
 } as const;
 export type InputVariant = (typeof INPUT_VARIANTS)[keyof typeof INPUT_VARIANTS];
+
+export const VIEW = "view";
