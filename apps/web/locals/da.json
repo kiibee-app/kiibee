@@ -797,7 +797,15 @@
   "dashboard": {
     "overview": "Oversigt",
     "noData": "Ingen data fundet",
-    "contentPerformance": "Indholdsydelse"
+    "contentPerformance": "Indholdsydelse",
+    "contentName": "Indholdsnavn",
+    "pageVisits": "Sidebesog",
+    "clicks": "Klik",
+    "views": "Visninger",
+    "paginationSummary": "Viser {{start}}-{{end}} af {{total}}",
+    "previous": "Forrige",
+    "next": "Naeste",
+    "paginationPage": "Ga til side {{page}}"
   },
   "settings": {
     "title": "Indstillinger",

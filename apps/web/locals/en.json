@@ -797,7 +797,15 @@
   "dashboard": {
     "overview": "Overview",
     "noData": "No Data Found",
-    "contentPerformance": "Content Performance"
+    "contentPerformance": "Content Performance",
+    "contentName": "Content name",
+    "pageVisits": "Page visits",
+    "clicks": "Clicks",
+    "views": "Views",
+    "paginationSummary": "Showing {{start}}-{{end}} of {{total}}",
+    "previous": "Previous",
+    "next": "Next",
+    "paginationPage": "Go to page {{page}}"
   },
   "settings": {
     "title": "Settings",
