@@ -1,7 +1,7 @@
-import type { StaticImageData } from "next/image";
+import { ImageSource } from "@/utils/Constants";
 
 export type CtaSectionProps = {
-  bgImage?: StaticImageData;
+  bgImage?: ImageSource;
   title: string;
   subtitle?: string;
   subtitleLines?: string[];

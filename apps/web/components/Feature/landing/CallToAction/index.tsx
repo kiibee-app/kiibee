@@ -22,7 +22,8 @@ import {
 import { desktopCards, mobileCards } from "@/utils/cards";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import { BUTTON } from "@/utils/Constants";
+import { BUTTON, resolveImageUrl } from "@/utils/Constants";
+import Image from "next/image";
 
 type CTAImageCard = {
   src: string;
@@ -69,9 +70,10 @@ export default function CallToAction() {
       <Content>
         <Brand>
           <BrandLogo>
-            <img
-              src={kiibeeLogo.src ?? kiibeeLogo}
+            <Image
+              src={resolveImageUrl(kiibeeLogo)}
               alt={t("callToAction.logoAlt")}
+              priority
             />
           </BrandLogo>
         </Brand>

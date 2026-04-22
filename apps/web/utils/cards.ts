@@ -2,15 +2,16 @@ import imageOne from "../assets/images/call_to_action/creator-1.webp";
 import imageTwo from "../assets/images/call_to_action/creator-2.webp";
 import imageThree from "../assets/images/call_to_action/creator-3.webp";
 import imageFour from "../assets/images/call_to_action/creator-4.webp";
+import { ImageSource } from "./Constants";
 
 const orderedImages = {
-  1: imageFour.src,
-  2: imageThree.src,
-  3: imageTwo.src,
-  4: imageOne.src,
-  5: imageFour.src,
-  6: imageThree.src,
-} as const;
+  1: imageFour,
+  2: imageThree,
+  3: imageTwo,
+  4: imageOne,
+  5: imageFour,
+  6: imageThree,
+} as const satisfies Record<number, ImageSource>;
 
 export const desktopCards = [
   { src: orderedImages[1], left: -6.6, top: 0.8, width: 15.4, height: 31.2 },

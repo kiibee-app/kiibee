@@ -5,10 +5,10 @@ export const VARIANT = {
   PRIMARY_LITE: "primary-lite",
   SECONDARY: "secondary",
 } as const;
-
+export type ImageSource = StaticImageData | string;
 export type Variant = (typeof VARIANT)[keyof typeof VARIANT];
 
-export function resolveImageUrl(image: string | StaticImageData) {
+export function resolveImageUrl(image: ImageSource) {
   return typeof image === "string" ? image : image.src;
 }
 
