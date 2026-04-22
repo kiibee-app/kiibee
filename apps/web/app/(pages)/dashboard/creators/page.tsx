@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "@/components/Feature/Settings";
+import UsersContent from "@/components/Feature/Users/UsersContent";
 
 export default function DashboardCreatorsPage() {
   const [activePage, setActivePage] = useState<string>(
@@ -28,6 +29,7 @@ export default function DashboardCreatorsPage() {
 
   const renderContent = () => {
     if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
+    if (activePage === CREATORS_LABELS.USERS) return <UsersContent />;
     if (activePage === CREATORS_LABELS.SETTINGS) return <SettingsContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   };
