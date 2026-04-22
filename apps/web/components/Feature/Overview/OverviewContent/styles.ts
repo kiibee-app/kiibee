@@ -28,6 +28,7 @@ export const RangeGroup = styled.div`
 `;
 
 export const RangeButton = styled.button<{ $active?: boolean }>`
+  ${({ theme }) => theme.typography.Body_Medium};
   padding: 8px 14px;
   border-radius: 999px;
   background: ${(p) =>
@@ -38,7 +39,6 @@ export const RangeButton = styled.button<{ $active?: boolean }>`
     p.$active ? p.theme.colors.primary.WHITE : p.theme.colors.primary.BLACK};
   border: 1px solid
     ${(p) => (p.$active ? "transparent" : p.theme.colors.primary.GRAY)};
-  font-size: 13px;
   cursor: pointer;
 `;
 
@@ -63,7 +63,7 @@ export const StatCard = styled.div`
 `;
 
 export const StatLabel = styled.div`
-  font-size: 13px;
+  ${({ theme }) => theme.typography.Body_Medium};
   color: ${(p) => p.theme.colors.neutral.GRAY_400};
   display: flex;
   align-items: center;
@@ -71,7 +71,7 @@ export const StatLabel = styled.div`
 `;
 
 export const StatValue = styled.div`
-  font-size: 28px;
+  ${({ theme }) => theme.typography.Heading3};
   font-weight: 800;
   color: ${(p) => p.theme.colors.primary.BLACK};
   margin-top: 12px;
@@ -93,7 +93,7 @@ export const StatRow = styled.div`
 
 export const Title = styled.h2`
   margin: 0 0 8px 0;
-  font-size: 20px;
+  ${({ theme }) => theme.typography.H5_Medium};
   font-weight: 700;
   color: ${(p) => p.theme.colors.primary.BLACK};
 `;

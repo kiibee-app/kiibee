@@ -32,7 +32,6 @@ export const Label = styled(MonoText).attrs<{
   ${({ theme }) => theme.typography.Body_Regular};
   ${media.mobile} {
     margin-bottom: ${({ theme }) => theme.spacing[4]};
-    font-size: 14px;
   }
 `;
 
@@ -105,7 +104,6 @@ export const StyledInput = styled.input<{
   }
 
   ${media.mobile} {
-    font-size: 16px;
   }
 
   &[type="number"] {
@@ -173,7 +171,6 @@ export const StyledTextArea = styled.textarea<{
 
   ${media.mobile} {
     padding: ${({ theme }) => theme.spacing[4]};
-    font-size: 16px;
   }
 `;
 

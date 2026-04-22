@@ -196,17 +196,18 @@ export const BrandLogo = styled.span`
 `;
 
 export const Heading = styled.h1`
+  ${({ theme }) => theme.typography.Heading1};
   margin: 0 0 30px;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   text-align: center;
 
   ${media.tablet} {
-    font-size: 32px;
     margin-bottom: 22px;
   }
 `;
 
 export const Subtitle = styled.p`
+  ${({ theme }) => theme.typography.H4_Medium};
   margin: 0 0 50px;
   max-width: 760px;
   color: ${({ theme }) => theme.colors.primary.WHITE};
@@ -214,7 +215,6 @@ export const Subtitle = styled.p`
 
   ${media.tablet} {
     max-width: 100%;
-    font-size: 0.95rem;
     margin-bottom: 32px;
   }
 `;

@@ -47,11 +47,11 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h2`
+  ${({ theme }) => theme.typography.Heading2};
   margin: 0;
 
   ${media.tablet} {
     text-align: center;
-    font-size: 28px;
   }
 `;
 
