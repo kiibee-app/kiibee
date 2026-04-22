@@ -10,6 +10,7 @@ import logo from "@/assets/images/logo.png";
 import contentImage from "@/assets/images/single-tutorial/Content image.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
+import CollectionItems from "./CollectionItems";
 import {
   BackButton,
   BrandLogo,
@@ -47,9 +48,15 @@ import {
 
 type Props = {
   tutorial: TutorialVideo;
+  relatedVideos?: TutorialVideo[];
+  collectionId?: string;
 };
 
-export default function SingleTutorial({ tutorial }: Props) {
+export default function SingleTutorial({
+  tutorial,
+  relatedVideos = [],
+  collectionId,
+}: Props) {
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -158,6 +165,8 @@ export default function SingleTutorial({ tutorial }: Props) {
           </MetaSection>
         </ContentShell>
       </Card>
+
+      <CollectionItems videos={relatedVideos} collectionId={collectionId} />
     </Wrapper>
   );
 }

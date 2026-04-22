@@ -712,6 +712,7 @@
     "playTrailer": "Afspil trailer",
     "seeContent": "Se indhold",
     "notFound": "Tutorial blev ikke fundet",
+    "otherItemsInCollection": "Andre elementer i denne samling",
     "tags": {
       "guide": "Brugerguide",
       "tutorials": "Tutorials"

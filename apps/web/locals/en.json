@@ -712,6 +712,7 @@
     "playTrailer": "Play trailer",
     "seeContent": "See content",
     "notFound": "Tutorial not found",
+    "otherItemsInCollection": "Other items in this collection",
     "tags": {
       "guide": "User guide",
       "tutorials": "Tutorials"
