@@ -34,7 +34,6 @@ export const CreateButton = styled.button`
   color: ${({ theme }) => theme.colors.primary.WHITE};
   padding: 14px 18px;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 `;
 
 export const PlusMark = styled.span`
