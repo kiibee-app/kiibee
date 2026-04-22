@@ -1,5 +1,6 @@
 "use client";
 
+import { memo, useMemo } from "react";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { ActionRow, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
@@ -30,19 +31,32 @@ const formatIconMap: Record<FormatType, IconComponent> = {
   web: WebIcon,
 };
 
-export default function TutorialCard({ tutorial }: TutorialCardProps) {
-  const imageUrl = resolveImageUrl(tutorial.image);
+function TutorialCard({ tutorial }: TutorialCardProps) {
   const { t } = useTranslation();
-  const formatType: FormatType = tutorial.formatType ?? "video";
-  const FormatIcon = formatIconMap[formatType];
-  const singleTutorialHref = `/single-tutorial?id=${tutorial.id}`;
-  const defaultButton: TutorialButton = {
-    label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
-    variant: VARIANT.SECONDARY,
-    href: singleTutorialHref,
-  };
 
-  const buttons = tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
+  const imageUrl = useMemo(
+    () => resolveImageUrl(tutorial.image),
+    [tutorial.image],
+  );
+
+  const FormatIcon = useMemo(() => {
+    const formatType: FormatType = tutorial.formatType ?? "video";
+    return formatIconMap[formatType];
+  }, [tutorial.formatType]);
+
+  const singleTutorialHref = useMemo(
+    () => `/single-tutorial?id=${tutorial.id}`,
+    [tutorial.id],
+  );
+
+  const buttons = useMemo(() => {
+    const defaultButton: TutorialButton = {
+      label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
+      variant: VARIANT.SECONDARY,
+      href: singleTutorialHref,
+    };
+    return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
+  }, [tutorial.buttons, t, singleTutorialHref]);
 
   const resolveButtonHref = (href?: string) => {
     if (!href) return singleTutorialHref;
@@ -86,3 +100,5 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
     </GenericCard>
   );
 }
+
+export default memo(TutorialCard);
