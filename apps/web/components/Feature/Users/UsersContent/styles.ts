@@ -2,13 +2,19 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   padding: 8px 28px;
+
+  ${({ theme }) => theme.media.tablet} {
+    padding: 8px 20px;
+  }
+
+  ${({ theme }) => theme.media.mobile} {
+    padding: 8px 16px;
+  }
 `;
 
 export const Title = styled.h2`
   margin: 0 0 8px 0;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.2;
+  ${({ theme }) => theme.typography.H4_SemiBold};
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
@@ -26,6 +32,7 @@ export const HeaderRow = styled.div`
 
   ${({ theme }) => theme.media.mobile} {
     flex-wrap: wrap;
+    gap: 10px;
   }
 `;
 
@@ -53,18 +60,13 @@ export const TabButton = styled.button<{ $active?: boolean }>`
       $active ? theme.colors.primary.BLACK : "transparent"};
   background: transparent;
   cursor: pointer;
-  font-size: 15px;
-  font-weight: ${({ $active }) => ($active ? 600 : 400)};
-  line-height: 1.2;
+  ${({ theme, $active }) =>
+    $active ? theme.typography.Body_SemiBold : theme.typography.Body_Regular};
   color: ${({ $active, theme }) =>
     $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_400};
   transition:
     color 0.2s ease,
     border-color 0.2s ease;
-
-  ${({ theme }) => theme.media.tablet} {
-    font-size: 14px;
-  }
 `;
 
 export const SearchArea = styled.div<{ $open: boolean }>`
@@ -110,8 +112,7 @@ export const SearchInput = styled.input<{ $open: boolean }>`
   outline: none;
   margin-left: ${({ $open }) => ($open ? "8px" : "0")};
   padding: 0;
-  font-size: 14px;
-  line-height: 1.2;
+  ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
   width: ${({ $open }) => ($open ? "100%" : "0")};
   opacity: ${({ $open }) => ($open ? 1 : 0)};
@@ -119,10 +120,6 @@ export const SearchInput = styled.input<{ $open: boolean }>`
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.neutral.GRAY_400};
-  }
-
-  ${({ theme }) => theme.media.tablet} {
-    font-size: 13px;
   }
 `;
 
@@ -141,14 +138,12 @@ export const ContentCard = styled.div`
 
 export const ContentTitle = styled.h3`
   margin: 0;
-  font-size: 16px;
-  font-weight: 600;
+  ${({ theme }) => theme.typography.Body_SemiBold};
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const ContentDescription = styled.p`
   margin: 10px 0 0 0;
-  font-size: 14px;
-  line-height: 1.5;
+  ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
 `;
