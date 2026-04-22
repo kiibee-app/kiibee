@@ -1,6 +1,5 @@
 "use client";
 
-import type { PlanCardProps } from "@/types/planCard";
 import {
   Card,
   Description,
@@ -14,11 +13,19 @@ import {
   TickIcon,
 } from "./styles";
 
+export interface PlanCardProps {
+  title: string;
+  price: string;
+  descriptions: string[];
+  features: string[];
+  cta: string;
+  highlight?: boolean;
+}
+
 export default function PlanCard({
   title,
   price,
-  desc1,
-  desc2,
+  descriptions,
   features,
   cta,
   highlight = false,
@@ -29,12 +36,13 @@ export default function PlanCard({
       <Divider />
       <PlanPrice>{price}</PlanPrice>
 
-      <Description>{desc1}</Description>
-      <Description>{desc2}</Description>
+      {descriptions.map((desc, i) => (
+        <Description key={i}>{desc}</Description>
+      ))}
 
       <FeatureList>
-        {features.map((feature, index) => (
-          <FeatureItem key={`${title}-${index}`}>
+        {features.map((feature) => (
+          <FeatureItem key={feature}>
             <TickIcon aria-hidden="true" />
             <FeatureText>{feature}</FeatureText>
           </FeatureItem>
