@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { ComponentType } from "react";
 import type { FormatType, TutorialButton, TutorialVideo } from "@/utils/types";
+import { FORMAT_TYPE } from "@/utils/types";
 import { EpubIcon, PdfIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
@@ -40,7 +41,7 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
   );
 
   const FormatIcon = useMemo(() => {
-    const formatType: FormatType = tutorial.formatType ?? "video";
+    const formatType: FormatType = tutorial.formatType ?? FORMAT_TYPE.VIDEO;
     return formatIconMap[formatType];
   }, [tutorial.formatType]);
 
