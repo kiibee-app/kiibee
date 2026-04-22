@@ -16,12 +16,16 @@ import {
   StatRow,
 } from "./styles";
 import OVERVIEW_STATS, {
+  OVERVIEW_ACTIVITY_DATA,
   OVERVIEW_RANGES,
+  type OverviewRange,
 } from "@/utils/dummyData/overviewData";
+import OverviewActivityChart from "./OverviewActivityChart";
 
 export default function OverviewContent() {
   const { t } = useTranslation();
-  const [range, setRange] = useState<string>("Day");
+  const [range, setRange] = useState<OverviewRange>("Day");
+  const activityData = OVERVIEW_ACTIVITY_DATA[range];
 
   return (
     <Wrapper>
@@ -52,6 +56,8 @@ export default function OverviewContent() {
           </StatCard>
         ))}
       </CardsRow>
+
+      <OverviewActivityChart data={activityData} />
     </Wrapper>
   );
 }
