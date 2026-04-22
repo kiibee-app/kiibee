@@ -59,13 +59,6 @@ export const TwoColumnRow = styled.div`
   }
 `;
 
-export const Label = styled.label`
-  display: block;
-  margin-bottom: 8px;
-  color: ${(p) => p.theme.colors.neutral.GRAY_400};
-  font-size: 13px;
-`;
-
 export const Input = styled.input`
   width: 100%;
   padding: 12px;
