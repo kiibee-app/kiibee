@@ -806,5 +806,18 @@
       "notifications": "Notifications",
       "export": "Export"
     }
+  },
+  "contents": {
+    "title": "Contents",
+    "actions": {
+      "createCollection": "Create collection",
+      "search": "Search contents"
+    },
+    "tabs": {
+      "collections": "Collections",
+      "appearance": "Appearance",
+      "settings": "Settings",
+      "coupons": "Coupons"
+    }
   }
 }

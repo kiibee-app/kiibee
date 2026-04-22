@@ -7,6 +7,7 @@ import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "@/components/Feature/Settings";
+import CreatorsContents from "@/components/Feature/Contents/page";
 
 export default function DashboardCreatorsPage() {
   const [activePage, setActivePage] = useState<string>(
@@ -28,6 +29,7 @@ export default function DashboardCreatorsPage() {
 
   const renderContent = () => {
     if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
+    if (activePage === CREATORS_LABELS.CONTENTS) return <CreatorsContents />;
     if (activePage === CREATORS_LABELS.SETTINGS) return <SettingsContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   };
