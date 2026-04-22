@@ -3,6 +3,7 @@ import { eq } from 'drizzle-orm/sql/expressions/conditions';
 import { asc } from 'drizzle-orm/sql/expressions/select';
 import { db } from 'src/database/db';
 import { contentTypes } from 'src/database/schema/content/contentTypes.schema';
+import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const getContentTypesService = async () => {
@@ -22,7 +23,7 @@ export const getContentTypesService = async () => {
       HttpStatus.OK,
     );
   } catch (error) {
-    console.error('Error fetching content types:', error);
+    logger.error('Error fetching content types:', error);
     return fail(
       'Failed to fetch content types',
       HttpStatus.INTERNAL_SERVER_ERROR,

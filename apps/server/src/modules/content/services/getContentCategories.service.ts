@@ -2,6 +2,7 @@ import { HttpStatus } from '@nestjs/common';
 import { asc, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { contentCategories } from 'src/database/schema/content/contentCategories.schema';
+import { logger } from 'src/logger/logger';
 import { success, fail } from 'src/utils/sendResponse';
 
 export const getContentCategoriesService = async () => {
@@ -21,7 +22,7 @@ export const getContentCategoriesService = async () => {
       HttpStatus.OK,
     );
   } catch (error) {
-    console.error('Error fetching content categories:', error);
+    logger.error('Error fetching content categories:', error);
     return fail(
       'Failed to fetch content categories',
       HttpStatus.INTERNAL_SERVER_ERROR,

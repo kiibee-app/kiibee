@@ -6,6 +6,7 @@ import { userContentTypes } from 'src/database/schema/users/userContentTypes.she
 import { success, fail } from 'src/utils/sendResponse';
 import { randomUUID } from 'crypto';
 import { users } from 'src/database/schema/users/users.schema';
+import { logger } from 'src/logger/logger';
 
 type AssignUserCategoriesPayload = {
   userId: string;
@@ -97,7 +98,7 @@ export const assignUserCategoriesService = async (
       HttpStatus.OK,
     );
   } catch (error) {
-    console.error('Error assigning user content preferences:', error);
+    logger.error('Error assigning user content preferences:', error);
     return fail(
       'Failed to assign user content preferences',
       HttpStatus.INTERNAL_SERVER_ERROR,
