@@ -25,27 +25,20 @@ import PaymentSection from "./PaymentSection";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
 import {
   createInitialProfileData,
+  creatorProfileData,
   emptyPasswords,
 } from "@/utils/dummyData/profile.data";
-import { PasswordState, ProfileForm } from "@/types/creatorProfile";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { getProfileFields } from "@/utils/creatorProfilefields";
+import { PasswordState, ProfileForm } from "@/utils/creatorProfile";
 
-type Props = {
-  name?: string;
-  email?: string;
-};
-
-const getInitial = (email = "") =>
-  email ? email.charAt(0).toUpperCase() : "?";
-
-export default function CreatorProfile({
-  name = "Lena Petersen",
-  email = "lena@gmail.com",
-}: Props) {
+export default function CreatorProfile() {
   const { t } = useTranslation();
+  const { name, email } = creatorProfileData;
+  const getInitial = (email = "") =>
+    email ? email.charAt(0).toUpperCase() : "?";
 
   const initial = useMemo(() => createInitialProfileData(email), [email]);
   const [form, setForm] = useState<ProfileForm>(initial);

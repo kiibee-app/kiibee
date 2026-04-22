@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import { Passwords } from "@/utils/creatorProfile";
 import { getPasswordFields } from "@/utils/creatorProfilefields";
+import { INPUT_TYPE } from "@/utils/ui";
 
 type Props = {
   passwords: Passwords;
@@ -27,7 +28,7 @@ export default function PasswordSection({
         <InputField
           key={field.key}
           label={field.label}
-          type="password"
+          type={INPUT_TYPE.PASSWORD}
           value={passwords[field.key as keyof Passwords]}
           onChange={(val) =>
             onPasswordChange(field.key as keyof Passwords, String(val))

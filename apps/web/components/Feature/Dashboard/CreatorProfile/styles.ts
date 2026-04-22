@@ -71,7 +71,7 @@ export const Input = styled.input`
   padding: 12px;
   border-radius: 10px;
   border: none;
-  background: ${(p) => p.theme.colors.neutral.OFF_WHITE || "#eee"};
+  background: ${(p) => p.theme.colors.neutral.OFF_WHITE};
   box-shadow: inset 0 0 0 1px ${(p) => p.theme.colors.primary.GRAY};
 `;
 
@@ -110,24 +110,26 @@ export const PasswordFields = styled.div`
   max-width: 420px;
 `;
 
-export const Optional = styled.span`
+export const Optional = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
   margin-left: 8px;
-  font-size: 13px;
   color: ${(p) => p.theme.colors.neutral.GRAY_400};
 `;
 
-export const OptionalSmall = styled.span`
+export const OptionalSmall = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
   margin-left: 8px;
-  font-size: 13px;
   color: ${(p) => p.theme.colors.neutral.GRAY_400};
 `;
 
-export const InlineLabel = styled.span`
+export const InlineLabel = styled(MonoText).attrs({
+  $use: "Body_SemiBold",
+})`
   display: inline-block;
   padding-left: 4px;
-  font-size: 16px;
   color: ${(p) => p.theme.colors.primary.BLACK};
-  line-height: 1;
 `;
 
 export const NameBlock = styled.div`

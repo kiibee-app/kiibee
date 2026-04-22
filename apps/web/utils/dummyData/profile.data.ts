@@ -17,3 +17,8 @@ export const emptyPasswords = {
   next: "",
   confirm: "",
 };
+
+export const creatorProfileData = {
+  name: "Lena Petersen",
+  email: "lena@gmail.com",
+};
