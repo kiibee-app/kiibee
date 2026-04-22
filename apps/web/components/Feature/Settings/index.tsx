@@ -6,6 +6,7 @@ import { TabButton, Tabs, Wrapper, SearchWrapper } from "./styles";
 import { TAB_KEYS, TabKey, TABS } from "@/utils/settingsTabs";
 import SearchBar from "@/components/UI/SearchBar";
 import { useTranslation } from "react-i18next";
+import NotificationContent from "./Notification";
 
 export default function SettingsContent() {
   const { t } = useTranslation();
@@ -25,9 +26,7 @@ export default function SettingsContent() {
 
   return (
     <Wrapper>
-      <MonoText $use="H4_SemiBold">
-        {t("settings.title")}
-      </MonoText>
+      <MonoText $use="H4_SemiBold">{t("settings.title")}</MonoText>
 
       <Tabs>
         {TABS.map((tab) => {
@@ -60,6 +59,7 @@ export default function SettingsContent() {
           );
         })}
       </Tabs>
+      {activeTab === TAB_KEYS.notifications && <NotificationContent />}
     </Wrapper>
   );
 }

@@ -805,6 +805,19 @@
       "payout": "Payout",
       "notifications": "Notifications",
       "export": "Export"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Here you can set how often you want to receive email updates from your account.",
+      "type": "Type",
+      "typeDesc": "Choose what kind of updates you want to receive",
+      "overview": "Overview",
+      "frequency": "How often will you receive updates?",
+      "frequencyDesc": "Select how frequently you want to get email updates",
+      "monthly": "Monthly",
+      "recipient": "Recipient",
+      "recipientDesc": "Choose where the notifications will be sent",
+      "accountEmail": "Account email"
     }
   }
 }
