@@ -31,6 +31,7 @@ export default function CustomerSection() {
             sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 50vw"
             loading="eager"
             style={{ objectFit: "cover" }}
+            priority
           />
         </ImgWrap>
 

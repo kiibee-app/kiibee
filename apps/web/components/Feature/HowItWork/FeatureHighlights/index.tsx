@@ -81,6 +81,7 @@ export default function FeatureHighlights() {
                   sizes="(max-width: 767px) 100vw, 60vw"
                   style={{ objectFit: "cover" }}
                   loading="eager"
+                  priority
                 />
               </MockImageWrap>
 
