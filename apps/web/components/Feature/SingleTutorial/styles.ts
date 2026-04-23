@@ -166,16 +166,9 @@ export const HeadingBlock = styled.div`
 `;
 
 export const MainTitle = styled.h1`
+  ${({ theme }) => theme.typography.Heading2};
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  ${({ theme }) => theme.typography.Heading2}
-  font-size: 40px;
-  font-weight: 600;
-  line-height: normal;
-
-  ${media.tablet} {
-    font-size: 30px;
-  }
 `;
 
 export const BodyTextWrap = styled.div`
@@ -187,12 +180,9 @@ export const BodyTextWrap = styled.div`
 `;
 
 export const DescriptionText = styled.p`
+  ${({ theme }) => theme.typography.Body_Medium};
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  ${({ theme }) => theme.typography.Body_Medium}
-  font-size: 14px;
-  font-weight: 500;
-  line-height: normal;
 `;
 
 export const TagRow = styled.div`

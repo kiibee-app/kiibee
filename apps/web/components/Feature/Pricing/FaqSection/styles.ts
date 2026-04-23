@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
 
 export const Section = styled.section`
@@ -15,18 +14,14 @@ export const Section = styled.section`
 `;
 
 export const Heading = styled.h2`
+  ${({ theme }) => theme.typography.Heading2};
   margin: 0 0 45px 0;
   color: ${({ theme }) => theme.colors.neutral.BLACK};
   text-align: center;
   font-family: ${typography.Heading2.fontFamily};
-  font-size: 40px;
   font-style: ${typography.Heading2.fontStyle};
   font-weight: 600;
   line-height: normal;
-
-  ${media.tablet} {
-    font-size: 34px;
-  }
 `;
 
 export const List = styled.div`
@@ -51,10 +46,10 @@ export const Item = styled.button`
 `;
 
 export const Question = styled.h3`
+  ${({ theme }) => theme.typography.H4_Medium};
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   font-family: ${typography.H4_Medium.fontFamily};
-  font-size: 22px;
   font-style: ${typography.H4_Medium.fontStyle};
   font-weight: 400;
   line-height: normal;
@@ -71,11 +66,11 @@ export const AnswerInner = styled.div`
 `;
 
 export const Answer = styled.p<{ $open: boolean }>`
+  ${({ theme }) => theme.typography.Body_Regular};
   margin: 0;
   padding-top: 12px;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   font-family: ${typography.Body_Regular.fontFamily};
-  font-size: 15px;
   font-style: ${typography.Body_Regular.fontStyle};
   font-weight: 400;
   line-height: 1.5;

@@ -16,17 +16,16 @@ export const Section = styled.section`
 `;
 
 export const SectionTitle = styled.h2`
+  ${({ theme }) => theme.typography.Heading2};
   margin: 0 0 50px 0;
   color: ${({ theme }) => theme.colors.neutral.BLACK};
   text-align: center;
   font-family: ${typography.Heading2.fontFamily};
-  font-size: 40px;
   font-style: ${typography.Heading2.fontStyle};
   font-weight: 600;
   line-height: normal;
 
   ${media.tablet} {
-    font-size: 34px;
     margin-bottom: 36px;
   }
 `;
@@ -63,12 +62,12 @@ export const Card = styled.article<{ $highlight?: boolean }>`
 `;
 
 export const PlanTitle = styled.h3`
+  ${({ theme }) => theme.typography.Heading3};
   width: 100%;
   margin: 0;
   color: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
   text-align: left;
   font-family: ${typography.Heading3.fontFamily};
-  font-size: 32px;
   font-style: ${typography.Heading3.fontStyle};
   font-weight: 600;
   line-height: normal;
@@ -83,24 +82,24 @@ export const Divider = styled.hr`
 `;
 
 export const PlanPrice = styled.p`
+  ${({ theme }) => theme.typography.Heading3};
   width: 100%;
   margin: 0 0 8px 0;
   color: ${({ theme }) => theme.colors.neutral.BLACK};
   text-align: left;
   font-family: ${typography.Heading3.fontFamily};
-  font-size: 32px;
   font-style: ${typography.Heading3.fontStyle};
   font-weight: 600;
   line-height: normal;
 `;
 
 export const Description = styled.p`
+  ${({ theme }) => theme.typography.H5_Medium};
   width: 100%;
   margin: 0 0 8px 0;
   color: ${({ theme }) => theme.colors.neutral.BLACK};
   text-align: left;
   font-family: ${typography.H5_Medium.fontFamily};
-  font-size: 14px;
   font-style: ${typography.H5_Medium.fontStyle};
   font-weight: 500;
   line-height: normal;
@@ -132,9 +131,9 @@ export const TickIcon = styled.span`
 `;
 
 export const FeatureText = styled.span`
+  ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.neutral.BLACK};
   font-family: ${typography.Body_Regular.fontFamily};
-  font-size: 14px;
   font-style: ${typography.Body_Regular.fontStyle};
   font-weight: 400;
   line-height: normal;

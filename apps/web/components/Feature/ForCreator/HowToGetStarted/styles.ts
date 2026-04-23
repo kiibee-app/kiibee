@@ -72,6 +72,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const Title = styled.h1`
+  ${({ theme }) => theme.typography.Heading2};
   color: ${COLORS.gredint.NEAR_BLACK};
   font-family:
     "Reddit Sans",
@@ -80,7 +81,6 @@ export const Title = styled.h1`
     "Segoe UI",
     Roboto,
     sans-serif;
-  font-size: 28px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -88,8 +88,6 @@ export const Title = styled.h1`
   margin-top: 0;
 
   @media (min-width: ${breakpoints.tablet}) {
-    font-size: 40px;
-    margin-bottom: 4rem;
   }
 `;
 
@@ -127,6 +125,7 @@ export const MobileStepImage = styled.div`
 `;
 
 export const StepTitle = styled.h2`
+  ${({ theme }) => theme.typography.Heading3};
   color: ${COLORS.gredint.NEAR_BLACK};
   font-family:
     "Reddit Sans",
@@ -135,19 +134,17 @@ export const StepTitle = styled.h2`
     "Segoe UI",
     Roboto,
     sans-serif;
-  font-size: 24px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   margin-bottom: 0.75rem;
 
   @media (min-width: ${breakpoints.tablet}) {
-    font-size: 32px;
-    margin-bottom: 1rem;
   }
 `;
 
 export const StepDescription = styled.p`
+  ${({ theme }) => theme.typography.H5_Medium};
   color: ${COLORS.gredint.NEAR_BLACK};
   font-family:
     "Reddit Sans",
@@ -156,14 +153,12 @@ export const StepDescription = styled.p`
     "Segoe UI",
     Roboto,
     sans-serif;
-  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   margin: 0;
 
   @media (min-width: ${breakpoints.tablet}) {
-    font-size: 20px;
   }
 `;
 
@@ -177,6 +172,7 @@ export const StepList = styled.ul`
 `;
 
 export const ListItem = styled.li`
+  ${({ theme }) => theme.typography.H5_Medium};
   display: flex;
   align-items: flex-start;
   color: ${COLORS.gredint.NEAR_BLACK};
@@ -187,13 +183,11 @@ export const ListItem = styled.li`
     "Segoe UI",
     Roboto,
     sans-serif;
-  font-size: 18px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 
   @media (min-width: ${breakpoints.tablet}) {
-    font-size: 20px;
   }
 `;
 

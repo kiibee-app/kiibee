@@ -49,16 +49,15 @@ export const LeftColumn = styled.div`
 `;
 
 export const Heading = styled.h2`
+  ${({ theme }) => theme.typography.Heading1};
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
   font-family: "Reddit Sans", sans-serif;
-  font-size: 64px;
   font-style: normal;
   font-weight: 600;
   line-height: 75px;
 
   ${media.tablet} {
-    font-size: 48px;
     line-height: 56px;
   }
 `;
@@ -192,27 +191,27 @@ export const MainCardTextContainer = styled.div<{ $visible?: boolean }>`
 `;
 
 export const MainCardTitle = styled.h3`
+  ${({ theme }) => theme.typography.H4_Medium};
   margin: 0 0 0.5rem;
-  font-size: 1.625rem;
   font-weight: 600;
   letter-spacing: -0.0313rem;
 `;
 
 export const MainCardSubtitle = styled.p`
+  ${({ theme }) => theme.typography.Body_Medium};
   margin: 0;
-  font-size: 0.9375rem;
   color: ${({ theme }) => theme.colors.primary.WHITE_90};
   font-weight: 400;
 `;
 
 export const NarrowCardText = styled.p<{ $visible?: boolean }>`
+  ${({ theme }) => theme.typography.H4_Medium};
   position: absolute;
   bottom: 1.875rem;
   left: 50%;
   transform-origin: 0 50%;
   transform: rotate(-90deg);
   color: ${({ theme }) => theme.colors.primary.WHITE};
-  font-size: 1.375rem;
   font-weight: 600;
   white-space: nowrap;
   letter-spacing: -0.0313rem;
@@ -223,7 +222,6 @@ export const NarrowCardText = styled.p<{ $visible?: boolean }>`
   pointer-events: none;
 
   ${media.tablet} {
-    font-size: 1.05rem;
     bottom: 1rem;
   }
 `;
