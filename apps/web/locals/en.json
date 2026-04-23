@@ -696,7 +696,32 @@
     ]
   },
   "common": {
-    "share": "Share"
+    "share": "Share",
+    "optional": "optional",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "creatorProfile": {
+    "title": "My account",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "passwordLabel": "Password",
+    "changePassword": "Change password",
+    "companyName": "Company Name",
+    "companyPlaceholder": "Enter company name",
+    "phone": "Phone number",
+    "cvr": "CVR",
+    "cvrPlaceholder": "8 digits - only if you run a business",
+    "address": "Address",
+    "city": "City",
+    "postal": "Postal code",
+    "paymentTitle": "Payment information",
+    "paymentText": "We need your payment information so we can pay out your earnings.",
+    "regLabel": "Reg. no.",
+    "accountLabel": "Account no.",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password"
   },
   "singleCollection": {
     "subtitle": "Learn how to use our platform",
