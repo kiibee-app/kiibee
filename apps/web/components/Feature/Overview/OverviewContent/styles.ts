@@ -3,6 +3,10 @@ import { media } from "@repo/ui/breakpoints";
 
 export const Wrapper = styled.div`
   padding: 8px 28px;
+
+  ${media.tablet} {
+    padding: 8px 20px;
+  }
 `;
 
 export const TopRow = styled.div`
@@ -46,6 +50,43 @@ export const CardsRow = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
+`;
+
+export const ChartCard = styled.section`
+  margin-top: 28px;
+  border-radius: 24px;
+  background: ${(p) => p.theme.colors.neutral.WHITE};
+  box-shadow:
+    0 18px 40px ${(p) => p.theme.colors.neutral.GRAY_300},
+    0 1px 2px ${(p) => p.theme.colors.gredint.CARD_SHADOW};
+  padding: 22px 18px 14px;
+
+  ${media.tablet} {
+    margin-top: 24px;
+    padding: 18px 12px 10px;
+  }
+`;
+
+export const ChartScroll = styled.div`
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${(p) => p.theme.colors.neutral.GRAY_200};
+    border-radius: 999px;
+  }
+`;
+
+export const ChartSvg = styled.svg`
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: inherit;
 `;
 
 export const StatCard = styled.div`
