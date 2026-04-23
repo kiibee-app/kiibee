@@ -26,8 +26,7 @@ export default function PricingPlansSection({
               key={planKey}
               title={t(`${baseKey}.title`)}
               price={t(`${baseKey}.price`)}
-              desc1={t(`${baseKey}.desc1`)}
-              desc2={t(`${baseKey}.desc2`)}
+              descriptions={[t(`${baseKey}.desc1`), t(`${baseKey}.desc2`)]}
               features={
                 t(`${baseKey}.features`, { returnObjects: true }) as string[]
               }
