@@ -36,6 +36,7 @@ export default function GenericCard({
             fill
             sizes="(max-width: 767px) 100vw, 50vw"
             style={{ objectFit: "cover" }}
+            priority
           />
         </ImageWrapper>
       )}

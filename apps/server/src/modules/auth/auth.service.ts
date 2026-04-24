@@ -9,6 +9,10 @@ import { db } from 'src/database/db';
 import { users } from 'src/database/schema';
 import { success, fail } from 'src/utils/sendResponse';
 import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
+import { creatorRequestService } from './services/creatorRequest.service';
+import { approveCreatorRequestService } from './services/approvCreatorRequest.service';
+import { getCreatorRequestService } from './services/getCreatorRequest.service';
+import { rejectCreatorRequestService } from './services/rejectCreatorRequest.service';
 
 @Injectable()
 export class AuthService {
@@ -61,5 +65,18 @@ export class AuthService {
     userAgent?: string,
   ) {
     return logoutService(userId, refreshToken, ipAddress, userAgent);
+  }
+
+  async creatorRequest(payload: any) {
+    return creatorRequestService(payload);
+  }
+  async getCreatorRequests() {
+    return getCreatorRequestService();
+  }
+  async approveCreatorRequest(requestId: string, approverUserId: string) {
+    return approveCreatorRequestService(requestId, approverUserId);
+  }
+  async rejectCreatorRequest(requestId: string, approverUserId: string) {
+    return rejectCreatorRequestService(requestId, approverUserId);
   }
 }

@@ -126,11 +126,11 @@ export const MockImageWrap = styled.div<{ $active?: boolean }>`
 `;
 
 export const MockText = styled.div`
+  ${({ theme }) => theme.typography.Body_Regular};
   max-width: 415px;
   padding: 0 1rem;
 
   ${media.tablet} {
     padding: 0;
-    font-size: 20px;
   }
 `;

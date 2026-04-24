@@ -13,6 +13,7 @@ export const CREATORS_LABELS = {
   SETTINGS: "Settings",
   HELP: "Help",
   LOG_OUT: "Logout",
+  PROFILE: "profile",
 } as const;
 
 export type CreatorsLabel =

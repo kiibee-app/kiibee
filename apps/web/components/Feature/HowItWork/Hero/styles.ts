@@ -61,24 +61,23 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h1`
+  ${({ theme }) => theme.typography.Heading1};
   margin: 0 0 0.75rem 0;
 
   ${media.tablet} {
     max-width: 100%;
-    font-size: 3rem;
   }
 `;
 
 export const Subtitle = styled.p`
+  ${({ theme }) => theme.typography.H4_Medium};
   margin: 0 0 1.25rem 0;
-  font-size: 20px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   max-width: 500px;
 
   ${media.tablet} {
     max-width: 100%;
-    font-size: 0.95rem;
   }
 `;
 

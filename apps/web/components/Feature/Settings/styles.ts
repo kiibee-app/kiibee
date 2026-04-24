@@ -42,3 +42,7 @@ export const SearchWrapper = styled.div`
   transform: translateY(-50%);
   z-index: 10;
 `;
+
+export const Content = styled.div`
+  margin-top: 20px;
+`;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
@@ -21,11 +21,7 @@ type Props = {
   onChange?: (value: SortValue) => void;
 };
 
-export default function SortDropdown({
-  options,
-  value = DEFAULT_SORT,
-  onChange,
-}: Props) {
+function SortDropdown({ options, value = DEFAULT_SORT, onChange }: Props) {
   const { t } = useTranslation();
 
   const [open, setOpen] = useState(false);
@@ -40,11 +36,19 @@ export default function SortDropdown({
     handler: () => setOpen(false),
   });
 
-  const handleSelect = (val: SortValue) => {
-    setSelected(val);
-    onChange?.(val);
-    setOpen(false);
-  };
+  const handleSelect = useCallback(
+    (val: SortValue) => {
+      setSelected(val);
+      onChange?.(val);
+      setOpen(false);
+    },
+    [onChange],
+  );
+
+  const filteredOptions = useMemo(
+    () => options.filter((opt) => opt.value !== selected),
+    [options, selected],
+  );
 
   return (
     <SortBox ref={ref} onClick={() => setOpen((prev) => !prev)}>
@@ -59,26 +63,26 @@ export default function SortDropdown({
 
       {open && (
         <Dropdown>
-          {options
-            .filter((opt) => opt.value !== selected)
-            .map((opt) => (
-              <DropdownItem
-                key={opt.value}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSelect(opt.value);
-                }}
-              >
-                <Text>
-                  <MonoText $use="Body_Regular">{t(CREATORS.sort)}</MonoText>
-                  <MonoText $use="Body_Regular">
-                    {t(CREATORS.value(opt.value)).toLowerCase()}
-                  </MonoText>
-                </Text>
-              </DropdownItem>
-            ))}
+          {filteredOptions.map((opt) => (
+            <DropdownItem
+              key={opt.value}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSelect(opt.value);
+              }}
+            >
+              <Text>
+                <MonoText $use="Body_Regular">{t(CREATORS.sort)}</MonoText>
+                <MonoText $use="Body_Regular">
+                  {t(CREATORS.value(opt.value)).toLowerCase()}
+                </MonoText>
+              </Text>
+            </DropdownItem>
+          ))}
         </Dropdown>
       )}
     </SortBox>
   );
 }
+
+export default React.memo(SortDropdown);

@@ -696,7 +696,32 @@
     ]
   },
   "common": {
-    "share": "Del"
+    "share": "Del",
+    "optional": "valgfrit",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "creatorProfile": {
+    "title": "Min konto",
+    "firstName": "Fornavn",
+    "lastName": "Efternavn",
+    "passwordLabel": "Adgangskode",
+    "changePassword": "Skift adgangskode",
+    "companyName": "Firmanavn",
+    "companyPlaceholder": "Indtast firmanavn",
+    "phone": "Telefonnummer",
+    "cvr": "CVR",
+    "cvrPlaceholder": "8 cifre - kun hvis du driver en virksomhed",
+    "address": "Adresse",
+    "city": "By",
+    "postal": "Postnummer",
+    "paymentTitle": "Betalingsinformation",
+    "paymentText": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine indtægter.",
+    "regLabel": "Reg. nr.",
+    "accountLabel": "Kontonr.",
+    "currentPassword": "Nuværende adgangskode",
+    "newPassword": "Ny adgangskode",
+    "confirmPassword": "Bekræft adgangskode"
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
@@ -805,6 +830,31 @@
       "payout": "Udbetaling",
       "notifications": "Notifikationer",
       "export": "Eksport"
+    },
+    "payout": {
+      "title": "Payout",
+      "description": "When you click the button, a statement is created that you can cash out. Click on payout to view your credit note.",
+      "balance": "Saldo",
+      "purchase": "Køb",
+      "rent": "Leje"
+    }
+  },
+  "contents": {
+    "title": "Indhold",
+    "actions": {
+      "createCollection": "Opret samling",
+      "search": "Sog indhold"
+    },
+    "tabs": {
+      "collections": "Samlinger",
+      "appearance": "Udseende",
+      "settings": "Indstillinger",
+      "coupons": "Kuponer"
+    },
+    "placeholders": {
+      "collections": "Samlinger vil blive vist her.",
+      "appearance": "Udseende vil blive vist her.",
+      "settings": "Indstillinger vil blive vist her."
     }
   }
 }

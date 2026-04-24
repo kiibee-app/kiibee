@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Post,
+  Get,
   Req,
   Headers,
   UnauthorizedException,
@@ -12,6 +13,7 @@ import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { LoginDto } from './dto/login.dto';
 import { TokenService } from './services/token.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -114,6 +116,47 @@ export class AuthController {
   @Post('logout')
   async logout(@Req() req: any) {
     const result = await this.authService.logout(req.user.userId);
+    return result;
+  }
+
+  @Post('creator-request')
+  async creatorRequest(@Body() payload: any) {
+    const result = await this.authService.creatorRequest(payload);
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('all-creator-requests')
+  async getCreatorRequests() {
+    const result = await this.authService.getCreatorRequests();
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('approve-creator')
+  async approveCreatorRequest(
+    @Body() body: { requestId: string },
+    @Req() req: any,
+  ) {
+    const approverUserId = req.user.userId;
+    const result = await this.authService.approveCreatorRequest(
+      body.requestId,
+      approverUserId,
+    );
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('reject-creator')
+  async rejectCreatorRequest(
+    @Body() body: { requestId: string },
+    @Req() req: any,
+  ) {
+    const approverUserId = req.user.userId;
+    const result = await this.authService.rejectCreatorRequest(
+      body.requestId,
+      approverUserId,
+    );
     return result;
   }
 }

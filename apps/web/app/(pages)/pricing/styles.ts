@@ -3,7 +3,6 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
-import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
 
 export const Hero = styled.section<{ $backgroundImage: string }>`
@@ -42,40 +41,28 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h1`
+  ${({ theme }) => theme.typography.Heading2};
   margin: 0 0 20px 0;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   text-align: center;
   font-family: ${typography.Heading2.fontFamily};
-  font-size: 40px;
   font-style: ${typography.Heading2.fontStyle};
   font-weight: 600;
   line-height: normal;
   text-shadow: 0 2px 8px ${({ theme }) => theme.colors.gredint.CARD_BG};
-
-  ${media.tablet} {
-    font-size: 34px;
-  }
-
-  ${media.mobile} {
-    font-size: 30px;
-  }
 `;
 
 export const Description = styled.p`
+  ${({ theme }) => theme.typography.H4_Medium};
   margin: 0 0 35px 0;
   max-width: 750px;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   text-align: center;
   font-family: ${typography.H4_Medium.fontFamily};
-  font-size: 20px;
   font-style: ${typography.H4_Medium.fontStyle};
   font-weight: 500;
   line-height: normal;
   text-shadow: 0 1px 6px ${({ theme }) => theme.colors.gredint.BLACK_90};
-
-  ${media.tablet} {
-    font-size: 16px;
-  }
 `;
 
 export const PrimaryButton = styled(GenericButton).attrs({
