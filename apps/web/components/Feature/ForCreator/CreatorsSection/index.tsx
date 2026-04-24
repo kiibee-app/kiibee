@@ -26,6 +26,7 @@ import {
   MainCardSubtitle,
   NarrowCardText,
 } from "./style";
+import { resolveImageUrl } from "@/utils/Constants";
 
 export default function CreatorsSection() {
   const { t } = useTranslation();
@@ -64,7 +65,7 @@ export default function CreatorsSection() {
                 key={card.title}
                 as={motion.div}
                 $isActive={isActive}
-                $image={card.image}
+                $image={resolveImageUrl(card.image)}
                 $narrowBgPosition={card.narrowBgPosition}
                 $narrowBgSize={card.narrowBgSize}
                 aria-label={card.alt}

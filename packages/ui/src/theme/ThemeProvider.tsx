@@ -10,6 +10,7 @@ import {
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./lightTheme";
 import { Theme } from "./types";
+import type { DefaultTheme } from "styled-components";
 
 interface ThemeContextType {
   theme: Theme;
@@ -42,7 +43,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   return (
     <ThemeContext.Provider value={{ theme, isDark, toggleTheme }}>
-      <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
+      <StyledThemeProvider theme={theme as unknown as DefaultTheme}>
+        {children}
+      </StyledThemeProvider>
     </ThemeContext.Provider>
   );
 };

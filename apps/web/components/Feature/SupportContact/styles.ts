@@ -68,27 +68,22 @@ export const SuccessCard = styled.div`
 `;
 
 export const SuccessTitle = styled.h2`
+  ${({ theme }) => theme.typography.Heading3};
   margin: 0;
-  font-size: 1.8rem;
   line-height: 1.2;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.BLACK};
-
-  ${media.tablet} {
-    font-size: 1.75rem;
-  }
 `;
 
 export const SuccessText = styled.p`
+  ${({ theme }) => theme.typography.Body_Regular};
   margin: 0;
   max-width: 281px;
-  font-size: 1rem;
   line-height: 1.6;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 
   ${media.tablet} {
     max-width: 100%;
-    font-size: 0.95rem;
   }
 `;
 
@@ -128,8 +123,8 @@ export const ContactBlock = styled.div`
 `;
 
 export const ContactTitle = styled.h2`
+  ${({ theme }) => theme.typography.Heading2};
   margin: 0;
-  font-size: 1.9rem;
   line-height: 1.15;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.primary.BLACK};

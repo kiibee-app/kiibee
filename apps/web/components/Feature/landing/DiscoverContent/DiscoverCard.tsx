@@ -47,6 +47,7 @@ function DiscoverCard({ item }: Props) {
           fill
           sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
           style={{ objectFit: "cover" }}
+          priority
         />
       </ImageContainer>
 

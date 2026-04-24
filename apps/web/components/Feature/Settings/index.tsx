@@ -2,11 +2,12 @@
 
 import React, { useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
-import { TabButton, Tabs, Wrapper, SearchWrapper } from "./styles";
+import { TabButton, Tabs, Wrapper, SearchWrapper, Content } from "./styles";
 import { TAB_KEYS, TabKey, TABS } from "@/utils/settingsTabs";
 import SearchBar from "@/components/UI/SearchBar";
 import { useTranslation } from "react-i18next";
 import Table from "@/components/UI/Table";
+import PayoutContent from "./Payout";
 
 export default function SettingsContent() {
   const { t } = useTranslation();
@@ -92,6 +93,8 @@ export default function SettingsContent() {
           );
         })}
       </Tabs>
+
+      <Content>{activeTab === TAB_KEYS.payout && <PayoutContent />}</Content>
 
       {activeTab === TAB_KEYS.payout && (
         <Table

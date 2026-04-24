@@ -3,6 +3,10 @@ import { media } from "@repo/ui/breakpoints";
 
 export const Wrapper = styled.div`
   padding: 8px 28px;
+
+  ${media.tablet} {
+    padding: 8px 20px;
+  }
 `;
 
 export const TopRow = styled.div`
@@ -28,6 +32,7 @@ export const RangeGroup = styled.div`
 `;
 
 export const RangeButton = styled.button<{ $active?: boolean }>`
+  ${({ theme }) => theme.typography.Body_Medium};
   padding: 8px 14px;
   border-radius: 999px;
   background: ${(p) =>
@@ -38,7 +43,6 @@ export const RangeButton = styled.button<{ $active?: boolean }>`
     p.$active ? p.theme.colors.primary.WHITE : p.theme.colors.primary.BLACK};
   border: 1px solid
     ${(p) => (p.$active ? "transparent" : p.theme.colors.primary.GRAY)};
-  font-size: 13px;
   cursor: pointer;
 `;
 
@@ -46,6 +50,43 @@ export const CardsRow = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
+`;
+
+export const ChartCard = styled.section`
+  margin-top: 28px;
+  border-radius: 24px;
+  background: ${(p) => p.theme.colors.neutral.WHITE};
+  box-shadow:
+    0 18px 40px ${(p) => p.theme.colors.neutral.GRAY_300},
+    0 1px 2px ${(p) => p.theme.colors.gredint.CARD_SHADOW};
+  padding: 22px 18px 14px;
+
+  ${media.tablet} {
+    margin-top: 24px;
+    padding: 18px 12px 10px;
+  }
+`;
+
+export const ChartScroll = styled.div`
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${(p) => p.theme.colors.neutral.GRAY_200};
+    border-radius: 999px;
+  }
+`;
+
+export const ChartSvg = styled.svg`
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: inherit;
 `;
 
 export const StatCard = styled.div`
@@ -63,7 +104,7 @@ export const StatCard = styled.div`
 `;
 
 export const StatLabel = styled.div`
-  font-size: 13px;
+  ${({ theme }) => theme.typography.Body_Medium};
   color: ${(p) => p.theme.colors.neutral.GRAY_400};
   display: flex;
   align-items: center;
@@ -71,7 +112,7 @@ export const StatLabel = styled.div`
 `;
 
 export const StatValue = styled.div`
-  font-size: 28px;
+  ${({ theme }) => theme.typography.Heading3};
   font-weight: 800;
   color: ${(p) => p.theme.colors.primary.BLACK};
   margin-top: 12px;
@@ -93,7 +134,7 @@ export const StatRow = styled.div`
 
 export const Title = styled.h2`
   margin: 0 0 8px 0;
-  font-size: 20px;
+  ${({ theme }) => theme.typography.H5_Medium};
   font-weight: 700;
   color: ${(p) => p.theme.colors.primary.BLACK};
 `;

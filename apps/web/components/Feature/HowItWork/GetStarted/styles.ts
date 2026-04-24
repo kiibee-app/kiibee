@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { media } from "@repo/ui/breakpoints";
 import { BG_WHITE, type BgVariant } from "@/utils/Constants";
 
 type SectionProps = {
@@ -27,21 +26,15 @@ export const Inner = styled.div`
 `;
 
 export const Heading = styled.h2`
+  ${({ theme }) => theme.typography.Heading2};
   margin: 0 0 1rem 0;
-
-  ${media.tablet} {
-    font-size: 32px;
-  }
 `;
 
 export const Sub = styled.p`
+  ${({ theme }) => theme.typography.H5_Regular};
   margin: 0 0 1.75rem 0;
   padding: 1rem 0;
   max-width: 1100px;
-
-  ${media.tablet} {
-    font-size: 0.95rem;
-  }
 `;
 
 export const CTAWrap = styled.div`

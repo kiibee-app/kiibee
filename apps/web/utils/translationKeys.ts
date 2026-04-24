@@ -71,6 +71,29 @@ export const TUTORIAL_VIDEOS = {
   buttonFreeLabel: "tutorialVideos.buttonFreeLabel",
 };
 
+export const CREATOR_PROFILE = {
+  title: "creatorProfile.title",
+  firstName: "creatorProfile.firstName",
+  lastName: "creatorProfile.lastName",
+  passwordLabel: "creatorProfile.passwordLabel",
+  changePassword: "creatorProfile.changePassword",
+  companyName: "creatorProfile.companyName",
+  companyPlaceholder: "creatorProfile.companyPlaceholder",
+  phone: "creatorProfile.phone",
+  cvr: "creatorProfile.cvr",
+  cvrPlaceholder: "creatorProfile.cvrPlaceholder",
+  address: "creatorProfile.address",
+  city: "creatorProfile.city",
+  postal: "creatorProfile.postal",
+  paymentTitle: "creatorProfile.paymentTitle",
+  paymentText: "creatorProfile.paymentText",
+  regLabel: "creatorProfile.regLabel",
+  accountLabel: "creatorProfile.accountLabel",
+  currentPassword: "creatorProfile.currentPassword",
+  newPassword: "creatorProfile.newPassword",
+  confirmPassword: "creatorProfile.confirmPassword",
+};
+
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
@@ -78,6 +101,7 @@ const TRANSLATION_KEYS = {
   AUTH_FORM,
   CREATORS,
   TUTORIAL_VIDEOS,
+  CREATOR_PROFILE,
 };
 
 export default TRANSLATION_KEYS;
