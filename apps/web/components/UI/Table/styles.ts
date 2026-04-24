@@ -127,20 +127,27 @@ export const RightSection = styled.div`
 `;
 
 export const StatusBadge = styled.button<{ $status: string }>`
-  display: flex;
-  width: 80px;
-  flex: 1 0 0;
-  padding: 2px 10px;
-  gap: 10px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-  cursor: default;
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  text-transform: none;
+
+  padding: 4px 12px;
+  border-radius: 6px;
+
+  min-width: 90px;
+  height: 28px;
+
+  font-size: 12px;
+  font-weight: 600;
+
   white-space: nowrap;
+  text-transform: capitalize;
+
+  border: none;
+  cursor: default;
+
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+
   background-color: ${({ $status, theme }) => {
     if ($status === TABLE_STATUS.COMPLETED)
       return theme.colors.secondary.MEDIUM_GREEN;
