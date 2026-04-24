@@ -14,10 +14,12 @@ import {
   HeaderLabel,
   RightSection,
   NoDataCell,
+  StatusBadge,
 } from "./styles";
 import { useTranslation } from "react-i18next";
 import { ArrowIcon } from "@/assets/icons";
 import { Directions } from "@/utils/ui";
+import { STATUS_COLUMN_KEY, toNormalizedStatus } from "@/utils/tableStatus";
 import { MonoText } from "../Monotext";
 import COLORS from "@repo/ui/colors";
 
@@ -63,6 +65,23 @@ export default function Table<T extends Record<string, unknown>>({
   const defaultRenderCell = (value: unknown) =>
     value !== null && value !== undefined ? String(value) : "-";
 
+  const renderDefaultCell = (header: string, value: unknown) => {
+    const cellValue = defaultRenderCell(value);
+    const isStatusColumn = header.toLowerCase() === STATUS_COLUMN_KEY;
+
+    if (isStatusColumn) {
+      return (
+        <StatusBadge type="button" $status={toNormalizedStatus(cellValue)}>
+          <MonoText $use="Body_Bold" color={COLORS.primary.WHITE}>
+            {cellValue}
+          </MonoText>
+        </StatusBadge>
+      );
+    }
+
+    return cellValue;
+  };
+
   return (
     <TableContainer>
       <TableWrapper>
@@ -90,6 +109,8 @@ export default function Table<T extends Record<string, unknown>>({
                     const value = row[key];
 
                     const isFirstColumn = colIndex === 0;
+                    const isStatusColumn =
+                      header.toLowerCase() === STATUS_COLUMN_KEY;
 
                     return (
                       <TableCell key={header}>
@@ -104,12 +125,14 @@ export default function Table<T extends Record<string, unknown>>({
                           <MonoText $use="Body_SemiBold">
                             {defaultRenderCell(value)}
                           </MonoText>
+                        ) : isStatusColumn ? (
+                          renderDefaultCell(header, value)
                         ) : (
                           <MonoText
                             $use="Body_SemiBold"
                             color={COLORS.neutral.GRAY}
                           >
-                            {defaultRenderCell(value)}
+                            {renderDefaultCell(header, value)}
                           </MonoText>
                         )}
                       </TableCell>
@@ -183,7 +206,7 @@ export default function Table<T extends Record<string, unknown>>({
                             rowIndex,
                           })
                         ) : (
-                          defaultRenderCell(value)
+                          renderDefaultCell(header, value)
                         )}
                       </div>
                     );

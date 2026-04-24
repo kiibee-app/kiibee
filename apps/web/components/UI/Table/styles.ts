@@ -1,5 +1,6 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
+import { TABLE_STATUS } from "@/utils/tableStatus";
 
 export const TableContainer = styled.div`
   width: 100%;
@@ -117,4 +118,28 @@ export const RightSection = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+`;
+
+export const StatusBadge = styled.button<{ $status: string }>`
+  display: flex;
+  width: 80px;
+  flex: 1 0 0;
+  padding: 2px 10px;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: default;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+  text-transform: none;
+  white-space: nowrap;
+  background-color: ${({ $status, theme }) => {
+    if ($status === TABLE_STATUS.COMPLETED)
+      return theme.colors.secondary.MEDIUM_GREEN;
+    if ($status === TABLE_STATUS.PENDING) return theme.colors.primary.ORANGE;
+    if ($status === TABLE_STATUS.REJECTED) return theme.colors.primary.RED;
+    return theme.colors.neutral.GRAY_400;
+  }};
 `;
