@@ -12,9 +12,13 @@ import {
   MobileHeader,
   AccordionContent,
   HeaderLabel,
+  MobileDataRow,
   RightSection,
   NoDataCell,
   StatusBadge,
+  PaginationButton,
+  PaginationWrapper,
+  PageNumberButton,
 } from "./styles";
 import { useTranslation } from "react-i18next";
 import { ArrowIcon } from "@/assets/icons";
@@ -22,6 +26,7 @@ import { Directions } from "@/utils/ui";
 import { STATUS_COLUMN_KEY, toNormalizedStatus } from "@/utils/tableStatus";
 import { MonoText } from "../Monotext";
 import COLORS from "@repo/ui/colors";
+import { useTablePagination } from "./useTablePagination";
 
 type KeyOf<T> = keyof T & string;
 
@@ -38,6 +43,7 @@ interface TableProps<T> {
   getRowKey?: (row: T, index: number) => string | number;
   getMobileTitle?: (row: T) => string;
   emptyText?: string;
+  rowsPerPage?: number;
 }
 
 export default function Table<T extends Record<string, unknown>>({
@@ -48,9 +54,11 @@ export default function Table<T extends Record<string, unknown>>({
   getRowKey,
   getMobileTitle,
   emptyText,
+  rowsPerPage = 3,
 }: TableProps<T>) {
   const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const toggleAccordion = (index: number) =>
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -61,6 +69,22 @@ export default function Table<T extends Record<string, unknown>>({
   };
 
   const hasData = data?.length > 0;
+  const {
+    effectiveRowsPerPage,
+    totalPages,
+    safeCurrentPage,
+    paginatedData,
+    pageNumbers,
+  } = useTablePagination({
+    data,
+    rowsPerPage,
+    currentPage,
+  });
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(Math.min(Math.max(page, 1), totalPages));
+    setOpenIndex(null);
+  };
 
   const defaultRenderCell = (value: unknown) =>
     value !== null && value !== undefined ? String(value) : "-";
@@ -99,18 +123,22 @@ export default function Table<T extends Record<string, unknown>>({
 
         <tbody>
           {hasData ? (
-            data.map((row, rowIndex) => {
-              const rowKey = getRowKey?.(row, rowIndex) ?? `${rowIndex}`;
+            paginatedData.map((row, rowIndex) => {
+              const globalIndex =
+                (safeCurrentPage - 1) * effectiveRowsPerPage + rowIndex;
+              const rowKey = getRowKey?.(row, globalIndex) ?? `${globalIndex}`;
 
               return (
                 <DesktopRow key={rowKey}>
                   {headers.map((header, colIndex) => {
                     const key = getKey(header);
                     const value = row[key];
+                    const renderedDefaultCell = renderDefaultCell(
+                      header,
+                      value,
+                    );
 
                     const isFirstColumn = colIndex === 0;
-                    const isStatusColumn =
-                      header.toLowerCase() === STATUS_COLUMN_KEY;
 
                     return (
                       <TableCell key={header}>
@@ -119,21 +147,21 @@ export default function Table<T extends Record<string, unknown>>({
                             header,
                             value,
                             row,
-                            rowIndex,
+                            rowIndex: globalIndex,
                           })
                         ) : isFirstColumn ? (
                           <MonoText $use="Body_SemiBold">
                             {defaultRenderCell(value)}
                           </MonoText>
-                        ) : isStatusColumn ? (
-                          renderDefaultCell(header, value)
-                        ) : (
+                        ) : typeof renderedDefaultCell === "string" ? (
                           <MonoText
                             $use="Body_SemiBold"
                             color={COLORS.neutral.GRAY}
                           >
-                            {renderDefaultCell(header, value)}
+                            {renderedDefaultCell}
                           </MonoText>
+                        ) : (
+                          renderedDefaultCell
                         )}
                       </TableCell>
                     );
@@ -153,8 +181,10 @@ export default function Table<T extends Record<string, unknown>>({
 
       <div>
         {hasData &&
-          data.map((row, rowIndex) => {
-            const rowKey = getRowKey?.(row, rowIndex) ?? `${rowIndex}`;
+          paginatedData.map((row, rowIndex) => {
+            const globalIndex =
+              (safeCurrentPage - 1) * effectiveRowsPerPage + rowIndex;
+            const rowKey = getRowKey?.(row, globalIndex) ?? `${globalIndex}`;
 
             const mobileTitle =
               getMobileTitle?.(row) ?? String(Object.values(row)[0] ?? "");
@@ -181,14 +211,7 @@ export default function Table<T extends Record<string, unknown>>({
                     const isFirstColumn = colIndex === 0;
 
                     return (
-                      <div
-                        key={header}
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          padding: "6px 0",
-                        }}
-                      >
+                      <MobileDataRow key={header}>
                         <HeaderLabel>{header}</HeaderLabel>
 
                         {isFirstColumn ? (
@@ -203,12 +226,12 @@ export default function Table<T extends Record<string, unknown>>({
                             header,
                             value,
                             row,
-                            rowIndex,
+                            rowIndex: globalIndex,
                           })
                         ) : (
                           renderDefaultCell(header, value)
                         )}
-                      </div>
+                      </MobileDataRow>
                     );
                   })}
                 </AccordionContent>
@@ -216,6 +239,50 @@ export default function Table<T extends Record<string, unknown>>({
             );
           })}
       </div>
+
+      {totalPages > 1 && (
+        <PaginationWrapper>
+          <PaginationButton
+            type="button"
+            onClick={() => handlePageChange(safeCurrentPage - 1)}
+            disabled={safeCurrentPage === 1}
+          >
+            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+              Previous
+            </MonoText>
+          </PaginationButton>
+
+          {pageNumbers.map((pageNumber) => (
+            <PageNumberButton
+              key={pageNumber}
+              type="button"
+              $active={pageNumber === safeCurrentPage}
+              onClick={() => handlePageChange(pageNumber)}
+            >
+              <MonoText
+                $use="Body_Medium"
+                color={
+                  pageNumber === safeCurrentPage
+                    ? COLORS.primary.WHITE
+                    : COLORS.neutral.GRAY
+                }
+              >
+                {pageNumber}
+              </MonoText>
+            </PageNumberButton>
+          ))}
+
+          <PaginationButton
+            type="button"
+            onClick={() => handlePageChange(safeCurrentPage + 1)}
+            disabled={safeCurrentPage === totalPages}
+          >
+            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+              Next
+            </MonoText>
+          </PaginationButton>
+        </PaginationWrapper>
+      )}
     </TableContainer>
   );
 }

@@ -104,6 +104,12 @@ export const HeaderLabel = styled.span`
   }
 `;
 
+export const MobileDataRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+`;
+
 export const ValueText = styled.span`
   flex: 2;
   text-align: right;
@@ -142,4 +148,50 @@ export const StatusBadge = styled.button<{ $status: string }>`
     if ($status === TABLE_STATUS.REJECTED) return theme.colors.primary.RED;
     return theme.colors.neutral.GRAY_400;
   }};
+`;
+
+export const PaginationWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px 0 4px;
+
+  ${media.tablet} {
+    justify-content: center;
+    padding: 10px 0 0;
+    flex-wrap: wrap;
+  }
+`;
+
+export const PaginationButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 84px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+`;
+
+export const PageNumberButton = styled(PaginationButton)<{ $active?: boolean }>`
+  min-width: 32px;
+  width: 32px;
+  padding: 0;
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.WHITE : theme.colors.neutral.GRAY};
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.BLACK : theme.colors.primary.WHITE};
+  border-color: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.BLACK : theme.colors.primary.GRAY};
 `;
