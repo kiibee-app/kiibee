@@ -74,7 +74,10 @@ export default function CallToAction() {
             <Image
               src={resolveImageUrl(kiibeeLogo)}
               alt={t("callToAction.logoAlt")}
+              width={126}
+              height={40}
               priority
+              style={{ width: "100%", height: "auto" }}
             />
           </BrandLogo>
         </Brand>
