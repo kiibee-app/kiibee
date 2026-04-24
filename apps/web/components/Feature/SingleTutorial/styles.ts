@@ -146,7 +146,7 @@ export const BrandLogo = styled.span`
   height: 30px;
   border-radius: 6px;
   overflow: hidden;
-  background: lightgray;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -338,7 +338,7 @@ export const CollectionCard = styled.article`
   gap: 7px;
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px 0 ${({ theme }) => theme.colors.neutral.GRAY_300};
 `;
 
 export const CollectionImageArea = styled.div`
@@ -350,7 +350,8 @@ export const CollectionImageArea = styled.div`
   align-self: stretch;
   aspect-ratio: 25 / 19;
   border-radius: 12px 12px 0 0;
-  background: lightgray 50% / cover no-repeat;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200} 50% / cover
+    no-repeat;
   overflow: hidden;
   box-sizing: border-box;
 
@@ -408,7 +409,7 @@ export const CollectionAuthor = styled.p`
 
 export const CollectionTime = styled.p`
   margin: 0 0 8px;
-  color: rgba(6, 6, 6, 0.5);
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   ${({ theme }) => theme.typography.Body_Medium}
   font-size: 10px;
   font-weight: 500;
