@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import hero from "../../../../assets/images/mobilePay.webp";
 import creator from "../../../../assets/images/laptopMan.webp";

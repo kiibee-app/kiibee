@@ -2,6 +2,7 @@ import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
+import SafeImage from "@/components/UI/SafeImage";
 
 export const Section = styled.section`
   position: relative;
@@ -81,7 +82,10 @@ export const MobileGrid = styled.div`
   }
 `;
 
-export const CardImage = styled.img`
+export const CardImage = styled(SafeImage).attrs({
+  fill: true,
+  sizes: "(max-width: 1024px) 50vw, 16vw",
+})`
   width: 100%;
   height: 100%;
   object-fit: cover;

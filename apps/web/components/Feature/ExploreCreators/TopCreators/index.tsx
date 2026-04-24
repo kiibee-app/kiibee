@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import { Wrapper, Header, SeeAll, List, Card, Avatar } from "./styles";
 import { creators } from "@/utils/dummyData/creators.data";
 import { MonoText } from "@/components/UI/Monotext";
