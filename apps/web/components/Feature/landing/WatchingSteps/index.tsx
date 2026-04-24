@@ -16,7 +16,7 @@ import {
   CTAWrapper,
   NumberPart,
 } from "./styles";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import Steps from "@/assets/images/steps.webp";
 import { MonoText } from "@/components/UI/Monotext";

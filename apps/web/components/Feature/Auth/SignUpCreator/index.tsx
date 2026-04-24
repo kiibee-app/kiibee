@@ -34,7 +34,7 @@ import {
   TernaryRow,
   TermsLink,
 } from "./styles";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import { MonoText } from "@/components/UI/Monotext";
 
