@@ -84,6 +84,9 @@ type EscapeToCloseOptions = {
   onClose?: () => void;
 };
 
+let bodyScrollLockCount = 0;
+let bodyOverflowBeforeLock: string | null = null;
+
 function useEscapeToClose({ closeOnEsc, onClose }: EscapeToCloseOptions) {
   useEffect(() => {
     if (!closeOnEsc || !onClose) return;
@@ -107,11 +110,22 @@ function useLockBodyScroll({ enabled }: { enabled: boolean }) {
   useEffect(() => {
     if (!enabled) return;
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = CSS_VALUE.HIDDEN;
+    const body = document.body;
+
+    if (bodyScrollLockCount === 0) {
+      bodyOverflowBeforeLock = body.style.overflow;
+      body.style.overflow = CSS_VALUE.HIDDEN;
+    }
+
+    bodyScrollLockCount += 1;
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      bodyScrollLockCount = Math.max(0, bodyScrollLockCount - 1);
+
+      if (bodyScrollLockCount === 0) {
+        body.style.overflow = bodyOverflowBeforeLock ?? "";
+        bodyOverflowBeforeLock = null;
+      }
     };
   }, [enabled]);
 }

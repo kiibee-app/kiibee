@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { MonoText } from "../Monotext";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
+import { INPUT_VARIANTS, InputVariant } from "@/utils/Constants";
 
 export const Container = styled.div<{ width?: string | undefined }>`
   display: flex;
@@ -32,7 +33,6 @@ export const Label = styled(MonoText).attrs<{
   ${({ theme }) => theme.typography.Body_Regular};
   ${media.mobile} {
     margin-bottom: ${({ theme }) => theme.spacing[4]};
-    font-size: 14px;
   }
 `;
 
@@ -48,6 +48,7 @@ export const StyledInput = styled.input<{
   $locked?: boolean;
   $height?: string;
   $hasIcon?: boolean;
+  $variant?: InputVariant;
 }>`
   padding: 11px 10px 11px 16px;
   ${({ $hasIcon }) =>
@@ -57,12 +58,14 @@ export const StyledInput = styled.input<{
     `}
   ${({ theme }) => theme.typography.Body_Regular};
   height: ${({ $height }) => $height || "40px"};
-  background: ${({ $hasError, $locked, theme }) =>
+  background: ${({ $hasError, $locked, $variant, theme }) =>
     $hasError
       ? `color-mix(in srgb, ${theme.colors.primary.RED} 8%, transparent)`
       : $locked
         ? theme.colors.neutral.GRAY_200
-        : theme.colors.neutral.GRAY_100};
+        : $variant === INPUT_VARIANTS.PRIMARY_GRAY
+          ? theme.colors.primary.GRAY
+          : theme.colors.neutral.GRAY_100};
   border: 1px solid
     ${({ $hasError, theme }) =>
       $hasError ? theme.colors.primary.RED : "transparent"};
@@ -105,7 +108,6 @@ export const StyledInput = styled.input<{
   }
 
   ${media.mobile} {
-    font-size: 16px;
   }
 
   &[type="number"] {
@@ -173,7 +175,6 @@ export const StyledTextArea = styled.textarea<{
 
   ${media.mobile} {
     padding: ${({ theme }) => theme.spacing[4]};
-    font-size: 16px;
   }
 `;
 

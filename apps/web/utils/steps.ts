@@ -1,11 +1,11 @@
 import dashboardImage from "@/assets/images/creator-dashboard.png";
-import { StaticImageData } from "next/image";
+import { ImageSource } from "./Constants";
 
 export interface Step {
   id: number;
   titleKey: string;
   descriptionKey: string;
-  image: StaticImageData;
+  image: ImageSource;
   listKey?: string;
 }
 

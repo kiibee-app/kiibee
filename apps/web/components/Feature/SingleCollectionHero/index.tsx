@@ -47,7 +47,13 @@ export default function SingleCollectionHero({ title }: Props) {
       <ContentRow>
         <HeroContent>
           <LogoRow>
-            <Image src={logo} alt="Kiibee Logo" width={30} height={30} />
+            <Image
+              src={logo}
+              alt="Kiibee Logo"
+              width={30}
+              height={30}
+              priority
+            />
             <MonoText $use="H4_Medium">{t(NAV.logoAlt)}</MonoText>
           </LogoRow>
 
@@ -64,6 +70,7 @@ export default function SingleCollectionHero({ title }: Props) {
             alt={title}
             fill
             style={{ objectFit: "cover" }}
+            priority
           />
         </HeroImage>
       </ContentRow>

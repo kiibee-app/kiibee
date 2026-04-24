@@ -6,7 +6,7 @@ import { VARIANT, SIZE } from "@/utils/Constants";
 
 export const ContentWrap = styled.section`
   width: 100%;
-  max-width: 760px;
+  max-width: 1060px;
   margin: 0 auto;
   padding: 30px 24px 96px;
 `;

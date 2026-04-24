@@ -30,7 +30,7 @@ export const Grid = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 40px;
+  ${({ theme }) => theme.typography.Heading2};
   font-weight: 600;
   line-height: normal;
   margin-bottom: 20px;

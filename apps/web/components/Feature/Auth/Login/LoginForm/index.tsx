@@ -89,7 +89,7 @@ export default function LoginForm() {
   return (
     <Wrapper>
       <Card>
-        <Image src={logo} alt="Kiibee Logo" width={42} height={42} />
+        <Image src={logo} alt="Kiibee Logo" width={42} height={42} priority />
         <Title>
           <MonoText $use="H4_Medium">{t("authForm.title")}</MonoText>
         </Title>

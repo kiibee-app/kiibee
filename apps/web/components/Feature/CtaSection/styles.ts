@@ -63,14 +63,6 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   text-align: center;
   margin: 0;
-
-  ${media.tablet} {
-    font-size: 32px;
-  }
-
-  ${media.mobile} {
-    font-size: 24px;
-  }
 `;
 
 export const Subtitle = styled.p`
@@ -81,6 +73,5 @@ export const Subtitle = styled.p`
   max-width: 800px;
 
   ${media.tablet} {
-    font-size: 16px;
   }
 `;

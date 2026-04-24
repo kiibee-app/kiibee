@@ -2,6 +2,7 @@ import imageOne from "@/assets/images/discover-content/3545227dd1e7a9cd6faf3b145
 import imageTwo from "@/assets/images/discover-content/4ccc137164285071261595311fa290373bc45c72.webp";
 import imageThree from "@/assets/images/discover-content/52c1c126e76296e3c8e39b9ac60f6d9a34156583.webp";
 import imageFour from "@/assets/images/discover-content/c9051991a79ffc5a50dd15afe7b8c86e09f7faad.webp";
+import { ImageSource } from "./Constants";
 
 export type DiscoverContentAction = {
   labelKey: string;
@@ -13,7 +14,7 @@ export type DiscoverContentMediaType = "video" | "epub";
 export type DiscoverContentItem = {
   id: number;
   categoryKey: string;
-  image: typeof imageOne;
+  image: ImageSource;
   titleKey: string;
   authorKey: string;
   dateKey: string;

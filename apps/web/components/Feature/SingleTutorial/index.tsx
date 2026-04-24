@@ -82,12 +82,13 @@ export default function SingleTutorial({ tutorial }: Props) {
               alt="Play circle"
               width={16}
               height={16}
+              priority
             />
             <HeroVideoText>{tutorial.formatLabel}</HeroVideoText>
           </HeroVideoTag>
 
           <TrailerButton>
-            <Image src={playIcon} alt="Play" width={15} height={15} />
+            <Image src={playIcon} alt="Play" width={15} height={15} priority />
             <TrailerText>{t("singleTutorial.playTrailer")}</TrailerText>
           </TrailerButton>
         </Hero>
@@ -95,7 +96,7 @@ export default function SingleTutorial({ tutorial }: Props) {
         <ContentShell>
           <BrandRow>
             <BrandLogo>
-              <Image src={logo} alt="Kiibee" fill />
+              <Image src={logo} alt="Kiibee" fill priority />
             </BrandLogo>
             <BrandText>Kiibee</BrandText>
           </BrandRow>

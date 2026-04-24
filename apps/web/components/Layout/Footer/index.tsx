@@ -41,6 +41,7 @@ const Footer = () => {
               alt={t(NAV.logoAlt)}
               width={120}
               height={32}
+              priority
             />
           </LogoRow>
           <IconRow>

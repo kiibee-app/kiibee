@@ -21,27 +21,61 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     });
 
     let rafId: number;
+    let resizeRafId: number | null = null;
 
     const raf = (time: number) => {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
     };
 
+    const scheduleResize = () => {
+      if (resizeRafId !== null) return;
+
+      resizeRafId = requestAnimationFrame(() => {
+        resizeRafId = null;
+        lenis.resize();
+      });
+    };
+
     rafId = requestAnimationFrame(raf);
+    scheduleResize();
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
         lenis.stop();
       } else {
         lenis.start();
+        scheduleResize();
       }
     };
 
+    const handleWindowResize = () => {
+      scheduleResize();
+    };
+
+    const observer = new MutationObserver(() => {
+      scheduleResize();
+    });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["style", "class"],
+    });
+
     document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("load", handleWindowResize);
+    window.addEventListener("resize", handleWindowResize);
 
     return () => {
       cancelAnimationFrame(rafId);
+      if (resizeRafId !== null) {
+        cancelAnimationFrame(resizeRafId);
+      }
+      observer.disconnect();
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("load", handleWindowResize);
+      window.removeEventListener("resize", handleWindowResize);
       lenis.destroy();
     };
   }, []);

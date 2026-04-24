@@ -22,10 +22,11 @@ import {
 import { desktopCards, mobileCards } from "@/utils/cards";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import { BUTTON } from "@/utils/Constants";
+import { BUTTON, resolveImageUrl, type ImageSource } from "@/utils/Constants";
+import Image from "next/image";
 
 type CTAImageCard = {
-  src: string;
+  src: ImageSource;
   left?: number;
   top?: number;
   width?: number;
@@ -44,7 +45,10 @@ export default function CallToAction() {
       $height={!mobile ? card.height : undefined}
       $mobileOnly={mobile}
     >
-      <CardImage src={card.src} alt={t("callToAction.creatorAlt")} />
+      <CardImage
+        src={resolveImageUrl(card.src)}
+        alt={t("callToAction.creatorAlt")}
+      />
       <CardTint />
     </Card>
   );
@@ -52,9 +56,7 @@ export default function CallToAction() {
   return (
     <Section>
       <Backdrop>
-        {desktopCards.map((card, index) =>
-          renderCard(card as CTAImageCard, index),
-        )}
+        {desktopCards.map((card, index) => renderCard(card, index))}
       </Backdrop>
 
       <MobileBackdrop>
@@ -69,9 +71,10 @@ export default function CallToAction() {
       <Content>
         <Brand>
           <BrandLogo>
-            <img
-              src={kiibeeLogo.src ?? kiibeeLogo}
+            <Image
+              src={resolveImageUrl(kiibeeLogo)}
               alt={t("callToAction.logoAlt")}
+              priority
             />
           </BrandLogo>
         </Brand>

@@ -29,15 +29,15 @@ export const LeftIconWrapper = styled.span`
 `;
 
 export const StyledInput = styled.input`
+  ${({ theme }) => theme.typography.Body_Regular};
   flex: 1;
   border: none;
   outline: none;
   background: transparent;
-  font-size: 16px;
   color: ${({ theme }) => theme?.colors.primary.BLACK};
 
   &::placeholder {
-    font-size: 16px;
+    ${({ theme }) => theme.typography.Body_Regular};
     font-weight: 500;
     color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   }
