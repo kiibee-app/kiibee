@@ -833,7 +833,15 @@
         "title": "Sales",
         "description": "Here you can find a complete overview of all your sales."
       }
-    }
+    },
+    "contentName": "Content name",
+    "pageVisits": "Page visits",
+    "clicks": "Clicks",
+    "views": "Views",
+    "paginationSummary": "Showing {{start}}-{{end}} of {{total}}",
+    "previous": "Previous",
+    "next": "Next",
+    "paginationPage": "Go to page {{page}}"
   },
   "settings": {
     "title": "Settings",
