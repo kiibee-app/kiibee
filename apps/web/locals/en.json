@@ -850,6 +850,15 @@
       "appearance": "Appearance",
       "settings": "Settings",
       "coupons": "Coupons"
+    },
+    "admissionRequirements": {
+      "title": "Admission requirements",
+      "description": "Consider what type of access your [contentType] should have",
+      "options": {
+        "free": "Free",
+        "password": "Set password",
+        "email": "Request email"
+      }
     }
   }
 }
