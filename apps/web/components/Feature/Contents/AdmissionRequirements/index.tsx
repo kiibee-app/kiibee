@@ -50,7 +50,7 @@ function AdmissionRequirements() {
   }, []);
 
   return (
-    <AdmissionCard>
+    <AdmissionCard data-test-id="admission-requirements-card">
       <TextBlock>
         <MonoText $use="Body_SemiBold">
           {t("contents.admissionRequirements.title")}
@@ -61,9 +61,13 @@ function AdmissionRequirements() {
         </MonoText>
       </TextBlock>
 
-      <DropdownShell ref={dropdownRef}>
+      <DropdownShell
+        ref={dropdownRef}
+        data-test-id="admission-requirements-dropdown"
+      >
         <SelectButton
           type="button"
+          data-test-id="admission-requirements-select-button"
           aria-haspopup="listbox"
           aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}
@@ -76,12 +80,16 @@ function AdmissionRequirements() {
         </SelectButton>
 
         {open && (
-          <OptionsList role="listbox">
+          <OptionsList
+            role="listbox"
+            data-test-id="admission-requirements-options-list"
+          >
             {ADMISSION_REQUIREMENTS.map((option) => (
               <OptionButton
                 key={option.value}
                 type="button"
                 role="option"
+                data-test-id={`admission-requirements-option-${option.value}`}
                 aria-selected={option.value === selected}
                 onClick={() => handleSelect(option.value)}
               >
