@@ -7,7 +7,7 @@ export const AdmissionCard = styled.div`
   padding: 20px 16px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 `;
 
 export const TextBlock = styled.div`
@@ -64,7 +64,7 @@ export const OptionsList = styled.div`
 
 export const OptionButton = styled.button`
   width: 100%;
-  min-height: 48px;
+  min-height: 45px;
   border: 0;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   color: ${({ theme }) => theme.colors.primary.BLACK};
