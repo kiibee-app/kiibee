@@ -10,6 +10,7 @@ import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "../Settings";
 import { VIEW } from "@/utils/Constants";
+import CreatorsContents from "../Contents/page";
 
 export default function ClientDashboardCreators() {
   const [activePage, setActivePage] = useState<string>(
@@ -54,6 +55,7 @@ export default function ClientDashboardCreators() {
     if (view === CREATORS_LABELS.PROFILE) return <CreatorProfile />;
     if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
     if (activePage === CREATORS_LABELS.SETTINGS) return <SettingsContent />;
+    if (activePage === CREATORS_LABELS.CONTENTS) return <CreatorsContents />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   };
 
