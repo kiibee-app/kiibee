@@ -838,5 +838,23 @@
       "purchase": "Køb",
       "rent": "Leje"
     }
+  },
+  "contents": {
+    "title": "Indhold",
+    "actions": {
+      "createCollection": "Opret samling",
+      "search": "Sog indhold"
+    },
+    "tabs": {
+      "collections": "Samlinger",
+      "appearance": "Udseende",
+      "settings": "Indstillinger",
+      "coupons": "Kuponer"
+    },
+    "placeholders": {
+      "collections": "Samlinger vil blive vist her.",
+      "appearance": "Udseende vil blive vist her.",
+      "settings": "Indstillinger vil blive vist her."
+    }
   }
 }
