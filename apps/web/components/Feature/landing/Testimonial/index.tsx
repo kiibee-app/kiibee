@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import { ArrowIcon as ArrowSvg } from "@/assets/icons/arrowIcon";
 import { Directions } from "@/utils/ui";

@@ -3,7 +3,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import Link from "next/link";
 import {
   Header,
@@ -112,11 +112,15 @@ export default function NavBar() {
         </Nav>
 
         <Actions>
-          <GenericButton asAnchor href="/auth/login" variant={VARIANT.SECONDARY}>
+          <GenericButton
+            asAnchor
+            href="/auth/login"
+            variant={VARIANT.SECONDARY}
+          >
             {t(NAV.login)}
           </GenericButton>
           <GenericButton asAnchor href="/auth/signup" variant={VARIANT.PRIMARY}>
-             {t(NAV.startCreating)}
+            {t(NAV.startCreating)}
           </GenericButton>
         </Actions>
       </Inner>

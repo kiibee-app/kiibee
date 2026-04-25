@@ -19,12 +19,12 @@ import {
   BottomLink,
   PaymentCardImage,
 } from "./styles";
-import Image from "next/image";
 import logo from "../../../assets/images/kiibee-logo.svg";
 import card from "../../../assets/images/card.webp";
 import { FacebookIcon, TwitterIcon, YouTubeIcon } from "@/assets/icons";
 import { footerConfig } from "@/utils/footerConfig";
 import { MonoText } from "@/components/UI/Monotext";
+import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
 
 const Footer = () => {
@@ -36,13 +36,7 @@ const Footer = () => {
       <Top>
         <Column>
           <LogoRow>
-            <Image
-              src={logo.src ?? logo}
-              alt={t(NAV.logoAlt)}
-              width={120}
-              height={32}
-              priority
-            />
+            <SafeImage src={logo} alt={t(NAV.logoAlt)} />
           </LogoRow>
           <IconRow>
             <FacebookIcon />

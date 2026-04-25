@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";

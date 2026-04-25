@@ -12,7 +12,7 @@ import {
   CTAWrap,
   Background,
 } from "./styles";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import hero from "@/assets/images/hero-background.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
