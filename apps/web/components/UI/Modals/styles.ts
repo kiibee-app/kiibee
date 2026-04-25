@@ -1,3 +1,4 @@
+import { MODAL_ALIGN, ModalAlign } from "@/utils/ui";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
@@ -11,14 +12,18 @@ export const Overlay = styled.div`
   z-index: 999;
 `;
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.div<{
+  $width?: string;
+  $align?: ModalAlign;
+}>`
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: ${({ $width }) => $width || "480px"};
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 12px;
-  padding: 40px 60px;
-  text-align: center;
+  padding: ${({ $align }) =>
+    $align === MODAL_ALIGN.START ? "30px" : "40px 60px"};
+  text-align: ${({ $align }) => $align || MODAL_ALIGN.CENTER};
   gap: 20px;
 
   ${media.tablet} {
@@ -42,18 +47,19 @@ export const Title = styled.h2`
   margin-bottom: 8px;
 `;
 
-export const Message = styled.p`
+export const Message = styled.div`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   margin-bottom: 24px;
 `;
 
 export const ButtonGroup = styled.div<{
   $row?: boolean;
+  $align?: ModalAlign;
 }>`
   display: flex;
   flex-direction: ${({ $row }) => ($row ? "row" : "column")};
   gap: 12px;
-  justify-content: center;
+  justify-content: ${({ $align }) => $align || MODAL_ALIGN.CENTER};
   align-items: center;
 
   & > button {

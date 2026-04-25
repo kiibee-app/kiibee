@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import {
@@ -15,6 +15,7 @@ import {
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
+import PayoutDetailsModal from "./PayoutDetailsModal";
 
 type StatItem = {
   label: string;
@@ -23,6 +24,7 @@ type StatItem = {
 
 export default function PayoutContent() {
   const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
 
   const stats: StatItem[] = useMemo(
     () => [
@@ -37,42 +39,47 @@ export default function PayoutContent() {
   const restStats = stats.slice(1);
 
   return (
-    <Card>
-      <CardTop>
-        <TextBlock>
-          <MonoText $use="Body_SemiBold">{t("settings.payout.title")}</MonoText>
+    <>
+      <Card>
+        <CardTop>
+          <TextBlock>
+            <MonoText $use="Body_SemiBold">
+              {t("settings.payout.title")}
+            </MonoText>
 
-          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            {t("settings.payout.description")}
-          </MonoText>
-        </TextBlock>
+            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+              {t("settings.payout.description")}
+            </MonoText>
+          </TextBlock>
 
-        <GenericButton variant={VARIANT.PRIMARY}>
-          {t("settings.payout.title")}
-        </GenericButton>
-      </CardTop>
+          <GenericButton variant={VARIANT.PRIMARY}>
+            {t("settings.payout.title")}
+          </GenericButton>
+        </CardTop>
 
-      <Stats>
-        <BalanceCard>
-          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            {balance.label}
-          </MonoText>
+        <Stats>
+          <BalanceCard>
+            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+              {balance.label}
+            </MonoText>
 
-          <MonoText $use="H4_SemiBold">{balance.value}</MonoText>
-        </BalanceCard>
+            <MonoText $use="H4_SemiBold">{balance.value}</MonoText>
+          </BalanceCard>
 
-        <SmallCards>
-          {restStats.map((item) => (
-            <SmallCard key={item.label}>
-              <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-                {item.label}
-              </MonoText>
+          <SmallCards>
+            {restStats.map((item) => (
+              <SmallCard key={item.label}>
+                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+                  {item.label}
+                </MonoText>
 
-              <MonoText $use="H4_SemiBold">{item.value}</MonoText>
-            </SmallCard>
-          ))}
-        </SmallCards>
-      </Stats>
-    </Card>
+                <MonoText $use="H4_SemiBold">{item.value}</MonoText>
+              </SmallCard>
+            ))}
+          </SmallCards>
+        </Stats>
+      </Card>
+      <PayoutDetailsModal open={open} onClose={() => setOpen(false)} />
+    </>
   );
 }

@@ -58,3 +58,29 @@ export const SmallCard = styled.div`
   max-width: 200px;
   box-shadow: 0 0 14px 0 ${({ theme }) => theme.colors.neutral.GRAY_300};
 `;
+
+export const PayoutWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 30px;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+`;
+
+export const Divider = styled.hr`
+  border: none;
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral.GRAY};
+  margin: 6px 0;
+`;
+
+export const FooterNote = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;

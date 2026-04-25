@@ -76,3 +76,10 @@ export const KEYBOARD_KEYS = {
 export const BROWSER_API = {
   INTERSECTION_OBSERVER: "IntersectionObserver",
 } as const;
+
+export const MODAL_ALIGN = {
+  CENTER: "center",
+  START: "flex-start",
+  END: "flex-end",
+} as const;
+export type ModalAlign = (typeof MODAL_ALIGN)[keyof typeof MODAL_ALIGN];
