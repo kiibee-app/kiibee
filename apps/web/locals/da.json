@@ -878,6 +878,15 @@
       "collections": "Samlinger vil blive vist her.",
       "appearance": "Udseende vil blive vist her.",
       "settings": "Indstillinger vil blive vist her."
+    },
+    "admissionRequirements": {
+      "title": "Adgangskrav",
+      "description": "Overvej hvilken type adgang dit [contentType] skal have",
+      "options": {
+        "free": "Gratis",
+        "password": "Angiv adgangskode",
+        "email": "Anmod om e-mail"
+      }
     }
   }
 }

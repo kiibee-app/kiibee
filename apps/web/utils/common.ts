@@ -1,6 +1,7 @@
 export const ALERT = "alert";
 
 export const COLLECTIONS = "collections";
+export const SETTINGS = "settings";
 
 type ContentTabItem = {
   key: ContentTab;
@@ -11,7 +12,7 @@ type ContentTabItem = {
 
 export type ContentTab = "collections" | "appearance" | "settings" | "coupons";
 
-export const CONTENT_TABS: ContentTabItem[] = [
+export const CONTENT_TABS: readonly ContentTabItem[] = [
   {
     key: "collections",
     labelKey: "contents.tabs.collections",
@@ -23,7 +24,7 @@ export const CONTENT_TABS: ContentTabItem[] = [
     descriptionKey: "Appearance content will appear here",
   },
   {
-    key: "settings",
+    key: SETTINGS,
     labelKey: "contents.tabs.settings",
     descriptionKey: "Settings content will appear here",
   },
