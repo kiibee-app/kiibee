@@ -831,6 +831,19 @@
       "notifications": "Notifications",
       "export": "Export"
     },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Here you can set how often you want to receive email updates from your account.",
+      "type": "Type",
+      "typeDesc": "Choose what kind of updates you want to receive",
+      "overview": "Overview",
+      "frequency": "How often will you receive updates?",
+      "frequencyDesc": "Select how frequently you want to get email updates",
+      "monthly": "Monthly",
+      "recipient": "Recipient",
+      "recipientDesc": "Choose where the notifications will be sent",
+      "accountEmail": "Account email"
+    },
     "payout": {
       "title": "Payout",
       "description": "When you click the button, a statement is created that you can pay out, click on pay out to see your credit note.",

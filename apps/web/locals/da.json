@@ -831,6 +831,19 @@
       "notifications": "Notifikationer",
       "export": "Eksport"
     },
+    "notifications": {
+      "title": "Notifikationer",
+      "subtitle": "Her kan du angive, hvor ofte du vil modtage e-mailopdateringer fra din konto.",
+      "type": "Type",
+      "typeDesc": "Vælg hvilken type opdateringer du vil modtage",
+      "overview": "Oversigt",
+      "frequency": "Hvor ofte vil du modtage opdateringer?",
+      "frequencyDesc": "Vælg hvor ofte du vil modtage e-mailopdateringer",
+      "monthly": "Månedligt",
+      "recipient": "Modtager",
+      "recipientDesc": "Vælg hvor notifikationerne skal sendes hen",
+      "accountEmail": "Kontoe-mail"
+    },
     "payout": {
       "title": "Payout",
       "description": "When you click the button, a statement is created that you can cash out. Click on payout to view your credit note.",

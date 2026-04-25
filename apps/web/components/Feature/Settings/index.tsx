@@ -6,6 +6,7 @@ import { TabButton, Tabs, Wrapper, SearchWrapper, Content } from "./styles";
 import { TAB_KEYS, TabKey, TABS } from "@/utils/settingsTabs";
 import SearchBar from "@/components/UI/SearchBar";
 import { useTranslation } from "react-i18next";
+import NotificationContent from "./Notification";
 import PayoutContent from "./Payout";
 
 export default function SettingsContent() {
@@ -59,7 +60,11 @@ export default function SettingsContent() {
           );
         })}
       </Tabs>
-      <Content>{activeTab === TAB_KEYS.payout && <PayoutContent />}</Content>
+
+      <Content>
+        {activeTab === TAB_KEYS.payout && <PayoutContent />}
+        {activeTab === TAB_KEYS.notifications && <NotificationContent />}
+      </Content>
     </Wrapper>
   );
 }
