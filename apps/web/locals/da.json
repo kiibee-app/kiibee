@@ -822,7 +822,17 @@
   "dashboard": {
     "overview": "Oversigt",
     "noData": "Ingen data fundet",
-    "contentPerformance": "Indholdsydelse"
+    "contentPerformance": "Indholdsydelse",
+    "users": {
+      "registrations": {
+        "title": "E-mail tilmeldinger",
+        "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse."
+      },
+      "salest": {
+        "title": "Salg",
+        "description": "Her finder du en samlet oversigt over alt dit salg"
+      }
+    }
   },
   "settings": {
     "title": "Indstillinger",

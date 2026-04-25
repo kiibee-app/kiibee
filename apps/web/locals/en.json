@@ -822,7 +822,17 @@
   "dashboard": {
     "overview": "Overview",
     "noData": "No Data Found",
-    "contentPerformance": "Content Performance"
+    "contentPerformance": "Content Performance",
+    "users": {
+      "registrations": {
+        "title": "E-mail signups",
+        "description": "An overview of all emails collected in connection with e-mail address visibility."
+      },
+      "salest": {
+        "title": "Sales",
+        "description": "Here you can find a complete overview of all your sales."
+      }
+    }
   },
   "settings": {
     "title": "Settings",
