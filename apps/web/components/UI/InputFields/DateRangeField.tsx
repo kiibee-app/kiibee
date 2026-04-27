@@ -10,13 +10,15 @@ import {
   DatePopupActions,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
-const RangeCalendar = React.lazy(
-  () => import("@/components/UI/Calendar/RangeCalendar"),
-);
 import { useClickOutside } from "@/hooks/useClickOutside";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
+import { CalendarIcon } from "@/assets/icons";
+
+const RangeCalendar = React.lazy(
+  () => import("@/components/UI/Calendar/RangeCalendar"),
+);
 
 type Props = {
   label?: React.ReactNode;
@@ -78,16 +80,21 @@ export default function DateRangeField({
       <InputWrapper
         style={{ position: "relative", backgroundColor: COLORS.primary.WHITE }}
       >
-        <div style={{ position: "relative", width: "100%" }}>
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            backgroundColor: COLORS.primary.WHITE,
+          }}
+        >
           <DateDisplay onClick={() => setOpen((s) => !s)}>
             <DateText>{displayText}</DateText>
-            <span aria-hidden>📅</span>
+            <CalendarIcon color={COLORS.primary.BLACK_90} />
           </DateDisplay>
 
           {open && (
             <DatePopup role="dialog" aria-modal="false">
               <DatePopupBody>
-                {/* Use custom range calendar here */}
                 <div style={{ width: "100%" }}>
                   <React.Suspense fallback={<div>Loading calendar…</div>}>
                     <RangeCalendar
