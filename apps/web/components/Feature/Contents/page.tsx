@@ -11,7 +11,6 @@ import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
   CreateButton,
-  DummyButton,
   PageHeader,
   PageShell,
   PlaceholderLine,
@@ -69,10 +68,6 @@ export default function CreatorsContents() {
           <SearchIcon width={22} height={22} />
         </SearchButton>
       </TabsRow>
-
-      <DummyButton type="button" onClick={() => setShowDeleteModal(true)}>
-        Dummy button
-      </DummyButton>
 
       <ContentPanel>
         {activeTab === SETTINGS ? (

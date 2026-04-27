@@ -36,17 +36,6 @@ export const CreateButton = styled.button`
   cursor: pointer;
 `;
 
-export const DummyButton = styled.button`
-  align-self: flex-start;
-  border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
-  border-radius: 8px;
-  background: ${({ theme }) => theme.colors.primary.WHITE};
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  padding: 10px 18px;
-  cursor: pointer;
-  ${({ theme }) => theme.typography.Body_Medium}
-`;
-
 export const PlusMark = styled.span`
   font-size: 22px;
   line-height: 1;
