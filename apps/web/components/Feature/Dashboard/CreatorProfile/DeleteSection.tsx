@@ -14,8 +14,16 @@ import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import { VARIANT } from "@/utils/Constants";
 import { useTranslation } from "react-i18next";
 
-export default function DeleteSection() {
+type DeleteSectionProps = {
+  onDelete?: () => void;
+};
+
+export default function DeleteSection({ onDelete }: DeleteSectionProps) {
   const { t } = useTranslation();
+
+  const handleDelete = React.useCallback(() => {
+    if (onDelete) return onDelete();
+  }, [onDelete]);
 
   return (
     <Card>
@@ -28,12 +36,7 @@ export default function DeleteSection() {
 
         <Action>
           <DeleteAction>
-            <DeleteButton
-              variant={VARIANT.PRIMARY}
-              onClick={() => {
-                console.log("Request account deletion");
-              }}
-            >
+            <DeleteButton variant={VARIANT.PRIMARY} onClick={handleDelete}>
               {t(CREATOR_PROFILE.deleteAccount)}
             </DeleteButton>
           </DeleteAction>
