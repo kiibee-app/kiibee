@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
-import { SuccessCheckIcon } from "@/assets/icons";
+
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
@@ -27,6 +27,7 @@ import {
   SETTINGS,
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
+import { SuccessArcIcon } from "@/assets/icons";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -111,7 +112,13 @@ export default function CreatorsContents() {
 
       <GenericModal
         visible={showDeleteSuccessModal}
-        icon={<SuccessCheckIcon size={22} color={COLORS.neutral.GRAY_400} />}
+        icon={
+          <SuccessArcIcon
+            width={40}
+            height={40}
+            color={COLORS.primary.GREEN_200}
+          />
+        }
         title={t("contents.deleteSuccessModal.title")}
         message={t("contents.deleteSuccessModal.message")}
         confirmLabel={t("contents.deleteSuccessModal.done")}
