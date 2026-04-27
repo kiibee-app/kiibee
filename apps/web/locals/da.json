@@ -737,6 +737,7 @@
     "playTrailer": "Afspil trailer",
     "seeContent": "Se indhold",
     "notFound": "Tutorial blev ikke fundet",
+    "otherItemsInCollection": "Andre elementer i denne samling",
     "tags": {
       "guide": "Brugerguide",
       "tutorials": "Tutorials"
@@ -822,7 +823,17 @@
   "dashboard": {
     "overview": "Oversigt",
     "noData": "Ingen data fundet",
-    "contentPerformance": "Indholdsydelse"
+    "contentPerformance": "Indholdsydelse",
+    "users": {
+      "registrations": {
+        "title": "E-mail tilmeldinger",
+        "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse."
+      },
+      "salest": {
+        "title": "Salg",
+        "description": "Her finder du en samlet oversigt over alt dit salg"
+      }
+    }
   },
   "settings": {
     "title": "Indstillinger",
@@ -830,6 +841,19 @@
       "payout": "Udbetaling",
       "notifications": "Notifikationer",
       "export": "Eksport"
+    },
+    "notifications": {
+      "title": "Notifikationer",
+      "subtitle": "Her kan du angive, hvor ofte du vil modtage e-mailopdateringer fra din konto.",
+      "type": "Type",
+      "typeDesc": "Vælg hvilken type opdateringer du vil modtage",
+      "overview": "Oversigt",
+      "frequency": "Hvor ofte vil du modtage opdateringer?",
+      "frequencyDesc": "Vælg hvor ofte du vil modtage e-mailopdateringer",
+      "monthly": "Månedligt",
+      "recipient": "Modtager",
+      "recipientDesc": "Vælg hvor notifikationerne skal sendes hen",
+      "accountEmail": "Kontoe-mail"
     },
     "payout": {
       "title": "Payout",
@@ -855,6 +879,15 @@
       "collections": "Samlinger vil blive vist her.",
       "appearance": "Udseende vil blive vist her.",
       "settings": "Indstillinger vil blive vist her."
+    },
+    "admissionRequirements": {
+      "title": "Adgangskrav",
+      "description": "Overvej hvilken type adgang dit [contentType] skal have",
+      "options": {
+        "free": "Gratis",
+        "password": "Angiv adgangskode",
+        "email": "Anmod om e-mail"
+      }
     }
   }
 }

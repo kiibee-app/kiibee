@@ -16,7 +16,13 @@ import {
   TabsRow,
   Title,
 } from "./styles";
-import { COLLECTIONS, CONTENT_TABS, ContentTab } from "@/utils/common";
+import {
+  COLLECTIONS,
+  CONTENT_TABS,
+  ContentTab,
+  SETTINGS,
+} from "@/utils/common";
+import AdmissionRequirements from "./AdmissionRequirements";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -53,17 +59,24 @@ export default function CreatorsContents() {
       </TabsRow>
 
       <ContentPanel>
-        <PlaceholderLine>
-          {(() => {
-            const activeItem = CONTENT_TABS.find(
-              (tab) => tab.key === activeTab,
-            );
-            if (activeItem?.descriptionKey) return t(activeItem.descriptionKey);
-            return (
-              activeItem?.description ?? t("contents.placeholders.collections")
-            );
-          })()}
-        </PlaceholderLine>
+        {activeTab === SETTINGS ? (
+          <AdmissionRequirements />
+        ) : (
+          <PlaceholderLine>
+            {(() => {
+              const activeItem = CONTENT_TABS.find(
+                (tab) => tab.key === activeTab,
+              );
+              if (activeItem?.descriptionKey) {
+                return t(activeItem.descriptionKey);
+              }
+              return (
+                activeItem?.description ??
+                t("contents.placeholders.collections")
+              );
+            })()}
+          </PlaceholderLine>
+        )}
       </ContentPanel>
     </PageShell>
   );

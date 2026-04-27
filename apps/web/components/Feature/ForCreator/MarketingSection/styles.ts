@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`

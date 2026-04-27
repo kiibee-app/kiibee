@@ -737,6 +737,7 @@
     "playTrailer": "Play trailer",
     "seeContent": "See content",
     "notFound": "Tutorial not found",
+    "otherItemsInCollection": "Other items in this collection",
     "tags": {
       "guide": "User guide",
       "tutorials": "Tutorials"
@@ -822,7 +823,17 @@
   "dashboard": {
     "overview": "Overview",
     "noData": "No Data Found",
-    "contentPerformance": "Content Performance"
+    "contentPerformance": "Content Performance",
+    "users": {
+      "registrations": {
+        "title": "E-mail signups",
+        "description": "An overview of all emails collected in connection with e-mail address visibility."
+      },
+      "salest": {
+        "title": "Sales",
+        "description": "Here you can find a complete overview of all your sales."
+      }
+    }
   },
   "settings": {
     "title": "Settings",
@@ -830,6 +841,19 @@
       "payout": "Payout",
       "notifications": "Notifications",
       "export": "Export"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Here you can set how often you want to receive email updates from your account.",
+      "type": "Type",
+      "typeDesc": "Choose what kind of updates you want to receive",
+      "overview": "Overview",
+      "frequency": "How often will you receive updates?",
+      "frequencyDesc": "Select how frequently you want to get email updates",
+      "monthly": "Monthly",
+      "recipient": "Recipient",
+      "recipientDesc": "Choose where the notifications will be sent",
+      "accountEmail": "Account email"
     },
     "payout": {
       "title": "Payout",
@@ -850,6 +874,15 @@
       "appearance": "Appearance",
       "settings": "Settings",
       "coupons": "Coupons"
+    },
+    "admissionRequirements": {
+      "title": "Admission requirements",
+      "description": "Consider what type of access your [contentType] should have",
+      "options": {
+        "free": "Free",
+        "password": "Set password",
+        "email": "Request email"
+      }
     }
   }
 }

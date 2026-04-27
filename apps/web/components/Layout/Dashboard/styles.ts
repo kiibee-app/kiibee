@@ -25,4 +25,8 @@ export const ContentWrapper = styled.main`
   flex: 1;
   padding: 20px;
   overflow-y: auto;
+
+  ${media.tablet} {
+    padding: 8px 0 20px;
+  }
 `;

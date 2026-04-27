@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import Image from "next/image";
+import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import GenericButton from "@/components/UI/GenericButton";
