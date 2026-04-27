@@ -272,10 +272,9 @@ export const DatePopup = styled.div<{
   position: absolute;
   top: ${({ $top }) => $top}px;
   left: ${({ $left }) => $left}px;
-
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 30px ${({ theme }) => theme.colors.neutral.GRAY_300};
   padding: 20px;
   max-width: 92vw;
   z-index: 1400;
@@ -386,6 +385,7 @@ export const DayInRange = styled.div`
   justify-content: center;
   ${({ theme }) => theme.typography.Body_Regular};
 `;
+
 export const CalendarNavButton = styled.button`
   width: 36px;
   height: 36px;
@@ -412,11 +412,16 @@ export const CancelButton = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
   background: transparent;
   cursor: pointer;
-
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.BLACK};
 
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   }
+`;
+
+export const DatePopupWrapper = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 1400;
 `;

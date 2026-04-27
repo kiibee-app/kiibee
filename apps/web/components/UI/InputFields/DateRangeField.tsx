@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import {
   Container,
@@ -10,12 +10,14 @@ import {
   DatePopupBody,
   DatePopupActions,
   CancelButton,
+  DatePopupWrapper,
 } from "./styles";
+
 import { MonoText } from "@/components/UI/Monotext";
 const RangeCalendar = React.lazy(
   () => import("@/components/UI/Calendar/RangeCalendar"),
 );
-import { useClickOutside } from "@/hooks/useClickOutside";
+
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import { CalendarIcon } from "@/assets/icons";
@@ -51,17 +53,28 @@ export default function DateRangeField({
   onChangeEnd,
 }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const popupRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState(false);
   const [tempStart, setTempStart] = useState(start || "");
   const [tempEnd, setTempEnd] = useState(end || "");
   const [pos, setPos] = useState({ top: 0, left: 0 });
 
-  useClickOutside({
-    ref: wrapperRef,
-    enabled: open,
-    handler: () => setOpen(false),
-  });
+  useEffect(() => {
+    if (!open) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+
+      if (wrapperRef.current?.contains(target)) return;
+      if (popupRef.current?.contains(target)) return;
+
+      setOpen(false);
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [open]);
 
   const openPopup = () => {
     const rect = wrapperRef.current?.getBoundingClientRect();
@@ -72,6 +85,10 @@ export default function DateRangeField({
         left: rect.left + window.scrollX,
       });
     }
+
+    // sync only when user opens popup
+    setTempStart(start || "");
+    setTempEnd(end || "");
 
     setOpen(true);
   };
@@ -107,26 +124,28 @@ export default function DateRangeField({
 
         {open &&
           createPortal(
-            <DatePopup $top={pos.top} $left={pos.left}>
-              <DatePopupBody>
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  <RangeCalendar
-                    start={tempStart}
-                    end={tempEnd}
-                    onChangeStart={setTempStart}
-                    onChangeEnd={setTempEnd}
-                  />
-                </React.Suspense>
-              </DatePopupBody>
+            <DatePopupWrapper ref={popupRef}>
+              <DatePopup $top={pos.top} $left={pos.left}>
+                <DatePopupBody>
+                  <React.Suspense fallback={<div>Loading...</div>}>
+                    <RangeCalendar
+                      start={tempStart}
+                      end={tempEnd}
+                      onChangeStart={setTempStart}
+                      onChangeEnd={setTempEnd}
+                    />
+                  </React.Suspense>
+                </DatePopupBody>
 
-              <DatePopupActions>
-                <CancelButton onClick={handleCancel}>Cancel</CancelButton>
+                <DatePopupActions>
+                  <CancelButton onClick={handleCancel}>Cancel</CancelButton>
 
-                <GenericButton variant={VARIANT.PRIMARY} onClick={handleSave}>
-                  Save
-                </GenericButton>
-              </DatePopupActions>
-            </DatePopup>,
+                  <GenericButton variant={VARIANT.PRIMARY} onClick={handleSave}>
+                    Save
+                  </GenericButton>
+                </DatePopupActions>
+              </DatePopup>
+            </DatePopupWrapper>,
             document.body,
           )}
       </InputWrapper>
