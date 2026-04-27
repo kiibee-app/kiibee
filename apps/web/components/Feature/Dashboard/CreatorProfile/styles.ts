@@ -3,14 +3,21 @@ import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 
 export const Container = styled.div`
-  padding: 8px 28px;
+  padding: 45px 28px 8px 28px;
 `;
 
 export const HeaderRow = styled.div`
+  position: fixed;
+  top: 70px;
+  left: 250px;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  z-index: 110;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  padding: 18px 28px;
 `;
 
 export const HeaderActions = styled.div`
@@ -21,6 +28,7 @@ export const HeaderActions = styled.div`
 
 export const Title = styled.h2`
   margin: 0 0 8px 0;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const Card = styled.section`
