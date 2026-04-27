@@ -14,3 +14,25 @@ export function formatDate(iso?: string) {
     return "";
   }
 }
+
+export function startOfMonth(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+}
+
+export function addMonths(date: Date, n: number) {
+  return new Date(date.getFullYear(), date.getMonth() + n, 1);
+}
+
+export function daysInMonth(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+}
+
+export function toISO(date: Date) {
+  return date.toISOString().slice(0, 10);
+}
+
+export function fromISO(iso?: string) {
+  if (!iso) return null;
+  const d = new Date(iso);
+  return isNaN(d.getTime()) ? null : d;
+}

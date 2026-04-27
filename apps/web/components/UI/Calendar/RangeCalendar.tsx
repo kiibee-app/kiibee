@@ -16,7 +16,14 @@ import {
 } from "./styles";
 import { ArrowWrap } from "../InputFields/styles";
 import { ArrowIcon } from "@/assets/icons";
-import { Directions } from "@/utils/ui";
+import { Directions, WEEK_DAYS } from "@/utils/ui";
+import {
+  addMonths,
+  daysInMonth,
+  fromISO,
+  startOfMonth,
+  toISO,
+} from "@/utils/formatDate";
 
 type Props = {
   start?: string;
@@ -24,30 +31,6 @@ type Props = {
   onChangeStart?: (iso: string) => void;
   onChangeEnd?: (iso: string) => void;
 };
-
-const WEEK_DAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
-function startOfMonth(date: Date) {
-  return new Date(date.getFullYear(), date.getMonth(), 1);
-}
-
-function addMonths(date: Date, n: number) {
-  return new Date(date.getFullYear(), date.getMonth() + n, 1);
-}
-
-function daysInMonth(date: Date) {
-  return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-}
-
-function toISO(date: Date) {
-  return date.toISOString().slice(0, 10);
-}
-
-function fromISO(iso?: string) {
-  if (!iso) return null;
-  const d = new Date(iso);
-  return isNaN(d.getTime()) ? null : d;
-}
 
 export default function RangeCalendar({
   start,

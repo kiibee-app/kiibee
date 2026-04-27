@@ -228,7 +228,7 @@ export const Menu = styled.div`
   left: 0;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 20px ${({ theme }) => theme.colors.neutral.GRAY_300};
   overflow: hidden;
   width: 100%;
   z-index: 1200;

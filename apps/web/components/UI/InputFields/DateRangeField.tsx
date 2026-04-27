@@ -12,17 +12,16 @@ import {
   CancelButton,
   DatePopupWrapper,
 } from "./styles";
-
 import { MonoText } from "@/components/UI/Monotext";
 const RangeCalendar = React.lazy(
   () => import("@/components/UI/Calendar/RangeCalendar"),
 );
-
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import { CalendarIcon } from "@/assets/icons";
 import COLORS from "@repo/ui/colors";
 import { formatDate } from "@/utils/formatDate";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   label?: React.ReactNode;
@@ -41,7 +40,7 @@ export default function DateRangeField({
 }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
-
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [tempStart, setTempStart] = useState(start || "");
   const [tempEnd, setTempEnd] = useState(end || "");
@@ -72,8 +71,6 @@ export default function DateRangeField({
         left: rect.left + window.scrollX,
       });
     }
-
-    // sync only when user opens popup
     setTempStart(start || "");
     setTempEnd(end || "");
 
@@ -125,10 +122,11 @@ export default function DateRangeField({
                 </DatePopupBody>
 
                 <DatePopupActions>
-                  <CancelButton onClick={handleCancel}>Cancel</CancelButton>
-
+                  <CancelButton onClick={handleCancel}>
+                    {t("common.cancel")}
+                  </CancelButton>
                   <GenericButton variant={VARIANT.PRIMARY} onClick={handleSave}>
-                    Save
+                    {t("common.save")}
                   </GenericButton>
                 </DatePopupActions>
               </DatePopup>
