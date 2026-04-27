@@ -878,7 +878,8 @@
     "title": "Indhold",
     "actions": {
       "createCollection": "Opret samling",
-      "search": "Sog indhold"
+      "search": "Sog indhold",
+      "deleteContent": "Delete content"
     },
     "tabs": {
       "collections": "Samlinger",
@@ -899,6 +900,17 @@
         "password": "Angiv adgangskode",
         "email": "Anmod om e-mail"
       }
+    },
+    "deleteModal": {
+      "title": "Delete content?",
+      "message": "Are you sure you want to delete this content? This action cannot be undone.",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
+    "deleteSuccessModal": {
+      "title": "Delete successfully",
+      "message": "Content deleted successfully.",
+      "done": "Done"
     }
   }
 }

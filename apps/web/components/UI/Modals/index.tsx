@@ -30,8 +30,12 @@ type GenericModalProps = {
   onCancel?: () => void;
   onClose?: () => void;
   width?: string;
+  padding?: string;
+  iconMargin?: string;
+  fullWidthButtons?: boolean;
   buttonAlign?: ModalAlign;
   textAlign?: ModalAlign;
+  showCloseButton?: boolean;
 };
 
 export const GenericModal: React.FC<GenericModalProps> = ({
@@ -47,8 +51,12 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   onCancel,
   onClose,
   width,
+  padding,
+  iconMargin,
+  fullWidthButtons = false,
   buttonAlign,
   textAlign,
+  showCloseButton = true,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -89,31 +97,34 @@ export const GenericModal: React.FC<GenericModalProps> = ({
       aria-modal="true"
       aria-labelledby={title ? "generic-modal-title" : undefined}
       aria-describedby="generic-modal-message"
-      data-testid="generic-modal-overlay"
+      data-test-id="generic-modal-overlay"
     >
       <ModalContainer
         $width={width}
+        $padding={padding}
         $align={textAlign}
         ref={ref}
-        data-testid="generic-modal-container"
+        data-test-id="generic-modal-container"
       >
-        {onClose && (
+        {onClose && showCloseButton && (
           <CloseButton
             type="button"
             aria-label="Close"
             onClick={onClose}
-            data-testid="generic-modal-close"
+            data-test-id="generic-modal-close"
           >
             <CrossIcon />
           </CloseButton>
         )}
 
         {icon && (
-          <IconWrapper data-testid="generic-modal-icon">{icon}</IconWrapper>
+          <IconWrapper $margin={iconMargin} data-test-id="generic-modal-icon">
+            {icon}
+          </IconWrapper>
         )}
 
         {title && (
-          <Title id="generic-modal-title" data-testid="generic-modal-title">
+          <Title id="generic-modal-title" data-test-id="generic-modal-title">
             <MonoText $use="H5_Medium">{title}</MonoText>
           </Title>
         )}
@@ -128,15 +139,16 @@ export const GenericModal: React.FC<GenericModalProps> = ({
 
         {(confirmLabel || (cancelLabel && onCancel)) && (
           <ButtonGroup
+            $fullWidthButtons={fullWidthButtons}
             $row={buttonRow}
             $align={buttonAlign}
-            data-testid="generic-modal-button-group"
+            data-test-id="generic-modal-button-group"
           >
             {cancelLabel && onCancel && (
               <GenericButton
                 variant="secondary"
                 onClick={handleCancel}
-                data-testid="generic-modal-cancel-button"
+                data-test-id="generic-modal-cancel-button"
               >
                 {cancelLabel}
               </GenericButton>
@@ -146,7 +158,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
               <GenericButton
                 variant="primary"
                 onClick={handleConfirm}
-                data-testid="generic-modal-confirm-button"
+                data-test-id="generic-modal-confirm-button"
               >
                 {confirmLabel}
               </GenericButton>
