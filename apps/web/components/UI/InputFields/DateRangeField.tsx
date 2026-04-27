@@ -22,6 +22,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import { CalendarIcon } from "@/assets/icons";
 import COLORS from "@repo/ui/colors";
+import { formatDate } from "@/utils/formatDate";
 
 type Props = {
   label?: React.ReactNode;
@@ -30,20 +31,6 @@ type Props = {
   onChangeStart?: (value: string) => void;
   onChangeEnd?: (value: string) => void;
 };
-
-function formatDate(iso?: string) {
-  if (!iso) return "";
-  try {
-    const d = new Date(iso);
-    if (isNaN(d.getTime())) return "";
-    const dd = String(d.getDate()).padStart(2, "0");
-    const mm = String(d.getMonth() + 1).padStart(2, "0");
-    const yyyy = d.getFullYear();
-    return `${dd}.${mm}.${yyyy}`;
-  } catch {
-    return "";
-  }
-}
 
 export default function DateRangeField({
   label,

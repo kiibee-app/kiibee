@@ -9,7 +9,11 @@ import {
   DayButton,
   DaySelected,
   DayInRange,
-} from "../InputFields/styles";
+  MonthNav,
+  DayCell,
+  DayButtonBase,
+  WeekDayCell,
+} from "./styles";
 import { ArrowWrap } from "../InputFields/styles";
 import { ArrowIcon } from "@/assets/icons";
 import { Directions } from "@/utils/ui";
@@ -61,12 +65,12 @@ export default function RangeCalendar({
   const rightMonth = useMemo(() => addMonths(leftMonth, 1), [leftMonth]);
 
   const renderMonth = (monthDate: Date) => {
-    const days = [] as Array<{ date: Date; iso: string; isOutside: boolean }>;
+    const days: Array<{ date: Date; iso: string; isOutside: boolean }> = [];
+
     const firstDay = startOfMonth(monthDate);
     const total = daysInMonth(monthDate);
     const startWeekday = firstDay.getDay();
 
-    // add blanks for previous month
     for (let i = 0; i < startWeekday; i++) {
       days.push({ date: new Date(0), iso: "", isOutside: true });
     }
@@ -89,9 +93,7 @@ export default function RangeCalendar({
 
         <WeekDays>
           {WEEK_DAYS.map((w) => (
-            <div key={w} style={{ textAlign: "center" }}>
-              {w}
-            </div>
+            <WeekDayCell key={w}>{w}</WeekDayCell>
           ))}
         </WeekDays>
 
@@ -105,8 +107,8 @@ export default function RangeCalendar({
             const inRange = start && end ? iso > start && iso < end : false;
 
             return (
-              <div key={iso} style={{ textAlign: "center" }}>
-                <button
+              <DayCell key={iso}>
+                <DayButtonBase
                   onClick={() => {
                     if (!start || (start && end)) {
                       onChangeStart?.(iso);
@@ -119,26 +121,17 @@ export default function RangeCalendar({
                       }
                     }
                   }}
-                  style={{
-                    width: "100%",
-                    background: "none",
-                    border: "none",
-                    padding: 0,
-                  }}
                   aria-pressed={isStart || isEnd}
-                  aria-label={`Select ${iso}`}
                 >
                   {isStart || isEnd ? (
                     <DaySelected>{new Date(iso).getDate()}</DaySelected>
                   ) : inRange ? (
                     <DayInRange>{new Date(iso).getDate()}</DayInRange>
                   ) : (
-                    <DayButton type="button">
-                      {new Date(iso).getDate()}
-                    </DayButton>
+                    <DayButton>{new Date(iso).getDate()}</DayButton>
                   )}
-                </button>
-              </div>
+                </DayButtonBase>
+              </DayCell>
             );
           })}
         </DaysGrid>
@@ -148,23 +141,20 @@ export default function RangeCalendar({
 
   return (
     <CalendarWrapper>
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+      <MonthNav>
         <ArrowWrap onClick={() => setLeftMonth((m) => addMonths(m, -1))}>
           <ArrowIcon width={15} height={10} direction={Directions.LEFT} />
         </ArrowWrap>
-      </div>
+      </MonthNav>
 
       {renderMonth(leftMonth)}
       {renderMonth(rightMonth)}
 
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <ArrowWrap
-          onClick={() => setLeftMonth((m) => addMonths(m, 1))}
-          aria-label="Next month"
-        >
+      <MonthNav>
+        <ArrowWrap onClick={() => setLeftMonth((m) => addMonths(m, 1))}>
           <ArrowIcon width={15} height={10} direction={Directions.RIGHT} />
         </ArrowWrap>
-      </div>
+      </MonthNav>
     </CalendarWrapper>
   );
 }
