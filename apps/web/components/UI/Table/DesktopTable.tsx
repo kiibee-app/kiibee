@@ -24,6 +24,7 @@ export default function DesktopTable<T extends Record<string, unknown>>({
   headerToKey,
   renderCell,
   getRowKey,
+  getColumnAlignment,
   emptyText,
   hasData,
   pagination,
@@ -46,8 +47,11 @@ export default function DesktopTable<T extends Record<string, unknown>>({
     <TableWrapper>
       <thead>
         <DesktopHeaderRow>
-          {headers.map((header) => (
-            <TableHead key={header}>
+          {headers.map((header, index) => (
+            <TableHead
+              key={header}
+              $align={getColumnAlignment?.(header, index)}
+            >
               <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
                 {header}
               </MonoText>
@@ -67,10 +71,11 @@ export default function DesktopTable<T extends Record<string, unknown>>({
                 const key = getColumnKey<T>(header, headerToKey);
                 const value = row[key];
                 const isFirstColumn = colIndex === 0;
+                const align = getColumnAlignment?.(header, colIndex);
 
                 if (renderCell) {
                   return (
-                    <TableCell key={header}>
+                    <TableCell key={header} $align={align}>
                       {renderCell({
                         header,
                         value,
@@ -84,7 +89,7 @@ export default function DesktopTable<T extends Record<string, unknown>>({
                 const content = renderDefaultCellContent(header, value);
 
                 return (
-                  <TableCell key={header}>
+                  <TableCell key={header} $align={align}>
                     <MonoText
                       $use="Body_SemiBold"
                       color={isFirstColumn ? undefined : COLORS.neutral.GRAY}

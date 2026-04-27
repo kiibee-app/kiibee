@@ -12,6 +12,7 @@ export default function Table<T extends Record<string, unknown>>({
   headers,
   data,
   headerToKey,
+  getColumnAlignment,
   renderCell,
   getRowKey,
   getMobileTitle,
@@ -57,6 +58,7 @@ export default function Table<T extends Record<string, unknown>>({
           headers={headers}
           data={paginatedData}
           headerToKey={headerToKey}
+          getColumnAlignment={getColumnAlignment}
           renderCell={renderCell}
           getRowKey={getRowKey}
           emptyText={emptyText}

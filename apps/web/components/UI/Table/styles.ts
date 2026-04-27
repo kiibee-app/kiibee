@@ -43,15 +43,15 @@ export const DesktopRow = styled.tr`
   }
 `;
 
-export const TableHead = styled.th`
-  text-align: left;
+export const TableHead = styled.th<{ $align?: "left" | "center" | "right" }>`
+  text-align: ${({ $align }) => $align ?? "left"};
   padding: 16px 12px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 `;
 
-export const TableCell = styled.td`
+export const TableCell = styled.td<{ $align?: "left" | "center" | "right" }>`
   padding: 16px 12px;
-  text-align: left;
+  text-align: ${({ $align }) => $align ?? "left"};
 
   ${media.tablet} {
     display: flex;

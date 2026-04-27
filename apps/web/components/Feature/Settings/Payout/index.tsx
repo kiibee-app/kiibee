@@ -19,7 +19,9 @@ import PayoutDetailsModal from "./PayoutDetailsModal";
 import Table from "@/components/UI/Table";
 import { SettlementRow } from "@/types/tableContract";
 import { settlementData, settlementHeaders } from "@/utils/dummyData/payout";
+import { CENTER_ALIGNED_HEADERS } from "@/utils/payout";
 import { Settlement } from "../styles";
+import { Directions, MODAL_ALIGN } from "@/utils/ui";
 
 type StatItem = {
   label: string;
@@ -89,6 +91,11 @@ export default function PayoutContent() {
           headers={settlementHeaders}
           data={settlementData}
           rowsPerPage={10}
+          getColumnAlignment={(header, index) =>
+            index === 0 || !CENTER_ALIGNED_HEADERS.includes(header)
+              ? Directions.LEFT
+              : MODAL_ALIGN.CENTER
+          }
           headerToKey={(h) => {
             const map: Record<string, keyof SettlementRow> = {
               Amount: "amount",

@@ -13,6 +13,10 @@ export type BaseTableProps<T> = {
   headerToKey?: (h: string) => KeyOf<T>;
   renderCell?: (params: RenderCellProps<T>) => React.ReactNode;
   getRowKey?: (row: T, index: number) => string | number;
+  getColumnAlignment?: (
+    header: string,
+    index: number,
+  ) => "left" | "center" | "right";
   emptyText?: string;
   hasData?: boolean | undefined;
   rowsPerPage?: number;
