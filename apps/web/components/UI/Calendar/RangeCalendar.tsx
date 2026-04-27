@@ -10,7 +10,9 @@ import {
   DaySelected,
   DayInRange,
 } from "../InputFields/styles";
-import { CalendarNavButton, ArrowWrap } from "../InputFields/styles";
+import { ArrowWrap } from "../InputFields/styles";
+import { ArrowIcon } from "@/assets/icons";
+import { Directions } from "@/utils/ui";
 
 type Props = {
   start?: string;
@@ -147,24 +149,21 @@ export default function RangeCalendar({
   return (
     <CalendarWrapper>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <CalendarNavButton
-          onClick={() => setLeftMonth((m) => addMonths(m, -1))}
-          aria-label="Prev month"
-        >
-          <ArrowWrap>◀</ArrowWrap>
-        </CalendarNavButton>
+        <ArrowWrap onClick={() => setLeftMonth((m) => addMonths(m, -1))}>
+          <ArrowIcon width={15} height={10} direction={Directions.LEFT} />
+        </ArrowWrap>
       </div>
 
       {renderMonth(leftMonth)}
       {renderMonth(rightMonth)}
 
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <CalendarNavButton
+        <ArrowWrap
           onClick={() => setLeftMonth((m) => addMonths(m, 1))}
           aria-label="Next month"
         >
-          <ArrowWrap>▶</ArrowWrap>
-        </CalendarNavButton>
+          <ArrowIcon width={15} height={10} direction={Directions.RIGHT} />
+        </ArrowWrap>
       </div>
     </CalendarWrapper>
   );

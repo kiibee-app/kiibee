@@ -249,7 +249,7 @@ export const Item = styled.button`
 `;
 
 export const DateDisplay = styled.div`
-  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: ${({ theme }) => theme.radius.lg};
   padding: 10px 14px;
   display: flex;
@@ -265,17 +265,19 @@ export const DateText = styled.div`
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const DatePopup = styled.div`
-  position: fixed;
-  top: 120px;
-  left: 50%;
-  transform: translateX(-50%);
+export const DatePopup = styled.div<{
+  $top: number;
+  $left: number;
+}>`
+  position: absolute;
+  top: ${({ $top }) => $top}px;
+  left: ${({ $left }) => $left}px;
+
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 12px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
   padding: 20px;
   max-width: 92vw;
-  width: 720px;
   z-index: 1400;
   max-height: calc(100vh - 160px);
   overflow: auto;
@@ -285,27 +287,43 @@ export const DatePopupBody = styled.div`
   display: flex;
   gap: 18px;
   margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
 export const DatePopupActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
   gap: 12px;
 `;
 
-/* Calendar styles */
 export const CalendarWrapper = styled.div`
   display: flex;
-  gap: 18px;
+  gap: 24px;
+  align-items: flex-start;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    transform: translateX(-50%);
+  }
 `;
 
 export const CalendarMonth = styled.div`
-  background: transparent;
-  min-width: 280px;
+  min-width: 300px;
+  flex: 1;
 `;
 
 export const CalendarHeader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 12px;
 `;
 
@@ -336,7 +354,7 @@ export const DayButton = styled.button<{ $isOutside?: boolean }>`
   border-radius: 50%;
   border: none;
   background: ${({ $isOutside, theme }) =>
-    $isOutside ? "transparent" : theme.colors.neutral.GRAY_100};
+    $isOutside ? theme.colors.neutral.GRAY_100 : "transparent"};
   cursor: pointer;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.BLACK};
@@ -351,7 +369,7 @@ export const DaySelected = styled.div`
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE};
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   ${({ theme }) => theme.typography.Body_Regular};
@@ -360,7 +378,7 @@ export const DaySelected = styled.div`
 export const DayInRange = styled.div`
   min-width: 40px;
   height: 40px;
-  border-radius: 12px;
+  border-radius: 999px;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   display: inline-flex;
@@ -386,4 +404,19 @@ export const ArrowWrap = styled.span`
   height: 18px;
   align-items: center;
   justify-content: center;
+`;
+
+export const CancelButton = styled.button`
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: transparent;
+  cursor: pointer;
+
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
 `;
