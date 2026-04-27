@@ -19,6 +19,7 @@ import PayoutDetailsModal from "./PayoutDetailsModal";
 import Table from "@/components/UI/Table";
 import { SettlementRow } from "@/types/tableContract";
 import { settlementData, settlementHeaders } from "@/utils/dummyData/payout";
+import { Settlement } from "../styles";
 
 type StatItem = {
   label: string;
@@ -82,23 +83,26 @@ export default function PayoutContent() {
           </SmallCards>
         </Stats>
       </Card>
-      <Table<SettlementRow>
-        headers={settlementHeaders}
-        data={settlementData}
-        rowsPerPage={10}
-        headerToKey={(h) => {
-          const map: Record<string, keyof SettlementRow> = {
-            Amount: "amount",
-            Status: "status",
-            "Credit No": "creditNo",
-            Bank: "bank",
-            Date: "date",
-          };
-          return map[h];
-        }}
-        getRowKey={(row, index) => `${row.creditNo}-${index}`}
-        getMobileTitle={(row) => row.amount}
-      />
+      <Settlement>
+        <MonoText $use="H4_Medium"> Settlement history</MonoText>
+        <Table<SettlementRow>
+          headers={settlementHeaders}
+          data={settlementData}
+          rowsPerPage={10}
+          headerToKey={(h) => {
+            const map: Record<string, keyof SettlementRow> = {
+              Amount: "amount",
+              Status: "status",
+              "Credit No": "creditNo",
+              Bank: "bank",
+              Date: "date",
+            };
+            return map[h];
+          }}
+          getRowKey={(row, index) => `${row.creditNo}-${index}`}
+          getMobileTitle={(row) => row.amount}
+        />
+      </Settlement>
 
       <PayoutDetailsModal open={open} onClose={() => setOpen(false)} />
     </>

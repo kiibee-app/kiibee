@@ -51,37 +51,38 @@ export default function Table<T extends Record<string, unknown>>({
   };
 
   return (
-    <TableContainer>
-      <DesktopTable
-        headers={headers}
-        data={paginatedData}
-        headerToKey={headerToKey}
-        renderCell={renderCell}
-        getRowKey={getRowKey}
-        emptyText={emptyText}
-        hasData={hasData}
-        pagination={paginationMeta}
-      />
+    <>
+      <TableContainer>
+        <DesktopTable
+          headers={headers}
+          data={paginatedData}
+          headerToKey={headerToKey}
+          renderCell={renderCell}
+          getRowKey={getRowKey}
+          emptyText={emptyText}
+          hasData={hasData}
+          pagination={paginationMeta}
+        />
 
-      <MobileTable
-        headers={headers}
-        data={paginatedData}
-        headerToKey={headerToKey}
-        renderCell={renderCell}
-        getRowKey={getRowKey}
-        getMobileTitle={getMobileTitle}
-        openIndex={openIndex}
-        toggleAccordion={toggleAccordion}
-        hasData={hasData}
-        pagination={paginationMeta}
-      />
-
+        <MobileTable
+          headers={headers}
+          data={paginatedData}
+          headerToKey={headerToKey}
+          renderCell={renderCell}
+          getRowKey={getRowKey}
+          getMobileTitle={getMobileTitle}
+          openIndex={openIndex}
+          toggleAccordion={toggleAccordion}
+          hasData={hasData}
+          pagination={paginationMeta}
+        />
+      </TableContainer>
       <Pagination
         totalPages={totalPages}
         currentPage={safeCurrentPage}
         pageNumbers={pageNumbers}
         onChange={handlePageChange}
       />
-    </TableContainer>
+    </>
   );
 }

@@ -86,7 +86,7 @@ export default function MobileTable<T extends Record<string, unknown>>({
 
                 const content = isStatusColumn(header) ? (
                   <StatusBadge $status={renderStatus(value)}>
-                    {rawValue}
+                    <MonoText $use="Body_Bold"> {rawValue}</MonoText>
                   </StatusBadge>
                 ) : (
                   <MonoText $use="Body_SemiBold">{rawValue}</MonoText>

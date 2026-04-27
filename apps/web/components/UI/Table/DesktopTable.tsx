@@ -96,7 +96,7 @@ export default function DesktopTable<T extends Record<string, unknown>>({
                 const rawValue = defaultRender(value);
                 const content = isStatusColumn(header) ? (
                   <StatusBadge $status={renderStatus(value)}>
-                    {rawValue}
+                    <MonoText $use="Body_Bold"> {rawValue}</MonoText>
                   </StatusBadge>
                 ) : (
                   rawValue

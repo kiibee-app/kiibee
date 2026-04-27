@@ -1,10 +1,11 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import { TABLE_STATUS } from "@/utils/tableStatus";
+import { MonoText } from "../Monotext";
 
 export const TableContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.colors.primary.WHITE};
+  background-color: "transparent";
   border-radius: 8px;
   overflow-x: auto;
 
@@ -18,6 +19,8 @@ export const TableContainer = styled.div`
 export const TableWrapper = styled.table`
   width: 100%;
   border-collapse: collapse;
+  background-color: "transparent";
+  border-radius: 16px;
 
   ${media.tablet} {
     display: flex;
@@ -27,8 +30,6 @@ export const TableWrapper = styled.table`
 `;
 
 export const DesktopHeaderRow = styled.tr`
-  background: ${({ theme }) => theme.colors.primary.WHITE};
-
   ${media.tablet} {
     display: none;
   }
@@ -70,7 +71,7 @@ export const MobileRow = styled.div<{ $isOpen?: boolean }>`
     width: 100%;
     border-radius: 10px;
     margin-bottom: 10px;
-    background: ${({ theme }) => theme.colors.primary.WHITE};
+    background: "transparent;
     overflow: hidden;
     transition: all 0.3s ease;
   }
@@ -130,24 +131,15 @@ export const StatusBadge = styled.button<{ $status: string }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   padding: 4px 12px;
   border-radius: 6px;
-
   min-width: 90px;
   height: 28px;
-
-  font-size: 12px;
-  font-weight: 600;
-
   white-space: nowrap;
   text-transform: capitalize;
-
   border: none;
   cursor: default;
-
   color: ${({ theme }) => theme.colors.primary.WHITE};
-
   background-color: ${({ $status, theme }) => {
     if ($status === TABLE_STATUS.COMPLETED)
       return theme.colors.secondary.MEDIUM_GREEN;
@@ -155,6 +147,9 @@ export const StatusBadge = styled.button<{ $status: string }>`
     if ($status === TABLE_STATUS.REJECTED) return theme.colors.primary.RED;
     return theme.colors.neutral.GRAY_400;
   }};
+  ${MonoText} {
+    color: inherit;
+  }
 `;
 
 export const PaginationWrapper = styled.div`
