@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
+import GenericButton from "@/components/UI/GenericButton";
 
 export const Container = styled.div`
   padding: 8px 28px;
@@ -46,7 +47,41 @@ export const Avatar = styled.div`
 `;
 
 export const Fields = styled.div`
-  max-width: 540px;
+  max-width: 640px;
+`;
+
+export const TitleText = styled(MonoText).attrs({
+  $use: "Body_Bold",
+})`
+  font-weight: 600;
+  display: block;
+  font-size: 20px;
+  margin: 0 0 8px 0;
+`;
+
+export const DescriptionText = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  line-height: 1.5;
+`;
+
+export const DeleteButton = styled(GenericButton)`
+  background: ${({ theme }) => theme.colors.secondary.RED};
+  border-color: ${({ theme }) => theme.colors.secondary.RED};
+  color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  box-shadow: 0 6px 18px ${({ theme }) => theme.colors.neutral.GRAY_300};
+  border-radius: 8px;
+`;
+
+export const DeleteAction = styled.div`
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 export const TwoColumnRow = styled.div`
