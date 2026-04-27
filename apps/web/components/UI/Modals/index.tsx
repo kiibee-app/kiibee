@@ -30,8 +30,10 @@ type GenericModalProps = {
   onCancel?: () => void;
   onClose?: () => void;
   width?: string;
+  padding?: string;
   buttonAlign?: ModalAlign;
   textAlign?: ModalAlign;
+  showCloseButton?: boolean;
 };
 
 export const GenericModal: React.FC<GenericModalProps> = ({
@@ -47,8 +49,10 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   onCancel,
   onClose,
   width,
+  padding,
   buttonAlign,
   textAlign,
+  showCloseButton = true,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -93,11 +97,12 @@ export const GenericModal: React.FC<GenericModalProps> = ({
     >
       <ModalContainer
         $width={width}
+        $padding={padding}
         $align={textAlign}
         ref={ref}
         data-testid="generic-modal-container"
       >
-        {onClose && (
+        {onClose && showCloseButton && (
           <CloseButton
             type="button"
             aria-label="Close"

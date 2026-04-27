@@ -867,7 +867,8 @@
     "title": "Contents",
     "actions": {
       "createCollection": "Create collection",
-      "search": "Search contents"
+      "search": "Search contents",
+      "deleteContent": "Delete content"
     },
     "tabs": {
       "collections": "Collections",
@@ -883,6 +884,17 @@
         "password": "Set password",
         "email": "Request email"
       }
+    },
+    "deleteModal": {
+      "title": "Delete content?",
+      "message": "Are you sure you want to delete this content? This action cannot be undone.",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
+    "deleteSuccessModal": {
+      "title": "Delete successfully",
+      "message": "Content deleted successfully.",
+      "done": "Done"
     }
   }
 }

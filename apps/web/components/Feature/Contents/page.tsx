@@ -3,11 +3,15 @@
 import React, { useState } from "react";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
+import { SuccessCheckIcon } from "@/assets/icons";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
+import { GenericModal } from "@/components/UI/Modals";
+import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
   CreateButton,
+  DummyButton,
   PageHeader,
   PageShell,
   PlaceholderLine,
@@ -27,6 +31,13 @@ import AdmissionRequirements from "./AdmissionRequirements";
 export default function CreatorsContents() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+
+  const handleDeleteContent = () => {
+    setShowDeleteModal(false);
+    setShowDeleteSuccessModal(true);
+  };
 
   return (
     <PageShell>
@@ -58,6 +69,10 @@ export default function CreatorsContents() {
         </SearchButton>
       </TabsRow>
 
+      <DummyButton type="button" onClick={() => setShowDeleteModal(true)}>
+        Dummy button
+      </DummyButton>
+
       <ContentPanel>
         {activeTab === SETTINGS ? (
           <AdmissionRequirements />
@@ -78,6 +93,33 @@ export default function CreatorsContents() {
           </PlaceholderLine>
         )}
       </ContentPanel>
+
+      <GenericModal
+        visible={showDeleteModal}
+        title={t("contents.deleteModal.title")}
+        message={t("contents.deleteModal.message")}
+        cancelLabel={t("contents.deleteModal.cancel")}
+        confirmLabel={t("contents.deleteModal.delete")}
+        onCancel={() => setShowDeleteModal(false)}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={handleDeleteContent}
+        width="480px"
+        padding="40px 30px"
+        buttonRow
+        showCloseButton={false}
+      />
+
+      <GenericModal
+        visible={showDeleteSuccessModal}
+        icon={<SuccessCheckIcon size={22} color={COLORS.neutral.GRAY_400} />}
+        title={t("contents.deleteSuccessModal.title")}
+        message={t("contents.deleteSuccessModal.message")}
+        confirmLabel={t("contents.deleteSuccessModal.done")}
+        onClose={() => setShowDeleteSuccessModal(false)}
+        onConfirm={() => setShowDeleteSuccessModal(false)}
+        width="480px"
+        showCloseButton={false}
+      />
     </PageShell>
   );
 }
