@@ -71,7 +71,6 @@ export const MobileRow = styled.div<{ $isOpen?: boolean }>`
     width: 100%;
     border-radius: 10px;
     margin-bottom: 10px;
-    background: "transparent;
     overflow: hidden;
     transition: all 0.3s ease;
   }

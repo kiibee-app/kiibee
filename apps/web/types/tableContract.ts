@@ -17,8 +17,8 @@ export type BaseTableProps<T> = {
   hasData?: boolean | undefined;
   rowsPerPage?: number;
   pagination?: {
-    safeCurrentPage: number | undefined;
-    effectiveRowsPerPage: number | undefined;
+    safeCurrentPage?: number;
+    effectiveRowsPerPage?: number;
   };
 };
 

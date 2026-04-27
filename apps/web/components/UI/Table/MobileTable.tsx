@@ -8,17 +8,16 @@ import {
   MobileDataRow,
   HeaderLabel,
   RightSection,
-  StatusBadge,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import { ArrowIcon } from "@/assets/icons";
 import { Directions } from "@/utils/ui";
+import { MobileTableProps } from "@/types/tableContract";
 import {
-  defaultRender,
-  isStatusColumn,
-  renderStatus,
-} from "@/utils/tableRender";
-import { MobileTableProps, KeyOf } from "@/types/tableContract";
+  getColumnKey,
+  getGlobalIndex,
+  renderDefaultCellContent,
+} from "./tableShared";
 
 export default function MobileTable<T extends Record<string, unknown>>({
   headers,
@@ -32,43 +31,34 @@ export default function MobileTable<T extends Record<string, unknown>>({
   hasData,
   pagination,
 }: MobileTableProps<T>) {
-  const getKey = (header: string): KeyOf<T> =>
-    headerToKey
-      ? headerToKey(header)
-      : (header.toLowerCase().replace(/\s+/g, "") as KeyOf<T>);
-
   if (!hasData) return null;
 
   return (
     <>
-      {data.map((row, i) => {
-        const safeCurrentPage = pagination?.safeCurrentPage ?? 1;
-        const effectiveRowsPerPage =
-          pagination?.effectiveRowsPerPage ?? data.length;
-
-        const globalIndex = (safeCurrentPage - 1) * effectiveRowsPerPage + i;
-
+      {data.map((row, index) => {
+        const globalIndex = getGlobalIndex(index, pagination, data.length);
         const rowKey = getRowKey?.(row, globalIndex) ?? globalIndex;
         const title =
           getMobileTitle?.(row) ?? String(Object.values(row)[0] ?? "");
 
         return (
-          <MobileRow key={rowKey} $isOpen={openIndex === i}>
-            <MobileHeader onClick={() => toggleAccordion(i)}>
+          <MobileRow key={rowKey} $isOpen={openIndex === index}>
+            <MobileHeader onClick={() => toggleAccordion(index)}>
               <MonoText $use="Body_Medium">{title}</MonoText>
 
               <RightSection>
                 <ArrowIcon
-                  direction={openIndex === i ? Directions.UP : Directions.DOWN}
+                  direction={
+                    openIndex === index ? Directions.UP : Directions.DOWN
+                  }
                 />
               </RightSection>
             </MobileHeader>
 
-            <AccordionContent $isOpen={openIndex === i}>
+            <AccordionContent $isOpen={openIndex === index}>
               {headers.map((header) => {
-                const key = getKey(header);
+                const key = getColumnKey<T>(header, headerToKey);
                 const value = row[key];
-                const rawValue = defaultRender(value);
 
                 if (renderCell) {
                   return (
@@ -84,18 +74,12 @@ export default function MobileTable<T extends Record<string, unknown>>({
                   );
                 }
 
-                const content = isStatusColumn(header) ? (
-                  <StatusBadge $status={renderStatus(value)}>
-                    <MonoText $use="Body_Bold"> {rawValue}</MonoText>
-                  </StatusBadge>
-                ) : (
-                  <MonoText $use="Body_SemiBold">{rawValue}</MonoText>
-                );
+                const content = renderDefaultCellContent(header, value);
 
                 return (
                   <MobileDataRow key={header}>
                     <HeaderLabel>{header}</HeaderLabel>
-                    {content}
+                    <MonoText $use="Body_SemiBold">{content}</MonoText>
                   </MobileDataRow>
                 );
               })}

@@ -8,16 +8,15 @@ import {
   TableHead,
   TableCell,
   NoDataCell,
-  StatusBadge,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { BaseTableProps } from "@/types/tableContract";
 import {
-  defaultRender,
-  isStatusColumn,
-  renderStatus,
-} from "@/utils/tableRender";
-import { BaseTableProps, KeyOf } from "@/types/tableContract";
+  getColumnKey,
+  getGlobalIndex,
+  renderDefaultCellContent,
+} from "./tableShared";
 
 export default function DesktopTable<T extends Record<string, unknown>>({
   headers,
@@ -29,11 +28,6 @@ export default function DesktopTable<T extends Record<string, unknown>>({
   hasData,
   pagination,
 }: BaseTableProps<T>) {
-  const getKey = (header: string): KeyOf<T> =>
-    headerToKey
-      ? headerToKey(header)
-      : (header.toLowerCase().replace(/\s+/g, "") as KeyOf<T>);
-
   if (!hasData) {
     return (
       <TableWrapper>
@@ -52,10 +46,10 @@ export default function DesktopTable<T extends Record<string, unknown>>({
     <TableWrapper>
       <thead>
         <DesktopHeaderRow>
-          {headers.map((h) => (
-            <TableHead key={h}>
+          {headers.map((header) => (
+            <TableHead key={header}>
               <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-                {h}
+                {header}
               </MonoText>
             </TableHead>
           ))}
@@ -63,22 +57,16 @@ export default function DesktopTable<T extends Record<string, unknown>>({
       </thead>
 
       <tbody>
-        {data.map((row, i) => {
-          const safeCurrentPage = pagination?.safeCurrentPage ?? 1;
-          const effectiveRowsPerPage =
-            pagination?.effectiveRowsPerPage ?? data.length;
-
-          const globalIndex = (safeCurrentPage - 1) * effectiveRowsPerPage + i;
-
+        {data.map((row, index) => {
+          const globalIndex = getGlobalIndex(index, pagination, data.length);
           const rowKey = getRowKey?.(row, globalIndex) ?? globalIndex;
 
           return (
             <DesktopRow key={rowKey}>
               {headers.map((header, colIndex) => {
-                const key = getKey(header);
+                const key = getColumnKey<T>(header, headerToKey);
                 const value = row[key];
-
-                const isFirst = colIndex === 0;
+                const isFirstColumn = colIndex === 0;
 
                 if (renderCell) {
                   return (
@@ -93,20 +81,13 @@ export default function DesktopTable<T extends Record<string, unknown>>({
                   );
                 }
 
-                const rawValue = defaultRender(value);
-                const content = isStatusColumn(header) ? (
-                  <StatusBadge $status={renderStatus(value)}>
-                    <MonoText $use="Body_Bold"> {rawValue}</MonoText>
-                  </StatusBadge>
-                ) : (
-                  rawValue
-                );
+                const content = renderDefaultCellContent(header, value);
 
                 return (
                   <TableCell key={header}>
                     <MonoText
                       $use="Body_SemiBold"
-                      color={isFirst ? undefined : COLORS.neutral.GRAY}
+                      color={isFirstColumn ? undefined : COLORS.neutral.GRAY}
                     >
                       {content}
                     </MonoText>
