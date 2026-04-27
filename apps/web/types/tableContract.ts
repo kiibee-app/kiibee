@@ -14,11 +14,11 @@ export type BaseTableProps<T> = {
   renderCell?: (params: RenderCellProps<T>) => React.ReactNode;
   getRowKey?: (row: T, index: number) => string | number;
   emptyText?: string;
-  hasData: boolean;
+  hasData?: boolean | undefined;
   rowsPerPage?: number;
-  pagination: {
-    safeCurrentPage: number;
-    effectiveRowsPerPage: number;
+  pagination?: {
+    safeCurrentPage: number | undefined;
+    effectiveRowsPerPage: number | undefined;
   };
 };
 
@@ -30,4 +30,12 @@ export type MobileTableProps<T> = BaseTableProps<T> & {
 
 export type TableProps<T> = BaseTableProps<T> & {
   getMobileTitle?: (row: T) => string;
+};
+
+export type SettlementRow = {
+  amount: string;
+  status: string;
+  creditNo: string;
+  bank: string;
+  date: string;
 };

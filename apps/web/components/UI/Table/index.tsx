@@ -2,11 +2,9 @@
 
 import React, { useState } from "react";
 import { TableContainer } from "./styles";
-
 import DesktopTable from "./DesktopTable";
 import MobileTable from "./MobileTable";
 import Pagination from "./TablePagination";
-
 import { useTablePagination } from "./useTablePagination";
 import { TableProps } from "@/types/tableContract";
 

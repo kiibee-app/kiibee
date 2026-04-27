@@ -42,9 +42,11 @@ export default function MobileTable<T extends Record<string, unknown>>({
   return (
     <>
       {data.map((row, i) => {
-        const globalIndex =
-          (pagination.safeCurrentPage - 1) * pagination.effectiveRowsPerPage +
-          i;
+        const safeCurrentPage = pagination?.safeCurrentPage ?? 1;
+        const effectiveRowsPerPage =
+          pagination?.effectiveRowsPerPage ?? data.length;
+
+        const globalIndex = (safeCurrentPage - 1) * effectiveRowsPerPage + i;
 
         const rowKey = getRowKey?.(row, globalIndex) ?? globalIndex;
         const title =
