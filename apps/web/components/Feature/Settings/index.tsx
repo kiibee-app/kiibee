@@ -8,6 +8,7 @@ import SearchBar from "@/components/UI/SearchBar";
 import { useTranslation } from "react-i18next";
 import NotificationContent from "./Notification";
 import PayoutContent from "./Payout";
+import ExportContent from "./Export";
 
 export default function SettingsContent() {
   const { t } = useTranslation();
@@ -64,6 +65,7 @@ export default function SettingsContent() {
       <Content>
         {activeTab === TAB_KEYS.payout && <PayoutContent />}
         {activeTab === TAB_KEYS.notifications && <NotificationContent />}
+        {activeTab === TAB_KEYS.export && <ExportContent />}
       </Content>
     </Wrapper>
   );

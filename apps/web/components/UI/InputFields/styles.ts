@@ -201,3 +201,189 @@ export const RequiredIndicator = styled.span`
   color: ${({ theme }) => theme.colors.primary.RED};
   margin-left: 4px;
 `;
+
+export const Field = styled.div`
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  border-radius: 8px;
+  padding: 10px 14px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  min-height: 44px;
+`;
+
+export const Selected = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_Regular};
+`;
+
+export const Menu = styled.div`
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  width: 100%;
+  z-index: 1200;
+`;
+
+export const Item = styled.button`
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 12px 14px;
+  cursor: pointer;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
+`;
+
+export const DateDisplay = styled.div`
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  border-radius: ${({ theme }) => theme.radius.lg};
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  border: 1px solid transparent;
+  cursor: pointer;
+`;
+
+export const DateText = styled.div`
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const DatePopup = styled.div`
+  position: fixed;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  max-width: 92vw;
+  width: 720px;
+  z-index: 1400;
+  max-height: calc(100vh - 160px);
+  overflow: auto;
+`;
+
+export const DatePopupBody = styled.div`
+  display: flex;
+  gap: 18px;
+  margin-bottom: 18px;
+`;
+
+export const DatePopupActions = styled.div`
+  gap: 12px;
+`;
+
+/* Calendar styles */
+export const CalendarWrapper = styled.div`
+  display: flex;
+  gap: 18px;
+`;
+
+export const CalendarMonth = styled.div`
+  background: transparent;
+  min-width: 280px;
+`;
+
+export const CalendarHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+`;
+
+export const MonthTitle = styled.div`
+  ${({ theme }) => theme.typography.Body_SemiBold};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const WeekDays = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
+  ${({ theme }) => theme.typography.Body_Regular};
+`;
+
+export const DaysGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+`;
+
+export const DayButton = styled.button<{ $isOutside?: boolean }>`
+  width: 100%;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  background: ${({ $isOutside, theme }) =>
+    $isOutside ? "transparent" : theme.colors.neutral.GRAY_100};
+  cursor: pointer;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DaySelected = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  ${({ theme }) => theme.typography.Body_Regular};
+`;
+
+export const DayInRange = styled.div`
+  min-width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  ${({ theme }) => theme.typography.Body_Regular};
+`;
+export const CalendarNavButton = styled.button`
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+export const ArrowWrap = styled.span`
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+`;

@@ -861,6 +861,20 @@
       "balance": "Balance",
       "purchase": "Purchase",
       "rent": "Rent"
+    },
+    "export": {
+      "title": "Export your data",
+      "description": "Request a copy of your account data. We’ll prepare an export and notify you when it’s ready to download.",
+      "requestExport": "Request export",
+      "buildCsv": "Build CSV for download",
+      "typeLabel": "Export type",
+      "dateLabel": "Date",
+      "exportTypeUsersEmailSignups": "Users email signups",
+      "exportTypeSales": "Sales",
+      "exportTypeViews": "Views",
+      "includeMedia": "Include media files",
+      "lastExported": "Last export",
+      "noExports": "No exports available"
     }
   },
   "contents": {
