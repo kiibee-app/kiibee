@@ -22,6 +22,7 @@ import InputField from "@/components/UI/InputFields";
 import PasswordSection from "./PasswordSection";
 import CompanySection from "./CompanySection";
 import PaymentSection from "./PaymentSection";
+import DeleteSection from "./DeleteSection";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
 import {
   createInitialProfileData,
@@ -141,6 +142,7 @@ export default function CreatorProfile() {
       </Card>
       <CompanySection form={form} onChange={onChange} t={t} />
       <PaymentSection form={form} onChange={onChange} t={t} />
+      <DeleteSection />
     </Container>
   );
 }

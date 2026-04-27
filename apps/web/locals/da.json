@@ -721,7 +721,10 @@
     "accountLabel": "Kontonr.",
     "currentPassword": "Nuværende adgangskode",
     "newPassword": "Ny adgangskode",
-    "confirmPassword": "Bekræft adgangskode"
+    "confirmPassword": "Bekræft adgangskode",
+    "accountDeletionTitle": "Slet konto",
+    "accountDeletionText": "Hvis du ønsker at slette din konto, klik på [Slet konto] nedenfor, og der sendes en besked til administratoren, som vil foretage en opgørelse og derefter slette din konto.",
+    "deleteAccount": "Slet konto"
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
