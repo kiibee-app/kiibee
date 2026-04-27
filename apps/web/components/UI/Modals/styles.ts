@@ -14,6 +14,7 @@ export const Overlay = styled.div`
 
 export const ModalContainer = styled.div<{
   $width?: string;
+  $padding?: string;
   $align?: ModalAlign;
 }>`
   position: relative;
@@ -21,8 +22,8 @@ export const ModalContainer = styled.div<{
   max-width: ${({ $width }) => $width || "480px"};
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 12px;
-  padding: ${({ $align }) =>
-    $align === MODAL_ALIGN.START ? "30px" : "40px 60px"};
+  padding: ${({ $padding, $align }) =>
+    $padding || ($align === MODAL_ALIGN.START ? "30px" : "40px 60px")};
   text-align: ${({ $align }) => $align || MODAL_ALIGN.CENTER};
   gap: 20px;
 
