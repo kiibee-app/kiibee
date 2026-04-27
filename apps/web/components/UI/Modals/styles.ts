@@ -33,8 +33,8 @@ export const ModalContainer = styled.div<{
   }
 `;
 
-export const IconWrapper = styled.div`
-  margin: 0 auto 16px;
+export const IconWrapper = styled.div<{ $margin?: string }>`
+  margin: ${({ $margin }) => $margin || "0 auto 16px"};
   width: 64px;
   height: 64px;
   border-radius: 50%;

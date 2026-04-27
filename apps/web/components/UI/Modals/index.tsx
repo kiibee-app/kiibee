@@ -31,6 +31,7 @@ type GenericModalProps = {
   onClose?: () => void;
   width?: string;
   padding?: string;
+  iconMargin?: string;
   fullWidthButtons?: boolean;
   buttonAlign?: ModalAlign;
   textAlign?: ModalAlign;
@@ -51,6 +52,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   onClose,
   width,
   padding,
+  iconMargin,
   fullWidthButtons = false,
   buttonAlign,
   textAlign,
@@ -116,7 +118,9 @@ export const GenericModal: React.FC<GenericModalProps> = ({
         )}
 
         {icon && (
-          <IconWrapper data-testid="generic-modal-icon">{icon}</IconWrapper>
+          <IconWrapper $margin={iconMargin} data-testid="generic-modal-icon">
+            {icon}
+          </IconWrapper>
         )}
 
         {title && (

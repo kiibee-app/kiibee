@@ -120,6 +120,7 @@ export default function CreatorsContents() {
             color={COLORS.primary.GREEN_200}
           />
         }
+        iconMargin="0 auto 8px"
         title={t("contents.deleteSuccessModal.title")}
         message={t("contents.deleteSuccessModal.message")}
         confirmLabel={t("contents.deleteSuccessModal.done")}
