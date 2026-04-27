@@ -31,6 +31,7 @@ type GenericModalProps = {
   onClose?: () => void;
   width?: string;
   padding?: string;
+  fullWidthButtons?: boolean;
   buttonAlign?: ModalAlign;
   textAlign?: ModalAlign;
   showCloseButton?: boolean;
@@ -50,6 +51,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   onClose,
   width,
   padding,
+  fullWidthButtons = false,
   buttonAlign,
   textAlign,
   showCloseButton = true,
@@ -133,6 +135,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
 
         {(confirmLabel || (cancelLabel && onCancel)) && (
           <ButtonGroup
+            $fullWidthButtons={fullWidthButtons}
             $row={buttonRow}
             $align={buttonAlign}
             data-testid="generic-modal-button-group"

@@ -106,6 +106,7 @@ export default function CreatorsContents() {
         onConfirm={handleDeleteContent}
         width="480px"
         padding="40px 30px"
+        fullWidthButtons
         buttonRow
         showCloseButton={false}
       />

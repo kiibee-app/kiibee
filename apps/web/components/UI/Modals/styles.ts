@@ -55,6 +55,7 @@ export const Message = styled.div`
 
 export const ButtonGroup = styled.div<{
   $row?: boolean;
+  $fullWidthButtons?: boolean;
   $align?: ModalAlign;
 }>`
   display: flex;
@@ -62,15 +63,19 @@ export const ButtonGroup = styled.div<{
   gap: 12px;
   justify-content: ${({ $align }) => $align || MODAL_ALIGN.CENTER};
   align-items: center;
+  width: ${({ $fullWidthButtons }) => ($fullWidthButtons ? "100%" : "auto")};
 
   & > button {
-    width: 176px;
+    width: ${({ $fullWidthButtons }) => ($fullWidthButtons ? "100%" : "176px")};
+    flex: ${({ $fullWidthButtons }) =>
+      $fullWidthButtons ? "1 1 0" : "0 0 auto"};
     height: 49px;
   }
 
   ${media.tablet} {
     & > button {
-      width: 160px;
+      width: ${({ $fullWidthButtons }) =>
+        $fullWidthButtons ? "100%" : "160px"};
       height: 30px;
     }
   }
