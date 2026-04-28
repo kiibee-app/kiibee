@@ -160,3 +160,4 @@ export const COLORS: ColorPalette = {
 };
 
 export default COLORS;
+
