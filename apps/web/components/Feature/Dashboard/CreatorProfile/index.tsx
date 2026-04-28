@@ -97,6 +97,10 @@ export default function CreatorProfile() {
     resetPasswords();
   }, [resetPasswords]);
 
+  const isPasswordFormValid = useMemo(() => {
+    return Object.values(passwords).every((val) => val.trim().length > 0);
+  }, [passwords]);
+
   const handlePasswordSave = useCallback(() => {
     resetPasswords();
     setShowPassword(false);
@@ -173,6 +177,7 @@ export default function CreatorProfile() {
         width="630px"
         fullWidthButtons
         buttonRow
+        confirmDisabled={!isPasswordFormValid}
       >
         <PasswordSection
           passwords={passwords}

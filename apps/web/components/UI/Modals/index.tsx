@@ -36,6 +36,7 @@ type GenericModalProps = {
   buttonAlign?: ModalAlign;
   textAlign?: ModalAlign;
   showCloseButton?: boolean;
+  confirmDisabled?: boolean;
 };
 
 export const GenericModal: React.FC<GenericModalProps> = ({
@@ -57,6 +58,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   buttonAlign,
   textAlign,
   showCloseButton = true,
+  confirmDisabled = false,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -158,6 +160,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
               <GenericButton
                 variant="primary"
                 onClick={handleConfirm}
+                disabled={confirmDisabled}
                 data-test-id="generic-modal-confirm-button"
               >
                 {confirmLabel}
