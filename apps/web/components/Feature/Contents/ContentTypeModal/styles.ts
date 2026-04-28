@@ -23,7 +23,6 @@ export const ModalContent = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 35px;
-  padding-bottom: 37px;
 
   ${media.tablet} {
     min-height: auto;
@@ -61,8 +60,16 @@ export const TypeGrid = styled.div`
   margin-bottom: 54px;
 
   ${media.tablet} {
-    grid-template-columns: repeat(3, 76px);
+    grid-template-columns: repeat(5, 64px);
+    gap: 10px;
     margin-bottom: 32px;
+  }
+
+  ${media.mobileLg} {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
   }
 `;
 
@@ -82,6 +89,17 @@ export const TypeButton = styled.button<{ $selected: boolean }>`
   align-items: center;
   justify-content: center;
   gap: 7px;
+
+  ${media.tablet} {
+    width: 64px;
+    height: 66px;
+    gap: 6px;
+  }
+
+  ${media.mobileLg} {
+    width: calc((100% - 20px) / 3);
+    height: 70px;
+  }
 `;
 
 export const TypeLabel = styled(MonoText).attrs({
