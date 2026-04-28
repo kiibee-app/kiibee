@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useCreatorRequest } from "@/hooks/auth/useCreatorRequest";
 import InputField from "@/components/UI/InputFields";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import {
@@ -23,6 +24,7 @@ import {
   ContentWrap,
   Form,
   FormIntro,
+  FormMessage,
   FormTitle,
   FullRow,
   Grid,
@@ -37,32 +39,62 @@ import {
 import Image from "@/components/UI/SafeImage";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import { MonoText } from "@/components/UI/Monotext";
+import { ALERT } from "@/utils/common";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
   const [formValues, setFormValues] =
     useState<CreatorFormValues>(INITIAL_CREATOR_FORM);
+  const [formMessage, setFormMessage] = useState("");
+  const [messageTone, setMessageTone] = useState<"error" | "success">("error");
+  const creatorRequest = useCreatorRequest();
 
   const isSubmitEnabled = useMemo(() => {
     const hasRequiredValues = REQUIRED_CREATOR_FIELD_KEYS.every((fieldKey) =>
       Boolean(formValues[fieldKey].trim()),
     );
 
-    return hasRequiredValues && formValues.agreed;
-  }, [formValues]);
+    return hasRequiredValues && formValues.agreed && !creatorRequest.isPending;
+  }, [creatorRequest.isPending, formValues]);
 
   const updateField = (
     field: keyof CreatorFormValues,
     value: string | boolean,
   ) => {
     setFormValues((prev) => ({ ...prev, [field]: value }));
+    setFormMessage("");
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!isSubmitEnabled) {
       return;
+    }
+
+    try {
+      const response = await creatorRequest.mutateAsync({
+        firstName: formValues.firstName.trim(),
+        lastName: formValues.lastName.trim(),
+        email: formValues.email.trim(),
+        phone: formValues.phone.trim() || undefined,
+        cvr: formValues.cvr.trim() || undefined,
+        address: formValues.address.trim(),
+        city: formValues.city.trim(),
+        postalCode: formValues.postalCode.trim(),
+        exampleWorkLink: formValues.workLink.trim(),
+        contentDescription: formValues.contentDescription.trim(),
+      });
+
+      setMessageTone("success");
+      setFormMessage(response.message);
+      setFormValues(INITIAL_CREATOR_FORM);
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to submit request";
+
+      setMessageTone("error");
+      setFormMessage(message);
     }
   };
 
@@ -143,7 +175,17 @@ export default function SignUpCreatorSection() {
           </ConsentText>
         </CheckboxRow>
 
-        <SubmitButton type="submit" disabled={!isSubmitEnabled}>
+        {formMessage && (
+          <FormMessage $tone={messageTone} role={ALERT}>
+            {formMessage}
+          </FormMessage>
+        )}
+
+        <SubmitButton
+          type="submit"
+          disabled={!isSubmitEnabled}
+          isLoading={creatorRequest.isPending}
+        >
           {t("authCreator.form.submit")}
         </SubmitButton>
       </Form>
