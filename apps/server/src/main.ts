@@ -51,9 +51,10 @@ async function bootstrap() {
 
     await app.register(helmet);
 
-    await app.listen(3000, '0.0.0.0');
+    const port = process.env.PORT || 4003;
+    await app.listen(port, '0.0.0.0');
 
-    console.log('🚀 API running at http://localhost:3000/api/v1');
+    console.log(`🚀 API running at http://localhost:${port}/api/v1`);
   } catch (error) {
     console.error('❌ Failed to start server:', error);
     process.exit(1);
