@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import { useCreatorRequest } from "@/hooks/auth/useCreatorRequest";
 import InputField from "@/components/UI/InputFields";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
@@ -86,8 +87,11 @@ export default function SignUpCreatorSection() {
         contentDescription: formValues.contentDescription.trim(),
       });
 
+      const approvalMessage = "Please wait for admin approval";
+
+      toast.success(approvalMessage);
       setMessageTone("success");
-      setFormMessage(response.message);
+      setFormMessage(response.message || approvalMessage);
       setFormValues(INITIAL_CREATOR_FORM);
     } catch (error) {
       const message =
