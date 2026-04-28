@@ -92,7 +92,7 @@ export const ContinueButton = styled.button`
   height: 38px;
   border: 0;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.neutral.GRAY};
+  background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE};
   cursor: pointer;
   display: inline-flex;
@@ -100,6 +100,7 @@ export const ContinueButton = styled.button`
   justify-content: center;
 
   &:disabled {
+    background: ${({ theme }) => theme.colors.neutral.GRAY};
     cursor: not-allowed;
     opacity: 1;
   }

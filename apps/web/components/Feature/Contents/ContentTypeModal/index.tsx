@@ -34,6 +34,11 @@ export default function ContentTypeModal({
   const { t } = useTranslation();
   const [selectedType, setSelectedType] = useState<ContentType | null>(null);
 
+  const handleModalClose = () => {
+    setSelectedType(null);
+    onClose();
+  };
+
   const handleContinue = () => {
     if (!selectedType) return;
     onContinue?.(selectedType);
@@ -42,7 +47,7 @@ export default function ContentTypeModal({
   return (
     <GenericModal
       visible={visible}
-      onClose={onClose}
+      onClose={handleModalClose}
       width="670px"
       height="450px"
       padding="20px"
@@ -51,7 +56,7 @@ export default function ContentTypeModal({
       <BackButton
         type="button"
         aria-label={t("common.back", { defaultValue: "Back" })}
-        onClick={onBack ?? onClose}
+        onClick={onBack ?? handleModalClose}
       >
         <BackButtonIcon size={28} strokeWidth={2.5} />
       </BackButton>
