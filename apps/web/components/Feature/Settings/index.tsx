@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
-import { TabButton, Tabs, Wrapper, SearchWrapper, Content } from "./styles";
+import { Wrapper, Content, Title } from "./styles";
 import { TAB_KEYS, TabKey, TABS } from "@/utils/settingsTabs";
-import SearchBar from "@/components/UI/SearchBar";
 import { useTranslation } from "react-i18next";
 import NotificationContent from "./Notification";
 import PayoutContent from "./Payout";
+import GenericTabs from "@/components/UI/GenericTabs";
 
 export default function SettingsContent() {
   const { t } = useTranslation();
@@ -16,50 +16,31 @@ export default function SettingsContent() {
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
 
-  const handleTabClick = (tabKey: TabKey, isSearch?: boolean) => {
-    if (isSearch) {
-      setOpenSearch((prev) => !prev);
-    } else {
-      setActiveTab(tabKey);
-      setOpenSearch(false);
-    }
+  const handleTabClick = (tabKey: TabKey) => {
+    setActiveTab(tabKey);
+    setOpenSearch(false);
   };
 
   return (
     <Wrapper>
-      <MonoText $use="H4_SemiBold">{t("settings.title")}</MonoText>
+      <Title>{t("settings.title")}</Title>
 
-      <Tabs>
-        {TABS.map((tab) => {
-          const isSearch = tab.key === TAB_KEYS.search;
-          const isActive = activeTab === tab.key;
-
-          return (
-            <TabButton
-              key={tab.key}
-              $active={isActive}
-              $isIcon={isSearch}
-              onClick={() => handleTabClick(tab.key, isSearch)}
-            >
-              {isSearch && openSearch ? (
-                <SearchWrapper onClick={(e) => e.stopPropagation()}>
-                  <SearchBar
-                    placeholder={t("search")}
-                    value={searchValue}
-                    onChange={setSearchValue}
-                  />
-                </SearchWrapper>
-              ) : tab.icon ? (
-                tab.icon
-              ) : (
-                <MonoText $use="Body_SemiBold">
-                  {tab.labelKey ? t(tab.labelKey) : ""}
-                </MonoText>
-              )}
-            </TabButton>
-          );
-        })}
-      </Tabs>
+      <GenericTabs
+        tabs={TABS.filter((tab) => tab.key !== TAB_KEYS.search).map((tab) => ({
+          key: tab.key,
+          label: tab.labelKey ? t(tab.labelKey) : "",
+        }))}
+        activeTab={activeTab}
+        onTabChange={handleTabClick}
+        search={{
+          open: openSearch,
+          value: searchValue,
+          placeholder: t("search"),
+          onToggle: () => setOpenSearch((prev) => !prev),
+          onChange: setSearchValue,
+          ariaLabel: t("search"),
+        }}
+      />
 
       <Content>
         {activeTab === TAB_KEYS.payout && <PayoutContent />}

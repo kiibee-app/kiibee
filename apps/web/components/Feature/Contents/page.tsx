@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
-
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
@@ -14,9 +12,6 @@ import {
   PageHeader,
   PageShell,
   PlaceholderLine,
-  SearchButton,
-  TabButton,
-  TabsRow,
   Title,
 } from "./styles";
 import {
@@ -27,10 +22,13 @@ import {
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
 import { SuccessArcIcon } from "@/assets/icons";
+import GenericTabs from "@/components/UI/GenericTabs";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
+  const [searchValue, setSearchValue] = useState("");
+  const [openSearch, setOpenSearch] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
 
@@ -52,22 +50,25 @@ export default function CreatorsContents() {
         </CreateButton>
       </PageHeader>
 
-      <TabsRow>
-        {CONTENT_TABS.map((tab) => (
-          <TabButton
-            key={tab.key}
-            type="button"
-            $active={activeTab === tab.key}
-            onClick={() => setActiveTab(tab.key)}
-          >
-            {t(tab.labelKey)}
-          </TabButton>
-        ))}
-
-        <SearchButton type="button" aria-label={t("contents.actions.search")}>
-          <SearchIcon width={22} height={22} />
-        </SearchButton>
-      </TabsRow>
+      <GenericTabs
+        tabs={CONTENT_TABS.map((tab) => ({
+          key: tab.key,
+          label: t(tab.labelKey),
+        }))}
+        activeTab={activeTab}
+        onTabChange={(tabKey) => {
+          setActiveTab(tabKey);
+          setOpenSearch(false);
+        }}
+        search={{
+          open: openSearch,
+          value: searchValue,
+          placeholder: t("contents.actions.search"),
+          onToggle: () => setOpenSearch((prev) => !prev),
+          onChange: setSearchValue,
+          ariaLabel: t("contents.actions.search"),
+        }}
+      />
 
       <ContentPanel>
         {activeTab === SETTINGS ? (
