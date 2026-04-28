@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   PaginationWrapper,
   PaginationButton,
@@ -22,6 +23,8 @@ export default function Pagination({
   pageNumbers,
   onChange,
 }: Props) {
+  const { t } = useTranslation();
+
   if (totalPages <= 1) return null;
 
   return (
@@ -31,7 +34,7 @@ export default function Pagination({
         disabled={currentPage === 1}
       >
         <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-          Previous
+          {t("common.previous")}
         </MonoText>
       </PaginationButton>
 
@@ -57,7 +60,7 @@ export default function Pagination({
         disabled={currentPage === totalPages}
       >
         <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-          Next
+          {t("common.next")}
         </MonoText>
       </PaginationButton>
     </PaginationWrapper>

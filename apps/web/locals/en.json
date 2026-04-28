@@ -699,7 +699,12 @@
     "share": "Share",
     "optional": "optional",
     "save": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "table": {
+    "noData": "No Data Found"
   },
   "creatorProfile": {
     "title": "My account",
@@ -860,7 +865,8 @@
       "description": "When you click the button, a statement is created that you can pay out, click on pay out to see your credit note.",
       "balance": "Balance",
       "purchase": "Purchase",
-      "rent": "Rent"
+      "rent": "Rent",
+      "settlementHistory": "Settlement history"
     }
   },
   "contents": {

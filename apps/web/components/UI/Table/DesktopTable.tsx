@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   TableWrapper,
   DesktopRow,
@@ -29,13 +30,15 @@ export default function DesktopTable<T extends Record<string, unknown>>({
   hasData,
   pagination,
 }: BaseTableProps<T>) {
+  const { t } = useTranslation();
+
   if (!hasData) {
     return (
       <TableWrapper>
         <tbody>
           <tr>
             <td colSpan={headers.length}>
-              <NoDataCell>{emptyText ?? "No Data Found"}</NoDataCell>
+              <NoDataCell>{emptyText ?? t("table.noData")}</NoDataCell>
             </td>
           </tr>
         </tbody>

@@ -86,7 +86,9 @@ export default function PayoutContent() {
         </Stats>
       </Card>
       <Settlement>
-        <MonoText $use="H4_Medium"> Settlement history</MonoText>
+        <MonoText $use="H4_Medium">
+          {t("settings.payout.settlementHistory")}
+        </MonoText>
         <Table<SettlementRow>
           headers={settlementHeaders}
           data={settlementData}
