@@ -11,20 +11,27 @@ import {
   IconWrapper,
   SidebarContent,
 } from "./styles";
-import { CREATOR_SECTIONS, creatorsItems } from "@/utils/SidebarItems";
-import logo from "@/assets/images/kiibee-wordmark.webp";
-import Image from "next/image";
-import { useTranslation } from "react-i18next";
-import { HomeIcon } from "@/assets/icons/homeIcon";
+import {
+  CREATORS_LABELS,
+  CREATOR_SECTIONS,
+  creatorsItems,
+} from "@/utils/SidebarItems";
 
 type SidebarProps = {
   activeItem: string;
   onSelect: (label: string) => void;
+  onLogout?: () => void;
   open: boolean;
   onClose: () => void;
 };
 
-const Sidebar = ({ activeItem, onSelect, open, onClose }: SidebarProps) => {
+const Sidebar = ({
+  activeItem,
+  onSelect,
+  onLogout,
+  open,
+  onClose,
+}: SidebarProps) => {
   const { mainItems, settingsItems } = useMemo(() => {
     return {
       mainItems: creatorsItems.filter(
@@ -38,10 +45,16 @@ const Sidebar = ({ activeItem, onSelect, open, onClose }: SidebarProps) => {
 
   const handleClick = useCallback(
     (label: string) => {
+      if (label === CREATORS_LABELS.LOG_OUT) {
+        onLogout?.();
+        onClose();
+        return;
+      }
+
       onSelect(label);
       onClose();
     },
-    [onSelect, onClose],
+    [onSelect, onClose, onLogout],
   );
 
   const renderItems = useCallback(

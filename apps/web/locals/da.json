@@ -827,6 +827,11 @@
     "overview": "Oversigt",
     "noData": "Ingen data fundet",
     "contentPerformance": "Indholdsydelse",
+    "logoutModal": {
+      "title": "Log ud",
+      "message": "Er du sikker på, at du vil logge ud som {{email}}?",
+      "confirm": "Log ud"
+    },
     "users": {
       "registrations": {
         "title": "E-mail tilmeldinger",

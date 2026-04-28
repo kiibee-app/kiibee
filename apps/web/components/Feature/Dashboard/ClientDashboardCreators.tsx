@@ -11,12 +11,23 @@ import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "../Settings";
 import { VIEW } from "@/utils/Constants";
 import CreatorsContents from "../Contents/page";
+import { GenericModal } from "@/components/UI/Modals";
+import { MonoText } from "@/components/UI/Monotext";
+import { creatorProfileData } from "@/utils/dummyData/profile.data";
+import { useTranslation } from "react-i18next";
+import { PATHS } from "@/utils/path";
 
 export default function ClientDashboardCreators() {
+  const { t } = useTranslation();
   const [activePage, setActivePage] = useState<string>(
     CREATORS_LABELS.OVERVIEW,
   );
   const [open, setOpen] = useState<boolean>(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const toggleSidebar = useCallback(() => {
     setOpen((p) => !p);
@@ -26,15 +37,24 @@ export default function ClientDashboardCreators() {
     setOpen(false);
   }, []);
 
+  const handleLogoutClick = useCallback(() => {
+    setShowLogoutModal(true);
+  }, []);
+
+  const handleCancelLogout = useCallback(() => {
+    setShowLogoutModal(false);
+  }, []);
+
+  const handleConfirmLogout = useCallback(() => {
+    setShowLogoutModal(false);
+    router.push(PATHS.AUTH_LOGIN);
+  }, [router]);
+
   const renderHeader = () => {
     return <DashboardHeader onToggleSidebar={toggleSidebar} />;
   };
 
-  const searchParams = useSearchParams();
   const view = searchParams?.get(VIEW);
-
-  const router = useRouter();
-  const pathname = usePathname();
 
   const handleSelect = useCallback(
     (label: string) => {
@@ -68,10 +88,32 @@ export default function ClientDashboardCreators() {
           onClose={closeSidebar}
           activeItem={activePage}
           onSelect={handleSelect}
+          onLogout={handleLogoutClick}
         />
       }
     >
       {renderContent()}
+      <GenericModal
+        visible={showLogoutModal}
+        title={t("dashboard.logoutModal.title")}
+        buttonRow
+        confirmLabel={t("dashboard.logoutModal.confirm")}
+        cancelLabel={t("common.cancel")}
+        onConfirm={handleConfirmLogout}
+        onCancel={handleCancelLogout}
+        onClose={handleCancelLogout}
+        width="480px"
+        padding="40px 32px"
+        buttonAlign="center"
+        textAlign="center"
+        showCloseButton={false}
+      >
+        <MonoText $use="Body_Medium">
+          {t("dashboard.logoutModal.message", {
+            email: creatorProfileData.email,
+          })}
+        </MonoText>
+      </GenericModal>
     </DashboardLayout>
   );
 }
