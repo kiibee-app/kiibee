@@ -23,10 +23,12 @@ export const ModalContent = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 35px;
+  padding-bottom: 37px;
 
   ${media.tablet} {
     min-height: auto;
     padding-top: 28px;
+    padding-bottom: 28px;
   }
 `;
 
@@ -39,13 +41,14 @@ export const HeadingGroup = styled.div`
 `;
 
 export const ModalTitle = styled(MonoText).attrs({
-  $use: "H5_Medium",
+  $use: "H4_Medium",
 })`
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  padding-top: 20px;
 `;
 
 export const ModalSubtitle = styled(MonoText).attrs({
-  $use: "Body_Bold",
+  $use: "Body_Medium",
 })`
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
