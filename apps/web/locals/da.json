@@ -864,7 +864,19 @@
       "monthly": "Månedligt",
       "recipient": "Modtager",
       "recipientDesc": "Vælg hvor notifikationerne skal sendes hen",
-      "accountEmail": "Kontoe-mail"
+      "accountEmail": "Kontoe-mail",
+
+      "discardModal": {
+        "title": "Kassér ændringer?",
+        "message": "Er du sikker på, at du vil annullere? Alle ikke-gemte ændringer går tabt.",
+        "goBack": "Gå tilbage",
+        "discard": "Kassér"
+      },
+      "successModal": {
+        "title": "Ændringer gemt",
+        "message": "Dine opdateringer er blevet gemt.",
+        "done": "Færdig"
+      }
     },
     "payout": {
       "title": "Payout",

@@ -46,3 +46,37 @@ export const SearchWrapper = styled.div`
 export const Content = styled.div`
   margin-top: 20px;
 `;
+
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const HeaderActions = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+`;
+
+export const Button = styled.button`
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: ${(p) => p.theme.colors.primary.BLACK};
+  color: ${(p) => p.theme.colors.neutral.OFF_WHITE};
+  border: none;
+  cursor: pointer;
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  ${MonoText} {
+    color: inherit;
+  }
+`;
+
+export const SecondaryButton = styled(Button)`
+  background: ${(p) => p.theme.colors.neutral.OFF_WHITE};
+  color: ${(p) => p.theme.colors.primary.BLACK};
+  border: 1px solid ${(p) => p.theme.colors.primary.GRAY};
+`;

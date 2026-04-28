@@ -864,7 +864,18 @@
       "monthly": "Monthly",
       "recipient": "Recipient",
       "recipientDesc": "Choose where the notifications will be sent",
-      "accountEmail": "Account email"
+      "accountEmail": "Account email",
+      "discardModal": {
+        "title": "Discard Changes?",
+        "message": "Are you sure you want to cancel? All unsaved changes will be lost.",
+        "goBack": "Go back",
+        "discard": "Discard"
+      },
+      "successModal": {
+        "title": "Changes saved",
+        "message": "Your updates have been successfully saved.",
+        "done": "Done"
+      }
     },
     "payout": {
       "title": "Payout",
