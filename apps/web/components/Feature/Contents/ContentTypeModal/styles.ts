@@ -22,7 +22,7 @@ export const ModalContent = styled.div`
   min-height: 330px;
   flex-direction: column;
   align-items: center;
-  padding-top: 35px;
+  padding-top: 45px;
 
   ${media.tablet} {
     min-height: auto;
