@@ -98,6 +98,8 @@
       "repeatPassword": "Gentag adgangskode",
       "repeatPasswordPlaceholder": "Gentag ny adgangskode",
       "passwordMismatch": "Adgangskoderne matcher ikke",
+      "fixHighlightedFields": "Udfyld venligst de påkrævede felter.",
+      "signupFailed": "Din konto kunne ikke oprettes. Prøv igen.",
       "consentPrefix": "Jeg accepterer Kiibees",
       "terms": "Vilkår for brug",
       "and": " og ",
