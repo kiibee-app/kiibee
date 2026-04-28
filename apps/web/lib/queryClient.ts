@@ -1,6 +1,12 @@
 import { QueryClient } from "@tanstack/react-query";
 import { CACHE_CONFIG } from "@/config/queryCacheConfig";
 
+const HTTP_STATUS = {
+  unauthorized: 401,
+  forbidden: 403,
+  notFound: 404,
+} as const;
+
 export const createQueryClient = () =>
   new QueryClient({
     defaultOptions: {
@@ -9,7 +15,11 @@ export const createQueryClient = () =>
         retry: (failureCount, error) => {
           const status = "status" in error ? error.status : undefined;
 
-          if (status === 401 || status === 403 || status === 404) {
+          if (
+            status === HTTP_STATUS.unauthorized ||
+            status === HTTP_STATUS.forbidden ||
+            status === HTTP_STATUS.notFound
+          ) {
             return false;
           }
 
