@@ -721,7 +721,10 @@
     "accountLabel": "Account no.",
     "currentPassword": "Current password",
     "newPassword": "New password",
-    "confirmPassword": "Confirm password"
+    "confirmPassword": "Confirm password",
+    "accountDeletionTitle": "Account deletion",
+    "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
+    "deleteAccount": "Delete account"
   },
   "singleCollection": {
     "subtitle": "Learn how to use our platform",
@@ -833,7 +836,15 @@
         "title": "Sales",
         "description": "Here you can find a complete overview of all your sales."
       }
-    }
+    },
+    "contentName": "Content name",
+    "pageVisits": "Page visits",
+    "clicks": "Clicks",
+    "views": "Views",
+    "paginationSummary": "Showing {{start}}-{{end}} of {{total}}",
+    "previous": "Previous",
+    "next": "Next",
+    "paginationPage": "Go to page {{page}}"
   },
   "settings": {
     "title": "Settings",
@@ -881,7 +892,8 @@
     "title": "Contents",
     "actions": {
       "createCollection": "Create collection",
-      "search": "Search contents"
+      "search": "Search contents",
+      "deleteContent": "Delete content"
     },
     "tabs": {
       "collections": "Collections",
@@ -897,6 +909,17 @@
         "password": "Set password",
         "email": "Request email"
       }
+    },
+    "deleteModal": {
+      "title": "Delete content?",
+      "message": "Are you sure you want to delete this content? This action cannot be undone.",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
+    "deleteSuccessModal": {
+      "title": "Delete successfully",
+      "message": "Content deleted successfully.",
+      "done": "Done"
     }
   }
 }

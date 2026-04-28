@@ -14,6 +14,7 @@ export interface ColorPalette {
     GREEN_10: string;
     GREEN_30: string;
     GREEN_100: string;
+    GREEN_200: string;
     PALE_GREEN: string;
     GRAY: string;
     BLUE: string;
@@ -23,6 +24,7 @@ export interface ColorPalette {
     LIGHT: string;
     DEFAULT: string;
     DARK: string;
+    RED: string;
     main: string;
     muted: string;
     border: string;
@@ -90,6 +92,7 @@ export const COLORS: ColorPalette = {
     GREEN_10: "rgba(255, 255, 255, 0.10)",
     GREEN_30: "rgba(246, 246, 246, 0.30)",
     GREEN_100: "rgba(4, 41, 11, 1)",
+    GREEN_200: "rgba(0, 128, 0, 1)",
     PALE_GREEN: "rgba(207, 240, 192, 1)",
     GRAY: "rgba(235, 235, 237, 1)",
     BLUE: "rgba(47, 128, 237, 1)",
@@ -100,6 +103,7 @@ export const COLORS: ColorPalette = {
     LIGHT: "rgb(191,219,254)",
     DEFAULT: "rgb(59,130,246)",
     DARK: "rgb(30,58,138)",
+    RED: "rgb(228,91,87)",
     main: "rgb(17,24,39)",
     muted: "rgb(107,114,128)",
     border: "rgb(243,244,246)",

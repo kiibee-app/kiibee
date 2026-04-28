@@ -14,6 +14,7 @@ export const Overlay = styled.div`
 
 export const ModalContainer = styled.div<{
   $width?: string;
+  $padding?: string;
   $align?: ModalAlign;
 }>`
   position: relative;
@@ -21,8 +22,8 @@ export const ModalContainer = styled.div<{
   max-width: ${({ $width }) => $width || "480px"};
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 12px;
-  padding: ${({ $align }) =>
-    $align === MODAL_ALIGN.START ? "30px" : "40px 60px"};
+  padding: ${({ $padding, $align }) =>
+    $padding || ($align === MODAL_ALIGN.START ? "30px" : "40px 60px")};
   text-align: ${({ $align }) => $align || MODAL_ALIGN.CENTER};
   gap: 20px;
 
@@ -32,8 +33,8 @@ export const ModalContainer = styled.div<{
   }
 `;
 
-export const IconWrapper = styled.div`
-  margin: 0 auto 16px;
+export const IconWrapper = styled.div<{ $margin?: string }>`
+  margin: ${({ $margin }) => $margin || "0 auto 16px"};
   width: 64px;
   height: 64px;
   border-radius: 50%;
@@ -54,6 +55,7 @@ export const Message = styled.div`
 
 export const ButtonGroup = styled.div<{
   $row?: boolean;
+  $fullWidthButtons?: boolean;
   $align?: ModalAlign;
 }>`
   display: flex;
@@ -61,15 +63,19 @@ export const ButtonGroup = styled.div<{
   gap: 12px;
   justify-content: ${({ $align }) => $align || MODAL_ALIGN.CENTER};
   align-items: center;
+  width: ${({ $fullWidthButtons }) => ($fullWidthButtons ? "100%" : "auto")};
 
   & > button {
-    width: 176px;
+    width: ${({ $fullWidthButtons }) => ($fullWidthButtons ? "100%" : "176px")};
+    flex: ${({ $fullWidthButtons }) =>
+      $fullWidthButtons ? "1 1 0" : "0 0 auto"};
     height: 49px;
   }
 
   ${media.tablet} {
     & > button {
-      width: 160px;
+      width: ${({ $fullWidthButtons }) =>
+        $fullWidthButtons ? "100%" : "160px"};
       height: 30px;
     }
   }

@@ -3,8 +3,11 @@
 import React, { useState } from "react";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { PlusIcon } from "@/assets/icons/PlusIcon";
+
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
+import { GenericModal } from "@/components/UI/Modals";
+import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
   CreateButton,
@@ -23,10 +26,18 @@ import {
   SETTINGS,
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
+import { SuccessArcIcon } from "@/assets/icons";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+
+  const handleDeleteContent = () => {
+    setShowDeleteModal(false);
+    setShowDeleteSuccessModal(true);
+  };
 
   return (
     <PageShell>
@@ -78,6 +89,41 @@ export default function CreatorsContents() {
           </PlaceholderLine>
         )}
       </ContentPanel>
+
+      <GenericModal
+        visible={showDeleteModal}
+        title={t("contents.deleteModal.title")}
+        message={t("contents.deleteModal.message")}
+        cancelLabel={t("contents.deleteModal.cancel")}
+        confirmLabel={t("contents.deleteModal.delete")}
+        onCancel={() => setShowDeleteModal(false)}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={handleDeleteContent}
+        width="480px"
+        padding="40px 30px"
+        fullWidthButtons
+        buttonRow
+        showCloseButton={false}
+      />
+
+      <GenericModal
+        visible={showDeleteSuccessModal}
+        icon={
+          <SuccessArcIcon
+            width={40}
+            height={40}
+            color={COLORS.primary.GREEN_200}
+          />
+        }
+        iconMargin="0 auto 8px"
+        title={t("contents.deleteSuccessModal.title")}
+        message={t("contents.deleteSuccessModal.message")}
+        confirmLabel={t("contents.deleteSuccessModal.done")}
+        onClose={() => setShowDeleteSuccessModal(false)}
+        onConfirm={() => setShowDeleteSuccessModal(false)}
+        width="480px"
+        showCloseButton={false}
+      />
     </PageShell>
   );
 }
