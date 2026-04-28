@@ -34,6 +34,10 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { getProfileFields } from "@/utils/creatorProfilefields";
 import { PasswordState, ProfileForm } from "@/utils/creatorProfile";
+import { MODAL_ALIGN } from "@/utils/ui";
+import { GenericModal } from "@/components/UI/Modals";
+import { SuccessArcIcon } from "@/assets/icons";
+import { useRouter } from "next/navigation";
 
 export default function CreatorProfile() {
   const { t } = useTranslation();
@@ -44,8 +48,11 @@ export default function CreatorProfile() {
   const initial = useMemo(() => createInitialProfileData(email), [email]);
   const [form, setForm] = useState<ProfileForm>(initial);
   const [saved, setSaved] = useState<ProfileForm>(initial);
+  const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
+    useState<boolean>(false);
   const [showPassword, setShowPassword] = useState(false);
   const [passwords, setPasswords] = useState<PasswordState>(emptyPasswords);
+  const router = useRouter();
 
   const dirty = useMemo(() => {
     const formChanged = JSON.stringify(form) !== JSON.stringify(saved);
@@ -79,6 +86,18 @@ export default function CreatorProfile() {
     setPasswords(emptyPasswords);
     setShowPassword(false);
   };
+
+  const handlePasswordClose = () => {
+    setShowPassword(false);
+    setPasswords(emptyPasswords);
+  };
+
+  const handlePasswordSave = () => {
+    setPasswords(emptyPasswords);
+    setShowPassword(false);
+    setShowPasswordSuccessModal(true);
+  };
+
   const fields = useMemo(() => getProfileFields(t), [t]);
 
   return (
@@ -126,23 +145,52 @@ export default function CreatorProfile() {
             <InlineLabel>{t(CREATOR_PROFILE.passwordLabel)}</InlineLabel>
             <GenericButton
               variant={VARIANT.PRIMARY}
-              onClick={() => setShowPassword((s) => !s)}
+              onClick={() => setShowPassword(true)}
             >
               {t(CREATOR_PROFILE.changePassword)}
             </GenericButton>
           </Action>
-
-          {showPassword && (
-            <PasswordSection
-              passwords={passwords}
-              onPasswordChange={onPasswordChange}
-            />
-          )}
         </Fields>
       </Card>
       <CompanySection form={form} onChange={onChange} t={t} />
       <PaymentSection form={form} onChange={onChange} t={t} />
       <DeleteSection />
+      <GenericModal
+        visible={showPassword}
+        title={t(CREATOR_PROFILE.changePassword)}
+        textAlign={MODAL_ALIGN.START}
+        confirmLabel={t("creatorProfile.changePassword")}
+        cancelLabel={t("creatorProfile.forgotPass")}
+        onClose={handlePasswordClose}
+        onCancel={handlePasswordClose}
+        onConfirm={handlePasswordSave}
+        width="630px"
+        fullWidthButtons={true}
+        buttonRow
+      >
+        <PasswordSection
+          passwords={passwords}
+          onPasswordChange={onPasswordChange}
+        />
+      </GenericModal>
+      <GenericModal
+        visible={showPasswordSuccessModal}
+        icon={
+          <SuccessArcIcon
+            width={40}
+            height={40}
+            color={COLORS.primary.GREEN_200}
+          />
+        }
+        iconMargin="0 auto 8px"
+        title={t("creatorProfile.passwordSuccessTitle")}
+        message={t("creatorProfile.passwordSuccessMessage")}
+        confirmLabel={t("nav.login")}
+        onClose={() => setShowPasswordSuccessModal(false)}
+        onConfirm={() => router.push("/auth/login")}
+        width="480px"
+        showCloseButton={false}
+      />
     </Container>
   );
 }

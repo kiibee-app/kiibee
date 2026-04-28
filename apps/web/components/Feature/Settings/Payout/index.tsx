@@ -52,7 +52,10 @@ export default function PayoutContent() {
             </MonoText>
           </TextBlock>
 
-          <GenericButton variant={VARIANT.PRIMARY}>
+          <GenericButton
+            variant={VARIANT.PRIMARY}
+            onClick={() => setOpen(true)}
+          >
             {t("settings.payout.title")}
           </GenericButton>
         </CardTop>
