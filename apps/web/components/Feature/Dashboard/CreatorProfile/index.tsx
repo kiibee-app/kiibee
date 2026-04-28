@@ -17,6 +17,7 @@ import {
   HeaderActions,
   NameBlock,
 } from "./styles";
+
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import InputField from "@/components/UI/InputFields";
 import PasswordSection from "./PasswordSection";
@@ -41,6 +42,7 @@ import { useRouter } from "next/navigation";
 
 export default function CreatorProfile() {
   const { t } = useTranslation();
+  const router = useRouter();
   const { name, email } = creatorProfileData;
   const getInitial = (email = "") =>
     email ? email.charAt(0).toUpperCase() : "?";
@@ -48,11 +50,10 @@ export default function CreatorProfile() {
   const initial = useMemo(() => createInitialProfileData(email), [email]);
   const [form, setForm] = useState<ProfileForm>(initial);
   const [saved, setSaved] = useState<ProfileForm>(initial);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
     useState<boolean>(false);
-  const [showPassword, setShowPassword] = useState(false);
   const [passwords, setPasswords] = useState<PasswordState>(emptyPasswords);
-  const router = useRouter();
 
   const dirty = useMemo(() => {
     const formChanged = JSON.stringify(form) !== JSON.stringify(saved);
@@ -74,29 +75,33 @@ export default function CreatorProfile() {
     [],
   );
 
-  const handleCancel = () => {
-    setForm(saved);
+  const resetPasswords = useCallback(() => {
     setPasswords(emptyPasswords);
-    setShowPassword(false);
-  };
+  }, []);
 
-  const handleSave = () => {
+  const handleCancel = useCallback(() => {
+    setForm(saved);
+    resetPasswords();
+    setShowPassword(false);
+  }, [saved, resetPasswords]);
+
+  const handleSave = useCallback(() => {
     if (!dirty) return;
     setSaved(form);
-    setPasswords(emptyPasswords);
+    resetPasswords();
     setShowPassword(false);
-  };
+  }, [dirty, form, resetPasswords]);
 
-  const handlePasswordClose = () => {
+  const handlePasswordClose = useCallback(() => {
     setShowPassword(false);
-    setPasswords(emptyPasswords);
-  };
+    resetPasswords();
+  }, [resetPasswords]);
 
-  const handlePasswordSave = () => {
-    setPasswords(emptyPasswords);
+  const handlePasswordSave = useCallback(() => {
+    resetPasswords();
     setShowPassword(false);
     setShowPasswordSuccessModal(true);
-  };
+  }, [resetPasswords]);
 
   const fields = useMemo(() => getProfileFields(t), [t]);
 
@@ -155,6 +160,7 @@ export default function CreatorProfile() {
       <CompanySection form={form} onChange={onChange} t={t} />
       <PaymentSection form={form} onChange={onChange} t={t} />
       <DeleteSection />
+
       <GenericModal
         visible={showPassword}
         title={t(CREATOR_PROFILE.changePassword)}
@@ -165,7 +171,7 @@ export default function CreatorProfile() {
         onCancel={handlePasswordClose}
         onConfirm={handlePasswordSave}
         width="630px"
-        fullWidthButtons={true}
+        fullWidthButtons
         buttonRow
       >
         <PasswordSection
@@ -173,6 +179,7 @@ export default function CreatorProfile() {
           onPasswordChange={onPasswordChange}
         />
       </GenericModal>
+
       <GenericModal
         visible={showPasswordSuccessModal}
         icon={
