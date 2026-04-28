@@ -66,13 +66,12 @@ export const TypeGrid = styled.div`
 export const TypeButton = styled.button<{ $selected: boolean }>`
   width: 76px;
   height: 74px;
-  border: 1px solid
-    ${({ $selected, theme }) =>
-      $selected
-        ? theme.colors.primary.BLACK
-        : theme.colors.gredint.TRANSPARENT};
+  border: none;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  background: ${({ $selected, theme }) =>
+    $selected
+      ? theme.colors.neutral.PALE_GREEN
+      : theme.colors.neutral.OFF_WHITE};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   cursor: pointer;
   display: inline-flex;
