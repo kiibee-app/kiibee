@@ -97,6 +97,46 @@ export const CREATOR_PROFILE = {
   deleteAccount: "creatorProfile.deleteAccount",
 };
 
+export const DASHBOARD_USERS = {
+  registrations: {
+    title: "dashboard.users.registrations.title",
+    description: "dashboard.users.registrations.description",
+  },
+  salest: {
+    title: "dashboard.users.salest.title",
+    description: "dashboard.users.salest.description",
+  },
+};
+
+export const CONTENTS = {
+  title: "contents.title",
+  actions: {
+    createCollection: "contents.actions.createCollection",
+    search: "contents.actions.search",
+  },
+  tabs: {
+    coupons: "contents.tabs.coupons",
+  },
+  couponsCard: {
+    title: "contents.couponsCard.title",
+    description: "contents.couponsCard.description",
+  },
+  placeholders: {
+    collections: "contents.placeholders.collections",
+  },
+  deleteModal: {
+    title: "contents.deleteModal.title",
+    message: "contents.deleteModal.message",
+    cancel: "contents.deleteModal.cancel",
+    delete: "contents.deleteModal.delete",
+  },
+  deleteSuccessModal: {
+    title: "contents.deleteSuccessModal.title",
+    message: "contents.deleteSuccessModal.message",
+    done: "contents.deleteSuccessModal.done",
+  },
+};
+
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
@@ -105,6 +145,8 @@ const TRANSLATION_KEYS = {
   CREATORS,
   TUTORIAL_VIDEOS,
   CREATOR_PROFILE,
+  DASHBOARD_USERS,
+  CONTENTS,
 };
 
 export default TRANSLATION_KEYS;

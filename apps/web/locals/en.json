@@ -887,6 +887,10 @@
       "settings": "Settings",
       "coupons": "Coupons"
     },
+    "couponsCard": {
+      "title": "Coupons",
+      "description": "Create and manage all your discount coupons."
+    },
     "admissionRequirements": {
       "title": "Admission requirements",
       "description": "Consider what type of access your [contentType] should have",

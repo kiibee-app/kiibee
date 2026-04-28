@@ -23,6 +23,8 @@ import {
 import AdmissionRequirements from "./AdmissionRequirements";
 import { SuccessArcIcon } from "@/assets/icons";
 import GenericTabs from "@/components/UI/GenericTabs";
+import InfoTextCard from "@/components/UI/InfoTextCard";
+import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -40,12 +42,12 @@ export default function CreatorsContents() {
   return (
     <PageShell>
       <PageHeader>
-        <Title>{t("contents.title")}</Title>
+        <Title>{t(CONTENTS_KEYS.title)}</Title>
 
         <CreateButton type="button">
           <PlusIcon width={16} height={16} color="white" />
           <MonoText $use="Body_Medium" color="inherit">
-            {t("contents.actions.createCollection")}
+            {t(CONTENTS_KEYS.actions.createCollection)}
           </MonoText>
         </CreateButton>
       </PageHeader>
@@ -63,16 +65,21 @@ export default function CreatorsContents() {
         search={{
           open: openSearch,
           value: searchValue,
-          placeholder: t("contents.actions.search"),
+          placeholder: t(CONTENTS_KEYS.actions.search),
           onToggle: () => setOpenSearch((prev) => !prev),
           onChange: setSearchValue,
-          ariaLabel: t("contents.actions.search"),
+          ariaLabel: t(CONTENTS_KEYS.actions.search),
         }}
       />
 
       <ContentPanel>
         {activeTab === SETTINGS ? (
           <AdmissionRequirements />
+        ) : activeTab === "coupons" ? (
+          <InfoTextCard
+            title={t(CONTENTS_KEYS.couponsCard.title)}
+            description={t(CONTENTS_KEYS.couponsCard.description)}
+          />
         ) : (
           <PlaceholderLine>
             {(() => {
@@ -84,7 +91,7 @@ export default function CreatorsContents() {
               }
               return (
                 activeItem?.description ??
-                t("contents.placeholders.collections")
+                t(CONTENTS_KEYS.placeholders.collections)
               );
             })()}
           </PlaceholderLine>
@@ -93,10 +100,10 @@ export default function CreatorsContents() {
 
       <GenericModal
         visible={showDeleteModal}
-        title={t("contents.deleteModal.title")}
-        message={t("contents.deleteModal.message")}
-        cancelLabel={t("contents.deleteModal.cancel")}
-        confirmLabel={t("contents.deleteModal.delete")}
+        title={t(CONTENTS_KEYS.deleteModal.title)}
+        message={t(CONTENTS_KEYS.deleteModal.message)}
+        cancelLabel={t(CONTENTS_KEYS.deleteModal.cancel)}
+        confirmLabel={t(CONTENTS_KEYS.deleteModal.delete)}
         onCancel={() => setShowDeleteModal(false)}
         onClose={() => setShowDeleteModal(false)}
         onConfirm={handleDeleteContent}
@@ -117,9 +124,9 @@ export default function CreatorsContents() {
           />
         }
         iconMargin="0 auto 8px"
-        title={t("contents.deleteSuccessModal.title")}
-        message={t("contents.deleteSuccessModal.message")}
-        confirmLabel={t("contents.deleteSuccessModal.done")}
+        title={t(CONTENTS_KEYS.deleteSuccessModal.title)}
+        message={t(CONTENTS_KEYS.deleteSuccessModal.message)}
+        confirmLabel={t(CONTENTS_KEYS.deleteSuccessModal.done)}
         onClose={() => setShowDeleteSuccessModal(false)}
         onConfirm={() => setShowDeleteSuccessModal(false)}
         width="480px"
