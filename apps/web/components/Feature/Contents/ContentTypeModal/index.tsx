@@ -1,18 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import type { ComponentType } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  AudioIcon,
-  BackButtonIcon,
-  EpubIcon,
-  PdfIcon,
-  VideoIcon,
-  WebIcon,
-} from "@/assets/icons";
+import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
+import { CONTENT_TYPE_OPTIONS, type ContentType } from "@/utils/content";
 import {
   BackButton,
   ContinueButton,
@@ -24,49 +17,6 @@ import {
   TypeGrid,
   TypeLabel,
 } from "./styles";
-
-export type ContentType = "video" | "audio" | "pdf" | "epub" | "web";
-
-type IconComponent = ComponentType<{
-  width?: number | string;
-  height?: number | string;
-  color?: string;
-  title?: string;
-}>;
-
-type ContentTypeOption = {
-  key: ContentType;
-  labelKey: string;
-  Icon: IconComponent;
-};
-
-const CONTENT_TYPE_OPTIONS: readonly ContentTypeOption[] = [
-  {
-    key: "video",
-    labelKey: "contents.contentTypeModal.options.video",
-    Icon: VideoIcon,
-  },
-  {
-    key: "audio",
-    labelKey: "contents.contentTypeModal.options.audio",
-    Icon: AudioIcon,
-  },
-  {
-    key: "pdf",
-    labelKey: "contents.contentTypeModal.options.pdf",
-    Icon: PdfIcon,
-  },
-  {
-    key: "epub",
-    labelKey: "contents.contentTypeModal.options.epub",
-    Icon: EpubIcon,
-  },
-  {
-    key: "web",
-    labelKey: "contents.contentTypeModal.options.web",
-    Icon: WebIcon,
-  },
-] as const;
 
 type ContentTypeModalProps = {
   visible: boolean;
