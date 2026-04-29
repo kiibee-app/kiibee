@@ -66,7 +66,7 @@ export default function ContentsHeaderAction({
 
   if (activeTab === COUPONS) {
     return (
-      <CreateButton type="button" onClick={onCreateCoupon ?? onCreate}>
+      <CreateButton type="button" onClick={onCreateCoupon}>
         <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
         <MonoText $use="Body_Medium" color="inherit">
           {t("contents.actions.createCoupon")}

@@ -44,8 +44,6 @@ export default function CreatorsContents() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
   const [showCouponDetails, setShowCouponDetails] = useState(false);
-  const handleCancel = () => {};
-  const handleSave = () => {};
   const handleCreateClick = () => {
     switch (activeTab) {
       case COUPONS:
@@ -76,9 +74,9 @@ export default function CreatorsContents() {
         <ContentsHeaderAction
           activeTab={activeTab}
           onCreate={handleCreateClick}
-          onCancel={handleCancel}
+          onCancel={() => {}}
           onCreateCoupon={() => setShowCouponDetails(true)}
-          onSave={handleSave}
+          onSave={() => {}}
         />
       </PageHeader>
 

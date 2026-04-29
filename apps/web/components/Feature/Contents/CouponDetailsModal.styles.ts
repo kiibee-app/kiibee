@@ -66,7 +66,6 @@ export const SectionTitle = styled(MonoText).attrs({
   $use: "Body_Medium",
 })`
   color: ${COLORS.primary.BLACK};
-  font-weight: 600;
   margin-top: 6px;
 `;
 
