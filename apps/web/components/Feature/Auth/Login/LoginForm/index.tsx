@@ -2,6 +2,7 @@
 
 import { FormEvent, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
 import InputField from "@/components/UI/InputFields";
 import {
   Card,
@@ -22,15 +23,18 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useLoginFormSchema } from "@/utils/useLoginFormSchema";
 import type { LoginFormErrors } from "@/utils/authLoginFormSchema";
 import { ALERT } from "@/utils/common";
+import { persistLoginSession, useLogin } from "@/hooks/auth/useLogin";
 
 export default function LoginForm() {
   const { t } = useTranslation();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<LoginFormErrors>({});
   const [formError, setFormError] = useState("");
   const loginSchema = useLoginFormSchema();
+  const { mutateAsync: login, isPending } = useLogin();
   const isMounted = useRef(true);
 
   useEffect(() => {
@@ -63,6 +67,28 @@ export default function LoginForm() {
     if (isMounted.current) {
       setFormError("");
       setFieldErrors({});
+    }
+
+    try {
+      const response = await login(parsedValues.data);
+
+      if (response.success === false) {
+        if (isMounted.current) {
+          setFormError(response.message || t("authForm.errors.submitFailed"));
+        }
+        return;
+      }
+
+      persistLoginSession(response);
+      router.push("/dashboard/creators");
+    } catch (error) {
+      if (isMounted.current) {
+        setFormError(
+          error instanceof Error
+            ? error.message
+            : t("authForm.errors.submitFailed"),
+        );
+      }
     }
   };
 
@@ -125,7 +151,13 @@ export default function LoginForm() {
             </RememberLabel>
           </OptionsRow>
           {formError && <FormMessage role={ALERT}>{formError}</FormMessage>}
-          <GenericButton type="submit">{t("authForm.submit")}</GenericButton>
+          <GenericButton
+            type="submit"
+            isLoading={isPending}
+            disabled={isPending}
+          >
+            {t("authForm.submit")}
+          </GenericButton>
         </Form>
         <ForgotLink href="/auth/forget-password">
           <MonoText $use="Body_Small">{t("authForm.forgot")}</MonoText>

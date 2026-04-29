@@ -16,6 +16,12 @@ import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import PayoutDetailsModal from "./PayoutDetailsModal";
+import Table from "@/components/UI/Table";
+import { SettlementRow } from "@/types/tableContract";
+import { settlementData, settlementHeaders } from "@/utils/dummyData/payout";
+import { CENTER_ALIGNED_HEADERS } from "@/utils/payout";
+import { Settlement } from "../styles";
+import { Directions, MODAL_ALIGN } from "@/utils/ui";
 
 type StatItem = {
   label: string;
@@ -52,7 +58,10 @@ export default function PayoutContent() {
             </MonoText>
           </TextBlock>
 
-          <GenericButton variant={VARIANT.PRIMARY}>
+          <GenericButton
+            variant={VARIANT.PRIMARY}
+            onClick={() => setOpen(true)}
+          >
             {t("settings.payout.title")}
           </GenericButton>
         </CardTop>
@@ -79,6 +88,34 @@ export default function PayoutContent() {
           </SmallCards>
         </Stats>
       </Card>
+      <Settlement>
+        <MonoText $use="H4_Medium">
+          {t("settings.payout.settlementHistory")}
+        </MonoText>
+        <Table<SettlementRow>
+          headers={settlementHeaders}
+          data={settlementData}
+          rowsPerPage={10}
+          getColumnAlignment={(header, index) =>
+            index === 0 || !CENTER_ALIGNED_HEADERS.includes(header)
+              ? Directions.LEFT
+              : MODAL_ALIGN.CENTER
+          }
+          headerToKey={(h) => {
+            const map: Record<string, keyof SettlementRow> = {
+              Amount: "amount",
+              Status: "status",
+              "Credit No": "creditNo",
+              Bank: "bank",
+              Date: "date",
+            };
+            return map[h];
+          }}
+          getRowKey={(row, index) => `${row.creditNo}-${index}`}
+          getMobileTitle={(row) => row.amount}
+        />
+      </Settlement>
+
       <PayoutDetailsModal open={open} onClose={() => setOpen(false)} />
     </>
   );

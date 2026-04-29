@@ -98,6 +98,8 @@
       "repeatPassword": "Gentag adgangskode",
       "repeatPasswordPlaceholder": "Gentag ny adgangskode",
       "passwordMismatch": "Adgangskoderne matcher ikke",
+      "fixHighlightedFields": "Udfyld venligst de påkrævede felter.",
+      "signupFailed": "Din konto kunne ikke oprettes. Prøv igen.",
       "consentPrefix": "Jeg accepterer Kiibees",
       "terms": "Vilkår for brug",
       "and": " og ",
@@ -699,7 +701,12 @@
     "share": "Del",
     "optional": "valgfrit",
     "save": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "previous": "Forrige",
+    "next": "Næste"
+  },
+  "table": {
+    "noData": "Ingen data fundet"
   },
   "creatorProfile": {
     "title": "Min konto",
@@ -719,12 +726,15 @@
     "paymentText": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine indtægter.",
     "regLabel": "Reg. nr.",
     "accountLabel": "Kontonr.",
-    "currentPassword": "Nuværende adgangskode",
-    "newPassword": "Ny adgangskode",
-    "confirmPassword": "Bekræft adgangskode",
+    "currentPassword": "Indtast nuværende adgangskode",
+    "newPassword": "Indtast ny adgangskode",
+    "confirmPassword": "Indtast ny adgangskode igen",
     "accountDeletionTitle": "Slet konto",
     "accountDeletionText": "Hvis du ønsker at slette din konto, klik på [Slet konto] nedenfor, og der sendes en besked til administratoren, som vil foretage en opgørelse og derefter slette din konto.",
-    "deleteAccount": "Slet konto"
+    "deleteAccount": "Slet konto",
+    "forgotPass": "Glemt adgangskode?",
+    "passwordSuccessTitle": "Adgangskode opdateret",
+    "passwordSuccessMessage": "Din adgangskode blev opdateret. Log venligst ind igen for at fortsætte."
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
@@ -864,20 +874,34 @@
       "monthly": "Månedligt",
       "recipient": "Modtager",
       "recipientDesc": "Vælg hvor notifikationerne skal sendes hen",
-      "accountEmail": "Kontoe-mail"
+      "accountEmail": "Kontoe-mail",
+
+      "discardModal": {
+        "title": "Kassér ændringer?",
+        "message": "Er du sikker på, at du vil annullere? Alle ikke-gemte ændringer går tabt.",
+        "goBack": "Gå tilbage",
+        "discard": "Kassér"
+      },
+      "successModal": {
+        "title": "Ændringer gemt",
+        "message": "Dine opdateringer er blevet gemt.",
+        "done": "Færdig"
+      }
     },
     "payout": {
       "title": "Payout",
       "description": "When you click the button, a statement is created that you can cash out. Click on payout to view your credit note.",
       "balance": "Saldo",
       "purchase": "Køb",
-      "rent": "Leje"
+      "rent": "Leje",
+      "settlementHistory": "Afregningshistorik"
     }
   },
   "contents": {
     "title": "Indhold",
     "actions": {
       "createCollection": "Opret samling",
+      "createCoupon": "Opret kupon",
       "search": "Sog indhold",
       "deleteContent": "Delete content"
     },
@@ -899,6 +923,18 @@
         "free": "Gratis",
         "password": "Angiv adgangskode",
         "email": "Anmod om e-mail"
+      }
+    },
+    "contentTypeModal": {
+      "title": "Choose the type of content you want to add",
+      "subtitle": "Select a format to continue.",
+      "continue": "Continue",
+      "options": {
+        "video": "Video",
+        "audio": "Audio",
+        "pdf": "PDF",
+        "epub": "EPUB",
+        "web": "Web"
       }
     },
     "deleteModal": {

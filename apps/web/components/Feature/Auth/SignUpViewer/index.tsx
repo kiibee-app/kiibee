@@ -10,6 +10,9 @@ import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
 import { MonoText } from "@/components/UI/Monotext";
+import { useViewerSignUp } from "@/hooks/Auth/useViewerSignUp";
+import { normalizeApiError } from "@/lib/http/errors/apiError";
+import { ALERT } from "@/utils/common";
 import { INPUT_TYPE } from "@/utils/ui";
 import {
   INITIAL_VIEWER_FORM,
@@ -27,6 +30,7 @@ import {
   ConsentText,
   ContentWrap,
   Form,
+  FormMessage,
   LoginLink,
   LoginRow,
   TermsLink,
@@ -45,6 +49,8 @@ const isPasswordField = (
 export default function SignUpViewer() {
   const router = useRouter();
   const { t } = useTranslation();
+  const { mutateAsync: viewerSignUp, isPending: isSubmitting } =
+    useViewerSignUp();
   const [formValues, setFormValues] =
     useState<ViewerFormValues>(INITIAL_VIEWER_FORM);
   const [passwordVisibility, setPasswordVisibility] =
@@ -53,6 +59,7 @@ export default function SignUpViewer() {
       repeatPassword: false,
     });
   const [submitted, setSubmitted] = useState(false);
+  const [formError, setFormError] = useState("");
 
   const passwordsDoNotMatch =
     formValues.repeatPassword.length > 0 &&
@@ -66,11 +73,44 @@ export default function SignUpViewer() {
     [formValues, passwordsDoNotMatch],
   );
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(true);
 
-    router.push("/auth/signup-viewer/preferences");
+    if (!isSubmitEnabled) {
+      setFormError(
+        passwordsDoNotMatch
+          ? t("viewerSignup.form.passwordMismatch")
+          : t("viewerSignup.form.fixHighlightedFields"),
+      );
+      return;
+    }
+
+    setFormError("");
+
+    try {
+      const response = await viewerSignUp({
+        fullName: formValues.fullName.trim(),
+        email: formValues.email.trim(),
+        password: formValues.password,
+        confirmPassword: formValues.repeatPassword,
+      });
+
+      const { accessToken, refreshToken } = response.data ?? {};
+
+      if (accessToken) {
+        window.localStorage.setItem("kiibee.accessToken", accessToken);
+      }
+
+      if (refreshToken) {
+        window.localStorage.setItem("kiibee.refreshToken", refreshToken);
+      }
+
+      router.push("/auth/signup-viewer/preferences");
+    } catch (error) {
+      const apiError = normalizeApiError(error);
+      setFormError(apiError.message || t("viewerSignup.form.signupFailed"));
+    }
   };
 
   const updateField = (
@@ -78,6 +118,9 @@ export default function SignUpViewer() {
     value: string | boolean,
   ) => {
     setFormValues((prev) => ({ ...prev, [field]: value }));
+    if (formError) {
+      setFormError("");
+    }
   };
 
   const renderField = (field: ViewerFieldConfig) => {
@@ -166,7 +209,13 @@ export default function SignUpViewer() {
               </ConsentText>
             </CheckboxRow>
 
-            <GenericButton type="submit">
+            {formError && <FormMessage role={ALERT}>{formError}</FormMessage>}
+
+            <GenericButton
+              type="submit"
+              disabled={!isSubmitEnabled}
+              isLoading={isSubmitting}
+            >
               {t("viewerSignup.form.submit")}
             </GenericButton>
           </Form>

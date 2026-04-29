@@ -30,12 +30,15 @@ type GenericModalProps = {
   onCancel?: () => void;
   onClose?: () => void;
   width?: string;
+  height?: string;
   padding?: string;
+  borderRadius?: string;
   iconMargin?: string;
   fullWidthButtons?: boolean;
   buttonAlign?: ModalAlign;
   textAlign?: ModalAlign;
   showCloseButton?: boolean;
+  confirmDisabled?: boolean;
 };
 
 export const GenericModal: React.FC<GenericModalProps> = ({
@@ -51,12 +54,15 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   onCancel,
   onClose,
   width,
+  height,
   padding,
+  borderRadius,
   iconMargin,
   fullWidthButtons = false,
   buttonAlign,
   textAlign,
   showCloseButton = true,
+  confirmDisabled = false,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -101,7 +107,9 @@ export const GenericModal: React.FC<GenericModalProps> = ({
     >
       <ModalContainer
         $width={width}
+        $height={height}
         $padding={padding}
+        $borderRadius={borderRadius}
         $align={textAlign}
         ref={ref}
         data-test-id="generic-modal-container"
@@ -158,6 +166,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
               <GenericButton
                 variant="primary"
                 onClick={handleConfirm}
+                disabled={confirmDisabled}
                 data-test-id="generic-modal-confirm-button"
               >
                 {confirmLabel}
