@@ -14,6 +14,8 @@ import { approveCreatorRequestService } from './services/approvCreatorRequest.se
 import { getCreatorRequestService } from './services/getCreatorRequest.service';
 import { rejectCreatorRequestService } from './services/rejectCreatorRequest.service';
 import { validateTokenService } from './services/validateToken.service';
+import { setupCreatorAccountService } from './services/creatorAccountSetup.service';
+import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
 
 @Injectable()
 export class AuthService {
@@ -82,5 +84,8 @@ export class AuthService {
   }
   async validateToken(token: string) {
     return validateTokenService(token);
+  }
+  async setupCreatorAccount(payload: CreatorAccountSetupDto) {
+    return setupCreatorAccountService(payload);
   }
 }

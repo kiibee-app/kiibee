@@ -7,6 +7,7 @@ import { db } from 'src/database/db';
 import { users, userSessions } from 'src/database/schema';
 import { fail, success } from 'src/utils/sendResponse';
 import { ViewerSignUpDto } from '../dto/viewerSignUp.dto';
+import { hashPassword } from 'src/utils/passwordHash';
 
 export const viewerSignUpService = async (
   viewerData: ViewerSignUpDto,
@@ -45,7 +46,7 @@ export const viewerSignUpService = async (
     return fail('Email already exists', HttpStatus.CONFLICT);
   }
 
-  const passwordHash = await bcrypt.hash(password, 12);
+  const passwordHash = await hashPassword(password);
 
   const newUser: typeof users.$inferInsert = {
     id: randomUUID(),
