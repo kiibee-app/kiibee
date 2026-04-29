@@ -24,6 +24,9 @@ export type BaseTableProps<T> = {
     safeCurrentPage?: number;
     effectiveRowsPerPage?: number;
   };
+  onHeaderClick?: (header: string, index: number) => void;
+  isHeaderSortable?: (header: string, index: number) => boolean;
+  getHeaderSortDirection?: (header: string) => "asc" | "desc" | null;
 };
 
 export type MobileTableProps<T> = BaseTableProps<T> & {

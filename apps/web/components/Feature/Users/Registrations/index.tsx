@@ -25,6 +25,9 @@ export default function RegistrationsTabContent() {
   const { t } = useTranslation();
   const [rows, setRows] = useState<RegistrationRow[]>(registrationData);
   const [selectedEmail, setSelectedEmail] = useState<string | null>(null);
+  const [nameSortDirection, setNameSortDirection] = useState<
+    "none" | "asc" | "desc"
+  >("none");
   const deleteModalKeys = DASHBOARD_USERS.registrations.deleteModal;
   const headers = REGISTRATION_TABLE_HEADER_KEYS.map((headerKey) =>
     t(DASHBOARD_USERS.registrations.tableHeaders[headerKey]),
@@ -38,6 +41,14 @@ export default function RegistrationsTabContent() {
     () => rows.find((item) => item.email === selectedEmail) ?? null,
     [rows, selectedEmail],
   );
+  const sortedRows = useMemo(() => {
+    return [...rows].sort((a, b) => {
+      const compared = a.name.localeCompare(b.name, undefined, {
+        sensitivity: "base",
+      });
+      return nameSortDirection === "desc" ? -compared : compared;
+    });
+  }, [rows, nameSortDirection]);
 
   return (
     <>
@@ -51,9 +62,23 @@ export default function RegistrationsTabContent() {
       <TableSection>
         <Table<RegistrationRow>
           headers={headers}
-          data={rows}
+          data={sortedRows}
           rowsPerPage={10}
           headerToKey={(header) => headerMap[header]}
+          onHeaderClick={(header) => {
+            if (header !== headers[0]) return;
+            setNameSortDirection((prev) => {
+              if (prev === "none") return "asc";
+              if (prev === "asc") return "desc";
+              return "none";
+            });
+          }}
+          isHeaderSortable={(header) => header === headers[0]}
+          getHeaderSortDirection={(header) =>
+            header === headers[0] && nameSortDirection !== "none"
+              ? nameSortDirection
+              : null
+          }
           getRowKey={(row, index) => `${row.email}-${index}`}
           getMobileTitle={(row) => row.name}
           renderCell={({ header, row }) => {

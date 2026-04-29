@@ -43,10 +43,20 @@ export const DesktopRow = styled.tr`
   }
 `;
 
-export const TableHead = styled.th<{ $align?: "left" | "center" | "right" }>`
+export const TableHead = styled.th<{
+  $align?: "left" | "center" | "right";
+  $clickable?: boolean;
+}>`
   text-align: ${({ $align }) => $align ?? "left"};
   padding: 16px 12px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+  cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
+`;
+
+export const HeaderContent = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
 `;
 
 export const TableCell = styled.td<{ $align?: "left" | "center" | "right" }>`

@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Table from "@/components/UI/Table";
 import { MonoText } from "@/components/UI/Monotext";
@@ -16,6 +17,9 @@ import {
 
 export default function SalestTabContent() {
   const { t } = useTranslation();
+  const [nameSortDirection, setNameSortDirection] = useState<
+    "none" | "asc" | "desc"
+  >("none");
   const headers = SALES_TABLE_HEADER_KEYS.map((headerKey) =>
     t(DASHBOARD_USERS.salest.tableHeaders[headerKey]),
   );
@@ -23,6 +27,14 @@ export default function SalestTabContent() {
     headers,
     SALES_TABLE_HEADER_KEYS,
   );
+  const sortedSalesData = useMemo(() => {
+    return [...salesData].sort((a, b) => {
+      const compared = a.name.localeCompare(b.name, undefined, {
+        sensitivity: "base",
+      });
+      return nameSortDirection === "desc" ? -compared : compared;
+    });
+  }, [nameSortDirection]);
 
   return (
     <>
@@ -36,9 +48,23 @@ export default function SalestTabContent() {
       <TableSection>
         <Table<SalesRow>
           headers={headers}
-          data={salesData}
+          data={sortedSalesData}
           rowsPerPage={10}
           headerToKey={(header) => headerMap[header]}
+          onHeaderClick={(header) => {
+            if (header !== headers[0]) return;
+            setNameSortDirection((prev) => {
+              if (prev === "none") return "asc";
+              if (prev === "asc") return "desc";
+              return "none";
+            });
+          }}
+          isHeaderSortable={(header) => header === headers[0]}
+          getHeaderSortDirection={(header) =>
+            header === headers[0] && nameSortDirection !== "none"
+              ? nameSortDirection
+              : null
+          }
           getRowKey={(row, index) => `${row.email}-${index}`}
           getMobileTitle={(row) => row.name}
           renderCell={({ header, row }) => (
