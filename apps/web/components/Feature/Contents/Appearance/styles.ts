@@ -69,5 +69,5 @@ export const Swatch = styled.span<{ $color: string }>`
   height: 24px;
   border-radius: 4px;
   background: ${({ $color }) => $color};
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.neutral.GRAY_250};
 `;

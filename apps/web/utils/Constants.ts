@@ -54,3 +54,4 @@ export const INPUT_VARIANTS = {
 export type InputVariant = (typeof INPUT_VARIANTS)[keyof typeof INPUT_VARIANTS];
 
 export const VIEW = "view";
+export const APPEARANCE_DEFAULT_HEX_COLOR = "#674096";

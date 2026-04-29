@@ -118,7 +118,7 @@ export const AppearancePanel = styled.section`
   max-width: 100%;
   box-sizing: border-box;
   border-radius: 20px;
-  background: #f6f6f6;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
   padding: 18px 18px 22px;
   display: flex;
   flex-direction: column;
