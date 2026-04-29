@@ -1,17 +1,17 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { SectionCard, SectionDescription, SectionTitle } from "./styles";
+import InfoTextCard from "@/components/UI/InfoTextCard";
+import { DASHBOARD_USERS } from "@/utils/translationKeys";
 
 export default function RegistrationsTabContent() {
   const { t } = useTranslation();
 
   return (
-    <SectionCard>
-      <SectionTitle>{t("dashboard.users.registrations.title")}</SectionTitle>
-      <SectionDescription>
-        {t("dashboard.users.registrations.description")}
-      </SectionDescription>
-    </SectionCard>
+    <InfoTextCard
+      title={t(DASHBOARD_USERS.registrations.title)}
+      description={t(DASHBOARD_USERS.registrations.description)}
+      withTopSpacing
+    />
   );
 }

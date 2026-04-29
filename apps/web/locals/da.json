@@ -912,6 +912,10 @@
       "settings": "Indstillinger",
       "coupons": "Kuponer"
     },
+    "couponsCard": {
+      "title": "Kuponer",
+      "description": "Opret og administrer alle dine rabatkuponer."
+    },
     "placeholders": {
       "collections": "Samlinger vil blive vist her.",
       "appearance": "Udseende vil blive vist her.",
