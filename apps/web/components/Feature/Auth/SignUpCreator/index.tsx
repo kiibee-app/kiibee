@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { useCreatorRequest } from "@/hooks/Auth/useCreatorRequest";
+import { useCreatorRequest } from "@/hooks/auth/useCreatorRequest";
 import InputField from "@/components/UI/InputFields";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import {
