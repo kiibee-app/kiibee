@@ -6,6 +6,11 @@ import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
 import {
+  COUPON_DISCOUNT_FIXED_AMOUNT,
+  COUPON_DISCOUNT_PERCENTAGE,
+  type CouponDiscountType,
+} from "@/utils/common";
+import {
   CouponInput,
   BackButton,
   FieldGroup,
@@ -32,15 +37,17 @@ export default function CouponDetailsModal({
   const discountId = useId();
   const [title, setTitle] = useState("");
   const [discountValue, setDiscountValue] = useState("");
-  const [discountType, setDiscountType] = useState("fixedAmount");
+  const [discountType, setDiscountType] = useState<CouponDiscountType>(
+    COUPON_DISCOUNT_FIXED_AMOUNT,
+  );
   const discountTypeOptions = useMemo(
     () => [
       {
-        value: "fixedAmount",
+        value: COUPON_DISCOUNT_FIXED_AMOUNT,
         label: t("contents.couponDetails.discountType.fixedAmount"),
       },
       {
-        value: "percentage",
+        value: COUPON_DISCOUNT_PERCENTAGE,
         label: t("contents.couponDetails.discountType.percentage"),
       },
     ],
@@ -94,7 +101,7 @@ export default function CouponDetailsModal({
           <DropdownField
             options={discountTypeOptions}
             value={discountType}
-            onChange={setDiscountType}
+            onChange={(value) => setDiscountType(value as CouponDiscountType)}
           />
 
           <CouponInput
@@ -103,7 +110,7 @@ export default function CouponDetailsModal({
             inputMode="decimal"
             value={discountValue}
             placeholder={t(
-              discountType === "percentage"
+              discountType === COUPON_DISCOUNT_PERCENTAGE
                 ? "contents.couponDetails.placeholders.discountPercentage"
                 : "contents.couponDetails.placeholders.discountAmount",
             )}
