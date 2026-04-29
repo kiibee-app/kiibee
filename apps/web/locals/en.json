@@ -98,6 +98,8 @@
       "repeatPassword": "Repeat password",
       "repeatPasswordPlaceholder": "Repeat new password",
       "passwordMismatch": "Passwords do not match",
+      "fixHighlightedFields": "Please complete the required fields.",
+      "signupFailed": "Unable to create your account. Please try again.",
       "consentPrefix": "I agree to Kiibee's",
       "terms": "Terms of Use",
       "and": " and ",
