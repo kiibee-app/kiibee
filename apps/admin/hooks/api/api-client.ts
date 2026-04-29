@@ -6,13 +6,14 @@ export async function apiClient<T = unknown>(
   options: RequestInit = {},
 ): Promise<ApiResponse<T>> {
   const url = `${API_BASE_URL}${endpoint}`;
+  const isAuthLoginEndpoint = endpoint === "/auth/login";
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
     ...(options.headers as Record<string, string>),
   };
 
-  if (typeof window !== "undefined") {
+  if (typeof window !== "undefined" && !isAuthLoginEndpoint) {
     const token = localStorage.getItem("accessToken");
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
