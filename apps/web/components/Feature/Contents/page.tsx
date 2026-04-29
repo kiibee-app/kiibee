@@ -27,10 +27,12 @@ import {
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
 import { SuccessArcIcon } from "@/assets/icons";
+import ContentTypeModal from "./ContentTypeModal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
+  const [showContentTypeModal, setShowContentTypeModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
 
@@ -44,7 +46,10 @@ export default function CreatorsContents() {
       <PageHeader>
         <Title>{t("contents.title")}</Title>
 
-        <CreateButton type="button">
+        <CreateButton
+          type="button"
+          onClick={() => setShowContentTypeModal(true)}
+        >
           <PlusIcon width={16} height={16} color="white" />
           <MonoText $use="Body_Medium" color="inherit">
             {t("contents.actions.createCollection")}
@@ -89,6 +94,12 @@ export default function CreatorsContents() {
           </PlaceholderLine>
         )}
       </ContentPanel>
+
+      <ContentTypeModal
+        visible={showContentTypeModal}
+        onClose={() => setShowContentTypeModal(false)}
+        onContinue={() => setShowContentTypeModal(false)}
+      />
 
       <GenericModal
         visible={showDeleteModal}

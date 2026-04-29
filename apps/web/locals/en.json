@@ -902,6 +902,18 @@
         "email": "Request email"
       }
     },
+    "contentTypeModal": {
+      "title": "Choose the type of content you want to add",
+      "subtitle": "Select a format to continue.",
+      "continue": "Continue",
+      "options": {
+        "video": "Video",
+        "audio": "Audio",
+        "pdf": "PDF",
+        "epub": "EPUB",
+        "web": "Web"
+      }
+    },
     "deleteModal": {
       "title": "Delete content?",
       "message": "Are you sure you want to delete this content? This action cannot be undone.",
