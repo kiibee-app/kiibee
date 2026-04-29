@@ -25,14 +25,15 @@ import {
 import AdmissionRequirements from "./AdmissionRequirements";
 import { SuccessArcIcon } from "@/assets/icons";
 import ContentsHeaderAction from "./ContentsHeaderAction";
+import ContentTypeModal from "./ContentTypeModal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
+  const [showContentTypeModal, setShowContentTypeModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
 
-  // TODO: wire these up when appearance/settings become editable forms.
   const handleCancel = () => {};
   const handleSave = () => {};
 
@@ -89,6 +90,12 @@ export default function CreatorsContents() {
           </PlaceholderLine>
         )}
       </ContentPanel>
+
+      <ContentTypeModal
+        visible={showContentTypeModal}
+        onClose={() => setShowContentTypeModal(false)}
+        onContinue={() => setShowContentTypeModal(false)}
+      />
 
       <GenericModal
         visible={showDeleteModal}
