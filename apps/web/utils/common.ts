@@ -34,3 +34,5 @@ export const CONTENT_TABS: readonly ContentTabItem[] = [
     description: "Coupons content will appear here.",
   },
 ] as const;
+
+export const APPEARANCE = "appearance";

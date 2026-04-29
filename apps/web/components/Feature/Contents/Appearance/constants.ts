@@ -1,0 +1,1 @@
+export const APPEARANCE_DEFAULT_HEX_COLOR = "#674096";

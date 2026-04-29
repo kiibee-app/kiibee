@@ -10,22 +10,27 @@ import { GenericModal } from "@/components/UI/Modals";
 import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
+  ActionGroup,
   CreateButton,
   PageHeader,
   PageShell,
   PlaceholderLine,
+  PrimaryActionButton,
   SearchButton,
+  SecondaryActionButton,
   TabButton,
   TabsRow,
   Title,
 } from "./styles";
 import {
+  APPEARANCE,
   COLLECTIONS,
   CONTENT_TABS,
   ContentTab,
   SETTINGS,
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
+import AppearanceContent from "./Appearance";
 import { SuccessArcIcon } from "@/assets/icons";
 import ContentTypeModal from "./ContentTypeModal";
 
@@ -46,15 +51,26 @@ export default function CreatorsContents() {
       <PageHeader>
         <Title>{t("contents.title")}</Title>
 
-        <CreateButton
-          type="button"
-          onClick={() => setShowContentTypeModal(true)}
-        >
-          <PlusIcon width={16} height={16} color="white" />
-          <MonoText $use="Body_Medium" color="inherit">
-            {t("contents.actions.createCollection")}
-          </MonoText>
-        </CreateButton>
+        {activeTab === APPEARANCE ? (
+          <ActionGroup>
+            <SecondaryActionButton type="button">
+              {t("contents.actions.cancel")}
+            </SecondaryActionButton>
+            <PrimaryActionButton type="button">
+              {t("contents.actions.save")}
+            </PrimaryActionButton>
+          </ActionGroup>
+        ) : (
+          <CreateButton
+            type="button"
+            onClick={() => setShowContentTypeModal(true)}
+          >
+            <PlusIcon width={16} height={16} color="white" />
+            <MonoText $use="Body_Medium" color="inherit">
+              {t("contents.actions.createCollection")}
+            </MonoText>
+          </CreateButton>
+        )}
       </PageHeader>
 
       <TabsRow>
@@ -77,6 +93,8 @@ export default function CreatorsContents() {
       <ContentPanel>
         {activeTab === SETTINGS ? (
           <AdmissionRequirements />
+        ) : activeTab === APPEARANCE ? (
+          <AppearanceContent />
         ) : (
           <PlaceholderLine>
             {(() => {
@@ -87,7 +105,7 @@ export default function CreatorsContents() {
                 return t(activeItem.descriptionKey);
               }
               return (
-                activeItem?.description ??
+                activeItem?.description ||
                 t("contents.placeholders.collections")
               );
             })()}

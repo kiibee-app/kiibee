@@ -888,6 +888,8 @@
     "actions": {
       "createCollection": "Create collection",
       "search": "Search contents",
+      "cancel": "Cancel",
+      "save": "Save",
       "deleteContent": "Delete content"
     },
     "tabs": {
@@ -904,6 +906,21 @@
         "password": "Set password",
         "email": "Request email"
       }
+    },
+    "placeholders": {
+      "collections": "Collections content will appear here.",
+      "appearance": "Appearance content will appear here.",
+      "settings": "Settings content will appear here.",
+      "coupons": "Coupons content will appear here."
+    },
+    "appearance": {
+      "textColor": "Text color",
+      "textColorHint": "Choose the text color used in the cover image",
+      "followTheme": "Follow theme (Default)",
+      "buttonColor": "Button color",
+      "buttonColorHint": "Choose the button color used in your website",
+      "chooseColor": "Choose color",
+      "color": "Color"
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { typography } from "@repo/ui/typography";
 import { MonoText } from "@/components/UI/Monotext";
+import { media } from "@repo/ui/breakpoints";
 
 export const PageShell = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   min-height: calc(100vh - 110px);
   padding: 12px 30px 30px;
 `;
@@ -36,10 +37,33 @@ export const CreateButton = styled.button`
   cursor: pointer;
 `;
 
-export const PlusMark = styled.span`
-  font-size: 22px;
-  line-height: 1;
-  font-weight: 300;
+export const ActionGroup = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+`;
+
+const baseActionButton = `
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 28px;
+  cursor: pointer;
+  font-family: ${typography.Body_Medium.fontFamily};
+  font-weight: ${typography.Body_Medium.fontWeight};
+  line-height: ${typography.Body_Medium.lineHeight};
+`;
+
+export const SecondaryActionButton = styled.button`
+  ${baseActionButton}
+  background: ${({ theme }) => theme.colors.primary.GRAY};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PrimaryActionButton = styled.button`
+  ${baseActionButton}
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.primary.WHITE};
 `;
 
 export const TabsRow = styled.div`
@@ -86,7 +110,23 @@ export const SearchButton = styled.button`
 `;
 
 export const ContentPanel = styled.div`
-  padding-top: 22px;
+  padding-top: 6px;
+`;
+
+export const AppearancePanel = styled.section`
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: #f6f6f6;
+  padding: 18px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+
+  ${media.tablet} {
+    padding: 16px;
+  }
 `;
 
 export const PlaceholderLine = styled(MonoText).attrs({

@@ -888,6 +888,8 @@
     "actions": {
       "createCollection": "Opret samling",
       "search": "Sog indhold",
+      "cancel": "Annuller",
+      "save": "Gem",
       "deleteContent": "Delete content"
     },
     "tabs": {
@@ -899,7 +901,17 @@
     "placeholders": {
       "collections": "Samlinger vil blive vist her.",
       "appearance": "Udseende vil blive vist her.",
-      "settings": "Indstillinger vil blive vist her."
+      "settings": "Indstillinger vil blive vist her.",
+      "coupons": "Kuponer vil blive vist her."
+    },
+    "appearance": {
+      "textColor": "Tekstfarve",
+      "textColorHint": "Vælg den tekstfarve, der bruges i coverbilledet",
+      "followTheme": "Følg temaet (Standard)",
+      "buttonColor": "Knapfarve",
+      "buttonColorHint": "Vælg den knapfarve, der bruges på din hjemmeside",
+      "chooseColor": "Vælg farve",
+      "color": "Farve"
     },
     "admissionRequirements": {
       "title": "Adgangskrav",

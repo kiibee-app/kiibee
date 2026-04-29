@@ -49,6 +49,7 @@ export const BUTTON = "button";
 export const INPUT_VARIANTS = {
   DEFAULT: "default",
   PRIMARY_GRAY: "primaryGray",
+  SURFACE: "surface",
 } as const;
 export type InputVariant = (typeof INPUT_VARIANTS)[keyof typeof INPUT_VARIANTS];
 

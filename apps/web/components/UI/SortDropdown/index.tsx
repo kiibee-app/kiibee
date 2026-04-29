@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useRef, useState, useCallback, useMemo } from "react";
-import { useTranslation } from "react-i18next";
-import { CREATORS } from "@/utils/translationKeys";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { Directions } from "@/utils/ui";
 import {
@@ -13,21 +11,47 @@ import {
 } from "@/components/Feature/ExploreCreators/Hero/styles";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { MonoText } from "../Monotext";
-import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
+import { DEFAULT_SORT } from "@/utils/sortOptions";
+import { useTheme } from "styled-components";
 
-type Props = {
-  options: typeof SORT_OPTIONS;
-  value?: SortValue;
-  onChange?: (value: SortValue) => void;
+export type DropdownOption<T extends string = string> = {
+  label: React.ReactNode;
+  value: T;
 };
 
-function SortDropdown({ options, value = DEFAULT_SORT, onChange }: Props) {
-  const { t } = useTranslation();
+type Props<T extends string = string> = {
+  options: ReadonlyArray<DropdownOption<T>>;
+  value?: T;
+  onChange?: (value: T) => void;
+  label?: React.ReactNode;
+  renderSelectedLabel?: (
+    value: T,
+    option?: DropdownOption<T>,
+  ) => React.ReactNode;
+  renderOptionLabel?: (option: DropdownOption<T>) => React.ReactNode;
+  width?: string;
+  maxWidth?: string;
+  variant?: "default" | "surface";
+};
 
+function SortDropdown<T extends string = string>({
+  options,
+  value,
+  onChange,
+  label,
+  renderSelectedLabel,
+  renderOptionLabel,
+  width,
+  maxWidth,
+  variant = "default",
+}: Props<T>) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(value);
+  const theme = useTheme();
+  const initialValue = (value ?? options[0]?.value ?? DEFAULT_SORT) as T;
+  const [internalSelected, setInternalSelected] = useState<T>(initialValue);
 
   const ref = useRef<HTMLDivElement>(null);
+  const selected = (value ?? internalSelected) as T;
 
   useClickOutside({
     ref,
@@ -37,8 +61,8 @@ function SortDropdown({ options, value = DEFAULT_SORT, onChange }: Props) {
   });
 
   const handleSelect = useCallback(
-    (val: SortValue) => {
-      setSelected(val);
+    (val: T) => {
+      setInternalSelected(val);
       onChange?.(val);
       setOpen(false);
     },
@@ -50,31 +74,47 @@ function SortDropdown({ options, value = DEFAULT_SORT, onChange }: Props) {
     [options, selected],
   );
 
+  const selectedOption = options.find((opt) => opt.value === selected);
+  const resolvedSelectedLabel = renderSelectedLabel
+    ? renderSelectedLabel(selected, selectedOption)
+    : (selectedOption?.label ?? selected);
+
   return (
-    <SortBox ref={ref} onClick={() => setOpen((prev) => !prev)}>
+    <SortBox
+      ref={ref}
+      $width={width}
+      $maxWidth={maxWidth}
+      $variant={variant}
+      onClick={() => setOpen((prev) => !prev)}
+    >
       <Text>
-        <MonoText $use="Body_Regular">{t(CREATORS.sort)}</MonoText>
-        <MonoText $use="Body_Regular">
-          {t(CREATORS.value(selected)).toLowerCase()}
-        </MonoText>
+        {label ? <MonoText $use="Body_Regular">{label}</MonoText> : null}
+        <MonoText $use="Body_Regular">{resolvedSelectedLabel}</MonoText>
       </Text>
 
-      <ArrowIcon direction={open ? Directions.UP : Directions.DOWN} />
+      <ArrowIcon
+        direction={open ? Directions.UP : Directions.DOWN}
+        color={
+          variant === "surface"
+            ? theme.colors.neutral.GRAY_400
+            : theme.colors.primary.BLACK
+        }
+      />
 
       {open && (
-        <Dropdown>
+        <Dropdown $maxWidth={maxWidth} $variant={variant}>
           {filteredOptions.map((opt) => (
             <DropdownItem
               key={opt.value}
+              $variant={variant}
               onClick={(e) => {
                 e.stopPropagation();
                 handleSelect(opt.value);
               }}
             >
               <Text>
-                <MonoText $use="Body_Regular">{t(CREATORS.sort)}</MonoText>
                 <MonoText $use="Body_Regular">
-                  {t(CREATORS.value(opt.value)).toLowerCase()}
+                  {renderOptionLabel ? renderOptionLabel(opt) : opt.label}
                 </MonoText>
               </Text>
             </DropdownItem>
@@ -85,4 +125,4 @@ function SortDropdown({ options, value = DEFAULT_SORT, onChange }: Props) {
   );
 }
 
-export default React.memo(SortDropdown);
+export default React.memo(SortDropdown) as typeof SortDropdown;
