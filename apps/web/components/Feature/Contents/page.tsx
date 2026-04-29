@@ -62,13 +62,10 @@ export default function CreatorsContents() {
     setShowSuccessModal(true);
   };
 
-  const activeItem = CONTENT_TABS.find((tab) => tab.key === activeTab);
-
   return (
     <PageShell>
       <PageHeader>
         <Title>{t("contents.title")}</Title>
-
         <ContentsHeaderAction
           activeTab={activeTab}
           onCreate={handleCreateClick}
@@ -99,10 +96,18 @@ export default function CreatorsContents() {
           <AdmissionRequirements />
         ) : (
           <PlaceholderLine>
-            {activeItem?.descriptionKey
-              ? t(activeItem.descriptionKey)
-              : (activeItem?.description ??
-                t("contents.placeholders.collections"))}
+            {(() => {
+              const activeItem = CONTENT_TABS.find(
+                (tab) => tab.key === activeTab,
+              );
+              if (activeItem?.descriptionKey) {
+                return t(activeItem.descriptionKey);
+              }
+              return (
+                activeItem?.description ??
+                t("contents.placeholders.collections")
+              );
+            })()}
           </PlaceholderLine>
         )}
       </ContentPanel>
