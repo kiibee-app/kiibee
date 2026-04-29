@@ -27,3 +27,23 @@ export const SectionDescription = styled.p`
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
 `;
+
+export const TableSection = styled.div`
+  margin-top: 16px;
+  padding-right: 26px;
+`;
+
+export const DeleteActionButton = styled.button`
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  font-size: 16px;
+  line-height: 1;
+`;

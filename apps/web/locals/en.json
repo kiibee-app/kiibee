@@ -831,18 +831,74 @@
       "body2": "If you need help now, please reach out via the support page."
     }
   },
+  "users": {
+    "tabs": {
+      "registrations": "Registrations (11)",
+      "salest": "Sales (50)"
+    },
+    "registrations": {
+      "title": "E-mail signups",
+      "description": "An overview of all emails collected in connection with e-mail address visibility.",
+      "tableHeaders": {
+        "name": "Name",
+        "email": "Email",
+        "date": "Date",
+        "action": "Action"
+      },
+      "deleteModal": {
+        "title": "Delete?",
+        "message": "Are you sure you want to delete this data? This action cannot be undone.",
+        "cancel": "Cancel",
+        "delete": "Delete"
+      }
+    },
+    "salest": {
+      "title": "Sales",
+      "description": "Here you can find a complete overview of all your sales.",
+      "tableHeaders": {
+        "name": "Name",
+        "email": "Email",
+        "price": "Price",
+        "type": "Type",
+        "date": "Date"
+      }
+    }
+  },
   "dashboard": {
     "overview": "Overview",
     "noData": "No Data Found",
     "contentPerformance": "Content Performance",
     "users": {
+      "tabs": {
+        "registrations": "Registrations (11)",
+        "salest": "Sales (50)"
+      },
       "registrations": {
         "title": "E-mail signups",
-        "description": "An overview of all emails collected in connection with e-mail address visibility."
+        "description": "An overview of all emails collected in connection with e-mail address visibility.",
+        "tableHeaders": {
+          "name": "Name",
+          "email": "Email",
+          "date": "Date",
+          "action": "Action"
+        },
+        "deleteModal": {
+          "title": "Delete?",
+          "message": "Are you sure you want to delete this data? This action cannot be undone.",
+          "cancel": "Cancel",
+          "delete": "Delete"
+        }
       },
       "salest": {
         "title": "Sales",
-        "description": "Here you can find a complete overview of all your sales."
+        "description": "Here you can find a complete overview of all your sales.",
+        "tableHeaders": {
+          "name": "Name",
+          "email": "Email",
+          "price": "Price",
+          "type": "Type",
+          "date": "Date"
+        }
       }
     },
     "contentName": "Content name",

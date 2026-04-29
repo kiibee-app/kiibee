@@ -98,13 +98,36 @@ export const CREATOR_PROFILE = {
 };
 
 export const DASHBOARD_USERS = {
+  tabs: {
+    registrations: "users.tabs.registrations",
+    salest: "users.tabs.salest",
+  },
   registrations: {
-    title: "dashboard.users.registrations.title",
-    description: "dashboard.users.registrations.description",
+    title: "users.registrations.title",
+    description: "users.registrations.description",
+    tableHeaders: {
+      name: "users.registrations.tableHeaders.name",
+      email: "users.registrations.tableHeaders.email",
+      date: "users.registrations.tableHeaders.date",
+      action: "users.registrations.tableHeaders.action",
+    },
+    deleteModal: {
+      title: "users.registrations.deleteModal.title",
+      message: "users.registrations.deleteModal.message",
+      cancel: "users.registrations.deleteModal.cancel",
+      delete: "users.registrations.deleteModal.delete",
+    },
   },
   salest: {
-    title: "dashboard.users.salest.title",
-    description: "dashboard.users.salest.description",
+    title: "users.salest.title",
+    description: "users.salest.description",
+    tableHeaders: {
+      name: "users.salest.tableHeaders.name",
+      email: "users.salest.tableHeaders.email",
+      price: "users.salest.tableHeaders.price",
+      type: "users.salest.tableHeaders.type",
+      date: "users.salest.tableHeaders.date",
+    },
   },
 };
 
