@@ -4,6 +4,7 @@ export const VARIANT = {
   PRIMARY: "primary",
   PRIMARY_LITE: "primary-lite",
   SECONDARY: "secondary",
+  DANGER: "danger",
 } as const;
 export type ImageSource = StaticImageData | string;
 export type Variant = (typeof VARIANT)[keyof typeof VARIANT];

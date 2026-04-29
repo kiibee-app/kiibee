@@ -730,6 +730,17 @@
     "accountDeletionTitle": "Slet konto",
     "accountDeletionText": "Hvis du ønsker at slette din konto, klik på [Slet konto] nedenfor, og der sendes en besked til administratoren, som vil foretage en opgørelse og derefter slette din konto.",
     "deleteAccount": "Slet konto",
+    "deleteModal": {
+      "title": "Slet konto?",
+      "message": "Er du sikker på, at du vil slette din konto? Denne handling er permanent og kan ikke fortrydes.",
+      "cancel": "Annuller",
+      "confirm": "Slet konto"
+    },
+    "deleteSuccessModal": {
+      "title": "Anmodning om kontosletning sendt",
+      "message": "Din anmodning er sendt. En administrator gennemgår den og fuldfører kontosletningen. Du får besked, når det er gjort.",
+      "confirm": "Færdig"
+    },
     "forgotPass": "Glemt adgangskode?",
     "passwordSuccessTitle": "Adgangskode opdateret",
     "passwordSuccessMessage": "Din adgangskode blev opdateret. Log venligst ind igen for at fortsætte."

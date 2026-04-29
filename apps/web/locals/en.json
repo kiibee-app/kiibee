@@ -730,6 +730,17 @@
     "accountDeletionTitle": "Account deletion",
     "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
     "deleteAccount": "Delete account",
+    "deleteModal": {
+      "title": "Delete Account?",
+      "message": "Are you sure you want to delete your account? This action is permanent and cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete Account"
+    },
+    "deleteSuccessModal": {
+      "title": "Request Sent for Account Deletion",
+      "message": "Your request has been submitted. An administrator will review it and complete the account deletion process. You'll be notified once it's done.",
+      "confirm": "Done"
+    },
     "forgotPass": "Forgot Password?",
     "passwordSuccessTitle": "Password updated",
     "passwordSuccessMessage": "Your password was successfully updated. Please log in again to continue."

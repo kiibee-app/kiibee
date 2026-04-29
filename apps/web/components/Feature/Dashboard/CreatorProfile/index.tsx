@@ -53,6 +53,8 @@ export default function CreatorProfile() {
   const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
     useState<boolean>(false);
   const [passwords, setPasswords] = useState<PasswordState>(emptyPasswords);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
 
   const dirty = useMemo(() => {
     const formChanged = JSON.stringify(form) !== JSON.stringify(saved);
@@ -108,6 +110,20 @@ export default function CreatorProfile() {
 
   const fields = useMemo(() => getProfileFields(t), [t]);
 
+  const handleDeleteRequest = () => {
+    setShowDeleteModal(false);
+    setShowDeleteSuccessModal(true);
+  };
+
+  const handleDeleteClose = () => {
+    setShowDeleteModal(false);
+  };
+
+  const handleDeleteSuccessClose = () => {
+    setShowDeleteSuccessModal(false);
+    router.push("/auth/login");
+  };
+
   return (
     <Container>
       <HeaderRow>
@@ -162,8 +178,7 @@ export default function CreatorProfile() {
       </Card>
       <CompanySection form={form} onChange={onChange} t={t} />
       <PaymentSection form={form} onChange={onChange} t={t} />
-      <DeleteSection />
-
+      <DeleteSection onDelete={() => setShowDeleteModal(true)} />
       <GenericModal
         visible={showPassword}
         title={t(CREATOR_PROFILE.changePassword)}
@@ -200,6 +215,52 @@ export default function CreatorProfile() {
         onClose={() => setShowPasswordSuccessModal(false)}
         onConfirm={() => router.push("/auth/login")}
         width="480px"
+        showCloseButton={false}
+      />
+      <GenericModal
+        visible={showDeleteModal || showDeleteSuccessModal}
+        icon={
+          showDeleteSuccessModal ? (
+            <SuccessArcIcon
+              width={40}
+              height={40}
+              color={COLORS.primary.GREEN_200}
+            />
+          ) : undefined
+        }
+        iconMargin={showDeleteSuccessModal ? "0 auto 8px" : undefined}
+        title={
+          showDeleteSuccessModal
+            ? t(CREATOR_PROFILE.deleteSuccessModal.title)
+            : t(CREATOR_PROFILE.deleteModal.title)
+        }
+        message={
+          showDeleteSuccessModal
+            ? t(CREATOR_PROFILE.deleteSuccessModal.message)
+            : t(CREATOR_PROFILE.deleteModal.message)
+        }
+        cancelLabel={
+          showDeleteModal ? t(CREATOR_PROFILE.deleteModal.cancel) : undefined
+        }
+        confirmLabel={
+          showDeleteSuccessModal
+            ? t(CREATOR_PROFILE.deleteSuccessModal.confirm)
+            : t(CREATOR_PROFILE.deleteModal.confirm)
+        }
+        confirmVariant={showDeleteModal ? VARIANT.DANGER : VARIANT.PRIMARY}
+        onCancel={showDeleteModal ? handleDeleteClose : undefined}
+        onClose={
+          showDeleteSuccessModal ? handleDeleteSuccessClose : handleDeleteClose
+        }
+        onConfirm={
+          showDeleteSuccessModal
+            ? handleDeleteSuccessClose
+            : handleDeleteRequest
+        }
+        width="480px"
+        padding="40px 30px"
+        buttonRow={showDeleteModal}
+        fullWidthButtons={showDeleteModal}
         showCloseButton={false}
       />
     </Container>

@@ -13,7 +13,8 @@ import {
 } from "./styles";
 import GenericButton from "../GenericButton";
 import { MonoText } from "../Monotext";
-import { BUTTON, ESCAPE, KEYDOWN } from "@/utils/Constants";
+import { BUTTON, ESCAPE, KEYDOWN, VARIANT } from "@/utils/Constants";
+import { Variant } from "@/utils/Constants";
 import { CrossIcon } from "@/assets/icons/crossIcon";
 import { ModalAlign } from "@/utils/ui";
 
@@ -39,6 +40,7 @@ type GenericModalProps = {
   textAlign?: ModalAlign;
   showCloseButton?: boolean;
   confirmDisabled?: boolean;
+  confirmVariant?: Variant;
 };
 
 export const GenericModal: React.FC<GenericModalProps> = ({
@@ -63,6 +65,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   textAlign,
   showCloseButton = true,
   confirmDisabled = false,
+  confirmVariant = VARIANT.PRIMARY,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -164,7 +167,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
 
             {confirmLabel && (
               <GenericButton
-                variant="primary"
+                variant={confirmVariant}
                 onClick={handleConfirm}
                 disabled={confirmDisabled}
                 data-test-id="generic-modal-confirm-button"
