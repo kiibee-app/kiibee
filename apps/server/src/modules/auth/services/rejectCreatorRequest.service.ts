@@ -2,8 +2,13 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { eq, and } from 'drizzle-orm/sql/expressions/conditions';
 import { db } from 'src/database/db';
 import { creatorApplicationRequests } from 'src/database/schema/users/creatorApplicationRequests.schema';
+import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
+import { runInBackground } from 'src/utils/backgroundTask';
 import { STATUS } from 'src/utils/constant';
+import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 import { fail, success } from 'src/utils/sendResponse';
+
+type CreatorRequest = typeof creatorApplicationRequests.$inferSelect;
 
 export const rejectCreatorRequestService = async (
   requestId: string,
@@ -17,8 +22,11 @@ export const rejectCreatorRequestService = async (
       );
     }
 
+    let email: string | null = null;
+    let name: string | null = null;
+
     await db.transaction(async (tx) => {
-      const validatedRequest = await tx
+      const result: CreatorRequest[] = await tx
         .select()
         .from(creatorApplicationRequests)
         .where(
@@ -29,12 +37,16 @@ export const rejectCreatorRequestService = async (
         )
         .limit(1);
 
-      if (!validatedRequest || validatedRequest.length === 0) {
+      if (!result || result.length === 0) {
         throw new HttpException(
           'Creator request not found or already processed',
           HttpStatus.NOT_FOUND,
         );
       }
+
+      const request = result[0];
+      email = request.email;
+      name = request.firstName;
 
       await tx
         .update(creatorApplicationRequests)
@@ -47,13 +59,26 @@ export const rejectCreatorRequestService = async (
         .where(eq(creatorApplicationRequests.id, requestId));
     });
 
-    const reponseData = {
+    if (email && name) {
+      runInBackground(
+        sendTemplateEmail({
+          to: email,
+          subject: mailSubject.REJECTED_CREATOR,
+          templateName: templateName.REJECTED_CREATOR,
+          variables: {
+            name,
+          },
+        }),
+      );
+    }
+
+    const responseData = {
       id: requestId,
       status: STATUS.REJECTED,
     };
 
     return success(
-      reponseData,
+      responseData,
       'Creator request rejected successfully',
       HttpStatus.OK,
     );
