@@ -98,6 +98,8 @@
       "repeatPassword": "Repeat password",
       "repeatPasswordPlaceholder": "Repeat new password",
       "passwordMismatch": "Passwords do not match",
+      "fixHighlightedFields": "Please complete the required fields.",
+      "signupFailed": "Unable to create your account. Please try again.",
       "consentPrefix": "I agree to Kiibee's",
       "terms": "Terms of Use",
       "and": " and ",
@@ -878,7 +880,18 @@
       "recipientDesc": "Choose where the notifications will be sent",
       "accountEmail": "Account email",
       "otherEmail": "Other than account email",
-      "enterEmail": "Enter email"
+      "enterEmail": "Enter email",
+      "discardModal": {
+        "title": "Discard Changes?",
+        "message": "Are you sure you want to cancel? All unsaved changes will be lost.",
+        "goBack": "Go back",
+        "discard": "Discard"
+      },
+      "successModal": {
+        "title": "Changes saved",
+        "message": "Your updates have been successfully saved.",
+        "done": "Done"
+      }
     },
     "payout": {
       "title": "Payout",
