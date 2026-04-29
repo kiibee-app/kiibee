@@ -5,13 +5,14 @@ import { SettingsIcon } from "@/assets/icons/settingsIcon";
 import { ShoppingBagIcon } from "@/assets/icons/shoppingBag";
 import { UsersIcon } from "@/assets/icons/usersIcon";
 import React from "react";
+import { HELP } from "./common";
 
 export const CREATORS_LABELS = {
   OVERVIEW: "Overview",
   CONTENTS: "Contents",
   USERS: "Users",
   SETTINGS: "Settings",
-  HELP: "Help",
+  HELP,
   LOG_OUT: "Logout",
   PROFILE: "profile",
 } as const;
@@ -75,3 +76,11 @@ export const creatorsItems: CreatorItem[] = [
     variant: CREATOR_VARIANTS.DANGER,
   },
 ];
+
+export const HELP_MENU_ITEMS = [
+  { label: "Help videos", href: "/tutorial-videos" },
+  { label: "User manual", href: "/support" },
+  { label: "Conditions", href: "/terms-of-service" },
+] as const;
+
+export type HelpMenuItem = (typeof HELP_MENU_ITEMS)[number];
