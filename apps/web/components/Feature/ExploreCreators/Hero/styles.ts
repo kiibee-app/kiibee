@@ -368,39 +368,59 @@ export const StarIcon = styled.svg<{ $filled: boolean }>`
   }
 `;
 
-export const SortBox = styled.div`
+export const SortBox = styled.div<{
+  $width?: string;
+  $maxWidth?: string;
+  $variant?: "default" | "surface";
+}>`
   position: relative;
-  width: 100%;
-  max-width: 200px;
+  width: ${({ $width }) => $width || "100%"};
+  max-width: ${({ $maxWidth }) => $maxWidth || "200px"};
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 13px 15px;
-  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
-  border-radius: 12px;
-  border: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+  padding: ${({ $variant }) =>
+    $variant === "surface" ? "10px 16px" : "13px 15px"};
+  background: ${({ theme, $variant }) =>
+    $variant === "surface"
+      ? theme.colors.primary.WHITE
+      : theme.colors.neutral.OFF_WHITE};
+  border-radius: ${({ $variant }) => ($variant === "surface" ? "8px" : "12px")};
+  border: 1px solid
+    ${({ $variant, theme }) =>
+      $variant === "surface"
+        ? theme.colors.neutral.GRAY_200
+        : theme.colors.primary.GRAY};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   cursor: pointer;
 `;
 
-export const Dropdown = styled.div`
+export const Dropdown = styled.div<{
+  $maxWidth?: string;
+  $variant?: "default" | "surface";
+}>`
   position: absolute;
   top: 120%;
   right: 0;
   width: 100%;
-  max-width: 200px;
-  padding: 12px;
-  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
-  border-radius: 12px;
+  max-width: ${({ $maxWidth }) => $maxWidth || "200px"};
+  padding: ${({ $variant }) => ($variant === "surface" ? "8px" : "12px")};
+  background: ${({ theme, $variant }) =>
+    $variant === "surface"
+      ? theme.colors.primary.WHITE
+      : theme.colors.neutral.OFF_WHITE};
+  border-radius: ${({ $variant }) => ($variant === "surface" ? "8px" : "12px")};
   display: flex;
   flex-direction: column;
   gap: 8px;
   z-index: 100;
 `;
 
-export const DropdownItem = styled.div`
-  padding: 12px 14px;
-  border-radius: 12px;
+export const DropdownItem = styled.div<{ $variant?: "default" | "surface" }>`
+  padding: ${({ $variant }) =>
+    $variant === "surface" ? "10px 12px" : "12px 14px"};
+  border-radius: ${({ $variant }) => ($variant === "surface" ? "8px" : "12px")};
   display: flex;
   justify-content: flex-start;
   cursor: pointer;

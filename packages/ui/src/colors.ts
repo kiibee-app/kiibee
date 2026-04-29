@@ -38,6 +38,7 @@ export interface ColorPalette {
     GRAY: string;
     GRAY_100: string;
     GRAY_200: string;
+    GRAY_250: string;
     GRAY_300: string;
     GRAY_400: string;
     GRAY_700: string;
@@ -119,6 +120,7 @@ export const COLORS: ColorPalette = {
     GRAY: "rgba(6, 6, 6, 0.6)",
     GRAY_100: "rgb(243,244,246)",
     GRAY_200: "rgba(235, 235, 237, 1)",
+    GRAY_250: "rgba(0, 0, 0, 0.04)",
     GRAY_300: "rgba(0, 0, 0, 0.08)",
     GRAY_400: "rgba(6, 6, 6, 0.5)",
     GRAY_700: "rgb(55,65,81)",

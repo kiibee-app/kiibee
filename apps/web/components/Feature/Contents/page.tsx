@@ -18,11 +18,13 @@ import {
 } from "./styles";
 import {
   COLLECTIONS,
+  APPEARANCE,
   CONTENT_TABS,
   ContentTab,
   SETTINGS,
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
+import AppearanceContent from "./Appearance";
 import { SuccessArcIcon } from "@/assets/icons";
 import ContentsHeaderAction from "./ContentsHeaderAction";
 import ContentTypeModal from "./ContentTypeModal";
@@ -71,7 +73,9 @@ export default function CreatorsContents() {
       </TabsRow>
 
       <ContentPanel>
-        {activeTab === SETTINGS ? (
+        {activeTab === APPEARANCE ? (
+          <AppearanceContent />
+        ) : activeTab === SETTINGS ? (
           <AdmissionRequirements />
         ) : (
           <PlaceholderLine>
