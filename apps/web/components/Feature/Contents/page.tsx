@@ -31,6 +31,7 @@ import AdmissionRequirements from "./AdmissionRequirements";
 import { SuccessArcIcon } from "@/assets/icons";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
+import ContentTypeModal from "./ContentTypeModal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -39,22 +40,39 @@ export default function CreatorsContents() {
     useState(false);
   const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
     useState(false);
+  const [showContentTypeModal, setShowContentTypeModal] = useState(false);
+
   const [collectionName, setCollectionName] = useState("");
 
+  const handleCreateClick = () => {
+    switch (activeTab) {
+      case "coupons":
+        setShowContentTypeModal(true);
+        break;
+
+      case "collections":
+      case "appearance":
+      case "settings":
+      default:
+        setShowCreateCollectionModal(true);
+        break;
+    }
+  };
+
   const handleSaveCollection = () => {
+    if (!collectionName.trim()) return;
     setShowCreateCollectionModal(false);
     setShowPasswordSuccessModal(true);
   };
+
+  const activeItem = CONTENT_TABS.find((tab) => tab.key === activeTab);
 
   return (
     <PageShell>
       <PageHeader>
         <Title>{t("contents.title")}</Title>
 
-        <CreateButton
-          type="button"
-          onClick={() => setShowCreateCollectionModal(true)}
-        >
+        <CreateButton type="button" onClick={handleCreateClick}>
           <PlusIcon width={16} height={16} color="white" />
           <MonoText $use="Body_Medium" color="inherit">
             {t("contents.actions.createCollection")}
@@ -84,21 +102,19 @@ export default function CreatorsContents() {
           <AdmissionRequirements />
         ) : (
           <PlaceholderLine>
-            {(() => {
-              const activeItem = CONTENT_TABS.find(
-                (tab) => tab.key === activeTab,
-              );
-              if (activeItem?.descriptionKey) {
-                return t(activeItem.descriptionKey);
-              }
-              return (
-                activeItem?.description ??
-                t("contents.placeholders.collections")
-              );
-            })()}
+            {activeItem?.descriptionKey
+              ? t(activeItem.descriptionKey)
+              : (activeItem?.description ??
+                t("contents.placeholders.collections"))}
           </PlaceholderLine>
         )}
       </ContentPanel>
+
+      <ContentTypeModal
+        visible={showContentTypeModal}
+        onClose={() => setShowContentTypeModal(false)}
+        onContinue={() => setShowContentTypeModal(false)}
+      />
 
       <GenericModal
         visible={showCreateCollectionModal}
@@ -108,6 +124,7 @@ export default function CreatorsContents() {
         onCancel={() => setShowCreateCollectionModal(false)}
         onClose={() => setShowCreateCollectionModal(false)}
         onConfirm={handleSaveCollection}
+        confirmDisabled={!collectionName.trim()}
         width="630px"
         padding="30px"
         buttonRow
