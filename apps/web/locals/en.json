@@ -955,6 +955,16 @@
       "title": "Delete successfully",
       "message": "Content deleted successfully.",
       "done": "Done"
+    },
+    "createCollectionModal": {
+      "title": "Create collection",
+      "collectionName": "Collection name",
+      "placeholder": "Enter name"
+    },
+    "createCollectionSuccessModal": {
+      "title": "Changes saved",
+      "message": "Your updates have been successfully saved.",
+      "done": "Done"
     }
   }
 }
