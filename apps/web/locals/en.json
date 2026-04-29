@@ -678,6 +678,34 @@
       }
     }
   },
+  "subscriptionPage": {
+    "logoAlt": "Kiibee Logo",
+    "title": "Choose the right plan to get your account started",
+    "planLabel": "Choose plan",
+    "continue": "Continue",
+    "fields": {
+      "confirmEmail": "Confirm email address",
+      "password": "Create password",
+      "repeatPassword": "Repeat password"
+    },
+    "plans": {
+      "tryKiibee": {
+        "label": "Try Kiibee",
+        "meta": "Max. 2 files",
+        "price": "0 KR/mo"
+      },
+      "startUp": {
+        "label": "Start-up",
+        "meta": "Max. 10 files",
+        "price": "99 KR/mo"
+      },
+      "pro": {
+        "label": "Pro",
+        "meta": "Max. 70 files",
+        "price": "299 KR/mo"
+      }
+    }
+  },
   "pricingFaq": {
     "title": "FAQ",
     "items": [

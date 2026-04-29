@@ -17,6 +17,7 @@ import { useTheme } from "styled-components";
 export type DropdownOption<T extends string = string> = {
   label: React.ReactNode;
   value: T;
+  description?: React.ReactNode;
 };
 
 type Props<T extends string = string> = {
@@ -24,6 +25,7 @@ type Props<T extends string = string> = {
   value?: T;
   onChange?: (value: T) => void;
   label?: React.ReactNode;
+  hideSelectedOption?: boolean;
   renderSelectedLabel?: (
     value: T,
     option?: DropdownOption<T>,
@@ -31,7 +33,7 @@ type Props<T extends string = string> = {
   renderOptionLabel?: (option: DropdownOption<T>) => React.ReactNode;
   width?: string;
   maxWidth?: string;
-  variant?: "default" | "surface";
+  variant?: "default" | "surface" | "success";
 };
 
 function SortDropdown<T extends string = string>({
@@ -44,6 +46,7 @@ function SortDropdown<T extends string = string>({
   width,
   maxWidth,
   variant = "default",
+  hideSelectedOption = true,
 }: Props<T>) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -73,7 +76,11 @@ function SortDropdown<T extends string = string>({
     () => options.filter((opt) => opt.value !== selected),
     [options, selected],
   );
-  const visibleOptions = filteredOptions.length > 0 ? filteredOptions : options;
+  const visibleOptions = hideSelectedOption
+    ? filteredOptions.length > 0
+      ? filteredOptions
+      : options
+    : options;
 
   const selectedOption = options.find((opt) => opt.value === selected);
   const resolvedSelectedLabel = renderSelectedLabel
@@ -108,6 +115,7 @@ function SortDropdown<T extends string = string>({
             <DropdownItem
               key={opt.value}
               $variant={variant}
+              $active={opt.value === selected}
               onClick={(e) => {
                 e.stopPropagation();
                 handleSelect(opt.value);

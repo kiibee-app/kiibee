@@ -371,7 +371,7 @@ export const StarIcon = styled.svg<{ $filled: boolean }>`
 export const SortBox = styled.div<{
   $width?: string;
   $maxWidth?: string;
-  $variant?: "default" | "surface";
+  $variant?: "default" | "surface" | "success";
 }>`
   position: relative;
   width: ${({ $width }) => $width || "100%"};
@@ -381,24 +381,37 @@ export const SortBox = styled.div<{
   align-items: center;
   justify-content: space-between;
   padding: ${({ $variant }) =>
-    $variant === "surface" ? "10px 16px" : "13px 15px"};
+    $variant === "surface"
+      ? "10px 16px"
+      : $variant === "success"
+        ? "11px 16px"
+        : "13px 15px"};
   background: ${({ theme, $variant }) =>
     $variant === "surface"
       ? theme.colors.primary.WHITE
-      : theme.colors.neutral.OFF_WHITE};
-  border-radius: ${({ $variant }) => ($variant === "surface" ? "8px" : "12px")};
+      : $variant === "success"
+        ? theme.colors.primary.GREEN_50
+        : theme.colors.neutral.OFF_WHITE};
+  border-radius: ${({ $variant, theme }) =>
+    $variant === "surface"
+      ? "8px"
+      : $variant === "success"
+        ? theme.radius.lg
+        : "12px"};
   border: 1px solid
     ${({ $variant, theme }) =>
       $variant === "surface"
         ? theme.colors.neutral.GRAY_200
-        : theme.colors.primary.GRAY};
+        : $variant === "success"
+          ? theme.colors.primary.GREEN_50
+          : theme.colors.primary.GRAY};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   cursor: pointer;
 `;
 
 export const Dropdown = styled.div<{
   $maxWidth?: string;
-  $variant?: "default" | "surface";
+  $variant?: "default" | "surface" | "success";
 }>`
   position: absolute;
   top: 120%;
@@ -409,22 +422,52 @@ export const Dropdown = styled.div<{
   background: ${({ theme, $variant }) =>
     $variant === "surface"
       ? theme.colors.primary.WHITE
-      : theme.colors.neutral.OFF_WHITE};
-  border-radius: ${({ $variant }) => ($variant === "surface" ? "8px" : "12px")};
+      : $variant === "success"
+        ? theme.colors.primary.WHITE
+        : theme.colors.neutral.OFF_WHITE};
+  border-radius: ${({ $variant, theme }) =>
+    $variant === "surface"
+      ? "8px"
+      : $variant === "success"
+        ? theme.radius.lg
+        : "12px"};
   display: flex;
   flex-direction: column;
   gap: 8px;
   z-index: 100;
 `;
 
-export const DropdownItem = styled.div<{ $variant?: "default" | "surface" }>`
+export const DropdownItem = styled.div<{
+  $variant?: "default" | "surface" | "success";
+  $active?: boolean;
+}>`
   padding: ${({ $variant }) =>
-    $variant === "surface" ? "10px 12px" : "12px 14px"};
-  border-radius: ${({ $variant }) => ($variant === "surface" ? "8px" : "12px")};
+    $variant === "surface"
+      ? "10px 12px"
+      : $variant === "success"
+        ? "12px 14px"
+        : "12px 14px"};
+  border-radius: ${({ $variant, theme }) =>
+    $variant === "surface"
+      ? "8px"
+      : $variant === "success"
+        ? theme.radius.md
+        : "12px"};
   display: flex;
   justify-content: flex-start;
   cursor: pointer;
   transition: all 0.2s ease;
+  background: ${({ theme, $variant, $active }) =>
+    $variant === "success" && $active
+      ? theme.colors.neutral.OFF_WHITE
+      : "transparent"};
+
+  &:hover {
+    background: ${({ theme, $variant }) =>
+      $variant === "success"
+        ? theme.colors.neutral.GRAY_100
+        : theme.colors.neutral.GRAY_100};
+  }
 `;
 
 export const Text = styled.div`

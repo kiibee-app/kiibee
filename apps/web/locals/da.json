@@ -678,6 +678,34 @@
       }
     }
   },
+  "subscriptionPage": {
+    "logoAlt": "Kiibee Logo",
+    "title": "Vælg den rigtige plan til at komme i gang med din konto",
+    "planLabel": "Vælg plan",
+    "continue": "Fortsæt",
+    "fields": {
+      "confirmEmail": "Bekræft e-mailadresse",
+      "password": "Opret adgangskode",
+      "repeatPassword": "Gentag adgangskode"
+    },
+    "plans": {
+      "tryKiibee": {
+        "label": "Try Kiibee",
+        "meta": "Maks. 2 filer",
+        "price": "0 kr/md"
+      },
+      "startUp": {
+        "label": "Start-up",
+        "meta": "Maks. 10 filer",
+        "price": "99 kr/md"
+      },
+      "pro": {
+        "label": "Pro",
+        "meta": "Maks. 70 filer",
+        "price": "299 kr/md"
+      }
+    }
+  },
   "pricingFaq": {
     "title": "FAQ",
     "items": [
