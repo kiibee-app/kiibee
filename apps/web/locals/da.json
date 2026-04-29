@@ -916,7 +916,8 @@
       },
       "placeholders": {
         "title": "Indtast kort titel",
-        "discountAmount": "Indtast rabatbeloeb"
+        "discountAmount": "Indtast rabatbeloeb",
+        "discountPercentage": "Indtast rabatprocent"
       },
       "discountValue": "Rabatvaerdi",
       "discountHelp": "Indtast det rabatbeloeb eller den procentdel, du vil tilbyde.",

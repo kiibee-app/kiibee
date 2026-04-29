@@ -916,7 +916,8 @@
       },
       "placeholders": {
         "title": "Enter short title",
-        "discountAmount": "Enter discount amount"
+        "discountAmount": "Enter discount amount",
+        "discountPercentage": "Enter discount percentage"
       },
       "discountValue": "Discount Value",
       "discountHelp": "Enter the discount amount or percentage you want to offer.",

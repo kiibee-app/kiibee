@@ -103,7 +103,9 @@ export default function CouponDetailsModal({
             inputMode="decimal"
             value={discountValue}
             placeholder={t(
-              "contents.couponDetails.placeholders.discountAmount",
+              discountType === "percentage"
+                ? "contents.couponDetails.placeholders.discountPercentage"
+                : "contents.couponDetails.placeholders.discountAmount",
             )}
             onChange={(event) => setDiscountValue(event.target.value)}
           />
