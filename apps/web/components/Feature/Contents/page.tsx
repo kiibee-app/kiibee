@@ -2,9 +2,7 @@
 
 import React, { useState } from "react";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
-import { PlusIcon } from "@/assets/icons/PlusIcon";
 
-import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import InputField from "@/components/UI/InputFields";
@@ -12,7 +10,6 @@ import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
   CreateCollectionModalContent,
-  CreateButton,
   PageHeader,
   PageShell,
   PlaceholderLine,
@@ -25,32 +22,35 @@ import {
   COLLECTIONS,
   CONTENT_TABS,
   ContentTab,
+  COUPONS,
   SETTINGS,
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
+import ContentTypeModal from "./ContentTypeModal";
 import { SuccessArcIcon } from "@/assets/icons";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
-import ContentTypeModal from "./ContentTypeModal";
+import ContentsHeaderAction from "./ContentsHeaderAction";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
   const [showCreateCollectionModal, setShowCreateCollectionModal] =
     useState(false);
-  const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
-    useState(false);
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
-
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
-
   const handleCreateClick = () => {
     switch (activeTab) {
-      case "coupons":
+      case COUPONS:
         setShowContentTypeModal(true);
         break;
+
       case COLLECTIONS:
         setShowCreateCollectionModal(true);
+        break;
+
+      default:
         break;
     }
   };
@@ -58,7 +58,8 @@ export default function CreatorsContents() {
   const handleSaveCollection = () => {
     if (!collectionName.trim()) return;
     setShowCreateCollectionModal(false);
-    setShowPasswordSuccessModal(true);
+    setCollectionName("");
+    setShowSuccessModal(true);
   };
 
   const activeItem = CONTENT_TABS.find((tab) => tab.key === activeTab);
@@ -68,12 +69,12 @@ export default function CreatorsContents() {
       <PageHeader>
         <Title>{t("contents.title")}</Title>
 
-        <CreateButton type="button" onClick={handleCreateClick}>
-          <PlusIcon width={16} height={16} color="white" />
-          <MonoText $use="Body_Medium" color="inherit">
-            {t("contents.actions.createCollection")}
-          </MonoText>
-        </CreateButton>
+        <ContentsHeaderAction
+          activeTab={activeTab}
+          onCreate={handleCreateClick}
+          onCancel={() => {}}
+          onSave={() => {}}
+        />
       </PageHeader>
 
       <TabsRow>
@@ -117,8 +118,14 @@ export default function CreatorsContents() {
         title={t("contents.createCollectionModal.title")}
         cancelLabel={t("common.cancel")}
         confirmLabel={t("common.save")}
-        onCancel={() => setShowCreateCollectionModal(false)}
-        onClose={() => setShowCreateCollectionModal(false)}
+        onCancel={() => {
+          setShowCreateCollectionModal(false);
+          setCollectionName("");
+        }}
+        onClose={() => {
+          setShowCreateCollectionModal(false);
+          setCollectionName("");
+        }}
         onConfirm={handleSaveCollection}
         confirmDisabled={!collectionName.trim()}
         width="630px"
@@ -140,7 +147,7 @@ export default function CreatorsContents() {
       </GenericModal>
 
       <GenericModal
-        visible={showPasswordSuccessModal}
+        visible={showSuccessModal}
         icon={
           <SuccessArcIcon
             width={40}
@@ -152,8 +159,8 @@ export default function CreatorsContents() {
         title={t("contents.createCollectionSuccessModal.title")}
         message={t("contents.createCollectionSuccessModal.message")}
         confirmLabel={t("contents.createCollectionSuccessModal.done")}
-        onClose={() => setShowPasswordSuccessModal(false)}
-        onConfirm={() => setShowPasswordSuccessModal(false)}
+        onClose={() => setShowSuccessModal(false)}
+        onConfirm={() => setShowSuccessModal(false)}
         width="480px"
         padding="40px 30px"
         showCloseButton={false}
