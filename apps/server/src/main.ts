@@ -9,6 +9,7 @@ import helmet from '@fastify/helmet';
 import { AppModule } from './app.module';
 import { pool } from './database/db';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { CORS_ALLOWED_HEADERS, CORS_HTTP_METHODS } from './utils/constant';
 
 async function bootstrap() {
   try {
@@ -46,7 +47,10 @@ async function bootstrap() {
     app.useGlobalFilters(new HttpExceptionFilter());
 
     app.enableCors({
-      origin: true,
+      origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+      credentials: true,
+      methods: CORS_HTTP_METHODS,
+      allowedHeaders: CORS_ALLOWED_HEADERS,
     });
 
     await app.register(helmet);

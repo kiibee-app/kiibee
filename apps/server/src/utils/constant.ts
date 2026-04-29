@@ -10,3 +10,19 @@ export const ROLE = {
   CREATOR: 'creator',
   ADMIN: 'admin',
 } as const;
+
+export const CORS_HTTP_METHODS: string[] = [
+  'GET',
+  'HEAD',
+  'PUT',
+  'PATCH',
+  'POST',
+  'DELETE',
+  'OPTIONS',
+];
+
+export const CORS_ALLOWED_HEADERS: string[] = [
+  'Content-Type',
+  'Authorization',
+  'Accept',
+];
