@@ -20,12 +20,14 @@ import {
 } from "./styles";
 import {
   COLLECTIONS,
+  APPEARANCE,
   CONTENT_TABS,
   ContentTab,
   COUPONS,
   SETTINGS,
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
+import AppearanceContent from "./Appearance";
 import ContentTypeModal from "./ContentTypeModal";
 import { SuccessArcIcon } from "@/assets/icons";
 import { MODAL_ALIGN } from "@/utils/ui";
@@ -92,7 +94,9 @@ export default function CreatorsContents() {
       </TabsRow>
 
       <ContentPanel>
-        {activeTab === SETTINGS ? (
+        {activeTab === APPEARANCE ? (
+          <AppearanceContent />
+        ) : activeTab === SETTINGS ? (
           <AdmissionRequirements />
         ) : (
           <PlaceholderLine>

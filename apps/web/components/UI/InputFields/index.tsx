@@ -179,16 +179,18 @@ export default React.forwardRef<
 
   return (
     <Container width={width || ""} as={containerElement} role={multiRole}>
-      <Label
-        $use={labelFontStyle || "Body_Medium"}
-        $paddingLeft={labelPaddingLeft || ""}
-        $marginTop={labelMarginTop || ""}
-        as={labelElement}
-        htmlFor={isMulti ? undefined : inputId}
-      >
-        {label}
-        {required && <RequiredIndicator>*</RequiredIndicator>}
-      </Label>
+      {label ? (
+        <Label
+          $use={labelFontStyle || "Body_Medium"}
+          $paddingLeft={labelPaddingLeft || ""}
+          $marginTop={labelMarginTop || ""}
+          as={labelElement}
+          htmlFor={isMulti ? undefined : inputId}
+        >
+          {label}
+          {required && <RequiredIndicator>*</RequiredIndicator>}
+        </Label>
+      ) : null}
       <InputWrapper $multi={isMulti}>
         {isMulti ? (
           (value as string[]).map((v, i) => {

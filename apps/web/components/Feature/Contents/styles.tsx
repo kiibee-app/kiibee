@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { typography } from "@repo/ui/typography";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { media } from "@repo/ui/breakpoints";
 
 export const PageShell = styled.div`
   display: flex;
@@ -116,7 +117,7 @@ export const SearchButton = styled.button`
 `;
 
 export const ContentPanel = styled.div`
-  padding-top: 22px;
+  padding-top: 6px;
 `;
 
 export const PlaceholderLine = styled(MonoText).attrs({
@@ -124,6 +125,51 @@ export const PlaceholderLine = styled(MonoText).attrs({
 })`
   color: ${({ theme }) => theme.colors.neutral.GRAY};
 `;
+
+export const AppearancePanel = styled.section`
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  padding: 18px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+
+  ${media.tablet} {
+    padding: 16px;
+  }
+`;
+
+export const ActionGroup = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+`;
+
+const baseActionButton = `
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 28px;
+  cursor: pointer;
+  font-family: ${typography.Body_Medium.fontFamily};
+  font-weight: ${typography.Body_Medium.fontWeight};
+  line-height: ${typography.Body_Medium.lineHeight};
+`;
+
+export const SecondaryActionButton = styled.button`
+  ${baseActionButton}
+  background: ${({ theme }) => theme.colors.primary.GRAY};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PrimaryActionButton = styled.button`
+  ${baseActionButton}
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+  `;
 
 export const CreateCollectionModalContent = styled.div`
   display: flex;

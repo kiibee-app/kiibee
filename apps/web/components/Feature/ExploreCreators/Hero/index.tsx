@@ -8,8 +8,9 @@ import { FilterIcon } from "@/assets/icons/filterIcon";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
-import { DEFAULT_SORT, SORT_OPTIONS } from "@/utils/sortOptions";
+import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 import { Directions, INPUT_TYPE, KEYBOARD_KEYS } from "@/utils/ui";
+import { CREATORS } from "@/utils/translationKeys";
 
 import {
   CheckboxControl,
@@ -485,6 +486,13 @@ export default function ExploreCreatorsHero({
                 options={SORT_OPTIONS}
                 value={DEFAULT_SORT}
                 onChange={setSortBy}
+                label={t(CREATORS.sort)}
+                renderSelectedLabel={(value) =>
+                  t(CREATORS.value(value as SortValue)).toLowerCase()
+                }
+                renderOptionLabel={(option) =>
+                  t(CREATORS.value(option.value as SortValue)).toLowerCase()
+                }
               />
             )}
           </Controls>
