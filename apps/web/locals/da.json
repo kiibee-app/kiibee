@@ -867,12 +867,18 @@
       "type": "Type",
       "typeDesc": "Vælg hvilken type opdateringer du vil modtage",
       "overview": "Oversigt",
+      "form": "Formular",
+      "sales": "Salg",
       "frequency": "Hvor ofte vil du modtage opdateringer?",
       "frequencyDesc": "Vælg hvor ofte du vil modtage e-mailopdateringer",
       "monthly": "Månedligt",
+      "weekly": "Ugentligt",
+      "daily": "Dagligt",
       "recipient": "Modtager",
       "recipientDesc": "Vælg hvor notifikationerne skal sendes hen",
-      "accountEmail": "Kontoe-mail"
+      "accountEmail": "Kontoe-mail",
+      "otherEmail": "Anden e-mail",
+      "enterEmail": "Indtast e-mail"
     },
     "payout": {
       "title": "Payout",

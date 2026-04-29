@@ -867,12 +867,18 @@
       "type": "Type",
       "typeDesc": "Choose what kind of updates you want to receive",
       "overview": "Overview",
+      "form": "Form",
+      "sales": "Sales",
       "frequency": "How often will you receive updates?",
       "frequencyDesc": "Select how frequently you want to get email updates",
       "monthly": "Monthly",
+      "weekly": "Weekly",
+      "daily": "Daily",
       "recipient": "Recipient",
       "recipientDesc": "Choose where the notifications will be sent",
-      "accountEmail": "Account email"
+      "accountEmail": "Account email",
+      "otherEmail": "Other than account email",
+      "enterEmail": "Enter email"
     },
     "payout": {
       "title": "Payout",
