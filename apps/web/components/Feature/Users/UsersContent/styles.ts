@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding: 8px 28px;
+  padding: 24px;
 
   ${({ theme }) => theme.media.tablet} {
-    padding: 8px 20px;
+    padding: 20px;
   }
 
   ${({ theme }) => theme.media.mobile} {
-    padding: 8px 16px;
+    padding: 16px;
   }
 `;
 
 export const Title = styled.h2`
-  margin: 0 0 8px 0;
+  margin: 0 0 12px 0;
   ${({ theme }) => theme.typography.H4_SemiBold};
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
