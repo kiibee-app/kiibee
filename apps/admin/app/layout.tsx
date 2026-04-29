@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeWrapper } from "./ThemeWrapper";
 import { DashboardLayout } from "../layouts/dashboardLayout";
+import StyledComponentsRegistry from "./StyledComponentsRegistry";
 
 export const metadata: Metadata = {
   title: "Sequence Admin",
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
-        <ThemeWrapper>
-          <DashboardLayout>{children}</DashboardLayout>
-        </ThemeWrapper>
+        <StyledComponentsRegistry>
+          <ThemeWrapper>
+            <DashboardLayout>{children}</DashboardLayout>
+          </ThemeWrapper>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { PlusIcon } from "@/assets/icons/PlusIcon";
-import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
+import InputField from "@/components/UI/InputFields";
 import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
-  CreateButton,
+  CreateCollectionModalContent,
   PageHeader,
   PageShell,
   PlaceholderLine,
@@ -18,10 +17,15 @@ import {
   COLLECTIONS,
   CONTENT_TABS,
   ContentTab,
+  COUPONS,
   SETTINGS,
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
+import ContentTypeModal from "./ContentTypeModal";
 import { SuccessArcIcon } from "@/assets/icons";
+import { MODAL_ALIGN } from "@/utils/ui";
+import { INPUT_VARIANTS } from "@/utils/Constants";
+import ContentsHeaderAction from "./ContentsHeaderAction";
 import GenericTabs from "@/components/UI/GenericTabs";
 import InfoTextCard from "@/components/UI/InfoTextCard";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
@@ -31,12 +35,31 @@ export default function CreatorsContents() {
   const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+  const [showCreateCollectionModal, setShowCreateCollectionModal] =
+    useState(false);
+  const [showContentTypeModal, setShowContentTypeModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [collectionName, setCollectionName] = useState("");
+  const handleCreateClick = () => {
+    switch (activeTab) {
+      case COUPONS:
+        setShowContentTypeModal(true);
+        break;
 
-  const handleDeleteContent = () => {
-    setShowDeleteModal(false);
-    setShowDeleteSuccessModal(true);
+      case COLLECTIONS:
+        setShowCreateCollectionModal(true);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const handleSaveCollection = () => {
+    if (!collectionName.trim()) return;
+    setShowCreateCollectionModal(false);
+    setCollectionName("");
+    setShowSuccessModal(true);
   };
 
   return (
@@ -44,12 +67,12 @@ export default function CreatorsContents() {
       <PageHeader>
         <Title>{t(CONTENTS_KEYS.title)}</Title>
 
-        <CreateButton type="button">
-          <PlusIcon width={16} height={16} color="white" />
-          <MonoText $use="Body_Medium" color="inherit">
-            {t(CONTENTS_KEYS.actions.createCollection)}
-          </MonoText>
-        </CreateButton>
+        <ContentsHeaderAction
+          activeTab={activeTab}
+          onCreate={handleCreateClick}
+          onCancel={() => {}}
+          onSave={() => {}}
+        />
       </PageHeader>
 
       <GenericTabs
@@ -98,24 +121,47 @@ export default function CreatorsContents() {
         )}
       </ContentPanel>
 
-      <GenericModal
-        visible={showDeleteModal}
-        title={t(CONTENTS_KEYS.deleteModal.title)}
-        message={t(CONTENTS_KEYS.deleteModal.message)}
-        cancelLabel={t(CONTENTS_KEYS.deleteModal.cancel)}
-        confirmLabel={t(CONTENTS_KEYS.deleteModal.delete)}
-        onCancel={() => setShowDeleteModal(false)}
-        onClose={() => setShowDeleteModal(false)}
-        onConfirm={handleDeleteContent}
-        width="480px"
-        padding="40px 30px"
-        fullWidthButtons
-        buttonRow
-        showCloseButton={false}
+      <ContentTypeModal
+        visible={showContentTypeModal}
+        onClose={() => setShowContentTypeModal(false)}
+        onContinue={() => setShowContentTypeModal(false)}
       />
 
       <GenericModal
-        visible={showDeleteSuccessModal}
+        visible={showCreateCollectionModal}
+        title={t("contents.createCollectionModal.title")}
+        cancelLabel={t("common.cancel")}
+        confirmLabel={t("common.save")}
+        onCancel={() => {
+          setShowCreateCollectionModal(false);
+          setCollectionName("");
+        }}
+        onClose={() => {
+          setShowCreateCollectionModal(false);
+          setCollectionName("");
+        }}
+        onConfirm={handleSaveCollection}
+        confirmDisabled={!collectionName.trim()}
+        width="630px"
+        padding="30px"
+        buttonRow
+        buttonAlign={MODAL_ALIGN.END}
+        textAlign={MODAL_ALIGN.START}
+      >
+        <CreateCollectionModalContent>
+          <InputField
+            label={t("contents.createCollectionModal.collectionName")}
+            value={collectionName}
+            onChange={(value) => setCollectionName(value as string)}
+            placeholder={t("contents.createCollectionModal.placeholder")}
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            height="40px"
+          />
+        </CreateCollectionModalContent>
+      </GenericModal>
+
+      <GenericModal
+        visible={showSuccessModal}
         icon={
           <SuccessArcIcon
             width={40}
@@ -124,12 +170,13 @@ export default function CreatorsContents() {
           />
         }
         iconMargin="0 auto 8px"
-        title={t(CONTENTS_KEYS.deleteSuccessModal.title)}
-        message={t(CONTENTS_KEYS.deleteSuccessModal.message)}
-        confirmLabel={t(CONTENTS_KEYS.deleteSuccessModal.done)}
-        onClose={() => setShowDeleteSuccessModal(false)}
-        onConfirm={() => setShowDeleteSuccessModal(false)}
+        title={t("contents.createCollectionSuccessModal.title")}
+        message={t("contents.createCollectionSuccessModal.message")}
+        confirmLabel={t("contents.createCollectionSuccessModal.done")}
+        onClose={() => setShowSuccessModal(false)}
+        onConfirm={() => setShowSuccessModal(false)}
         width="480px"
+        padding="40px 30px"
         showCloseButton={false}
       />
     </PageShell>

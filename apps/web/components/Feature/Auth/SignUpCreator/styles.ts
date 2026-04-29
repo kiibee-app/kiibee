@@ -87,6 +87,15 @@ export const HelpText = styled.p`
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
 `;
 
+export const FormMessage = styled.p<{ $tone: "error" | "success" }>`
+  margin: 2px 0 0;
+  text-align: center;
+  color: ${({ $tone, theme }) =>
+    $tone === "success"
+      ? theme.colors.primary.GREEN_200
+      : theme.colors.primary.RED};
+`;
+
 export const CheckboxRow = styled.div`
   margin-top: 4px;
   display: flex;

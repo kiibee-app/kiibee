@@ -13,6 +13,7 @@ import { creatorRequestService } from './services/creatorRequest.service';
 import { approveCreatorRequestService } from './services/approvCreatorRequest.service';
 import { getCreatorRequestService } from './services/getCreatorRequest.service';
 import { rejectCreatorRequestService } from './services/rejectCreatorRequest.service';
+import { validateTokenService } from './services/validateToken.service';
 
 @Injectable()
 export class AuthService {
@@ -78,5 +79,8 @@ export class AuthService {
   }
   async rejectCreatorRequest(requestId: string, approverUserId: string) {
     return rejectCreatorRequestService(requestId, approverUserId);
+  }
+  async validateToken(token: string) {
+    return validateTokenService(token);
   }
 }

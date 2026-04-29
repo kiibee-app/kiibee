@@ -143,7 +143,9 @@ export const SecondaryButton = styled(Button)`
 
 export const PasswordFields = styled.div`
   margin-top: 12px;
-  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 `;
 
 export const Optional = styled(MonoText).attrs({

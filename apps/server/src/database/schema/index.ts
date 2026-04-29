@@ -5,6 +5,7 @@ export * from './users/accountSetupTokens.schema';
 export * from './users/creatorApplicationRequests.schema';
 export * from './users/userContentTypes.shema';
 export * from './users/userContentCategories.shema';
+export * from './users/usersToken.schema';
 export * from './creator/creatorInfo.schema';
 export * from './content/contentCategories.schema';
 export * from './content/contentTypes.schema';

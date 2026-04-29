@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import CreatorProfile from "@/components/Feature/Dashboard/CreatorProfile";
 import DashboardLayout from "@/components/Layout/Dashboard";
@@ -13,10 +13,16 @@ import { VIEW } from "@/utils/Constants";
 import CreatorsContents from "../Contents/page";
 import UsersContent from "../Users/UsersContent";
 
+const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
+  CREATORS_LABELS.OVERVIEW,
+  CREATORS_LABELS.CONTENTS,
+  CREATORS_LABELS.USERS,
+  CREATORS_LABELS.SETTINGS,
+  CREATORS_LABELS.HELP,
+  CREATORS_LABELS.PROFILE,
+]);
+
 export default function ClientDashboardCreators() {
-  const [activePage, setActivePage] = useState<string>(
-    CREATORS_LABELS.OVERVIEW,
-  );
   const [open, setOpen] = useState<boolean>(false);
 
   const toggleSidebar = useCallback(() => {
@@ -32,34 +38,48 @@ export default function ClientDashboardCreators() {
   };
 
   const searchParams = useSearchParams();
-  const view = searchParams?.get(VIEW);
+  const viewParam = searchParams?.get(VIEW);
+  const view =
+    viewParam && ROUTABLE_DASHBOARD_VIEWS.has(viewParam)
+      ? viewParam
+      : CREATORS_LABELS.OVERVIEW;
+  const activePage =
+    view === CREATORS_LABELS.PROFILE ? CREATORS_LABELS.OVERVIEW : view;
 
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleSelect = useCallback(
+  const getHrefForView = useCallback(
     (label: string) => {
-      setActivePage(label);
-
       const params = new URLSearchParams(searchParams?.toString() ?? "");
-      if (params.has(VIEW)) {
+
+      if (label === CREATORS_LABELS.OVERVIEW) {
         params.delete(VIEW);
-        const qs = params.toString();
-        const href = qs ? `${pathname}?${qs}` : pathname;
-        router.replace(href);
+      } else {
+        params.set(VIEW, label);
       }
+
+      const qs = params.toString();
+      return qs ? `${pathname}?${qs}` : pathname;
     },
-    [pathname, router, searchParams],
+    [pathname, searchParams],
   );
 
-  const renderContent = () => {
+  const handleSelect = useCallback(
+    (label: string) => {
+      router.push(getHrefForView(label), { scroll: false });
+    },
+    [getHrefForView, router],
+  );
+
+  const renderContent = useMemo(() => {
     if (view === CREATORS_LABELS.PROFILE) return <CreatorProfile />;
     if (activePage === CREATORS_LABELS.OVERVIEW) return <OverviewContent />;
     if (activePage === CREATORS_LABELS.SETTINGS) return <SettingsContent />;
     if (activePage === CREATORS_LABELS.CONTENTS) return <CreatorsContents />;
     if (activePage === CREATORS_LABELS.USERS) return <UsersContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
-  };
+  }, [activePage, view]);
 
   return (
     <DashboardLayout
@@ -73,7 +93,7 @@ export default function ClientDashboardCreators() {
         />
       }
     >
-      {renderContent()}
+      {renderContent}
     </DashboardLayout>
   );
 }

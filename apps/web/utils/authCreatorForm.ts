@@ -45,6 +45,7 @@ export const REQUIRED_CREATOR_FIELD_KEYS: CreatorFieldKey[] = [
   "address",
   "city",
   "postalCode",
+  "workLink",
   "contentDescription",
 ];
 
@@ -78,6 +79,7 @@ export const ADDRESS_FIELDS: CreatorFieldConfig[] = [
 export const WORK_LINK_FIELD: CreatorFieldConfig = {
   key: "workLink",
   labelKey: "authCreator.form.workLink",
+  required: true,
 };
 
 export const CONTENT_FIELD: CreatorFieldConfig = {

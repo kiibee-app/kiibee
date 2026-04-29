@@ -56,6 +56,13 @@ export const Form = styled.form`
   }
 `;
 
+export const FormMessage = styled.p`
+  width: 100%;
+  margin: 0.25rem 0 0;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.RED};
+`;
+
 export const CheckboxRow = styled.div`
   display: flex;
   align-items: flex-start;
