@@ -93,3 +93,11 @@ export const WEEK_DAYS = [
   "FRI",
   "SAT",
 ] as const;
+export const NOTIFICATION_MODAL = {
+  SUCCESS: "success",
+  DISCARD: "discard",
+} as const;
+
+export type NotificationModalType =
+  | (typeof NOTIFICATION_MODAL)[keyof typeof NOTIFICATION_MODAL]
+  | null;

@@ -98,6 +98,8 @@
       "repeatPassword": "Repeat password",
       "repeatPasswordPlaceholder": "Repeat new password",
       "passwordMismatch": "Passwords do not match",
+      "fixHighlightedFields": "Please complete the required fields.",
+      "signupFailed": "Unable to create your account. Please try again.",
       "consentPrefix": "I agree to Kiibee's",
       "terms": "Terms of Use",
       "and": " and ",
@@ -724,12 +726,15 @@
     "paymentText": "We need your payment information so we can pay out your earnings.",
     "regLabel": "Reg. no.",
     "accountLabel": "Account no.",
-    "currentPassword": "Current password",
-    "newPassword": "New password",
-    "confirmPassword": "Confirm password",
+    "currentPassword": "Enter current password",
+    "newPassword": "Enter new password",
+    "confirmPassword": "Re-enter new password",
     "accountDeletionTitle": "Account deletion",
     "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
-    "deleteAccount": "Delete account"
+    "deleteAccount": "Delete account",
+    "forgotPass": "Forgot Password?",
+    "passwordSuccessTitle": "Password updated",
+    "passwordSuccessMessage": "Your password was successfully updated. Please log in again to continue."
   },
   "singleCollection": {
     "subtitle": "Learn how to use our platform",
@@ -869,7 +874,18 @@
       "monthly": "Monthly",
       "recipient": "Recipient",
       "recipientDesc": "Choose where the notifications will be sent",
-      "accountEmail": "Account email"
+      "accountEmail": "Account email",
+      "discardModal": {
+        "title": "Discard Changes?",
+        "message": "Are you sure you want to cancel? All unsaved changes will be lost.",
+        "goBack": "Go back",
+        "discard": "Discard"
+      },
+      "successModal": {
+        "title": "Changes saved",
+        "message": "Your updates have been successfully saved.",
+        "done": "Done"
+      }
     },
     "payout": {
       "title": "Payout",
@@ -898,6 +914,7 @@
     "title": "Contents",
     "actions": {
       "createCollection": "Create collection",
+      "createCoupon": "Create coupon",
       "search": "Search contents",
       "deleteContent": "Delete content"
     },
@@ -914,6 +931,18 @@
         "free": "Free",
         "password": "Set password",
         "email": "Request email"
+      }
+    },
+    "contentTypeModal": {
+      "title": "Choose the type of content you want to add",
+      "subtitle": "Select a format to continue.",
+      "continue": "Continue",
+      "options": {
+        "video": "Video",
+        "audio": "Audio",
+        "pdf": "PDF",
+        "epub": "EPUB",
+        "web": "Web"
       }
     },
     "deleteModal": {
