@@ -135,7 +135,7 @@ export const PrimaryActionButton = styled.button`
   ${baseActionButton}
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE};
-   `;
+  `;
 
 export const CreateCollectionModalContent = styled.div`
   display: flex;
