@@ -2,22 +2,19 @@
 
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-
 import { MonoText } from "@/components/UI/Monotext";
 import InputField from "@/components/UI/InputFields";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
-
 import COLORS from "@repo/ui/colors";
-
 import { Card, CardTop, TextBlock, Section, FieldBox } from "./styles";
-
 import {
   DEFAULT_NOTIFICATION_VALUES,
-  NOTIFICATION_FIELD,
   NOTIFICATION_OPTIONS,
+  NOTIFICATION_FIELD,
   NOTIFICATION_RECIPIENT,
   NOTIFICATION_TYPE,
   notificationSettings,
+  NotificationSettingKey,
 } from "@/utils/notificationSettings";
 import { INPUT_TYPE } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
@@ -27,6 +24,21 @@ export default function NotificationContent() {
   const [values, setValues] = useState(DEFAULT_NOTIFICATION_VALUES);
   const isFormType = values.type === NOTIFICATION_TYPE.FORM;
   const isOtherEmail = values.recipient === NOTIFICATION_RECIPIENT.OTHER_EMAIL;
+
+  const handleSettingChange = (key: NotificationSettingKey, value: string) => {
+    setValues((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
+  const handleOtherEmailChange = (value: string | string[]) => {
+    const normalizedValue = Array.isArray(value) ? value[0] : value;
+    setValues((prev) => ({
+      ...prev,
+      otherEmail: normalizedValue,
+    }));
+  };
 
   return (
     <Card>
@@ -56,15 +68,9 @@ export default function NotificationContent() {
 
             <FieldBox>
               <DropdownField
-                label=""
                 options={NOTIFICATION_OPTIONS[item.key](t)}
                 value={values[item.key]}
-                onChange={(v) =>
-                  setValues((prev) => ({
-                    ...prev,
-                    [item.key]: v,
-                  }))
-                }
+                onChange={(v) => handleSettingChange(item.key, v)}
               />
             </FieldBox>
           </Section>
@@ -78,12 +84,7 @@ export default function NotificationContent() {
               type={INPUT_TYPE.TEXTAREA}
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               value={values.otherEmail}
-              onChange={(v) =>
-                setValues((prev) => ({
-                  ...prev,
-                  otherEmail: v as string,
-                }))
-              }
+              onChange={handleOtherEmailChange}
               placeholder={t("settings.notifications.enterEmail")}
             />
           </FieldBox>
