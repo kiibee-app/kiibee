@@ -1,12 +1,16 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { randomUUID } from 'crypto';
+import { randomBytes, randomUUID } from 'crypto';
 import { and, eq } from 'drizzle-orm/sql/expressions/conditions';
 import { db } from 'src/database/db';
 import { creatorInfo } from 'src/database/schema/creator/creatorInfo.schema';
 import { creatorApplicationRequests } from 'src/database/schema/users/creatorApplicationRequests.schema';
 import { users } from 'src/database/schema/users/users.schema';
 import { fail, success } from 'src/utils/sendResponse';
-import { ROLE, STATUS } from 'src/utils/constant';
+import { ROLE, STATUS, Time } from 'src/utils/constant';
+import { usersToken } from 'src/database/schema/users/usersToken.schema';
+import { runInBackground } from 'src/utils/backgroundTask';
+import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
+import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
 export const approveCreatorRequestService = async (
   requestId: string,
@@ -72,7 +76,30 @@ export const approveCreatorRequestService = async (
         })
         .where(eq(creatorApplicationRequests.id, requestId));
     });
+    const token = randomBytes(32).toString('hex');
 
+    await db.insert(usersToken).values({
+      id: randomUUID(),
+      userId: userData.id,
+      token,
+      type: 'setup',
+      expiresAt: new Date(Date.now() + Time.ONE_DAY),
+    });
+
+    const setupLink = `${process.env.FRONTEND_URL}/creator/setup?token=${token}`;
+
+    runInBackground(
+      sendTemplateEmail({
+        to: userData.email,
+        subject: mailSubject.APPROVED_CREATOR,
+        templateName: templateName.APPROVED_CREATOR,
+        variables: {
+          name: userData.firstName,
+          guidelinesLink: `${process.env.FRONTEND_URL}/creator/guidelines`,
+          setupLink,
+        },
+      }),
+    );
     return success(
       null,
       'Creator request approved successfully',

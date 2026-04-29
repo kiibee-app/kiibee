@@ -7,6 +7,7 @@ import {
   Headers,
   UnauthorizedException,
   UseGuards,
+  Param,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
@@ -157,6 +158,12 @@ export class AuthController {
       body.requestId,
       approverUserId,
     );
+    return result;
+  }
+
+  @Get('validate-token/:token')
+  async validateToken(@Param('token') token: string) {
+    const result = await this.authService.validateToken(token);
     return result;
   }
 }

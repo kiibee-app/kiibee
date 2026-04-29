@@ -21,12 +21,14 @@ import COLORS from "@repo/ui/colors";
 
 type Props = {
   activeTab: ContentTab;
+  onCreate: () => void;
   onCancel: () => void;
   onSave: () => void;
 };
 
 export default function ContentsHeaderAction({
   activeTab,
+  onCreate,
   onCancel,
   onSave,
 }: Props) {
@@ -34,7 +36,7 @@ export default function ContentsHeaderAction({
 
   if (activeTab === COLLECTIONS) {
     return (
-      <CreateButton type="button">
+      <CreateButton type="button" onClick={onCreate}>
         <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
         <MonoText $use="Body_Medium" color="inherit">
           {t("contents.actions.createCollection")}
@@ -62,7 +64,7 @@ export default function ContentsHeaderAction({
 
   if (activeTab === COUPONS) {
     return (
-      <CreateButton type="button">
+      <CreateButton type="button" onClick={onCreate}>
         <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
         <MonoText $use="Body_Medium" color="inherit">
           {t("contents.actions.createCoupon")}
