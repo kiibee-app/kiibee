@@ -79,6 +79,12 @@ export type SortDirection = Exclude<
 >;
 export type SortDirectionWithNone =
   (typeof SORT_DIRECTIONS)[keyof typeof SORT_DIRECTIONS];
+export const TABLE_ALIGN = {
+  LEFT: "left",
+  CENTER: "center",
+  RIGHT: "right",
+} as const;
+export type TableAlign = (typeof TABLE_ALIGN)[keyof typeof TABLE_ALIGN];
 export const KEYBOARD_KEYS = {
   ENTER: "Enter",
   ESCAPE: "Escape",

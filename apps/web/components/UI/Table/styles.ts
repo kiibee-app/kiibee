@@ -1,11 +1,12 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import { TABLE_STATUS } from "@/utils/tableStatus";
+import { TABLE_ALIGN, TableAlign } from "@/utils/ui";
 import { MonoText } from "../Monotext";
 
 export const TableContainer = styled.div`
   width: 100%;
-  background-color: "transparent";
+  background-color: transparent;
   border-radius: 8px;
   overflow-x: auto;
 
@@ -19,7 +20,7 @@ export const TableContainer = styled.div`
 export const TableWrapper = styled.table`
   width: 100%;
   border-collapse: collapse;
-  background-color: "transparent";
+  background-color: transparent;
   border-radius: 16px;
 
   ${media.tablet} {
@@ -44,10 +45,10 @@ export const DesktopRow = styled.tr`
 `;
 
 export const TableHead = styled.th<{
-  $align?: "left" | "center" | "right";
+  $align?: TableAlign;
   $clickable?: boolean;
 }>`
-  text-align: ${({ $align }) => $align ?? "left"};
+  text-align: ${({ $align }) => $align ?? TABLE_ALIGN.LEFT};
   padding: 16px 12px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
   cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
@@ -59,9 +60,9 @@ export const HeaderContent = styled.div`
   gap: 14px;
 `;
 
-export const TableCell = styled.td<{ $align?: "left" | "center" | "right" }>`
+export const TableCell = styled.td<{ $align?: TableAlign }>`
   padding: 16px 12px;
-  text-align: ${({ $align }) => $align ?? "left"};
+  text-align: ${({ $align }) => $align ?? TABLE_ALIGN.LEFT};
 
   ${media.tablet} {
     display: flex;

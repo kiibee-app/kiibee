@@ -1,4 +1,4 @@
-import { SortDirection } from "@/utils/ui";
+import { SortDirection, TableAlign } from "@/utils/ui";
 
 export type KeyOf<T> = keyof T & string;
 
@@ -15,10 +15,7 @@ export type BaseTableProps<T> = {
   headerToKey?: (h: string) => KeyOf<T>;
   renderCell?: (params: RenderCellProps<T>) => React.ReactNode;
   getRowKey?: (row: T, index: number) => string | number;
-  getColumnAlignment?: (
-    header: string,
-    index: number,
-  ) => "left" | "center" | "right";
+  getColumnAlignment?: (header: string, index: number) => TableAlign;
   emptyText?: string;
   hasData?: boolean | undefined;
   rowsPerPage?: number;
