@@ -911,6 +911,16 @@
       "title": "Delete successfully",
       "message": "Content deleted successfully.",
       "done": "Done"
+    },
+    "createCollectionModal": {
+      "title": "Opret samling",
+      "collectionName": "Samlingsnavn",
+      "placeholder": "Indtast navn"
+    },
+    "createCollectionSuccessModal": {
+      "title": "Aendringer gemt",
+      "message": "Dine opdateringer er blevet gemt.",
+      "done": "Faerdig"
     }
   }
 }

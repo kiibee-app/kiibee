@@ -722,6 +722,8 @@
     "currentPassword": "Current password",
     "newPassword": "New password",
     "confirmPassword": "Confirm password",
+    "passwordSuccessTitle": "Password changed successfully",
+    "passwordSuccessMessage": "Your password has been updated.",
     "accountDeletionTitle": "Account deletion",
     "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
     "deleteAccount": "Delete account"
@@ -905,6 +907,16 @@
     "deleteSuccessModal": {
       "title": "Delete successfully",
       "message": "Content deleted successfully.",
+      "done": "Done"
+    },
+    "createCollectionModal": {
+      "title": "Create collection",
+      "collectionName": "Collection name",
+      "placeholder": "Enter name"
+    },
+    "createCollectionSuccessModal": {
+      "title": "Changes saved",
+      "message": "Your updates have been successfully saved.",
       "done": "Done"
     }
   }

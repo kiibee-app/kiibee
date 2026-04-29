@@ -94,3 +94,9 @@ export const PlaceholderLine = styled(MonoText).attrs({
 })`
   color: ${({ theme }) => theme.colors.neutral.GRAY};
 `;
+
+export const CreateCollectionModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+`;
