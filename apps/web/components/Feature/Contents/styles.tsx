@@ -1,14 +1,24 @@
 import styled from "styled-components";
-import { typography } from "@repo/ui/typography";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import { media } from "@repo/ui/breakpoints";
 
 export const PageShell = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   min-height: calc(100vh - 110px);
-  padding: 12px 30px 30px;
+  padding: 24px;
+
+  ${({ theme }) => theme.media.tablet} {
+    gap: 14px;
+    padding: 20px;
+  }
+
+  ${({ theme }) => theme.media.mobile} {
+    gap: 12px;
+    padding: 16px;
+  }
 `;
 
 export const PageHeader = styled.div`
@@ -72,51 +82,8 @@ export const PlusMark = styled.span`
   font-weight: 300;
 `;
 
-export const TabsRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  flex-wrap: wrap;
-`;
-
-export const TabButton = styled.button<{ $active: boolean }>`
-  position: relative;
-  border: 0;
-  background: transparent;
-  padding: 10px 0;
-  cursor: pointer;
-  font-family: ${typography.Body_SemiBold.fontFamily};
-  font-weight: ${typography.Body_SemiBold.fontWeight};
-  line-height: ${typography.Body_SemiBold.lineHeight};
-  color: ${({ $active, theme }) =>
-    $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY};
-
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -3px;
-    height: 2px;
-    border-radius: 999px;
-    background: ${({ $active, theme }) =>
-      $active ? theme.colors.primary.BLACK : theme.colors.gredint.TRANSPARENT};
-  }
-`;
-
-export const SearchButton = styled.button`
-  border: 0;
-  background: transparent;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 8px;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-`;
-
 export const ContentPanel = styled.div`
-  padding-top: 22px;
+  padding-top: 6px;
 `;
 
 export const PlaceholderLine = styled(MonoText).attrs({
@@ -124,6 +91,51 @@ export const PlaceholderLine = styled(MonoText).attrs({
 })`
   color: ${({ theme }) => theme.colors.neutral.GRAY};
 `;
+
+export const AppearancePanel = styled.section`
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  padding: 18px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+
+  ${media.tablet} {
+    padding: 16px;
+  }
+`;
+
+export const ActionGroup = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+`;
+
+const baseActionButton = `
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 28px;
+  cursor: pointer;
+  font-family: ${typography.Body_Medium.fontFamily};
+  font-weight: ${typography.Body_Medium.fontWeight};
+  line-height: ${typography.Body_Medium.lineHeight};
+`;
+
+export const SecondaryActionButton = styled.button`
+  ${baseActionButton}
+  background: ${({ theme }) => theme.colors.primary.GRAY};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PrimaryActionButton = styled.button`
+  ${baseActionButton}
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+  `;
 
 export const CreateCollectionModalContent = styled.div`
   display: flex;

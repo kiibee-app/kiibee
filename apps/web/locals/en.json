@@ -98,8 +98,6 @@
       "repeatPassword": "Repeat password",
       "repeatPasswordPlaceholder": "Repeat new password",
       "passwordMismatch": "Passwords do not match",
-      "fixHighlightedFields": "Please complete the required fields.",
-      "signupFailed": "Unable to create your account. Please try again.",
       "consentPrefix": "I agree to Kiibee's",
       "terms": "Terms of Use",
       "and": " and ",
@@ -876,18 +874,7 @@
       "monthly": "Monthly",
       "recipient": "Recipient",
       "recipientDesc": "Choose where the notifications will be sent",
-      "accountEmail": "Account email",
-      "discardModal": {
-        "title": "Discard Changes?",
-        "message": "Are you sure you want to cancel? All unsaved changes will be lost.",
-        "goBack": "Go back",
-        "discard": "Discard"
-      },
-      "successModal": {
-        "title": "Changes saved",
-        "message": "Your updates have been successfully saved.",
-        "done": "Done"
-      }
+      "accountEmail": "Account email"
     },
     "payout": {
       "title": "Payout",
@@ -916,8 +903,9 @@
     "title": "Contents",
     "actions": {
       "createCollection": "Create collection",
-      "createCoupon": "Create coupon",
       "search": "Search contents",
+      "cancel": "Cancel",
+      "save": "Save",
       "deleteContent": "Delete content"
     },
     "couponDetails": {
@@ -942,6 +930,10 @@
       "settings": "Settings",
       "coupons": "Coupons"
     },
+    "couponsCard": {
+      "title": "Coupons",
+      "description": "Create and manage all your discount coupons."
+    },
     "admissionRequirements": {
       "title": "Admission requirements",
       "description": "Consider what type of access your [contentType] should have",
@@ -950,6 +942,21 @@
         "password": "Set password",
         "email": "Request email"
       }
+    },
+    "placeholders": {
+      "collections": "Collections content will appear here.",
+      "appearance": "Appearance content will appear here.",
+      "settings": "Settings content will appear here.",
+      "coupons": "Coupons content will appear here."
+    },
+    "appearance": {
+      "textColor": "Text color",
+      "textColorHint": "Choose the text color used in the cover image",
+      "followTheme": "Follow theme (Default)",
+      "buttonColor": "Button color",
+      "buttonColorHint": "Choose the button color used in your website",
+      "chooseColor": "Choose color",
+      "color": "Color"
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",
@@ -963,6 +970,7 @@
         "web": "Web"
       }
     },
+
     "deleteModal": {
       "title": "Delete content?",
       "message": "Are you sure you want to delete this content? This action cannot be undone.",

@@ -3,10 +3,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import {
-  TabButton,
-  Tabs,
   Wrapper,
-  SearchWrapper,
   Content,
   Header,
   HeaderActions,
@@ -14,11 +11,11 @@ import {
   Button,
 } from "./styles";
 import { TAB_KEYS, TabKey, TABS } from "@/utils/settingsTabs";
-import SearchBar from "@/components/UI/SearchBar";
 import { useTranslation } from "react-i18next";
 import NotificationContent from "./Notification";
 import PayoutContent from "./Payout";
 import ExportContent from "./Export";
+import GenericTabs from "@/components/UI/GenericTabs";
 import NotificationModals from "./Notification/notificationModals";
 import { NOTIFICATION_MODAL, NotificationModalType } from "@/utils/ui";
 
@@ -29,6 +26,7 @@ export default function SettingsContent() {
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
   const [modalType, setModalType] = useState<NotificationModalType>(null);
+
   const isNotificationTab = useMemo(
     () => activeTab === TAB_KEYS.notifications,
     [activeTab],
@@ -52,11 +50,7 @@ export default function SettingsContent() {
     setModalType(NOTIFICATION_MODAL.SUCCESS);
   }, []);
 
-  const handleTabClick = useCallback((tabKey: TabKey, isSearch?: boolean) => {
-    if (isSearch) {
-      setOpenSearch((prev) => !prev);
-      return;
-    }
+  const handleTabClick = useCallback((tabKey: TabKey) => {
     setActiveTab(tabKey);
     setOpenSearch(false);
   }, []);
@@ -68,53 +62,39 @@ export default function SettingsContent() {
 
         {isNotificationTab && (
           <HeaderActions>
-            <SecondaryButton onClick={handleCancel}>
+            <SecondaryButton type="button" onClick={handleCancel}>
               <MonoText $use="Body_Medium">{t("common.cancel")}</MonoText>
             </SecondaryButton>
-            <Button onClick={handleSave}>
+            <Button type="button" onClick={handleSave}>
               <MonoText $use="Body_Medium">{t("common.save")}</MonoText>
             </Button>
           </HeaderActions>
         )}
       </Header>
 
-      <Tabs>
-        {TABS.map((tab) => {
-          const isSearch = tab.key === TAB_KEYS.search;
-          const isActive = activeTab === tab.key;
-
-          return (
-            <TabButton
-              key={tab.key}
-              $active={isActive}
-              $isIcon={isSearch}
-              onClick={() => handleTabClick(tab.key, isSearch)}
-            >
-              {isSearch && openSearch ? (
-                <SearchWrapper onClick={(e) => e.stopPropagation()}>
-                  <SearchBar
-                    placeholder={t("search")}
-                    value={searchValue}
-                    onChange={setSearchValue}
-                  />
-                </SearchWrapper>
-              ) : tab.icon ? (
-                tab.icon
-              ) : (
-                <MonoText $use="Body_SemiBold">
-                  {tab.labelKey ? t(tab.labelKey) : ""}
-                </MonoText>
-              )}
-            </TabButton>
-          );
-        })}
-      </Tabs>
+      <GenericTabs
+        tabs={TABS.filter((tab) => tab.key !== TAB_KEYS.search).map((tab) => ({
+          key: tab.key,
+          label: tab.labelKey ? t(tab.labelKey) : "",
+        }))}
+        activeTab={activeTab}
+        onTabChange={handleTabClick}
+        search={{
+          open: openSearch,
+          value: searchValue,
+          placeholder: t("search"),
+          onToggle: () => setOpenSearch((prev) => !prev),
+          onChange: setSearchValue,
+          ariaLabel: t("search"),
+        }}
+      />
 
       <Content>
         {activeTab === TAB_KEYS.payout && <PayoutContent />}
         {activeTab === TAB_KEYS.notifications && <NotificationContent />}
         {activeTab === TAB_KEYS.export && <ExportContent />}
       </Content>
+
       <NotificationModals
         modalType={modalType}
         onClose={closeModal}

@@ -98,8 +98,6 @@
       "repeatPassword": "Gentag adgangskode",
       "repeatPasswordPlaceholder": "Gentag ny adgangskode",
       "passwordMismatch": "Adgangskoderne matcher ikke",
-      "fixHighlightedFields": "Udfyld venligst de påkrævede felter.",
-      "signupFailed": "Din konto kunne ikke oprettes. Prøv igen.",
       "consentPrefix": "Jeg accepterer Kiibees",
       "terms": "Vilkår for brug",
       "and": " og ",
@@ -876,19 +874,7 @@
       "monthly": "Månedligt",
       "recipient": "Modtager",
       "recipientDesc": "Vælg hvor notifikationerne skal sendes hen",
-      "accountEmail": "Kontoe-mail",
-
-      "discardModal": {
-        "title": "Kassér ændringer?",
-        "message": "Er du sikker på, at du vil annullere? Alle ikke-gemte ændringer går tabt.",
-        "goBack": "Gå tilbage",
-        "discard": "Kassér"
-      },
-      "successModal": {
-        "title": "Ændringer gemt",
-        "message": "Dine opdateringer er blevet gemt.",
-        "done": "Færdig"
-      }
+      "accountEmail": "Kontoe-mail"
     },
     "payout": {
       "title": "Payout",
@@ -917,8 +903,9 @@
     "title": "Indhold",
     "actions": {
       "createCollection": "Opret samling",
-      "createCoupon": "Opret kupon",
       "search": "Sog indhold",
+      "cancel": "Annuller",
+      "save": "Gem",
       "deleteContent": "Delete content"
     },
     "couponDetails": {
@@ -943,10 +930,24 @@
       "settings": "Indstillinger",
       "coupons": "Kuponer"
     },
+    "couponsCard": {
+      "title": "Kuponer",
+      "description": "Opret og administrer alle dine rabatkuponer."
+    },
     "placeholders": {
       "collections": "Samlinger vil blive vist her.",
       "appearance": "Udseende vil blive vist her.",
-      "settings": "Indstillinger vil blive vist her."
+      "settings": "Indstillinger vil blive vist her.",
+      "coupons": "Kuponer vil blive vist her."
+    },
+    "appearance": {
+      "textColor": "Tekstfarve",
+      "textColorHint": "Vælg den tekstfarve, der bruges i coverbilledet",
+      "followTheme": "Følg temaet (Standard)",
+      "buttonColor": "Knapfarve",
+      "buttonColorHint": "Vælg den knapfarve, der bruges på din hjemmeside",
+      "chooseColor": "Vælg farve",
+      "color": "Farve"
     },
     "admissionRequirements": {
       "title": "Adgangskrav",

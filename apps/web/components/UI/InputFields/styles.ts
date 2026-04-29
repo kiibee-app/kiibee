@@ -63,12 +63,18 @@ export const StyledInput = styled.input<{
       ? `color-mix(in srgb, ${theme.colors.primary.RED} 8%, transparent)`
       : $locked
         ? theme.colors.neutral.GRAY_200
-        : $variant === INPUT_VARIANTS.PRIMARY_GRAY
-          ? theme.colors.primary.GRAY
-          : theme.colors.neutral.GRAY_100};
+        : $variant === INPUT_VARIANTS.SURFACE
+          ? theme.colors.primary.WHITE
+          : $variant === INPUT_VARIANTS.PRIMARY_GRAY
+            ? theme.colors.primary.GRAY
+            : theme.colors.neutral.GRAY_100};
   border: 1px solid
-    ${({ $hasError, theme }) =>
-      $hasError ? theme.colors.primary.RED : "transparent"};
+    ${({ $hasError, $variant, theme }) =>
+      $hasError
+        ? theme.colors.primary.RED
+        : $variant === INPUT_VARIANTS.SURFACE
+          ? theme.colors.neutral.GRAY_200
+          : "transparent"};
   border-radius: ${({ theme }) => theme.radius.lg};
   outline: none;
   width: 100%;

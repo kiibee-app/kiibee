@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { SearchIcon } from "@/assets/icons/searchBarIcon";
-
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import InputField from "@/components/UI/InputFields";
@@ -13,29 +11,33 @@ import {
   PageHeader,
   PageShell,
   PlaceholderLine,
-  SearchButton,
-  TabButton,
-  TabsRow,
   Title,
 } from "./styles";
 import {
   COLLECTIONS,
+  APPEARANCE,
   CONTENT_TABS,
   ContentTab,
   COUPONS,
   SETTINGS,
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
+import AppearanceContent from "./Appearance";
 import ContentTypeModal from "./ContentTypeModal";
 import { SuccessArcIcon } from "@/assets/icons";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import ContentsHeaderAction from "./ContentsHeaderAction";
+import GenericTabs from "@/components/UI/GenericTabs";
+import InfoTextCard from "@/components/UI/InfoTextCard";
+import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "./CouponDetailsModal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
+  const [searchValue, setSearchValue] = useState("");
+  const [openSearch, setOpenSearch] = useState(false);
   const [showCreateCollectionModal, setShowCreateCollectionModal] =
     useState(false);
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
@@ -69,7 +71,8 @@ export default function CreatorsContents() {
   return (
     <PageShell>
       <PageHeader>
-        <Title>{t("contents.title")}</Title>
+        <Title>{t(CONTENTS_KEYS.title)}</Title>
+
         <ContentsHeaderAction
           activeTab={activeTab}
           onCreate={handleCreateClick}
@@ -79,26 +82,36 @@ export default function CreatorsContents() {
         />
       </PageHeader>
 
-      <TabsRow>
-        {CONTENT_TABS.map((tab) => (
-          <TabButton
-            key={tab.key}
-            type="button"
-            $active={activeTab === tab.key}
-            onClick={() => setActiveTab(tab.key)}
-          >
-            {t(tab.labelKey)}
-          </TabButton>
-        ))}
-
-        <SearchButton type="button" aria-label={t("contents.actions.search")}>
-          <SearchIcon width={22} height={22} />
-        </SearchButton>
-      </TabsRow>
+      <GenericTabs
+        tabs={CONTENT_TABS.map((tab) => ({
+          key: tab.key,
+          label: t(tab.labelKey),
+        }))}
+        activeTab={activeTab}
+        onTabChange={(tabKey) => {
+          setActiveTab(tabKey);
+          setOpenSearch(false);
+        }}
+        search={{
+          open: openSearch,
+          value: searchValue,
+          placeholder: t(CONTENTS_KEYS.actions.search),
+          onToggle: () => setOpenSearch((prev) => !prev),
+          onChange: setSearchValue,
+          ariaLabel: t(CONTENTS_KEYS.actions.search),
+        }}
+      />
 
       <ContentPanel>
-        {activeTab === SETTINGS ? (
+        {activeTab === APPEARANCE ? (
+          <AppearanceContent />
+        ) : activeTab === SETTINGS ? (
           <AdmissionRequirements />
+        ) : activeTab === COUPONS ? (
+          <InfoTextCard
+            title={t(CONTENTS_KEYS.couponsCard.title)}
+            description={t(CONTENTS_KEYS.couponsCard.description)}
+          />
         ) : (
           <PlaceholderLine>
             {(() => {
@@ -110,7 +123,7 @@ export default function CreatorsContents() {
               }
               return (
                 activeItem?.description ??
-                t("contents.placeholders.collections")
+                t(CONTENTS_KEYS.placeholders.collections)
               );
             })()}
           </PlaceholderLine>
