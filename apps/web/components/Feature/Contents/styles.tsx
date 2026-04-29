@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { typography } from "@repo/ui/typography";
 import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 export const PageShell = styled.div`
   display: flex;
@@ -30,10 +31,39 @@ export const CreateButton = styled.button`
   gap: 10px;
   border: 0;
   border-radius: 14px;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  padding: 14px 18px;
+  background: ${COLORS.primary.BLACK};
+  color: ${COLORS.primary.WHITE};
+  padding: 16px 22px;
+  min-height: 48px;
   cursor: pointer;
+`;
+
+export const HeaderActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const CancelButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  padding: 16px 32px;
+  min-height: 48px;
+  cursor: pointer;
+  border: 1px solid ${COLORS.primary.GRAY};
+  background: ${COLORS.neutral.OFF_WHITE};
+  color: ${COLORS.primary.BLACK};
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+`;
+
+export const SaveButton = styled(CreateButton)`
+  padding: 16px 32px;
 `;
 
 export const PlusMark = styled.span`
@@ -93,4 +123,10 @@ export const PlaceholderLine = styled(MonoText).attrs({
   $use: "Body_Medium",
 })`
   color: ${({ theme }) => theme.colors.neutral.GRAY};
+`;
+
+export const CreateCollectionModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 `;

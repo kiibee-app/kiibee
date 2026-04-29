@@ -83,3 +83,21 @@ export const MODAL_ALIGN = {
   END: "flex-end",
 } as const;
 export type ModalAlign = (typeof MODAL_ALIGN)[keyof typeof MODAL_ALIGN];
+
+export const WEEK_DAYS = [
+  "SUN",
+  "MON",
+  "TUE",
+  "WED",
+  "THU",
+  "FRI",
+  "SAT",
+] as const;
+export const NOTIFICATION_MODAL = {
+  SUCCESS: "success",
+  DISCARD: "discard",
+} as const;
+
+export type NotificationModalType =
+  | (typeof NOTIFICATION_MODAL)[keyof typeof NOTIFICATION_MODAL]
+  | null;
