@@ -169,8 +169,8 @@ export const SidebarDropdown = styled.div`
   padding: 10px 0;
   border-radius: 14px;
   background: ${({ theme }) => theme.colors.primary.WHITE};
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: ${({ theme }) => theme.shadows.frame};
+  border: 1px solid ${({ theme }) => theme.colors.gredint.FRAME_BORDER};
 
   ${media.tablet} {
     left: 0;
