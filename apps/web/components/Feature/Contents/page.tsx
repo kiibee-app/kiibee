@@ -49,11 +49,7 @@ export default function CreatorsContents() {
       case "coupons":
         setShowContentTypeModal(true);
         break;
-
-      case "collections":
-      case "appearance":
-      case "settings":
-      default:
+      case COLLECTIONS:
         setShowCreateCollectionModal(true);
         break;
     }
