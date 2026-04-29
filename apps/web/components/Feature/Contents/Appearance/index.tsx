@@ -3,10 +3,13 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
-import { INPUT_VARIANTS } from "@/utils/Constants";
+import {
+  APPEARANCE_DEFAULT_HEX_COLOR,
+  INPUT_VARIANTS,
+} from "@/utils/Constants";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { AppearancePanel } from "../styles";
-import { APPEARANCE_DEFAULT_HEX_COLOR } from "./constants";
+
 import {
   ControlWrap,
   Copy,
