@@ -98,7 +98,7 @@ export default function CreatorsContents() {
       <ContentPanel>
         {activeTab === SETTINGS ? (
           <AdmissionRequirements />
-        ) : activeTab === "coupons" ? (
+        ) : activeTab === COUPONS ? (
           <InfoTextCard
             title={t(CONTENTS_KEYS.couponsCard.title)}
             description={t(CONTENTS_KEYS.couponsCard.description)}
