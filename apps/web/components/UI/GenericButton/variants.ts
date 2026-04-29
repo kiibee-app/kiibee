@@ -77,6 +77,7 @@ export const shared = css<ButtonStyleProps>`
             opacity: 1;
           }
         `;
+
       case VARIANT.DANGER:
         return css`
           background: ${({ theme }) => theme.colors.primary.RED};
