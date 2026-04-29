@@ -932,7 +932,8 @@
       "discountValue": "Discount Value",
       "discountHelp": "Enter the discount amount or percentage you want to offer.",
       "discountType": {
-        "fixedAmount": "Fixed amount"
+        "fixedAmount": "Fixed amount",
+        "percentage": "Percentage"
       }
     },
     "tabs": {

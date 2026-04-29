@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useId, useState } from "react";
+import React, { useId, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowIcon, BackButtonIcon } from "@/assets/icons";
+import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
-import COLORS from "@repo/ui/colors";
-import { Directions } from "@/utils/ui";
+import DropdownField from "@/components/UI/InputFields/DropdownField";
 import {
   CouponInput,
   BackButton,
@@ -17,7 +16,6 @@ import {
   ModalTitle,
   NextButton,
   SectionTitle,
-  SelectButton,
 } from "./CouponDetailsModal.styles";
 
 type CouponDetailsModalProps = {
@@ -34,6 +32,20 @@ export default function CouponDetailsModal({
   const discountId = useId();
   const [title, setTitle] = useState("");
   const [discountValue, setDiscountValue] = useState("");
+  const [discountType, setDiscountType] = useState("fixedAmount");
+  const discountTypeOptions = useMemo(
+    () => [
+      {
+        value: "fixedAmount",
+        label: t("contents.couponDetails.discountType.fixedAmount"),
+      },
+      {
+        value: "percentage",
+        label: t("contents.couponDetails.discountType.percentage"),
+      },
+    ],
+    [t],
+  );
 
   const canContinue =
     title.trim().length > 0 && discountValue.trim().length > 0;
@@ -79,15 +91,11 @@ export default function CouponDetailsModal({
           </SectionTitle>
           <HelperText>{t("contents.couponDetails.discountHelp")}</HelperText>
 
-          <SelectButton type="button" aria-haspopup="listbox">
-            <span>{t("contents.couponDetails.discountType.fixedAmount")}</span>
-            <ArrowIcon
-              width={8}
-              height={5}
-              color={COLORS.neutral.GRAY}
-              direction={Directions.RIGHT}
-            />
-          </SelectButton>
+          <DropdownField
+            options={discountTypeOptions}
+            value={discountType}
+            onChange={setDiscountType}
+          />
 
           <CouponInput
             id={discountId}

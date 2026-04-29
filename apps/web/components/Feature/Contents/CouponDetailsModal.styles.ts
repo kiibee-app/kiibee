@@ -97,21 +97,6 @@ export const CouponInput = styled.input`
   }
 `;
 
-export const SelectButton = styled.button`
-  width: 100%;
-  height: 44px;
-  border: 1px solid ${COLORS.neutral.GRAY_300};
-  border-radius: 8px;
-  background: ${COLORS.primary.WHITE};
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: ${COLORS.primary.BLACK};
-  cursor: pointer;
-  ${typography.Body_Medium};
-`;
-
 export const NextButton = styled.button`
   align-self: center;
   width: min(310px, 100%);

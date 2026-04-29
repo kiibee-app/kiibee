@@ -933,7 +933,8 @@
       "discountValue": "Rabatvaerdi",
       "discountHelp": "Indtast det rabatbeloeb eller den procentdel, du vil tilbyde.",
       "discountType": {
-        "fixedAmount": "Fast beloeb"
+        "fixedAmount": "Fast beloeb",
+        "percentage": "Procent"
       }
     },
     "tabs": {
