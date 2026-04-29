@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { media } from "@repo/ui/breakpoints";
+import { typography } from "@repo/ui/typography";
 
 export const PageShell = styled.div`
   display: flex;
@@ -135,7 +136,7 @@ export const PrimaryActionButton = styled.button`
   ${baseActionButton}
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE};
-  `;
+`;
 
 export const CreateCollectionModalContent = styled.div`
   display: flex;
