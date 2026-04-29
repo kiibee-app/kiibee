@@ -2,15 +2,12 @@
 
 import React, { useState } from "react";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
-import { PlusIcon } from "@/assets/icons/PlusIcon";
 
-import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
-  CreateButton,
   PageHeader,
   PageShell,
   PlaceholderLine,
@@ -27,6 +24,7 @@ import {
 } from "@/utils/common";
 import AdmissionRequirements from "./AdmissionRequirements";
 import { SuccessArcIcon } from "@/assets/icons";
+import ContentsHeaderAction from "./ContentsHeaderAction";
 import ContentTypeModal from "./ContentTypeModal";
 
 export default function CreatorsContents() {
@@ -35,6 +33,9 @@ export default function CreatorsContents() {
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+
+  const handleCancel = () => {};
+  const handleSave = () => {};
 
   const handleDeleteContent = () => {
     setShowDeleteModal(false);
@@ -45,16 +46,11 @@ export default function CreatorsContents() {
     <PageShell>
       <PageHeader>
         <Title>{t("contents.title")}</Title>
-
-        <CreateButton
-          type="button"
-          onClick={() => setShowContentTypeModal(true)}
-        >
-          <PlusIcon width={16} height={16} color="white" />
-          <MonoText $use="Body_Medium" color="inherit">
-            {t("contents.actions.createCollection")}
-          </MonoText>
-        </CreateButton>
+        <ContentsHeaderAction
+          activeTab={activeTab}
+          onCancel={handleCancel}
+          onSave={handleSave}
+        />
       </PageHeader>
 
       <TabsRow>

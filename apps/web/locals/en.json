@@ -900,6 +900,7 @@
     "title": "Contents",
     "actions": {
       "createCollection": "Create collection",
+      "createCoupon": "Create coupon",
       "search": "Search contents",
       "deleteContent": "Delete content"
     },

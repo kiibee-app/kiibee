@@ -901,6 +901,7 @@
     "title": "Indhold",
     "actions": {
       "createCollection": "Opret samling",
+      "createCoupon": "Opret kupon",
       "search": "Sog indhold",
       "deleteContent": "Delete content"
     },
