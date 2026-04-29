@@ -22,3 +22,5 @@ export const payoutTotal = {
   label: "Total payout amount",
   value: "14.51 kr.",
 };
+
+export const CENTER_ALIGNED_HEADERS = ["Status", "Credit No", "Bank", "Date"];

@@ -14,14 +14,17 @@ export const Overlay = styled.div`
 
 export const ModalContainer = styled.div<{
   $width?: string;
+  $height?: string;
   $padding?: string;
+  $borderRadius?: string;
   $align?: ModalAlign;
 }>`
   position: relative;
   width: 100%;
   max-width: ${({ $width }) => $width || "480px"};
+  min-height: ${({ $height }) => $height || "auto"};
   background: ${({ theme }) => theme.colors.primary.WHITE};
-  border-radius: 12px;
+  border-radius: ${({ $borderRadius }) => $borderRadius || "12px"};
   padding: ${({ $padding, $align }) =>
     $padding || ($align === MODAL_ALIGN.START ? "30px" : "40px 60px")};
   text-align: ${({ $align }) => $align || MODAL_ALIGN.CENTER};

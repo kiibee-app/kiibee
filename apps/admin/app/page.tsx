@@ -1,14 +1,14 @@
 "use client";
 
-export default function Home() {
-  return (
-    <div>
-      <h2 style={{ fontSize: "18px", fontWeight: 600, color: "#111827" }}>
-        Dashboard Example
-      </h2>
-      <p style={{ color: "#6B7280", marginTop: "8px" }}>
-        This is an example dashboard route with sample title and description.
-      </p>
-    </div>
-  );
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+export default function HomeRedirectPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/login");
+  }, [router]);
+
+  return null;
 }
