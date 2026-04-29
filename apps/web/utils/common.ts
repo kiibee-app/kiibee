@@ -2,6 +2,7 @@ export const ALERT = "alert";
 
 export const COLLECTIONS = "collections";
 export const SETTINGS = "settings";
+export const HELP = "Help";
 
 type ContentTabItem = {
   key: ContentTab;
