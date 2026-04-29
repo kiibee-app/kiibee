@@ -17,7 +17,6 @@ import {
   HeaderActions,
   NameBlock,
 } from "./styles";
-
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import InputField from "@/components/UI/InputFields";
 import PasswordSection from "./PasswordSection";
