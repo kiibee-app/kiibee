@@ -724,12 +724,15 @@
     "paymentText": "We need your payment information so we can pay out your earnings.",
     "regLabel": "Reg. no.",
     "accountLabel": "Account no.",
-    "currentPassword": "Current password",
-    "newPassword": "New password",
-    "confirmPassword": "Confirm password",
+    "currentPassword": "Enter current password",
+    "newPassword": "Enter new password",
+    "confirmPassword": "Re-enter new password",
     "accountDeletionTitle": "Account deletion",
     "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
-    "deleteAccount": "Delete account"
+    "deleteAccount": "Delete account",
+    "forgotPass": "Forgot Password?",
+    "passwordSuccessTitle": "Password updated",
+    "passwordSuccessMessage": "Your password was successfully updated. Please log in again to continue."
   },
   "singleCollection": {
     "subtitle": "Learn how to use our platform",

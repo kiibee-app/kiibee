@@ -724,12 +724,15 @@
     "paymentText": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine indtægter.",
     "regLabel": "Reg. nr.",
     "accountLabel": "Kontonr.",
-    "currentPassword": "Nuværende adgangskode",
-    "newPassword": "Ny adgangskode",
-    "confirmPassword": "Bekræft adgangskode",
+    "currentPassword": "Indtast nuværende adgangskode",
+    "newPassword": "Indtast ny adgangskode",
+    "confirmPassword": "Indtast ny adgangskode igen",
     "accountDeletionTitle": "Slet konto",
     "accountDeletionText": "Hvis du ønsker at slette din konto, klik på [Slet konto] nedenfor, og der sendes en besked til administratoren, som vil foretage en opgørelse og derefter slette din konto.",
-    "deleteAccount": "Slet konto"
+    "deleteAccount": "Slet konto",
+    "forgotPass": "Glemt adgangskode?",
+    "passwordSuccessTitle": "Adgangskode opdateret",
+    "passwordSuccessMessage": "Din adgangskode blev opdateret. Log venligst ind igen for at fortsætte."
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
