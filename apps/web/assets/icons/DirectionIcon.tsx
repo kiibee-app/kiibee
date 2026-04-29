@@ -1,20 +1,21 @@
 import { SVG_XMLNS } from "@/utils/Constants";
+import { SORT_DIRECTIONS, SortDirection } from "@/utils/ui";
 import COLORS from "@repo/ui/colors";
 
 type DirectionIconProps = {
   width?: number | string;
   height?: number | string;
   color?: string;
-  direction?: "asc" | "desc";
+  direction?: SortDirection;
 };
 
 export default function DirectionIcon({
   width = 24,
   height = 24,
   color = COLORS.primary.BLACK,
-  direction = "asc",
+  direction = SORT_DIRECTIONS.ASC,
 }: DirectionIconProps) {
-  const isAsc = direction === "asc";
+  const isAsc = direction === SORT_DIRECTIONS.ASC;
 
   return (
     <svg

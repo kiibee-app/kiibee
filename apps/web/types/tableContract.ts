@@ -1,3 +1,5 @@
+import { SortDirection } from "@/utils/ui";
+
 export type KeyOf<T> = keyof T & string;
 
 export type RenderCellProps<T> = {
@@ -26,7 +28,7 @@ export type BaseTableProps<T> = {
   };
   onHeaderClick?: (header: string, index: number) => void;
   isHeaderSortable?: (header: string, index: number) => boolean;
-  getHeaderSortDirection?: (header: string) => "asc" | "desc" | null;
+  getHeaderSortDirection?: (header: string) => SortDirection | null;
 };
 
 export type MobileTableProps<T> = BaseTableProps<T> & {

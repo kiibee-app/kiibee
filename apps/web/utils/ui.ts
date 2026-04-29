@@ -68,6 +68,17 @@ export const Directions = {
   RIGHT: "right",
 } as const;
 export type Direction = (typeof Directions)[keyof typeof Directions];
+export const SORT_DIRECTIONS = {
+  NONE: "none",
+  ASC: "asc",
+  DESC: "desc",
+} as const;
+export type SortDirection = Exclude<
+  (typeof SORT_DIRECTIONS)[keyof typeof SORT_DIRECTIONS],
+  "none"
+>;
+export type SortDirectionWithNone =
+  (typeof SORT_DIRECTIONS)[keyof typeof SORT_DIRECTIONS];
 export const KEYBOARD_KEYS = {
   ENTER: "Enter",
   ESCAPE: "Escape",

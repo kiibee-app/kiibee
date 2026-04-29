@@ -12,6 +12,7 @@ import {
   buildHeaderMap,
   REGISTRATION_TABLE_HEADER_KEYS,
 } from "@/utils/tableHeader";
+import { SORT_DIRECTIONS, SortDirectionWithNone } from "@/utils/ui";
 import COLORS from "@repo/ui/colors";
 import {
   DeleteActionButton,
@@ -25,9 +26,8 @@ export default function RegistrationsTabContent() {
   const { t } = useTranslation();
   const [rows, setRows] = useState<RegistrationRow[]>(registrationData);
   const [selectedEmail, setSelectedEmail] = useState<string | null>(null);
-  const [nameSortDirection, setNameSortDirection] = useState<
-    "none" | "asc" | "desc"
-  >("none");
+  const [nameSortDirection, setNameSortDirection] =
+    useState<SortDirectionWithNone>(SORT_DIRECTIONS.NONE);
   const deleteModalKeys = DASHBOARD_USERS.registrations.deleteModal;
   const headers = REGISTRATION_TABLE_HEADER_KEYS.map((headerKey) =>
     t(DASHBOARD_USERS.registrations.tableHeaders[headerKey]),
@@ -46,7 +46,7 @@ export default function RegistrationsTabContent() {
       const compared = a.name.localeCompare(b.name, undefined, {
         sensitivity: "base",
       });
-      return nameSortDirection === "desc" ? -compared : compared;
+      return nameSortDirection === SORT_DIRECTIONS.DESC ? -compared : compared;
     });
   }, [rows, nameSortDirection]);
 
@@ -68,14 +68,14 @@ export default function RegistrationsTabContent() {
           onHeaderClick={(header) => {
             if (header !== headers[0]) return;
             setNameSortDirection((prev) => {
-              if (prev === "none") return "asc";
-              if (prev === "asc") return "desc";
-              return "none";
+              if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
+              if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
+              return SORT_DIRECTIONS.NONE;
             });
           }}
           isHeaderSortable={(header) => header === headers[0]}
           getHeaderSortDirection={(header) =>
-            header === headers[0] && nameSortDirection !== "none"
+            header === headers[0] && nameSortDirection !== SORT_DIRECTIONS.NONE
               ? nameSortDirection
               : null
           }
