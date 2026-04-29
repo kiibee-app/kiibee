@@ -97,6 +97,29 @@ export const CREATOR_PROFILE = {
   deleteAccount: "creatorProfile.deleteAccount",
 };
 
+export const SETTINGS = {
+  title: "settings.title",
+  tabs: {
+    payout: "settings.tabs.payout",
+    notifications: "settings.tabs.notifications",
+    export: "settings.tabs.export",
+  },
+  export: {
+    title: "settings.export.title",
+    description: "settings.export.description",
+    requestExport: "settings.export.requestExport",
+    buildCsv: "settings.export.buildCsv",
+    typeLabel: "settings.export.typeLabel",
+    dateLabel: "settings.export.dateLabel",
+    exportTypeUsersEmailSignups: "settings.export.exportTypeUsersEmailSignups",
+    exportTypeSales: "settings.export.exportTypeSales",
+    exportTypeViews: "settings.export.exportTypeViews",
+    includeMedia: "settings.export.includeMedia",
+    lastExported: "settings.export.lastExported",
+    noExports: "settings.export.noExports",
+  },
+};
+
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
@@ -105,6 +128,7 @@ const TRANSLATION_KEYS = {
   CREATORS,
   TUTORIAL_VIDEOS,
   CREATOR_PROFILE,
+  SETTINGS,
 };
 
 export default TRANSLATION_KEYS;

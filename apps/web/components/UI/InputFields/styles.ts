@@ -201,3 +201,137 @@ export const RequiredIndicator = styled.span`
   color: ${({ theme }) => theme.colors.primary.RED};
   margin-left: 4px;
 `;
+
+export const Field = styled.div`
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  border-radius: 8px;
+  padding: 10px 14px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  min-height: 44px;
+`;
+
+export const Selected = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_Regular};
+`;
+
+export const Menu = styled.div`
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  border-radius: 8px;
+  box-shadow: 0 8px 20px ${({ theme }) => theme.colors.neutral.GRAY_300};
+  overflow: hidden;
+  width: 100%;
+  z-index: 1200;
+`;
+
+export const Item = styled.button`
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 12px 14px;
+  cursor: pointer;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
+`;
+
+export const DateDisplay = styled.div`
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  border-radius: ${({ theme }) => theme.radius.lg};
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  border: 1px solid transparent;
+  cursor: pointer;
+`;
+
+export const DateText = styled.div`
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const DatePopup = styled.div<{
+  $top: number;
+  $left: number;
+}>`
+  position: absolute;
+  top: ${({ $top }) => $top}px;
+  left: ${({ $left }) => $left}px;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  border-radius: 12px;
+  box-shadow: 0 12px 30px ${({ theme }) => theme.colors.neutral.GRAY_300};
+  padding: 20px;
+  max-width: 92vw;
+  z-index: 1400;
+  max-height: calc(100vh - 160px);
+  overflow: auto;
+`;
+
+export const DatePopupBody = styled.div`
+  display: flex;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+`;
+
+export const DatePopupActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+`;
+
+export const CalendarNavButton = styled.button`
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+export const ArrowWrap = styled.span`
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CancelButton = styled.button`
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: transparent;
+  cursor: pointer;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
+`;
+
+export const DatePopupWrapper = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 1400;
+`;

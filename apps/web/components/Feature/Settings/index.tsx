@@ -18,6 +18,7 @@ import SearchBar from "@/components/UI/SearchBar";
 import { useTranslation } from "react-i18next";
 import NotificationContent from "./Notification";
 import PayoutContent from "./Payout";
+import ExportContent from "./Export";
 import NotificationModals from "./Notification/notificationModals";
 import { NOTIFICATION_MODAL, NotificationModalType } from "@/utils/ui";
 
@@ -112,6 +113,7 @@ export default function SettingsContent() {
       <Content>
         {activeTab === TAB_KEYS.payout && <PayoutContent />}
         {activeTab === TAB_KEYS.notifications && <NotificationContent />}
+        {activeTab === TAB_KEYS.export && <ExportContent />}
       </Content>
       <NotificationModals
         modalType={modalType}

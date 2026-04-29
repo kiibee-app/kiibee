@@ -27,3 +27,4 @@ export { default as YouTubeIcon } from "./youTubeIcon";
 export { default as EpubIcon } from "./EpubIcon";
 export { default as LeftIcon } from "./LeftIcon";
 export { default as PlusIcon } from "./PlusIcon";
+export { default as CalendarIcon } from "./CalenderIcon";

@@ -84,6 +84,15 @@ export const MODAL_ALIGN = {
 } as const;
 export type ModalAlign = (typeof MODAL_ALIGN)[keyof typeof MODAL_ALIGN];
 
+export const WEEK_DAYS = [
+  "SUN",
+  "MON",
+  "TUE",
+  "WED",
+  "THU",
+  "FRI",
+  "SAT",
+] as const;
 export const NOTIFICATION_MODAL = {
   SUCCESS: "success",
   DISCARD: "discard",

@@ -895,6 +895,20 @@
       "purchase": "Køb",
       "rent": "Leje",
       "settlementHistory": "Afregningshistorik"
+    },
+    "export": {
+      "title": "Eksporter dine data",
+      "description": "Anmod om en kopi af dine kontodata. Vi forbereder en eksport og giver besked, når den er klar til download.",
+      "requestExport": "Anmod om eksport",
+      "buildCsv": "Byg CSV til download",
+      "typeLabel": "Eksporttype",
+      "dateLabel": "Dato",
+      "exportTypeUsersEmailSignups": "Brugeres e-mail-tilmeldinger",
+      "exportTypeSales": "Salg",
+      "exportTypeViews": "Visninger",
+      "includeMedia": "Inkluder mediefiler",
+      "lastExported": "Sidste eksport",
+      "noExports": "Ingen eksporter tilgængelige"
     }
   },
   "contents": {
