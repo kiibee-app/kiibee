@@ -702,6 +702,8 @@
     "optional": "valgfrit",
     "save": "Save",
     "cancel": "Cancel",
+    "back": "Tilbage",
+    "close": "Luk",
     "previous": "Forrige",
     "next": "Næste"
   },
@@ -918,6 +920,21 @@
       "createCoupon": "Opret kupon",
       "search": "Sog indhold",
       "deleteContent": "Delete content"
+    },
+    "couponDetails": {
+      "title": "Kupondetaljer",
+      "fields": {
+        "title": "Titel"
+      },
+      "placeholders": {
+        "title": "Indtast kort titel",
+        "discountAmount": "Indtast rabatbeloeb"
+      },
+      "discountValue": "Rabatvaerdi",
+      "discountHelp": "Indtast det rabatbeloeb eller den procentdel, du vil tilbyde.",
+      "discountType": {
+        "fixedAmount": "Fast beloeb"
+      }
     },
     "tabs": {
       "collections": "Samlinger",

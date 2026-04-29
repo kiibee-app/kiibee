@@ -702,6 +702,8 @@
     "optional": "optional",
     "save": "Save",
     "cancel": "Cancel",
+    "back": "Back",
+    "close": "Close",
     "previous": "Previous",
     "next": "Next"
   },
@@ -917,6 +919,21 @@
       "createCoupon": "Create coupon",
       "search": "Search contents",
       "deleteContent": "Delete content"
+    },
+    "couponDetails": {
+      "title": "Coupon details",
+      "fields": {
+        "title": "Title"
+      },
+      "placeholders": {
+        "title": "Enter short title",
+        "discountAmount": "Enter discount amount"
+      },
+      "discountValue": "Discount Value",
+      "discountHelp": "Enter the discount amount or percentage you want to offer.",
+      "discountType": {
+        "fixedAmount": "Fixed amount"
+      }
     },
     "tabs": {
       "collections": "Collections",

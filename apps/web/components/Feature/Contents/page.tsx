@@ -31,6 +31,7 @@ import { SuccessArcIcon } from "@/assets/icons";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import ContentsHeaderAction from "./ContentsHeaderAction";
+import CouponDetailsModal from "./CouponDetailsModal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -40,10 +41,13 @@ export default function CreatorsContents() {
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
+  const [showCouponDetails, setShowCouponDetails] = useState(false);
+  const handleCancel = () => {};
+  const handleSave = () => {};
   const handleCreateClick = () => {
     switch (activeTab) {
       case COUPONS:
-        setShowContentTypeModal(true);
+        setShowCouponDetails(true);
         break;
 
       case COLLECTIONS:
@@ -69,8 +73,9 @@ export default function CreatorsContents() {
         <ContentsHeaderAction
           activeTab={activeTab}
           onCreate={handleCreateClick}
-          onCancel={() => {}}
-          onSave={() => {}}
+          onCancel={handleCancel}
+          onCreateCoupon={() => setShowCouponDetails(true)}
+          onSave={handleSave}
         />
       </PageHeader>
 
@@ -169,6 +174,11 @@ export default function CreatorsContents() {
         width="480px"
         padding="40px 30px"
         showCloseButton={false}
+      />
+
+      <CouponDetailsModal
+        visible={showCouponDetails}
+        onClose={() => setShowCouponDetails(false)}
       />
     </PageShell>
   );
