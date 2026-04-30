@@ -75,7 +75,11 @@
     "emailLabel": "E-mailadresse",
     "submit": "Indsende",
     "rememberPassword": "Kan du huske din adgangskode?",
-    "login": "Log ind"
+    "login": "Log ind",
+    "checkEmailTitle": "Tjek din e-mail",
+    "checkEmailDescription": "Vi har sendt et link til nulstilling af adgangskode til din e-mail. Hvis det ikke ankommer inden for et par minutter, så tjek din spam-mappe.",
+    "didNotReceive": "Har du ikke modtaget e-mailen?",
+    "resend": "Send igen"
   },
   "viewerSignup": {
     "title": "Opret seerkonto",
