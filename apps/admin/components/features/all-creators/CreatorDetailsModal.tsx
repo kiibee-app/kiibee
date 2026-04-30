@@ -1,19 +1,90 @@
 "use client";
 
 import { Modal } from "../../common/Modal";
-import type { CreatorRequest } from "../../../types/creator-request";
+import type {
+  CreatorDetailFieldConfig,
+  CreatorDetailsModalProps,
+} from "../../../types/creator-details-modal";
 import {
-  DetailGrid,
-  DetailItem,
-  DetailLabel,
-  DetailValue,
+  DetailField,
+  DetailFieldLabel,
+  DetailFieldValue,
+  DetailsGrid,
   LinkText,
 } from "./AllCreators.styles";
 
-interface CreatorDetailsModalProps {
-  creator: CreatorRequest | null;
-  onClose: () => void;
-}
+const creatorDetailFields: CreatorDetailFieldConfig[] = [
+  { key: "id", label: "ID", renderValue: (creator) => creator.id },
+  {
+    key: "fullName",
+    label: "Full Name",
+    renderValue: (creator) => creator.fullName,
+  },
+  {
+    key: "firstName",
+    label: "First Name",
+    renderValue: (creator) => creator.firstName,
+  },
+  {
+    key: "lastName",
+    label: "Last Name",
+    renderValue: (creator) => creator.lastName,
+  },
+  { key: "email", label: "Email", renderValue: (creator) => creator.email },
+  { key: "phone", label: "Phone", renderValue: (creator) => creator.phone },
+  { key: "cvr", label: "CVR", renderValue: (creator) => creator.cvr },
+  { key: "status", label: "Status", renderValue: (creator) => creator.status },
+  {
+    key: "address",
+    label: "Address",
+    renderValue: (creator) => creator.address,
+  },
+  { key: "city", label: "City", renderValue: (creator) => creator.city },
+  {
+    key: "postalCode",
+    label: "Postal Code",
+    renderValue: (creator) => creator.postalCode,
+  },
+  {
+    key: "exampleWorkLinkField",
+    label: "Example Work Link",
+    renderValue: (creator) => (
+      <LinkText href={creator.exampleWorkLink} target="_blank" rel="noreferrer">
+        {creator.exampleWorkLink}
+      </LinkText>
+    ),
+  },
+  {
+    key: "approvedUserId",
+    label: "Approved User ID",
+    renderValue: (creator) => creator.approvedUserId ?? "null",
+  },
+  {
+    key: "isDeleted",
+    label: "Is Deleted",
+    renderValue: (creator) => String(creator.isDeleted),
+  },
+  {
+    key: "deletedAt",
+    label: "Deleted At",
+    renderValue: (creator) => creator.deletedAt ?? "null",
+  },
+  {
+    key: "createdAt",
+    label: "Created At",
+    renderValue: (creator) => creator.createdAt,
+  },
+  {
+    key: "updatedAt",
+    label: "Updated At",
+    renderValue: (creator) => creator.updatedAt,
+  },
+  {
+    key: "contentDescription",
+    label: "Content Description",
+    renderValue: (creator) => creator.contentDescription,
+  },
+];
 
 export function CreatorDetailsModal({
   creator,
@@ -26,88 +97,14 @@ export function CreatorDetailsModal({
       onClose={onClose}
     >
       {creator ? (
-        <DetailGrid>
-          <DetailItem>
-            <DetailLabel>ID</DetailLabel>
-            <DetailValue>{creator.id}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Full Name</DetailLabel>
-            <DetailValue>{creator.fullName}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>First Name</DetailLabel>
-            <DetailValue>{creator.firstName}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Last Name</DetailLabel>
-            <DetailValue>{creator.lastName}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Email</DetailLabel>
-            <DetailValue>{creator.email}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Phone</DetailLabel>
-            <DetailValue>{creator.phone}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>CVR</DetailLabel>
-            <DetailValue>{creator.cvr}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Status</DetailLabel>
-            <DetailValue>{creator.status}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Address</DetailLabel>
-            <DetailValue>{creator.address}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>City</DetailLabel>
-            <DetailValue>{creator.city}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Postal Code</DetailLabel>
-            <DetailValue>{creator.postalCode}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Example Work Link</DetailLabel>
-            <DetailValue>
-              <LinkText
-                href={creator.exampleWorkLink}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {creator.exampleWorkLink}
-              </LinkText>
-            </DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Approved User ID</DetailLabel>
-            <DetailValue>{creator.approvedUserId ?? "null"}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Is Deleted</DetailLabel>
-            <DetailValue>{String(creator.isDeleted)}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Deleted At</DetailLabel>
-            <DetailValue>{creator.deletedAt ?? "null"}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Created At</DetailLabel>
-            <DetailValue>{creator.createdAt}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Updated At</DetailLabel>
-            <DetailValue>{creator.updatedAt}</DetailValue>
-          </DetailItem>
-          <DetailItem>
-            <DetailLabel>Content Description</DetailLabel>
-            <DetailValue>{creator.contentDescription}</DetailValue>
-          </DetailItem>
-        </DetailGrid>
+        <DetailsGrid>
+          {creatorDetailFields.map((field) => (
+            <DetailField key={field.key}>
+              <DetailFieldLabel>{field.label}</DetailFieldLabel>
+              <DetailFieldValue>{field.renderValue(creator)}</DetailFieldValue>
+            </DetailField>
+          ))}
+        </DetailsGrid>
       ) : null}
     </Modal>
   );

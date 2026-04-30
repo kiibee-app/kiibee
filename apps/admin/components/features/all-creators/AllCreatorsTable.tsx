@@ -7,7 +7,7 @@ import type {
   CreatorResponse,
 } from "../../../types/creator-request";
 import { usePagination } from "../../../hooks/ui/use-pagination";
-import { Wrapper } from "./AllCreators.styles";
+import { AllCreatorsPanel } from "./AllCreators.styles";
 import { CreatorRequestsTable } from "./CreatorRequestsTable";
 import { CreatorPagination } from "./CreatorPagination";
 import { CreatorDetailsModal } from "./CreatorDetailsModal";
@@ -27,7 +27,7 @@ export function AllCreatorsTable() {
   });
 
   return (
-    <Wrapper>
+    <AllCreatorsPanel>
       <CreatorRequestsTable
         creators={pagination.paginatedData}
         onSelectCreator={(creator) => setSelectedCreator(creator)}
@@ -49,6 +49,6 @@ export function AllCreatorsTable() {
         creator={selectedCreator}
         onClose={() => setSelectedCreator(null)}
       />
-    </Wrapper>
+    </AllCreatorsPanel>
   );
 }

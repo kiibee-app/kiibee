@@ -1,24 +1,13 @@
 "use client";
 
+import type { CreatorPaginationProps } from "../../../types/creator-pagination";
 import {
   Ellipsis,
-  Footer,
+  PaginationControlGroup,
+  PaginationFooter,
   PaginationButton,
-  PaginationControls,
   PageSize,
 } from "./AllCreators.styles";
-
-interface CreatorPaginationProps {
-  startIndex: number;
-  endIndex: number;
-  totalItems: number;
-  currentPage: number;
-  totalPages: number;
-  pageNumbers: number[];
-  pageSize: number;
-  onPageChange: (page: number) => void;
-  onPageSizeChange: (size: number) => void;
-}
 
 export function CreatorPagination({
   startIndex,
@@ -32,11 +21,11 @@ export function CreatorPagination({
   onPageSizeChange,
 }: CreatorPaginationProps) {
   return (
-    <Footer>
+    <PaginationFooter>
       <span>
         Showing {startIndex + 1} to {endIndex} of {totalItems} requests
       </span>
-      <PaginationControls>
+      <PaginationControlGroup>
         <PaginationButton
           type="button"
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
@@ -93,7 +82,7 @@ export function CreatorPagination({
           <option value={10}>10 / page</option>
           <option value={20}>20 / page</option>
         </PageSize>
-      </PaginationControls>
-    </Footer>
+      </PaginationControlGroup>
+    </PaginationFooter>
   );
 }

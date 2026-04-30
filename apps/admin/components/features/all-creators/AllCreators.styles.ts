@@ -1,19 +1,19 @@
 import styled, { css } from "styled-components";
 import type { CreatorStatus } from "../../../types/creator-request";
 
-export const Wrapper = styled.div`
+export const AllCreatorsPanel = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border: 1px solid ${({ theme }) => theme.colors.secondary.border};
   border-radius: 16px;
   overflow: hidden;
 `;
 
-export const Table = styled.table`
+export const RequestsTable = styled.table`
   width: 100%;
   border-collapse: collapse;
 `;
 
-export const TableRow = styled.tr`
+export const RequestTableRow = styled.tr`
   cursor: pointer;
 
   &:hover td {
@@ -21,7 +21,7 @@ export const TableRow = styled.tr`
   }
 `;
 
-export const Th = styled.th`
+export const TableHeaderCell = styled.th`
   text-align: left;
   font-size: 14px;
   font-weight: 600;
@@ -31,7 +31,7 @@ export const Th = styled.th`
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
 `;
 
-export const Td = styled.td`
+export const TableBodyCell = styled.td`
   padding: 14px 16px;
   font-size: 14px;
   font-weight: 400;
@@ -87,12 +87,14 @@ export const StatusBadge = styled.span<{ $status: CreatorStatus }>`
   }}
 `;
 
-export const Actions = styled.div`
+export const RowActionGroup = styled.div`
   display: flex;
   gap: 10px;
 `;
 
-export const Button = styled.button<{ $variant: "approve" | "reject" }>`
+export const RowActionButton = styled.button<{
+  $variant: "approve" | "reject";
+}>`
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
@@ -117,7 +119,7 @@ export const Button = styled.button<{ $variant: "approve" | "reject" }>`
   }}
 `;
 
-export const Footer = styled.div`
+export const PaginationFooter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -129,7 +131,7 @@ export const Footer = styled.div`
   color: ${({ theme }) => theme.colors.secondary.muted};
 `;
 
-export const PaginationControls = styled.div`
+export const PaginationControlGroup = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -173,7 +175,7 @@ export const PageSize = styled.select`
   font-weight: 600;
 `;
 
-export const DetailGrid = styled.div`
+export const DetailsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px 18px;
@@ -183,13 +185,13 @@ export const DetailGrid = styled.div`
   }
 `;
 
-export const DetailItem = styled.div`
+export const DetailField = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
 `;
 
-export const DetailLabel = styled.span`
+export const DetailFieldLabel = styled.span`
   font-size: 12px;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.secondary.muted};
@@ -197,7 +199,7 @@ export const DetailLabel = styled.span`
   letter-spacing: 0.04em;
 `;
 
-export const DetailValue = styled.span`
+export const DetailFieldValue = styled.span`
   font-size: 14px;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.secondary.main};

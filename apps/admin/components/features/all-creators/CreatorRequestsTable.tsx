@@ -1,91 +1,91 @@
 "use client";
 
-import type { CreatorRequest } from "../../../types/creator-request";
+import type { CreatorRequestsTableProps } from "../../../types/creator-requests-table";
 import { formatRequestedAt } from "../../../utils/date";
 import {
-  Actions,
-  Button,
   CreatorCell,
   CreatorName,
   MiniText,
+  RequestTableRow,
+  RequestsTable,
+  RowActionButton,
+  RowActionGroup,
   StatusBadge,
-  Table,
-  TableRow,
-  Td,
-  Th,
+  TableBodyCell,
+  TableHeaderCell,
 } from "./AllCreators.styles";
-
-interface CreatorRequestsTableProps {
-  creators: CreatorRequest[];
-  onSelectCreator: (creator: CreatorRequest) => void;
-}
 
 export function CreatorRequestsTable({
   creators,
   onSelectCreator,
 }: CreatorRequestsTableProps) {
   return (
-    <Table>
+    <RequestsTable>
       <thead>
         <tr>
-          <Th>Creator</Th>
-          <Th>Email</Th>
-          <Th>Requested At</Th>
-          <Th>City</Th>
-          <Th>Content Description</Th>
-          <Th>Status</Th>
-          <Th>Actions</Th>
+          <TableHeaderCell>Creator</TableHeaderCell>
+          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell>Requested At</TableHeaderCell>
+          <TableHeaderCell>City</TableHeaderCell>
+          <TableHeaderCell>Content Description</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+          <TableHeaderCell>Actions</TableHeaderCell>
         </tr>
       </thead>
       <tbody>
         {creators.map((creator) => {
-          const showApprove = creator.status === "pending";
-          const showReject =
+          const canApproveRequest = creator.status === "pending";
+          const canRejectRequest =
             creator.status === "pending" || creator.status === "approved";
 
           return (
-            <TableRow key={creator.id} onClick={() => onSelectCreator(creator)}>
-              <Td>
+            <RequestTableRow
+              key={creator.id}
+              onClick={() => onSelectCreator(creator)}
+            >
+              <TableBodyCell>
                 <CreatorCell>
                   <CreatorName>{creator.fullName}</CreatorName>
                   <MiniText>@{creator.city}</MiniText>
                 </CreatorCell>
-              </Td>
-              <Td>{creator.email}</Td>
-              <Td>{formatRequestedAt(creator.createdAt)}</Td>
-              <Td>{creator.city}</Td>
-              <Td>{creator.contentDescription}</Td>
-              <Td>
+              </TableBodyCell>
+              <TableBodyCell>{creator.email}</TableBodyCell>
+              <TableBodyCell>
+                {formatRequestedAt(creator.createdAt)}
+              </TableBodyCell>
+              <TableBodyCell>{creator.city}</TableBodyCell>
+              <TableBodyCell>{creator.contentDescription}</TableBodyCell>
+              <TableBodyCell>
                 <StatusBadge $status={creator.status}>
                   {creator.status}
                 </StatusBadge>
-              </Td>
-              <Td>
-                <Actions>
-                  {showApprove ? (
-                    <Button
+              </TableBodyCell>
+              <TableBodyCell>
+                <RowActionGroup>
+                  {canApproveRequest ? (
+                    <RowActionButton
                       $variant="approve"
                       type="button"
                       onClick={(event) => event.stopPropagation()}
                     >
                       Approve
-                    </Button>
+                    </RowActionButton>
                   ) : null}
-                  {showReject ? (
-                    <Button
+                  {canRejectRequest ? (
+                    <RowActionButton
                       $variant="reject"
                       type="button"
                       onClick={(event) => event.stopPropagation()}
                     >
                       Reject
-                    </Button>
+                    </RowActionButton>
                   ) : null}
-                </Actions>
-              </Td>
-            </TableRow>
+                </RowActionGroup>
+              </TableBodyCell>
+            </RequestTableRow>
           );
         })}
       </tbody>
-    </Table>
+    </RequestsTable>
   );
 }
