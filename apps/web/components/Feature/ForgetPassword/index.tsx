@@ -19,6 +19,7 @@ import {
   BackButtonWrapper,
 } from "./styles";
 import { PATHS } from "@/utils/path";
+import { INPUT_TYPE } from "@/utils/ui";
 
 export default function ForgetPasswordForm() {
   const { t } = useTranslation();
@@ -60,14 +61,14 @@ export default function ForgetPasswordForm() {
             <Form onSubmit={handleSubmit}>
               <InputField
                 id="forgot-password-email"
-                type="email"
+                type={INPUT_TYPE.EMAIL}
                 placeholder={t("forgotPassword.emailLabel")}
                 value={email}
                 onChange={(v) => setEmail(v as string)}
-                autoComplete="email"
+                autoComplete={INPUT_TYPE.EMAIL}
               />
 
-              <GenericButton type="submit">
+              <GenericButton type="submit" disabled={!email.trim()}>
                 {t("forgotPassword.submit")}
               </GenericButton>
             </Form>
