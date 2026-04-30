@@ -7,15 +7,15 @@ export const Wrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.bg.app};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   padding: 16px;
 `;
 
 export const Card = styled.div`
   width: 100%;
   max-width: 400px;
-  background: ${({ theme }) => theme.colors.bg.white};
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
   border-radius: 16px;
   padding: 32px;
 `;
@@ -29,8 +29,8 @@ export const IconWrap = styled.div`
   width: 130px;
   height: 52px;
   border-radius: 14px;
-  background: ${({ theme }) => theme.colors.brand.dark};
-  color: ${({ theme }) => theme.colors.bg.white};
+  background: ${({ theme }) => theme.colors.primary.GREEN_100};
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
   margin: 0 auto 16px;
   display: flex;
   align-items: center;
@@ -42,19 +42,19 @@ export const Title = styled.h1`
   font-size: 28px;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: ${({ theme }) => theme.colors.text.main};
+  color: ${({ theme }) => theme.colors.secondary.main};
 `;
 
 export const Subtitle = styled.p`
   margin: 8px 0 0;
-  color: ${({ theme }) => theme.colors.text.muted};
+  color: ${({ theme }) => theme.colors.secondary.muted};
   font-size: 14px;
 `;
 
 export const Label = styled.label`
   display: block;
   margin-bottom: 6px;
-  color: ${({ theme }) => theme.colors.text.main};
+  color: ${({ theme }) => theme.colors.secondary.main};
   font-size: 14px;
   font-weight: 500;
 `;
@@ -64,9 +64,9 @@ export const Input = styled.input`
   width: 100%;
   height: 42px;
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  background: ${({ theme }) => theme.colors.bg.white};
-  color: ${({ theme }) => theme.colors.text.main};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.secondary.main};
   padding: 0 14px;
   font-size: 14px;
   transition:
@@ -74,13 +74,13 @@ export const Input = styled.input`
     box-shadow 150ms ease;
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.text.muted};
+    color: ${({ theme }) => theme.colors.secondary.muted};
   }
 
   &:focus {
     outline: none;
-    border-color: ${({ theme }) => theme.colors.brand.dark};
-    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.brand.dark};
+    border-color: ${({ theme }) => theme.colors.primary.GREEN_100};
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.primary.GREEN_100};
   }
 `;
 
@@ -89,8 +89,8 @@ export const LoginButton = styled.button`
   height: 42px;
   border: none;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.brand.dark};
-  color: ${({ theme }) => theme.colors.bg.white};
+  background: ${({ theme }) => theme.colors.primary.GREEN_100};
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -115,9 +115,9 @@ export const Field = styled.div``;
 
 export const ErrorBox = styled.div`
   border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.brand.light};
-  background: ${({ theme }) => theme.colors.brand.lightest};
-  color: ${({ theme }) => theme.colors.text.main};
+  border: 1px solid ${({ theme }) => theme.colors.primary.GREEN};
+  background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  color: ${({ theme }) => theme.colors.secondary.main};
   padding: 12px 14px;
   font-size: 13px;
   display: flex;

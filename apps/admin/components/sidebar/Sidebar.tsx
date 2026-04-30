@@ -6,8 +6,8 @@ import type { LucideIcon } from "lucide-react";
 
 const SidebarRoot = styled.aside`
   width: 240px;
-  border-right: 1px solid ${({ theme }) => theme.colors.border};
-  background-color: ${({ theme }) => theme.colors.bg.white};
+  border-right: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  background-color: ${({ theme }) => theme.colors.neutral.WHITE};
   position: fixed;
   top: 0;
   left: 0;
@@ -19,13 +19,13 @@ const SidebarTop = styled.div`
   align-items: center;
   min-height: 68px;
   padding: 12px 20px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
 `;
 
 const BrandText = styled.div`
   font-size: 20px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.brand.dark};
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
 `;
 
 const MenuList = styled.nav`
@@ -45,13 +45,13 @@ const MenuItem = styled(Link)<{ $active?: boolean }>`
   font-size: 14px;
   font-weight: ${({ $active }) => ($active ? 600 : 500)};
   color: ${({ theme, $active }) =>
-    $active ? theme.colors.brand.dark : theme.colors.text.muted};
+    $active ? theme.colors.primary.GREEN_100 : theme.colors.secondary.muted};
   background-color: ${({ theme, $active }) =>
-    $active ? theme.colors.brand.lightest : "transparent"};
+    $active ? theme.colors.neutral.PALE_GREEN : "transparent"};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.brand.lightest};
-    color: ${({ theme }) => theme.colors.brand.dark};
+    background-color: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+    color: ${({ theme }) => theme.colors.primary.GREEN_100};
   }
 `;
 

@@ -10,8 +10,8 @@ const HeaderRoot = styled.header`
   justify-content: space-between;
   min-height: 68px;
   padding: 12px 20px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
-  background-color: ${({ theme }) => theme.colors.bg.white};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  background-color: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
 const HeaderLeft = styled.div`
@@ -23,19 +23,19 @@ const Title = styled.h1`
   margin: 0;
   font-size: 20px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.text.main};
+  color: ${({ theme }) => theme.colors.secondary.main};
 `;
 
 const Description = styled.p`
   margin: 2px 0 0;
   font-size: 13px;
-  color: ${({ theme }) => theme.colors.text.muted};
+  color: ${({ theme }) => theme.colors.secondary.muted};
 `;
 
 const HeaderUser = styled.span`
   font-size: 14px;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.text.main};
+  color: ${({ theme }) => theme.colors.secondary.main};
 `;
 
 const HeaderRight = styled.div`
@@ -49,7 +49,7 @@ const AvatarFrame = styled.button`
   height: 46px;
   border-radius: 999px;
   padding: 2px;
-  background: #4f46e5;
+  background: ${({ theme }) => theme.colors.primary.BLUE};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,7 +62,7 @@ const AvatarImage = styled.img`
   height: 100%;
   border-radius: 999px;
   object-fit: cover;
-  border: 2px solid #ffffff;
+  border: 2px solid ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
 const MenuWrap = styled.div`
@@ -74,10 +74,10 @@ const Dropdown = styled.div`
   top: calc(100% + 10px);
   right: 0;
   min-width: 140px;
-  background: ${({ theme }) => theme.colors.bg.white};
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
   border-radius: 10px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: ${({ theme }) => theme.shadows.md};
   padding: 6px;
   z-index: 30;
 `;
@@ -87,14 +87,14 @@ const MenuButton = styled.button`
   border: none;
   border-radius: 8px;
   background: transparent;
-  color: ${({ theme }) => theme.colors.text.main};
+  color: ${({ theme }) => theme.colors.secondary.main};
   padding: 10px 12px;
   text-align: left;
   font-size: 14px;
   cursor: pointer;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.brand.lightest};
+    background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
   }
 `;
 
