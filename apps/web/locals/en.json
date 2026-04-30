@@ -835,6 +835,11 @@
     "overview": "Overview",
     "noData": "No Data Found",
     "contentPerformance": "Content Performance",
+    "logoutModal": {
+      "title": "Log out",
+      "message": "Are you sure you want to log out as {{email}}?",
+      "confirm": "Log out"
+    },
     "users": {
       "registrations": {
         "title": "E-mail signups",
