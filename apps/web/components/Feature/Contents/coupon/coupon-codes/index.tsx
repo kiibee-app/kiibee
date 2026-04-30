@@ -4,6 +4,7 @@ import React, { useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
+import { COUPON_CODES_LIMIT } from "@/utils/common";
 import {
   BackButton,
   FieldGroup,
@@ -20,8 +21,6 @@ import {
   CodesMetaRow,
   CouponCodesInput,
 } from "./styles";
-
-const COUPON_CODES_LIMIT = 100;
 
 type CouponCodesModalProps = {
   visible: boolean;
