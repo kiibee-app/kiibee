@@ -35,6 +35,7 @@ export const BackButton = styled.button`
 
 export const FormShell = styled.form`
   width: min(457px, 100%);
+  min-height: 352px;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -48,7 +49,6 @@ export const ModalTitle = styled(MonoText).attrs({
   color: ${COLORS.primary.BLACK};
   text-align: center;
   margin-bottom: 12px;
-  padding-top: 20px;
 `;
 
 export const FieldGroup = styled.div`
@@ -76,7 +76,7 @@ export const NextButton = styled.button`
   border-radius: 8px;
   background: ${COLORS.neutral.GRAY};
   color: ${COLORS.primary.WHITE};
-  margin-top: 14px;
+  margin-top: auto;
   cursor: pointer;
   ${typography.Body_Bold};
 
