@@ -77,6 +77,18 @@
     "rememberPassword": "Kan du huske din adgangskode?",
     "login": "Log ind"
   },
+  "resetPassword": {
+    "title": "Opret en ny adgangskode",
+    "description": "Indtast din nye adgangskode nedenfor for at fuldføre nulstillingen.",
+    "newPasswordLabel": "Ny adgangskode",
+    "newPasswordPlaceholder": "Ny adgangskode",
+    "repeatPasswordLabel": "Gentag ny adgangskode",
+    "repeatPasswordPlaceholder": "Gentag ny adgangskode",
+    "submit": "Nulstil",
+    "successTitle": "Din adgangskode er blevet nulstillet!",
+    "successDescription": "Du kan nu logge ind med din nye adgangskode. Kontakt support, hvis du oplever problemer.",
+    "backToLogin": "Tilbage til login"
+  },
   "viewerSignup": {
     "title": "Opret seerkonto",
     "heading": "Opret seerkonto",

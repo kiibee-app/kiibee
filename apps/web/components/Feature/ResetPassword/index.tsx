@@ -1,107 +1,90 @@
 "use client";
 
-import { FormEvent, useCallback, useState } from "react";
+import { FormEvent, useCallback, useMemo, useState } from "react";
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
-import { MonoText } from "@/components/UI/Monotext";
 import { Card, Description, Form, Title, Wrapper } from "./styles";
 import { INPUT_TYPE } from "@/utils/ui";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
+import ResetPasswordSuccess from "./ResetPasswordSuccess";
 import { INPUT_VARIANTS } from "@/utils/Constants";
-
-type PasswordState = {
-  newPassword: string;
-  repeatPassword: string;
-};
-
-type VisibilityState = {
-  newPassword: boolean;
-  repeatPassword: boolean;
-};
+import {
+  getResetPasswordFields,
+  INITIAL_PASSWORDS,
+  INITIAL_VISIBILITY,
+  PasswordState,
+  VisibilityState,
+} from "@/utils/resetPassword";
 
 export default function ResetPasswordForm() {
   const { t } = useTranslation();
-
-  const [passwords, setPasswords] = useState<PasswordState>({
-    newPassword: "",
-    repeatPassword: "",
-  });
-
-  const [visibility, setVisibility] = useState<VisibilityState>({
-    newPassword: false,
-    repeatPassword: false,
-  });
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [passwords, setPasswords] = useState(INITIAL_PASSWORDS);
+  const [visibility, setVisibility] = useState(INITIAL_VISIBILITY);
 
   const handleChange = useCallback(
-    (field: keyof PasswordState, value: string | string[]) => {
-      setPasswords((prev) => ({
-        ...prev,
-        [field]: String(value),
-      }));
+    (field: keyof PasswordState, value: string) => {
+      setPasswords((prev) => ({ ...prev, [field]: value }));
     },
     [],
   );
 
   const toggleVisibility = useCallback((field: keyof VisibilityState) => {
-    setVisibility((prev) => ({
-      ...prev,
-      [field]: !prev[field],
-    }));
+    setVisibility((prev) => ({ ...prev, [field]: !prev[field] }));
   }, []);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!passwords.newPassword || !passwords.repeatPassword) return;
-    if (passwords.newPassword !== passwords.repeatPassword) return;
-  };
+  const isValid = useMemo(() => {
+    const { newPassword, repeatPassword } = passwords;
+    return (
+      newPassword.length > 0 &&
+      repeatPassword.length > 0 &&
+      newPassword === repeatPassword
+    );
+  }, [passwords]);
+
+  const handleSubmit = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      if (!isValid) return;
+      setIsSuccess(true);
+    },
+    [isValid],
+  );
+
+  const fields = getResetPasswordFields();
+  if (isSuccess) return <ResetPasswordSuccess />;
 
   return (
     <Wrapper>
       <Card>
-        <Image src={logo} alt="Kiibee Logo" width={42} height={42} priority />
-
-        <Title>Create a new password</Title>
-
-        <Description>
-          <MonoText $use="Body_Regular">
-            Enter your new password below to complete the reset process.
-          </MonoText>
-        </Description>
+        <Image src={logo} alt="Kiibee Logo" width={42} height={42} />
+        <Title>{t("resetPassword.title")}</Title>
+        <Description>{t("resetPassword.description")}</Description>
 
         <Form onSubmit={handleSubmit}>
-          <InputField
-            type={
-              visibility.newPassword ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD
-            }
-            label="New password"
-            placeholder="New password"
-            value={passwords.newPassword}
-            onChange={(val) => handleChange("newPassword", val as string)}
-            icon={visibility.newPassword ? <EyeOpenIcon /> : <EyeClosedIcon />}
-            onIconClick={() => toggleVisibility("newPassword")}
-            variant={INPUT_VARIANTS.PRIMARY_GRAY}
-          />
+          {fields.map(({ key, label, placeholder }) => {
+            const isVisible = visibility[key];
 
-          <InputField
-            type={
-              visibility.repeatPassword ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD
-            }
-            label="Repeat new password"
-            placeholder="Repeat new password"
-            value={passwords.repeatPassword}
-            onChange={(val) => handleChange("repeatPassword", val as string)}
-            icon={
-              visibility.repeatPassword ? <EyeOpenIcon /> : <EyeClosedIcon />
-            }
-            onIconClick={() => toggleVisibility("repeatPassword")}
-            variant={INPUT_VARIANTS.PRIMARY_GRAY}
-          />
+            return (
+              <InputField
+                key={key}
+                type={isVisible ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
+                label={t(label)}
+                placeholder={t(placeholder)}
+                value={passwords[key]}
+                onChange={(val) => handleChange(key, String(val))}
+                icon={isVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}
+                onIconClick={() => toggleVisibility(key)}
+                variant={INPUT_VARIANTS.PRIMARY_GRAY}
+              />
+            );
+          })}
 
-          <GenericButton type="submit">
-            {t("resetPassword.submit", "Reset")}
+          <GenericButton type="submit" disabled={!isValid}>
+            {t("resetPassword.submit")}
           </GenericButton>
         </Form>
       </Card>

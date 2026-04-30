@@ -18,11 +18,7 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0.5rem;
   gap: 12px;
-  img {
-    display: block;
-  }
 `;
 
 export const Title = styled(MonoText).attrs({
@@ -32,10 +28,12 @@ export const Title = styled(MonoText).attrs({
   margin-top: 45px;
 `;
 
-export const Description = styled.p`
-  max-width: 390px;
+export const Description = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  max-width: 330px;
   margin: 0.5rem 0 1rem;
-  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const Form = styled.form`
@@ -49,4 +47,11 @@ export const Form = styled.form`
     width: 100%;
     margin-top: 1.5rem;
   }
+`;
+
+export const SuccessBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 `;
