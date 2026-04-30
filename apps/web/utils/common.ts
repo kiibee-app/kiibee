@@ -4,6 +4,7 @@ export const COLLECTIONS = "collections";
 export const APPEARANCE = "appearance";
 export const SETTINGS = "settings";
 export const COUPONS = "coupons";
+export const HELP = "Help";
 export const COUPON_DISCOUNT_FIXED_AMOUNT = "fixedAmount";
 export const COUPON_DISCOUNT_PERCENTAGE = "percentage";
 
