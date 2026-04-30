@@ -23,6 +23,7 @@ type Props = {
   activeTab: ContentTab;
   onCreate: () => void;
   onCancel: () => void;
+  onCreateCoupon?: () => void;
   onSave: () => void;
 };
 
@@ -30,6 +31,7 @@ export default function ContentsHeaderAction({
   activeTab,
   onCreate,
   onCancel,
+  onCreateCoupon,
   onSave,
 }: Props) {
   const { t } = useTranslation();
@@ -64,7 +66,7 @@ export default function ContentsHeaderAction({
 
   if (activeTab === COUPONS) {
     return (
-      <CreateButton type="button" onClick={onCreate}>
+      <CreateButton type="button" onClick={onCreateCoupon}>
         <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
         <MonoText $use="Body_Medium" color="inherit">
           {t("contents.actions.createCoupon")}

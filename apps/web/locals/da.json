@@ -700,6 +700,8 @@
     "optional": "valgfrit",
     "save": "Save",
     "cancel": "Cancel",
+    "back": "Tilbage",
+    "close": "Luk",
     "previous": "Forrige",
     "next": "Næste"
   },
@@ -906,10 +908,28 @@
     "title": "Indhold",
     "actions": {
       "createCollection": "Opret samling",
+      "createCoupon": "Opret kupon",
       "search": "Sog indhold",
       "cancel": "Annuller",
       "save": "Gem",
       "deleteContent": "Delete content"
+    },
+    "couponDetails": {
+      "title": "Kupondetaljer",
+      "fields": {
+        "title": "Titel"
+      },
+      "placeholders": {
+        "title": "Indtast kort titel",
+        "discountAmount": "Indtast rabatbeloeb",
+        "discountPercentage": "Indtast rabatprocent"
+      },
+      "discountValue": "Rabatvaerdi",
+      "discountHelp": "Indtast det rabatbeloeb eller den procentdel, du vil tilbyde.",
+      "discountType": {
+        "fixedAmount": "Fast beloeb",
+        "percentage": "Procent"
+      }
     },
     "tabs": {
       "collections": "Samlinger",
