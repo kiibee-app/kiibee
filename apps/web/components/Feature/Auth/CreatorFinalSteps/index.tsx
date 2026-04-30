@@ -15,6 +15,12 @@ import { MonoText } from "@/components/UI/Monotext";
 import { INPUT_TYPE } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import {
+  DEFAULT_PAYMENT_METHOD,
+  DEFAULT_PLAN,
+  PaymentMethod,
+  Plan,
+} from "@/utils/creatorFinalSteps";
+import {
   Card,
   Fields,
   Form,
@@ -30,9 +36,6 @@ import {
   SubmitButton,
   Title,
 } from "./styles";
-
-type Plan = "startup" | "growth" | "pro";
-type PaymentMethod = "card" | "mobilepay";
 
 type FormValues = {
   cardNumber: string;
@@ -50,15 +53,20 @@ const INITIAL_FORM_VALUES: FormValues = {
 
 export default function CreatorFinalSteps() {
   const { t } = useTranslation();
-  const [selectedPlan, setSelectedPlan] = useState<Plan>("startup");
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
+  const [selectedPlan, setSelectedPlan] = useState<Plan>(DEFAULT_PLAN);
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(
+    DEFAULT_PAYMENT_METHOD,
+  );
   const [formValues, setFormValues] = useState<FormValues>(INITIAL_FORM_VALUES);
 
   const planOptions = useMemo(
     () => [
+      { value: "tryKiibee", label: t("creatorFinalSteps.plans.tryKiibee") },
       { value: "startup", label: t("creatorFinalSteps.plans.startup") },
-      { value: "growth", label: t("creatorFinalSteps.plans.growth") },
-      { value: "pro", label: t("creatorFinalSteps.plans.pro") },
+      {
+        value: "professional",
+        label: t("creatorFinalSteps.plans.professional"),
+      },
     ],
     [t],
   );

@@ -150,9 +150,9 @@
     "logoAlt": "Kiibee",
     "title": "Final steps",
     "plans": {
-      "startup": "Try Kiibee (0 KR)",
-      "growth": "Start up (99 KR)",
-      "pro": "Professional (299 KR)"
+      "tryKiibee": "Try Kiibee (0 KR)",
+      "startup": "Start up (99 KR)",
+      "professional": "Professional (299 KR)"
     },
     "payment": {
       "card": "Visa or Mastercard",

@@ -150,9 +150,9 @@
     "logoAlt": "Kiibee",
     "title": "Sidste trin",
     "plans": {
+      "tryKiibee": "Try Kiibee (0 KR)",
       "startup": "Start-up (99 KR)",
-      "growth": "Growth (129 KR)",
-      "pro": "Pro (399 KR)"
+      "professional": "Professional (299 KR)"
     },
     "payment": {
       "card": "Visa eller Mastercard",
