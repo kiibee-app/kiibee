@@ -680,6 +680,29 @@
       }
     }
   },
+  "subscriptionPage": {
+    "logoAlt": "Kiibee Logo",
+    "title": "Choose the right plan to get your account started",
+    "comparePlans": "Compare plans and features",
+    "continue": "Continue",
+    "plans": {
+      "tryKiibee": {
+        "name": "Try Kiibee",
+        "meta": "Max. 2 files",
+        "price": "0 KR/mo"
+      },
+      "startUp": {
+        "name": "Start-up",
+        "meta": "Max. 10 files",
+        "price": "99 KR/mo"
+      },
+      "pro": {
+        "name": "Pro",
+        "meta": "Max. 70 files",
+        "price": "299 KR/mo"
+      }
+    }
+  },
   "pricingFaq": {
     "title": "FAQ",
     "items": [
