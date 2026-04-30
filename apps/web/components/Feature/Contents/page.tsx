@@ -32,6 +32,7 @@ import GenericTabs from "@/components/UI/GenericTabs";
 import InfoTextCard from "@/components/UI/InfoTextCard";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "./CouponDetailsModal";
+import CouponCodesModal from "./CouponCodesModal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -44,6 +45,7 @@ export default function CreatorsContents() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
   const [showCouponDetails, setShowCouponDetails] = useState(false);
+  const [showCouponCodes, setShowCouponCodes] = useState(false);
   const handleCreateClick = () => {
     switch (activeTab) {
       case COUPONS:
@@ -189,7 +191,24 @@ export default function CreatorsContents() {
 
       <CouponDetailsModal
         visible={showCouponDetails}
-        onClose={() => setShowCouponDetails(false)}
+        onClose={() => {
+          setShowCouponDetails(false);
+          setShowCouponCodes(false);
+        }}
+        onNext={() => {
+          setShowCouponDetails(false);
+          setShowCouponCodes(true);
+        }}
+      />
+
+      <CouponCodesModal
+        visible={showCouponCodes}
+        onBack={() => {
+          setShowCouponCodes(false);
+          setShowCouponDetails(true);
+        }}
+        onClose={() => setShowCouponCodes(false)}
+        onNext={() => setShowCouponCodes(false)}
       />
     </PageShell>
   );

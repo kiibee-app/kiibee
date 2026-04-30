@@ -1,0 +1,98 @@
+"use client";
+
+import React, { useId, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { BackButtonIcon } from "@/assets/icons";
+import { GenericModal } from "@/components/UI/Modals";
+import {
+  BackButton,
+  FieldGroup,
+  FieldLabel,
+  HelperText,
+  ModalContent,
+  ModalTitle,
+} from "./CouponModalShared.styles";
+import {
+  CodesFormShell,
+  CodesHelperText,
+  CodesLimitText,
+  CodesMetaRow,
+  CodesNextButton,
+  CouponCodesInput,
+} from "./CouponCodesModal.styles";
+
+const COUPON_CODES_LIMIT = 100;
+
+type CouponCodesModalProps = {
+  visible: boolean;
+  onBack: () => void;
+  onClose: () => void;
+  onNext: () => void;
+};
+
+export default function CouponCodesModal({
+  visible,
+  onBack,
+  onClose,
+  onNext,
+}: CouponCodesModalProps) {
+  const { t } = useTranslation();
+  const codesId = useId();
+  const helperId = useId();
+  const [codes, setCodes] = useState("");
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onNext();
+  };
+
+  return (
+    <GenericModal
+      visible={visible}
+      onClose={onClose}
+      width="670px"
+      height="480px"
+      padding="20px"
+      borderRadius="20px"
+    >
+      <ModalContent>
+        <BackButton
+          type="button"
+          aria-label={t("common.back")}
+          onClick={onBack}
+        >
+          <BackButtonIcon size={28} strokeWidth={2.5} />
+        </BackButton>
+
+        <CodesFormShell onSubmit={handleSubmit}>
+          <ModalTitle id="coupon-codes-title">
+            {t("contents.couponCodes.title")}
+          </ModalTitle>
+
+          <FieldGroup>
+            <FieldLabel htmlFor={codesId}>
+              {t("contents.couponCodes.fields.discountCodes")}
+            </FieldLabel>
+            <HelperText>{t("contents.couponCodes.description")}</HelperText>
+            <CouponCodesInput
+              id={codesId}
+              value={codes}
+              maxLength={COUPON_CODES_LIMIT}
+              aria-describedby={helperId}
+              placeholder={t("contents.couponCodes.placeholders.codes")}
+              onChange={(event) => setCodes(event.target.value)}
+            />
+            <CodesMetaRow id={helperId}>
+              <CodesHelperText>
+                {t("contents.couponCodes.helper")}
+              </CodesHelperText>
+              <CodesLimitText>{COUPON_CODES_LIMIT}</CodesLimitText>
+            </CodesMetaRow>
+          </FieldGroup>
+
+          <CodesNextButton type="submit">{t("common.next")}</CodesNextButton>
+        </CodesFormShell>
+      </ModalContent>
+    </GenericModal>
+  );
+}
