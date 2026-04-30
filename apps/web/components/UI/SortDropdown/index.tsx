@@ -31,7 +31,7 @@ type Props<T extends string = string> = {
   renderOptionLabel?: (option: DropdownOption<T>) => React.ReactNode;
   width?: string;
   maxWidth?: string;
-  variant?: "default" | "surface";
+  variant?: "default" | "surface" | "paleGreen";
 };
 
 function SortDropdown<T extends string = string>({

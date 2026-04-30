@@ -146,6 +146,27 @@
       "submit": "Send anmodning"
     }
   },
+  "creatorFinalSteps": {
+    "logoAlt": "Kiibee",
+    "title": "Sidste trin",
+    "plans": {
+      "startup": "Start-up (99 KR)",
+      "growth": "Growth (129 KR)",
+      "pro": "Pro (399 KR)"
+    },
+    "payment": {
+      "card": "Visa eller Mastercard",
+      "mobilePay": "MobilePay"
+    },
+    "fields": {
+      "payment": "Betalingsmetode",
+      "cardNumber": "Kortnummer",
+      "cardholderName": "Kortholders navn",
+      "expiryDate": "Udlobsdato",
+      "cvc": "CVC"
+    },
+    "submit": "Opret en konto"
+  },
   "how": {
     "heroAlt": "Kiibee hero-billede",
     "title": "Stream eller ej — indholdet du elsker",

@@ -146,6 +146,27 @@
       "submit": "Submit request"
     }
   },
+  "creatorFinalSteps": {
+    "logoAlt": "Kiibee",
+    "title": "Final steps",
+    "plans": {
+      "startup": "Try Kiibee (0 KR)",
+      "growth": "Start up (99 KR)",
+      "pro": "Professional (299 KR)"
+    },
+    "payment": {
+      "card": "Visa or Mastercard",
+      "mobilePay": "MobilePay"
+    },
+    "fields": {
+      "payment": "Payment method",
+      "cardNumber": "Card number",
+      "cardholderName": "Cardholder name",
+      "expiryDate": "Expiry date",
+      "cvc": "CVC"
+    },
+    "submit": "Create an account"
+  },
   "how": {
     "heroAlt": "Kiibee hero image",
     "title": "Stream or own the content you love",
