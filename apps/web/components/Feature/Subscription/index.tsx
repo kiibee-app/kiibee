@@ -8,8 +8,10 @@ import { BackButtonIcon } from "@/assets/icons";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import {
   PASSWORD_VISIBILITY_KEY,
+  SUBSCRIPTION_STEP,
   type PasswordVisibilityKey,
 } from "@/utils/Constants";
+import { COMMON, SUBSCRIPTION } from "@/utils/translationKeys";
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
 import SubscriptionDetailsForm from "./SubscriptionDetailsForm";
 import SubscriptionPlanStep from "./SubscriptionPlanStep";
@@ -21,10 +23,6 @@ import {
   SubscriptionShell,
 } from "./styles";
 
-const SUBSCRIPTION_STEP = {
-  PLAN: "plan",
-  DETAILS: "details",
-} as const;
 type SubscriptionStep =
   (typeof SUBSCRIPTION_STEP)[keyof typeof SUBSCRIPTION_STEP];
 
@@ -76,7 +74,7 @@ export default function SubscriptionSection() {
             <BackActionButton
               type="button"
               onClick={() => setCurrentStep(SUBSCRIPTION_STEP.PLAN)}
-              aria-label={t("common.back")}
+              aria-label={t(COMMON.back)}
             >
               <BackButtonIcon
                 size={40}
@@ -90,7 +88,7 @@ export default function SubscriptionSection() {
         <Content>
           <Image
             src={logo}
-            alt={t("subscriptionPage.logoAlt")}
+            alt={t(SUBSCRIPTION.logoAlt)}
             width={42}
             height={42}
           />

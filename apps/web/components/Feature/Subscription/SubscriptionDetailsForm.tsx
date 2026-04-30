@@ -10,6 +10,7 @@ import {
   type PasswordVisibilityKey,
 } from "@/utils/Constants";
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
+import { SUBSCRIPTION } from "@/utils/translationKeys";
 import { INPUT_TYPE } from "@/utils/ui";
 import {
   ContinueButton,
@@ -88,18 +89,18 @@ export default function SubscriptionDetailsForm({
 
       <FieldGrid>
         <StyledInputField
-          label={t("subscriptionPage.creatorDetails.email")}
+          label={t(SUBSCRIPTION.creatorDetails.email)}
           labelFontStyle="Body_Regular"
           labelMarginTop="0"
           type={INPUT_TYPE.EMAIL}
-          placeholder={t("subscriptionPage.creatorDetails.email")}
+          placeholder={t(SUBSCRIPTION.creatorDetails.email)}
           value={email}
           onChange={(value) => onEmailChange(String(value))}
         />
 
         <TwoColumnRow>
           <StyledInputField
-            label={t("subscriptionPage.creatorDetails.password")}
+            label={t(SUBSCRIPTION.creatorDetails.password)}
             labelFontStyle="Body_Regular"
             labelMarginTop="0"
             type={
@@ -107,7 +108,7 @@ export default function SubscriptionDetailsForm({
                 ? INPUT_TYPE.TEXT
                 : INPUT_TYPE.PASSWORD
             }
-            placeholder={t("subscriptionPage.creatorDetails.password")}
+            placeholder={t(SUBSCRIPTION.creatorDetails.password)}
             value={password}
             onChange={(value) => onPasswordChange(String(value))}
             icon={
@@ -119,7 +120,7 @@ export default function SubscriptionDetailsForm({
           />
 
           <StyledInputField
-            label={t("subscriptionPage.creatorDetails.repeatPassword")}
+            label={t(SUBSCRIPTION.creatorDetails.repeatPassword)}
             labelFontStyle="Body_Regular"
             labelMarginTop="0"
             type={
@@ -127,7 +128,7 @@ export default function SubscriptionDetailsForm({
                 ? INPUT_TYPE.TEXT
                 : INPUT_TYPE.PASSWORD
             }
-            placeholder={t("subscriptionPage.creatorDetails.repeatPassword")}
+            placeholder={t(SUBSCRIPTION.creatorDetails.repeatPassword)}
             value={repeatPassword}
             onChange={(value) => onRepeatPasswordChange(String(value))}
             icon={
@@ -147,7 +148,7 @@ export default function SubscriptionDetailsForm({
       </FieldGrid>
 
       <ContinueButton type="submit" disabled={!isSubmitEnabled}>
-        {t("subscriptionPage.continue")}
+        {t(SUBSCRIPTION.continue)}
       </ContinueButton>
     </Form>
   );

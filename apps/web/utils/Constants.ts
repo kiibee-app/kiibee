@@ -71,3 +71,8 @@ export type SortDropdownVariant =
 
 export const VIEW = "view";
 export const APPEARANCE_DEFAULT_HEX_COLOR = "#674096";
+
+export const SUBSCRIPTION_STEP = {
+  PLAN: "plan",
+  DETAILS: "details",
+} as const;

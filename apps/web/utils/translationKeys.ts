@@ -194,6 +194,22 @@ export const SETTINGS = {
   },
 };
 
+export const COMMON = {
+  back: "common.back",
+};
+
+export const SUBSCRIPTION = {
+  logoAlt: "subscriptionPage.logoAlt",
+  title: "subscriptionPage.title",
+  comparePlans: "subscriptionPage.comparePlans",
+  continue: "subscriptionPage.continue",
+  creatorDetails: {
+    email: "subscriptionPage.creatorDetails.email",
+    password: "subscriptionPage.creatorDetails.password",
+    repeatPassword: "subscriptionPage.creatorDetails.repeatPassword",
+  },
+};
+
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
@@ -205,6 +221,8 @@ const TRANSLATION_KEYS = {
   DASHBOARD_USERS,
   CONTENTS,
   SETTINGS,
+  COMMON,
+  SUBSCRIPTION,
 };
 
 export default TRANSLATION_KEYS;

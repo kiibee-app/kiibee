@@ -2,6 +2,7 @@
 
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
 import { PATHS } from "@/utils/path";
+import { SUBSCRIPTION } from "@/utils/translationKeys";
 import {
   CompareLink,
   FullWidthContinueButton,
@@ -33,7 +34,7 @@ export default function SubscriptionPlanStep({
   return (
     <>
       <Header>
-        <Title>{t("subscriptionPage.title")}</Title>
+        <Title>{t(SUBSCRIPTION.title)}</Title>
       </Header>
 
       <PlanList>
@@ -62,11 +63,11 @@ export default function SubscriptionPlanStep({
       </PlanList>
 
       <CompareLink href={PATHS.PRICING}>
-        {t("subscriptionPage.comparePlans")}
+        {t(SUBSCRIPTION.comparePlans)}
       </CompareLink>
 
       <FullWidthContinueButton type="button" onClick={onContinue}>
-        {t("subscriptionPage.continue")}
+        {t(SUBSCRIPTION.continue)}
       </FullWidthContinueButton>
     </>
   );
