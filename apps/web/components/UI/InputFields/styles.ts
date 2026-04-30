@@ -140,6 +140,7 @@ export const IconWrapper = styled.div`
 export const StyledTextArea = styled.textarea<{
   $hasError?: boolean;
   $locked?: boolean;
+  $variant?: InputVariant;
 }>`
   width: 100%;
   min-height: 110px;
@@ -148,8 +149,16 @@ export const StyledTextArea = styled.textarea<{
     ${({ $hasError, theme }) =>
       $hasError ? theme.colors.primary.RED : "transparent"};
   border-radius: ${({ theme }) => theme.radius.lg};
-  background-color: ${({ $locked, theme }) =>
-    $locked ? theme.colors.neutral.GRAY_200 : theme.colors.neutral.GRAY_100};
+  background: ${({ $hasError, $locked, $variant, theme }) =>
+    $hasError
+      ? `color-mix(in srgb, ${theme.colors.primary.RED} 8%, transparent)`
+      : $locked
+        ? theme.colors.neutral.GRAY_200
+        : $variant === INPUT_VARIANTS.SURFACE
+          ? theme.colors.primary.WHITE
+          : $variant === INPUT_VARIANTS.PRIMARY_GRAY
+            ? theme.colors.primary.GRAY
+            : theme.colors.neutral.GRAY_100};
   resize: vertical;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.Body_Regular};

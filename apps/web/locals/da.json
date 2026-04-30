@@ -98,6 +98,8 @@
       "repeatPassword": "Gentag adgangskode",
       "repeatPasswordPlaceholder": "Gentag ny adgangskode",
       "passwordMismatch": "Adgangskoderne matcher ikke",
+      "fixHighlightedFields": "Udfyld venligst de påkrævede felter.",
+      "signupFailed": "Din konto kunne ikke oprettes. Prøv igen.",
       "consentPrefix": "Jeg accepterer Kiibees",
       "terms": "Vilkår for brug",
       "and": " og ",
@@ -874,12 +876,29 @@
       "type": "Type",
       "typeDesc": "Vælg hvilken type opdateringer du vil modtage",
       "overview": "Oversigt",
+      "form": "Formular",
+      "sales": "Salg",
       "frequency": "Hvor ofte vil du modtage opdateringer?",
       "frequencyDesc": "Vælg hvor ofte du vil modtage e-mailopdateringer",
       "monthly": "Månedligt",
+      "weekly": "Ugentligt",
+      "daily": "Dagligt",
       "recipient": "Modtager",
       "recipientDesc": "Vælg hvor notifikationerne skal sendes hen",
-      "accountEmail": "Kontoe-mail"
+      "accountEmail": "Kontoe-mail",
+      "otherEmail": "Anden e-mail",
+      "enterEmail": "Indtast e-mail",
+      "discardModal": {
+        "title": "Kassér ændringer?",
+        "message": "Er du sikker på, at du vil annullere? Alle ikke-gemte ændringer går tabt.",
+        "goBack": "Gå tilbage",
+        "discard": "Kassér"
+      },
+      "successModal": {
+        "title": "Ændringer gemt",
+        "message": "Dine opdateringer er blevet gemt.",
+        "done": "Færdig"
+      }
     },
     "payout": {
       "title": "Payout",
