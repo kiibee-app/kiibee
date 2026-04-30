@@ -6,6 +6,10 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import { BackButtonIcon } from "@/assets/icons";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
+import {
+  PASSWORD_VISIBILITY_KEY,
+  type PasswordVisibilityKey,
+} from "@/utils/Constants";
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
 import SubscriptionDetailsForm from "./SubscriptionDetailsForm";
 import SubscriptionPlanStep from "./SubscriptionPlanStep";
@@ -17,14 +21,23 @@ import {
   SubscriptionShell,
 } from "./styles";
 
+const SUBSCRIPTION_STEP = {
+  PLAN: "plan",
+  DETAILS: "details",
+} as const;
+type SubscriptionStep =
+  (typeof SUBSCRIPTION_STEP)[keyof typeof SUBSCRIPTION_STEP];
+
 export default function SubscriptionSection() {
   const { t } = useTranslation();
   const theme = useTheme();
   const [selectedPlan, setSelectedPlan] = useState(subscriptionPlans[1].id);
-  const [currentStep, setCurrentStep] = useState<"plan" | "details">("plan");
+  const [currentStep, setCurrentStep] = useState<SubscriptionStep>(
+    SUBSCRIPTION_STEP.PLAN,
+  );
   const [passwordVisibility, setPasswordVisibility] = useState({
-    password: false,
-    repeatPassword: false,
+    [PASSWORD_VISIBILITY_KEY.PASSWORD]: false,
+    [PASSWORD_VISIBILITY_KEY.REPEAT_PASSWORD]: false,
   });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,17 +53,15 @@ export default function SubscriptionSection() {
   };
 
   const handleContinue = () => {
-    if (currentStep === "plan") {
-      setCurrentStep("details");
+    if (currentStep === SUBSCRIPTION_STEP.PLAN) {
+      setCurrentStep(SUBSCRIPTION_STEP.DETAILS);
     }
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
-  const handleTogglePasswordVisibility = (
-    key: "password" | "repeatPassword",
-  ) => {
+  const handleTogglePasswordVisibility = (key: PasswordVisibilityKey) => {
     setPasswordVisibility((prev) => ({
       ...prev,
       [key]: !prev[key],
@@ -60,11 +71,11 @@ export default function SubscriptionSection() {
   return (
     <SubscriptionShell>
       <SubscriptionPageInner>
-        {currentStep === "details" && (
+        {currentStep === SUBSCRIPTION_STEP.DETAILS && (
           <BackRow>
             <BackActionButton
               type="button"
-              onClick={() => setCurrentStep("plan")}
+              onClick={() => setCurrentStep(SUBSCRIPTION_STEP.PLAN)}
               aria-label={t("common.back")}
             >
               <BackButtonIcon
@@ -84,7 +95,7 @@ export default function SubscriptionSection() {
             height={42}
           />
 
-          {currentStep === "plan" ? (
+          {currentStep === SUBSCRIPTION_STEP.PLAN ? (
             <SubscriptionPlanStep
               selectedPlan={selectedPlan}
               onSelectPlan={setSelectedPlan}

@@ -4,6 +4,11 @@ import type React from "react";
 import { useMemo } from "react";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import SortDropdown from "@/components/UI/SortDropdown";
+import {
+  PASSWORD_VISIBILITY_KEY,
+  SORT_DROPDOWN_VARIANT,
+  type PasswordVisibilityKey,
+} from "@/utils/Constants";
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
 import { INPUT_TYPE } from "@/utils/ui";
 import {
@@ -28,7 +33,7 @@ type SubscriptionDetailsFormProps = {
     password: boolean;
     repeatPassword: boolean;
   };
-  onTogglePasswordVisibility: (key: "password" | "repeatPassword") => void;
+  onTogglePasswordVisibility: (key: PasswordVisibilityKey) => void;
   isSubmitEnabled: boolean;
   getPlanPriceLabel: (planId: string) => string;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -77,7 +82,7 @@ export default function SubscriptionDetailsForm({
           )}
           width="100%"
           maxWidth="312px"
-          variant="surface"
+          variant={SORT_DROPDOWN_VARIANT.SUCCESS}
         />
       </PlanSelectRow>
 
@@ -108,7 +113,9 @@ export default function SubscriptionDetailsForm({
             icon={
               passwordVisibility.password ? <EyeOpenIcon /> : <EyeClosedIcon />
             }
-            onIconClick={() => onTogglePasswordVisibility("password")}
+            onIconClick={() =>
+              onTogglePasswordVisibility(PASSWORD_VISIBILITY_KEY.PASSWORD)
+            }
           />
 
           <StyledInputField
@@ -130,7 +137,11 @@ export default function SubscriptionDetailsForm({
                 <EyeClosedIcon />
               )
             }
-            onIconClick={() => onTogglePasswordVisibility("repeatPassword")}
+            onIconClick={() =>
+              onTogglePasswordVisibility(
+                PASSWORD_VISIBILITY_KEY.REPEAT_PASSWORD,
+              )
+            }
           />
         </TwoColumnRow>
       </FieldGrid>

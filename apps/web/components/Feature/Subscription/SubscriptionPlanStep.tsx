@@ -1,6 +1,7 @@
 "use client";
 
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
+import { PATHS } from "@/utils/path";
 import {
   CompareLink,
   FullWidthContinueButton,
@@ -60,7 +61,7 @@ export default function SubscriptionPlanStep({
         })}
       </PlanList>
 
-      <CompareLink href="/pricing">
+      <CompareLink href={PATHS.PRICING}>
         {t("subscriptionPage.comparePlans")}
       </CompareLink>
 

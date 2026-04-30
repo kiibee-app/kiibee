@@ -20,7 +20,7 @@ export const SubscriptionShell = styled.section`
 
 export const SubscriptionPageInner = styled.div`
   width: 100%;
-  max-width: 860px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(5)}
     ${({ theme }) => theme.spacing(8)};
@@ -28,7 +28,6 @@ export const SubscriptionPageInner = styled.div`
 
 export const BackRow = styled.div`
   width: 100%;
-  max-width: 649px;
   margin: 0 auto;
   margin-bottom: ${({ theme }) => theme.spacing(4)};
 `;
@@ -211,6 +210,7 @@ export const ContinueButton = styled(GenericButton)`
   align-self: center;
   width: 312px;
   margin-top: 20px;
+  border: none;
 
   &:disabled {
     background: ${({ theme }) => theme.colors.neutral.GRAY_400};
