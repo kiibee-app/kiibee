@@ -1,4 +1,6 @@
 import { CONTENTS } from "@/utils/translationKeys";
+import { INPUT_TYPE } from "./ui";
+import { maxReceiptCharacters } from "./Constants";
 
 export const TEXT_COLOR_VALUES = {
   FOLLOW_THEME: "follow-theme",
@@ -34,5 +36,29 @@ export const getButtonColorOptions = (t: (key: string) => string) => [
   {
     value: BUTTON_COLOR_VALUES.CUSTOM,
     label: t(CONTENTS.appearance.chooseColor),
+  },
+];
+
+export const getReceiptFields = (form: {
+  receiptMessage: string;
+  supportEmail: string;
+}) => [
+  {
+    key: "receiptMessage" as const,
+    type: INPUT_TYPE.TEXTAREA,
+    label: CONTENTS.appearance.receipt,
+    hint: CONTENTS.appearance.receiptHint,
+    placeholder: CONTENTS.appearance.receiptPlaceholder,
+    value: form.receiptMessage,
+    limit: maxReceiptCharacters,
+    showCounter: true,
+  },
+  {
+    key: "supportEmail" as const,
+    type: INPUT_TYPE.EMAIL,
+    label: CONTENTS.appearance.supportEmail,
+    hint: CONTENTS.appearance.supportEmailHint,
+    placeholder: CONTENTS.appearance.supportEmailPlaceholder,
+    value: form.supportEmail,
   },
 ];

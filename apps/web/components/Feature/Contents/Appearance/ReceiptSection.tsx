@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import { INPUT_VARIANTS, maxReceiptCharacters } from "@/utils/Constants";
@@ -16,7 +16,7 @@ import {
   Row,
   SectionList,
 } from "./styles";
-import { INPUT_TYPE } from "@/utils/ui";
+import { getReceiptFields } from "@/utils/appearance";
 
 type FormState = {
   receiptMessage: string;
@@ -30,8 +30,6 @@ export default function ReceiptSection() {
     receiptMessage: "",
     supportEmail: "",
   });
-
-  const receiptLength = form.receiptMessage.length;
 
   const normalizeValue = (value: string | string[]) =>
     Array.isArray(value) ? value.join("") : value;
@@ -48,53 +46,49 @@ export default function ReceiptSection() {
     [],
   );
 
+  const fields = useMemo(
+    () =>
+      getReceiptFields({
+        receiptMessage: form.receiptMessage,
+        supportEmail: form.supportEmail,
+      }),
+    [form],
+  );
+
   return (
     <AppearancePanel>
       <SectionList>
-        <Row>
-          <Copy>
-            <Label>{t(CONTENTS.appearance.receipt)}</Label>
-            <Hint>{t(CONTENTS.appearance.receiptHint)}</Hint>
-          </Copy>
+        {fields.map((field) => (
+          <Row key={field.key}>
+            <Copy>
+              <Label>{t(field.label)}</Label>
+              <Hint>{t(field.hint)}</Hint>
+            </Copy>
 
-          <ControlWrap>
-            <InputField
-              type={INPUT_TYPE.TEXTAREA}
-              value={form.receiptMessage}
-              onChange={handleChange("receiptMessage", maxReceiptCharacters)}
-              placeholder={t(CONTENTS.appearance.receiptPlaceholder)}
-              width="100%"
-              height="46px"
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-            />
-          </ControlWrap>
+            <ControlWrap>
+              <InputField
+                type={field.type}
+                value={field.value}
+                onChange={handleChange(field.key, field.limit)}
+                placeholder={t(field.placeholder)}
+                width="100%"
+                height="46px"
+                variant={INPUT_VARIANTS.PRIMARY_GRAY}
+              />
+            </ControlWrap>
 
-          <CounterRow>
-            <CounterText>{t(CONTENTS.appearance.maximumCharacter)}</CounterText>
-            <CounterText>
-              {receiptLength}/{maxReceiptCharacters}
-            </CounterText>
-          </CounterRow>
-        </Row>
-
-        <Row>
-          <Copy>
-            <Label>{t(CONTENTS.appearance.supportEmail)}</Label>
-            <Hint>{t(CONTENTS.appearance.supportEmailHint)}</Hint>
-          </Copy>
-
-          <ControlWrap>
-            <InputField
-              type={INPUT_TYPE.EMAIL}
-              value={form.supportEmail}
-              onChange={handleChange("supportEmail")}
-              placeholder={t(CONTENTS.appearance.supportEmailPlaceholder)}
-              width="100%"
-              height="46px"
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-            />
-          </ControlWrap>
-        </Row>
+            {field.showCounter && (
+              <CounterRow>
+                <CounterText>
+                  {t(CONTENTS.appearance.maximumCharacter)}
+                </CounterText>
+                <CounterText>
+                  {form.receiptMessage.length}/{maxReceiptCharacters}
+                </CounterText>
+              </CounterRow>
+            )}
+          </Row>
+        ))}
       </SectionList>
     </AppearancePanel>
   );
