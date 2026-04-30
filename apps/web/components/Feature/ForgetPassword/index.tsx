@@ -23,7 +23,6 @@ import { INPUT_TYPE } from "@/utils/ui";
 
 export default function ForgetPasswordForm() {
   const { t } = useTranslation();
-
   const [email, setEmail] = useState("");
   const [isSent, setIsSent] = useState(false);
 
