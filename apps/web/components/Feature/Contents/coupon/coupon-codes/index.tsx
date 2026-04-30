@@ -11,7 +11,7 @@ import {
   HelperText,
   ModalContent,
   ModalTitle,
-} from "./CouponModalShared.styles";
+} from "../styles";
 import {
   CodesFormShell,
   CodesHelperText,
@@ -19,7 +19,7 @@ import {
   CodesMetaRow,
   CodesNextButton,
   CouponCodesInput,
-} from "./CouponCodesModal.styles";
+} from "./styles";
 
 const COUPON_CODES_LIMIT = 100;
 

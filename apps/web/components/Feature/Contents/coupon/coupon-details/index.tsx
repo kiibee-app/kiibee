@@ -19,8 +19,8 @@ import {
   ModalContent,
   ModalTitle,
   NextButton,
-} from "./CouponModalShared.styles";
-import { CouponInput, SectionTitle } from "./CouponDetailsModal.styles";
+} from "../styles";
+import { CouponInput, SectionTitle } from "./styles";
 
 type CouponDetailsModalProps = {
   visible: boolean;

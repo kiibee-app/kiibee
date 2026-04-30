@@ -31,8 +31,8 @@ import ContentsHeaderAction from "./ContentsHeaderAction";
 import GenericTabs from "@/components/UI/GenericTabs";
 import InfoTextCard from "@/components/UI/InfoTextCard";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
-import CouponDetailsModal from "./CouponDetailsModal";
-import CouponCodesModal from "./CouponCodesModal";
+import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
+import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();

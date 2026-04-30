@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { typography } from "@repo/ui/typography";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
-import { FormShell, NextButton } from "./CouponModalShared.styles";
+import { FormShell, NextButton } from "../styles";
 
 export const CodesFormShell = styled(FormShell)`
   min-height: 330px;
