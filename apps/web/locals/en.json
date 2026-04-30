@@ -77,18 +77,6 @@
     "rememberPassword": "Remember your password?",
     "login": "Log in"
   },
-  "resetPassword": {
-    "title": "Create a new password",
-    "description": "Enter your new password below to complete the reset process.",
-    "newPasswordLabel": "New password",
-    "newPasswordPlaceholder": "New password",
-    "repeatPasswordLabel": "Repeat new password",
-    "repeatPasswordPlaceholder": "Repeat new password",
-    "submit": "Reset",
-    "successTitle": "Your password has been successfully reset!",
-    "successDescription": "You can now log in with your new password. If you encounter any issues, please contact support.",
-    "backToLogin": "Back to login"
-  },
   "viewerSignup": {
     "title": "Create viewer account",
     "heading": "Create Viewer Account",
@@ -1120,5 +1108,17 @@
       "message": "Your updates have been successfully saved.",
       "done": "Done"
     }
+  },
+  "resetPassword": {
+    "title": "Create a new password",
+    "description": "Enter your new password below to complete the reset process.",
+    "newPasswordLabel": "New password",
+    "newPasswordPlaceholder": "New password",
+    "repeatPasswordLabel": "Repeat new password",
+    "repeatPasswordPlaceholder": "Repeat new password",
+    "submit": "Reset",
+    "successTitle": "Your password has been successfully reset!",
+    "successDescription": "You can now log in with your new password. If you encounter any issues, please contact support.",
+    "backToLogin": "Back to login"
   }
 }
