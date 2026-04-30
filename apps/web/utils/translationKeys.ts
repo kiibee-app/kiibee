@@ -95,6 +95,17 @@ export const CREATOR_PROFILE = {
   accountDeletionTitle: "creatorProfile.accountDeletionTitle",
   accountDeletionText: "creatorProfile.accountDeletionText",
   deleteAccount: "creatorProfile.deleteAccount",
+  deleteModal: {
+    title: "creatorProfile.deleteModal.title",
+    message: "creatorProfile.deleteModal.message",
+    cancel: "creatorProfile.deleteModal.cancel",
+    confirm: "creatorProfile.deleteModal.confirm",
+  },
+  deleteSuccessModal: {
+    title: "creatorProfile.deleteSuccessModal.title",
+    message: "creatorProfile.deleteSuccessModal.message",
+    confirm: "creatorProfile.deleteSuccessModal.confirm",
+  },
 };
 
 export const DASHBOARD_USERS = {
