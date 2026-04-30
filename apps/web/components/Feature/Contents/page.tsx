@@ -202,7 +202,7 @@ export default function CreatorsContents() {
         onClose={() => setShowDiscardModal(false)}
         onConfirm={() => setShowDiscardModal(false)}
         width="480px"
-        padding="40px 30px"
+        padding="40px 44px"
         fullWidthButtons
         buttonRow
         showCloseButton={false}
