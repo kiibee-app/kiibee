@@ -846,6 +846,39 @@
       "body2": "Hvis du har brug for hjaelp nu, kan du kontakte os via supportsiden."
     }
   },
+  "users": {
+    "tabs": {
+      "registrations": "Registreringer (11)",
+      "salest": "Salg (50)"
+    },
+    "registrations": {
+      "title": "E-mail tilmeldinger",
+      "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse.",
+      "tableHeaders": {
+        "name": "Navn",
+        "email": "E-mail",
+        "date": "Dato",
+        "action": "Handling"
+      },
+      "deleteModal": {
+        "title": "Slet?",
+        "message": "Er du sikker på, at du vil slette disse data? Handlingen kan ikke fortrydes.",
+        "cancel": "Annuller",
+        "delete": "Slet"
+      }
+    },
+    "salest": {
+      "title": "Salg",
+      "description": "Her finder du en samlet oversigt over alt dit salg",
+      "tableHeaders": {
+        "name": "Navn",
+        "email": "E-mail",
+        "price": "Pris",
+        "type": "Type",
+        "date": "Dato"
+      }
+    }
+  },
   "dashboard": {
     "overview": "Oversigt",
     "noData": "Ingen data fundet",
@@ -856,13 +889,36 @@
       "confirm": "Log ud"
     },
     "users": {
+      "tabs": {
+        "registrations": "Registreringer (11)",
+        "salest": "Salg (50)"
+      },
       "registrations": {
         "title": "E-mail tilmeldinger",
-        "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse."
+        "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse.",
+        "tableHeaders": {
+          "name": "Navn",
+          "email": "E-mail",
+          "date": "Dato",
+          "action": "Handling"
+        },
+        "deleteModal": {
+          "title": "Slet?",
+          "message": "Er du sikker på, at du vil slette disse data? Handlingen kan ikke fortrydes.",
+          "cancel": "Annuller",
+          "delete": "Slet"
+        }
       },
       "salest": {
         "title": "Salg",
-        "description": "Her finder du en samlet oversigt over alt dit salg"
+        "description": "Her finder du en samlet oversigt over alt dit salg",
+        "tableHeaders": {
+          "name": "Navn",
+          "email": "E-mail",
+          "price": "Pris",
+          "type": "Type",
+          "date": "Dato"
+        }
       }
     },
     "contentName": "Indholdsnavn",

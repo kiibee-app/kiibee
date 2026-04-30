@@ -7,9 +7,11 @@ import {
   DesktopRow,
   DesktopHeaderRow,
   TableHead,
+  HeaderContent,
   TableCell,
   NoDataCell,
 } from "./styles";
+import { DirectionIcon } from "@/assets/icons";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { BaseTableProps } from "@/types/tableContract";
@@ -29,6 +31,9 @@ export default function DesktopTable<T extends Record<string, unknown>>({
   emptyText,
   hasData,
   pagination,
+  onHeaderClick,
+  isHeaderSortable,
+  getHeaderSortDirection,
 }: BaseTableProps<T>) {
   const { t } = useTranslation();
 
@@ -50,16 +55,40 @@ export default function DesktopTable<T extends Record<string, unknown>>({
     <TableWrapper>
       <thead>
         <DesktopHeaderRow>
-          {headers.map((header, index) => (
-            <TableHead
-              key={header}
-              $align={getColumnAlignment?.(header, index)}
-            >
-              <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-                {header}
-              </MonoText>
-            </TableHead>
-          ))}
+          {headers.map((header, index) => {
+            const sortable = isHeaderSortable?.(header, index) ?? false;
+            const sortDirection = getHeaderSortDirection?.(header) ?? null;
+
+            return (
+              <TableHead
+                key={header}
+                $align={getColumnAlignment?.(header, index)}
+                $clickable={sortable}
+                onClick={
+                  sortable ? () => onHeaderClick?.(header, index) : undefined
+                }
+              >
+                <HeaderContent>
+                  <MonoText
+                    $use="Body_Medium"
+                    color={
+                      sortDirection ? COLORS.primary.BLACK : COLORS.neutral.GRAY
+                    }
+                  >
+                    {header}
+                  </MonoText>
+                  {sortDirection ? (
+                    <DirectionIcon
+                      width={12}
+                      height={12}
+                      direction={sortDirection}
+                      color={COLORS.primary.BLACK}
+                    />
+                  ) : null}
+                </HeaderContent>
+              </TableHead>
+            );
+          })}
         </DesktopHeaderRow>
       </thead>
 

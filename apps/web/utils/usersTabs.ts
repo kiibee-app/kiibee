@@ -1,6 +1,6 @@
 export const USER_TABS = [
-  { key: "registrations", label: "Registrations (11)" },
-  { key: "salest", label: "Salest (50)" },
+  { key: "registrations", labelKey: "users.tabs.registrations" },
+  { key: "salest", labelKey: "users.tabs.salest" },
 ] as const;
 
 export type UserTabKey = (typeof USER_TABS)[number]["key"];

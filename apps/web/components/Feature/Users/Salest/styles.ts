@@ -27,3 +27,7 @@ export const SectionDescription = styled.p`
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
 `;
+
+export const TableSection = styled.div`
+  margin-top: 16px;
+`;
