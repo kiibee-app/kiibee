@@ -153,6 +153,7 @@ export default function CreatorFinalSteps() {
             <InputField
               id="creator-card-number"
               label={t("creatorFinalSteps.fields.cardNumber")}
+              placeholder={t("creatorFinalSteps.fields.cardNumber")}
               labelFontStyle="Body_Regular"
               labelMarginTop="0"
               type={INPUT_TYPE.TEXT}
@@ -163,13 +164,14 @@ export default function CreatorFinalSteps() {
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               height="38px"
               icon={
-                <CardIcon width={18} height={18} color={COLORS.primary.BLUE} />
+                <CardIcon width={18} height={18} color={COLORS.primary.BLACK} />
               }
             />
 
             <InputField
               id="creator-cardholder-name"
               label={t("creatorFinalSteps.fields.cardholderName")}
+              placeholder={t("creatorFinalSteps.fields.cardholderName")}
               labelFontStyle="Body_Regular"
               labelMarginTop="0"
               type={INPUT_TYPE.TEXT}
@@ -203,6 +205,7 @@ export default function CreatorFinalSteps() {
               <InputField
                 id="creator-card-cvc"
                 label={t("creatorFinalSteps.fields.cvc")}
+                placeholder={t("creatorFinalSteps.fields.cvc")}
                 labelFontStyle="Body_Regular"
                 labelMarginTop="0"
                 type={INPUT_TYPE.TEXT}
