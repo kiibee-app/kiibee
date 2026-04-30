@@ -16,6 +16,7 @@ import { TokenService } from './services/token.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
+import { ResetPasswordDto } from './dto/resetPassword.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -171,6 +172,17 @@ export class AuthController {
   @Post('creator/setup')
   async setupCreatorAccount(@Body() payload: CreatorAccountSetupDto) {
     const result = await this.authService.setupCreatorAccount(payload);
+    return result;
+  }
+
+  @Post('forget-password')
+  async forgetPassword(@Body('email') email: string) {
+    const result = await this.authService.forgetPassword(email);
+    return result;
+  }
+  @Post('reset-password')
+  async resetPassword(@Body() payload: ResetPasswordDto) {
+    const result = await this.authService.resetPassword(payload);
     return result;
   }
 }
