@@ -11,7 +11,7 @@ export const Wrapper = styled.section`
   position: relative;
   margin: 0 auto;
   padding: 30px 24px 96px;
-  background: transparent;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
 `;
 
 export const BackButtonWrapper = styled.div`
