@@ -10,7 +10,7 @@ import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
 import { MonoText } from "@/components/UI/Monotext";
-import { useViewerSignUp } from "@/hooks/Auth/useViewerSignUp";
+import { useViewerSignUp } from "@/hooks/auth/useViewerSignUp";
 import { normalizeApiError } from "@/lib/http/errors/apiError";
 import { ALERT } from "@/utils/common";
 import { INPUT_TYPE } from "@/utils/ui";
