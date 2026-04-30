@@ -15,8 +15,10 @@ import { MonoText } from "@/components/UI/Monotext";
 import { INPUT_TYPE } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import {
+  FORM_FIELDS,
   DEFAULT_PAYMENT_METHOD,
   DEFAULT_PLAN,
+  PAYMENT_METHODS,
   PaymentMethod,
   Plan,
 } from "@/utils/creatorFinalSteps";
@@ -121,29 +123,29 @@ export default function CreatorFinalSteps() {
           >
             <PaymentMethodButton
               type="button"
-              $active={paymentMethod === "card"}
-              aria-pressed={paymentMethod === "card"}
+              $active={paymentMethod === PAYMENT_METHODS.CARD}
+              aria-pressed={paymentMethod === PAYMENT_METHODS.CARD}
               aria-label={t("creatorFinalSteps.payment.card")}
-              onClick={() => setPaymentMethod("card")}
+              onClick={() => setPaymentMethod(PAYMENT_METHODS.CARD)}
             >
               <PaymentCardLogoWrap>
                 <Image src={visaLogo} alt="" width={31} height={10} />
                 <Image src={masterCardLogo} alt="" width={21} height={16} />
               </PaymentCardLogoWrap>
-              <RadioDot $active={paymentMethod === "card"} />
+              <RadioDot $active={paymentMethod === PAYMENT_METHODS.CARD} />
             </PaymentMethodButton>
 
             <PaymentMethodButton
               type="button"
-              $active={paymentMethod === "mobilepay"}
-              aria-pressed={paymentMethod === "mobilepay"}
+              $active={paymentMethod === PAYMENT_METHODS.MOBILEPAY}
+              aria-pressed={paymentMethod === PAYMENT_METHODS.MOBILEPAY}
               aria-label={t("creatorFinalSteps.payment.mobilePay")}
-              onClick={() => setPaymentMethod("mobilepay")}
+              onClick={() => setPaymentMethod(PAYMENT_METHODS.MOBILEPAY)}
             >
               <PaymentMobileLogoWrap>
                 <Image src={mobilePayLogo} alt="" width={50} height={16} />
               </PaymentMobileLogoWrap>
-              <RadioDot $active={paymentMethod === "mobilepay"} />
+              <RadioDot $active={paymentMethod === PAYMENT_METHODS.MOBILEPAY} />
             </PaymentMethodButton>
           </PaymentMethods>
 
@@ -157,7 +159,7 @@ export default function CreatorFinalSteps() {
               inputMode="numeric"
               autoComplete="cc-number"
               value={formValues.cardNumber}
-              onChange={(value) => updateField("cardNumber", value)}
+              onChange={(value) => updateField(FORM_FIELDS.CARD_NUMBER, value)}
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               height="38px"
               icon={
@@ -173,7 +175,9 @@ export default function CreatorFinalSteps() {
               type={INPUT_TYPE.TEXT}
               autoComplete="cc-name"
               value={formValues.cardholderName}
-              onChange={(value) => updateField("cardholderName", value)}
+              onChange={(value) =>
+                updateField(FORM_FIELDS.CARDHOLDER_NAME, value)
+              }
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               height="38px"
             />
@@ -188,8 +192,10 @@ export default function CreatorFinalSteps() {
                 inputMode="numeric"
                 autoComplete="cc-exp"
                 value={formValues.expiryDate}
-                placeholder=""
-                onChange={(value) => updateField("expiryDate", value)}
+                placeholder="MM/YY"
+                onChange={(value) =>
+                  updateField(FORM_FIELDS.EXPIRY_DATE, value)
+                }
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
                 height="38px"
               />
@@ -203,7 +209,7 @@ export default function CreatorFinalSteps() {
                 inputMode="numeric"
                 autoComplete="cc-csc"
                 value={formValues.cvc}
-                onChange={(value) => updateField("cvc", value)}
+                onChange={(value) => updateField(FORM_FIELDS.CVC, value)}
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
                 height="38px"
               />
