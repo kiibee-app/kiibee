@@ -14,17 +14,29 @@ import {
   SidebarContent,
 } from "./styles";
 import SidebarHelpDropdown from "@/components/Feature/HelpDropdown";
+import {
+  CREATORS_LABELS,
+  CREATOR_SECTIONS,
+  creatorsItems,
+} from "@/utils/SidebarItems";
 
 type SidebarProps = {
   activeItem: string;
   onSelect: (label: string) => void;
+  onLogout?: () => void;
   open: boolean;
   onClose: () => void;
 };
 
-const Sidebar = ({ activeItem, onSelect, open, onClose }: SidebarProps) => {
+const Sidebar = ({
+  activeItem,
+  onSelect,
+  onLogout,
+  open,
+  onClose,
+}: SidebarProps) => {
+  
   const [helpOpen, setHelpOpen] = useState(false);
-
   const { mainItems, settingsItems } = useMemo(() => {
     return {
       mainItems: creatorsItems.filter(
@@ -38,11 +50,17 @@ const Sidebar = ({ activeItem, onSelect, open, onClose }: SidebarProps) => {
 
   const handleSelect = useCallback(
     (label: string) => {
+      if (label === CREATORS_LABELS.LOG_OUT) {
+        onLogout?.();
+        onClose();
+        return;
+      }
+
       onSelect(label);
       setHelpOpen(false);
       onClose();
     },
-    [onClose, onSelect],
+    [onSelect, onClose, onLogout],
   );
 
   const handleCloseSidebar = useCallback(() => {

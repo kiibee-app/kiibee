@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding: 24px;
+  padding: 24px 36px 24px 24px;
 
   ${({ theme }) => theme.media.tablet} {
-    padding: 20px;
+    padding: 20px 28px 20px 20px;
   }
 
   ${({ theme }) => theme.media.mobile} {

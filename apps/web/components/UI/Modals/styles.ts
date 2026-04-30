@@ -32,7 +32,7 @@ export const ModalContainer = styled.div<{
 
   ${media.tablet} {
     width: 90%;
-    padding: 32px 24px;
+    padding: ${({ $padding }) => $padding || "32px 24px"};
   }
 `;
 

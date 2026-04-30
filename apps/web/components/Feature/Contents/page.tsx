@@ -31,6 +31,7 @@ import ContentsHeaderAction from "./ContentsHeaderAction";
 import GenericTabs from "@/components/UI/GenericTabs";
 import InfoTextCard from "@/components/UI/InfoTextCard";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
+import CouponDetailsModal from "./CouponDetailsModal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -42,10 +43,11 @@ export default function CreatorsContents() {
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
+  const [showCouponDetails, setShowCouponDetails] = useState(false);
   const handleCreateClick = () => {
     switch (activeTab) {
       case COUPONS:
-        setShowContentTypeModal(true);
+        setShowCouponDetails(true);
         break;
 
       case COLLECTIONS:
@@ -73,6 +75,7 @@ export default function CreatorsContents() {
           activeTab={activeTab}
           onCreate={handleCreateClick}
           onCancel={() => {}}
+          onCreateCoupon={() => setShowCouponDetails(true)}
           onSave={() => {}}
         />
       </PageHeader>
@@ -182,6 +185,11 @@ export default function CreatorsContents() {
         width="480px"
         padding="40px 30px"
         showCloseButton={false}
+      />
+
+      <CouponDetailsModal
+        visible={showCouponDetails}
+        onClose={() => setShowCouponDetails(false)}
       />
     </PageShell>
   );
