@@ -32,3 +32,10 @@ export const CORS_ALLOWED_HEADERS: string[] = [
   'Authorization',
   'Accept',
 ];
+
+export const ACCOUNT_STATUS = {
+  ACTIVE: 'active',
+  PENDING_SETUP: 'pending-setup',
+  SUSPENDED: 'suspended',
+  DELETED: 'deleted',
+} as const;

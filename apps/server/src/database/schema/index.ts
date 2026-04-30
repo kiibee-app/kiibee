@@ -9,3 +9,5 @@ export * from './users/usersToken.schema';
 export * from './creator/creatorInfo.schema';
 export * from './content/contentCategories.schema';
 export * from './content/contentTypes.schema';
+export * from './subscription/plans.schema';
+export * from './subscription/creatorPlan.schema';

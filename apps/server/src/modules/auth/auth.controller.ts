@@ -15,6 +15,7 @@ import { LoginDto } from './dto/login.dto';
 import { TokenService } from './services/token.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -164,6 +165,12 @@ export class AuthController {
   @Get('validate-token/:token')
   async validateToken(@Param('token') token: string) {
     const result = await this.authService.validateToken(token);
+    return result;
+  }
+
+  @Post('creator/setup')
+  async setupCreatorAccount(@Body() payload: CreatorAccountSetupDto) {
+    const result = await this.authService.setupCreatorAccount(payload);
     return result;
   }
 }
