@@ -2,9 +2,6 @@ import styled from "styled-components";
 import { typography } from "@repo/ui/typography";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
-import { FormShell, NextButton } from "../styles";
-
-export const CodesFormShell = styled(FormShell)``;
 
 export const CodesHelperText = styled(MonoText).attrs({
   $use: "Body_Small",
@@ -48,5 +45,3 @@ export const CouponCodesInput = styled.textarea`
     background: ${COLORS.primary.WHITE};
   }
 `;
-
-export const CodesNextButton = styled(NextButton)``;

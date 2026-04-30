@@ -8,16 +8,16 @@ import {
   BackButton,
   FieldGroup,
   FieldLabel,
+  FormShell,
   HelperText,
   ModalContent,
   ModalTitle,
+  NextButton,
 } from "../styles";
 import {
-  CodesFormShell,
   CodesHelperText,
   CodesLimitText,
   CodesMetaRow,
-  CodesNextButton,
   CouponCodesInput,
 } from "./styles";
 
@@ -64,7 +64,7 @@ export default function CouponCodesModal({
           <BackButtonIcon size={28} strokeWidth={2.5} />
         </BackButton>
 
-        <CodesFormShell onSubmit={handleSubmit}>
+        <FormShell onSubmit={handleSubmit}>
           <ModalTitle id="coupon-codes-title">
             {t("contents.couponCodes.title")}
           </ModalTitle>
@@ -90,8 +90,8 @@ export default function CouponCodesModal({
             </CodesMetaRow>
           </FieldGroup>
 
-          <CodesNextButton type="submit">{t("common.next")}</CodesNextButton>
-        </CodesFormShell>
+          <NextButton type="submit">{t("common.next")}</NextButton>
+        </FormShell>
       </ModalContent>
     </GenericModal>
   );
