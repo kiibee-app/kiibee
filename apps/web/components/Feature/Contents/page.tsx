@@ -42,6 +42,7 @@ export default function CreatorsContents() {
     useState(false);
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
   const [showCouponDetails, setShowCouponDetails] = useState(false);
   const handleCreateClick = () => {
@@ -74,9 +75,9 @@ export default function CreatorsContents() {
         <ContentsHeaderAction
           activeTab={activeTab}
           onCreate={handleCreateClick}
-          onCancel={() => {}}
+          onCancel={() => setShowDiscardModal(true)}
           onCreateCoupon={() => setShowCouponDetails(true)}
-          onSave={() => {}}
+          onSave={() => setShowSuccessModal(true)}
         />
       </PageHeader>
 
@@ -180,10 +181,30 @@ export default function CreatorsContents() {
         title={t("contents.createCollectionSuccessModal.title")}
         message={t("contents.createCollectionSuccessModal.message")}
         confirmLabel={t("contents.createCollectionSuccessModal.done")}
-        onClose={() => setShowSuccessModal(false)}
-        onConfirm={() => setShowSuccessModal(false)}
+        onClose={() => {
+          setShowSuccessModal(false);
+        }}
+        onConfirm={() => {
+          setShowSuccessModal(false);
+        }}
         width="480px"
         padding="40px 30px"
+        showCloseButton={false}
+      />
+
+      <GenericModal
+        visible={showDiscardModal}
+        title={t("settings.notifications.discardModal.title")}
+        message={t("settings.notifications.discardModal.message")}
+        cancelLabel={t("settings.notifications.discardModal.goBack")}
+        confirmLabel={t("settings.notifications.discardModal.discard")}
+        onCancel={() => setShowDiscardModal(false)}
+        onClose={() => setShowDiscardModal(false)}
+        onConfirm={() => setShowDiscardModal(false)}
+        width="480px"
+        padding="40px 30px"
+        fullWidthButtons
+        buttonRow
         showCloseButton={false}
       />
 
