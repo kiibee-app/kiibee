@@ -2,7 +2,6 @@
 
 import React, { useCallback, useMemo, useState } from "react";
 import { HELP } from "@/utils/common";
-import { CREATOR_SECTIONS, creatorsItems } from "@/utils/SidebarItems";
 import {
   SidebarWrapper,
   SidebarMenu,
@@ -35,7 +34,6 @@ const Sidebar = ({
   open,
   onClose,
 }: SidebarProps) => {
-  
   const [helpOpen, setHelpOpen] = useState(false);
   const { mainItems, settingsItems } = useMemo(() => {
     return {
