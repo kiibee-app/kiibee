@@ -139,6 +139,7 @@ export const viewerItems: DashboardSidebarItem[] = [
   },
   {
     label: VIEWER_LABELS.LOG_OUT,
+    icon: <LogoutIcon />,
     section: CREATOR_SECTIONS.BOTTOM,
     variant: CREATOR_VARIANTS.DANGER,
   },

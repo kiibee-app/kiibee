@@ -52,6 +52,12 @@ export const NavItem = styled(MonoText).attrs({
   $use: "Body_Medium",
 })`
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export const Right = styled.div`

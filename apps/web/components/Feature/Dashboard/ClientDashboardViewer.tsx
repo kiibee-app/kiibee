@@ -5,7 +5,6 @@ import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import ViewerDashboardHeader from "@/components/Layout/ViewerDashboardHeader";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { PATHS } from "@/utils/path";
 import { VIEW } from "@/utils/Constants";
 import {
   VIEWER_LABEL_TO_VIEW,
@@ -53,7 +52,10 @@ export default function ClientDashboardViewer() {
       if (label === VIEWER_LABELS.PURCHASED) {
         params.delete(VIEW);
       } else {
-        params.set(VIEW, VIEWER_LABEL_TO_VIEW[label]);
+        const viewValue = VIEWER_LABEL_TO_VIEW[label];
+        if (viewValue) {
+          params.set(VIEW, viewValue);
+        }
       }
 
       const qs = params.toString();
@@ -77,10 +79,6 @@ export default function ClientDashboardViewer() {
     [handleSelect],
   );
 
-  const handleLogout = useCallback(() => {
-    router.push(PATHS.AUTH_LOGIN);
-  }, [router]);
-
   const sectionTitle = useMemo(() => activePage, [activePage]);
 
   return (
@@ -92,7 +90,6 @@ export default function ClientDashboardViewer() {
           onClose={closeSidebar}
           activeItem={activePage}
           onSelect={handleSidebarSelect}
-          onLogout={handleLogout}
           items={viewerItems}
           logoutLabel={VIEWER_LABELS.LOG_OUT}
         />
