@@ -144,39 +144,6 @@ export const CreateCollectionModalContent = styled.div`
   gap: 30px;
 `;
 
-export const CollectionDetailHeader = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-`;
-
-export const CollectionBackButton = styled.button`
-  width: 36px;
-  height: 36px;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 0;
-`;
-
-export const CollectionDetailTitle = styled(MonoText).attrs({
-  $use: "H5_Medium",
-})`
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-`;
-
-export const CollectionDetailMeta = styled(MonoText).attrs({
-  $use: "Body_Medium",
-})`
-  color: ${({ theme }) => theme.colors.neutral.GRAY};
-`;
-
 export const HeaderRow = styled.div`
   display: flex;
   align-items: center;
