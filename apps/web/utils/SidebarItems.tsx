@@ -17,6 +17,15 @@ export const CREATORS_LABELS = {
   PROFILE: "profile",
 } as const;
 
+export const VIEWER_LABELS = {
+  PURCHASED: "Purchased",
+  CURRENTLY_RENTED: "Currently Rented",
+  PREVIOUSLY_RENTED: "Previously Rented",
+  BILLINGS: "Billings",
+  MY_PROFILE: "My Profile",
+  LOG_OUT: "Logout",
+} as const;
+
 export type CreatorsLabel =
   (typeof CREATORS_LABELS)[keyof typeof CREATORS_LABELS];
 
@@ -35,14 +44,16 @@ export const CREATOR_VARIANTS = {
 export type CreatorVariant =
   (typeof CREATOR_VARIANTS)[keyof typeof CREATOR_VARIANTS];
 
-type CreatorItem = {
-  label: CreatorsLabel;
+export type DashboardSidebarItem = {
+  label: string;
   icon?: React.ReactNode;
   section: CreatorSection;
   variant?: CreatorVariant;
 };
 
-export const creatorsItems: CreatorItem[] = [
+export type ViewerLabel = (typeof VIEWER_LABELS)[keyof typeof VIEWER_LABELS];
+
+export const creatorsItems: DashboardSidebarItem[] = [
   {
     label: CREATORS_LABELS.OVERVIEW,
     icon: <HomeIcon />,
@@ -72,6 +83,34 @@ export const creatorsItems: CreatorItem[] = [
   {
     label: CREATORS_LABELS.LOG_OUT,
     icon: <LogoutIcon />,
+    section: CREATOR_SECTIONS.BOTTOM,
+    variant: CREATOR_VARIANTS.DANGER,
+  },
+];
+
+export const viewerItems: DashboardSidebarItem[] = [
+  {
+    label: VIEWER_LABELS.PURCHASED,
+    section: CREATOR_SECTIONS.TOP,
+  },
+  {
+    label: VIEWER_LABELS.CURRENTLY_RENTED,
+    section: CREATOR_SECTIONS.TOP,
+  },
+  {
+    label: VIEWER_LABELS.PREVIOUSLY_RENTED,
+    section: CREATOR_SECTIONS.TOP,
+  },
+  {
+    label: VIEWER_LABELS.BILLINGS,
+    section: CREATOR_SECTIONS.TOP,
+  },
+  {
+    label: VIEWER_LABELS.MY_PROFILE,
+    section: CREATOR_SECTIONS.TOP,
+  },
+  {
+    label: VIEWER_LABELS.LOG_OUT,
     section: CREATOR_SECTIONS.BOTTOM,
     variant: CREATOR_VARIANTS.DANGER,
   },
