@@ -1,23 +1,14 @@
-import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
+import styled from "styled-components";
 
 export const Wrapper = styled.section`
   width: 100%;
-  max-width: 1200px;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  margin: 0 auto;
-  padding: 30px 24px 96px;
-  background: ${({ theme }) => theme.colors.primary.WHITE};
-`;
-
-export const BackButtonWrapper = styled.div`
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  padding: 3rem 1rem;
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
 `;
 
 export const Card = styled.div`
@@ -54,7 +45,7 @@ export const Form = styled.form`
 
   button {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
 `;
 
@@ -63,28 +54,4 @@ export const SuccessBox = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-`;
-
-export const ResendText = styled(MonoText).attrs({
-  $use: "Body_Medium",
-})`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 1rem;
-`;
-
-export const LinkButton = styled(MonoText).attrs({
-  $use: "Body_Bold",
-})`
-  display: inline;
-  background: none;
-  border: none;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  cursor: pointer;
-  text-decoration: none;
-
-  &:hover {
-    opacity: 0.7;
-  }
 `;

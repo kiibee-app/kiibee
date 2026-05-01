@@ -10,7 +10,7 @@ import { getPageMeta } from "../seo/metadata";
 const AppContainer = styled.div`
   display: flex;
   min-height: 100vh;
-  background-color: ${({ theme }) => theme.colors.bg.app};
+  background-color: ${({ theme }) => theme.colors.neutral.GRAY_100};
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif;

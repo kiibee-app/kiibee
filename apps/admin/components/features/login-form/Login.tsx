@@ -47,7 +47,7 @@ export default function Login() {
 
           setTokens(data.accessToken, data.refreshToken);
           toast.success(`Welcome, ${data.fullName}!`);
-          router.push("/dashboard");
+          router.push("/all-creators");
         },
         onError: (error) => {
           toast.error(error.message || "Login failed");

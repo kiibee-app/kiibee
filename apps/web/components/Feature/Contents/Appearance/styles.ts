@@ -2,6 +2,14 @@ import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 
+export const PanelStack = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  gap: 24px;
+  width: 100%;
+`;
+
 export const SectionList = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,6 +59,20 @@ export const Hint = styled(MonoText).attrs({
 export const ControlWrap = styled.div`
   width: 100%;
   max-width: 460px;
+`;
+
+export const CounterRow = styled.div`
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const CounterText = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const InlineControlWrap = styled.div`

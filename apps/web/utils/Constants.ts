@@ -76,3 +76,4 @@ export const SUBSCRIPTION_STEP = {
   PLAN: "plan",
   DETAILS: "details",
 } as const;
+export const maxReceiptCharacters = 200;

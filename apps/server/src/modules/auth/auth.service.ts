@@ -16,6 +16,8 @@ import { rejectCreatorRequestService } from './services/rejectCreatorRequest.ser
 import { validateTokenService } from './services/validateToken.service';
 import { setupCreatorAccountService } from './services/creatorAccountSetup.service';
 import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
+import { forgetPasswordService } from './services/forgetPassword.service';
+import { resetPasswordService } from './services/resetPassword.service';
 
 @Injectable()
 export class AuthService {
@@ -87,5 +89,11 @@ export class AuthService {
   }
   async setupCreatorAccount(payload: CreatorAccountSetupDto) {
     return setupCreatorAccountService(payload);
+  }
+  async forgetPassword(email: string) {
+    return forgetPasswordService(email);
+  }
+  async resetPassword(payload: any) {
+    return resetPasswordService(payload);
   }
 }

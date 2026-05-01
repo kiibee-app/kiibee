@@ -75,7 +75,11 @@
     "emailLabel": "E-mailadresse",
     "submit": "Indsende",
     "rememberPassword": "Kan du huske din adgangskode?",
-    "login": "Log ind"
+    "login": "Log ind",
+    "checkEmailTitle": "Tjek din e-mail",
+    "checkEmailDescription": "Vi har sendt et link til nulstilling af adgangskode til din e-mail. Hvis det ikke ankommer inden for et par minutter, så tjek din spam-mappe.",
+    "didNotReceive": "Har du ikke modtaget e-mailen?",
+    "resend": "Send igen"
   },
   "viewerSignup": {
     "title": "Opret seerkonto",
@@ -1045,6 +1049,17 @@
         "percentage": "Procent"
       }
     },
+    "couponCodes": {
+      "title": "Kuponkoder",
+      "description": "Tilfoj en eller flere koder, som kunder kan bruge til at indlose denne rabat.",
+      "fields": {
+        "discountCodes": "Rabatkoder"
+      },
+      "placeholders": {
+        "codes": "Indtast koder"
+      },
+      "helper": "Adskil flere koder ved at trykke enter"
+    },
     "tabs": {
       "collections": "Samlinger",
       "appearance": "Udseende",
@@ -1065,10 +1080,20 @@
       "textColor": "Tekstfarve",
       "textColorHint": "Vælg den tekstfarve, der bruges i coverbilledet",
       "followTheme": "Følg temaet (Standard)",
+      "darkText": "Mork tekst",
+      "whiteText": "Hvid tekst",
       "buttonColor": "Knapfarve",
       "buttonColorHint": "Vælg den knapfarve, der bruges på din hjemmeside",
       "chooseColor": "Vælg farve",
-      "color": "Farve"
+      "defaultColor": "Standardfarve",
+      "color": "Farve",
+      "receipt": "Kvittering",
+      "receiptHint": "Skriv en besked til din kunde, nÃ¥r de modtager en kvittering",
+      "receiptPlaceholder": "Indtast kvittering",
+      "maximumCharacter": "Maksimalt antal tegn",
+      "supportEmail": "Support e-mail",
+      "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, sÃ¥ indtast den her.",
+      "supportEmailPlaceholder": "Indtast support e-mail"
     },
     "admissionRequirements": {
       "title": "Adgangskrav",
@@ -1112,5 +1137,17 @@
       "message": "Dine opdateringer er blevet gemt.",
       "done": "Faerdig"
     }
+  },
+  "resetPassword": {
+    "title": "Opret en ny adgangskode",
+    "description": "Indtast din nye adgangskode nedenfor for at fuldføre nulstillingen.",
+    "newPasswordLabel": "Ny adgangskode",
+    "newPasswordPlaceholder": "Ny adgangskode",
+    "repeatPasswordLabel": "Gentag ny adgangskode",
+    "repeatPasswordPlaceholder": "Gentag ny adgangskode",
+    "submit": "Nulstil",
+    "successTitle": "Din adgangskode er blevet nulstillet!",
+    "successDescription": "Du kan nu logge ind med din nye adgangskode. Kontakt support, hvis du oplever problemer.",
+    "backToLogin": "Tilbage til login"
   }
 }
