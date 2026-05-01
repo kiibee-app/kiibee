@@ -176,3 +176,9 @@ export const CollectionDetailMeta = styled(MonoText).attrs({
 })`
   color: ${({ theme }) => theme.colors.neutral.GRAY};
 `;
+
+export const HeaderRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;

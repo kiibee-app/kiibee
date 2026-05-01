@@ -8,6 +8,7 @@ import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
   CreateCollectionModalContent,
+  HeaderRow,
   PageHeader,
   PageShell,
   PlaceholderLine,
@@ -33,13 +34,14 @@ import InfoTextCard from "@/components/UI/InfoTextCard";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
-import CollectionsTable from "./Collections";
-import CollectionContentsTable from "./Collections/CollectionContentsTable";
+import { CollectionRow } from "@/types/collections";
+import CollectionTable from "./Collections";
 import {
-  CollectionRow,
   collectionsData,
   collectionContentsData,
 } from "@/utils/dummyData/collection";
+import AuthBackButton from "../Auth/AuthBackButton";
+import { COLLECTION_TABLE_TYPE } from "@/utils/collection";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -82,10 +84,26 @@ export default function CreatorsContents() {
     setShowSuccessModal(true);
   };
 
+  const handleBackToCollections = () => {
+    setSelectedCollection(null);
+  };
+
   return (
     <PageShell>
       <PageHeader>
-        <Title>{t(CONTENTS_KEYS.title)}</Title>
+        <HeaderRow>
+          {selectedCollection && (
+            <AuthBackButton
+              marginBottom="0px"
+              onClick={handleBackToCollections}
+            />
+          )}
+          <Title>
+            {selectedCollection
+              ? selectedCollection.name
+              : t(CONTENTS_KEYS.title)}
+          </Title>
+        </HeaderRow>
 
         <ContentsHeaderAction
           activeTab={activeTab}
@@ -129,9 +147,15 @@ export default function CreatorsContents() {
           />
         ) : activeTab === COLLECTIONS ? (
           selectedCollection ? (
-            <CollectionContentsTable data={collectionContents} />
+            <>
+              <CollectionTable
+                type={COLLECTION_TABLE_TYPE.CONTENTS}
+                data={collectionContents}
+              />
+            </>
           ) : (
-            <CollectionsTable
+            <CollectionTable
+              type={COLLECTION_TABLE_TYPE.COLLECTIONS}
               data={collectionsData}
               onRowClick={(row) => setSelectedCollection(row)}
             />
