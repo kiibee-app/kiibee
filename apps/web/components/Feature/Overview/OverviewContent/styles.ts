@@ -72,6 +72,7 @@ export const SectionTitle = styled.h3`
 `;
 
 export const TableCard = styled.div`
+  width: 100%;
   border-radius: 24px;
   background: ${(p) => p.theme.colors.neutral.WHITE};
   box-shadow:
@@ -79,8 +80,37 @@ export const TableCard = styled.div`
     0 2px 6px ${(p) => p.theme.colors.gredint.CARD_SHADOW};
   overflow: hidden;
 
+  && table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+  }
+
+  && th {
+    padding: 26px 22px;
+    border-bottom: 1px solid ${(p) => p.theme.colors.neutral.GRAY_200};
+  }
+
+  && td {
+    padding: 26px 22px;
+  }
+
+  && th:first-child,
+  && td:first-child {
+    width: 40%;
+  }
+
   ${media.tablet} {
     border-radius: 18px;
+
+    && table {
+      min-width: 640px;
+    }
+
+    && th,
+    && td {
+      padding: 20px 16px;
+    }
   }
 `;
 
