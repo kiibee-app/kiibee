@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowIcon, BackButtonIcon } from "@/assets/icons";
+import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
-import { Directions } from "@/utils/ui";
+import DropdownField from "@/components/UI/InputFields/DropdownField";
 import {
   BackButton,
   FieldGroup,
@@ -15,7 +15,11 @@ import {
   ModalTitle,
   NextButton,
 } from "../styles";
-import { SelectorButton, SelectorList, TitleHelperText } from "./styles";
+import { SelectorList, TitleHelperText } from "./styles";
+import {
+  COLLECTION_OPTIONS,
+  CONTENT_OPTIONS,
+} from "@/utils/dummyData/couponApplicableProducts";
 
 type CouponApplicableProductsModalProps = {
   visible: boolean;
@@ -29,13 +33,11 @@ const applicableProductFields = [
     key: "collections",
     labelKey: "contents.couponApplicableProducts.fields.collections",
     helperKey: "contents.couponApplicableProducts.helpers.collections",
-    buttonKey: "contents.couponApplicableProducts.buttons.collections",
   },
   {
     key: "contents",
     labelKey: "contents.couponApplicableProducts.fields.contents",
     helperKey: "contents.couponApplicableProducts.helpers.contents",
-    buttonKey: "contents.couponApplicableProducts.buttons.contents",
   },
 ] as const;
 
@@ -46,6 +48,12 @@ export default function CouponApplicableProductsModal({
   onNext,
 }: CouponApplicableProductsModalProps) {
   const { t } = useTranslation();
+  const [selectedCollection, setSelectedCollection] = useState(
+    COLLECTION_OPTIONS[0].value,
+  );
+  const [selectedContent, setSelectedContent] = useState(
+    CONTENT_OPTIONS[0].value,
+  );
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -83,14 +91,25 @@ export default function CouponApplicableProductsModal({
               <FieldGroup key={field.key}>
                 <FieldLabel>{t(field.labelKey)}</FieldLabel>
                 <HelperText>{t(field.helperKey)}</HelperText>
-                <SelectorButton type="button">
-                  <span>{t(field.buttonKey)}</span>
-                  <ArrowIcon
-                    width={12}
-                    height={6}
-                    direction={Directions.RIGHT}
-                  />
-                </SelectorButton>
+                <DropdownField
+                  options={
+                    field.key === "collections"
+                      ? COLLECTION_OPTIONS
+                      : CONTENT_OPTIONS
+                  }
+                  value={
+                    field.key === "collections"
+                      ? selectedCollection
+                      : selectedContent
+                  }
+                  onChange={(value) => {
+                    if (field.key === "collections") {
+                      setSelectedCollection(value);
+                      return;
+                    }
+                    setSelectedContent(value);
+                  }}
+                />
               </FieldGroup>
             ))}
           </SelectorList>
