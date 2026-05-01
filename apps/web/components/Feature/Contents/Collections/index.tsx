@@ -18,7 +18,7 @@ import {
   CollectionContentRow,
   CollectionTableProps,
   isCollectionContentRow,
-} from "@/types/collections";
+} from "@/types/collectionsType";
 import {
   COLLECTION_TABLE_TYPE,
   getCollectionContentIcon,

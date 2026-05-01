@@ -1,4 +1,4 @@
-import { CollectionContentRow, CollectionRow } from "@/types/collections";
+import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
 
 export const collectionsData: CollectionRow[] = [
   {

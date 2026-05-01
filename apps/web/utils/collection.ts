@@ -1,7 +1,7 @@
 import React from "react";
 import COLORS from "@repo/ui/colors";
 import { EpubIcon, PdfIcon, VideoIcon, WebIcon } from "@/assets/icons";
-import { CollectionContentType } from "@/types/collections";
+import { CollectionContentType } from "@/types/collectionsType";
 import { IconComponent } from "./content";
 
 const ICON_MAP: Record<CollectionContentType, IconComponent> = {

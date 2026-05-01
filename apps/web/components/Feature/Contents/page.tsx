@@ -34,12 +34,12 @@ import InfoTextCard from "@/components/UI/InfoTextCard";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
-import { CollectionRow } from "@/types/collections";
+import { CollectionRow } from "@/types/collectionsType";
 import CollectionTable from "./Collections";
 import {
   collectionsData,
   collectionContentsData,
-} from "@/utils/dummyData/collection";
+} from "@/utils/dummyData/collectionData";
 import AuthBackButton from "../Auth/AuthBackButton";
 import { COLLECTION_TABLE_TYPE } from "@/utils/collection";
 
