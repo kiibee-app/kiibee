@@ -154,11 +154,6 @@
   },
   "creatorFinalSteps": {
     "title": "Sidste trin",
-    "plans": {
-      "tryKiibee": "Try Kiibee (0 KR)",
-      "startup": "Start-up (99 KR)",
-      "professional": "Professional (299 KR)"
-    },
     "payment": {
       "card": "Visa eller Mastercard",
       "mobilePay": "MobilePay"
