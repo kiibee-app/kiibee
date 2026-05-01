@@ -16,3 +16,19 @@ export const SelectorList = styled.div`
   flex-direction: column;
   gap: 18px;
 `;
+
+export const SelectedValueChip = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  border-radius: 15px;
+  background: ${COLORS.neutral.GRAY_200};
+  padding: 4px 6px;
+  color: ${COLORS.primary.BLACK};
+`;
+
+export const SelectedValueText = styled(MonoText).attrs({
+  $use: "Body_Small",
+})`
+  color: ${COLORS.neutral.GRAY};
+`;

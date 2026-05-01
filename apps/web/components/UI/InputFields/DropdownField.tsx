@@ -29,6 +29,7 @@ type Props = {
   onChange?: (value: string) => void;
   placeholder?: string;
   showSelectedIndicator?: boolean;
+  renderSelectedValue?: (selected: OptionItem | null) => React.ReactNode;
 };
 
 export default function DropdownField({
@@ -37,6 +38,7 @@ export default function DropdownField({
   value,
   onChange,
   showSelectedIndicator = false,
+  renderSelectedValue,
 }: Props) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -58,11 +60,15 @@ export default function DropdownField({
           aria-haspopup="listbox"
         >
           <Selected>
-            <span>
-              {selected
-                ? selected.label || selected.labelKey || selected.value
-                : ""}
-            </span>
+            {renderSelectedValue ? (
+              renderSelectedValue(selected)
+            ) : (
+              <span>
+                {selected
+                  ? selected.label || selected.labelKey || selected.value
+                  : ""}
+              </span>
+            )}
           </Selected>
 
           <ArrowWrap>
