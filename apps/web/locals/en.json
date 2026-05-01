@@ -86,7 +86,34 @@
     "preference": {
       "title": "Let's personalize your experience",
       "description": "Tell us what you like so we can recommend creators and content you'll love. You can always update your preferences later in your profile settings.",
-      "submit": "Continue"
+      "submit": "Continue",
+      "content": {
+        "title": "What kind of content are you into?",
+        "subtitle": "Select all that apply.",
+        "options": {
+          "comedy": "Comedy",
+          "music": "Music",
+          "podcasts": "Podcasts",
+          "artsAndIllustration": "Arts & Illustration",
+          "booksAndWriting": "Books & Writing",
+          "wellnessAndMindfulness": "Wellness & Mindfulness",
+          "educationAndLearning": "Education / Learning",
+          "lifestyleAndVlogs": "Lifestyle & Vlogs",
+          "cookingAndFood": "Cooking / Food",
+          "sportsAndFitness": "Sports & Fitness"
+        }
+      },
+      "types": {
+        "title": "Choose your preferred content types",
+        "subtitle": "How do you like to experience content?",
+        "submit": "Finish set up",
+        "options": {
+          "video": "Video",
+          "audio": "Audio",
+          "pdf": "PDF",
+          "epub": "EPUB"
+        }
+      }
     },
     "form": {
       "fullName": "Full name",

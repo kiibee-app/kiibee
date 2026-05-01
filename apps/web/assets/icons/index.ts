@@ -2,6 +2,7 @@ export { ArrowIcon } from "./arrowIcon";
 export { default as AudioIcon } from "./AudioIcon";
 export { default as ImageIcon } from "./ImageIcon";
 export { default as PdfIcon } from "./PdfIcon";
+export { default as PdfFileIcon } from "./PdfFileIcon";
 export { default as PodcastIcon } from "./PodcastIcon";
 export { default as PlaylistIcon } from "./PlaylistIcon";
 export { default as LinkIcon } from "./LinkIcon";
