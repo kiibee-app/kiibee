@@ -1019,7 +1019,11 @@
       "exportTypeViews": "Views",
       "includeMedia": "Include media files",
       "lastExported": "Last export",
-      "noExports": "No exports available"
+      "noExports": "No exports available",
+      "typeDescription": "Choose the type of data you want to export.",
+      "dateDescription": "Select the time period for your export.",
+      "modalTitle": "Downloading CSV",
+      "modalMessage": "Your CSV file has been successfully downloaded."
     }
   },
   "contents": {

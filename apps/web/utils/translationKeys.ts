@@ -210,6 +210,10 @@ export const SETTINGS = {
     includeMedia: "settings.export.includeMedia",
     lastExported: "settings.export.lastExported",
     noExports: "settings.export.noExports",
+    typeDescription: "settings.export.typeDescription",
+    dateDescription: "settings.export.dateDescription",
+    modalTitle: "settings.export.modalTitle",
+    modalMessage: "settings.export.modalMessage",
   },
 };
 
