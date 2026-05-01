@@ -258,9 +258,23 @@ export const Item = styled.button`
   cursor: pointer;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   }
+`;
+
+export const ItemContent = styled.span`
+  flex: 1;
+`;
+
+export const ItemCheckIndicator = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const DateDisplay = styled.div`

@@ -6,10 +6,13 @@ import {
   Selected,
   Menu,
   Item,
+  ItemContent,
+  ItemCheckIndicator,
   ArrowWrap,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
+import { SelectedCheckIcon } from "@/assets/icons";
 import { Directions } from "@/utils/ui";
 import { useClickOutside } from "@/hooks/useClickOutside";
 
@@ -25,6 +28,7 @@ type Props = {
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
+  showSelectedIndicator?: boolean;
 };
 
 export default function DropdownField({
@@ -32,6 +36,7 @@ export default function DropdownField({
   options,
   value,
   onChange,
+  showSelectedIndicator = false,
 }: Props) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -70,12 +75,22 @@ export default function DropdownField({
             {options.map((opt) => (
               <Item
                 key={opt.value}
+                type="button"
                 onClick={() => {
                   onChange?.(opt.value);
                   setOpen(false);
                 }}
               >
-                {opt.label || opt.labelKey || opt.value}
+                <ItemContent>
+                  {opt.label || opt.labelKey || opt.value}
+                </ItemContent>
+                {showSelectedIndicator ? (
+                  <ItemCheckIndicator aria-hidden="true">
+                    <SelectedCheckIcon
+                      selected={selected?.value === opt.value}
+                    />
+                  </ItemCheckIndicator>
+                ) : null}
               </Item>
             ))}
           </Menu>

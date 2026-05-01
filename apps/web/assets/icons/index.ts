@@ -30,3 +30,4 @@ export { default as PlusIcon } from "./PlusIcon";
 export { default as CalendarIcon } from "./CalenderIcon";
 export { default as DeleteIcon } from "./DeleteIcon";
 export { default as DirectionIcon } from "./DirectionIcon";
+export { default as SelectedCheckIcon } from "./SelectedCheckIcon";
