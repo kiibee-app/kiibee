@@ -116,12 +116,7 @@ export default function CreatorsContents() {
             description={t(CONTENTS_KEYS.couponsCard.description)}
           />
         ) : activeTab === COLLECTIONS ? (
-          <CollectionsTable
-            data={collectionsData}
-            onEdit={(id) => console.log("edit", id)}
-            onDelete={(id) => console.log("delete", id)}
-            onMore={(id) => console.log("more", id)}
-          />
+          <CollectionsTable data={collectionsData} />
         ) : (
           <PlaceholderLine>
             {(() => {
