@@ -1060,6 +1060,22 @@
       },
       "helper": "Separate multiple codes by pressing enter"
     },
+    "couponApplicableProducts": {
+      "title": "Applicable products",
+      "description": "You can select specific collections or contents, or leave this empty to make the discount available for everything.",
+      "fields": {
+        "collections": "Select collection",
+        "contents": "Select single contents"
+      },
+      "helpers": {
+        "collections": "Add one or more collections that customers can get this discount.",
+        "contents": "Add one or more contents that customers can get this discount."
+      },
+      "buttons": {
+        "collections": "Collections",
+        "contents": "Contents"
+      }
+    },
     "tabs": {
       "collections": "Collections",
       "appearance": "Appearance",

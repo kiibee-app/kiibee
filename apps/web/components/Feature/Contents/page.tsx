@@ -33,6 +33,7 @@ import InfoTextCard from "@/components/UI/InfoTextCard";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
+import CouponApplicableProductsModal from "@/components/Feature/Contents/coupon/coupon-applicable-products";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -47,6 +48,15 @@ export default function CreatorsContents() {
   const [collectionName, setCollectionName] = useState("");
   const [showCouponDetails, setShowCouponDetails] = useState(false);
   const [showCouponCodes, setShowCouponCodes] = useState(false);
+  const [showCouponApplicableProducts, setShowCouponApplicableProducts] =
+    useState(false);
+
+  const closeCouponFlow = () => {
+    setShowCouponDetails(false);
+    setShowCouponCodes(false);
+    setShowCouponApplicableProducts(false);
+  };
+
   const handleCreateClick = () => {
     switch (activeTab) {
       case COUPONS:
@@ -212,10 +222,7 @@ export default function CreatorsContents() {
 
       <CouponDetailsModal
         visible={showCouponDetails}
-        onClose={() => {
-          setShowCouponDetails(false);
-          setShowCouponCodes(false);
-        }}
+        onClose={closeCouponFlow}
         onNext={() => {
           setShowCouponDetails(false);
           setShowCouponCodes(true);
@@ -228,8 +235,21 @@ export default function CreatorsContents() {
           setShowCouponCodes(false);
           setShowCouponDetails(true);
         }}
-        onClose={() => setShowCouponCodes(false)}
-        onNext={() => setShowCouponCodes(false)}
+        onClose={closeCouponFlow}
+        onNext={() => {
+          setShowCouponCodes(false);
+          setShowCouponApplicableProducts(true);
+        }}
+      />
+
+      <CouponApplicableProductsModal
+        visible={showCouponApplicableProducts}
+        onBack={() => {
+          setShowCouponApplicableProducts(false);
+          setShowCouponCodes(true);
+        }}
+        onClose={closeCouponFlow}
+        onNext={closeCouponFlow}
       />
     </PageShell>
   );
