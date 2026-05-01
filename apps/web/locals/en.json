@@ -1069,10 +1069,20 @@
       "textColor": "Text color",
       "textColorHint": "Choose the text color used in the cover image",
       "followTheme": "Follow theme (Default)",
+      "darkText": "Dark text",
+      "whiteText": "White text",
       "buttonColor": "Button color",
       "buttonColorHint": "Choose the button color used in your website",
       "chooseColor": "Choose color",
-      "color": "Color"
+      "defaultColor": "Default color",
+      "color": "Color",
+      "receipt": "Receipt",
+      "receiptHint": "Write a message to your customer when they receive a receipt",
+      "receiptPlaceholder": "Enter receipt",
+      "maximumCharacter": "Maximum character",
+      "supportEmail": "Support email",
+      "supportEmailHint": "If you want a different email than your account email for support, enter it here.",
+      "supportEmailPlaceholder": "Enter support email"
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",
