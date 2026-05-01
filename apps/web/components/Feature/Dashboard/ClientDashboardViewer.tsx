@@ -7,15 +7,23 @@ import ViewerDashboardHeader from "@/components/Layout/ViewerDashboardHeader";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PATHS } from "@/utils/path";
 import { VIEW } from "@/utils/Constants";
-import { VIEWER_LABELS, ViewerLabel, viewerItems } from "@/utils/SidebarItems";
+import {
+  VIEWER_LABEL_TO_VIEW,
+  VIEWER_LABELS,
+  VIEWER_VIEW_TO_LABEL,
+  VIEWER_VIEW_VALUES,
+  ViewerLabel,
+  ViewerViewValue,
+  viewerItems,
+} from "@/utils/SidebarItems";
 import { MonoText } from "@/components/UI/Monotext";
 
 const ROUTABLE_VIEWER_VIEWS = new Set<string>([
-  VIEWER_LABELS.PURCHASED,
-  VIEWER_LABELS.CURRENTLY_RENTED,
-  VIEWER_LABELS.PREVIOUSLY_RENTED,
-  VIEWER_LABELS.BILLINGS,
-  VIEWER_LABELS.MY_PROFILE,
+  VIEWER_VIEW_VALUES.PURCHASED,
+  VIEWER_VIEW_VALUES.CURRENTLY_RENTED,
+  VIEWER_VIEW_VALUES.PREVIOUSLY_RENTED,
+  VIEWER_VIEW_VALUES.BILLINGS,
+  VIEWER_VIEW_VALUES.MY_PROFILE,
 ]);
 
 export default function ClientDashboardViewer() {
@@ -35,7 +43,7 @@ export default function ClientDashboardViewer() {
   const viewParam = searchParams?.get(VIEW);
   const activePage: ViewerLabel =
     viewParam && ROUTABLE_VIEWER_VIEWS.has(viewParam)
-      ? (viewParam as ViewerLabel)
+      ? VIEWER_VIEW_TO_LABEL[viewParam as ViewerViewValue]
       : VIEWER_LABELS.PURCHASED;
 
   const getHrefForView = useCallback(
@@ -45,7 +53,7 @@ export default function ClientDashboardViewer() {
       if (label === VIEWER_LABELS.PURCHASED) {
         params.delete(VIEW);
       } else {
-        params.set(VIEW, label);
+        params.set(VIEW, VIEWER_LABEL_TO_VIEW[label]);
       }
 
       const qs = params.toString();
@@ -63,7 +71,7 @@ export default function ClientDashboardViewer() {
 
   const handleSidebarSelect = useCallback(
     (label: string) => {
-      if (!ROUTABLE_VIEWER_VIEWS.has(label)) return;
+      if (!(label in VIEWER_LABEL_TO_VIEW)) return;
       handleSelect(label as ViewerLabel);
     },
     [handleSelect],
