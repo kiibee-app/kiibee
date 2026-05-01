@@ -11,20 +11,6 @@ import { pool } from './database/db';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { CORS_ALLOWED_HEADERS, CORS_HTTP_METHODS } from './utils/constant';
 
-const DEFAULT_CORS_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000'];
-
-function getCorsOrigins(): string[] {
-  const configuredOrigins = process.env.CORS_ORIGIN?.split(',')
-    .map((origin) => origin.trim())
-    .filter(Boolean);
-
-  if (configuredOrigins && configuredOrigins.length > 0) {
-    return configuredOrigins;
-  }
-
-  return DEFAULT_CORS_ORIGINS;
-}
-
 async function bootstrap() {
   try {
     await pool.connect();
@@ -61,7 +47,7 @@ async function bootstrap() {
     app.useGlobalFilters(new HttpExceptionFilter());
 
     app.enableCors({
-      origin: getCorsOrigins(),
+      origin: [process.env.CORS_ORIGIN || ''],
       credentials: true,
       methods: CORS_HTTP_METHODS,
       allowedHeaders: CORS_ALLOWED_HEADERS,
