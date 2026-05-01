@@ -1040,6 +1040,17 @@
         "percentage": "Percentage"
       }
     },
+    "couponCodes": {
+      "title": "Coupon codes",
+      "description": "Add one or more codes that customers can use to redeem this discount.",
+      "fields": {
+        "discountCodes": "Discount Codes"
+      },
+      "placeholders": {
+        "codes": "Enter codes"
+      },
+      "helper": "Separate multiple codes by pressing enter"
+    },
     "tabs": {
       "collections": "Collections",
       "appearance": "Appearance",

@@ -1040,6 +1040,17 @@
         "percentage": "Procent"
       }
     },
+    "couponCodes": {
+      "title": "Kuponkoder",
+      "description": "Tilfoj en eller flere koder, som kunder kan bruge til at indlose denne rabat.",
+      "fields": {
+        "discountCodes": "Rabatkoder"
+      },
+      "placeholders": {
+        "codes": "Indtast koder"
+      },
+      "helper": "Adskil flere koder ved at trykke enter"
+    },
     "tabs": {
       "collections": "Samlinger",
       "appearance": "Udseende",

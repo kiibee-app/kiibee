@@ -7,6 +7,7 @@ export const COUPONS = "coupons";
 export const HELP = "Help";
 export const COUPON_DISCOUNT_FIXED_AMOUNT = "fixedAmount";
 export const COUPON_DISCOUNT_PERCENTAGE = "percentage";
+export const COUPON_CODES_LIMIT = 100;
 
 type ContentTabItem = {
   key: ContentTab;

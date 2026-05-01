@@ -11,7 +11,6 @@ import {
   type CouponDiscountType,
 } from "@/utils/common";
 import {
-  CouponInput,
   BackButton,
   FieldGroup,
   FieldLabel,
@@ -20,17 +19,19 @@ import {
   ModalContent,
   ModalTitle,
   NextButton,
-  SectionTitle,
-} from "./CouponDetailsModal.styles";
+} from "../styles";
+import { CouponInput, SectionTitle } from "./styles";
 
 type CouponDetailsModalProps = {
   visible: boolean;
   onClose: () => void;
+  onNext: () => void;
 };
 
 export default function CouponDetailsModal({
   visible,
   onClose,
+  onNext,
 }: CouponDetailsModalProps) {
   const { t } = useTranslation();
   const titleId = useId();
@@ -57,6 +58,12 @@ export default function CouponDetailsModal({
   const canContinue =
     title.trim().length > 0 && discountValue.trim().length > 0;
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!canContinue) return;
+    onNext();
+  };
+
   return (
     <GenericModal
       visible={visible}
@@ -75,7 +82,7 @@ export default function CouponDetailsModal({
           <BackButtonIcon size={28} strokeWidth={2.5} />
         </BackButton>
 
-        <FormShell onSubmit={(event) => event.preventDefault()}>
+        <FormShell onSubmit={handleSubmit}>
           <ModalTitle id="coupon-details-title">
             {t("contents.couponDetails.title")}
           </ModalTitle>
