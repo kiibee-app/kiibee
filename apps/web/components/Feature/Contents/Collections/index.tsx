@@ -1,55 +1,76 @@
 "use client";
 
 import React from "react";
-import { MonoText } from "@/components/UI/Monotext";
 import Table from "@/components/UI/Table";
+import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import { ActionWrapper, IconButton, NameWrapper } from "./styles";
-import {
-  CollectionRow,
-  CollectionsTableProps,
-} from "@/utils/dummyData/collection";
-import { COLLECTION_COLUMNS } from "@/utils/tableHeader";
-import { TABLE_ALIGN } from "@/utils/ui";
 import {
   DeleteIcon,
   EditProfileIcon,
   FolderIcon,
   ThreeDotIcon,
 } from "@/assets/icons";
+import { TABLE_ALIGN } from "@/utils/ui";
+import { BUTTON } from "@/utils/Constants";
+import { ActionWrapper, IconButton, NameWrapper } from "./styles";
+import {
+  CollectionRow,
+  CollectionContentRow,
+  CollectionTableProps,
+  isCollectionContentRow,
+} from "@/types/collections";
+import {
+  COLLECTION_TABLE_TYPE,
+  getCollectionContentIcon,
+} from "@/utils/collection";
+import {
+  COLLECTION_COLUMNS,
+  COLLECTION_CONTENT_COLUMNS,
+} from "@/utils/tableHeader";
 
-export default function CollectionsTable({
-  data,
-  onEdit,
-  onDelete,
-  onMore,
-  onRowClick,
-}: CollectionsTableProps) {
+type TableRow = CollectionRow | CollectionContentRow;
+
+export default function CollectionTable(props: CollectionTableProps) {
+  const isCollections = props.type === COLLECTION_TABLE_TYPE.COLLECTIONS;
+  const columns = isCollections
+    ? COLLECTION_COLUMNS
+    : COLLECTION_CONTENT_COLUMNS;
+
+  const handleRowClick = isCollections
+    ? (row: TableRow) => {
+        props.onRowClick?.(row as CollectionRow);
+      }
+    : undefined;
+
   return (
-    <Table<CollectionRow>
-      headers={[...COLLECTION_COLUMNS.map((c) => c.label)]}
-      data={data}
+    <Table<TableRow>
+      headers={columns.map((c) => c.label)}
+      data={props.data}
       rowsPerPage={10}
-      onRowClick={onRowClick}
+      onRowClick={handleRowClick}
       headerToKey={(header) => {
-        const col = COLLECTION_COLUMNS.find((c) => c.label === header);
-        return col?.key as keyof CollectionRow;
+        const col = columns.find((c) => c.label === header);
+        return col?.key as keyof TableRow;
       }}
       getRowKey={(row) => row.id}
       getColumnAlignment={(_header, index) =>
         index === 0 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
       }
-      getMobileTitle={(row) => row.name}
       isHeaderSortable={() => false}
       onHeaderClick={() => {}}
       getHeaderSortDirection={() => null}
       renderCell={({ header, row }) => {
-        const col = COLLECTION_COLUMNS.find((c) => c.label === header);
+        const col = columns.find((c) => c.label === header);
 
-        if (col?.key === COLLECTION_COLUMNS[0].key) {
+        if (col?.key === columns[0].key) {
           return (
             <NameWrapper>
-              <FolderIcon />
+              {isCollections ? (
+                <FolderIcon />
+              ) : isCollectionContentRow(row) ? (
+                getCollectionContentIcon(row.contentType)
+              ) : null}
+
               <MonoText $use="Body_SemiBold">{row.name}</MonoText>
             </NameWrapper>
           );
@@ -59,28 +80,30 @@ export default function CollectionsTable({
           return (
             <ActionWrapper>
               <IconButton
-                type="button"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onEdit?.(row.id);
+                type={BUTTON}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  props.onEdit?.(row.id);
                 }}
               >
                 <EditProfileIcon color={COLORS.neutral.GRAY} />
               </IconButton>
+
               <IconButton
-                type="button"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onDelete?.(row.id);
+                type={BUTTON}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  props.onDelete?.(row.id);
                 }}
               >
                 <DeleteIcon />
               </IconButton>
+
               <IconButton
-                type="button"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  onMore?.(row.id);
+                type={BUTTON}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  props.onMore?.(row.id);
                 }}
               >
                 <ThreeDotIcon />
@@ -89,7 +112,7 @@ export default function CollectionsTable({
           );
         }
 
-        const key = col?.key as keyof CollectionRow;
+        const key = col?.key as keyof TableRow;
 
         return (
           <MonoText $use="Body_SemiBold" color={COLORS.neutral.GRAY}>

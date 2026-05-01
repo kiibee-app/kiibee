@@ -1,33 +1,4 @@
-import React from "react";
-import COLORS from "@repo/ui/colors";
-import { EpubIcon, PdfIcon, VideoIcon, WebIcon } from "@/assets/icons";
-
-export type CollectionRow = {
-  id: string;
-  name: string;
-  contentsCount: number;
-  createdAt: string;
-  actions: string;
-};
-
-export type CollectionContentType = "pdf" | "video" | "epub" | "web";
-
-export type CollectionContentRow = {
-  id: string;
-  name: string;
-  visibility: "Hidden" | "Public";
-  createdAt: string;
-  contentType: CollectionContentType;
-  actions: string;
-};
-
-export type CollectionsTableProps = {
-  data: CollectionRow[];
-  onEdit?: (id: string) => void;
-  onDelete?: (id: string) => void;
-  onMore?: (id: string) => void;
-  onRowClick?: (row: CollectionRow) => void;
-};
+import { CollectionContentRow, CollectionRow } from "@/types/collections";
 
 export const collectionsData: CollectionRow[] = [
   {
@@ -133,46 +104,3 @@ export const collectionContentsData: Record<string, CollectionContentRow[]> = {
   "5": sharedCollectionContents,
   "6": sharedCollectionContents,
 };
-
-export function getCollectionContentIcon(
-  contentType: CollectionContentType,
-  size = 20,
-) {
-  const iconColor = COLORS.neutral.BLACK;
-
-  switch (contentType) {
-    case "pdf":
-      return React.createElement(PdfIcon, {
-        width: size,
-        height: size,
-        color: iconColor,
-      });
-    case "video":
-      return React.createElement(VideoIcon, {
-        width: size,
-        height: size,
-        color: iconColor,
-      });
-    case "epub":
-      return React.createElement(EpubIcon, {
-        width: size,
-        height: size,
-        color: iconColor,
-      });
-    case "web":
-      return React.createElement(WebIcon, {
-        width: size,
-        height: size,
-        color: iconColor,
-      });
-    default:
-      return React.createElement(PdfIcon, {
-        width: size,
-        height: size,
-        color: iconColor,
-      });
-  }
-}
-
-export const NAME = "name";
-export const VISIBILITY = "visibility";
