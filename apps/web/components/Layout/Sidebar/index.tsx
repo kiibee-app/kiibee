@@ -17,6 +17,7 @@ import {
   CREATORS_LABELS,
   CREATOR_SECTIONS,
   creatorsItems,
+  DashboardSidebarItem,
 } from "@/utils/SidebarItems";
 
 type SidebarProps = {
@@ -25,6 +26,8 @@ type SidebarProps = {
   onLogout?: () => void;
   open: boolean;
   onClose: () => void;
+  items?: DashboardSidebarItem[];
+  logoutLabel?: string;
 };
 
 const Sidebar = ({
@@ -33,22 +36,22 @@ const Sidebar = ({
   onLogout,
   open,
   onClose,
+  items = creatorsItems,
+  logoutLabel = CREATORS_LABELS.LOG_OUT,
 }: SidebarProps) => {
   const [helpOpen, setHelpOpen] = useState(false);
   const { mainItems, settingsItems } = useMemo(() => {
     return {
-      mainItems: creatorsItems.filter(
-        (item) => item.section === CREATOR_SECTIONS.TOP,
-      ),
-      settingsItems: creatorsItems.filter(
+      mainItems: items.filter((item) => item.section === CREATOR_SECTIONS.TOP),
+      settingsItems: items.filter(
         (item) => item.section === CREATOR_SECTIONS.BOTTOM,
       ),
     };
-  }, []);
+  }, [items]);
 
   const handleSelect = useCallback(
     (label: string) => {
-      if (label === CREATORS_LABELS.LOG_OUT) {
+      if (label === logoutLabel) {
         onLogout?.();
         onClose();
         return;
@@ -58,7 +61,7 @@ const Sidebar = ({
       setHelpOpen(false);
       onClose();
     },
-    [onSelect, onClose, onLogout],
+    [logoutLabel, onSelect, onClose, onLogout],
   );
 
   const handleCloseSidebar = useCallback(() => {
@@ -67,8 +70,8 @@ const Sidebar = ({
   }, [onClose]);
 
   const renderItems = useCallback(
-    (items: typeof creatorsItems) =>
-      items.map((item) => (
+    (itemsToRender: DashboardSidebarItem[]) =>
+      itemsToRender.map((item) => (
         <SidebarItemStyled
           key={item.label}
           onClick={() => handleSelect(item.label)}
