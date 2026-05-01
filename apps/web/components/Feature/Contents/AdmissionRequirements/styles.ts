@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MonoText } from "@/components/UI/Monotext";
 
 export const AdmissionCard = styled.div`
   width: 100%;
@@ -77,4 +78,30 @@ export const OptionButton = styled.button`
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   }
+`;
+
+export const PasswordFieldShell = styled.div`
+  width: min(100%, 457px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+export const PasswordMetaRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+`;
+
+export const PasswordHelperText = styled(MonoText).attrs({
+  $use: "Body_Small",
+})`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PasswordLimitText = styled(MonoText).attrs({
+  $use: "Body_Small",
+})`
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
 `;
