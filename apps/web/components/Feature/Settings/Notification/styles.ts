@@ -28,11 +28,8 @@ export const Section = styled.div`
 `;
 
 export const FieldBox = styled.div`
-  background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 8px;
-  padding: 12px 20px;
   gap: 8px;
-  box-shadow: 0 0 10px 0 ${({ theme }) => theme.colors.neutral.GRAY_300};
   cursor: pointer;
   max-width: 457px;
 `;

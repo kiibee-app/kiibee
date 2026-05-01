@@ -1,9 +1,10 @@
+import { Variant, VARIANT } from "@/utils/Constants";
 import { css } from "styled-components";
 
 export type ButtonSize = "sm" | "md" | "lg";
 
 type ButtonStyleProps = {
-  $variant: string;
+  $variant: Variant;
   $size: ButtonSize;
   $fullWidth: boolean;
   $minWidth?: string;
@@ -49,13 +50,13 @@ export const shared = css<ButtonStyleProps>`
 
   ${({ $variant }) => {
     switch ($variant) {
-      case "primary":
+      case VARIANT.PRIMARY:
         return css`
           background: ${({ theme }) => theme.colors.primary.BLACK};
           color: ${({ theme }) => theme.colors.primary.WHITE};
           border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
           box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-          &:hover {
+          &:not([type="submit"]):hover {
             background: transparent;
             color: ${({ theme }) => theme.colors.primary.BLACK};
             box-shadow: none;
@@ -64,15 +65,30 @@ export const shared = css<ButtonStyleProps>`
           }
         `;
 
-      case "primary-lite":
+      case VARIANT.PRIMARY_LITE:
         return css`
           background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
           color: ${({ theme }) => theme.colors.primary.BLACK};
           border: 1px solid transparent;
           border-radius: 0.5rem;
-          &:hover {
+          &:not([type="submit"]):hover {
             background: transparent;
             border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
+            opacity: 1;
+          }
+        `;
+
+      case VARIANT.DANGER:
+        return css`
+          background: ${({ theme }) => theme.colors.primary.RED};
+          color: ${({ theme }) => theme.colors.primary.WHITE};
+          border: 1px solid ${({ theme }) => theme.colors.primary.RED};
+          border-radius: 8px;
+
+          &:not([type="submit"]):hover {
+            background: ${({ theme }) => theme.colors.primary.WHITE};
+            color: ${({ theme }) => theme.colors.primary.RED};
+            border: 1px solid ${({ theme }) => theme.colors.primary.RED};
             opacity: 1;
           }
         `;
@@ -82,7 +98,7 @@ export const shared = css<ButtonStyleProps>`
           background: transparent;
           color: ${({ theme }) => theme.colors.primary.BLACK};
           border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
-          &:hover {
+          &:not([type="submit"]):hover {
             background: ${({ theme }) => theme.colors.primary.BLACK};
             color: ${({ theme }) => theme.colors.primary.WHITE};
             border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};

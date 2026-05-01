@@ -95,16 +95,50 @@ export const CREATOR_PROFILE = {
   accountDeletionTitle: "creatorProfile.accountDeletionTitle",
   accountDeletionText: "creatorProfile.accountDeletionText",
   deleteAccount: "creatorProfile.deleteAccount",
+  deleteModal: {
+    title: "creatorProfile.deleteModal.title",
+    message: "creatorProfile.deleteModal.message",
+    cancel: "creatorProfile.deleteModal.cancel",
+    confirm: "creatorProfile.deleteModal.confirm",
+  },
+  deleteSuccessModal: {
+    title: "creatorProfile.deleteSuccessModal.title",
+    message: "creatorProfile.deleteSuccessModal.message",
+    confirm: "creatorProfile.deleteSuccessModal.confirm",
+  },
 };
 
 export const DASHBOARD_USERS = {
+  tabs: {
+    registrations: "users.tabs.registrations",
+    salest: "users.tabs.salest",
+  },
   registrations: {
-    title: "dashboard.users.registrations.title",
-    description: "dashboard.users.registrations.description",
+    title: "users.registrations.title",
+    description: "users.registrations.description",
+    tableHeaders: {
+      name: "users.registrations.tableHeaders.name",
+      email: "users.registrations.tableHeaders.email",
+      date: "users.registrations.tableHeaders.date",
+      action: "users.registrations.tableHeaders.action",
+    },
+    deleteModal: {
+      title: "users.registrations.deleteModal.title",
+      message: "users.registrations.deleteModal.message",
+      cancel: "users.registrations.deleteModal.cancel",
+      delete: "users.registrations.deleteModal.delete",
+    },
   },
   salest: {
-    title: "dashboard.users.salest.title",
-    description: "dashboard.users.salest.description",
+    title: "users.salest.title",
+    description: "users.salest.description",
+    tableHeaders: {
+      name: "users.salest.tableHeaders.name",
+      email: "users.salest.tableHeaders.email",
+      price: "users.salest.tableHeaders.price",
+      type: "users.salest.tableHeaders.type",
+      date: "users.salest.tableHeaders.date",
+    },
   },
 };
 
@@ -123,6 +157,25 @@ export const CONTENTS = {
   },
   placeholders: {
     collections: "contents.placeholders.collections",
+  },
+  appearance: {
+    textColor: "contents.appearance.textColor",
+    textColorHint: "contents.appearance.textColorHint",
+    followTheme: "contents.appearance.followTheme",
+    darkText: "contents.appearance.darkText",
+    whiteText: "contents.appearance.whiteText",
+    buttonColor: "contents.appearance.buttonColor",
+    buttonColorHint: "contents.appearance.buttonColorHint",
+    chooseColor: "contents.appearance.chooseColor",
+    color: "contents.appearance.color",
+    defaultColor: "contents.appearance.defaultColor",
+    receipt: "contents.appearance.receipt",
+    receiptHint: "contents.appearance.receiptHint",
+    receiptPlaceholder: "contents.appearance.receiptPlaceholder",
+    maximumCharacter: "contents.appearance.maximumCharacter",
+    supportEmail: "contents.appearance.supportEmail",
+    supportEmailHint: "contents.appearance.supportEmailHint",
+    supportEmailPlaceholder: "contents.appearance.supportEmailPlaceholder",
   },
   deleteModal: {
     title: "contents.deleteModal.title",
@@ -160,6 +213,22 @@ export const SETTINGS = {
   },
 };
 
+export const COMMON = {
+  back: "common.back",
+};
+
+export const SUBSCRIPTION = {
+  logoAlt: "subscriptionPage.logoAlt",
+  title: "subscriptionPage.title",
+  comparePlans: "subscriptionPage.comparePlans",
+  continue: "subscriptionPage.continue",
+  creatorDetails: {
+    email: "subscriptionPage.creatorDetails.email",
+    password: "subscriptionPage.creatorDetails.password",
+    repeatPassword: "subscriptionPage.creatorDetails.repeatPassword",
+  },
+};
+
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
@@ -171,6 +240,8 @@ const TRANSLATION_KEYS = {
   DASHBOARD_USERS,
   CONTENTS,
   SETTINGS,
+  COMMON,
+  SUBSCRIPTION,
 };
 
 export default TRANSLATION_KEYS;

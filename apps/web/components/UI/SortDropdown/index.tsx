@@ -3,20 +3,17 @@
 import React, { useRef, useState, useCallback, useMemo } from "react";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { Directions } from "@/utils/ui";
-import {
-  Dropdown,
-  DropdownItem,
-  SortBox,
-  Text,
-} from "@/components/Feature/ExploreCreators/Hero/styles";
+import { Dropdown, DropdownItem, SortBox, Text } from "./styles";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { MonoText } from "../Monotext";
 import { DEFAULT_SORT } from "@/utils/sortOptions";
+import { SORT_DROPDOWN_VARIANT, SortDropdownVariant } from "@/utils/Constants";
 import { useTheme } from "styled-components";
 
 export type DropdownOption<T extends string = string> = {
   label: React.ReactNode;
   value: T;
+  description?: React.ReactNode;
 };
 
 type Props<T extends string = string> = {
@@ -31,7 +28,8 @@ type Props<T extends string = string> = {
   renderOptionLabel?: (option: DropdownOption<T>) => React.ReactNode;
   width?: string;
   maxWidth?: string;
-  variant?: "default" | "surface" | "paleGreen";
+  hideSelectedOption?: boolean;
+  variant?: SortDropdownVariant;
 };
 
 function SortDropdown<T extends string = string>({
@@ -43,7 +41,8 @@ function SortDropdown<T extends string = string>({
   renderOptionLabel,
   width,
   maxWidth,
-  variant = "default",
+  variant = SORT_DROPDOWN_VARIANT.DEFAULT,
+  hideSelectedOption,
 }: Props<T>) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
@@ -73,7 +72,11 @@ function SortDropdown<T extends string = string>({
     () => options.filter((opt) => opt.value !== selected),
     [options, selected],
   );
-  const visibleOptions = filteredOptions.length > 0 ? filteredOptions : options;
+  const visibleOptions = hideSelectedOption
+    ? filteredOptions.length > 0
+      ? filteredOptions
+      : options
+    : options;
 
   const selectedOption = options.find((opt) => opt.value === selected);
   const resolvedSelectedLabel = renderSelectedLabel
@@ -96,7 +99,7 @@ function SortDropdown<T extends string = string>({
       <ArrowIcon
         direction={open ? Directions.UP : Directions.DOWN}
         color={
-          variant === "surface"
+          variant === SORT_DROPDOWN_VARIANT.SURFACE
             ? theme.colors.neutral.GRAY_400
             : theme.colors.primary.BLACK
         }
@@ -108,6 +111,7 @@ function SortDropdown<T extends string = string>({
             <DropdownItem
               key={opt.value}
               $variant={variant}
+              $active={opt.value === selected}
               onClick={(e) => {
                 e.stopPropagation();
                 handleSelect(opt.value);

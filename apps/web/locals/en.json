@@ -75,7 +75,11 @@
     "emailLabel": "Email address",
     "submit": "Submit",
     "rememberPassword": "Remember your password?",
-    "login": "Log in"
+    "login": "Log in",
+    "checkEmailTitle": "Check your email",
+    "checkEmailDescription": "We sent a password reset link to your email. If it doesn’t arrive within a few minutes, check your spam folder.",
+    "didNotReceive": "Didn’t receive the email?",
+    "resend": "Resend"
   },
   "viewerSignup": {
     "title": "Create viewer account",
@@ -98,6 +102,8 @@
       "repeatPassword": "Repeat password",
       "repeatPasswordPlaceholder": "Repeat new password",
       "passwordMismatch": "Passwords do not match",
+      "fixHighlightedFields": "Please complete the required fields.",
+      "signupFailed": "Unable to create your account. Please try again.",
       "consentPrefix": "I agree to Kiibee's",
       "terms": "Terms of Use",
       "and": " and ",
@@ -699,6 +705,34 @@
       }
     }
   },
+  "subscriptionPage": {
+    "logoAlt": "Kiibee Logo",
+    "title": "Choose the right plan to get your account started",
+    "comparePlans": "Compare plans and features",
+    "continue": "Continue",
+    "creatorDetails": {
+      "email": "Confirm email address",
+      "password": "Create password",
+      "repeatPassword": "Repeat password"
+    },
+    "plans": {
+      "tryKiibee": {
+        "name": "Try Kiibee",
+        "meta": "Max. 2 files",
+        "price": "0 KR/mo"
+      },
+      "startUp": {
+        "name": "Start-up",
+        "meta": "Max. 10 files",
+        "price": "99 KR/mo"
+      },
+      "pro": {
+        "name": "Pro",
+        "meta": "Max. 70 files",
+        "price": "299 KR/mo"
+      }
+    }
+  },
   "pricingFaq": {
     "title": "FAQ",
     "items": [
@@ -721,6 +755,8 @@
     "optional": "optional",
     "save": "Save",
     "cancel": "Cancel",
+    "back": "Back",
+    "close": "Close",
     "previous": "Previous",
     "next": "Next"
   },
@@ -751,6 +787,17 @@
     "accountDeletionTitle": "Account deletion",
     "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
     "deleteAccount": "Delete account",
+    "deleteModal": {
+      "title": "Delete Account?",
+      "message": "Are you sure you want to delete your account? This action is permanent and cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete Account"
+    },
+    "deleteSuccessModal": {
+      "title": "Request Sent for Account Deletion",
+      "message": "Your request has been submitted. An administrator will review it and complete the account deletion process. You'll be notified once it's done.",
+      "confirm": "Done"
+    },
     "forgotPass": "Forgot Password?",
     "passwordSuccessTitle": "Password updated",
     "passwordSuccessMessage": "Your password was successfully updated. Please log in again to continue."
@@ -852,18 +899,79 @@
       "body2": "If you need help now, please reach out via the support page."
     }
   },
+  "users": {
+    "tabs": {
+      "registrations": "Registrations (11)",
+      "salest": "Sales (50)"
+    },
+    "registrations": {
+      "title": "E-mail signups",
+      "description": "An overview of all emails collected in connection with e-mail address visibility.",
+      "tableHeaders": {
+        "name": "Name",
+        "email": "Email",
+        "date": "Date",
+        "action": "Action"
+      },
+      "deleteModal": {
+        "title": "Delete?",
+        "message": "Are you sure you want to delete this data? This action cannot be undone.",
+        "cancel": "Cancel",
+        "delete": "Delete"
+      }
+    },
+    "salest": {
+      "title": "Sales",
+      "description": "Here you can find a complete overview of all your sales.",
+      "tableHeaders": {
+        "name": "Name",
+        "email": "Email",
+        "price": "Price",
+        "type": "Type",
+        "date": "Date"
+      }
+    }
+  },
   "dashboard": {
     "overview": "Overview",
     "noData": "No Data Found",
     "contentPerformance": "Content Performance",
+    "logoutModal": {
+      "title": "Log out",
+      "message": "Are you sure you want to log out as {{email}}?",
+      "confirm": "Log out"
+    },
     "users": {
+      "tabs": {
+        "registrations": "Registrations (11)",
+        "salest": "Sales (50)"
+      },
       "registrations": {
         "title": "E-mail signups",
-        "description": "An overview of all emails collected in connection with e-mail address visibility."
+        "description": "An overview of all emails collected in connection with e-mail address visibility.",
+        "tableHeaders": {
+          "name": "Name",
+          "email": "Email",
+          "date": "Date",
+          "action": "Action"
+        },
+        "deleteModal": {
+          "title": "Delete?",
+          "message": "Are you sure you want to delete this data? This action cannot be undone.",
+          "cancel": "Cancel",
+          "delete": "Delete"
+        }
       },
       "salest": {
         "title": "Sales",
-        "description": "Here you can find a complete overview of all your sales."
+        "description": "Here you can find a complete overview of all your sales.",
+        "tableHeaders": {
+          "name": "Name",
+          "email": "Email",
+          "price": "Price",
+          "type": "Type",
+          "date": "Date"
+        }
       }
     },
     "contentName": "Content name",
@@ -888,12 +996,29 @@
       "type": "Type",
       "typeDesc": "Choose what kind of updates you want to receive",
       "overview": "Overview",
+      "form": "Form",
+      "sales": "Sales",
       "frequency": "How often will you receive updates?",
       "frequencyDesc": "Select how frequently you want to get email updates",
       "monthly": "Monthly",
+      "weekly": "Weekly",
+      "daily": "Daily",
       "recipient": "Recipient",
       "recipientDesc": "Choose where the notifications will be sent",
-      "accountEmail": "Account email"
+      "accountEmail": "Account email",
+      "otherEmail": "Other than account email",
+      "enterEmail": "Enter email",
+      "discardModal": {
+        "title": "Discard Changes?",
+        "message": "Are you sure you want to cancel? All unsaved changes will be lost.",
+        "goBack": "Go back",
+        "discard": "Discard"
+      },
+      "successModal": {
+        "title": "Changes saved",
+        "message": "Your updates have been successfully saved.",
+        "done": "Done"
+      }
     },
     "payout": {
       "title": "Payout",
@@ -922,10 +1047,39 @@
     "title": "Contents",
     "actions": {
       "createCollection": "Create collection",
+      "createCoupon": "Create coupon",
       "search": "Search contents",
       "cancel": "Cancel",
       "save": "Save",
       "deleteContent": "Delete content"
+    },
+    "couponDetails": {
+      "title": "Coupon details",
+      "fields": {
+        "title": "Title"
+      },
+      "placeholders": {
+        "title": "Enter short title",
+        "discountAmount": "Enter discount amount",
+        "discountPercentage": "Enter discount percentage"
+      },
+      "discountValue": "Discount Value",
+      "discountHelp": "Enter the discount amount or percentage you want to offer.",
+      "discountType": {
+        "fixedAmount": "Fixed amount",
+        "percentage": "Percentage"
+      }
+    },
+    "couponCodes": {
+      "title": "Coupon codes",
+      "description": "Add one or more codes that customers can use to redeem this discount.",
+      "fields": {
+        "discountCodes": "Discount Codes"
+      },
+      "placeholders": {
+        "codes": "Enter codes"
+      },
+      "helper": "Separate multiple codes by pressing enter"
     },
     "tabs": {
       "collections": "Collections",
@@ -956,10 +1110,20 @@
       "textColor": "Text color",
       "textColorHint": "Choose the text color used in the cover image",
       "followTheme": "Follow theme (Default)",
+      "darkText": "Dark text",
+      "whiteText": "White text",
       "buttonColor": "Button color",
       "buttonColorHint": "Choose the button color used in your website",
       "chooseColor": "Choose color",
-      "color": "Color"
+      "defaultColor": "Default color",
+      "color": "Color",
+      "receipt": "Receipt",
+      "receiptHint": "Write a message to your customer when they receive a receipt",
+      "receiptPlaceholder": "Enter receipt",
+      "maximumCharacter": "Maximum character",
+      "supportEmail": "Support email",
+      "supportEmailHint": "If you want a different email than your account email for support, enter it here.",
+      "supportEmailPlaceholder": "Enter support email"
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",
@@ -995,5 +1159,17 @@
       "message": "Your updates have been successfully saved.",
       "done": "Done"
     }
+  },
+  "resetPassword": {
+    "title": "Create a new password",
+    "description": "Enter your new password below to complete the reset process.",
+    "newPasswordLabel": "New password",
+    "newPasswordPlaceholder": "New password",
+    "repeatPasswordLabel": "Repeat new password",
+    "repeatPasswordPlaceholder": "Repeat new password",
+    "submit": "Reset",
+    "successTitle": "Your password has been successfully reset!",
+    "successDescription": "You can now log in with your new password. If you encounter any issues, please contact support.",
+    "backToLogin": "Back to login"
   }
 }

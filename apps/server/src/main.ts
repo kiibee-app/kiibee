@@ -47,7 +47,7 @@ async function bootstrap() {
     app.useGlobalFilters(new HttpExceptionFilter());
 
     app.enableCors({
-      origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+      origin: [process.env.CORS_ORIGIN || ''],
       credentials: true,
       methods: CORS_HTTP_METHODS,
       allowedHeaders: CORS_ALLOWED_HEADERS,
@@ -55,7 +55,7 @@ async function bootstrap() {
 
     await app.register(helmet);
 
-    const port = process.env.PORT || 4003;
+    const port = process.env.PORT || 4001;
     await app.listen(port, '0.0.0.0');
 
     console.log(`🚀 API running at http://localhost:${port}/api/v1`);

@@ -75,7 +75,11 @@
     "emailLabel": "E-mailadresse",
     "submit": "Indsende",
     "rememberPassword": "Kan du huske din adgangskode?",
-    "login": "Log ind"
+    "login": "Log ind",
+    "checkEmailTitle": "Tjek din e-mail",
+    "checkEmailDescription": "Vi har sendt et link til nulstilling af adgangskode til din e-mail. Hvis det ikke ankommer inden for et par minutter, så tjek din spam-mappe.",
+    "didNotReceive": "Har du ikke modtaget e-mailen?",
+    "resend": "Send igen"
   },
   "viewerSignup": {
     "title": "Opret seerkonto",
@@ -98,6 +102,8 @@
       "repeatPassword": "Gentag adgangskode",
       "repeatPasswordPlaceholder": "Gentag ny adgangskode",
       "passwordMismatch": "Adgangskoderne matcher ikke",
+      "fixHighlightedFields": "Udfyld venligst de påkrævede felter.",
+      "signupFailed": "Din konto kunne ikke oprettes. Prøv igen.",
       "consentPrefix": "Jeg accepterer Kiibees",
       "terms": "Vilkår for brug",
       "and": " og ",
@@ -699,6 +705,34 @@
       }
     }
   },
+  "subscriptionPage": {
+    "logoAlt": "Kiibee Logo",
+    "title": "Vælg den rigtige plan til at komme i gang med din konto",
+    "comparePlans": "Sammenlign planer og funktioner",
+    "continue": "Fortsæt",
+    "creatorDetails": {
+      "email": "Bekræft e-mailadresse",
+      "password": "Opret adgangskode",
+      "repeatPassword": "Gentag adgangskode"
+    },
+    "plans": {
+      "tryKiibee": {
+        "name": "Try Kiibee",
+        "meta": "Maks. 2 filer",
+        "price": "0 kr/md"
+      },
+      "startUp": {
+        "name": "Start-up",
+        "meta": "Maks. 10 filer",
+        "price": "99 kr/md"
+      },
+      "pro": {
+        "name": "Pro",
+        "meta": "Maks. 70 filer",
+        "price": "299 kr/md"
+      }
+    }
+  },
   "pricingFaq": {
     "title": "FAQ",
     "items": [
@@ -721,6 +755,8 @@
     "optional": "valgfrit",
     "save": "Save",
     "cancel": "Cancel",
+    "back": "Tilbage",
+    "close": "Luk",
     "previous": "Forrige",
     "next": "Næste"
   },
@@ -751,6 +787,17 @@
     "accountDeletionTitle": "Slet konto",
     "accountDeletionText": "Hvis du ønsker at slette din konto, klik på [Slet konto] nedenfor, og der sendes en besked til administratoren, som vil foretage en opgørelse og derefter slette din konto.",
     "deleteAccount": "Slet konto",
+    "deleteModal": {
+      "title": "Slet konto?",
+      "message": "Er du sikker på, at du vil slette din konto? Denne handling er permanent og kan ikke fortrydes.",
+      "cancel": "Annuller",
+      "confirm": "Slet konto"
+    },
+    "deleteSuccessModal": {
+      "title": "Anmodning om kontosletning sendt",
+      "message": "Din anmodning er sendt. En administrator gennemgår den og fuldfører kontosletningen. Du får besked, når det er gjort.",
+      "confirm": "Færdig"
+    },
     "forgotPass": "Glemt adgangskode?",
     "passwordSuccessTitle": "Adgangskode opdateret",
     "passwordSuccessMessage": "Din adgangskode blev opdateret. Log venligst ind igen for at fortsætte."
@@ -852,18 +899,79 @@
       "body2": "Hvis du har brug for hjaelp nu, kan du kontakte os via supportsiden."
     }
   },
+  "users": {
+    "tabs": {
+      "registrations": "Registreringer (11)",
+      "salest": "Salg (50)"
+    },
+    "registrations": {
+      "title": "E-mail tilmeldinger",
+      "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse.",
+      "tableHeaders": {
+        "name": "Navn",
+        "email": "E-mail",
+        "date": "Dato",
+        "action": "Handling"
+      },
+      "deleteModal": {
+        "title": "Slet?",
+        "message": "Er du sikker på, at du vil slette disse data? Handlingen kan ikke fortrydes.",
+        "cancel": "Annuller",
+        "delete": "Slet"
+      }
+    },
+    "salest": {
+      "title": "Salg",
+      "description": "Her finder du en samlet oversigt over alt dit salg",
+      "tableHeaders": {
+        "name": "Navn",
+        "email": "E-mail",
+        "price": "Pris",
+        "type": "Type",
+        "date": "Dato"
+      }
+    }
+  },
   "dashboard": {
     "overview": "Oversigt",
     "noData": "Ingen data fundet",
     "contentPerformance": "Indholdsydelse",
+    "logoutModal": {
+      "title": "Log ud",
+      "message": "Er du sikker på, at du vil logge ud som {{email}}?",
+      "confirm": "Log ud"
+    },
     "users": {
+      "tabs": {
+        "registrations": "Registreringer (11)",
+        "salest": "Salg (50)"
+      },
       "registrations": {
         "title": "E-mail tilmeldinger",
-        "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse."
+        "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse.",
+        "tableHeaders": {
+          "name": "Navn",
+          "email": "E-mail",
+          "date": "Dato",
+          "action": "Handling"
+        },
+        "deleteModal": {
+          "title": "Slet?",
+          "message": "Er du sikker på, at du vil slette disse data? Handlingen kan ikke fortrydes.",
+          "cancel": "Annuller",
+          "delete": "Slet"
+        }
       },
       "salest": {
         "title": "Salg",
-        "description": "Her finder du en samlet oversigt over alt dit salg"
+        "description": "Her finder du en samlet oversigt over alt dit salg",
+        "tableHeaders": {
+          "name": "Navn",
+          "email": "E-mail",
+          "price": "Pris",
+          "type": "Type",
+          "date": "Dato"
+        }
       }
     },
     "contentName": "Indholdsnavn",
@@ -888,12 +996,29 @@
       "type": "Type",
       "typeDesc": "Vælg hvilken type opdateringer du vil modtage",
       "overview": "Oversigt",
+      "form": "Formular",
+      "sales": "Salg",
       "frequency": "Hvor ofte vil du modtage opdateringer?",
       "frequencyDesc": "Vælg hvor ofte du vil modtage e-mailopdateringer",
       "monthly": "Månedligt",
+      "weekly": "Ugentligt",
+      "daily": "Dagligt",
       "recipient": "Modtager",
       "recipientDesc": "Vælg hvor notifikationerne skal sendes hen",
-      "accountEmail": "Kontoe-mail"
+      "accountEmail": "Kontoe-mail",
+      "otherEmail": "Anden e-mail",
+      "enterEmail": "Indtast e-mail",
+      "discardModal": {
+        "title": "Kassér ændringer?",
+        "message": "Er du sikker på, at du vil annullere? Alle ikke-gemte ændringer går tabt.",
+        "goBack": "Gå tilbage",
+        "discard": "Kassér"
+      },
+      "successModal": {
+        "title": "Ændringer gemt",
+        "message": "Dine opdateringer er blevet gemt.",
+        "done": "Færdig"
+      }
     },
     "payout": {
       "title": "Payout",
@@ -922,10 +1047,39 @@
     "title": "Indhold",
     "actions": {
       "createCollection": "Opret samling",
+      "createCoupon": "Opret kupon",
       "search": "Sog indhold",
       "cancel": "Annuller",
       "save": "Gem",
       "deleteContent": "Delete content"
+    },
+    "couponDetails": {
+      "title": "Kupondetaljer",
+      "fields": {
+        "title": "Titel"
+      },
+      "placeholders": {
+        "title": "Indtast kort titel",
+        "discountAmount": "Indtast rabatbeloeb",
+        "discountPercentage": "Indtast rabatprocent"
+      },
+      "discountValue": "Rabatvaerdi",
+      "discountHelp": "Indtast det rabatbeloeb eller den procentdel, du vil tilbyde.",
+      "discountType": {
+        "fixedAmount": "Fast beloeb",
+        "percentage": "Procent"
+      }
+    },
+    "couponCodes": {
+      "title": "Kuponkoder",
+      "description": "Tilfoj en eller flere koder, som kunder kan bruge til at indlose denne rabat.",
+      "fields": {
+        "discountCodes": "Rabatkoder"
+      },
+      "placeholders": {
+        "codes": "Indtast koder"
+      },
+      "helper": "Adskil flere koder ved at trykke enter"
     },
     "tabs": {
       "collections": "Samlinger",
@@ -947,10 +1101,20 @@
       "textColor": "Tekstfarve",
       "textColorHint": "Vælg den tekstfarve, der bruges i coverbilledet",
       "followTheme": "Følg temaet (Standard)",
+      "darkText": "Mork tekst",
+      "whiteText": "Hvid tekst",
       "buttonColor": "Knapfarve",
       "buttonColorHint": "Vælg den knapfarve, der bruges på din hjemmeside",
       "chooseColor": "Vælg farve",
-      "color": "Farve"
+      "defaultColor": "Standardfarve",
+      "color": "Farve",
+      "receipt": "Kvittering",
+      "receiptHint": "Skriv en besked til din kunde, nÃ¥r de modtager en kvittering",
+      "receiptPlaceholder": "Indtast kvittering",
+      "maximumCharacter": "Maksimalt antal tegn",
+      "supportEmail": "Support e-mail",
+      "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, sÃ¥ indtast den her.",
+      "supportEmailPlaceholder": "Indtast support e-mail"
     },
     "admissionRequirements": {
       "title": "Adgangskrav",
@@ -994,5 +1158,17 @@
       "message": "Dine opdateringer er blevet gemt.",
       "done": "Faerdig"
     }
+  },
+  "resetPassword": {
+    "title": "Opret en ny adgangskode",
+    "description": "Indtast din nye adgangskode nedenfor for at fuldføre nulstillingen.",
+    "newPasswordLabel": "Ny adgangskode",
+    "newPasswordPlaceholder": "Ny adgangskode",
+    "repeatPasswordLabel": "Gentag ny adgangskode",
+    "repeatPasswordPlaceholder": "Gentag ny adgangskode",
+    "submit": "Nulstil",
+    "successTitle": "Din adgangskode er blevet nulstillet!",
+    "successDescription": "Du kan nu logge ind med din nye adgangskode. Kontakt support, hvis du oplever problemer.",
+    "backToLogin": "Tilbage til login"
   }
 }

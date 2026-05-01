@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import AdminLogoIcon from "../../../assets/icons/AdminLogoIcon";
 import ErrorIcon from "../../../assets/icons/ErrorIcon";
 import {
@@ -20,37 +21,39 @@ import {
   Title,
   Wrap,
 } from "./Login.styles";
-import { ADMIN_EMAIL, ADMIN_PIN } from "../../../utils/admin-credentials";
+import { useLogin } from "../../../hooks/api/use-login";
+import { decodeToken, setTokens } from "../../../utils/token";
 
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [pin, setPin] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const loginMutation = useLogin();
 
   const handleLogin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsLoading(true);
-    setError("");
 
-    setTimeout(() => {
-      if (
-        email.trim().toLowerCase() === ADMIN_EMAIL &&
-        pin.trim() === ADMIN_PIN
-      ) {
-        localStorage.setItem("adminLoggedIn", "true");
-        document.cookie =
-          "adminLoggedIn=true; Path=/; Max-Age=86400; SameSite=Lax";
-        setError("");
-        router.push("/dashboard");
-        setIsLoading(false);
-        return;
-      }
+    loginMutation.mutate(
+      { email, password: pin },
+      {
+        onSuccess: (data) => {
+          const decodedToken = decodeToken(data.accessToken);
+          console.log("Current User:", { ...data, tokenClaims: decodedToken });
 
-      setError(`Invalid credentials. Try ${ADMIN_EMAIL} / ${ADMIN_PIN}`);
-      setIsLoading(false);
-    }, 600);
+          if (decodedToken?.role !== "admin") {
+            toast.error("Access denied. Admin role required.");
+            return;
+          }
+
+          setTokens(data.accessToken, data.refreshToken);
+          toast.success(`Welcome, ${data.fullName}!`);
+          router.push("/all-creators");
+        },
+        onError: (error) => {
+          toast.error(error.message || "Login failed");
+        },
+      },
+    );
   };
 
   return (
@@ -89,15 +92,15 @@ export default function Login() {
             />
           </Field>
 
-          {error ? (
+          {loginMutation.isError ? (
             <ErrorBox>
               <ErrorIcon />
-              <ErrorText>{error}</ErrorText>
+              <ErrorText>{loginMutation.error?.message}</ErrorText>
             </ErrorBox>
           ) : null}
 
-          <LoginButton type="submit" disabled={isLoading}>
-            {isLoading ? <Spinner /> : "Login"}
+          <LoginButton type="submit" disabled={loginMutation.isPending}>
+            {loginMutation.isPending ? <Spinner /> : "Login"}
           </LoginButton>
         </Form>
       </Card>

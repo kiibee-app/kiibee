@@ -14,6 +14,10 @@ import { approveCreatorRequestService } from './services/approvCreatorRequest.se
 import { getCreatorRequestService } from './services/getCreatorRequest.service';
 import { rejectCreatorRequestService } from './services/rejectCreatorRequest.service';
 import { validateTokenService } from './services/validateToken.service';
+import { setupCreatorAccountService } from './services/creatorAccountSetup.service';
+import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
+import { forgetPasswordService } from './services/forgetPassword.service';
+import { resetPasswordService } from './services/resetPassword.service';
 
 @Injectable()
 export class AuthService {
@@ -82,5 +86,14 @@ export class AuthService {
   }
   async validateToken(token: string) {
     return validateTokenService(token);
+  }
+  async setupCreatorAccount(payload: CreatorAccountSetupDto) {
+    return setupCreatorAccountService(payload);
+  }
+  async forgetPassword(email: string) {
+    return forgetPasswordService(email);
+  }
+  async resetPassword(payload: any) {
+    return resetPasswordService(payload);
   }
 }

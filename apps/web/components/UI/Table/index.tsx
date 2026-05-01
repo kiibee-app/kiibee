@@ -18,6 +18,9 @@ export default function Table<T extends Record<string, unknown>>({
   getMobileTitle,
   emptyText,
   rowsPerPage = 3,
+  onHeaderClick,
+  isHeaderSortable,
+  getHeaderSortDirection,
 }: TableProps<T>) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,6 +67,9 @@ export default function Table<T extends Record<string, unknown>>({
           emptyText={emptyText}
           hasData={hasData}
           pagination={paginationMeta}
+          onHeaderClick={onHeaderClick}
+          isHeaderSortable={isHeaderSortable}
+          getHeaderSortDirection={getHeaderSortDirection}
         />
 
         <MobileTable
@@ -77,6 +83,9 @@ export default function Table<T extends Record<string, unknown>>({
           toggleAccordion={toggleAccordion}
           hasData={hasData}
           pagination={paginationMeta}
+          onHeaderClick={onHeaderClick}
+          isHeaderSortable={isHeaderSortable}
+          getHeaderSortDirection={getHeaderSortDirection}
         />
       </TableContainer>
       <Pagination

@@ -1,8 +1,7 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import "styled-components";
-import { Theme } from "@repo/ui/theme/types";
+import type { Theme } from "../../../packages/ui/src/theme";
 
 declare module "styled-components" {
-  export interface DefaultTheme extends Theme {
-    name: Theme["name"];
-  }
+  export interface DefaultTheme extends Theme {}
 }

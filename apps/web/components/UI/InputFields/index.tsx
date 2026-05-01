@@ -249,6 +249,7 @@ export default React.forwardRef<
             autoComplete={autoComplete}
             aria-describedby={describedBy}
             data-test-id={dataTestId}
+            $variant={variant}
             maxLength={max}
             onKeyDown={handleKeyDown}
             onBlur={handleBlur}
