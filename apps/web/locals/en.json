@@ -75,7 +75,11 @@
     "emailLabel": "Email address",
     "submit": "Submit",
     "rememberPassword": "Remember your password?",
-    "login": "Log in"
+    "login": "Log in",
+    "checkEmailTitle": "Check your email",
+    "checkEmailDescription": "We sent a password reset link to your email. If it doesn’t arrive within a few minutes, check your spam folder.",
+    "didNotReceive": "Didn’t receive the email?",
+    "resend": "Resend"
   },
   "viewerSignup": {
     "title": "Create viewer account",
@@ -712,6 +716,11 @@
     "title": "Choose the right plan to get your account started",
     "comparePlans": "Compare plans and features",
     "continue": "Continue",
+    "creatorDetails": {
+      "email": "Confirm email address",
+      "password": "Create password",
+      "repeatPassword": "Repeat password"
+    },
     "plans": {
       "tryKiibee": {
         "name": "Try Kiibee",
@@ -1067,6 +1076,17 @@
         "percentage": "Percentage"
       }
     },
+    "couponCodes": {
+      "title": "Coupon codes",
+      "description": "Add one or more codes that customers can use to redeem this discount.",
+      "fields": {
+        "discountCodes": "Discount Codes"
+      },
+      "placeholders": {
+        "codes": "Enter codes"
+      },
+      "helper": "Separate multiple codes by pressing enter"
+    },
     "tabs": {
       "collections": "Collections",
       "appearance": "Appearance",
@@ -1096,10 +1116,20 @@
       "textColor": "Text color",
       "textColorHint": "Choose the text color used in the cover image",
       "followTheme": "Follow theme (Default)",
+      "darkText": "Dark text",
+      "whiteText": "White text",
       "buttonColor": "Button color",
       "buttonColorHint": "Choose the button color used in your website",
       "chooseColor": "Choose color",
-      "color": "Color"
+      "defaultColor": "Default color",
+      "color": "Color",
+      "receipt": "Receipt",
+      "receiptHint": "Write a message to your customer when they receive a receipt",
+      "receiptPlaceholder": "Enter receipt",
+      "maximumCharacter": "Maximum character",
+      "supportEmail": "Support email",
+      "supportEmailHint": "If you want a different email than your account email for support, enter it here.",
+      "supportEmailPlaceholder": "Enter support email"
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",
@@ -1135,5 +1165,17 @@
       "message": "Your updates have been successfully saved.",
       "done": "Done"
     }
+  },
+  "resetPassword": {
+    "title": "Create a new password",
+    "description": "Enter your new password below to complete the reset process.",
+    "newPasswordLabel": "New password",
+    "newPasswordPlaceholder": "New password",
+    "repeatPasswordLabel": "Repeat new password",
+    "repeatPasswordPlaceholder": "Repeat new password",
+    "submit": "Reset",
+    "successTitle": "Your password has been successfully reset!",
+    "successDescription": "You can now log in with your new password. If you encounter any issues, please contact support.",
+    "backToLogin": "Back to login"
   }
 }

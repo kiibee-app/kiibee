@@ -35,6 +35,7 @@ export const BackButton = styled.button`
 
 export const FormShell = styled.form`
   width: min(457px, 100%);
+  min-height: 352px;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -48,7 +49,6 @@ export const ModalTitle = styled(MonoText).attrs({
   color: ${COLORS.primary.BLACK};
   text-align: center;
   margin-bottom: 12px;
-  padding-top: 20px;
 `;
 
 export const FieldGroup = styled.div`
@@ -62,38 +62,10 @@ export const FieldLabel = styled.label`
   color: ${COLORS.primary.BLACK};
 `;
 
-export const SectionTitle = styled(MonoText).attrs({
-  $use: "Body_Medium",
-})`
-  color: ${COLORS.primary.BLACK};
-  margin-top: 6px;
-`;
-
 export const HelperText = styled(MonoText).attrs({
   $use: "Body_Medium",
 })`
   color: ${COLORS.neutral.GRAY};
-`;
-
-export const CouponInput = styled.input`
-  width: 100%;
-  height: 40px;
-  border: 1px solid ${COLORS.neutral.GRAY_300};
-  border-radius: 10px;
-  background: ${COLORS.neutral.GRAY_200};
-  padding: 0 16px;
-  color: ${COLORS.primary.BLACK};
-  ${typography.Body_Medium};
-  outline: none;
-
-  &::placeholder {
-    color: ${COLORS.neutral.GRAY_400};
-  }
-
-  &:focus {
-    border-color: ${COLORS.primary.BLACK};
-    background: ${COLORS.primary.WHITE};
-  }
 `;
 
 export const NextButton = styled.button`
@@ -104,7 +76,7 @@ export const NextButton = styled.button`
   border-radius: 8px;
   background: ${COLORS.neutral.GRAY};
   color: ${COLORS.primary.WHITE};
-  margin-top: 14px;
+  margin-top: auto;
   cursor: pointer;
   ${typography.Body_Bold};
 

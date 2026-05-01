@@ -179,6 +179,25 @@ export const CONTENTS = {
   placeholders: {
     collections: "contents.placeholders.collections",
   },
+  appearance: {
+    textColor: "contents.appearance.textColor",
+    textColorHint: "contents.appearance.textColorHint",
+    followTheme: "contents.appearance.followTheme",
+    darkText: "contents.appearance.darkText",
+    whiteText: "contents.appearance.whiteText",
+    buttonColor: "contents.appearance.buttonColor",
+    buttonColorHint: "contents.appearance.buttonColorHint",
+    chooseColor: "contents.appearance.chooseColor",
+    color: "contents.appearance.color",
+    defaultColor: "contents.appearance.defaultColor",
+    receipt: "contents.appearance.receipt",
+    receiptHint: "contents.appearance.receiptHint",
+    receiptPlaceholder: "contents.appearance.receiptPlaceholder",
+    maximumCharacter: "contents.appearance.maximumCharacter",
+    supportEmail: "contents.appearance.supportEmail",
+    supportEmailHint: "contents.appearance.supportEmailHint",
+    supportEmailPlaceholder: "contents.appearance.supportEmailPlaceholder",
+  },
   deleteModal: {
     title: "contents.deleteModal.title",
     message: "contents.deleteModal.message",
@@ -215,6 +234,22 @@ export const SETTINGS = {
   },
 };
 
+export const COMMON = {
+  back: "common.back",
+};
+
+export const SUBSCRIPTION = {
+  logoAlt: "subscriptionPage.logoAlt",
+  title: "subscriptionPage.title",
+  comparePlans: "subscriptionPage.comparePlans",
+  continue: "subscriptionPage.continue",
+  creatorDetails: {
+    email: "subscriptionPage.creatorDetails.email",
+    password: "subscriptionPage.creatorDetails.password",
+    repeatPassword: "subscriptionPage.creatorDetails.repeatPassword",
+  },
+};
+
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
@@ -228,6 +263,8 @@ const TRANSLATION_KEYS = {
   DASHBOARD_USERS,
   CONTENTS,
   SETTINGS,
+  COMMON,
+  SUBSCRIPTION,
 };
 
 export default TRANSLATION_KEYS;

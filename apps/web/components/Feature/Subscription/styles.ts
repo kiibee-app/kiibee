@@ -4,13 +4,13 @@ import type React from "react";
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
+import InputField from "@/components/UI/InputFields";
+import { media } from "@repo/ui/breakpoints";
 
 export const SubscriptionShell = styled.section`
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: ${({ theme }) => theme.spacing(8)} ${({ theme }) => theme.spacing(5)};
+  padding: ${({ theme }) => theme.spacing(3)} 0
+    ${({ theme }) => theme.spacing(8)};
   background: radial-gradient(
     circle at top,
     ${({ theme }) => theme.colors.primary.GRAY} 0%,
@@ -18,23 +18,54 @@ export const SubscriptionShell = styled.section`
   );
 `;
 
-export const SubscriptionCard = styled.div`
+export const SubscriptionPageInner = styled.div`
   width: 100%;
-  max-width: 420px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: ${({ theme }) => theme.spacing(3)} ${({ theme }) => theme.spacing(5)}
+    ${({ theme }) => theme.spacing(8)};
+`;
+
+export const BackRow = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
+`;
+
+export const BackActionButton = styled.button`
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+`;
+
+export const Content = styled.div`
+  width: 100%;
+  max-width: 649px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing(5)};
+  gap: ${({ theme }) => theme.spacing(8)};
+  padding-top: ${({ theme }) => theme.spacing(8)};
 `;
 
-export const Heading = styled(MonoText).attrs({
+export const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+`;
+
+export const Title = styled(MonoText).attrs({
   $use: "H4_Medium",
   as: "h1",
 })`
   margin: 0;
-  max-width: 320px;
-  color: ${({ theme }) => theme.colors.neutral.BLACK};
   text-align: center;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  max-width: 420px;
 `;
 
 export const PlanList = styled.div`
@@ -42,7 +73,6 @@ export const PlanList = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(4)};
-  margin-top: ${({ theme }) => theme.spacing(2)};
 `;
 
 export const PlanOption = styled.button<{ $selected?: boolean }>`
@@ -137,8 +167,72 @@ export const CompareLink = styled(MonoText).attrs({
   }
 `;
 
+export const Form = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+`;
+
+export const PlanSelectRow = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: ${({ theme }) => theme.spacing(7.5)};
+`;
+
+export const FieldGrid = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: ${({ theme }) => theme.spacing(4)};
+  margin-bottom: ${({ theme }) => theme.spacing(5)};
+
+  ${media.desktop} {
+    gap: ${({ theme }) => theme.spacing(3)};
+  }
+`;
+
+export const TwoColumnRow = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: ${({ theme }) => theme.spacing(4)};
+
+  ${media.mobileLg} {
+    grid-template-columns: 1fr;
+  }
+`;
+
 export const ContinueButton = styled(GenericButton)`
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+  align-self: center;
+  width: 312px;
+  margin-top: 20px;
+  border: none;
+
+  &:disabled {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    color: ${({ theme }) => theme.colors.primary.WHITE};
+  }
+`;
+
+export const FullWidthContinueButton = styled(GenericButton)`
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   width: 100%;
   margin-top: ${({ theme }) => theme.spacing(2)};
   border-radius: ${({ theme }) => theme.radius.lg};
+
+  &:disabled {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    color: ${({ theme }) => theme.colors.primary.WHITE};
+  }
+`;
+
+export const StyledInputField = styled(InputField)`
+  & label {
+    margin-top: 0;
+  }
 `;
