@@ -24,3 +24,10 @@ export const buildHeaderMap = <TValue extends string>(
     },
     {} as Record<string, TValue>,
   );
+
+export const COLLECTION_COLUMNS = [
+  { label: "Collection Name", key: "name" },
+  { label: "Number of Contents", key: "contentsCount" },
+  { label: "Created", key: "createdAt" },
+  { label: "", key: "Actions" },
+] as const;
