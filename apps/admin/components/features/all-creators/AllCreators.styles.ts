@@ -4,8 +4,16 @@ import type { CreatorStatus } from "../../../types/creator-request";
 export const AllCreatorsPanel = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border: 1px solid ${({ theme }) => theme.colors.secondary.border};
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+`;
+
+export const AllCreatorsState = styled.div`
+  padding: 20px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.secondary.muted};
 `;
 
 export const RequestsTable = styled.table`
@@ -15,6 +23,7 @@ export const RequestsTable = styled.table`
 
 export const RequestTableRow = styled.tr`
   cursor: pointer;
+  transition: background ${({ theme }) => theme.animations.fast};
 
   &:hover td {
     background: ${({ theme }) => theme.colors.neutral.GRAY_100};
@@ -23,27 +32,31 @@ export const RequestTableRow = styled.tr`
 
 export const TableHeaderCell = styled.th`
   text-align: left;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   line-height: 1.4;
   color: ${({ theme }) => theme.colors.secondary.main};
-  padding: 16px;
+  padding: 12px 14px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
 `;
 
 export const TableBodyCell = styled.td`
-  padding: 14px 16px;
+  padding: 12px 14px;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4;
   color: ${({ theme }) => theme.colors.secondary.muted};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  vertical-align: top;
 `;
 
 export const CreatorCell = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 `;
 
 export const CreatorName = styled.span`
@@ -57,8 +70,22 @@ export const MiniText = styled.span`
   font-weight: 500;
 `;
 
+export const DescriptionText = styled.div`
+  display: -webkit-box;
+  overflow: hidden;
+  max-width: 320px;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+`;
+
 export const StatusBadge = styled.span<{ $status: CreatorStatus }>`
-  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 10px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
@@ -89,18 +116,29 @@ export const StatusBadge = styled.span<{ $status: CreatorStatus }>`
 
 export const RowActionGroup = styled.div`
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
 `;
 
 export const RowActionButton = styled.button<{
   $variant: "approve" | "reject";
 }>`
+  min-height: 32px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   line-height: 1.4;
-  padding: 8px 14px;
+  padding: 0 12px;
   cursor: pointer;
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    border-color ${({ theme }) => theme.animations.fast},
+    color ${({ theme }) => theme.animations.fast};
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
 
   ${({ $variant, theme }) => {
     if ($variant === "approve") {
@@ -108,13 +146,22 @@ export const RowActionButton = styled.button<{
         border: 1px solid ${theme.colors.primary.GREEN};
         background: ${theme.colors.primary.GREEN};
         color: ${theme.colors.neutral.WHITE};
+
+        &:hover:not(:disabled) {
+          background: ${theme.colors.neutral.DUSTY_TEAL};
+          border-color: ${theme.colors.neutral.DUSTY_TEAL};
+        }
       `;
     }
 
     return css`
-      border: 1px solid ${theme.colors.secondary.RED};
-      background: ${theme.colors.secondary.RED};
-      color: ${theme.colors.neutral.WHITE};
+      border: 1px solid ${theme.colors.secondary.border};
+      background: ${theme.colors.neutral.WHITE};
+      color: ${theme.colors.secondary.RED};
+
+      &:hover:not(:disabled) {
+        background: ${theme.colors.neutral.GRAY_100};
+      }
     `;
   }}
 `;
@@ -123,23 +170,24 @@ export const PaginationFooter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
-  padding: 14px 16px;
-  font-size: 14px;
+  padding: 12px 14px;
+  font-size: 13px;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.secondary.muted};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
 export const PaginationControlGroup = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 `;
 
 export const PaginationButton = styled.button<{ $active?: boolean }>`
-  min-width: 36px;
-  height: 36px;
+  min-width: 32px;
+  height: 32px;
   border-radius: 8px;
   border: 1px solid
     ${({ $active, theme }) =>
@@ -164,21 +212,21 @@ export const Ellipsis = styled.span`
 `;
 
 export const PageSize = styled.select`
-  min-width: 90px;
-  height: 36px;
+  min-width: 96px;
+  height: 32px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.secondary.border};
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   color: ${({ theme }) => theme.colors.secondary.muted};
   padding: 0 10px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 `;
 
 export const DetailsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px 18px;
+  gap: 12px 14px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

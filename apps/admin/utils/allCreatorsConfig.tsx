@@ -6,6 +6,7 @@ import { formatRequestedAt } from "./date";
 import {
   CreatorCell,
   CreatorName,
+  DescriptionText,
   MiniText,
   RowActionButton,
   RowActionGroup,
@@ -86,74 +87,93 @@ export const creatorDetailFields: CreatorDetailFieldConfig[] = [
   },
 ];
 
-export const creatorTableColumns: CreatorRequestColumn[] = [
-  {
-    key: "creator",
-    label: "Creator",
-    renderCell: (creator) => (
-      <CreatorCell>
-        <CreatorName>{creator.fullName}</CreatorName>
-        <MiniText>@{creator.city}</MiniText>
-      </CreatorCell>
-    ),
-  },
-  {
-    key: "email",
-    label: "Email",
-    renderCell: (creator) => creator.email,
-  },
-  {
-    key: "requestedAt",
-    label: "Requested At",
-    renderCell: (creator) => formatRequestedAt(creator.createdAt),
-  },
-  {
-    key: "city",
-    label: "City",
-    renderCell: (creator) => creator.city,
-  },
-  {
-    key: "contentDescription",
-    label: "Content Description",
-    renderCell: (creator) => creator.contentDescription,
-  },
-  {
-    key: "status",
-    label: "Status",
-    renderCell: (creator) => (
-      <StatusBadge $status={creator.status}>{creator.status}</StatusBadge>
-    ),
-  },
-  {
-    key: "actions",
-    label: "Actions",
-    renderCell: (creator) => {
-      const canApproveRequest = creator.status === "pending";
-      const canRejectRequest =
-        creator.status === "pending" || creator.status === "approved";
-
-      return (
-        <RowActionGroup>
-          {canApproveRequest ? (
-            <RowActionButton
-              $variant="approve"
-              type="button"
-              onClick={(event) => event.stopPropagation()}
-            >
-              Approve
-            </RowActionButton>
-          ) : null}
-          {canRejectRequest ? (
-            <RowActionButton
-              $variant="reject"
-              type="button"
-              onClick={(event) => event.stopPropagation()}
-            >
-              Reject
-            </RowActionButton>
-          ) : null}
-        </RowActionGroup>
-      );
+export function getCreatorTableColumns(): CreatorRequestColumn[] {
+  return [
+    {
+      key: "creator",
+      label: "Creator",
+      renderCell: (creator) => (
+        <CreatorCell>
+          <CreatorName>{creator.fullName}</CreatorName>
+          <MiniText>@{creator.city}</MiniText>
+        </CreatorCell>
+      ),
     },
-  },
-];
+    {
+      key: "email",
+      label: "Email",
+      renderCell: (creator) => creator.email,
+    },
+    {
+      key: "requestedAt",
+      label: "Requested At",
+      renderCell: (creator) => formatRequestedAt(creator.createdAt),
+    },
+    {
+      key: "city",
+      label: "City",
+      renderCell: (creator) => creator.city,
+    },
+    {
+      key: "contentDescription",
+      label: "Content Description",
+      renderCell: (creator) => (
+        <DescriptionText>{creator.contentDescription}</DescriptionText>
+      ),
+    },
+    {
+      key: "status",
+      label: "Status",
+      renderCell: (creator) => (
+        <StatusBadge $status={creator.status}>{creator.status}</StatusBadge>
+      ),
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      renderCell: (creator, actions) => {
+        const canApproveRequest = creator.status === "pending";
+        const canRejectRequest =
+          creator.status === "pending" || creator.status === "approved";
+        const isApproving =
+          actions.activeAction === "approve" &&
+          actions.activeRequestId === creator.id;
+        const isRejecting =
+          actions.activeAction === "reject" &&
+          actions.activeRequestId === creator.id;
+        const isActionDisabled = isApproving || isRejecting;
+
+        return (
+          <RowActionGroup>
+            {canApproveRequest ? (
+              <RowActionButton
+                $variant="approve"
+                type="button"
+                disabled={isActionDisabled}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  actions.onApproveCreator(creator);
+                }}
+              >
+                {isApproving ? "Approving..." : "Approve"}
+              </RowActionButton>
+            ) : null}
+            {canRejectRequest ? (
+              <RowActionButton
+                $variant="reject"
+                type="button"
+                disabled={isActionDisabled}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  actions.onRejectCreator(creator);
+                }}
+              >
+                {isRejecting ? "Rejecting..." : "Reject"}
+              </RowActionButton>
+            ) : null}
+          </RowActionGroup>
+        );
+      },
+    },
+  ];
+}
