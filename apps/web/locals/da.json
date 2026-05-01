@@ -689,6 +689,11 @@
     "title": "Vælg den rigtige plan til at komme i gang med din konto",
     "comparePlans": "Sammenlign planer og funktioner",
     "continue": "Fortsæt",
+    "creatorDetails": {
+      "email": "Bekræft e-mailadresse",
+      "password": "Opret adgangskode",
+      "repeatPassword": "Gentag adgangskode"
+    },
     "plans": {
       "tryKiibee": {
         "name": "Try Kiibee",
