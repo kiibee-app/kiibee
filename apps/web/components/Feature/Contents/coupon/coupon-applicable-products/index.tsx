@@ -22,6 +22,7 @@ import {
   TitleHelperText,
 } from "./styles";
 import {
+  COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS,
   COLLECTION_OPTIONS,
   CONTENT_OPTIONS,
 } from "@/utils/dummyData/couponApplicableProducts";
@@ -35,12 +36,12 @@ type CouponApplicableProductsModalProps = {
 
 const applicableProductFields = [
   {
-    key: "collections",
+    key: COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS,
     labelKey: "contents.couponApplicableProducts.fields.collections",
     helperKey: "contents.couponApplicableProducts.helpers.collections",
   },
   {
-    key: "contents",
+    key: COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.CONTENTS,
     labelKey: "contents.couponApplicableProducts.fields.contents",
     helperKey: "contents.couponApplicableProducts.helpers.contents",
   },
@@ -98,7 +99,8 @@ export default function CouponApplicableProductsModal({
                 <HelperText>{t(field.helperKey)}</HelperText>
                 <DropdownField
                   options={
-                    field.key === "collections"
+                    field.key ===
+                    COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
                       ? COLLECTION_OPTIONS
                       : CONTENT_OPTIONS
                   }
@@ -116,12 +118,16 @@ export default function CouponApplicableProductsModal({
                     </SelectedValueChip>
                   )}
                   value={
-                    field.key === "collections"
+                    field.key ===
+                    COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
                       ? selectedCollection
                       : selectedContent
                   }
                   onChange={(value) => {
-                    if (field.key === "collections") {
+                    if (
+                      field.key ===
+                      COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
+                    ) {
                       setSelectedCollection(value);
                       return;
                     }
