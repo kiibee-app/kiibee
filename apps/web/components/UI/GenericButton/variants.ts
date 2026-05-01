@@ -56,7 +56,7 @@ export const shared = css<ButtonStyleProps>`
           color: ${({ theme }) => theme.colors.primary.WHITE};
           border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
           box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-          &:hover {
+          &:not([type="submit"]):hover {
             background: transparent;
             color: ${({ theme }) => theme.colors.primary.BLACK};
             box-shadow: none;
@@ -71,7 +71,7 @@ export const shared = css<ButtonStyleProps>`
           color: ${({ theme }) => theme.colors.primary.BLACK};
           border: 1px solid transparent;
           border-radius: 0.5rem;
-          &:hover {
+          &:not([type="submit"]):hover {
             background: transparent;
             border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
             opacity: 1;
@@ -85,7 +85,7 @@ export const shared = css<ButtonStyleProps>`
           border: 1px solid ${({ theme }) => theme.colors.primary.RED};
           border-radius: 8px;
 
-          &:hover {
+          &:not([type="submit"]):hover {
             background: ${({ theme }) => theme.colors.primary.WHITE};
             color: ${({ theme }) => theme.colors.primary.RED};
             border: 1px solid ${({ theme }) => theme.colors.primary.RED};
@@ -98,7 +98,7 @@ export const shared = css<ButtonStyleProps>`
           background: transparent;
           color: ${({ theme }) => theme.colors.primary.BLACK};
           border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
-          &:hover {
+          &:not([type="submit"]):hover {
             background: ${({ theme }) => theme.colors.primary.BLACK};
             color: ${({ theme }) => theme.colors.primary.WHITE};
             border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};

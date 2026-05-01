@@ -689,6 +689,11 @@
     "title": "Choose the right plan to get your account started",
     "comparePlans": "Compare plans and features",
     "continue": "Continue",
+    "creatorDetails": {
+      "email": "Confirm email address",
+      "password": "Create password",
+      "repeatPassword": "Repeat password"
+    },
     "plans": {
       "tryKiibee": {
         "name": "Try Kiibee",

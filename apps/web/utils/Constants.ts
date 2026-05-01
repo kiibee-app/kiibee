@@ -27,6 +27,13 @@ export const BG_GREEN = "green";
 export const BG_WHITE = "white";
 export type BgVariant = typeof BG_GREEN | typeof BG_WHITE;
 export const REPEAT_PASSWORD = "repeatPassword";
+export const PASSWORD = "password";
+export const PASSWORD_VISIBILITY_KEY = {
+  PASSWORD,
+  REPEAT_PASSWORD,
+} as const;
+export type PasswordVisibilityKey =
+  (typeof PASSWORD_VISIBILITY_KEY)[keyof typeof PASSWORD_VISIBILITY_KEY];
 export const STRING = "string";
 
 export const SIZE = {
@@ -54,6 +61,19 @@ export const INPUT_VARIANTS = {
 } as const;
 export type InputVariant = (typeof INPUT_VARIANTS)[keyof typeof INPUT_VARIANTS];
 
+export const SORT_DROPDOWN_VARIANT = {
+  DEFAULT: "default",
+  SURFACE: "surface",
+  SUCCESS: "success",
+} as const;
+export type SortDropdownVariant =
+  (typeof SORT_DROPDOWN_VARIANT)[keyof typeof SORT_DROPDOWN_VARIANT];
+
 export const VIEW = "view";
 export const APPEARANCE_DEFAULT_HEX_COLOR = "#674096";
+
+export const SUBSCRIPTION_STEP = {
+  PLAN: "plan",
+  DETAILS: "details",
+} as const;
 export const maxReceiptCharacters = 200;
