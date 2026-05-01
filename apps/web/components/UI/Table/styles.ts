@@ -38,9 +38,23 @@ export const DesktopHeaderRow = styled.tr`
 
 export const DesktopRow = styled.tr`
   transition: background 0.2s ease;
+  cursor: default;
 
   ${media.tablet} {
     display: none;
+  }
+
+  &:hover {
+    background: transparent;
+  }
+`;
+
+export const ClickableDesktopRow = styled(DesktopRow)<{ $clickable?: boolean }>`
+  cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
+
+  &:hover {
+    background: ${({ $clickable, theme }) =>
+      $clickable ? theme.colors.neutral.GRAY_100 : "transparent"};
   }
 `;
 
@@ -97,6 +111,12 @@ export const MobileHeader = styled.div`
     padding: 14px 16px;
     cursor: pointer;
   }
+`;
+
+export const ClickableMobileHeader = styled(MobileHeader)<{
+  $clickable?: boolean;
+}>`
+  cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
 `;
 
 export const AccordionContent = styled.div<{ $isOpen: boolean }>`

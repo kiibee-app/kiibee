@@ -18,6 +18,7 @@ export default function Table<T extends Record<string, unknown>>({
   getMobileTitle,
   emptyText,
   rowsPerPage = 3,
+  onRowClick,
   onHeaderClick,
   isHeaderSortable,
   getHeaderSortDirection,
@@ -67,6 +68,7 @@ export default function Table<T extends Record<string, unknown>>({
           emptyText={emptyText}
           hasData={hasData}
           pagination={paginationMeta}
+          onRowClick={onRowClick}
           onHeaderClick={onHeaderClick}
           isHeaderSortable={isHeaderSortable}
           getHeaderSortDirection={getHeaderSortDirection}
@@ -83,6 +85,7 @@ export default function Table<T extends Record<string, unknown>>({
           toggleAccordion={toggleAccordion}
           hasData={hasData}
           pagination={paginationMeta}
+          onRowClick={onRowClick}
           onHeaderClick={onHeaderClick}
           isHeaderSortable={isHeaderSortable}
           getHeaderSortDirection={getHeaderSortDirection}

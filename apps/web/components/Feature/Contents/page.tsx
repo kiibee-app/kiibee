@@ -34,11 +34,18 @@ import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
 import CollectionsTable from "./Collections";
-import { collectionsData } from "@/utils/dummyData/collection";
+import CollectionContentsTable from "./Collections/CollectionContentsTable";
+import {
+  CollectionRow,
+  collectionsData,
+  collectionContentsData,
+} from "@/utils/dummyData/collection";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
+  const [selectedCollection, setSelectedCollection] =
+    useState<CollectionRow | null>(null);
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
   const [showCreateCollectionModal, setShowCreateCollectionModal] =
@@ -49,6 +56,10 @@ export default function CreatorsContents() {
   const [collectionName, setCollectionName] = useState("");
   const [showCouponDetails, setShowCouponDetails] = useState(false);
   const [showCouponCodes, setShowCouponCodes] = useState(false);
+  const collectionContents = selectedCollection
+    ? (collectionContentsData[selectedCollection.id] ?? [])
+    : [];
+
   const handleCreateClick = () => {
     switch (activeTab) {
       case COUPONS:
@@ -94,6 +105,7 @@ export default function CreatorsContents() {
         onTabChange={(tabKey) => {
           setActiveTab(tabKey);
           setOpenSearch(false);
+          setSelectedCollection(null);
         }}
         search={{
           open: openSearch,
@@ -116,7 +128,14 @@ export default function CreatorsContents() {
             description={t(CONTENTS_KEYS.couponsCard.description)}
           />
         ) : activeTab === COLLECTIONS ? (
-          <CollectionsTable data={collectionsData} />
+          selectedCollection ? (
+            <CollectionContentsTable data={collectionContents} />
+          ) : (
+            <CollectionsTable
+              data={collectionsData}
+              onRowClick={(row) => setSelectedCollection(row)}
+            />
+          )
         ) : (
           <PlaceholderLine>
             {(() => {

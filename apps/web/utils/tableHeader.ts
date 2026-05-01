@@ -31,3 +31,10 @@ export const COLLECTION_COLUMNS = [
   { label: "Created", key: "createdAt" },
   { label: "", key: "Actions" },
 ] as const;
+
+export const COLLECTION_CONTENT_COLUMNS = [
+  { label: "Content name", key: "name" },
+  { label: "Visibility", key: "visibility" },
+  { label: "Created", key: "createdAt" },
+  { label: "", key: "Actions" },
+] as const;

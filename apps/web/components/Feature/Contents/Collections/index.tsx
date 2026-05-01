@@ -23,12 +23,14 @@ export default function CollectionsTable({
   onEdit,
   onDelete,
   onMore,
+  onRowClick,
 }: CollectionsTableProps) {
   return (
     <Table<CollectionRow>
       headers={[...COLLECTION_COLUMNS.map((c) => c.label)]}
       data={data}
       rowsPerPage={10}
+      onRowClick={onRowClick}
       headerToKey={(header) => {
         const col = COLLECTION_COLUMNS.find((c) => c.label === header);
         return col?.key as keyof CollectionRow;
@@ -56,13 +58,31 @@ export default function CollectionsTable({
         if (header === COLLECTION_COLUMNS[3].label) {
           return (
             <ActionWrapper>
-              <IconButton onClick={() => onEdit?.(row.id)}>
+              <IconButton
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onEdit?.(row.id);
+                }}
+              >
                 <EditProfileIcon color={COLORS.neutral.GRAY} />
               </IconButton>
-              <IconButton onClick={() => onDelete?.(row.id)}>
+              <IconButton
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onDelete?.(row.id);
+                }}
+              >
                 <DeleteIcon />
               </IconButton>
-              <IconButton onClick={() => onMore?.(row.id)}>
+              <IconButton
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onMore?.(row.id);
+                }}
+              >
                 <ThreeDotIcon />
               </IconButton>
             </ActionWrapper>
