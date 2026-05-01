@@ -42,6 +42,45 @@ export default function CollectionTable(props: CollectionTableProps) {
       }
     : undefined;
 
+  const stopPropagation = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
+  const handleEdit = (e: React.MouseEvent, id: string) => {
+    stopPropagation(e);
+    props.onEdit?.(id);
+  };
+
+  const handleDelete = (e: React.MouseEvent, id: string) => {
+    stopPropagation(e);
+    props.onDelete?.(id);
+  };
+
+  const handleMore = (e: React.MouseEvent, id: string) => {
+    stopPropagation(e);
+    props.onMore?.(id);
+  };
+
+  const renderActions = (id: string) => {
+    if (!isCollections) return null;
+
+    return (
+      <ActionWrapper>
+        <IconButton type={BUTTON} onClick={(e) => handleEdit(e, id)}>
+          <EditProfileIcon color={COLORS.neutral.GRAY} />
+        </IconButton>
+
+        <IconButton type={BUTTON} onClick={(e) => handleDelete(e, id)}>
+          <DeleteIcon />
+        </IconButton>
+
+        <IconButton type={BUTTON} onClick={(e) => handleMore(e, id)}>
+          <ThreeDotIcon />
+        </IconButton>
+      </ActionWrapper>
+    );
+  };
+
   return (
     <Table<TableRow>
       headers={columns.map((c) => c.label)}
@@ -77,39 +116,7 @@ export default function CollectionTable(props: CollectionTableProps) {
         }
 
         if (header === COLLECTION_COLUMNS[3].label) {
-          return (
-            <ActionWrapper>
-              <IconButton
-                type={BUTTON}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  props.onEdit?.(row.id);
-                }}
-              >
-                <EditProfileIcon color={COLORS.neutral.GRAY} />
-              </IconButton>
-
-              <IconButton
-                type={BUTTON}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  props.onDelete?.(row.id);
-                }}
-              >
-                <DeleteIcon />
-              </IconButton>
-
-              <IconButton
-                type={BUTTON}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  props.onMore?.(row.id);
-                }}
-              >
-                <ThreeDotIcon />
-              </IconButton>
-            </ActionWrapper>
-          );
+          return renderActions(row.id);
         }
 
         const key = col?.key as keyof TableRow;
