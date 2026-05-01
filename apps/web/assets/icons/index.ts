@@ -31,3 +31,4 @@ export { default as CalendarIcon } from "./CalenderIcon";
 export { default as DeleteIcon } from "./DeleteIcon";
 export { default as DirectionIcon } from "./DirectionIcon";
 export { default as SelectedCheckIcon } from "./SelectedCheckIcon";
+export { default as ChipCloseIcon } from "./ChipCloseIcon";

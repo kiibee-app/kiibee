@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { BackButtonIcon } from "@/assets/icons";
+import { BackButtonIcon, ChipCloseIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
 import {
@@ -15,7 +15,12 @@ import {
   ModalTitle,
   NextButton,
 } from "../styles";
-import { SelectorList, TitleHelperText } from "./styles";
+import {
+  SelectedValueChip,
+  SelectedValueText,
+  SelectorList,
+  TitleHelperText,
+} from "./styles";
 import {
   COLLECTION_OPTIONS,
   CONTENT_OPTIONS,
@@ -98,6 +103,18 @@ export default function CouponApplicableProductsModal({
                       : CONTENT_OPTIONS
                   }
                   showSelectedIndicator
+                  renderSelectedValue={(selected) => (
+                    <SelectedValueChip>
+                      <SelectedValueText>
+                        {selected
+                          ? selected.label ||
+                            selected.labelKey ||
+                            selected.value
+                          : ""}
+                      </SelectedValueText>
+                      <ChipCloseIcon />
+                    </SelectedValueChip>
+                  )}
                   value={
                     field.key === "collections"
                       ? selectedCollection
