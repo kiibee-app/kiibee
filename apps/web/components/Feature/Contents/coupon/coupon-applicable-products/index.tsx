@@ -97,6 +97,7 @@ export default function CouponApplicableProductsModal({
                       ? COLLECTION_OPTIONS
                       : CONTENT_OPTIONS
                   }
+                  showSelectedIndicator
                   value={
                     field.key === "collections"
                       ? selectedCollection
