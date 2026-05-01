@@ -779,7 +779,16 @@
     },
     "forgotPass": "Glemt adgangskode?",
     "passwordSuccessTitle": "Adgangskode opdateret",
-    "passwordSuccessMessage": "Din adgangskode blev opdateret. Log venligst ind igen for at fortsætte."
+    "passwordSuccessMessage": "Din adgangskode blev opdateret. Log venligst ind igen for at fortsætte.",
+    "uploadPhotoTitle": "Upload foto",
+    "editPhotoTitle": "Rediger foto",
+    "editPhoto": "Rediger foto",
+    "dragPhotoHere": "Træk foto her",
+    "or": "eller",
+    "choosePhoto": "Vælg fotos til upload",
+    "zoom": "Zoom",
+    "apply": "Anvend",
+    "profilePhotoAlt": "Profilfoto"
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",

@@ -45,6 +45,7 @@ export const Row = styled.div`
 `;
 
 export const Avatar = styled.div`
+  position: relative;
   width: 120px;
   height: 120px;
   border-radius: 9999px;
@@ -52,6 +53,41 @@ export const Avatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+`;
+
+export const AvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const AvatarEditButton = styled.button`
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  cursor: pointer;
+
+  ${Avatar}:hover &,
+  ${Avatar}:focus-within & {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 export const Fields = styled.div`
@@ -174,4 +210,111 @@ export const NameBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+`;
+
+export const HiddenInput = styled.input`
+  display: none;
+`;
+
+export const PhotoModalBody = styled.div`
+  margin-top: 8px;
+`;
+
+export const UploadDropZone = styled.div`
+  min-height: 240px;
+  border: 1px dashed ${({ theme }) => theme.colors.neutral.GRAY_300};
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+`;
+
+export const UploadHint = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const UploadOrText = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+`;
+
+export const CropCanvas = styled.div`
+  width: 100%;
+  height: 320px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+`;
+
+export const ReactCropWrapper = styled.div`
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .ReactCrop {
+    max-width: 300px;
+    max-height: 300px;
+    overflow: hidden;
+  }
+
+  .ReactCrop__crop-selection {
+    position: relative;
+    border: 1px solid ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  }
+
+  .ReactCrop__crop-mask {
+    background: transparent;
+  }
+
+  .ReactCrop--circular-crop .ReactCrop__crop-selection:after {
+    opacity: 1;
+    border: 2px solid ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  }
+
+  .ReactCrop__drag-handle.ord-n,
+  .ReactCrop__drag-handle.ord-e,
+  .ReactCrop__drag-handle.ord-s,
+  .ReactCrop__drag-handle.ord-w {
+    display: none;
+  }
+
+  .ReactCrop__drag-bar {
+    display: none !important;
+  }
+
+  .ReactCrop__drag-bar::after,
+  .ReactCrop__drag-handle::after {
+    display: none !important;
+  }
+
+  .ReactCrop__drag-handle {
+    display: none !important;
+  }
+`;
+
+export const CropTargetImage = styled.img`
+  max-width: 300px;
+  max-height: 300px;
+  width: auto;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+`;
+
+export const ModalActions = styled.div`
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 `;

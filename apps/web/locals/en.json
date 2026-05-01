@@ -779,7 +779,16 @@
     },
     "forgotPass": "Forgot Password?",
     "passwordSuccessTitle": "Password updated",
-    "passwordSuccessMessage": "Your password was successfully updated. Please log in again to continue."
+    "passwordSuccessMessage": "Your password was successfully updated. Please log in again to continue.",
+    "uploadPhotoTitle": "Upload photo",
+    "editPhotoTitle": "Edit photo",
+    "editPhoto": "Edit photo",
+    "dragPhotoHere": "Drag photo here",
+    "or": "or",
+    "choosePhoto": "Choose photos to upload",
+    "zoom": "Zoom",
+    "apply": "Apply",
+    "profilePhotoAlt": "Profile photo"
   },
   "singleCollection": {
     "subtitle": "Learn how to use our platform",
