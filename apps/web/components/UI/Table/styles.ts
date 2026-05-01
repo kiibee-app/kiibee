@@ -133,6 +133,10 @@ export const HeaderLabel = styled.span`
   ${media.tablet} {
     display: inline-block;
   }
+
+  ${media.mobileLg} {
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+  }
 `;
 
 export const MobileDataRow = styled.div`
