@@ -118,6 +118,7 @@ export const TermsLink = styled(Link)`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-decoration: underline;
   text-underline-offset: 2px;
+  padding-left: 5px;
 `;
 
 export const SubmitButton = styled(GenericButton).attrs({
@@ -150,4 +151,5 @@ export const LoginLink = styled(Link)`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-decoration: underline;
   text-underline-offset: 2px;
+  padding-left: 5px;
 `;

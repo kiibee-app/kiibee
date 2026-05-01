@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 
 export const ContentWrap = styled.section`
   width: 100%;
@@ -112,6 +113,7 @@ export const Description = styled.p`
 `;
 
 export const PrepCard = styled(Card)`
+  box-sizing: border-box;
   padding: 3.625rem 5.125rem;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border-radius: 12px;
@@ -122,6 +124,21 @@ export const PrepCard = styled(Card)`
   .preference-continue-btn {
     width: min(100%, 300px);
     margin-top: 0.75rem;
+  }
+
+  ${media.tablet} {
+    padding: 1.5rem 1rem;
+  }
+
+  ${media.mobile} {
+    width: 100%;
+    border-radius: 10px;
+    padding: 1.5rem 1rem;
+
+    .preference-continue-btn {
+      width: min(100%, 260px);
+      margin-top: 0.5rem;
+    }
   }
 `;
 
@@ -145,6 +162,10 @@ export const StepSubtitle = styled.p`
   margin: 0;
   text-align: center;
   color: ${({ theme }) => theme.colors.secondary.muted};
+
+  ${media.mobile} {
+    margin-top: 0.15rem;
+  }
 `;
 
 export const CategoryGrid = styled.div`
@@ -155,6 +176,11 @@ export const CategoryGrid = styled.div`
   gap: 0.625rem;
   padding-top: 1.5rem;
   margin: 0.5rem auto 1rem;
+
+  ${media.mobile} {
+    gap: 0.5rem;
+    padding-top: 1rem;
+  }
 `;
 
 export const CategoryChip = styled.button<{ $selected: boolean }>`
@@ -169,14 +195,24 @@ export const CategoryChip = styled.button<{ $selected: boolean }>`
     $selected ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_200};
   color: ${({ theme, $selected }) =>
     $selected ? theme.colors.primary.WHITE : theme.colors.primary.BLACK};
+
+  ${media.mobile} {
+    padding: 0.5rem 0.85rem;
+  }
 `;
 
 export const TypeGrid = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.625rem;
   margin: 0.875rem 0 1rem;
+
+  ${media.mobile} {
+    gap: 0.5rem;
+    margin: 0.75rem 0 0.75rem;
+  }
 `;
 
 export const TypeCard = styled.button<{ $selected: boolean }>`
@@ -201,6 +237,11 @@ export const TypeCard = styled.button<{ $selected: boolean }>`
     width: 14px;
     height: 14px;
   }
+
+  ${media.mobile} {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 export const TypeLabel = styled.span`
@@ -212,5 +253,10 @@ export const TypeLabel = styled.span`
 export const PreContentWrap = styled.div`
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   width: 100%;
-  height: 100vh;
+  min-height: 100dvh;
+  padding-bottom: 1rem;
+
+  ${media.tablet} {
+    padding: 1rem;
+  }
 `;
