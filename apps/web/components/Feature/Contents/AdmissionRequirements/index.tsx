@@ -21,7 +21,11 @@ import {
   TextBlock,
 } from "./styles";
 
-function AdmissionRequirements() {
+type Props = {
+  onSave?: () => void;
+};
+
+function AdmissionRequirements({ onSave }: Props) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<AdmissionRequirementValue>(
@@ -44,10 +48,19 @@ function AdmissionRequirements() {
     [selected],
   );
 
-  const handleSelect = useCallback((value: AdmissionRequirementValue) => {
-    setSelected(value);
-    setOpen(false);
-  }, []);
+  const handleSelect = useCallback(
+    (value: AdmissionRequirementValue) => {
+      if (value === selected) {
+        setOpen(false);
+        return;
+      }
+
+      setSelected(value);
+      setOpen(false);
+      onSave?.();
+    },
+    [onSave, selected],
+  );
 
   return (
     <AdmissionCard data-test-id="admission-requirements-card">
