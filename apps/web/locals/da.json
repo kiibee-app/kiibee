@@ -1093,7 +1093,15 @@
       "maximumCharacter": "Maksimalt antal tegn",
       "supportEmail": "Support e-mail",
       "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, sÃ¥ indtast den her.",
-      "supportEmailPlaceholder": "Indtast support e-mail"
+      "supportEmailPlaceholder": "Indtast support e-mail",
+      "coverImage": {
+        "title": "Forsidebillede",
+        "subtitle": "Det store billede øverst på siden",
+        "uploadDesktop": "Upload forsidebillede til desktop",
+        "uploadMobile": "Upload forsidebillede til mobil",
+        "desktopSize": "Brug billedstørrelse 1440 × 224 pixels",
+        "mobileSize": "Brug billedstørrelse 640 × 600 pixels"
+      }
     },
     "admissionRequirements": {
       "title": "Adgangskrav",

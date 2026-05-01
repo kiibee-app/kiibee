@@ -176,6 +176,14 @@ export const CONTENTS = {
     supportEmail: "contents.appearance.supportEmail",
     supportEmailHint: "contents.appearance.supportEmailHint",
     supportEmailPlaceholder: "contents.appearance.supportEmailPlaceholder",
+    coverImage: {
+      title: "contents.appearance.coverImage.title",
+      subtitle: "contents.appearance.coverImage.subtitle",
+      uploadDesktop: "contents.appearance.coverImage.uploadDesktop",
+      uploadMobile: "contents.appearance.coverImage.uploadMobile",
+      desktopSize: "contents.appearance.coverImage.desktopSize",
+      mobileSize: "contents.appearance.coverImage.mobileSize",
+    },
   },
   deleteModal: {
     title: "contents.deleteModal.title",
