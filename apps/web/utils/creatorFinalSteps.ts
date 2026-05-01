@@ -1,5 +1,3 @@
-export type Plan = "tryKiibee" | "startup" | "professional";
-
 export type PaymentMethod = "card" | "mobilepay";
 
 export const PAYMENT_METHODS = {
@@ -13,7 +11,5 @@ export const FORM_FIELDS = {
   EXPIRY_DATE: "expiryDate",
   CVC: "cvc",
 } as const;
-
-export const DEFAULT_PLAN: Plan = "tryKiibee";
 
 export const DEFAULT_PAYMENT_METHOD: PaymentMethod = PAYMENT_METHODS.CARD;
