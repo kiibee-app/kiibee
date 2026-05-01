@@ -33,12 +33,14 @@ import InfoTextCard from "@/components/UI/InfoTextCard";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
+import {
+  CONTENT_TAB,
+  LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+} from "@/utils/Constants";
+import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
-  const [searchValue, setSearchValue] = useState("");
-  const [openSearch, setOpenSearch] = useState(false);
   const [showCreateCollectionModal, setShowCreateCollectionModal] =
     useState(false);
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
@@ -47,6 +49,16 @@ export default function CreatorsContents() {
   const [collectionName, setCollectionName] = useState("");
   const [showCouponDetails, setShowCouponDetails] = useState(false);
   const [showCouponCodes, setShowCouponCodes] = useState(false);
+  const { activeTab, setActiveTabAndQuery } = useQuerySyncedTab<ContentTab>({
+    queryKey: CONTENT_TAB,
+    defaultTab: COLLECTIONS,
+    validTabs: CONTENT_TABS.map((tab) => tab.key),
+    cleanupQueryKeys: LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+  });
+
+  const [searchValue, setSearchValue] = useState("");
+  const [openSearch, setOpenSearch] = useState(false);
+
   const handleCreateClick = () => {
     switch (activeTab) {
       case COUPONS:
@@ -90,8 +102,8 @@ export default function CreatorsContents() {
         }))}
         activeTab={activeTab}
         onTabChange={(tabKey) => {
-          setActiveTab(tabKey);
           setOpenSearch(false);
+          setActiveTabAndQuery(tabKey);
         }}
         search={{
           open: openSearch,
