@@ -1061,7 +1061,11 @@
       "exportTypeViews": "Visninger",
       "includeMedia": "Inkluder mediefiler",
       "lastExported": "Sidste eksport",
-      "noExports": "Ingen eksporter tilgængelige"
+      "noExports": "Ingen eksporter tilgængelige",
+      "typeDescription": "Vælg hvilken type data du vil eksportere.",
+      "dateDescription": "Vælg tidsperioden for din eksport.",
+      "modalTitle": "Downloader CSV",
+      "modalMessage": "Din CSV-fil er blevet downloadet."
     }
   },
   "contents": {
