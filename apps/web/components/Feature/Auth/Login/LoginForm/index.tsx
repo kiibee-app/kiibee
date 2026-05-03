@@ -24,6 +24,7 @@ import { useLoginFormSchema } from "@/utils/useLoginFormSchema";
 import type { LoginFormErrors } from "@/utils/authLoginFormSchema";
 import { ALERT } from "@/utils/common";
 import { persistLoginSession, useLogin } from "@/hooks/auth/useLogin";
+import { PATHS } from "@/utils/path";
 
 export default function LoginForm() {
   const { t } = useTranslation();
@@ -164,7 +165,7 @@ export default function LoginForm() {
         </ForgotLink>
         <FooterText>
           <MonoText $use="Body_Medium"> {t("authForm.footer")}</MonoText>
-          <SignUpLink href="/auth/signup-creator">
+          <SignUpLink href={PATHS.AUTH_SIGNUP}>
             <MonoText $use="Body_Medium">{t("authForm.signUp")}</MonoText>
           </SignUpLink>
         </FooterText>

@@ -90,7 +90,34 @@
     "preference": {
       "title": "Lad os tilpasse din oplevelse",
       "description": "Fortæl os, hvad du kan lide, så vi kan anbefale skabere og indhold, du vil elske. Du kan altid opdatere dine præferencer senere i dine profilindstillinger.",
-      "submit": "Fortsæt"
+      "submit": "Fortsæt",
+      "content": {
+        "title": "Hvilken slags indhold er du interesseret i?",
+        "subtitle": "Vælg alle, der passer.",
+        "options": {
+          "comedy": "Komedie",
+          "music": "Musik",
+          "podcasts": "Podcasts",
+          "artsAndIllustration": "Kunst og illustration",
+          "booksAndWriting": "Bøger og skrivning",
+          "wellnessAndMindfulness": "Wellness og mindfulness",
+          "educationAndLearning": "Uddannelse / læring",
+          "lifestyleAndVlogs": "Livsstil og vlogs",
+          "cookingAndFood": "Madlavning / mad",
+          "sportsAndFitness": "Sport og fitness"
+        }
+      },
+      "types": {
+        "title": "Vælg dine foretrukne indholdstyper",
+        "subtitle": "Hvordan vil du helst opleve indhold?",
+        "submit": "Afslut opsætning",
+        "options": {
+          "video": "Video",
+          "audio": "Lyd",
+          "pdf": "PDF",
+          "epub": "EPUB"
+        }
+      }
     },
     "form": {
       "fullName": "Fulde navn",

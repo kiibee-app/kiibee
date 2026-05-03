@@ -31,6 +31,27 @@ export const AUTH_FORM = {
   passwordLabel: "authForm.passwordLabel",
 };
 
+export const AUTH_CREATOR = {
+  backAria: "authCreator.backAria",
+};
+
+export const VIEWER_SIGNUP_PREFERENCE = {
+  title: "viewerSignup.preference.title",
+  description: "viewerSignup.preference.description",
+  submit: "viewerSignup.preference.submit",
+  content: {
+    title: "viewerSignup.preference.content.title",
+    subtitle: "viewerSignup.preference.content.subtitle",
+    option: (key: string) => `viewerSignup.preference.content.options.${key}`,
+  },
+  types: {
+    title: "viewerSignup.preference.types.title",
+    subtitle: "viewerSignup.preference.types.subtitle",
+    submit: "viewerSignup.preference.types.submit",
+    option: (key: string) => `viewerSignup.preference.types.options.${key}`,
+  },
+};
+
 export const CREATORS = {
   sort: "creators.sort",
   value: (v: string) => `creators.${v}`,
@@ -234,6 +255,8 @@ const TRANSLATION_KEYS = {
   NAV,
   AUTH,
   AUTH_FORM,
+  AUTH_CREATOR,
+  VIEWER_SIGNUP_PREFERENCE,
   CREATORS,
   TUTORIAL_VIDEOS,
   CREATOR_PROFILE,

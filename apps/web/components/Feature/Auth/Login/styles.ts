@@ -34,25 +34,20 @@ export const FormPanel = styled.section`
 `;
 
 export const SlidePanel = styled.section`
-  flex: 0 0 520px;
-  max-width: 520px;
+  flex: 0 0 360px;
+  max-width: 360px;
   background: ${({ theme }) => theme.colors.gredint.DEEP_GREEN};
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 241px 85.178px 96.491px 85px;
+  justify-content: center;
+  padding: 180px 55px 90px;
   border-radius: 0 0 0 0;
   position: relative;
 
   ${media.tablet} {
     width: 100%;
+    max-width: 100%;
     flex: 0 0 auto;
     padding: 2.5rem 1.5rem;
-  }
-  ${media.desktop} {
-    flex: 0 0 360px;
-    max-width: 360px;
-    padding: 180px 55px 90px;
-    justify-content: center;
   }
 `;
