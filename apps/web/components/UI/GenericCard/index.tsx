@@ -10,6 +10,10 @@ type GenericCardProps = {
   title?: ReactNode;
   subtitle?: ReactNode;
   badge?: ReactNode;
+  /** "owned" = teal pill (e.g. purchased collections) */
+  badgeVariant?: "default" | "owned";
+  /** Dense layout for horizontal strips (e.g. inside collection cards) */
+  compact?: boolean;
   footer?: ReactNode;
   children?: ReactNode;
   width?: string;
@@ -21,15 +25,17 @@ export default function GenericCard({
   title,
   subtitle,
   badge,
+  badgeVariant = "default",
+  compact = false,
   footer,
   children,
   width,
 }: GenericCardProps) {
   return (
-    <Card $width={width}>
+    <Card $width={width} $compact={compact}>
       {image && (
-        <ImageWrapper>
-          {badge && <Badge>{badge}</Badge>}
+        <ImageWrapper $compact={compact}>
+          {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
           <Image
             src={image}
             alt={alt || "card image"}

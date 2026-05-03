@@ -3,6 +3,7 @@ import type { ButtonSize } from "@/components/UI/GenericButton/variants";
 
 export const FORMAT_TYPE = {
   VIDEO: "video",
+  AUDIO: "audio",
   PDF: "pdf",
   EPUB: "epub",
   WEB: "web",
@@ -13,6 +14,7 @@ export type FormatType = (typeof FORMAT_TYPE)[keyof typeof FORMAT_TYPE];
 export type TutorialButton = {
   label: string;
   variant?: Variant;
+  /** Omit to render a plain button instead of a link */
   href?: string;
   fullWidth?: boolean;
   size?: ButtonSize;
