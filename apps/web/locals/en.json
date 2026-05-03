@@ -1148,7 +1148,15 @@
       "maximumCharacter": "Maximum character",
       "supportEmail": "Support email",
       "supportEmailHint": "If you want a different email than your account email for support, enter it here.",
-      "supportEmailPlaceholder": "Enter support email"
+      "supportEmailPlaceholder": "Enter support email",
+      "coverImage": {
+        "title": "Cover image",
+        "subtitle": "The large image at the top of the page",
+        "uploadDesktop": "Upload desktop cover image",
+        "uploadMobile": "Upload mobile cover image",
+        "desktopSize": "Use size 1440 × 224 pixel image",
+        "mobileSize": "Use size 640 × 600 pixel image"
+      }
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",
