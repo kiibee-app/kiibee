@@ -152,6 +152,21 @@
       "submit": "Submit request"
     }
   },
+  "creatorFinalSteps": {
+    "title": "Final steps",
+    "payment": {
+      "card": "Visa or Mastercard",
+      "mobilePay": "MobilePay"
+    },
+    "fields": {
+      "payment": "Payment method",
+      "cardNumber": "Card number",
+      "cardholderName": "Cardholder name",
+      "expiryDate": "Expiry date",
+      "cvc": "CVC"
+    },
+    "submit": "Create an account"
+  },
   "how": {
     "heroAlt": "Kiibee hero image",
     "title": "Stream or own the content you love",
