@@ -123,7 +123,7 @@ export const CollectionRoot = styled.article`
   padding: ${({ theme }) =>
     `${theme.spacing(4)} ${theme.spacing(5)} ${theme.spacing(4)} ${theme.spacing(5)}`};
   box-sizing: border-box;
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.radius.lg};
   background: ${({ theme }) => theme.colors.primary.WHITE};
   box-shadow: ${({ theme }) => theme.shadows.md};
 
@@ -139,7 +139,7 @@ export const CollectionThumbWrap = styled.div`
   flex: 0 0 auto;
   width: 204px;
   min-height: 204px;
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.radius.lg};
   overflow: hidden;
   align-self: stretch;
 
@@ -166,7 +166,7 @@ export const CollectionOwnedBadge = styled.span`
   left: 10px;
   z-index: 1;
   padding: ${({ theme }) => `${theme.spacing(1)} ${theme.spacing(2.5)}`};
-  border-radius: 6px;
+  border-radius: ${({ theme }) => theme.radius.sm};
   background: ${({ theme }) => theme.colors.primary.GREEN_50};
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
   ${({ theme }) => theme.typography.Body_Bold};
@@ -208,7 +208,7 @@ export const CollectionElementsPill = styled.div`
   gap: ${({ theme }) => theme.spacing(1)};
   align-self: flex-start;
   padding: ${({ theme }) => `${theme.spacing(1.5)} ${theme.spacing(3)}`};
-  border-radius: 6px;
+  border-radius: ${({ theme }) => theme.radius.sm};
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
 `;
