@@ -108,3 +108,36 @@ export const UploadButton = styled.div`
     box-shadow: none;
   }
 `;
+
+export const ToggleWrap = styled.div`
+  display: flex;
+  gap: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 160px;
+`;
+
+export const ToggleButton = styled.button<{ $active: boolean }>`
+  flex: 1;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.BLACK : "transparent"};
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.WHITE : theme.colors.primary.BLACK};
+`;
+
+export const LogoHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  ${media.tablet} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;

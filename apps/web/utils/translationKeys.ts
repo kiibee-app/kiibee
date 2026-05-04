@@ -227,6 +227,19 @@ export const CONTENTS = {
       desktopSize: "contents.appearance.coverImage.desktopSize",
       mobileSize: "contents.appearance.coverImage.mobileSize",
     },
+    description: {
+      label: "contents.appearance.description.label",
+      hint: "contents.appearance.description.hint",
+      placeholder: "contents.appearance.description.placeholder",
+    },
+    logo: {
+      title: "contents.appearance.logo.title",
+      subtitle: "contents.appearance.logo.subtitle",
+      toggleText: "contents.appearance.logo.toggleText",
+      togglePicture: "contents.appearance.logo.togglePicture",
+      placeholder: "contents.appearance.logo.placeholder",
+      uploadButton: "contents.appearance.logo.upload",
+    },
   },
   deleteModal: {
     title: "contents.deleteModal.title",

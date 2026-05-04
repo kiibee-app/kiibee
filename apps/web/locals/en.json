@@ -1194,6 +1194,19 @@
         "uploadMobile": "Upload mobile cover image",
         "desktopSize": "Use size 1440 × 224 pixel image",
         "mobileSize": "Use size 640 × 600 pixel image"
+      },
+      "description": {
+        "label": "Description",
+        "hint": "Tell us a little about your product and feature it on the front page",
+        "placeholder": "Enter description"
+      },
+      "logo": {
+        "title": "Logo",
+        "subtitle": "Use your own logo or write a text as a logo",
+        "toggleText": "Text",
+        "togglePicture": "Picture",
+        "placeholder": "Enter logo name",
+        "upload": "Upload logo"
       }
     },
     "contentTypeModal": {
