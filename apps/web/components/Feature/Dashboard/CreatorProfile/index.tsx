@@ -322,7 +322,7 @@ export default function CreatorProfile() {
                 openPhotoModal();
               }}
             >
-              <EditProfileIcon width={16} height={16} />
+              <EditProfileIcon width={36} height={36} />
             </AvatarEditButton>
           </Avatar>
           <NameBlock>

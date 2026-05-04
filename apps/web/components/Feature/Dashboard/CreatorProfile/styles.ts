@@ -44,6 +44,27 @@ export const Row = styled.div`
   align-items: center;
 `;
 
+export const AvatarEditButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%) scale(0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  opacity: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  z-index: 2;
+`;
+
 export const Avatar = styled.div`
   position: relative;
   width: 120px;
@@ -55,39 +76,30 @@ export const Avatar = styled.div`
   justify-content: center;
   overflow: hidden;
   cursor: pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: ${(p) => p.theme.colors.neutral.GRAY_400};
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+  &:hover ${AvatarEditButton} {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 `;
 
 export const AvatarImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`;
-
-export const AvatarEditButton = styled.button`
-  position: absolute;
-  right: 8px;
-  bottom: 8px;
-  width: 30px;
-  height: 30px;
-  border-radius: 9999px;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
-  color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
-  opacity: 0;
-  transform: translateY(4px);
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-  cursor: pointer;
-
-  ${Avatar}:hover &,
-  ${Avatar}:focus-within & {
-    opacity: 1;
-    transform: translateY(0);
-  }
 `;
 
 export const Fields = styled.div`
