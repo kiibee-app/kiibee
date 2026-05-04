@@ -70,15 +70,15 @@ export const Badge = styled.span<{ $tone?: BadgeTone }>`
   gap: 6px;
   background: ${({ theme, $tone }) =>
     $tone === "green"
-      ? theme.colors.neutral.GRAY_200
+      ? theme.colors.neutral.PALE_GREEN
       : $tone === "amber"
-        ? "#fff5df"
-        : "#eef2ff"};
+        ? theme.colors.primary.ORANGE
+        : theme.colors.secondary.LIGHT};
   color: ${({ theme, $tone }) =>
     $tone === "green"
       ? theme.colors.primary.GREEN_100
       : $tone === "amber"
-        ? "#b66b00"
+        ? theme.colors.neutral.WHITE
         : theme.colors.primary.BLUE};
 `;
 
@@ -126,12 +126,16 @@ export const IconBubble = styled.div<{ $tone?: IconTone }>`
   justify-content: center;
   color: ${({ theme, $tone }) =>
     $tone === "purple"
-      ? "#5b4cff"
+      ? theme.colors.secondary.DEFAULT
       : $tone === "amber"
-        ? "#c17700"
+        ? theme.colors.primary.ORANGE
         : theme.colors.primary.BLUE};
-  background: ${({ $tone }) =>
-    $tone === "purple" ? "#f1efff" : $tone === "amber" ? "#fff6e7" : "#eef3ff"};
+  background: ${({ theme, $tone }) =>
+    $tone === "purple"
+      ? theme.colors.secondary.LIGHT
+      : $tone === "amber"
+        ? theme.colors.neutral.PALE_GREEN
+        : theme.colors.secondary.LIGHT};
 `;
 
 export const CardTitle = styled.h3`
