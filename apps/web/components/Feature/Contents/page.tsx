@@ -34,7 +34,6 @@ import {
 } from "@/utils/Constants";
 import ContentsHeaderAction from "./ContentsHeaderAction";
 import GenericTabs from "@/components/UI/GenericTabs";
-import InfoTextCard from "@/components/UI/InfoTextCard";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
@@ -48,6 +47,9 @@ import {
 import AuthBackButton from "../Auth/AuthBackButton";
 import { COLLECTION_TABLE_TYPE } from "@/utils/collection";
 import CouponApplicableProductsModal from "@/components/Feature/Contents/coupon/coupon-applicable-products";
+
+import CouponTable from "./coupon";
+import { couponData } from "@/utils/dummyData/couponData";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -176,10 +178,7 @@ export default function CreatorsContents() {
         ) : activeTab === SETTINGS ? (
           <AdmissionRequirements />
         ) : activeTab === COUPONS ? (
-          <InfoTextCard
-            title={t(CONTENTS_KEYS.couponsCard.title)}
-            description={t(CONTENTS_KEYS.couponsCard.description)}
-          />
+          <CouponTable data={couponData} />
         ) : activeTab === COLLECTIONS ? (
           selectedCollection ? (
             <CollectionTable
