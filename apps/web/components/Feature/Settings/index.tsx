@@ -18,11 +18,26 @@ import ExportContent from "./Export";
 import GenericTabs from "@/components/UI/GenericTabs";
 import NotificationModals from "./Notification/notificationModals";
 import { NOTIFICATION_MODAL, NotificationModalType } from "@/utils/ui";
+import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
+import {
+  CONTENT_TAB,
+  LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+} from "@/utils/Constants";
 
 export default function SettingsContent() {
   const { t } = useTranslation();
+  const settingsTabs = useMemo(
+    () =>
+      TABS.filter((tab) => tab.key !== TAB_KEYS.search).map((tab) => tab.key),
+    [],
+  );
+  const { activeTab, setActiveTabAndQuery } = useQuerySyncedTab<TabKey>({
+    queryKey: CONTENT_TAB,
+    defaultTab: TAB_KEYS.payout,
+    validTabs: settingsTabs,
+    cleanupQueryKeys: LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+  });
 
-  const [activeTab, setActiveTab] = useState<TabKey>(TAB_KEYS.payout);
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
   const [modalType, setModalType] = useState<NotificationModalType>(null);
@@ -50,10 +65,13 @@ export default function SettingsContent() {
     setModalType(NOTIFICATION_MODAL.SUCCESS);
   }, []);
 
-  const handleTabClick = useCallback((tabKey: TabKey) => {
-    setActiveTab(tabKey);
-    setOpenSearch(false);
-  }, []);
+  const handleTabClick = useCallback(
+    (tabKey: TabKey) => {
+      setOpenSearch(false);
+      setActiveTabAndQuery(tabKey);
+    },
+    [setActiveTabAndQuery],
+  );
 
   return (
     <Wrapper>
