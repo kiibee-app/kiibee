@@ -100,9 +100,7 @@ export default function ClientDashboardViewer() {
       {activePage === VIEWER_LABELS.PURCHASED ? (
         <PurchasedContent />
       ) : (
-        <MonoText $use="H4_SemiBold" as="h1">
-          {sectionTitle}
-        </MonoText>
+        <MonoText $use="H4_SemiBold">{sectionTitle}</MonoText>
       )}
     </DashboardLayout>
   );

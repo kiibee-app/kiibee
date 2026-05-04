@@ -35,7 +35,7 @@ function filterMedia(
 
 export default function PurchasedContent() {
   const { t } = useTranslation();
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue] = useState("");
 
   const filteredCollections = useMemo(
     () =>
@@ -63,7 +63,7 @@ export default function PurchasedContent() {
   return (
     <PageWrap>
       <PageHeader>
-        <MonoText $use="H4_SemiBold" as="h1">
+        <MonoText $use="H4_SemiBold">
           {t(DASHBOARD_VIEWER_PURCHASED.title)}
         </MonoText>
         <SearchIcon />
