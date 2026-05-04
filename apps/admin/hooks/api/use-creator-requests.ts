@@ -10,6 +10,13 @@ type CreatorActionPayload = {
   requestId: string;
 };
 
+type CreatorAction = "approve" | "reject";
+
+const CREATOR_ACTION_ENDPOINT: Record<CreatorAction, string> = {
+  approve: "/auth/approve-creator",
+  reject: "/auth/reject-creator",
+};
+
 async function ensureSuccess<T>(
   promise: Promise<{
     success: boolean;
@@ -39,32 +46,13 @@ export function useCreatorRequests() {
   });
 }
 
-export function useApproveCreator() {
+export function useCreatorAction(action: CreatorAction) {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (payload: CreatorActionPayload) =>
       ensureSuccess(
-        apiClient("/auth/approve-creator", {
-          method: "POST",
-          body: JSON.stringify(payload),
-        }),
-      ),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: CREATOR_REQUESTS_QUERY_KEY,
-      });
-    },
-  });
-}
-
-export function useRejectCreator() {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (payload: CreatorActionPayload) =>
-      ensureSuccess(
-        apiClient("/auth/reject-creator", {
+        apiClient(CREATOR_ACTION_ENDPOINT[action], {
           method: "POST",
           body: JSON.stringify(payload),
         }),

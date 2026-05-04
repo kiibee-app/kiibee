@@ -2,7 +2,7 @@
 
 import toast from "react-hot-toast";
 import type { CreatorRequest } from "../../../types/creator-request";
-import { useApproveCreator, useRejectCreator } from "../../../hooks/api";
+import { useCreatorAction } from "../../../hooks/api";
 import type { CreatorRequestAction } from "../../../types/creator-requests-table";
 
 type UseCreatorRequestActionsOptions = {
@@ -12,8 +12,8 @@ type UseCreatorRequestActionsOptions = {
 export function useCreatorRequestActions({
   onCreatorUpdated,
 }: UseCreatorRequestActionsOptions) {
-  const approveCreatorMutation = useApproveCreator();
-  const rejectCreatorMutation = useRejectCreator();
+  const approveCreatorMutation = useCreatorAction("approve");
+  const rejectCreatorMutation = useCreatorAction("reject");
 
   const activeAction: CreatorRequestAction | null =
     approveCreatorMutation.isPending

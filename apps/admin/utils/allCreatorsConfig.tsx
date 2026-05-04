@@ -1,5 +1,7 @@
 "use client";
 
+import type { MouseEvent } from "react";
+import type { CreatorRequest } from "../types/creator-request";
 import type { CreatorDetailFieldConfig } from "../types/creator-details-modal";
 import type { CreatorRequestColumn } from "../types/creator-requests-table";
 import { formatRequestedAt } from "./date";
@@ -132,41 +134,44 @@ export function getCreatorTableColumns(): CreatorRequestColumn[] {
       key: "actions",
       label: "Actions",
       renderCell: (creator, actions) => {
-        const canApproveRequest = creator.status === "pending";
-        const canRejectRequest =
-          creator.status === "pending" || creator.status === "approved";
+        const { status, id } = creator;
+        const { activeAction, activeRequestId } = actions;
+
+        const isPending = status === "pending";
+        const isApproved = status === "approved";
         const isApproving =
-          actions.activeAction === "approve" &&
-          actions.activeRequestId === creator.id;
-        const isRejecting =
-          actions.activeAction === "reject" &&
-          actions.activeRequestId === creator.id;
+          activeAction === "approve" && activeRequestId === id;
+        const isRejecting = activeAction === "reject" && activeRequestId === id;
         const isActionDisabled = isApproving || isRejecting;
+
+        const handleClick = (
+          event: MouseEvent<HTMLButtonElement>,
+          handler: (creator: CreatorRequest) => void,
+        ) => {
+          event.stopPropagation();
+          handler(creator);
+        };
 
         return (
           <RowActionGroup>
-            {canApproveRequest ? (
+            {isPending ? (
               <RowActionButton
                 $variant="approve"
                 type="button"
                 disabled={isActionDisabled}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  actions.onApproveCreator(creator);
-                }}
+                onClick={(event) =>
+                  handleClick(event, actions.onApproveCreator)
+                }
               >
                 {isApproving ? "Approving..." : "Approve"}
               </RowActionButton>
             ) : null}
-            {canRejectRequest ? (
+            {isPending || isApproved ? (
               <RowActionButton
                 $variant="reject"
                 type="button"
                 disabled={isActionDisabled}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  actions.onRejectCreator(creator);
-                }}
+                onClick={(event) => handleClick(event, actions.onRejectCreator)}
               >
                 {isRejecting ? "Rejecting..." : "Reject"}
               </RowActionButton>
