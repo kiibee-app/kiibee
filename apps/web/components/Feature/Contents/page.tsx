@@ -8,6 +8,7 @@ import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
   CreateCollectionModalContent,
+  HeaderRow,
   PageHeader,
   PageShell,
   PlaceholderLine,
@@ -41,6 +42,22 @@ import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
+import { CollectionRow } from "@/types/collectionsType";
+import CollectionTable from "./Collections";
+import {
+  collectionsData,
+  collectionContentsData,
+} from "@/utils/dummyData/collectionData";
+import AuthBackButton from "../Auth/AuthBackButton";
+import { COLLECTION_TABLE_TYPE } from "@/utils/collection";
+
+export default function CreatorsContents() {
+  const { t } = useTranslation();
+  const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
+  const [selectedCollection, setSelectedCollection] =
+    useState<CollectionRow | null>(null);
+  const [searchValue, setSearchValue] = useState("");
+  const [openSearch, setOpenSearch] = useState(false);
   const [showCreateCollectionModal, setShowCreateCollectionModal] =
     useState(false);
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
@@ -58,6 +75,9 @@ export default function CreatorsContents() {
 
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
+  const collectionContents = selectedCollection
+    ? (collectionContentsData[selectedCollection.id] ?? [])
+    : [];
 
   const handleCreateClick = () => {
     switch (activeTab) {
@@ -81,10 +101,26 @@ export default function CreatorsContents() {
     setShowSuccessModal(true);
   };
 
+  const handleBackToCollections = () => {
+    setSelectedCollection(null);
+  };
+
   return (
     <PageShell>
       <PageHeader>
-        <Title>{t(CONTENTS_KEYS.title)}</Title>
+        <HeaderRow>
+          {selectedCollection && (
+            <AuthBackButton
+              marginBottom="0px"
+              onClick={handleBackToCollections}
+            />
+          )}
+          <Title>
+            {selectedCollection
+              ? selectedCollection.name
+              : t(CONTENTS_KEYS.title)}
+          </Title>
+        </HeaderRow>
 
         <ContentsHeaderAction
           activeTab={activeTab}
@@ -125,6 +161,21 @@ export default function CreatorsContents() {
             title={t(CONTENTS_KEYS.couponsCard.title)}
             description={t(CONTENTS_KEYS.couponsCard.description)}
           />
+        ) : activeTab === COLLECTIONS ? (
+          selectedCollection ? (
+            <>
+              <CollectionTable
+                type={COLLECTION_TABLE_TYPE.CONTENTS}
+                data={collectionContents}
+              />
+            </>
+          ) : (
+            <CollectionTable
+              type={COLLECTION_TABLE_TYPE.COLLECTIONS}
+              data={collectionsData}
+              onRowClick={(row) => setSelectedCollection(row)}
+            />
+          )
         ) : (
           <PlaceholderLine>
             {(() => {

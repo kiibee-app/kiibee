@@ -2,10 +2,13 @@
 
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
+import InputField from "@/components/UI/InputFields";
 import { MonoText } from "@/components/UI/Monotext";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { INPUT_VARIANTS } from "@/utils/Constants";
 import {
   ADMISSION_REQUIREMENTS,
+  ADMISSION_REQUIREMENT_VALUES,
   DEFAULT_ADMISSION_REQUIREMENT,
   AdmissionRequirementValue,
 } from "@/utils/admissionRequirements";
@@ -17,6 +20,10 @@ import {
   DropdownShell,
   OptionButton,
   OptionsList,
+  PasswordFieldShell,
+  PasswordHelperText,
+  PasswordLimitText,
+  PasswordMetaRow,
   SelectButton,
   TextBlock,
 } from "./styles";
@@ -27,6 +34,7 @@ function AdmissionRequirements() {
   const [selected, setSelected] = useState<AdmissionRequirementValue>(
     DEFAULT_ADMISSION_REQUIREMENT,
   );
+  const [passwords, setPasswords] = useState("");
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -99,6 +107,27 @@ function AdmissionRequirements() {
           </OptionsList>
         )}
       </DropdownShell>
+
+      {selected === ADMISSION_REQUIREMENT_VALUES.password ? (
+        <PasswordFieldShell>
+          <InputField
+            type="textarea"
+            value={passwords}
+            onChange={(value) => setPasswords(value as string)}
+            placeholder="Enter passwords"
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            max={500}
+            data-test-id="admission-requirements-passwords"
+          />
+
+          <PasswordMetaRow>
+            <PasswordHelperText>
+              Separate multiple passwords with commas.
+            </PasswordHelperText>
+            <PasswordLimitText>500</PasswordLimitText>
+          </PasswordMetaRow>
+        </PasswordFieldShell>
+      ) : null}
     </AdmissionCard>
   );
 }

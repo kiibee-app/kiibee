@@ -18,7 +18,7 @@ export const CardTop = styled.div`
 export const TextBlock = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 `;
 
 export const Section = styled.div`
@@ -29,7 +29,6 @@ export const Section = styled.div`
 
 export const FieldBox = styled.div`
   border-radius: 8px;
-  padding: 12px 20px;
   gap: 8px;
   max-width: 640px;
 `;

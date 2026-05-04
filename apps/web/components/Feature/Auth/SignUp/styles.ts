@@ -43,6 +43,8 @@ export const Left = styled.div`
 
   ${media.tablet} {
     justify-content: center;
+    padding: 2.5rem;
+    margin-top: 3rem;
   }
 `;
 
@@ -57,7 +59,9 @@ export const Right = styled.div`
   overflow: hidden;
 
   ${media.tablet} {
-    display: none;
+    display: flex;
+    min-height: auto;
+    padding: 1.5rem 1rem 2rem;
   }
 `;
 
@@ -68,8 +72,8 @@ export const CardsWrap = styled.div`
 
   ${media.tablet} {
     width: 100%;
-    max-width: 360px;
     height: 390px;
+    margin: 0 auto;
   }
 `;
 
@@ -153,4 +157,5 @@ export const LoginLink = styled.a`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-decoration: underline;
   text-underline-offset: 2px;
+  padding-left: 5px;
 `;

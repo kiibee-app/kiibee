@@ -90,7 +90,34 @@
     "preference": {
       "title": "Lad os tilpasse din oplevelse",
       "description": "Fortæl os, hvad du kan lide, så vi kan anbefale skabere og indhold, du vil elske. Du kan altid opdatere dine præferencer senere i dine profilindstillinger.",
-      "submit": "Fortsæt"
+      "submit": "Fortsæt",
+      "content": {
+        "title": "Hvilken slags indhold er du interesseret i?",
+        "subtitle": "Vælg alle, der passer.",
+        "options": {
+          "comedy": "Komedie",
+          "music": "Musik",
+          "podcasts": "Podcasts",
+          "artsAndIllustration": "Kunst og illustration",
+          "booksAndWriting": "Bøger og skrivning",
+          "wellnessAndMindfulness": "Wellness og mindfulness",
+          "educationAndLearning": "Uddannelse / læring",
+          "lifestyleAndVlogs": "Livsstil og vlogs",
+          "cookingAndFood": "Madlavning / mad",
+          "sportsAndFitness": "Sport og fitness"
+        }
+      },
+      "types": {
+        "title": "Vælg dine foretrukne indholdstyper",
+        "subtitle": "Hvordan vil du helst opleve indhold?",
+        "submit": "Afslut opsætning",
+        "options": {
+          "video": "Video",
+          "audio": "Lyd",
+          "pdf": "PDF",
+          "epub": "EPUB"
+        }
+      }
     },
     "form": {
       "fullName": "Fulde navn",
@@ -151,6 +178,21 @@
       "privacy": "Privatlivspolitik",
       "submit": "Send anmodning"
     }
+  },
+  "creatorFinalSteps": {
+    "title": "Sidste trin",
+    "payment": {
+      "card": "Visa eller Mastercard",
+      "mobilePay": "MobilePay"
+    },
+    "fields": {
+      "payment": "Betalingsmetode",
+      "cardNumber": "Kortnummer",
+      "cardholderName": "Kortholders navn",
+      "expiryDate": "Udlobsdato",
+      "cvc": "CVC"
+    },
+    "submit": "Opret en konto"
   },
   "how": {
     "heroAlt": "Kiibee hero-billede",
@@ -1019,7 +1061,11 @@
       "exportTypeViews": "Visninger",
       "includeMedia": "Inkluder mediefiler",
       "lastExported": "Sidste eksport",
-      "noExports": "Ingen eksporter tilgængelige"
+      "noExports": "Ingen eksporter tilgængelige",
+      "typeDescription": "Vælg hvilken type data du vil eksportere.",
+      "dateDescription": "Vælg tidsperioden for din eksport.",
+      "modalTitle": "Downloader CSV",
+      "modalMessage": "Din CSV-fil er blevet downloadet."
     }
   },
   "contents": {
@@ -1093,7 +1139,15 @@
       "maximumCharacter": "Maksimalt antal tegn",
       "supportEmail": "Support e-mail",
       "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, sÃ¥ indtast den her.",
-      "supportEmailPlaceholder": "Indtast support e-mail"
+      "supportEmailPlaceholder": "Indtast support e-mail",
+      "coverImage": {
+        "title": "Forsidebillede",
+        "subtitle": "Det store billede øverst på siden",
+        "uploadDesktop": "Upload forsidebillede til desktop",
+        "uploadMobile": "Upload forsidebillede til mobil",
+        "desktopSize": "Brug billedstørrelse 1440 × 224 pixels",
+        "mobileSize": "Brug billedstørrelse 640 × 600 pixels"
+      }
     },
     "admissionRequirements": {
       "title": "Adgangskrav",

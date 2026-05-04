@@ -31,6 +31,27 @@ export const AUTH_FORM = {
   passwordLabel: "authForm.passwordLabel",
 };
 
+export const AUTH_CREATOR = {
+  backAria: "authCreator.backAria",
+};
+
+export const VIEWER_SIGNUP_PREFERENCE = {
+  title: "viewerSignup.preference.title",
+  description: "viewerSignup.preference.description",
+  submit: "viewerSignup.preference.submit",
+  content: {
+    title: "viewerSignup.preference.content.title",
+    subtitle: "viewerSignup.preference.content.subtitle",
+    option: (key: string) => `viewerSignup.preference.content.options.${key}`,
+  },
+  types: {
+    title: "viewerSignup.preference.types.title",
+    subtitle: "viewerSignup.preference.types.subtitle",
+    submit: "viewerSignup.preference.types.submit",
+    option: (key: string) => `viewerSignup.preference.types.options.${key}`,
+  },
+};
+
 export const CREATORS = {
   sort: "creators.sort",
   value: (v: string) => `creators.${v}`,
@@ -176,6 +197,14 @@ export const CONTENTS = {
     supportEmail: "contents.appearance.supportEmail",
     supportEmailHint: "contents.appearance.supportEmailHint",
     supportEmailPlaceholder: "contents.appearance.supportEmailPlaceholder",
+    coverImage: {
+      title: "contents.appearance.coverImage.title",
+      subtitle: "contents.appearance.coverImage.subtitle",
+      uploadDesktop: "contents.appearance.coverImage.uploadDesktop",
+      uploadMobile: "contents.appearance.coverImage.uploadMobile",
+      desktopSize: "contents.appearance.coverImage.desktopSize",
+      mobileSize: "contents.appearance.coverImage.mobileSize",
+    },
   },
   deleteModal: {
     title: "contents.deleteModal.title",
@@ -210,6 +239,10 @@ export const SETTINGS = {
     includeMedia: "settings.export.includeMedia",
     lastExported: "settings.export.lastExported",
     noExports: "settings.export.noExports",
+    typeDescription: "settings.export.typeDescription",
+    dateDescription: "settings.export.dateDescription",
+    modalTitle: "settings.export.modalTitle",
+    modalMessage: "settings.export.modalMessage",
   },
 };
 
@@ -234,6 +267,8 @@ const TRANSLATION_KEYS = {
   NAV,
   AUTH,
   AUTH_FORM,
+  AUTH_CREATOR,
+  VIEWER_SIGNUP_PREFERENCE,
   CREATORS,
   TUTORIAL_VIDEOS,
   CREATOR_PROFILE,

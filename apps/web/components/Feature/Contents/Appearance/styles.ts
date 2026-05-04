@@ -93,3 +93,18 @@ export const Swatch = styled.span<{ $color: string }>`
   background: ${({ $color }) => $color};
   box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.neutral.GRAY_250};
 `;
+
+export const ItemRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+`;
+
+export const UploadButton = styled.div`
+  button {
+    width: fit-content;
+    padding: 14px 24px;
+    box-shadow: none;
+  }
+`;

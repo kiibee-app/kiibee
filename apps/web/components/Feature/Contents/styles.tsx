@@ -143,3 +143,9 @@ export const CreateCollectionModalContent = styled.div`
   flex-direction: column;
   gap: 30px;
 `;
+
+export const HeaderRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;

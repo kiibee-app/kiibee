@@ -14,6 +14,7 @@ import {
 import { COMMON, SUBSCRIPTION } from "@/utils/translationKeys";
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
 import SubscriptionDetailsForm from "./SubscriptionDetailsForm";
+import SubscriptionPaymentStep from "./SubscriptionPaymentStep";
 import SubscriptionPlanStep from "./SubscriptionPlanStep";
 import {
   BackActionButton,
@@ -58,6 +59,7 @@ export default function SubscriptionSection() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setCurrentStep(SUBSCRIPTION_STEP.PAYMENT);
   };
   const handleTogglePasswordVisibility = (key: PasswordVisibilityKey) => {
     setPasswordVisibility((prev) => ({
@@ -84,6 +86,21 @@ export default function SubscriptionSection() {
             </BackActionButton>
           </BackRow>
         )}
+        {currentStep === SUBSCRIPTION_STEP.PAYMENT && (
+          <BackRow>
+            <BackActionButton
+              type="button"
+              onClick={() => setCurrentStep(SUBSCRIPTION_STEP.DETAILS)}
+              aria-label={t(COMMON.back)}
+            >
+              <BackButtonIcon
+                size={40}
+                backgroundColor={theme.colors.neutral.GRAY_200}
+                strokeColor={theme.colors.primary.BLACK}
+              />
+            </BackActionButton>
+          </BackRow>
+        )}
 
         <Content>
           <Image
@@ -93,14 +110,15 @@ export default function SubscriptionSection() {
             height={42}
           />
 
-          {currentStep === SUBSCRIPTION_STEP.PLAN ? (
+          {currentStep === SUBSCRIPTION_STEP.PLAN && (
             <SubscriptionPlanStep
               selectedPlan={selectedPlan}
               onSelectPlan={setSelectedPlan}
               onContinue={handleContinue}
               t={t}
             />
-          ) : (
+          )}
+          {currentStep === SUBSCRIPTION_STEP.DETAILS && (
             <SubscriptionDetailsForm
               selectedPlan={selectedPlan}
               onSelectPlan={setSelectedPlan}
@@ -116,6 +134,13 @@ export default function SubscriptionSection() {
               getPlanPriceLabel={getPlanPriceLabel}
               onSubmit={handleSubmit}
               t={t}
+            />
+          )}
+          {currentStep === SUBSCRIPTION_STEP.PAYMENT && (
+            <SubscriptionPaymentStep
+              selectedPlan={selectedPlan}
+              onSelectPlan={setSelectedPlan}
+              getPlanPriceLabel={getPlanPriceLabel}
             />
           )}
         </Content>
