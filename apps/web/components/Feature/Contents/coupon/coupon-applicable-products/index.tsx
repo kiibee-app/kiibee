@@ -66,6 +66,14 @@ export default function CouponApplicableProductsModal({
     onNext();
   };
 
+  const handleApplicableProductChange = (fieldKey: string, value: string) => {
+    if (fieldKey === COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS) {
+      setSelectedCollection(value);
+      return;
+    }
+    setSelectedContent(value);
+  };
+
   return (
     <GenericModal
       visible={visible}
@@ -123,16 +131,9 @@ export default function CouponApplicableProductsModal({
                       ? selectedCollection
                       : selectedContent
                   }
-                  onChange={(value) => {
-                    if (
-                      field.key ===
-                      COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
-                    ) {
-                      setSelectedCollection(value);
-                      return;
-                    }
-                    setSelectedContent(value);
-                  }}
+                  onChange={(value) =>
+                    handleApplicableProductChange(field.key, value)
+                  }
                 />
               </FieldGroup>
             ))}

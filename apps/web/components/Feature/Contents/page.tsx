@@ -71,6 +71,21 @@ export default function CreatorsContents() {
     setShowCouponApplicableProducts(false);
   };
 
+  const handleBackFromCouponCodes = () => {
+    setShowCouponCodes(false);
+    setShowCouponDetails(true);
+  };
+
+  const handleNextFromCouponCodes = () => {
+    setShowCouponCodes(false);
+    setShowCouponApplicableProducts(true);
+  };
+
+  const handleBackFromApplicableProducts = () => {
+    setShowCouponApplicableProducts(false);
+    setShowCouponCodes(true);
+  };
+
   const handleCreateClick = () => {
     switch (activeTab) {
       case COUPONS:
@@ -277,23 +292,14 @@ export default function CreatorsContents() {
 
       <CouponCodesModal
         visible={showCouponCodes}
-        onBack={() => {
-          setShowCouponCodes(false);
-          setShowCouponDetails(true);
-        }}
+        onBack={handleBackFromCouponCodes}
         onClose={closeCouponFlow}
-        onNext={() => {
-          setShowCouponCodes(false);
-          setShowCouponApplicableProducts(true);
-        }}
+        onNext={handleNextFromCouponCodes}
       />
 
       <CouponApplicableProductsModal
         visible={showCouponApplicableProducts}
-        onBack={() => {
-          setShowCouponApplicableProducts(false);
-          setShowCouponCodes(true);
-        }}
+        onBack={handleBackFromApplicableProducts}
         onClose={closeCouponFlow}
         onNext={closeCouponFlow}
       />
