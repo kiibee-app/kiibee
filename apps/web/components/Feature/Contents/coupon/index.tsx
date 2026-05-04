@@ -43,6 +43,24 @@ export default function CouponTable({ data }: CouponTableProps) {
     });
   }, [data, nameSortDirection]);
 
+  const resolveHeaderToKey = (header: string) => {
+    const col = COUPON_TABLE_COLUMNS.find((c) => c.label === header);
+    return col?.key as keyof CouponRow;
+  };
+
+  const handleHeaderClick = (
+    header: string,
+    setSort: React.Dispatch<React.SetStateAction<SortDirectionWithNone>>,
+  ) => {
+    if (header !== COUPON_TABLE_COLUMNS[0].label) return;
+
+    setSort((prev) => {
+      if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
+      if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
+      return SORT_DIRECTIONS.NONE;
+    });
+  };
+
   return (
     <>
       <InfoTextCard
@@ -54,19 +72,10 @@ export default function CouponTable({ data }: CouponTableProps) {
           headers={[...COUPON_TABLE_COLUMNS.map((c) => c.label)]}
           data={sortedRows}
           rowsPerPage={10}
-          headerToKey={(header) => {
-            const col = COUPON_TABLE_COLUMNS.find((c) => c.label === header);
-            return col?.key as keyof CouponRow;
-          }}
-          onHeaderClick={(header) => {
-            if (header !== COUPON_TABLE_COLUMNS[0].label) return;
-
-            setNameSortDirection((prev) => {
-              if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
-              if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
-              return SORT_DIRECTIONS.NONE;
-            });
-          }}
+          headerToKey={resolveHeaderToKey}
+          onHeaderClick={(header) =>
+            handleHeaderClick(header, setNameSortDirection)
+          }
           isHeaderSortable={(header) =>
             header === COUPON_TABLE_COLUMNS[0].label
           }
