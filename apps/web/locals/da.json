@@ -1106,6 +1106,22 @@
       },
       "helper": "Adskil flere koder ved at trykke enter"
     },
+    "couponApplicableProducts": {
+      "title": "Gaeldende produkter",
+      "description": "Du kan vaelge specifikke samlinger eller indhold, eller lade feltet vaere tomt for at gore rabatten tilgaengelig for alt.",
+      "fields": {
+        "collections": "Vaelg samling",
+        "contents": "Vaelg enkelt indhold"
+      },
+      "helpers": {
+        "collections": "Tilfoj en eller flere samlinger, som kunder kan faa denne rabat paa.",
+        "contents": "Tilfoj et eller flere indhold, som kunder kan faa denne rabat paa."
+      },
+      "buttons": {
+        "collections": "Samlinger",
+        "contents": "Indhold"
+      }
+    },
     "tabs": {
       "collections": "Samlinger",
       "appearance": "Udseende",

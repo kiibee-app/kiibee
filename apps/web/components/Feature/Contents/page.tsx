@@ -42,6 +42,7 @@ import {
 } from "@/utils/dummyData/collectionData";
 import AuthBackButton from "../Auth/AuthBackButton";
 import { COLLECTION_TABLE_TYPE } from "@/utils/collection";
+import CouponApplicableProductsModal from "@/components/Feature/Contents/coupon/coupon-applicable-products";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -61,6 +62,29 @@ export default function CreatorsContents() {
   const collectionContents = selectedCollection
     ? (collectionContentsData[selectedCollection.id] ?? [])
     : [];
+  const [showCouponApplicableProducts, setShowCouponApplicableProducts] =
+    useState(false);
+
+  const closeCouponFlow = () => {
+    setShowCouponDetails(false);
+    setShowCouponCodes(false);
+    setShowCouponApplicableProducts(false);
+  };
+
+  const handleBackFromCouponCodes = () => {
+    setShowCouponCodes(false);
+    setShowCouponDetails(true);
+  };
+
+  const handleNextFromCouponCodes = () => {
+    setShowCouponCodes(false);
+    setShowCouponApplicableProducts(true);
+  };
+
+  const handleBackFromApplicableProducts = () => {
+    setShowCouponApplicableProducts(false);
+    setShowCouponCodes(true);
+  };
 
   const handleCreateClick = () => {
     switch (activeTab) {
@@ -259,10 +283,7 @@ export default function CreatorsContents() {
 
       <CouponDetailsModal
         visible={showCouponDetails}
-        onClose={() => {
-          setShowCouponDetails(false);
-          setShowCouponCodes(false);
-        }}
+        onClose={closeCouponFlow}
         onNext={() => {
           setShowCouponDetails(false);
           setShowCouponCodes(true);
@@ -271,12 +292,16 @@ export default function CreatorsContents() {
 
       <CouponCodesModal
         visible={showCouponCodes}
-        onBack={() => {
-          setShowCouponCodes(false);
-          setShowCouponDetails(true);
-        }}
-        onClose={() => setShowCouponCodes(false)}
-        onNext={() => setShowCouponCodes(false)}
+        onBack={handleBackFromCouponCodes}
+        onClose={closeCouponFlow}
+        onNext={handleNextFromCouponCodes}
+      />
+
+      <CouponApplicableProductsModal
+        visible={showCouponApplicableProducts}
+        onBack={handleBackFromApplicableProducts}
+        onClose={closeCouponFlow}
+        onNext={closeCouponFlow}
       />
     </PageShell>
   );

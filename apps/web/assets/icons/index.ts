@@ -33,3 +33,5 @@ export { default as DeleteIcon } from "./DeleteIcon";
 export { default as DirectionIcon } from "./DirectionIcon";
 export { default as FolderIcon } from "./FolderIcon";
 export { default as ThreeDotIcon } from "./ThreeDotIcon";
+export { default as SelectedCheckIcon } from "./SelectedCheckIcon";
+export { default as ChipCloseIcon } from "./ChipCloseIcon";
