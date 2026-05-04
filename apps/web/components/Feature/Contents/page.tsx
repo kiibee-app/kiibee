@@ -27,21 +27,18 @@ import AppearanceContent from "./Appearance";
 import ContentTypeModal from "./ContentTypeModal";
 import { SuccessArcIcon } from "@/assets/icons";
 import { MODAL_ALIGN } from "@/utils/ui";
-import { INPUT_VARIANTS } from "@/utils/Constants";
+import {
+  CONTENT_TAB,
+  INPUT_VARIANTS,
+  LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+} from "@/utils/Constants";
 import ContentsHeaderAction from "./ContentsHeaderAction";
 import GenericTabs from "@/components/UI/GenericTabs";
 import InfoTextCard from "@/components/UI/InfoTextCard";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
-import {
-  CONTENT_TAB,
-  LEGACY_DASHBOARD_TAB_QUERY_KEYS,
-} from "@/utils/Constants";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
-
-export default function CreatorsContents() {
-  const { t } = useTranslation();
 import { CollectionRow } from "@/types/collectionsType";
 import CollectionTable from "./Collections";
 import {
@@ -53,7 +50,13 @@ import { COLLECTION_TABLE_TYPE } from "@/utils/collection";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
+  const { activeTab, setActiveTabAndQuery } = useQuerySyncedTab<ContentTab>({
+    queryKey: CONTENT_TAB,
+    defaultTab: COLLECTIONS,
+    validTabs: CONTENT_TABS.map((tab) => tab.key),
+    cleanupQueryKeys: LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+  });
+
   const [selectedCollection, setSelectedCollection] =
     useState<CollectionRow | null>(null);
   const [searchValue, setSearchValue] = useState("");
@@ -66,15 +69,7 @@ export default function CreatorsContents() {
   const [collectionName, setCollectionName] = useState("");
   const [showCouponDetails, setShowCouponDetails] = useState(false);
   const [showCouponCodes, setShowCouponCodes] = useState(false);
-  const { activeTab, setActiveTabAndQuery } = useQuerySyncedTab<ContentTab>({
-    queryKey: CONTENT_TAB,
-    defaultTab: COLLECTIONS,
-    validTabs: CONTENT_TABS.map((tab) => tab.key),
-    cleanupQueryKeys: LEGACY_DASHBOARD_TAB_QUERY_KEYS,
-  });
 
-  const [searchValue, setSearchValue] = useState("");
-  const [openSearch, setOpenSearch] = useState(false);
   const collectionContents = selectedCollection
     ? (collectionContentsData[selectedCollection.id] ?? [])
     : [];
@@ -163,12 +158,10 @@ export default function CreatorsContents() {
           />
         ) : activeTab === COLLECTIONS ? (
           selectedCollection ? (
-            <>
-              <CollectionTable
-                type={COLLECTION_TABLE_TYPE.CONTENTS}
-                data={collectionContents}
-              />
-            </>
+            <CollectionTable
+              type={COLLECTION_TABLE_TYPE.CONTENTS}
+              data={collectionContents}
+            />
           ) : (
             <CollectionTable
               type={COLLECTION_TABLE_TYPE.COLLECTIONS}
