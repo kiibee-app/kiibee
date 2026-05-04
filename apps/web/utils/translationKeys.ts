@@ -163,6 +163,23 @@ export const DASHBOARD_USERS = {
   },
 };
 
+export const DASHBOARD_VIEWER_PURCHASED = {
+  title: "dashboard.viewerPurchased.title",
+  sections: {
+    collections: "dashboard.viewerPurchased.sections.collections",
+    videos: "dashboard.viewerPurchased.sections.videos",
+    audios: "dashboard.viewerPurchased.sections.audios",
+    pdf: "dashboard.viewerPurchased.sections.pdf",
+  },
+  buttons: {
+    seeContent: "dashboard.viewerPurchased.buttons.seeContent",
+  },
+  emptyStates: {
+    collections: "dashboard.viewerPurchased.emptyStates.collections",
+    media: "dashboard.viewerPurchased.emptyStates.media",
+  },
+};
+
 export const CONTENTS = {
   title: "contents.title",
   actions: {

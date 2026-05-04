@@ -21,12 +21,12 @@ export const MainWrapper = styled.div`
   }
 `;
 
-export const ContentWrapper = styled.main`
+export const ContentWrapper = styled.main<{ $contentPadding?: string }>`
   flex: 1;
-  padding: 20px;
+  padding: ${({ $contentPadding }) => $contentPadding ?? "20px"};
   overflow-y: auto;
 
   ${media.tablet} {
-    padding: 8px 0 20px;
+    padding: ${({ $contentPadding }) => $contentPadding ?? "8px 0 20px"};
   }
 `;

@@ -41,6 +41,7 @@ export interface ColorPalette {
     GRAY_250: string;
     GRAY_300: string;
     GRAY_400: string;
+    GRAY_500: string;
     GRAY_700: string;
     DUSTY_TEAL: string;
     OVERLAY: string;
@@ -123,6 +124,7 @@ export const COLORS: ColorPalette = {
     GRAY_250: "rgba(0, 0, 0, 0.04)",
     GRAY_300: "rgba(0, 0, 0, 0.08)",
     GRAY_400: "rgba(6, 6, 6, 0.5)",
+    GRAY_500: "rgba(6, 6, 6, 0.70)",
     GRAY_700: "rgb(55,65,81)",
     DUSTY_TEAL: "rgb(88,157,150)",
     OVERLAY: "rgba(15,23,42,0.6)",

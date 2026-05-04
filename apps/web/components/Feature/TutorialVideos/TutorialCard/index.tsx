@@ -9,14 +9,16 @@ import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { ComponentType } from "react";
 import type { FormatType, TutorialButton, TutorialVideo } from "@/utils/types";
 import { FORMAT_TYPE } from "@/utils/types";
-import { EpubIcon, PdfIcon, VideoIcon, WebIcon } from "@/assets/icons";
+import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
+import AudioFileIcon from "@/assets/icons/AudioFileIcon";
+import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericCard from "@/components/UI/GenericCard";
 
-interface TutorialCardProps {
+type TutorialCardProps = {
   tutorial: TutorialVideo;
-}
+};
 
 type IconComponent = ComponentType<{
   width?: number;
@@ -27,7 +29,8 @@ type IconComponent = ComponentType<{
 
 const formatIconMap: Record<FormatType, IconComponent> = {
   video: VideoIcon,
-  pdf: PdfIcon,
+  audio: AudioFileIcon,
+  pdf: PdfFileIcon,
   epub: EpubIcon,
   web: WebIcon,
 };
@@ -77,16 +80,32 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
       subtitle={<MonoText $use="Body_Medium">{tutorial.creator}</MonoText>}
       footer={
         <ActionRow>
-          {buttons.map((button, index) => (
-            <GenericButton
-              key={`${button.label}-${index}`}
-              asAnchor
-              href={resolveButtonHref(button.href)}
-              variant={button.variant ?? VARIANT.SECONDARY}
-            >
-              {button.label}
-            </GenericButton>
-          ))}
+          {buttons.map((button, index) =>
+            button.href ? (
+              <GenericButton
+                key={`${button.label}-${index}`}
+                asAnchor
+                href={resolveButtonHref(button.href)}
+                variant={button.variant ?? VARIANT.SECONDARY}
+                fullWidth={button.fullWidth}
+                size={button.size}
+                minWidth={button.minWidth}
+              >
+                {button.label}
+              </GenericButton>
+            ) : (
+              <GenericButton
+                key={`${button.label}-${index}`}
+                type="button"
+                variant={button.variant ?? VARIANT.SECONDARY}
+                fullWidth={button.fullWidth}
+                size={button.size}
+                minWidth={button.minWidth}
+              >
+                {button.label}
+              </GenericButton>
+            ),
+          )}
         </ActionRow>
       }
     >
@@ -95,7 +114,7 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
       </MonoText>
 
       <VideoBox>
-        <FormatIcon width={22} height={22} />
+        <FormatIcon width={22} height={22} color={COLORS.neutral.BLACK} />
         <MonoText $use="Body_Bold">{tutorial.formatLabel}</MonoText>
       </VideoBox>
     </GenericCard>

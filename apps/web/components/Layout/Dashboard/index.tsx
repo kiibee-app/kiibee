@@ -7,19 +7,25 @@ type DashboardLayoutProps = {
   header?: React.ReactNode;
   children?: React.ReactNode;
   sidebar?: React.ReactNode;
+  contentPadding?: string;
 };
 
 const DashboardLayout = ({
   header,
   children,
   sidebar,
+  contentPadding,
 }: DashboardLayoutProps) => {
   return (
     <LayoutWrapper>
       {sidebar}
       <MainWrapper>
         {header}
-        {children && <ContentWrapper>{children}</ContentWrapper>}
+        {children && (
+          <ContentWrapper $contentPadding={contentPadding}>
+            {children}
+          </ContentWrapper>
+        )}
       </MainWrapper>
     </LayoutWrapper>
   );

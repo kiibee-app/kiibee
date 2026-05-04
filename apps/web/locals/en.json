@@ -957,6 +957,22 @@
     "overview": "Overview",
     "noData": "No Data Found",
     "contentPerformance": "Content Performance",
+    "viewerPurchased": {
+      "title": "Purchased",
+      "sections": {
+        "collections": "Collections",
+        "videos": "Videos",
+        "audios": "Audios",
+        "pdf": "PDF"
+      },
+      "buttons": {
+        "seeContent": "See content"
+      },
+      "emptyStates": {
+        "collections": "No collections match your search.",
+        "media": "No items match your search."
+      }
+    },
     "logoutModal": {
       "title": "Log out",
       "message": "Are you sure you want to log out as {{email}}?",
