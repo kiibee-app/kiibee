@@ -27,12 +27,17 @@ import AppearanceContent from "./Appearance";
 import ContentTypeModal from "./ContentTypeModal";
 import { SuccessArcIcon } from "@/assets/icons";
 import { MODAL_ALIGN } from "@/utils/ui";
-import { INPUT_VARIANTS } from "@/utils/Constants";
+import {
+  CONTENT_TAB,
+  INPUT_VARIANTS,
+  LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+} from "@/utils/Constants";
 import ContentsHeaderAction from "./ContentsHeaderAction";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
+import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import { CollectionRow } from "@/types/collectionsType";
 import CollectionTable from "./Collections";
 import {
@@ -41,13 +46,20 @@ import {
 } from "@/utils/dummyData/collectionData";
 import AuthBackButton from "../Auth/AuthBackButton";
 import { COLLECTION_TABLE_TYPE } from "@/utils/collection";
+import CouponApplicableProductsModal from "@/components/Feature/Contents/coupon/coupon-applicable-products";
 
 import CouponTable from "./coupon";
 import { couponData } from "@/utils/dummyData/couponData";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<ContentTab>(COLLECTIONS);
+  const { activeTab, setActiveTabAndQuery } = useQuerySyncedTab<ContentTab>({
+    queryKey: CONTENT_TAB,
+    defaultTab: COLLECTIONS,
+    validTabs: CONTENT_TABS.map((tab) => tab.key),
+    cleanupQueryKeys: LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+  });
+
   const [selectedCollection, setSelectedCollection] =
     useState<CollectionRow | null>(null);
   const [searchValue, setSearchValue] = useState("");
@@ -60,9 +72,33 @@ export default function CreatorsContents() {
   const [collectionName, setCollectionName] = useState("");
   const [showCouponDetails, setShowCouponDetails] = useState(false);
   const [showCouponCodes, setShowCouponCodes] = useState(false);
+
   const collectionContents = selectedCollection
     ? (collectionContentsData[selectedCollection.id] ?? [])
     : [];
+  const [showCouponApplicableProducts, setShowCouponApplicableProducts] =
+    useState(false);
+
+  const closeCouponFlow = () => {
+    setShowCouponDetails(false);
+    setShowCouponCodes(false);
+    setShowCouponApplicableProducts(false);
+  };
+
+  const handleBackFromCouponCodes = () => {
+    setShowCouponCodes(false);
+    setShowCouponDetails(true);
+  };
+
+  const handleNextFromCouponCodes = () => {
+    setShowCouponCodes(false);
+    setShowCouponApplicableProducts(true);
+  };
+
+  const handleBackFromApplicableProducts = () => {
+    setShowCouponApplicableProducts(false);
+    setShowCouponCodes(true);
+  };
 
   const handleCreateClick = () => {
     switch (activeTab) {
@@ -123,9 +159,8 @@ export default function CreatorsContents() {
         }))}
         activeTab={activeTab}
         onTabChange={(tabKey) => {
-          setActiveTab(tabKey);
           setOpenSearch(false);
-          setSelectedCollection(null);
+          setActiveTabAndQuery(tabKey);
         }}
         search={{
           open: openSearch,
@@ -146,12 +181,10 @@ export default function CreatorsContents() {
           <CouponTable data={couponData} />
         ) : activeTab === COLLECTIONS ? (
           selectedCollection ? (
-            <>
-              <CollectionTable
-                type={COLLECTION_TABLE_TYPE.CONTENTS}
-                data={collectionContents}
-              />
-            </>
+            <CollectionTable
+              type={COLLECTION_TABLE_TYPE.CONTENTS}
+              data={collectionContents}
+            />
           ) : (
             <CollectionTable
               type={COLLECTION_TABLE_TYPE.COLLECTIONS}
@@ -258,10 +291,7 @@ export default function CreatorsContents() {
 
       <CouponDetailsModal
         visible={showCouponDetails}
-        onClose={() => {
-          setShowCouponDetails(false);
-          setShowCouponCodes(false);
-        }}
+        onClose={closeCouponFlow}
         onNext={() => {
           setShowCouponDetails(false);
           setShowCouponCodes(true);
@@ -270,12 +300,16 @@ export default function CreatorsContents() {
 
       <CouponCodesModal
         visible={showCouponCodes}
-        onBack={() => {
-          setShowCouponCodes(false);
-          setShowCouponDetails(true);
-        }}
-        onClose={() => setShowCouponCodes(false)}
-        onNext={() => setShowCouponCodes(false)}
+        onBack={handleBackFromCouponCodes}
+        onClose={closeCouponFlow}
+        onNext={handleNextFromCouponCodes}
+      />
+
+      <CouponApplicableProductsModal
+        visible={showCouponApplicableProducts}
+        onBack={handleBackFromApplicableProducts}
+        onClose={closeCouponFlow}
+        onNext={closeCouponFlow}
       />
     </PageShell>
   );
