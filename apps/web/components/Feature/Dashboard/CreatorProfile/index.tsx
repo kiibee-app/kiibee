@@ -2,15 +2,6 @@
 
 import React, { useMemo, useState, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import ReactCrop, {
-  centerCrop,
-  convertToPercentCrop,
-  convertToPixelCrop,
-  makeAspectCrop,
-  type PercentCrop,
-  type PixelCrop,
-} from "react-image-crop";
-import "react-image-crop/dist/ReactCrop.css";
 import {
   Container,
   Title,
@@ -33,9 +24,12 @@ import {
   UploadHint,
   UploadOrText,
   CropCanvas,
-  ReactCropWrapper,
-  CropTargetImage,
   ModalActions,
+  ImagePreviewWrapper,
+  ImagePreview,
+  CropOverlay,
+  ZoomContainer,
+  ZoomSlider,
 } from "./styles";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import InputField from "@/components/UI/InputFields";
@@ -58,6 +52,7 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import { GenericModal } from "@/components/UI/Modals";
 import { EditProfileIcon, SuccessArcIcon } from "@/assets/icons";
 import { useRouter } from "next/navigation";
+import { getCroppedImg } from "@/utils/image";
 
 export default function CreatorProfile() {
   const { t } = useTranslation();
@@ -79,10 +74,21 @@ export default function CreatorProfile() {
   const [showPhotoModal, setShowPhotoModal] = useState(false);
   const [photoStep, setPhotoStep] = useState<"upload" | "edit">("upload");
   const [pendingImage, setPendingImage] = useState<string | null>(null);
-  const [crop, setCrop] = useState<PercentCrop>();
-  const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
+
+  const [zoom, setZoom] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDraggingImage, setIsDraggingImage] = useState(false);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const cropImageRef = useRef<HTMLImageElement | null>(null);
+  const previewFrameRef = useRef<HTMLDivElement | null>(null);
+  const cropAreaRef = useRef<HTMLDivElement | null>(null);
+
+  const dragStateRef = useRef<{
+    startX: number;
+    startY: number;
+    originX: number;
+    originY: number;
+  } | null>(null);
 
   const dirty = useMemo(() => {
     const formChanged = JSON.stringify(form) !== JSON.stringify(saved);
@@ -166,115 +172,93 @@ export default function CreatorProfile() {
     setShowPhotoModal(false);
     setPhotoStep("upload");
     setPendingImage(null);
-    setCrop(undefined);
-    setCompletedCrop(undefined);
+    setZoom(1);
+    setPosition({ x: 0, y: 0 });
+    setIsDraggingImage(false);
+    dragStateRef.current = null;
   }, []);
 
   const handleSelectFile = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
       if (!file) return;
+
       event.target.value = "";
+
       const reader = new FileReader();
       reader.onload = () => {
         const result = reader.result;
         if (typeof result !== "string") return;
+
         setPendingImage(result);
         setPhotoStep("edit");
-        setCrop(undefined);
-        setCompletedCrop(undefined);
+        setZoom(1);
+        setPosition({ x: 0, y: 0 });
       };
+
       reader.readAsDataURL(file);
     },
     [],
   );
 
-  const centerAspectCrop = useCallback(
-    (mediaWidth: number, mediaHeight: number, aspect: number): PercentCrop => {
-      const baseSize = Math.min(mediaWidth, mediaHeight) * 0.9;
-      const pixelCrop = centerCrop(
-        makeAspectCrop(
-          {
-            unit: "px",
-            width: baseSize,
-          },
-          aspect,
-          mediaWidth,
-          mediaHeight,
-        ),
-        mediaWidth,
-        mediaHeight,
-      );
-      return convertToPercentCrop(pixelCrop, mediaWidth, mediaHeight);
-    },
-    [],
-  );
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!pendingImage) return;
 
-  const onCropImageLoad = useCallback(
-    (event: React.SyntheticEvent<HTMLImageElement>) => {
-      const { width, height } = event.currentTarget;
-      if (!width || !height) return;
-      const nextCrop = centerAspectCrop(width, height, 1);
-      setCrop(nextCrop);
-      setCompletedCrop(convertToPixelCrop(nextCrop, width, height));
-    },
-    [centerAspectCrop],
-  );
+    dragStateRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      originX: position.x,
+      originY: position.y,
+    };
 
-  const onCropChange = useCallback(
-    (pixelCrop: PixelCrop, percentCrop: PercentCrop) => {
-      // Keep both units in sync so crop never collapses to a line.
-      setCrop(percentCrop);
-      setCompletedCrop(pixelCrop);
-    },
-    [],
-  );
+    setIsDraggingImage(true);
+  };
 
-  const onCropComplete = useCallback((pixelCrop: PixelCrop) => {
-    if (pixelCrop.width < 1 || pixelCrop.height < 1) return;
-    setCompletedCrop(pixelCrop);
-  }, []);
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!dragStateRef.current) return;
+
+    const dx = e.clientX - dragStateRef.current.startX;
+    const dy = e.clientY - dragStateRef.current.startY;
+
+    setPosition({
+      x: dragStateRef.current.originX + dx,
+      y: dragStateRef.current.originY + dy,
+    });
+  };
+
+  const stopDragging = () => {
+    dragStateRef.current = null;
+    setIsDraggingImage(false);
+  };
 
   const applyCrop = useCallback(async () => {
-    if (!completedCrop || !cropImageRef.current) return;
-    if (completedCrop.width < 1 || completedCrop.height < 1) return;
-    const image = cropImageRef.current;
-    const scaleX = image.naturalWidth / image.width;
-    const scaleY = image.naturalHeight / image.height;
-    const outputSize = 400;
+    if (!pendingImage) return;
 
-    const canvas = document.createElement("canvas");
-    canvas.width = outputSize;
-    canvas.height = outputSize;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    ctx.drawImage(
-      image,
-      completedCrop.x * scaleX,
-      completedCrop.y * scaleY,
-      completedCrop.width * scaleX,
-      completedCrop.height * scaleY,
-      0,
-      0,
-      outputSize,
-      outputSize,
+    const frame = previewFrameRef.current;
+    if (!frame) return;
+
+    const { width, height } = frame.getBoundingClientRect();
+
+    const croppedImage = await getCroppedImg(
+      pendingImage,
+      width,
+      height,
+      {
+        x: 0,
+        y: 0,
+        width,
+        height,
+      },
+      {
+        x: position.x / zoom,
+        y: position.y / zoom,
+      },
+      zoom,
     );
-    setAvatarImage(canvas.toDataURL("image/png"));
+
+    setAvatarImage(croppedImage);
     closePhotoModal();
-  }, [closePhotoModal, completedCrop]);
-
-  const initialCrop = useMemo<PercentCrop>(
-    () => ({
-      unit: "%",
-      x: 5,
-      y: 5,
-      width: 90,
-      height: 90,
-    }),
-    [],
-  );
-
-  const ensureCrop = crop ?? initialCrop;
+  }, [pendingImage, position, zoom, closePhotoModal]);
 
   return (
     <Container>
@@ -367,7 +351,8 @@ export default function CreatorProfile() {
             : t("creatorProfile.editPhotoTitle")
         }
         onClose={closePhotoModal}
-        width="520px"
+        textAlign={MODAL_ALIGN.START}
+        width="630px"
       >
         <PhotoModalBody>
           <HiddenInput
@@ -390,30 +375,39 @@ export default function CreatorProfile() {
           ) : (
             <>
               <CropCanvas>
-                <ReactCropWrapper>
+                <ImagePreviewWrapper
+                  ref={previewFrameRef}
+                  onMouseDown={handleMouseDown}
+                  onMouseMove={handleMouseMove}
+                  onMouseUp={stopDragging}
+                  onMouseLeave={stopDragging}
+                >
                   {pendingImage && (
-                    <ReactCrop
-                      crop={ensureCrop}
-                      onChange={onCropChange}
-                      onComplete={onCropComplete}
-                      minWidth={120}
-                      minHeight={120}
-                      keepSelection
-                      locked
-                      aspect={1}
-                      circularCrop
-                    >
-                      <CropTargetImage
-                        ref={cropImageRef}
-                        src={pendingImage}
-                        alt={t("creatorProfile.profilePhotoAlt")}
-                        draggable={false}
-                        onLoad={onCropImageLoad}
-                      />
-                    </ReactCrop>
+                    <ImagePreview
+                      src={pendingImage}
+                      alt={t("creatorProfile.profilePhotoAlt")}
+                      $x={position.x}
+                      $y={position.y}
+                      $zoom={zoom}
+                      $isDragging={isDraggingImage}
+                    />
                   )}
-                </ReactCropWrapper>
+
+                  <CropOverlay ref={cropAreaRef} />
+                </ImagePreviewWrapper>
               </CropCanvas>
+
+              <ZoomContainer>
+                <ZoomSlider
+                  type="range"
+                  min={1}
+                  max={3}
+                  step={0.01}
+                  value={zoom}
+                  onChange={(e) => setZoom(Number(e.target.value))}
+                />
+              </ZoomContainer>
+
               <ModalActions>
                 <GenericButton
                   variant={VARIANT.SECONDARY}
@@ -421,11 +415,7 @@ export default function CreatorProfile() {
                 >
                   {t("common.cancel")}
                 </GenericButton>
-                <GenericButton
-                  variant={VARIANT.PRIMARY}
-                  onClick={applyCrop}
-                  disabled={!completedCrop}
-                >
+                <GenericButton variant={VARIANT.PRIMARY} onClick={applyCrop}>
                   {t("creatorProfile.apply")}
                 </GenericButton>
               </ModalActions>
