@@ -222,6 +222,15 @@ export const CONTENTS = {
       desktopSize: "contents.appearance.coverImage.desktopSize",
       mobileSize: "contents.appearance.coverImage.mobileSize",
     },
+    description: {
+      label: "contents.appearance.description.label",
+      hint: "contents.appearance.description.hint",
+      placeholder: "contents.appearance.description.placeholder",
+    },
+    logo: {
+      title: "contents.appearance.logo.title",
+      subtitle: "contents.appearance.logo.subtitle",
+    },
   },
   deleteModal: {
     title: "contents.deleteModal.title",

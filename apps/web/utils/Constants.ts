@@ -83,3 +83,4 @@ export const SUBSCRIPTION_STEP = {
   PAYMENT: "payment",
 } as const;
 export const maxReceiptCharacters = 200;
+export const maxDescriptionCharacters = 500;

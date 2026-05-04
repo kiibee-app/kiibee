@@ -1179,6 +1179,15 @@
         "uploadMobile": "Upload forsidebillede til mobil",
         "desktopSize": "Brug billedstørrelse 1440 × 224 pixels",
         "mobileSize": "Brug billedstørrelse 640 × 600 pixels"
+      },
+      "description": {
+        "label": "Beskrivelse",
+        "hint": "Fortæl lidt om dit produkt og fremhæv det på forsiden",
+        "placeholder": "Indtast beskrivelse"
+      },
+      "logo": {
+        "title": "Logo",
+        "subtitle": "Brug dit eget logo eller skriv en tekst som logo"
       }
     },
     "admissionRequirements": {
