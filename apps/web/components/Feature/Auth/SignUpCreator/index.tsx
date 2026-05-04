@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 import { useCreatorRequest } from "@/hooks/auth/useCreatorRequest";
 import InputField from "@/components/UI/InputFields";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
@@ -44,6 +44,7 @@ import { ALERT } from "@/utils/common";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
+  const router = useRouter();
   const [formValues, setFormValues] =
     useState<CreatorFormValues>(INITIAL_CREATOR_FORM);
   const [formMessage, setFormMessage] = useState("");
@@ -73,6 +74,15 @@ export default function SignUpCreatorSection() {
       return;
     }
 
+    const normalizedWorkLink = formValues.workLink.trim();
+    try {
+      new URL(normalizedWorkLink);
+    } catch {
+      setMessageTone("error");
+      setFormMessage(t("authCreator.form.workLinkInvalid"));
+      return;
+    }
+
     try {
       const response = await creatorRequest.mutateAsync({
         firstName: formValues.firstName.trim(),
@@ -83,16 +93,20 @@ export default function SignUpCreatorSection() {
         address: formValues.address.trim(),
         city: formValues.city.trim(),
         postalCode: formValues.postalCode.trim(),
-        exampleWorkLink: formValues.workLink.trim(),
+        exampleWorkLink: normalizedWorkLink,
         contentDescription: formValues.contentDescription.trim(),
       });
 
-      const approvalMessage = "Please wait for admin approval";
+      if (!response.success) {
+        throw new Error(response.message || "Failed to submit request");
+      }
 
-      toast.success(approvalMessage);
       setMessageTone("success");
-      setFormMessage(response.message || approvalMessage);
+      setFormMessage(
+        response.message || "Creator application submitted successfully",
+      );
       setFormValues(INITIAL_CREATOR_FORM);
+      router.push("/auth/signup-creator/request-sent");
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Failed to submit request";

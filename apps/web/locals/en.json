@@ -170,6 +170,7 @@
       "city": "City",
       "postalCode": "Postal code",
       "workLink": "Link to example work (YouTube, WeTransfer, etc.)",
+      "workLinkInvalid": "Please enter a valid URL (for example: https://example.com)",
       "contentLabel": "Tell us about your content",
       "contentPlaceholder": "Tell us a bit about your content and what you'd like to share on Kiibee.",
       "consentPrefix": "I agree to Kiibee's",

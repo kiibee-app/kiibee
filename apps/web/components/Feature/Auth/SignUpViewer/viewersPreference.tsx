@@ -9,6 +9,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { ContentWrap } from "@/app/auth/signup-creator/styles";
 import { VIEWER_SIGNUP_PREFERENCE } from "@/utils/translationKeys";
 import { PREF_STEP, ViewerPreferenceStep } from "@/utils/preferenceOptions";
+import { PATHS } from "@/utils/path";
 import { PrepCard, PreContentWrap } from "./styles";
 import PreferenceStepContent from "./PreferenceStepContent";
 
@@ -47,7 +48,7 @@ export default function ViewerPreference() {
       return;
     }
 
-    router.push("/");
+    router.push(PATHS.DASHBOARD_VIEWER);
   };
 
   return (

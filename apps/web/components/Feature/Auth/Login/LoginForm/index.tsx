@@ -23,7 +23,11 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useLoginFormSchema } from "@/utils/useLoginFormSchema";
 import type { LoginFormErrors } from "@/utils/authLoginFormSchema";
 import { ALERT } from "@/utils/common";
-import { persistLoginSession, useLogin } from "@/hooks/auth/useLogin";
+import {
+  getPostLoginPath,
+  persistLoginSession,
+  useLogin,
+} from "@/hooks/auth/useLogin";
 import { PATHS } from "@/utils/path";
 
 export default function LoginForm() {
@@ -81,7 +85,7 @@ export default function LoginForm() {
       }
 
       persistLoginSession(response);
-      router.push("/dashboard/creators");
+      router.push(getPostLoginPath(response));
     } catch (error) {
       if (isMounted.current) {
         setFormError(
