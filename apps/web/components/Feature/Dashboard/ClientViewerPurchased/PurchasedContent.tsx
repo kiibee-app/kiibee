@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
-import { VIEWER_LABELS } from "@/utils/SidebarItems";
 import {
   MOCK_PURCHASED_AUDIOS,
   MOCK_PURCHASED_COLLECTIONS,
@@ -16,6 +16,7 @@ import AudiosSection from "./Sections/AudiosSection";
 import PdfSection from "./Sections/PdfSection";
 import { PageHeader, PageWrap } from "./styles";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
+import { DASHBOARD_VIEWER_PURCHASED } from "@/utils/translationKeys";
 
 function matchesSearch(q: string, parts: string[]) {
   const needle = q.trim().toLowerCase();
@@ -33,6 +34,7 @@ function filterMedia(
 }
 
 export default function PurchasedContent() {
+  const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState("");
 
   const filteredCollections = useMemo(
@@ -62,7 +64,7 @@ export default function PurchasedContent() {
     <PageWrap>
       <PageHeader>
         <MonoText $use="H4_SemiBold" as="h1">
-          {VIEWER_LABELS.PURCHASED}
+          {t(DASHBOARD_VIEWER_PURCHASED.title)}
         </MonoText>
         <SearchIcon />
       </PageHeader>

@@ -1,8 +1,8 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import PurchasedCollectionCard from "../PurchasedCollectionCard";
 import type { PurchasedCollectionItem } from "@/utils/dummyData/viewerPurchasedMockData";
-import { VIEWER_PURCHASED_PLACEHOLDERS } from "@/utils/dummyData/viewerPurchasedMockData";
 import {
   CollectionCardSlot,
   CollectionsList,
@@ -12,20 +12,27 @@ import {
   SectionTitle,
 } from "../styles";
 import { LeftIcon } from "@/assets/icons";
+import { DASHBOARD_VIEWER_PURCHASED } from "@/utils/translationKeys";
 
 type Props = {
   items: PurchasedCollectionItem[];
 };
 
 export default function CollectionsSection({ items }: Props) {
+  const { t } = useTranslation();
+
   return (
     <SectionBlock>
       <SectionHeaderRow>
-        <SectionTitle>Collections</SectionTitle>
+        <SectionTitle>
+          {t(DASHBOARD_VIEWER_PURCHASED.sections.collections)}
+        </SectionTitle>
         <LeftIcon />
       </SectionHeaderRow>
       {items.length === 0 ? (
-        <EmptyHint>{VIEWER_PURCHASED_PLACEHOLDERS.emptyCollections}</EmptyHint>
+        <EmptyHint>
+          {t(DASHBOARD_VIEWER_PURCHASED.emptyStates.collections)}
+        </EmptyHint>
       ) : (
         <CollectionsList>
           {items.map((item) => (

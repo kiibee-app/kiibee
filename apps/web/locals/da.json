@@ -915,6 +915,19 @@
     "overview": "Oversigt",
     "noData": "Ingen data fundet",
     "contentPerformance": "Indholdsydelse",
+    "viewerPurchased": {
+      "title": "Købt",
+      "sections": {
+        "collections": "Samlinger",
+        "videos": "Videoer",
+        "audios": "Lydfiler",
+        "pdf": "PDF"
+      },
+      "emptyStates": {
+        "collections": "Ingen samlinger matcher din søgning.",
+        "media": "Ingen elementer matcher din søgning."
+      }
+    },
     "logoutModal": {
       "title": "Log ud",
       "message": "Er du sikker på, at du vil logge ud som {{email}}?",
