@@ -38,6 +38,9 @@ export type LoginUser = {
 const ACCESS_TOKEN_KEY = "kiibee.accessToken";
 const REFRESH_TOKEN_KEY = "kiibee.refreshToken";
 const USER_KEY = "kiibee.user";
+const USER_ROLES = {
+  VIEWER: "viewer",
+} as const;
 
 export const persistLoginSession = (response: LoginResponse) => {
   if (typeof window === "undefined") {
@@ -71,7 +74,9 @@ export const getPostLoginPath = (response: LoginResponse) => {
     .toString()
     .toLowerCase();
 
-  return role === "viewer" ? PATHS.DASHBOARD_VIEWER : PATHS.DASHBOARD_CREATOR;
+  return role === USER_ROLES.VIEWER
+    ? PATHS.DASHBOARD_VIEWER
+    : PATHS.DASHBOARD_CREATOR;
 };
 
 export const useLogin = () =>
