@@ -127,7 +127,7 @@ export const StatusBadge = styled.span<{ $status: string }>`
   cursor: default;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   background-color: ${({ $status, theme }) => {
-    if ($status === COUPON_STATUS.INACTIVE) return theme.colors.secondary.RED;
+    if ($status === COUPON_STATUS.INACTIVE) return theme.colors.primary.RED;
     return theme.colors.secondary.MEDIUM_GREEN;
   }};
   ${MonoText} {
