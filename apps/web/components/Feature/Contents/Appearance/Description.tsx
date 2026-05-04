@@ -44,7 +44,6 @@ export default function DescriptionSection() {
               onChange={handleChange}
               placeholder={t(CONTENTS.appearance.description.placeholder)}
               width="100%"
-              height="120px"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
             />
           </ControlWrap>
