@@ -150,6 +150,9 @@ export const DASHBOARD_VIEWER_PURCHASED = {
     audios: "dashboard.viewerPurchased.sections.audios",
     pdf: "dashboard.viewerPurchased.sections.pdf",
   },
+  buttons: {
+    seeContent: "dashboard.viewerPurchased.buttons.seeContent",
+  },
   emptyStates: {
     collections: "dashboard.viewerPurchased.emptyStates.collections",
     media: "dashboard.viewerPurchased.emptyStates.media",

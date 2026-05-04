@@ -923,6 +923,9 @@
         "audios": "Audios",
         "pdf": "PDF"
       },
+      "buttons": {
+        "seeContent": "See content"
+      },
       "emptyStates": {
         "collections": "No collections match your search.",
         "media": "No items match your search."

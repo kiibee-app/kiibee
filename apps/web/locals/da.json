@@ -923,6 +923,9 @@
         "audios": "Lydfiler",
         "pdf": "PDF"
       },
+      "buttons": {
+        "seeContent": "Se indhold"
+      },
       "emptyStates": {
         "collections": "Ingen samlinger matcher din søgning.",
         "media": "Ingen elementer matcher din søgning."

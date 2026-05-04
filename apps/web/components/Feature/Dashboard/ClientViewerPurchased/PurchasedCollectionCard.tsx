@@ -1,11 +1,13 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import PlaylistIcon from "@/assets/icons/PlaylistIcon";
 import type { PurchasedCollectionItem } from "@/utils/dummyData/viewerPurchasedMockData";
+import { DASHBOARD_VIEWER_PURCHASED } from "@/utils/translationKeys";
 import {
   CollectionBody,
   CollectionBottomBlock,
@@ -24,6 +26,8 @@ type Props = {
 };
 
 export default function PurchasedCollectionCard({ item }: Props) {
+  const { t } = useTranslation();
+
   return (
     <CollectionRoot>
       <CollectionThumbWrap>
@@ -62,7 +66,7 @@ export default function PurchasedCollectionCard({ item }: Props) {
             variant={VARIANT.PRIMARY}
             style={{ width: "115px", height: "51px" }}
           >
-            See content
+            {t(DASHBOARD_VIEWER_PURCHASED.buttons.seeContent)}
           </GenericButton>
         </CollectionBottomBlock>
       </CollectionBody>
