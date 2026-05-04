@@ -39,7 +39,7 @@ export const SectionHeaderRow = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   cursor: default;
 `;
 
@@ -88,9 +88,9 @@ export const VideosGrid = styled.div`
 export const MediaRow = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 7px;
+  gap: 10px;
   overflow-x: auto;
-  padding-bottom: 6px;
+  padding: 10px 10px;
   scroll-snap-type: x proximity;
 `;
 
@@ -162,8 +162,8 @@ export const CollectionOwnedBadge = styled.span`
   z-index: 1;
   padding: 4px 10px;
   border-radius: 6px;
-  background: ${({ theme }) => theme.colors.primary.GREEN};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
+  background: ${({ theme }) => theme.colors.primary.GREEN_50};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
   ${({ theme }) => theme.typography.Body_Bold};
   font-size: 11px;
   line-height: 1.2;
@@ -173,7 +173,7 @@ export const CollectionBody = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 12px;
   min-width: 0;
   min-height: 0;
   align-self: stretch;
@@ -182,7 +182,7 @@ export const CollectionBody = styled.div`
 export const CollectionMetaTop = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 12px;
 `;
 
 export const CollectionFlexSpacer = styled.div`
@@ -200,10 +200,10 @@ export const CollectionBottomBlock = styled.div`
 export const CollectionElementsPill = styled.div`
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 3px;
   align-self: flex-start;
-  padding: 7px 12px;
-  border-radius: 999px;
+  padding: 5px 12px;
+  border-radius: 6px;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
 `;

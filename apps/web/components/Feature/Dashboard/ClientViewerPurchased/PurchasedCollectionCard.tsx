@@ -39,14 +39,9 @@ export default function PurchasedCollectionCard({ item }: Props) {
       <CollectionBody>
         <CollectionMetaTop>
           <MonoText $use="H5_Medium">{item.title}</MonoText>
-          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+          <MonoText $use="Body_Medium" color={COLORS.neutral.BLACK}>
             {item.author}
           </MonoText>
-        </CollectionMetaTop>
-
-        <CollectionFlexSpacer aria-hidden />
-
-        <CollectionBottomBlock>
           <CollectionElementsPill>
             <CollectionIconSlot>
               <PlaylistIcon
@@ -55,12 +50,18 @@ export default function PurchasedCollectionCard({ item }: Props) {
                 color={COLORS.neutral.GRAY_700}
               />
             </CollectionIconSlot>
-            <MonoText $use="Body_Regular">
-              {item.elementCount} elements
-            </MonoText>
+            <MonoText $use="Body_Bold">{item.elementCount} elements</MonoText>
           </CollectionElementsPill>
+        </CollectionMetaTop>
 
-          <GenericButton type="button" variant={VARIANT.PRIMARY} fullWidth>
+        <CollectionFlexSpacer aria-hidden />
+
+        <CollectionBottomBlock>
+          <GenericButton
+            type="button"
+            variant={VARIANT.PRIMARY}
+            style={{ width: "115px", height: "51px" }}
+          >
             See content
           </GenericButton>
         </CollectionBottomBlock>

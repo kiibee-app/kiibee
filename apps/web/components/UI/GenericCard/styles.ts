@@ -15,7 +15,7 @@ export const Card = styled.div<{
   align-items: stretch;
   min-height: ${({ $compact }) => ($compact ? "0" : "315px")};
   width: ${({ $width }) => $width || "100%"};
-  box-shadow: 0 0 10.483px 0 ${({ theme }) => theme.colors.gredint.CARD_SHADOW};
+  box-shadow: 0 0 10.483px 0 ${({ theme }) => theme.colors.neutral.GRAY_300};
 `;
 
 export const ImageWrapper = styled.div<{ $compact?: boolean }>`
