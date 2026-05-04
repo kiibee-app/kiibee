@@ -87,7 +87,7 @@ export default function SignUpCreatorSection() {
       const response = await creatorRequest.mutateAsync({
         firstName: formValues.firstName.trim(),
         lastName: formValues.lastName.trim(),
-        email: formValues.email.trim(),
+        email: formValues.email.trim().toLowerCase(),
         phone: formValues.phone.trim() || undefined,
         cvr: formValues.cvr.trim() || undefined,
         address: formValues.address.trim(),

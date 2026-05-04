@@ -178,6 +178,11 @@
       "and": "og",
       "privacy": "Privatlivspolitik",
       "submit": "Send anmodning"
+    },
+    "requestSent": {
+      "title": "Tak! Din anmodning er sendt.",
+      "description": "Vi gennemgår dine oplysninger og vender tilbage inden for 1-2 hverdage.",
+      "backToKiibee": "Tilbage til Kiibee"
     }
   },
   "creatorFinalSteps": {

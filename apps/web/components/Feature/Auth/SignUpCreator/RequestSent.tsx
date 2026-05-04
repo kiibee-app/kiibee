@@ -1,9 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import LoginSlide from "@/components/Feature/Auth/Login/LoginSlide";
+import { AUTH_CREATOR } from "@/utils/translationKeys";
 import {
   Card,
   Content,
@@ -16,6 +18,7 @@ import {
 
 export default function CreatorRequestSent() {
   const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <RequestSentLayout>
@@ -24,17 +27,16 @@ export default function CreatorRequestSent() {
           <Card>
             <Title>
               <MonoText $use="H4_Medium">
-                Thank you! Your request has been sent.
+                {t(AUTH_CREATOR.requestSent.title)}
               </MonoText>
             </Title>
             <Description>
               <MonoText $use="Body_Regular">
-                We&apos;ll review your information and get back to you within
-                1-2 business days.
+                {t(AUTH_CREATOR.requestSent.description)}
               </MonoText>
             </Description>
             <GenericButton onClick={() => router.push("/")}>
-              Back to Kiibee
+              {t(AUTH_CREATOR.requestSent.backToKiibee)}
             </GenericButton>
           </Card>
         </Content>

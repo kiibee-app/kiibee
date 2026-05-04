@@ -33,6 +33,11 @@ export const AUTH_FORM = {
 
 export const AUTH_CREATOR = {
   backAria: "authCreator.backAria",
+  requestSent: {
+    title: "authCreator.requestSent.title",
+    description: "authCreator.requestSent.description",
+    backToKiibee: "authCreator.requestSent.backToKiibee",
+  },
 };
 
 export const VIEWER_SIGNUP_PREFERENCE = {

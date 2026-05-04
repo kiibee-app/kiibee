@@ -178,6 +178,11 @@
       "and": "and",
       "privacy": "Privacy Policy",
       "submit": "Submit request"
+    },
+    "requestSent": {
+      "title": "Thank you! Your request has been sent.",
+      "description": "We'll review your information and get back to you within 1-2 business days.",
+      "backToKiibee": "Back to Kiibee"
     }
   },
   "creatorFinalSteps": {
