@@ -13,6 +13,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useViewerSignUp } from "@/hooks/auth/useViewerSignUp";
 import { normalizeApiError } from "@/lib/http/errors/apiError";
 import { ALERT } from "@/utils/common";
+import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
 import {
   INITIAL_VIEWER_FORM,
@@ -215,6 +216,7 @@ export default function SignUpViewer() {
               type="submit"
               disabled={!isSubmitEnabled}
               isLoading={isSubmitting}
+              style={!isSubmitEnabled ? { border: "none" } : undefined}
             >
               {t("viewerSignup.form.submit")}
             </GenericButton>
@@ -224,7 +226,7 @@ export default function SignUpViewer() {
             <MonoText $use="Body_Medium">
               {t("viewerSignup.haveAccount")}
             </MonoText>
-            <LoginLink href="/auth/login">
+            <LoginLink href={PATHS.AUTH_LOGIN}>
               <MonoText $use="Body_Medium">{t("viewerSignup.login")}</MonoText>
             </LoginLink>
           </LoginRow>

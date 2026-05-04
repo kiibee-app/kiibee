@@ -38,9 +38,23 @@ export const DesktopHeaderRow = styled.tr`
 
 export const DesktopRow = styled.tr`
   transition: background 0.2s ease;
+  cursor: default;
 
   ${media.tablet} {
     display: none;
+  }
+
+  &:hover {
+    background: transparent;
+  }
+`;
+
+export const ClickableDesktopRow = styled(DesktopRow)<{ $clickable?: boolean }>`
+  cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
+
+  &:hover {
+    background: ${({ $clickable, theme }) =>
+      $clickable ? theme.colors.neutral.GRAY_100 : "transparent"};
   }
 `;
 
@@ -99,6 +113,12 @@ export const MobileHeader = styled.div`
   }
 `;
 
+export const ClickableMobileHeader = styled(MobileHeader)<{
+  $clickable?: boolean;
+}>`
+  cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
+`;
+
 export const AccordionContent = styled.div<{ $isOpen: boolean }>`
   max-height: ${({ $isOpen }) => ($isOpen ? "500px" : "0")};
   overflow: hidden;
@@ -112,6 +132,10 @@ export const HeaderLabel = styled.span`
 
   ${media.tablet} {
     display: inline-block;
+  }
+
+  ${media.mobileLg} {
+    color: ${({ theme }) => theme.colors.primary.BLACK};
   }
 `;
 

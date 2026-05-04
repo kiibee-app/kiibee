@@ -3,7 +3,7 @@
 import React from "react";
 import {
   MobileRow,
-  MobileHeader,
+  ClickableMobileHeader,
   AccordionContent,
   MobileDataRow,
   HeaderLabel,
@@ -30,6 +30,7 @@ export default function MobileTable<T extends Record<string, unknown>>({
   toggleAccordion,
   hasData,
   pagination,
+  onRowClick,
 }: MobileTableProps<T>) {
   if (!hasData) return null;
 
@@ -40,20 +41,30 @@ export default function MobileTable<T extends Record<string, unknown>>({
         const rowKey = getRowKey?.(row, globalIndex) ?? globalIndex;
         const title =
           getMobileTitle?.(row) ?? String(Object.values(row)[0] ?? "");
+        const clickable = Boolean(onRowClick);
 
         return (
           <MobileRow key={rowKey} $isOpen={openIndex === index}>
-            <MobileHeader onClick={() => toggleAccordion(index)}>
+            <ClickableMobileHeader
+              $clickable={clickable}
+              onClick={
+                clickable
+                  ? () => onRowClick?.(row, globalIndex)
+                  : () => toggleAccordion(index)
+              }
+            >
               <MonoText $use="Body_Medium">{title}</MonoText>
 
               <RightSection>
-                <ArrowIcon
-                  direction={
-                    openIndex === index ? Directions.UP : Directions.DOWN
-                  }
-                />
+                {clickable ? null : (
+                  <ArrowIcon
+                    direction={
+                      openIndex === index ? Directions.UP : Directions.DOWN
+                    }
+                  />
+                )}
               </RightSection>
-            </MobileHeader>
+            </ClickableMobileHeader>
 
             <AccordionContent $isOpen={openIndex === index}>
               {headers.map((header) => {

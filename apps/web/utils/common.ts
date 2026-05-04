@@ -41,3 +41,8 @@ export const CONTENT_TABS: readonly ContentTabItem[] = [
     description: "Coupons content will appear here.",
   },
 ] as const;
+
+export const NAME = "name";
+export const PAGE_VISITS = "pageVisits";
+export const CLICKS = "clicks";
+export const VIEWS = "views";

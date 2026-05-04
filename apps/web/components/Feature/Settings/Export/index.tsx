@@ -11,6 +11,8 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { EXPORT_TYPE_OPTIONS } from "@/utils/exportOptions";
+import { SuccessArcIcon } from "@/assets/icons";
+import { GenericModal } from "@/components/UI/Modals";
 
 export default function ExportContent() {
   const { t } = useTranslation();
@@ -18,13 +20,10 @@ export default function ExportContent() {
   const [exportType, setExportType] = useState<string>("users-email-signups");
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleRequest = () => {
-    console.log("request export", {
-      exportType,
-      startDate,
-      endDate,
-    });
+    setShowSuccessModal(true);
   };
 
   return (
@@ -44,18 +43,31 @@ export default function ExportContent() {
       </CardTop>
 
       <Section>
+        <TextBlock>
+          <MonoText $use="Body_SemiBold">
+            {t(SETTINGS.export.typeLabel)}
+          </MonoText>
+          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+            {t(SETTINGS.export.typeDescription)}
+          </MonoText>
+        </TextBlock>
         <FieldBox>
           <DropdownField
-            label={t(SETTINGS.export.typeLabel)}
             options={EXPORT_TYPE_OPTIONS(t)}
             value={exportType}
             onChange={(v) => setExportType(v)}
           />
         </FieldBox>
-
+        <TextBlock>
+          <MonoText $use="Body_SemiBold">
+            {t(SETTINGS.export.dateLabel)}
+          </MonoText>
+          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+            {t(SETTINGS.export.dateDescription)}
+          </MonoText>
+        </TextBlock>
         <FieldBox>
           <DateRangeField
-            label={t(SETTINGS.export.dateLabel)}
             start={startDate}
             end={endDate}
             onChangeStart={setStartDate}
@@ -63,6 +75,25 @@ export default function ExportContent() {
           />
         </FieldBox>
       </Section>
+      <GenericModal
+        visible={showSuccessModal}
+        icon={
+          <SuccessArcIcon
+            width={40}
+            height={40}
+            color={COLORS.primary.GREEN_200}
+          />
+        }
+        iconMargin="0 auto 8px"
+        title={t(SETTINGS.export.modalTitle)}
+        message={t(SETTINGS.export.modalMessage)}
+        confirmLabel={t("contents.createCollectionSuccessModal.done")}
+        onClose={() => setShowSuccessModal(false)}
+        onConfirm={() => setShowSuccessModal(false)}
+        width="480px"
+        padding="40px 30px"
+        showCloseButton={false}
+      />
     </Card>
   );
 }
