@@ -6,7 +6,7 @@ import { MonoText } from "@/components/UI/Monotext";
 export const PageHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: ${({ theme }) => theme.spacing(6)};
   flex-wrap: wrap;
   margin-bottom: 12px;
   width: 100%;
@@ -39,7 +39,7 @@ export const SectionBlock = styled.section`
 export const SectionHeaderRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: ${({ theme }) => theme.spacing(2)};
   margin-bottom: 10px;
   padding-left: 10px;
   cursor: default;
@@ -56,12 +56,12 @@ export const CollectionsList = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: stretch;
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacing(4)};
   width: 100%;
   padding-left: 10px;
 
   ${media.tablet} {
-    gap: 12px;
+    gap: ${({ theme }) => theme.spacing(3)};
   }
 
   ${media.mobileLg} {
@@ -85,15 +85,16 @@ export const CollectionCardSlot = styled.div`
 export const VideosGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
+  gap: ${({ theme }) => theme.spacing(5)};
 `;
 
 export const MediaRow = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: ${({ theme }) => theme.spacing(2.5)};
   overflow-x: auto;
-  padding: 10px 10px 16px 10px;
+  padding: ${({ theme }) =>
+    `${theme.spacing(2.5)} ${theme.spacing(2.5)} ${theme.spacing(4)} ${theme.spacing(2.5)}`};
   scroll-snap-type: x proximity;
 `;
 
@@ -107,7 +108,7 @@ export const EmptyHint = styled(MonoText).attrs({
   $use: "Body_Regular",
 })`
   display: block;
-  margin-top: 12px;
+  margin-top: ${({ theme }) => theme.spacing(3)};
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
 `;
 
@@ -116,10 +117,11 @@ export const CollectionRoot = styled.article`
   flex-direction: row;
   align-items: stretch;
   flex-wrap: nowrap;
-  gap: 7px;
+  gap: ${({ theme }) => theme.spacing(2)};
   width: 100%;
   min-height: 236px;
-  padding: 15px 20px 18px 20px;
+  padding: ${({ theme }) =>
+    `${theme.spacing(4)} ${theme.spacing(5)} ${theme.spacing(4)} ${theme.spacing(5)}`};
   box-sizing: border-box;
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.primary.WHITE};
@@ -163,7 +165,7 @@ export const CollectionOwnedBadge = styled.span`
   top: 10px;
   left: 10px;
   z-index: 1;
-  padding: 4px 10px;
+  padding: ${({ theme }) => `${theme.spacing(1)} ${theme.spacing(2.5)}`};
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.primary.GREEN_50};
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
@@ -176,7 +178,7 @@ export const CollectionBody = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: ${({ theme }) => theme.spacing(3)};
   min-width: 0;
   min-height: 0;
   align-self: stretch;
@@ -185,7 +187,7 @@ export const CollectionBody = styled.div`
 export const CollectionMetaTop = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: ${({ theme }) => theme.spacing(3)};
 `;
 
 export const CollectionFlexSpacer = styled.div`
@@ -196,16 +198,16 @@ export const CollectionFlexSpacer = styled.div`
 export const CollectionBottomBlock = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: ${({ theme }) => theme.spacing(2)};
   width: 100%;
 `;
 
 export const CollectionElementsPill = styled.div`
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: ${({ theme }) => theme.spacing(1)};
   align-self: flex-start;
-  padding: 5px 12px;
+  padding: ${({ theme }) => `${theme.spacing(1.5)} ${theme.spacing(3)}`};
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
