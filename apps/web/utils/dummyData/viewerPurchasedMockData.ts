@@ -1,13 +1,7 @@
-/**
- * Purchased viewer: mock shapes + sample rows until API wiring.
- * Copy is English-only by design (no i18n); replace with API responses later.
- */
-
 import design1 from "@/assets/images/design1.webp";
 import design2 from "@/assets/images/design2.webp";
 import design3 from "@/assets/images/design.webp";
 
-/** Bundled asset URLs for Next/Image `src` (string). */
 const DESIGN_IMG_1 = design1.src;
 const DESIGN_IMG_2 = design2.src;
 const DESIGN_IMG_3 = design3.src;

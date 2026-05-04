@@ -8,7 +8,6 @@ type Props = React.SVGProps<SVGSVGElement> & {
   title?: string;
 };
 
-/** Audio purchase / library — document with note (file-style). */
 export default function AudioFileIcon({
   width = 22,
   height = 22,

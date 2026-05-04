@@ -10,9 +10,7 @@ type GenericCardProps = {
   title?: ReactNode;
   subtitle?: ReactNode;
   badge?: ReactNode;
-  /** "owned" = teal pill (e.g. purchased collections) */
   badgeVariant?: "default" | "owned";
-  /** Dense layout for horizontal strips (e.g. inside collection cards) */
   compact?: boolean;
   footer?: ReactNode;
   children?: ReactNode;

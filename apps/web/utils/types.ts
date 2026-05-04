@@ -14,7 +14,6 @@ export type FormatType = (typeof FORMAT_TYPE)[keyof typeof FORMAT_TYPE];
 export type TutorialButton = {
   label: string;
   variant?: Variant;
-  /** Omit to render a plain button instead of a link */
   href?: string;
   fullWidth?: boolean;
   size?: ButtonSize;

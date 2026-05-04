@@ -6,8 +6,6 @@ import { MonoText } from "@/components/UI/Monotext";
 export const CARD_SHADOW_COLLECTION =
   "0px 4px 16px rgba(0, 0, 0, 0.08)" as const;
 
-/* ——— Purchased page header ——— */
-
 export const PageHeader = styled.div`
   display: flex;
   align-items: center;
@@ -24,8 +22,6 @@ export const SearchSlot = styled.div`
   justify-content: flex-end;
   min-width: min(280px, 100%);
 `;
-
-/* ——— Section chrome ——— */
 
 export const SectionBlock = styled.section`
   margin-top: 28px;
@@ -113,8 +109,6 @@ export const EmptyHint = styled(MonoText).attrs({
   margin-top: 12px;
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
 `;
-
-/* ——— Collection card ——— */
 
 export const CollectionRoot = styled.article`
   display: flex;
