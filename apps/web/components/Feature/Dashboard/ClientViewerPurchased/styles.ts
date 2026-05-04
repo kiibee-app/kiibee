@@ -10,6 +10,7 @@ export const PageHeader = styled.div`
   flex-wrap: wrap;
   margin-bottom: 12px;
   width: 100%;
+  padding-left: 10px;
 `;
 
 export const PageWrap = styled.div`
@@ -40,6 +41,7 @@ export const SectionHeaderRow = styled.div`
   align-items: center;
   gap: 6px;
   margin-bottom: 10px;
+  padding-left: 10px;
   cursor: default;
 `;
 
@@ -56,6 +58,7 @@ export const CollectionsList = styled.div`
   align-items: stretch;
   gap: 16px;
   width: 100%;
+  padding-left: 10px;
 
   ${media.tablet} {
     gap: 12px;
@@ -90,7 +93,7 @@ export const MediaRow = styled.div`
   flex-direction: row;
   gap: 10px;
   overflow-x: auto;
-  padding: 10px 10px;
+  padding: 10px 10px 16px 10px;
   scroll-snap-type: x proximity;
 `;
 
