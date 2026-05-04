@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import { useCreatorRequest } from "@/hooks/auth/useCreatorRequest";
 import InputField from "@/components/UI/InputFields";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
@@ -41,6 +42,7 @@ import Image from "@/components/UI/SafeImage";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import { MonoText } from "@/components/UI/Monotext";
 import { ALERT } from "@/utils/common";
+import { PATHS } from "@/utils/path";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
@@ -101,12 +103,15 @@ export default function SignUpCreatorSection() {
         throw new Error(response.message || "Failed to submit request");
       }
 
+      toast.success(
+        response.message || "Creator application submitted successfully",
+      );
       setMessageTone("success");
       setFormMessage(
         response.message || "Creator application submitted successfully",
       );
       setFormValues(INITIAL_CREATOR_FORM);
-      router.push("/auth/signup-creator/request-sent");
+      router.push(PATHS.AUTH_CREATOR_REQUEST_SENT);
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Failed to submit request";

@@ -24,6 +24,7 @@ import mediaCard1 from "../../../../assets/images/auth/mediaCard1.webp";
 import mediaCard2 from "../../../../assets/images/auth/mediaCard2.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import { VARIANT } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
 export default function SignUpSection() {
   const { t } = useTranslation();
@@ -43,7 +44,7 @@ export default function SignUpSection() {
             <CTAWrap>
               <GenericButton
                 asAnchor
-                href="/auth/signup-creator"
+                href={PATHS.AUTH_SIGNUP_CREATOR}
                 variant={VARIANT.PRIMARY}
               >
                 {t(AUTH.signupCreator)}
