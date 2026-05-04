@@ -1,36 +1,88 @@
 "use client";
 
 import { useState } from "react";
-import creatorsResponse from "../../../data/all-creator-requests.json";
-import type {
-  CreatorRequest,
-  CreatorResponse,
-} from "../../../types/creator-request";
+import type { CreatorRequest } from "../../../types/creator-request";
+import { useCreatorRequests } from "../../../hooks/api";
 import { usePagination } from "../../../hooks/ui/use-pagination";
-import { AllCreatorsPanel } from "./AllCreators.styles";
+import { AllCreatorsPanel, AllCreatorsState } from "./AllCreators.styles";
 import { CreatorRequestsTable } from "./CreatorRequestsTable";
 import { CreatorPagination } from "./CreatorPagination";
 import { CreatorDetailsModal } from "./CreatorDetailsModal";
-
-const response = creatorsResponse as CreatorResponse;
+import { useCreatorRequestActions } from "./useCreatorRequestActions";
+import { useCreatorRequestOverrides } from "./useCreatorRequestOverrides";
 
 export function AllCreatorsTable() {
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
     null,
   );
-
-  const totalItems = response.data.length;
-  const pagination = usePagination({
-    data: response.data,
-    totalItems,
-    initialPageSize: 5,
+  const creatorRequestsQuery = useCreatorRequests();
+  const { creators, updateCreatorStatus } = useCreatorRequestOverrides(
+    creatorRequestsQuery.data ?? [],
+  );
+  const {
+    activeAction,
+    activeRequestId,
+    handleApproveCreator,
+    handleRejectCreator,
+  } = useCreatorRequestActions({
+    onCreatorUpdated: (creator) => updateCreatorStatus(creator, creator.status),
   });
+
+  const totalItems = creators.length;
+  const pagination = usePagination({
+    data: creators,
+    totalItems,
+    initialPageSize: 10,
+  });
+
+  if (creatorRequestsQuery.isLoading) {
+    return (
+      <AllCreatorsPanel>
+        <AllCreatorsState>Loading creator requests...</AllCreatorsState>
+      </AllCreatorsPanel>
+    );
+  }
+
+  if (creatorRequestsQuery.isError) {
+    return (
+      <AllCreatorsPanel>
+        <AllCreatorsState>
+          {creatorRequestsQuery.error?.message ||
+            "Failed to load creator requests."}
+        </AllCreatorsState>
+      </AllCreatorsPanel>
+    );
+  }
+
+  if (!totalItems) {
+    return (
+      <AllCreatorsPanel>
+        <AllCreatorsState>No creator requests found.</AllCreatorsState>
+      </AllCreatorsPanel>
+    );
+  }
 
   return (
     <AllCreatorsPanel>
       <CreatorRequestsTable
         creators={pagination.paginatedData}
         onSelectCreator={(creator) => setSelectedCreator(creator)}
+        onApproveCreator={(creator) =>
+          handleApproveCreator(creator, (updatedCreator) => {
+            if (selectedCreator?.id === creator.id) {
+              setSelectedCreator(updatedCreator);
+            }
+          })
+        }
+        onRejectCreator={(creator) =>
+          handleRejectCreator(creator, (updatedCreator) => {
+            if (selectedCreator?.id === creator.id) {
+              setSelectedCreator(updatedCreator);
+            }
+          })
+        }
+        activeAction={activeAction}
+        activeRequestId={activeRequestId}
       />
 
       <CreatorPagination

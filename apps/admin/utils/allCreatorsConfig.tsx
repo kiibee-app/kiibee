@@ -1,11 +1,14 @@
 "use client";
 
+import type { MouseEvent } from "react";
+import type { CreatorRequest } from "../types/creator-request";
 import type { CreatorDetailFieldConfig } from "../types/creator-details-modal";
 import type { CreatorRequestColumn } from "../types/creator-requests-table";
 import { formatRequestedAt } from "./date";
 import {
   CreatorCell,
   CreatorName,
+  DescriptionText,
   MiniText,
   RowActionButton,
   RowActionGroup,
@@ -86,74 +89,96 @@ export const creatorDetailFields: CreatorDetailFieldConfig[] = [
   },
 ];
 
-export const creatorTableColumns: CreatorRequestColumn[] = [
-  {
-    key: "creator",
-    label: "Creator",
-    renderCell: (creator) => (
-      <CreatorCell>
-        <CreatorName>{creator.fullName}</CreatorName>
-        <MiniText>@{creator.city}</MiniText>
-      </CreatorCell>
-    ),
-  },
-  {
-    key: "email",
-    label: "Email",
-    renderCell: (creator) => creator.email,
-  },
-  {
-    key: "requestedAt",
-    label: "Requested At",
-    renderCell: (creator) => formatRequestedAt(creator.createdAt),
-  },
-  {
-    key: "city",
-    label: "City",
-    renderCell: (creator) => creator.city,
-  },
-  {
-    key: "contentDescription",
-    label: "Content Description",
-    renderCell: (creator) => creator.contentDescription,
-  },
-  {
-    key: "status",
-    label: "Status",
-    renderCell: (creator) => (
-      <StatusBadge $status={creator.status}>{creator.status}</StatusBadge>
-    ),
-  },
-  {
-    key: "actions",
-    label: "Actions",
-    renderCell: (creator) => {
-      const canApproveRequest = creator.status === "pending";
-      const canRejectRequest =
-        creator.status === "pending" || creator.status === "approved";
-
-      return (
-        <RowActionGroup>
-          {canApproveRequest ? (
-            <RowActionButton
-              $variant="approve"
-              type="button"
-              onClick={(event) => event.stopPropagation()}
-            >
-              Approve
-            </RowActionButton>
-          ) : null}
-          {canRejectRequest ? (
-            <RowActionButton
-              $variant="reject"
-              type="button"
-              onClick={(event) => event.stopPropagation()}
-            >
-              Reject
-            </RowActionButton>
-          ) : null}
-        </RowActionGroup>
-      );
+export function getCreatorTableColumns(): CreatorRequestColumn[] {
+  return [
+    {
+      key: "creator",
+      label: "Creator",
+      renderCell: (creator) => (
+        <CreatorCell>
+          <CreatorName>{creator.fullName}</CreatorName>
+          <MiniText>@{creator.city}</MiniText>
+        </CreatorCell>
+      ),
     },
-  },
-];
+    {
+      key: "email",
+      label: "Email",
+      renderCell: (creator) => creator.email,
+    },
+    {
+      key: "requestedAt",
+      label: "Requested At",
+      renderCell: (creator) => formatRequestedAt(creator.createdAt),
+    },
+    {
+      key: "city",
+      label: "City",
+      renderCell: (creator) => creator.city,
+    },
+    {
+      key: "contentDescription",
+      label: "Content Description",
+      renderCell: (creator) => (
+        <DescriptionText>{creator.contentDescription}</DescriptionText>
+      ),
+    },
+    {
+      key: "status",
+      label: "Status",
+      renderCell: (creator) => (
+        <StatusBadge $status={creator.status}>{creator.status}</StatusBadge>
+      ),
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      renderCell: (creator, actions) => {
+        const { status, id } = creator;
+        const { activeAction, activeRequestId } = actions;
+
+        const isPending = status === "pending";
+        const isApproved = status === "approved";
+        const isApproving =
+          activeAction === "approve" && activeRequestId === id;
+        const isRejecting = activeAction === "reject" && activeRequestId === id;
+        const isActionDisabled = isApproving || isRejecting;
+
+        const handleClick = (
+          event: MouseEvent<HTMLButtonElement>,
+          handler: (creator: CreatorRequest) => void,
+        ) => {
+          event.stopPropagation();
+          handler(creator);
+        };
+
+        return (
+          <RowActionGroup>
+            {isPending ? (
+              <RowActionButton
+                $variant="approve"
+                type="button"
+                disabled={isActionDisabled}
+                onClick={(event) =>
+                  handleClick(event, actions.onApproveCreator)
+                }
+              >
+                {isApproving ? "Approving..." : "Approve"}
+              </RowActionButton>
+            ) : null}
+            {isPending || isApproved ? (
+              <RowActionButton
+                $variant="reject"
+                type="button"
+                disabled={isActionDisabled}
+                onClick={(event) => handleClick(event, actions.onRejectCreator)}
+              >
+                {isRejecting ? "Rejecting..." : "Reject"}
+              </RowActionButton>
+            ) : null}
+          </RowActionGroup>
+        );
+      },
+    },
+  ];
+}

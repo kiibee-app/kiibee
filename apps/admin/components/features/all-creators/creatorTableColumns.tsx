@@ -1,3 +1,3 @@
 "use client";
 
-export { creatorTableColumns } from "../../../utils/allCreatorsConfig";
+export { getCreatorTableColumns } from "../../../utils/allCreatorsConfig";
