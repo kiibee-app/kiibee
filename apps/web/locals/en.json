@@ -170,6 +170,7 @@
       "city": "City",
       "postalCode": "Postal code",
       "workLink": "Link to example work (YouTube, WeTransfer, etc.)",
+      "workLinkInvalid": "Please enter a valid URL (for example: https://example.com)",
       "contentLabel": "Tell us about your content",
       "contentPlaceholder": "Tell us a bit about your content and what you'd like to share on Kiibee.",
       "consentPrefix": "I agree to Kiibee's",
@@ -177,6 +178,11 @@
       "and": "and",
       "privacy": "Privacy Policy",
       "submit": "Submit request"
+    },
+    "requestSent": {
+      "title": "Thank you! Your request has been sent.",
+      "description": "We'll review your information and get back to you within 1-2 business days.",
+      "backToKiibee": "Back to Kiibee"
     }
   },
   "creatorFinalSteps": {

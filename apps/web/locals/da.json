@@ -170,6 +170,7 @@
       "city": "By",
       "postalCode": "Postnummer",
       "workLink": "Link til eksempel på arbejde (YouTube, WeTransfer osv.)",
+      "workLinkInvalid": "Indtast venligst en gyldig URL (fx: https://example.com)",
       "contentLabel": "Fortæl os om dit indhold",
       "contentPlaceholder": "Fortæl lidt om dit indhold, og hvad du gerne vil dele på Kiibee.",
       "consentPrefix": "Jeg accepterer Kiibees",
@@ -177,6 +178,11 @@
       "and": "og",
       "privacy": "Privatlivspolitik",
       "submit": "Send anmodning"
+    },
+    "requestSent": {
+      "title": "Tak! Din anmodning er sendt.",
+      "description": "Vi gennemgår dine oplysninger og vender tilbage inden for 1-2 hverdage.",
+      "backToKiibee": "Tilbage til Kiibee"
     }
   },
   "creatorFinalSteps": {
