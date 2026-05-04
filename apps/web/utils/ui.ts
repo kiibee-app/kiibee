@@ -118,3 +118,10 @@ export const NOTIFICATION_MODAL = {
 export type NotificationModalType =
   | (typeof NOTIFICATION_MODAL)[keyof typeof NOTIFICATION_MODAL]
   | null;
+
+export const LOGO_MODE = {
+  TEXT: "text",
+  PICTURE: "picture",
+} as const;
+
+export type Mode = (typeof LOGO_MODE)[keyof typeof LOGO_MODE];

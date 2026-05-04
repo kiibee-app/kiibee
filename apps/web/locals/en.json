@@ -1196,7 +1196,11 @@
       },
       "logo": {
         "title": "Logo",
-        "subtitle": "Use your own logo or write a text as a logo"
+        "subtitle": "Use your own logo or write a text as a logo",
+        "toggleText": "Text",
+        "togglePicture": "Picture",
+        "placeholder": "Enter logo name",
+        "upload": "Upload logo"
       }
     },
     "contentTypeModal": {

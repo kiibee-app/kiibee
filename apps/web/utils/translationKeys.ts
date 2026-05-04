@@ -230,6 +230,10 @@ export const CONTENTS = {
     logo: {
       title: "contents.appearance.logo.title",
       subtitle: "contents.appearance.logo.subtitle",
+      toggleText: "contents.appearance.logo.toggleText",
+      togglePicture: "contents.appearance.logo.togglePicture",
+      placeholder: "contents.appearance.logo.placeholder",
+      uploadButton: "contents.appearance.logo.upload",
     },
   },
   deleteModal: {
