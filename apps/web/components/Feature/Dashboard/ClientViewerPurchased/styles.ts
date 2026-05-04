@@ -3,17 +3,21 @@ import NextImage from "next/image";
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
 
-export const CARD_SHADOW_COLLECTION =
-  "0px 4px 16px rgba(0, 0, 0, 0.08)" as const;
-
 export const PageHeader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  gap: 25px;
   flex-wrap: wrap;
   margin-bottom: 12px;
   width: 100%;
+`;
+
+export const PageWrap = styled.div`
+  padding: 40px 30px;
+
+  ${media.tablet} {
+    padding: 20px;
+  }
 `;
 
 export const SearchSlot = styled.div`
@@ -24,7 +28,7 @@ export const SearchSlot = styled.div`
 `;
 
 export const SectionBlock = styled.section`
-  margin-top: 28px;
+  margin-top: 35px;
 
   &:first-of-type {
     margin-top: 24px;
@@ -35,20 +39,14 @@ export const SectionHeaderRow = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   cursor: default;
 `;
 
 export const SectionTitle = styled(MonoText).attrs({
-  $use: "Body_SemiBold",
+  $use: "H4_Medium",
 })`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-`;
-
-export const SectionChevron = styled.span`
-  ${({ theme }) => theme.typography.Body_SemiBold};
-  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
-  line-height: 1;
 `;
 
 export const CollectionsList = styled.div`
@@ -122,7 +120,7 @@ export const CollectionRoot = styled.article`
   box-sizing: border-box;
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.primary.WHITE};
-  box-shadow: ${CARD_SHADOW_COLLECTION};
+  box-shadow: ${({ theme }) => theme.shadows.md};
 
   ${media.mobileLg} {
     flex-direction: column;

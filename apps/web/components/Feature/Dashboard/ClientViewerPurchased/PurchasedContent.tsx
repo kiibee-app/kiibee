@@ -3,20 +3,19 @@
 import { useMemo, useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import { VIEWER_LABELS } from "@/utils/SidebarItems";
-import SearchBar from "@/components/UI/SearchBar";
 import {
   MOCK_PURCHASED_AUDIOS,
   MOCK_PURCHASED_COLLECTIONS,
   MOCK_PURCHASED_PDFS,
   MOCK_PURCHASED_VIDEOS,
-  VIEWER_PURCHASED_PLACEHOLDERS,
   type PurchasedMediaItem,
 } from "@/utils/dummyData/viewerPurchasedMockData";
 import CollectionsSection from "./Sections/CollectionsSection";
 import VideosSection from "./Sections/VideosSection";
 import AudiosSection from "./Sections/AudiosSection";
 import PdfSection from "./Sections/PdfSection";
-import { PageHeader, SearchSlot } from "./styles";
+import { PageHeader, PageWrap } from "./styles";
+import { SearchIcon } from "@/assets/icons/searchBarIcon";
 
 function matchesSearch(q: string, parts: string[]) {
   const needle = q.trim().toLowerCase();
@@ -60,25 +59,18 @@ export default function PurchasedContent() {
   );
 
   return (
-    <>
+    <PageWrap>
       <PageHeader>
         <MonoText $use="H4_SemiBold" as="h1">
           {VIEWER_LABELS.PURCHASED}
         </MonoText>
-        <SearchSlot>
-          <SearchBar
-            width="min(420px, 100%)"
-            value={searchValue}
-            onChange={setSearchValue}
-            placeholder={VIEWER_PURCHASED_PLACEHOLDERS.search}
-          />
-        </SearchSlot>
+        <SearchIcon />
       </PageHeader>
 
       <CollectionsSection items={filteredCollections} />
       <VideosSection items={filteredVideos} />
       <AudiosSection items={filteredAudios} />
       <PdfSection items={filteredPdfs} />
-    </>
+    </PageWrap>
   );
 }

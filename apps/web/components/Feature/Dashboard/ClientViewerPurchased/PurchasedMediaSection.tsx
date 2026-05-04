@@ -9,10 +9,10 @@ import {
   MediaRow,
   MediaRowSlot,
   SectionBlock,
-  SectionChevron,
   SectionHeaderRow,
   SectionTitle,
 } from "./styles";
+import LeftIcon from "@/assets/icons/LeftIcon";
 
 type Props = {
   title: string;
@@ -29,7 +29,7 @@ export default function PurchasedMediaSection({
     <SectionBlock>
       <SectionHeaderRow>
         <SectionTitle>{title}</SectionTitle>
-        <SectionChevron aria-hidden>›</SectionChevron>
+        <LeftIcon />
       </SectionHeaderRow>
       {items.length === 0 ? (
         <EmptyHint>{emptyHint}</EmptyHint>

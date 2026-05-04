@@ -8,10 +8,10 @@ import {
   CollectionsList,
   EmptyHint,
   SectionBlock,
-  SectionChevron,
   SectionHeaderRow,
   SectionTitle,
 } from "../styles";
+import { LeftIcon } from "@/assets/icons";
 
 type Props = {
   items: PurchasedCollectionItem[];
@@ -22,7 +22,7 @@ export default function CollectionsSection({ items }: Props) {
     <SectionBlock>
       <SectionHeaderRow>
         <SectionTitle>Collections</SectionTitle>
-        <SectionChevron aria-hidden>›</SectionChevron>
+        <LeftIcon />
       </SectionHeaderRow>
       {items.length === 0 ? (
         <EmptyHint>{VIEWER_PURCHASED_PLACEHOLDERS.emptyCollections}</EmptyHint>

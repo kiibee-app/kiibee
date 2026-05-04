@@ -85,6 +85,7 @@ export default function ClientDashboardViewer() {
   return (
     <DashboardLayout
       header={<ViewerDashboardHeader onToggleSidebar={toggleSidebar} />}
+      contentPadding={activePage === VIEWER_LABELS.PURCHASED ? "0" : undefined}
       sidebar={
         <Sidebar
           open={open}
