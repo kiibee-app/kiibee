@@ -38,3 +38,11 @@ export const COLLECTION_CONTENT_COLUMNS = [
   { label: "Created", key: "createdAt" },
   { label: "", key: "Actions" },
 ] as const;
+
+export const COUPON_TABLE_COLUMNS = [
+  { label: "Title", key: "title" },
+  { label: "Codes", key: "codes" },
+  { label: "Status", key: "status" },
+  { label: "Created date", key: "createdAt" },
+  { label: "", key: "action" },
+] as const;
