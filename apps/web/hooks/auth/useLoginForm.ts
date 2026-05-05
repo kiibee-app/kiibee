@@ -5,25 +5,18 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useLoginFormSchema } from "@/utils/useLoginFormSchema";
 import type { LoginFormErrors } from "@/utils/authLoginFormSchema";
-import {
-  getPostLoginPath,
-  persistLoginSession,
-  useLogin,
-} from "@/hooks/auth/useLogin";
 import z from "zod";
+import { getPostLoginPath, persistLoginSession, useLogin } from "./useLogin";
 
 export function useLoginForm() {
   const { t } = useTranslation();
   const router = useRouter();
   const loginSchema = useLoginFormSchema();
   const { mutateAsync: login, isPending } = useLogin();
-
   const isMounted = useRef(true);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
-
   const [fieldErrors, setFieldErrors] = useState<LoginFormErrors>({});
   const [formError, setFormError] = useState("");
 
@@ -57,12 +50,9 @@ export function useLoginForm() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const parsed = loginSchema.safeParse({ email, password });
-
     if (!parsed.success) {
       const tree = z.treeifyError(parsed.error);
-
       const errors = {
         email: tree.properties?.email?.errors?.[0],
         password: tree.properties?.password?.errors?.[0],
@@ -80,14 +70,12 @@ export function useLoginForm() {
 
     try {
       const response = await login(parsed.data);
-
       if (!response.success) {
         if (isMounted.current) {
           setFormError(response.message || t("authForm.errors.submitFailed"));
         }
         return;
       }
-
       persistLoginSession(response);
       router.push(getPostLoginPath(response));
     } catch (error) {

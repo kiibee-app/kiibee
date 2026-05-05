@@ -1,29 +1,21 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
 import Image from "@/components/UI/SafeImage";
-import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
+
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
 import { MonoText } from "@/components/UI/Monotext";
-import { useViewerSignUp } from "@/hooks/auth/useViewerSignUp";
-import { normalizeApiError } from "@/lib/http/errors/apiError";
-import { ALERT } from "@/utils/common";
+
 import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
-import {
-  INITIAL_VIEWER_FORM,
-  PASSWORD_FIELD_KEYS,
-  PasswordVisibility,
-  VIEWER_FIELDS,
-  ViewerFieldConfig,
-  ViewerFieldKey,
-  ViewerFormValues,
-} from "@/utils/signup";
+import { VIEWER_FIELDS, ViewerFieldConfig } from "@/utils/signup";
+import { ALERT } from "@/utils/common";
+
 import {
   Card,
   Checkbox,
@@ -38,91 +30,29 @@ import {
   Title,
   Wrapper,
 } from "./styles";
+
+import {
+  PasswordFieldKey,
+  useViewerSignUpForm,
+} from "@/hooks/Auth/useViewerSignUpForm";
 import { REPEAT_PASSWORD } from "@/utils/Constants";
 
-type PasswordFieldKey = keyof PasswordVisibility;
-
-const isPasswordField = (
-  fieldKey: ViewerFieldKey,
-): fieldKey is PasswordFieldKey =>
-  PASSWORD_FIELD_KEYS.includes(fieldKey as PasswordFieldKey);
-
 export default function SignUpViewer() {
-  const router = useRouter();
   const { t } = useTranslation();
-  const { mutateAsync: viewerSignUp, isPending: isSubmitting } =
-    useViewerSignUp();
-  const [formValues, setFormValues] =
-    useState<ViewerFormValues>(INITIAL_VIEWER_FORM);
-  const [passwordVisibility, setPasswordVisibility] =
-    useState<PasswordVisibility>({
-      password: false,
-      repeatPassword: false,
-    });
-  const [submitted, setSubmitted] = useState(false);
-  const [formError, setFormError] = useState("");
 
-  const passwordsDoNotMatch =
-    formValues.repeatPassword.length > 0 &&
-    formValues.password !== formValues.repeatPassword;
-
-  const isSubmitEnabled = useMemo(
-    () =>
-      VIEWER_FIELDS.every((field) => Boolean(formValues[field.key].trim())) &&
-      formValues.agreed &&
-      !passwordsDoNotMatch,
-    [formValues, passwordsDoNotMatch],
-  );
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSubmitted(true);
-
-    if (!isSubmitEnabled) {
-      setFormError(
-        passwordsDoNotMatch
-          ? t("viewerSignup.form.passwordMismatch")
-          : t("viewerSignup.form.fixHighlightedFields"),
-      );
-      return;
-    }
-
-    setFormError("");
-
-    try {
-      const response = await viewerSignUp({
-        fullName: formValues.fullName.trim(),
-        email: formValues.email.trim(),
-        password: formValues.password,
-        confirmPassword: formValues.repeatPassword,
-      });
-
-      const { accessToken, refreshToken } = response.data ?? {};
-
-      if (accessToken) {
-        window.localStorage.setItem("kiibee.accessToken", accessToken);
-      }
-
-      if (refreshToken) {
-        window.localStorage.setItem("kiibee.refreshToken", refreshToken);
-      }
-
-      router.push("/auth/signup-viewer/preferences");
-    } catch (error) {
-      const apiError = normalizeApiError(error);
-      setFormError(apiError.message || t("viewerSignup.form.signupFailed"));
-    }
-  };
-
-  const updateField = (
-    field: keyof ViewerFormValues,
-    value: string | boolean,
-  ) => {
-    setFormValues((prev) => ({ ...prev, [field]: value }));
-    if (formError) {
-      setFormError("");
-    }
-  };
+  const {
+    formValues,
+    passwordVisibility,
+    submitted,
+    formError,
+    isSubmitting,
+    isSubmitEnabled,
+    passwordsDoNotMatch,
+    updateField,
+    togglePassword,
+    handleSubmit,
+    isPasswordField,
+  } = useViewerSignUpForm();
 
   const renderField = (field: ViewerFieldConfig) => {
     const hasPasswordMismatch =
@@ -158,11 +88,7 @@ export default function SignUpViewer() {
         }
         onIconClick={
           passwordFieldKey
-            ? () =>
-                setPasswordVisibility((prev) => ({
-                  ...prev,
-                  [passwordFieldKey]: !prev[passwordFieldKey],
-                }))
+            ? () => togglePassword(field.key as PasswordFieldKey)
             : undefined
         }
         hasError={hasPasswordMismatch}
