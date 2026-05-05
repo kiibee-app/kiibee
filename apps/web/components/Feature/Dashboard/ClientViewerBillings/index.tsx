@@ -7,6 +7,7 @@ import {
   VIEWER_PAYMENT_METHODS_TAB,
   type ViewerBillingTab,
 } from "@/utils/common";
+import { BILLING_TAB } from "@/utils/Constants";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { MonoText } from "@/components/UI/Monotext";
@@ -40,13 +41,11 @@ import {
   PaymentHeader,
 } from "./styles";
 
-const BILLING_TAB_QUERY_KEY = "billingTab";
-
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
   const { activeTab, setActiveTabAndQuery } =
     useQuerySyncedTab<ViewerBillingTab>({
-      queryKey: BILLING_TAB_QUERY_KEY,
+      queryKey: BILLING_TAB,
       defaultTab: VIEWER_PAYMENT_METHODS_TAB,
       validTabs: VIEWER_BILLING_TABS.map((tab) => tab.key),
     });

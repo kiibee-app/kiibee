@@ -29,6 +29,7 @@ export type BgVariant = typeof BG_GREEN | typeof BG_WHITE;
 export const REPEAT_PASSWORD = "repeatPassword";
 export const PASSWORD = "password";
 export const CONTENT_TAB = "tab";
+export const BILLING_TAB = "billingTab";
 export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [
   "settingsTab",
   "usersTab",

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const BillingShell = styled.section`
   width: 100%;
+  box-sizing: border-box;
   padding: 40px 30px 30px;
 
   ${media.tablet} {
@@ -49,11 +50,8 @@ export const PaymentHeader = styled.div`
   padding-bottom: 12px;
 
   ${media.tablet} {
-    align-items: flex-start;
-  }
-
-  ${media.mobileLg} {
-    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
 `;
 
@@ -70,38 +68,46 @@ export const AddCardButton = styled.button`
   cursor: pointer;
 
   ${media.mobileLg} {
-    width: 100%;
-    justify-content: center;
+    width: auto;
   }
 `;
 
 export const MethodsList = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const MethodRow = styled.div`
-  display: grid;
-  grid-template-columns: minmax(260px, 1fr) 180px auto;
+  display: flex;
+  align-self: stretch;
   align-items: center;
-  min-height: 72px;
-  gap: 24px;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 12px;
+  gap: 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${media.tablet} {
-    grid-template-columns: 1fr;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 18px 0;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+    padding: 16px 12px;
+    gap: 12px;
   }
 `;
 
 export const CardIdentity = styled.div`
   display: flex;
   align-items: center;
-  min-width: 0;
+  width: 350px;
+  max-width: 350px;
+  flex: 1 1 350px;
+  min-width: 220px;
   gap: 16px;
+
+  ${media.tablet} {
+    width: auto;
+    flex: 1 1 auto;
+  }
 `;
 
 export const CardLogoWrap = styled.div`
@@ -138,11 +144,14 @@ export const Actions = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  width: 150px;
+  flex: 0 0 150px;
   gap: 24px;
+  margin-left: 0;
 
   ${media.tablet} {
-    align-self: flex-end;
-    margin-top: -30px;
+    width: auto;
+    flex: 0 0 auto;
   }
 `;
 
@@ -158,5 +167,18 @@ export const IconButton = styled.button`
 `;
 
 export const ExpiryCell = styled.div`
+  display: flex;
+  align-items: center;
+  width: 300px;
+  max-width: 300px;
+  flex: 1 1 300px;
+  min-width: 180px;
   color: ${({ theme }) => theme.colors.neutral.GRAY};
+  margin-left: 0;
+  white-space: nowrap;
+
+  ${media.tablet} {
+    width: auto;
+    flex: 0 0 auto;
+  }
 `;
