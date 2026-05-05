@@ -3,6 +3,7 @@
 import { FormEvent, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
+import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import InputField from "@/components/UI/InputFields";
 import {
   Card,
@@ -23,13 +24,20 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useLoginFormSchema } from "@/utils/useLoginFormSchema";
 import type { LoginFormErrors } from "@/utils/authLoginFormSchema";
 import { ALERT } from "@/utils/common";
-import { persistLoginSession, useLogin } from "@/hooks/auth/useLogin";
+import {
+  getPostLoginPath,
+  persistLoginSession,
+  useLogin,
+} from "@/hooks/auth/useLogin";
+import { PATHS } from "@/utils/path";
+import { INPUT_TYPE } from "@/utils/ui";
 
 export default function LoginForm() {
   const { t } = useTranslation();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [remember, setRemember] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<LoginFormErrors>({});
   const [formError, setFormError] = useState("");
@@ -80,7 +88,7 @@ export default function LoginForm() {
       }
 
       persistLoginSession(response);
-      router.push("/dashboard/creators");
+      router.push(getPostLoginPath(response));
     } catch (error) {
       if (isMounted.current) {
         setFormError(
@@ -132,11 +140,13 @@ export default function LoginForm() {
           />
           <InputField
             id="login-password"
-            type="password"
+            type={isPasswordVisible ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
             placeholder={t("authForm.passwordLabel")}
             value={password}
             onChange={(nextValue) => handlePasswordChange(nextValue as string)}
             autoComplete="current-password"
+            icon={isPasswordVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}
+            onIconClick={() => setIsPasswordVisible((prev) => !prev)}
             hasError={Boolean(fieldErrors.password)}
             errorText={fieldErrors.password}
           />
@@ -164,7 +174,7 @@ export default function LoginForm() {
         </ForgotLink>
         <FooterText>
           <MonoText $use="Body_Medium"> {t("authForm.footer")}</MonoText>
-          <SignUpLink href="/auth/signup-creator">
+          <SignUpLink href={PATHS.AUTH_SIGNUP}>
             <MonoText $use="Body_Medium">{t("authForm.signUp")}</MonoText>
           </SignUpLink>
         </FooterText>

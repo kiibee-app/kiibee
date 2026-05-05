@@ -90,7 +90,34 @@
     "preference": {
       "title": "Let's personalize your experience",
       "description": "Tell us what you like so we can recommend creators and content you'll love. You can always update your preferences later in your profile settings.",
-      "submit": "Continue"
+      "submit": "Continue",
+      "content": {
+        "title": "What kind of content are you into?",
+        "subtitle": "Select all that apply.",
+        "options": {
+          "comedy": "Comedy",
+          "music": "Music",
+          "podcasts": "Podcasts",
+          "artsAndIllustration": "Arts & Illustration",
+          "booksAndWriting": "Books & Writing",
+          "wellnessAndMindfulness": "Wellness & Mindfulness",
+          "educationAndLearning": "Education / Learning",
+          "lifestyleAndVlogs": "Lifestyle & Vlogs",
+          "cookingAndFood": "Cooking / Food",
+          "sportsAndFitness": "Sports & Fitness"
+        }
+      },
+      "types": {
+        "title": "Choose your preferred content types",
+        "subtitle": "How do you like to experience content?",
+        "submit": "Finish set up",
+        "options": {
+          "video": "Video",
+          "audio": "Audio",
+          "pdf": "PDF",
+          "epub": "EPUB"
+        }
+      }
     },
     "form": {
       "fullName": "Full name",
@@ -143,6 +170,7 @@
       "city": "City",
       "postalCode": "Postal code",
       "workLink": "Link to example work (YouTube, WeTransfer, etc.)",
+      "workLinkInvalid": "Please enter a valid URL (for example: https://example.com)",
       "contentLabel": "Tell us about your content",
       "contentPlaceholder": "Tell us a bit about your content and what you'd like to share on Kiibee.",
       "consentPrefix": "I agree to Kiibee's",
@@ -150,7 +178,27 @@
       "and": "and",
       "privacy": "Privacy Policy",
       "submit": "Submit request"
+    },
+    "requestSent": {
+      "title": "Thank you! Your request has been sent.",
+      "description": "We'll review your information and get back to you within 1-2 business days.",
+      "backToKiibee": "Back to Kiibee"
     }
+  },
+  "creatorFinalSteps": {
+    "title": "Final steps",
+    "payment": {
+      "card": "Visa or Mastercard",
+      "mobilePay": "MobilePay"
+    },
+    "fields": {
+      "payment": "Payment method",
+      "cardNumber": "Card number",
+      "cardholderName": "Cardholder name",
+      "expiryDate": "Expiry date",
+      "cvc": "CVC"
+    },
+    "submit": "Create an account"
   },
   "how": {
     "heroAlt": "Kiibee hero image",
@@ -924,6 +972,22 @@
     "overview": "Overview",
     "noData": "No Data Found",
     "contentPerformance": "Content Performance",
+    "viewerPurchased": {
+      "title": "Purchased",
+      "sections": {
+        "collections": "Collections",
+        "videos": "Videos",
+        "audios": "Audios",
+        "pdf": "PDF"
+      },
+      "buttons": {
+        "seeContent": "See content"
+      },
+      "emptyStates": {
+        "collections": "No collections match your search.",
+        "media": "No items match your search."
+      }
+    },
     "logoutModal": {
       "title": "Log out",
       "message": "Are you sure you want to log out as {{email}}?",
@@ -1028,7 +1092,11 @@
       "exportTypeViews": "Views",
       "includeMedia": "Include media files",
       "lastExported": "Last export",
-      "noExports": "No exports available"
+      "noExports": "No exports available",
+      "typeDescription": "Choose the type of data you want to export.",
+      "dateDescription": "Select the time period for your export.",
+      "modalTitle": "Downloading CSV",
+      "modalMessage": "Your CSV file has been successfully downloaded."
     }
   },
   "contents": {
@@ -1068,6 +1136,22 @@
         "codes": "Enter codes"
       },
       "helper": "Separate multiple codes by pressing enter"
+    },
+    "couponApplicableProducts": {
+      "title": "Applicable products",
+      "description": "You can select specific collections or contents, or leave this empty to make the discount available for everything.",
+      "fields": {
+        "collections": "Select collection",
+        "contents": "Select single contents"
+      },
+      "helpers": {
+        "collections": "Add one or more collections that customers can get this discount.",
+        "contents": "Add one or more contents that customers can get this discount."
+      },
+      "buttons": {
+        "collections": "Collections",
+        "contents": "Contents"
+      }
     },
     "tabs": {
       "collections": "Collections",
@@ -1111,7 +1195,28 @@
       "maximumCharacter": "Maximum character",
       "supportEmail": "Support email",
       "supportEmailHint": "If you want a different email than your account email for support, enter it here.",
-      "supportEmailPlaceholder": "Enter support email"
+      "supportEmailPlaceholder": "Enter support email",
+      "coverImage": {
+        "title": "Cover image",
+        "subtitle": "The large image at the top of the page",
+        "uploadDesktop": "Upload desktop cover image",
+        "uploadMobile": "Upload mobile cover image",
+        "desktopSize": "Use size 1440 × 224 pixel image",
+        "mobileSize": "Use size 640 × 600 pixel image"
+      },
+      "description": {
+        "label": "Description",
+        "hint": "Tell us a little about your product and feature it on the front page",
+        "placeholder": "Enter description"
+      },
+      "logo": {
+        "title": "Logo",
+        "subtitle": "Use your own logo or write a text as a logo",
+        "toggleText": "Text",
+        "togglePicture": "Picture",
+        "placeholder": "Enter logo name",
+        "upload": "Upload logo"
+      }
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",

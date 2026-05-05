@@ -23,7 +23,7 @@ const Main = styled.main`
 `;
 
 const Content = styled.div`
-  padding: 24px;
+  padding: 16px 20px;
 `;
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {

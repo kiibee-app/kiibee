@@ -7,12 +7,18 @@ import {
   TableBodyCell,
   TableHeaderCell,
 } from "./AllCreators.styles";
-import { creatorTableColumns } from "./creatorTableColumns";
+import { getCreatorTableColumns } from "./creatorTableColumns";
 
 export function CreatorRequestsTable({
   creators,
   onSelectCreator,
+  onApproveCreator,
+  onRejectCreator,
+  activeAction,
+  activeRequestId,
 }: CreatorRequestsTableProps) {
+  const creatorTableColumns = getCreatorTableColumns();
+
   return (
     <RequestsTable>
       <thead>
@@ -30,7 +36,12 @@ export function CreatorRequestsTable({
           >
             {creatorTableColumns.map((column) => (
               <TableBodyCell key={`${creator.id}-${column.key}`}>
-                {column.renderCell(creator)}
+                {column.renderCell(creator, {
+                  onApproveCreator,
+                  onRejectCreator,
+                  activeAction,
+                  activeRequestId,
+                })}
               </TableBodyCell>
             ))}
           </RequestTableRow>

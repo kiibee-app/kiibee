@@ -4,7 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import {
   TableWrapper,
-  DesktopRow,
+  ClickableDesktopRow,
   DesktopHeaderRow,
   TableHead,
   HeaderContent,
@@ -31,6 +31,7 @@ export default function DesktopTable<T extends Record<string, unknown>>({
   emptyText,
   hasData,
   pagination,
+  onRowClick,
   onHeaderClick,
   isHeaderSortable,
   getHeaderSortDirection,
@@ -96,9 +97,16 @@ export default function DesktopTable<T extends Record<string, unknown>>({
         {data.map((row, index) => {
           const globalIndex = getGlobalIndex(index, pagination, data.length);
           const rowKey = getRowKey?.(row, globalIndex) ?? globalIndex;
+          const clickable = Boolean(onRowClick);
 
           return (
-            <DesktopRow key={rowKey}>
+            <ClickableDesktopRow
+              key={rowKey}
+              $clickable={clickable}
+              onClick={
+                clickable ? () => onRowClick?.(row, globalIndex) : undefined
+              }
+            >
               {headers.map((header, colIndex) => {
                 const key = getColumnKey<T>(header, headerToKey);
                 const value = row[key];
@@ -131,7 +139,7 @@ export default function DesktopTable<T extends Record<string, unknown>>({
                   </TableCell>
                 );
               })}
-            </DesktopRow>
+            </ClickableDesktopRow>
           );
         })}
       </tbody>

@@ -93,3 +93,51 @@ export const Swatch = styled.span<{ $color: string }>`
   background: ${({ $color }) => $color};
   box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.neutral.GRAY_250};
 `;
+
+export const ItemRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+`;
+
+export const UploadButton = styled.div`
+  button {
+    width: fit-content;
+    padding: 14px 24px;
+    box-shadow: none;
+  }
+`;
+
+export const ToggleWrap = styled.div`
+  display: flex;
+  gap: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+  border-radius: 8px;
+  overflow: hidden;
+  min-width: 160px;
+`;
+
+export const ToggleButton = styled.button<{ $active: boolean }>`
+  flex: 1;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.BLACK : "transparent"};
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.WHITE : theme.colors.primary.BLACK};
+`;
+
+export const LogoHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  ${media.tablet} {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;

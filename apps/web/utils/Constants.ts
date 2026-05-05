@@ -28,6 +28,11 @@ export const BG_WHITE = "white";
 export type BgVariant = typeof BG_GREEN | typeof BG_WHITE;
 export const REPEAT_PASSWORD = "repeatPassword";
 export const PASSWORD = "password";
+export const CONTENT_TAB = "tab";
+export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [
+  "settingsTab",
+  "usersTab",
+] as const;
 export const PASSWORD_VISIBILITY_KEY = {
   PASSWORD,
   REPEAT_PASSWORD,
@@ -75,5 +80,8 @@ export const APPEARANCE_DEFAULT_HEX_COLOR = "#674096";
 export const SUBSCRIPTION_STEP = {
   PLAN: "plan",
   DETAILS: "details",
+  PAYMENT: "payment",
 } as const;
 export const maxReceiptCharacters = 200;
+export const maxDescriptionCharacters = 500;
+export const maxLogoNameCharacters = 100;

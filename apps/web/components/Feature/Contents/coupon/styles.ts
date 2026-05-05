@@ -3,6 +3,7 @@ import { typography } from "@repo/ui/typography";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
+import { COUPON_STATUS } from "@/types/couponType";
 
 export const ModalContent = styled.div`
   display: flex;
@@ -87,4 +88,55 @@ export const NextButton = styled.button`
   &:disabled {
     cursor: not-allowed;
   }
+`;
+
+export const TableSection = styled.div`
+  margin-top: 20px;
+  overflow-x: auto;
+`;
+
+export const CodesWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+
+export const CodeBadge = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
+  display: flex;
+  padding: 4px 8px;
+  align-items: center;
+  gap: 2px;
+  border-radius: 15px;
+  background: ${({ theme }) => theme.colors.primary.GRAY};
+`;
+
+export const StatusBadge = styled.span<{ $status: string }>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px;
+  border-radius: 5px;
+  min-width: 80px;
+  height: 21px;
+  white-space: nowrap;
+  text-transform: capitalize;
+  border: none;
+  cursor: default;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+  background-color: ${({ $status, theme }) => {
+    if ($status === COUPON_STATUS.INACTIVE) return theme.colors.primary.RED;
+    return theme.colors.secondary.MEDIUM_GREEN;
+  }};
+  ${MonoText} {
+    color: inherit;
+  }
+`;
+
+export const ActionWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
 `;

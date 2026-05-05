@@ -23,6 +23,11 @@ export function getAccessToken(): string | null {
   return localStorage.getItem("accessToken");
 }
 
+export function getRefreshToken(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem("refreshToken");
+}
+
 export function decodeToken(token: string): DecodedToken | null {
   try {
     const payload = token.split(".")[1];

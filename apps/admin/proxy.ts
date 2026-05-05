@@ -13,7 +13,7 @@ export function proxy(request: NextRequest) {
   }
 
   if (pathname === "/login" && isLoggedIn) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+    return NextResponse.redirect(new URL("/profile", request.url));
   }
 
   if (!isPublicPath(pathname) && !isLoggedIn) {

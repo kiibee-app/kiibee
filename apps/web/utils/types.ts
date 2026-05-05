@@ -3,6 +3,7 @@ import type { ButtonSize } from "@/components/UI/GenericButton/variants";
 
 export const FORMAT_TYPE = {
   VIDEO: "video",
+  AUDIO: "audio",
   PDF: "pdf",
   EPUB: "epub",
   WEB: "web",

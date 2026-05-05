@@ -2,6 +2,7 @@
 
 import { API } from "@/lib/http/api/endpoints";
 import { usePostAPI } from "@/lib/http/api/postApi";
+import { PATHS } from "@/utils/path";
 
 export type LoginPayload = {
   email: string;
@@ -18,15 +19,28 @@ export type LoginResponse = {
     token?: string;
     accessToken?: string;
     refreshToken?: string;
-    user?: unknown;
+    user?: LoginUser;
+    role?: string;
+    status?: string;
     [key: string]: unknown;
   };
-  user?: unknown;
+  user?: LoginUser;
+  role?: string;
+  status?: string;
+};
+
+export type LoginUser = {
+  role?: string;
+  status?: string;
+  [key: string]: unknown;
 };
 
 const ACCESS_TOKEN_KEY = "kiibee.accessToken";
 const REFRESH_TOKEN_KEY = "kiibee.refreshToken";
 const USER_KEY = "kiibee.user";
+const USER_ROLES = {
+  VIEWER: "viewer",
+} as const;
 
 export const persistLoginSession = (response: LoginResponse) => {
   if (typeof window === "undefined") {
@@ -52,6 +66,17 @@ export const persistLoginSession = (response: LoginResponse) => {
   if (user) {
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
+};
+
+export const getPostLoginPath = (response: LoginResponse) => {
+  const user = (response.user ?? response.data?.user) as LoginUser | undefined;
+  const role = (user?.role ?? response.role ?? response.data?.role ?? "")
+    .toString()
+    .toLowerCase();
+
+  return role === USER_ROLES.VIEWER
+    ? PATHS.DASHBOARD_VIEWER
+    : PATHS.DASHBOARD_CREATOR;
 };
 
 export const useLogin = () =>

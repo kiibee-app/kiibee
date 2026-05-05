@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
 export default function AboutHero() {
   const { t } = useTranslation();
@@ -51,7 +52,11 @@ export default function AboutHero() {
               {t("about.hero.cta.explore")}
             </GenericButton>
 
-            <GenericButton asAnchor href="/creator" variant={VARIANT.SECONDARY}>
+            <GenericButton
+              asAnchor
+              href={PATHS.AUTH_SIGNUP_CREATOR}
+              variant={VARIANT.SECONDARY}
+            >
               {t("about.hero.cta.creator")}
             </GenericButton>
           </CTAWrap>

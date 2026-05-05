@@ -118,6 +118,7 @@ export const TermsLink = styled(Link)`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-decoration: underline;
   text-underline-offset: 2px;
+  padding-left: 5px;
 `;
 
 export const SubmitButton = styled(GenericButton).attrs({
@@ -150,4 +151,68 @@ export const LoginLink = styled(Link)`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-decoration: underline;
   text-underline-offset: 2px;
+  padding-left: 5px;
+`;
+
+export const RequestSentLayout = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+  }
+`;
+
+export const RequestSentFormPanel = styled.section`
+  flex: 1;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 2rem 1rem;
+  }
+`;
+
+export const RequestSentSlidePanel = styled.section`
+  width: clamp(420px, 34vw, 560px);
+  background: ${({ theme }) => theme.colors.gredint.DEEP_GREEN};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 180px 55px 90px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+    padding: 2.5rem 1.5rem;
+  }
+`;
+
+export const Content = styled.section`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const Card = styled.div`
+  width: 100%;
+  max-width: 480px;
+  padding: 44px 28px;
+  border-radius: 12px;
+  text-align: center;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+`;
+
+export const Title = styled.h1`
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const Description = styled.p`
+  margin: 14px 0 28px;
+  color: ${({ theme }) => theme.colors.primary.BLACK_90};
 `;
