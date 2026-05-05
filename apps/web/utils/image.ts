@@ -1,3 +1,19 @@
+export const readFileAsDataUrl = (file: File): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.result instanceof ArrayBuffer) {
+        return;
+      }
+
+      resolve(reader.result ?? "");
+    };
+
+    reader.onerror = () => reject(new Error("Failed to read file"));
+    reader.readAsDataURL(file);
+  });
+
 export const getCroppedImg = (
   imageSrc: string,
   containerWidth: number,
