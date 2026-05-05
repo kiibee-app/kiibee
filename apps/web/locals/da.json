@@ -785,7 +785,13 @@
     "back": "Tilbage",
     "close": "Luk",
     "previous": "Forrige",
-    "next": "Næste"
+    "next": "Næste",
+    "selectDateRange": "Vælg datointerval",
+    "loading": "Indlæser"
+  },
+  "image": {
+    "failed": "Kunne ikke indlæse billede",
+    "failedAalt": "Kunne ikke indlæse billede: {{alt}}"
   },
   "table": {
     "noData": "Ingen data fundet"

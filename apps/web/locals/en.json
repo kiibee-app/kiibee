@@ -785,7 +785,13 @@
     "back": "Back",
     "close": "Close",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "selectDateRange": "Select date range",
+    "loading": "Loading"
+  },
+  "image": {
+    "failed": "Failed to load image",
+    "failedAalt": "Failed to load image: {{alt}}"
   },
   "table": {
     "noData": "No Data Found"

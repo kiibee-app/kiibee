@@ -2,6 +2,8 @@
 
 import NextImage, { type ImageProps, type StaticImageData } from "next/image";
 import { useSafeImage } from "@/hooks/useSafeImage";
+import { useTranslation } from "react-i18next";
+import { IMG } from "@/utils/common";
 
 type SafeImageSrc = string | StaticImageData;
 
@@ -34,6 +36,7 @@ function SafeImageInner({
   alt,
   ...rest
 }: SafeImageProps) {
+  const { t } = useTranslation();
   const { imgSrc, isError, handleError, handleLoad } = useSafeImage({
     src,
     fallback,
@@ -42,10 +45,8 @@ function SafeImageInner({
   if (isError) {
     return (
       <span
-        role="img"
-        aria-label={
-          alt ? `Failed to load image: ${alt}` : "Failed to load image"
-        }
+        role={IMG}
+        aria-label={alt ? t("image.failedAlt", { alt }) : t("image.failed")}
         className={className}
         style={style}
       />
