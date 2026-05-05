@@ -31,9 +31,7 @@ const LABEL: Record<PurchasedMediaItem["mediaType"], string> = {
 };
 
 export type PurchasedMediaTutorialOptions = {
-  /** Overrides card “published” line (e.g. “Expired on …”). */
   published?: string;
-  /** Full footer button row; defaults to single play/open action. */
   buttons?: TutorialButton[];
 };
 

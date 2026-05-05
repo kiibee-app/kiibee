@@ -1,6 +1,7 @@
 import { media } from "@repo/ui/breakpoints";
 import NextImage from "next/image";
 import styled from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 
 export const PageHeader = styled.div`
@@ -233,6 +234,12 @@ export const CollectionActionColumn = styled.div`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(1)};
   min-width: 0;
+`;
+
+export const CollectionRentBuyCtaButton = styled(GenericButton)`
+  min-height: 51px;
+  padding: 8px 12px;
+  border-radius: 12px;
 `;
 
 export const CollectionActionButtonContent = styled.span`

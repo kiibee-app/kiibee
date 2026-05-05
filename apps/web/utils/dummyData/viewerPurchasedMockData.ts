@@ -33,7 +33,6 @@ export type PurchasedCollectionItem = {
   author: string;
   elementCount: number;
   coverSrc: string;
-  /** Optional pricing for rent/buy CTAs (e.g. previously rented). */
   buyPriceKr?: number;
   rentPriceKr?: number;
 };

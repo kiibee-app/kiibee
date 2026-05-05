@@ -2,7 +2,6 @@
 
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
-import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import PlaylistIcon from "@/assets/icons/PlaylistIcon";
 import type { PurchasedCollectionItem } from "@/utils/dummyData/viewerPurchasedMockData";
@@ -20,6 +19,7 @@ import {
   CollectionFlexSpacer,
   CollectionIconSlot,
   CollectionMetaTop,
+  CollectionRentBuyCtaButton,
   CollectionRoot,
   CollectionThumbWrap,
 } from "./styles";
@@ -72,11 +72,10 @@ export default function PreviouslyRentedCollectionCard({ item }: Props) {
         <CollectionBottomBlock>
           <CollectionActionsRow>
             <CollectionActionColumn>
-              <GenericButton
+              <CollectionRentBuyCtaButton
                 type="button"
                 variant={VARIANT.PRIMARY}
                 fullWidth
-                style={{ minHeight: 51, padding: "8px 12px", borderRadius: 16 }}
               >
                 <CollectionActionButtonContent>
                   {t(DASHBOARD_VIEWER_PREVIOUSLY_RENTED.buttons.buy, {
@@ -88,14 +87,13 @@ export default function PreviouslyRentedCollectionCard({ item }: Props) {
                     )}
                   </CollectionActionButtonSubtext>
                 </CollectionActionButtonContent>
-              </GenericButton>
+              </CollectionRentBuyCtaButton>
             </CollectionActionColumn>
             <CollectionActionColumn>
-              <GenericButton
+              <CollectionRentBuyCtaButton
                 type="button"
                 variant={VARIANT.SECONDARY}
                 fullWidth
-                style={{ minHeight: 51, padding: "8px 12px", borderRadius: 16 }}
               >
                 <CollectionActionButtonContent>
                   {t(DASHBOARD_VIEWER_PREVIOUSLY_RENTED.buttons.rent, {
@@ -107,7 +105,7 @@ export default function PreviouslyRentedCollectionCard({ item }: Props) {
                     )}
                   </CollectionActionButtonSubtext>
                 </CollectionActionButtonContent>
-              </GenericButton>
+              </CollectionRentBuyCtaButton>
             </CollectionActionColumn>
           </CollectionActionsRow>
         </CollectionBottomBlock>
