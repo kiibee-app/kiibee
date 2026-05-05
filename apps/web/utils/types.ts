@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { ImageSource, Variant } from "@/utils/Constants";
 import type { ButtonSize } from "@/components/UI/GenericButton/variants";
 
@@ -18,6 +19,7 @@ export type TutorialButton = {
   fullWidth?: boolean;
   size?: ButtonSize;
   minWidth?: string;
+  style?: CSSProperties;
 };
 
 export type TutorialVideo = {

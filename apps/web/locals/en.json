@@ -989,7 +989,8 @@
       },
       "buttons": {
         "buy": "Buy {{price}} kr",
-        "rent": "Rent {{price}} kr"
+        "rent": "Rent {{price}} kr",
+        "contentSubtext": "Content subtext"
       },
       "badges": {
         "expiredLine": "Expired on {{date}}"

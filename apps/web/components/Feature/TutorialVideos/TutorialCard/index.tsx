@@ -90,6 +90,7 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
                 fullWidth={button.fullWidth}
                 size={button.size}
                 minWidth={button.minWidth}
+                style={button.style}
               >
                 {button.label}
               </GenericButton>
@@ -101,6 +102,7 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
                 fullWidth={button.fullWidth}
                 size={button.size}
                 minWidth={button.minWidth}
+                style={button.style}
               >
                 {button.label}
               </GenericButton>

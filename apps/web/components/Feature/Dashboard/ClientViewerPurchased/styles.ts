@@ -234,3 +234,24 @@ export const CollectionActionColumn = styled.div`
   gap: ${({ theme }) => theme.spacing(1)};
   min-width: 0;
 `;
+
+export const CollectionActionButtonContent = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  line-height: 1;
+`;
+
+export const CollectionActionButtonSubtext = styled.span`
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  ${({ theme }) => theme.typography.Body_Small}
+  color: currentColor;
+  opacity: 0.6;
+`;

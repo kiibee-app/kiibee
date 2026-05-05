@@ -196,6 +196,7 @@ export const DASHBOARD_VIEWER_PREVIOUSLY_RENTED = {
   buttons: {
     buy: "dashboard.viewerPreviouslyRented.buttons.buy",
     rent: "dashboard.viewerPreviouslyRented.buttons.rent",
+    contentSubtext: "dashboard.viewerPreviouslyRented.buttons.contentSubtext",
   },
   badges: {
     expiredLine: "dashboard.viewerPreviouslyRented.badges.expiredLine",

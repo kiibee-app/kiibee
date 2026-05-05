@@ -41,6 +41,7 @@ export default function PreviouslyRentedContent() {
     (item: PurchasedMediaItem) => {
       const buyKr = item.buyPriceKr ?? 99;
       const rentKr = item.rentPriceKr ?? 29;
+      const actionButtonStyle = { borderRadius: 16 };
       return purchasedMediaToTutorial(item, {
         published: t(DASHBOARD_VIEWER_PREVIOUSLY_RENTED.badges.expiredLine, {
           date: item.dateLabel,
@@ -51,12 +52,14 @@ export default function PreviouslyRentedContent() {
               price: buyKr,
             }),
             variant: VARIANT.PRIMARY,
+            style: actionButtonStyle,
           },
           {
             label: t(DASHBOARD_VIEWER_PREVIOUSLY_RENTED.buttons.rent, {
               price: rentKr,
             }),
             variant: VARIANT.SECONDARY,
+            style: actionButtonStyle,
           },
         ],
       });

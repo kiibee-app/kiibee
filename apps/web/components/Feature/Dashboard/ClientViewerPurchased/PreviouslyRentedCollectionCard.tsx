@@ -10,6 +10,8 @@ import COLORS from "@repo/ui/colors";
 import { DASHBOARD_VIEWER_PREVIOUSLY_RENTED } from "@/utils/translationKeys";
 import {
   CollectionActionColumn,
+  CollectionActionButtonContent,
+  CollectionActionButtonSubtext,
   CollectionActionsRow,
   CollectionBody,
   CollectionBottomBlock,
@@ -74,11 +76,18 @@ export default function PreviouslyRentedCollectionCard({ item }: Props) {
                 type="button"
                 variant={VARIANT.PRIMARY}
                 fullWidth
-                style={{ minHeight: 44 }}
+                style={{ minHeight: 51, padding: "8px 12px", borderRadius: 16 }}
               >
-                {t(DASHBOARD_VIEWER_PREVIOUSLY_RENTED.buttons.buy, {
-                  price: buyKr,
-                })}
+                <CollectionActionButtonContent>
+                  {t(DASHBOARD_VIEWER_PREVIOUSLY_RENTED.buttons.buy, {
+                    price: buyKr,
+                  })}
+                  <CollectionActionButtonSubtext>
+                    {t(
+                      DASHBOARD_VIEWER_PREVIOUSLY_RENTED.buttons.contentSubtext,
+                    )}
+                  </CollectionActionButtonSubtext>
+                </CollectionActionButtonContent>
               </GenericButton>
             </CollectionActionColumn>
             <CollectionActionColumn>
@@ -86,11 +95,18 @@ export default function PreviouslyRentedCollectionCard({ item }: Props) {
                 type="button"
                 variant={VARIANT.SECONDARY}
                 fullWidth
-                style={{ minHeight: 44 }}
+                style={{ minHeight: 51, padding: "8px 12px", borderRadius: 16 }}
               >
-                {t(DASHBOARD_VIEWER_PREVIOUSLY_RENTED.buttons.rent, {
-                  price: rentKr,
-                })}
+                <CollectionActionButtonContent>
+                  {t(DASHBOARD_VIEWER_PREVIOUSLY_RENTED.buttons.rent, {
+                    price: rentKr,
+                  })}
+                  <CollectionActionButtonSubtext>
+                    {t(
+                      DASHBOARD_VIEWER_PREVIOUSLY_RENTED.buttons.contentSubtext,
+                    )}
+                  </CollectionActionButtonSubtext>
+                </CollectionActionButtonContent>
               </GenericButton>
             </CollectionActionColumn>
           </CollectionActionsRow>

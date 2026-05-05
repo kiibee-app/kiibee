@@ -118,7 +118,16 @@ export const ActionRow = styled.div`
   flex-wrap: wrap;
 
   > * {
-    flex: 1;
+    display: flex;
+    width: 120px;
+    height: 33px;
+    padding: 9px 34px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 120px;
     min-width: 0;
+    white-space: nowrap;
   }
 `;

@@ -989,7 +989,8 @@
       },
       "buttons": {
         "buy": "Køb {{price}} kr",
-        "rent": "Lej {{price}} kr"
+        "rent": "Lej {{price}} kr",
+        "contentSubtext": "Indholdsundertekst"
       },
       "badges": {
         "expiredLine": "Udløb den {{date}}"
