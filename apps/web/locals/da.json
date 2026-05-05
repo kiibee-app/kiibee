@@ -177,7 +177,9 @@
       "terms": "Vilkår for brug",
       "and": "og",
       "privacy": "Privatlivspolitik",
-      "submit": "Send anmodning"
+      "submit": "Send anmodning",
+      "submitSuccess": "Skabertilladelse indsendt med succes.",
+      "submitError": "Kunne ikke indsende skabertilladelse."
     },
     "requestSent": {
       "title": "Tak! Din anmodning er sendt.",

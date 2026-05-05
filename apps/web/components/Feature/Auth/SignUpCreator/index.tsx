@@ -1,10 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import { useCreatorRequest } from "@/hooks/auth/useCreatorRequest";
 import InputField from "@/components/UI/InputFields";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import {
@@ -12,11 +8,8 @@ import {
   CONTACT_FIELDS,
   CONTENT_FIELD,
   CreatorFieldConfig,
-  CreatorFormValues,
   EMAIL_FIELD,
-  INITIAL_CREATOR_FORM,
   NAME_FIELDS,
-  REQUIRED_CREATOR_FIELD_KEYS,
   WORK_LINK_FIELD,
 } from "@/utils/authCreatorForm";
 import {
@@ -42,84 +35,12 @@ import Image from "@/components/UI/SafeImage";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import { MonoText } from "@/components/UI/Monotext";
 import { ALERT } from "@/utils/common";
+import { useCreatorRequestForm } from "@/hooks/Auth/useCreatorRequestForm";
 import { PATHS } from "@/utils/path";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
-  const router = useRouter();
-  const [formValues, setFormValues] =
-    useState<CreatorFormValues>(INITIAL_CREATOR_FORM);
-  const [formMessage, setFormMessage] = useState("");
-  const [messageTone, setMessageTone] = useState<"error" | "success">("error");
-  const creatorRequest = useCreatorRequest();
-
-  const isSubmitEnabled = useMemo(() => {
-    const hasRequiredValues = REQUIRED_CREATOR_FIELD_KEYS.every((fieldKey) =>
-      Boolean(formValues[fieldKey].trim()),
-    );
-
-    return hasRequiredValues && formValues.agreed && !creatorRequest.isPending;
-  }, [creatorRequest.isPending, formValues]);
-
-  const updateField = (
-    field: keyof CreatorFormValues,
-    value: string | boolean,
-  ) => {
-    setFormValues((prev) => ({ ...prev, [field]: value }));
-    setFormMessage("");
-  };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (!isSubmitEnabled) {
-      return;
-    }
-
-    const normalizedWorkLink = formValues.workLink.trim();
-    try {
-      new URL(normalizedWorkLink);
-    } catch {
-      setMessageTone("error");
-      setFormMessage(t("authCreator.form.workLinkInvalid"));
-      return;
-    }
-
-    try {
-      const response = await creatorRequest.mutateAsync({
-        firstName: formValues.firstName.trim(),
-        lastName: formValues.lastName.trim(),
-        email: formValues.email.trim().toLowerCase(),
-        phone: formValues.phone.trim() || undefined,
-        cvr: formValues.cvr.trim() || undefined,
-        address: formValues.address.trim(),
-        city: formValues.city.trim(),
-        postalCode: formValues.postalCode.trim(),
-        exampleWorkLink: normalizedWorkLink,
-        contentDescription: formValues.contentDescription.trim(),
-      });
-
-      if (!response.success) {
-        throw new Error(response.message || "Failed to submit request");
-      }
-
-      toast.success(
-        response.message || "Creator application submitted successfully",
-      );
-      setMessageTone("success");
-      setFormMessage(
-        response.message || "Creator application submitted successfully",
-      );
-      setFormValues(INITIAL_CREATOR_FORM);
-      router.push(PATHS.AUTH_CREATOR_REQUEST_SENT);
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : "Failed to submit request";
-
-      setMessageTone("error");
-      setFormMessage(message);
-    }
-  };
+  const creatorForm = useCreatorRequestForm(t);
 
   const normalizeFieldValue = (value: string | string[]) =>
     Array.isArray(value) ? value.join(" ") : value;
@@ -133,15 +54,17 @@ export default function SignUpCreatorSection() {
       labelMarginTop="0"
       type={field.type}
       placeholder={field.placeholderKey ? t(field.placeholderKey) : undefined}
-      value={formValues[field.key]}
-      onChange={(value) => updateField(field.key, normalizeFieldValue(value))}
+      value={creatorForm.formValues[field.key]}
+      onChange={(value) =>
+        creatorForm.updateField(field.key, normalizeFieldValue(value))
+      }
       required={field.required}
     />
   );
 
   return (
     <ContentWrap>
-      <AuthBackButton href="/auth/signup" />
+      <AuthBackButton href={PATHS.AUTH_SIGNUP} />
       <LogoWrap>
         <Image src={logo} alt="Kiibee Logo" width={42} height={42} priority />
       </LogoWrap>
@@ -153,7 +76,7 @@ export default function SignUpCreatorSection() {
         <MonoText $use="Body_Regular">{t("authCreator.subtitle")}</MonoText>
       </FormIntro>
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={creatorForm.handleSubmit}>
         <Grid>{NAME_FIELDS.map((field) => renderField(field))}</Grid>
 
         <FullRow>{renderField(EMAIL_FIELD)}</FullRow>
@@ -183,9 +106,9 @@ export default function SignUpCreatorSection() {
           <Checkbox
             id="creator-consent"
             type="checkbox"
-            checked={formValues.agreed}
+            checked={creatorForm.formValues.agreed}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-              updateField("agreed", event.target.checked)
+              creatorForm.updateField("agreed", event.target.checked)
             }
           />
           <ConsentText htmlFor="creator-consent">
@@ -198,16 +121,16 @@ export default function SignUpCreatorSection() {
           </ConsentText>
         </CheckboxRow>
 
-        {formMessage && (
-          <FormMessage $tone={messageTone} role={ALERT}>
-            {formMessage}
+        {creatorForm.formMessage && (
+          <FormMessage $tone={creatorForm.messageTone} role={ALERT}>
+            {creatorForm.formMessage}
           </FormMessage>
         )}
 
         <SubmitButton
           type="submit"
-          disabled={!isSubmitEnabled}
-          isLoading={creatorRequest.isPending}
+          disabled={!creatorForm.isSubmitEnabled}
+          isLoading={creatorForm.isPending}
         >
           {t("authCreator.form.submit")}
         </SubmitButton>
@@ -215,7 +138,7 @@ export default function SignUpCreatorSection() {
 
       <LinkRow>
         <MonoText $use="Body_Medium">{t("authCreator.haveAccount")}</MonoText>
-        <LoginLink href="/auth/login">
+        <LoginLink href={PATHS.AUTH_LOGIN}>
           <MonoText $use="Body_Medium">{t("authCreator.login")}</MonoText>
         </LoginLink>
       </LinkRow>
