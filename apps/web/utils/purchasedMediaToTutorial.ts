@@ -1,5 +1,9 @@
 import { VARIANT } from "@/utils/Constants";
-import { FORMAT_TYPE, type TutorialVideo } from "@/utils/types";
+import {
+  FORMAT_TYPE,
+  type TutorialButton,
+  type TutorialVideo,
+} from "@/utils/types";
 import {
   PURCHASED_MEDIA_TYPES,
   type PurchasedMediaItem,
@@ -26,25 +30,35 @@ const LABEL: Record<PurchasedMediaItem["mediaType"], string> = {
   [PURCHASED_MEDIA_TYPES.PDF]: "PDF",
 };
 
+export type PurchasedMediaTutorialOptions = {
+  /** Overrides card “published” line (e.g. “Expired on …”). */
+  published?: string;
+  /** Full footer button row; defaults to single play/open action. */
+  buttons?: TutorialButton[];
+};
+
 export function purchasedMediaToTutorial(
   item: PurchasedMediaItem,
+  options?: PurchasedMediaTutorialOptions,
 ): TutorialVideo {
+  const defaultButtons: TutorialButton[] = [
+    {
+      label: ACTION[item.mediaType],
+      variant: VARIANT.SECONDARY,
+    },
+  ];
+
   return {
     id: item.id,
     title: item.title,
     category: item.category,
     creator: item.author,
-    published: item.dateLabel,
+    published: options?.published ?? item.dateLabel,
     focus: "",
     level: "",
     formatLabel: LABEL[item.mediaType],
     formatType: FORMAT[item.mediaType],
     image: item.thumbSrc,
-    buttons: [
-      {
-        label: ACTION[item.mediaType],
-        variant: VARIANT.SECONDARY,
-      },
-    ],
+    buttons: options?.buttons ?? defaultButtons,
   };
 }

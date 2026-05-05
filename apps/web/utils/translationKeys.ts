@@ -185,6 +185,28 @@ export const DASHBOARD_VIEWER_PURCHASED = {
   },
 };
 
+export const DASHBOARD_VIEWER_PREVIOUSLY_RENTED = {
+  title: "dashboard.viewerPreviouslyRented.title",
+  sections: {
+    collections: "dashboard.viewerPreviouslyRented.sections.collections",
+    videos: "dashboard.viewerPreviouslyRented.sections.videos",
+    audios: "dashboard.viewerPreviouslyRented.sections.audios",
+    pdf: "dashboard.viewerPreviouslyRented.sections.pdf",
+  },
+  buttons: {
+    buy: "dashboard.viewerPreviouslyRented.buttons.buy",
+    rent: "dashboard.viewerPreviouslyRented.buttons.rent",
+  },
+  badges: {
+    expiredLine: "dashboard.viewerPreviouslyRented.badges.expiredLine",
+  },
+  elements: "dashboard.viewerPreviouslyRented.elements",
+  emptyStates: {
+    collections: "dashboard.viewerPreviouslyRented.emptyStates.collections",
+    media: "dashboard.viewerPreviouslyRented.emptyStates.media",
+  },
+};
+
 export const CONTENTS = {
   title: "contents.title",
   actions: {

@@ -979,6 +979,27 @@
         "media": "No items match your search."
       }
     },
+    "viewerPreviouslyRented": {
+      "title": "Previously Rented",
+      "sections": {
+        "collections": "Collections",
+        "videos": "Videos",
+        "audios": "Audios",
+        "pdf": "PDF"
+      },
+      "buttons": {
+        "buy": "Buy {{price}} kr",
+        "rent": "Rent {{price}} kr"
+      },
+      "badges": {
+        "expiredLine": "Expired on {{date}}"
+      },
+      "elements": "{{count}} elements",
+      "emptyStates": {
+        "collections": "No collections match your search.",
+        "media": "No items match your search."
+      }
+    },
     "logoutModal": {
       "title": "Log out",
       "message": "Are you sure you want to log out as {{email}}?",

@@ -17,6 +17,7 @@ import {
 } from "@/utils/SidebarItems";
 import { MonoText } from "@/components/UI/Monotext";
 import PurchasedContent from "@/components/Feature/Dashboard/ClientViewerPurchased/PurchasedContent";
+import PreviouslyRentedContent from "@/components/Feature/Dashboard/ClientViewerPurchased/PreviouslyRentedContent";
 
 const ROUTABLE_VIEWER_VIEWS = new Set<string>([
   VIEWER_VIEW_VALUES.PURCHASED,
@@ -85,7 +86,12 @@ export default function ClientDashboardViewer() {
   return (
     <DashboardLayout
       header={<ViewerDashboardHeader onToggleSidebar={toggleSidebar} />}
-      contentPadding={activePage === VIEWER_LABELS.PURCHASED ? "0" : undefined}
+      contentPadding={
+        activePage === VIEWER_LABELS.PURCHASED ||
+        activePage === VIEWER_LABELS.PREVIOUSLY_RENTED
+          ? "0"
+          : undefined
+      }
       sidebar={
         <Sidebar
           open={open}
@@ -99,6 +105,8 @@ export default function ClientDashboardViewer() {
     >
       {activePage === VIEWER_LABELS.PURCHASED ? (
         <PurchasedContent />
+      ) : activePage === VIEWER_LABELS.PREVIOUSLY_RENTED ? (
+        <PreviouslyRentedContent />
       ) : (
         <MonoText $use="H4_SemiBold">{sectionTitle}</MonoText>
       )}

@@ -979,6 +979,27 @@
         "media": "Ingen elementer matcher din søgning."
       }
     },
+    "viewerPreviouslyRented": {
+      "title": "Tidligere lejet",
+      "sections": {
+        "collections": "Samlinger",
+        "videos": "Videoer",
+        "audios": "Lydfiler",
+        "pdf": "PDF"
+      },
+      "buttons": {
+        "buy": "Køb {{price}} kr",
+        "rent": "Lej {{price}} kr"
+      },
+      "badges": {
+        "expiredLine": "Udløb den {{date}}"
+      },
+      "elements": "{{count}} elementer",
+      "emptyStates": {
+        "collections": "Ingen samlinger matcher din søgning.",
+        "media": "Ingen elementer matcher din søgning."
+      }
+    },
     "logoutModal": {
       "title": "Log ud",
       "message": "Er du sikker på, at du vil logge ud som {{email}}?",

@@ -218,3 +218,19 @@ export const CollectionIconSlot = styled.span`
   flex-shrink: 0;
   line-height: 0;
 `;
+
+export const CollectionActionsRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: ${({ theme }) => theme.spacing(2)};
+  width: 100%;
+`;
+
+export const CollectionActionColumn = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(1)};
+  min-width: 0;
+`;
