@@ -5,6 +5,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { TokenService } from './services/token.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { SessionCleanupService } from './services/session-cleanup.service';
 
 @Module({
   imports: [
@@ -14,6 +15,6 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, TokenService, JwtStrategy],
+  providers: [AuthService, TokenService, JwtStrategy, SessionCleanupService],
 })
 export class AuthModule {}
