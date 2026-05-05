@@ -68,7 +68,7 @@ export default function CollectionTable(props: CollectionTableProps) {
           <EditProfileIcon color={COLORS.neutral.GRAY} />
         </IconButton>
 
-        <IconButton type={BUTTON} onClick={(e) => handleDelete(e, id)}>
+        <IconButton type={BUTTON} $danger onClick={(e) => handleDelete(e, id)}>
           <DeleteIcon />
         </IconButton>
 

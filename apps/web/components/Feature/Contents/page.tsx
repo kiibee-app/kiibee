@@ -50,6 +50,8 @@ import CouponApplicableProductsModal from "@/components/Feature/Contents/coupon/
 
 import CouponTable from "./coupon";
 import { couponData } from "@/utils/dummyData/couponData";
+import { useDeleteHandler } from "@/hooks/useCollectionDelete";
+import DeleteModals from "./CollectionDeleteMobal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -72,10 +74,21 @@ export default function CreatorsContents() {
   const [collectionName, setCollectionName] = useState("");
   const [showCouponDetails, setShowCouponDetails] = useState(false);
   const [showCouponCodes, setShowCouponCodes] = useState(false);
+  const [collections, setCollections] = useState(collectionsData);
+  const [contentsMap, setContentsMap] = useState(collectionContentsData);
+  const {
+    showDeleteConfirm,
+    setShowDeleteConfirm,
+    showDeleteSuccess,
+    setShowDeleteSuccess,
+    openDelete,
+    handleConfirmDelete,
+  } = useDeleteHandler(setCollections, setContentsMap, selectedCollection);
 
   const collectionContents = selectedCollection
-    ? (collectionContentsData[selectedCollection.id] ?? [])
+    ? (contentsMap[selectedCollection.id] ?? [])
     : [];
+
   const [showCouponApplicableProducts, setShowCouponApplicableProducts] =
     useState(false);
   const isCollectionContentMode = !!selectedCollection;
@@ -199,12 +212,16 @@ export default function CreatorsContents() {
             <CollectionTable
               type={COLLECTION_TABLE_TYPE.CONTENTS}
               data={collectionContents}
+              onDelete={(id) => openDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
             />
           ) : (
             <CollectionTable
               type={COLLECTION_TABLE_TYPE.COLLECTIONS}
-              data={collectionsData}
+              data={collections}
               onRowClick={(row) => setSelectedCollection(row)}
+              onDelete={(id) =>
+                openDelete(id, COLLECTION_TABLE_TYPE.COLLECTIONS)
+              }
             />
           )
         ) : (
@@ -325,6 +342,13 @@ export default function CreatorsContents() {
         onBack={handleBackFromApplicableProducts}
         onClose={closeCouponFlow}
         onNext={closeCouponFlow}
+      />
+      <DeleteModals
+        showDeleteConfirm={showDeleteConfirm}
+        setShowDeleteConfirm={setShowDeleteConfirm}
+        showDeleteSuccess={showDeleteSuccess}
+        setShowDeleteSuccess={setShowDeleteSuccess}
+        onConfirmDelete={handleConfirmDelete}
       />
     </PageShell>
   );
