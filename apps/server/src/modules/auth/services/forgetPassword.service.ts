@@ -10,7 +10,10 @@ import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
-export const forgetPasswordService = async (email: string) => {
+export const forgetPasswordService = async (
+  email: string,
+  frontendBaseUrl: string,
+) => {
   try {
     if (!email) {
       return fail('Email is required', HttpStatus.BAD_REQUEST);
@@ -35,7 +38,7 @@ export const forgetPasswordService = async (email: string) => {
       type: 'reset_password',
       expiresAt: new Date(Date.now() + Time.FIFTEEN_MINUTES),
     });
-    const resetLink = `${process.env.FRONTEND_URL}/auth/forget-password?token=${token}`;
+    const resetLink = `${frontendBaseUrl}/auth/forget-password?token=${token}`;
 
     runInBackground(
       sendTemplateEmail({
