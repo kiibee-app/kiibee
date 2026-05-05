@@ -62,6 +62,8 @@ export default function CollectionTable(props: CollectionTableProps) {
   };
 
   const renderActions = (id: string) => {
+    if (!isCollections) return null;
+
     return (
       <ActionWrapper>
         <IconButton type={BUTTON} onClick={(e) => handleEdit(e, id)}>
