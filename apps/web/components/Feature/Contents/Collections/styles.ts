@@ -21,7 +21,7 @@ export const IconButton = styled.button<{ $danger?: boolean }>`
 
   &:hover svg path {
     fill: ${({ $danger, theme }) =>
-      $danger ? theme.colors.primary.RED : "inherit"};
-    fill-opacity: 1;
+      $danger ? theme.colors.primary.RED : "currentColor"};
+    fill-opacity: ${({ $danger }) => ($danger ? 1 : 0.6)};
   }
 `;
