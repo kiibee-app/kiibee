@@ -79,7 +79,8 @@
     "checkEmailTitle": "Tjek din e-mail",
     "checkEmailDescription": "Vi har sendt et link til nulstilling af adgangskode til din e-mail. Hvis det ikke ankommer inden for et par minutter, så tjek din spam-mappe.",
     "didNotReceive": "Har du ikke modtaget e-mailen?",
-    "resend": "Send igen"
+    "resend": "Send igen",
+    "submitFailed": "Vi kunne ikke sende nulstillingslinket lige nu. Prøv igen."
   },
   "viewerSignup": {
     "title": "Opret seerkonto",
@@ -1251,6 +1252,8 @@
     "repeatPasswordLabel": "Gentag ny adgangskode",
     "repeatPasswordPlaceholder": "Gentag ny adgangskode",
     "submit": "Nulstil",
+    "invalidLink": "Dette nulstillingslink er ugyldigt. Anmod venligst om et nyt link.",
+    "submitFailed": "Vi kunne ikke nulstille din adgangskode lige nu. Prøv igen.",
     "successTitle": "Din adgangskode er blevet nulstillet!",
     "successDescription": "Du kan nu logge ind med din nye adgangskode. Kontakt support, hvis du oplever problemer.",
     "backToLogin": "Tilbage til login"

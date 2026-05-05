@@ -35,7 +35,8 @@ export const forgetPasswordService = async (email: string) => {
       type: 'reset_password',
       expiresAt: new Date(Date.now() + Time.FIFTEEN_MINUTES),
     });
-    const resetLink = `${process.env.FRONTEND_URL}/auth/forget-password?token=${token}`;
+    const resetLink = `${process.env.FRONTEND_URL}/auth/reset-password?token=${token}`;
+    logger.info(`Reset password link for ${user[0].email}: ${resetLink}`);
 
     runInBackground(
       sendTemplateEmail({

@@ -20,24 +20,38 @@ import {
 } from "./styles";
 import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
+import { useForgetPassword } from "@/hooks/auth/useForgetPassword";
+import { ApiError } from "@/lib/http/errors/apiError";
+import { ALERT } from "@/utils/common";
 
 export default function ForgetPasswordForm() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [isSent, setIsSent] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const { mutateAsync: forgetPassword, isPending } = useForgetPassword();
 
   const resetState = useCallback(() => {
     setEmail("");
     setIsSent(false);
+    setErrorMessage("");
   }, []);
 
   const handleSubmit = useCallback(
-    (event: FormEvent<HTMLFormElement>) => {
+    async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       if (!email.trim()) return;
-      setIsSent(true);
+      setErrorMessage("");
+
+      try {
+        await forgetPassword({ email: email.trim() });
+        setIsSent(true);
+      } catch (error) {
+        const fallback = t("forgotPassword.submitFailed");
+        setErrorMessage(error instanceof ApiError ? error.message : fallback);
+      }
     },
-    [email],
+    [email, forgetPassword, t],
   );
 
   const handleResend = useCallback(() => {
@@ -66,8 +80,15 @@ export default function ForgetPasswordForm() {
                 onChange={(v) => setEmail(v as string)}
                 autoComplete={INPUT_TYPE.EMAIL}
               />
+              {errorMessage && (
+                <Description role={ALERT}>{errorMessage}</Description>
+              )}
 
-              <GenericButton type="submit" disabled={!email.trim()}>
+              <GenericButton
+                type="submit"
+                isLoading={isPending}
+                disabled={!email.trim() || isPending}
+              >
                 {t("forgotPassword.submit")}
               </GenericButton>
             </Form>
