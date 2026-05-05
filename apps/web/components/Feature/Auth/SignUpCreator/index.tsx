@@ -35,7 +35,7 @@ import Image from "@/components/UI/SafeImage";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import { MonoText } from "@/components/UI/Monotext";
 import { ALERT } from "@/utils/common";
-import { useCreatorRequestForm } from "@/hooks/Auth/useCreatorRequestForm";
+import { useCreatorRequestForm } from "@/hooks/auth/useCreatorRequestForm";
 import { PATHS } from "@/utils/path";
 
 export default function SignUpCreatorSection() {

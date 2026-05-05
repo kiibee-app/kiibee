@@ -34,7 +34,7 @@ import {
 import {
   PasswordFieldKey,
   useViewerSignUpForm,
-} from "@/hooks/Auth/useViewerSignUpForm";
+} from "@/hooks/auth/useViewerSignUpForm";
 import { REPEAT_PASSWORD } from "@/utils/Constants";
 
 export default function SignUpViewer() {
