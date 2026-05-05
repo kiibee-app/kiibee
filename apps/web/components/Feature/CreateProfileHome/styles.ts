@@ -107,8 +107,9 @@ export const StoryPanel = styled.aside`
   color: ${({ theme }) => theme.colors.primary.WHITE};
   background: linear-gradient(
     90deg,
-    ${({ theme }) => theme.colors.gredint.BLACK_90} 0%,
-    ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_MID} 10%
+    ${({ theme }) => theme.colors.neutral.GRAY_300} 0%,
+    ${({ theme }) => theme.colors.neutral.GRAY_250} 22%,
+    ${({ theme }) => theme.colors.gredint.TRANSPARENT} 100%
   );
 
   @media (max-width: 1200px) {
