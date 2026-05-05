@@ -2,20 +2,16 @@
 
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
-
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
-
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
 import { MonoText } from "@/components/UI/Monotext";
-
 import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
 import { VIEWER_FIELDS, ViewerFieldConfig } from "@/utils/signup";
 import { ALERT } from "@/utils/common";
-
 import {
   Card,
   Checkbox,
@@ -30,7 +26,6 @@ import {
   Title,
   Wrapper,
 } from "./styles";
-
 import {
   PasswordFieldKey,
   useViewerSignUpForm,
