@@ -89,7 +89,7 @@ export const CropOverlay = styled.div`
   transform: translate(-50%, -50%);
   border-radius: 50%;
   box-shadow: 0 0 0 9999px ${({ theme }) => theme.colors.neutral.GRAY_400};
-  border: 2px solid ${({ theme }) => theme.colors.primary.WHITE};
+  border: 2px solid transparent;
   pointer-events: none;
   z-index: 2;
 `;
