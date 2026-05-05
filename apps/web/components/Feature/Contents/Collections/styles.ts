@@ -19,8 +19,9 @@ export const IconButton = styled.button<{ $danger?: boolean }>`
   display: flex;
   align-items: center;
 
-  &:hover svg {
-    color: ${({ $danger, theme }) =>
+  &:hover svg path {
+    fill: ${({ $danger, theme }) =>
       $danger ? theme.colors.primary.RED : "inherit"};
+    fill-opacity: 1;
   }
 `;
