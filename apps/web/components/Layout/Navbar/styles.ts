@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import { HeaderProps, NavStyleProps } from "@/utils/profile";
+import styled, { css } from "styled-components";
 
-export const Header = styled.header`
-  position: fixed;
-  top: 0;
+export const Header = styled.header<HeaderProps>`
+  position: ${({ $position }) => $position};
+  top: ${({ $topOffset }) => $topOffset};
   left: 0;
   width: 100%;
   height: 72px;
@@ -16,9 +17,10 @@ export const Header = styled.header`
 `;
 
 export const Inner = styled.div`
-  max-width: 1440px;
+  max-width: var(--navbar-inner-max-width, 1440px);
+  width: 100%;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: var(--navbar-inner-padding, 1rem 1.5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,9 +38,19 @@ export const Logo = styled.span`
   font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
 `;
 
-export const Nav = styled.nav`
+export const Nav = styled.nav<NavStyleProps>`
   display: none;
   gap: 1.25rem;
+  align-items: center;
+  ${({ $navPosition }) =>
+    $navPosition === "right"
+      ? css`
+          margin-left: auto;
+          justify-content: flex-end;
+        `
+      : css`
+          justify-content: center;
+        `}
 
   a {
     color: ${({ theme }) => theme.colors.primary.BLACK};
@@ -70,13 +82,13 @@ export const NavItemWrapper = styled.div`
 
 export const MegaMenu = styled.div`
   position: fixed;
-  top: 72px;
+  top: calc(72px + var(--navbar-top-offset, 0px));
   left: 0;
   width: 100%;
   padding: 1.5rem 0;
   background: ${({ theme }) => theme.colors.primary.WHITE_10};
   backdrop-filter: blur(8px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 24px ${({ theme }) => theme.colors.neutral.GRAY_300};
   pointer-events: auto;
   z-index: 1000;
 `;
@@ -107,6 +119,7 @@ export const ColumnTitle = styled.div`
   font-weight: 700;
   margin-bottom: 8px;
   padding-left: 5px;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const ColumnItem = styled.a`
@@ -129,6 +142,7 @@ export const Actions = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  margin-left: 1rem;
 
   .login {
     color: ${({ theme }) => theme.colors.primary.BLACK};
