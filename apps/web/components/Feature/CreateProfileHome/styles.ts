@@ -33,6 +33,14 @@ export const HeroFrame = styled.section`
   transform: translateX(-50%);
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
+
+  @media (max-width: 900px) {
+    height: 460px;
+  }
+
+  @media (max-width: 640px) {
+    height: 420px;
+  }
 `;
 
 export const TopBar = styled.header`
@@ -121,6 +129,19 @@ export const StoryPanel = styled.aside`
     width: min(100%, 520px);
     padding: 32px 28px;
   }
+
+  @media (max-width: 640px) {
+    inset: auto 0 0 0;
+    width: 100%;
+    padding: 24px 16px 18px;
+    gap: 8px;
+    background: linear-gradient(
+      90deg,
+      ${({ theme }) => theme.colors.neutral.GRAY_300} 0%,
+      ${({ theme }) => theme.colors.neutral.GRAY_250} 14%,
+      ${({ theme }) => theme.colors.gredint.TRANSPARENT} 100%
+    );
+  }
 `;
 
 export const StoryMeta = styled.div`
@@ -140,6 +161,10 @@ export const StoryTitle = styled.h1`
 export const StoryDescription = styled.div`
   max-width: 520px;
   margin-top: 0;
+
+  @media (max-width: 640px) {
+    max-width: 100%;
+  }
 `;
 
 export const HeroMedia = styled.div`
@@ -149,5 +174,11 @@ export const HeroMedia = styled.div`
 
   img {
     filter: saturate(0.95) contrast(0.96);
+  }
+
+  @media (max-width: 640px) {
+    img {
+      object-position: center top;
+    }
   }
 `;

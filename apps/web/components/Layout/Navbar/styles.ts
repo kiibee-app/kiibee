@@ -14,6 +14,10 @@ export const Header = styled.header<HeaderProps>`
     background 180ms ease,
     backdrop-filter 180ms ease;
   z-index: 50;
+
+  @media (max-width: 640px) {
+    height: auto;
+  }
 `;
 
 export const Inner = styled.div`
@@ -24,12 +28,27 @@ export const Inner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 1024px) {
+    padding: var(--navbar-inner-tablet-padding, 0.9rem 1.5rem);
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--navbar-inner-mobile-padding, 0.75rem 1rem);
+    gap: 0.5rem;
+  }
 `;
 
 export const Left = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
 `;
 
 export const Logo = styled.span`
@@ -39,9 +58,10 @@ export const Logo = styled.span`
 `;
 
 export const Nav = styled.nav<NavStyleProps>`
-  display: none;
+  display: flex;
   gap: 1.25rem;
   align-items: center;
+  flex-wrap: nowrap;
   ${({ $navPosition }) =>
     $navPosition === "right"
       ? css`
@@ -57,6 +77,7 @@ export const Nav = styled.nav<NavStyleProps>`
     text-decoration: none;
     padding: 0.5rem 0.75rem;
     border-radius: 0.375rem;
+    white-space: nowrap;
     transition:
       background 120ms ease,
       color 120ms ease;
@@ -66,8 +87,8 @@ export const Nav = styled.nav<NavStyleProps>`
     background: ${({ theme }) => theme.colors.primary.WHITE_18};
   }
 
-  @media (min-width: 640px) {
-    display: flex;
+  @media (max-width: 640px) {
+    display: none;
   }
 `;
 
@@ -143,11 +164,20 @@ export const Actions = styled.div`
   align-items: center;
   gap: 0.75rem;
   margin-left: 1rem;
+  flex-wrap: wrap;
 
   .login {
     color: ${({ theme }) => theme.colors.primary.BLACK};
     text-decoration: none;
     padding: 0.375rem 0.75rem;
     border-radius: 0.375rem;
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    order: 2;
   }
 `;
