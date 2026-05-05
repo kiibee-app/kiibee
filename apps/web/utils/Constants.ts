@@ -85,3 +85,4 @@ export const SUBSCRIPTION_STEP = {
 export const maxReceiptCharacters = 200;
 export const maxDescriptionCharacters = 500;
 export const maxLogoNameCharacters = 100;
+export const HTTP_STATUS_UNAUTHORIZED = 401;
