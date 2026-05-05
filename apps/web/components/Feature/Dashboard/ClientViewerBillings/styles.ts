@@ -3,10 +3,14 @@ import styled from "styled-components";
 
 export const BillingShell = styled.section`
   width: 100%;
-  padding: 16px 0 0;
+  padding: 40px 30px 30px;
 
   ${media.tablet} {
-    padding: 16px 20px 0;
+    padding: 24px 20px 20px;
+  }
+
+  ${media.mobileLg} {
+    padding: 20px 16px 16px;
   }
 `;
 
@@ -116,12 +120,17 @@ export const CardLabel = styled.div`
 `;
 
 export const DefaultBadge = styled.span`
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  gap: 10px;
+  box-sizing: border-box;
   background: ${({ theme }) => theme.colors.primary.PALE_GREEN};
-  color: ${({ theme }) => theme.colors.primary.GREEN_100};
-  padding: 4px 10px;
-  font-size: 11px;
-  line-height: 1;
+  ${({ theme }) => theme.typography.Body_Small}
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  padding: 5px 10px;
+  border-radius: 5px;
   white-space: nowrap;
 `;
 
@@ -129,7 +138,7 @@ export const Actions = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 18px;
+  gap: 24px;
 
   ${media.tablet} {
     align-self: flex-end;
@@ -138,14 +147,12 @@ export const Actions = styled.div`
 `;
 
 export const IconButton = styled.button`
-  width: 20px;
-  height: 20px;
+  background: transparent;
+  border: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 0;
   padding: 0;
-  background: transparent;
   color: ${({ theme }) => theme.colors.neutral.GRAY};
   cursor: pointer;
 `;

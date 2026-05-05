@@ -10,7 +10,12 @@ import {
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { MonoText } from "@/components/UI/Monotext";
-import { DeleteIcon, EditIcon, PlusIcon, ThreeDotIcon } from "@/assets/icons";
+import {
+  DeleteIcon,
+  EditProfileIcon,
+  PlusIcon,
+  ThreeDotIcon,
+} from "@/assets/icons";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
 import {
@@ -99,7 +104,7 @@ export default function ClientViewerBillings() {
                     />
                   </CardLogoWrap>
                   <CardLabel>
-                    <MonoText $use="Body_Medium">{method.label}</MonoText>
+                    <MonoText $use="Body_SemiBold">{method.label}</MonoText>
                     {method.isDefault ? (
                       <DefaultBadge>
                         {t(
@@ -111,7 +116,7 @@ export default function ClientViewerBillings() {
                 </CardIdentity>
 
                 <ExpiryCell>
-                  <MonoText $use="Body_Medium">
+                  <MonoText $use="Body_SemiBold" color={COLORS.neutral.GRAY}>
                     {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.expires, {
                       date: method.expiresAt,
                     })}
@@ -125,7 +130,7 @@ export default function ClientViewerBillings() {
                       DASHBOARD_VIEWER_BILLINGS.paymentMethods.edit,
                     )}
                   >
-                    <EditIcon width={16} height={16} />
+                    <EditProfileIcon color={COLORS.neutral.GRAY} />
                   </IconButton>
                   <IconButton
                     type="button"
@@ -133,7 +138,7 @@ export default function ClientViewerBillings() {
                       DASHBOARD_VIEWER_BILLINGS.paymentMethods.delete,
                     )}
                   >
-                    <DeleteIcon width={12} height={14} />
+                    <DeleteIcon color={COLORS.gredint.NEAR_BLACK} />
                   </IconButton>
                   <IconButton
                     type="button"
@@ -141,7 +146,7 @@ export default function ClientViewerBillings() {
                       DASHBOARD_VIEWER_BILLINGS.paymentMethods.more,
                     )}
                   >
-                    <ThreeDotIcon />
+                    <ThreeDotIcon color={COLORS.gredint.NEAR_BLACK} />
                   </IconButton>
                 </Actions>
               </MethodRow>
