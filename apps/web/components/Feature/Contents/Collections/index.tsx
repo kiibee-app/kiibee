@@ -62,8 +62,6 @@ export default function CollectionTable(props: CollectionTableProps) {
   };
 
   const renderActions = (id: string) => {
-    if (!isCollections) return null;
-
     return (
       <ActionWrapper>
         <IconButton type={BUTTON} onClick={(e) => handleEdit(e, id)}>
@@ -115,7 +113,7 @@ export default function CollectionTable(props: CollectionTableProps) {
           );
         }
 
-        if (header === COLLECTION_COLUMNS[3].label) {
+        if (col?.key === COLLECTION_COLUMNS[3].key) {
           return renderActions(row.id);
         }
 

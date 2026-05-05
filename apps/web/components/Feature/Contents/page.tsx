@@ -78,6 +78,20 @@ export default function CreatorsContents() {
     : [];
   const [showCouponApplicableProducts, setShowCouponApplicableProducts] =
     useState(false);
+  const isCollectionContentMode = !!selectedCollection;
+
+  const visibleTabs = CONTENT_TABS.filter((tab) =>
+    isCollectionContentMode
+      ? tab.key === COLLECTIONS || tab.key === SETTINGS
+      : true,
+  );
+
+  const getTabLabel = (tab: { key: string; labelKey: string }) => {
+    if (isCollectionContentMode && tab.key === COLLECTIONS) {
+      return t("contents.tabs.contents");
+    }
+    return t(tab.labelKey);
+  };
 
   const closeCouponFlow = () => {
     setShowCouponDetails(false);
@@ -149,13 +163,14 @@ export default function CreatorsContents() {
           onCancel={() => setShowDiscardModal(true)}
           onCreateCoupon={() => setShowCouponDetails(true)}
           onSave={() => setShowSuccessModal(true)}
+          isCollectionContentMode={isCollectionContentMode}
         />
       </PageHeader>
 
       <GenericTabs
-        tabs={CONTENT_TABS.map((tab) => ({
+        tabs={visibleTabs.map((tab) => ({
           key: tab.key,
-          label: t(tab.labelKey),
+          label: getTabLabel(tab),
         }))}
         activeTab={activeTab}
         onTabChange={(tabKey) => {
