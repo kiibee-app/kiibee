@@ -226,6 +226,10 @@ export const CollectionActionsRow = styled.div`
   align-items: stretch;
   gap: ${({ theme }) => theme.spacing(2)};
   width: 100%;
+
+  ${media.desktop} {
+    flex-direction: column;
+  }
 `;
 
 export const CollectionActionColumn = styled.div`
@@ -250,6 +254,7 @@ export const CollectionActionButtonContent = styled.span`
   gap: 2px;
   min-width: 0;
   line-height: 1;
+  white-space: nowrap;
 `;
 
 export const CollectionActionButtonSubtext = styled.span`

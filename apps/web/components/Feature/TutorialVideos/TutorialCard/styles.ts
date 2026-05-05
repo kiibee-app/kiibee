@@ -130,4 +130,13 @@ export const ActionRow = styled.div`
     min-width: 0;
     white-space: nowrap;
   }
+
+  @media (max-width: 280px) {
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+      flex-basis: auto;
+    }
+  }
 `;
