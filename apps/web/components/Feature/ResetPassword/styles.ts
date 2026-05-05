@@ -52,7 +52,7 @@ export const Form = styled.form`
 export const FormMessage = styled(MonoText).attrs({
   $use: "Body_Small",
 })`
-  color: ${({ theme }) => theme.colors.system?.ERROR ?? "#b42318"};
+  color: ${({ theme }) => theme.colors.primary.RED};
   text-align: left;
 `;
 
