@@ -2,7 +2,7 @@
 
 import { SVG_XMLNS } from "@/utils/Constants";
 import { Direction, Directions } from "@/utils/ui";
-import { useDirection } from "@/utils/useDirection";
+import { useDirection } from "@/hooks/ui/useDirection";
 import COLORS from "@repo/ui/colors";
 import React from "react";
 

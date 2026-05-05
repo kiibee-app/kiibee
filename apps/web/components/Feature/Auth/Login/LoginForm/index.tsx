@@ -21,8 +21,8 @@ import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import Image from "@/components/UI/SafeImage";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
-import { useLoginFormSchema } from "@/utils/useLoginFormSchema";
-import type { LoginFormErrors } from "@/utils/authLoginFormSchema";
+import { useLoginFormSchema } from "@/hooks/form/useLoginFormSchema";
+import type { LoginFormErrors } from "@/lib/validation/auth";
 import { ALERT } from "@/utils/common";
 import {
   getPostLoginPath,

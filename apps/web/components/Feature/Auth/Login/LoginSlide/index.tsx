@@ -11,7 +11,7 @@ import {
   SlideTitle,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
-import { useSlideData } from "@/utils/useSlideData";
+import { useSlideData } from "@/hooks/landing/useSlideData";
 
 export default function LoginSlide() {
   const { slidesText, activeSlide, fallbackSlideLabel, stack, t } =
