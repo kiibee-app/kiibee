@@ -17,6 +17,8 @@ export type NavBarProps = {
   position?: "fixed" | "absolute";
   topOffset?: string;
   innerPadding?: string;
+  tabletInnerPadding?: string;
+  mobileInnerPadding?: string;
   innerMaxWidth?: string;
   navPosition?: "center" | "right";
   items?: NavBarItem[];

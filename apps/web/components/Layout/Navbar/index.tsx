@@ -30,6 +30,8 @@ export default function NavBar({
   position = "fixed",
   topOffset = "0px",
   innerPadding,
+  tabletInnerPadding,
+  mobileInnerPadding,
   innerMaxWidth,
   navPosition = "center",
   items = NAV_ITEMS,
@@ -51,12 +53,26 @@ export default function NavBar({
       style["--navbar-inner-padding"] = innerPadding;
     }
 
+    if (tabletInnerPadding) {
+      style["--navbar-inner-tablet-padding"] = tabletInnerPadding;
+    }
+
+    if (mobileInnerPadding) {
+      style["--navbar-inner-mobile-padding"] = mobileInnerPadding;
+    }
+
     if (innerMaxWidth) {
       style["--navbar-inner-max-width"] = innerMaxWidth;
     }
 
     return style;
-  }, [innerMaxWidth, innerPadding, topOffset]);
+  }, [
+    innerMaxWidth,
+    innerPadding,
+    mobileInnerPadding,
+    tabletInnerPadding,
+    topOffset,
+  ]);
 
   React.useEffect(() => {
     const handleDocClick = (e: MouseEvent) => {

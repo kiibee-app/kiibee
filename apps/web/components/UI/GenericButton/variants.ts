@@ -33,6 +33,7 @@ export const shared = css<ButtonStyleProps>`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  white-space: nowrap;
   width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "auto")};
   min-width: ${({ $minWidth }) => $minWidth ?? "0"};
   border-radius: 8px;

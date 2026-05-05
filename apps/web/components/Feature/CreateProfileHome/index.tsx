@@ -37,6 +37,8 @@ export default function CreateProfileHome() {
         <NavBar
           position="absolute"
           innerPadding="15px 110px"
+          tabletInnerPadding="12px 24px"
+          mobileInnerPadding="10px 14px"
           innerMaxWidth="none"
           navPosition="right"
           brand={
