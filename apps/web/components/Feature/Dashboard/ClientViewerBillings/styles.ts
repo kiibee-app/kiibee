@@ -93,6 +93,14 @@ export const MethodRow = styled.div`
     padding: 16px 12px;
     gap: 12px;
   }
+
+  ${media.mobileLg} {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    row-gap: 6px;
+    column-gap: 12px;
+  }
 `;
 
 export const CardIdentity = styled.div`
@@ -107,6 +115,13 @@ export const CardIdentity = styled.div`
   ${media.tablet} {
     width: auto;
     flex: 1 1 auto;
+  }
+
+  ${media.mobileLg} {
+    width: auto;
+    max-width: none;
+    flex: 0 0 auto;
+    min-width: 0;
   }
 `;
 
@@ -123,6 +138,11 @@ export const CardLabel = styled.div`
   align-items: center;
   min-width: 0;
   gap: 12px;
+
+  ${media.mobileLg} {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 `;
 
 export const DefaultBadge = styled.span`
@@ -153,6 +173,14 @@ export const Actions = styled.div`
     width: auto;
     flex: 0 0 auto;
   }
+
+  ${media.mobileLg} {
+    grid-column: 2;
+    grid-row: 1;
+    margin-left: 0;
+    gap: 16px;
+    align-self: flex-start;
+  }
 `;
 
 export const IconButton = styled.button`
@@ -180,5 +208,11 @@ export const ExpiryCell = styled.div`
   ${media.tablet} {
     width: auto;
     flex: 0 0 auto;
+  }
+
+  ${media.mobileLg} {
+    grid-column: 1;
+    grid-row: 2;
+    min-width: 0;
   }
 `;
