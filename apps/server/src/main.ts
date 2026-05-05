@@ -10,6 +10,7 @@ import { AppModule } from './app.module';
 import { pool } from './database/db';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { CORS_ALLOWED_HEADERS, CORS_HTTP_METHODS } from './utils/constant';
+import { logger } from './logger/logger';
 
 async function bootstrap() {
   try {
@@ -65,7 +66,7 @@ async function bootstrap() {
 
     console.log(`🚀 API running at http://localhost:${port}/api/v1`);
   } catch (error) {
-    console.error('❌ Failed to start server:', error);
+    logger.error('❌ Failed to start server:', error);
     process.exit(1);
   }
 }
