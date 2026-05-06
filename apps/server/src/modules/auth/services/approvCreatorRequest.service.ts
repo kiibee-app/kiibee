@@ -16,6 +16,7 @@ import { logger } from 'src/logger/logger';
 export const approveCreatorRequestService = async (
   requestId: string,
   approverUserId: string,
+  frontendBaseUrl: string,
 ) => {
   try {
     if (!requestId || !approverUserId) {
@@ -87,7 +88,7 @@ export const approveCreatorRequestService = async (
       expiresAt: new Date(Date.now() + Time.ONE_DAY),
     });
 
-    const setupLink = `${process.env.FRONTEND_URL}/creator/setup?token=${token}`;
+    const setupLink = `${frontendBaseUrl}/creator/setup?token=${token}`;
 
     runInBackground(
       sendTemplateEmail({
@@ -96,7 +97,7 @@ export const approveCreatorRequestService = async (
         templateName: templateName.APPROVED_CREATOR,
         variables: {
           name: userData.firstName,
-          guidelinesLink: `${process.env.FRONTEND_URL}/creator/guidelines`,
+          guidelinesLink: `${frontendBaseUrl}/creator/guidelines`,
           setupLink,
         },
       }),

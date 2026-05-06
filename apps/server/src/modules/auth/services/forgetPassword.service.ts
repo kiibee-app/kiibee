@@ -10,7 +10,10 @@ import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
-export const forgetPasswordService = async (email: string) => {
+export const forgetPasswordService = async (
+  email: string,
+  frontendBaseUrl: string,
+) => {
   try {
     if (!email) {
       return fail('Email is required', HttpStatus.BAD_REQUEST);
