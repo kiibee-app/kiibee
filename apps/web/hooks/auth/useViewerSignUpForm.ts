@@ -62,28 +62,32 @@ export function useViewerSignUpForm() {
     }));
   };
 
+  const getSubmitErrorMessage = () => {
+    if (passwordsDoNotMatch) {
+      return t("viewerSignup.form.passwordMismatch");
+    }
+
+    return t("viewerSignup.form.fixHighlightedFields");
+  };
+
+  const getPayload = () => ({
+    fullName: formValues.fullName.trim(),
+    email: formValues.email.trim(),
+    password: formValues.password,
+    confirmPassword: formValues.repeatPassword,
+  });
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
-
     if (!isSubmitEnabled) {
-      setFormError(
-        passwordsDoNotMatch
-          ? t("viewerSignup.form.passwordMismatch")
-          : t("viewerSignup.form.fixHighlightedFields"),
-      );
+      setFormError(getSubmitErrorMessage());
       return;
     }
-
     setFormError("");
 
     try {
-      const response = await viewerSignUp({
-        fullName: formValues.fullName.trim(),
-        email: formValues.email.trim(),
-        password: formValues.password,
-        confirmPassword: formValues.repeatPassword,
-      });
+      const response = await viewerSignUp(getPayload());
 
       persistAuthSession(response);
       router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
@@ -92,6 +96,7 @@ export function useViewerSignUpForm() {
       setFormError(apiError.message || t("viewerSignup.form.signupFailed"));
     }
   };
+
   const isPasswordField = (
     fieldKey: ViewerFieldKey,
   ): fieldKey is PasswordFieldKey =>

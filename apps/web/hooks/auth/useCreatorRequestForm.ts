@@ -39,9 +39,11 @@ export function useCreatorRequestForm(t: (key: string) => string) {
     setFormMessage("");
   };
 
-  const validateWorkLink = () => {
+  const validateWorkLink = (): boolean => {
+    const workLink = formValues.workLink.trim();
+
     try {
-      new URL(formValues.workLink.trim());
+      new URL(workLink);
       return true;
     } catch {
       setMessageTone(FORM_MESSAGE_TONE.ERROR);
