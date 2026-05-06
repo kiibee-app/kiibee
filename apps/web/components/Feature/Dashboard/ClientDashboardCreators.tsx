@@ -13,10 +13,14 @@ import { VIEW } from "@/utils/Constants";
 import CreatorsContents from "../Contents/page";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
-import { creatorProfileData } from "@/utils/dummyData/profile.data";
 import { useTranslation } from "react-i18next";
 import { PATHS } from "@/utils/path";
 import UsersContent from "../Users/UsersContent";
+import {
+  clearLoginSession,
+  getStoredLoginUserEmail,
+  useLogout,
+} from "@/hooks/auth/useLogin";
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.OVERVIEW,
@@ -31,9 +35,11 @@ export default function ClientDashboardCreators() {
   const { t } = useTranslation();
   const [open, setOpen] = useState<boolean>(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [logoutEmail, setLogoutEmail] = useState("");
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { mutateAsync: logout } = useLogout();
 
   const toggleSidebar = useCallback(() => {
     setOpen((p) => !p);
@@ -44,6 +50,7 @@ export default function ClientDashboardCreators() {
   }, []);
 
   const handleLogoutClick = useCallback(() => {
+    setLogoutEmail(getStoredLoginUserEmail());
     setShowLogoutModal(true);
   }, []);
 
@@ -51,10 +58,17 @@ export default function ClientDashboardCreators() {
     setShowLogoutModal(false);
   }, []);
 
-  const handleConfirmLogout = useCallback(() => {
+  const handleConfirmLogout = useCallback(async () => {
     setShowLogoutModal(false);
-    router.push(PATHS.AUTH_LOGIN);
-  }, [router]);
+    try {
+      await logout();
+    } catch {
+      // Always clear session and redirect even if server logout fails.
+    } finally {
+      clearLoginSession();
+      router.push(PATHS.AUTH_LOGIN);
+    }
+  }, [logout, router]);
 
   const renderHeader = () => {
     return <DashboardHeader onToggleSidebar={toggleSidebar} />;
@@ -130,7 +144,7 @@ export default function ClientDashboardCreators() {
       >
         <MonoText $use="Body_Medium">
           {t("dashboard.logoutModal.message", {
-            email: creatorProfileData.email,
+            email: logoutEmail,
           })}
         </MonoText>
       </GenericModal>

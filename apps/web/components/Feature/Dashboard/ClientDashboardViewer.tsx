@@ -17,6 +17,14 @@ import {
 } from "@/utils/SidebarItems";
 import { MonoText } from "@/components/UI/Monotext";
 import PurchasedContent from "@/components/Feature/Dashboard/ClientViewerPurchased/PurchasedContent";
+import { GenericModal } from "@/components/UI/Modals";
+import { useTranslation } from "react-i18next";
+import { PATHS } from "@/utils/path";
+import {
+  clearLoginSession,
+  getStoredLoginUserEmail,
+  useLogout,
+} from "@/hooks/auth/useLogin";
 
 const ROUTABLE_VIEWER_VIEWS = new Set<string>([
   VIEWER_VIEW_VALUES.PURCHASED,
@@ -27,10 +35,14 @@ const ROUTABLE_VIEWER_VIEWS = new Set<string>([
 ]);
 
 export default function ClientDashboardViewer() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [logoutEmail, setLogoutEmail] = useState("");
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+  const { mutateAsync: logout } = useLogout();
 
   const toggleSidebar = useCallback(() => {
     setOpen((prev) => !prev);
@@ -80,6 +92,27 @@ export default function ClientDashboardViewer() {
     [handleSelect],
   );
 
+  const handleLogoutClick = useCallback(() => {
+    setLogoutEmail(getStoredLoginUserEmail());
+    setShowLogoutModal(true);
+  }, []);
+
+  const handleCancelLogout = useCallback(() => {
+    setShowLogoutModal(false);
+  }, []);
+
+  const handleConfirmLogout = useCallback(async () => {
+    setShowLogoutModal(false);
+    try {
+      await logout();
+    } catch {
+      // Always clear session and redirect even if server logout fails.
+    } finally {
+      clearLoginSession();
+      router.push(PATHS.AUTH_LOGIN);
+    }
+  }, [logout, router]);
+
   const sectionTitle = useMemo(() => activePage, [activePage]);
 
   return (
@@ -92,6 +125,7 @@ export default function ClientDashboardViewer() {
           onClose={closeSidebar}
           activeItem={activePage}
           onSelect={handleSidebarSelect}
+          onLogout={handleLogoutClick}
           items={viewerItems}
           logoutLabel={VIEWER_LABELS.LOG_OUT}
         />
@@ -102,6 +136,27 @@ export default function ClientDashboardViewer() {
       ) : (
         <MonoText $use="H4_SemiBold">{sectionTitle}</MonoText>
       )}
+      <GenericModal
+        visible={showLogoutModal}
+        title={t("dashboard.logoutModal.title")}
+        buttonRow
+        confirmLabel={t("dashboard.logoutModal.confirm")}
+        cancelLabel={t("common.cancel")}
+        onConfirm={handleConfirmLogout}
+        onCancel={handleCancelLogout}
+        onClose={handleCancelLogout}
+        width="480px"
+        padding="40px 32px"
+        buttonAlign="center"
+        textAlign="center"
+        showCloseButton={false}
+      >
+        <MonoText $use="Body_Medium">
+          {t("dashboard.logoutModal.message", {
+            email: logoutEmail,
+          })}
+        </MonoText>
+      </GenericModal>
     </DashboardLayout>
   );
 }
