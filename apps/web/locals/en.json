@@ -1127,7 +1127,8 @@
       "search": "Search contents",
       "cancel": "Cancel",
       "save": "Save",
-      "deleteContent": "Delete content"
+      "deleteContent": "Delete content",
+      "addContent": "Add content"
     },
     "couponDetails": {
       "title": "Coupon details",
@@ -1176,6 +1177,7 @@
     "tabs": {
       "collections": "Collections",
       "appearance": "Appearance",
+      "contents": "Contents",
       "settings": "Settings",
       "coupons": "Coupons"
     },

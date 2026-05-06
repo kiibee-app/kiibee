@@ -1127,7 +1127,8 @@
       "search": "Sog indhold",
       "cancel": "Annuller",
       "save": "Gem",
-      "deleteContent": "Delete content"
+      "deleteContent": "Delete content",
+      "addContent": "Add content"
     },
     "couponDetails": {
       "title": "Kupondetaljer",
@@ -1175,6 +1176,7 @@
     },
     "tabs": {
       "collections": "Samlinger",
+      "contents": "Indhold",
       "appearance": "Udseende",
       "settings": "Indstillinger",
       "coupons": "Kuponer"
