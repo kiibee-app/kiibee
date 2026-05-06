@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { KEYBOARD_KEYS } from "@/utils/ui";
 
 type UseDropdownKeyboardOptions = {
   isOpen: boolean;
@@ -33,8 +34,8 @@ export function useDropdownKeyboard({
   const handleTriggerKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       switch (e.key) {
-        case "Enter":
-        case " ":
+        case KEYBOARD_KEYS.ENTER:
+        case KEYBOARD_KEYS.SPACE:
           e.preventDefault();
           if (isOpen) {
             setIsOpen(false);
@@ -44,17 +45,17 @@ export function useDropdownKeyboard({
             setActiveIndex(0);
           }
           break;
-        case "ArrowDown":
+        case KEYBOARD_KEYS.ARROW_DOWN:
           e.preventDefault();
           setIsOpen(true);
           setActiveIndex(0);
           break;
-        case "ArrowUp":
+        case KEYBOARD_KEYS.ARROW_UP:
           e.preventDefault();
           setIsOpen(true);
           setActiveIndex(optionsLength - 1);
           break;
-        case "Escape":
+        case KEYBOARD_KEYS.ESCAPE:
           if (isOpen) {
             setIsOpen(false);
             setActiveIndex(-1);
@@ -69,36 +70,36 @@ export function useDropdownKeyboard({
   const handleOptionKeyDown = useCallback(
     (e: React.KeyboardEvent, index: number) => {
       switch (e.key) {
-        case "ArrowDown":
+        case KEYBOARD_KEYS.ARROW_DOWN:
           e.preventDefault();
           setActiveIndex((prev) => Math.min(prev + 1, optionsLength - 1));
           break;
-        case "ArrowUp":
+        case KEYBOARD_KEYS.ARROW_UP:
           e.preventDefault();
           setActiveIndex((prev) => Math.max(prev - 1, 0));
           break;
-        case "Home":
+        case KEYBOARD_KEYS.HOME:
           e.preventDefault();
           setActiveIndex(0);
           break;
-        case "End":
+        case KEYBOARD_KEYS.END:
           e.preventDefault();
           setActiveIndex(optionsLength - 1);
           break;
-        case "Enter":
-        case " ":
+        case KEYBOARD_KEYS.ENTER:
+        case KEYBOARD_KEYS.SPACE:
           e.preventDefault();
           onSelect(index);
           setIsOpen(false);
           setActiveIndex(-1);
           triggerRef.current?.focus();
           break;
-        case "Escape":
+        case KEYBOARD_KEYS.ESCAPE:
           setIsOpen(false);
           setActiveIndex(-1);
           triggerRef.current?.focus();
           break;
-        case "Tab":
+        case KEYBOARD_KEYS.TAB:
           setIsOpen(false);
           setActiveIndex(-1);
           break;
