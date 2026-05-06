@@ -185,6 +185,27 @@ export const DASHBOARD_VIEWER_PURCHASED = {
   },
 };
 
+export const DASHBOARD_VIEWER_BILLINGS = {
+  title: "dashboard.viewerBillings.title",
+  tabs: {
+    billingHistory: "dashboard.viewerBillings.tabs.billingHistory",
+    paymentMethods: "dashboard.viewerBillings.tabs.paymentMethods",
+  },
+  billingHistory: {
+    empty: "dashboard.viewerBillings.billingHistory.empty",
+    placeholder: "dashboard.viewerBillings.billingHistory.placeholder",
+  },
+  paymentMethods: {
+    title: "dashboard.viewerBillings.paymentMethods.title",
+    addCard: "dashboard.viewerBillings.paymentMethods.addCard",
+    defaultBadge: "dashboard.viewerBillings.paymentMethods.defaultBadge",
+    expires: "dashboard.viewerBillings.paymentMethods.expires",
+    edit: "dashboard.viewerBillings.paymentMethods.edit",
+    delete: "dashboard.viewerBillings.paymentMethods.delete",
+    more: "dashboard.viewerBillings.paymentMethods.more",
+  },
+};
+
 export const CONTENTS = {
   title: "contents.title",
   actions: {
@@ -308,6 +329,7 @@ const TRANSLATION_KEYS = {
   TUTORIAL_VIDEOS,
   CREATOR_PROFILE,
   DASHBOARD_USERS,
+  DASHBOARD_VIEWER_BILLINGS,
   CONTENTS,
   SETTINGS,
   COMMON,

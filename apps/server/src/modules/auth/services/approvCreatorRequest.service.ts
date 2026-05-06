@@ -11,6 +11,7 @@ import { usersToken } from 'src/database/schema/users/usersToken.schema';
 import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
+import { logger } from 'src/logger/logger';
 
 export const approveCreatorRequestService = async (
   requestId: string,
@@ -107,7 +108,7 @@ export const approveCreatorRequestService = async (
       HttpStatus.OK,
     );
   } catch (error) {
-    console.error('Error approving creator request:', error);
+    logger.error('Error approving creator request:', error);
     if (error instanceof HttpException) {
       throw error;
     }

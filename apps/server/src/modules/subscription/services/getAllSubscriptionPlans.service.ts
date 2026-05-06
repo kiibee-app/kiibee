@@ -3,6 +3,7 @@ import { db } from 'src/database/db';
 import { plans } from 'src/database/schema';
 import { fail, success } from 'src/utils/sendResponse';
 import { eq } from 'drizzle-orm/sql/expressions/conditions';
+import { logger } from 'src/logger/logger';
 
 export const getAllSubscriptionPlansService = async () => {
   try {
@@ -25,7 +26,7 @@ export const getAllSubscriptionPlansService = async () => {
       HttpStatus.OK,
     );
   } catch (error) {
-    console.error('Error setting up creator account:', error);
+    logger.error('Error setting up creator account:', error);
 
     if (error instanceof HttpException) {
       throw error;

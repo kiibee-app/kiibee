@@ -4,6 +4,7 @@ import { creatorApplicationRequests } from 'src/database/schema/users/creatorApp
 import { fail, success } from 'src/utils/sendResponse';
 import { eq, and } from 'drizzle-orm';
 import { STATUS } from 'src/utils/constant';
+import { logger } from 'src/logger/logger';
 
 export const getCreatorRequestService = async () => {
   try {
@@ -23,7 +24,7 @@ export const getCreatorRequestService = async () => {
       HttpStatus.OK,
     );
   } catch (error) {
-    console.error('Error fetching creator requests:', error);
+    logger.error('Error fetching creator requests:', error);
 
     if (error instanceof HttpException) {
       throw error;
