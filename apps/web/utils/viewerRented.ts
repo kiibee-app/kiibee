@@ -22,6 +22,18 @@ import {
 
 export type RentedSectionKey = "collections" | "videos" | "audios" | "pdfs";
 
+export const RENTED_MODES = {
+  PURCHASED: "purchased",
+  CURRENTLY: "currently",
+  PREVIOUSLY: "previously",
+} as const;
+
+export const RENTED_MEDIA_TYPES = {
+  VIDEO: "video",
+  AUDIO: "audio",
+  PDF: "pdf",
+} as const;
+
 type ViewerRentedMediaSection = {
   key: Exclude<RentedSectionKey, "collections">;
   title: string;
@@ -100,23 +112,23 @@ export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
 }
 
 export function getMediaLabel(type: RentedMediaItem["mediaType"]) {
-  if (type === "audio") return "Audio";
-  if (type === "pdf") return "PDF";
+  if (type === RENTED_MEDIA_TYPES.AUDIO) return "Audio";
+  if (type === RENTED_MEDIA_TYPES.PDF) return "PDF";
   return "Video";
 }
 
 export function getMediaAction(type: RentedMediaItem["mediaType"]) {
-  if (type === "audio") return "Play audio";
-  if (type === "pdf") return "Open pdf";
+  if (type === RENTED_MEDIA_TYPES.AUDIO) return "Play audio";
+  if (type === RENTED_MEDIA_TYPES.PDF) return "Open pdf";
   return "Play video";
 }
 
 export function getRentedContentSources(
   mode: RentedMode,
 ): RentedContentSources {
-  if (mode === "purchased") return PURCHASED_SOURCES;
+  if (mode === RENTED_MODES.PURCHASED) return PURCHASED_SOURCES;
 
-  if (mode === "currently") {
+  if (mode === RENTED_MODES.CURRENTLY) {
     return {
       collections: CURRENT_RENTED_COLLECTIONS,
       videos: CURRENT_RENTED_VIDEOS,
@@ -134,13 +146,13 @@ export function getRentedContentSources(
 }
 
 export function getCollectionBadgeText(mode: RentedMode) {
-  if (mode === "purchased") return "Owned";
-  if (mode === "currently") return "In rental";
+  if (mode === RENTED_MODES.PURCHASED) return "Owned";
+  if (mode === RENTED_MODES.CURRENTLY) return "In rental";
   return "Rented";
 }
 
 export function getCollectionPrimaryActionText(mode: RentedMode) {
-  if (mode === "purchased") return "See content";
+  if (mode === RENTED_MODES.PURCHASED) return "See content";
   return "Buy xx kr";
 }
 

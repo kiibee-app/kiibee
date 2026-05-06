@@ -40,6 +40,8 @@ import {
 } from "./styles";
 import {
   ACTIVE_RENTAL_TEXT,
+  RENTED_MEDIA_TYPES,
+  RENTED_MODES,
   RENTED_BUTTON_TEXT,
   RENTED_MEDIA_SECTIONS,
   filterCollections,
@@ -58,11 +60,11 @@ type Props = {
 };
 
 function MediaTypeIcon({ type }: { type: RentedMediaItem["mediaType"] }) {
-  if (type === "audio")
+  if (type === RENTED_MEDIA_TYPES.AUDIO)
     return (
       <AudioFileIcon width={22} height={22} color={COLORS.neutral.BLACK} />
     );
-  if (type === "pdf")
+  if (type === RENTED_MEDIA_TYPES.PDF)
     return <PdfFileIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
   return <VideoIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
 }
@@ -71,8 +73,8 @@ export default function RentedContent({ title, mode }: Props) {
   const [searchValue] = useState("");
   const { getVisibleItems, canSlide, moveNext } =
     useViewerRentedSectionPagination();
-  const isCurrent = mode === "currently";
-  const isPurchased = mode === "purchased";
+  const isCurrent = mode === RENTED_MODES.CURRENTLY;
+  const isPurchased = mode === RENTED_MODES.PURCHASED;
   const sources = useMemo(() => getRentedContentSources(mode), [mode]);
 
   const filteredCollections = useMemo(

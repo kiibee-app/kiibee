@@ -26,6 +26,7 @@ import {
 } from "@/hooks/auth/useLogin";
 import ClientViewerBillings from "@/components/Feature/Dashboard/ClientViewerBillings";
 import RentedContent from "@/components/Feature/Dashboard/ViewerRented/RentedContent";
+import { RENTED_MODES } from "@/utils/viewerRented";
 
 const ROUTABLE_VIEWER_VIEWS = new Set<string>([
   VIEWER_VIEW_VALUES.PURCHASED,
@@ -139,11 +140,11 @@ export default function ClientDashboardViewer() {
       }
     >
       {activePage === VIEWER_LABELS.PURCHASED ? (
-        <RentedContent title={sectionTitle} mode="purchased" />
+        <RentedContent title={sectionTitle} mode={RENTED_MODES.PURCHASED} />
       ) : activePage === VIEWER_LABELS.CURRENTLY_RENTED ? (
-        <RentedContent title={sectionTitle} mode="currently" />
+        <RentedContent title={sectionTitle} mode={RENTED_MODES.CURRENTLY} />
       ) : activePage === VIEWER_LABELS.PREVIOUSLY_RENTED ? (
-        <RentedContent title={sectionTitle} mode="previously" />
+        <RentedContent title={sectionTitle} mode={RENTED_MODES.PREVIOUSLY} />
       ) : activePage === VIEWER_LABELS.BILLINGS ? (
         <ClientViewerBillings />
       ) : (
