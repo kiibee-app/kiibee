@@ -44,7 +44,29 @@ export const Row = styled.div`
   align-items: center;
 `;
 
+export const AvatarEditButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%) scale(0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  opacity: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  z-index: 2;
+`;
+
 export const Avatar = styled.div`
+  position: relative;
   width: 120px;
   height: 120px;
   border-radius: 9999px;
@@ -52,6 +74,32 @@ export const Avatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: ${(p) => p.theme.colors.neutral.GRAY_400};
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
+  &:hover ${AvatarEditButton} {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+`;
+
+export const AvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const Fields = styled.div`

@@ -288,6 +288,9 @@ importers:
       react-i18next:
         specifier: ^17.0.2
         version: 17.0.2(i18next@26.0.3(typescript@5.9.2))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.2)
+      react-image-crop:
+        specifier: ^11.0.10
+        version: 11.0.10(react@19.2.4)
       react-toastify:
         specifier: ^11.1.0
         version: 11.1.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -8286,6 +8289,14 @@ packages:
       typescript:
         optional: true
 
+  react-image-crop@11.0.10:
+    resolution:
+      {
+        integrity: sha512-+5FfDXUgYLLqBh1Y/uQhIycpHCbXkI50a+nbfkB1C0xXXUTwkisHDo2QCB1SQJyHCqIuia4FeyReqXuMDKWQTQ==,
+      }
+    peerDependencies:
+      react: ">=16.13.1"
+
   react-is@16.13.1:
     resolution:
       {
@@ -14691,6 +14702,10 @@ snapshots:
     optionalDependencies:
       react-dom: 19.2.4(react@19.2.4)
       typescript: 5.9.2
+
+  react-image-crop@11.0.10(react@19.2.4):
+    dependencies:
+      react: 19.2.4
 
   react-is@16.13.1: {}
 
