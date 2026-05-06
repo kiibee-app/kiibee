@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon, ChipCloseIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
@@ -26,9 +26,12 @@ import {
   COLLECTION_OPTIONS,
   CONTENT_OPTIONS,
 } from "@/utils/dummyData/couponApplicableProducts";
+import { CouponFormState } from "@/types/collectionsType";
 
 type CouponApplicableProductsModalProps = {
   visible: boolean;
+  form: CouponFormState;
+  setForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
   onBack: () => void;
   onClose: () => void;
   onNext: () => void;
@@ -49,17 +52,13 @@ const applicableProductFields = [
 
 export default function CouponApplicableProductsModal({
   visible,
+  form,
+  setForm,
   onBack,
   onClose,
   onNext,
 }: CouponApplicableProductsModalProps) {
   const { t } = useTranslation();
-  const [selectedCollection, setSelectedCollection] = useState(
-    COLLECTION_OPTIONS[0].value,
-  );
-  const [selectedContent, setSelectedContent] = useState(
-    CONTENT_OPTIONS[0].value,
-  );
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -68,10 +67,17 @@ export default function CouponApplicableProductsModal({
 
   const handleApplicableProductChange = (fieldKey: string, value: string) => {
     if (fieldKey === COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS) {
-      setSelectedCollection(value);
+      setForm((prev) => ({
+        ...prev,
+        collection: value,
+      }));
       return;
     }
-    setSelectedContent(value);
+
+    setForm((prev) => ({
+      ...prev,
+      content: value,
+    }));
   };
 
   return (
@@ -128,8 +134,8 @@ export default function CouponApplicableProductsModal({
                   value={
                     field.key ===
                     COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
-                      ? selectedCollection
-                      : selectedContent
+                      ? form.collection
+                      : form.content
                   }
                   onChange={(value) =>
                     handleApplicableProductChange(field.key, value)

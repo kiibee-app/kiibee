@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useId, useState } from "react";
+import React, { useId } from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
@@ -21,9 +21,13 @@ import {
   CodesMetaRow,
   CouponCodesInput,
 } from "./styles";
+import { CouponFormState } from "@/types/collectionsType";
 
 type CouponCodesModalProps = {
   visible: boolean;
+  form: CouponFormState;
+  setForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
+
   onBack: () => void;
   onClose: () => void;
   onNext: () => void;
@@ -31,6 +35,8 @@ type CouponCodesModalProps = {
 
 export default function CouponCodesModal({
   visible,
+  form,
+  setForm,
   onBack,
   onClose,
   onNext,
@@ -38,7 +44,6 @@ export default function CouponCodesModal({
   const { t } = useTranslation();
   const codesId = useId();
   const helperId = useId();
-  const [codes, setCodes] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -75,11 +80,13 @@ export default function CouponCodesModal({
             <HelperText>{t("contents.couponCodes.description")}</HelperText>
             <CouponCodesInput
               id={codesId}
-              value={codes}
+              value={form.codes}
               maxLength={COUPON_CODES_LIMIT}
               aria-describedby={helperId}
               placeholder={t("contents.couponCodes.placeholders.codes")}
-              onChange={(event) => setCodes(event.target.value)}
+              onChange={(event) =>
+                setForm((prev) => ({ ...prev, codes: event.target.value }))
+              }
             />
             <CodesMetaRow id={helperId}>
               <CodesHelperText>
