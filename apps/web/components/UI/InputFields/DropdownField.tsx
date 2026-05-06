@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from "react";
+import React, { useId, useRef, useState, useMemo } from "react";
 import {
   Container,
   Label,
@@ -15,6 +15,7 @@ import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { SelectedCheckIcon } from "@/assets/icons";
 import { Directions } from "@/utils/ui";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { useDropdownKeyboard } from "@/hooks/useDropdownKeyboard";
 
 export type OptionItem = {
   value: string;
@@ -41,23 +42,55 @@ export default function DropdownField({
   renderSelectedValue,
 }: Props) {
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  useClickOutside({ ref, enabled: open, handler: () => setOpen(false) });
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
+  const uid = useId();
+  const listboxId = `dropdown-listbox-${uid}`;
 
   const selected = useMemo(() => {
     return options.find((o) => o.value === value) || options[0] || null;
   }, [options, value]);
 
+  const {
+    activeIndex,
+    optionRefs,
+    handleTriggerKeyDown,
+    handleOptionKeyDown,
+    resetActiveIndex,
+  } = useDropdownKeyboard({
+    isOpen: open,
+    setIsOpen: setOpen,
+    optionsLength: options.length,
+    onSelect: (index) => onChange?.(options[index].value),
+    triggerRef,
+  });
+
+  useClickOutside({
+    ref: containerRef,
+    enabled: open,
+    handler: () => {
+      setOpen(false);
+      resetActiveIndex();
+    },
+  });
+
   return (
-    <Container ref={ref} style={{ position: "relative" }}>
+    <Container ref={containerRef} style={{ position: "relative" }}>
       {label && <Label as={MonoText}>{label}</Label>}
 
       <div style={{ position: "relative" }}>
         <Field
-          onClick={() => setOpen((s) => !s)}
-          role="button"
+          ref={triggerRef as React.Ref<HTMLDivElement>}
+          onClick={() => {
+            setOpen((s) => !s);
+            resetActiveIndex();
+          }}
+          onKeyDown={handleTriggerKeyDown}
+          role="combobox"
+          tabIndex={0}
           aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-controls={listboxId}
         >
           <Selected>
             {renderSelectedValue ? (
@@ -77,15 +110,24 @@ export default function DropdownField({
         </Field>
 
         {open && (
-          <Menu role="listbox">
-            {options.map((opt) => (
+          <Menu role="listbox" id={listboxId}>
+            {options.map((opt, i) => (
               <Item
                 key={opt.value}
+                ref={(el) => {
+                  optionRefs.current[i] = el;
+                }}
                 type="button"
+                role="option"
+                tabIndex={-1}
+                aria-selected={activeIndex === i}
                 onClick={() => {
                   onChange?.(opt.value);
                   setOpen(false);
+                  resetActiveIndex();
+                  triggerRef.current?.focus();
                 }}
+                onKeyDown={(e) => handleOptionKeyDown(e, i)}
               >
                 <ItemContent>
                   {opt.label || opt.labelKey || opt.value}

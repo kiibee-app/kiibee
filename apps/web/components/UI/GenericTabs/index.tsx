@@ -10,6 +10,7 @@ import {
   TabButton,
   TabsRow,
 } from "./styles";
+import { useTabsKeyboard } from "@/hooks/useTabsKeyboard";
 
 type GenericTabItem<T extends string> = {
   key: T;
@@ -31,6 +32,7 @@ type GenericTabsProps<T extends string> = {
   activeTab: T;
   onTabChange: (key: T) => void;
   search?: SearchConfig;
+  tabPanelId?: string;
 };
 
 export default function GenericTabs<T extends string>({
@@ -38,10 +40,16 @@ export default function GenericTabs<T extends string>({
   activeTab,
   onTabChange,
   search,
+  tabPanelId,
 }: GenericTabsProps<T>) {
   const theme = useTheme();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const isSearchOpen = search?.alwaysOpen ? true : !!search?.open;
+
+  const { tabRefs, handleTabKeyDown } = useTabsKeyboard({
+    tabs,
+    onTabChange,
+  });
 
   useEffect(() => {
     if (isSearchOpen) {
@@ -50,13 +58,21 @@ export default function GenericTabs<T extends string>({
   }, [isSearchOpen]);
 
   return (
-    <TabsRow>
-      {tabs.map((tab) => (
+    <TabsRow role="tablist">
+      {tabs.map((tab, i) => (
         <TabButton
           key={tab.key}
+          ref={(el) => {
+            tabRefs.current[i] = el;
+          }}
           type="button"
+          role="tab"
+          tabIndex={activeTab === tab.key ? 0 : -1}
+          aria-selected={activeTab === tab.key}
+          aria-controls={tabPanelId ?? `tabpanel-${tab.key}`}
           $active={activeTab === tab.key}
           onClick={() => onTabChange(tab.key)}
+          onKeyDown={(e) => handleTabKeyDown(e, i)}
         >
           {tab.label}
         </TabButton>
