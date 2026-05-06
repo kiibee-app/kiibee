@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type UseQuerySyncedTabParams<T extends string> = {
@@ -19,81 +19,42 @@ export function useQuerySyncedTab<T extends string>({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const validTabSet = useMemo(() => new Set(validTabs), [validTabs]);
+  const searchParamsString = searchParams?.toString() ?? "";
 
-  const validTabSet = useMemo(() => new Set<T>(validTabs), [validTabs]);
+  const activeTab = useMemo(() => {
+    const params = new URLSearchParams(searchParamsString);
+    const tabParam = params.get(queryKey);
 
-  const tabFromQuery = useMemo(() => {
-    const tabParam = searchParams?.get(queryKey);
     if (tabParam && validTabSet.has(tabParam as T)) {
       return tabParam as T;
     }
     return defaultTab;
-  }, [defaultTab, queryKey, searchParams, validTabSet]);
+  }, [searchParamsString, queryKey, validTabSet, defaultTab]);
 
-  const [activeTab, setActiveTab] = useState<T>(tabFromQuery);
+  const buildUrl = useCallback(
+    (tab: T) => {
+      const params = new URLSearchParams(searchParamsString);
 
-  useEffect(() => {
-    setActiveTab(tabFromQuery);
-  }, [tabFromQuery]);
+      cleanupQueryKeys.forEach((key) => params.delete(key));
 
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams?.toString() ?? "");
-    let hasChanges = false;
-
-    cleanupQueryKeys.forEach((key) => {
-      if (params.has(key)) {
-        params.delete(key);
-        hasChanges = true;
-      }
-    });
-
-    const currentTabParam = searchParams?.get(queryKey);
-    const expectedTabParam = tabFromQuery === defaultTab ? null : tabFromQuery;
-    if (currentTabParam !== expectedTabParam) {
-      if (expectedTabParam) {
-        params.set(queryKey, expectedTabParam);
-      } else {
+      if (tab === defaultTab) {
         params.delete(queryKey);
+      } else {
+        params.set(queryKey, tab);
       }
-      hasChanges = true;
-    }
 
-    if (!hasChanges) return;
-
-    const nextQuery = params.toString();
-    router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname, {
-      scroll: false,
-    });
-  }, [
-    cleanupQueryKeys,
-    defaultTab,
-    pathname,
-    queryKey,
-    router,
-    searchParams,
-    tabFromQuery,
-  ]);
+      const query = params.toString();
+      return query ? `${pathname}?${query}` : pathname;
+    },
+    [searchParamsString, cleanupQueryKeys, defaultTab, queryKey, pathname],
+  );
 
   const setActiveTabAndQuery = useCallback(
-    (tabKey: T) => {
-      setActiveTab(tabKey);
-
-      const params = new URLSearchParams(searchParams?.toString() ?? "");
-      cleanupQueryKeys.forEach((key) => {
-        params.delete(key);
-      });
-      if (tabKey === defaultTab) {
-        params.delete(queryKey);
-      } else {
-        params.set(queryKey, tabKey);
-      }
-
-      const nextQuery = params.toString();
-      router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname, {
-        scroll: false,
-      });
+    (tab: T) => {
+      router.replace(buildUrl(tab), { scroll: false });
     },
-    [cleanupQueryKeys, defaultTab, pathname, queryKey, router, searchParams],
+    [router, buildUrl],
   );
 
   return {
