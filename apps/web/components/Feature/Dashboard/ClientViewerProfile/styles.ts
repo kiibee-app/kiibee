@@ -30,6 +30,10 @@ export const SaveButton = styled(GenericButton)`
   border-radius: 8px;
 `;
 
+export const PasswordButton = styled(GenericButton)`
+  width: 236px;
+`;
+
 export const AvatarPlaceholder = styled.div`
   width: 120px;
   height: 120px;
@@ -72,8 +76,16 @@ export const PasswordRow = styled.div`
   gap: 18px;
   align-items: end;
 
+  ${PasswordButton} {
+    justify-self: end;
+  }
+
   ${media.mobile} {
     grid-template-columns: 1fr;
+
+    ${PasswordButton} {
+      justify-self: start;
+    }
   }
 `;
 

@@ -3,7 +3,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
-import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
@@ -13,6 +12,7 @@ import {
   Form,
   HeaderRow,
   InlineLabel,
+  PasswordButton,
   PasswordRow,
   ProfileSummary,
   SaveButton,
@@ -68,9 +68,9 @@ export default function ClientViewerProfile() {
 
         <PasswordRow>
           <InlineLabel>{t("creatorProfile.passwordLabel")}</InlineLabel>
-          <GenericButton variant={VARIANT.PRIMARY}>
+          <PasswordButton variant={VARIANT.PRIMARY}>
             {t("creatorProfile.changePassword")}
-          </GenericButton>
+          </PasswordButton>
         </PasswordRow>
       </Form>
     </Container>
