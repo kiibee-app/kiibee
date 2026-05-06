@@ -18,6 +18,7 @@ export function useLoginForm() {
   const router = useRouter();
   const loginSchema = useLoginFormSchema();
   const { mutateAsync: login, isPending } = useLogin();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
@@ -29,20 +30,11 @@ export function useLoginForm() {
     setFormError("");
   };
 
-  const getValidationErrors = (error: z.ZodError): LoginFormErrors => {
-    const tree = z.treeifyError(error) as ZodTreeNode;
-
-    return {
-      email: tree.properties?.email?.errors?.[0],
-      password: tree.properties?.password?.errors?.[0],
-    };
-  };
-
   const handleEmailChange = (value: string) => {
     setEmail(value);
 
     if (fieldErrors.email || formError) {
-      setFieldErrors((prev) => ({ ...prev, email: undefined }));
+      setFieldErrors((p) => ({ ...p, email: undefined }));
       setFormError("");
     }
   };
@@ -51,9 +43,18 @@ export function useLoginForm() {
     setPassword(value);
 
     if (fieldErrors.password || formError) {
-      setFieldErrors((prev) => ({ ...prev, password: undefined }));
+      setFieldErrors((p) => ({ ...p, password: undefined }));
       setFormError("");
     }
+  };
+
+  const getValidationErrors = (error: z.ZodError): LoginFormErrors => {
+    const tree = z.treeifyError(error) as ZodTreeNode;
+
+    return {
+      email: tree.properties?.email?.errors?.[0],
+      password: tree.properties?.password?.errors?.[0],
+    };
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
