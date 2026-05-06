@@ -7,5 +7,8 @@ export default defineConfig({
   out: './src/database/migrations',
   dbCredentials: {
     url: process.env.DATABASE_URL!,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   },
 });
