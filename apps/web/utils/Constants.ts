@@ -93,3 +93,5 @@ export const CARD_BRANDS = {
 } as const;
 
 export type CardBrand = (typeof CARD_BRANDS)[keyof typeof CARD_BRANDS];
+
+export const POINTER_DOWN = "pointerdown";
