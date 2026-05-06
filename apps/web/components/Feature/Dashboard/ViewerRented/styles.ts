@@ -136,7 +136,7 @@ export const PassiveActionBlock = styled.div`
 
 export const MediaGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   padding-left: 10px;
   align-items: stretch;
@@ -147,6 +147,18 @@ export const MediaGrid = styled.div`
 
   > * > div:last-child {
     margin-top: auto;
+  }
+
+  ${media.desktopMd} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  ${media.tablet} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  ${media.mobileLg} {
+    grid-template-columns: 1fr;
   }
 `;
 

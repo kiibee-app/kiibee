@@ -40,6 +40,7 @@ import {
 } from "./styles";
 import {
   ACTIVE_RENTAL_TEXT,
+  RENTED_SECTION_KEYS,
   RENTED_MEDIA_TYPES,
   RENTED_MODES,
   RENTED_BUTTON_TEXT,
@@ -98,30 +99,30 @@ export default function RentedContent({ title, mode }: Props) {
   );
 
   const visibleCollections = useMemo(
-    () => getVisibleItems("collections", filteredCollections),
+    () => getVisibleItems(RENTED_SECTION_KEYS.COLLECTIONS, filteredCollections),
     [filteredCollections, getVisibleItems],
   );
   const visibleVideos = useMemo(
-    () => getVisibleItems("videos", filteredVideos),
+    () => getVisibleItems(RENTED_SECTION_KEYS.VIDEOS, filteredVideos),
     [filteredVideos, getVisibleItems],
   );
   const visibleAudios = useMemo(
-    () => getVisibleItems("audios", filteredAudios),
+    () => getVisibleItems(RENTED_SECTION_KEYS.AUDIOS, filteredAudios),
     [filteredAudios, getVisibleItems],
   );
   const visiblePdfs = useMemo(
-    () => getVisibleItems("pdfs", filteredPdfs),
+    () => getVisibleItems(RENTED_SECTION_KEYS.PDFS, filteredPdfs),
     [filteredPdfs, getVisibleItems],
   );
   const sectionTotals = {
-    videos: filteredVideos.length,
-    audios: filteredAudios.length,
-    pdfs: filteredPdfs.length,
+    [RENTED_SECTION_KEYS.VIDEOS]: filteredVideos.length,
+    [RENTED_SECTION_KEYS.AUDIOS]: filteredAudios.length,
+    [RENTED_SECTION_KEYS.PDFS]: filteredPdfs.length,
   } as const;
   const sectionItems = {
-    videos: visibleVideos,
-    audios: visibleAudios,
-    pdfs: visiblePdfs,
+    [RENTED_SECTION_KEYS.VIDEOS]: visibleVideos,
+    [RENTED_SECTION_KEYS.AUDIOS]: visibleAudios,
+    [RENTED_SECTION_KEYS.PDFS]: visiblePdfs,
   } as const;
 
   return (
@@ -136,9 +137,24 @@ export default function RentedContent({ title, mode }: Props) {
           <SectionTitle>Collections</SectionTitle>
           <SectionArrow
             type="button"
-            disabled={!canSlide("collections", filteredCollections.length)}
-            aria-disabled={!canSlide("collections", filteredCollections.length)}
-            onClick={() => moveNext("collections", filteredCollections.length)}
+            disabled={
+              !canSlide(
+                RENTED_SECTION_KEYS.COLLECTIONS,
+                filteredCollections.length,
+              )
+            }
+            aria-disabled={
+              !canSlide(
+                RENTED_SECTION_KEYS.COLLECTIONS,
+                filteredCollections.length,
+              )
+            }
+            onClick={() =>
+              moveNext(
+                RENTED_SECTION_KEYS.COLLECTIONS,
+                filteredCollections.length,
+              )
+            }
           >
             <LeftIcon />
           </SectionArrow>

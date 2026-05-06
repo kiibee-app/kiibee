@@ -4,14 +4,15 @@ import { useCallback, useState } from "react";
 import {
   paginateSectionItems,
   RENTED_PAGE_SIZE,
+  RENTED_SECTION_KEYS,
   type RentedSectionKey,
 } from "@/utils/viewerRented";
 
 const INITIAL_PAGE_START: Record<RentedSectionKey, number> = {
-  collections: 0,
-  videos: 0,
-  audios: 0,
-  pdfs: 0,
+  [RENTED_SECTION_KEYS.COLLECTIONS]: 0,
+  [RENTED_SECTION_KEYS.VIDEOS]: 0,
+  [RENTED_SECTION_KEYS.AUDIOS]: 0,
+  [RENTED_SECTION_KEYS.PDFS]: 0,
 };
 
 export function useViewerRentedSectionPagination() {

@@ -34,6 +34,13 @@ export const RENTED_MEDIA_TYPES = {
   PDF: "pdf",
 } as const;
 
+export const RENTED_SECTION_KEYS = {
+  COLLECTIONS: "collections",
+  VIDEOS: "videos",
+  AUDIOS: "audios",
+  PDFS: "pdfs",
+} as const;
+
 type ViewerRentedMediaSection = {
   key: Exclude<RentedSectionKey, "collections">;
   title: string;
@@ -63,16 +70,16 @@ const PURCHASED_SOURCES: RentedContentSources = {
 };
 
 export const RENTED_MEDIA_SECTIONS: ViewerRentedMediaSection[] = [
-  { key: "videos", title: "Videos" },
-  { key: "audios", title: "Audios" },
-  { key: "pdfs", title: "PDF" },
+  { key: RENTED_SECTION_KEYS.VIDEOS, title: "Videos" },
+  { key: RENTED_SECTION_KEYS.AUDIOS, title: "Audios" },
+  { key: RENTED_SECTION_KEYS.PDFS, title: "PDF" },
 ];
 
 export const RENTED_PAGE_SIZE: Record<RentedSectionKey, number> = {
-  collections: 2,
-  videos: 4,
-  audios: 4,
-  pdfs: 4,
+  [RENTED_SECTION_KEYS.COLLECTIONS]: 2,
+  [RENTED_SECTION_KEYS.VIDEOS]: 4,
+  [RENTED_SECTION_KEYS.AUDIOS]: 4,
+  [RENTED_SECTION_KEYS.PDFS]: 4,
 };
 
 export function paginateSectionItems<T>(
