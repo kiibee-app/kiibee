@@ -63,7 +63,7 @@ async function bootstrap() {
 
     await app.register(helmet);
 
-    const port = configService.get<number>('PORT', 4001);
+    const port = Number(process.env.PORT) || 4001;
     await app.listen(port, '0.0.0.0');
 
     console.log(`🚀 API running at http://localhost:${port}/api/v1`);
