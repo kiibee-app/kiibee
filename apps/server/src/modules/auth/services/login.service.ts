@@ -5,6 +5,7 @@ import { db } from 'src/database/db';
 import { users, userSessions } from 'src/database/schema';
 import { success, fail } from 'src/utils/sendResponse';
 import { LoginDto } from '../dto/login.dto';
+import { HttpStatus } from '@nestjs/common';
 
 export const loginService = async (
   loginData: LoginDto,
@@ -17,7 +18,7 @@ export const loginService = async (
   const normalizedEmail = email?.toLowerCase().trim();
 
   if (!normalizedEmail || !password) {
-    return fail('Email and password are required', 400);
+    return fail('Email and password are required', HttpStatus.BAD_REQUEST);
   }
 
   const user = await db.query.users.findFirst({
@@ -38,13 +39,13 @@ export const loginService = async (
   }
 
   if (user.status !== 'active') {
-    return fail('Account is not active', 403);
+    return fail('Account is not active', HttpStatus.FORBIDDEN);
   }
 
   const isPasswordValid = await bcrypt.compare(password, user.passwordHash!);
 
   if (!isPasswordValid) {
-    return fail('Invalid email or password', 401);
+    return fail('Invalid email or password', HttpStatus.UNAUTHORIZED);
   }
 
   const refreshTokenHash = await bcrypt.hash(refreshToken, 12);
@@ -63,5 +64,9 @@ export const loginService = async (
 
   const { passwordHash, ...userWithoutPassword } = user;
 
-  return success(userWithoutPassword, 'Login successful', 200);
+  return success(
+    userWithoutPassword,
+    'Login successful',
+    HttpStatus.INTERNAL_SERVER_ERROR,
+  );
 };
