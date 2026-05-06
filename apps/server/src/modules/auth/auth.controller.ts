@@ -108,6 +108,7 @@ export class AuthController {
       const result = await this.authService.refresh({
         userId: payload.sub,
         email: payload.email,
+        refreshToken,
       });
       return result;
     } catch (error) {
