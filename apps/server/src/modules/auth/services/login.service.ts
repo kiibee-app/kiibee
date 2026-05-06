@@ -37,7 +37,7 @@ export const loginService = async (
     return fail('Invalid email or password', 401);
   }
 
-  if (user.status !== 'active' && user.status !== 'pending_setup') {
+  if (user.status !== 'active') {
     return fail('Account is not active', 403);
   }
 
