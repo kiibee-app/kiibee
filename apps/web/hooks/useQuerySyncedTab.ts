@@ -19,7 +19,7 @@ export function useQuerySyncedTab<T extends string>({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const validTabSet = useMemo(() => new Set(validTabs), [validTabs]);
+  const validTabSet = useMemo(() => new Set<T>(validTabs), [validTabs]);
   const searchParamsString = searchParams?.toString() ?? "";
 
   const activeTab = useMemo(() => {
@@ -30,7 +30,7 @@ export function useQuerySyncedTab<T extends string>({
       return tabParam as T;
     }
     return defaultTab;
-  }, [searchParamsString, queryKey, validTabSet, defaultTab]);
+  }, [defaultTab, queryKey, searchParamsString, validTabSet]);
 
   const buildUrl = useCallback(
     (tab: T) => {
