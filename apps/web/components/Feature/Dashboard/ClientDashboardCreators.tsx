@@ -15,6 +15,7 @@ import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import { creatorProfileData } from "@/utils/dummyData/profile.data";
 import { useTranslation } from "react-i18next";
+import { clearAuthSession } from "@/lib/auth/authSession";
 import { PATHS } from "@/utils/path";
 import UsersContent from "../Users/UsersContent";
 
@@ -53,7 +54,8 @@ export default function ClientDashboardCreators() {
 
   const handleConfirmLogout = useCallback(() => {
     setShowLogoutModal(false);
-    router.push(PATHS.AUTH_LOGIN);
+    clearAuthSession();
+    router.replace(PATHS.AUTH_LOGIN);
   }, [router]);
 
   const renderHeader = () => {

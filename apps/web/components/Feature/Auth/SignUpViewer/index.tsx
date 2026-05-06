@@ -11,6 +11,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
 import { MonoText } from "@/components/UI/Monotext";
 import { useViewerSignUp } from "@/hooks/auth/useViewerSignUp";
+import { persistAuthSession } from "@/lib/auth/authSession";
 import { normalizeApiError } from "@/lib/http/errors/apiError";
 import { ALERT } from "@/utils/common";
 import { PATHS } from "@/utils/path";
@@ -97,15 +98,7 @@ export default function SignUpViewer() {
         confirmPassword: formValues.repeatPassword,
       });
 
-      const { accessToken, refreshToken } = response.data ?? {};
-
-      if (accessToken) {
-        window.localStorage.setItem("kiibee.accessToken", accessToken);
-      }
-
-      if (refreshToken) {
-        window.localStorage.setItem("kiibee.refreshToken", refreshToken);
-      }
+      persistAuthSession(response);
 
       router.push("/auth/signup-viewer/preferences");
     } catch (error) {
