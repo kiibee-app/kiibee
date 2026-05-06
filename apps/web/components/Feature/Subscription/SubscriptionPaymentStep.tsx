@@ -130,8 +130,18 @@ export default function SubscriptionPaymentStep({
             onClick={() => setPaymentMethod(PAYMENT_METHODS.CARD)}
           >
             <PaymentCardLogoWrap>
-              <Image src={visaLogo} alt="" width={31} height={10} />
-              <Image src={masterCardLogo} alt="" width={21} height={16} />
+              <Image
+                src={visaLogo}
+                alt="Visa credit card"
+                width={31}
+                height={10}
+              />
+              <Image
+                src={masterCardLogo}
+                alt="Mastercard credit card"
+                width={21}
+                height={16}
+              />
             </PaymentCardLogoWrap>
             <RadioDot $active={paymentMethod === PAYMENT_METHODS.CARD} />
           </PaymentMethodButton>
@@ -144,7 +154,12 @@ export default function SubscriptionPaymentStep({
             onClick={() => setPaymentMethod(PAYMENT_METHODS.MOBILEPAY)}
           >
             <PaymentMobileLogoWrap>
-              <Image src={mobilePayLogo} alt="" width={50} height={16} />
+              <Image
+                src={mobilePayLogo}
+                alt="MobilePay"
+                width={50}
+                height={16}
+              />
             </PaymentMobileLogoWrap>
             <RadioDot $active={paymentMethod === PAYMENT_METHODS.MOBILEPAY} />
           </PaymentMethodButton>
