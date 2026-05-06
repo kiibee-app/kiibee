@@ -24,11 +24,9 @@ import {
   SectionRow,
   SectionValue,
   SelectorList,
+  UploadList,
 } from "./styles";
-import {
-  COUPON_DISCOUNT_FIXED_AMOUNT,
-  COUPON_DISCOUNT_PERCENTAGE,
-} from "@/utils/common";
+import { COUPON_DISCOUNT_PERCENTAGE } from "@/utils/common";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
 
@@ -98,8 +96,8 @@ export default function CouponPreviewModal({
                   </SectionLabel>
                   <SectionValue>
                     {data.discountType === COUPON_DISCOUNT_PERCENTAGE
-                      ? COUPON_DISCOUNT_PERCENTAGE
-                      : COUPON_DISCOUNT_FIXED_AMOUNT}
+                      ? t("contents.couponDetails.discountType.percentage")
+                      : t("contents.couponDetails.discountType.fixedAmount")}
                   </SectionValue>
                 </Section>
 
@@ -142,7 +140,7 @@ export default function CouponPreviewModal({
           </FormShell>
         )}
         {isSuccess && (
-          <SelectorList>
+          <UploadList>
             <SuccessArcIcon
               width={40}
               height={40}
@@ -151,7 +149,7 @@ export default function CouponPreviewModal({
             <MonoText $use="H5_Medium">
               {t("contents.couponPreview.uploading")}
             </MonoText>
-          </SelectorList>
+          </UploadList>
         )}
       </ModalContent>
     </GenericModal>
