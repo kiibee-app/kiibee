@@ -88,7 +88,7 @@ export class AuthController {
         refreshToken,
       });
       return result;
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('Invalid or expired refresh token');
     }
   }
