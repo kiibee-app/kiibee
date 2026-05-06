@@ -89,7 +89,6 @@ export class AuthService {
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + refreshTtlDays);
 
-      // Compare-and-swap: session updates only if token hash has not changed.
       const replaced = await tx
         .delete(userSessions)
         .where(
