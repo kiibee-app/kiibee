@@ -1,4 +1,11 @@
-import { pgTable, text, varchar, timestamp, index } from 'drizzle-orm/pg-core';
+import {
+  pgTable,
+  text,
+  varchar,
+  timestamp,
+  index,
+  uniqueIndex,
+} from 'drizzle-orm/pg-core';
 import { users } from './users.schema';
 import { baseTimestamps } from 'src/utils/dbHelper';
 
@@ -18,5 +25,8 @@ export const userSessions = pgTable(
   (table) => ({
     userIdIdx: index('user_sessions_user_id_idx').on(table.userId),
     expiresAtIdx: index('user_sessions_expires_at_idx').on(table.expiresAt),
+    refreshTokenHashUnique: uniqueIndex(
+      'user_sessions_refresh_token_hash_unique',
+    ).on(table.refreshTokenHash),
   }),
 );
