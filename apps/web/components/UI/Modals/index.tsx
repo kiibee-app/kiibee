@@ -67,6 +67,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   confirmDisabled = false,
   confirmVariant = VARIANT.PRIMARY,
 }) => {
+  const canUseDOM = typeof document !== "undefined";
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -88,7 +89,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
     el?.focus();
   }, [visible]);
 
-  if (!visible) return null;
+  if (!visible || !canUseDOM) return null;
 
   const handleCancel = () => {
     onCancel?.();

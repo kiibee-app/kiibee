@@ -23,11 +23,12 @@ import {
 
 const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState({
-    width:
-      typeof window !== "undefined" ? window.innerWidth : DEFAULT_WINDOW_WIDTH,
+    width: DEFAULT_WINDOW_WIDTH,
   });
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const handleResize = () => {
       setWindowSize({ width: window.innerWidth });
     };
