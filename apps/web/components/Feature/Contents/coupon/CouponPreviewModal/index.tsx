@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { BackButtonIcon, SuccessArcIcon } from "@/assets/icons"; // assume you have success icon
+import { BackButtonIcon, SuccessArcIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import {
   BackButton,
@@ -29,6 +29,7 @@ import {
 import { COUPON_DISCOUNT_PERCENTAGE } from "@/utils/common";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
+import { BUTTON } from "@/utils/Constants";
 
 type Props = {
   visible: boolean;
@@ -70,7 +71,7 @@ export default function CouponPreviewModal({
     >
       <ModalContent>
         <BackButton
-          type="button"
+          type={BUTTON}
           aria-label={t("common.back")}
           onClick={onBack}
         >
@@ -114,11 +115,9 @@ export default function CouponPreviewModal({
                   {t("contents.couponPreview.fields.codes")}
                 </SectionLabel>
                 <ChipList>
-                  {codes.length ? (
-                    codes.map((code, i) => <Chip key={i}>{code}</Chip>)
-                  ) : (
-                    <SectionValue>-</SectionValue>
-                  )}
+                  {codes.map((code, i) => (
+                    <Chip key={i}>{code}</Chip>
+                  ))}
                 </ChipList>
               </Section>
 
