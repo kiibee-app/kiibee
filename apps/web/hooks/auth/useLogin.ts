@@ -1,6 +1,7 @@
 "use client";
 
 import { API } from "@/lib/http/api/endpoints";
+import { persistAuthSession } from "@/lib/auth/authSession";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { PATHS } from "@/utils/path";
 
@@ -36,9 +37,6 @@ export type LoginUser = {
   [key: string]: unknown;
 };
 
-const ACCESS_TOKEN_KEY = "kiibee.accessToken";
-const REFRESH_TOKEN_KEY = "kiibee.refreshToken";
-const USER_KEY = "kiibee.user";
 const USER_ROLES = {
   VIEWER: "viewer",
 } as const;

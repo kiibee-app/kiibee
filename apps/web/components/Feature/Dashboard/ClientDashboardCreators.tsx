@@ -14,6 +14,7 @@ import CreatorsContents from "../Contents/page";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
+import { clearAuthSession } from "@/lib/auth/authSession";
 import { PATHS } from "@/utils/path";
 import UsersContent from "../Users/UsersContent";
 import {

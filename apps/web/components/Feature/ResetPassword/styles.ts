@@ -49,6 +49,13 @@ export const Form = styled.form`
   }
 `;
 
+export const FormMessage = styled(MonoText).attrs({
+  $use: "Body_Small",
+})`
+  color: ${({ theme }) => theme.colors.primary.RED};
+  text-align: left;
+`;
+
 export const SuccessBox = styled.div`
   display: flex;
   flex-direction: column;

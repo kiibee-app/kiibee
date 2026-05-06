@@ -7,7 +7,6 @@ import {
   Title,
   Card,
   Row,
-  Avatar,
   Fields,
   Action,
   Button,
@@ -17,7 +16,7 @@ import {
   HeaderActions,
   NameBlock,
 } from "./styles";
-import { CREATOR_PROFILE } from "@/utils/translationKeys";
+import { AUTH, CREATOR_PROFILE } from "@/utils/translationKeys";
 import InputField from "@/components/UI/InputFields";
 import PasswordSection from "./PasswordSection";
 import CompanySection from "./CompanySection";
@@ -38,6 +37,7 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import { GenericModal } from "@/components/UI/Modals";
 import { SuccessArcIcon } from "@/assets/icons";
 import { useRouter } from "next/navigation";
+import ImageUploader from "./ImageUploader";
 
 export default function CreatorProfile() {
   const { t } = useTranslation();
@@ -55,6 +55,7 @@ export default function CreatorProfile() {
   const [passwords, setPasswords] = useState<PasswordState>(emptyPasswords);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+  const [avatarImage, setAvatarImage] = useState<string | null>(null);
 
   const dirty = useMemo(() => {
     const formChanged = JSON.stringify(form) !== JSON.stringify(saved);
@@ -121,7 +122,7 @@ export default function CreatorProfile() {
 
   const handleDeleteSuccessClose = () => {
     setShowDeleteSuccessModal(false);
-    router.push("/auth/login");
+    router.push(AUTH.login);
   };
 
   return (
@@ -142,9 +143,15 @@ export default function CreatorProfile() {
 
       <Card>
         <Row>
-          <Avatar>
-            <MonoText $use="Heading2">{getInitial(email)}</MonoText>
-          </Avatar>
+          <ImageUploader
+            image={avatarImage}
+            fallback={getInitial(email)}
+            alt={t("creatorProfile.profilePhotoAlt")}
+            uploadTitle={t("creatorProfile.uploadPhotoTitle")}
+            editTitle={t("creatorProfile.editPhotoTitle")}
+            onChange={setAvatarImage}
+          />
+
           <NameBlock>
             <MonoText $use="Heading3">{name}</MonoText>
             <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
@@ -179,6 +186,7 @@ export default function CreatorProfile() {
       <CompanySection form={form} onChange={onChange} t={t} />
       <PaymentSection form={form} onChange={onChange} t={t} />
       <DeleteSection onDelete={() => setShowDeleteModal(true)} />
+
       <GenericModal
         visible={showPassword}
         title={t(CREATOR_PROFILE.changePassword)}
@@ -213,7 +221,7 @@ export default function CreatorProfile() {
         message={t("creatorProfile.passwordSuccessMessage")}
         confirmLabel={t("nav.login")}
         onClose={() => setShowPasswordSuccessModal(false)}
-        onConfirm={() => router.push("/auth/login")}
+        onConfirm={() => router.push(AUTH.login)}
         width="480px"
         showCloseButton={false}
       />
