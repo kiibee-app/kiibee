@@ -988,6 +988,26 @@
         "media": "Ingen elementer matcher din søgning."
       }
     },
+    "viewerBillings": {
+      "title": "Fakturering",
+      "tabs": {
+        "billingHistory": "Faktureringshistorik",
+        "paymentMethods": "Betalingsmetoder"
+      },
+      "billingHistory": {
+        "empty": "Ingen faktureringshistorik endnu.",
+        "placeholder": "Faktureringshistorik vises her."
+      },
+      "paymentMethods": {
+        "title": "Betalingsmetoder",
+        "addCard": "Tilføj kort",
+        "defaultBadge": "Standard",
+        "expires": "Udløber {{date}}",
+        "edit": "Rediger betalingsmetode",
+        "delete": "Slet betalingsmetode",
+        "more": "Flere handlinger"
+      }
+    },
     "logoutModal": {
       "title": "Log ud",
       "message": "Er du sikker på, at du vil logge ud som {{email}}?",
