@@ -10,7 +10,6 @@ export const Section = styled.div`
 export const SelectorList = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 18px;
   padding-bottom: 20px;
 `;
@@ -46,4 +45,12 @@ export const Chip = styled(MonoText).attrs({
   border-radius: 15px;
   background: ${({ theme }) => theme.colors.primary.GRAY};
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+`;
+
+export const UploadList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 20px;
 `;
