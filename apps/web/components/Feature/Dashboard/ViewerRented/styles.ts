@@ -32,13 +32,9 @@ export const SectionArrow = styled.button`
 
 export const CollectionGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
   gap: 16px;
   padding-left: 10px;
-
-  ${media.tablet} {
-    grid-template-columns: 1fr;
-  }
 `;
 
 export const CollectionCard = styled.article`
@@ -46,6 +42,7 @@ export const CollectionCard = styled.article`
   gap: 12px;
   width: 100%;
   min-width: 0;
+  box-sizing: border-box;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 12px;
   box-shadow: ${({ theme }) => theme.shadows.md};
@@ -92,6 +89,7 @@ export const CollectionBody = styled.div`
   flex: 1;
   gap: 10px;
   min-width: 0;
+  align-self: stretch;
 `;
 
 export const ElementsPill = styled.div`
@@ -101,6 +99,7 @@ export const ElementsPill = styled.div`
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   padding: 8px 10px;
+  align-self: flex-start;
 `;
 
 export const CollectionActionRow = styled.div`
@@ -108,6 +107,18 @@ export const CollectionActionRow = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+  width: 100%;
+  align-items: stretch;
+
+  > * {
+    width: 100%;
+    min-width: 0;
+  }
+
+  button,
+  a {
+    white-space: nowrap;
+  }
 
   ${media.mobileLg} {
     grid-template-columns: 1fr;
@@ -125,16 +136,17 @@ export const PassiveActionBlock = styled.div`
 
 export const MediaGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 16px;
   padding-left: 10px;
+  align-items: stretch;
 
-  ${media.tablet} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  > * {
+    height: 100%;
   }
 
-  ${media.mobileLg} {
-    grid-template-columns: 1fr;
+  > * > div:last-child {
+    margin-top: auto;
   }
 `;
 
@@ -143,6 +155,16 @@ export const TwoButtonRow = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 8px;
   width: 100%;
+
+  > * {
+    width: 100%;
+    min-width: 0;
+  }
+
+  button,
+  a {
+    white-space: nowrap;
+  }
 
   ${media.mobileLg} {
     grid-template-columns: 1fr;
