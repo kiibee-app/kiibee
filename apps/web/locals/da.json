@@ -1184,6 +1184,7 @@
     "couponPreview": {
       "title": "Kupon forhåndsvisning",
       "confirm": "Bekræft",
+      "uploading": "Uploading coupon",
       "fields": {
         "title": "Titel",
         "discountType": "Rabattype",

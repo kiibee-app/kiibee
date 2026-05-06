@@ -1184,6 +1184,7 @@
     "couponPreview": {
       "title": "Coupon preview",
       "confirm": "Confirm",
+      "uploading": "Uploading coupon",
       "fields": {
         "title": "Title",
         "discountType": "Discount type",

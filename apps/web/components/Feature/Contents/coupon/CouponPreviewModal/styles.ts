@@ -10,6 +10,7 @@ export const Section = styled.div`
 export const SelectorList = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 18px;
   padding-bottom: 20px;
 `;

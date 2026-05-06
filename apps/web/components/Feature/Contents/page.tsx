@@ -114,9 +114,11 @@ export default function CreatorsContents() {
   const [showCouponPreview, setShowCouponPreview] = useState(false);
   const [couponForm, setCouponForm] =
     useState<CouponFormState>(INITIAL_COUPON_FORM);
+  const [isCouponSuccess, setIsCouponSuccess] = useState(false);
 
   const closeCouponFlow = () => {
     setCouponForm(INITIAL_COUPON_FORM);
+    setIsCouponSuccess(false);
     setShowCouponDetails(false);
     setShowCouponCodes(false);
     setShowCouponApplicableProducts(false);
@@ -142,6 +144,12 @@ export default function CreatorsContents() {
     setShowCouponPreview(true);
   };
   const handleBackFromCouponPreview = () => {
+    if (isCouponSuccess) {
+      setShowCouponPreview(true);
+      setIsCouponSuccess(false);
+      return;
+    }
+    setIsCouponSuccess(false);
     setShowCouponPreview(false);
     setShowCouponApplicableProducts(true);
   };
@@ -170,6 +178,17 @@ export default function CreatorsContents() {
 
   const handleBackToCollections = () => {
     setSelectedCollection(null);
+  };
+
+  const handleCouponSubmit = async () => {
+    // await new Promise((res) => setTimeout(res, 1500));
+
+    setIsCouponSuccess(true);
+
+    // setTimeout(() => {
+    // closeCouponFlow();
+    // setIsCouponSuccess(false);
+    // }, 1000);
   };
 
   return (
@@ -374,7 +393,8 @@ export default function CreatorsContents() {
         data={couponForm}
         onBack={handleBackFromCouponPreview}
         onClose={closeCouponFlow}
-        onContinue={closeCouponFlow}
+        onContinue={handleCouponSubmit}
+        isSuccess={isCouponSuccess}
       />
       <DeleteModals
         showDeleteConfirm={showDeleteConfirm}
