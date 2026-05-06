@@ -31,6 +31,7 @@ export type LoginResponse = {
 };
 
 export type LoginUser = {
+  email?: string;
   role?: string;
   status?: string;
   [key: string]: unknown;
@@ -40,8 +41,62 @@ const USER_ROLES = {
   VIEWER: "viewer",
 } as const;
 
-export const persistLoginSession = (response: LoginResponse) =>
-  persistAuthSession(response);
+export type LogoutResponse = {
+  success?: boolean;
+  message?: string;
+};
+
+export const persistLoginSession = (response: LoginResponse) => {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const accessToken =
+    response.accessToken ??
+    response.token ??
+    response.data?.accessToken ??
+    response.data?.token;
+  const refreshToken = response.refreshToken ?? response.data?.refreshToken;
+  const user = response.user ?? response.data?.user;
+
+  if (accessToken) {
+    window.localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+  }
+
+  if (refreshToken) {
+    window.localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+  }
+
+  if (user) {
+    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+};
+
+export const clearLoginSession = () => {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.localStorage.removeItem(ACCESS_TOKEN_KEY);
+  window.localStorage.removeItem(REFRESH_TOKEN_KEY);
+  window.localStorage.removeItem(USER_KEY);
+};
+
+export const getStoredLoginUserEmail = () => {
+  if (typeof window === "undefined") {
+    return "";
+  }
+
+  try {
+    const rawUser = window.localStorage.getItem(USER_KEY);
+    if (!rawUser) return "";
+
+    const parsedUser = JSON.parse(rawUser) as LoginUser;
+    return typeof parsedUser.email === "string" ? parsedUser.email : "";
+  } catch {
+    return "";
+  }
+};
 
 export const getPostLoginPath = (response: LoginResponse) => {
   const user = (response.user ?? response.data?.user) as LoginUser | undefined;
@@ -56,3 +111,6 @@ export const getPostLoginPath = (response: LoginResponse) => {
 
 export const useLogin = () =>
   usePostAPI<LoginResponse, LoginPayload>(API.auth.login);
+
+export const useLogout = () =>
+  usePostAPI<LogoutResponse, void>(API.auth.logout);
