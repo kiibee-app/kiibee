@@ -1015,6 +1015,14 @@
         "more": "Flere handlinger"
       }
     },
+    "viewerProfile": {
+      "title": "Min profil",
+      "saveChanges": "Gem ændringer",
+      "fullName": "Fulde navn",
+      "email": "E-mailadresse",
+      "downloads": "{{count}} downloads",
+      "profilePhotoAlt": "Seer profilfoto"
+    },
     "logoutModal": {
       "title": "Log ud",
       "message": "Er du sikker på, at du vil logge ud som {{email}}?",

@@ -26,6 +26,7 @@ import {
   useLogout,
 } from "@/hooks/auth/useLogin";
 import ClientViewerBillings from "@/components/Feature/Dashboard/ClientViewerBillings";
+import ClientViewerProfile from "@/components/Feature/Dashboard/ClientViewerProfile";
 
 const ROUTABLE_VIEWER_VIEWS = new Set<string>([
   VIEWER_VIEW_VALUES.PURCHASED,
@@ -118,7 +119,12 @@ export default function ClientDashboardViewer() {
 
   return (
     <DashboardLayout
-      header={<ViewerDashboardHeader onToggleSidebar={toggleSidebar} />}
+      header={
+        <ViewerDashboardHeader
+          onToggleSidebar={toggleSidebar}
+          onProfileClick={() => handleSelect(VIEWER_LABELS.MY_PROFILE)}
+        />
+      }
       contentPadding={activePage === VIEWER_LABELS.PURCHASED ? "0" : undefined}
       sidebar={
         <Sidebar
@@ -136,6 +142,8 @@ export default function ClientDashboardViewer() {
         <PurchasedContent />
       ) : activePage === VIEWER_LABELS.BILLINGS ? (
         <ClientViewerBillings />
+      ) : activePage === VIEWER_LABELS.MY_PROFILE ? (
+        <ClientViewerProfile />
       ) : (
         <MonoText $use="H4_SemiBold">{sectionTitle}</MonoText>
       )}

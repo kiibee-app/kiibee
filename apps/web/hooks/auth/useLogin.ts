@@ -1,7 +1,7 @@
 "use client";
 
 import { API } from "@/lib/http/api/endpoints";
-import { persistAuthSession } from "@/lib/auth/authSession";
+import { AUTH_STORAGE_KEYS } from "@/lib/auth/authSession";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { PATHS } from "@/utils/path";
 
@@ -60,15 +60,15 @@ export const persistLoginSession = (response: LoginResponse) => {
   const user = response.user ?? response.data?.user;
 
   if (accessToken) {
-    window.localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+    window.localStorage.setItem(AUTH_STORAGE_KEYS.accessToken, accessToken);
   }
 
   if (refreshToken) {
-    window.localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+    window.localStorage.setItem(AUTH_STORAGE_KEYS.refreshToken, refreshToken);
   }
 
   if (user) {
-    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+    window.localStorage.setItem(AUTH_STORAGE_KEYS.user, JSON.stringify(user));
   }
 };
 
@@ -77,9 +77,9 @@ export const clearLoginSession = () => {
     return;
   }
 
-  window.localStorage.removeItem(ACCESS_TOKEN_KEY);
-  window.localStorage.removeItem(REFRESH_TOKEN_KEY);
-  window.localStorage.removeItem(USER_KEY);
+  window.localStorage.removeItem(AUTH_STORAGE_KEYS.accessToken);
+  window.localStorage.removeItem(AUTH_STORAGE_KEYS.refreshToken);
+  window.localStorage.removeItem(AUTH_STORAGE_KEYS.user);
 };
 
 export const getStoredLoginUserEmail = () => {
@@ -88,7 +88,7 @@ export const getStoredLoginUserEmail = () => {
   }
 
   try {
-    const rawUser = window.localStorage.getItem(USER_KEY);
+    const rawUser = window.localStorage.getItem(AUTH_STORAGE_KEYS.user);
     if (!rawUser) return "";
 
     const parsedUser = JSON.parse(rawUser) as LoginUser;

@@ -1015,6 +1015,14 @@
         "more": "More actions"
       }
     },
+    "viewerProfile": {
+      "title": "My Profile",
+      "saveChanges": "Save changes",
+      "fullName": "Full name",
+      "email": "Email address",
+      "downloads": "{{count}} downloads",
+      "profilePhotoAlt": "Viewer profile photo"
+    },
     "logoutModal": {
       "title": "Log out",
       "message": "Are you sure you want to log out as {{email}}?",
