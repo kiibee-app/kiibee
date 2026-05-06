@@ -20,9 +20,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kiibee - Discover Unique Digital Content",
+  title: {
+    default: "Kiibee",
+    template: "%s | Kiibee",
+  },
   description:
     "Discover and enjoy unique digital content from your favorite creators. Watch, listen, and learn directly from independent creators. Rent or buy exclusive content in just a few clicks.",
+  openGraph: {
+    siteName: "Kiibee",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
