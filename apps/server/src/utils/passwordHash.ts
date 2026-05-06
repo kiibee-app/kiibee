@@ -1,8 +1,9 @@
 import * as bcrypt from 'bcrypt';
+import { env } from 'src/config/env';
 
 export const hashPassword = async (
   password: string,
-  saltRounds: number = Number(process.env.BCRYPT_SALT_ROUNDS) || 12,
+  saltRounds: number = env.BCRYPT_SALT_ROUNDS,
 ) => {
   return bcrypt.hash(password, saltRounds);
 };

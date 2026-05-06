@@ -79,7 +79,8 @@
     "checkEmailTitle": "Tjek din e-mail",
     "checkEmailDescription": "Vi har sendt et link til nulstilling af adgangskode til din e-mail. Hvis det ikke ankommer inden for et par minutter, så tjek din spam-mappe.",
     "didNotReceive": "Har du ikke modtaget e-mailen?",
-    "resend": "Send igen"
+    "resend": "Send igen",
+    "submitFailed": "Vi kunne ikke sende nulstillingslinket lige nu. Prøv igen."
   },
   "viewerSignup": {
     "title": "Opret seerkonto",
@@ -785,7 +786,13 @@
     "back": "Tilbage",
     "close": "Luk",
     "previous": "Forrige",
-    "next": "Næste"
+    "next": "Næste",
+    "selectDateRange": "Vælg datointerval",
+    "loading": "Indlæser"
+  },
+  "image": {
+    "failed": "Kunne ikke indlæse billede",
+    "failedAalt": "Kunne ikke indlæse billede: {{alt}}"
   },
   "table": {
     "noData": "Ingen data fundet"
@@ -827,7 +834,16 @@
     },
     "forgotPass": "Glemt adgangskode?",
     "passwordSuccessTitle": "Adgangskode opdateret",
-    "passwordSuccessMessage": "Din adgangskode blev opdateret. Log venligst ind igen for at fortsætte."
+    "passwordSuccessMessage": "Din adgangskode blev opdateret. Log venligst ind igen for at fortsætte.",
+    "uploadPhotoTitle": "Upload foto",
+    "editPhotoTitle": "Rediger foto",
+    "editPhoto": "Rediger foto",
+    "dragPhotoHere": "Træk foto her",
+    "or": "eller",
+    "choosePhoto": "Vælg fotos til upload",
+    "zoom": "Zoom",
+    "apply": "Anvend",
+    "profilePhotoAlt": "Profilfoto"
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
@@ -979,6 +995,26 @@
         "media": "Ingen elementer matcher din søgning."
       }
     },
+    "viewerBillings": {
+      "title": "Fakturering",
+      "tabs": {
+        "billingHistory": "Faktureringshistorik",
+        "paymentMethods": "Betalingsmetoder"
+      },
+      "billingHistory": {
+        "empty": "Ingen faktureringshistorik endnu.",
+        "placeholder": "Faktureringshistorik vises her."
+      },
+      "paymentMethods": {
+        "title": "Betalingsmetoder",
+        "addCard": "Tilføj kort",
+        "defaultBadge": "Standard",
+        "expires": "Udløber {{date}}",
+        "edit": "Rediger betalingsmetode",
+        "delete": "Slet betalingsmetode",
+        "more": "Flere handlinger"
+      }
+    },
     "logoutModal": {
       "title": "Log ud",
       "message": "Er du sikker på, at du vil logge ud som {{email}}?",
@@ -1098,7 +1134,8 @@
       "search": "Sog indhold",
       "cancel": "Annuller",
       "save": "Gem",
-      "deleteContent": "Delete content"
+      "deleteContent": "Delete content",
+      "addContent": "Add content"
     },
     "couponDetails": {
       "title": "Kupondetaljer",
@@ -1146,6 +1183,7 @@
     },
     "tabs": {
       "collections": "Samlinger",
+      "contents": "Indhold",
       "appearance": "Udseende",
       "settings": "Indstillinger",
       "coupons": "Kuponer"
@@ -1251,6 +1289,8 @@
     "repeatPasswordLabel": "Gentag ny adgangskode",
     "repeatPasswordPlaceholder": "Gentag ny adgangskode",
     "submit": "Nulstil",
+    "invalidLink": "Dette nulstillingslink er ugyldigt. Anmod venligst om et nyt link.",
+    "submitFailed": "Vi kunne ikke nulstille din adgangskode lige nu. Prøv igen.",
     "successTitle": "Din adgangskode er blevet nulstillet!",
     "successDescription": "Du kan nu logge ind med din nye adgangskode. Kontakt support, hvis du oplever problemer.",
     "backToLogin": "Tilbage til login"

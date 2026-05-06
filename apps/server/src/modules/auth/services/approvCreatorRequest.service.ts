@@ -11,10 +11,12 @@ import { usersToken } from 'src/database/schema/users/usersToken.schema';
 import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
+import { logger } from 'src/logger/logger';
 
 export const approveCreatorRequestService = async (
   requestId: string,
   approverUserId: string,
+  frontendBaseUrl: string,
 ) => {
   try {
     if (!requestId || !approverUserId) {
@@ -86,7 +88,7 @@ export const approveCreatorRequestService = async (
       expiresAt: new Date(Date.now() + Time.ONE_DAY),
     });
 
-    const setupLink = `${process.env.FRONTEND_URL}/creator/setup?token=${token}`;
+    const setupLink = `${frontendBaseUrl}/creator/setup?token=${token}`;
 
     runInBackground(
       sendTemplateEmail({
@@ -95,7 +97,7 @@ export const approveCreatorRequestService = async (
         templateName: templateName.APPROVED_CREATOR,
         variables: {
           name: userData.firstName,
-          guidelinesLink: `${process.env.FRONTEND_URL}/creator/guidelines`,
+          guidelinesLink: `${frontendBaseUrl}/creator/guidelines`,
           setupLink,
         },
       }),
@@ -106,7 +108,7 @@ export const approveCreatorRequestService = async (
       HttpStatus.OK,
     );
   } catch (error) {
-    console.error('Error approving creator request:', error);
+    logger.error('Error approving creator request:', error);
     if (error instanceof HttpException) {
       throw error;
     }

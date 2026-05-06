@@ -6,6 +6,7 @@ import { creatorPlans, users, usersToken } from 'src/database/schema';
 import { eq } from 'drizzle-orm/sql/expressions/conditions';
 import { ACCOUNT_STATUS } from 'src/utils/constant';
 import { hashPassword } from 'src/utils/passwordHash';
+import { logger } from 'src/logger/logger';
 
 export const setupCreatorAccountService = async (
   payload: CreatorAccountSetupDto,
@@ -98,7 +99,7 @@ export const setupCreatorAccountService = async (
       HttpStatus.OK,
     );
   } catch (error) {
-    console.error('Error setting up creator account:', error);
+    logger.error('Error setting up creator account:', error);
 
     if (error instanceof HttpException) {
       throw error;

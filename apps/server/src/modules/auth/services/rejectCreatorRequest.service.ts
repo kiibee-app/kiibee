@@ -3,6 +3,7 @@ import { eq, and } from 'drizzle-orm/sql/expressions/conditions';
 import { db } from 'src/database/db';
 import { creatorApplicationRequests } from 'src/database/schema/users/creatorApplicationRequests.schema';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
+import { logger } from 'src/logger/logger';
 import { runInBackground } from 'src/utils/backgroundTask';
 import { STATUS } from 'src/utils/constant';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
@@ -83,7 +84,7 @@ export const rejectCreatorRequestService = async (
       HttpStatus.OK,
     );
   } catch (error) {
-    console.error('Error rejecting creator request:', error);
+    logger.error('Error rejecting creator request:', error);
 
     if (error instanceof HttpException) {
       throw error;

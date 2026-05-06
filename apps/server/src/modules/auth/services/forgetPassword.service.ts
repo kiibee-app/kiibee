@@ -10,7 +10,10 @@ import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
-export const forgetPasswordService = async (email: string) => {
+export const forgetPasswordService = async (
+  email: string,
+  frontendBaseUrl: string,
+) => {
   try {
     if (!email) {
       return fail('Email is required', HttpStatus.BAD_REQUEST);
@@ -35,7 +38,17 @@ export const forgetPasswordService = async (email: string) => {
       type: 'reset_password',
       expiresAt: new Date(Date.now() + Time.FIFTEEN_MINUTES),
     });
-    const resetLink = `${process.env.FRONTEND_URL}/auth/forget-password?token=${token}`;
+    const firstLastName = [user[0].firstName, user[0].lastName]
+      .filter((value) => typeof value === 'string' && value.trim().length > 0)
+      .join(' ')
+      .trim();
+    const profileFullName = user[0].fullName?.trim();
+    const emailName = user[0].email?.split('@')[0]?.trim();
+    const displayName =
+      firstLastName || profileFullName || emailName || user[0].email;
+
+    const resetLink = `${process.env.FRONTEND_URL}/auth/reset-password?token=${token}`;
+    logger.info(`Reset password link for ${user[0].email}: ${resetLink}`);
 
     runInBackground(
       sendTemplateEmail({
@@ -43,7 +56,7 @@ export const forgetPasswordService = async (email: string) => {
         subject: mailSubject.RESET_PASSWORD,
         templateName: templateName.RESET_PASSWORD,
         variables: {
-          name: user[0].firstName,
+          name: displayName,
           resetLink,
         },
       }),

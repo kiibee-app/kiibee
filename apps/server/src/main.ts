@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -10,6 +11,7 @@ import { AppModule } from './app.module';
 import { pool } from './database/db';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { CORS_ALLOWED_HEADERS, CORS_HTTP_METHODS } from './utils/constant';
+import { logger } from './logger/logger';
 
 async function bootstrap() {
   try {
@@ -46,7 +48,9 @@ async function bootstrap() {
 
     app.useGlobalFilters(new HttpExceptionFilter());
 
-    const corsOrigins = (process.env.CORS_ORIGIN || 'http://localhost:3000')
+    const configService = app.get(ConfigService);
+    const corsOrigins = configService
+      .get<string>('CORS_ORIGIN', 'http://localhost:3000')
       .split(',')
       .map((origin) => origin.trim())
       .filter(Boolean);
@@ -60,12 +64,12 @@ async function bootstrap() {
 
     await app.register(helmet);
 
-    const port = process.env.PORT || 4001;
+    const port = Number(process.env.PORT) || 4001;
     await app.listen(port, '0.0.0.0');
 
     console.log(`🚀 API running at http://localhost:${port}/api/v1`);
   } catch (error) {
-    console.error('❌ Failed to start server:', error);
+    logger.error('❌ Failed to start server:', error);
     process.exit(1);
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { API } from "@/lib/http/api/endpoints";
+import { persistAuthSession } from "@/lib/auth/authSession";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { PATHS } from "@/utils/path";
 
@@ -30,17 +31,20 @@ export type LoginResponse = {
 };
 
 export type LoginUser = {
+  email?: string;
   role?: string;
   status?: string;
   [key: string]: unknown;
 };
 
-const ACCESS_TOKEN_KEY = "kiibee.accessToken";
-const REFRESH_TOKEN_KEY = "kiibee.refreshToken";
-const USER_KEY = "kiibee.user";
 const USER_ROLES = {
   VIEWER: "viewer",
 } as const;
+
+export type LogoutResponse = {
+  success?: boolean;
+  message?: string;
+};
 
 export const persistLoginSession = (response: LoginResponse) => {
   if (typeof window === "undefined") {
@@ -68,6 +72,32 @@ export const persistLoginSession = (response: LoginResponse) => {
   }
 };
 
+export const clearLoginSession = () => {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.localStorage.removeItem(ACCESS_TOKEN_KEY);
+  window.localStorage.removeItem(REFRESH_TOKEN_KEY);
+  window.localStorage.removeItem(USER_KEY);
+};
+
+export const getStoredLoginUserEmail = () => {
+  if (typeof window === "undefined") {
+    return "";
+  }
+
+  try {
+    const rawUser = window.localStorage.getItem(USER_KEY);
+    if (!rawUser) return "";
+
+    const parsedUser = JSON.parse(rawUser) as LoginUser;
+    return typeof parsedUser.email === "string" ? parsedUser.email : "";
+  } catch {
+    return "";
+  }
+};
+
 export const getPostLoginPath = (response: LoginResponse) => {
   const user = (response.user ?? response.data?.user) as LoginUser | undefined;
   const role = (user?.role ?? response.role ?? response.data?.role ?? "")
@@ -81,3 +111,6 @@ export const getPostLoginPath = (response: LoginResponse) => {
 
 export const useLogin = () =>
   usePostAPI<LoginResponse, LoginPayload>(API.auth.login);
+
+export const useLogout = () =>
+  usePostAPI<LogoutResponse, void>(API.auth.logout);

@@ -44,6 +44,7 @@ export default function LoginForm() {
   const loginSchema = useLoginFormSchema();
   const { mutateAsync: login, isPending } = useLogin();
   const isMounted = useRef(true);
+  const isSubmitDisabled = isPending || !email.trim() || !password.trim();
 
   useEffect(() => {
     isMounted.current = true;
@@ -164,7 +165,7 @@ export default function LoginForm() {
           <GenericButton
             type="submit"
             isLoading={isPending}
-            disabled={isPending}
+            disabled={isSubmitDisabled}
           >
             {t("authForm.submit")}
           </GenericButton>

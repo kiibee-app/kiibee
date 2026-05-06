@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { LoginDto } from './dto/login.dto';
 import { viewerSignUpService } from './services/viewerSignUp.service';
 import { loginService } from './services/login.service';
@@ -21,7 +22,10 @@ import { resetPasswordService } from './services/resetPassword.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly tokenService: TokenService) {}
+  constructor(
+    private readonly tokenService: TokenService,
+    private readonly configService: ConfigService,
+  ) {}
 
   async viewerSignUp(viewerData: ViewerSignUpDto) {
     return viewerSignUpService(viewerData);
@@ -79,7 +83,13 @@ export class AuthService {
     return getCreatorRequestService();
   }
   async approveCreatorRequest(requestId: string, approverUserId: string) {
-    return approveCreatorRequestService(requestId, approverUserId);
+    const frontendBaseUrl =
+      this.configService.getOrThrow<string>('FRONTEND_URL');
+    return approveCreatorRequestService(
+      requestId,
+      approverUserId,
+      frontendBaseUrl,
+    );
   }
   async rejectCreatorRequest(requestId: string, approverUserId: string) {
     return rejectCreatorRequestService(requestId, approverUserId);
@@ -91,7 +101,9 @@ export class AuthService {
     return setupCreatorAccountService(payload);
   }
   async forgetPassword(email: string) {
-    return forgetPasswordService(email);
+    const frontendBaseUrl =
+      this.configService.getOrThrow<string>('FRONTEND_URL');
+    return forgetPasswordService(email, frontendBaseUrl);
   }
   async resetPassword(payload: any) {
     return resetPasswordService(payload);

@@ -1,18 +1,14 @@
 import type { AxiosInstance, InternalAxiosRequestConfig } from "axios";
-
-const getAccessToken = () => {
-  if (typeof window === "undefined") {
-    return null;
-  }
-
-  return window.localStorage.getItem("kiibee.accessToken");
-};
+import { API } from "@/lib/http/api/endpoints";
+import { getAccessToken } from "@/lib/auth/authSession";
 
 export const attachRequestInterceptor = (client: AxiosInstance) => {
   client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+    const requestUrl = config.url ?? "";
+    const isRefreshRequest = requestUrl.includes(API.auth.refresh);
     const token = getAccessToken();
 
-    if (token) {
+    if (token && !isRefreshRequest) {
       config.headers.Authorization = `Bearer ${token}`;
     }
 

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { BROWSER_API, LOADER_SIZE, LOADER_VARIANT } from "@/utils/ui";
 import { LazySectionRoot } from "./styles";
+import { t } from "i18next";
 
 type LazySectionProps = {
   children: ReactNode;
@@ -59,7 +60,7 @@ export default function LazySection({
         <GenericLoader
           variant={LOADER_VARIANT.INLINE}
           size={LOADER_SIZE.SM}
-          label="Loading"
+          label={t("common.loading")}
         />
       )}
     </LazySectionRoot>

@@ -4,6 +4,8 @@ export const COLLECTIONS = "collections";
 export const APPEARANCE = "appearance";
 export const SETTINGS = "settings";
 export const COUPONS = "coupons";
+export const VIEWER_BILLING_HISTORY_TAB = "billing-history";
+export const VIEWER_PAYMENT_METHODS_TAB = "payment-methods";
 export const HELP = "Help";
 export const COUPON_DISCOUNT_FIXED_AMOUNT = "fixedAmount";
 export const COUPON_DISCOUNT_PERCENTAGE = "percentage";
@@ -16,7 +18,13 @@ type ContentTabItem = {
   description?: string;
 };
 
+type ViewerBillingTabItem = {
+  key: ViewerBillingTab;
+  labelKey: string;
+};
+
 export type ContentTab = "collections" | "appearance" | "settings" | "coupons";
+export type ViewerBillingTab = "billing-history" | "payment-methods";
 export type CouponDiscountType = "fixedAmount" | "percentage";
 
 export const CONTENT_TABS: readonly ContentTabItem[] = [
@@ -42,7 +50,20 @@ export const CONTENT_TABS: readonly ContentTabItem[] = [
   },
 ] as const;
 
+export const VIEWER_BILLING_TABS: readonly ViewerBillingTabItem[] = [
+  {
+    key: VIEWER_BILLING_HISTORY_TAB,
+    labelKey: "dashboard.viewerBillings.tabs.billingHistory",
+  },
+  {
+    key: VIEWER_PAYMENT_METHODS_TAB,
+    labelKey: "dashboard.viewerBillings.tabs.paymentMethods",
+  },
+] as const;
+
 export const NAME = "name";
 export const PAGE_VISITS = "pageVisits";
 export const CLICKS = "clicks";
 export const VIEWS = "views";
+export const MOUSE_DOWN = "mousedown";
+export const IMG = "img";

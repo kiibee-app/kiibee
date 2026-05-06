@@ -1,15 +1,10 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import * as schema from './schema';
-
-const databaseUrl = process.env.DATABASE_URL;
-
-if (!databaseUrl) {
-  throw new Error('DATABASE_URL is missing in environment variables');
-}
+import { env } from 'src/config/env';
 
 export const pool = new Pool({
-  connectionString: databaseUrl,
+  connectionString: env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false,
   },

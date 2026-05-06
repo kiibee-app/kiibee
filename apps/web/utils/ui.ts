@@ -125,3 +125,10 @@ export const LOGO_MODE = {
 } as const;
 
 export type Mode = (typeof LOGO_MODE)[keyof typeof LOGO_MODE];
+
+export const IMAGE_MODAL = {
+  UPLOAD: "upload",
+  EDIT: "edit",
+} as const;
+
+export type ImageModalStep = (typeof IMAGE_MODAL)[keyof typeof IMAGE_MODAL];
