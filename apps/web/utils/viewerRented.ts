@@ -20,25 +20,21 @@ import {
   MOCK_PURCHASED_VIDEOS,
 } from "@/utils/dummyData/viewerPurchasedMockData";
 
-export type ViewerRentedSectionKey =
-  | "collections"
-  | "videos"
-  | "audios"
-  | "pdfs";
+export type RentedSectionKey = "collections" | "videos" | "audios" | "pdfs";
 
 type ViewerRentedMediaSection = {
-  key: Exclude<ViewerRentedSectionKey, "collections">;
+  key: Exclude<RentedSectionKey, "collections">;
   title: string;
 };
 
-export type ViewerRentedSources = {
+export type RentedContentSources = {
   collections: RentedCollectionItem[];
   videos: RentedMediaItem[];
   audios: RentedMediaItem[];
   pdfs: RentedMediaItem[];
 };
 
-const PURCHASED_SOURCES: ViewerRentedSources = {
+const PURCHASED_SOURCES: RentedContentSources = {
   collections: MOCK_PURCHASED_COLLECTIONS.map((item) => ({ ...item })),
   videos: MOCK_PURCHASED_VIDEOS.map((item) => ({
     ...item,
@@ -54,20 +50,20 @@ const PURCHASED_SOURCES: ViewerRentedSources = {
   })),
 };
 
-export const VIEWER_RENTED_MEDIA_SECTIONS: ViewerRentedMediaSection[] = [
+export const RENTED_MEDIA_SECTIONS: ViewerRentedMediaSection[] = [
   { key: "videos", title: "Videos" },
   { key: "audios", title: "Audios" },
   { key: "pdfs", title: "PDF" },
 ];
 
-export const VIEWER_RENTED_PAGE_SIZE: Record<ViewerRentedSectionKey, number> = {
+export const RENTED_PAGE_SIZE: Record<RentedSectionKey, number> = {
   collections: 2,
   videos: 4,
   audios: 4,
   pdfs: 4,
 };
 
-export function paginateViewerRentedItems<T>(
+export function paginateSectionItems<T>(
   items: T[],
   startIndex: number,
   pageSize: number,
@@ -80,7 +76,7 @@ export function paginateViewerRentedItems<T>(
   return result;
 }
 
-export function filterViewerRentedCollections(
+export function filterCollections(
   searchValue: string,
   items: RentedCollectionItem[],
 ) {
@@ -93,10 +89,7 @@ export function filterViewerRentedCollections(
   );
 }
 
-export function filterViewerRentedMedia(
-  searchValue: string,
-  items: RentedMediaItem[],
-) {
+export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
   const needle = searchValue.trim().toLowerCase();
   if (!needle) return items;
   return items.filter((item) =>
@@ -106,19 +99,21 @@ export function filterViewerRentedMedia(
   );
 }
 
-export function getViewerRentedMediaLabel(type: RentedMediaItem["mediaType"]) {
+export function getMediaLabel(type: RentedMediaItem["mediaType"]) {
   if (type === "audio") return "Audio";
   if (type === "pdf") return "PDF";
   return "Video";
 }
 
-export function getViewerRentedMediaAction(type: RentedMediaItem["mediaType"]) {
+export function getMediaAction(type: RentedMediaItem["mediaType"]) {
   if (type === "audio") return "Play audio";
   if (type === "pdf") return "Open pdf";
   return "Play video";
 }
 
-export function getViewerRentedSources(mode: RentedMode): ViewerRentedSources {
+export function getRentedContentSources(
+  mode: RentedMode,
+): RentedContentSources {
   if (mode === "purchased") return PURCHASED_SOURCES;
 
   if (mode === "currently") {
@@ -138,18 +133,23 @@ export function getViewerRentedSources(mode: RentedMode): ViewerRentedSources {
   };
 }
 
-export function getCollectionBadgeLabel(mode: RentedMode) {
+export function getCollectionBadgeText(mode: RentedMode) {
   if (mode === "purchased") return "Owned";
   if (mode === "currently") return "In rental";
   return "Rented";
 }
 
-export function getCollectionPrimaryButtonLabel(mode: RentedMode) {
+export function getCollectionPrimaryActionText(mode: RentedMode) {
   if (mode === "purchased") return "See content";
   return "Buy xx kr";
 }
 
-export const COLLECTION_RENTAL_STATUS_LABELS = {
+export const ACTIVE_RENTAL_TEXT = {
   title: "Active rental",
   expiresIn: "Expires in 2 days",
+} as const;
+
+export const RENTED_BUTTON_TEXT = {
+  buy: "Buy xx kr",
+  rent: "Rent xx kr",
 } as const;

@@ -3,24 +3,9 @@
 import { useMemo, useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import {
-  CURRENT_RENTED_AUDIOS,
-  CURRENT_RENTED_COLLECTIONS,
-  CURRENT_RENTED_PDFS,
-  CURRENT_RENTED_VIDEOS,
-  PREVIOUS_RENTED_AUDIOS,
-  PREVIOUS_RENTED_COLLECTIONS,
-  PREVIOUS_RENTED_PDFS,
-  PREVIOUS_RENTED_VIDEOS,
-  type RentedCollectionItem,
   type RentedMediaItem,
   type RentedMode,
 } from "@/utils/dummyData/viewerRentedMockData";
-import {
-  MOCK_PURCHASED_AUDIOS,
-  MOCK_PURCHASED_COLLECTIONS,
-  MOCK_PURCHASED_PDFS,
-  MOCK_PURCHASED_VIDEOS,
-} from "@/utils/dummyData/viewerPurchasedMockData";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import {
   PageHeader,
@@ -54,10 +39,16 @@ import {
   TwoButtonRow,
 } from "./styles";
 import {
-  filterViewerRentedCollections,
-  filterViewerRentedMedia,
-  getViewerRentedMediaAction,
-  getViewerRentedMediaLabel,
+  ACTIVE_RENTAL_TEXT,
+  RENTED_BUTTON_TEXT,
+  RENTED_MEDIA_SECTIONS,
+  filterCollections,
+  filterMedia,
+  getCollectionBadgeText,
+  getCollectionPrimaryActionText,
+  getMediaAction,
+  getMediaLabel,
+  getRentedContentSources,
 } from "@/utils/viewerRented";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
 
@@ -82,78 +73,26 @@ export default function RentedContent({ title, mode }: Props) {
     useViewerRentedSectionPagination();
   const isCurrent = mode === "currently";
   const isPurchased = mode === "purchased";
-
-  const purchasedCollections = useMemo(
-    () =>
-      MOCK_PURCHASED_COLLECTIONS.map((item) => ({
-        ...item,
-      })),
-    [],
-  );
-  const purchasedVideos = useMemo(
-    () =>
-      MOCK_PURCHASED_VIDEOS.map((item) => ({
-        ...item,
-        expiryText: item.dateLabel,
-      })),
-    [],
-  );
-  const purchasedAudios = useMemo(
-    () =>
-      MOCK_PURCHASED_AUDIOS.map((item) => ({
-        ...item,
-        expiryText: item.dateLabel,
-      })),
-    [],
-  );
-  const purchasedPdfs = useMemo(
-    () =>
-      MOCK_PURCHASED_PDFS.map((item) => ({
-        ...item,
-        expiryText: item.dateLabel,
-      })),
-    [],
-  );
-
-  const collectionsSource = isPurchased
-    ? purchasedCollections
-    : isCurrent
-      ? CURRENT_RENTED_COLLECTIONS
-      : PREVIOUS_RENTED_COLLECTIONS;
-  const videosSource = isPurchased
-    ? purchasedVideos
-    : isCurrent
-      ? CURRENT_RENTED_VIDEOS
-      : PREVIOUS_RENTED_VIDEOS;
-  const audiosSource = isPurchased
-    ? purchasedAudios
-    : isCurrent
-      ? CURRENT_RENTED_AUDIOS
-      : PREVIOUS_RENTED_AUDIOS;
-  const pdfsSource = isPurchased
-    ? purchasedPdfs
-    : isCurrent
-      ? CURRENT_RENTED_PDFS
-      : PREVIOUS_RENTED_PDFS;
+  const sources = useMemo(() => getRentedContentSources(mode), [mode]);
 
   const filteredCollections = useMemo(
-    () => filterViewerRentedCollections(searchValue, collectionsSource),
-    [collectionsSource, searchValue],
+    () => filterCollections(searchValue, sources.collections),
+    [searchValue, sources.collections],
   );
 
   const filteredVideos = useMemo(
-    () => filterViewerRentedMedia(searchValue, videosSource),
-    [searchValue, videosSource],
+    () => filterMedia(searchValue, sources.videos),
+    [searchValue, sources.videos],
   );
 
   const filteredAudios = useMemo(
-    () => filterViewerRentedMedia(searchValue, audiosSource),
-    [audiosSource, searchValue],
+    () => filterMedia(searchValue, sources.audios),
+    [searchValue, sources.audios],
   );
 
   const filteredPdfs = useMemo(
-    () => filterViewerRentedMedia(searchValue, pdfsSource),
-    [pdfsSource, searchValue],
+    () => filterMedia(searchValue, sources.pdfs),
+    [searchValue, sources.pdfs],
   );
 
   const visibleCollections = useMemo(
@@ -172,6 +111,16 @@ export default function RentedContent({ title, mode }: Props) {
     () => getVisibleItems("pdfs", filteredPdfs),
     [filteredPdfs, getVisibleItems],
   );
+  const sectionTotals = {
+    videos: filteredVideos.length,
+    audios: filteredAudios.length,
+    pdfs: filteredPdfs.length,
+  } as const;
+  const sectionItems = {
+    videos: visibleVideos,
+    audios: visibleAudios,
+    pdfs: visiblePdfs,
+  } as const;
 
   return (
     <PageWrap>
@@ -197,7 +146,7 @@ export default function RentedContent({ title, mode }: Props) {
             <CollectionCard key={item.id}>
               <CollectionImageWrap>
                 <CollectionBadge>
-                  {isPurchased ? "Owned" : isCurrent ? "In rental" : "Rented"}
+                  {getCollectionBadgeText(mode)}
                 </CollectionBadge>
                 <CollectionImage src={item.coverSrc} alt={item.title} />
               </CollectionImageWrap>
@@ -218,30 +167,24 @@ export default function RentedContent({ title, mode }: Props) {
                 </ElementsPill>
 
                 <CollectionActionRow>
-                  {isPurchased ? (
-                    <GenericButton variant={VARIANT.PRIMARY} size="md">
-                      See content
-                    </GenericButton>
-                  ) : (
-                    <GenericButton variant={VARIANT.PRIMARY} size="md">
-                      Buy xx kr
-                    </GenericButton>
-                  )}
+                  <GenericButton variant={VARIANT.PRIMARY} size="md">
+                    {getCollectionPrimaryActionText(mode)}
+                  </GenericButton>
                   {isCurrent ? (
                     <PassiveActionBlock>
                       <MonoText
                         $use="Body_Medium"
                         color={COLORS.neutral.GRAY_400}
                       >
-                        Active rental
+                        {ACTIVE_RENTAL_TEXT.title}
                       </MonoText>
                       <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
-                        Expires in 2 days
+                        {ACTIVE_RENTAL_TEXT.expiresIn}
                       </MonoText>
                     </PassiveActionBlock>
                   ) : isPurchased ? null : (
                     <GenericButton variant={VARIANT.SECONDARY} size="md">
-                      Rent xx kr
+                      {RENTED_BUTTON_TEXT.rent}
                     </GenericButton>
                   )}
                 </CollectionActionRow>
@@ -251,52 +194,21 @@ export default function RentedContent({ title, mode }: Props) {
         </CollectionGrid>
       </SectionBlock>
 
-      {[
-        {
-          title: "Videos",
-          items: visibleVideos,
-          key: "videos" as const,
-          total: filteredVideos.length,
-        },
-        {
-          title: "Audios",
-          items: visibleAudios,
-          key: "audios" as const,
-          total: filteredAudios.length,
-        },
-        {
-          title: "PDF",
-          items: visiblePdfs,
-          key: "pdfs" as const,
-          total: filteredPdfs.length,
-        },
-      ].map((section) => (
+      {RENTED_MEDIA_SECTIONS.map((section) => (
         <SectionBlock key={section.title}>
           <SectionHeader>
             <SectionTitle>{section.title}</SectionTitle>
             <SectionArrow
               type="button"
-              disabled={
-                section.key === "videos"
-                  ? !canSlide("videos", filteredVideos.length)
-                  : section.key === "audios"
-                    ? !canSlide("audios", filteredAudios.length)
-                    : !canSlide("pdfs", filteredPdfs.length)
-              }
-              aria-disabled={
-                section.key === "videos"
-                  ? !canSlide("videos", filteredVideos.length)
-                  : section.key === "audios"
-                    ? !canSlide("audios", filteredAudios.length)
-                    : !canSlide("pdfs", filteredPdfs.length)
-              }
-              onClick={() => moveNext(section.key, section.total)}
+              disabled={!canSlide(section.key, sectionTotals[section.key])}
+              aria-disabled={!canSlide(section.key, sectionTotals[section.key])}
+              onClick={() => moveNext(section.key, sectionTotals[section.key])}
             >
               <LeftIcon />
             </SectionArrow>
           </SectionHeader>
           <MediaGrid>
-            {section.items.map((item) => (
+            {sectionItems[section.key].map((item) => (
               <GenericCard
                 key={item.id}
                 image={item.thumbSrc}
@@ -304,21 +216,13 @@ export default function RentedContent({ title, mode }: Props) {
                 subtitle={<MonoText $use="Body_Medium">{item.author}</MonoText>}
                 badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
                 footer={
-                  isPurchased ? (
+                  isPurchased || isCurrent ? (
                     <GenericButton
                       variant={VARIANT.SECONDARY}
                       size="md"
                       fullWidth
                     >
-                      {getViewerRentedMediaAction(item.mediaType)}
-                    </GenericButton>
-                  ) : isCurrent ? (
-                    <GenericButton
-                      variant={VARIANT.SECONDARY}
-                      size="md"
-                      fullWidth
-                    >
-                      {getViewerRentedMediaAction(item.mediaType)}
+                      {getMediaAction(item.mediaType)}
                     </GenericButton>
                   ) : (
                     <TwoButtonRow>
@@ -327,14 +231,14 @@ export default function RentedContent({ title, mode }: Props) {
                         size="md"
                         fullWidth
                       >
-                        Buy xx kr
+                        {RENTED_BUTTON_TEXT.buy}
                       </GenericButton>
                       <GenericButton
                         variant={VARIANT.SECONDARY}
                         size="md"
                         fullWidth
                       >
-                        Rent xx kr
+                        {RENTED_BUTTON_TEXT.rent}
                       </GenericButton>
                     </TwoButtonRow>
                   )
@@ -355,7 +259,7 @@ export default function RentedContent({ title, mode }: Props) {
                 <MediaTypePill>
                   <MediaTypeIcon type={item.mediaType} />
                   <MonoText $use="Body_Bold">
-                    {getViewerRentedMediaLabel(item.mediaType)}
+                    {getMediaLabel(item.mediaType)}
                   </MonoText>
                 </MediaTypePill>
               </GenericCard>
