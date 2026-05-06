@@ -181,14 +181,7 @@ export default function CreatorsContents() {
   };
 
   const handleCouponSubmit = async () => {
-    // await new Promise((res) => setTimeout(res, 1500));
-
     setIsCouponSuccess(true);
-
-    // setTimeout(() => {
-    // closeCouponFlow();
-    // setIsCouponSuccess(false);
-    // }, 1000);
   };
 
   return (
