@@ -38,7 +38,11 @@ import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
-import { CollectionRow } from "@/types/collectionsType";
+import {
+  CollectionRow,
+  CouponFormState,
+  INITIAL_COUPON_FORM,
+} from "@/types/collectionsType";
 import CollectionTable from "./Collections";
 import {
   collectionsData,
@@ -52,6 +56,7 @@ import CouponTable from "./coupon";
 import { couponData } from "@/utils/dummyData/couponData";
 import { useDeleteHandler } from "@/hooks/useCollectionDelete";
 import DeleteModals from "./CollectionDeleteMobal";
+import CouponPreviewModal from "./coupon/CouponPreviewModal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -106,10 +111,16 @@ export default function CreatorsContents() {
     return t(tab.labelKey);
   };
 
+  const [showCouponPreview, setShowCouponPreview] = useState(false);
+  const [couponForm, setCouponForm] =
+    useState<CouponFormState>(INITIAL_COUPON_FORM);
+
   const closeCouponFlow = () => {
+    setCouponForm(INITIAL_COUPON_FORM);
     setShowCouponDetails(false);
     setShowCouponCodes(false);
     setShowCouponApplicableProducts(false);
+    setShowCouponPreview(false);
   };
 
   const handleBackFromCouponCodes = () => {
@@ -125,6 +136,14 @@ export default function CreatorsContents() {
   const handleBackFromApplicableProducts = () => {
     setShowCouponApplicableProducts(false);
     setShowCouponCodes(true);
+  };
+  const handleNextFromApplicableProducts = () => {
+    setShowCouponApplicableProducts(false);
+    setShowCouponPreview(true);
+  };
+  const handleBackFromCouponPreview = () => {
+    setShowCouponPreview(false);
+    setShowCouponApplicableProducts(true);
   };
 
   const handleCreateClick = () => {
@@ -323,6 +342,8 @@ export default function CreatorsContents() {
 
       <CouponDetailsModal
         visible={showCouponDetails}
+        form={couponForm}
+        setForm={setCouponForm}
         onClose={closeCouponFlow}
         onNext={() => {
           setShowCouponDetails(false);
@@ -332,6 +353,8 @@ export default function CreatorsContents() {
 
       <CouponCodesModal
         visible={showCouponCodes}
+        form={couponForm}
+        setForm={setCouponForm}
         onBack={handleBackFromCouponCodes}
         onClose={closeCouponFlow}
         onNext={handleNextFromCouponCodes}
@@ -339,9 +362,19 @@ export default function CreatorsContents() {
 
       <CouponApplicableProductsModal
         visible={showCouponApplicableProducts}
+        form={couponForm}
+        setForm={setCouponForm}
         onBack={handleBackFromApplicableProducts}
         onClose={closeCouponFlow}
-        onNext={closeCouponFlow}
+        onNext={handleNextFromApplicableProducts}
+      />
+
+      <CouponPreviewModal
+        visible={showCouponPreview}
+        data={couponForm}
+        onBack={handleBackFromCouponPreview}
+        onClose={closeCouponFlow}
+        onContinue={closeCouponFlow}
       />
       <DeleteModals
         showDeleteConfirm={showDeleteConfirm}
