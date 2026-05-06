@@ -51,7 +51,7 @@ export default function SignUpSection() {
               </GenericButton>
               <GenericButton
                 asAnchor
-                href="/auth/signup-viewer"
+                href={PATHS.AUTH_SIGNUP_VIEWER}
                 variant={VARIANT.SECONDARY}
               >
                 {t(AUTH.signupViewer)}
@@ -60,7 +60,7 @@ export default function SignUpSection() {
 
             <AccountText>
               <MonoText $use="Body_Medium">{t(AUTH.haveAccount)}</MonoText>
-              <LoginLink href="/auth/login">
+              <LoginLink href={PATHS.AUTH_LOGIN}>
                 <MonoText $use="Body_Medium">{t(AUTH.login)} </MonoText>
               </LoginLink>
             </AccountText>

@@ -48,7 +48,11 @@ export default function AboutHero() {
             </MonoText>
           </Subtitle>
           <CTAWrap>
-            <GenericButton asAnchor href="/explore" variant={VARIANT.PRIMARY}>
+            <GenericButton
+              asAnchor
+              href={PATHS.EXPLORE}
+              variant={VARIANT.PRIMARY}
+            >
               {t("about.hero.cta.explore")}
             </GenericButton>
 

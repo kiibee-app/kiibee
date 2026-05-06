@@ -19,6 +19,7 @@ import { HomeIcon } from "@/assets/icons/homeIcon";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import styled from "styled-components";
+import { PATHS } from "@/utils/path";
 
 type Props = {
   onToggleSidebar?: () => void;
@@ -52,7 +53,7 @@ const DashboardHeader = ({ onToggleSidebar }: Props) => {
         <ChannelText $use="Body_Medium">{headerInfo.channel}</ChannelText>
         <Divider />
         <Link
-          href="/dashboard/creators?view=profile"
+          href={PATHS.DASHBOARD_CREATOR_PROFILE}
           aria-label="Creator profile"
         >
           <RightProfileWrapper>
