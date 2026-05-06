@@ -39,6 +39,7 @@ export default function DateRangeField({
   onChangeStart,
   onChangeEnd,
 }: Props) {
+  const canUseDOM = typeof document !== "undefined";
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
@@ -108,6 +109,7 @@ export default function DateRangeField({
         </DateDisplay>
 
         {open &&
+          canUseDOM &&
           createPortal(
             <DatePopupWrapper ref={popupRef}>
               <DatePopup $top={pos.top} $left={pos.left}>

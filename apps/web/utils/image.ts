@@ -23,6 +23,11 @@ export const getCroppedImg = (
   zoom: number,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
+    if (typeof window === "undefined" || typeof document === "undefined") {
+      reject(new Error("Image cropping requires a browser environment"));
+      return;
+    }
+
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.src = imageSrc;
