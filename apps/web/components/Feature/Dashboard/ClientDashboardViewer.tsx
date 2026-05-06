@@ -17,6 +17,7 @@ import {
 } from "@/utils/SidebarItems";
 import { MonoText } from "@/components/UI/Monotext";
 import PurchasedContent from "@/components/Feature/Dashboard/ClientViewerPurchased/PurchasedContent";
+import ClientViewerBillings from "@/components/Feature/Dashboard/ClientViewerBillings";
 
 const ROUTABLE_VIEWER_VIEWS = new Set<string>([
   VIEWER_VIEW_VALUES.PURCHASED,
@@ -99,6 +100,8 @@ export default function ClientDashboardViewer() {
     >
       {activePage === VIEWER_LABELS.PURCHASED ? (
         <PurchasedContent />
+      ) : activePage === VIEWER_LABELS.BILLINGS ? (
+        <ClientViewerBillings />
       ) : (
         <MonoText $use="H4_SemiBold">{sectionTitle}</MonoText>
       )}

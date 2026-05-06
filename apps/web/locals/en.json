@@ -829,7 +829,16 @@
     },
     "forgotPass": "Forgot Password?",
     "passwordSuccessTitle": "Password updated",
-    "passwordSuccessMessage": "Your password was successfully updated. Please log in again to continue."
+    "passwordSuccessMessage": "Your password was successfully updated. Please log in again to continue.",
+    "uploadPhotoTitle": "Upload photo",
+    "editPhotoTitle": "Edit photo",
+    "editPhoto": "Edit photo",
+    "dragPhotoHere": "Drag photo here",
+    "or": "or",
+    "choosePhoto": "Choose photos to upload",
+    "zoom": "Zoom",
+    "apply": "Apply",
+    "profilePhotoAlt": "Profile photo"
   },
   "singleCollection": {
     "subtitle": "Learn how to use our platform",
@@ -979,6 +988,26 @@
       "emptyStates": {
         "collections": "No collections match your search.",
         "media": "No items match your search."
+      }
+    },
+    "viewerBillings": {
+      "title": "Billings",
+      "tabs": {
+        "billingHistory": "Billing history",
+        "paymentMethods": "Payment methods"
+      },
+      "billingHistory": {
+        "empty": "No billing history available yet.",
+        "placeholder": "Billing history will appear here."
+      },
+      "paymentMethods": {
+        "title": "Payment methods",
+        "addCard": "Add card",
+        "defaultBadge": "Default",
+        "expires": "Expires {{date}}",
+        "edit": "Edit payment method",
+        "delete": "Delete payment method",
+        "more": "More actions"
       }
     },
     "logoutModal": {

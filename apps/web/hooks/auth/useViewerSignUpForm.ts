@@ -14,6 +14,7 @@ import {
 } from "@/utils/signup";
 import { useViewerSignUp } from "./useViewerSignUp";
 import { PATHS } from "@/utils/path";
+import { persistAuthSession } from "@/lib/auth/authSession";
 
 export type PasswordFieldKey = keyof PasswordVisibility;
 
@@ -84,13 +85,7 @@ export function useViewerSignUpForm() {
         confirmPassword: formValues.repeatPassword,
       });
 
-      const { accessToken, refreshToken } = response.data ?? {};
-
-      if (accessToken) localStorage.setItem("kiibee.accessToken", accessToken);
-
-      if (refreshToken)
-        localStorage.setItem("kiibee.refreshToken", refreshToken);
-
+      persistAuthSession(response);
       router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
     } catch (err) {
       const apiError = normalizeApiError(err);
