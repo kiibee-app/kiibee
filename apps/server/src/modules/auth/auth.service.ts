@@ -3,11 +3,11 @@ import { ConfigService } from '@nestjs/config';
 import { LoginDto } from './dto/login.dto';
 import { viewerSignUpService } from './services/viewerSignUp.service';
 import { loginService } from './services/login.service';
-import { logoutService, invalidateSession } from './services/logout.service';
+import { invalidateSession } from './services/logout.service';
 import { TokenService } from './services/token.service';
-import { eq } from 'drizzle-orm';
+import { and, eq, gt } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { users } from 'src/database/schema';
+import { users, userSessions } from 'src/database/schema';
 import { success, fail } from 'src/utils/sendResponse';
 import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { creatorRequestService } from './services/creatorRequest.service';
@@ -19,6 +19,8 @@ import { setupCreatorAccountService } from './services/creatorAccountSetup.servi
 import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
 import { forgetPasswordService } from './services/forgetPassword.service';
 import { resetPasswordService } from './services/resetPassword.service';
+import * as bcrypt from 'bcrypt';
+import { createSessionService } from './services/createSession.service';
 
 @Injectable()
 export class AuthService {
@@ -35,32 +37,90 @@ export class AuthService {
     return loginService(loginData, '', undefined, undefined);
   }
 
-  async refresh(userFromToken: { userId: string; email: string }) {
-    const user = await db.query.users.findFirst({
-      where: eq(users.id, userFromToken.userId),
-      columns: {
-        role: true,
-      },
+  async refresh(
+    userFromToken: { userId: string; email: string },
+    refreshToken: string,
+  ) {
+    return db.transaction(async (tx) => {
+      const user = await tx.query.users.findFirst({
+        where: and(
+          eq(users.id, userFromToken.userId),
+          eq(users.isDeleted, false),
+        ),
+        columns: {
+          role: true,
+        },
+      });
+
+      if (!user) {
+        return fail('User not found', 404);
+      }
+
+      const session = await tx.query.userSessions.findFirst({
+        where: and(
+          eq(userSessions.userId, userFromToken.userId),
+          gt(userSessions.expiresAt, new Date()),
+        ),
+        columns: {
+          refreshTokenHash: true,
+          expiresAt: true,
+          id: true,
+        },
+      });
+
+      if (!session) {
+        return fail('Refresh session not found or expired', 401);
+      }
+
+      const isRefreshTokenValid = await bcrypt.compare(
+        refreshToken,
+        session.refreshTokenHash,
+      );
+
+      if (!isRefreshTokenValid) {
+        return fail('Refresh token has been revoked', 401);
+      }
+
+      const tokens = await this.tokenService.generateAuthTokens({
+        id: userFromToken.userId,
+        email: userFromToken.email,
+        role: user.role,
+      });
+      const nextRefreshTokenHash = await bcrypt.hash(tokens.refreshToken, 12);
+      const nextExpiresAt = new Date();
+      nextExpiresAt.setDate(nextExpiresAt.getDate() + 7);
+
+      const updatedSession = await tx
+        .update(userSessions)
+        .set({
+          refreshTokenHash: nextRefreshTokenHash,
+          expiresAt: nextExpiresAt,
+          updatedAt: new Date(),
+        })
+        .where(
+          and(
+            eq(userSessions.userId, userFromToken.userId),
+            eq(userSessions.refreshTokenHash, session.refreshTokenHash),
+          ),
+        )
+        .returning({ id: userSessions.id });
+
+      if (updatedSession.length === 0) {
+        return fail(
+          'Refresh token was already rotated. Please login again',
+          401,
+        );
+      }
+
+      return success(
+        {
+          accessToken: tokens.accessToken,
+          refreshToken: tokens.refreshToken,
+        },
+        'Tokens refreshed successfully',
+        200,
+      );
     });
-
-    if (!user) {
-      return fail('User not found', 404);
-    }
-
-    const tokens = await this.tokenService.generateAuthTokens({
-      id: userFromToken.userId,
-      email: userFromToken.email,
-      role: user.role,
-    });
-
-    return success(
-      {
-        accessToken: tokens.accessToken,
-        refreshToken: tokens.refreshToken,
-      },
-      'Tokens refreshed successfully',
-      200,
-    );
   }
 
   async logout(userId: string) {
@@ -73,7 +133,7 @@ export class AuthService {
     ipAddress?: string,
     userAgent?: string,
   ) {
-    return logoutService(userId, refreshToken, ipAddress, userAgent);
+    return createSessionService(userId, refreshToken, ipAddress, userAgent);
   }
 
   async creatorRequest(payload: any) {

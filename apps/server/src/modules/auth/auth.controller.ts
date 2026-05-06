@@ -4,8 +4,6 @@ import {
   Post,
   Get,
   Req,
-  Headers,
-  UnauthorizedException,
   UseGuards,
   Param,
 } from '@nestjs/common';
@@ -17,6 +15,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
 import { ResetPasswordDto } from './dto/resetPassword.dto';
+import { RefreshTokenGuard } from './guards/refresh-token.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -93,26 +92,16 @@ export class AuthController {
     return result;
   }
 
+  @UseGuards(RefreshTokenGuard)
   @Post('refresh')
-  async refresh(@Headers('authorization') authorization: string) {
-    if (!authorization || !authorization.startsWith('Bearer ')) {
-      throw new UnauthorizedException(
-        'Authorization header missing or invalid',
-      );
-    }
-
-    const refreshToken = authorization.replace('Bearer ', '');
-
-    try {
-      const payload = await this.tokenService.verifyRefreshToken(refreshToken);
-      const result = await this.authService.refresh({
-        userId: payload.sub,
-        email: payload.email,
-      });
-      return result;
-    } catch (error) {
-      throw new UnauthorizedException('Invalid or expired refresh token');
-    }
+  async refresh(@Req() req: any) {
+    return this.authService.refresh(
+      {
+        userId: req.user.userId,
+        email: req.user.email,
+      },
+      req.user.refreshToken,
+    );
   }
 
   @UseGuards(JwtAuthGuard)
