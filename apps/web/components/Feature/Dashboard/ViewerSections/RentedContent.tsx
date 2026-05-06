@@ -59,6 +59,7 @@ export default function RentedContent({ title, mode }: Props) {
     [RENTED_SECTION_KEYS.AUDIOS]: filteredAudios.length,
     [RENTED_SECTION_KEYS.PDFS]: filteredPdfs.length,
   } as const;
+
   const sectionItems: Record<"videos" | "audios" | "pdfs", RentedMediaItem[]> =
     {
       [RENTED_SECTION_KEYS.VIDEOS]: visibleVideos,
@@ -82,6 +83,7 @@ export default function RentedContent({ title, mode }: Props) {
         <CollectionsSection
           mode={mode}
           items={visibleCollections}
+          totalItems={filteredCollections.length}
           canSlide={canSlide}
           canGoPrev={canGoPrev}
           canGoNext={canGoNext}

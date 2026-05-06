@@ -108,7 +108,6 @@ export default function ClientDashboardViewer() {
     try {
       await logout();
     } catch {
-      // Always clear session and redirect even if server logout fails.
     } finally {
       clearLoginSession();
       router.push(PATHS.AUTH_LOGIN);
@@ -140,11 +139,23 @@ export default function ClientDashboardViewer() {
       }
     >
       {activePage === VIEWER_LABELS.PURCHASED ? (
-        <RentedContent title={sectionTitle} mode={RENTED_MODES.PURCHASED} />
+        <RentedContent
+          key={RENTED_MODES.PURCHASED}
+          title={sectionTitle}
+          mode={RENTED_MODES.PURCHASED}
+        />
       ) : activePage === VIEWER_LABELS.CURRENTLY_RENTED ? (
-        <RentedContent title={sectionTitle} mode={RENTED_MODES.CURRENTLY} />
+        <RentedContent
+          key={RENTED_MODES.CURRENTLY}
+          title={sectionTitle}
+          mode={RENTED_MODES.CURRENTLY}
+        />
       ) : activePage === VIEWER_LABELS.PREVIOUSLY_RENTED ? (
-        <RentedContent title={sectionTitle} mode={RENTED_MODES.PREVIOUSLY} />
+        <RentedContent
+          key={RENTED_MODES.PREVIOUSLY}
+          title={sectionTitle}
+          mode={RENTED_MODES.PREVIOUSLY}
+        />
       ) : activePage === VIEWER_LABELS.BILLINGS ? (
         <ClientViewerBillings />
       ) : (

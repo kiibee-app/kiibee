@@ -12,6 +12,7 @@ import type {
 import {
   ACTIVE_RENTAL_TEXT,
   RENTED_BUTTON_TEXT,
+  RENTED_MODES,
   RENTED_SECTION_KEYS,
   type RentedSectionKey,
   getCollectionBadgeText,
@@ -35,6 +36,7 @@ import SectionPaginationArrows from "./SectionPaginationArrows";
 type Props = {
   mode: RentedMode;
   items: RentedCollectionItem[];
+  totalItems: number;
   canSlide: (section: RentedSectionKey, totalItems: number) => boolean;
   canGoPrev: (section: RentedSectionKey) => boolean;
   canGoNext: (section: RentedSectionKey, totalItems: number) => boolean;
@@ -45,14 +47,15 @@ type Props = {
 export default function CollectionsSection({
   mode,
   items,
+  totalItems,
   canSlide,
   canGoPrev,
   canGoNext,
   movePrev,
   moveNext,
 }: Props) {
-  const isCurrent = mode === "currently";
-  const isPurchased = mode === "purchased";
+  const isCurrent = mode === RENTED_MODES.CURRENTLY;
+  const isPurchased = mode === RENTED_MODES.PURCHASED;
 
   return (
     <>
@@ -60,7 +63,7 @@ export default function CollectionsSection({
         <SectionTitle>Collections</SectionTitle>
         <SectionPaginationArrows
           sectionKey={RENTED_SECTION_KEYS.COLLECTIONS}
-          totalItems={items.length}
+          totalItems={totalItems}
           canSlide={canSlide}
           canGoPrev={canGoPrev}
           canGoNext={canGoNext}
