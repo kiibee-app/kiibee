@@ -88,11 +88,7 @@ export function paginateSectionItems<T>(
   pageSize: number,
 ): T[] {
   if (items.length <= pageSize) return items;
-  const result: T[] = [];
-  for (let i = 0; i < pageSize; i += 1) {
-    result.push(items[(startIndex + i) % items.length]);
-  }
-  return result;
+  return items.slice(startIndex, startIndex + pageSize);
 }
 
 export function filterCollections(
@@ -172,3 +168,9 @@ export const RENTED_BUTTON_TEXT = {
   buy: "Buy xx kr",
   rent: "Rent xx kr",
 } as const;
+
+export function getSearchPlaceholder(mode: RentedMode) {
+  if (mode === RENTED_MODES.PURCHASED) return "Search Purchased Content";
+  if (mode === RENTED_MODES.CURRENTLY) return "Search Currently Rented";
+  return "Search Previously Rented";
+}

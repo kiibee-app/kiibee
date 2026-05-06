@@ -6,7 +6,7 @@ import { MonoText } from "@/components/UI/Monotext";
 export const PageHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing(6)};
+  gap: ${({ theme }) => theme.spacing(2)};
   flex-wrap: wrap;
   margin-bottom: 12px;
   width: 100%;
@@ -15,9 +15,11 @@ export const PageHeader = styled.div`
 
 export const PageWrap = styled.div`
   padding: 40px 30px;
+  margin-right: 30px;
 
   ${media.tablet} {
     padding: 20px;
+    margin-right: 10px;
   }
 `;
 

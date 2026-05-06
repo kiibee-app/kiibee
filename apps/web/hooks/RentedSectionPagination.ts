@@ -41,11 +41,44 @@ export function useViewerRentedSectionPagination() {
       if (totalItems <= pageSize) return;
       setPageStart((prev) => ({
         ...prev,
-        [section]: (prev[section] + pageSize) % totalItems,
+        [section]: Math.min(prev[section] + pageSize, totalItems - pageSize),
       }));
     },
     [],
   );
 
-  return { getVisibleItems, canSlide, moveNext };
+  const movePrev = useCallback(
+    (section: RentedSectionKey, totalItems: number) => {
+      const pageSize = RENTED_PAGE_SIZE[section];
+      if (totalItems <= pageSize) return;
+      setPageStart((prev) => ({
+        ...prev,
+        [section]: Math.max(prev[section] - pageSize, 0),
+      }));
+    },
+    [],
+  );
+
+  const canGoPrev = useCallback(
+    (section: RentedSectionKey) => pageStart[section] > 0,
+    [pageStart],
+  );
+
+  const canGoNext = useCallback(
+    (section: RentedSectionKey, totalItems: number) => {
+      const pageSize = RENTED_PAGE_SIZE[section];
+      if (totalItems <= pageSize) return false;
+      return pageStart[section] + pageSize < totalItems;
+    },
+    [pageStart],
+  );
+
+  return {
+    getVisibleItems,
+    canSlide,
+    moveNext,
+    movePrev,
+    canGoPrev,
+    canGoNext,
+  };
 }

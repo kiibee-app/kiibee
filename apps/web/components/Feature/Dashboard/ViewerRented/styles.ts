@@ -6,7 +6,7 @@ export const SectionHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding-left: 10px;
 `;
 
@@ -28,6 +28,12 @@ export const SectionArrow = styled.button`
     opacity: 0.35;
     cursor: not-allowed;
   }
+`;
+
+export const SectionArrows = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 `;
 
 export const CollectionGrid = styled.div`
@@ -192,4 +198,61 @@ export const MediaTypePill = styled.div`
   align-items: center;
   gap: 6px;
   width: 100%;
+`;
+
+export const HeaderSearchArea = styled.div<{ $open: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  width: ${({ $open }) => ($open ? "260px" : "36px")};
+  height: 36px;
+  box-sizing: border-box;
+  padding: ${({ $open }) => ($open ? "8px 12px" : "8px")};
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid
+    ${({ $open, theme }) =>
+      $open ? theme.colors.primary.GRAY : theme.colors.neutral.WHITE};
+  background: ${({ $open, theme }) =>
+    $open ? theme.colors.neutral.OFF_WHITE : theme.colors.neutral.WHITE};
+  cursor: ${({ $open }) => ($open ? "text" : "pointer")};
+  transition: all 0.25s ease;
+
+  ${media.tablet} {
+    width: ${({ $open }) => ($open ? "220px" : "36px")};
+  }
+
+  ${media.mobile} {
+    width: ${({ $open }) => ($open ? "100%" : "36px")};
+  }
+`;
+
+export const HeaderSearchButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  cursor: pointer;
+`;
+
+export const HeaderSearchInput = styled.input<{ $open: boolean }>`
+  border: none;
+  background: transparent;
+  outline: none;
+  margin-left: ${({ $open }) => ($open ? "8px" : "0")};
+  padding: 0;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  width: ${({ $open }) => ($open ? "100%" : "0")};
+  opacity: ${({ $open }) => ($open ? 1 : 0)};
+  transition: all 0.25s ease;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  }
 `;

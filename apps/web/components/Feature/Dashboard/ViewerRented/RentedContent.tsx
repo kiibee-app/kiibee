@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import {
   type RentedMediaItem,
@@ -31,10 +31,14 @@ import {
   CollectionImage,
   CollectionImageWrap,
   ElementsPill,
+  HeaderSearchArea,
+  HeaderSearchButton,
+  HeaderSearchInput,
   MediaGrid,
   MediaTypePill,
   PassiveActionBlock,
   SectionArrow,
+  SectionArrows,
   SectionHeader,
   TwoButtonRow,
 } from "./styles";
@@ -52,8 +56,10 @@ import {
   getMediaAction,
   getMediaLabel,
   getRentedContentSources,
+  getSearchPlaceholder,
 } from "@/utils/viewerRented";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
+import { useTheme } from "styled-components";
 
 type Props = {
   title: string;
@@ -71,49 +77,43 @@ function MediaTypeIcon({ type }: { type: RentedMediaItem["mediaType"] }) {
 }
 
 export default function RentedContent({ title, mode }: Props) {
-  const [searchValue] = useState("");
-  const { getVisibleItems, canSlide, moveNext } =
-    useViewerRentedSectionPagination();
+  const theme = useTheme();
+  const [searchValue, setSearchValue] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const {
+    getVisibleItems,
+    canSlide,
+    moveNext,
+    movePrev,
+    canGoPrev,
+    canGoNext,
+  } = useViewerRentedSectionPagination();
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const isPurchased = mode === RENTED_MODES.PURCHASED;
   const sources = useMemo(() => getRentedContentSources(mode), [mode]);
 
-  const filteredCollections = useMemo(
-    () => filterCollections(searchValue, sources.collections),
-    [searchValue, sources.collections],
+  const filteredCollections = filterCollections(
+    searchValue,
+    sources.collections,
   );
+  const filteredVideos = filterMedia(searchValue, sources.videos);
+  const filteredAudios = filterMedia(searchValue, sources.audios);
+  const filteredPdfs = filterMedia(searchValue, sources.pdfs);
 
-  const filteredVideos = useMemo(
-    () => filterMedia(searchValue, sources.videos),
-    [searchValue, sources.videos],
+  const visibleCollections = getVisibleItems(
+    RENTED_SECTION_KEYS.COLLECTIONS,
+    filteredCollections,
   );
-
-  const filteredAudios = useMemo(
-    () => filterMedia(searchValue, sources.audios),
-    [searchValue, sources.audios],
+  const visibleVideos = getVisibleItems(
+    RENTED_SECTION_KEYS.VIDEOS,
+    filteredVideos,
   );
-
-  const filteredPdfs = useMemo(
-    () => filterMedia(searchValue, sources.pdfs),
-    [searchValue, sources.pdfs],
+  const visibleAudios = getVisibleItems(
+    RENTED_SECTION_KEYS.AUDIOS,
+    filteredAudios,
   );
-
-  const visibleCollections = useMemo(
-    () => getVisibleItems(RENTED_SECTION_KEYS.COLLECTIONS, filteredCollections),
-    [filteredCollections, getVisibleItems],
-  );
-  const visibleVideos = useMemo(
-    () => getVisibleItems(RENTED_SECTION_KEYS.VIDEOS, filteredVideos),
-    [filteredVideos, getVisibleItems],
-  );
-  const visibleAudios = useMemo(
-    () => getVisibleItems(RENTED_SECTION_KEYS.AUDIOS, filteredAudios),
-    [filteredAudios, getVisibleItems],
-  );
-  const visiblePdfs = useMemo(
-    () => getVisibleItems(RENTED_SECTION_KEYS.PDFS, filteredPdfs),
-    [filteredPdfs, getVisibleItems],
-  );
+  const visiblePdfs = getVisibleItems(RENTED_SECTION_KEYS.PDFS, filteredPdfs);
   const sectionTotals = {
     [RENTED_SECTION_KEYS.VIDEOS]: filteredVideos.length,
     [RENTED_SECTION_KEYS.AUDIOS]: filteredAudios.length,
@@ -125,39 +125,88 @@ export default function RentedContent({ title, mode }: Props) {
     [RENTED_SECTION_KEYS.PDFS]: visiblePdfs,
   } as const;
 
+  useEffect(() => {
+    if (isSearchOpen) {
+      searchInputRef.current?.focus();
+    }
+  }, [isSearchOpen]);
+
   return (
     <PageWrap>
       <PageHeader>
         <MonoText $use="H4_SemiBold">{title}</MonoText>
-        <SearchIcon />
+        <HeaderSearchArea $open={isSearchOpen}>
+          <HeaderSearchButton
+            type="button"
+            aria-label="Toggle search"
+            onClick={() => setIsSearchOpen((prev) => !prev)}
+          >
+            <SearchIcon
+              width={18}
+              height={18}
+              color={theme.colors.neutral.GRAY_400}
+            />
+          </HeaderSearchButton>
+
+          <HeaderSearchInput
+            ref={searchInputRef}
+            $open={isSearchOpen}
+            placeholder={getSearchPlaceholder(mode)}
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+        </HeaderSearchArea>
       </PageHeader>
 
       <SectionBlock>
         <SectionHeader>
           <SectionTitle>Collections</SectionTitle>
-          <SectionArrow
-            type="button"
-            disabled={
-              !canSlide(
-                RENTED_SECTION_KEYS.COLLECTIONS,
-                filteredCollections.length,
-              )
-            }
-            aria-disabled={
-              !canSlide(
-                RENTED_SECTION_KEYS.COLLECTIONS,
-                filteredCollections.length,
-              )
-            }
-            onClick={() =>
-              moveNext(
-                RENTED_SECTION_KEYS.COLLECTIONS,
-                filteredCollections.length,
-              )
-            }
-          >
-            <LeftIcon />
-          </SectionArrow>
+          <SectionArrows>
+            {canGoPrev(RENTED_SECTION_KEYS.COLLECTIONS) && (
+              <SectionArrow
+                type="button"
+                onClick={() =>
+                  movePrev(
+                    RENTED_SECTION_KEYS.COLLECTIONS,
+                    filteredCollections.length,
+                  )
+                }
+              >
+                <LeftIcon style={{ transform: "rotate(180deg)" }} />
+              </SectionArrow>
+            )}
+            <SectionArrow
+              type="button"
+              disabled={
+                !canSlide(
+                  RENTED_SECTION_KEYS.COLLECTIONS,
+                  filteredCollections.length,
+                ) ||
+                !canGoNext(
+                  RENTED_SECTION_KEYS.COLLECTIONS,
+                  filteredCollections.length,
+                )
+              }
+              aria-disabled={
+                !canSlide(
+                  RENTED_SECTION_KEYS.COLLECTIONS,
+                  filteredCollections.length,
+                ) ||
+                !canGoNext(
+                  RENTED_SECTION_KEYS.COLLECTIONS,
+                  filteredCollections.length,
+                )
+              }
+              onClick={() =>
+                moveNext(
+                  RENTED_SECTION_KEYS.COLLECTIONS,
+                  filteredCollections.length,
+                )
+              }
+            >
+              <LeftIcon />
+            </SectionArrow>
+          </SectionArrows>
         </SectionHeader>
         <CollectionGrid>
           {visibleCollections.map((item) => (
@@ -216,14 +265,34 @@ export default function RentedContent({ title, mode }: Props) {
         <SectionBlock key={section.title}>
           <SectionHeader>
             <SectionTitle>{section.title}</SectionTitle>
-            <SectionArrow
-              type="button"
-              disabled={!canSlide(section.key, sectionTotals[section.key])}
-              aria-disabled={!canSlide(section.key, sectionTotals[section.key])}
-              onClick={() => moveNext(section.key, sectionTotals[section.key])}
-            >
-              <LeftIcon />
-            </SectionArrow>
+            <SectionArrows>
+              {canGoPrev(section.key) && (
+                <SectionArrow
+                  type="button"
+                  onClick={() =>
+                    movePrev(section.key, sectionTotals[section.key])
+                  }
+                >
+                  <LeftIcon style={{ transform: "rotate(180deg)" }} />
+                </SectionArrow>
+              )}
+              <SectionArrow
+                type="button"
+                disabled={
+                  !canSlide(section.key, sectionTotals[section.key]) ||
+                  !canGoNext(section.key, sectionTotals[section.key])
+                }
+                aria-disabled={
+                  !canSlide(section.key, sectionTotals[section.key]) ||
+                  !canGoNext(section.key, sectionTotals[section.key])
+                }
+                onClick={() =>
+                  moveNext(section.key, sectionTotals[section.key])
+                }
+              >
+                <LeftIcon />
+              </SectionArrow>
+            </SectionArrows>
           </SectionHeader>
           <MediaGrid>
             {sectionItems[section.key].map((item) => (
