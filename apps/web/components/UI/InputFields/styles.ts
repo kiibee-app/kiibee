@@ -227,6 +227,16 @@ export const Field = styled.div`
   justify-content: space-between;
   cursor: pointer;
   min-height: 44px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 `;
 
 export const Selected = styled.div`
@@ -264,6 +274,16 @@ export const Item = styled.button`
   gap: 10px;
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: -2px;
+    border-radius: 2px;
   }
 `;
 
