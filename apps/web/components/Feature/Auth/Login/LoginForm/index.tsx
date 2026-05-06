@@ -28,13 +28,13 @@ import { useLoginForm } from "@/hooks/auth/useLoginForm";
 export default function LoginForm() {
   const { t } = useTranslation();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
   const { state, actions } = useLoginForm();
   const { email, password, remember, fieldErrors, formError, isPending } =
     state;
 
   const { setRemember, handleEmailChange, handlePasswordChange, handleSubmit } =
     actions;
+  const isSubmitDisabled = isPending || !email.trim() || !password.trim();
 
   return (
     <Wrapper>
@@ -80,7 +80,7 @@ export default function LoginForm() {
           <GenericButton
             type="submit"
             isLoading={isPending}
-            disabled={isPending}
+            disabled={isSubmitDisabled}
           >
             {t("authForm.submit")}
           </GenericButton>

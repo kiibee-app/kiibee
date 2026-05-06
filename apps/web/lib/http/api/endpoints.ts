@@ -3,6 +3,8 @@ export const API = {
     refresh: "/auth/refresh",
     logout: "/auth/logout",
     login: "/auth/login",
+    forgetPassword: "/auth/forget-password",
+    resetPassword: "/auth/reset-password",
     creatorRequest: "/auth/creator-request",
     signup: "/auth/signup",
   },

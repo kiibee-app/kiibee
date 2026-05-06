@@ -79,7 +79,8 @@
     "checkEmailTitle": "Check your email",
     "checkEmailDescription": "We sent a password reset link to your email. If it doesn’t arrive within a few minutes, check your spam folder.",
     "didNotReceive": "Didn’t receive the email?",
-    "resend": "Resend"
+    "resend": "Resend",
+    "submitFailed": "We could not send a reset link right now. Please try again."
   },
   "viewerSignup": {
     "title": "Create viewer account",
@@ -787,7 +788,13 @@
     "back": "Back",
     "close": "Close",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "selectDateRange": "Select date range",
+    "loading": "Loading"
+  },
+  "image": {
+    "failed": "Failed to load image",
+    "failedAalt": "Failed to load image: {{alt}}"
   },
   "table": {
     "noData": "No Data Found"
@@ -1129,7 +1136,8 @@
       "search": "Search contents",
       "cancel": "Cancel",
       "save": "Save",
-      "deleteContent": "Delete content"
+      "deleteContent": "Delete content",
+      "addContent": "Add content"
     },
     "couponDetails": {
       "title": "Coupon details",
@@ -1178,6 +1186,7 @@
     "tabs": {
       "collections": "Collections",
       "appearance": "Appearance",
+      "contents": "Contents",
       "settings": "Settings",
       "coupons": "Coupons"
     },
@@ -1283,6 +1292,8 @@
     "repeatPasswordLabel": "Repeat new password",
     "repeatPasswordPlaceholder": "Repeat new password",
     "submit": "Reset",
+    "invalidLink": "This reset link is invalid. Please request a new password reset email.",
+    "submitFailed": "We could not reset your password right now. Please try again.",
     "successTitle": "Your password has been successfully reset!",
     "successDescription": "You can now log in with your new password. If you encounter any issues, please contact support.",
     "backToLogin": "Back to login"

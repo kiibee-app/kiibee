@@ -6,6 +6,7 @@ import { and } from 'drizzle-orm';
 import { creatorApplicationRequests } from 'src/database/schema/users/creatorApplicationRequests.schema';
 import { users } from 'src/database/schema/users/users.schema';
 import { fail, success } from 'src/utils/sendResponse';
+import { logger } from 'src/logger/logger';
 
 export const creatorRequestService = async (
   payload: CreateCreatorApplicationDto,
@@ -80,7 +81,7 @@ export const creatorRequestService = async (
       HttpStatus.CREATED,
     );
   } catch (error) {
-    console.error('Error processing creator request:', error);
+    logger.error('Error processing creator request:', error);
 
     if (error instanceof HttpException) {
       throw error;

@@ -22,6 +22,7 @@ import { CalendarIcon } from "@/assets/icons";
 import COLORS from "@repo/ui/colors";
 import { formatDate } from "@/utils/formatDate";
 import { useTranslation } from "react-i18next";
+import { MOUSE_DOWN } from "@/utils/common";
 
 type Props = {
   label?: React.ReactNode;
@@ -58,8 +59,8 @@ export default function DateRangeField({
       setOpen(false);
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener(MOUSE_DOWN, handleClickOutside);
+    return () => document.removeEventListener(MOUSE_DOWN, handleClickOutside);
   }, [open]);
 
   const openPopup = () => {
@@ -94,7 +95,7 @@ export default function DateRangeField({
       ? `${formatDate(tempStart)}${
           tempStart && tempEnd ? " - " : ""
         }${formatDate(tempEnd)}`
-      : "Select date range";
+      : t("common.selectDateRange");
 
   return (
     <Container ref={wrapperRef}>
@@ -111,7 +112,7 @@ export default function DateRangeField({
             <DatePopupWrapper ref={popupRef}>
               <DatePopup $top={pos.top} $left={pos.left}>
                 <DatePopupBody>
-                  <React.Suspense fallback={<div>Loading...</div>}>
+                  <React.Suspense fallback={<div>{t("common.loading")}</div>}>
                     <RangeCalendar
                       start={tempStart}
                       end={tempEnd}

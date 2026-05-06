@@ -17,6 +17,9 @@ export function renderTemplate(
       return arr
         .map((item) => {
           let block = inner;
+          if (!item || typeof item !== 'object') {
+            return block;
+          }
           for (const [k, v] of Object.entries(item)) {
             block = block.replace(new RegExp(`{{\\s*${k}\\s*}}`, 'g'), v);
           }
@@ -33,7 +36,7 @@ export function renderTemplate(
       finalValue = md.render(value);
     }
 
-    if (typeof value === 'object' && !Array.isArray(value)) {
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
       for (const [subKey, subValue] of Object.entries(value)) {
         const nestedRegex = new RegExp(`{{\\s*${key}\\.${subKey}\\s*}}`, 'g');
         html = html.replace(nestedRegex, String(subValue));

@@ -3,6 +3,7 @@ import path from 'path';
 import { getEmailTransporter } from './emailTransporter';
 import { logger } from 'src/logger/logger';
 import { renderTemplate } from './renderTemplate';
+import { env } from 'src/config/env';
 
 interface SendEmailOptions {
   to: string;
@@ -29,7 +30,7 @@ export async function sendTemplateEmail({
     const htmlContent = renderTemplate(template, variables);
 
     await getEmailTransporter().sendMail({
-      from: `"${process.env.SENDER_NAME}" <${process.env.SENDER_EMAIL}>`,
+      from: `"${env.SENDER_NAME}" <${env.SENDER_EMAIL}>`,
       to,
       subject,
       html: htmlContent,
