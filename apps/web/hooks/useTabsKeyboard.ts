@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { KEYBOARD_KEYS } from "@/utils/ui";
 
 type TabItem = {
   key: string;
@@ -19,19 +20,19 @@ export function useTabsKeyboard<T extends string>({
     let nextIndex: number | null = null;
 
     switch (e.key) {
-      case "ArrowRight":
+      case KEYBOARD_KEYS.ARROW_RIGHT:
         e.preventDefault();
         nextIndex = (index + 1) % tabs.length;
         break;
-      case "ArrowLeft":
+      case KEYBOARD_KEYS.ARROW_LEFT:
         e.preventDefault();
         nextIndex = (index - 1 + tabs.length) % tabs.length;
         break;
-      case "Home":
+      case KEYBOARD_KEYS.HOME:
         e.preventDefault();
         nextIndex = 0;
         break;
-      case "End":
+      case KEYBOARD_KEYS.END:
         e.preventDefault();
         nextIndex = tabs.length - 1;
         break;
