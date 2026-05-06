@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
-import { Card, Description, Form, Title, Wrapper } from "./styles";
+import { Card, Description, Form, FormMessage, Title, Wrapper } from "./styles";
 import { INPUT_TYPE } from "@/utils/ui";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import ResetPasswordSuccess from "./ResetPasswordSuccess";
@@ -18,12 +18,20 @@ import {
   PasswordState,
   VisibilityState,
 } from "@/utils/resetPassword";
+import { useResetPassword } from "@/hooks/auth/useResetPassword";
+import { useSearchParams } from "next/navigation";
+import { ApiError } from "@/lib/http/errors/apiError";
+import { ALERT } from "@/utils/common";
 
 export default function ResetPasswordForm() {
   const { t } = useTranslation();
   const [isSuccess, setIsSuccess] = useState(false);
   const [passwords, setPasswords] = useState(INITIAL_PASSWORDS);
   const [visibility, setVisibility] = useState(INITIAL_VISIBILITY);
+  const [errorMessage, setErrorMessage] = useState("");
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token") ?? "";
+  const { mutateAsync: resetPassword, isPending } = useResetPassword();
 
   const handleChange = useCallback(
     (field: keyof PasswordState, value: string) => {
@@ -39,19 +47,39 @@ export default function ResetPasswordForm() {
   const isValid = useMemo(() => {
     const { newPassword, repeatPassword } = passwords;
     return (
+      token.length > 0 &&
       newPassword.length > 0 &&
       repeatPassword.length > 0 &&
       newPassword === repeatPassword
     );
-  }, [passwords]);
+  }, [passwords, token]);
 
   const handleSubmit = useCallback(
-    (event: FormEvent<HTMLFormElement>) => {
+    async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       if (!isValid) return;
-      setIsSuccess(true);
+      setErrorMessage("");
+
+      try {
+        await resetPassword({
+          token,
+          password: passwords.newPassword,
+          confirmPassword: passwords.repeatPassword,
+        });
+        setIsSuccess(true);
+      } catch (error) {
+        const fallback = t("resetPassword.submitFailed");
+        setErrorMessage(error instanceof ApiError ? error.message : fallback);
+      }
     },
-    [isValid],
+    [
+      isValid,
+      passwords.newPassword,
+      passwords.repeatPassword,
+      resetPassword,
+      t,
+      token,
+    ],
   );
 
   const fields = getResetPasswordFields();
@@ -82,8 +110,20 @@ export default function ResetPasswordForm() {
               />
             );
           })}
+          {!token && (
+            <FormMessage role={ALERT}>
+              {t("resetPassword.invalidLink")}
+            </FormMessage>
+          )}
+          {errorMessage && (
+            <FormMessage role={ALERT}>{errorMessage}</FormMessage>
+          )}
 
-          <GenericButton type="submit" disabled={!isValid}>
+          <GenericButton
+            type="submit"
+            isLoading={isPending}
+            disabled={!isValid || isPending}
+          >
             {t("resetPassword.submit")}
           </GenericButton>
         </Form>
