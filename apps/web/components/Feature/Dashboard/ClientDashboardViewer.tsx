@@ -25,7 +25,7 @@ import {
   useLogout,
 } from "@/hooks/auth/useLogin";
 import ClientViewerBillings from "@/components/Feature/Dashboard/ClientViewerBillings";
-import RentedContent from "@/components/Feature/Dashboard/ViewerRented/RentedContent";
+import RentedContent from "@/components/Feature/Dashboard/ViewerSections/RentedContent";
 import { RENTED_MODES } from "@/utils/viewerRented";
 
 const ROUTABLE_VIEWER_VIEWS = new Set<string>([
