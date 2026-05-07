@@ -102,6 +102,8 @@ export const BROWSER_API = {
   INTERSECTION_OBSERVER: "IntersectionObserver",
 } as const;
 
+export const INTERSECTION_OBSERVER_FALLBACK_DELAY_MS = 250;
+
 export const MODAL_ALIGN = {
   CENTER: "center",
   START: "flex-start",
