@@ -9,7 +9,10 @@ import { FilterGroupKey } from "@/utils/creatorFilters";
 import { Directions } from "@/utils/ui";
 import PriceFiltersSection from "./PriceFiltersSection";
 import RatingFiltersSection from "./RatingFiltersSection";
-import { buildListSections } from "@/utils/filterSections";
+import {
+  buildListSections,
+  buildRenderFilterSections,
+} from "@/utils/filterSections";
 import FilterAccordionSection from "./FilterAccordionSection";
 import {
   CheckboxControl,
@@ -30,11 +33,10 @@ import {
   CreatorFiltersControlProps,
   FilterSectionKey,
   OptionItem,
-  FILTER_PANEL_SECTIONS,
 } from "@/types/exportCreators";
 import { BUTTON } from "@/utils/Constants";
 
-export default function CreatorFiltersControl({
+function CreatorFiltersControl({
   refs,
   state,
   categoryLabels,
@@ -124,8 +126,36 @@ export default function CreatorFiltersControl({
 
   const isSectionOpen = (section: FilterSectionKey) =>
     expandedSection === section;
-  const isPriceSectionOpen = isSectionOpen(FILTER_PANEL_SECTIONS.PRICE);
-  const isRatingSectionOpen = isSectionOpen(FILTER_PANEL_SECTIONS.RATING);
+  const filterSections = React.useMemo(
+    () =>
+      buildRenderFilterSections({
+        listSections,
+        renderOptionList,
+        priceTitle: t("creators.filters.sections.price"),
+        ratingTitle: t("creators.filters.sections.rating"),
+        priceContent: (
+          <PriceFiltersSection
+            priceRange={priceRange}
+            handlePriceChange={handlePriceChange}
+          />
+        ),
+        ratingContent: (
+          <RatingFiltersSection
+            selectedRating={selectedRating}
+            setSelectedRating={setSelectedRating}
+          />
+        ),
+      }),
+    [
+      listSections,
+      renderOptionList,
+      t,
+      priceRange,
+      handlePriceChange,
+      selectedRating,
+      setSelectedRating,
+    ],
+  );
 
   return (
     <FilterControlWrap>
@@ -151,48 +181,25 @@ export default function CreatorFiltersControl({
             <FilterTitle>{t("creators.filters.title")}</FilterTitle>
           </FilterHeader>
           <FilterSections>
-            {listSections.map((section) => {
-              const open = isSectionOpen(section.sectionKey);
+            {filterSections.map((section) => {
+              const open = isSectionOpen(section.key);
               return (
                 <FilterAccordionSection
-                  key={section.sectionKey}
+                  key={section.key}
                   title={section.title}
                   isOpen={open}
-                  onToggle={() => toggleSection(section.sectionKey)}
+                  onToggle={() => toggleSection(section.key)}
                   icon={renderSectionIcon(open)}
                 >
-                  {renderOptionList(section.sectionKey, section.options)}
-                  {section.footer}
+                  {section.content}
                 </FilterAccordionSection>
               );
             })}
-
-            <FilterAccordionSection
-              title={t("creators.filters.sections.price")}
-              isOpen={isPriceSectionOpen}
-              onToggle={() => toggleSection(FILTER_PANEL_SECTIONS.PRICE)}
-              icon={renderSectionIcon(isPriceSectionOpen)}
-            >
-              <PriceFiltersSection
-                priceRange={priceRange}
-                handlePriceChange={handlePriceChange}
-              />
-            </FilterAccordionSection>
-
-            <FilterAccordionSection
-              title={t("creators.filters.sections.rating")}
-              isOpen={isRatingSectionOpen}
-              onToggle={() => toggleSection(FILTER_PANEL_SECTIONS.RATING)}
-              icon={renderSectionIcon(isRatingSectionOpen)}
-            >
-              <RatingFiltersSection
-                selectedRating={selectedRating}
-                setSelectedRating={setSelectedRating}
-              />
-            </FilterAccordionSection>
           </FilterSections>
         </FilterOverlay>
       ) : null}
     </FilterControlWrap>
   );
 }
+
+export default React.memo(CreatorFiltersControl);

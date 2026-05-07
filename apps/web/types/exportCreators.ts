@@ -73,3 +73,21 @@ export type BuildListSectionsParams = {
   showAllCreators: boolean;
   setShowAllCreators: (show: boolean) => void;
 };
+
+export type RenderFilterSectionItem = {
+  key: FilterSectionKey;
+  title: string;
+  content: React.ReactNode;
+};
+
+export type BuildRenderFilterSectionsParams = {
+  listSections: ListSectionItem[];
+  renderOptionList: (
+    group: FilterGroupKey,
+    options: OptionItem[],
+  ) => React.ReactNode;
+  priceTitle: string;
+  ratingTitle: string;
+  priceContent: React.ReactNode;
+  ratingContent: React.ReactNode;
+};

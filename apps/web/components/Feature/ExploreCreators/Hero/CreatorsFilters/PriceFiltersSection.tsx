@@ -20,7 +20,7 @@ type PriceFiltersSectionProps = {
   ) => (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default function PriceFiltersSection({
+function PriceFiltersSection({
   priceRange,
   handlePriceChange,
 }: PriceFiltersSectionProps) {
@@ -57,3 +57,5 @@ export default function PriceFiltersSection({
     </PriceFields>
   );
 }
+
+export default React.memo(PriceFiltersSection);

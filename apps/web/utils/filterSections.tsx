@@ -9,6 +9,9 @@ import {
 import {
   BuildListSectionsParams,
   ListSectionItem,
+  RenderFilterSectionItem,
+  FILTER_PANEL_SECTIONS,
+  BuildRenderFilterSectionsParams,
 } from "@/types/exportCreators";
 
 export function buildListSections({
@@ -44,6 +47,38 @@ export function buildListSections({
       sectionKey: filterGroupMap.formats,
       title: t("creators.filters.sections.formats"),
       options: formatLabels,
+    },
+  ];
+}
+
+export function buildRenderFilterSections({
+  listSections,
+  renderOptionList,
+  priceTitle,
+  ratingTitle,
+  priceContent,
+  ratingContent,
+}: BuildRenderFilterSectionsParams): RenderFilterSectionItem[] {
+  return [
+    ...listSections.map((section) => ({
+      key: section.sectionKey,
+      title: section.title,
+      content: (
+        <>
+          {renderOptionList(section.sectionKey, section.options)}
+          {section.footer}
+        </>
+      ),
+    })),
+    {
+      key: FILTER_PANEL_SECTIONS.PRICE,
+      title: priceTitle,
+      content: priceContent,
+    },
+    {
+      key: FILTER_PANEL_SECTIONS.RATING,
+      title: ratingTitle,
+      content: ratingContent,
     },
   ];
 }
