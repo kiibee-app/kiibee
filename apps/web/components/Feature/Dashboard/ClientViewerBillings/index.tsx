@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { useTranslation } from "react-i18next";
 import {
   VIEWER_BILLING_HISTORY_TAB,
@@ -51,9 +53,14 @@ import {
   PaymentLogoWrap,
   PaymentMethodCell,
   RowNumber,
+  SearchFilters,
+  SearchContentInput,
+  SearchCreatorInput,
 } from "./styles";
 
 export default function ClientViewerBillings() {
+  const [contentSearch, setContentSearch] = useState("");
+  const [creatorSearch, setCreatorSearch] = useState("");
   const { t } = useTranslation();
   const { activeTab, setActiveTabAndQuery } =
     useQuerySyncedTab<ViewerBillingTab>({
@@ -89,6 +96,22 @@ export default function ClientViewerBillings() {
       {activeTab === VIEWER_BILLING_HISTORY_TAB ? (
         MOCK_VIEWER_BILLING_HISTORY.length ? (
           <BillingTableSection>
+            <SearchFilters>
+              <SearchContentInput
+                placeholder={t(
+                  DASHBOARD_VIEWER_BILLINGS.billingHistory.searchContent,
+                )}
+                value={contentSearch}
+                onChange={setContentSearch}
+              />
+              <SearchCreatorInput
+                placeholder={t(
+                  DASHBOARD_VIEWER_BILLINGS.billingHistory.searchCreator,
+                )}
+                value={creatorSearch}
+                onChange={setCreatorSearch}
+              />
+            </SearchFilters>
             <Table<ViewerBillingHistoryItem>
               headers={billingHistoryHeaders}
               data={MOCK_VIEWER_BILLING_HISTORY}

@@ -12,6 +12,7 @@ type SearchBarProps = {
   onChange?: (v: string) => void;
   onSubmit?: (v: string) => void;
   width?: string;
+  className?: string;
 };
 
 export default function SearchBar({
@@ -20,6 +21,7 @@ export default function SearchBar({
   onChange,
   onSubmit,
   width,
+  className,
 }: SearchBarProps) {
   const [internalValue, setInternalValue] = useState("");
   const value = controlledValue ?? internalValue;
@@ -47,7 +49,12 @@ export default function SearchBar({
   );
 
   return (
-    <Wrapper $width={width} role="search" aria-label="Search">
+    <Wrapper
+      className={className}
+      $width={width}
+      role="search"
+      aria-label="Search"
+    >
       <LeftIconWrapper>
         <SearchIcon />
       </LeftIconWrapper>
