@@ -1,18 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { GenericModal } from "@/components/UI/Modals";
 import InputField from "@/components/UI/InputFields";
 import { INPUT_TYPE, MODAL_ALIGN } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import { CardIcon, SuccessArcIcon } from "@/assets/icons";
 import { useAddCard } from "@/hooks/useAddCard";
-import {
-  formatCardNumber,
-  formatExpiryDate,
-  formatCVV,
-  CARD_FIELDS,
-} from "@/utils/addCard";
 import { Container, ErrorText, FieldWrapper, Grid } from "./styles";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { useTranslation } from "react-i18next";
@@ -25,28 +19,21 @@ type AddCardModalProps = {
 
 export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
   const { t } = useTranslation();
-  const [successOpen, setSuccessOpen] = useState(false);
 
   const {
     cardNumber,
     expiryDate,
     securityCode,
     errors,
-    setCardNumber,
-    setExpiryDate,
-    setSecurityCode,
-    validateField,
+    successOpen,
+    setSuccessOpen,
     handleSubmit,
     handleClose,
+    handleCardNumberChange,
+    handleExpiryChange,
+    handleCVVChange,
   } = useAddCard(onClose);
 
-  const onSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
-    const success = handleSubmit(e);
-
-    if (success) {
-      setSuccessOpen(true);
-    }
-  };
   const isFormValid =
     cardNumber.trim().length > 0 &&
     expiryDate.trim().length > 0 &&
@@ -61,7 +48,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
         confirmLabel={t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)}
         onCancel={handleClose}
         onClose={handleClose}
-        onConfirm={onSubmit}
+        onConfirm={handleSubmit}
         width="630px"
         padding="30px"
         buttonRow
@@ -78,11 +65,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
               )}
               type={INPUT_TYPE.TEXT}
               value={cardNumber}
-              onChange={(v) => {
-                const val = formatCardNumber(v as string);
-                setCardNumber(val);
-                validateField(CARD_FIELDS.CARD_NUMBER, val);
-              }}
+              onChange={handleCardNumberChange}
               placeholder={t(
                 DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal
                   .cardPlaceholder,
@@ -105,11 +88,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
                 )}
                 type={INPUT_TYPE.TEXT}
                 value={expiryDate}
-                onChange={(v) => {
-                  const val = formatExpiryDate(v as string);
-                  setExpiryDate(val);
-                  validateField(CARD_FIELDS.EXPIRY_DATE, val);
-                }}
+                onChange={handleExpiryChange}
                 placeholder={t(
                   DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal
                     .expiryPlaceholder,
@@ -129,11 +108,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
                 )}
                 type={INPUT_TYPE.TEXT}
                 value={securityCode}
-                onChange={(v) => {
-                  const val = formatCVV(v as string);
-                  setSecurityCode(val);
-                  validateField(CARD_FIELDS.SECURITY_CODE, val);
-                }}
+                onChange={handleCVVChange}
                 placeholder={t(
                   DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal
                     .cvvPlaceholder,

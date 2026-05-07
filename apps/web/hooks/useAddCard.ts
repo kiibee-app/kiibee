@@ -1,6 +1,13 @@
 "use client";
 
-import { AddCardErrors, AddCardSchema } from "@/utils/addCard";
+import {
+  AddCardErrors,
+  AddCardSchema,
+  formatCardNumber,
+  formatCVV,
+  formatExpiryDate,
+  CARD_FIELDS,
+} from "@/utils/addCard";
 import { useState } from "react";
 
 const initialErrors: AddCardErrors = {
@@ -14,6 +21,9 @@ export function useAddCard(onClose: () => void) {
   const [expiryDate, setExpiryDate] = useState("");
   const [securityCode, setSecurityCode] = useState("");
   const [errors, setErrors] = useState<AddCardErrors>(initialErrors);
+  const normalizeInput = (v: string | string[]) =>
+    Array.isArray(v) ? v[0] : v;
+  const [successOpen, setSuccessOpen] = useState(false);
 
   const validateField = (field: keyof AddCardErrors, value: string) => {
     const result = AddCardSchema.safeParse({
@@ -27,9 +37,7 @@ export function useAddCard(onClose: () => void) {
       setErrors((p) => ({ ...p, [field]: "" }));
       return;
     }
-
     const fieldError = result.error.flatten().fieldErrors[field]?.[0] || "";
-
     setErrors((p) => ({ ...p, [field]: fieldError }));
   };
 
@@ -44,9 +52,7 @@ export function useAddCard(onClose: () => void) {
       setErrors(initialErrors);
       return true;
     }
-
     const f = result.error.flatten().fieldErrors;
-
     setErrors({
       cardNumber: f.cardNumber?.[0] || "",
       expiryDate: f.expiryDate?.[0] || "",
@@ -70,13 +76,29 @@ export function useAddCard(onClose: () => void) {
 
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault?.();
+    const isValid = validateAll();
+    if (!isValid) return;
 
-    if (!validateAll()) return false;
-
-    console.log({ cardNumber, expiryDate, securityCode });
-
+    setSuccessOpen(true);
     handleClose();
-    return true;
+  };
+
+  const handleCardNumberChange = (v: string | string[]) => {
+    const val = formatCardNumber(normalizeInput(v));
+    setCardNumber(val);
+    validateField(CARD_FIELDS.CARD_NUMBER, val);
+  };
+
+  const handleExpiryChange = (v: string | string[]) => {
+    const val = formatExpiryDate(normalizeInput(v));
+    setExpiryDate(val);
+    validateField(CARD_FIELDS.EXPIRY_DATE, val);
+  };
+
+  const handleCVVChange = (v: string | string[]) => {
+    const val = formatCVV(normalizeInput(v));
+    setSecurityCode(val);
+    validateField(CARD_FIELDS.SECURITY_CODE, val);
   };
 
   return {
@@ -89,6 +111,11 @@ export function useAddCard(onClose: () => void) {
     setSecurityCode,
     validateField,
     handleSubmit,
+    successOpen,
+    setSuccessOpen,
     handleClose,
+    handleCardNumberChange,
+    handleExpiryChange,
+    handleCVVChange,
   };
 }

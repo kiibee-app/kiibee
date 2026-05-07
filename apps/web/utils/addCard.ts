@@ -21,7 +21,6 @@ export const formatCardNumber = (value: string) =>
 
 export const formatExpiryDate = (value: string) => {
   let formatted = value.replace(/\D/g, "");
-
   if (formatted.length > 2) {
     formatted = `${formatted.slice(0, 2)}/${formatted.slice(2, 4)}`;
   }
@@ -42,7 +41,6 @@ export const AddCardSchema = z.object({
 
   expiryDate: z.string().superRefine((val, ctx) => {
     const match = val.match(/^(\d{2})\/(\d{2})$/);
-
     if (!match) {
       ctx.addIssue({
         code: "custom",
@@ -53,16 +51,13 @@ export const AddCardSchema = z.object({
 
     const month = Number(match[1]);
     const year = Number("20" + match[2]);
-
     if (month < 1 || month > 12) {
       ctx.addIssue({ code: "custom", message: "Invalid month" });
       return;
     }
-
     const now = new Date();
     const currentYear = now.getFullYear();
     const currentMonth = now.getMonth() + 1;
-
     if (year < currentYear || (year === currentYear && month < currentMonth)) {
       ctx.addIssue({ code: "custom", message: "Card expired" });
     }
