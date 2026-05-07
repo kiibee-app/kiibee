@@ -27,6 +27,9 @@ export type CollectionTableProps =
       onEdit?: (id: string) => void;
       onDelete?: (id: string) => void;
       onMore?: (id: string) => void;
+      onMoveUp?: (id: string) => void;
+      onMoveDown?: (id: string) => void;
+      onSettings?: (id: string) => void;
     }
   | {
       type: typeof COLLECTION_TABLE_TYPE.CONTENTS;
@@ -34,6 +37,9 @@ export type CollectionTableProps =
       onEdit?: (id: string) => void;
       onDelete?: (id: string) => void;
       onMore?: (id: string) => void;
+      onMoveUp?: (id: string) => void;
+      onMoveDown?: (id: string) => void;
+      onSettings?: (id: string) => void;
     };
 
 export function isCollectionContentRow(
