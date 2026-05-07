@@ -18,10 +18,7 @@ import {
   SaveButton,
   SummaryText,
 } from "./styles";
-
-const VIEWER_PROFILE = {
-  downloads: 15,
-};
+import { viewerProfileData } from "@/utils/dummyData/profile.data";
 
 export default function ClientViewerProfile() {
   const { t } = useTranslation();
@@ -41,13 +38,21 @@ export default function ClientViewerProfile() {
         <AvatarPlaceholder
           aria-label={t("dashboard.viewerProfile.profilePhotoAlt")}
         >
-          <MonoText $use="Heading2">?</MonoText>
+          <MonoText $use="Heading2">
+            {viewerProfileData.name.charAt(0)}
+          </MonoText>
         </AvatarPlaceholder>
 
         <SummaryText>
-          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+          <MonoText $use="Heading3" color={COLORS.primary.BLACK}>
+            {viewerProfileData.name}
+          </MonoText>
+          <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY}>
+            {viewerProfileData.email}
+          </MonoText>
+          <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY}>
             {t("dashboard.viewerProfile.downloads", {
-              count: VIEWER_PROFILE.downloads,
+              count: viewerProfileData.downloads,
             })}
           </MonoText>
         </SummaryText>
