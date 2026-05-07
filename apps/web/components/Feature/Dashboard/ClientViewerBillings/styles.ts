@@ -68,6 +68,44 @@ export const PaymentLogoWrap = styled.span`
   flex: 0 0 34px;
 `;
 
+export const SearchFilterWrap = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: max-content;
+
+  [role="search"] {
+    width: 100%;
+    max-width: 100%;
+    min-height: 36px;
+    max-height: 38px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  ${media.tablet} {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+`;
+
+export const SearchContentInput = styled.div`
+  width: 300px;
+
+  ${media.tablet} {
+    width: min(300px, 100%);
+  }
+`;
+
+export const SearchCreatorInput = styled.div`
+  width: 205px;
+
+  ${media.tablet} {
+    width: min(205px, 100%);
+  }
+`;
+
 export const Tabs = styled.div`
   display: flex;
   align-items: flex-end;

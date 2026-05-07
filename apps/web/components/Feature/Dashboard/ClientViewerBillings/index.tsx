@@ -10,6 +10,7 @@ import { BILLING_TAB, CARD_BRANDS } from "@/utils/Constants";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { MonoText } from "@/components/UI/Monotext";
+import SearchBar from "@/components/UI/SearchBar";
 import Table from "@/components/UI/Table";
 import {
   DeleteIcon,
@@ -51,6 +52,9 @@ import {
   PaymentLogoWrap,
   PaymentMethodCell,
   RowNumber,
+  SearchContentInput,
+  SearchCreatorInput,
+  SearchFilterWrap,
 } from "./styles";
 
 export default function ClientViewerBillings() {
@@ -97,6 +101,29 @@ export default function ClientViewerBillings() {
               headerToKey={(header) => billingHistoryHeaderMap[header]}
               getRowKey={(row) => row.id}
               getMobileTitle={(row) => row.contentTitle}
+              renderHeaderFilter={({ index }) => {
+                if (index === 0) {
+                  return (
+                    <SearchFilterWrap>
+                      <SearchContentInput>
+                        <SearchBar
+                          placeholder={t(billingHistoryKeys.searchContent)}
+                          width="100%"
+                        />
+                      </SearchContentInput>
+
+                      <SearchCreatorInput>
+                        <SearchBar
+                          placeholder={t(billingHistoryKeys.searchCreator)}
+                          width="100%"
+                        />
+                      </SearchCreatorInput>
+                    </SearchFilterWrap>
+                  );
+                }
+
+                return null;
+              }}
               renderCell={({ header, row, rowIndex }) => {
                 const key = billingHistoryHeaderMap[header];
 

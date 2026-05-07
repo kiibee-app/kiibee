@@ -68,6 +68,28 @@ export const TableHead = styled.th<{
   cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
 `;
 
+export const HeaderFilterRow = styled.tr`
+  ${media.tablet} {
+    display: block;
+  }
+`;
+
+export const HeaderFilterCell = styled.th<{ $align?: TableAlign }>`
+  text-align: ${({ $align }) => $align ?? TABLE_ALIGN.LEFT};
+  padding: 14px 12px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+
+  ${media.tablet} {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:empty {
+      display: none;
+    }
+  }
+`;
+
 export const HeaderContent = styled.div`
   display: inline-flex;
   align-items: center;
