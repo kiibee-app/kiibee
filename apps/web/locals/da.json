@@ -1012,7 +1012,16 @@
         "expires": "Udløber {{date}}",
         "edit": "Rediger betalingsmetode",
         "delete": "Slet betalingsmetode",
-        "more": "Flere handlinger"
+        "more": "Flere handlinger",
+        "addCardModal": {
+          "title": "Tilføj nyt kort",
+          "cardNumber": "Kortnummer",
+          "expiryDate": "Udløbsdato",
+          "cvv": "Sikkerhedskode",
+          "cardPlaceholder": "XXXX XXXX XXXX XXXX",
+          "expiryPlaceholder": "MM/ÅÅ",
+          "cvvPlaceholder": "CVV"
+        }
       }
     },
     "logoutModal": {

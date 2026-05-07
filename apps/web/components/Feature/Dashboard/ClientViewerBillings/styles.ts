@@ -1,3 +1,4 @@
+import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
@@ -215,4 +216,28 @@ export const ExpiryCell = styled.div`
     grid-row: 2;
     min-width: 0;
   }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const FieldWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+export const ErrorText = styled(MonoText).attrs({
+  $use: "Body_Small",
+})`
+  color: ${({ theme }) => theme.colors.primary.RED};
+`;
+
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 `;
