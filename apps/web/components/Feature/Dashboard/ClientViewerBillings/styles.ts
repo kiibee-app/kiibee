@@ -84,6 +84,10 @@ export const SearchFilterWrap = styled.div`
   ${media.tablet} {
     width: 100%;
   }
+
+  ${media.mobileLg} {
+    max-width: none;
+  }
 `;
 
 export const Tabs = styled.div`

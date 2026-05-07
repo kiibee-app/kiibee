@@ -70,7 +70,17 @@ export const TableHead = styled.th<{
 
 export const HeaderFilterRow = styled.tr`
   ${media.tablet} {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 12px;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+  }
+
+  ${media.mobileLg} {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 `;
 
@@ -81,12 +91,18 @@ export const HeaderFilterCell = styled.th<{ $align?: TableAlign }>`
 
   ${media.tablet} {
     display: block;
-    width: 100%;
+    width: auto;
     box-sizing: border-box;
+    padding: 0;
+    border-bottom: 0;
 
     &:empty {
       display: none;
     }
+  }
+
+  ${media.mobileLg} {
+    width: 100%;
   }
 `;
 
