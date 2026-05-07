@@ -71,6 +71,7 @@ export const Form = styled.div`
 `;
 
 export const PasswordRow = styled.div`
+  margin-top: 17px;
   display: grid;
   grid-template-columns: minmax(120px, 1fr) minmax(220px, 360px);
   gap: 18px;
