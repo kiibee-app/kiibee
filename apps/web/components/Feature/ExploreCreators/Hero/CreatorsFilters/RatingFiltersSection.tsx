@@ -3,6 +3,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { RATING_OPTIONS } from "@/utils/creatorFilters";
+import { RatingStarPathIcon } from "@/assets/icons";
 import {
   CheckboxControl,
   CheckboxInput,
@@ -40,7 +41,7 @@ function RatingFiltersSection({
                 {Array.from({ length: 5 }, (_, index) => (
                   <StarIconWrap key={index}>
                     <StarIcon viewBox="0 0 24 24" $filled={index < ratingValue}>
-                      <path d="M12 2.25L14.91 8.15L21.42 9.1L16.71 13.68L17.82 20.15L12 17.09L6.18 20.15L7.29 13.68L2.58 9.1L9.09 8.15L12 2.25Z" />
+                      <RatingStarPathIcon />
                     </StarIcon>
                   </StarIconWrap>
                 ))}
