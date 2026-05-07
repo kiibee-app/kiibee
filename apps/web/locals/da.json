@@ -1229,6 +1229,16 @@
         "hint": "Fortæl lidt om dit produkt og fremhæv det på forsiden",
         "placeholder": "Indtast beskrivelse"
       },
+      "layouts": {
+        "title": "Layouts",
+        "subtitle": "Vælg hvordan din kanal skal vises for brugerne.",
+        "preview": "Preview example",
+        "options": {
+          "layout1": "Layout 1",
+          "layout2": "Layout 2",
+          "layout3": "Layout 3"
+        }
+      },
       "logo": {
         "title": "Logo",
         "subtitle": "Brug dit eget logo eller skriv en tekst som logo",
