@@ -182,7 +182,7 @@ export const LayoutTitle = styled(MonoText).attrs({
   $use: "H4_SemiBold",
 })`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  padding-bottom: 16px;
+  padding-bottom: 20px;
 `;
 
 export const LayoutCaption = styled(MonoText).attrs({
