@@ -1,6 +1,5 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
-import SearchBar from "@/components/UI/SearchBar";
 
 export const BillingShell = styled.section`
   width: 100%;
@@ -29,27 +28,6 @@ export const BillingTableSection = styled.div`
   tbody tr {
     border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
   }
-`;
-
-export const SearchFilters = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-`;
-
-export const SearchContentInput = styled(SearchBar)`
-  width: 300px;
-  height: 41px;
-  padding: 0 10px;
-  gap: 6px;
-`;
-
-export const SearchCreatorInput = styled(SearchBar)`
-  width: 200px;
-  height: 41px;
-  padding: 0 10px;
-  gap: 6px;
 `;
 
 export const ContentTitleCell = styled.div`
