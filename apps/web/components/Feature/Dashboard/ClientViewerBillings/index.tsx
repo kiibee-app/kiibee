@@ -52,8 +52,6 @@ import {
   PaymentLogoWrap,
   PaymentMethodCell,
   RowNumber,
-  SearchContentInput,
-  SearchCreatorInput,
   SearchFilterWrap,
 } from "./styles";
 
@@ -105,19 +103,21 @@ export default function ClientViewerBillings() {
                 if (index === 0) {
                   return (
                     <SearchFilterWrap>
-                      <SearchContentInput>
-                        <SearchBar
-                          placeholder={t(billingHistoryKeys.searchContent)}
-                          width="100%"
-                        />
-                      </SearchContentInput>
+                      <SearchBar
+                        placeholder={t(billingHistoryKeys.searchContent)}
+                        width="100%"
+                      />
+                    </SearchFilterWrap>
+                  );
+                }
 
-                      <SearchCreatorInput>
-                        <SearchBar
-                          placeholder={t(billingHistoryKeys.searchCreator)}
-                          width="100%"
-                        />
-                      </SearchCreatorInput>
+                if (index === 1) {
+                  return (
+                    <SearchFilterWrap>
+                      <SearchBar
+                        placeholder={t(billingHistoryKeys.searchCreator)}
+                        width="100%"
+                      />
                     </SearchFilterWrap>
                   );
                 }

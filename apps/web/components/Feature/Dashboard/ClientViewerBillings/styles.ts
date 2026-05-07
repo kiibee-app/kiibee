@@ -69,10 +69,7 @@ export const PaymentLogoWrap = styled.span`
 `;
 
 export const SearchFilterWrap = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  width: max-content;
+  max-width: 230px;
 
   [role="search"] {
     width: 100%;
@@ -85,36 +82,6 @@ export const SearchFilterWrap = styled.div`
   }
 
   ${media.tablet} {
-    width: 100%;
-  }
-
-  ${media.mobileLg} {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-`;
-
-export const SearchContentInput = styled.div`
-  width: 300px;
-
-  ${media.tablet} {
-    width: min(300px, 100%);
-  }
-
-  ${media.mobileLg} {
-    width: 100%;
-  }
-`;
-
-export const SearchCreatorInput = styled.div`
-  width: 205px;
-
-  ${media.tablet} {
-    width: min(205px, 100%);
-  }
-
-  ${media.mobileLg} {
     width: 100%;
   }
 `;
