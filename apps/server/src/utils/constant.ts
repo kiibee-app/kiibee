@@ -3,10 +3,14 @@ export const STATUS = {
   APPROVED: 'approved',
   REJECTED: 'rejected',
   PENDING_SETUP: 'pending-setup',
+  ACTIVE: 'active',
+  INACTIVE: 'inactive',
+  SUSPENDED: 'suspended',
+  DELETED: 'deleted',
 } as const;
 
 export const ROLE = {
-  VIWER: 'viewer',
+  VIEWER: 'viewer',
   CREATOR: 'creator',
   ADMIN: 'admin',
 } as const;
