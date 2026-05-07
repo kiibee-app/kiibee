@@ -35,3 +35,4 @@ export { default as FolderIcon } from "./FolderIcon";
 export { default as ThreeDotIcon } from "./ThreeDotIcon";
 export { default as SelectedCheckIcon } from "./SelectedCheckIcon";
 export { default as ChipCloseIcon } from "./ChipCloseIcon";
+export { default as RatingStarPathIcon } from "./RatingStarPathIcon";
