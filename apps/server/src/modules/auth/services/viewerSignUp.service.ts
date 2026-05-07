@@ -8,6 +8,7 @@ import { users, userSessions } from 'src/database/schema';
 import { fail, success } from 'src/utils/sendResponse';
 import { ViewerSignUpDto } from '../dto/viewerSignUp.dto';
 import { hashPassword } from 'src/utils/passwordHash';
+import { ROLE } from 'src/utils/constant';
 
 export const viewerSignUpService = async (
   viewerData: ViewerSignUpDto,
@@ -53,7 +54,7 @@ export const viewerSignUpService = async (
     fullName: trimmedFullName,
     email: normalizedEmail,
     passwordHash,
-    role: 'viewer',
+    role: ROLE.VIEWER,
     isEmailVerified: true,
   };
 
