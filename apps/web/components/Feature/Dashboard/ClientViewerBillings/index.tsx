@@ -46,15 +46,17 @@ import AddCardModal from "./AddCardModal";
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
   const [showAddCardModal, setShowAddCardModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowAddCardModal(false);
+  };
+
   const { activeTab, setActiveTabAndQuery } =
     useQuerySyncedTab<ViewerBillingTab>({
       queryKey: BILLING_TAB,
       defaultTab: VIEWER_PAYMENT_METHODS_TAB,
       validTabs: VIEWER_BILLING_TABS.map((tab) => tab.key),
     });
-  const handleCloseModal = () => {
-    setShowAddCardModal(false);
-  };
 
   return (
     <BillingShell>

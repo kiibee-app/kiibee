@@ -221,7 +221,7 @@ export const ExpiryCell = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
 `;
 
 export const FieldWrapper = styled.div`
@@ -239,5 +239,5 @@ export const ErrorText = styled(MonoText).attrs({
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 20px;
 `;

@@ -71,11 +71,12 @@ export function useAddCard(onClose: () => void) {
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault?.();
 
-    if (!validateAll()) return;
+    if (!validateAll()) return false;
 
     console.log({ cardNumber, expiryDate, securityCode });
 
     handleClose();
+    return true;
   };
 
   return {

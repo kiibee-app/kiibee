@@ -216,6 +216,10 @@ export const DASHBOARD_VIEWER_BILLINGS = {
         "dashboard.viewerBillings.paymentMethods.addCardModal.expiryPlaceholder",
       cvvPlaceholder:
         "dashboard.viewerBillings.paymentMethods.addCardModal.cvvPlaceholder",
+      successTitle:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.successTitle",
+      successMessage:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.successMessage",
     },
   },
 };

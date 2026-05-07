@@ -1020,7 +1020,9 @@
           "cvv": "Sikkerhedskode",
           "cardPlaceholder": "XXXX XXXX XXXX XXXX",
           "expiryPlaceholder": "MM/ÅÅ",
-          "cvvPlaceholder": "CVV"
+          "cvvPlaceholder": "CVV",
+          "successTitle": "Nyt kort tilføjet",
+          "successMessage": "Nyt kort er blevet tilføjet."
         }
       }
     },
