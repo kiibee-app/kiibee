@@ -18,7 +18,7 @@ type FilterAccordionSectionProps = {
   icon: React.ReactNode;
 };
 
-export default function FilterAccordionSection({
+function FilterAccordionSection({
   title,
   isOpen,
   onToggle,
@@ -43,3 +43,5 @@ export default function FilterAccordionSection({
     </FilterSection>
   );
 }
+
+export default React.memo(FilterAccordionSection);

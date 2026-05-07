@@ -19,7 +19,7 @@ type RatingFiltersSectionProps = {
   setSelectedRating: (rating: number) => void;
 };
 
-export default function RatingFiltersSection({
+function RatingFiltersSection({
   selectedRating,
   setSelectedRating,
 }: RatingFiltersSectionProps) {
@@ -60,3 +60,5 @@ export default function RatingFiltersSection({
     </RatingList>
   );
 }
+
+export default React.memo(RatingFiltersSection);
