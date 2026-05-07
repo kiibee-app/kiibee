@@ -39,7 +39,12 @@ export class AuthService {
     const user = await db.query.users.findFirst({
       where: eq(users.id, userFromToken.userId),
       columns: {
+        id: true,
+        fullName: true,
+        email: true,
         role: true,
+        isEmailVerified: true,
+        createdAt: true,
       },
     });
 
@@ -48,13 +53,14 @@ export class AuthService {
     }
 
     const tokens = await this.tokenService.generateAuthTokens({
-      id: userFromToken.userId,
-      email: userFromToken.email,
+      id: user.id,
+      email: user.email,
       role: user.role,
     });
 
     return success(
       {
+        ...user,
         accessToken: tokens.accessToken,
         refreshToken: tokens.refreshToken,
       },

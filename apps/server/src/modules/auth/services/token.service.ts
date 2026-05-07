@@ -21,27 +21,21 @@ export class TokenService {
   ) {}
 
   async generateAccessToken(payload: AccessTokenPayload) {
-    const secret = this.configService.getOrThrow<string>('JWT_ACCESS_SECRET');
-    const expiresIn = this.configService.get<string>(
-      'JWT_ACCESS_EXPIRES_IN',
-      '15m',
-    );
+    const secret = this.configService.getOrThrow('JWT_ACCESS_SECRET');
+    const expiresIn = this.configService.get('JWT_ACCESS_EXPIRES_IN', '15m');
     return this.jwtService.sign(payload, {
       secret,
       expiresIn,
-    } as any);
+    });
   }
 
   async generateRefreshToken(payload: RefreshTokenPayload) {
-    const secret = this.configService.getOrThrow<string>('JWT_REFRESH_SECRET');
-    const expiresIn = this.configService.get<string>(
-      'JWT_REFRESH_EXPIRES_IN',
-      '7d',
-    );
+    const secret = this.configService.getOrThrow('JWT_REFRESH_SECRET');
+    const expiresIn = this.configService.get('JWT_REFRESH_EXPIRES_IN', '7d');
     return this.jwtService.sign(payload, {
       secret,
       expiresIn,
-    } as any);
+    });
   }
 
   async generateAuthTokens(user: { id: string; email: string; role: string }) {

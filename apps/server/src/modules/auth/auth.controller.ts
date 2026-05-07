@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { LoginDto } from './dto/login.dto';
 import { TokenService } from './services/token.service';
+import { AuthenticationOrchestrator } from './services/authentication-orchestrator.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
@@ -23,6 +24,7 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly tokenService: TokenService,
+    private readonly authenticationOrchestrator: AuthenticationOrchestrator,
   ) {}
 
   @Post('signup')
@@ -30,30 +32,10 @@ export class AuthController {
     const result = await this.authService.viewerSignUp(dto);
 
     if (result.success && result.data) {
-      const tokens = await this.tokenService.generateAuthTokens({
-        id: result.data.id,
-        email: result.data.email,
-        role: result.data.role,
-      });
-
-      const ipAddress = req.ip || req.connection?.remoteAddress;
-      const userAgent = req.headers['user-agent'];
-
-      await this.authService.createSession(
-        result.data.id,
-        tokens.refreshToken,
-        ipAddress,
-        userAgent,
+      return await this.authenticationOrchestrator.completeLogin(
+        result.data,
+        req,
       );
-
-      return {
-        ...result,
-        data: {
-          ...result.data,
-          accessToken: tokens.accessToken,
-          refreshToken: tokens.refreshToken,
-        },
-      };
     }
 
     return result;
@@ -64,30 +46,10 @@ export class AuthController {
     const result = await this.authService.login(dto);
 
     if (result.success && result.data) {
-      const tokens = await this.tokenService.generateAuthTokens({
-        id: result.data.id,
-        email: result.data.email,
-        role: result.data.role,
-      });
-
-      const ipAddress = req.ip || req.connection?.remoteAddress;
-      const userAgent = req.headers['user-agent'];
-
-      await this.authService.createSession(
-        result.data.id,
-        tokens.refreshToken,
-        ipAddress,
-        userAgent,
+      return await this.authenticationOrchestrator.completeLogin(
+        result.data,
+        req,
       );
-
-      return {
-        ...result,
-        data: {
-          ...result.data,
-          accessToken: tokens.accessToken,
-          refreshToken: tokens.refreshToken,
-        },
-      };
     }
 
     return result;
