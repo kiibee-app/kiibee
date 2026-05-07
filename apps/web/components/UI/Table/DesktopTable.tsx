@@ -96,14 +96,9 @@ export default function DesktopTable<T extends Record<string, unknown>>({
         </DesktopHeaderRow>
         {renderHeaderFilter ? (
           <HeaderFilterRow>
-            {headers.map((header, index) => (
-              <HeaderFilterCell
-                key={header}
-                $align={getColumnAlignment?.(header, index)}
-              >
-                {renderHeaderFilter({ header, index })}
-              </HeaderFilterCell>
-            ))}
+            <HeaderFilterCell colSpan={headers.length}>
+              {renderHeaderFilter({ header: headers[0], index: 0 })}
+            </HeaderFilterCell>
           </HeaderFilterRow>
         ) : null}
       </thead>
