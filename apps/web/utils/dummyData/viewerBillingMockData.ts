@@ -8,12 +8,7 @@ import discover2 from "@/assets/images/discover-content/52c1c126e76296e3c8e39b9a
 import discover3 from "@/assets/images/discover-content/3545227dd1e7a9cd6faf3b14586708d85137ed35.webp";
 import discover4 from "@/assets/images/discover-content/c9051991a79ffc5a50dd15afe7b8c86e09f7faad.webp";
 
-export const CARD_BRANDS = {
-  VISA: "visa",
-  MASTERCARD: "mastercard",
-} as const;
-
-export type CardBrand = (typeof CARD_BRANDS)[keyof typeof CARD_BRANDS];
+import { type CardBrand, CARD_BRANDS } from "../Constants";
 
 export type ViewerPaymentMethod = {
   id: string;

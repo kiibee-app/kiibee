@@ -6,7 +6,7 @@ import {
   VIEWER_BILLING_TABS,
   type ViewerBillingTab,
 } from "@/utils/common";
-import { BILLING_TAB } from "@/utils/Constants";
+import { BILLING_TAB, CARD_BRANDS } from "@/utils/Constants";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { MonoText } from "@/components/UI/Monotext";
@@ -19,6 +19,11 @@ import {
 } from "@/assets/icons";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
+import {
+  BILLING_HISTORY_HEADER_KEYS,
+  BILLING_HISTORY_KEY_MAP,
+  buildHeaderMap,
+} from "@/utils/tableHeader";
 import {
   CARD_BRAND_LOGOS,
   MOCK_VIEWER_BILLING_HISTORY,
@@ -48,15 +53,6 @@ import {
   RowNumber,
 } from "./styles";
 
-const BILLING_HISTORY_HEADER_KEYS = [
-  "contentTitle",
-  "creatorName",
-  "type",
-  "paymentDate",
-  "amount",
-  "paymentMethod",
-] satisfies (keyof ViewerBillingHistoryItem)[];
-
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
   const { activeTab, setActiveTabAndQuery } =
@@ -69,12 +65,10 @@ export default function ClientViewerBillings() {
   const billingHistoryHeaders = BILLING_HISTORY_HEADER_KEYS.map((key) =>
     t(billingHistoryKeys.tableHeaders[key]),
   );
-  const billingHistoryHeaderMap = billingHistoryHeaders.reduce<
-    Record<string, keyof ViewerBillingHistoryItem>
-  >((acc, header, index) => {
-    acc[header] = BILLING_HISTORY_HEADER_KEYS[index];
-    return acc;
-  }, {});
+  const billingHistoryHeaderMap = buildHeaderMap(
+    billingHistoryHeaders,
+    BILLING_HISTORY_HEADER_KEYS,
+  );
 
   return (
     <BillingShell>
@@ -106,7 +100,7 @@ export default function ClientViewerBillings() {
               renderCell={({ header, row, rowIndex }) => {
                 const key = billingHistoryHeaderMap[header];
 
-                if (key === "contentTitle") {
+                if (key === BILLING_HISTORY_KEY_MAP.CONTENT_TITLE) {
                   return (
                     <ContentTitleCell>
                       <RowNumber>{rowIndex + 1}</RowNumber>
@@ -126,15 +120,23 @@ export default function ClientViewerBillings() {
                   );
                 }
 
-                if (key === "paymentMethod") {
+                if (key === BILLING_HISTORY_KEY_MAP.PAYMENT_METHOD) {
                   return (
                     <PaymentMethodCell>
                       <PaymentLogoWrap>
                         <SafeImage
                           src={CARD_BRAND_LOGOS[row.paymentMethod.brand]}
                           alt={row.paymentMethod.brand}
-                          width={row.paymentMethod.brand === "visa" ? 31 : 21}
-                          height={row.paymentMethod.brand === "visa" ? 10 : 16}
+                          width={
+                            row.paymentMethod.brand === CARD_BRANDS.VISA
+                              ? 31
+                              : 21
+                          }
+                          height={
+                            row.paymentMethod.brand === CARD_BRANDS.VISA
+                              ? 10
+                              : 16
+                          }
                         />
                       </PaymentLogoWrap>
                       <MonoText $use="Body_SemiBold">
@@ -177,8 +179,8 @@ export default function ClientViewerBillings() {
                     <SafeImage
                       src={CARD_BRAND_LOGOS[method.brand]}
                       alt={method.brand}
-                      width={method.brand === "visa" ? 32 : 22}
-                      height={method.brand === "visa" ? 10 : 16}
+                      width={method.brand === CARD_BRANDS.VISA ? 32 : 22}
+                      height={method.brand === CARD_BRANDS.VISA ? 10 : 16}
                     />
                   </CardLogoWrap>
                   <CardLabel>
