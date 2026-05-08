@@ -1,3 +1,4 @@
+import type { CollectionAction } from "./viewerRentedMockData";
 import design1 from "@/assets/images/design1.webp";
 import design2 from "@/assets/images/design2.webp";
 import design3 from "@/assets/images/design.webp";
@@ -31,6 +32,7 @@ export type PurchasedCollectionItem = {
   author: string;
   elementCount: number;
   coverSrc: string;
+  actions?: CollectionAction[];
 };
 
 export const VIEWER_PURCHASED_PLACEHOLDERS = {

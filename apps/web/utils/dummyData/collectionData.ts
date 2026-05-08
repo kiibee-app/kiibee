@@ -116,6 +116,14 @@ export const COLLECTIONS_FOR_PAGE: PurchasedCollectionItem[] = [
     author: "creatorName",
     elementCount: 10,
     coverSrc: design1.src,
+    hideBadge: true,
+    actions: [
+      {
+        label: "Buy xx kr",
+        sublabel: "Instant access",
+        variant: "primary",
+      },
+    ],
   },
   {
     id: "c2",
@@ -123,6 +131,14 @@ export const COLLECTIONS_FOR_PAGE: PurchasedCollectionItem[] = [
     author: "creatorName",
     elementCount: 13,
     coverSrc: design2.src,
+    hideBadge: true,
+    actions: [
+      {
+        label: "See content",
+        sublabel: "Already owned",
+        variant: "primary",
+      },
+    ],
   },
   {
     id: "c3",
@@ -130,6 +146,19 @@ export const COLLECTIONS_FOR_PAGE: PurchasedCollectionItem[] = [
     author: "creatorName",
     elementCount: 22,
     coverSrc: design3.src,
+    hideBadge: true,
+    actions: [
+      {
+        label: "Buy xx kr",
+        sublabel: "Instant access",
+        variant: "primary",
+      },
+      {
+        label: "Rent xx kr",
+        sublabel: "24h access",
+        variant: "secondary",
+      },
+    ],
   },
   {
     id: "c4",
@@ -137,5 +166,13 @@ export const COLLECTIONS_FOR_PAGE: PurchasedCollectionItem[] = [
     author: "creatorName",
     elementCount: 23,
     coverSrc: design1.src,
+    hideBadge: true,
+    actions: [
+      {
+        label: "Rent xx kr",
+        sublabel: "24h access",
+        variant: "secondary",
+      },
+    ],
   },
 ];
