@@ -20,7 +20,7 @@ import {
   PAYMENT_METHODS,
   PaymentMethod,
 } from "@/utils/creatorFinalSteps";
-import { useSubscriptionContext } from "@/providers/subscription-provider";
+import { useSubscriptionContext } from "@/providers/subscriptionProvider";
 import {
   Fields,
   Form,

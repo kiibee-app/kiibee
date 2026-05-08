@@ -12,7 +12,7 @@ import SubscriptionBackRow from "./SubscriptionBackRow";
 import {
   SubscriptionProvider,
   useSubscriptionContext,
-} from "@/providers/subscription-provider";
+} from "@/providers/subscriptionProvider";
 import { Content, SubscriptionPageInner, SubscriptionShell } from "./styles";
 
 function SubscriptionSectionInner() {

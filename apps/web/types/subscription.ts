@@ -1,8 +1,11 @@
 import type React from "react";
-import type { PasswordVisibilityKey } from "@/utils/Constants";
+import type {
+  PasswordVisibilityKey,
+  SUBSCRIPTION_STEP,
+} from "@/utils/Constants";
 
 export type SubscriptionStep =
-  (typeof import("@/utils/Constants").SUBSCRIPTION_STEP)[keyof typeof import("@/utils/Constants").SUBSCRIPTION_STEP];
+  (typeof SUBSCRIPTION_STEP)[keyof typeof SUBSCRIPTION_STEP];
 
 export type SubscriptionDetailsFormProps = {
   selectedPlan: string;

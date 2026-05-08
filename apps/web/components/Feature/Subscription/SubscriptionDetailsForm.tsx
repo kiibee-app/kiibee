@@ -12,7 +12,7 @@ import {
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
 import { SUBSCRIPTION } from "@/utils/translationKeys";
 import { INPUT_TYPE } from "@/utils/ui";
-import { useSubscriptionContext } from "@/providers/subscription-provider";
+import { useSubscriptionContext } from "@/providers/subscriptionProvider";
 import {
   ContinueButton,
   FieldGrid,
