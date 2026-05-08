@@ -53,6 +53,18 @@
     "title": "Nana Jacobson",
     "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete."
   },
+  "createProfileCollections": {
+    "title": "Samlinger",
+    "description": "Organisér dit indhold i enkle og flotte samlinger til dit publikum."
+  },
+  "createProfileAbout": {
+    "title": "Om",
+    "description": "Del din historie, dit arbejde og hvad folk kan forvente af din profil."
+  },
+  "createProfileFooter": {
+    "tagline": "Salg og visning af online produkter",
+    "cta": "Join Kiibee"
+  },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",
     "subtitle": "Skabere tjener ved at dele indhold. Seere opdager og støtter det arbejde, de elsker. Bliv en del af et fællesskab, hvor kreativitet trives på begge sider.",

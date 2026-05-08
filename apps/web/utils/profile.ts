@@ -29,7 +29,7 @@ export type NavBarProps = {
 };
 
 export const PROFILE_NAV_ITEMS: NavBarItem[] = [
-  { key: "nav.profile.home", href: "/" },
-  { key: "nav.profile.collections", href: "/explore" },
-  { key: "nav.profile.about", href: "/about-kiibee" },
+  { key: "nav.profile.home", href: "/create-profile" },
+  { key: "nav.profile.collections", href: "/create-profile/collections" },
+  { key: "nav.profile.about", href: "/create-profile/about" },
 ];

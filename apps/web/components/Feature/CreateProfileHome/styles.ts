@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export const Page = styled.main`
   min-height: 100vh;
-  padding: 0 0 56px;
   width: 100%;
+  overflow-x: clip;
   background:
     radial-gradient(
       circle at top left,
@@ -25,12 +25,9 @@ export const Page = styled.main`
 
 export const HeroFrame = styled.section`
   position: relative;
-  width: 100vw;
-  max-width: none;
+  width: 100%;
   height: 500px;
   margin: 0;
-  left: 50%;
-  transform: translateX(-50%);
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 

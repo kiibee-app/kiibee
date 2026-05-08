@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
 import { SmoothScrollProvider } from "@/providers/smoothScrollProvider";
-import ClientViewerCollection from "@/components/Feature/Dashboard/ClientViewerCollection";
+import CollectionList from "@/components/Feature/CreateProfileCollections/ColletionList";
 
 export default function CollectionPage() {
   return (
     <Suspense fallback={<div />}>
       <SmoothScrollProvider>
-        <ClientViewerCollection />
+        <CollectionList />
       </SmoothScrollProvider>
     </Suspense>
   );
