@@ -45,6 +45,11 @@ import {
 } from "@/types/collectionsType";
 import CollectionTable from "./Collections";
 import {
+  MOVE_DIRECTION_DOWN,
+  MOVE_DIRECTION_UP,
+  moveItemInArray,
+} from "@/utils/sortOptions";
+import {
   collectionsData,
   collectionContentsData,
 } from "@/utils/dummyData/collectionData";
@@ -250,6 +255,16 @@ export default function CreatorsContents() {
               type={COLLECTION_TABLE_TYPE.COLLECTIONS}
               data={collections}
               onRowClick={(row) => setSelectedCollection(row)}
+              onMoveUp={(id) =>
+                setCollections((current) =>
+                  moveItemInArray(current, id, MOVE_DIRECTION_UP),
+                )
+              }
+              onMoveDown={(id) =>
+                setCollections((current) =>
+                  moveItemInArray(current, id, MOVE_DIRECTION_DOWN),
+                )
+              }
               onDelete={(id) =>
                 openDelete(id, COLLECTION_TABLE_TYPE.COLLECTIONS)
               }

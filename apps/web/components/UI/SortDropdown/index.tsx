@@ -21,6 +21,7 @@ type Props<T extends string = string> = {
   value?: T;
   onChange?: (value: T) => void;
   label?: React.ReactNode;
+  trigger?: React.ReactNode;
   renderSelectedLabel?: (
     value: T,
     option?: DropdownOption<T>,
@@ -28,7 +29,10 @@ type Props<T extends string = string> = {
   renderOptionLabel?: (option: DropdownOption<T>) => React.ReactNode;
   width?: string;
   maxWidth?: string;
+  dropdownWidth?: string;
+  compact?: boolean;
   hideSelectedOption?: boolean;
+  allowNoSelection?: boolean;
   variant?: SortDropdownVariant;
 };
 
@@ -37,20 +41,29 @@ function SortDropdown<T extends string = string>({
   value,
   onChange,
   label,
+  trigger,
   renderSelectedLabel,
   renderOptionLabel,
   width,
   maxWidth,
+  dropdownWidth,
+  compact = false,
   variant = SORT_DROPDOWN_VARIANT.DEFAULT,
   hideSelectedOption,
+  allowNoSelection = false,
 }: Props<T>) {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
-  const initialValue = (value ?? options[0]?.value ?? DEFAULT_SORT) as T;
-  const [internalSelected, setInternalSelected] = useState<T>(initialValue);
+  const initialValue = (value ??
+    (allowNoSelection ? undefined : (options[0]?.value ?? DEFAULT_SORT))) as
+    | T
+    | undefined;
+  const [internalSelected, setInternalSelected] = useState<T | undefined>(
+    initialValue,
+  );
 
   const ref = useRef<HTMLDivElement>(null);
-  const selected = (value ?? internalSelected) as T;
+  const selected = (value ?? internalSelected) as T | undefined;
 
   useClickOutside({
     ref,
@@ -61,11 +74,13 @@ function SortDropdown<T extends string = string>({
 
   const handleSelect = useCallback(
     (val: T) => {
-      setInternalSelected(val);
+      if (!allowNoSelection) {
+        setInternalSelected(val);
+      }
       onChange?.(val);
       setOpen(false);
     },
-    [onChange],
+    [allowNoSelection, onChange],
   );
 
   const filteredOptions = useMemo(
@@ -80,8 +95,10 @@ function SortDropdown<T extends string = string>({
 
   const selectedOption = options.find((opt) => opt.value === selected);
   const resolvedSelectedLabel = renderSelectedLabel
-    ? renderSelectedLabel(selected, selectedOption)
-    : (selectedOption?.label ?? selected);
+    ? selected
+      ? renderSelectedLabel(selected, selectedOption)
+      : null
+    : (selectedOption?.label ?? selected ?? null);
 
   return (
     <SortBox
@@ -89,24 +106,38 @@ function SortDropdown<T extends string = string>({
       $width={width}
       $maxWidth={maxWidth}
       $variant={variant}
-      onClick={() => setOpen((prev) => !prev)}
+      $compact={compact || !!trigger}
+      onClick={(e) => {
+        e.stopPropagation();
+        setOpen((prev) => !prev);
+      }}
     >
-      <Text>
-        {label ? <MonoText $use="Body_Regular">{label}</MonoText> : null}
-        <MonoText $use="Body_Regular">{resolvedSelectedLabel}</MonoText>
-      </Text>
+      {trigger ? (
+        trigger
+      ) : (
+        <Text>
+          {label ? <MonoText $use="Body_Regular">{label}</MonoText> : null}
+          <MonoText $use="Body_Regular">{resolvedSelectedLabel}</MonoText>
+        </Text>
+      )}
 
-      <ArrowIcon
-        direction={open ? Directions.UP : Directions.DOWN}
-        color={
-          variant === SORT_DROPDOWN_VARIANT.SURFACE
-            ? theme.colors.neutral.GRAY_400
-            : theme.colors.primary.BLACK
-        }
-      />
+      {!trigger ? (
+        <ArrowIcon
+          direction={open ? Directions.UP : Directions.DOWN}
+          color={
+            variant === SORT_DROPDOWN_VARIANT.SURFACE
+              ? theme.colors.neutral.GRAY_400
+              : theme.colors.primary.BLACK
+          }
+        />
+      ) : null}
 
       {open && (
-        <Dropdown $maxWidth={maxWidth} $variant={variant}>
+        <Dropdown
+          $maxWidth={maxWidth}
+          $width={dropdownWidth}
+          $variant={variant}
+        >
           {visibleOptions.map((opt) => (
             <DropdownItem
               key={opt.value}
