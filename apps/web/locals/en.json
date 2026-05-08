@@ -1014,7 +1014,17 @@
       },
       "billingHistory": {
         "empty": "No billing history available yet.",
-        "placeholder": "Billing history will appear here."
+        "placeholder": "Billing history will appear here.",
+        "searchContent": "Search content title",
+        "searchCreator": "Search creator name",
+        "tableHeaders": {
+          "contentTitle": "Content title",
+          "creatorName": "Creator name",
+          "type": "Type",
+          "paymentDate": "Payment date",
+          "amount": "Amount",
+          "paymentMethod": "Payment method"
+        }
       },
       "paymentMethods": {
         "title": "Payment methods",

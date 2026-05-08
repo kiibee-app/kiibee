@@ -9,6 +9,8 @@ import {
   TableHead,
   HeaderContent,
   TableCell,
+  HeaderFilterCell,
+  HeaderFilterRow,
   NoDataCell,
 } from "./styles";
 import { DirectionIcon } from "@/assets/icons";
@@ -26,6 +28,7 @@ export default function DesktopTable<T extends Record<string, unknown>>({
   data,
   headerToKey,
   renderCell,
+  renderHeaderFilter,
   getRowKey,
   getColumnAlignment,
   emptyText,
@@ -91,6 +94,18 @@ export default function DesktopTable<T extends Record<string, unknown>>({
             );
           })}
         </DesktopHeaderRow>
+        {renderHeaderFilter ? (
+          <HeaderFilterRow>
+            {headers.map((header, index) => (
+              <HeaderFilterCell
+                key={header}
+                $align={getColumnAlignment?.(header, index)}
+              >
+                {renderHeaderFilter({ header, index })}
+              </HeaderFilterCell>
+            ))}
+          </HeaderFilterRow>
+        ) : null}
       </thead>
 
       <tbody>

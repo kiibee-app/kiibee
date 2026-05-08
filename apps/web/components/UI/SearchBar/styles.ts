@@ -7,6 +7,7 @@ export const Wrapper = styled.div<{ $width?: string }>`
   display: flex;
   align-items: center;
   gap: 10px;
+  overflow: hidden;
   max-width: 31.6875rem;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
@@ -31,6 +32,7 @@ export const LeftIconWrapper = styled.span`
 export const StyledInput = styled.input`
   ${({ theme }) => theme.typography.Body_Regular};
   flex: 1;
+  min-width: 0;
   border: none;
   outline: none;
   background: transparent;
