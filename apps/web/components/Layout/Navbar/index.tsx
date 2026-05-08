@@ -25,12 +25,55 @@ import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import type { NavBarProps } from "@/utils/profile";
 
-export default function NavBar() {
+export default function NavBar({
+  position = "fixed",
+  topOffset = "0px",
+  innerPadding,
+  tabletInnerPadding,
+  mobileInnerPadding,
+  innerMaxWidth,
+  navPosition = "center",
+  items = NAV_ITEMS,
+  brand,
+  navBefore,
+  navAfter,
+  actions,
+}: NavBarProps) {
   const { t } = useTranslation();
   const [active, setActive] = React.useState<string | null>(null);
   const [pinned, setPinned] = React.useState<string | null>(null);
   const navRef = React.useRef<HTMLElement | null>(null);
+  const innerStyle = React.useMemo(() => {
+    const style: React.CSSProperties & Record<string, string> = {};
+
+    style["--navbar-top-offset"] = topOffset;
+
+    if (innerPadding) {
+      style["--navbar-inner-padding"] = innerPadding;
+    }
+
+    if (tabletInnerPadding) {
+      style["--navbar-inner-tablet-padding"] = tabletInnerPadding;
+    }
+
+    if (mobileInnerPadding) {
+      style["--navbar-inner-mobile-padding"] = mobileInnerPadding;
+    }
+
+    if (innerMaxWidth) {
+      style["--navbar-inner-max-width"] = innerMaxWidth;
+    }
+
+    return style;
+  }, [
+    innerMaxWidth,
+    innerPadding,
+    mobileInnerPadding,
+    tabletInnerPadding,
+    topOffset,
+  ]);
 
   React.useEffect(() => {
     const handleDocClick = (e: MouseEvent) => {
@@ -47,24 +90,29 @@ export default function NavBar() {
   }, []);
 
   return (
-    <Header>
-      <Inner>
+    <Header $position={position} $topOffset={topOffset}>
+      <Inner style={innerStyle}>
         <Left>
-          <Logo>
-            <Image
-              src={logo}
-              alt={t(NAV.logoAlt)}
-              width={80}
-              height={25}
-              priority
-              style={{ width: "auto", height: "auto" }}
-            />
-          </Logo>
+          {brand ?? (
+            <Logo>
+              <Link href="/">
+                <Image
+                  src={logo}
+                  alt={t(NAV.logoAlt)}
+                  width={80}
+                  height={25}
+                  priority
+                  style={{ width: "auto", height: "auto" }}
+                />
+              </Link>
+            </Logo>
+          )}
         </Left>
 
-        <Nav ref={navRef}>
+        <Nav ref={navRef} $navPosition={navPosition}>
+          {navBefore}
           <MonoText $use="Body_Medium">
-            {NAV_ITEMS.map((item) => (
+            {items.map((item) => (
               <NavItemWrapper
                 key={item.key}
                 onMouseEnter={() => {
@@ -82,7 +130,9 @@ export default function NavBar() {
                   }
                 }}
               >
-                <Link href={item.href || "#"}>{t(item.key)}</Link>
+                <Link href={item.href || "#"}>
+                  {"label" in item && item.label ? item.label : t(item.key)}
+                </Link>
 
                 {item.children && active === item.key && (
                   <MegaMenu>
@@ -110,6 +160,7 @@ export default function NavBar() {
               </NavItemWrapper>
             ))}
           </MonoText>
+          {navAfter}
         </Nav>
 
         <Actions>

@@ -39,7 +39,7 @@ export const loginService = async (
       return fail('Invalid email or password', HttpStatus.UNAUTHORIZED);
     }
 
-    if (user.status !== 'active' && user.status !== 'pending_setup') {
+    if (user.status !== 'active') {
       return fail('Account is not active', HttpStatus.FORBIDDEN);
     }
 
