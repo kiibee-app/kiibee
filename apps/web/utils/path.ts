@@ -5,6 +5,5 @@ export const PATHS = {
   AUTH_CREATOR_REQUEST_SENT: "/auth/signup-creator/request-sent",
   DASHBOARD_CREATOR: "/dashboard/creators",
   DASHBOARD_VIEWER: "/dashboard/viewer",
-  COLLECTION: "/collection",
   PRICING: "/pricing",
 } as const;
