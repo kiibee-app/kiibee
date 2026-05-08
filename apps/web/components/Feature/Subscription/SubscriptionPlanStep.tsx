@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
 import { PATHS } from "@/utils/path";
 import { SUBSCRIPTION } from "@/utils/translationKeys";
-import { useSubscriptionContext } from "@/providers/subscription-provider";
+import { useSubscriptionContext } from "@/providers/subscriptionProvider";
 import {
   CompareLink,
   FullWidthContinueButton,
