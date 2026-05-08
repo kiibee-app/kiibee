@@ -1,3 +1,4 @@
+import { DropdownOption } from "@/components/UI/SortDropdown";
 import { ImageSource } from "./Constants";
 
 export type CreatorCategory = "Comedy" | "Music" | "Publication" | "Cooking";
@@ -19,3 +20,44 @@ export const SORT_OPTIONS = [
 
 export const DEFAULT_SORT: SortValue = SORT_OPTIONS[0].value;
 export type SortValue = (typeof SORT_OPTIONS)[number]["value"];
+
+export const ROW_ACTION_LABEL_MOVE_UP = "Move up";
+export const ROW_ACTION_LABEL_MOVE_DOWN = "Move down";
+export const ROW_ACTION_LABEL_SETTINGS = "Settings";
+
+export const MOVE_UP = "move-up";
+export const MOVE_DOWN = "move-down";
+export const MOVE_SETTINGS = "settings";
+export type RowAction =
+  | typeof MOVE_UP
+  | typeof MOVE_DOWN
+  | typeof MOVE_SETTINGS;
+
+export const MOVE_DIRECTION_UP = "up";
+export const MOVE_DIRECTION_DOWN = "down";
+
+export type MoveDirection =
+  | typeof MOVE_DIRECTION_UP
+  | typeof MOVE_DIRECTION_DOWN;
+
+export const moveItemInArray = <T extends { id: string }>(
+  items: readonly T[],
+  id: string,
+  direction: MoveDirection,
+): T[] => {
+  const index = items.findIndex((item) => item.id === id);
+  if (index < 0) return [...items];
+
+  const nextIndex = direction === "up" ? index - 1 : index + 1;
+  if (nextIndex < 0 || nextIndex >= items.length) return [...items];
+
+  const next = [...items];
+  [next[index], next[nextIndex]] = [next[nextIndex], next[index]];
+  return next;
+};
+
+export const actionOptions: DropdownOption<RowAction>[] = [
+  { label: ROW_ACTION_LABEL_MOVE_UP, value: MOVE_UP },
+  { label: ROW_ACTION_LABEL_MOVE_DOWN, value: MOVE_DOWN },
+  { label: ROW_ACTION_LABEL_SETTINGS, value: MOVE_SETTINGS },
+];

@@ -11,6 +11,11 @@
     "login": "Log ind",
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee",
+    "profile": {
+      "home": "Hjem",
+      "collections": "Samlinger",
+      "about": "Om"
+    },
     "explore": {
       "allContentTitle": "Alt indhold",
       "everything": "Alle",
@@ -41,6 +46,12 @@
         "popular": "Mest populære"
       }
     }
+  },
+  "createProfileHome": {
+    "brandName": "Nana Jacobson",
+    "uploads": "{{count}} uploads",
+    "title": "Nana Jacobson",
+    "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete."
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",
@@ -1005,7 +1016,17 @@
       },
       "billingHistory": {
         "empty": "Ingen faktureringshistorik endnu.",
-        "placeholder": "Faktureringshistorik vises her."
+        "placeholder": "Faktureringshistorik vises her.",
+        "searchContent": "Søg efter indholdstitel",
+        "searchCreator": "Søg efter skabernavn",
+        "tableHeaders": {
+          "contentTitle": "Indholdstitel",
+          "creatorName": "Skabernavn",
+          "type": "Type",
+          "paymentDate": "Betalingsdato",
+          "amount": "Beløb",
+          "paymentMethod": "Betalingsmetode"
+        }
       },
       "paymentMethods": {
         "title": "Betalingsmetoder",
@@ -1014,7 +1035,18 @@
         "expires": "Udløber {{date}}",
         "edit": "Rediger betalingsmetode",
         "delete": "Slet betalingsmetode",
-        "more": "Flere handlinger"
+        "more": "Flere handlinger",
+        "addCardModal": {
+          "title": "Tilføj nyt kort",
+          "cardNumber": "Kortnummer",
+          "expiryDate": "Udløbsdato",
+          "cvv": "Sikkerhedskode",
+          "cardPlaceholder": "XXXX XXXX XXXX XXXX",
+          "expiryPlaceholder": "MM/ÅÅ",
+          "cvvPlaceholder": "CVV",
+          "successTitle": "Nyt kort tilføjet",
+          "successMessage": "Nyt kort er blevet tilføjet."
+        }
       }
     },
     "logoutModal": {
@@ -1181,6 +1213,18 @@
       "buttons": {
         "collections": "Samlinger",
         "contents": "Indhold"
+      }
+    },
+    "couponPreview": {
+      "title": "Kupon forhåndsvisning",
+      "confirm": "Bekræft",
+      "uploading": "Uploading coupon",
+      "fields": {
+        "title": "Titel",
+        "discountType": "Rabattype",
+        "amount": "Beløb",
+        "codes": "Rabatkoder",
+        "applicableProducts": "Gældende produkter"
       }
     },
     "tabs": {

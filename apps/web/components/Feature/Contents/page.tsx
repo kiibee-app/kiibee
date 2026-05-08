@@ -38,8 +38,17 @@ import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
-import { CollectionRow } from "@/types/collectionsType";
+import {
+  CollectionRow,
+  CouponFormState,
+  INITIAL_COUPON_FORM,
+} from "@/types/collectionsType";
 import CollectionTable from "./Collections";
+import {
+  MOVE_DIRECTION_DOWN,
+  MOVE_DIRECTION_UP,
+  moveItemInArray,
+} from "@/utils/sortOptions";
 import {
   collectionsData,
   collectionContentsData,
@@ -52,6 +61,7 @@ import CouponTable from "./coupon";
 import { couponData } from "@/utils/dummyData/couponData";
 import { useDeleteHandler } from "@/hooks/useCollectionDelete";
 import DeleteModals from "./CollectionDeleteMobal";
+import CouponPreviewModal from "./coupon/CouponPreviewModal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -106,10 +116,18 @@ export default function CreatorsContents() {
     return t(tab.labelKey);
   };
 
+  const [showCouponPreview, setShowCouponPreview] = useState(false);
+  const [couponForm, setCouponForm] =
+    useState<CouponFormState>(INITIAL_COUPON_FORM);
+  const [isCouponSuccess, setIsCouponSuccess] = useState(false);
+
   const closeCouponFlow = () => {
+    setCouponForm(INITIAL_COUPON_FORM);
+    setIsCouponSuccess(false);
     setShowCouponDetails(false);
     setShowCouponCodes(false);
     setShowCouponApplicableProducts(false);
+    setShowCouponPreview(false);
   };
 
   const handleBackFromCouponCodes = () => {
@@ -125,6 +143,20 @@ export default function CreatorsContents() {
   const handleBackFromApplicableProducts = () => {
     setShowCouponApplicableProducts(false);
     setShowCouponCodes(true);
+  };
+  const handleNextFromApplicableProducts = () => {
+    setShowCouponApplicableProducts(false);
+    setShowCouponPreview(true);
+  };
+  const handleBackFromCouponPreview = () => {
+    if (isCouponSuccess) {
+      setShowCouponPreview(true);
+      setIsCouponSuccess(false);
+      return;
+    }
+    setIsCouponSuccess(false);
+    setShowCouponPreview(false);
+    setShowCouponApplicableProducts(true);
   };
 
   const handleCreateClick = () => {
@@ -151,6 +183,10 @@ export default function CreatorsContents() {
 
   const handleBackToCollections = () => {
     setSelectedCollection(null);
+  };
+
+  const handleCouponSubmit = async () => {
+    setIsCouponSuccess(true);
   };
 
   return (
@@ -219,6 +255,16 @@ export default function CreatorsContents() {
               type={COLLECTION_TABLE_TYPE.COLLECTIONS}
               data={collections}
               onRowClick={(row) => setSelectedCollection(row)}
+              onMoveUp={(id) =>
+                setCollections((current) =>
+                  moveItemInArray(current, id, MOVE_DIRECTION_UP),
+                )
+              }
+              onMoveDown={(id) =>
+                setCollections((current) =>
+                  moveItemInArray(current, id, MOVE_DIRECTION_DOWN),
+                )
+              }
               onDelete={(id) =>
                 openDelete(id, COLLECTION_TABLE_TYPE.COLLECTIONS)
               }
@@ -323,6 +369,8 @@ export default function CreatorsContents() {
 
       <CouponDetailsModal
         visible={showCouponDetails}
+        form={couponForm}
+        setForm={setCouponForm}
         onClose={closeCouponFlow}
         onNext={() => {
           setShowCouponDetails(false);
@@ -332,6 +380,8 @@ export default function CreatorsContents() {
 
       <CouponCodesModal
         visible={showCouponCodes}
+        form={couponForm}
+        setForm={setCouponForm}
         onBack={handleBackFromCouponCodes}
         onClose={closeCouponFlow}
         onNext={handleNextFromCouponCodes}
@@ -339,9 +389,20 @@ export default function CreatorsContents() {
 
       <CouponApplicableProductsModal
         visible={showCouponApplicableProducts}
+        form={couponForm}
+        setForm={setCouponForm}
         onBack={handleBackFromApplicableProducts}
         onClose={closeCouponFlow}
-        onNext={closeCouponFlow}
+        onNext={handleNextFromApplicableProducts}
+      />
+
+      <CouponPreviewModal
+        visible={showCouponPreview}
+        data={couponForm}
+        onBack={handleBackFromCouponPreview}
+        onClose={closeCouponFlow}
+        onContinue={handleCouponSubmit}
+        isSuccess={isCouponSuccess}
       />
       <DeleteModals
         showDeleteConfirm={showDeleteConfirm}
