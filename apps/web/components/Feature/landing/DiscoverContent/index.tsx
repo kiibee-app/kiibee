@@ -14,6 +14,7 @@ import DiscoverCard from "./DiscoverCard";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
 export default function DiscoverContent() {
   const { t, i18n } = useTranslation();
@@ -37,7 +38,10 @@ export default function DiscoverContent() {
 
       <BottomCtaSection>
         <GenericButton>{t("discoverContent.ctaPrimary")}</GenericButton>
-        <GenericButton href="/explore-creators" variant={VARIANT.SECONDARY}>
+        <GenericButton
+          href={PATHS.EXPLORE_CREATORS}
+          variant={VARIANT.SECONDARY}
+        >
           {t("discoverContent.ctaSecondary")}
         </GenericButton>
       </BottomCtaSection>

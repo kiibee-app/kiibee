@@ -16,7 +16,6 @@ import {
   viewerItems,
 } from "@/utils/SidebarItems";
 import { MonoText } from "@/components/UI/Monotext";
-import PurchasedContent from "@/components/Feature/Dashboard/ClientViewerPurchased/PurchasedContent";
 import { GenericModal } from "@/components/UI/Modals";
 import { useTranslation } from "react-i18next";
 import { PATHS } from "@/utils/path";
@@ -27,6 +26,8 @@ import {
 } from "@/hooks/auth/useLogin";
 import ClientViewerBillings from "@/components/Feature/Dashboard/ClientViewerBillings";
 import ClientViewerProfile from "@/components/Feature/Dashboard/ClientViewerProfile";
+import RentedContent from "@/components/Feature/Dashboard/ViewerSections/RentedContent";
+import { RENTED_MODES } from "@/utils/viewerRented";
 
 const ROUTABLE_VIEWER_VIEWS = new Set<string>([
   VIEWER_VIEW_VALUES.PURCHASED,
@@ -108,7 +109,6 @@ export default function ClientDashboardViewer() {
     try {
       await logout();
     } catch {
-      // Always clear session and redirect even if server logout fails.
     } finally {
       clearLoginSession();
       router.push(PATHS.AUTH_LOGIN);
@@ -125,7 +125,13 @@ export default function ClientDashboardViewer() {
           onProfileClick={() => handleSelect(VIEWER_LABELS.MY_PROFILE)}
         />
       }
-      contentPadding={activePage === VIEWER_LABELS.PURCHASED ? "0" : undefined}
+      contentPadding={
+        activePage === VIEWER_LABELS.PURCHASED ||
+        activePage === VIEWER_LABELS.CURRENTLY_RENTED ||
+        activePage === VIEWER_LABELS.PREVIOUSLY_RENTED
+          ? "0"
+          : undefined
+      }
       sidebar={
         <Sidebar
           open={open}
@@ -139,7 +145,23 @@ export default function ClientDashboardViewer() {
       }
     >
       {activePage === VIEWER_LABELS.PURCHASED ? (
-        <PurchasedContent />
+        <RentedContent
+          key={RENTED_MODES.PURCHASED}
+          title={sectionTitle}
+          mode={RENTED_MODES.PURCHASED}
+        />
+      ) : activePage === VIEWER_LABELS.CURRENTLY_RENTED ? (
+        <RentedContent
+          key={RENTED_MODES.CURRENTLY}
+          title={sectionTitle}
+          mode={RENTED_MODES.CURRENTLY}
+        />
+      ) : activePage === VIEWER_LABELS.PREVIOUSLY_RENTED ? (
+        <RentedContent
+          key={RENTED_MODES.PREVIOUSLY}
+          title={sectionTitle}
+          mode={RENTED_MODES.PREVIOUSLY}
+        />
       ) : activePage === VIEWER_LABELS.BILLINGS ? (
         <ClientViewerBillings />
       ) : activePage === VIEWER_LABELS.MY_PROFILE ? (

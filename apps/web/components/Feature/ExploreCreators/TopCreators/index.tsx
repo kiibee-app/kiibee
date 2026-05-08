@@ -7,6 +7,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
+import { PATHS } from "@/utils/path";
 
 export default function TopCreators() {
   const { t } = useTranslation();
@@ -14,7 +15,7 @@ export default function TopCreators() {
     <Wrapper>
       <Header>
         <MonoText $use="H4_Medium">{t(CREATORS.topCreators)}</MonoText>
-        <SeeAll href="/explore-creators">
+        <SeeAll href={PATHS.EXPLORE_CREATORS}>
           <MonoText $use="Body_Medium">{t(CREATORS.seeAll)}</MonoText>
         </SeeAll>
       </Header>
