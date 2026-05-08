@@ -25,6 +25,7 @@ import {
   useLogout,
 } from "@/hooks/auth/useLogin";
 import ClientViewerBillings from "@/components/Feature/Dashboard/ClientViewerBillings";
+import ClientViewerProfile from "@/components/Feature/Dashboard/ClientViewerProfile";
 import RentedContent from "@/components/Feature/Dashboard/ViewerSections/RentedContent";
 import { RENTED_MODES } from "@/utils/viewerRented";
 
@@ -118,7 +119,12 @@ export default function ClientDashboardViewer() {
 
   return (
     <DashboardLayout
-      header={<ViewerDashboardHeader onToggleSidebar={toggleSidebar} />}
+      header={
+        <ViewerDashboardHeader
+          onToggleSidebar={toggleSidebar}
+          onProfileClick={() => handleSelect(VIEWER_LABELS.MY_PROFILE)}
+        />
+      }
       contentPadding={
         activePage === VIEWER_LABELS.PURCHASED ||
         activePage === VIEWER_LABELS.CURRENTLY_RENTED ||
@@ -158,6 +164,8 @@ export default function ClientDashboardViewer() {
         />
       ) : activePage === VIEWER_LABELS.BILLINGS ? (
         <ClientViewerBillings />
+      ) : activePage === VIEWER_LABELS.MY_PROFILE ? (
+        <ClientViewerProfile />
       ) : (
         <MonoText $use="H4_SemiBold">{sectionTitle}</MonoText>
       )}

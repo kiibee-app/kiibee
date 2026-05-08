@@ -22,3 +22,9 @@ export const creatorProfileData = {
   name: "Lena Petersen",
   email: "lena@gmail.com",
 };
+
+export const viewerProfileData = {
+  name: "Lena Petersen",
+  email: "Lena_Petersen@gmail.com",
+  downloads: 15,
+};

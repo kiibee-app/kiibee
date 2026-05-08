@@ -46,3 +46,16 @@ export const COUPON_TABLE_COLUMNS = [
   { label: "Created date", key: "createdAt" },
   { label: "", key: "action" },
 ] as const;
+export const BILLING_HISTORY_HEADER_KEYS = [
+  "contentTitle",
+  "creatorName",
+  "type",
+  "paymentDate",
+  "amount",
+  "paymentMethod",
+] as const;
+
+export const BILLING_HISTORY_KEY_MAP = {
+  CONTENT_TITLE: BILLING_HISTORY_HEADER_KEYS[0],
+  PAYMENT_METHOD: BILLING_HISTORY_HEADER_KEYS[5],
+} as const;
