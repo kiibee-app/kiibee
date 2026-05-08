@@ -134,3 +134,4 @@ export const IMAGE_MODAL = {
 export type ImageModalStep = (typeof IMAGE_MODAL)[keyof typeof IMAGE_MODAL];
 
 export const isBrowser = typeof window !== "undefined";
+export const canUseDOM = typeof document !== "undefined";
