@@ -60,7 +60,6 @@ export const useContentsModalFlows = (
       setCollectionName("");
       setEditingCollectionId(null);
     },
-
     completeCreate: () => {
       if (!collectionName.trim()) return;
       setShowCreateModal(false);
@@ -68,7 +67,6 @@ export const useContentsModalFlows = (
       setEditingCollectionId(null);
       setShowSuccessModal(true);
     },
-
     closeSuccess: () => setShowSuccessModal(false),
     openSuccess: () => setShowSuccessModal(true),
   };
