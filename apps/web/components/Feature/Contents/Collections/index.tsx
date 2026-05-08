@@ -2,6 +2,7 @@
 
 import React from "react";
 import Table from "@/components/UI/Table";
+import SortDropdown from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import {
@@ -27,6 +28,14 @@ import {
   COLLECTION_COLUMNS,
   COLLECTION_CONTENT_COLUMNS,
 } from "@/utils/tableHeader";
+import { SORT_DROPDOWN_VARIANT } from "@/utils/Constants";
+import {
+  MOVE_UP,
+  MOVE_DOWN,
+  MOVE_SETTINGS,
+  RowAction,
+  actionOptions,
+} from "@/utils/sortOptions";
 
 type TableRow = CollectionRow | CollectionContentRow;
 
@@ -61,7 +70,23 @@ export default function CollectionTable(props: CollectionTableProps) {
     props.onMore?.(id);
   };
 
-  const renderActions = (id: string) => {
+  const renderActions = (id: string, showDropdown: boolean) => {
+    const handleActionSelect = (value: RowAction) => {
+      if (value === MOVE_UP) {
+        props.onMoveUp?.(id);
+        return;
+      }
+
+      if (value === MOVE_DOWN) {
+        props.onMoveDown?.(id);
+        return;
+      }
+
+      if (value === MOVE_SETTINGS) {
+        props.onSettings?.(id);
+      }
+    };
+
     return (
       <ActionWrapper>
         <IconButton type={BUTTON} onClick={(e) => handleEdit(e, id)}>
@@ -72,9 +97,22 @@ export default function CollectionTable(props: CollectionTableProps) {
           <DeleteIcon />
         </IconButton>
 
-        <IconButton type={BUTTON} onClick={(e) => handleMore(e, id)}>
-          <ThreeDotIcon />
-        </IconButton>
+        {showDropdown ? (
+          <SortDropdown<RowAction>
+            options={actionOptions}
+            allowNoSelection
+            compact
+            dropdownWidth="196px"
+            maxWidth="196px"
+            variant={SORT_DROPDOWN_VARIANT.SURFACE}
+            trigger={<ThreeDotIcon />}
+            onChange={handleActionSelect}
+          />
+        ) : (
+          <IconButton type={BUTTON} onClick={(e) => handleMore(e, id)}>
+            <ThreeDotIcon />
+          </IconButton>
+        )}
       </ActionWrapper>
     );
   };
@@ -114,7 +152,7 @@ export default function CollectionTable(props: CollectionTableProps) {
         }
 
         if (col?.key === COLLECTION_COLUMNS[3].key) {
-          return renderActions(row.id);
+          return renderActions(row.id, isCollections);
         }
 
         const key = col?.key as keyof TableRow;

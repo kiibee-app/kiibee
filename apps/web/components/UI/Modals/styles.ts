@@ -78,7 +78,7 @@ export const ButtonGroup = styled.div<{
   ${media.tablet} {
     & > button {
       width: ${({ $fullWidthButtons }) =>
-        $fullWidthButtons ? "100%" : "160px"};
+        $fullWidthButtons ? "100%" : "auto"};
       height: 30px;
     }
   }

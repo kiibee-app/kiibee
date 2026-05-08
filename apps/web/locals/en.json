@@ -11,6 +11,11 @@
     "login": "Log in",
     "startCreating": "Start creating",
     "logoAlt": "Kiibee",
+    "profile": {
+      "home": "Home",
+      "collections": "Collections",
+      "about": "About"
+    },
     "explore": {
       "allContentTitle": "All content",
       "everything": "Everything",
@@ -41,6 +46,12 @@
         "popular": "Most popular"
       }
     }
+  },
+  "createProfileHome": {
+    "brandName": "Nana Jacobson",
+    "uploads": "{{count}} uploads",
+    "title": "Nana Jacobson",
+    "description": "Online courses and creative guides for people who want to learn new techniques, get inspiration, and make their ideas more concrete."
   },
   "auth": {
     "title": "The place where creators and supporters meet",
@@ -1003,7 +1014,17 @@
       },
       "billingHistory": {
         "empty": "No billing history available yet.",
-        "placeholder": "Billing history will appear here."
+        "placeholder": "Billing history will appear here.",
+        "searchContent": "Search content title",
+        "searchCreator": "Search creator name",
+        "tableHeaders": {
+          "contentTitle": "Content title",
+          "creatorName": "Creator name",
+          "type": "Type",
+          "paymentDate": "Payment date",
+          "amount": "Amount",
+          "paymentMethod": "Payment method"
+        }
       },
       "paymentMethods": {
         "title": "Payment methods",
@@ -1012,8 +1033,27 @@
         "expires": "Expires {{date}}",
         "edit": "Edit payment method",
         "delete": "Delete payment method",
-        "more": "More actions"
+        "more": "More actions",
+        "addCardModal": {
+          "title": "Add new card",
+          "cardNumber": "Card number",
+          "expiryDate": "Expiry date",
+          "cvv": "Security code",
+          "cardPlaceholder": "XXXX XXXX XXXX XXXX",
+          "expiryPlaceholder": "MM/YY",
+          "cvvPlaceholder": "CVV",
+          "successTitle": "New card added",
+          "successMessage": "New card has been successfully added."
+        }
       }
+    },
+    "viewerProfile": {
+      "title": "My Profile",
+      "saveChanges": "Save changes",
+      "fullName": "Full name",
+      "email": "Email address",
+      "downloads": "{{count}} downloads",
+      "profilePhotoAlt": "Viewer profile photo"
     },
     "logoutModal": {
       "title": "Log out",
@@ -1181,6 +1221,18 @@
         "contents": "Contents"
       }
     },
+    "couponPreview": {
+      "title": "Coupon preview",
+      "confirm": "Confirm",
+      "uploading": "Uploading coupon",
+      "fields": {
+        "title": "Title",
+        "discountType": "Discount type",
+        "amount": "Amount",
+        "codes": "Discount codes",
+        "applicableProducts": "Applicable products"
+      }
+    },
     "tabs": {
       "collections": "Collections",
       "appearance": "Appearance",
@@ -1237,6 +1289,16 @@
         "label": "Description",
         "hint": "Tell us a little about your product and feature it on the front page",
         "placeholder": "Enter description"
+      },
+      "layouts": {
+        "title": "Layouts",
+        "subtitle": "Select how your channel will be displayed to users.",
+        "preview": "Preview example",
+        "options": {
+          "layout1": "Layout 1",
+          "layout2": "Layout 2",
+          "layout3": "Layout 3"
+        }
       },
       "logo": {
         "title": "Logo",

@@ -14,6 +14,10 @@ export type BaseTableProps<T> = {
   data: T[];
   headerToKey?: (h: string) => KeyOf<T>;
   renderCell?: (params: RenderCellProps<T>) => React.ReactNode;
+  renderHeaderFilter?: (params: {
+    header: string;
+    index: number;
+  }) => React.ReactNode;
   getRowKey?: (row: T, index: number) => string | number;
   getColumnAlignment?: (header: string, index: number) => TableAlign;
   onRowClick?: (row: T, rowIndex: number) => void;

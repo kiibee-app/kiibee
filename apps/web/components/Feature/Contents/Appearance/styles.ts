@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
+import Image from "next/image";
 
 export const PanelStack = styled.div`
   display: flex;
@@ -140,4 +141,75 @@ export const LogoHeader = styled.div`
     flex-direction: column;
     align-items: flex-start;
   }
+`;
+
+export const LayoutGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+
+  ${media.tablet} {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const LayoutCardWrap = styled.button<{ $active?: boolean }>`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 0;
+  border: 0;
+  appearance: none;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+`;
+
+export const LayoutCard = styled.div<{ $active?: boolean }>`
+  width: 100%;
+  min-height: 100%;
+  border: 1px solid ${({ theme }) => theme.colors.gredint.FRAME_BORDER};
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  padding: 20px 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const LayoutTitle = styled(MonoText).attrs({
+  $use: "H4_SemiBold",
+})`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  padding-bottom: 20px;
+`;
+
+export const LayoutCaption = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  padding: 10px 0 0 0;
+`;
+
+export const LayoutImageShell = styled.div`
+  position: relative;
+  width: 100%;
+  height: 360px;
+  aspect-ratio: 39 / 37;
+  overflow: hidden;
+  align-self: stretch;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 1px -2px 25px 1px
+    ${({ theme }) => theme.colors.gredint.FRAME_SHADOW};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+
+  ${media.tablet} {
+    height: 210px;
+  }
+`;
+
+export const LayoutImage = styled(Image)`
+  object-fit: cover;
+  object-position: top center;
 `;
