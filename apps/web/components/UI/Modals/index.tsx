@@ -16,7 +16,7 @@ import { MonoText } from "../Monotext";
 import { BUTTON, ESCAPE, KEYDOWN, VARIANT } from "@/utils/Constants";
 import { Variant } from "@/utils/Constants";
 import { CrossIcon } from "@/assets/icons/crossIcon";
-import { ModalAlign } from "@/utils/ui";
+import { canUseDOM, ModalAlign } from "@/utils/ui";
 
 type GenericModalProps = {
   visible: boolean;
@@ -67,7 +67,6 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   confirmDisabled = false,
   confirmVariant = VARIANT.PRIMARY,
 }) => {
-  const canUseDOM = typeof document !== "undefined";
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
