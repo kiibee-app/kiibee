@@ -6,6 +6,7 @@ import { PanelStack } from "./styles";
 import ReceiptSection from "./ReceiptSection";
 import CoverImageSection from "./CoverImage";
 import DescriptionSection from "./Description";
+import LayoutsSection from "./Layouts";
 import LogoSection from "./Logo";
 
 export default function AppearanceContent() {
@@ -14,6 +15,7 @@ export default function AppearanceContent() {
       <AppearanceSettingsSection />
       <LogoSection />
       <DescriptionSection />
+      <LayoutsSection />
       <CoverImageSection />
       <ReceiptSection />
     </PanelStack>
