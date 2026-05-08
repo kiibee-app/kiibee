@@ -11,6 +11,11 @@
     "login": "Log ind",
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee",
+    "profile": {
+      "home": "Hjem",
+      "collections": "Samlinger",
+      "about": "Om"
+    },
     "explore": {
       "allContentTitle": "Alt indhold",
       "everything": "Alle",
@@ -41,6 +46,12 @@
         "popular": "Mest populære"
       }
     }
+  },
+  "createProfileHome": {
+    "brandName": "Nana Jacobson",
+    "uploads": "{{count}} uploads",
+    "title": "Nana Jacobson",
+    "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete."
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",

@@ -14,6 +14,13 @@ export const NAV = {
   logoAlt: "nav.logoAlt",
 };
 
+export const CREATE_PROFILE_HOME = {
+  brandName: "createProfileHome.brandName",
+  uploads: "createProfileHome.uploads",
+  title: "createProfileHome.title",
+  description: "createProfileHome.description",
+};
+
 export const AUTH = {
   title: "auth.title",
   subtitle: "auth.subtitle",
