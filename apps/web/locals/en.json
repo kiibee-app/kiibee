@@ -1282,6 +1282,16 @@
         "hint": "Tell us a little about your product and feature it on the front page",
         "placeholder": "Enter description"
       },
+      "layouts": {
+        "title": "Layouts",
+        "subtitle": "Select how your channel will be displayed to users.",
+        "preview": "Preview example",
+        "options": {
+          "layout1": "Layout 1",
+          "layout2": "Layout 2",
+          "layout3": "Layout 3"
+        }
+      },
       "logo": {
         "title": "Logo",
         "subtitle": "Use your own logo or write a text as a logo",

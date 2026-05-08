@@ -9,8 +9,15 @@ import recentCreator from "@/assets/images/creators/recent_creator.webp";
 import recentCreator1 from "@/assets/images/creators/recent_creator1.webp";
 import recentCreator2 from "@/assets/images/creators/recent_creator2.webp";
 import recentCreator3 from "@/assets/images/creators/recent_creator3.webp";
+import layoutOneImage from "@/assets/images/layout1.png";
+import layoutTwoImage from "@/assets/images/layout2.png";
+import layoutThreeImage from "@/assets/images/layout3.png";
 
-import { TutorialVideo, TutorialVideoSection } from "./types";
+import type {
+  LayoutCardConfig,
+  TutorialVideo,
+  TutorialVideoSection,
+} from "./types";
 
 export const tutorialVideos: TutorialVideo[] = [
   {
@@ -110,6 +117,27 @@ export const tutorialVideoSections: TutorialVideoSection[] = [
     title: "User guides",
     videoIds: ["del-4", "del-5"],
     gridMaxWidth: "min(640px, 100%)",
+  },
+];
+
+export const layoutCards: LayoutCardConfig[] = [
+  {
+    key: "layout1",
+    titleKey: "contents.appearance.layouts.options.layout1",
+    captionKey: "contents.appearance.layouts.preview",
+    image: layoutOneImage,
+  },
+  {
+    key: "layout2",
+    titleKey: "contents.appearance.layouts.options.layout2",
+    captionKey: "contents.appearance.layouts.preview",
+    image: layoutTwoImage,
+  },
+  {
+    key: "layout3",
+    titleKey: "contents.appearance.layouts.options.layout3",
+    captionKey: "contents.appearance.layouts.preview",
+    image: layoutThreeImage,
   },
 ];
 
