@@ -1023,7 +1023,18 @@
         "expires": "Expires {{date}}",
         "edit": "Edit payment method",
         "delete": "Delete payment method",
-        "more": "More actions"
+        "more": "More actions",
+        "addCardModal": {
+          "title": "Add new card",
+          "cardNumber": "Card number",
+          "expiryDate": "Expiry date",
+          "cvv": "Security code",
+          "cardPlaceholder": "XXXX XXXX XXXX XXXX",
+          "expiryPlaceholder": "MM/YY",
+          "cvvPlaceholder": "CVV",
+          "successTitle": "New card added",
+          "successMessage": "New card has been successfully added."
+        }
       }
     },
     "logoutModal": {

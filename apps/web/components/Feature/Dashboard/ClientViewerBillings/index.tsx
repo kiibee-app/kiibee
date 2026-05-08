@@ -40,9 +40,17 @@ import {
   MethodsList,
   PaymentHeader,
 } from "./styles";
+import { useState } from "react";
+import AddCardModal from "./AddCardModal";
 
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
+  const [showAddCardModal, setShowAddCardModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowAddCardModal(false);
+  };
+
   const { activeTab, setActiveTabAndQuery } =
     useQuerySyncedTab<ViewerBillingTab>({
       queryKey: BILLING_TAB,
@@ -82,7 +90,10 @@ export default function ClientViewerBillings() {
             <MonoText $use="H4_Medium">
               {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.title)}
             </MonoText>
-            <AddCardButton type="button">
+            <AddCardButton
+              type="button"
+              onClick={() => setShowAddCardModal(true)}
+            >
               <PlusIcon width={12} height={12} />
               <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
                 {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)}
@@ -153,6 +164,7 @@ export default function ClientViewerBillings() {
           </MethodsList>
         </>
       )}
+      <AddCardModal visible={showAddCardModal} onClose={handleCloseModal} />
     </BillingShell>
   );
 }
