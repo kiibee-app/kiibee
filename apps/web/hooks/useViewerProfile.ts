@@ -20,13 +20,12 @@ export const useViewerProfile = () => {
 
   const [form, setForm] = useState(initialForm);
   const [saved, setSaved] = useState(initialForm);
-
   const [showPassword, setShowPassword] = useState(false);
   const [passwords, setPasswords] = useState<PasswordState>(emptyPasswords);
   const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
     useState<boolean>(false);
 
-  const dirty = useMemo(() => {
+  const isProfileChanged = useMemo(() => {
     const formChanged = JSON.stringify(form) !== JSON.stringify(saved);
     const passwordChanged = Object.values(passwords).some(Boolean);
     return formChanged || passwordChanged;
@@ -57,12 +56,12 @@ export const useViewerProfile = () => {
   }, []);
 
   const handleSave = useCallback(() => {
-    if (!dirty) return;
+    if (!isProfileChanged) return;
 
     setSaved(form);
     resetPasswords();
     setShowPassword(false);
-  }, [dirty, form, resetPasswords]);
+  }, [isProfileChanged, form, resetPasswords]);
 
   const handlePasswordClose = useCallback(() => {
     setShowPassword(false);
@@ -81,7 +80,7 @@ export const useViewerProfile = () => {
 
   return {
     form,
-    dirty,
+    isProfileChanged,
     passwords,
     showPassword,
     setShowPassword,
