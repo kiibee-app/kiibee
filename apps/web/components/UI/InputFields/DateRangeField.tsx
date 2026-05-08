@@ -23,6 +23,7 @@ import COLORS from "@repo/ui/colors";
 import { formatDate } from "@/utils/formatDate";
 import { useTranslation } from "react-i18next";
 import { MOUSE_DOWN } from "@/utils/common";
+import { canUseDOM } from "@/utils/ui";
 
 type Props = {
   label?: React.ReactNode;
@@ -39,7 +40,6 @@ export default function DateRangeField({
   onChangeStart,
   onChangeEnd,
 }: Props) {
-  const canUseDOM = typeof document !== "undefined";
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
