@@ -20,6 +20,15 @@ export const TabButton = styled.button<{ $active: boolean }>`
   border-bottom: 2px solid
     ${({ $active, theme }) =>
       $active ? theme.colors.primary.BLACK : "transparent"};
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    border-radius: 2px;
+  }
 `;
 
 export const SearchArea = styled.div<{ $open: boolean }>`
