@@ -22,7 +22,7 @@ export default function CreateProfileNavbar() {
       innerPadding="15px 110px"
       tabletInnerPadding="12px 24px"
       mobileInnerPadding="10px 14px"
-      innerMaxWidth="none"
+      innerMaxWidth="1600px"
       navPosition="right"
       brand={
         <Brand href={PATHS.DASHBOARD_CREATOR}>

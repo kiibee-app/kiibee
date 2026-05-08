@@ -54,7 +54,7 @@ export const CollectionCardSlot = styled.div`
 
 export const CollectionListShell = styled.section`
   width: 100%;
-  max-width: 1220px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 35px 0 100px 0;
   box-sizing: border-box;

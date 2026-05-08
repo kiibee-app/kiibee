@@ -98,17 +98,37 @@ export const HeroGrid = styled.div`
   height: 100%;
 `;
 
-export const StoryPanel = styled.aside`
+export const HeroContent = styled.div`
   position: absolute;
-  inset: 0 auto 0 0;
+  inset: 0;
   z-index: 2;
+  width: min(100%, 1500px);
+  margin: 0 auto;
+  padding: 0 110px;
+  display: flex;
+  align-items: flex-end;
+
+  @media (max-width: 1200px) {
+    padding: 0 70px;
+  }
+
+  @media (max-width: 900px) {
+    padding: 0 28px;
+  }
+
+  @media (max-width: 640px) {
+    padding: 0 16px;
+  }
+`;
+
+export const StoryPanel = styled.aside`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
   gap: 12px;
-  width: min(620px, calc(100% - 220px));
-  padding: 50px 110px;
+  width: min(620px, 100%);
+  padding: 50px 0;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   background: linear-gradient(
     90deg,
@@ -118,19 +138,18 @@ export const StoryPanel = styled.aside`
   );
 
   @media (max-width: 1200px) {
-    width: min(560px, calc(100% - 140px));
-    padding: 44px 70px;
+    width: min(560px, 100%);
+    padding: 44px 0;
   }
 
   @media (max-width: 900px) {
     width: min(100%, 520px);
-    padding: 32px 28px;
+    padding: 32px 0;
   }
 
   @media (max-width: 640px) {
-    inset: auto 0 0 0;
     width: 100%;
-    padding: 24px 16px 18px;
+    padding: 24px 0 18px;
     gap: 8px;
     background: linear-gradient(
       90deg,
