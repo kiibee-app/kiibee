@@ -11,6 +11,11 @@
     "login": "Log in",
     "startCreating": "Start creating",
     "logoAlt": "Kiibee",
+    "profile": {
+      "home": "Home",
+      "collections": "Collections",
+      "about": "About"
+    },
     "explore": {
       "allContentTitle": "All content",
       "everything": "Everything",
@@ -41,6 +46,12 @@
         "popular": "Most popular"
       }
     }
+  },
+  "createProfileHome": {
+    "brandName": "Nana Jacobson",
+    "uploads": "{{count}} uploads",
+    "title": "Nana Jacobson",
+    "description": "Online courses and creative guides for people who want to learn new techniques, get inspiration, and make their ideas more concrete."
   },
   "auth": {
     "title": "The place where creators and supporters meet",
@@ -1179,6 +1190,18 @@
       "buttons": {
         "collections": "Collections",
         "contents": "Contents"
+      }
+    },
+    "couponPreview": {
+      "title": "Coupon preview",
+      "confirm": "Confirm",
+      "uploading": "Uploading coupon",
+      "fields": {
+        "title": "Title",
+        "discountType": "Discount type",
+        "amount": "Amount",
+        "codes": "Discount codes",
+        "applicableProducts": "Applicable products"
       }
     },
     "tabs": {

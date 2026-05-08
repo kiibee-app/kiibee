@@ -88,6 +88,14 @@ export type TableAlign = (typeof TABLE_ALIGN)[keyof typeof TABLE_ALIGN];
 export const KEYBOARD_KEYS = {
   ENTER: "Enter",
   ESCAPE: "Escape",
+  SPACE: " ",
+  TAB: "Tab",
+  ARROW_UP: "ArrowUp",
+  ARROW_DOWN: "ArrowDown",
+  ARROW_LEFT: "ArrowLeft",
+  ARROW_RIGHT: "ArrowRight",
+  HOME: "Home",
+  END: "End",
 } as const;
 
 export const BROWSER_API = {

@@ -10,6 +10,7 @@ export const ModalContent = styled.div`
   min-height: 380px;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding-top: 45px;
 
   ${media.tablet} {
