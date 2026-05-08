@@ -1,0 +1,176 @@
+import type {
+  RentedMode,
+  RentedCollectionItem,
+  RentedMediaItem,
+} from "@/utils/dummyData/viewerRentedMockData";
+import {
+  CURRENT_RENTED_AUDIOS,
+  CURRENT_RENTED_COLLECTIONS,
+  CURRENT_RENTED_PDFS,
+  CURRENT_RENTED_VIDEOS,
+  PREVIOUS_RENTED_AUDIOS,
+  PREVIOUS_RENTED_COLLECTIONS,
+  PREVIOUS_RENTED_PDFS,
+  PREVIOUS_RENTED_VIDEOS,
+} from "@/utils/dummyData/viewerRentedMockData";
+import {
+  MOCK_PURCHASED_AUDIOS,
+  MOCK_PURCHASED_COLLECTIONS,
+  MOCK_PURCHASED_PDFS,
+  MOCK_PURCHASED_VIDEOS,
+} from "@/utils/dummyData/viewerPurchasedMockData";
+
+export type RentedSectionKey = "collections" | "videos" | "audios" | "pdfs";
+
+export const RENTED_MODES = {
+  PURCHASED: "purchased",
+  CURRENTLY: "currently",
+  PREVIOUSLY: "previously",
+} as const;
+
+export const RENTED_MEDIA_TYPES = {
+  VIDEO: "video",
+  AUDIO: "audio",
+  PDF: "pdf",
+} as const;
+
+export const RENTED_SECTION_KEYS = {
+  COLLECTIONS: "collections",
+  VIDEOS: "videos",
+  AUDIOS: "audios",
+  PDFS: "pdfs",
+} as const;
+
+type ViewerRentedMediaSection = {
+  key: Exclude<RentedSectionKey, "collections">;
+  title: string;
+};
+
+export type RentedContentSources = {
+  collections: RentedCollectionItem[];
+  videos: RentedMediaItem[];
+  audios: RentedMediaItem[];
+  pdfs: RentedMediaItem[];
+};
+
+const PURCHASED_SOURCES: RentedContentSources = {
+  collections: MOCK_PURCHASED_COLLECTIONS.map((item) => ({ ...item })),
+  videos: MOCK_PURCHASED_VIDEOS.map((item) => ({
+    ...item,
+    expiryText: item.dateLabel,
+  })),
+  audios: MOCK_PURCHASED_AUDIOS.map((item) => ({
+    ...item,
+    expiryText: item.dateLabel,
+  })),
+  pdfs: MOCK_PURCHASED_PDFS.map((item) => ({
+    ...item,
+    expiryText: item.dateLabel,
+  })),
+};
+
+export const RENTED_MEDIA_SECTIONS: ViewerRentedMediaSection[] = [
+  { key: RENTED_SECTION_KEYS.VIDEOS, title: "Videos" },
+  { key: RENTED_SECTION_KEYS.AUDIOS, title: "Audios" },
+  { key: RENTED_SECTION_KEYS.PDFS, title: "PDF" },
+];
+
+export const RENTED_PAGE_SIZE: Record<RentedSectionKey, number> = {
+  [RENTED_SECTION_KEYS.COLLECTIONS]: 2,
+  [RENTED_SECTION_KEYS.VIDEOS]: 4,
+  [RENTED_SECTION_KEYS.AUDIOS]: 4,
+  [RENTED_SECTION_KEYS.PDFS]: 4,
+};
+
+export function paginateSectionItems<T>(
+  items: T[],
+  startIndex: number,
+  pageSize: number,
+): T[] {
+  if (items.length <= pageSize) return items;
+  return items.slice(startIndex, startIndex + pageSize);
+}
+
+export function filterCollections(
+  searchValue: string,
+  items: RentedCollectionItem[],
+) {
+  const needle = searchValue.trim().toLowerCase();
+  if (!needle) return items;
+  return items.filter((item) =>
+    [item.title, item.author, String(item.elementCount)].some((part) =>
+      part.toLowerCase().includes(needle),
+    ),
+  );
+}
+
+export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
+  const needle = searchValue.trim().toLowerCase();
+  if (!needle) return items;
+  return items.filter((item) =>
+    [item.title, item.author, item.category, item.expiryText].some((part) =>
+      part.toLowerCase().includes(needle),
+    ),
+  );
+}
+
+export function getMediaLabel(type: RentedMediaItem["mediaType"]) {
+  if (type === RENTED_MEDIA_TYPES.AUDIO) return "Audio";
+  if (type === RENTED_MEDIA_TYPES.PDF) return "PDF";
+  return "Video";
+}
+
+export function getMediaAction(type: RentedMediaItem["mediaType"]) {
+  if (type === RENTED_MEDIA_TYPES.AUDIO) return "Play audio";
+  if (type === RENTED_MEDIA_TYPES.PDF) return "Open pdf";
+  return "Play video";
+}
+
+export function getRentedContentSources(
+  mode: RentedMode,
+): RentedContentSources {
+  if (mode === RENTED_MODES.PURCHASED) return PURCHASED_SOURCES;
+
+  if (mode === RENTED_MODES.CURRENTLY) {
+    return {
+      collections: CURRENT_RENTED_COLLECTIONS,
+      videos: CURRENT_RENTED_VIDEOS,
+      audios: CURRENT_RENTED_AUDIOS,
+      pdfs: CURRENT_RENTED_PDFS,
+    };
+  }
+
+  return {
+    collections: PREVIOUS_RENTED_COLLECTIONS,
+    videos: PREVIOUS_RENTED_VIDEOS,
+    audios: PREVIOUS_RENTED_AUDIOS,
+    pdfs: PREVIOUS_RENTED_PDFS,
+  };
+}
+
+export function getCollectionBadgeText(mode: RentedMode) {
+  if (mode === RENTED_MODES.PURCHASED) return "Owned";
+  if (mode === RENTED_MODES.CURRENTLY) return "In rental";
+  return "Rented";
+}
+
+export function getCollectionPrimaryActionText(mode: RentedMode) {
+  if (mode === RENTED_MODES.PURCHASED) return "See content";
+  return "Buy xx kr";
+}
+
+export const ACTIVE_RENTAL_TEXT = {
+  title: "Active rental",
+  expiresIn: "Expires in 2 days",
+} as const;
+
+export const RENTED_BUTTON_TEXT = {
+  buy: "Buy xx kr",
+  rent: "Rent xx kr",
+} as const;
+
+export function getSearchPlaceholder(mode: RentedMode) {
+  if (mode === RENTED_MODES.PURCHASED) return "Search Purchased Content";
+  if (mode === RENTED_MODES.CURRENTLY) return "Search Currently Rented";
+  return "Search Previously Rented";
+}
