@@ -1,4 +1,8 @@
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
+import design1 from "@/assets/images/design1.webp";
+import design2 from "@/assets/images/design2.webp";
+import design3 from "@/assets/images/design.webp";
+import { PurchasedCollectionItem } from "./viewerPurchasedMockData";
 
 export const collectionsData: CollectionRow[] = [
   {
@@ -104,3 +108,34 @@ export const collectionContentsData: Record<string, CollectionContentRow[]> = {
   "5": sharedCollectionContents,
   "6": sharedCollectionContents,
 };
+
+export const COLLECTIONS_FOR_PAGE: PurchasedCollectionItem[] = [
+  {
+    id: "c1",
+    title: "Asian recipes",
+    author: "creatorName",
+    elementCount: 10,
+    coverSrc: design1.src,
+  },
+  {
+    id: "c2",
+    title: "Winter soups",
+    author: "creatorName",
+    elementCount: 13,
+    coverSrc: design2.src,
+  },
+  {
+    id: "c3",
+    title: "Mexican dishes",
+    author: "creatorName",
+    elementCount: 22,
+    coverSrc: design3.src,
+  },
+  {
+    id: "c4",
+    title: "Salads",
+    author: "creatorName",
+    elementCount: 23,
+    coverSrc: design1.src,
+  },
+];
