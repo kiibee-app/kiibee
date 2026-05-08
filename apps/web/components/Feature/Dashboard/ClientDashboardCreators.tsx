@@ -10,11 +10,10 @@ import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "../Settings";
 import { VIEW } from "@/utils/Constants";
-import CreatorsContents from "../Contents/page";
+import CreatorsContents from "../Contents";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
-import { clearAuthSession } from "@/lib/auth/authSession";
 import { PATHS } from "@/utils/path";
 import UsersContent from "../Users/UsersContent";
 import {
