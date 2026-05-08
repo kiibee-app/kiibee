@@ -54,7 +54,7 @@ export default function ViewerPreference() {
   return (
     <PreContentWrap>
       <ContentWrap>
-        <AuthBackButton href="/auth/signup-viewer" />
+        <AuthBackButton href={PATHS.AUTH_SIGNUP_VIEWER} />
       </ContentWrap>
       <PrepCard>
         <PreferenceStepContent
