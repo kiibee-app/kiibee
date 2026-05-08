@@ -64,7 +64,8 @@ export default function CreatorsContents() {
     openDiscardModal,
     closeDiscardModal,
     handleCreateClick,
-  } = useContentsModalFlows(activeTab);
+    handleEditCollection,
+  } = useContentsModalFlows(activeTab, collections);
 
   return (
     <PageShell>
@@ -119,6 +120,7 @@ export default function CreatorsContents() {
           setCollections={setCollections}
           setSelectedCollection={setSelectedCollection}
           onDelete={openDelete}
+          onEditCollection={handleEditCollection}
         />
       </ContentPanel>
 

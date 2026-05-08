@@ -33,6 +33,7 @@ type Props = {
   setCollections: Dispatch<SetStateAction<CollectionRow[]>>;
   setSelectedCollection: (collection: CollectionRow) => void;
   onDelete: (id: string, type: CollectionTableType) => void;
+  onEditCollection: (id: string) => void;
 };
 
 export default function ContentTabPanel({
@@ -43,8 +44,21 @@ export default function ContentTabPanel({
   setCollections,
   setSelectedCollection,
   onDelete,
+  onEditCollection,
 }: Props) {
   const { t } = useTranslation();
+
+  const handleMoveUp = (id: string) => {
+    setCollections((current) =>
+      moveItemInArray(current, id, MOVE_DIRECTION_UP),
+    );
+  };
+
+  const handleMoveDown = (id: string) => {
+    setCollections((current) =>
+      moveItemInArray(current, id, MOVE_DIRECTION_DOWN),
+    );
+  };
 
   const renderCollectionsContent = () => {
     if (selectedCollection) {
@@ -62,17 +76,10 @@ export default function ContentTabPanel({
         type={COLLECTION_TABLE_TYPE.COLLECTIONS}
         data={collections}
         onRowClick={setSelectedCollection}
-        onMoveUp={(id) =>
-          setCollections((current) =>
-            moveItemInArray(current, id, MOVE_DIRECTION_UP),
-          )
-        }
-        onMoveDown={(id) =>
-          setCollections((current) =>
-            moveItemInArray(current, id, MOVE_DIRECTION_DOWN),
-          )
-        }
+        onMoveUp={handleMoveUp}
+        onMoveDown={handleMoveDown}
         onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.COLLECTIONS)}
+        onEdit={onEditCollection}
       />
     );
   };
