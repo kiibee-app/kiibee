@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useId, useMemo, useState } from "react";
+import React, { useId, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
@@ -21,26 +21,26 @@ import {
   NextButton,
 } from "../styles";
 import { CouponInput, SectionTitle } from "./styles";
+import { CouponFormState } from "@/types/collectionsType";
 
 type CouponDetailsModalProps = {
   visible: boolean;
+  form: CouponFormState;
+  setForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
   onClose: () => void;
   onNext: () => void;
 };
 
 export default function CouponDetailsModal({
   visible,
+  form,
+  setForm,
   onClose,
   onNext,
 }: CouponDetailsModalProps) {
   const { t } = useTranslation();
   const titleId = useId();
   const discountId = useId();
-  const [title, setTitle] = useState("");
-  const [discountValue, setDiscountValue] = useState("");
-  const [discountType, setDiscountType] = useState<CouponDiscountType>(
-    COUPON_DISCOUNT_FIXED_AMOUNT,
-  );
   const discountTypeOptions = useMemo(
     () => [
       {
@@ -56,7 +56,7 @@ export default function CouponDetailsModal({
   );
 
   const canContinue =
-    title.trim().length > 0 && discountValue.trim().length > 0;
+    form.title.trim().length > 0 && form.discountValue.trim().length > 0;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -94,9 +94,11 @@ export default function CouponDetailsModal({
             <CouponInput
               id={titleId}
               type="text"
-              value={title}
+              value={form.title}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, title: e.target.value }))
+              }
               placeholder={t("contents.couponDetails.placeholders.title")}
-              onChange={(event) => setTitle(event.target.value)}
             />
           </FieldGroup>
 
@@ -107,21 +109,28 @@ export default function CouponDetailsModal({
 
           <DropdownField
             options={discountTypeOptions}
-            value={discountType}
-            onChange={(value) => setDiscountType(value as CouponDiscountType)}
+            value={form.discountType}
+            onChange={(value) =>
+              setForm((prev) => ({
+                ...prev,
+                discountType: value as CouponDiscountType,
+              }))
+            }
           />
 
           <CouponInput
             id={discountId}
             type="text"
             inputMode="decimal"
-            value={discountValue}
+            value={form.discountValue}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, discountValue: e.target.value }))
+            }
             placeholder={t(
-              discountType === COUPON_DISCOUNT_PERCENTAGE
+              form.discountType === COUPON_DISCOUNT_PERCENTAGE
                 ? "contents.couponDetails.placeholders.discountPercentage"
                 : "contents.couponDetails.placeholders.discountAmount",
             )}
-            onChange={(event) => setDiscountValue(event.target.value)}
           />
 
           <NextButton type="submit" disabled={!canContinue}>

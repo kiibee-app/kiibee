@@ -1181,6 +1181,18 @@
         "contents": "Indhold"
       }
     },
+    "couponPreview": {
+      "title": "Kupon forhåndsvisning",
+      "confirm": "Bekræft",
+      "uploading": "Uploading coupon",
+      "fields": {
+        "title": "Titel",
+        "discountType": "Rabattype",
+        "amount": "Beløb",
+        "codes": "Rabatkoder",
+        "applicableProducts": "Gældende produkter"
+      }
+    },
     "tabs": {
       "collections": "Samlinger",
       "contents": "Indhold",

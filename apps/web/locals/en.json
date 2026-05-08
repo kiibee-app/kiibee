@@ -1181,6 +1181,18 @@
         "contents": "Contents"
       }
     },
+    "couponPreview": {
+      "title": "Coupon preview",
+      "confirm": "Confirm",
+      "uploading": "Uploading coupon",
+      "fields": {
+        "title": "Title",
+        "discountType": "Discount type",
+        "amount": "Amount",
+        "codes": "Discount codes",
+        "applicableProducts": "Applicable products"
+      }
+    },
     "tabs": {
       "collections": "Collections",
       "appearance": "Appearance",
