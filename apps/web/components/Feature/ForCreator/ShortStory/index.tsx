@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import creatorsStoryImage from "@/assets/images/creators/678d923e2e28b14f2986cc4127abeb6348d4937c.webp";
@@ -14,38 +14,12 @@ import {
   Paragraph,
   ReadMoreButton,
 } from "./style";
-import {
-  DEFAULT_WINDOW_WIDTH,
-  MOBILE_BREAKPOINT,
-  resolveImageUrl,
-  WINDOW_RESIZE_EVENT,
-} from "@/utils/Constants";
-
-const useWindowSize = () => {
-  const [windowSize, setWindowSize] = useState({
-    width: DEFAULT_WINDOW_WIDTH,
-  });
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth });
-    };
-
-    window.addEventListener(WINDOW_RESIZE_EVENT, handleResize);
-    handleResize();
-
-    return () => window.removeEventListener(WINDOW_RESIZE_EVENT, handleResize);
-  }, []);
-
-  return windowSize;
-};
+import { resolveImageUrl, MOBILE_BREAKPOINT } from "@/utils/Constants";
+import { useIsMobile } from "@/utils/useIsMobile";
 
 export default function ShortStory() {
   const { t } = useTranslation();
-  const { width } = useWindowSize();
-  const isMobile = width < MOBILE_BREAKPOINT;
+  const isMobile = useIsMobile(MOBILE_BREAKPOINT);
 
   return (
     <Section>

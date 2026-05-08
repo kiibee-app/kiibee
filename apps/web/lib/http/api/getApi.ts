@@ -26,7 +26,10 @@ export const useGetAPI = <T>(
     queryKey: hasParams ? [route, params] : [route],
     queryFn: async () => {
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+
+      const timeout = setTimeout(() => {
+        controller.abort();
+      }, REQUEST_TIMEOUT);
 
       try {
         const response = await axiosClient.get<T>(route, {
