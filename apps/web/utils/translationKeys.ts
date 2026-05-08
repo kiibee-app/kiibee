@@ -210,6 +210,24 @@ export const DASHBOARD_VIEWER_BILLINGS = {
     edit: "dashboard.viewerBillings.paymentMethods.edit",
     delete: "dashboard.viewerBillings.paymentMethods.delete",
     more: "dashboard.viewerBillings.paymentMethods.more",
+    addCardModal: {
+      title: "dashboard.viewerBillings.paymentMethods.addCardModal.title",
+      cardNumber:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.cardNumber",
+      expiryDate:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.expiryDate",
+      cvv: "dashboard.viewerBillings.paymentMethods.addCardModal.cvv",
+      cardPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.cardPlaceholder",
+      expiryPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.expiryPlaceholder",
+      cvvPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.cvvPlaceholder",
+      successTitle:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.successTitle",
+      successMessage:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.successMessage",
+    },
   },
 };
 
