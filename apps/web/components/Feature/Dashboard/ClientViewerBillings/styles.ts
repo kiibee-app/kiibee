@@ -23,6 +23,74 @@ export const BillingHeader = styled.div`
   margin-bottom: 20px;
 `;
 
+export const BillingTableSection = styled.div`
+  width: 100%;
+
+  tbody tr {
+    border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+  }
+`;
+
+export const ContentTitleCell = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 210px;
+`;
+
+export const RowNumber = styled.span`
+  ${({ theme }) => theme.typography.Body_SemiBold};
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
+  width: 18px;
+  flex: 0 0 18px;
+`;
+
+export const ContentThumb = styled.div`
+  position: relative;
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  border-radius: 4px;
+  flex: 0 0 34px;
+`;
+
+export const PaymentMethodCell = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+`;
+
+export const PaymentLogoWrap = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  flex: 0 0 34px;
+`;
+
+export const SearchFilterWrap = styled.div`
+  max-width: 230px;
+
+  [role="search"] {
+    width: 100%;
+    max-width: 100%;
+    min-height: 36px;
+    max-height: 38px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  ${media.tablet} {
+    width: 100%;
+  }
+
+  ${media.mobileLg} {
+    max-width: none;
+  }
+`;
+
 export const Tabs = styled.div`
   display: flex;
   align-items: flex-end;

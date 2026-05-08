@@ -201,6 +201,20 @@ export const DASHBOARD_VIEWER_BILLINGS = {
   billingHistory: {
     empty: "dashboard.viewerBillings.billingHistory.empty",
     placeholder: "dashboard.viewerBillings.billingHistory.placeholder",
+    searchContent: "dashboard.viewerBillings.billingHistory.searchContent",
+    searchCreator: "dashboard.viewerBillings.billingHistory.searchCreator",
+    tableHeaders: {
+      contentTitle:
+        "dashboard.viewerBillings.billingHistory.tableHeaders.contentTitle",
+      creatorName:
+        "dashboard.viewerBillings.billingHistory.tableHeaders.creatorName",
+      type: "dashboard.viewerBillings.billingHistory.tableHeaders.type",
+      paymentDate:
+        "dashboard.viewerBillings.billingHistory.tableHeaders.paymentDate",
+      amount: "dashboard.viewerBillings.billingHistory.tableHeaders.amount",
+      paymentMethod:
+        "dashboard.viewerBillings.billingHistory.tableHeaders.paymentMethod",
+    },
   },
   paymentMethods: {
     title: "dashboard.viewerBillings.paymentMethods.title",
