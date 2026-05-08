@@ -24,6 +24,7 @@ import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import { VARIANT } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 import type { NavBarProps } from "@/utils/profile";
 
 export default function NavBar({
@@ -163,24 +164,20 @@ export default function NavBar({
         </Nav>
 
         <Actions>
-          {actions ?? (
-            <>
-              <GenericButton
-                asAnchor
-                href="/auth/login"
-                variant={VARIANT.SECONDARY}
-              >
-                {t(NAV.login)}
-              </GenericButton>
-              <GenericButton
-                asAnchor
-                href="/auth/signup"
-                variant={VARIANT.PRIMARY}
-              >
-                {t(NAV.startCreating)}
-              </GenericButton>
-            </>
-          )}
+          <GenericButton
+            asAnchor
+            href={PATHS.AUTH_LOGIN}
+            variant={VARIANT.SECONDARY}
+          >
+            {t(NAV.login)}
+          </GenericButton>
+          <GenericButton
+            asAnchor
+            href={PATHS.AUTH_SIGNUP}
+            variant={VARIANT.PRIMARY}
+          >
+            {t(NAV.startCreating)}
+          </GenericButton>
         </Actions>
       </Inner>
     </Header>
