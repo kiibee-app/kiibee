@@ -3,8 +3,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
-import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
+import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
+import COLORS from "@repo/ui/colors";
 import {
   AvatarPlaceholder,
   Container,
@@ -17,10 +18,9 @@ import {
   SaveButton,
   SummaryText,
 } from "./styles";
-import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
-import { MODAL_ALIGN } from "@/utils/ui";
-import COLORS from "@repo/ui/colors";
 import { viewerProfileData } from "@/utils/dummyData/profile.data";
+import { GenericModal } from "@/components/UI/Modals";
+import { MODAL_ALIGN } from "@/utils/ui";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import PasswordSection from "../CreatorProfile/PasswordSection";
 import { useViewerProfile } from "@/hooks/useViewerProfile";
@@ -35,7 +35,7 @@ export default function ClientViewerProfile() {
 
   const {
     form,
-    dirty,
+    isProfileChanged,
     passwords,
     showPassword,
     setShowPassword,
@@ -58,7 +58,7 @@ export default function ClientViewerProfile() {
         <SaveButton
           variant={VARIANT.PRIMARY}
           onClick={handleSave}
-          disabled={!dirty}
+          disabled={!isProfileChanged}
         >
           {t("dashboard.viewerProfile.saveChanges")}
         </SaveButton>
