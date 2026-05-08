@@ -4,7 +4,7 @@ import { BackButtonIcon } from "@/assets/icons";
 import { COMMON } from "@/utils/translationKeys";
 import { BackActionButton, BackRow } from "./styles";
 import type { SubscriptionStep } from "@/types/subscription";
-import { SUBSCRIPTION_STEP } from "@/utils/Constants";
+import { BUTTON, SUBSCRIPTION_STEP } from "@/utils/Constants";
 
 interface SubscriptionBackRowProps {
   currentStep: SubscriptionStep;
@@ -35,7 +35,7 @@ export default function SubscriptionBackRow({
   return (
     <BackRow>
       <BackActionButton
-        type="button"
+        type={BUTTON}
         onClick={() => onBack(targetStep)}
         aria-label={t(COMMON.back)}
       >

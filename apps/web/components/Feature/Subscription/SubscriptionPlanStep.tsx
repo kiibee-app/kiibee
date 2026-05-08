@@ -19,6 +19,7 @@ import {
   Radio,
   Title,
 } from "./styles";
+import { BUTTON } from "@/utils/Constants";
 
 export default function SubscriptionPlanStep() {
   const { t } = useTranslation();
@@ -60,7 +61,7 @@ export default function SubscriptionPlanStep() {
         {t(SUBSCRIPTION.comparePlans)}
       </CompareLink>
 
-      <FullWidthContinueButton type="button" onClick={handleContinue}>
+      <FullWidthContinueButton type={BUTTON} onClick={handleContinue}>
         {t(SUBSCRIPTION.continue)}
       </FullWidthContinueButton>
     </>
