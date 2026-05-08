@@ -18,7 +18,7 @@ import {
   UploadsText,
 } from "../CreateProfileHome/styles";
 
-export default function CreateProfileHeroFrame() {
+export default function CreateProfile2Hero() {
   const { t } = useTranslation();
 
   return (

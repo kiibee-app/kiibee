@@ -1,7 +1,7 @@
 "use client";
 
-import CreateProfileLayout from "../CreateProfileHome/CreateProfileLayout";
-import CreateProfileHeroFrame from "../CreateProfileHero";
+import CreateProfileLayout from "../../Layout/CreateProfile";
+import CreateProfileHeroFrame from "../CreateProfile2Hero";
 
 export default function CreateProfileAbout() {
   return (

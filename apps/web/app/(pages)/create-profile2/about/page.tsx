@@ -1,4 +1,4 @@
-import CreateProfileAbout from "@/components/Feature/CreateProfileAbout";
+import CreateProfileAbout from "@/components/Feature/CreateProfile2About";
 
 export default function CreateProfileAboutPage() {
   return <CreateProfileAbout />;
