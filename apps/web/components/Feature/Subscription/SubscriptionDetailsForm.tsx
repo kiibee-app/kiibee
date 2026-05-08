@@ -2,16 +2,17 @@
 
 import type React from "react";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import SortDropdown from "@/components/UI/SortDropdown";
 import {
   PASSWORD_VISIBILITY_KEY,
   SORT_DROPDOWN_VARIANT,
-  type PasswordVisibilityKey,
 } from "@/utils/Constants";
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
 import { SUBSCRIPTION } from "@/utils/translationKeys";
 import { INPUT_TYPE } from "@/utils/ui";
+import { useSubscriptionContext } from "@/providers/subscription-provider";
 import {
   ContinueButton,
   FieldGrid,
@@ -21,42 +22,24 @@ import {
   TwoColumnRow,
 } from "./styles";
 
-type SubscriptionDetailsFormProps = {
-  selectedPlan: string;
-  onSelectPlan: (planId: string) => void;
-  email: string;
-  password: string;
-  repeatPassword: string;
-  onEmailChange: (value: string) => void;
-  onPasswordChange: (value: string) => void;
-  onRepeatPasswordChange: (value: string) => void;
-  passwordVisibility: {
-    password: boolean;
-    repeatPassword: boolean;
-  };
-  onTogglePasswordVisibility: (key: PasswordVisibilityKey) => void;
-  isSubmitEnabled: boolean;
-  getPlanPriceLabel: (planId: string) => string;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  t: (key: string) => string;
-};
+export default function SubscriptionDetailsForm() {
+  const { t } = useTranslation();
+  const {
+    selectedPlan,
+    onSelectPlan,
+    email,
+    password,
+    repeatPassword,
+    onEmailChange,
+    onPasswordChange,
+    onRepeatPasswordChange,
+    passwordVisibility,
+    onTogglePasswordVisibility,
+    isSubmitEnabled,
+    getPlanPriceLabel,
+    onSubmit,
+  } = useSubscriptionContext();
 
-export default function SubscriptionDetailsForm({
-  selectedPlan,
-  onSelectPlan,
-  email,
-  password,
-  repeatPassword,
-  onEmailChange,
-  onPasswordChange,
-  onRepeatPasswordChange,
-  passwordVisibility,
-  onTogglePasswordVisibility,
-  isSubmitEnabled,
-  getPlanPriceLabel,
-  onSubmit,
-  t,
-}: SubscriptionDetailsFormProps) {
   const planOptions = useMemo(
     () =>
       subscriptionPlans.map((plan) => ({
