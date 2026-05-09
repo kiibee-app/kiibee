@@ -123,9 +123,10 @@ export class AuthController {
       const result = await this.authService.refresh({
         userId: payload.sub,
         email: payload.email,
+        refreshToken,
       });
       return result;
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('Invalid or expired refresh token');
     }
   }
