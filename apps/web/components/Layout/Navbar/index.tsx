@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import Image from "@/components/UI/SafeImage";
@@ -23,6 +23,7 @@ import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
+import { POINTER_DOWN, VARIANT } from "@/utils/Constants";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarProps } from "@/utils/profile";
@@ -75,19 +76,45 @@ export default function NavBar({
     topOffset,
   ]);
 
-  React.useEffect(() => {
-    const handleDocClick = (e: MouseEvent) => {
-      const target = e.target as Node | null;
-      if (!navRef.current) return;
-      if (target && !navRef.current.contains(target)) {
-        setPinned(null);
-        setActive(null);
-      }
-    };
-
-    document.addEventListener("click", handleDocClick);
-    return () => document.removeEventListener("click", handleDocClick);
+  const closeMenu = useCallback(() => {
+    setPinned(null);
+    setActive(null);
   }, []);
+
+  const openMenu = useCallback((key: string) => {
+    setActive(key);
+    setPinned(key);
+  }, []);
+
+  const togglePin = useCallback(
+    (key: string) => {
+      const shouldClose = pinned === key;
+      if (shouldClose) {
+        closeMenu();
+        return;
+      }
+      openMenu(key);
+    },
+    [pinned, closeMenu, openMenu],
+  );
+
+  const handleGlobalClick = useCallback(
+    (e: PointerEvent) => {
+      const target = e.target as Node | null;
+
+      if (!navRef.current?.contains(target)) {
+        closeMenu();
+      }
+    },
+    [closeMenu],
+  );
+
+  useEffect(() => {
+    document.addEventListener(POINTER_DOWN, handleGlobalClick);
+    return () => {
+      document.removeEventListener(POINTER_DOWN, handleGlobalClick);
+    };
+  }, [handleGlobalClick]);
 
   return (
     <Header $position={position} $topOffset={topOffset}>
@@ -115,19 +142,10 @@ export default function NavBar({
             {items.map((item) => (
               <NavItemWrapper
                 key={item.key}
-                onMouseEnter={() => {
-                  setActive(item.key);
-                  setPinned(item.key);
-                }}
+                onMouseEnter={() => openMenu(item.key)}
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (pinned === item.key) {
-                    setPinned(null);
-                    setActive(null);
-                  } else {
-                    setPinned(item.key);
-                    setActive(item.key);
-                  }
+                  togglePin(item.key);
                 }}
               >
                 <Link href={item.href || "#"}>
