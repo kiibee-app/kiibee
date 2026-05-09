@@ -5,8 +5,17 @@ import {
   boolean,
   index,
   uniqueIndex,
+  pgEnum,
 } from 'drizzle-orm/pg-core';
 import { baseTimestamps, softDeleteFields } from 'src/utils/dbHelper';
+
+export const userStatusEnum = pgEnum('user_status', [
+  'pending-setup',
+  'active',
+  'inactive',
+  'suspended',
+  'deleted',
+]);
 
 export const users = pgTable(
   'users',
@@ -18,9 +27,7 @@ export const users = pgTable(
     lastName: varchar('last_name', { length: 100 }),
     fullName: varchar('full_name', { length: 200 }),
     role: varchar('role', { length: 30 }).notNull().default('viewer'),
-    status: varchar('status', { length: 30 })
-      .notNull()
-      .default('pending_setup'),
+    status: userStatusEnum('status').notNull().default('pending-setup'),
 
     isEmailVerified: boolean('is_email_verified').notNull().default(false),
     isActive: boolean('is_active').notNull().default(true),

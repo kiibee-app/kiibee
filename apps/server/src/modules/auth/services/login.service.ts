@@ -6,6 +6,7 @@ import { users, userSessions } from 'src/database/schema';
 import { success, fail } from 'src/utils/sendResponse';
 import { LoginDto } from '../dto/login.dto';
 import { HttpStatus } from '@nestjs/common';
+import { STATUS } from 'src/utils/constant';
 
 export const loginService = async (
   loginData: LoginDto,
@@ -39,7 +40,9 @@ export const loginService = async (
       return fail('Invalid email or password', HttpStatus.UNAUTHORIZED);
     }
 
-    if (user.status !== 'active') {
+    const allowedStatuses: string[] = [STATUS.ACTIVE, STATUS.PENDING_SETUP];
+
+    if (!allowedStatuses.includes(user.status)) {
       return fail('Account is not active', HttpStatus.FORBIDDEN);
     }
 
