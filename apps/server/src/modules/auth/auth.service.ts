@@ -19,6 +19,8 @@ import { setupCreatorAccountService } from './services/creatorAccountSetup.servi
 import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
 import { forgetPasswordService } from './services/forgetPassword.service';
 import { resetPasswordService } from './services/resetPassword.service';
+import { CreateCreatorApplicationDto } from './dto/creatorRequest.dto';
+import { ResetPasswordDto } from './dto/resetPassword.dto';
 
 @Injectable()
 export class AuthService {
@@ -76,7 +78,7 @@ export class AuthService {
     return logoutService(userId, refreshToken, ipAddress, userAgent);
   }
 
-  async creatorRequest(payload: any) {
+  async creatorRequest(payload: CreateCreatorApplicationDto) {
     return creatorRequestService(payload);
   }
   async getCreatorRequests() {
@@ -105,7 +107,7 @@ export class AuthService {
       this.configService.getOrThrow<string>('FRONTEND_URL');
     return forgetPasswordService(email, frontendBaseUrl);
   }
-  async resetPassword(payload: any) {
+  async resetPassword(payload: ResetPasswordDto) {
     return resetPasswordService(payload);
   }
 }

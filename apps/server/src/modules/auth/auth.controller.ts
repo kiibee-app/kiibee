@@ -9,6 +9,8 @@ import {
   UseGuards,
   Param,
 } from '@nestjs/common';
+import type { Request } from 'express';
+import { IsNotEmpty, IsString } from 'class-validator';
 import { AuthService } from './auth.service';
 import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { LoginDto } from './dto/login.dto';
@@ -17,6 +19,19 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
 import { ResetPasswordDto } from './dto/resetPassword.dto';
+import { CreateCreatorApplicationDto } from './dto/creatorRequest.dto';
+
+type AuthenticatedRequest = Request & {
+  user: {
+    userId: string;
+  };
+};
+
+class CreatorRequestActionDto {
+  @IsString()
+  @IsNotEmpty()
+  requestId!: string;
+}
 
 @Controller('auth')
 export class AuthController {
@@ -26,7 +41,7 @@ export class AuthController {
   ) {}
 
   @Post('signup')
-  async viewerSignUp(@Body() dto: ViewerSignUpDto, @Req() req: any) {
+  async viewerSignUp(@Body() dto: ViewerSignUpDto, @Req() req: Request) {
     const result = await this.authService.viewerSignUp(dto);
 
     if (result.success && result.data) {
@@ -60,7 +75,7 @@ export class AuthController {
   }
 
   @Post('login')
-  async login(@Body() dto: LoginDto, @Req() req: any) {
+  async login(@Body() dto: LoginDto, @Req() req: Request) {
     const result = await this.authService.login(dto);
 
     if (result.success && result.data) {
@@ -117,13 +132,13 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Post('logout')
-  async logout(@Req() req: any) {
+  async logout(@Req() req: AuthenticatedRequest) {
     const result = await this.authService.logout(req.user.userId);
     return result;
   }
 
   @Post('creator-request')
-  async creatorRequest(@Body() payload: any) {
+  async creatorRequest(@Body() payload: CreateCreatorApplicationDto) {
     const result = await this.authService.creatorRequest(payload);
     return result;
   }
@@ -138,8 +153,8 @@ export class AuthController {
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Post('approve-creator')
   async approveCreatorRequest(
-    @Body() body: { requestId: string },
-    @Req() req: any,
+    @Body() body: CreatorRequestActionDto,
+    @Req() req: AuthenticatedRequest,
   ) {
     const approverUserId = req.user.userId;
     const result = await this.authService.approveCreatorRequest(
@@ -152,8 +167,8 @@ export class AuthController {
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Post('reject-creator')
   async rejectCreatorRequest(
-    @Body() body: { requestId: string },
-    @Req() req: any,
+    @Body() body: CreatorRequestActionDto,
+    @Req() req: AuthenticatedRequest,
   ) {
     const approverUserId = req.user.userId;
     const result = await this.authService.rejectCreatorRequest(
