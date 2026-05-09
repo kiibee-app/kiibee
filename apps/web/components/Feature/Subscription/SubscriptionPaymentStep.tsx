@@ -20,6 +20,7 @@ import {
   PAYMENT_METHODS,
   PaymentMethod,
 } from "@/utils/creatorFinalSteps";
+import { useSubscriptionContext } from "@/providers/subscriptionProvider";
 import {
   Fields,
   Form,
@@ -49,18 +50,10 @@ const INITIAL_FORM_VALUES: FormValues = {
   cvc: "",
 };
 
-type SubscriptionPaymentStepProps = {
-  selectedPlan: string;
-  onSelectPlan: (planId: string) => void;
-  getPlanPriceLabel: (planId: string) => string;
-};
-
-export default function SubscriptionPaymentStep({
-  selectedPlan,
-  onSelectPlan,
-  getPlanPriceLabel,
-}: SubscriptionPaymentStepProps) {
+export default function SubscriptionPaymentStep() {
   const { t } = useTranslation();
+  const { selectedPlan, onSelectPlan, getPlanPriceLabel } =
+    useSubscriptionContext();
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(
     DEFAULT_PAYMENT_METHOD,
   );
