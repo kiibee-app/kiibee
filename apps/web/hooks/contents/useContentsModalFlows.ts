@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { INITIAL_COUPON_FORM } from "@/types/collectionsType";
+import { CollectionRow, INITIAL_COUPON_FORM } from "@/types/collectionsType";
 import { COLLECTIONS, COUPONS, ContentTab } from "@/utils/common";
 import { COUPON_STEPS, CouponStep, STEP_ORDER } from "@/utils/content";
 
-export const useContentsModalFlows = (activeTab: ContentTab) => {
+export const useContentsModalFlows = (
+  activeTab: ContentTab,
+  collections: CollectionRow[],
+) => {
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [couponForm, setCouponForm] = useState(INITIAL_COUPON_FORM);
   const [isCouponSuccess, setIsCouponSuccess] = useState(false);
@@ -11,7 +14,9 @@ export const useContentsModalFlows = (activeTab: ContentTab) => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [collectionName, setCollectionName] = useState("");
   const [couponStep, setCouponStep] = useState<CouponStep | null>(null);
-
+  const [editingCollectionId, setEditingCollectionId] = useState<string | null>(
+    null,
+  );
   const couponFlow = {
     open: () => setCouponStep(COUPON_STEPS.DETAILS),
     close: () => setCouponStep(null),
@@ -41,15 +46,25 @@ export const useContentsModalFlows = (activeTab: ContentTab) => {
     setCollectionName,
     showCreateModal,
     showSuccessModal,
-    openCreate: () => setShowCreateModal(true),
+
+    editingCollectionId,
+
+    openCreate: (name?: string, id?: string) => {
+      if (name) setCollectionName(name);
+      if (id) setEditingCollectionId(id);
+      setShowCreateModal(true);
+    },
+
     closeCreate: () => {
       setShowCreateModal(false);
       setCollectionName("");
+      setEditingCollectionId(null);
     },
     completeCreate: () => {
       if (!collectionName.trim()) return;
       setShowCreateModal(false);
       setCollectionName("");
+      setEditingCollectionId(null);
       setShowSuccessModal(true);
     },
     closeSuccess: () => setShowSuccessModal(false),
@@ -84,6 +99,12 @@ export const useContentsModalFlows = (activeTab: ContentTab) => {
       createCollectionFlow.openCreate();
     }
   };
+  const handleEditCollection = (id: string) => {
+    const item = collections.find((c) => c.id === id);
+    if (!item) return;
+
+    createCollectionFlow.openCreate(item.name, id);
+  };
 
   return {
     createCollectionFlow,
@@ -98,5 +119,6 @@ export const useContentsModalFlows = (activeTab: ContentTab) => {
     openDiscardModal: () => setShowDiscardModal(true),
     closeDiscardModal: () => setShowDiscardModal(false),
     handleCreateClick,
+    handleEditCollection,
   };
 };
