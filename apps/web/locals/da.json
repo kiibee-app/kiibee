@@ -51,7 +51,12 @@
     "brandName": "Nana Jacobson",
     "uploads": "{{count}} uploads",
     "title": "Nana Jacobson",
-    "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete."
+    "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete.",
+    "aboutModal": {
+      "moreInfo": "Mere info",
+      "joined": "Tilsluttet",
+      "links": "Links"
+    }
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",
