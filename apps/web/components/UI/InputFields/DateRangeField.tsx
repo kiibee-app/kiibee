@@ -23,6 +23,7 @@ import COLORS from "@repo/ui/colors";
 import { formatDate } from "@/utils/formatDate";
 import { useTranslation } from "react-i18next";
 import { MOUSE_DOWN } from "@/utils/common";
+import { canUseDOM } from "@/utils/ui";
 
 type Props = {
   label?: React.ReactNode;
@@ -108,6 +109,7 @@ export default function DateRangeField({
         </DateDisplay>
 
         {open &&
+          canUseDOM &&
           createPortal(
             <DatePopupWrapper ref={popupRef}>
               <DatePopup $top={pos.top} $left={pos.left}>

@@ -16,7 +16,7 @@ import { MonoText } from "../Monotext";
 import { BUTTON, ESCAPE, KEYDOWN, VARIANT } from "@/utils/Constants";
 import { Variant } from "@/utils/Constants";
 import { CrossIcon } from "@/assets/icons/crossIcon";
-import { ModalAlign } from "@/utils/ui";
+import { canUseDOM, ModalAlign } from "@/utils/ui";
 
 type GenericModalProps = {
   visible: boolean;
@@ -88,7 +88,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
     el?.focus();
   }, [visible]);
 
-  if (!visible) return null;
+  if (!visible || !canUseDOM) return null;
 
   const handleCancel = () => {
     onCancel?.();

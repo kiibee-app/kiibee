@@ -26,10 +26,10 @@ export const useGetAPI = <T>(
     queryKey: hasParams ? [route, params] : [route],
     queryFn: async () => {
       const controller = new AbortController();
-      const timeout = window.setTimeout(
-        () => controller.abort(),
-        REQUEST_TIMEOUT,
-      );
+
+      const timeout = setTimeout(() => {
+        controller.abort();
+      }, REQUEST_TIMEOUT);
 
       try {
         const response = await axiosClient.get<T>(route, {
@@ -41,7 +41,7 @@ export const useGetAPI = <T>(
       } catch (error) {
         throw normalizeApiError(error);
       } finally {
-        window.clearTimeout(timeout);
+        clearTimeout(timeout);
       }
     },
     ...options,
