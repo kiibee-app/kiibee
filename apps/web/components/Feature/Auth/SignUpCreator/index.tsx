@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useCreatorRequest } from "@/hooks/auth/useCreatorRequest";
 import FormField from "@/components/UI/FormField";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
@@ -43,12 +43,14 @@ import { MonoText } from "@/components/UI/Monotext";
 import { ALERT } from "@/utils/common";
 import { PATHS } from "@/utils/path";
 import { createCreatorRequestSchema } from "@/lib/validation/schema";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
   const router = useRouter();
   const [formMessage, setFormMessage] = useState("");
   const [messageTone, setMessageTone] = useState<"error" | "success">("error");
+  const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
   const creatorRequest = useCreatorRequest();
   const schema = useMemo(
     () =>
@@ -88,11 +90,15 @@ export default function SignUpCreatorSection() {
   const {
     handleSubmit,
     setValue,
-    watch,
     reset,
+    setError,
     formState: { isValid, errors },
   } = methods;
-  const formValues = watch();
+  const agreedValue = useWatch({
+    control: methods.control,
+    name: "agreed",
+    defaultValue: false,
+  });
 
   const updateField = (
     field: keyof CreatorRequestValues,
@@ -121,7 +127,7 @@ export default function SignUpCreatorSection() {
       });
 
       if (!response.success) {
-        throw new Error(response.message || "Failed to submit request");
+        throw new Error(response.message || t("authForm.errors.submitFailed"));
       }
 
       toast.success(
@@ -134,11 +140,9 @@ export default function SignUpCreatorSection() {
       reset();
       router.push(PATHS.AUTH_CREATOR_REQUEST_SENT);
     } catch (error) {
-      const message =
-        error instanceof Error ? error.message : "Failed to submit request";
-
+      applyFieldErrors(error, setError);
       setMessageTone("error");
-      setFormMessage(message);
+      setFormMessage(getErrorMessage(error, "authForm.errors.submitFailed"));
     }
   };
 
@@ -205,7 +209,7 @@ export default function SignUpCreatorSection() {
             <Checkbox
               id="creator-consent"
               type="checkbox"
-              checked={Boolean(formValues.agreed)}
+              checked={Boolean(agreedValue)}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                 updateField("agreed", event.target.checked)
               }

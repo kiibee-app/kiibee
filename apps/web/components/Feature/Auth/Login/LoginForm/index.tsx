@@ -24,6 +24,7 @@ import Image from "@/components/UI/SafeImage";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import { createLoginSchema } from "@/lib/validation/schema";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { ALERT } from "@/utils/common";
 import {
   getPostLoginPath,
@@ -39,6 +40,7 @@ export default function LoginForm() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [remember, setRemember] = useState(false);
   const [formError, setFormError] = useState("");
+  const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
   const { mutateAsync: login, isPending } = useLogin();
   const loginSchema = useMemo(
     () =>
@@ -60,6 +62,7 @@ export default function LoginForm() {
   });
   const {
     handleSubmit,
+    setError,
     formState: { isValid },
     clearErrors,
   } = methods;
@@ -77,11 +80,8 @@ export default function LoginForm() {
       persistLoginSession(response);
       router.push(getPostLoginPath(response));
     } catch (error) {
-      setFormError(
-        error instanceof Error
-          ? error.message
-          : t("authForm.errors.submitFailed"),
-      );
+      applyFieldErrors(error, setError);
+      setFormError(getErrorMessage(error, "authForm.errors.submitFailed"));
     }
   };
 
