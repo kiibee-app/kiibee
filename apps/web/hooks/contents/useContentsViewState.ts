@@ -13,7 +13,7 @@ import {
 import { CollectionRow } from "@/types/collectionsType";
 
 type TabItem = {
-  key: string;
+  key: ContentTab;
   labelKey: string;
 };
 
@@ -44,7 +44,7 @@ export const useContentsViewState = () => {
     return tab.labelKey;
   };
 
-  const handleTabChange = (tabKey: string) => {
+  const handleTabChange = (tabKey: ContentTab) => {
     setOpenSearch(false);
     setActiveTabAndQuery(tabKey);
   };
