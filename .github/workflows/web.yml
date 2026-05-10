@@ -23,6 +23,9 @@ jobs:
     name: 🏗️ Build & Test Web
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # next.config.ts and SEO helpers read this at build/typecheck time; without it getSiteUrl() throws.
+    env:
+      NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL || 'https://kiibee.app' }}
 
     steps:
       - name: 🧹 Clear GitHub Actions cache
