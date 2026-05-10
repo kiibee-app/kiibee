@@ -5,7 +5,7 @@ import { db } from 'src/database/db';
 import { creatorInfo } from 'src/database/schema/creator/creatorInfo.schema';
 import { creatorApplicationRequests } from 'src/database/schema/users/creatorApplicationRequests.schema';
 import { users } from 'src/database/schema/users/users.schema';
-import { fail, success } from 'src/utils/sendResponse';
+import { success } from 'src/utils/sendResponse';
 import { ROLE, STATUS, Time } from 'src/utils/constant';
 import { usersToken } from 'src/database/schema/users/usersToken.schema';
 import { runInBackground } from 'src/utils/backgroundTask';
@@ -20,7 +20,7 @@ export const approveCreatorRequestService = async (
 ) => {
   try {
     if (!requestId || !approverUserId) {
-      return fail(
+      throw new HttpException(
         'Request ID and approver User ID are required',
         HttpStatus.BAD_REQUEST,
       );
@@ -38,7 +38,7 @@ export const approveCreatorRequestService = async (
       .limit(1);
 
     if (!validatedRequest || validatedRequest.length === 0) {
-      return fail(
+      throw new HttpException(
         'Creator request not found or already processed',
         HttpStatus.NOT_FOUND,
       );
@@ -112,7 +112,7 @@ export const approveCreatorRequestService = async (
     if (error instanceof HttpException) {
       throw error;
     }
-    return fail(
+    throw new HttpException(
       'Failed to approve creator request',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );

@@ -7,7 +7,7 @@ import { logger } from 'src/logger/logger';
 import { runInBackground } from 'src/utils/backgroundTask';
 import { STATUS } from 'src/utils/constant';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
-import { fail, success } from 'src/utils/sendResponse';
+import { success } from 'src/utils/sendResponse';
 
 type CreatorRequest = typeof creatorApplicationRequests.$inferSelect;
 
@@ -17,7 +17,7 @@ export const rejectCreatorRequestService = async (
 ) => {
   try {
     if (!requestId || !approverUserId) {
-      return fail(
+      throw new HttpException(
         'Request ID and approver User ID are required',
         HttpStatus.BAD_REQUEST,
       );
@@ -90,7 +90,7 @@ export const rejectCreatorRequestService = async (
       throw error;
     }
 
-    return fail(
+    throw new HttpException(
       'Failed to reject creator request',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );

@@ -2,7 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { users, usersToken } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { fail, success } from 'src/utils/sendResponse';
+import { success } from 'src/utils/sendResponse';
 import { and, eq } from 'drizzle-orm';
 import { Time } from 'src/utils/constant';
 import { randomBytes, randomUUID } from 'crypto';
@@ -16,7 +16,7 @@ export const forgetPasswordService = async (
 ) => {
   try {
     if (!email) {
-      return fail('Email is required', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Email is required', HttpStatus.BAD_REQUEST);
     }
 
     const user = await db
@@ -26,7 +26,10 @@ export const forgetPasswordService = async (
       .limit(1);
 
     if (!user || user.length === 0) {
-      return fail('No user found with this email', HttpStatus.NOT_FOUND);
+      throw new HttpException(
+        'No user found with this email',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     const token = randomBytes(32).toString('hex');
@@ -72,7 +75,7 @@ export const forgetPasswordService = async (
     if (error instanceof HttpException) {
       throw error;
     }
-    return fail(
+    throw new HttpException(
       'Failed to process forget password request',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );
