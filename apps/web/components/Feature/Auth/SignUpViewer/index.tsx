@@ -14,7 +14,7 @@ import FormField from "@/components/UI/FormField";
 import { MonoText } from "@/components/UI/Monotext";
 import { useViewerSignUp } from "@/hooks/auth/useViewerSignUp";
 import { persistAuthSession } from "@/lib/auth/authSession";
-import { normalizeApiError } from "@/lib/http/errors/apiError";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { ALERT } from "@/utils/common";
 import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
@@ -60,6 +60,7 @@ export default function SignUpViewer() {
       repeatPassword: false,
     });
   const [formError, setFormError] = useState("");
+  const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
   const schema = useMemo(
     () =>
       createViewerSignupSchema({
@@ -88,6 +89,7 @@ export default function SignUpViewer() {
   const {
     handleSubmit,
     setValue,
+    setError,
     formState: { isValid, errors },
   } = methods;
   const agreedValue = useWatch({
@@ -110,8 +112,8 @@ export default function SignUpViewer() {
 
       router.push("/auth/signup-viewer/preferences");
     } catch (error) {
-      const apiError = normalizeApiError(error);
-      setFormError(apiError.message || t("viewerSignup.form.signupFailed"));
+      applyFieldErrors(error, setError);
+      setFormError(getErrorMessage(error, "viewerSignup.form.signupFailed"));
     }
   };
 
