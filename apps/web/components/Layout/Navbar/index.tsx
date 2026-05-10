@@ -39,7 +39,6 @@ export default function NavBar({
   brand,
   navBefore,
   navAfter,
-  actions,
 }: NavBarProps) {
   const { t } = useTranslation();
   const [active, setActive] = React.useState<string | null>(null);

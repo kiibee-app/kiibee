@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
-import InputField from "@/components/UI/InputFields";
+import FormField from "@/components/UI/FormField";
 import { PasswordFields } from "./styles";
 import { useTranslation } from "react-i18next";
 import { INPUT_VARIANTS } from "@/utils/Constants";
@@ -9,10 +9,10 @@ import { Passwords } from "@/utils/creatorProfile";
 import { getPasswordFields } from "@/utils/creatorProfilefields";
 import { INPUT_TYPE } from "@/utils/ui";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
+import { useFormContext } from "react-hook-form";
 
 type Props = {
-  passwords: Passwords;
-  onPasswordChange: (field: keyof Passwords, val?: string) => void;
+  onFieldChange?: () => void;
 };
 
 type PasswordVisibility = {
@@ -21,12 +21,10 @@ type PasswordVisibility = {
   repeatPassword: boolean;
 };
 
-export default function PasswordSection({
-  passwords,
-  onPasswordChange,
-}: Props) {
+export default function PasswordSection({ onFieldChange }: Props) {
   const { t } = useTranslation();
   const fields = getPasswordFields(t);
+  const { setValue } = useFormContext<Passwords>();
   const [passwordVisibility, setPasswordVisibility] =
     useState<PasswordVisibility>({
       currentPassword: false,
@@ -36,9 +34,13 @@ export default function PasswordSection({
 
   const handlePasswordInputChange = useCallback(
     (field: keyof Passwords, value: string | string[]) => {
-      onPasswordChange(field, String(value));
+      setValue(field, String(value), {
+        shouldDirty: true,
+        shouldValidate: true,
+      });
+      onFieldChange?.();
     },
-    [onPasswordChange],
+    [onFieldChange, setValue],
   );
 
   const togglePasswordVisibility = useCallback(
@@ -58,11 +60,11 @@ export default function PasswordSection({
         const isVisible = passwordVisibility[key];
 
         return (
-          <InputField
+          <FormField<Passwords>
             key={field.key}
+            name={field.key as keyof Passwords}
             label={field.label}
             type={isVisible ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
-            value={passwords[field.key as keyof Passwords]}
             onChange={handlePasswordInputChange.bind(
               null,
               field.key as keyof Passwords,
