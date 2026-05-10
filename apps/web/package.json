@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@repo/ui": "workspace:*",
     "@tanstack/react-query": "^5.100.5",
     "@tanstack/react-query-devtools": "^5.100.5",
@@ -19,8 +20,9 @@
     "next": "16.2.1",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-image-crop": "^11.0.10",
+    "react-hook-form": "^7.75.0",
     "react-i18next": "^17.0.2",
+    "react-image-crop": "^11.0.10",
     "react-toastify": "^11.1.0",
     "styled-components": "^6.3.12",
     "zod": "^4.3.6"

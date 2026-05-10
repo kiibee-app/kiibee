@@ -24,7 +24,6 @@ import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import { POINTER_DOWN, VARIANT } from "@/utils/Constants";
-import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarProps } from "@/utils/profile";
 
@@ -40,7 +39,6 @@ export default function NavBar({
   brand,
   navBefore,
   navAfter,
-  actions,
 }: NavBarProps) {
   const { t } = useTranslation();
   const [active, setActive] = React.useState<string | null>(null);
