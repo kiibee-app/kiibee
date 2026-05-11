@@ -23,6 +23,7 @@ import {
   SelectedFileName,
   UploadBody,
   UploadHelperText,
+  UploadHelperTextGroup,
   UploadModalContent,
 } from "./styles";
 
@@ -44,6 +45,9 @@ export default function ContentUploadModal({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const uploadType = resolveUploadContentType(contentType);
   const uploadConfig = CONTENT_UPLOAD_CONFIG[uploadType];
+  const helperLineOne = t(
+    `contents.contentUploadModal.${uploadType}.helperLineOne`,
+  );
   const helperLineTwo = t(
     `contents.contentUploadModal.${uploadType}.helperLineTwo`,
   );
@@ -132,11 +136,12 @@ export default function ContentUploadModal({
               </GenericButton>
             </ChooseUploadButton>
 
-            <UploadHelperText>
-              {t(`contents.contentUploadModal.${uploadType}.helperLineOne`)}
-              <br />
-              {helperLineTwo || "\u00a0"}
-            </UploadHelperText>
+            <UploadHelperTextGroup>
+              <UploadHelperText>{helperLineOne}</UploadHelperText>
+              {helperLineTwo ? (
+                <UploadHelperText>{helperLineTwo}</UploadHelperText>
+              ) : null}
+            </UploadHelperTextGroup>
           </ContentUploadDropZone>
         </UploadBody>
       </UploadModalContent>

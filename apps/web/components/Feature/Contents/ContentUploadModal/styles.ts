@@ -37,11 +37,18 @@ export const SelectedFileName = styled(MonoText).attrs({
   white-space: nowrap;
 `;
 
+export const UploadHelperTextGroup = styled.div`
+  min-height: 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
 export const UploadHelperText = styled(MonoText).attrs({
   $use: "Body_Medium",
 })`
   color: ${({ theme }) => theme.colors.neutral.GRAY};
   line-height: 1.35;
   text-align: center;
-  min-height: 38px;
 `;

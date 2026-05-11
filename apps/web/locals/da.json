@@ -1327,36 +1327,36 @@
       }
     },
     "contentTypeModal": {
-      "title": "Choose the type of content you want to add",
-      "subtitle": "Select a format to continue.",
-      "continue": "Continue",
+      "title": "Vælg den type indhold, du vil tilføje",
+      "subtitle": "Vælg et format for at fortsætte.",
+      "continue": "Fortsæt",
       "options": {
         "video": "Video",
-        "audio": "Audio",
+        "audio": "Lyd",
         "pdf": "PDF",
         "epub": "EPUB",
         "web": "Web"
       }
     },
     "contentUploadModal": {
-      "dragFileHere": "Drag & drop here",
-      "or": "or",
-      "chooseFile": "Choose to upload",
-      "selectedFile": "Selected file",
+      "dragFileHere": "Træk og slip her",
+      "or": "eller",
+      "chooseFile": "Vælg til upload",
+      "selectedFile": "Valgt fil",
       "video": {
-        "helperLineOne": "Max. file size of 2GB of file types (.mp4,.mkv,.mov,.m4v)",
-        "helperLineTwo": "Min. resolution 1080p HD"
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp4,.mkv,.mov,.m4v)",
+        "helperLineTwo": "Min. opløsning 1080p HD"
       },
       "audio": {
-        "helperLineOne": "Max. file size of 2GB of file types (.mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac)",
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac)",
         "helperLineTwo": ""
       },
       "pdf": {
-        "helperLineOne": "Max. file size of 2GB of file types (.pdf)",
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.pdf)",
         "helperLineTwo": ""
       },
       "epub": {
-        "helperLineOne": "Max. file size of 2GB of file types (.epub,.mobi,.azw)",
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.epub,.mobi,.azw)",
         "helperLineTwo": ""
       }
     },
