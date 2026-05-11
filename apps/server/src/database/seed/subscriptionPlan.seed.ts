@@ -26,8 +26,3 @@ export const seedPlans = async () => {
     },
   ]);
 };
-
-seedPlans()
-  .then(() => console.log('✅ Plans seeded successfully'))
-  .catch(console.error)
-  .finally(() => process.exit());

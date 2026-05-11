@@ -31,7 +31,3 @@ export const seedContentTypes = async () => {
 
   await db.insert(contentTypes).values(types).onConflictDoNothing();
 };
-
-seedContentTypes()
-  .catch(console.error)
-  .finally(() => process.exit());
