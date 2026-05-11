@@ -52,6 +52,7 @@
     "uploads": "{{count}} uploads",
     "title": "Nana Jacobson",
     "description": "Online courses and creative guides for people who want to learn new techniques, get inspiration, and make their ideas more concrete.",
+    "more": "...more",
     "aboutModal": {
       "moreInfo": "More info",
       "joined": "Joined",

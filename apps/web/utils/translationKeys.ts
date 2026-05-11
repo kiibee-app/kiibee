@@ -19,6 +19,7 @@ export const CREATE_PROFILE_HOME = {
   uploads: "createProfileHome.uploads",
   title: "createProfileHome.title",
   description: "createProfileHome.description",
+  more: "createProfileHome.more",
 };
 
 export const CREATE_PROFILE_ROUTES = {

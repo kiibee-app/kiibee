@@ -1,6 +1,7 @@
 "use client";
 
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
+import type { ReactNode } from "react";
 import { useEffect, useRef } from "react";
 import { useTheme } from "styled-components";
 import {
@@ -25,6 +26,7 @@ type SearchConfig = {
   onChange: (value: string) => void;
   ariaLabel?: string;
   alwaysOpen?: boolean;
+  icon?: ReactNode;
 };
 
 type GenericTabsProps<T extends string> = {
@@ -85,11 +87,13 @@ export default function GenericTabs<T extends string>({
             aria-label={search.ariaLabel ?? "Toggle search"}
             onClick={search.alwaysOpen ? undefined : search.onToggle}
           >
-            <SearchIcon
-              width={18}
-              height={18}
-              color={theme.colors.neutral.GRAY_400}
-            />
+            {search.icon ?? (
+              <SearchIcon
+                width={18}
+                height={18}
+                color={theme.colors.neutral.GRAY_400}
+              />
+            )}
           </SearchButton>
 
           <SearchInput
