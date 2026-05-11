@@ -18,6 +18,15 @@ export const HeroCard = styled.section`
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+
+  @media (max-width: ${({ theme }) => theme.media.tablet}) {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    padding: 12px;
+  }
 `;
 
 export const HeroLeft = styled.div`
@@ -37,6 +46,18 @@ export const Avatar = styled.div`
   justify-content: center;
   font-size: 26px;
   font-weight: 600;
+
+  @media (max-width: ${({ theme }) => theme.media.tablet}) {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
 `;
 
 export const HeroIdentity = styled.div`
@@ -51,6 +72,14 @@ export const Name = styled.h1`
   line-height: 1.2;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.secondary.main};
+
+  @media (max-width: ${({ theme }) => theme.media.tablet}) {
+    font-size: 18px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    font-size: 16px;
+  }
 `;
 
 export const Email = styled.p`
@@ -107,6 +136,10 @@ export const Card = styled.section`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    padding: 12px;
+  }
 `;
 
 export const CardHeader = styled.div`
@@ -162,6 +195,10 @@ export const Field = styled.div`
   border-top: none;
 `;
 
+export const FieldNoBorder = styled(Field)`
+  border-bottom: none;
+`;
+
 export const FieldTop = styled.div`
   display: flex;
   align-items: center;
@@ -197,7 +234,7 @@ export const IconAction = styled.button`
 `;
 
 export const StatusText = styled.p`
-  margin: 0;
+  margin: 8px 0 0;
   font-size: 12px;
   line-height: 1.55;
   color: ${({ theme }) => theme.colors.secondary.muted};

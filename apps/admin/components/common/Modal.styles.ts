@@ -22,6 +22,15 @@ export const ModalCard = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border-radius: 16px;
   border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+
+  @media (max-width: ${({ theme }) => theme.media.tablet}) {
+    max-height: calc(100vh - 24px);
+    border-radius: 12px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    border-radius: 8px;
+  }
 `;
 
 export const Header = styled.div`
@@ -43,6 +52,10 @@ export const Title = styled.h3`
 
 export const Body = styled.div`
   padding: 20px;
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    padding: 16px;
+  }
 `;
 
 export const CloseButton = styled.button`

@@ -16,6 +16,12 @@ export const AllCreatorsState = styled.div`
   color: ${({ theme }) => theme.colors.secondary.muted};
 `;
 
+export const TableScrollWrapper = styled.div`
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+`;
+
 export const RequestsTable = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -177,12 +183,23 @@ export const PaginationFooter = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.secondary.muted};
   background: ${({ theme }) => theme.colors.neutral.WHITE};
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
 `;
 
 export const PaginationControlGroup = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 `;
 
 export const PaginationButton = styled.button<{ $active?: boolean }>`

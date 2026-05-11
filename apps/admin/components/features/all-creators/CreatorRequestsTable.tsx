@@ -6,6 +6,7 @@ import {
   RequestsTable,
   TableBodyCell,
   TableHeaderCell,
+  TableScrollWrapper,
 } from "./AllCreators.styles";
 import { getCreatorTableColumns } from "./creatorTableColumns";
 
@@ -20,33 +21,35 @@ export function CreatorRequestsTable({
   const creatorTableColumns = getCreatorTableColumns();
 
   return (
-    <RequestsTable>
-      <thead>
-        <tr>
-          {creatorTableColumns.map((column) => (
-            <TableHeaderCell key={column.key}>{column.label}</TableHeaderCell>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {creators.map((creator) => (
-          <RequestTableRow
-            key={creator.id}
-            onClick={() => onSelectCreator(creator)}
-          >
+    <TableScrollWrapper>
+      <RequestsTable>
+        <thead>
+          <tr>
             {creatorTableColumns.map((column) => (
-              <TableBodyCell key={`${creator.id}-${column.key}`}>
-                {column.renderCell(creator, {
-                  onApproveCreator,
-                  onRejectCreator,
-                  activeAction,
-                  activeRequestId,
-                })}
-              </TableBodyCell>
+              <TableHeaderCell key={column.key}>{column.label}</TableHeaderCell>
             ))}
-          </RequestTableRow>
-        ))}
-      </tbody>
-    </RequestsTable>
+          </tr>
+        </thead>
+        <tbody>
+          {creators.map((creator) => (
+            <RequestTableRow
+              key={creator.id}
+              onClick={() => onSelectCreator(creator)}
+            >
+              {creatorTableColumns.map((column) => (
+                <TableBodyCell key={`${creator.id}-${column.key}`}>
+                  {column.renderCell(creator, {
+                    onApproveCreator,
+                    onRejectCreator,
+                    activeAction,
+                    activeRequestId,
+                  })}
+                </TableBodyCell>
+              ))}
+            </RequestTableRow>
+          ))}
+        </tbody>
+      </RequestsTable>
+    </TableScrollWrapper>
   );
 }
