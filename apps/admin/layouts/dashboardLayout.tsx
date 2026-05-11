@@ -28,7 +28,7 @@ const Content = styled.div`
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isLoginRoute = pathname === "/login" || pathname === "/";
+  const isLoginRoute = pathname === "/login";
   const meta = getPageMeta(pathname);
 
   if (isLoginRoute) {
