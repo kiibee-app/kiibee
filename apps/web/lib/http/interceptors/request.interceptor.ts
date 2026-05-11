@@ -1,12 +1,12 @@
 import type { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import { API } from "@/lib/http/api/endpoints";
-import { getAccessToken } from "@/lib/auth/authSession";
+import { authStorage } from "@/lib/auth/authStorage";
 
 export const attachRequestInterceptor = (client: AxiosInstance) => {
   client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     const requestUrl = config.url ?? "";
     const isRefreshRequest = requestUrl.includes(API.auth.refresh);
-    const token = getAccessToken();
+    const token = authStorage.getAccessToken();
 
     if (token && !isRefreshRequest) {
       config.headers.Authorization = `Bearer ${token}`;

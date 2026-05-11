@@ -16,11 +16,8 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import { PATHS } from "@/utils/path";
 import UsersContent from "../Users/UsersContent";
-import {
-  clearLoginSession,
-  getStoredLoginUserEmail,
-  useLogout,
-} from "@/hooks/auth/useLogin";
+import { useLogout } from "@/hooks/auth/useLogin";
+import { useAuthSession } from "@/hooks/auth/useAuthSession";
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.OVERVIEW,
@@ -40,6 +37,7 @@ export default function ClientDashboardCreators() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { mutateAsync: logout } = useLogout();
+  const { clearSession, getUser } = useAuthSession();
 
   const toggleSidebar = useCallback(() => {
     setOpen((p) => !p);
@@ -50,9 +48,10 @@ export default function ClientDashboardCreators() {
   }, []);
 
   const handleLogoutClick = useCallback(() => {
-    setLogoutEmail(getStoredLoginUserEmail());
+    const email = (getUser() as { email?: string })?.email || "";
+    setLogoutEmail(email);
     setShowLogoutModal(true);
-  }, []);
+  }, [getUser]);
 
   const handleCancelLogout = useCallback(() => {
     setShowLogoutModal(false);
@@ -65,10 +64,10 @@ export default function ClientDashboardCreators() {
     } catch {
       // Always clear session and redirect even if server logout fails.
     } finally {
-      clearLoginSession();
+      clearSession();
       router.push(PATHS.AUTH_LOGIN);
     }
-  }, [logout, router]);
+  }, [logout, router, clearSession]);
 
   const renderHeader = () => {
     return <DashboardHeader onToggleSidebar={toggleSidebar} />;

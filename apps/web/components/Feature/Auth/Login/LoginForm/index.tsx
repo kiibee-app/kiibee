@@ -26,11 +26,8 @@ import { MonoText } from "@/components/UI/Monotext";
 import { createLoginSchema } from "@/lib/validation/schema";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { ALERT } from "@/utils/common";
-import {
-  getPostLoginPath,
-  persistLoginSession,
-  useLogin,
-} from "@/hooks/auth/useLogin";
+import { getPostLoginPath, useLogin } from "@/hooks/auth/useLogin";
+import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
 
@@ -42,6 +39,7 @@ export default function LoginForm() {
   const [formError, setFormError] = useState("");
   const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
   const { mutateAsync: login, isPending } = useLogin();
+  const { setSession } = useAuthSession();
   const loginSchema = useMemo(
     () =>
       createLoginSchema({
@@ -77,7 +75,7 @@ export default function LoginForm() {
         return;
       }
 
-      persistLoginSession(response);
+      setSession(response);
       router.push(getPostLoginPath(response));
     } catch (error) {
       applyFieldErrors(error, setError);
