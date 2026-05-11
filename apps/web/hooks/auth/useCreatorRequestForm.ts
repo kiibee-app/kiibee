@@ -10,6 +10,7 @@ import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { createCreatorRequestSchema } from "@/lib/validation/schema";
 import { PATHS } from "@/utils/path";
 import { useCreatorRequest } from "./useCreatorRequest";
+import { FORM_MESSAGE_TONE, FormMessageTone } from "@/utils/ui";
 
 export type CreatorRequestValues = {
   firstName: string;
@@ -30,7 +31,9 @@ export function useCreatorRequestForm() {
   const router = useRouter();
 
   const [formMessage, setFormMessage] = useState("");
-  const [messageTone, setMessageTone] = useState<"error" | "success">("error");
+  const [messageTone, setMessageTone] = useState<FormMessageTone>(
+    FORM_MESSAGE_TONE.ERROR,
+  );
 
   const creatorRequest = useCreatorRequest();
   const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
@@ -111,17 +114,17 @@ export function useCreatorRequestForm() {
       }
 
       const successMessage =
-        response.message || "Creator application submitted successfully";
+        response.message || t("authCreator.form.submitSuccess");
 
       toast.success(successMessage);
-      setMessageTone("success");
+      setMessageTone(FORM_MESSAGE_TONE.SUCCESS);
       setFormMessage(successMessage);
 
       reset();
       router.push(PATHS.AUTH_CREATOR_REQUEST_SENT);
     } catch (error) {
       applyFieldErrors(error, setError);
-      setMessageTone("error");
+      setMessageTone(FORM_MESSAGE_TONE.ERROR);
       setFormMessage(getErrorMessage(error, "authForm.errors.submitFailed"));
     }
   };

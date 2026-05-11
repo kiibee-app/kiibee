@@ -11,7 +11,7 @@ import FormField from "@/components/UI/FormField";
 import { MonoText } from "@/components/UI/Monotext";
 import { ALERT } from "@/utils/common";
 import { PATHS } from "@/utils/path";
-import { INPUT_TYPE } from "@/utils/ui";
+import { AGREED, INPUT_TYPE } from "@/utils/ui";
 import {
   PASSWORD_FIELD_KEYS,
   PasswordVisibility,
@@ -59,7 +59,7 @@ export default function SignUpViewer() {
 
   const agreedValue = useWatch({
     control: methods.control,
-    name: "agreed",
+    name: AGREED,
     defaultValue: false,
   });
 

@@ -40,6 +40,7 @@ import {
   CreatorRequestValues,
   useCreatorRequestForm,
 } from "@/hooks/auth/useCreatorRequestForm";
+import { AGREED } from "@/utils/ui";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
@@ -57,7 +58,7 @@ export default function SignUpCreatorSection() {
 
   const agreedValue = useWatch({
     control: methods.control,
-    name: "agreed",
+    name: AGREED,
     defaultValue: false,
   });
 
