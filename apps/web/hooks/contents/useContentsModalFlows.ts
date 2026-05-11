@@ -8,6 +8,8 @@ import {
   type ContentType,
 } from "@/utils/content";
 
+const UPLOAD_CONTENT_TYPES: ContentType[] = ["video", "audio", "pdf"];
+
 export const useContentsModalFlows = (
   activeTab: ContentTab,
   collections: CollectionRow[],
@@ -19,6 +21,7 @@ export const useContentsModalFlows = (
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
+  const [showContentUploadModal, setShowContentUploadModal] = useState(false);
   const [selectedContentType, setSelectedContentType] =
     useState<ContentType | null>(null);
   const [collectionName, setCollectionName] = useState("");
@@ -82,15 +85,27 @@ export const useContentsModalFlows = (
 
   const contentTypeFlow = {
     showContentTypeModal,
+    showContentUploadModal,
     selectedContentType,
     open: () => setShowContentTypeModal(true),
     close: () => {
       setShowContentTypeModal(false);
+      setShowContentUploadModal(false);
       setSelectedContentType(null);
+    },
+    backToTypeSelect: () => {
+      setShowContentUploadModal(false);
+      setShowContentTypeModal(true);
     },
     continueWithType: (contentType: ContentType) => {
       setSelectedContentType(contentType);
       setShowContentTypeModal(false);
+      if (UPLOAD_CONTENT_TYPES.includes(contentType)) {
+        setShowContentUploadModal(true);
+        return;
+      }
+
+      setShowContentUploadModal(false);
     },
   };
 

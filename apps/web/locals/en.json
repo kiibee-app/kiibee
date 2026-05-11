@@ -1338,6 +1338,24 @@
         "web": "Web"
       }
     },
+    "contentUploadModal": {
+      "dragFileHere": "Drag & drop here",
+      "or": "or",
+      "chooseFile": "Choose to upload",
+      "selectedFile": "Selected file",
+      "video": {
+        "helperLineOne": "Max. file size of 2GB of file types (.mp4,.mkv,.mov,.m4v)",
+        "helperLineTwo": "Min. resolution 1080p HD"
+      },
+      "audio": {
+        "helperLineOne": "Max. file size of 500MB of file types (.mp3,.wav,.aac,.m4a)",
+        "helperLineTwo": ""
+      },
+      "pdf": {
+        "helperLineOne": "Max. file size of 100MB of file types (.pdf)",
+        "helperLineTwo": ""
+      }
+    },
 
     "deleteModal": {
       "title": "Delete content?",
