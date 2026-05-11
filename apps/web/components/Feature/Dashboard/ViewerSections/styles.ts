@@ -145,25 +145,50 @@ export const ElementsPill = styled.div`
 
 export const CollectionActionRow = styled.div`
   margin-top: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   width: 100%;
   align-items: stretch;
 
   > * {
-    width: 100%;
+    width: auto;
     min-width: 0;
   }
 
   button,
   a {
-    white-space: nowrap;
+    white-space: normal;
+  }
+
+  .collection-cta {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0;
+    min-height: 52px;
+    min-width: 120px;
+    padding: 10px 14px;
+    text-align: left;
   }
 
   ${media.mobileLg} {
-    grid-template-columns: 1fr;
+    width: 100%;
   }
+`;
+
+export const CollectionCtaContent = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  white-space: normal;
+  line-height: 1.1;
+`;
+
+export const CollectionCtaSubtext = styled.span`
+  ${({ theme }) => theme.typography.Body_Medium}
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
 `;
 
 export const PassiveActionBlock = styled.div`
