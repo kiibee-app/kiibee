@@ -7,12 +7,12 @@ import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { usePatchAPI } from "@/lib/http/api/patchApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
-import { AUTH_STORAGE_KEYS } from "@/lib/auth/authSession";
 import { emptyPasswords } from "@/utils/dummyData/profile.data";
 import { PasswordState } from "@/utils/creatorProfile";
 import { ViewerProfileField } from "@/utils/profile";
 
 const IMAGE_DATA_PREFIX = /^data:image\//;
+const USER_STORAGE_KEY = "kiibee.user";
 
 type ViewerProfileForm = {
   name: string;
@@ -279,7 +279,7 @@ const readViewerBootstrapFromStorage = () => {
   }
 
   try {
-    const raw = window.localStorage.getItem(AUTH_STORAGE_KEYS.user);
+    const raw = window.localStorage.getItem(USER_STORAGE_KEY);
     const user = raw ? (JSON.parse(raw) as LoginUser) : null;
 
     const name =
