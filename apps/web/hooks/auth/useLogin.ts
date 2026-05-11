@@ -132,5 +132,5 @@ export const getPostLoginPath = (response: LoginResponse) => {
 export const useLogin = () =>
   usePostAPI<LoginResponse, LoginPayload>(API.auth.login);
 
-export const useLogout = () =>
+export const useLogoutMutation = () =>
   usePostAPI<LogoutResponse, void>(API.auth.logout);

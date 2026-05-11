@@ -14,9 +14,8 @@ import CreatorsContents from "../Contents";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
-import { PATHS } from "@/utils/path";
 import UsersContent from "../Users/UsersContent";
-import { useLogout } from "@/hooks/auth/useLogin";
+import { useLogout } from "@/hooks/auth/useLogout";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
@@ -36,8 +35,8 @@ export default function ClientDashboardCreators() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { mutateAsync: logout } = useLogout();
-  const { clearSession, getUser } = useAuthSession();
+  const { logout } = useLogout();
+  const { getUser } = useAuthSession();
 
   const toggleSidebar = useCallback(() => {
     setOpen((p) => !p);
@@ -59,15 +58,8 @@ export default function ClientDashboardCreators() {
 
   const handleConfirmLogout = useCallback(async () => {
     setShowLogoutModal(false);
-    try {
-      await logout();
-    } catch {
-      // Always clear session and redirect even if server logout fails.
-    } finally {
-      clearSession();
-      router.push(PATHS.AUTH_LOGIN);
-    }
-  }, [logout, router, clearSession]);
+    await logout();
+  }, [logout]);
 
   const renderHeader = () => {
     return <DashboardHeader onToggleSidebar={toggleSidebar} />;
