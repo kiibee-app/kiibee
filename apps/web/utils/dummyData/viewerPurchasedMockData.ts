@@ -33,6 +33,7 @@ export type PurchasedCollectionItem = {
   elementCount: number;
   coverSrc: string;
   actions?: CollectionAction[];
+  hideBadge?: boolean;
 };
 
 export const VIEWER_PURCHASED_PLACEHOLDERS = {
