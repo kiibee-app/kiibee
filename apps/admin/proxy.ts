@@ -8,12 +8,8 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isLoggedIn = request.cookies.get("adminLoggedIn")?.value === "true";
 
-  if (pathname === "/") {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
   if (pathname === "/login" && isLoggedIn) {
-    return NextResponse.redirect(new URL("/profile", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   if (!isPublicPath(pathname) && !isLoggedIn) {
