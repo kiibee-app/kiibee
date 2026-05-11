@@ -28,6 +28,7 @@ export const users = pgTable(
     fullName: varchar('full_name', { length: 200 }),
     role: varchar('role', { length: 30 }).notNull().default('viewer'),
     status: userStatusEnum('status').notNull().default('pending-setup'),
+    avatarUrl: text('avatar_url'),
 
     isEmailVerified: boolean('is_email_verified').notNull().default(false),
     isActive: boolean('is_active').notNull().default(true),

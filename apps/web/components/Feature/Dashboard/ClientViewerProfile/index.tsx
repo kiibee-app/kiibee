@@ -1,13 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import { MonoText } from "@/components/UI/Monotext";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import {
-  AvatarPlaceholder,
   Container,
   Form,
   HeaderRow,
@@ -18,7 +17,7 @@ import {
   SaveButton,
   SummaryText,
 } from "./styles";
-import { viewerProfileData } from "@/utils/dummyData/profile.data";
+import ImageUploader from "@/components/Feature/Dashboard/CreatorProfile/ImageUploader";
 import { GenericModal } from "@/components/UI/Modals";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
@@ -33,8 +32,17 @@ export default function ClientViewerProfile() {
   const { t } = useTranslation();
   const router = useRouter();
 
+  const getInitial = useCallback((name: string, email: string) => {
+    const trimmed = name.trim();
+    if (trimmed) return trimmed.charAt(0).toUpperCase();
+    return email ? email.charAt(0).toUpperCase() : "?";
+  }, []);
+
   const {
     form,
+    avatarImage,
+    setAvatarImage,
+    downloadsCount,
     isProfileChanged,
     passwords,
     showPassword,
@@ -43,10 +51,13 @@ export default function ClientViewerProfile() {
     onPasswordChange,
     showPasswordSuccessModal,
     setShowPasswordSuccessModal,
+    showProfileSavedModal,
+    setShowProfileSavedModal,
     handleSave,
     handlePasswordClose,
     handlePasswordSave,
     isPasswordFormValid,
+    isSavingProfile,
   } = useViewerProfile();
 
   return (
@@ -57,32 +68,33 @@ export default function ClientViewerProfile() {
         </MonoText>
         <SaveButton
           variant={VARIANT.PRIMARY}
-          onClick={handleSave}
-          disabled={!isProfileChanged}
+          onClick={() => void handleSave()}
+          disabled={!isProfileChanged || isSavingProfile}
         >
           {t("dashboard.viewerProfile.saveChanges")}
         </SaveButton>
       </HeaderRow>
 
       <ProfileSummary>
-        <AvatarPlaceholder
-          aria-label={t("dashboard.viewerProfile.profilePhotoAlt")}
-        >
-          <MonoText $use="Heading2">
-            {viewerProfileData.name.charAt(0)}
-          </MonoText>
-        </AvatarPlaceholder>
+        <ImageUploader
+          image={avatarImage}
+          fallback={getInitial(form.name, form.email)}
+          alt={t("dashboard.viewerProfile.profilePhotoAlt")}
+          uploadTitle={t("creatorProfile.uploadPhotoTitle")}
+          editTitle={t("creatorProfile.editPhotoTitle")}
+          onChange={setAvatarImage}
+        />
 
         <SummaryText>
           <MonoText $use="Heading3" color={COLORS.primary.BLACK}>
-            {viewerProfileData.name}
+            {form.name}
           </MonoText>
           <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY}>
-            {viewerProfileData.email}
+            {form.email}
           </MonoText>
           <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY}>
             {t("dashboard.viewerProfile.downloads", {
-              count: viewerProfileData.downloads,
+              count: downloadsCount,
             })}
           </MonoText>
         </SummaryText>
@@ -134,6 +146,16 @@ export default function ClientViewerProfile() {
           onPasswordChange={onPasswordChange}
         />
       </GenericModal>
+      <GenericModal
+        visible={showProfileSavedModal}
+        title={t("dashboard.viewerProfile.saveModalTitle")}
+        message={t("dashboard.viewerProfile.saveModalMessage")}
+        confirmLabel={t("dashboard.viewerProfile.saveModalDone")}
+        onClose={() => setShowProfileSavedModal(false)}
+        onConfirm={() => setShowProfileSavedModal(false)}
+        width="480px"
+        showCloseButton={false}
+      />
       <GenericModal
         visible={showPasswordSuccessModal}
         icon={

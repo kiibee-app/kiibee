@@ -31,9 +31,12 @@ export type LoginResponse = {
 };
 
 export type LoginUser = {
+  id?: string;
+  fullName?: string | null;
   email?: string;
   role?: string;
   status?: string;
+  avatarUrl?: string | null;
   [key: string]: unknown;
 };
 
@@ -47,6 +50,21 @@ const USER_KEY = "kiibee.user";
 export type LogoutResponse = {
   success?: boolean;
   message?: string;
+};
+
+export const mergeStoredLoginUser = (partial: Partial<LoginUser>) => {
+  if (typeof window === "undefined") return;
+
+  try {
+    const raw = window.localStorage.getItem(USER_KEY);
+    const prev = raw ? (JSON.parse(raw) as LoginUser) : {};
+    window.localStorage.setItem(
+      USER_KEY,
+      JSON.stringify({ ...prev, ...partial }),
+    );
+  } catch {
+    /* ignore corrupt storage */
+  }
 };
 
 export const persistLoginSession = (response: LoginResponse) => {

@@ -64,6 +64,7 @@ export const viewerSignUpService = async (
     email: users.email,
     role: users.role,
     isEmailVerified: users.isEmailVerified,
+    avatarUrl: users.avatarUrl,
     createdAt: users.createdAt,
   });
 

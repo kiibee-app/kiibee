@@ -33,6 +33,7 @@ export const loginService = async (
         role: true,
         isEmailVerified: true,
         status: true,
+        avatarUrl: true,
       },
     });
 

@@ -7,5 +7,6 @@ export const API = {
     resetPassword: "/auth/reset-password",
     creatorRequest: "/auth/creator-request",
     signup: "/auth/signup",
+    userProfile: "/auth/user/profile",
   },
 } as const;
