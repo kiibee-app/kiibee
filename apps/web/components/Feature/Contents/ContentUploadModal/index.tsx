@@ -12,7 +12,11 @@ import {
 } from "@/components/UI/ImageUploadCropModal/styles";
 import { BackButton } from "../ContentTypeModal/styles";
 import { VARIANT } from "@/utils/Constants";
-import type { ContentType } from "@/utils/content";
+import {
+  CONTENT_UPLOAD_CONFIG,
+  resolveUploadContentType,
+  type ContentType,
+} from "@/utils/content";
 import {
   ChooseUploadButton,
   ContentUploadDropZone,
@@ -21,36 +25,6 @@ import {
   UploadHelperText,
   UploadModalContent,
 } from "./styles";
-
-const UPLOAD_CONFIG = {
-  video: {
-    accept: ".mp4,.mkv,.mov,.m4v",
-    extensions: [".mp4", ".mkv", ".mov", ".m4v"],
-  },
-  audio: {
-    accept: ".mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac",
-    extensions: [
-      ".mp3",
-      ".m4a",
-      ".wav",
-      ".wma",
-      ".alac",
-      ".flac",
-      ".ogg",
-      ".aac",
-    ],
-  },
-  pdf: {
-    accept: ".pdf",
-    extensions: [".pdf"],
-  },
-  epub: {
-    accept: ".epub,.mobi,.azw",
-    extensions: [".epub", ".mobi", ".azw"],
-  },
-} as const;
-
-type UploadContentType = keyof typeof UPLOAD_CONFIG;
 
 type ContentUploadModalProps = {
   visible: boolean;
@@ -68,11 +42,8 @@ export default function ContentUploadModal({
   const { t } = useTranslation();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const uploadType: UploadContentType =
-    contentType === "audio" || contentType === "pdf" || contentType === "epub"
-      ? contentType
-      : "video";
-  const uploadConfig = UPLOAD_CONFIG[uploadType];
+  const uploadType = resolveUploadContentType(contentType);
+  const uploadConfig = CONTENT_UPLOAD_CONFIG[uploadType];
   const helperLineTwo = t(
     `contents.contentUploadModal.${uploadType}.helperLineTwo`,
   );

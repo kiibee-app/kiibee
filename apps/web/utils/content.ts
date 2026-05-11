@@ -22,6 +22,53 @@ export type ContentTypeOption = {
   Icon: IconComponent;
 };
 
+export const UPLOAD_CONTENT_TYPES = ["video", "audio", "pdf", "epub"] as const;
+
+export type UploadContentType = (typeof UPLOAD_CONTENT_TYPES)[number];
+
+export const CONTENT_UPLOAD_CONFIG: Record<
+  UploadContentType,
+  { accept: string; extensions: readonly string[] }
+> = {
+  video: {
+    accept: ".mp4,.mkv,.mov,.m4v",
+    extensions: [".mp4", ".mkv", ".mov", ".m4v"],
+  },
+  audio: {
+    accept: ".mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac",
+    extensions: [
+      ".mp3",
+      ".m4a",
+      ".wav",
+      ".wma",
+      ".alac",
+      ".flac",
+      ".ogg",
+      ".aac",
+    ],
+  },
+  pdf: {
+    accept: ".pdf",
+    extensions: [".pdf"],
+  },
+  epub: {
+    accept: ".epub,.mobi,.azw",
+    extensions: [".epub", ".mobi", ".azw"],
+  },
+} as const;
+
+export const isUploadContentType = (
+  contentType: ContentType,
+): contentType is UploadContentType =>
+  UPLOAD_CONTENT_TYPES.includes(contentType as UploadContentType);
+
+export const resolveUploadContentType = (
+  contentType: ContentType | null,
+): UploadContentType => {
+  if (!contentType) return "video";
+  return isUploadContentType(contentType) ? contentType : "video";
+};
+
 export const CONTENT_TYPE_OPTIONS: readonly ContentTypeOption[] = [
   {
     key: "video",

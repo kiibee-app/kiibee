@@ -5,12 +5,12 @@ import styled from "styled-components";
 
 export const UploadModalContent = styled(ModalContent)`
   height: 350px;
-  padding: 52px 24px 28px;
+  padding: 60px 24px 28px;
 `;
 
 export const UploadBody = styled.div`
   width: 100%;
-  max-width: 520px;
+  max-width: 570px;
   height: 100%;
 `;
 
