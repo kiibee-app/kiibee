@@ -206,7 +206,9 @@
       "terms": "Terms of Use",
       "and": "and",
       "privacy": "Privacy Policy",
-      "submit": "Submit request"
+      "submit": "Submit request",
+      "submitSuccess": "Creator application submitted successfully.",
+      "submitError": "Failed to submit creator application."
     },
     "requestSent": {
       "title": "Thank you! Your request has been sent.",

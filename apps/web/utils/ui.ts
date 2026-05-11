@@ -129,6 +129,15 @@ export type NotificationModalType =
   | (typeof NOTIFICATION_MODAL)[keyof typeof NOTIFICATION_MODAL]
   | null;
 
+export const FORM_MESSAGE_TONE = {
+  ERROR: "error",
+  SUCCESS: "success",
+} as const;
+
+export type FormMessageTone =
+  (typeof FORM_MESSAGE_TONE)[keyof typeof FORM_MESSAGE_TONE];
+export const AGREED = "agreed";
+
 export const LOGO_MODE = {
   TEXT: "text",
   PICTURE: "picture",
