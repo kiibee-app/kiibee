@@ -51,7 +51,12 @@
     "brandName": "Nana Jacobson",
     "uploads": "{{count}} uploads",
     "title": "Nana Jacobson",
-    "description": "Online courses and creative guides for people who want to learn new techniques, get inspiration, and make their ideas more concrete."
+    "description": "Online courses and creative guides for people who want to learn new techniques, get inspiration, and make their ideas more concrete.",
+    "aboutModal": {
+      "moreInfo": "More info",
+      "joined": "Joined",
+      "links": "Links"
+    }
   },
   "auth": {
     "title": "The place where creators and supporters meet",
@@ -1049,6 +1054,14 @@
         }
       }
     },
+    "viewerProfile": {
+      "title": "My Profile",
+      "saveChanges": "Save changes",
+      "fullName": "Full name",
+      "email": "Email address",
+      "downloads": "{{count}} downloads",
+      "profilePhotoAlt": "Viewer profile photo"
+    },
     "logoutModal": {
       "title": "Log out",
       "message": "Are you sure you want to log out as {{email}}?",
@@ -1283,6 +1296,16 @@
         "label": "Description",
         "hint": "Tell us a little about your product and feature it on the front page",
         "placeholder": "Enter description"
+      },
+      "layouts": {
+        "title": "Layouts",
+        "subtitle": "Select how your channel will be displayed to users.",
+        "preview": "Preview example",
+        "options": {
+          "layout1": "Layout 1",
+          "layout2": "Layout 2",
+          "layout3": "Layout 3"
+        }
       },
       "logo": {
         "title": "Logo",

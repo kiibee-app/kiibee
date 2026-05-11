@@ -87,6 +87,8 @@ export const maxReceiptCharacters = 200;
 export const maxDescriptionCharacters = 500;
 export const maxLogoNameCharacters = 100;
 export const HTTP_STATUS_UNAUTHORIZED = 401;
+
+export const POINTER_DOWN = "pointerdown";
 export const CARD_BRANDS = {
   VISA: "visa",
   MASTERCARD: "mastercard",

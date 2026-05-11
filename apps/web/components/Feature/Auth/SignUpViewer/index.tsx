@@ -1,17 +1,32 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import Image from "@/components/UI/SafeImage";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import GenericButton from "@/components/UI/GenericButton";
-import InputField from "@/components/UI/InputFields";
+import FormField from "@/components/UI/FormField";
 import { MonoText } from "@/components/UI/Monotext";
+import { useViewerSignUp } from "@/hooks/auth/useViewerSignUp";
+import { persistAuthSession } from "@/lib/auth/authSession";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { ALERT } from "@/utils/common";
 import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
-import { VIEWER_FIELDS, ViewerFieldConfig } from "@/utils/signup";
+import { createViewerSignupSchema } from "@/lib/validation/schema";
+import {
+  PASSWORD_FIELD_KEYS,
+  PasswordVisibility,
+  VIEWER_FIELDS,
+  ViewerFieldConfig,
+  ViewerFieldKey,
+  ViewerFormValues,
+} from "@/utils/signup";
 import {
   Card,
   Checkbox,
@@ -26,32 +41,96 @@ import {
   Title,
   Wrapper,
 } from "./styles";
-import {
-  PasswordFieldKey,
-  useViewerSignUpForm,
-} from "@/hooks/auth/useViewerSignUpForm";
-import { REPEAT_PASSWORD } from "@/utils/Constants";
+
+type PasswordFieldKey = keyof PasswordVisibility;
+
+const isPasswordField = (
+  fieldKey: ViewerFieldKey,
+): fieldKey is PasswordFieldKey =>
+  PASSWORD_FIELD_KEYS.includes(fieldKey as PasswordFieldKey);
 
 export default function SignUpViewer() {
+  const router = useRouter();
   const { t } = useTranslation();
-
+  const { mutateAsync: viewerSignUp, isPending: isSubmitting } =
+    useViewerSignUp();
+  const [passwordVisibility, setPasswordVisibility] =
+    useState<PasswordVisibility>({
+      password: false,
+      repeatPassword: false,
+    });
+  const [formError, setFormError] = useState("");
+  const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
+  const schema = useMemo(
+    () =>
+      createViewerSignupSchema({
+        fullNameRequired: t("viewerSignup.form.fixHighlightedFields"),
+        emailRequired: t("authForm.errors.emailRequired"),
+        emailInvalid: t("authForm.errors.emailInvalid"),
+        passwordRequired: t("authForm.errors.passwordRequired"),
+        repeatPasswordRequired: t("viewerSignup.form.fixHighlightedFields"),
+        passwordMismatch: t("viewerSignup.form.passwordMismatch"),
+        consentRequired: t("viewerSignup.form.fixHighlightedFields"),
+      }),
+    [t],
+  );
+  type ViewerSignupValues = ReturnType<typeof schema.parse>;
+  const methods = useForm<ViewerSignupValues>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+    defaultValues: {
+      fullName: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+      agreed: false,
+    },
+  });
   const {
-    formValues,
-    passwordVisibility,
-    submitted,
-    formError,
-    isSubmitting,
-    isSubmitEnabled,
-    passwordsDoNotMatch,
-    updateField,
-    togglePassword,
     handleSubmit,
-    isPasswordField,
-  } = useViewerSignUpForm();
+    setValue,
+    setError,
+    formState: { isValid, errors },
+  } = methods;
+  const agreedValue = useWatch({
+    control: methods.control,
+    name: "agreed",
+    defaultValue: false,
+  });
+
+  const onSubmit = async (values: ViewerSignupValues) => {
+    setFormError("");
+    try {
+      const response = await viewerSignUp({
+        fullName: values.fullName.trim(),
+        email: values.email.trim(),
+        password: values.password,
+        confirmPassword: values.repeatPassword,
+      });
+
+      persistAuthSession(response);
+
+      router.push("/auth/signup-viewer/preferences");
+    } catch (error) {
+      applyFieldErrors(error, setError);
+      setFormError(getErrorMessage(error, "viewerSignup.form.signupFailed"));
+    }
+  };
+
+  const updateField = (
+    field: keyof ViewerFormValues,
+    value: string | boolean,
+  ) => {
+    setValue(field, value as never, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+    if (formError) {
+      setFormError("");
+    }
+  };
 
   const renderField = (field: ViewerFieldConfig) => {
-    const hasPasswordMismatch =
-      submitted && field.key === REPEAT_PASSWORD && passwordsDoNotMatch;
     const passwordFieldKey = isPasswordField(field.key) ? field.key : null;
     const isPasswordVisible = passwordFieldKey
       ? passwordVisibility[passwordFieldKey]
@@ -63,15 +142,15 @@ export default function SignUpViewer() {
       : field.type;
 
     return (
-      <InputField
+      <FormField<ViewerSignupValues>
         key={field.key}
         id={`viewer-${field.key}`}
+        name={field.key}
         label={t(field.labelKey)}
         labelFontStyle="Body_Regular"
         labelMarginTop="0"
         type={inputType}
         placeholder={t(field.placeholderKey)}
-        value={formValues[field.key]}
         onChange={(nextValue) => updateField(field.key, nextValue as string)}
         autoComplete={field.autoComplete}
         icon={
@@ -83,13 +162,11 @@ export default function SignUpViewer() {
         }
         onIconClick={
           passwordFieldKey
-            ? () => togglePassword(field.key as PasswordFieldKey)
-            : undefined
-        }
-        hasError={hasPasswordMismatch}
-        errorText={
-          hasPasswordMismatch
-            ? t("viewerSignup.form.passwordMismatch")
+            ? () =>
+                setPasswordVisibility((prev) => ({
+                  ...prev,
+                  [passwordFieldKey]: !prev[passwordFieldKey],
+                }))
             : undefined
         }
         required
@@ -107,41 +184,49 @@ export default function SignUpViewer() {
             <MonoText $use="H4_Medium">{t("viewerSignup.title")}</MonoText>
           </Title>
 
-          <Form onSubmit={handleSubmit}>
-            {VIEWER_FIELDS.map((field) => renderField(field))}
+          <FormProvider {...methods}>
+            <Form onSubmit={handleSubmit(onSubmit)}>
+              {VIEWER_FIELDS.map((field) => renderField(field))}
 
-            <CheckboxRow>
-              <Checkbox
-                id="viewer-consent"
-                type="checkbox"
-                checked={formValues.agreed}
-                onChange={(event) =>
-                  updateField("agreed", event.target.checked)
-                }
-              />
-              <ConsentText htmlFor="viewer-consent">
-                <MonoText $use="Body_Small">
-                  {t("viewerSignup.form.consentPrefix")}
-                  <TermsLink href="#">{t("viewerSignup.form.terms")}</TermsLink>
-                  {t("viewerSignup.form.and")}
-                  <TermsLink href="#">
-                    {t("viewerSignup.form.privacy")}
-                  </TermsLink>
-                </MonoText>
-              </ConsentText>
-            </CheckboxRow>
+              <CheckboxRow>
+                <Checkbox
+                  id="viewer-consent"
+                  type="checkbox"
+                  checked={Boolean(agreedValue)}
+                  onChange={(event) =>
+                    updateField("agreed", event.target.checked)
+                  }
+                />
+                <ConsentText htmlFor="viewer-consent">
+                  <MonoText $use="Body_Small">
+                    {t("viewerSignup.form.consentPrefix")}
+                    <TermsLink href="#">
+                      {t("viewerSignup.form.terms")}
+                    </TermsLink>
+                    {t("viewerSignup.form.and")}
+                    <TermsLink href="#">
+                      {t("viewerSignup.form.privacy")}
+                    </TermsLink>
+                  </MonoText>
+                </ConsentText>
+              </CheckboxRow>
 
-            {formError && <FormMessage role={ALERT}>{formError}</FormMessage>}
+              {(formError || errors.agreed?.message) && (
+                <FormMessage role={ALERT}>
+                  {formError || String(errors.agreed?.message)}
+                </FormMessage>
+              )}
 
-            <GenericButton
-              type="submit"
-              disabled={!isSubmitEnabled}
-              isLoading={isSubmitting}
-              style={!isSubmitEnabled ? { border: "none" } : undefined}
-            >
-              {t("viewerSignup.form.submit")}
-            </GenericButton>
-          </Form>
+              <GenericButton
+                type="submit"
+                disabled={!isValid}
+                isLoading={isSubmitting}
+                style={!isValid ? { border: "none" } : undefined}
+              >
+                {t("viewerSignup.form.submit")}
+              </GenericButton>
+            </Form>
+          </FormProvider>
 
           <LoginRow>
             <MonoText $use="Body_Medium">

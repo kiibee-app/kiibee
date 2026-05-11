@@ -102,6 +102,8 @@ export const BROWSER_API = {
   INTERSECTION_OBSERVER: "IntersectionObserver",
 } as const;
 
+export const INTERSECTION_OBSERVER_FALLBACK_DELAY_MS = 250;
+
 export const MODAL_ALIGN = {
   CENTER: "center",
   START: "flex-start",
@@ -148,3 +150,6 @@ export const IMAGE_MODAL = {
 } as const;
 
 export type ImageModalStep = (typeof IMAGE_MODAL)[keyof typeof IMAGE_MODAL];
+
+export const isBrowser = typeof window !== "undefined";
+export const canUseDOM = typeof document !== "undefined";

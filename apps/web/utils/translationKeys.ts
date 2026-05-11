@@ -292,6 +292,16 @@ export const CONTENTS = {
       hint: "contents.appearance.description.hint",
       placeholder: "contents.appearance.description.placeholder",
     },
+    layouts: {
+      title: "contents.appearance.layouts.title",
+      subtitle: "contents.appearance.layouts.subtitle",
+      preview: "contents.appearance.layouts.preview",
+      options: {
+        layout1: "contents.appearance.layouts.options.layout1",
+        layout2: "contents.appearance.layouts.options.layout2",
+        layout3: "contents.appearance.layouts.options.layout3",
+      },
+    },
     logo: {
       title: "contents.appearance.logo.title",
       subtitle: "contents.appearance.logo.subtitle",

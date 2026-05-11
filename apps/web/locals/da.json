@@ -51,7 +51,12 @@
     "brandName": "Nana Jacobson",
     "uploads": "{{count}} uploads",
     "title": "Nana Jacobson",
-    "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete."
+    "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete.",
+    "aboutModal": {
+      "moreInfo": "Mere info",
+      "joined": "Tilsluttet",
+      "links": "Links"
+    }
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",
@@ -1049,6 +1054,14 @@
         }
       }
     },
+    "viewerProfile": {
+      "title": "Min profil",
+      "saveChanges": "Gem ændringer",
+      "fullName": "Fulde navn",
+      "email": "E-mailadresse",
+      "downloads": "{{count}} downloads",
+      "profilePhotoAlt": "Seer profilfoto"
+    },
     "logoutModal": {
       "title": "Log ud",
       "message": "Er du sikker på, at du vil logge ud som {{email}}?",
@@ -1274,6 +1287,16 @@
         "label": "Beskrivelse",
         "hint": "Fortæl lidt om dit produkt og fremhæv det på forsiden",
         "placeholder": "Indtast beskrivelse"
+      },
+      "layouts": {
+        "title": "Layouts",
+        "subtitle": "Vælg hvordan din kanal skal vises for brugerne.",
+        "preview": "Preview example",
+        "options": {
+          "layout1": "Layout 1",
+          "layout2": "Layout 2",
+          "layout3": "Layout 3"
+        }
       },
       "logo": {
         "title": "Logo",
