@@ -1348,7 +1348,7 @@
         "helperLineTwo": "Min. resolution 1080p HD"
       },
       "audio": {
-        "helperLineOne": "Max. file size of 500MB of file types (.mp3,.wav,.aac,.m4a)",
+        "helperLineOne": "Max. file size of 2GB of file types (.mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac)",
         "helperLineTwo": ""
       },
       "pdf": {

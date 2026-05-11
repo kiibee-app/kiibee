@@ -28,8 +28,17 @@ const UPLOAD_CONFIG = {
     extensions: [".mp4", ".mkv", ".mov", ".m4v"],
   },
   audio: {
-    accept: ".mp3,.wav,.aac,.m4a",
-    extensions: [".mp3", ".wav", ".aac", ".m4a"],
+    accept: ".mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac",
+    extensions: [
+      ".mp3",
+      ".m4a",
+      ".wav",
+      ".wma",
+      ".alac",
+      ".flac",
+      ".ogg",
+      ".aac",
+    ],
   },
   pdf: {
     accept: ".pdf",
