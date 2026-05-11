@@ -2,8 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { CREATORS } from "@/utils/translationKeys";
-import creatorsStoryImage from "@/assets/images/creators/678d923e2e28b14f2986cc4127abeb6348d4937c.webp";
+import lastestImage from "@/assets/images/creators/recent_creator1.webp";
 import {
   Section,
   ContentWrapper,
@@ -39,8 +38,8 @@ export default function LastestUpload() {
           <Badge>{t("createProfileHome.latestUpload.badge")}</Badge>
 
           <UploadImage
-            src={resolveImageUrl(creatorsStoryImage)}
-            alt={t(CREATORS.shortStory.imageAlt)}
+            src={resolveImageUrl(lastestImage)}
+            alt={t("createProfileHome.latestUpload.imageAlt")}
           />
 
           <ImageOverlay>
