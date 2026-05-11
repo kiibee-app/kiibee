@@ -49,8 +49,8 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
         onCancel={handleClose}
         onClose={handleClose}
         onConfirm={handleSubmit}
-        width="630px"
-        padding="30px"
+        size="md"
+        padding="start"
         buttonRow
         buttonAlign={MODAL_ALIGN.END}
         textAlign={MODAL_ALIGN.START}

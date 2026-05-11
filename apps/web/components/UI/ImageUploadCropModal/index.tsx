@@ -140,7 +140,7 @@ export default function ImageUploadCropModal({
       title={step === IMAGE_MODAL.UPLOAD ? titleUpload : titleEdit}
       onClose={resetState}
       textAlign={MODAL_ALIGN.START}
-      width="630px"
+      size="md"
     >
       <PhotoModalBody>
         <HiddenInput

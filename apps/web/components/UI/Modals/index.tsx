@@ -17,6 +17,12 @@ import { BUTTON, ESCAPE, KEYDOWN, VARIANT } from "@/utils/Constants";
 import { Variant } from "@/utils/Constants";
 import { CrossIcon } from "@/assets/icons/crossIcon";
 import { canUseDOM, ModalAlign } from "@/utils/ui";
+import {
+  MODAL_PADDINGS,
+  MODAL_WIDTHS,
+  ModalPadding,
+  ModalSize,
+} from "@/lib/theme/tokens";
 
 type GenericModalProps = {
   visible: boolean;
@@ -33,6 +39,8 @@ type GenericModalProps = {
   width?: string;
   height?: string;
   padding?: string;
+  size?: ModalSize;
+  spacing?: ModalPadding;
   borderRadius?: string;
   iconMargin?: string;
   fullWidthButtons?: boolean;
@@ -58,6 +66,8 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   width,
   height,
   padding,
+  size,
+  spacing,
   borderRadius,
   iconMargin,
   fullWidthButtons = false,
@@ -109,9 +119,9 @@ export const GenericModal: React.FC<GenericModalProps> = ({
       data-test-id="generic-modal-overlay"
     >
       <ModalContainer
-        $width={width}
+        $width={width || (size ? MODAL_WIDTHS[size] : undefined)}
         $height={height}
-        $padding={padding}
+        $padding={padding || (spacing ? MODAL_PADDINGS[spacing] : undefined)}
         $borderRadius={borderRadius}
         $align={textAlign}
         ref={ref}

@@ -147,8 +147,8 @@ export default function CreatorsContents() {
         confirmLabel={t("contents.createCollectionSuccessModal.done")}
         onClose={createCollectionFlow.closeSuccess}
         onConfirm={createCollectionFlow.closeSuccess}
-        width="480px"
-        padding="40px 30px"
+        size="sm"
+        spacing="xs"
         showCloseButton={false}
       />
 
@@ -161,8 +161,8 @@ export default function CreatorsContents() {
         onCancel={closeDiscardModal}
         onClose={closeDiscardModal}
         onConfirm={closeDiscardModal}
-        width="480px"
-        padding="40px 44px"
+        size="sm"
+        spacing="md"
         fullWidthButtons
         buttonRow
         showCloseButton={false}
