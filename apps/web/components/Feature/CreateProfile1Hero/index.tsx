@@ -86,10 +86,10 @@ export default function CreateProfile1Hero() {
             search={{
               open: searchOpen,
               value: searchValue,
-              placeholder: "Search",
+              placeholder: t(CREATE_PROFILE_HOME.searchPlaceholder),
               onToggle: () => setSearchOpen((prev) => !prev),
               onChange: setSearchValue,
-              ariaLabel: "Search profile content",
+              ariaLabel: t(CREATE_PROFILE_HOME.searchAriaLabel),
               icon: <SearchIcon width={18} height={18} />,
             }}
           />

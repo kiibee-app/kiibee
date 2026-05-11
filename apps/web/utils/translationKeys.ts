@@ -20,6 +20,8 @@ export const CREATE_PROFILE_HOME = {
   title: "createProfileHome.title",
   description: "createProfileHome.description",
   more: "createProfileHome.more",
+  searchPlaceholder: "createProfileHome.searchPlaceholder",
+  searchAriaLabel: "createProfileHome.searchAriaLabel",
 };
 
 export const CREATE_PROFILE_ROUTES = {
