@@ -4,6 +4,11 @@ export type PageMeta = {
 };
 
 const pageMeta: Record<string, PageMeta> = {
+  "/": {
+    title: "Admin Home",
+    description:
+      "Welcome to the Kiibee admin dashboard. Manage creators, review requests, and oversee platform activity.",
+  },
   "/all-creators": {
     title: "All Creators",
     description: "Review creator requests and manage approval status.",

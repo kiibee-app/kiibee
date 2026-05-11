@@ -46,69 +46,59 @@ export class AuthController {
   @Post('signup')
   async viewerSignUp(@Body() dto: ViewerSignUpDto, @Req() req: Request) {
     const result = await this.authService.viewerSignUp(dto);
+    const tokens = await this.tokenService.generateAuthTokens({
+      id: result.data.id,
+      email: result.data.email,
+      role: result.data.role,
+    });
 
-    if (result.success && result.data) {
-      const tokens = await this.tokenService.generateAuthTokens({
-        id: result.data.id,
-        email: result.data.email,
-        role: result.data.role,
-      });
+    const ipAddress = req.ip || req.connection?.remoteAddress;
+    const userAgent = req.headers['user-agent'];
 
-      const ipAddress = req.ip || req.connection?.remoteAddress;
-      const userAgent = req.headers['user-agent'];
+    await this.authService.createSession(
+      result.data.id,
+      tokens.refreshToken,
+      ipAddress,
+      userAgent,
+    );
 
-      await this.authService.createSession(
-        result.data.id,
-        tokens.refreshToken,
-        ipAddress,
-        userAgent,
-      );
-
-      return {
-        ...result,
-        data: {
-          ...result.data,
-          accessToken: tokens.accessToken,
-          refreshToken: tokens.refreshToken,
-        },
-      };
-    }
-
-    return result;
+    return {
+      ...result,
+      data: {
+        ...result.data,
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+      },
+    };
   }
 
   @Post('login')
   async login(@Body() dto: LoginDto, @Req() req: Request) {
     const result = await this.authService.login(dto);
+    const tokens = await this.tokenService.generateAuthTokens({
+      id: result.data.id,
+      email: result.data.email,
+      role: result.data.role,
+    });
 
-    if (result.success && result.data) {
-      const tokens = await this.tokenService.generateAuthTokens({
-        id: result.data.id,
-        email: result.data.email,
-        role: result.data.role,
-      });
+    const ipAddress = req.ip || req.connection?.remoteAddress;
+    const userAgent = req.headers['user-agent'];
 
-      const ipAddress = req.ip || req.connection?.remoteAddress;
-      const userAgent = req.headers['user-agent'];
+    await this.authService.createSession(
+      result.data.id,
+      tokens.refreshToken,
+      ipAddress,
+      userAgent,
+    );
 
-      await this.authService.createSession(
-        result.data.id,
-        tokens.refreshToken,
-        ipAddress,
-        userAgent,
-      );
-
-      return {
-        ...result,
-        data: {
-          ...result.data,
-          accessToken: tokens.accessToken,
-          refreshToken: tokens.refreshToken,
-        },
-      };
-    }
-
-    return result;
+    return {
+      ...result,
+      data: {
+        ...result.data,
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+      },
+    };
   }
 
   @Post('refresh')

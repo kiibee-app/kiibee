@@ -58,6 +58,18 @@
       "links": "Links"
     }
   },
+  "createProfileCollections": {
+    "title": "Collections",
+    "description": "Organize your content into simple, polished collections for your audience."
+  },
+  "createProfileAbout": {
+    "title": "About",
+    "description": "Share your story, your work, and what people can expect from your profile."
+  },
+  "createProfileFooter": {
+    "tagline": "Sell and showcase online products",
+    "cta": "Join Kiibee"
+  },
   "auth": {
     "title": "The place where creators and supporters meet",
     "subtitle": "Creators earn by sharing content. Viewers discover and support the work they love. Join a community where creativity thrives on both sides.",

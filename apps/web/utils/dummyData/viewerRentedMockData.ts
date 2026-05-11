@@ -5,12 +5,20 @@ import design3 from "@/assets/images/design.webp";
 export type RentedMode = "purchased" | "currently" | "previously";
 export type RentedMediaType = "video" | "audio" | "pdf";
 
+export type CollectionAction = {
+  label: string;
+  sublabel?: string;
+  variant?: "primary" | "secondary";
+};
+
 export type RentedCollectionItem = {
   id: string;
   title: string;
   author: string;
   elementCount: number;
   coverSrc: string;
+  actions?: CollectionAction[];
+  hideBadge?: boolean;
 };
 
 export type RentedMediaItem = {

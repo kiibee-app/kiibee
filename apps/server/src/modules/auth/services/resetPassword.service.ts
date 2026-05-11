@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { ResetPasswordDto } from '../dto/resetPassword.dto';
-import { fail, success } from 'src/utils/sendResponse';
+import { success } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 import { db } from 'src/database/db';
 import { usersToken } from 'src/database/schema/users/usersToken.schema';
@@ -13,15 +13,18 @@ export const resetPasswordService = async (payload: ResetPasswordDto) => {
     const { token, password, confirmPassword } = payload;
 
     if (!token || !password || !confirmPassword) {
-      return fail('All fields are required', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        'All fields are required',
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     if (password !== confirmPassword) {
-      return fail('Passwords do not match', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Passwords do not match', HttpStatus.BAD_REQUEST);
     }
 
     if (password.length < 6) {
-      return fail(
+      throw new HttpException(
         'Password must be at least 6 characters',
         HttpStatus.BAD_REQUEST,
       );
@@ -35,11 +38,14 @@ export const resetPasswordService = async (payload: ResetPasswordDto) => {
         .limit(1);
 
       if (!tokenData) {
-        return fail('Invalid or expired token', HttpStatus.BAD_REQUEST);
+        throw new HttpException(
+          'Invalid or expired token',
+          HttpStatus.BAD_REQUEST,
+        );
       }
 
       if (tokenData.isUsed) {
-        return fail('Token already used', HttpStatus.BAD_REQUEST);
+        throw new HttpException('Token already used', HttpStatus.BAD_REQUEST);
       }
 
       const [user] = await tx
@@ -49,7 +55,7 @@ export const resetPasswordService = async (payload: ResetPasswordDto) => {
         .limit(1);
 
       if (!user) {
-        return fail('Invalid token user', HttpStatus.BAD_REQUEST);
+        throw new HttpException('Invalid token user', HttpStatus.BAD_REQUEST);
       }
 
       const newPasswordHash = await hashPassword(password);
@@ -77,7 +83,7 @@ export const resetPasswordService = async (payload: ResetPasswordDto) => {
       throw error;
     }
 
-    return fail(
+    throw new HttpException(
       'Failed to process reset password',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );

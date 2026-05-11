@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { CreatorAccountSetupDto } from '../dto/creatorAccountSetup.dto';
-import { fail, success } from 'src/utils/sendResponse';
+import { success } from 'src/utils/sendResponse';
 import { db } from 'src/database/db';
 import { creatorPlans, users, usersToken } from 'src/database/schema';
 import { eq } from 'drizzle-orm/sql/expressions/conditions';
@@ -15,15 +15,18 @@ export const setupCreatorAccountService = async (
     const { token, planId, confirmEmail, password, confirmPassword } = payload;
 
     if (!token || !planId || !confirmEmail || !password || !confirmPassword) {
-      return fail('All fields are required', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        'All fields are required',
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     if (password !== confirmPassword) {
-      return fail('Passwords do not match', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Passwords do not match', HttpStatus.BAD_REQUEST);
     }
 
     if (password.length < 6) {
-      return fail(
+      throw new HttpException(
         'Password must be at least 6 characters',
         HttpStatus.BAD_REQUEST,
       );
@@ -105,7 +108,7 @@ export const setupCreatorAccountService = async (
       throw error;
     }
 
-    return fail(
+    throw new HttpException(
       'Failed to setup creator account',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );

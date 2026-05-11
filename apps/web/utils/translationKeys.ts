@@ -21,6 +21,22 @@ export const CREATE_PROFILE_HOME = {
   description: "createProfileHome.description",
 };
 
+export const CREATE_PROFILE_ROUTES = {
+  collections: {
+    title: "createProfileCollections.title",
+    description: "createProfileCollections.description",
+  },
+  about: {
+    title: "createProfileAbout.title",
+    description: "createProfileAbout.description",
+  },
+};
+
+export const CREATE_PROFILE_FOOTER = {
+  tagline: "createProfileFooter.tagline",
+  cta: "createProfileFooter.cta",
+};
+
 export const AUTH = {
   title: "auth.title",
   subtitle: "auth.subtitle",

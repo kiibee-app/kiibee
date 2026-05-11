@@ -1,12 +1,12 @@
 "use client";
 
-import CreateProfile2Hero from "../CreateProfile2Hero";
 import CreateProfileLayout from "../../Layout/CreateProfile";
+import CreateProfileHeroFrame from "../CreateProfile2Hero";
 
-export default function CreateProfileHome() {
+export default function CreateProfileAbout() {
   return (
     <CreateProfileLayout>
-      <CreateProfile2Hero />
+      <CreateProfileHeroFrame />
     </CreateProfileLayout>
   );
 }

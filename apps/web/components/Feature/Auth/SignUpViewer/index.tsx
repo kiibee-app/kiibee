@@ -13,7 +13,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import FormField from "@/components/UI/FormField";
 import { MonoText } from "@/components/UI/Monotext";
 import { useViewerSignUp } from "@/hooks/auth/useViewerSignUp";
-import { persistAuthSession } from "@/lib/auth/authSession";
+import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { ALERT } from "@/utils/common";
 import { PATHS } from "@/utils/path";
@@ -54,6 +54,7 @@ export default function SignUpViewer() {
   const { t } = useTranslation();
   const { mutateAsync: viewerSignUp, isPending: isSubmitting } =
     useViewerSignUp();
+  const { setSession } = useAuthSession();
   const [passwordVisibility, setPasswordVisibility] =
     useState<PasswordVisibility>({
       password: false,
@@ -108,7 +109,7 @@ export default function SignUpViewer() {
         confirmPassword: values.repeatPassword,
       });
 
-      persistAuthSession(response);
+      setSession(response);
 
       router.push("/auth/signup-viewer/preferences");
     } catch (error) {

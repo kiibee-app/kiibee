@@ -1,9 +1,9 @@
-import { HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { userContentCategory } from 'src/database/schema/users/userContentCategories.shema';
 import { userContentTypes } from 'src/database/schema/users/userContentTypes.shema';
-import { success, fail } from 'src/utils/sendResponse';
+import { success } from 'src/utils/sendResponse';
 import { randomUUID } from 'crypto';
 import { users } from 'src/database/schema/users/users.schema';
 import { logger } from 'src/logger/logger';
@@ -21,15 +21,21 @@ export const assignUserCategoriesService = async (
     const { userId, categoryIds, typeIds } = payload;
 
     if (!userId) {
-      return fail('User ID is required', HttpStatus.BAD_REQUEST);
+      throw new HttpException('User ID is required', HttpStatus.BAD_REQUEST);
     }
 
     if (!Array.isArray(categoryIds)) {
-      return fail('categoryIds must be an array', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        'categoryIds must be an array',
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     if (!Array.isArray(typeIds)) {
-      return fail('typeIds must be an array', HttpStatus.BAD_REQUEST);
+      throw new HttpException(
+        'typeIds must be an array',
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     const result = await db.transaction(async (tx) => {
@@ -99,7 +105,7 @@ export const assignUserCategoriesService = async (
     );
   } catch (error) {
     logger.error('Error assigning user content preferences:', error);
-    return fail(
+    throw new HttpException(
       'Failed to assign user content preferences',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );
