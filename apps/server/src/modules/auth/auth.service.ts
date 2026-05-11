@@ -3,7 +3,10 @@ import { ConfigService } from '@nestjs/config';
 import { LoginDto } from './dto/login.dto';
 import { viewerSignUpService } from './services/viewerSignUp.service';
 import { loginService } from './services/login.service';
-import { logoutService, invalidateSession } from './services/logout.service';
+import {
+  createSessionService,
+  invalidateSession,
+} from './services/logout.service';
 import { TokenService } from './services/token.service';
 import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -79,7 +82,7 @@ export class AuthService {
     ipAddress?: string,
     userAgent?: string,
   ) {
-    return logoutService(userId, refreshToken, ipAddress, userAgent);
+    return createSessionService(userId, refreshToken, ipAddress, userAgent);
   }
 
   async creatorRequest(payload: any) {
