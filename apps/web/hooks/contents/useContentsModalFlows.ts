@@ -1,17 +1,26 @@
 import { useState } from "react";
 import { CollectionRow, INITIAL_COUPON_FORM } from "@/types/collectionsType";
 import { COLLECTIONS, COUPONS, ContentTab } from "@/utils/common";
-import { COUPON_STEPS, CouponStep, STEP_ORDER } from "@/utils/content";
+import {
+  COUPON_STEPS,
+  CouponStep,
+  STEP_ORDER,
+  type ContentType,
+} from "@/utils/content";
 
 export const useContentsModalFlows = (
   activeTab: ContentTab,
   collections: CollectionRow[],
+  isCollectionContentMode: boolean,
 ) => {
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [couponForm, setCouponForm] = useState(INITIAL_COUPON_FORM);
   const [isCouponSuccess, setIsCouponSuccess] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showContentTypeModal, setShowContentTypeModal] = useState(false);
+  const [selectedContentType, setSelectedContentType] =
+    useState<ContentType | null>(null);
   const [collectionName, setCollectionName] = useState("");
   const [couponStep, setCouponStep] = useState<CouponStep | null>(null);
   const [editingCollectionId, setEditingCollectionId] = useState<string | null>(
@@ -71,6 +80,20 @@ export const useContentsModalFlows = (
     openSuccess: () => setShowSuccessModal(true),
   };
 
+  const contentTypeFlow = {
+    showContentTypeModal,
+    selectedContentType,
+    open: () => setShowContentTypeModal(true),
+    close: () => {
+      setShowContentTypeModal(false);
+      setSelectedContentType(null);
+    },
+    continueWithType: (contentType: ContentType) => {
+      setSelectedContentType(contentType);
+      setShowContentTypeModal(false);
+    },
+  };
+
   const closeCouponFlow = () => {
     setCouponForm(INITIAL_COUPON_FORM);
     setIsCouponSuccess(false);
@@ -96,6 +119,10 @@ export const useContentsModalFlows = (
       return;
     }
     if (activeTab === COLLECTIONS) {
+      if (isCollectionContentMode) {
+        contentTypeFlow.open();
+        return;
+      }
       createCollectionFlow.openCreate();
     }
   };
@@ -108,6 +135,7 @@ export const useContentsModalFlows = (
 
   return {
     createCollectionFlow,
+    contentTypeFlow,
     couponForm,
     setCouponForm,
     isCouponSuccess,
