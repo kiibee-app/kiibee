@@ -127,8 +127,8 @@ export default function ClientDashboardCreators() {
         onConfirm={handleConfirmLogout}
         onCancel={handleCancelLogout}
         onClose={handleCancelLogout}
-        width="480px"
-        padding="40px 32px"
+        size="sm"
+        spacing="sm"
         buttonAlign="center"
         textAlign="center"
         showCloseButton={false}

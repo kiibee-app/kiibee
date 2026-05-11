@@ -68,7 +68,7 @@ export default function NotificationModals({
       onCancel={modalProps.onCancel}
       onClose={onClose}
       onConfirm={modalProps.onConfirm}
-      width="480px"
+      size="sm"
       padding={modalProps.padding}
       fullWidthButtons={modalProps.fullWidthButtons}
       buttonRow={modalProps.buttonRow}

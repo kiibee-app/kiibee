@@ -136,7 +136,7 @@ export default function ClientViewerProfile() {
         onClose={handlePasswordClose}
         onCancel={handlePasswordClose}
         onConfirm={handlePasswordSave}
-        width="630px"
+        size="md"
         fullWidthButtons
         buttonRow
         confirmDisabled={!isPasswordFormValid}
@@ -171,7 +171,7 @@ export default function ClientViewerProfile() {
         confirmLabel={t("nav.login")}
         onClose={() => setShowPasswordSuccessModal(false)}
         onConfirm={() => router.push(PATHS.AUTH_LOGIN)}
-        width="480px"
+        size="sm"
         showCloseButton={false}
       />
     </Container>

@@ -34,6 +34,7 @@ import {
   Title,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 export default function SupportContact() {
   const { t } = useTranslation();
@@ -98,7 +99,7 @@ export default function SupportContact() {
         {isSuccess ? (
           <SuccessState>
             <SuccessCard>
-              <SuccessCheckIcon size={48} color="rgb(4,41,11)" />
+              <SuccessCheckIcon size={48} color={COLORS.primary.GREEN_100} />
               <SuccessTitle>{t("supportPage.success.title")}</SuccessTitle>
               <SuccessText>
                 {t("supportPage.success.description", {

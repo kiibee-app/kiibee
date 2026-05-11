@@ -204,7 +204,7 @@ export default function CreatorProfile() {
         onClose={handlePasswordClose}
         onCancel={handlePasswordClose}
         onConfirm={handlePasswordSave}
-        width="630px"
+        size="md"
         fullWidthButtons
         buttonRow
         confirmDisabled={!passwordMethods.formState.isValid}
@@ -229,7 +229,7 @@ export default function CreatorProfile() {
         confirmLabel={t("nav.login")}
         onClose={() => setShowPasswordSuccessModal(false)}
         onConfirm={() => router.push(AUTH.login)}
-        width="480px"
+        size="sm"
         showCloseButton={false}
       />
       <GenericModal
@@ -272,8 +272,8 @@ export default function CreatorProfile() {
             ? handleDeleteSuccessClose
             : handleDeleteRequest
         }
-        width="480px"
-        padding="40px 30px"
+        size="sm"
+        spacing="xs"
         buttonRow={showDeleteModal}
         fullWidthButtons={showDeleteModal}
         showCloseButton={false}

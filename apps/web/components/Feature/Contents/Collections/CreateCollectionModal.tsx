@@ -34,8 +34,8 @@ export default function CreateCollectionModal({
       onClose={onClose}
       onConfirm={onConfirm}
       confirmDisabled={!collectionName.trim()}
-      width="630px"
-      padding="30px"
+      size="md"
+      spacing="start"
       buttonRow
       buttonAlign={MODAL_ALIGN.END}
       textAlign={MODAL_ALIGN.START}

@@ -38,9 +38,9 @@ export default function CreatorInfoModal({
     <GenericModal
       visible={visible}
       onClose={onClose}
-      width="630px"
+      size="md"
       height="570px"
-      padding="30px"
+      padding="start"
       borderRadius="8px"
       showCloseButton={false}
     >

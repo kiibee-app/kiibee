@@ -24,7 +24,7 @@ export default function PayoutDetailsModal({ open, onClose }: Props) {
       onClose={onClose}
       onCancel={onClose}
       onConfirm={onClose}
-      width="630px"
+      size="md"
       buttonRow
       buttonAlign={MODAL_ALIGN.END}
     >

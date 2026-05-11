@@ -30,8 +30,8 @@ export default function DeleteModals({
         onCancel={() => setShowDeleteConfirm(false)}
         onClose={() => setShowDeleteConfirm(false)}
         onConfirm={onConfirmDelete}
-        width="480px"
-        padding="40px 30px"
+        size="sm"
+        spacing="xs"
         buttonRow
       />
 

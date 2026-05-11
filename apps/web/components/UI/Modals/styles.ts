@@ -1,4 +1,5 @@
 import { MODAL_ALIGN, ModalAlign } from "@/utils/ui";
+import { MODAL_PADDINGS, MODAL_WIDTHS } from "@/lib/theme/tokens";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
@@ -21,18 +22,19 @@ export const ModalContainer = styled.div<{
 }>`
   position: relative;
   width: 100%;
-  max-width: ${({ $width }) => $width || "480px"};
+  max-width: ${({ $width }) => $width || MODAL_WIDTHS.sm};
   min-height: ${({ $height }) => $height || "auto"};
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: ${({ $borderRadius }) => $borderRadius || "12px"};
   padding: ${({ $padding, $align }) =>
-    $padding || ($align === MODAL_ALIGN.START ? "30px" : "40px 60px")};
+    $padding ||
+    ($align === MODAL_ALIGN.START ? MODAL_PADDINGS.start : MODAL_PADDINGS.lg)};
   text-align: ${({ $align }) => $align || MODAL_ALIGN.CENTER};
   gap: 20px;
 
   ${media.tablet} {
     width: 90%;
-    padding: ${({ $padding }) => $padding || "32px 24px"};
+    padding: ${({ $padding }) => $padding || MODAL_PADDINGS.mobile};
   }
 `;
 
