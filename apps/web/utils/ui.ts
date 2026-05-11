@@ -136,6 +136,7 @@ export const FORM_MESSAGE_TONE = {
 
 export type FormMessageTone =
   (typeof FORM_MESSAGE_TONE)[keyof typeof FORM_MESSAGE_TONE];
+export const AGREED = "agreed";
 
 export const LOGO_MODE = {
   TEXT: "text",
@@ -153,4 +154,3 @@ export type ImageModalStep = (typeof IMAGE_MODAL)[keyof typeof IMAGE_MODAL];
 
 export const isBrowser = typeof window !== "undefined";
 export const canUseDOM = typeof document !== "undefined";
-export const AGREED = "agreed";
