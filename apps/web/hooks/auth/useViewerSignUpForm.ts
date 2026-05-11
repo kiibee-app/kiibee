@@ -6,17 +6,17 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
-import { persistAuthSession } from "@/lib/auth/authSession";
 import { createViewerSignupSchema } from "@/lib/validation/schema";
 import { PATHS } from "@/utils/path";
 
 import { PasswordVisibility, ViewerFormValues } from "@/utils/signup";
 import { useViewerSignUp } from "./useViewerSignUp";
+import { useAuthSession } from "./useAuthSession";
 
 export function useViewerSignUpForm() {
   const { t } = useTranslation();
   const router = useRouter();
-
+  const { setSession } = useAuthSession();
   const { mutateAsync: viewerSignUp, isPending } = useViewerSignUp();
   const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
 
@@ -89,9 +89,7 @@ export function useViewerSignUpForm() {
         password: values.password,
         confirmPassword: values.repeatPassword,
       });
-
-      persistAuthSession(response);
-
+      setSession(response);
       router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
     } catch (error) {
       applyFieldErrors(error, setError);

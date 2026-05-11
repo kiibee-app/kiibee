@@ -7,12 +7,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { createLoginSchema } from "@/lib/validation/schema";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
-import { getPostLoginPath, persistLoginSession, useLogin } from "./useLogin";
+import { getPostLoginPath, useLogin } from "./useLogin";
+import { useAuthSession } from "./useAuthSession";
 
 export function useLoginForm() {
   const { t } = useTranslation();
   const router = useRouter();
-
+  const { setSession } = useAuthSession();
   const { mutateAsync: login, isPending: isSubmitting } = useLogin();
   const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
 
@@ -74,7 +75,7 @@ export function useLoginForm() {
         return;
       }
 
-      persistLoginSession(response);
+      setSession(response);
       router.push(getPostLoginPath(response));
     } catch (error) {
       applyFieldErrors(error, setError);
