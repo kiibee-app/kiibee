@@ -8,7 +8,7 @@ import {
   type ContentType,
 } from "@/utils/content";
 
-const UPLOAD_CONTENT_TYPES: ContentType[] = ["video", "audio", "pdf"];
+const UPLOAD_CONTENT_TYPES: ContentType[] = ["video", "audio", "pdf", "epub"];
 
 export const useContentsModalFlows = (
   activeTab: ContentTab,

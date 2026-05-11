@@ -1352,7 +1352,11 @@
         "helperLineTwo": ""
       },
       "pdf": {
-        "helperLineOne": "Max. file size of 100MB of file types (.pdf)",
+        "helperLineOne": "Max. file size of 2GB of file types (.pdf)",
+        "helperLineTwo": ""
+      },
+      "epub": {
+        "helperLineOne": "Max. file size of 2GB of file types (.epub,.mobi,.azw)",
         "helperLineTwo": ""
       }
     },

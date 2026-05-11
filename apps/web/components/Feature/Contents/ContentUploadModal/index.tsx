@@ -44,6 +44,10 @@ const UPLOAD_CONFIG = {
     accept: ".pdf",
     extensions: [".pdf"],
   },
+  epub: {
+    accept: ".epub,.mobi,.azw",
+    extensions: [".epub", ".mobi", ".azw"],
+  },
 } as const;
 
 type UploadContentType = keyof typeof UPLOAD_CONFIG;
@@ -65,7 +69,9 @@ export default function ContentUploadModal({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const uploadType: UploadContentType =
-    contentType === "audio" || contentType === "pdf" ? contentType : "video";
+    contentType === "audio" || contentType === "pdf" || contentType === "epub"
+      ? contentType
+      : "video";
   const uploadConfig = UPLOAD_CONFIG[uploadType];
   const helperLineTwo = t(
     `contents.contentUploadModal.${uploadType}.helperLineTwo`,
