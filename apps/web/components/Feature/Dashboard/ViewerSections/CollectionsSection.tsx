@@ -20,6 +20,8 @@ import {
 } from "@/utils/viewerRented";
 import {
   CollectionActionRow,
+  CollectionCtaContent,
+  CollectionCtaSubtext,
   CollectionBadge,
   CollectionBody,
   CollectionCard,
@@ -75,7 +77,11 @@ export default function CollectionsSection({
         {items.map((item) => (
           <CollectionCard key={item.id}>
             <CollectionImageWrap>
-              <CollectionBadge>{getCollectionBadgeText(mode)}</CollectionBadge>
+              {item.hideBadge ? null : (
+                <CollectionBadge>
+                  {getCollectionBadgeText(mode)}
+                </CollectionBadge>
+              )}
               <CollectionImage src={item.coverSrc} alt={item.title} />
             </CollectionImageWrap>
 
@@ -95,25 +101,64 @@ export default function CollectionsSection({
               </ElementsPill>
 
               <CollectionActionRow>
-                <GenericButton variant={VARIANT.PRIMARY} size="md">
-                  {getCollectionPrimaryActionText(mode)}
-                </GenericButton>
-                {isCurrent ? (
-                  <PassiveActionBlock>
-                    <MonoText
-                      $use="Body_Medium"
-                      color={COLORS.neutral.GRAY_400}
-                    >
-                      {ACTIVE_RENTAL_TEXT.title}
-                    </MonoText>
-                    <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
-                      {ACTIVE_RENTAL_TEXT.expiresIn}
-                    </MonoText>
-                  </PassiveActionBlock>
-                ) : isPurchased ? null : (
-                  <GenericButton variant={VARIANT.SECONDARY} size="md">
-                    {RENTED_BUTTON_TEXT.rent}
-                  </GenericButton>
+                {item.actions?.length ? (
+                  item.actions.map((action) => {
+                    const isSecondary = action.variant === VARIANT.SECONDARY;
+                    const labelColor = isSecondary
+                      ? COLORS.primary.BLACK
+                      : COLORS.primary.WHITE;
+                    const sublabelColor = isSecondary
+                      ? COLORS.neutral.GRAY_500
+                      : COLORS.primary.WHITE_90;
+
+                    return (
+                      <GenericButton
+                        key={`${item.id}-${action.label}`}
+                        variant={
+                          isSecondary ? VARIANT.SECONDARY : VARIANT.PRIMARY
+                        }
+                        size="md"
+                        minWidth="120px"
+                        className="collection-cta"
+                      >
+                        <CollectionCtaContent>
+                          <MonoText $use="Body_Medium" color={labelColor}>
+                            {action.label}
+                          </MonoText>
+                          {action.sublabel ? (
+                            <CollectionCtaSubtext
+                              style={{ color: sublabelColor }}
+                            >
+                              {action.sublabel}
+                            </CollectionCtaSubtext>
+                          ) : null}
+                        </CollectionCtaContent>
+                      </GenericButton>
+                    );
+                  })
+                ) : (
+                  <>
+                    <GenericButton variant={VARIANT.PRIMARY} size="md">
+                      {getCollectionPrimaryActionText(mode)}
+                    </GenericButton>
+                    {isCurrent ? (
+                      <PassiveActionBlock>
+                        <MonoText
+                          $use="Body_Medium"
+                          color={COLORS.neutral.GRAY_400}
+                        >
+                          {ACTIVE_RENTAL_TEXT.title}
+                        </MonoText>
+                        <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
+                          {ACTIVE_RENTAL_TEXT.expiresIn}
+                        </MonoText>
+                      </PassiveActionBlock>
+                    ) : isPurchased ? null : (
+                      <GenericButton variant={VARIANT.SECONDARY} size="md">
+                        {RENTED_BUTTON_TEXT.rent}
+                      </GenericButton>
+                    )}
+                  </>
                 )}
               </CollectionActionRow>
             </CollectionBody>

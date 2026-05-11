@@ -19,11 +19,8 @@ import { MonoText } from "@/components/UI/Monotext";
 import { GenericModal } from "@/components/UI/Modals";
 import { useTranslation } from "react-i18next";
 import { PATHS } from "@/utils/path";
-import {
-  clearLoginSession,
-  getStoredLoginUserEmail,
-  useLogout,
-} from "@/hooks/auth/useLogin";
+import { useLogout } from "@/hooks/auth/useLogin";
+import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import ClientViewerBillings from "@/components/Feature/Dashboard/ClientViewerBillings";
 import ClientViewerProfile from "@/components/Feature/Dashboard/ClientViewerProfile";
 import RentedContent from "@/components/Feature/Dashboard/ViewerSections/RentedContent";
@@ -46,6 +43,7 @@ export default function ClientDashboardViewer() {
   const pathname = usePathname();
   const router = useRouter();
   const { mutateAsync: logout } = useLogout();
+  const { clearSession, getUser } = useAuthSession();
 
   const toggleSidebar = useCallback(() => {
     setOpen((prev) => !prev);
@@ -96,9 +94,10 @@ export default function ClientDashboardViewer() {
   );
 
   const handleLogoutClick = useCallback(() => {
-    setLogoutEmail(getStoredLoginUserEmail());
+    const email = (getUser() as { email?: string })?.email || "";
+    setLogoutEmail(email);
     setShowLogoutModal(true);
-  }, []);
+  }, [getUser]);
 
   const handleCancelLogout = useCallback(() => {
     setShowLogoutModal(false);
@@ -110,10 +109,10 @@ export default function ClientDashboardViewer() {
       await logout();
     } catch {
     } finally {
-      clearLoginSession();
+      clearSession();
       router.push(PATHS.AUTH_LOGIN);
     }
-  }, [logout, router]);
+  }, [logout, router, clearSession]);
 
   const sectionTitle = useMemo(() => activePage, [activePage]);
 

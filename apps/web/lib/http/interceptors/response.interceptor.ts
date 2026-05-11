@@ -3,11 +3,7 @@ import axios, {
   type InternalAxiosRequestConfig,
   type AxiosResponse,
 } from "axios";
-import {
-  clearAuthSession,
-  getRefreshToken,
-  persistAuthSession,
-} from "@/lib/auth/authSession";
+import { authStorage } from "@/lib/auth/authStorage";
 import { API } from "@/lib/http/api/endpoints";
 import { normalizeApiError } from "@/lib/http/errors/apiError";
 import { PATHS } from "@/utils/path";
@@ -33,7 +29,7 @@ let refreshPromise: Promise<string | null> | null = null;
 const clearSessionAndRedirectToLogin = () => {
   if (typeof window === "undefined") return;
 
-  clearAuthSession();
+  authStorage.clearSession();
 
   if (window.location.pathname !== PATHS.AUTH_LOGIN) {
     window.location.replace(PATHS.AUTH_LOGIN);
@@ -44,7 +40,7 @@ const refreshAccessToken = async (
   client: AxiosInstance,
 ): Promise<string | null> => {
   if (!refreshPromise) {
-    const refreshToken = getRefreshToken();
+    const refreshToken = authStorage.getRefreshToken();
 
     if (!refreshToken) {
       return Promise.reject(new Error("Missing refresh token"));
@@ -53,7 +49,7 @@ const refreshAccessToken = async (
     refreshPromise = client
       .post<RefreshResponse>(API.auth.refresh, { refreshToken })
       .then((response: AxiosResponse<RefreshResponse>) => {
-        const nextAccessToken = persistAuthSession(response.data);
+        const nextAccessToken = authStorage.setSession(response.data);
 
         if (!nextAccessToken) {
           throw new Error("Refresh response missing access token");

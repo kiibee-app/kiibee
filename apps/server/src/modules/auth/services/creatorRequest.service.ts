@@ -5,7 +5,7 @@ import { eq } from 'drizzle-orm/sql/expressions/conditions';
 import { and } from 'drizzle-orm';
 import { creatorApplicationRequests } from 'src/database/schema/users/creatorApplicationRequests.schema';
 import { users } from 'src/database/schema/users/users.schema';
-import { fail, success } from 'src/utils/sendResponse';
+import { success } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 
 export const creatorRequestService = async (
@@ -37,7 +37,7 @@ export const creatorRequestService = async (
       .limit(1);
 
     if (existingUser) {
-      return fail('Email already exists', HttpStatus.CONFLICT);
+      throw new HttpException('Email already exists', HttpStatus.CONFLICT);
     }
 
     const [existingRequest] = await db
@@ -52,7 +52,7 @@ export const creatorRequestService = async (
       .limit(1);
 
     if (existingRequest) {
-      return fail(
+      throw new HttpException(
         'A creator application with this email already exists',
         HttpStatus.CONFLICT,
       );
@@ -86,7 +86,7 @@ export const creatorRequestService = async (
     if (error instanceof HttpException) {
       throw error;
     }
-    return fail(
+    throw new HttpException(
       'Failed to process creator request',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );

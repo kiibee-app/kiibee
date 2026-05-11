@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 import { randomUUID } from 'crypto';
@@ -10,7 +10,7 @@ import { TokenService } from './services/token.service';
 import { and, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { users, userSessions } from 'src/database/schema';
-import { success, fail } from 'src/utils/sendResponse';
+import { success } from 'src/utils/sendResponse';
 import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { creatorRequestService } from './services/creatorRequest.service';
 import { approveCreatorRequestService } from './services/approvCreatorRequest.service';
@@ -56,7 +56,7 @@ export class AuthService {
       });
 
       if (!user) {
-        return fail('User not found', 404);
+        throw new HttpException('User not found', 404);
       }
 
       const existingSession = await tx.query.userSessions.findFirst({
@@ -69,7 +69,7 @@ export class AuthService {
       });
 
       if (!existingSession || existingSession.expiresAt <= now) {
-        return fail('Session expired or revoked', 401);
+        throw new HttpException('Session expired or revoked', 401);
       }
 
       const isTokenMatch = await bcrypt.compare(
@@ -78,7 +78,7 @@ export class AuthService {
       );
 
       if (!isTokenMatch) {
-        return fail('Session expired or revoked', 401);
+        throw new HttpException('Session expired or revoked', 401);
       }
 
       const tokens = await this.tokenService.generateAuthTokens({
@@ -103,7 +103,10 @@ export class AuthService {
         .returning({ id: userSessions.id });
 
       if (replaced.length === 0) {
-        return fail('Concurrent refresh detected; retry required', 409);
+        throw new HttpException(
+          'Concurrent refresh detected; retry required',
+          409,
+        );
       }
 
       await tx.insert(userSessions).values({

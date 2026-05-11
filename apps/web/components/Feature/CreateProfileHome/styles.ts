@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export const Page = styled.main`
   min-height: 100vh;
-  padding: 0 0 56px;
   width: 100%;
+  overflow-x: clip;
   background:
     radial-gradient(
       circle at top left,
@@ -25,20 +25,17 @@ export const Page = styled.main`
 
 export const HeroFrame = styled.section`
   position: relative;
-  width: 100vw;
-  max-width: none;
+  width: 100%;
   height: 500px;
   margin: 0;
-  left: 50%;
-  transform: translateX(-50%);
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
-  @media (max-width: 900px) {
+  ${({ theme }) => theme.media.desktopSm} {
     height: 460px;
   }
 
-  @media (max-width: 640px) {
+  ${({ theme }) => theme.media.mobileMd} {
     height: 420px;
   }
 `;
@@ -101,17 +98,37 @@ export const HeroGrid = styled.div`
   height: 100%;
 `;
 
-export const StoryPanel = styled.aside`
+export const HeroContent = styled.div`
   position: absolute;
-  inset: 0 auto 0 0;
+  inset: 0;
   z-index: 2;
+  width: min(100%, 1500px);
+  margin: 0 auto;
+  padding: 0 110px;
+  display: flex;
+  align-items: flex-end;
+
+  ${({ theme }) => theme.media.desktopMd} {
+    padding: 0 70px;
+  }
+
+  ${({ theme }) => theme.media.desktopSm} {
+    padding: 0 28px;
+  }
+
+  ${({ theme }) => theme.media.mobileMd} {
+    padding: 0 16px;
+  }
+`;
+
+export const StoryPanel = styled.aside`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
   gap: 12px;
-  width: min(620px, calc(100% - 220px));
-  padding: 50px 110px;
+  width: min(620px, 100%);
+  padding: 50px 0;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   background: linear-gradient(
     90deg,
@@ -120,20 +137,19 @@ export const StoryPanel = styled.aside`
     ${({ theme }) => theme.colors.gredint.TRANSPARENT} 100%
   );
 
-  @media (max-width: 1200px) {
-    width: min(560px, calc(100% - 140px));
-    padding: 44px 70px;
+  ${({ theme }) => theme.media.desktopMd} {
+    width: min(560px, 100%);
+    padding: 44px 0;
   }
 
-  @media (max-width: 900px) {
+  ${({ theme }) => theme.media.desktopSm} {
     width: min(100%, 520px);
-    padding: 32px 28px;
+    padding: 32px 0;
   }
 
-  @media (max-width: 640px) {
-    inset: auto 0 0 0;
+  ${({ theme }) => theme.media.mobileMd} {
     width: 100%;
-    padding: 24px 16px 18px;
+    padding: 24px 0 18px;
     gap: 8px;
     background: linear-gradient(
       90deg,
@@ -162,7 +178,7 @@ export const StoryDescription = styled.div`
   max-width: 520px;
   margin-top: 0;
 
-  @media (max-width: 640px) {
+  ${({ theme }) => theme.media.mobileMd} {
     max-width: 100%;
   }
 `;
@@ -176,7 +192,7 @@ export const HeroMedia = styled.div`
     filter: saturate(0.95) contrast(0.96);
   }
 
-  @media (max-width: 640px) {
+  ${({ theme }) => theme.media.mobileMd} {
     img {
       object-position: center top;
     }
