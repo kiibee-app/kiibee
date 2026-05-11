@@ -1067,6 +1067,11 @@
     "viewerProfile": {
       "title": "Min profil",
       "saveChanges": "Gem ændringer",
+      "saveSuccess": "Profil gemt",
+      "saveError": "Profilen kunne ikke gemmes",
+      "saveModalTitle": "Aendringer gemt",
+      "saveModalMessage": "Dine opdateringer er blevet gemt.",
+      "saveModalDone": "Faerdig",
       "fullName": "Fulde navn",
       "email": "E-mailadresse",
       "downloads": "{{count}} downloads",

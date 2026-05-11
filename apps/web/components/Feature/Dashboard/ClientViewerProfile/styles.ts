@@ -34,17 +34,6 @@ export const PasswordButton = styled(GenericButton)`
   width: 236px;
 `;
 
-export const AvatarPlaceholder = styled.div`
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: ${({ theme }) => theme.colors.gredint.PALE_GREEN};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-`;
-
 export const ProfileSummary = styled.div`
   display: flex;
   align-items: center;

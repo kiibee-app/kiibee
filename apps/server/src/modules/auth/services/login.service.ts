@@ -33,6 +33,7 @@ export const loginService = async (
         role: true,
         isEmailVerified: true,
         status: true,
+        avatarUrl: true,
       },
     });
 
@@ -74,7 +75,9 @@ export const loginService = async (
       expiresAt,
     });
 
-    const { passwordHash, ...userWithoutPassword } = user;
+    const userWithoutPassword = Object.fromEntries(
+      Object.entries(user).filter(([key]) => key !== 'passwordHash'),
+    ) as Omit<typeof user, 'passwordHash'>;
 
     return success(userWithoutPassword, 'Login successful', HttpStatus.OK);
   });

@@ -3,6 +3,7 @@ import {
   Controller,
   Post,
   Get,
+  Patch,
   Req,
   Headers,
   UnauthorizedException,
@@ -20,10 +21,12 @@ import { AdminGuard } from './guards/admin.guard';
 import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
 import { ResetPasswordDto } from './dto/resetPassword.dto';
 import { CreateCreatorApplicationDto } from './dto/creatorRequest.dto';
+import { UpdateViewerProfileDto } from './dto/updateViewerProfile.dto';
 
 type AuthenticatedRequest = Request & {
   user: {
     userId: string;
+    role: string;
   };
 };
 
@@ -126,6 +129,25 @@ export class AuthController {
   async logout(@Req() req: AuthenticatedRequest) {
     const result = await this.authService.logout(req.user.userId);
     return result;
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('user/profile')
+  async getMyProfile(@Req() req: AuthenticatedRequest) {
+    return this.authService.getViewerProfile(req.user.userId, req.user.role);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('user/profile')
+  async updateMyProfile(
+    @Req() req: AuthenticatedRequest,
+    @Body() dto: UpdateViewerProfileDto,
+  ) {
+    return this.authService.updateViewerProfile(
+      req.user.userId,
+      req.user.role,
+      dto,
+    );
   }
 
   @Post('creator-request')

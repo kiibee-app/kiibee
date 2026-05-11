@@ -1067,6 +1067,11 @@
     "viewerProfile": {
       "title": "My Profile",
       "saveChanges": "Save changes",
+      "saveSuccess": "Profile saved",
+      "saveError": "Could not save profile",
+      "saveModalTitle": "Changes saved",
+      "saveModalMessage": "Your updates have been successfully saved.",
+      "saveModalDone": "Done",
       "fullName": "Full name",
       "email": "Email address",
       "downloads": "{{count}} downloads",
