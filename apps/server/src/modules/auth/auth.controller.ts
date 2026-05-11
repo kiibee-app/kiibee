@@ -9,100 +9,47 @@ import {
   UseGuards,
   Param,
 } from '@nestjs/common';
-import type { Request } from 'express';
-import { IsNotEmpty, IsString } from 'class-validator';
 import { AuthService } from './auth.service';
 import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { LoginDto } from './dto/login.dto';
 import { TokenService } from './services/token.service';
+import { AuthenticationOrchestrator } from './services/authentication-orchestrator.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
 import { ResetPasswordDto } from './dto/resetPassword.dto';
-import { CreateCreatorApplicationDto } from './dto/creatorRequest.dto';
-
-type AuthenticatedRequest = Request & {
-  user: {
-    userId: string;
-  };
-};
-
-class CreatorRequestActionDto {
-  @IsString()
-  @IsNotEmpty()
-  requestId!: string;
-}
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly tokenService: TokenService,
+    private readonly authenticationOrchestrator: AuthenticationOrchestrator,
   ) {}
 
   @Post('signup')
-  async viewerSignUp(@Body() dto: ViewerSignUpDto, @Req() req: Request) {
+  async viewerSignUp(@Body() dto: ViewerSignUpDto, @Req() req: any) {
     const result = await this.authService.viewerSignUp(dto);
 
     if (result.success && result.data) {
-      const tokens = await this.tokenService.generateAuthTokens({
-        id: result.data.id,
-        email: result.data.email,
-        role: result.data.role,
-      });
-
-      const ipAddress = req.ip || req.connection?.remoteAddress;
-      const userAgent = req.headers['user-agent'];
-
-      await this.authService.createSession(
-        result.data.id,
-        tokens.refreshToken,
-        ipAddress,
-        userAgent,
+      return await this.authenticationOrchestrator.completeLogin(
+        result.data,
+        req,
       );
-
-      return {
-        ...result,
-        data: {
-          ...result.data,
-          accessToken: tokens.accessToken,
-          refreshToken: tokens.refreshToken,
-        },
-      };
     }
 
     return result;
   }
 
   @Post('login')
-  async login(@Body() dto: LoginDto, @Req() req: Request) {
+  async login(@Body() dto: LoginDto, @Req() req: any) {
     const result = await this.authService.login(dto);
 
     if (result.success && result.data) {
-      const tokens = await this.tokenService.generateAuthTokens({
-        id: result.data.id,
-        email: result.data.email,
-        role: result.data.role,
-      });
-
-      const ipAddress = req.ip || req.connection?.remoteAddress;
-      const userAgent = req.headers['user-agent'];
-
-      await this.authService.createSession(
-        result.data.id,
-        tokens.refreshToken,
-        ipAddress,
-        userAgent,
+      return await this.authenticationOrchestrator.completeLogin(
+        result.data,
+        req,
       );
-
-      return {
-        ...result,
-        data: {
-          ...result.data,
-          accessToken: tokens.accessToken,
-          refreshToken: tokens.refreshToken,
-        },
-      };
     }
 
     return result;
@@ -123,23 +70,22 @@ export class AuthController {
       const result = await this.authService.refresh({
         userId: payload.sub,
         email: payload.email,
-        refreshToken,
       });
       return result;
-    } catch {
+    } catch (error) {
       throw new UnauthorizedException('Invalid or expired refresh token');
     }
   }
 
   @UseGuards(JwtAuthGuard)
   @Post('logout')
-  async logout(@Req() req: AuthenticatedRequest) {
+  async logout(@Req() req: any) {
     const result = await this.authService.logout(req.user.userId);
     return result;
   }
 
   @Post('creator-request')
-  async creatorRequest(@Body() payload: CreateCreatorApplicationDto) {
+  async creatorRequest(@Body() payload: any) {
     const result = await this.authService.creatorRequest(payload);
     return result;
   }
@@ -154,8 +100,8 @@ export class AuthController {
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Post('approve-creator')
   async approveCreatorRequest(
-    @Body() body: CreatorRequestActionDto,
-    @Req() req: AuthenticatedRequest,
+    @Body() body: { requestId: string },
+    @Req() req: any,
   ) {
     const approverUserId = req.user.userId;
     const result = await this.authService.approveCreatorRequest(
@@ -168,8 +114,8 @@ export class AuthController {
   @UseGuards(JwtAuthGuard, AdminGuard)
   @Post('reject-creator')
   async rejectCreatorRequest(
-    @Body() body: CreatorRequestActionDto,
-    @Req() req: AuthenticatedRequest,
+    @Body() body: { requestId: string },
+    @Req() req: any,
   ) {
     const approverUserId = req.user.userId;
     const result = await this.authService.rejectCreatorRequest(
