@@ -1,12 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FormProvider, useForm, useWatch } from "react-hook-form";
-import { useCreatorRequest } from "@/hooks/auth/useCreatorRequest";
+import { FormProvider, useWatch } from "react-hook-form";
 import FormField from "@/components/UI/FormField";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import {
@@ -41,110 +36,30 @@ import Image from "@/components/UI/SafeImage";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import { MonoText } from "@/components/UI/Monotext";
 import { ALERT } from "@/utils/common";
-import { PATHS } from "@/utils/path";
-import { createCreatorRequestSchema } from "@/lib/validation/schema";
-import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import {
+  CreatorRequestValues,
+  useCreatorRequestForm,
+} from "@/hooks/Auth/useCreatorRequestForm";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
-  const router = useRouter();
-  const [formMessage, setFormMessage] = useState("");
-  const [messageTone, setMessageTone] = useState<"error" | "success">("error");
-  const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
-  const creatorRequest = useCreatorRequest();
-  const schema = useMemo(
-    () =>
-      createCreatorRequestSchema({
-        firstNameRequired: t("authCreator.form.firstName"),
-        lastNameRequired: t("authCreator.form.lastName"),
-        emailRequired: t("authForm.errors.emailRequired"),
-        emailInvalid: t("authForm.errors.emailInvalid"),
-        addressRequired: t("authCreator.form.address"),
-        cityRequired: t("authCreator.form.city"),
-        postalCodeRequired: t("authCreator.form.postalCode"),
-        workLinkRequired: t("authCreator.form.workLink"),
-        workLinkInvalid: t("authCreator.form.workLinkInvalid"),
-        contentDescriptionRequired: t("authCreator.form.contentLabel"),
-        consentRequired: t("authCreator.form.consentPrefix"),
-      }),
-    [t],
-  );
-  type CreatorRequestValues = ReturnType<typeof schema.parse>;
-  const methods = useForm<CreatorRequestValues>({
-    resolver: zodResolver(schema),
-    mode: "onChange",
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      cvr: "",
-      address: "",
-      city: "",
-      postalCode: "",
-      workLink: "",
-      contentDescription: "",
-      agreed: false,
-    },
-  });
+
   const {
-    handleSubmit,
-    setValue,
-    reset,
-    setError,
-    formState: { isValid, errors },
-  } = methods;
+    methods,
+    formMessage,
+    messageTone,
+    isValid,
+    errors,
+    isSubmitting,
+    updateField,
+    handleFormSubmit,
+  } = useCreatorRequestForm();
+
   const agreedValue = useWatch({
     control: methods.control,
     name: "agreed",
     defaultValue: false,
   });
-
-  const updateField = (
-    field: keyof CreatorRequestValues,
-    value: string | boolean,
-  ) => {
-    setValue(field, value as never, {
-      shouldDirty: true,
-      shouldValidate: true,
-    });
-    setFormMessage("");
-  };
-
-  const onSubmit = async (values: CreatorRequestValues) => {
-    try {
-      const response = await creatorRequest.mutateAsync({
-        firstName: values.firstName.trim(),
-        lastName: values.lastName.trim(),
-        email: values.email.trim().toLowerCase(),
-        phone: values.phone.trim() || undefined,
-        cvr: values.cvr.trim() || undefined,
-        address: values.address.trim(),
-        city: values.city.trim(),
-        postalCode: values.postalCode.trim(),
-        exampleWorkLink: values.workLink.trim(),
-        contentDescription: values.contentDescription.trim(),
-      });
-
-      if (!response.success) {
-        throw new Error(response.message || t("authForm.errors.submitFailed"));
-      }
-
-      toast.success(
-        response.message || "Creator application submitted successfully",
-      );
-      setMessageTone("success");
-      setFormMessage(
-        response.message || "Creator application submitted successfully",
-      );
-      reset();
-      router.push(PATHS.AUTH_CREATOR_REQUEST_SENT);
-    } catch (error) {
-      applyFieldErrors(error, setError);
-      setMessageTone("error");
-      setFormMessage(getErrorMessage(error, "authForm.errors.submitFailed"));
-    }
-  };
 
   const normalizeFieldValue = (value: string | string[]) =>
     Array.isArray(value) ? value.join(" ") : value;
@@ -179,7 +94,7 @@ export default function SignUpCreatorSection() {
       </FormIntro>
 
       <FormProvider {...methods}>
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleFormSubmit}>
           <Grid>{NAME_FIELDS.map((field) => renderField(field))}</Grid>
 
           <FullRow>{renderField(EMAIL_FIELD)}</FullRow>
@@ -232,8 +147,8 @@ export default function SignUpCreatorSection() {
 
           <SubmitButton
             type="submit"
-            disabled={!isValid || creatorRequest.isPending}
-            isLoading={creatorRequest.isPending}
+            disabled={!isValid || isSubmitting}
+            isLoading={isSubmitting}
           >
             {t("authCreator.form.submit")}
           </SubmitButton>

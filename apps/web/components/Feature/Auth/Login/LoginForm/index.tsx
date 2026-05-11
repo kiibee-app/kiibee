@@ -1,10 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import FormField from "@/components/UI/FormField";
 import {
@@ -23,75 +20,26 @@ import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import Image from "@/components/UI/SafeImage";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
-import { createLoginSchema } from "@/lib/validation/schema";
-import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { ALERT } from "@/utils/common";
 import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
-import {
-  getPostLoginPath,
-  persistLoginSession,
-  useLogin,
-} from "@/hooks/Auth/useLogin";
+import { useLoginForm } from "@/hooks/Auth/useLoginForm";
 
 export default function LoginForm() {
   const { t } = useTranslation();
-  const router = useRouter();
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [remember, setRemember] = useState(false);
-  const [formError, setFormError] = useState("");
-  const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
-  const { mutateAsync: login, isPending } = useLogin();
-  const loginSchema = useMemo(
-    () =>
-      createLoginSchema({
-        emailRequired: t("authForm.errors.emailRequired"),
-        emailInvalid: t("authForm.errors.emailInvalid"),
-        passwordRequired: t("authForm.errors.passwordRequired"),
-      }),
-    [t],
-  );
-  type LoginFormValues = ReturnType<typeof loginSchema.parse>;
-  const methods = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
-    mode: "onChange",
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
+
   const {
+    methods,
+    isValid,
+    isSubmitting,
+    formError,
+    remember,
+    setRemember,
+    isPasswordVisible,
+    handleFieldChange,
+    togglePassword,
     handleSubmit,
-    setError,
-    formState: { isValid },
-    clearErrors,
-  } = methods;
-
-  const onSubmit = async (values: LoginFormValues) => {
-    setFormError("");
-    try {
-      const response = await login(values);
-
-      if (response.success === false) {
-        setFormError(response.message || t("authForm.errors.submitFailed"));
-        return;
-      }
-
-      persistLoginSession(response);
-      router.push(getPostLoginPath(response));
-    } catch (error) {
-      applyFieldErrors(error, setError);
-      setFormError(getErrorMessage(error, "authForm.errors.submitFailed"));
-    }
-  };
-
-  const handleFieldChange = (field: "email" | "password", value: string) => {
-    methods.setValue(field, value, { shouldValidate: true, shouldDirty: true });
-    clearErrors(field);
-    if (formError) {
-      setFormError("");
-    }
-  };
+  } = useLoginForm();
 
   return (
     <Wrapper>
@@ -101,8 +49,8 @@ export default function LoginForm() {
           <MonoText $use="H4_Medium">{t("authForm.title")}</MonoText>
         </Title>
         <FormProvider {...methods}>
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <FormField<LoginFormValues>
+          <Form onSubmit={handleSubmit}>
+            <FormField
               id="login-email"
               name="email"
               type="email"
@@ -112,7 +60,7 @@ export default function LoginForm() {
               }
               autoComplete="email"
             />
-            <FormField<LoginFormValues>
+            <FormField
               id="login-password"
               name="password"
               type={isPasswordVisible ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
@@ -122,7 +70,7 @@ export default function LoginForm() {
               }
               autoComplete="current-password"
               icon={isPasswordVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}
-              onIconClick={() => setIsPasswordVisible((prev) => !prev)}
+              onIconClick={togglePassword}
             />
             <OptionsRow>
               <RememberLabel>
@@ -137,7 +85,7 @@ export default function LoginForm() {
             {formError && <FormMessage role={ALERT}>{formError}</FormMessage>}
             <GenericButton
               type="submit"
-              isLoading={isPending}
+              isLoading={isSubmitting}
               disabled={!isValid}
             >
               {t("authForm.submit")}

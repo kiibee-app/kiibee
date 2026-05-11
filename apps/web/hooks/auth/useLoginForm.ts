@@ -1,79 +1,75 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useLoginFormSchema } from "@/utils/useLoginFormSchema";
-import type { LoginFormErrors } from "@/utils/authLoginFormSchema";
-import z from "zod";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { createLoginSchema } from "@/lib/validation/schema";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { getPostLoginPath, persistLoginSession, useLogin } from "./useLogin";
-
-type ZodTreeNode = {
-  errors?: string[];
-  properties?: Record<string, ZodTreeNode>;
-};
 
 export function useLoginForm() {
   const { t } = useTranslation();
   const router = useRouter();
-  const loginSchema = useLoginFormSchema();
-  const { mutateAsync: login, isPending } = useLogin();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
-  const [fieldErrors, setFieldErrors] = useState<LoginFormErrors>({});
+  const { mutateAsync: login, isPending: isSubmitting } = useLogin();
+  const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
+
   const [formError, setFormError] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [remember, setRemember] = useState(false);
 
-  const clearErrors = () => {
-    setFieldErrors({});
+  const schema = useMemo(
+    () =>
+      createLoginSchema({
+        emailRequired: t("authForm.errors.emailRequired"),
+        emailInvalid: t("authForm.errors.emailInvalid"),
+        passwordRequired: t("authForm.errors.passwordRequired"),
+      }),
+    [t],
+  );
+
+  type LoginFormValues = ReturnType<typeof schema.parse>;
+
+  const methods = useForm<LoginFormValues>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const {
+    handleSubmit,
+    setValue,
+    setError,
+    clearErrors,
+    formState: { isValid },
+  } = methods;
+
+  const handleFieldChange = (field: keyof LoginFormValues, value: string) => {
+    setValue(field, value, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+
+    clearErrors(field);
+    if (formError) setFormError("");
+  };
+
+  const togglePassword = () => {
+    setIsPasswordVisible((prev) => !prev);
+  };
+
+  const onSubmit = async (values: LoginFormValues) => {
     setFormError("");
-  };
-
-  const handleEmailChange = (value: string) => {
-    setEmail(value);
-
-    if (fieldErrors.email || formError) {
-      setFieldErrors((p) => ({ ...p, email: undefined }));
-      setFormError("");
-    }
-  };
-
-  const handlePasswordChange = (value: string) => {
-    setPassword(value);
-
-    if (fieldErrors.password || formError) {
-      setFieldErrors((p) => ({ ...p, password: undefined }));
-      setFormError("");
-    }
-  };
-
-  const getValidationErrors = (error: z.ZodError): LoginFormErrors => {
-    const tree = z.treeifyError(error) as ZodTreeNode;
-
-    return {
-      email: tree.properties?.email?.errors?.[0],
-      password: tree.properties?.password?.errors?.[0],
-    };
-  };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const parsed = loginSchema.safeParse({ email, password });
-
-    if (!parsed.success) {
-      setFieldErrors(getValidationErrors(parsed.error));
-      setFormError(t("authForm.errors.fixHighlightedFields"));
-      return;
-    }
-
-    clearErrors();
 
     try {
-      const response = await login(parsed.data);
+      const response = await login(values);
 
-      if (!response.success) {
+      if (response.success === false) {
         setFormError(response.message || t("authForm.errors.submitFailed"));
         return;
       }
@@ -81,28 +77,21 @@ export function useLoginForm() {
       persistLoginSession(response);
       router.push(getPostLoginPath(response));
     } catch (error) {
-      setFormError(
-        error instanceof Error
-          ? error.message
-          : t("authForm.errors.submitFailed"),
-      );
+      applyFieldErrors(error, setError);
+      setFormError(getErrorMessage(error, "authForm.errors.submitFailed"));
     }
   };
 
   return {
-    state: {
-      email,
-      password,
-      remember,
-      fieldErrors,
-      formError,
-      isPending,
-    },
-    actions: {
-      setRemember,
-      handleEmailChange,
-      handlePasswordChange,
-      handleSubmit,
-    },
+    methods,
+    isValid,
+    isSubmitting,
+    formError,
+    remember,
+    setRemember,
+    isPasswordVisible,
+    handleFieldChange,
+    togglePassword,
+    handleSubmit: handleSubmit(onSubmit),
   };
 }
