@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { mergeStoredLoginUser, type LoginUser } from "@/hooks/auth/useLogin";
 import { API } from "@/lib/http/api/endpoints";
@@ -50,7 +49,6 @@ export type UpdateViewerProfileResponse = {
 };
 
 export const useViewerProfile = () => {
-  const { t } = useTranslation();
   const { getErrorMessage } = useApiErrorMessage();
 
   const bootstrap = useMemo(() => readViewerBootstrapFromStorage(), []);

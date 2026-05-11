@@ -62,9 +62,7 @@ export const mergeStoredLoginUser = (partial: Partial<LoginUser>) => {
       USER_KEY,
       JSON.stringify({ ...prev, ...partial }),
     );
-  } catch {
-    /* ignore corrupt storage */
-  }
+  } catch {}
 };
 
 export const persistLoginSession = (response: LoginResponse) => {

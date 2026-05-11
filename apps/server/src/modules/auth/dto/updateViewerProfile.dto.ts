@@ -9,7 +9,6 @@ export class UpdateViewerProfileDto {
   @IsEmail()
   email?: string;
 
-  /** Base64 data URL (image/png, jpeg, webp); null clears the avatar */
   @IsOptional()
   @Allow()
   avatarUrl?: string | null;

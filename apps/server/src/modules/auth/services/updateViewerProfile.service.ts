@@ -8,7 +8,6 @@ import { fail, success } from 'src/utils/sendResponse';
 
 import { UpdateViewerProfileDto } from '../dto/updateViewerProfile.dto';
 
-/** ~350KB raw bytes as base64; keeps requests bounded */
 const MAX_AVATAR_DATA_URL_CHARS = 500_000;
 const IMAGE_DATA_URL_RE =
   /^data:image\/(?:png|jpe?g|webp);base64,[a-zA-Z0-9+/=\s\r\n]+$/;
