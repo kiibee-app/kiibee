@@ -56,6 +56,17 @@
       "moreInfo": "Mere info",
       "joined": "Tilsluttet",
       "links": "Links"
+    },
+    "latestUpload": {
+      "title": "Seneste upload",
+      "badge": "Design",
+      "video": "Video",
+      "playTrailer": "Afspil trailer",
+      "titleText": "Hæklede bordskånere",
+      "description": "PERFEKT TILBEREDT FASAN - sådan gør du, når fasanen skal være saftig og mør. Bogen indeholder kun opskrifter på fasan og viser med flotte billeder og gode beskrivelser, hvordan du får det bedste resultat til både hverdag og festmiddag.",
+      "readMore": "Leje 50 kr",
+      "access": "Adgang i 3 måneder",
+      "imageAlt": "Seneste upload-billede"
     }
   },
   "createProfileCollections": {

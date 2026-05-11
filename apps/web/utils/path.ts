@@ -25,7 +25,7 @@ export const PATHS = {
   CATEGORY_BUSINESS: "/explore/category/business",
   CATEGORY_ARTS: "/explore/category/arts",
   CATEGORY_TECH: "/explore/category/tech",
-  CREATORS: "/creators",
+  CREATORS: "/for-creators",
   CREATORS_FEATURED: "/creators?filter=featured",
   CREATORS_NEW: "/creators?filter=new",
   CREATORS_POPULAR: "/creators?sort=popular",

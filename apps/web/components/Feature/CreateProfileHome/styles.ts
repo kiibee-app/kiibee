@@ -19,7 +19,7 @@ export const Page = styled.main`
     linear-gradient(
       180deg,
       ${({ theme }) => theme.colors.neutral.GRAY_100} 0%,
-      ${({ theme }) => theme.colors.neutral.OFF_WHITE} 100%
+      ${({ theme }) => theme.colors.neutral.WHITE} 100%
     );
 `;
 

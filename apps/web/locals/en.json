@@ -56,6 +56,17 @@
       "moreInfo": "More info",
       "joined": "Joined",
       "links": "Links"
+    },
+    "latestUpload": {
+      "title": "Latest upload",
+      "badge": "Design",
+      "video": "Video",
+      "playTrailer": "Play trailer",
+      "titleText": "Crochet coasters",
+      "description": "PERFEKT TILBEREDT FASAN - how to prepare pheasant so it becomes juicy and tender. The book contains only pheasant recipes and shows with beautiful images and clear descriptions how to achieve the best results for both everyday meals and festive dinners.",
+      "readMore": "Rent 50 kr",
+      "access": "Access for 3 months",
+      "imageAlt": "Latest upload image"
     }
   },
   "createProfileCollections": {
