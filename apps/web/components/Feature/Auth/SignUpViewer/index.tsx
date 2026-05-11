@@ -33,7 +33,7 @@ import {
   Title,
   Wrapper,
 } from "./styles";
-import { useViewerSignUpForm } from "@/hooks/Auth/useViewerSignUpForm";
+import { useViewerSignUpForm } from "@/hooks/auth/useViewerSignUpForm";
 
 type PasswordFieldKey = keyof PasswordVisibility;
 

@@ -23,7 +23,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import { ALERT } from "@/utils/common";
 import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
-import { useLoginForm } from "@/hooks/Auth/useLoginForm";
+import { useLoginForm } from "@/hooks/auth/useLoginForm";
 
 export default function LoginForm() {
   const { t } = useTranslation();

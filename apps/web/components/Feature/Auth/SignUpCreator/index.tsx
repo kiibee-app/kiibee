@@ -3,7 +3,7 @@
 import { useTranslation } from "react-i18next";
 import { FormProvider, useWatch } from "react-hook-form";
 import FormField from "@/components/UI/FormField";
-import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
+import AuthBackButton from "@/components/Feature/auth/AuthBackButton";
 import {
   ADDRESS_FIELDS,
   CONTACT_FIELDS,
