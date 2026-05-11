@@ -4,8 +4,7 @@ import { media } from "@repo/ui/breakpoints";
 export const Container = styled.footer`
   width: 100%;
   background: ${({ theme }) => theme.colors.primary.WHITE};
-  border-top: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
-  box-shadow: 0 -1px 0 ${({ theme }) => theme.colors.neutral.GRAY_200};
+  border-top: 1px solid ${({ theme }) => theme.colors.primary.WHITE};
 `;
 
 export const Inner = styled.div`

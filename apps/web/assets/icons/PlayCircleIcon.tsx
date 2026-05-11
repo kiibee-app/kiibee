@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CURRENT_COLOR } from "@/utils/Constants";
+import { CURRENT_COLOR, SVG_XMLNS } from "@/utils/Constants";
 
 type Props = React.SVGProps<SVGSVGElement> & {
   width?: number | string;
@@ -9,18 +9,18 @@ type Props = React.SVGProps<SVGSVGElement> & {
 };
 
 export default function PlayCircleIcon({
-  width = 16,
-  height = 16,
+  width = 19,
+  height = 19,
   color = CURRENT_COLOR,
   title,
   ...props
 }: Props) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
+      xmlns={SVG_XMLNS}
       width={width}
       height={height}
-      viewBox="0 0 22 22"
+      viewBox="0 0 19 19"
       fill="none"
       aria-hidden={title ? undefined : true}
       role={title ? "img" : undefined}
@@ -28,7 +28,9 @@ export default function PlayCircleIcon({
     >
       {title ? <title>{title}</title> : null}
       <path
-        d="M11 20.1666C16.0628 20.1666 20.1667 16.0627 20.1667 10.9999C20.1667 5.93717 16.0628 1.83325 11 1.83325C5.93725 1.83325 1.83334 5.93717 1.83334 10.9999C1.83334 16.0627 5.93725 20.1666 11 20.1666ZM9.80284 14.5254L14.1295 11.9707C14.8454 11.5472 14.8454 10.4527 14.1295 10.0292L9.80284 7.47442C9.10617 7.06375 8.25 7.59909 8.25 8.44608V13.5547C8.25 14.4008 9.10617 14.9361 9.80284 14.5254Z"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M9.16667 18.3333C14.2294 18.3333 18.3333 14.2294 18.3333 9.16667C18.3333 4.10392 14.2294 0 9.16667 0C4.10392 0 0 4.10392 0 9.16667C0 14.2294 4.10392 18.3333 9.16667 18.3333ZM7.9695 12.6922L12.2962 10.1374C13.0121 9.71392 13.0121 8.61942 12.2962 8.19592L7.9695 5.64117C7.27283 5.2305 6.41667 5.76583 6.41667 6.61283V11.7214C6.41667 12.5675 7.27283 13.1028 7.9695 12.6922Z"
         fill={color}
       />
     </svg>
