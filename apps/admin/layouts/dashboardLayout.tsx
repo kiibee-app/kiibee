@@ -1,35 +1,26 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import { usePathname } from "next/navigation";
-import styled from "styled-components";
 import { Header } from "../components/header/Header";
 import { Sidebar } from "../components/sidebar/Sidebar";
 import { sidebarItems } from "../register/sidebar";
 import { getPageMeta } from "../seo/metadata";
-
-const AppContainer = styled.div`
-  display: flex;
-  min-height: 100vh;
-  background-color: ${({ theme }) => theme.colors.neutral.GRAY_100};
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
-`;
-
-const Main = styled.main`
-  flex: 1;
-  margin-left: 240px;
-  min-height: 100vh;
-`;
-
-const Content = styled.div`
-  padding: 16px 20px;
-`;
+import {
+  AppContainer,
+  Backdrop,
+  Content,
+  Main,
+} from "./dashboardLayout.styles";
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isLoginRoute = pathname === "/login";
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const isLoginRoute = pathname === "/login" || pathname === "/";
   const meta = getPageMeta(pathname);
+
+  const toggleSidebar = useCallback(() => setSidebarOpen((prev) => !prev), []);
+  const closeSidebar = useCallback(() => setSidebarOpen(false), []);
 
   if (isLoginRoute) {
     return <>{children}</>;
@@ -37,11 +28,21 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <AppContainer>
-      <Sidebar items={sidebarItems} pathname={pathname} />
+      <Sidebar
+        items={sidebarItems}
+        pathname={pathname}
+        isOpen={sidebarOpen}
+        onClose={closeSidebar}
+      />
       <Main>
-        <Header title={meta.title} description={meta.description} />
+        <Header
+          title={meta.title}
+          description={meta.description}
+          onToggleSidebar={toggleSidebar}
+        />
         <Content>{children}</Content>
       </Main>
+      {sidebarOpen && <Backdrop onClick={closeSidebar} />}
     </AppContainer>
   );
 }

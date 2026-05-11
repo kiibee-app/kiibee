@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Menu } from "lucide-react";
 import {
   AvatarFrame,
   AvatarText,
   Description,
   Dropdown,
+  HamburgerButton,
   HeaderLeft,
   HeaderRight,
   HeaderRoot,
@@ -19,13 +21,14 @@ import {
 interface HeaderProps {
   title: string;
   description: string;
+  onToggleSidebar?: () => void;
 }
 
 type StoredAuthPayload = {
   fullName?: string;
 };
 
-export function Header({ title, description }: HeaderProps) {
+export function Header({ title, description, onToggleSidebar }: HeaderProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
@@ -81,8 +84,17 @@ export function Header({ title, description }: HeaderProps) {
   return (
     <HeaderRoot>
       <HeaderLeft>
-        <Title>{title}</Title>
-        <Description>{description}</Description>
+        <HamburgerButton
+          type="button"
+          onClick={onToggleSidebar}
+          aria-label="Toggle sidebar"
+        >
+          <Menu size={20} />
+        </HamburgerButton>
+        <div>
+          <Title>{title}</Title>
+          <Description>{description}</Description>
+        </div>
       </HeaderLeft>
       <HeaderRight>
         <HeaderUser>{displayName}</HeaderUser>
