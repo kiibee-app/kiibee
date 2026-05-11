@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { plans } from 'src/database/schema';
-import { fail, success } from 'src/utils/sendResponse';
+import { success } from 'src/utils/sendResponse';
 import { eq } from 'drizzle-orm/sql/expressions/conditions';
 import { logger } from 'src/logger/logger';
 
@@ -32,8 +32,8 @@ export const getAllSubscriptionPlansService = async () => {
       throw error;
     }
 
-    return fail(
-      'Failed to setup creator account',
+    throw new HttpException(
+      'Failed to retrieve subscription plans',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );
   }
