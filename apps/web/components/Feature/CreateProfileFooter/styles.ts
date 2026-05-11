@@ -59,7 +59,7 @@ export const BrandCopy = styled.div`
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
   ${({ theme }) => theme.typography.Body_Medium}
 
-  @media (max-width: 640px) {
+  ${({ theme }) => theme.media.mobileMd} {
     max-width: 100%;
   }
 `;

@@ -31,11 +31,11 @@ export const HeroFrame = styled.section`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
-  @media (max-width: 900px) {
+  ${({ theme }) => theme.media.desktopSm} {
     height: 460px;
   }
 
-  @media (max-width: 640px) {
+  ${({ theme }) => theme.media.mobileMd} {
     height: 420px;
   }
 `;
@@ -108,15 +108,15 @@ export const HeroContent = styled.div`
   display: flex;
   align-items: flex-end;
 
-  @media (max-width: 1200px) {
+  ${({ theme }) => theme.media.desktopMd} {
     padding: 0 70px;
   }
 
-  @media (max-width: 900px) {
+  ${({ theme }) => theme.media.desktopSm} {
     padding: 0 28px;
   }
 
-  @media (max-width: 640px) {
+  ${({ theme }) => theme.media.mobileMd} {
     padding: 0 16px;
   }
 `;
@@ -137,17 +137,17 @@ export const StoryPanel = styled.aside`
     ${({ theme }) => theme.colors.gredint.TRANSPARENT} 100%
   );
 
-  @media (max-width: 1200px) {
+  ${({ theme }) => theme.media.desktopMd} {
     width: min(560px, 100%);
     padding: 44px 0;
   }
 
-  @media (max-width: 900px) {
+  ${({ theme }) => theme.media.desktopSm} {
     width: min(100%, 520px);
     padding: 32px 0;
   }
 
-  @media (max-width: 640px) {
+  ${({ theme }) => theme.media.mobileMd} {
     width: 100%;
     padding: 24px 0 18px;
     gap: 8px;
@@ -178,7 +178,7 @@ export const StoryDescription = styled.div`
   max-width: 520px;
   margin-top: 0;
 
-  @media (max-width: 640px) {
+  ${({ theme }) => theme.media.mobileMd} {
     max-width: 100%;
   }
 `;
@@ -192,7 +192,7 @@ export const HeroMedia = styled.div`
     filter: saturate(0.95) contrast(0.96);
   }
 
-  @media (max-width: 640px) {
+  ${({ theme }) => theme.media.mobileMd} {
     img {
       object-position: center top;
     }
