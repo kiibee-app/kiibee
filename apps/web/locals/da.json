@@ -893,6 +893,7 @@
     "dragPhotoHere": "Træk foto her",
     "or": "eller",
     "choosePhoto": "Vælg fotos til upload",
+    "recommendedImageSize": "Brug {{cropWidth}}×{{cropHeight}} pixel billede",
     "zoom": "Zoom",
     "apply": "Anvend",
     "profilePhotoAlt": "Profilfoto"
@@ -1320,7 +1321,9 @@
         "uploadDesktop": "Upload forsidebillede til desktop",
         "uploadMobile": "Upload forsidebillede til mobil",
         "desktopSize": "Brug billedstørrelse 1440 × 224 pixels",
-        "mobileSize": "Brug billedstørrelse 640 × 600 pixels"
+        "mobileSize": "Brug billedstørrelse 640 × 600 pixels",
+        "desktopAlt": "Desktop forsidebillede",
+        "mobileAlt": "Mobil forsidebillede"
       },
       "description": {
         "label": "Beskrivelse",

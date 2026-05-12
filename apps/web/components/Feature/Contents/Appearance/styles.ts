@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 import Image from "next/image";
+import { IMAGE_TYPE, ImageType } from "@/utils/ui";
 
 export const PanelStack = styled.div`
   display: flex;
@@ -103,6 +104,10 @@ export const ItemRow = styled.div`
 `;
 
 export const UploadButton = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+
   button {
     width: fit-content;
     padding: 14px 24px;
@@ -212,4 +217,58 @@ export const LayoutImageShell = styled.div`
 export const LayoutImage = styled(Image)`
   object-fit: cover;
   object-position: top center;
+`;
+
+export const LogoImage = styled.img`
+  width: 160px;
+  height: 56px;
+  objectfit: cover;
+  border-radius: 8px;
+`;
+
+export const LogoUploadWrap = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
+export const PreviewWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const PreviewImage = styled.img<{ $type: ImageType }>`
+  object-fit: cover;
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+
+  ${({ $type }) =>
+    $type === IMAGE_TYPE.DESKTOP
+      ? `
+    aspect-ratio: 257 / 40;
+    max-width: 514px;
+  `
+      : `
+    aspect-ratio: 17 / 16;
+    max-width: 120px;
+  `}
+
+  ${media.tablet} {
+    ${({ $type }) =>
+      $type === IMAGE_TYPE.DESKTOP
+        ? `
+      max-width: 320px;
+    `
+        : `
+      max-width: 90px;
+    `}
+  }
+
+  ${media.mobile} {
+    width: 100%;
+    max-width: 100%;
+  }
 `;

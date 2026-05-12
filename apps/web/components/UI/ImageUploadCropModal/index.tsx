@@ -14,11 +14,18 @@ import {
   ZoomSlider,
   ModalActions,
   HiddenInput,
+  UploadNoteText,
 } from "./styles";
 import { GenericModal } from "@/components/UI/Modals";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
-import { IMAGE_MODAL, ImageModalStep, MODAL_ALIGN } from "@/utils/ui";
+import {
+  CROP_SHAPE,
+  CropShapeType,
+  IMAGE_MODAL,
+  ImageModalStep,
+  MODAL_ALIGN,
+} from "@/utils/ui";
 import { getCroppedImg, readFileAsDataUrl } from "@/utils/image";
 import { useTranslation } from "react-i18next";
 
@@ -29,6 +36,10 @@ type Props = {
   image: string | null;
   onClose: () => void;
   onApply: (cropped: string) => void;
+  shape?: CropShapeType;
+  cropWidth?: number;
+  cropHeight?: number;
+  recommendedText?: boolean;
 };
 
 export default function ImageUploadCropModal({
@@ -38,6 +49,10 @@ export default function ImageUploadCropModal({
   image,
   onClose,
   onApply,
+  shape = CROP_SHAPE.CIRCLE,
+  cropWidth = 220,
+  cropHeight = 220,
+  recommendedText = false,
 }: Props) {
   const { t } = useTranslation();
   const [pendingImage, setPendingImage] = useState<string | null>(image);
@@ -125,14 +140,28 @@ export default function ImageUploadCropModal({
       pendingImage,
       width,
       height,
-      { x: 0, y: 0, width, height },
+      {
+        x: (width - cropWidth) / 2,
+        y: (height - cropHeight) / 2,
+        width: cropWidth,
+        height: cropHeight,
+      },
       { x: position.x / zoom, y: position.y / zoom },
       zoom,
     );
 
     onApply(cropped);
     onClose();
-  }, [pendingImage, position, zoom, onApply, onClose]);
+  }, [
+    pendingImage,
+    cropWidth,
+    cropHeight,
+    position.x,
+    position.y,
+    zoom,
+    onApply,
+    onClose,
+  ]);
 
   return (
     <GenericModal
@@ -160,6 +189,14 @@ export default function ImageUploadCropModal({
             >
               {t("creatorProfile.choosePhoto")}
             </GenericButton>
+            {recommendedText && (
+              <UploadNoteText>
+                {t("creatorProfile.recommendedImageSize", {
+                  cropWidth,
+                  cropHeight,
+                })}
+              </UploadNoteText>
+            )}
           </UploadDropZone>
         ) : (
           <>
@@ -181,7 +218,11 @@ export default function ImageUploadCropModal({
                     $isDragging={dragging}
                   />
                 )}
-                <CropOverlay />
+                <CropOverlay
+                  $shape={shape}
+                  $width={cropWidth}
+                  $height={cropHeight}
+                />
               </ImagePreviewWrapper>
             </CropCanvas>
 

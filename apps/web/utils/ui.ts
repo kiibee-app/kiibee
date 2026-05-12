@@ -152,5 +152,18 @@ export const IMAGE_MODAL = {
 
 export type ImageModalStep = (typeof IMAGE_MODAL)[keyof typeof IMAGE_MODAL];
 
+export const CROP_SHAPE = {
+  CIRCLE: "circle",
+  RECT: "rect",
+} as const;
+
+export type CropShapeType = (typeof CROP_SHAPE)[keyof typeof CROP_SHAPE];
+
+export const IMAGE_TYPE = {
+  DESKTOP: "desktop",
+  MOBILE: "mobile",
+} as const;
+export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
+
 export const isBrowser = typeof window !== "undefined";
 export const canUseDOM = typeof document !== "undefined";

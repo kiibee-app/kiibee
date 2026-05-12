@@ -893,6 +893,7 @@
     "dragPhotoHere": "Drag photo here",
     "or": "or",
     "choosePhoto": "Choose photos to upload",
+    "recommendedImageSize": "Use {{cropWidth}}×{{cropHeight}} pixel image",
     "zoom": "Zoom",
     "apply": "Apply",
     "profilePhotoAlt": "Profile photo"
@@ -1329,7 +1330,9 @@
         "uploadDesktop": "Upload desktop cover image",
         "uploadMobile": "Upload mobile cover image",
         "desktopSize": "Use size 1440 × 224 pixel image",
-        "mobileSize": "Use size 640 × 600 pixel image"
+        "mobileSize": "Use size 640 × 600 pixel image",
+        "desktopAlt": "Desktop cover image",
+        "mobileAlt": "Mobile cover image"
       },
       "description": {
         "label": "Description",
