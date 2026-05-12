@@ -11,7 +11,7 @@ jest.mock('src/database/db', () => ({
 
 jest.mock('src/utils/passwordHash');
 const crypto = require('crypto');
-// Mock crypto.randomUUID
+
 const originalRandomUUID = crypto.randomUUID;
 crypto.randomUUID = jest.fn().mockReturnValue('plan-id-123');
 

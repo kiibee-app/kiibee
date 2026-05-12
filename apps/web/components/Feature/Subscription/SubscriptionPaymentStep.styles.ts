@@ -3,7 +3,8 @@ import GenericButton from "@/components/UI/GenericButton";
 import { SIZE, VARIANT } from "@/utils/Constants";
 
 export const PaymentCard = styled.div`
-  width: min(100%, 312px);
+  width: 100%;
+  max-width: 560px;
   display: flex;
   flex-direction: column;
 `;
@@ -12,6 +13,7 @@ export const PaymentTitle = styled.h1`
   margin: 0 0 20px;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-align: center;
+  width: 100%;
 `;
 
 export const Form = styled.form`
@@ -107,7 +109,7 @@ export const Fields = styled.div`
 
 export const InlineFields = styled.div`
   display: grid;
-  grid-template-columns: 97px 97px;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 `;
 

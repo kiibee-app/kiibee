@@ -40,8 +40,14 @@ import {
 
 export default function SubscriptionPaymentStep() {
   const { t } = useTranslation();
-  const { selectedPlan, onSelectPlan, getPlanPriceLabel } =
-    useSubscriptionContext();
+  const {
+    selectedPlan,
+    onSelectPlan,
+    getPlanPriceLabel,
+    isCreatorInviteFlow,
+    completeCreatorInviteSignup,
+    isInviteSubmitting,
+  } = useSubscriptionContext();
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(
     DEFAULT_PAYMENT_METHOD,
   );
@@ -92,6 +98,12 @@ export default function SubscriptionPaymentStep() {
     });
   };
 
+  const onPaymentSubmit = handleSubmit(async () => {
+    if (isCreatorInviteFlow) {
+      await completeCreatorInviteSignup();
+    }
+  });
+
   return (
     <PaymentCard>
       <PaymentTitle>
@@ -99,7 +111,7 @@ export default function SubscriptionPaymentStep() {
       </PaymentTitle>
 
       <FormProvider {...methods}>
-        <Form onSubmit={handleSubmit(() => undefined)}>
+        <Form onSubmit={onPaymentSubmit}>
           <PlanSelectWrap>
             <SortDropdown
               options={planOptions}
@@ -116,7 +128,7 @@ export default function SubscriptionPaymentStep() {
                 </span>
               )}
               width="100%"
-              maxWidth="312px"
+              maxWidth="100%"
               variant="success"
             />
           </PlanSelectWrap>
@@ -234,7 +246,11 @@ export default function SubscriptionPaymentStep() {
             </InlineFields>
           </Fields>
 
-          <SubmitButton type="submit" disabled={!isValid}>
+          <SubmitButton
+            type="submit"
+            disabled={!isValid || (isCreatorInviteFlow && isInviteSubmitting)}
+            isLoading={isCreatorInviteFlow && isInviteSubmitting}
+          >
             {t("creatorFinalSteps.submit")}
           </SubmitButton>
         </Form>

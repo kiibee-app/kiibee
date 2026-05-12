@@ -26,12 +26,14 @@ function SubscriptionSectionInner() {
     inviteTokenError,
     inviteSubmitError,
     isCreatorInviteFlow,
+    backFromPaymentStep,
   } = useSubscriptionContext();
 
   const showInviteSubmitError =
     isCreatorInviteFlow &&
     Boolean(inviteSubmitError) &&
-    currentStep === SUBSCRIPTION_STEP.DETAILS;
+    (currentStep === SUBSCRIPTION_STEP.DETAILS ||
+      currentStep === SUBSCRIPTION_STEP.PAYMENT);
 
   return (
     <SubscriptionShell>
@@ -39,6 +41,7 @@ function SubscriptionSectionInner() {
         <SubscriptionBackRow
           currentStep={currentStep}
           onBack={setCurrentStep}
+          onPaymentBack={backFromPaymentStep}
         />
 
         <Content>
@@ -83,9 +86,7 @@ function SubscriptionSectionInner() {
           {!inviteTokenError && currentStep === SUBSCRIPTION_STEP.DETAILS ? (
             <SubscriptionDetailsForm />
           ) : null}
-          {!inviteTokenError &&
-          currentStep === SUBSCRIPTION_STEP.PAYMENT &&
-          !isCreatorInviteFlow ? (
+          {!inviteTokenError && currentStep === SUBSCRIPTION_STEP.PAYMENT ? (
             <SubscriptionPaymentStep />
           ) : null}
         </Content>

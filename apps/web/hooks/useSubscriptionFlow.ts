@@ -6,7 +6,10 @@ import {
   SUBSCRIPTION_STEP,
   type PasswordVisibilityKey,
 } from "@/utils/Constants";
-import { subscriptionPlans } from "@/utils/subscriptionPlans";
+import {
+  isFreeSubscriptionPlan,
+  subscriptionPlans,
+} from "@/utils/subscriptionPlans";
 import type {
   SubscriptionContextValue,
   SubscriptionStep,
@@ -98,11 +101,14 @@ export const useSubscriptionFlow = (
   const [inviteSubmitError, setInviteSubmitError] = useState<string | null>(
     null,
   );
+  const [inviteSignupFlowBusy, setInviteSignupFlowBusy] = useState(false);
 
-  const { mutateAsync: postCreatorSetup, isPending: isInviteSubmitting } =
-    usePostAPI<CreatorSetupResponse, CreatorSetupPayload>(
-      API.auth.creatorSetup,
-    );
+  const {
+    mutateAsync: postCreatorSetup,
+    isPending: isPostCreatorSetupPending,
+  } = usePostAPI<CreatorSetupResponse, CreatorSetupPayload>(
+    API.auth.creatorSetup,
+  );
   const { mutateAsync: loginMutate } = useLogin();
 
   const isSubmitEnabled =
@@ -122,6 +128,74 @@ export const useSubscriptionFlow = (
     }
   };
 
+  const completeCreatorInviteSignup = useCallback(async () => {
+    if (!isCreatorInviteFlow) return;
+    if (!isInviteTokenValid || isValidatingInviteToken) return;
+
+    setInviteSignupFlowBusy(true);
+    try {
+      setInviteSubmitError(null);
+      const normalizedEmail = email.trim().toLowerCase();
+
+      const setupResult = await postCreatorSetup({
+        token: trimmedInviteToken,
+        planId: selectedPlan,
+        confirmEmail: normalizedEmail,
+        password,
+        confirmPassword: repeatPassword,
+      });
+
+      if (setupResult.success === false) {
+        setInviteSubmitError(
+          setupResult.message || t("subscriptionPage.invite.setupFailed"),
+        );
+        return;
+      }
+
+      const loginResponse = await loginMutate({
+        email: normalizedEmail,
+        password,
+      });
+
+      if (loginResponse.success === false) {
+        setInviteSubmitError(
+          loginResponse.message ||
+            t("subscriptionPage.invite.loginAfterSetupFailed"),
+        );
+        return;
+      }
+
+      setSession(loginResponse);
+      router.push(getPostLoginPath(loginResponse));
+    } catch (error) {
+      setInviteSubmitError(
+        getErrorMessage(error, "subscriptionPage.invite.setupFailed"),
+      );
+    } finally {
+      setInviteSignupFlowBusy(false);
+    }
+  }, [
+    isCreatorInviteFlow,
+    isInviteTokenValid,
+    isValidatingInviteToken,
+    trimmedInviteToken,
+    email,
+    password,
+    repeatPassword,
+    selectedPlan,
+    postCreatorSetup,
+    loginMutate,
+    setSession,
+    router,
+    getErrorMessage,
+    t,
+  ]);
+
+  const backFromPaymentStep = useCallback(() => {
+    setInviteSubmitError(null);
+    setCurrentStep(SUBSCRIPTION_STEP.DETAILS);
+  }, []);
+
   const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -132,44 +206,12 @@ export const useSubscriptionFlow = (
           return;
         }
 
-        const normalizedEmail = email.trim().toLowerCase();
-
-        try {
-          const setupResult = await postCreatorSetup({
-            token: trimmedInviteToken,
-            planId: selectedPlan,
-            confirmEmail: normalizedEmail,
-            password,
-            confirmPassword: repeatPassword,
-          });
-
-          if (setupResult.success === false) {
-            setInviteSubmitError(
-              setupResult.message || t("subscriptionPage.invite.setupFailed"),
-            );
-            return;
-          }
-
-          const loginResponse = await loginMutate({
-            email: normalizedEmail,
-            password,
-          });
-
-          if (loginResponse.success === false) {
-            setInviteSubmitError(
-              loginResponse.message ||
-                t("subscriptionPage.invite.loginAfterSetupFailed"),
-            );
-            return;
-          }
-
-          setSession(loginResponse);
-          router.push(getPostLoginPath(loginResponse));
-        } catch (error) {
-          setInviteSubmitError(
-            getErrorMessage(error, "subscriptionPage.invite.setupFailed"),
-          );
+        if (!isFreeSubscriptionPlan(selectedPlan)) {
+          setCurrentStep(SUBSCRIPTION_STEP.PAYMENT);
+          return;
         }
+
+        await completeCreatorInviteSignup();
         return;
       }
 
@@ -179,17 +221,8 @@ export const useSubscriptionFlow = (
       isCreatorInviteFlow,
       isInviteTokenValid,
       isValidatingInviteToken,
-      trimmedInviteToken,
-      email,
-      password,
-      repeatPassword,
       selectedPlan,
-      postCreatorSetup,
-      loginMutate,
-      setSession,
-      router,
-      getErrorMessage,
-      t,
+      completeCreatorInviteSignup,
     ],
   );
 
@@ -223,9 +256,11 @@ export const useSubscriptionFlow = (
     onRepeatPasswordChange: setRepeatPassword,
     onTogglePasswordVisibility: handleTogglePasswordVisibility,
     onSubmit: handleSubmit,
+    completeCreatorInviteSignup,
+    backFromPaymentStep,
     isCreatorInviteFlow,
     isValidatingInviteToken,
-    isInviteSubmitting,
+    isInviteSubmitting: isPostCreatorSetupPending || inviteSignupFlowBusy,
     inviteTokenError,
     inviteSubmitError,
   };

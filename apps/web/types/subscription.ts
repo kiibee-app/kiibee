@@ -52,6 +52,10 @@ export interface SubscriptionContextValue {
   onRepeatPasswordChange: (value: string) => void;
   onTogglePasswordVisibility: (key: PasswordVisibilityKey) => void;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void | Promise<void>;
+  /** Creator invite: run after card step (or call from details for free plan). */
+  completeCreatorInviteSignup: () => Promise<void>;
+  /** Creator invite payment step: return to password/details and clear errors. */
+  backFromPaymentStep: () => void;
   isCreatorInviteFlow: boolean;
   isValidatingInviteToken: boolean;
   isInviteSubmitting: boolean;
