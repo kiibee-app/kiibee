@@ -20,6 +20,8 @@ import DeleteModals from "./CollectionDeleteMobal";
 import CreateCollectionModal from "./Collections/CreateCollectionModal";
 import ContentTabPanel from "./ContentTabPanel";
 import CouponFlowModals from "./coupon/CouponFlowModals";
+import ContentTypeModal from "./ContentTypeModal";
+import ContentUploadModal from "./ContentUploadModal";
 import { useContentsViewState } from "@/hooks/contents/useContentsViewState";
 import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
@@ -53,6 +55,7 @@ export default function CreatorsContents() {
   } = useContentsDataState(selectedCollection);
   const {
     createCollectionFlow,
+    contentTypeFlow,
     couponForm,
     setCouponForm,
     isCouponSuccess,
@@ -65,7 +68,7 @@ export default function CreatorsContents() {
     closeDiscardModal,
     handleCreateClick,
     handleEditCollection,
-  } = useContentsModalFlows(activeTab, collections);
+  } = useContentsModalFlows(activeTab, collections, isCollectionContentMode);
 
   return (
     <PageShell>
@@ -130,6 +133,20 @@ export default function CreatorsContents() {
         onChangeCollectionName={createCollectionFlow.setCollectionName}
         onClose={createCollectionFlow.closeCreate}
         onConfirm={createCollectionFlow.completeCreate}
+      />
+
+      <ContentTypeModal
+        visible={contentTypeFlow.showContentTypeModal}
+        onClose={contentTypeFlow.close}
+        onBack={contentTypeFlow.close}
+        onContinue={contentTypeFlow.continueWithType}
+      />
+
+      <ContentUploadModal
+        visible={contentTypeFlow.showContentUploadModal}
+        contentType={contentTypeFlow.selectedContentType}
+        onClose={contentTypeFlow.close}
+        onBack={contentTypeFlow.backToTypeSelect}
       />
 
       <GenericModal
