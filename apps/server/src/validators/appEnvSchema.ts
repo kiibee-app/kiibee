@@ -36,11 +36,11 @@ export const appEnvSchema = smtpEnvSchema.extend({
   DO_SPACES_REGION: z.string().trim().default('fra1'),
   DO_SPACES_CDN_URL: z.string().trim().optional(),
 
-  // Cloudflare (for migration / CDN)
+  // Cloudflare (Stream / CDN - Global API Key auth)
+  CLOUDFLARE_SERVICE_TOKEN: z.string().trim().optional(),
   CLOUDFLARE_ACCOUNT_ID: z.string().trim().optional(),
-  CLOUDFLARE_API_TOKEN: z.string().trim().optional(),
-  CLOUDFLARE_R2_BUCKET: z.string().trim().optional(),
-  CLOUDFLARE_CDN_URL: z.string().trim().optional(),
+  CLOUDFLARE_AUTH_EMAIL: z.string().trim().optional(),
+  CLOUDFLARE_AUTH_KEY: z.string().trim().optional(),
 
   // Umbraco source DB (for migration only)
   UMBRACO_DB_CONNECTION_STRING: z.string().trim().optional(),
