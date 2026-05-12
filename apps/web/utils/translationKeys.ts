@@ -305,6 +305,8 @@ export const CONTENTS = {
       uploadMobile: "contents.appearance.coverImage.uploadMobile",
       desktopSize: "contents.appearance.coverImage.desktopSize",
       mobileSize: "contents.appearance.coverImage.mobileSize",
+      desktopAlt: "contents.appearance.coverImage.desktopAlt",
+      mobileAlt: "contents.appearance.coverImage.mobileAlt",
     },
     description: {
       label: "contents.appearance.description.label",

@@ -159,5 +159,11 @@ export const CROP_SHAPE = {
 
 export type CropShapeType = (typeof CROP_SHAPE)[keyof typeof CROP_SHAPE];
 
+export const IMAGE_TYPE = {
+  DESKTOP: "desktop",
+  MOBILE: "mobile",
+} as const;
+export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
+
 export const isBrowser = typeof window !== "undefined";
 export const canUseDOM = typeof document !== "undefined";

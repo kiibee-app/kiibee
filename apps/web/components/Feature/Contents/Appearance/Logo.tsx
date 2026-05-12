@@ -23,6 +23,7 @@ import {
   LogoHeader,
   Row,
   LogoImage,
+  LogoUploadWrap,
 } from "./styles";
 import { CROP_SHAPE, INPUT_TYPE, LOGO_MODE, Mode } from "@/utils/ui";
 import GenericButton from "@/components/UI/GenericButton";
@@ -100,9 +101,7 @@ export default function LogoSection() {
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
               />
             ) : (
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "12px" }}
-              >
+              <LogoUploadWrap>
                 <GenericButton
                   variant={VARIANT.PRIMARY}
                   minWidth="137px"
@@ -112,7 +111,7 @@ export default function LogoSection() {
                 </GenericButton>
 
                 {image && <LogoImage src={image} />}
-              </div>
+              </LogoUploadWrap>
             )}
           </ControlWrap>
 
