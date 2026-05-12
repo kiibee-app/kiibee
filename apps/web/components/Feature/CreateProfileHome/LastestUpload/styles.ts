@@ -178,3 +178,22 @@ export const RightControlButton = styled(GenericButton).attrs({
   color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border: none;
 `;
+
+export const ModalContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 120px 24px 24px;
+  box-sizing: border-box;
+  gap: 10px;
+
+  ${media.tablet} {
+    padding: 80px 16px 16px;
+  }
+`;
+
+export const ModalDescription = styled(MonoText)`
+  max-width: 420px;
+  line-height: 1.6;
+`;

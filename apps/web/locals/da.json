@@ -69,7 +69,13 @@
       "description": "PERFEKT TILBEREDT FASAN - sådan gør du, når fasanen skal være saftig og mør. Bogen indeholder kun opskrifter på fasan og viser med flotte billeder og gode beskrivelser, hvordan du får det bedste resultat til både hverdag og festmiddag.",
       "readMore": "Leje 50 kr",
       "access": "Adgang i 3 måneder",
-      "imageAlt": "Seneste upload-billede"
+      "imageAlt": "Seneste upload-billede",
+      "loginModal": {
+        "title": "Login påkrævet",
+        "cancelLabel": "Log ind",
+        "confirmLabel": "Opret konto",
+        "message": "For at fortsætte med dit køb, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik."
+      }
     }
   },
   "createProfileCollections": {
