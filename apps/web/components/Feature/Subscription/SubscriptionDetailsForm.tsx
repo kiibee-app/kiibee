@@ -38,6 +38,7 @@ export default function SubscriptionDetailsForm() {
     isSubmitEnabled,
     getPlanPriceLabel,
     onSubmit,
+    isInviteSubmitting,
   } = useSubscriptionContext();
 
   const planOptions = useMemo(
@@ -130,7 +131,11 @@ export default function SubscriptionDetailsForm() {
         </TwoColumnRow>
       </FieldGrid>
 
-      <ContinueButton type="submit" disabled={!isSubmitEnabled}>
+      <ContinueButton
+        type="submit"
+        disabled={!isSubmitEnabled || isInviteSubmitting}
+        isLoading={isInviteSubmitting}
+      >
         {t(SUBSCRIPTION.continue)}
       </ContinueButton>
     </Form>

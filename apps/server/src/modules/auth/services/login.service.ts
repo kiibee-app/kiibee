@@ -59,21 +59,23 @@ export const loginService = async (
       );
     }
 
-    const refreshTokenHash = await bcrypt.hash(refreshToken, 12);
-    const sessionId = randomUUID();
-    const expiresAt = new Date();
-    expiresAt.setDate(expiresAt.getDate() + 7);
+    if (refreshToken) {
+      const refreshTokenHash = await bcrypt.hash(refreshToken, 12);
+      const sessionId = randomUUID();
+      const expiresAt = new Date();
+      expiresAt.setDate(expiresAt.getDate() + 7);
 
-    await tx.delete(userSessions).where(eq(userSessions.userId, user.id));
+      await tx.delete(userSessions).where(eq(userSessions.userId, user.id));
 
-    await tx.insert(userSessions).values({
-      id: sessionId,
-      userId: user.id,
-      refreshTokenHash,
-      ipAddress: ipAddress || null,
-      userAgent: userAgent || null,
-      expiresAt,
-    });
+      await tx.insert(userSessions).values({
+        id: sessionId,
+        userId: user.id,
+        refreshTokenHash,
+        ipAddress: ipAddress || null,
+        userAgent: userAgent || null,
+        expiresAt,
+      });
+    }
 
     const userWithoutPassword = Object.fromEntries(
       Object.entries(user).filter(([key]) => key !== 'passwordHash'),

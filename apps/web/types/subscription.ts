@@ -23,7 +23,7 @@ export type SubscriptionDetailsFormProps = {
   onTogglePasswordVisibility: (key: PasswordVisibilityKey) => void;
   isSubmitEnabled: boolean;
   getPlanPriceLabel: (planId: string) => string;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void | Promise<void>;
   t: (key: string) => string;
 };
 
@@ -51,5 +51,10 @@ export interface SubscriptionContextValue {
   onPasswordChange: (value: string) => void;
   onRepeatPasswordChange: (value: string) => void;
   onTogglePasswordVisibility: (key: PasswordVisibilityKey) => void;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void | Promise<void>;
+  isCreatorInviteFlow: boolean;
+  isValidatingInviteToken: boolean;
+  isInviteSubmitting: boolean;
+  inviteTokenError: string | null;
+  inviteSubmitError: string | null;
 }

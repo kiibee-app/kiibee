@@ -14,10 +14,24 @@ import {
   useSubscriptionContext,
 } from "@/providers/subscriptionProvider";
 import { Content, SubscriptionPageInner, SubscriptionShell } from "./styles";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
+import { ALERT } from "@/utils/common";
 
 function SubscriptionSectionInner() {
   const { t } = useTranslation();
-  const { currentStep, setCurrentStep } = useSubscriptionContext();
+  const {
+    currentStep,
+    setCurrentStep,
+    inviteTokenError,
+    inviteSubmitError,
+    isCreatorInviteFlow,
+  } = useSubscriptionContext();
+
+  const showInviteSubmitError =
+    isCreatorInviteFlow &&
+    Boolean(inviteSubmitError) &&
+    currentStep === SUBSCRIPTION_STEP.DETAILS;
 
   return (
     <SubscriptionShell>
@@ -35,22 +49,58 @@ function SubscriptionSectionInner() {
             height={42}
           />
 
-          {currentStep === SUBSCRIPTION_STEP.PLAN && <SubscriptionPlanStep />}
-          {currentStep === SUBSCRIPTION_STEP.DETAILS && (
+          {inviteTokenError ? (
+            <MonoText
+              $use="Body_Regular"
+              role={ALERT}
+              style={{
+                color: COLORS.primary.RED,
+                textAlign: "center",
+                maxWidth: 420,
+              }}
+            >
+              {inviteTokenError}
+            </MonoText>
+          ) : null}
+
+          {showInviteSubmitError ? (
+            <MonoText
+              $use="Body_Regular"
+              role={ALERT}
+              style={{
+                color: COLORS.primary.RED,
+                textAlign: "center",
+                maxWidth: 420,
+              }}
+            >
+              {inviteSubmitError}
+            </MonoText>
+          ) : null}
+
+          {!inviteTokenError && currentStep === SUBSCRIPTION_STEP.PLAN ? (
+            <SubscriptionPlanStep />
+          ) : null}
+          {!inviteTokenError && currentStep === SUBSCRIPTION_STEP.DETAILS ? (
             <SubscriptionDetailsForm />
-          )}
-          {currentStep === SUBSCRIPTION_STEP.PAYMENT && (
+          ) : null}
+          {!inviteTokenError &&
+          currentStep === SUBSCRIPTION_STEP.PAYMENT &&
+          !isCreatorInviteFlow ? (
             <SubscriptionPaymentStep />
-          )}
+          ) : null}
         </Content>
       </SubscriptionPageInner>
     </SubscriptionShell>
   );
 }
 
-export default function SubscriptionSection() {
+export default function SubscriptionSection({
+  setupToken,
+}: {
+  setupToken?: string | null;
+}) {
   return (
-    <SubscriptionProvider>
+    <SubscriptionProvider setupToken={setupToken}>
       <SubscriptionSectionInner />
     </SubscriptionProvider>
   );

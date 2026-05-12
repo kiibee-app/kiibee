@@ -23,8 +23,18 @@ import { BUTTON } from "@/utils/Constants";
 
 export default function SubscriptionPlanStep() {
   const { t } = useTranslation();
-  const { selectedPlan, setSelectedPlan, handleContinue } =
-    useSubscriptionContext();
+  const {
+    selectedPlan,
+    setSelectedPlan,
+    handleContinue,
+    isCreatorInviteFlow,
+    isValidatingInviteToken,
+    inviteTokenError,
+  } = useSubscriptionContext();
+
+  const continueDisabled =
+    Boolean(inviteTokenError) ||
+    (isCreatorInviteFlow && isValidatingInviteToken);
 
   return (
     <>
@@ -61,7 +71,11 @@ export default function SubscriptionPlanStep() {
         {t(SUBSCRIPTION.comparePlans)}
       </CompareLink>
 
-      <FullWidthContinueButton type={BUTTON} onClick={handleContinue}>
+      <FullWidthContinueButton
+        type={BUTTON}
+        onClick={handleContinue}
+        disabled={continueDisabled}
+      >
         {t(SUBSCRIPTION.continue)}
       </FullWidthContinueButton>
     </>
