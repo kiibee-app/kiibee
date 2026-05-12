@@ -14,6 +14,7 @@
  */
 
 import 'dotenv/config';
+import { eq } from 'drizzle-orm';
 import { db } from '../db';
 import { dataMigrations } from '../schema/system/dataMigrations.schema';
 import { MIGRATION_ORDER } from './umbraco-mappings';
@@ -47,7 +48,6 @@ async function updateMigrationRecord(
     errorLog?: unknown;
   },
 ) {
-  const { eq } = await import('drizzle-orm');
   await db
     .update(dataMigrations)
     .set({
