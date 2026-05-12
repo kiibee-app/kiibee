@@ -13,6 +13,21 @@ import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 import { logger } from 'src/logger/logger';
 
+function isPostgresUniqueViolation(error: unknown): boolean {
+  if (!error || typeof error !== 'object') {
+    return false;
+  }
+  const err = error as { code?: string; cause?: unknown };
+  if (err.code === '23505') {
+    return true;
+  }
+  const cause = err.cause;
+  if (cause && typeof cause === 'object' && 'code' in cause) {
+    return (cause as { code: string }).code === '23505';
+  }
+  return false;
+}
+
 export const approveCreatorRequestService = async (
   requestId: string,
   approverUserId: string,
@@ -44,15 +59,30 @@ export const approveCreatorRequestService = async (
       );
     }
 
+    const applicationEmail = validatedRequest[0].email.trim().toLowerCase();
+
+    const [existingUser] = await db
+      .select({ id: users.id })
+      .from(users)
+      .where(and(eq(users.email, applicationEmail), eq(users.isDeleted, false)))
+      .limit(1);
+
+    if (existingUser) {
+      throw new HttpException(
+        'A user account with this email already exists. Remove or merge the existing account before approving this creator request.',
+        HttpStatus.CONFLICT,
+      );
+    }
+
     const userData = {
       id: randomUUID(),
       firstName: validatedRequest[0].firstName,
       lastName: validatedRequest[0].lastName,
       fullName: validatedRequest[0].fullName,
-      email: validatedRequest[0].email,
+      email: applicationEmail,
       role: ROLE.CREATOR,
       status: STATUS.PENDING_SETUP,
-      isMailVerified: false,
+      isEmailVerified: false,
     };
     const creatorData = {
       id: randomUUID(),
@@ -75,6 +105,7 @@ export const approveCreatorRequestService = async (
           status: STATUS.APPROVED,
           isDeleted: true,
           approvedUserId: approverUserId,
+          updatedAt: new Date(),
         })
         .where(eq(creatorApplicationRequests.id, requestId));
     });
@@ -88,7 +119,7 @@ export const approveCreatorRequestService = async (
       expiresAt: new Date(Date.now() + Time.ONE_DAY),
     });
 
-    const setupLink = `${frontendBaseUrl}/creator/setup?token=${token}`;
+    const setupLink = `${frontendBaseUrl}/creator-plans?token=${token}`;
 
     runInBackground(
       sendTemplateEmail({
@@ -97,7 +128,6 @@ export const approveCreatorRequestService = async (
         templateName: templateName.APPROVED_CREATOR,
         variables: {
           name: userData.firstName,
-          guidelinesLink: `${frontendBaseUrl}/creator/guidelines`,
           setupLink,
         },
       }),
@@ -112,6 +142,15 @@ export const approveCreatorRequestService = async (
     if (error instanceof HttpException) {
       throw error;
     }
+    if (isPostgresUniqueViolation(error)) {
+      throw new HttpException(
+        'This email is already registered. The creator cannot be approved until that account is resolved.',
+        HttpStatus.CONFLICT,
+      );
+    }
+    const detail =
+      error instanceof Error ? error.message : JSON.stringify(error);
+    logger.error('Approve creator unexpected error detail:', detail);
     throw new HttpException(
       'Failed to approve creator request',
       HttpStatus.INTERNAL_SERVER_ERROR,

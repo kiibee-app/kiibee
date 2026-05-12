@@ -811,6 +811,11 @@
         "meta": "Maks. 70 filer",
         "price": "299 kr/md"
       }
+    },
+    "invite": {
+      "invalidToken": "Dette opsætningslink er ugyldigt eller udløbet. Kontakt Kiibee, hvis du har brug for en ny invitation.",
+      "setupFailed": "Vi kunne ikke færdiggøre din kontooversigt. Tjek din e-mail og adgangskode, og prøv igen.",
+      "loginAfterSetupFailed": "Din konto blev oprettet, men login mislykkedes. Prøv at logge ind fra login-siden."
     }
   },
   "pricingFaq": {

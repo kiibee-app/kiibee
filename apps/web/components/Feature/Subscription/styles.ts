@@ -42,7 +42,7 @@ export const BackActionButton = styled.button`
 
 export const Content = styled.div`
   width: 100%;
-  max-width: 649px;
+  max-width: 720px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

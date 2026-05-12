@@ -16,7 +16,7 @@ import {
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const isLoginRoute = pathname === "/login" || pathname === "/";
+  const isLoginRoute = pathname === "/login";
   const meta = getPageMeta(pathname);
 
   const toggleSidebar = useCallback(() => setSidebarOpen((prev) => !prev), []);

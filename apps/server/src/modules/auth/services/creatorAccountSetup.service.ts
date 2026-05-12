@@ -1,12 +1,26 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import { CreatorAccountSetupDto } from '../dto/creatorAccountSetup.dto';
 import { success } from 'src/utils/sendResponse';
 import { db } from 'src/database/db';
-import { creatorPlans, users, usersToken } from 'src/database/schema';
-import { eq } from 'drizzle-orm/sql/expressions/conditions';
+import { creatorPlans, plans, users, usersToken } from 'src/database/schema';
+import { and, eq } from 'drizzle-orm/sql/expressions/conditions';
 import { ACCOUNT_STATUS } from 'src/utils/constant';
 import { hashPassword } from 'src/utils/passwordHash';
 import { logger } from 'src/logger/logger';
+
+const FRONTEND_PLAN_SLUG_TO_DB_NAME: Record<string, string> = {
+  'try-kiibee': 'Try Kiibee',
+  'start-up': 'Start-up',
+  pro: 'Pro',
+};
+
+const UUID_REGEX =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+function isDatabaseUuid(value: string): boolean {
+  return UUID_REGEX.test(value.trim());
+}
 
 export const setupCreatorAccountService = async (
   payload: CreatorAccountSetupDto,
@@ -33,8 +47,10 @@ export const setupCreatorAccountService = async (
     }
 
     const passwordHash = await hashPassword(password);
+    const normalizedConfirmEmail = confirmEmail.trim().toLowerCase();
 
     let userId: string | null = null;
+    let resolvedPlanId: string | null = null;
 
     await db.transaction(async (tx) => {
       const [tokenData] = await tx
@@ -60,7 +76,10 @@ export const setupCreatorAccountService = async (
         .where(eq(users.id, tokenData.userId))
         .limit(1);
 
-      if (!emailFromToken || emailFromToken.email !== confirmEmail) {
+      if (
+        !emailFromToken ||
+        emailFromToken.email.trim().toLowerCase() !== normalizedConfirmEmail
+      ) {
         throw new HttpException(
           'Email does not match token',
           HttpStatus.BAD_REQUEST,
@@ -68,6 +87,30 @@ export const setupCreatorAccountService = async (
       }
 
       userId = tokenData.userId;
+
+      let planUuid = planId.trim();
+      if (!isDatabaseUuid(planUuid)) {
+        const planName = FRONTEND_PLAN_SLUG_TO_DB_NAME[planUuid];
+        if (!planName) {
+          throw new HttpException(
+            'Invalid subscription plan',
+            HttpStatus.BAD_REQUEST,
+          );
+        }
+        const [planRow] = await tx
+          .select({ id: plans.id })
+          .from(plans)
+          .where(and(eq(plans.name, planName), eq(plans.isActive, true)))
+          .limit(1);
+        if (!planRow) {
+          throw new HttpException(
+            'Selected plan is not available. Please refresh the page or contact support.',
+            HttpStatus.BAD_REQUEST,
+          );
+        }
+        planUuid = planRow.id;
+      }
+      resolvedPlanId = planUuid;
 
       await tx
         .update(users)
@@ -79,8 +122,8 @@ export const setupCreatorAccountService = async (
         .where(eq(users.id, userId));
 
       await tx.insert(creatorPlans).values({
-        id: crypto.randomUUID(),
-        planId,
+        id: randomUUID(),
+        planId: planUuid,
         creatorId: userId,
       });
 
@@ -92,8 +135,8 @@ export const setupCreatorAccountService = async (
 
     const responseData = {
       userId,
-      email: confirmEmail,
-      planId,
+      email: normalizedConfirmEmail,
+      planId: resolvedPlanId ?? planId.trim(),
     };
 
     return success(

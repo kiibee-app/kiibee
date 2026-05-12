@@ -9,10 +9,12 @@ const SubscriptionContext =
 
 export const SubscriptionProvider = ({
   children,
+  setupToken,
 }: {
   children: React.ReactNode;
+  setupToken?: string | null;
 }) => {
-  const value = useSubscriptionFlow();
+  const value = useSubscriptionFlow(setupToken ?? undefined);
 
   return (
     <SubscriptionContext.Provider value={value}>

@@ -6,6 +6,7 @@ export const API = {
     forgetPassword: "/auth/forget-password",
     resetPassword: "/auth/reset-password",
     creatorRequest: "/auth/creator-request",
+    creatorSetup: "/auth/creator/setup",
     signup: "/auth/signup",
     userProfile: "/auth/user/profile",
   },

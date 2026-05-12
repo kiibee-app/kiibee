@@ -17,6 +17,8 @@ export const createSessionService = async (
   const expiresAt = new Date();
   expiresAt.setDate(expiresAt.getDate() + 7);
 
+  await db.delete(userSessions).where(eq(userSessions.userId, userId));
+
   await db.insert(userSessions).values({
     id: sessionId,
     userId,

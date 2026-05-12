@@ -811,6 +811,11 @@
         "meta": "Max. 70 files",
         "price": "299 KR/mo"
       }
+    },
+    "invite": {
+      "invalidToken": "This setup link is invalid or has expired. Please contact Kiibee if you need a new invitation.",
+      "setupFailed": "We could not finish your account setup. Check your email and password, then try again.",
+      "loginAfterSetupFailed": "Your account was created but sign-in failed. Please try logging in from the login page."
     }
   },
   "pricingFaq": {
