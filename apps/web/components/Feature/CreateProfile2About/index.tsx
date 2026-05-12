@@ -7,6 +7,7 @@ export default function CreateProfileAbout() {
   return (
     <CreateProfileLayout>
       <CreateProfileHeroFrame />
+      <h1>About</h1>
     </CreateProfileLayout>
   );
 }
