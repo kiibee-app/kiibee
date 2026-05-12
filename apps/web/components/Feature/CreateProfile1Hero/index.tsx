@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import coverImage from "@/assets/images/creators/create_profile_hero1.png";
@@ -30,9 +31,18 @@ import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 
 export default function CreateProfile1Hero() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<ProfileTabKey>(HOME);
+  const router = useRouter();
+  const pathname = usePathname();
+  const activeTab =
+    PROFILE_TABS.find((tab) => tab.href === pathname)?.key ?? HOME;
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+
+  const handleTabChange = (tab: ProfileTabKey) => {
+    const target = PROFILE_TABS.find((item) => item.key === tab)?.href;
+    if (!target) return;
+    router.push(target);
+  };
 
   return (
     <HeroWrapper>
@@ -81,7 +91,7 @@ export default function CreateProfile1Hero() {
           <GenericTabs
             tabs={PROFILE_TABS}
             activeTab={activeTab}
-            onTabChange={setActiveTab}
+            onTabChange={handleTabChange}
             search={{
               open: searchOpen,
               value: searchValue,
