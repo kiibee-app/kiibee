@@ -1,6 +1,4 @@
 import { setupCreatorAccountService } from 'src/modules/auth/services/creatorAccountSetup.service';
-import { db } from 'src/database/db';
-import { hashPassword } from 'src/utils/passwordHash';
 import { ACCOUNT_STATUS } from 'src/utils/constant';
 
 jest.mock('src/database/db', () => ({
@@ -10,15 +8,14 @@ jest.mock('src/database/db', () => ({
 }));
 
 jest.mock('src/utils/passwordHash');
-const crypto = require('crypto');
 
-const originalRandomUUID = crypto.randomUUID;
-crypto.randomUUID = jest.fn().mockReturnValue('plan-id-123');
+jest.mock('crypto', () => ({
+  randomUUID: jest.fn().mockReturnValue('plan-id-123'),
+}));
 
 import { db as mockDb } from 'src/database/db';
 import { hashPassword as mockHashPassword } from 'src/utils/passwordHash';
-
-const { randomUUID } = require('crypto');
+import { randomUUID } from 'crypto';
 
 describe('setupCreatorAccountService', () => {
   const TEST_PLAN_UUID = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
