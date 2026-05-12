@@ -8,6 +8,11 @@ import { SmoothScrollProvider } from "../providers/smoothScrollProvider";
 import StyledComponentsRegistry from "@/lib/registry";
 import { QueryProvider } from "@/providers/queryProvider";
 import { ToastProvider } from "@/providers/toastProvider";
+import {
+  OPEN_GRAPH_LOCALE_EN_US,
+  TWITTER_CARD_SUMMARY_LARGE_IMAGE,
+  WEBSITE,
+} from "@/utils/Constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +25,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kiibee - Discover Unique Digital Content",
+  title: {
+    default: "Kiibee - Discover Unique Digital Content",
+    template: "%s | Kiibee",
+  },
   description:
     "Discover and enjoy unique digital content from your favorite creators. Watch, listen, and learn directly from independent creators. Rent or buy exclusive content in just a few clicks.",
+  openGraph: {
+    siteName: "Kiibee",
+    locale: OPEN_GRAPH_LOCALE_EN_US,
+    type: WEBSITE,
+  },
+  twitter: {
+    card: TWITTER_CARD_SUMMARY_LARGE_IMAGE,
+  },
 };
 
 export default function RootLayout({
