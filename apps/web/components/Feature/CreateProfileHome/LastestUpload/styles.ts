@@ -183,11 +183,10 @@ export const ModalContentWrapper = styled.div`
   text-align: center;
   padding: 120px 24px 24px;
   box-sizing: border-box;
-  gap: 32px;
+  gap: 10px;
 
   ${media.tablet} {
     padding: 80px 16px 16px;
-    gap: 24px;
   }
 `;
 

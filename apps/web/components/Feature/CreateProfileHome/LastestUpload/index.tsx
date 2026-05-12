@@ -102,7 +102,7 @@ export default function LastestUpload() {
         showCloseButton
       >
         <ModalContentWrapper>
-          <MonoText $use="H5_Medium">
+          <MonoText $use="Heading3">
             {t("createProfileHome.latestUpload.loginModal.title")}
           </MonoText>
           <ModalDescription $use="Body_Medium">
