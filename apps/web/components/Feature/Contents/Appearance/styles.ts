@@ -244,7 +244,6 @@ export const PreviewImage = styled.img<{ $type: ImageType }>`
   border-radius: 8px;
   width: 100%;
   height: auto;
-  max-width: 100%;
 
   ${({ $type }) =>
     $type === IMAGE_TYPE.DESKTOP
