@@ -21,9 +21,11 @@ import { hashPassword as mockHashPassword } from 'src/utils/passwordHash';
 const { randomUUID } = require('crypto');
 
 describe('setupCreatorAccountService', () => {
+  const TEST_PLAN_UUID = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
+
   const mockPayload = {
     token: 'valid-token',
-    planId: 'plan-123',
+    planId: TEST_PLAN_UUID,
     confirmEmail: 'test@example.com',
     password: 'password123',
     confirmPassword: 'password123',
@@ -209,7 +211,7 @@ describe('setupCreatorAccountService', () => {
       data: {
         userId: 'user-id',
         email: 'test@example.com',
-        planId: 'plan-123',
+        planId: TEST_PLAN_UUID,
       },
     });
   });
@@ -301,7 +303,7 @@ describe('setupCreatorAccountService', () => {
     const insertResult = capturedTx.insert.mock.results[0].value;
     expect(insertResult.values).toHaveBeenCalledWith({
       id: expect.any(String),
-      planId: 'plan-123',
+      planId: TEST_PLAN_UUID,
       creatorId: 'user-id',
     });
   });
@@ -347,6 +349,68 @@ describe('setupCreatorAccountService', () => {
     expect(capturedTx.update).toHaveBeenCalledTimes(2);
     const tokenUpdateResult = capturedTx.update.mock.results[1].value;
     expect(tokenUpdateResult.set).toHaveBeenCalledWith({ isUsed: true });
+  });
+
+  it('should resolve try-kiibee slug to plan row uuid before insert', async () => {
+    const resolvedUuid = 'aaaaaaaa-bbbb-4ccc-dddd-eeeeeeeeeeee';
+    let capturedTx: {
+      insert: jest.Mock;
+      select: jest.Mock;
+    };
+
+    const mockTransaction = jest.fn().mockImplementation(async (callback) => {
+      capturedTx = {
+        select: jest
+          .fn()
+          .mockReturnValueOnce({
+            from: jest.fn().mockReturnValue({
+              where: jest.fn().mockReturnValue({
+                limit: jest.fn().mockResolvedValue([mockTokenData]),
+              }),
+            }),
+          })
+          .mockReturnValueOnce({
+            from: jest.fn().mockReturnValue({
+              where: jest.fn().mockReturnValue({
+                limit: jest.fn().mockResolvedValue([mockUser]),
+              }),
+            }),
+          })
+          .mockReturnValueOnce({
+            from: jest.fn().mockReturnValue({
+              where: jest.fn().mockReturnValue({
+                limit: jest.fn().mockResolvedValue([{ id: resolvedUuid }]),
+              }),
+            }),
+          }),
+        update: jest.fn().mockReturnValue({
+          set: jest.fn().mockReturnValue({
+            where: jest.fn().mockResolvedValue(undefined),
+          }),
+        }),
+        insert: jest.fn().mockReturnValue({
+          values: jest.fn().mockResolvedValue(undefined),
+        }),
+      };
+      return callback(capturedTx);
+    });
+
+    mockDb.transaction = mockTransaction;
+
+    const slugPayload = {
+      ...mockPayload,
+      planId: 'try-kiibee',
+    };
+
+    const result = await setupCreatorAccountService(slugPayload);
+
+    expect(result.data?.planId).toBe(resolvedUuid);
+    const insertResult = capturedTx.insert.mock.results[0].value;
+    expect(insertResult.values).toHaveBeenCalledWith({
+      id: expect.any(String),
+      planId: resolvedUuid,
+      creatorId: 'user-id',
+    });
   });
 
   it('should handle transaction failures', async () => {

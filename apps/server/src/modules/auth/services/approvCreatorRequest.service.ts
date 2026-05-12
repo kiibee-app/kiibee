@@ -128,7 +128,6 @@ export const approveCreatorRequestService = async (
         templateName: templateName.APPROVED_CREATOR,
         variables: {
           name: userData.firstName,
-          guidelinesLink: `${frontendBaseUrl}/for-creators`,
           setupLink,
         },
       }),
