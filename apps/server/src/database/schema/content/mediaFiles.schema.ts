@@ -46,6 +46,11 @@ export const mediaFiles = pgTable(
     isPublished: boolean('is_published').notNull().default(false),
     publishedAt: timestamp('published_at', { withTimezone: true }),
 
+    // Umbraco migration mapping (cmsContent.nodeId)
+    legacyUmbracoId: integer('legacy_umbraco_id'),
+    // Original Cloudflare URL before migration to DO Spaces
+    legacyCloudflareUrl: text('legacy_cloudflare_url'),
+
     ...softDeleteFields,
     ...baseTimestamps,
   },
@@ -60,6 +65,9 @@ export const mediaFiles = pgTable(
     creatorPublishedIdx: index('media_files_creator_published_idx').on(
       table.creatorId,
       table.isPublished,
+    ),
+    legacyIdIdx: index('media_files_legacy_umbraco_id_idx').on(
+      table.legacyUmbracoId,
     ),
   }),
 );

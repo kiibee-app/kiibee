@@ -2,6 +2,7 @@ import {
   pgTable,
   text,
   varchar,
+  integer,
   boolean,
   index,
   uniqueIndex,
@@ -19,6 +20,10 @@ export const tags = pgTable(
       onDelete: 'set null',
     }),
     isActive: boolean('is_active').notNull().default(true),
+
+    // Umbraco migration mapping (cmsTags.id)
+    legacyUmbracoId: integer('legacy_umbraco_id'),
+
     ...baseTimestamps,
   },
   (table) => ({

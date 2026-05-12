@@ -2,6 +2,7 @@ import {
   pgTable,
   text,
   varchar,
+  integer,
   boolean,
   index,
   uniqueIndex,
@@ -33,6 +34,9 @@ export const users = pgTable(
     isEmailVerified: boolean('is_email_verified').notNull().default(false),
     isActive: boolean('is_active').notNull().default(true),
 
+    // Umbraco migration mapping (umbracoUser.id / cmsMember.nodeId)
+    legacyUmbracoId: integer('legacy_umbraco_id'),
+
     ...softDeleteFields,
     ...baseTimestamps,
   },
@@ -41,5 +45,6 @@ export const users = pgTable(
     roleIdx: index('users_role_idx').on(table.role),
     statusIdx: index('users_status_idx').on(table.status),
     isDeletedIdx: index('users_is_deleted_idx').on(table.isDeleted),
+    legacyIdIdx: index('users_legacy_umbraco_id_idx').on(table.legacyUmbracoId),
   }),
 );

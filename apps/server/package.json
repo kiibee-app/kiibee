@@ -22,7 +22,8 @@
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit push",
     "db:push": "drizzle-kit push",
-    "seed": "tsx src/database/seed/index.ts"
+    "seed": "tsx src/database/seed/index.ts",
+    "migrate:umbraco": "tsx src/database/migration-scripts/run-migration.ts"
   },
   "dependencies": {
     "@fastify/cors": "^11.2.0",

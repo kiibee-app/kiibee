@@ -60,6 +60,10 @@ export * from './events/liveEvents.schema';
 // Integrations
 export * from './integrations/externalImports.schema';
 
+// Storage
+export * from './storage/cloudStorageFiles.schema';
+
 // System
 export * from './system/auditLogs.schema';
 export * from './system/notifications.schema';
+export * from './system/dataMigrations.schema';

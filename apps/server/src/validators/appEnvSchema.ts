@@ -27,6 +27,23 @@ export const appEnvSchema = smtpEnvSchema.extend({
   BCRYPT_SALT_ROUNDS: z.coerce.number().int().min(4).max(31).default(12),
   SENDER_EMAIL: z.string().email('SENDER_EMAIL must be a valid email'),
   SENDER_NAME: z.string().trim().min(1, 'SENDER_NAME is required'),
+
+  // DigitalOcean Spaces (S3-compatible)
+  DO_SPACES_KEY: z.string().trim().optional(),
+  DO_SPACES_SECRET: z.string().trim().optional(),
+  DO_SPACES_ENDPOINT: z.string().trim().optional(),
+  DO_SPACES_BUCKET: z.string().trim().optional(),
+  DO_SPACES_REGION: z.string().trim().default('fra1'),
+  DO_SPACES_CDN_URL: z.string().trim().optional(),
+
+  // Cloudflare (for migration / CDN)
+  CLOUDFLARE_ACCOUNT_ID: z.string().trim().optional(),
+  CLOUDFLARE_API_TOKEN: z.string().trim().optional(),
+  CLOUDFLARE_R2_BUCKET: z.string().trim().optional(),
+  CLOUDFLARE_CDN_URL: z.string().trim().optional(),
+
+  // Umbraco source DB (for migration only)
+  UMBRACO_DB_CONNECTION_STRING: z.string().trim().optional(),
 });
 
 export type AppEnv = z.infer<typeof appEnvSchema>;

@@ -38,6 +38,9 @@ export const collections = pgTable(
     isPublished: boolean('is_published').notNull().default(false),
     publishedAt: timestamp('published_at', { withTimezone: true }),
 
+    // Umbraco migration mapping (cmsContent.nodeId)
+    legacyUmbracoId: integer('legacy_umbraco_id'),
+
     ...softDeleteFields,
     ...baseTimestamps,
   },
@@ -47,5 +50,8 @@ export const collections = pgTable(
     visibilityIdx: index('collections_visibility_idx').on(table.visibility),
     isPublishedIdx: index('collections_is_published_idx').on(table.isPublished),
     isDeletedIdx: index('collections_is_deleted_idx').on(table.isDeleted),
+    legacyIdIdx: index('collections_legacy_umbraco_id_idx').on(
+      table.legacyUmbracoId,
+    ),
   }),
 );
