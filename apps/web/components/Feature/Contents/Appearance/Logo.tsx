@@ -22,16 +22,19 @@ import {
   ToggleButton,
   LogoHeader,
   Row,
+  LogoImage,
 } from "./styles";
-import { INPUT_TYPE, LOGO_MODE, Mode } from "@/utils/ui";
+import { CROP_SHAPE, INPUT_TYPE, LOGO_MODE, Mode } from "@/utils/ui";
 import GenericButton from "@/components/UI/GenericButton";
+import ImageUploadCropModal from "@/components/UI/ImageUploadCropModal";
 
 export default function LogoSection() {
   const { t } = useTranslation();
 
   const [mode, setMode] = useState<Mode>(LOGO_MODE.TEXT);
   const [logoText, setLogoText] = useState("");
-
+  const [open, setOpen] = useState(false);
+  const [image, setImage] = useState<string | null>(null);
   const texts = useMemo(
     () => ({
       title: t(CONTENTS.appearance.logo.title),
@@ -55,7 +58,10 @@ export default function LogoSection() {
   }, []);
 
   const isTextMode = mode === LOGO_MODE.TEXT;
-
+  const handleImageApply = (cropped: string) => {
+    setImage(cropped);
+    setOpen(false);
+  };
   return (
     <AppearancePanel>
       <SectionList>
@@ -94,9 +100,19 @@ export default function LogoSection() {
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
               />
             ) : (
-              <GenericButton variant={VARIANT.PRIMARY} minWidth="137px">
-                {texts.uploadButton}
-              </GenericButton>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "12px" }}
+              >
+                <GenericButton
+                  variant={VARIANT.PRIMARY}
+                  minWidth="137px"
+                  onClick={() => setOpen(true)}
+                >
+                  {texts.uploadButton}
+                </GenericButton>
+
+                {image && <LogoImage src={image} />}
+              </div>
             )}
           </ControlWrap>
 
@@ -110,6 +126,18 @@ export default function LogoSection() {
           )}
         </Row>
       </SectionList>
+      <ImageUploadCropModal
+        visible={open}
+        titleUpload={t("creatorProfile.uploadPhotoTitle")}
+        titleEdit={t("creatorProfile.editPhotoTitle")}
+        image={image}
+        onClose={() => setOpen(false)}
+        onApply={handleImageApply}
+        shape={CROP_SHAPE.RECT}
+        cropWidth={250}
+        cropHeight={60}
+        recommendedText={true}
+      />
     </AppearancePanel>
   );
 }

@@ -885,6 +885,7 @@
     "dragPhotoHere": "Drag photo here",
     "or": "or",
     "choosePhoto": "Choose photos to upload",
+    "recommendedImageSize": "Use {{cropWidth}}×{{cropHeight}} pixel image",
     "zoom": "Zoom",
     "apply": "Apply",
     "profilePhotoAlt": "Profile photo"

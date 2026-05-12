@@ -885,6 +885,7 @@
     "dragPhotoHere": "Træk foto her",
     "or": "eller",
     "choosePhoto": "Vælg fotos til upload",
+    "recommendedImageSize": "Brug {{cropWidth}}×{{cropHeight}} pixel billede",
     "zoom": "Zoom",
     "apply": "Anvend",
     "profilePhotoAlt": "Profilfoto"

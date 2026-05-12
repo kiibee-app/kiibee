@@ -213,3 +213,10 @@ export const LayoutImage = styled(Image)`
   object-fit: cover;
   object-position: top center;
 `;
+
+export const LogoImage = styled.img`
+  width: 160px;
+  height: 56px;
+  objectfit: cover;
+  border-radius: 8px;
+`;
