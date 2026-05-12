@@ -69,7 +69,13 @@
       "description": "PERFEKT TILBEREDT FASAN - how to prepare pheasant so it becomes juicy and tender. The book contains only pheasant recipes and shows with beautiful images and clear descriptions how to achieve the best results for both everyday meals and festive dinners.",
       "readMore": "Rent 50 kr",
       "access": "Access for 3 months",
-      "imageAlt": "Latest upload image"
+      "imageAlt": "Latest upload image",
+      "loginModal": {
+        "title": "Login required",
+        "cancelLabel": "Login",
+        "confirmLabel": "Create account",
+        "message": "To continue with your purchase, please log in to your Kiibee account. If you don't have an account yet, you can create one in just a moment."
+      }
     }
   },
   "createProfileCollections": {
