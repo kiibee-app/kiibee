@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { PATHS } from "@/utils/path";
 import { CREATE_PROFILE_HOME, NAV } from "@/utils/translationKeys";
@@ -9,7 +8,12 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import NavBar from "@/components/Layout/Navbar";
 import portrait from "@/assets/images/creators/profile_pic.png";
-import { Brand, BrandAvatar, BrandName } from "../CreateProfileHome/styles";
+import {
+  Brand,
+  BrandAvatar,
+  BrandAvatarImage,
+  BrandName,
+} from "../CreateProfileHome/styles";
 
 export default function CreateProfile1Navbar() {
   const { t } = useTranslation();
@@ -26,12 +30,11 @@ export default function CreateProfile1Navbar() {
       brand={
         <Brand href={PATHS.DASHBOARD_CREATOR}>
           <BrandAvatar>
-            <Image
+            <BrandAvatarImage
               src={portrait}
               alt={t(CREATE_PROFILE_HOME.brandName)}
               fill
               sizes="40px"
-              style={{ objectFit: "cover" }}
               priority
             />
           </BrandAvatar>

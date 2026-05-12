@@ -1,5 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import Image from "next/image";
 import { MonoText } from "@/components/UI/Monotext";
+
+const imageCoverStyles = css`
+  object-fit: cover;
+  object-position: center;
+`;
 
 export const HeroWrapper = styled.section`
   width: 100%;
@@ -37,6 +43,14 @@ export const CoverFrame = styled.div`
     height: 170px;
     border-radius: 14px;
   }
+`;
+
+export const CoverImage = styled(Image)`
+  ${imageCoverStyles}
+`;
+
+export const AvatarImage = styled(Image)`
+  ${imageCoverStyles}
 `;
 
 export const ContentInner = styled.div`

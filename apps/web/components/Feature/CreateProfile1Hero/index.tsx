@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
@@ -8,9 +7,11 @@ import coverImage from "@/assets/images/creators/create_profile_hero1.png";
 import avatarImage from "@/assets/images/creators/profile_pic.png";
 import GenericTabs from "@/components/UI/GenericTabs";
 import {
+  AvatarImage,
   AvatarWrap,
   ContentInner,
   CoverFrame,
+  CoverImage,
   CreatorBio,
   CreatorBioText,
   CreatorName,
@@ -36,12 +37,11 @@ export default function CreateProfile1Hero() {
   return (
     <HeroWrapper>
       <CoverFrame>
-        <Image
+        <CoverImage
           src={coverImage}
           alt={t(CREATE_PROFILE_HOME.title)}
           fill
           sizes="(max-width: 900px) 100vw, 1300px"
-          style={{ objectFit: "cover", objectPosition: "center" }}
           priority
         />
       </CoverFrame>
@@ -49,12 +49,11 @@ export default function CreateProfile1Hero() {
       <ContentInner>
         <ProfileSection>
           <AvatarWrap>
-            <Image
+            <AvatarImage
               src={avatarImage}
               alt={t(CREATE_PROFILE_HOME.title)}
               fill
               sizes="152px"
-              style={{ objectFit: "cover", objectPosition: "center" }}
             />
           </AvatarWrap>
 
