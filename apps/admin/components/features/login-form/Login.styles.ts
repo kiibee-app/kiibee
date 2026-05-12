@@ -18,6 +18,15 @@ export const Card = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.secondary.border};
   border-radius: 16px;
   padding: 32px;
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    padding: 24px 20px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
 `;
 
 export const Header = styled.div`
@@ -43,6 +52,14 @@ export const Title = styled.h1`
   font-weight: 600;
   letter-spacing: -0.02em;
   color: ${({ theme }) => theme.colors.secondary.main};
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    font-size: 24px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    font-size: 20px;
+  }
 `;
 
 export const Subtitle = styled.p`

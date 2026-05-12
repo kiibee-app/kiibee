@@ -1,3 +1,5 @@
+import { canUseDOM, isBrowser } from "./ui";
+
 export const readFileAsDataUrl = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -23,6 +25,11 @@ export const getCroppedImg = (
   zoom: number,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
+    if (!isBrowser || !canUseDOM) {
+      reject(new Error("Image cropping requires a browser environment"));
+      return;
+    }
+
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.src = imageSrc;

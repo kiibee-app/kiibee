@@ -2,6 +2,8 @@
 
 import React, { useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm } from "react-hook-form";
 import {
   Container,
   Title,
@@ -32,12 +34,13 @@ import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { getProfileFields } from "@/utils/creatorProfilefields";
-import { PasswordState, ProfileForm } from "@/utils/creatorProfile";
+import { ProfileForm } from "@/utils/creatorProfile";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { GenericModal } from "@/components/UI/Modals";
 import { SuccessArcIcon } from "@/assets/icons";
 import { useRouter } from "next/navigation";
 import ImageUploader from "./ImageUploader";
+import { createResetPasswordSchema } from "@/lib/validation/schema";
 
 export default function CreatorProfile() {
   const { t } = useTranslation();
@@ -52,16 +55,32 @@ export default function CreatorProfile() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
     useState<boolean>(false);
-  const [passwords, setPasswords] = useState<PasswordState>(emptyPasswords);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
   const [avatarImage, setAvatarImage] = useState<string | null>(null);
 
+  const passwordSchema = useMemo(
+    () =>
+      createResetPasswordSchema({
+        currentRequired: t(CREATOR_PROFILE.currentPassword),
+        nextRequired: t(CREATOR_PROFILE.newPassword),
+        confirmRequired: t(CREATOR_PROFILE.confirmPassword),
+        confirmMismatch: t("viewerSignup.form.passwordMismatch"),
+      }),
+    [t],
+  );
+  type PasswordFormValues = ReturnType<typeof passwordSchema.parse>;
+  const passwordMethods = useForm<PasswordFormValues>({
+    resolver: zodResolver(passwordSchema),
+    mode: "onChange",
+    defaultValues: emptyPasswords,
+  });
+
   const dirty = useMemo(() => {
     const formChanged = JSON.stringify(form) !== JSON.stringify(saved);
-    const passwordChanged = Object.values(passwords).some(Boolean);
+    const passwordChanged = passwordMethods.formState.isDirty;
     return formChanged || passwordChanged;
-  }, [form, saved, passwords]);
+  }, [form, passwordMethods.formState.isDirty, saved]);
 
   const onChange = useCallback(
     (key: keyof ProfileForm) => (value: string | string[]) => {
@@ -70,16 +89,9 @@ export default function CreatorProfile() {
     [],
   );
 
-  const onPasswordChange = useCallback(
-    (field: keyof PasswordState, value?: string) => {
-      setPasswords((prev) => ({ ...prev, [field]: value ?? "" }));
-    },
-    [],
-  );
-
   const resetPasswords = useCallback(() => {
-    setPasswords(emptyPasswords);
-  }, []);
+    passwordMethods.reset(emptyPasswords);
+  }, [passwordMethods]);
 
   const handleCancel = useCallback(() => {
     setForm(saved);
@@ -98,10 +110,6 @@ export default function CreatorProfile() {
     setShowPassword(false);
     resetPasswords();
   }, [resetPasswords]);
-
-  const isPasswordFormValid = useMemo(() => {
-    return Object.values(passwords).every((val) => val.trim().length > 0);
-  }, [passwords]);
 
   const handlePasswordSave = useCallback(() => {
     resetPasswords();
@@ -196,15 +204,14 @@ export default function CreatorProfile() {
         onClose={handlePasswordClose}
         onCancel={handlePasswordClose}
         onConfirm={handlePasswordSave}
-        width="630px"
+        size="md"
         fullWidthButtons
         buttonRow
-        confirmDisabled={!isPasswordFormValid}
+        confirmDisabled={!passwordMethods.formState.isValid}
       >
-        <PasswordSection
-          passwords={passwords}
-          onPasswordChange={onPasswordChange}
-        />
+        <FormProvider {...passwordMethods}>
+          <PasswordSection />
+        </FormProvider>
       </GenericModal>
 
       <GenericModal
@@ -222,7 +229,7 @@ export default function CreatorProfile() {
         confirmLabel={t("nav.login")}
         onClose={() => setShowPasswordSuccessModal(false)}
         onConfirm={() => router.push(AUTH.login)}
-        width="480px"
+        size="sm"
         showCloseButton={false}
       />
       <GenericModal
@@ -265,8 +272,8 @@ export default function CreatorProfile() {
             ? handleDeleteSuccessClose
             : handleDeleteRequest
         }
-        width="480px"
-        padding="40px 30px"
+        size="sm"
+        spacing="xs"
         buttonRow={showDeleteModal}
         fullWidthButtons={showDeleteModal}
         showCloseButton={false}

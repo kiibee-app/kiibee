@@ -90,8 +90,8 @@ export default function ExportContent() {
         confirmLabel={t("contents.createCollectionSuccessModal.done")}
         onClose={() => setShowSuccessModal(false)}
         onConfirm={() => setShowSuccessModal(false)}
-        width="480px"
-        padding="40px 30px"
+        size="sm"
+        spacing="xs"
         showCloseButton={false}
       />
     </Card>

@@ -1,7 +1,7 @@
 "use client";
 
 import { API } from "@/lib/http/api/endpoints";
-import { persistAuthSession } from "@/lib/auth/authSession";
+
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { PATHS } from "@/utils/path";
 
@@ -31,9 +31,12 @@ export type LoginResponse = {
 };
 
 export type LoginUser = {
+  id?: string;
+  fullName?: string | null;
   email?: string;
   role?: string;
   status?: string;
+  avatarUrl?: string | null;
   [key: string]: unknown;
 };
 
@@ -41,9 +44,26 @@ const USER_ROLES = {
   VIEWER: "viewer",
 } as const;
 
+const ACCESS_TOKEN_KEY = "kiibee.accessToken";
+const REFRESH_TOKEN_KEY = "kiibee.refreshToken";
+const USER_KEY = "kiibee.user";
+
 export type LogoutResponse = {
   success?: boolean;
   message?: string;
+};
+
+export const mergeStoredLoginUser = (partial: Partial<LoginUser>) => {
+  if (typeof window === "undefined") return;
+
+  try {
+    const raw = window.localStorage.getItem(USER_KEY);
+    const prev = raw ? (JSON.parse(raw) as LoginUser) : {};
+    window.localStorage.setItem(
+      USER_KEY,
+      JSON.stringify({ ...prev, ...partial }),
+    );
+  } catch {}
 };
 
 export const persistLoginSession = (response: LoginResponse) => {
@@ -112,5 +132,5 @@ export const getPostLoginPath = (response: LoginResponse) => {
 export const useLogin = () =>
   usePostAPI<LoginResponse, LoginPayload>(API.auth.login);
 
-export const useLogout = () =>
+export const useLogoutMutation = () =>
   usePostAPI<LogoutResponse, void>(API.auth.logout);

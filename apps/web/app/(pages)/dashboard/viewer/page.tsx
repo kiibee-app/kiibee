@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import React, { Suspense } from "react";
-
 import creatorDashboardImage from "@/assets/images/creator-dashboard.png";
 import ClientDashboardViewer from "@/components/Feature/Dashboard/ClientDashboardViewer";
 import { SmoothScrollProvider } from "@/providers/smoothScrollProvider";
@@ -46,13 +45,7 @@ export const metadata: Metadata = {
 export default function DashboardViewerPage() {
   return (
     <Suspense fallback={<div />}>
-      <ThemeProvider>
-        <LanguageProvider>
-          <SmoothScrollProvider>
-            <ClientDashboardViewer />
-          </SmoothScrollProvider>
-        </LanguageProvider>
-      </ThemeProvider>
+      <ClientDashboardViewer />
     </Suspense>
   );
 }

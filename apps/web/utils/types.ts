@@ -1,5 +1,6 @@
 import type { ImageSource, Variant } from "@/utils/Constants";
 import type { ButtonSize } from "@/components/UI/GenericButton/variants";
+import { StaticImageData } from "next/image";
 
 export const FORMAT_TYPE = {
   VIDEO: "video",
@@ -39,4 +40,11 @@ export type TutorialVideoSection = {
   title: string;
   videoIds: string[];
   gridMaxWidth?: string;
+};
+
+export type LayoutCardConfig = {
+  key: string;
+  titleKey: string;
+  captionKey: string;
+  image: string | StaticImageData;
 };

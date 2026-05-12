@@ -1,4 +1,8 @@
 import { COLLECTION_TABLE_TYPE } from "@/utils/collection";
+import {
+  COUPON_DISCOUNT_FIXED_AMOUNT,
+  CouponDiscountType,
+} from "@/utils/common";
 
 export type CollectionRow = {
   id: string;
@@ -27,6 +31,9 @@ export type CollectionTableProps =
       onEdit?: (id: string) => void;
       onDelete?: (id: string) => void;
       onMore?: (id: string) => void;
+      onMoveUp?: (id: string) => void;
+      onMoveDown?: (id: string) => void;
+      onSettings?: (id: string) => void;
     }
   | {
       type: typeof COLLECTION_TABLE_TYPE.CONTENTS;
@@ -34,6 +41,9 @@ export type CollectionTableProps =
       onEdit?: (id: string) => void;
       onDelete?: (id: string) => void;
       onMore?: (id: string) => void;
+      onMoveUp?: (id: string) => void;
+      onMoveDown?: (id: string) => void;
+      onSettings?: (id: string) => void;
     };
 
 export function isCollectionContentRow(
@@ -41,3 +51,21 @@ export function isCollectionContentRow(
 ): row is CollectionContentRow {
   return "contentType" in row;
 }
+
+export type CouponFormState = {
+  title: string;
+  discountType: CouponDiscountType;
+  discountValue: string;
+  codes: string;
+  collection: string;
+  content: string;
+};
+
+export const INITIAL_COUPON_FORM: CouponFormState = {
+  title: "",
+  discountType: COUPON_DISCOUNT_FIXED_AMOUNT,
+  discountValue: "",
+  codes: "",
+  collection: "",
+  content: "",
+};

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
+import FormField from "@/components/UI/FormField";
 import InputField from "@/components/UI/InputFields";
 import { PasswordFields } from "./styles";
 import { useTranslation } from "react-i18next";
@@ -9,36 +10,48 @@ import { Passwords } from "@/utils/creatorProfile";
 import { getPasswordFields } from "@/utils/creatorProfilefields";
 import { INPUT_TYPE } from "@/utils/ui";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
+import { useFormContext } from "react-hook-form";
 
 type Props = {
-  passwords: Passwords;
-  onPasswordChange: (field: keyof Passwords, val?: string) => void;
+  passwords?: Passwords;
+  onPasswordChange?: (field: keyof Passwords, val?: string) => void;
+  onFieldChange?: () => void;
 };
 
 type PasswordVisibility = {
-  currentPassword: boolean;
-  newPassword: boolean;
-  repeatPassword: boolean;
+  current: boolean;
+  next: boolean;
+  confirm: boolean;
 };
 
 export default function PasswordSection({
   passwords,
   onPasswordChange,
+  onFieldChange,
 }: Props) {
   const { t } = useTranslation();
   const fields = getPasswordFields(t);
+  const formContext = useFormContext<Passwords>();
   const [passwordVisibility, setPasswordVisibility] =
     useState<PasswordVisibility>({
-      currentPassword: false,
-      newPassword: false,
-      repeatPassword: false,
+      current: false,
+      next: false,
+      confirm: false,
     });
 
   const handlePasswordInputChange = useCallback(
     (field: keyof Passwords, value: string | string[]) => {
-      onPasswordChange(field, String(value));
+      if (formContext) {
+        formContext.setValue(field, String(value), {
+          shouldDirty: true,
+          shouldValidate: true,
+        });
+      } else {
+        onPasswordChange?.(field, String(value));
+      }
+      onFieldChange?.();
     },
-    [onPasswordChange],
+    [formContext, onFieldChange, onPasswordChange],
   );
 
   const togglePasswordVisibility = useCallback(
@@ -57,12 +70,27 @@ export default function PasswordSection({
         const key = field.key as keyof PasswordVisibility;
         const isVisible = passwordVisibility[key];
 
-        return (
+        return formContext ? (
+          <FormField<Passwords>
+            key={field.key}
+            name={field.key as keyof Passwords}
+            label={field.label}
+            type={isVisible ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
+            onChange={handlePasswordInputChange.bind(
+              null,
+              field.key as keyof Passwords,
+            )}
+            labelMarginTop={index !== 0 ? "12px" : undefined}
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            icon={isVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}
+            onIconClick={togglePasswordVisibility.bind(null, key)}
+          />
+        ) : (
           <InputField
             key={field.key}
             label={field.label}
             type={isVisible ? INPUT_TYPE.TEXT : INPUT_TYPE.PASSWORD}
-            value={passwords[field.key as keyof Passwords]}
+            value={passwords?.[field.key as keyof Passwords] ?? ""}
             onChange={handlePasswordInputChange.bind(
               null,
               field.key as keyof Passwords,

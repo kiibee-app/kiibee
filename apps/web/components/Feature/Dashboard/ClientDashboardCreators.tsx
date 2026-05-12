@@ -10,18 +10,13 @@ import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "../Settings";
 import { VIEW } from "@/utils/Constants";
-import CreatorsContents from "../Contents/page";
+import CreatorsContents from "../Contents";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
-import { clearAuthSession } from "@/lib/auth/authSession";
-import { PATHS } from "@/utils/path";
 import UsersContent from "../Users/UsersContent";
-import {
-  clearLoginSession,
-  getStoredLoginUserEmail,
-  useLogout,
-} from "@/hooks/auth/useLogin";
+import { useLogout } from "@/hooks/auth/useLogout";
+import { useAuthSession } from "@/hooks/auth/useAuthSession";
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.OVERVIEW,
@@ -40,7 +35,8 @@ export default function ClientDashboardCreators() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { mutateAsync: logout } = useLogout();
+  const { logout } = useLogout();
+  const { getUser } = useAuthSession();
 
   const toggleSidebar = useCallback(() => {
     setOpen((p) => !p);
@@ -51,9 +47,10 @@ export default function ClientDashboardCreators() {
   }, []);
 
   const handleLogoutClick = useCallback(() => {
-    setLogoutEmail(getStoredLoginUserEmail());
+    const email = (getUser() as { email?: string })?.email || "";
+    setLogoutEmail(email);
     setShowLogoutModal(true);
-  }, []);
+  }, [getUser]);
 
   const handleCancelLogout = useCallback(() => {
     setShowLogoutModal(false);
@@ -61,15 +58,8 @@ export default function ClientDashboardCreators() {
 
   const handleConfirmLogout = useCallback(async () => {
     setShowLogoutModal(false);
-    try {
-      await logout();
-    } catch {
-      // Always clear session and redirect even if server logout fails.
-    } finally {
-      clearLoginSession();
-      router.push(PATHS.AUTH_LOGIN);
-    }
-  }, [logout, router]);
+    await logout();
+  }, [logout]);
 
   const renderHeader = () => {
     return <DashboardHeader onToggleSidebar={toggleSidebar} />;
@@ -137,8 +127,8 @@ export default function ClientDashboardCreators() {
         onConfirm={handleConfirmLogout}
         onCancel={handleCancelLogout}
         onClose={handleCancelLogout}
-        width="480px"
-        padding="40px 32px"
+        size="sm"
+        spacing="sm"
         buttonAlign="center"
         textAlign="center"
         showCloseButton={false}

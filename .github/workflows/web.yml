@@ -23,6 +23,10 @@ jobs:
     name: 🏗️ Build & Test Web
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      # Required at build/prerender. Do not read NEXT_PUBLIC_API_URL from vars — a repo variable set to http:// breaks next build (lib/env.ts enforces https in production).
+      NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL || 'https://kiibee.app' }}
+      NEXT_PUBLIC_API_URL: https://kiibee.app/api/v1
 
     steps:
       - name: 🧹 Clear GitHub Actions cache
@@ -76,6 +80,9 @@ jobs:
         run: pnpm --filter=web typecheck
 
       - name: 🏗️ Build
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL || 'https://kiibee.app' }}
+          NEXT_PUBLIC_API_URL: https://kiibee.app/api/v1
         run: pnpm --filter=web build
 
       - name: 🧪 Run tests

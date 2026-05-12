@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-
-export default function HomeRedirectPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/login");
-  }, [router]);
-
-  return null;
+export default function AdminHomePage() {
+  return (
+    <div>
+      <h2>Admin Home</h2>
+      <p>
+        Welcome to the Kiibee admin dashboard. Manage creators, review requests,
+        and oversee platform activity from here.
+      </p>
+    </div>
+  );
 }

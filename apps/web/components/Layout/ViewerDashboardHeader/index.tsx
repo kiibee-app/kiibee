@@ -17,10 +17,12 @@ import { useTranslation } from "react-i18next";
 
 type ViewerDashboardHeaderProps = {
   onToggleSidebar?: () => void;
+  onProfileClick?: () => void;
 };
 
 export default function ViewerDashboardHeader({
   onToggleSidebar,
+  onProfileClick,
 }: ViewerDashboardHeaderProps) {
   const { t } = useTranslation();
 
@@ -46,7 +48,9 @@ export default function ViewerDashboardHeader({
       </Nav>
 
       <Right>
-        <ProfileButton aria-label="Viewer profile">N</ProfileButton>
+        <ProfileButton aria-label="Viewer profile" onClick={onProfileClick}>
+          L
+        </ProfileButton>
       </Right>
     </HeaderWrapper>
   );

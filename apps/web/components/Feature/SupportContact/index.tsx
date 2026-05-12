@@ -2,15 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { SuccessCheckIcon } from "@/assets/icons";
-import InputField from "@/components/UI/InputFields";
+import FormField from "@/components/UI/FormField";
 import {
   getSupportContactFields,
-  INITIAL_FORM,
-  type ContactFormErrors,
   type ContactFormField,
-  validateForm,
 } from "@/utils/supportContact";
+import { createSupportContactSchema } from "@/lib/validation/schema";
 import {
   ContactBlock,
   ContactList,
@@ -34,20 +34,46 @@ import {
   Title,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
 
 export default function SupportContact() {
   const { t } = useTranslation();
-  const [formValues, setFormValues] = useState(INITIAL_FORM);
-  const [submitted, setSubmitted] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [errors, setErrors] = useState<ContactFormErrors>({});
-
   const fields = useMemo(() => getSupportContactFields(t), [t]);
-
-  const isRequiredFieldsFilled =
-    Boolean(formValues.firstName.trim()) &&
-    Boolean(formValues.email.trim()) &&
-    Boolean(formValues.message.trim());
+  const schema = useMemo(
+    () =>
+      createSupportContactSchema({
+        firstNameRequired: t("supportPage.form.errors.firstNameRequired"),
+        emailRequired: t("supportPage.form.errors.emailRequired"),
+        emailInvalid: t("supportPage.form.errors.emailInvalid"),
+        phoneInvalid: t("supportPage.form.errors.phoneInvalid"),
+        messageRequired: t("supportPage.form.errors.messageRequired"),
+      }),
+    [t],
+  );
+  type SupportContactValues = ReturnType<typeof schema.parse>;
+  const methods = useForm<SupportContactValues>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      companyName: "",
+      phoneNumber: "",
+      email: "",
+      message: "",
+    },
+  });
+  const {
+    handleSubmit,
+    setValue,
+    formState: { isValid },
+  } = methods;
+  const emailValue = useWatch({
+    control: methods.control,
+    name: "email",
+    defaultValue: "",
+  });
 
   const updateField = (
     field: ContactFormField,
@@ -57,25 +83,13 @@ export default function SupportContact() {
       ? nextValue.join(", ")
       : nextValue;
 
-    const updatedValues = { ...formValues, [field]: normalizedValue };
-    setFormValues(updatedValues);
-
-    if (submitted) {
-      setErrors(validateForm(updatedValues, t));
-    }
+    setValue(field, normalizedValue as never, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const nextErrors = validateForm(formValues, t);
-    setErrors(nextErrors);
-    setSubmitted(true);
-
-    if (Object.values(nextErrors).some(Boolean)) {
-      return;
-    }
-
+  const onSubmit = () => {
     setIsSuccess(true);
   };
 
@@ -85,11 +99,11 @@ export default function SupportContact() {
         {isSuccess ? (
           <SuccessState>
             <SuccessCard>
-              <SuccessCheckIcon size={48} color="rgb(4,41,11)" />
+              <SuccessCheckIcon size={48} color={COLORS.primary.GREEN_100} />
               <SuccessTitle>{t("supportPage.success.title")}</SuccessTitle>
               <SuccessText>
                 {t("supportPage.success.description", {
-                  email: formValues.email,
+                  email: emailValue,
                 })}
               </SuccessText>
             </SuccessCard>
@@ -145,44 +159,40 @@ export default function SupportContact() {
             </Content>
 
             <FormCard>
-              <Form onSubmit={handleSubmit}>
-                <FormGrid>
-                  {fields.map((field) => (
-                    <FieldSlot key={field.key} $full={field.full}>
-                      <InputField
-                        id={`support-${field.key}`}
-                        label={field.label}
-                        labelFontStyle="Body_Regular"
-                        labelMarginTop="0"
-                        placeholder={field.placeholder}
-                        value={formValues[field.key as ContactFormField]}
-                        type={field.type}
-                        required={field.required}
-                        autoComplete={field.autoComplete}
-                        hasError={Boolean(
-                          submitted && errors[field.key as ContactFormField],
-                        )}
-                        errorText={
-                          submitted ? errors[field.key as ContactFormField] : ""
-                        }
-                        onChange={(nextValue) =>
-                          updateField(field.key as ContactFormField, nextValue)
-                        }
-                        max={field.max}
-                      />
-                    </FieldSlot>
-                  ))}
-                </FormGrid>
+              <FormProvider {...methods}>
+                <Form onSubmit={handleSubmit(onSubmit)}>
+                  <FormGrid>
+                    {fields.map((field) => (
+                      <FieldSlot key={field.key} $full={field.full}>
+                        <FormField<SupportContactValues>
+                          id={`support-${field.key}`}
+                          name={field.key as ContactFormField}
+                          label={field.label}
+                          labelFontStyle="Body_Regular"
+                          labelMarginTop="0"
+                          placeholder={field.placeholder}
+                          type={field.type}
+                          required={field.required}
+                          autoComplete={field.autoComplete}
+                          onChange={(nextValue) =>
+                            updateField(
+                              field.key as ContactFormField,
+                              nextValue,
+                            )
+                          }
+                          max={field.max}
+                        />
+                      </FieldSlot>
+                    ))}
+                  </FormGrid>
 
-                <FormActions>
-                  <SubmitButton
-                    type="submit"
-                    disabled={!isRequiredFieldsFilled}
-                  >
-                    {t("supportPage.form.submit")}
-                  </SubmitButton>
-                </FormActions>
-              </Form>
+                  <FormActions>
+                    <SubmitButton type="submit" disabled={!isValid}>
+                      {t("supportPage.form.submit")}
+                    </SubmitButton>
+                  </FormActions>
+                </Form>
+              </FormProvider>
             </FormCard>
           </>
         )}

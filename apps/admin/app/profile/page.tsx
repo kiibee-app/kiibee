@@ -10,6 +10,7 @@ import {
   CardTitle,
   Email,
   Field,
+  FieldNoBorder,
   FieldTop,
   Grid,
   HeroCard,
@@ -98,7 +99,7 @@ export default function ProfilePage() {
             <Value>{String(payload.email ?? PLACEHOLDER)}</Value>
           </Field>
 
-          <Field style={{ borderBottom: "none" }}>
+          <FieldNoBorder>
             <FieldTop>
               <Label>Email Verification</Label>
               <Badge $tone={payload.isEmailVerified ? "green" : "amber"}>
@@ -112,7 +113,7 @@ export default function ProfilePage() {
                 )}
               </Badge>
             </FieldTop>
-          </Field>
+          </FieldNoBorder>
         </Card>
 
         <Card>
@@ -146,17 +147,17 @@ export default function ProfilePage() {
             <Value>{String(payload.role ?? PLACEHOLDER)}</Value>
           </Field>
 
-          <Field style={{ borderBottom: "none" }}>
+          <FieldNoBorder>
             <Label>Status</Label>
             <Badge $tone="amber">
               <Shield size={15} />
               {String(payload.status ?? PLACEHOLDER)}
             </Badge>
-            <StatusText style={{ marginTop: 8 }}>
+            <StatusText>
               This page only shows essential account details to keep profile
               management clean and focused.
             </StatusText>
-          </Field>
+          </FieldNoBorder>
         </Card>
       </Grid>
     </Page>

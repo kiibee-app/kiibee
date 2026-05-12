@@ -11,6 +11,11 @@
     "login": "Log ind",
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee",
+    "profile": {
+      "home": "Hjem",
+      "collections": "Samlinger",
+      "about": "Om"
+    },
     "explore": {
       "allContentTitle": "Alt indhold",
       "everything": "Alle",
@@ -41,6 +46,43 @@
         "popular": "Mest populære"
       }
     }
+  },
+  "createProfileHome": {
+    "brandName": "Nana Jacobson",
+    "uploads": "{{count}} uploads",
+    "title": "Nana Jacobson",
+    "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete.",
+    "more": "...mere",
+    "searchPlaceholder": "Søg",
+    "searchAriaLabel": "Søg i profilindhold",
+    "aboutModal": {
+      "moreInfo": "Mere info",
+      "joined": "Tilsluttet",
+      "links": "Links"
+    },
+    "latestUpload": {
+      "title": "Seneste upload",
+      "badge": "Design",
+      "video": "Video",
+      "playTrailer": "Afspil trailer",
+      "titleText": "Hæklede bordskånere",
+      "description": "PERFEKT TILBEREDT FASAN - sådan gør du, når fasanen skal være saftig og mør. Bogen indeholder kun opskrifter på fasan og viser med flotte billeder og gode beskrivelser, hvordan du får det bedste resultat til både hverdag og festmiddag.",
+      "readMore": "Leje 50 kr",
+      "access": "Adgang i 3 måneder",
+      "imageAlt": "Seneste upload-billede"
+    }
+  },
+  "createProfileCollections": {
+    "title": "Samlinger",
+    "description": "Organisér dit indhold i enkle og flotte samlinger til dit publikum."
+  },
+  "createProfileAbout": {
+    "title": "Om",
+    "description": "Del din historie, dit arbejde og hvad folk kan forvente af din profil."
+  },
+  "createProfileFooter": {
+    "tagline": "Salg og visning af online produkter",
+    "cta": "Join Kiibee"
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",
@@ -178,7 +220,9 @@
       "terms": "Vilkår for brug",
       "and": "og",
       "privacy": "Privatlivspolitik",
-      "submit": "Send anmodning"
+      "submit": "Send anmodning",
+      "submitSuccess": "Skabertilladelse indsendt med succes.",
+      "submitError": "Kunne ikke indsende skabertilladelse."
     },
     "requestSent": {
       "title": "Tak! Din anmodning er sendt.",
@@ -1003,7 +1047,17 @@
       },
       "billingHistory": {
         "empty": "Ingen faktureringshistorik endnu.",
-        "placeholder": "Faktureringshistorik vises her."
+        "placeholder": "Faktureringshistorik vises her.",
+        "searchContent": "Søg efter indholdstitel",
+        "searchCreator": "Søg efter skabernavn",
+        "tableHeaders": {
+          "contentTitle": "Indholdstitel",
+          "creatorName": "Skabernavn",
+          "type": "Type",
+          "paymentDate": "Betalingsdato",
+          "amount": "Beløb",
+          "paymentMethod": "Betalingsmetode"
+        }
       },
       "paymentMethods": {
         "title": "Betalingsmetoder",
@@ -1012,8 +1066,32 @@
         "expires": "Udløber {{date}}",
         "edit": "Rediger betalingsmetode",
         "delete": "Slet betalingsmetode",
-        "more": "Flere handlinger"
+        "more": "Flere handlinger",
+        "addCardModal": {
+          "title": "Tilføj nyt kort",
+          "cardNumber": "Kortnummer",
+          "expiryDate": "Udløbsdato",
+          "cvv": "Sikkerhedskode",
+          "cardPlaceholder": "XXXX XXXX XXXX XXXX",
+          "expiryPlaceholder": "MM/ÅÅ",
+          "cvvPlaceholder": "CVV",
+          "successTitle": "Nyt kort tilføjet",
+          "successMessage": "Nyt kort er blevet tilføjet."
+        }
       }
+    },
+    "viewerProfile": {
+      "title": "Min profil",
+      "saveChanges": "Gem ændringer",
+      "saveSuccess": "Profil gemt",
+      "saveError": "Profilen kunne ikke gemmes",
+      "saveModalTitle": "Aendringer gemt",
+      "saveModalMessage": "Dine opdateringer er blevet gemt.",
+      "saveModalDone": "Faerdig",
+      "fullName": "Fulde navn",
+      "email": "E-mailadresse",
+      "downloads": "{{count}} downloads",
+      "profilePhotoAlt": "Seer profilfoto"
     },
     "logoutModal": {
       "title": "Log ud",
@@ -1181,6 +1259,18 @@
         "contents": "Indhold"
       }
     },
+    "couponPreview": {
+      "title": "Kupon forhåndsvisning",
+      "confirm": "Bekræft",
+      "uploading": "Uploading coupon",
+      "fields": {
+        "title": "Titel",
+        "discountType": "Rabattype",
+        "amount": "Beløb",
+        "codes": "Rabatkoder",
+        "applicableProducts": "Gældende produkter"
+      }
+    },
     "tabs": {
       "collections": "Samlinger",
       "contents": "Indhold",
@@ -1228,6 +1318,16 @@
         "label": "Beskrivelse",
         "hint": "Fortæl lidt om dit produkt og fremhæv det på forsiden",
         "placeholder": "Indtast beskrivelse"
+      },
+      "layouts": {
+        "title": "Layouts",
+        "subtitle": "Vælg hvordan din kanal skal vises for brugerne.",
+        "preview": "Preview example",
+        "options": {
+          "layout1": "Layout 1",
+          "layout2": "Layout 2",
+          "layout3": "Layout 3"
+        }
       },
       "logo": {
         "title": "Logo",

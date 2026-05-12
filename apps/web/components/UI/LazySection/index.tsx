@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import GenericLoader from "@/components/UI/GenericLoader";
-import { BROWSER_API, LOADER_SIZE, LOADER_VARIANT } from "@/utils/ui";
+import {
+  BROWSER_API,
+  INTERSECTION_OBSERVER_FALLBACK_DELAY_MS,
+  LOADER_SIZE,
+  LOADER_VARIANT,
+} from "@/utils/ui";
 import { LazySectionRoot } from "./styles";
 import { t } from "i18next";
 
@@ -28,7 +33,7 @@ export default function LazySection({
     if (!(BROWSER_API.INTERSECTION_OBSERVER in window)) {
       const fallbackTimer = setTimeout(() => {
         setShouldRender(true);
-      }, 0);
+      }, INTERSECTION_OBSERVER_FALLBACK_DELAY_MS);
 
       return () => {
         clearTimeout(fallbackTimer);

@@ -1,13 +1,14 @@
-import { HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { randomUUID } from 'crypto';
 import { and, eq } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
 import { users, userSessions } from 'src/database/schema';
-import { fail, success } from 'src/utils/sendResponse';
+import { success } from 'src/utils/sendResponse';
 import { ViewerSignUpDto } from '../dto/viewerSignUp.dto';
 import { hashPassword } from 'src/utils/passwordHash';
+import { ROLE } from 'src/utils/constant';
 
 export const viewerSignUpService = async (
   viewerData: ViewerSignUpDto,
@@ -21,15 +22,15 @@ export const viewerSignUpService = async (
   const normalizedEmail = email?.toLowerCase().trim();
 
   if (!trimmedFullName || !normalizedEmail || !password || !confirmPassword) {
-    return fail('All fields are required', HttpStatus.BAD_REQUEST);
+    throw new HttpException('All fields are required', HttpStatus.BAD_REQUEST);
   }
 
   if (password !== confirmPassword) {
-    return fail('Passwords do not match', HttpStatus.BAD_REQUEST);
+    throw new HttpException('Passwords do not match', HttpStatus.BAD_REQUEST);
   }
 
   if (password.length < 6) {
-    return fail(
+    throw new HttpException(
       'Password must be at least 6 characters',
       HttpStatus.BAD_REQUEST,
     );
@@ -43,7 +44,7 @@ export const viewerSignUpService = async (
   });
 
   if (existingUser) {
-    return fail('Email already exists', HttpStatus.CONFLICT);
+    throw new HttpException('Email already exists', HttpStatus.CONFLICT);
   }
 
   const passwordHash = await hashPassword(password);
@@ -53,7 +54,7 @@ export const viewerSignUpService = async (
     fullName: trimmedFullName,
     email: normalizedEmail,
     passwordHash,
-    role: 'viewer',
+    role: ROLE.VIEWER,
     isEmailVerified: true,
   };
 
@@ -63,6 +64,7 @@ export const viewerSignUpService = async (
     email: users.email,
     role: users.role,
     isEmailVerified: users.isEmailVerified,
+    avatarUrl: users.avatarUrl,
     createdAt: users.createdAt,
   });
 

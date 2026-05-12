@@ -49,3 +49,19 @@ export const CONTENT_TYPE_OPTIONS: readonly ContentTypeOption[] = [
     Icon: WebIcon,
   },
 ] as const;
+
+export const COUPON_STEPS = {
+  DETAILS: "details",
+  CODES: "codes",
+  APPLICABLE_PRODUCTS: "applicable-products",
+  PREVIEW: "preview",
+} as const;
+
+export type CouponStep = (typeof COUPON_STEPS)[keyof typeof COUPON_STEPS];
+
+export const STEP_ORDER: CouponStep[] = [
+  COUPON_STEPS.DETAILS,
+  COUPON_STEPS.CODES,
+  COUPON_STEPS.APPLICABLE_PRODUCTS,
+  COUPON_STEPS.PREVIEW,
+];

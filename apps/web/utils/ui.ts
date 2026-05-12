@@ -88,11 +88,21 @@ export type TableAlign = (typeof TABLE_ALIGN)[keyof typeof TABLE_ALIGN];
 export const KEYBOARD_KEYS = {
   ENTER: "Enter",
   ESCAPE: "Escape",
+  SPACE: " ",
+  TAB: "Tab",
+  ARROW_UP: "ArrowUp",
+  ARROW_DOWN: "ArrowDown",
+  ARROW_LEFT: "ArrowLeft",
+  ARROW_RIGHT: "ArrowRight",
+  HOME: "Home",
+  END: "End",
 } as const;
 
 export const BROWSER_API = {
   INTERSECTION_OBSERVER: "IntersectionObserver",
 } as const;
+
+export const INTERSECTION_OBSERVER_FALLBACK_DELAY_MS = 250;
 
 export const MODAL_ALIGN = {
   CENTER: "center",
@@ -119,6 +129,15 @@ export type NotificationModalType =
   | (typeof NOTIFICATION_MODAL)[keyof typeof NOTIFICATION_MODAL]
   | null;
 
+export const FORM_MESSAGE_TONE = {
+  ERROR: "error",
+  SUCCESS: "success",
+} as const;
+
+export type FormMessageTone =
+  (typeof FORM_MESSAGE_TONE)[keyof typeof FORM_MESSAGE_TONE];
+export const AGREED = "agreed";
+
 export const LOGO_MODE = {
   TEXT: "text",
   PICTURE: "picture",
@@ -132,3 +151,6 @@ export const IMAGE_MODAL = {
 } as const;
 
 export type ImageModalStep = (typeof IMAGE_MODAL)[keyof typeof IMAGE_MODAL];
+
+export const isBrowser = typeof window !== "undefined";
+export const canUseDOM = typeof document !== "undefined";

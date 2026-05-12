@@ -14,6 +14,32 @@ export const NAV = {
   logoAlt: "nav.logoAlt",
 };
 
+export const CREATE_PROFILE_HOME = {
+  brandName: "createProfileHome.brandName",
+  uploads: "createProfileHome.uploads",
+  title: "createProfileHome.title",
+  description: "createProfileHome.description",
+  more: "createProfileHome.more",
+  searchPlaceholder: "createProfileHome.searchPlaceholder",
+  searchAriaLabel: "createProfileHome.searchAriaLabel",
+};
+
+export const CREATE_PROFILE_ROUTES = {
+  collections: {
+    title: "createProfileCollections.title",
+    description: "createProfileCollections.description",
+  },
+  about: {
+    title: "createProfileAbout.title",
+    description: "createProfileAbout.description",
+  },
+};
+
+export const CREATE_PROFILE_FOOTER = {
+  tagline: "createProfileFooter.tagline",
+  cta: "createProfileFooter.cta",
+};
+
 export const AUTH = {
   title: "auth.title",
   subtitle: "auth.subtitle",
@@ -194,6 +220,20 @@ export const DASHBOARD_VIEWER_BILLINGS = {
   billingHistory: {
     empty: "dashboard.viewerBillings.billingHistory.empty",
     placeholder: "dashboard.viewerBillings.billingHistory.placeholder",
+    searchContent: "dashboard.viewerBillings.billingHistory.searchContent",
+    searchCreator: "dashboard.viewerBillings.billingHistory.searchCreator",
+    tableHeaders: {
+      contentTitle:
+        "dashboard.viewerBillings.billingHistory.tableHeaders.contentTitle",
+      creatorName:
+        "dashboard.viewerBillings.billingHistory.tableHeaders.creatorName",
+      type: "dashboard.viewerBillings.billingHistory.tableHeaders.type",
+      paymentDate:
+        "dashboard.viewerBillings.billingHistory.tableHeaders.paymentDate",
+      amount: "dashboard.viewerBillings.billingHistory.tableHeaders.amount",
+      paymentMethod:
+        "dashboard.viewerBillings.billingHistory.tableHeaders.paymentMethod",
+    },
   },
   paymentMethods: {
     title: "dashboard.viewerBillings.paymentMethods.title",
@@ -203,6 +243,24 @@ export const DASHBOARD_VIEWER_BILLINGS = {
     edit: "dashboard.viewerBillings.paymentMethods.edit",
     delete: "dashboard.viewerBillings.paymentMethods.delete",
     more: "dashboard.viewerBillings.paymentMethods.more",
+    addCardModal: {
+      title: "dashboard.viewerBillings.paymentMethods.addCardModal.title",
+      cardNumber:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.cardNumber",
+      expiryDate:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.expiryDate",
+      cvv: "dashboard.viewerBillings.paymentMethods.addCardModal.cvv",
+      cardPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.cardPlaceholder",
+      expiryPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.expiryPlaceholder",
+      cvvPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.cvvPlaceholder",
+      successTitle:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.successTitle",
+      successMessage:
+        "dashboard.viewerBillings.paymentMethods.addCardModal.successMessage",
+    },
   },
 };
 
@@ -252,6 +310,16 @@ export const CONTENTS = {
       label: "contents.appearance.description.label",
       hint: "contents.appearance.description.hint",
       placeholder: "contents.appearance.description.placeholder",
+    },
+    layouts: {
+      title: "contents.appearance.layouts.title",
+      subtitle: "contents.appearance.layouts.subtitle",
+      preview: "contents.appearance.layouts.preview",
+      options: {
+        layout1: "contents.appearance.layouts.options.layout1",
+        layout2: "contents.appearance.layouts.options.layout2",
+        layout3: "contents.appearance.layouts.options.layout3",
+      },
     },
     logo: {
       title: "contents.appearance.logo.title",

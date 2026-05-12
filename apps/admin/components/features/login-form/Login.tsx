@@ -38,8 +38,6 @@ export default function Login() {
       {
         onSuccess: (data) => {
           const decodedToken = decodeToken(data.accessToken);
-          const fullAuthPayload = { ...data, tokenClaims: decodedToken };
-          console.log("Current User:", fullAuthPayload);
 
           if (decodedToken?.role !== "admin") {
             toast.error("Access denied. Admin role required.");
@@ -47,12 +45,8 @@ export default function Login() {
           }
 
           setTokens(data.accessToken, data.refreshToken);
-          localStorage.setItem(
-            "admin.authPayload",
-            JSON.stringify(fullAuthPayload),
-          );
           toast.success(`Welcome, ${data.fullName}!`);
-          router.push("/profile");
+          router.push("/");
         },
         onError: (error) => {
           toast.error(error.message || "Login failed");

@@ -1,8 +1,10 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { subscriptionPlans } from "@/utils/subscriptionPlans";
 import { PATHS } from "@/utils/path";
 import { SUBSCRIPTION } from "@/utils/translationKeys";
+import { useSubscriptionContext } from "@/providers/subscriptionProvider";
 import {
   CompareLink,
   FullWidthContinueButton,
@@ -17,20 +19,13 @@ import {
   Radio,
   Title,
 } from "./styles";
+import { BUTTON } from "@/utils/Constants";
 
-type SubscriptionPlanStepProps = {
-  selectedPlan: string;
-  onSelectPlan: (planId: string) => void;
-  onContinue: () => void;
-  t: (key: string) => string;
-};
+export default function SubscriptionPlanStep() {
+  const { t } = useTranslation();
+  const { selectedPlan, setSelectedPlan, handleContinue } =
+    useSubscriptionContext();
 
-export default function SubscriptionPlanStep({
-  selectedPlan,
-  onSelectPlan,
-  onContinue,
-  t,
-}: SubscriptionPlanStepProps) {
   return (
     <>
       <Header>
@@ -46,7 +41,7 @@ export default function SubscriptionPlanStep({
               key={plan.id}
               type="button"
               $selected={selected}
-              onClick={() => onSelectPlan(plan.id)}
+              onClick={() => setSelectedPlan(plan.id)}
               aria-pressed={selected}
             >
               <Radio $selected={selected} aria-hidden="true" />
@@ -66,7 +61,7 @@ export default function SubscriptionPlanStep({
         {t(SUBSCRIPTION.comparePlans)}
       </CompareLink>
 
-      <FullWidthContinueButton type="button" onClick={onContinue}>
+      <FullWidthContinueButton type={BUTTON} onClick={handleContinue}>
         {t(SUBSCRIPTION.continue)}
       </FullWidthContinueButton>
     </>

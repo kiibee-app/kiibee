@@ -67,3 +67,12 @@ export const CLICKS = "clicks";
 export const VIEWS = "views";
 export const MOUSE_DOWN = "mousedown";
 export const IMG = "img";
+
+export type ProfileTabKey = "home" | "collections" | "about";
+
+export const PROFILE_TABS: { key: ProfileTabKey; label: string }[] = [
+  { key: "home", label: "Home" },
+  { key: "collections", label: "Collections" },
+  { key: "about", label: "About" },
+];
+export const HOME = "home";
