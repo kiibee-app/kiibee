@@ -2,6 +2,8 @@ import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
 import design1 from "@/assets/images/design1.webp";
 import design2 from "@/assets/images/design2.webp";
 import design3 from "@/assets/images/design.webp";
+import design4 from "@/assets/images/crafts.png";
+import design5 from "@/assets/images/flower.png";
 import { PurchasedCollectionItem } from "./viewerPurchasedMockData";
 
 export const collectionsData: CollectionRow[] = [
@@ -176,3 +178,34 @@ export const COLLECTIONS_FOR_PAGE: PurchasedCollectionItem[] = [
     ],
   },
 ];
+
+export const ABOUT_VIDEO_OVERRIDES = [
+  {
+    title: "Floating flowers",
+    creator: "Nana Jacobson",
+    published: "9 months ago",
+    category: "Design",
+    image: design5,
+  },
+  {
+    title: "Deer",
+    creator: "Nana Jacobson",
+    published: "4 days ago",
+    category: "Design",
+    image: design4,
+  },
+  {
+    title: "Cactus",
+    creator: "Nana Jacobson",
+    published: "1 year ago",
+    category: "Educational",
+    image: design5,
+  },
+  {
+    title: "Easter bunnies",
+    creator: "Nana Jacobson",
+    published: "9 days ago",
+    category: "Design",
+    image: design4,
+  },
+] as const;
