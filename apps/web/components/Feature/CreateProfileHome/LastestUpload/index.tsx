@@ -21,7 +21,7 @@ import {
   ModalContentWrapper,
   ModalDescription,
 } from "./styles";
-import { resolveImageUrl, MOBILE_BREAKPOINT } from "@/utils/Constants";
+import { resolveImageUrl, MOBILE_BREAKPOINT, BUTTON } from "@/utils/Constants";
 import { useIsMobile } from "@/utils/useIsMobile";
 import { MonoText } from "@/components/UI/Monotext";
 import { PlayCircleIcon, PlayIcon } from "@/assets/icons";
@@ -75,7 +75,7 @@ export default function LastestUpload() {
           </Paragraph>
 
           <ReadMoreButton
-            type="button"
+            type={BUTTON}
             onClick={() => setLoginModalVisible(true)}
           >
             <span>{t("createProfileHome.latestUpload.readMore")}</span>
