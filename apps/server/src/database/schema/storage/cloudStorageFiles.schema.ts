@@ -13,6 +13,7 @@ import { mediaFiles } from '../content/mediaFiles.schema';
 
 export const storageProviderEnum = pgEnum('storage_provider', [
   'do_spaces',
+  'cloudflare_stream',
   'cloudflare_r2',
   'cloudflare_cdn',
 ]);

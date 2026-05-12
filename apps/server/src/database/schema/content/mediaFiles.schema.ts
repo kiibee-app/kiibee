@@ -46,9 +46,14 @@ export const mediaFiles = pgTable(
     isPublished: boolean('is_published').notNull().default(false),
     publishedAt: timestamp('published_at', { withTimezone: true }),
 
+    // Cloudflare Stream fields (from Umbraco)
+    cloudflareStreamId: text('cloudflare_stream_id'),
+    videoStatus: varchar('video_status', { length: 30 }),
+    videoDownloadUrl: text('video_download_url'),
+    webContentUrl: text('web_content_url'),
+
     // Umbraco migration mapping (cmsContent.nodeId)
     legacyUmbracoId: integer('legacy_umbraco_id'),
-    // Original Cloudflare URL before migration to DO Spaces
     legacyCloudflareUrl: text('legacy_cloudflare_url'),
 
     ...softDeleteFields,
@@ -68,6 +73,9 @@ export const mediaFiles = pgTable(
     ),
     legacyIdIdx: index('media_files_legacy_umbraco_id_idx').on(
       table.legacyUmbracoId,
+    ),
+    cloudflareStreamIdx: index('media_files_cloudflare_stream_id_idx').on(
+      table.cloudflareStreamId,
     ),
   }),
 );

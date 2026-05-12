@@ -1,211 +1,302 @@
 /**
  * Umbraco CMS → Kiibee Database Field Mappings
  *
- * This file documents the exact mapping between old Umbraco SQL Server tables
- * and new Kiibee PostgreSQL tables. Used by the migration runner.
+ * Actual Umbraco content tree structure (from CMS admin panel):
  *
- * Source: Umbraco CMS (SQL Server) + Cloudflare (media files)
- * Target: Kiibee (DigitalOcean PostgreSQL + DigitalOcean Spaces)
+ *   Kiibee (root)
+ *   ├── Settings
+ *   ├── Admin
+ *   ├── Uffe Holm (creator node)
+ *   │   ├── Stats
+ *   │   ├── Log
+ *   │   ├── Invoices
+ *   │   ├── Payouts
+ *   │   ├── Purchases
+ *   │   │   └── n7a208052026233830 (purchase record)
+ *   │   │       → Name, Email, Video ID, Price, Message, ExpireDate, Downloads, Streams
+ *   │   ├── Subscribers
+ *   │   └── Shows
+ *   │       └── "Uffe Holm InstaChamp" (media item)
+ *   │           → Type, Video ID, Video Status, Video Size, Thumbnail URL,
+ *   │             Download URL, Trailer, WebContent URL, Hidden, Order ID
+ *   ├── Microphone Entertainment (creator node)
+ *   └── ... more creators
+ *
+ * All data stored in Umbraco EAV tables:
+ *   - umbracoNode (tree hierarchy)
+ *   - cmsContent (content items)
+ *   - cmsPropertyData (field values via cmsPropertyType.alias)
+ *
+ * Videos hosted on Cloudflare Stream (videodelivery.net/{streamId}/...).
  */
 
-// ─── USERS ───────────────────────────────────────────────────────────────
-// Umbraco: umbracoUser + cmsMember + umbracoNode
-// Kiibee:  users + user_profiles
-export const USER_MAPPING = {
-  source: {
-    tables: ['umbracoUser', 'cmsMember', 'umbracoNode'],
-    query: `
-      SELECT
-        u.id                    AS umbraco_id,
-        u.userEmail             AS email,
-        m.Password              AS password_hash,
-        u.UserName              AS full_name,
-        u.userLogin             AS login_name,
-        u.userDisabled          AS is_disabled,
-        u.userLanguage          AS language,
-        u.createDate            AS created_at,
-        u.updateDate            AS updated_at,
-        u.avatar                AS avatar_url,
-        u.emailConfirmedDate    AS email_confirmed_at,
-        ug.userGroupAlias       AS role_alias
-      FROM umbracoUser u
-      LEFT JOIN cmsMember m ON m.nodeId = (
-        SELECT TOP 1 n.id FROM umbracoNode n
-        WHERE n.text = u.UserName AND n.nodeObjectType = 'MEMBER_OBJECT_TYPE'
-      )
-      LEFT JOIN umbracoUser2UserGroup u2g ON u2g.userId = u.id
-      LEFT JOIN umbracoUserGroup ug ON ug.id = u2g.userGroupId
-    `,
-  },
-  target: 'users',
-  fieldMap: {
-    umbraco_id: 'legacyUmbracoId',
-    email: 'email',
-    password_hash: 'passwordHash', // Note: Umbraco uses different hashing, may need rehash
-    full_name: 'fullName',
-    is_disabled: (val: boolean) => ({ isActive: !val }),
-    created_at: 'createdAt',
-    updated_at: 'updatedAt',
-    avatar_url: 'avatarUrl',
-    email_confirmed_at: (val: string | null) => ({
-      isEmailVerified: val !== null,
-    }),
-    role_alias: (val: string) => ({
-      role: mapUmbracoRole(val),
-    }),
-  },
-} as const;
+// ─── HELPER: EAV Property Join ───────────────────────────────────────────
+const propJoin = (alias: string, prefix: string) => `
+  LEFT JOIN cmsPropertyData pd_${prefix}
+    ON pd_${prefix}.contentNodeId = c.nodeId
+    AND pd_${prefix}.propertytypeId = (
+      SELECT TOP 1 pt.id FROM cmsPropertyType pt WHERE pt.alias = '${alias}'
+    )
+`;
 
-// ─── CONTENT / MEDIA FILES ──────────────────────────────────────────────
-// Umbraco: cmsContent + cmsDocument + cmsPropertyData + cmsContentType + umbracoNode
-// Kiibee:  media_files
-export const MEDIA_FILE_MAPPING = {
-  source: {
-    tables: [
-      'cmsContent',
-      'cmsDocument',
-      'cmsPropertyData',
-      'cmsContentType',
-      'umbracoNode',
-    ],
-    query: `
-      SELECT
-        c.nodeId                AS umbraco_node_id,
-        n.text                  AS title,
-        n.path                  AS node_path,
-        n.sortOrder             AS sort_order,
-        n.trashed               AS is_trashed,
-        d.published             AS is_published,
-        d.updateDate            AS updated_at,
-        d.releaseDate           AS published_at,
-        ct.alias                AS content_type_alias,
-        -- Property data extracted via pivoting
-        pd_file.dataNtext       AS file_url,
-        pd_desc.dataNtext       AS description,
-        pd_thumb.dataNtext      AS thumbnail_url
-      FROM cmsContent c
-      INNER JOIN umbracoNode n ON n.id = c.nodeId
-      INNER JOIN cmsDocument d ON d.nodeId = c.nodeId AND d.newest = 1
-      INNER JOIN cmsContentType ct ON ct.nodeId = c.contentType
-      LEFT JOIN cmsPropertyData pd_file ON pd_file.contentNodeId = c.nodeId
-        AND pd_file.propertytypeId = (
-          SELECT id FROM cmsPropertyType WHERE alias = 'umbracoFile'
-        )
-      LEFT JOIN cmsPropertyData pd_desc ON pd_desc.contentNodeId = c.nodeId
-        AND pd_desc.propertytypeId = (
-          SELECT id FROM cmsPropertyType WHERE alias = 'description'
-        )
-      LEFT JOIN cmsPropertyData pd_thumb ON pd_thumb.contentNodeId = c.nodeId
-        AND pd_thumb.propertytypeId = (
-          SELECT id FROM cmsPropertyType WHERE alias = 'thumbnail'
-        )
-      WHERE n.nodeObjectType = 'C66BA18E-EAF3-4CFF-8A22-41B16D66A972' -- Media type
-    `,
-  },
-  target: 'media_files',
-  fieldMap: {
-    umbraco_node_id: 'legacyUmbracoId',
-    title: 'title',
-    description: 'description',
-    file_url: 'legacyCloudflareUrl', // Original Cloudflare URL, will be migrated
-    thumbnail_url: 'thumbnailUrl',
-    sort_order: 'sortOrder',
-    is_published: 'isPublished',
-    published_at: 'publishedAt',
-    is_trashed: (val: boolean) => ({ isDeleted: val }),
-    content_type_alias: (val: string) => ({
-      fileType: mapUmbracoContentType(val),
-    }),
-  },
-} as const;
+const propVal = (prefix: string, column = 'dataNvarchar') =>
+  `pd_${prefix}.${column}`;
 
-// ─── TAGS ────────────────────────────────────────────────────────────────
-// Umbraco: cmsTags
-// Kiibee:  tags
-export const TAG_MAPPING = {
-  source: {
-    tables: ['cmsTags'],
-    query: `SELECT id, tag, [group] AS tag_group FROM cmsTags`,
-  },
-  target: 'tags',
-  fieldMap: {
-    id: 'legacyUmbracoId',
-    tag: 'name',
-    // slug is auto-generated from name during migration
-  },
-} as const;
+// ─── 1. CREATORS ─────────────────────────────────────────────────────────
+// Top-level content nodes under the Kiibee root
+// → Kiibee: users (role='creator') + creator_channels + creator_info
+export const CREATOR_QUERY = `
+  SELECT
+    n.id                          AS umbraco_node_id,
+    n.text                        AS creator_name,
+    n.sortOrder                   AS sort_order,
+    n.createDate                  AS created_at,
+    n.path                        AS node_path
+  FROM umbracoNode n
+  INNER JOIN cmsContent c ON c.nodeId = n.id
+  INNER JOIN cmsContentType ct ON ct.nodeId = c.contentType
+  WHERE n.parentID = (
+    SELECT TOP 1 id FROM umbracoNode WHERE text = 'Kiibee' AND level = 1
+  )
+  AND n.trashed = 0
+  AND n.text NOT IN ('Settings', 'Admin')
+  ORDER BY n.sortOrder
+`;
 
-// ─── TAG RELATIONS ──────────────────────────────────────────────────────
-// Umbraco: cmsTagRelationship
-// Kiibee:  media_file_tags
-export const TAG_RELATION_MAPPING = {
-  source: {
-    tables: ['cmsTagRelationship'],
-    query: `SELECT nodeId, tagId FROM cmsTagRelationship`,
-  },
-  target: 'media_file_tags',
-  fieldMap: {
-    nodeId: 'mediaFileId', // resolved via legacy_umbraco_id lookup
-    tagId: 'tagId', // resolved via legacy_umbraco_id lookup
-  },
-} as const;
+// ─── 2. SHOWS (Media Files) ──────────────────────────────────────────────
+// Children of "Shows" folder under each creator
+// → Kiibee: media_files + cloud_storage_files
+export const SHOWS_QUERY = `
+  SELECT
+    c.nodeId                                AS umbraco_node_id,
+    n.text                                  AS title,
+    n.parentID                              AS parent_node_id,
+    n.sortOrder                             AS sort_order,
+    n.createDate                            AS created_at,
+    n.trashed                               AS is_trashed,
+    creator_node.id                         AS creator_node_id,
+    creator_node.text                       AS creator_name,
+    ${propVal('type')}                      AS content_type,
+    ${propVal('videoId')}                   AS video_id,
+    ${propVal('videoStatus')}               AS video_status,
+    ${propVal('videoSize')}                 AS video_size,
+    ${propVal('videoThumbnailUrl')}         AS thumbnail_url,
+    ${propVal('videoDownloadUrl')}          AS download_url,
+    ${propVal('trailer')}                   AS trailer_url,
+    ${propVal('webContentUrl')}             AS web_content_url,
+    ${propVal('hidden')}                    AS is_hidden,
+    ${propVal('orderId')}                   AS order_id
+  FROM cmsContent c
+  INNER JOIN umbracoNode n ON n.id = c.nodeId
+  INNER JOIN umbracoNode shows_folder ON shows_folder.id = n.parentID
+    AND shows_folder.text = 'Shows'
+  INNER JOIN umbracoNode creator_node ON creator_node.id = shows_folder.parentID
+  ${propJoin('type', 'type')}
+  ${propJoin('videoId', 'videoId')}
+  ${propJoin('videoStatus', 'videoStatus')}
+  ${propJoin('videoSize', 'videoSize')}
+  ${propJoin('videoThumbnailUrl', 'videoThumbnailUrl')}
+  ${propJoin('videoDownloadUrl', 'videoDownloadUrl')}
+  ${propJoin('trailer', 'trailer')}
+  ${propJoin('webContentUrl', 'webContentUrl')}
+  ${propJoin('hidden', 'hidden')}
+  ${propJoin('orderId', 'orderId')}
+  WHERE n.trashed = 0
+  ORDER BY creator_node.id, n.sortOrder
+`;
 
-// ─── CLOUDFLARE MEDIA FILES ─────────────────────────────────────────────
-// Source: Cloudflare R2 / CDN
-// Target: cloud_storage_files + DigitalOcean Spaces
-export const CLOUDFLARE_MEDIA_MAPPING = {
-  description: `
-    For each media_file with a legacy_cloudflare_url:
-    1. Fetch file from Cloudflare using API token
-    2. Upload to DigitalOcean Spaces bucket
-    3. Create cloud_storage_files record with:
-       - storage_provider = 'do_spaces'
-       - bucket = DO_SPACES_BUCKET
-       - storage_key = generated path (e.g. 'media/{creator_id}/{file_id}/{filename}')
-       - cdn_url = DO_SPACES_CDN_URL + storage_key
-       - is_migrated = true
-       - migrated_from_url = original Cloudflare URL
-    4. Update media_file.file_url to new DO Spaces CDN URL
-  `,
-  cloudflareApi: {
-    listObjects:
-      'https://api.cloudflare.com/client/v4/accounts/{account_id}/r2/buckets/{bucket}/objects',
-    getObject:
-      'https://api.cloudflare.com/client/v4/accounts/{account_id}/r2/buckets/{bucket}/objects/{key}',
-  },
-} as const;
+// ─── 3. PURCHASES ────────────────────────────────────────────────────────
+// Children of "Purchases" folder under each creator
+// → Kiibee: orders + order_items + user_content_access
+export const PURCHASES_QUERY = `
+  SELECT
+    c.nodeId                                  AS umbraco_node_id,
+    n.text                                    AS purchase_id,
+    n.createDate                              AS created_at,
+    creator_node.id                           AS creator_node_id,
+    creator_node.text                         AS creator_name,
+    ${propVal('purchase')}                    AS is_purchase,
+    ${propVal('videoId')}                     AS video_id,
+    ${propVal('name')}                        AS customer_name,
+    ${propVal('email')}                       AS customer_email,
+    ${propVal('price')}                       AS price,
+    ${propVal('message', 'dataNtext')}        AS message,
+    ${propVal('expireDate')}                  AS expire_date,
+    ${propVal('downloads')}                   AS downloads,
+    ${propVal('streams')}                     AS streams
+  FROM cmsContent c
+  INNER JOIN umbracoNode n ON n.id = c.nodeId
+  INNER JOIN umbracoNode purchases_folder ON purchases_folder.id = n.parentID
+    AND purchases_folder.text = 'Purchases'
+  INNER JOIN umbracoNode creator_node ON creator_node.id = purchases_folder.parentID
+  ${propJoin('purchase', 'purchase')}
+  ${propJoin('videoId', 'videoId')}
+  ${propJoin('name', 'name')}
+  ${propJoin('email', 'email')}
+  ${propJoin('price', 'price')}
+  ${propJoin('message', 'message')}
+  ${propJoin('expireDate', 'expireDate')}
+  ${propJoin('downloads', 'downloads')}
+  ${propJoin('streams', 'streams')}
+  WHERE n.trashed = 0
+  ORDER BY n.createDate DESC
+`;
+
+// ─── 4. SUBSCRIBERS ──────────────────────────────────────────────────────
+// Children of "Subscribers" folder under each creator
+// → Kiibee: email_subscribers
+export const SUBSCRIBERS_QUERY = `
+  SELECT
+    c.nodeId                                AS umbraco_node_id,
+    n.text                                  AS subscriber_id,
+    n.createDate                            AS created_at,
+    creator_node.id                         AS creator_node_id,
+    creator_node.text                       AS creator_name,
+    ${propVal('name')}                      AS subscriber_name,
+    ${propVal('email')}                     AS subscriber_email
+  FROM cmsContent c
+  INNER JOIN umbracoNode n ON n.id = c.nodeId
+  INNER JOIN umbracoNode sub_folder ON sub_folder.id = n.parentID
+    AND sub_folder.text = 'Subscribers'
+  INNER JOIN umbracoNode creator_node ON creator_node.id = sub_folder.parentID
+  ${propJoin('name', 'name')}
+  ${propJoin('email', 'email')}
+  WHERE n.trashed = 0
+  ORDER BY n.createDate DESC
+`;
+
+// ─── 5. INVOICES ─────────────────────────────────────────────────────────
+// Children of "Invoices" folder under each creator
+// → Kiibee: subscription_invoices
+export const INVOICES_QUERY = `
+  SELECT
+    c.nodeId                                AS umbraco_node_id,
+    n.text                                  AS invoice_label,
+    n.createDate                            AS created_at,
+    creator_node.id                         AS creator_node_id,
+    creator_node.text                       AS creator_name
+  FROM cmsContent c
+  INNER JOIN umbracoNode n ON n.id = c.nodeId
+  INNER JOIN umbracoNode inv_folder ON inv_folder.id = n.parentID
+    AND inv_folder.text = 'Invoices'
+  INNER JOIN umbracoNode creator_node ON creator_node.id = inv_folder.parentID
+  WHERE n.trashed = 0
+  ORDER BY n.createDate DESC
+`;
+
+// ─── 6. PAYOUTS ──────────────────────────────────────────────────────────
+// Children of "Payouts" folder under each creator
+// → Kiibee: creator_payouts
+export const PAYOUTS_QUERY = `
+  SELECT
+    c.nodeId                                AS umbraco_node_id,
+    n.text                                  AS payout_label,
+    n.createDate                            AS created_at,
+    creator_node.id                         AS creator_node_id,
+    creator_node.text                       AS creator_name
+  FROM cmsContent c
+  INNER JOIN umbracoNode n ON n.id = c.nodeId
+  INNER JOIN umbracoNode pay_folder ON pay_folder.id = n.parentID
+    AND pay_folder.text = 'Payouts'
+  INNER JOIN umbracoNode creator_node ON creator_node.id = pay_folder.parentID
+  WHERE n.trashed = 0
+  ORDER BY n.createDate DESC
+`;
+
+// ─── FIELD MAP: Show → media_files ───────────────────────────────────────
+export function mapShowToMediaFile(row: Record<string, unknown>) {
+  const videoId = row.video_id as string | null;
+  const thumbnailUrl =
+    (row.thumbnail_url as string) ||
+    (videoId
+      ? `https://videodelivery.net/${videoId}/thumbnails/thumbnail.jpg`
+      : null);
+  const downloadUrl =
+    (row.download_url as string) ||
+    (videoId
+      ? `https://videodelivery.net/${videoId}/downloads/default.mp4`
+      : null);
+
+  const contentType = ((row.content_type as string) || 'video').toLowerCase();
+  const fileTypeMap: Record<string, string> = {
+    video: 'video',
+    audio: 'audio',
+    pdf: 'pdf',
+    epub: 'epub',
+    webcontent: 'web',
+  };
+
+  return {
+    title: row.title as string,
+    slug: slugify(row.title as string),
+    fileType: fileTypeMap[contentType] || 'video',
+    fileSize: row.video_size ? parseInt(row.video_size as string, 10) : null,
+    thumbnailUrl,
+    trailerUrl: (row.trailer_url as string) || null,
+    videoDownloadUrl: downloadUrl,
+    webContentUrl: (row.web_content_url as string) || null,
+    cloudflareStreamId: videoId,
+    videoStatus: (row.video_status as string) || null,
+    visibility:
+      row.is_hidden === '1' ? ('hidden' as const) : ('public' as const),
+    accessType: 'paid' as const,
+    isPublished: true,
+    sortOrder: row.sort_order ? parseInt(row.sort_order as string, 10) : 0,
+    legacyUmbracoId: row.umbraco_node_id as number,
+    legacyCloudflareUrl: downloadUrl,
+  };
+}
+
+// ─── FIELD MAP: Purchase → orders + order_items ──────────────────────────
+export function mapPurchaseToOrder(row: Record<string, unknown>) {
+  const expireDate = row.expire_date as string | null;
+  const isPurchase = !expireDate;
+
+  return {
+    order: {
+      orderNumber: row.purchase_id as string,
+      totalAmount: row.price as string,
+      currency: 'DKK',
+      status: 'completed' as const,
+    },
+    orderItem: {
+      itemType: isPurchase ? ('purchase' as const) : ('rental' as const),
+      price: row.price as string,
+      rentExpiresAt: expireDate ? new Date(expireDate) : null,
+    },
+    customer: {
+      name: row.customer_name as string,
+      email: row.customer_email as string,
+    },
+    videoId: row.video_id as string,
+    stats: {
+      downloads: parseInt((row.downloads as string) || '0', 10),
+      streams: parseInt((row.streams as string) || '0', 10),
+    },
+    legacyUmbracoId: row.umbraco_node_id as number,
+  };
+}
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────
 
-function mapUmbracoRole(alias: string): string {
-  const roleMap: Record<string, string> = {
-    admin: 'admin',
-    editor: 'creator',
-    writer: 'creator',
-    translator: 'creator',
-    sensitiveData: 'admin',
-  };
-  return roleMap[alias] || 'viewer';
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[æ]/g, 'ae')
+    .replace(/[ø]/g, 'oe')
+    .replace(/[å]/g, 'aa')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
-function mapUmbracoContentType(alias: string): string {
-  const typeMap: Record<string, string> = {
-    umbracoMediaVideo: 'video',
-    umbracoMediaAudio: 'audio',
-    Image: 'web', // images treated as web content
-    File: 'pdf', // generic files default to PDF
-    umbracoMediaArticle: 'epub',
-  };
-  return typeMap[alias] || 'video';
-}
-
+// ─── MIGRATION ORDER ─────────────────────────────────────────────────────
 export const MIGRATION_ORDER = [
-  'tags',
-  'content_categories',
-  'content_types',
-  'users',
-  'media_files',
-  'collections',
-  'tag_relations',
-  'cloudflare_media',
+  'creators',
+  'shows',
+  'purchases',
+  'subscribers',
+  'invoices',
+  'payouts',
 ] as const;
+
+export type MigrationEntity = (typeof MIGRATION_ORDER)[number];

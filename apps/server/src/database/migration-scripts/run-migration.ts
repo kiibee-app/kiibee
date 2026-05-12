@@ -17,9 +17,16 @@ import 'dotenv/config';
 import { eq } from 'drizzle-orm';
 import { db } from '../db';
 import { dataMigrations } from '../schema/system/dataMigrations.schema';
-import { MIGRATION_ORDER } from './umbraco-mappings';
-
-type MigrationEntity = (typeof MIGRATION_ORDER)[number];
+import {
+  MIGRATION_ORDER,
+  type MigrationEntity,
+  CREATOR_QUERY,
+  SHOWS_QUERY,
+  PURCHASES_QUERY,
+  SUBSCRIBERS_QUERY,
+  INVOICES_QUERY,
+  PAYOUTS_QUERY,
+} from './umbraco-mappings';
 
 async function createMigrationRecord(
   entity: string,
@@ -57,102 +64,56 @@ async function updateMigrationRecord(
     .where(eq(dataMigrations.id, id));
 }
 
-async function migrateUsers() {
-  const migrationId = await createMigrationRecord('users', 'umbraco');
+/**
+ * Runs a migration step for a given entity.
+ * Requires UMBRACO_DB_CONNECTION_STRING to be set.
+ *
+ * To connect to Umbraco SQL Server, install: pnpm add mssql
+ * Then uncomment the mssql import and connection code below.
+ */
+
+// import mssql from 'mssql';
+//
+// async function getUmbracoDb() {
+//   const connStr = process.env.UMBRACO_DB_CONNECTION_STRING;
+//   if (!connStr) throw new Error('UMBRACO_DB_CONNECTION_STRING not set');
+//   return mssql.connect(connStr);
+// }
+
+async function runEntityMigration(
+  entity: MigrationEntity,
+  query: string,
+  description: string,
+) {
+  const source = entity === 'shows' ? 'cloudflare' : 'umbraco';
+  const migrationId = await createMigrationRecord(
+    entity,
+    source as 'umbraco' | 'cloudflare',
+  );
   try {
-    // TODO: Connect to Umbraco SQL Server using UMBRACO_DB_CONNECTION_STRING
-    // TODO: Execute USER_MAPPING.source.query
-    // TODO: Transform each row using USER_MAPPING.fieldMap
-    // TODO: Insert into Kiibee users table with legacyUmbracoId set
-    // TODO: Also create user_profiles records
+    console.log(`[Migration] ${description}`);
+    console.log(`[Migration] SQL Query to run against Umbraco DB:`);
+    console.log(query);
+    console.log('');
+
+    // --- Uncomment after installing mssql: ---
+    // const umbracoDb = await getUmbracoDb();
+    // const result = await umbracoDb.request().query(query);
+    // console.log(`[Migration] Found ${result.recordset.length} records`);
+    //
+    // For each row in result.recordset:
+    //   - Transform using mapShowToMediaFile / mapPurchaseToOrder
+    //   - Insert into Kiibee PostgreSQL via drizzle
+    //
+    // await updateMigrationRecord(migrationId, {
+    //   status: 'completed',
+    //   totalRecords: result.recordset.length,
+    //   migratedRecords: result.recordset.length,
+    // });
 
     console.log(
-      '[Migration] Users: Connect to Umbraco DB and run migration...',
+      '[Migration] ⚠ Dry run - set UMBRACO_DB_CONNECTION_STRING and install mssql to run for real',
     );
-    console.log(
-      '[Migration] Ensure UMBRACO_DB_CONNECTION_STRING is set in .env',
-    );
-
-    await updateMigrationRecord(migrationId, {
-      status: 'completed',
-      totalRecords: 0,
-      migratedRecords: 0,
-    });
-  } catch (error) {
-    await updateMigrationRecord(migrationId, {
-      status: 'failed',
-      errorLog: { message: String(error) },
-    });
-    throw error;
-  }
-}
-
-async function migrateTags() {
-  const migrationId = await createMigrationRecord('tags', 'umbraco');
-  try {
-    // TODO: Connect to Umbraco SQL Server
-    // TODO: Execute TAG_MAPPING.source.query
-    // TODO: Generate slugs from tag names
-    // TODO: Insert into Kiibee tags table with legacyUmbracoId
-
-    console.log('[Migration] Tags: Connect to Umbraco DB and run migration...');
-
-    await updateMigrationRecord(migrationId, {
-      status: 'completed',
-      totalRecords: 0,
-      migratedRecords: 0,
-    });
-  } catch (error) {
-    await updateMigrationRecord(migrationId, {
-      status: 'failed',
-      errorLog: { message: String(error) },
-    });
-    throw error;
-  }
-}
-
-async function migrateMediaFiles() {
-  const migrationId = await createMigrationRecord('media_files', 'umbraco');
-  try {
-    // TODO: Connect to Umbraco SQL Server
-    // TODO: Execute MEDIA_FILE_MAPPING.source.query
-    // TODO: Transform using fieldMap (content type alias → file type, etc.)
-    // TODO: Insert into media_files with legacyUmbracoId + legacyCloudflareUrl
-    // TODO: Create media_file_categories and media_file_tags relations
-
-    console.log(
-      '[Migration] Media files: Connect to Umbraco DB and run migration...',
-    );
-
-    await updateMigrationRecord(migrationId, {
-      status: 'completed',
-      totalRecords: 0,
-      migratedRecords: 0,
-    });
-  } catch (error) {
-    await updateMigrationRecord(migrationId, {
-      status: 'failed',
-      errorLog: { message: String(error) },
-    });
-    throw error;
-  }
-}
-
-async function migrateCloudflareMedia() {
-  const migrationId = await createMigrationRecord('media_blobs', 'cloudflare');
-  try {
-    // TODO: Query media_files where legacy_cloudflare_url IS NOT NULL
-    // TODO: For each file:
-    //   1. Download from Cloudflare using CLOUDFLARE_API_TOKEN
-    //   2. Upload to DigitalOcean Spaces using S3 SDK
-    //   3. Create cloud_storage_files record
-    //   4. Update media_files.file_url to new CDN URL
-
-    console.log(
-      '[Migration] Cloudflare media: Download from Cloudflare, upload to DO Spaces...',
-    );
-    console.log('[Migration] Ensure DO_SPACES_* and CLOUDFLARE_* vars are set');
-
     await updateMigrationRecord(migrationId, {
       status: 'completed',
       totalRecords: 0,
@@ -168,18 +129,42 @@ async function migrateCloudflareMedia() {
 }
 
 const ENTITY_HANDLERS: Record<MigrationEntity, () => Promise<void>> = {
-  tags: migrateTags,
-  content_categories: async () =>
-    console.log('[Migration] Categories: seeded, skip'),
-  content_types: async () =>
-    console.log('[Migration] Content types: seeded, skip'),
-  users: migrateUsers,
-  media_files: migrateMediaFiles,
-  collections: async () =>
-    console.log('[Migration] Collections: implement after media_files'),
-  tag_relations: async () =>
-    console.log('[Migration] Tag relations: implement after tags + media'),
-  cloudflare_media: migrateCloudflareMedia,
+  creators: () =>
+    runEntityMigration(
+      'creators',
+      CREATOR_QUERY,
+      'Creators: top-level nodes → users + creator_channels',
+    ),
+  shows: () =>
+    runEntityMigration(
+      'shows',
+      SHOWS_QUERY,
+      'Shows: media items → media_files (Cloudflare Stream IDs)',
+    ),
+  purchases: () =>
+    runEntityMigration(
+      'purchases',
+      PURCHASES_QUERY,
+      'Purchases: transactions → orders + order_items + user_content_access',
+    ),
+  subscribers: () =>
+    runEntityMigration(
+      'subscribers',
+      SUBSCRIBERS_QUERY,
+      'Subscribers: email lists → email_subscribers',
+    ),
+  invoices: () =>
+    runEntityMigration(
+      'invoices',
+      INVOICES_QUERY,
+      'Invoices: billing → subscription_invoices',
+    ),
+  payouts: () =>
+    runEntityMigration(
+      'payouts',
+      PAYOUTS_QUERY,
+      'Payouts: settlements → creator_payouts',
+    ),
 };
 
 async function main() {
