@@ -52,14 +52,9 @@ export default function ContentUploadModal({
     `contents.contentUploadModal.${uploadType}.helperLineTwo`,
   );
 
-  const handleClose = () => {
+  const handleExit = (callback: () => void) => {
     setSelectedFile(null);
-    onClose();
-  };
-
-  const handleBack = () => {
-    setSelectedFile(null);
-    onBack();
+    callback();
   };
 
   const handleSelectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,7 +80,7 @@ export default function ContentUploadModal({
   return (
     <GenericModal
       visible={visible}
-      onClose={handleClose}
+      onClose={() => handleExit(onClose)}
       width="670px"
       height="450px"
       padding="20px"
@@ -94,7 +89,7 @@ export default function ContentUploadModal({
       <BackButton
         type="button"
         aria-label={t("common.back", { defaultValue: "Back" })}
-        onClick={handleBack}
+        onClick={() => handleExit(onBack)}
       >
         <BackButtonIcon size={28} strokeWidth={2.5} />
       </BackButton>
