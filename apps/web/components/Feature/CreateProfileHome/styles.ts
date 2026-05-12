@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import Image from "next/image";
 
 export const Page = styled.main`
   min-height: 100vh;
@@ -83,6 +84,10 @@ export const BrandAvatar = styled.span`
   border-radius: 10px;
   flex: 0 0 auto;
   box-shadow: 0 8px 18px ${({ theme }) => theme.colors.neutral.GRAY_300};
+`;
+
+export const BrandAvatarImage = styled(Image)`
+  object-fit: cover;
 `;
 
 export const BrandName = styled.span`
