@@ -1,4 +1,5 @@
 export const PATHS = {
+  HOME: "/",
   AUTH_LOGIN: "/auth/login",
   AUTH_SIGNUP: "/auth/signup",
   AUTH_SIGNUP_CREATOR: "/auth/signup-creator",
