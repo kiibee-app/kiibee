@@ -5,26 +5,27 @@ import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 
 export const Section = styled.section`
-  width: 100%;
+  width: min(100%, 1300px);
+  margin: 0 auto;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  padding: 35px 110px 0 110px;
+  padding: 35px 0 0;
 
   ${media.tablet} {
+    width: 100%;
     padding: 2.5rem 1.25rem;
   }
 `;
 
 export const ContentWrapper = styled.div<{ $isMobile: boolean }>`
-  width: min(100%, 90rem);
-  max-width: 100%;
+  width: 100%;
+  margin: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: ${({ $isMobile }) => ($isMobile ? "2rem" : "2.5rem")};
-  flex: 1 0 0;
   padding-top: 20px;
 
   ${media.tablet} {
@@ -36,10 +37,11 @@ export const ContentWrapper = styled.div<{ $isMobile: boolean }>`
 
 export const ImageSection = styled.div`
   position: relative;
-  width: min(100%, 39.5724rem);
+  width: min(100%, 640px);
   aspect-ratio: 39.5724 / 21.5625;
   border-radius: 0.5rem;
   overflow: hidden;
+  flex: 0 0 auto;
 
   ${media.tablet} {
     width: 100%;
@@ -67,6 +69,7 @@ export const UploadImage = styled.img`
 export const TextSection = styled.div`
   flex: 1;
   width: 100%;
+  max-width: 560px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

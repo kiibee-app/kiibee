@@ -32,6 +32,8 @@ export const CREATE_PROFILE_ROUTES = {
   about: {
     title: "createProfileAbout.title",
     description: "createProfileAbout.description",
+    sectionTitle: "createProfileAbout.sectionTitle",
+    buyCollection: "createProfileAbout.buyCollection",
   },
 };
 

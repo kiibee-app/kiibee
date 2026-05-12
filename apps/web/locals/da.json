@@ -78,7 +78,9 @@
   },
   "createProfileAbout": {
     "title": "Om",
-    "description": "Del din historie, dit arbejde og hvad folk kan forvente af din profil."
+    "description": "Del din historie, dit arbejde og hvad folk kan forvente af din profil.",
+    "sectionTitle": "Planter og dyr",
+    "buyCollection": "Køb samling xx kr"
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",

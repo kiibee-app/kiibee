@@ -78,7 +78,9 @@
   },
   "createProfileAbout": {
     "title": "About",
-    "description": "Share your story, your work, and what people can expect from your profile."
+    "description": "Share your story, your work, and what people can expect from your profile.",
+    "sectionTitle": "Plants and animals",
+    "buyCollection": "Buy collection xx kr"
   },
   "createProfileFooter": {
     "tagline": "Sell and showcase online products",
