@@ -6,6 +6,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { Section, Inner, Heading, Sub, CTAWrap } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import { BG_GREEN, VARIANT, type BgVariant } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
 type GetStartedProps = {
   translationPrefix?: string;
@@ -33,14 +34,14 @@ export default function GetStarted({
         <CTAWrap>
           <GenericButton
             asAnchor
-            href="/tutorial-videos"
+            href={PATHS.TUTORIAL_VIDEOS}
             variant={VARIANT.PRIMARY}
           >
             {t(`${translationPrefix}.tutorial`)}
           </GenericButton>
           <GenericButton
             asAnchor
-            href="/tutorial-videos"
+            href={PATHS.TUTORIAL_VIDEOS}
             variant={VARIANT.SECONDARY}
           >
             {t(`${translationPrefix}.guide`)}
