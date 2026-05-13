@@ -33,6 +33,7 @@ export const CREATE_PROFILE_ROUTES = {
     title: "createProfileAbout.title",
     description: "createProfileAbout.description",
     sectionTitle: "createProfileAbout.sectionTitle",
+    sectionTitleClothes: "createProfileAbout.sectionTitleClothes",
     buyCollection: "createProfileAbout.buyCollection",
   },
 };
