@@ -20,8 +20,8 @@ export const Background = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  top: -72px;
-  height: calc(100% + 72px);
+  top: -108px;
+  height: calc(100% + 108px);
   z-index: 0;
   overflow: hidden;
 `;
