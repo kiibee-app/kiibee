@@ -23,7 +23,8 @@ import { desktopCards, mobileCards } from "@/utils/cards";
 import { MonoText } from "@/components/UI/Monotext";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
-import { BUTTON, resolveImageUrl, type ImageSource } from "@/utils/Constants";
+import { resolveImageUrl, type ImageSource } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
 type CTAImageCard = {
   src: ImageSource;
@@ -84,7 +85,9 @@ export default function CallToAction() {
             {t("callToAction.subtitle")}
           </MonoText>
         </Subtitle>
-        <CTAButton type={BUTTON}>{t("callToAction.cta")}</CTAButton>
+        <CTAButton asAnchor href={PATHS.AUTH_SIGNUP}>
+          {t("callToAction.cta")}
+        </CTAButton>
       </Content>
     </Section>
   );

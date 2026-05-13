@@ -37,8 +37,11 @@ export default function DiscoverContent() {
       </GridContainer>
 
       <BottomCtaSection>
-        <GenericButton>{t("discoverContent.ctaPrimary")}</GenericButton>
+        <GenericButton asAnchor href={PATHS.AUTH_SIGNUP}>
+          {t("discoverContent.ctaPrimary")}
+        </GenericButton>
         <GenericButton
+          asAnchor
           href={PATHS.EXPLORE_CREATORS}
           variant={VARIANT.SECONDARY}
         >
