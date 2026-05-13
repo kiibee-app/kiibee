@@ -18,6 +18,7 @@ import {
   PrimaryButton,
   Title,
 } from "./styles";
+import { PATHS } from "@/utils/path";
 
 export default function PricingPage() {
   const { t } = useTranslation();
@@ -52,6 +53,7 @@ export default function PricingPage() {
             t("startCreating.description2"),
           ]}
           ctaText={t("startCreating.cta")}
+          ctaHref={PATHS.AUTH_SIGNUP_CREATOR}
         />
       </Main>
       <Footer />
