@@ -26,6 +26,7 @@ export const useContentsDataState = (
     collections,
     setCollections,
     collectionContents,
+    setContentsMap,
     ...deleteState,
   };
 };

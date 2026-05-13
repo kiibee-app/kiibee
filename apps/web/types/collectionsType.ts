@@ -43,7 +43,7 @@ export type CollectionTableProps =
       onMore?: (id: string) => void;
       onMoveUp?: (id: string) => void;
       onMoveDown?: (id: string) => void;
-      onSettings?: (id: string) => void;
+      onOther?: (id: string) => void;
     };
 
 export function isCollectionContentRow(
