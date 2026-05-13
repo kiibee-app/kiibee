@@ -31,6 +31,7 @@ export default function AboutKiibeePage() {
         title={t("about.value.title")}
         subtitle={t("about.value.subtitle")}
         ctaText={t("about.value.cta")}
+        ctaHref="/auth/signup"
       />
 
       <Footer />
