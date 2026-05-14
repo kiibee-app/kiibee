@@ -18,6 +18,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -47,7 +48,11 @@ export default function HeroSection() {
           </Subtitle>
 
           <CTAWrap>
-            <GenericButton asAnchor href="#" variant={VARIANT.PRIMARY}>
+            <GenericButton
+              asAnchor
+              href={PATHS.AUTH_SIGNUP}
+              variant={VARIANT.PRIMARY}
+            >
               {t(HERO.cta)}
             </GenericButton>
           </CTAWrap>
