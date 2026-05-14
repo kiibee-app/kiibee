@@ -63,7 +63,7 @@ export const SelectedFileContainer = styled.div`
 export const FileDetailsWrapper = styled.div`
   width: 100%;
   max-width: 502px;
-  background: ${({ theme }) => theme.colors.primary.WHITE};
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border-radius: 14px;
   padding: 16px;
   display: flex;

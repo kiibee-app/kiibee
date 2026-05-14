@@ -1,11 +1,11 @@
 import * as React from "react";
-import { SVG_XMLNS } from "@/utils/Constants";
+import { CURRENT_COLOR, SVG_XMLNS } from "@/utils/Constants";
 import type { IconProps } from "./types";
 
 export default function UploadPdfIcon({
   width = 64,
   height = 64,
-  color = "currentColor",
+  color = CURRENT_COLOR,
   title,
   ...props
 }: IconProps) {
