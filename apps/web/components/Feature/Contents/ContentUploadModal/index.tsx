@@ -64,6 +64,10 @@ export default function ContentUploadModal({
     callback();
   };
 
+  const handleAddDetails = () => {
+    console.log("Details added for", selectedFile?.name);
+  };
+
   return (
     <GenericModal
       visible={visible}
@@ -94,7 +98,7 @@ export default function ContentUploadModal({
               isUploading={isUploading}
               uploadComplete={uploadComplete}
               canProceed={canProceed}
-              onNext={() => {}}
+              onNext={handleAddDetails}
             />
           ) : (
             <ContentUploadDropZone

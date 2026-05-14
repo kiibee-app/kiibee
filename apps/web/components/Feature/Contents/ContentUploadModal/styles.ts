@@ -89,6 +89,10 @@ export const PreviewBox = styled.div`
   height: 64px;
 `;
 
+export const AddButtom = styled.div`
+  margin-top: 24px;
+`;
+
 export const PreviewVideo = styled.video`
   width: 100%;
   height: 100%;
