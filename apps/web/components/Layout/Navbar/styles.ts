@@ -108,8 +108,11 @@ export const MegaMenu = styled.div`
   left: 0;
   width: 100%;
   padding: 1.5rem 0;
-  background: ${({ theme }) => theme.colors.primary.WHITE_10};
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(28px);
+  background: ${({ theme }) => theme.colors.primary.WHITE_80};
+  transition:
+    background 180ms ease,
+    backdrop-filter 180ms ease;
   box-shadow: 0 6px 24px ${({ theme }) => theme.colors.neutral.GRAY_300};
   pointer-events: auto;
   z-index: 1000;
