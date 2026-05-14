@@ -195,6 +195,8 @@ export class AuthService {
 
   async changePassword(userId: string, dto: ChangePasswordDto) {
     return changePasswordService(userId, dto);
+  }
+
   async getCreatorProfile(userId: string) {
     return getCreatorProfileService(userId);
   }
