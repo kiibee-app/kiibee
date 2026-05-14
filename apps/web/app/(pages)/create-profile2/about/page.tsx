@@ -1,5 +1,5 @@
-import CreateProfileAbout from "@/components/Feature/CreateProfile2About";
+import About from "@/components/Feature/ProfileLayout/Layout2/About";
 
-export default function CreateProfileAboutPage() {
-  return <CreateProfileAbout />;
+export default function AboutPage() {
+  return <About />;
 }

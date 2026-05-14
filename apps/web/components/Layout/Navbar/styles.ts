@@ -2,7 +2,7 @@ import { HeaderProps, NavStyleProps } from "@/utils/profile";
 import styled, { css } from "styled-components";
 
 export const Header = styled.header<HeaderProps>`
-  --navbar-height: 108px;
+  --navbar-height: ${({ $navbarHeight }) => $navbarHeight ?? "108px"};
   position: ${({ $position }) => $position};
   top: ${({ $topOffset }) => $topOffset};
   left: 0;
