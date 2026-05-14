@@ -66,7 +66,7 @@ export const FormMessage = styled.p`
 
 export const CheckboxRow = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5rem;
   margin-top: 0.25rem;
 `;
@@ -85,8 +85,10 @@ export const ConsentText = styled.label`
 
 export const TermsLink = styled(Link)`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  font-weight: 700;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
 `;
 
 export const LoginRow = styled.p`
