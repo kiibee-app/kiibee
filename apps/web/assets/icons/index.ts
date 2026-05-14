@@ -36,3 +36,6 @@ export { default as ThreeDotIcon } from "./ThreeDotIcon";
 export { default as SelectedCheckIcon } from "./SelectedCheckIcon";
 export { default as ChipCloseIcon } from "./ChipCloseIcon";
 export { default as RatingStarPathIcon } from "./RatingStarPathIcon";
+export { default as UploadAudioIcon } from "./UploadAudioIcon";
+export { default as UploadPdfIcon } from "./UploadPdfIcon";
+export { default as UploadEpubIcon } from "./UploadEpubIcon";

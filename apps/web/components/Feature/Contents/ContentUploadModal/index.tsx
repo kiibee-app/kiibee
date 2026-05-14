@@ -1,10 +1,14 @@
 "use client";
 
-import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
+import SuccessArcIcon from "@/assets/icons/SuccessArcIcon";
+import UploadAudioIcon from "@/assets/icons/UploadAudioIcon";
+import UploadPdfIcon from "@/assets/icons/UploadPdfIcon";
+import UploadEpubIcon from "@/assets/icons/UploadEpubIcon";
 import GenericButton from "@/components/UI/GenericButton";
 import { GenericModal } from "@/components/UI/Modals";
+import GenericLoader from "@/components/UI/GenericLoader";
 import {
   HiddenInput,
   UploadHint,
@@ -12,20 +16,25 @@ import {
 } from "@/components/UI/ImageUploadCropModal/styles";
 import { BackButton } from "../ContentTypeModal/styles";
 import { VARIANT } from "@/utils/Constants";
-import {
-  CONTENT_UPLOAD_CONFIG,
-  resolveUploadContentType,
-  type ContentType,
-} from "@/utils/content";
+import { LOADER_SIZE, LOADER_VARIANT } from "@/utils/ui";
 import {
   ChooseUploadButton,
   ContentUploadDropZone,
-  SelectedFileName,
   UploadBody,
   UploadHelperText,
   UploadHelperTextGroup,
   UploadModalContent,
+  SelectedFileContainer,
+  FileDetailsWrapper,
+  PreviewFileRow,
+  FileInfoColumn,
+  PreviewBox,
+  PreviewVideo,
 } from "./styles";
+import { ContentType } from "@/utils/content";
+import { useContentUpload } from "@/hooks/contents/useContentUpload";
+import { formatFileSize } from "@/utils/file";
+import COLORS from "@repo/ui/colors";
 
 type ContentUploadModalProps = {
   visible: boolean;
@@ -41,10 +50,21 @@ export default function ContentUploadModal({
   onClose,
 }: ContentUploadModalProps) {
   const { t } = useTranslation();
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const uploadType = resolveUploadContentType(contentType);
-  const uploadConfig = CONTENT_UPLOAD_CONFIG[uploadType];
+
+  const {
+    fileInputRef,
+    selectedFile,
+    isUploading,
+    uploadComplete,
+    previewUrl,
+    uploadType,
+    uploadConfig,
+    canProceed,
+    handleFileInputChange,
+    handleDrop,
+    reset,
+  } = useContentUpload({ contentType });
+
   const helperLineOne = t(
     `contents.contentUploadModal.${uploadType}.helperLineOne`,
   );
@@ -53,28 +73,29 @@ export default function ContentUploadModal({
   );
 
   const handleExit = (callback: () => void) => {
-    setSelectedFile(null);
+    reset();
     callback();
   };
 
-  const handleSelectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    setSelectedFile(file);
-    event.target.value = "";
-  };
-
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-
-    const file = event.dataTransfer.files?.[0];
-    const isSupportedFile = uploadConfig.extensions.some((extension) =>
-      file?.name.toLowerCase().endsWith(extension),
-    );
-    if (!file || !isSupportedFile) return;
-
-    setSelectedFile(file);
+  const renderPreview = () => {
+    switch (uploadType) {
+      case "video":
+        return <PreviewVideo src={previewUrl ?? ""} controls={false} />;
+      case "audio":
+        return (
+          <UploadAudioIcon width={64} height={64} color={COLORS.primary.RED} />
+        );
+      case "pdf":
+        return (
+          <UploadPdfIcon width={64} height={64} color={COLORS.primary.RED} />
+        );
+      case "epub":
+        return (
+          <UploadEpubIcon width={64} height={64} color={COLORS.primary.BLUE} />
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -86,11 +107,7 @@ export default function ContentUploadModal({
       padding="20px"
       borderRadius="20px"
     >
-      <BackButton
-        type="button"
-        aria-label={t("common.back", { defaultValue: "Back" })}
-        onClick={() => handleExit(onBack)}
-      >
+      <BackButton onClick={() => handleExit(onBack)}>
         <BackButtonIcon size={28} strokeWidth={2.5} />
       </BackButton>
 
@@ -100,44 +117,70 @@ export default function ContentUploadModal({
             ref={fileInputRef}
             type="file"
             accept={uploadConfig.accept}
-            onChange={handleSelectFile}
+            onChange={handleFileInputChange}
           />
 
-          <ContentUploadDropZone
-            onDragOver={(event) => event.preventDefault()}
-            onDrop={handleDrop}
-          >
-            <UploadHint>
-              {selectedFile
-                ? t("contents.contentUploadModal.selectedFile")
-                : t("contents.contentUploadModal.dragFileHere")}
-            </UploadHint>
+          {selectedFile ? (
+            <SelectedFileContainer>
+              <UploadHint>Upload {uploadType}</UploadHint>
 
-            {selectedFile ? (
-              <SelectedFileName title={selectedFile.name}>
-                {selectedFile.name}
-              </SelectedFileName>
-            ) : (
-              <UploadOrText>{t("contents.contentUploadModal.or")}</UploadOrText>
-            )}
+              <FileDetailsWrapper>
+                <PreviewFileRow>
+                  <PreviewBox>{renderPreview()}</PreviewBox>
 
-            <ChooseUploadButton>
+                  <FileInfoColumn>
+                    <div>{selectedFile.name}</div>
+                    <div>{formatFileSize(selectedFile.size)}</div>
+                  </FileInfoColumn>
+                </PreviewFileRow>
+
+                {uploadComplete && <SuccessArcIcon width={32} height={32} />}
+
+                {isUploading && !uploadComplete && (
+                  <GenericLoader
+                    variant={LOADER_VARIANT.INLINE}
+                    size={LOADER_SIZE.SM}
+                  />
+                )}
+              </FileDetailsWrapper>
+
               <GenericButton
                 variant={VARIANT.PRIMARY}
-                minWidth="182px"
-                onClick={() => fileInputRef.current?.click()}
+                minWidth="320px"
+                disabled={!canProceed}
               >
-                {t("contents.contentUploadModal.chooseFile")}
+                {t("common.next", { defaultValue: "Next" })}
               </GenericButton>
-            </ChooseUploadButton>
+            </SelectedFileContainer>
+          ) : (
+            <ContentUploadDropZone
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={handleDrop}
+            >
+              <UploadHint>
+                {t("contents.contentUploadModal.dragFileHere")}
+              </UploadHint>
 
-            <UploadHelperTextGroup>
-              <UploadHelperText>{helperLineOne}</UploadHelperText>
-              {helperLineTwo ? (
-                <UploadHelperText>{helperLineTwo}</UploadHelperText>
-              ) : null}
-            </UploadHelperTextGroup>
-          </ContentUploadDropZone>
+              <UploadOrText>{t("contents.contentUploadModal.or")}</UploadOrText>
+
+              <ChooseUploadButton>
+                <GenericButton
+                  variant={VARIANT.PRIMARY}
+                  minWidth="182px"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  {t("contents.contentUploadModal.chooseFile")}
+                </GenericButton>
+              </ChooseUploadButton>
+
+              <UploadHelperTextGroup>
+                <UploadHelperText>{helperLineOne}</UploadHelperText>
+                {helperLineTwo && (
+                  <UploadHelperText>{helperLineTwo}</UploadHelperText>
+                )}
+              </UploadHelperTextGroup>
+            </ContentUploadDropZone>
+          )}
         </UploadBody>
       </UploadModalContent>
     </GenericModal>
