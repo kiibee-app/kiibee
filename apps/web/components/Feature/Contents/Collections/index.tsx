@@ -35,6 +35,8 @@ import {
   MOVE_SETTINGS,
   RowAction,
   actionOptions,
+  MOVE_TO_ANOTHER_COLLECTION,
+  contentActionOptions,
 } from "@/utils/sortOptions";
 
 type TableRow = CollectionRow | CollectionContentRow;
@@ -72,19 +74,18 @@ export default function CollectionTable(props: CollectionTableProps) {
 
   const renderActions = (id: string, showDropdown: boolean) => {
     const handleActionSelect = (value: RowAction) => {
-      if (value === MOVE_UP) {
-        props.onMoveUp?.(id);
-        return;
-      }
+      const actionHandlers: Partial<Record<RowAction, () => void>> = {
+        [MOVE_UP]: () => props.onMoveUp?.(id),
+        [MOVE_DOWN]: () => props.onMoveDown?.(id),
+        [MOVE_SETTINGS]: () => {
+          if (isCollections) {
+            props.onSettings?.(id);
+          }
+        },
+        [MOVE_TO_ANOTHER_COLLECTION]: () => props.onMore?.(id),
+      };
 
-      if (value === MOVE_DOWN) {
-        props.onMoveDown?.(id);
-        return;
-      }
-
-      if (value === MOVE_SETTINGS) {
-        props.onSettings?.(id);
-      }
+      actionHandlers[value]?.();
     };
 
     return (
@@ -99,11 +100,11 @@ export default function CollectionTable(props: CollectionTableProps) {
 
         {showDropdown ? (
           <SortDropdown<RowAction>
-            options={actionOptions}
+            options={isCollections ? actionOptions : contentActionOptions}
             allowNoSelection
             compact
-            dropdownWidth="196px"
-            maxWidth="196px"
+            dropdownWidth={isCollections ? "196px" : "250px"}
+            maxWidth={isCollections ? "196px" : "250px"}
             variant={SORT_DROPDOWN_VARIANT.SURFACE}
             trigger={<ThreeDotIcon />}
             onChange={handleActionSelect}
@@ -152,7 +153,10 @@ export default function CollectionTable(props: CollectionTableProps) {
         }
 
         if (col?.key === COLLECTION_COLUMNS[3].key) {
-          return renderActions(row.id, isCollections);
+          return renderActions(
+            row.id,
+            isCollections || props.type === COLLECTION_TABLE_TYPE.CONTENTS,
+          );
         }
 
         const key = col?.key as keyof TableRow;

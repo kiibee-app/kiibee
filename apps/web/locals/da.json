@@ -86,6 +86,7 @@
     "title": "Om",
     "description": "Del din historie, dit arbejde og hvad folk kan forvente af din profil.",
     "sectionTitle": "Planter og dyr",
+    "sectionTitleClothes": "Tøj",
     "buyCollection": "Køb samling xx kr"
   },
   "createProfileFooter": {
@@ -823,15 +824,15 @@
     "items": [
       {
         "question": "Can I sell content with the free plan?",
-        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+        "answer": "Yes. The free Launch plan lets you upload and sell up to two products with no monthly cost. It’s a great way to test your idea before upgrading."
       },
       {
         "question": "Can I change or cancel my plan?",
-        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+        "answer": "Absolutely. You can upgrade, downgrade, or cancel your subscription at any time directly from your account settings."
       },
       {
         "question": "Do viewers need a subscription?",
-        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+        "answer": "No. Your customers only pay for the content you choose to sell. They do not need their own subscription to access purchases."
       }
     ]
   },

@@ -12,6 +12,7 @@ import {
   PlanTitle,
   TickIcon,
 } from "./styles";
+import { PATHS } from "@/utils/path";
 
 export interface PlanCardProps {
   title: string;
@@ -49,7 +50,9 @@ export default function PlanCard({
         ))}
       </FeatureList>
 
-      <PlanButton type="button">{cta}</PlanButton>
+      <PlanButton asAnchor href={PATHS.AUTH_SIGNUP}>
+        {cta}
+      </PlanButton>
     </Card>
   );
 }

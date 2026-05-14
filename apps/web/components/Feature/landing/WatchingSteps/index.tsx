@@ -22,6 +22,7 @@ import Steps from "@/assets/images/steps.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
 export default function WatchingSteps() {
   const { t } = useTranslation();
@@ -78,7 +79,11 @@ export default function WatchingSteps() {
               </StepCard>
             ))}
             <CTAWrapper>
-              <GenericButton asAnchor href="#" variant={VARIANT.PRIMARY}>
+              <GenericButton
+                asAnchor
+                href={PATHS.HOW_IT_WORKS}
+                variant={VARIANT.PRIMARY}
+              >
                 {t("watchingSteps.cta")}
               </GenericButton>
             </CTAWrapper>

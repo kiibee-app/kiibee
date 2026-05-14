@@ -28,6 +28,9 @@ import { updateViewerProfileService } from './services/updateViewerProfile.servi
 import { getViewerProfileService } from './services/getViewerProfile.service';
 import { changePasswordService } from './services/changePassword.service';
 import { ChangePasswordDto } from './dto/changePassword.dto';
+import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
+import { updateCreatorProfileService } from './services/updateCreatorProfile.service';
+import { getCreatorProfileService } from './services/getCreatorProfile.service';
 
 @Injectable()
 export class AuthService {
@@ -192,5 +195,14 @@ export class AuthService {
 
   async changePassword(userId: string, dto: ChangePasswordDto) {
     return changePasswordService(userId, dto);
+  async getCreatorProfile(userId: string) {
+    return getCreatorProfileService(userId);
+  }
+
+  async updateCreatorProfile(
+    userId: string,
+    profileData: UpdateCreatorProfileDto,
+  ) {
+    return updateCreatorProfileService(userId, profileData);
   }
 }
