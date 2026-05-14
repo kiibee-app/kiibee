@@ -124,10 +124,14 @@ export default function NavBar({
                 <Image
                   src={logo}
                   alt={t(NAV.logoAlt)}
-                  width={80}
-                  height={25}
+                  width={320}
+                  height={98}
                   priority
-                  style={{ width: "auto", height: "auto" }}
+                  style={{
+                    width: "auto",
+                    height: "auto",
+                    maxHeight: 72,
+                  }}
                 />
               </Link>
             </Logo>

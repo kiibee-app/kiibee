@@ -2,11 +2,12 @@ import { HeaderProps, NavStyleProps } from "@/utils/profile";
 import styled, { css } from "styled-components";
 
 export const Header = styled.header<HeaderProps>`
+  --navbar-height: 108px;
   position: ${({ $position }) => $position};
   top: ${({ $topOffset }) => $topOffset};
   left: 0;
   width: 100%;
-  height: 72px;
+  min-height: var(--navbar-height);
   display: block;
   backdrop-filter: blur(28px);
   background: ${({ theme }) => theme.colors.primary.WHITE_10};
@@ -103,7 +104,7 @@ export const NavItemWrapper = styled.div`
 
 export const MegaMenu = styled.div`
   position: fixed;
-  top: calc(72px + var(--navbar-top-offset, 0px));
+  top: calc(var(--navbar-height, 108px) + var(--navbar-top-offset, 0px));
   left: 0;
   width: 100%;
   padding: 1.5rem 0;

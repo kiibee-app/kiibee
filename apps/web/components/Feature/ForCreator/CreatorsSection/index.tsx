@@ -27,6 +27,7 @@ import {
   NarrowCardText,
 } from "./style";
 import { resolveImageUrl } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
 export default function CreatorsSection() {
   const { t } = useTranslation();
@@ -53,7 +54,9 @@ export default function CreatorsSection() {
             <br />
             {t(CREATORS.heading.lineThree)}
           </Heading>
-          <CTAButton type="button">{t(CREATORS.cta)}</CTAButton>
+          <CTAButton asAnchor href={PATHS.AUTH_SIGNUP}>
+            {t(CREATORS.cta)}
+          </CTAButton>
         </LeftColumn>
 
         <RightColumn onMouseLeave={handleMouseLeave}>
