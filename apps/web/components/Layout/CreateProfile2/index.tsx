@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Page } from "../../Feature/CreateProfile2Home/styles";
-import CreateProfileNavbar from "../../Feature/CreateProfileNavbar";
-import CreateProfileCtaFooter from "@/components/Feature/CreateProfileFooter";
+import { Page } from "../../Feature/ProfileLayout/Layout2/Home/styles";
+import Footer from "@/components/Feature/ProfileLayout/Layout1/Footer";
+import Navbar from "@/components/Feature/ProfileLayout/Layout2/Navbar";
 
 type CreateProfileLayoutProps = {
   children: ReactNode;
@@ -14,9 +14,9 @@ export default function CreateProfileLayout({
 }: CreateProfileLayoutProps) {
   return (
     <Page>
-      <CreateProfileNavbar />
+      <Navbar />
       {children}
-      <CreateProfileCtaFooter />
+      <Footer />
     </Page>
   );
 }

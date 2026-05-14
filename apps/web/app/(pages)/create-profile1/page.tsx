@@ -1,5 +1,5 @@
-import CreateProfile1Home from "@/components/Feature/CreateProfile1Home";
+import Home from "@/components/Feature/ProfileLayout/Layout1/Home";
 
 export default function CreateProfile1Page() {
-  return <CreateProfile1Home />;
+  return <Home />;
 }

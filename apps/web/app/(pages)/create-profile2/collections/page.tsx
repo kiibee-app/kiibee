@@ -1,5 +1,5 @@
-import CreateProfileCollections from "@/components/Feature/CreateProfile2Collections";
+import Collections from "@/components/Feature/ProfileLayout/Layout2/Collections";
 
-export default function CreateProfileCollectionsPage() {
-  return <CreateProfileCollections />;
+export default function CollectionsPage() {
+  return <Collections />;
 }
