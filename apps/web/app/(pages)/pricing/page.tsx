@@ -9,6 +9,7 @@ import { Main, PageContainer } from "@/app/styles";
 import pricingHeroImage from "@/assets/images/pricing/pricing-hero.webp";
 import ctaImage from "@/assets/images/cta-buttom1.webp";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
 import {
   Container,
   Content,
@@ -22,6 +23,7 @@ import { PATHS } from "@/utils/path";
 
 export default function PricingPage() {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <PageContainer>
@@ -37,7 +39,10 @@ export default function PricingPage() {
                 <br />
                 {t("pricingPage.descriptionLine2")}
               </Description>
-              <PrimaryButton type="button">
+              <PrimaryButton
+                type="button"
+                onClick={() => router.push(PATHS.AUTH_SIGNUP_CREATOR)}
+              >
                 {t("pricingPage.cta")}
               </PrimaryButton>
             </Content>
