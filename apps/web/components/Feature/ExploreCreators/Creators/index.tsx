@@ -9,6 +9,7 @@ import { CREATORS } from "@/utils/translationKeys";
 import { CreatorProfile } from "@/utils/sortOptions";
 import { VARIANT } from "@/utils/Constants";
 import GenericCard from "@/components/UI/GenericCard";
+import { PATHS } from "@/utils/path";
 
 type Props = {
   creators: CreatorProfile[];
@@ -37,7 +38,7 @@ export default function ExploreCreators({ creators }: Props) {
             footer={
               <GenericButton
                 asAnchor
-                href="#profile"
+                href={PATHS.DASHBOARD_CREATOR_PROFILE}
                 variant={VARIANT.SECONDARY}
               >
                 {t(CREATORS.viewProfile)}
