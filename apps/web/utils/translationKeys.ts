@@ -147,6 +147,7 @@ export const CREATOR_PROFILE = {
   currentPassword: "creatorProfile.currentPassword",
   newPassword: "creatorProfile.newPassword",
   confirmPassword: "creatorProfile.confirmPassword",
+  newPasswordSameAsCurrent: "creatorProfile.newPasswordSameAsCurrent",
   accountDeletionTitle: "creatorProfile.accountDeletionTitle",
   accountDeletionText: "creatorProfile.accountDeletionText",
   deleteAccount: "creatorProfile.deleteAccount",

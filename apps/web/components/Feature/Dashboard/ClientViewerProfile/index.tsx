@@ -60,7 +60,7 @@ export default function ClientViewerProfile() {
     handleForgotPassword,
     forgotPasswordNotice,
     dismissForgotPasswordNotice,
-    isPasswordFormValid,
+    passwordFieldErrors,
     isSavingProfile,
     isChangingPassword,
   } = useViewerProfile();
@@ -144,11 +144,12 @@ export default function ClientViewerProfile() {
         size="md"
         fullWidthButtons
         buttonRow
-        confirmDisabled={!isPasswordFormValid || isChangingPassword}
+        confirmDisabled={isChangingPassword}
       >
         <PasswordSection
           passwords={passwords}
           onPasswordChange={onPasswordChange}
+          fieldErrors={passwordFieldErrors}
         />
       </GenericModal>
       <GenericModal

@@ -876,6 +876,7 @@
     "currentPassword": "Enter current password",
     "newPassword": "Enter new password",
     "confirmPassword": "Re-enter new password",
+    "newPasswordSameAsCurrent": "New password must be different from your current password",
     "accountDeletionTitle": "Account deletion",
     "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
     "deleteAccount": "Delete account",

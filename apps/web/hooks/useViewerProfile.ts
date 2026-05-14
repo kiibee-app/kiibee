@@ -67,15 +67,21 @@ export const useViewerProfile = () => {
 
   const passwordSchema = useMemo(
     () =>
-      createResetPasswordSchema({
-        currentRequired: t(CREATOR_PROFILE.currentPassword),
-        nextRequired: t(CREATOR_PROFILE.newPassword),
-        confirmRequired: t(CREATOR_PROFILE.confirmPassword),
-        confirmMismatch: t("viewerSignup.form.passwordMismatch"),
-      }).refine((v) => v.next.trim().length >= 6, {
-        message: t("dashboard.viewerProfile.passwordMinLength"),
-        path: ["next"],
-      }),
+      createResetPasswordSchema(
+        {
+          currentRequired: t(CREATOR_PROFILE.currentPassword),
+          nextRequired: t(CREATOR_PROFILE.newPassword),
+          confirmRequired: t(CREATOR_PROFILE.confirmPassword),
+          confirmMismatch: t("viewerSignup.form.passwordMismatch"),
+          newMustDifferFromCurrent: t(CREATOR_PROFILE.newPasswordSameAsCurrent),
+        },
+        {
+          nextMinLength: {
+            min: 6,
+            message: t("dashboard.viewerProfile.passwordMinLength"),
+          },
+        },
+      ),
     [t],
   );
 
@@ -98,6 +104,23 @@ export const useViewerProfile = () => {
   const [showProfileSavedModal, setShowProfileSavedModal] = useState(false);
   const [forgotPasswordNotice, setForgotPasswordNotice] =
     useState<ForgotPasswordNotice>(null);
+  const [passwordSubmitAttempted, setPasswordSubmitAttempted] = useState(false);
+
+  const passwordFieldErrors = useMemo(() => {
+    if (!passwordSubmitAttempted) {
+      return {} as Partial<Record<keyof PasswordState, string>>;
+    }
+    const parsed = passwordSchema.safeParse(passwords);
+    if (parsed.success) {
+      return {} as Partial<Record<keyof PasswordState, string>>;
+    }
+    const fe = parsed.error.flatten().fieldErrors;
+    return {
+      ...(fe.current?.[0] ? { current: fe.current[0] } : {}),
+      ...(fe.next?.[0] ? { next: fe.next[0] } : {}),
+      ...(fe.confirm?.[0] ? { confirm: fe.confirm[0] } : {}),
+    };
+  }, [passwordSchema, passwords, passwordSubmitAttempted]);
 
   const avatarDirty = avatarImage !== savedAvatarUrl;
 
@@ -206,6 +229,7 @@ export const useViewerProfile = () => {
 
   const resetPasswords = useCallback(() => {
     setPasswords(emptyPasswords);
+    setPasswordSubmitAttempted(false);
   }, []);
 
   const handleSave = async () => {
@@ -311,6 +335,7 @@ export const useViewerProfile = () => {
   const handlePasswordSave = useCallback(async () => {
     const parsed = passwordSchema.safeParse(passwords);
     if (!parsed.success) {
+      setPasswordSubmitAttempted(true);
       const first = parsed.error.flatten().fieldErrors;
       const msg =
         first.current?.[0] ??
@@ -346,11 +371,6 @@ export const useViewerProfile = () => {
     t,
   ]);
 
-  const isPasswordFormValid = useMemo(
-    () => passwordSchema.safeParse(passwords).success,
-    [passwordSchema, passwords],
-  );
-
   return {
     form,
     avatarImage,
@@ -372,7 +392,7 @@ export const useViewerProfile = () => {
     handleForgotPassword,
     forgotPasswordNotice,
     dismissForgotPasswordNotice,
-    isPasswordFormValid,
+    passwordFieldErrors,
     isSavingProfile: updateProfile.isPending,
     isChangingPassword: changePasswordMutation.isPending,
     isLoadingProfile: profileQuery.isLoading,

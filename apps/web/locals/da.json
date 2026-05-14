@@ -876,6 +876,7 @@
     "currentPassword": "Indtast nuværende adgangskode",
     "newPassword": "Indtast ny adgangskode",
     "confirmPassword": "Indtast ny adgangskode igen",
+    "newPasswordSameAsCurrent": "Den nye adgangskode skal være forskellig fra den nuværende",
     "accountDeletionTitle": "Slet konto",
     "accountDeletionText": "Hvis du ønsker at slette din konto, klik på [Slet konto] nedenfor, og der sendes en besked til administratoren, som vil foretage en opgørelse og derefter slette din konto.",
     "deleteAccount": "Slet konto",
