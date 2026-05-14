@@ -33,4 +33,6 @@ export const PATHS = {
   ABOUT: "/about-kiibee",
   TUTORIAL_VIDEOS: "/tutorial-videos",
   SUPPORT: "/support",
+  TERMS: "/terms-of-service",
+  PRIVACY_POLICY: "/privacy-policy",
 } as const;
