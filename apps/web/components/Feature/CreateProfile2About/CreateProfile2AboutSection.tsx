@@ -18,11 +18,26 @@ import {
 import { VARIANT } from "@/utils/Constants";
 import { tutorialVideos } from "@/utils/data";
 import { FORMAT_TYPE, type TutorialVideo } from "@/utils/types";
-import { ABOUT_VIDEO_OVERRIDES } from "@/utils/dummyData/collectionData";
+import {
+  ABOUT_VIDEO_OVERRIDES,
+  CLOTHES_DATA,
+} from "@/utils/dummyData/collectionData";
 import { CREATE_PROFILE_ROUTES } from "@/utils/translationKeys";
 
 export default function CreateProfile2AboutSection() {
   const { t } = useTranslation();
+
+  const clothesVideos = useMemo<TutorialVideo[]>(
+    () =>
+      CLOTHES_DATA.map(
+        (item, index) =>
+          ({
+            ...tutorialVideos[index],
+            ...item,
+          }) as unknown as TutorialVideo,
+      ),
+    [],
+  );
 
   const aboutVideos = useMemo<TutorialVideo[]>(
     () =>
@@ -42,24 +57,45 @@ export default function CreateProfile2AboutSection() {
   );
 
   return (
-    <Section>
-      <SectionHeader>
-        <SectionLabel>
-          <SectionTag>
-            <MonoText $use="H4_Medium">
-              {t(CREATE_PROFILE_ROUTES.about.sectionTitle)}
-            </MonoText>
-          </SectionTag>
-        </SectionLabel>
-        <SectionLink href="/single-collection?id=plants-and-animals">
-          <LeftIcon />
-        </SectionLink>
-      </SectionHeader>
-      <Grid>
-        {aboutVideos.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
-        ))}
-      </Grid>
-    </Section>
+    <>
+      <Section>
+        <SectionHeader>
+          <SectionLabel>
+            <SectionTag>
+              <MonoText $use="H4_Medium">
+                {t(CREATE_PROFILE_ROUTES.about.sectionTitleClothes)}
+              </MonoText>
+            </SectionTag>
+          </SectionLabel>
+          <SectionLink href="/single-collection?id=clothes">
+            <LeftIcon />
+          </SectionLink>
+        </SectionHeader>
+        <Grid>
+          {clothesVideos.map((tutorial) => (
+            <TutorialCard key={tutorial.id} tutorial={tutorial} />
+          ))}
+        </Grid>
+      </Section>
+      <Section>
+        <SectionHeader>
+          <SectionLabel>
+            <SectionTag>
+              <MonoText $use="H4_Medium">
+                {t(CREATE_PROFILE_ROUTES.about.sectionTitle)}
+              </MonoText>
+            </SectionTag>
+          </SectionLabel>
+          <SectionLink href="/single-collection?id=plants-and-animals">
+            <LeftIcon />
+          </SectionLink>
+        </SectionHeader>
+        <Grid>
+          {aboutVideos.map((tutorial) => (
+            <TutorialCard key={tutorial.id} tutorial={tutorial} />
+          ))}
+        </Grid>
+      </Section>
+    </>
   );
 }
