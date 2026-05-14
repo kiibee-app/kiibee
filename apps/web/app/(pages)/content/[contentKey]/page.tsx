@@ -10,7 +10,7 @@ import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import { tutorialVideoSections, tutorialVideos } from "@/utils/data";
 import type { TutorialVideo } from "@/utils/types";
-import { resolvePublishedContentByKey } from "@/utils/resolvePublishedContentByKey";
+import { resolvePublishedContentByKey } from "@/utils/resolveContentByKey";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
