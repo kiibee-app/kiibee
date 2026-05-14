@@ -13,7 +13,7 @@ import {
   BrandAvatar,
   BrandAvatarImage,
   BrandName,
-} from "../CreateProfileHome/styles";
+} from "../CreateProfile2Home/styles";
 
 export default function CreateProfile1Navbar() {
   const { t } = useTranslation();

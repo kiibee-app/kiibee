@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Image from "next/image";
 import { MonoText } from "@/components/UI/Monotext";
+import { Page } from "../CreateProfile2Home/styles";
 
 const imageCoverStyles = css`
   object-fit: cover;

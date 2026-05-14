@@ -11,7 +11,7 @@ import { VARIANT } from "@/utils/Constants";
 import NavBar from "@/components/Layout/Navbar";
 import { PROFILE_NAV_ITEMS } from "@/utils/profile";
 import portrait from "@/assets/images/creators/creator-woman-gray-jacket.webp";
-import { Brand, BrandAvatar, BrandName } from "../CreateProfileHome/styles";
+import { Brand, BrandAvatar, BrandName } from "../CreateProfile2Home/styles";
 
 export default function CreateProfileNavbar() {
   const { t } = useTranslation();

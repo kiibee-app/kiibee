@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Page } from "../../Feature/CreateProfileHome/styles";
+import { Page } from "../../Feature/CreateProfile2Home/styles";
 
 import CreateProfileCtaFooter from "@/components/Feature/CreateProfileFooter";
 import CreateProfile1Navbar from "@/components/Feature/CreateProfile1Nav";

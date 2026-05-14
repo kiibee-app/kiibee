@@ -1,4 +1,4 @@
-import CreateProfileHome from "@/components/Feature/CreateProfileHome";
+import CreateProfileHome from "@/components/Feature/CreateProfile2Home";
 
 export default function CreateProfilePage() {
   return <CreateProfileHome />;

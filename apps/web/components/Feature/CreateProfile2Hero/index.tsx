@@ -16,7 +16,7 @@ import {
   StoryPanel,
   StoryTitle,
   UploadsText,
-} from "../CreateProfileHome/styles";
+} from "../CreateProfile2Home/styles";
 
 export default function CreateProfile2Hero() {
   const { t } = useTranslation();
