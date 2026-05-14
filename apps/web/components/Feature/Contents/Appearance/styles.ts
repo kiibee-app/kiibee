@@ -170,17 +170,43 @@ export const LayoutCardWrap = styled.button<{ $active?: boolean }>`
   color: inherit;
   text-align: left;
   cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+  transition: transform ${({ theme }) => theme.animations.fast};
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    box-shadow:
+      0 0 0 2px ${({ theme }) => theme.colors.primary.WHITE},
+      0 0 0 4px ${({ theme }) => theme.colors.primary.GREEN};
+  }
 `;
 
 export const LayoutCard = styled.div<{ $active?: boolean }>`
   width: 100%;
   min-height: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.gredint.FRAME_BORDER};
+  border: 1px solid
+    ${({ $active, theme }) =>
+      $active
+        ? theme.colors.secondary.MEDIUM_GREEN
+        : theme.colors.gredint.FRAME_BORDER};
   border-radius: 12px;
-  background: ${({ theme }) => theme.colors.primary.WHITE};
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.PALE_GREEN : theme.colors.primary.WHITE};
   padding: 20px 20px 0 20px;
   display: flex;
   flex-direction: column;
+  transition:
+    border-color ${({ theme }) => theme.animations.fast},
+    background ${({ theme }) => theme.animations.fast};
+
+  ${LayoutCardWrap}:hover & {
+    border-color: ${({ theme }) => theme.colors.primary.BLACK};
+    box-shadow: none;
+  }
 `;
 
 export const LayoutTitle = styled(MonoText).attrs({

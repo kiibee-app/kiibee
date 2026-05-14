@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AppearancePanel } from "../styles";
 import {
@@ -22,6 +22,7 @@ import { layoutCards } from "@/utils/data";
 
 export default function LayoutsSection() {
   const { t } = useTranslation();
+  const [selectedLayout, setSelectedLayout] = useState("layout1");
 
   return (
     <AppearancePanel>
@@ -38,8 +39,11 @@ export default function LayoutsSection() {
                 key={card.key}
                 type="button"
                 aria-label={t(card.titleKey)}
+                aria-pressed={selectedLayout === card.key}
+                $active={selectedLayout === card.key}
+                onClick={() => setSelectedLayout(card.key)}
               >
-                <LayoutCard $active={card.key === "layout1"}>
+                <LayoutCard $active={selectedLayout === card.key}>
                   <LayoutTitle>{t(card.titleKey)}</LayoutTitle>
                   <LayoutImageShell>
                     <LayoutImage
@@ -47,7 +51,7 @@ export default function LayoutsSection() {
                       alt={t(card.titleKey)}
                       fill
                       sizes="(max-width: 767px) 100vw, 33vw"
-                      priority
+                      priority={card.key === layoutCards[0]?.key}
                     />
                   </LayoutImageShell>
                 </LayoutCard>
