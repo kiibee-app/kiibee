@@ -11,7 +11,7 @@ import {
   UploadOrText,
 } from "@/components/UI/ImageUploadCropModal/styles";
 import { BackButton } from "../ContentTypeModal/styles";
-import { VARIANT } from "@/utils/Constants";
+import { BUTTON, VARIANT } from "@/utils/Constants";
 import {
   ChooseUploadButton,
   ContentUploadDropZone,
@@ -93,6 +93,8 @@ export default function ContentUploadModal({
       borderRadius="20px"
     >
       <BackButton
+        type={BUTTON}
+        aria-label={t("common.back")}
         onClick={() =>
           showDetails ? setShowDetails(false) : handleExit(onBack)
         }

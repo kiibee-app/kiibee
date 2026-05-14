@@ -63,7 +63,7 @@ export const SelectedFileContainer = styled.div`
 export const FileDetailsWrapper = styled.div`
   width: 100%;
   max-width: 502px;
-  background: #f5f5f5;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 14px;
   padding: 16px;
   display: flex;
@@ -99,6 +99,5 @@ export const PreviewVideo = styled.video`
   height: 100%;
   min-width: 100px;
   object-fit: cover;
-  background: lightgray 50% / cover no-repeat;
   border-radius: 8px;
 `;

@@ -6,6 +6,7 @@ import {
   resolveUploadContentType,
   type ContentType,
 } from "@/utils/content";
+import { FORMAT_TYPE } from "@/utils/types";
 
 type Params = {
   contentType: ContentType | null;
@@ -13,16 +14,14 @@ type Params = {
 
 export function useContentUpload({ contentType }: Params) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadComplete, setUploadComplete] = useState(false);
-
   const uploadType = resolveUploadContentType(contentType);
   const uploadConfig = CONTENT_UPLOAD_CONFIG[uploadType];
 
   const previewUrl = useMemo(() => {
-    if (!selectedFile || uploadType !== "video") return null;
+    if (!selectedFile || uploadType !== FORMAT_TYPE.VIDEO) return null;
     return URL.createObjectURL(selectedFile);
   }, [selectedFile, uploadType]);
 
@@ -72,21 +71,14 @@ export function useContentUpload({ contentType }: Params) {
   const canProceed = Boolean(selectedFile && !isUploading && uploadComplete);
 
   return {
-    // refs
     fileInputRef,
-
-    // state
     selectedFile,
     isUploading,
     uploadComplete,
     previewUrl,
-
-    // derived
     uploadType,
     uploadConfig,
     canProceed,
-
-    // actions
     reset,
     handleFileInputChange,
     handleDrop,
