@@ -16,7 +16,7 @@ import {
 } from "./styles";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
-export default function CreateProfileCtaFooter() {
+export default function Footer() {
   const { t } = useTranslation();
 
   return (

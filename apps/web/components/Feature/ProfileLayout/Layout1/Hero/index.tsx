@@ -29,7 +29,7 @@ import {
 import { HOME, PROFILE_TABS, ProfileTabKey } from "@/utils/common";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 
-export default function CreateProfile1Hero() {
+export default function Hero() {
   const { t } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();

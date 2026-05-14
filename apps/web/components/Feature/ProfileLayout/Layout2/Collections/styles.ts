@@ -58,6 +58,7 @@ export const CollectionListShell = styled.section`
   margin: 0 auto;
   padding: 35px 0 100px 0;
   box-sizing: border-box;
+  background-color: ${({ theme }) => theme.colors.primary.WHITE};
 
   ${media.tablet} {
     padding-top: 28px;

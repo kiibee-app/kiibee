@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import Image from "next/image";
 import { MonoText } from "@/components/UI/Monotext";
-import { Page } from "../CreateProfile2Home/styles";
 
 const imageCoverStyles = css`
   object-fit: cover;
@@ -13,6 +12,7 @@ export const HeroWrapper = styled.section`
   max-width: 100%;
   margin: 60px auto 0;
   padding: 14px 110px 0;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   ${({ theme }) => theme.media.desktopMd} {
     padding: 14px 72px 0;

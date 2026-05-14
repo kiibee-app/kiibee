@@ -7,6 +7,7 @@ export type NavBarItem = NavItem & {
 export type HeaderProps = {
   $position: "fixed" | "absolute";
   $topOffset: string;
+  $navbarHeight?: string;
 };
 
 export type NavStyleProps = {
@@ -16,6 +17,7 @@ export type NavStyleProps = {
 export type NavBarProps = {
   position?: "fixed" | "absolute";
   topOffset?: string;
+  navbarHeight?: string;
   innerPadding?: string;
   tabletInnerPadding?: string;
   mobileInnerPadding?: string;

@@ -6,22 +6,7 @@ export const Page = styled.main`
   min-height: 100vh;
   width: 100%;
   overflow-x: clip;
-  background:
-    radial-gradient(
-      circle at top left,
-      ${({ theme }) => theme.colors.gredint.FRAME_GLOW},
-      ${({ theme }) => theme.colors.gredint.TRANSPARENT} 32%
-    ),
-    radial-gradient(
-      circle at top right,
-      ${({ theme }) => theme.colors.gredint.CARD_SHADOW},
-      ${({ theme }) => theme.colors.gredint.TRANSPARENT} 28%
-    ),
-    linear-gradient(
-      180deg,
-      ${({ theme }) => theme.colors.neutral.GRAY_100} 0%,
-      ${({ theme }) => theme.colors.neutral.WHITE} 100%
-    );
+  background: ${({ theme }) => theme.colors.primary.WHITE};
 `;
 
 export const HeroFrame = styled.section`

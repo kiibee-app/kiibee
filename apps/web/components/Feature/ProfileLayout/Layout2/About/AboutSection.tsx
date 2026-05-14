@@ -24,7 +24,7 @@ import {
 } from "@/utils/dummyData/collectionData";
 import { CREATE_PROFILE_ROUTES } from "@/utils/translationKeys";
 
-export default function CreateProfile2AboutSection() {
+export default function AboutSection() {
   const { t } = useTranslation();
 
   const clothesVideos = useMemo<TutorialVideo[]>(

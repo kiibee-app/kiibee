@@ -1,19 +1,21 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
-import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { PATHS } from "@/utils/path";
 import { CREATE_PROFILE_HOME, NAV } from "@/utils/translationKeys";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import NavBar from "@/components/Layout/Navbar";
-import { PROFILE_NAV_ITEMS } from "@/utils/profile";
-import portrait from "@/assets/images/creators/creator-woman-gray-jacket.webp";
-import { Brand, BrandAvatar, BrandName } from "../CreateProfile2Home/styles";
+import portrait from "@/assets/images/creators/profile_pic.png";
+import {
+  Brand,
+  BrandAvatar,
+  BrandAvatarImage,
+  BrandName,
+} from "../../Layout2/Home/styles";
 
-export default function CreateProfileNavbar() {
+export default function Navbar() {
   const { t } = useTranslation();
 
   return (
@@ -24,15 +26,16 @@ export default function CreateProfileNavbar() {
       mobileInnerPadding="10px 14px"
       innerMaxWidth="1600px"
       navPosition="right"
+      navbarHeight="74px"
+      items={[]}
       brand={
         <Brand href={PATHS.DASHBOARD_CREATOR}>
           <BrandAvatar>
-            <Image
+            <BrandAvatarImage
               src={portrait}
               alt={t(CREATE_PROFILE_HOME.brandName)}
               fill
               sizes="40px"
-              style={{ objectFit: "cover" }}
               priority
             />
           </BrandAvatar>
@@ -43,8 +46,6 @@ export default function CreateProfileNavbar() {
           </BrandName>
         </Brand>
       }
-      items={PROFILE_NAV_ITEMS}
-      navBefore={<SearchIcon width={18} height={18} />}
       actions={
         <>
           <GenericButton

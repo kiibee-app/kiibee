@@ -16,7 +16,7 @@ import {
   UploadsText,
 } from "./styles";
 
-export default function CreateProfile3Hero() {
+export default function Hero() {
   const { t } = useTranslation();
 
   return (
