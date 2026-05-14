@@ -26,6 +26,9 @@ import { ResetPasswordDto } from './dto/resetPassword.dto';
 import { UpdateViewerProfileDto } from './dto/updateViewerProfile.dto';
 import { updateViewerProfileService } from './services/updateViewerProfile.service';
 import { getViewerProfileService } from './services/getViewerProfile.service';
+import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
+import { updateCreatorProfileService } from './services/updateCreatorProfile.service';
+import { getCreatorProfileService } from './services/getCreatorProfile.service';
 
 @Injectable()
 export class AuthService {
@@ -186,5 +189,16 @@ export class AuthService {
 
   async getViewerProfile(userId: string, role: string) {
     return getViewerProfileService(userId, role);
+  }
+
+  async getCreatorProfile(userId: string) {
+    return getCreatorProfileService(userId);
+  }
+
+  async updateCreatorProfile(
+    userId: string,
+    profileData: UpdateCreatorProfileDto,
+  ) {
+    return updateCreatorProfileService(userId, profileData);
   }
 }

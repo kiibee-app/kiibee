@@ -1,4 +1,4 @@
-import { pgTable, text, varchar, boolean, index } from 'drizzle-orm/pg-core';
+import { pgTable, text, varchar, boolean, unique } from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
 import { users } from '../users/users.schema';
 
@@ -22,7 +22,7 @@ export const creatorBankAccounts = pgTable(
     ...baseTimestamps,
   },
   (table) => ({
-    creatorIdIdx: index('creator_bank_accounts_creator_id_idx').on(
+    creatorIdUnique: unique('creator_bank_accounts_creator_id_unique').on(
       table.creatorId,
     ),
   }),
