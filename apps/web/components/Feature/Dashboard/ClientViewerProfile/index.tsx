@@ -28,6 +28,10 @@ import { QuestionIcon } from "@/assets/icons/questionIcon";
 import { useRouter } from "next/navigation";
 import { VIEWER_PROFILE_FIELDS } from "@/utils/profile";
 import { PATHS } from "@/utils/path";
+import {
+  getForgotPasswordNoticeEmail,
+  getForgotPasswordErrorMessage,
+} from "@/utils/viewerProfile";
 
 export default function ClientViewerProfile() {
   const { t } = useTranslation();
@@ -184,10 +188,7 @@ export default function ClientViewerProfile() {
         textAlign={MODAL_ALIGN.CENTER}
         title={t("forgotPassword.checkEmailTitle")}
         message={t("dashboard.viewerProfile.forgotPasswordModalMessage", {
-          email:
-            forgotPasswordNotice?.variant === "success"
-              ? forgotPasswordNotice.email
-              : "",
+          email: getForgotPasswordNoticeEmail(forgotPasswordNotice),
         })}
         confirmLabel={t("dashboard.viewerProfile.saveModalDone")}
         onClose={dismissForgotPasswordNotice}
@@ -203,11 +204,7 @@ export default function ClientViewerProfile() {
         iconMargin="0 auto 8px"
         textAlign={MODAL_ALIGN.CENTER}
         title={t("dashboard.viewerProfile.forgotPasswordErrorTitle")}
-        message={
-          forgotPasswordNotice?.variant === "error"
-            ? forgotPasswordNotice.message
-            : ""
-        }
+        message={getForgotPasswordErrorMessage(forgotPasswordNotice)}
         confirmLabel={t("dashboard.viewerProfile.saveModalDone")}
         onClose={dismissForgotPasswordNotice}
         onConfirm={dismissForgotPasswordNotice}

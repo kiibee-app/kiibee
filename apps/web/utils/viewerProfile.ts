@@ -35,6 +35,18 @@ export type ForgotPasswordNotice =
   | { variant: "success"; email: string }
   | { variant: "error"; message: string };
 
+export function getForgotPasswordNoticeEmail(
+  notice: ForgotPasswordNotice,
+): string {
+  return notice?.variant === "success" ? notice.email : "";
+}
+
+export function getForgotPasswordErrorMessage(
+  notice: ForgotPasswordNotice,
+): string {
+  return notice?.variant === "error" ? notice.message : "";
+}
+
 export function readViewerBootstrapFromStorage(): ViewerBootstrap {
   if (typeof window === "undefined") {
     return EMPTY_VIEWER_BOOTSTRAP;
@@ -76,10 +88,6 @@ type BootstrapListener = (data: ViewerBootstrap) => void;
 const bootstrapListeners = new Set<BootstrapListener>();
 let bootstrapFlushScheduled = false;
 
-/**
- * Notifies listeners after reading localStorage (microtask). Use from a React effect that
- * only subscribes — setState belongs in the listener callback, not in the effect body.
- */
 export function subscribeViewerBootstrap(listener: BootstrapListener) {
   if (typeof window === "undefined") {
     return () => {};
