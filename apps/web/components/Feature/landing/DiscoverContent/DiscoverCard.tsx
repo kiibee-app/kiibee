@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { EbookIcon, VideoIcon } from "@/assets/icons";
 import { MEDIA_TYPE } from "@/utils/Constants";
 import type { DiscoverContentItem } from "@/utils/discoverContent";
+import { pathPublishedContent } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import {
@@ -34,7 +35,7 @@ function DiscoverCard({ item }: Props) {
   const router = useRouter();
   const theme = useTheme();
   const { t } = useTranslation();
-  const targetHref = `/single-tutorial?id=${item.id}`;
+  const targetHref = pathPublishedContent(item.contentKey);
 
   const handleOpen = () => {
     router.push(targetHref);

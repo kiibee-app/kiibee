@@ -15,6 +15,7 @@ import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericCard from "@/components/UI/GenericCard";
+import { pathPublishedContent } from "@/utils/path";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -49,7 +50,7 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
   }, [tutorial.formatType]);
 
   const singleTutorialHref = useMemo(
-    () => `/single-tutorial?id=${tutorial.id}`,
+    () => pathPublishedContent(tutorial.id),
     [tutorial.id],
   );
 

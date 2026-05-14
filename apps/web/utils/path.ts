@@ -32,5 +32,10 @@ export const PATHS = {
   CREATORS_POPULAR: "/creators?sort=popular",
   ABOUT: "/about-kiibee",
   TUTORIAL_VIDEOS: "/tutorial-videos",
+  CONTENT: "/content",
   SUPPORT: "/support",
 } as const;
+
+export function pathPublishedContent(contentKey: string): string {
+  return `${PATHS.CONTENT}/${encodeURIComponent(contentKey)}`;
+}
