@@ -9,5 +9,6 @@ export const API = {
     creatorSetup: "/auth/creator/setup",
     signup: "/auth/signup",
     userProfile: "/auth/user/profile",
+    changePassword: "/auth/user/password",
   },
 } as const;

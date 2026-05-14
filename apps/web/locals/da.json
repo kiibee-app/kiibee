@@ -1105,7 +1105,12 @@
       "fullName": "Fulde navn",
       "email": "E-mailadresse",
       "downloads": "{{count}} downloads",
-      "profilePhotoAlt": "Seer profilfoto"
+      "profilePhotoAlt": "Seer profilfoto",
+      "passwordMinLength": "Den nye adgangskode skal være mindst 6 tegn",
+      "passwordChangeError": "Adgangskoden kunne ikke opdateres",
+      "forgotPasswordNoEmail": "Vi har brug for din e-mail for at sende et nulstillingslink.",
+      "forgotPasswordModalMessage": "Vi har sendt et link til nulstilling af adgangskode til {{email}}. Hvis det ikke ankommer inden for et par minutter, sa tjek din spam-mappe.",
+      "forgotPasswordErrorTitle": "Kunne ikke sende nulstillingslink"
     },
     "logoutModal": {
       "title": "Log ud",

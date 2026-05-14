@@ -24,6 +24,7 @@ import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import PasswordSection from "../CreatorProfile/PasswordSection";
 import { useViewerProfile } from "@/hooks/useViewerProfile";
 import { SuccessArcIcon } from "@/assets/icons";
+import { QuestionIcon } from "@/assets/icons/questionIcon";
 import { useRouter } from "next/navigation";
 import { VIEWER_PROFILE_FIELDS } from "@/utils/profile";
 import { PATHS } from "@/utils/path";
@@ -56,8 +57,12 @@ export default function ClientViewerProfile() {
     handleSave,
     handlePasswordClose,
     handlePasswordSave,
+    handleForgotPassword,
+    forgotPasswordNotice,
+    dismissForgotPasswordNotice,
     isPasswordFormValid,
     isSavingProfile,
+    isChangingPassword,
   } = useViewerProfile();
 
   return (
@@ -134,12 +139,12 @@ export default function ClientViewerProfile() {
         confirmLabel={t(CREATOR_PROFILE.changePassword)}
         cancelLabel={t("creatorProfile.forgotPass")}
         onClose={handlePasswordClose}
-        onCancel={handlePasswordClose}
-        onConfirm={handlePasswordSave}
+        onCancel={() => void handleForgotPassword()}
+        onConfirm={() => void handlePasswordSave()}
         size="md"
         fullWidthButtons
         buttonRow
-        confirmDisabled={!isPasswordFormValid}
+        confirmDisabled={!isPasswordFormValid || isChangingPassword}
       >
         <PasswordSection
           passwords={passwords}
@@ -148,11 +153,63 @@ export default function ClientViewerProfile() {
       </GenericModal>
       <GenericModal
         visible={showProfileSavedModal}
+        icon={
+          <SuccessArcIcon
+            width={40}
+            height={40}
+            color={COLORS.primary.GREEN_200}
+          />
+        }
+        iconMargin="0 auto 8px"
+        textAlign={MODAL_ALIGN.CENTER}
         title={t("dashboard.viewerProfile.saveModalTitle")}
         message={t("dashboard.viewerProfile.saveModalMessage")}
         confirmLabel={t("dashboard.viewerProfile.saveModalDone")}
         onClose={() => setShowProfileSavedModal(false)}
         onConfirm={() => setShowProfileSavedModal(false)}
+        width="480px"
+        showCloseButton={false}
+      />
+      <GenericModal
+        visible={forgotPasswordNotice?.variant === "success"}
+        icon={
+          <SuccessArcIcon
+            width={40}
+            height={40}
+            color={COLORS.primary.GREEN_200}
+          />
+        }
+        iconMargin="0 auto 8px"
+        textAlign={MODAL_ALIGN.CENTER}
+        title={t("forgotPassword.checkEmailTitle")}
+        message={t("dashboard.viewerProfile.forgotPasswordModalMessage", {
+          email:
+            forgotPasswordNotice?.variant === "success"
+              ? forgotPasswordNotice.email
+              : "",
+        })}
+        confirmLabel={t("dashboard.viewerProfile.saveModalDone")}
+        onClose={dismissForgotPasswordNotice}
+        onConfirm={dismissForgotPasswordNotice}
+        width="480px"
+        showCloseButton={false}
+      />
+      <GenericModal
+        visible={forgotPasswordNotice?.variant === "error"}
+        icon={
+          <QuestionIcon width={40} height={40} color={COLORS.primary.RED} />
+        }
+        iconMargin="0 auto 8px"
+        textAlign={MODAL_ALIGN.CENTER}
+        title={t("dashboard.viewerProfile.forgotPasswordErrorTitle")}
+        message={
+          forgotPasswordNotice?.variant === "error"
+            ? forgotPasswordNotice.message
+            : ""
+        }
+        confirmLabel={t("dashboard.viewerProfile.saveModalDone")}
+        onClose={dismissForgotPasswordNotice}
+        onConfirm={dismissForgotPasswordNotice}
         width="480px"
         showCloseButton={false}
       />
@@ -166,12 +223,13 @@ export default function ClientViewerProfile() {
           />
         }
         iconMargin="0 auto 8px"
+        textAlign={MODAL_ALIGN.CENTER}
         title={t("creatorProfile.passwordSuccessTitle")}
         message={t("creatorProfile.passwordSuccessMessage")}
         confirmLabel={t("nav.login")}
         onClose={() => setShowPasswordSuccessModal(false)}
         onConfirm={() => router.push(PATHS.AUTH_LOGIN)}
-        size="sm"
+        width="480px"
         showCloseButton={false}
       />
     </Container>
