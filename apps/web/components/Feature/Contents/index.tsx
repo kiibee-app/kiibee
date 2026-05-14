@@ -41,6 +41,7 @@ export default function CreatorsContents() {
     openSearch,
     setOpenSearch,
     handleTabChange,
+    setActiveTabAndQuery,
   } = useContentsViewState();
   const {
     collections,
@@ -52,6 +53,7 @@ export default function CreatorsContents() {
     setShowDeleteSuccess,
     openDelete,
     handleConfirmDelete,
+    setContentsMap,
   } = useContentsDataState(selectedCollection);
   const {
     createCollectionFlow,
@@ -121,6 +123,8 @@ export default function CreatorsContents() {
           collectionContents={collectionContents}
           collections={collections}
           setCollections={setCollections}
+          setContentsMap={setContentsMap}
+          setActiveTab={setActiveTabAndQuery}
           setSelectedCollection={setSelectedCollection}
           onDelete={openDelete}
           onEditCollection={handleEditCollection}
