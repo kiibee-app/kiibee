@@ -1380,6 +1380,8 @@
       "or": "or",
       "chooseFile": "Choose to upload",
       "selectedFile": "Selected file",
+      "upload": "Upload",
+      "next": "Next",
       "video": {
         "helperLineOne": "Max. file size of 2GB of file types (.mp4,.mkv,.mov,.m4v)",
         "helperLineTwo": "Min. resolution 1080p HD"
@@ -1395,6 +1397,14 @@
       "epub": {
         "helperLineOne": "Max. file size of 2GB of file types (.epub,.mobi,.azw)",
         "helperLineTwo": ""
+      },
+      "details": {
+        "addDetails": "Add details",
+        "title": "Title",
+        "titlePlaceholder": "Enter title",
+        "description": "Description",
+        "descriptionPlaceholder": "Enter Description",
+        "add": "Add"
       }
     },
 

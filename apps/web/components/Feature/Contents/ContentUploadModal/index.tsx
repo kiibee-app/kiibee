@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import GenericButton from "@/components/UI/GenericButton";
@@ -22,6 +23,7 @@ import {
 import { ContentType } from "@/utils/content";
 import { useContentUpload } from "@/hooks/contents/useContentUpload";
 import SelectedFileView from "./SelectedFileView";
+import ContentUploadDetails from "./UploadDetails";
 
 type ContentUploadModalProps = {
   visible: boolean;
@@ -37,7 +39,9 @@ export default function ContentUploadModal({
   onClose,
 }: ContentUploadModalProps) {
   const { t } = useTranslation();
-
+  const [showDetails, setShowDetails] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const {
     fileInputRef,
     selectedFile,
@@ -64,8 +68,19 @@ export default function ContentUploadModal({
     callback();
   };
 
-  const handleAddDetails = () => {
-    console.log("Details added for", selectedFile?.name);
+  const handleChange =
+    (setter: (v: string) => void) => (value: string | string[]) => {
+      const text = Array.isArray(value) ? value.join("") : value;
+      setter(text);
+    };
+
+  const handleNextClick = () => {
+    if (!canProceed) return;
+    setShowDetails(true);
+  };
+
+  const handleAdd = () => {
+    if (!title.trim() || !description.trim()) return;
   };
 
   return (
@@ -77,7 +92,11 @@ export default function ContentUploadModal({
       padding="20px"
       borderRadius="20px"
     >
-      <BackButton onClick={() => handleExit(onBack)}>
+      <BackButton
+        onClick={() =>
+          showDetails ? setShowDetails(false) : handleExit(onBack)
+        }
+      >
         <BackButtonIcon size={28} strokeWidth={2.5} />
       </BackButton>
 
@@ -89,18 +108,7 @@ export default function ContentUploadModal({
             accept={uploadConfig.accept}
             onChange={handleFileInputChange}
           />
-
-          {selectedFile ? (
-            <SelectedFileView
-              uploadType={uploadType}
-              selectedFile={selectedFile}
-              previewUrl={previewUrl}
-              isUploading={isUploading}
-              uploadComplete={uploadComplete}
-              canProceed={canProceed}
-              onNext={handleAddDetails}
-            />
-          ) : (
+          {!selectedFile ? (
             <ContentUploadDropZone
               onDragOver={(e) => e.preventDefault()}
               onDrop={handleDrop}
@@ -128,6 +136,24 @@ export default function ContentUploadModal({
                 )}
               </UploadHelperTextGroup>
             </ContentUploadDropZone>
+          ) : showDetails ? (
+            <ContentUploadDetails
+              title={title}
+              description={description}
+              setTitle={handleChange(setTitle)}
+              setDescription={handleChange(setDescription)}
+              onAdd={handleAdd}
+            />
+          ) : (
+            <SelectedFileView
+              uploadType={uploadType}
+              selectedFile={selectedFile}
+              previewUrl={previewUrl}
+              isUploading={isUploading}
+              uploadComplete={uploadComplete}
+              canProceed={canProceed}
+              onNext={handleNextClick}
+            />
           )}
         </UploadBody>
       </UploadModalContent>

@@ -83,6 +83,7 @@ export const FileInfoColumn = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
+  gap: 8px;
 `;
 
 export const PreviewBox = styled.div`
