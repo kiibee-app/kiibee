@@ -19,6 +19,13 @@ export const SectionList = styled.div`
   width: 100%;
 `;
 
+export const SubSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+`;
+
 export const Row = styled.div`
   display: flex;
   flex-direction: column;
@@ -80,6 +87,7 @@ export const CounterText = styled(MonoText).attrs({
 export const InlineControlWrap = styled.div`
   width: 100%;
   max-width: 380px;
+  position: relative;
 
   ${media.tablet} {
     width: 100%;
