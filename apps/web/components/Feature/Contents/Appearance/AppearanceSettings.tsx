@@ -30,7 +30,7 @@ import {
   getTextColorOptions,
   normalizeHexColor,
 } from "@/utils/appearance";
-import AppearanceColorPickerModal from "../../../UI/Modals/ColorPickerModal";
+import AppearanceColorPickerModal from "@/components/UI/Modals/ColorPickerModal";
 
 export default function AppearanceSettingsSection() {
   const { t } = useTranslation();
@@ -58,6 +58,17 @@ export default function AppearanceSettingsSection() {
   const handleColorPicked = useCallback((hex: string) => {
     setHexColor(hex);
   }, []);
+
+  const handleButtonColorChange = useCallback(
+    (selectedColor: string | string[]) => {
+      const colorValue = String(selectedColor);
+      setButtonColor(colorValue);
+      if (colorValue === BUTTON_COLOR_VALUES.CUSTOM) {
+        setColorPickerOpen(true);
+      }
+    },
+    [],
+  );
 
   return (
     <AppearancePanel>
@@ -88,12 +99,7 @@ export default function AppearanceSettingsSection() {
               <DropdownField
                 options={buttonColorOptions}
                 value={buttonColor}
-                onChange={(val) => {
-                  setButtonColor(val);
-                  if (val === BUTTON_COLOR_VALUES.CUSTOM) {
-                    setColorPickerOpen(true);
-                  }
-                }}
+                onChange={handleButtonColorChange}
               />
             </FieldBox>
           </Row>

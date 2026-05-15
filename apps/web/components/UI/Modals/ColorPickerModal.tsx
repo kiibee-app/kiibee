@@ -7,11 +7,12 @@ import { MonoText } from "@/components/UI/Monotext";
 import { CONTENTS } from "@/utils/translationKeys";
 import { VARIANT } from "@/utils/Constants";
 import { normalizeHexColor } from "@/utils/appearance";
-import { PickerChrome, PreviewSwatch } from "./styles";
 import {
   PopoverContainer,
   PopoverFooter,
-  StyledHexRow,
+  HexRow,
+  PickerChrome,
+  PreviewSwatch,
 } from "./ColorPickerModal.styles";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import GenericButton from "@/components/UI/GenericButton";
@@ -46,12 +47,12 @@ export default function AppearanceColorPickerModal({
       <PickerChrome>
         <HexColorPicker color={draft} onChange={setDraft} />
       </PickerChrome>
-      <StyledHexRow>
+      <HexRow>
         <PreviewSwatch $color={draft} aria-hidden />
         <MonoText $use="Body_Medium" aria-live="polite">
           {draft.toUpperCase()}
         </MonoText>
-      </StyledHexRow>
+      </HexRow>
       <PopoverFooter>
         <GenericButton variant={VARIANT.SECONDARY} onClick={onClose}>
           {t(CONTENTS.appearance.cancelColorPicker)}

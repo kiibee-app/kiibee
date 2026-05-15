@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
-import { HexRow } from "./styles";
 
 export const PopoverContainer = styled.div`
   position: absolute;
@@ -38,8 +37,47 @@ export const PopoverFooter = styled.div`
   }
 `;
 
-export const StyledHexRow = styled(HexRow)`
+export const HexRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
   border-radius: 6px;
   padding: 8px 12px;
+`;
+
+export const PickerChrome = styled.div`
+  width: 100%;
+  margin-inline: auto;
+
+  .react-colorful {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .react-colorful__saturation {
+    border-radius: 8px;
+  }
+
+  .react-colorful__hue {
+    height: 14px;
+    border-radius: 999px;
+  }
+
+  .react-colorful__pointer {
+    width: 22px;
+    height: 22px;
+    border: 2px solid ${({ theme }) => theme.colors.primary.WHITE};
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.neutral.GRAY_300};
+  }
+`;
+
+export const PreviewSwatch = styled.div<{ $color: string }>`
+  flex-shrink: 0;
+  width: 48px;
+  height: 32px;
+  border-radius: 6px;
+  background: ${({ $color }) => $color};
+  box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.neutral.GRAY_250};
 `;
