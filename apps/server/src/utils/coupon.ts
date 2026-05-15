@@ -1,10 +1,6 @@
 import { STATUS } from './constant';
 
-export const COUPON_STATUSES = [
-  STATUS.ACTIVE,
-  STATUS.INACTIVE,
-  'completed',
-] as const;
+export const COUPON_STATUSES = ['active', 'inactive', 'completed'] as const;
 export const COUPON_DISCOUNT_TYPES = ['fixed_amount', 'percentage'] as const;
 export const COUPON_DISCOUNT_TYPE_PERCENTAGE = COUPON_DISCOUNT_TYPES[1];
 
