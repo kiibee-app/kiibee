@@ -105,6 +105,7 @@ const sharedCollectionContents: CollectionContentRow[] = [
 
 export const collectionContentsData: Record<string, CollectionContentRow[]> = {
   "1": sharedCollectionContents,
+  "2": sharedCollectionContents,
   "3": sharedCollectionContents,
   "4": sharedCollectionContents,
   "5": sharedCollectionContents,

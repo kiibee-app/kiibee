@@ -6,7 +6,9 @@ import {
   CouponStep,
   STEP_ORDER,
   type ContentType,
+  isUploadContentType,
 } from "@/utils/content";
+import { FORMAT_TYPE } from "@/utils/types";
 
 export const useContentsModalFlows = (
   activeTab: ContentTab,
@@ -98,7 +100,11 @@ export const useContentsModalFlows = (
     continueWithType: (contentType: ContentType) => {
       setSelectedContentType(contentType);
       setShowContentTypeModal(false);
-      setShowContentUploadModal(true);
+      if (isUploadContentType(contentType) || contentType === FORMAT_TYPE.WEB) {
+        setShowContentUploadModal(true);
+        return;
+      }
+      setShowContentUploadModal(false);
     },
   };
 
