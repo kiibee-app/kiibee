@@ -13,7 +13,6 @@ export {
   getAvatarUrl,
   readCreatorBoot,
   toOptionalString,
-  type CreatorProfilePatchBody,
 } from "@/utils/creatorProfile";
 
 export type CreatorProfileUser = {
