@@ -14,16 +14,18 @@ import { usePatchAPI } from "@/lib/http/api/patchApi";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { createResetPasswordSchema } from "@/lib/validation/schema";
-import type { ProfileForm } from "@/utils/creatorProfile";
-import { PasswordState } from "@/utils/creatorProfile";
 import {
-  applyCreatorProfileResponseToForm,
-  buildCreatorProfilePatchBody,
   displayCreatorName,
   EMPTY_CREATOR_PROFILE_FORM,
   getAvatarUrl,
-  mapCreatorProfileToForm,
+  PasswordState,
   toOptionalString,
+  type ProfileForm,
+} from "@/utils/creatorProfile";
+import {
+  applyCreatorProfileResponseToForm,
+  buildCreatorProfilePatchBody,
+  mapCreatorProfileToForm,
   type GetCreatorProfileResponse,
   type UpdateCreatorProfileBody,
   type UpdateCreatorProfileResponse,

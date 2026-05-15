@@ -4,20 +4,25 @@ import { useEffect } from "react";
 import { mergeStoredLoginUser } from "@/hooks/auth/useLogin";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
-import type { LoginUser } from "@/hooks/auth/useLogin";
-import type { ProfileForm } from "@/utils/creatorProfile";
+import {
+  displayCreatorName,
+  getAvatarUrl,
+  parseCreatorNameFromFullName,
+  toOptionalString,
+  type ProfileForm,
+} from "@/utils/creatorProfile";
 import { PROFILE_FIELD_MAP } from "@/utils/profileFieldMap";
-import { USER_STORAGE_KEY } from "@/utils/viewerProfile";
 
 const trim = (value: string) => value.trim();
 
-export const getAvatarUrl = (avatarUrl?: string | null): string | null => {
-  if (typeof avatarUrl !== "string") return null;
-  return avatarUrl.length > 0 ? avatarUrl : null;
-};
-
-export const toOptionalString = (value: string): string | undefined =>
-  value || undefined;
+export {
+  displayCreatorName,
+  EMPTY_CREATOR_BOOT,
+  EMPTY_CREATOR_PROFILE_FORM,
+  getAvatarUrl,
+  readCreatorBoot,
+  toOptionalString,
+} from "@/utils/creatorProfile";
 
 export type CreatorProfileUser = {
   firstName?: string | null;
@@ -73,29 +78,6 @@ export type UpdateCreatorProfileResponse = {
   data?: UpdateCreatorProfileBody;
 };
 
-export const EMPTY_CREATOR_PROFILE_FORM: ProfileForm = {
-  firstName: "",
-  lastName: "",
-  company: "",
-  phone: "",
-  cvr: "",
-  address: "",
-  city: "",
-  postal: "",
-  reg: "",
-  account: "",
-  email: "",
-};
-
-export const EMPTY_CREATOR_BOOT: Pick<
-  ProfileForm,
-  "firstName" | "lastName" | "email"
-> = {
-  firstName: EMPTY_CREATOR_PROFILE_FORM.firstName,
-  lastName: EMPTY_CREATOR_PROFILE_FORM.lastName,
-  email: EMPTY_CREATOR_PROFILE_FORM.email,
-};
-
 const str = (value: unknown) => (typeof value === "string" ? value.trim() : "");
 
 export function mapCreatorProfileToForm(
@@ -109,9 +91,9 @@ export function mapCreatorProfileToForm(
   let lastName = str(user?.lastName);
 
   if (!firstName && !lastName) {
-    const parts = str(user?.fullName).split(/\s+/).filter(Boolean);
-    firstName = parts[0] ?? "";
-    lastName = parts.slice(1).join(" ");
+    const parsed = parseCreatorNameFromFullName(str(user?.fullName));
+    firstName = parsed.firstName;
+    lastName = parsed.lastName;
   }
 
   return {
@@ -127,47 +109,6 @@ export function mapCreatorProfileToForm(
     reg: str(bank?.registrationNumber),
     account: str(bank?.accountNumber),
   };
-}
-
-export function readCreatorBoot(): Pick<
-  ProfileForm,
-  "firstName" | "lastName" | "email"
-> {
-  if (typeof window === "undefined") {
-    return EMPTY_CREATOR_BOOT;
-  }
-
-  try {
-    const raw = window.localStorage.getItem(USER_STORAGE_KEY);
-    const user = raw ? (JSON.parse(raw) as LoginUser) : null;
-    const email = str(user?.email);
-
-    const storedFirst = str(user?.firstName);
-    const storedLast = str(user?.lastName);
-    if (storedFirst || storedLast) {
-      return {
-        ...EMPTY_CREATOR_BOOT,
-        firstName: storedFirst,
-        lastName: storedLast,
-        email,
-      };
-    }
-
-    const fullName = str(user?.fullName);
-    if (fullName) {
-      const parts = fullName.split(/\s+/).filter(Boolean);
-      return {
-        ...EMPTY_CREATOR_BOOT,
-        firstName: parts[0] ?? EMPTY_CREATOR_BOOT.firstName,
-        lastName: parts.slice(1).join(" "),
-        email,
-      };
-    }
-
-    return { ...EMPTY_CREATOR_BOOT, email };
-  } catch {
-    return EMPTY_CREATOR_BOOT;
-  }
 }
 
 export function applyCreatorProfileResponseToForm(
@@ -211,13 +152,6 @@ export function buildCreatorProfilePatchBody(
   }
 
   return body;
-}
-
-export function displayCreatorName(form: ProfileForm): string {
-  return [form.firstName, form.lastName]
-    .map((part) => part.trim())
-    .filter(Boolean)
-    .join(" ");
 }
 
 export function useCreatorDashboardProfileSync() {
