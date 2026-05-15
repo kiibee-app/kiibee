@@ -37,8 +37,10 @@ import ImageUploader from "./ImageUploader";
 import { PATHS } from "@/utils/path";
 import { useCreatorProfile } from "@/hooks/auth/useCreatorProfile";
 import {
-  getForgotPasswordErrorMessage,
-  getForgotPasswordNoticeEmail,
+  forgotPwEmail,
+  forgotPwError,
+  forgotPwIsError,
+  forgotPwIsSuccess,
 } from "@/utils/viewerProfile";
 
 export default function CreatorProfile() {
@@ -68,8 +70,8 @@ export default function CreatorProfile() {
     handlePasswordClose,
     handlePasswordSave,
     handleForgotPassword,
-    forgotPasswordNotice,
-    dismissForgotPasswordNotice,
+    forgotPwNotice,
+    dismissForgotPwNotice,
     passwordFieldErrors,
     isSavingProfile,
     isChangingPassword,
@@ -179,7 +181,7 @@ export default function CreatorProfile() {
       </GenericModal>
 
       <GenericModal
-        visible={forgotPasswordNotice?.variant === "success"}
+        visible={forgotPwIsSuccess(forgotPwNotice)}
         icon={
           <SuccessArcIcon
             width={40}
@@ -191,26 +193,26 @@ export default function CreatorProfile() {
         textAlign={MODAL_ALIGN.CENTER}
         title={t("forgotPassword.checkEmailTitle")}
         message={t("dashboard.viewerProfile.forgotPasswordModalMessage", {
-          email: getForgotPasswordNoticeEmail(forgotPasswordNotice),
+          email: forgotPwEmail(forgotPwNotice),
         })}
         confirmLabel={t("dashboard.viewerProfile.saveModalDone")}
-        onClose={dismissForgotPasswordNotice}
-        onConfirm={dismissForgotPasswordNotice}
+        onClose={dismissForgotPwNotice}
+        onConfirm={dismissForgotPwNotice}
         width="480px"
         showCloseButton={false}
       />
       <GenericModal
-        visible={forgotPasswordNotice?.variant === "error"}
+        visible={forgotPwIsError(forgotPwNotice)}
         icon={
           <QuestionIcon width={40} height={40} color={COLORS.primary.RED} />
         }
         iconMargin="0 auto 8px"
         textAlign={MODAL_ALIGN.CENTER}
         title={t("dashboard.viewerProfile.forgotPasswordErrorTitle")}
-        message={getForgotPasswordErrorMessage(forgotPasswordNotice)}
+        message={forgotPwError(forgotPwNotice)}
         confirmLabel={t("dashboard.viewerProfile.saveModalDone")}
-        onClose={dismissForgotPasswordNotice}
-        onConfirm={dismissForgotPasswordNotice}
+        onClose={dismissForgotPwNotice}
+        onConfirm={dismissForgotPwNotice}
         width="480px"
         showCloseButton={false}
       />

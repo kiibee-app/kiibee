@@ -1,4 +1,5 @@
 import type { LoginUser } from "@/hooks/auth/useLogin";
+import { FORM_MESSAGE_TONE } from "@/utils/ui";
 
 export const IMAGE_DATA_PREFIX = /^data:image\//;
 
@@ -30,21 +31,29 @@ export type ChangePasswordResponse = {
   data?: unknown;
 };
 
-export type ForgotPasswordNotice =
+export type ForgotPwNotice =
   | null
-  | { variant: "success"; email: string }
-  | { variant: "error"; message: string };
+  | { variant: typeof FORM_MESSAGE_TONE.SUCCESS; email: string }
+  | { variant: typeof FORM_MESSAGE_TONE.ERROR; message: string };
 
-export function getForgotPasswordNoticeEmail(
-  notice: ForgotPasswordNotice,
-): string {
-  return notice?.variant === "success" ? notice.email : "";
+export function forgotPwIsSuccess(
+  notice: ForgotPwNotice,
+): notice is { variant: typeof FORM_MESSAGE_TONE.SUCCESS; email: string } {
+  return notice?.variant === FORM_MESSAGE_TONE.SUCCESS;
 }
 
-export function getForgotPasswordErrorMessage(
-  notice: ForgotPasswordNotice,
-): string {
-  return notice?.variant === "error" ? notice.message : "";
+export function forgotPwIsError(
+  notice: ForgotPwNotice,
+): notice is { variant: typeof FORM_MESSAGE_TONE.ERROR; message: string } {
+  return notice?.variant === FORM_MESSAGE_TONE.ERROR;
+}
+
+export function forgotPwEmail(notice: ForgotPwNotice): string {
+  return forgotPwIsSuccess(notice) ? notice.email : "";
+}
+
+export function forgotPwError(notice: ForgotPwNotice): string {
+  return forgotPwIsError(notice) ? notice.message : "";
 }
 
 export function readViewerBootstrapFromStorage(): ViewerBootstrap {

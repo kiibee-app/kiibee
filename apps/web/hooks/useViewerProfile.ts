@@ -18,12 +18,13 @@ import { emptyPasswords } from "@/utils/dummyData/profile.data";
 import { PasswordState } from "@/utils/creatorProfile";
 import { ViewerProfileField } from "@/utils/profile";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
+import { FORM_MESSAGE_TONE } from "@/utils/ui";
 import {
   EMPTY_VIEWER_BOOTSTRAP,
   subscribeViewerBootstrap,
   type ChangePasswordBody,
   type ChangePasswordResponse,
-  type ForgotPasswordNotice,
+  type ForgotPwNotice,
   type ViewerBootstrap,
 } from "@/utils/viewerProfile";
 
@@ -102,8 +103,7 @@ export const useViewerProfile = () => {
   const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
     useState<boolean>(false);
   const [showProfileSavedModal, setShowProfileSavedModal] = useState(false);
-  const [forgotPasswordNotice, setForgotPasswordNotice] =
-    useState<ForgotPasswordNotice>(null);
+  const [forgotPwNotice, setForgotPwNotice] = useState<ForgotPwNotice>(null);
   const [passwordSubmitAttempted, setPasswordSubmitAttempted] = useState(false);
 
   const passwordFieldErrors = useMemo(() => {
@@ -301,8 +301,8 @@ export const useViewerProfile = () => {
     resetPasswords();
   }, [resetPasswords]);
 
-  const dismissForgotPasswordNotice = useCallback(() => {
-    setForgotPasswordNotice(null);
+  const dismissForgotPwNotice = useCallback(() => {
+    setForgotPwNotice(null);
   }, []);
 
   const handleForgotPassword = useCallback(async () => {
@@ -310,8 +310,8 @@ export const useViewerProfile = () => {
     if (!email) {
       setShowPassword(false);
       resetPasswords();
-      setForgotPasswordNotice({
-        variant: "error",
+      setForgotPwNotice({
+        variant: FORM_MESSAGE_TONE.ERROR,
         message: t("dashboard.viewerProfile.forgotPasswordNoEmail"),
       });
       throw new Error("missing-email");
@@ -320,12 +320,15 @@ export const useViewerProfile = () => {
       await forgetPasswordMutation.mutateAsync({ email });
       setShowPassword(false);
       resetPasswords();
-      setForgotPasswordNotice({ variant: "success", email });
+      setForgotPwNotice({
+        variant: FORM_MESSAGE_TONE.SUCCESS,
+        email,
+      });
     } catch (error) {
       setShowPassword(false);
       resetPasswords();
-      setForgotPasswordNotice({
-        variant: "error",
+      setForgotPwNotice({
+        variant: FORM_MESSAGE_TONE.ERROR,
         message: getErrorMessage(error, "forgotPassword.submitFailed"),
       });
       throw error;
@@ -390,8 +393,8 @@ export const useViewerProfile = () => {
     handlePasswordClose,
     handlePasswordSave,
     handleForgotPassword,
-    forgotPasswordNotice,
-    dismissForgotPasswordNotice,
+    forgotPwNotice,
+    dismissForgotPwNotice,
     passwordFieldErrors,
     isSavingProfile: updateProfile.isPending,
     isChangingPassword: changePasswordMutation.isPending,

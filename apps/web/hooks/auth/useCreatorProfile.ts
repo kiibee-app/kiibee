@@ -17,20 +17,24 @@ import { createResetPasswordSchema } from "@/lib/validation/schema";
 import type { ProfileForm } from "@/utils/creatorProfile";
 import { PasswordState } from "@/utils/creatorProfile";
 import {
+  applyCreatorProfileResponseToForm,
   buildCreatorProfilePatchBody,
   displayCreatorName,
   EMPTY_CREATOR_PROFILE_FORM,
+  getAvatarUrl,
   mapCreatorProfileToForm,
+  toOptionalString,
   type GetCreatorProfileResponse,
   type UpdateCreatorProfileBody,
   type UpdateCreatorProfileResponse,
 } from "@/hooks/auth/creatorProfileApi";
 import { emptyPasswords } from "@/utils/dummyData/profile.data";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
+import { FORM_MESSAGE_TONE } from "@/utils/ui";
 import {
   type ChangePasswordBody,
   type ChangePasswordResponse,
-  type ForgotPasswordNotice,
+  type ForgotPwNotice,
 } from "@/utils/viewerProfile";
 
 export const useCreatorProfile = () => {
@@ -66,8 +70,7 @@ export const useCreatorProfile = () => {
   const [passwords, setPasswords] = useState<PasswordState>(emptyPasswords);
   const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
     useState(false);
-  const [forgotPasswordNotice, setForgotPasswordNotice] =
-    useState<ForgotPasswordNotice>(null);
+  const [forgotPwNotice, setForgotPwNotice] = useState<ForgotPwNotice>(null);
   const [passwordSubmitAttempted, setPasswordSubmitAttempted] = useState(false);
 
   const passwordFieldErrors = useMemo(() => {
@@ -128,13 +131,7 @@ export const useCreatorProfile = () => {
 
     queueMicrotask(() => {
       const nextForm = mapCreatorProfileToForm(profile);
-      const nextAvatar =
-        profile.user?.avatarUrl === null
-          ? null
-          : typeof profile.user?.avatarUrl === "string" &&
-              profile.user.avatarUrl.length > 0
-            ? profile.user.avatarUrl
-            : null;
+      const nextAvatar = getAvatarUrl(profile.user?.avatarUrl);
 
       if (!isProfileChangedRef.current) {
         setForm(nextForm);
@@ -143,13 +140,12 @@ export const useCreatorProfile = () => {
         setSavedAvatarUrl(nextAvatar);
       }
 
-      const displayName = displayCreatorName(nextForm);
       mergeStoredLoginUser({
-        fullName: displayName || undefined,
-        email: nextForm.email || undefined,
+        fullName: toOptionalString(displayCreatorName(nextForm)),
+        email: toOptionalString(nextForm.email),
         avatarUrl: nextAvatar,
-        firstName: nextForm.firstName,
-        lastName: nextForm.lastName,
+        firstName: toOptionalString(nextForm.firstName),
+        lastName: toOptionalString(nextForm.lastName),
       });
     });
   }, [profileQuery.data]);
@@ -250,53 +246,14 @@ export const useCreatorProfile = () => {
       const res = await updateProfile.mutateAsync(patchBody);
       const data = res.data;
 
-      const nextForm: ProfileForm = {
-        ...form,
-        firstName:
-          typeof data?.firstName === "string"
-            ? data.firstName.trim()
-            : form.firstName.trim(),
-        lastName:
-          typeof data?.lastName === "string"
-            ? data.lastName.trim()
-            : form.lastName.trim(),
-        company:
-          typeof data?.companyName === "string"
-            ? data.companyName.trim()
-            : form.company.trim(),
-        phone:
-          typeof data?.phone === "string"
-            ? data.phone.trim()
-            : form.phone.trim(),
-        cvr: typeof data?.cvr === "string" ? data.cvr.trim() : form.cvr.trim(),
-        address:
-          typeof data?.address === "string"
-            ? data.address.trim()
-            : form.address.trim(),
-        city:
-          typeof data?.city === "string" ? data.city.trim() : form.city.trim(),
-        postal:
-          typeof data?.postalCode === "string"
-            ? data.postalCode.trim()
-            : form.postal.trim(),
-        reg:
-          typeof data?.regNumber === "string"
-            ? data.regNumber.trim()
-            : form.reg.trim(),
-        account:
-          typeof data?.accountNumber === "string"
-            ? data.accountNumber.trim()
-            : form.account.trim(),
-      };
+      const nextForm = applyCreatorProfileResponseToForm(form, data);
 
       const nextAvatar =
-        data?.avatarUrl === null
-          ? null
-          : typeof data?.avatarUrl === "string" && data.avatarUrl.length > 0
-            ? data.avatarUrl
-            : avatarDirty
-              ? (avatarImage ?? null)
-              : savedAvatarUrl;
+        data?.avatarUrl !== undefined
+          ? getAvatarUrl(data.avatarUrl)
+          : avatarDirty
+            ? (avatarImage ?? null)
+            : savedAvatarUrl;
 
       setSaved(nextForm);
       setForm(nextForm);
@@ -305,11 +262,11 @@ export const useCreatorProfile = () => {
 
       const displayName = displayCreatorName(nextForm);
       mergeStoredLoginUser({
-        fullName: displayName || undefined,
-        email: nextForm.email || undefined,
+        fullName: toOptionalString(displayName),
+        email: toOptionalString(nextForm.email),
         avatarUrl: nextAvatar,
-        firstName: nextForm.firstName,
-        lastName: nextForm.lastName,
+        firstName: toOptionalString(nextForm.firstName),
+        lastName: toOptionalString(nextForm.lastName),
       });
 
       toast.success(t("dashboard.viewerProfile.saveSuccess"));
@@ -325,8 +282,8 @@ export const useCreatorProfile = () => {
     resetPasswords();
   }, [resetPasswords]);
 
-  const dismissForgotPasswordNotice = useCallback(() => {
-    setForgotPasswordNotice(null);
+  const dismissForgotPwNotice = useCallback(() => {
+    setForgotPwNotice(null);
   }, []);
 
   const handleForgotPassword = useCallback(async () => {
@@ -334,8 +291,8 @@ export const useCreatorProfile = () => {
     if (!email) {
       setShowPassword(false);
       resetPasswords();
-      setForgotPasswordNotice({
-        variant: "error",
+      setForgotPwNotice({
+        variant: FORM_MESSAGE_TONE.ERROR,
         message: t("dashboard.viewerProfile.forgotPasswordNoEmail"),
       });
       throw new Error("missing-email");
@@ -344,12 +301,15 @@ export const useCreatorProfile = () => {
       await forgetPasswordMutation.mutateAsync({ email });
       setShowPassword(false);
       resetPasswords();
-      setForgotPasswordNotice({ variant: "success", email });
+      setForgotPwNotice({
+        variant: FORM_MESSAGE_TONE.SUCCESS,
+        email,
+      });
     } catch (error) {
       setShowPassword(false);
       resetPasswords();
-      setForgotPasswordNotice({
-        variant: "error",
+      setForgotPwNotice({
+        variant: FORM_MESSAGE_TONE.ERROR,
         message: getErrorMessage(error, "forgotPassword.submitFailed"),
       });
       throw error;
@@ -376,8 +336,8 @@ export const useCreatorProfile = () => {
     handlePasswordClose,
     handlePasswordSave,
     handleForgotPassword,
-    forgotPasswordNotice,
-    dismissForgotPasswordNotice,
+    forgotPwNotice,
+    dismissForgotPwNotice,
     passwordFieldErrors,
     isSavingProfile: updateProfile.isPending,
     isChangingPassword: changePasswordMutation.isPending,

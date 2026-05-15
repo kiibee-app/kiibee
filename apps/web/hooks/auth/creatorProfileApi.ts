@@ -6,7 +6,18 @@ import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import type { LoginUser } from "@/hooks/auth/useLogin";
 import type { ProfileForm } from "@/utils/creatorProfile";
+import { PROFILE_FIELD_MAP } from "@/utils/profileFieldMap";
 import { USER_STORAGE_KEY } from "@/utils/viewerProfile";
+
+const trim = (value: string) => value.trim();
+
+export const getAvatarUrl = (avatarUrl?: string | null): string | null => {
+  if (typeof avatarUrl !== "string") return null;
+  return avatarUrl.length > 0 ? avatarUrl : null;
+};
+
+export const toOptionalString = (value: string): string | undefined =>
+  value || undefined;
 
 export type CreatorProfileUser = {
   firstName?: string | null;
@@ -76,6 +87,15 @@ export const EMPTY_CREATOR_PROFILE_FORM: ProfileForm = {
   email: "",
 };
 
+export const EMPTY_CREATOR_BOOT: Pick<
+  ProfileForm,
+  "firstName" | "lastName" | "email"
+> = {
+  firstName: EMPTY_CREATOR_PROFILE_FORM.firstName,
+  lastName: EMPTY_CREATOR_PROFILE_FORM.lastName,
+  email: EMPTY_CREATOR_PROFILE_FORM.email,
+};
+
 const str = (value: unknown) => (typeof value === "string" ? value.trim() : "");
 
 export function mapCreatorProfileToForm(
@@ -109,12 +129,12 @@ export function mapCreatorProfileToForm(
   };
 }
 
-export function readCreatorBootstrapFromStorage(): Pick<
+export function readCreatorBoot(): Pick<
   ProfileForm,
   "firstName" | "lastName" | "email"
 > {
   if (typeof window === "undefined") {
-    return { firstName: "", lastName: "", email: "" };
+    return EMPTY_CREATOR_BOOT;
   }
 
   try {
@@ -125,23 +145,45 @@ export function readCreatorBootstrapFromStorage(): Pick<
     const storedFirst = str(user?.firstName);
     const storedLast = str(user?.lastName);
     if (storedFirst || storedLast) {
-      return { firstName: storedFirst, lastName: storedLast, email };
+      return {
+        ...EMPTY_CREATOR_BOOT,
+        firstName: storedFirst,
+        lastName: storedLast,
+        email,
+      };
     }
 
     const fullName = str(user?.fullName);
     if (fullName) {
       const parts = fullName.split(/\s+/).filter(Boolean);
       return {
-        firstName: parts[0] ?? "",
+        ...EMPTY_CREATOR_BOOT,
+        firstName: parts[0] ?? EMPTY_CREATOR_BOOT.firstName,
         lastName: parts.slice(1).join(" "),
         email,
       };
     }
 
-    return { firstName: "", lastName: "", email };
+    return { ...EMPTY_CREATOR_BOOT, email };
   } catch {
-    return { firstName: "", lastName: "", email: "" };
+    return EMPTY_CREATOR_BOOT;
   }
+}
+
+export function applyCreatorProfileResponseToForm(
+  form: ProfileForm,
+  data?: UpdateCreatorProfileBody,
+): ProfileForm {
+  const next = { ...form };
+
+  for (const [formKey, bodyKey] of PROFILE_FIELD_MAP) {
+    const value = data?.[bodyKey];
+    if (typeof value === "string") {
+      next[formKey] = value.trim();
+    }
+  }
+
+  return next;
 }
 
 export function buildCreatorProfilePatchBody(
@@ -150,38 +192,20 @@ export function buildCreatorProfilePatchBody(
   avatarDirty: boolean,
   avatarImage: string | null,
 ): UpdateCreatorProfileBody {
-  const body: UpdateCreatorProfileBody = {};
+  const body = PROFILE_FIELD_MAP.reduce<UpdateCreatorProfileBody>(
+    (acc, [formKey, bodyKey]) => {
+      const current = trim(form[formKey]);
+      const previous = trim(saved[formKey]);
 
-  if (form.firstName.trim() !== saved.firstName.trim()) {
-    body.firstName = form.firstName.trim();
-  }
-  if (form.lastName.trim() !== saved.lastName.trim()) {
-    body.lastName = form.lastName.trim();
-  }
-  if (form.company.trim() !== saved.company.trim()) {
-    body.companyName = form.company.trim();
-  }
-  if (form.phone.trim() !== saved.phone.trim()) {
-    body.phone = form.phone.trim();
-  }
-  if (form.cvr.trim() !== saved.cvr.trim()) {
-    body.cvr = form.cvr.trim();
-  }
-  if (form.address.trim() !== saved.address.trim()) {
-    body.address = form.address.trim();
-  }
-  if (form.city.trim() !== saved.city.trim()) {
-    body.city = form.city.trim();
-  }
-  if (form.postal.trim() !== saved.postal.trim()) {
-    body.postalCode = form.postal.trim();
-  }
-  if (form.reg.trim() !== saved.reg.trim()) {
-    body.regNumber = form.reg.trim();
-  }
-  if (form.account.trim() !== saved.account.trim()) {
-    body.accountNumber = form.account.trim();
-  }
+      if (current !== previous) {
+        acc[bodyKey] = current;
+      }
+
+      return acc;
+    },
+    {},
+  );
+
   if (avatarDirty) {
     body.avatarUrl = avatarImage ?? null;
   }
@@ -211,21 +235,13 @@ export function useCreatorDashboardProfileSync() {
     if (!profile) return;
 
     const form = mapCreatorProfileToForm(profile);
-    const displayName = displayCreatorName(form);
-    const avatarUrl =
-      profile.user?.avatarUrl === null
-        ? null
-        : typeof profile.user?.avatarUrl === "string" &&
-            profile.user.avatarUrl.length > 0
-          ? profile.user.avatarUrl
-          : null;
 
     mergeStoredLoginUser({
-      email: form.email || undefined,
-      fullName: displayName || undefined,
-      firstName: form.firstName || undefined,
-      lastName: form.lastName || undefined,
-      avatarUrl,
+      email: toOptionalString(form.email),
+      fullName: toOptionalString(displayCreatorName(form)),
+      firstName: toOptionalString(form.firstName),
+      lastName: toOptionalString(form.lastName),
+      avatarUrl: getAvatarUrl(profile.user?.avatarUrl),
     });
   }, [profileQuery.data]);
 
