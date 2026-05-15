@@ -165,6 +165,7 @@ export default function CreatorProfile() {
         onClose={handlePasswordClose}
         onCancel={() => void handleForgotPassword()}
         onConfirm={() => void handlePasswordSave()}
+        closeOnConfirm={false}
         size="md"
         fullWidthButtons
         buttonRow

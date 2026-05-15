@@ -183,9 +183,51 @@ export const useCreatorProfile = () => {
     setShowPassword(false);
   }, [resetPasswords, saved, savedAvatarUrl]);
 
+  const handlePasswordSave = useCallback(async () => {
+    const parsed = passwordSchema.safeParse(passwords);
+    if (!parsed.success) {
+      setPasswordSubmitAttempted(true);
+      const first = parsed.error.flatten().fieldErrors;
+      const msg =
+        first.current?.[0] ??
+        first.next?.[0] ??
+        first.confirm?.[0] ??
+        t("dashboard.viewerProfile.passwordChangeError");
+      toast.error(msg);
+      return false;
+    }
+
+    const { current, next, confirm } = parsed.data;
+
+    try {
+      await changePasswordMutation.mutateAsync({
+        currentPassword: current.trim(),
+        password: next.trim(),
+        confirmPassword: confirm.trim(),
+      });
+      resetPasswords();
+      setShowPassword(false);
+      setShowPasswordSuccessModal(true);
+      return true;
+    } catch (error) {
+      toast.error(
+        getErrorMessage(error, "dashboard.viewerProfile.passwordChangeError"),
+      );
+      return false;
+    }
+  }, [
+    changePasswordMutation,
+    getErrorMessage,
+    passwordSchema,
+    passwords,
+    resetPasswords,
+    t,
+  ]);
+
   const handleSave = async () => {
     if (!isProfileChanged || updateProfile.isPending) return;
 
+    const hasPasswordInput = Object.values(passwords).some(Boolean);
     const patchBody = buildCreatorProfilePatchBody(
       form,
       saved,
@@ -194,6 +236,10 @@ export const useCreatorProfile = () => {
     );
 
     if (Object.keys(patchBody).length === 0) {
+      if (hasPasswordInput) {
+        await handlePasswordSave();
+        return;
+      }
       setSaved(form);
       resetPasswords();
       setShowPassword(false);
@@ -309,45 +355,6 @@ export const useCreatorProfile = () => {
       throw error;
     }
   }, [forgetPasswordMutation, getErrorMessage, resetPasswords, saved.email, t]);
-
-  const handlePasswordSave = useCallback(async () => {
-    const parsed = passwordSchema.safeParse(passwords);
-    if (!parsed.success) {
-      setPasswordSubmitAttempted(true);
-      const first = parsed.error.flatten().fieldErrors;
-      const msg =
-        first.current?.[0] ??
-        first.next?.[0] ??
-        first.confirm?.[0] ??
-        t("dashboard.viewerProfile.passwordChangeError");
-      toast.error(msg);
-      return;
-    }
-
-    const { current, next, confirm } = parsed.data;
-
-    try {
-      await changePasswordMutation.mutateAsync({
-        currentPassword: current.trim(),
-        password: next.trim(),
-        confirmPassword: confirm.trim(),
-      });
-      resetPasswords();
-      setShowPassword(false);
-      setShowPasswordSuccessModal(true);
-    } catch (error) {
-      toast.error(
-        getErrorMessage(error, "dashboard.viewerProfile.passwordChangeError"),
-      );
-    }
-  }, [
-    changePasswordMutation,
-    getErrorMessage,
-    passwordSchema,
-    passwords,
-    resetPasswords,
-    t,
-  ]);
 
   const displayName = useMemo(() => displayCreatorName(form), [form]);
 

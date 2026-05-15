@@ -49,6 +49,7 @@ type GenericModalProps = {
   showCloseButton?: boolean;
   confirmDisabled?: boolean;
   confirmVariant?: Variant;
+  closeOnConfirm?: boolean;
 };
 
 export const GenericModal: React.FC<GenericModalProps> = ({
@@ -76,6 +77,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   showCloseButton = true,
   confirmDisabled = false,
   confirmVariant = VARIANT.PRIMARY,
+  closeOnConfirm = true,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -107,7 +109,9 @@ export const GenericModal: React.FC<GenericModalProps> = ({
 
   const handleConfirm = () => {
     onConfirm?.();
-    onClose?.();
+    if (closeOnConfirm) {
+      onClose?.();
+    }
   };
 
   return ReactDOM.createPortal(

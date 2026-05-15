@@ -145,6 +145,7 @@ export default function ClientViewerProfile() {
         onClose={handlePasswordClose}
         onCancel={() => void handleForgotPassword()}
         onConfirm={() => void handlePasswordSave()}
+        closeOnConfirm={false}
         size="md"
         fullWidthButtons
         buttonRow
