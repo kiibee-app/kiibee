@@ -34,6 +34,8 @@ export const PATHS = {
   TUTORIAL_VIDEOS: "/tutorial-videos",
   CONTENT: "/content",
   SUPPORT: "/support",
+  TERMS: "/terms-of-service",
+  PRIVACY_POLICY: "/privacy-policy",
 } as const;
 
 export function pathPublishedContent(contentKey: string): string {

@@ -119,6 +119,7 @@ export const TermsLink = styled(Link)`
   text-decoration: underline;
   text-underline-offset: 2px;
   padding-left: 5px;
+  padding-right: 5px;
 `;
 
 export const SubmitButton = styled(GenericButton).attrs({

@@ -41,6 +41,7 @@ import {
   useCreatorRequestForm,
 } from "@/hooks/auth/useCreatorRequestForm";
 import { AGREED } from "@/utils/ui";
+import { PATHS } from "@/utils/path";
 
 export default function SignUpCreatorSection() {
   const { t } = useTranslation();
@@ -133,9 +134,13 @@ export default function SignUpCreatorSection() {
             <ConsentText htmlFor="creator-consent">
               <MonoText $use="Body_Small">
                 {t("authCreator.form.consentPrefix")}
-                <TermsLink href="#">{t("authCreator.form.terms")}</TermsLink>
+                <TermsLink href={PATHS.TERMS}>
+                  {t("authCreator.form.terms")}
+                </TermsLink>
                 {t("authCreator.form.and")}
-                <TermsLink href="#">{t("authCreator.form.privacy")}</TermsLink>
+                <TermsLink href={PATHS.PRIVACY_POLICY}>
+                  {t("authCreator.form.privacy")}
+                </TermsLink>
               </MonoText>
             </ConsentText>
           </CheckboxRow>
