@@ -11,6 +11,7 @@ import {
   LinkItem,
   Bottom,
   IconRow,
+  IconLink,
   BottomLeft,
   BottomRight,
   Divider,
@@ -21,7 +22,7 @@ import {
 } from "./styles";
 import logo from "../../../assets/images/kiibee-logo.svg";
 import card from "../../../assets/images/card.webp";
-import { FacebookIcon, TwitterIcon, YouTubeIcon } from "@/assets/icons";
+import { FacebookIcon, InstagramIcon } from "@/assets/icons";
 import { footerConfig } from "@/utils/footerConfig";
 import { MonoText } from "@/components/UI/Monotext";
 import SafeImage from "@/components/UI/SafeImage";
@@ -39,9 +40,20 @@ const Footer = () => {
             <SafeImage src={logo} alt={t(NAV.logoAlt)} />
           </LogoRow>
           <IconRow>
-            <FacebookIcon />
-            <TwitterIcon />
-            <YouTubeIcon />
+            <IconLink
+              href="https://www.facebook.com/share/18VJ6FJQxw/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <FacebookIcon />
+            </IconLink>
+            <IconLink
+              href="https://www.instagram.com/kiibee_dk?igsh=MXJzMjgxbnJleG00dQ%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <InstagramIcon />
+            </IconLink>
           </IconRow>
         </Column>
 
