@@ -87,13 +87,14 @@ export const InlineControlWrap = styled.div`
   }
 `;
 
-export const Swatch = styled.span<{ $color: string }>`
+export const Swatch = styled.span<{ $color: string; $interactive?: boolean }>`
   flex: 0 0 auto;
   width: 40px;
   height: 24px;
   border-radius: 4px;
   background: ${({ $color }) => $color};
   box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.neutral.GRAY_250};
+  cursor: ${({ $interactive }) => ($interactive ? "pointer" : "default")};
 `;
 
 export const ItemRow = styled.div`

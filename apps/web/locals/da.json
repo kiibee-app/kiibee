@@ -1314,6 +1314,8 @@
       "chooseColor": "Vælg farve",
       "defaultColor": "Standardfarve",
       "color": "Farve",
+      "selectColor": "Vælg",
+      "cancelColorPicker": "Annuller",
       "receipt": "Kvittering",
       "receiptHint": "Skriv en besked til din kunde, nÃ¥r de modtager en kvittering",
       "receiptPlaceholder": "Indtast kvittering",

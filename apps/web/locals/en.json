@@ -1323,6 +1323,8 @@
       "chooseColor": "Choose color",
       "defaultColor": "Default color",
       "color": "Color",
+      "selectColor": "Select",
+      "cancelColorPicker": "Cancel",
       "receipt": "Receipt",
       "receiptHint": "Write a message to your customer when they receive a receipt",
       "receiptPlaceholder": "Enter receipt",

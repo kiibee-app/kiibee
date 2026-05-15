@@ -97,3 +97,49 @@ export const CloseButton = styled.button`
   align-items: center;
   justify-content: center;
 `;
+
+export const PickerChrome = styled.div`
+  width: 100%;
+  max-width: 388px;
+  margin-inline: auto;
+
+  .react-colorful {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .react-colorful__saturation {
+    border-radius: 8px;
+  }
+
+  .react-colorful__hue {
+    height: 14px;
+    border-radius: 999px;
+  }
+
+  .react-colorful__pointer {
+    width: 22px;
+    height: 22px;
+    border: 2px solid ${({ theme }) => theme.colors.primary.WHITE};
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.12);
+  }
+`;
+
+export const HexRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 388px;
+  margin-inline: auto;
+`;
+
+export const PreviewSwatch = styled.div<{ $color: string }>`
+  flex-shrink: 0;
+  width: 48px;
+  height: 32px;
+  border-radius: 6px;
+  background: ${({ $color }) => $color};
+  box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.neutral.GRAY_250};
+`;
