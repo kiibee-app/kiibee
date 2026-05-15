@@ -223,7 +223,7 @@ export const LayoutImage = styled(Image)`
 export const LogoImage = styled.img`
   width: 160px;
   height: 56px;
-  objectfit: cover;
+  object-fit: cover;
   border-radius: 8px;
 `;
 
@@ -272,4 +272,12 @@ export const PreviewImage = styled.img<{ $type: ImageType }>`
     width: 100%;
     max-width: 100%;
   }
+`;
+
+export const FieldBox = styled.div`
+  position: relative;
+  border-radius: 8px;
+  gap: 8px;
+  cursor: pointer;
+  max-width: 457px;
 `;

@@ -19,9 +19,9 @@ import {
   Row,
   SectionList,
   Swatch,
+  FieldBox,
 } from "./styles";
 import { INPUT_TYPE } from "@/utils/ui";
-import { FieldBox } from "../../Settings/Notification/styles";
 import {
   BUTTON_COLOR_VALUES,
   TEXT_COLOR_VALUES,
@@ -86,8 +86,21 @@ export default function AppearanceSettingsSection() {
             <DropdownField
               options={buttonColorOptions}
               value={buttonColor}
-              onChange={setButtonColor}
+              onChange={(val) => {
+                setButtonColor(val);
+                if (val === BUTTON_COLOR_VALUES.CUSTOM) {
+                  setColorPickerOpen(true);
+                }
+              }}
             />
+            {colorPickerOpen && buttonColor === BUTTON_COLOR_VALUES.CUSTOM ? (
+              <AppearanceColorPickerModal
+                color={hexColor}
+                fallbackHex={APPEARANCE_DEFAULT_HEX_COLOR}
+                onClose={() => setColorPickerOpen(false)}
+                onSelect={handleColorPicked}
+              />
+            ) : null}
           </FieldBox>
         </Row>
 
@@ -121,15 +134,6 @@ export default function AppearanceSettingsSection() {
           </InlineRow>
         ) : null}
       </SectionList>
-
-      {colorPickerOpen ? (
-        <AppearanceColorPickerModal
-          color={hexColor}
-          fallbackHex={APPEARANCE_DEFAULT_HEX_COLOR}
-          onClose={() => setColorPickerOpen(false)}
-          onSelect={handleColorPicked}
-        />
-      ) : null}
     </AppearancePanel>
   );
 }
