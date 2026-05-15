@@ -4,9 +4,9 @@ import { COLLECTIONS, COUPONS, ContentTab } from "@/utils/common";
 import {
   COUPON_STEPS,
   CouponStep,
+  isUploadContentType,
   STEP_ORDER,
   type ContentType,
-  isUploadContentType,
 } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 
@@ -104,6 +104,7 @@ export const useContentsModalFlows = (
         setShowContentUploadModal(true);
         return;
       }
+
       setShowContentUploadModal(false);
     },
   };
