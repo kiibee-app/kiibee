@@ -10,10 +10,6 @@ export const Wrapper = styled.section`
     width: 100%;
     padding: 2rem 0;
   }
-  ${media.tablet} {
-    width: 100%;
-    padding: 2rem 0;
-  }
 `;
 
 export const Header = styled.div`
