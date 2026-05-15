@@ -9,6 +9,12 @@ import {
   Min,
   IsDateString,
 } from 'class-validator';
+import {
+  COUPON_DISCOUNT_TYPES,
+  COUPON_STATUSES,
+  type CouponDiscountType,
+  type CouponStatus,
+} from 'src/utils/coupon';
 
 export class CreateCouponDto {
   @IsString()
@@ -17,8 +23,8 @@ export class CreateCouponDto {
   title!: string;
 
   @IsString()
-  @IsIn(['fixed_amount', 'percentage'])
-  discountType!: 'fixed_amount' | 'percentage';
+  @IsIn(COUPON_DISCOUNT_TYPES)
+  discountType!: CouponDiscountType;
 
   @IsNumberString()
   discountValue!: string;
@@ -30,8 +36,8 @@ export class CreateCouponDto {
 
   @IsOptional()
   @IsString()
-  @IsIn(['active', 'inactive', 'completed'])
-  status?: 'active' | 'inactive' | 'completed';
+  @IsIn(COUPON_STATUSES)
+  status?: CouponStatus;
 
   @IsOptional()
   @IsDateString()

@@ -25,7 +25,13 @@ import {
 } from "@/utils/sortOptions";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
-import { COUPON_STATUS, type CouponRow } from "@/types/couponType";
+import { formatDateUSShort } from "@/utils/formatDate";
+import {
+  COUPON_STATUS_LABEL_MAP,
+  type CouponEntity,
+  type CouponListResponse,
+  type CouponRow,
+} from "@/types/couponType";
 
 type Props = {
   activeTab: ContentTab;
@@ -40,19 +46,6 @@ type Props = {
     SetStateAction<Record<string, CollectionContentRow[]>>
   >;
   setActiveTab: (tab: ContentTab) => void;
-};
-
-type CouponEntity = {
-  id: string;
-  title: string;
-  status: "active" | "inactive" | "completed";
-  createdAt: string;
-  codes?: string[];
-};
-
-type CouponListResponse = {
-  success?: boolean;
-  data?: CouponEntity[];
 };
 
 export default function ContentTabPanel({
@@ -76,21 +69,14 @@ export default function ContentTabPanel({
     },
   );
 
-  const getCouponStatusLabel = (status: CouponEntity["status"]) => {
-    if (status === "inactive") return COUPON_STATUS.INACTIVE;
-    if (status === "completed") return COUPON_STATUS.COMPLETED;
-    return COUPON_STATUS.ACTIVE;
-  };
+  const getCouponStatusLabel = (status: CouponEntity["status"]) =>
+    COUPON_STATUS_LABEL_MAP[status];
 
   const couponRows: CouponRow[] = (couponResponse?.data ?? []).map((item) => ({
     title: item.title,
     codes: item.codes ?? [],
     status: getCouponStatusLabel(item.status),
-    createdAt: new Date(item.createdAt).toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    }),
+    createdAt: formatDateUSShort(item.createdAt),
     action: item.id,
   }));
 

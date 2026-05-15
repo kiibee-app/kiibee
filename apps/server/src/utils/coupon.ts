@@ -1,7 +1,12 @@
 import { STATUS } from './constant';
 
-const COUPON_STATUSES = [STATUS.ACTIVE, STATUS.INACTIVE, 'completed'] as const;
-const COUPON_DISCOUNT_TYPES = ['fixed_amount', 'percentage'] as const;
+export const COUPON_STATUSES = [
+  STATUS.ACTIVE,
+  STATUS.INACTIVE,
+  'completed',
+] as const;
+export const COUPON_DISCOUNT_TYPES = ['fixed_amount', 'percentage'] as const;
+export const COUPON_DISCOUNT_TYPE_PERCENTAGE = COUPON_DISCOUNT_TYPES[1];
 
 export type CouponStatus = (typeof COUPON_STATUSES)[number];
 export type CouponDiscountType = (typeof COUPON_DISCOUNT_TYPES)[number];

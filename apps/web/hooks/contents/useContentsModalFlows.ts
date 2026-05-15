@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { CollectionRow, INITIAL_COUPON_FORM } from "@/types/collectionsType";
-import { COLLECTIONS, COUPONS, ContentTab } from "@/utils/common";
+import {
+  COLLECTIONS,
+  COUPON_DISCOUNT_FIXED_AMOUNT,
+  COUPONS,
+  ContentTab,
+} from "@/utils/common";
+import {
+  COUPON_API_DISCOUNT_TYPE,
+  type CreateCouponPayload,
+} from "@/types/couponType";
 import { API } from "@/lib/http/api/endpoints";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import {
@@ -11,15 +20,7 @@ import {
   STEP_ORDER,
   type ContentType,
 } from "@/utils/content";
-
-type CreateCouponPayload = {
-  title: string;
-  discountType: "fixed_amount" | "percentage";
-  discountValue: string;
-  codes: string[];
-  collectionId?: string;
-  contentId?: string;
-};
+import { COLLECTION, CONTENT } from "@/utils/ui";
 
 export const useContentsModalFlows = (
   activeTab: ContentTab,
@@ -145,26 +146,24 @@ export const useContentsModalFlows = (
       .map((code) => code.trim())
       .filter((code) => code.length > 0);
 
-    const response = await createCouponMutation.mutateAsync({
+    await createCouponMutation.mutateAsync({
       title: couponForm.title.trim(),
       discountType:
-        couponForm.discountType === "fixedAmount"
-          ? "fixed_amount"
-          : "percentage",
+        couponForm.discountType === COUPON_DISCOUNT_FIXED_AMOUNT
+          ? COUPON_API_DISCOUNT_TYPE.FIXED_AMOUNT
+          : COUPON_API_DISCOUNT_TYPE.PERCENTAGE,
       discountValue: couponForm.discountValue.trim(),
       codes,
       collectionId:
-        couponForm.collection &&
-        !couponForm.collection.startsWith("collection_")
+        couponForm.collection && !couponForm.collection.startsWith(COLLECTION)
           ? couponForm.collection
           : undefined,
       contentId:
-        couponForm.content && !couponForm.content.startsWith("content_")
+        couponForm.content && !couponForm.content.startsWith(CONTENT)
           ? couponForm.content
           : undefined,
     });
 
-    console.log("Coupon upload response:", response);
     await queryClient.invalidateQueries({ queryKey: [API.coupon.getAll] });
     setIsCouponSuccess(true);
   };
