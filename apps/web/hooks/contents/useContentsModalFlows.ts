@@ -6,11 +6,9 @@ import {
   COUPON_DISCOUNT_FIXED_AMOUNT,
   COUPONS,
   ContentTab,
+  COUPON_DISCOUNT_TYPE,
 } from "@/utils/common";
-import {
-  COUPON_API_DISCOUNT_TYPE,
-  type CreateCouponPayload,
-} from "@/types/couponType";
+import { type CreateCouponPayload } from "@/types/couponType";
 import { API } from "@/lib/http/api/endpoints";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import {
@@ -151,7 +149,7 @@ export const useContentsModalFlows = (
       discountType:
         couponForm.discountType === COUPON_DISCOUNT_FIXED_AMOUNT
           ? couponForm.discountType
-          : COUPON_API_DISCOUNT_TYPE.PERCENTAGE,
+          : COUPON_DISCOUNT_TYPE.PERCENTAGE,
       discountValue: couponForm.discountValue.trim(),
       codes,
       collectionId:

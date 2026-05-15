@@ -25,7 +25,13 @@ type ViewerBillingTabItem = {
 
 export type ContentTab = "collections" | "appearance" | "settings" | "coupons";
 export type ViewerBillingTab = "billing-history" | "payment-methods";
-export type CouponDiscountType = "fixed_amount" | "percentage";
+
+export const COUPON_DISCOUNT_TYPE = {
+  FIXED_AMOUNT: COUPON_DISCOUNT_FIXED_AMOUNT,
+  PERCENTAGE: COUPON_DISCOUNT_PERCENTAGE,
+} as const;
+export type CouponDiscountType =
+  (typeof COUPON_DISCOUNT_TYPE)[keyof typeof COUPON_DISCOUNT_TYPE];
 
 export const CONTENT_TABS: readonly ContentTabItem[] = [
   {
