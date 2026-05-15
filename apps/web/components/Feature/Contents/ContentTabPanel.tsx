@@ -34,6 +34,10 @@ type Props = {
   setSelectedCollection: (collection: CollectionRow) => void;
   onDelete: (id: string, type: CollectionTableType) => void;
   onEditCollection: (id: string) => void;
+  setContentsMap: Dispatch<
+    SetStateAction<Record<string, CollectionContentRow[]>>
+  >;
+  setActiveTab: (tab: ContentTab) => void;
 };
 
 export default function ContentTabPanel({
@@ -45,16 +49,42 @@ export default function ContentTabPanel({
   setSelectedCollection,
   onDelete,
   onEditCollection,
+  setContentsMap,
+  setActiveTab,
 }: Props) {
   const { t } = useTranslation();
 
   const handleMoveUp = (id: string) => {
+    if (selectedCollection) {
+      setContentsMap((current) => ({
+        ...current,
+        [selectedCollection.id]: moveItemInArray(
+          current[selectedCollection.id] ?? [],
+          id,
+          MOVE_DIRECTION_UP,
+        ),
+      }));
+      return;
+    }
+
     setCollections((current) =>
       moveItemInArray(current, id, MOVE_DIRECTION_UP),
     );
   };
 
   const handleMoveDown = (id: string) => {
+    if (selectedCollection) {
+      setContentsMap((current) => ({
+        ...current,
+        [selectedCollection.id]: moveItemInArray(
+          current[selectedCollection.id] ?? [],
+          id,
+          MOVE_DIRECTION_DOWN,
+        ),
+      }));
+      return;
+    }
+
     setCollections((current) =>
       moveItemInArray(current, id, MOVE_DIRECTION_DOWN),
     );
@@ -67,6 +97,8 @@ export default function ContentTabPanel({
           type={COLLECTION_TABLE_TYPE.CONTENTS}
           data={collectionContents}
           onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
+          onMoveUp={handleMoveUp}
+          onMoveDown={handleMoveDown}
         />
       );
     }
@@ -80,6 +112,7 @@ export default function ContentTabPanel({
         onMoveDown={handleMoveDown}
         onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.COLLECTIONS)}
         onEdit={onEditCollection}
+        onSettings={() => setActiveTab(SETTINGS)}
       />
     );
   };

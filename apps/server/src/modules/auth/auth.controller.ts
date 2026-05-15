@@ -17,11 +17,13 @@ import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { LoginDto } from './dto/login.dto';
 import { TokenService } from './services/token.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { AdminGuard } from './guards/admin.guard';
+import { AdminGuard, CreatorGuard } from './guards/admin.guard';
 import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
 import { ResetPasswordDto } from './dto/resetPassword.dto';
 import { CreateCreatorApplicationDto } from './dto/creatorRequest.dto';
 import { UpdateViewerProfileDto } from './dto/updateViewerProfile.dto';
+import { ChangePasswordDto } from './dto/changePassword.dto';
+import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
 
 type AuthenticatedRequest = Request & {
   user: {
@@ -150,6 +152,15 @@ export class AuthController {
     );
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Patch('user/password')
+  async changeMyPassword(
+    @Req() req: AuthenticatedRequest,
+    @Body() dto: ChangePasswordDto,
+  ) {
+    return this.authService.changePassword(req.user.userId, dto);
+  }
+
   @Post('creator-request')
   async creatorRequest(@Body() payload: CreateCreatorApplicationDto) {
     const result = await this.authService.creatorRequest(payload);
@@ -212,5 +223,20 @@ export class AuthController {
   async resetPassword(@Body() payload: ResetPasswordDto) {
     const result = await this.authService.resetPassword(payload);
     return result;
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Get('creator/profile')
+  async getCreatorProfile(@Req() req: AuthenticatedRequest) {
+    return this.authService.getCreatorProfile(req.user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Patch('creator/profile')
+  async updateCreatorProfile(
+    @Req() req: AuthenticatedRequest,
+    @Body() profileData: UpdateCreatorProfileDto,
+  ) {
+    return this.authService.updateCreatorProfile(req.user.userId, profileData);
   }
 }

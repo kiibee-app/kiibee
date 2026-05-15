@@ -69,7 +69,13 @@
       "description": "PERFEKT TILBEREDT FASAN - sådan gør du, når fasanen skal være saftig og mør. Bogen indeholder kun opskrifter på fasan og viser med flotte billeder og gode beskrivelser, hvordan du får det bedste resultat til både hverdag og festmiddag.",
       "readMore": "Leje 50 kr",
       "access": "Adgang i 3 måneder",
-      "imageAlt": "Seneste upload-billede"
+      "imageAlt": "Seneste upload-billede",
+      "loginModal": {
+        "title": "Login påkrævet",
+        "cancelLabel": "Log ind",
+        "confirmLabel": "Opret konto",
+        "message": "For at fortsætte med dit køb, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik."
+      }
     }
   },
   "createProfileCollections": {
@@ -78,7 +84,10 @@
   },
   "createProfileAbout": {
     "title": "Om",
-    "description": "Del din historie, dit arbejde og hvad folk kan forvente af din profil."
+    "description": "Del din historie, dit arbejde og hvad folk kan forvente af din profil.",
+    "sectionTitle": "Planter og dyr",
+    "sectionTitleClothes": "Tøj",
+    "buyCollection": "Køb samling xx kr"
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",
@@ -496,6 +505,9 @@
   },
   "discoverContent": {
     "title": "Opdag indhold",
+    "detail": {
+      "formatLabel": "Format:"
+    },
     "subtitle": "Gennemse hundredvis af videoer, lydfiler og e-bøger.",
     "ctaPrimary": "Deltag nu",
     "ctaSecondary": "Se alle skabere",
@@ -803,6 +815,11 @@
         "meta": "Maks. 70 filer",
         "price": "299 kr/md"
       }
+    },
+    "invite": {
+      "invalidToken": "Dette opsætningslink er ugyldigt eller udløbet. Kontakt Kiibee, hvis du har brug for en ny invitation.",
+      "setupFailed": "Vi kunne ikke færdiggøre din kontooversigt. Tjek din e-mail og adgangskode, og prøv igen.",
+      "loginAfterSetupFailed": "Din konto blev oprettet, men login mislykkedes. Prøv at logge ind fra login-siden."
     }
   },
   "pricingFaq": {
@@ -810,15 +827,15 @@
     "items": [
       {
         "question": "Can I sell content with the free plan?",
-        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+        "answer": "Yes. The free Launch plan lets you upload and sell up to two products with no monthly cost. It’s a great way to test your idea before upgrading."
       },
       {
         "question": "Can I change or cancel my plan?",
-        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+        "answer": "Absolutely. You can upgrade, downgrade, or cancel your subscription at any time directly from your account settings."
       },
       {
         "question": "Do viewers need a subscription?",
-        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+        "answer": "No. Your customers only pay for the content you choose to sell. They do not need their own subscription to access purchases."
       }
     ]
   },
@@ -862,6 +879,7 @@
     "currentPassword": "Indtast nuværende adgangskode",
     "newPassword": "Indtast ny adgangskode",
     "confirmPassword": "Indtast ny adgangskode igen",
+    "newPasswordSameAsCurrent": "Den nye adgangskode skal være forskellig fra den nuværende",
     "accountDeletionTitle": "Slet konto",
     "accountDeletionText": "Hvis du ønsker at slette din konto, klik på [Slet konto] nedenfor, og der sendes en besked til administratoren, som vil foretage en opgørelse og derefter slette din konto.",
     "deleteAccount": "Slet konto",
@@ -885,9 +903,13 @@
     "dragPhotoHere": "Træk foto her",
     "or": "eller",
     "choosePhoto": "Vælg fotos til upload",
+    "recommendedImageSize": "Brug {{cropWidth}}×{{cropHeight}} pixel billede",
     "zoom": "Zoom",
     "apply": "Anvend",
     "profilePhotoAlt": "Profilfoto"
+  },
+  "singleContent": {
+    "notFound": "Dette indhold blev ikke fundet."
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
@@ -1091,7 +1113,12 @@
       "fullName": "Fulde navn",
       "email": "E-mailadresse",
       "downloads": "{{count}} downloads",
-      "profilePhotoAlt": "Seer profilfoto"
+      "profilePhotoAlt": "Seer profilfoto",
+      "passwordMinLength": "Den nye adgangskode skal være mindst 6 tegn",
+      "passwordChangeError": "Adgangskoden kunne ikke opdateres",
+      "forgotPasswordNoEmail": "Vi har brug for din e-mail for at sende et nulstillingslink.",
+      "forgotPasswordModalMessage": "Vi har sendt et link til nulstilling af adgangskode til {{email}}. Hvis det ikke ankommer inden for et par minutter, sa tjek din spam-mappe.",
+      "forgotPasswordErrorTitle": "Kunne ikke sende nulstillingslink"
     },
     "logoutModal": {
       "title": "Log ud",
@@ -1299,6 +1326,8 @@
       "chooseColor": "Vælg farve",
       "defaultColor": "Standardfarve",
       "color": "Farve",
+      "selectColor": "Vælg",
+      "cancelColorPicker": "Annuller",
       "receipt": "Kvittering",
       "receiptHint": "Skriv en besked til din kunde, nÃ¥r de modtager en kvittering",
       "receiptPlaceholder": "Indtast kvittering",
@@ -1312,7 +1341,9 @@
         "uploadDesktop": "Upload forsidebillede til desktop",
         "uploadMobile": "Upload forsidebillede til mobil",
         "desktopSize": "Brug billedstørrelse 1440 × 224 pixels",
-        "mobileSize": "Brug billedstørrelse 640 × 600 pixels"
+        "mobileSize": "Brug billedstørrelse 640 × 600 pixels",
+        "desktopAlt": "Desktop forsidebillede",
+        "mobileAlt": "Mobil forsidebillede"
       },
       "description": {
         "label": "Beskrivelse",
@@ -1348,15 +1379,47 @@
       }
     },
     "contentTypeModal": {
-      "title": "Choose the type of content you want to add",
-      "subtitle": "Select a format to continue.",
-      "continue": "Continue",
+      "title": "Vælg den type indhold, du vil tilføje",
+      "subtitle": "Vælg et format for at fortsætte.",
+      "continue": "Fortsæt",
       "options": {
         "video": "Video",
-        "audio": "Audio",
+        "audio": "Lyd",
         "pdf": "PDF",
         "epub": "EPUB",
         "web": "Web"
+      }
+    },
+    "contentUploadModal": {
+      "dragFileHere": "Træk og slip her",
+      "or": "eller",
+      "chooseFile": "Vælg til upload",
+      "selectedFile": "Valgt fil",
+      "upload": "Upload",
+      "next": "Næste",
+      "video": {
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp4,.mkv,.mov,.m4v)",
+        "helperLineTwo": "Min. opløsning 1080p HD"
+      },
+      "audio": {
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac)",
+        "helperLineTwo": ""
+      },
+      "pdf": {
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.pdf)",
+        "helperLineTwo": ""
+      },
+      "epub": {
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.epub,.mobi,.azw)",
+        "helperLineTwo": ""
+      },
+      "details": {
+        "addDetails": "Tilføj detaljer",
+        "title": "Titel",
+        "titlePlaceholder": "Indtast titel",
+        "description": "Beskrivelse",
+        "descriptionPlaceholder": "Indtast beskrivelse",
+        "add": "Tilføj"
       }
     },
     "deleteModal": {

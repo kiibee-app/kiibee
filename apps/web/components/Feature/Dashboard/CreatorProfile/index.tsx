@@ -18,7 +18,7 @@ import {
   HeaderActions,
   NameBlock,
 } from "./styles";
-import { AUTH, CREATOR_PROFILE } from "@/utils/translationKeys";
+import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import InputField from "@/components/UI/InputFields";
 import PasswordSection from "./PasswordSection";
 import CompanySection from "./CompanySection";
@@ -41,6 +41,7 @@ import { SuccessArcIcon } from "@/assets/icons";
 import { useRouter } from "next/navigation";
 import ImageUploader from "./ImageUploader";
 import { createResetPasswordSchema } from "@/lib/validation/schema";
+import { PATHS } from "@/utils/path";
 
 export default function CreatorProfile() {
   const { t } = useTranslation();
@@ -66,6 +67,7 @@ export default function CreatorProfile() {
         nextRequired: t(CREATOR_PROFILE.newPassword),
         confirmRequired: t(CREATOR_PROFILE.confirmPassword),
         confirmMismatch: t("viewerSignup.form.passwordMismatch"),
+        newMustDifferFromCurrent: t(CREATOR_PROFILE.newPasswordSameAsCurrent),
       }),
     [t],
   );
@@ -130,7 +132,7 @@ export default function CreatorProfile() {
 
   const handleDeleteSuccessClose = () => {
     setShowDeleteSuccessModal(false);
-    router.push(AUTH.login);
+    router.push(PATHS.AUTH_LOGIN);
   };
 
   return (
@@ -228,7 +230,7 @@ export default function CreatorProfile() {
         message={t("creatorProfile.passwordSuccessMessage")}
         confirmLabel={t("nav.login")}
         onClose={() => setShowPasswordSuccessModal(false)}
-        onConfirm={() => router.push(AUTH.login)}
+        onConfirm={() => router.push(PATHS.AUTH_LOGIN)}
         size="sm"
         showCloseButton={false}
       />

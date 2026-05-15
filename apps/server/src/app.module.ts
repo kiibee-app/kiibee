@@ -6,6 +6,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { ContentModule } from './modules/content/content.module';
 import { SubscriptionModule } from './modules/subscription/subscription.module';
 import { validateAppEnv } from './validators/appEnvSchema';
+import { MediaModule } from './modules/media/media.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { validateAppEnv } from './validators/appEnvSchema';
     AuthModule,
     ContentModule,
     SubscriptionModule,
+    MediaModule,
   ],
 })
 export class AppModule {}

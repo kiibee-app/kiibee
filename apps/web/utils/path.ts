@@ -1,4 +1,5 @@
 export const PATHS = {
+  HOME: "/",
   AUTH_LOGIN: "/auth/login",
   AUTH_SIGNUP: "/auth/signup",
   AUTH_SIGNUP_CREATOR: "/auth/signup-creator",
@@ -31,5 +32,12 @@ export const PATHS = {
   CREATORS_POPULAR: "/creators?sort=popular",
   ABOUT: "/about-kiibee",
   TUTORIAL_VIDEOS: "/tutorial-videos",
+  CONTENT: "/content",
   SUPPORT: "/support",
+  TERMS: "/terms-of-service",
+  PRIVACY_POLICY: "/privacy-policy",
 } as const;
+
+export function pathPublishedContent(contentKey: string): string {
+  return `${PATHS.CONTENT}/${encodeURIComponent(contentKey)}`;
+}

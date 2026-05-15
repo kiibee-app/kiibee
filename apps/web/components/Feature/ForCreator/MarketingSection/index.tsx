@@ -27,6 +27,7 @@ import {
   StatText,
   SupportText,
 } from "./styles";
+import { PATHS } from "@/utils/path";
 
 export default function MarketingSection() {
   const { t } = useTranslation();
@@ -50,7 +51,9 @@ export default function MarketingSection() {
           </BulletList>
 
           <Summary>{t("creators.marketing.summary")}</Summary>
-          <CtaButton type="button">{t("creators.marketing.cta")}</CtaButton>
+          <CtaButton asAnchor href={PATHS.AUTH_SIGNUP}>
+            {t("creators.marketing.cta")}
+          </CtaButton>
         </TextColumn>
 
         <ImagesColumn>

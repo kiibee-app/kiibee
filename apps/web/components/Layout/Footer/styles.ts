@@ -45,6 +45,22 @@ export const IconRow = styled.div`
     padding-left: 0;
   }
 `;
+export const IconLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 0.8;
+  }
+`;
+
 export const LinkItem = styled(Link)`
   display: inline-block;
   margin: 6px 0;

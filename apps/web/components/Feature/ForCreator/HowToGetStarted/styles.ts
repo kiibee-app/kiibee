@@ -100,12 +100,12 @@ export const StepWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-height: 40vh;
-  padding-bottom: 3rem;
+  min-height: 20vh;
+  padding-bottom: 7.5rem;
 
   @media (min-width: ${breakpoints.tablet}) {
-    min-height: 50vh;
-    padding-bottom: 4rem;
+    min-height: 0;
+    padding-bottom: 7.75rem;
   }
 `;
 
@@ -202,5 +202,5 @@ export const Bullet = styled.span`
 `;
 
 export const Spacer = styled.div`
-  height: 10vh;
+  height: 5vh;
 `;

@@ -1,18 +1,31 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { mergeStoredLoginUser, type LoginUser } from "@/hooks/auth/useLogin";
+import type {
+  ForgetPasswordPayload,
+  ForgetPasswordResponse,
+} from "@/hooks/auth/useForgetPassword";
+import { mergeStoredLoginUser } from "@/hooks/auth/useLogin";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { usePatchAPI } from "@/lib/http/api/patchApi";
+import { usePostAPI } from "@/lib/http/api/postApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { createResetPasswordSchema } from "@/lib/validation/schema";
 import { emptyPasswords } from "@/utils/dummyData/profile.data";
 import { PasswordState } from "@/utils/creatorProfile";
 import { ViewerProfileField } from "@/utils/profile";
-
-const IMAGE_DATA_PREFIX = /^data:image\//;
-const USER_STORAGE_KEY = "kiibee.user";
+import { CREATOR_PROFILE } from "@/utils/translationKeys";
+import {
+  EMPTY_VIEWER_BOOTSTRAP,
+  subscribeViewerBootstrap,
+  type ChangePasswordBody,
+  type ChangePasswordResponse,
+  type ForgotPasswordNotice,
+  type ViewerBootstrap,
+} from "@/utils/viewerProfile";
 
 type ViewerProfileForm = {
   name: string;
@@ -49,31 +62,65 @@ export type UpdateViewerProfileResponse = {
 };
 
 export const useViewerProfile = () => {
+  const { t } = useTranslation();
   const { getErrorMessage } = useApiErrorMessage();
 
-  const bootstrap = useMemo(() => readViewerBootstrapFromStorage(), []);
-  const initialForm = useMemo<ViewerProfileForm>(
-    () => ({ name: bootstrap.name, email: bootstrap.email }),
-    [bootstrap.email, bootstrap.name],
+  const passwordSchema = useMemo(
+    () =>
+      createResetPasswordSchema(
+        {
+          currentRequired: t(CREATOR_PROFILE.currentPassword),
+          nextRequired: t(CREATOR_PROFILE.newPassword),
+          confirmRequired: t(CREATOR_PROFILE.confirmPassword),
+          confirmMismatch: t("viewerSignup.form.passwordMismatch"),
+          newMustDifferFromCurrent: t(CREATOR_PROFILE.newPasswordSameAsCurrent),
+        },
+        {
+          nextMinLength: {
+            min: 6,
+            message: t("dashboard.viewerProfile.passwordMinLength"),
+          },
+        },
+      ),
+    [t],
   );
 
-  const [form, setForm] = useState<ViewerProfileForm>(initialForm);
-  const [saved, setSaved] = useState<ViewerProfileForm>(initialForm);
-  const [savedAvatarUrl, setSavedAvatarUrl] = useState<string | null>(
-    bootstrap.avatarUrl,
-  );
-  const [avatarImage, setAvatarImage] = useState<string | null>(
-    bootstrap.avatarUrl,
-  );
-  const [downloadsCount, setDownloadsCount] = useState<number>(
-    bootstrap.downloadsCount,
-  );
+  const [form, setForm] = useState<ViewerProfileForm>(() => ({
+    name: EMPTY_VIEWER_BOOTSTRAP.name,
+    email: EMPTY_VIEWER_BOOTSTRAP.email,
+  }));
+  const [saved, setSaved] = useState<ViewerProfileForm>(() => ({
+    name: EMPTY_VIEWER_BOOTSTRAP.name,
+    email: EMPTY_VIEWER_BOOTSTRAP.email,
+  }));
+  const [savedAvatarUrl, setSavedAvatarUrl] = useState<string | null>(null);
+  const [avatarImage, setAvatarImage] = useState<string | null>(null);
+  const [downloadsCount, setDownloadsCount] = useState<number>(0);
 
   const [showPassword, setShowPassword] = useState(false);
   const [passwords, setPasswords] = useState<PasswordState>(emptyPasswords);
   const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
     useState<boolean>(false);
   const [showProfileSavedModal, setShowProfileSavedModal] = useState(false);
+  const [forgotPasswordNotice, setForgotPasswordNotice] =
+    useState<ForgotPasswordNotice>(null);
+  const [passwordSubmitAttempted, setPasswordSubmitAttempted] = useState(false);
+
+  const passwordFieldErrors = useMemo(() => {
+    if (!passwordSubmitAttempted) {
+      return {} as Partial<Record<keyof PasswordState, string>>;
+    }
+    const parsed = passwordSchema.safeParse(passwords);
+    if (parsed.success) {
+      return {} as Partial<Record<keyof PasswordState, string>>;
+    }
+    const fe = parsed.error.flatten().fieldErrors;
+    return {
+      ...(fe.current?.[0] ? { current: fe.current[0] } : {}),
+      ...(fe.next?.[0] ? { next: fe.next[0] } : {}),
+      ...(fe.confirm?.[0] ? { confirm: fe.confirm[0] } : {}),
+    };
+  }, [passwordSchema, passwords, passwordSubmitAttempted]);
 
   const avatarDirty = avatarImage !== savedAvatarUrl;
 
@@ -92,6 +139,15 @@ export const useViewerProfile = () => {
     UpdateViewerProfileResponse,
     UpdateViewerProfileBody
   >(API.auth.userProfile);
+  const changePasswordMutation = usePatchAPI<
+    ChangePasswordResponse,
+    ChangePasswordBody
+  >(API.auth.changePassword);
+  const forgetPasswordMutation = usePostAPI<
+    ForgetPasswordResponse,
+    ForgetPasswordPayload
+  >(API.auth.forgetPassword);
+
   const profileQuery = useGetAPI<GetViewerProfileResponse>(
     API.auth.userProfile,
     undefined,
@@ -100,6 +156,16 @@ export const useViewerProfile = () => {
       refetchOnWindowFocus: false,
     },
   );
+
+  useEffect(() => {
+    return subscribeViewerBootstrap((b: ViewerBootstrap) => {
+      setForm({ name: b.name, email: b.email });
+      setSaved({ name: b.name, email: b.email });
+      setSavedAvatarUrl(b.avatarUrl);
+      setAvatarImage(b.avatarUrl);
+      setDownloadsCount(b.downloadsCount);
+    });
+  }, []);
 
   useEffect(() => {
     const profile = profileQuery.data?.data;
@@ -163,6 +229,7 @@ export const useViewerProfile = () => {
 
   const resetPasswords = useCallback(() => {
     setPasswords(emptyPasswords);
+    setPasswordSubmitAttempted(false);
   }, []);
 
   const handleSave = async () => {
@@ -232,17 +299,77 @@ export const useViewerProfile = () => {
   const handlePasswordClose = useCallback(() => {
     setShowPassword(false);
     resetPasswords();
-    setShowPasswordSuccessModal(true);
   }, [resetPasswords]);
 
-  const handlePasswordSave = useCallback(() => {
-    resetPasswords();
-    setShowPassword(false);
-  }, [resetPasswords]);
+  const dismissForgotPasswordNotice = useCallback(() => {
+    setForgotPasswordNotice(null);
+  }, []);
 
-  const isPasswordFormValid = useMemo(() => {
-    return Object.values(passwords).every((val) => val.trim().length > 0);
-  }, [passwords]);
+  const handleForgotPassword = useCallback(async () => {
+    const email = saved.email.trim().toLowerCase();
+    if (!email) {
+      setShowPassword(false);
+      resetPasswords();
+      setForgotPasswordNotice({
+        variant: "error",
+        message: t("dashboard.viewerProfile.forgotPasswordNoEmail"),
+      });
+      throw new Error("missing-email");
+    }
+    try {
+      await forgetPasswordMutation.mutateAsync({ email });
+      setShowPassword(false);
+      resetPasswords();
+      setForgotPasswordNotice({ variant: "success", email });
+    } catch (error) {
+      setShowPassword(false);
+      resetPasswords();
+      setForgotPasswordNotice({
+        variant: "error",
+        message: getErrorMessage(error, "forgotPassword.submitFailed"),
+      });
+      throw error;
+    }
+  }, [forgetPasswordMutation, getErrorMessage, resetPasswords, saved.email, t]);
+
+  const handlePasswordSave = useCallback(async () => {
+    const parsed = passwordSchema.safeParse(passwords);
+    if (!parsed.success) {
+      setPasswordSubmitAttempted(true);
+      const first = parsed.error.flatten().fieldErrors;
+      const msg =
+        first.current?.[0] ??
+        first.next?.[0] ??
+        first.confirm?.[0] ??
+        t("dashboard.viewerProfile.passwordChangeError");
+      toast.error(msg);
+      return;
+    }
+
+    const { current, next, confirm } = parsed.data;
+
+    try {
+      await changePasswordMutation.mutateAsync({
+        currentPassword: current.trim(),
+        password: next.trim(),
+        confirmPassword: confirm.trim(),
+      });
+      resetPasswords();
+      setShowPassword(false);
+      setShowPasswordSuccessModal(true);
+    } catch (error) {
+      toast.error(
+        getErrorMessage(error, "dashboard.viewerProfile.passwordChangeError"),
+      );
+    }
+  }, [
+    changePasswordMutation,
+    getErrorMessage,
+    passwordSchema,
+    passwords,
+    resetPasswords,
+    t,
+  ]);
 
   return {
     form,
@@ -262,54 +389,12 @@ export const useViewerProfile = () => {
     handleSave,
     handlePasswordClose,
     handlePasswordSave,
-    isPasswordFormValid,
+    handleForgotPassword,
+    forgotPasswordNotice,
+    dismissForgotPasswordNotice,
+    passwordFieldErrors,
     isSavingProfile: updateProfile.isPending,
+    isChangingPassword: changePasswordMutation.isPending,
     isLoadingProfile: profileQuery.isLoading,
   };
-};
-
-const readViewerBootstrapFromStorage = () => {
-  if (typeof window === "undefined") {
-    return {
-      name: "",
-      email: "",
-      avatarUrl: null as string | null,
-      downloadsCount: 0,
-    };
-  }
-
-  try {
-    const raw = window.localStorage.getItem(USER_STORAGE_KEY);
-    const user = raw ? (JSON.parse(raw) as LoginUser) : null;
-
-    const name =
-      typeof user?.fullName === "string" && user.fullName.trim().length > 0
-        ? user.fullName.trim()
-        : "";
-    const email =
-      typeof user?.email === "string" && user.email.trim().length > 0
-        ? user.email.trim()
-        : "";
-    const avatarUrl =
-      typeof user?.avatarUrl === "string" &&
-      user.avatarUrl.trim().length > 0 &&
-      IMAGE_DATA_PREFIX.test(user.avatarUrl)
-        ? user.avatarUrl.trim()
-        : null;
-    const downloadsCount = Number(user?.downloadsCount ?? 0);
-
-    return {
-      name,
-      email,
-      avatarUrl,
-      downloadsCount: Number.isFinite(downloadsCount) ? downloadsCount : 0,
-    };
-  } catch {
-    return {
-      name: "",
-      email: "",
-      avatarUrl: null as string | null,
-      downloadsCount: 0,
-    };
-  }
 };

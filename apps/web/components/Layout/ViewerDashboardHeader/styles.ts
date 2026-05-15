@@ -1,4 +1,4 @@
-import { MonoText } from "@/components/UI/Monotext";
+import Link from "next/link";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
@@ -48,12 +48,12 @@ export const Nav = styled.nav`
   }
 `;
 
-export const NavItem = styled(MonoText).attrs({
-  $use: "Body_Medium",
-})`
+export const NavItem = styled(Link)`
+  ${({ theme }) => theme.typography.Body_Medium};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   cursor: pointer;
   transition: opacity 0.2s;
+  text-decoration: none;
 
   &:hover {
     opacity: 0.8;

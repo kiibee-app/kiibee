@@ -2,11 +2,13 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
 import Image from "@/components/UI/SafeImage";
 import GenericButton from "@/components/UI/GenericButton";
 import { Section, Background, Inner, Content, Title, Subtitle } from "./styles";
 import type { CtaSectionProps } from "@/types/ctaSection";
 import { VARIANT } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
 export default function CtaSection({
   bgImage,
@@ -17,6 +19,7 @@ export default function CtaSection({
   ctaHref,
 }: CtaSectionProps) {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <Section>
@@ -42,8 +45,8 @@ export default function CtaSection({
             ))}
           {ctaText && (
             <GenericButton
-              asAnchor
-              href={ctaHref || "#"}
+              type="button"
+              onClick={() => router.push(ctaHref ?? PATHS.AUTH_SIGNUP)}
               variant={VARIANT.PRIMARY_LITE}
             >
               {ctaText}

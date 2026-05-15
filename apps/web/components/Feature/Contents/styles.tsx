@@ -28,6 +28,42 @@ export const PageHeader = styled.div`
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
+  align-self: flex-start;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin: 0 -24px;
+  padding: 0 24px 2px;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+
+  ${({ theme }) => theme.media.tablet} {
+    margin: 0 -20px;
+    padding: 0 20px 10px;
+  }
+
+  ${({ theme }) => theme.media.mobile} {
+    margin: 0 -16px;
+    padding: 0 16px 8px;
+  }
+`;
+export const ContentsTabsSlot = styled.div`
+  flex-shrink: 0;
+  width: 100%;
+`;
+
+export const ContentsScrollArea = styled.div`
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 `;
 
 export const Title = styled(MonoText).attrs({
@@ -59,7 +95,7 @@ export const CancelButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 14px;
+  border-radius: 8px;
   padding: 16px 32px;
   min-height: 48px;
   cursor: pointer;
@@ -75,6 +111,7 @@ export const CancelButton = styled.button`
 
 export const SaveButton = styled(CreateButton)`
   padding: 16px 32px;
+  border-radius: 8px;
 `;
 
 export const PlusMark = styled.span`

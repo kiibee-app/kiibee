@@ -1,101 +1,46 @@
-"use client";
+import type { Metadata } from "next";
 
-import HeroSection from "@/components/Feature/landing/Hero";
-import NavBar from "@/components/Layout/Navbar";
-import { PageContainer, Main } from "./styles";
-import Footer from "@/components/Layout/Footer";
-import ctaImage from "@/assets/images/cta-buttom.webp";
-import { useTranslation } from "react-i18next";
-import LazySection from "@/components/UI/LazySection";
-import dynamic from "next/dynamic";
-import { LOADER_SIZE, LOADER_VARIANT } from "@/utils/ui";
-import GenericLoader from "@/components/UI/GenericLoader";
-import type { ComponentType } from "react";
+import landingOgImage from "@/assets/images/hero-background.webp";
+import HomePageClient from "@/components/Feature/landing/HomePage";
+import {
+  KIIBEE_LANDING_PAGE_PREVIEW_ALT,
+  TWITTER_CARD_SUMMARY_LARGE_IMAGE,
+  WEBSITE,
+} from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
-function SectionLoader() {
-  return (
-    <GenericLoader
-      variant={LOADER_VARIANT.INLINE}
-      size={LOADER_SIZE.SM}
-      label="Loading"
-    />
-  );
-}
+const title = "Discover unique digital content from creators";
+const description =
+  "Discover and enjoy unique digital content from your favorite creators. Watch, listen, and learn directly from independent creators. Rent or buy exclusive content in just a few clicks.";
 
-const withLoader = <TProps,>(
-  importFn: () => Promise<{ default: ComponentType<TProps> }>,
-) =>
-  dynamic<TProps>(importFn, {
-    loading: () => <SectionLoader />,
-  });
-
-const sections = {
-  InterestSection: withLoader(
-    () => import("@/components/Feature/landing/InterestSection"),
-  ),
-  DiscoverContent: withLoader(
-    () => import("@/components/Feature/landing/DiscoverContent"),
-  ),
-  WatchingSteps: withLoader(
-    () => import("@/components/Feature/landing/WatchingSteps"),
-  ),
-  SecurePaymentSection: withLoader(
-    () => import("@/components/Feature/landing/SecurePayment"),
-  ),
-  TestimonialSection: withLoader(
-    () => import("@/components/Feature/landing/Testimonial"),
-  ),
-  CallToAction: withLoader(
-    () => import("@/components/Feature/landing/CallToAction"),
-  ),
-  CtaSection: withLoader(() => import("@/components/Feature/CtaSection")),
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: {
+    canonical: PATHS.HOME,
+  },
+  openGraph: {
+    title,
+    description,
+    url: PATHS.HOME,
+    type: WEBSITE,
+    images: [
+      {
+        url: landingOgImage.src,
+        width: landingOgImage.width,
+        height: landingOgImage.height,
+        alt: KIIBEE_LANDING_PAGE_PREVIEW_ALT,
+      },
+    ],
+  },
+  twitter: {
+    card: TWITTER_CARD_SUMMARY_LARGE_IMAGE,
+    title,
+    description,
+    images: [landingOgImage.src],
+  },
 };
 
 export default function Home() {
-  const { t } = useTranslation();
-
-  return (
-    <PageContainer>
-      <NavBar />
-
-      <Main>
-        <HeroSection />
-
-        <LazySection minHeight={360}>
-          <sections.InterestSection />
-        </LazySection>
-
-        <LazySection minHeight={520}>
-          <sections.DiscoverContent />
-        </LazySection>
-
-        <LazySection minHeight={520}>
-          <sections.WatchingSteps />
-        </LazySection>
-
-        <LazySection minHeight={520}>
-          <sections.SecurePaymentSection />
-        </LazySection>
-
-        <LazySection minHeight={520}>
-          <sections.TestimonialSection />
-        </LazySection>
-
-        <LazySection minHeight={520}>
-          <sections.CallToAction />
-        </LazySection>
-
-        <LazySection minHeight={420}>
-          <sections.CtaSection
-            bgImage={ctaImage}
-            title={t("value.title")}
-            subtitle={t("value.subtitle")}
-            ctaText={t("value.cta")}
-          />
-        </LazySection>
-      </Main>
-
-      <Footer />
-    </PageContainer>
-  );
+  return <HomePageClient />;
 }

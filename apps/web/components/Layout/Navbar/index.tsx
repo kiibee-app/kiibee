@@ -30,6 +30,7 @@ import type { NavBarProps } from "@/utils/profile";
 export default function NavBar({
   position = "fixed",
   topOffset = "0px",
+  navbarHeight,
   innerPadding,
   tabletInnerPadding,
   mobileInnerPadding,
@@ -48,6 +49,9 @@ export default function NavBar({
     const style: React.CSSProperties & Record<string, string> = {};
 
     style["--navbar-top-offset"] = topOffset;
+    if (navbarHeight) {
+      style["--navbar-height"] = navbarHeight;
+    }
 
     if (innerPadding) {
       style["--navbar-inner-padding"] = innerPadding;
@@ -67,6 +71,7 @@ export default function NavBar({
 
     return style;
   }, [
+    navbarHeight,
     innerMaxWidth,
     innerPadding,
     mobileInnerPadding,
@@ -115,7 +120,11 @@ export default function NavBar({
   }, [handleGlobalClick]);
 
   return (
-    <Header $position={position} $topOffset={topOffset}>
+    <Header
+      $position={position}
+      $topOffset={topOffset}
+      $navbarHeight={navbarHeight}
+    >
       <Inner style={innerStyle}>
         <Left>
           {brand ?? (
@@ -124,10 +133,14 @@ export default function NavBar({
                 <Image
                   src={logo}
                   alt={t(NAV.logoAlt)}
-                  width={80}
-                  height={25}
+                  width={320}
+                  height={98}
                   priority
-                  style={{ width: "auto", height: "auto" }}
+                  style={{
+                    width: "auto",
+                    height: "auto",
+                    maxHeight: 72,
+                  }}
                 />
               </Link>
             </Logo>

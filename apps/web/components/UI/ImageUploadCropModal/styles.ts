@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { MonoText } from "../Monotext";
+import { CROP_SHAPE, CropShapeType } from "@/utils/ui";
 
 export const HiddenInput = styled.input`
   display: none;
@@ -80,14 +81,19 @@ export const ImagePreview = styled.img<{
     $isDragging ? "none" : "transform 0.1s ease-out"};
 `;
 
-export const CropOverlay = styled.div`
+export const CropOverlay = styled.div<{
+  $shape: CropShapeType;
+  $width: number;
+  $height: number;
+}>`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 220px;
-  height: 220px;
+  width: ${({ $width }) => `${$width}px`};
+  height: ${({ $height }) => `${$height}px`};
   transform: translate(-50%, -50%);
-  border-radius: 50%;
+  border-radius: ${({ $shape }) =>
+    $shape === CROP_SHAPE.CIRCLE ? "50%" : "0"};
   box-shadow: 0 0 0 9999px ${({ theme }) => theme.colors.neutral.GRAY_400};
   border: 2px solid transparent;
   pointer-events: none;
@@ -107,4 +113,11 @@ export const ZoomSlider = styled.input.attrs({ type: "range" })`
   height: 6px;
   border-radius: 5px;
   outline: none;
+`;
+
+export const UploadNoteText = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  margin-top: 12px;
 `;

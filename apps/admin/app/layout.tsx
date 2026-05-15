@@ -7,7 +7,7 @@ import StyledComponentsRegistry from "./StyledComponentsRegistry";
 import QueryProvider from "../providers/query-provider";
 
 export const metadata: Metadata = {
-  title: "Sequence Admin",
+  title: "Kiibee - Admin",
   description: "Admin dashboard for Sequence",
 };
 

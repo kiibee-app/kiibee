@@ -9,6 +9,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { ImageSource, VARIANT } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
 
 type Props = {
   bgImage?: ImageSource;
@@ -53,7 +54,7 @@ export default function ValueStatement({
           </Subtitle>
           <GenericButton
             asAnchor
-            href={ctaHref || "#"}
+            href={ctaHref ?? PATHS.AUTH_SIGNUP}
             variant={VARIANT.PRIMARY_LITE}
           >
             {ctaText || t("value.cta")}

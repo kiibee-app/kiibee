@@ -61,5 +61,6 @@ export const useContentsViewState = () => {
     openSearch,
     setOpenSearch,
     handleTabChange,
+    setActiveTabAndQuery,
   };
 };

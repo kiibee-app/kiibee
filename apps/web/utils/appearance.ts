@@ -2,6 +2,17 @@ import { CONTENTS } from "@/utils/translationKeys";
 import { INPUT_TYPE } from "./ui";
 import { maxReceiptCharacters } from "./Constants";
 
+const FB_OK = /^#[0-9A-Fa-f]{6}$/i;
+
+export function normalizeHexColor(value: string, fallback: string): string {
+  const fb = (fallback.startsWith("#") ? fallback : `#${fallback}`).trim();
+  const v = String(value).trim();
+  if (/^#[0-9A-Fa-f]{6}$/i.test(v)) return v.toLowerCase();
+  const raw = v.startsWith("#") ? v.slice(1) : v;
+  if (/^[0-9A-Fa-f]{6}$/i.test(raw)) return `#${raw.toLowerCase()}`;
+  return FB_OK.test(fb) ? fb.toLowerCase() : "#000000";
+}
+
 export const TEXT_COLOR_VALUES = {
   FOLLOW_THEME: "follow-theme",
   DARK_TEXT: "dark-text",

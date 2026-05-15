@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 import Image from "next/image";
+import { IMAGE_TYPE, ImageType } from "@/utils/ui";
 
 export const PanelStack = styled.div`
   display: flex;
@@ -15,6 +16,13 @@ export const SectionList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
+  width: 100%;
+`;
+
+export const SubSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   width: 100%;
 `;
 
@@ -79,6 +87,7 @@ export const CounterText = styled(MonoText).attrs({
 export const InlineControlWrap = styled.div`
   width: 100%;
   max-width: 380px;
+  position: relative;
 
   ${media.tablet} {
     width: 100%;
@@ -86,13 +95,14 @@ export const InlineControlWrap = styled.div`
   }
 `;
 
-export const Swatch = styled.span<{ $color: string }>`
+export const Swatch = styled.span<{ $color: string; $interactive?: boolean }>`
   flex: 0 0 auto;
   width: 40px;
   height: 24px;
   border-radius: 4px;
   background: ${({ $color }) => $color};
   box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.neutral.GRAY_250};
+  cursor: ${({ $interactive }) => ($interactive ? "pointer" : "default")};
 `;
 
 export const ItemRow = styled.div`
@@ -103,6 +113,10 @@ export const ItemRow = styled.div`
 `;
 
 export const UploadButton = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+
   button {
     width: fit-content;
     padding: 14px 24px;
@@ -165,17 +179,43 @@ export const LayoutCardWrap = styled.button<{ $active?: boolean }>`
   color: inherit;
   text-align: left;
   cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+  transition: transform ${({ theme }) => theme.animations.fast};
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    box-shadow:
+      0 0 0 2px ${({ theme }) => theme.colors.primary.WHITE},
+      0 0 0 4px ${({ theme }) => theme.colors.primary.GREEN};
+  }
 `;
 
 export const LayoutCard = styled.div<{ $active?: boolean }>`
   width: 100%;
   min-height: 100%;
-  border: 1px solid ${({ theme }) => theme.colors.gredint.FRAME_BORDER};
+  border: 1px solid
+    ${({ $active, theme }) =>
+      $active
+        ? theme.colors.secondary.MEDIUM_GREEN
+        : theme.colors.gredint.FRAME_BORDER};
   border-radius: 12px;
-  background: ${({ theme }) => theme.colors.primary.WHITE};
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.PALE_GREEN : theme.colors.primary.WHITE};
   padding: 20px 20px 0 20px;
   display: flex;
   flex-direction: column;
+  transition:
+    border-color ${({ theme }) => theme.animations.fast},
+    background ${({ theme }) => theme.animations.fast};
+
+  ${LayoutCardWrap}:hover & {
+    border-color: ${({ theme }) => theme.colors.primary.BLACK};
+    box-shadow: none;
+  }
 `;
 
 export const LayoutTitle = styled(MonoText).attrs({
@@ -212,4 +252,66 @@ export const LayoutImageShell = styled.div`
 export const LayoutImage = styled(Image)`
   object-fit: cover;
   object-position: top center;
+`;
+
+export const LogoImage = styled.img`
+  width: 160px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+
+export const LogoUploadWrap = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  width: 100%;
+`;
+
+export const PreviewWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const PreviewImage = styled.img<{ $type: ImageType }>`
+  object-fit: cover;
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+
+  ${({ $type }) =>
+    $type === IMAGE_TYPE.DESKTOP
+      ? `
+    aspect-ratio: 257 / 40;
+    max-width: 514px;
+  `
+      : `
+    aspect-ratio: 17 / 16;
+    max-width: 120px;
+  `}
+
+  ${media.tablet} {
+    ${({ $type }) =>
+      $type === IMAGE_TYPE.DESKTOP
+        ? `
+      max-width: 320px;
+    `
+        : `
+      max-width: 90px;
+    `}
+  }
+
+  ${media.mobile} {
+    width: 100%;
+    max-width: 100%;
+  }
+`;
+
+export const FieldBox = styled.div`
+  position: relative;
+  border-radius: 8px;
+  gap: 8px;
+  cursor: pointer;
+  max-width: 457px;
 `;

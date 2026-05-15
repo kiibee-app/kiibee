@@ -127,11 +127,11 @@ export default function SignUpViewer() {
                 <ConsentText htmlFor="viewer-consent">
                   <MonoText $use="Body_Small">
                     {t("viewerSignup.form.consentPrefix")}
-                    <TermsLink href="#">
+                    <TermsLink href={PATHS.TERMS}>
                       {t("viewerSignup.form.terms")}
                     </TermsLink>
                     {t("viewerSignup.form.and")}
-                    <TermsLink href="#">
+                    <TermsLink href={PATHS.PRIVACY_POLICY}>
                       {t("viewerSignup.form.privacy")}
                     </TermsLink>
                   </MonoText>

@@ -22,7 +22,10 @@ const DashboardLayout = ({
       <MainWrapper>
         {header}
         {children && (
-          <ContentWrapper $contentPadding={contentPadding}>
+          <ContentWrapper
+            $contentPadding={contentPadding}
+            data-lenis-prevent=""
+          >
             {children}
           </ContentWrapper>
         )}

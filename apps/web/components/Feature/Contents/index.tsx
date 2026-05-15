@@ -6,6 +6,8 @@ import { GenericModal } from "@/components/UI/Modals";
 import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
+  ContentsScrollArea,
+  ContentsTabsSlot,
   HeaderRow,
   PageHeader,
   PageShell,
@@ -20,6 +22,8 @@ import DeleteModals from "./CollectionDeleteMobal";
 import CreateCollectionModal from "./Collections/CreateCollectionModal";
 import ContentTabPanel from "./ContentTabPanel";
 import CouponFlowModals from "./coupon/CouponFlowModals";
+import ContentTypeModal from "./ContentTypeModal";
+import ContentUploadModal from "./ContentUploadModal";
 import { useContentsViewState } from "@/hooks/contents/useContentsViewState";
 import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
@@ -39,6 +43,7 @@ export default function CreatorsContents() {
     openSearch,
     setOpenSearch,
     handleTabChange,
+    setActiveTabAndQuery,
   } = useContentsViewState();
   const {
     collections,
@@ -50,9 +55,11 @@ export default function CreatorsContents() {
     setShowDeleteSuccess,
     openDelete,
     handleConfirmDelete,
+    setContentsMap,
   } = useContentsDataState(selectedCollection);
   const {
     createCollectionFlow,
+    contentTypeFlow,
     couponForm,
     setCouponForm,
     isCouponSuccess,
@@ -65,7 +72,7 @@ export default function CreatorsContents() {
     closeDiscardModal,
     handleCreateClick,
     handleEditCollection,
-  } = useContentsModalFlows(activeTab, collections);
+  } = useContentsModalFlows(activeTab, collections, isCollectionContentMode);
 
   return (
     <PageShell>
@@ -94,35 +101,40 @@ export default function CreatorsContents() {
         />
       </PageHeader>
 
-      <GenericTabs
-        tabs={visibleTabs.map((tab) => ({
-          key: tab.key,
-          label: t(getTabLabelKey(tab)),
-        }))}
-        activeTab={activeTab}
-        onTabChange={handleTabChange}
-        search={{
-          open: openSearch,
-          value: searchValue,
-          placeholder: t(CONTENTS_KEYS.actions.search),
-          onToggle: () => setOpenSearch((prev) => !prev),
-          onChange: setSearchValue,
-          ariaLabel: t(CONTENTS_KEYS.actions.search),
-        }}
-      />
-
-      <ContentPanel>
-        <ContentTabPanel
-          activeTab={activeTab}
-          selectedCollection={selectedCollection}
-          collectionContents={collectionContents}
-          collections={collections}
-          setCollections={setCollections}
-          setSelectedCollection={setSelectedCollection}
-          onDelete={openDelete}
-          onEditCollection={handleEditCollection}
-        />
-      </ContentPanel>
+      <ContentsScrollArea data-lenis-prevent="">
+        <ContentsTabsSlot>
+          <GenericTabs
+            tabs={visibleTabs.map((tab) => ({
+              key: tab.key,
+              label: t(getTabLabelKey(tab)),
+            }))}
+            activeTab={activeTab}
+            onTabChange={handleTabChange}
+            search={{
+              open: openSearch,
+              value: searchValue,
+              placeholder: t(CONTENTS_KEYS.actions.search),
+              onToggle: () => setOpenSearch((prev) => !prev),
+              onChange: setSearchValue,
+              ariaLabel: t(CONTENTS_KEYS.actions.search),
+            }}
+          />
+        </ContentsTabsSlot>
+        <ContentPanel>
+          <ContentTabPanel
+            activeTab={activeTab}
+            selectedCollection={selectedCollection}
+            collectionContents={collectionContents}
+            collections={collections}
+            setCollections={setCollections}
+            setContentsMap={setContentsMap}
+            setActiveTab={setActiveTabAndQuery}
+            setSelectedCollection={setSelectedCollection}
+            onDelete={openDelete}
+            onEditCollection={handleEditCollection}
+          />
+        </ContentPanel>
+      </ContentsScrollArea>
 
       <CreateCollectionModal
         visible={createCollectionFlow.showCreateModal}
@@ -130,6 +142,20 @@ export default function CreatorsContents() {
         onChangeCollectionName={createCollectionFlow.setCollectionName}
         onClose={createCollectionFlow.closeCreate}
         onConfirm={createCollectionFlow.completeCreate}
+      />
+
+      <ContentTypeModal
+        visible={contentTypeFlow.showContentTypeModal}
+        onClose={contentTypeFlow.close}
+        onBack={contentTypeFlow.close}
+        onContinue={contentTypeFlow.continueWithType}
+      />
+
+      <ContentUploadModal
+        visible={contentTypeFlow.showContentUploadModal}
+        contentType={contentTypeFlow.selectedContentType}
+        onClose={contentTypeFlow.close}
+        onBack={contentTypeFlow.backToTypeSelect}
       />
 
       <GenericModal

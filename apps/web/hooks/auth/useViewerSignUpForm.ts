@@ -89,6 +89,12 @@ export function useViewerSignUpForm() {
         password: values.password,
         confirmPassword: values.repeatPassword,
       });
+
+      if (response.success === false) {
+        setFormError(response.message || t("viewerSignup.form.signupFailed"));
+        return;
+      }
+
       setSession(response);
       router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
     } catch (error) {

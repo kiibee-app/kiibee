@@ -8,16 +8,20 @@ export const Section = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6.5625rem 6.9375rem;
+  padding: 5rem 0;
+  box-sizing: border-box;
 
   ${media.tablet} {
-    padding: 2.5rem 1.25rem;
+    padding: 2.5rem 0;
   }
 `;
 
 export const ContentWrapper = styled.div<{ $isMobile: boolean }>`
-  width: min(100%, 90rem);
-  max-width: 100%;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,6 +32,7 @@ export const ContentWrapper = styled.div<{ $isMobile: boolean }>`
     flex-direction: column;
     gap: 2rem;
     align-items: stretch;
+    padding: 0 1rem;
   }
 `;
 

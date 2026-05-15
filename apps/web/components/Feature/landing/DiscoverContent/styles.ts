@@ -46,6 +46,20 @@ export const Card = styled.article`
   flex-direction: column;
   min-height: 100%;
   box-shadow: ${({ theme }) => theme.shadows.md};
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: ${({ theme }) => theme.shadows.lg};
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
+  }
 `;
 
 export const ImageContainer = styled.div`

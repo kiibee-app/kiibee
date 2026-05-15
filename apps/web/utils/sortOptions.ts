@@ -24,14 +24,19 @@ export type SortValue = (typeof SORT_OPTIONS)[number]["value"];
 export const ROW_ACTION_LABEL_MOVE_UP = "Move up";
 export const ROW_ACTION_LABEL_MOVE_DOWN = "Move down";
 export const ROW_ACTION_LABEL_SETTINGS = "Settings";
+export const ROW_ACTION_LABEL_MOVE_TO_ANOTHER_COLLECTION =
+  "Move to another collection";
 
 export const MOVE_UP = "move-up";
 export const MOVE_DOWN = "move-down";
 export const MOVE_SETTINGS = "settings";
+export const MOVE_TO_ANOTHER_COLLECTION = "move-to-another-collection";
+
 export type RowAction =
   | typeof MOVE_UP
   | typeof MOVE_DOWN
-  | typeof MOVE_SETTINGS;
+  | typeof MOVE_SETTINGS
+  | typeof MOVE_TO_ANOTHER_COLLECTION;
 
 export const MOVE_DIRECTION_UP = "up";
 export const MOVE_DIRECTION_DOWN = "down";
@@ -60,4 +65,13 @@ export const actionOptions: DropdownOption<RowAction>[] = [
   { label: ROW_ACTION_LABEL_MOVE_UP, value: MOVE_UP },
   { label: ROW_ACTION_LABEL_MOVE_DOWN, value: MOVE_DOWN },
   { label: ROW_ACTION_LABEL_SETTINGS, value: MOVE_SETTINGS },
+];
+
+export const contentActionOptions: DropdownOption<RowAction>[] = [
+  { label: ROW_ACTION_LABEL_MOVE_UP, value: MOVE_UP },
+  { label: ROW_ACTION_LABEL_MOVE_DOWN, value: MOVE_DOWN },
+  {
+    label: ROW_ACTION_LABEL_MOVE_TO_ANOTHER_COLLECTION,
+    value: MOVE_TO_ANOTHER_COLLECTION,
+  },
 ];

@@ -69,7 +69,13 @@
       "description": "PERFEKT TILBEREDT FASAN - how to prepare pheasant so it becomes juicy and tender. The book contains only pheasant recipes and shows with beautiful images and clear descriptions how to achieve the best results for both everyday meals and festive dinners.",
       "readMore": "Rent 50 kr",
       "access": "Access for 3 months",
-      "imageAlt": "Latest upload image"
+      "imageAlt": "Latest upload image",
+      "loginModal": {
+        "title": "Login required",
+        "cancelLabel": "Login",
+        "confirmLabel": "Create account",
+        "message": "To continue with your purchase, please log in to your Kiibee account. If you don't have an account yet, you can create one in just a moment."
+      }
     }
   },
   "createProfileCollections": {
@@ -78,7 +84,10 @@
   },
   "createProfileAbout": {
     "title": "About",
-    "description": "Share your story, your work, and what people can expect from your profile."
+    "description": "Share your story, your work, and what people can expect from your profile.",
+    "sectionTitle": "Plants and animals",
+    "sectionTitleClothes": "Clothes",
+    "buyCollection": "Buy collection xx kr"
   },
   "createProfileFooter": {
     "tagline": "Sell and showcase online products",
@@ -496,6 +505,9 @@
   },
   "discoverContent": {
     "title": "Discover content",
+    "detail": {
+      "formatLabel": "Format:"
+    },
     "subtitle": "Browse hundreds of videos, audio files, and e-books.",
     "ctaPrimary": "Join now",
     "ctaSecondary": "View all creators",
@@ -803,6 +815,11 @@
         "meta": "Max. 70 files",
         "price": "299 KR/mo"
       }
+    },
+    "invite": {
+      "invalidToken": "This setup link is invalid or has expired. Please contact Kiibee if you need a new invitation.",
+      "setupFailed": "We could not finish your account setup. Check your email and password, then try again.",
+      "loginAfterSetupFailed": "Your account was created but sign-in failed. Please try logging in from the login page."
     }
   },
   "pricingFaq": {
@@ -810,15 +827,15 @@
     "items": [
       {
         "question": "Can I sell content with the free plan?",
-        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+        "answer": "Yes. The free Launch plan lets you upload and sell up to two products with no monthly cost. It’s a great way to test your idea before upgrading."
       },
       {
         "question": "Can I change or cancel my plan?",
-        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+        "answer": "Absolutely. You can upgrade, downgrade, or cancel your subscription at any time directly from your account settings."
       },
       {
         "question": "Do viewers need a subscription?",
-        "answer": "Yes, you can sell a limited number of items. Upgrade anytime to access advanced features and unlimited uploads."
+        "answer": "No. Your customers only pay for the content you choose to sell. They do not need their own subscription to access purchases."
       }
     ]
   },
@@ -862,6 +879,7 @@
     "currentPassword": "Enter current password",
     "newPassword": "Enter new password",
     "confirmPassword": "Re-enter new password",
+    "newPasswordSameAsCurrent": "New password must be different from your current password",
     "accountDeletionTitle": "Account deletion",
     "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
     "deleteAccount": "Delete account",
@@ -885,9 +903,13 @@
     "dragPhotoHere": "Drag photo here",
     "or": "or",
     "choosePhoto": "Choose photos to upload",
+    "recommendedImageSize": "Use {{cropWidth}}×{{cropHeight}} pixel image",
     "zoom": "Zoom",
     "apply": "Apply",
     "profilePhotoAlt": "Profile photo"
+  },
+  "singleContent": {
+    "notFound": "This content could not be found."
   },
   "singleCollection": {
     "subtitle": "Learn how to use our platform",
@@ -1091,7 +1113,12 @@
       "fullName": "Full name",
       "email": "Email address",
       "downloads": "{{count}} downloads",
-      "profilePhotoAlt": "Viewer profile photo"
+      "profilePhotoAlt": "Viewer profile photo",
+      "passwordMinLength": "New password must be at least 6 characters",
+      "passwordChangeError": "Could not update password",
+      "forgotPasswordNoEmail": "We need your email on file to send a reset link.",
+      "forgotPasswordModalMessage": "We sent a password reset link to {{email}}. If it doesn’t arrive within a few minutes, check your spam folder.",
+      "forgotPasswordErrorTitle": "Could not send reset link"
     },
     "logoutModal": {
       "title": "Log out",
@@ -1308,6 +1335,8 @@
       "chooseColor": "Choose color",
       "defaultColor": "Default color",
       "color": "Color",
+      "selectColor": "Select",
+      "cancelColorPicker": "Cancel",
       "receipt": "Receipt",
       "receiptHint": "Write a message to your customer when they receive a receipt",
       "receiptPlaceholder": "Enter receipt",
@@ -1321,7 +1350,9 @@
         "uploadDesktop": "Upload desktop cover image",
         "uploadMobile": "Upload mobile cover image",
         "desktopSize": "Use size 1440 × 224 pixel image",
-        "mobileSize": "Use size 640 × 600 pixel image"
+        "mobileSize": "Use size 640 × 600 pixel image",
+        "desktopAlt": "Desktop cover image",
+        "mobileAlt": "Mobile cover image"
       },
       "description": {
         "label": "Description",
@@ -1357,6 +1388,38 @@
         "pdf": "PDF",
         "epub": "EPUB",
         "web": "Web"
+      }
+    },
+    "contentUploadModal": {
+      "dragFileHere": "Drag & drop here",
+      "or": "or",
+      "chooseFile": "Choose to upload",
+      "selectedFile": "Selected file",
+      "upload": "Upload",
+      "next": "Next",
+      "video": {
+        "helperLineOne": "Max. file size of 2GB of file types (.mp4,.mkv,.mov,.m4v)",
+        "helperLineTwo": "Min. resolution 1080p HD"
+      },
+      "audio": {
+        "helperLineOne": "Max. file size of 2GB of file types (.mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac)",
+        "helperLineTwo": ""
+      },
+      "pdf": {
+        "helperLineOne": "Max. file size of 2GB of file types (.pdf)",
+        "helperLineTwo": ""
+      },
+      "epub": {
+        "helperLineOne": "Max. file size of 2GB of file types (.epub,.mobi,.azw)",
+        "helperLineTwo": ""
+      },
+      "details": {
+        "addDetails": "Add details",
+        "title": "Title",
+        "titlePlaceholder": "Enter title",
+        "description": "Description",
+        "descriptionPlaceholder": "Enter Description",
+        "add": "Add"
       }
     },
 

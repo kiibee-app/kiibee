@@ -70,9 +70,17 @@ export const IMG = "img";
 
 export type ProfileTabKey = "home" | "collections" | "about";
 
-export const PROFILE_TABS: { key: ProfileTabKey; label: string }[] = [
-  { key: "home", label: "Home" },
-  { key: "collections", label: "Collections" },
-  { key: "about", label: "About" },
+export const PROFILE_TABS: {
+  key: ProfileTabKey;
+  label: string;
+  href: string;
+}[] = [
+  { key: "home", label: "Home", href: "/create-profile1" },
+  {
+    key: "collections",
+    label: "Collections",
+    href: "/create-profile1/collections",
+  },
+  { key: "about", label: "About", href: "/create-profile1/about" },
 ];
 export const HOME = "home";

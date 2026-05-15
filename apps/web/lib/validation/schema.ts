@@ -125,19 +125,38 @@ export const createPaymentSchema = (messages: {
     cvc: z.string().trim().min(1, messages.cvcRequired),
   });
 
-export const createResetPasswordSchema = (messages: {
-  currentRequired: string;
-  nextRequired: string;
-  confirmRequired: string;
-  confirmMismatch: string;
-}) =>
-  z
+export const createResetPasswordSchema = (
+  messages: {
+    currentRequired: string;
+    nextRequired: string;
+    confirmRequired: string;
+    confirmMismatch: string;
+    newMustDifferFromCurrent: string;
+  },
+  options?: {
+    nextMinLength?: { min: number; message: string };
+  },
+) => {
+  const nextField = options?.nextMinLength
+    ? z
+        .string()
+        .trim()
+        .min(1, messages.nextRequired)
+        .min(options.nextMinLength.min, options.nextMinLength.message)
+    : z.string().trim().min(1, messages.nextRequired);
+
+  return z
     .object({
       current: z.string().trim().min(1, messages.currentRequired),
-      next: z.string().trim().min(1, messages.nextRequired),
+      next: nextField,
       confirm: z.string().trim().min(1, messages.confirmRequired),
+    })
+    .refine((values) => values.current.trim() !== values.next.trim(), {
+      message: messages.newMustDifferFromCurrent,
+      path: ["next"],
     })
     .refine((values) => values.next === values.confirm, {
       message: messages.confirmMismatch,
       path: ["confirm"],
     });
+};

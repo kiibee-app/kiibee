@@ -16,6 +16,7 @@ import {
 } from "./style";
 import { resolveImageUrl, MOBILE_BREAKPOINT } from "@/utils/Constants";
 import { useIsMobile } from "@/utils/useIsMobile";
+import { PATHS } from "@/utils/path";
 
 export default function ShortStory() {
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ export default function ShortStory() {
           <Paragraph>{t(CREATORS.shortStory.lead)}</Paragraph>
           <Paragraph>{t(CREATORS.shortStory.body)}</Paragraph>
 
-          <ReadMoreButton type="button">
+          <ReadMoreButton asAnchor href={PATHS.ABOUT}>
             {t(CREATORS.shortStory.cta)}
           </ReadMoreButton>
         </TextSection>

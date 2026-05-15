@@ -32,6 +32,9 @@ export const CREATE_PROFILE_ROUTES = {
   about: {
     title: "createProfileAbout.title",
     description: "createProfileAbout.description",
+    sectionTitle: "createProfileAbout.sectionTitle",
+    sectionTitleClothes: "createProfileAbout.sectionTitleClothes",
+    buyCollection: "createProfileAbout.buyCollection",
   },
 };
 
@@ -144,6 +147,7 @@ export const CREATOR_PROFILE = {
   currentPassword: "creatorProfile.currentPassword",
   newPassword: "creatorProfile.newPassword",
   confirmPassword: "creatorProfile.confirmPassword",
+  newPasswordSameAsCurrent: "creatorProfile.newPasswordSameAsCurrent",
   accountDeletionTitle: "creatorProfile.accountDeletionTitle",
   accountDeletionText: "creatorProfile.accountDeletionText",
   deleteAccount: "creatorProfile.deleteAccount",
@@ -290,6 +294,9 @@ export const CONTENTS = {
     buttonColorHint: "contents.appearance.buttonColorHint",
     chooseColor: "contents.appearance.chooseColor",
     color: "contents.appearance.color",
+    colorPickerHint: "contents.appearance.colorPickerHint",
+    selectColor: "contents.appearance.selectColor",
+    cancelColorPicker: "contents.appearance.cancelColorPicker",
     defaultColor: "contents.appearance.defaultColor",
     receipt: "contents.appearance.receipt",
     receiptHint: "contents.appearance.receiptHint",
@@ -305,6 +312,8 @@ export const CONTENTS = {
       uploadMobile: "contents.appearance.coverImage.uploadMobile",
       desktopSize: "contents.appearance.coverImage.desktopSize",
       mobileSize: "contents.appearance.coverImage.mobileSize",
+      desktopAlt: "contents.appearance.coverImage.desktopAlt",
+      mobileAlt: "contents.appearance.coverImage.mobileAlt",
     },
     description: {
       label: "contents.appearance.description.label",
