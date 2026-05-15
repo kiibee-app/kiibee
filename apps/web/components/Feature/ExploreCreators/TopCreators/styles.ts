@@ -2,12 +2,13 @@ import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
-  width: 100%;
+  width: min(100%, 1300px);
   margin: 0 auto;
-  padding: 2.5rem 12.5rem;
+  padding: 40px 0;
 
   ${media.tablet} {
-    padding: 2rem 2rem;
+    width: 100%;
+    padding: 2rem 1.25rem;
   }
 `;
 
@@ -29,14 +30,15 @@ export const SeeAll = styled.a`
 
 export const List = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  gap: 64px;
+  gap: 48px;
   align-self: stretch;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+
   ${media.tablet} {
-    padding: 0 2rem;
+    gap: 20px;
   }
 `;
 
