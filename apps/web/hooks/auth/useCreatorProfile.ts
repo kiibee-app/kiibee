@@ -15,6 +15,8 @@ import { usePostAPI } from "@/lib/http/api/postApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { createResetPasswordSchema } from "@/lib/validation/schema";
 import {
+  applyCreatorProfileResponseToForm,
+  buildCreatorProfilePatchBody,
   displayCreatorName,
   EMPTY_CREATOR_PROFILE_FORM,
   getAvatarUrl,
@@ -23,8 +25,6 @@ import {
   type ProfileForm,
 } from "@/utils/creatorProfile";
 import {
-  applyCreatorProfileResponseToForm,
-  buildCreatorProfilePatchBody,
   mapCreatorProfileToForm,
   type GetCreatorProfileResponse,
   type UpdateCreatorProfileBody,

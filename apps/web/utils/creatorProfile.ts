@@ -1,4 +1,8 @@
 import type { LoginUser } from "@/hooks/auth/useLogin";
+import {
+  PROFILE_FIELD_MAP,
+  type CreatorProfileBodyKey,
+} from "@/utils/profileFieldMap";
 import { USER_STORAGE_KEY } from "@/utils/viewerProfile";
 
 export type Passwords = {
@@ -73,7 +77,58 @@ export const EMPTY_CREATOR_BOOT: CreatorBoot = {
   email: EMPTY_CREATOR_PROFILE_FORM.email,
 };
 
+export type CreatorProfilePatchBody = Partial<
+  Record<CreatorProfileBodyKey, string>
+> & {
+  avatarUrl?: string | null;
+};
+
+const trim = (value: string) => value.trim();
+
 const str = (value: unknown) => (typeof value === "string" ? value.trim() : "");
+
+export function buildCreatorProfilePatchBody(
+  form: ProfileForm,
+  saved: ProfileForm,
+  avatarDirty: boolean,
+  avatarImage: string | null,
+): CreatorProfilePatchBody {
+  const body = PROFILE_FIELD_MAP.reduce<CreatorProfilePatchBody>(
+    (acc, [formKey, bodyKey]) => {
+      const current = trim(form[formKey]);
+      const previous = trim(saved[formKey]);
+
+      if (current !== previous) {
+        acc[bodyKey] = current;
+      }
+
+      return acc;
+    },
+    {},
+  );
+
+  if (avatarDirty) {
+    body.avatarUrl = avatarImage ?? null;
+  }
+
+  return body;
+}
+
+export function applyCreatorProfileResponseToForm(
+  form: ProfileForm,
+  data?: CreatorProfilePatchBody,
+): ProfileForm {
+  const next = { ...form };
+
+  for (const [formKey, bodyKey] of PROFILE_FIELD_MAP) {
+    const value = data?.[bodyKey];
+    if (typeof value === "string") {
+      next[formKey] = value.trim();
+    }
+  }
+
+  return next;
+}
 
 export const getAvatarUrl = (avatarUrl?: string | null): string | null => {
   if (typeof avatarUrl !== "string") return null;
@@ -142,6 +197,9 @@ const CREATOR_PROFILE_UTILS = {
   FORM_KEYS,
   EMPTY_CREATOR_PROFILE_FORM,
   EMPTY_CREATOR_BOOT,
+  buildCreatorProfilePatchBody,
+  getAvatarUrl,
+  toOptionalString,
 };
 
 export default CREATOR_PROFILE_UTILS;
