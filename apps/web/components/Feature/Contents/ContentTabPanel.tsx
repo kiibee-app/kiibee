@@ -20,7 +20,6 @@ import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
 import {
   EmptyCollectionCard,
-  EmptyCollectionDescription,
   EmptyCollectionText,
   EmptyCollectionTitle,
   PlaceholderLine,
@@ -33,6 +32,7 @@ import {
 
 import COLORS from "@repo/ui/colors";
 import { FolderIcon } from "@/assets/icons";
+import { MonoText } from "@/components/UI/Monotext";
 
 type Props = {
   activeTab: ContentTab;
@@ -113,12 +113,11 @@ export default function ContentTabPanel({
             />
             <EmptyCollectionText>
               <EmptyCollectionTitle>
-                Your collection is empty.
+                {t("contents.emptyCollection.title")}
               </EmptyCollectionTitle>
-              <EmptyCollectionDescription>
-                Add content to your collection which will then be displayed on
-                your channel.
-              </EmptyCollectionDescription>
+              <MonoText $use="Body_Medium">
+                {t("contents.emptyCollection.description")}
+              </MonoText>
             </EmptyCollectionText>
           </EmptyCollectionCard>
         );

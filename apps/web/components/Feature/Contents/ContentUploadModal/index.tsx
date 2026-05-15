@@ -24,6 +24,8 @@ import { ContentType } from "@/utils/content";
 import { useContentUpload } from "@/hooks/contents/useContentUpload";
 import SelectedFileView from "./SelectedFileView";
 import ContentUploadDetails from "./UploadDetails";
+import WebContentLinkForm from "./WebContentLinkForm";
+import { FORMAT_TYPE } from "@/utils/types";
 
 type ContentUploadModalProps = {
   visible: boolean;
@@ -40,6 +42,7 @@ export default function ContentUploadModal({
 }: ContentUploadModalProps) {
   const { t } = useTranslation();
   const [showDetails, setShowDetails] = useState(false);
+  const [webContentLink, setWebContentLink] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const {
@@ -65,6 +68,8 @@ export default function ContentUploadModal({
 
   const handleExit = (callback: () => void) => {
     reset();
+    setWebContentLink("");
+    setShowDetails(false);
     callback();
   };
 
@@ -79,9 +84,16 @@ export default function ContentUploadModal({
     setShowDetails(true);
   };
 
+  const handleWebNextClick = () => {
+    if (!webContentLink.trim()) return;
+    setShowDetails(true);
+  };
+
   const handleAdd = () => {
     if (!title.trim() || !description.trim()) return;
   };
+
+  const isWebContent = contentType === FORMAT_TYPE.WEB;
 
   return (
     <GenericModal
@@ -110,7 +122,13 @@ export default function ContentUploadModal({
             accept={uploadConfig.accept}
             onChange={handleFileInputChange}
           />
-          {!selectedFile ? (
+          {isWebContent ? (
+            <WebContentLinkForm
+              value={webContentLink}
+              onChange={setWebContentLink}
+              onNext={handleWebNextClick}
+            />
+          ) : !selectedFile ? (
             <ContentUploadDropZone
               onDragOver={(e) => e.preventDefault()}
               onDrop={handleDrop}

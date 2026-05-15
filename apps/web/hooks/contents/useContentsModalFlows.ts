@@ -4,7 +4,6 @@ import { COLLECTIONS, COUPONS, ContentTab } from "@/utils/common";
 import {
   COUPON_STEPS,
   CouponStep,
-  isUploadContentType,
   STEP_ORDER,
   type ContentType,
 } from "@/utils/content";
@@ -99,12 +98,7 @@ export const useContentsModalFlows = (
     continueWithType: (contentType: ContentType) => {
       setSelectedContentType(contentType);
       setShowContentTypeModal(false);
-      if (isUploadContentType(contentType)) {
-        setShowContentUploadModal(true);
-        return;
-      }
-
-      setShowContentUploadModal(false);
+      setShowContentUploadModal(true);
     },
   };
 

@@ -101,3 +101,22 @@ export const PreviewVideo = styled.video`
   object-fit: cover;
   border-radius: 8px;
 `;
+
+export const WebContentForm = styled.div`
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const WebContentTitle = styled(MonoText).attrs({
+  $use: "H4_Medium",
+})`
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const WebContentNextButton = styled.div`
+  margin-top: auto;
+  align-self: center;
+`;

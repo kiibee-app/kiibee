@@ -200,15 +200,14 @@ export const EmptyCollectionCard = styled.div`
 `;
 
 export const EmptyCollectionText = styled.div`
+  display: flex;
+  flex-direction: column;
   text-align: center;
 `;
 
-export const EmptyCollectionTitle = styled.h3`
+export const EmptyCollectionTitle = styled(MonoText).attrs({
+  $use: "Body_SemiBold",
+})`
   margin: 0 0 8px;
   color: ${({ theme }) => theme.colors.primary.BLACK};
-`;
-
-export const EmptyCollectionDescription = styled.p`
-  margin: 0;
-  color: ${({ theme }) => theme.colors.neutral.GRAY};
 `;
