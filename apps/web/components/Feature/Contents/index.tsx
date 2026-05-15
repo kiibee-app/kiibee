@@ -6,6 +6,8 @@ import { GenericModal } from "@/components/UI/Modals";
 import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
+  ContentsScrollArea,
+  ContentsTabsSlot,
   HeaderRow,
   PageHeader,
   PageShell,
@@ -99,37 +101,40 @@ export default function CreatorsContents() {
         />
       </PageHeader>
 
-      <GenericTabs
-        tabs={visibleTabs.map((tab) => ({
-          key: tab.key,
-          label: t(getTabLabelKey(tab)),
-        }))}
-        activeTab={activeTab}
-        onTabChange={handleTabChange}
-        search={{
-          open: openSearch,
-          value: searchValue,
-          placeholder: t(CONTENTS_KEYS.actions.search),
-          onToggle: () => setOpenSearch((prev) => !prev),
-          onChange: setSearchValue,
-          ariaLabel: t(CONTENTS_KEYS.actions.search),
-        }}
-      />
-
-      <ContentPanel>
-        <ContentTabPanel
-          activeTab={activeTab}
-          selectedCollection={selectedCollection}
-          collectionContents={collectionContents}
-          collections={collections}
-          setCollections={setCollections}
-          setContentsMap={setContentsMap}
-          setActiveTab={setActiveTabAndQuery}
-          setSelectedCollection={setSelectedCollection}
-          onDelete={openDelete}
-          onEditCollection={handleEditCollection}
-        />
-      </ContentPanel>
+      <ContentsScrollArea data-lenis-prevent="">
+        <ContentsTabsSlot>
+          <GenericTabs
+            tabs={visibleTabs.map((tab) => ({
+              key: tab.key,
+              label: t(getTabLabelKey(tab)),
+            }))}
+            activeTab={activeTab}
+            onTabChange={handleTabChange}
+            search={{
+              open: openSearch,
+              value: searchValue,
+              placeholder: t(CONTENTS_KEYS.actions.search),
+              onToggle: () => setOpenSearch((prev) => !prev),
+              onChange: setSearchValue,
+              ariaLabel: t(CONTENTS_KEYS.actions.search),
+            }}
+          />
+        </ContentsTabsSlot>
+        <ContentPanel>
+          <ContentTabPanel
+            activeTab={activeTab}
+            selectedCollection={selectedCollection}
+            collectionContents={collectionContents}
+            collections={collections}
+            setCollections={setCollections}
+            setContentsMap={setContentsMap}
+            setActiveTab={setActiveTabAndQuery}
+            setSelectedCollection={setSelectedCollection}
+            onDelete={openDelete}
+            onEditCollection={handleEditCollection}
+          />
+        </ContentPanel>
+      </ContentsScrollArea>
 
       <CreateCollectionModal
         visible={createCollectionFlow.showCreateModal}
