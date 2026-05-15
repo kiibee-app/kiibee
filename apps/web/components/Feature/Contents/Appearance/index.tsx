@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import AppearanceSettingsSection from "./AppearanceSettingsSection";
+import AppearanceSettingsSection from "./AppearanceSettings";
 import { PanelStack } from "./styles";
 import ReceiptSection from "./ReceiptSection";
 import CoverImageSection from "./CoverImage";

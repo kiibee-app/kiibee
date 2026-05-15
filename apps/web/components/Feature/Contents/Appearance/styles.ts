@@ -19,6 +19,13 @@ export const SectionList = styled.div`
   width: 100%;
 `;
 
+export const SubSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+`;
+
 export const Row = styled.div`
   display: flex;
   flex-direction: column;
@@ -80,6 +87,7 @@ export const CounterText = styled(MonoText).attrs({
 export const InlineControlWrap = styled.div`
   width: 100%;
   max-width: 380px;
+  position: relative;
 
   ${media.tablet} {
     width: 100%;
@@ -87,13 +95,14 @@ export const InlineControlWrap = styled.div`
   }
 `;
 
-export const Swatch = styled.span<{ $color: string }>`
+export const Swatch = styled.span<{ $color: string; $interactive?: boolean }>`
   flex: 0 0 auto;
   width: 40px;
   height: 24px;
   border-radius: 4px;
   background: ${({ $color }) => $color};
   box-shadow: inset 0 0 0 1px ${({ theme }) => theme.colors.neutral.GRAY_250};
+  cursor: ${({ $interactive }) => ($interactive ? "pointer" : "default")};
 `;
 
 export const ItemRow = styled.div`
@@ -248,7 +257,7 @@ export const LayoutImage = styled(Image)`
 export const LogoImage = styled.img`
   width: 160px;
   height: 56px;
-  objectfit: cover;
+  object-fit: cover;
   border-radius: 8px;
 `;
 
@@ -297,4 +306,12 @@ export const PreviewImage = styled.img<{ $type: ImageType }>`
     width: 100%;
     max-width: 100%;
   }
+`;
+
+export const FieldBox = styled.div`
+  position: relative;
+  border-radius: 8px;
+  gap: 8px;
+  cursor: pointer;
+  max-width: 457px;
 `;
