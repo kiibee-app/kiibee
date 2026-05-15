@@ -13,6 +13,7 @@ import {
   TickIcon,
 } from "./styles";
 import { PATHS } from "@/utils/path";
+import { useRouter } from "next/navigation";
 
 export interface PlanCardProps {
   title: string;
@@ -31,6 +32,8 @@ export default function PlanCard({
   cta,
   highlight = false,
 }: PlanCardProps) {
+  const router = useRouter();
+
   return (
     <Card $highlight={highlight}>
       <PlanTitle>{title}</PlanTitle>
@@ -50,7 +53,10 @@ export default function PlanCard({
         ))}
       </FeatureList>
 
-      <PlanButton asAnchor href={PATHS.AUTH_SIGNUP}>
+      <PlanButton
+        type="button"
+        onClick={() => router.push(PATHS.AUTH_SIGNUP_CREATOR)}
+      >
         {cta}
       </PlanButton>
     </Card>
