@@ -1455,5 +1455,11 @@
     "successTitle": "Din adgangskode er blevet nulstillet!",
     "successDescription": "Du kan nu logge ind med din nye adgangskode. Kontakt support, hvis du oplever problemer.",
     "backToLogin": "Tilbage til login"
+  },
+  "notFound": {
+    "badge": "Fejl 404",
+    "title": "Denne side tog en anden vej",
+    "description": "Siden, du prøver at åbne, findes ikke længere eller er flyttet. Brug knappen nedenfor for at komme tilbage til forsiden.",
+    "backHome": "Tilbage til forsiden"
   }
 }
