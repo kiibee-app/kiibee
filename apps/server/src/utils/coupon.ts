@@ -26,8 +26,7 @@ export const normalizeCouponStatus = (status?: string): CouponStatus => {
 export const normalizeCouponDiscountType = (
   discountType?: string,
 ): CouponDiscountType | null => {
-  const normalizedDiscountType =
-    discountType === 'fixedAmount' ? 'fixed_amount' : discountType;
+  const normalizedDiscountType = discountType;
 
   if (
     !normalizedDiscountType ||

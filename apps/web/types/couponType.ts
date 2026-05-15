@@ -1,3 +1,8 @@
+import {
+  COUPON_DISCOUNT_FIXED_AMOUNT,
+  COUPON_DISCOUNT_PERCENTAGE,
+} from "@/utils/common";
+
 export type CouponRow = {
   title: string;
   codes: string[];
@@ -7,8 +12,8 @@ export type CouponRow = {
 };
 
 export const COUPON_API_DISCOUNT_TYPE = {
-  FIXED_AMOUNT: "fixed_amount",
-  PERCENTAGE: "percentage",
+  FIXED_AMOUNT: COUPON_DISCOUNT_FIXED_AMOUNT,
+  PERCENTAGE: COUPON_DISCOUNT_PERCENTAGE,
 } as const;
 
 export type CouponApiDiscountType =

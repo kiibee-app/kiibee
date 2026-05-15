@@ -150,7 +150,7 @@ export const useContentsModalFlows = (
       title: couponForm.title.trim(),
       discountType:
         couponForm.discountType === COUPON_DISCOUNT_FIXED_AMOUNT
-          ? COUPON_API_DISCOUNT_TYPE.FIXED_AMOUNT
+          ? couponForm.discountType
           : COUPON_API_DISCOUNT_TYPE.PERCENTAGE,
       discountValue: couponForm.discountValue.trim(),
       codes,
