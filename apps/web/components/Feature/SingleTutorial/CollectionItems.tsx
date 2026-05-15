@@ -7,6 +7,7 @@ import { LeftIcon } from "@/assets/icons";
 import PlayIcon from "@/assets/icons/PlayIcon";
 import type { TutorialVideo } from "@/utils/types";
 import { resolveImageUrl } from "@/utils/Constants";
+import { pathPublishedContent } from "@/utils/path";
 import {
   CollectionActions,
   CollectionAuthor,
@@ -92,7 +93,7 @@ export default function CollectionItems({ videos, collectionId }: Props) {
 
                 <CollectionFreeButton
                   as={Link}
-                  href={`/single-tutorial?id=${video.id}`}
+                  href={pathPublishedContent(video.id)}
                 >
                   {video.buttons?.[0]?.label ??
                     t("tutorialVideos.buttonFreeLabel")}

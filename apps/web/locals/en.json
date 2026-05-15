@@ -505,6 +505,9 @@
   },
   "discoverContent": {
     "title": "Discover content",
+    "detail": {
+      "formatLabel": "Format:"
+    },
     "subtitle": "Browse hundreds of videos, audio files, and e-books.",
     "ctaPrimary": "Join now",
     "ctaSecondary": "View all creators",
@@ -903,6 +906,9 @@
     "zoom": "Zoom",
     "apply": "Apply",
     "profilePhotoAlt": "Profile photo"
+  },
+  "singleContent": {
+    "notFound": "This content could not be found."
   },
   "singleCollection": {
     "subtitle": "Learn how to use our platform",

@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import { memo } from "react";
+import { useRouter } from "next/navigation";
 import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { EbookIcon, VideoIcon } from "@/assets/icons";
 import { MEDIA_TYPE } from "@/utils/Constants";
 import type { DiscoverContentItem } from "@/utils/discoverContent";
+import { pathPublishedContent } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import {
@@ -30,11 +32,17 @@ type Props = {
 };
 
 function DiscoverCard({ item }: Props) {
+  const router = useRouter();
   const theme = useTheme();
   const { t } = useTranslation();
+  const targetHref = pathPublishedContent(item.contentKey);
+
+  const handleOpen = () => {
+    router.push(targetHref);
+  };
 
   return (
-    <Card>
+    <Card aria-label={t(item.titleKey)} onClick={handleOpen}>
       <ImageContainer>
         <CategoryBadge>
           <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
@@ -87,11 +95,11 @@ function DiscoverCard({ item }: Props) {
       <ActionsContainer>
         {item.actions.map((action) =>
           action.fullWidth ? (
-            <FullWidthAction key={action.labelKey}>
+            <FullWidthAction key={action.labelKey} type="button">
               {t(action.labelKey)}
             </FullWidthAction>
           ) : (
-            <ActionButton key={action.labelKey}>
+            <ActionButton key={action.labelKey} type="button">
               {t(action.labelKey)}
             </ActionButton>
           ),

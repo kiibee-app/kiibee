@@ -13,6 +13,7 @@ export type DiscoverContentMediaType = "video" | "epub";
 
 export type DiscoverContentItem = {
   id: number;
+  contentKey: string;
   categoryKey: string;
   image: ImageSource;
   titleKey: string;
@@ -26,6 +27,7 @@ export type DiscoverContentItem = {
 export const discoverContentData: DiscoverContentItem[] = [
   {
     id: 1,
+    contentKey: "krollehjerne",
     categoryKey: "discoverContent.items.1.category",
     image: imageTwo,
     titleKey: "discoverContent.items.1.title",
@@ -40,6 +42,7 @@ export const discoverContentData: DiscoverContentItem[] = [
   },
   {
     id: 2,
+    contentKey: "tech-talks",
     categoryKey: "discoverContent.items.2.category",
     image: imageOne,
     titleKey: "discoverContent.items.2.title",
@@ -53,6 +56,7 @@ export const discoverContentData: DiscoverContentItem[] = [
   },
   {
     id: 3,
+    contentKey: "vegetable-recipes",
     categoryKey: "discoverContent.items.3.category",
     image: imageThree,
     titleKey: "discoverContent.items.3.title",
@@ -69,6 +73,7 @@ export const discoverContentData: DiscoverContentItem[] = [
   },
   {
     id: 4,
+    contentKey: "add-adhd",
     categoryKey: "discoverContent.items.4.category",
     image: imageFour,
     titleKey: "discoverContent.items.4.title",

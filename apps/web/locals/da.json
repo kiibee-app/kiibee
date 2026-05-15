@@ -505,6 +505,9 @@
   },
   "discoverContent": {
     "title": "Opdag indhold",
+    "detail": {
+      "formatLabel": "Format:"
+    },
     "subtitle": "Gennemse hundredvis af videoer, lydfiler og e-bøger.",
     "ctaPrimary": "Deltag nu",
     "ctaSecondary": "Se alle skabere",
@@ -903,6 +906,9 @@
     "zoom": "Zoom",
     "apply": "Anvend",
     "profilePhotoAlt": "Profilfoto"
+  },
+  "singleContent": {
+    "notFound": "Dette indhold blev ikke fundet."
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
