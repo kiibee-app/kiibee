@@ -14,7 +14,6 @@ import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import AppearanceContent from "./Appearance";
 import AdmissionRequirements from "./AdmissionRequirements";
 import CouponTable from "./coupon";
-import { couponData } from "@/utils/dummyData/couponData";
 import CollectionTable from "./Collections";
 import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
@@ -24,6 +23,9 @@ import {
   MOVE_DIRECTION_UP,
   moveItemInArray,
 } from "@/utils/sortOptions";
+import { useGetAPI } from "@/lib/http/api/getApi";
+import { API } from "@/lib/http/api/endpoints";
+import { COUPON_STATUS, type CouponRow } from "@/types/couponType";
 
 type Props = {
   activeTab: ContentTab;
@@ -40,6 +42,19 @@ type Props = {
   setActiveTab: (tab: ContentTab) => void;
 };
 
+type CouponEntity = {
+  id: string;
+  title: string;
+  status: "active" | "inactive" | "completed";
+  createdAt: string;
+  codes?: string[];
+};
+
+type CouponListResponse = {
+  success?: boolean;
+  data?: CouponEntity[];
+};
+
 export default function ContentTabPanel({
   activeTab,
   selectedCollection,
@@ -53,6 +68,31 @@ export default function ContentTabPanel({
   setActiveTab,
 }: Props) {
   const { t } = useTranslation();
+  const { data: couponResponse } = useGetAPI<CouponListResponse>(
+    API.coupon.getAll,
+    undefined,
+    {
+      enabled: activeTab === COUPONS,
+    },
+  );
+
+  const getCouponStatusLabel = (status: CouponEntity["status"]) => {
+    if (status === "inactive") return COUPON_STATUS.INACTIVE;
+    if (status === "completed") return COUPON_STATUS.COMPLETED;
+    return COUPON_STATUS.ACTIVE;
+  };
+
+  const couponRows: CouponRow[] = (couponResponse?.data ?? []).map((item) => ({
+    title: item.title,
+    codes: item.codes ?? [],
+    status: getCouponStatusLabel(item.status),
+    createdAt: new Date(item.createdAt).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }),
+    action: item.id,
+  }));
 
   const handleMoveUp = (id: string) => {
     if (selectedCollection) {
@@ -125,7 +165,7 @@ export default function ContentTabPanel({
 
   if (activeTab === APPEARANCE) return <AppearanceContent />;
   if (activeTab === SETTINGS) return <AdmissionRequirements />;
-  if (activeTab === COUPONS) return <CouponTable data={couponData} />;
+  if (activeTab === COUPONS) return <CouponTable data={couponRows} />;
   if (activeTab === COLLECTIONS) return renderCollectionsContent();
 
   return <PlaceholderLine>{renderPlaceholder()}</PlaceholderLine>;

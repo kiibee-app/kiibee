@@ -1,4 +1,8 @@
 export const API = {
+  coupon: {
+    create: "/coupons/create",
+    getAll: "/coupons",
+  },
   auth: {
     refresh: "/auth/refresh",
     logout: "/auth/logout",
