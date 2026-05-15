@@ -46,6 +46,19 @@ export type LastestUploadData = {
   year: string;
   description: string;
   actions: [LastestUploadAction, LastestUploadAction?];
+  imageStyle?: {
+    width?: string;
+    height?: string;
+    padding?: string;
+    flexDirection?: string;
+    justifyContent?: string;
+    alignItems?: string;
+    gap?: string;
+  };
+  containerStyle?: {
+    padding?: string;
+    maxWidth?: string;
+  };
 };
 
 type LastestUploadProps = {
@@ -62,11 +75,22 @@ export default function LastestUpload({ data }: LastestUploadProps) {
   const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   return (
-    <Section>
+    <Section
+      $padding={data.containerStyle?.padding}
+      $maxWidth={data.containerStyle?.maxWidth}
+    >
       <MonoText $use="H4_Medium">{data.sectionTitle}</MonoText>
 
       <ContentWrapper $isMobile={isMobile}>
-        <ImageSection>
+        <ImageSection
+          $width={data.imageStyle?.width}
+          $height={data.imageStyle?.height}
+          $padding={data.imageStyle?.padding}
+          $flexDirection={data.imageStyle?.flexDirection}
+          $justifyContent={data.imageStyle?.justifyContent}
+          $alignItems={data.imageStyle?.alignItems}
+          $gap={data.imageStyle?.gap}
+        >
           <Badge>{data.badge}</Badge>
 
           <UploadImage src={resolveImageUrl(data.image)} alt={data.imageAlt} />

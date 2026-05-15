@@ -6,14 +6,18 @@ import { MonoText } from "@/components/UI/Monotext";
 
 type ReadMoreTone = typeof VARIANT.PRIMARY | typeof VARIANT.SECONDARY;
 
-export const Section = styled.section`
-  width: min(100%, 1300px);
+export const Section = styled.section<{
+  $padding?: string;
+  $maxWidth?: string;
+}>`
+  width: ${({ $maxWidth }) =>
+    $maxWidth ? `min(100%, ${$maxWidth})` : "min(100%, 1300px)"};
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  padding: 35px 0 0;
+  padding: ${({ $padding }) => $padding || "35px 0 0"};
 
   ${media.tablet} {
     width: 100%;
@@ -37,16 +41,34 @@ export const ContentWrapper = styled.div<{ $isMobile: boolean }>`
   }
 `;
 
-export const ImageSection = styled.div`
+export const ImageSection = styled.div<{
+  $width?: string;
+  $height?: string;
+  $padding?: string;
+  $flexDirection?: string;
+  $justifyContent?: string;
+  $alignItems?: string;
+  $gap?: string;
+}>`
   position: relative;
-  width: min(100%, 640px);
-  aspect-ratio: 39.5724 / 21.5625;
+  width: ${({ $width }) => $width || "min(100%, 640px)"};
+  height: ${({ $height }) => $height || "auto"};
+  ${({ $width, $height }) =>
+    !$width || !$height ? "aspect-ratio: 39.5724 / 21.5625;" : ""}
+  padding: ${({ $padding }) => $padding || "0"};
+  display: flex;
+  flex-direction: ${({ $flexDirection }) => $flexDirection || "column"};
+  justify-content: ${({ $justifyContent }) => $justifyContent || "flex-end"};
+  align-items: ${({ $alignItems }) => $alignItems || "stretch"};
+  gap: ${({ $gap }) => $gap || "0"};
   border-radius: 0.5rem;
   overflow: hidden;
   flex: 0 0 auto;
 
   ${media.tablet} {
     width: 100%;
+    height: auto;
+    aspect-ratio: 39.5724 / 21.5625;
     padding: 0;
   }
 `;
@@ -62,10 +84,13 @@ export const ImageOverlay = styled.div`
 `;
 
 export const UploadImage = styled.img`
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  z-index: 1;
 `;
 
 export const TextSection = styled.div`
