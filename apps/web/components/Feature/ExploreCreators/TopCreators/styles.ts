@@ -8,7 +8,11 @@ export const Wrapper = styled.section`
 
   ${media.tablet} {
     width: 100%;
-    padding: 2rem 1.25rem;
+    padding: 2rem 0;
+  }
+  ${media.tablet} {
+    width: 100%;
+    padding: 2rem 0;
   }
 `;
 
@@ -32,13 +36,20 @@ export const List = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 48px;
+  gap: 73px;
   align-self: stretch;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  padding-right: 2rem;
 
   ${media.tablet} {
-    gap: 20px;
+    gap: 60px;
+    padding: 0 1.25rem 0.25rem 1.25rem;
+  }
+
+  ${media.mobile} {
+    gap: 50px;
+    padding: 0 1rem 0.25rem 1rem;
   }
 `;
 
