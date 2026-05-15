@@ -18,12 +18,21 @@ import { couponData } from "@/utils/dummyData/couponData";
 import CollectionTable from "./Collections";
 import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
-import { PlaceholderLine } from "./styles";
+import {
+  EmptyCollectionCard,
+  EmptyCollectionDescription,
+  EmptyCollectionText,
+  EmptyCollectionTitle,
+  PlaceholderLine,
+} from "./styles";
 import {
   MOVE_DIRECTION_DOWN,
   MOVE_DIRECTION_UP,
   moveItemInArray,
 } from "@/utils/sortOptions";
+
+import COLORS from "@repo/ui/colors";
+import { FolderIcon } from "@/assets/icons";
 
 type Props = {
   activeTab: ContentTab;
@@ -92,10 +101,33 @@ export default function ContentTabPanel({
 
   const renderCollectionsContent = () => {
     if (selectedCollection) {
+      const data = collectionContents;
+
+      if (!data || data.length === 0) {
+        return (
+          <EmptyCollectionCard>
+            <FolderIcon
+              width={54}
+              height={42}
+              color={COLORS.neutral.GRAY_400}
+            />
+            <EmptyCollectionText>
+              <EmptyCollectionTitle>
+                Your collection is empty.
+              </EmptyCollectionTitle>
+              <EmptyCollectionDescription>
+                Add content to your collection which will then be displayed on
+                your channel.
+              </EmptyCollectionDescription>
+            </EmptyCollectionText>
+          </EmptyCollectionCard>
+        );
+      }
+
       return (
         <CollectionTable
           type={COLLECTION_TABLE_TYPE.CONTENTS}
-          data={collectionContents}
+          data={data}
           onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
           onMoveUp={handleMoveUp}
           onMoveDown={handleMoveDown}

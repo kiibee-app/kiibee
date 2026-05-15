@@ -186,3 +186,29 @@ export const HeaderRow = styled.div`
   align-items: center;
   gap: 12px;
 `;
+
+export const EmptyCollectionCard = styled.div`
+  display: flex;
+  padding: 20px 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+  border-radius: 16px;
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+`;
+
+export const EmptyCollectionText = styled.div`
+  text-align: center;
+`;
+
+export const EmptyCollectionTitle = styled.h3`
+  margin: 0 0 8px;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const EmptyCollectionDescription = styled.p`
+  margin: 0;
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
+`;
