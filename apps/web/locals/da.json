@@ -1381,6 +1381,8 @@
       "or": "eller",
       "chooseFile": "Vælg til upload",
       "selectedFile": "Valgt fil",
+      "upload": "Upload",
+      "next": "Næste",
       "video": {
         "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp4,.mkv,.mov,.m4v)",
         "helperLineTwo": "Min. opløsning 1080p HD"
@@ -1396,6 +1398,14 @@
       "epub": {
         "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.epub,.mobi,.azw)",
         "helperLineTwo": ""
+      },
+      "details": {
+        "addDetails": "Tilføj detaljer",
+        "title": "Titel",
+        "titlePlaceholder": "Indtast titel",
+        "description": "Beskrivelse",
+        "descriptionPlaceholder": "Indtast beskrivelse",
+        "add": "Tilføj"
       }
     },
     "deleteModal": {

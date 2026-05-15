@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import GenericButton from "@/components/UI/GenericButton";
@@ -11,21 +11,19 @@ import {
   UploadOrText,
 } from "@/components/UI/ImageUploadCropModal/styles";
 import { BackButton } from "../ContentTypeModal/styles";
-import { VARIANT } from "@/utils/Constants";
-import {
-  CONTENT_UPLOAD_CONFIG,
-  resolveUploadContentType,
-  type ContentType,
-} from "@/utils/content";
+import { BUTTON, VARIANT } from "@/utils/Constants";
 import {
   ChooseUploadButton,
   ContentUploadDropZone,
-  SelectedFileName,
   UploadBody,
   UploadHelperText,
   UploadHelperTextGroup,
   UploadModalContent,
 } from "./styles";
+import { ContentType } from "@/utils/content";
+import { useContentUpload } from "@/hooks/contents/useContentUpload";
+import SelectedFileView from "./SelectedFileView";
+import ContentUploadDetails from "./UploadDetails";
 
 type ContentUploadModalProps = {
   visible: boolean;
@@ -41,10 +39,23 @@ export default function ContentUploadModal({
   onClose,
 }: ContentUploadModalProps) {
   const { t } = useTranslation();
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const uploadType = resolveUploadContentType(contentType);
-  const uploadConfig = CONTENT_UPLOAD_CONFIG[uploadType];
+  const [showDetails, setShowDetails] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const {
+    fileInputRef,
+    selectedFile,
+    isUploading,
+    uploadComplete,
+    previewUrl,
+    uploadType,
+    uploadConfig,
+    canProceed,
+    handleFileInputChange,
+    handleDrop,
+    reset,
+  } = useContentUpload({ contentType });
+
   const helperLineOne = t(
     `contents.contentUploadModal.${uploadType}.helperLineOne`,
   );
@@ -53,28 +64,23 @@ export default function ContentUploadModal({
   );
 
   const handleExit = (callback: () => void) => {
-    setSelectedFile(null);
+    reset();
     callback();
   };
 
-  const handleSelectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+  const handleChange =
+    (setter: (v: string) => void) => (value: string | string[]) => {
+      const text = Array.isArray(value) ? value.join("") : value;
+      setter(text);
+    };
 
-    setSelectedFile(file);
-    event.target.value = "";
+  const handleNextClick = () => {
+    if (!canProceed) return;
+    setShowDetails(true);
   };
 
-  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
-
-    const file = event.dataTransfer.files?.[0];
-    const isSupportedFile = uploadConfig.extensions.some((extension) =>
-      file?.name.toLowerCase().endsWith(extension),
-    );
-    if (!file || !isSupportedFile) return;
-
-    setSelectedFile(file);
+  const handleAdd = () => {
+    if (!title.trim() || !description.trim()) return;
   };
 
   return (
@@ -87,9 +93,11 @@ export default function ContentUploadModal({
       borderRadius="20px"
     >
       <BackButton
-        type="button"
-        aria-label={t("common.back", { defaultValue: "Back" })}
-        onClick={() => handleExit(onBack)}
+        type={BUTTON}
+        aria-label={t("common.back")}
+        onClick={() =>
+          showDetails ? setShowDetails(false) : handleExit(onBack)
+        }
       >
         <BackButtonIcon size={28} strokeWidth={2.5} />
       </BackButton>
@@ -100,44 +108,55 @@ export default function ContentUploadModal({
             ref={fileInputRef}
             type="file"
             accept={uploadConfig.accept}
-            onChange={handleSelectFile}
+            onChange={handleFileInputChange}
           />
+          {!selectedFile ? (
+            <ContentUploadDropZone
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={handleDrop}
+            >
+              <UploadHint>
+                {t("contents.contentUploadModal.dragFileHere")}
+              </UploadHint>
 
-          <ContentUploadDropZone
-            onDragOver={(event) => event.preventDefault()}
-            onDrop={handleDrop}
-          >
-            <UploadHint>
-              {selectedFile
-                ? t("contents.contentUploadModal.selectedFile")
-                : t("contents.contentUploadModal.dragFileHere")}
-            </UploadHint>
-
-            {selectedFile ? (
-              <SelectedFileName title={selectedFile.name}>
-                {selectedFile.name}
-              </SelectedFileName>
-            ) : (
               <UploadOrText>{t("contents.contentUploadModal.or")}</UploadOrText>
-            )}
 
-            <ChooseUploadButton>
-              <GenericButton
-                variant={VARIANT.PRIMARY}
-                minWidth="182px"
-                onClick={() => fileInputRef.current?.click()}
-              >
-                {t("contents.contentUploadModal.chooseFile")}
-              </GenericButton>
-            </ChooseUploadButton>
+              <ChooseUploadButton>
+                <GenericButton
+                  variant={VARIANT.PRIMARY}
+                  minWidth="182px"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  {t("contents.contentUploadModal.chooseFile")}
+                </GenericButton>
+              </ChooseUploadButton>
 
-            <UploadHelperTextGroup>
-              <UploadHelperText>{helperLineOne}</UploadHelperText>
-              {helperLineTwo ? (
-                <UploadHelperText>{helperLineTwo}</UploadHelperText>
-              ) : null}
-            </UploadHelperTextGroup>
-          </ContentUploadDropZone>
+              <UploadHelperTextGroup>
+                <UploadHelperText>{helperLineOne}</UploadHelperText>
+                {helperLineTwo && (
+                  <UploadHelperText>{helperLineTwo}</UploadHelperText>
+                )}
+              </UploadHelperTextGroup>
+            </ContentUploadDropZone>
+          ) : showDetails ? (
+            <ContentUploadDetails
+              title={title}
+              description={description}
+              setTitle={handleChange(setTitle)}
+              setDescription={handleChange(setDescription)}
+              onAdd={handleAdd}
+            />
+          ) : (
+            <SelectedFileView
+              uploadType={uploadType}
+              selectedFile={selectedFile}
+              previewUrl={previewUrl}
+              isUploading={isUploading}
+              uploadComplete={uploadComplete}
+              canProceed={canProceed}
+              onNext={handleNextClick}
+            />
+          )}
         </UploadBody>
       </UploadModalContent>
     </GenericModal>
