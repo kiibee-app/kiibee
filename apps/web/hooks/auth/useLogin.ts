@@ -47,6 +47,23 @@ const USER_ROLES = {
 const ACCESS_TOKEN_KEY = "kiibee.accessToken";
 const REFRESH_TOKEN_KEY = "kiibee.refreshToken";
 const USER_KEY = "kiibee.user";
+export const STORED_LOGIN_USER_UPDATED = "kiibee:user-updated";
+
+const notifyStoredLoginUserUpdated = () => {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new CustomEvent(STORED_LOGIN_USER_UPDATED));
+};
+
+export const readStoredLoginUser = (): LoginUser | null => {
+  if (typeof window === "undefined") return null;
+
+  try {
+    const raw = window.localStorage.getItem(USER_KEY);
+    return raw ? (JSON.parse(raw) as LoginUser) : null;
+  } catch {
+    return null;
+  }
+};
 
 export type LogoutResponse = {
   success?: boolean;
@@ -63,6 +80,7 @@ export const mergeStoredLoginUser = (partial: Partial<LoginUser>) => {
       USER_KEY,
       JSON.stringify({ ...prev, ...partial }),
     );
+    notifyStoredLoginUserUpdated();
   } catch {}
 };
 
@@ -89,6 +107,7 @@ export const persistLoginSession = (response: LoginResponse) => {
 
   if (user) {
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+    notifyStoredLoginUserUpdated();
   }
 };
 
@@ -100,6 +119,7 @@ export const clearLoginSession = () => {
   window.localStorage.removeItem(ACCESS_TOKEN_KEY);
   window.localStorage.removeItem(REFRESH_TOKEN_KEY);
   window.localStorage.removeItem(USER_KEY);
+  notifyStoredLoginUserUpdated();
 };
 
 export const getStoredLoginUserEmail = () => {

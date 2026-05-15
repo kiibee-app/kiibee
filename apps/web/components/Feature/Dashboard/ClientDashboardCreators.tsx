@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import UsersContent from "../Users/UsersContent";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
+import { useCreatorDashboardProfileSync } from "@/hooks/auth/creatorProfileApi";
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.OVERVIEW,
@@ -37,6 +38,7 @@ export default function ClientDashboardCreators() {
   const searchParams = useSearchParams();
   const { logout } = useLogout();
   const { getUser } = useAuthSession();
+  useCreatorDashboardProfileSync();
 
   const toggleSidebar = useCallback(() => {
     setOpen((p) => !p);
