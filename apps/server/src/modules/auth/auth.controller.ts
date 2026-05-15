@@ -22,6 +22,7 @@ import { CreatorAccountSetupDto } from './dto/creatorAccountSetup.dto';
 import { ResetPasswordDto } from './dto/resetPassword.dto';
 import { CreateCreatorApplicationDto } from './dto/creatorRequest.dto';
 import { UpdateViewerProfileDto } from './dto/updateViewerProfile.dto';
+import { ChangePasswordDto } from './dto/changePassword.dto';
 import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
 
 type AuthenticatedRequest = Request & {
@@ -149,6 +150,15 @@ export class AuthController {
       req.user.role,
       dto,
     );
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('user/password')
+  async changeMyPassword(
+    @Req() req: AuthenticatedRequest,
+    @Body() dto: ChangePasswordDto,
+  ) {
+    return this.authService.changePassword(req.user.userId, dto);
   }
 
   @Post('creator-request')

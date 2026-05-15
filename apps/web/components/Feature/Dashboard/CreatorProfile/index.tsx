@@ -67,6 +67,7 @@ export default function CreatorProfile() {
         nextRequired: t(CREATOR_PROFILE.newPassword),
         confirmRequired: t(CREATOR_PROFILE.confirmPassword),
         confirmMismatch: t("viewerSignup.form.passwordMismatch"),
+        newMustDifferFromCurrent: t(CREATOR_PROFILE.newPasswordSameAsCurrent),
       }),
     [t],
   );

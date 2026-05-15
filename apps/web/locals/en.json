@@ -879,6 +879,7 @@
     "currentPassword": "Enter current password",
     "newPassword": "Enter new password",
     "confirmPassword": "Re-enter new password",
+    "newPasswordSameAsCurrent": "New password must be different from your current password",
     "accountDeletionTitle": "Account deletion",
     "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
     "deleteAccount": "Delete account",
@@ -1112,7 +1113,12 @@
       "fullName": "Full name",
       "email": "Email address",
       "downloads": "{{count}} downloads",
-      "profilePhotoAlt": "Viewer profile photo"
+      "profilePhotoAlt": "Viewer profile photo",
+      "passwordMinLength": "New password must be at least 6 characters",
+      "passwordChangeError": "Could not update password",
+      "forgotPasswordNoEmail": "We need your email on file to send a reset link.",
+      "forgotPasswordModalMessage": "We sent a password reset link to {{email}}. If it doesn’t arrive within a few minutes, check your spam folder.",
+      "forgotPasswordErrorTitle": "Could not send reset link"
     },
     "logoutModal": {
       "title": "Log out",

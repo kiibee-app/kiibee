@@ -16,6 +16,7 @@ type Props = {
   passwords?: Passwords;
   onPasswordChange?: (field: keyof Passwords, val?: string) => void;
   onFieldChange?: () => void;
+  fieldErrors?: Partial<Record<keyof Passwords, string>>;
 };
 
 type PasswordVisibility = {
@@ -28,6 +29,7 @@ export default function PasswordSection({
   passwords,
   onPasswordChange,
   onFieldChange,
+  fieldErrors,
 }: Props) {
   const { t } = useTranslation();
   const fields = getPasswordFields(t);
@@ -99,6 +101,8 @@ export default function PasswordSection({
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
             icon={isVisible ? <EyeOpenIcon /> : <EyeClosedIcon />}
             onIconClick={togglePasswordVisibility.bind(null, key)}
+            hasError={Boolean(fieldErrors?.[field.key as keyof Passwords])}
+            errorText={fieldErrors?.[field.key as keyof Passwords]}
           />
         );
       })}
