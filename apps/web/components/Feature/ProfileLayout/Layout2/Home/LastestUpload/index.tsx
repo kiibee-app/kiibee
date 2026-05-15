@@ -1,17 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import lastestImage from "@/assets/images/creators/recent_creator1.webp";
+import { useTranslation } from "react-i18next";
+import type { ImageSource } from "@/utils/Constants";
 import {
+  ReadMoreButton,
+  ActionButtons,
+  ActionMainText,
+  ActionSubText,
   Section,
   ContentWrapper,
   ImageSection,
   TextSection,
   Title,
   Paragraph,
-  ReadMoreButton,
   Badge,
   ImageOverlay,
   BottomControls,
@@ -21,36 +24,52 @@ import {
   ModalContentWrapper,
   ModalDescription,
 } from "./styles";
-import { resolveImageUrl, MOBILE_BREAKPOINT, BUTTON } from "@/utils/Constants";
-import { useIsMobile } from "@/utils/useIsMobile";
+import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
 import { PlayCircleIcon, PlayIcon } from "@/assets/icons";
+import { useIsMobile } from "@/utils/useIsMobile";
 import { GenericModal } from "@/components/UI/Modals";
 import { PATHS } from "@/utils/path";
 import { MODAL_ALIGN } from "@/utils/ui";
 
-export default function LastestUpload() {
+type LastestUploadAction = {
+  title: string;
+  subtitle?: string;
+};
+
+export type LastestUploadData = {
+  sectionTitle: string;
+  badge: string;
+  image: ImageSource;
+  imageAlt: string;
+  title: string;
+  year: string;
+  description: string;
+  actions: [LastestUploadAction, LastestUploadAction?];
+};
+
+type LastestUploadProps = {
+  data: LastestUploadData;
+};
+
+export default function LastestUpload({ data }: LastestUploadProps) {
   const { t } = useTranslation();
   const router = useRouter();
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+  const [primaryAction, secondaryAction] = data.actions;
   const handleLogin = () => router.push(PATHS.AUTH_LOGIN);
   const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   return (
     <Section>
-      <MonoText $use="H4_Medium">
-        {t("createProfileHome.latestUpload.title")}
-      </MonoText>
+      <MonoText $use="H4_Medium">{data.sectionTitle}</MonoText>
 
       <ContentWrapper $isMobile={isMobile}>
         <ImageSection>
-          <Badge>{t("createProfileHome.latestUpload.badge")}</Badge>
+          <Badge>{data.badge}</Badge>
 
-          <UploadImage
-            src={resolveImageUrl(lastestImage)}
-            alt={t("createProfileHome.latestUpload.imageAlt")}
-          />
+          <UploadImage src={resolveImageUrl(data.image)} alt={data.imageAlt} />
 
           <ImageOverlay>
             <BottomControls>
@@ -68,19 +87,42 @@ export default function LastestUpload() {
         </ImageSection>
 
         <TextSection>
-          <Title>{t("createProfileHome.latestUpload.titleText")}</Title>
+          <Title>{data.title}</Title>
+          <Paragraph>{data.description}</Paragraph>
 
-          <Paragraph>
-            {t("createProfileHome.latestUpload.description")}
-          </Paragraph>
+          <ActionButtons>
+            <ReadMoreButton
+              type="button"
+              onClick={() => setLoginModalVisible(true)}
+              $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
+            >
+              <ActionMainText
+                $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
+              >
+                {primaryAction.title}
+              </ActionMainText>
+              {primaryAction.subtitle ? (
+                <ActionSubText
+                  $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
+                >
+                  {primaryAction.subtitle}
+                </ActionSubText>
+              ) : null}
+            </ReadMoreButton>
 
-          <ReadMoreButton
-            type={BUTTON}
-            onClick={() => setLoginModalVisible(true)}
-          >
-            <span>{t("createProfileHome.latestUpload.readMore")}</span>
-            <span>{t("createProfileHome.latestUpload.access")}</span>
-          </ReadMoreButton>
+            {secondaryAction ? (
+              <ReadMoreButton type="button" $tone={VARIANT.SECONDARY}>
+                <ActionMainText $tone={VARIANT.SECONDARY}>
+                  {secondaryAction.title}
+                </ActionMainText>
+                {secondaryAction.subtitle ? (
+                  <ActionSubText $tone={VARIANT.SECONDARY}>
+                    {secondaryAction.subtitle}
+                  </ActionSubText>
+                ) : null}
+              </ReadMoreButton>
+            ) : null}
+          </ActionButtons>
         </TextSection>
       </ContentWrapper>
 
