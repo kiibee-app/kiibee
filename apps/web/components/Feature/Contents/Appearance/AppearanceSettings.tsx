@@ -91,33 +91,35 @@ export default function AppearanceSettingsSection() {
           </FieldBox>
         </Row>
 
-        <InlineRow>
-          <Copy>
-            <Label>{t(CONTENTS.appearance.color)}</Label>
-          </Copy>
+        {buttonColor === BUTTON_COLOR_VALUES.CUSTOM ? (
+          <InlineRow>
+            <Copy>
+              <Label>{t(CONTENTS.appearance.color)}</Label>
+            </Copy>
 
-          <InlineControlWrap>
-            <InputField
-              type={INPUT_TYPE.TEXT}
-              value={hexColor}
-              onChange={handleHexChange}
-              onBlur={handleHexBlur}
-              width="100%"
-              height="46px"
-              icon={
-                <Swatch
-                  $interactive
-                  $color={normalizeHexColor(
-                    hexColor,
-                    APPEARANCE_DEFAULT_HEX_COLOR,
-                  )}
-                />
-              }
-              onIconClick={() => setColorPickerOpen(true)}
-              variant={INPUT_VARIANTS.SURFACE}
-            />
-          </InlineControlWrap>
-        </InlineRow>
+            <InlineControlWrap>
+              <InputField
+                type={INPUT_TYPE.TEXT}
+                value={hexColor}
+                onChange={handleHexChange}
+                onBlur={handleHexBlur}
+                width="100%"
+                height="46px"
+                icon={
+                  <Swatch
+                    $interactive
+                    $color={normalizeHexColor(
+                      hexColor,
+                      APPEARANCE_DEFAULT_HEX_COLOR,
+                    )}
+                  />
+                }
+                onIconClick={() => setColorPickerOpen(true)}
+                variant={INPUT_VARIANTS.SURFACE}
+              />
+            </InlineControlWrap>
+          </InlineRow>
+        ) : null}
       </SectionList>
 
       {colorPickerOpen ? (
