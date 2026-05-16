@@ -1120,6 +1120,7 @@
       "forgotPasswordModalMessage": "Vi har sendt et link til nulstilling af adgangskode til {{email}}. Hvis det ikke ankommer inden for et par minutter, sa tjek din spam-mappe.",
       "forgotPasswordErrorTitle": "Kunne ikke sende nulstillingslink"
     },
+    "toggleSidebar": "Skift sidepanel",
     "logoutModal": {
       "title": "Log ud",
       "message": "Er du sikker på, at du vil logge ud som {{email}}?",

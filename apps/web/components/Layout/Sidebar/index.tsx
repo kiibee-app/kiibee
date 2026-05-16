@@ -24,8 +24,8 @@ type SidebarProps = {
   activeItem: string;
   onSelect: (label: string) => void;
   onLogout?: () => void;
-  open: boolean;
-  onClose: () => void;
+  expanded: boolean;
+  onCollapse: () => void;
   items?: DashboardSidebarItem[];
   logoutLabel?: string;
 };
@@ -34,8 +34,8 @@ const Sidebar = ({
   activeItem,
   onSelect,
   onLogout,
-  open,
-  onClose,
+  expanded,
+  onCollapse,
   items = creatorsItems,
   logoutLabel = CREATORS_LABELS.LOG_OUT,
 }: SidebarProps) => {
@@ -53,21 +53,21 @@ const Sidebar = ({
     (label: string) => {
       if (label === logoutLabel) {
         onLogout?.();
-        onClose();
+        onCollapse();
         return;
       }
 
       onSelect(label);
       setHelpOpen(false);
-      onClose();
+      onCollapse();
     },
-    [logoutLabel, onSelect, onClose, onLogout],
+    [logoutLabel, onSelect, onCollapse, onLogout],
   );
 
-  const handleCloseSidebar = useCallback(() => {
+  const handleCloseDrawer = useCallback(() => {
     setHelpOpen(false);
-    onClose();
-  }, [onClose]);
+    onCollapse();
+  }, [onCollapse]);
 
   const renderItems = useCallback(
     (itemsToRender: DashboardSidebarItem[]) =>
@@ -77,28 +77,34 @@ const Sidebar = ({
           onClick={() => handleSelect(item.label)}
           $active={activeItem === item.label}
           $variant={item.variant}
+          $expanded={expanded}
+          title={!expanded ? item.label : undefined}
         >
           {item.icon && <IconWrapper>{item.icon}</IconWrapper>}
-          <SidebarText
-            $active={activeItem === item.label}
-            $variant={item.variant}
-          >
-            {item.label}
-          </SidebarText>
+          {expanded && (
+            <SidebarText
+              $active={activeItem === item.label}
+              $variant={item.variant}
+            >
+              {item.label}
+            </SidebarText>
+          )}
         </SidebarItemStyled>
       )),
-    [activeItem, handleSelect],
+    [activeItem, expanded, handleSelect],
   );
 
   return (
     <>
-      {open && <Overlay onClick={handleCloseSidebar} />}
+      <Overlay $expanded={expanded} onClick={handleCloseDrawer} />
 
-      <SidebarWrapper $open={open}>
+      <SidebarWrapper $expanded={expanded}>
         <SidebarContent>
-          <SidebarMenu>{renderItems(mainItems)}</SidebarMenu>
+          <SidebarMenu $expanded={expanded}>
+            {renderItems(mainItems)}
+          </SidebarMenu>
 
-          <BottomMenu>
+          <BottomMenu $expanded={expanded}>
             {settingsItems.map((item) => {
               if (item.label === HELP) {
                 return (
@@ -107,6 +113,7 @@ const Sidebar = ({
                     label={item.label}
                     icon={item.icon}
                     variant={item.variant}
+                    expanded={expanded}
                     open={helpOpen}
                     onToggle={() => setHelpOpen((prev) => !prev)}
                     onClose={() => setHelpOpen(false)}
@@ -120,14 +127,18 @@ const Sidebar = ({
                   onClick={() => handleSelect(item.label)}
                   $active={activeItem === item.label}
                   $variant={item.variant}
+                  $expanded={expanded}
+                  title={!expanded ? item.label : undefined}
                 >
                   {item.icon && <IconWrapper>{item.icon}</IconWrapper>}
-                  <SidebarText
-                    $active={activeItem === item.label}
-                    $variant={item.variant}
-                  >
-                    {item.label}
-                  </SidebarText>
+                  {expanded && (
+                    <SidebarText
+                      $active={activeItem === item.label}
+                      $variant={item.variant}
+                    >
+                      {item.label}
+                    </SidebarText>
+                  )}
                 </SidebarItemStyled>
               );
             })}

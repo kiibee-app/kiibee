@@ -11,11 +11,10 @@ import {
   InitialAvatar,
   EmailWrapper,
   Left,
-  MobileToggle,
+  LogoButton,
   ChannelText,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
-import { HomeIcon } from "@/assets/icons/homeIcon";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import styled from "styled-components";
@@ -37,16 +36,19 @@ const DashboardHeader = ({ onToggleSidebar }: Props) => {
   return (
     <HeaderWrapper>
       <Left>
-        <MobileToggle onClick={onToggleSidebar}>
-          <HomeIcon width={24} height={24} />
-        </MobileToggle>
-        <Image
-          src={logo}
-          alt={t("nav.logoAlt")}
-          width={80}
-          height={25}
-          priority
-        />
+        <LogoButton
+          type="button"
+          onClick={onToggleSidebar}
+          aria-label={t("dashboard.toggleSidebar")}
+        >
+          <Image
+            src={logo}
+            alt={t("nav.logoAlt")}
+            width={80}
+            height={25}
+            priority
+          />
+        </LogoButton>
       </Left>
 
       <Right>

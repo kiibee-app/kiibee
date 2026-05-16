@@ -23,19 +23,13 @@ export const Left = styled.div`
   min-width: 180px;
 `;
 
-export const MobileToggle = styled.button`
-  display: none;
+export const LogoButton = styled.button`
+  display: inline-flex;
+  align-items: center;
   border: none;
   background: transparent;
   padding: 0;
-  margin-right: 10px;
   cursor: pointer;
-
-  ${media.tablet} {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
 `;
 
 export const Nav = styled.nav`

@@ -1,5 +1,9 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
+import {
+  SIDEBAR_WIDTH_COLLAPSED,
+  SIDEBAR_WIDTH_EXPANDED,
+} from "../Sidebar/styles";
 
 export const LayoutWrapper = styled.div`
   display: flex;
@@ -11,18 +15,22 @@ export const LayoutWrapper = styled.div`
   background: ${({ theme }) => theme.colors.primary.WHITE};
 `;
 
-export const MainWrapper = styled.div`
+export const MainWrapper = styled.div<{ $sidebarExpanded: boolean }>`
   flex: 1;
   min-width: 0;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  margin-left: 240px;
+  margin-left: ${({ $sidebarExpanded }) =>
+    $sidebarExpanded
+      ? `${SIDEBAR_WIDTH_EXPANDED - 10}px`
+      : `${SIDEBAR_WIDTH_COLLAPSED}px`};
   overflow: hidden;
   padding-top: 70px;
+  transition: margin-left 0.3s ease;
 
   ${media.tablet} {
-    margin-left: 1px;
+    margin-left: ${SIDEBAR_WIDTH_COLLAPSED}px;
   }
 `;
 

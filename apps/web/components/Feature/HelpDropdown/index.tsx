@@ -16,6 +16,7 @@ type SidebarHelpDropdownProps = {
   label: string;
   icon?: React.ReactNode;
   variant?: CreatorVariant;
+  expanded: boolean;
   open: boolean;
   onToggle: () => void;
   onClose: () => void;
@@ -25,6 +26,7 @@ export default function SidebarHelpDropdown({
   label,
   icon,
   variant,
+  expanded,
   open,
   onToggle,
   onClose,
@@ -45,13 +47,17 @@ export default function SidebarHelpDropdown({
         onClick={onToggle}
         $active={open}
         $variant={variant}
+        $expanded={expanded}
         aria-haspopup="menu"
         aria-expanded={open}
+        title={!expanded ? label : undefined}
       >
         {icon && <IconWrapper>{icon}</IconWrapper>}
-        <SidebarText $active={open} $variant={variant}>
-          {label}
-        </SidebarText>
+        {expanded && (
+          <SidebarText $active={open} $variant={variant}>
+            {label}
+          </SidebarText>
+        )}
       </SidebarActionButton>
 
       {open && (
