@@ -13,6 +13,7 @@ import {
   REGISTRATION_TABLE_HEADER_KEYS,
 } from "@/utils/tableHeader";
 import { SORT_DIRECTIONS, SortDirectionWithNone } from "@/utils/ui";
+import { filterUsersByName } from "@/utils/filterUsersByName";
 import COLORS from "@repo/ui/colors";
 import {
   DeleteActionButton,
@@ -22,7 +23,13 @@ import {
   TableSection,
 } from "./styles";
 
-export default function RegistrationsTabContent() {
+type RegistrationsTabContentProps = {
+  searchValue: string;
+};
+
+export default function RegistrationsTabContent({
+  searchValue,
+}: RegistrationsTabContentProps) {
   const { t } = useTranslation();
   const [rows, setRows] = useState<RegistrationRow[]>(registrationData);
   const [selectedEmail, setSelectedEmail] = useState<string | null>(null);
@@ -42,13 +49,14 @@ export default function RegistrationsTabContent() {
     [rows, selectedEmail],
   );
   const sortedRows = useMemo(() => {
-    return [...rows].sort((a, b) => {
+    const filtered = filterUsersByName(rows, searchValue);
+    return [...filtered].sort((a, b) => {
       const compared = a.name.localeCompare(b.name, undefined, {
         sensitivity: "base",
       });
       return nameSortDirection === SORT_DIRECTIONS.DESC ? -compared : compared;
     });
-  }, [rows, nameSortDirection]);
+  }, [rows, searchValue, nameSortDirection]);
 
   return (
     <>

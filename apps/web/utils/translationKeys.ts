@@ -165,6 +165,7 @@ export const CREATOR_PROFILE = {
 };
 
 export const DASHBOARD_USERS = {
+  search: "users.search",
   tabs: {
     registrations: "users.tabs.registrations",
     salest: "users.tabs.salest",

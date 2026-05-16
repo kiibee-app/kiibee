@@ -1009,6 +1009,7 @@
     }
   },
   "users": {
+    "search": "Sog efter navn",
     "tabs": {
       "registrations": "Registreringer (11)",
       "salest": "Salg (50)"
