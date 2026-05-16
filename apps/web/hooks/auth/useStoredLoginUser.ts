@@ -6,6 +6,7 @@ import {
   STORED_LOGIN_USER_UPDATED,
   type LoginUser,
 } from "@/hooks/auth/useLogin";
+import { toTrimmedString } from "@/utils/Constants";
 
 export function useStoredLoginUser() {
   const [user, setUser] = useState<LoginUser | null>(null);
@@ -22,18 +23,16 @@ export function useStoredLoginUser() {
 }
 
 export function getLoginUserInitial(user: LoginUser | null): string {
-  const fullName =
-    typeof user?.fullName === "string" ? user.fullName.trim() : "";
+  const fullName = toTrimmedString(user?.fullName);
   if (fullName) return fullName.charAt(0).toUpperCase();
 
-  const firstName =
-    typeof user?.firstName === "string" ? user.firstName.trim() : "";
+  const firstName = toTrimmedString(user?.firstName);
   if (firstName) return firstName.charAt(0).toUpperCase();
 
-  const email = typeof user?.email === "string" ? user.email.trim() : "";
+  const email = toTrimmedString(user?.email);
   return email ? email.charAt(0).toUpperCase() : "?";
 }
 
 export function getLoginUserEmail(user: LoginUser | null): string {
-  return typeof user?.email === "string" ? user.email.trim() : "";
+  return toTrimmedString(user?.email);
 }

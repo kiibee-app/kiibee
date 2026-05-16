@@ -3,6 +3,7 @@ import {
   type CreatorProfilePatchBody,
   type ProfileForm,
 } from "@/utils/creatorProfile";
+import { toTrimmedString as str } from "@/utils/Constants";
 
 export {
   applyCreatorProfileResponseToForm,
@@ -59,8 +60,6 @@ export type UpdateCreatorProfileResponse = {
   message?: string;
   data?: CreatorProfilePatchBody;
 };
-
-const str = (value: unknown) => (typeof value === "string" ? value.trim() : "");
 
 export function mapCreatorProfileToForm(
   data: CreatorProfileApiData,

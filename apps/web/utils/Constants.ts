@@ -37,3 +37,11 @@ export const CARD_BRANDS = {
 } as const;
 
 export type CardBrand = (typeof CARD_BRANDS)[keyof typeof CARD_BRANDS];
+
+export function isString(value: unknown): value is string {
+  return typeof value === STRING;
+}
+
+export function toTrimmedString(value: unknown): string {
+  return isString(value) ? value.trim() : "";
+}

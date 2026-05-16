@@ -1,5 +1,6 @@
 import type { LoginUser } from "@/hooks/auth/useLogin";
-import { FORM_MESSAGE_TONE } from "@/utils/ui";
+import { toTrimmedString } from "@/utils/Constants";
+import { FORM_MESSAGE_TONE, isBrowser } from "@/utils/ui";
 
 export const IMAGE_DATA_PREFIX = /^data:image\//;
 
@@ -57,7 +58,7 @@ export function forgotPwError(notice: ForgotPwNotice): string {
 }
 
 export function readViewerBootstrapFromStorage(): ViewerBootstrap {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return EMPTY_VIEWER_BOOTSTRAP;
   }
 
@@ -65,19 +66,12 @@ export function readViewerBootstrapFromStorage(): ViewerBootstrap {
     const raw = window.localStorage.getItem(USER_STORAGE_KEY);
     const user = raw ? (JSON.parse(raw) as LoginUser) : null;
 
-    const name =
-      typeof user?.fullName === "string" && user.fullName.trim().length > 0
-        ? user.fullName.trim()
-        : "";
-    const email =
-      typeof user?.email === "string" && user.email.trim().length > 0
-        ? user.email.trim()
-        : "";
+    const name = toTrimmedString(user?.fullName);
+    const email = toTrimmedString(user?.email);
+    const trimmedAvatar = toTrimmedString(user?.avatarUrl);
     const avatarUrl =
-      typeof user?.avatarUrl === "string" &&
-      user.avatarUrl.trim().length > 0 &&
-      IMAGE_DATA_PREFIX.test(user.avatarUrl)
-        ? user.avatarUrl.trim()
+      trimmedAvatar.length > 0 && IMAGE_DATA_PREFIX.test(trimmedAvatar)
+        ? trimmedAvatar
         : null;
     const downloadsCount = Number(user?.downloadsCount ?? 0);
 
@@ -98,7 +92,7 @@ const bootstrapListeners = new Set<BootstrapListener>();
 let bootstrapFlushScheduled = false;
 
 export function subscribeViewerBootstrap(listener: BootstrapListener) {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return () => {};
   }
   bootstrapListeners.add(listener);

@@ -3,6 +3,8 @@ import {
   PROFILE_FIELD_MAP,
   type CreatorProfileBodyKey,
 } from "@/utils/profileFieldMap";
+import { isString, toTrimmedString } from "@/utils/Constants";
+import { isBrowser } from "@/utils/ui";
 import { USER_STORAGE_KEY } from "@/utils/viewerProfile";
 
 export type Passwords = {
@@ -85,7 +87,7 @@ export type CreatorProfilePatchBody = Partial<
 
 const trim = (value: string) => value.trim();
 
-const str = (value: unknown) => (typeof value === "string" ? value.trim() : "");
+const str = toTrimmedString;
 
 export function buildCreatorProfilePatchBody(
   form: ProfileForm,
@@ -122,7 +124,7 @@ export function applyCreatorProfileResponseToForm(
 
   for (const [formKey, bodyKey] of PROFILE_FIELD_MAP) {
     const value = data?.[bodyKey];
-    if (typeof value === "string") {
+    if (isString(value)) {
       next[formKey] = value.trim();
     }
   }
@@ -131,7 +133,7 @@ export function applyCreatorProfileResponseToForm(
 }
 
 export const getAvatarUrl = (avatarUrl?: string | null): string | null => {
-  if (typeof avatarUrl !== "string") return null;
+  if (!isString(avatarUrl)) return null;
   return avatarUrl.length > 0 ? avatarUrl : null;
 };
 
@@ -149,7 +151,7 @@ export function parseCreatorNameFromFullName(
 }
 
 export function readCreatorBoot(): CreatorBoot {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return EMPTY_CREATOR_BOOT;
   }
 

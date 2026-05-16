@@ -1,9 +1,10 @@
 "use client";
 
 import { API } from "@/lib/http/api/endpoints";
-
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { PATHS } from "@/utils/path";
+import { toTrimmedString } from "@/utils/Constants";
+import { isBrowser } from "@/utils/ui";
 
 export type LoginPayload = {
   email: string;
@@ -50,12 +51,12 @@ const USER_KEY = "kiibee.user";
 export const STORED_LOGIN_USER_UPDATED = "kiibee:user-updated";
 
 const notifyStoredLoginUserUpdated = () => {
-  if (typeof window === "undefined") return;
+  if (!isBrowser) return;
   window.dispatchEvent(new CustomEvent(STORED_LOGIN_USER_UPDATED));
 };
 
 export const readStoredLoginUser = (): LoginUser | null => {
-  if (typeof window === "undefined") return null;
+  if (!isBrowser) return null;
 
   try {
     const raw = window.localStorage.getItem(USER_KEY);
@@ -71,7 +72,7 @@ export type LogoutResponse = {
 };
 
 export const mergeStoredLoginUser = (partial: Partial<LoginUser>) => {
-  if (typeof window === "undefined") return;
+  if (!isBrowser) return;
 
   try {
     const raw = window.localStorage.getItem(USER_KEY);
@@ -85,7 +86,7 @@ export const mergeStoredLoginUser = (partial: Partial<LoginUser>) => {
 };
 
 export const persistLoginSession = (response: LoginResponse) => {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return;
   }
 
@@ -112,7 +113,7 @@ export const persistLoginSession = (response: LoginResponse) => {
 };
 
 export const clearLoginSession = () => {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return;
   }
 
@@ -123,7 +124,7 @@ export const clearLoginSession = () => {
 };
 
 export const getStoredLoginUserEmail = () => {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return "";
   }
 
@@ -132,7 +133,7 @@ export const getStoredLoginUserEmail = () => {
     if (!rawUser) return "";
 
     const parsedUser = JSON.parse(rawUser) as LoginUser;
-    return typeof parsedUser.email === "string" ? parsedUser.email : "";
+    return toTrimmedString(parsedUser.email);
   } catch {
     return "";
   }
