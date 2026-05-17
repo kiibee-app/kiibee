@@ -36,3 +36,16 @@ export function fromISO(iso?: string) {
   const d = new Date(iso);
   return isNaN(d.getTime()) ? null : d;
 }
+
+export function formatDateUSShort(iso?: string) {
+  if (!iso) return "";
+
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "";
+
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}

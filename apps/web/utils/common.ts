@@ -7,7 +7,7 @@ export const COUPONS = "coupons";
 export const VIEWER_BILLING_HISTORY_TAB = "billing-history";
 export const VIEWER_PAYMENT_METHODS_TAB = "payment-methods";
 export const HELP = "Help";
-export const COUPON_DISCOUNT_FIXED_AMOUNT = "fixedAmount";
+export const COUPON_DISCOUNT_FIXED_AMOUNT = "fixed_amount";
 export const COUPON_DISCOUNT_PERCENTAGE = "percentage";
 export const COUPON_CODES_LIMIT = 100;
 
@@ -25,7 +25,13 @@ type ViewerBillingTabItem = {
 
 export type ContentTab = "collections" | "appearance" | "settings" | "coupons";
 export type ViewerBillingTab = "billing-history" | "payment-methods";
-export type CouponDiscountType = "fixedAmount" | "percentage";
+
+export const COUPON_DISCOUNT_TYPE = {
+  FIXED_AMOUNT: COUPON_DISCOUNT_FIXED_AMOUNT,
+  PERCENTAGE: COUPON_DISCOUNT_PERCENTAGE,
+} as const;
+export type CouponDiscountType =
+  (typeof COUPON_DISCOUNT_TYPE)[keyof typeof COUPON_DISCOUNT_TYPE];
 
 export const CONTENT_TABS: readonly ContentTabItem[] = [
   {
