@@ -10,5 +10,6 @@ export const API = {
     signup: "/auth/signup",
     userProfile: "/auth/user/profile",
     changePassword: "/auth/user/password",
+    creatorProfile: "/auth/creator/profile",
   },
 } as const;

@@ -1,9 +1,7 @@
 "use client";
 
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FormProvider, useForm } from "react-hook-form";
 import {
   Container,
   Title,
@@ -25,11 +23,6 @@ import CompanySection from "./CompanySection";
 import PaymentSection from "./PaymentSection";
 import DeleteSection from "./DeleteSection";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
-import {
-  createInitialProfileData,
-  creatorProfileData,
-  emptyPasswords,
-} from "@/utils/dummyData/profile.data";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
@@ -38,86 +31,51 @@ import { ProfileForm } from "@/utils/creatorProfile";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { GenericModal } from "@/components/UI/Modals";
 import { SuccessArcIcon } from "@/assets/icons";
+import { QuestionIcon } from "@/assets/icons/questionIcon";
 import { useRouter } from "next/navigation";
 import ImageUploader from "./ImageUploader";
-import { createResetPasswordSchema } from "@/lib/validation/schema";
 import { PATHS } from "@/utils/path";
+import { useCreatorProfile } from "@/hooks/auth/useCreatorProfile";
+import {
+  forgotPwEmail,
+  forgotPwError,
+  forgotPwIsError,
+  forgotPwIsSuccess,
+} from "@/utils/viewerProfile";
 
 export default function CreatorProfile() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { name, email } = creatorProfileData;
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+
   const getInitial = (email = "") =>
     email ? email.charAt(0).toUpperCase() : "?";
 
-  const initial = useMemo(() => createInitialProfileData(email), [email]);
-  const [form, setForm] = useState<ProfileForm>(initial);
-  const [saved, setSaved] = useState<ProfileForm>(initial);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
-    useState<boolean>(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
-  const [avatarImage, setAvatarImage] = useState<string | null>(null);
-
-  const passwordSchema = useMemo(
-    () =>
-      createResetPasswordSchema({
-        currentRequired: t(CREATOR_PROFILE.currentPassword),
-        nextRequired: t(CREATOR_PROFILE.newPassword),
-        confirmRequired: t(CREATOR_PROFILE.confirmPassword),
-        confirmMismatch: t("viewerSignup.form.passwordMismatch"),
-        newMustDifferFromCurrent: t(CREATOR_PROFILE.newPasswordSameAsCurrent),
-      }),
-    [t],
-  );
-  type PasswordFormValues = ReturnType<typeof passwordSchema.parse>;
-  const passwordMethods = useForm<PasswordFormValues>({
-    resolver: zodResolver(passwordSchema),
-    mode: "onChange",
-    defaultValues: emptyPasswords,
-  });
-
-  const dirty = useMemo(() => {
-    const formChanged = JSON.stringify(form) !== JSON.stringify(saved);
-    const passwordChanged = passwordMethods.formState.isDirty;
-    return formChanged || passwordChanged;
-  }, [form, passwordMethods.formState.isDirty, saved]);
-
-  const onChange = useCallback(
-    (key: keyof ProfileForm) => (value: string | string[]) => {
-      setForm((prev) => ({ ...prev, [key]: String(value) }));
-    },
-    [],
-  );
-
-  const resetPasswords = useCallback(() => {
-    passwordMethods.reset(emptyPasswords);
-  }, [passwordMethods]);
-
-  const handleCancel = useCallback(() => {
-    setForm(saved);
-    resetPasswords();
-    setShowPassword(false);
-  }, [saved, resetPasswords]);
-
-  const handleSave = useCallback(() => {
-    if (!dirty) return;
-    setSaved(form);
-    resetPasswords();
-    setShowPassword(false);
-  }, [dirty, form, resetPasswords]);
-
-  const handlePasswordClose = useCallback(() => {
-    setShowPassword(false);
-    resetPasswords();
-  }, [resetPasswords]);
-
-  const handlePasswordSave = useCallback(() => {
-    resetPasswords();
-    setShowPassword(false);
-    setShowPasswordSuccessModal(true);
-  }, [resetPasswords]);
+  const {
+    form,
+    displayName,
+    avatarImage,
+    setAvatarImage,
+    isProfileChanged,
+    passwords,
+    showPassword,
+    setShowPassword,
+    showPasswordSuccessModal,
+    setShowPasswordSuccessModal,
+    onChange,
+    onPasswordChange,
+    handleCancel,
+    handleSave,
+    handlePasswordClose,
+    handlePasswordSave,
+    handleForgotPassword,
+    forgotPwNotice,
+    dismissForgotPwNotice,
+    passwordFieldErrors,
+    isSavingProfile,
+    isChangingPassword,
+  } = useCreatorProfile();
 
   const fields = useMemo(() => getProfileFields(t), [t]);
 
@@ -142,10 +100,13 @@ export default function CreatorProfile() {
           <MonoText $use="H4_SemiBold">{t(CREATOR_PROFILE.title)}</MonoText>
         </Title>
         <HeaderActions>
-          <SecondaryButton onClick={handleCancel}>
+          <SecondaryButton onClick={handleCancel} disabled={!isProfileChanged}>
             <MonoText $use="Body_Medium">{t("common.cancel")}</MonoText>
           </SecondaryButton>
-          <Button onClick={handleSave} disabled={!dirty}>
+          <Button
+            onClick={() => void handleSave()}
+            disabled={!isProfileChanged || isSavingProfile}
+          >
             <MonoText $use="Body_Medium">{t("common.save")}</MonoText>
           </Button>
         </HeaderActions>
@@ -155,7 +116,7 @@ export default function CreatorProfile() {
         <Row>
           <ImageUploader
             image={avatarImage}
-            fallback={getInitial(email)}
+            fallback={getInitial(form.email)}
             alt={t("creatorProfile.profilePhotoAlt")}
             uploadTitle={t("creatorProfile.uploadPhotoTitle")}
             editTitle={t("creatorProfile.editPhotoTitle")}
@@ -163,9 +124,9 @@ export default function CreatorProfile() {
           />
 
           <NameBlock>
-            <MonoText $use="Heading3">{name}</MonoText>
+            <MonoText $use="Heading3">{displayName}</MonoText>
             <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-              {email}
+              {form.email}
             </MonoText>
           </NameBlock>
         </Row>
@@ -204,20 +165,23 @@ export default function CreatorProfile() {
         confirmLabel={t("creatorProfile.changePassword")}
         cancelLabel={t("creatorProfile.forgotPass")}
         onClose={handlePasswordClose}
-        onCancel={handlePasswordClose}
-        onConfirm={handlePasswordSave}
+        onCancel={() => void handleForgotPassword()}
+        onConfirm={() => void handlePasswordSave()}
+        closeOnConfirm={false}
         size="md"
         fullWidthButtons
         buttonRow
-        confirmDisabled={!passwordMethods.formState.isValid}
+        confirmDisabled={isChangingPassword}
       >
-        <FormProvider {...passwordMethods}>
-          <PasswordSection />
-        </FormProvider>
+        <PasswordSection
+          passwords={passwords}
+          onPasswordChange={onPasswordChange}
+          fieldErrors={passwordFieldErrors}
+        />
       </GenericModal>
 
       <GenericModal
-        visible={showPasswordSuccessModal}
+        visible={forgotPwIsSuccess(forgotPwNotice)}
         icon={
           <SuccessArcIcon
             width={40}
@@ -226,14 +190,33 @@ export default function CreatorProfile() {
           />
         }
         iconMargin="0 auto 8px"
-        title={t("creatorProfile.passwordSuccessTitle")}
-        message={t("creatorProfile.passwordSuccessMessage")}
-        confirmLabel={t("nav.login")}
-        onClose={() => setShowPasswordSuccessModal(false)}
-        onConfirm={() => router.push(PATHS.AUTH_LOGIN)}
-        size="sm"
+        textAlign={MODAL_ALIGN.CENTER}
+        title={t("forgotPassword.checkEmailTitle")}
+        message={t("dashboard.viewerProfile.forgotPasswordModalMessage", {
+          email: forgotPwEmail(forgotPwNotice),
+        })}
+        confirmLabel={t("dashboard.viewerProfile.saveModalDone")}
+        onClose={dismissForgotPwNotice}
+        onConfirm={dismissForgotPwNotice}
+        width="480px"
         showCloseButton={false}
       />
+      <GenericModal
+        visible={forgotPwIsError(forgotPwNotice)}
+        icon={
+          <QuestionIcon width={40} height={40} color={COLORS.primary.RED} />
+        }
+        iconMargin="0 auto 8px"
+        textAlign={MODAL_ALIGN.CENTER}
+        title={t("dashboard.viewerProfile.forgotPasswordErrorTitle")}
+        message={forgotPwError(forgotPwNotice)}
+        confirmLabel={t("dashboard.viewerProfile.saveModalDone")}
+        onClose={dismissForgotPwNotice}
+        onConfirm={dismissForgotPwNotice}
+        width="480px"
+        showCloseButton={false}
+      />
+
       <GenericModal
         visible={showDeleteModal || showDeleteSuccessModal}
         icon={
@@ -278,6 +261,24 @@ export default function CreatorProfile() {
         spacing="xs"
         buttonRow={showDeleteModal}
         fullWidthButtons={showDeleteModal}
+        showCloseButton={false}
+      />
+      <GenericModal
+        visible={showPasswordSuccessModal}
+        icon={
+          <SuccessArcIcon
+            width={40}
+            height={40}
+            color={COLORS.primary.GREEN_200}
+          />
+        }
+        iconMargin="0 auto 8px"
+        title={t("creatorProfile.passwordSuccessTitle")}
+        message={t("creatorProfile.passwordSuccessMessage")}
+        confirmLabel={t("nav.login")}
+        onClose={() => setShowPasswordSuccessModal(false)}
+        onConfirm={() => router.push(PATHS.AUTH_LOGIN)}
+        size="sm"
         showCloseButton={false}
       />
     </Container>
