@@ -12,6 +12,7 @@ import {
   CONTENT_TAB,
   LEGACY_DASHBOARD_TAB_QUERY_KEYS,
 } from "@/utils/Constants";
+import { DASHBOARD_USERS } from "@/utils/translationKeys";
 
 const DEFAULT_USERS_TAB = USER_TABS[0].key;
 
@@ -27,7 +28,9 @@ export default function UsersContent() {
   const [openSearch, setOpenSearch] = useState(false);
 
   const handleTabClick = (tabKey: UserTabKey) => {
-    setOpenSearch(false);
+    if (!searchValue.trim()) {
+      setOpenSearch(false);
+    }
     setActiveTabAndQuery(tabKey);
   };
 
@@ -45,14 +48,17 @@ export default function UsersContent() {
         search={{
           open: openSearch,
           value: searchValue,
-          placeholder: "Search for posts",
+          placeholder: t(DASHBOARD_USERS.search),
+          ariaLabel: t(DASHBOARD_USERS.search),
           onToggle: () => setOpenSearch((prev) => !prev),
           onChange: setSearchValue,
         }}
       />
 
-      {activeTab === "registrations" && <RegistrationsTabContent />}
-      {activeTab === "salest" && <SalestTabContent />}
+      {activeTab === "registrations" && (
+        <RegistrationsTabContent searchValue={searchValue} />
+      )}
+      {activeTab === "salest" && <SalestTabContent searchValue={searchValue} />}
     </Wrapper>
   );
 }

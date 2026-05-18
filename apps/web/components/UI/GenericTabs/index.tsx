@@ -1,12 +1,14 @@
 "use client";
 
+import { CrossIcon } from "@/assets/icons/crossIcon";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import type { ReactNode } from "react";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useTheme } from "styled-components";
 import {
   SearchArea,
   SearchButton,
+  SearchClearButton,
   SearchInput,
   TabButton,
   TabsRow,
@@ -46,7 +48,22 @@ export default function GenericTabs<T extends string>({
 }: GenericTabsProps<T>) {
   const theme = useTheme();
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const isSearchOpen = search?.alwaysOpen ? true : !!search?.open;
+  const hasSearchText = Boolean(search?.value);
+  const isSearchOpen = search?.alwaysOpen
+    ? true
+    : Boolean(search?.open || hasSearchText);
+
+  const handleSearchToggle = useCallback(() => {
+    if (!search || search.alwaysOpen) return;
+    if (hasSearchText) return;
+    search.onToggle();
+  }, [hasSearchText, search]);
+
+  const handleSearchClear = useCallback(() => {
+    if (!search) return;
+    search.onChange("");
+    searchInputRef.current?.focus();
+  }, [search]);
 
   const { tabRefs, handleTabKeyDown } = useTabsKeyboard({
     tabs,
@@ -85,7 +102,7 @@ export default function GenericTabs<T extends string>({
           <SearchButton
             type="button"
             aria-label={search.ariaLabel ?? "Toggle search"}
-            onClick={search.alwaysOpen ? undefined : search.onToggle}
+            onClick={search.alwaysOpen ? undefined : handleSearchToggle}
           >
             {search.icon ?? (
               <SearchIcon
@@ -103,6 +120,16 @@ export default function GenericTabs<T extends string>({
             value={search.value}
             onChange={(e) => search.onChange(e.target.value)}
           />
+
+          {isSearchOpen && hasSearchText && (
+            <SearchClearButton
+              type="button"
+              aria-label="Clear search"
+              onClick={handleSearchClear}
+            >
+              <CrossIcon width={20} height={20} />
+            </SearchClearButton>
+          )}
         </SearchArea>
       )}
     </TabsRow>

@@ -9,6 +9,7 @@ import COLORS from "@repo/ui/colors";
 import { SalesRow, salesData } from "@/utils/dummyData/users";
 import { buildHeaderMap, SALES_TABLE_HEADER_KEYS } from "@/utils/tableHeader";
 import { SORT_DIRECTIONS, SortDirectionWithNone } from "@/utils/ui";
+import { filterUsersByName } from "@/utils/filterUsersByName";
 import {
   SectionCard,
   SectionDescription,
@@ -16,7 +17,13 @@ import {
   TableSection,
 } from "./styles";
 
-export default function SalestTabContent() {
+type SalestTabContentProps = {
+  searchValue: string;
+};
+
+export default function SalestTabContent({
+  searchValue,
+}: SalestTabContentProps) {
   const { t } = useTranslation();
   const [nameSortDirection, setNameSortDirection] =
     useState<SortDirectionWithNone>(SORT_DIRECTIONS.NONE);
@@ -28,13 +35,14 @@ export default function SalestTabContent() {
     SALES_TABLE_HEADER_KEYS,
   );
   const sortedSalesData = useMemo(() => {
-    return [...salesData].sort((a, b) => {
+    const filtered = filterUsersByName(salesData, searchValue);
+    return [...filtered].sort((a, b) => {
       const compared = a.name.localeCompare(b.name, undefined, {
         sensitivity: "base",
       });
       return nameSortDirection === SORT_DIRECTIONS.DESC ? -compared : compared;
     });
-  }, [nameSortDirection]);
+  }, [searchValue, nameSortDirection]);
 
   return (
     <>
