@@ -167,3 +167,6 @@ export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
 export const isBrowser = typeof window !== "undefined";
 export const canUseDOM = typeof document !== "undefined";
+
+export const COLLECTION = "collection_";
+export const CONTENT = "content_";

@@ -8,6 +8,7 @@ import RecentlyAdded from "@/components/Feature/ExploreCreators/RecentlyAdded";
 import Footer from "@/components/Layout/Footer";
 import TopCreators from "@/components/Feature/ExploreCreators/TopCreators";
 import TrendingContent from "@/components/Feature/ExploreCreators/TrendingContent";
+import LatestRelease from "@/components/Feature/ExploreCreators/LatestRelease";
 
 export default function ExplorePage() {
   return (
@@ -18,6 +19,7 @@ export default function ExplorePage() {
           <ExploreCreatorsHero showControls={false} />
           <TrendingContent />
           <TopCreators />
+          <LatestRelease />
           <RecentlyAdded />
         </ExploreSection>
       </Main>

@@ -20,20 +20,22 @@ import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import styled from "styled-components";
 import { PATHS } from "@/utils/path";
+import {
+  getLoginUserEmail,
+  getLoginUserInitial,
+  useStoredLoginUser,
+} from "@/hooks/auth/useStoredLoginUser";
 
 type Props = {
   onToggleSidebar?: () => void;
 };
 
-const headerInfo = {
-  channel: "My channel",
-  email: "lena@gmail.com",
-};
-
-const getInitial = (email: string) => email.charAt(0).toUpperCase();
-
 const DashboardHeader = ({ onToggleSidebar }: Props) => {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
+  const email = getLoginUserEmail(user);
+  const initial = getLoginUserInitial(user);
+
   return (
     <HeaderWrapper>
       <Left>
@@ -50,7 +52,9 @@ const DashboardHeader = ({ onToggleSidebar }: Props) => {
       </Left>
 
       <Right>
-        <ChannelText $use="Body_Medium">{headerInfo.channel}</ChannelText>
+        <ChannelText $use="Body_Medium">
+          {t("dashboard.creatorHeader.myChannel")}
+        </ChannelText>
         <Divider />
         <Link
           href={PATHS.DASHBOARD_CREATOR_PROFILE}
@@ -58,10 +62,10 @@ const DashboardHeader = ({ onToggleSidebar }: Props) => {
         >
           <RightProfileWrapper>
             <ProfileCircle>
-              <InitialAvatar>{getInitial(headerInfo.email)}</InitialAvatar>
+              <InitialAvatar>{initial}</InitialAvatar>
             </ProfileCircle>
             <EmailWrapper>
-              <MonoText $use="Body_Medium">{headerInfo.email}</MonoText>
+              <MonoText $use="Body_Medium">{email}</MonoText>
             </EmailWrapper>
           </RightProfileWrapper>
         </Link>

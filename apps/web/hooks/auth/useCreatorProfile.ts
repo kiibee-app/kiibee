@@ -14,55 +14,32 @@ import { usePatchAPI } from "@/lib/http/api/patchApi";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { createResetPasswordSchema } from "@/lib/validation/schema";
+import {
+  applyCreatorProfileResponseToForm,
+  buildCreatorProfilePatchBody,
+  displayCreatorName,
+  EMPTY_CREATOR_PROFILE_FORM,
+  getAvatarUrl,
+  PasswordState,
+  toOptionalString,
+  type ProfileForm,
+} from "@/utils/creatorProfile";
+import {
+  mapCreatorProfileToForm,
+  type GetCreatorProfileResponse,
+  type UpdateCreatorProfileBody,
+  type UpdateCreatorProfileResponse,
+} from "@/hooks/auth/creatorProfileApi";
 import { emptyPasswords } from "@/utils/dummyData/profile.data";
-import { PasswordState } from "@/utils/creatorProfile";
-import { ViewerProfileField } from "@/utils/profile";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import { FORM_MESSAGE_TONE } from "@/utils/ui";
 import {
-  EMPTY_VIEWER_BOOTSTRAP,
-  subscribeViewerBootstrap,
   type ChangePasswordBody,
   type ChangePasswordResponse,
   type ForgotPwNotice,
-  type ViewerBootstrap,
 } from "@/utils/viewerProfile";
 
-type ViewerProfileForm = {
-  name: string;
-  email: string;
-};
-
-type ViewerProfileResponseData = {
-  id?: string;
-  email?: string;
-  fullName?: string | null;
-  avatarUrl?: string | null;
-  role?: string;
-  isEmailVerified?: boolean;
-  status?: string;
-  downloadsCount?: number;
-};
-
-type GetViewerProfileResponse = {
-  success?: boolean;
-  message?: string;
-  data?: ViewerProfileResponseData;
-};
-
-export type UpdateViewerProfileBody = {
-  fullName?: string;
-  email?: string;
-  avatarUrl?: string | null;
-};
-
-export type UpdateViewerProfileResponse = {
-  success?: boolean;
-  message?: string;
-  data?: ViewerProfileResponseData;
-};
-
-export const useViewerProfile = () => {
+export const useCreatorProfile = () => {
   const { t } = useTranslation();
   const { getErrorMessage } = useApiErrorMessage();
 
@@ -86,23 +63,15 @@ export const useViewerProfile = () => {
     [t],
   );
 
-  const [form, setForm] = useState<ViewerProfileForm>(() => ({
-    name: EMPTY_VIEWER_BOOTSTRAP.name,
-    email: EMPTY_VIEWER_BOOTSTRAP.email,
-  }));
-  const [saved, setSaved] = useState<ViewerProfileForm>(() => ({
-    name: EMPTY_VIEWER_BOOTSTRAP.name,
-    email: EMPTY_VIEWER_BOOTSTRAP.email,
-  }));
+  const [form, setForm] = useState<ProfileForm>(EMPTY_CREATOR_PROFILE_FORM);
+  const [saved, setSaved] = useState<ProfileForm>(EMPTY_CREATOR_PROFILE_FORM);
   const [savedAvatarUrl, setSavedAvatarUrl] = useState<string | null>(null);
   const [avatarImage, setAvatarImage] = useState<string | null>(null);
-  const [downloadsCount, setDownloadsCount] = useState<number>(0);
 
   const [showPassword, setShowPassword] = useState(false);
   const [passwords, setPasswords] = useState<PasswordState>(emptyPasswords);
   const [showPasswordSuccessModal, setShowPasswordSuccessModal] =
-    useState<boolean>(false);
-  const [showProfileSavedModal, setShowProfileSavedModal] = useState(false);
+    useState(false);
   const [forgotPwNotice, setForgotPwNotice] = useState<ForgotPwNotice>(null);
   const [passwordSubmitAttempted, setPasswordSubmitAttempted] = useState(false);
 
@@ -129,6 +98,7 @@ export const useViewerProfile = () => {
     const passwordChanged = Object.values(passwords).some(Boolean);
     return formChanged || passwordChanged || avatarDirty;
   }, [form, saved, passwords, avatarDirty]);
+
   const isProfileChangedRef = useRef(isProfileChanged);
 
   useEffect(() => {
@@ -136,9 +106,9 @@ export const useViewerProfile = () => {
   }, [isProfileChanged]);
 
   const updateProfile = usePatchAPI<
-    UpdateViewerProfileResponse,
-    UpdateViewerProfileBody
-  >(API.auth.userProfile);
+    UpdateCreatorProfileResponse,
+    UpdateCreatorProfileBody
+  >(API.auth.creatorProfile);
   const changePasswordMutation = usePatchAPI<
     ChangePasswordResponse,
     ChangePasswordBody
@@ -148,8 +118,8 @@ export const useViewerProfile = () => {
     ForgetPasswordPayload
   >(API.auth.forgetPassword);
 
-  const profileQuery = useGetAPI<GetViewerProfileResponse>(
-    API.auth.userProfile,
+  const profileQuery = useGetAPI<GetCreatorProfileResponse>(
+    API.auth.creatorProfile,
     undefined,
     {
       retry: false,
@@ -158,61 +128,33 @@ export const useViewerProfile = () => {
   );
 
   useEffect(() => {
-    return subscribeViewerBootstrap((b: ViewerBootstrap) => {
-      setForm({ name: b.name, email: b.email });
-      setSaved({ name: b.name, email: b.email });
-      setSavedAvatarUrl(b.avatarUrl);
-      setAvatarImage(b.avatarUrl);
-      setDownloadsCount(b.downloadsCount);
-    });
-  }, []);
-
-  useEffect(() => {
     const profile = profileQuery.data?.data;
     if (!profile) return;
 
     queueMicrotask(() => {
-      const nextName =
-        typeof profile.fullName === "string" ? profile.fullName.trim() : "";
-      const nextEmail =
-        typeof profile.email === "string" ? profile.email.trim() : "";
-      const nextAvatar =
-        profile.avatarUrl === null
-          ? null
-          : typeof profile.avatarUrl === "string" &&
-              profile.avatarUrl.length > 0
-            ? profile.avatarUrl
-            : null;
-      const nextDownloads = Number(profile.downloadsCount ?? 0);
-      const safeDownloads = Number.isFinite(nextDownloads) ? nextDownloads : 0;
+      const nextForm = mapCreatorProfileToForm(profile);
+      const nextAvatar = getAvatarUrl(profile.user?.avatarUrl);
 
       if (!isProfileChangedRef.current) {
-        const nextForm: ViewerProfileForm = {
-          name: nextName,
-          email: nextEmail,
-        };
         setForm(nextForm);
         setSaved(nextForm);
         setAvatarImage(nextAvatar);
         setSavedAvatarUrl(nextAvatar);
       }
-      setDownloadsCount(safeDownloads);
 
       mergeStoredLoginUser({
-        fullName: nextName,
-        email: nextEmail,
+        fullName: toOptionalString(displayCreatorName(nextForm)),
+        email: toOptionalString(nextForm.email),
         avatarUrl: nextAvatar,
-        downloadsCount: safeDownloads,
+        firstName: toOptionalString(nextForm.firstName),
+        lastName: toOptionalString(nextForm.lastName),
       });
     });
   }, [profileQuery.data]);
 
   const onChange = useCallback(
-    (key: ViewerProfileField) => (value: string | string[]) => {
-      setForm((prev) => ({
-        ...prev,
-        [key]: String(value),
-      }));
+    (key: keyof ProfileForm) => (value: string | string[]) => {
+      setForm((prev) => ({ ...prev, [key]: String(value) }));
     },
     [],
   );
@@ -232,63 +174,104 @@ export const useViewerProfile = () => {
     setPasswordSubmitAttempted(false);
   }, []);
 
+  const handleCancel = useCallback(() => {
+    setForm(saved);
+    setAvatarImage(savedAvatarUrl);
+    resetPasswords();
+    setShowPassword(false);
+  }, [resetPasswords, saved, savedAvatarUrl]);
+
+  const handlePasswordSave = useCallback(async () => {
+    const parsed = passwordSchema.safeParse(passwords);
+    if (!parsed.success) {
+      setPasswordSubmitAttempted(true);
+      const first = parsed.error.flatten().fieldErrors;
+      const msg =
+        first.current?.[0] ??
+        first.next?.[0] ??
+        first.confirm?.[0] ??
+        t("dashboard.viewerProfile.passwordChangeError");
+      toast.error(msg);
+      return false;
+    }
+
+    const { current, next, confirm } = parsed.data;
+
+    try {
+      await changePasswordMutation.mutateAsync({
+        currentPassword: current.trim(),
+        password: next.trim(),
+        confirmPassword: confirm.trim(),
+      });
+      resetPasswords();
+      setShowPassword(false);
+      setShowPasswordSuccessModal(true);
+      return true;
+    } catch (error) {
+      toast.error(
+        getErrorMessage(error, "dashboard.viewerProfile.passwordChangeError"),
+      );
+      return false;
+    }
+  }, [
+    changePasswordMutation,
+    getErrorMessage,
+    passwordSchema,
+    passwords,
+    resetPasswords,
+    t,
+  ]);
+
   const handleSave = async () => {
     if (!isProfileChanged || updateProfile.isPending) return;
 
-    const patchBody: UpdateViewerProfileBody = {};
-    if (form.name.trim() !== saved.name.trim()) {
-      patchBody.fullName = form.name.trim();
-    }
-    if (form.email.trim().toLowerCase() !== saved.email.trim().toLowerCase()) {
-      patchBody.email = form.email.trim().toLowerCase();
-    }
-    if (avatarDirty) {
-      patchBody.avatarUrl = avatarImage ?? null;
-    }
+    const hasPasswordInput = Object.values(passwords).some(Boolean);
+    const patchBody = buildCreatorProfilePatchBody(
+      form,
+      saved,
+      avatarDirty,
+      avatarImage,
+    );
 
-    const needsPatch = Object.keys(patchBody).length > 0;
+    if (Object.keys(patchBody).length === 0) {
+      if (hasPasswordInput) {
+        await handlePasswordSave();
+        return;
+      }
+      setSaved(form);
+      resetPasswords();
+      setShowPassword(false);
+      return;
+    }
 
     try {
-      if (needsPatch) {
-        const res = await updateProfile.mutateAsync(patchBody);
+      const res = await updateProfile.mutateAsync(patchBody);
+      const data = res.data;
 
-        const data = res.data;
-        const nextName =
-          typeof data?.fullName === "string" && data.fullName.trim().length > 0
-            ? data.fullName.trim()
-            : form.name.trim();
-        const nextAvatar =
-          data?.avatarUrl === null
-            ? null
-            : typeof data?.avatarUrl === "string" && data.avatarUrl.length > 0
-              ? data.avatarUrl
-              : (avatarImage ?? null);
+      const nextForm = applyCreatorProfileResponseToForm(form, data);
 
-        const nextForm: ViewerProfileForm = {
-          name: nextName,
-          email:
-            typeof data?.email === "string" && data.email.trim().length > 0
-              ? data.email.trim()
-              : form.email.trim(),
-        };
+      const nextAvatar =
+        data?.avatarUrl !== undefined
+          ? getAvatarUrl(data.avatarUrl)
+          : avatarDirty
+            ? (avatarImage ?? null)
+            : savedAvatarUrl;
 
-        setSaved(nextForm);
-        setForm(nextForm);
-        setSavedAvatarUrl(nextAvatar);
-        setAvatarImage(nextAvatar);
+      setSaved(nextForm);
+      setForm(nextForm);
+      setSavedAvatarUrl(nextAvatar);
+      setAvatarImage(nextAvatar);
 
-        mergeStoredLoginUser({
-          fullName: nextName,
-          email: nextForm.email,
-          avatarUrl: nextAvatar,
-        });
+      const displayName = displayCreatorName(nextForm);
+      mergeStoredLoginUser({
+        fullName: toOptionalString(displayName),
+        email: toOptionalString(nextForm.email),
+        avatarUrl: nextAvatar,
+        firstName: toOptionalString(nextForm.firstName),
+        lastName: toOptionalString(nextForm.lastName),
+      });
 
-        setShowProfileSavedModal(true);
-      } else {
-        setSaved(form);
-        setShowProfileSavedModal(true);
-      }
-
+      toast.success(t("dashboard.viewerProfile.saveSuccess"));
       resetPasswords();
       setShowPassword(false);
     } catch (error) {
@@ -335,60 +318,22 @@ export const useViewerProfile = () => {
     }
   }, [forgetPasswordMutation, getErrorMessage, resetPasswords, saved.email, t]);
 
-  const handlePasswordSave = useCallback(async () => {
-    const parsed = passwordSchema.safeParse(passwords);
-    if (!parsed.success) {
-      setPasswordSubmitAttempted(true);
-      const first = parsed.error.flatten().fieldErrors;
-      const msg =
-        first.current?.[0] ??
-        first.next?.[0] ??
-        first.confirm?.[0] ??
-        t("dashboard.viewerProfile.passwordChangeError");
-      toast.error(msg);
-      return;
-    }
-
-    const { current, next, confirm } = parsed.data;
-
-    try {
-      await changePasswordMutation.mutateAsync({
-        currentPassword: current.trim(),
-        password: next.trim(),
-        confirmPassword: confirm.trim(),
-      });
-      resetPasswords();
-      setShowPassword(false);
-      setShowPasswordSuccessModal(true);
-    } catch (error) {
-      toast.error(
-        getErrorMessage(error, "dashboard.viewerProfile.passwordChangeError"),
-      );
-    }
-  }, [
-    changePasswordMutation,
-    getErrorMessage,
-    passwordSchema,
-    passwords,
-    resetPasswords,
-    t,
-  ]);
+  const displayName = useMemo(() => displayCreatorName(form), [form]);
 
   return {
     form,
+    displayName,
     avatarImage,
     setAvatarImage,
-    downloadsCount,
     isProfileChanged,
     passwords,
     showPassword,
     setShowPassword,
     showPasswordSuccessModal,
     setShowPasswordSuccessModal,
-    showProfileSavedModal,
-    setShowProfileSavedModal,
     onChange,
     onPasswordChange,
+    handleCancel,
     handleSave,
     handlePasswordClose,
     handlePasswordSave,
