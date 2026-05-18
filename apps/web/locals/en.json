@@ -1458,5 +1458,14 @@
     "successTitle": "Your password has been successfully reset!",
     "successDescription": "You can now log in with your new password. If you encounter any issues, please contact support.",
     "backToLogin": "Back to login"
+  },
+  "errorFallback": {
+    "badge": "Runtime Error",
+    "description": "An unexpected error occurred. You can retry now, and use the console details below for debugging.",
+    "consoleLabel": "Console details",
+    "retryButton": "Try again",
+    "defaultTitle": "Something went wrong",
+    "noStack": "Stack trace is not available.",
+    "unknownError": "Unknown error message"
   }
 }

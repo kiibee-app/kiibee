@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import {
   Badge,
   ConsoleBlock,
@@ -23,26 +24,27 @@ type ErrorFallbackProps = {
 export default function ErrorFallback({
   error,
   resetErrorBoundary,
-  title = "Something went wrong",
+  title,
 }: ErrorFallbackProps) {
-  const stack = error.stack ?? "Stack trace is not available.";
+  const { t } = useTranslation();
+  const displayTitle = title ?? t("errorFallback.defaultTitle");
+  const stack = error.stack ?? t("errorFallback.noStack");
 
   return (
     <ErrorPage>
       <ErrorCard role="alert">
-        <Badge>Runtime Error</Badge>
-        <Title>{title}</Title>
-        <Description>
-          An unexpected error occurred. You can retry now, and use the console
-          details below for debugging.
-        </Description>
-        <MessageBox>{error.message || "Unknown error message"}</MessageBox>
-        <ConsoleLabel>Console details</ConsoleLabel>
+        <Badge>{t("errorFallback.badge")}</Badge>
+        <Title>{displayTitle}</Title>
+        <Description>{t("errorFallback.description")}</Description>
+        <MessageBox>
+          {error.message || t("errorFallback.unknownError")}
+        </MessageBox>
+        <ConsoleLabel>{t("errorFallback.consoleLabel")}</ConsoleLabel>
         <ConsoleBlock>
           {`name: ${error.name}\nmessage: ${error.message}\ndigest: ${error.digest ?? "n/a"}\n\nstack:\n${stack}`}
         </ConsoleBlock>
         <RetryButton type="button" onClick={resetErrorBoundary}>
-          Try again
+          {t("errorFallback.retryButton")}
         </RetryButton>
       </ErrorCard>
     </ErrorPage>

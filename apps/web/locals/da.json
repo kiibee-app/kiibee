@@ -1457,5 +1457,14 @@
     "successTitle": "Din adgangskode er blevet nulstillet!",
     "successDescription": "Du kan nu logge ind med din nye adgangskode. Kontakt support, hvis du oplever problemer.",
     "backToLogin": "Tilbage til login"
+  },
+  "errorFallback": {
+    "badge": "Kørselsfejl",
+    "description": "Der opstod en uventet fejl. Du kan prøve igen nu og bruge konsoloplysningerne nedenfor til fejlfinding.",
+    "consoleLabel": "Konsoldetaljer",
+    "retryButton": "Prøv igen",
+    "defaultTitle": "Noget gik galt",
+    "noStack": "Stack trace er ikke tilgængelig.",
+    "unknownError": "Ukendt fejlmeddelelse"
   }
 }
