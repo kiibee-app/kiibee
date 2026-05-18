@@ -1466,5 +1466,14 @@
     "title": "Denne side tog en anden vej",
     "description": "Siden, du prøver at åbne, findes ikke længere eller er flyttet. Brug knappen nedenfor for at komme tilbage til forsiden.",
     "backHome": "Tilbage til forsiden"
+  },
+  "errorFallback": {
+    "badge": "Kørselsfejl",
+    "description": "Der opstod en uventet fejl. Du kan prøve igen nu og bruge konsoloplysningerne nedenfor til fejlfinding.",
+    "consoleLabel": "Konsoldetaljer",
+    "retryButton": "Prøv igen",
+    "defaultTitle": "Noget gik galt",
+    "noStack": "Stack trace er ikke tilgængelig.",
+    "unknownError": "Ukendt fejlmeddelelse"
   }
 }
