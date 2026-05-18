@@ -13,11 +13,11 @@ import {
   SectionBlock,
   SectionHeader,
   SectionTitle,
-  SectionArrow,
   CardsGrid,
   OneActionRow,
   TwoActionRow,
 } from "./styles";
+import { LeftIcon } from "@/assets/icons";
 
 function CollectionActions({ card }: { card: Layout1CollectionCard }) {
   const actionButtons = card.actions.slice(0, 2);
@@ -77,7 +77,7 @@ export default function CollectionSections() {
         <SectionBlock key={section.id}>
           <SectionHeader>
             <SectionTitle>{section.title}</SectionTitle>
-            <SectionArrow>›</SectionArrow>
+            <LeftIcon />
           </SectionHeader>
 
           <CardsGrid>
