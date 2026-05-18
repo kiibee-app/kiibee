@@ -1,6 +1,5 @@
 "use client";
 
-import { FallbackProps } from "react-error-boundary";
 import {
   Badge,
   ConsoleBlock,
@@ -15,9 +14,10 @@ import {
 
 type AppError = Error & { digest?: string };
 
-type ErrorFallbackProps = FallbackProps & {
+type ErrorFallbackProps = {
   title?: string;
   error: AppError;
+  resetErrorBoundary: () => void;
 };
 
 export default function ErrorFallback({
