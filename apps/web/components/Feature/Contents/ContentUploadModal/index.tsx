@@ -122,7 +122,15 @@ export default function ContentUploadModal({
             accept={uploadConfig.accept}
             onChange={handleFileInputChange}
           />
-          {isWebContent ? (
+          {showDetails ? (
+            <ContentUploadDetails
+              title={title}
+              description={description}
+              setTitle={handleChange(setTitle)}
+              setDescription={handleChange(setDescription)}
+              onAdd={handleAdd}
+            />
+          ) : isWebContent ? (
             <WebContentLinkForm
               value={webContentLink}
               onChange={setWebContentLink}
@@ -156,14 +164,6 @@ export default function ContentUploadModal({
                 )}
               </UploadHelperTextGroup>
             </ContentUploadDropZone>
-          ) : showDetails ? (
-            <ContentUploadDetails
-              title={title}
-              description={description}
-              setTitle={handleChange(setTitle)}
-              setDescription={handleChange(setDescription)}
-              onAdd={handleAdd}
-            />
           ) : (
             <SelectedFileView
               uploadType={uploadType}
