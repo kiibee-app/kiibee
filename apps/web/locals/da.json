@@ -1042,6 +1042,9 @@
     }
   },
   "dashboard": {
+    "creatorHeader": {
+      "myChannel": "Min kanal"
+    },
     "overview": "Oversigt",
     "noData": "Ingen data fundet",
     "contentPerformance": "Indholdsydelse",

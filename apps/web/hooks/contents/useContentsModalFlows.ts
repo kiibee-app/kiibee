@@ -1,6 +1,16 @@
 import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { CollectionRow, INITIAL_COUPON_FORM } from "@/types/collectionsType";
-import { COLLECTIONS, COUPONS, ContentTab } from "@/utils/common";
+import {
+  COLLECTIONS,
+  COUPON_DISCOUNT_FIXED_AMOUNT,
+  COUPONS,
+  ContentTab,
+  COUPON_DISCOUNT_TYPE,
+} from "@/utils/common";
+import { type CreateCouponPayload } from "@/types/couponType";
+import { API } from "@/lib/http/api/endpoints";
+import { usePostAPI } from "@/lib/http/api/postApi";
 import {
   COUPON_STEPS,
   CouponStep,
@@ -9,12 +19,14 @@ import {
   type ContentType,
 } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
+import { COLLECTION, CONTENT } from "@/utils/ui";
 
 export const useContentsModalFlows = (
   activeTab: ContentTab,
   collections: CollectionRow[],
   isCollectionContentMode: boolean,
 ) => {
+  const queryClient = useQueryClient();
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [couponForm, setCouponForm] = useState(INITIAL_COUPON_FORM);
   const [isCouponSuccess, setIsCouponSuccess] = useState(false);
@@ -28,6 +40,9 @@ export const useContentsModalFlows = (
   const [couponStep, setCouponStep] = useState<CouponStep | null>(null);
   const [editingCollectionId, setEditingCollectionId] = useState<string | null>(
     null,
+  );
+  const createCouponMutation = usePostAPI<unknown, CreateCouponPayload>(
+    API.coupon.create,
   );
   const couponFlow = {
     open: () => setCouponStep(COUPON_STEPS.DETAILS),
@@ -125,6 +140,30 @@ export const useContentsModalFlows = (
   };
 
   const handleCouponSubmit = async () => {
+    const codes = couponForm.codes
+      .split(",")
+      .map((code) => code.trim())
+      .filter((code) => code.length > 0);
+
+    await createCouponMutation.mutateAsync({
+      title: couponForm.title.trim(),
+      discountType:
+        couponForm.discountType === COUPON_DISCOUNT_FIXED_AMOUNT
+          ? couponForm.discountType
+          : COUPON_DISCOUNT_TYPE.PERCENTAGE,
+      discountValue: couponForm.discountValue.trim(),
+      codes,
+      collectionId:
+        couponForm.collection && !couponForm.collection.startsWith(COLLECTION)
+          ? couponForm.collection
+          : undefined,
+      contentId:
+        couponForm.content && !couponForm.content.startsWith(CONTENT)
+          ? couponForm.content
+          : undefined,
+    });
+
+    await queryClient.invalidateQueries({ queryKey: [API.coupon.getAll] });
     setIsCouponSuccess(true);
   };
 

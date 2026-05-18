@@ -188,7 +188,7 @@ export const ValueText = styled.span`
   text-align: right;
 `;
 
-export const NoDataCell = styled.td`
+export const NoDataCell = styled.div`
   text-align: center;
   padding: 30px;
 `;

@@ -174,10 +174,16 @@ export const Button = styled.button`
   color: ${(p) => p.theme.colors.neutral.OFF_WHITE};
   border: none;
   cursor: pointer;
+
+  &:not(:disabled) {
+    background: ${(p) => p.theme.colors.primary.BLACK};
+  }
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
+
   ${MonoText} {
     color: inherit;
   }
@@ -187,6 +193,11 @@ export const SecondaryButton = styled(Button)`
   background: ${(p) => p.theme.colors.neutral.OFF_WHITE};
   color: ${(p) => p.theme.colors.primary.BLACK};
   border: 1px solid ${(p) => p.theme.colors.primary.GRAY};
+
+  &:not(:disabled) {
+    background: ${(p) => p.theme.colors.neutral.OFF_WHITE};
+    color: ${(p) => p.theme.colors.primary.BLACK};
+  }
 `;
 
 export const PasswordFields = styled.div`
