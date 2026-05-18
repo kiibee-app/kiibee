@@ -23,6 +23,10 @@ export default function WebContentLinkForm({
 }: WebContentLinkFormProps) {
   const { t } = useTranslation();
 
+  const handleChange = (nextValue: string | string[]) => {
+    onChange(Array.isArray(nextValue) ? nextValue.join("") : nextValue);
+  };
+
   return (
     <WebContentForm>
       <WebContentTitle>
@@ -33,9 +37,7 @@ export default function WebContentLinkForm({
         placeholder={t("contents.contentUploadModal.webForm.placeholder")}
         width="100%"
         variant={INPUT_VARIANTS.PRIMARY_GRAY}
-        onChange={(nextValue) =>
-          onChange(Array.isArray(nextValue) ? nextValue.join("") : nextValue)
-        }
+        onChange={handleChange}
         label={t("contents.contentUploadModal.webForm.label")}
       />
       <WebContentNextButton>
