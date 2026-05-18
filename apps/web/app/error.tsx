@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "@/components/common/ErrorFallback";
 
 export default function Error({
@@ -16,17 +15,10 @@ export default function Error({
   }, [error]);
 
   return (
-    <ErrorBoundary
-      fallbackRender={(fallbackProps) => (
-        <ErrorFallback {...fallbackProps} title="Kiibee encountered an error" />
-      )}
-      onReset={reset}
-    >
-      <ErrorFallback
-        error={error}
-        resetErrorBoundary={reset}
-        title="Kiibee encountered an error"
-      />
-    </ErrorBoundary>
+    <ErrorFallback
+      error={error}
+      resetErrorBoundary={reset}
+      title="Kiibee encountered an error"
+    />
   );
 }

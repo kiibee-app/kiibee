@@ -28,21 +28,20 @@ export const Badge = styled.div`
   color: ${({ theme }) => theme.colors.primary.RED};
   background: ${({ theme }) => theme.colors.primary.WHITE};
   padding: 6px 10px;
-  font-size: 12px;
+  ${({ theme }) => theme.typography.Body_Medium};
   font-weight: 700;
   text-transform: uppercase;
 `;
 
 export const Title = styled.h1`
   margin: 14px 0 0;
-  font-size: ${({ theme }) => theme.typography.Heading2.fontSize};
-  line-height: ${({ theme }) => theme.typography.Heading2.lineHeight};
-  font-weight: ${({ theme }) => theme.typography.Heading2.fontWeight};
+  ${({ theme }) => theme.typography.Heading2};
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const Description = styled.p`
   margin: 10px 0 0;
+  ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
   line-height: 1.55;
 `;
@@ -54,12 +53,13 @@ export const MessageBox = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.primary.ORANGE};
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_Medium};
   font-weight: 600;
 `;
 
 export const ConsoleLabel = styled.h2`
   margin: 18px 0 0;
-  font-size: ${({ theme }) => theme.typography.Body_Medium.fontSize};
+  ${({ theme }) => theme.typography.Body_Medium};
   font-weight: 700;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
@@ -72,7 +72,7 @@ export const ConsoleBlock = styled.pre`
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_700};
   padding: 14px;
   overflow-x: auto;
-  font-size: 13px;
+  ${({ theme }) => theme.typography.Body_Medium};
   line-height: 1.55;
 `;
 
@@ -84,6 +84,7 @@ export const RetryButton = styled.button`
   color: ${({ theme }) => theme.colors.primary.WHITE};
   padding: 11px 16px;
   cursor: pointer;
+  ${({ theme }) => theme.typography.Body_Medium};
   font-weight: 700;
 
   &:hover {
