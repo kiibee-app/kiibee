@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import {
@@ -26,10 +26,11 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import { AddContentTab, COLLECTIONS } from "@/utils/common";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
-
+  const [tabMode, setTabMode] = useState<"base" | "upload">("base");
   const {
     activeTab,
     visibleTabs,
@@ -43,7 +44,7 @@ export default function CreatorsContents() {
     setOpenSearch,
     handleTabChange,
     setActiveTabAndQuery,
-  } = useContentsViewState();
+  } = useContentsViewState(tabMode);
   const {
     collections,
     setCollections,
@@ -73,15 +74,24 @@ export default function CreatorsContents() {
     handleEditCollection,
   } = useContentsModalFlows(activeTab, collections, isCollectionContentMode);
 
+  const handleUploadSuccess = (tab: AddContentTab) => {
+    setTabMode("upload");
+    setActiveTabAndQuery(tab);
+  };
+
+  const handleBackToBase = () => {
+    setTabMode("base");
+    setSelectedCollection(null);
+    setSelectedCollection(selectedCollection);
+    setActiveTabAndQuery(COLLECTIONS);
+  };
+
   return (
     <PageShell>
       <PageHeader>
         <HeaderRow>
           {selectedCollection && (
-            <AuthBackButton
-              marginBottom="0px"
-              onClick={() => setSelectedCollection(null)}
-            />
+            <AuthBackButton marginBottom="0px" onClick={handleBackToBase} />
           )}
           <Title>
             {selectedCollection
@@ -155,6 +165,7 @@ export default function CreatorsContents() {
         contentType={contentTypeFlow.selectedContentType}
         onClose={contentTypeFlow.close}
         onBack={contentTypeFlow.backToTypeSelect}
+        onUploadSuccess={handleUploadSuccess}
       />
 
       <GenericModal

@@ -5,6 +5,7 @@ import {
   LEGACY_DASHBOARD_TAB_QUERY_KEYS,
 } from "@/utils/Constants";
 import {
+  ADD_CONTENT_TABS,
   COLLECTIONS,
   CONTENT_TABS,
   ContentTab,
@@ -17,11 +18,14 @@ type TabItem = {
   labelKey: string;
 };
 
-export const useContentsViewState = () => {
+export const useContentsViewState = (tabMode: "base" | "upload") => {
   const { activeTab, setActiveTabAndQuery } = useQuerySyncedTab<ContentTab>({
     queryKey: CONTENT_TAB,
     defaultTab: COLLECTIONS,
-    validTabs: CONTENT_TABS.map((tab) => tab.key),
+    validTabs: [
+      ...CONTENT_TABS.map((t) => t.key),
+      ...Object.values(ADD_CONTENT_TABS),
+    ],
     cleanupQueryKeys: LEGACY_DASHBOARD_TAB_QUERY_KEYS,
   });
 
@@ -31,11 +35,27 @@ export const useContentsViewState = () => {
     useState<CollectionRow | null>(null);
 
   const isCollectionContentMode = !!selectedCollection;
-  const visibleTabs = CONTENT_TABS.filter((tab) =>
-    isCollectionContentMode
-      ? tab.key === COLLECTIONS || tab.key === SETTINGS
-      : true,
-  );
+  const visibleTabs =
+    tabMode === "upload"
+      ? [
+          {
+            key: ADD_CONTENT_TABS.GENERAL,
+            labelKey: "contents.tabs.general",
+          },
+          {
+            key: ADD_CONTENT_TABS.METADATA,
+            labelKey: "contents.tabs.metadata",
+          },
+          {
+            key: ADD_CONTENT_TABS.PAYMENT,
+            labelKey: "contents.tabs.payment",
+          },
+        ]
+      : CONTENT_TABS.filter((tab) =>
+          isCollectionContentMode
+            ? tab.key === COLLECTIONS || tab.key === SETTINGS
+            : true,
+        );
 
   const getTabLabelKey = (tab: TabItem) => {
     if (isCollectionContentMode && tab.key === COLLECTIONS) {

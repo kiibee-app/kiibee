@@ -26,12 +26,14 @@ import SelectedFileView from "./SelectedFileView";
 import ContentUploadDetails from "./UploadDetails";
 import WebContentLinkForm from "./WebContentLinkForm";
 import { FORMAT_TYPE } from "@/utils/types";
+import { ADD_CONTENT_TABS, AddContentTab } from "@/utils/common";
 
 type ContentUploadModalProps = {
   visible: boolean;
   contentType: ContentType | null;
   onBack: () => void;
   onClose: () => void;
+  onUploadSuccess?: (tab: AddContentTab) => void;
 };
 
 export default function ContentUploadModal({
@@ -39,12 +41,14 @@ export default function ContentUploadModal({
   contentType,
   onBack,
   onClose,
+  onUploadSuccess,
 }: ContentUploadModalProps) {
   const { t } = useTranslation();
   const [showDetails, setShowDetails] = useState(false);
   const [webContentLink, setWebContentLink] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
   const {
     fileInputRef,
     selectedFile,
@@ -86,13 +90,22 @@ export default function ContentUploadModal({
 
   const handleWebNextClick = () => {
     if (!webContentLink.trim()) return;
+    setIsSuccess(false);
     setShowDetails(true);
+    setTitle("");
+    setDescription("");
   };
 
   const handleAdd = () => {
     if (!title.trim() || !description.trim()) return;
+    setIsSuccess(true);
+    onUploadSuccess?.(ADD_CONTENT_TABS.GENERAL);
   };
 
+  const handleResetDetails = () => {
+    setIsSuccess(false);
+    setShowDetails(true);
+  };
   const isWebContent = contentType === FORMAT_TYPE.WEB;
 
   return (
@@ -108,7 +121,11 @@ export default function ContentUploadModal({
         type={BUTTON}
         aria-label={t("common.back")}
         onClick={() =>
-          showDetails ? setShowDetails(false) : handleExit(onBack)
+          isSuccess
+            ? handleResetDetails()
+            : showDetails
+              ? setShowDetails(false)
+              : handleExit(onBack)
         }
       >
         <BackButtonIcon size={28} strokeWidth={2.5} />
@@ -129,6 +146,8 @@ export default function ContentUploadModal({
               setTitle={handleChange(setTitle)}
               setDescription={handleChange(setDescription)}
               onAdd={handleAdd}
+              uploadType={contentType}
+              isSuccess={isSuccess}
             />
           ) : isWebContent ? (
             <WebContentLinkForm
