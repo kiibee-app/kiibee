@@ -1,6 +1,8 @@
 import { MonoText } from "@/components/UI/Monotext";
+import Link from "next/link";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
+import { USER_ROLES, UserRole } from "@/utils/Constants";
 
 export const HeaderWrapper = styled.header`
   height: 70px;
@@ -24,10 +26,12 @@ export const HeaderWrapper = styled.header`
 export const Left = styled.div`
   display: flex;
   align-items: center;
+  min-width: 180px;
   padding-left: 16px;
   gap: 10px;
 
   ${media.tablet} {
+    min-width: 0;
     padding-left: 0;
   }
 `;
@@ -61,11 +65,36 @@ export const HamburgerLine = styled.span`
 export const Right = styled.div`
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 12px;
+  min-width: 180px;
+  justify-content: flex-end;
 
   ${media.tablet} {
+    min-width: 0;
     position: absolute;
     right: 12px;
+  }
+`;
+
+export const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 42px;
+
+  ${media.tablet} {
+    display: none;
+  }
+`;
+
+export const NavItem = styled(Link)`
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.8;
   }
 `;
 
@@ -90,7 +119,6 @@ export const EmailWrapper = styled.div`
 export const ProfileCircle = styled.div`
   width: 48px;
   height: 48px;
-  padding: 9px 18px;
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.gredint.PALE_GREEN};
   display: flex;
@@ -111,6 +139,17 @@ export const LogoButton = styled.button`
   background: transparent;
   padding: 0;
   cursor: pointer;
+`;
+
+export const RoleRight = styled.div<{ $role: UserRole }>`
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ $role }) => ($role === USER_ROLES.CREATOR ? "12px" : "0")};
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  padding: 0;
 `;
 export const ChannelText = styled(MonoText)`
   ${media.tablet} {

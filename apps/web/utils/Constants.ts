@@ -36,6 +36,11 @@ export const CARD_BRANDS = {
   MASTERCARD: "mastercard",
 } as const;
 
+export const DASHBOARD_HEADER_TEXT = {
+  CREATOR_PROFILE_ARIA_LABEL: "Creator profile",
+  VIEWER_PROFILE_ARIA_LABEL: "Viewer profile",
+} as const;
+
 export type CardBrand = (typeof CARD_BRANDS)[keyof typeof CARD_BRANDS];
 
 export function isString(value: unknown): value is string {
@@ -54,3 +59,10 @@ export type CouponAction =
   | typeof COUPON_ACTION_EDIT
   | typeof COUPON_ACTION_STATUS
   | typeof COUPON_ACTION_DELETE;
+
+export const USER_ROLES = {
+  CREATOR: "creator",
+  VIEWER: "viewer",
+} as const;
+
+export type UserRole = (typeof USER_ROLES)[keyof typeof USER_ROLES];

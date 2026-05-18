@@ -4,9 +4,9 @@ import React, { useCallback, useMemo, useState } from "react";
 import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
-import ViewerDashboardHeader from "@/components/Layout/ViewerDashboardHeader";
+import DashboardHeader from "@/components/Layout/DashboardHeader";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { VIEW } from "@/utils/Constants";
+import { VIEW, USER_ROLES } from "@/utils/Constants";
 import {
   VIEWER_LABEL_TO_VIEW,
   VIEWER_LABELS,
@@ -107,7 +107,8 @@ export default function ClientDashboardViewer() {
     <DashboardLayout
       sidebarExpanded={sidebarExpanded}
       header={
-        <ViewerDashboardHeader
+        <DashboardHeader
+          role={USER_ROLES.VIEWER}
           onToggleSidebar={toggleSidebar}
           onProfileClick={() => handleSelect(VIEWER_LABELS.MY_PROFILE)}
         />
