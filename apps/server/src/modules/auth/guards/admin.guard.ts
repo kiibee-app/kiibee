@@ -24,7 +24,6 @@ export class CreatorGuard extends AuthGuard('jwt') {
   }
 
   handleRequest(err: any, user: any) {
-    console.log('CreatorGuard: user role:', user?.role);
     if (!user || user.role !== ROLE.CREATOR) {
       throw new ForbiddenException('Only creators can access this resource');
     }
