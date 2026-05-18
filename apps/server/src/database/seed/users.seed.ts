@@ -3,14 +3,24 @@ import { users } from '../schema/users/users.schema';
 import { hashPassword } from 'src/utils/passwordHash';
 
 export const seedUsers = async () => {
-  const passwordHash = await hashPassword('1234');
+  const adminEmail = process.env.SEED_ADMIN_EMAIL?.trim();
+  const viewerEmail = process.env.SEED_VIEWER_EMAIL?.trim();
+  const seedPassword = process.env.SEED_USER_PASSWORD;
+
+  if (!adminEmail || !viewerEmail || !seedPassword) {
+    throw new Error(
+      'Missing seed user credentials. Set SEED_ADMIN_EMAIL, SEED_VIEWER_EMAIL, and SEED_USER_PASSWORD.',
+    );
+  }
+
+  const passwordHash = await hashPassword(seedPassword);
 
   await db
     .insert(users)
     .values([
       {
         id: crypto.randomUUID(),
-        email: 'admin@gmail.com',
+        email: adminEmail,
         passwordHash,
         role: 'admin',
         status: 'active',
@@ -19,7 +29,7 @@ export const seedUsers = async () => {
       },
       {
         id: crypto.randomUUID(),
-        email: 'user@gmail.com',
+        email: viewerEmail,
         passwordHash,
         role: 'viewer',
         status: 'active',
