@@ -39,15 +39,10 @@ export const collections = pgTable(
   },
   (table) => ({
     slugUnique: uniqueIndex('collections_slug_unique').on(table.slug),
-
     creatorIdIdx: index('collections_creator_id_idx').on(table.creatorId),
-
     visibilityIdx: index('collections_visibility_idx').on(table.visibility),
-
     accessTypeIdx: index('collections_access_type_idx').on(table.accessType),
-
     isPublishedIdx: index('collections_is_published_idx').on(table.isPublished),
-
     isDeletedIdx: index('collections_is_deleted_idx').on(table.isDeleted),
   }),
 );
