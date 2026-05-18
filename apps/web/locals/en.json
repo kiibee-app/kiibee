@@ -1423,7 +1423,16 @@
         "description": "Description",
         "descriptionPlaceholder": "Enter Description",
         "add": "Add"
+      },
+      "webForm": {
+        "title": "Add web content",
+        "label": "Web content link",
+        "placeholder": "https://"
       }
+    },
+    "emptyCollection": {
+      "title": "Your collection is empty.",
+      "description": "Add content to your collection which will then be displayed on your channel."
     },
     "deleteModal": {
       "title": "Delete content?",

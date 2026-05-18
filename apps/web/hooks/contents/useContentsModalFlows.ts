@@ -18,6 +18,7 @@ import {
   STEP_ORDER,
   type ContentType,
 } from "@/utils/content";
+import { FORMAT_TYPE } from "@/utils/types";
 import { COLLECTION, CONTENT } from "@/utils/ui";
 
 export const useContentsModalFlows = (
@@ -114,7 +115,7 @@ export const useContentsModalFlows = (
     continueWithType: (contentType: ContentType) => {
       setSelectedContentType(contentType);
       setShowContentTypeModal(false);
-      if (isUploadContentType(contentType)) {
+      if (isUploadContentType(contentType) || contentType === FORMAT_TYPE.WEB) {
         setShowContentUploadModal(true);
         return;
       }

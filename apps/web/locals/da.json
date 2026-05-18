@@ -1423,7 +1423,16 @@
         "description": "Beskrivelse",
         "descriptionPlaceholder": "Indtast beskrivelse",
         "add": "Tilføj"
+      },
+      "webForm": {
+        "title": "Tilføj webindhold",
+        "label": "Webindhold-link",
+        "placeholder": "https://"
       }
+    },
+    "emptyCollection": {
+      "title": "Din samling er tom.",
+      "description": "Tilføj indhold til din samling, som derefter vises på din kanal."
     },
     "deleteModal": {
       "title": "Delete content?",
