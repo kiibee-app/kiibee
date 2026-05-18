@@ -9,7 +9,6 @@ import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 import { KEYBOARD_KEYS } from "@/utils/ui";
 import { CREATORS } from "@/utils/translationKeys";
 import CreatorFiltersControl from "./CreatorsFilters";
-import type { FilterSectionKey } from "@/types/exportCreators";
 import { Hero, HeroTitleText, Inner, Content, Title, Controls } from "./styles";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
 import {
@@ -17,7 +16,7 @@ import {
   CREATOR_OPTIONS,
   FORMAT_OPTION_KEYS,
 } from "@/utils/creatorFilters";
-import { ExploreCreatorsHeroProps } from "@/types/filters";
+import { ExploreCreatorsHeroProps, FilterSectionKey } from "@/types/filters";
 
 export default function ExploreCreatorsHero({
   showControls = true,
