@@ -45,3 +45,12 @@ export function isString(value: unknown): value is string {
 export function toTrimmedString(value: unknown): string {
   return isString(value) ? value.trim() : "";
 }
+
+export const COUPON_ACTION_EDIT = "edit";
+export const COUPON_ACTION_STATUS = "status";
+export const COUPON_ACTION_DELETE = "delete";
+
+export type CouponAction =
+  | typeof COUPON_ACTION_EDIT
+  | typeof COUPON_ACTION_STATUS
+  | typeof COUPON_ACTION_DELETE;

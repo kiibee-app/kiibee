@@ -6,6 +6,7 @@ import { useCreatorRequests } from "../../../hooks/api";
 import { usePagination } from "../../../hooks/ui/use-pagination";
 import { AllCreatorsPanel, AllCreatorsState } from "./AllCreators.styles";
 import { CreatorRequestsTable } from "./CreatorRequestsTable";
+import { CreatorRequestsTableSkeleton } from "./CreatorRequestsTableSkeleton";
 import { CreatorPagination } from "./CreatorPagination";
 import { CreatorDetailsModal } from "./CreatorDetailsModal";
 import { useCreatorRequestActions } from "./useCreatorRequestActions";
@@ -38,7 +39,7 @@ export function AllCreatorsTable() {
   if (creatorRequestsQuery.isLoading) {
     return (
       <AllCreatorsPanel>
-        <AllCreatorsState>Loading creator requests...</AllCreatorsState>
+        <CreatorRequestsTableSkeleton />
       </AllCreatorsPanel>
     );
   }

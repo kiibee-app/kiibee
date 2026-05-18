@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import type { CreatorStatus } from "../../../types/creator-request";
 
 export const AllCreatorsPanel = styled.div`
@@ -278,4 +278,27 @@ export const LinkText = styled.a`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const skeletonPulse = keyframes`
+  0% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.55;
+  }
+`;
+
+export const SkeletonLine = styled.span<{ $width?: string; $height?: string }>`
+  display: block;
+  width: ${({ $width }) => $width ?? "100%"};
+  height: ${({ $height }) => $height ?? "12px"};
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  animation: ${skeletonPulse} 1.25s ease-in-out infinite;
 `;

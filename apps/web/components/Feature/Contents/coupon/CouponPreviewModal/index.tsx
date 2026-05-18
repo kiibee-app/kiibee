@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { BackButtonIcon, SuccessArcIcon } from "@/assets/icons";
+import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import {
   BackButton,
@@ -27,9 +27,9 @@ import {
   UploadList,
 } from "./styles";
 import { COUPON_DISCOUNT_PERCENTAGE } from "@/utils/common";
-import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
 import { BUTTON } from "@/utils/Constants";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
 type Props = {
   visible: boolean;
@@ -140,11 +140,7 @@ export default function CouponPreviewModal({
         )}
         {isSuccess && (
           <UploadList>
-            <SuccessArcIcon
-              width={40}
-              height={40}
-              color={COLORS.primary.GREEN_200}
-            />
+            <SuccessModalIcon />
             <MonoText $use="H5_Medium">
               {t("contents.couponPreview.uploading")}
             </MonoText>

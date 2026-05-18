@@ -1314,6 +1314,12 @@
       "title": "Kuponer",
       "description": "Opret og administrer alle dine rabatkuponer."
     },
+    "couponActions": {
+      "editCoupon": "Rediger kupon",
+      "makeActive": "Gor aktiv",
+      "makeInactive": "Gor inaktiv",
+      "delete": "Slet"
+    },
     "placeholders": {
       "collections": "Samlinger vil blive vist her.",
       "appearance": "Udseende vil blive vist her.",

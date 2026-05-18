@@ -11,8 +11,8 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { EXPORT_TYPE_OPTIONS } from "@/utils/exportOptions";
-import { SuccessArcIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
 export default function ExportContent() {
   const { t } = useTranslation();
@@ -77,13 +77,7 @@ export default function ExportContent() {
       </Section>
       <GenericModal
         visible={showSuccessModal}
-        icon={
-          <SuccessArcIcon
-            width={40}
-            height={40}
-            color={COLORS.primary.GREEN_200}
-          />
-        }
+        icon={<SuccessModalIcon />}
         iconMargin="0 auto 8px"
         title={t(SETTINGS.export.modalTitle)}
         message={t(SETTINGS.export.modalMessage)}
