@@ -1,15 +1,14 @@
 import dashboardImage from "@/assets/images/creator-dashboard.png";
-import { ImageSource } from "./Constants";
+import step1 from "../assets/images/steps/step1.webp";
+import step2 from "../assets/images/steps/step2.webp";
+import step3 from "../assets/images/steps/step3.webp";
+import {
+  CreatorOnboardingStep,
+  HowItWorksStep,
+  TrendingContentStep,
+} from "./steps/types";
 
-export interface Step {
-  id: number;
-  titleKey: string;
-  descriptionKey: string;
-  image: ImageSource;
-  listKey?: string;
-}
-
-export const steps: Step[] = [
+export const creatorOnboardingSteps: CreatorOnboardingStep[] = [
   {
     id: 1,
     titleKey: "creators.howToGetStarted.steps.requestAccess.title",
@@ -58,3 +57,46 @@ export const steps: Step[] = [
     image: dashboardImage,
   },
 ];
+
+export const howItWorksSteps: HowItWorksStep[] = [
+  {
+    id: "browse",
+    titleKey: "how.steps.browseTitle",
+    textKey: "how.steps.browseText",
+    img: step1,
+  },
+  {
+    id: "choose",
+    titleKey: "how.steps.chooseTitle",
+    textKey: "how.steps.chooseText",
+    img: step2,
+  },
+  {
+    id: "access",
+    titleKey: "how.steps.accessTitle",
+    textKey: "how.steps.accessText",
+    img: step3,
+  },
+];
+
+export const trendingContentSteps: TrendingContentStep[] = [
+  {
+    number: "01",
+    translationKey: "browse",
+  },
+  {
+    number: "02",
+    translationKey: "choose",
+  },
+  {
+    number: "03",
+    translationKey: "enjoy",
+  },
+];
+
+export type {
+  CreatorOnboardingStep,
+  HowItWorksStep,
+  TrendingContentStep,
+  FeatureStep,
+} from "./steps/types";

@@ -15,13 +15,13 @@ import {
 } from "./styles";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
-import steps from "@/utils/StepsData";
+import { howItWorksSteps } from "@/utils/steps";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 
 export default function HowSteps() {
   const { t } = useTranslation();
-  const items = steps;
+  const items = howItWorksSteps;
 
   return (
     <StepsSection>
