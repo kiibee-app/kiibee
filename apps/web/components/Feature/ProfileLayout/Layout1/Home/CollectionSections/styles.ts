@@ -26,13 +26,6 @@ export const SectionTitle = styled(MonoText).attrs({
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const SectionArrow = styled.span`
-  margin-left: 8px;
-  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
-  font-size: 22px;
-  line-height: 1;
-`;
-
 export const CardsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
