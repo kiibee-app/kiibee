@@ -1,7 +1,6 @@
 import { GenericModal } from "@/components/UI/Modals";
-import { SuccessArcIcon } from "@/assets/icons";
-import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
 type DeleteModalsProps = {
   showDeleteConfirm: boolean;
@@ -37,13 +36,7 @@ export default function DeleteModals({
 
       <GenericModal
         visible={showDeleteSuccess}
-        icon={
-          <SuccessArcIcon
-            width={40}
-            height={40}
-            color={COLORS.primary.GREEN_200}
-          />
-        }
+        icon={<SuccessModalIcon />}
         title={t("contents.deleteSuccessModal.title")}
         message={t("contents.deleteSuccessModal.message")}
         confirmLabel={t("contents.deleteSuccessModal.done")}
