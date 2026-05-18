@@ -23,7 +23,6 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import PasswordSection from "../CreatorProfile/PasswordSection";
 import { useViewerProfile } from "@/hooks/useViewerProfile";
-import { SuccessArcIcon } from "@/assets/icons";
 import { QuestionIcon } from "@/assets/icons/questionIcon";
 import { useRouter } from "next/navigation";
 import { VIEWER_PROFILE_FIELDS } from "@/utils/profile";
@@ -34,6 +33,7 @@ import {
   forgotPwIsError,
   forgotPwIsSuccess,
 } from "@/utils/viewerProfile";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
 export default function ClientViewerProfile() {
   const { t } = useTranslation();
@@ -161,13 +161,7 @@ export default function ClientViewerProfile() {
       </GenericModal>
       <GenericModal
         visible={showProfileSavedModal}
-        icon={
-          <SuccessArcIcon
-            width={40}
-            height={40}
-            color={COLORS.primary.GREEN_200}
-          />
-        }
+        icon={<SuccessModalIcon />}
         iconMargin="0 auto 8px"
         textAlign={MODAL_ALIGN.CENTER}
         title={t("dashboard.viewerProfile.saveModalTitle")}
@@ -180,13 +174,7 @@ export default function ClientViewerProfile() {
       />
       <GenericModal
         visible={forgotPwIsSuccess(forgotPwNotice)}
-        icon={
-          <SuccessArcIcon
-            width={40}
-            height={40}
-            color={COLORS.primary.GREEN_200}
-          />
-        }
+        icon={<SuccessModalIcon />}
         iconMargin="0 auto 8px"
         textAlign={MODAL_ALIGN.CENTER}
         title={t("forgotPassword.checkEmailTitle")}
@@ -216,13 +204,7 @@ export default function ClientViewerProfile() {
       />
       <GenericModal
         visible={showPasswordSuccessModal}
-        icon={
-          <SuccessArcIcon
-            width={40}
-            height={40}
-            color={COLORS.primary.GREEN_200}
-          />
-        }
+        icon={<SuccessModalIcon />}
         iconMargin="0 auto 8px"
         textAlign={MODAL_ALIGN.CENTER}
         title={t("creatorProfile.passwordSuccessTitle")}

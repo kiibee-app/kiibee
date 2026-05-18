@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
-import { SuccessArcIcon } from "@/assets/icons";
-import COLORS from "@repo/ui/colors";
 import { NOTIFICATION_MODAL, NotificationModalType } from "@/utils/ui";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
 type NotificationModalsProps = {
   modalType: NotificationModalType;
@@ -21,13 +20,7 @@ export default function NotificationModals({
   const modalProps = useMemo(() => {
     if (modalType === NOTIFICATION_MODAL.SUCCESS) {
       return {
-        icon: (
-          <SuccessArcIcon
-            width={40}
-            height={40}
-            color={COLORS.primary.GREEN_200}
-          />
-        ),
+        icon: <SuccessModalIcon />,
         iconMargin: "0 auto 8px",
         title: t("settings.notifications.successModal.title"),
         message: t("settings.notifications.successModal.message"),
