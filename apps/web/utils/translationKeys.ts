@@ -168,7 +168,7 @@ export const DASHBOARD_USERS = {
   search: "users.search",
   tabs: {
     registrations: "users.tabs.registrations",
-    salest: "users.tabs.salest",
+    sales: "users.tabs.sales",
   },
   registrations: {
     title: "users.registrations.title",

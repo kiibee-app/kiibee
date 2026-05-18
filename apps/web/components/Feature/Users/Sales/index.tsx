@@ -21,7 +21,7 @@ type SalestTabContentProps = {
   searchValue: string;
 };
 
-export default function SalestTabContent({
+export default function SalesTabContent({
   searchValue,
 }: SalestTabContentProps) {
   const { t } = useTranslation();
