@@ -2,14 +2,14 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import logo from "@/assets/images/kiibee-wordmark.webp";
-import { HomeIcon } from "@/assets/icons/homeIcon";
 import { PATHS } from "@/utils/path";
 import {
+  HamburgerButton,
+  HamburgerLine,
   HeaderWrapper,
   Left,
-  MobileToggle,
+  LogoButton,
   Nav,
   NavItem,
   ProfileButton,
@@ -31,10 +31,20 @@ export default function ViewerDashboardHeader({
   return (
     <HeaderWrapper>
       <Left>
-        <MobileToggle onClick={onToggleSidebar} aria-label="Toggle sidebar">
-          <HomeIcon width={24} height={24} />
-        </MobileToggle>
-        <Link href={PATHS.HOME}>
+        <HamburgerButton
+          type="button"
+          onClick={onToggleSidebar}
+          aria-label={t("dashboard.toggleSidebar")}
+        >
+          <HamburgerLine />
+          <HamburgerLine />
+          <HamburgerLine />
+        </HamburgerButton>
+        <LogoButton
+          type="button"
+          onClick={onToggleSidebar}
+          aria-label={t("dashboard.toggleSidebar")}
+        >
           <Image
             src={logo}
             alt={t("nav.logoAlt")}
@@ -42,7 +52,7 @@ export default function ViewerDashboardHeader({
             height={27}
             priority
           />
-        </Link>
+        </LogoButton>
       </Left>
 
       <Nav>

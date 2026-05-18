@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useMemo, useState } from "react";
+import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import ViewerDashboardHeader from "@/components/Layout/ViewerDashboardHeader";
@@ -35,7 +36,8 @@ const ROUTABLE_VIEWER_VIEWS = new Set<string>([
 
 export default function ClientDashboardViewer() {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
+  const { sidebarExpanded, toggleSidebar, collapseSidebar } =
+    useSidebarExpanded(768);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutEmail, setLogoutEmail] = useState("");
   const searchParams = useSearchParams();
@@ -43,14 +45,6 @@ export default function ClientDashboardViewer() {
   const router = useRouter();
   const { logout } = useLogout();
   const { getUser } = useAuthSession();
-
-  const toggleSidebar = useCallback(() => {
-    setOpen((prev) => !prev);
-  }, []);
-
-  const closeSidebar = useCallback(() => {
-    setOpen(false);
-  }, []);
 
   const viewParam = searchParams?.get(VIEW);
   const activePage: ViewerLabel =
@@ -111,6 +105,7 @@ export default function ClientDashboardViewer() {
 
   return (
     <DashboardLayout
+      sidebarExpanded={sidebarExpanded}
       header={
         <ViewerDashboardHeader
           onToggleSidebar={toggleSidebar}
@@ -126,8 +121,8 @@ export default function ClientDashboardViewer() {
       }
       sidebar={
         <Sidebar
-          open={open}
-          onClose={closeSidebar}
+          expanded={sidebarExpanded}
+          onCollapse={collapseSidebar}
           activeItem={activePage}
           onSelect={handleSidebarSelect}
           onLogout={handleLogoutClick}

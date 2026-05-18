@@ -17,7 +17,7 @@ export const HeaderWrapper = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 
   ${media.tablet} {
-    justify-content: center;
+    padding: 12px;
   }
 `;
 
@@ -25,15 +25,37 @@ export const Left = styled.div`
   display: flex;
   align-items: center;
   padding-left: 16px;
+  gap: 10px;
 
   ${media.tablet} {
     padding-left: 0;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
   }
+`;
+
+export const HamburgerButton = styled.button`
+  width: 40px;
+  height: 40px;
+  border: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0;
+
+  ${media.tablet} {
+    display: inline-flex;
+  }
+`;
+
+export const HamburgerLine = styled.span`
+  width: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const Right = styled.div`
@@ -43,7 +65,7 @@ export const Right = styled.div`
 
   ${media.tablet} {
     position: absolute;
-    right: 16px;
+    right: 12px;
   }
 `;
 
@@ -82,19 +104,13 @@ export const InitialAvatar = styled(MonoText).attrs({
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const MobileToggle = styled.button`
-  display: none;
-  background: none;
+export const LogoButton = styled.button`
+  display: inline-flex;
+  align-items: center;
   border: none;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
-
-  ${media.tablet} {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    left: 16px;
-  }
 `;
 export const ChannelText = styled(MonoText)`
   ${media.tablet} {

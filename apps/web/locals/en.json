@@ -1124,6 +1124,7 @@
       "forgotPasswordModalMessage": "We sent a password reset link to {{email}}. If it doesn’t arrive within a few minutes, check your spam folder.",
       "forgotPasswordErrorTitle": "Could not send reset link"
     },
+    "toggleSidebar": "Toggle sidebar",
     "logoutModal": {
       "title": "Log out",
       "message": "Are you sure you want to log out as {{email}}?",
