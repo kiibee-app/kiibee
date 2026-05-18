@@ -6,6 +6,7 @@ import Hero from "../Hero";
 import { latestUploadDataLayout1 } from "@/utils/dummyData/lastestUpload.data";
 import { HeroWrapper, ContentInner } from "../Hero/styles";
 import LatestUpload from "../../Layout2/Home/LatestUpload";
+import CollectionSections from "./CollectionSections";
 
 const SectionWrapper = styled(HeroWrapper)`
   margin-top: 0;
@@ -24,6 +25,7 @@ export default function CreateProfile1Home() {
       <SectionWrapper>
         <ContentAdjust>
           <LatestUpload data={latestUploadDataLayout1} />
+          <CollectionSections />
         </ContentAdjust>
       </SectionWrapper>
     </CreateProfile1Layout>
