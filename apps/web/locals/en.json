@@ -1011,7 +1011,7 @@
   "users": {
     "tabs": {
       "registrations": "Registrations (11)",
-      "salest": "Sales (50)"
+      "sales": "Sales (50)"
     },
     "registrations": {
       "title": "E-mail signups",
@@ -1131,7 +1131,7 @@
     "users": {
       "tabs": {
         "registrations": "Registrations (11)",
-        "sales": "Sales (50)"
+        "salest": "Sales (50)"
       },
       "registrations": {
         "title": "E-mail signups",
