@@ -2,7 +2,7 @@
 
 import CreateProfileLayout from "../../../../Layout/CreateProfile2";
 import Hero from "../Hero";
-import CollectionList from "./CollectionList";
+import CollectionList from "@/components/Feature/ProfileLayout/shared/CollectionList";
 
 export default function Collections() {
   return (
