@@ -1,7 +1,7 @@
 "use client";
 
 import CreateProfileLayout from "../../../../Layout/CreateProfile2";
-import LastestUpload from "./LastestUpload";
+import LastestUpload from "./LatestUpload";
 import Hero from "../Hero";
 import AboutSection from "../About/AboutSection";
 

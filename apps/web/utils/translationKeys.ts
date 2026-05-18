@@ -167,7 +167,7 @@ export const CREATOR_PROFILE = {
 export const DASHBOARD_USERS = {
   tabs: {
     registrations: "users.tabs.registrations",
-    salest: "users.tabs.salest",
+    salest: "users.tabs.sales",
   },
   registrations: {
     title: "users.registrations.title",

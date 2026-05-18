@@ -16,7 +16,7 @@ import {
   TableSection,
 } from "./styles";
 
-export default function SalestTabContent() {
+export default function SalesTabContent() {
   const { t } = useTranslation();
   const [nameSortDirection, setNameSortDirection] =
     useState<SortDirectionWithNone>(SORT_DIRECTIONS.NONE);

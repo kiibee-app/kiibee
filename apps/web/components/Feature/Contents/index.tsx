@@ -18,7 +18,6 @@ import ContentsHeaderAction from "./ContentsHeaderAction";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import AuthBackButton from "../Auth/AuthBackButton";
-import DeleteModals from "./CollectionDeleteMobal";
 import CreateCollectionModal from "./Collections/CreateCollectionModal";
 import ContentTabPanel from "./ContentTabPanel";
 import CouponFlowModals from "./coupon/CouponFlowModals";
@@ -27,6 +26,7 @@ import ContentUploadModal from "./ContentUploadModal";
 import { useContentsViewState } from "@/hooks/contents/useContentsViewState";
 import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
+import DeleteModals from "./CollectionDeleteModal";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
