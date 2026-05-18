@@ -9,7 +9,7 @@ export const Container = styled.footer`
 
 export const Inner = styled.div`
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 35px auto 0 auto;
   padding: 18px 24px;
   display: flex;
   align-items: center;
