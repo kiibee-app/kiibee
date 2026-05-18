@@ -7,7 +7,7 @@ export const Hero = styled.section`
   position: relative;
   z-index: 20;
   isolation: isolate;
-  min-height: 80vh;
+  min-height: 40vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +26,7 @@ export const Inner = styled.div`
   z-index: 1;
   width: 100%;
   max-width: 1200px;
-  padding: 80px 20px;
+  padding: 90px 20px 30px 20px;
   display: flex;
   justify-content: center;
 `;
