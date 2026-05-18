@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import COLORS from "@repo/ui/colors";
+import theme from "@repo/ui/theme";
 
 export default function TestBoundaryPage() {
   const [shouldCrash, setShouldCrash] = useState(false);
@@ -28,7 +29,7 @@ export default function TestBoundaryPage() {
           border: `1px solid ${COLORS.neutral.GRAY_200}`,
           borderRadius: "14px",
           padding: "24px",
-          boxShadow: "0 10px 30px rgba(2, 6, 23, 0.08)",
+          boxShadow: theme.shadows.lg,
         }}
       >
         <h1
