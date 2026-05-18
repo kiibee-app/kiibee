@@ -1,14 +1,14 @@
 "use client";
 
 import CreateProfileLayout from "../../../../Layout/CreateProfile2";
-import LastestUpload from "./LatestUpload";
-import type { LastestUploadData } from "./LastestUpload";
+import LatestUpload from "./LatestUpload";
+import type { LatestUploadData } from "./LatestUpload";
 import latestUploadImage from "@/assets/images/creators/recent_creator1.webp";
 import Hero from "../Hero";
 import AboutSection from "../About/AboutSection";
 
 export default function Home() {
-  const latestUploadData: LastestUploadData = {
+  const latestUploadData: LatestUploadData = {
     sectionTitle: "Latest upload",
     badge: "Design",
     image: latestUploadImage,
@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <CreateProfileLayout>
       <Hero />
-      <LastestUpload data={latestUploadData} />
+      <LatestUpload data={latestUploadData} />
       <AboutSection />
     </CreateProfileLayout>
   );
