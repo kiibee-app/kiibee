@@ -27,6 +27,12 @@ export const seedContentTypes = async () => {
       description: 'E-book format content',
       isActive: true,
     },
+    {
+      id: 'web',
+      name: 'Web Link',
+      description: 'External web link content',
+      isActive: true,
+    },
   ];
 
   await db.insert(contentTypes).values(types).onConflictDoNothing();

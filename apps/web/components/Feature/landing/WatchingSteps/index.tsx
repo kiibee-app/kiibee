@@ -1,7 +1,7 @@
 "use client";
 
 import GenericButton from "@/components/UI/GenericButton";
-import { steps } from "@/utils/watchSteps";
+import { trendingContentSteps } from "@/utils/steps";
 import {
   Section,
   Content,
@@ -57,7 +57,7 @@ export default function WatchingSteps() {
             />
           </PreviewPanel>
           <StepsColumn>
-            {steps.map((step) => (
+            {trendingContentSteps.map((step) => (
               <StepCard key={step.number}>
                 <NumberPart>
                   <MonoText $use="H5_Medium" color={COLORS.primary.PALE_GREEN}>

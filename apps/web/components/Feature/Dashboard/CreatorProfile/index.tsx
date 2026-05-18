@@ -30,7 +30,6 @@ import { getProfileFields } from "@/utils/creatorProfilefields";
 import { ProfileForm } from "@/utils/creatorProfile";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { GenericModal } from "@/components/UI/Modals";
-import { SuccessArcIcon } from "@/assets/icons";
 import { QuestionIcon } from "@/assets/icons/questionIcon";
 import { useRouter } from "next/navigation";
 import ImageUploader from "./ImageUploader";
@@ -42,6 +41,7 @@ import {
   forgotPwIsError,
   forgotPwIsSuccess,
 } from "@/utils/viewerProfile";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
 export default function CreatorProfile() {
   const { t } = useTranslation();
@@ -182,13 +182,7 @@ export default function CreatorProfile() {
 
       <GenericModal
         visible={forgotPwIsSuccess(forgotPwNotice)}
-        icon={
-          <SuccessArcIcon
-            width={40}
-            height={40}
-            color={COLORS.primary.GREEN_200}
-          />
-        }
+        icon={<SuccessModalIcon />}
         iconMargin="0 auto 8px"
         textAlign={MODAL_ALIGN.CENTER}
         title={t("forgotPassword.checkEmailTitle")}
@@ -219,15 +213,7 @@ export default function CreatorProfile() {
 
       <GenericModal
         visible={showDeleteModal || showDeleteSuccessModal}
-        icon={
-          showDeleteSuccessModal ? (
-            <SuccessArcIcon
-              width={40}
-              height={40}
-              color={COLORS.primary.GREEN_200}
-            />
-          ) : undefined
-        }
+        icon={showDeleteSuccessModal ? <SuccessModalIcon /> : undefined}
         iconMargin={showDeleteSuccessModal ? "0 auto 8px" : undefined}
         title={
           showDeleteSuccessModal
@@ -265,13 +251,7 @@ export default function CreatorProfile() {
       />
       <GenericModal
         visible={showPasswordSuccessModal}
-        icon={
-          <SuccessArcIcon
-            width={40}
-            height={40}
-            color={COLORS.primary.GREEN_200}
-          />
-        }
+        icon={<SuccessModalIcon />}
         iconMargin="0 auto 8px"
         title={t("creatorProfile.passwordSuccessTitle")}
         message={t("creatorProfile.passwordSuccessMessage")}

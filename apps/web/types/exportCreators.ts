@@ -1,6 +1,7 @@
 import React from "react";
 import { FilterGroupKey } from "@/utils/creatorFilters";
 import { TFunction } from "i18next";
+import { FilterSectionKey } from "./filters";
 
 export type OptionItem = {
   key: string;
@@ -16,12 +17,9 @@ export const PRICE_RANGE_FIELDS = {
   MAX: "max",
 } as const;
 
-export type FilterPanelSectionKey =
-  (typeof FILTER_PANEL_SECTIONS)[keyof typeof FILTER_PANEL_SECTIONS];
 export type PriceRangeFieldKey =
   (typeof PRICE_RANGE_FIELDS)[keyof typeof PRICE_RANGE_FIELDS];
 
-export type FilterSectionKey = FilterGroupKey | FilterPanelSectionKey;
 export type CreatorFiltersControlRefs = {
   filterButtonRef: React.RefObject<HTMLButtonElement | null>;
   filterOverlayRef: React.RefObject<HTMLDivElement | null>;

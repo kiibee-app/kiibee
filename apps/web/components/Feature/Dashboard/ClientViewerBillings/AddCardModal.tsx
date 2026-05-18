@@ -5,12 +5,12 @@ import { GenericModal } from "@/components/UI/Modals";
 import InputField from "@/components/UI/InputFields";
 import { INPUT_TYPE, MODAL_ALIGN } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
-import { CardIcon, SuccessArcIcon } from "@/assets/icons";
+import { CardIcon } from "@/assets/icons";
 import { useAddCard } from "@/hooks/useAddCard";
 import { Container, ErrorText, FieldWrapper, Grid } from "./styles";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { useTranslation } from "react-i18next";
-import COLORS from "@repo/ui/colors";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
 type AddCardModalProps = {
   visible: boolean;
@@ -128,13 +128,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
 
       <GenericModal
         visible={successOpen}
-        icon={
-          <SuccessArcIcon
-            width={40}
-            height={40}
-            color={COLORS.primary.GREEN_200}
-          />
-        }
+        icon={<SuccessModalIcon />}
         title={t(
           DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.successTitle,
         )}

@@ -1012,7 +1012,7 @@
     "search": "Search by name",
     "tabs": {
       "registrations": "Registrations (11)",
-      "salest": "Sales (50)"
+      "sales": "Sales (50)"
     },
     "registrations": {
       "title": "E-mail signups",
@@ -1313,6 +1313,12 @@
     "couponsCard": {
       "title": "Coupons",
       "description": "Create and manage all your discount coupons."
+    },
+    "couponActions": {
+      "editCoupon": "Edit coupon",
+      "makeActive": "Make active",
+      "makeInactive": "Make inactive",
+      "delete": "Delete"
     },
     "admissionRequirements": {
       "title": "Admission requirements",
