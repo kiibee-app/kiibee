@@ -3,10 +3,10 @@
 import styled from "styled-components";
 import CreateProfile1Layout from "@/components/Layout/CreateProfile1";
 import Hero from "../Hero";
-import LastestUpload from "../../Layout2/Home/LastestUpload";
 import { latestUploadDataLayout1 } from "@/utils/dummyData/lastestUpload.data";
 import CollectionSections from "./CollectionSections";
 import { HeroWrapper, ContentInner } from "../Hero/styles";
+import LatestUpload from "../../Layout2/Home/LatestUpload";
 
 const SectionWrapper = styled(HeroWrapper)`
   margin-top: 0;

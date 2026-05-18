@@ -4,6 +4,7 @@ import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
 import { COUPON_STATUS } from "@/types/couponType";
+import { Dropdown } from "@/components/UI/SortDropdown/styles";
 
 export const ModalContent = styled.div`
   display: flex;
@@ -140,4 +141,15 @@ export const ActionWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
+
+  ${Dropdown} {
+    top: 0;
+    right: 24px;
+  }
+`;
+
+export const CouponActionText = styled.span<{ $danger?: boolean }>`
+  color: ${({ $danger, theme }) =>
+    $danger ? theme.colors.primary.RED : theme.colors.neutral.GRAY};
+  ${typography.Body_Regular};
 `;

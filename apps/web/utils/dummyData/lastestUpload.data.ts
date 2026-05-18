@@ -1,7 +1,7 @@
 import latestUploadImage from "@/assets/images/creators/recent_creator.webp";
-import type { LastestUploadData } from "@/components/Feature/ProfileLayout/Layout2/Home/LastestUpload";
+import { LatestUploadData } from "@/components/Feature/ProfileLayout/Layout2/Home/LatestUpload";
 
-export const latestUploadDataLayout1: LastestUploadData = {
+export const latestUploadDataLayout1: LatestUploadData = {
   sectionTitle: "Latest upload",
   badge: "Design",
   image: latestUploadImage,
@@ -29,7 +29,7 @@ export const latestUploadDataLayout1: LastestUploadData = {
   },
 };
 
-export const latestUploadDataLayout3: LastestUploadData = {
+export const latestUploadDataLayout3: LatestUploadData = {
   sectionTitle: "Latest upload",
   badge: "Design",
   image: latestUploadImage,

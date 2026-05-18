@@ -1012,7 +1012,7 @@
     "search": "Sog efter navn",
     "tabs": {
       "registrations": "Registreringer (11)",
-      "salest": "Salg (50)"
+      "sales": "Salg (50)"
     },
     "registrations": {
       "title": "E-mail tilmeldinger",
@@ -1313,6 +1313,12 @@
     "couponsCard": {
       "title": "Kuponer",
       "description": "Opret og administrer alle dine rabatkuponer."
+    },
+    "couponActions": {
+      "editCoupon": "Rediger kupon",
+      "makeActive": "Gor aktiv",
+      "makeInactive": "Gor inaktiv",
+      "delete": "Slet"
     },
     "placeholders": {
       "collections": "Samlinger vil blive vist her.",

@@ -32,12 +32,12 @@ import { GenericModal } from "@/components/UI/Modals";
 import { PATHS } from "@/utils/path";
 import { MODAL_ALIGN } from "@/utils/ui";
 
-type LastestUploadAction = {
+type LatestUploadAction = {
   title: string;
   subtitle?: string;
 };
 
-export type LastestUploadData = {
+export type LatestUploadData = {
   sectionTitle: string;
   badge: string;
   image: ImageSource;
@@ -45,7 +45,7 @@ export type LastestUploadData = {
   title: string;
   year: string;
   description: string;
-  actions: [LastestUploadAction, LastestUploadAction?];
+  actions: [LatestUploadAction, LatestUploadAction?];
   imageStyle?: {
     width?: string;
     height?: string;
@@ -61,11 +61,11 @@ export type LastestUploadData = {
   };
 };
 
-type LastestUploadProps = {
-  data: LastestUploadData;
+type LatestUploadProps = {
+  data: LatestUploadData;
 };
 
-export default function LastestUpload({ data }: LastestUploadProps) {
+export default function LatestUpload({ data }: LatestUploadProps) {
   const { t } = useTranslation();
   const router = useRouter();
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);

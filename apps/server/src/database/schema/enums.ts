@@ -13,6 +13,7 @@ export const visibilityEnum = pgEnum('visibility', [
   'public',
   'hidden',
   'draft',
+  'private',
 ]);
 
 export const accessTypeEnum = pgEnum('access_type', [

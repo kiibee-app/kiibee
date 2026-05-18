@@ -3,7 +3,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
-import COLORS from "@repo/ui/colors";
 import {
   ContentPanel,
   ContentsScrollArea,
@@ -13,12 +12,10 @@ import {
   PageShell,
   Title,
 } from "./styles";
-import { SuccessArcIcon } from "@/assets/icons";
 import ContentsHeaderAction from "./ContentsHeaderAction";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import AuthBackButton from "../Auth/AuthBackButton";
-import DeleteModals from "./CollectionDeleteMobal";
 import CreateCollectionModal from "./Collections/CreateCollectionModal";
 import ContentTabPanel from "./ContentTabPanel";
 import CouponFlowModals from "./coupon/CouponFlowModals";
@@ -27,6 +24,8 @@ import ContentUploadModal from "./ContentUploadModal";
 import { useContentsViewState } from "@/hooks/contents/useContentsViewState";
 import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
+import DeleteModals from "./CollectionDeleteModal";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
@@ -160,13 +159,7 @@ export default function CreatorsContents() {
 
       <GenericModal
         visible={createCollectionFlow.showSuccessModal}
-        icon={
-          <SuccessArcIcon
-            width={40}
-            height={40}
-            color={COLORS.primary.GREEN_200}
-          />
-        }
+        icon={<SuccessModalIcon />}
         iconMargin="0 auto 8px"
         title={t("contents.createCollectionSuccessModal.title")}
         message={t("contents.createCollectionSuccessModal.message")}
