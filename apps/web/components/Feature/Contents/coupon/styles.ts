@@ -140,4 +140,15 @@ export const ActionWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
+
+  > div > div {
+    top: 0;
+    right: 24px;
+  }
+`;
+
+export const CouponActionText = styled.span<{ $danger?: boolean }>`
+  color: ${({ $danger, theme }) =>
+    $danger ? theme.colors.primary.RED : theme.colors.neutral.GRAY};
+  ${typography.Body_Regular};
 `;

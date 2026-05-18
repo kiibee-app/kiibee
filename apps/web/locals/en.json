@@ -1312,6 +1312,12 @@
       "title": "Coupons",
       "description": "Create and manage all your discount coupons."
     },
+    "couponActions": {
+      "editCoupon": "Edit coupon",
+      "makeActive": "Make active",
+      "makeInactive": "Make inactive",
+      "delete": "Delete"
+    },
     "admissionRequirements": {
       "title": "Admission requirements",
       "description": "Consider what type of access your [contentType] should have",

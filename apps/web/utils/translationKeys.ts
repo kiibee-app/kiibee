@@ -272,6 +272,7 @@ export const CONTENTS = {
   title: "contents.title",
   actions: {
     createCollection: "contents.actions.createCollection",
+    createCoupon: "contents.actions.createCoupon",
     search: "contents.actions.search",
   },
   tabs: {
@@ -280,6 +281,12 @@ export const CONTENTS = {
   couponsCard: {
     title: "contents.couponsCard.title",
     description: "contents.couponsCard.description",
+  },
+  couponActions: {
+    editCoupon: "contents.couponActions.editCoupon",
+    makeActive: "contents.couponActions.makeActive",
+    makeInactive: "contents.couponActions.makeInactive",
+    delete: "contents.couponActions.delete",
   },
   placeholders: {
     collections: "contents.placeholders.collections",
