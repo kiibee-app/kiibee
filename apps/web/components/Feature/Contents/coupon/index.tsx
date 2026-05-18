@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import Table from "@/components/UI/Table";
+import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { ThreeDotIcon } from "@/assets/icons";
@@ -14,14 +15,22 @@ import {
   ActionWrapper,
   CodeBadge,
   CodesWrapper,
+  CouponActionText,
   StatusBadge,
   TableSection,
 } from "./styles";
-import { CouponRow } from "@/types/couponType";
+import { COUPON_STATUS, CouponRow, CouponStatus } from "@/types/couponType";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import { COUPON_TABLE_COLUMNS } from "@/utils/tableHeader";
 import InfoTextCard from "@/components/UI/InfoTextCard";
 import { useTranslation } from "react-i18next";
+import {
+  COUPON_ACTION_DELETE,
+  COUPON_ACTION_EDIT,
+  COUPON_ACTION_STATUS,
+  CouponAction,
+  SORT_DROPDOWN_VARIANT,
+} from "@/utils/Constants";
 
 type CouponTableProps = {
   data: CouponRow[];
@@ -60,6 +69,26 @@ export default function CouponTable({ data }: CouponTableProps) {
       return SORT_DIRECTIONS.NONE;
     });
   };
+
+  const getCouponActionOptions = (
+    status: CouponStatus,
+  ): DropdownOption<CouponAction>[] => [
+    {
+      label: t(CONTENTS_KEYS.couponActions.editCoupon),
+      value: COUPON_ACTION_EDIT,
+    },
+    {
+      label:
+        status === COUPON_STATUS.ACTIVE
+          ? t(CONTENTS_KEYS.couponActions.makeInactive)
+          : t(CONTENTS_KEYS.couponActions.makeActive),
+      value: COUPON_ACTION_STATUS,
+    },
+    {
+      label: t(CONTENTS_KEYS.couponActions.delete),
+      value: COUPON_ACTION_DELETE,
+    },
+  ];
 
   return (
     <>
@@ -114,7 +143,22 @@ export default function CouponTable({ data }: CouponTableProps) {
             if (typedHeader === COUPON_TABLE_COLUMNS[4]) {
               return (
                 <ActionWrapper>
-                  <ThreeDotIcon />
+                  <SortDropdown<CouponAction>
+                    options={getCouponActionOptions(row.status)}
+                    allowNoSelection
+                    compact
+                    dropdownWidth="200px"
+                    maxWidth="200px"
+                    variant={SORT_DROPDOWN_VARIANT.SURFACE}
+                    trigger={<ThreeDotIcon />}
+                    renderOptionLabel={(option) => (
+                      <CouponActionText
+                        $danger={option.value === COUPON_ACTION_DELETE}
+                      >
+                        {option.label}
+                      </CouponActionText>
+                    )}
+                  />
                 </ActionWrapper>
               );
             }

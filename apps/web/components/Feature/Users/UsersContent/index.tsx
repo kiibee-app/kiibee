@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { USER_TABS, UserTabKey } from "@/utils/usersTabs";
 import RegistrationsTabContent from "../Registrations";
-import SalestTabContent from "../Salest";
 import { Title, Wrapper } from "./styles";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { useTranslation } from "react-i18next";
@@ -12,6 +11,7 @@ import {
   CONTENT_TAB,
   LEGACY_DASHBOARD_TAB_QUERY_KEYS,
 } from "@/utils/Constants";
+import SalesTabContent from "../Sales";
 import { DASHBOARD_USERS } from "@/utils/translationKeys";
 
 const DEFAULT_USERS_TAB = USER_TABS[0].key;
@@ -54,11 +54,10 @@ export default function UsersContent() {
           onChange: setSearchValue,
         }}
       />
-
       {activeTab === "registrations" && (
         <RegistrationsTabContent searchValue={searchValue} />
       )}
-      {activeTab === "salest" && <SalestTabContent searchValue={searchValue} />}
+      {activeTab === "sales" && <SalesTabContent searchValue={searchValue} />}
     </Wrapper>
   );
 }

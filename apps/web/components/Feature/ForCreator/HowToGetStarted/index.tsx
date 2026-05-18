@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
-import { steps } from "@/utils/steps";
+import { creatorOnboardingSteps } from "@/utils/steps";
 import { intersectionObserverConfig } from "@/utils/intersectionObserverConfig";
 import {
   Section,
@@ -59,7 +59,7 @@ export default function HowToGetStarted() {
       <Container>
         <ImageContainer>
           <StickyImageWrapper>
-            {steps.map((step, index) => (
+            {creatorOnboardingSteps.map((step, index) => (
               <ImageWrapper key={step.id} $active={activeIndex === index}>
                 <Image
                   src={step.image}
@@ -77,7 +77,7 @@ export default function HowToGetStarted() {
           <Title>{t(CREATORS.howToGetStarted.title)}</Title>
 
           <StepsContainer>
-            {steps.map((step, index) => {
+            {creatorOnboardingSteps.map((step, index) => {
               const listItems = step.listKey
                 ? (t(step.listKey, { returnObjects: true }) as string[])
                 : null;

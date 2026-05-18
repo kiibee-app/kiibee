@@ -29,12 +29,9 @@ import {
   OptionText,
   SectionIcon,
 } from "../styles";
-import {
-  CreatorFiltersControlProps,
-  FilterSectionKey,
-  OptionItem,
-} from "@/types/exportCreators";
+import { CreatorFiltersControlProps, OptionItem } from "@/types/exportCreators";
 import { BUTTON } from "@/utils/Constants";
+import { FilterSectionKey } from "@/types/filters";
 
 function CreatorFiltersControl({
   refs,
