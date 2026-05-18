@@ -5,6 +5,8 @@ import Image from "next/image";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import { PATHS } from "@/utils/path";
 import {
+  HamburgerButton,
+  HamburgerLine,
   HeaderWrapper,
   Left,
   LogoButton,
@@ -29,6 +31,15 @@ export default function ViewerDashboardHeader({
   return (
     <HeaderWrapper>
       <Left>
+        <HamburgerButton
+          type="button"
+          onClick={onToggleSidebar}
+          aria-label={t("dashboard.toggleSidebar")}
+        >
+          <HamburgerLine />
+          <HamburgerLine />
+          <HamburgerLine />
+        </HamburgerButton>
         <LogoButton
           type="button"
           onClick={onToggleSidebar}

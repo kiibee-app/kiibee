@@ -3,19 +3,23 @@ import { useIsMobile } from "@/utils/useIsMobile";
 
 export function useSidebarExpanded(breakpoint = 768) {
   const isMobile = useIsMobile(breakpoint);
-  const [expandedOverride, setExpandedOverride] = useState<boolean | undefined>(
-    undefined,
-  );
+  const [mobileExpanded, setMobileExpanded] = useState(false);
+  const [desktopExpanded, setDesktopExpanded] = useState(true);
 
-  const sidebarExpanded = expandedOverride ?? !isMobile;
+  const sidebarExpanded = isMobile ? mobileExpanded : desktopExpanded;
 
   const toggleSidebar = useCallback(() => {
-    setExpandedOverride((prev) => !(prev ?? !isMobile));
+    if (isMobile) {
+      setMobileExpanded((prev) => !prev);
+      return;
+    }
+
+    setDesktopExpanded((prev) => !prev);
   }, [isMobile]);
 
   const collapseSidebar = useCallback(() => {
     if (isMobile) {
-      setExpandedOverride(false);
+      setMobileExpanded(false);
     }
   }, [isMobile]);
 

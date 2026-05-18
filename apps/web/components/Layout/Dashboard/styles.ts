@@ -30,7 +30,7 @@ export const MainWrapper = styled.div<{ $sidebarExpanded: boolean }>`
   transition: margin-left 0.3s ease;
 
   ${media.tablet} {
-    margin-left: ${SIDEBAR_WIDTH_COLLAPSED}px;
+    margin-left: 0;
   }
 `;
 

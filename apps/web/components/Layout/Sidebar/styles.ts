@@ -25,6 +25,12 @@ export const SidebarWrapper = styled.aside<{ $expanded: boolean }>`
   overflow: hidden;
 
   ${media.tablet} {
+    width: min(84vw, 320px);
+    transform: ${({ $expanded }) =>
+      $expanded ? "translateX(0)" : "translateX(-100%)"};
+    transition:
+      transform 0.3s ease,
+      filter 0.3s ease;
     z-index: ${({ $expanded }) => ($expanded ? 95 : 90)};
     filter: ${({ $expanded }) =>
       $expanded ? "drop-shadow(6px 0 24px rgba(15, 23, 42, 0.12))" : "none"};
@@ -73,7 +79,7 @@ export const Overlay = styled.div<{ $expanded: boolean }>`
     position: fixed;
     inset: 0;
     background: ${({ theme }) => theme.colors.neutral.OVERLAY};
-    z-index: 80;
+    z-index: 85;
   }
 `;
 

@@ -5,6 +5,8 @@ import Image from "next/image";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import {
   HeaderWrapper,
+  HamburgerButton,
+  HamburgerLine,
   Right,
   Divider,
   ProfileCircle,
@@ -36,6 +38,15 @@ const DashboardHeader = ({ onToggleSidebar }: Props) => {
   return (
     <HeaderWrapper>
       <Left>
+        <HamburgerButton
+          type="button"
+          onClick={onToggleSidebar}
+          aria-label={t("dashboard.toggleSidebar")}
+        >
+          <HamburgerLine />
+          <HamburgerLine />
+          <HamburgerLine />
+        </HamburgerButton>
         <LogoButton
           type="button"
           onClick={onToggleSidebar}
