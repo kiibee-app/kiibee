@@ -6,6 +6,7 @@ import design4 from "@/assets/images/crafts.png";
 import design5 from "@/assets/images/flower.png";
 import { PurchasedCollectionItem } from "./viewerPurchasedMockData";
 import { FORMAT_TYPE } from "../types";
+import type { Layout1CollectionSection } from "../types";
 
 export const collectionsData: CollectionRow[] = [
   {
@@ -175,6 +176,87 @@ export const COLLECTIONS_FOR_PAGE: PurchasedCollectionItem[] = [
         label: "Rent xx kr",
         sublabel: "24h access",
         variant: "secondary",
+      },
+    ],
+  },
+];
+
+export const LAYOUT1_COLLECTION_SECTIONS: Layout1CollectionSection[] = [
+  {
+    id: "winter-soups",
+    title: "Winter soups",
+    cards: [
+      {
+        id: "winter-1",
+        badge: "Design",
+        title: "Tomato soup",
+        author: "Raul Jones",
+        published: "9 months ago",
+        mediaType: "video",
+        mediaLabel: "Video",
+        image: design1,
+        actions: [{ label: "Free" }],
+      },
+      {
+        id: "winter-2",
+        badge: "Design",
+        title: "Beetroot soup",
+        author: "Raul Jones",
+        published: "4 days ago",
+        mediaType: "pdf",
+        mediaLabel: "PDF",
+        image: design2,
+        actions: [{ label: "Rent 39 kr" }, { label: "Buy 139 kr" }],
+      },
+      {
+        id: "winter-3",
+        badge: "Educational",
+        title: "Onion and potato soup",
+        author: "Raul Jones",
+        published: "1 year ago",
+        mediaType: "epub",
+        mediaLabel: "E-pub",
+        image: design3,
+        actions: [{ label: "Buy 49 kr" }],
+      },
+      {
+        id: "winter-4",
+        badge: "Design",
+        title: "Spinach soup",
+        author: "Raul Jones",
+        published: "9 days ago",
+        mediaType: "web",
+        mediaLabel: "Web content",
+        image: design4,
+        actions: [{ label: "Buy 49 kr" }],
+      },
+    ],
+  },
+  {
+    id: "asian-recipes",
+    title: "Asian recipes",
+    cards: [
+      {
+        id: "asian-1",
+        badge: "Design",
+        title: "Miso ramen",
+        author: "Raul Jones",
+        published: "9 months ago",
+        mediaType: "video",
+        mediaLabel: "Video",
+        image: design5,
+        actions: [{ label: "Buy collection xx kr" }],
+      },
+      {
+        id: "asian-2",
+        badge: "Design",
+        title: "Miso chicken with rice",
+        author: "Raul Jones",
+        published: "4 days ago",
+        mediaType: "pdf",
+        mediaLabel: "PDF",
+        image: design2,
+        actions: [{ label: "Buy collection xx kr" }],
       },
     ],
   },
