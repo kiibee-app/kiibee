@@ -17,7 +17,12 @@ import CouponTable from "./coupon";
 import CollectionTable from "./Collections";
 import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
-import { PlaceholderLine } from "./styles";
+import {
+  EmptyCollectionCard,
+  EmptyCollectionText,
+  EmptyCollectionTitle,
+  PlaceholderLine,
+} from "./styles";
 import {
   MOVE_DIRECTION_DOWN,
   MOVE_DIRECTION_UP,
@@ -32,6 +37,10 @@ import {
   type CouponListResponse,
   type CouponRow,
 } from "@/types/couponType";
+
+import COLORS from "@repo/ui/colors";
+import { FolderIcon } from "@/assets/icons";
+import { MonoText } from "@/components/UI/Monotext";
 
 type Props = {
   activeTab: ContentTab;
@@ -118,10 +127,32 @@ export default function ContentTabPanel({
 
   const renderCollectionsContent = () => {
     if (selectedCollection) {
+      const data = collectionContents;
+
+      if (!data || data.length === 0) {
+        return (
+          <EmptyCollectionCard>
+            <FolderIcon
+              width={54}
+              height={42}
+              color={COLORS.neutral.GRAY_400}
+            />
+            <EmptyCollectionText>
+              <EmptyCollectionTitle>
+                {t("contents.emptyCollection.title")}
+              </EmptyCollectionTitle>
+              <MonoText $use="Body_Medium">
+                {t("contents.emptyCollection.description")}
+              </MonoText>
+            </EmptyCollectionText>
+          </EmptyCollectionCard>
+        );
+      }
+
       return (
         <CollectionTable
           type={COLLECTION_TABLE_TYPE.CONTENTS}
-          data={collectionContents}
+          data={data}
           onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
           onMoveUp={handleMoveUp}
           onMoveDown={handleMoveDown}

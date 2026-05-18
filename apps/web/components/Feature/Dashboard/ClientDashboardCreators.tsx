@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useMemo, useState } from "react";
+import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import CreatorProfile from "@/components/Feature/Dashboard/CreatorProfile";
 import DashboardLayout from "@/components/Layout/Dashboard";
@@ -30,7 +31,8 @@ const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
 
 export default function ClientDashboardCreators() {
   const { t } = useTranslation();
-  const [open, setOpen] = useState<boolean>(false);
+  const { sidebarExpanded, toggleSidebar, collapseSidebar } =
+    useSidebarExpanded(768);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutEmail, setLogoutEmail] = useState("");
   const router = useRouter();
@@ -39,14 +41,6 @@ export default function ClientDashboardCreators() {
   const { logout } = useLogout();
   const { getUser } = useAuthSession();
   useProfileSync();
-
-  const toggleSidebar = useCallback(() => {
-    setOpen((p) => !p);
-  }, []);
-
-  const closeSidebar = useCallback(() => {
-    setOpen(false);
-  }, []);
 
   const handleLogoutClick = useCallback(() => {
     const email = (getUser() as { email?: string })?.email || "";
@@ -109,10 +103,11 @@ export default function ClientDashboardCreators() {
   return (
     <DashboardLayout
       header={renderHeader()}
+      sidebarExpanded={sidebarExpanded}
       sidebar={
         <Sidebar
-          open={open}
-          onClose={closeSidebar}
+          expanded={sidebarExpanded}
+          onCollapse={collapseSidebar}
           activeItem={activePage}
           onSelect={handleSelect}
           onLogout={handleLogoutClick}

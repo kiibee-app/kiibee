@@ -4,9 +4,14 @@ import { media } from "@repo/ui/breakpoints";
 import Link from "next/link";
 import styled from "styled-components";
 
-export const SidebarWrapper = styled.aside<{ $open: boolean }>`
-  width: 250px;
-  height: calc(100vh - 70px);
+export const SIDEBAR_WIDTH_EXPANDED = 250;
+export const SIDEBAR_WIDTH_COLLAPSED = 72;
+
+export const SidebarWrapper = styled.aside<{ $expanded: boolean }>`
+  width: ${({ $expanded }) =>
+    $expanded ? `${SIDEBAR_WIDTH_EXPANDED}px` : `${SIDEBAR_WIDTH_COLLAPSED}px`};
+  height: calc(100dvh - 70px);
+  min-height: calc(100dvh - 70px);
   position: fixed;
   top: 70px;
   left: 0;
@@ -14,18 +19,29 @@ export const SidebarWrapper = styled.aside<{ $open: boolean }>`
   flex-direction: column;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   z-index: 90;
-  transition: transform 0.3s ease;
+  transition:
+    width 0.3s ease,
+    filter 0.3s ease;
+  overflow: hidden;
 
   ${media.tablet} {
-    transform: ${({ $open }) =>
-      $open ? "translateX(0)" : "translateX(-100%)"};
+    width: min(84vw, 320px);
+    transform: ${({ $expanded }) =>
+      $expanded ? "translateX(0)" : "translateX(-100%)"};
+    transition:
+      transform 0.3s ease,
+      filter 0.3s ease;
+    z-index: ${({ $expanded }) => ($expanded ? 95 : 90)};
+    filter: ${({ $expanded }) =>
+      $expanded ? "drop-shadow(6px 0 24px rgba(15, 23, 42, 0.12))" : "none"};
   }
 `;
 
-export const SidebarMenu = styled.div`
+export const SidebarMenu = styled.div<{ $expanded?: boolean }>`
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  flex-shrink: 0;
+  padding: ${({ $expanded }) => ($expanded ? "16px" : "16px 8px")};
   gap: 16px;
 `;
 
@@ -33,18 +49,38 @@ export const SidebarContent = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
   border-top: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
   border-right: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 `;
 
-export const BottomMenu = styled.div`
+export const BottomMenu = styled.div<{ $expanded?: boolean }>`
   margin-top: auto;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: ${({ $expanded }) => ($expanded ? "16px" : "16px 8px")};
   gap: 16px;
-  padding-bottom: 110px;
+  padding-bottom: 16px;
   border-top: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+
+  ${media.tablet} {
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  }
+`;
+
+export const Overlay = styled.div<{ $expanded: boolean }>`
+  display: none;
+
+  ${media.tablet} {
+    display: ${({ $expanded }) => ($expanded ? "block" : "none")};
+    position: fixed;
+    inset: 0;
+    background: ${({ theme }) => theme.colors.neutral.OVERLAY};
+    z-index: 85;
+  }
 `;
 
 export const SidebarText = styled(MonoText).attrs({
@@ -67,11 +103,13 @@ export const SidebarText = styled(MonoText).attrs({
 export const SidebarItemStyled = styled.div<{
   $active?: boolean;
   $variant?: CreatorVariant;
+  $expanded?: boolean;
 }>`
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
+  gap: ${({ $expanded }) => ($expanded ? "10px" : "0")};
+  padding: ${({ $expanded }) => ($expanded ? "12px 16px" : "12px")};
+  justify-content: ${({ $expanded }) => ($expanded ? "flex-start" : "center")};
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
@@ -86,15 +124,6 @@ export const SidebarItemStyled = styled.div<{
 
   &:hover {
     background: ${({ theme }) => theme.colors.primary.GRAY};
-  }
-`;
-
-export const Overlay = styled.div`
-  ${media.tablet} {
-    position: fixed;
-    inset: 0;
-    background: ${({ theme }) => theme.colors.neutral.OVERLAY};
-    z-index: 80;
   }
 `;
 
@@ -136,6 +165,7 @@ export const SidebarLinkItem = styled(Link)<{
 export const SidebarActionButton = styled.button<{
   $active?: boolean;
   $variant?: CreatorVariant;
+  $expanded?: boolean;
 }>`
   width: 100%;
   border: none;
@@ -143,8 +173,9 @@ export const SidebarActionButton = styled.button<{
     $active ? theme.colors.primary.GRAY : "transparent"};
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
+  gap: ${({ $expanded }) => ($expanded ? "10px" : "0")};
+  padding: ${({ $expanded }) => ($expanded ? "12px 16px" : "12px")};
+  justify-content: ${({ $expanded }) => ($expanded ? "flex-start" : "center")};
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;

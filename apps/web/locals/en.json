@@ -1009,6 +1009,7 @@
     }
   },
   "users": {
+    "search": "Search by name",
     "tabs": {
       "registrations": "Registrations (11)",
       "sales": "Sales (50)"
@@ -1123,6 +1124,7 @@
       "forgotPasswordModalMessage": "We sent a password reset link to {{email}}. If it doesn’t arrive within a few minutes, check your spam folder.",
       "forgotPasswordErrorTitle": "Could not send reset link"
     },
+    "toggleSidebar": "Toggle sidebar",
     "logoutModal": {
       "title": "Log out",
       "message": "Are you sure you want to log out as {{email}}?",
@@ -1423,7 +1425,16 @@
         "description": "Description",
         "descriptionPlaceholder": "Enter Description",
         "add": "Add"
+      },
+      "webForm": {
+        "title": "Add web content",
+        "label": "Web content link",
+        "placeholder": "https://"
       }
+    },
+    "emptyCollection": {
+      "title": "Your collection is empty.",
+      "description": "Add content to your collection which will then be displayed on your channel."
     },
     "deleteModal": {
       "title": "Delete content?",
@@ -1466,5 +1477,14 @@
     "title": "This page took a different path",
     "description": "The page you are trying to open does not exist anymore or was moved. Use the button below to return to the home page.",
     "backHome": "Back to Home"
+  },
+  "errorFallback": {
+    "badge": "Runtime Error",
+    "description": "An unexpected error occurred. You can retry now, and use the console details below for debugging.",
+    "consoleLabel": "Console details",
+    "retryButton": "Try again",
+    "defaultTitle": "Something went wrong",
+    "noStack": "Stack trace is not available.",
+    "unknownError": "Unknown error message"
   }
 }

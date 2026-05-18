@@ -89,4 +89,19 @@ export const PROFILE_TABS: {
   },
   { key: "about", label: "About", href: "/create-profile1/about" },
 ];
+
+export const PROFILE_TABS3: {
+  key: ProfileTabKey;
+  label: string;
+  href: string;
+}[] = [
+  { key: "home", label: "Home", href: "/create-profile3" },
+  {
+    key: "collections",
+    label: "Collections",
+    href: "/create-profile3/collections",
+  },
+  { key: "about", label: "About", href: "/create-profile3/about" },
+];
+
 export const HOME = "home";

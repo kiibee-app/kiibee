@@ -79,11 +79,29 @@ export const SearchInput = styled.input<{ $open: boolean }>`
   padding: 0;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
-  width: ${({ $open }) => ($open ? "100%" : "0")};
+  flex: ${({ $open }) => ($open ? 1 : "0 0 auto")};
+  min-width: 0;
+  width: ${({ $open }) => ($open ? "auto" : "0")};
   opacity: ${({ $open }) => ($open ? 1 : 0)};
   transition: all 0.25s ease;
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   }
+`;
+
+export const SearchClearButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  padding: 0;
+  margin-left: 4px;
+  border: none;
+  background: transparent;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  cursor: pointer;
+  flex-shrink: 0;
 `;

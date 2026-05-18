@@ -77,3 +77,10 @@ export const BioText = styled(MonoText).attrs(({ theme }) => ({
   margin-top: 10px;
   max-width: 540px;
 `;
+
+export const TabsWrapper = styled.div`
+  margin: 15px auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
