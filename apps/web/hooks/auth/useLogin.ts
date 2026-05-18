@@ -1,9 +1,10 @@
 "use client";
 
 import { API } from "@/lib/http/api/endpoints";
-
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { PATHS } from "@/utils/path";
+import { toTrimmedString } from "@/utils/Constants";
+import { isBrowser } from "@/utils/ui";
 
 export type LoginPayload = {
   email: string;
@@ -47,6 +48,23 @@ const USER_ROLES = {
 const ACCESS_TOKEN_KEY = "kiibee.accessToken";
 const REFRESH_TOKEN_KEY = "kiibee.refreshToken";
 const USER_KEY = "kiibee.user";
+export const STORED_LOGIN_USER_UPDATED = "kiibee:user-updated";
+
+const notifyStoredLoginUserUpdated = () => {
+  if (!isBrowser) return;
+  window.dispatchEvent(new CustomEvent(STORED_LOGIN_USER_UPDATED));
+};
+
+export const readStoredLoginUser = (): LoginUser | null => {
+  if (!isBrowser) return null;
+
+  try {
+    const raw = window.localStorage.getItem(USER_KEY);
+    return raw ? (JSON.parse(raw) as LoginUser) : null;
+  } catch {
+    return null;
+  }
+};
 
 export type LogoutResponse = {
   success?: boolean;
@@ -54,7 +72,7 @@ export type LogoutResponse = {
 };
 
 export const mergeStoredLoginUser = (partial: Partial<LoginUser>) => {
-  if (typeof window === "undefined") return;
+  if (!isBrowser) return;
 
   try {
     const raw = window.localStorage.getItem(USER_KEY);
@@ -63,11 +81,12 @@ export const mergeStoredLoginUser = (partial: Partial<LoginUser>) => {
       USER_KEY,
       JSON.stringify({ ...prev, ...partial }),
     );
+    notifyStoredLoginUserUpdated();
   } catch {}
 };
 
 export const persistLoginSession = (response: LoginResponse) => {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return;
   }
 
@@ -89,21 +108,23 @@ export const persistLoginSession = (response: LoginResponse) => {
 
   if (user) {
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+    notifyStoredLoginUserUpdated();
   }
 };
 
 export const clearLoginSession = () => {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return;
   }
 
   window.localStorage.removeItem(ACCESS_TOKEN_KEY);
   window.localStorage.removeItem(REFRESH_TOKEN_KEY);
   window.localStorage.removeItem(USER_KEY);
+  notifyStoredLoginUserUpdated();
 };
 
 export const getStoredLoginUserEmail = () => {
-  if (typeof window === "undefined") {
+  if (!isBrowser) {
     return "";
   }
 
@@ -112,7 +133,7 @@ export const getStoredLoginUserEmail = () => {
     if (!rawUser) return "";
 
     const parsedUser = JSON.parse(rawUser) as LoginUser;
-    return typeof parsedUser.email === "string" ? parsedUser.email : "";
+    return toTrimmedString(parsedUser.email);
   } catch {
     return "";
   }

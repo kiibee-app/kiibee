@@ -1,5 +1,11 @@
+import { STORED_LOGIN_USER_UPDATED } from "@/hooks/auth/useLogin";
 import { AUTH_STORAGE_KEYS } from "./storageKeys";
 import { isBrowser } from "@/utils/ui";
+
+const notifyStoredLoginUserUpdated = () => {
+  if (!isBrowser) return;
+  window.dispatchEvent(new CustomEvent(STORED_LOGIN_USER_UPDATED));
+};
 
 type AuthSessionPayload = {
   accessToken?: string;
@@ -53,6 +59,7 @@ export const authStorage = {
 
     if (user !== undefined && user !== null) {
       window.localStorage.setItem(AUTH_STORAGE_KEYS.user, JSON.stringify(user));
+      notifyStoredLoginUserUpdated();
     }
 
     return accessToken ?? null;
@@ -62,5 +69,6 @@ export const authStorage = {
     window.localStorage.removeItem(AUTH_STORAGE_KEYS.accessToken);
     window.localStorage.removeItem(AUTH_STORAGE_KEYS.refreshToken);
     window.localStorage.removeItem(AUTH_STORAGE_KEYS.user);
+    notifyStoredLoginUserUpdated();
   },
 };

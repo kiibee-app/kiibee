@@ -10,5 +10,10 @@ export const API = {
     signup: "/auth/signup",
     userProfile: "/auth/user/profile",
     changePassword: "/auth/user/password",
+    creatorProfile: "/auth/creator/profile",
+  },
+  coupon: {
+    create: "/coupons/create",
+    getAll: "/coupons",
   },
 } as const;

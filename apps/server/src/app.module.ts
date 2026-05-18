@@ -7,6 +7,7 @@ import { ContentModule } from './modules/content/content.module';
 import { SubscriptionModule } from './modules/subscription/subscription.module';
 import { validateAppEnv } from './validators/appEnvSchema';
 import { MediaModule } from './modules/media/media.module';
+import { CouponModule } from './modules/coupon/coupon.module';
 import { CollectionModule } from './modules/collection/collection.module';
 
 @Module({
@@ -21,6 +22,7 @@ import { CollectionModule } from './modules/collection/collection.module';
     ContentModule,
     SubscriptionModule,
     MediaModule,
+    CouponModule,
     CollectionModule,
   ],
 })
