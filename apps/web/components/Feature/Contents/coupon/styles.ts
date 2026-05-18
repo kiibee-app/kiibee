@@ -4,6 +4,7 @@ import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
 import { COUPON_STATUS } from "@/types/couponType";
+import { Dropdown } from "@/components/UI/SortDropdown/styles";
 
 export const ModalContent = styled.div`
   display: flex;
@@ -141,7 +142,7 @@ export const ActionWrapper = styled.div`
   justify-content: flex-end;
   cursor: pointer;
 
-  > div > div {
+  ${Dropdown} {
     top: 0;
     right: 24px;
   }
