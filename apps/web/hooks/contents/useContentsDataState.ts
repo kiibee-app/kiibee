@@ -8,17 +8,8 @@ import { formatDateUSShort } from "@/utils/formatDate";
 import {
   CollectionsApiResponse,
   getCollectionList,
+  resolveCollectionsUpdate,
 } from "@/hooks/contents/collectionApi";
-
-const resolveCollectionsUpdate = (
-  updater: SetStateAction<CollectionRow[]>,
-  base: CollectionRow[],
-) => {
-  if (updater instanceof Function) {
-    return updater(base);
-  }
-  return updater;
-};
 
 export const useContentsDataState = (
   selectedCollection: CollectionRow | null,
@@ -64,10 +55,10 @@ export const useContentsDataState = (
     });
   };
 
-  const defaultDummyContents = Object.values(contentsMap)[0] ?? [];
+  const contents = Object.values(contentsMap)[0] ?? [];
 
   const collectionContents = selectedCollection
-    ? (contentsMap[selectedCollection.id] ?? defaultDummyContents)
+    ? (contentsMap[selectedCollection.id] ?? contents)
     : [];
 
   const deleteState = useDeleteHandler(
