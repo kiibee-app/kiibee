@@ -1,11 +1,11 @@
 "use client";
 
-import CreateProfileLayout from "../../../../Layout/CreateProfile2";
 import LatestUpload from "./LatestUpload";
 import type { LatestUploadData } from "./LatestUpload";
 import latestUploadImage from "@/assets/images/creators/recent_creator1.webp";
 import Hero from "../Hero";
 import AboutSection from "../About/AboutSection";
+import CreateProfileLayout from "@/components/Layout/CreateProfile2";
 
 export default function Home() {
   const latestUploadData: LatestUploadData = {
