@@ -71,7 +71,12 @@ export default function CreatorsContents() {
     closeDiscardModal,
     handleCreateClick,
     handleEditCollection,
-  } = useContentsModalFlows(activeTab, collections, isCollectionContentMode);
+  } = useContentsModalFlows(
+    activeTab,
+    collections,
+    isCollectionContentMode,
+    setCollections,
+  );
 
   return (
     <PageShell>

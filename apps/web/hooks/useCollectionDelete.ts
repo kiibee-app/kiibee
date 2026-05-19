@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
+import { axiosClient } from "@/lib/http/axiosClient";
+import { API } from "@/lib/http/api/endpoints";
 
 type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
@@ -22,10 +24,11 @@ export const useDeleteHandler = (
     setShowDeleteConfirm(true);
   };
 
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = async () => {
     if (!deleteId) return;
 
     if (deleteType === COLLECTION_TABLE_TYPE.COLLECTIONS) {
+      await axiosClient.delete(API.collection.delete(deleteId));
       setCollections((prev) => prev.filter((item) => item.id !== deleteId));
     }
 
