@@ -20,6 +20,7 @@ import {
   Section,
   ShareButton,
 } from "./CreatorInfoModal.styles";
+import { MODAL_PADDINGS } from "@/lib/theme/tokens";
 
 type CreatorInfoModalProps = {
   visible: boolean;
@@ -40,7 +41,7 @@ export default function CreatorInfoModal({
       onClose={onClose}
       size="md"
       height="570px"
-      padding="start"
+      padding={MODAL_PADDINGS.start}
       borderRadius="8px"
       showCloseButton={false}
     >
