@@ -124,3 +124,13 @@ export const CONTENT_TABS_KEYS = {
 export type ContentTab =
   | (typeof CONTENT_TABS_KEYS)[keyof typeof CONTENT_TABS_KEYS]
   | (typeof ADD_CONTENT_TABS)[keyof typeof ADD_CONTENT_TABS];
+
+export const MIME_TYPE = {
+  VIDEO: "video/",
+  AUDIO: "audio/",
+  PDF: "application/pdf",
+} as const;
+
+export const FILE_EXTENSION = {
+  EPUB: ".epub",
+} as const;

@@ -102,13 +102,8 @@ export default function ContentUploadModal({
 
   const handleAdd = () => {
     if (!title.trim() || !description.trim()) return;
-
     setIsSuccess(true);
-
-    const file = selectedFile;
-    const preview = previewUrl;
-
-    onUploadSuccess?.(ADD_CONTENT_TABS.GENERAL, file, preview);
+    onUploadSuccess?.(ADD_CONTENT_TABS.GENERAL, selectedFile, previewUrl);
   };
 
   const handleResetDetails = () => {

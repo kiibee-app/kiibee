@@ -24,6 +24,8 @@ import {
 } from "@/assets/icons";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/variants";
+import { FILE_TYPE_CHECKERS } from "@/utils/content";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   uploadedFile?: File | null;
@@ -34,17 +36,13 @@ export default function GeneralContent({
   uploadedPreview,
   uploadedFile,
 }: Props) {
+  const { t } = useTranslation();
   if (!uploadedFile) return null;
-
   const getFormatType = (file: File): FormatType => {
-    const type = file.type;
-
-    if (type.startsWith("video/")) return FORMAT_TYPE.VIDEO;
-    if (type.startsWith("audio/")) return FORMAT_TYPE.AUDIO;
-    if (type === "application/pdf") return FORMAT_TYPE.PDF;
-    if (file.name.endsWith(".epub")) return FORMAT_TYPE.EPUB;
-
-    return FORMAT_TYPE.PDF;
+    const match = Object.entries(FILE_TYPE_CHECKERS).find(([, check]) =>
+      check(file),
+    );
+    return (match?.[0] as FormatType) ?? FORMAT_TYPE.PDF;
   };
 
   const uploadType = getFormatType(uploadedFile);
@@ -103,7 +101,7 @@ export default function GeneralContent({
           </FileRow>
           <DeleteAction>
             <DeleteButton variant={VARIANT.PRIMARY}>
-              Delete permanently
+              {t("contents.contentUploadModal.deletePermanently")}{" "}
             </DeleteButton>
           </DeleteAction>
         </DetailsWrapper>
