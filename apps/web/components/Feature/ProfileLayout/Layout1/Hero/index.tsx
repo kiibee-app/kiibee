@@ -7,6 +7,7 @@ import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import coverImage from "@/assets/images/creators/create_profile_hero1.png";
 import avatarImage from "@/assets/images/creators/profile_pic.png";
 import GenericTabs from "@/components/UI/GenericTabs";
+import { MonoText } from "@/components/UI/Monotext";
 import {
   AvatarImage,
   AvatarWrap,
@@ -28,6 +29,7 @@ import {
 } from "./styles";
 import { HOME, PROFILE_TABS, ProfileTabKey } from "@/utils/common";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
+import CreatorInfoModal from "../../Layout2/Home/CreatorInfoModal";
 
 export default function Hero() {
   const { t } = useTranslation();
@@ -37,6 +39,7 @@ export default function Hero() {
     PROFILE_TABS.find((tab) => tab.href === pathname)?.key ?? HOME;
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [isCreatorInfoOpen, setIsCreatorInfoOpen] = useState(false);
 
   const handleTabChange = (tab: ProfileTabKey) => {
     const target = PROFILE_TABS.find((item) => item.key === tab)?.href;
@@ -81,7 +84,14 @@ export default function Hero() {
                 {t(CREATE_PROFILE_HOME.description)}
               </CreatorBioText>
               <MoreText>
-                <MoreTextLabel> {t(CREATE_PROFILE_HOME.more)}</MoreTextLabel>
+                <MoreTextLabel
+                  type="button"
+                  onClick={() => setIsCreatorInfoOpen(true)}
+                >
+                  <MonoText $use="Body_SemiBold">
+                    {t(CREATE_PROFILE_HOME.more)}
+                  </MonoText>
+                </MoreTextLabel>
               </MoreText>
             </CreatorBio>
           </ProfileMeta>
@@ -104,6 +114,11 @@ export default function Hero() {
           />
         </TabsWrapper>
       </ContentInner>
+
+      <CreatorInfoModal
+        visible={isCreatorInfoOpen}
+        onClose={() => setIsCreatorInfoOpen(false)}
+      />
     </HeroWrapper>
   );
 }

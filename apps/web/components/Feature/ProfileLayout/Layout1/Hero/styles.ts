@@ -146,10 +146,16 @@ export const MoreText = styled.span`
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const MoreTextLabel = styled(MonoText).attrs(({ theme }) => ({
-  $use: "Body_SemiBold",
-  color: theme.colors.primary.BLACK,
-}))``;
+export const MoreTextLabel = styled.button`
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+
+  ${MonoText} {
+    text-decoration: underline;
+  }
+`;
 
 export const TabsWrapper = styled.div`
   margin-top: 24px;
