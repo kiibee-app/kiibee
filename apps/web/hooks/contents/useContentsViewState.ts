@@ -6,6 +6,7 @@ import {
 } from "@/utils/Constants";
 import {
   ADD_CONTENT_TABS,
+  AddContentTab,
   COLLECTIONS,
   CONTENT_TABS,
   ContentTab,
@@ -18,7 +19,7 @@ type TabItem = {
   labelKey: string;
 };
 
-export const useContentsViewState = (tabMode: "base" | "upload") => {
+export const useContentsViewState = () => {
   const { activeTab, setActiveTabAndQuery } = useQuerySyncedTab<ContentTab>({
     queryKey: CONTENT_TAB,
     defaultTab: COLLECTIONS,
@@ -35,27 +36,29 @@ export const useContentsViewState = (tabMode: "base" | "upload") => {
     useState<CollectionRow | null>(null);
 
   const isCollectionContentMode = !!selectedCollection;
-  const visibleTabs =
-    tabMode === "upload"
-      ? [
-          {
-            key: ADD_CONTENT_TABS.GENERAL,
-            labelKey: "contents.tabs.general",
-          },
-          {
-            key: ADD_CONTENT_TABS.METADATA,
-            labelKey: "contents.tabs.metadata",
-          },
-          {
-            key: ADD_CONTENT_TABS.PAYMENT,
-            labelKey: "contents.tabs.payment",
-          },
-        ]
-      : CONTENT_TABS.filter((tab) =>
-          isCollectionContentMode
-            ? tab.key === COLLECTIONS || tab.key === SETTINGS
-            : true,
-        );
+  const isUploadMode = Object.values(ADD_CONTENT_TABS).includes(
+    activeTab as AddContentTab,
+  );
+  const visibleTabs = isUploadMode
+    ? [
+        {
+          key: ADD_CONTENT_TABS.GENERAL,
+          labelKey: "contents.tabs.general",
+        },
+        {
+          key: ADD_CONTENT_TABS.METADATA,
+          labelKey: "contents.tabs.metadata",
+        },
+        {
+          key: ADD_CONTENT_TABS.PAYMENT,
+          labelKey: "contents.tabs.payment",
+        },
+      ]
+    : CONTENT_TABS.filter((tab) =>
+        isCollectionContentMode
+          ? tab.key === COLLECTIONS || tab.key === SETTINGS
+          : true,
+      );
 
   const getTabLabelKey = (tab: TabItem) => {
     if (isCollectionContentMode && tab.key === COLLECTIONS) {

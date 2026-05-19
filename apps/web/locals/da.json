@@ -1308,7 +1308,10 @@
       "contents": "Indhold",
       "appearance": "Udseende",
       "settings": "Indstillinger",
-      "coupons": "Kuponer"
+      "coupons": "Kuponer",
+      "general": "Generelt",
+      "metadata": "Metadata",
+      "payment": "Betaling"
     },
     "couponsCard": {
       "title": "Kuponer",

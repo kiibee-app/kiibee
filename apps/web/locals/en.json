@@ -1308,7 +1308,10 @@
       "appearance": "Appearance",
       "contents": "Contents",
       "settings": "Settings",
-      "coupons": "Coupons"
+      "coupons": "Coupons",
+      "general": "General",
+      "metadata": "MetaData",
+      "payment": "Payment"
     },
     "couponsCard": {
       "title": "Coupons",

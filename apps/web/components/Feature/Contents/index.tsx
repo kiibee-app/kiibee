@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import {
@@ -30,7 +30,7 @@ import { AddContentTab, COLLECTIONS } from "@/utils/common";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
-  const [tabMode, setTabMode] = useState<"base" | "upload">("base");
+
   const {
     activeTab,
     visibleTabs,
@@ -44,7 +44,7 @@ export default function CreatorsContents() {
     setOpenSearch,
     handleTabChange,
     setActiveTabAndQuery,
-  } = useContentsViewState(tabMode);
+  } = useContentsViewState();
   const {
     collections,
     setCollections,
@@ -75,12 +75,10 @@ export default function CreatorsContents() {
   } = useContentsModalFlows(activeTab, collections, isCollectionContentMode);
 
   const handleUploadSuccess = (tab: AddContentTab) => {
-    setTabMode("upload");
     setActiveTabAndQuery(tab);
   };
 
   const handleBackToBase = () => {
-    setTabMode("base");
     setSelectedCollection(null);
     setSelectedCollection(selectedCollection);
     setActiveTabAndQuery(COLLECTIONS);
