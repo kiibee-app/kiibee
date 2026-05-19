@@ -15,7 +15,7 @@ import {
   PointsList,
   PointItem,
   Outro,
-} from "./style";
+} from "./styles";
 
 export default function ContentPerform() {
   const { t } = useTranslation();

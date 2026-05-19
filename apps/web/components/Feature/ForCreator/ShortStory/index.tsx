@@ -13,7 +13,7 @@ import {
   Title,
   Paragraph,
   ReadMoreButton,
-} from "./style";
+} from "./styles";
 import { resolveImageUrl, MOBILE_BREAKPOINT } from "@/utils/Constants";
 import { useIsMobile } from "@/utils/useIsMobile";
 import { PATHS } from "@/utils/path";

@@ -25,7 +25,7 @@ import {
   MainCardTitle,
   MainCardSubtitle,
   NarrowCardText,
-} from "./style";
+} from "./styles";
 import { resolveImageUrl } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 
