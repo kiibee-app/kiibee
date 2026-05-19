@@ -83,14 +83,30 @@ const getFileExtension = (file: File) => {
   return extension;
 };
 
-const uploadToSignedUrl = async (file: Blob, uploadUrl: string) => {
-  const body = await file.arrayBuffer();
+const uploadToSignedUrl = async (
+  file: Blob,
+  uploadUrl: string,
+  contentType?: string,
+) => {
   const response = await fetch(uploadUrl, {
     method: "PUT",
-    body,
+    headers: {
+      "Content-Type": contentType || "application/octet-stream",
+    },
+    body: file,
   });
 
-  if (!response.ok) throw new Error(CONTENT_UPLOAD_ERROR_KEY.uploadFailed);
+  if (!response.ok) {
+    const errorText = await response.text();
+
+    console.error("Upload failed:", {
+      status: response.status,
+      statusText: response.statusText,
+      errorText,
+    });
+
+    throw new Error(CONTENT_UPLOAD_ERROR_KEY.uploadFailed);
+  }
 
   return response;
 };
