@@ -53,6 +53,10 @@ export const UploadHelperText = styled(MonoText).attrs({
   text-align: center;
 `;
 
+export const UploadErrorText = styled(UploadHelperText)`
+  color: ${({ theme }) => theme.colors.primary.RED};
+`;
+
 export const SelectedFileContainer = styled.div`
   display: flex;
   flex-direction: column;

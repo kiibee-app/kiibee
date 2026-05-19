@@ -31,29 +31,20 @@ export const CONTENT_UPLOAD_CONFIG: Record<
   { accept: string; extensions: readonly string[] }
 > = {
   video: {
-    accept: ".mp4,.mkv,.mov,.m4v",
-    extensions: [".mp4", ".mkv", ".mov", ".m4v"],
+    accept: ".mp4",
+    extensions: [".mp4"],
   },
   audio: {
-    accept: ".mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac",
-    extensions: [
-      ".mp3",
-      ".m4a",
-      ".wav",
-      ".wma",
-      ".alac",
-      ".flac",
-      ".ogg",
-      ".aac",
-    ],
+    accept: ".mp3,.wav,.ogg",
+    extensions: [".mp3", ".wav", ".ogg"],
   },
   pdf: {
     accept: ".pdf",
     extensions: [".pdf"],
   },
   epub: {
-    accept: ".epub,.mobi,.azw",
-    extensions: [".epub", ".mobi", ".azw"],
+    accept: ".epub",
+    extensions: [".epub"],
   },
 } as const;
 

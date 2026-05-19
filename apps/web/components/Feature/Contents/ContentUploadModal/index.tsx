@@ -16,6 +16,7 @@ import {
   ChooseUploadButton,
   ContentUploadDropZone,
   UploadBody,
+  UploadErrorText,
   UploadHelperText,
   UploadHelperTextGroup,
   UploadModalContent,
@@ -50,6 +51,8 @@ export default function ContentUploadModal({
     selectedFile,
     isUploading,
     uploadComplete,
+    uploadError,
+    uploadedMedia,
     previewUrl,
     uploadType,
     uploadConfig,
@@ -91,6 +94,7 @@ export default function ContentUploadModal({
 
   const handleAdd = () => {
     if (!title.trim() || !description.trim()) return;
+    if (!isWebContent && !uploadedMedia?.key) return;
   };
 
   const isWebContent = contentType === FORMAT_TYPE.WEB;
@@ -161,6 +165,9 @@ export default function ContentUploadModal({
                 <UploadHelperText>{helperLineOne}</UploadHelperText>
                 {helperLineTwo && (
                   <UploadHelperText>{helperLineTwo}</UploadHelperText>
+                )}
+                {uploadError && (
+                  <UploadErrorText>{t(uploadError)}</UploadErrorText>
                 )}
               </UploadHelperTextGroup>
             </ContentUploadDropZone>

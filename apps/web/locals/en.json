@@ -1409,11 +1409,11 @@
       "upload": "Upload",
       "next": "Next",
       "video": {
-        "helperLineOne": "Max. file size of 2GB of file types (.mp4,.mkv,.mov,.m4v)",
+        "helperLineOne": "Max. file size of 2GB of file types (.mp4)",
         "helperLineTwo": "Min. resolution 1080p HD"
       },
       "audio": {
-        "helperLineOne": "Max. file size of 2GB of file types (.mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac)",
+        "helperLineOne": "Max. file size of 2GB of file types (.mp3,.wav,.ogg)",
         "helperLineTwo": ""
       },
       "pdf": {
@@ -1421,7 +1421,7 @@
         "helperLineTwo": ""
       },
       "epub": {
-        "helperLineOne": "Max. file size of 2GB of file types (.epub,.mobi,.azw)",
+        "helperLineOne": "Max. file size of 2GB of file types (.epub)",
         "helperLineTwo": ""
       },
       "details": {
@@ -1436,6 +1436,13 @@
         "title": "Add web content",
         "label": "Web content link",
         "placeholder": "https://"
+      },
+      "errors": {
+        "emptyFile": "Selected file is empty.",
+        "invalidExtension": "This file type is not supported.",
+        "invalidFileName": "Selected file must include a valid extension.",
+        "missingVideoEtag": "Video upload did not return an ETag.",
+        "uploadFailed": "Upload failed. Please try again."
       }
     },
     "emptyCollection": {

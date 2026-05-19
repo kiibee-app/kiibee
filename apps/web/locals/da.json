@@ -1409,11 +1409,11 @@
       "upload": "Upload",
       "next": "Næste",
       "video": {
-        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp4,.mkv,.mov,.m4v)",
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp4)",
         "helperLineTwo": "Min. opløsning 1080p HD"
       },
       "audio": {
-        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac)",
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp3,.wav,.ogg)",
         "helperLineTwo": ""
       },
       "pdf": {
@@ -1421,7 +1421,7 @@
         "helperLineTwo": ""
       },
       "epub": {
-        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.epub,.mobi,.azw)",
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.epub)",
         "helperLineTwo": ""
       },
       "details": {
@@ -1436,6 +1436,13 @@
         "title": "Tilføj webindhold",
         "label": "Webindhold-link",
         "placeholder": "https://"
+      },
+      "errors": {
+        "emptyFile": "Den valgte fil er tom.",
+        "invalidExtension": "Denne filtype understøttes ikke.",
+        "invalidFileName": "Den valgte fil skal have en gyldig filendelse.",
+        "missingVideoEtag": "Videoupload returnerede ikke en ETag.",
+        "uploadFailed": "Upload mislykkedes. Prøv igen."
       }
     },
     "emptyCollection": {

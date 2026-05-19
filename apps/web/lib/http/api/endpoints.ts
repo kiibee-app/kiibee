@@ -16,4 +16,11 @@ export const API = {
     create: "/coupons/create",
     getAll: "/coupons",
   },
+  media: {
+    fileUploadUrl: "/media/file/upload-url",
+    fileConfirm: "/media/file/confirm",
+    videoInit: "/media/videos/init",
+    videoPartUrl: "/media/videos/part-url",
+    videoComplete: "/media/videos/complete",
+  },
 } as const;
