@@ -34,7 +34,9 @@ export default function ContentUploadDetails({
     return (
       <UploadSuccess>
         <SuccessModalIcon />
-        <MonoText $use="H5_Medium">Uplading {uploadType} </MonoText>
+        <MonoText $use="H5_Medium">
+          {t("contents.contentUploadModal.uploading")} {uploadType}
+        </MonoText>
       </UploadSuccess>
     );
   }

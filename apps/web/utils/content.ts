@@ -6,6 +6,8 @@ import {
   VideoIcon,
   WebIcon,
 } from "@/assets/icons";
+import { FORMAT_TYPE, FormatType } from "./types";
+import { FILE_EXTENSION, MIME_TYPE } from "./common";
 
 export type ContentType = "video" | "audio" | "pdf" | "epub" | "web";
 
@@ -112,3 +114,12 @@ export const STEP_ORDER: CouponStep[] = [
   COUPON_STEPS.APPLICABLE_PRODUCTS,
   COUPON_STEPS.PREVIEW,
 ];
+
+export const FILE_TYPE_CHECKERS: Record<FormatType, (file: File) => boolean> = {
+  [FORMAT_TYPE.VIDEO]: (file) => file.type.startsWith(MIME_TYPE.VIDEO),
+  [FORMAT_TYPE.AUDIO]: (file) => file.type.startsWith(MIME_TYPE.AUDIO),
+  [FORMAT_TYPE.PDF]: (file) => file.type === MIME_TYPE.PDF,
+  [FORMAT_TYPE.EPUB]: (file) =>
+    file.name.toLowerCase().endsWith(FILE_EXTENSION.EPUB),
+  [FORMAT_TYPE.WEB]: () => false,
+};

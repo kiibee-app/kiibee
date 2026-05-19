@@ -1439,7 +1439,9 @@
         "title": "Tilføj webindhold",
         "label": "Webindhold-link",
         "placeholder": "https://"
-      }
+      },
+      "uploading": "Uploader",
+      "deletePermanently": "Slet permanent"
     },
     "emptyCollection": {
       "title": "Din samling er tom.",

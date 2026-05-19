@@ -65,7 +65,7 @@ export const InfoColumn = styled.div`
 `;
 
 export const PreviewBox = styled.div`
-  height: clamp(80px, 9.8vw, 100px);
+  height: clamp(80px, 9.8vw, 90px);
   position: relative;
 `;
 
