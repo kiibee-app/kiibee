@@ -44,6 +44,7 @@ export default function CreatorsContents() {
     setOpenSearch,
     handleTabChange,
     setActiveTabAndQuery,
+    isUploadMode,
   } = useContentsViewState();
   const {
     collections,
@@ -117,14 +118,18 @@ export default function CreatorsContents() {
             }))}
             activeTab={activeTab}
             onTabChange={handleTabChange}
-            search={{
-              open: openSearch,
-              value: searchValue,
-              placeholder: t(CONTENTS_KEYS.actions.search),
-              onToggle: () => setOpenSearch((prev) => !prev),
-              onChange: setSearchValue,
-              ariaLabel: t(CONTENTS_KEYS.actions.search),
-            }}
+            search={
+              isUploadMode
+                ? undefined
+                : {
+                    open: openSearch,
+                    value: searchValue,
+                    placeholder: t(CONTENTS_KEYS.actions.search),
+                    onToggle: () => setOpenSearch((prev) => !prev),
+                    onChange: setSearchValue,
+                    ariaLabel: t(CONTENTS_KEYS.actions.search),
+                  }
+            }
           />
         </ContentsTabsSlot>
         <ContentPanel>

@@ -106,6 +106,18 @@ export default function ContentUploadModal({
     setIsSuccess(false);
     setShowDetails(true);
   };
+
+  const getBackAction = () => {
+    if (isSuccess) return () => handleResetDetails();
+    if (showDetails) return () => setShowDetails(false);
+    return () => handleExit(onBack);
+  };
+
+  const handleBackClick = () => {
+    const action = getBackAction();
+    action();
+  };
+
   const isWebContent = contentType === FORMAT_TYPE.WEB;
 
   return (
@@ -120,13 +132,7 @@ export default function ContentUploadModal({
       <BackButton
         type={BUTTON}
         aria-label={t("common.back")}
-        onClick={() =>
-          isSuccess
-            ? handleResetDetails()
-            : showDetails
-              ? setShowDetails(false)
-              : handleExit(onBack)
-        }
+        onClick={handleBackClick}
       >
         <BackButtonIcon size={28} strokeWidth={2.5} />
       </BackButton>

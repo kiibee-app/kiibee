@@ -85,5 +85,6 @@ export const useContentsViewState = () => {
     setOpenSearch,
     handleTabChange,
     setActiveTabAndQuery,
+    isUploadMode,
   };
 };
