@@ -1,12 +1,21 @@
 "use client";
 
 import { FormEvent, useCallback, useMemo, useState } from "react";
+import Link from "next/link";
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import GenericButton from "@/components/UI/GenericButton";
 import InputField from "@/components/UI/InputFields";
-import { Card, Description, Form, FormMessage, Title, Wrapper } from "./styles";
+import {
+  Card,
+  Description,
+  Form,
+  FormMessage,
+  RecoveryLink,
+  Title,
+  Wrapper,
+} from "./styles";
 import { INPUT_TYPE } from "@/utils/ui";
 import { EyeClosedIcon, EyeOpenIcon } from "@/assets/icons";
 import ResetPasswordSuccess from "./ResetPasswordSuccess";
@@ -20,8 +29,9 @@ import {
 } from "@/utils/resetPassword";
 import { useResetPassword } from "@/hooks/auth/useResetPassword";
 import { useSearchParams } from "next/navigation";
-import { ApiError } from "@/lib/http/errors/apiError";
 import { ALERT } from "@/utils/common";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { PATHS } from "@/utils/path";
 
 export default function ResetPasswordForm() {
   const { t } = useTranslation();
@@ -29,9 +39,11 @@ export default function ResetPasswordForm() {
   const [passwords, setPasswords] = useState(INITIAL_PASSWORDS);
   const [visibility, setVisibility] = useState(INITIAL_VISIBILITY);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isExpiredError, setIsExpiredError] = useState(false);
   const searchParams = useSearchParams();
   const token = searchParams.get("token") ?? "";
   const { mutateAsync: resetPassword, isPending } = useResetPassword();
+  const { getErrorMessage } = useApiErrorMessage();
 
   const handleChange = useCallback(
     (field: keyof PasswordState, value: string) => {
@@ -59,6 +71,7 @@ export default function ResetPasswordForm() {
       event.preventDefault();
       if (!isValid) return;
       setErrorMessage("");
+      setIsExpiredError(false);
 
       try {
         await resetPassword({
@@ -68,14 +81,16 @@ export default function ResetPasswordForm() {
         });
         setIsSuccess(true);
       } catch (error) {
-        const fallback = t("resetPassword.submitFailed");
-        setErrorMessage(error instanceof ApiError ? error.message : fallback);
+        const message = getErrorMessage(error, "resetPassword.submitFailed");
+        setErrorMessage(message);
+        setIsExpiredError(message === t("resetPassword.expiredLink"));
       }
     },
     [
       isValid,
       passwords.newPassword,
       passwords.repeatPassword,
+      getErrorMessage,
       resetPassword,
       t,
       token,
@@ -117,6 +132,11 @@ export default function ResetPasswordForm() {
           )}
           {errorMessage && (
             <FormMessage role={ALERT}>{errorMessage}</FormMessage>
+          )}
+          {isExpiredError && (
+            <RecoveryLink as={Link} href={PATHS.AUTH_FORGET_PASSWORD}>
+              {t("resetPassword.requestNewLink")}
+            </RecoveryLink>
           )}
 
           <GenericButton

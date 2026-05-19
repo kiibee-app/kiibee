@@ -3,6 +3,9 @@ import { useTranslation } from "react-i18next";
 import { ApiError, normalizeApiError } from "@/lib/http/errors/apiError";
 
 type ApiFieldErrors = Record<string, string>;
+const API_ERROR_TRANSLATION_KEYS: Record<string, string> = {
+  "Reset link has expired": "resetPassword.expiredLink",
+};
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null;
@@ -69,6 +72,12 @@ export const useApiErrorMessage = () => {
   const getErrorMessage = (error: unknown, fallbackKey: string): string => {
     const fallbackMessage = t(fallbackKey);
     const normalizedError = normalizeApiError(error);
+    const mappedKey = API_ERROR_TRANSLATION_KEYS[normalizedError.message];
+
+    if (mappedKey) {
+      return t(mappedKey);
+    }
+
     return normalizedError.message || fallbackMessage;
   };
 

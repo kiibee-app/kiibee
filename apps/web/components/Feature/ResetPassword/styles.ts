@@ -56,6 +56,13 @@ export const FormMessage = styled(MonoText).attrs({
   text-align: left;
 `;
 
+export const RecoveryLink = styled.a`
+  text-align: left;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  text-decoration: underline;
+  font-size: 0.875rem;
+`;
+
 export const SuccessBox = styled.div`
   display: flex;
   flex-direction: column;
