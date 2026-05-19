@@ -4,6 +4,7 @@ import { seedContentTypes } from './contentTypes.seed';
 import { seedPlans } from './subscriptionPlan.seed';
 import { seedTags } from './tags.seed';
 import { seedUsers } from './users.seed';
+import { seedCreatorAccounts } from './creatorAccounts.seed';
 
 async function main() {
   // Reference data first
@@ -14,6 +15,8 @@ async function main() {
 
   // Users last (depends on nothing)
   await seedUsers();
+
+  await seedCreatorAccounts();
 
   console.log('All seeds completed successfully');
   process.exit();
