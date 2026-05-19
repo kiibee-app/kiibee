@@ -1,20 +1,16 @@
 import { HeaderProps, NavStyleProps } from "@/utils/profile";
 import styled, { css } from "styled-components";
 
-const glassSurface = css`
-  backdrop-filter: blur(34px) saturate(140%);
-  -webkit-backdrop-filter: blur(34px) saturate(140%);
-  background: ${({ theme }) => theme.colors.primary.WHITE_18};
-`;
-
 export const Header = styled.header<HeaderProps>`
   position: ${({ $position }) => $position};
   top: ${({ $topOffset }) => $topOffset};
   left: 0;
   width: 100%;
-  min-height: var(--navbar-height);
+  min-height: ${({ $isMegaOpen }) =>
+    $isMegaOpen ? "300px" : "var(--navbar-height)"};
   display: block;
-  ${glassSurface}
+  backdrop-filter: blur(24px);
+  background: ${({ theme }) => theme.colors.primary.WHITE_10};
   transition:
     background 180ms ease,
     backdrop-filter 180ms ease;
@@ -112,7 +108,9 @@ export const MegaMenu = styled.div`
   left: 0;
   width: 100%;
   padding: 1.5rem 0;
-  ${glassSurface}
+  min-height: 300px;
+  backdrop-filter: blur(16px) saturate(30%);
+  background: transparent;
   transition:
     background 180ms ease,
     backdrop-filter 180ms ease;
