@@ -8,6 +8,7 @@ export type HeaderProps = {
   $position: "fixed" | "absolute";
   $topOffset: string;
   $navbarHeight?: string;
+  $isMegaOpen?: boolean;
 };
 
 export type NavStyleProps = {
