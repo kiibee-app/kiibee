@@ -1,3 +1,6 @@
+import { CollectionRow } from "@/types/collectionsType";
+import { SetStateAction } from "react";
+
 export type CollectionsApiItem = {
   id?: string | number;
   name?: string;
@@ -29,4 +32,14 @@ export const getCollectionList = (
 
   const list = candidates.find(Array.isArray);
   return (list as CollectionsApiItem[] | undefined) ?? [];
+};
+
+export const resolveCollectionsUpdate = (
+  updater: SetStateAction<CollectionRow[]>,
+  base: CollectionRow[],
+) => {
+  if (updater instanceof Function) {
+    return updater(base);
+  }
+  return updater;
 };
