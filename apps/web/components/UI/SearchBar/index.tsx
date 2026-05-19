@@ -5,6 +5,7 @@ import { ClearButton, LeftIconWrapper, StyledInput, Wrapper } from "./styles";
 import { CrossIcon } from "@/assets/icons/crossIcon";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { INPUT_TYPE, KEYBOARD_KEYS } from "@/utils/ui";
+import { useTranslation } from "react-i18next";
 
 type SearchBarProps = {
   placeholder?: string;
@@ -21,6 +22,7 @@ export default function SearchBar({
   onSubmit,
   width,
 }: SearchBarProps) {
+  const { t } = useTranslation();
   const [internalValue, setInternalValue] = useState("");
   const value = controlledValue ?? internalValue;
 
@@ -47,7 +49,7 @@ export default function SearchBar({
   );
 
   return (
-    <Wrapper $width={width} role="search" aria-label="Search">
+    <Wrapper $width={width} role="search" aria-label={t("searchBar.search")}>
       <LeftIconWrapper>
         <SearchIcon />
       </LeftIconWrapper>
@@ -61,7 +63,10 @@ export default function SearchBar({
       />
 
       {value && (
-        <ClearButton onClick={handleClear} aria-label="Clear search">
+        <ClearButton
+          onClick={handleClear}
+          aria-label={t("searchBar.clearSearch")}
+        >
           <CrossIcon width={24} />
         </ClearButton>
       )}

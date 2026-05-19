@@ -8,6 +8,7 @@ import {
 } from "./ContentSections";
 import { Card, Wrapper } from "./styles";
 import type { SingleContentPageProps } from "@/types/contentTypes";
+import { useTranslation } from "react-i18next";
 
 export type {
   SingleContentHeroProps,
@@ -25,14 +26,16 @@ export default function SingleContentPage({
   hero,
   primaryAction,
   metaItems = [],
-  shareLabel = "Share",
+  shareLabel,
   showShare = true,
   showBack = true,
   onBack,
   onShare,
   children,
 }: SingleContentPageProps) {
+  const { t } = useTranslation();
   const router = useRouter();
+  const resolvedShareLabel = shareLabel ?? t("common.share");
 
   const handleBack = () => {
     if (onBack) {
@@ -48,7 +51,8 @@ export default function SingleContentPage({
         <SingleContentTopBar
           showBack={showBack}
           showShare={showShare}
-          shareLabel={shareLabel}
+          shareLabel={resolvedShareLabel}
+          backAriaLabel={t("singleContent.navigation.goBack")}
           onBackClick={handleBack}
           onShare={onShare}
         />

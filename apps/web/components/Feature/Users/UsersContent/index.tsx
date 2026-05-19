@@ -36,7 +36,7 @@ export default function UsersContent() {
 
   return (
     <Wrapper>
-      <Title>Users</Title>
+      <Title>{t("users.title")}</Title>
 
       <GenericTabs
         tabs={USER_TABS.map((tab) => ({

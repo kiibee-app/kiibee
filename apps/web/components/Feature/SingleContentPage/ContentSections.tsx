@@ -46,13 +46,18 @@ export function SingleContentTopBar({
   showBack,
   showShare,
   shareLabel,
+  backAriaLabel,
   onBackClick,
   onShare,
 }: SingleContentTopBarProps) {
   return (
     <TopBar>
       {showBack ? (
-        <BackButton onClick={onBackClick} aria-label="Go back" type="button">
+        <BackButton
+          onClick={onBackClick}
+          aria-label={backAriaLabel}
+          type="button"
+        >
           <BackButtonIcon />
         </BackButton>
       ) : (

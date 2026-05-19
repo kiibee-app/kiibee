@@ -52,6 +52,7 @@ export type SingleContentTopBarProps = {
   showBack: boolean;
   showShare: boolean;
   shareLabel: string;
+  backAriaLabel: string;
   onBackClick: () => void;
   onShare?: () => void;
 };

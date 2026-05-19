@@ -32,7 +32,9 @@ export default function ExploreCreators({ creators }: Props) {
             }
             title={<MonoText $use="Body_Medium">{creator.name}</MonoText>}
             subtitle={
-              <MonoText $use="Body_Small">{creator.uploads} uploads</MonoText>
+              <MonoText $use="Body_Small">
+                {t("createProfileHome.uploads", { count: creator.uploads })}
+              </MonoText>
             }
             footer={
               <GenericButton

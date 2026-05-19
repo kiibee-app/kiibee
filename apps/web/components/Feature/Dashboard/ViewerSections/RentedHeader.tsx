@@ -6,6 +6,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useTheme } from "styled-components";
 import { getSearchPlaceholder } from "@/utils/viewerRented";
 import type { RentedMode } from "@/utils/dummyData/viewerRentedMockData";
+import { useTranslation } from "react-i18next";
 import {
   HeaderSearchArea,
   HeaderSearchButton,
@@ -32,6 +33,7 @@ export default function RentedHeader({
   onToggleSearch,
   searchInputRef,
 }: Props) {
+  const { t } = useTranslation();
   const theme = useTheme();
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function RentedHeader({
       <HeaderSearchArea $open={isSearchOpen}>
         <HeaderSearchButton
           type="button"
-          aria-label="Toggle search"
+          aria-label={t("searchBar.toggleSearch")}
           onClick={onToggleSearch}
         >
           <SearchIcon

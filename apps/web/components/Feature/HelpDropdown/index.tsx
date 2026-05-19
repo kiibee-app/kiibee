@@ -11,6 +11,7 @@ import {
   SidebarDropdown,
   SidebarDropdownItem,
 } from "@/components/Layout/Sidebar/styles";
+import { useTranslation } from "react-i18next";
 
 type SidebarHelpDropdownProps = {
   label: string;
@@ -31,6 +32,7 @@ export default function SidebarHelpDropdown({
   onToggle,
   onClose,
 }: SidebarHelpDropdownProps) {
+  const { t } = useTranslation();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useClickOutside({
@@ -61,7 +63,7 @@ export default function SidebarHelpDropdown({
       </SidebarActionButton>
 
       {open && (
-        <SidebarDropdown role="menu" aria-label="Help options">
+        <SidebarDropdown role="menu" aria-label={t("helpDropdown.optionsAria")}>
           {HELP_MENU_ITEMS.map((helpItem) => (
             <SidebarDropdownItem
               key={helpItem.href}

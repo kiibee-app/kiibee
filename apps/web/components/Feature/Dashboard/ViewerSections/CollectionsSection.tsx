@@ -18,6 +18,7 @@ import {
   getCollectionBadgeText,
   getCollectionPrimaryActionText,
 } from "@/utils/viewerRented";
+import { useTranslation } from "react-i18next";
 import {
   CollectionActionRow,
   CollectionCtaContent,
@@ -56,13 +57,16 @@ export default function CollectionsSection({
   movePrev,
   moveNext,
 }: Props) {
+  const { t } = useTranslation();
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const isPurchased = mode === RENTED_MODES.PURCHASED;
 
   return (
     <>
       <SectionHeader>
-        <SectionTitle>Collections</SectionTitle>
+        <SectionTitle>
+          {t("dashboard.viewerPurchased.sections.collections")}
+        </SectionTitle>
         <SectionPaginationArrows
           sectionKey={RENTED_SECTION_KEYS.COLLECTIONS}
           totalItems={totalItems}
@@ -96,7 +100,9 @@ export default function CollectionsSection({
                   color={COLORS.neutral.GRAY_700}
                 />
                 <MonoText $use="Body_Bold">
-                  {item.elementCount} elements
+                  {t("dashboard.viewerPurchased.elementsCount", {
+                    count: item.elementCount,
+                  })}
                 </MonoText>
               </ElementsPill>
 

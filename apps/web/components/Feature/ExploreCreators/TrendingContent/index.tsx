@@ -11,14 +11,19 @@ import {
   SectionLink,
 } from "../../TutorialVideos/TutorialContent/styles";
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
+import { useTranslation } from "react-i18next";
 
 export default function TrendingContent() {
+  const { t } = useTranslation();
+
   return (
     <Section>
       <SectionHeader>
         <SectionLabel>
           <SectionTag>
-            <MonoText $use="H4_Medium">Trending content</MonoText>
+            <MonoText $use="H4_Medium">
+              {t("exploreCreatorsPage.trendingContent.title")}
+            </MonoText>
           </SectionTag>
         </SectionLabel>
         <SectionLink href="/tutorial-videos">

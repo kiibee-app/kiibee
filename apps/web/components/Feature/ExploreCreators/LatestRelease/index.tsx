@@ -12,13 +12,18 @@ import {
 } from "../../TutorialVideos/TutorialContent/styles";
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { Section } from "./styles";
+import { useTranslation } from "react-i18next";
 
 export default function LatestRelease() {
+  const { t } = useTranslation();
+
   return (
     <Section>
       <SectionHeader>
         <SectionLabel>
-          <MonoText $use="H4_Medium">Latest relase</MonoText>
+          <MonoText $use="H4_Medium">
+            {t("exploreCreatorsPage.latestRelease.title")}
+          </MonoText>
         </SectionLabel>
         <SectionLink href={PATHS.EXPLORE_CREATORS}>
           <LeftIcon />

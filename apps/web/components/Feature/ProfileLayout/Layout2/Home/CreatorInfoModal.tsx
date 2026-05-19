@@ -47,7 +47,11 @@ export default function CreatorInfoModal({
       <CreatorInfoContent data-lenis-prevent>
         <CreatorInfoHeader>
           <MonoText $use="H4_Medium">{title}</MonoText>
-          <CloseIconButton type="button" onClick={onClose} aria-label="Close">
+          <CloseIconButton
+            type="button"
+            onClick={onClose}
+            aria-label={t("common.close")}
+          >
             <CrossIcon
               width={18}
               height={18}

@@ -20,12 +20,14 @@ import {
   CollectionImageWrap,
   ElementsPill,
 } from "../ViewerSections/styles";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   item: PurchasedCollectionItem;
 };
 
 export default function PurchasedCollectionCard({ item }: Props) {
+  const { t } = useTranslation();
   const mode = RENTED_MODES.PURCHASED;
 
   return (
@@ -45,7 +47,11 @@ export default function PurchasedCollectionCard({ item }: Props) {
             height={20}
             color={COLORS.neutral.GRAY_700}
           />
-          <MonoText $use="Body_Bold">{item.elementCount} elements</MonoText>
+          <MonoText $use="Body_Bold">
+            {t("dashboard.viewerPurchased.elementsCount", {
+              count: item.elementCount,
+            })}
+          </MonoText>
         </ElementsPill>
 
         <CollectionActionRow>

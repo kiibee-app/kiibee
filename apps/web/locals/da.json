@@ -91,7 +91,9 @@
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",
-    "cta": "Join Kiibee"
+    "cta": "Join Kiibee",
+    "ariaLabel": "TODO: translate - Create profile footer",
+    "logoAlt": "TODO: translate - Kiibee logo"
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",
@@ -851,6 +853,14 @@
     "selectDateRange": "Vælg datointerval",
     "loading": "Indlæser"
   },
+  "searchBar": {
+    "search": "TODO: translate - Search",
+    "clearSearch": "TODO: translate - Clear search",
+    "toggleSearch": "TODO: translate - Toggle search"
+  },
+  "helpDropdown": {
+    "optionsAria": "TODO: translate - Help options"
+  },
   "image": {
     "failed": "Kunne ikke indlæse billede",
     "failedAalt": "Kunne ikke indlæse billede: {{alt}}"
@@ -909,7 +919,10 @@
     "profilePhotoAlt": "Profilfoto"
   },
   "singleContent": {
-    "notFound": "Dette indhold blev ikke fundet."
+    "notFound": "Dette indhold blev ikke fundet.",
+    "navigation": {
+      "goBack": "TODO: translate - Go back"
+    }
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
@@ -1009,6 +1022,7 @@
     }
   },
   "users": {
+    "title": "TODO: translate - Users",
     "search": "Sog efter navn",
     "tabs": {
       "registrations": "Registreringer (11)",
@@ -1044,13 +1058,19 @@
   },
   "dashboard": {
     "creatorHeader": {
-      "myChannel": "Min kanal"
+      "myChannel": "Min kanal",
+      "profileAriaLabel": "TODO: translate - Creator profile"
+    },
+    "viewerHeader": {
+      "profileAriaLabel": "TODO: translate - Viewer profile"
     },
     "overview": "Oversigt",
+    "overviewActivityChartAriaLabel": "TODO: translate - Creator activity stacked bar chart",
     "noData": "Ingen data fundet",
     "contentPerformance": "Indholdsydelse",
     "viewerPurchased": {
       "title": "Købt",
+      "elementsCount": "{{count}} TODO: translate - elements",
       "sections": {
         "collections": "Samlinger",
         "videos": "Videoer",
@@ -1171,6 +1191,14 @@
     "previous": "Forrige",
     "next": "Naeste",
     "paginationPage": "Ga til side {{page}}"
+  },
+  "exploreCreatorsPage": {
+    "trendingContent": {
+      "title": "TODO: translate - Trending content"
+    },
+    "latestRelease": {
+      "title": "TODO: translate - Latest release"
+    }
   },
   "settings": {
     "title": "Indstillinger",

@@ -17,6 +17,7 @@ import { BUTTON, ESCAPE, KEYDOWN, VARIANT } from "@/utils/Constants";
 import { Variant } from "@/utils/Constants";
 import { CrossIcon } from "@/assets/icons/crossIcon";
 import { canUseDOM, ModalAlign } from "@/utils/ui";
+import { useTranslation } from "react-i18next";
 import {
   MODAL_PADDINGS,
   MODAL_WIDTHS,
@@ -79,6 +80,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   confirmVariant = VARIANT.PRIMARY,
   closeOnConfirm = true,
 }) => {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -134,7 +136,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
         {onClose && showCloseButton && (
           <CloseButton
             type="button"
-            aria-label="Close"
+            aria-label={t("common.close")}
             onClick={onClose}
             data-test-id="generic-modal-close"
           >

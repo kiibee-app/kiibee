@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import COLORS from "@repo/ui/colors";
 import type { OverviewActivityPoint } from "@/utils/dummyData/overviewData";
 import { ChartCard, ChartScroll, ChartSvg } from "./styles";
+import { useTranslation } from "react-i18next";
 
 type OverviewActivityChartProps = {
   data: OverviewActivityPoint[];
@@ -69,6 +72,7 @@ function renderSegments(
 export default function OverviewActivityChart({
   data,
 }: OverviewActivityChartProps) {
+  const { t } = useTranslation();
   const plotWidth = SVG_WIDTH - CHART_MARGIN.left - CHART_MARGIN.right;
   const plotHeight = SVG_HEIGHT - CHART_MARGIN.top - CHART_MARGIN.bottom;
   const plotBottom = SVG_HEIGHT - CHART_MARGIN.bottom;
@@ -85,7 +89,7 @@ export default function OverviewActivityChart({
         <ChartSvg
           viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
           role="img"
-          aria-label="Creator activity stacked bar chart"
+          aria-label={t("dashboard.overviewActivityChartAriaLabel")}
           style={{ minWidth: minimumWidth }}
         >
           <line
