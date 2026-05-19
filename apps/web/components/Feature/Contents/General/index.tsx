@@ -11,11 +11,17 @@ import {
   FileRow,
   PreviewBox,
   PreviewVideo,
+  PlayOverlay,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import { formatFileSize } from "@/utils/file";
 import { FORMAT_TYPE, FormatType } from "@/utils/types";
-import { UploadAudioIcon, UploadEpubIcon, UploadPdfIcon } from "@/assets/icons";
+import {
+  PlayCircleIcon,
+  UploadAudioIcon,
+  UploadEpubIcon,
+  UploadPdfIcon,
+} from "@/assets/icons";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/variants";
 
@@ -47,7 +53,18 @@ export default function GeneralContent({
   const renderPreview = () => {
     switch (uploadType) {
       case FORMAT_TYPE.VIDEO:
-        return <PreviewVideo src={previewUrl ?? ""} controls={false} />;
+        return (
+          <PreviewBox>
+            <PreviewVideo src={previewUrl ?? ""} controls={false} />
+            <PlayOverlay>
+              <PlayCircleIcon
+                width={40}
+                height={40}
+                color={COLORS.neutral.GRAY_200}
+              />
+            </PlayOverlay>
+          </PreviewBox>
+        );
 
       case FORMAT_TYPE.AUDIO:
         return (

@@ -65,7 +65,8 @@ export const InfoColumn = styled.div`
 `;
 
 export const PreviewBox = styled.div`
-  height: 64px;
+  height: clamp(80px, 9.8vw, 100px);
+  position: relative;
 `;
 
 export const PreviewVideo = styled.video`
@@ -74,4 +75,14 @@ export const PreviewVideo = styled.video`
   min-width: 100px;
   object-fit: cover;
   border-radius: 8px;
+`;
+
+export const PlayOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0.6;
 `;
