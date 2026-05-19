@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import {
@@ -30,7 +30,8 @@ import { AddContentTab, COLLECTIONS } from "@/utils/common";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
-
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
   const {
     activeTab,
     visibleTabs,
@@ -75,13 +76,21 @@ export default function CreatorsContents() {
     handleEditCollection,
   } = useContentsModalFlows(activeTab, collections, isCollectionContentMode);
 
-  const handleUploadSuccess = (tab: AddContentTab) => {
+  const handleUploadSuccess = (
+    tab: AddContentTab,
+    file?: File | null,
+    preview?: string | null,
+  ) => {
     setActiveTabAndQuery(tab);
+    setUploadedFile(file ?? null);
+    setUploadedPreview(preview ?? null);
   };
 
   const handleBackToBase = () => {
     setSelectedCollection(null);
-    setSelectedCollection(selectedCollection);
+    if (isUploadMode) {
+      setSelectedCollection(selectedCollection);
+    }
     setActiveTabAndQuery(COLLECTIONS);
   };
 
@@ -144,6 +153,8 @@ export default function CreatorsContents() {
             setSelectedCollection={setSelectedCollection}
             onDelete={openDelete}
             onEditCollection={handleEditCollection}
+            uploadedFile={uploadedFile}
+            uploadedPreview={uploadedPreview}
           />
         </ContentPanel>
       </ContentsScrollArea>

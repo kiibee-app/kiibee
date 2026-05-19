@@ -33,7 +33,11 @@ type ContentUploadModalProps = {
   contentType: ContentType | null;
   onBack: () => void;
   onClose: () => void;
-  onUploadSuccess?: (tab: AddContentTab) => void;
+  onUploadSuccess?: (
+    tab: AddContentTab,
+    file?: File | null,
+    preview?: string | null,
+  ) => void;
 };
 
 export default function ContentUploadModal({
@@ -98,8 +102,13 @@ export default function ContentUploadModal({
 
   const handleAdd = () => {
     if (!title.trim() || !description.trim()) return;
+
     setIsSuccess(true);
-    onUploadSuccess?.(ADD_CONTENT_TABS.GENERAL);
+
+    const file = selectedFile;
+    const preview = previewUrl;
+
+    onUploadSuccess?.(ADD_CONTENT_TABS.GENERAL, file, preview);
   };
 
   const handleResetDetails = () => {
@@ -152,7 +161,7 @@ export default function ContentUploadModal({
               setTitle={handleChange(setTitle)}
               setDescription={handleChange(setDescription)}
               onAdd={handleAdd}
-              uploadType={contentType}
+              uploadType={uploadType}
               isSuccess={isSuccess}
             />
           ) : isWebContent ? (
