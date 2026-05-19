@@ -5,84 +5,91 @@ import { fail, success } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 import { UpdateContentDto } from '../content.dto';
 import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
+import { mediaFileCategories } from 'src/database/schema';
+
+const pickDefined = (obj: Record<string, any>) =>
+  Object.fromEntries(
+    Object.entries(obj).filter(([_, v]) => v !== undefined && v !== null),
+  );
 
 export const updateContentService = async (
   contentId: string,
   dto: UpdateContentDto,
 ) => {
   try {
-    // 1. Check if content exists
-    const existing = await db
-      .select()
-      .from(mediaFiles)
-      .where(eq(mediaFiles.id, contentId))
-      .limit(1);
+    await db.transaction(async (trx) => {
+      const [existing] = await trx
+        .select()
+        .from(mediaFiles)
+        .where(eq(mediaFiles.id, contentId))
+        .limit(1);
 
-    if (!existing.length) {
-      throw new HttpException('Content not found', HttpStatus.NOT_FOUND);
-    }
+      if (!existing) {
+        throw new HttpException('Content not found', HttpStatus.NOT_FOUND);
+      }
 
-    // 2. Update only provided fields
-    const updated = await db
-      .update(mediaFiles)
-      .set({
-        ...(dto.title && { title: dto.title }),
-        ...(dto.description && { description: dto.description }),
-        ...(dto.contentUrl && { contentUrl: dto.contentUrl }),
-        ...(dto.trailerUrl && { trailerUrl: dto.trailerUrl }),
-        ...(dto.thumbnailUrl && { thumbnailUrl: dto.thumbnailUrl }),
-        ...(dto.thumbnailLandscapeUrl && {
-          thumbnailLandscapeUrl: dto.thumbnailLandscapeUrl,
-        }),
-        ...(dto.visibility && {
-          visibility: dto.visibility as
-            | 'public'
-            | 'hidden'
-            | 'draft'
-            | 'private',
-        }),
-        ...(dto.accessType && {
-          accessType: dto.accessType as
-            | 'free'
-            | 'paid'
-            | 'password'
-            | 'email_gated',
-        }),
-        ...(dto.publishedYear && { publishedYear: dto.publishedYear }),
-        ...(dto.duration && { duration: dto.duration }),
-        ...(dto.productionCompany && {
-          production_company: dto.productionCompany,
-        }),
-        ...(dto.manufacturerLink && {
-          manufacturerLink: dto.manufacturerLink,
-        }),
-        ...(dto.buyPrice !== undefined && { buyPrice: String(dto.buyPrice) }),
-        ...(dto.rentPrice !== undefined && {
-          rentPrice: String(dto.rentPrice),
-        }),
-        ...(dto.rentDurationHours && {
-          rentDurationHours: dto.rentDurationHours,
-        }),
-        ...(dto.maximumDownloadCount && {
-          maxDownloadCount: dto.maximumDownloadCount,
-        }),
-        ...(dto.physicalProductLink && {
-          physicalProductLink: dto.physicalProductLink,
-        }),
-        ...(dto.isDownloadable !== undefined && {
-          isDownloadable: dto.isDownloadable,
-        }),
-      })
-      .where(eq(mediaFiles.id, contentId))
-      .returning();
+      const updatePayload = pickDefined({
+        title: dto.title,
+        description: dto.description,
+        contentUrl: dto.contentUrl,
+        trailerUrl: dto.trailerUrl,
+        thumbnailUrl: dto.thumbnailUrl,
+        thumbnailLandscapeUrl: dto.thumbnailLandscapeUrl,
+        visibility: dto.visibility,
+        accessType: dto.accessType,
+        publishedYear: dto.publishedYear,
+        duration: dto.duration,
+        production_company: dto.productionCompany,
+        manufacturerLink: dto.manufacturerLink,
+        buyPrice: dto.buyPrice !== undefined ? String(dto.buyPrice) : undefined,
+        rentPrice:
+          dto.rentPrice !== undefined ? String(dto.rentPrice) : undefined,
+        rentDurationHours: dto.rentDurationHours,
+        maxDownloadCount: dto.maximumDownloadCount,
+        physicalProductLink: dto.physicalProductLink,
+        isDownloadable: dto.isDownloadable,
+      });
 
-    return success('Content updated successfully');
+      if (Object.keys(updatePayload).length) {
+        await trx
+          .update(mediaFiles)
+          .set(updatePayload)
+          .where(eq(mediaFiles.id, contentId));
+      }
+
+      if (dto.categoryId) {
+        const [existingCategory] = await trx
+          .select()
+          .from(mediaFileCategories)
+          .where(eq(mediaFileCategories.mediaFileId, contentId))
+          .limit(1);
+
+        if (existingCategory) {
+          await trx
+            .update(mediaFileCategories)
+            .set({ categoryId: dto.categoryId })
+            .where(eq(mediaFileCategories.mediaFileId, contentId));
+        } else {
+          await trx.insert(mediaFileCategories).values({
+            id: crypto.randomUUID(),
+            categoryId: dto.categoryId,
+            mediaFileId: contentId,
+          });
+        }
+      }
+
+      return true;
+    });
+
+    const responseData = {
+      id: contentId,
+    };
+
+    return success(responseData, 'Content updated successfully', HttpStatus.OK);
   } catch (error) {
     logger.error('Failed to update content:', error);
 
-    if (error instanceof HttpException) {
-      throw error;
-    }
+    if (error instanceof HttpException) throw error;
 
     return fail('Failed to update content', HttpStatus.INTERNAL_SERVER_ERROR);
   }

@@ -3,8 +3,11 @@ import { Injectable } from '@nestjs/common';
 import { getContentCategoriesService } from './services/getContentCategories.service';
 import { getContentTypesService } from './services/getContentTypes.service';
 import { assignUserCategoriesService } from './services/assignUserCategories.service';
-import { CreateContentDto } from './content.dto';
+import { CreateContentDto, UpdateContentDto } from './content.dto';
 import { getContentByCollectionIdService } from './services/getContentByCollectionId.service';
+import { updateContentService } from './services/updateContent.service';
+import { getContentByIdService } from './services/getContentById.service';
+import { deleteContentService } from './services/delete.content.service';
 
 @Injectable()
 export class ContentService {
@@ -28,5 +31,17 @@ export class ContentService {
 
   async getContentByCollectionIdService(id: string) {
     return getContentByCollectionIdService(id);
+  }
+
+  async updateContentService(contentId: string, dto: UpdateContentDto) {
+    return updateContentService(contentId, dto);
+  }
+
+  async getContentByIdService(contentId: string) {
+    return getContentByIdService(contentId);
+  }
+
+  async deleteContentService(contentId: string) {
+    return deleteContentService(contentId);
   }
 }
