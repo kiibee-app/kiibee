@@ -10,6 +10,7 @@ import { ContentWrap } from "@/app/auth/signup-creator/styles";
 import { VIEWER_SIGNUP_PREFERENCE } from "@/utils/translationKeys";
 import { PREF_STEP, ViewerPreferenceStep } from "@/utils/preferenceOptions";
 import { PATHS } from "@/utils/path";
+import { useAssignViewerPreferences } from "@/hooks/auth/useAssignViewerPreferences";
 import { PrepCard, PreContentWrap } from "./styles";
 import PreferenceStepContent from "./PreferenceStepContent";
 
@@ -20,6 +21,8 @@ export default function ViewerPreference() {
   const [step, setStep] = useState<ViewerPreferenceStep>(PREF_STEP.INTRO);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const { mutateAsync: assignViewerPreferences, isPending } =
+    useAssignViewerPreferences();
 
   const toggleCategory = (categoryKey: string) => {
     setSelectedCategories((prev) =>
@@ -37,7 +40,7 @@ export default function ViewerPreference() {
     );
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (step === PREF_STEP.INTRO) {
       setStep(PREF_STEP.CONTENT);
       return;
@@ -48,6 +51,10 @@ export default function ViewerPreference() {
       return;
     }
 
+    await assignViewerPreferences({
+      categoryIds: selectedCategories,
+      typeIds: selectedTypes,
+    });
     router.push(PATHS.DASHBOARD_VIEWER);
   };
 
@@ -76,6 +83,7 @@ export default function ViewerPreference() {
         <GenericButton
           className="preference-continue-btn"
           onClick={handleContinue}
+          isLoading={isPending}
         >
           {t(
             step === PREF_STEP.TYPES

@@ -16,4 +16,7 @@ export const API = {
     create: "/coupons/create",
     getAll: "/coupons",
   },
+  content: {
+    assign: "/content/assign",
+  },
 } as const;

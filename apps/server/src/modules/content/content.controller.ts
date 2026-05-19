@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Put,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { ContentService } from './content.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateContentDto } from './content.dto';
@@ -19,6 +27,7 @@ export class ContentController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Put('assign')
   @Post('assign')
   async assignUserCategories(
     @Req() req: any,
