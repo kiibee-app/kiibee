@@ -9,7 +9,7 @@ import avatarImage from "@/assets/images/creators/profile_pic3.png";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import { ABOUT, HOME, PROFILE_TABS3, ProfileTabKey } from "@/utils/common";
-import CreatorInfoModal from "../../Layout2/Home/CreatorInfoModal";
+
 import {
   AvatarImage,
   AvatarWrap,
@@ -22,6 +22,7 @@ import {
   TabsWrapper,
   UploadsText,
 } from "./styles";
+import CreatorInfoModal from "@/components/Feature/ProfileLayout/Layout2/Home/CreatorInfoModal";
 
 export default function Hero() {
   const { t } = useTranslation();

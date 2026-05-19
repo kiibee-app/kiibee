@@ -29,7 +29,7 @@ import {
 } from "./styles";
 import { ABOUT, HOME, PROFILE_TABS, ProfileTabKey } from "@/utils/common";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
-import CreatorInfoModal from "../../Layout2/Home/CreatorInfoModal";
+import CreatorInfoModal from "@/components/Feature/ProfileLayout/Layout2/Home/CreatorInfoModal";
 
 export default function Hero() {
   const { t } = useTranslation();
