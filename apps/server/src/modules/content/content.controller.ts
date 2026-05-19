@@ -1,7 +1,16 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Put,
+  Req,
+  UseGuards,
+  Delete,
+} from '@nestjs/common';
 import { ContentService } from './content.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { CreateContentDto } from './content.dto';
+import { CreateContentDto, UpdateContentDto } from './content.dto';
 import { CreatorGuard } from '../auth/guards/admin.guard';
 
 @Controller('content')
@@ -46,5 +55,26 @@ export class ContentController {
   async getContentByCollectionId(@Req() req: any) {
     const collectionId = req.params.id;
     return this.contentService.getContentByCollectionIdService(collectionId);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Put('update/:contentId')
+  async updateContent(@Req() req: any, @Body() body: UpdateContentDto) {
+    const contentId = req.params.contentId;
+    return this.contentService.updateContentService(contentId, body);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Get('/:id')
+  async getContentById(@Req() req: any) {
+    const contentId = req.params.id;
+    return this.contentService.getContentByIdService(contentId);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Delete('delete/:contentId')
+  async deleteContent(@Req() req: any) {
+    const contentId = req.params.contentId;
+    return this.contentService.deleteContentService(contentId);
   }
 }
