@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { VideoMultipartService } from './services/videoMultipart.service';
 import { VideoStreamService } from './services/videoStream.service';
 import { VideoDownloadService } from './services/videoDownload.service';
+import { FileUploadService } from './services/fileUpload.service';
 
 @Injectable()
 export class MediaService {
@@ -9,6 +10,7 @@ export class MediaService {
     private readonly multipart: VideoMultipartService,
     private readonly stream: VideoStreamService,
     private readonly download: VideoDownloadService,
+    public readonly fileUpload: FileUploadService,
   ) {}
 
   initUpload() {

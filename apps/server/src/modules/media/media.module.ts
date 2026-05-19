@@ -4,6 +4,7 @@ import { MediaService } from './media.service';
 import { VideoMultipartService } from './services/videoMultipart.service';
 import { VideoStreamService } from './services/videoStream.service';
 import { VideoDownloadService } from './services/videoDownload.service';
+import { FileUploadService } from './services/fileUpload.service';
 
 @Module({
   controllers: [MediaController],
@@ -12,6 +13,7 @@ import { VideoDownloadService } from './services/videoDownload.service';
     VideoMultipartService,
     VideoStreamService,
     VideoDownloadService,
+    FileUploadService,
   ],
 })
 export class MediaModule {}
