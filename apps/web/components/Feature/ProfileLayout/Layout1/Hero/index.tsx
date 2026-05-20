@@ -26,7 +26,7 @@ import {
   UploadCount,
   UploadCountText,
 } from "./styles";
-import { HOME, PROFILE_TABS, ProfileTabKey } from "@/utils/common";
+import { ABOUT, HOME, PROFILE_TABS, ProfileTabKey } from "@/utils/common";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import CreatorInfoModal from "../../Layout2/Home/CreatorInfoModal";
 
@@ -41,7 +41,7 @@ export default function Hero() {
   const [isCreatorInfoOpen, setIsCreatorInfoOpen] = useState(false);
 
   const handleTabChange = (tab: ProfileTabKey) => {
-    if (tab === "about") {
+    if (tab === ABOUT) {
       setIsCreatorInfoOpen(true);
       return;
     }

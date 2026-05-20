@@ -8,7 +8,7 @@ import coverImage from "@/assets/images/creators/creator_profile_hero3.png";
 import avatarImage from "@/assets/images/creators/profile_pic3.png";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
-import { HOME, PROFILE_TABS3, ProfileTabKey } from "@/utils/common";
+import { ABOUT, HOME, PROFILE_TABS3, ProfileTabKey } from "@/utils/common";
 import {
   AvatarImage,
   AvatarWrap,
@@ -33,7 +33,7 @@ export default function Hero() {
   const [searchValue, setSearchValue] = useState("");
   const [isCreatorInfoOpen, setIsCreatorInfoOpen] = useState(false);
   const handleTabChange = (tab: ProfileTabKey) => {
-    if (tab === "about") {
+    if (tab === ABOUT) {
       setIsCreatorInfoOpen(true);
       return;
     }

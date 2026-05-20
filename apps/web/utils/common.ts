@@ -1,6 +1,7 @@
 export const ALERT = "alert";
 
 export const COLLECTIONS = "collections";
+export const ABOUT = "about";
 export const APPEARANCE = "appearance";
 export const SETTINGS = "settings";
 export const COUPONS = "coupons";
