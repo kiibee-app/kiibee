@@ -47,6 +47,7 @@ export const mediaFiles = pgTable(
     rentPrice: numeric('rent_price', { precision: 10, scale: 2 }),
     rentDurationHours: integer('rent_duration_hours'),
     currency: varchar('currency', { length: 10 }).default('DKK'),
+    physicalProductLink: text('physical_product_link'),
 
     passwordHash: text('password_hash'),
     isDownloadable: boolean('is_downloadable').notNull().default(false),
