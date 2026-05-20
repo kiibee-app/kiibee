@@ -301,6 +301,7 @@
     "cta": "Learn more"
   },
   "creators": {
+    "trendingContent": "TODO: translate - Trending content",
     "heading": {
       "lineOne": "Upload.",
       "lineTwo": "Market.",
@@ -841,11 +842,20 @@
   },
   "common": {
     "share": "Del",
+    "search": "TODO: translate - Search",
+    "clearSearch": "TODO: translate - Clear search",
+    "toggleSearch": "TODO: translate - Toggle search",
     "optional": "valgfrit",
     "save": "Save",
     "cancel": "Cancel",
     "back": "Tilbage",
+    "goBack": "TODO: translate - Go back",
     "close": "Luk",
+    "helpOptions": "TODO: translate - Help options",
+    "viewerProfile": "TODO: translate - Viewer profile",
+    "creatorProfile": "TODO: translate - Creator profile",
+    "createProfileFooterAria": "TODO: translate - Create profile footer",
+    "creatorActivityChart": "TODO: translate - Creator activity stacked bar chart",
     "previous": "Forrige",
     "next": "Næste",
     "selectDateRange": "Vælg datointerval",

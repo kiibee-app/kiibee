@@ -301,6 +301,7 @@
     "cta": "Learn more"
   },
   "creators": {
+    "trendingContent": "Trending content",
     "heading": {
       "lineOne": "Upload.",
       "lineTwo": "Market.",
@@ -841,11 +842,20 @@
   },
   "common": {
     "share": "Share",
+    "search": "Search",
+    "clearSearch": "Clear search",
+    "toggleSearch": "Toggle search",
     "optional": "optional",
     "save": "Save",
     "cancel": "Cancel",
     "back": "Back",
+    "goBack": "Go back",
     "close": "Close",
+    "helpOptions": "Help options",
+    "viewerProfile": "Viewer profile",
+    "creatorProfile": "Creator profile",
+    "createProfileFooterAria": "Create profile footer",
+    "creatorActivityChart": "Creator activity stacked bar chart",
     "previous": "Previous",
     "next": "Next",
     "selectDateRange": "Select date range",

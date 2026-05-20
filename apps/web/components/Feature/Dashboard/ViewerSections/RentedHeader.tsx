@@ -12,6 +12,7 @@ import {
   HeaderSearchInput,
   PageHeader,
 } from "./styles";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   title: string;
@@ -32,6 +33,7 @@ export default function RentedHeader({
   onToggleSearch,
   searchInputRef,
 }: Props) {
+  const { t } = useTranslation();
   const theme = useTheme();
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function RentedHeader({
       <HeaderSearchArea $open={isSearchOpen}>
         <HeaderSearchButton
           type="button"
-          aria-label="Toggle search"
+          aria-label={t("common.toggleSearch")}
           onClick={onToggleSearch}
         >
           <SearchIcon
