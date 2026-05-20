@@ -14,12 +14,16 @@ export const SidebarRoot = styled.aside<{ $isOpen: boolean }>`
     z-index: 50;
     transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
     transition: transform ${({ theme }) => theme.animations.normal};
+    box-shadow: ${({ $isOpen, theme }) =>
+      $isOpen ? theme.shadows.lg : "none"};
   }
 `;
 
 export const SidebarTop = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   min-height: 68px;
   padding: 12px 20px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
@@ -31,11 +35,35 @@ export const BrandText = styled.div`
   color: ${({ theme }) => theme.colors.primary.GREEN_100};
 `;
 
+export const CloseButton = styled.button`
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.tablet}) {
+    display: inline-flex;
+  }
+`;
+
 export const MenuList = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 4px;
   padding: 14px;
+  max-height: calc(100vh - 68px);
+  overflow-y: auto;
 `;
 
 export const MenuItem = styled(Link)<{ $active?: boolean }>`

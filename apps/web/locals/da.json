@@ -1308,7 +1308,10 @@
       "contents": "Indhold",
       "appearance": "Udseende",
       "settings": "Indstillinger",
-      "coupons": "Kuponer"
+      "coupons": "Kuponer",
+      "general": "Generelt",
+      "metadata": "Metadata",
+      "payment": "Betaling"
     },
     "couponsCard": {
       "title": "Kuponer",
@@ -1438,7 +1441,9 @@
         "title": "Tilføj webindhold",
         "label": "Webindhold-link",
         "placeholder": "https://"
-      }
+      },
+      "uploading": "Uploader",
+      "deletePermanently": "Slet permanent"
     },
     "emptyCollection": {
       "title": "Din samling er tom.",

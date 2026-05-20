@@ -1,8 +1,10 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
+import { X } from "lucide-react";
 import {
   BrandText,
+  CloseButton,
   IconWrap,
   MenuItem,
   MenuList,
@@ -28,6 +30,9 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
     <SidebarRoot $isOpen={isOpen}>
       <SidebarTop>
         <BrandText>Kiibee</BrandText>
+        <CloseButton type="button" onClick={onClose} aria-label="Close sidebar">
+          <X size={18} />
+        </CloseButton>
       </SidebarTop>
       <MenuList>
         {items.map((item) => {
@@ -43,6 +48,7 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
               key={item.href}
               href={item.href}
               $active={isActive}
+              aria-current={isActive ? "page" : undefined}
               onClick={onClose}
             >
               <IconWrap>

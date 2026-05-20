@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import {
@@ -26,10 +26,12 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import { AddContentTab, COLLECTIONS } from "@/utils/common";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
-
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
   const {
     activeTab,
     visibleTabs,
@@ -43,6 +45,7 @@ export default function CreatorsContents() {
     setOpenSearch,
     handleTabChange,
     setActiveTabAndQuery,
+    isUploadMode,
   } = useContentsViewState();
   const {
     collections,
@@ -71,17 +74,37 @@ export default function CreatorsContents() {
     closeDiscardModal,
     handleCreateClick,
     handleEditCollection,
-  } = useContentsModalFlows(activeTab, collections, isCollectionContentMode);
+  } = useContentsModalFlows(
+    activeTab,
+    collections,
+    isCollectionContentMode,
+    setCollections,
+  );
+
+  const handleUploadSuccess = (
+    tab: AddContentTab,
+    file?: File | null,
+    preview?: string | null,
+  ) => {
+    setActiveTabAndQuery(tab);
+    setUploadedFile(file ?? null);
+    setUploadedPreview(preview ?? null);
+  };
+
+  const handleBackToBase = () => {
+    setSelectedCollection(null);
+    if (isUploadMode) {
+      setSelectedCollection(selectedCollection);
+    }
+    setActiveTabAndQuery(COLLECTIONS);
+  };
 
   return (
     <PageShell>
       <PageHeader>
         <HeaderRow>
           {selectedCollection && (
-            <AuthBackButton
-              marginBottom="0px"
-              onClick={() => setSelectedCollection(null)}
-            />
+            <AuthBackButton marginBottom="0px" onClick={handleBackToBase} />
           )}
           <Title>
             {selectedCollection
@@ -109,14 +132,18 @@ export default function CreatorsContents() {
             }))}
             activeTab={activeTab}
             onTabChange={handleTabChange}
-            search={{
-              open: openSearch,
-              value: searchValue,
-              placeholder: t(CONTENTS_KEYS.actions.search),
-              onToggle: () => setOpenSearch((prev) => !prev),
-              onChange: setSearchValue,
-              ariaLabel: t(CONTENTS_KEYS.actions.search),
-            }}
+            search={
+              isUploadMode
+                ? undefined
+                : {
+                    open: openSearch,
+                    value: searchValue,
+                    placeholder: t(CONTENTS_KEYS.actions.search),
+                    onToggle: () => setOpenSearch((prev) => !prev),
+                    onChange: setSearchValue,
+                    ariaLabel: t(CONTENTS_KEYS.actions.search),
+                  }
+            }
           />
         </ContentsTabsSlot>
         <ContentPanel>
@@ -131,6 +158,8 @@ export default function CreatorsContents() {
             setSelectedCollection={setSelectedCollection}
             onDelete={openDelete}
             onEditCollection={handleEditCollection}
+            uploadedFile={uploadedFile}
+            uploadedPreview={uploadedPreview}
           />
         </ContentPanel>
       </ContentsScrollArea>
@@ -155,6 +184,7 @@ export default function CreatorsContents() {
         contentType={contentTypeFlow.selectedContentType}
         onClose={contentTypeFlow.close}
         onBack={contentTypeFlow.backToTypeSelect}
+        onUploadSuccess={handleUploadSuccess}
       />
 
       <GenericModal

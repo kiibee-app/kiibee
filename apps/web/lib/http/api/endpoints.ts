@@ -23,4 +23,10 @@ export const API = {
     fileUploadUrl: "/media/file/upload-url",
     fileConfirm: "/media/file/confirm",
   },
+  collection: {
+    getAll: "/collection",
+    create: "/collection/create",
+    update: (id: string) => `/collection/${id}`,
+    delete: (id: string) => `/collection/${id}`,
+  },
 } as const;

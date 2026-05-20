@@ -26,12 +26,18 @@ import SelectedFileView from "./SelectedFileView";
 import ContentUploadDetails from "./UploadDetails";
 import WebContentLinkForm from "./WebContentLinkForm";
 import { FORMAT_TYPE } from "@/utils/types";
+import { ADD_CONTENT_TABS, AddContentTab } from "@/utils/common";
 
 type ContentUploadModalProps = {
   visible: boolean;
   contentType: ContentType | null;
   onBack: () => void;
   onClose: () => void;
+  onUploadSuccess?: (
+    tab: AddContentTab,
+    file?: File | null,
+    preview?: string | null,
+  ) => void;
 };
 
 export default function ContentUploadModal({
@@ -39,12 +45,14 @@ export default function ContentUploadModal({
   contentType,
   onBack,
   onClose,
+  onUploadSuccess,
 }: ContentUploadModalProps) {
   const { t } = useTranslation();
   const [showDetails, setShowDetails] = useState(false);
   const [webContentLink, setWebContentLink] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
   const {
     fileInputRef,
     selectedFile,
@@ -87,11 +95,32 @@ export default function ContentUploadModal({
 
   const handleWebNextClick = () => {
     if (!webContentLink.trim()) return;
+    setIsSuccess(false);
     setShowDetails(true);
+    setTitle("");
+    setDescription("");
   };
 
   const handleAdd = () => {
     if (!title.trim() || !description.trim()) return;
+    setIsSuccess(true);
+    onUploadSuccess?.(ADD_CONTENT_TABS.GENERAL, selectedFile, previewUrl);
+  };
+
+  const handleResetDetails = () => {
+    setIsSuccess(false);
+    setShowDetails(true);
+  };
+
+  const getBackAction = () => {
+    if (isSuccess) return () => handleResetDetails();
+    if (showDetails) return () => setShowDetails(false);
+    return () => handleExit(onBack);
+  };
+
+  const handleBackClick = () => {
+    const action = getBackAction();
+    action();
   };
 
   const isWebContent = contentType === FORMAT_TYPE.WEB;
@@ -108,9 +137,7 @@ export default function ContentUploadModal({
       <BackButton
         type={BUTTON}
         aria-label={t("common.back")}
-        onClick={() =>
-          showDetails ? setShowDetails(false) : handleExit(onBack)
-        }
+        onClick={handleBackClick}
       >
         <BackButtonIcon size={28} strokeWidth={2.5} />
       </BackButton>
@@ -130,6 +157,8 @@ export default function ContentUploadModal({
               setTitle={handleChange(setTitle)}
               setDescription={handleChange(setDescription)}
               onAdd={handleAdd}
+              uploadType={uploadType}
+              isSuccess={isSuccess}
             />
           ) : isWebContent ? (
             <WebContentLinkForm
