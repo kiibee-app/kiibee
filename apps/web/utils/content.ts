@@ -28,34 +28,36 @@ export const UPLOAD_CONTENT_TYPES = ["video", "audio", "pdf", "epub"] as const;
 
 export type UploadContentType = (typeof UPLOAD_CONTENT_TYPES)[number];
 
+export type MediaUploadFileType = "documents" | "audio" | "ebooks";
+
+export const MEDIA_UPLOAD_FILE_TYPE_MAP: Record<
+  Exclude<UploadContentType, "video">,
+  MediaUploadFileType
+> = {
+  audio: "audio",
+  pdf: "documents",
+  epub: "ebooks",
+};
+
 export const CONTENT_UPLOAD_CONFIG: Record<
   UploadContentType,
   { accept: string; extensions: readonly string[] }
 > = {
   video: {
-    accept: ".mp4,.mkv,.mov,.m4v",
-    extensions: [".mp4", ".mkv", ".mov", ".m4v"],
+    accept: ".mp4",
+    extensions: [".mp4"],
   },
   audio: {
-    accept: ".mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac",
-    extensions: [
-      ".mp3",
-      ".m4a",
-      ".wav",
-      ".wma",
-      ".alac",
-      ".flac",
-      ".ogg",
-      ".aac",
-    ],
+    accept: ".mp3,.wav,.ogg",
+    extensions: [".mp3", ".wav", ".ogg"],
   },
   pdf: {
     accept: ".pdf",
     extensions: [".pdf"],
   },
   epub: {
-    accept: ".epub,.mobi,.azw",
-    extensions: [".epub", ".mobi", ".azw"],
+    accept: ".epub",
+    extensions: [".epub"],
   },
 } as const;
 

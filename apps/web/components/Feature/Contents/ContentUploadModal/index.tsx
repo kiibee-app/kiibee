@@ -58,6 +58,7 @@ export default function ContentUploadModal({
     selectedFile,
     isUploading,
     uploadComplete,
+    uploadError,
     previewUrl,
     uploadType,
     uploadConfig,
@@ -187,6 +188,9 @@ export default function ContentUploadModal({
               </ChooseUploadButton>
 
               <UploadHelperTextGroup>
+                {uploadError && (
+                  <UploadHelperText>{uploadError}</UploadHelperText>
+                )}
                 <UploadHelperText>{helperLineOne}</UploadHelperText>
                 {helperLineTwo && (
                   <UploadHelperText>{helperLineTwo}</UploadHelperText>
