@@ -3,6 +3,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
 import {
+  ADD_CONTENT_TABS,
   APPEARANCE,
   COLLECTIONS,
   CONTENT_TABS,
@@ -41,6 +42,7 @@ import {
 import COLORS from "@repo/ui/colors";
 import { FolderIcon } from "@/assets/icons";
 import { MonoText } from "@/components/UI/Monotext";
+import GeneralContent from "./General";
 
 type Props = {
   activeTab: ContentTab;
@@ -55,6 +57,8 @@ type Props = {
     SetStateAction<Record<string, CollectionContentRow[]>>
   >;
   setActiveTab: (tab: ContentTab) => void;
+  uploadedFile?: File | null;
+  uploadedPreview?: string | null;
 };
 
 export default function ContentTabPanel({
@@ -68,6 +72,8 @@ export default function ContentTabPanel({
   onEditCollection,
   setContentsMap,
   setActiveTab,
+  uploadedFile,
+  uploadedPreview,
 }: Props) {
   const { t } = useTranslation();
   const { data: couponResponse } = useGetAPI<CouponListResponse>(
@@ -184,6 +190,13 @@ export default function ContentTabPanel({
   if (activeTab === SETTINGS) return <AdmissionRequirements />;
   if (activeTab === COUPONS) return <CouponTable data={couponRows} />;
   if (activeTab === COLLECTIONS) return renderCollectionsContent();
-
+  if (activeTab === ADD_CONTENT_TABS.GENERAL) {
+    return (
+      <GeneralContent
+        uploadedFile={uploadedFile}
+        uploadedPreview={uploadedPreview}
+      />
+    );
+  }
   return <PlaceholderLine>{renderPlaceholder()}</PlaceholderLine>;
 }
