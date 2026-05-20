@@ -1408,12 +1408,14 @@
       "selectedFile": "Selected file",
       "upload": "Upload",
       "next": "Next",
+      "invalidFile": "Choose a supported file under 2GB.",
+      "uploadError": "Could not upload this file. Please try again.",
       "video": {
-        "helperLineOne": "Max. file size of 2GB of file types (.mp4,.mkv,.mov,.m4v)",
+        "helperLineOne": "Max. file size of 2GB of file types (.mp4)",
         "helperLineTwo": "Min. resolution 1080p HD"
       },
       "audio": {
-        "helperLineOne": "Max. file size of 2GB of file types (.mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac)",
+        "helperLineOne": "Max. file size of 2GB of file types (.mp3,.wav,.ogg)",
         "helperLineTwo": ""
       },
       "pdf": {
@@ -1421,7 +1423,7 @@
         "helperLineTwo": ""
       },
       "epub": {
-        "helperLineOne": "Max. file size of 2GB of file types (.epub,.mobi,.azw)",
+        "helperLineOne": "Max. file size of 2GB of file types (.epub)",
         "helperLineTwo": ""
       },
       "details": {
