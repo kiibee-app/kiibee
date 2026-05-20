@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import { seedContentCategories } from './contentCategories.seed';
 import { seedContentTypes } from './contentTypes.seed';
+import { seedCreatorAccounts } from './creatorAccounts.seed';
 import { seedPlans } from './subscriptionPlan.seed';
 import { seedTags } from './tags.seed';
 import { seedUsers } from './users.seed';
@@ -12,8 +13,9 @@ async function main() {
   await seedTags();
   await seedPlans();
 
-  // Users last (depends on nothing)
+  // Base users, then creator accounts that depend on plans
   await seedUsers();
+  await seedCreatorAccounts();
 
   console.log('All seeds completed successfully');
   process.exit();
