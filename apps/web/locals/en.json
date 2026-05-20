@@ -1465,6 +1465,10 @@
       "cancel": "Cancel",
       "delete": "Delete"
     },
+    "couponDeleteModal": {
+      "title": "Delete coupon?",
+      "message": "Are you sure you want to delete this coupon? This action cannot be undone."
+    },
     "deleteSuccessModal": {
       "title": "Delete successfully",
       "message": "Content deleted successfully.",

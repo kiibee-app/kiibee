@@ -28,9 +28,15 @@ export type CouponStatus = (typeof COUPON_STATUS)[keyof typeof COUPON_STATUS];
 export type CouponEntity = {
   id: string;
   title: string;
+  discountType?: CouponDiscountType;
+  discountValue?: string;
   status: Lowercase<CouponStatus>;
   createdAt: string;
   codes?: string[];
+  applicableProducts?: {
+    collectionId?: string | null;
+    contentId?: string | null;
+  };
 };
 
 export type CouponListResponse = {

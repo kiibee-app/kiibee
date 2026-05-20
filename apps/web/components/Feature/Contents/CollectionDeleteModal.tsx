@@ -8,6 +8,10 @@ type DeleteModalsProps = {
   showDeleteSuccess: boolean;
   setShowDeleteSuccess: React.Dispatch<React.SetStateAction<boolean>>;
   onConfirmDelete: () => void;
+  title?: string;
+  message?: string;
+  onConfirmClose?: () => void;
+  onSuccessClose?: () => void;
 };
 
 export default function DeleteModals({
@@ -16,18 +20,33 @@ export default function DeleteModals({
   showDeleteSuccess,
   setShowDeleteSuccess,
   onConfirmDelete,
+  title,
+  message,
+  onConfirmClose,
+  onSuccessClose,
 }: DeleteModalsProps) {
   const { t } = useTranslation();
+
+  const handleConfirmClose = () => {
+    setShowDeleteConfirm(false);
+    onConfirmClose?.();
+  };
+
+  const handleSuccessClose = () => {
+    setShowDeleteSuccess(false);
+    onSuccessClose?.();
+  };
+
   return (
     <>
       <GenericModal
         visible={showDeleteConfirm}
-        title={t("contents.deleteModal.title")}
-        message={t("contents.deleteModal.message")}
+        title={title ?? t("contents.deleteModal.title")}
+        message={message ?? t("contents.deleteModal.message")}
         cancelLabel={t("contents.deleteModal.cancel")}
         confirmLabel={t("contents.deleteModal.delete")}
-        onCancel={() => setShowDeleteConfirm(false)}
-        onClose={() => setShowDeleteConfirm(false)}
+        onCancel={handleConfirmClose}
+        onClose={handleConfirmClose}
         onConfirm={onConfirmDelete}
         size="sm"
         spacing="xs"
@@ -40,8 +59,8 @@ export default function DeleteModals({
         title={t("contents.deleteSuccessModal.title")}
         message={t("contents.deleteSuccessModal.message")}
         confirmLabel={t("contents.deleteSuccessModal.done")}
-        onClose={() => setShowDeleteSuccess(false)}
-        onConfirm={() => setShowDeleteSuccess(false)}
+        onClose={handleSuccessClose}
+        onConfirm={handleSuccessClose}
         showCloseButton={false}
       />
     </>

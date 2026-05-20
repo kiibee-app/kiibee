@@ -1465,6 +1465,10 @@
       "cancel": "Cancel",
       "delete": "Delete"
     },
+    "couponDeleteModal": {
+      "title": "Delete coupon?",
+      "message": "Er du sikker på, at du vil slette denne kupon? Denne handling kan ikke fortrydes."
+    },
     "deleteSuccessModal": {
       "title": "Delete successfully",
       "message": "Content deleted successfully.",
