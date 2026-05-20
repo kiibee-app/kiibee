@@ -123,3 +123,11 @@ export const FILE_TYPE_CHECKERS: Record<FormatType, (file: File) => boolean> = {
     file.name.toLowerCase().endsWith(FILE_EXTENSION.EPUB),
   [FORMAT_TYPE.WEB]: () => false,
 };
+
+export const TRAILER_VISIBILITY = {
+  PUBLIC: "public",
+  HIDDEN: "hidden",
+} as const;
+
+export type TrailerVisibility =
+  (typeof TRAILER_VISIBILITY)[keyof typeof TRAILER_VISIBILITY];

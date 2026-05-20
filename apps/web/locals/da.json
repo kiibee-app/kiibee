@@ -1383,6 +1383,15 @@
         "upload": "Upload logo"
       }
     },
+    "general": {
+      "trailerLink": "Trailer-link",
+      "trailerLinkHint": "Hvis du vil tilfoje en trailer, skal du indtaste linket her.",
+      "trailerLinkPlaceholder": "Tilfoj YouTube- eller Video-link",
+      "visibility": "Synlighed",
+      "visibilityHint": "Styr om denne trailer er synlig for brugere.",
+      "public": "Offentlig",
+      "hidden": "Skjult"
+    },
     "admissionRequirements": {
       "title": "Adgangskrav",
       "description": "Overvej hvilken type adgang dit [contentType] skal have",

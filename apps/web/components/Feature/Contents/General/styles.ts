@@ -86,3 +86,28 @@ export const PlayOverlay = styled.div`
   pointer-events: none;
   opacity: 0.6;
 `;
+
+export const List = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+`;
+
+export const ItemRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+`;
+
+export const ItemText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+export const ControlWrap = styled.div`
+  width: 100%;
+  max-width: 460px;
+`;

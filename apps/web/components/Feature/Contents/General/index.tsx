@@ -26,6 +26,7 @@ import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/variants";
 import { FILE_TYPE_CHECKERS } from "@/utils/content";
 import { useTranslation } from "react-i18next";
+import TrailerList from "./TrailerList";
 
 type Props = {
   uploadedFile?: File | null;
@@ -106,6 +107,7 @@ export default function GeneralContent({
           </DeleteAction>
         </DetailsWrapper>
       </GeneralPanel>
+      <TrailerList />
     </PanelStack>
   );
 }
