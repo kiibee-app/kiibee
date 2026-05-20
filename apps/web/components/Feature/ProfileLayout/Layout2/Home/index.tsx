@@ -1,6 +1,6 @@
 "use client";
 
-import CreateProfileLayout from "../../../../Layout/CreateProfile2";
+import CreateProfileLayout from "@/components/Layout/CreateProfile2";
 import LatestUpload from "./LatestUpload";
 import type { LatestUploadData } from "./LatestUpload";
 import latestUploadImage from "@/assets/images/creators/recent_creator1.webp";

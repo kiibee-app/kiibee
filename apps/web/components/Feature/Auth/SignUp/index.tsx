@@ -20,8 +20,8 @@ import {
   LoginLink,
 } from "./styles";
 import GenericButton from "../../../UI/GenericButton";
-import mediaCard1 from "../../../../assets/images/auth/mediaCard1.webp";
-import mediaCard2 from "../../../../assets/images/auth/mediaCard2.webp";
+import mediaCard1 from "@/assets/images/auth/mediaCard1.webp";
+import mediaCard2 from "@/assets/images/auth/mediaCard2.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
