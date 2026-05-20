@@ -72,7 +72,8 @@ export const Nav = styled.nav<NavStyleProps>`
           justify-content: center;
         `}
 
-  a {
+  a,
+  button {
     color: ${({ theme }) => theme.colors.primary.BLACK};
     text-decoration: none;
     padding: 0.5rem 0.75rem;
@@ -83,7 +84,15 @@ export const Nav = styled.nav<NavStyleProps>`
       color 120ms ease;
   }
 
-  a:hover {
+  button {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  a:hover,
+  button:hover {
     background: ${({ theme }) => theme.colors.primary.WHITE_18};
   }
 
@@ -96,7 +105,8 @@ export const NavItemWrapper = styled.div`
   position: relative;
   display: inline-block;
 
-  a {
+  a,
+  button {
     display: inline-block;
   }
 `;

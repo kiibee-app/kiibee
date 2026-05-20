@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { NavItem } from "@/utils/navItems";
 export type NavBarItem = NavItem & {
   label?: ReactNode;
+  onClick?: () => void;
 };
 
 export type HeaderProps = {
@@ -33,7 +34,7 @@ export type NavBarProps = {
 export const PROFILE_NAV_ITEMS: NavBarItem[] = [
   { key: "nav.profile.home", href: "/create-profile2" },
   { key: "nav.profile.collections", href: "/create-profile2/collections" },
-  { key: "nav.profile.about", href: "/create-profile2/about" },
+  { key: "nav.profile.about" },
 ];
 
 export const VIEWER_PROFILE_FIELDS = {

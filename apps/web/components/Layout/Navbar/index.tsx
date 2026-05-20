@@ -159,9 +159,21 @@ export default function NavBar({
                   togglePin(item.key);
                 }}
               >
-                <Link href={item.href || "#"}>
-                  {"label" in item && item.label ? item.label : t(item.key)}
-                </Link>
+                {item.onClick ? (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      item.onClick?.();
+                    }}
+                  >
+                    {"label" in item && item.label ? item.label : t(item.key)}
+                  </button>
+                ) : (
+                  <Link href={item.href || "#"}>
+                    {"label" in item && item.label ? item.label : t(item.key)}
+                  </Link>
+                )}
 
                 {item.children && active === item.key && (
                   <MegaMenu>
