@@ -28,6 +28,7 @@ import {
 } from "./styles";
 import { HOME, PROFILE_TABS, ProfileTabKey } from "@/utils/common";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
+import CreatorInfoModal from "../../Layout2/Home/CreatorInfoModal";
 
 export default function Hero() {
   const { t } = useTranslation();
@@ -37,8 +38,13 @@ export default function Hero() {
     PROFILE_TABS.find((tab) => tab.href === pathname)?.key ?? HOME;
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [isCreatorInfoOpen, setIsCreatorInfoOpen] = useState(false);
 
   const handleTabChange = (tab: ProfileTabKey) => {
+    if (tab === "about") {
+      setIsCreatorInfoOpen(true);
+      return;
+    }
     const target = PROFILE_TABS.find((item) => item.key === tab)?.href;
     if (!target) return;
     router.push(target);
@@ -81,7 +87,9 @@ export default function Hero() {
                 {t(CREATE_PROFILE_HOME.description)}
               </CreatorBioText>
               <MoreText>
-                <MoreTextLabel> {t(CREATE_PROFILE_HOME.more)}</MoreTextLabel>
+                <MoreTextLabel onClick={() => setIsCreatorInfoOpen(true)}>
+                  {t(CREATE_PROFILE_HOME.more)}
+                </MoreTextLabel>
               </MoreText>
             </CreatorBio>
           </ProfileMeta>
@@ -104,6 +112,11 @@ export default function Hero() {
           />
         </TabsWrapper>
       </ContentInner>
+
+      <CreatorInfoModal
+        visible={isCreatorInfoOpen}
+        onClose={() => setIsCreatorInfoOpen(false)}
+      />
     </HeroWrapper>
   );
 }
