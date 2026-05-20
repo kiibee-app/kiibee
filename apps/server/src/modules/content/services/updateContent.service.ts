@@ -9,7 +9,7 @@ import { mediaFileCategories } from 'src/database/schema';
 
 const pickDefined = (obj: Record<string, any>) =>
   Object.fromEntries(
-    Object.entries(obj).filter(([_, v]) => v !== undefined && v !== null),
+    Object.entries(obj).filter(([, v]) => v !== undefined && v !== null),
   );
 
 export const updateContentService = async (
