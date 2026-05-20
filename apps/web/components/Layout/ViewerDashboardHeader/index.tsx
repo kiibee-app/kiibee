@@ -64,7 +64,10 @@ export default function ViewerDashboardHeader({
       </Nav>
 
       <Right>
-        <ProfileButton aria-label="Viewer profile" onClick={onProfileClick}>
+        <ProfileButton
+          aria-label={t("common.viewerProfile")}
+          onClick={onProfileClick}
+        >
           L
         </ProfileButton>
       </Right>

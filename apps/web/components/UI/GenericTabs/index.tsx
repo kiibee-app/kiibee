@@ -14,6 +14,7 @@ import {
   TabsRow,
 } from "./styles";
 import { useTabsKeyboard } from "@/hooks/useTabsKeyboard";
+import { useTranslation } from "react-i18next";
 
 type GenericTabItem<T extends string> = {
   key: T;
@@ -46,6 +47,7 @@ export default function GenericTabs<T extends string>({
   search,
   tabPanelId,
 }: GenericTabsProps<T>) {
+  const { t } = useTranslation();
   const theme = useTheme();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const hasSearchText = Boolean(search?.value);
@@ -101,7 +103,7 @@ export default function GenericTabs<T extends string>({
         <SearchArea $open={isSearchOpen}>
           <SearchButton
             type="button"
-            aria-label={search.ariaLabel ?? "Toggle search"}
+            aria-label={search.ariaLabel ?? t("common.toggleSearch")}
             onClick={search.alwaysOpen ? undefined : handleSearchToggle}
           >
             {search.icon ?? (
@@ -124,7 +126,7 @@ export default function GenericTabs<T extends string>({
           {isSearchOpen && hasSearchText && (
             <SearchClearButton
               type="button"
-              aria-label="Clear search"
+              aria-label={t("common.clearSearch")}
               onClick={handleSearchClear}
             >
               <CrossIcon width={20} height={20} />

@@ -71,7 +71,7 @@ const DashboardHeader = ({ onToggleSidebar }: Props) => {
         <Divider />
         <Link
           href={PATHS.DASHBOARD_CREATOR_PROFILE}
-          aria-label="Creator profile"
+          aria-label={t("common.creatorProfile")}
         >
           <RightProfileWrapper>
             <ProfileCircle>

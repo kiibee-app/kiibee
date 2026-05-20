@@ -20,7 +20,7 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <Container aria-label="Create profile footer">
+    <Container aria-label={t("common.createProfileFooterAria")}>
       <Inner>
         <BrandBlock>
           <Image src={logo} alt="Kiibee Logo" width={42} height={42} priority />
