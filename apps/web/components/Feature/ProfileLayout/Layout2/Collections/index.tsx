@@ -1,6 +1,6 @@
 "use client";
 
-import CreateProfileLayout from "../../../../Layout/CreateProfile2";
+import CreateProfileLayout from "@/components/Layout/CreateProfile2";
 import Hero from "../Hero";
 import CollectionList from "@/components/Feature/ProfileLayout/shared/CollectionList";
 
