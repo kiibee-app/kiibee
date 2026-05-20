@@ -23,7 +23,6 @@ import { forgetPasswordService } from 'src/modules/auth/services/forgetPassword.
 import { db } from 'src/database/db';
 
 const mockDb = db as jest.Mocked<typeof db>;
-const mockLogger = logger as jest.Mocked<typeof logger>;
 const mockRunInBackground = runInBackground as jest.MockedFunction<
   typeof runInBackground
 >;
