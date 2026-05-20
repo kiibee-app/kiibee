@@ -11,7 +11,7 @@ const CHART_SERIES = [
   { key: "rentals", color: COLORS.primary.BLUE },
   { key: "purchases", color: COLORS.primary.ORANGE },
   { key: "views", color: COLORS.secondary.MEDIUM_GREEN },
-  { key: "visits", color: COLORS.gredint.PALE_GREEN },
+  { key: "visits", color: COLORS.gradient.PALE_GREEN },
   { key: "downloads", color: COLORS.primary.GREEN_100 },
 ] as const;
 

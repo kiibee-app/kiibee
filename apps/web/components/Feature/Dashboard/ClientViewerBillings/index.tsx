@@ -256,7 +256,7 @@ export default function ClientViewerBillings() {
                       DASHBOARD_VIEWER_BILLINGS.paymentMethods.delete,
                     )}
                   >
-                    <DeleteIcon color={COLORS.gredint.NEAR_BLACK} />
+                    <DeleteIcon color={COLORS.gradient.NEAR_BLACK} />
                   </IconButton>
                   <IconButton
                     type="button"
@@ -264,7 +264,7 @@ export default function ClientViewerBillings() {
                       DASHBOARD_VIEWER_BILLINGS.paymentMethods.more,
                     )}
                   >
-                    <ThreeDotIcon color={COLORS.gredint.NEAR_BLACK} />
+                    <ThreeDotIcon color={COLORS.gradient.NEAR_BLACK} />
                   </IconButton>
                 </Actions>
               </MethodRow>

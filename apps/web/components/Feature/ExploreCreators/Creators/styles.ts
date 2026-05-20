@@ -39,7 +39,7 @@ export const Card = styled.div`
   min-height: 315px;
   width: 100%;
   max-width: 100%;
-  box-shadow: 0 0 10.483px 0 ${({ theme }) => theme.colors.gredint.CARD_SHADOW};
+  box-shadow: 0 0 10.483px 0 ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
 `;
 
 export const ImageWrapper = styled.div`
