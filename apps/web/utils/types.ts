@@ -48,3 +48,31 @@ export type LayoutCardConfig = {
   captionKey: string;
   image: string | StaticImageData;
 };
+
+export type Layout1CollectionMediaType =
+  | (typeof FORMAT_TYPE)["VIDEO"]
+  | (typeof FORMAT_TYPE)["PDF"]
+  | (typeof FORMAT_TYPE)["EPUB"]
+  | (typeof FORMAT_TYPE)["WEB"];
+
+export type Layout1CollectionAction = {
+  label: string;
+};
+
+export type Layout1CollectionCard = {
+  id: string;
+  badge: string;
+  title: string;
+  author: string;
+  published: string;
+  mediaType: Layout1CollectionMediaType;
+  mediaLabel: string;
+  image: string | StaticImageData;
+  actions: Layout1CollectionAction[];
+};
+
+export type Layout1CollectionSection = {
+  id: string;
+  title: string;
+  cards: Layout1CollectionCard[];
+};
