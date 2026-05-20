@@ -11,8 +11,6 @@ import {
   users,
 } from '../schema';
 
-const DEFAULT_CREATOR_PASSWORD_HASH =
-  '$2b$12$vSxXp6x8zbazosY9IyTrgOizvNLzRHhFIyOy23J5NdOemWpeLb4yi';
 const DEFAULT_PLAN_NAME = 'Pro';
 
 const rawCreatorEmails = `
@@ -233,6 +231,14 @@ function parseCreatorEmails(): string[] {
 
 export const seedCreatorAccounts = async () => {
   const emails = parseCreatorEmails();
+  const creatorPasswordHash = process.env.CREATOR_SEED_PASSWORD_HASH?.trim();
+
+  if (!creatorPasswordHash) {
+    throw new Error(
+      'Missing CREATOR_SEED_PASSWORD_HASH. Set it to a bcrypt password hash before running seedCreatorAccounts.',
+    );
+  }
+
   const [plan] = await db
     .select({ id: plans.id })
     .from(plans)
@@ -276,7 +282,6 @@ export const seedCreatorAccounts = async () => {
         .values({
           id: userId,
           email,
-          passwordHash: DEFAULT_CREATOR_PASSWORD_HASH,
           firstName,
           lastName,
           fullName,
@@ -286,11 +291,11 @@ export const seedCreatorAccounts = async () => {
           isActive: true,
           createdAt: now,
           updatedAt: now,
+          passwordHash: creatorPasswordHash,
         })
         .onConflictDoUpdate({
           target: users.email,
           set: {
-            passwordHash: DEFAULT_CREATOR_PASSWORD_HASH,
             firstName,
             lastName,
             fullName,
@@ -299,6 +304,7 @@ export const seedCreatorAccounts = async () => {
             isEmailVerified: true,
             isActive: true,
             updatedAt: now,
+            passwordHash: creatorPasswordHash,
           },
         })
         .returning({ id: users.id });
