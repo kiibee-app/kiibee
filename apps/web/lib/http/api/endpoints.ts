@@ -23,6 +23,10 @@ export const API = {
     fileUploadUrl: "/media/file/upload-url",
     fileConfirm: "/media/file/confirm",
   },
+  content: {
+    create: "/content/create",
+    collection: (id: string) => `/content/collection/${id}`,
+  },
   collection: {
     getAll: "/collection",
     create: "/collection/create",

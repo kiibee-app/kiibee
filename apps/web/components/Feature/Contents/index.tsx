@@ -182,6 +182,7 @@ export default function CreatorsContents() {
       <ContentUploadModal
         visible={contentTypeFlow.showContentUploadModal}
         contentType={contentTypeFlow.selectedContentType}
+        collectionId={selectedCollection?.id ?? null}
         onClose={contentTypeFlow.close}
         onBack={contentTypeFlow.backToTypeSelect}
         onUploadSuccess={handleUploadSuccess}
