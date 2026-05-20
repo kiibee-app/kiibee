@@ -23,14 +23,15 @@ import {
 } from "./styles";
 import {
   COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS,
-  COLLECTION_OPTIONS,
   CONTENT_OPTIONS,
 } from "@/utils/dummyData/couponApplicableProducts";
 import { CouponFormState } from "@/types/collectionsType";
+import { CollectionRow } from "@/types/collectionsType";
 
 type CouponApplicableProductsModalProps = {
   visible: boolean;
   form: CouponFormState;
+  collections: CollectionRow[];
   setForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
   onBack: () => void;
   onClose: () => void;
@@ -53,12 +54,17 @@ const applicableProductFields = [
 export default function CouponApplicableProductsModal({
   visible,
   form,
+  collections,
   setForm,
   onBack,
   onClose,
   onNext,
 }: CouponApplicableProductsModalProps) {
   const { t } = useTranslation();
+  const collectionOptions = collections.map((item) => ({
+    value: item.id,
+    label: item.name,
+  }));
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -115,7 +121,7 @@ export default function CouponApplicableProductsModal({
                   options={
                     field.key ===
                     COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
-                      ? COLLECTION_OPTIONS
+                      ? collectionOptions
                       : CONTENT_OPTIONS
                   }
                   showSelectedIndicator
