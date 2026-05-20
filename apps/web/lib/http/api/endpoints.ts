@@ -16,4 +16,10 @@ export const API = {
     create: "/coupons/create",
     getAll: "/coupons",
   },
+  collection: {
+    getAll: "/collection",
+    create: "/collection/create",
+    update: (id: string) => `/collection/${id}`,
+    delete: (id: string) => `/collection/${id}`,
+  },
 } as const;
