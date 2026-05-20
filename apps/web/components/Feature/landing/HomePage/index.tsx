@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 import HeroSection from "@/components/Feature/landing/Hero";
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
-import LazySection from "@/components/UI/LazySection";
 import GenericLoader from "@/components/UI/GenericLoader";
 import ctaImage from "@/assets/images/cta-buttom.webp";
 import { LOADER_SIZE, LOADER_VARIANT } from "@/utils/ui";
@@ -62,38 +61,24 @@ export default function HomePageClient() {
       <Main>
         <HeroSection />
 
-        <LazySection minHeight={360}>
-          <sections.InterestSection />
-        </LazySection>
+        <sections.InterestSection />
 
-        <LazySection minHeight={520}>
-          <sections.DiscoverContent />
-        </LazySection>
+        <sections.DiscoverContent />
 
-        <LazySection minHeight={520}>
-          <sections.WatchingSteps />
-        </LazySection>
+        <sections.WatchingSteps />
 
-        <LazySection minHeight={520}>
-          <sections.SecurePaymentSection />
-        </LazySection>
+        <sections.SecurePaymentSection />
 
-        <LazySection minHeight={520}>
-          <sections.TestimonialSection />
-        </LazySection>
+        <sections.TestimonialSection />
 
-        <LazySection minHeight={520}>
-          <sections.CallToAction />
-        </LazySection>
+        <sections.CallToAction />
 
-        <LazySection minHeight={420}>
-          <sections.CtaSection
-            bgImage={ctaImage}
-            title={t("value.title")}
-            subtitle={t("value.subtitle")}
-            ctaText={t("value.cta")}
-          />
-        </LazySection>
+        <sections.CtaSection
+          bgImage={ctaImage}
+          title={t("value.title")}
+          subtitle={t("value.subtitle")}
+          ctaText={t("value.cta")}
+        />
       </Main>
 
       <Footer />
