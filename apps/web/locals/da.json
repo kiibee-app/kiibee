@@ -1478,6 +1478,8 @@
     "repeatPasswordPlaceholder": "Gentag ny adgangskode",
     "submit": "Nulstil",
     "invalidLink": "Dette nulstillingslink er ugyldigt. Anmod venligst om et nyt link.",
+    "expiredLink": "Dette nulstillingslink er udløbet. Anmod venligst om et nyt nulstillingslink.",
+    "requestNewLink": "Anmod om nyt nulstillingslink",
     "submitFailed": "Vi kunne ikke nulstille din adgangskode lige nu. Prøv igen.",
     "successTitle": "Din adgangskode er blevet nulstillet!",
     "successDescription": "Du kan nu logge ind med din nye adgangskode. Kontakt support, hvis du oplever problemer.",
