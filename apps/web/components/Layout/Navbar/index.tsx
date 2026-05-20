@@ -119,11 +119,14 @@ export default function NavBar({
     };
   }, [handleGlobalClick]);
 
+  const isMegaOpen = items.some((item) => item.children && active === item.key);
+
   return (
     <Header
       $position={position}
       $topOffset={topOffset}
       $navbarHeight={navbarHeight}
+      $isMegaOpen={isMegaOpen}
     >
       <Inner style={innerStyle}>
         <Left>

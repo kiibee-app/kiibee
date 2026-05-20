@@ -23,7 +23,6 @@ type ViewerBillingTabItem = {
   labelKey: string;
 };
 
-export type ContentTab = "collections" | "appearance" | "settings" | "coupons";
 export type ViewerBillingTab = "billing-history" | "payment-methods";
 
 export const COUPON_DISCOUNT_TYPE = {
@@ -105,3 +104,33 @@ export const PROFILE_TABS3: {
 ];
 
 export const HOME = "home";
+
+export const ADD_CONTENT_TABS = {
+  GENERAL: "general",
+  METADATA: "metadata",
+  PAYMENT: "payment",
+} as const;
+
+export type AddContentTab =
+  (typeof ADD_CONTENT_TABS)[keyof typeof ADD_CONTENT_TABS];
+
+export const CONTENT_TABS_KEYS = {
+  COLLECTIONS: "collections",
+  APPEARANCE: "appearance",
+  SETTINGS: "settings",
+  COUPONS: "coupons",
+} as const;
+
+export type ContentTab =
+  | (typeof CONTENT_TABS_KEYS)[keyof typeof CONTENT_TABS_KEYS]
+  | (typeof ADD_CONTENT_TABS)[keyof typeof ADD_CONTENT_TABS];
+
+export const MIME_TYPE = {
+  VIDEO: "video/",
+  AUDIO: "audio/",
+  PDF: "application/pdf",
+} as const;
+
+export const FILE_EXTENSION = {
+  EPUB: ".epub",
+} as const;

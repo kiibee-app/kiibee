@@ -1308,7 +1308,10 @@
       "appearance": "Appearance",
       "contents": "Contents",
       "settings": "Settings",
-      "coupons": "Coupons"
+      "coupons": "Coupons",
+      "general": "General",
+      "metadata": "MetaData",
+      "payment": "Payment"
     },
     "couponsCard": {
       "title": "Coupons",
@@ -1436,7 +1439,9 @@
         "title": "Add web content",
         "label": "Web content link",
         "placeholder": "https://"
-      }
+      },
+      "uploading": "Uploading",
+      "deletePermanently": "Delete permanently"
     },
     "emptyCollection": {
       "title": "Your collection is empty.",
