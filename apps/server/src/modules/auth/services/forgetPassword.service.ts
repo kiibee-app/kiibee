@@ -10,10 +10,7 @@ import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
-export const forgetPasswordService = async (
-  email: string,
-  frontendBaseUrl: string,
-) => {
+export const forgetPasswordService = async (email: string) => {
   try {
     if (!email) {
       throw new HttpException('Email is required', HttpStatus.BAD_REQUEST);
@@ -26,9 +23,10 @@ export const forgetPasswordService = async (
       .limit(1);
 
     if (!user || user.length === 0) {
-      throw new HttpException(
-        'No user found with this email',
-        HttpStatus.NOT_FOUND,
+      return success(
+        null,
+        'Password reset link sent if user exists',
+        HttpStatus.OK,
       );
     }
 
@@ -66,7 +64,7 @@ export const forgetPasswordService = async (
     );
     return success(
       null,
-      'Password reset link sent successfully',
+      'Password reset link sent if user exists',
       HttpStatus.OK,
     );
   } catch (error) {
