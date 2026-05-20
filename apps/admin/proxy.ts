@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 function isPublicPath(pathname: string) {
-  return pathname === "/" || pathname === "/login";
+  return pathname === "/login" || pathname.startsWith("/login/");
 }
 
 export function proxy(request: NextRequest) {
