@@ -149,7 +149,9 @@ export const MoreText = styled.span`
 export const MoreTextLabel = styled(MonoText).attrs(({ theme }) => ({
   $use: "Body_SemiBold",
   color: theme.colors.primary.BLACK,
-}))``;
+}))`
+  cursor: pointer;
+`;
 
 export const TabsWrapper = styled.div`
   margin-top: 24px;
