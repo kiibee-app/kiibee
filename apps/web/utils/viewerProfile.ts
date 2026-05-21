@@ -1,10 +1,12 @@
 import type { LoginUser } from "@/hooks/auth/useLogin";
+import { AUTH_STORAGE_KEYS } from "@/lib/auth/storageKeys";
 import { toTrimmedString } from "@/utils/Constants";
 import { FORM_MESSAGE_TONE, isBrowser } from "@/utils/ui";
 
 export const IMAGE_DATA_PREFIX = /^data:image\//;
 
-export const USER_STORAGE_KEY = "kiibee.user";
+/** @deprecated Use AUTH_STORAGE_KEYS.user directly. */
+export const USER_STORAGE_KEY = AUTH_STORAGE_KEYS.user;
 
 export type ViewerBootstrap = {
   name: string;
