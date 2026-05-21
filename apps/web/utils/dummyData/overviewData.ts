@@ -40,7 +40,7 @@ export const OVERVIEW_STATS = [
     id: "visits",
     label: "No of visits",
     value: 23,
-    color: COLORS.gredint.PALE_GREEN,
+    color: COLORS.gradient.PALE_GREEN,
   },
   {
     id: "downloads",

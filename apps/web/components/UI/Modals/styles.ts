@@ -6,7 +6,7 @@ import styled from "styled-components";
 export const Overlay = styled.div`
   position: fixed;
   inset: 0;
-  background: ${({ theme }) => theme.colors.gredint.VIGNETTE_OUTER};
+  background: ${({ theme }) => theme.colors.gradient.VIGNETTE_OUTER};
   display: flex;
   justify-content: center;
   align-items: center;

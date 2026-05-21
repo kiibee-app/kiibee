@@ -104,7 +104,7 @@ export const ProfileButton = styled.button`
   width: 44px;
   height: 44px;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.gredint.PALE_GREEN};
+  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.H4_SemiBold};
   cursor: pointer;

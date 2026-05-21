@@ -73,7 +73,7 @@ export const ContentContainer = styled.div`
 
 export const Title = styled.h1`
   ${({ theme }) => theme.typography.Heading2};
-  color: ${COLORS.gredint.NEAR_BLACK};
+  color: ${COLORS.gradient.NEAR_BLACK};
   font-family:
     "Reddit Sans",
     -apple-system,
@@ -126,7 +126,7 @@ export const MobileStepImage = styled.div`
 
 export const StepTitle = styled.h2`
   ${({ theme }) => theme.typography.Heading3};
-  color: ${COLORS.gredint.NEAR_BLACK};
+  color: ${COLORS.gradient.NEAR_BLACK};
   font-family:
     "Reddit Sans",
     -apple-system,
@@ -145,7 +145,7 @@ export const StepTitle = styled.h2`
 
 export const StepDescription = styled.p`
   ${({ theme }) => theme.typography.H5_Medium};
-  color: ${COLORS.gredint.NEAR_BLACK};
+  color: ${COLORS.gradient.NEAR_BLACK};
   font-family:
     "Reddit Sans",
     -apple-system,
@@ -175,7 +175,7 @@ export const ListItem = styled.li`
   ${({ theme }) => theme.typography.H5_Medium};
   display: flex;
   align-items: flex-start;
-  color: ${COLORS.gredint.NEAR_BLACK};
+  color: ${COLORS.gradient.NEAR_BLACK};
   font-family:
     "Reddit Sans",
     -apple-system,
@@ -196,7 +196,7 @@ export const Bullet = styled.span`
   height: 0.375rem;
   width: 0.375rem;
   border-radius: 50%;
-  background: ${COLORS.gredint.NEAR_BLACK};
+  background: ${COLORS.gradient.NEAR_BLACK};
   margin-top: 0.625rem;
   margin-right: 0.75rem;
 `;

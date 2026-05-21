@@ -25,7 +25,7 @@ export const SectionInner = styled.div`
   justify-content: center;
   padding: 4.5rem 2rem;
   box-sizing: border-box;
-  background: ${({ theme }) => theme.colors.gredint.CANVAS_BG};
+  background: ${({ theme }) => theme.colors.gradient.CANVAS_BG};
 
   ${media.tablet} {
     min-height: auto;
@@ -46,17 +46,17 @@ export const GradientOverlay = styled.div`
   background:
     linear-gradient(
       180deg,
-      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_START} 0%,
-      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_MID} 45%,
-      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_END} 100%
+      ${({ theme }) => theme.colors.gradient.OVERLAY_TOP_START} 0%,
+      ${({ theme }) => theme.colors.gradient.OVERLAY_TOP_MID} 45%,
+      ${({ theme }) => theme.colors.gradient.OVERLAY_TOP_END} 100%
     ),
     linear-gradient(
       90deg,
-      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_SOLID} 0%,
-      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_MID} 18%,
-      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_FADE} 50%,
-      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_MID} 82%,
-      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_SOLID} 100%
+      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_SOLID} 0%,
+      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_MID} 18%,
+      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_FADE} 50%,
+      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_MID} 82%,
+      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_SOLID} 100%
     );
 `;
 
