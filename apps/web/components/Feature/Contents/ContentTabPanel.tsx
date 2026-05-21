@@ -177,7 +177,7 @@ export default function ContentTabPanel({
       setContentsMap((current) => ({
         ...current,
         [selectedCollection.id]: moveItemInArray(
-          current[selectedCollection.id] ?? [],
+          current[selectedCollection.id] ?? collectionContents,
           id,
           MOVE_DIRECTION_UP,
         ),
@@ -195,7 +195,7 @@ export default function ContentTabPanel({
       setContentsMap((current) => ({
         ...current,
         [selectedCollection.id]: moveItemInArray(
-          current[selectedCollection.id] ?? [],
+          current[selectedCollection.id] ?? collectionContents,
           id,
           MOVE_DIRECTION_DOWN,
         ),
