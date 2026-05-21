@@ -40,23 +40,6 @@ export const JAVASCRIPT_TYPE = {
 export type CollectionContentVisibility =
   CollectionContentRow[typeof API_FIELD_KEYS.VISIBILITY];
 
-export const API_CONTENT_TYPE = {
-  ...FORMAT_TYPE,
-  WEB_LINK: "web-link",
-} as const;
-
-export const CONTENT_TYPE_BY_API_VALUE: Record<string, CollectionContentType> =
-  {
-    [API_CONTENT_TYPE.VIDEO]: FORMAT_TYPE.VIDEO,
-    [API_CONTENT_TYPE.AUDIO]: FORMAT_TYPE.AUDIO,
-    [API_CONTENT_TYPE.PDF]: FORMAT_TYPE.PDF,
-    [API_CONTENT_TYPE.EPUB]: FORMAT_TYPE.EPUB,
-    [API_CONTENT_TYPE.WEB]: FORMAT_TYPE.WEB,
-    [API_CONTENT_TYPE.WEB_LINK]: FORMAT_TYPE.WEB,
-  };
-
-export const DEFAULT_COLLECTION_CONTENT_TYPE = FORMAT_TYPE.PDF;
-
 export const NORMALIZED_VISIBILITY = {
   PUBLIC: "public",
   HIDDEN: "hidden",

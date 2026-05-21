@@ -24,6 +24,32 @@ export type ContentTypeOption = {
   Icon: IconComponent;
 };
 
+export const API_CONTENT_TYPE = {
+  ...FORMAT_TYPE,
+  WEB_LINK: "web-link",
+} as const;
+
+export const CONTENT_TYPE_BY_API_VALUE: Record<string, ContentType> = {
+  [API_CONTENT_TYPE.VIDEO]: FORMAT_TYPE.VIDEO,
+  [API_CONTENT_TYPE.AUDIO]: FORMAT_TYPE.AUDIO,
+  [API_CONTENT_TYPE.PDF]: FORMAT_TYPE.PDF,
+  [API_CONTENT_TYPE.EPUB]: FORMAT_TYPE.EPUB,
+  [API_CONTENT_TYPE.WEB]: FORMAT_TYPE.WEB,
+  [API_CONTENT_TYPE.WEB_LINK]: FORMAT_TYPE.WEB,
+};
+
+export const DEFAULT_CONTENT_TYPE = FORMAT_TYPE.PDF;
+
+export const CONTENT_UPLOAD_MODE = {
+  CREATE: "create",
+  EDIT: "edit",
+} as const;
+
+export const CONTENT_MODAL_KEY_FALLBACK = "create-content";
+
+export type ContentUploadMode =
+  (typeof CONTENT_UPLOAD_MODE)[keyof typeof CONTENT_UPLOAD_MODE];
+
 export const UPLOAD_CONTENT_TYPES = ["video", "audio", "pdf", "epub"] as const;
 
 export type UploadContentType = (typeof UPLOAD_CONTENT_TYPES)[number];
@@ -72,6 +98,19 @@ export const resolveUploadContentType = (
   if (!contentType) return "video";
   return isUploadContentType(contentType) ? contentType : "video";
 };
+
+export const normalizeContentTypeValue = (
+  value?: string | null,
+): ContentType => {
+  const normalized = value?.trim().toLowerCase().replace(/\s+/g, "-");
+
+  if (!normalized) return DEFAULT_CONTENT_TYPE;
+
+  return CONTENT_TYPE_BY_API_VALUE[normalized] ?? DEFAULT_CONTENT_TYPE;
+};
+
+export const getContentTypeLabel = (contentType: ContentType) =>
+  contentType.toUpperCase();
 
 export const CONTENT_TYPE_OPTIONS: readonly ContentTypeOption[] = [
   {

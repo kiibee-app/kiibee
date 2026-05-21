@@ -1,15 +1,15 @@
 import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
-import type { CollectionContentType } from "@/types/collectionsType";
 import type { SingleContentPageProps } from "@/types/contentTypes";
 import type { ImageSource } from "@/utils/Constants";
-import {
-  CONTENT_TYPE_BY_API_VALUE,
-  DEFAULT_COLLECTION_CONTENT_TYPE,
-  JAVASCRIPT_TYPE,
-} from "@/utils/collection";
+import { JAVASCRIPT_TYPE } from "@/utils/collection";
 import { toTrimmedString } from "@/utils/Constants";
 import { formatDateUSShort } from "@/utils/formatDate";
+import {
+  type ContentType,
+  getContentTypeLabel,
+  normalizeContentTypeValue,
+} from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 
 type Translate = (key: string) => string;
@@ -58,16 +58,6 @@ export const CONTENT_TRANSLATION_KEYS = {
   },
 } as const;
 
-export const CONTENT_UPLOAD_MODE = {
-  CREATE: "create",
-  EDIT: "edit",
-} as const;
-
-export const CONTENT_MODAL_KEY_FALLBACK = "create-content";
-
-export type ContentUploadMode =
-  (typeof CONTENT_UPLOAD_MODE)[keyof typeof CONTENT_UPLOAD_MODE];
-
 export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.ID]?: string;
   [CONTENT_RESPONSE_KEYS.TITLE]?: string;
@@ -108,13 +98,8 @@ export const getContentDetail = (
   return (asRecord(data) ?? record) as ContentDetailItem;
 };
 
-export const normalizeContentType = (
-  value?: string | null,
-): CollectionContentType => {
-  const normalized = toTrimmedString(value).toLowerCase().replace(/\s+/g, "-");
-  return (
-    CONTENT_TYPE_BY_API_VALUE[normalized] ?? DEFAULT_COLLECTION_CONTENT_TYPE
-  );
+export const normalizeContentType = (value?: string | null): ContentType => {
+  return normalizeContentTypeValue(value);
 };
 
 export const getContentType = (content?: ContentDetailItem) =>
@@ -134,9 +119,6 @@ const getContentImage = (content: ContentDetailItem): ImageSource =>
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL] ??
       content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
   ) || contentFallbackImage;
-
-const getContentTypeLabel = (contentType: CollectionContentType) =>
-  contentType.toUpperCase();
 
 const getCategoryNames = (content: ContentDetailItem) =>
   (content[CONTENT_RESPONSE_KEYS.CATEGORIES] ?? [])

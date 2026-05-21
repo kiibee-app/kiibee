@@ -31,7 +31,7 @@ import type { CollectionContentRow } from "@/types/collectionsType";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
   CONTENT_UPLOAD_MODE,
-} from "@/utils/contentApi";
+} from "@/utils/content";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();

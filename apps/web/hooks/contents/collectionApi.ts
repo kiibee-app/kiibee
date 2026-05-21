@@ -1,6 +1,5 @@
 import type {
   CollectionContentRow,
-  CollectionContentType,
   CollectionRow,
 } from "@/types/collectionsType";
 import type { SetStateAction } from "react";
@@ -8,13 +7,12 @@ import { formatDateUSShort } from "@/utils/formatDate";
 import {
   API_FIELD_KEYS,
   type CollectionContentVisibility,
-  CONTENT_TYPE_BY_API_VALUE,
-  DEFAULT_COLLECTION_CONTENT_TYPE,
   DEFAULT_COLLECTION_CONTENT_VISIBILITY,
   JAVASCRIPT_TYPE,
   RESPONSE_KEYS,
   VISIBILITY_BY_API_VALUE,
 } from "@/utils/collection";
+import { normalizeContentTypeValue } from "@/utils/content";
 
 type UnknownRecord = Record<string, unknown>;
 const EMPTY_ACTION = "";
@@ -105,18 +103,6 @@ const getCollectionContentList = (
   ]);
 };
 
-const normalizeCollectionContentType = (
-  value?: string,
-): CollectionContentType => {
-  const normalized = value?.trim().toLowerCase().replace(/\s+/g, "-");
-
-  if (!normalized) return DEFAULT_COLLECTION_CONTENT_TYPE;
-
-  return (
-    CONTENT_TYPE_BY_API_VALUE[normalized] ?? DEFAULT_COLLECTION_CONTENT_TYPE
-  );
-};
-
 const normalizeCollectionContentVisibility = (
   value?: string,
 ): CollectionContentVisibility => {
@@ -162,7 +148,7 @@ export const getCollectionContentRows = (
         item[API_FIELD_KEYS.VISIBILITY],
       ),
       createdAt: formatDateUSShort(item[API_FIELD_KEYS.CREATED_AT]),
-      contentType: normalizeCollectionContentType(
+      contentType: normalizeContentTypeValue(
         item[API_FIELD_KEYS.CONTENT_TYPE] ??
           item[API_FIELD_KEYS.CONTENT_TYPE_NAME],
       ),

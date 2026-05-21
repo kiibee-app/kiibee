@@ -21,7 +21,11 @@ import {
   UploadHelperTextGroup,
   UploadModalContent,
 } from "./styles";
-import { ContentType } from "@/utils/content";
+import {
+  CONTENT_UPLOAD_MODE,
+  type ContentType,
+  type ContentUploadMode,
+} from "@/utils/content";
 import { useContentUpload } from "@/hooks/contents/useContentUpload";
 import SelectedFileView from "./SelectedFileView";
 import ContentUploadDetails from "./UploadDetails";
@@ -31,11 +35,7 @@ import { ADD_CONTENT_TABS, AddContentTab } from "@/utils/common";
 import { API } from "@/lib/http/api/endpoints";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { axiosClient } from "@/lib/http/axiosClient";
-import {
-  CONTENT_TRANSLATION_KEYS,
-  CONTENT_UPLOAD_MODE,
-  type ContentUploadMode,
-} from "@/utils/contentApi";
+import { CONTENT_TRANSLATION_KEYS } from "@/utils/contentApi";
 
 type CreateContentPayload = {
   title: string;

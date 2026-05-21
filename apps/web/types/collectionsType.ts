@@ -3,6 +3,7 @@ import {
   COUPON_DISCOUNT_FIXED_AMOUNT,
   CouponDiscountType,
 } from "@/utils/common";
+import type { ContentType } from "@/utils/content";
 
 export type CollectionRow = {
   id: string;
@@ -12,7 +13,7 @@ export type CollectionRow = {
   actions: string;
 };
 
-export type CollectionContentType = "pdf" | "video" | "audio" | "epub" | "web";
+export type CollectionContentType = ContentType;
 
 export type CollectionContentRow = {
   id: string;
