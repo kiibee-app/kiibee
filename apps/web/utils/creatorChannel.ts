@@ -49,7 +49,7 @@ export function layoutKeyFromParam(
 }
 
 export function getCreatorHomePath(layout: CreatorLayoutParam): string {
-  return `${PATHS.CREATOR_CHANNEL_BASE}/${layout}`;
+  return `${PATHS.CREATOR_PROFILE}/${layout}`;
 }
 
 export function getCreatorCollectionsPath(layout: CreatorLayoutParam): string {
