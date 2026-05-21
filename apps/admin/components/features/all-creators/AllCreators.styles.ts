@@ -302,3 +302,128 @@ export const SkeletonLine = styled.span<{ $width?: string; $height?: string }>`
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   animation: ${skeletonPulse} 1.25s ease-in-out infinite;
 `;
+
+export const DrawerHeaderCard = styled.div`
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 12px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  margin-bottom: 24px;
+`;
+
+export const AvatarCircle = styled.div`
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.colors.primary.GREEN} 0%,
+    ${({ theme }) => theme.colors.neutral.DUSTY_TEAL} 100%
+  );
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  box-shadow: ${({ theme }) => theme.shadows.md};
+  user-select: none;
+`;
+
+export const DrawerHeaderName = styled.h4`
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  letter-spacing: -0.02em;
+`;
+
+export const DrawerHeaderEmail = styled.span`
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  margin-top: -6px;
+`;
+
+export const DrawerSection = styled.div`
+  margin-bottom: 24px;
+`;
+
+export const DrawerSectionTitle = styled.h5`
+  margin: 0 0 10px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+`;
+
+export const DrawerCardList = styled.div`
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+`;
+
+export const DrawerCardItem = styled.div`
+  display: flex;
+  align-items: flex-start;
+  padding: 14px 16px;
+  gap: 12px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+export const DrawerIconWrapper = styled.div`
+  color: ${({ theme }) => theme.colors.primary.GREEN};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2px;
+`;
+
+export const DrawerItemContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+`;
+
+export const DrawerItemLabel = styled.span`
+  font-size: 11px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+`;
+
+export const DrawerItemValue = styled.span`
+  font-size: 14px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  word-break: break-word;
+`;
+
+export const DescriptionBlock = styled.div`
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  white-space: pre-wrap;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+`;
