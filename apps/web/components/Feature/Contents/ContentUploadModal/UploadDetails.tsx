@@ -5,8 +5,10 @@ import InputFields from "@/components/UI/InputFields";
 import { INPUT_TYPE } from "@/utils/ui";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
 import { UploadHint } from "@/components/UI/ImageUploadCropModal/styles";
-import { AddButtom } from "./styles";
+import { AddButtom, UploadHelperText, UploadSuccess } from "./styles";
 import { useTranslation } from "react-i18next";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import { MonoText } from "@/components/UI/Monotext";
 
 type Props = {
   title: string;
@@ -14,6 +16,10 @@ type Props = {
   setTitle: (v: string | string[]) => void;
   setDescription: (v: string | string[]) => void;
   onAdd: () => void;
+  isSuccess?: boolean;
+  isSubmitting?: boolean;
+  errorMessage?: string | null;
+  uploadType?: string | null;
 };
 
 export default function ContentUploadDetails({
@@ -22,9 +28,22 @@ export default function ContentUploadDetails({
   setTitle,
   setDescription,
   onAdd,
+  isSuccess,
+  isSubmitting,
+  errorMessage,
+  uploadType,
 }: Props) {
   const { t } = useTranslation();
-
+  if (isSuccess) {
+    return (
+      <UploadSuccess>
+        <SuccessModalIcon />
+        <MonoText $use="H5_Medium">
+          {t("contents.contentUploadModal.uploading")} {uploadType}
+        </MonoText>
+      </UploadSuccess>
+    );
+  }
   return (
     <>
       <UploadHint>
@@ -58,10 +77,11 @@ export default function ContentUploadDetails({
           variant={VARIANT.PRIMARY}
           minWidth="320px"
           onClick={onAdd}
-          disabled={!title.trim() || !description.trim()}
+          disabled={!title.trim() || !description.trim() || isSubmitting}
         >
           {t("contents.contentUploadModal.details.add")}
         </GenericButton>
+        {errorMessage && <UploadHelperText>{errorMessage}</UploadHelperText>}
       </AddButtom>
     </>
   );

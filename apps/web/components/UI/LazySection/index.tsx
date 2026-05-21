@@ -1,61 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import GenericLoader from "@/components/UI/GenericLoader";
-import {
-  BROWSER_API,
-  INTERSECTION_OBSERVER_FALLBACK_DELAY_MS,
-  LOADER_SIZE,
-  LOADER_VARIANT,
-} from "@/utils/ui";
-import { LazySectionRoot } from "./styles";
 import { t } from "i18next";
-
-type LazySectionProps = {
-  children: ReactNode;
-  minHeight?: number;
-  rootMargin?: string;
-};
+import GenericLoader from "@/components/UI/GenericLoader";
+import { type LazySectionProps } from "@/types/lazySection";
+import { LOADER_SIZE, LOADER_VARIANT } from "@/utils/ui";
+import { LazySectionRoot } from "./styles";
+import { useLazySectionRender } from "./useLazySectionRender";
 
 export default function LazySection({
   children,
   minHeight = 320,
-  rootMargin = "250px",
+  rootMargin = "120px 0px",
 }: LazySectionProps) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [shouldRender, setShouldRender] = useState(false);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-
-    if (!section || shouldRender) return;
-
-    if (!(BROWSER_API.INTERSECTION_OBSERVER in window)) {
-      const fallbackTimer = setTimeout(() => {
-        setShouldRender(true);
-      }, INTERSECTION_OBSERVER_FALLBACK_DELAY_MS);
-
-      return () => {
-        clearTimeout(fallbackTimer);
-      };
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setShouldRender(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin },
-    );
-
-    observer.observe(section);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [rootMargin, shouldRender]);
+  const { sectionRef, shouldRender } = useLazySectionRender(rootMargin);
 
   return (
     <LazySectionRoot ref={sectionRef} $minHeight={minHeight}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { CollectionRow, INITIAL_COUPON_FORM } from "@/types/collectionsType";
 import {
@@ -11,6 +11,7 @@ import {
 import { type CreateCouponPayload } from "@/types/couponType";
 import { API } from "@/lib/http/api/endpoints";
 import { usePostAPI } from "@/lib/http/api/postApi";
+import { axiosClient } from "@/lib/http/axiosClient";
 import {
   COUPON_STEPS,
   CouponStep,
@@ -25,11 +26,13 @@ export const useContentsModalFlows = (
   activeTab: ContentTab,
   collections: CollectionRow[],
   isCollectionContentMode: boolean,
+  setCollections: Dispatch<SetStateAction<CollectionRow[]>>,
 ) => {
   const queryClient = useQueryClient();
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [couponForm, setCouponForm] = useState(INITIAL_COUPON_FORM);
   const [isCouponSuccess, setIsCouponSuccess] = useState(false);
+  const [editingCouponId, setEditingCouponId] = useState<string | null>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
@@ -43,6 +46,9 @@ export const useContentsModalFlows = (
   );
   const createCouponMutation = usePostAPI<unknown, CreateCouponPayload>(
     API.coupon.create,
+  );
+  const createCollectionMutation = usePostAPI<unknown, { name: string }>(
+    API.collection.create,
   );
   const couponFlow = {
     open: () => setCouponStep(COUPON_STEPS.DETAILS),
@@ -68,6 +74,13 @@ export const useContentsModalFlows = (
     },
   };
 
+  const resetCreateFlow = () => {
+    setShowCreateModal(false);
+    setCollectionName("");
+    setEditingCollectionId(null);
+    setShowSuccessModal(true);
+  };
+
   const createCollectionFlow = {
     collectionName,
     setCollectionName,
@@ -87,12 +100,58 @@ export const useContentsModalFlows = (
       setCollectionName("");
       setEditingCollectionId(null);
     },
-    completeCreate: () => {
-      if (!collectionName.trim()) return;
-      setShowCreateModal(false);
-      setCollectionName("");
-      setEditingCollectionId(null);
-      setShowSuccessModal(true);
+    completeCreate: async () => {
+      const trimmedName = collectionName.trim();
+      if (!trimmedName) return;
+
+      if (editingCollectionId) {
+        await axiosClient.patch(API.collection.update(editingCollectionId), {
+          name: trimmedName,
+        });
+        setCollections((prev) =>
+          prev.map((item) =>
+            item.id === editingCollectionId
+              ? { ...item, name: trimmedName }
+              : item,
+          ),
+        );
+        await queryClient.invalidateQueries({
+          queryKey: [API.collection.getAll],
+        });
+        resetCreateFlow();
+        return;
+      }
+
+      const created = (await createCollectionMutation.mutateAsync({
+        name: trimmedName,
+      })) as { id?: string; name?: string };
+
+      const createdId = created?.id;
+      const createdName = created?.name;
+
+      if (!createdId || !createdName) {
+        await queryClient.invalidateQueries({
+          queryKey: [API.collection.getAll],
+        });
+        resetCreateFlow();
+        return;
+      }
+
+      setCollections((prev) => [
+        ...prev,
+        {
+          id: createdId,
+          name: createdName,
+          contentsCount: 0,
+          createdAt: new Date().toISOString(),
+          actions: "",
+        },
+      ]);
+
+      await queryClient.invalidateQueries({
+        queryKey: [API.collection.getAll],
+      });
+      resetCreateFlow();
     },
     closeSuccess: () => setShowSuccessModal(false),
     openSuccess: () => setShowSuccessModal(true),
@@ -127,6 +186,7 @@ export const useContentsModalFlows = (
   const closeCouponFlow = () => {
     setCouponForm(INITIAL_COUPON_FORM);
     setIsCouponSuccess(false);
+    setEditingCouponId(null);
     couponFlow.close();
   };
 
@@ -145,7 +205,7 @@ export const useContentsModalFlows = (
       .map((code) => code.trim())
       .filter((code) => code.length > 0);
 
-    await createCouponMutation.mutateAsync({
+    const payload: CreateCouponPayload = {
       title: couponForm.title.trim(),
       discountType:
         couponForm.discountType === COUPON_DISCOUNT_FIXED_AMOUNT
@@ -161,7 +221,13 @@ export const useContentsModalFlows = (
         couponForm.content && !couponForm.content.startsWith(CONTENT)
           ? couponForm.content
           : undefined,
-    });
+    };
+
+    const submitRequest = editingCouponId
+      ? axiosClient.patch(API.coupon.update(editingCouponId), payload)
+      : createCouponMutation.mutateAsync(payload);
+
+    await submitRequest;
 
     await queryClient.invalidateQueries({ queryKey: [API.coupon.getAll] });
     setIsCouponSuccess(true);
@@ -187,6 +253,16 @@ export const useContentsModalFlows = (
     createCollectionFlow.openCreate(item.name, id);
   };
 
+  const openCouponEdit = (
+    couponId: string,
+    formState: typeof INITIAL_COUPON_FORM,
+  ) => {
+    setEditingCouponId(couponId);
+    setCouponForm(formState);
+    setIsCouponSuccess(false);
+    setCouponStep(COUPON_STEPS.DETAILS);
+  };
+
   return {
     createCollectionFlow,
     contentTypeFlow,
@@ -202,5 +278,7 @@ export const useContentsModalFlows = (
     closeDiscardModal: () => setShowDiscardModal(false),
     handleCreateClick,
     handleEditCollection,
+    openCouponEdit,
+    editingCouponId,
   };
 };

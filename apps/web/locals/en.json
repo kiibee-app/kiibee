@@ -20,6 +20,7 @@
       "allContentTitle": "All content",
       "everything": "Everything",
       "newReleases": "New releases",
+      "latest": "Latest releases",
       "popular": "Popular",
       "freeContent": "Free content",
       "formatTitle": "Format",
@@ -128,7 +129,7 @@
     "rememberPassword": "Remember your password?",
     "login": "Log in",
     "checkEmailTitle": "Check your email",
-    "checkEmailDescription": "We sent a password reset link to your email. If it doesn’t arrive within a few minutes, check your spam folder.",
+    "checkEmailDescription": "We sent a password reset link to your email. If it doesn't arrive within a few minutes, it might not match an existing user account.",
     "didNotReceive": "Didn’t receive the email?",
     "resend": "Resend",
     "submitFailed": "We could not send a reset link right now. Please try again."
@@ -301,6 +302,7 @@
     "cta": "Learn more"
   },
   "creators": {
+    "trendingContent": "Trending content",
     "heading": {
       "lineOne": "Upload.",
       "lineTwo": "Market.",
@@ -841,11 +843,20 @@
   },
   "common": {
     "share": "Share",
+    "search": "Search",
+    "clearSearch": "Clear search",
+    "toggleSearch": "Toggle search",
     "optional": "optional",
     "save": "Save",
     "cancel": "Cancel",
     "back": "Back",
+    "goBack": "Go back",
     "close": "Close",
+    "helpOptions": "Help options",
+    "viewerProfile": "Viewer profile",
+    "creatorProfile": "Creator profile",
+    "createProfileFooterAria": "Create profile footer",
+    "creatorActivityChart": "Creator activity stacked bar chart",
     "previous": "Previous",
     "next": "Next",
     "selectDateRange": "Select date range",
@@ -1308,7 +1319,10 @@
       "appearance": "Appearance",
       "contents": "Contents",
       "settings": "Settings",
-      "coupons": "Coupons"
+      "coupons": "Coupons",
+      "general": "General",
+      "metadata": "MetaData",
+      "payment": "Payment"
     },
     "couponsCard": {
       "title": "Coupons",
@@ -1373,6 +1387,7 @@
       "layouts": {
         "title": "Layouts",
         "subtitle": "Select how your channel will be displayed to users.",
+        "saveSuccess": "Layout saved. Your channel has been updated.",
         "preview": "Preview example",
         "options": {
           "layout1": "Layout 1",
@@ -1388,6 +1403,15 @@
         "placeholder": "Enter logo name",
         "upload": "Upload logo"
       }
+    },
+    "general": {
+      "trailerLink": "Trailer link",
+      "trailerLinkHint": "If you want to add a trailer, enter the link here.",
+      "trailerLinkPlaceholder": "Add YouTube or Video link",
+      "visibility": "Visibility",
+      "visibilityHint": "Control whether this trailer is visible to learners.",
+      "public": "Public",
+      "hidden": "Hidden"
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",
@@ -1408,12 +1432,15 @@
       "selectedFile": "Selected file",
       "upload": "Upload",
       "next": "Next",
+      "invalidFile": "Choose a supported file under 2GB.",
+      "uploadError": "Could not upload this file. Please try again.",
+      "createError": "Could not create this content. Please try again.",
       "video": {
-        "helperLineOne": "Max. file size of 2GB of file types (.mp4,.mkv,.mov,.m4v)",
+        "helperLineOne": "Max. file size of 2GB of file types (.mp4)",
         "helperLineTwo": "Min. resolution 1080p HD"
       },
       "audio": {
-        "helperLineOne": "Max. file size of 2GB of file types (.mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac)",
+        "helperLineOne": "Max. file size of 2GB of file types (.mp3,.wav,.ogg)",
         "helperLineTwo": ""
       },
       "pdf": {
@@ -1421,7 +1448,7 @@
         "helperLineTwo": ""
       },
       "epub": {
-        "helperLineOne": "Max. file size of 2GB of file types (.epub,.mobi,.azw)",
+        "helperLineOne": "Max. file size of 2GB of file types (.epub)",
         "helperLineTwo": ""
       },
       "details": {
@@ -1436,7 +1463,9 @@
         "title": "Add web content",
         "label": "Web content link",
         "placeholder": "https://"
-      }
+      },
+      "uploading": "Uploading",
+      "deletePermanently": "Delete permanently"
     },
     "emptyCollection": {
       "title": "Your collection is empty.",
@@ -1447,6 +1476,10 @@
       "message": "Are you sure you want to delete this content? This action cannot be undone.",
       "cancel": "Cancel",
       "delete": "Delete"
+    },
+    "couponDeleteModal": {
+      "title": "Delete coupon?",
+      "message": "Are you sure you want to delete this coupon? This action cannot be undone."
     },
     "deleteSuccessModal": {
       "title": "Delete successfully",
@@ -1462,6 +1495,19 @@
       "title": "Changes saved",
       "message": "Your updates have been successfully saved.",
       "done": "Done"
+    },
+    "metadata": {
+      "production": {
+        "title": "Production of",
+        "description": "Who released the film and produced the film?",
+        "companyPlaceholder": "Production company",
+        "linkPlaceholder": "Add manufacturer link"
+      },
+      "tags": {
+        "title": "Tags",
+        "placeholder": "Separate tags by pressing enter",
+        "example": "E.g, Video, Cooking, Film"
+      }
     }
   },
   "resetPassword": {
@@ -1473,6 +1519,8 @@
     "repeatPasswordPlaceholder": "Repeat new password",
     "submit": "Reset",
     "invalidLink": "This reset link is invalid. Please request a new password reset email.",
+    "expiredLink": "This reset link has expired. Please request a new password reset email.",
+    "requestNewLink": "Request new reset link",
     "submitFailed": "We could not reset your password right now. Please try again.",
     "successTitle": "Your password has been successfully reset!",
     "successDescription": "You can now log in with your new password. If you encounter any issues, please contact support.",

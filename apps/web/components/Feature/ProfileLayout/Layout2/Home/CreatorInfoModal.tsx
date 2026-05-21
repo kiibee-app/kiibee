@@ -20,6 +20,7 @@ import {
   Section,
   ShareButton,
 } from "./CreatorInfoModal.styles";
+import { MODAL_PADDINGS } from "@/lib/theme/tokens";
 
 type CreatorInfoModalProps = {
   visible: boolean;
@@ -40,14 +41,18 @@ export default function CreatorInfoModal({
       onClose={onClose}
       size="md"
       height="570px"
-      padding="start"
+      padding={MODAL_PADDINGS.start}
       borderRadius="8px"
       showCloseButton={false}
     >
       <CreatorInfoContent data-lenis-prevent>
         <CreatorInfoHeader>
           <MonoText $use="H4_Medium">{title}</MonoText>
-          <CloseIconButton type="button" onClick={onClose} aria-label="Close">
+          <CloseIconButton
+            type="button"
+            onClick={onClose}
+            aria-label={t("common.close")}
+          >
             <CrossIcon
               width={18}
               height={18}

@@ -12,10 +12,8 @@ import {
   NextButton,
 } from "../styles";
 import { CouponFormState } from "@/types/collectionsType";
-import {
-  COLLECTION_OPTIONS,
-  CONTENT_OPTIONS,
-} from "@/utils/dummyData/couponApplicableProducts";
+import { CollectionRow } from "@/types/collectionsType";
+import { CONTENT_OPTIONS } from "@/utils/dummyData/couponApplicableProducts";
 import {
   Chip,
   ChipList,
@@ -34,6 +32,7 @@ import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 type Props = {
   visible: boolean;
   data: CouponFormState;
+  collections: CollectionRow[];
   onBack: () => void;
   onClose: () => void;
   onContinue: () => Promise<void> | void;
@@ -43,6 +42,7 @@ type Props = {
 export default function CouponPreviewModal({
   visible,
   data,
+  collections,
   onBack,
   onClose,
   onContinue,
@@ -55,7 +55,11 @@ export default function CouponPreviewModal({
     options: { value: string; label: string }[],
   ) => options.find((opt) => opt.value === value)?.label || "-";
 
-  const collectionLabel = getLabel(data.collection, COLLECTION_OPTIONS);
+  const collectionOptions = collections.map((item) => ({
+    value: item.id,
+    label: item.name,
+  }));
+  const collectionLabel = getLabel(data.collection, collectionOptions);
   const contentLabel = getLabel(data.content, CONTENT_OPTIONS);
   const codes = data.codes ? data.codes.split(",").map((c) => c.trim()) : [];
 

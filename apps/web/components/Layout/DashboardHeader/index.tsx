@@ -26,6 +26,7 @@ import {
   getLoginUserInitial,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
+import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 
 type Props = {
   onToggleSidebar?: () => void;
@@ -33,6 +34,7 @@ type Props = {
 
 const DashboardHeader = ({ onToggleSidebar }: Props) => {
   const { t } = useTranslation();
+  const { channelHref } = useCreatorChannelLayout();
   const user = useStoredLoginUser();
   const email = getLoginUserEmail(user);
   const initial = getLoginUserInitial(user);
@@ -65,13 +67,15 @@ const DashboardHeader = ({ onToggleSidebar }: Props) => {
       </Left>
 
       <Right>
-        <ChannelText $use="Body_Medium">
-          {t("dashboard.creatorHeader.myChannel")}
-        </ChannelText>
+        <ChannelLink href={channelHref}>
+          <ChannelText $use="Body_Medium">
+            {t("dashboard.creatorHeader.myChannel")}
+          </ChannelText>
+        </ChannelLink>
         <Divider />
         <Link
           href={PATHS.DASHBOARD_CREATOR_PROFILE}
-          aria-label="Creator profile"
+          aria-label={t("common.creatorProfile")}
         >
           <RightProfileWrapper>
             <ProfileCircle>
@@ -86,6 +90,15 @@ const DashboardHeader = ({ onToggleSidebar }: Props) => {
     </HeaderWrapper>
   );
 };
+
+const ChannelLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 const RightProfileWrapper = styled.div`
   display: inline-flex;

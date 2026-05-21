@@ -38,8 +38,8 @@ export const TopBar = styled.header`
   padding: 0 24px;
   background: linear-gradient(
     180deg,
-    ${({ theme }) => theme.colors.gredint.BLACK_90},
-    ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_MID}
+    ${({ theme }) => theme.colors.gradient.BLACK_90},
+    ${({ theme }) => theme.colors.gradient.OVERLAY_TOP_MID}
   );
   backdrop-filter: blur(20px);
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.WHITE_10};
@@ -124,7 +124,7 @@ export const StoryPanel = styled.aside`
     90deg,
     ${({ theme }) => theme.colors.neutral.GRAY_300} 0%,
     ${({ theme }) => theme.colors.neutral.GRAY_250} 22%,
-    ${({ theme }) => theme.colors.gredint.TRANSPARENT} 100%
+    ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
   );
 
   ${({ theme }) => theme.media.desktopMd} {
@@ -145,7 +145,7 @@ export const StoryPanel = styled.aside`
       90deg,
       ${({ theme }) => theme.colors.neutral.GRAY_300} 0%,
       ${({ theme }) => theme.colors.neutral.GRAY_250} 14%,
-      ${({ theme }) => theme.colors.gredint.TRANSPARENT} 100%
+      ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
     );
   }
 `;

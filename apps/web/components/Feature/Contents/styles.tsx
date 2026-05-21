@@ -112,6 +112,11 @@ export const CancelButton = styled.button`
 export const SaveButton = styled(CreateButton)`
   padding: 16px 32px;
   border-radius: 8px;
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
 `;
 
 export const PlusMark = styled.span`

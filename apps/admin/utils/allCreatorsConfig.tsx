@@ -138,7 +138,6 @@ export function getCreatorTableColumns(): CreatorRequestColumn[] {
         const { activeAction, activeRequestId } = actions;
 
         const isPending = status === "pending";
-        const isApproved = status === "approved";
         const isApproving =
           activeAction === "approve" && activeRequestId === id;
         const isRejecting = activeAction === "reject" && activeRequestId === id;
@@ -166,7 +165,7 @@ export function getCreatorTableColumns(): CreatorRequestColumn[] {
                 {isApproving ? "Approving..." : "Approve"}
               </RowActionButton>
             ) : null}
-            {isPending || isApproved ? (
+            {isPending ? (
               <RowActionButton
                 $variant="reject"
                 type="button"

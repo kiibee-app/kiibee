@@ -6,9 +6,10 @@ export const Header = styled.header<HeaderProps>`
   top: ${({ $topOffset }) => $topOffset};
   left: 0;
   width: 100%;
-  min-height: var(--navbar-height);
+  min-height: ${({ $isMegaOpen }) =>
+    $isMegaOpen ? "300px" : "var(--navbar-height)"};
   display: block;
-  backdrop-filter: blur(28px);
+  backdrop-filter: blur(24px);
   background: ${({ theme }) => theme.colors.primary.WHITE_10};
   transition:
     background 180ms ease,
@@ -72,7 +73,8 @@ export const Nav = styled.nav<NavStyleProps>`
           justify-content: center;
         `}
 
-  a {
+  a,
+  button {
     color: ${({ theme, $textTone }) =>
       $textTone === "light"
         ? theme.colors.neutral.OFF_WHITE
@@ -86,7 +88,15 @@ export const Nav = styled.nav<NavStyleProps>`
       color 120ms ease;
   }
 
-  a:hover {
+  button {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  a:hover,
+  button:hover {
     background: ${({ theme }) => theme.colors.primary.WHITE_18};
   }
 
@@ -99,23 +109,24 @@ export const NavItemWrapper = styled.div`
   position: relative;
   display: inline-block;
 
-  a {
+  a,
+  button {
     display: inline-block;
   }
 `;
 
 export const MegaMenu = styled.div`
   position: fixed;
-  top: calc(var(--navbar-height, 108px) + var(--navbar-top-offset, 0px));
+  top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
   left: 0;
   width: 100%;
   padding: 1.5rem 0;
-  backdrop-filter: blur(28px);
-  background: ${({ theme }) => theme.colors.primary.WHITE_80};
+  min-height: 300px;
+  backdrop-filter: blur(16px) saturate(30%);
+  background: transparent;
   transition:
     background 180ms ease,
     backdrop-filter 180ms ease;
-  box-shadow: 0 6px 24px ${({ theme }) => theme.colors.neutral.GRAY_300};
   pointer-events: auto;
   z-index: 1000;
 `;

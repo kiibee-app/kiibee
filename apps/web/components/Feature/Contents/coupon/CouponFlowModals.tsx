@@ -1,6 +1,7 @@
 "use client";
 
 import { CouponFormState } from "@/types/collectionsType";
+import { CollectionRow } from "@/types/collectionsType";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
 import CouponApplicableProductsModal from "@/components/Feature/Contents/coupon/coupon-applicable-products";
@@ -18,6 +19,7 @@ type CouponFlowState = {
 };
 
 type Props = {
+  collections: CollectionRow[];
   couponFlow: CouponFlowState;
   couponForm: CouponFormState;
   setCouponForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
@@ -28,6 +30,7 @@ type Props = {
 };
 
 export default function CouponFlowModals({
+  collections,
   couponFlow,
   couponForm,
   setCouponForm,
@@ -58,6 +61,7 @@ export default function CouponFlowModals({
       <CouponApplicableProductsModal
         visible={couponFlow.isOpen.applicableProducts}
         form={couponForm}
+        collections={collections}
         setForm={setCouponForm}
         onBack={couponFlow.back}
         onClose={closeCouponFlow}
@@ -67,6 +71,7 @@ export default function CouponFlowModals({
       <CouponPreviewModal
         visible={couponFlow.isOpen.preview}
         data={couponForm}
+        collections={collections}
         onBack={handleBackFromCouponPreview}
         onClose={closeCouponFlow}
         onContinue={handleCouponSubmit}

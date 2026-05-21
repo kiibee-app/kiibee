@@ -22,7 +22,7 @@ export const Overlay = styled.div`
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: ${({ theme }) => theme.colors.gredint.CARD_SHADOW};
+  background: ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
 `;
 
 export const Container = styled.div`
@@ -49,7 +49,7 @@ export const Title = styled.h1`
   font-style: ${typography.Heading2.fontStyle};
   font-weight: 600;
   line-height: normal;
-  text-shadow: 0 2px 8px ${({ theme }) => theme.colors.gredint.CARD_BG};
+  text-shadow: 0 2px 8px ${({ theme }) => theme.colors.gradient.CARD_BG};
 `;
 
 export const Description = styled.p`
@@ -62,7 +62,7 @@ export const Description = styled.p`
   font-style: ${typography.H4_Medium.fontStyle};
   font-weight: 500;
   line-height: normal;
-  text-shadow: 0 1px 6px ${({ theme }) => theme.colors.gredint.BLACK_90};
+  text-shadow: 0 1px 6px ${({ theme }) => theme.colors.gradient.BLACK_90};
 `;
 
 export const PrimaryButton = styled(GenericButton).attrs({

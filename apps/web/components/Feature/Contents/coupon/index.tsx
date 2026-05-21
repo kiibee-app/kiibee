@@ -34,9 +34,13 @@ import {
 
 type CouponTableProps = {
   data: CouponRow[];
+  onActionSelect?: (action: CouponAction, row: CouponRow) => void;
 };
 
-export default function CouponTable({ data }: CouponTableProps) {
+export default function CouponTable({
+  data,
+  onActionSelect,
+}: CouponTableProps) {
   const { t } = useTranslation();
   const [nameSortDirection, setNameSortDirection] =
     useState<SortDirectionWithNone>(SORT_DIRECTIONS.NONE);
@@ -146,6 +150,7 @@ export default function CouponTable({ data }: CouponTableProps) {
                   <SortDropdown<CouponAction>
                     options={getCouponActionOptions(row.status)}
                     allowNoSelection
+                    onChange={(action) => onActionSelect?.(action, row)}
                     compact
                     dropdownWidth="200px"
                     maxWidth="200px"

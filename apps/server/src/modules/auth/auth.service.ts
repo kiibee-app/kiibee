@@ -135,8 +135,8 @@ export class AuthService {
     });
   }
 
-  async logout(userId: string) {
-    return logoutService(userId);
+  async logout(userId: string, jti?: string, exp?: number) {
+    return logoutService(userId, jti, exp);
   }
 
   async createSession(
@@ -173,9 +173,7 @@ export class AuthService {
     return setupCreatorAccountService(payload);
   }
   async forgetPassword(email: string) {
-    const frontendBaseUrl =
-      this.configService.getOrThrow<string>('FRONTEND_URL');
-    return forgetPasswordService(email, frontendBaseUrl);
+    return forgetPasswordService(email);
   }
   async resetPassword(payload: ResetPasswordDto) {
     return resetPasswordService(payload);

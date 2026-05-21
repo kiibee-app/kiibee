@@ -36,5 +36,7 @@ export const Backdrop = styled.div`
     position: fixed;
     inset: 0;
     z-index: 40;
+    background: ${({ theme }) => theme.colors.neutral.OVERLAY};
+    backdrop-filter: blur(1px);
   }
 `;

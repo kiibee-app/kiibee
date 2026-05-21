@@ -2,6 +2,7 @@ import React from "react";
 import COLORS from "@repo/ui/colors";
 import type { OverviewActivityPoint } from "@/utils/dummyData/overviewData";
 import { ChartCard, ChartScroll, ChartSvg } from "./styles";
+import { t } from "i18next";
 
 type OverviewActivityChartProps = {
   data: OverviewActivityPoint[];
@@ -11,7 +12,7 @@ const CHART_SERIES = [
   { key: "rentals", color: COLORS.primary.BLUE },
   { key: "purchases", color: COLORS.primary.ORANGE },
   { key: "views", color: COLORS.secondary.MEDIUM_GREEN },
-  { key: "visits", color: COLORS.gredint.PALE_GREEN },
+  { key: "visits", color: COLORS.gradient.PALE_GREEN },
   { key: "downloads", color: COLORS.primary.GREEN_100 },
 ] as const;
 
@@ -85,7 +86,7 @@ export default function OverviewActivityChart({
         <ChartSvg
           viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
           role="img"
-          aria-label="Creator activity stacked bar chart"
+          aria-label={t("common.creatorActivityChart")}
           style={{ minWidth: minimumWidth }}
         >
           <line

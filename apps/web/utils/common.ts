@@ -1,6 +1,7 @@
 export const ALERT = "alert";
 
 export const COLLECTIONS = "collections";
+export const ABOUT = "about";
 export const APPEARANCE = "appearance";
 export const SETTINGS = "settings";
 export const COUPONS = "coupons";
@@ -23,7 +24,6 @@ type ViewerBillingTabItem = {
   labelKey: string;
 };
 
-export type ContentTab = "collections" | "appearance" | "settings" | "coupons";
 export type ViewerBillingTab = "billing-history" | "payment-methods";
 
 export const COUPON_DISCOUNT_TYPE = {
@@ -76,32 +76,36 @@ export const IMG = "img";
 
 export type ProfileTabKey = "home" | "collections" | "about";
 
-export const PROFILE_TABS: {
-  key: ProfileTabKey;
-  label: string;
-  href: string;
-}[] = [
-  { key: "home", label: "Home", href: "/create-profile1" },
-  {
-    key: "collections",
-    label: "Collections",
-    href: "/create-profile1/collections",
-  },
-  { key: "about", label: "About", href: "/create-profile1/about" },
-];
-
-export const PROFILE_TABS3: {
-  key: ProfileTabKey;
-  label: string;
-  href: string;
-}[] = [
-  { key: "home", label: "Home", href: "/create-profile3" },
-  {
-    key: "collections",
-    label: "Collections",
-    href: "/create-profile3/collections",
-  },
-  { key: "about", label: "About", href: "/create-profile3/about" },
-];
-
 export const HOME = "home";
+
+export const ADD_CONTENT_TABS = {
+  GENERAL: "general",
+  METADATA: "metadata",
+  PAYMENT: "payment",
+} as const;
+
+export type AddContentTab =
+  (typeof ADD_CONTENT_TABS)[keyof typeof ADD_CONTENT_TABS];
+
+export const CONTENT_TABS_KEYS = {
+  COLLECTIONS: "collections",
+  APPEARANCE: "appearance",
+  SETTINGS: "settings",
+  COUPONS: "coupons",
+} as const;
+
+export type ContentTab =
+  | (typeof CONTENT_TABS_KEYS)[keyof typeof CONTENT_TABS_KEYS]
+  | (typeof ADD_CONTENT_TABS)[keyof typeof ADD_CONTENT_TABS];
+
+export const MIME_TYPE = {
+  VIDEO: "video/",
+  AUDIO: "audio/",
+  PDF: "application/pdf",
+} as const;
+
+export const FILE_EXTENSION = {
+  EPUB: ".epub",
+} as const;
+
+export const tabs = ["New", "Trending", "Curated for you"];

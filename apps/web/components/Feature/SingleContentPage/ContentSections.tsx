@@ -41,6 +41,7 @@ import {
   TrailerButton,
   TrailerText,
 } from "./styles";
+import { t } from "i18next";
 
 export function SingleContentTopBar({
   showBack,
@@ -52,7 +53,11 @@ export function SingleContentTopBar({
   return (
     <TopBar>
       {showBack ? (
-        <BackButton onClick={onBackClick} aria-label="Go back" type="button">
+        <BackButton
+          onClick={onBackClick}
+          aria-label={t("common.goBack")}
+          type="button"
+        >
           <BackButtonIcon />
         </BackButton>
       ) : (

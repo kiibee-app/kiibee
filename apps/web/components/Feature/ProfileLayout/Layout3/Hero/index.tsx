@@ -8,7 +8,11 @@ import coverImage from "@/assets/images/creators/creator_profile_hero3.png";
 import avatarImage from "@/assets/images/creators/profile_pic3.png";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
-import { HOME, PROFILE_TABS3, ProfileTabKey } from "@/utils/common";
+import { ABOUT, HOME, ProfileTabKey } from "@/utils/common";
+import {
+  useCreatorAboutModal,
+  useCreatorProfileTabs,
+} from "@/hooks/useCreatorChannelLayout";
 import {
   AvatarImage,
   AvatarWrap,
@@ -21,17 +25,25 @@ import {
   TabsWrapper,
   UploadsText,
 } from "./styles";
+import CreatorInfoModal from "../../Layout2/Home/CreatorInfoModal";
 
 export default function Hero() {
   const { t } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
+  const profileTabs = useCreatorProfileTabs();
+  const { isAboutOpen, openAbout, closeAbout } = useCreatorAboutModal();
   const activeTab =
-    PROFILE_TABS3.find((tab) => tab.href === pathname)?.key ?? HOME;
+    profileTabs.find((tab) => tab.href === pathname)?.key ?? HOME;
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+
   const handleTabChange = (tab: ProfileTabKey) => {
-    const target = PROFILE_TABS3.find((item) => item.key === tab)?.href;
+    if (tab === ABOUT) {
+      openAbout();
+      return;
+    }
+    const target = profileTabs.find((item) => item.key === tab)?.href;
     if (!target) return;
     router.push(target);
   };
@@ -66,7 +78,7 @@ export default function Hero() {
 
         <TabsWrapper>
           <GenericTabs
-            tabs={PROFILE_TABS3}
+            tabs={profileTabs}
             activeTab={activeTab}
             onTabChange={handleTabChange}
             search={{
@@ -81,6 +93,8 @@ export default function Hero() {
           />
         </TabsWrapper>
       </InfoSection>
+
+      <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />
     </HeroWrapper>
   );
 }

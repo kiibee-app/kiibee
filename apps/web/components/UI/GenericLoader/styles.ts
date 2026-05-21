@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { media } from "../../../../../packages/ui/src/breakpoints";
+import { media } from "@repo/ui/breakpoints";
 import { LoaderSize, sizeMap } from "@/types/genericLoader";
 
 const spin = keyframes`

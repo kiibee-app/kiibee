@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import {
@@ -26,10 +26,16 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import { AddContentTab, APPEARANCE, COLLECTIONS } from "@/utils/common";
+import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
+import { toast } from "react-toastify";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
-
+  const { saveLayout, cancelLayout, hasUnsavedChanges } =
+    useCreatorChannelLayout();
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
   const {
     activeTab,
     visibleTabs,
@@ -43,6 +49,7 @@ export default function CreatorsContents() {
     setOpenSearch,
     handleTabChange,
     setActiveTabAndQuery,
+    isUploadMode,
   } = useContentsViewState();
   const {
     collections,
@@ -71,17 +78,58 @@ export default function CreatorsContents() {
     closeDiscardModal,
     handleCreateClick,
     handleEditCollection,
-  } = useContentsModalFlows(activeTab, collections, isCollectionContentMode);
+    openCouponEdit,
+  } = useContentsModalFlows(
+    activeTab,
+    collections,
+    isCollectionContentMode,
+    setCollections,
+  );
+
+  const handleUploadSuccess = (
+    tab: AddContentTab,
+    file?: File | null,
+    preview?: string | null,
+  ) => {
+    setActiveTabAndQuery(tab);
+    setUploadedFile(file ?? null);
+    setUploadedPreview(preview ?? null);
+  };
+
+  const handleBackToBase = () => {
+    setSelectedCollection(null);
+    if (isUploadMode) {
+      setSelectedCollection(selectedCollection);
+    }
+    setActiveTabAndQuery(COLLECTIONS);
+  };
+
+  const handleHeaderSave = () => {
+    if (activeTab === APPEARANCE) {
+      if (!hasUnsavedChanges) return;
+      saveLayout();
+      toast.success(t(CONTENTS_KEYS.appearance.layouts.saveSuccess));
+      return;
+    }
+
+    createCollectionFlow.openSuccess();
+  };
+
+  const handleHeaderCancel = () => {
+    if (activeTab === APPEARANCE) {
+      cancelLayout();
+      return;
+    }
+
+    openDiscardModal();
+  };
 
   return (
     <PageShell>
       <PageHeader>
         <HeaderRow>
           {selectedCollection && (
-            <AuthBackButton
-              marginBottom="0px"
-              onClick={() => setSelectedCollection(null)}
-            />
+            <AuthBackButton marginBottom="0px" onClick={handleBackToBase} />
           )}
           <Title>
             {selectedCollection
@@ -93,9 +141,10 @@ export default function CreatorsContents() {
         <ContentsHeaderAction
           activeTab={activeTab}
           onCreate={handleCreateClick}
-          onCancel={openDiscardModal}
+          onCancel={handleHeaderCancel}
           onCreateCoupon={couponFlow.open}
-          onSave={createCollectionFlow.openSuccess}
+          onSave={handleHeaderSave}
+          isSaveDisabled={activeTab === APPEARANCE && !hasUnsavedChanges}
           isCollectionContentMode={isCollectionContentMode}
         />
       </PageHeader>
@@ -109,14 +158,18 @@ export default function CreatorsContents() {
             }))}
             activeTab={activeTab}
             onTabChange={handleTabChange}
-            search={{
-              open: openSearch,
-              value: searchValue,
-              placeholder: t(CONTENTS_KEYS.actions.search),
-              onToggle: () => setOpenSearch((prev) => !prev),
-              onChange: setSearchValue,
-              ariaLabel: t(CONTENTS_KEYS.actions.search),
-            }}
+            search={
+              isUploadMode
+                ? undefined
+                : {
+                    open: openSearch,
+                    value: searchValue,
+                    placeholder: t(CONTENTS_KEYS.actions.search),
+                    onToggle: () => setOpenSearch((prev) => !prev),
+                    onChange: setSearchValue,
+                    ariaLabel: t(CONTENTS_KEYS.actions.search),
+                  }
+            }
           />
         </ContentsTabsSlot>
         <ContentPanel>
@@ -131,6 +184,9 @@ export default function CreatorsContents() {
             setSelectedCollection={setSelectedCollection}
             onDelete={openDelete}
             onEditCollection={handleEditCollection}
+            onEditCoupon={openCouponEdit}
+            uploadedFile={uploadedFile}
+            uploadedPreview={uploadedPreview}
           />
         </ContentPanel>
       </ContentsScrollArea>
@@ -153,8 +209,10 @@ export default function CreatorsContents() {
       <ContentUploadModal
         visible={contentTypeFlow.showContentUploadModal}
         contentType={contentTypeFlow.selectedContentType}
+        collectionId={selectedCollection?.id ?? null}
         onClose={contentTypeFlow.close}
         onBack={contentTypeFlow.backToTypeSelect}
+        onUploadSuccess={handleUploadSuccess}
       />
 
       <GenericModal
@@ -188,6 +246,7 @@ export default function CreatorsContents() {
       />
 
       <CouponFlowModals
+        collections={collections}
         couponFlow={couponFlow}
         couponForm={couponForm}
         setCouponForm={setCouponForm}

@@ -1,6 +1,7 @@
 "use client";
 
 import { API } from "@/lib/http/api/endpoints";
+import { AUTH_STORAGE_KEYS } from "@/lib/auth/storageKeys";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { PATHS } from "@/utils/path";
 import { toTrimmedString } from "@/utils/Constants";
@@ -45,9 +46,6 @@ const USER_ROLES = {
   VIEWER: "viewer",
 } as const;
 
-const ACCESS_TOKEN_KEY = "kiibee.accessToken";
-const REFRESH_TOKEN_KEY = "kiibee.refreshToken";
-const USER_KEY = "kiibee.user";
 export const STORED_LOGIN_USER_UPDATED = "kiibee:user-updated";
 
 const notifyStoredLoginUserUpdated = () => {
@@ -59,7 +57,7 @@ export const readStoredLoginUser = (): LoginUser | null => {
   if (!isBrowser) return null;
 
   try {
-    const raw = window.localStorage.getItem(USER_KEY);
+    const raw = window.localStorage.getItem(AUTH_STORAGE_KEYS.user);
     return raw ? (JSON.parse(raw) as LoginUser) : null;
   } catch {
     return null;
@@ -75,10 +73,10 @@ export const mergeStoredLoginUser = (partial: Partial<LoginUser>) => {
   if (!isBrowser) return;
 
   try {
-    const raw = window.localStorage.getItem(USER_KEY);
+    const raw = window.localStorage.getItem(AUTH_STORAGE_KEYS.user);
     const prev = raw ? (JSON.parse(raw) as LoginUser) : {};
     window.localStorage.setItem(
-      USER_KEY,
+      AUTH_STORAGE_KEYS.user,
       JSON.stringify({ ...prev, ...partial }),
     );
     notifyStoredLoginUserUpdated();
@@ -99,15 +97,15 @@ export const persistLoginSession = (response: LoginResponse) => {
   const user = response.user ?? response.data?.user;
 
   if (accessToken) {
-    window.localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+    window.localStorage.setItem(AUTH_STORAGE_KEYS.accessToken, accessToken);
   }
 
   if (refreshToken) {
-    window.localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+    window.localStorage.setItem(AUTH_STORAGE_KEYS.refreshToken, refreshToken);
   }
 
   if (user) {
-    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+    window.localStorage.setItem(AUTH_STORAGE_KEYS.user, JSON.stringify(user));
     notifyStoredLoginUserUpdated();
   }
 };
@@ -117,9 +115,9 @@ export const clearLoginSession = () => {
     return;
   }
 
-  window.localStorage.removeItem(ACCESS_TOKEN_KEY);
-  window.localStorage.removeItem(REFRESH_TOKEN_KEY);
-  window.localStorage.removeItem(USER_KEY);
+  window.localStorage.removeItem(AUTH_STORAGE_KEYS.accessToken);
+  window.localStorage.removeItem(AUTH_STORAGE_KEYS.refreshToken);
+  window.localStorage.removeItem(AUTH_STORAGE_KEYS.user);
   notifyStoredLoginUserUpdated();
 };
 
@@ -129,7 +127,7 @@ export const getStoredLoginUserEmail = () => {
   }
 
   try {
-    const rawUser = window.localStorage.getItem(USER_KEY);
+    const rawUser = window.localStorage.getItem(AUTH_STORAGE_KEYS.user);
     if (!rawUser) return "";
 
     const parsedUser = JSON.parse(rawUser) as LoginUser;

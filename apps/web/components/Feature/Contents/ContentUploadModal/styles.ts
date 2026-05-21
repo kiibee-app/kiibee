@@ -120,3 +120,13 @@ export const WebContentNextButton = styled.div`
   margin-top: auto;
   align-self: center;
 `;
+
+export const UploadSuccess = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  gap: 18px;
+`;

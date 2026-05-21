@@ -14,7 +14,7 @@ import {
   Columns,
   BulletList,
   BulletItem,
-} from "./style";
+} from "./styles";
 
 const HEADING_FALLBACK = "Why creators choose Kiibee";
 const LEFT_ITEMS_FALLBACK = [

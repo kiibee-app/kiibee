@@ -6,6 +6,8 @@ import {
   VideoIcon,
   WebIcon,
 } from "@/assets/icons";
+import { FORMAT_TYPE, FormatType } from "./types";
+import { FILE_EXTENSION, MIME_TYPE } from "./common";
 
 export type ContentType = "video" | "audio" | "pdf" | "epub" | "web";
 
@@ -26,34 +28,36 @@ export const UPLOAD_CONTENT_TYPES = ["video", "audio", "pdf", "epub"] as const;
 
 export type UploadContentType = (typeof UPLOAD_CONTENT_TYPES)[number];
 
+export type MediaUploadFileType = "documents" | "audio" | "ebooks";
+
+export const MEDIA_UPLOAD_FILE_TYPE_MAP: Record<
+  Exclude<UploadContentType, "video">,
+  MediaUploadFileType
+> = {
+  audio: "audio",
+  pdf: "documents",
+  epub: "ebooks",
+};
+
 export const CONTENT_UPLOAD_CONFIG: Record<
   UploadContentType,
   { accept: string; extensions: readonly string[] }
 > = {
   video: {
-    accept: ".mp4,.mkv,.mov,.m4v",
-    extensions: [".mp4", ".mkv", ".mov", ".m4v"],
+    accept: ".mp4",
+    extensions: [".mp4"],
   },
   audio: {
-    accept: ".mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac",
-    extensions: [
-      ".mp3",
-      ".m4a",
-      ".wav",
-      ".wma",
-      ".alac",
-      ".flac",
-      ".ogg",
-      ".aac",
-    ],
+    accept: ".mp3,.wav,.ogg",
+    extensions: [".mp3", ".wav", ".ogg"],
   },
   pdf: {
     accept: ".pdf",
     extensions: [".pdf"],
   },
   epub: {
-    accept: ".epub,.mobi,.azw",
-    extensions: [".epub", ".mobi", ".azw"],
+    accept: ".epub",
+    extensions: [".epub"],
   },
 } as const;
 
@@ -112,3 +116,20 @@ export const STEP_ORDER: CouponStep[] = [
   COUPON_STEPS.APPLICABLE_PRODUCTS,
   COUPON_STEPS.PREVIEW,
 ];
+
+export const FILE_TYPE_CHECKERS: Record<FormatType, (file: File) => boolean> = {
+  [FORMAT_TYPE.VIDEO]: (file) => file.type.startsWith(MIME_TYPE.VIDEO),
+  [FORMAT_TYPE.AUDIO]: (file) => file.type.startsWith(MIME_TYPE.AUDIO),
+  [FORMAT_TYPE.PDF]: (file) => file.type === MIME_TYPE.PDF,
+  [FORMAT_TYPE.EPUB]: (file) =>
+    file.name.toLowerCase().endsWith(FILE_EXTENSION.EPUB),
+  [FORMAT_TYPE.WEB]: () => false,
+};
+
+export const TRAILER_VISIBILITY = {
+  PUBLIC: "public",
+  HIDDEN: "hidden",
+} as const;
+
+export type TrailerVisibility =
+  (typeof TRAILER_VISIBILITY)[keyof typeof TRAILER_VISIBILITY];

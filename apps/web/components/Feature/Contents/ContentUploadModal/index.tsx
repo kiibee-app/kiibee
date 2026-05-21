@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useQueryClient } from "@tanstack/react-query";
 import { BackButtonIcon } from "@/assets/icons";
 import GenericButton from "@/components/UI/GenericButton";
 import { GenericModal } from "@/components/UI/Modals";
@@ -26,30 +27,58 @@ import SelectedFileView from "./SelectedFileView";
 import ContentUploadDetails from "./UploadDetails";
 import WebContentLinkForm from "./WebContentLinkForm";
 import { FORMAT_TYPE } from "@/utils/types";
+import { ADD_CONTENT_TABS, AddContentTab } from "@/utils/common";
+import { API } from "@/lib/http/api/endpoints";
+import { usePostAPI } from "@/lib/http/api/postApi";
+
+type CreateContentPayload = {
+  title: string;
+  description: string;
+  contentTypeId: ContentType;
+  collectionId: string;
+  fileKey?: string;
+  contentUrl?: string;
+};
 
 type ContentUploadModalProps = {
   visible: boolean;
   contentType: ContentType | null;
+  collectionId?: string | null;
   onBack: () => void;
   onClose: () => void;
+  onUploadSuccess?: (
+    tab: AddContentTab,
+    file?: File | null,
+    preview?: string | null,
+  ) => void;
 };
 
 export default function ContentUploadModal({
   visible,
   contentType,
+  collectionId,
   onBack,
   onClose,
+  onUploadSuccess,
 }: ContentUploadModalProps) {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
   const [showDetails, setShowDetails] = useState(false);
   const [webContentLink, setWebContentLink] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [createError, setCreateError] = useState<string | null>(null);
+  const createContentMutation = usePostAPI<unknown, CreateContentPayload>(
+    API.content.create,
+  );
   const {
     fileInputRef,
     selectedFile,
     isUploading,
     uploadComplete,
+    uploadError,
+    uploadedFile,
     previewUrl,
     uploadType,
     uploadConfig,
@@ -69,6 +98,10 @@ export default function ContentUploadModal({
   const handleExit = (callback: () => void) => {
     reset();
     setWebContentLink("");
+    setTitle("");
+    setDescription("");
+    setIsSuccess(false);
+    setCreateError(null);
     setShowDetails(false);
     callback();
   };
@@ -86,15 +119,76 @@ export default function ContentUploadModal({
 
   const handleWebNextClick = () => {
     if (!webContentLink.trim()) return;
+    setIsSuccess(false);
+    setCreateError(null);
+    setShowDetails(true);
+    setTitle("");
+    setDescription("");
+  };
+
+  const handleAdd = async () => {
+    const trimmedTitle = title.trim();
+    const trimmedDescription = description.trim();
+
+    if (!trimmedTitle || !trimmedDescription || !contentType || !collectionId) {
+      return;
+    }
+
+    const isWebContent = contentType === FORMAT_TYPE.WEB;
+    const trimmedContentUrl = webContentLink.trim();
+    const fileKey = uploadedFile?.key;
+
+    if (isWebContent && !trimmedContentUrl) return;
+    if (!isWebContent && !fileKey) return;
+
+    const payload: CreateContentPayload = {
+      title: trimmedTitle,
+      description: trimmedDescription,
+      contentTypeId: contentType,
+      collectionId,
+      ...(isWebContent ? { contentUrl: trimmedContentUrl } : { fileKey }),
+    };
+
+    setCreateError(null);
+
+    try {
+      await createContentMutation.mutateAsync(payload);
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: [API.collection.getAll] }),
+        queryClient.invalidateQueries({
+          queryKey: [API.content.collection(collectionId)],
+        }),
+      ]);
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : t("contents.contentUploadModal.createError");
+      setCreateError(message);
+      return;
+    }
+
+    setIsSuccess(true);
+    onUploadSuccess?.(ADD_CONTENT_TABS.GENERAL, selectedFile, previewUrl);
+  };
+
+  const handleResetDetails = () => {
+    setIsSuccess(false);
     setShowDetails(true);
   };
 
-  const handleAdd = () => {
-    if (!title.trim() || !description.trim()) return;
+  const getBackAction = () => {
+    if (isSuccess) return () => handleResetDetails();
+    if (showDetails) return () => setShowDetails(false);
+    return () => handleExit(onBack);
+  };
+
+  const handleBackClick = () => {
+    const action = getBackAction();
+    action();
   };
 
   const isWebContent = contentType === FORMAT_TYPE.WEB;
-
   return (
     <GenericModal
       visible={visible}
@@ -107,9 +201,7 @@ export default function ContentUploadModal({
       <BackButton
         type={BUTTON}
         aria-label={t("common.back")}
-        onClick={() =>
-          showDetails ? setShowDetails(false) : handleExit(onBack)
-        }
+        onClick={handleBackClick}
       >
         <BackButtonIcon size={28} strokeWidth={2.5} />
       </BackButton>
@@ -129,6 +221,10 @@ export default function ContentUploadModal({
               setTitle={handleChange(setTitle)}
               setDescription={handleChange(setDescription)}
               onAdd={handleAdd}
+              uploadType={contentType ?? uploadType}
+              isSuccess={isSuccess}
+              isSubmitting={createContentMutation.isPending}
+              errorMessage={createError}
             />
           ) : isWebContent ? (
             <WebContentLinkForm
@@ -158,6 +254,9 @@ export default function ContentUploadModal({
               </ChooseUploadButton>
 
               <UploadHelperTextGroup>
+                {uploadError && (
+                  <UploadHelperText>{uploadError}</UploadHelperText>
+                )}
                 <UploadHelperText>{helperLineOne}</UploadHelperText>
                 {helperLineTwo && (
                   <UploadHelperText>{helperLineTwo}</UploadHelperText>

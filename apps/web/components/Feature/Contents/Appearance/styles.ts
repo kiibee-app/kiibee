@@ -201,7 +201,7 @@ export const LayoutCard = styled.div<{ $active?: boolean }>`
     ${({ $active, theme }) =>
       $active
         ? theme.colors.secondary.MEDIUM_GREEN
-        : theme.colors.gredint.FRAME_BORDER};
+        : theme.colors.gradient.FRAME_BORDER};
   border-radius: 12px;
   background: ${({ $active, theme }) =>
     $active ? theme.colors.primary.PALE_GREEN : theme.colors.primary.WHITE};
@@ -241,7 +241,7 @@ export const LayoutImageShell = styled.div`
   align-self: stretch;
   border-radius: 8px 8px 0 0;
   box-shadow: 1px -2px 25px 1px
-    ${({ theme }) => theme.colors.gredint.FRAME_SHADOW};
+    ${({ theme }) => theme.colors.gradient.FRAME_SHADOW};
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${media.tablet} {

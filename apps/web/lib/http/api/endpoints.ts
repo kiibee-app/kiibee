@@ -15,5 +15,24 @@ export const API = {
   coupon: {
     create: "/coupons/create",
     getAll: "/coupons",
+    update: (id: string) => `/coupons/${id}`,
+    delete: (id: string) => `/coupons/${id}`,
+  },
+  media: {
+    videoInit: "/media/videos/init",
+    videoPartUrl: "/media/videos/part-url",
+    videoComplete: "/media/videos/complete",
+    fileUploadUrl: "/media/file/upload-url",
+    fileConfirm: "/media/file/confirm",
+  },
+  content: {
+    create: "/content/create",
+    collection: (id: string) => `/content/collection/${id}`,
+  },
+  collection: {
+    getAll: "/collection",
+    create: "/collection/create",
+    update: (id: string) => `/collection/${id}`,
+    delete: (id: string) => `/collection/${id}`,
   },
 } as const;

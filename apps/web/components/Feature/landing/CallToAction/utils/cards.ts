@@ -1,7 +1,7 @@
-import imageOne from "../../../../../assets/images/call_to_action/creator-1.webp";
-import imageTwo from "../../../../../assets/images/call_to_action/creator-2.webp";
-import imageThree from "../../../../../assets/images/call_to_action/creator-3.webp";
-import imageFour from "../../../../../assets/images/call_to_action/creator-4.webp";
+import imageOne from "@/assets/images/call_to_action/creator-1.webp";
+import imageTwo from "@/assets/images/call_to_action/creator-2.webp";
+import imageThree from "@/assets/images/call_to_action/creator-3.webp";
+import imageFour from "@/assets/images/call_to_action/creator-4.webp";
 
 const orderedImages = {
   1: imageFour.src,

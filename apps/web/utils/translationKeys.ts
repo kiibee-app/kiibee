@@ -332,6 +332,7 @@ export const CONTENTS = {
       title: "contents.appearance.layouts.title",
       subtitle: "contents.appearance.layouts.subtitle",
       preview: "contents.appearance.layouts.preview",
+      saveSuccess: "contents.appearance.layouts.saveSuccess",
       options: {
         layout1: "contents.appearance.layouts.options.layout1",
         layout2: "contents.appearance.layouts.options.layout2",
@@ -346,6 +347,15 @@ export const CONTENTS = {
       placeholder: "contents.appearance.logo.placeholder",
       uploadButton: "contents.appearance.logo.upload",
     },
+  },
+  general: {
+    trailerLink: "contents.general.trailerLink",
+    trailerLinkHint: "contents.general.trailerLinkHint",
+    trailerLinkPlaceholder: "contents.general.trailerLinkPlaceholder",
+    visibility: "contents.general.visibility",
+    visibilityHint: "contents.general.visibilityHint",
+    public: "contents.general.public",
+    hidden: "contents.general.hidden",
   },
   deleteModal: {
     title: "contents.deleteModal.title",

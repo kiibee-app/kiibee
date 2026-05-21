@@ -66,10 +66,28 @@ const extractFieldErrors = (payload: unknown): ApiFieldErrors => {
 export const useApiErrorMessage = () => {
   const { t } = useTranslation();
 
+  const mapKnownApiMessage = (message: string): string => {
+    const normalized = message.trim().toLowerCase();
+
+    if (normalized === "reset link has expired") {
+      return t("resetPassword.expiredLink");
+    }
+
+    if (
+      normalized === "invalid or expired token" ||
+      normalized === "token already used"
+    ) {
+      return t("resetPassword.invalidLink");
+    }
+
+    return message;
+  };
+
   const getErrorMessage = (error: unknown, fallbackKey: string): string => {
     const fallbackMessage = t(fallbackKey);
     const normalizedError = normalizeApiError(error);
-    return normalizedError.message || fallbackMessage;
+    const message = normalizedError.message || fallbackMessage;
+    return mapKnownApiMessage(message);
   };
 
   const getFieldErrors = (error: unknown): ApiFieldErrors => {

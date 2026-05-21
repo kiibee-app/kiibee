@@ -35,8 +35,8 @@ export const ImageFrame = styled.div`
   width: min(100%, 42rem);
   border-radius: 1.25rem;
   padding: 0.5rem;
-  background: ${({ theme }) => theme.colors.gredint.FRAME_BG};
-  border: 1px solid ${({ theme }) => theme.colors.gredint.FRAME_BORDER};
+  background: ${({ theme }) => theme.colors.gradient.FRAME_BG};
+  border: 1px solid ${({ theme }) => theme.colors.gradient.FRAME_BORDER};
   box-shadow: ${({ theme }) => theme.shadows.frame};
 
   &::before {
@@ -44,7 +44,7 @@ export const ImageFrame = styled.div`
     position: absolute;
     inset: -0.75rem;
     border-radius: 1.75rem;
-    background: ${({ theme }) => theme.colors.gredint.FRAME_GLOW};
+    background: ${({ theme }) => theme.colors.gradient.FRAME_GLOW};
     filter: blur(1rem);
     z-index: 0;
   }
@@ -57,7 +57,7 @@ export const ImageFrame = styled.div`
     bottom: -1.4rem;
     height: 16%;
     border-radius: 999px;
-    background: ${({ theme }) => theme.colors.gredint.FRAME_SHADOW};
+    background: ${({ theme }) => theme.colors.gradient.FRAME_SHADOW};
     filter: blur(1.2rem);
     z-index: 0;
   }

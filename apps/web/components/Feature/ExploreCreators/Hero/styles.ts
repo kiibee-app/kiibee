@@ -109,18 +109,31 @@ export const FilterButtonText = styled(MonoText).attrs({
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const FilterOverlay = styled.div`
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 0;
+export const FilterOverlay = styled.div<{
+  $inline?: boolean;
+  $maxWidth?: string;
+  $inlineWidth?: string;
+}>`
+  position: ${({ $inline }) => ($inline ? "relative" : "absolute")};
+  top: ${({ $inline }) => ($inline ? "auto" : "calc(100% + 12px)")};
+  left: ${({ $inline }) => ($inline ? "auto" : "0")};
   z-index: 210;
-  width: min(26rem, calc(100vw - 40px));
+  width: min(${({ $maxWidth }) => $maxWidth ?? "26rem"}, calc(100vw - 40px));
   max-height: min(70vh, 720px);
   overflow-y: auto;
   padding: 24px 24px 18px;
   border-radius: 20px;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
-  box-shadow: 0 28px 60px ${({ theme }) => theme.colors.gredint.CARD_SHADOW};
+  box-shadow: 0 28px 60px ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
+
+  ${({ $inline, $inlineWidth }) =>
+    $inline
+      ? `
+    width: ${$inlineWidth ?? "100%"};
+    max-width: 100%;
+    max-height: none;
+  `
+      : ""}
 
   ${media.tablet} {
     width: min(24rem, calc(100vw - 32px));
@@ -156,7 +169,7 @@ export const FilterSectionButton = styled.button`
   align-items: center;
   justify-content: space-between;
   border: none;
-  background: ${({ theme }) => theme.colors.gredint.TRANSPARENT};
+  background: ${({ theme }) => theme.colors.gradient.TRANSPARENT};
   cursor: pointer;
   text-align: left;
 
@@ -243,7 +256,7 @@ export const CheckboxControl = styled.span<{
   justify-content: center;
   border: 1.5px solid ${({ theme }) => theme.colors.primary.BLACK};
   border-radius: ${({ $round }) => ($round ? "50%" : "7px")};
-  background: ${({ theme }) => theme.colors.gredint.TRANSPARENT};
+  background: ${({ theme }) => theme.colors.gradient.TRANSPARENT};
   transition:
     border-color 0.2s ease,
     background 0.2s ease,
@@ -264,7 +277,7 @@ export const ShowMoreButton = styled.button`
   margin-top: 14px;
   padding: 0;
   border: none;
-  background: ${({ theme }) => theme.colors.gredint.TRANSPARENT};
+  background: ${({ theme }) => theme.colors.gradient.TRANSPARENT};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -323,7 +336,7 @@ export const PriceInput = styled.input`
   flex: 1;
   border: none;
   outline: none;
-  background: ${({ theme }) => theme.colors.gredint.TRANSPARENT};
+  background: ${({ theme }) => theme.colors.gradient.TRANSPARENT};
   ${({ theme }) => theme.typography.Heading3};
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
 
@@ -361,7 +374,7 @@ export const StarIcon = styled.svg<{ $filled: boolean }>`
 
   path {
     fill: ${({ $filled, theme }) =>
-      $filled ? theme.colors.primary.BLACK : theme.colors.gredint.TRANSPARENT};
+      $filled ? theme.colors.primary.BLACK : theme.colors.gradient.TRANSPARENT};
     stroke: ${({ theme }) => theme.colors.primary.BLACK};
     stroke-width: 1.5;
     stroke-linejoin: round;

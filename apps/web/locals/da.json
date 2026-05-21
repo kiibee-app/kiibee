@@ -20,6 +20,7 @@
       "allContentTitle": "Alt indhold",
       "everything": "Alle",
       "newReleases": "Nyudgivelser",
+      "latest": "Seneste udgivelser",
       "popular": "Populært",
       "freeContent": "Gratis indhold",
       "formatTitle": "Format",
@@ -128,7 +129,7 @@
     "rememberPassword": "Kan du huske din adgangskode?",
     "login": "Log ind",
     "checkEmailTitle": "Tjek din e-mail",
-    "checkEmailDescription": "Vi har sendt et link til nulstilling af adgangskode til din e-mail. Hvis det ikke ankommer inden for et par minutter, så tjek din spam-mappe.",
+    "checkEmailDescription": "Vi har sendt et link til nulstilling af din adgangskode til din e-mail. Hvis det ikke ankommer inden for få minutter, kan det skyldes, at det ikke matcher en eksisterende brugerkonto.",
     "didNotReceive": "Har du ikke modtaget e-mailen?",
     "resend": "Send igen",
     "submitFailed": "Vi kunne ikke sende nulstillingslinket lige nu. Prøv igen."
@@ -301,6 +302,7 @@
     "cta": "Learn more"
   },
   "creators": {
+    "trendingContent": "TODO: translate - Trending content",
     "heading": {
       "lineOne": "Upload.",
       "lineTwo": "Market.",
@@ -841,11 +843,20 @@
   },
   "common": {
     "share": "Del",
+    "search": "TODO: translate - Search",
+    "clearSearch": "TODO: translate - Clear search",
+    "toggleSearch": "TODO: translate - Toggle search",
     "optional": "valgfrit",
     "save": "Save",
     "cancel": "Cancel",
     "back": "Tilbage",
+    "goBack": "TODO: translate - Go back",
     "close": "Luk",
+    "helpOptions": "TODO: translate - Help options",
+    "viewerProfile": "TODO: translate - Viewer profile",
+    "creatorProfile": "TODO: translate - Creator profile",
+    "createProfileFooterAria": "TODO: translate - Create profile footer",
+    "creatorActivityChart": "TODO: translate - Creator activity stacked bar chart",
     "previous": "Forrige",
     "next": "Næste",
     "selectDateRange": "Vælg datointerval",
@@ -1308,7 +1319,10 @@
       "contents": "Indhold",
       "appearance": "Udseende",
       "settings": "Indstillinger",
-      "coupons": "Kuponer"
+      "coupons": "Kuponer",
+      "general": "Generelt",
+      "metadata": "Metadata",
+      "payment": "Betaling"
     },
     "couponsCard": {
       "title": "Kuponer",
@@ -1364,6 +1378,7 @@
       "layouts": {
         "title": "Layouts",
         "subtitle": "Vælg hvordan din kanal skal vises for brugerne.",
+        "saveSuccess": "Layout gemt. Din kanal er blevet opdateret.",
         "preview": "Preview example",
         "options": {
           "layout1": "Layout 1",
@@ -1379,6 +1394,15 @@
         "placeholder": "Indtast logo navn",
         "upload": "Upload logo"
       }
+    },
+    "general": {
+      "trailerLink": "Trailer-link",
+      "trailerLinkHint": "Hvis du vil tilfoje en trailer, skal du indtaste linket her.",
+      "trailerLinkPlaceholder": "Tilfoj YouTube- eller Video-link",
+      "visibility": "Synlighed",
+      "visibilityHint": "Styr om denne trailer er synlig for brugere.",
+      "public": "Offentlig",
+      "hidden": "Skjult"
     },
     "admissionRequirements": {
       "title": "Adgangskrav",
@@ -1408,12 +1432,15 @@
       "selectedFile": "Valgt fil",
       "upload": "Upload",
       "next": "Næste",
+      "invalidFile": "Vælg en understøttet fil under 2 GB.",
+      "uploadError": "Filen kunne ikke uploades. Prøv igen.",
+      "createError": "Indholdet kunne ikke oprettes. Prøv igen.",
       "video": {
-        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp4,.mkv,.mov,.m4v)",
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp4)",
         "helperLineTwo": "Min. opløsning 1080p HD"
       },
       "audio": {
-        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp3,.m4a,.wav,.wma,.alac,.flac,.ogg,.aac)",
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp3,.wav,.ogg)",
         "helperLineTwo": ""
       },
       "pdf": {
@@ -1421,7 +1448,7 @@
         "helperLineTwo": ""
       },
       "epub": {
-        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.epub,.mobi,.azw)",
+        "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.epub)",
         "helperLineTwo": ""
       },
       "details": {
@@ -1436,7 +1463,9 @@
         "title": "Tilføj webindhold",
         "label": "Webindhold-link",
         "placeholder": "https://"
-      }
+      },
+      "uploading": "Uploader",
+      "deletePermanently": "Slet permanent"
     },
     "emptyCollection": {
       "title": "Din samling er tom.",
@@ -1447,6 +1476,10 @@
       "message": "Are you sure you want to delete this content? This action cannot be undone.",
       "cancel": "Cancel",
       "delete": "Delete"
+    },
+    "couponDeleteModal": {
+      "title": "Delete coupon?",
+      "message": "Er du sikker på, at du vil slette denne kupon? Denne handling kan ikke fortrydes."
     },
     "deleteSuccessModal": {
       "title": "Delete successfully",
@@ -1462,6 +1495,19 @@
       "title": "Aendringer gemt",
       "message": "Dine opdateringer er blevet gemt.",
       "done": "Faerdig"
+    },
+    "metadata": {
+      "production": {
+        "title": "Produktion af",
+        "description": "Hvem udgav filmen og producerede filmen?",
+        "companyPlaceholder": "Produktionsselskab",
+        "linkPlaceholder": "Tilføj producentlink"
+      },
+      "tags": {
+        "title": "Tags",
+        "placeholder": "Adskil tags ved at trykke enter",
+        "example": "F.eks. Video, Madlavning, Film"
+      }
     }
   },
   "resetPassword": {
@@ -1473,6 +1519,8 @@
     "repeatPasswordPlaceholder": "Gentag ny adgangskode",
     "submit": "Nulstil",
     "invalidLink": "Dette nulstillingslink er ugyldigt. Anmod venligst om et nyt link.",
+    "expiredLink": "Dette nulstillingslink er udløbet. Anmod venligst om et nyt nulstillingslink.",
+    "requestNewLink": "Anmod om nyt nulstillingslink",
     "submitFailed": "Vi kunne ikke nulstille din adgangskode lige nu. Prøv igen.",
     "successTitle": "Din adgangskode er blevet nulstillet!",
     "successDescription": "Du kan nu logge ind med din nye adgangskode. Kontakt support, hvis du oplever problemer.",
