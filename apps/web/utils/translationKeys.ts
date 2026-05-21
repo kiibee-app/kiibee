@@ -332,6 +332,7 @@ export const CONTENTS = {
       title: "contents.appearance.layouts.title",
       subtitle: "contents.appearance.layouts.subtitle",
       preview: "contents.appearance.layouts.preview",
+      saveSuccess: "contents.appearance.layouts.saveSuccess",
       options: {
         layout1: "contents.appearance.layouts.options.layout1",
         layout2: "contents.appearance.layouts.options.layout2",

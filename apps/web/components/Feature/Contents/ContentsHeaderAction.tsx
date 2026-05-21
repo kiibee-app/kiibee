@@ -26,6 +26,7 @@ type Props = {
   onCancel: () => void;
   onCreateCoupon?: () => void;
   onSave: () => void;
+  isSaveDisabled?: boolean;
 };
 
 export default function ContentsHeaderAction({
@@ -35,6 +36,7 @@ export default function ContentsHeaderAction({
   onCancel,
   onCreateCoupon,
   onSave,
+  isSaveDisabled = false,
 }: Props) {
   const { t } = useTranslation();
 
@@ -61,7 +63,11 @@ export default function ContentsHeaderAction({
             {t("common.cancel")}
           </MonoText>
         </CancelButton>
-        <SaveButton type="button" onClick={onSave}>
+        <SaveButton
+          type="button"
+          onClick={onSave}
+          disabled={activeTab === APPEARANCE ? isSaveDisabled : false}
+        >
           <MonoText $use="Body_Medium" color="inherit">
             {t("common.save")}
           </MonoText>

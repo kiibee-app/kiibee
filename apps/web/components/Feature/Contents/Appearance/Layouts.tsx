@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
+import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import { AppearancePanel } from "../styles";
 import {
   Copy,
@@ -22,7 +23,7 @@ import { layoutCards } from "@/utils/data";
 
 export default function LayoutsSection() {
   const { t } = useTranslation();
-  const [selectedLayout, setSelectedLayout] = useState("layout1");
+  const { selectedLayout, setSelectedLayout } = useCreatorChannelLayout();
 
   return (
     <AppearancePanel>
