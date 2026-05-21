@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
@@ -10,20 +9,14 @@ import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import NavBar from "@/components/Layout/Navbar";
-import { PROFILE_NAV_ITEMS } from "@/utils/profile";
 import portrait from "@/assets/images/creators/creator-woman-gray-jacket.webp";
 import { Brand, BrandAvatar, BrandName } from "../Home/styles";
 import CreatorInfoModal from "../Home/CreatorInfoModal";
+import { useCreatorNavItems } from "@/hooks/useCreatorChannelLayout";
 
 export default function Navbar() {
   const { t } = useTranslation();
-  const [isCreatorInfoOpen, setIsCreatorInfoOpen] = useState(false);
-
-  const navItems = PROFILE_NAV_ITEMS.map((item) =>
-    item.key === "nav.profile.about"
-      ? { ...item, onClick: () => setIsCreatorInfoOpen(true) }
-      : item,
-  );
+  const { navItems, isAboutOpen, closeAbout } = useCreatorNavItems();
 
   return (
     <>
@@ -75,10 +68,7 @@ export default function Navbar() {
           </>
         }
       />
-      <CreatorInfoModal
-        visible={isCreatorInfoOpen}
-        onClose={() => setIsCreatorInfoOpen(false)}
-      />
+      <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />
     </>
   );
 }

@@ -1377,6 +1377,7 @@
       "layouts": {
         "title": "Layouts",
         "subtitle": "Vælg hvordan din kanal skal vises for brugerne.",
+        "saveSuccess": "Layout gemt. Din kanal er blevet opdateret.",
         "preview": "Preview example",
         "options": {
           "layout1": "Layout 1",

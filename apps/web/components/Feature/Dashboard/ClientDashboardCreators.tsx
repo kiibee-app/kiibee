@@ -19,6 +19,7 @@ import UsersContent from "../Users/UsersContent";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import { useProfileSync } from "@/hooks/auth/useProfileSync";
+import { CreatorChannelLayoutProvider } from "@/hooks/useCreatorChannelLayout";
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.OVERVIEW,
@@ -101,41 +102,43 @@ export default function ClientDashboardCreators() {
   }, [activePage, view]);
 
   return (
-    <DashboardLayout
-      header={renderHeader()}
-      sidebarExpanded={sidebarExpanded}
-      sidebar={
-        <Sidebar
-          expanded={sidebarExpanded}
-          onCollapse={collapseSidebar}
-          activeItem={activePage}
-          onSelect={handleSelect}
-          onLogout={handleLogoutClick}
-        />
-      }
-    >
-      {renderContent}
-      <GenericModal
-        visible={showLogoutModal}
-        title={t("dashboard.logoutModal.title")}
-        buttonRow
-        confirmLabel={t("dashboard.logoutModal.confirm")}
-        cancelLabel={t("common.cancel")}
-        onConfirm={handleConfirmLogout}
-        onCancel={handleCancelLogout}
-        onClose={handleCancelLogout}
-        size="sm"
-        spacing="sm"
-        buttonAlign="center"
-        textAlign="center"
-        showCloseButton={false}
+    <CreatorChannelLayoutProvider>
+      <DashboardLayout
+        header={renderHeader()}
+        sidebarExpanded={sidebarExpanded}
+        sidebar={
+          <Sidebar
+            expanded={sidebarExpanded}
+            onCollapse={collapseSidebar}
+            activeItem={activePage}
+            onSelect={handleSelect}
+            onLogout={handleLogoutClick}
+          />
+        }
       >
-        <MonoText $use="Body_Medium">
-          {t("dashboard.logoutModal.message", {
-            email: logoutEmail,
-          })}
-        </MonoText>
-      </GenericModal>
-    </DashboardLayout>
+        {renderContent}
+        <GenericModal
+          visible={showLogoutModal}
+          title={t("dashboard.logoutModal.title")}
+          buttonRow
+          confirmLabel={t("dashboard.logoutModal.confirm")}
+          cancelLabel={t("common.cancel")}
+          onConfirm={handleConfirmLogout}
+          onCancel={handleCancelLogout}
+          onClose={handleCancelLogout}
+          size="sm"
+          spacing="sm"
+          buttonAlign="center"
+          textAlign="center"
+          showCloseButton={false}
+        >
+          <MonoText $use="Body_Medium">
+            {t("dashboard.logoutModal.message", {
+              email: logoutEmail,
+            })}
+          </MonoText>
+        </GenericModal>
+      </DashboardLayout>
+    </CreatorChannelLayoutProvider>
   );
 }
