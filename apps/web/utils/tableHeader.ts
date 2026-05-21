@@ -1,3 +1,5 @@
+import { TFunction } from "i18next";
+
 export const REGISTRATION_TABLE_HEADER_KEYS = [
   "name",
   "email",
@@ -59,3 +61,23 @@ export const BILLING_HISTORY_KEY_MAP = {
   CONTENT_TITLE: BILLING_HISTORY_HEADER_KEYS[0],
   PAYMENT_METHOD: BILLING_HISTORY_HEADER_KEYS[5],
 } as const;
+
+export const COUPON_SEARCH_KEYS = {
+  TITLE: "title",
+  CODES: "codes",
+} as const;
+
+export type CouponSearchKey =
+  (typeof COUPON_SEARCH_KEYS)[keyof typeof COUPON_SEARCH_KEYS];
+
+export const SEARCH_FILTERS = (t: TFunction) =>
+  [
+    {
+      placeholder: t("contents.couponSearch.title"),
+      key: COUPON_SEARCH_KEYS.TITLE,
+    },
+    {
+      placeholder: t("contents.couponSearch.codes"),
+      key: COUPON_SEARCH_KEYS.CODES,
+    },
+  ] as const;

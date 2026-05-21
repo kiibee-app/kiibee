@@ -1508,6 +1508,10 @@
         "placeholder": "Separate tags by pressing enter",
         "example": "E.g, Video, Cooking, Film"
       }
+    },
+    "couponSearch": {
+      "title": "Search coupon title",
+      "codes": "Search by codes"
     }
   },
   "resetPassword": {
