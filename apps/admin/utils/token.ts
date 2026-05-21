@@ -49,3 +49,7 @@ export function isTokenExpired(token: string): boolean {
   if (!decoded) return true;
   return Date.now() >= decoded.exp * 1000;
 }
+
+export function hasAdminRole(decodedToken: DecodedToken | null): boolean {
+  return decodedToken?.role === "admin";
+}
