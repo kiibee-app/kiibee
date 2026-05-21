@@ -43,21 +43,21 @@ export const TextColumn = styled.div`
 export const Title = styled.h2`
   margin: 0 0 1.5rem;
   align-self: stretch;
-  color: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
+  color: ${({ theme }) => theme.colors.gradient.NEAR_BLACK};
   ${({ theme }) => theme.typography.Heading2};
 `;
 
 export const Description = styled.p`
   margin: 0 0 1.25rem;
   align-self: stretch;
-  color: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
+  color: ${({ theme }) => theme.colors.gradient.NEAR_BLACK};
   ${({ theme }) => theme.typography.Body_Regular};
 `;
 
 export const ListIntro = styled.p`
   margin: 0 0 0.5rem;
   align-self: stretch;
-  color: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
+  color: ${({ theme }) => theme.colors.gradient.NEAR_BLACK};
   ${({ theme }) => theme.typography.Body_Regular};
 `;
 
@@ -65,7 +65,7 @@ export const BulletList = styled.ul`
   margin: 0 0 1.5rem;
   padding-left: 1.125rem;
   align-self: stretch;
-  color: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
+  color: ${({ theme }) => theme.colors.gradient.NEAR_BLACK};
   ${({ theme }) => theme.typography.Body_Regular};
 `;
 
@@ -76,7 +76,7 @@ export const BulletItem = styled.li`
 export const Summary = styled.p`
   margin: 0 0 2rem;
   align-self: stretch;
-  color: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
+  color: ${({ theme }) => theme.colors.gradient.NEAR_BLACK};
   ${({ theme }) => theme.typography.Body_Regular};
 `;
 
@@ -153,9 +153,9 @@ export const OverlayTall = styled.div`
   color: ${({ theme }) => theme.colors.neutral.WHITE};
   background: linear-gradient(
     180deg,
-    ${({ theme }) => theme.colors.gredint.BLACK_90} 0%,
-    ${({ theme }) => theme.colors.gredint.TRANSPARENT} 30%,
-    ${({ theme }) => theme.colors.gredint.BLACK_90} 100%
+    ${({ theme }) => theme.colors.gradient.BLACK_90} 0%,
+    ${({ theme }) => theme.colors.gradient.TRANSPARENT} 30%,
+    ${({ theme }) => theme.colors.gradient.BLACK_90} 100%
   );
 `;
 
@@ -169,9 +169,9 @@ export const OverlayCard = styled.div`
   color: ${({ theme }) => theme.colors.neutral.WHITE};
   background: linear-gradient(
     180deg,
-    ${({ theme }) => theme.colors.gredint.BLACK_90} 0%,
-    ${({ theme }) => theme.colors.gredint.TRANSPARENT} 40%,
-    ${({ theme }) => theme.colors.gredint.BLACK_90} 100%
+    ${({ theme }) => theme.colors.gradient.BLACK_90} 0%,
+    ${({ theme }) => theme.colors.gradient.TRANSPARENT} 40%,
+    ${({ theme }) => theme.colors.gradient.BLACK_90} 100%
   );
 `;
 

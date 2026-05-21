@@ -219,7 +219,7 @@ export const SidebarDropdown = styled.div`
   border-radius: 14px;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   box-shadow: ${({ theme }) => theme.shadows.frame};
-  border: 1px solid ${({ theme }) => theme.colors.gredint.FRAME_BORDER};
+  border: 1px solid ${({ theme }) => theme.colors.gradient.FRAME_BORDER};
 
   ${media.tablet} {
     left: 0;

@@ -47,7 +47,7 @@ export interface ColorPalette {
     DUSTY_TEAL: string;
     OVERLAY: string;
   };
-  gredint: {
+  gradient: {
     GREEN: string;
     PALE_GREEN: string;
     BLUE: string;
@@ -132,7 +132,7 @@ export const COLORS: ColorPalette = {
     OVERLAY: "rgba(15,23,42,0.6)",
   },
 
-  gredint: {
+  gradient: {
     GREEN: "rgb(83,186,169)",
     PALE_GREEN: "rgba(207, 240, 192, 1)",
     BLUE: "rgb(59,130,246)",

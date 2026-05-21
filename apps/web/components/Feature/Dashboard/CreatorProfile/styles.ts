@@ -70,7 +70,7 @@ export const Avatar = styled.div`
   width: 120px;
   height: 120px;
   border-radius: 9999px;
-  background: ${(p) => p.theme.colors.gredint.PALE_GREEN};
+  background: ${(p) => p.theme.colors.gradient.PALE_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;

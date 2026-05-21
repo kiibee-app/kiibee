@@ -67,7 +67,7 @@ export const ConsoleLabel = styled.h2`
 export const ConsoleBlock = styled.pre`
   margin-top: 10px;
   border-radius: ${({ theme }) => theme.radius.md};
-  background: ${({ theme }) => theme.colors.gredint.NEAR_BLACK};
+  background: ${({ theme }) => theme.colors.gradient.NEAR_BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE_90};
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_700};
   padding: 14px;

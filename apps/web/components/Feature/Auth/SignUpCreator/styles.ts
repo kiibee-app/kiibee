@@ -181,7 +181,7 @@ export const RequestSentFormPanel = styled.section`
 
 export const RequestSentSlidePanel = styled.section`
   width: clamp(420px, 34vw, 560px);
-  background: ${({ theme }) => theme.colors.gredint.DEEP_GREEN};
+  background: ${({ theme }) => theme.colors.gradient.DEEP_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;

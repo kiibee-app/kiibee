@@ -76,7 +76,7 @@ export const TableCard = styled.div`
   background: ${(p) => p.theme.colors.neutral.WHITE};
   box-shadow:
     0 10px 28px ${(p) => p.theme.colors.neutral.GRAY_300},
-    0 2px 6px ${(p) => p.theme.colors.gredint.CARD_SHADOW};
+    0 2px 6px ${(p) => p.theme.colors.gradient.CARD_SHADOW};
   overflow: hidden;
 
   ${media.tablet} {
@@ -266,7 +266,7 @@ export const ChartCard = styled.section`
   background: ${(p) => p.theme.colors.neutral.WHITE};
   box-shadow:
     0 18px 40px ${(p) => p.theme.colors.neutral.GRAY_300},
-    0 1px 2px ${(p) => p.theme.colors.gredint.CARD_SHADOW};
+    0 1px 2px ${(p) => p.theme.colors.gradient.CARD_SHADOW};
   padding: 22px 18px 14px;
 
   ${media.tablet} {
@@ -308,7 +308,7 @@ export const StatCard = styled.div`
   background: ${(p) => p.theme.colors.neutral.WHITE};
   box-shadow:
     0 6px 16px ${(p) => p.theme.colors.neutral.GRAY_300},
-    0 1px 2px ${(p) => p.theme.colors.gredint.CARD_SHADOW};
+    0 1px 2px ${(p) => p.theme.colors.gradient.CARD_SHADOW};
 `;
 
 export const StatLabel = styled.div`

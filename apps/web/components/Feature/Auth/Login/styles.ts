@@ -35,7 +35,7 @@ export const FormPanel = styled.section`
 
 export const SlidePanel = styled.section`
   max-width: 560px;
-  background: ${({ theme }) => theme.colors.gredint.DEEP_GREEN};
+  background: ${({ theme }) => theme.colors.gradient.DEEP_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;

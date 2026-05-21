@@ -118,7 +118,8 @@ export const Card = styled.div<CardProps>`
   border-radius: 10px;
   overflow: hidden;
   will-change: transform, width, height, padding;
-  box-shadow: 0 0.5rem 1.5rem ${({ theme }) => theme.colors.gredint.CARD_SHADOW};
+  box-shadow: 0 0.5rem 1.5rem
+    ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
   background: ${({
     $image,
     $isActive,
@@ -154,9 +155,9 @@ export const MainGradientOverlay = styled.div<{ $visible?: boolean }>`
   height: 60%;
   background: linear-gradient(
     to top,
-    ${({ theme }) => theme.colors.gredint.BLACK_90} 0%,
-    ${({ theme }) => theme.colors.gredint.CARD_BG} 40%,
-    ${({ theme }) => theme.colors.gredint.TRANSPARENT} 100%
+    ${({ theme }) => theme.colors.gradient.BLACK_90} 0%,
+    ${({ theme }) => theme.colors.gradient.CARD_BG} 40%,
+    ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
   );
   pointer-events: none;
   opacity: ${({ $visible = true }) => ($visible ? 1 : 0)};
@@ -171,8 +172,8 @@ export const NarrowGradientOverlay = styled.div<{ $visible?: boolean }>`
   height: 80%;
   background: linear-gradient(
     to top,
-    ${({ theme }) => theme.colors.gredint.BLACK_90} 0%,
-    ${({ theme }) => theme.colors.gredint.TRANSPARENT} 100%
+    ${({ theme }) => theme.colors.gradient.BLACK_90} 0%,
+    ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
   );
   pointer-events: none;
   opacity: ${({ $visible = true }) => ($visible ? 1 : 0)};
