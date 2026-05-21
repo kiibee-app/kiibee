@@ -20,8 +20,9 @@ import {
 } from "@/utils/resetPassword";
 import { useResetPassword } from "@/hooks/auth/useResetPassword";
 import { useSearchParams } from "next/navigation";
-import { ApiError } from "@/lib/http/errors/apiError";
 import { ALERT } from "@/utils/common";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { PATHS } from "@/utils/path";
 
 export default function ResetPasswordForm() {
   const { t } = useTranslation();
@@ -29,9 +30,11 @@ export default function ResetPasswordForm() {
   const [passwords, setPasswords] = useState(INITIAL_PASSWORDS);
   const [visibility, setVisibility] = useState(INITIAL_VISIBILITY);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isExpiredLink, setIsExpiredLink] = useState(false);
   const searchParams = useSearchParams();
   const token = searchParams.get("token") ?? "";
   const { mutateAsync: resetPassword, isPending } = useResetPassword();
+  const { getErrorMessage } = useApiErrorMessage();
 
   const handleChange = useCallback(
     (field: keyof PasswordState, value: string) => {
@@ -59,6 +62,7 @@ export default function ResetPasswordForm() {
       event.preventDefault();
       if (!isValid) return;
       setErrorMessage("");
+      setIsExpiredLink(false);
 
       try {
         await resetPassword({
@@ -68,11 +72,13 @@ export default function ResetPasswordForm() {
         });
         setIsSuccess(true);
       } catch (error) {
-        const fallback = t("resetPassword.submitFailed");
-        setErrorMessage(error instanceof ApiError ? error.message : fallback);
+        const errorText = getErrorMessage(error, "resetPassword.submitFailed");
+        setErrorMessage(errorText);
+        setIsExpiredLink(errorText === t("resetPassword.expiredLink"));
       }
     },
     [
+      getErrorMessage,
       isValid,
       passwords.newPassword,
       passwords.repeatPassword,
@@ -117,6 +123,11 @@ export default function ResetPasswordForm() {
           )}
           {errorMessage && (
             <FormMessage role={ALERT}>{errorMessage}</FormMessage>
+          )}
+          {isExpiredLink && (
+            <GenericButton asAnchor href={PATHS.AUTH_FORGET_PASSWORD}>
+              {t("resetPassword.requestNewLink")}
+            </GenericButton>
           )}
 
           <GenericButton

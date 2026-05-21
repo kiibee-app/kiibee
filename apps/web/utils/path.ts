@@ -2,6 +2,7 @@ export const PATHS = {
   HOME: "/",
   AUTH_LOGIN: "/auth/login",
   AUTH_SIGNUP: "/auth/signup",
+  AUTH_FORGET_PASSWORD: "/auth/forget-password",
   AUTH_SIGNUP_CREATOR: "/auth/signup-creator",
   AUTH_SIGNUP_VIEWER: "/auth/signup-viewer",
   AUTH_CREATOR_REQUEST_SENT: "/auth/signup-creator/request-sent",

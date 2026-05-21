@@ -1505,6 +1505,8 @@
     "repeatPasswordPlaceholder": "Repeat new password",
     "submit": "Reset",
     "invalidLink": "This reset link is invalid. Please request a new password reset email.",
+    "expiredLink": "This reset link has expired. Please request a new password reset email.",
+    "requestNewLink": "Request new reset link",
     "submitFailed": "We could not reset your password right now. Please try again.",
     "successTitle": "Your password has been successfully reset!",
     "successDescription": "You can now log in with your new password. If you encounter any issues, please contact support.",

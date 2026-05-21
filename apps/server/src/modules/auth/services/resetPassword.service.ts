@@ -48,6 +48,13 @@ export const resetPasswordService = async (payload: ResetPasswordDto) => {
         throw new HttpException('Token already used', HttpStatus.BAD_REQUEST);
       }
 
+      if (tokenData.expiresAt < new Date()) {
+        throw new HttpException(
+          'Reset link has expired',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+
       const [user] = await tx
         .select()
         .from(users)
