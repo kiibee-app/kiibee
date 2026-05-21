@@ -58,8 +58,6 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { pathPublishedContent } from "@/utils/path";
 import MetaData from "./MetaData";
-import { useRouter } from "next/navigation";
-import { pathPublishedContent } from "@/utils/path";
 
 type Props = {
   activeTab: ContentTab;
