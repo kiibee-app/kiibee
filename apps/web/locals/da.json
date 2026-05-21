@@ -1503,6 +1503,20 @@
         "companyPlaceholder": "Produktionsselskab",
         "linkPlaceholder": "Tilføj producentlink"
       },
+      "published": {
+        "title": "Udgivet",
+        "yearPlaceholder": "Udgivelsesår",
+        "duration": "Varighed",
+        "durationPlaceholder": "Varighed i minutter",
+        "category": "Kategori",
+        "categoryDescription": "Vælg den kategori, der passer til dit indhold."
+      },
+      "category": {
+        "education": "Uddannelse",
+        "food": "Mad",
+        "art": "Kunst",
+        "design": "Design"
+      },
       "tags": {
         "title": "Tags",
         "placeholder": "Adskil tags ved at trykke enter",
