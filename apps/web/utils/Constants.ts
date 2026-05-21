@@ -54,3 +54,11 @@ export type CouponAction =
   | typeof COUPON_ACTION_EDIT
   | typeof COUPON_ACTION_STATUS
   | typeof COUPON_ACTION_DELETE;
+
+export const DASHBOARD_ROLES = {
+  CREATOR: "creator",
+  VIEWER: "viewer",
+} as const;
+
+export type DashboardRole =
+  (typeof DASHBOARD_ROLES)[keyof typeof DASHBOARD_ROLES];
