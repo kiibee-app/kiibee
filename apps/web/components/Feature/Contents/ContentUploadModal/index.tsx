@@ -30,6 +30,12 @@ import { FORMAT_TYPE } from "@/utils/types";
 import { ADD_CONTENT_TABS, AddContentTab } from "@/utils/common";
 import { API } from "@/lib/http/api/endpoints";
 import { usePostAPI } from "@/lib/http/api/postApi";
+import { axiosClient } from "@/lib/http/axiosClient";
+import {
+  CONTENT_TRANSLATION_KEYS,
+  CONTENT_UPLOAD_MODE,
+  type ContentUploadMode,
+} from "@/utils/contentApi";
 
 type CreateContentPayload = {
   title: string;
@@ -42,6 +48,10 @@ type CreateContentPayload = {
 
 type ContentUploadModalProps = {
   visible: boolean;
+  mode?: ContentUploadMode;
+  contentId?: string | null;
+  initialTitle?: string;
+  initialDescription?: string;
   contentType: ContentType | null;
   collectionId?: string | null;
   onBack: () => void;
@@ -55,6 +65,10 @@ type ContentUploadModalProps = {
 
 export default function ContentUploadModal({
   visible,
+  mode = CONTENT_UPLOAD_MODE.CREATE,
+  contentId,
+  initialTitle = "",
+  initialDescription = "",
   contentType,
   collectionId,
   onBack,
@@ -65,13 +79,14 @@ export default function ContentUploadModal({
   const queryClient = useQueryClient();
   const [showDetails, setShowDetails] = useState(false);
   const [webContentLink, setWebContentLink] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(initialTitle);
+  const [description, setDescription] = useState(initialDescription);
   const [isSuccess, setIsSuccess] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
   const createContentMutation = usePostAPI<unknown, CreateContentPayload>(
     API.content.create,
   );
+  const isEditing = mode === CONTENT_UPLOAD_MODE.EDIT;
   const {
     fileInputRef,
     selectedFile,
@@ -126,9 +141,49 @@ export default function ContentUploadModal({
     setDescription("");
   };
 
+  const invalidateContentQueries = async () => {
+    await Promise.all([
+      collectionId
+        ? queryClient.invalidateQueries({
+            queryKey: [API.content.collection(collectionId)],
+          })
+        : Promise.resolve(),
+      queryClient.invalidateQueries({ queryKey: [API.collection.getAll] }),
+      contentId
+        ? queryClient.invalidateQueries({
+            queryKey: [API.content.get(contentId)],
+          })
+        : Promise.resolve(),
+    ]);
+  };
+
   const handleAdd = async () => {
     const trimmedTitle = title.trim();
     const trimmedDescription = description.trim();
+
+    if (isEditing) {
+      if (!trimmedTitle || !trimmedDescription || !contentId) return;
+
+      setCreateError(null);
+
+      try {
+        await axiosClient.put(API.content.update(contentId), {
+          title: trimmedTitle,
+          description: trimmedDescription,
+        });
+        await invalidateContentQueries();
+      } catch (error) {
+        const message =
+          error instanceof Error
+            ? error.message
+            : t(CONTENT_TRANSLATION_KEYS.updateError);
+        setCreateError(message);
+        return;
+      }
+
+      setIsSuccess(true);
+      return;
+    }
 
     if (!trimmedTitle || !trimmedDescription || !contentType || !collectionId) {
       return;
@@ -179,6 +234,7 @@ export default function ContentUploadModal({
 
   const getBackAction = () => {
     if (isSuccess) return () => handleResetDetails();
+    if (isEditing) return () => handleExit(onBack);
     if (showDetails) return () => setShowDetails(false);
     return () => handleExit(onBack);
   };
@@ -214,13 +270,25 @@ export default function ContentUploadModal({
             accept={uploadConfig.accept}
             onChange={handleFileInputChange}
           />
-          {showDetails ? (
+          {isEditing || showDetails ? (
             <ContentUploadDetails
               title={title}
               description={description}
               setTitle={handleChange(setTitle)}
               setDescription={handleChange(setDescription)}
               onAdd={handleAdd}
+              submitLabel={t(
+                isEditing
+                  ? CONTENT_TRANSLATION_KEYS.updateAction
+                  : CONTENT_TRANSLATION_KEYS.addAction,
+              )}
+              successMessage={
+                isEditing
+                  ? t(CONTENT_TRANSLATION_KEYS.editSuccess)
+                  : `${t("contents.contentUploadModal.uploading")} ${
+                      contentType ?? uploadType
+                    }`
+              }
               uploadType={contentType ?? uploadType}
               isSuccess={isSuccess}
               isSubmitting={createContentMutation.isPending}

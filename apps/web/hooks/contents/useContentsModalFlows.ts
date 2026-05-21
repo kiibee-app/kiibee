@@ -181,6 +181,11 @@ export const useContentsModalFlows = (
 
       setShowContentUploadModal(false);
     },
+    openEdit: (contentType: ContentType) => {
+      setSelectedContentType(contentType);
+      setShowContentTypeModal(false);
+      setShowContentUploadModal(true);
+    },
   };
 
   const closeCouponFlow = () => {

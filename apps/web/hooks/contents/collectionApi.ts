@@ -43,6 +43,7 @@ export type CollectionContentsApiItem = {
   [API_FIELD_KEYS.ID]?: string | number;
   [API_FIELD_KEYS.NAME]?: string;
   [API_FIELD_KEYS.TITLE]?: string;
+  [API_FIELD_KEYS.DESCRIPTION]?: string;
   [API_FIELD_KEYS.VISIBILITY]?: string;
   [API_FIELD_KEYS.CONTENT_TYPE]?: string;
   [API_FIELD_KEYS.CONTENT_TYPE_NAME]?: string;
@@ -156,6 +157,7 @@ export const getCollectionContentRows = (
     .map((item) => ({
       id: String(item[API_FIELD_KEYS.ID]),
       name: (item[API_FIELD_KEYS.TITLE] ?? item[API_FIELD_KEYS.NAME]) as string,
+      description: item[API_FIELD_KEYS.DESCRIPTION],
       visibility: normalizeCollectionContentVisibility(
         item[API_FIELD_KEYS.VISIBILITY],
       ),

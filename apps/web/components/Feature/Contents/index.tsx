@@ -27,11 +27,18 @@ import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { AddContentTab, COLLECTIONS } from "@/utils/common";
+import type { CollectionContentRow } from "@/types/collectionsType";
+import {
+  CONTENT_MODAL_KEY_FALLBACK,
+  CONTENT_UPLOAD_MODE,
+} from "@/utils/contentApi";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
+  const [editingContent, setEditingContent] =
+    useState<CollectionContentRow | null>(null);
   const {
     activeTab,
     visibleTabs,
@@ -100,6 +107,27 @@ export default function CreatorsContents() {
     setActiveTabAndQuery(COLLECTIONS);
   };
 
+  const closeContentUpload = () => {
+    setEditingContent(null);
+    contentTypeFlow.close();
+  };
+
+  const handleContentUploadBack = () => {
+    if (editingContent) {
+      closeContentUpload();
+      return;
+    }
+    contentTypeFlow.backToTypeSelect();
+  };
+
+  const handleEditContent = (id: string) => {
+    const item = collectionContents.find((content) => content.id === id);
+    if (!item) return;
+
+    setEditingContent(item);
+    contentTypeFlow.openEdit(item.contentType);
+  };
+
   return (
     <PageShell>
       <PageHeader>
@@ -159,6 +187,7 @@ export default function CreatorsContents() {
             setSelectedCollection={setSelectedCollection}
             onDelete={openDelete}
             onEditCollection={handleEditCollection}
+            onEditContent={handleEditContent}
             onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
@@ -182,11 +211,24 @@ export default function CreatorsContents() {
       />
 
       <ContentUploadModal
+        key={
+          editingContent?.id ??
+          contentTypeFlow.selectedContentType ??
+          CONTENT_MODAL_KEY_FALLBACK
+        }
         visible={contentTypeFlow.showContentUploadModal}
-        contentType={contentTypeFlow.selectedContentType}
+        mode={
+          editingContent ? CONTENT_UPLOAD_MODE.EDIT : CONTENT_UPLOAD_MODE.CREATE
+        }
+        contentId={editingContent?.id}
+        initialTitle={editingContent?.name}
+        initialDescription={editingContent?.description}
+        contentType={
+          editingContent?.contentType ?? contentTypeFlow.selectedContentType
+        }
         collectionId={selectedCollection?.id ?? null}
-        onClose={contentTypeFlow.close}
-        onBack={contentTypeFlow.backToTypeSelect}
+        onClose={closeContentUpload}
+        onBack={handleContentUploadBack}
         onUploadSuccess={handleUploadSuccess}
       />
 

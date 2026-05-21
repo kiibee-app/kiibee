@@ -47,11 +47,14 @@ export default function CollectionTable(props: CollectionTableProps) {
     ? COLLECTION_COLUMNS
     : COLLECTION_CONTENT_COLUMNS;
 
-  const handleRowClick = isCollections
-    ? (row: TableRow) => {
-        props.onRowClick?.(row as CollectionRow);
-      }
-    : undefined;
+  const handleRowClick = (row: TableRow) => {
+    if (isCollections) {
+      props.onRowClick?.(row as CollectionRow);
+      return;
+    }
+
+    props.onRowClick?.(row as CollectionContentRow);
+  };
 
   const stopPropagation = (e: React.MouseEvent) => {
     e.stopPropagation();

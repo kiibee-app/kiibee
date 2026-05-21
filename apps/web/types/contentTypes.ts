@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { ImageSource } from "@/utils/Constants";
+import type { CollectionContentType } from "@/types/collectionsType";
 
 export type SingleContentMetaItem = {
   label: string;
@@ -9,6 +10,11 @@ export type SingleContentMetaItem = {
 export type SingleContentHeroProps = {
   image: ImageSource;
   imageAlt: string;
+  media?: {
+    type: CollectionContentType;
+    src: string;
+    title: string;
+  };
   categoryLabel?: string;
   mediaLabel?: string;
   mediaIcon?: ImageSource;

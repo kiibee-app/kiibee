@@ -17,6 +17,7 @@ export type CollectionContentType = "pdf" | "video" | "audio" | "epub" | "web";
 export type CollectionContentRow = {
   id: string;
   name: string;
+  description?: string;
   visibility: "Hidden" | "Public" | "Draft" | "Private";
   createdAt: string;
   contentType: CollectionContentType;
@@ -38,6 +39,7 @@ export type CollectionTableProps =
   | {
       type: typeof COLLECTION_TABLE_TYPE.CONTENTS;
       data: CollectionContentRow[];
+      onRowClick?: (row: CollectionContentRow) => void;
       onEdit?: (id: string) => void;
       onDelete?: (id: string) => void;
       onMore?: (id: string) => void;
