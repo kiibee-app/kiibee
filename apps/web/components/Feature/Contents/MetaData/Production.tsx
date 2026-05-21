@@ -87,7 +87,7 @@ export default function ProductionSection() {
           </FieldWrapper>
 
           <HelperFormRow>
-            <HelperText>{t("contents.metadata.production.title")}</HelperText>
+            <HelperText>{t("contents.metadata.tags.example")}</HelperText>
             <HelperText>
               {tags.length}/{maxLogoNameCharacters}
             </HelperText>
