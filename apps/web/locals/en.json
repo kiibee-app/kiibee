@@ -1403,6 +1403,15 @@
         "upload": "Upload logo"
       }
     },
+    "general": {
+      "trailerLink": "Trailer link",
+      "trailerLinkHint": "If you want to add a trailer, enter the link here.",
+      "trailerLinkPlaceholder": "Add YouTube or Video link",
+      "visibility": "Visibility",
+      "visibilityHint": "Control whether this trailer is visible to learners.",
+      "public": "Public",
+      "hidden": "Hidden"
+    },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",
       "subtitle": "Select a format to continue.",

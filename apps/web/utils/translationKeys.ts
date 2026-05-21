@@ -348,6 +348,15 @@ export const CONTENTS = {
       uploadButton: "contents.appearance.logo.upload",
     },
   },
+  general: {
+    trailerLink: "contents.general.trailerLink",
+    trailerLinkHint: "contents.general.trailerLinkHint",
+    trailerLinkPlaceholder: "contents.general.trailerLinkPlaceholder",
+    visibility: "contents.general.visibility",
+    visibilityHint: "contents.general.visibilityHint",
+    public: "contents.general.public",
+    hidden: "contents.general.hidden",
+  },
   deleteModal: {
     title: "contents.deleteModal.title",
     message: "contents.deleteModal.message",
