@@ -11,6 +11,7 @@ import {
 import { ContentService } from './content.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateContentDto, UpdateContentDto } from './content.dto';
+import { AssignUserCategoriesDto } from './dto/assignUserCategories.dto';
 import { CreatorGuard } from '../auth/guards/admin.guard';
 
 @Controller('content')
@@ -31,14 +32,14 @@ export class ContentController {
   @Post('assign')
   async assignUserCategories(
     @Req() req: any,
-    @Body() body: { categoryIds: string[]; typeIds: string[] },
+    @Body() dto: AssignUserCategoriesDto,
   ) {
     const userId = req.user.userId;
 
     return this.contentService.assignUserCategories({
       userId,
-      categoryIds: body.categoryIds,
-      typeIds: body.typeIds,
+      categoryIds: dto.categoryIds,
+      typeIds: dto.typeIds,
     });
   }
 
