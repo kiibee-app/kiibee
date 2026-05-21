@@ -25,6 +25,7 @@ import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
 import { resolveImageUrl, type ImageSource } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import ScrollReveal from "@/components/UI/ScrollReveal";
 
 type CTAImageCard = {
   src: ImageSource;
@@ -75,16 +76,20 @@ export default function CallToAction() {
             <SafeImage src={kiibeeLogo} alt={t("callToAction.logoAlt")} />
           </BrandLogo>
         </Brand>
-        <Heading>
-          <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
-            {t("callToAction.title")}
-          </MonoText>
-        </Heading>
-        <Subtitle>
-          <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-            {t("callToAction.subtitle")}
-          </MonoText>
-        </Subtitle>
+        <ScrollReveal>
+          <Heading>
+            <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+              {t("callToAction.title")}
+            </MonoText>
+          </Heading>
+        </ScrollReveal>
+        <ScrollReveal delay={0.1}>
+          <Subtitle>
+            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+              {t("callToAction.subtitle")}
+            </MonoText>
+          </Subtitle>
+        </ScrollReveal>
         <CTAButton asAnchor href={PATHS.AUTH_SIGNUP}>
           {t("callToAction.cta")}
         </CTAButton>

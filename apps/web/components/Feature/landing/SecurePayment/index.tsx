@@ -15,6 +15,7 @@ import {
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import ScrollReveal from "@/components/UI/ScrollReveal";
 
 export default function SecurePaymentSection() {
   const { t } = useTranslation();
@@ -23,14 +24,18 @@ export default function SecurePaymentSection() {
     <Section>
       <SectionInner>
         <TextColumn>
-          <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
-            {t("securePayment.title")}
-          </MonoText>
-          <Description>
-            <MonoText $use="Body_Regular" color={COLORS.primary.WHITE}>
-              {t("securePayment.description")}
+          <ScrollReveal>
+            <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+              {t("securePayment.title")}
             </MonoText>
-          </Description>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <Description>
+              <MonoText $use="Body_Regular" color={COLORS.primary.WHITE}>
+                {t("securePayment.description")}
+              </MonoText>
+            </Description>
+          </ScrollReveal>
         </TextColumn>
 
         <ImageColumn>

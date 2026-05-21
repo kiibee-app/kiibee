@@ -9,6 +9,7 @@ import { Section, Background, Inner, Content, Title, Subtitle } from "./styles";
 import type { CtaSectionProps } from "@/types/ctaSection";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import ScrollReveal from "@/components/UI/ScrollReveal";
 
 export default function CtaSection({
   bgImage,
@@ -37,12 +38,23 @@ export default function CtaSection({
 
       <Inner>
         <Content>
-          <Title>{title}</Title>
-          {subtitle && <Subtitle>{subtitle}</Subtitle>}
+          <ScrollReveal>
+            <Title>{title}</Title>
+          </ScrollReveal>
+
+          {subtitle && (
+            <ScrollReveal delay={0.1}>
+              <Subtitle>{subtitle}</Subtitle>
+            </ScrollReveal>
+          )}
+
           {subtitleLines &&
             subtitleLines.map((line, index) => (
-              <Subtitle key={index}>{line}</Subtitle>
+              <ScrollReveal key={index} delay={0.1 + index * 0.1}>
+                <Subtitle>{line}</Subtitle>
+              </ScrollReveal>
             ))}
+
           {ctaText && (
             <GenericButton
               type="button"

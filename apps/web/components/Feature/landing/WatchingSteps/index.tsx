@@ -23,6 +23,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import ScrollReveal from "@/components/UI/ScrollReveal";
 
 export default function WatchingSteps() {
   const { t } = useTranslation();
@@ -30,16 +31,20 @@ export default function WatchingSteps() {
     <Section>
       <Content>
         <Header>
-          <Heading>
-            <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
-              {t("watchingSteps.heading")}
-            </MonoText>
-          </Heading>
-          <Tagline>
-            <MonoText $use="H4_Medium" color={COLORS.primary.WHITE}>
-              {t("watchingSteps.tagline")}
-            </MonoText>
-          </Tagline>
+          <ScrollReveal>
+            <Heading>
+              <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+                {t("watchingSteps.heading")}
+              </MonoText>
+            </Heading>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <Tagline>
+              <MonoText $use="H4_Medium" color={COLORS.primary.WHITE}>
+                {t("watchingSteps.tagline")}
+              </MonoText>
+            </Tagline>
+          </ScrollReveal>
         </Header>
         <Layout>
           <PreviewPanel>

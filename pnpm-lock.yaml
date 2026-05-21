@@ -52,9 +52,6 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
-      react-error-boundary:
-        specifier: ^4.0.13
-        version: 4.1.2(react@19.2.4)
       react-hot-toast:
         specifier: ^2.6.0
         version: 2.6.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -270,6 +267,9 @@ importers:
 
   apps/web:
     dependencies:
+      "@gsap/react":
+        specifier: ^2.1.2
+        version: 2.1.2(gsap@3.15.0)(react@19.2.4)
       "@hookform/resolvers":
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.75.0(react@19.2.4))
@@ -288,6 +288,9 @@ importers:
       framer-motion:
         specifier: ^12.38.0
         version: 12.38.0(@emotion/is-prop-valid@1.4.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      gsap:
+        specifier: ^3.15.0
+        version: 3.15.0
       i18next:
         specifier: ^26.0.3
         version: 26.0.3(typescript@5.9.2)
@@ -2078,6 +2081,15 @@ packages:
       {
         integrity: sha512-INS+6gh91cLUjB+PVHfu1UqcB76Sqtpyp7bnL+FYojhjygvOPA9ctiD/JDKsyD9Xgu4hUhCSJBPig/w7duNajw==,
       }
+
+  "@gsap/react@2.1.2":
+    resolution:
+      {
+        integrity: sha512-JqliybO1837UcgH2hVOM4VO+38APk3ECNrsuSM4MuXp+rbf+/2IG2K1YJiqfTcXQHH7XlA0m3ykniFYstfq0Iw==,
+      }
+    peerDependencies:
+      gsap: ^3.12.5
+      react: ">=17"
 
   "@hookform/resolvers@5.2.2":
     resolution:
@@ -6452,6 +6464,12 @@ packages:
     resolution:
       {
         integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==,
+      }
+
+  gsap@3.15.0:
+    resolution:
+      {
+        integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==,
       }
 
   handlebars@4.7.9:
@@ -11285,6 +11303,11 @@ snapshots:
       "@fastify/forwarded": 3.0.1
       ipaddr.js: 2.3.0
 
+  "@gsap/react@2.1.2(gsap@3.15.0)(react@19.2.4)":
+    dependencies:
+      gsap: 3.15.0
+      react: 19.2.4
+
   "@hookform/resolvers@5.2.2(react-hook-form@7.75.0(react@19.2.4))":
     dependencies:
       "@standard-schema/utils": 0.3.0
@@ -14237,6 +14260,8 @@ snapshots:
   gopd@1.2.0: {}
 
   graceful-fs@4.2.11: {}
+
+  gsap@3.15.0: {}
 
   handlebars@4.7.9:
     dependencies:

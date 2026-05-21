@@ -19,6 +19,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import ScrollReveal from "@/components/UI/ScrollReveal";
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -36,26 +37,33 @@ export default function HeroSection() {
       </Background>
       <Inner>
         <Content>
-          <Title>
-            <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
-              {t(HERO.title)}
-            </MonoText>
-          </Title>
-          <Subtitle>
-            <MonoText $use="H5_Regular" color={COLORS.primary.WHITE_90}>
-              {t(HERO.subtitle)}
-            </MonoText>
-          </Subtitle>
+          <ScrollReveal>
+            <Title>
+              <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+                {t(HERO.title)}
+              </MonoText>
+            </Title>
+          </ScrollReveal>
 
-          <CTAWrap>
-            <GenericButton
-              asAnchor
-              href={PATHS.AUTH_SIGNUP}
-              variant={VARIANT.PRIMARY}
-            >
-              {t(HERO.cta)}
-            </GenericButton>
-          </CTAWrap>
+          <ScrollReveal delay={0.1}>
+            <Subtitle>
+              <MonoText $use="H5_Regular" color={COLORS.primary.WHITE_90}>
+                {t(HERO.subtitle)}
+              </MonoText>
+            </Subtitle>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <CTAWrap>
+              <GenericButton
+                asAnchor
+                href={PATHS.AUTH_SIGNUP}
+                variant={VARIANT.PRIMARY}
+              >
+                {t(HERO.cta)}
+              </GenericButton>
+            </CTAWrap>
+          </ScrollReveal>
         </Content>
       </Inner>
     </Hero>

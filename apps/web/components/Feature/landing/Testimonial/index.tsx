@@ -14,6 +14,7 @@ import {
   SectionInner,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
+import ScrollReveal from "@/components/UI/ScrollReveal";
 
 export default function TestimonialSection() {
   const { t } = useTranslation();
@@ -45,8 +46,12 @@ export default function TestimonialSection() {
 
       <SectionInner>
         <Card>
-          <MonoText $use="Body_Medium">{t("testimonial.quote")}</MonoText>
-          <MonoText $use="Body_Regular">{t("testimonial.author")}</MonoText>
+          <ScrollReveal>
+            <MonoText $use="Body_Medium">{t("testimonial.quote")}</MonoText>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <MonoText $use="Body_Regular">{t("testimonial.author")}</MonoText>
+          </ScrollReveal>
         </Card>
       </SectionInner>
     </Section>

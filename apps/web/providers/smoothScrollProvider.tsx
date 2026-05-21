@@ -2,6 +2,12 @@
 
 import Lenis from "lenis";
 import { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface SmoothScrollProviderProps {
   children: React.ReactNode;
@@ -20,13 +26,14 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       overscroll: false,
     });
 
-    let rafId: number;
     let resizeRafId: number | null = null;
+    lenis.on("scroll", ScrollTrigger.update);
 
-    const raf = (time: number) => {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+    const updateLenis = (time: number) => {
+      lenis.raf(time * 1000);
     };
+    gsap.ticker.add(updateLenis);
+    gsap.ticker.lagSmoothing(0);
 
     const scheduleResize = () => {
       if (resizeRafId !== null) return;
@@ -37,7 +44,6 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       });
     };
 
-    rafId = requestAnimationFrame(raf);
     scheduleResize();
 
     const handleVisibilityChange = () => {
@@ -53,29 +59,22 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       scheduleResize();
     };
 
-    const observer = new MutationObserver(() => {
-      scheduleResize();
-    });
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ["style", "class"],
-    });
+    // Removed the MutationObserver. GSAP updates inline styles 60 frames per second.
+    // Having a MutationObserver on document.body watching 'style' attributes forces
+    // lenis.resize() to run 60 times a second, which completely kills scroll performance.
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
     window.addEventListener("load", handleWindowResize);
     window.addEventListener("resize", handleWindowResize);
 
     return () => {
-      cancelAnimationFrame(rafId);
       if (resizeRafId !== null) {
         cancelAnimationFrame(resizeRafId);
       }
-      observer.disconnect();
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("load", handleWindowResize);
       window.removeEventListener("resize", handleWindowResize);
+      gsap.ticker.remove(updateLenis);
       lenis.destroy();
     };
   }, []);
