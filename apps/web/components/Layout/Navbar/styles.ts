@@ -75,7 +75,10 @@ export const Nav = styled.nav<NavStyleProps>`
 
   a,
   button {
-    color: ${({ theme }) => theme.colors.primary.BLACK};
+    color: ${({ theme, $textTone }) =>
+      $textTone === "light"
+        ? theme.colors.neutral.OFF_WHITE
+        : theme.colors.primary.BLACK};
     text-decoration: none;
     padding: 0.5rem 0.75rem;
     border-radius: 0.375rem;
@@ -173,18 +176,60 @@ export const ColumnItem = styled.a`
   }
 `;
 
-export const Actions = styled.div`
+export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
   display: flex;
   align-items: center;
   gap: 0.75rem;
   margin-left: 1rem;
   flex-wrap: wrap;
 
-  .login {
-    color: ${({ theme }) => theme.colors.primary.BLACK};
-    text-decoration: none;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.375rem;
+  .login-btn {
+    color: ${({ theme, $textTone }) =>
+      $textTone === "light"
+        ? theme.colors.neutral.OFF_WHITE
+        : theme.colors.primary.BLACK};
+    border-color: ${({ theme, $textTone }) =>
+      $textTone === "light"
+        ? theme.colors.neutral.OFF_WHITE
+        : theme.colors.primary.BLACK};
+  }
+
+  .login-btn:hover {
+    background: ${({ theme, $textTone }) =>
+      $textTone === "light"
+        ? theme.colors.neutral.OFF_WHITE
+        : theme.colors.primary.BLACK};
+    color: ${({ theme, $textTone }) =>
+      $textTone === "light"
+        ? theme.colors.primary.BLACK
+        : theme.colors.neutral.OFF_WHITE};
+  }
+
+  .start-btn {
+    color: ${({ theme, $textTone }) =>
+      $textTone === "light"
+        ? theme.colors.primary.BLACK
+        : theme.colors.neutral.OFF_WHITE};
+    background: ${({ theme, $textTone }) =>
+      $textTone === "light"
+        ? theme.colors.neutral.OFF_WHITE
+        : theme.colors.primary.BLACK};
+    border-color: ${({ theme }) => theme.colors.primary.BLACK};
+  }
+
+  .start-btn:hover {
+    color: ${({ theme, $textTone }) =>
+      $textTone === "light"
+        ? theme.colors.primary.BLACK
+        : theme.colors.neutral.OFF_WHITE};
+    background: ${({ theme, $textTone }) =>
+      $textTone === "light"
+        ? theme.colors.neutral.OFF_WHITE
+        : theme.colors.primary.BLACK};
+    border-color: ${({ theme }) => theme.colors.primary.BLACK};
+    box-shadow: 0 6px 18px ${({ theme }) => theme.colors.gredint.CARD_SHADOW};
+    opacity: 1;
+    transform: none;
   }
 
   @media (max-width: 640px) {

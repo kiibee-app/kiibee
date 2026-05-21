@@ -36,6 +36,7 @@ export default function NavBar({
   mobileInnerPadding,
   innerMaxWidth,
   navPosition = "center",
+  navTextTone = "dark",
   items = NAV_ITEMS,
   brand,
   navBefore,
@@ -144,6 +145,10 @@ export default function NavBar({
                     width: "auto",
                     height: "auto",
                     maxHeight: 72,
+                    filter:
+                      navTextTone === "light"
+                        ? "brightness(0) invert(1)"
+                        : "none",
                   }}
                 />
               </Link>
@@ -151,7 +156,7 @@ export default function NavBar({
           )}
         </Left>
 
-        <Nav ref={navRef} $navPosition={navPosition}>
+        <Nav ref={navRef} $navPosition={navPosition} $textTone={navTextTone}>
           {navBefore}
           <MonoText $use="Body_Medium">
             {items.map((item) => (
@@ -206,8 +211,9 @@ export default function NavBar({
           {navAfter}
         </Nav>
 
-        <Actions>
+        <Actions $textTone={navTextTone}>
           <GenericButton
+            className="login-btn"
             asAnchor
             href={PATHS.AUTH_LOGIN}
             variant={VARIANT.SECONDARY}
@@ -215,6 +221,7 @@ export default function NavBar({
             {t(NAV.login)}
           </GenericButton>
           <GenericButton
+            className="start-btn"
             asAnchor
             href={PATHS.AUTH_SIGNUP}
             variant={VARIANT.PRIMARY}
