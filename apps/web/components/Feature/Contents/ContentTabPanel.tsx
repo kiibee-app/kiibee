@@ -55,6 +55,8 @@ import {
   CouponAction,
 } from "@/utils/Constants";
 import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { pathPublishedContent } from "@/utils/path";
 
 type Props = {
   activeTab: ContentTab;
@@ -65,6 +67,7 @@ type Props = {
   setSelectedCollection: (collection: CollectionRow) => void;
   onDelete: (id: string, type: CollectionTableType) => void;
   onEditCollection: (id: string) => void;
+  onEditContent: (id: string) => void;
   onEditCoupon: (couponId: string, formState: CouponFormState) => void;
   setContentsMap: Dispatch<
     SetStateAction<Record<string, CollectionContentRow[]>>
@@ -83,6 +86,7 @@ export default function ContentTabPanel({
   setSelectedCollection,
   onDelete,
   onEditCollection,
+  onEditContent,
   onEditCoupon,
   setContentsMap,
   setActiveTab,
@@ -90,6 +94,7 @@ export default function ContentTabPanel({
   uploadedPreview,
 }: Props) {
   const { t } = useTranslation();
+  const router = useRouter();
   const queryClient = useQueryClient();
   const [showCouponDeleteConfirm, setShowCouponDeleteConfirm] = useState(false);
   const [showCouponDeleteSuccess, setShowCouponDeleteSuccess] = useState(false);
@@ -236,6 +241,8 @@ export default function ContentTabPanel({
         <CollectionTable
           type={COLLECTION_TABLE_TYPE.CONTENTS}
           data={data}
+          onRowClick={(row) => router.push(pathPublishedContent(row.id))}
+          onEdit={onEditContent}
           onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
           onMoveUp={handleMoveUp}
           onMoveDown={handleMoveDown}

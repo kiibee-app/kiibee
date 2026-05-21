@@ -920,7 +920,15 @@
     "profilePhotoAlt": "Profile photo"
   },
   "singleContent": {
-    "notFound": "This content could not be found."
+    "notFound": "This content could not be found.",
+    "loading": "Loading content...",
+    "imageAlt": "Content preview",
+    "seeContent": "See content",
+    "meta": {
+      "createdAt": "Created:",
+      "accessType": "Access:",
+      "visibility": "Visibility:"
+    }
   },
   "singleCollection": {
     "subtitle": "Learn how to use our platform",
@@ -1435,6 +1443,8 @@
       "invalidFile": "Choose a supported file under 2GB.",
       "uploadError": "Could not upload this file. Please try again.",
       "createError": "Could not create this content. Please try again.",
+      "updateError": "Could not update this content. Please try again.",
+      "updateSuccess": "Content updated successfully.",
       "video": {
         "helperLineOne": "Max. file size of 2GB of file types (.mp4)",
         "helperLineTwo": "Min. resolution 1080p HD"
@@ -1457,7 +1467,8 @@
         "titlePlaceholder": "Enter title",
         "description": "Description",
         "descriptionPlaceholder": "Enter Description",
-        "add": "Add"
+        "add": "Add",
+        "update": "Update"
       },
       "webForm": {
         "title": "Add web content",

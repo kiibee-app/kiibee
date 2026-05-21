@@ -16,6 +16,8 @@ type Props = {
   setTitle: (v: string | string[]) => void;
   setDescription: (v: string | string[]) => void;
   onAdd: () => void;
+  submitLabel: string;
+  successMessage: string;
   isSuccess?: boolean;
   isSubmitting?: boolean;
   errorMessage?: string | null;
@@ -28,19 +30,18 @@ export default function ContentUploadDetails({
   setTitle,
   setDescription,
   onAdd,
+  submitLabel,
+  successMessage,
   isSuccess,
   isSubmitting,
   errorMessage,
-  uploadType,
 }: Props) {
   const { t } = useTranslation();
   if (isSuccess) {
     return (
       <UploadSuccess>
         <SuccessModalIcon />
-        <MonoText $use="H5_Medium">
-          {t("contents.contentUploadModal.uploading")} {uploadType}
-        </MonoText>
+        <MonoText $use="H5_Medium">{successMessage}</MonoText>
       </UploadSuccess>
     );
   }
@@ -79,7 +80,7 @@ export default function ContentUploadDetails({
           onClick={onAdd}
           disabled={!title.trim() || !description.trim() || isSubmitting}
         >
-          {t("contents.contentUploadModal.details.add")}
+          {submitLabel}
         </GenericButton>
         {errorMessage && <UploadHelperText>{errorMessage}</UploadHelperText>}
       </AddButtom>
