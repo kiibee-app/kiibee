@@ -7,6 +7,7 @@ export * from './users/userProfiles.schema';
 export * from './users/userSessions.schema';
 export * from './users/accountSetupTokens.schema';
 export * from './users/creatorApplicationRequests.schema';
+export * from './users/revokedTokens.schema';
 export * from './users/userContentTypes.shema';
 export * from './users/userContentCategories.shema';
 export * from './users/usersToken.schema';

@@ -92,7 +92,7 @@ export const ProfileCircle = styled.div`
   height: 48px;
   padding: 9px 18px;
   border-radius: 6px;
-  background: ${({ theme }) => theme.colors.gredint.PALE_GREEN};
+  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;

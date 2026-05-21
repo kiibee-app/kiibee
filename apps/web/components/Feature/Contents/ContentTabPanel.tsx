@@ -57,6 +57,7 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { pathPublishedContent } from "@/utils/path";
+import MetaData from "./MetaData";
 
 type Props = {
   activeTab: ContentTab;
@@ -297,5 +298,6 @@ export default function ContentTabPanel({
       />
     );
   }
+  if (activeTab === ADD_CONTENT_TABS.METADATA) return <MetaData />;
   return <PlaceholderLine>{renderPlaceholder()}</PlaceholderLine>;
 }
