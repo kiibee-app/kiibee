@@ -1423,6 +1423,7 @@
       "next": "Næste",
       "invalidFile": "Vælg en understøttet fil under 2 GB.",
       "uploadError": "Filen kunne ikke uploades. Prøv igen.",
+      "createError": "Indholdet kunne ikke oprettes. Prøv igen.",
       "video": {
         "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp4)",
         "helperLineTwo": "Min. opløsning 1080p HD"
