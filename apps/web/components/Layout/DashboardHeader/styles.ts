@@ -1,15 +1,18 @@
 import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
+import Link from "next/link";
+import { DASHBOARD_ROLES, type DashboardRole } from "@/utils/Constants";
 
-export const HeaderWrapper = styled.header`
+export const HeaderWrapper = styled.header<{ $role?: DashboardRole }>`
   height: 70px;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 200;
-  padding: 18px 25px;
+  padding: ${({ $role }) =>
+    $role === DASHBOARD_ROLES.CREATOR ? "18px 25px" : "14px 24px"};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,14 +24,23 @@ export const HeaderWrapper = styled.header`
   }
 `;
 
-export const Left = styled.div`
+export const Left = styled.div<{ $role?: DashboardRole }>`
   display: flex;
   align-items: center;
-  padding-left: 16px;
   gap: 10px;
+
+  ${({ $role }) =>
+    $role === DASHBOARD_ROLES.CREATOR
+      ? `
+    padding-left: 16px;
+  `
+      : `
+    min-width: 180px;
+  `}
 
   ${media.tablet} {
     padding-left: 0;
+    min-width: 0;
   }
 `;
 
@@ -58,14 +70,61 @@ export const HamburgerLine = styled.span`
   background: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const Right = styled.div`
+export const LogoButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+`;
+
+export const Nav = styled.nav`
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 42px;
 
   ${media.tablet} {
-    position: absolute;
-    right: 12px;
+    display: none;
+  }
+`;
+
+export const NavItem = styled(Link)`
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const Right = styled.div<{ $role?: DashboardRole }>`
+  display: flex;
+  align-items: center;
+
+  ${({ $role }) =>
+    $role === DASHBOARD_ROLES.CREATOR
+      ? `
+    gap: 24px;
+  `
+      : `
+    min-width: 180px;
+    justify-content: flex-end;
+  `}
+
+  ${media.tablet} {
+    ${({ $role }) =>
+      $role === DASHBOARD_ROLES.CREATOR
+        ? `
+      position: absolute;
+      right: 12px;
+    `
+        : `
+      min-width: 0;
+    `}
   }
 `;
 
@@ -104,16 +163,19 @@ export const InitialAvatar = styled(MonoText).attrs({
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const LogoButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-`;
 export const ChannelText = styled(MonoText)`
   ${media.tablet} {
     display: none;
   }
+`;
+
+export const ProfileButton = styled.button`
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.gredint.PALE_GREEN};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.H4_SemiBold};
+  cursor: pointer;
 `;
