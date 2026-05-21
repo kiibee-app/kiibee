@@ -59,10 +59,6 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       scheduleResize();
     };
 
-    // Removed the MutationObserver. GSAP updates inline styles 60 frames per second.
-    // Having a MutationObserver on document.body watching 'style' attributes forces
-    // lenis.resize() to run 60 times a second, which completely kills scroll performance.
-
     document.addEventListener("visibilitychange", handleVisibilityChange);
     window.addEventListener("load", handleWindowResize);
     window.addEventListener("resize", handleWindowResize);

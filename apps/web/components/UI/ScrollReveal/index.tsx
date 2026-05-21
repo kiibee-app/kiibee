@@ -29,15 +29,15 @@ export default function ScrollReveal({
         {
           opacity: 0,
           y: 40,
-          filter: "blur(12px)", // Re-added the beautiful blur!
+          filter: "blur(12px)",
         },
         {
           opacity: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 1.2, // Slightly longer duration for a more premium feel
+          duration: 1.2,
           delay: delay,
-          ease: "expo.out", // Expo out gives that very fast start and silky smooth finish
+          ease: "expo.out",
           scrollTrigger: {
             trigger: container.current,
             start: "top 85%",
@@ -52,7 +52,6 @@ export default function ScrollReveal({
   return (
     <div
       ref={container}
-      // Set initial opacity to 0 here to prevent any ugly flashing before GSAP takes over
       style={{ opacity: 0, willChange: "opacity, transform, filter" }}
     >
       {children}
