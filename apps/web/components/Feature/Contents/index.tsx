@@ -246,6 +246,7 @@ export default function CreatorsContents() {
       />
 
       <CouponFlowModals
+        collections={collections}
         couponFlow={couponFlow}
         couponForm={couponForm}
         setCouponForm={setCouponForm}
