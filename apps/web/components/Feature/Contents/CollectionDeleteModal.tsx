@@ -1,4 +1,5 @@
 import { GenericModal } from "@/components/UI/Modals";
+import ConfirmationModal from "@/components/UI/ConfirmationModal";
 import { useTranslation } from "react-i18next";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
@@ -7,7 +8,7 @@ type DeleteModalsProps = {
   setShowDeleteConfirm: React.Dispatch<React.SetStateAction<boolean>>;
   showDeleteSuccess: boolean;
   setShowDeleteSuccess: React.Dispatch<React.SetStateAction<boolean>>;
-  onConfirmDelete: () => void;
+  onConfirmDelete: () => Promise<void> | void;
 };
 
 export default function DeleteModals({
@@ -20,14 +21,13 @@ export default function DeleteModals({
   const { t } = useTranslation();
   return (
     <>
-      <GenericModal
-        visible={showDeleteConfirm}
+      <ConfirmationModal
+        isOpen={showDeleteConfirm}
+        onClose={() => setShowDeleteConfirm(false)}
         title={t("contents.deleteModal.title")}
-        message={t("contents.deleteModal.message")}
+        body={t("contents.deleteModal.message")}
         cancelLabel={t("contents.deleteModal.cancel")}
         confirmLabel={t("contents.deleteModal.delete")}
-        onCancel={() => setShowDeleteConfirm(false)}
-        onClose={() => setShowDeleteConfirm(false)}
         onConfirm={onConfirmDelete}
         size="sm"
         spacing="xs"

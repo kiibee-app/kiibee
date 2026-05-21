@@ -841,6 +841,7 @@
     ]
   },
   "common": {
+    "confirmationModalError": "ConfirmationModal onConfirm error:",
     "share": "Share",
     "search": "Search",
     "clearSearch": "Clear search",
