@@ -26,10 +26,14 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { AddContentTab, COLLECTIONS } from "@/utils/common";
+import { AddContentTab, APPEARANCE, COLLECTIONS } from "@/utils/common";
+import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
+import { toast } from "react-toastify";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
+  const { saveLayout, cancelLayout, hasUnsavedChanges } =
+    useCreatorChannelLayout();
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
   const {
@@ -74,6 +78,7 @@ export default function CreatorsContents() {
     closeDiscardModal,
     handleCreateClick,
     handleEditCollection,
+    openCouponEdit,
   } = useContentsModalFlows(
     activeTab,
     collections,
@@ -99,6 +104,26 @@ export default function CreatorsContents() {
     setActiveTabAndQuery(COLLECTIONS);
   };
 
+  const handleHeaderSave = () => {
+    if (activeTab === APPEARANCE) {
+      if (!hasUnsavedChanges) return;
+      saveLayout();
+      toast.success(t(CONTENTS_KEYS.appearance.layouts.saveSuccess));
+      return;
+    }
+
+    createCollectionFlow.openSuccess();
+  };
+
+  const handleHeaderCancel = () => {
+    if (activeTab === APPEARANCE) {
+      cancelLayout();
+      return;
+    }
+
+    openDiscardModal();
+  };
+
   return (
     <PageShell>
       <PageHeader>
@@ -116,9 +141,10 @@ export default function CreatorsContents() {
         <ContentsHeaderAction
           activeTab={activeTab}
           onCreate={handleCreateClick}
-          onCancel={openDiscardModal}
+          onCancel={handleHeaderCancel}
           onCreateCoupon={couponFlow.open}
-          onSave={createCollectionFlow.openSuccess}
+          onSave={handleHeaderSave}
+          isSaveDisabled={activeTab === APPEARANCE && !hasUnsavedChanges}
           isCollectionContentMode={isCollectionContentMode}
         />
       </PageHeader>
@@ -158,6 +184,7 @@ export default function CreatorsContents() {
             setSelectedCollection={setSelectedCollection}
             onDelete={openDelete}
             onEditCollection={handleEditCollection}
+            onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
           />
@@ -182,6 +209,7 @@ export default function CreatorsContents() {
       <ContentUploadModal
         visible={contentTypeFlow.showContentUploadModal}
         contentType={contentTypeFlow.selectedContentType}
+        collectionId={selectedCollection?.id ?? null}
         onClose={contentTypeFlow.close}
         onBack={contentTypeFlow.backToTypeSelect}
         onUploadSuccess={handleUploadSuccess}

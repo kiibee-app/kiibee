@@ -25,7 +25,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import { POINTER_DOWN, VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
-import type { NavBarProps } from "@/utils/profile";
+import type { NavBarItem, NavBarProps } from "@/utils/profile";
 
 export default function NavBar({
   position = "fixed",
@@ -42,6 +42,7 @@ export default function NavBar({
   navAfter,
 }: NavBarProps) {
   const { t } = useTranslation();
+  const renderItemLabel = (item: NavBarItem) => item.label ?? t(item.key);
   const [active, setActive] = React.useState<string | null>(null);
   const [pinned, setPinned] = React.useState<string | null>(null);
   const navRef = React.useRef<HTMLElement | null>(null);
@@ -162,9 +163,19 @@ export default function NavBar({
                   togglePin(item.key);
                 }}
               >
-                <Link href={item.href || "#"}>
-                  {"label" in item && item.label ? item.label : t(item.key)}
-                </Link>
+                {item.onClick ? (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      item.onClick?.();
+                    }}
+                  >
+                    {renderItemLabel(item)}
+                  </button>
+                ) : (
+                  <Link href={item.href || "#"}>{renderItemLabel(item)}</Link>
+                )}
 
                 {item.children && active === item.key && (
                   <MegaMenu>

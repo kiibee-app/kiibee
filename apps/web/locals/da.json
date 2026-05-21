@@ -1377,6 +1377,7 @@
       "layouts": {
         "title": "Layouts",
         "subtitle": "Vælg hvordan din kanal skal vises for brugerne.",
+        "saveSuccess": "Layout gemt. Din kanal er blevet opdateret.",
         "preview": "Preview example",
         "options": {
           "layout1": "Layout 1",
@@ -1423,6 +1424,7 @@
       "next": "Næste",
       "invalidFile": "Vælg en understøttet fil under 2 GB.",
       "uploadError": "Filen kunne ikke uploades. Prøv igen.",
+      "createError": "Indholdet kunne ikke oprettes. Prøv igen.",
       "video": {
         "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp4)",
         "helperLineTwo": "Min. opløsning 1080p HD"
@@ -1464,6 +1466,10 @@
       "message": "Are you sure you want to delete this content? This action cannot be undone.",
       "cancel": "Cancel",
       "delete": "Delete"
+    },
+    "couponDeleteModal": {
+      "title": "Delete coupon?",
+      "message": "Er du sikker på, at du vil slette denne kupon? Denne handling kan ikke fortrydes."
     },
     "deleteSuccessModal": {
       "title": "Delete successfully",

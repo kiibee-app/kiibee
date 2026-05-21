@@ -1,6 +1,7 @@
 export const ALERT = "alert";
 
 export const COLLECTIONS = "collections";
+export const ABOUT = "about";
 export const APPEARANCE = "appearance";
 export const SETTINGS = "settings";
 export const COUPONS = "coupons";
@@ -74,34 +75,6 @@ export const MOUSE_DOWN = "mousedown";
 export const IMG = "img";
 
 export type ProfileTabKey = "home" | "collections" | "about";
-
-export const PROFILE_TABS: {
-  key: ProfileTabKey;
-  label: string;
-  href: string;
-}[] = [
-  { key: "home", label: "Home", href: "/create-profile1" },
-  {
-    key: "collections",
-    label: "Collections",
-    href: "/create-profile1/collections",
-  },
-  { key: "about", label: "About", href: "/create-profile1/about" },
-];
-
-export const PROFILE_TABS3: {
-  key: ProfileTabKey;
-  label: string;
-  href: string;
-}[] = [
-  { key: "home", label: "Home", href: "/create-profile3" },
-  {
-    key: "collections",
-    label: "Collections",
-    href: "/create-profile3/collections",
-  },
-  { key: "about", label: "About", href: "/create-profile3/about" },
-];
 
 export const HOME = "home";
 

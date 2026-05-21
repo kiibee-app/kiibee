@@ -1,6 +1,7 @@
 import type { ImageSource, Variant } from "@/utils/Constants";
 import type { ButtonSize } from "@/components/UI/GenericButton/variants";
 import { StaticImageData } from "next/image";
+import type { CreatorLayoutKey } from "./creatorChannel";
 
 export const FORMAT_TYPE = {
   VIDEO: "video",
@@ -43,7 +44,7 @@ export type TutorialVideoSection = {
 };
 
 export type LayoutCardConfig = {
-  key: string;
+  key: CreatorLayoutKey;
   titleKey: string;
   captionKey: string;
   image: string | StaticImageData;

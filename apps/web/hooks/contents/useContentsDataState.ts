@@ -1,13 +1,17 @@
-import { Dispatch, SetStateAction, useMemo, useState } from "react";
-import { CollectionRow } from "@/types/collectionsType";
-import { collectionContentsData } from "@/utils/dummyData/collectionData";
+import { useMemo, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import type {
+  CollectionContentRow,
+  CollectionRow,
+} from "@/types/collectionsType";
 import { useDeleteHandler } from "@/hooks/useCollectionDelete";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
-import { formatDateUSShort } from "@/utils/formatDate";
 import {
+  CollectionContentsApiResponse,
   CollectionsApiResponse,
-  getCollectionList,
+  getCollectionContentRows,
+  getCollectionRows,
   resolveCollectionsUpdate,
 } from "@/hooks/contents/collectionApi";
 
@@ -16,23 +20,25 @@ export const useContentsDataState = (
 ) => {
   const [localCollections, setLocalCollections] = useState<CollectionRow[]>([]);
   const [hasLocalOverride, setHasLocalOverride] = useState(false);
-  const [contentsMap, setContentsMap] = useState(collectionContentsData);
+  const [contentsMap, setContentsMap] = useState<
+    Record<string, CollectionContentRow[]>
+  >({});
   const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
     API.collection.getAll,
   );
+  const selectedCollectionId = selectedCollection?.id ?? "";
+  const { data: collectionContentsResponse } =
+    useGetAPI<CollectionContentsApiResponse>(
+      API.content.collection(selectedCollectionId),
+      undefined,
+      {
+        enabled: Boolean(selectedCollectionId),
+      },
+    );
 
   const apiCollections = useMemo(() => {
     if (!collectionsResponse) return [];
-    const list = getCollectionList(collectionsResponse);
-    return list
-      .filter((item) => item?.id != null && item?.name)
-      .map((item) => ({
-        id: String(item.id),
-        name: item.name as string,
-        contentsCount: Number(item.contentsCount ?? 0),
-        createdAt: formatDateUSShort(item.createdAt),
-        actions: "",
-      }));
+    return getCollectionRows(collectionsResponse);
   }, [collectionsResponse]);
 
   const mergedCollections = useMemo(() => {
@@ -55,16 +61,20 @@ export const useContentsDataState = (
     });
   };
 
-  const contents = Object.values(contentsMap)[0] ?? [];
+  const apiCollectionContents = useMemo(() => {
+    if (!collectionContentsResponse) return [];
+    return getCollectionContentRows(collectionContentsResponse);
+  }, [collectionContentsResponse]);
 
   const collectionContents = selectedCollection
-    ? (contentsMap[selectedCollection.id] ?? contents)
+    ? (contentsMap[selectedCollection.id] ?? apiCollectionContents)
     : [];
 
   const deleteState = useDeleteHandler(
     setCollections,
     setContentsMap,
     selectedCollection,
+    collectionContents,
   );
 
   return {

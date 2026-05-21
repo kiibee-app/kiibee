@@ -26,20 +26,31 @@ import {
   UploadCount,
   UploadCountText,
 } from "./styles";
-import { HOME, PROFILE_TABS, ProfileTabKey } from "@/utils/common";
+import { ABOUT, HOME, ProfileTabKey } from "@/utils/common";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
+import CreatorInfoModal from "../../Layout2/Home/CreatorInfoModal";
+import {
+  useCreatorAboutModal,
+  useCreatorProfileTabs,
+} from "@/hooks/useCreatorChannelLayout";
 
 export default function Hero() {
   const { t } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
+  const profileTabs = useCreatorProfileTabs();
+  const { isAboutOpen, openAbout, closeAbout } = useCreatorAboutModal();
   const activeTab =
-    PROFILE_TABS.find((tab) => tab.href === pathname)?.key ?? HOME;
+    profileTabs.find((tab) => tab.href === pathname)?.key ?? HOME;
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   const handleTabChange = (tab: ProfileTabKey) => {
-    const target = PROFILE_TABS.find((item) => item.key === tab)?.href;
+    if (tab === ABOUT) {
+      openAbout();
+      return;
+    }
+    const target = profileTabs.find((item) => item.key === tab)?.href;
     if (!target) return;
     router.push(target);
   };
@@ -81,7 +92,9 @@ export default function Hero() {
                 {t(CREATE_PROFILE_HOME.description)}
               </CreatorBioText>
               <MoreText>
-                <MoreTextLabel> {t(CREATE_PROFILE_HOME.more)}</MoreTextLabel>
+                <MoreTextLabel onClick={openAbout}>
+                  {t(CREATE_PROFILE_HOME.more)}
+                </MoreTextLabel>
               </MoreText>
             </CreatorBio>
           </ProfileMeta>
@@ -89,7 +102,7 @@ export default function Hero() {
 
         <TabsWrapper>
           <GenericTabs
-            tabs={PROFILE_TABS}
+            tabs={profileTabs}
             activeTab={activeTab}
             onTabChange={handleTabChange}
             search={{
@@ -104,6 +117,8 @@ export default function Hero() {
           />
         </TabsWrapper>
       </ContentInner>
+
+      <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />
     </HeroWrapper>
   );
 }

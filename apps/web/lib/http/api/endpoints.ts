@@ -15,6 +15,8 @@ export const API = {
   coupon: {
     create: "/coupons/create",
     getAll: "/coupons",
+    update: (id: string) => `/coupons/${id}`,
+    delete: (id: string) => `/coupons/${id}`,
   },
   media: {
     videoInit: "/media/videos/init",
@@ -22,6 +24,10 @@ export const API = {
     videoComplete: "/media/videos/complete",
     fileUploadUrl: "/media/file/upload-url",
     fileConfirm: "/media/file/confirm",
+  },
+  content: {
+    create: "/content/create",
+    collection: (id: string) => `/content/collection/${id}`,
   },
   collection: {
     getAll: "/collection",

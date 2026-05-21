@@ -36,7 +36,7 @@ export const Backdrop = styled.div`
     position: fixed;
     inset: 0;
     z-index: 40;
-    background: rgba(15, 23, 42, 0.35);
+    background: ${({ theme }) => theme.colors.neutral.OVERLAY};
     backdrop-filter: blur(1px);
   }
 `;

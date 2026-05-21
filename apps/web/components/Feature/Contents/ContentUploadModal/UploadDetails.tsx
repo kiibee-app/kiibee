@@ -5,7 +5,7 @@ import InputFields from "@/components/UI/InputFields";
 import { INPUT_TYPE } from "@/utils/ui";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
 import { UploadHint } from "@/components/UI/ImageUploadCropModal/styles";
-import { AddButtom, UploadSuccess } from "./styles";
+import { AddButtom, UploadHelperText, UploadSuccess } from "./styles";
 import { useTranslation } from "react-i18next";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MonoText } from "@/components/UI/Monotext";
@@ -17,6 +17,8 @@ type Props = {
   setDescription: (v: string | string[]) => void;
   onAdd: () => void;
   isSuccess?: boolean;
+  isSubmitting?: boolean;
+  errorMessage?: string | null;
   uploadType?: string | null;
 };
 
@@ -27,6 +29,8 @@ export default function ContentUploadDetails({
   setDescription,
   onAdd,
   isSuccess,
+  isSubmitting,
+  errorMessage,
   uploadType,
 }: Props) {
   const { t } = useTranslation();
@@ -73,10 +77,11 @@ export default function ContentUploadDetails({
           variant={VARIANT.PRIMARY}
           minWidth="320px"
           onClick={onAdd}
-          disabled={!title.trim() || !description.trim()}
+          disabled={!title.trim() || !description.trim() || isSubmitting}
         >
           {t("contents.contentUploadModal.details.add")}
         </GenericButton>
+        {errorMessage && <UploadHelperText>{errorMessage}</UploadHelperText>}
       </AddButtom>
     </>
   );

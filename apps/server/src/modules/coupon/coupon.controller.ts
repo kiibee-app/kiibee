@@ -1,4 +1,14 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import type { Request } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreatorGuard } from '../auth/guards/admin.guard';
@@ -28,5 +38,24 @@ export class CouponController {
     @Body() payload: Record<string, unknown>,
   ) {
     return this.couponService.createCoupon(req.user.userId, payload);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Patch(':id')
+  async updateCoupon(
+    @Req() req: AuthenticatedRequest,
+    @Param('id') id: string,
+    @Body() payload: Record<string, unknown>,
+  ) {
+    return this.couponService.updateCoupon(req.user.userId, id, payload);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Delete(':id')
+  async deleteCoupon(
+    @Req() req: AuthenticatedRequest,
+    @Param('id') id: string,
+  ) {
+    return this.couponService.deleteCoupon(req.user.userId, id);
   }
 }
