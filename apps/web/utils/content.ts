@@ -135,6 +135,13 @@ export const TRAILER_VISIBILITY = {
 export type TrailerVisibility =
   (typeof TRAILER_VISIBILITY)[keyof typeof TRAILER_VISIBILITY];
 
+export const FIELD_KEYS = {
+  PUBLISHED_YEAR: "publishedYear",
+  DURATION: "duration",
+  CATEGORY: "category",
+} as const;
+export type FormKey = (typeof FIELD_KEYS)[keyof typeof FIELD_KEYS];
+
 export const CATEGORY_KEYS = {
   EDUCATION: "education",
   FOOD: "food",

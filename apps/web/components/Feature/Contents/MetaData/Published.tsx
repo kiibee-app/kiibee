@@ -3,17 +3,14 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
-
 import InputField from "@/components/UI/InputFields";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
 import { MonoText } from "@/components/UI/Monotext";
-
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { ControlWrap, GeneralPanel, ItemText, List } from "../General/styles";
 import { ItemRow } from "../Appearance/styles";
-
-import { getCategoryOptions, CategoryKey } from "@/utils/content";
+import { getCategoryOptions, CategoryKey, FIELD_KEYS } from "@/utils/content";
 
 type FormState = {
   publishedYear: string;
@@ -62,7 +59,7 @@ export default function PublishedSection() {
 
           <ControlWrap>
             {renderInput(
-              "publishedYear",
+              FIELD_KEYS.PUBLISHED_YEAR,
               t("contents.metadata.published.yearPlaceholder"),
             )}
           </ControlWrap>
@@ -77,7 +74,7 @@ export default function PublishedSection() {
 
           <ControlWrap>
             {renderInput(
-              "duration",
+              FIELD_KEYS.DURATION,
               t("contents.metadata.published.durationPlaceholder"),
             )}
           </ControlWrap>
@@ -96,7 +93,7 @@ export default function PublishedSection() {
 
           <ControlWrap>
             <Controller
-              name="category"
+              name={FIELD_KEYS.CATEGORY}
               control={control}
               render={({ field }) => (
                 <DropdownField
