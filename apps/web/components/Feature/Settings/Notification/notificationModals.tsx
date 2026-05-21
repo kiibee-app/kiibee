@@ -45,7 +45,7 @@ export default function NotificationModals({
       confirmLabel={t("settings.notifications.discardModal.discard")}
       onConfirm={onConfirmDiscard}
       size="sm"
-      padding="40px 30px"
+      spacing="xs"
       fullWidthButtons
       buttonRow
       showCloseButton={false}

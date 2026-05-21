@@ -9,6 +9,10 @@ type DeleteModalsProps = {
   showDeleteSuccess: boolean;
   setShowDeleteSuccess: React.Dispatch<React.SetStateAction<boolean>>;
   onConfirmDelete: () => Promise<void> | void;
+  title?: string;
+  message?: string;
+  onConfirmClose?: () => void;
+  onSuccessClose?: () => void;
 };
 
 export default function DeleteModals({
@@ -38,9 +42,9 @@ export default function DeleteModals({
     <>
       <ConfirmationModal
         isOpen={showDeleteConfirm}
-        onClose={() => setShowDeleteConfirm(false)}
-        title={t("contents.deleteModal.title")}
-        body={t("contents.deleteModal.message")}
+        onClose={handleConfirmClose}
+        title={title ?? t("contents.deleteModal.title")}
+        body={message ?? t("contents.deleteModal.message")}
         cancelLabel={t("contents.deleteModal.cancel")}
         confirmLabel={t("contents.deleteModal.delete")}
         onConfirm={onConfirmDelete}

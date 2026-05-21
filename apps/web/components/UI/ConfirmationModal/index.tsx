@@ -73,45 +73,51 @@ export default function ConfirmationModal({
   useEffect(() => {
     if (!isOpen) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === ESCAPE) {
-        onClose();
+    const container = document.querySelector(MODAL_CONTAINER_SELECTOR);
+
+    if (!container) return;
+
+    const getFocusableElements = () =>
+      container.querySelectorAll<HTMLElement>(FOCUSABLE_ELEMENTS_SELECTOR);
+
+    const trapFocus = (e: KeyboardEvent) => {
+      const focusableElements = getFocusableElements();
+
+      if (!focusableElements.length) {
+        e.preventDefault();
         return;
       }
 
-      if (e.key === KEY_TAB) {
-        const container = document.querySelector(MODAL_CONTAINER_SELECTOR);
-        if (!container) return;
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      const isShiftTab = e.shiftKey;
 
-        const focusableElements = container.querySelectorAll(
-          FOCUSABLE_ELEMENTS_SELECTOR,
-        );
+      if (
+        (isShiftTab && document.activeElement === firstElement) ||
+        (!isShiftTab && document.activeElement === lastElement)
+      ) {
+        e.preventDefault();
+        (isShiftTab ? lastElement : firstElement).focus();
+      }
+    };
 
-        if (focusableElements.length === 0) {
-          e.preventDefault();
-          return;
-        }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case ESCAPE:
+          onClose();
+          break;
 
-        const firstElement = focusableElements[0] as HTMLElement;
-        const lastElement = focusableElements[
-          focusableElements.length - 1
-        ] as HTMLElement;
+        case KEY_TAB:
+          trapFocus(e);
+          break;
 
-        if (e.shiftKey) {
-          if (document.activeElement === firstElement) {
-            lastElement.focus();
-            e.preventDefault();
-          }
-        } else {
-          if (document.activeElement === lastElement) {
-            firstElement.focus();
-            e.preventDefault();
-          }
-        }
+        default:
+          break;
       }
     };
 
     window.addEventListener(KEYDOWN, handleKeyDown);
+
     return () => {
       window.removeEventListener(KEYDOWN, handleKeyDown);
     };
