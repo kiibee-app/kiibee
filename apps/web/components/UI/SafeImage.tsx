@@ -58,6 +58,7 @@ function SafeImageInner({
       {...rest}
       alt={alt}
       src={imgSrc}
+      decoding={rest.decoding ?? "async"}
       className={className}
       style={style}
       onError={(event) => {

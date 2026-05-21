@@ -75,6 +75,7 @@ export default function CreatorsContents() {
     closeDiscardModal,
     handleCreateClick,
     handleEditCollection,
+    openCouponEdit,
   } = useContentsModalFlows(
     activeTab,
     collections,
@@ -159,6 +160,7 @@ export default function CreatorsContents() {
             setSelectedCollection={setSelectedCollection}
             onDelete={openDelete}
             onEditCollection={handleEditCollection}
+            onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
           />
@@ -183,6 +185,7 @@ export default function CreatorsContents() {
       <ContentUploadModal
         visible={contentTypeFlow.showContentUploadModal}
         contentType={contentTypeFlow.selectedContentType}
+        collectionId={selectedCollection?.id ?? null}
         onClose={contentTypeFlow.close}
         onBack={contentTypeFlow.backToTypeSelect}
         onUploadSuccess={handleUploadSuccess}

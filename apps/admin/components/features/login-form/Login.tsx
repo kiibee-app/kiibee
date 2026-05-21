@@ -1,8 +1,5 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 import AdminLogoIcon from "../../../assets/icons/AdminLogoIcon";
 import ErrorIcon from "../../../assets/icons/ErrorIcon";
 import {
@@ -21,39 +18,11 @@ import {
   Title,
   Wrap,
 } from "./Login.styles";
-import { useLogin } from "../../../hooks/api/use-login";
-import { decodeToken, setTokens } from "../../../utils/token";
+import { useAdminLogin } from "./useAdminLogin";
 
 export default function Login() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [pin, setPin] = useState("");
-  const loginMutation = useLogin();
-
-  const handleLogin = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    loginMutation.mutate(
-      { email, password: pin },
-      {
-        onSuccess: (data) => {
-          const decodedToken = decodeToken(data.accessToken);
-
-          if (decodedToken?.role !== "admin") {
-            toast.error("Access denied. Admin role required.");
-            return;
-          }
-
-          setTokens(data.accessToken, data.refreshToken);
-          toast.success(`Welcome, ${data.fullName}!`);
-          router.push("/");
-        },
-        onError: (error) => {
-          toast.error(error.message || "Login failed");
-        },
-      },
-    );
-  };
+  const { email, pin, setEmail, setPin, loginMutation, handleLogin } =
+    useAdminLogin();
 
   return (
     <Wrap>

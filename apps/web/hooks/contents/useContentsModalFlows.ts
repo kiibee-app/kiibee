@@ -32,6 +32,7 @@ export const useContentsModalFlows = (
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [couponForm, setCouponForm] = useState(INITIAL_COUPON_FORM);
   const [isCouponSuccess, setIsCouponSuccess] = useState(false);
+  const [editingCouponId, setEditingCouponId] = useState<string | null>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showContentTypeModal, setShowContentTypeModal] = useState(false);
@@ -185,6 +186,7 @@ export const useContentsModalFlows = (
   const closeCouponFlow = () => {
     setCouponForm(INITIAL_COUPON_FORM);
     setIsCouponSuccess(false);
+    setEditingCouponId(null);
     couponFlow.close();
   };
 
@@ -203,7 +205,7 @@ export const useContentsModalFlows = (
       .map((code) => code.trim())
       .filter((code) => code.length > 0);
 
-    await createCouponMutation.mutateAsync({
+    const payload: CreateCouponPayload = {
       title: couponForm.title.trim(),
       discountType:
         couponForm.discountType === COUPON_DISCOUNT_FIXED_AMOUNT
@@ -219,7 +221,13 @@ export const useContentsModalFlows = (
         couponForm.content && !couponForm.content.startsWith(CONTENT)
           ? couponForm.content
           : undefined,
-    });
+    };
+
+    const submitRequest = editingCouponId
+      ? axiosClient.patch(API.coupon.update(editingCouponId), payload)
+      : createCouponMutation.mutateAsync(payload);
+
+    await submitRequest;
 
     await queryClient.invalidateQueries({ queryKey: [API.coupon.getAll] });
     setIsCouponSuccess(true);
@@ -245,6 +253,16 @@ export const useContentsModalFlows = (
     createCollectionFlow.openCreate(item.name, id);
   };
 
+  const openCouponEdit = (
+    couponId: string,
+    formState: typeof INITIAL_COUPON_FORM,
+  ) => {
+    setEditingCouponId(couponId);
+    setCouponForm(formState);
+    setIsCouponSuccess(false);
+    setCouponStep(COUPON_STEPS.DETAILS);
+  };
+
   return {
     createCollectionFlow,
     contentTypeFlow,
@@ -260,5 +278,7 @@ export const useContentsModalFlows = (
     closeDiscardModal: () => setShowDiscardModal(false),
     handleCreateClick,
     handleEditCollection,
+    openCouponEdit,
+    editingCouponId,
   };
 };

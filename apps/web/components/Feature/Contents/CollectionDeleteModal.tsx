@@ -17,8 +17,23 @@ export default function DeleteModals({
   showDeleteSuccess,
   setShowDeleteSuccess,
   onConfirmDelete,
+  title,
+  message,
+  onConfirmClose,
+  onSuccessClose,
 }: DeleteModalsProps) {
   const { t } = useTranslation();
+
+  const handleConfirmClose = () => {
+    setShowDeleteConfirm(false);
+    onConfirmClose?.();
+  };
+
+  const handleSuccessClose = () => {
+    setShowDeleteSuccess(false);
+    onSuccessClose?.();
+  };
+
   return (
     <>
       <ConfirmationModal
@@ -40,8 +55,8 @@ export default function DeleteModals({
         title={t("contents.deleteSuccessModal.title")}
         message={t("contents.deleteSuccessModal.message")}
         confirmLabel={t("contents.deleteSuccessModal.done")}
-        onClose={() => setShowDeleteSuccess(false)}
-        onConfirm={() => setShowDeleteSuccess(false)}
+        onClose={handleSuccessClose}
+        onConfirm={handleSuccessClose}
         showCloseButton={false}
       />
     </>

@@ -1,7 +1,11 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { couponCodes, coupons } from 'src/database/schema';
+import {
+  couponApplicableItems,
+  couponCodes,
+  coupons,
+} from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { success } from 'src/utils/sendResponse';
 
@@ -38,9 +42,36 @@ export const getCouponsService = async (creatorId: string) => {
       {},
     );
 
+    const applicableItemRows = await db
+      .select({
+        couponId: couponApplicableItems.couponId,
+        collectionId: couponApplicableItems.collectionId,
+        mediaFileId: couponApplicableItems.mediaFileId,
+      })
+      .from(couponApplicableItems);
+
+    const applicableByCouponId = applicableItemRows.reduce<
+      Record<string, { collectionId: string | null; contentId: string | null }>
+    >((acc, row) => {
+      if (!couponIds.includes(row.couponId)) return acc;
+      const current = acc[row.couponId] ?? {
+        collectionId: null,
+        contentId: null,
+      };
+      acc[row.couponId] = {
+        collectionId: row.collectionId ?? current.collectionId,
+        contentId: row.mediaFileId ?? current.contentId,
+      };
+      return acc;
+    }, {});
+
     const couponList = couponRows.map((coupon) => ({
       ...coupon,
       codes: codesByCouponId[coupon.id] || [],
+      applicableProducts: applicableByCouponId[coupon.id] ?? {
+        collectionId: null,
+        contentId: null,
+      },
     }));
 
     return success(couponList, 'Coupons retrieved successfully', HttpStatus.OK);
