@@ -18,42 +18,79 @@ import {
 } from "./styles";
 import { INPUT_TYPE } from "@/utils/ui";
 
-export default function DescriptionSection() {
+interface DescriptionSectionProps {
+  showTitle?: boolean;
+}
+
+export default function DescriptionSection({
+  showTitle = false,
+}: DescriptionSectionProps) {
   const { t } = useTranslation();
-
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
-  const handleChange = (value: string | string[]) => {
+  const handleDescriptionChange = (value: string | string[]) => {
     const text = Array.isArray(value) ? value.join("") : value;
     setDescription(text.slice(0, maxDescriptionCharacters));
+  };
+
+  const handleTitleChange = (value: string | string[]) => {
+    const text = Array.isArray(value) ? value.join("") : value;
+    setTitle(text);
   };
 
   return (
     <AppearancePanel>
       <SectionList>
+        {showTitle && (
+          <Row>
+            <Copy>
+              <Label>{t("contents.contentUploadModal.details.title")}</Label>
+            </Copy>
+
+            <ControlWrap>
+              <InputField
+                type={INPUT_TYPE.TEXT}
+                value={title}
+                onChange={handleTitleChange}
+                placeholder={t(
+                  "contents.contentUploadModal.details.titlePlaceholder",
+                )}
+                width="100%"
+                variant={INPUT_VARIANTS.PRIMARY_GRAY}
+              />
+            </ControlWrap>
+          </Row>
+        )}
+
         <Row>
           <Copy>
             <Label>{t(CONTENTS.appearance.description.label)}</Label>
-            <Hint>{t(CONTENTS.appearance.description.hint)}</Hint>
+            {!showTitle && (
+              <Hint>{t(CONTENTS.appearance.description.hint)}</Hint>
+            )}
           </Copy>
 
           <ControlWrap>
             <InputField
               type={INPUT_TYPE.TEXTAREA}
               value={description}
-              onChange={handleChange}
+              onChange={handleDescriptionChange}
               placeholder={t(CONTENTS.appearance.description.placeholder)}
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
             />
           </ControlWrap>
 
-          <CounterRow>
-            <CounterText>{t(CONTENTS.appearance.maximumCharacter)}</CounterText>
-            <CounterText>
-              {description.length}/{maxDescriptionCharacters}
-            </CounterText>
-          </CounterRow>
+          {!showTitle && (
+            <CounterRow>
+              <CounterText>
+                {t(CONTENTS.appearance.maximumCharacter)}
+              </CounterText>
+              <CounterText>
+                {description.length}/{maxDescriptionCharacters}
+              </CounterText>
+            </CounterRow>
+          )}
         </Row>
       </SectionList>
     </AppearancePanel>

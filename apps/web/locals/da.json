@@ -1484,6 +1484,19 @@
       "title": "Aendringer gemt",
       "message": "Dine opdateringer er blevet gemt.",
       "done": "Faerdig"
+    },
+    "metadata": {
+      "production": {
+        "title": "Produktion af",
+        "description": "Hvem udgav filmen og producerede filmen?",
+        "companyPlaceholder": "Produktionsselskab",
+        "linkPlaceholder": "Tilføj producentlink"
+      },
+      "tags": {
+        "title": "Tags",
+        "placeholder": "Adskil tags ved at trykke enter",
+        "example": "F.eks. Video, Madlavning, Film"
+      }
     }
   },
   "resetPassword": {

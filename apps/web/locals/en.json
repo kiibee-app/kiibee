@@ -1484,6 +1484,19 @@
       "title": "Changes saved",
       "message": "Your updates have been successfully saved.",
       "done": "Done"
+    },
+    "metadata": {
+      "production": {
+        "title": "Production of",
+        "description": "Who released the film and produced the film?",
+        "companyPlaceholder": "Production company",
+        "linkPlaceholder": "Add manufacturer link"
+      },
+      "tags": {
+        "title": "Tags",
+        "placeholder": "Separate tags by pressing enter",
+        "example": "E.g, Video, Cooking, Film"
+      }
     }
   },
   "resetPassword": {
