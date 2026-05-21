@@ -107,3 +107,5 @@ export const MIME_TYPE = {
 export const FILE_EXTENSION = {
   EPUB: ".epub",
 } as const;
+
+export const tabs = ["New", "Trending", "Curated for you"];

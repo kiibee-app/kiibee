@@ -33,6 +33,14 @@ import { CreatorFiltersControlProps, OptionItem } from "@/types/exportCreators";
 import { BUTTON } from "@/utils/Constants";
 import { FilterSectionKey } from "@/types/filters";
 
+type CreatorFiltersControlModeProps = {
+  showButton?: boolean;
+  forceOpen?: boolean;
+  inlineOverlay?: boolean;
+  overlayMaxWidth?: string;
+  inlineOverlayWidth?: string;
+};
+
 function CreatorFiltersControl({
   refs,
   state,
@@ -41,7 +49,12 @@ function CreatorFiltersControl({
   creatorLabels,
   defaultVisibleCreators,
   actions,
-}: CreatorFiltersControlProps) {
+  showButton = true,
+  forceOpen = false,
+  inlineOverlay = false,
+  overlayMaxWidth,
+  inlineOverlayWidth,
+}: CreatorFiltersControlProps & CreatorFiltersControlModeProps) {
   const { t } = useTranslation();
   const theme = useTheme();
   const { filterButtonRef, filterOverlayRef } = refs;
@@ -61,6 +74,7 @@ function CreatorFiltersControl({
     toggleOption,
     handlePriceChange,
   } = actions;
+  const isOverlayVisible = forceOpen || isFilterOpen;
 
   const renderSectionIcon = React.useCallback(
     (isOpen: boolean) => (
@@ -156,21 +170,26 @@ function CreatorFiltersControl({
 
   return (
     <FilterControlWrap>
-      <FilterBtn
-        ref={filterButtonRef}
-        type={BUTTON}
-        $active={isFilterOpen}
-        onClick={toggleFilter}
-        aria-expanded={isFilterOpen}
-        aria-controls="creator-filters-overlay"
-      >
-        <FilterIcon color={theme.colors.primary.BLACK} />
-        <FilterButtonText>{t("creators.filter")}</FilterButtonText>
-      </FilterBtn>
-      {isFilterOpen ? (
+      {showButton ? (
+        <FilterBtn
+          ref={filterButtonRef}
+          type={BUTTON}
+          $active={isFilterOpen}
+          onClick={toggleFilter}
+          aria-expanded={isOverlayVisible}
+          aria-controls="creator-filters-overlay"
+        >
+          <FilterIcon color={theme.colors.primary.BLACK} />
+          <FilterButtonText>{t("creators.filter")}</FilterButtonText>
+        </FilterBtn>
+      ) : null}
+      {isOverlayVisible ? (
         <FilterOverlay
           id="creator-filters-overlay"
           ref={filterOverlayRef}
+          $inline={inlineOverlay}
+          $maxWidth={overlayMaxWidth}
+          $inlineWidth={inlineOverlayWidth}
           role="region"
           aria-label={t("creators.filters.title")}
         >
