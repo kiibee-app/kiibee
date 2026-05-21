@@ -15,6 +15,8 @@ export const API = {
   coupon: {
     create: "/coupons/create",
     getAll: "/coupons",
+    update: (id: string) => `/coupons/${id}`,
+    delete: (id: string) => `/coupons/${id}`,
   },
   media: {
     videoInit: "/media/videos/init",

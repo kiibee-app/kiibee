@@ -1,11 +1,12 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   ADD_CONTENT_TABS,
   APPEARANCE,
   COLLECTIONS,
+  COUPON_DISCOUNT_TYPE,
   CONTENT_TABS,
   COUPONS,
   ContentTab,
@@ -18,6 +19,7 @@ import CouponTable from "./coupon";
 import CollectionTable from "./Collections";
 import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
+import { CouponFormState } from "@/types/collectionsType";
 import {
   EmptyCollectionCard,
   EmptyCollectionText,
@@ -31,8 +33,10 @@ import {
 } from "@/utils/sortOptions";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
+import { axiosClient } from "@/lib/http/axiosClient";
 import { formatDateUSShort } from "@/utils/formatDate";
 import {
+  COUPON_STATUS,
   COUPON_STATUS_LABEL_MAP,
   type CouponEntity,
   type CouponListResponse,
@@ -43,6 +47,14 @@ import COLORS from "@repo/ui/colors";
 import { FolderIcon } from "@/assets/icons";
 import { MonoText } from "@/components/UI/Monotext";
 import GeneralContent from "./General";
+import DeleteModals from "./CollectionDeleteModal";
+import {
+  COUPON_ACTION_DELETE,
+  COUPON_ACTION_EDIT,
+  COUPON_ACTION_STATUS,
+  CouponAction,
+} from "@/utils/Constants";
+import { useQueryClient } from "@tanstack/react-query";
 
 type Props = {
   activeTab: ContentTab;
@@ -53,6 +65,7 @@ type Props = {
   setSelectedCollection: (collection: CollectionRow) => void;
   onDelete: (id: string, type: CollectionTableType) => void;
   onEditCollection: (id: string) => void;
+  onEditCoupon: (couponId: string, formState: CouponFormState) => void;
   setContentsMap: Dispatch<
     SetStateAction<Record<string, CollectionContentRow[]>>
   >;
@@ -70,12 +83,26 @@ export default function ContentTabPanel({
   setSelectedCollection,
   onDelete,
   onEditCollection,
+  onEditCoupon,
   setContentsMap,
   setActiveTab,
   uploadedFile,
   uploadedPreview,
 }: Props) {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
+  const [showCouponDeleteConfirm, setShowCouponDeleteConfirm] = useState(false);
+  const [showCouponDeleteSuccess, setShowCouponDeleteSuccess] = useState(false);
+  const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
+
+  const handleCouponDeleteConfirm = async () => {
+    if (!selectedCouponId) return;
+    await axiosClient.delete(API.coupon.delete(selectedCouponId));
+    await queryClient.invalidateQueries({ queryKey: [API.coupon.getAll] });
+    setShowCouponDeleteConfirm(false);
+    setSelectedCouponId(null);
+    setShowCouponDeleteSuccess(true);
+  };
   const { data: couponResponse } = useGetAPI<CouponListResponse>(
     API.coupon.getAll,
     undefined,
@@ -94,6 +121,56 @@ export default function ContentTabPanel({
     createdAt: formatDateUSShort(item.createdAt),
     action: item.id,
   }));
+
+  const handleCouponAction = async (action: CouponAction, row: CouponRow) => {
+    const couponId = row.action;
+    if (!couponId) return;
+
+    const coupons = couponResponse?.data ?? [];
+    const selectedCoupon = coupons.find((item) => item.id === couponId);
+
+    const openEdit = () => {
+      if (!selectedCoupon) return;
+
+      onEditCoupon(selectedCoupon.id, {
+        title: selectedCoupon.title ?? "",
+        discountType:
+          selectedCoupon.discountType ?? COUPON_DISCOUNT_TYPE.FIXED_AMOUNT,
+        discountValue: selectedCoupon.discountValue ?? "",
+        codes: (selectedCoupon.codes ?? []).join(", "),
+        collection: selectedCoupon.applicableProducts?.collectionId ?? "",
+        content: selectedCoupon.applicableProducts?.contentId ?? "",
+      });
+    };
+
+    const openDelete = () => {
+      setSelectedCouponId(couponId);
+      setShowCouponDeleteConfirm(true);
+    };
+
+    const toggleStatus = async () => {
+      const nextStatus =
+        row.status === COUPON_STATUS.ACTIVE
+          ? COUPON_STATUS.INACTIVE.toLowerCase()
+          : COUPON_STATUS.ACTIVE.toLowerCase();
+
+      await axiosClient.patch(API.coupon.update(couponId), {
+        status: nextStatus,
+      });
+
+      await queryClient.invalidateQueries({
+        queryKey: [API.coupon.getAll],
+      });
+    };
+
+    const actionMap: Record<CouponAction, () => Promise<void> | void> = {
+      [COUPON_ACTION_EDIT]: openEdit,
+      [COUPON_ACTION_DELETE]: openDelete,
+      [COUPON_ACTION_STATUS]: toggleStatus,
+    };
+
+    return actionMap[action]?.();
+  };
 
   const handleMoveUp = (id: string) => {
     if (selectedCollection) {
@@ -188,7 +265,22 @@ export default function ContentTabPanel({
 
   if (activeTab === APPEARANCE) return <AppearanceContent />;
   if (activeTab === SETTINGS) return <AdmissionRequirements />;
-  if (activeTab === COUPONS) return <CouponTable data={couponRows} />;
+  if (activeTab === COUPONS)
+    return (
+      <>
+        <CouponTable data={couponRows} onActionSelect={handleCouponAction} />
+        <DeleteModals
+          showDeleteConfirm={showCouponDeleteConfirm}
+          setShowDeleteConfirm={setShowCouponDeleteConfirm}
+          showDeleteSuccess={showCouponDeleteSuccess}
+          setShowDeleteSuccess={setShowCouponDeleteSuccess}
+          onConfirmDelete={handleCouponDeleteConfirm}
+          title={t("contents.couponDeleteModal.title")}
+          message={t("contents.couponDeleteModal.message")}
+          onConfirmClose={() => setSelectedCouponId(null)}
+        />
+      </>
+    );
   if (activeTab === COLLECTIONS) return renderCollectionsContent();
   if (activeTab === ADD_CONTENT_TABS.GENERAL) {
     return (

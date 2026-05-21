@@ -74,6 +74,7 @@ export default function CreatorsContents() {
     closeDiscardModal,
     handleCreateClick,
     handleEditCollection,
+    openCouponEdit,
   } = useContentsModalFlows(
     activeTab,
     collections,
@@ -158,6 +159,7 @@ export default function CreatorsContents() {
             setSelectedCollection={setSelectedCollection}
             onDelete={openDelete}
             onEditCollection={handleEditCollection}
+            onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
           />
