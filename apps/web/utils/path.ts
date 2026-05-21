@@ -36,6 +36,7 @@ export const PATHS = {
   SUPPORT: "/support",
   TERMS: "/terms-of-service",
   PRIVACY_POLICY: "/privacy-policy",
+  CREATOR_PROFILE: "/creator",
 } as const;
 
 export function pathPublishedContent(contentKey: string): string {

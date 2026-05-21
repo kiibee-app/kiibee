@@ -32,12 +32,6 @@ export type NavBarProps = {
   actions?: ReactNode;
 };
 
-export const PROFILE_NAV_ITEMS: NavBarItem[] = [
-  { key: "nav.profile.home", href: "/create-profile2" },
-  { key: "nav.profile.collections", href: "/create-profile2/collections" },
-  { key: "nav.profile.about" },
-];
-
 export const VIEWER_PROFILE_FIELDS = {
   NAME: "name",
   EMAIL: "email",
