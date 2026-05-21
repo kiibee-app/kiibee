@@ -17,14 +17,12 @@ import { logger } from 'src/logger/logger';
 import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { Time } from 'src/utils/constant';
-import { HttpException, HttpStatus } from '@nestjs/common';
 
 // Import after mocks
 import { forgetPasswordService } from 'src/modules/auth/services/forgetPassword.service';
 import { db } from 'src/database/db';
 
 const mockDb = db as jest.Mocked<typeof db>;
-const mockLogger = logger as jest.Mocked<typeof logger>;
 const mockRunInBackground = runInBackground as jest.MockedFunction<
   typeof runInBackground
 >;
@@ -35,7 +33,7 @@ const mockSendTemplateEmail = sendTemplateEmail as jest.MockedFunction<
   typeof sendTemplateEmail
 >;
 
-const { randomBytes, randomUUID } = require('crypto');
+import { randomBytes, randomUUID } from 'crypto';
 
 describe('forgetPasswordService', () => {
   const mockUser = {
@@ -65,7 +63,7 @@ describe('forgetPasswordService', () => {
     );
   });
 
-  it('should throw error when user is not found', async () => {
+  it('should return generic success when user is not found', async () => {
     const mockSelect = jest.fn().mockReturnValue({
       from: jest.fn().mockReturnValue({
         where: jest.fn().mockReturnValue({
@@ -75,12 +73,11 @@ describe('forgetPasswordService', () => {
     });
     mockDb.select = mockSelect;
 
-    await expect(
-      forgetPasswordService('nonexistent@example.com'),
-    ).rejects.toThrow('No user found with this email');
+    const result = await forgetPasswordService('nonexistent@example.com');
+    expect(result.message).toBe('Password reset link sent if user exists');
   });
 
-  it('should throw error when user is deleted', async () => {
+  it('should return generic success when user is deleted', async () => {
     // Since the query filters out deleted users, it should return []
     const mockSelect = jest.fn().mockReturnValue({
       from: jest.fn().mockReturnValue({
@@ -91,9 +88,8 @@ describe('forgetPasswordService', () => {
     });
     mockDb.select = mockSelect;
 
-    await expect(forgetPasswordService('test@example.com')).rejects.toThrow(
-      'No user found with this email',
-    );
+    const result = await forgetPasswordService('test@example.com');
+    expect(result.message).toBe('Password reset link sent if user exists');
   });
 
   it('should successfully send password reset link', async () => {
@@ -135,7 +131,7 @@ describe('forgetPasswordService', () => {
 
     expect(result).toEqual({
       success: true,
-      message: 'Password reset link sent successfully',
+      message: 'Password reset link sent if user exists',
       statusCode: 200,
       data: null,
     });
@@ -235,7 +231,7 @@ describe('forgetPasswordService', () => {
     // Should still succeed since email failure is handled in background
     expect(result).toEqual({
       success: true,
-      message: 'Password reset link sent successfully',
+      message: 'Password reset link sent if user exists',
       statusCode: 200,
       data: null,
     });

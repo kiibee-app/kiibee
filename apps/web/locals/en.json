@@ -128,7 +128,7 @@
     "rememberPassword": "Remember your password?",
     "login": "Log in",
     "checkEmailTitle": "Check your email",
-    "checkEmailDescription": "We sent a password reset link to your email. If it doesn’t arrive within a few minutes, check your spam folder.",
+    "checkEmailDescription": "We sent a password reset link to your email. If it doesn't arrive within a few minutes, it might not match an existing user account.",
     "didNotReceive": "Didn’t receive the email?",
     "resend": "Resend",
     "submitFailed": "We could not send a reset link right now. Please try again."

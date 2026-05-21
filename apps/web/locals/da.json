@@ -128,7 +128,7 @@
     "rememberPassword": "Kan du huske din adgangskode?",
     "login": "Log ind",
     "checkEmailTitle": "Tjek din e-mail",
-    "checkEmailDescription": "Vi har sendt et link til nulstilling af adgangskode til din e-mail. Hvis det ikke ankommer inden for et par minutter, så tjek din spam-mappe.",
+    "checkEmailDescription": "Vi har sendt et link til nulstilling af din adgangskode til din e-mail. Hvis det ikke ankommer inden for få minutter, kan det skyldes, at det ikke matcher en eksisterende brugerkonto.",
     "didNotReceive": "Har du ikke modtaget e-mailen?",
     "resend": "Send igen",
     "submitFailed": "Vi kunne ikke sende nulstillingslinket lige nu. Prøv igen."
