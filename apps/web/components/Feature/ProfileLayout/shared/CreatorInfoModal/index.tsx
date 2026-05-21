@@ -19,7 +19,7 @@ import {
   BodyText,
   Section,
   ShareButton,
-} from "./CreatorInfoModal.styles";
+} from "./styles";
 import { MODAL_PADDINGS } from "@/lib/theme/tokens";
 
 type CreatorInfoModalProps = {
