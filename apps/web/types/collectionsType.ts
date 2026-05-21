@@ -12,12 +12,12 @@ export type CollectionRow = {
   actions: string;
 };
 
-export type CollectionContentType = "pdf" | "video" | "epub" | "web";
+export type CollectionContentType = "pdf" | "video" | "audio" | "epub" | "web";
 
 export type CollectionContentRow = {
   id: string;
   name: string;
-  visibility: "Hidden" | "Public";
+  visibility: "Hidden" | "Public" | "Draft" | "Private";
   createdAt: string;
   contentType: CollectionContentType;
   actions: string;
