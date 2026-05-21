@@ -128,8 +128,23 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Post('logout')
-  async logout(@Req() req: AuthenticatedRequest) {
-    const result = await this.authService.logout(req.user.userId);
+  async logout(
+    @Req() req: AuthenticatedRequest,
+    @Headers('authorization') authorization?: string,
+  ) {
+    let jti: string | undefined;
+    let exp: number | undefined;
+
+    if (authorization && authorization.startsWith('Bearer ')) {
+      const token = authorization.replace('Bearer ', '');
+      const payload = this.tokenService.decodeAccessToken(token);
+      if (payload) {
+        jti = payload.jti;
+        exp = payload.exp;
+      }
+    }
+
+    const result = await this.authService.logout(req.user.userId, jti, exp);
     return result;
   }
 

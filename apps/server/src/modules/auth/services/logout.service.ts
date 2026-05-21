@@ -5,6 +5,7 @@ import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { userSessions } from 'src/database/schema';
 import { success } from 'src/utils/sendResponse';
+import { revokeAccessToken } from './token-denylist.service';
 
 export const createSessionService = async (
   userId: string,
@@ -31,13 +32,32 @@ export const createSessionService = async (
   return success(null, 'Session created', 201);
 };
 
-export const logoutService = async (userId: string) => {
+export const logoutService = async (
+  userId: string,
+  jti?: string,
+  exp?: number,
+) => {
   await db.delete(userSessions).where(eq(userSessions.userId, userId));
+
+  if (jti && exp) {
+    const expiresAt = new Date(exp * 1000);
+    await revokeAccessToken(jti, expiresAt);
+  }
+
   return success(null, 'Logged out successfully', 200);
 };
 
-export const invalidateSession = async (userId: string) => {
+export const invalidateSession = async (
+  userId: string,
+  jti?: string,
+  exp?: number,
+) => {
   await db.delete(userSessions).where(eq(userSessions.userId, userId));
+
+  if (jti && exp) {
+    const expiresAt = new Date(exp * 1000);
+    await revokeAccessToken(jti, expiresAt);
+  }
 
   return success(null, 'Session invalidated', 200);
 };

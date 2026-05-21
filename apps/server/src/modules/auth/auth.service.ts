@@ -135,8 +135,8 @@ export class AuthService {
     });
   }
 
-  async logout(userId: string) {
-    return logoutService(userId);
+  async logout(userId: string, jti?: string, exp?: number) {
+    return logoutService(userId, jti, exp);
   }
 
   async createSession(
