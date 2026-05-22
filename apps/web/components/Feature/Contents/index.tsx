@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
+import ConfirmationModal from "@/components/UI/ConfirmationModal";
 import {
   ContentPanel,
   ContentsScrollArea,
@@ -272,14 +273,13 @@ export default function CreatorsContents() {
         showCloseButton={false}
       />
 
-      <GenericModal
-        visible={showDiscardModal}
+      <ConfirmationModal
+        isOpen={showDiscardModal}
+        onClose={closeDiscardModal}
         title={t("settings.notifications.discardModal.title")}
-        message={t("settings.notifications.discardModal.message")}
+        body={t("settings.notifications.discardModal.message")}
         cancelLabel={t("settings.notifications.discardModal.goBack")}
         confirmLabel={t("settings.notifications.discardModal.discard")}
-        onCancel={closeDiscardModal}
-        onClose={closeDiscardModal}
         onConfirm={closeDiscardModal}
         size="sm"
         spacing="md"

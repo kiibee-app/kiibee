@@ -842,6 +842,7 @@
     ]
   },
   "common": {
+    "confirmationModalError": "Fejl ved bekræftelsesmodal:",
     "share": "Del",
     "search": "TODO: translate - Search",
     "clearSearch": "TODO: translate - Clear search",
