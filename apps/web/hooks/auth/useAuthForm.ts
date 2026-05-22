@@ -55,27 +55,38 @@ export type UseAuthFormConfig<
   feedback?: "error" | "tone";
 };
 
-/** Shared auth form hook — use via `useLoginForm`, `useViewerSignUpForm`, or `useCreatorRequestForm`. */
 export function useAuthForm<
   TValues extends FieldValues,
   TMessages,
   TResult extends SubmitResponse = SubmitResponse,
   TPayload = TValues,
 >(config: UseAuthFormConfig<TValues, TMessages, TResult, TPayload>) {
+  const {
+    createSchema,
+    getSchemaMessages,
+    defaultValues,
+    mapValues,
+    onSuccess,
+    failedMessageKey,
+    passwordVisibility: passwordMode = false,
+    passwordFields = [],
+    clearFieldErrorsOnChange = false,
+    failedResponseAs,
+    feedback,
+    useMutation,
+  } = config;
+
   const { t } = useTranslation();
   const router = useRouter();
   const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
-  const { mutateAsync, isPending: isSubmitting } = config.useMutation();
+  const { mutateAsync, isPending: isSubmitting } = useMutation();
 
-  const useToneFeedback = config.feedback === "tone";
+  const useToneFeedback = feedback === "tone";
   const [formError, setFormError] = useState("");
   const [formMessage, setFormMessage] = useState("");
   const [messageTone, setMessageTone] = useState<FormMessageTone>(
     FORM_MESSAGE_TONE.ERROR,
   );
-
-  const passwordMode = config.passwordVisibility ?? false;
-  const passwordFields = config.passwordFields ?? [];
 
   const [singlePasswordVisible, setSinglePasswordVisible] = useState(false);
   const [multiPasswordVisibility, setMultiPasswordVisibility] = useState<
@@ -88,15 +99,14 @@ export function useAuthForm<
   );
 
   const schema = useMemo(
-    () => config.createSchema(config.getSchemaMessages(t)),
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- locale is the only runtime input
-    [t],
+    () => createSchema(getSchemaMessages(t)),
+    [createSchema, getSchemaMessages, t],
   );
 
   const methods = useForm<TValues>({
     resolver: zodResolver(schema as never) as Resolver<TValues>,
     mode: "onChange",
-    defaultValues: config.defaultValues,
+    defaultValues,
   });
 
   const {
@@ -140,13 +150,13 @@ export function useAuthForm<
         shouldValidate: true,
       });
 
-      if (config.clearFieldErrorsOnChange) {
+      if (clearFieldErrorsOnChange) {
         clearErrors(field);
       }
 
       clearFeedback();
     },
-    [setValue, clearErrors, config.clearFieldErrorsOnChange, clearFeedback],
+    [setValue, clearErrors, clearFieldErrorsOnChange, clearFeedback],
   );
 
   const togglePassword = useCallback(
@@ -166,24 +176,27 @@ export function useAuthForm<
     [passwordMode],
   );
 
+  const getPayload = (values: TValues): TPayload =>
+    (mapValues?.(values) ?? values) as TPayload;
+
+  const getFailureMessage = (response: TResult) =>
+    response.message || t(failedMessageKey);
+
+  const isRequestFailed = (response: TResult) =>
+    failedResponseAs === "throw"
+      ? !response.success
+      : response.success === false;
+
   const onSubmit = async (values: TValues) => {
     clearFeedback();
 
     try {
-      const payload = (
-        config.mapValues ? config.mapValues(values) : values
-      ) as TPayload;
-      const response = await mutateAsync(payload);
+      const response = await mutateAsync(getPayload(values));
 
-      const failed =
-        config.failedResponseAs === "throw"
-          ? !response.success
-          : response.success === false;
+      if (isRequestFailed(response)) {
+        const message = getFailureMessage(response);
 
-      if (failed) {
-        const message = response.message || t(config.failedMessageKey);
-
-        if (config.failedResponseAs === "throw") {
+        if (failedResponseAs === "throw") {
           throw new Error(message);
         }
 
@@ -191,10 +204,10 @@ export function useAuthForm<
         return;
       }
 
-      await config.onSuccess(response, { router, reset, setSuccessFeedback });
+      await onSuccess(response, { router, reset, setSuccessFeedback });
     } catch (error) {
       applyFieldErrors(error, setError);
-      setFeedbackError(getErrorMessage(error, config.failedMessageKey));
+      setFeedbackError(getErrorMessage(error, failedMessageKey));
     }
   };
 
@@ -219,5 +232,3 @@ export function useAuthForm<
     handleSubmit: handleSubmit(onSubmit as SubmitHandler<TValues>),
   };
 }
-
-export { useAuthForm as useBaseAuthForm };
