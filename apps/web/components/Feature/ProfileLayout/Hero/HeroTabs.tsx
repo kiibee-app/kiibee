@@ -8,20 +8,7 @@ import {
   TabsWrapper,
   TabsWrapperCentered,
 } from "@/components/Feature/ProfileLayout/Hero/styles";
-import type { useTabbedHeroState } from "@/hooks/useTabbedHeroState";
-
-type HeroTabsProps = Pick<
-  ReturnType<typeof useTabbedHeroState>,
-  | "profileTabs"
-  | "activeTab"
-  | "searchOpen"
-  | "searchValue"
-  | "handleTabChange"
-  | "setSearchOpen"
-  | "setSearchValue"
-> & {
-  centered?: boolean;
-};
+import type { HeroTabsProps } from "@/utils/profile";
 
 export default function HeroTabs({
   centered = false,

@@ -1,5 +1,19 @@
 import type { ReactNode } from "react";
+import type { TabbedHeroState } from "@/hooks/useTabbedHeroState";
 import type { NavItem } from "@/utils/navItems";
+
+export type HeroTabsProps = Pick<
+  TabbedHeroState,
+  | "profileTabs"
+  | "activeTab"
+  | "searchOpen"
+  | "searchValue"
+  | "handleTabChange"
+  | "setSearchOpen"
+  | "setSearchValue"
+> & {
+  centered?: boolean;
+};
 export type NavBarItem = NavItem & {
   label?: ReactNode;
   onClick?: () => void;

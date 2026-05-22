@@ -41,3 +41,5 @@ export function useTabbedHeroState() {
     setSearchValue,
   };
 }
+
+export type TabbedHeroState = ReturnType<typeof useTabbedHeroState>;

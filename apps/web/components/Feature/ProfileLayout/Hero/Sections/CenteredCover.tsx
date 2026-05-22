@@ -19,7 +19,6 @@ import {
   UploadsText,
 } from "@/components/Feature/ProfileLayout/Hero/styles";
 
-/** Layout 3: full-width cover, centered avatar and copy */
 export default function CenteredCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
