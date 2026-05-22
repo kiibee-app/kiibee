@@ -25,3 +25,11 @@ export const IconButton = styled.button<{ $danger?: boolean }>`
     fill-opacity: ${({ $danger }) => ($danger ? 1 : 0.6)};
   }
 `;
+
+export const ModalContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  text-align: left;
+`;

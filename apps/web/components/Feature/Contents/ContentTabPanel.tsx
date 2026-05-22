@@ -56,7 +56,7 @@ import {
 } from "@/utils/Constants";
 import { useQueryClient } from "@tanstack/react-query";
 import MetaData from "./MetaData";
-import MoveContentModal from "./MoveContent/MoveContentModal";
+import MoveContentModal from "./Collections/MoveContentModal";
 
 type Props = {
   activeTab: ContentTab;

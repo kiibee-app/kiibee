@@ -21,6 +21,8 @@ export const ModalContainer = styled.div<{
   $align?: ModalAlign;
 }>`
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: ${({ $width }) => $width || MODAL_WIDTHS.sm};
   min-height: ${({ $height }) => $height || "auto"};
@@ -64,6 +66,7 @@ export const ButtonGroup = styled.div<{
   $align?: ModalAlign;
 }>`
   display: flex;
+  margin-top: auto;
   flex-direction: ${({ $row }) => ($row ? "row" : "column")};
   gap: 12px;
   justify-content: ${({ $align }) => $align || MODAL_ALIGN.CENTER};

@@ -6,7 +6,8 @@ import DropdownField from "@/components/UI/InputFields/DropdownField";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
 import { CollectionRow } from "@/types/collectionsType";
-import { ModalContentWrapper } from "./MoveContentModal.styles";
+import { ModalContentWrapper } from "./styles";
+import { MODAL_ALIGN } from "@/utils/ui";
 
 type MoveContentModalProps = {
   showMoveModal: boolean;
@@ -59,20 +60,24 @@ export default function MoveContentModal({
     <>
       <GenericModal
         visible={showMoveModal}
-        title="Move content"
-        cancelLabel="Cancel"
-        confirmLabel="Save"
+        title={t("contents.moveContentModal.title")}
+        cancelLabel={t("contents.actions.cancel")}
+        confirmLabel={t("contents.actions.save")}
         onCancel={handleConfirmClose}
         onClose={handleConfirmClose}
         onConfirm={handleConfirm}
-        size="sm"
+        size="md"
         spacing="md"
+        height="450px"
         buttonRow
+        buttonAlign={MODAL_ALIGN.END}
       >
         <ModalContentWrapper>
-          <MonoText $use="Body_SemiBold">Collections</MonoText>
+          <MonoText $use="Body_SemiBold">
+            {t("contents.moveContentModal.collectionLabel")}
+          </MonoText>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            Select the collection you want to move content to
+            {t("contents.moveContentModal.description")}
           </MonoText>
           <DropdownField
             options={collections.map((c) => ({ label: c.name, value: c.id }))}
@@ -85,9 +90,11 @@ export default function MoveContentModal({
       <GenericModal
         visible={showSuccessModal}
         icon={<SuccessModalIcon />}
-        title="Moved successfully"
-        message={`Content moved to ${selectedCollectionName} successfully.`}
-        confirmLabel="Done"
+        title={t("contents.moveContentModal.successTitle")}
+        message={t("contents.moveContentModal.successMessage", {
+          collectionName: selectedCollectionName,
+        })}
+        confirmLabel={t("contents.deleteSuccessModal.done")}
         onClose={handleSuccessClose}
         onConfirm={handleSuccessClose}
         showCloseButton={false}
