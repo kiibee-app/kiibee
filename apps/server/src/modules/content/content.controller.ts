@@ -62,7 +62,8 @@ export class ContentController {
   @Put('update/:contentId')
   async updateContent(@Req() req: any, @Body() body: UpdateContentDto) {
     const contentId = req.params.contentId;
-    return this.contentService.updateContentService(contentId, body);
+    const creatorId = req.user.userId;
+    return this.contentService.updateContentService(contentId, body, creatorId);
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)

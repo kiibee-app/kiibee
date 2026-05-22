@@ -32,7 +32,6 @@ export const ModalContainer = styled.div<{
     $padding ||
     ($align === MODAL_ALIGN.START ? MODAL_PADDINGS.start : MODAL_PADDINGS.lg)};
   text-align: ${({ $align }) => $align || MODAL_ALIGN.CENTER};
-  gap: 20px;
 
   ${media.tablet} {
     width: 90%;

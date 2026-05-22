@@ -15,7 +15,7 @@ type MoveContentModalProps = {
   showSuccessModal: boolean;
   setShowSuccessModal: React.Dispatch<React.SetStateAction<boolean>>;
   collections: CollectionRow[];
-  onConfirmMove: (collectionId: string) => void;
+  onConfirmMove: (collectionId: string) => void | Promise<void>;
   onConfirmClose?: () => void;
   onSuccessClose?: () => void;
 };
@@ -32,6 +32,7 @@ export default function MoveContentModal({
 }: MoveContentModalProps) {
   const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<string>("");
+  const [isMoving, setIsMoving] = useState(false);
 
   const handleConfirmClose = () => {
     setShowMoveModal(false);
@@ -43,11 +44,18 @@ export default function MoveContentModal({
     onSuccessClose?.();
   };
 
-  const handleConfirm = () => {
-    if (!selectedId && collections.length > 0) {
-      onConfirmMove(collections[0].id);
-    } else {
-      onConfirmMove(selectedId);
+  const handleConfirm = async () => {
+    const collectionId =
+      !selectedId && collections.length > 0 ? collections[0].id : selectedId;
+    if (!collectionId) return;
+
+    try {
+      setIsMoving(true);
+      await onConfirmMove(collectionId);
+    } catch (error) {
+      console.error("Failed to move content", error);
+    } finally {
+      setIsMoving(false);
     }
   };
 
@@ -71,6 +79,8 @@ export default function MoveContentModal({
         height="450px"
         buttonRow
         buttonAlign={MODAL_ALIGN.END}
+        closeOnConfirm={false}
+        confirmDisabled={isMoving}
       >
         <ModalContentWrapper>
           <MonoText $use="Body_SemiBold">

@@ -40,6 +40,14 @@ export class CreateContentDto {
 export class UpdateContentDto {
   @IsOptional()
   @IsString()
+  collectionId?: string;
+
+  @IsOptional()
+  @IsString()
+  sourceCollectionId?: string;
+
+  @IsOptional()
+  @IsString()
   contentUrl?: string;
 
   @IsOptional()
