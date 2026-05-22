@@ -5,8 +5,10 @@ import {
   Post,
   Query,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { MediaService } from './media.service';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 type FileType = 'documents' | 'audio' | 'ebooks';
 
@@ -78,6 +80,14 @@ export class MediaController {
   async getSignedUrl(@Query('key') key: string) {
     return {
       url: await this.mediaService.fileUpload.getSignedUrl(key),
+    };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('signed-url')
+  async getMediaSignedUrl(@Query('key') key: string) {
+    return {
+      url: await this.mediaService.getMediaSignedUrl(key),
     };
   }
 }
