@@ -49,26 +49,9 @@ export default function ScrollReveal({
         !parentSection.hasAttribute("data-section-fade-initialized")
       ) {
         parentSection.setAttribute("data-section-fade-initialized", "true");
-
-        gsap.fromTo(
-          parentSection,
-          {
-            autoAlpha: 0,
-            y: 24,
-          },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 1.3,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: parentSection,
-              start: "top 86%",
-              toggleActions: "play none none reverse",
-              invalidateOnRefresh: true,
-            },
-          },
-        );
+        // We only mark it as initialized, but do NOT animate the section itself.
+        // Animating the section causes the white gap issue because the next section's
+        // background is invisible until triggered.
       }
 
       gsap.fromTo(
