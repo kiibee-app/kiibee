@@ -37,6 +37,7 @@ import MetaData from "./MetaData";
 import MoveContentModal from "./Collections/MoveContentModal";
 import { useCouponActions } from "@/hooks/contents/useCouponActions";
 import { useContentMoveActions } from "@/hooks/contents/useContentMoveActions";
+import Payment from "./Payment";
 
 type Props = {
   activeTab: ContentTab;
@@ -204,5 +205,6 @@ export default function ContentTabPanel({
     );
   }
   if (activeTab === ADD_CONTENT_TABS.METADATA) return <MetaData />;
+  if (activeTab === ADD_CONTENT_TABS.PAYMENT) return <Payment />;
   return <PlaceholderLine>{renderPlaceholder()}</PlaceholderLine>;
 }

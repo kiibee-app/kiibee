@@ -84,6 +84,20 @@ export const ADD_CONTENT_TABS = {
   PAYMENT: "payment",
 } as const;
 
+export const PAYMENT_ADMISSION_VALUE = "payment" as const;
+export const PAYMENT_DEFAULT_DOWNLOAD_LIMIT = "5" as const;
+export const PAYMENT_UNLIMITED_DOWNLOAD_LIMIT = "unlimited" as const;
+export const PAYMENT_DOWNLOAD_LIMIT_VALUES = [
+  "1",
+  "3",
+  "5",
+  "10",
+  PAYMENT_UNLIMITED_DOWNLOAD_LIMIT,
+] as const;
+
+export type PaymentDownloadLimitValue =
+  (typeof PAYMENT_DOWNLOAD_LIMIT_VALUES)[number];
+
 export type AddContentTab =
   (typeof ADD_CONTENT_TABS)[keyof typeof ADD_CONTENT_TABS];
 

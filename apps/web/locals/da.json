@@ -1553,6 +1553,34 @@
     "couponSearch": {
       "title": "Søg i kupon titel",
       "codes": "Søg efter koder"
+    },
+    "payment": {
+      "admission": {
+        "title": "Adgangskrav",
+        "description": "Overvej hvilken type adgang dit [contentType] skal have",
+        "options": {
+          "payment": "Betaling"
+        }
+      },
+      "rental": {
+        "title": "Videoleje (Streaming)",
+        "description": "Når en video lejes, vil den være tilgængelig i 48 timer."
+      },
+      "purchase": {
+        "title": "Videokøb/download",
+        "description": "Købte videoer vil være tilgængelige i brugerens profil."
+      },
+      "downloadLimit": {
+        "title": "Maksimal downloadgrænse",
+        "description": "Angiv hvor mange gange en bruger kan downloade dette indhold (f.eks. maks. 5 downloads pr. køb).",
+        "options": {
+          "unlimited": "Ubegrænset"
+        }
+      },
+      "common": {
+        "enterAmount": "Indtast beløb",
+        "feeNote": "Minimum DKK 8, da Kiibee opkræver DKK 5 i transaktionsgebyr"
+      }
     }
   },
   "resetPassword": {
