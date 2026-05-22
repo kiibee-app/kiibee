@@ -18,40 +18,31 @@ import {
   Heading,
   Subtitle,
   CTAButton,
+  getRevealCardStyle,
+  callToActionCardStyle,
 } from "./styles";
 import { desktopCards, mobileCards } from "@/utils/cards";
 import { MonoText } from "@/components/UI/Monotext";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
-import { resolveImageUrl, type ImageSource } from "@/utils/Constants";
+import { resolveImageUrl } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
-
-type CTAImageCard = {
-  src: ImageSource;
-  left?: number;
-  top?: number;
-  width?: number;
-  height?: number;
-};
+import { LANDING_REVEAL } from "@/utils/landingReveal";
+import { type CtaImageCard } from "@/types/landingCallToAction";
+import { LANDING_REVEAL_VARIANTS } from "@/utils/landingConfig";
 
 export default function CallToAction() {
   const { t } = useTranslation();
 
-  const renderCard = (card: CTAImageCard, index: number, mobile = false) => (
+  const renderCard = (card: CtaImageCard, index: number, mobile = false) => (
     <ImageReveal
       key={`reveal-${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
-      variant="fade-scale"
-      delay={index * 0.08}
-      duration={1.2}
-      style={{
-        position: !mobile ? "absolute" : undefined,
-        left: !mobile && card.left != null ? `${card.left}%` : undefined,
-        top: !mobile && card.top != null ? `${card.top}%` : undefined,
-        width: !mobile && card.width != null ? `${card.width}%` : undefined,
-        height: !mobile && card.height != null ? `${card.height}%` : undefined,
-      }}
+      variant={LANDING_REVEAL_VARIANTS.fadeScale}
+      delay={index * LANDING_REVEAL.ctaCardStaggerDelay}
+      duration={LANDING_REVEAL.revealDuration}
+      style={getRevealCardStyle(card, mobile)}
     >
       <Card
         key={`${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
@@ -60,13 +51,7 @@ export default function CallToAction() {
         $width={!mobile ? card.width : undefined}
         $height={!mobile ? card.height : undefined}
         $mobileOnly={mobile}
-        style={{
-          position: "relative",
-          left: "auto",
-          top: "auto",
-          width: "100%",
-          height: "100%",
-        }}
+        style={callToActionCardStyle}
       >
         <CardImage
           src={resolveImageUrl(card.src)}
@@ -105,7 +90,7 @@ export default function CallToAction() {
             </MonoText>
           </Heading>
         </ScrollReveal>
-        <ScrollReveal delay={0.1}>
+        <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
           <Subtitle>
             <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
               {t("callToAction.subtitle")}

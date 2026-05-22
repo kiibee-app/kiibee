@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
@@ -167,3 +168,14 @@ export const SecondaryCtaButton = styled(GenericButton).attrs({
 export const IconFrame = styled.span`
   display: inline-flex;
 `;
+
+export const discoverCardRevealStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
+
+export const discoverCardImageStyle: CSSProperties = {
+  objectFit: "cover",
+};

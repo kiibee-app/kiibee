@@ -2,24 +2,31 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Section, Inner, Content, Title, Background, Subtitle } from "./styles";
+import {
+  Section,
+  Inner,
+  Content,
+  Title,
+  Background,
+  Subtitle,
+  valueStatementImageStyle,
+  valueStatementRevealStyle,
+} from "./styles";
 import Image from "@/components/UI/SafeImage";
 import valueBg from "@/assets/images/cta-buttom.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import { ImageSource, VARIANT } from "@/utils/Constants";
+import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
-
-type Props = {
-  bgImage?: ImageSource;
-  title?: string;
-  subtitle?: string;
-  ctaText?: string;
-  ctaHref?: string;
-};
+import { type ValueStatementProps } from "@/types/valueStatement";
+import { LANDING_REVEAL } from "@/utils/landingReveal";
+import {
+  LANDING_IMAGE_FLAGS,
+  LANDING_REVEAL_VARIANTS,
+} from "@/utils/landingConfig";
 
 export default function ValueStatement({
   bgImage,
@@ -27,28 +34,23 @@ export default function ValueStatement({
   subtitle,
   ctaText,
   ctaHref,
-}: Props) {
+}: ValueStatementProps) {
   const { t } = useTranslation();
 
   return (
     <Section>
       <Background>
         <ImageReveal
-          variant="fade-scale"
-          duration={1.6}
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-          }}
+          variant={LANDING_REVEAL_VARIANTS.fadeScale}
+          duration={LANDING_REVEAL.extraLongRevealDuration}
+          style={valueStatementRevealStyle}
         >
           <Image
             src={bgImage || valueBg}
             alt={t("value.bgAlt")}
-            fill
-            priority
-            style={{ objectFit: "cover", objectPosition: "center" }}
+            fill={LANDING_IMAGE_FLAGS.fill}
+            priority={LANDING_IMAGE_FLAGS.priority}
+            style={valueStatementImageStyle}
           />
         </ImageReveal>
       </Background>
@@ -62,14 +64,14 @@ export default function ValueStatement({
               </MonoText>
             </Title>
           </ScrollReveal>
-          <ScrollReveal delay={0.1}>
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
             <Subtitle>
               <MonoText $use="H5_Regular" color={COLORS.primary.WHITE}>
                 {subtitle || t("value.subtitle")}
               </MonoText>
             </Subtitle>
           </ScrollReveal>
-          <ScrollReveal delay={0.2}>
+          <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>
             <GenericButton
               asAnchor
               href={ctaHref ?? PATHS.AUTH_SIGNUP}

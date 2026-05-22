@@ -11,6 +11,8 @@ import {
   Subtitle,
   CTAWrap,
   Background,
+  heroImageStyle,
+  heroRevealStyle,
 } from "./styles";
 import Image from "@/components/UI/SafeImage";
 import hero from "@/assets/images/hero-background.webp";
@@ -21,6 +23,12 @@ import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
+import { LANDING_REVEAL } from "@/utils/landingReveal";
+import { IMAGE_SIZES } from "@/utils/imageSizes";
+import {
+  LANDING_IMAGE_FLAGS,
+  LANDING_REVEAL_VARIANTS,
+} from "@/utils/landingConfig";
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -28,25 +36,20 @@ export default function HeroSection() {
     <Hero>
       <Background>
         <ImageReveal
-          variant="ken-burns"
+          variant={LANDING_REVEAL_VARIANTS.kenBurns}
           delay={0}
-          duration={1.8}
-          start="top 100%"
+          duration={LANDING_REVEAL.heroKenBurnsDuration}
+          start={LANDING_REVEAL.heroStart}
           noClip
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-          }}
+          style={heroRevealStyle}
         >
           <Image
             src={hero}
             alt={t(HERO.heroAlt)}
-            fill
-            priority
-            sizes="100vw"
-            style={{ objectFit: "cover", objectPosition: "center top" }}
+            fill={LANDING_IMAGE_FLAGS.fill}
+            priority={LANDING_IMAGE_FLAGS.priority}
+            sizes={IMAGE_SIZES.fullViewport}
+            style={heroImageStyle}
           />
         </ImageReveal>
       </Background>
@@ -60,7 +63,7 @@ export default function HeroSection() {
             </Title>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.1}>
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
             <Subtitle>
               <MonoText $use="H5_Regular" color={COLORS.primary.WHITE_90}>
                 {t(HERO.subtitle)}
@@ -68,7 +71,7 @@ export default function HeroSection() {
             </Subtitle>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
+          <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>
             <CTAWrap>
               <GenericButton
                 asAnchor

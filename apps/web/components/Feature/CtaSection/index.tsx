@@ -5,11 +5,21 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import Image from "@/components/UI/SafeImage";
 import GenericButton from "@/components/UI/GenericButton";
-import { Section, Background, Inner, Content, Title, Subtitle } from "./styles";
+import {
+  Section,
+  Background,
+  Inner,
+  Content,
+  Title,
+  Subtitle,
+  ctaSectionBackgroundImageStyle,
+} from "./styles";
 import type { CtaSectionProps } from "@/types/ctaSection";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
+import { LANDING_IMAGE_FLAGS } from "@/utils/landingConfig";
+import { LANDING_REVEAL } from "@/utils/landingReveal";
 
 export default function CtaSection({
   bgImage,
@@ -29,9 +39,9 @@ export default function CtaSection({
           <Image
             src={bgImage}
             alt={t("ctaSection.bgAlt")}
-            fill
-            priority
-            style={{ objectFit: "cover", objectPosition: "center" }}
+            fill={LANDING_IMAGE_FLAGS.fill}
+            priority={LANDING_IMAGE_FLAGS.priority}
+            style={ctaSectionBackgroundImageStyle}
           />
         )}
       </Background>
@@ -43,14 +53,20 @@ export default function CtaSection({
           </ScrollReveal>
 
           {subtitle && (
-            <ScrollReveal delay={0.1}>
+            <ScrollReveal delay={LANDING_REVEAL.ctaSubtitleDelay}>
               <Subtitle>{subtitle}</Subtitle>
             </ScrollReveal>
           )}
 
           {subtitleLines &&
             subtitleLines.map((line, index) => (
-              <ScrollReveal key={index} delay={0.1 + index * 0.1}>
+              <ScrollReveal
+                key={index}
+                delay={
+                  LANDING_REVEAL.ctaSubtitleDelay +
+                  index * LANDING_REVEAL.ctaSubtitleStepDelay
+                }
+              >
                 <Subtitle>{line}</Subtitle>
               </ScrollReveal>
             ))}

@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import SafeImage from "@/components/UI/SafeImage";
+import { type CtaImageCard } from "@/types/landingCallToAction";
 
 export const Section = styled.section`
   position: relative;
@@ -230,3 +232,24 @@ export const CTAButton = styled(GenericButton).attrs({
   margin-top: 0;
   border-radius: 8px;
 `;
+
+export function getRevealCardStyle(
+  card: CtaImageCard,
+  mobile: boolean,
+): CSSProperties {
+  return {
+    position: !mobile ? "absolute" : undefined,
+    left: !mobile && card.left != null ? `${card.left}%` : undefined,
+    top: !mobile && card.top != null ? `${card.top}%` : undefined,
+    width: !mobile && card.width != null ? `${card.width}%` : undefined,
+    height: !mobile && card.height != null ? `${card.height}%` : undefined,
+  };
+}
+
+export const callToActionCardStyle: CSSProperties = {
+  position: "relative",
+  left: "auto",
+  top: "auto",
+  width: "100%",
+  height: "100%",
+};

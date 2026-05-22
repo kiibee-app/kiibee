@@ -1,39 +1,26 @@
 "use client";
 
-import { useRef, HTMLAttributes } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  type ImageRevealProps,
+  type ImageRevealVariant,
+} from "@/types/imageReveal";
+import { IMAGE_REVEAL_DEFAULTS } from "@/utils/imageReveal";
+import { getImageRevealContainerStyle } from "./styles";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
-export type ImageRevealVariant =
-  | "fade-scale"
-  | "slide-left"
-  | "slide-right"
-  | "slide-up"
-  | "ken-burns"
-  | "clip-reveal";
-
-interface ImageRevealProps extends HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  variant?: ImageRevealVariant;
-  delay?: number;
-  duration?: number;
-  /** ScrollTrigger start offset, e.g. "top 90%" */
-  start?: string;
-  /** Disable the built-in overflow: hidden (e.g. when parent already clips) */
-  noClip?: boolean;
-}
-
 export default function ImageReveal({
   children,
-  variant = "fade-scale",
-  delay = 0,
-  duration = 1.4,
-  start = "top 88%",
+  variant = IMAGE_REVEAL_DEFAULTS.variant as ImageRevealVariant,
+  delay = IMAGE_REVEAL_DEFAULTS.delay,
+  duration = IMAGE_REVEAL_DEFAULTS.duration,
+  start = IMAGE_REVEAL_DEFAULTS.start,
   className = "",
   style,
   noClip = false,
@@ -57,7 +44,7 @@ export default function ImageReveal({
         const trigger: ScrollTrigger.Vars = {
           trigger: container.current,
           start,
-          toggleActions: "play none none reverse",
+          toggleActions: IMAGE_REVEAL_DEFAULTS.toggleActions,
           invalidateOnRefresh: true,
         };
 
@@ -65,7 +52,7 @@ export default function ImageReveal({
           // Subtle zoom-out while fading in — overflow must be clipped by parent
           gsap.fromTo(
             container.current,
-            { autoAlpha: 0, scale: 1.06 },
+            { autoAlpha: 0, scale: IMAGE_REVEAL_DEFAULTS.kenBurnsScaleFrom },
             {
               autoAlpha: 1,
               scale: 1,
@@ -134,7 +121,7 @@ export default function ImageReveal({
           // fade-scale (default)
           gsap.fromTo(
             container.current,
-            { autoAlpha: 0, scale: 0.96 },
+            { autoAlpha: 0, scale: IMAGE_REVEAL_DEFAULTS.scaleDefaultFrom },
             {
               autoAlpha: 1,
               scale: 1,
@@ -154,14 +141,7 @@ export default function ImageReveal({
     <div
       ref={container}
       className={className}
-      style={{
-        visibility: variant === "clip-reveal" ? "visible" : "hidden",
-        opacity: variant === "clip-reveal" ? 1 : 0,
-        willChange: "opacity, transform, clip-path",
-        // Always clip to prevent translate/scale from causing scrollbar
-        overflow: noClip ? undefined : "hidden",
-        ...style,
-      }}
+      style={getImageRevealContainerStyle(noClip, variant, style)}
       {...props}
     >
       {children}

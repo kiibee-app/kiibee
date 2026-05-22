@@ -4,13 +4,11 @@ import Lenis from "lenis";
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { type SmoothScrollProviderProps } from "@/types/smoothScrollProvider";
+import { SMOOTH_SCROLL, SMOOTH_SCROLL_EVENTS } from "@/utils/smoothScroll";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
-}
-
-interface SmoothScrollProviderProps {
-  children: React.ReactNode;
 }
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
@@ -19,10 +17,10 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       autoRaf: false,
       smoothWheel: true,
       syncTouch: true,
-      lerp: 0.08,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.0,
-      easing: (t: number) => 1 - Math.pow(1 - t, 5),
+      lerp: SMOOTH_SCROLL.lerp,
+      wheelMultiplier: SMOOTH_SCROLL.wheelMultiplier,
+      touchMultiplier: SMOOTH_SCROLL.touchMultiplier,
+      easing: (t: number) => 1 - Math.pow(1 - t, SMOOTH_SCROLL.easingPower),
       overscroll: false,
     });
 
@@ -35,7 +33,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     ScrollTrigger.addEventListener("refresh", handleScrollTriggerRefresh);
 
     const updateLenis = (time: number) => {
-      lenis.raf(time * 1000);
+      lenis.raf(time * SMOOTH_SCROLL.gsapTimeMultiplier);
     };
     gsap.ticker.add(updateLenis);
     gsap.ticker.lagSmoothing(0);
@@ -83,12 +81,18 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       scheduleResize();
     };
 
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    window.addEventListener("load", handleWindowLoad);
-    window.addEventListener("pageshow", handlePageShow);
-    window.addEventListener("orientationchange", handleOrientationChange);
-    window.addEventListener("load", handleWindowResize);
-    window.addEventListener("resize", handleWindowResize);
+    document.addEventListener(
+      SMOOTH_SCROLL_EVENTS.visibilitychange,
+      handleVisibilityChange,
+    );
+    window.addEventListener(SMOOTH_SCROLL_EVENTS.load, handleWindowLoad);
+    window.addEventListener(SMOOTH_SCROLL_EVENTS.pageshow, handlePageShow);
+    window.addEventListener(
+      SMOOTH_SCROLL_EVENTS.orientationchange,
+      handleOrientationChange,
+    );
+    window.addEventListener(SMOOTH_SCROLL_EVENTS.load, handleWindowResize);
+    window.addEventListener(SMOOTH_SCROLL_EVENTS.resize, handleWindowResize);
     document.fonts?.ready.then(() => {
       scheduleRefresh();
     });
@@ -101,12 +105,21 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
         cancelAnimationFrame(refreshRafId);
       }
       cancelAnimationFrame(initialRefreshRaf);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      window.removeEventListener("load", handleWindowLoad);
-      window.removeEventListener("pageshow", handlePageShow);
-      window.removeEventListener("orientationchange", handleOrientationChange);
-      window.removeEventListener("load", handleWindowResize);
-      window.removeEventListener("resize", handleWindowResize);
+      document.removeEventListener(
+        SMOOTH_SCROLL_EVENTS.visibilitychange,
+        handleVisibilityChange,
+      );
+      window.removeEventListener(SMOOTH_SCROLL_EVENTS.load, handleWindowLoad);
+      window.removeEventListener(SMOOTH_SCROLL_EVENTS.pageshow, handlePageShow);
+      window.removeEventListener(
+        SMOOTH_SCROLL_EVENTS.orientationchange,
+        handleOrientationChange,
+      );
+      window.removeEventListener(SMOOTH_SCROLL_EVENTS.load, handleWindowResize);
+      window.removeEventListener(
+        SMOOTH_SCROLL_EVENTS.resize,
+        handleWindowResize,
+      );
       ScrollTrigger.removeEventListener("refresh", handleScrollTriggerRefresh);
       gsap.ticker.remove(updateLenis);
       lenis.destroy();

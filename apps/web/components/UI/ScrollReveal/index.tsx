@@ -1,22 +1,20 @@
 "use client";
 
-import { useRef, HTMLAttributes } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { type ScrollRevealProps } from "@/types/scrollReveal";
+import { SCROLL_REVEAL } from "@/utils/scrollReveal";
+import { getScrollRevealContainerStyle } from "./styles";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 }
 
-interface ScrollRevealProps extends HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  delay?: number;
-}
-
 export default function ScrollReveal({
   children,
-  delay = 0,
+  delay = SCROLL_REVEAL.delay,
   className = "",
   style,
   ...props
@@ -48,7 +46,7 @@ export default function ScrollReveal({
             parentSection.querySelectorAll<HTMLElement>("[data-scroll-reveal]"),
           );
           const revealIndex = Math.max(0, siblings.indexOf(container.current));
-          sequenceDelay = revealIndex * 0.12;
+          sequenceDelay = revealIndex * SCROLL_REVEAL.sequenceDelayStep;
 
           if (!parentSection.dataset.sectionFadeInitialized) {
             parentSection.dataset.sectionFadeInitialized = "true";
@@ -59,20 +57,20 @@ export default function ScrollReveal({
           container.current,
           {
             autoAlpha: 0,
-            y: 30,
-            filter: "blur(12px)",
+            y: SCROLL_REVEAL.yFrom,
+            filter: SCROLL_REVEAL.blurFrom,
           },
           {
             autoAlpha: 1,
             y: 0,
-            filter: "blur(0px)",
-            duration: 1.2,
+            filter: SCROLL_REVEAL.blurTo,
+            duration: SCROLL_REVEAL.duration,
             delay: delay + sequenceDelay,
             ease: "power2.out",
             scrollTrigger: {
               trigger: container.current,
-              start: "top 85%",
-              toggleActions: "play none none reverse",
+              start: SCROLL_REVEAL.start,
+              toggleActions: SCROLL_REVEAL.toggleActions,
               invalidateOnRefresh: true,
             },
           },
@@ -87,12 +85,7 @@ export default function ScrollReveal({
       ref={container}
       data-scroll-reveal
       className={className}
-      style={{
-        visibility: "hidden",
-        opacity: 0,
-        willChange: "opacity, transform, filter",
-        ...style,
-      }}
+      style={getScrollRevealContainerStyle(style)}
       {...props}
     >
       {children}
