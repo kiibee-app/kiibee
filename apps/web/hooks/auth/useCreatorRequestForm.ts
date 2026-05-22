@@ -11,6 +11,11 @@ import { createCreatorRequestSchema } from "@/lib/validation/schema";
 import { PATHS } from "@/utils/path";
 import { useCreatorRequest } from "./useCreatorRequest";
 import { FORM_MESSAGE_TONE, FormMessageTone } from "@/utils/ui";
+import {
+  DIGITS_ONLY_CREATOR_FIELD_KEYS,
+  type DigitsOnlyCreatorFieldKey,
+} from "@/utils/authCreatorForm";
+import { sanitizeDigitsOnlyField } from "@/utils/numericInput";
 
 export type CreatorRequestValues = {
   firstName: string;
@@ -86,7 +91,18 @@ export function useCreatorRequestForm() {
     field: keyof CreatorRequestValues,
     value: string | boolean,
   ) => {
-    setValue(field, value as CreatorRequestValues[typeof field], {
+    let nextValue = value;
+    if (
+      typeof value === "string" &&
+      (DIGITS_ONLY_CREATOR_FIELD_KEYS as readonly string[]).includes(field)
+    ) {
+      nextValue = sanitizeDigitsOnlyField(
+        field as DigitsOnlyCreatorFieldKey,
+        value,
+      );
+    }
+
+    setValue(field, nextValue as CreatorRequestValues[typeof field], {
       shouldDirty: true,
       shouldValidate: true,
     });

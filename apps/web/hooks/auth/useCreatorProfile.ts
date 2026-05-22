@@ -38,6 +38,7 @@ import {
   type ChangePasswordResponse,
   type ForgotPwNotice,
 } from "@/utils/viewerProfile";
+import { sanitizeDigitsOnlyField } from "@/utils/numericInput";
 
 export const useCreatorProfile = () => {
   const { t } = useTranslation();
@@ -154,7 +155,12 @@ export const useCreatorProfile = () => {
 
   const onChange = useCallback(
     (key: keyof ProfileForm) => (value: string | string[]) => {
-      setForm((prev) => ({ ...prev, [key]: String(value) }));
+      const text = Array.isArray(value) ? value.join("") : String(value);
+      const nextValue =
+        key === "phone" || key === "cvr" || key === "postal"
+          ? sanitizeDigitsOnlyField(key === "postal" ? "postal" : key, text)
+          : text;
+      setForm((prev) => ({ ...prev, [key]: nextValue }));
     },
     [],
   );

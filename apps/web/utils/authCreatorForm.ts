@@ -1,4 +1,4 @@
-import { INPUT_TYPE, InputType } from "@/utils/ui";
+import { INPUT_TYPE, InputModeValue, InputType } from "@/utils/ui";
 
 export type CreatorFormValues = {
   firstName: string;
@@ -21,8 +21,18 @@ export type CreatorFieldConfig = {
   labelKey: string;
   required?: boolean;
   type?: InputType;
+  inputMode?: InputModeValue;
   placeholderKey?: string;
 };
+
+export const DIGITS_ONLY_CREATOR_FIELD_KEYS = [
+  "phone",
+  "cvr",
+  "postalCode",
+] as const;
+
+export type DigitsOnlyCreatorFieldKey =
+  (typeof DIGITS_ONLY_CREATOR_FIELD_KEYS)[number];
 
 export const INITIAL_CREATOR_FORM: CreatorFormValues = {
   firstName: "",
@@ -62,8 +72,16 @@ export const EMAIL_FIELD: CreatorFieldConfig = {
 };
 
 export const CONTACT_FIELDS: CreatorFieldConfig[] = [
-  { key: "phone", labelKey: "authCreator.form.phone", type: INPUT_TYPE.TEL },
-  { key: "cvr", labelKey: "authCreator.form.cvr" },
+  {
+    key: "phone",
+    labelKey: "authCreator.form.phone",
+    inputMode: "numeric",
+  },
+  {
+    key: "cvr",
+    labelKey: "authCreator.form.cvr",
+    inputMode: "numeric",
+  },
 ];
 
 export const ADDRESS_FIELDS: CreatorFieldConfig[] = [
@@ -73,6 +91,7 @@ export const ADDRESS_FIELDS: CreatorFieldConfig[] = [
     key: "postalCode",
     labelKey: "authCreator.form.postalCode",
     required: true,
+    inputMode: "numeric",
   },
 ];
 

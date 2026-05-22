@@ -7,6 +7,8 @@ import { CompanyKeys } from "@/utils/creatorProfile";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import { getCompanyFields } from "@/utils/creatorProfilefields";
 
+const NUMERIC_COMPANY_KEYS = new Set(["phone", "cvr", "postal"]);
+
 type CompanyProps = {
   form: Record<string, string>;
   onChange: (key: CompanyKeys) => (value: string | string[]) => void;
@@ -26,6 +28,9 @@ export default function CompanySection({ form, onChange, t }: CompanyProps) {
             placeholder={field.placeholder}
             value={form[field.key]}
             onChange={onChange(field.key)}
+            inputMode={
+              NUMERIC_COMPANY_KEYS.has(field.key) ? "numeric" : undefined
+            }
             labelFontStyle="Body_Regular"
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
             labelMarginTop={index !== 0 ? "16px" : undefined}
