@@ -81,6 +81,28 @@ export const Preview = styled.div`
   }
 `;
 
+export const PreviewVideo = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PreviewAudio = styled.audio`
+  width: min(760px, calc(100% - 48px));
+  position: absolute;
+  left: 50%;
+  bottom: 40%;
+  transform: translateX(-50%);
+`;
+
+export const PreviewDocument = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+`;
+
 export const HeroTag = styled.span`
   position: absolute;
   top: 1.25rem;

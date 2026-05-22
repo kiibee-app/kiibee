@@ -1,6 +1,5 @@
 import type {
   CollectionContentRow,
-  CollectionContentType,
   CollectionRow,
 } from "@/types/collectionsType";
 import type { SetStateAction } from "react";
@@ -8,13 +7,12 @@ import { formatDateUSShort } from "@/utils/formatDate";
 import {
   API_FIELD_KEYS,
   type CollectionContentVisibility,
-  CONTENT_TYPE_BY_API_VALUE,
-  DEFAULT_COLLECTION_CONTENT_TYPE,
   DEFAULT_COLLECTION_CONTENT_VISIBILITY,
   JAVASCRIPT_TYPE,
   RESPONSE_KEYS,
   VISIBILITY_BY_API_VALUE,
 } from "@/utils/collection";
+import { normalizeContentTypeValue } from "@/utils/content";
 
 type UnknownRecord = Record<string, unknown>;
 const EMPTY_ACTION = "";
@@ -43,6 +41,7 @@ export type CollectionContentsApiItem = {
   [API_FIELD_KEYS.ID]?: string | number;
   [API_FIELD_KEYS.NAME]?: string;
   [API_FIELD_KEYS.TITLE]?: string;
+  [API_FIELD_KEYS.DESCRIPTION]?: string;
   [API_FIELD_KEYS.VISIBILITY]?: string;
   [API_FIELD_KEYS.CONTENT_TYPE]?: string;
   [API_FIELD_KEYS.CONTENT_TYPE_NAME]?: string;
@@ -104,18 +103,6 @@ const getCollectionContentList = (
   ]);
 };
 
-const normalizeCollectionContentType = (
-  value?: string,
-): CollectionContentType => {
-  const normalized = value?.trim().toLowerCase().replace(/\s+/g, "-");
-
-  if (!normalized) return DEFAULT_COLLECTION_CONTENT_TYPE;
-
-  return (
-    CONTENT_TYPE_BY_API_VALUE[normalized] ?? DEFAULT_COLLECTION_CONTENT_TYPE
-  );
-};
-
 const normalizeCollectionContentVisibility = (
   value?: string,
 ): CollectionContentVisibility => {
@@ -156,11 +143,12 @@ export const getCollectionContentRows = (
     .map((item) => ({
       id: String(item[API_FIELD_KEYS.ID]),
       name: (item[API_FIELD_KEYS.TITLE] ?? item[API_FIELD_KEYS.NAME]) as string,
+      description: item[API_FIELD_KEYS.DESCRIPTION],
       visibility: normalizeCollectionContentVisibility(
         item[API_FIELD_KEYS.VISIBILITY],
       ),
       createdAt: formatDateUSShort(item[API_FIELD_KEYS.CREATED_AT]),
-      contentType: normalizeCollectionContentType(
+      contentType: normalizeContentTypeValue(
         item[API_FIELD_KEYS.CONTENT_TYPE] ??
           item[API_FIELD_KEYS.CONTENT_TYPE_NAME],
       ),

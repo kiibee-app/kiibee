@@ -33,6 +33,9 @@ import {
   MetaSection,
   MetaValueText,
   Preview,
+  PreviewAudio,
+  PreviewDocument,
+  PreviewVideo,
   ShareButton,
   ShareText,
   StatusBadge,
@@ -42,6 +45,37 @@ import {
   TrailerText,
 } from "./styles";
 import { t } from "i18next";
+import { isRemoteImageSource } from "@/utils/media";
+import { FORMAT_TYPE } from "@/utils/types";
+
+function SingleContentPreview({ hero }: SingleContentHeroSectionProps) {
+  if (hero.media?.src) {
+    if (hero.media.type === FORMAT_TYPE.VIDEO) {
+      return <PreviewVideo src={hero.media.src} controls playsInline />;
+    }
+
+    if (hero.media.type === FORMAT_TYPE.AUDIO) {
+      return <PreviewAudio src={hero.media.src} controls />;
+    }
+
+    if (
+      hero.media.type === FORMAT_TYPE.PDF ||
+      hero.media.type === FORMAT_TYPE.WEB
+    ) {
+      return <PreviewDocument src={hero.media.src} title={hero.media.title} />;
+    }
+  }
+
+  return (
+    <Image
+      src={hero.image}
+      alt={hero.imageAlt}
+      fill
+      priority
+      unoptimized={isRemoteImageSource(hero.image)}
+    />
+  );
+}
 
 export function SingleContentTopBar({
   showBack,
@@ -78,7 +112,7 @@ export function SingleContentHero({ hero }: SingleContentHeroSectionProps) {
   return (
     <Hero>
       <Preview>
-        <Image src={hero.image} alt={hero.imageAlt} fill priority />
+        <SingleContentPreview hero={hero} />
       </Preview>
 
       {hero.categoryLabel ? (
