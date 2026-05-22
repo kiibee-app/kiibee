@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { INPUT_TYPE } from "@/utils/ui";
 import type {
   NavTextTone,
   UseExploreNavToneResult,
@@ -17,14 +16,13 @@ export function useExploreNavTone(
 
   useEffect(() => {
     const updateNavTone = () => {
-      const heroBottom = heroRef.current?.getBoundingClientRect().bottom;
-      const trendingTop = trendingRef.current?.getBoundingClientRect().top;
+      const heroBottom =
+        heroRef.current?.getBoundingClientRect().bottom ?? Number.NEGATIVE_INFINITY;
+      const trendingTop =
+        trendingRef.current?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
 
-      const isOverHero =
-        typeof heroBottom === INPUT_TYPE.NUMBER && heroBottom > headerTriggerY;
-      const isOverTrending =
-        typeof trendingTop === INPUT_TYPE.NUMBER &&
-        trendingTop <= headerTriggerY;
+      const isOverHero = heroBottom > headerTriggerY;
+      const isOverTrending = trendingTop <= headerTriggerY;
 
       if (isOverHero) {
         setNavTextTone(NAV_TEXT_TONE.LIGHT);
