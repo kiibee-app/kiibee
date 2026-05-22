@@ -26,6 +26,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import { POINTER_DOWN, VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
+import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
 
 export default function NavBar({
   position = "fixed",
@@ -42,6 +43,9 @@ export default function NavBar({
   navAfter,
 }: NavBarProps) {
   const { t } = useTranslation();
+  const dashboardPath = useSessionDashboardPath();
+  const loginButtonHref = dashboardPath ?? PATHS.AUTH_LOGIN;
+  const loginButtonLabel = dashboardPath ? t(NAV.dashboard) : t(NAV.login);
   const renderItemLabel = (item: NavBarItem) => item.label ?? t(item.key);
   const [active, setActive] = React.useState<string | null>(null);
   const [pinned, setPinned] = React.useState<string | null>(null);
@@ -209,10 +213,10 @@ export default function NavBar({
         <Actions>
           <GenericButton
             asAnchor
-            href={PATHS.AUTH_LOGIN}
+            href={loginButtonHref}
             variant={VARIANT.SECONDARY}
           >
-            {t(NAV.login)}
+            {loginButtonLabel}
           </GenericButton>
           <GenericButton
             asAnchor

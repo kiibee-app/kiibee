@@ -23,11 +23,13 @@ type AuthSessionPayload = {
   accessToken?: string;
   refreshToken?: string;
   token?: string;
+  role?: string;
   user?: unknown;
   data?: {
     accessToken?: string;
     refreshToken?: string;
     token?: string;
+    role?: string;
     user?: unknown;
   };
 };
@@ -53,6 +55,38 @@ const getCookie = (name: string) => {
     return value;
   }
 };
+
+const getJsonValue = (value: string | null) => {
+  if (!value) return null;
+
+  try {
+    return JSON.parse(value) as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+};
+
+const decodeJwtPayload = (token: string | null) => {
+  if (!token) return null;
+
+  const payload = token.split(".")[1];
+  if (!payload) return null;
+
+  try {
+    const normalizedPayload = payload.replace(/-/g, "+").replace(/_/g, "/");
+    const paddedPayload = normalizedPayload.padEnd(
+      Math.ceil(normalizedPayload.length / 4) * 4,
+      "=",
+    );
+
+    return JSON.parse(window.atob(paddedPayload)) as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+};
+
+const toRole = (value: unknown) =>
+  typeof value === "string" && value.trim() ? value.trim() : null;
 
 const getCookieAttributes = (maxAgeSeconds: number) => {
   const expires = new Date(Date.now() + maxAgeSeconds * 1000).toUTCString();
@@ -102,6 +136,38 @@ const getRemainingSessionMaxAgeSeconds = () => {
   return Math.max(0, Math.ceil((expiresAt - Date.now()) / 1000));
 };
 
+const getStoredRole = () => {
+  const storedRole = toRole(getCookie(AUTH_STORAGE_KEYS.role));
+  if (storedRole) return storedRole;
+
+  const userRole = toRole(
+    getJsonValue(getCookie(AUTH_STORAGE_KEYS.user))?.role,
+  );
+  if (userRole) return userRole;
+
+  return toRole(
+    decodeJwtPayload(getCookie(AUTH_STORAGE_KEYS.accessToken))?.role,
+  );
+};
+
+const getSessionRole = (payload: AuthSessionPayload) => {
+  const user =
+    payload.user && typeof payload.user === "object"
+      ? (payload.user as Record<string, unknown>)
+      : null;
+  const dataUser =
+    payload.data?.user && typeof payload.data.user === "object"
+      ? (payload.data.user as Record<string, unknown>)
+      : null;
+
+  return (
+    toRole(payload.role) ??
+    toRole(payload.data?.role) ??
+    toRole(user?.role) ??
+    toRole(dataUser?.role)
+  );
+};
+
 const clearSession = () => {
   if (!isBrowser) return;
 
@@ -132,12 +198,10 @@ export const authStorage = {
     return getSessionExpiresAt();
   },
   getUser: () => {
-    const userStr = getCookie(AUTH_STORAGE_KEYS.user);
-    try {
-      return userStr ? JSON.parse(userStr) : null;
-    } catch {
-      return null;
-    }
+    return getJsonValue(getCookie(AUTH_STORAGE_KEYS.user));
+  },
+  getRole: () => {
+    return getStoredRole();
   },
   setSession: (payload: AuthSessionPayload, options?: AuthSessionOptions) => {
     if (!isBrowser) return null;
@@ -161,6 +225,7 @@ export const authStorage = {
       payload.data?.token;
     const refreshToken = payload.refreshToken ?? payload.data?.refreshToken;
     const user = payload.user ?? payload.data?.user;
+    const role = getSessionRole(payload);
 
     if (accessToken) {
       setCookie(AUTH_STORAGE_KEYS.accessToken, accessToken, maxAgeSeconds);
@@ -173,6 +238,10 @@ export const authStorage = {
     if (user !== undefined && user !== null) {
       setCookie(AUTH_STORAGE_KEYS.user, JSON.stringify(user), maxAgeSeconds);
       notifyStoredLoginUserUpdated();
+    }
+
+    if (role) {
+      setCookie(AUTH_STORAGE_KEYS.role, role, maxAgeSeconds);
     }
 
     if (
@@ -206,6 +275,10 @@ export const authStorage = {
     }
 
     setCookie(AUTH_STORAGE_KEYS.user, JSON.stringify(next), remainingSeconds);
+    const role = toRole(next.role);
+    if (role) {
+      setCookie(AUTH_STORAGE_KEYS.role, role, remainingSeconds);
+    }
     notifyStoredLoginUserUpdated();
   },
   clearSession: () => {

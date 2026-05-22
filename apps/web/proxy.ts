@@ -18,17 +18,44 @@ function hasAuthSession(request: NextRequest) {
   );
 }
 
-function getPostLoginPath(request: NextRequest) {
-  const rawUser = request.cookies.get(AUTH_STORAGE_KEYS.user)?.value;
-
-  if (!rawUser) return PATHS.DASHBOARD_CREATOR;
+function decodeJwtPayload(token?: string) {
+  const payload = token?.split(".")[1];
+  if (!payload) return null;
 
   try {
-    const user = JSON.parse(decodeURIComponent(rawUser)) as { role?: string };
-    return getDashboardPathForRole(user.role);
+    const normalizedPayload = payload.replace(/-/g, "+").replace(/_/g, "/");
+    const paddedPayload = normalizedPayload.padEnd(
+      Math.ceil(normalizedPayload.length / 4) * 4,
+      "=",
+    );
+
+    return JSON.parse(atob(paddedPayload)) as { role?: string };
   } catch {
-    return PATHS.DASHBOARD_CREATOR;
+    return null;
   }
+}
+
+function getPostLoginPath(request: NextRequest) {
+  const role = request.cookies.get(AUTH_STORAGE_KEYS.role)?.value;
+  if (role) return getDashboardPathForRole(role);
+
+  const rawUser = request.cookies.get(AUTH_STORAGE_KEYS.user)?.value;
+
+  try {
+    const user = rawUser
+      ? (JSON.parse(decodeURIComponent(rawUser)) as { role?: string })
+      : null;
+    if (user?.role) return getDashboardPathForRole(user.role);
+  } catch {}
+
+  const accessToken = request.cookies.get(AUTH_STORAGE_KEYS.accessToken)?.value;
+  const tokenRole = decodeJwtPayload(accessToken)?.role;
+
+  if (tokenRole) {
+    return getDashboardPathForRole(tokenRole);
+  }
+
+  return PATHS.DASHBOARD_CREATOR;
 }
 
 function isProtectedPath(pathname: string) {

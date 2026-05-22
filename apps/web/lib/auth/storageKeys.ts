@@ -2,6 +2,7 @@ export const AUTH_STORAGE_KEYS = {
   accessToken: "kiibee.accessToken",
   refreshToken: "kiibee.refreshToken",
   user: "kiibee.user",
+  role: "kiibee.role",
   expiresAt: "kiibee.expiresAt",
 } as const;
 
