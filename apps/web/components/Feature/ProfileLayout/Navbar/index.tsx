@@ -1,10 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
-import portrait1 from "@/assets/images/creators/profile_pic.png";
-import portrait2 from "@/assets/images/creators/creator-woman-gray-jacket.webp";
+import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import { PATHS } from "@/utils/path";
 import { CREATE_PROFILE_HOME, NAV } from "@/utils/translationKeys";
 import { MonoText } from "@/components/UI/Monotext";
@@ -15,10 +13,10 @@ import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorI
 import {
   Brand,
   BrandAvatar,
-  BrandAvatarImage,
   BrandName,
 } from "@/components/Feature/ProfileLayout/pageStyles";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorNavItems } from "@/hooks/useCreatorChannelLayout";
 
 type ProfileNavbarProps = {
@@ -29,34 +27,22 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
   const { t } = useTranslation();
   const showNavItems = variant === "2";
   const { navItems, isAboutOpen, closeAbout } = useCreatorNavItems();
-  const portrait = showNavItems ? portrait2 : portrait1;
+  const { displayName, avatarUrl, initial } = useCreatorChannelProfile();
+  const brandName = displayName;
 
   const brand = (
     <Brand href={PATHS.DASHBOARD_CREATOR}>
       <BrandAvatar>
-        {showNavItems ? (
-          <Image
-            src={portrait}
-            alt={t(CREATE_PROFILE_HOME.brandName)}
-            fill
-            sizes="40px"
-            style={{ objectFit: "cover" }}
-            priority
-          />
-        ) : (
-          <BrandAvatarImage
-            src={portrait}
-            alt={t(CREATE_PROFILE_HOME.brandName)}
-            fill
-            sizes="40px"
-            priority
-          />
-        )}
+        <CreatorChannelAvatar
+          avatarUrl={avatarUrl}
+          initial={initial}
+          alt={brandName || t(CREATE_PROFILE_HOME.brandName)}
+          sizes="40px"
+          initialUse="H4_SemiBold"
+        />
       </BrandAvatar>
       <BrandName>
-        <MonoText $use="Body_SemiBold">
-          {t(CREATE_PROFILE_HOME.brandName)}
-        </MonoText>
+        <MonoText $use="Body_SemiBold">{brandName}</MonoText>
       </BrandName>
     </Brand>
   );

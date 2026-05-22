@@ -2,13 +2,13 @@
 
 import { useTranslation } from "react-i18next";
 import coverImage from "@/assets/images/creators/create_profile_hero1.png";
-import avatarImage from "@/assets/images/creators/profile_pic.png";
 import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
+import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useTabbedHeroState } from "@/hooks/useTabbedHeroState";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import {
-  AvatarImage,
   AvatarWrap,
   ContentInner,
   CoverFrame,
@@ -31,6 +31,8 @@ export default function ProfileCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
   const { isAboutOpen, openAbout, closeAbout } = tabState;
+  const { displayName, avatarUrl, initial } = useCreatorChannelProfile();
+  const creatorName = displayName;
 
   return (
     <HeroWrapper>
@@ -47,17 +49,17 @@ export default function ProfileCoverSection() {
       <ContentInner>
         <ProfileSection>
           <AvatarWrap>
-            <AvatarImage
-              src={avatarImage}
-              alt={t(CREATE_PROFILE_HOME.title)}
-              fill
+            <CreatorChannelAvatar
+              avatarUrl={avatarUrl}
+              initial={initial}
+              alt={creatorName || t(CREATE_PROFILE_HOME.title)}
               sizes="152px"
             />
           </AvatarWrap>
 
           <ProfileMeta>
             <CreatorName>
-              <CreatorNameText>{t(CREATE_PROFILE_HOME.title)}</CreatorNameText>
+              <CreatorNameText>{creatorName}</CreatorNameText>
             </CreatorName>
             <UploadCount>
               <UploadCountText>
