@@ -60,6 +60,7 @@ type ContentUploadModalProps = {
     tab: AddContentTab,
     file?: File | null,
     preview?: string | null,
+    createdContentId?: string,
   ) => void;
 };
 
@@ -207,13 +208,21 @@ export default function ContentUploadModal({
     setCreateError(null);
 
     try {
-      await createContentMutation.mutateAsync(payload);
+      const res = await createContentMutation.mutateAsync(payload);
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: [API.collection.getAll] }),
         queryClient.invalidateQueries({
           queryKey: [API.content.collection(collectionId)],
         }),
       ]);
+      setIsSuccess(true);
+      const createdId = (res as { data?: { id?: string } })?.data?.id;
+      onUploadSuccess?.(
+        ADD_CONTENT_TABS.GENERAL,
+        selectedFile,
+        previewUrl,
+        createdId,
+      );
     } catch (error) {
       const message =
         error instanceof Error
@@ -222,9 +231,6 @@ export default function ContentUploadModal({
       setCreateError(message);
       return;
     }
-
-    setIsSuccess(true);
-    onUploadSuccess?.(ADD_CONTENT_TABS.GENERAL, selectedFile, previewUrl);
   };
 
   const handleResetDetails = () => {

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
@@ -9,14 +8,14 @@ import { INPUT_VARIANTS } from "@/utils/Constants";
 import { CONTENTS } from "@/utils/translationKeys";
 import COLORS from "@repo/ui/colors";
 import { ControlWrap, ItemText, GeneralPanel, List, ItemRow } from "./styles";
-import { TRAILER_VISIBILITY, TrailerVisibility } from "@/utils/content";
+import { TRAILER_VISIBILITY } from "@/utils/content";
+import { Directions } from "@/utils/ui";
+import { useContentForm } from "../ContentFormContext";
 
 export default function TrailerList() {
   const { t } = useTranslation();
-  const [trailerLink, setTrailerLink] = useState("");
-  const [visibility, setVisibility] = useState<TrailerVisibility>(
-    TRAILER_VISIBILITY.PUBLIC,
-  );
+  const { formState, updateField } = useContentForm();
+
   const visibilityOptions = [
     { value: TRAILER_VISIBILITY.PUBLIC, label: t(CONTENTS.general.public) },
     { value: TRAILER_VISIBILITY.HIDDEN, label: t(CONTENTS.general.hidden) },
@@ -36,9 +35,12 @@ export default function TrailerList() {
           </ItemText>
           <ControlWrap>
             <InputField
-              value={trailerLink}
+              value={formState.trailerLink}
               onChange={(value) =>
-                setTrailerLink(Array.isArray(value) ? value.join("") : value)
+                updateField(
+                  "trailerLink",
+                  Array.isArray(value) ? value.join("") : value,
+                )
               }
               placeholder={t(CONTENTS.general.trailerLinkPlaceholder)}
               width="100%"
@@ -58,8 +60,9 @@ export default function TrailerList() {
           <ControlWrap>
             <DropdownField
               options={visibilityOptions}
-              value={visibility}
-              onChange={(value) => setVisibility(value as TrailerVisibility)}
+              value={formState.visibility}
+              onChange={(value) => updateField("visibility", value)}
+              arrowDirection={Directions.RIGHT}
             />
           </ControlWrap>
         </ItemRow>

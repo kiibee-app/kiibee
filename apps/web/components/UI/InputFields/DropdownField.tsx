@@ -13,7 +13,7 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { SelectedCheckIcon } from "@/assets/icons";
-import { Directions } from "@/utils/ui";
+import { Directions, Direction } from "@/utils/ui";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useDropdownKeyboard } from "@/hooks/useDropdownKeyboard";
 
@@ -31,6 +31,7 @@ type Props = {
   placeholder?: string;
   showSelectedIndicator?: boolean;
   renderSelectedValue?: (selected: OptionItem | null) => React.ReactNode;
+  arrowDirection?: Direction;
 };
 
 export default function DropdownField({
@@ -40,6 +41,7 @@ export default function DropdownField({
   onChange,
   showSelectedIndicator = false,
   renderSelectedValue,
+  arrowDirection,
 }: Props) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -105,7 +107,11 @@ export default function DropdownField({
           </Selected>
 
           <ArrowWrap>
-            <ArrowIcon direction={open ? Directions.UP : Directions.DOWN} />
+            <ArrowIcon
+              direction={
+                arrowDirection || (open ? Directions.UP : Directions.DOWN)
+              }
+            />
           </ArrowWrap>
         </Field>
 

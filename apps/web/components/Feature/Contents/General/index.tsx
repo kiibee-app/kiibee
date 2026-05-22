@@ -53,7 +53,7 @@ export default function GeneralContent({
     switch (uploadType) {
       case FORMAT_TYPE.VIDEO:
         return (
-          <PreviewBox>
+          <>
             <PreviewVideo src={previewUrl ?? ""} controls={false} />
             <PlayOverlay>
               <PlayCircleIcon
@@ -62,22 +62,22 @@ export default function GeneralContent({
                 color={COLORS.neutral.GRAY_200}
               />
             </PlayOverlay>
-          </PreviewBox>
+          </>
         );
 
       case FORMAT_TYPE.AUDIO:
         return (
-          <UploadAudioIcon width={64} height={64} color={COLORS.primary.RED} />
+          <UploadAudioIcon width={40} height={40} color={COLORS.primary.RED} />
         );
 
       case FORMAT_TYPE.PDF:
         return (
-          <UploadPdfIcon width={64} height={64} color={COLORS.primary.RED} />
+          <UploadPdfIcon width={40} height={40} color={COLORS.primary.RED} />
         );
 
       case FORMAT_TYPE.EPUB:
         return (
-          <UploadEpubIcon width={64} height={64} color={COLORS.primary.BLUE} />
+          <UploadEpubIcon width={40} height={40} color={COLORS.primary.BLUE} />
         );
 
       default:

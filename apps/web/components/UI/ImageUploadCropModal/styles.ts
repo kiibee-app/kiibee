@@ -13,25 +13,36 @@ export const PhotoModalBody = styled.div`
 export const UploadDropZone = styled.div`
   min-height: 290px;
   border: 2px dashed ${({ theme }) => theme.colors.neutral.GRAY_300};
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+  padding: 24px;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary.BLACK};
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  }
 `;
 
 export const UploadHint = styled(MonoText).attrs({
   $use: "H5_Medium",
 })`
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  margin-bottom: 4px;
 `;
 
 export const UploadOrText = styled(MonoText).attrs({
-  $use: "Body_SemiBold",
+  $use: "Body_Medium",
 })`
-  color: ${({ theme }) => theme.colors.neutral.GRAY};
-  margin: 6px 0;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  margin: 4px 0;
 `;
 
 export const CropCanvas = styled.div`
@@ -55,13 +66,15 @@ export const ModalActions = styled.div`
 export const ImagePreviewWrapper = styled.div`
   position: relative;
   width: 100%;
-  max-width: 320px;
-  aspect-ratio: 1 / 1;
-  border-radius: 8px;
+  height: 100%;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: grab;
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
 export const ImagePreview = styled.img<{
@@ -72,7 +85,6 @@ export const ImagePreview = styled.img<{
 }>`
   width: 100%;
   height: 100%;
-  border-radius: ${({ theme }) => theme.radius[4]};
   object-fit: contain;
   pointer-events: none;
   transform: ${({ $x, $y, $zoom }) =>
@@ -94,8 +106,8 @@ export const CropOverlay = styled.div<{
   transform: translate(-50%, -50%);
   border-radius: ${({ $shape }) =>
     $shape === CROP_SHAPE.CIRCLE ? "50%" : "0"};
-  box-shadow: 0 0 0 9999px ${({ theme }) => theme.colors.neutral.GRAY_400};
-  border: 2px solid transparent;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   pointer-events: none;
   z-index: 2;
 `;
@@ -116,8 +128,10 @@ export const ZoomSlider = styled.input.attrs({ type: "range" })`
 `;
 
 export const UploadNoteText = styled(MonoText).attrs({
-  $use: "Body_Medium",
+  $use: "Body_Regular",
 })`
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
-  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
 `;

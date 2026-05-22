@@ -34,6 +34,7 @@ import DeleteModals from "./CollectionDeleteModal";
 import { useRouter } from "next/navigation";
 import { pathPublishedContent } from "@/utils/path";
 import MetaData from "./MetaData";
+import PaymentContent from "./Payment";
 import MoveContentModal from "./Collections/MoveContentModal";
 import { useCouponActions } from "@/hooks/contents/useCouponActions";
 import { useContentMoveActions } from "@/hooks/contents/useContentMoveActions";
@@ -204,5 +205,8 @@ export default function ContentTabPanel({
     );
   }
   if (activeTab === ADD_CONTENT_TABS.METADATA) return <MetaData />;
+  if (activeTab === ADD_CONTENT_TABS.PAYMENT) {
+    return <PaymentContent uploadedFile={uploadedFile} />;
+  }
   return <PlaceholderLine>{renderPlaceholder()}</PlaceholderLine>;
 }

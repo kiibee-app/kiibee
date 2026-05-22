@@ -55,6 +55,16 @@ export default function ImageUploadCropModal({
   recommendedText = false,
 }: Props) {
   const { t } = useTranslation();
+
+  const aspectRatio = cropWidth / cropHeight;
+  let displayCropWidth = 280;
+  let displayCropHeight = 280 / aspectRatio;
+
+  if (displayCropHeight > 200) {
+    displayCropHeight = 200;
+    displayCropWidth = 200 * aspectRatio;
+  }
+
   const [pendingImage, setPendingImage] = useState<string | null>(image);
   const [zoom, setZoom] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -135,18 +145,22 @@ export default function ImageUploadCropModal({
     if (!pendingImage || !previewFrameRef.current) return;
 
     const { width, height } = previewFrameRef.current.getBoundingClientRect();
+    const scale = cropWidth / displayCropWidth;
+
+    const displayCropX = (width - displayCropWidth) / 2;
+    const displayCropY = (height - displayCropHeight) / 2;
 
     const cropped = await getCroppedImg(
       pendingImage,
-      width,
-      height,
+      width * scale,
+      height * scale,
       {
-        x: (width - cropWidth) / 2,
-        y: (height - cropHeight) / 2,
+        x: displayCropX * scale,
+        y: displayCropY * scale,
         width: cropWidth,
         height: cropHeight,
       },
-      { x: position.x / zoom, y: position.y / zoom },
+      { x: position.x * scale, y: position.y * scale },
       zoom,
     );
 
@@ -156,6 +170,8 @@ export default function ImageUploadCropModal({
     pendingImage,
     cropWidth,
     cropHeight,
+    displayCropWidth,
+    displayCropHeight,
     position.x,
     position.y,
     zoom,
@@ -190,12 +206,16 @@ export default function ImageUploadCropModal({
               {t("creatorProfile.choosePhoto")}
             </GenericButton>
             {recommendedText && (
-              <UploadNoteText>
-                {t("creatorProfile.recommendedImageSize", {
-                  cropWidth,
-                  cropHeight,
-                })}
-              </UploadNoteText>
+              <>
+                <UploadNoteText
+                  style={{ marginTop: "12px", marginBottom: "4px" }}
+                >
+                  {`Use ${cropWidth} x ${cropHeight} pixel image`}
+                </UploadNoteText>
+                <UploadNoteText style={{ marginTop: "0px" }}>
+                  Supported formats: png, jpg
+                </UploadNoteText>
+              </>
             )}
           </UploadDropZone>
         ) : (
@@ -220,8 +240,8 @@ export default function ImageUploadCropModal({
                 )}
                 <CropOverlay
                   $shape={shape}
-                  $width={cropWidth}
-                  $height={cropHeight}
+                  $width={displayCropWidth}
+                  $height={displayCropHeight}
                 />
               </ImagePreviewWrapper>
             </CropCanvas>

@@ -65,8 +65,15 @@ export const InfoColumn = styled.div`
 `;
 
 export const PreviewBox = styled.div`
-  height: clamp(80px, 9.8vw, 90px);
+  width: 140px;
+  height: 80px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const PreviewVideo = styled.video`

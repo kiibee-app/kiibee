@@ -14,12 +14,13 @@ export default function MetaData() {
 
   return (
     <PanelStack>
-      <DescriptionSection showTitle={true} />
+      <DescriptionSection showTitle={true} useFormContext={true} />
       <PublishedSection />
       <ProductionSection />
       <CoverImageSection
         title={t("contents.metadata.coverImage.title")}
         subtitle={true}
+        useFormContext={true}
         uploadConfigs={[
           {
             label: t("contents.metadata.coverImage.mediaCardLabel"),

@@ -18,24 +18,42 @@ import {
 } from "./styles";
 import { INPUT_TYPE } from "@/utils/ui";
 
+import { useContentForm } from "../ContentFormContext";
+
 interface DescriptionSectionProps {
   showTitle?: boolean;
+  useFormContext?: boolean;
 }
 
 export default function DescriptionSection({
   showTitle = false,
+  useFormContext = false,
 }: DescriptionSectionProps) {
   const { t } = useTranslation();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const { formState, updateField } = useContentForm();
+  const [localTitle, setLocalTitle] = useState("");
+  const [localDescription, setLocalDescription] = useState("");
+
+  const title = useFormContext ? formState.title : localTitle;
+  const description = useFormContext ? formState.description : localDescription;
+
   const handleDescriptionChange = (value: string | string[]) => {
     const text = Array.isArray(value) ? value.join("") : value;
-    setDescription(text.slice(0, maxDescriptionCharacters));
+    const truncated = text.slice(0, maxDescriptionCharacters);
+    if (useFormContext) {
+      updateField("description", truncated);
+    } else {
+      setLocalDescription(truncated);
+    }
   };
 
   const handleTitleChange = (value: string | string[]) => {
     const text = Array.isArray(value) ? value.join("") : value;
-    setTitle(text);
+    if (useFormContext) {
+      updateField("title", text);
+    } else {
+      setLocalTitle(text);
+    }
   };
 
   return (

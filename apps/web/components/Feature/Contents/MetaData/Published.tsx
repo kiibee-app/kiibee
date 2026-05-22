@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useForm, Controller } from "react-hook-form";
 import InputField from "@/components/UI/InputFields";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
 import { MonoText } from "@/components/UI/Monotext";
@@ -10,42 +9,15 @@ import { INPUT_VARIANTS } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { ControlWrap, GeneralPanel, ItemText, List } from "../General/styles";
 import { ItemRow } from "../Appearance/styles";
-import { getCategoryOptions, CategoryKey, FIELD_KEYS } from "@/utils/content";
-
-type FormState = {
-  publishedYear: string;
-  duration: string;
-  category: CategoryKey | "";
-};
+import { getCategoryOptions } from "@/utils/content";
+import { useContentForm } from "../ContentFormContext";
+import { Directions } from "@/utils/ui";
 
 export default function PublishedSection() {
   const { t } = useTranslation();
+  const { formState, updateField } = useContentForm();
 
   const categoryOptions = useMemo(() => getCategoryOptions(t), [t]);
-
-  const { control } = useForm<FormState>({
-    defaultValues: {
-      publishedYear: "",
-      duration: "",
-      category: "",
-    },
-  });
-
-  const renderInput = (name: keyof FormState, placeholder: string) => (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field }) => (
-        <InputField
-          value={field.value}
-          onChange={field.onChange}
-          placeholder={placeholder}
-          width="100%"
-          variant={INPUT_VARIANTS.PRIMARY_GRAY}
-        />
-      )}
-    />
-  );
 
   return (
     <GeneralPanel>
@@ -58,10 +30,18 @@ export default function PublishedSection() {
           </ItemText>
 
           <ControlWrap>
-            {renderInput(
-              FIELD_KEYS.PUBLISHED_YEAR,
-              t("contents.metadata.published.yearPlaceholder"),
-            )}
+            <InputField
+              value={formState.publishedYear}
+              onChange={(value) =>
+                updateField(
+                  "publishedYear",
+                  Array.isArray(value) ? value.join("") : value,
+                )
+              }
+              placeholder={t("contents.metadata.published.yearPlaceholder")}
+              width="100%"
+              variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            />
           </ControlWrap>
         </ItemRow>
 
@@ -73,10 +53,18 @@ export default function PublishedSection() {
           </ItemText>
 
           <ControlWrap>
-            {renderInput(
-              FIELD_KEYS.DURATION,
-              t("contents.metadata.published.durationPlaceholder"),
-            )}
+            <InputField
+              value={formState.duration}
+              onChange={(value) =>
+                updateField(
+                  "duration",
+                  Array.isArray(value) ? value.join("") : value,
+                )
+              }
+              placeholder={t("contents.metadata.published.durationPlaceholder")}
+              width="100%"
+              variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            />
           </ControlWrap>
         </ItemRow>
 
@@ -92,16 +80,11 @@ export default function PublishedSection() {
           </ItemText>
 
           <ControlWrap>
-            <Controller
-              name={FIELD_KEYS.CATEGORY}
-              control={control}
-              render={({ field }) => (
-                <DropdownField
-                  options={categoryOptions}
-                  value={field.value}
-                  onChange={field.onChange}
-                />
-              )}
+            <DropdownField
+              options={categoryOptions}
+              value={formState.category}
+              onChange={(value) => updateField("category", value)}
+              arrowDirection={Directions.RIGHT}
             />
           </ControlWrap>
         </ItemRow>

@@ -27,7 +27,12 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { AddContentTab, APPEARANCE, COLLECTIONS } from "@/utils/common";
+import {
+  AddContentTab,
+  ADD_CONTENT_TABS,
+  APPEARANCE,
+  COLLECTIONS,
+} from "@/utils/common";
 import type { CollectionContentRow } from "@/types/collectionsType";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
@@ -35,15 +40,22 @@ import {
 } from "@/utils/content";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import { toast } from "react-toastify";
+import { ContentFormProvider, useContentForm } from "./ContentFormContext";
+import { useQueryClient } from "@tanstack/react-query";
+import { axiosClient } from "@/lib/http/axiosClient";
+import { API } from "@/lib/http/api/endpoints";
 
-export default function CreatorsContents() {
+function CreatorsContentsInner() {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
+  const { formState, prefillForm, resetForm, setFormState } = useContentForm();
   const { saveLayout, cancelLayout, hasUnsavedChanges } =
     useCreatorChannelLayout();
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
   const [editingContent, setEditingContent] =
     useState<CollectionContentRow | null>(null);
+  const [showSaveSuccessModal, setShowSaveSuccessModal] = useState(false);
   const {
     activeTab,
     visibleTabs,
@@ -98,25 +110,107 @@ export default function CreatorsContents() {
     tab: AddContentTab,
     file?: File | null,
     preview?: string | null,
+    createdContentId?: string,
   ) => {
     setActiveTabAndQuery(tab);
     setUploadedFile(file ?? null);
     setUploadedPreview(preview ?? null);
+    prefillForm(file ?? null);
+    if (createdContentId) {
+      setEditingContent({
+        id: createdContentId,
+        name: file?.name.replace(/\.[^/.]+$/, "") ?? "",
+        contentType: contentTypeFlow.selectedContentType ?? "video",
+        visibility: "Public",
+        createdAt: new Date().toISOString(),
+        actions: "",
+      });
+    }
   };
 
   const handleBackToBase = () => {
-    setSelectedCollection(null);
     if (isUploadMode) {
+      setUploadedFile(null);
+      setUploadedPreview(null);
+      setEditingContent(null);
+      resetForm();
       setSelectedCollection(selectedCollection);
+    } else {
+      setSelectedCollection(null);
     }
     setActiveTabAndQuery(COLLECTIONS);
   };
 
-  const handleHeaderSave = () => {
+  const handleHeaderSave = async () => {
     if (activeTab === APPEARANCE) {
       if (!hasUnsavedChanges) return;
       saveLayout();
       toast.success(t(CONTENTS_KEYS.appearance.layouts.saveSuccess));
+      return;
+    }
+    if (isUploadMode) {
+      if (!editingContent?.id) {
+        toast.error("No content to save");
+        return;
+      }
+
+      try {
+        const payload = {
+          title: formState.title,
+          description: formState.description,
+          trailerUrl: formState.trailerLink || undefined,
+          thumbnailUrl: formState.mediaCardThumbnail || undefined,
+          thumbnailLandscapeUrl: formState.portraitThumbnail || undefined,
+          publishedYear: formState.publishedYear
+            ? parseInt(formState.publishedYear)
+            : undefined,
+          duration: formState.duration
+            ? parseInt(formState.duration)
+            : undefined,
+          categoryId: formState.category
+            ? formState.category.toLowerCase()
+            : undefined,
+          productionCompany: formState.productionCompany || undefined,
+          manufacturerLink: formState.manufacturerLink || undefined,
+          visibility: formState.visibility
+            ? formState.visibility.toLowerCase()
+            : undefined,
+          accessType: formState.admissionRequirement
+            ? formState.admissionRequirement.toLowerCase() === "payment"
+              ? "paid"
+              : "free"
+            : undefined,
+          buyPrice: formState.purchaseAmount
+            ? parseFloat(formState.purchaseAmount)
+            : undefined,
+          rentPrice: formState.rentalAmount
+            ? parseFloat(formState.rentalAmount)
+            : undefined,
+          rentDurationHours: formState.rentalAmount ? 48 : undefined,
+          maximumDownloadCount:
+            formState.maxDownloadLimit &&
+            formState.maxDownloadLimit !== "Unlimited"
+              ? parseInt(formState.maxDownloadLimit)
+              : undefined,
+          physicalProductLink: formState.physicalProductLink || undefined,
+        };
+
+        await axiosClient.put(API.content.update(editingContent.id), payload);
+
+        await Promise.all([
+          selectedCollection?.id
+            ? queryClient.invalidateQueries({
+                queryKey: [API.content.collection(selectedCollection.id)],
+              })
+            : Promise.resolve(),
+          queryClient.invalidateQueries({ queryKey: [API.collection.getAll] }),
+        ]);
+
+        setShowSaveSuccessModal(true);
+      } catch (error) {
+        console.error("Failed to save content modifications", error);
+        toast.error("Failed to save changes");
+      }
       return;
     }
 
@@ -128,7 +222,6 @@ export default function CreatorsContents() {
       cancelLayout();
       return;
     }
-
     openDiscardModal();
   };
 
@@ -146,25 +239,105 @@ export default function CreatorsContents() {
     contentTypeFlow.backToTypeSelect();
   };
 
-  const handleEditContent = (id: string) => {
+  const handleEditContent = async (id: string) => {
     const item = collectionContents.find((content) => content.id === id);
     if (!item) return;
 
-    setEditingContent(item);
-    contentTypeFlow.openEdit(item.contentType);
+    interface ContentDetailsResponse {
+      title?: string;
+      description?: string;
+      trailerUrl?: string;
+      visibility?: string;
+      publishedYear?: number;
+      duration?: number;
+      categories?: { id: string }[];
+      production_company?: string;
+      manufacturerLink?: string;
+      thumbnailUrl?: string | null;
+      thumbnailLandscapeUrl?: string | null;
+      accessType?: string;
+      rentPrice?: number;
+      buyPrice?: number;
+      maxDownloadCount?: number;
+      physicalProductLink?: string;
+    }
+
+    try {
+      const response = await axiosClient.get(API.content.get(id));
+      const fullContent = (
+        response as { data?: { data?: ContentDetailsResponse } }
+      ).data?.data;
+      if (fullContent) {
+        setEditingContent(item);
+
+        // Mock file structure for upload visual representation
+        const mockFile = new File([], item.name, {
+          type: item.contentType === "video" ? "video/mp4" : "application/pdf",
+        });
+        let mockSize = 12 * 1024 * 1024;
+        if (item.contentType === "video") {
+          mockSize = 1.2 * 1024 * 1024 * 1024;
+        } else if (item.contentType === "audio") {
+          mockSize = 45 * 1024 * 1024;
+        } else if (item.contentType === "pdf" || item.contentType === "epub") {
+          mockSize = 4.5 * 1024 * 1024;
+        }
+        Object.defineProperty(mockFile, "size", { value: mockSize });
+
+        setUploadedFile(mockFile);
+        setUploadedPreview(null);
+
+        // Prefill form states using retrieved DB values
+        setFormState({
+          title: fullContent.title || "",
+          description: fullContent.description || "",
+          trailerLink: fullContent.trailerUrl || "",
+          visibility: fullContent.visibility || "public",
+          publishedYear: fullContent.publishedYear
+            ? String(fullContent.publishedYear)
+            : "",
+          duration: fullContent.duration ? String(fullContent.duration) : "",
+          category: fullContent.categories?.[0]?.id || "education",
+          productionCompany: fullContent.production_company || "",
+          manufacturerLink: fullContent.manufacturerLink || "",
+          tags: "",
+          mediaCardThumbnail: fullContent.thumbnailUrl || null,
+          portraitThumbnail: fullContent.thumbnailLandscapeUrl || null,
+          admissionRequirement:
+            fullContent.accessType === "free" ? "Free" : "Payment",
+          rentalAmount: fullContent.rentPrice
+            ? String(fullContent.rentPrice)
+            : "",
+          purchaseAmount: fullContent.buyPrice
+            ? String(fullContent.buyPrice)
+            : "",
+          maxDownloadLimit: fullContent.maxDownloadCount
+            ? String(fullContent.maxDownloadCount)
+            : "5",
+          physicalProductLink: fullContent.physicalProductLink || "",
+        });
+
+        setActiveTabAndQuery(ADD_CONTENT_TABS.GENERAL);
+      }
+    } catch (error) {
+      console.error("Failed to load content details from database", error);
+      toast.error("Failed to load content details");
+    }
   };
 
   return (
     <PageShell>
       <PageHeader>
         <HeaderRow>
-          {selectedCollection && (
+          {(selectedCollection || isUploadMode) && (
             <AuthBackButton marginBottom="0px" onClick={handleBackToBase} />
           )}
           <Title>
-            {selectedCollection
-              ? selectedCollection.name
-              : t(CONTENTS_KEYS.title)}
+            {isUploadMode
+              ? formState.title || "Content Details"
+              : selectedCollection
+                ? selectedCollection.name
+                : t(CONTENTS_KEYS.title)}
           </Title>
         </HeaderRow>
 
@@ -280,11 +453,36 @@ export default function CreatorsContents() {
         body={t("settings.notifications.discardModal.message")}
         cancelLabel={t("settings.notifications.discardModal.goBack")}
         confirmLabel={t("settings.notifications.discardModal.discard")}
-        onConfirm={closeDiscardModal}
+        onConfirm={() => {
+          if (isUploadMode) {
+            handleBackToBase();
+          }
+          closeDiscardModal();
+        }}
         size="sm"
         spacing="md"
         fullWidthButtons
         buttonRow
+        showCloseButton={false}
+      />
+
+      <GenericModal
+        visible={showSaveSuccessModal}
+        icon={<SuccessModalIcon />}
+        iconMargin="0 auto 8px"
+        title={t("settings.notifications.successModal.title")}
+        message={t("settings.notifications.successModal.message")}
+        confirmLabel={t("settings.notifications.successModal.done")}
+        onClose={() => {
+          setShowSaveSuccessModal(false);
+          handleBackToBase();
+        }}
+        onConfirm={() => {
+          setShowSaveSuccessModal(false);
+          handleBackToBase();
+        }}
+        size="sm"
+        spacing="xs"
         showCloseButton={false}
       />
 
@@ -307,5 +505,13 @@ export default function CreatorsContents() {
         onConfirmDelete={handleConfirmDelete}
       />
     </PageShell>
+  );
+}
+
+export default function CreatorsContents() {
+  return (
+    <ContentFormProvider>
+      <CreatorsContentsInner />
+    </ContentFormProvider>
   );
 }
