@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 import Image from "next/image";
-import { IMAGE_TYPE, ImageType } from "@/utils/ui";
+import { ImageType, previewConfig } from "@/utils/ui";
 
 export const PanelStack = styled.div`
   display: flex;
@@ -280,33 +280,27 @@ export const PreviewImage = styled.img<{ $type: ImageType }>`
   object-fit: cover;
   border-radius: 8px;
   width: 100%;
-  height: auto;
 
-  ${({ $type }) =>
-    $type === IMAGE_TYPE.DESKTOP
-      ? `
-    aspect-ratio: 257 / 40;
-    max-width: 514px;
-  `
-      : `
-    aspect-ratio: 17 / 16;
-    max-width: 120px;
-  `}
+  ${({ $type }) => {
+    const config = previewConfig[$type];
+
+    return `
+      max-width: ${config.maxWidth};
+      aspect-ratio: ${config.aspectRatio ?? "auto"};
+      height: ${config.height ?? "auto"};
+      min-height: ${config.minHeight ?? "unset"};
+    `;
+  }}
 
   ${media.tablet} {
-    ${({ $type }) =>
-      $type === IMAGE_TYPE.DESKTOP
-        ? `
-      max-width: 320px;
-    `
-        : `
-      max-width: 90px;
-    `}
-  }
-
-  ${media.mobile} {
-    width: 100%;
-    max-width: 100%;
+    ${({ $type }) => {
+      const config = previewConfig[$type].tablet;
+      return `
+        ${config?.maxWidth ? `max-width: ${config?.maxWidth};` : ""}
+        ${config?.height ? `height: ${config?.height};` : ""}
+        ${config?.minHeight ? `min-height: ${config?.minHeight};` : ""}
+      `;
+    }}
   }
 `;
 
