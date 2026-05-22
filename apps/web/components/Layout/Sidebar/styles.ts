@@ -22,7 +22,6 @@ export const SidebarWrapper = styled.aside<{ $expanded: boolean }>`
   transition:
     width 0.3s ease,
     filter 0.3s ease;
-  overflow: hidden;
 
   ${media.tablet} {
     width: min(84vw, 320px);
@@ -210,13 +209,12 @@ export const DropdownHost = styled.div`
 
 export const SidebarDropdown = styled.div`
   position: absolute;
-  left: calc(100% - 52px);
-  top: 80px;
-  transform: translateY(-50%);
-  z-index: 30;
+  left: calc(100% - 10px);
+  top: 0;
+  z-index: 100;
   min-width: 220px;
-  padding: 10px 0;
-  border-radius: 14px;
+  padding: 4px 0;
+  border-radius: 12px;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   box-shadow: ${({ theme }) => theme.shadows.frame};
   border: 1px solid ${({ theme }) => theme.colors.gradient.FRAME_BORDER};
@@ -224,6 +222,7 @@ export const SidebarDropdown = styled.div`
   ${media.tablet} {
     left: 0;
     top: calc(100% + 10px);
+    bottom: auto;
     transform: none;
   }
 `;
@@ -232,8 +231,8 @@ export const SidebarDropdownItem = styled(Link)`
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 48px;
-  padding: 10px 18px;
+  min-height: 36px;
+  padding: 8px 18px;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.neutral.GRAY};
   font-size: 14px;
