@@ -2,13 +2,13 @@
 
 import { useTranslation } from "react-i18next";
 import coverImage from "@/assets/images/creators/creator_profile_hero3.png";
-import avatarImage from "@/assets/images/creators/profile_pic3.png";
 import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
+import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useTabbedHeroState } from "@/hooks/useTabbedHeroState";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import {
-  AvatarImage,
   AvatarWrapCentered,
   BioText,
   CoverFrameFull,
@@ -23,6 +23,8 @@ export default function CenteredCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
   const { isAboutOpen, closeAbout } = tabState;
+  const { displayName, avatarUrl, initial } = useCreatorChannelProfile();
+  const creatorName = displayName;
 
   return (
     <HeroWrapperCentered>
@@ -38,15 +40,15 @@ export default function CenteredCoverSection() {
 
       <InfoSection>
         <AvatarWrapCentered>
-          <AvatarImage
-            src={avatarImage}
-            alt={t(CREATE_PROFILE_HOME.title)}
-            fill
+          <CreatorChannelAvatar
+            avatarUrl={avatarUrl}
+            initial={initial}
+            alt={creatorName || t(CREATE_PROFILE_HOME.title)}
             sizes="180px"
           />
         </AvatarWrapCentered>
 
-        <NameText>{t(CREATE_PROFILE_HOME.title)}</NameText>
+        <NameText>{creatorName}</NameText>
         <UploadsText>
           {t(CREATE_PROFILE_HOME.uploads, { count: 76 })}
         </UploadsText>

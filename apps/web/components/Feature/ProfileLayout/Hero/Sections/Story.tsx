@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
 import heroImage from "@/assets/images/creators/creator_profile_hero.png";
 import { MonoText } from "@/components/UI/Monotext";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import {
   HeroContent,
@@ -20,6 +21,7 @@ import {
 
 export default function StorySection() {
   const { t } = useTranslation();
+  const { displayName } = useCreatorChannelProfile();
 
   return (
     <HeroFrame>
@@ -47,7 +49,7 @@ export default function StorySection() {
 
             <StoryTitle>
               <MonoText $use="Heading2" color={COLORS.primary.WHITE}>
-                {t(CREATE_PROFILE_HOME.title)}
+                {displayName}
               </MonoText>
             </StoryTitle>
 
