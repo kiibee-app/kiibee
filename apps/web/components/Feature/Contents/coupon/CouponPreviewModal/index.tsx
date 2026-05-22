@@ -13,7 +13,6 @@ import {
 } from "../styles";
 import { CouponFormState } from "@/types/collectionsType";
 import { CollectionRow } from "@/types/collectionsType";
-import { CONTENT_OPTIONS } from "@/utils/dummyData/couponApplicableProducts";
 import {
   Chip,
   ChipList,
@@ -28,6 +27,7 @@ import { COUPON_DISCOUNT_PERCENTAGE } from "@/utils/common";
 import { MonoText } from "@/components/UI/Monotext";
 import { BUTTON } from "@/utils/Constants";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
 
 type Props = {
   visible: boolean;
@@ -49,6 +49,10 @@ export default function CouponPreviewModal({
   isSuccess = false,
 }: Props) {
   const { t } = useTranslation();
+  const { data: contentOptions = [] } = useAllContentsOptions(
+    collections,
+    visible,
+  );
 
   const getLabel = (
     value: string,
@@ -60,7 +64,7 @@ export default function CouponPreviewModal({
     label: item.name,
   }));
   const collectionLabel = getLabel(data.collection, collectionOptions);
-  const contentLabel = getLabel(data.content, CONTENT_OPTIONS);
+  const contentLabel = getLabel(data.content, contentOptions);
   const codes = data.codes ? data.codes.split(",").map((c) => c.trim()) : [];
 
   return (
