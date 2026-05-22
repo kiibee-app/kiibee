@@ -32,6 +32,17 @@ export default function ScrollReveal({
         return;
       }
 
+      const revealElementsInSection = Array.from(
+        container.current
+          .closest("section")
+          ?.querySelectorAll<HTMLElement>("[data-scroll-reveal]") ?? [],
+      );
+      const revealIndex = Math.max(
+        0,
+        revealElementsInSection.indexOf(container.current),
+      );
+      const sequenceDelay = revealIndex * 0.12;
+
       const parentSection = container.current.closest("section");
       if (
         parentSection &&
@@ -48,12 +59,13 @@ export default function ScrollReveal({
           {
             autoAlpha: 1,
             y: 0,
-            duration: 1,
-            ease: "power3.out",
+            duration: 1.3,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: parentSection,
-              start: "top 88%",
-              once: true,
+              start: "top 86%",
+              toggleActions: "play none none reverse",
+              invalidateOnRefresh: true,
             },
           },
         );
@@ -70,13 +82,14 @@ export default function ScrollReveal({
           autoAlpha: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 1,
-          delay: delay,
-          ease: "expo.out",
+          duration: 1.2,
+          delay: delay + sequenceDelay,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: container.current,
-            start: "top 88%",
-            once: true,
+            start: "top 86%",
+            toggleActions: "play none none reverse",
+            invalidateOnRefresh: true,
           },
         },
       );
@@ -87,6 +100,7 @@ export default function ScrollReveal({
   return (
     <div
       ref={container}
+      data-scroll-reveal
       style={{ opacity: 0, willChange: "opacity, transform, filter" }}
     >
       {children}
