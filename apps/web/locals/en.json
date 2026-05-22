@@ -842,6 +842,7 @@
     ]
   },
   "common": {
+    "confirmationModalError": "ConfirmationModal onConfirm error:",
     "share": "Share",
     "search": "Search",
     "clearSearch": "Clear search",
@@ -920,7 +921,15 @@
     "profilePhotoAlt": "Profile photo"
   },
   "singleContent": {
-    "notFound": "This content could not be found."
+    "notFound": "This content could not be found.",
+    "loading": "Loading content...",
+    "imageAlt": "Content preview",
+    "seeContent": "See content",
+    "meta": {
+      "createdAt": "Created:",
+      "accessType": "Access:",
+      "visibility": "Visibility:"
+    }
   },
   "singleCollection": {
     "subtitle": "Learn how to use our platform",
@@ -1435,6 +1444,8 @@
       "invalidFile": "Choose a supported file under 2GB.",
       "uploadError": "Could not upload this file. Please try again.",
       "createError": "Could not create this content. Please try again.",
+      "updateError": "Could not update this content. Please try again.",
+      "updateSuccess": "Content updated successfully.",
       "video": {
         "helperLineOne": "Max. file size of 2GB of file types (.mp4)",
         "helperLineTwo": "Min. resolution 1080p HD"
@@ -1457,7 +1468,8 @@
         "titlePlaceholder": "Enter title",
         "description": "Description",
         "descriptionPlaceholder": "Enter Description",
-        "add": "Add"
+        "add": "Add",
+        "update": "Update"
       },
       "webForm": {
         "title": "Add web content",
@@ -1496,6 +1508,13 @@
       "message": "Your updates have been successfully saved.",
       "done": "Done"
     },
+    "moveContentModal": {
+      "title": "Move content",
+      "collectionLabel": "Collections",
+      "description": "Select the collection you want to move content to",
+      "successTitle": "Moved successfully",
+      "successMessage": "Content moved to {{collectionName}} successfully."
+    },
     "metadata": {
       "production": {
         "title": "Production of",
@@ -1503,11 +1522,36 @@
         "companyPlaceholder": "Production company",
         "linkPlaceholder": "Add manufacturer link"
       },
+      "published": {
+        "title": "Published",
+        "yearPlaceholder": "Year of publication",
+        "duration": "Duration",
+        "durationPlaceholder": "Duration in minutes",
+        "category": "Category",
+        "categoryDescription": "Choose the category that aligns with your content."
+      },
+      "category": {
+        "education": "Education",
+        "food": "Food",
+        "art": "Art",
+        "design": "Design"
+      },
       "tags": {
         "title": "Tags",
         "placeholder": "Separate tags by pressing enter",
         "example": "E.g, Video, Cooking, Film"
+      },
+      "coverImage": {
+        "title": "Thumbnail",
+        "mediaCardLabel": "Upload thumbnail for the media card",
+        "mediaCardSize": "Use size 250x190 pixel image",
+        "portraitLabel": "Upload thumbnail for portrait format",
+        "portraitSize": "Use size 634x345 pixel image"
       }
+    },
+    "couponSearch": {
+      "title": "Search coupon title",
+      "codes": "Search by codes"
     }
   },
   "resetPassword": {

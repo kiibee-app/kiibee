@@ -21,7 +21,12 @@ import {
 } from "./styles";
 import { COUPON_STATUS, CouponRow, CouponStatus } from "@/types/couponType";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
-import { COUPON_TABLE_COLUMNS } from "@/utils/tableHeader";
+import {
+  COUPON_SEARCH_KEYS,
+  COUPON_TABLE_COLUMNS,
+  CouponSearchKey,
+  SEARCH_FILTERS,
+} from "@/utils/tableHeader";
 import InfoTextCard from "@/components/UI/InfoTextCard";
 import { useTranslation } from "react-i18next";
 import {
@@ -31,6 +36,8 @@ import {
   CouponAction,
   SORT_DROPDOWN_VARIANT,
 } from "@/utils/Constants";
+import { SearchFilterWrap } from "../../Dashboard/ClientViewerBillings/styles";
+import SearchBar from "@/components/UI/SearchBar";
 
 type CouponTableProps = {
   data: CouponRow[];
@@ -44,22 +51,43 @@ export default function CouponTable({
   const { t } = useTranslation();
   const [nameSortDirection, setNameSortDirection] =
     useState<SortDirectionWithNone>(SORT_DIRECTIONS.NONE);
+  const [search, setSearch] = useState<Record<CouponSearchKey, string>>({
+    [COUPON_SEARCH_KEYS.TITLE]: "",
+    [COUPON_SEARCH_KEYS.CODES]: "",
+  });
+
+  const resolveHeaderToKey = (header: string) => {
+    const col = COUPON_TABLE_COLUMNS.find((c) => c.label === header);
+    return col?.key as keyof CouponRow;
+  };
+
+  const filteredRows = useMemo(() => {
+    const titleQuery = search.title.toLowerCase().trim();
+    const codeQuery = search.codes.toLowerCase().trim();
+
+    return data.filter((row) => {
+      const matchTitle =
+        !titleQuery || row.title.toLowerCase().includes(titleQuery);
+
+      const matchCodes =
+        !codeQuery ||
+        row.codes.some((c) => c.toLowerCase().includes(codeQuery));
+
+      return matchTitle && matchCodes;
+    });
+  }, [data, search]);
 
   const sortedRows = useMemo(() => {
-    if (nameSortDirection === SORT_DIRECTIONS.NONE) return data;
-    return [...data].sort((a, b) => {
+    const base = filteredRows;
+    if (nameSortDirection === SORT_DIRECTIONS.NONE) return base;
+    return [...base].sort((a, b) => {
       const first = a.title.toLowerCase();
       const second = b.title.toLowerCase();
       return nameSortDirection === SORT_DIRECTIONS.ASC
         ? first.localeCompare(second)
         : second.localeCompare(first);
     });
-  }, [data, nameSortDirection]);
-
-  const resolveHeaderToKey = (header: string) => {
-    const col = COUPON_TABLE_COLUMNS.find((c) => c.label === header);
-    return col?.key as keyof CouponRow;
-  };
+  }, [filteredRows, nameSortDirection]);
 
   const handleHeaderClick = (
     header: string,
@@ -93,6 +121,13 @@ export default function CouponTable({
       value: COUPON_ACTION_DELETE,
     },
   ];
+
+  const handleSearchChange = (key: CouponSearchKey, value: string) => {
+    setSearch((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
 
   return (
     <>
@@ -179,6 +214,23 @@ export default function CouponTable({
               >
                 {row[key]}
               </MonoText>
+            );
+          }}
+          renderHeaderFilter={({ index }) => {
+            const filter = SEARCH_FILTERS(t)?.[index];
+            if (!filter) return null;
+
+            return (
+              <SearchFilterWrap>
+                <SearchBar
+                  placeholder={filter.placeholder}
+                  width="100%"
+                  value={search[filter.key]}
+                  onChange={(val: string) =>
+                    handleSearchChange(filter.key, val)
+                  }
+                />
+              </SearchFilterWrap>
             );
           }}
         />

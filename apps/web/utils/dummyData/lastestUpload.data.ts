@@ -1,5 +1,6 @@
 import latestUploadImage from "@/assets/images/creators/recent_creator.webp";
-import { LatestUploadData } from "@/components/Feature/ProfileLayout/Layout2/Home/LatestUpload";
+import latestUploadImageLayout2 from "@/assets/images/creators/recent_creator1.webp";
+import type { LatestUploadData } from "@/components/Feature/ProfileLayout/shared/LatestUpload";
 
 export const latestUploadDataLayout1: LatestUploadData = {
   sectionTitle: "Latest upload",
@@ -27,6 +28,18 @@ export const latestUploadDataLayout1: LatestUploadData = {
     maxWidth: "100%",
     padding: "0",
   },
+};
+
+export const latestUploadDataLayout2: LatestUploadData = {
+  sectionTitle: "Latest upload",
+  badge: "Design",
+  image: latestUploadImageLayout2,
+  imageAlt: "Latest upload artwork",
+  title: "Crochet coasters",
+  year: "2019",
+  description:
+    "PERFEKT TILBEREDT FASAN - sådan gør du, når fasanen skal være saftig og mør. Bogen indeholder kun opskrier på fasan og viser i flotte billeder og gode beskrivelser, hvordan du får det optimale resultat...",
+  actions: [{ title: "Rent 50 kr", subtitle: "Access for 3 months" }],
 };
 
 export const latestUploadDataLayout3: LatestUploadData = {

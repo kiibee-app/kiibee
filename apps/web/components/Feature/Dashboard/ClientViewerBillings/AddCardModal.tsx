@@ -5,6 +5,7 @@ import { GenericModal } from "@/components/UI/Modals";
 import InputField from "@/components/UI/InputFields";
 import { INPUT_TYPE, MODAL_ALIGN } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
+import { NUMERIC_INPUT_MODE } from "@/utils/numericFields";
 import { CardIcon } from "@/assets/icons";
 import { useAddCard } from "@/hooks/useAddCard";
 import { Container, ErrorText, FieldWrapper, Grid } from "./styles";
@@ -64,6 +65,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
                   .cardNumber,
               )}
               type={INPUT_TYPE.TEXT}
+              inputMode={NUMERIC_INPUT_MODE}
               value={cardNumber}
               onChange={handleCardNumberChange}
               placeholder={t(
@@ -87,6 +89,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
                     .expiryDate,
                 )}
                 type={INPUT_TYPE.TEXT}
+                inputMode={NUMERIC_INPUT_MODE}
                 value={expiryDate}
                 onChange={handleExpiryChange}
                 placeholder={t(
@@ -107,6 +110,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
                   DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.cvv,
                 )}
                 type={INPUT_TYPE.TEXT}
+                inputMode={NUMERIC_INPUT_MODE}
                 value={securityCode}
                 onChange={handleCVVChange}
                 placeholder={t(

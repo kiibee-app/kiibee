@@ -3,6 +3,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import type { CreatorRequest } from "../../types/creator-request";
+import { API_ENDPOINTS } from "../../utils/constants";
 
 const CREATOR_REQUESTS_QUERY_KEY = ["creator-requests"];
 
@@ -13,8 +14,8 @@ type CreatorActionPayload = {
 type CreatorAction = "approve" | "reject";
 
 const CREATOR_ACTION_ENDPOINT: Record<CreatorAction, string> = {
-  approve: "/auth/approve-creator",
-  reject: "/auth/reject-creator",
+  approve: API_ENDPOINTS.APPROVE_CREATOR,
+  reject: API_ENDPOINTS.REJECT_CREATOR,
 };
 
 async function ensureSuccess<T>(
@@ -38,7 +39,7 @@ export function useCreatorRequests() {
     queryKey: CREATOR_REQUESTS_QUERY_KEY,
     queryFn: async () => {
       const data = await ensureSuccess<CreatorRequest[]>(
-        apiClient<CreatorRequest[]>("/auth/all-creator-requests"),
+        apiClient<CreatorRequest[]>(API_ENDPOINTS.ALL_CREATOR_REQUESTS),
       );
 
       return data ?? [];

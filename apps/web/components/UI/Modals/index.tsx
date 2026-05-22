@@ -51,6 +51,7 @@ type GenericModalProps = {
   confirmDisabled?: boolean;
   confirmVariant?: Variant;
   closeOnConfirm?: boolean;
+  confirmLoading?: boolean;
 };
 
 export const GenericModal: React.FC<GenericModalProps> = ({
@@ -79,6 +80,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   confirmDisabled = false,
   confirmVariant = VARIANT.PRIMARY,
   closeOnConfirm = true,
+  confirmLoading = false,
 }) => {
   const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
@@ -185,7 +187,8 @@ export const GenericModal: React.FC<GenericModalProps> = ({
               <GenericButton
                 variant={confirmVariant}
                 onClick={handleConfirm}
-                disabled={confirmDisabled}
+                disabled={confirmDisabled || confirmLoading}
+                isLoading={confirmLoading}
                 data-test-id="generic-modal-confirm-button"
               >
                 {confirmLabel}

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { ImageSource } from "@/utils/Constants";
+import type { ContentType } from "@/utils/content";
 
 export type SingleContentMetaItem = {
   label: string;
@@ -9,6 +10,11 @@ export type SingleContentMetaItem = {
 export type SingleContentHeroProps = {
   image: ImageSource;
   imageAlt: string;
+  media?: {
+    type: ContentType;
+    src: string;
+    title: string;
+  };
   categoryLabel?: string;
   mediaLabel?: string;
   mediaIcon?: ImageSource;

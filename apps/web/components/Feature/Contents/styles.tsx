@@ -96,8 +96,8 @@ export const CancelButton = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  padding: 16px 32px;
-  min-height: 48px;
+  padding: 10px 28px;
+  min-height: 36px;
   cursor: pointer;
   border: 1px solid ${COLORS.primary.GRAY};
   background: ${COLORS.neutral.OFF_WHITE};
@@ -110,7 +110,8 @@ export const CancelButton = styled.button`
 `;
 
 export const SaveButton = styled(CreateButton)`
-  padding: 16px 32px;
+  padding: 8px 24px;
+  min-height: 36px;
   border-radius: 8px;
 
   &:disabled {

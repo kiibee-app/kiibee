@@ -1,5 +1,19 @@
 import type { ReactNode } from "react";
+import type { TabbedHeroState } from "@/hooks/useTabbedHeroState";
 import type { NavItem } from "@/utils/navItems";
+
+export type HeroTabsProps = Pick<
+  TabbedHeroState,
+  | "profileTabs"
+  | "activeTab"
+  | "searchOpen"
+  | "searchValue"
+  | "handleTabChange"
+  | "setSearchOpen"
+  | "setSearchValue"
+> & {
+  centered?: boolean;
+};
 export type NavBarItem = NavItem & {
   label?: ReactNode;
   onClick?: () => void;
@@ -14,6 +28,7 @@ export type HeaderProps = {
 
 export type NavStyleProps = {
   $navPosition: "center" | "right";
+  $textTone: "dark" | "light";
 };
 
 export type NavBarProps = {
@@ -25,6 +40,7 @@ export type NavBarProps = {
   mobileInnerPadding?: string;
   innerMaxWidth?: string;
   navPosition?: "center" | "right";
+  navTextTone?: "dark" | "light";
   items?: NavBarItem[];
   brand?: ReactNode;
   navBefore?: ReactNode;
