@@ -110,7 +110,13 @@ export default function DropdownField({
         </Field>
 
         {open && (
-          <Menu role="listbox" id={listboxId}>
+          <Menu
+            role="listbox"
+            id={listboxId}
+            data-lenis-prevent
+            data-lenis-prevent-touch
+            data-lenis-prevent-wheel
+          >
             {options.map((opt, i) => (
               <Item
                 key={opt.value}
