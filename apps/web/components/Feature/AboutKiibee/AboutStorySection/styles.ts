@@ -4,7 +4,7 @@ import { media } from "@repo/ui/breakpoints";
 export const SectionWrapper = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
-  padding: 3.5rem 1.25rem 4.5rem;
+  padding: 3.5rem 1.25rem 7rem;
 `;
 
 export const Inner = styled.div`
@@ -17,7 +17,7 @@ export const Inner = styled.div`
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px 60px;
+  gap: 30px 115px;
   align-items: start;
 
   ${media.tablet} {
@@ -27,6 +27,8 @@ export const Grid = styled.div`
 
 export const Container = styled.div`
   max-width: 1218px;
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 60px;
