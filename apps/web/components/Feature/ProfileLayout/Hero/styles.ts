@@ -133,6 +133,7 @@ export const AvatarWrapCentered = styled.div`
   margin-top: -82px;
   border-radius: 999px;
   overflow: hidden;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${({ theme }) => theme.media.mobileMd} {
     width: 136px;

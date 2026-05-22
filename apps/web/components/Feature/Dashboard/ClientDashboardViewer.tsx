@@ -21,6 +21,7 @@ import { GenericModal } from "@/components/UI/Modals";
 import { useTranslation } from "react-i18next";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
+import { useRequireAuthSession } from "@/hooks/auth/useRequireAuthSession";
 import ClientViewerBillings from "@/components/Feature/Dashboard/ClientViewerBillings";
 import ClientViewerProfile from "@/components/Feature/Dashboard/ClientViewerProfile";
 import RentedContent from "@/components/Feature/Dashboard/ViewerSections/RentedContent";
@@ -45,6 +46,7 @@ export default function ClientDashboardViewer() {
   const router = useRouter();
   const { logout } = useLogout();
   const { getUser } = useAuthSession();
+  useRequireAuthSession();
 
   const viewParam = searchParams?.get(VIEW);
   const activePage: ViewerLabel =
