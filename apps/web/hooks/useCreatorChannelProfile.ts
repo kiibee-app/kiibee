@@ -45,9 +45,7 @@ export function useCreatorChannelProfile(enabled = true) {
     const fromApi = getAvatarUrl(profile?.user?.avatarUrl);
     if (fromApi) return fromApi;
 
-    return getAvatarUrl(
-      typeof storedUser?.avatarUrl === "string" ? storedUser.avatarUrl : null,
-    );
+    return getAvatarUrl(storedUser?.avatarUrl);
   }, [profile, storedUser]);
 
   const initial = useMemo(
