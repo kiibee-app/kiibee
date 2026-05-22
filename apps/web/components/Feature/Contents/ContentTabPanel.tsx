@@ -56,6 +56,7 @@ import {
 } from "@/utils/Constants";
 import { useQueryClient } from "@tanstack/react-query";
 import MetaData from "./MetaData";
+import MoveContentModal from "./MoveContent/MoveContentModal";
 
 type Props = {
   activeTab: ContentTab;
@@ -95,6 +96,10 @@ export default function ContentTabPanel({
   const [showCouponDeleteConfirm, setShowCouponDeleteConfirm] = useState(false);
   const [showCouponDeleteSuccess, setShowCouponDeleteSuccess] = useState(false);
   const [selectedCouponId, setSelectedCouponId] = useState<string | null>(null);
+
+  const [showMoveContentModal, setShowMoveContentModal] = useState(false);
+  const [showMoveSuccessModal, setShowMoveSuccessModal] = useState(false);
+  const [contentToMoveId, setContentToMoveId] = useState<string | null>(null);
 
   const handleCouponDeleteConfirm = async () => {
     if (!selectedCouponId) return;
@@ -234,13 +239,33 @@ export default function ContentTabPanel({
       }
 
       return (
-        <CollectionTable
-          type={COLLECTION_TABLE_TYPE.CONTENTS}
-          data={data}
-          onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
-          onMoveUp={handleMoveUp}
-          onMoveDown={handleMoveDown}
-        />
+        <>
+          <CollectionTable
+            type={COLLECTION_TABLE_TYPE.CONTENTS}
+            data={data}
+            onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
+            onMoveUp={handleMoveUp}
+            onMoveDown={handleMoveDown}
+            onMore={(id) => {
+              setContentToMoveId(id);
+              setShowMoveContentModal(true);
+            }}
+          />
+          <MoveContentModal
+            showMoveModal={showMoveContentModal}
+            setShowMoveModal={setShowMoveContentModal}
+            showSuccessModal={showMoveSuccessModal}
+            setShowSuccessModal={setShowMoveSuccessModal}
+            collections={collections}
+            onConfirmMove={(collectionId) => {
+              // API logic can be added here later
+              setShowMoveContentModal(false);
+              setShowMoveSuccessModal(true);
+            }}
+            onConfirmClose={() => setContentToMoveId(null)}
+            onSuccessClose={() => setContentToMoveId(null)}
+          />
+        </>
       );
     }
 
