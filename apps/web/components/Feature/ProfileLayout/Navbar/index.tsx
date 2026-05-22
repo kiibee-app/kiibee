@@ -7,7 +7,11 @@ import { PATHS } from "@/utils/path";
 import { CREATE_PROFILE_HOME, NAV } from "@/utils/translationKeys";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
-import { profileNavShellProps, VARIANT } from "@/utils/Constants";
+import {
+  CREATOR_CHANNEL_AVATAR_TEXT,
+  profileNavShellProps,
+  VARIANT,
+} from "@/utils/Constants";
 import NavBar from "@/components/Layout/Navbar";
 import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
 import {
@@ -38,7 +42,7 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
           initial={initial}
           alt={brandName || t(CREATE_PROFILE_HOME.brandName)}
           sizes="40px"
-          initialUse="H4_SemiBold"
+          initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
         />
       </BrandAvatar>
       <BrandName>

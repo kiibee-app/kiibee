@@ -1,5 +1,9 @@
 "use client";
 
+import {
+  CREATOR_CHANNEL_AVATAR_TEXT,
+  type CreatorChannelAvatarTextUse,
+} from "@/utils/Constants";
 import { AvatarImage, AvatarInitial } from "./styles";
 
 type CreatorChannelAvatarProps = {
@@ -7,7 +11,7 @@ type CreatorChannelAvatarProps = {
   initial: string;
   alt: string;
   sizes: string;
-  initialUse?: "Heading2" | "H4_SemiBold" | "Heading3";
+  initialUse?: CreatorChannelAvatarTextUse;
 };
 
 export default function CreatorChannelAvatar({
@@ -15,7 +19,7 @@ export default function CreatorChannelAvatar({
   initial,
   alt,
   sizes,
-  initialUse = "Heading2",
+  initialUse = CREATOR_CHANNEL_AVATAR_TEXT.HERO,
 }: CreatorChannelAvatarProps) {
   if (avatarUrl) {
     return (
