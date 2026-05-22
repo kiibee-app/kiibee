@@ -1520,6 +1520,10 @@
         "placeholder": "Adskil tags ved at trykke enter",
         "example": "F.eks. Video, Madlavning, Film"
       }
+    },
+    "couponSearch": {
+      "title": "Søg i kupon titel",
+      "codes": "Søg efter koder"
     }
   },
   "resetPassword": {
