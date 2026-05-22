@@ -60,7 +60,6 @@ export class CheckMediaAccessGuard implements CanActivate {
       return true;
     }
 
-    // Check if the user has valid purchased/rented access
     const now = new Date();
     const hasAccess = await db.query.contentAccess.findFirst({
       where: and(
