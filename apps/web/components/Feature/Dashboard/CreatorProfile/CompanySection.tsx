@@ -6,8 +6,10 @@ import { Card, Fields } from "./styles";
 import { CompanyKeys } from "@/utils/creatorProfile";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import { getCompanyFields } from "@/utils/creatorProfilefields";
-
-const NUMERIC_COMPANY_KEYS = new Set(["phone", "cvr", "postal"]);
+import {
+  CREATOR_PROFILE_DIGITS_ONLY_SET,
+  NUMERIC_INPUT_MODE,
+} from "@/utils/numericFields";
 
 type CompanyProps = {
   form: Record<string, string>;
@@ -29,7 +31,9 @@ export default function CompanySection({ form, onChange, t }: CompanyProps) {
             value={form[field.key]}
             onChange={onChange(field.key)}
             inputMode={
-              NUMERIC_COMPANY_KEYS.has(field.key) ? "numeric" : undefined
+              CREATOR_PROFILE_DIGITS_ONLY_SET.has(field.key)
+                ? NUMERIC_INPUT_MODE
+                : undefined
             }
             labelFontStyle="Body_Regular"
             variant={INPUT_VARIANTS.PRIMARY_GRAY}

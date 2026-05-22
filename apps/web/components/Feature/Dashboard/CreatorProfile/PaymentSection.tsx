@@ -9,7 +9,7 @@ import { INPUT_VARIANTS } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { getPaymentFields } from "@/utils/creatorProfilefields";
-import { sanitizeDigits } from "@/utils/numericInput";
+import { NUMERIC_INPUT_MODE, sanitizeDigits } from "@/utils/numericFields";
 
 type PaymentProps = {
   form: Record<string, string>;
@@ -46,7 +46,7 @@ export default function PaymentSection({ form, onChange, t }: PaymentProps) {
               label={field.label}
               value={form[field.key]}
               onChange={handlePaymentChange(field.key as PaymentKeys)}
-              inputMode="numeric"
+              inputMode={NUMERIC_INPUT_MODE}
               labelFontStyle="Body_Regular"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
             />

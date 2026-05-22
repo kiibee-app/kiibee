@@ -1,3 +1,4 @@
+import { SUPPORT_FIELD, TEL_INPUT_MODE } from "@/utils/numericFields";
 import { INPUT_TYPE, InputModeValue } from "@/utils/ui";
 
 export type ContactFormState = {
@@ -46,12 +47,12 @@ export const getSupportContactFields = (
     autoComplete: "organization",
   },
   {
-    key: "phoneNumber",
+    key: SUPPORT_FIELD.PHONE_NUMBER,
     label: t("supportPage.form.phoneNumber"),
     placeholder: t("supportPage.form.placeholders.phoneNumber"),
     type: INPUT_TYPE.TEXT,
-    inputMode: "tel",
-    autoComplete: "tel",
+    inputMode: TEL_INPUT_MODE,
+    autoComplete: TEL_INPUT_MODE,
   },
   {
     key: "email",

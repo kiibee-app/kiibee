@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { NUMERIC_INPUT_MODE } from "@/utils/numericFields";
 import { INPUT_TYPE } from "@/utils/ui";
 import { PRICE_RANGE_FIELDS, PriceRangeFieldKey } from "@/types/exportCreators";
 import {
@@ -34,7 +35,7 @@ function PriceFiltersSection({
           <PriceValue>{t("creators.filters.price.currency")}</PriceValue>
           <PriceInput
             type={INPUT_TYPE.TEXT}
-            inputMode="numeric"
+            inputMode={NUMERIC_INPUT_MODE}
             placeholder="0"
             value={priceRange.min}
             onChange={handlePriceChange(PRICE_RANGE_FIELDS.MIN)}
@@ -47,7 +48,7 @@ function PriceFiltersSection({
           <PriceValue>{t("creators.filters.price.currency")}</PriceValue>
           <PriceInput
             type={INPUT_TYPE.TEXT}
-            inputMode="numeric"
+            inputMode={NUMERIC_INPUT_MODE}
             placeholder="0"
             value={priceRange.max}
             onChange={handlePriceChange(PRICE_RANGE_FIELDS.MAX)}

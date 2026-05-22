@@ -1,3 +1,7 @@
+import {
+  CREATOR_SIGNUP_FIELD,
+  NUMERIC_INPUT_MODE,
+} from "@/utils/numericFields";
 import { INPUT_TYPE, InputModeValue, InputType } from "@/utils/ui";
 
 export type CreatorFormValues = {
@@ -24,15 +28,6 @@ export type CreatorFieldConfig = {
   inputMode?: InputModeValue;
   placeholderKey?: string;
 };
-
-export const DIGITS_ONLY_CREATOR_FIELD_KEYS = [
-  "phone",
-  "cvr",
-  "postalCode",
-] as const;
-
-export type DigitsOnlyCreatorFieldKey =
-  (typeof DIGITS_ONLY_CREATOR_FIELD_KEYS)[number];
 
 export const INITIAL_CREATOR_FORM: CreatorFormValues = {
   firstName: "",
@@ -73,14 +68,14 @@ export const EMAIL_FIELD: CreatorFieldConfig = {
 
 export const CONTACT_FIELDS: CreatorFieldConfig[] = [
   {
-    key: "phone",
+    key: CREATOR_SIGNUP_FIELD.PHONE,
     labelKey: "authCreator.form.phone",
-    inputMode: "numeric",
+    inputMode: NUMERIC_INPUT_MODE,
   },
   {
-    key: "cvr",
+    key: CREATOR_SIGNUP_FIELD.CVR,
     labelKey: "authCreator.form.cvr",
-    inputMode: "numeric",
+    inputMode: NUMERIC_INPUT_MODE,
   },
 ];
 
@@ -88,10 +83,10 @@ export const ADDRESS_FIELDS: CreatorFieldConfig[] = [
   { key: "address", labelKey: "authCreator.form.address", required: true },
   { key: "city", labelKey: "authCreator.form.city", required: true },
   {
-    key: "postalCode",
+    key: CREATOR_SIGNUP_FIELD.POSTAL_CODE,
     labelKey: "authCreator.form.postalCode",
     required: true,
-    inputMode: "numeric",
+    inputMode: NUMERIC_INPUT_MODE,
   },
 ];
 

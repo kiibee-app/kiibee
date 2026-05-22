@@ -22,7 +22,7 @@ import {
 } from "../styles";
 import { CouponInput, SectionTitle } from "./styles";
 import { CouponFormState } from "@/types/collectionsType";
-import { sanitizeDecimal, sanitizePercentage } from "@/utils/numericInput";
+import { sanitizeDecimal, sanitizePercentage } from "@/utils/numericFields";
 
 type CouponDetailsModalProps = {
   visible: boolean;

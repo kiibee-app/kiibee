@@ -7,7 +7,7 @@ import {
   filterGroupMap,
   FormatOptionKey,
 } from "@/utils/creatorFilters";
-import { sanitizeDigits } from "@/utils/numericInput";
+import { sanitizeDigits } from "@/utils/numericFields";
 
 type UseCreatorFiltersParams = {
   categoryOptions: CategoryOptionKey[];

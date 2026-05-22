@@ -11,7 +11,7 @@ import {
   type ContactFormField,
 } from "@/utils/supportContact";
 import { createSupportContactSchema } from "@/lib/validation/schema";
-import { sanitizeDigits } from "@/utils/numericInput";
+import { sanitizeDigits, SUPPORT_FIELD } from "@/utils/numericFields";
 import {
   ContactBlock,
   ContactList,
@@ -84,7 +84,7 @@ export default function SupportContact() {
       ? nextValue.join(", ")
       : nextValue;
 
-    if (field === "phoneNumber") {
+    if (field === SUPPORT_FIELD.PHONE_NUMBER) {
       normalizedValue = sanitizeDigits(normalizedValue);
     }
 

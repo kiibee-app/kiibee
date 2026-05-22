@@ -12,10 +12,9 @@ import { PATHS } from "@/utils/path";
 import { useCreatorRequest } from "./useCreatorRequest";
 import { FORM_MESSAGE_TONE, FormMessageTone } from "@/utils/ui";
 import {
-  DIGITS_ONLY_CREATOR_FIELD_KEYS,
-  type DigitsOnlyCreatorFieldKey,
-} from "@/utils/authCreatorForm";
-import { sanitizeDigitsOnlyField } from "@/utils/numericInput";
+  applyDigitsOnlyInput,
+  CREATOR_SIGNUP_DIGITS_ONLY_SET,
+} from "@/utils/numericFields";
 
 export type CreatorRequestValues = {
   firstName: string;
@@ -91,16 +90,10 @@ export function useCreatorRequestForm() {
     field: keyof CreatorRequestValues,
     value: string | boolean,
   ) => {
-    let nextValue = value;
-    if (
-      typeof value === "string" &&
-      (DIGITS_ONLY_CREATOR_FIELD_KEYS as readonly string[]).includes(field)
-    ) {
-      nextValue = sanitizeDigitsOnlyField(
-        field as DigitsOnlyCreatorFieldKey,
-        value,
-      );
-    }
+    const nextValue =
+      typeof value === "string"
+        ? applyDigitsOnlyInput(field, value, CREATOR_SIGNUP_DIGITS_ONLY_SET)
+        : value;
 
     setValue(field, nextValue as CreatorRequestValues[typeof field], {
       shouldDirty: true,
