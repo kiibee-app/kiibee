@@ -6,7 +6,6 @@ import { PATHS } from "@/utils/path";
 import { useCreatorRequest } from "./useCreatorRequest";
 import { useAuthForm } from "./useAuthForm";
 import { creatorRequestFormBase } from "./authFormConfigs";
-import { FORM_MESSAGE_TONE, FormMessageTone } from "@/utils/ui";
 import {
   applyDigitsOnlyInput,
   CREATOR_SIGNUP_DIGITS_ONLY_SET,
@@ -20,96 +19,6 @@ export function useCreatorRequestForm() {
     ...creatorRequestFormBase,
     useMutation: useCreatorRequest,
     onSuccess: (response, { router, reset, setSuccessFeedback }) => {
-  const router = useRouter();
-
-  const [formMessage, setFormMessage] = useState("");
-  const [messageTone, setMessageTone] = useState<FormMessageTone>(
-    FORM_MESSAGE_TONE.ERROR,
-  );
-
-  const creatorRequest = useCreatorRequest();
-  const { getErrorMessage, applyFieldErrors } = useApiErrorMessage();
-
-  const schema = useMemo(
-    () =>
-      createCreatorRequestSchema({
-        firstNameRequired: t("authCreator.form.firstName"),
-        lastNameRequired: t("authCreator.form.lastName"),
-        emailRequired: t("authForm.errors.emailRequired"),
-        emailInvalid: t("authForm.errors.emailInvalid"),
-        addressRequired: t("authCreator.form.address"),
-        cityRequired: t("authCreator.form.city"),
-        postalCodeRequired: t("authCreator.form.postalCode"),
-        workLinkRequired: t("authCreator.form.workLink"),
-        workLinkInvalid: t("authCreator.form.workLinkInvalid"),
-        contentDescriptionRequired: t("authCreator.form.contentLabel"),
-        consentRequired: t("authCreator.form.consentPrefix"),
-      }),
-    [t],
-  );
-
-  const methods = useForm<CreatorRequestValues>({
-    resolver: zodResolver(schema),
-    mode: "onChange",
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      cvr: "",
-      address: "",
-      city: "",
-      postalCode: "",
-      workLink: "",
-      contentDescription: "",
-      agreed: false,
-    },
-  });
-
-  const {
-    handleSubmit,
-    setValue,
-    reset,
-    setError,
-    formState: { isValid, errors },
-  } = methods;
-
-  const updateField = (
-    field: keyof CreatorRequestValues,
-    value: string | boolean,
-  ) => {
-    const nextValue =
-      typeof value === "string"
-        ? applyDigitsOnlyInput(field, value, CREATOR_SIGNUP_DIGITS_ONLY_SET)
-        : value;
-
-    setValue(field, nextValue as CreatorRequestValues[typeof field], {
-      shouldDirty: true,
-      shouldValidate: true,
-    });
-
-    setFormMessage("");
-  };
-
-  const onSubmit = async (values: CreatorRequestValues) => {
-    try {
-      const response = await creatorRequest.mutateAsync({
-        firstName: values.firstName.trim(),
-        lastName: values.lastName.trim(),
-        email: values.email.trim().toLowerCase(),
-        phone: values.phone.trim() || undefined,
-        cvr: values.cvr.trim() || undefined,
-        address: values.address.trim(),
-        city: values.city.trim(),
-        postalCode: values.postalCode.trim(),
-        exampleWorkLink: values.workLink.trim(),
-        contentDescription: values.contentDescription.trim(),
-      });
-
-      if (!response.success) {
-        throw new Error(response.message || t("authForm.errors.submitFailed"));
-      }
-
       const successMessage =
         response.message || t("authCreator.form.submitSuccess");
       toast.success(successMessage);
@@ -119,5 +28,17 @@ export function useCreatorRequestForm() {
     },
   });
 
-  return { ...form, handleFormSubmit: form.handleSubmit };
+  const updateField = (
+    field: Parameters<typeof form.updateField>[0],
+    value: string | boolean,
+  ) => {
+    const nextValue =
+      typeof value === "string"
+        ? applyDigitsOnlyInput(field, value, CREATOR_SIGNUP_DIGITS_ONLY_SET)
+        : value;
+
+    form.updateField(field, nextValue);
+  };
+
+  return { ...form, updateField, handleFormSubmit: form.handleSubmit };
 }
