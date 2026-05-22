@@ -22,6 +22,7 @@ import {
 } from "../styles";
 import { CouponInput, SectionTitle } from "./styles";
 import { CouponFormState } from "@/types/collectionsType";
+import { sanitizeDecimal, sanitizePercentage } from "@/utils/numericInput";
 
 type CouponDetailsModalProps = {
   visible: boolean;
@@ -57,6 +58,14 @@ export default function CouponDetailsModal({
 
   const canContinue =
     form.title.trim().length > 0 && form.discountValue.trim().length > 0;
+
+  const handleDiscountChange = (raw: string) => {
+    const value =
+      form.discountType === COUPON_DISCOUNT_PERCENTAGE
+        ? sanitizePercentage(raw)
+        : sanitizeDecimal(raw);
+    setForm((prev) => ({ ...prev, discountValue: value }));
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -123,9 +132,7 @@ export default function CouponDetailsModal({
             type="text"
             inputMode="decimal"
             value={form.discountValue}
-            onChange={(e) =>
-              setForm((prev) => ({ ...prev, discountValue: e.target.value }))
-            }
+            onChange={(e) => handleDiscountChange(e.target.value)}
             placeholder={t(
               form.discountType === COUPON_DISCOUNT_PERCENTAGE
                 ? "contents.couponDetails.placeholders.discountPercentage"

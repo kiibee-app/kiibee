@@ -64,6 +64,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
                   .cardNumber,
               )}
               type={INPUT_TYPE.TEXT}
+              inputMode="numeric"
               value={cardNumber}
               onChange={handleCardNumberChange}
               placeholder={t(
@@ -87,6 +88,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
                     .expiryDate,
                 )}
                 type={INPUT_TYPE.TEXT}
+                inputMode="numeric"
                 value={expiryDate}
                 onChange={handleExpiryChange}
                 placeholder={t(
@@ -107,6 +109,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
                   DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.cvv,
                 )}
                 type={INPUT_TYPE.TEXT}
+                inputMode="numeric"
                 value={securityCode}
                 onChange={handleCVVChange}
                 placeholder={t(

@@ -23,6 +23,7 @@ import {
 } from "@/utils/creatorFinalSteps";
 import { useSubscriptionContext } from "@/providers/subscriptionProvider";
 import { createPaymentSchema } from "@/lib/validation/schema";
+import { formatCardNumber, formatCVV, formatExpiryDate } from "@/utils/addCard";
 import {
   Fields,
   Form,
@@ -91,7 +92,15 @@ export default function SubscriptionPaymentStep() {
     field: keyof PaymentFormValues,
     value: string | string[],
   ) => {
-    const normalized = Array.isArray(value) ? value.join(" ") : value;
+    const raw = Array.isArray(value) ? value.join(" ") : value;
+    const normalized =
+      field === "cardNumber"
+        ? formatCardNumber(raw)
+        : field === "expiryDate"
+          ? formatExpiryDate(raw)
+          : field === "cvc"
+            ? formatCVV(raw)
+            : raw;
     setValue(field, normalized as never, {
       shouldDirty: true,
       shouldValidate: true,

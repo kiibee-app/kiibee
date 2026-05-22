@@ -9,6 +9,7 @@ import { INPUT_VARIANTS } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { getPaymentFields } from "@/utils/creatorProfilefields";
+import { sanitizeDigits } from "@/utils/numericInput";
 
 type PaymentProps = {
   form: Record<string, string>;
@@ -18,6 +19,12 @@ type PaymentProps = {
 
 export default function PaymentSection({ form, onChange, t }: PaymentProps) {
   const fields = getPaymentFields(t);
+
+  const handlePaymentChange =
+    (key: PaymentKeys) => (value: string | string[]) => {
+      const text = Array.isArray(value) ? value.join("") : value;
+      onChange(key)(sanitizeDigits(text));
+    };
 
   return (
     <Card>
@@ -38,7 +45,8 @@ export default function PaymentSection({ form, onChange, t }: PaymentProps) {
               key={field.key}
               label={field.label}
               value={form[field.key]}
-              onChange={onChange(field.key as PaymentKeys)}
+              onChange={handlePaymentChange(field.key as PaymentKeys)}
+              inputMode="numeric"
               labelFontStyle="Body_Regular"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
             />

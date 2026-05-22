@@ -1,4 +1,4 @@
-import { INPUT_TYPE } from "@/utils/ui";
+import { INPUT_TYPE, InputModeValue } from "@/utils/ui";
 
 export type ContactFormState = {
   firstName: string;
@@ -18,6 +18,7 @@ export type ContactFieldConfig = {
   required?: boolean;
   autoComplete?: string;
   type?: (typeof INPUT_TYPE)[keyof typeof INPUT_TYPE];
+  inputMode?: InputModeValue;
   full?: boolean;
   max?: number;
 };
@@ -48,7 +49,8 @@ export const getSupportContactFields = (
     key: "phoneNumber",
     label: t("supportPage.form.phoneNumber"),
     placeholder: t("supportPage.form.placeholders.phoneNumber"),
-    type: INPUT_TYPE.NUMBER,
+    type: INPUT_TYPE.TEXT,
+    inputMode: "tel",
     autoComplete: "tel",
   },
   {
