@@ -115,7 +115,7 @@ export default function CollectionsSection({
                       <GenericButton
                         key={`${item.id}-${action.label}`}
                         variant={
-                          isSecondary ? VARIANT.SECONDARY : VARIANT.PRIMARY
+                          isSecondary ? VARIANT.SOFT_OUTLINE : VARIANT.PRIMARY
                         }
                         size="md"
                         minWidth="120px"
@@ -154,7 +154,7 @@ export default function CollectionsSection({
                         </MonoText>
                       </PassiveActionBlock>
                     ) : isPurchased ? null : (
-                      <GenericButton variant={VARIANT.SECONDARY} size="md">
+                      <GenericButton variant={VARIANT.SOFT_OUTLINE} size="md">
                         {RENTED_BUTTON_TEXT.rent}
                       </GenericButton>
                     )}
