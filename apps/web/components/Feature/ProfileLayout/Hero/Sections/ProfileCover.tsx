@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import coverImage from "@/assets/images/creators/create_profile_hero1.png";
 import avatarImage from "@/assets/images/creators/profile_pic.png";
-import GenericTabs from "@/components/UI/GenericTabs";
+import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
+import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
+import { useTabbedHeroState } from "@/hooks/useTabbedHeroState";
+import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import {
   AvatarImage,
   AvatarWrap,
@@ -22,38 +22,15 @@ import {
   MoreTextLabel,
   ProfileMeta,
   ProfileSection,
-  TabsWrapper,
   UploadCount,
   UploadCountText,
-} from "./styles";
-import { ABOUT, HOME, ProfileTabKey } from "@/utils/common";
-import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
-import CreatorInfoModal from "../../Layout2/Home/CreatorInfoModal";
-import {
-  useCreatorAboutModal,
-  useCreatorProfileTabs,
-} from "@/hooks/useCreatorChannelLayout";
+} from "@/components/Feature/ProfileLayout/Hero/styles";
 
-export default function Hero() {
+/** Layout 1: rounded cover, avatar beside bio, “more” opens about modal */
+export default function ProfileCoverSection() {
   const { t } = useTranslation();
-  const router = useRouter();
-  const pathname = usePathname();
-  const profileTabs = useCreatorProfileTabs();
-  const { isAboutOpen, openAbout, closeAbout } = useCreatorAboutModal();
-  const activeTab =
-    profileTabs.find((tab) => tab.href === pathname)?.key ?? HOME;
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
-
-  const handleTabChange = (tab: ProfileTabKey) => {
-    if (tab === ABOUT) {
-      openAbout();
-      return;
-    }
-    const target = profileTabs.find((item) => item.key === tab)?.href;
-    if (!target) return;
-    router.push(target);
-  };
+  const tabState = useTabbedHeroState();
+  const { isAboutOpen, openAbout, closeAbout } = tabState;
 
   return (
     <HeroWrapper>
@@ -100,22 +77,7 @@ export default function Hero() {
           </ProfileMeta>
         </ProfileSection>
 
-        <TabsWrapper>
-          <GenericTabs
-            tabs={profileTabs}
-            activeTab={activeTab}
-            onTabChange={handleTabChange}
-            search={{
-              open: searchOpen,
-              value: searchValue,
-              placeholder: t(CREATE_PROFILE_HOME.searchPlaceholder),
-              onToggle: () => setSearchOpen((prev) => !prev),
-              onChange: setSearchValue,
-              ariaLabel: t(CREATE_PROFILE_HOME.searchAriaLabel),
-              icon: <SearchIcon width={18} height={18} />,
-            }}
-          />
-        </TabsWrapper>
+        <HeroTabs {...tabState} />
       </ContentInner>
 
       <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />

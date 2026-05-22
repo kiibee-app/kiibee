@@ -3,22 +3,22 @@
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
+import heroImage from "@/assets/images/creators/creator_profile_hero.png";
 import { MonoText } from "@/components/UI/Monotext";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
-import heroImage from "@/assets/images/creators/creator_profile_hero.png";
 import {
+  HeroContent,
   HeroFrame,
   HeroGrid,
-  HeroContent,
   HeroMedia,
   StoryDescription,
   StoryMeta,
   StoryPanel,
   StoryTitle,
-  UploadsText,
-} from "../Home/styles";
+  StoryUploadsText,
+} from "@/components/Feature/ProfileLayout/Hero/styles";
 
-export default function Hero() {
+export default function StorySection() {
   const { t } = useTranslation();
 
   return (
@@ -38,11 +38,11 @@ export default function Hero() {
         <HeroContent>
           <StoryPanel>
             <StoryMeta>
-              <UploadsText>
+              <StoryUploadsText>
                 <MonoText $use="Body_Medium" color={COLORS.primary.WHITE_90}>
                   {t(CREATE_PROFILE_HOME.uploads, { count: 76 })}
                 </MonoText>
-              </UploadsText>
+              </StoryUploadsText>
             </StoryMeta>
 
             <StoryTitle>

@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
+import ProfileLayoutPage from "@/components/Feature/ProfileLayout/Page";
+import { PROFILE_LAYOUT_PAGE } from "@/utils/Constants";
 import {
   CREATOR_LAYOUT_PARAMS,
   isCreatorLayoutParam,
 } from "@/utils/creatorChannel";
-import { creatorCollectionsByLayout } from "@/utils/creatorPageRegistry";
 
 type PageProps = {
   params: Promise<{ layout: string }>;
@@ -20,6 +21,10 @@ export default async function CreatorCollectionsPage({ params }: PageProps) {
     notFound();
   }
 
-  const Collections = creatorCollectionsByLayout[layout];
-  return <Collections />;
+  return (
+    <ProfileLayoutPage
+      variant={layout}
+      page={PROFILE_LAYOUT_PAGE.COLLECTIONS}
+    />
+  );
 }

@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
+import ProfileLayoutPage from "@/components/Feature/ProfileLayout/Page";
+import { PROFILE_LAYOUT_PAGE } from "@/utils/Constants";
 import {
   CREATOR_LAYOUT_PARAMS,
   isCreatorLayoutParam,
 } from "@/utils/creatorChannel";
-import { creatorHomeByLayout } from "@/utils/creatorPageRegistry";
 
 type PageProps = {
   params: Promise<{ layout: string }>;
@@ -20,6 +21,5 @@ export default async function CreatorPage({ params }: PageProps) {
     notFound();
   }
 
-  const Home = creatorHomeByLayout[layout];
-  return <Home />;
+  return <ProfileLayoutPage variant={layout} page={PROFILE_LAYOUT_PAGE.HOME} />;
 }
