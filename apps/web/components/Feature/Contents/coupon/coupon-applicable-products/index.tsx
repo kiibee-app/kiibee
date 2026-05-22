@@ -21,12 +21,10 @@ import {
   SelectorList,
   TitleHelperText,
 } from "./styles";
-import {
-  COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS,
-  CONTENT_OPTIONS,
-} from "@/utils/dummyData/couponApplicableProducts";
+import { COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS } from "@/utils/dummyData/couponApplicableProducts";
 import { CouponFormState } from "@/types/collectionsType";
 import { CollectionRow } from "@/types/collectionsType";
+import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
 
 type CouponApplicableProductsModalProps = {
   visible: boolean;
@@ -65,6 +63,10 @@ export default function CouponApplicableProductsModal({
     value: item.id,
     label: item.name,
   }));
+  const { data: contentOptions = [] } = useAllContentsOptions(
+    collections,
+    visible,
+  );
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -122,7 +124,7 @@ export default function CouponApplicableProductsModal({
                     field.key ===
                     COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
                       ? collectionOptions
-                      : CONTENT_OPTIONS
+                      : contentOptions
                   }
                   showSelectedIndicator
                   renderSelectedValue={(selected) => (

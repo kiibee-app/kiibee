@@ -7,6 +7,7 @@ import {
   isTokenExpired,
   setTokens,
 } from "../../utils/token";
+import { API_ENDPOINTS } from "../../utils/constants";
 
 type RefreshResponse = {
   accessToken: string;
@@ -28,7 +29,7 @@ async function refreshAccessToken(): Promise<string | null> {
       return null;
     }
 
-    const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
+    const response = await fetch(`${API_BASE_URL}${API_ENDPOINTS.REFRESH}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${refreshToken}`,
@@ -58,8 +59,8 @@ export async function apiClient<T = unknown>(
   options: RequestInit = {},
 ): Promise<ApiResponse<T>> {
   const url = `${API_BASE_URL}${endpoint}`;
-  const isAuthLoginEndpoint = endpoint === "/auth/login";
-  const isAuthRefreshEndpoint = endpoint === "/auth/refresh";
+  const isAuthLoginEndpoint = endpoint === API_ENDPOINTS.LOGIN;
+  const isAuthRefreshEndpoint = endpoint === API_ENDPOINTS.REFRESH;
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",

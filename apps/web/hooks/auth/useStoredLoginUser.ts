@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  readStoredLoginUser,
-  STORED_LOGIN_USER_UPDATED,
-  type LoginUser,
-} from "@/hooks/auth/useLogin";
+import { readStoredLoginUser, type LoginUser } from "@/hooks/auth/useLogin";
+import { STORED_LOGIN_USER_UPDATED } from "@/lib/auth/storageKeys";
 import { toTrimmedString } from "@/utils/Constants";
 
 export function useStoredLoginUser() {
@@ -35,4 +32,26 @@ export function getLoginUserInitial(user: LoginUser | null): string {
 
 export function getLoginUserEmail(user: LoginUser | null): string {
   return toTrimmedString(user?.email);
+}
+
+export function getLoginUserDisplayName(user: LoginUser | null): string {
+  const fullName = toTrimmedString(user?.fullName);
+  if (fullName) return fullName;
+
+  const firstName = toTrimmedString(user?.firstName);
+  const lastName = toTrimmedString(user?.lastName);
+  const combined = [firstName, lastName].filter(Boolean).join(" ");
+  if (combined) return combined;
+
+  return getLoginUserEmail(user);
+}
+
+export function getDisplayInitial(
+  displayName: string,
+  user: LoginUser | null,
+): string {
+  const trimmed = toTrimmedString(displayName);
+  if (trimmed) return trimmed.charAt(0).toUpperCase();
+
+  return getLoginUserInitial(user);
 }

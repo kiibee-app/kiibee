@@ -254,9 +254,16 @@ export const Menu = styled.div`
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 8px;
   box-shadow: 0 8px 20px ${({ theme }) => theme.colors.neutral.GRAY_300};
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 240px;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
   width: 100%;
   z-index: 1200;
+  ${media.tablet} {
+    max-height: 150px;
+  }
 `;
 
 export const Item = styled.button`
@@ -285,6 +292,8 @@ export const Item = styled.button`
     outline-offset: -2px;
     border-radius: 2px;
   }
+
+  touch-action: pan-y;
 `;
 
 export const ItemContent = styled.span`

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 import Image from "next/image";
-import { IMAGE_TYPE, ImageType } from "@/utils/ui";
+import { ImageType, previewConfig } from "@/utils/ui";
 
 export const PanelStack = styled.div`
   display: flex;
@@ -160,11 +160,13 @@ export const LogoHeader = styled.div`
 export const LayoutGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: 20px;
   width: 100%;
+  max-width: 1100px;
 
   ${media.tablet} {
     grid-template-columns: 1fr;
+    max-width: 100%;
   }
 `;
 
@@ -172,7 +174,7 @@ export const LayoutCardWrap = styled.button<{ $active?: boolean }>`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 20px 0;
+  padding: 16px 0;
   border: 0;
   appearance: none;
   background: transparent;
@@ -205,7 +207,7 @@ export const LayoutCard = styled.div<{ $active?: boolean }>`
   border-radius: 12px;
   background: ${({ $active, theme }) =>
     $active ? theme.colors.primary.PALE_GREEN : theme.colors.primary.WHITE};
-  padding: 20px 20px 0 20px;
+  padding: 16px 16px 0;
   display: flex;
   flex-direction: column;
   transition:
@@ -222,7 +224,7 @@ export const LayoutTitle = styled(MonoText).attrs({
   $use: "H4_SemiBold",
 })`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  padding-bottom: 20px;
+  padding-bottom: 14px;
 `;
 
 export const LayoutCaption = styled(MonoText).attrs({
@@ -235,7 +237,7 @@ export const LayoutCaption = styled(MonoText).attrs({
 export const LayoutImageShell = styled.div`
   position: relative;
   width: 100%;
-  height: 360px;
+  height: 300px;
   aspect-ratio: 39 / 37;
   overflow: hidden;
   align-self: stretch;
@@ -245,7 +247,7 @@ export const LayoutImageShell = styled.div`
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${media.tablet} {
-    height: 210px;
+    height: 190px;
   }
 `;
 
@@ -278,33 +280,27 @@ export const PreviewImage = styled.img<{ $type: ImageType }>`
   object-fit: cover;
   border-radius: 8px;
   width: 100%;
-  height: auto;
 
-  ${({ $type }) =>
-    $type === IMAGE_TYPE.DESKTOP
-      ? `
-    aspect-ratio: 257 / 40;
-    max-width: 514px;
-  `
-      : `
-    aspect-ratio: 17 / 16;
-    max-width: 120px;
-  `}
+  ${({ $type }) => {
+    const config = previewConfig[$type];
+
+    return `
+      max-width: ${config.maxWidth};
+      aspect-ratio: ${config.aspectRatio ?? "auto"};
+      height: ${config.height ?? "auto"};
+      min-height: ${config.minHeight ?? "unset"};
+    `;
+  }}
 
   ${media.tablet} {
-    ${({ $type }) =>
-      $type === IMAGE_TYPE.DESKTOP
-        ? `
-      max-width: 320px;
-    `
-        : `
-      max-width: 90px;
-    `}
-  }
-
-  ${media.mobile} {
-    width: 100%;
-    max-width: 100%;
+    ${({ $type }) => {
+      const config = previewConfig[$type].tablet;
+      return `
+        ${config?.maxWidth ? `max-width: ${config?.maxWidth};` : ""}
+        ${config?.height ? `height: ${config?.height};` : ""}
+        ${config?.minHeight ? `min-height: ${config?.minHeight};` : ""}
+      `;
+    }}
   }
 `;
 

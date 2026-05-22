@@ -30,6 +30,7 @@ import { getProfileFields } from "@/utils/creatorProfilefields";
 import { ProfileForm } from "@/utils/creatorProfile";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { GenericModal } from "@/components/UI/Modals";
+import ConfirmationModal from "@/components/UI/ConfirmationModal";
 import { QuestionIcon } from "@/assets/icons/questionIcon";
 import { useRouter } from "next/navigation";
 import ImageUploader from "./ImageUploader";
@@ -211,42 +212,31 @@ export default function CreatorProfile() {
         showCloseButton={false}
       />
 
-      <GenericModal
-        visible={showDeleteModal || showDeleteSuccessModal}
-        icon={showDeleteSuccessModal ? <SuccessModalIcon /> : undefined}
-        iconMargin={showDeleteSuccessModal ? "0 auto 8px" : undefined}
-        title={
-          showDeleteSuccessModal
-            ? t(CREATOR_PROFILE.deleteSuccessModal.title)
-            : t(CREATOR_PROFILE.deleteModal.title)
-        }
-        message={
-          showDeleteSuccessModal
-            ? t(CREATOR_PROFILE.deleteSuccessModal.message)
-            : t(CREATOR_PROFILE.deleteModal.message)
-        }
-        cancelLabel={
-          showDeleteModal ? t(CREATOR_PROFILE.deleteModal.cancel) : undefined
-        }
-        confirmLabel={
-          showDeleteSuccessModal
-            ? t(CREATOR_PROFILE.deleteSuccessModal.confirm)
-            : t(CREATOR_PROFILE.deleteModal.confirm)
-        }
-        confirmVariant={showDeleteModal ? VARIANT.DANGER : VARIANT.PRIMARY}
-        onCancel={showDeleteModal ? handleDeleteClose : undefined}
-        onClose={
-          showDeleteSuccessModal ? handleDeleteSuccessClose : handleDeleteClose
-        }
-        onConfirm={
-          showDeleteSuccessModal
-            ? handleDeleteSuccessClose
-            : handleDeleteRequest
-        }
+      <ConfirmationModal
+        isOpen={showDeleteModal}
+        onClose={handleDeleteClose}
+        title={t(CREATOR_PROFILE.deleteModal.title)}
+        body={t(CREATOR_PROFILE.deleteModal.message)}
+        cancelLabel={t(CREATOR_PROFILE.deleteModal.cancel)}
+        confirmLabel={t(CREATOR_PROFILE.deleteModal.confirm)}
+        onConfirm={handleDeleteRequest}
+        confirmVariant={VARIANT.DANGER}
         size="sm"
         spacing="xs"
-        buttonRow={showDeleteModal}
-        fullWidthButtons={showDeleteModal}
+        buttonRow
+        fullWidthButtons
+        showCloseButton={false}
+      />
+      <GenericModal
+        visible={showDeleteSuccessModal}
+        icon={<SuccessModalIcon />}
+        iconMargin="0 auto 8px"
+        title={t(CREATOR_PROFILE.deleteSuccessModal.title)}
+        message={t(CREATOR_PROFILE.deleteSuccessModal.message)}
+        confirmLabel={t(CREATOR_PROFILE.deleteSuccessModal.confirm)}
+        onClose={handleDeleteSuccessClose}
+        onConfirm={handleDeleteSuccessClose}
+        size="sm"
         showCloseButton={false}
       />
       <GenericModal

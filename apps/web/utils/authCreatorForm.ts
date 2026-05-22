@@ -1,4 +1,8 @@
-import { INPUT_TYPE, InputType } from "@/utils/ui";
+import {
+  CREATOR_SIGNUP_FIELD,
+  NUMERIC_INPUT_MODE,
+} from "@/utils/numericFields";
+import { INPUT_TYPE, InputModeValue, InputType } from "@/utils/ui";
 
 export type CreatorFormValues = {
   firstName: string;
@@ -21,6 +25,7 @@ export type CreatorFieldConfig = {
   labelKey: string;
   required?: boolean;
   type?: InputType;
+  inputMode?: InputModeValue;
   placeholderKey?: string;
 };
 
@@ -62,17 +67,26 @@ export const EMAIL_FIELD: CreatorFieldConfig = {
 };
 
 export const CONTACT_FIELDS: CreatorFieldConfig[] = [
-  { key: "phone", labelKey: "authCreator.form.phone", type: INPUT_TYPE.TEL },
-  { key: "cvr", labelKey: "authCreator.form.cvr" },
+  {
+    key: CREATOR_SIGNUP_FIELD.PHONE,
+    labelKey: "authCreator.form.phone",
+    inputMode: NUMERIC_INPUT_MODE,
+  },
+  {
+    key: CREATOR_SIGNUP_FIELD.CVR,
+    labelKey: "authCreator.form.cvr",
+    inputMode: NUMERIC_INPUT_MODE,
+  },
 ];
 
 export const ADDRESS_FIELDS: CreatorFieldConfig[] = [
   { key: "address", labelKey: "authCreator.form.address", required: true },
   { key: "city", labelKey: "authCreator.form.city", required: true },
   {
-    key: "postalCode",
+    key: CREATOR_SIGNUP_FIELD.POSTAL_CODE,
     labelKey: "authCreator.form.postalCode",
     required: true,
+    inputMode: NUMERIC_INPUT_MODE,
   },
 ];
 

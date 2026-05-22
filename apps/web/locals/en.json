@@ -9,6 +9,7 @@
     "exploreCreators": "Explore creators",
     "about": "About Kiibee",
     "login": "Log in",
+    "dashboard": "Dashboard",
     "startCreating": "Start creating",
     "logoAlt": "Kiibee",
     "profile": {
@@ -842,6 +843,7 @@
     ]
   },
   "common": {
+    "confirmationModalError": "ConfirmationModal onConfirm error:",
     "share": "Share",
     "search": "Search",
     "clearSearch": "Clear search",
@@ -1508,6 +1510,13 @@
       "message": "Your updates have been successfully saved.",
       "done": "Done"
     },
+    "moveContentModal": {
+      "title": "Move content",
+      "collectionLabel": "Collections",
+      "description": "Select the collection you want to move content to",
+      "successTitle": "Moved successfully",
+      "successMessage": "Content moved to {{collectionName}} successfully."
+    },
     "metadata": {
       "production": {
         "title": "Production of",
@@ -1515,11 +1524,36 @@
         "companyPlaceholder": "Production company",
         "linkPlaceholder": "Add manufacturer link"
       },
+      "published": {
+        "title": "Published",
+        "yearPlaceholder": "Year of publication",
+        "duration": "Duration",
+        "durationPlaceholder": "Duration in minutes",
+        "category": "Category",
+        "categoryDescription": "Choose the category that aligns with your content."
+      },
+      "category": {
+        "education": "Education",
+        "food": "Food",
+        "art": "Art",
+        "design": "Design"
+      },
       "tags": {
         "title": "Tags",
         "placeholder": "Separate tags by pressing enter",
         "example": "E.g, Video, Cooking, Film"
+      },
+      "coverImage": {
+        "title": "Thumbnail",
+        "mediaCardLabel": "Upload thumbnail for the media card",
+        "mediaCardSize": "Use size 250x190 pixel image",
+        "portraitLabel": "Upload thumbnail for portrait format",
+        "portraitSize": "Use size 634x345 pixel image"
       }
+    },
+    "couponSearch": {
+      "title": "Search coupon title",
+      "codes": "Search by codes"
     }
   },
   "resetPassword": {

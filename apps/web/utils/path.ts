@@ -40,6 +40,14 @@ export const PATHS = {
   CREATOR_PROFILE: "/creator",
 } as const;
 
+const VIEWER_ROLE = "viewer";
+
+export function getDashboardPathForRole(role: unknown): string {
+  return String(role ?? "").toLowerCase() === VIEWER_ROLE
+    ? PATHS.DASHBOARD_VIEWER
+    : PATHS.DASHBOARD_CREATOR;
+}
+
 export function pathPublishedContent(contentKey: string): string {
   return `${PATHS.CONTENT}/${encodeURIComponent(contentKey)}`;
 }

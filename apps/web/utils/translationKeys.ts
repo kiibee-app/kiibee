@@ -10,6 +10,7 @@ export const NAV = {
   exploreCreators: "nav.exploreCreators",
   about: "nav.about",
   login: "nav.login",
+  dashboard: "nav.dashboard",
   startCreating: "nav.startCreating",
   logoAlt: "nav.logoAlt",
 };

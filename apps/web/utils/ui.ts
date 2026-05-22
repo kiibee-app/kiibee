@@ -1,4 +1,6 @@
+import { PreviewStyleConfig, UploadConfig } from "@/types/metadataType";
 import type { InputHTMLAttributes } from "react";
+import { CONTENTS } from "./translationKeys";
 export const INPUT_TYPE = {
   TEXT: "text",
   EMAIL: "email",
@@ -162,6 +164,8 @@ export type CropShapeType = (typeof CROP_SHAPE)[keyof typeof CROP_SHAPE];
 export const IMAGE_TYPE = {
   DESKTOP: "desktop",
   MOBILE: "mobile",
+  MEDIA_CARD: "media_card",
+  PORTRAIT: "portrait",
 } as const;
 export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
@@ -170,3 +174,58 @@ export const canUseDOM = typeof document !== "undefined";
 
 export const COLLECTION = "collection_";
 export const CONTENT = "content_";
+
+export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
+  [IMAGE_TYPE.DESKTOP]: {
+    maxWidth: "514px",
+    aspectRatio: "257 / 40",
+    tablet: {
+      maxWidth: "320px",
+    },
+  },
+
+  [IMAGE_TYPE.MOBILE]: {
+    maxWidth: "120px",
+    aspectRatio: "17 / 16",
+    tablet: {
+      maxWidth: "90px",
+    },
+  },
+
+  [IMAGE_TYPE.MEDIA_CARD]: {
+    maxWidth: "129px",
+    minHeight: "100px",
+    aspectRatio: "129 / 100",
+    tablet: {
+      maxWidth: "100px",
+      minHeight: "78px",
+    },
+  },
+
+  [IMAGE_TYPE.PORTRAIT]: {
+    maxWidth: "184px",
+    minHeight: "100px",
+    aspectRatio: "46 / 25",
+    tablet: {
+      maxWidth: "140px",
+      minHeight: "76px",
+    },
+  },
+};
+
+export const defaultUploadConfigs: UploadConfig[] = [
+  {
+    labelKey: CONTENTS.appearance.coverImage.uploadDesktop,
+    sizeKey: CONTENTS.appearance.coverImage.desktopSize,
+    cropWidth: 1440,
+    cropHeight: 224,
+    type: IMAGE_TYPE.DESKTOP,
+  },
+  {
+    labelKey: CONTENTS.appearance.coverImage.uploadMobile,
+    sizeKey: CONTENTS.appearance.coverImage.mobileSize,
+    cropWidth: 640,
+    cropHeight: 600,
+    type: IMAGE_TYPE.MOBILE,
+  },
+];

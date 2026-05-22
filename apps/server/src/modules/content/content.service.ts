@@ -33,8 +33,12 @@ export class ContentService {
     return getContentByCollectionIdService(id);
   }
 
-  async updateContentService(contentId: string, dto: UpdateContentDto) {
-    return updateContentService(contentId, dto);
+  async updateContentService(
+    contentId: string,
+    dto: UpdateContentDto,
+    creatorId: string,
+  ) {
+    return updateContentService(contentId, dto, creatorId);
   }
 
   async getContentByIdService(contentId: string) {

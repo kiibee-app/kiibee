@@ -128,10 +128,10 @@ export const ActionsContainer = styled.div`
 `;
 
 export const ActionButton = styled(GenericButton).attrs({
+  variant: VARIANT.SOFT_OUTLINE,
   size: SIZE.SM,
 })`
-  border-radius: 9999px;
-  border: 1px solid ${({ theme }) => theme.colors.primary.GREEN_30};
+  border-radius: 999px;
   padding: 0.625rem 0.75rem;
 `;
 
