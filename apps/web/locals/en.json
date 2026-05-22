@@ -1508,6 +1508,13 @@
       "message": "Your updates have been successfully saved.",
       "done": "Done"
     },
+    "moveContentModal": {
+      "title": "Move content",
+      "collectionLabel": "Collections",
+      "description": "Select the collection you want to move content to",
+      "successTitle": "Moved successfully",
+      "successMessage": "Content moved to {{collectionName}} successfully."
+    },
     "metadata": {
       "production": {
         "title": "Production of",

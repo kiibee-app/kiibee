@@ -1508,6 +1508,13 @@
       "message": "Dine opdateringer er blevet gemt.",
       "done": "Faerdig"
     },
+    "moveContentModal": {
+      "title": "Flyt indhold",
+      "collectionLabel": "Samlinger",
+      "description": "Vaelg den samling, du vil flytte indholdet til",
+      "successTitle": "Flyttet",
+      "successMessage": "Indholdet blev flyttet til {{collectionName}}."
+    },
     "metadata": {
       "production": {
         "title": "Produktion af",

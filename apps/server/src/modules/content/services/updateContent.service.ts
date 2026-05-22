@@ -1,11 +1,15 @@
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { fail, success } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 import { UpdateContentDto } from '../content.dto';
 import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
-import { mediaFileCategories } from 'src/database/schema';
+import {
+  collectionItems,
+  collections,
+  mediaFileCategories,
+} from 'src/database/schema';
 
 const pickDefined = (obj: Record<string, any>) =>
   Object.fromEntries(
@@ -15,13 +19,20 @@ const pickDefined = (obj: Record<string, any>) =>
 export const updateContentService = async (
   contentId: string,
   dto: UpdateContentDto,
+  creatorId: string,
 ) => {
   try {
     await db.transaction(async (trx) => {
       const [existing] = await trx
         .select()
         .from(mediaFiles)
-        .where(eq(mediaFiles.id, contentId))
+        .where(
+          and(
+            eq(mediaFiles.id, contentId),
+            eq(mediaFiles.creatorId, creatorId),
+            eq(mediaFiles.isDeleted, false),
+          ),
+        )
         .limit(1);
 
       if (!existing) {
@@ -76,6 +87,84 @@ export const updateContentService = async (
             mediaFileId: contentId,
           });
         }
+      }
+
+      if (dto.collectionId) {
+        const [targetCollection] = await trx
+          .select({ id: collections.id })
+          .from(collections)
+          .where(
+            and(
+              eq(collections.id, dto.collectionId),
+              eq(collections.creatorId, creatorId),
+              eq(collections.isDeleted, false),
+            ),
+          )
+          .limit(1);
+
+        if (!targetCollection) {
+          return fail('Target collection not found', HttpStatus.NOT_FOUND);
+        }
+
+        const [targetMapping] = await trx
+          .select({ id: collectionItems.id })
+          .from(collectionItems)
+          .where(
+            and(
+              eq(collectionItems.mediaFileId, contentId),
+              eq(collectionItems.collectionId, dto.collectionId),
+            ),
+          )
+          .limit(1);
+
+        const [sourceMapping] = dto.sourceCollectionId
+          ? await trx
+              .select({ id: collectionItems.id })
+              .from(collectionItems)
+              .where(
+                and(
+                  eq(collectionItems.mediaFileId, contentId),
+                  eq(collectionItems.collectionId, dto.sourceCollectionId),
+                ),
+              )
+              .limit(1)
+          : await trx
+              .select({ id: collectionItems.id })
+              .from(collectionItems)
+              .where(eq(collectionItems.mediaFileId, contentId))
+              .limit(1);
+
+        if (dto.sourceCollectionId && !sourceMapping) {
+          return fail(
+            'Source collection mapping not found',
+            HttpStatus.NOT_FOUND,
+          );
+        }
+
+        const hasSource = Boolean(sourceMapping);
+        const hasTarget = Boolean(targetMapping);
+
+        if (hasSource) {
+          const moveQuery = hasTarget
+            ? trx
+                .delete(collectionItems)
+                .where(eq(collectionItems.id, sourceMapping.id))
+            : trx
+                .update(collectionItems)
+                .set({ collectionId: dto.collectionId })
+                .where(eq(collectionItems.id, sourceMapping.id));
+
+          await moveQuery;
+          return;
+        }
+
+        await (hasTarget
+          ? Promise.resolve()
+          : trx.insert(collectionItems).values({
+              id: crypto.randomUUID(),
+              collectionId: dto.collectionId,
+              mediaFileId: contentId,
+            }));
       }
 
       return true;
