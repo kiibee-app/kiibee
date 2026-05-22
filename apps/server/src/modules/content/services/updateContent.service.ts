@@ -141,28 +141,30 @@ export const updateContentService = async (
           );
         }
 
-        if (sourceMapping && targetMapping) {
-          await trx
-            .delete(collectionItems)
-            .where(eq(collectionItems.id, sourceMapping.id));
+        const hasSource = Boolean(sourceMapping);
+        const hasTarget = Boolean(targetMapping);
+
+        if (hasSource) {
+          const moveQuery = hasTarget
+            ? trx
+                .delete(collectionItems)
+                .where(eq(collectionItems.id, sourceMapping.id))
+            : trx
+                .update(collectionItems)
+                .set({ collectionId: dto.collectionId })
+                .where(eq(collectionItems.id, sourceMapping.id));
+
+          await moveQuery;
           return;
         }
 
-        if (sourceMapping) {
-          await trx
-            .update(collectionItems)
-            .set({ collectionId: dto.collectionId })
-            .where(eq(collectionItems.id, sourceMapping.id));
-          return;
-        }
-
-        if (!targetMapping) {
-          await trx.insert(collectionItems).values({
-            id: crypto.randomUUID(),
-            collectionId: dto.collectionId,
-            mediaFileId: contentId,
-          });
-        }
+        await (hasTarget
+          ? Promise.resolve()
+          : trx.insert(collectionItems).values({
+              id: crypto.randomUUID(),
+              collectionId: dto.collectionId,
+              mediaFileId: contentId,
+            }));
       }
 
       return true;
