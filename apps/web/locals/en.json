@@ -1515,6 +1515,20 @@
         "companyPlaceholder": "Production company",
         "linkPlaceholder": "Add manufacturer link"
       },
+      "published": {
+        "title": "Published",
+        "yearPlaceholder": "Year of publication",
+        "duration": "Duration",
+        "durationPlaceholder": "Duration in minutes",
+        "category": "Category",
+        "categoryDescription": "Choose the category that aligns with your content."
+      },
+      "category": {
+        "education": "Education",
+        "food": "Food",
+        "art": "Art",
+        "design": "Design"
+      },
       "tags": {
         "title": "Tags",
         "placeholder": "Separate tags by pressing enter",

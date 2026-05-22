@@ -8,6 +8,7 @@ import {
 } from "@/assets/icons";
 import { FORMAT_TYPE, FormatType } from "./types";
 import { FILE_EXTENSION, MIME_TYPE } from "./common";
+import { TFunction } from "i18next";
 
 export type ContentType = "video" | "audio" | "pdf" | "epub" | "web";
 
@@ -172,3 +173,32 @@ export const TRAILER_VISIBILITY = {
 
 export type TrailerVisibility =
   (typeof TRAILER_VISIBILITY)[keyof typeof TRAILER_VISIBILITY];
+
+export const FIELD_KEYS = {
+  PUBLISHED_YEAR: "publishedYear",
+  DURATION: "duration",
+  CATEGORY: "category",
+} as const;
+export type FormKey = (typeof FIELD_KEYS)[keyof typeof FIELD_KEYS];
+
+export const CATEGORY_KEYS = {
+  EDUCATION: "education",
+  FOOD: "food",
+  ART: "art",
+  DESIGN: "design",
+} as const;
+
+export type CategoryKey = (typeof CATEGORY_KEYS)[keyof typeof CATEGORY_KEYS];
+
+export const getCategoryOptions = (t: TFunction) => [
+  {
+    value: CATEGORY_KEYS.EDUCATION,
+    label: t("contents.metadata.category.education"),
+  },
+  { value: CATEGORY_KEYS.FOOD, label: t("contents.metadata.category.food") },
+  { value: CATEGORY_KEYS.ART, label: t("contents.metadata.category.art") },
+  {
+    value: CATEGORY_KEYS.DESIGN,
+    label: t("contents.metadata.category.design"),
+  },
+];
