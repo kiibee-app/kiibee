@@ -94,6 +94,20 @@ export const shared = css<ButtonStyleProps>`
           }
         `;
 
+      case VARIANT.SOFT_OUTLINE:
+        return css`
+          background: ${({ theme }) => theme.colors.neutral.WHITE};
+          color: ${({ theme }) => theme.colors.primary.BLACK};
+          border: 1.3px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+          border-radius: 999px;
+
+          &:not([type="submit"]):hover {
+            background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+            border-color: ${({ theme }) => theme.colors.neutral.GRAY_300};
+            opacity: 1;
+          }
+        `;
+
       default:
         return css`
           background: transparent;
