@@ -55,6 +55,12 @@ type Props = {
   setActiveTab: (tab: ContentTab) => void;
   uploadedFile?: File | null;
   uploadedPreview?: string | null;
+  uploadedFileSnapshot?: {
+    name: string;
+    size: number;
+    type: string;
+  } | null;
+  generalContentId?: string | null;
 };
 
 export default function ContentTabPanel({
@@ -72,6 +78,8 @@ export default function ContentTabPanel({
   setActiveTab,
   uploadedFile,
   uploadedPreview,
+  uploadedFileSnapshot,
+  generalContentId,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -200,6 +208,8 @@ export default function ContentTabPanel({
       <GeneralContent
         uploadedFile={uploadedFile}
         uploadedPreview={uploadedPreview}
+        uploadedFileSnapshot={uploadedFileSnapshot}
+        contentId={generalContentId}
       />
     );
   }

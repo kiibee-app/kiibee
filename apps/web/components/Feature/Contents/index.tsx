@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import ConfirmationModal from "@/components/UI/ConfirmationModal";
@@ -35,13 +35,51 @@ import {
 } from "@/utils/content";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import { toast } from "react-toastify";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import type { CollectionRow } from "@/types/collectionsType";
+
+const COLLECTION_ID_QUERY_KEY = "collectionId";
+const CONTENT_UPLOAD_SNAPSHOT_KEY = "contents-upload-snapshot";
+const CONTENT_ID_QUERY_KEY = "contentId";
 
 export default function CreatorsContents() {
   const { t } = useTranslation();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const searchParamsString = searchParams?.toString() ?? "";
   const { saveLayout, cancelLayout, hasUnsavedChanges } =
     useCreatorChannelLayout();
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
+  const [uploadedFileSnapshot, setUploadedFileSnapshot] = useState<{
+    name: string;
+    size: number;
+    type: string;
+  } | null>(() => {
+    if (typeof window === "undefined") {
+      return null;
+    }
+
+    try {
+      const raw = sessionStorage.getItem(CONTENT_UPLOAD_SNAPSHOT_KEY);
+
+      if (!raw) {
+        return null;
+      }
+
+      const parsed = JSON.parse(raw) as {
+        name: string;
+        size: number;
+        type: string;
+      };
+
+      return parsed?.name && typeof parsed.size === "number" ? parsed : null;
+    } catch {
+      sessionStorage.removeItem(CONTENT_UPLOAD_SNAPSHOT_KEY);
+      return null;
+    }
+  });
   const [editingContent, setEditingContent] =
     useState<CollectionContentRow | null>(null);
   const {
@@ -71,6 +109,45 @@ export default function CreatorsContents() {
     handleConfirmDelete,
     setContentsMap,
   } = useContentsDataState(selectedCollection);
+
+  const selectedCollectionIdFromQuery = useMemo(() => {
+    const params = new URLSearchParams(searchParamsString);
+    return params.get(COLLECTION_ID_QUERY_KEY);
+  }, [searchParamsString]);
+
+  useEffect(() => {
+    if (!selectedCollectionIdFromQuery || collections.length === 0) return;
+    if (selectedCollection?.id === selectedCollectionIdFromQuery) return;
+
+    const matchedCollection = collections.find(
+      (item) => item.id === selectedCollectionIdFromQuery,
+    );
+    if (matchedCollection) {
+      setSelectedCollection(matchedCollection);
+    }
+  }, [
+    collections,
+    selectedCollection,
+    selectedCollectionIdFromQuery,
+    setSelectedCollection,
+  ]);
+
+  const setSelectedCollectionWithQuery = (collection: CollectionRow | null) => {
+    setSelectedCollection(collection);
+
+    const params = new URLSearchParams(searchParamsString);
+    if (collection) {
+      params.set(COLLECTION_ID_QUERY_KEY, collection.id);
+    } else {
+      params.delete(COLLECTION_ID_QUERY_KEY);
+      params.delete(CONTENT_ID_QUERY_KEY);
+    }
+
+    const query = params.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
+    });
+  };
   const {
     createCollectionFlow,
     contentTypeFlow,
@@ -98,17 +175,64 @@ export default function CreatorsContents() {
     tab: AddContentTab,
     file?: File | null,
     preview?: string | null,
+    contentId?: string | null,
   ) => {
-    setActiveTabAndQuery(tab);
     setUploadedFile(file ?? null);
     setUploadedPreview(preview ?? null);
+    setUploadedFileSnapshot(
+      file
+        ? {
+            name: file.name,
+            size: file.size,
+            type: file.type,
+          }
+        : null,
+    );
+
+    const params = new URLSearchParams(searchParamsString);
+    params.set("tab", tab);
+    if (contentId) {
+      params.set(CONTENT_ID_QUERY_KEY, contentId);
+    } else {
+      params.delete(CONTENT_ID_QUERY_KEY);
+    }
+    const query = params.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, {
+      scroll: false,
+    });
   };
 
-  const handleBackToBase = () => {
-    setSelectedCollection(null);
-    if (isUploadMode) {
-      setSelectedCollection(selectedCollection);
+  const selectedContentIdFromQuery = useMemo(() => {
+    const params = new URLSearchParams(searchParamsString);
+    return params.get(CONTENT_ID_QUERY_KEY);
+  }, [searchParamsString]);
+
+  useEffect(() => {
+    if (!uploadedFileSnapshot) {
+      sessionStorage.removeItem(CONTENT_UPLOAD_SNAPSHOT_KEY);
+      return;
     }
+
+    sessionStorage.setItem(
+      CONTENT_UPLOAD_SNAPSHOT_KEY,
+      JSON.stringify(uploadedFileSnapshot),
+    );
+  }, [uploadedFileSnapshot]);
+
+  useEffect(() => {
+    if (!uploadedFileSnapshot) {
+      sessionStorage.removeItem(CONTENT_UPLOAD_SNAPSHOT_KEY);
+      return;
+    }
+
+    sessionStorage.setItem(
+      CONTENT_UPLOAD_SNAPSHOT_KEY,
+      JSON.stringify(uploadedFileSnapshot),
+    );
+  }, [uploadedFileSnapshot]);
+
+  const handleBackToBase = () => {
+    setSelectedCollectionWithQuery(null);
     setActiveTabAndQuery(COLLECTIONS);
   };
 
@@ -211,13 +335,15 @@ export default function CreatorsContents() {
             setCollections={setCollections}
             setContentsMap={setContentsMap}
             setActiveTab={setActiveTabAndQuery}
-            setSelectedCollection={setSelectedCollection}
+            setSelectedCollection={setSelectedCollectionWithQuery}
             onDelete={openDelete}
             onEditCollection={handleEditCollection}
             onEditContent={handleEditContent}
             onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
+            uploadedFileSnapshot={uploadedFileSnapshot}
+            generalContentId={selectedContentIdFromQuery}
           />
         </ContentPanel>
       </ContentsScrollArea>

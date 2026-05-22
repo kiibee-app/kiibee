@@ -60,6 +60,7 @@ type ContentUploadModalProps = {
     tab: AddContentTab,
     file?: File | null,
     preview?: string | null,
+    contentId?: string | null,
   ) => void;
 };
 
@@ -207,13 +208,27 @@ export default function ContentUploadModal({
     setCreateError(null);
 
     try {
-      await createContentMutation.mutateAsync(payload);
+      const createResponse = await createContentMutation.mutateAsync(payload);
+      const createdContentId = resolveCreatedContentId(createResponse);
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: [API.collection.getAll] }),
         queryClient.invalidateQueries({
           queryKey: [API.content.collection(collectionId)],
         }),
       ]);
+
+      if (createdContentId) {
+        await queryClient.invalidateQueries({
+          queryKey: [API.content.get(createdContentId)],
+        });
+      }
+
+      onUploadSuccess?.(
+        ADD_CONTENT_TABS.GENERAL,
+        selectedFile,
+        previewUrl,
+        createdContentId,
+      );
     } catch (error) {
       const message =
         error instanceof Error
@@ -224,7 +239,6 @@ export default function ContentUploadModal({
     }
 
     setIsSuccess(true);
-    onUploadSuccess?.(ADD_CONTENT_TABS.GENERAL, selectedFile, previewUrl);
   };
 
   const handleResetDetails = () => {
@@ -347,3 +361,21 @@ export default function ContentUploadModal({
     </GenericModal>
   );
 }
+const resolveCreatedContentId = (response: unknown): string | null => {
+  if (!response || typeof response !== "object") return null;
+
+  const directId =
+    "id" in response && typeof response.id === "string" ? response.id : null;
+  if (directId) return directId;
+
+  const data =
+    "data" in response && response.data && typeof response.data === "object"
+      ? response.data
+      : null;
+
+  if (data && "id" in data && typeof data.id === "string") {
+    return data.id;
+  }
+
+  return null;
+};
