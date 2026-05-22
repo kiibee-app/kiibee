@@ -22,12 +22,17 @@ export const API = {
     videoInit: "/media/videos/init",
     videoPartUrl: "/media/videos/part-url",
     videoComplete: "/media/videos/complete",
+    videoStream: "/media/videos/stream",
     fileUploadUrl: "/media/file/upload-url",
     fileConfirm: "/media/file/confirm",
+    fileSignedUrl: "/media/file/signed-url",
   },
   content: {
     create: "/content/create",
     collection: (id: string) => `/content/collection/${id}`,
+    get: (id: string) => `/content/${id}`,
+    update: (id: string) => `/content/update/${id}`,
+    delete: (id: string) => `/content/delete/${id}`,
   },
   collection: {
     getAll: "/collection",

@@ -5,6 +5,7 @@ import { VideoMultipartService } from './services/videoMultipart.service';
 import { VideoStreamService } from './services/videoStream.service';
 import { VideoDownloadService } from './services/videoDownload.service';
 import { FileUploadService } from './services/fileUpload.service';
+import { PublicImageUploadService } from './services/publicImageUpload.service';
 import { GetMediaByKeyService } from './services/getmediaByKey.service';
 
 @Module({
@@ -15,6 +16,7 @@ import { GetMediaByKeyService } from './services/getmediaByKey.service';
     VideoStreamService,
     VideoDownloadService,
     FileUploadService,
+    PublicImageUploadService,
     GetMediaByKeyService,
   ],
 })

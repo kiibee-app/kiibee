@@ -1,9 +1,14 @@
 import type { StaticImageData } from "next/image";
 
 export type ImageSource = StaticImageData | string;
+const REMOTE_IMAGE_PATTERN = /^https?:\/\//;
 
 export function resolveImageUrl(image: ImageSource) {
   return typeof image === "string" ? image : image.src;
+}
+
+export function isRemoteImageSource(image: ImageSource) {
+  return typeof image === "string" && REMOTE_IMAGE_PATTERN.test(image);
 }
 
 export const ICON_DEFAULT_COLOR = "currentColor";

@@ -1,12 +1,15 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
   Post,
   Query,
   ParseIntPipe,
+  Req,
   UseGuards,
 } from '@nestjs/common';
+import type { FastifyRequest } from 'fastify';
 import { MediaService } from './media.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
@@ -81,6 +84,30 @@ export class MediaController {
     return {
       url: await this.mediaService.fileUpload.getSignedUrl(key),
     };
+  }
+
+  @Post('images/upload')
+  async uploadImage(@Req() req: FastifyRequest) {
+    const file = await req.file();
+    if (!file) {
+      throw new BadRequestException('No image file provided');
+    }
+
+    const buffer = await this.streamToBuffer(file.file);
+    return this.mediaService.uploadPublicImage({
+      buffer,
+      mimetype: file.mimetype,
+      filename: file.filename,
+    });
+  }
+
+  private async streamToBuffer(stream: NodeJS.ReadableStream): Promise<Buffer> {
+    const chunks: Buffer[] = [];
+    return new Promise((resolve, reject) => {
+      stream.on('data', (c) => chunks.push(Buffer.from(c)));
+      stream.on('error', reject);
+      stream.on('end', () => resolve(Buffer.concat(chunks)));
+    });
   }
 
   @UseGuards(JwtAuthGuard)
