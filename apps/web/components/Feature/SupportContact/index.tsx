@@ -11,6 +11,7 @@ import {
   type ContactFormField,
 } from "@/utils/supportContact";
 import { createSupportContactSchema } from "@/lib/validation/schema";
+import { sanitizeDigits, SUPPORT_FIELD } from "@/utils/numericFields";
 import {
   ContactBlock,
   ContactList,
@@ -79,9 +80,13 @@ export default function SupportContact() {
     field: ContactFormField,
     nextValue: string | string[],
   ) => {
-    const normalizedValue = Array.isArray(nextValue)
+    let normalizedValue = Array.isArray(nextValue)
       ? nextValue.join(", ")
       : nextValue;
+
+    if (field === SUPPORT_FIELD.PHONE_NUMBER) {
+      normalizedValue = sanitizeDigits(normalizedValue);
+    }
 
     setValue(field, normalizedValue as never, {
       shouldDirty: true,
@@ -172,6 +177,7 @@ export default function SupportContact() {
                           labelMarginTop="0"
                           placeholder={field.placeholder}
                           type={field.type}
+                          inputMode={field.inputMode}
                           required={field.required}
                           autoComplete={field.autoComplete}
                           onChange={(nextValue) =>

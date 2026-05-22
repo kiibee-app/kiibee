@@ -7,6 +7,7 @@ import {
   filterGroupMap,
   FormatOptionKey,
 } from "@/utils/creatorFilters";
+import { sanitizeDigits } from "@/utils/numericFields";
 
 type UseCreatorFiltersParams = {
   categoryOptions: CategoryOptionKey[];
@@ -61,10 +62,6 @@ function getNextSelectedOptions(params: {
   }
 
   return [...currentOptions.filter((item) => item !== allOption), option];
-}
-
-function sanitizePriceInput(value: string): string {
-  return value.replace(/[^\d]/g, "");
 }
 
 function useFilterPanelState() {
@@ -142,7 +139,7 @@ function usePriceRangeFilter() {
 
   const handlePriceChange = useCallback(
     (field: keyof PriceRange) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = sanitizePriceInput(e.target.value);
+      const value = sanitizeDigits(e.target.value);
 
       setPriceRange((prev) => ({
         ...prev,

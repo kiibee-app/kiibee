@@ -23,6 +23,8 @@ import {
 } from "@/utils/creatorFinalSteps";
 import { useSubscriptionContext } from "@/providers/subscriptionProvider";
 import { createPaymentSchema } from "@/lib/validation/schema";
+import { formatCardNumber, formatCVV, formatExpiryDate } from "@/utils/addCard";
+import { NUMERIC_INPUT_MODE } from "@/utils/numericFields";
 import {
   Fields,
   Form,
@@ -91,7 +93,15 @@ export default function SubscriptionPaymentStep() {
     field: keyof PaymentFormValues,
     value: string | string[],
   ) => {
-    const normalized = Array.isArray(value) ? value.join(" ") : value;
+    const raw = Array.isArray(value) ? value.join(" ") : value;
+    const normalized =
+      field === "cardNumber"
+        ? formatCardNumber(raw)
+        : field === "expiryDate"
+          ? formatExpiryDate(raw)
+          : field === "cvc"
+            ? formatCVV(raw)
+            : raw;
     setValue(field, normalized as never, {
       shouldDirty: true,
       shouldValidate: true,
@@ -189,7 +199,7 @@ export default function SubscriptionPaymentStep() {
               labelFontStyle="Body_Regular"
               labelMarginTop="0"
               type={INPUT_TYPE.TEXT}
-              inputMode="numeric"
+              inputMode={NUMERIC_INPUT_MODE}
               autoComplete="cc-number"
               onChange={(value) => updateField("cardNumber", value)}
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
@@ -221,7 +231,7 @@ export default function SubscriptionPaymentStep() {
                 labelFontStyle="Body_Regular"
                 labelMarginTop="0"
                 type={INPUT_TYPE.TEXT}
-                inputMode="numeric"
+                inputMode={NUMERIC_INPUT_MODE}
                 autoComplete="cc-exp"
                 placeholder="MM/YY"
                 onChange={(value) => updateField("expiryDate", value)}
@@ -237,7 +247,7 @@ export default function SubscriptionPaymentStep() {
                 labelFontStyle="Body_Regular"
                 labelMarginTop="0"
                 type={INPUT_TYPE.TEXT}
-                inputMode="numeric"
+                inputMode={NUMERIC_INPUT_MODE}
                 autoComplete="cc-csc"
                 onChange={(value) => updateField("cvc", value)}
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
