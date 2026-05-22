@@ -1,11 +1,11 @@
 import type { LoginUser } from "@/hooks/auth/useLogin";
+import { authStorage } from "@/lib/auth/authStorage";
 import {
   PROFILE_FIELD_MAP,
   type CreatorProfileBodyKey,
 } from "@/utils/profileFieldMap";
 import { isString, toTrimmedString } from "@/utils/Constants";
 import { isBrowser } from "@/utils/ui";
-import { USER_STORAGE_KEY } from "@/utils/viewerProfile";
 
 export type Passwords = {
   current: string;
@@ -155,35 +155,30 @@ export function readCreatorBoot(): CreatorBoot {
     return EMPTY_CREATOR_BOOT;
   }
 
-  try {
-    const raw = window.localStorage.getItem(USER_STORAGE_KEY);
-    const user = raw ? (JSON.parse(raw) as LoginUser) : null;
-    const email = str(user?.email);
+  const user = authStorage.getUser() as LoginUser | null;
+  const email = str(user?.email);
 
-    const storedFirst = str(user?.firstName);
-    const storedLast = str(user?.lastName);
-    if (storedFirst || storedLast) {
-      return {
-        ...EMPTY_CREATOR_BOOT,
-        firstName: storedFirst,
-        lastName: storedLast,
-        email,
-      };
-    }
-
-    const fullName = str(user?.fullName);
-    if (fullName) {
-      return {
-        ...EMPTY_CREATOR_BOOT,
-        ...parseCreatorNameFromFullName(fullName),
-        email,
-      };
-    }
-
-    return { ...EMPTY_CREATOR_BOOT, email };
-  } catch {
-    return EMPTY_CREATOR_BOOT;
+  const storedFirst = str(user?.firstName);
+  const storedLast = str(user?.lastName);
+  if (storedFirst || storedLast) {
+    return {
+      ...EMPTY_CREATOR_BOOT,
+      firstName: storedFirst,
+      lastName: storedLast,
+      email,
+    };
   }
+
+  const fullName = str(user?.fullName);
+  if (fullName) {
+    return {
+      ...EMPTY_CREATOR_BOOT,
+      ...parseCreatorNameFromFullName(fullName),
+      email,
+    };
+  }
+
+  return { ...EMPTY_CREATOR_BOOT, email };
 }
 
 export function displayCreatorName(

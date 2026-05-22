@@ -1,12 +1,9 @@
 import type { LoginUser } from "@/hooks/auth/useLogin";
-import { AUTH_STORAGE_KEYS } from "@/lib/auth/storageKeys";
+import { authStorage } from "@/lib/auth/authStorage";
 import { toTrimmedString } from "@/utils/Constants";
 import { FORM_MESSAGE_TONE, isBrowser } from "@/utils/ui";
 
 export const IMAGE_DATA_PREFIX = /^data:image\//;
-
-/** @deprecated Use AUTH_STORAGE_KEYS.user directly. */
-export const USER_STORAGE_KEY = AUTH_STORAGE_KEYS.user;
 
 export type ViewerBootstrap = {
   name: string;
@@ -64,28 +61,21 @@ export function readViewerBootstrapFromStorage(): ViewerBootstrap {
     return EMPTY_VIEWER_BOOTSTRAP;
   }
 
-  try {
-    const raw = window.localStorage.getItem(USER_STORAGE_KEY);
-    const user = raw ? (JSON.parse(raw) as LoginUser) : null;
+  const user = authStorage.getUser() as LoginUser | null;
+  const name = toTrimmedString(user?.fullName);
+  const email = toTrimmedString(user?.email);
+  const trimmedAvatar = toTrimmedString(user?.avatarUrl);
+  const downloadsCount = Number(user?.downloadsCount ?? 0);
 
-    const name = toTrimmedString(user?.fullName);
-    const email = toTrimmedString(user?.email);
-    const trimmedAvatar = toTrimmedString(user?.avatarUrl);
-    const avatarUrl =
+  return {
+    name,
+    email,
+    avatarUrl:
       trimmedAvatar.length > 0 && IMAGE_DATA_PREFIX.test(trimmedAvatar)
         ? trimmedAvatar
-        : null;
-    const downloadsCount = Number(user?.downloadsCount ?? 0);
-
-    return {
-      name,
-      email,
-      avatarUrl,
-      downloadsCount: Number.isFinite(downloadsCount) ? downloadsCount : 0,
-    };
-  } catch {
-    return EMPTY_VIEWER_BOOTSTRAP;
-  }
+        : null,
+    downloadsCount: Number.isFinite(downloadsCount) ? downloadsCount : 0,
+  };
 }
 
 type BootstrapListener = (data: ViewerBootstrap) => void;

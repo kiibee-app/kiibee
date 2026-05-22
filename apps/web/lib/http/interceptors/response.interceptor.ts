@@ -13,10 +13,12 @@ type RefreshResponse = {
   accessToken?: string;
   refreshToken?: string;
   token?: string;
+  role?: string;
   data?: {
     accessToken?: string;
     refreshToken?: string;
     token?: string;
+    role?: string;
   };
 };
 
@@ -47,7 +49,11 @@ const refreshAccessToken = async (
     }
 
     refreshPromise = client
-      .post<RefreshResponse>(API.auth.refresh, { refreshToken })
+      .post<RefreshResponse>(API.auth.refresh, undefined, {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
+      })
       .then((response: AxiosResponse<RefreshResponse>) => {
         const nextAccessToken = authStorage.setSession(response.data);
 
