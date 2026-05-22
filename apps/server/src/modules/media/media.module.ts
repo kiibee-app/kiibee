@@ -6,6 +6,7 @@ import { VideoStreamService } from './services/videoStream.service';
 import { VideoDownloadService } from './services/videoDownload.service';
 import { FileUploadService } from './services/fileUpload.service';
 import { PublicImageUploadService } from './services/publicImageUpload.service';
+import { GetMediaByKeyService } from './services/getmediaByKey.service';
 
 @Module({
   controllers: [MediaController],
@@ -16,6 +17,7 @@ import { PublicImageUploadService } from './services/publicImageUpload.service';
     VideoDownloadService,
     FileUploadService,
     PublicImageUploadService,
+    GetMediaByKeyService,
   ],
 })
 export class MediaModule {}

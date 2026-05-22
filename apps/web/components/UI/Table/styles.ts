@@ -8,7 +8,6 @@ export const TableContainer = styled.div`
   width: 100%;
   background-color: transparent;
   border-radius: 8px;
-  overflow-x: auto;
 
   ${media.tablet} {
     background: transparent;

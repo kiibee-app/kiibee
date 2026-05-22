@@ -21,35 +21,20 @@ import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
 import { CONTENTS } from "@/utils/translationKeys";
 import ImageUploadCropModal from "@/components/UI/ImageUploadCropModal";
-import { CROP_SHAPE, IMAGE_TYPE, ImageType } from "@/utils/ui";
+import {
+  CROP_SHAPE,
+  defaultUploadConfigs,
+  IMAGE_TYPE,
+  ImageType,
+} from "@/utils/ui";
 import { useIsMobile } from "@/utils/useIsMobile";
+import { CoverImageSectionProps, UploadConfig } from "@/types/metadataType";
 
-type UploadConfig = {
-  labelKey: string;
-  sizeKey: string;
-  cropWidth: number;
-  cropHeight: number;
-  type: ImageType;
-};
-
-const uploadConfigs: UploadConfig[] = [
-  {
-    labelKey: CONTENTS.appearance.coverImage.uploadDesktop,
-    sizeKey: CONTENTS.appearance.coverImage.desktopSize,
-    cropWidth: 1440,
-    cropHeight: 224,
-    type: IMAGE_TYPE.DESKTOP,
-  },
-  {
-    labelKey: CONTENTS.appearance.coverImage.uploadMobile,
-    sizeKey: CONTENTS.appearance.coverImage.mobileSize,
-    cropWidth: 640,
-    cropHeight: 600,
-    type: IMAGE_TYPE.MOBILE,
-  },
-];
-
-export default function CoverImageSection() {
+export default function CoverImageSection({
+  title,
+  subtitle = false,
+  uploadConfigs = defaultUploadConfigs,
+}: CoverImageSectionProps) {
   const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const isMobile = useIsMobile();
@@ -58,6 +43,8 @@ export default function CoverImageSection() {
   const [images, setImages] = React.useState<Record<ImageType, string | null>>({
     [IMAGE_TYPE.DESKTOP]: null,
     [IMAGE_TYPE.MOBILE]: null,
+    [IMAGE_TYPE.MEDIA_CARD]: null,
+    [IMAGE_TYPE.PORTRAIT]: null,
   });
 
   const handleOpenModal = (config: UploadConfig) => {
@@ -84,8 +71,10 @@ export default function CoverImageSection() {
       <SectionList>
         <ItemRow>
           <Copy>
-            <Label>{t(CONTENTS.appearance.coverImage.title)}</Label>
-            <Hint>{t(CONTENTS.appearance.coverImage.subtitle)}</Hint>
+            <Label>{title ?? t(CONTENTS.appearance.coverImage.title)}</Label>
+            {!subtitle && (
+              <Hint>{t(CONTENTS.appearance.coverImage.subtitle)}</Hint>
+            )}
           </Copy>
 
           {uploadConfigs.map((item) => (
@@ -97,11 +86,11 @@ export default function CoverImageSection() {
                     minWidth={isMobile ? undefined : "320px"}
                     onClick={() => handleOpenModal(item)}
                   >
-                    {t(item.labelKey)}
+                    {item.label ?? (item.labelKey ? t(item.labelKey) : "")}
                   </GenericButton>
 
                   <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-                    {t(item.sizeKey)}
+                    {item.sizeText ?? (item.sizeKey ? t(item.sizeKey) : "")}
                   </MonoText>
                 </UploadButton>
 
@@ -109,7 +98,9 @@ export default function CoverImageSection() {
                   {images[item.type] && (
                     <PreviewImage
                       src={images[item.type]!}
-                      alt={t(item.labelKey)}
+                      alt={
+                        item.label ?? (item.labelKey ? t(item.labelKey) : "")
+                      }
                       $type={item.type}
                     />
                   )}

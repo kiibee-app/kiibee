@@ -28,6 +28,7 @@ export type HeaderProps = {
 
 export type NavStyleProps = {
   $navPosition: "center" | "right";
+  $textTone: "dark" | "light";
 };
 
 export type NavBarProps = {
@@ -39,6 +40,7 @@ export type NavBarProps = {
   mobileInnerPadding?: string;
   innerMaxWidth?: string;
   navPosition?: "center" | "right";
+  navTextTone?: "dark" | "light";
   items?: NavBarItem[];
   brand?: ReactNode;
   navBefore?: ReactNode;

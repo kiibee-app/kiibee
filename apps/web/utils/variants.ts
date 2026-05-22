@@ -2,6 +2,7 @@ export const VARIANT = {
   PRIMARY: "primary",
   PRIMARY_LITE: "primary-lite",
   SECONDARY: "secondary",
+  SOFT_OUTLINE: "soft-outline",
   DANGER: "danger",
 } as const;
 

@@ -9,6 +9,7 @@
     "exploreCreators": "Udforsk skabere",
     "about": "Om Kiibee",
     "login": "Log ind",
+    "dashboard": "Dashboard",
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee",
     "profile": {
@@ -842,6 +843,7 @@
     ]
   },
   "common": {
+    "confirmationModalError": "Fejl ved bekræftelsesmodal:",
     "share": "Del",
     "search": "TODO: translate - Search",
     "clearSearch": "TODO: translate - Clear search",
@@ -1507,6 +1509,13 @@
       "message": "Dine opdateringer er blevet gemt.",
       "done": "Faerdig"
     },
+    "moveContentModal": {
+      "title": "Flyt indhold",
+      "collectionLabel": "Samlinger",
+      "description": "Vaelg den samling, du vil flytte indholdet til",
+      "successTitle": "Flyttet",
+      "successMessage": "Indholdet blev flyttet til {{collectionName}}."
+    },
     "metadata": {
       "production": {
         "title": "Produktion af",
@@ -1514,11 +1523,36 @@
         "companyPlaceholder": "Produktionsselskab",
         "linkPlaceholder": "Tilføj producentlink"
       },
+      "published": {
+        "title": "Udgivet",
+        "yearPlaceholder": "Udgivelsesår",
+        "duration": "Varighed",
+        "durationPlaceholder": "Varighed i minutter",
+        "category": "Kategori",
+        "categoryDescription": "Vælg den kategori, der passer til dit indhold."
+      },
+      "category": {
+        "education": "Uddannelse",
+        "food": "Mad",
+        "art": "Kunst",
+        "design": "Design"
+      },
       "tags": {
         "title": "Tags",
         "placeholder": "Adskil tags ved at trykke enter",
         "example": "F.eks. Video, Madlavning, Film"
+      },
+      "coverImage": {
+        "title": "Miniature",
+        "mediaCardLabel": "Upload miniature til mediekortet",
+        "mediaCardSize": "Brug størrelse 250x190 pixel billede",
+        "portraitLabel": "Upload miniature til portrætformat",
+        "portraitSize": "Brug størrelse 634x345 pixel billede"
       }
+    },
+    "couponSearch": {
+      "title": "Søg i kupon titel",
+      "codes": "Søg efter koder"
     }
   },
   "resetPassword": {

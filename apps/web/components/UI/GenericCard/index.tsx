@@ -1,7 +1,9 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
+import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT } from "@/utils/Constants";
 import { Card, ImageWrapper, Content, Footer, Badge } from "./styles";
 
 type GenericCardProps = {
@@ -16,6 +18,28 @@ type GenericCardProps = {
   children?: ReactNode;
   width?: string;
 };
+
+function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
+  if (!React.isValidElement(node)) return node;
+
+  const element = node as React.ReactElement<Record<string, unknown>>;
+
+  if (element.type === GenericButton) {
+    return React.cloneElement(element, {
+      ...element.props,
+      variant: VARIANT.SOFT_OUTLINE,
+    });
+  }
+
+  if (!element.props?.children) return node;
+
+  return React.cloneElement(element, {
+    ...element.props,
+    children: React.Children.map(element.props.children as ReactNode, (child) =>
+      applySoftOutlineToFooterButtons(child),
+    ),
+  });
+}
 
 export default function GenericCard({
   image,
@@ -50,7 +74,7 @@ export default function GenericCard({
         {children}
       </Content>
 
-      {footer && <Footer>{footer}</Footer>}
+      {footer && <Footer>{applySoftOutlineToFooterButtons(footer)}</Footer>}
     </Card>
   );
 }

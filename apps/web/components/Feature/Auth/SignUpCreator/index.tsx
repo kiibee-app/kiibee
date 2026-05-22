@@ -75,6 +75,7 @@ export default function SignUpCreatorSection() {
       labelFontStyle="Body_Regular"
       labelMarginTop="0"
       type={field.type}
+      inputMode={field.inputMode}
       placeholder={field.placeholderKey ? t(field.placeholderKey) : undefined}
       onChange={(value) => updateField(field.key, normalizeFieldValue(value))}
       required={field.required}

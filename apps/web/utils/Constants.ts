@@ -1,5 +1,15 @@
+import type { typography } from "@repo/ui/typography";
 import { COLLECTIONS, HOME } from "./common";
 import { NavBarProps } from "./profile";
+
+export const CREATOR_CHANNEL_AVATAR_TEXT = {
+  HERO: "Heading2",
+  NAVBAR: "H4_SemiBold",
+  COMPACT: "Heading3",
+} as const satisfies Record<string, keyof typeof typography>;
+
+export type CreatorChannelAvatarTextUse =
+  (typeof CREATOR_CHANNEL_AVATAR_TEXT)[keyof typeof CREATOR_CHANNEL_AVATAR_TEXT];
 
 export * from "./variants";
 export * from "./media";

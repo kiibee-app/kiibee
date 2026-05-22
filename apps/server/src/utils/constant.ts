@@ -45,4 +45,12 @@ export const ACCOUNT_STATUS = {
   DELETED: 'deleted',
 } as const;
 
-export const FILE_SIZE_LIMIT = 15 * 1024 * 1024; // 15MB
+export const FILE_SIZE_LIMIT = 15 * 1024 * 1024;
+
+export const SIGNED_URL_EXPIRY = {
+  SHORT: 3600,
+  MEDIUM: 14400,
+  LONG: 43200,
+  DAY: 86400,
+  MAX: 604800,
+} as const;

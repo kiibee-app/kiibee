@@ -7,9 +7,12 @@ import {
   Query,
   ParseIntPipe,
   Req,
+  UseGuards,
 } from '@nestjs/common';
 import type { FastifyRequest } from 'fastify';
 import { MediaService } from './media.service';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CheckMediaAccessGuard } from 'src/middleware/CheckMediaAccess';
 
 type FileType = 'documents' | 'audio' | 'ebooks';
 
@@ -106,5 +109,13 @@ export class MediaController {
       stream.on('error', reject);
       stream.on('end', () => resolve(Buffer.concat(chunks)));
     });
+  }
+
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
+  @Get('signed-url')
+  async getMediaSignedUrl(@Query('key') key: string) {
+    return {
+      url: await this.mediaService.getMediaSignedUrl(key),
+    };
   }
 }
