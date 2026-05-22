@@ -7,10 +7,15 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import helmet from '@fastify/helmet';
+import multipart from '@fastify/multipart';
 import { AppModule } from './app.module';
 import { pool } from './database/db';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { CORS_ALLOWED_HEADERS, CORS_HTTP_METHODS } from './utils/constant';
+import {
+  CORS_ALLOWED_HEADERS,
+  CORS_HTTP_METHODS,
+  FILE_SIZE_LIMIT,
+} from './utils/constant';
 import { logger } from './logger/logger';
 
 async function bootstrap() {
@@ -27,6 +32,10 @@ async function bootstrap() {
         logger: false,
       },
     );
+
+    await app.register(multipart, {
+      limits: { fileSize: FILE_SIZE_LIMIT },
+    });
 
     app.setGlobalPrefix('api/v1');
 

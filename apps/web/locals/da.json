@@ -920,7 +920,15 @@
     "profilePhotoAlt": "Profilfoto"
   },
   "singleContent": {
-    "notFound": "Dette indhold blev ikke fundet."
+    "notFound": "Dette indhold blev ikke fundet.",
+    "loading": "Indhold indlaeses...",
+    "imageAlt": "Forhaandsvisning af indhold",
+    "seeContent": "Se indhold",
+    "meta": {
+      "createdAt": "Oprettet:",
+      "accessType": "Adgang:",
+      "visibility": "Synlighed:"
+    }
   },
   "singleCollection": {
     "subtitle": "Lær hvordan du bruger vores platform",
@@ -1435,6 +1443,8 @@
       "invalidFile": "Vælg en understøttet fil under 2 GB.",
       "uploadError": "Filen kunne ikke uploades. Prøv igen.",
       "createError": "Indholdet kunne ikke oprettes. Prøv igen.",
+      "updateError": "Indholdet kunne ikke opdateres. Prøv igen.",
+      "updateSuccess": "Indholdet blev opdateret.",
       "video": {
         "helperLineOne": "Maks. filstørrelse er 2 GB for filtyperne (.mp4)",
         "helperLineTwo": "Min. opløsning 1080p HD"
@@ -1457,7 +1467,8 @@
         "titlePlaceholder": "Indtast titel",
         "description": "Beskrivelse",
         "descriptionPlaceholder": "Indtast beskrivelse",
-        "add": "Tilføj"
+        "add": "Tilføj",
+        "update": "Opdater"
       },
       "webForm": {
         "title": "Tilføj webindhold",

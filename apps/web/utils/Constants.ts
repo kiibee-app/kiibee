@@ -1,3 +1,6 @@
+import { COLLECTIONS, HOME } from "./common";
+import { NavBarProps } from "./profile";
+
 export * from "./variants";
 export * from "./media";
 export * from "./keyboard";
@@ -49,8 +52,36 @@ export function toTrimmedString(value: unknown): string {
 export const COUPON_ACTION_EDIT = "edit";
 export const COUPON_ACTION_STATUS = "status";
 export const COUPON_ACTION_DELETE = "delete";
+export type ProfileHomeSectionKey = "latestUpload" | "about";
 
 export type CouponAction =
   | typeof COUPON_ACTION_EDIT
   | typeof COUPON_ACTION_STATUS
   | typeof COUPON_ACTION_DELETE;
+
+export const profileNavShellProps = {
+  position: "absolute",
+  innerPadding: "15px 110px",
+  tabletInnerPadding: "12px 24px",
+  mobileInnerPadding: "10px 14px",
+  innerMaxWidth: "1600px",
+  navPosition: "right",
+  navbarHeight: "74px",
+} satisfies Pick<
+  NavBarProps,
+  | "position"
+  | "innerPadding"
+  | "tabletInnerPadding"
+  | "mobileInnerPadding"
+  | "innerMaxWidth"
+  | "navPosition"
+  | "navbarHeight"
+>;
+
+export const PROFILE_LAYOUT_PAGE = {
+  HOME,
+  COLLECTIONS,
+} as const;
+
+export type ProfileLayoutPageKind =
+  (typeof PROFILE_LAYOUT_PAGE)[keyof typeof PROFILE_LAYOUT_PAGE];

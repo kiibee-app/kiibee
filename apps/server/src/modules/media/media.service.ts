@@ -3,6 +3,7 @@ import { VideoMultipartService } from './services/videoMultipart.service';
 import { VideoStreamService } from './services/videoStream.service';
 import { VideoDownloadService } from './services/videoDownload.service';
 import { FileUploadService } from './services/fileUpload.service';
+import { PublicImageUploadService } from './services/publicImageUpload.service';
 
 @Injectable()
 export class MediaService {
@@ -11,6 +12,7 @@ export class MediaService {
     private readonly stream: VideoStreamService,
     private readonly download: VideoDownloadService,
     public readonly fileUpload: FileUploadService,
+    public readonly images: PublicImageUploadService,
   ) {}
 
   initUpload() {
@@ -31,5 +33,13 @@ export class MediaService {
 
   getDownloadUrl(key: string) {
     return this.download.getDownloadUrl(key);
+  }
+
+  uploadPublicImage(file: {
+    buffer: Buffer;
+    mimetype?: string;
+    filename?: string;
+  }) {
+    return this.images.upload(file);
   }
 }
