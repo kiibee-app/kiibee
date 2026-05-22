@@ -1,5 +1,4 @@
 import GenericButton from "@/components/UI/GenericButton";
-import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
 export const PanelStack = styled.div`
@@ -13,23 +12,18 @@ export const GeneralPanel = styled.section`
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  border-radius: 20px;
-  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
-  padding: 18px 18px 22px;
+  background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 26px;
-
-  ${media.tablet} {
-    padding: 16px;
-  }
 `;
 
 export const DetailsWrapper = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border-radius: 16px;
+  padding: 18px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;

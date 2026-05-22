@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 import Table from "@/components/UI/Table";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
@@ -18,7 +19,6 @@ import {
   CollectionRow,
   CollectionContentRow,
   CollectionTableProps,
-  isCollectionContentRow,
 } from "@/types/collectionsType";
 import {
   COLLECTION_TABLE_TYPE,
@@ -38,22 +38,35 @@ import {
   MOVE_TO_ANOTHER_COLLECTION,
   contentActionOptions,
 } from "@/utils/sortOptions";
+import { CONTENTS } from "@/utils/translationKeys";
 
-type TableRow = CollectionRow | CollectionContentRow;
+type TableRowSchema = Partial<CollectionRow> &
+  Partial<CollectionContentRow> & { Actions?: string };
 
 export default function CollectionTable(props: CollectionTableProps) {
+  const { t } = useTranslation();
   const isCollections = props.type === COLLECTION_TABLE_TYPE.COLLECTIONS;
   const columns = isCollections
     ? COLLECTION_COLUMNS
     : COLLECTION_CONTENT_COLUMNS;
 
-  const handleRowClick = (row: TableRow) => {
-    if (isCollections) {
-      props.onRowClick?.(row as CollectionRow);
+  const isContentRow = (r: TableRowSchema): r is CollectionContentRow => {
+    return "contentType" in r && r.contentType !== undefined;
+  };
+
+  const isCollectionRow = (r: TableRowSchema): r is CollectionRow => {
+    return "contentsCount" in r && typeof r.contentsCount === "number";
+  };
+
+  const handleRowClick = (row: TableRowSchema) => {
+    if (isCollections && isCollectionRow(row)) {
+      props.onRowClick?.(row);
       return;
     }
 
-    props.onRowClick?.(row as CollectionContentRow);
+    if (!isCollections && isContentRow(row)) {
+      props.onRowClick?.(row);
+    }
   };
 
   const stopPropagation = (e: React.MouseEvent) => {
@@ -122,16 +135,28 @@ export default function CollectionTable(props: CollectionTableProps) {
   };
 
   return (
-    <Table<TableRow>
+    <Table<TableRowSchema>
       headers={columns.map((c) => c.label)}
       data={props.data}
       rowsPerPage={10}
       onRowClick={handleRowClick}
       headerToKey={(header) => {
         const col = columns.find((c) => c.label === header);
-        return col?.key as keyof TableRow;
+        if (col) {
+          const key = col.key;
+          if (
+            key === "name" ||
+            key === "contentsCount" ||
+            key === "createdAt" ||
+            key === "Actions" ||
+            key === "visibility"
+          ) {
+            return key;
+          }
+        }
+        return "name";
       }}
-      getRowKey={(row) => row.id}
+      getRowKey={(row) => row.id ?? "unknown-id"}
       getColumnAlignment={(_header, index) =>
         index === 0 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
       }
@@ -140,35 +165,72 @@ export default function CollectionTable(props: CollectionTableProps) {
       getHeaderSortDirection={() => null}
       renderCell={({ header, row }) => {
         const col = columns.find((c) => c.label === header);
+        if (!col) return null;
 
-        if (col?.key === columns[0].key) {
+        if (col.key === columns[0].key) {
           return (
             <NameWrapper>
               {isCollections ? (
                 <FolderIcon />
-              ) : isCollectionContentRow(row) ? (
+              ) : isContentRow(row) ? (
                 getCollectionContentIcon(row.contentType)
               ) : null}
 
-              <MonoText $use="Body_SemiBold">{row.name}</MonoText>
+              <MonoText $use="Body_SemiBold">{row.name ?? "Untitled"}</MonoText>
             </NameWrapper>
           );
         }
 
-        if (col?.key === COLLECTION_COLUMNS[3].key) {
+        if (col.key === COLLECTION_COLUMNS[3].key) {
           return renderActions(
-            row.id,
+            row.id ?? "unknown-id",
             isCollections || props.type === COLLECTION_TABLE_TYPE.CONTENTS,
           );
         }
 
-        const key = col?.key as keyof TableRow;
+        if (isContentRow(row)) {
+          if (col.key === "visibility") {
+            const vis = row.visibility.toLowerCase();
+            const label =
+              vis === "public"
+                ? t(CONTENTS.general.public)
+                : vis === "hidden" || vis === "private"
+                  ? t(CONTENTS.general.private)
+                  : row.visibility;
 
-        return (
-          <MonoText $use="Body_SemiBold" color={COLORS.neutral.GRAY}>
-            {row[key]}
-          </MonoText>
-        );
+            return (
+              <MonoText $use="Body_SemiBold" color={COLORS.neutral.GRAY}>
+                {label}
+              </MonoText>
+            );
+          }
+
+          if (col.key === "createdAt") {
+            return (
+              <MonoText $use="Body_SemiBold" color={COLORS.neutral.GRAY}>
+                {row.createdAt}
+              </MonoText>
+            );
+          }
+        } else if (isCollectionRow(row)) {
+          if (col.key === "contentsCount") {
+            return (
+              <MonoText $use="Body_SemiBold" color={COLORS.neutral.GRAY}>
+                {row.contentsCount}
+              </MonoText>
+            );
+          }
+
+          if (col.key === "createdAt") {
+            return (
+              <MonoText $use="Body_SemiBold" color={COLORS.neutral.GRAY}>
+                {row.createdAt}
+              </MonoText>
+            );
+          }
+        }
+
+        return null;
       }}
     />
   );

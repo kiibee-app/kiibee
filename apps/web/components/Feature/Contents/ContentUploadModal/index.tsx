@@ -34,7 +34,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import { ADD_CONTENT_TABS, AddContentTab } from "@/utils/common";
 import { API } from "@/lib/http/api/endpoints";
 import { usePostAPI } from "@/lib/http/api/postApi";
-import { axiosClient } from "@/lib/http/axiosClient";
+import { useUpdateContent } from "@/hooks/contents/useUpdateContent";
 import { CONTENT_TRANSLATION_KEYS } from "@/utils/contentApi";
 
 type CreateContentPayload = {
@@ -86,6 +86,7 @@ export default function ContentUploadModal({
   const createContentMutation = usePostAPI<unknown, CreateContentPayload>(
     API.content.create,
   );
+  const updateContentMutation = useUpdateContent();
   const isEditing = mode === CONTENT_UPLOAD_MODE.EDIT;
   const {
     fileInputRef,
@@ -167,9 +168,12 @@ export default function ContentUploadModal({
       setCreateError(null);
 
       try {
-        await axiosClient.put(API.content.update(contentId), {
-          title: trimmedTitle,
-          description: trimmedDescription,
+        await updateContentMutation.mutateAsync({
+          contentId,
+          body: {
+            title: trimmedTitle,
+            description: trimmedDescription,
+          },
         });
         await invalidateContentQueries();
       } catch (error) {
@@ -291,7 +295,11 @@ export default function ContentUploadModal({
               }
               uploadType={contentType ?? uploadType}
               isSuccess={isSuccess}
-              isSubmitting={createContentMutation.isPending}
+              isSubmitting={
+                isEditing
+                  ? updateContentMutation.isPending
+                  : createContentMutation.isPending
+              }
               errorMessage={createError}
             />
           ) : isWebContent ? (

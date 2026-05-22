@@ -11,6 +11,7 @@ import {
   SaveButton,
 } from "./styles";
 import {
+  ADD_CONTENT_TABS,
   APPEARANCE,
   COUPONS,
   COLLECTIONS,
@@ -55,7 +56,12 @@ export default function ContentsHeaderAction({
     );
   }
 
-  if (activeTab === SETTINGS || activeTab === APPEARANCE) {
+  if (
+    activeTab === SETTINGS ||
+    activeTab === APPEARANCE ||
+    activeTab === ADD_CONTENT_TABS.GENERAL ||
+    activeTab === ADD_CONTENT_TABS.METADATA
+  ) {
     return (
       <HeaderActions>
         <CancelButton type="button" onClick={onCancel}>

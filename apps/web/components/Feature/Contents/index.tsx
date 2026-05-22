@@ -26,7 +26,12 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { AddContentTab, APPEARANCE, COLLECTIONS } from "@/utils/common";
+import {
+  ADD_CONTENT_TABS,
+  AddContentTab,
+  APPEARANCE,
+  COLLECTIONS,
+} from "@/utils/common";
 import type { CollectionContentRow } from "@/types/collectionsType";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
@@ -145,12 +150,20 @@ export default function CreatorsContents() {
     contentTypeFlow.backToTypeSelect();
   };
 
+  const handleConfirmDiscard = () => {
+    closeDiscardModal();
+    setEditingContent(null);
+    setUploadedFile(null);
+    setUploadedPreview(null);
+    setActiveTabAndQuery(COLLECTIONS);
+  };
+
   const handleEditContent = (id: string) => {
     const item = collectionContents.find((content) => content.id === id);
     if (!item) return;
 
     setEditingContent(item);
-    contentTypeFlow.openEdit(item.contentType);
+    setActiveTabAndQuery(ADD_CONTENT_TABS.GENERAL);
   };
 
   return (
@@ -217,6 +230,7 @@ export default function CreatorsContents() {
             onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
+            editingContent={editingContent}
           />
         </ContentPanel>
       </ContentsScrollArea>
@@ -280,7 +294,7 @@ export default function CreatorsContents() {
         confirmLabel={t("settings.notifications.discardModal.discard")}
         onCancel={closeDiscardModal}
         onClose={closeDiscardModal}
-        onConfirm={closeDiscardModal}
+        onConfirm={handleConfirmDiscard}
         size="sm"
         spacing="md"
         fullWidthButtons

@@ -1415,11 +1415,12 @@
     "general": {
       "trailerLink": "Trailer link",
       "trailerLinkHint": "If you want to add a trailer, enter the link here.",
-      "trailerLinkPlaceholder": "Add YouTube or Video link",
+      "trailerLinkPlaceholder": "Add YouTube or Vimeo link",
       "visibility": "Visibility",
-      "visibilityHint": "Control whether this trailer is visible to learners.",
+      "visibilityHint": "Choose which and whether your file should have a badge",
       "public": "Public",
-      "hidden": "Hidden"
+      "hidden": "Hidden",
+      "private": "Private"
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",

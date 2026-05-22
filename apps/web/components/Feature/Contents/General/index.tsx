@@ -27,34 +27,50 @@ import { VARIANT } from "@/utils/variants";
 import { FILE_TYPE_CHECKERS } from "@/utils/content";
 import { useTranslation } from "react-i18next";
 import TrailerList from "./TrailerList";
+import type { CollectionContentRow } from "@/types/collectionsType";
 
 type Props = {
   uploadedFile?: File | null;
   uploadedPreview?: string | null;
+  editingContent?: CollectionContentRow | null;
 };
 
 export default function GeneralContent({
   uploadedPreview,
   uploadedFile,
+  editingContent,
 }: Props) {
   const { t } = useTranslation();
-  if (!uploadedFile) return null;
+  if (!uploadedFile && !editingContent) return null;
+
   const getFormatType = (file: File): FormatType => {
     const match = Object.entries(FILE_TYPE_CHECKERS).find(([, check]) =>
       check(file),
     );
-    return (match?.[0] as FormatType) ?? FORMAT_TYPE.PDF;
+    const matchedKey = match?.[0];
+    if (
+      matchedKey === FORMAT_TYPE.VIDEO ||
+      matchedKey === FORMAT_TYPE.AUDIO ||
+      matchedKey === FORMAT_TYPE.PDF ||
+      matchedKey === FORMAT_TYPE.EPUB ||
+      matchedKey === FORMAT_TYPE.WEB
+    ) {
+      return matchedKey;
+    }
+    return FORMAT_TYPE.PDF;
   };
 
-  const uploadType = getFormatType(uploadedFile);
-  const previewUrl = uploadedPreview;
+  const uploadType = uploadedFile
+    ? getFormatType(uploadedFile)
+    : editingContent?.contentType;
+  const previewUrl = uploadedFile ? uploadedPreview : null;
 
   const renderPreview = () => {
     switch (uploadType) {
       case FORMAT_TYPE.VIDEO:
         return (
           <PreviewBox>
-            <PreviewVideo src={previewUrl ?? ""} controls={false} />
+            <PreviewVideo src={previewUrl ?? undefined} controls={false} />
             <PlayOverlay>
               <PlayCircleIcon
                 width={40}
@@ -85,6 +101,11 @@ export default function GeneralContent({
     }
   };
 
+  const fileName = uploadedFile
+    ? uploadedFile.name
+    : (editingContent?.name ?? "Untitled");
+  const fileSize = uploadedFile ? formatFileSize(uploadedFile.size) : "1.2 KB";
+
   return (
     <PanelStack>
       <GeneralPanel>
@@ -93,10 +114,10 @@ export default function GeneralContent({
             <PreviewBox>{renderPreview()}</PreviewBox>
 
             <InfoColumn>
-              <MonoText $use="Body_Medium">{uploadedFile.name}</MonoText>
+              <MonoText $use="Body_Medium">{fileName}</MonoText>
 
               <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-                {formatFileSize(uploadedFile.size)}
+                {fileSize}
               </MonoText>
             </InfoColumn>
           </FileRow>
@@ -107,7 +128,10 @@ export default function GeneralContent({
           </DeleteAction>
         </DetailsWrapper>
       </GeneralPanel>
-      <TrailerList />
+      <TrailerList
+        key={editingContent?.id ?? "create"}
+        editingContent={editingContent}
+      />
     </PanelStack>
   );
 }
