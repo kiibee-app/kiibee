@@ -49,20 +49,16 @@ export default function MoveContentModal({
       !selectedId && collections.length > 0 ? collections[0].id : selectedId;
     if (!collectionId) return;
 
+    setIsMoving(true);
     try {
-      setIsMoving(true);
       await onConfirmMove(collectionId);
-    } catch (error) {
-      console.error("Failed to move content", error);
     } finally {
       setIsMoving(false);
     }
   };
 
   const selectedCollectionName =
-    collections.find((c) => c.id === selectedId)?.name ||
-    collections[0]?.name ||
-    "[Collection_name]";
+    collections.find((c) => c.id === selectedId)?.name || collections[0]?.name;
 
   return (
     <>
