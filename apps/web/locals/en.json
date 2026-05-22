@@ -1507,6 +1507,13 @@
         "title": "Tags",
         "placeholder": "Separate tags by pressing enter",
         "example": "E.g, Video, Cooking, Film"
+      },
+      "coverImage": {
+        "title": "Thumbnail",
+        "mediaCardLabel": "Upload thumbnail for the media card",
+        "mediaCardSize": "Use size 250x190 pixel image",
+        "portraitLabel": "Upload thumbnail for portrait format",
+        "portraitSize": "Use size 634x345 pixel image"
       }
     }
   },

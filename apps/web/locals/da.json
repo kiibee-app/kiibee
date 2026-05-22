@@ -1507,6 +1507,13 @@
         "title": "Tags",
         "placeholder": "Adskil tags ved at trykke enter",
         "example": "F.eks. Video, Madlavning, Film"
+      },
+      "coverImage": {
+        "title": "Miniature",
+        "mediaCardLabel": "Upload miniature til mediekortet",
+        "mediaCardSize": "Brug størrelse 250x190 pixel billede",
+        "portraitLabel": "Upload miniature til portrætformat",
+        "portraitSize": "Brug størrelse 634x345 pixel billede"
       }
     }
   },
