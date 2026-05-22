@@ -20,6 +20,7 @@ import { useLogout } from "@/hooks/auth/useLogout";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import { useProfileSync } from "@/hooks/auth/useProfileSync";
 import { CreatorChannelLayoutProvider } from "@/hooks/useCreatorChannelLayout";
+import { useRequireAuthSession } from "@/hooks/auth/useRequireAuthSession";
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.OVERVIEW,
@@ -41,6 +42,7 @@ export default function ClientDashboardCreators() {
   const searchParams = useSearchParams();
   const { logout } = useLogout();
   const { getUser } = useAuthSession();
+  useRequireAuthSession();
   useProfileSync();
 
   const handleLogoutClick = useCallback(() => {

@@ -9,6 +9,10 @@ import { createLoginSchema } from "@/lib/validation/schema";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { getPostLoginPath, useLogin } from "./useLogin";
 import { useAuthSession } from "./useAuthSession";
+import {
+  AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
+  REMEMBERED_AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
+} from "@/lib/auth/storageKeys";
 
 export function useLoginForm() {
   const { t } = useTranslation();
@@ -75,7 +79,11 @@ export function useLoginForm() {
         return;
       }
 
-      setSession(response);
+      setSession(response, {
+        maxAgeSeconds: remember
+          ? REMEMBERED_AUTH_SESSION_COOKIE_MAX_AGE_SECONDS
+          : AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
+      });
       router.push(getPostLoginPath(response));
     } catch (error) {
       applyFieldErrors(error, setError);

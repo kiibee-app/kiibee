@@ -1,11 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  readStoredLoginUser,
-  STORED_LOGIN_USER_UPDATED,
-  type LoginUser,
-} from "@/hooks/auth/useLogin";
+import { readStoredLoginUser, type LoginUser } from "@/hooks/auth/useLogin";
+import { STORED_LOGIN_USER_UPDATED } from "@/lib/auth/storageKeys";
 import { toTrimmedString } from "@/utils/Constants";
 
 export function useStoredLoginUser() {
