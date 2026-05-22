@@ -1,0 +1,82 @@
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  UnauthorizedException,
+  ForbiddenException,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
+import { db } from 'src/database/db';
+import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
+import { contentAccess } from 'src/database/schema/content/contentAccess.schema';
+import { and, eq, or, isNull, gt } from 'drizzle-orm';
+
+@Injectable()
+export class CheckMediaAccessGuard implements CanActivate {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
+    const request = context.switchToHttp().getRequest();
+    const userId = request.user?.userId || request.user?.id;
+
+    if (!userId) {
+      throw new UnauthorizedException('Authentication required');
+    }
+
+    const mediaId =
+      request.params?.id ||
+      request.params?.mediaId ||
+      request.body?.id ||
+      request.query?.id;
+
+    const mediaKey =
+      request.params?.key || request.query?.key || request.body?.key;
+
+    if (!mediaId && !mediaKey) {
+      throw new BadRequestException('Media ID or key is required');
+    }
+
+    let mediaFile: { id: string; creatorId: string } | undefined;
+
+    if (mediaId) {
+      mediaFile = await db.query.mediaFiles.findFirst({
+        where: eq(mediaFiles.id, mediaId),
+        columns: { id: true, creatorId: true },
+      });
+    } else if (mediaKey) {
+      mediaFile = await db.query.mediaFiles.findFirst({
+        where: eq(mediaFiles.fileKey, mediaKey),
+        columns: { id: true, creatorId: true },
+      });
+    }
+
+    if (!mediaFile) {
+      throw new NotFoundException('Media not found');
+    }
+
+    const isCreator = mediaFile.creatorId === userId;
+
+    if (isCreator) {
+      request.mediaFile = mediaFile;
+      return true;
+    }
+
+    // Check if the user has valid purchased/rented access
+    const now = new Date();
+    const hasAccess = await db.query.contentAccess.findFirst({
+      where: and(
+        eq(contentAccess.userId, userId),
+        eq(contentAccess.mediaFileId, mediaFile.id),
+        or(isNull(contentAccess.expiresAt), gt(contentAccess.expiresAt, now)),
+      ),
+    });
+
+    if (!hasAccess) {
+      throw new ForbiddenException(
+        'Access denied. You do not have permission to access this media.',
+      );
+    }
+
+    request.mediaFile = mediaFile;
+    return true;
+  }
+}
