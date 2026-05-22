@@ -15,6 +15,7 @@ import {
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
 
 export default function TestimonialSection() {
   const { t } = useTranslation();
@@ -22,14 +23,25 @@ export default function TestimonialSection() {
   return (
     <Section>
       <Background>
-        <Image
-          src={creator}
-          alt={t("testimonial.backgroundAlt")}
-          fill
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center" }}
-          priority
-        />
+        <ImageReveal
+          variant="ken-burns"
+          duration={1.8}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <Image
+            src={creator}
+            alt={t("testimonial.backgroundAlt")}
+            fill
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            priority
+          />
+        </ImageReveal>
       </Background>
 
       <ArrowButton aria-label={t("testimonial.prevAriaLabel")} $left>

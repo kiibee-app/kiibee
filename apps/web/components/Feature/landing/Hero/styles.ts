@@ -7,6 +7,7 @@ export const Hero = styled.section`
   display: flex;
   align-items: center;
   min-height: 95vh;
+  overflow: hidden;
 
   &::before {
     content: "";
@@ -41,6 +42,7 @@ export const Background = styled.div`
   top: -108px;
   height: calc(100% + 108px);
   z-index: 0;
+  overflow: hidden;
 `;
 
 export const Content = styled.div`

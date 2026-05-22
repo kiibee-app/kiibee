@@ -26,6 +26,7 @@ import COLORS from "@repo/ui/colors";
 import { resolveImageUrl, type ImageSource } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
 
 type CTAImageCard = {
   src: ImageSource;
@@ -39,20 +40,41 @@ export default function CallToAction() {
   const { t } = useTranslation();
 
   const renderCard = (card: CTAImageCard, index: number, mobile = false) => (
-    <Card
-      key={`${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
-      $left={!mobile ? card.left : undefined}
-      $top={!mobile ? card.top : undefined}
-      $width={!mobile ? card.width : undefined}
-      $height={!mobile ? card.height : undefined}
-      $mobileOnly={mobile}
+    <ImageReveal
+      key={`reveal-${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
+      variant="fade-scale"
+      delay={index * 0.08}
+      duration={1.2}
+      style={{
+        position: !mobile ? "absolute" : undefined,
+        left: !mobile && card.left != null ? `${card.left}%` : undefined,
+        top: !mobile && card.top != null ? `${card.top}%` : undefined,
+        width: !mobile && card.width != null ? `${card.width}%` : undefined,
+        height: !mobile && card.height != null ? `${card.height}%` : undefined,
+      }}
     >
-      <CardImage
-        src={resolveImageUrl(card.src)}
-        alt={t("callToAction.creatorAlt")}
-      />
-      <CardTint />
-    </Card>
+      <Card
+        key={`${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
+        $left={!mobile ? card.left : undefined}
+        $top={!mobile ? card.top : undefined}
+        $width={!mobile ? card.width : undefined}
+        $height={!mobile ? card.height : undefined}
+        $mobileOnly={mobile}
+        style={{
+          position: "relative",
+          left: "auto",
+          top: "auto",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <CardImage
+          src={resolveImageUrl(card.src)}
+          alt={t("callToAction.creatorAlt")}
+        />
+        <CardTint />
+      </Card>
+    </ImageReveal>
   );
 
   return (

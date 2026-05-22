@@ -5,6 +5,7 @@ export const Section = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
   padding: 3rem 0;
+  overflow: hidden;
 `;
 
 export const SectionInner = styled.div`

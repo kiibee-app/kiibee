@@ -20,20 +20,35 @@ import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
 
 export default function HeroSection() {
   const { t } = useTranslation();
   return (
     <Hero>
       <Background>
-        <Image
-          src={hero}
-          alt={t(HERO.heroAlt)}
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center top" }}
-        />
+        <ImageReveal
+          variant="ken-burns"
+          delay={0}
+          duration={1.8}
+          start="top 100%"
+          noClip
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <Image
+            src={hero}
+            alt={t(HERO.heroAlt)}
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center top" }}
+          />
+        </ImageReveal>
       </Background>
       <Inner>
         <Content>

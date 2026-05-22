@@ -24,6 +24,7 @@ import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
 
 export default function WatchingSteps() {
   const { t } = useTranslation();
@@ -48,18 +49,20 @@ export default function WatchingSteps() {
         </Header>
         <Layout>
           <PreviewPanel>
-            <Image
-              src={Steps}
-              alt={t("watchingSteps.previewAlt")}
-              width={640}
-              height={479}
-              loading="eager"
-              style={{
-                width: "100%",
-                height: "auto",
-                borderRadius: 8,
-              }}
-            />
+            <ImageReveal variant="slide-up" duration={1.4}>
+              <Image
+                src={Steps}
+                alt={t("watchingSteps.previewAlt")}
+                width={640}
+                height={479}
+                loading="eager"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: 8,
+                }}
+              />
+            </ImageReveal>
           </PreviewPanel>
           <StepsColumn>
             {trendingContentSteps.map((step) => (

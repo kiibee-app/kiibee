@@ -16,6 +16,7 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
 
 export default function SecurePaymentSection() {
   const { t } = useTranslation();
@@ -40,25 +41,48 @@ export default function SecurePaymentSection() {
 
         <ImageColumn>
           <HeroImageWrap>
-            <Image
-              src={hero}
-              alt={t("securePayment.heroImageAlt")}
-              fill
-              sizes="(max-width: 1024px) 100vw, 42vw"
-              style={{ objectFit: "cover", objectPosition: "center" }}
-              priority
-            />
+            <ImageReveal
+              variant="slide-left"
+              duration={1.4}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <Image
+                src={hero}
+                alt={t("securePayment.heroImageAlt")}
+                fill
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                priority
+              />
+            </ImageReveal>
           </HeroImageWrap>
 
           <ImageCard>
-            <Image
-              src={creator}
-              alt={t("securePayment.creatorImageAlt")}
-              fill
-              sizes="(max-width: 1024px) 100vw, 42vw"
-              style={{ objectFit: "cover", objectPosition: "center" }}
-              priority
-            />
+            <ImageReveal
+              variant="slide-right"
+              delay={0.2}
+              duration={1.4}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <Image
+                src={creator}
+                alt={t("securePayment.creatorImageAlt")}
+                fill
+                sizes="(max-width: 1024px) 100vw, 42vw"
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                priority
+              />
+            </ImageReveal>
           </ImageCard>
         </ImageColumn>
       </SectionInner>

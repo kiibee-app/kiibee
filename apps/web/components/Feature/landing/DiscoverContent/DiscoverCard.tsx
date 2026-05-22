@@ -25,6 +25,7 @@ import {
   FullWidthAction,
   IconFrame,
 } from "./styles";
+import ImageReveal from "@/components/UI/ImageReveal";
 
 type Props = {
   item: DiscoverContentItem;
@@ -49,14 +50,25 @@ function DiscoverCard({ item }: Props) {
             {t(item.categoryKey)}
           </MonoText>
         </CategoryBadge>
-        <Image
-          src={item.image}
-          alt={t(item.titleKey)}
-          fill
-          sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
-          style={{ objectFit: "cover" }}
-          priority
-        />
+        <ImageReveal
+          variant="fade-scale"
+          duration={1.2}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <Image
+            src={item.image}
+            alt={t(item.titleKey)}
+            fill
+            sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+            style={{ objectFit: "cover" }}
+            priority
+          />
+        </ImageReveal>
       </ImageContainer>
 
       <TextSection>
