@@ -103,10 +103,7 @@ export const updateContentService = async (
           .limit(1);
 
         if (!targetCollection) {
-          throw new HttpException(
-            'Target collection not found',
-            HttpStatus.NOT_FOUND,
-          );
+          return fail('Target collection not found', HttpStatus.NOT_FOUND);
         }
 
         const [targetMapping] = await trx
@@ -138,7 +135,7 @@ export const updateContentService = async (
               .limit(1);
 
         if (dto.sourceCollectionId && !sourceMapping) {
-          throw new HttpException(
+          return fail(
             'Source collection mapping not found',
             HttpStatus.NOT_FOUND,
           );
@@ -148,12 +145,18 @@ export const updateContentService = async (
           await trx
             .delete(collectionItems)
             .where(eq(collectionItems.id, sourceMapping.id));
-        } else if (sourceMapping) {
+          return;
+        }
+
+        if (sourceMapping) {
           await trx
             .update(collectionItems)
             .set({ collectionId: dto.collectionId })
             .where(eq(collectionItems.id, sourceMapping.id));
-        } else if (!targetMapping) {
+          return;
+        }
+
+        if (!targetMapping) {
           await trx.insert(collectionItems).values({
             id: crypto.randomUUID(),
             collectionId: dto.collectionId,
