@@ -7,6 +7,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import helmet from '@fastify/helmet';
+import multipart from '@fastify/multipart';
 import { AppModule } from './app.module';
 import { pool } from './database/db';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
@@ -27,6 +28,10 @@ async function bootstrap() {
         logger: false,
       },
     );
+
+    await app.register(multipart, {
+      limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+    });
 
     app.setGlobalPrefix('api/v1');
 
