@@ -227,7 +227,6 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
         ? theme.colors.neutral.OFF_WHITE
         : theme.colors.primary.BLACK};
     border-color: ${({ theme }) => theme.colors.primary.BLACK};
-    box-shadow: 0 6px 18px ${({ theme }) => theme.colors.gredint.CARD_SHADOW};
     opacity: 1;
     transform: none;
   }
