@@ -10,7 +10,7 @@ import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "../Settings";
-import { VIEW } from "@/utils/Constants";
+import { VIEW, ROLE_CREATOR } from "@/utils/Constants";
 import CreatorsContents from "../Contents";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
@@ -61,7 +61,9 @@ export default function ClientDashboardCreators() {
   }, [logout]);
 
   const renderHeader = () => {
-    return <DashboardHeader onToggleSidebar={toggleSidebar} />;
+    return (
+      <DashboardHeader role={ROLE_CREATOR} onToggleSidebar={toggleSidebar} />
+    );
   };
   const viewParam = searchParams?.get(VIEW);
   const view =
