@@ -15,13 +15,15 @@ export const Inner = styled.div`
 
 export const Container = styled.div`
   max-width: 1218px;
+  width: 100%;
+  margin: 0 auto;
   color: ${({ theme }) => theme.colors.neutral.BLACK};
 `;
 
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 115px;
   align-items: center;
 
   ${media.tablet} {
