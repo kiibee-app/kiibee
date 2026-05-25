@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import ProfileLayoutPage from "@/components/Feature/ProfileLayout/Page";
 import { PROFILE_LAYOUT_PAGE } from "@/utils/Constants";
@@ -21,5 +22,9 @@ export default async function CreatorPage({ params }: PageProps) {
     notFound();
   }
 
-  return <ProfileLayoutPage variant={layout} page={PROFILE_LAYOUT_PAGE.HOME} />;
+  return (
+    <Suspense fallback={null}>
+      <ProfileLayoutPage variant={layout} page={PROFILE_LAYOUT_PAGE.HOME} />
+    </Suspense>
+  );
 }

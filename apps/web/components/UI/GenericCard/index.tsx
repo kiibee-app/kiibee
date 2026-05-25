@@ -4,10 +4,19 @@ import Image, { StaticImageData } from "next/image";
 import React, { ReactNode } from "react";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
-import { Card, ImageWrapper, Content, Footer, Badge } from "./styles";
+import {
+  Card,
+  ImageWrapper,
+  Content,
+  Footer,
+  Badge,
+  ImageInitials,
+} from "./styles";
 
 type GenericCardProps = {
   image?: string | StaticImageData;
+  imageInitials?: string;
+  coverImage?: boolean;
   alt?: string;
   title?: ReactNode;
   subtitle?: ReactNode;
@@ -43,6 +52,8 @@ function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
 
 export default function GenericCard({
   image,
+  imageInitials,
+  coverImage = false,
   alt,
   title,
   subtitle,
@@ -54,18 +65,22 @@ export default function GenericCard({
   width,
 }: GenericCardProps) {
   return (
-    <Card $width={width} $compact={compact}>
-      {image && (
-        <ImageWrapper $compact={compact}>
+    <Card $width={width} $compact={compact} $coverImage={coverImage}>
+      {(image || imageInitials) && (
+        <ImageWrapper $compact={compact} $coverImage={coverImage}>
           {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
-          <Image
-            src={image}
-            alt={alt || "card image"}
-            fill
-            sizes="(max-width: 767px) 100vw, 50vw"
-            style={{ objectFit: "cover" }}
-            priority
-          />
+          {image ? (
+            <Image
+              src={image}
+              alt={alt || "card image"}
+              fill
+              sizes="(max-width: 767px) 100vw, 50vw"
+              style={{ objectFit: "cover" }}
+              priority
+            />
+          ) : (
+            <ImageInitials $use="Heading3">{imageInitials}</ImageInitials>
+          )}
         </ImageWrapper>
       )}
       <Content>

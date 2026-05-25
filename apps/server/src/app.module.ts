@@ -9,6 +9,7 @@ import { validateAppEnv } from './validators/appEnvSchema';
 import { MediaModule } from './modules/media/media.module';
 import { CouponModule } from './modules/coupon/coupon.module';
 import { CollectionModule } from './modules/collection/collection.module';
+import { CreatorModule } from './modules/creator/creator.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { CollectionModule } from './modules/collection/collection.module';
     MediaModule,
     CouponModule,
     CollectionModule,
+    CreatorModule,
   ],
 })
 export class AppModule {}

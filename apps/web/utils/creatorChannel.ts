@@ -52,6 +52,27 @@ export function getCreatorHomePath(layout: CreatorLayoutParam): string {
   return `${PATHS.CREATOR_PROFILE}/${layout}`;
 }
 
+export function getPublicCreatorProfilePath(
+  creatorId: string,
+  layout: CreatorLayoutParam = layoutParamFromKey(DEFAULT_CREATOR_LAYOUT),
+): string {
+  const params = new URLSearchParams({ creatorId });
+  return `${getCreatorHomePath(layout)}?${params.toString()}`;
+}
+
+export function withCreatorIdQuery(
+  href: string,
+  creatorId: string | null | undefined,
+): string {
+  if (!creatorId) return href;
+
+  const [pathname, search = ""] = href.split("?");
+  const params = new URLSearchParams(search);
+  params.set("creatorId", creatorId);
+
+  return `${pathname}?${params.toString()}`;
+}
+
 export function getCreatorCollectionsPath(layout: CreatorLayoutParam): string {
   return `${getCreatorHomePath(layout)}/collections`;
 }

@@ -2,27 +2,39 @@ import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
 export const PageWrapper = styled.div`
+  width: 100%;
   padding: 85px 112px;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 100px;
   ${media.tablet} {
     padding: 40px 24px;
   }
 `;
 
+export const LoadMoreRow = styled.div`
+  align-self: center;
+`;
+
 export const Grid = styled.div`
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
+  justify-content: center;
+  gap: 20px;
 
   ${media.tablet} {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
   }
+
   ${media.mobile} {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 `;
 

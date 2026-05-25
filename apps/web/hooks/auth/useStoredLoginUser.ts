@@ -19,12 +19,29 @@ export function useStoredLoginUser() {
   return user;
 }
 
-export function getLoginUserInitial(user: LoginUser | null): string {
-  const fullName = toTrimmedString(user?.fullName);
-  if (fullName) return fullName.charAt(0).toUpperCase();
+export function getNameInitials(name: string): string {
+  const trimmed = toTrimmedString(name);
+  if (!trimmed) return "?";
 
+  const parts = trimmed.split(/\s+/).filter(Boolean);
+  if (parts.length === 1) {
+    return parts[0].charAt(0).toUpperCase();
+  }
+
+  const first = parts[0].charAt(0).toUpperCase();
+  const last = parts[parts.length - 1].charAt(0).toUpperCase();
+  return `${first} ${last}`;
+}
+
+export function getLoginUserInitial(user: LoginUser | null): string {
   const firstName = toTrimmedString(user?.firstName);
-  if (firstName) return firstName.charAt(0).toUpperCase();
+  const lastName = toTrimmedString(user?.lastName);
+  if (firstName || lastName) {
+    return getNameInitials([firstName, lastName].filter(Boolean).join(" "));
+  }
+
+  const fullName = toTrimmedString(user?.fullName);
+  if (fullName) return getNameInitials(fullName);
 
   const email = toTrimmedString(user?.email);
   return email ? email.charAt(0).toUpperCase() : "?";
@@ -51,7 +68,7 @@ export function getDisplayInitial(
   user: LoginUser | null,
 ): string {
   const trimmed = toTrimmedString(displayName);
-  if (trimmed) return trimmed.charAt(0).toUpperCase();
+  if (trimmed) return getNameInitials(trimmed);
 
   return getLoginUserInitial(user);
 }
