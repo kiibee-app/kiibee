@@ -6,6 +6,7 @@ import HeroSection from "@/components/Feature/landing/Hero";
 import InterestSection from "@/components/Feature/landing/InterestSection";
 import DiscoverContent from "@/components/Feature/landing/DiscoverContent";
 import WatchingSteps from "@/components/Feature/landing/WatchingSteps";
+import ExploreCreatorsMarquee from "@/components/Feature/landing/ExploreCreatorsMarquee";
 import SecurePaymentSection from "@/components/Feature/landing/SecurePayment";
 import TestimonialSection from "@/components/Feature/landing/Testimonial";
 import CallToAction from "@/components/Feature/landing/CallToAction";
@@ -30,6 +31,8 @@ export default function HomePageClient() {
         <DiscoverContent />
 
         <WatchingSteps />
+
+        <ExploreCreatorsMarquee />
 
         <SecurePaymentSection />
 
