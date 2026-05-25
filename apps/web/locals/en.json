@@ -303,6 +303,9 @@
     "cta": "Learn more"
   },
   "creators": {
+    "marquee": {
+      "title": "Explore the Kiibee creators and find your favorites"
+    },
     "trendingContent": "Trending content",
     "heading": {
       "lineOne": "Upload.",
