@@ -94,7 +94,6 @@ export const NextButton = styled.button`
 
 export const TableSection = styled.div`
   margin-top: 20px;
-  overflow-x: auto;
 `;
 
 export const CodesWrapper = styled.div`
