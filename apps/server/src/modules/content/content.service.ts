@@ -8,6 +8,11 @@ import { getContentByCollectionIdService } from './services/getContentByCollecti
 import { updateContentService } from './services/updateContent.service';
 import { getContentByIdService } from './services/getContentById.service';
 import { deleteContentService } from './services/delete.content.service';
+import {
+  contentAppearanceService,
+  getContentAppearanceService,
+} from './services/contentAppearance.service';
+import { ContentAppearanceDto } from './dto/contentAppearance.dto';
 
 @Injectable()
 export class ContentService {
@@ -47,5 +52,13 @@ export class ContentService {
 
   async deleteContentService(contentId: string) {
     return deleteContentService(contentId);
+  }
+
+  async ContentAppearanceService(userId: string, dto: ContentAppearanceDto) {
+    return contentAppearanceService(userId, dto);
+  }
+
+  async getContentAppearanceService(userId: string) {
+    return getContentAppearanceService(userId);
   }
 }
