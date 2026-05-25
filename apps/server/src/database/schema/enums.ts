@@ -122,3 +122,7 @@ export const notificationTypeEnum = pgEnum('notification_type', [
   'subscription',
   'system',
 ]);
+
+export const layoutEnum = pgEnum('layout', ['layout1', 'layout2', 'layout3']);
+
+export const layoutEnumValues = ['layout1', 'layout2', 'layout3'] as const;

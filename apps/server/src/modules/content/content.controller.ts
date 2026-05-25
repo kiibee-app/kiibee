@@ -13,6 +13,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateContentDto, UpdateContentDto } from './content.dto';
 import { AssignUserCategoriesDto } from './dto/assignUserCategories.dto';
 import { CreatorGuard } from '../auth/guards/admin.guard';
+import { ContentAppearanceDto } from './dto/contentAppearance.dto';
 
 @Controller('content')
 export class ContentController {
@@ -78,5 +79,19 @@ export class ContentController {
   async deleteContent(@Req() req: any) {
     const contentId = req.params.contentId;
     return this.contentService.deleteContentService(contentId);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Get('appearance')
+  async getAppearance(@Req() req: any) {
+    const userId = req.user.userId;
+    return this.contentService.getContentAppearanceService(userId);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Put('appearance')
+  async updateAppearance(@Req() req: any, @Body() dto: ContentAppearanceDto) {
+    const userId = req.user.userId;
+    return this.contentService.ContentAppearanceService(userId, dto);
   }
 }
