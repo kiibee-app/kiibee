@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { getPostLoginPath, useLogin } from "./useLogin";
+import { getPostLoginPath, useLogin, type LoginResponse } from "./useLogin";
 import { useAuthSession } from "./useAuthSession";
 import { useAuthForm } from "./useAuthForm";
 import { loginFormBase } from "./authFormConfigs";
@@ -10,9 +9,17 @@ import {
   AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
   REMEMBERED_AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
 } from "@/lib/auth/storageKeys";
+function getPostLoginDestination(response: LoginResponse) {
+  if (typeof window === "undefined") return getPostLoginPath(response);
+
+  const nextPath = new URLSearchParams(window.location.search).get("next");
+  return nextPath?.startsWith("/dashboard/")
+    ? nextPath
+    : getPostLoginPath(response);
+}
+
 export function useLoginForm() {
   const { setSession } = useAuthSession();
-  const searchParams = useSearchParams();
   const [remember, setRemember] = useState(false);
   const form = useAuthForm({
     ...loginFormBase,
@@ -24,12 +31,7 @@ export function useLoginForm() {
           : AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
       });
 
-      const nextPath = searchParams.get("next");
-      const destination = nextPath?.startsWith("/dashboard/")
-        ? nextPath
-        : getPostLoginPath(response);
-
-      router.push(destination);
+      router.push(getPostLoginDestination(response));
     },
   });
 
