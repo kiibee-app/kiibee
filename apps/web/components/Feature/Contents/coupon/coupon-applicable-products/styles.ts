@@ -43,5 +43,11 @@ export const ChipCloseCircle = styled.button`
   border: 0;
   padding: 0;
   cursor: pointer;
-  background: ${COLORS.neutral.GRAY_300};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_300};
+`;
+
+export const SelectedChipWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 `;

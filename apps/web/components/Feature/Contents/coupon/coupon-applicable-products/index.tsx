@@ -21,6 +21,7 @@ import {
   SelectedValueChip,
   SelectedValueText,
   ChipCloseCircle,
+  SelectedChipWrapper,
 } from "./styles";
 import { COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS } from "@/utils/dummyData/couponApplicableProducts";
 import { CollectionRow } from "@/types/collectionsType";
@@ -145,13 +146,7 @@ export default function CouponApplicableProductsModal({
                   multi
                   showSelectedIndicator
                   renderSelectedValues={(selected) => (
-                    <div
-                      style={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        gap: 8,
-                      }}
-                    >
+                    <SelectedChipWrapper>
                       {selected.length > 0 ? (
                         selected.map((opt) => (
                           <SelectedValueChip key={opt.value}>
@@ -176,11 +171,18 @@ export default function CouponApplicableProductsModal({
                           </SelectedValueChip>
                         ))
                       ) : (
-                        <span style={{ opacity: 0.7 }}>
-                          {t("common.select", "Select")}
+                        <span>
+                          {field.key ===
+                          COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
+                            ? t(
+                                "contents.couponApplicableProducts.buttons.collections",
+                              )
+                            : t(
+                                "contents.couponApplicableProducts.buttons.contents",
+                              )}
                         </span>
                       )}
-                    </div>
+                    </SelectedChipWrapper>
                   )}
                   value={
                     field.key ===

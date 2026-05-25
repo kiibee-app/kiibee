@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import { COUPON_CODES_LIMIT } from "@/utils/common";
-
 import {
   BackButton,
   FieldGroup,
@@ -16,14 +15,12 @@ import {
   ModalTitle,
   NextButton,
 } from "../styles";
-
 import {
   CodesHelperText,
   CodesLimitText,
   CodesMetaRow,
   CouponCodesInput,
 } from "./styles";
-
 import { CreateCouponPayload } from "@/types/couponType";
 
 type CouponCodesModalProps = {
