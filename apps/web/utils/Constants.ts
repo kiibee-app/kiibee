@@ -70,7 +70,14 @@ export function toTrimmedString(value: unknown): string {
 export const COUPON_ACTION_EDIT = "edit";
 export const COUPON_ACTION_STATUS = "status";
 export const COUPON_ACTION_DELETE = "delete";
-export type ProfileHomeSectionKey = "latestUpload" | "about";
+export const PROFILE_HOME_SECTION = {
+  LATEST_UPLOAD: "latestUpload",
+  ABOUT: "about",
+  COLLECTIONS_PREVIEW: "collectionsPreview",
+} as const;
+
+export type ProfileHomeSectionKey =
+  (typeof PROFILE_HOME_SECTION)[keyof typeof PROFILE_HOME_SECTION];
 
 export type CouponAction =
   | typeof COUPON_ACTION_EDIT
@@ -99,6 +106,10 @@ export const profileNavShellProps = {
 export const PROFILE_LAYOUT_PAGE = {
   HOME,
   COLLECTIONS,
+} as const;
+
+export const QUERY_KEYS = {
+  PROFILE_HOME_COLLECTIONS_PREVIEW: "profile-home-collections-preview",
 } as const;
 
 export type ProfileLayoutPageKind =
