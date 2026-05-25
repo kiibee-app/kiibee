@@ -1559,7 +1559,10 @@
         "title": "Adgangskrav",
         "description": "Overvej hvilken type adgang dit [contentType] skal have",
         "options": {
-          "payment": "Betaling"
+          "free": "Gratis",
+          "payment": "Betaling",
+          "setPassword": "Angiv adgangskode",
+          "requestEmail": "Anmod om e-mail"
         }
       },
       "rental": {
@@ -1576,6 +1579,15 @@
         "options": {
           "unlimited": "Ubegrænset"
         }
+      },
+      "password": {
+        "placeholder": "Indtast adgangskode",
+        "helper": "Adskil flere koder med kommaer"
+      },
+      "physicalProduct": {
+        "title": "Fysisk produkt",
+        "description": "Hvis du har en fysisk version af produktet, kan du linke til en webshop.",
+        "placeholder": "TilfÃ¸j produktlink"
       },
       "common": {
         "enterAmount": "Indtast beløb",

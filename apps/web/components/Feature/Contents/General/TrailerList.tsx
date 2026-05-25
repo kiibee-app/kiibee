@@ -10,8 +10,9 @@ import { CONTENTS } from "@/utils/translationKeys";
 import COLORS from "@repo/ui/colors";
 import { ControlWrap, ItemText, GeneralPanel, List, ItemRow } from "./styles";
 import { TRAILER_VISIBILITY, TrailerVisibility } from "@/utils/content";
+import { TextConfig } from "@/utils/paymentRequirements";
 
-export default function TrailerList() {
+export default function TrailerList({ config }: { config?: TextConfig }) {
   const { t } = useTranslation();
   const [trailerLink, setTrailerLink] = useState("");
   const [visibility, setVisibility] = useState<TrailerVisibility>(
@@ -28,10 +29,10 @@ export default function TrailerList() {
         <ItemRow>
           <ItemText>
             <MonoText $use="Body_SemiBold">
-              {t(CONTENTS.general.trailerLink)}
+              {config?.title ?? t(CONTENTS.general.trailerLink)}
             </MonoText>
             <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-              {t(CONTENTS.general.trailerLinkHint)}
+              {config?.description ?? t(CONTENTS.general.trailerLinkHint)}
             </MonoText>
           </ItemText>
           <ControlWrap>
@@ -40,29 +41,36 @@ export default function TrailerList() {
               onChange={(value) =>
                 setTrailerLink(Array.isArray(value) ? value.join("") : value)
               }
-              placeholder={t(CONTENTS.general.trailerLinkPlaceholder)}
+              placeholder={
+                config?.placeholder ??
+                t(CONTENTS.general.trailerLinkPlaceholder)
+              }
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
             />
           </ControlWrap>
         </ItemRow>
-        <ItemRow>
-          <ItemText>
-            <MonoText $use="Body_SemiBold">
-              {t(CONTENTS.general.visibility)}
-            </MonoText>
-            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-              {t(CONTENTS.general.visibilityHint)}
-            </MonoText>
-          </ItemText>
-          <ControlWrap>
-            <DropdownField
-              options={visibilityOptions}
-              value={visibility}
-              onChange={(value) => setVisibility(value as TrailerVisibility)}
-            />
-          </ControlWrap>
-        </ItemRow>
+
+        {(config?.showVisibility ?? true) && (
+          <ItemRow>
+            <ItemText>
+              <MonoText $use="Body_SemiBold">
+                {t(CONTENTS.general.visibility)}
+              </MonoText>
+              <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+                {t(CONTENTS.general.visibilityHint)}
+              </MonoText>
+            </ItemText>
+
+            <ControlWrap>
+              <DropdownField
+                options={visibilityOptions}
+                value={visibility}
+                onChange={(value) => setVisibility(value as TrailerVisibility)}
+              />
+            </ControlWrap>
+          </ItemRow>
+        )}
       </List>
     </GeneralPanel>
   );

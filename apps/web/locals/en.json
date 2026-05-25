@@ -1559,7 +1559,10 @@
         "title": "Admission requirements",
         "description": "Consider what type of access your [contentType] should have",
         "options": {
-          "payment": "Payment"
+          "free": "Free",
+          "payment": "Payment",
+          "setPassword": "Set password",
+          "requestEmail": "Request email"
         }
       },
       "rental": {
@@ -1576,6 +1579,15 @@
         "options": {
           "unlimited": "Unlimited"
         }
+      },
+      "password": {
+        "placeholder": "Enter password",
+        "helper": "Separate multiple codes with commas"
+      },
+      "physicalProduct": {
+        "title": "Physical product",
+        "description": "If you have a physical version of the product, you can link to a webshop.",
+        "placeholder": "Add product link"
       },
       "common": {
         "enterAmount": "Enter amount",

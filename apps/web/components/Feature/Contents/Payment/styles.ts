@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import { MonoText } from "@/components/UI/Monotext";
 
 export const PaymentCard = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border-radius: 16px;
   padding: 20px 16px;
+  margin-bottom: 20px;
 `;
 
 export const PaymentForm = styled.div`
@@ -61,4 +63,17 @@ export const Divider = styled.div`
   ${media.mobileLg} {
     display: none;
   }
+`;
+
+export const HelperFormRow = styled.div`
+  width: min(100%, 483px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const HelperText = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
