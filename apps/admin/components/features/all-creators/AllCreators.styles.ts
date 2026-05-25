@@ -32,7 +32,7 @@ export const RequestTableRow = styled.tr`
   transition: background ${({ theme }) => theme.animations.fast};
 
   &:hover td {
-    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   }
 `;
 
@@ -57,6 +57,11 @@ export const TableBodyCell = styled.td`
   color: ${({ theme }) => theme.colors.secondary.muted};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
   vertical-align: top;
+
+  &:nth-child(6),
+  &:nth-child(7) {
+    vertical-align: middle;
+  }
 `;
 
 export const CreatorCell = styled.div`
@@ -89,12 +94,13 @@ export const DescriptionText = styled.div`
 export const StatusBadge = styled.span<{ $status: CreatorStatus }>`
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 28px;
-  padding: 0 10px;
+  padding: 0 12px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
+  gap: 8px;
   text-transform: capitalize;
 
   ${({ $status, theme }) => {
@@ -120,6 +126,31 @@ export const StatusBadge = styled.span<{ $status: CreatorStatus }>`
   }}
 `;
 
+export const StatusDot = styled.span<{ $status: CreatorStatus }>`
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  flex-shrink: 0;
+
+  ${({ $status, theme }) => {
+    if ($status === "approved") {
+      return css`
+        background: ${theme.colors.primary.GREEN};
+      `;
+    }
+
+    if ($status === "rejected") {
+      return css`
+        background: ${theme.colors.secondary.muted};
+      `;
+    }
+
+    return css`
+      background: ${theme.colors.primary.ORANGE};
+    `;
+  }}
+`;
+
 export const RowActionGroup = styled.div`
   display: flex;
   align-items: center;
@@ -129,17 +160,22 @@ export const RowActionGroup = styled.div`
 export const RowActionButton = styled.button<{
   $variant: "approve" | "reject";
 }>`
-  min-height: 32px;
-  border-radius: 8px;
-  font-size: 13px;
+  min-height: 36px;
+  border-radius: 10px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
-  padding: 0 12px;
+  padding: 0 14px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
   transition:
     background ${({ theme }) => theme.animations.fast},
     border-color ${({ theme }) => theme.animations.fast},
-    color ${({ theme }) => theme.animations.fast};
+    color ${({ theme }) => theme.animations.fast},
+    transform ${({ theme }) => theme.animations.fast};
 
   &:disabled {
     opacity: 0.65;
@@ -156,6 +192,7 @@ export const RowActionButton = styled.button<{
         &:hover:not(:disabled) {
           background: ${theme.colors.neutral.DUSTY_TEAL};
           border-color: ${theme.colors.neutral.DUSTY_TEAL};
+          transform: translateY(-1px);
         }
       `;
     }
@@ -163,13 +200,28 @@ export const RowActionButton = styled.button<{
     return css`
       border: 1px solid ${theme.colors.secondary.border};
       background: ${theme.colors.neutral.WHITE};
-      color: ${theme.colors.secondary.RED};
+      color: ${theme.colors.secondary.muted};
 
       &:hover:not(:disabled) {
         background: ${theme.colors.neutral.GRAY_100};
+        border-color: ${theme.colors.secondary.border};
       }
     `;
   }}
+`;
+
+export const ActionIcon = styled.span<{ $variant: "approve" | "reject" }>`
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+  color: ${({ $variant, theme }) =>
+    $variant === "approve"
+      ? theme.colors.neutral.WHITE
+      : theme.colors.secondary.muted};
 `;
 
 export const PaginationFooter = styled.div`

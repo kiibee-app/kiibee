@@ -5,7 +5,9 @@ import type { CreatorRequest } from "../types/creator-request";
 import type { CreatorDetailFieldConfig } from "../types/creator-details-modal";
 import type { CreatorRequestColumn } from "../types/creator-requests-table";
 import { formatRequestedAt } from "./date";
+import { ACTION_ICONS } from "./constants";
 import {
+  ActionIcon,
   CreatorCell,
   CreatorName,
   DescriptionText,
@@ -13,6 +15,7 @@ import {
   RowActionButton,
   RowActionGroup,
   StatusBadge,
+  StatusDot,
   LinkText,
 } from "../components/features/all-creators/AllCreators.styles";
 
@@ -127,7 +130,10 @@ export function getCreatorTableColumns(): CreatorRequestColumn[] {
       key: "status",
       label: "Status",
       renderCell: (creator) => (
-        <StatusBadge $status={creator.status}>{creator.status}</StatusBadge>
+        <StatusBadge $status={creator.status}>
+          <StatusDot $status={creator.status} />
+          {creator.status}
+        </StatusBadge>
       ),
     },
     {
@@ -162,6 +168,9 @@ export function getCreatorTableColumns(): CreatorRequestColumn[] {
                   handleClick(event, actions.onApproveCreator)
                 }
               >
+                <ActionIcon $variant="approve">
+                  {ACTION_ICONS.APPROVE}
+                </ActionIcon>
                 {isApproving ? "Approving..." : "Approve"}
               </RowActionButton>
             ) : null}
@@ -172,6 +181,7 @@ export function getCreatorTableColumns(): CreatorRequestColumn[] {
                 disabled={isActionDisabled}
                 onClick={(event) => handleClick(event, actions.onRejectCreator)}
               >
+                <ActionIcon $variant="reject">{ACTION_ICONS.REJECT}</ActionIcon>
                 {isRejecting ? "Rejecting..." : "Reject"}
               </RowActionButton>
             ) : null}
