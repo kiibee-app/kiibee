@@ -8,7 +8,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import type { NavBarItem } from "@/utils/profile";
 import {
@@ -22,6 +22,7 @@ import {
   isCreatorLayoutParam,
   layoutParamFromKey,
   readSavedCreatorLayout,
+  withCreatorIdQuery,
   writeSavedCreatorLayout,
 } from "@/utils/creatorChannel";
 
@@ -126,15 +127,18 @@ export function useCreatorLayoutParam(): CreatorLayoutParam {
 export function useCreatorProfileTabs() {
   const { t } = useTranslation();
   const layoutParam = useCreatorLayoutParam();
+  const publicCreatorId = useSearchParams().get("creatorId");
 
   return useMemo(
     () =>
       getCreatorProfileTabDefs(layoutParam).map((tab) => ({
         key: tab.key,
         label: t(tab.labelKey),
-        href: tab.href,
+        href: tab.href
+          ? withCreatorIdQuery(tab.href, publicCreatorId)
+          : undefined,
       })),
-    [layoutParam, t],
+    [layoutParam, publicCreatorId, t],
   );
 }
 
@@ -148,6 +152,7 @@ export function useCreatorAboutModal() {
 
 export function useCreatorNavItems() {
   const layoutParam = useCreatorLayoutParam();
+  const publicCreatorId = useSearchParams().get("creatorId");
   const { isAboutOpen, openAbout, closeAbout } = useCreatorAboutModal();
 
   const navItems = useMemo((): NavBarItem[] => {
@@ -155,9 +160,14 @@ export function useCreatorNavItems() {
     return defs.map((item) =>
       item.key === "nav.profile.about"
         ? { key: item.key, onClick: openAbout }
-        : { key: item.key, href: item.href },
+        : {
+            key: item.key,
+            href: item.href
+              ? withCreatorIdQuery(item.href, publicCreatorId)
+              : undefined,
+          },
     );
-  }, [layoutParam, openAbout]);
+  }, [layoutParam, openAbout, publicCreatorId]);
 
   return { navItems, isAboutOpen, closeAbout };
 }

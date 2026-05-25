@@ -498,6 +498,7 @@
       "tag": "Recently added"
     },
     "viewProfile": "View profile",
+    "uploadsCount": "{{count}} uploads",
     "loadMore": "Load more",
     "a-z": "A-Z",
     "subscribers": "Subscribers",

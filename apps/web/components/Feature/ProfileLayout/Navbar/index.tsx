@@ -3,6 +3,7 @@
 import { useTranslation } from "react-i18next";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { PATHS } from "@/utils/path";
 import { CREATE_PROFILE_HOME, NAV } from "@/utils/translationKeys";
 import { MonoText } from "@/components/UI/Monotext";
@@ -31,11 +32,16 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
   const { t } = useTranslation();
   const showNavItems = variant === "2";
   const { navItems, isAboutOpen, closeAbout } = useCreatorNavItems();
-  const { displayName, avatarUrl, initial } = useCreatorChannelProfile();
+  const { displayName, avatarUrl, initial, isPublicView, publicCreatorId } =
+    useCreatorChannelProfile();
   const brandName = displayName;
+  const brandHref =
+    isPublicView && publicCreatorId
+      ? getPublicCreatorProfilePath(publicCreatorId, variant)
+      : PATHS.DASHBOARD_CREATOR;
 
   const brand = (
-    <Brand href={PATHS.DASHBOARD_CREATOR}>
+    <Brand href={brandHref}>
       <BrandAvatar>
         <CreatorChannelAvatar
           avatarUrl={avatarUrl}

@@ -40,4 +40,8 @@ export const API = {
     update: (id: string) => `/collection/${id}`,
     delete: (id: string) => `/collection/${id}`,
   },
+  creators: {
+    list: "/creators",
+    byId: (id: string) => `/creators/${id}`,
+  },
 } as const;
