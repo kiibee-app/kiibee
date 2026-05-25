@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Dan Andersen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2024-03-20",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": []
+}

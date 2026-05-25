@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Fonden Eventyrteatret",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-05-13",
+  "frequency": 30,
+  "notificationsType": "2",
+  "emails": []
+}

@@ -1,0 +1,42 @@
+{
+  "tab": "Layout",
+  "name": "Red Barnet",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Red Barnet   ",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3507/redbarnetlogo_17.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "0DNA"
+      }
+    ]
+  },
+  "useCoverImage": "0",
+  "coverImage": "",
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "",
+  "description": "",
+  "css": "main .media .purchases .purchase { background-color:#F50914; color: white; }",
+  "javaScript": ""
+}

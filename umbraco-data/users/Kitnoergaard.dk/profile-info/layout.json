@@ -1,0 +1,70 @@
+{
+  "tab": "Layout",
+  "name": "Kitnoergaard.dk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Kitnoergaard.dk & Udviklingsrum.dk",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4509/legepaletten-uden-kanter.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "0LNI"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4510/banner-til-hjemmeside.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0LNM"
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4511/legepalette-lille.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600,
+        "$$hashKey": "0LNQ"
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Legepaletten",
+  "description": "Velkommen til Legepaletten. Legepaletten er udviklet som et praksisnært og letforståeligt redskab til at skabe en alsidig og udviklende legekultur og sætte fokus på legefagligheden.\r\nLegepaletten som plakater eller bog kan købes fysisk i boghandelen.\r\n\r\nMaterialet er udviklet af legekonsulent Kit Nørgaard og visuel udviklingsagent Marie Lørring Dahl.\r\n",
+  "css": "",
+  "javaScript": ""
+}

@@ -1,0 +1,60 @@
+{
+  "tab": "Layout",
+  "name": "Rikke Brünner",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "63"
+  ],
+  "logoText": "Rikke Brünner ",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4118/logo_simpelt.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "0HN9"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4119/rikke-47.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0HND"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "1",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "bottom",
+  "headline": "Rikke Brünner Coaching ",
+  "description": "Meditation er at finde tilbage til dig selv. Finde tilbage til dig selv, den du er inde bag masker og roller. Inde bag dine automatiserede bestræbelser på at harmonere med og leve op til den ydre verden, leve op til verden omkring dig. Denne meditation hjælper dig til at blive bevidst om de tanker og følelser der bevidst og ubevidst styrer dig. Dermed kan du blive mere fri til at være dig.",
+  "css": "",
+  "javaScript": ""
+}

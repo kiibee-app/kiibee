@@ -1,0 +1,70 @@
+{
+  "tab": "Layout",
+  "name": "Thomas Hartmann",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Thomas Hartmann",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3056/thomas-logo.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "05B3"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3049/thomas-hartmann.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "05B7"
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3390/thomas-hartmann-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600,
+        "$$hashKey": "05BB"
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["69"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Thomas Hartmann - skarp og intelligent comedy</h1>\n<p>Thomas Hartmann er et veletableret navn i dansk stand-up comedy. Han er kendt for sine skarpsindige og tørre observationer, der både får latteren frem og sætter tankerne i gang. Tempoet er højt, så man skal være på tæerne for ikke at gå glip af noget.</p>",
+  "css": "header { background-color: black; color: #272424; }",
+  "javaScript": ""
+}

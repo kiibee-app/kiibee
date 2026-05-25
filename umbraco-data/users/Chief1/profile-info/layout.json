@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Chief1",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Chief1",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2696/cheif1.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2660/kiibee-top.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Ska´ vi give hinanden en gave? Stream min nye film her!",
+  "description": "Corona har gjort at vi må holde os fra at komme ud og spille koncerter. Det savner jeg rigtigt meget. At mærke publikum ! Jeg glæder mig til at komme ud og spille for dig igen.\nImens arbejder jeg videre med at skrive nye sange og indspille dem. Du kan støtte mine musikprojekter her. Du vælger selv om du vil betale/støtte mig med 50 kr eller 150 kr - og jeg giver dig min nye portræt og koncertfilm. På forhånd TUSIND tak for Jeres støtte.\nKh Chief",
+  "css": "",
+  "javaScript": ""
+}

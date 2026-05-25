@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "TANIA ELLIS - The Social Business Company",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2022-08-23",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": ["anders@kiibee.com"]
+}

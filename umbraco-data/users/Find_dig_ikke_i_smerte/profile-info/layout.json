@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "Find dig ikke i smerte",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Find dig ikke i smerte",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1819/massoeruddannelser_v_mona-kyed_500.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "T00"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1818/coverbillede.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "T04"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Velkommen til Wellness Online Uddannelse ",
+  "description": "Her kan du købe videoer der lærer dig, hvordan du kan behandle en muskelspænding og derved hjælpe dine nærmeste, eller selv få hjælp, så du kan spare penge til massøren eller kiropraktoren.\r\n\r\nDu kan også købe et online Wellness kursus, og når du har øvet dig i Wellness massage kan du endda gå op til en fysisk eksamen og få eksamensbevis på, at du kan udføre en professionel wellness massage. Vil du tilmelde dig eksamen, kan du gøre det fra hjemmesiden www.finddigikkeismertekurser.dk",
+  "css": "",
+  "javaScript": ""
+}

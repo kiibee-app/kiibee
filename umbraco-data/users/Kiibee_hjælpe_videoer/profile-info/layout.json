@@ -1,0 +1,71 @@
+{
+  "tab": "Layout",
+  "name": "Kiibee hjælpe videoer",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "62"
+  ],
+  "logoText": "Åndedrætstræner Adal Faragalla",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1957/logo-stort-graa.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1958/facebook-cover-photo.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3630/original.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "bottom",
+  "headline": "Der findes ingen quickfixes!",
+  "description": "Vi kan vælge at se alt der sker i vores liv, som noget der sker imod os\r\n.....eller som noget vi kan lære noget af.\r\n\r\nDet hele afhænger af perspektiv! \r\n\r\nÅndedrættet er vejen til at genskabe kontrollen over din tilstand.  \r\nHvordan du trækker vejret kan også gøre dig bevidst om din tilstand. Jeg vil give dig nogle simple værktøjer, der er nemme at implementere i din hverdag. De kan reducere stress i kroppen og give dig adgang til gemte ressourcer.\r\n\r\nVelkommen!\r\n",
+  "css": "",
+  "javaScript": ""
+}

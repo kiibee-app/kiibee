@@ -1,0 +1,23 @@
+{
+  "tab": "Subscription",
+  "name": "TjelesVenner",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "subscription": "umb://document/6ae38a0b56144a55ac017545e006b9a4",
+  "price": "",
+  "price3": "",
+  "price6": "",
+  "price12": "",
+  "maxFiles": 40,
+  "kiibeeCut": 15,
+  "transactionFee": 6,
+  "paymentPeriod": ["388"]
+}

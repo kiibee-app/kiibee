@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Kort & Dokumentar Filmskolen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2022-06-27",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": []
+}

@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "ElStudio",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "ElStudio ",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1614/elstudio.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "OM0"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1613/elstudio.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "OM4"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["68"],
+  "coverTextPositionClass": "noblock",
+  "headline": "ElStudio`s online danseundervisning ",
+  "description": "Vi tilbyder alle vores medlemmer undervisning via vores danse kanal. \r\nFor at få adgang til undervisningsvideoerne skal du have en kode. \r\n\r\nVi laver også live undervisning. Her skal du være med i en af vores facebook grupper. Grupperne finder du på facebook, søg på (Online classes with ElStudio)",
+  "css": "",
+  "javaScript": ""
+}

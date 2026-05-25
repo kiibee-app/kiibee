@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "Tine Rask Mathiesen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Tine Rask Mathiesen",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5034/nissevers-billede-1-tre-der-duer-2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "0ZV6"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5035/file_00000000ef3c7209a9559b260a13f87d-2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0ZVA"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Nissebreve 50kr pdf ",
+  "description": "Nissebreve \"rim og løjer\" 50kr pdf.\r\n17 sider til udprint:\r\n- Intro\r\n- Guide til løjer \r\n- 24 breve på 6 A4 sider \r\n- 6 Aktivitets ark (farvelægning og udklip) \r\n- 1 Perlemønster af en julebamse til den 24.\r\nDer er ikke tal på brevene, så man tilrettelægger selv hvornår man laver hvilke løjer for at det passer bedst ind i ens egen hverdag. Kun den 24. Er fastlagt. \r\n\r\nLøjerne er simple og overkommelige og brevene er hurtigt læst og man får et hint til de løjer Nissen har lavet over natten.. ",
+  "css": "",
+  "javaScript": ""
+}

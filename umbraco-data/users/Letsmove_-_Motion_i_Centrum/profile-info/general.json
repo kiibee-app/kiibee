@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "Letsmove - Motion i Centrum",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/afcb047c37094d6c972f5cc00ddcb8e9",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

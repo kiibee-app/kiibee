@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Lev Dit Liv NU",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2024-05-28",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": []
+}

@@ -1,0 +1,41 @@
+{
+  "tab": "Layout",
+  "name": "Line JL Feel the Heal",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Line JL Feel the Heal",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4363/colorful-kids-playground-logo.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "0",
+  "coverImage": "",
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "SkoleRo",
+  "description": "SkoleRo Rum til Ro og Læring er en dansk hybrid platform hvor lærere kan hente børneyoga og børnemindfulness materialer til brug i undervisningen.",
+  "css": "",
+  "javaScript": ""
+}

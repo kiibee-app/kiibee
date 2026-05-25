@@ -1,0 +1,42 @@
+{
+  "tab": "Layout",
+  "name": "Karina Eckhausen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Velkommen til Boostcampen",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4564/img_0346.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0MGF"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "1",
+  "textColor": ["69"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Smutvejen til at få motivationen igen!",
+  "description": "Ønsker du at komme i form og spise sundere, men har svært ved at finde motivationen til at handle på det? Denne minipakke, som inkluderer en dybdegående søvnhypnose og en 'HVORFOR'-skabelon, er designet til at hjælpe dig med at få motivationen til at opnå mål. Definér dit mål, lyt til hypnosen, og lad dit ubevidste sind arbejde for dig.\r\n\r\nKlik på de enkelte produkter for at læse mere om indholdet. ",
+  "css": "",
+  "javaScript": ""
+}

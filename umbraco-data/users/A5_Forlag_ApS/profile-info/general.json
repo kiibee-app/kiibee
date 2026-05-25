@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "A5 Forlag ApS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/e334492c2bd2426ca119a8d87bb939b5",
+  "emailReceipt": "Tak for dit køb.\r\n\r\nHar du spørgsmål er du velkommen til at skrive til os.",
+  "supportEmail": "info@a5forlag.dk"
+}

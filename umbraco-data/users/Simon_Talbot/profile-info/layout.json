@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Simon Talbot",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Simon Talbot",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4338/simon-talbot-cover-2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4339/simon-talbot-mobil-2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Simon Talbot - Næste generations comedy-komet</h1>\n<p>Simon Talbot regnes allerede som sin generations største komiske talent. Med et væld af priser, tv-optrædener og roste one-man shows på CV'et er Simon på vej til tops i dansk comedy.</p>",
+  "css": "header { background-color:#2159ab; color: #eeece8; }\nmain .cover { background-color:#183f79; color: #eeece8; }\n.line { background-color: #8a8584; } \nbody { background-color: #183f79; color: white; }\nh5 { background-color: #183f79; white; }\nh6 { background-color: #183f79; color: white; }\n\n/* Hide blur effekt */\n.media__blur { display: none; }/*main .media__blur:after { background-image: -webkit-gradient(linear, left bottom, left top, from(#1d1d1d), color-stop(30%, rgba(29, 29, 29, 0.8)), to(rgba(29, 29, 29, 0))); background-image: linear-gradient(to top, \n\n@media screen and (min-width: 1025px) {\n    main .cover .covertext--block .covertext-container { background-color: rgba(134,117,167, 0.65); }\n    main .cover .covertext--block .covertext-container h1 { color:#2159ab;}\n    main .cover .covertext--block .covertext-container .teaser { color:#2159ab;}#1d1d1d 0%, rgba(29, 29, 29, 0.8) 30%, rgba(29, 29, 29, 0) 100%); } */\nmain .media .purchases .purchase { background-color: #2159ab; color: white; }\nmain .media .purchases .purchase .grey { color: white; }",
+  "javaScript": ""
+}

@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "Kiibee Comedy",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Kiibee Comedy ",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2748/sparkl.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "01C2"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2746/design-uden-navn-6.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "01C6"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "SÆLG DINE SHOWS ONLINE PÅ DIT EGET SALGS & STREAM SITE",
+  "description": "FBI.TV lukker pr. 1/1-2021. Fremover kan dine shows sælges på dit helt eget salgs- og stream site hos Kiibee.dk. Du styrer 100% dit eget indhold fremover, får udbetalt dine indtægter - og kan sælge alle typer digitale filer (film, podcasts, e-bøger, foredrag, shows etc.). Se hvordan det virker - og se cases her på siden. Vi glæder os til at hjælpe dig fremover. Mvh. Kiibee.dk",
+  "css": "",
+  "javaScript": ""
+}

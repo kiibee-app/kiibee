@@ -1,0 +1,25 @@
+{
+  "tab": "Subscription",
+  "name": "Damkjær Medier",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "subscription": "",
+  "price": "",
+  "price3": "",
+  "price6": "",
+  "price12": "",
+  "maxFiles": 12,
+  "kiibeeCut": 9,
+  "transactionFee": 6,
+  "paymentPeriod": [
+    "387"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "Cathrine Guldberg",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "GAT - Guldberg Adaptive Training",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1188/facebook.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "9WB"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1190/cathrine-guldbjerg.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "9WF"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "1",
+  "textColor": ["69"],
+  "coverTextPositionClass": "block",
+  "headline": "Velkommen til Guldberg Adaptive Training ",
+  "description": "Her kan du både få inspiration til Split Ropes og købe Siddende trænings videoer til download med øvelser der udføres på bold, stol eller i kørestol. Alle øvelser foregår til musik og i højt tempo. Øvelserne du finder på de forskellige videoer, er øvelser fra eks. Cross training og High Intensity Training som er omsat til siddende øvelser.  Alle videoerne vil med garanti give dig sved på panden og smil på læben. God fornøjelse.",
+  "css": "",
+  "javaScript": ""
+}

@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "Per Vers",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Per Vers",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4493/pertv-logo-2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "0L90"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4494/biografitop3.jpeg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0L94"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "1",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "KNUST KUNST - EN VINYLVISION",
+  "description": "Bremen Teater, 21. september 2018\r\n\r\nKNUST KUNST GALLA KONCERT var en “one night only” på et udsolgt Bremen Teater. \r\n\r\nAlle sejl var sat til for at forløse Pers KNUST KUNST projekt, der havde været flere år undervejs.\r\nEt album hvor alle sange bygger på gamle, glemte grammofonplader fra Danmark. \r\n\r\nAlle gæster på pladen er med på scenen, og bakket op af DJ Turkman Souljah, kvindekor og blæsertrio er det en unik koncert fra start til slut. ",
+  "css": "",
+  "javaScript": ""
+}

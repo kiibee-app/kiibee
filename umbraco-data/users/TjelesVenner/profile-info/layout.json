@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "TjelesVenner",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "TjelesVenner",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3700/kopi-af-kopi-af-foredragsfilm-meditationer-til-dig.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0F7J"
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3701/kopi-af-foredragsfilm-meditationer-til-dig-og-din-sindsro.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600,
+        "$$hashKey": "0F7N"
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Stream eller download film, bøger, Apps & meditationer",
+  "description": "Her kan du downloade stærke foredragsfilm og bøger om afhængighed. Du kan også få adgang til vores samling med guidede meditationer (serie på 6 afsnit med meditationer som lydfiler). Alle indtægter går til foreningen Tjeles Venners arbejde med at hjælpe familier i behandling for deres afhængighed.  ",
+  "css": "",
+  "javaScript": ""
+}

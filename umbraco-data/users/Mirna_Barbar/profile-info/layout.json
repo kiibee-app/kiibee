@@ -1,0 +1,41 @@
+{
+  "tab": "Layout",
+  "name": "Mirna Barbar",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Mirna Barbar",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/5135/billede333.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Skab dig selv",
+  "description": "En kort guide til at ændre dit selvkoncept og din identitet.\r\n\r\nDenne  e-bog handler om at skabe dig selv på et dybere plan.\r\nDette ved at forstå og ændre det selvkoncept, du allerede lever fra.\r\nBogen tager udgangspunkt i selvkoncept og identitet.\r\nI hvordan dit selvbillede er blevet formet gennem oplevelser, relationer, gentagelser og det, dit nervesystem har lært gennem livet. Og i hvordan disse mønstre lever i tanker, reaktioner og i det, der føles muligt for dig i hverdagen.\r\n",
+  "css": "",
+  "javaScript": ""
+}

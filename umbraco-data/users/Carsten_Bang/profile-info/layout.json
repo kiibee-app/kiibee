@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "Carsten Bang",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "CARSTEN BANG",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3103/carsten-bang.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "06HS"
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3389/carsten-bang-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600,
+        "$$hashKey": "06HW"
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Carsten Bang - Danmarks kongeniale komiker</h1>\n<p>Carsten Bang leverer originalt, intelligent og underfundigt comedy-materiale, der sniger sig ind under huden på publikum. Med sin selvironiske stil får han tilhørerne helt ud på kanten af sædet, før han får dem til at briste af grin med sine overraskende pointer.</p>",
+  "css": "header { background-color: black; color: #534e4d; }",
+  "javaScript": ""
+}

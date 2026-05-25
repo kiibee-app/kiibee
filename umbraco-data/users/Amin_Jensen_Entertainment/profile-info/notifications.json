@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Amin Jensen Entertainment",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-05-10",
+  "frequency": 60,
+  "notificationsType": "1",
+  "emails": ["amin@aminjensen.dk", "anders@kiibee.com"]
+}

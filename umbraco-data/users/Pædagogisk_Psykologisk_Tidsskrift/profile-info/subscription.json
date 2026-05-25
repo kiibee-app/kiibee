@@ -1,0 +1,25 @@
+{
+  "tab": "Subscription",
+  "name": "Pædagogisk Psykologisk Tidsskrift",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "subscription": "umb://document/5ba7f17c7cf64beea5db1176fd45d365",
+  "price": "",
+  "price3": "",
+  "price6": "",
+  "price12": "",
+  "maxFiles": 10,
+  "kiibeeCut": 15,
+  "transactionFee": 6,
+  "paymentPeriod": [
+    "1"
+  ]
+}

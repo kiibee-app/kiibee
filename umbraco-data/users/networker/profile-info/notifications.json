@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "networker",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2023-06-06",
+  "frequency": 1,
+  "notificationsType": "0",
+  "emails": []
+}

@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Red Barnet",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2022-06-28",
+  "frequency": 90,
+  "notificationsType": "0",
+  "emails": []
+}

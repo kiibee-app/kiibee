@@ -1,0 +1,67 @@
+{
+  "tab": "Layout",
+  "name": "Ilona Margibell",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Gymstream",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3713/gymstream-logo-basis.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3714/gym-arena-1-2000-x-800.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3717/gym-arena-1-640-x-600.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "1",
+  "textColor": ["69"],
+  "coverTextPositionClass": "block",
+  "headline": "GYMSTREAM",
+  "description": "Gymstream er en lille virksomhed som først og fremmest streamer live begivenheder.\r\n\r\nNedenfor finder du aktuelle begivenheder der enten er gratis, til salg eller kan lejes.\r\n\r\nHar du spørgsmål til events eller andet så kontakt os på : gymstream.dk@gmail.com",
+  "css": "",
+  "javaScript": ""
+}

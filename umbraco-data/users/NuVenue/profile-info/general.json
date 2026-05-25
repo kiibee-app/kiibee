@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "NuVenue",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/a8c28c88c218432c8545c18a0fe3e413",
+  "emailReceipt": "",
+  "supportEmail": "info@gottleben.com"
+}

@@ -1,0 +1,58 @@
+{
+  "tab": "Layout",
+  "name": "Pædagogisk Psykologisk Tidsskrift",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "62"
+  ],
+  "logoText": "Jacob Tingleff",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3160/jacob-tigleff-top.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3384/jacob-tingleff-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Jacob Tingleff - Stilfærdigt geni på comedy-scenen</h1>\n<p>Med sin rolige facon og stilfærdige tilstedeværelse er Jacob Tingleff lidt af en outsider i comedy-branchen. Alligevel regnes han som en af de absolut bedste til at skrive jokes og levere gennemtænkte shows med både hjerne og hjerte.</p>",
+  "css": "",
+  "javaScript": ""
+}

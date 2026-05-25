@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "Kryptovaluta for kvinder",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Kryptovaluta for kvinder",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3168/skaermbillede-2021-04-14-kl-131051.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "0BO5"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3169/fb-cover-kfk.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0BO9"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Kursusportal for Kryptovaluta for kvinder",
+  "description": "Hej Skønne kvinder!  Denne portal er både for kvinder som allerede investerer i kryptovaluta eller som overvejer at begynde. \r\n\r\nFå viden og værktøjer til at invester i Krypto Valuta, så du kan leve af din investering, gå tidligt på pension eller bare købe en ekstra flaske rødvin i måneden! \r\n\r\nUanset ambitionsniveauet så er der plads til alle. Kursuset er bygget op, så du både kan få nyttig og interessant viden om investeringer uanset om du er nybegynder eller du er i gang",
+  "css": "",
+  "javaScript": ""
+}

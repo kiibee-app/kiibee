@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Anne brietzke",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2025-09-21",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": []
+}

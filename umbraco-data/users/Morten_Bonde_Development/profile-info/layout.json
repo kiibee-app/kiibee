@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Morten Bonde Development",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Dan Andersen ",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3124/dan-anders.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3387/dan-andersen-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Dan Andersen - Danmarks charmerende one-man-band</h1>\n<p>Dan Andersen er hele Danmarks yndlingskomiker og musiker. Med sin guitar og egen-komponerede sangtekster spreder han glæde hos både unge og gamle.</p>",
+  "css": "header { background-color: black; color: #272424; }",
+  "javaScript": ""
+}

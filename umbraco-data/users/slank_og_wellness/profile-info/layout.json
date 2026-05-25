@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "slank og wellness",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "slank og wellness",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5037593984962406,
+      "top": 0.5111111111111111
+    },
+    "src": "/media/1342/kiibee-slank-wellness.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "BXK"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5015873015873016
+    },
+    "src": "/media/1343/slank-og-wellness-1.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "BXO"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["68"],
+  "coverTextPositionClass": "block",
+  "headline": "Velkommen til Slank og wellness vidensbibliotek",
+  "description": "Jeg er kostvejleder og hjælper med at lære forskellige vægttabs teknikker, der kan afhjælpe overvægt. Jeg tilbyder kurser, små træningsvideoer der kan købes og e-bøger. Det hele kan du se her på sitet .",
+  "css": "@media only screen and (max-width: 1023px) {\n.covertext h1, .covertext .teaser {\ncolor: #1d1d1d !important;\n}\n}\n@media only screen and (min-width: 1024px) {\n.covertext-container { \nbackground-color: rgba(30, 30, 30, 0.65); \npadding: 1em 1.25em; \nborder-radius: .25em;\ncolor: white !important; \n}\n}",
+  "javaScript": ""
+}
