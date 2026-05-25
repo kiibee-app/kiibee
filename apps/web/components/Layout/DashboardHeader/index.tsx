@@ -56,11 +56,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
           <HamburgerLine />
           <HamburgerLine />
         </HamburgerButton>
-        <LogoButton
-          type="button"
-          onClick={onToggleSidebar}
-          aria-label={t("dashboard.toggleSidebar")}
-        >
+        <LogoButton type="button" aria-label={t("nav.logoAlt")}>
           <Image
             src={logo}
             alt={t("nav.logoAlt")}

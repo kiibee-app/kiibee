@@ -29,7 +29,7 @@ export const MainWrapper = styled.div<{ $sidebarExpanded: boolean }>`
   padding-top: 70px;
   transition: margin-left 0.3s ease;
 
-  ${media.tablet} {
+  ${media.desktop} {
     margin-left: 0;
   }
 `;
@@ -43,7 +43,7 @@ export const ContentWrapper = styled.main<{ $contentPadding?: string }>`
   overflow-y: auto;
   overscroll-behavior: contain;
 
-  ${media.tablet} {
+  ${media.desktop} {
     padding: ${({ $contentPadding }) => $contentPadding ?? "8px 0 20px"};
   }
 `;

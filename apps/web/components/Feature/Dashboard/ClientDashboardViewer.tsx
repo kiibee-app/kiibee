@@ -6,7 +6,11 @@ import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { VIEW, ROLE_VIEWER } from "@/utils/Constants";
+import {
+  DASHBOARD_SIDEBAR_COLLAPSE_BREAKPOINT,
+  VIEW,
+  ROLE_VIEWER,
+} from "@/utils/Constants";
 import {
   VIEWER_LABEL_TO_VIEW,
   VIEWER_LABELS,
@@ -38,7 +42,7 @@ const ROUTABLE_VIEWER_VIEWS = new Set<string>([
 export default function ClientDashboardViewer() {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
-    useSidebarExpanded(768);
+    useSidebarExpanded(DASHBOARD_SIDEBAR_COLLAPSE_BREAKPOINT);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutEmail, setLogoutEmail] = useState("");
   const searchParams = useSearchParams();
