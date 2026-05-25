@@ -194,14 +194,15 @@ export default function DropdownField(props: Props) {
           aria-controls={listboxId}
         >
           <Selected>
-            {(() => {
-              const triggerValue = renderTriggerValue();
-              return typeof triggerValue === "string" ? (
-                <span>{triggerValue}</span>
-              ) : (
-                triggerValue
-              );
-            })()}
+            {renderTriggerValue ? (
+              renderTriggerValue()
+            ) : (
+              <span>
+                {selected
+                  ? selected.label || selected.labelKey || selected.value
+                  : ""}
+              </span>
+            )}
           </Selected>
 
           <ArrowWrap>

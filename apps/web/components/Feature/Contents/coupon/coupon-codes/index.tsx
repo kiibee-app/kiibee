@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import { COUPON_CODES_LIMIT } from "@/utils/common";
+
 import {
   BackButton,
   FieldGroup,
@@ -15,12 +16,14 @@ import {
   ModalTitle,
   NextButton,
 } from "../styles";
+
 import {
   CodesHelperText,
   CodesLimitText,
   CodesMetaRow,
   CouponCodesInput,
 } from "./styles";
+
 import { CreateCouponPayload } from "@/types/couponType";
 
 type CouponCodesModalProps = {
@@ -43,7 +46,14 @@ export default function CouponCodesModal({
   const { t } = useTranslation();
   const codesId = useId();
   const helperId = useId();
-  const [codesText, setCodesText] = useState(form.codes.join(", "));
+  const [codesText, setCodesText] = useState("");
+
+  React.useEffect(() => {
+    if (visible) {
+      setCodesText(form.codes?.join(", ") || "");
+    }
+  }, [visible, form.codes]);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setForm((prev) => ({
