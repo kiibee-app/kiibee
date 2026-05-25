@@ -9,3 +9,8 @@ export const API_ENDPOINTS = {
 export const ERROR_MESSAGES = {
   LOGIN_FAILED: "Login failed",
 } as const;
+
+export const ACTION_ICONS = {
+  APPROVE: "✓",
+  REJECT: "✕",
+} as const;
