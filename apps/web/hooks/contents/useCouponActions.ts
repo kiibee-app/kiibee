@@ -73,14 +73,23 @@ export const useCouponActions = ({
     const openEdit = () => {
       if (!selectedCoupon) return;
 
+      const collectionIdsFromEntity =
+        selectedCoupon.applicableProducts?.collectionIds ?? null;
+      const contentIdsFromEntity =
+        selectedCoupon.applicableProducts?.contentIds ?? null;
+
       onEditCoupon(selectedCoupon.id, {
         title: selectedCoupon.title ?? "",
         discountType:
           selectedCoupon.discountType ?? COUPON_DISCOUNT_TYPE.FIXED_AMOUNT,
         discountValue: selectedCoupon.discountValue ?? "",
         codes: (selectedCoupon.codes ?? []).join(", "),
-        collection: selectedCoupon.applicableProducts?.collectionId ?? "",
-        content: selectedCoupon.applicableProducts?.contentId ?? "",
+        collectionIds: Array.isArray(collectionIdsFromEntity)
+          ? collectionIdsFromEntity
+          : [],
+        contentIds: Array.isArray(contentIdsFromEntity)
+          ? contentIdsFromEntity
+          : [],
       });
     };
 

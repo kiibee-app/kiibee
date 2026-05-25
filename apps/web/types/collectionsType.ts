@@ -70,8 +70,8 @@ export type CouponFormState = {
   discountType: CouponDiscountType;
   discountValue: string;
   codes: string;
-  collection: string;
-  content: string;
+  collectionIds?: string[];
+  contentIds?: string[];
 };
 
 export const INITIAL_COUPON_FORM: CouponFormState = {
@@ -79,6 +79,6 @@ export const INITIAL_COUPON_FORM: CouponFormState = {
   discountType: COUPON_DISCOUNT_FIXED_AMOUNT,
   discountValue: "",
   codes: "",
-  collection: "",
-  content: "",
+  collectionIds: [],
+  contentIds: [],
 };

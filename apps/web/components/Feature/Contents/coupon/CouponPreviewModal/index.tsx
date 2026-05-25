@@ -63,8 +63,20 @@ export default function CouponPreviewModal({
     value: item.id,
     label: item.name,
   }));
-  const collectionLabel = getLabel(data.collection, collectionOptions);
-  const contentLabel = getLabel(data.content, contentOptions);
+
+  const collectionIds = data.collectionIds ?? [];
+  const contentIds = data.contentIds ?? [];
+
+  const collectionLabels =
+    collectionIds.length > 0
+      ? collectionIds.map((id) => getLabel(id, collectionOptions))
+      : ["-"];
+
+  const contentLabels =
+    contentIds.length > 0
+      ? contentIds.map((id) => getLabel(id, contentOptions))
+      : ["-"];
+
   const codes = data.codes ? data.codes.split(",").map((c) => c.trim()) : [];
 
   return (
@@ -134,8 +146,11 @@ export default function CouponPreviewModal({
                   {t("contents.couponPreview.fields.applicableProducts")}
                 </SectionLabel>
                 <ChipList>
-                  {[collectionLabel, contentLabel].map((item, i) => (
-                    <Chip key={i}>{item}</Chip>
+                  {collectionLabels.map((item, i) => (
+                    <Chip key={`collection-${i}`}>{item}</Chip>
+                  ))}
+                  {contentLabels.map((item, i) => (
+                    <Chip key={`content-${i}`}>{item}</Chip>
                   ))}
                 </ChipList>
               </Section>

@@ -20,7 +20,7 @@ export const SelectorList = styled.div`
 export const SelectedValueChip = styled.span`
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: 6px;
   border-radius: 15px;
   background: ${COLORS.neutral.GRAY_200};
   padding: 4px 6px;
@@ -31,4 +31,17 @@ export const SelectedValueText = styled(MonoText).attrs({
   $use: "Body_Small",
 })`
   color: ${COLORS.neutral.GRAY};
+`;
+
+export const ChipCloseCircle = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: ${COLORS.neutral.GRAY_300};
 `;

@@ -13,8 +13,8 @@ export type CreateCouponPayload = {
   discountType: CouponDiscountType;
   discountValue: string;
   codes: string[];
-  collectionId?: string;
-  contentId?: string;
+  collectionIds?: string[];
+  contentIds?: string[];
 };
 
 export const COUPON_STATUS = {
@@ -34,8 +34,8 @@ export type CouponEntity = {
   createdAt: string;
   codes?: string[];
   applicableProducts?: {
-    collectionId?: string | null;
-    contentId?: string | null;
+    collectionIds?: string[] | null;
+    contentIds?: string[] | null;
   };
 };
 

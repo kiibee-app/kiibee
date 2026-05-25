@@ -222,6 +222,13 @@ export const useContentsModalFlows = (
       .map((code) => code.trim())
       .filter((code) => code.length > 0);
 
+    const normalizedCollectionIds = (couponForm.collectionIds ?? [])
+      .map((id) => id.trim())
+      .filter((id) => id.length > 0 && !id.startsWith(COLLECTION));
+    const normalizedContentIds = (couponForm.contentIds ?? [])
+      .map((id) => id.trim())
+      .filter((id) => id.length > 0 && !id.startsWith(CONTENT));
+
     const payload: CreateCouponPayload = {
       title: couponForm.title.trim(),
       discountType:
@@ -230,14 +237,12 @@ export const useContentsModalFlows = (
           : COUPON_DISCOUNT_TYPE.PERCENTAGE,
       discountValue: couponForm.discountValue.trim(),
       codes,
-      collectionId:
-        couponForm.collection && !couponForm.collection.startsWith(COLLECTION)
-          ? couponForm.collection
+      collectionIds:
+        normalizedCollectionIds.length > 0
+          ? normalizedCollectionIds
           : undefined,
-      contentId:
-        couponForm.content && !couponForm.content.startsWith(CONTENT)
-          ? couponForm.content
-          : undefined,
+      contentIds:
+        normalizedContentIds.length > 0 ? normalizedContentIds : undefined,
     };
 
     const submitRequest = editingCouponId

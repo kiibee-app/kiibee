@@ -16,10 +16,11 @@ import {
   NextButton,
 } from "../styles";
 import {
-  SelectedValueChip,
-  SelectedValueText,
   SelectorList,
   TitleHelperText,
+  SelectedValueChip,
+  SelectedValueText,
+  ChipCloseCircle,
 } from "./styles";
 import { COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS } from "@/utils/dummyData/couponApplicableProducts";
 import { CouponFormState } from "@/types/collectionsType";
@@ -73,18 +74,33 @@ export default function CouponApplicableProductsModal({
     onNext();
   };
 
-  const handleApplicableProductChange = (fieldKey: string, value: string) => {
+  const handleApplicableProductChange = (fieldKey: string, value: string[]) => {
     if (fieldKey === COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS) {
       setForm((prev) => ({
         ...prev,
-        collection: value,
+        collectionIds: value,
       }));
       return;
     }
 
     setForm((prev) => ({
       ...prev,
-      content: value,
+      contentIds: value,
+    }));
+  };
+
+  const handleRemoveSelected = (fieldKey: string, id: string) => {
+    if (fieldKey === COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS) {
+      setForm((prev) => ({
+        ...prev,
+        collectionIds: (prev.collectionIds ?? []).filter((v) => v !== id),
+      }));
+      return;
+    }
+
+    setForm((prev) => ({
+      ...prev,
+      contentIds: (prev.contentIds ?? []).filter((v) => v !== id),
     }));
   };
 
@@ -126,24 +142,51 @@ export default function CouponApplicableProductsModal({
                       ? collectionOptions
                       : contentOptions
                   }
+                  multi
                   showSelectedIndicator
-                  renderSelectedValue={(selected) => (
-                    <SelectedValueChip>
-                      <SelectedValueText>
-                        {selected
-                          ? selected.label ||
-                            selected.labelKey ||
-                            selected.value
-                          : ""}
-                      </SelectedValueText>
-                      <ChipCloseIcon />
-                    </SelectedValueChip>
+                  renderSelectedValues={(selected) => (
+                    <div
+                      style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: 8,
+                      }}
+                    >
+                      {selected.length > 0 ? (
+                        selected.map((opt) => (
+                          <SelectedValueChip key={opt.value}>
+                            <SelectedValueText>
+                              {opt.label || opt.labelKey || opt.value}
+                            </SelectedValueText>
+                            <ChipCloseCircle
+                              type="button"
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                              }}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleRemoveSelected(field.key, opt.value);
+                              }}
+                              aria-label={t("common.close")}
+                            >
+                              <ChipCloseIcon />
+                            </ChipCloseCircle>
+                          </SelectedValueChip>
+                        ))
+                      ) : (
+                        <span style={{ opacity: 0.7 }}>
+                          {t("common.select", "Select")}
+                        </span>
+                      )}
+                    </div>
                   )}
                   value={
                     field.key ===
                     COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
-                      ? form.collection
-                      : form.content
+                      ? form.collectionIds
+                      : form.contentIds
                   }
                   onChange={(value) =>
                     handleApplicableProductChange(field.key, value)

@@ -14,7 +14,7 @@ import {
   normalizeCouponStatus,
 } from 'src/utils/coupon';
 
-type CreateCouponPayload = {
+export type CouponPayload = {
   title?: string;
   discountType?: string;
   discountValue?: string | number;
@@ -24,13 +24,25 @@ type CreateCouponPayload = {
   validUntil?: string;
   maxUses?: number;
   codes?: string[];
-  collectionId?: string;
-  contentId?: string;
+  collectionIds?: string[];
+  contentIds?: string[];
+};
+
+export const normalizeIdList = (value: unknown) => {
+  if (!Array.isArray(value)) return [];
+  return Array.from(
+    new Set(
+      value
+        .filter((v): v is string => typeof v === 'string')
+        .map((v) => v.trim())
+        .filter(Boolean),
+    ),
+  );
 };
 
 export const createCouponService = async (
   creatorId: string,
-  payload: CreateCouponPayload,
+  payload: CouponPayload,
 ) => {
   try {
     const trimmedTitle = payload.title?.trim() ?? '';
@@ -117,20 +129,25 @@ export const createCouponService = async (
       const applicableItemRows: Array<
         typeof couponApplicableItems.$inferInsert
       > = [];
-      if (payload.collectionId?.trim()) {
+
+      const collectionIds = normalizeIdList(payload.collectionIds);
+      const contentIds = normalizeIdList(payload.contentIds);
+
+      collectionIds.forEach((collectionId) => {
         applicableItemRows.push({
           id: randomUUID(),
           couponId: insertedCoupon.id,
-          collectionId: payload.collectionId.trim(),
+          collectionId,
         });
-      }
-      if (payload.contentId?.trim()) {
+      });
+
+      contentIds.forEach((contentId) => {
         applicableItemRows.push({
           id: randomUUID(),
           couponId: insertedCoupon.id,
-          mediaFileId: payload.contentId.trim(),
+          mediaFileId: contentId,
         });
-      }
+      });
 
       if (applicableItemRows.length > 0) {
         await tx.insert(couponApplicableItems).values(applicableItemRows);
@@ -139,13 +156,16 @@ export const createCouponService = async (
       return insertedCoupon;
     });
 
+    const responseCollectionIds = normalizeIdList(payload.collectionIds);
+    const responseContentIds = normalizeIdList(payload.contentIds);
+
     return success(
       {
         ...createdCoupon,
         discountCodes: normalizedCodes,
         applicableProducts: {
-          collectionId: payload.collectionId?.trim() || null,
-          contentId: payload.contentId?.trim() || null,
+          collectionIds: responseCollectionIds,
+          contentIds: responseContentIds,
         },
       },
       'Coupon created successfully',
