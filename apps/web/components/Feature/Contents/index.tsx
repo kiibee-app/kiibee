@@ -62,6 +62,7 @@ export default function CreatorsContents() {
   const {
     collections,
     setCollections,
+    resetAfterRefetch,
     collectionContents,
     showDeleteConfirm,
     setShowDeleteConfirm,
@@ -92,6 +93,7 @@ export default function CreatorsContents() {
     collections,
     isCollectionContentMode,
     setCollections,
+    resetAfterRefetch,
   );
 
   const handleUploadSuccess = (

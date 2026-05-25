@@ -7,6 +7,7 @@ import {
   COUPONS,
   ContentTab,
   COUPON_DISCOUNT_TYPE,
+  QUERY_REFETCH_TYPE_ACTIVE,
 } from "@/utils/common";
 import { type CreateCouponPayload } from "@/types/couponType";
 import { API } from "@/lib/http/api/endpoints";
@@ -27,6 +28,7 @@ export const useContentsModalFlows = (
   collections: CollectionRow[],
   isCollectionContentMode: boolean,
   setCollections: Dispatch<SetStateAction<CollectionRow[]>>,
+  resetAfterRefetch: () => void,
 ) => {
   const queryClient = useQueryClient();
   const [showDiscardModal, setShowDiscardModal] = useState(false);
@@ -118,6 +120,11 @@ export const useContentsModalFlows = (
         await queryClient.invalidateQueries({
           queryKey: [API.collection.getAll],
         });
+        await queryClient.refetchQueries({
+          queryKey: [API.collection.getAll],
+          type: QUERY_REFETCH_TYPE_ACTIVE,
+        });
+        resetAfterRefetch();
         resetCreateFlow();
         return;
       }
@@ -151,6 +158,11 @@ export const useContentsModalFlows = (
       await queryClient.invalidateQueries({
         queryKey: [API.collection.getAll],
       });
+      await queryClient.refetchQueries({
+        queryKey: [API.collection.getAll],
+        type: QUERY_REFETCH_TYPE_ACTIVE,
+      });
+      resetAfterRefetch();
       resetCreateFlow();
     },
     closeSuccess: () => setShowSuccessModal(false),
