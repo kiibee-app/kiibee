@@ -39,7 +39,7 @@ export default function CollectionList() {
       hideBadge: true,
       actions: [
         {
-          label: t("createProfileAbout.buyCollection"),
+          label: t("createProfileAbout.buy"),
           variant: "primary",
         },
       ],

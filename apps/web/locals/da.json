@@ -89,7 +89,8 @@
     "description": "Del din historie, dit arbejde og hvad folk kan forvente af din profil.",
     "sectionTitle": "Planter og dyr",
     "sectionTitleClothes": "Tøj",
-    "buyCollection": "Køb samling xx kr"
+    "buyCollection": "Køb samling xx kr",
+    "buy": "Køb samling"
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",
