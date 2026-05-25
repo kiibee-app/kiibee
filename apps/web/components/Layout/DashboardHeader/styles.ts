@@ -89,14 +89,21 @@ export const EmailWrapper = styled.div`
 `;
 
 export const ProfileCircle = styled.div`
+  position: relative;
   width: 48px;
   height: 48px;
-  padding: 9px 18px;
   border-radius: 6px;
+  overflow: hidden;
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const ProfileAvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const InitialAvatar = styled(MonoText).attrs({
@@ -146,6 +153,7 @@ export const ProfileButton = styled.button`
   width: 44px;
   height: 44px;
   border-radius: 8px;
+  overflow: hidden;
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.H4_SemiBold};
@@ -153,4 +161,5 @@ export const ProfileButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 `;

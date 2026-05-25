@@ -224,7 +224,17 @@ export const authStorage = {
       payload.data?.accessToken ??
       payload.data?.token;
     const refreshToken = payload.refreshToken ?? payload.data?.refreshToken;
-    const user = payload.user ?? payload.data?.user;
+    let user: unknown = payload.user ?? payload.data?.user;
+    if (!user && payload.data && typeof payload.data === "object") {
+      const data = payload.data as Record<string, unknown>;
+      if (typeof data.email === "string" || typeof data.id === "string") {
+        const identity = { ...data };
+        delete identity.accessToken;
+        delete identity.token;
+        delete identity.refreshToken;
+        user = identity;
+      }
+    }
     const role = getSessionRole(payload);
 
     if (accessToken) {
