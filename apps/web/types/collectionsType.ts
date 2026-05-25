@@ -11,6 +11,11 @@ export type CollectionRow = {
   contentsCount: number;
   createdAt: string;
   actions: string;
+  accessType?: "free" | "paid" | "password" | "email_gated";
+  description?: string;
+  coverImageUrl?: string;
+  visibility?: "public" | "hidden" | "draft" | "private";
+  isPublished?: boolean;
 };
 
 export type CollectionContentType = ContentType;

@@ -22,6 +22,11 @@ export type CollectionsApiItem = {
   [API_FIELD_KEYS.NAME]?: string;
   [API_FIELD_KEYS.CONTENTS_COUNT]?: number;
   [API_FIELD_KEYS.CREATED_AT]?: string;
+  accessType?: "free" | "paid" | "password" | "email_gated";
+  description?: string;
+  coverImageUrl?: string;
+  visibility?: "public" | "hidden" | "draft" | "private";
+  isPublished?: boolean;
 };
 
 export type CollectionsApiResponse =
@@ -128,6 +133,11 @@ export const getCollectionRows = (
       contentsCount: Number(item[API_FIELD_KEYS.CONTENTS_COUNT] ?? 0),
       createdAt: formatDateUSShort(item[API_FIELD_KEYS.CREATED_AT]),
       actions: EMPTY_ACTION,
+      accessType: item.accessType,
+      description: item.description,
+      coverImageUrl: item.coverImageUrl,
+      visibility: item.visibility,
+      isPublished: item.isPublished,
     }));
 };
 
