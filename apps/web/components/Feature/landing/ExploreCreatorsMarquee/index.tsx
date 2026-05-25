@@ -56,9 +56,7 @@ export default function ExploreCreatorsMarquee() {
     idx: number,
     prefix: string,
   ) => {
-    const description =
-      CREATOR_DESCRIPTIONS[creator.name] ||
-      "Explore exclusive digital content, personal updates, and supportive communities directly from your favorite creator.";
+    const description = CREATOR_DESCRIPTIONS[creator.name];
 
     return (
       <CreatorCard key={`${prefix}-${creator.id}-${idx}`}>
