@@ -4,7 +4,10 @@ import NextImage from "next/image";
 import { useSafeImage } from "@/hooks/useSafeImage";
 import { useTranslation } from "react-i18next";
 import { IMG } from "@/utils/common";
-import { SAFE_IMAGE_DECODING, SAFE_IMAGE_FALLBACKS } from "@/utils/safeImage";
+import {
+  SAFE_IMAGE_DECODING,
+  SAFE_IMAGE_FALLBACKS,
+} from "@/utils/landingUtils";
 import { type SafeImageProps } from "@/types/safeImage";
 
 export const FALLBACKS = {

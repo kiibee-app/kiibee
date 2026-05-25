@@ -1,5 +1,5 @@
 import { type CSSProperties } from "react";
-import { SCROLL_REVEAL } from "@/utils/scrollReveal";
+import { SCROLL_REVEAL } from "@/utils/landingUtils";
 
 export function getScrollRevealContainerStyle(
   style?: CSSProperties,
@@ -11,3 +11,4 @@ export function getScrollRevealContainerStyle(
     ...style,
   };
 }
+

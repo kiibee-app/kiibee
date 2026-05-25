@@ -28,13 +28,13 @@ import {
 } from "./styles";
 import ImageReveal from "@/components/UI/ImageReveal";
 import { type DiscoverCardProps } from "@/types/discoverCard";
-import { LANDING_REVEAL } from "@/utils/landingReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { IMAGE_SIZES } from "@/utils/imageSizes";
 import {
   LANDING_IMAGE_DIMENSIONS,
   LANDING_IMAGE_FLAGS,
   LANDING_REVEAL_VARIANTS,
-} from "@/utils/landingConfig";
+} from "@/utils/landingUtils";
 function DiscoverCard({ item }: DiscoverCardProps) {
   const router = useRouter();
   const theme = useTheme();

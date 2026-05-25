@@ -16,7 +16,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
-import { LANDING_REVEAL } from "@/utils/landingReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
 
 export default function DiscoverContent() {
   const { t, i18n } = useTranslation();

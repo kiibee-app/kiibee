@@ -1,15 +1,14 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { type ScrollRevealProps } from "@/types/scrollReveal";
-import { SCROLL_REVEAL } from "@/utils/scrollReveal";
+import { SCROLL_REVEAL } from "@/utils/landingUtils";
 import { getScrollRevealContainerStyle } from "./styles";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(useGSAP, ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function ScrollReveal({
@@ -21,8 +20,8 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
       if (!container.current) return;
 
       const mm = gsap.matchMedia();
@@ -76,9 +75,12 @@ export default function ScrollReveal({
           },
         );
       });
-    },
-    { scope: container, dependencies: [delay] },
-  );
+    }, container);
+
+    return () => {
+      ctx.revert();
+    };
+  }, [delay]);
 
   return (
     <div
@@ -92,3 +94,4 @@ export default function ScrollReveal({
     </div>
   );
 }
+

@@ -22,11 +22,11 @@ import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
 import { type ValueStatementProps } from "@/types/valueStatement";
-import { LANDING_REVEAL } from "@/utils/landingReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
 import {
   LANDING_IMAGE_FLAGS,
   LANDING_REVEAL_VARIANTS,
-} from "@/utils/landingConfig";
+} from "@/utils/landingUtils";
 
 export default function ValueStatement({
   bgImage,

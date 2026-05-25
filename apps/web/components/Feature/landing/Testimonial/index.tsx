@@ -18,12 +18,12 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
-import { LANDING_REVEAL } from "@/utils/landingReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { IMAGE_SIZES } from "@/utils/imageSizes";
 import {
   LANDING_IMAGE_FLAGS,
   LANDING_REVEAL_VARIANTS,
-} from "@/utils/landingConfig";
+} from "@/utils/landingUtils";
 
 export default function TestimonialSection() {
   const { t } = useTranslation();

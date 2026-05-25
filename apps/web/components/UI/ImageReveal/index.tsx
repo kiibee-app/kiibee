@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   type ImageRevealProps,
@@ -12,7 +11,7 @@ import { IMAGE_REVEAL_DEFAULTS } from "@/utils/imageReveal";
 import { getImageRevealContainerStyle } from "./styles";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(useGSAP, ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function ImageReveal({
@@ -28,8 +27,8 @@ export default function ImageReveal({
 }: ImageRevealProps) {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
       if (!container.current) return;
 
       const mm = gsap.matchMedia();
@@ -133,9 +132,12 @@ export default function ImageReveal({
           );
         }
       });
-    },
-    { scope: container, dependencies: [variant, delay, duration, start] },
-  );
+    }, container);
+
+    return () => {
+      ctx.revert();
+    };
+  }, [variant, delay, duration, start]);
 
   return (
     <div

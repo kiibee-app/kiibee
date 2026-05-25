@@ -18,8 +18,8 @@ import type { CtaSectionProps } from "@/types/ctaSection";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
-import { LANDING_IMAGE_FLAGS } from "@/utils/landingConfig";
-import { LANDING_REVEAL } from "@/utils/landingReveal";
+import { LANDING_IMAGE_FLAGS } from "@/utils/landingUtils";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
 
 export default function CtaSection({
   bgImage,

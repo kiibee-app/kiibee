@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { type SmoothScrollProviderProps } from "@/types/smoothScrollProvider";
-import { SMOOTH_SCROLL, SMOOTH_SCROLL_EVENTS } from "@/utils/smoothScroll";
+import { SMOOTH_SCROLL, SMOOTH_SCROLL_EVENTS } from "@/utils/landingUtils";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -128,3 +128,4 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
 
   return children;
 }
+

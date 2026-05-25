@@ -29,9 +29,9 @@ import { resolveImageUrl } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
-import { LANDING_REVEAL } from "@/utils/landingReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { type CtaImageCard } from "@/types/landingCallToAction";
-import { LANDING_REVEAL_VARIANTS } from "@/utils/landingConfig";
+import { LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
 
 export default function CallToAction() {
   const { t } = useTranslation();
