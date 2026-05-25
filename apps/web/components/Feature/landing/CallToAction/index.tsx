@@ -30,7 +30,7 @@ import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
-import { type CtaImageCard } from "@/types/landingCallToAction";
+import { type CtaImageCard } from "@/utils/landingShared";
 import { LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
 
 export default function CallToAction() {

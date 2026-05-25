@@ -8,7 +8,7 @@ import {
   SAFE_IMAGE_DECODING,
   SAFE_IMAGE_FALLBACKS,
 } from "@/utils/landingUtils";
-import { type SafeImageProps } from "@/types/safeImage";
+import { type SafeImageProps } from "@/utils/landingShared";
 
 export const FALLBACKS = {
   ...SAFE_IMAGE_FALLBACKS,

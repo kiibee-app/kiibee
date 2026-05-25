@@ -1,5 +1,5 @@
 import { type CSSProperties } from "react";
-import { IMAGE_REVEAL_DEFAULTS } from "@/utils/imageReveal";
+import { IMAGE_REVEAL_DEFAULTS } from "@/utils/landingShared";
 
 export function getImageRevealContainerStyle(
   noClip: boolean,

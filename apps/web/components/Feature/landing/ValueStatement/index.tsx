@@ -21,7 +21,7 @@ import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
-import { type ValueStatementProps } from "@/types/valueStatement";
+import { type ValueStatementProps } from "@/utils/landingShared";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
 import {
   LANDING_IMAGE_FLAGS,

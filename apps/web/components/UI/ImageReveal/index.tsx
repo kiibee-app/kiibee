@@ -6,8 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   type ImageRevealProps,
   type ImageRevealVariant,
-} from "@/types/imageReveal";
-import { IMAGE_REVEAL_DEFAULTS } from "@/utils/imageReveal";
+} from "@/utils/landingShared";
+import { IMAGE_REVEAL_DEFAULTS } from "@/utils/landingShared";
 import { getImageRevealContainerStyle } from "./styles";
 
 if (typeof window !== "undefined") {

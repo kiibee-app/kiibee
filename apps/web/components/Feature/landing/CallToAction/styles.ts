@@ -4,7 +4,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import SafeImage from "@/components/UI/SafeImage";
-import { type CtaImageCard } from "@/types/landingCallToAction";
+import { type CtaImageCard } from "@/utils/landingShared";
 
 export const Section = styled.section`
   position: relative;

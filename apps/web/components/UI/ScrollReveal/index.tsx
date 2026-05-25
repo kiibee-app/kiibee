@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { type ScrollRevealProps } from "@/types/scrollReveal";
+import { type ScrollRevealProps } from "@/utils/landingShared";
 import { SCROLL_REVEAL } from "@/utils/landingUtils";
 import { getScrollRevealContainerStyle } from "./styles";
 

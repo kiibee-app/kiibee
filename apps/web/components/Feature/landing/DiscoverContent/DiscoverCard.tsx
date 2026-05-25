@@ -27,9 +27,9 @@ import {
   discoverCardImageStyle,
 } from "./styles";
 import ImageReveal from "@/components/UI/ImageReveal";
-import { type DiscoverCardProps } from "@/types/discoverCard";
+import { type DiscoverCardProps } from "@/utils/landingShared";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
-import { IMAGE_SIZES } from "@/utils/imageSizes";
+import { IMAGE_SIZES } from "@/utils/landingShared";
 import {
   LANDING_IMAGE_DIMENSIONS,
   LANDING_IMAGE_FLAGS,
