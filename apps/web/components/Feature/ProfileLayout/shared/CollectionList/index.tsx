@@ -1,23 +1,63 @@
 "use client";
 
+import { useMemo } from "react";
 import CollectionsSection from "@/components/Feature/Dashboard/ViewerSections/CollectionsSection";
-import { COLLECTIONS_FOR_PAGE } from "@/utils/dummyData/collectionData";
+import {
+  CollectionsApiResponse,
+  getCollectionRows,
+} from "@/hooks/contents/collectionApi";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import { API } from "@/lib/http/api/endpoints";
+import { useGetAPI } from "@/lib/http/api/getApi";
+import { resolveImageUrl } from "@/utils/Constants";
+import { tutorialVideos } from "@/utils/data";
+import type { RentedCollectionItem } from "@/utils/dummyData/viewerRentedMockData";
 import { RENTED_MODES } from "@/utils/viewerRented";
-import { CollectionListShell } from "./styles";
+import { CollectionListInner, CollectionListShell } from "./styles";
 
 export default function CollectionList() {
+  const { displayName } = useCreatorChannelProfile();
+  const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
+    API.collection.getAll,
+  );
+
+  const items = useMemo<RentedCollectionItem[]>(() => {
+    if (!collectionsResponse) return [];
+
+    const rows = getCollectionRows(collectionsResponse);
+
+    return rows.map((row, index) => ({
+      id: row.id,
+      title: row.name,
+      author: displayName || "Creator",
+      elementCount: row.contentsCount,
+      coverSrc: resolveImageUrl(
+        tutorialVideos[index % tutorialVideos.length]?.image ?? "",
+      ),
+      hideBadge: true,
+      actions: [
+        {
+          label: "Buy collection",
+          variant: "primary",
+        },
+      ],
+    }));
+  }, [collectionsResponse, displayName]);
+
   return (
     <CollectionListShell>
-      <CollectionsSection
-        mode={RENTED_MODES.PURCHASED}
-        items={COLLECTIONS_FOR_PAGE}
-        totalItems={COLLECTIONS_FOR_PAGE.length}
-        canSlide={() => false}
-        canGoPrev={() => false}
-        canGoNext={() => false}
-        movePrev={() => {}}
-        moveNext={() => {}}
-      />
+      <CollectionListInner>
+        <CollectionsSection
+          mode={RENTED_MODES.PURCHASED}
+          items={items}
+          totalItems={items.length}
+          canSlide={() => false}
+          canGoPrev={() => false}
+          canGoNext={() => false}
+          movePrev={() => {}}
+          moveNext={() => {}}
+        />
+      </CollectionListInner>
     </CollectionListShell>
   );
 }
