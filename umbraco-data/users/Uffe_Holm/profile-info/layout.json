@@ -1,0 +1,44 @@
+{
+  "tab": "Layout",
+  "name": "Uffe Holm",
+  "skin": "Light",
+  "logoText": "Uffe Holm - Shows til download",
+  "useLogoImage": true,
+  "logoImage": {
+    "presentInScreenshot": true,
+    "dimensions": {
+      "widthPx": 250,
+      "heightPx": 60
+    },
+    "visibleText": "Uffe Holm",
+    "sourceFileAvailable": false
+  },
+  "useCoverImage": true,
+  "coverImage": {
+    "presentInScreenshot": true,
+    "dimensions": {
+      "widthPx": 2200,
+      "heightPx": 400
+    },
+    "visibleText": "InstaChamp Uffe Holms Stand-up Tour 2019",
+    "visualDescription": "Wide turquoise cover with Uffe Holm wearing a blue helmet on the right.",
+    "sourceFileAvailable": false
+  },
+  "coverImageMobile": {
+    "presentInScreenshot": true,
+    "dimensions": {
+      "widthPx": 600,
+      "heightPx": 600
+    },
+    "visibleText": "UFFE HOLM Shows til stream og download",
+    "visualDescription": "Square turquoise mobile cover with Uffe Holm wearing a blue helmet on the left.",
+    "sourceFileAvailable": false
+  },
+  "fadeCoverImage": false,
+  "textColor": "Use Theme",
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "descriptionHtml": "<h1>Uffe Holm - Danmarks rutinerede comedy-komet</h1>\n<p>Uffe Holm er en af Danmarks mest rutinerede og popul\u00e6re stand-up komikere. Allerede som 17-\u00e5rig debuterede han p\u00e5 den danske comedy scene, og gennem sin lange karriere er han blevet ekspert i at l\u00e6se sit publikum og balancere p\u00e5 kanten af det tilladte.</p>",
+  "css": "",
+  "javaScript": ""
+}

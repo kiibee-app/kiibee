@@ -1,0 +1,16 @@
+{
+  "tab": "Notifications",
+  "name": "Uffe Holm",
+  "lastNotificationDate": "05-03-2026",
+  "frequencyDays": 90,
+  "notificationsType": {
+    "value": 1,
+    "meaning": "Sales",
+    "legend": {
+      "0": "Off",
+      "1": "Sales",
+      "2": "Overview"
+    }
+  },
+  "emails": ["anders@kiibee.dk", "a.halfter@gmail.com", "malene@uffeholm.dk"]
+}

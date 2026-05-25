@@ -1,0 +1,24 @@
+{
+  "tab": "Subscription",
+  "name": "Uffe Holm",
+  "subscription": {
+    "name": "Pr\u00f8v Kiibee",
+    "path": "/settings/subscriptions/proev-kiibee/"
+  },
+  "prices": {
+    "price1Month": "",
+    "price3Months": "",
+    "price6Months": "",
+    "price12Months": ""
+  },
+  "maxFiles": 10,
+  "kiibeeCut": {
+    "value": 16,
+    "unit": "DKK"
+  },
+  "transactionFee": {
+    "value": 6,
+    "unit": "percent"
+  },
+  "paymentPeriod": 1
+}

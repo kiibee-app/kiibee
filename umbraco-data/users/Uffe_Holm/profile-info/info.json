@@ -1,0 +1,32 @@
+{
+  "tab": "Info",
+  "name": "Uffe Holm",
+  "links": ["/uffe-holm/"],
+  "history": [
+    {
+      "user": "Martin H. Schl\u00e4ger",
+      "date": "5. marts 2026 04:00",
+      "status": "Udgivet",
+      "message": "Brugeren har gemt og udgivet indholdet"
+    },
+    {
+      "user": "Martin H. Schl\u00e4ger",
+      "date": "5. december 2025 04:00",
+      "status": "Udgivet",
+      "message": "Brugeren har gemt og udgivet indholdet"
+    },
+    {
+      "user": "Martin H. Schl\u00e4ger",
+      "date": "6. september 2025 04:00",
+      "status": "Udgivet",
+      "message": "Brugeren har gemt og udgivet indholdet"
+    },
+    {
+      "user": "Martin H. Schl\u00e4ger",
+      "date": "8. juni 2025 04:00",
+      "status": "Udgivet",
+      "message": "Brugeren har gemt og udgivet indholdet",
+      "visibility": "partially visible in screenshot"
+    }
+  ]
+}
