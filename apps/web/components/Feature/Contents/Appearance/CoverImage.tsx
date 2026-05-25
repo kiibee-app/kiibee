@@ -32,6 +32,13 @@ import { CoverImageSectionProps, UploadConfig } from "@/types/metadataType";
 
 import { useContentForm } from "../ContentFormContext";
 
+const imageFieldMap = {
+  [IMAGE_TYPE.MEDIA_CARD]: "mediaCardThumbnail",
+  [IMAGE_TYPE.PORTRAIT]: "portraitThumbnail",
+} as const;
+const getImageField = (type: ImageType) =>
+  imageFieldMap[type as keyof typeof imageFieldMap];
+
 export default function CoverImageSection({
   title,
   subtitle = false,
@@ -58,12 +65,9 @@ export default function CoverImageSection({
 
   const handleImageApply = (cropped: string) => {
     if (!selectedConfig) return;
+    const field = getImageField(selectedConfig.type);
     if (useFormContext) {
-      if (selectedConfig.type === IMAGE_TYPE.MEDIA_CARD) {
-        updateField("mediaCardThumbnail", cropped);
-      } else if (selectedConfig.type === IMAGE_TYPE.PORTRAIT) {
-        updateField("portraitThumbnail", cropped);
-      }
+      updateField(field, cropped);
     } else {
       setImages((prev) => ({
         ...prev,
@@ -76,9 +80,7 @@ export default function CoverImageSection({
   const getCurrentImage = () => {
     if (!selectedConfig) return null;
     if (useFormContext) {
-      return selectedConfig.type === IMAGE_TYPE.MEDIA_CARD
-        ? formState.mediaCardThumbnail
-        : formState.portraitThumbnail;
+      return formState[getImageField(selectedConfig.type)];
     }
     return images[selectedConfig.type];
   };

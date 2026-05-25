@@ -124,12 +124,16 @@ export function useContentFormActions({
     }
   };
 
+  const resetUploadState = () => {
+    setUploadedFile(null);
+    setUploadedPreview(null);
+    setEditingContent(null);
+    resetForm();
+  };
+
   const handleBackToBase = () => {
     if (isUploadMode) {
-      setUploadedFile(null);
-      setUploadedPreview(null);
-      setEditingContent(null);
-      resetForm();
+      resetUploadState();
     } else {
       setSelectedCollection(null);
     }

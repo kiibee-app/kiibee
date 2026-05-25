@@ -27,6 +27,17 @@ import {
   SelectButton,
   TextBlock,
 } from "./styles";
+const updateValue = <T,>(
+  value: T,
+  onChange?: (value: T) => void,
+  setLocal?: (value: T) => void,
+) => {
+  if (onChange) {
+    onChange(value);
+  } else {
+    setLocal?.(value);
+  }
+};
 
 interface AdmissionRequirementsProps {
   accessType?: AdmissionRequirementValue;
@@ -69,22 +80,14 @@ function AdmissionRequirements({
 
   const handleSelect = useCallback(
     (value: AdmissionRequirementValue) => {
-      if (onChangeAccessType) {
-        onChangeAccessType(value);
-      } else {
-        setLocalSelected(value);
-      }
+      updateValue(value, onChangeAccessType, setLocalSelected);
       setOpen(false);
     },
     [onChangeAccessType],
   );
 
   const handlePasswordsChange = (val: string) => {
-    if (onChangePasswords) {
-      onChangePasswords(val);
-    } else {
-      setLocalPasswords(val);
-    }
+    updateValue(val, onChangePasswords, setLocalPasswords);
   };
 
   return (

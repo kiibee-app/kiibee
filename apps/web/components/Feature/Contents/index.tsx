@@ -120,6 +120,11 @@ function CreatorsContentsInner() {
     contentTypeFlow,
   });
 
+  const handleSaveSuccessClose = () => {
+    setShowSaveSuccessModal(false);
+    handleBackToBase();
+  };
+
   return (
     <PageShell>
       <PageHeader>
@@ -272,14 +277,8 @@ function CreatorsContentsInner() {
         title={t("settings.notifications.successModal.title")}
         message={t("settings.notifications.successModal.message")}
         confirmLabel={t("settings.notifications.successModal.done")}
-        onClose={() => {
-          setShowSaveSuccessModal(false);
-          handleBackToBase();
-        }}
-        onConfirm={() => {
-          setShowSaveSuccessModal(false);
-          handleBackToBase();
-        }}
+        onClose={handleSaveSuccessClose}
+        onConfirm={handleSaveSuccessClose}
         size="sm"
         spacing="xs"
         showCloseButton={false}

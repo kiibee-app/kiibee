@@ -37,14 +37,14 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const prefillForm = useCallback(
     (file: File | null) => {
-      if (file) {
-        setFormState({
-          ...defaultState,
-          title: getFileNameWithoutExtension(file.name),
-        });
-      } else {
+      if (!file) {
         resetForm();
+        return;
       }
+      setFormState({
+        ...defaultState,
+        title: getFileNameWithoutExtension(file.name),
+      });
     },
     [resetForm],
   );
