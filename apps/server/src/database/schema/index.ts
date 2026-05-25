@@ -26,6 +26,7 @@ export * from './content/tags.schema';
 export * from './content/mediaFileTags.schema';
 export * from './content/mediaFileCategories.schema';
 export * from './content/mediaFileVersions.schema';
+export * from './content/contentAccess.schema';
 
 // Subscription & Billing
 export * from './subscription/plans.schema';

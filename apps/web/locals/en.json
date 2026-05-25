@@ -1553,6 +1553,34 @@
     "couponSearch": {
       "title": "Search coupon title",
       "codes": "Search by codes"
+    },
+    "payment": {
+      "admission": {
+        "title": "Admission requirements",
+        "description": "Consider what type of access your [contentType] should have",
+        "options": {
+          "payment": "Payment"
+        }
+      },
+      "rental": {
+        "title": "Video rental (Streaming)",
+        "description": "When a video is rented it will be available for 48 hours."
+      },
+      "purchase": {
+        "title": "Video purchase/download",
+        "description": "Purchased videos will be available in the user’s profile."
+      },
+      "downloadLimit": {
+        "title": "Maximum download limit",
+        "description": "Set how many times a user can download this content (e.g., max 5 downloads per purchase).",
+        "options": {
+          "unlimited": "Unlimited"
+        }
+      },
+      "common": {
+        "enterAmount": "Enter amount",
+        "feeNote": "Minimum DKK 8, as Kiibee charges DKK 5 in transaction fees"
+      }
     }
   },
   "resetPassword": {

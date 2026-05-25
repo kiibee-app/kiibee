@@ -1,6 +1,7 @@
 import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
+import Link from "next/link";
 
 export const HeaderWrapper = styled.header`
   height: 70px;
@@ -116,4 +117,40 @@ export const ChannelText = styled(MonoText)`
   ${media.tablet} {
     display: none;
   }
+`;
+
+export const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 42px;
+
+  ${media.tablet} {
+    display: none;
+  }
+`;
+
+export const NavItem = styled(Link)`
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const ProfileButton = styled.button`
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.H4_SemiBold};
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

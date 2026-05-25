@@ -61,6 +61,11 @@ export const useContentsDataState = (
     });
   };
 
+  const resetAfterRefetch = () => {
+    setHasLocalOverride(false);
+    setLocalCollections([]);
+  };
+
   const apiCollectionContents = useMemo(() => {
     if (!collectionContentsResponse) return [];
     return getCollectionContentRows(collectionContentsResponse);
@@ -80,6 +85,7 @@ export const useContentsDataState = (
   return {
     collections,
     setCollections,
+    resetAfterRefetch,
     collectionContents,
     setContentsMap,
     ...deleteState,
