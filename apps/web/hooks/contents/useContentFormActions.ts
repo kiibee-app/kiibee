@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { API } from "@/lib/http/api/endpoints";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
-import { ContentType } from "@/utils/content";
+import { ContentType, getFileNameWithoutExtension } from "@/utils/content";
 import { useContentForm } from "@/components/Feature/Contents/ContentFormContext";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import {
@@ -40,7 +40,7 @@ import {
   contentTypeSizeMap,
   mockSizeFallback,
   buildContentUpdatePayload,
-} from "@/components/Feature/Contents/constants";
+} from "@/utils/Constants";
 
 type Params = {
   activeTab: ContentTab;
@@ -113,7 +113,7 @@ export function useContentFormActions({
     if (createdContentId) {
       setEditingContent({
         id: createdContentId,
-        name: file?.name.replace(/\.[^/.]+$/, "") ?? "",
+        name: file ? getFileNameWithoutExtension(file.name) : "",
         contentType:
           contentTypeFlow.selectedContentType ??
           (CONTENT_TYPE_FALLBACK as ContentType),
@@ -130,7 +130,6 @@ export function useContentFormActions({
       setUploadedPreview(null);
       setEditingContent(null);
       resetForm();
-      setSelectedCollection(selectedCollection);
     } else {
       setSelectedCollection(null);
     }
@@ -211,8 +210,6 @@ export function useContentFormActions({
     const handler = saveActionsMap[activeTab];
     if (handler) {
       await handler();
-    } else if (isUploadMode) {
-      await saveUploadedContent();
     } else {
       createCollectionFlow.openSuccess();
     }

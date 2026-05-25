@@ -34,7 +34,7 @@ import {
 } from "@/utils/content";
 import { ContentFormProvider, useContentForm } from "./ContentFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
-import { UI_TITLE_FALLBACK } from "./constants";
+import { UI_TITLE_FALLBACK } from "@/utils/Constants";
 
 function CreatorsContentsInner() {
   const { t } = useTranslation();

@@ -1580,6 +1580,11 @@
       "common": {
         "enterAmount": "Enter amount",
         "feeNote": "Minimum DKK 8, as Kiibee charges DKK 5 in transaction fees"
+      },
+      "physicalLink": {
+        "title": "Physical product",
+        "description": "If you have a physical version of the product, you can link to a webshop.",
+        "placeholder": "Add product link"
       }
     }
   },

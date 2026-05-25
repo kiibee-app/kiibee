@@ -167,25 +167,18 @@ export default function Payment() {
           </DropdownWrap>
         </Block>
 
-        {/* Panel 2: Physical Product Link */}
         <Block>
           <SectionTitle>
-            {t("contents.payment.physicalLink.title", "Physical product")}
+            {t("contents.payment.physicalLink.title")}
           </SectionTitle>
           <SectionText>
-            {t(
-              "contents.payment.physicalLink.description",
-              "If you have a physical version of the product, you can link to a webshop.",
-            )}
+            {t("contents.payment.physicalLink.description")}
           </SectionText>
           <ControlWrap>
             <InputField
               value={formState.physicalProductLink}
               onChange={handleInputChange("physicalProductLink")}
-              placeholder={t(
-                "contents.payment.physicalLink.placeholder",
-                "Add Product link",
-              )}
+              placeholder={t("contents.payment.physicalLink.placeholder")}
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
             />

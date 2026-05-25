@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useCallback } from "react";
+import { getFileNameWithoutExtension } from "@/utils/content";
 
 export type ContentFormState = {
   title: string;
@@ -79,7 +80,7 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
     if (file) {
       setFormState({
         ...defaultState,
-        title: file.name.replace(/\.[^/.]+$/, ""),
+        title: getFileNameWithoutExtension(file.name),
       });
     } else {
       setFormState(defaultState);
