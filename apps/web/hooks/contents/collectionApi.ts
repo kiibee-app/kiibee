@@ -3,6 +3,10 @@ import type {
   CollectionRow,
 } from "@/types/collectionsType";
 import type { SetStateAction } from "react";
+import type {
+  CollectionAccessType,
+  CollectionVisibility,
+} from "@/utils/Constants";
 import { formatDateUSShort } from "@/utils/formatDate";
 import {
   API_FIELD_KEYS,
@@ -22,10 +26,10 @@ export type CollectionsApiItem = {
   [API_FIELD_KEYS.NAME]?: string;
   [API_FIELD_KEYS.CONTENTS_COUNT]?: number;
   [API_FIELD_KEYS.CREATED_AT]?: string;
-  accessType?: "free" | "paid" | "password" | "email_gated";
+  accessType?: CollectionAccessType;
   description?: string;
   coverImageUrl?: string;
-  visibility?: "public" | "hidden" | "draft" | "private";
+  visibility?: CollectionVisibility;
   isPublished?: boolean;
 };
 

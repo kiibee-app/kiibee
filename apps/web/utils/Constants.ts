@@ -5,7 +5,7 @@ import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
 } from "./admissionRequirements";
-import { ContentFormState } from "@/components/Feature/Contents/ContentFormContext";
+import type { ContentFormState } from "@/types/contentTypes";
 
 export const CREATOR_CHANNEL_AVATAR_TEXT = {
   HERO: "Heading2",
@@ -110,10 +110,32 @@ export const ACCESS_TYPE_PAID = "paid";
 export const ACCESS_TYPE_FREE = "free";
 export const ACCESS_TYPE_PASSWORD = "password";
 export const ACCESS_TYPE_EMAIL_GATED = "email_gated";
+
+export type CollectionAccessType =
+  | typeof ACCESS_TYPE_PAID
+  | typeof ACCESS_TYPE_FREE
+  | typeof ACCESS_TYPE_PASSWORD
+  | typeof ACCESS_TYPE_EMAIL_GATED;
 export const VISIBILITY_PUBLIC_LOWER = "public";
 export const VISIBILITY_PUBLIC_UPPER = "Public";
 export const VISIBILITY_HIDDEN_LOWER = "hidden";
 export const VISIBILITY_HIDDEN_UPPER = "Hidden";
+export const VISIBILITY_DRAFT_LOWER = "draft";
+export const VISIBILITY_DRAFT_UPPER = "Draft";
+export const VISIBILITY_PRIVATE_LOWER = "private";
+export const VISIBILITY_PRIVATE_UPPER = "Private";
+
+export type CollectionVisibility =
+  | typeof VISIBILITY_PUBLIC_LOWER
+  | typeof VISIBILITY_HIDDEN_LOWER
+  | typeof VISIBILITY_DRAFT_LOWER
+  | typeof VISIBILITY_PRIVATE_LOWER;
+
+export type CollectionContentVisibilityType =
+  | typeof VISIBILITY_PUBLIC_UPPER
+  | typeof VISIBILITY_HIDDEN_UPPER
+  | typeof VISIBILITY_DRAFT_UPPER
+  | typeof VISIBILITY_PRIVATE_UPPER;
 export const CATEGORY_EDUCATION_LOWER = "education";
 export const RENT_DURATION_DEFAULT = 48;
 export const DOWNLOAD_LIMIT_UNLIMITED = "Unlimited";
@@ -128,10 +150,10 @@ export const MIME_TYPE_VIDEO_MP4 = "video/mp4";
 export const MIME_TYPE_APPLICATION_PDF = "application/pdf";
 
 export const ERROR_MESSAGES = {
-  NO_CONTENT: "No content to save",
-  SAVE_CHANGES_FAILED: "Failed to save changes",
-  SAVE_SETTINGS_FAILED: "Failed to save settings",
-  LOAD_DETAILS_FAILED: "Failed to load content details",
+  NO_CONTENT: "errors.noContentToSave",
+  SAVE_CHANGES_FAILED: "errors.saveChangesFailed",
+  SAVE_SETTINGS_FAILED: "errors.saveSettingsFailed",
+  LOAD_DETAILS_FAILED: "errors.loadDetailsFailed",
 };
 
 export const UI_TITLE_FALLBACK = "Content Details";

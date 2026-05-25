@@ -1618,5 +1618,12 @@
     "defaultTitle": "Something went wrong",
     "noStack": "Stack trace is not available.",
     "unknownError": "Unknown error message"
+  },
+  "errors": {
+    "missingContentFormProvider": "useContentForm must be used within a ContentFormProvider",
+    "noContentToSave": "No content to save",
+    "saveChangesFailed": "Failed to save changes",
+    "saveSettingsFailed": "Failed to save settings",
+    "loadDetailsFailed": "Failed to load content details"
   }
 }

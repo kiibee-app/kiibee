@@ -1618,5 +1618,12 @@
     "defaultTitle": "Noget gik galt",
     "noStack": "Stack trace er ikke tilgængelig.",
     "unknownError": "Ukendt fejlmeddelelse"
+  },
+  "errors": {
+    "missingContentFormProvider": "useContentForm skal bruges inden for en ContentFormProvider",
+    "noContentToSave": "Intet indhold at gemme",
+    "saveChangesFailed": "Kunne ikke gemme ændringer",
+    "saveSettingsFailed": "Kunne ikke gemme indstillinger",
+    "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer"
   }
 }

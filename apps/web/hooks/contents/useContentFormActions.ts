@@ -138,7 +138,7 @@ export function useContentFormActions({
 
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
-      toast.error(ERROR_MESSAGES.NO_CONTENT);
+      toast.error(t(ERROR_MESSAGES.NO_CONTENT));
       return;
     }
 
@@ -158,7 +158,7 @@ export function useContentFormActions({
 
       setShowSaveSuccessModal(true);
     } catch {
-      toast.error(ERROR_MESSAGES.SAVE_CHANGES_FAILED);
+      toast.error(t(ERROR_MESSAGES.SAVE_CHANGES_FAILED));
     }
   };
 
@@ -190,7 +190,7 @@ export function useContentFormActions({
       });
       toast.success(t("contents.createCollectionSuccessModal.message"));
     } catch {
-      toast.error(ERROR_MESSAGES.SAVE_SETTINGS_FAILED);
+      toast.error(t(ERROR_MESSAGES.SAVE_SETTINGS_FAILED));
     }
   };
 
@@ -312,7 +312,7 @@ export function useContentFormActions({
         setActiveTabAndQuery(ADD_CONTENT_TABS.GENERAL);
       }
     } catch {
-      toast.error(ERROR_MESSAGES.LOAD_DETAILS_FAILED);
+      toast.error(t(ERROR_MESSAGES.LOAD_DETAILS_FAILED));
     }
   };
 
