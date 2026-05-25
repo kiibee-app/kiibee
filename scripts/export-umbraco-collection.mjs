@@ -635,13 +635,7 @@ async function main() {
   const { details, errors: detailErrors } = await fetchDetails(detailIds, config);
   errors.push(...detailErrors);
 
-  const items = children
-    .map((child) => normalizeContent(child, details.get(contentId(child))))
-    .sort((left, right) => {
-      const leftOrder = Number(left.fields.orderID || left.sortOrder || 0);
-      const rightOrder = Number(right.fields.orderID || right.sortOrder || 0);
-      return leftOrder - rightOrder || String(left.name).localeCompare(String(right.name));
-    });
+  const items = children.map((child) => normalizeContent(child, details.get(contentId(child))));
   const parent = normalizeParent(parentRaw);
   const fieldColumns = [
     ...new Set(items.flatMap((item) => item.fieldOrder)),
