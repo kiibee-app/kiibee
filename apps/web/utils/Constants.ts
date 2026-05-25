@@ -24,6 +24,7 @@ export * from "@/lib/subscription/constants";
 export const SVG_XMLNS = "http://www.w3.org/2000/svg";
 export const DEFAULT_WINDOW_WIDTH = 1200;
 export const MOBILE_BREAKPOINT = 860;
+export const SIDEBAR_COLLAPSE_BREAKPOINT = 1024;
 export const REPEAT_PASSWORD = "repeatPassword";
 export const PASSWORD = "password";
 export const CONTENT_TAB = "tab";
