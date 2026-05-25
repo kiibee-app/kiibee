@@ -34,6 +34,7 @@ import {
   getAdmissionOptions,
   getDownloadLimitOptions,
   getPhysicalProductConfig,
+  PAYMENTS_FORM_FIELDS,
   toText,
 } from "@/utils/paymentRequirements";
 import { useContentForm } from "../ContentFormContext";
@@ -68,9 +69,12 @@ export default function Payment() {
             <DropdownWrap>
               <SortDropdown
                 options={admissionOptions}
-                value={formState.admissionRequirement}
+                value={formState[PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT]}
                 onChange={(value) =>
-                  updateField("admissionRequirement", value as AdmissionValue)
+                  updateField(
+                    PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
+                    value as AdmissionValue,
+                  )
                 }
                 variant={SORT_DROPDOWN_VARIANT.SURFACE}
                 maxWidth="100%"
@@ -91,7 +95,9 @@ export default function Payment() {
                 <ControlWrap>
                   <InputField
                     value={formState.rentalAmount || ""}
-                    onChange={(v) => updateField("rentalAmount", toText(v))}
+                    onChange={(v) =>
+                      updateField(PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT, toText(v))
+                    }
                     placeholder={t("contents.payment.common.enterAmount")}
                     variant={INPUT_VARIANTS.PRIMARY_GRAY}
                     inputMode="decimal"
@@ -112,7 +118,12 @@ export default function Payment() {
                 <ControlWrap>
                   <InputField
                     value={formState.purchaseAmount || ""}
-                    onChange={(v) => updateField("purchaseAmount", toText(v))}
+                    onChange={(v) =>
+                      updateField(
+                        PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT,
+                        toText(v),
+                      )
+                    }
                     placeholder={t("contents.payment.common.enterAmount")}
                     variant={INPUT_VARIANTS.PRIMARY_GRAY}
                     inputMode="decimal"
@@ -136,7 +147,7 @@ export default function Payment() {
                     value={formState.maxDownloadLimit}
                     onChange={(value) =>
                       updateField(
-                        "maxDownloadLimit",
+                        PAYMENTS_FORM_FIELDS.MAX_DOWNLOAD_LIMIT,
                         String(value) as PaymentDownloadLimitValue,
                       )
                     }

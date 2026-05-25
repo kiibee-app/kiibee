@@ -10,7 +10,16 @@ export type TextConfig = {
   description?: string;
   placeholder?: string;
   showVisibility?: boolean;
+  linkField?: TrailerFieldKey;
 };
+
+export const TRAILER_FIELD_MAP = {
+  TRAILER: "trailerLink",
+  PHYSICAL_PRODUCT: "physicalProductLink",
+} as const;
+
+export type TrailerFieldKey =
+  (typeof TRAILER_FIELD_MAP)[keyof typeof TRAILER_FIELD_MAP];
 
 export const getAdmissionOptions = (
   t: TFunction,
@@ -51,6 +60,7 @@ export const getPhysicalProductConfig = (t: TFunction) => ({
   description: t("contents.payment.physicalProduct.description"),
   placeholder: t("contents.payment.physicalProduct.placeholder"),
   showVisibility: false,
+  linkField: TRAILER_FIELD_MAP.PHYSICAL_PRODUCT,
 });
 
 export const getDownloadLimitOptions = (
@@ -64,3 +74,15 @@ export const getDownloadLimitOptions = (
         ? t("contents.payment.downloadLimit.options.unlimited")
         : value,
   }));
+
+export const PAYMENTS_FORM_FIELDS = {
+  ADMISSION_REQUIREMENT: "admissionRequirement",
+  RENTAL_AMOUNT: "rentalAmount",
+  PURCHASE_AMOUNT: "purchaseAmount",
+  MAX_DOWNLOAD_LIMIT: "maxDownloadLimit",
+  TRAILER_LINK: "trailerLink",
+  PHYSICAL_PRODUCT_LINK: "physicalProductLink",
+  VISIBILITY: "visibility",
+} as const;
+export type PaymentFormField =
+  (typeof PAYMENTS_FORM_FIELDS)[keyof typeof PAYMENTS_FORM_FIELDS];

@@ -8,7 +8,11 @@ import { INPUT_VARIANTS } from "@/utils/Constants";
 import { CONTENTS } from "@/utils/translationKeys";
 import COLORS from "@repo/ui/colors";
 import { ControlWrap, ItemText, GeneralPanel, List, ItemRow } from "./styles";
-import { TextConfig } from "@/utils/paymentRequirements";
+import {
+  PAYMENTS_FORM_FIELDS,
+  TextConfig,
+  TRAILER_FIELD_MAP,
+} from "@/utils/paymentRequirements";
 import { TRAILER_VISIBILITY } from "@/utils/content";
 import { useContentForm } from "../ContentFormContext";
 
@@ -20,6 +24,8 @@ export default function TrailerList({ config }: { config?: TextConfig }) {
     { value: TRAILER_VISIBILITY.PUBLIC, label: t(CONTENTS.general.public) },
     { value: TRAILER_VISIBILITY.HIDDEN, label: t(CONTENTS.general.hidden) },
   ];
+
+  const linkField = config?.linkField ?? TRAILER_FIELD_MAP.TRAILER;
 
   return (
     <GeneralPanel>
@@ -35,10 +41,10 @@ export default function TrailerList({ config }: { config?: TextConfig }) {
           </ItemText>
           <ControlWrap>
             <InputField
-              value={formState.trailerLink}
+              value={formState[linkField] ?? ""}
               onChange={(value) =>
                 updateField(
-                  "trailerLink",
+                  linkField,
                   Array.isArray(value) ? value.join("") : value,
                 )
               }
@@ -67,7 +73,9 @@ export default function TrailerList({ config }: { config?: TextConfig }) {
               <DropdownField
                 options={visibilityOptions}
                 value={formState.visibility}
-                onChange={(value) => updateField("visibility", value as string)}
+                onChange={(value) =>
+                  updateField(PAYMENTS_FORM_FIELDS.VISIBILITY, value as string)
+                }
               />
             </ControlWrap>
           </ItemRow>
