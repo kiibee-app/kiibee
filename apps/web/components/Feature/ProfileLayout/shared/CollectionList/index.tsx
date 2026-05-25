@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import CollectionsSection from "@/components/Feature/Dashboard/ViewerSections/CollectionsSection";
 import {
   CollectionsApiResponse,
@@ -16,6 +17,7 @@ import { RENTED_MODES } from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
 
 export default function CollectionList() {
+  const { t } = useTranslation();
   const { displayName } = useCreatorChannelProfile();
   const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
     API.collection.getAll,
@@ -37,12 +39,12 @@ export default function CollectionList() {
       hideBadge: true,
       actions: [
         {
-          label: "Buy collection",
+          label: t("createProfileAbout.buyCollection"),
           variant: "primary",
         },
       ],
     }));
-  }, [collectionsResponse, displayName]);
+  }, [collectionsResponse, displayName, t]);
 
   return (
     <CollectionListShell>
