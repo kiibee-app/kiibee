@@ -21,6 +21,7 @@ export type CollectionsApiItem = {
   [API_FIELD_KEYS.ID]?: string | number;
   [API_FIELD_KEYS.NAME]?: string;
   [API_FIELD_KEYS.CONTENTS_COUNT]?: number;
+  [API_FIELD_KEYS.CONTENT_QTY]?: number;
   [API_FIELD_KEYS.CREATED_AT]?: string;
 };
 
@@ -125,7 +126,11 @@ export const getCollectionRows = (
     .map((item) => ({
       id: String(item[API_FIELD_KEYS.ID]),
       name: item[API_FIELD_KEYS.NAME] as string,
-      contentsCount: Number(item[API_FIELD_KEYS.CONTENTS_COUNT] ?? 0),
+      contentsCount: Number(
+        item[API_FIELD_KEYS.CONTENTS_COUNT] ??
+          item[API_FIELD_KEYS.CONTENT_QTY] ??
+          0,
+      ),
       createdAt: formatDateUSShort(item[API_FIELD_KEYS.CREATED_AT]),
       actions: EMPTY_ACTION,
     }));
