@@ -8,6 +8,7 @@ import {
   type ImageRevealVariant,
 } from "@/utils/landingShared";
 import { IMAGE_REVEAL_DEFAULTS } from "@/utils/landingShared";
+import { LANDING_MOTION } from "@/utils/landingUtils";
 import { getImageRevealContainerStyle } from "./styles";
 
 if (typeof window !== "undefined") {
@@ -29,115 +30,123 @@ export default function ImageReveal({
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (!container.current) return;
+      const element = container.current;
+      if (!element) return;
 
-      const mm = gsap.matchMedia();
+      const media = gsap.matchMedia();
 
-      mm.add("(prefers-reduced-motion: reduce)", () => {
-        gsap.set(container.current, { clearProps: "all" });
+      const scrollTrigger: ScrollTrigger.Vars = {
+        trigger: element,
+        start,
+        toggleActions: IMAGE_REVEAL_DEFAULTS.toggleActions,
+        invalidateOnRefresh: true,
+      };
+
+      const animate = (fromVars: gsap.TweenVars, toVars: gsap.TweenVars) => {
+        gsap.fromTo(element, fromVars, {
+          duration,
+          delay,
+          scrollTrigger,
+          ...toVars,
+        });
+      };
+
+      media.add(LANDING_MOTION.reducedMotionQuery, () => {
+        gsap.set(element, { clearProps: LANDING_MOTION.clearPropsAll });
       });
 
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        if (!container.current) return;
+      media.add(LANDING_MOTION.noReducedMotionQuery, () => {
+        switch (variant) {
+          case LANDING_MOTION.variantKenBurns:
+            animate(
+              {
+                autoAlpha: LANDING_MOTION.hiddenAlpha,
+                scale: IMAGE_REVEAL_DEFAULTS.kenBurnsScaleFrom,
+              },
+              {
+                autoAlpha: LANDING_MOTION.visibleAlpha,
+                scale: LANDING_MOTION.defaultScaleTo,
+                ease: LANDING_MOTION.easePower2Out,
+              },
+            );
+            break;
 
-        const trigger: ScrollTrigger.Vars = {
-          trigger: container.current,
-          start,
-          toggleActions: IMAGE_REVEAL_DEFAULTS.toggleActions,
-          invalidateOnRefresh: true,
-        };
+          case LANDING_MOTION.variantClipReveal:
+            animate(
+              {
+                clipPath: LANDING_MOTION.clipPathHidden,
+                autoAlpha: LANDING_MOTION.visibleAlpha,
+              },
+              {
+                clipPath: LANDING_MOTION.clipPathVisible,
+                autoAlpha: LANDING_MOTION.visibleAlpha,
+                ease: LANDING_MOTION.easePower3InOut,
+              },
+            );
+            break;
 
-        if (variant === "ken-burns") {
-          // Subtle zoom-out while fading in — overflow must be clipped by parent
-          gsap.fromTo(
-            container.current,
-            { autoAlpha: 0, scale: IMAGE_REVEAL_DEFAULTS.kenBurnsScaleFrom },
-            {
-              autoAlpha: 1,
-              scale: 1,
-              duration,
-              delay,
-              ease: "power2.out",
-              scrollTrigger: trigger,
-            },
-          );
-        } else if (variant === "clip-reveal") {
-          // Curtain wipe: clips from top revealing downward — premium hero effect
-          gsap.fromTo(
-            container.current,
-            { clipPath: "inset(0 0 100% 0)", autoAlpha: 1 },
-            {
-              clipPath: "inset(0 0 0% 0)",
-              autoAlpha: 1,
-              duration,
-              delay,
-              ease: "power3.inOut",
-              scrollTrigger: trigger,
-            },
-          );
-        } else if (variant === "slide-left") {
-          // Translate inside container — overflow: hidden on wrapper clips it
-          gsap.fromTo(
-            container.current,
-            { autoAlpha: 0, xPercent: -8 },
-            {
-              autoAlpha: 1,
-              xPercent: 0,
-              duration,
-              delay,
-              ease: "power3.out",
-              scrollTrigger: trigger,
-            },
-          );
-        } else if (variant === "slide-right") {
-          gsap.fromTo(
-            container.current,
-            { autoAlpha: 0, xPercent: 8 },
-            {
-              autoAlpha: 1,
-              xPercent: 0,
-              duration,
-              delay,
-              ease: "power3.out",
-              scrollTrigger: trigger,
-            },
-          );
-        } else if (variant === "slide-up") {
-          gsap.fromTo(
-            container.current,
-            { autoAlpha: 0, yPercent: 6, scale: 0.97 },
-            {
-              autoAlpha: 1,
-              yPercent: 0,
-              scale: 1,
-              duration,
-              delay,
-              ease: "power3.out",
-              scrollTrigger: trigger,
-            },
-          );
-        } else {
-          // fade-scale (default)
-          gsap.fromTo(
-            container.current,
-            { autoAlpha: 0, scale: IMAGE_REVEAL_DEFAULTS.scaleDefaultFrom },
-            {
-              autoAlpha: 1,
-              scale: 1,
-              duration,
-              delay,
-              ease: "power2.out",
-              scrollTrigger: trigger,
-            },
-          );
+          case LANDING_MOTION.variantSlideLeft:
+            animate(
+              {
+                autoAlpha: LANDING_MOTION.hiddenAlpha,
+                xPercent: LANDING_MOTION.slideLeftFrom,
+              },
+              {
+                autoAlpha: LANDING_MOTION.visibleAlpha,
+                xPercent: LANDING_MOTION.defaultPositionTo,
+                ease: LANDING_MOTION.easePower3Out,
+              },
+            );
+            break;
+
+          case LANDING_MOTION.variantSlideRight:
+            animate(
+              {
+                autoAlpha: LANDING_MOTION.hiddenAlpha,
+                xPercent: LANDING_MOTION.slideRightFrom,
+              },
+              {
+                autoAlpha: LANDING_MOTION.visibleAlpha,
+                xPercent: LANDING_MOTION.defaultPositionTo,
+                ease: LANDING_MOTION.easePower3Out,
+              },
+            );
+            break;
+
+          case LANDING_MOTION.variantSlideUp:
+            animate(
+              {
+                autoAlpha: LANDING_MOTION.hiddenAlpha,
+                yPercent: LANDING_MOTION.slideUpFrom,
+                scale: LANDING_MOTION.slideUpScaleFrom,
+              },
+              {
+                autoAlpha: LANDING_MOTION.visibleAlpha,
+                yPercent: LANDING_MOTION.defaultPositionTo,
+                scale: LANDING_MOTION.defaultScaleTo,
+                ease: LANDING_MOTION.easePower3Out,
+              },
+            );
+            break;
+
+          default:
+            animate(
+              {
+                autoAlpha: LANDING_MOTION.hiddenAlpha,
+                scale: IMAGE_REVEAL_DEFAULTS.scaleDefaultFrom,
+              },
+              {
+                autoAlpha: LANDING_MOTION.visibleAlpha,
+                scale: LANDING_MOTION.defaultScaleTo,
+                ease: LANDING_MOTION.easePower2Out,
+              },
+            );
         }
       });
     }, container);
 
-    return () => {
-      ctx.revert();
-    };
-  }, [variant, delay, duration, start]);
+    return () => ctx.revert();
+  }, [container, start, duration, delay, variant]);
 
   return (
     <div
