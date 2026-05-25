@@ -30,12 +30,23 @@ import {
 import { useIsMobile } from "@/utils/useIsMobile";
 import { CoverImageSectionProps, UploadConfig } from "@/types/metadataType";
 
+import { useContentForm } from "../ContentFormContext";
+
+const imageFieldMap = {
+  [IMAGE_TYPE.MEDIA_CARD]: "mediaCardThumbnail",
+  [IMAGE_TYPE.PORTRAIT]: "portraitThumbnail",
+} as const;
+const getImageField = (type: ImageType) =>
+  imageFieldMap[type as keyof typeof imageFieldMap];
+
 export default function CoverImageSection({
   title,
   subtitle = false,
   uploadConfigs = defaultUploadConfigs,
+  useFormContext = false,
 }: CoverImageSectionProps) {
   const { t } = useTranslation();
+  const { formState, updateField } = useContentForm();
   const [open, setOpen] = React.useState(false);
   const isMobile = useIsMobile();
   const [selectedConfig, setSelectedConfig] =
@@ -54,17 +65,34 @@ export default function CoverImageSection({
 
   const handleImageApply = (cropped: string) => {
     if (!selectedConfig) return;
-    setImages((prev) => ({
-      ...prev,
-      [selectedConfig.type]: cropped,
-    }));
+    const field = getImageField(selectedConfig.type);
+    if (useFormContext) {
+      updateField(field, cropped);
+    } else {
+      setImages((prev) => ({
+        ...prev,
+        [selectedConfig.type]: cropped,
+      }));
+    }
     setOpen(false);
   };
 
   const getCurrentImage = () => {
     if (!selectedConfig) return null;
+    if (useFormContext) {
+      return formState[getImageField(selectedConfig.type)];
+    }
     return images[selectedConfig.type];
   };
+
+  const imagesToShow = useFormContext
+    ? {
+        [IMAGE_TYPE.DESKTOP]: null,
+        [IMAGE_TYPE.MOBILE]: null,
+        [IMAGE_TYPE.MEDIA_CARD]: formState.mediaCardThumbnail,
+        [IMAGE_TYPE.PORTRAIT]: formState.portraitThumbnail,
+      }
+    : images;
 
   return (
     <AppearancePanel>
@@ -95,9 +123,9 @@ export default function CoverImageSection({
                 </UploadButton>
 
                 <PreviewWrapper>
-                  {images[item.type] && (
+                  {imagesToShow[item.type] && (
                     <PreviewImage
-                      src={images[item.type]!}
+                      src={imagesToShow[item.type]!}
                       alt={
                         item.label ?? (item.labelKey ? t(item.labelKey) : "")
                       }

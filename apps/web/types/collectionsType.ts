@@ -4,6 +4,11 @@ import {
   CouponDiscountType,
 } from "@/utils/common";
 import type { ContentType } from "@/utils/content";
+import type {
+  CollectionAccessType,
+  CollectionVisibility,
+  CollectionContentVisibilityType,
+} from "@/utils/Constants";
 
 export type CollectionRow = {
   id: string;
@@ -11,6 +16,11 @@ export type CollectionRow = {
   contentsCount: number;
   createdAt: string;
   actions: string;
+  accessType?: CollectionAccessType;
+  description?: string;
+  coverImageUrl?: string;
+  visibility?: CollectionVisibility;
+  isPublished?: boolean;
 };
 
 export type CollectionContentType = ContentType;
@@ -19,7 +29,7 @@ export type CollectionContentRow = {
   id: string;
   name: string;
   description?: string;
-  visibility: "Hidden" | "Public" | "Draft" | "Private";
+  visibility: CollectionContentVisibilityType;
   createdAt: string;
   contentType: CollectionContentType;
   actions: string;

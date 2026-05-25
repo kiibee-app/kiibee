@@ -1580,6 +1580,11 @@
       "common": {
         "enterAmount": "Indtast beløb",
         "feeNote": "Minimum DKK 8, da Kiibee opkræver DKK 5 i transaktionsgebyr"
+      },
+      "physicalLink": {
+        "title": "Fysisk produkt",
+        "description": "Hvis du har en fysisk version af produktet, kan du linke til en webshop.",
+        "placeholder": "Tilføj produktlink"
       }
     }
   },
@@ -1613,5 +1618,12 @@
     "defaultTitle": "Noget gik galt",
     "noStack": "Stack trace er ikke tilgængelig.",
     "unknownError": "Ukendt fejlmeddelelse"
+  },
+  "errors": {
+    "missingContentFormProvider": "useContentForm skal bruges inden for en ContentFormProvider",
+    "noContentToSave": "Intet indhold at gemme",
+    "saveChangesFailed": "Kunne ikke gemme ændringer",
+    "saveSettingsFailed": "Kunne ikke gemme indstillinger",
+    "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer"
   }
 }

@@ -27,14 +27,37 @@ import {
   SelectButton,
   TextBlock,
 } from "./styles";
+const updateValue = <T,>(
+  value: T,
+  onChange?: (value: T) => void,
+  setLocal?: (value: T) => void,
+) => {
+  if (onChange) {
+    onChange(value);
+  } else {
+    setLocal?.(value);
+  }
+};
 
-function AdmissionRequirements() {
+interface AdmissionRequirementsProps {
+  accessType?: AdmissionRequirementValue;
+  onChangeAccessType?: (value: AdmissionRequirementValue) => void;
+  passwords?: string;
+  onChangePasswords?: (value: string) => void;
+}
+
+function AdmissionRequirements({
+  accessType,
+  onChangeAccessType,
+  passwords: propPasswords,
+  onChangePasswords,
+}: AdmissionRequirementsProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<AdmissionRequirementValue>(
+  const [localSelected, setLocalSelected] = useState<AdmissionRequirementValue>(
     DEFAULT_ADMISSION_REQUIREMENT,
   );
-  const [passwords, setPasswords] = useState("");
+  const [localPasswords, setLocalPasswords] = useState("");
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -45,6 +68,9 @@ function AdmissionRequirements() {
     handler: () => setOpen(false),
   });
 
+  const selected = accessType ?? localSelected;
+  const passwords = propPasswords ?? localPasswords;
+
   const selectedOption = useMemo(
     () =>
       ADMISSION_REQUIREMENTS.find((option) => option.value === selected) ??
@@ -52,10 +78,17 @@ function AdmissionRequirements() {
     [selected],
   );
 
-  const handleSelect = useCallback((value: AdmissionRequirementValue) => {
-    setSelected(value);
-    setOpen(false);
-  }, []);
+  const handleSelect = useCallback(
+    (value: AdmissionRequirementValue) => {
+      updateValue(value, onChangeAccessType, setLocalSelected);
+      setOpen(false);
+    },
+    [onChangeAccessType],
+  );
+
+  const handlePasswordsChange = (val: string) => {
+    updateValue(val, onChangePasswords, setLocalPasswords);
+  };
 
   return (
     <AdmissionCard data-test-id="admission-requirements-card">
@@ -113,7 +146,7 @@ function AdmissionRequirements() {
           <InputField
             type="textarea"
             value={passwords}
-            onChange={(value) => setPasswords(value as string)}
+            onChange={(value) => handlePasswordsChange(value as string)}
             placeholder="Enter passwords"
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
             max={500}

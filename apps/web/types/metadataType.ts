@@ -14,6 +14,7 @@ export type CoverImageSectionProps = {
   title?: string;
   subtitle?: boolean;
   uploadConfigs?: UploadConfig[];
+  useFormContext?: boolean;
 };
 
 export type PreviewStyleConfig = {
