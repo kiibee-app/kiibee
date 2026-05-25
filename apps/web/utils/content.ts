@@ -202,3 +202,7 @@ export const getCategoryOptions = (t: TFunction) => [
     label: t("contents.metadata.category.design"),
   },
 ];
+
+export const getFileNameWithoutExtension = (filename: string): string => {
+  return filename.replace(/\.[^/.]+$/, "");
+};

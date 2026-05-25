@@ -10,7 +10,11 @@ import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "../Settings";
-import { VIEW, ROLE_CREATOR } from "@/utils/Constants";
+import {
+  SIDEBAR_COLLAPSE_BREAKPOINT,
+  VIEW,
+  ROLE_CREATOR,
+} from "@/utils/Constants";
 import CreatorsContents from "../Contents";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
@@ -34,7 +38,7 @@ const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
 export default function ClientDashboardCreators() {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
-    useSidebarExpanded(768);
+    useSidebarExpanded(SIDEBAR_COLLAPSE_BREAKPOINT);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutEmail, setLogoutEmail] = useState("");
   const router = useRouter();

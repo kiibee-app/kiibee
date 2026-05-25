@@ -23,7 +23,7 @@ export const SidebarWrapper = styled.aside<{ $expanded: boolean }>`
     width 0.3s ease,
     filter 0.3s ease;
 
-  ${media.tablet} {
+  ${media.desktop} {
     width: min(84vw, 320px);
     transform: ${({ $expanded }) =>
       $expanded ? "translateX(0)" : "translateX(-100%)"};
@@ -65,7 +65,7 @@ export const BottomMenu = styled.div<{ $expanded?: boolean }>`
   padding-bottom: 16px;
   border-top: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 
-  ${media.tablet} {
+  ${media.desktop} {
     padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
   }
 `;
@@ -73,7 +73,7 @@ export const BottomMenu = styled.div<{ $expanded?: boolean }>`
 export const Overlay = styled.div<{ $expanded: boolean }>`
   display: none;
 
-  ${media.tablet} {
+  ${media.desktop} {
     display: ${({ $expanded }) => ($expanded ? "block" : "none")};
     position: fixed;
     inset: 0;
@@ -219,7 +219,7 @@ export const SidebarDropdown = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.frame};
   border: 1px solid ${({ theme }) => theme.colors.gradient.FRAME_BORDER};
 
-  ${media.tablet} {
+  ${media.desktop} {
     left: 0;
     top: calc(100% + 10px);
     bottom: auto;

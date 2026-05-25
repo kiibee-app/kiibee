@@ -12,6 +12,7 @@ import {
   SETTINGS,
 } from "@/utils/common";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
+import { AdmissionRequirementValue } from "@/utils/admissionRequirements";
 import AppearanceContent from "./Appearance";
 import AdmissionRequirements from "./AdmissionRequirements";
 import CouponTable from "./coupon";
@@ -56,6 +57,10 @@ type Props = {
   setActiveTab: (tab: ContentTab) => void;
   uploadedFile?: File | null;
   uploadedPreview?: string | null;
+  collectionAccessType?: AdmissionRequirementValue;
+  setCollectionAccessType?: (value: AdmissionRequirementValue) => void;
+  collectionPasswords?: string;
+  setCollectionPasswords?: (value: string) => void;
 };
 
 export default function ContentTabPanel({
@@ -73,6 +78,10 @@ export default function ContentTabPanel({
   setActiveTab,
   uploadedFile,
   uploadedPreview,
+  collectionAccessType,
+  setCollectionAccessType,
+  collectionPasswords,
+  setCollectionPasswords,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -178,7 +187,16 @@ export default function ContentTabPanel({
   };
 
   if (activeTab === APPEARANCE) return <AppearanceContent />;
-  if (activeTab === SETTINGS) return <AdmissionRequirements />;
+  if (activeTab === SETTINGS) {
+    return (
+      <AdmissionRequirements
+        accessType={collectionAccessType}
+        onChangeAccessType={setCollectionAccessType}
+        passwords={collectionPasswords}
+        onChangePasswords={setCollectionPasswords}
+      />
+    );
+  }
   if (activeTab === COUPONS)
     return (
       <>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { mergeStoredLoginUser } from "@/hooks/auth/useLogin";
 import {
   mapCreatorProfileToForm,
@@ -15,10 +16,14 @@ import {
 } from "@/utils/creatorProfile";
 
 export function useProfileSync() {
+  const searchParams = useSearchParams();
+  const publicCreatorId = searchParams.get("creatorId");
+
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
     API.auth.creatorProfile,
     undefined,
     {
+      enabled: !publicCreatorId,
       retry: false,
       refetchOnWindowFocus: false,
     },

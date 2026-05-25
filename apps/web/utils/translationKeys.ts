@@ -112,6 +112,7 @@ export const CREATORS = {
     heading: "creators.whyChoose.heading",
   },
   viewProfile: "creators.viewProfile",
+  uploadsCount: "creators.uploadsCount",
   loadMore: "creators.loadMore",
   howToGetStarted: {
     title: "creators.howToGetStarted.title",

@@ -17,8 +17,8 @@ export const HeaderWrapper = styled.header`
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 
-  ${media.tablet} {
-    padding: 12px;
+  ${media.desktop} {
+    padding: 12px 16px;
   }
 `;
 
@@ -28,7 +28,7 @@ export const Left = styled.div`
   padding-left: 16px;
   gap: 10px;
 
-  ${media.tablet} {
+  ${media.desktop} {
     padding-left: 0;
   }
 `;
@@ -47,7 +47,7 @@ export const HamburgerButton = styled.button`
   cursor: pointer;
   padding: 0;
 
-  ${media.tablet} {
+  ${media.desktop} {
     display: inline-flex;
   }
 `;

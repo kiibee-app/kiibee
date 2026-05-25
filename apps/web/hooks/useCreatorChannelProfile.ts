@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   mapCreatorProfileToForm,
   type GetCreatorProfileResponse,
@@ -12,16 +13,24 @@ import {
 } from "@/hooks/auth/useStoredLoginUser";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
+import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { toTrimmedString } from "@/utils/Constants";
 import { displayCreatorName, getAvatarUrl } from "@/utils/creatorProfile";
 
 export function useCreatorChannelProfile(enabled = true) {
+  const searchParams = useSearchParams();
+  const publicCreatorId = searchParams.get("creatorId");
+  const isPublicView = Boolean(publicCreatorId);
+
   const storedUser = useStoredLoginUser();
+  const { creator: publicCreator, isLoading: isLoadingPublic } =
+    useCreatorPublicProfile(publicCreatorId);
+
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
     API.auth.creatorProfile,
     undefined,
     {
-      enabled,
+      enabled: enabled && !isPublicView,
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -30,6 +39,10 @@ export function useCreatorChannelProfile(enabled = true) {
   const profile = profileQuery.data?.data;
 
   const displayName = useMemo(() => {
+    if (publicCreator?.name) {
+      return publicCreator.name;
+    }
+
     if (profile) {
       const fromProfile = displayCreatorName(mapCreatorProfileToForm(profile));
       if (fromProfile) return fromProfile;
@@ -39,14 +52,19 @@ export function useCreatorChannelProfile(enabled = true) {
     }
 
     return getLoginUserDisplayName(storedUser);
-  }, [profile, storedUser]);
+  }, [publicCreator, profile, storedUser]);
 
   const avatarUrl = useMemo(() => {
+    const publicAvatar = getAvatarUrl(
+      publicCreator?.profileImageUrl ?? publicCreator?.coverImageUrl,
+    );
+    if (publicAvatar) return publicAvatar;
+
     const fromApi = getAvatarUrl(profile?.user?.avatarUrl);
     if (fromApi) return fromApi;
 
     return getAvatarUrl(storedUser?.avatarUrl);
-  }, [profile, storedUser]);
+  }, [publicCreator, profile, storedUser]);
 
   const initial = useMemo(
     () => getDisplayInitial(displayName, storedUser),
@@ -57,6 +75,8 @@ export function useCreatorChannelProfile(enabled = true) {
     displayName,
     avatarUrl,
     initial,
-    isLoadingProfile: profileQuery.isLoading,
+    isLoadingProfile: isPublicView ? isLoadingPublic : profileQuery.isLoading,
+    isPublicView,
+    publicCreatorId,
   };
 }

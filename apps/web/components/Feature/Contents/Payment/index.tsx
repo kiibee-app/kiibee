@@ -11,7 +11,6 @@ import {
   SORT_DROPDOWN_VARIANT,
 } from "@/utils/Constants";
 import {
-  PAYMENT_DEFAULT_DOWNLOAD_LIMIT,
   PAYMENT_DOWNLOAD_LIMIT_VALUES,
   type PaymentDownloadLimitValue,
 } from "@/utils/common";
@@ -37,26 +36,24 @@ import {
   getPhysicalProductConfig,
   toText,
 } from "@/utils/paymentRequirements";
+import { useContentForm } from "../ContentFormContext";
 
 export default function Payment() {
   const { t } = useTranslation();
-  const [admissionType, setAdmissionType] = useState<AdmissionValue>(
-    ADMISSION_TYPE.PAYMENT,
-  );
-  const [rentalAmount, setRentalAmount] = useState("");
-  const [purchaseAmount, setPurchaseAmount] = useState("");
-  const isPayment = admissionType === ADMISSION_TYPE.PAYMENT;
-  const isSetPassword = admissionType === ADMISSION_TYPE.SET_PASSWORD;
+  const { formState, updateField } = useContentForm();
   const [password, setPassword] = useState("");
-  const [downloadLimit, setDownloadLimit] = useState<PaymentDownloadLimitValue>(
-    PAYMENT_DEFAULT_DOWNLOAD_LIMIT,
-  );
-  const downloadLimitOptions = getDownloadLimitOptions(
-    t,
-    PAYMENT_DOWNLOAD_LIMIT_VALUES,
-  );
   const admissionOptions = useMemo(() => getAdmissionOptions(t), [t]);
-  const physicalProductConfig = getPhysicalProductConfig(t);
+  const downloadLimitOptions = useMemo(
+    () => getDownloadLimitOptions(t, PAYMENT_DOWNLOAD_LIMIT_VALUES),
+    [t],
+  );
+
+  const physicalProductConfig = useMemo(() => getPhysicalProductConfig(t), [t]);
+
+  const isPayment = formState.admissionRequirement === ADMISSION_TYPE.PAYMENT;
+
+  const isSetPassword =
+    formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD;
 
   return (
     <>
@@ -67,16 +64,20 @@ export default function Payment() {
             <SectionText>
               {t("contents.payment.admission.description")}
             </SectionText>
+
             <DropdownWrap>
               <SortDropdown
                 options={admissionOptions}
-                value={admissionType}
-                onChange={(value) => setAdmissionType(value)}
+                value={formState.admissionRequirement}
+                onChange={(value) =>
+                  updateField("admissionRequirement", value as AdmissionValue)
+                }
                 variant={SORT_DROPDOWN_VARIANT.SURFACE}
                 maxWidth="100%"
               />
             </DropdownWrap>
           </Block>
+
           {isPayment && (
             <>
               <Block>
@@ -86,15 +87,17 @@ export default function Payment() {
                 <SectionText>
                   {t("contents.payment.rental.description")}
                 </SectionText>
+
                 <ControlWrap>
                   <InputField
-                    value={rentalAmount}
-                    onChange={(value) => setRentalAmount(toText(value))}
+                    value={formState.rentalAmount || ""}
+                    onChange={(v) => updateField("rentalAmount", toText(v))}
                     placeholder={t("contents.payment.common.enterAmount")}
                     variant={INPUT_VARIANTS.PRIMARY_GRAY}
                     inputMode="decimal"
                   />
                 </ControlWrap>
+
                 <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
               </Block>
 
@@ -105,15 +108,17 @@ export default function Payment() {
                 <SectionText>
                   {t("contents.payment.purchase.description")}
                 </SectionText>
+
                 <ControlWrap>
                   <InputField
-                    value={purchaseAmount}
-                    onChange={(value) => setPurchaseAmount(toText(value))}
+                    value={formState.purchaseAmount || ""}
+                    onChange={(v) => updateField("purchaseAmount", toText(v))}
                     placeholder={t("contents.payment.common.enterAmount")}
                     variant={INPUT_VARIANTS.PRIMARY_GRAY}
                     inputMode="decimal"
                   />
                 </ControlWrap>
+
                 <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
               </Block>
 
@@ -124,18 +129,22 @@ export default function Payment() {
                 <SectionText>
                   {t("contents.payment.downloadLimit.description")}
                 </SectionText>
+
                 <DropdownWrap>
                   <SortDropdown
                     options={downloadLimitOptions}
-                    value={downloadLimit}
-                    onChange={setDownloadLimit}
+                    value={formState.maxDownloadLimit}
+                    onChange={(value) =>
+                      updateField(
+                        "maxDownloadLimit",
+                        String(value) as PaymentDownloadLimitValue,
+                      )
+                    }
                     variant={SORT_DROPDOWN_VARIANT.SURFACE}
                     maxWidth="100%"
                     renderSelectedLabel={(value, option) => (
                       <MonoText $use="Body_Regular">
-                        {option?.label ??
-                          value ??
-                          PAYMENT_DEFAULT_DOWNLOAD_LIMIT}
+                        {option?.label ?? value}
                       </MonoText>
                     )}
                   />
@@ -143,17 +152,20 @@ export default function Payment() {
               </Block>
             </>
           )}
+
           {isSetPassword && (
             <ControlWrap>
               <InputField
                 value={password}
-                onChange={(value) =>
-                  setPassword(toText(value).slice(0, maxDescriptionCharacters))
-                }
+                onChange={(v) => {
+                  const text = toText(v).slice(0, maxDescriptionCharacters);
+                  setPassword(text);
+                }}
                 placeholder={t("contents.payment.password.placeholder")}
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
                 type={INPUT_TYPE.TEXTAREA}
               />
+
               <HelperFormRow>
                 <HelperText>{t("contents.payment.password.helper")}</HelperText>
                 <HelperText>

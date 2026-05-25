@@ -3,6 +3,10 @@ import type {
   CollectionRow,
 } from "@/types/collectionsType";
 import type { SetStateAction } from "react";
+import type {
+  CollectionAccessType,
+  CollectionVisibility,
+} from "@/utils/Constants";
 import { formatDateUSShort } from "@/utils/formatDate";
 import {
   API_FIELD_KEYS,
@@ -22,6 +26,11 @@ export type CollectionsApiItem = {
   [API_FIELD_KEYS.NAME]?: string;
   [API_FIELD_KEYS.CONTENTS_COUNT]?: number;
   [API_FIELD_KEYS.CREATED_AT]?: string;
+  accessType?: CollectionAccessType;
+  description?: string;
+  coverImageUrl?: string;
+  visibility?: CollectionVisibility;
+  isPublished?: boolean;
 };
 
 export type CollectionsApiResponse =
@@ -128,6 +137,11 @@ export const getCollectionRows = (
       contentsCount: Number(item[API_FIELD_KEYS.CONTENTS_COUNT] ?? 0),
       createdAt: formatDateUSShort(item[API_FIELD_KEYS.CREATED_AT]),
       actions: EMPTY_ACTION,
+      accessType: item.accessType,
+      description: item.description,
+      coverImageUrl: item.coverImageUrl,
+      visibility: item.visibility,
+      isPublished: item.isPublished,
     }));
 };
 

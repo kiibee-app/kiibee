@@ -498,6 +498,7 @@
       "tag": "Recently added"
     },
     "viewProfile": "View profile",
+    "uploadsCount": "{{count}} uploads",
     "loadMore": "Load more",
     "a-z": "A-Z",
     "subscribers": "Subscribers",
@@ -1592,6 +1593,11 @@
       "common": {
         "enterAmount": "Enter amount",
         "feeNote": "Minimum DKK 8, as Kiibee charges DKK 5 in transaction fees"
+      },
+      "physicalLink": {
+        "title": "Physical product",
+        "description": "If you have a physical version of the product, you can link to a webshop.",
+        "placeholder": "Add product link"
       }
     }
   },
@@ -1625,5 +1631,12 @@
     "defaultTitle": "Something went wrong",
     "noStack": "Stack trace is not available.",
     "unknownError": "Unknown error message"
+  },
+  "errors": {
+    "missingContentFormProvider": "useContentForm must be used within a ContentFormProvider",
+    "noContentToSave": "No content to save",
+    "saveChangesFailed": "Failed to save changes",
+    "saveSettingsFailed": "Failed to save settings",
+    "loadDetailsFailed": "Failed to load content details"
   }
 }

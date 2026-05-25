@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import ConfirmationModal from "@/components/UI/ConfirmationModal";
@@ -27,23 +27,18 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { AddContentTab, APPEARANCE, COLLECTIONS } from "@/utils/common";
-import type { CollectionContentRow } from "@/types/collectionsType";
+import { APPEARANCE } from "@/utils/common";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
   CONTENT_UPLOAD_MODE,
 } from "@/utils/content";
-import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
-import { toast } from "react-toastify";
+import { ContentFormProvider, useContentForm } from "./ContentFormContext";
+import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
+import { UI_TITLE_FALLBACK } from "@/utils/Constants";
 
-export default function CreatorsContents() {
+function CreatorsContentsInner() {
   const { t } = useTranslation();
-  const { saveLayout, cancelLayout, hasUnsavedChanges } =
-    useCreatorChannelLayout();
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
-  const [editingContent, setEditingContent] =
-    useState<CollectionContentRow | null>(null);
+  const { formState } = useContentForm();
   const {
     activeTab,
     visibleTabs,
@@ -96,77 +91,55 @@ export default function CreatorsContents() {
     resetAfterRefetch,
   );
 
-  const handleUploadSuccess = (
-    tab: AddContentTab,
-    file?: File | null,
-    preview?: string | null,
-  ) => {
-    setActiveTabAndQuery(tab);
-    setUploadedFile(file ?? null);
-    setUploadedPreview(preview ?? null);
-  };
+  const {
+    uploadedFile,
+    uploadedPreview,
+    editingContent,
+    showSaveSuccessModal,
+    setShowSaveSuccessModal,
+    collectionAccessType,
+    setCollectionAccessType,
+    collectionPasswords,
+    setCollectionPasswords,
+    hasUnsavedChanges,
+    handleUploadSuccess,
+    handleBackToBase,
+    handleHeaderSave,
+    handleHeaderCancel,
+    handleEditContent,
+    closeContentUpload,
+    handleContentUploadBack,
+  } = useContentFormActions({
+    activeTab,
+    isUploadMode,
+    selectedCollection,
+    setSelectedCollection,
+    setCollections,
+    collectionContents,
+    setActiveTabAndQuery,
+    openDiscardModal,
+    createCollectionFlow,
+    contentTypeFlow,
+  });
 
-  const handleBackToBase = () => {
-    setSelectedCollection(null);
-    if (isUploadMode) {
-      setSelectedCollection(selectedCollection);
-    }
-    setActiveTabAndQuery(COLLECTIONS);
-  };
-
-  const handleHeaderSave = () => {
-    if (activeTab === APPEARANCE) {
-      if (!hasUnsavedChanges) return;
-      saveLayout();
-      toast.success(t(CONTENTS_KEYS.appearance.layouts.saveSuccess));
-      return;
-    }
-
-    createCollectionFlow.openSuccess();
-  };
-
-  const handleHeaderCancel = () => {
-    if (activeTab === APPEARANCE) {
-      cancelLayout();
-      return;
-    }
-
-    openDiscardModal();
-  };
-
-  const closeContentUpload = () => {
-    setEditingContent(null);
-    contentTypeFlow.close();
-  };
-
-  const handleContentUploadBack = () => {
-    if (editingContent) {
-      closeContentUpload();
-      return;
-    }
-
-    contentTypeFlow.backToTypeSelect();
-  };
-
-  const handleEditContent = (id: string) => {
-    const item = collectionContents.find((content) => content.id === id);
-    if (!item) return;
-
-    setEditingContent(item);
-    contentTypeFlow.openEdit(item.contentType);
+  const handleSaveSuccessClose = () => {
+    setShowSaveSuccessModal(false);
+    handleBackToBase();
   };
 
   return (
     <PageShell>
       <PageHeader>
         <HeaderRow>
-          {selectedCollection && (
+          {(selectedCollection || isUploadMode) && (
             <AuthBackButton marginBottom="0px" onClick={handleBackToBase} />
           )}
           <Title>
-            {selectedCollection
-              ? selectedCollection.name
-              : t(CONTENTS_KEYS.title)}
+            {isUploadMode
+              ? formState.title || UI_TITLE_FALLBACK
+              : selectedCollection
+                ? selectedCollection.name
+                : t(CONTENTS_KEYS.title)}
           </Title>
         </HeaderRow>
 
@@ -220,6 +193,10 @@ export default function CreatorsContents() {
             onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
+            collectionAccessType={collectionAccessType}
+            setCollectionAccessType={setCollectionAccessType}
+            collectionPasswords={collectionPasswords}
+            setCollectionPasswords={setCollectionPasswords}
           />
         </ContentPanel>
       </ContentsScrollArea>
@@ -282,11 +259,30 @@ export default function CreatorsContents() {
         body={t("settings.notifications.discardModal.message")}
         cancelLabel={t("settings.notifications.discardModal.goBack")}
         confirmLabel={t("settings.notifications.discardModal.discard")}
-        onConfirm={closeDiscardModal}
+        onConfirm={() => {
+          if (isUploadMode) {
+            handleBackToBase();
+          }
+          closeDiscardModal();
+        }}
         size="sm"
         spacing="md"
         fullWidthButtons
         buttonRow
+        showCloseButton={false}
+      />
+
+      <GenericModal
+        visible={showSaveSuccessModal}
+        icon={<SuccessModalIcon />}
+        iconMargin="0 auto 8px"
+        title={t("settings.notifications.successModal.title")}
+        message={t("settings.notifications.successModal.message")}
+        confirmLabel={t("settings.notifications.successModal.done")}
+        onClose={handleSaveSuccessClose}
+        onConfirm={handleSaveSuccessClose}
+        size="sm"
+        spacing="xs"
         showCloseButton={false}
       />
 
@@ -309,5 +305,13 @@ export default function CreatorsContents() {
         onConfirmDelete={handleConfirmDelete}
       />
     </PageShell>
+  );
+}
+
+export default function CreatorsContents() {
+  return (
+    <ContentFormProvider>
+      <CreatorsContentsInner />
+    </ContentFormProvider>
   );
 }

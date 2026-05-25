@@ -17,10 +17,12 @@ export const PaymentForm = styled.div`
   gap: 20px;
 `;
 
-export const Block = styled.div`
+export const Block = styled.div<{ $isFree?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  opacity: ${({ $isFree }) => ($isFree ? 0.5 : 1)};
+  pointer-events: ${({ $isFree }) => ($isFree ? "none" : "auto")};
 `;
 
 export const ControlWrap = styled.div`
