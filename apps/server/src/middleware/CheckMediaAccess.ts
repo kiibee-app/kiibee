@@ -37,15 +37,19 @@ export class CheckMediaAccessGuard implements CanActivate {
 
     let mediaFile: { id: string; creatorId: string } | undefined;
 
-    if (mediaId) {
+    const whereClause = mediaId
+      ? eq(mediaFiles.id, mediaId)
+      : mediaKey
+        ? eq(mediaFiles.fileKey, mediaKey)
+        : undefined;
+
+    if (whereClause) {
       mediaFile = await db.query.mediaFiles.findFirst({
-        where: eq(mediaFiles.id, mediaId),
-        columns: { id: true, creatorId: true },
-      });
-    } else if (mediaKey) {
-      mediaFile = await db.query.mediaFiles.findFirst({
-        where: eq(mediaFiles.fileKey, mediaKey),
-        columns: { id: true, creatorId: true },
+        where: whereClause,
+        columns: {
+          id: true,
+          creatorId: true,
+        },
       });
     }
 
