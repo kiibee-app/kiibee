@@ -7,7 +7,7 @@ import Sidebar from "@/components/Layout/Sidebar";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
-  DASHBOARD_SIDEBAR_COLLAPSE_BREAKPOINT,
+  SIDEBAR_COLLAPSE_BREAKPOINT,
   VIEW,
   ROLE_VIEWER,
 } from "@/utils/Constants";
@@ -42,7 +42,7 @@ const ROUTABLE_VIEWER_VIEWS = new Set<string>([
 export default function ClientDashboardViewer() {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
-    useSidebarExpanded(DASHBOARD_SIDEBAR_COLLAPSE_BREAKPOINT);
+    useSidebarExpanded(SIDEBAR_COLLAPSE_BREAKPOINT);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutEmail, setLogoutEmail] = useState("");
   const searchParams = useSearchParams();

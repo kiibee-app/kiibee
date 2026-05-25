@@ -11,7 +11,7 @@ import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "../Settings";
 import {
-  DASHBOARD_SIDEBAR_COLLAPSE_BREAKPOINT,
+  SIDEBAR_COLLAPSE_BREAKPOINT,
   VIEW,
   ROLE_CREATOR,
 } from "@/utils/Constants";
@@ -38,7 +38,7 @@ const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
 export default function ClientDashboardCreators() {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
-    useSidebarExpanded(DASHBOARD_SIDEBAR_COLLAPSE_BREAKPOINT);
+    useSidebarExpanded(SIDEBAR_COLLAPSE_BREAKPOINT);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutEmail, setLogoutEmail] = useState("");
   const router = useRouter();
