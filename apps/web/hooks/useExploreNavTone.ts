@@ -17,9 +17,11 @@ export function useExploreNavTone(
   useEffect(() => {
     const updateNavTone = () => {
       const heroBottom =
-        heroRef.current?.getBoundingClientRect().bottom ?? Number.NEGATIVE_INFINITY;
+        heroRef.current?.getBoundingClientRect().bottom ??
+        Number.NEGATIVE_INFINITY;
       const trendingTop =
-        trendingRef.current?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+        trendingRef.current?.getBoundingClientRect().top ??
+        Number.POSITIVE_INFINITY;
 
       const isOverHero = heroBottom > headerTriggerY;
       const isOverTrending = trendingTop <= headerTriggerY;
