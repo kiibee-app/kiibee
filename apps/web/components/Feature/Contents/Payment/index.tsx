@@ -93,12 +93,7 @@ export default function Payment() {
           </DropdownWrap>
         </Block>
 
-        <Block
-          style={{
-            opacity: isFree ? 0.5 : 1,
-            pointerEvents: isFree ? "none" : "auto",
-          }}
-        >
+        <Block $isFree={isFree}>
           <SectionTitle>{t("contents.payment.rental.title")}</SectionTitle>
           <SectionText>{t("contents.payment.rental.description")}</SectionText>
           <ControlWrap>
@@ -114,12 +109,7 @@ export default function Payment() {
           <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
         </Block>
 
-        <Block
-          style={{
-            opacity: isFree ? 0.5 : 1,
-            pointerEvents: isFree ? "none" : "auto",
-          }}
-        >
+        <Block $isFree={isFree}>
           <SectionTitle>{t("contents.payment.purchase.title")}</SectionTitle>
           <SectionText>
             {t("contents.payment.purchase.description")}
@@ -137,12 +127,7 @@ export default function Payment() {
           <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
         </Block>
 
-        <Block
-          style={{
-            opacity: isFree ? 0.5 : 1,
-            pointerEvents: isFree ? "none" : "auto",
-          }}
-        >
+        <Block $isFree={isFree}>
           <SectionTitle>
             {t("contents.payment.downloadLimit.title")}
           </SectionTitle>
