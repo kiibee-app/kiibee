@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
@@ -69,3 +70,15 @@ export const CTAWrap = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const valueStatementRevealStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
+
+export const valueStatementImageStyle: CSSProperties = {
+  objectFit: "cover",
+  objectPosition: "center",
+};

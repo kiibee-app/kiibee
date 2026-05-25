@@ -1,23 +1,18 @@
 "use client";
 
-import NextImage, { type ImageProps, type StaticImageData } from "next/image";
+import NextImage from "next/image";
 import { useSafeImage } from "@/hooks/useSafeImage";
 import { useTranslation } from "react-i18next";
 import { IMG } from "@/utils/common";
-
-type SafeImageSrc = string | StaticImageData;
+import {
+  SAFE_IMAGE_DECODING,
+  SAFE_IMAGE_FALLBACKS,
+} from "@/utils/landingUtils";
+import { type SafeImageProps } from "@/utils/landingShared";
 
 export const FALLBACKS = {
-  default: "/images/fallbacks/default.svg",
-  avatar: "/images/fallbacks/avatar.svg",
-  thumbnail: "/images/fallbacks/thumbnail.svg",
-  hero: "/images/fallbacks/hero.svg",
+  ...SAFE_IMAGE_FALLBACKS,
 } as const;
-
-export type SafeImageProps = Omit<ImageProps, "src"> & {
-  src: SafeImageSrc;
-  fallback?: SafeImageSrc;
-};
 
 export default function SafeImage(props: SafeImageProps) {
   const { src } = props;
@@ -58,7 +53,7 @@ function SafeImageInner({
       {...rest}
       alt={alt}
       src={imgSrc}
-      decoding={rest.decoding ?? "async"}
+      decoding={rest.decoding ?? SAFE_IMAGE_DECODING}
       className={className}
       style={style}
       onError={(event) => {

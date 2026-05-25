@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
@@ -128,10 +129,10 @@ export const ActionsContainer = styled.div`
 `;
 
 export const ActionButton = styled(GenericButton).attrs({
-  variant: VARIANT.SOFT_OUTLINE,
   size: SIZE.SM,
 })`
-  border-radius: 999px;
+  border-radius: 9999px;
+  border: 1px solid ${({ theme }) => theme.colors.primary.GREEN_30};
   padding: 0.625rem 0.75rem;
 `;
 
@@ -167,3 +168,14 @@ export const SecondaryCtaButton = styled(GenericButton).attrs({
 export const IconFrame = styled.span`
   display: inline-flex;
 `;
+
+export const discoverCardRevealStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
+
+export const discoverCardImageStyle: CSSProperties = {
+  objectFit: "cover",
+};

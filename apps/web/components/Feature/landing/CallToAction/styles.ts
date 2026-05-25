@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import SafeImage from "@/components/UI/SafeImage";
+import { type CtaImageCard } from "@/utils/landingShared";
 
 export const Section = styled.section`
   position: relative;
@@ -10,7 +12,7 @@ export const Section = styled.section`
   height: 100vh;
   margin: 0;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.gradient.CANVAS_BG};
+  background: ${({ theme }) => theme.colors.gredint.CANVAS_BG};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,8 +43,8 @@ export const Card = styled.div<{
   position: absolute;
   overflow: hidden;
   border-radius: 14px;
-  background: ${({ theme }) => theme.colors.gradient.CARD_BG};
-  box-shadow: 0 8px 24px ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
+  background: ${({ theme }) => theme.colors.gredint.CARD_BG};
+  box-shadow: 0 8px 24px ${({ theme }) => theme.colors.gredint.CARD_SHADOW};
 
   ${media.desktop} {
     position: ${({ $mobileOnly }) => ($mobileOnly ? "relative" : "absolute")};
@@ -96,7 +98,7 @@ export const CardImage = styled(SafeImage).attrs({
 export const CardTint = styled.div`
   position: absolute;
   inset: 0;
-  background: ${({ theme }) => theme.colors.gradient.CARD_TINT};
+  background: ${({ theme }) => theme.colors.gredint.CARD_TINT};
 `;
 
 export const GradientOverlay = styled.div`
@@ -106,17 +108,17 @@ export const GradientOverlay = styled.div`
   background:
     linear-gradient(
       180deg,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_TOP_START} 0%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_TOP_MID} 45%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_TOP_END} 100%
+      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_START} 0%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_MID} 45%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_TOP_END} 100%
     ),
     linear-gradient(
       90deg,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_SOLID} 0%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_MID} 22%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_FADE} 48%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_MID} 78%,
-      ${({ theme }) => theme.colors.gradient.OVERLAY_SIDE_SOLID} 100%
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_SOLID} 0%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_MID} 22%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_FADE} 48%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_MID} 78%,
+      ${({ theme }) => theme.colors.gredint.OVERLAY_SIDE_SOLID} 100%
     );
 `;
 
@@ -127,15 +129,15 @@ export const VignetteOverlay = styled.div`
   background:
     radial-gradient(
       circle at 50% 45%,
-      ${({ theme }) => theme.colors.gradient.VIGNETTE_INNER} 0%,
-      ${({ theme }) => theme.colors.gradient.VIGNETTE_OUTER} 100%
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_INNER} 0%,
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_OUTER} 100%
     ),
     linear-gradient(
       90deg,
-      ${({ theme }) => theme.colors.gradient.VIGNETTE_SIDE} 0%,
-      ${({ theme }) => theme.colors.gradient.VIGNETTE_SIDE_CLEAR} 14%,
-      ${({ theme }) => theme.colors.gradient.VIGNETTE_SIDE_CLEAR} 86%,
-      ${({ theme }) => theme.colors.gradient.VIGNETTE_SIDE} 100%
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_SIDE} 0%,
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_SIDE_CLEAR} 14%,
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_SIDE_CLEAR} 86%,
+      ${({ theme }) => theme.colors.gredint.VIGNETTE_SIDE} 100%
     );
 `;
 
@@ -230,3 +232,24 @@ export const CTAButton = styled(GenericButton).attrs({
   margin-top: 0;
   border-radius: 8px;
 `;
+
+export function getRevealCardStyle(
+  card: CtaImageCard,
+  mobile: boolean,
+): CSSProperties {
+  return {
+    position: !mobile ? "absolute" : undefined,
+    left: !mobile && card.left != null ? `${card.left}%` : undefined,
+    top: !mobile && card.top != null ? `${card.top}%` : undefined,
+    width: !mobile && card.width != null ? `${card.width}%` : undefined,
+    height: !mobile && card.height != null ? `${card.height}%` : undefined,
+  };
+}
+
+export const callToActionCardStyle: CSSProperties = {
+  position: "relative",
+  left: "auto",
+  top: "auto",
+  width: "100%",
+  height: "100%",
+};

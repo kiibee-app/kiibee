@@ -15,6 +15,7 @@ import {
   StepDescription,
   CTAWrapper,
   NumberPart,
+  watchingStepsPreviewImageStyle,
 } from "./styles";
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
@@ -23,6 +24,14 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
+import {
+  LANDING_IMAGE_DIMENSIONS,
+  LANDING_IMAGE_FLAGS,
+  LANDING_REVEAL_VARIANTS,
+} from "@/utils/landingUtils";
 
 export default function WatchingSteps() {
   const { t } = useTranslation();
@@ -30,31 +39,36 @@ export default function WatchingSteps() {
     <Section>
       <Content>
         <Header>
-          <Heading>
-            <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
-              {t("watchingSteps.heading")}
-            </MonoText>
-          </Heading>
-          <Tagline>
-            <MonoText $use="H4_Medium" color={COLORS.primary.WHITE}>
-              {t("watchingSteps.tagline")}
-            </MonoText>
-          </Tagline>
+          <ScrollReveal>
+            <Heading>
+              <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+                {t("watchingSteps.heading")}
+              </MonoText>
+            </Heading>
+          </ScrollReveal>
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
+            <Tagline>
+              <MonoText $use="H4_Medium" color={COLORS.primary.WHITE}>
+                {t("watchingSteps.tagline")}
+              </MonoText>
+            </Tagline>
+          </ScrollReveal>
         </Header>
         <Layout>
           <PreviewPanel>
-            <Image
-              src={Steps}
-              alt={t("watchingSteps.previewAlt")}
-              width={640}
-              height={479}
-              loading="eager"
-              style={{
-                width: "100%",
-                height: "auto",
-                borderRadius: 8,
-              }}
-            />
+            <ImageReveal
+              variant={LANDING_REVEAL_VARIANTS.slideUp}
+              duration={LANDING_REVEAL.longRevealDuration}
+            >
+              <Image
+                src={Steps}
+                alt={t("watchingSteps.previewAlt")}
+                width={LANDING_IMAGE_DIMENSIONS.watchingSteps.width}
+                height={LANDING_IMAGE_DIMENSIONS.watchingSteps.height}
+                loading={LANDING_IMAGE_FLAGS.eagerLoading}
+                style={watchingStepsPreviewImageStyle}
+              />
+            </ImageReveal>
           </PreviewPanel>
           <StepsColumn>
             {trendingContentSteps.map((step) => (

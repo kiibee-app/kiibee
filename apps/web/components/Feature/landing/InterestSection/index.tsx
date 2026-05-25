@@ -6,17 +6,20 @@ import { Section, Title, PillsWrapper, Pill } from "./styles";
 import { interests } from "@/utils/interests";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import ScrollReveal from "@/components/UI/ScrollReveal";
 
 export default function InterestSection() {
   const { t } = useTranslation();
 
   return (
     <Section>
-      <Title>
-        <MonoText $use="Heading2" color={COLORS.primary.WHITE}>
-          {t("interests.title")}
-        </MonoText>
-      </Title>
+      <ScrollReveal>
+        <Title>
+          <MonoText $use="Heading2" color={COLORS.primary.WHITE}>
+            {t("interests.title")}
+          </MonoText>
+        </Title>
+      </ScrollReveal>
 
       <PillsWrapper>
         {interests.map((item, index) => (

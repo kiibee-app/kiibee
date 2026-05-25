@@ -7,7 +7,6 @@ import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { EbookIcon, VideoIcon } from "@/assets/icons";
 import { MEDIA_TYPE } from "@/utils/Constants";
-import type { DiscoverContentItem } from "@/utils/discoverContent";
 import { pathPublishedContent } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
@@ -24,14 +23,19 @@ import {
   ActionButton,
   FullWidthAction,
   IconFrame,
+  discoverCardRevealStyle,
+  discoverCardImageStyle,
 } from "./styles";
-
-type Props = {
-  item: DiscoverContentItem;
-  lng?: string;
-};
-
-function DiscoverCard({ item }: Props) {
+import ImageReveal from "@/components/UI/ImageReveal";
+import { type DiscoverCardProps } from "@/utils/landingShared";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
+import { IMAGE_SIZES } from "@/utils/landingShared";
+import {
+  LANDING_IMAGE_DIMENSIONS,
+  LANDING_IMAGE_FLAGS,
+  LANDING_REVEAL_VARIANTS,
+} from "@/utils/landingUtils";
+function DiscoverCard({ item }: DiscoverCardProps) {
   const router = useRouter();
   const theme = useTheme();
   const { t } = useTranslation();
@@ -49,14 +53,20 @@ function DiscoverCard({ item }: Props) {
             {t(item.categoryKey)}
           </MonoText>
         </CategoryBadge>
-        <Image
-          src={item.image}
-          alt={t(item.titleKey)}
-          fill
-          sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
-          style={{ objectFit: "cover" }}
-          priority
-        />
+        <ImageReveal
+          variant={LANDING_REVEAL_VARIANTS.fadeScale}
+          duration={LANDING_REVEAL.revealDuration}
+          style={discoverCardRevealStyle}
+        >
+          <Image
+            src={item.image}
+            alt={t(item.titleKey)}
+            fill={LANDING_IMAGE_FLAGS.fill}
+            sizes={IMAGE_SIZES.discoverCard}
+            style={discoverCardImageStyle}
+            priority={LANDING_IMAGE_FLAGS.priority}
+          />
+        </ImageReveal>
       </ImageContainer>
 
       <TextSection>
@@ -78,8 +88,8 @@ function DiscoverCard({ item }: Props) {
           <IconFrame>
             {item.mediaType === MEDIA_TYPE.EPUB ? (
               <EbookIcon
-                width={24}
-                height={24}
+                width={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.width}
+                height={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.height}
                 color={theme.colors.neutral.BLACK}
               />
             ) : (
@@ -111,6 +121,6 @@ function DiscoverCard({ item }: Props) {
 
 export default memo(
   DiscoverCard,
-  (prev: Readonly<Props>, next: Readonly<Props>) =>
+  (prev: Readonly<DiscoverCardProps>, next: Readonly<DiscoverCardProps>) =>
     prev.item === next.item && prev.lng === next.lng,
 );
