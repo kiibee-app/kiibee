@@ -23,15 +23,15 @@ import {
   ChipCloseCircle,
 } from "./styles";
 import { COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS } from "@/utils/dummyData/couponApplicableProducts";
-import { CouponFormState } from "@/types/collectionsType";
 import { CollectionRow } from "@/types/collectionsType";
 import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
+import { CreateCouponPayload } from "@/types/couponType";
 
 type CouponApplicableProductsModalProps = {
   visible: boolean;
-  form: CouponFormState;
+  form: CreateCouponPayload;
   collections: CollectionRow[];
-  setForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
+  setForm: React.Dispatch<React.SetStateAction<CreateCouponPayload>>;
   onBack: () => void;
   onClose: () => void;
   onNext: () => void;

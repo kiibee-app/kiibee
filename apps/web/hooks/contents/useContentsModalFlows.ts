@@ -217,8 +217,7 @@ export const useContentsModalFlows = (
   };
 
   const handleCouponSubmit = async () => {
-    const codes = couponForm.codes
-      .split(",")
+    const codes = (couponForm.codes ?? [])
       .map((code) => code.trim())
       .filter((code) => code.length > 0);
 

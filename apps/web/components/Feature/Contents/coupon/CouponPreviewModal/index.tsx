@@ -11,7 +11,6 @@ import {
   ModalTitle,
   NextButton,
 } from "../styles";
-import { CouponFormState } from "@/types/collectionsType";
 import { CollectionRow } from "@/types/collectionsType";
 import {
   Chip,
@@ -28,10 +27,11 @@ import { MonoText } from "@/components/UI/Monotext";
 import { BUTTON } from "@/utils/Constants";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
+import { CreateCouponPayload } from "@/types/couponType";
 
 type Props = {
   visible: boolean;
-  data: CouponFormState;
+  data: CreateCouponPayload;
   collections: CollectionRow[];
   onBack: () => void;
   onClose: () => void;
@@ -77,8 +77,7 @@ export default function CouponPreviewModal({
       ? contentIds.map((id) => getLabel(id, contentOptions))
       : ["-"];
 
-  const codes = data.codes ? data.codes.split(",").map((c) => c.trim()) : [];
-
+  const codes = data.codes ?? [];
   return (
     <GenericModal
       visible={visible}

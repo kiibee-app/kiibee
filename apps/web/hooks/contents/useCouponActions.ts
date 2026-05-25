@@ -11,10 +11,10 @@ import {
   COUPON_ACTION_STATUS,
   CouponAction,
 } from "@/utils/Constants";
-import { CouponFormState } from "@/types/collectionsType";
 import {
   COUPON_STATUS,
   COUPON_STATUS_LABEL_MAP,
+  CreateCouponPayload,
   type CouponEntity,
   type CouponListResponse,
   type CouponRow,
@@ -22,7 +22,7 @@ import {
 
 type UseCouponActionsParams = {
   activeTab: ContentTab;
-  onEditCoupon: (couponId: string, formState: CouponFormState) => void;
+  onEditCoupon: (couponId: string, formState: CreateCouponPayload) => void;
 };
 
 export const useCouponActions = ({
@@ -83,7 +83,7 @@ export const useCouponActions = ({
         discountType:
           selectedCoupon.discountType ?? COUPON_DISCOUNT_TYPE.FIXED_AMOUNT,
         discountValue: selectedCoupon.discountValue ?? "",
-        codes: (selectedCoupon.codes ?? []).join(", "),
+        codes: selectedCoupon.codes ?? [],
         collectionIds: Array.isArray(collectionIdsFromEntity)
           ? collectionIdsFromEntity
           : [],
