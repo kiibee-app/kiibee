@@ -1,4 +1,5 @@
 import { MonoText } from "@/components/UI/Monotext";
+import { avatarFrameCss } from "@/components/Feature/ProfileLayout/pageStyles";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import Link from "next/link";
@@ -89,11 +90,7 @@ export const EmailWrapper = styled.div`
 `;
 
 export const ProfileCircle = styled.div`
-  position: relative;
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  overflow: hidden;
+  ${avatarFrameCss};
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   display: flex;
   align-items: center;
