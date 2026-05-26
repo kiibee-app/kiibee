@@ -38,6 +38,14 @@ export function useContentsUrlState({
   const queryCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
   const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
+  // Prevent restore effects from immediately rehydrating state while we are clearing URL params.
+  const isClearingParamsRef = useRef(false);
+  useEffect(() => {
+    if (!queryCollectionId && !queryContentId) {
+      isClearingParamsRef.current = false;
+    }
+  }, [queryCollectionId, queryContentId]);
+
   const storedContentId = useMemo(() => {
     if (!isBrowser) return null;
     return window.localStorage.getItem(CONTENT_LAST_EDITED_STORAGE_KEY);
@@ -74,6 +82,7 @@ export function useContentsUrlState({
   const hasRestoredCollectionRef = useRef(false);
   useEffect(() => {
     if (hasRestoredCollectionRef.current) return;
+    if (isClearingParamsRef.current) return;
     if (!queryCollectionId) {
       hasRestoredCollectionRef.current = true;
       return;
@@ -100,6 +109,7 @@ export function useContentsUrlState({
   const hasRestoredContentRef = useRef(false);
   useEffect(() => {
     if (hasRestoredContentRef.current) return;
+    if (isClearingParamsRef.current) return;
     if (!effectiveContentId) {
       hasRestoredContentRef.current = true;
       return;
@@ -134,22 +144,35 @@ export function useContentsUrlState({
   );
 
   const handleBack = useCallback(() => {
+    isClearingParamsRef.current = true;
     if (isBrowser) {
       window.localStorage.removeItem(CONTENT_LAST_EDITED_STORAGE_KEY);
     }
-    replaceQuery({ tab: null, collectionId: null, contentId: null });
+    replaceQuery({
+      tab: null,
+      collectionId: selectedCollection?.id ?? null,
+      contentId: null,
+    });
     onBackStateOnly();
     hasRestoredContentRef.current = false;
-  }, [onBackStateOnly, replaceQuery]);
+  }, [onBackStateOnly, replaceQuery, selectedCollection?.id]);
 
   const handleBackToCollection = useCallback(() => {
+    isClearingParamsRef.current = true;
+
     if (isBrowser) {
       window.localStorage.removeItem(CONTENT_LAST_EDITED_STORAGE_KEY);
     }
-    replaceQuery({ tab: null, contentId: null });
+    replaceQuery({
+      tab: null,
+      contentId: null,
+      collectionId: null,
+    });
+
+    setSelectedCollection(null);
     onBackStateOnly();
     hasRestoredContentRef.current = false;
-  }, [onBackStateOnly, replaceQuery]);
+  }, [onBackStateOnly, replaceQuery, setSelectedCollection]);
 
   return {
     handleBack,

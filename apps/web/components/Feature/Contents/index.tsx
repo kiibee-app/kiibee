@@ -167,8 +167,11 @@ function CreatorsContentsInner() {
     <PageShell>
       <PageHeader>
         <HeaderRow>
-          {(selectedCollection || isUploadMode) && (
-            <AuthBackButton marginBottom="0px" onClick={handleBack} />
+          {selectedCollection && (
+            <AuthBackButton
+              marginBottom="0px"
+              onClick={isUploadMode ? handleBack : handleBackToCollection}
+            />
           )}
           <Title>
             {isUploadMode
