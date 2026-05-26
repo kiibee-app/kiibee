@@ -54,3 +54,10 @@ export const SIGNED_URL_EXPIRY = {
   DAY: 86400,
   MAX: 604800,
 } as const;
+
+export const CONTENT_VISIBILITY = {
+  DRAFT: 'draft',
+  PUBLIC: 'public',
+  PRIVATE: 'private',
+  HIDDEN: 'hidden',
+} as const;
