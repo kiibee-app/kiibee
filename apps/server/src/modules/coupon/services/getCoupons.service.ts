@@ -51,16 +51,24 @@ export const getCouponsService = async (creatorId: string) => {
       .from(couponApplicableItems);
 
     const applicableByCouponId = applicableItemRows.reduce<
-      Record<string, { collectionId: string | null; contentId: string | null }>
+      Record<string, { collectionIds: string[]; contentIds: string[] }>
     >((acc, row) => {
       if (!couponIds.includes(row.couponId)) return acc;
       const current = acc[row.couponId] ?? {
-        collectionId: null,
-        contentId: null,
+        collectionIds: [],
+        contentIds: [],
       };
+
+      const nextCollectionIds = row.collectionId
+        ? [...current.collectionIds, row.collectionId]
+        : current.collectionIds;
+      const nextContentIds = row.mediaFileId
+        ? [...current.contentIds, row.mediaFileId]
+        : current.contentIds;
+
       acc[row.couponId] = {
-        collectionId: row.collectionId ?? current.collectionId,
-        contentId: row.mediaFileId ?? current.contentId,
+        collectionIds: Array.from(new Set(nextCollectionIds)),
+        contentIds: Array.from(new Set(nextContentIds)),
       };
       return acc;
     }, {});
@@ -68,9 +76,11 @@ export const getCouponsService = async (creatorId: string) => {
     const couponList = couponRows.map((coupon) => ({
       ...coupon,
       codes: codesByCouponId[coupon.id] || [],
-      applicableProducts: applicableByCouponId[coupon.id] ?? {
-        collectionId: null,
-        contentId: null,
+      applicableProducts: {
+        ...(applicableByCouponId[coupon.id] ?? {
+          collectionIds: [],
+          contentIds: [],
+        }),
       },
     }));
 

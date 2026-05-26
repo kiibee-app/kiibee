@@ -21,13 +21,13 @@ import {
   NextButton,
 } from "../styles";
 import { CouponInput, SectionTitle } from "./styles";
-import { CouponFormState } from "@/types/collectionsType";
 import { sanitizeDecimal, sanitizePercentage } from "@/utils/numericFields";
+import { CreateCouponPayload } from "@/types/couponType";
 
 type CouponDetailsModalProps = {
   visible: boolean;
-  form: CouponFormState;
-  setForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
+  form: CreateCouponPayload;
+  setForm: React.Dispatch<React.SetStateAction<CreateCouponPayload>>;
   onClose: () => void;
   onNext: () => void;
 };

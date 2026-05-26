@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useId } from "react";
+import React, { useId, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
@@ -21,13 +21,12 @@ import {
   CodesMetaRow,
   CouponCodesInput,
 } from "./styles";
-import { CouponFormState } from "@/types/collectionsType";
+import { CreateCouponPayload } from "@/types/couponType";
 
 type CouponCodesModalProps = {
   visible: boolean;
-  form: CouponFormState;
-  setForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
-
+  form: CreateCouponPayload;
+  setForm: React.Dispatch<React.SetStateAction<CreateCouponPayload>>;
   onBack: () => void;
   onClose: () => void;
   onNext: () => void;
@@ -44,9 +43,24 @@ export default function CouponCodesModal({
   const { t } = useTranslation();
   const codesId = useId();
   const helperId = useId();
+  const [codesText, setCodesText] = useState("");
+
+  React.useEffect(() => {
+    if (visible) {
+      setCodesText(form.codes?.join(", ") || "");
+    }
+  }, [visible, form.codes]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setForm((prev) => ({
+      ...prev,
+      codes: codesText
+        .split(",")
+        .map((c) => c.trim())
+        .filter(Boolean),
+    }));
+
     onNext();
   };
 
@@ -80,13 +94,11 @@ export default function CouponCodesModal({
             <HelperText>{t("contents.couponCodes.description")}</HelperText>
             <CouponCodesInput
               id={codesId}
-              value={form.codes}
+              value={codesText}
               maxLength={COUPON_CODES_LIMIT}
               aria-describedby={helperId}
               placeholder={t("contents.couponCodes.placeholders.codes")}
-              onChange={(event) =>
-                setForm((prev) => ({ ...prev, codes: event.target.value }))
-              }
+              onChange={(e) => setCodesText(e.target.value)}
             />
             <CodesMetaRow id={helperId}>
               <CodesHelperText>

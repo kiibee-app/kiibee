@@ -1,11 +1,11 @@
 "use client";
 
-import { CouponFormState } from "@/types/collectionsType";
 import { CollectionRow } from "@/types/collectionsType";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
 import CouponApplicableProductsModal from "@/components/Feature/Contents/coupon/coupon-applicable-products";
 import CouponPreviewModal from "./CouponPreviewModal";
+import { CreateCouponPayload } from "@/types/couponType";
 
 type CouponFlowState = {
   isOpen: {
@@ -21,8 +21,8 @@ type CouponFlowState = {
 type Props = {
   collections: CollectionRow[];
   couponFlow: CouponFlowState;
-  couponForm: CouponFormState;
-  setCouponForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
+  couponForm: CreateCouponPayload;
+  setCouponForm: React.Dispatch<React.SetStateAction<CreateCouponPayload>>;
   closeCouponFlow: () => void;
   handleBackFromCouponPreview: () => void;
   handleCouponSubmit: () => Promise<void>;

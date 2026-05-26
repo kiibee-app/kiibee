@@ -16,21 +16,23 @@ import {
   NextButton,
 } from "../styles";
 import {
-  SelectedValueChip,
-  SelectedValueText,
   SelectorList,
   TitleHelperText,
+  SelectedValueChip,
+  SelectedValueText,
+  ChipCloseCircle,
+  SelectedChipWrapper,
 } from "./styles";
 import { COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS } from "@/utils/dummyData/couponApplicableProducts";
-import { CouponFormState } from "@/types/collectionsType";
 import { CollectionRow } from "@/types/collectionsType";
 import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
+import { CreateCouponPayload } from "@/types/couponType";
 
 type CouponApplicableProductsModalProps = {
   visible: boolean;
-  form: CouponFormState;
+  form: CreateCouponPayload;
   collections: CollectionRow[];
-  setForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
+  setForm: React.Dispatch<React.SetStateAction<CreateCouponPayload>>;
   onBack: () => void;
   onClose: () => void;
   onNext: () => void;
@@ -73,18 +75,33 @@ export default function CouponApplicableProductsModal({
     onNext();
   };
 
-  const handleApplicableProductChange = (fieldKey: string, value: string) => {
+  const handleApplicableProductChange = (fieldKey: string, value: string[]) => {
     if (fieldKey === COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS) {
       setForm((prev) => ({
         ...prev,
-        collection: value,
+        collectionIds: value,
       }));
       return;
     }
 
     setForm((prev) => ({
       ...prev,
-      content: value,
+      contentIds: value,
+    }));
+  };
+
+  const handleRemoveSelected = (fieldKey: string, id: string) => {
+    if (fieldKey === COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS) {
+      setForm((prev) => ({
+        ...prev,
+        collectionIds: (prev.collectionIds ?? []).filter((v) => v !== id),
+      }));
+      return;
+    }
+
+    setForm((prev) => ({
+      ...prev,
+      contentIds: (prev.contentIds ?? []).filter((v) => v !== id),
     }));
   };
 
@@ -126,24 +143,52 @@ export default function CouponApplicableProductsModal({
                       ? collectionOptions
                       : contentOptions
                   }
+                  multi
                   showSelectedIndicator
-                  renderSelectedValue={(selected) => (
-                    <SelectedValueChip>
-                      <SelectedValueText>
-                        {selected
-                          ? selected.label ||
-                            selected.labelKey ||
-                            selected.value
-                          : ""}
-                      </SelectedValueText>
-                      <ChipCloseIcon />
-                    </SelectedValueChip>
+                  renderSelectedValues={(selected) => (
+                    <SelectedChipWrapper>
+                      {selected.length > 0 ? (
+                        selected.map((opt) => (
+                          <SelectedValueChip key={opt.value}>
+                            <SelectedValueText>
+                              {opt.label || opt.labelKey || opt.value}
+                            </SelectedValueText>
+                            <ChipCloseCircle
+                              type="button"
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                              }}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleRemoveSelected(field.key, opt.value);
+                              }}
+                              aria-label={t("common.close")}
+                            >
+                              <ChipCloseIcon />
+                            </ChipCloseCircle>
+                          </SelectedValueChip>
+                        ))
+                      ) : (
+                        <span>
+                          {field.key ===
+                          COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
+                            ? t(
+                                "contents.couponApplicableProducts.buttons.collections",
+                              )
+                            : t(
+                                "contents.couponApplicableProducts.buttons.contents",
+                              )}
+                        </span>
+                      )}
+                    </SelectedChipWrapper>
                   )}
                   value={
                     field.key ===
                     COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS.COLLECTIONS
-                      ? form.collection
-                      : form.content
+                      ? form.collectionIds
+                      : form.contentIds
                   }
                   onChange={(value) =>
                     handleApplicableProductChange(field.key, value)
