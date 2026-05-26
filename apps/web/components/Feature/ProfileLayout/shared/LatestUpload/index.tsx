@@ -38,6 +38,7 @@ import { GenericModal } from "@/components/UI/Modals";
 import { PATHS } from "@/utils/path";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
+import { FORMAT_TYPE } from "@/utils/types";
 
 type LatestUploadAction = {
   title: string;
@@ -93,19 +94,10 @@ export default function LatestUpload({ data }: LatestUploadProps) {
     String((data as { contentType?: unknown }).contentType ?? ""),
   );
   const isMediaPlayable =
-    normalizedContentType === "video" || normalizedContentType === "audio";
+    normalizedContentType === FORMAT_TYPE.VIDEO ||
+    normalizedContentType === FORMAT_TYPE.AUDIO;
   const TypeIcon = contentIconMap[normalizedContentType];
 
-  const badgeKey = String(data.badge ?? "")
-    .trim()
-    .toLowerCase();
-  const badgeText =
-    badgeKey === "education" ||
-    badgeKey === "food" ||
-    badgeKey === "art" ||
-    badgeKey === "design"
-      ? t(`contents.metadata.category.${badgeKey}`)
-      : data.badge;
   return (
     <Section
       $padding={data.containerStyle?.padding}
@@ -123,7 +115,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
           $alignItems={data.imageStyle?.alignItems}
           $gap={data.imageStyle?.gap}
         >
-          <Badge>{badgeText}</Badge>
+          <Badge>{data.badge}</Badge>
 
           <UploadImage src={resolveImageUrl(data.image)} alt={data.imageAlt} />
 

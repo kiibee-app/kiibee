@@ -13,6 +13,7 @@ import {
 import { useLatestUpload } from "@/hooks/useLatestUpload";
 import latestUploadImage from "@/assets/images/creators/recent_creator.webp";
 import { normalizeContentTypeValue } from "@/utils/content";
+import { FORMAT_TYPE } from "@/utils/types";
 
 type ProfileHomeSectionsProps = {
   variant: ProfileLayoutVariant;
@@ -41,9 +42,9 @@ export default function ProfileHomeSections({
         badge:
           (latest as { category?: string | null }).category ??
           latestConfig.badge ??
-          "Latest",
+          "",
         image: latestUploadImage,
-        contentType: normalizedLatestContentType ?? "pdf",
+        contentType: normalizedLatestContentType || FORMAT_TYPE.VIDEO,
         imageAlt: latest.title || "",
         title: latest.title || "",
         year: new Date(latest.createdAt).getFullYear().toString(),
