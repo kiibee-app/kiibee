@@ -11,6 +11,11 @@ import {
 import { QUERY_KEYS } from "@/utils/Constants";
 import { CollectionContentRow } from "@/types/collectionsType";
 
+type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
+  createdAt: number;
+  category?: string | null;
+};
+
 export function useLatestUpload() {
   return useQuery({
     queryKey: [QUERY_KEYS.PROFILE_LATEST_UPLOAD],
@@ -31,7 +36,7 @@ export function useLatestUpload() {
         ),
       );
 
-      const allContents = contentsResponses
+      const allContents: LatestUploadItem[] = contentsResponses
         .flatMap((res) => {
           const data = res.data as
             | CollectionContentRow[]
@@ -47,7 +52,21 @@ export function useLatestUpload() {
 
       allContents.sort((a, b) => b.createdAt - a.createdAt);
 
-      return allContents[0] ?? null;
+      const latest = allContents[0];
+      if (!latest) return null;
+
+      try {
+        const res = await axiosClient.get(API.content.get(String(latest.id)));
+        const category = (
+          res as {
+            data?: { data?: { categories?: { id?: string }[] } };
+          }
+        )?.data?.data?.categories?.[0]?.id;
+
+        return { ...latest, category: category ?? null };
+      } catch {
+        return { ...latest, category: null };
+      }
     },
 
     refetchOnWindowFocus: true,

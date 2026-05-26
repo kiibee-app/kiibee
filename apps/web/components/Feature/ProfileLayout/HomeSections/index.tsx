@@ -38,7 +38,10 @@ export default function ProfileHomeSections({
   const latestUploadData = latest
     ? {
         sectionTitle: latestConfig.sectionTitle,
-        badge: normalizedLatestContentType ?? latestConfig.badge ?? "Latest",
+        badge:
+          (latest as { category?: string | null }).category ??
+          latestConfig.badge ??
+          "Latest",
         image: latestUploadImage,
         contentType: normalizedLatestContentType ?? "pdf",
         imageAlt: latest.title || "",

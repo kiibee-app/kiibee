@@ -45,7 +45,7 @@ type LatestUploadAction = {
 };
 
 export type LatestUploadData = {
-  contentType: ContentType;
+  contentType?: ContentType;
   sectionTitle: string;
   badge: string;
   image: ImageSource;
@@ -95,6 +95,17 @@ export default function LatestUpload({ data }: LatestUploadProps) {
   const isMediaPlayable =
     normalizedContentType === "video" || normalizedContentType === "audio";
   const TypeIcon = contentIconMap[normalizedContentType];
+
+  const badgeKey = String(data.badge ?? "")
+    .trim()
+    .toLowerCase();
+  const badgeText =
+    badgeKey === "education" ||
+    badgeKey === "food" ||
+    badgeKey === "art" ||
+    badgeKey === "design"
+      ? t(`contents.metadata.category.${badgeKey}`)
+      : data.badge;
   return (
     <Section
       $padding={data.containerStyle?.padding}
@@ -112,7 +123,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
           $alignItems={data.imageStyle?.alignItems}
           $gap={data.imageStyle?.gap}
         >
-          <Badge>{data.badge}</Badge>
+          <Badge>{badgeText}</Badge>
 
           <UploadImage src={resolveImageUrl(data.image)} alt={data.imageAlt} />
 
