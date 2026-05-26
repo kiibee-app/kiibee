@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
   padding: 3rem 0;
+  overflow: hidden;
 `;
 
 export const SectionInner = styled.div`
@@ -70,3 +72,15 @@ export const HeroImageWrap = styled(ImageBox)`
 export const ImageCard = styled(ImageBox)`
   aspect-ratio: 16 / 9;
 `;
+
+export const securePaymentRevealStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
+
+export const securePaymentImageStyle: CSSProperties = {
+  objectFit: "cover",
+  objectPosition: "center",
+};

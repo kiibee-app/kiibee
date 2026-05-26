@@ -18,40 +18,48 @@ import {
   Heading,
   Subtitle,
   CTAButton,
+  getRevealCardStyle,
+  callToActionCardStyle,
 } from "./styles";
 import { desktopCards, mobileCards } from "@/utils/cards";
 import { MonoText } from "@/components/UI/Monotext";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
-import { resolveImageUrl, type ImageSource } from "@/utils/Constants";
+import { resolveImageUrl } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
-
-type CTAImageCard = {
-  src: ImageSource;
-  left?: number;
-  top?: number;
-  width?: number;
-  height?: number;
-};
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
+import { type CtaImageCard } from "@/utils/landingShared";
+import { LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
 
 export default function CallToAction() {
   const { t } = useTranslation();
 
-  const renderCard = (card: CTAImageCard, index: number, mobile = false) => (
-    <Card
-      key={`${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
-      $left={!mobile ? card.left : undefined}
-      $top={!mobile ? card.top : undefined}
-      $width={!mobile ? card.width : undefined}
-      $height={!mobile ? card.height : undefined}
-      $mobileOnly={mobile}
+  const renderCard = (card: CtaImageCard, index: number, mobile = false) => (
+    <ImageReveal
+      key={`reveal-${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
+      variant={LANDING_REVEAL_VARIANTS.fadeScale}
+      delay={index * LANDING_REVEAL.ctaCardStaggerDelay}
+      duration={LANDING_REVEAL.revealDuration}
+      style={getRevealCardStyle(card, mobile)}
     >
-      <CardImage
-        src={resolveImageUrl(card.src)}
-        alt={t("callToAction.creatorAlt")}
-      />
-      <CardTint />
-    </Card>
+      <Card
+        key={`${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
+        $left={!mobile ? card.left : undefined}
+        $top={!mobile ? card.top : undefined}
+        $width={!mobile ? card.width : undefined}
+        $height={!mobile ? card.height : undefined}
+        $mobileOnly={mobile}
+        style={callToActionCardStyle}
+      >
+        <CardImage
+          src={resolveImageUrl(card.src)}
+          alt={t("callToAction.creatorAlt")}
+        />
+        <CardTint />
+      </Card>
+    </ImageReveal>
   );
 
   return (
@@ -75,16 +83,20 @@ export default function CallToAction() {
             <SafeImage src={kiibeeLogo} alt={t("callToAction.logoAlt")} />
           </BrandLogo>
         </Brand>
-        <Heading>
-          <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
-            {t("callToAction.title")}
-          </MonoText>
-        </Heading>
-        <Subtitle>
-          <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-            {t("callToAction.subtitle")}
-          </MonoText>
-        </Subtitle>
+        <ScrollReveal>
+          <Heading>
+            <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+              {t("callToAction.title")}
+            </MonoText>
+          </Heading>
+        </ScrollReveal>
+        <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
+          <Subtitle>
+            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+              {t("callToAction.subtitle")}
+            </MonoText>
+          </Subtitle>
+        </ScrollReveal>
         <CTAButton asAnchor href={PATHS.AUTH_SIGNUP}>
           {t("callToAction.cta")}
         </CTAButton>

@@ -12,9 +12,19 @@ import {
   Section,
   SectionInner,
   TextColumn,
+  securePaymentImageStyle,
+  securePaymentRevealStyle,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
+import { IMAGE_SIZES } from "@/utils/landingShared";
+import {
+  LANDING_IMAGE_FLAGS,
+  LANDING_REVEAL_VARIANTS,
+} from "@/utils/landingUtils";
 
 export default function SecurePaymentSection() {
   const { t } = useTranslation();
@@ -23,37 +33,54 @@ export default function SecurePaymentSection() {
     <Section>
       <SectionInner>
         <TextColumn>
-          <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
-            {t("securePayment.title")}
-          </MonoText>
-          <Description>
-            <MonoText $use="Body_Regular" color={COLORS.primary.WHITE}>
-              {t("securePayment.description")}
+          <ScrollReveal>
+            <MonoText $use="Heading1" color={COLORS.primary.WHITE}>
+              {t("securePayment.title")}
             </MonoText>
-          </Description>
+          </ScrollReveal>
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
+            <Description>
+              <MonoText $use="Body_Regular" color={COLORS.primary.WHITE}>
+                {t("securePayment.description")}
+              </MonoText>
+            </Description>
+          </ScrollReveal>
         </TextColumn>
 
         <ImageColumn>
           <HeroImageWrap>
-            <Image
-              src={hero}
-              alt={t("securePayment.heroImageAlt")}
-              fill
-              sizes="(max-width: 1024px) 100vw, 42vw"
-              style={{ objectFit: "cover", objectPosition: "center" }}
-              priority
-            />
+            <ImageReveal
+              variant={LANDING_REVEAL_VARIANTS.slideLeft}
+              duration={LANDING_REVEAL.longRevealDuration}
+              style={securePaymentRevealStyle}
+            >
+              <Image
+                src={hero}
+                alt={t("securePayment.heroImageAlt")}
+                fill={LANDING_IMAGE_FLAGS.fill}
+                sizes={IMAGE_SIZES.securePayment}
+                style={securePaymentImageStyle}
+                priority={LANDING_IMAGE_FLAGS.priority}
+              />
+            </ImageReveal>
           </HeroImageWrap>
 
           <ImageCard>
-            <Image
-              src={creator}
-              alt={t("securePayment.creatorImageAlt")}
-              fill
-              sizes="(max-width: 1024px) 100vw, 42vw"
-              style={{ objectFit: "cover", objectPosition: "center" }}
-              priority
-            />
+            <ImageReveal
+              variant={LANDING_REVEAL_VARIANTS.slideRight}
+              delay={LANDING_REVEAL.mediumDelay}
+              duration={LANDING_REVEAL.longRevealDuration}
+              style={securePaymentRevealStyle}
+            >
+              <Image
+                src={creator}
+                alt={t("securePayment.creatorImageAlt")}
+                fill={LANDING_IMAGE_FLAGS.fill}
+                sizes={IMAGE_SIZES.securePayment}
+                style={securePaymentImageStyle}
+                priority={LANDING_IMAGE_FLAGS.priority}
+              />
+            </ImageReveal>
           </ImageCard>
         </ImageColumn>
       </SectionInner>
