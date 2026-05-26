@@ -39,7 +39,7 @@ import {
 } from "@/utils/content";
 import { ContentFormProvider, useContentForm } from "./ContentFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
-import { UI_TITLE_FALLBACK } from "@/utils/Constants";
+import { SCROLL_OPTIONS, UI_TITLE_FALLBACK } from "@/utils/Constants";
 
 function CreatorsContentsInner() {
   const { t } = useTranslation();
@@ -180,31 +180,23 @@ function CreatorsContentsInner() {
       keyword.toLowerCase().includes(query),
     );
 
-    let targetTab = activeTab;
     if (!activeContainsQuery) {
       const matchedTabItem = CONTENTS_TABS_INDEX.find((item) =>
         item.keywords.some((keyword) => keyword.toLowerCase().includes(query)),
       );
-      if (matchedTabItem) {
-        targetTab = matchedTabItem.tab as typeof activeTab;
-        setActiveTabAndQuery(targetTab);
-      } else {
-        return;
-      }
+      if (!matchedTabItem) return;
+      setActiveTabAndQuery(matchedTabItem.tab as typeof activeTab);
     }
 
     let attempts = 0;
     const interval = setInterval(() => {
       const container = document.getElementById("contents-content-area");
-      if (container) {
-        const element = findElement(container, query);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "center" });
-          clearInterval(interval);
-        }
+      const element = container ? findElement(container, query) : null;
+      if (element) {
+        element.scrollIntoView(SCROLL_OPTIONS);
+        return clearInterval(interval);
       }
-      attempts++;
-      if (attempts > 10) {
+      if (++attempts > 10) {
         clearInterval(interval);
       }
     }, 100);

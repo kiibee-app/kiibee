@@ -10,10 +10,10 @@ export function findElement(
       | HTMLInputElement
       | HTMLTextAreaElement
       | HTMLSelectElement;
-    if (htmlInput.value && htmlInput.value.toLowerCase().includes(lowerQuery)) {
-      if (htmlInput.offsetWidth > 0 && htmlInput.offsetHeight > 0) {
-        return htmlInput;
-      }
+    const value = htmlInput.value?.toLowerCase() ?? "";
+    const isVisible = htmlInput.offsetWidth > 0 && htmlInput.offsetHeight > 0;
+    if (isVisible && value.includes(lowerQuery)) {
+      return htmlInput;
     }
   }
 
@@ -26,17 +26,19 @@ export function findElement(
   let bestElement: HTMLElement | null = null;
   while ((node = walker.nextNode())) {
     const text = node.nodeValue?.trim().toLowerCase();
-    if (text && text.includes(lowerQuery)) {
-      const parent = node.parentElement;
-      if (parent && parent.offsetWidth > 0 && parent.offsetHeight > 0) {
-        if (
-          !bestElement ||
-          (parent.textContent?.length || 0) <
-            (bestElement.textContent?.length || 0)
-        ) {
-          bestElement = parent;
-        }
-      }
+    const parent = node.parentElement;
+    if (
+      text?.includes(lowerQuery) &&
+      parent &&
+      parent.offsetWidth > 0 &&
+      parent.offsetHeight > 0
+    ) {
+      bestElement =
+        !bestElement ||
+        (parent.textContent?.length || 0) <
+          (bestElement.textContent?.length || 0)
+          ? parent
+          : bestElement;
     }
   }
   return bestElement;

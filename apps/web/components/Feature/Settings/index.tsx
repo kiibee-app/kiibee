@@ -30,6 +30,7 @@ import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import {
   CONTENT_TAB,
   LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+  SCROLL_OPTIONS,
 } from "@/utils/Constants";
 
 export default function SettingsContent() {
@@ -122,31 +123,23 @@ export default function SettingsContent() {
       keyword.toLowerCase().includes(query),
     );
 
-    let targetTab = activeTab;
     if (!activeContainsQuery) {
       const matchedTabItem = SETTINGS_TABS_INDEX.find((item) =>
         item.keywords.some((keyword) => keyword.toLowerCase().includes(query)),
       );
-      if (matchedTabItem) {
-        targetTab = matchedTabItem.tab;
-        setActiveTabAndQuery(targetTab);
-      } else {
-        return;
-      }
+      if (!matchedTabItem) return;
+      setActiveTabAndQuery(matchedTabItem.tab);
     }
 
     let attempts = 0;
     const interval = setInterval(() => {
       const container = document.getElementById("settings-content-area");
-      if (container) {
-        const element = findElement(container, query);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "center" });
-          clearInterval(interval);
-        }
+      const element = container ? findElement(container, query) : null;
+      if (element) {
+        element.scrollIntoView(SCROLL_OPTIONS);
+        return clearInterval(interval);
       }
-      attempts++;
-      if (attempts > 10) {
+      if (++attempts > 10) {
         clearInterval(interval);
       }
     }, 100);
