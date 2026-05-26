@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { AUTH_STORAGE_KEYS } from "@/lib/auth/storageKeys";
 import { getDashboardPathForRole, PATHS } from "@/utils/path";
+import { ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
 
 const PROTECTED_PATHS = [PATHS.DASHBOARD_CREATOR, PATHS.DASHBOARD_VIEWER];
 
@@ -35,9 +36,12 @@ function decodeJwtPayload(token?: string) {
   }
 }
 
-function getPostLoginPath(request: NextRequest) {
-  const role = request.cookies.get(AUTH_STORAGE_KEYS.role)?.value;
-  if (role) return getDashboardPathForRole(role);
+function getSessionRole(request: NextRequest) {
+  const role = request.cookies
+    .get(AUTH_STORAGE_KEYS.role)
+    ?.value?.trim()
+    .toLowerCase();
+  if (role) return role;
 
   const rawUser = request.cookies.get(AUTH_STORAGE_KEYS.user)?.value;
 
@@ -45,17 +49,17 @@ function getPostLoginPath(request: NextRequest) {
     const user = rawUser
       ? (JSON.parse(decodeURIComponent(rawUser)) as { role?: string })
       : null;
-    if (user?.role) return getDashboardPathForRole(user.role);
+    if (user?.role) return user.role.trim().toLowerCase();
   } catch {}
 
   const accessToken = request.cookies.get(AUTH_STORAGE_KEYS.accessToken)?.value;
   const tokenRole = decodeJwtPayload(accessToken)?.role;
+  return tokenRole?.trim().toLowerCase() ?? null;
+}
 
-  if (tokenRole) {
-    return getDashboardPathForRole(tokenRole);
-  }
-
-  return PATHS.DASHBOARD_CREATOR;
+function getDashboardPath(request: NextRequest) {
+  const role = getSessionRole(request);
+  return role ? getDashboardPathForRole(role) : PATHS.DASHBOARD_CREATOR;
 }
 
 function isProtectedPath(pathname: string) {
@@ -64,20 +68,51 @@ function isProtectedPath(pathname: string) {
   );
 }
 
+function getRequiredRole(pathname: string) {
+  if (
+    pathname === PATHS.DASHBOARD_VIEWER ||
+    pathname.startsWith(`${PATHS.DASHBOARD_VIEWER}/`)
+  ) {
+    return ROLE_VIEWER;
+  }
+
+  if (
+    pathname === PATHS.DASHBOARD_CREATOR ||
+    pathname.startsWith(`${PATHS.DASHBOARD_CREATOR}/`)
+  ) {
+    return ROLE_CREATOR;
+  }
+
+  return null;
+}
+
 export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const isLoggedIn = hasAuthSession(request);
 
   if (pathname === PATHS.AUTH_LOGIN && isLoggedIn) {
     return NextResponse.redirect(
-      new URL(getPostLoginPath(request), request.url),
+      new URL(getDashboardPath(request), request.url),
     );
   }
 
-  if (isProtectedPath(pathname) && !isLoggedIn) {
+  if (!isProtectedPath(pathname)) {
+    return NextResponse.next();
+  }
+
+  if (!isLoggedIn) {
     const loginUrl = new URL(PATHS.AUTH_LOGIN, request.url);
     loginUrl.searchParams.set("next", `${pathname}${search}`);
     return NextResponse.redirect(loginUrl);
+  }
+
+  const requiredRole = getRequiredRole(pathname);
+  const sessionRole = getSessionRole(request);
+
+  if (requiredRole && sessionRole && sessionRole !== requiredRole) {
+    return NextResponse.redirect(
+      new URL(getDashboardPath(request), request.url),
+    );
   }
 
   return NextResponse.next();
