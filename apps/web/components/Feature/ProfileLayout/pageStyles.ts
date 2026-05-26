@@ -20,12 +20,11 @@ export const Brand = styled(Link)`
 
 export const BrandAvatar = styled.span`
   position: relative;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 8px;
   flex: 0 0 auto;
-  box-shadow: 0 8px 18px ${({ theme }) => theme.colors.neutral.GRAY_300};
 `;
 
 export const BrandAvatarImage = styled(Image)`

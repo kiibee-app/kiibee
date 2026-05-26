@@ -90,9 +90,9 @@ export const EmailWrapper = styled.div`
 
 export const ProfileCircle = styled.div`
   position: relative;
-  width: 48px;
-  height: 48px;
-  border-radius: 6px;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   display: flex;
