@@ -3,7 +3,6 @@ import type { LatestUploadData } from "@/components/Feature/ProfileLayout/shared
 
 export type ProfileLayoutVariant = CreatorLayoutParam;
 import { PROFILE_HOME_SECTION, ProfileHomeSectionKey } from "@/utils/Constants";
-
 import {
   latestUploadDataLayout1,
   latestUploadDataLayout2,
