@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import { type CSSProperties } from "react";
 
 export const Section = styled.section`
   width: 100%;
@@ -75,3 +76,8 @@ export const Subtitle = styled.p`
   ${media.tablet} {
   }
 `;
+
+export const ctaSectionBackgroundImageStyle: CSSProperties = {
+  objectFit: "cover",
+  objectPosition: "center",
+};

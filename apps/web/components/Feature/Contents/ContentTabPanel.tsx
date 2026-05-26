@@ -19,7 +19,6 @@ import CouponTable from "./coupon";
 import CollectionTable from "./Collections";
 import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
-import { CouponFormState } from "@/types/collectionsType";
 import {
   EmptyCollectionCard,
   EmptyCollectionText,
@@ -39,6 +38,7 @@ import MoveContentModal from "./Collections/MoveContentModal";
 import { useCouponActions } from "@/hooks/contents/useCouponActions";
 import { useContentMoveActions } from "@/hooks/contents/useContentMoveActions";
 import Payment from "./Payment";
+import { CreateCouponPayload } from "@/types/couponType";
 
 type Props = {
   activeTab: ContentTab;
@@ -50,7 +50,7 @@ type Props = {
   onDelete: (id: string, type: CollectionTableType) => void;
   onEditCollection: (id: string) => void;
   onEditContent: (id: string) => void;
-  onEditCoupon: (couponId: string, formState: CouponFormState) => void;
+  onEditCoupon: (couponId: string, formState: CreateCouponPayload) => void;
   setContentsMap: Dispatch<
     SetStateAction<Record<string, CollectionContentRow[]>>
   >;

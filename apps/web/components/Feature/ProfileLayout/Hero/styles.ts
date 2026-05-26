@@ -11,11 +11,15 @@ export const HeroWrapper = styled.section`
   width: 100%;
   max-width: 100%;
   margin: 60px auto 0;
-  padding: 14px 110px 0;
+  padding: 14px 73px 0;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   ${({ theme }) => theme.media.desktopMd} {
     padding: 14px 72px 0;
+  }
+
+  ${({ theme }) => theme.media.tablet} {
+    padding: 12px 73px 0;
   }
 
   ${({ theme }) => theme.media.desktopSm} {
@@ -269,12 +273,16 @@ export const HeroContent = styled.div`
   z-index: 2;
   width: min(100%, 1500px);
   margin: 0 auto;
-  padding: 0 110px;
+  padding: 0 73px;
   display: flex;
   align-items: flex-end;
 
+  ${({ theme }) => theme.media.tablet} {
+    padding: 0 73px;
+  }
+
   ${({ theme }) => theme.media.desktopMd} {
-    padding: 0 70px;
+    padding: 0 73px;
   }
 
   ${({ theme }) => theme.media.desktopSm} {
@@ -282,7 +290,7 @@ export const HeroContent = styled.div`
   }
 
   ${({ theme }) => theme.media.mobileMd} {
-    padding: 0 16px;
+    padding: 0 10px;
   }
 `;
 

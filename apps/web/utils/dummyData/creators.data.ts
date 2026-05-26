@@ -6,6 +6,17 @@ import { CreatorProfile } from "../sortOptions";
 
 const baseTime = Date.now();
 
+export const CREATOR_DESCRIPTIONS: Record<string, string> = {
+  "Morten Bonde":
+    "I also play the bass, but order to be writing and recording new songs, you as supporting my project. Here's a... Thank you!",
+  "Kammas kantine":
+    "Underneath I have collected my digital recipes, videos and tips. If you want to support my project and get access to all my recipes, sign up here. Thank you!",
+  "Simon Talbot":
+    "Watch my stand-up shows, comedy specials, sketches and other fun content. Supporting my page lets me make even more comedy for you.",
+  Chief1:
+    "Listen to my music, audio loops, instrumentals and get updates on upcoming shows. Your support keeps the music playing!",
+};
+
 export const creators: CreatorProfile[] = [
   {
     id: "1",

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
@@ -145,3 +146,15 @@ export const Author = styled.p`
   font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
 `;
+
+export const testimonialRevealStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
+
+export const testimonialImageStyle: CSSProperties = {
+  objectFit: "cover",
+  objectPosition: "center",
+};

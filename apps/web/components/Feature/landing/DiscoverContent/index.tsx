@@ -15,6 +15,8 @@ import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
 
 export default function DiscoverContent() {
   const { t, i18n } = useTranslation();
@@ -22,12 +24,18 @@ export default function DiscoverContent() {
   return (
     <Section>
       <HeaderSection>
-        <Title>
-          <MonoText $use="Heading2">{t("discoverContent.title")}</MonoText>
-        </Title>
-        <Subtitle>
-          <MonoText $use="H4_Medium">{t("discoverContent.subtitle")}</MonoText>
-        </Subtitle>
+        <ScrollReveal>
+          <Title>
+            <MonoText $use="Heading2">{t("discoverContent.title")}</MonoText>
+          </Title>
+        </ScrollReveal>
+        <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
+          <Subtitle>
+            <MonoText $use="H4_Medium">
+              {t("discoverContent.subtitle")}
+            </MonoText>
+          </Subtitle>
+        </ScrollReveal>
       </HeaderSection>
 
       <GridContainer>

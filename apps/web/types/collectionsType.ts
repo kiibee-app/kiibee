@@ -1,14 +1,12 @@
 import { COLLECTION_TABLE_TYPE } from "@/utils/collection";
-import {
-  COUPON_DISCOUNT_FIXED_AMOUNT,
-  CouponDiscountType,
-} from "@/utils/common";
+import { COUPON_DISCOUNT_FIXED_AMOUNT } from "@/utils/common";
 import type { ContentType } from "@/utils/content";
 import type {
   CollectionAccessType,
   CollectionVisibility,
   CollectionContentVisibilityType,
 } from "@/utils/Constants";
+import { CreateCouponPayload } from "./couponType";
 
 export type CollectionRow = {
   id: string;
@@ -65,20 +63,11 @@ export function isCollectionContentRow(
   return "contentType" in row;
 }
 
-export type CouponFormState = {
-  title: string;
-  discountType: CouponDiscountType;
-  discountValue: string;
-  codes: string;
-  collection: string;
-  content: string;
-};
-
-export const INITIAL_COUPON_FORM: CouponFormState = {
+export const INITIAL_COUPON_FORM: CreateCouponPayload = {
   title: "",
   discountType: COUPON_DISCOUNT_FIXED_AMOUNT,
   discountValue: "",
-  codes: "",
-  collection: "",
-  content: "",
+  codes: [],
+  collectionIds: [],
+  contentIds: [],
 };

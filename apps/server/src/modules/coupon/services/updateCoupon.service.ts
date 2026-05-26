@@ -9,25 +9,14 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import {
+  APPLICABLE_PRODUCT_KEYS,
+  ApplicableProductKey,
   COUPON_DISCOUNT_TYPE_PERCENTAGE,
   normalizeCouponDiscountType,
   normalizeCouponStatus,
 } from 'src/utils/coupon';
 import { fail, success } from 'src/utils/sendResponse';
-
-type UpdateCouponPayload = {
-  title?: string;
-  discountType?: string;
-  discountValue?: string | number;
-  currency?: string;
-  status?: string;
-  validFrom?: string;
-  validUntil?: string;
-  maxUses?: number;
-  codes?: string[];
-  collectionId?: string;
-  contentId?: string;
-};
+import { CouponPayload, normalizeIdList } from './createCoupon.service';
 
 const pickDefined = (obj: Record<string, unknown>) =>
   Object.fromEntries(
@@ -37,9 +26,10 @@ const pickDefined = (obj: Record<string, unknown>) =>
 export const updateCouponService = async (
   creatorId: string,
   couponId: string,
-  payload: UpdateCouponPayload,
+  payload: CouponPayload,
 ) => {
   try {
+    const hasOwn = (key: keyof CouponPayload) => Object.hasOwn(payload, key);
     const where = and(
       eq(coupons.id, couponId),
       eq(coupons.creatorId, creatorId),
@@ -124,8 +114,9 @@ export const updateCouponService = async (
     });
 
     const hasCodeUpdates = payload.codes !== undefined;
-    const hasApplicableItemUpdates =
-      payload.collectionId !== undefined || payload.contentId !== undefined;
+    const hasApplicableItemUpdates = APPLICABLE_PRODUCT_KEYS.some((key) =>
+      hasOwn(key as ApplicableProductKey),
+    );
 
     if (
       Object.keys(updateData).length === 0 &&
@@ -163,22 +154,21 @@ export const updateCouponService = async (
           .delete(couponApplicableItems)
           .where(eq(couponApplicableItems.couponId, couponId));
 
+        const collectionIds = normalizeIdList(payload.collectionIds);
+        const contentIds = normalizeIdList(payload.contentIds);
+
         const applicableItems: (typeof couponApplicableItems.$inferInsert)[] = [
-          payload.collectionId?.trim()
-            ? {
-                id: randomUUID(),
-                couponId,
-                collectionId: payload.collectionId.trim(),
-              }
-            : null,
-          payload.contentId?.trim()
-            ? {
-                id: randomUUID(),
-                couponId,
-                mediaFileId: payload.contentId.trim(),
-              }
-            : null,
-        ].filter(Boolean) as (typeof couponApplicableItems.$inferInsert)[];
+          ...collectionIds.map((collectionId) => ({
+            id: randomUUID(),
+            couponId,
+            collectionId,
+          })),
+          ...contentIds.map((contentId) => ({
+            id: randomUUID(),
+            couponId,
+            mediaFileId: contentId,
+          })),
+        ];
 
         if (applicableItems.length > 0) {
           await tx.insert(couponApplicableItems).values(applicableItems);

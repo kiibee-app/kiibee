@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 
 export const Section = styled.section`
   width: 100%;
@@ -93,3 +94,9 @@ export const NumberPart = styled.div`
   flex-direction: column;
   align-items: start;
 `;
+
+export const watchingStepsPreviewImageStyle: CSSProperties = {
+  width: "100%",
+  height: "auto",
+  borderRadius: 8,
+};
