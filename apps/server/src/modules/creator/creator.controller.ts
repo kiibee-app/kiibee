@@ -21,4 +21,9 @@ export class CreatorController {
   async getCreatorPublicProfile(@Param('id') id: string) {
     return this.creatorService.getCreatorPublicProfile(id);
   }
+
+  @Get('top')
+  async getTopCreators() {
+    return this.creatorService.getTopCreators();
+  }
 }
