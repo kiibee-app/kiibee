@@ -42,7 +42,7 @@ export const SectionHeader = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 20px;
-  padding-left: 10px;
+  padding-inline: 0;
 `;
 
 export const SectionArrow = styled.button`
@@ -75,7 +75,11 @@ export const CollectionGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
   gap: 16px;
-  padding-left: 10px;
+  padding-inline: 0;
+
+  ${media.mobileLg} {
+    gap: 12px;
+  }
 `;
 
 export const CollectionCard = styled.article`
@@ -163,13 +167,27 @@ export const CollectionActionRow = styled.div`
 
   .collection-cta {
     display: inline-flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     gap: 0;
     min-height: 52px;
     min-width: 120px;
     padding: 10px 14px;
-    text-align: left;
+    text-align: center;
+  }
+
+  .collection-cta:hover,
+  .collection-cta:focus-visible,
+  .collection-cta:active {
+    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+    border-color: ${({ theme }) => theme.colors.primary.BLACK};
+  }
+
+  .collection-cta:hover *,
+  .collection-cta:focus-visible *,
+  .collection-cta:active * {
+    color: ${({ theme }) => theme.colors.primary.BLACK} !important;
   }
 
   ${media.mobileLg} {
@@ -180,10 +198,12 @@ export const CollectionActionRow = styled.div`
 export const CollectionCtaContent = styled.span`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 2px;
   white-space: normal;
   line-height: 1.1;
+  text-align: center;
 `;
 
 export const CollectionCtaSubtext = styled.span`

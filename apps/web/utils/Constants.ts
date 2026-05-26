@@ -87,8 +87,8 @@ export type CouponAction =
 export const profileNavShellProps = {
   position: "absolute",
   innerPadding: "15px 110px",
-  tabletInnerPadding: "12px 24px",
-  mobileInnerPadding: "10px 14px",
+  tabletInnerPadding: "12px 28px",
+  mobileInnerPadding: "10px 16px",
   innerMaxWidth: "1600px",
   navPosition: "right",
   navbarHeight: "74px",
