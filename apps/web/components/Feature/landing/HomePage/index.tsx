@@ -8,6 +8,7 @@ import DiscoverContent from "@/components/Feature/landing/DiscoverContent";
 import WatchingSteps from "@/components/Feature/landing/WatchingSteps";
 import SecurePaymentSection from "@/components/Feature/landing/SecurePayment";
 import TestimonialSection from "@/components/Feature/landing/Testimonial";
+import ExploreCreatorsMarquee from "@/components/Feature/landing/ExploreCreatorsMarquee";
 import CallToAction from "@/components/Feature/landing/CallToAction";
 import CtaSection from "@/components/Feature/CtaSection";
 import NavBar from "@/components/Layout/Navbar";
@@ -34,6 +35,8 @@ export default function HomePageClient() {
         <SecurePaymentSection />
 
         <TestimonialSection />
+
+        <ExploreCreatorsMarquee />
 
         <CallToAction />
 
