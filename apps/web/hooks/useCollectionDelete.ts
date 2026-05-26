@@ -72,6 +72,8 @@ export const useDeleteHandler = (
     setShowDeleteConfirm,
     showDeleteSuccess,
     setShowDeleteSuccess,
+    deleteId,
+    deleteType,
     openDelete,
     handleConfirmDelete,
   };

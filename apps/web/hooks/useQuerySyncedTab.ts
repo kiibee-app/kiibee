@@ -34,7 +34,11 @@ export function useQuerySyncedTab<T extends string>({
 
   const buildUrl = useCallback(
     (tab: T) => {
-      const params = new URLSearchParams(searchParamsString);
+      const liveParams =
+        typeof window !== "undefined"
+          ? window.location.search
+          : `?${searchParamsString}`;
+      const params = new URLSearchParams(liveParams);
 
       cleanupQueryKeys.forEach((key) => params.delete(key));
 

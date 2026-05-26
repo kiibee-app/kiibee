@@ -29,13 +29,17 @@ import { useTranslation } from "react-i18next";
 import TrailerList from "./TrailerList";
 
 type Props = {
+  id: string;
   uploadedFile?: File | null;
   uploadedPreview?: string | null;
+  onDelete?: (id: string) => void;
 };
 
 export default function GeneralContent({
+  id,
   uploadedPreview,
   uploadedFile,
+  onDelete,
 }: Props) {
   const { t } = useTranslation();
   if (!uploadedFile) return null;
@@ -45,7 +49,10 @@ export default function GeneralContent({
     );
     return (match?.[0] as FormatType) ?? FORMAT_TYPE.PDF;
   };
-
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onDelete?.(id);
+  };
   const uploadType = getFormatType(uploadedFile);
   const previewUrl = uploadedPreview;
 
@@ -101,7 +108,7 @@ export default function GeneralContent({
             </InfoColumn>
           </FileRow>
           <DeleteAction>
-            <DeleteButton variant={VARIANT.PRIMARY}>
+            <DeleteButton variant={VARIANT.PRIMARY} onClick={handleDelete}>
               {t("contents.contentUploadModal.deletePermanently")}{" "}
             </DeleteButton>
           </DeleteAction>

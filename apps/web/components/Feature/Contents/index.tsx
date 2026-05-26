@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import ConfirmationModal from "@/components/UI/ConfirmationModal";
@@ -34,6 +34,7 @@ import {
 } from "@/utils/content";
 import { ContentFormProvider, useContentForm } from "./ContentFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
+import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
 import { UI_TITLE_FALLBACK } from "@/utils/Constants";
 
 function CreatorsContentsInner() {
@@ -103,7 +104,8 @@ function CreatorsContentsInner() {
     setCollectionPasswords,
     hasUnsavedChanges,
     handleUploadSuccess,
-    handleBackToBase,
+    handleBackToBaseStateOnly,
+    resetUploadState,
     handleHeaderSave,
     handleHeaderCancel,
     handleEditContent,
@@ -122,17 +124,51 @@ function CreatorsContentsInner() {
     contentTypeFlow,
   });
 
+  const clearSelectedCollectionContentsOverride = useCallback(() => {
+    if (!selectedCollection?.id) return;
+    setContentsMap((prev) => {
+      if (!(selectedCollection.id in prev)) return prev;
+      const next = { ...prev };
+      delete next[selectedCollection.id];
+      return next;
+    });
+  }, [selectedCollection, setContentsMap]);
+
+  const {
+    handleBack,
+    handleBackToCollection,
+    handleEditContent: handleEditContentWithUrl,
+    handleSelectCollection,
+  } = useContentsUrlState({
+    collections,
+    selectedCollection,
+    setSelectedCollection,
+    onEditContent: (id) => void handleEditContent(id),
+    onBackStateOnly: handleBackToBaseStateOnly,
+  });
+
   const handleSaveSuccessClose = () => {
     setShowSaveSuccessModal(false);
-    handleBackToBase();
+    handleBack();
   };
+
+  const handleDeleteSuccessClose = useCallback(() => {
+    if (!isUploadMode && !editingContent?.id) return;
+    resetUploadState();
+    handleBackToCollection();
+  }, [
+    editingContent?.id,
+    handleBackToCollection,
+    isUploadMode,
+    resetUploadState,
+  ]);
 
   return (
     <PageShell>
       <PageHeader>
         <HeaderRow>
           {(selectedCollection || isUploadMode) && (
-            <AuthBackButton marginBottom="0px" onClick={handleBackToBase} />
+            <AuthBackButton marginBottom="0px" onClick={handleBack} />
           )}
           <Title>
             {isUploadMode
@@ -183,13 +219,14 @@ function CreatorsContentsInner() {
             selectedCollection={selectedCollection}
             collectionContents={collectionContents}
             collections={collections}
+            editingContentId={editingContent?.id ?? null}
             setCollections={setCollections}
             setContentsMap={setContentsMap}
             setActiveTab={setActiveTabAndQuery}
-            setSelectedCollection={setSelectedCollection}
+            setSelectedCollection={handleSelectCollection}
             onDelete={openDelete}
             onEditCollection={handleEditCollection}
-            onEditContent={handleEditContent}
+            onEditContent={handleEditContentWithUrl}
             onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
@@ -235,7 +272,10 @@ function CreatorsContentsInner() {
         collectionId={selectedCollection?.id ?? null}
         onClose={closeContentUpload}
         onBack={handleContentUploadBack}
-        onUploadSuccess={handleUploadSuccess}
+        onUploadSuccess={(tab, file, preview, createdId) => {
+          clearSelectedCollectionContentsOverride();
+          handleUploadSuccess(tab, file, preview, createdId);
+        }}
       />
 
       <GenericModal
@@ -261,7 +301,7 @@ function CreatorsContentsInner() {
         confirmLabel={t("settings.notifications.discardModal.discard")}
         onConfirm={() => {
           if (isUploadMode) {
-            handleBackToBase();
+            handleBack();
           }
           closeDiscardModal();
         }}
@@ -303,6 +343,7 @@ function CreatorsContentsInner() {
         showDeleteSuccess={showDeleteSuccess}
         setShowDeleteSuccess={setShowDeleteSuccess}
         onConfirmDelete={handleConfirmDelete}
+        onSuccessClose={handleDeleteSuccessClose}
       />
     </PageShell>
   );
