@@ -28,6 +28,7 @@ export * from './content/mediaFileCategories.schema';
 export * from './content/mediaFileVersions.schema';
 export * from './content/contentAccess.schema';
 export * from './content/contentAppearance.schema';
+export * from './content/contentSetting.schema';
 
 // Subscription & Billing
 export * from './subscription/plans.schema';
