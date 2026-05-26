@@ -563,6 +563,19 @@
       }
     }
   },
+  "exploreCategories": {
+    "title": "Top categories to get you started",
+    "subtitle": "Browse through the platform and buy or rent easily with just a few clicks. You can watch whenever or wherever.",
+    "browseAll": "Browse all",
+    "categories": {
+      "all": "All content",
+      "technology": "Technology",
+      "design": "Design",
+      "art": "Art",
+      "literature": "Literature",
+      "comedies": "Comedies"
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "About us",
