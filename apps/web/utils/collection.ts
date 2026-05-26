@@ -27,6 +27,7 @@ export const API_FIELD_KEYS = {
   TITLE: "title",
   DESCRIPTION: "description",
   CONTENTS_COUNT: "contentsCount",
+  CONTENT_QTY: "contentQty",
   CREATED_AT: "createdAt",
   VISIBILITY: "visibility",
   CONTENT_TYPE: "contentType",
