@@ -2,7 +2,16 @@ import type {
   ContentAppearanceEntity,
   ContentAppearancePayload,
 } from "@/types/contentAppearanceType";
-import { BUTTON_COLOR_VALUES, TEXT_COLOR_VALUES } from "@/utils/appearance";
+import {
+  API_BUTTON_COLOR,
+  API_TEXT_COLOR,
+  DEFAULT_HEX,
+  FALLBACK_HEX,
+  HEX_COLOR_RE,
+  UI_DEFAULT_COLOR,
+  BUTTON_COLOR_VALUES,
+  TEXT_COLOR_VALUES,
+} from "@/utils/appearance";
 import type { CreatorLayoutKey } from "@/utils/creatorChannel";
 import {
   DEFAULT_CREATOR_LAYOUT,
@@ -25,16 +34,11 @@ export type AppearanceFormValues = {
   layout: CreatorLayoutKey;
 };
 
-const HEX_COLOR_RE = /^#[0-9a-f]{6}$/i;
-
-const API_TEXT_COLOR_DEFAULT = "default";
-const API_BUTTON_COLOR_DEFAULT = "default";
-
 export function getDefaultAppearanceFormValues(): AppearanceFormValues {
   return {
     textColor: TEXT_COLOR_VALUES.FOLLOW_THEME,
     buttonColor: BUTTON_COLOR_VALUES.DEFAULT,
-    buttonHex: "#000000",
+    buttonHex: DEFAULT_HEX,
     logoType: LOGO_MODE.TEXT,
     logoName: "",
     logoUrl: null,
@@ -48,7 +52,7 @@ export function getDefaultAppearanceFormValues(): AppearanceFormValues {
 }
 
 function mapTextColorFromApi(value?: string | null): string {
-  if (!value || value === API_TEXT_COLOR_DEFAULT) {
+  if (!value || value === API_TEXT_COLOR) {
     return TEXT_COLOR_VALUES.FOLLOW_THEME;
   }
 
@@ -68,7 +72,7 @@ function mapTextColorFromApi(value?: string | null): string {
 
 function mapTextColorToApi(value: string): string {
   if (value === TEXT_COLOR_VALUES.FOLLOW_THEME) {
-    return API_TEXT_COLOR_DEFAULT;
+    return API_TEXT_COLOR;
   }
 
   return value;
@@ -78,10 +82,10 @@ function mapButtonColorFromApi(value?: string | null): {
   buttonColor: string;
   buttonHex: string;
 } {
-  if (!value || value === API_BUTTON_COLOR_DEFAULT) {
+  if (!value || value === API_BUTTON_COLOR) {
     return {
       buttonColor: BUTTON_COLOR_VALUES.DEFAULT,
-      buttonHex: "#000000",
+      buttonHex: FALLBACK_HEX,
     };
   }
 
@@ -92,16 +96,16 @@ function mapButtonColorFromApi(value?: string | null): {
     };
   }
 
-  if (value === BUTTON_COLOR_VALUES.DEFAULT || value === "default-color") {
+  if (value === BUTTON_COLOR_VALUES.DEFAULT || value === UI_DEFAULT_COLOR) {
     return {
       buttonColor: BUTTON_COLOR_VALUES.DEFAULT,
-      buttonHex: "#000000",
+      buttonHex: FALLBACK_HEX,
     };
   }
 
   return {
     buttonColor: BUTTON_COLOR_VALUES.DEFAULT,
-    buttonHex: "#000000",
+    buttonHex: FALLBACK_HEX,
   };
 }
 
@@ -110,7 +114,7 @@ function mapButtonColorToApi(buttonColor: string, buttonHex: string): string {
     return buttonHex.toLowerCase();
   }
 
-  return API_BUTTON_COLOR_DEFAULT;
+  return API_BUTTON_COLOR;
 }
 
 function mapLogoTypeFromApi(value?: string | null): Mode {

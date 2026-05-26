@@ -4,10 +4,8 @@ import React, { useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
-import {
-  APPEARANCE_DEFAULT_HEX_COLOR,
-  INPUT_VARIANTS,
-} from "@/utils/Constants";
+import { INPUT_VARIANTS } from "@/utils/Constants";
+import { DEFAULT_HEX, FORM_FIELDS } from "@/utils/appearance";
 import { CONTENTS } from "@/utils/translationKeys";
 import { AppearancePanel } from "../styles";
 import {
@@ -41,21 +39,21 @@ export default function AppearanceSettingsSection() {
 
   const handleHexChange = useCallback(
     (value: string | string[]) => {
-      updateField("buttonHex", String(value));
+      updateField(FORM_FIELDS.BUTTON_HEX, String(value));
     },
     [updateField],
   );
 
   const handleHexBlur = useCallback(() => {
     updateField(
-      "buttonHex",
-      normalizeHexColor(values.buttonHex, APPEARANCE_DEFAULT_HEX_COLOR),
+      FORM_FIELDS.BUTTON_HEX,
+      normalizeHexColor(values.buttonHex, DEFAULT_HEX),
     );
   }, [updateField, values.buttonHex]);
 
   const handleColorPicked = useCallback(
     (hex: string) => {
-      updateField("buttonHex", hex);
+      updateField(FORM_FIELDS.BUTTON_HEX, hex);
     },
     [updateField],
   );
@@ -63,7 +61,7 @@ export default function AppearanceSettingsSection() {
   const handleButtonColorChange = useCallback(
     (selectedColor: string | string[]) => {
       const colorValue = String(selectedColor);
-      updateField("buttonColor", colorValue);
+      updateField(FORM_FIELDS.BUTTON_COLOR, colorValue);
       if (colorValue === BUTTON_COLOR_VALUES.CUSTOM) {
         setColorPickerOpen(true);
       }
@@ -84,7 +82,9 @@ export default function AppearanceSettingsSection() {
             <DropdownField
               options={textColorOptions}
               value={values.textColor}
-              onChange={(value) => updateField("textColor", String(value))}
+              onChange={(value) =>
+                updateField(FORM_FIELDS.TEXT_COLOR, String(value))
+              }
             />
           </FieldBox>
         </Row>
@@ -122,10 +122,7 @@ export default function AppearanceSettingsSection() {
                   icon={
                     <Swatch
                       $interactive
-                      $color={normalizeHexColor(
-                        values.buttonHex,
-                        APPEARANCE_DEFAULT_HEX_COLOR,
-                      )}
+                      $color={normalizeHexColor(values.buttonHex, DEFAULT_HEX)}
                     />
                   }
                   onIconClick={() => setColorPickerOpen(true)}
@@ -134,7 +131,7 @@ export default function AppearanceSettingsSection() {
                 {colorPickerOpen ? (
                   <AppearanceColorPickerModal
                     color={values.buttonHex}
-                    fallbackHex={APPEARANCE_DEFAULT_HEX_COLOR}
+                    fallbackHex={DEFAULT_HEX}
                     onClose={() => setColorPickerOpen(false)}
                     onSelect={handleColorPicked}
                   />

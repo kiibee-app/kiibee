@@ -18,6 +18,7 @@ import {
 } from "./styles";
 import { INPUT_TYPE } from "@/utils/ui";
 import { useContentForm } from "../ContentFormContext";
+import { FORM_FIELDS } from "@/utils/appearance";
 import { useAppearanceForm } from "./AppearanceFormContext";
 
 interface DescriptionSectionProps {
@@ -47,7 +48,7 @@ export default function DescriptionSection({
     if (useFormContext) {
       updateField("description", truncated);
     } else if (!showTitle) {
-      updateAppearanceField("description", truncated);
+      updateAppearanceField(FORM_FIELDS.DESCRIPTION, truncated);
     } else {
       setLocalDescription(truncated);
     }

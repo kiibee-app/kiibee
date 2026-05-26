@@ -31,6 +31,7 @@ import { useIsMobile } from "@/utils/useIsMobile";
 import { CoverImageSectionProps, UploadConfig } from "@/types/metadataType";
 
 import { useContentForm } from "../ContentFormContext";
+import { FORM_FIELDS } from "@/utils/appearance";
 import { useAppearanceForm } from "./AppearanceFormContext";
 
 const imageFieldMap = {
@@ -72,9 +73,9 @@ export default function CoverImageSection({
     if (useFormContext) {
       updateField(field, cropped);
     } else if (selectedConfig.type === IMAGE_TYPE.DESKTOP) {
-      updateAppearanceField("desktopCoverImageUrl", cropped);
+      updateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL, cropped);
     } else if (selectedConfig.type === IMAGE_TYPE.MOBILE) {
-      updateAppearanceField("mobileCoverImageUrl", cropped);
+      updateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL, cropped);
     } else {
       setImages((prev) => ({
         ...prev,

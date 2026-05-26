@@ -12,6 +12,7 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
+import { FORM_FIELDS } from "@/utils/appearance";
 import {
   areAppearanceValuesEqual,
   mapAppearanceFromApi,
@@ -82,7 +83,7 @@ export function AppearanceFormProvider({
       setSelectedLayout(layout);
       setDraft((prev) => ({
         ...(prev ?? serverValues),
-        layout,
+        [FORM_FIELDS.LAYOUT]: layout,
       }));
     },
     [setSelectedLayout, serverValues],

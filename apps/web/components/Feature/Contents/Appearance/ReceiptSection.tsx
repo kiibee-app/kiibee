@@ -16,7 +16,11 @@ import {
   Row,
   SectionList,
 } from "./styles";
-import { getReceiptFields } from "@/utils/appearance";
+import {
+  FORM_FIELDS,
+  RECEIPT_FIELD,
+  getReceiptFields,
+} from "@/utils/appearance";
 import { useAppearanceForm } from "./AppearanceFormContext";
 
 export default function ReceiptSection() {
@@ -27,7 +31,10 @@ export default function ReceiptSection() {
     Array.isArray(value) ? value.join("") : value;
 
   const handleChange = useCallback(
-    (key: "receipt" | "supportEmail", limit?: number) =>
+    (
+      key: typeof FORM_FIELDS.RECEIPT | typeof FORM_FIELDS.SUPPORT_EMAIL,
+      limit?: number,
+    ) =>
       (value: string | string[]) => {
         const nextValue = normalizeValue(value);
         updateField(key, limit ? nextValue.slice(0, limit) : nextValue);
@@ -59,7 +66,9 @@ export default function ReceiptSection() {
                 type={field.type}
                 value={field.value}
                 onChange={handleChange(
-                  field.key === "receiptMessage" ? "receipt" : "supportEmail",
+                  field.key === RECEIPT_FIELD
+                    ? FORM_FIELDS.RECEIPT
+                    : FORM_FIELDS.SUPPORT_EMAIL,
                   field.limit,
                 )}
                 placeholder={t(field.placeholder)}

@@ -25,6 +25,7 @@ import {
   LogoImage,
   LogoUploadWrap,
 } from "./styles";
+import { FORM_FIELDS } from "@/utils/appearance";
 import { CROP_SHAPE, INPUT_TYPE, LOGO_MODE } from "@/utils/ui";
 import GenericButton from "@/components/UI/GenericButton";
 import ImageUploadCropModal from "@/components/UI/ImageUploadCropModal";
@@ -50,7 +51,7 @@ export default function LogoSection() {
 
   const handleModeChange = useCallback(
     (newMode: typeof LOGO_MODE.TEXT | typeof LOGO_MODE.PICTURE) => {
-      updateField("logoType", newMode);
+      updateField(FORM_FIELDS.LOGO_TYPE, newMode);
     },
     [updateField],
   );
@@ -58,7 +59,7 @@ export default function LogoSection() {
   const handleChange = useCallback(
     (value: string | string[]) => {
       const text = Array.isArray(value) ? value.join("") : value;
-      updateField("logoName", text.slice(0, maxLogoNameCharacters));
+      updateField(FORM_FIELDS.LOGO_NAME, text.slice(0, maxLogoNameCharacters));
     },
     [updateField],
   );
@@ -66,7 +67,7 @@ export default function LogoSection() {
   const isTextMode = values.logoType === LOGO_MODE.TEXT;
 
   const handleImageApply = (cropped: string) => {
-    updateField("logoUrl", cropped);
+    updateField(FORM_FIELDS.LOGO_URL, cropped);
     setOpen(false);
   };
 
