@@ -25,49 +25,50 @@ import {
 import { INPUT_TYPE } from "@/utils/ui";
 import {
   BUTTON_COLOR_VALUES,
-  TEXT_COLOR_VALUES,
   getButtonColorOptions,
   getTextColorOptions,
   normalizeHexColor,
 } from "@/utils/appearance";
 import AppearanceColorPickerModal from "@/components/UI/Modals/ColorPickerModal";
+import { useAppearanceForm } from "./AppearanceFormContext";
 
 export default function AppearanceSettingsSection() {
   const { t } = useTranslation();
-  const [hexColor, setHexColor] = useState(APPEARANCE_DEFAULT_HEX_COLOR);
+  const { values, updateField } = useAppearanceForm();
   const [colorPickerOpen, setColorPickerOpen] = useState(false);
-  const [textColor, setTextColor] = useState<string>(
-    TEXT_COLOR_VALUES.FOLLOW_THEME,
-  );
-  const [buttonColor, setButtonColor] = useState<string>(
-    BUTTON_COLOR_VALUES.DEFAULT,
-  );
   const textColorOptions = useMemo(() => getTextColorOptions(t), [t]);
   const buttonColorOptions = useMemo(() => getButtonColorOptions(t), [t]);
 
-  const handleHexChange = useCallback((value: string | string[]) => {
-    setHexColor(String(value));
-  }, []);
+  const handleHexChange = useCallback(
+    (value: string | string[]) => {
+      updateField("buttonHex", String(value));
+    },
+    [updateField],
+  );
 
   const handleHexBlur = useCallback(() => {
-    setHexColor((prev) =>
-      normalizeHexColor(prev, APPEARANCE_DEFAULT_HEX_COLOR),
+    updateField(
+      "buttonHex",
+      normalizeHexColor(values.buttonHex, APPEARANCE_DEFAULT_HEX_COLOR),
     );
-  }, []);
+  }, [updateField, values.buttonHex]);
 
-  const handleColorPicked = useCallback((hex: string) => {
-    setHexColor(hex);
-  }, []);
+  const handleColorPicked = useCallback(
+    (hex: string) => {
+      updateField("buttonHex", hex);
+    },
+    [updateField],
+  );
 
   const handleButtonColorChange = useCallback(
     (selectedColor: string | string[]) => {
       const colorValue = String(selectedColor);
-      setButtonColor(colorValue);
+      updateField("buttonColor", colorValue);
       if (colorValue === BUTTON_COLOR_VALUES.CUSTOM) {
         setColorPickerOpen(true);
       }
     },
-    [],
+    [updateField],
   );
 
   return (
@@ -82,8 +83,8 @@ export default function AppearanceSettingsSection() {
           <FieldBox>
             <DropdownField
               options={textColorOptions}
-              value={textColor}
-              onChange={setTextColor}
+              value={values.textColor}
+              onChange={(value) => updateField("textColor", String(value))}
             />
           </FieldBox>
         </Row>
@@ -98,13 +99,13 @@ export default function AppearanceSettingsSection() {
             <FieldBox>
               <DropdownField
                 options={buttonColorOptions}
-                value={buttonColor}
+                value={values.buttonColor}
                 onChange={handleButtonColorChange}
               />
             </FieldBox>
           </Row>
 
-          {buttonColor === BUTTON_COLOR_VALUES.CUSTOM ? (
+          {values.buttonColor === BUTTON_COLOR_VALUES.CUSTOM ? (
             <InlineRow>
               <Copy>
                 <Label>{t(CONTENTS.appearance.color)}</Label>
@@ -113,7 +114,7 @@ export default function AppearanceSettingsSection() {
               <InlineControlWrap>
                 <InputField
                   type={INPUT_TYPE.TEXT}
-                  value={hexColor}
+                  value={values.buttonHex}
                   onChange={handleHexChange}
                   onBlur={handleHexBlur}
                   width="100%"
@@ -122,7 +123,7 @@ export default function AppearanceSettingsSection() {
                     <Swatch
                       $interactive
                       $color={normalizeHexColor(
-                        hexColor,
+                        values.buttonHex,
                         APPEARANCE_DEFAULT_HEX_COLOR,
                       )}
                     />
@@ -132,7 +133,7 @@ export default function AppearanceSettingsSection() {
                 />
                 {colorPickerOpen ? (
                   <AppearanceColorPickerModal
-                    color={hexColor}
+                    color={values.buttonHex}
                     fallbackHex={APPEARANCE_DEFAULT_HEX_COLOR}
                     onClose={() => setColorPickerOpen(false)}
                     onSelect={handleColorPicked}

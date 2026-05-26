@@ -33,6 +33,7 @@ import {
   CONTENT_UPLOAD_MODE,
 } from "@/utils/content";
 import { ContentFormProvider, useContentForm } from "./ContentFormContext";
+import { AppearanceFormProvider } from "./Appearance/AppearanceFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
 import { UI_TITLE_FALLBACK } from "@/utils/Constants";
 
@@ -124,7 +125,9 @@ function CreatorsContentsInner() {
 
   const handleSaveSuccessClose = () => {
     setShowSaveSuccessModal(false);
-    handleBackToBase();
+    if (activeTab !== APPEARANCE) {
+      handleBackToBase();
+    }
   };
 
   return (
@@ -311,7 +314,9 @@ function CreatorsContentsInner() {
 export default function CreatorsContents() {
   return (
     <ContentFormProvider>
-      <CreatorsContentsInner />
+      <AppearanceFormProvider>
+        <CreatorsContentsInner />
+      </AppearanceFormProvider>
     </ContentFormProvider>
   );
 }

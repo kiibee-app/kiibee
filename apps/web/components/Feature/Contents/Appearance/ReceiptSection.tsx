@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import { INPUT_VARIANTS, maxReceiptCharacters } from "@/utils/Constants";
@@ -17,42 +17,31 @@ import {
   SectionList,
 } from "./styles";
 import { getReceiptFields } from "@/utils/appearance";
-
-type FormState = {
-  receiptMessage: string;
-  supportEmail: string;
-};
+import { useAppearanceForm } from "./AppearanceFormContext";
 
 export default function ReceiptSection() {
   const { t } = useTranslation();
-
-  const [form, setForm] = useState<FormState>({
-    receiptMessage: "",
-    supportEmail: "",
-  });
+  const { values, updateField } = useAppearanceForm();
 
   const normalizeValue = (value: string | string[]) =>
     Array.isArray(value) ? value.join("") : value;
 
   const handleChange = useCallback(
-    (key: keyof FormState, limit?: number) => (value: string | string[]) => {
-      const nextValue = normalizeValue(value);
-
-      setForm((prev) => ({
-        ...prev,
-        [key]: limit ? nextValue.slice(0, limit) : nextValue,
-      }));
-    },
-    [],
+    (key: "receipt" | "supportEmail", limit?: number) =>
+      (value: string | string[]) => {
+        const nextValue = normalizeValue(value);
+        updateField(key, limit ? nextValue.slice(0, limit) : nextValue);
+      },
+    [updateField],
   );
 
   const fields = useMemo(
     () =>
       getReceiptFields({
-        receiptMessage: form.receiptMessage,
-        supportEmail: form.supportEmail,
+        receiptMessage: values.receipt,
+        supportEmail: values.supportEmail,
       }),
-    [form],
+    [values.receipt, values.supportEmail],
   );
 
   return (
@@ -69,7 +58,10 @@ export default function ReceiptSection() {
               <InputField
                 type={field.type}
                 value={field.value}
-                onChange={handleChange(field.key, field.limit)}
+                onChange={handleChange(
+                  field.key === "receiptMessage" ? "receipt" : "supportEmail",
+                  field.limit,
+                )}
                 placeholder={t(field.placeholder)}
                 width="100%"
                 height="46px"
@@ -83,7 +75,7 @@ export default function ReceiptSection() {
                   {t(CONTENTS.appearance.maximumCharacter)}
                 </CounterText>
                 <CounterText>
-                  {form.receiptMessage.length}/{maxReceiptCharacters}
+                  {values.receipt.length}/{maxReceiptCharacters}
                 </CounterText>
               </CounterRow>
             )}

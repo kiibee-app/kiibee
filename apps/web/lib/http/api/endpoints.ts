@@ -33,6 +33,7 @@ export const API = {
     get: (id: string) => `/content/${id}`,
     update: (id: string) => `/content/update/${id}`,
     delete: (id: string) => `/content/delete/${id}`,
+    appearance: "/content/appearance",
   },
   collection: {
     getAll: "/collection",
