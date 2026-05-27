@@ -25,6 +25,7 @@ import {
   toOptionalString,
   type ProfileForm,
 } from "@/utils/creatorProfile";
+import { resolveProfileAvatarUrl } from "@/utils/image";
 import {
   mapCreatorProfileToForm,
   type GetCreatorProfileResponse,
@@ -79,6 +80,7 @@ export const useCreatorProfile = () => {
     useState(false);
   const [forgotPwNotice, setForgotPwNotice] = useState<ForgotPwNotice>(null);
   const [passwordSubmitAttempted, setPasswordSubmitAttempted] = useState(false);
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
 
   const passwordFieldErrors = useMemo(() => {
     if (!passwordSubmitAttempted) {
@@ -233,14 +235,32 @@ export const useCreatorProfile = () => {
   ]);
 
   const handleSave = async () => {
-    if (!isProfileChanged || updateProfile.isPending) return;
+    if (!isProfileChanged || updateProfile.isPending || isUploadingAvatar) {
+      return;
+    }
 
     const hasPasswordInput = Object.values(passwords).some(Boolean);
+
+    let avatarForPatch: string | null = avatarImage;
+    if (avatarDirty) {
+      setIsUploadingAvatar(true);
+      try {
+        avatarForPatch = await resolveProfileAvatarUrl(avatarImage);
+      } catch (error) {
+        toast.error(
+          getErrorMessage(error, "dashboard.viewerProfile.saveError"),
+        );
+        return;
+      } finally {
+        setIsUploadingAvatar(false);
+      }
+    }
+
     const patchBody = buildCreatorProfilePatchBody(
       form,
       saved,
       avatarDirty,
-      avatarImage,
+      avatarForPatch,
     );
 
     if (Object.keys(patchBody).length === 0) {
@@ -264,7 +284,7 @@ export const useCreatorProfile = () => {
         data?.avatarUrl !== undefined
           ? getAvatarUrl(data.avatarUrl)
           : avatarDirty
-            ? (avatarImage ?? null)
+            ? (avatarForPatch ?? null)
             : savedAvatarUrl;
 
       setSaved(nextForm);
@@ -355,7 +375,7 @@ export const useCreatorProfile = () => {
     forgotPwNotice,
     dismissForgotPwNotice,
     passwordFieldErrors,
-    isSavingProfile: updateProfile.isPending,
+    isSavingProfile: updateProfile.isPending || isUploadingAvatar,
     isChangingPassword: changePasswordMutation.isPending,
     isLoadingProfile: profileQuery.isLoading,
   };

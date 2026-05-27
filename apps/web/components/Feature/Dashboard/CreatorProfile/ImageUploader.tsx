@@ -47,7 +47,6 @@ export default function ImageUploader({
       </Avatar>
 
       <ImageUploadCropModal
-        key={image ?? null}
         visible={open}
         titleUpload={uploadTitle}
         titleEdit={editTitle}

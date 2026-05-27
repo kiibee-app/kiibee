@@ -934,6 +934,7 @@
     "dragPhotoHere": "Træk foto her",
     "or": "eller",
     "choosePhoto": "Vælg fotos til upload",
+    "clickPhotoToChange": "Klik på billedet for at vælge et andet billede",
     "recommendedImageSize": "Brug {{cropWidth}}×{{cropHeight}} pixel billede",
     "zoom": "Zoom",
     "apply": "Anvend",

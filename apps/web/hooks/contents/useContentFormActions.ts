@@ -40,6 +40,7 @@ import {
   mockSizeFallback,
   buildContentUpdatePayload,
 } from "@/utils/Constants";
+import { resolveProfileAvatarUrl } from "@/utils/image";
 
 type Params = {
   activeTab: ContentTab;
@@ -149,7 +150,20 @@ export function useContentFormActions({
     }
 
     try {
-      const payload = buildContentUpdatePayload(formState);
+      const [thumbnailUrl, thumbnailLandscapeUrl] = await Promise.all([
+        resolveProfileAvatarUrl(formState.mediaCardThumbnail),
+        resolveProfileAvatarUrl(formState.portraitThumbnail),
+      ]);
+
+      const nextFormState = {
+        ...formState,
+        mediaCardThumbnail: thumbnailUrl,
+        portraitThumbnail: thumbnailLandscapeUrl,
+      };
+
+      setFormState(nextFormState);
+
+      const payload = buildContentUpdatePayload(nextFormState);
 
       await axiosClient.put(API.content.update(editingContent.id), payload);
 
