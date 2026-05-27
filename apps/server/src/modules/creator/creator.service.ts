@@ -3,6 +3,7 @@ import {
   getCreatorPublicProfileService,
   getExploreCreatorsService,
 } from './services/getExploreCreators.service';
+import { topCreatorsService } from './services/topCreators.service';
 
 @Injectable()
 export class CreatorService {
@@ -12,5 +13,9 @@ export class CreatorService {
 
   getCreatorPublicProfile(creatorId: string) {
     return getCreatorPublicProfileService(creatorId);
+  }
+
+  getTopCreators() {
+    return topCreatorsService();
   }
 }
