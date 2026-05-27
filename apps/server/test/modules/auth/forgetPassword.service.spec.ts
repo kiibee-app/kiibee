@@ -13,7 +13,6 @@ jest.mock('crypto', () => ({
   randomUUID: jest.fn(),
 }));
 
-import { logger } from 'src/logger/logger';
 import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { Time } from 'src/utils/constant';

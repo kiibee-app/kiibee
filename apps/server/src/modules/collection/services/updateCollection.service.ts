@@ -7,10 +7,7 @@ import { collections } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 
-import {
-  CreateCollectionDto,
-  UpdateCollectionDto,
-} from '../dto/createCollection.dto';
+import { UpdateCollectionDto } from '../dto/createCollection.dto';
 import { slugGenerator } from '../collection.helper';
 
 export const updateCollection = async (
