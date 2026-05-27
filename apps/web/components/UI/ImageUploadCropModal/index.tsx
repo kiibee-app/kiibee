@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   PhotoModalBody,
   UploadDropZone,
@@ -15,6 +15,7 @@ import {
   ModalActions,
   HiddenInput,
   UploadNoteText,
+  ChangePhotoHint,
 } from "./styles";
 import { GenericModal } from "@/components/UI/Modals";
 import GenericButton from "@/components/UI/GenericButton";
@@ -28,6 +29,9 @@ import {
 } from "@/utils/ui";
 import { getCroppedImg, readFileAsDataUrl } from "@/utils/image";
 import { useTranslation } from "react-i18next";
+
+const PREVIEW_FRAME_SIZE = 320;
+const DRAG_CLICK_THRESHOLD_PX = 8;
 
 type Props = {
   visible: boolean;
@@ -50,18 +54,24 @@ export default function ImageUploadCropModal({
   onClose,
   onApply,
   shape = CROP_SHAPE.CIRCLE,
-  cropWidth = 220,
-  cropHeight = 220,
+  cropWidth = 320,
+  cropHeight = 320,
   recommendedText = false,
 }: Props) {
   const { t } = useTranslation();
   const [pendingImage, setPendingImage] = useState<string | null>(image);
+  const [naturalSize, setNaturalSize] = useState({ width: 0, height: 0 });
+  const [frameSize, setFrameSize] = useState({
+    width: PREVIEW_FRAME_SIZE,
+    height: PREVIEW_FRAME_SIZE,
+  });
   const [zoom, setZoom] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const previewFrameRef = useRef<HTMLDivElement | null>(null);
+  const dragMovedRef = useRef(false);
 
   const dragRef = useRef<{
     startX: number;
@@ -74,14 +84,53 @@ export default function ImageUploadCropModal({
     ? IMAGE_MODAL.EDIT
     : IMAGE_MODAL.UPLOAD;
 
+  useEffect(() => {
+    if (!pendingImage) return;
+
+    const img = new Image();
+    img.onload = () => {
+      setNaturalSize({
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+      });
+    };
+    img.src = pendingImage;
+  }, [pendingImage]);
+
+  useEffect(() => {
+    const el = previewFrameRef.current;
+    if (!el || !visible) return;
+
+    const updateSize = () => {
+      setFrameSize({
+        width: el.clientWidth || PREVIEW_FRAME_SIZE,
+        height: el.clientHeight || PREVIEW_FRAME_SIZE,
+      });
+    };
+
+    updateSize();
+
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [visible, pendingImage]);
+
   const resetState = useCallback(() => {
     setPendingImage(image);
     setZoom(1);
     setPosition({ x: 0, y: 0 });
     setDragging(false);
     dragRef.current = null;
+    dragMovedRef.current = false;
     onClose();
   }, [image, onClose]);
+
+  const openFilePicker = useCallback(() => {
+    fileInputRef.current?.click();
+  }, []);
 
   const handleSelectFile = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,6 +145,7 @@ export default function ImageUploadCropModal({
         setPendingImage(imageDataUrl);
         setZoom(1);
         setPosition({ x: 0, y: 0 });
+        dragMovedRef.current = false;
       });
     },
     [],
@@ -104,6 +154,7 @@ export default function ImageUploadCropModal({
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!pendingImage) return;
 
+    dragMovedRef.current = false;
     dragRef.current = {
       startX: e.clientX,
       startY: e.clientY,
@@ -120,6 +171,10 @@ export default function ImageUploadCropModal({
     const dx = e.clientX - dragRef.current.startX;
     const dy = e.clientY - dragRef.current.startY;
 
+    if (Math.hypot(dx, dy) > DRAG_CLICK_THRESHOLD_PX) {
+      dragMovedRef.current = true;
+    }
+
     setPosition({
       x: dragRef.current.originX + dx,
       y: dragRef.current.originY + dy,
@@ -131,37 +186,40 @@ export default function ImageUploadCropModal({
     setDragging(false);
   };
 
+  const handlePreviewClick = () => {
+    if (dragMovedRef.current) {
+      dragMovedRef.current = false;
+      return;
+    }
+    openFilePicker();
+  };
+
   const applyCrop = useCallback(async () => {
     if (!pendingImage || !previewFrameRef.current) return;
 
     const { width, height } = previewFrameRef.current.getBoundingClientRect();
 
-    const cropped = await getCroppedImg(
-      pendingImage,
-      width,
-      height,
-      {
-        x: (width - cropWidth) / 2,
-        y: (height - cropHeight) / 2,
-        width: cropWidth,
-        height: cropHeight,
-      },
-      { x: position.x / zoom, y: position.y / zoom },
+    const cropped = await getCroppedImg(pendingImage, {
+      containerWidth: width,
+      containerHeight: height,
+      cropWidth,
+      cropHeight,
+      position,
       zoom,
-    );
+    });
 
     onApply(cropped);
     onClose();
-  }, [
-    pendingImage,
-    cropWidth,
-    cropHeight,
-    position.x,
-    position.y,
-    zoom,
-    onApply,
-    onClose,
-  ]);
+  }, [pendingImage, cropWidth, cropHeight, position, zoom, onApply, onClose]);
+
+  const frameW = frameSize.width;
+  const frameH = frameSize.height;
+  const coverScale =
+    naturalSize.width > 0 && naturalSize.height > 0
+      ? Math.max(frameW / naturalSize.width, frameH / naturalSize.height)
+      : 1;
+  const displayW = naturalSize.width * coverScale * zoom;
+  const displayH = naturalSize.height * coverScale * zoom;
 
   return (
     <GenericModal
@@ -183,10 +241,7 @@ export default function ImageUploadCropModal({
           <UploadDropZone>
             <UploadHint>{t("creatorProfile.dragPhotoHere")}</UploadHint>
             <UploadOrText>{t("creatorProfile.or")}</UploadOrText>
-            <GenericButton
-              variant={VARIANT.PRIMARY}
-              onClick={() => fileInputRef.current?.click()}
-            >
+            <GenericButton variant={VARIANT.PRIMARY} onClick={openFilePicker}>
               {t("creatorProfile.choosePhoto")}
             </GenericButton>
             {recommendedText && (
@@ -207,15 +262,19 @@ export default function ImageUploadCropModal({
                 onMouseMove={handleMouseMove}
                 onMouseUp={stopDragging}
                 onMouseLeave={stopDragging}
+                onClick={handlePreviewClick}
+                title={t("creatorProfile.clickPhotoToChange")}
               >
-                {pendingImage && (
+                {pendingImage && displayW > 0 && displayH > 0 && (
                   <ImagePreview
                     src={pendingImage}
                     alt="Preview"
                     $x={position.x}
                     $y={position.y}
-                    $zoom={zoom}
+                    $width={displayW}
+                    $height={displayH}
                     $isDragging={dragging}
+                    draggable={false}
                   />
                 )}
                 <CropOverlay
@@ -225,6 +284,10 @@ export default function ImageUploadCropModal({
                 />
               </ImagePreviewWrapper>
             </CropCanvas>
+
+            <ChangePhotoHint>
+              {t("creatorProfile.clickPhotoToChange")}
+            </ChangePhotoHint>
 
             <ZoomContainer>
               <ZoomSlider

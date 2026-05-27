@@ -71,7 +71,9 @@ export function readViewerBootstrapFromStorage(): ViewerBootstrap {
     name,
     email,
     avatarUrl:
-      trimmedAvatar.length > 0 && IMAGE_DATA_PREFIX.test(trimmedAvatar)
+      trimmedAvatar.length > 0 &&
+      (IMAGE_DATA_PREFIX.test(trimmedAvatar) ||
+        /^https?:\/\//i.test(trimmedAvatar))
         ? trimmedAvatar
         : null,
     downloadsCount: Number.isFinite(downloadsCount) ? downloadsCount : 0,

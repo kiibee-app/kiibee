@@ -59,10 +59,13 @@ export const updateViewerProfileService = async (
     if (dto.avatarUrl === null || dto.avatarUrl === '') {
       patch.avatarUrl = null;
     } else {
-      if (
-        dto.avatarUrl.length > MAX_AVATAR_DATA_URL_CHARS ||
-        !IMAGE_DATA_URL_RE.test(dto.avatarUrl)
-      ) {
+      const isDataUrl =
+        IMAGE_DATA_URL_RE.test(dto.avatarUrl) &&
+        dto.avatarUrl.length <= MAX_AVATAR_DATA_URL_CHARS;
+      const isHttpUrl =
+        /^https?:\/\/.+/i.test(dto.avatarUrl) && dto.avatarUrl.length <= 2_048;
+
+      if (!isDataUrl && !isHttpUrl) {
         return fail('Invalid profile image data', HttpStatus.BAD_REQUEST);
       }
 

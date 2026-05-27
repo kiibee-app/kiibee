@@ -26,6 +26,7 @@ export const API = {
     fileUploadUrl: "/media/file/upload-url",
     fileConfirm: "/media/file/confirm",
     fileSignedUrl: "/media/file/signed-url",
+    imagesUpload: "/media/images/upload",
   },
   content: {
     create: "/content/create",

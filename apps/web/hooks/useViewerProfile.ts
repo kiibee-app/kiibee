@@ -27,6 +27,7 @@ import {
   type ForgotPwNotice,
   type ViewerBootstrap,
 } from "@/utils/viewerProfile";
+import { resolveProfileAvatarUrl } from "@/utils/image";
 
 type ViewerProfileForm = {
   name: string;
@@ -105,6 +106,7 @@ export const useViewerProfile = () => {
   const [showProfileSavedModal, setShowProfileSavedModal] = useState(false);
   const [forgotPwNotice, setForgotPwNotice] = useState<ForgotPwNotice>(null);
   const [passwordSubmitAttempted, setPasswordSubmitAttempted] = useState(false);
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
 
   const passwordFieldErrors = useMemo(() => {
     if (!passwordSubmitAttempted) {
@@ -233,7 +235,9 @@ export const useViewerProfile = () => {
   }, []);
 
   const handleSave = async () => {
-    if (!isProfileChanged || updateProfile.isPending) return;
+    if (!isProfileChanged || updateProfile.isPending || isUploadingAvatar) {
+      return;
+    }
 
     const patchBody: UpdateViewerProfileBody = {};
     if (form.name.trim() !== saved.name.trim()) {
@@ -242,8 +246,21 @@ export const useViewerProfile = () => {
     if (form.email.trim().toLowerCase() !== saved.email.trim().toLowerCase()) {
       patchBody.email = form.email.trim().toLowerCase();
     }
+
+    let uploadedAvatarUrl: string | null | undefined;
     if (avatarDirty) {
-      patchBody.avatarUrl = avatarImage ?? null;
+      setIsUploadingAvatar(true);
+      try {
+        uploadedAvatarUrl = await resolveProfileAvatarUrl(avatarImage);
+        patchBody.avatarUrl = uploadedAvatarUrl;
+      } catch (error) {
+        toast.error(
+          getErrorMessage(error, "dashboard.viewerProfile.saveError"),
+        );
+        return;
+      } finally {
+        setIsUploadingAvatar(false);
+      }
     }
 
     const needsPatch = Object.keys(patchBody).length > 0;
@@ -262,7 +279,7 @@ export const useViewerProfile = () => {
             ? null
             : typeof data?.avatarUrl === "string" && data.avatarUrl.length > 0
               ? data.avatarUrl
-              : (avatarImage ?? null);
+              : (uploadedAvatarUrl ?? avatarImage ?? null);
 
         const nextForm: ViewerProfileForm = {
           name: nextName,
@@ -396,7 +413,7 @@ export const useViewerProfile = () => {
     forgotPwNotice,
     dismissForgotPwNotice,
     passwordFieldErrors,
-    isSavingProfile: updateProfile.isPending,
+    isSavingProfile: updateProfile.isPending || isUploadingAvatar,
     isChangingPassword: changePasswordMutation.isPending,
     isLoadingProfile: profileQuery.isLoading,
   };
