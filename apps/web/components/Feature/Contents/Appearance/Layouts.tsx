@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import { AppearancePanel } from "../styles";
 import {
   Copy,
@@ -20,10 +19,12 @@ import {
 } from "./styles";
 import { CONTENTS } from "@/utils/translationKeys";
 import { layoutCards } from "@/utils/data";
+import { useAppearanceForm } from "./AppearanceFormContext";
+import type { CreatorLayoutKey } from "@/utils/creatorChannel";
 
 export default function LayoutsSection() {
   const { t } = useTranslation();
-  const { selectedLayout, setSelectedLayout } = useCreatorChannelLayout();
+  const { values, setLayout } = useAppearanceForm();
 
   return (
     <AppearancePanel>
@@ -40,11 +41,11 @@ export default function LayoutsSection() {
                 key={card.key}
                 type="button"
                 aria-label={t(card.titleKey)}
-                aria-pressed={selectedLayout === card.key}
-                $active={selectedLayout === card.key}
-                onClick={() => setSelectedLayout(card.key)}
+                aria-pressed={values.layout === card.key}
+                $active={values.layout === card.key}
+                onClick={() => setLayout(card.key as CreatorLayoutKey)}
               >
-                <LayoutCard $active={selectedLayout === card.key}>
+                <LayoutCard $active={values.layout === card.key}>
                   <LayoutTitle>{t(card.titleKey)}</LayoutTitle>
                   <LayoutImageShell>
                     <LayoutImage

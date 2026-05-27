@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import {
@@ -25,17 +25,17 @@ import {
   LogoImage,
   LogoUploadWrap,
 } from "./styles";
-import { CROP_SHAPE, INPUT_TYPE, LOGO_MODE, Mode } from "@/utils/ui";
+import { FORM_FIELDS } from "@/utils/appearance";
+import { CROP_SHAPE, INPUT_TYPE, LOGO_MODE } from "@/utils/ui";
 import GenericButton from "@/components/UI/GenericButton";
 import ImageUploadCropModal from "@/components/UI/ImageUploadCropModal";
+import { useAppearanceForm } from "./AppearanceFormContext";
 
 export default function LogoSection() {
   const { t } = useTranslation();
+  const { values, updateField } = useAppearanceForm();
+  const [open, setOpen] = React.useState(false);
 
-  const [mode, setMode] = useState<Mode>(LOGO_MODE.TEXT);
-  const [logoText, setLogoText] = useState("");
-  const [open, setOpen] = useState(false);
-  const [image, setImage] = useState<string | null>(null);
   const texts = useMemo(
     () => ({
       title: t(CONTENTS.appearance.logo.title),
@@ -49,20 +49,28 @@ export default function LogoSection() {
     [t],
   );
 
-  const handleModeChange = useCallback((newMode: Mode) => {
-    setMode(newMode);
-  }, []);
+  const handleModeChange = useCallback(
+    (newMode: typeof LOGO_MODE.TEXT | typeof LOGO_MODE.PICTURE) => {
+      updateField(FORM_FIELDS.LOGO_TYPE, newMode);
+    },
+    [updateField],
+  );
 
-  const handleChange = useCallback((value: string | string[]) => {
-    const text = Array.isArray(value) ? value.join("") : value;
-    setLogoText(text.slice(0, maxLogoNameCharacters));
-  }, []);
+  const handleChange = useCallback(
+    (value: string | string[]) => {
+      const text = Array.isArray(value) ? value.join("") : value;
+      updateField(FORM_FIELDS.LOGO_NAME, text.slice(0, maxLogoNameCharacters));
+    },
+    [updateField],
+  );
 
-  const isTextMode = mode === LOGO_MODE.TEXT;
+  const isTextMode = values.logoType === LOGO_MODE.TEXT;
+
   const handleImageApply = (cropped: string) => {
-    setImage(cropped);
+    updateField(FORM_FIELDS.LOGO_URL, cropped);
     setOpen(false);
   };
+
   return (
     <AppearancePanel>
       <SectionList>
@@ -94,7 +102,7 @@ export default function LogoSection() {
             {isTextMode ? (
               <InputField
                 type={INPUT_TYPE.TEXT}
-                value={logoText}
+                value={values.logoName}
                 onChange={handleChange}
                 placeholder={texts.placeholder}
                 width="100%"
@@ -110,7 +118,7 @@ export default function LogoSection() {
                   {texts.uploadButton}
                 </GenericButton>
 
-                {image && <LogoImage src={image} />}
+                {values.logoUrl && <LogoImage src={values.logoUrl} />}
               </LogoUploadWrap>
             )}
           </ControlWrap>
@@ -119,7 +127,7 @@ export default function LogoSection() {
             <CounterRow>
               <CounterText>{texts.maxCharacter}</CounterText>
               <CounterText>
-                {logoText.length}/{maxLogoNameCharacters}
+                {values.logoName.length}/{maxLogoNameCharacters}
               </CounterText>
             </CounterRow>
           )}
@@ -129,7 +137,7 @@ export default function LogoSection() {
         visible={open}
         titleUpload={t("creatorProfile.uploadPhotoTitle")}
         titleEdit={t("creatorProfile.editPhotoTitle")}
-        image={image}
+        image={values.logoUrl}
         onClose={() => setOpen(false)}
         onApply={handleImageApply}
         shape={CROP_SHAPE.RECT}
