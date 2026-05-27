@@ -171,6 +171,11 @@ export const ERROR_MESSAGES = {
 
 export const UI_TITLE_FALLBACK = "Content Details";
 
+export const SCROLL_OPTIONS = {
+  behavior: "smooth",
+  block: "center",
+} as const;
+
 export const apiToUiAccessTypeMap: Record<string, AdmissionRequirementValue> = {
   [ACCESS_TYPE_PASSWORD]: ADMISSION_REQUIREMENT_VALUES.password,
   [ACCESS_TYPE_EMAIL_GATED]: ADMISSION_REQUIREMENT_VALUES.email,
