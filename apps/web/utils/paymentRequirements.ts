@@ -4,6 +4,7 @@ import {
   PAYMENT_UNLIMITED_DOWNLOAD_LIMIT,
   PaymentDownloadLimitValue,
 } from "./common";
+import { FORMAT_TYPE } from "./types";
 
 export type TextConfig = {
   title?: string;
@@ -112,7 +113,7 @@ export const getPaymentContentTexts = (
       rentalDescription: t("contents.payment.webRental.description"),
     },
 
-    "e-publication": {
+    epub: {
       purchaseTitle: t("contents.payment.epubPurchase.title"),
       purchaseDescription: t("contents.payment.epubPurchase.description"),
     },
@@ -130,5 +131,7 @@ export const getPaymentContentTexts = (
     },
   };
 
-  return contentTypeMap[contentTypeId || "video"] || contentTypeMap.video;
+  return (
+    contentTypeMap[contentTypeId || FORMAT_TYPE.VIDEO] || contentTypeMap.video
+  );
 };

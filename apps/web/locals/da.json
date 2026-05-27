@@ -1599,37 +1599,30 @@
         "title": "Website subscription access",
         "description": "Users can access the website for a limited time."
       },
-
       "webPurchase": {
         "title": "Website lifetime access",
         "description": "Users will get permanent access to the website."
       },
-
       "epubRental": {
         "title": "E-publication rental",
         "description": "Readers can access the publication temporarily."
       },
-
       "epubPurchase": {
         "title": "E-publication purchase",
         "description": "Purchased publications stay in the user's library."
       },
-
       "pdfRental": {
         "title": "PDF rental access",
         "description": "PDF access will expire after the rental period."
       },
-
       "pdfPurchase": {
         "title": "PDF purchase/download",
         "description": "Purchased PDFs remain permanently accessible."
       },
-
       "audioRental": {
         "title": "Audio streaming rental",
         "description": "Audio content will be streamable for a limited time."
       },
-
       "audioPurchase": {
         "title": "Audio purchase/download",
         "description": "Purchased audio will stay in the user's library."

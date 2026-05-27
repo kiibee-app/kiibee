@@ -1,4 +1,5 @@
 import GenericButton from "@/components/UI/GenericButton";
+import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
@@ -30,7 +31,6 @@ export const DetailsWrapper = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border-radius: 16px;
-
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -139,9 +139,10 @@ export const CheckboxRow = styled.label`
   gap: 8px;
 `;
 
-export const HelperText = styled.div`
-  font-size: 12px;
-  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+export const HelperText = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
   margin-left: 22px;
 `;
 

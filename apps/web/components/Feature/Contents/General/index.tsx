@@ -55,7 +55,6 @@ export default function GeneralContent({
   const { t } = useTranslation();
   const { formState, updateField } = useContentForm();
   if (!uploadedFile) return null;
-
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     onDelete?.(id);
