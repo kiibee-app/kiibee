@@ -7,7 +7,11 @@ import { toast } from "react-toastify";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { API } from "@/lib/http/api/endpoints";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
-import { ContentType, getFileNameWithoutExtension } from "@/utils/content";
+import {
+  ContentType,
+  getFileNameWithoutExtension,
+  normalizeContentTypeValue,
+} from "@/utils/content";
 import { useContentForm } from "@/components/Feature/Contents/ContentFormContext";
 import { useAppearanceForm } from "@/components/Feature/Contents/Appearance/AppearanceFormContext";
 import {
@@ -143,6 +147,12 @@ export function useContentFormActions({
     setActiveTabAndQuery(COLLECTIONS);
   };
 
+  const handleBackToBaseStateOnly = () => {
+    if (isUploadMode) return resetUploadState();
+
+    setSelectedCollection(null);
+  };
+
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
       toast.error(t(ERROR_MESSAGES.NO_CONTENT));
@@ -262,11 +272,12 @@ export function useContentFormActions({
 
   const handleEditContent = async (id: string) => {
     const item = collectionContents.find((content) => content.id === id);
-    if (!item) return;
 
     interface ContentDetailsResponse {
       title?: string;
       description?: string;
+      contentType?: string;
+      contentTypeId?: string;
       trailerUrl?: string;
       visibility?: string;
       publishedYear?: number;
@@ -289,14 +300,31 @@ export function useContentFormActions({
         response as { data?: { data?: ContentDetailsResponse } }
       ).data?.data;
       if (fullContent) {
-        setEditingContent(item);
+        const resolvedContentType = normalizeContentTypeValue(
+          fullContent.contentTypeId ??
+            fullContent.contentType ??
+            item?.contentType ??
+            CONTENT_TYPE_FALLBACK,
+        );
+        const resolvedName = item?.name || fullContent.title || "";
 
-        const mockFile = new File([], item.name, {
+        setEditingContent({
+          id,
+          name: resolvedName,
+          description: fullContent.description || item?.description,
+          visibility: item?.visibility || VISIBILITY_PUBLIC_UPPER,
+          createdAt: item?.createdAt || new Date().toISOString(),
+          contentType: resolvedContentType,
+          actions: item?.actions || "",
+        });
+
+        const mockFile = new File([], resolvedName, {
           type:
-            contentTypeMimeMap[item.contentType] ?? MIME_TYPE_APPLICATION_PDF,
+            contentTypeMimeMap[resolvedContentType] ??
+            MIME_TYPE_APPLICATION_PDF,
         });
         const mockSize =
-          contentTypeSizeMap[item.contentType] ?? mockSizeFallback;
+          contentTypeSizeMap[resolvedContentType] ?? mockSizeFallback;
         Object.defineProperty(mockFile, "size", { value: mockSize });
 
         setUploadedFile(mockFile);
@@ -356,6 +384,8 @@ export function useContentFormActions({
     hasUnsavedChanges: hasAppearanceChanges,
     handleUploadSuccess,
     handleBackToBase,
+    handleBackToBaseStateOnly,
+    resetUploadState,
     handleHeaderSave,
     handleHeaderCancel,
     handleEditContent,

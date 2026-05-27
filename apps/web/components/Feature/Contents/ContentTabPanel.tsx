@@ -47,6 +47,7 @@ type Props = {
   selectedCollection: CollectionRow | null;
   collectionContents: CollectionContentRow[];
   collections: CollectionRow[];
+  editingContentId?: string | null;
   setCollections: Dispatch<SetStateAction<CollectionRow[]>>;
   setSelectedCollection: (collection: CollectionRow) => void;
   onDelete: (id: string, type: CollectionTableType) => void;
@@ -70,6 +71,7 @@ export default function ContentTabPanel({
   selectedCollection,
   collectionContents,
   collections,
+  editingContentId,
   setCollections,
   setSelectedCollection,
   onDelete,
@@ -254,8 +256,10 @@ export default function ContentTabPanel({
   if (activeTab === ADD_CONTENT_TABS.GENERAL) {
     return (
       <GeneralContent
+        id={editingContentId ?? ""}
         uploadedFile={uploadedFile}
         uploadedPreview={uploadedPreview}
+        onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
       />
     );
   }
