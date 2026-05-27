@@ -144,13 +144,10 @@ export function useContentFormActions({
     setActiveTabAndQuery(COLLECTIONS);
   };
 
-  // Used when the caller already handled URL/query changes (e.g. manual router.replace).
   const handleBackToBaseStateOnly = () => {
-    if (isUploadMode) {
-      resetUploadState();
-    } else {
-      setSelectedCollection(null);
-    }
+    if (isUploadMode) return resetUploadState();
+
+    setSelectedCollection(null);
   };
 
   const saveUploadedContent = async () => {

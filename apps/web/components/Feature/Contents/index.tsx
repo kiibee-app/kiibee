@@ -125,14 +125,16 @@ function CreatorsContentsInner() {
   });
 
   const clearSelectedCollectionContentsOverride = useCallback(() => {
-    if (!selectedCollection?.id) return;
+    const id = selectedCollection?.id;
+    if (!id) return;
+
     setContentsMap((prev) => {
-      if (!(selectedCollection.id in prev)) return prev;
+      if (!prev[id]) return prev;
       const next = { ...prev };
-      delete next[selectedCollection.id];
+      delete next[id];
       return next;
     });
-  }, [selectedCollection, setContentsMap]);
+  }, [selectedCollection?.id, setContentsMap]);
 
   const {
     handleBack,
@@ -155,13 +157,8 @@ function CreatorsContentsInner() {
   const handleDeleteSuccessClose = useCallback(() => {
     if (!isUploadMode && !editingContent?.id) return;
     resetUploadState();
-    handleBackToCollection();
-  }, [
-    editingContent?.id,
-    handleBackToCollection,
-    isUploadMode,
-    resetUploadState,
-  ]);
+    handleBack();
+  }, [editingContent?.id, handleBack, isUploadMode, resetUploadState]);
 
   return (
     <PageShell>

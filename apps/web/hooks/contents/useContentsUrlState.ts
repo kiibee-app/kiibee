@@ -6,11 +6,11 @@ import type { CollectionRow } from "@/types/collectionsType";
 import {
   CONTENT_COLLECTION_QUERY_KEY,
   CONTENT_ITEM_QUERY_KEY,
+  CONTENT_LAST_EDITED_STORAGE_KEY,
   CONTENT_TAB,
 } from "@/utils/Constants";
 import { isBrowser } from "@/utils/ui";
-
-const CONTENT_LAST_EDITED_STORAGE_KEY = "contents:lastEditedContentId";
+import { storage } from "@/utils/storage";
 
 type Params = {
   collections: CollectionRow[];
@@ -38,17 +38,12 @@ export function useContentsUrlState({
   const queryCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
   const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
-  // Prevent restore effects from immediately rehydrating state while we are clearing URL params.
   const isClearingParamsRef = useRef(false);
-  useEffect(() => {
-    if (!queryCollectionId && !queryContentId) {
-      isClearingParamsRef.current = false;
-    }
-  }, [queryCollectionId, queryContentId]);
+  const hasRestoredCollectionRef = useRef(false);
+  const hasRestoredContentRef = useRef(false);
 
   const storedContentId = useMemo(() => {
-    if (!isBrowser) return null;
-    return window.localStorage.getItem(CONTENT_LAST_EDITED_STORAGE_KEY);
+    return storage.get(CONTENT_LAST_EDITED_STORAGE_KEY);
   }, []);
 
   const effectiveContentId = queryContentId ?? storedContentId;
@@ -61,17 +56,19 @@ export function useContentsUrlState({
     }) => {
       const params = new URLSearchParams(getLiveSearch(searchParamsString));
 
-      const apply = (key: string, value: string | null | undefined) => {
-        if (value === undefined) return;
-        if (value) params.set(key, value);
-        else params.delete(key);
-      };
+      const apply = (key: string, value: string | null | undefined) =>
+        value === undefined
+          ? undefined
+          : value
+            ? params.set(key, value)
+            : params.delete(key);
 
       apply(CONTENT_TAB, updates.tab);
       apply(CONTENT_COLLECTION_QUERY_KEY, updates.collectionId);
       apply(CONTENT_ITEM_QUERY_KEY, updates.contentId);
 
       const query = params.toString();
+
       router.replace(query ? `${pathname}?${query}` : pathname, {
         scroll: false,
       });
@@ -79,61 +76,56 @@ export function useContentsUrlState({
     [pathname, router, searchParamsString],
   );
 
-  const hasRestoredCollectionRef = useRef(false);
   useEffect(() => {
-    if (hasRestoredCollectionRef.current) return;
-    if (isClearingParamsRef.current) return;
-    if (!queryCollectionId) {
+    if (
+      hasRestoredCollectionRef.current ||
+      isClearingParamsRef.current ||
+      !queryCollectionId ||
+      !collections.length
+    ) {
+      return;
+    }
+
+    const match = collections.find((c) => c.id === queryCollectionId);
+
+    if (!match) {
+      replaceQuery({ collectionId: null, contentId: null });
       hasRestoredCollectionRef.current = true;
       return;
     }
-    if (!collections.length) return;
 
-    const match = collections.find((c) => c.id === queryCollectionId) ?? null;
-    if (match) {
-      setSelectedCollection(match);
-      return;
-    }
-
-    replaceQuery({ collectionId: null, contentId: null });
-    hasRestoredCollectionRef.current = true;
+    setSelectedCollection(match);
   }, [collections, queryCollectionId, replaceQuery, setSelectedCollection]);
 
   useEffect(() => {
-    if (!queryCollectionId || !selectedCollection) return;
-    if (selectedCollection.id === queryCollectionId) {
-      hasRestoredCollectionRef.current = true;
-    }
-  }, [queryCollectionId, selectedCollection]);
+    const canEditContent =
+      !hasRestoredContentRef.current &&
+      !isClearingParamsRef.current &&
+      !!effectiveContentId &&
+      !!selectedCollection?.id;
 
-  const hasRestoredContentRef = useRef(false);
-  useEffect(() => {
-    if (hasRestoredContentRef.current) return;
-    if (isClearingParamsRef.current) return;
-    if (!effectiveContentId) {
+    if (canEditContent) {
+      onEditContent(effectiveContentId);
       hasRestoredContentRef.current = true;
-      return;
     }
-    if (!selectedCollection?.id) return;
-
-    onEditContent(effectiveContentId);
-    hasRestoredContentRef.current = true;
-  }, [effectiveContentId, onEditContent, selectedCollection?.id]);
+  }, [
+    queryCollectionId,
+    selectedCollection,
+    effectiveContentId,
+    onEditContent,
+  ]);
 
   const handleSelectCollection = useCallback(
     (collection: CollectionRow) => {
       setSelectedCollection(collection);
       replaceQuery({ collectionId: collection.id, contentId: null });
-      hasRestoredContentRef.current = false;
     },
     [replaceQuery, setSelectedCollection],
   );
 
   const handleEditContent = useCallback(
     (id: string) => {
-      if (isBrowser) {
-        window.localStorage.setItem(CONTENT_LAST_EDITED_STORAGE_KEY, id);
-      }
+      storage.set(CONTENT_LAST_EDITED_STORAGE_KEY, id);
       replaceQuery({
         collectionId: selectedCollection?.id ?? null,
         contentId: id,
@@ -145,9 +137,7 @@ export function useContentsUrlState({
 
   const handleBack = useCallback(() => {
     isClearingParamsRef.current = true;
-    if (isBrowser) {
-      window.localStorage.removeItem(CONTENT_LAST_EDITED_STORAGE_KEY);
-    }
+    storage.remove(CONTENT_LAST_EDITED_STORAGE_KEY);
     replaceQuery({
       tab: null,
       collectionId: selectedCollection?.id ?? null,
@@ -159,10 +149,7 @@ export function useContentsUrlState({
 
   const handleBackToCollection = useCallback(() => {
     isClearingParamsRef.current = true;
-
-    if (isBrowser) {
-      window.localStorage.removeItem(CONTENT_LAST_EDITED_STORAGE_KEY);
-    }
+    storage.remove(CONTENT_LAST_EDITED_STORAGE_KEY);
     replaceQuery({
       tab: null,
       contentId: null,
