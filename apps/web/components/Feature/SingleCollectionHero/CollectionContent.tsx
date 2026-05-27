@@ -40,7 +40,7 @@ export default function CollectionContent({ videos, maxWidth }: Props) {
           placeholder={t("creators.search")}
           value={search}
           onChange={setSearch}
-          width="216px"
+          width="min(216px, 100%)"
         />
       </Header>
       <ShowcaseWrapper>

@@ -12,31 +12,16 @@ import {
 } from "./styles";
 import TutorialsShowcase from "../TutorialsShowcase";
 import { useTranslation } from "react-i18next";
-import { tutorialVideoSections, tutorialVideos } from "@/utils/data";
-import type { TutorialVideo } from "@/utils/types";
 import { MonoText } from "@/components/UI/Monotext";
 import { useRouter } from "next/navigation";
-
-type SectionWithTutorials = (typeof tutorialVideoSections)[number] & {
-  tutorials: TutorialVideo[];
-};
+import { tutorialCollections } from "@/utils/tutorialCollections";
 
 export default function TutorialContent() {
   const { t } = useTranslation();
   const router = useRouter();
-  const sections: SectionWithTutorials[] = tutorialVideoSections.map(
-    (section) => ({
-      ...section,
-      tutorials: section.videoIds
-        .map((videoId) =>
-          tutorialVideos.find((tutorial) => tutorial.id === videoId),
-        )
-        .filter((tutorial): tutorial is TutorialVideo => Boolean(tutorial)),
-    }),
-  );
-  const handleClick = (id: string) => {
+  const openCollection = (id: string) =>
     router.push(`/single-collection?id=${id}`);
-  };
+
   return (
     <Content>
       <HeroBlock>
@@ -47,16 +32,16 @@ export default function TutorialContent() {
           </MonoText>
         </HeroSubtitle>
       </HeroBlock>
-      {sections.map((section) => (
+      {tutorialCollections.map((section) => (
         <section key={section.id}>
           <SectionHeader>
-            <SectionLabel>
+            <SectionLabel onClick={() => openCollection(section.id)}>
               <SectionTag>
                 <MonoText $use="H4_Medium">{section.title}</MonoText>
               </SectionTag>
               <LeftIcon />
             </SectionLabel>
-            <SectionLink onClick={() => handleClick(section.id)}>
+            <SectionLink onClick={() => openCollection(section.id)}>
               <LeftIcon />
             </SectionLink>
           </SectionHeader>
