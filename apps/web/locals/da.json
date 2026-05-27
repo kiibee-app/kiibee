@@ -1302,7 +1302,10 @@
       "discountType": {
         "fixedAmount": "Fast beloeb",
         "percentage": "Procent"
-      }
+      },
+      "editButton": "Rediger kupon",
+      "createdDate": "Oprettelsesdato",
+      "status": "Status"
     },
     "couponCodes": {
       "title": "Kuponkoder",

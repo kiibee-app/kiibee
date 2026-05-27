@@ -15,9 +15,9 @@ export const SelectorList = styled.div`
 `;
 
 export const SectionRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
 `;
 
 export const SectionLabel = styled(MonoText).attrs({

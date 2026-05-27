@@ -206,3 +206,10 @@ export const getCategoryOptions = (t: TFunction) => [
 export const getFileNameWithoutExtension = (filename: string): string => {
   return filename.replace(/\.[^/.]+$/, "");
 };
+
+export const COUPON_MODE = {
+  PREVIEW: "preview",
+  DETAILS: "details",
+} as const;
+
+export type CouponMode = (typeof COUPON_MODE)[keyof typeof COUPON_MODE];
