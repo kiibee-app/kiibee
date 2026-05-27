@@ -23,7 +23,6 @@ import {
   SelectorList,
   UploadList,
 } from "./styles";
-
 import { COUPON_DISCOUNT_PERCENTAGE } from "@/utils/common";
 import { MonoText } from "@/components/UI/Monotext";
 import { BUTTON } from "@/utils/Constants";
@@ -33,16 +32,17 @@ import { CollectionRow } from "@/types/collectionsType";
 import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
 import { formatDateUSShort } from "@/utils/formatDate";
 import { MODAL_ALIGN } from "@/utils/ui";
+import { COUPON_MODE, CouponMode } from "@/utils/content";
 
 type Props = {
   visible: boolean;
   data: CouponEntity | CreateCouponPayload;
   collections: CollectionRow[];
-  onBack: () => void;
-  onClose: () => void;
-  onContinue: () => void;
+  onBack?: () => void;
+  onClose?: () => void;
+  onContinue?: () => Promise<void> | void;
   isSuccess?: boolean;
-  mode?: "preview" | "details";
+  mode?: CouponMode;
   onEdit?: () => void;
 };
 
@@ -54,7 +54,7 @@ export default function CouponPreviewModal({
   onClose,
   onContinue,
   isSuccess = false,
-  mode = "preview",
+  mode = COUPON_MODE.PREVIEW,
   onEdit,
 }: Props) {
   const { t } = useTranslation();
@@ -73,7 +73,7 @@ export default function CouponPreviewModal({
     label: item.name,
   }));
 
-  const isDetails = mode === "details";
+  const isDetails = mode === COUPON_MODE.DETAILS;
 
   const collectionIds = isDetails
     ? ((data as CouponEntity).applicableProducts?.collectionIds ?? [])
@@ -94,15 +94,15 @@ export default function CouponPreviewModal({
     contentIds.length > 0
       ? contentIds.map((id) => getLabel(id, contentOptions))
       : ["-"];
-  console.log((data as CouponEntity).status);
+
   return (
     <GenericModal
       visible={visible}
       onClose={onClose}
       iconMargin={isSuccess ? "0 auto 8px" : undefined}
-      width="670px"
+      size="md"
       height="480px"
-      padding="30px"
+      spacing="xs"
       borderRadius="20px"
       textAlign={MODAL_ALIGN.START}
       title={isDetails ? t("contents.couponDetails.title") : undefined}

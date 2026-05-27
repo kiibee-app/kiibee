@@ -40,6 +40,7 @@ import { useContentMoveActions } from "@/hooks/contents/useContentMoveActions";
 import Payment from "./Payment";
 import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
 import CouponPreviewModal from "./coupon/CouponPreviewModal";
+import { COUPON_MODE } from "@/utils/content";
 
 type Props = {
   activeTab: ContentTab;
@@ -223,13 +224,11 @@ export default function ContentTabPanel({
             visible={showCouponModal}
             data={selectedCoupon}
             collections={collections}
-            mode="details"
+            mode={COUPON_MODE.DETAILS}
             onClose={() => {
               setShowCouponModal(false);
               setSelectedCoupon(null);
             }}
-            onBack={() => {}}
-            onContinue={() => {}}
             onEdit={() => {
               if (!selectedCoupon) return;
               setShowCouponModal(false);
