@@ -229,12 +229,12 @@ export function SingleContentBody({
 
       {safeMeta.length ? (
         <MetaSection>
-          {safeMeta.map((item) => (
+          {safeMeta.map((item, index) => (
             <MetaRow key={item.label}>
               <MetaKey>
                 <MetaLabelText>{item.label}</MetaLabelText>
               </MetaKey>
-              <MetaValueText>{item.value}</MetaValueText>
+              <MetaValueText $strong={index === 1}>{item.value}</MetaValueText>
             </MetaRow>
           ))}
         </MetaSection>
