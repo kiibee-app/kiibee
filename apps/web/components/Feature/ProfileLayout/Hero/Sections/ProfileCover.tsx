@@ -26,13 +26,14 @@ import {
   UploadCountText,
 } from "@/components/Feature/ProfileLayout/Hero/styles";
 
-/** Layout 1: rounded cover, avatar beside bio, “more” opens about modal */
 export default function ProfileCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
   const { isAboutOpen, openAbout, closeAbout } = tabState;
-  const { displayName, avatarUrl, initial } = useCreatorChannelProfile();
+  const { displayName, avatarUrl, initial, about } = useCreatorChannelProfile();
   const creatorName = displayName;
+  const uploadsCount = about?.uploadCount ?? 0;
+  const biography = about?.description || t(CREATE_PROFILE_HOME.description);
 
   return (
     <HeroWrapper>
@@ -63,13 +64,11 @@ export default function ProfileCoverSection() {
             </CreatorName>
             <UploadCount>
               <UploadCountText>
-                {t(CREATE_PROFILE_HOME.uploads, { count: 42 })}
+                {t(CREATE_PROFILE_HOME.uploads, { count: uploadsCount })}
               </UploadCountText>
             </UploadCount>
             <CreatorBio>
-              <CreatorBioText>
-                {t(CREATE_PROFILE_HOME.description)}
-              </CreatorBioText>
+              <CreatorBioText>{biography}</CreatorBioText>
               <MoreText>
                 <MoreTextLabel onClick={openAbout}>
                   {t(CREATE_PROFILE_HOME.more)}

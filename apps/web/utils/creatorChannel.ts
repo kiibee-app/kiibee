@@ -2,8 +2,8 @@ import type { ProfileTabKey } from "@/utils/common";
 import { PATHS } from "@/utils/path";
 export const CREATOR_LAYOUT_STORAGE_KEY = "kiibee.creatorChannelLayout";
 export const CREATOR_LAYOUT_UPDATED = "kiibee:creator-channel-layout-updated";
+export const CREATOR_ID_PARAM = "creatorId";
 
-/** Single source: storage key (layout1…) ↔ URL segment (1…) */
 export const CREATOR_LAYOUTS = [
   { key: "layout1", param: "1" },
   { key: "layout2", param: "2" },
@@ -56,7 +56,7 @@ export function getPublicCreatorProfilePath(
   creatorId: string,
   layout: CreatorLayoutParam = layoutParamFromKey(DEFAULT_CREATOR_LAYOUT),
 ): string {
-  const params = new URLSearchParams({ creatorId });
+  const params = new URLSearchParams({ [CREATOR_ID_PARAM]: creatorId });
   return `${getCreatorHomePath(layout)}?${params.toString()}`;
 }
 
@@ -68,7 +68,7 @@ export function withCreatorIdQuery(
 
   const [pathname, search = ""] = href.split("?");
   const params = new URLSearchParams(search);
-  params.set("creatorId", creatorId);
+  params.set(CREATOR_ID_PARAM, creatorId);
 
   return `${pathname}?${params.toString()}`;
 }
