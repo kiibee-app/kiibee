@@ -1288,7 +1288,10 @@
       "discountType": {
         "fixedAmount": "Fixed amount",
         "percentage": "Percentage"
-      }
+      },
+      "editButton": "Edit Coupon",
+      "createdDate": "Created Date",
+      "status": "Status"
     },
     "couponCodes": {
       "title": "Coupon codes",
