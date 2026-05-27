@@ -61,3 +61,5 @@ export const CONTENT_VISIBILITY = {
   PRIVATE: 'private',
   HIDDEN: 'hidden',
 } as const;
+
+export const FIXED_LIMIT = 10;
