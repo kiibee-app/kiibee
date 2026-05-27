@@ -1,0 +1,44 @@
+{
+  "tab": "Layout",
+  "name": "Microphone Entertainment",
+  "skin": "Light",
+  "logoText": "Microphone Entertainment",
+  "useLogoImage": true,
+  "logoImage": {
+    "presentInScreenshot": true,
+    "dimensions": {
+      "widthPx": 250,
+      "heightPx": 60
+    },
+    "visibleText": "MICROPHONE ENTERTAINMENT",
+    "sourceFileAvailable": false
+  },
+  "useCoverImage": true,
+  "coverImage": {
+    "presentInScreenshot": true,
+    "dimensions": {
+      "widthPx": 2000,
+      "heightPx": 600
+    },
+    "visibleText": "Mick Øgendahl",
+    "visualDescription": "Wide olive-green cover with Mick Øgendahl sitting on a white chair on the left, and the Microphone Entertainment logo on the right.",
+    "sourceFileAvailable": false
+  },
+  "coverImageMobile": {
+    "presentInScreenshot": true,
+    "dimensions": {
+      "widthPx": 600,
+      "heightPx": 600
+    },
+    "visibleText": "MICK ØGENDAHL",
+    "visualDescription": "Square mobile cover with Mick Øgendahl on the bottom right.",
+    "sourceFileAvailable": false
+  },
+  "fadeCoverImage": false,
+  "textColor": "Use Theme",
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "descriptionHtml": "<h1>Mick Øgendahl</h1>\n<p>I over 25 år har Mick Øgendahl været blandt de absolut førende navne i dansk comedy. Med sin charmerende facon tager han publikum med rundt i sin forvirrede hjerne, hvor både livets store og små spørgsmål bliver grundigt vendt. Mick er garanti for lattermusklerne bliver rørt, når han med sin gakkede stil vender det hele på hovedet.</p>",
+  "css": "",
+  "javaScript": ""
+}

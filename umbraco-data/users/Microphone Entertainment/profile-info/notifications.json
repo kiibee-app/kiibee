@@ -1,0 +1,16 @@
+{
+  "tab": "Notifications",
+  "name": "Microphone Entertainment",
+  "lastNotificationDate": "",
+  "frequencyDays": 30,
+  "notificationsType": {
+    "value": 0,
+    "meaning": "Off",
+    "legend": {
+      "0": "Off",
+      "1": "Sales",
+      "2": "Overview"
+    }
+  },
+  "emails": []
+}
