@@ -1,9 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { readStoredLoginUser, type LoginUser } from "@/hooks/auth/useLogin";
+import { useEffect, useMemo, useState } from "react";
+import {
+  mergeStoredLoginUser,
+  readStoredLoginUser,
+  type LoginUser,
+} from "@/hooks/auth/useLogin";
+import type { GetCreatorProfileResponse } from "@/hooks/auth/creatorProfileApi";
+import { API } from "@/lib/http/api/endpoints";
+import { useGetAPI } from "@/lib/http/api/getApi";
+import { authStorage } from "@/lib/auth/authStorage";
 import { STORED_LOGIN_USER_UPDATED } from "@/lib/auth/storageKeys";
-import { toTrimmedString } from "@/utils/Constants";
+import { ROLE_CREATOR, ROLE_VIEWER, toTrimmedString } from "@/utils/Constants";
+import { getAvatarUrl } from "@/utils/creatorProfile";
+
+type ViewerProfileResponseData = {
+  avatarUrl?: string | null;
+};
+
+type GetViewerProfileResponse = {
+  data?: ViewerProfileResponseData;
+};
 
 export function useStoredLoginUser() {
   const [user, setUser] = useState<LoginUser | null>(null);
@@ -17,6 +34,69 @@ export function useStoredLoginUser() {
   }, []);
 
   return user;
+}
+
+export function useLoginUserAvatar() {
+  const user = useStoredLoginUser();
+  const role = user?.role ?? authStorage.getRole();
+  const isCreator = role === ROLE_CREATOR;
+  const isViewer = role === ROLE_VIEWER;
+
+  const creatorProfileQuery = useGetAPI<GetCreatorProfileResponse>(
+    API.auth.creatorProfile,
+    undefined,
+    {
+      enabled: isCreator,
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  );
+
+  const viewerProfileQuery = useGetAPI<GetViewerProfileResponse>(
+    API.auth.userProfile,
+    undefined,
+    {
+      enabled: isViewer && !isCreator,
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  );
+
+  const avatarUrl = useMemo(() => {
+    if (isCreator) {
+      const fromApi = getAvatarUrl(
+        creatorProfileQuery.data?.data?.user?.avatarUrl,
+      );
+      if (fromApi) return fromApi;
+    }
+
+    if (isViewer) {
+      const fromApi = getAvatarUrl(viewerProfileQuery.data?.data?.avatarUrl);
+      if (fromApi) return fromApi;
+    }
+
+    return getAvatarUrl(user?.avatarUrl as string | null | undefined);
+  }, [
+    creatorProfileQuery.data,
+    isCreator,
+    isViewer,
+    user?.avatarUrl,
+    viewerProfileQuery.data,
+  ]);
+
+  useEffect(() => {
+    const fromApi = isCreator
+      ? getAvatarUrl(creatorProfileQuery.data?.data?.user?.avatarUrl)
+      : isViewer
+        ? getAvatarUrl(viewerProfileQuery.data?.data?.avatarUrl)
+        : null;
+
+    if (fromApi) {
+      mergeStoredLoginUser({ avatarUrl: fromApi });
+    }
+  }, [creatorProfileQuery.data, isCreator, isViewer, viewerProfileQuery.data]);
+
+  return avatarUrl;
 }
 
 export function getNameInitials(name: string): string {

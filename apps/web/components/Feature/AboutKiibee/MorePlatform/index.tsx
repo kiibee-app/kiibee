@@ -11,6 +11,8 @@ import {
   Card,
   Text,
   Subtitle,
+  platformRevealStyle,
+  platformImageStyle,
 } from "./styles";
 import img1 from "@/assets/images/platform/platform1.webp";
 import img2 from "@/assets/images/platform/platform2.webp";
@@ -18,6 +20,9 @@ import img3 from "@/assets/images/platform/platform3.webp";
 import img4 from "@/assets/images/platform/platform4.webp";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
+import { LANDING_REVEAL, LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
 
 export default function MoreThanPlatformSection() {
   const { t } = useTranslation();
@@ -25,28 +30,36 @@ export default function MoreThanPlatformSection() {
   return (
     <SectionWrapper>
       <Inner>
-        <Title>
-          <MonoText $use="Heading2" color={COLORS.primary.PALE_GREEN}>
-            {t("about.platform.title")}
-          </MonoText>
-        </Title>
-        <Subtitle>
-          <Text>{t("about.platform.intro")}</Text>
-          <Text>{t("about.platform.description")}</Text>
-        </Subtitle>
+        <ScrollReveal>
+          <Title>
+            <MonoText $use="Heading2" color={COLORS.primary.PALE_GREEN}>
+              {t("about.platform.title")}
+            </MonoText>
+          </Title>
+        </ScrollReveal>
+        <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
+          <Subtitle>
+            <Text>{t("about.platform.intro")}</Text>
+            <Text>{t("about.platform.description")}</Text>
+          </Subtitle>
+        </ScrollReveal>
         <Grid>
           {[img1, img2, img3, img4].map((img, index) => (
             <Card key={index}>
-              <Image
-                src={img}
-                alt="platform"
-                fill
-                style={{
-                  objectFit: "cover",
-                }}
-                sizes="(max-width: 767px) 116px, 126px"
-                priority
-              />
+              <ImageReveal
+                variant={LANDING_REVEAL_VARIANTS.fadeScale}
+                duration={LANDING_REVEAL.revealDuration}
+                delay={index * LANDING_REVEAL.ctaCardStaggerDelay}
+                style={platformRevealStyle}
+              >
+                <Image
+                  src={img}
+                  alt="platform"
+                  fill
+                  style={platformImageStyle}
+                  sizes="(max-width: 767px) 116px, 126px"
+                />
+              </ImageReveal>
             </Card>
           ))}
         </Grid>

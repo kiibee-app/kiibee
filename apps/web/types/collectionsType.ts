@@ -31,6 +31,8 @@ export type CollectionContentRow = {
   createdAt: string;
   contentType: CollectionContentType;
   actions: string;
+  title?: string;
+  videoUrl?: string;
 };
 
 export type CollectionTableProps =

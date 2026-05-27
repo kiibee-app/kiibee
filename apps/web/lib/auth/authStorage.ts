@@ -3,6 +3,9 @@ import {
   AUTH_STORAGE_KEYS,
   STORED_LOGIN_USER_UPDATED,
 } from "./storageKeys";
+import { API_FIELD_KEYS, JAVASCRIPT_TYPE } from "@/utils/collection";
+import { isString, toTrimmedString } from "@/utils/Constants";
+import { VIEWER_PROFILE_FIELDS } from "@/utils/profile";
 import { isBrowser } from "@/utils/ui";
 
 const notifyStoredLoginUserUpdated = () => {
@@ -85,8 +88,10 @@ const decodeJwtPayload = (token: string | null) => {
   }
 };
 
-const toRole = (value: unknown) =>
-  typeof value === "string" && value.trim() ? value.trim() : null;
+const toRole = (value: unknown) => {
+  const trimmed = toTrimmedString(value);
+  return trimmed || null;
+};
 
 const getCookieAttributes = (maxAgeSeconds: number) => {
   const expires = new Date(Date.now() + maxAgeSeconds * 1000).toUTCString();
@@ -152,11 +157,11 @@ const getStoredRole = () => {
 
 const getSessionRole = (payload: AuthSessionPayload) => {
   const user =
-    payload.user && typeof payload.user === "object"
+    payload.user && typeof payload.user === JAVASCRIPT_TYPE.OBJECT
       ? (payload.user as Record<string, unknown>)
       : null;
   const dataUser =
-    payload.data?.user && typeof payload.data.user === "object"
+    payload.data?.user && typeof payload.data.user === JAVASCRIPT_TYPE.OBJECT
       ? (payload.data.user as Record<string, unknown>)
       : null;
 
@@ -224,7 +229,24 @@ export const authStorage = {
       payload.data?.accessToken ??
       payload.data?.token;
     const refreshToken = payload.refreshToken ?? payload.data?.refreshToken;
-    const user = payload.user ?? payload.data?.user;
+    let user: unknown = payload.user ?? payload.data?.user;
+    if (
+      !user &&
+      payload.data &&
+      typeof payload.data === JAVASCRIPT_TYPE.OBJECT
+    ) {
+      const data = payload.data as Record<string, unknown>;
+      if (
+        isString(data[VIEWER_PROFILE_FIELDS.EMAIL]) ||
+        isString(data[API_FIELD_KEYS.ID])
+      ) {
+        const identity = { ...data };
+        delete identity.accessToken;
+        delete identity.token;
+        delete identity.refreshToken;
+        user = identity;
+      }
+    }
     const role = getSessionRole(payload);
 
     if (accessToken) {
@@ -263,7 +285,7 @@ export const authStorage = {
 
     const prev = authStorage.getUser();
     const next = {
-      ...(prev && typeof prev === "object" ? prev : {}),
+      ...(prev && typeof prev === JAVASCRIPT_TYPE.OBJECT ? prev : {}),
       ...partial,
     };
     const remainingSeconds =

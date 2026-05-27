@@ -10,6 +10,7 @@ import {
   Right,
   Divider,
   ProfileCircle,
+  ProfileAvatarImage,
   InitialAvatar,
   EmailWrapper,
   Left,
@@ -31,6 +32,8 @@ import {
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import { getAvatarUrl } from "@/utils/creatorProfile";
 
 type Props = {
   role: typeof ROLE_CREATOR | typeof ROLE_VIEWER;
@@ -41,8 +44,13 @@ type Props = {
 const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
+  const isCreator = role === ROLE_CREATOR;
+  const { avatarUrl: profileAvatarUrl } = useCreatorChannelProfile(isCreator);
   const email = getLoginUserEmail(user);
   const initial = getLoginUserInitial(user);
+  const avatarUrl =
+    profileAvatarUrl ??
+    getAvatarUrl(user?.avatarUrl as string | null | undefined);
 
   return (
     <HeaderWrapper>
@@ -79,13 +87,24 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
 
       <Right>
         {role === ROLE_CREATOR ? (
-          <CreatorHeaderRight initial={initial} email={email} />
+          <CreatorHeaderRight
+            initial={initial}
+            email={email}
+            avatarUrl={avatarUrl}
+          />
         ) : (
           <ProfileButton
             aria-label={t("common.viewerProfile")}
             onClick={onProfileClick}
           >
-            {initial || "V"}
+            {avatarUrl ? (
+              <ProfileAvatarImage
+                src={avatarUrl}
+                alt={t("common.viewerProfile")}
+              />
+            ) : (
+              initial || "V"
+            )}
           </ProfileButton>
         )}
       </Right>
@@ -113,9 +132,11 @@ const RightProfileWrapper = styled.div`
 const CreatorHeaderRight = ({
   initial,
   email,
+  avatarUrl,
 }: {
   initial: string;
   email: string;
+  avatarUrl: string | null;
 }) => {
   const { t } = useTranslation();
   const { channelHref } = useCreatorChannelLayout();
@@ -134,7 +155,14 @@ const CreatorHeaderRight = ({
       >
         <RightProfileWrapper>
           <ProfileCircle>
-            <InitialAvatar>{initial}</InitialAvatar>
+            {avatarUrl ? (
+              <ProfileAvatarImage
+                src={avatarUrl}
+                alt={t("common.creatorProfile")}
+              />
+            ) : (
+              <InitialAvatar>{initial}</InitialAvatar>
+            )}
           </ProfileCircle>
           <EmailWrapper>
             <MonoText $use="Body_Medium">{email}</MonoText>

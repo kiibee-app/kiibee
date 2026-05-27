@@ -47,7 +47,7 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
           avatarUrl={avatarUrl}
           initial={initial}
           alt={brandName || t(CREATE_PROFILE_HOME.brandName)}
-          sizes="40px"
+          sizes="44px"
           initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
         />
       </BrandAvatar>

@@ -42,11 +42,13 @@ import SearchBar from "@/components/UI/SearchBar";
 type CouponTableProps = {
   data: CouponRow[];
   onActionSelect?: (action: CouponAction, row: CouponRow) => void;
+  onRowClick?: (row: CouponRow) => void;
 };
 
 export default function CouponTable({
   data,
   onActionSelect,
+  onRowClick,
 }: CouponTableProps) {
   const { t } = useTranslation();
   const [nameSortDirection, setNameSortDirection] =
@@ -233,6 +235,7 @@ export default function CouponTable({
               </SearchFilterWrap>
             );
           }}
+          onRowClick={(row) => onRowClick?.(row)}
         />
       </TableSection>
     </>

@@ -23,8 +23,10 @@ export default function CenteredCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
   const { isAboutOpen, closeAbout } = tabState;
-  const { displayName, avatarUrl, initial } = useCreatorChannelProfile();
+  const { displayName, avatarUrl, initial, about } = useCreatorChannelProfile();
   const creatorName = displayName;
+  const uploadsCount = about?.uploadCount ?? 0;
+  const biography = about?.description || t(CREATE_PROFILE_HOME.description);
 
   return (
     <HeroWrapperCentered>
@@ -50,9 +52,9 @@ export default function CenteredCoverSection() {
 
         <NameText>{creatorName}</NameText>
         <UploadsText>
-          {t(CREATE_PROFILE_HOME.uploads, { count: 76 })}
+          {t(CREATE_PROFILE_HOME.uploads, { count: uploadsCount })}
         </UploadsText>
-        <BioText>{t(CREATE_PROFILE_HOME.description)}</BioText>
+        <BioText>{biography}</BioText>
 
         <HeroTabs {...tabState} centered />
       </InfoSection>

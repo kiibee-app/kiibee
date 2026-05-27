@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import { media } from "@repo/ui/breakpoints";
 
 export const Hero = styled.section`
@@ -70,3 +71,15 @@ export const CTAWrap = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 `;
+
+export const heroRevealStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
+
+export const heroImageStyle: CSSProperties = {
+  objectFit: "cover",
+  objectPosition: "center top",
+};

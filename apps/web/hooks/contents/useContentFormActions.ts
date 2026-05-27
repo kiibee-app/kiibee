@@ -9,7 +9,7 @@ import { API } from "@/lib/http/api/endpoints";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
 import { ContentType, getFileNameWithoutExtension } from "@/utils/content";
 import { useContentForm } from "@/components/Feature/Contents/ContentFormContext";
-import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
+import { useAppearanceForm } from "@/components/Feature/Contents/Appearance/AppearanceFormContext";
 import {
   AddContentTab,
   ADD_CONTENT_TABS,
@@ -22,7 +22,6 @@ import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
 } from "@/utils/admissionRequirements";
-import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import {
   ACCESS_TYPE_FREE,
   ADMISSION_REQUIREMENT_PAYMENT,
@@ -75,8 +74,11 @@ export function useContentFormActions({
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { formState, prefillForm, resetForm, setFormState } = useContentForm();
-  const { saveLayout, cancelLayout, hasUnsavedChanges } =
-    useCreatorChannelLayout();
+  const {
+    hasUnsavedChanges: hasAppearanceChanges,
+    saveAppearance,
+    cancelAppearance,
+  } = useAppearanceForm();
 
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [uploadedPreview, setUploadedPreview] = useState<string | null>(null);
@@ -213,10 +215,14 @@ export function useContentFormActions({
   };
 
   const saveActionsMap: Record<string, () => Promise<void> | void> = {
-    [APPEARANCE]: () => {
-      if (!hasUnsavedChanges) return;
-      saveLayout();
-      toast.success(t(CONTENTS_KEYS.appearance.layouts.saveSuccess));
+    [APPEARANCE]: async () => {
+      if (!hasAppearanceChanges) return;
+      try {
+        await saveAppearance();
+        setShowSaveSuccessModal(true);
+      } catch {
+        toast.error(t(ERROR_MESSAGES.SAVE_CHANGES_FAILED));
+      }
     },
     [SETTINGS]: saveCollectionSettings,
     [ADD_CONTENT_TABS.GENERAL]: saveUploadedContent,
@@ -235,7 +241,7 @@ export function useContentFormActions({
 
   const handleHeaderCancel = () => {
     if (activeTab === APPEARANCE) {
-      cancelLayout();
+      cancelAppearance();
       return;
     }
     openDiscardModal();
@@ -347,7 +353,7 @@ export function useContentFormActions({
     setCollectionAccessType,
     collectionPasswords,
     setCollectionPasswords,
-    hasUnsavedChanges,
+    hasUnsavedChanges: hasAppearanceChanges,
     handleUploadSuccess,
     handleBackToBase,
     handleHeaderSave,

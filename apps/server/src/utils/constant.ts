@@ -76,3 +76,4 @@ export const isValidAvatarUrl = (value: string): boolean => {
 
   return isDataUrl || isHttpUrl;
 };
+export const FIXED_LIMIT = 10;
