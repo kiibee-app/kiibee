@@ -152,6 +152,17 @@ export const IMAGE_MODAL = {
   EDIT: "edit",
 } as const;
 
+export const PREVIEW_FRAME_SIZE = 320;
+export const DRAG_CLICK_THRESHOLD_PX = 8;
+export const DEFAULT_CROP_SIZE = 320;
+export const IMAGE_ZOOM = {
+  MIN: 1,
+  MAX: 3,
+  STEP: 0.01,
+  DEFAULT: 1,
+};
+export const IMAGE_FILE_ACCEPT = "image/*";
+
 export type ImageModalStep = (typeof IMAGE_MODAL)[keyof typeof IMAGE_MODAL];
 
 export const CROP_SHAPE = {

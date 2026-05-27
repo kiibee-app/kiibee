@@ -23,15 +23,17 @@ import { VARIANT } from "@/utils/Constants";
 import {
   CROP_SHAPE,
   CropShapeType,
+  DEFAULT_CROP_SIZE,
+  DRAG_CLICK_THRESHOLD_PX,
+  IMAGE_FILE_ACCEPT,
   IMAGE_MODAL,
   ImageModalStep,
+  IMAGE_ZOOM,
   MODAL_ALIGN,
+  PREVIEW_FRAME_SIZE,
 } from "@/utils/ui";
 import { getCroppedImg, readFileAsDataUrl } from "@/utils/image";
 import { useTranslation } from "react-i18next";
-
-const PREVIEW_FRAME_SIZE = 320;
-const DRAG_CLICK_THRESHOLD_PX = 8;
 
 type Props = {
   visible: boolean;
@@ -54,8 +56,8 @@ export default function ImageUploadCropModal({
   onClose,
   onApply,
   shape = CROP_SHAPE.CIRCLE,
-  cropWidth = 320,
-  cropHeight = 320,
+  cropWidth = DEFAULT_CROP_SIZE,
+  cropHeight = DEFAULT_CROP_SIZE,
   recommendedText = false,
 }: Props) {
   const { t } = useTranslation();
@@ -65,7 +67,7 @@ export default function ImageUploadCropModal({
     width: PREVIEW_FRAME_SIZE,
     height: PREVIEW_FRAME_SIZE,
   });
-  const [zoom, setZoom] = useState(1);
+  const [zoom, setZoom] = useState(IMAGE_ZOOM.DEFAULT);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
 
@@ -120,7 +122,7 @@ export default function ImageUploadCropModal({
 
   const resetState = useCallback(() => {
     setPendingImage(image);
-    setZoom(1);
+    setZoom(IMAGE_ZOOM.DEFAULT);
     setPosition({ x: 0, y: 0 });
     setDragging(false);
     dragRef.current = null;
@@ -143,7 +145,7 @@ export default function ImageUploadCropModal({
         if (!imageDataUrl) return;
 
         setPendingImage(imageDataUrl);
-        setZoom(1);
+        setZoom(IMAGE_ZOOM.DEFAULT);
         setPosition({ x: 0, y: 0 });
         dragMovedRef.current = false;
       });
@@ -233,7 +235,7 @@ export default function ImageUploadCropModal({
         <HiddenInput
           ref={fileInputRef}
           type="file"
-          accept="image/*"
+          accept={IMAGE_FILE_ACCEPT}
           onChange={handleSelectFile}
         />
 
@@ -292,9 +294,9 @@ export default function ImageUploadCropModal({
             <ZoomContainer>
               <ZoomSlider
                 type="range"
-                min={1}
-                max={3}
-                step={0.01}
+                min={IMAGE_ZOOM.MIN}
+                max={IMAGE_ZOOM.MAX}
+                step={IMAGE_ZOOM.STEP}
                 value={zoom}
                 onChange={(e) => setZoom(Number(e.target.value))}
               />
