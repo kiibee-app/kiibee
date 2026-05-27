@@ -13,6 +13,11 @@ import {
   getContentAppearanceService,
 } from './services/contentAppearance.service';
 import { ContentAppearanceDto } from './dto/contentAppearance.dto';
+import {
+  createOrUpdateContentSetting,
+  getContentSettingByUserId,
+} from './services/contentSetting.service';
+import { ContentSettingDto } from './dto/contentSetting.dto';
 
 @Injectable()
 export class ContentService {
@@ -60,5 +65,13 @@ export class ContentService {
 
   async getContentAppearanceService(userId: string) {
     return getContentAppearanceService(userId);
+  }
+
+  async getContentSettingByUserId(userId: string) {
+    return getContentSettingByUserId(userId);
+  }
+
+  async createOrUpdateContentSetting(userId: string, dto: ContentSettingDto) {
+    return createOrUpdateContentSetting(userId, dto);
   }
 }

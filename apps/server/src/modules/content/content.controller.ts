@@ -14,6 +14,7 @@ import { CreateContentDto, UpdateContentDto } from './content.dto';
 import { AssignUserCategoriesDto } from './dto/assignUserCategories.dto';
 import { CreatorGuard } from '../auth/guards/admin.guard';
 import { ContentAppearanceDto } from './dto/contentAppearance.dto';
+import { ContentSettingDto } from './dto/contentSetting.dto';
 
 @Controller('content')
 export class ContentController {
@@ -93,5 +94,22 @@ export class ContentController {
   async updateAppearance(@Req() req: any, @Body() dto: ContentAppearanceDto) {
     const userId = req.user.userId;
     return this.contentService.ContentAppearanceService(userId, dto);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Get('setting')
+  async getContentSetting(@Req() req: any) {
+    const userId = req.user.userId;
+    return this.contentService.getContentSettingByUserId(userId);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Put('setting')
+  async createOrUpdateContentSetting(
+    @Req() req: any,
+    @Body() dto: ContentSettingDto,
+  ) {
+    const userId = req.user.userId;
+    return this.contentService.createOrUpdateContentSetting(userId, dto);
   }
 }
