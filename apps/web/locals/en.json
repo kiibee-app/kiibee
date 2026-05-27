@@ -10,6 +10,8 @@
     "about": "About Kiibee",
     "login": "Log in",
     "dashboard": "Dashboard",
+    "logout": "Log out",
+    "profileMenu": "Account menu",
     "startCreating": "Start creating",
     "logoAlt": "Kiibee",
     "profile": {

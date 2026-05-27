@@ -91,7 +91,7 @@ export const profileNavShellProps = {
   mobileInnerPadding: "10px 16px",
   innerMaxWidth: "1600px",
   navPosition: "right",
-  navbarHeight: "74px",
+  navbarHeight: "70px",
 } satisfies Pick<
   NavBarProps,
   | "position"

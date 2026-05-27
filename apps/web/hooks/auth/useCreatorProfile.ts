@@ -1,5 +1,6 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
@@ -122,6 +123,7 @@ export const useCreatorProfile = () => {
     ForgetPasswordPayload
   >(API.auth.forgetPassword);
 
+  const queryClient = useQueryClient();
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
     API.auth.creatorProfile,
     undefined,
@@ -277,6 +279,10 @@ export const useCreatorProfile = () => {
         avatarUrl: nextAvatar,
         firstName: toOptionalString(nextForm.firstName),
         lastName: toOptionalString(nextForm.lastName),
+      });
+
+      void queryClient.invalidateQueries({
+        queryKey: [API.auth.creatorProfile],
       });
 
       toast.success(t("dashboard.viewerProfile.saveSuccess"));

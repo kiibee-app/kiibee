@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import Image from "@/components/UI/SafeImage";
@@ -18,6 +18,13 @@ import {
   MegaColumn,
   ColumnTitle,
   ColumnItem,
+  NavAccountDropdown,
+  NavAccountHost,
+  NavAccountMenuButton,
+  NavAccountMenuDivider,
+  NavAccountMenuIcon,
+  NavAccountMenuItem,
+  NavAccountTriggerWrap,
 } from "./styles";
 import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
@@ -27,6 +34,105 @@ import { POINTER_DOWN, VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
+import { useLogout } from "@/hooks/auth/useLogout";
+import {
+  getLoginUserDisplayName,
+  getLoginUserInitial,
+  useLoginUserAvatar,
+  useStoredLoginUser,
+} from "@/hooks/auth/useStoredLoginUser";
+import type { LoginUser } from "@/hooks/auth/useLogin";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { HomeIcon } from "@/assets/icons/homeIcon";
+import { LogoutIcon } from "@/assets/icons/logoutIcon";
+import {
+  InitialAvatar,
+  ProfileAvatarImage,
+  ProfileButton,
+} from "@/components/Layout/DashboardHeader/styles";
+
+function getProfileFirstLetter(user: LoginUser | null) {
+  const displayName = getLoginUserDisplayName(user);
+  if (displayName) return displayName.trim().charAt(0).toUpperCase();
+
+  const initial = getLoginUserInitial(user).trim();
+  return initial.charAt(0).toUpperCase() || "?";
+}
+
+function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
+  const { t } = useTranslation();
+  const user = useStoredLoginUser();
+  const avatarUrl = useLoginUserAvatar();
+  const { logout, isPending } = useLogout();
+  const [open, setOpen] = useState(false);
+  const [failedAvatarUrl, setFailedAvatarUrl] = useState<string | null>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const firstLetter = getProfileFirstLetter(user);
+  const showAvatar = Boolean(avatarUrl) && avatarUrl !== failedAvatarUrl;
+
+  useClickOutside({
+    ref: menuRef,
+    enabled: open,
+    handler: () => setOpen(false),
+  });
+
+  const handleLogout = () => {
+    if (isPending) return;
+    setOpen(false);
+    void logout();
+  };
+
+  return (
+    <NavAccountHost ref={menuRef}>
+      <NavAccountTriggerWrap $open={open}>
+        <ProfileButton
+          type="button"
+          aria-label={t(NAV.profileMenu)}
+          aria-haspopup="menu"
+          aria-expanded={open}
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          {showAvatar && avatarUrl ? (
+            <ProfileAvatarImage
+              src={avatarUrl}
+              alt={t(NAV.profileMenu)}
+              onError={() => setFailedAvatarUrl(avatarUrl)}
+            />
+          ) : (
+            <InitialAvatar>{firstLetter}</InitialAvatar>
+          )}
+        </ProfileButton>
+      </NavAccountTriggerWrap>
+
+      {open && (
+        <NavAccountDropdown role="menu" aria-label={t(NAV.profileMenu)}>
+          <NavAccountMenuItem
+            href={dashboardPath}
+            role="menuitem"
+            onClick={() => setOpen(false)}
+          >
+            <NavAccountMenuIcon aria-hidden>
+              <HomeIcon width={18} height={18} />
+            </NavAccountMenuIcon>
+            {t(NAV.dashboard)}
+          </NavAccountMenuItem>
+          <NavAccountMenuDivider />
+          <NavAccountMenuButton
+            type="button"
+            role="menuitem"
+            onClick={handleLogout}
+            disabled={isPending}
+          >
+            <NavAccountMenuIcon aria-hidden>
+              <LogoutIcon width={18} height={18} />
+            </NavAccountMenuIcon>
+            {t(NAV.logout)}
+          </NavAccountMenuButton>
+        </NavAccountDropdown>
+      )}
+    </NavAccountHost>
+  );
+}
 
 export default function NavBar({
   position = "fixed",
@@ -45,8 +151,8 @@ export default function NavBar({
 }: NavBarProps) {
   const { t } = useTranslation();
   const dashboardPath = useSessionDashboardPath();
-  const loginButtonHref = dashboardPath ?? PATHS.AUTH_LOGIN;
-  const loginButtonLabel = dashboardPath ? t(NAV.dashboard) : t(NAV.login);
+  const isLoggedIn = Boolean(dashboardPath);
+  const loginButtonHref = PATHS.AUTH_LOGIN;
   const renderItemLabel = (item: NavBarItem) => item.label ?? t(item.key);
   const [active, setActive] = React.useState<string | null>(null);
   const [pinned, setPinned] = React.useState<string | null>(null);
@@ -216,22 +322,28 @@ export default function NavBar({
         </Nav>
 
         <Actions $textTone={navTextTone}>
-          <GenericButton
-            className="login-btn"
-            asAnchor
-            href={loginButtonHref}
-            variant={VARIANT.SECONDARY}
-          >
-            {loginButtonLabel}
-          </GenericButton>
-          <GenericButton
-            className="start-btn"
-            asAnchor
-            href={PATHS.AUTH_SIGNUP}
-            variant={VARIANT.PRIMARY}
-          >
-            {t(NAV.startCreating)}
-          </GenericButton>
+          {isLoggedIn && dashboardPath ? (
+            <NavAccountMenu dashboardPath={dashboardPath} />
+          ) : (
+            <>
+              <GenericButton
+                className="login-btn"
+                asAnchor
+                href={loginButtonHref}
+                variant={VARIANT.SECONDARY}
+              >
+                {t(NAV.login)}
+              </GenericButton>
+              <GenericButton
+                className="start-btn"
+                asAnchor
+                href={PATHS.AUTH_SIGNUP}
+                variant={VARIANT.PRIMARY}
+              >
+                {t(NAV.startCreating)}
+              </GenericButton>
+            </>
+          )}
         </Actions>
       </Inner>
     </Header>
