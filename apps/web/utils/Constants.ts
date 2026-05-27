@@ -110,6 +110,7 @@ export const PROFILE_LAYOUT_PAGE = {
 
 export const QUERY_KEYS = {
   PROFILE_HOME_COLLECTIONS_PREVIEW: "profile-home-collections-preview",
+  PROFILE_LATEST_UPLOAD: "profile-latest-upload",
 } as const;
 
 export type ProfileLayoutPageKind =

@@ -10,6 +10,10 @@ import {
   ContentAdjust,
   SectionWrapper,
 } from "@/components/Feature/ProfileLayout/HomeSections/styles";
+import { useLatestUpload } from "@/hooks/useLatestUpload";
+import latestUploadImage from "@/assets/images/creators/recent_creator.webp";
+import { normalizeContentTypeValue } from "@/utils/content";
+import { FORMAT_TYPE } from "@/utils/types";
 
 type ProfileHomeSectionsProps = {
   variant: ProfileLayoutVariant;
@@ -18,18 +22,50 @@ type ProfileHomeSectionsProps = {
 export default function ProfileHomeSections({
   variant,
 }: ProfileHomeSectionsProps) {
-  const { latestUpload, wrapLatestUpload, sections } =
-    profileHomeConfigByVariant[variant];
+  const {
+    latestUpload: latestConfig,
+    wrapLatestUpload,
+    sections,
+  } = profileHomeConfigByVariant[variant];
 
-  const latestUploadSection = wrapLatestUpload ? (
-    <SectionWrapper>
-      <ContentAdjust>
-        <LatestUpload data={latestUpload} />
-      </ContentAdjust>
-    </SectionWrapper>
-  ) : (
-    <LatestUpload data={latestUpload} />
-  );
+  const { data: latest } = useLatestUpload();
+
+  const normalizedLatestContentType = latest
+    ? normalizeContentTypeValue(
+        String((latest as { contentType?: unknown }).contentType ?? ""),
+      )
+    : null;
+
+  const latestUploadData = latest
+    ? {
+        sectionTitle: latestConfig.sectionTitle,
+        badge:
+          (latest as { category?: string | null }).category ??
+          latestConfig.badge ??
+          "",
+        image: latestUploadImage,
+        contentType: normalizedLatestContentType || FORMAT_TYPE.VIDEO,
+        imageAlt: latest.title || "",
+        title: latest.title || "",
+        year: new Date(latest.createdAt).getFullYear().toString(),
+        description: latest.description ?? "",
+        actions: latestConfig.actions,
+        imageStyle: latestConfig.imageStyle,
+        containerStyle: latestConfig.containerStyle,
+      }
+    : null;
+
+  const latestUploadSection = latestUploadData ? (
+    wrapLatestUpload ? (
+      <SectionWrapper>
+        <ContentAdjust>
+          <LatestUpload data={latestUploadData} />
+        </ContentAdjust>
+      </SectionWrapper>
+    ) : (
+      <LatestUpload data={latestUploadData} />
+    )
+  ) : null;
 
   const collectionPreviewSection = wrapLatestUpload ? (
     <SectionWrapper>
@@ -43,13 +79,13 @@ export default function ProfileHomeSections({
 
   return (
     <>
-      {sections.includes(PROFILE_HOME_SECTION.LATEST_UPLOAD)
-        ? latestUploadSection
-        : null}
-      {sections.includes(PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW)
-        ? collectionPreviewSection
-        : null}
-      {sections.includes(PROFILE_HOME_SECTION.ABOUT) ? <AboutSection /> : null}
+      {sections.includes(PROFILE_HOME_SECTION.LATEST_UPLOAD) &&
+        latestUploadSection}
+
+      {sections.includes(PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW) &&
+        collectionPreviewSection}
+
+      {sections.includes(PROFILE_HOME_SECTION.ABOUT) && <AboutSection />}
     </>
   );
 }
