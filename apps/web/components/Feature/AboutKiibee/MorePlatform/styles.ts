@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import { media } from "@repo/ui/breakpoints";
 
 export const SectionWrapper = styled.section`
@@ -37,6 +38,23 @@ export const Card = styled.div`
   min-height: 18.35938rem;
   border-radius: 0.75rem;
   overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: ${({ theme }) => theme.shadows.lg};
+  }
+
+  img {
+    transition: transform 0.5s ease-out !important;
+  }
+
+  &:hover img {
+    transform: scale(1.08) !important;
+  }
 `;
 
 export const Text = styled.p`
@@ -44,3 +62,14 @@ export const Text = styled.p`
   color: ${({ theme }) => theme.colors.primary.WHITE};
   margin-bottom: 12px;
 `;
+
+export const platformRevealStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
+
+export const platformImageStyle: CSSProperties = {
+  objectFit: "cover",
+};

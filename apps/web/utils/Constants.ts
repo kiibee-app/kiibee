@@ -94,7 +94,7 @@ export const profileNavShellProps = {
   mobileInnerPadding: "10px 16px",
   innerMaxWidth: "1600px",
   navPosition: "right",
-  navbarHeight: "74px",
+  navbarHeight: "70px",
 } satisfies Pick<
   NavBarProps,
   | "position"
@@ -113,6 +113,7 @@ export const PROFILE_LAYOUT_PAGE = {
 
 export const QUERY_KEYS = {
   PROFILE_HOME_COLLECTIONS_PREVIEW: "profile-home-collections-preview",
+  PROFILE_LATEST_UPLOAD: "profile-latest-upload",
 } as const;
 
 export type ProfileLayoutPageKind =
@@ -172,6 +173,11 @@ export const ERROR_MESSAGES = {
 };
 
 export const UI_TITLE_FALLBACK = "Content Details";
+
+export const SCROLL_OPTIONS = {
+  behavior: "smooth",
+  block: "center",
+} as const;
 
 export const apiToUiAccessTypeMap: Record<string, AdmissionRequirementValue> = {
   [ACCESS_TYPE_PASSWORD]: ADMISSION_REQUIREMENT_VALUES.password,

@@ -44,15 +44,15 @@ export default function SingleContentPage({
 
   return (
     <Wrapper>
-      <Card>
-        <SingleContentTopBar
-          showBack={showBack}
-          showShare={showShare}
-          shareLabel={shareLabel}
-          onBackClick={handleBack}
-          onShare={onShare}
-        />
+      <SingleContentTopBar
+        showBack={showBack}
+        showShare={showShare}
+        shareLabel={shareLabel}
+        onBackClick={handleBack}
+        onShare={onShare}
+      />
 
+      <Card>
         <SingleContentHero hero={hero} />
 
         <SingleContentBody

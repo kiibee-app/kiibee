@@ -1,6 +1,15 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
+
+export const avatarFrameCss = css`
+  position: relative;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border-radius: 8px;
+  flex: 0 0 auto;
+`;
 
 export const Page = styled.main`
   min-height: 100vh;
@@ -19,13 +28,7 @@ export const Brand = styled(Link)`
 `;
 
 export const BrandAvatar = styled.span`
-  position: relative;
-  width: 38px;
-  height: 38px;
-  overflow: hidden;
-  border-radius: 10px;
-  flex: 0 0 auto;
-  box-shadow: 0 8px 18px ${({ theme }) => theme.colors.neutral.GRAY_300};
+  ${avatarFrameCss};
 `;
 
 export const BrandAvatarImage = styled(Image)`

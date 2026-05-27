@@ -205,6 +205,7 @@ export const Badge = styled(MonoText).attrs({
   display: flex;
   justify-content: center;
   align-items: center;
+  text-transform: capitalize;
 
   &:hover {
     background: ${({ theme }) => theme.colors.primary.GREEN_50};

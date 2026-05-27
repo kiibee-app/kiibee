@@ -1,5 +1,7 @@
 import { media } from "@repo/ui/breakpoints";
 import styled, { css } from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT } from "@/utils/Constants";
 
 export const Wrapper = styled.section`
   width: 100%;
@@ -17,6 +19,7 @@ export const Wrapper = styled.section`
 
 export const Card = styled.article`
   width: 100%;
+  margin: 0;
 
   ${media.tablet} {
     margin-top: 0.5rem;
@@ -27,7 +30,8 @@ export const TopBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2.5rem;
+  width: 100%;
+  margin-bottom: 1.75rem;
 `;
 
 export const BackButton = styled.button`
@@ -56,7 +60,7 @@ export const ShareText = styled.span`
 
 export const Hero = styled.div`
   position: relative;
-  width: min(920px, 78%);
+  width: min(100%, 900px);
   aspect-ratio: 90 / 49;
   border-radius: 12px;
   overflow: hidden;
@@ -64,10 +68,6 @@ export const Hero = styled.div`
   margin-left: auto;
   margin-right: auto;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
-
-  ${media.tablet} {
-    width: 100%;
-  }
 `;
 
 export const Preview = styled.div`
@@ -114,6 +114,7 @@ export const HeroTag = styled.span`
 `;
 
 export const HeroTagText = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
@@ -136,6 +137,7 @@ export const HeroMediaTag = styled.span`
 `;
 
 export const HeroMediaText = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
@@ -195,7 +197,7 @@ export const CreatorName = styled.span`
 `;
 
 export const HeadingBlock = styled.div`
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.8rem;
 `;
 
 export const StatusBadge = styled.span`
@@ -206,22 +208,23 @@ export const StatusBadge = styled.span`
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  text-transform: capitalize;
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
 export const MainTitle = styled.h1`
   ${({ theme }) => theme.typography.Heading2};
   margin: 0;
-  max-width: 780px;
+  width: 100%;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const BodyTextWrap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  max-width: 760px;
-  margin-top: 1.5rem;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 1rem;
 `;
 
 export const DescriptionText = styled.p`
@@ -244,7 +247,7 @@ export const InfoTag = styled.span`
   min-height: 36px;
   padding: 8px 16px;
   border-radius: 18px;
-  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
 export const InfoTagText = styled.span`
@@ -252,18 +255,14 @@ export const InfoTagText = styled.span`
   ${({ theme }) => theme.typography.Body_Medium}
 `;
 
-export const MainAction = styled.button`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+export const MainAction = styled(GenericButton).attrs({
+  variant: VARIANT.PRIMARY,
+  size: "lg",
+})`
+  border-radius: 12px;
   min-height: 51px;
   padding: 10px 20px;
-  border-radius: 12px;
-  border: 0;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
-  cursor: pointer;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const MainActionText = styled.span`
@@ -300,15 +299,16 @@ export const MetaRow = styled.div`
 `;
 
 export const MetaKey = styled.span`
-  min-width: 95px;
+  min-width: 100px;
 `;
 
 export const MetaLabelText = styled.span`
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
-  ${({ theme }) => theme.typography.Body_Regular}
+  ${({ theme }) => theme.typography.Body_Medium}
 `;
 
-export const MetaValueText = styled.span`
+export const MetaValueText = styled.span<{ $strong?: boolean }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  ${({ theme }) => theme.typography.Body_Bold}
+  ${({ theme, $strong }) =>
+    $strong ? theme.typography.Body_Bold : theme.typography.Body_Medium}
 `;

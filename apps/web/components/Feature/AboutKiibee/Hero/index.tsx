@@ -10,6 +10,8 @@ import {
   Title,
   Subtitle,
   CTAWrap,
+  heroRevealStyle,
+  heroImageStyle,
 } from "./styles";
 import heroImg from "@/assets/images/hero3.webp";
 import GenericButton from "@/components/UI/GenericButton";
@@ -18,6 +20,9 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
+import { LANDING_REVEAL, LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
 
 export default function AboutHero() {
   const { t } = useTranslation();
@@ -25,45 +30,62 @@ export default function AboutHero() {
   return (
     <Hero>
       <Background>
-        <Image
-          src={heroImg}
-          alt={t("how.heroAlt")}
-          fill
-          priority
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center top" }}
-        />
+        <ImageReveal
+          variant={LANDING_REVEAL_VARIANTS.kenBurns}
+          delay={0}
+          duration={LANDING_REVEAL.heroKenBurnsDuration}
+          start={LANDING_REVEAL.heroStart}
+          noClip
+          style={heroRevealStyle}
+        >
+          <Image
+            src={heroImg}
+            alt={t("how.heroAlt")}
+            fill
+            priority
+            sizes="100vw"
+            style={heroImageStyle}
+          />
+        </ImageReveal>
       </Background>
 
       <Inner>
         <Content>
-          <Title>
-            <MonoText $use="Heading2" color={COLORS.primary.WHITE}>
-              {t("about.hero.title")}
-            </MonoText>
-          </Title>
-          <Subtitle>
-            <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-              {t("about.hero.subtitle")}
-            </MonoText>
-          </Subtitle>
-          <CTAWrap>
-            <GenericButton
-              asAnchor
-              href={PATHS.EXPLORE}
-              variant={VARIANT.PRIMARY}
-            >
-              {t("about.hero.cta.explore")}
-            </GenericButton>
+          <ScrollReveal>
+            <Title>
+              <MonoText $use="Heading2" color={COLORS.primary.WHITE}>
+                {t("about.hero.title")}
+              </MonoText>
+            </Title>
+          </ScrollReveal>
 
-            <GenericButton
-              asAnchor
-              href={PATHS.AUTH_SIGNUP_CREATOR}
-              variant={VARIANT.SECONDARY}
-            >
-              {t("about.hero.cta.creator")}
-            </GenericButton>
-          </CTAWrap>
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
+            <Subtitle>
+              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                {t("about.hero.subtitle")}
+              </MonoText>
+            </Subtitle>
+          </ScrollReveal>
+
+          <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>
+            <CTAWrap>
+              <GenericButton
+                asAnchor
+                href={PATHS.EXPLORE}
+                variant={VARIANT.PRIMARY}
+              >
+                {t("about.hero.cta.explore")}
+              </GenericButton>
+
+              <GenericButton
+                asAnchor
+                href={PATHS.AUTH_SIGNUP_CREATOR}
+                variant={VARIANT.SECONDARY}
+              >
+                {t("about.hero.cta.creator")}
+              </GenericButton>
+            </CTAWrap>
+          </ScrollReveal>
         </Content>
       </Inner>
     </Hero>

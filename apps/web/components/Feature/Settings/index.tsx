@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { findElement } from "@/utils/searchHelper";
 import { MonoText } from "@/components/UI/Monotext";
 import {
   Wrapper,
@@ -17,11 +18,19 @@ import PayoutContent from "./Payout";
 import ExportContent from "./Export";
 import GenericTabs from "@/components/UI/GenericTabs";
 import NotificationModals from "./Notification/notificationModals";
+import { settlementData, settlementHeaders } from "@/utils/dummyData/payout";
+import {
+  notificationSettings,
+  NOTIFICATION_OPTIONS,
+} from "@/utils/notificationSettings";
+import { EXPORT_TYPE_OPTIONS } from "@/utils/exportOptions";
+import { SETTINGS as SETTINGS_KEYS_CONST } from "@/utils/translationKeys";
 import { NOTIFICATION_MODAL, NotificationModalType } from "@/utils/ui";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import {
   CONTENT_TAB,
   LEGACY_DASHBOARD_TAB_QUERY_KEYS,
+  SCROLL_OPTIONS,
 } from "@/utils/Constants";
 
 export default function SettingsContent() {
@@ -41,6 +50,102 @@ export default function SettingsContent() {
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
   const [modalType, setModalType] = useState<NotificationModalType>(null);
+
+  const SETTINGS_TABS_INDEX = useMemo(() => {
+    const payoutKeywords = [
+      t("settings.tabs.payout"),
+      t("settings.payout.title"),
+      t("settings.payout.description"),
+      t("settings.payout.balance"),
+      t("settings.payout.purchase"),
+      t("settings.payout.rent"),
+      t("settings.payout.settlementHistory"),
+      ...settlementHeaders,
+      ...settlementData.flatMap((row) => [
+        row.amount,
+        row.status,
+        row.creditNo,
+        row.bank,
+        row.date,
+      ]),
+    ].map((k) => k.toLowerCase());
+
+    const notificationKeywords = [
+      t("settings.tabs.notifications"),
+      t("settings.notifications.title"),
+      t("settings.notifications.subtitle"),
+      ...notificationSettings.flatMap((item) => [
+        t(item.title),
+        t(item.description),
+      ]),
+      ...NOTIFICATION_OPTIONS.type(t).map((o) => o.label),
+      ...NOTIFICATION_OPTIONS.frequency(t).map((o) => o.label),
+      ...NOTIFICATION_OPTIONS.recipient(t).map((o) => o.label),
+    ].map((k) => k.toLowerCase());
+
+    const exportKeywords = [
+      t("settings.tabs.export"),
+      t(SETTINGS_KEYS_CONST.export.title),
+      t(SETTINGS_KEYS_CONST.export.description),
+      t(SETTINGS_KEYS_CONST.export.buildCsv),
+      t(SETTINGS_KEYS_CONST.export.typeLabel),
+      t(SETTINGS_KEYS_CONST.export.typeDescription),
+      t(SETTINGS_KEYS_CONST.export.dateLabel),
+      t(SETTINGS_KEYS_CONST.export.dateDescription),
+      ...EXPORT_TYPE_OPTIONS(t).map((o) => o.label),
+    ].map((k) => k.toLowerCase());
+
+    return [
+      {
+        tab: TAB_KEYS.payout,
+        keywords: payoutKeywords,
+      },
+      {
+        tab: TAB_KEYS.notifications,
+        keywords: notificationKeywords,
+      },
+      {
+        tab: TAB_KEYS.export,
+        keywords: exportKeywords,
+      },
+    ];
+  }, [t]);
+
+  useEffect(() => {
+    if (!searchValue || searchValue.trim().length < 2) return;
+
+    const query = searchValue.trim().toLowerCase();
+
+    const activeTabKeywords = SETTINGS_TABS_INDEX.find(
+      (item) => item.tab === activeTab,
+    );
+    const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
+      keyword.toLowerCase().includes(query),
+    );
+
+    if (!activeContainsQuery) {
+      const matchedTabItem = SETTINGS_TABS_INDEX.find((item) =>
+        item.keywords.some((keyword) => keyword.toLowerCase().includes(query)),
+      );
+      if (!matchedTabItem) return;
+      setActiveTabAndQuery(matchedTabItem.tab);
+    }
+
+    let attempts = 0;
+    const interval = setInterval(() => {
+      const container = document.getElementById("settings-content-area");
+      const element = container ? findElement(container, query) : null;
+      if (element) {
+        element.scrollIntoView(SCROLL_OPTIONS);
+        return clearInterval(interval);
+      }
+      if (++attempts > 10) {
+        clearInterval(interval);
+      }
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [searchValue, activeTab, setActiveTabAndQuery, SETTINGS_TABS_INDEX]);
 
   const isNotificationTab = useMemo(
     () => activeTab === TAB_KEYS.notifications,
@@ -107,7 +212,7 @@ export default function SettingsContent() {
         }}
       />
 
-      <Content>
+      <Content id="settings-content-area">
         {activeTab === TAB_KEYS.payout && <PayoutContent />}
         {activeTab === TAB_KEYS.notifications && <NotificationContent />}
         {activeTab === TAB_KEYS.export && <ExportContent />}

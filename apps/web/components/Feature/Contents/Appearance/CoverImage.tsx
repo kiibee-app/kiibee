@@ -31,6 +31,8 @@ import { useIsMobile } from "@/utils/useIsMobile";
 import { CoverImageSectionProps, UploadConfig } from "@/types/metadataType";
 
 import { useContentForm } from "../ContentFormContext";
+import { FORM_FIELDS } from "@/utils/appearance";
+import { useAppearanceForm } from "./AppearanceFormContext";
 
 const imageFieldMap = {
   [IMAGE_TYPE.MEDIA_CARD]: "mediaCardThumbnail",
@@ -47,6 +49,8 @@ export default function CoverImageSection({
 }: CoverImageSectionProps) {
   const { t } = useTranslation();
   const { formState, updateField } = useContentForm();
+  const { values: appearanceValues, updateField: updateAppearanceField } =
+    useAppearanceForm();
   const [open, setOpen] = React.useState(false);
   const isMobile = useIsMobile();
   const [selectedConfig, setSelectedConfig] =
@@ -68,6 +72,10 @@ export default function CoverImageSection({
     const field = getImageField(selectedConfig.type);
     if (useFormContext) {
       updateField(field, cropped);
+    } else if (selectedConfig.type === IMAGE_TYPE.DESKTOP) {
+      updateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL, cropped);
+    } else if (selectedConfig.type === IMAGE_TYPE.MOBILE) {
+      updateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL, cropped);
     } else {
       setImages((prev) => ({
         ...prev,
@@ -82,6 +90,12 @@ export default function CoverImageSection({
     if (useFormContext) {
       return formState[getImageField(selectedConfig.type)];
     }
+    if (selectedConfig.type === IMAGE_TYPE.DESKTOP) {
+      return appearanceValues.desktopCoverImageUrl;
+    }
+    if (selectedConfig.type === IMAGE_TYPE.MOBILE) {
+      return appearanceValues.mobileCoverImageUrl;
+    }
     return images[selectedConfig.type];
   };
 
@@ -92,7 +106,12 @@ export default function CoverImageSection({
         [IMAGE_TYPE.MEDIA_CARD]: formState.mediaCardThumbnail,
         [IMAGE_TYPE.PORTRAIT]: formState.portraitThumbnail,
       }
-    : images;
+    : {
+        [IMAGE_TYPE.DESKTOP]: appearanceValues.desktopCoverImageUrl,
+        [IMAGE_TYPE.MOBILE]: appearanceValues.mobileCoverImageUrl,
+        [IMAGE_TYPE.MEDIA_CARD]: images[IMAGE_TYPE.MEDIA_CARD],
+        [IMAGE_TYPE.PORTRAIT]: images[IMAGE_TYPE.PORTRAIT],
+      };
 
   return (
     <AppearancePanel>

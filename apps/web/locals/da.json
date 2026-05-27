@@ -563,6 +563,19 @@
       }
     }
   },
+  "exploreCategories": {
+    "title": "Topkategorier til at komme i gang",
+    "subtitle": "Gennemse platformen og køb eller lej nemt med blot et par klik. Du kan se med når som helst og hvor som helst.",
+    "browseAll": "Gennemse alle",
+    "categories": {
+      "all": "Alt indhold",
+      "technology": "Teknologi",
+      "design": "Design",
+      "art": "Kunst",
+      "literature": "Litteratur",
+      "comedies": "Komedier"
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "Om os",
@@ -931,6 +944,7 @@
     "loading": "Indhold indlaeses...",
     "imageAlt": "Forhaandsvisning af indhold",
     "seeContent": "Se indhold",
+    "playTrailer": "Afspil trailer",
     "meta": {
       "createdAt": "Oprettet:",
       "accessType": "Adgang:",
@@ -1288,7 +1302,10 @@
       "discountType": {
         "fixedAmount": "Fast beloeb",
         "percentage": "Procent"
-      }
+      },
+      "editButton": "Rediger kupon",
+      "createdDate": "Oprettelsesdato",
+      "status": "Status"
     },
     "couponCodes": {
       "title": "Kuponkoder",

@@ -10,6 +10,8 @@
     "about": "About Kiibee",
     "login": "Log in",
     "dashboard": "Dashboard",
+    "logout": "Log out",
+    "profileMenu": "Account menu",
     "startCreating": "Start creating",
     "logoAlt": "Kiibee",
     "profile": {
@@ -563,6 +565,19 @@
       }
     }
   },
+  "exploreCategories": {
+    "title": "Top categories to get you started",
+    "subtitle": "Browse through the platform and buy or rent easily with just a few clicks. You can watch whenever or wherever.",
+    "browseAll": "Browse all",
+    "categories": {
+      "all": "All content",
+      "technology": "Technology",
+      "design": "Design",
+      "art": "Art",
+      "literature": "Literature",
+      "comedies": "Comedies"
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "About us",
@@ -931,6 +946,7 @@
     "loading": "Loading content...",
     "imageAlt": "Content preview",
     "seeContent": "See content",
+    "playTrailer": "Play trailer",
     "meta": {
       "createdAt": "Created:",
       "accessType": "Access:",
@@ -1288,7 +1304,10 @@
       "discountType": {
         "fixedAmount": "Fixed amount",
         "percentage": "Percentage"
-      }
+      },
+      "editButton": "Edit Coupon",
+      "createdDate": "Created Date",
+      "status": "Status"
     },
     "couponCodes": {
       "title": "Coupon codes",

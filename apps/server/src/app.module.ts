@@ -10,6 +10,7 @@ import { MediaModule } from './modules/media/media.module';
 import { CouponModule } from './modules/coupon/coupon.module';
 import { CollectionModule } from './modules/collection/collection.module';
 import { CreatorModule } from './modules/creator/creator.module';
+import { FeedModule } from './modules/feed/feed.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { CreatorModule } from './modules/creator/creator.module';
     CouponModule,
     CollectionModule,
     CreatorModule,
+    FeedModule,
   ],
 })
 export class AppModule {}
