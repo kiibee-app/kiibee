@@ -359,6 +359,9 @@ export function useContentFormActions({
             ? String(fullContent.maxDownloadCount)
             : DOWNLOAD_LIMIT_DEFAULT,
           physicalProductLink: fullContent.physicalProductLink || "",
+          contentTypeId: normalizeContentTypeValue(
+            fullContent.contentTypeId ?? fullContent.contentType ?? "video",
+          ),
         });
 
         setActiveTabAndQuery(ADD_CONTENT_TABS.GENERAL);

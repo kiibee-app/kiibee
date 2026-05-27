@@ -30,9 +30,10 @@ export const DetailsWrapper = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border-radius: 16px;
+
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 12px;
 `;
 
 export const DeleteButton = styled(GenericButton)`
@@ -67,6 +68,9 @@ export const InfoColumn = styled.div`
 export const PreviewBox = styled.div`
   height: clamp(80px, 9.8vw, 90px);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const PreviewVideo = styled.video`
@@ -110,4 +114,43 @@ export const ItemText = styled.div`
 export const ControlWrap = styled.div`
   width: 100%;
   max-width: 460px;
+`;
+
+export const ShareCircle = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const WebSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+`;
+
+export const CheckboxRow = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const HelperText = styled.div`
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  margin-left: 22px;
+`;
+
+export const TopRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+export const WebAlignWrapper = styled.div`
+  width: calc(100% - 140px);
 `;
