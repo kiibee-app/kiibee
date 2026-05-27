@@ -23,6 +23,11 @@ export const CREATE_PROFILE_HOME = {
   more: "createProfileHome.more",
   searchPlaceholder: "createProfileHome.searchPlaceholder",
   searchAriaLabel: "createProfileHome.searchAriaLabel",
+  aboutModal: {
+    moreInfo: "createProfileHome.aboutModal.moreInfo",
+    joined: "createProfileHome.aboutModal.joined",
+    links: "createProfileHome.aboutModal.links",
+  },
 };
 
 export const CREATE_PROFILE_ROUTES = {
@@ -401,6 +406,8 @@ export const SETTINGS = {
 
 export const COMMON = {
   back: "common.back",
+  close: "common.close",
+  share: "common.share",
 };
 
 export const SUBSCRIPTION = {

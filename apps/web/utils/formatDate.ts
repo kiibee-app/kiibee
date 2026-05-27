@@ -43,9 +43,32 @@ export function formatDateUSShort(iso?: string) {
   const d = new Date(iso);
   if (isNaN(d.getTime())) return "";
 
-  return d.toLocaleDateString("en-US", {
+  return d.toLocaleDateString(undefined, {
     month: "short",
     day: "numeric",
     year: "numeric",
   });
+}
+
+const ORDINAL_SUFFIXES = new Map([
+  ["one", "st"],
+  ["two", "nd"],
+  ["few", "rd"],
+  ["other", "th"],
+]);
+
+export function formatJoinedDate(dateString?: string | null): string {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "";
+
+  const day = date.getDate();
+  const year = date.getFullYear();
+  const month = date.toLocaleString(undefined, { month: "short" });
+  const suffix =
+    ORDINAL_SUFFIXES.get(
+      new Intl.PluralRules(undefined, { type: "ordinal" }).select(day),
+    ) ?? "th";
+
+  return `${day}${suffix} ${month} ${year}`;
 }

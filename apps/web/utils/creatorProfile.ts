@@ -140,10 +140,12 @@ export const getAvatarUrl = (avatarUrl?: string | null): string | null => {
 export const toOptionalString = (value: string): string | undefined =>
   value || undefined;
 
+const WHITESPACE_REGEX = /\s+/;
+
 export function parseCreatorNameFromFullName(
   fullName: string,
 ): Pick<ProfileForm, "firstName" | "lastName"> {
-  const parts = fullName.split(/\s+/).filter(Boolean);
+  const parts = fullName.split(WHITESPACE_REGEX).filter(Boolean);
   return {
     firstName: parts[0] ?? EMPTY_CREATOR_BOOT.firstName,
     lastName: parts.slice(1).join(" "),
@@ -200,3 +202,33 @@ const CREATOR_PROFILE_UTILS = {
 };
 
 export default CREATOR_PROFILE_UTILS;
+
+export type SocialIconComponent = React.ComponentType<{
+  width: number;
+  height: number;
+  color: string;
+}>;
+
+export type SocialIconEntry = {
+  domains: string[];
+  Icon: SocialIconComponent;
+};
+
+const URL_PROTOCOL_REGEX = /^(https?:\/\/)?(www\.)?/;
+const URL_TRAILING_SLASH_REGEX = /\/$/;
+
+export function getDisplayUrl(url: string): string {
+  return url
+    .replace(URL_PROTOCOL_REGEX, "")
+    .replace(URL_TRAILING_SLASH_REGEX, "");
+}
+
+export function matchSocialPlatform(
+  url: string,
+  entries: SocialIconEntry[],
+): SocialIconEntry | undefined {
+  const lowercase = url.toLowerCase();
+  return entries.find(({ domains }) =>
+    domains.some((d) => lowercase.includes(d)),
+  );
+}

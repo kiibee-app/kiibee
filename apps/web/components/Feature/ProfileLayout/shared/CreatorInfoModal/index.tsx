@@ -1,13 +1,19 @@
 "use client";
 
 import { CrossIcon } from "@/assets/icons/crossIcon";
-import { FacebookIcon, TwitterIcon } from "@/assets/icons";
+import {
+  FacebookIcon,
+  TwitterIcon,
+  InstagramIcon,
+  YouTubeIcon,
+  LinkIcon,
+} from "@/assets/icons";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
-import { creatorInfoModalData } from "@/utils/dummyData/profile.data";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import {
   CloseIconButton,
   CreatorInfoContent,
@@ -21,6 +27,34 @@ import {
   ShareButton,
 } from "./styles";
 import { MODAL_PADDINGS } from "@/lib/theme/tokens";
+import {
+  getDisplayUrl,
+  matchSocialPlatform,
+  type SocialIconEntry,
+} from "@/utils/creatorProfile";
+import { CREATE_PROFILE_HOME, COMMON } from "@/utils/translationKeys";
+
+const ICON_SIZE = { width: 19, height: 19 } as const;
+const ICON_COLOR = COLORS.primary.BLACK;
+const HTTP_PREFIX = "http";
+const HTTPS_PREFIX = "https://";
+
+const SOCIAL_ENTRIES: SocialIconEntry[] = [
+  { domains: ["youtube.com", "youtu.be"], Icon: YouTubeIcon },
+  { domains: ["facebook.com"], Icon: FacebookIcon },
+  { domains: ["twitter.com", "x.com"], Icon: TwitterIcon },
+  { domains: ["instagram.com"], Icon: InstagramIcon },
+];
+
+function toAbsoluteUrl(url: string): string {
+  return url.startsWith(HTTP_PREFIX) ? url : `${HTTPS_PREFIX}${url}`;
+}
+
+function SocialIcon({ url }: { url: string }) {
+  const match = matchSocialPlatform(url, SOCIAL_ENTRIES);
+  const Icon = match?.Icon ?? LinkIcon;
+  return <Icon {...ICON_SIZE} color={ICON_COLOR} />;
+}
 
 type CreatorInfoModalProps = {
   visible: boolean;
@@ -32,8 +66,13 @@ export default function CreatorInfoModal({
   onClose,
 }: CreatorInfoModalProps) {
   const { t } = useTranslation();
-  const title = creatorInfoModalData.name;
-  const body = creatorInfoModalData.description;
+  const { displayName, about } = useCreatorChannelProfile();
+
+  const title = displayName ?? "";
+  const body = about?.description ?? "";
+  const joinedDate = about?.joinedDate ?? "";
+  const uploadsCount = about?.uploadCount ?? 0;
+  const links = about?.websiteLink ? [about.websiteLink] : [];
 
   return (
     <GenericModal
@@ -51,13 +90,9 @@ export default function CreatorInfoModal({
           <CloseIconButton
             type="button"
             onClick={onClose}
-            aria-label={t("common.close")}
+            aria-label={t(COMMON.close)}
           >
-            <CrossIcon
-              width={18}
-              height={18}
-              crossColor={COLORS.primary.BLACK}
-            />
+            <CrossIcon width={18} height={18} crossColor={ICON_COLOR} />
           </CloseIconButton>
         </CreatorInfoHeader>
 
@@ -68,18 +103,15 @@ export default function CreatorInfoModal({
         <Section>
           <SectionTitle>
             <MonoText $use="H5_Medium">
-              {t("createProfileHome.aboutModal.moreInfo")}
+              {t(CREATE_PROFILE_HOME.aboutModal.moreInfo)}
             </MonoText>
           </SectionTitle>
           <InfoList>
             <MonoText $use="Body_Medium">
-              {t("createProfileHome.aboutModal.joined")}{" "}
-              {creatorInfoModalData.joinedDate}
+              {t(CREATE_PROFILE_HOME.aboutModal.joined)} {joinedDate}
             </MonoText>
             <MonoText $use="Body_Medium">
-              {t("createProfileHome.uploads", {
-                count: creatorInfoModalData.uploads,
-              })}
+              {t(CREATE_PROFILE_HOME.uploads, { count: uploadsCount })}
             </MonoText>
           </InfoList>
         </Section>
@@ -87,36 +119,27 @@ export default function CreatorInfoModal({
         <Section>
           <SectionTitle>
             <MonoText $use="H5_Medium">
-              {t("createProfileHome.aboutModal.links")}
+              {t(CREATE_PROFILE_HOME.aboutModal.links)}
             </MonoText>
           </SectionTitle>
           <LinksList>
-            <LinkItem href={`https://${creatorInfoModalData.links.facebook}`}>
-              <FacebookIcon
-                width={19}
-                height={19}
-                color={COLORS.primary.BLACK}
-              />
-              <MonoText $use="Body_Medium">
-                {creatorInfoModalData.links.facebook}
-              </MonoText>
-            </LinkItem>
-            <LinkItem href={`https://${creatorInfoModalData.links.twitter}`}>
-              <TwitterIcon
-                width={19}
-                height={19}
-                color={COLORS.primary.BLACK}
-              />
-              <MonoText $use="Body_Medium">
-                {creatorInfoModalData.links.twitter}
-              </MonoText>
-            </LinkItem>
+            {links.map((url) => (
+              <LinkItem
+                key={url}
+                href={toAbsoluteUrl(url)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <SocialIcon url={url} />
+                <MonoText $use="Body_Medium">{getDisplayUrl(url)}</MonoText>
+              </LinkItem>
+            ))}
           </LinksList>
         </Section>
 
-        <ShareButton type="button" aria-label={t("common.share")}>
+        <ShareButton type="button" aria-label={t(COMMON.share)}>
           <ShareIcon width={18} height={18} />
-          <MonoText $use="Body_Medium">{t("common.share")}</MonoText>
+          <MonoText $use="Body_Medium">{t(COMMON.share)}</MonoText>
         </ShareButton>
       </CreatorInfoContent>
     </GenericModal>
