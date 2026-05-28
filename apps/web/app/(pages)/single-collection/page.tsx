@@ -25,7 +25,10 @@ function SingleCollectionContent() {
 
   return (
     <Section>
-      <SingleCollectionHero title={section.title} />
+      <SingleCollectionHero
+        title={section.title}
+        primaryContentId={section.tutorials[0]?.id}
+      />
       <CollectionContent
         videos={section.tutorials}
         maxWidth={section.gridMaxWidth}

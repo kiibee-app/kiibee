@@ -21,17 +21,26 @@ import { ShareIcon } from "@/assets/icons/shareIcon";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import { VARIANT } from "@/utils/Constants";
+import { pathPublishedContent } from "@/utils/path";
 
 type Props = {
   title: string;
+  primaryContentId?: string;
 };
 
-export default function SingleCollectionHero({ title }: Props) {
+export default function SingleCollectionHero({
+  title,
+  primaryContentId,
+}: Props) {
   const { t } = useTranslation();
   const router = useRouter();
   const handleBack = () => {
     router.back();
   };
+  const primaryContentHref = primaryContentId
+    ? pathPublishedContent(primaryContentId)
+    : undefined;
+
   return (
     <HeroWrapper>
       <TopBar>
@@ -61,7 +70,13 @@ export default function SingleCollectionHero({ title }: Props) {
           <MonoText $use="Body_Medium">
             {t("singleCollection.subtitle")}
           </MonoText>
-          <ActionButton>{t("singleCollection.seeContent")}</ActionButton>
+          <ActionButton
+            asAnchor
+            href={primaryContentHref}
+            disabled={!primaryContentHref}
+          >
+            {t("singleCollection.seeContent")}
+          </ActionButton>
         </HeroContent>
 
         <HeroImage>

@@ -19,3 +19,10 @@ export const getTutorialCollectionById = (
   collectionId: string | null,
 ): TutorialCollection | undefined =>
   tutorialCollections.find((collection) => collection.id === collectionId);
+
+export const getTutorialCollectionByVideoId = (
+  videoId: string | null | undefined,
+): TutorialCollection | undefined =>
+  tutorialCollections.find((collection) =>
+    collection.tutorials.some((tutorial) => tutorial.id === videoId),
+  );
