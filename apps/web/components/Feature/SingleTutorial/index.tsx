@@ -3,7 +3,6 @@
 import { useTranslation } from "react-i18next";
 import type { TutorialVideo } from "@/utils/types";
 import logo from "@/assets/images/logo.png";
-import contentImage from "@/assets/images/single-tutorial/Content image.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
@@ -24,21 +23,15 @@ export default function SingleTutorial({
 
   return (
     <SingleContentPage
-      title={t("singleTutorial.title")}
-      descriptions={[
-        t("singleTutorial.descriptionPrimary"),
-        t("singleTutorial.descriptionSecondary"),
-      ]}
-      tags={[
-        t("singleTutorial.tags.guide"),
-        t("singleTutorial.tags.tutorials"),
-      ]}
+      title={tutorial.title}
+      descriptions={[tutorial.focus, t("singleTutorial.descriptionSecondary")]}
+      tags={[tutorial.category, t("singleTutorial.tags.tutorials")]}
       creator={{
-        name: "Kiibee",
+        name: tutorial.creator,
         avatar: logo,
       }}
       hero={{
-        image: contentImage,
+        image: tutorial.image,
         imageAlt: tutorial.title,
         categoryLabel: tutorial.category,
         mediaLabel: tutorial.formatLabel,
@@ -58,7 +51,7 @@ export default function SingleTutorial({
         },
         {
           label: t("singleTutorial.meta.publishedByLabel"),
-          value: tutorial.creator,
+          value: tutorial.creator || "Kiibee",
         },
         {
           label: t("singleTutorial.meta.durationLabel"),
