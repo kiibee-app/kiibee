@@ -24,18 +24,22 @@ export const SectionHeader = styled.div`
   flex-wrap: wrap;
   margin-bottom: 1rem;
 `;
-export const SectionLabel = styled.div`
+export const SectionLabel = styled.button.attrs({ type: "button" })`
   display: flex;
   align-items: center;
   gap: 0.25rem;
   font-weight: 600;
   font-size: 1.05rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
 `;
 export const SectionTag = styled.span`
   padding: 0.35rem 0;
 `;
-export const SectionLink = styled.a`
+export const SectionLink = styled.button.attrs({ type: "button" })`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,6 +47,9 @@ export const SectionLink = styled.a`
   width: 1.766rem;
   padding: 0.432rem 0.353rem;
   border-radius: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 `;
 export const Content = styled.main`
   flex: 1;

@@ -4,10 +4,17 @@ import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const HeroWrapper = styled.div`
-  padding: 110px 110px 0;
+  width: 100%;
+  max-width: var(--navbar-inner-max-width, 1440px);
+  margin: 0 auto;
+  padding: 110px 1.5rem 0;
 
   ${media.tablet} {
-    padding: 80px 40px 0;
+    padding: 88px 1.5rem 0;
+  }
+
+  @media (max-width: 640px) {
+    padding: 84px 1rem 0;
   }
 `;
 
@@ -48,9 +55,14 @@ export const TopBar = styled.div`
   align-items: center;
   padding-bottom: 20px;
   justify-content: space-between;
+  gap: 12px;
 
   ${media.tablet} {
     padding-bottom: 16px;
+  }
+
+  @media (max-width: 640px) {
+    flex-wrap: wrap;
   }
 `;
 
@@ -111,12 +123,25 @@ export const Header = styled.div`
   align-items: center;
   margin: 24px 0;
   gap: 16px;
+  flex-wrap: wrap;
+
+  @media (max-width: 640px) {
+    align-items: stretch;
+  }
 `;
 
 export const Section = styled.div`
-  padding: 0px 110px;
+  width: 100%;
+  max-width: var(--navbar-inner-max-width, 1440px);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+
   ${media.tablet} {
-    padding: 0px 40px;
+    padding: 0 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    padding: 0 1rem;
   }
 `;
 

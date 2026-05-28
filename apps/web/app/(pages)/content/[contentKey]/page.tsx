@@ -22,17 +22,31 @@ import {
   getSingleContentProps,
 } from "@/utils/contentApi";
 import { FORMAT_TYPE } from "@/utils/types";
+import { tutorialVideos } from "@/utils/data";
+import SingleTutorial from "@/components/Feature/SingleTutorial";
+import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
   const params = useParams();
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
+  const normalizedContentKey = contentKey?.replaceAll(":", "-");
+  const tutorialFallback = tutorialVideos.find(
+    (video) => video.id === normalizedContentKey,
+  );
+  const tutorialCollection =
+    getTutorialCollectionByVideoId(normalizedContentKey);
+  const relatedTutorials = (tutorialCollection?.tutorials ?? []).filter(
+    (video) => video.id !== normalizedContentKey,
+  );
   const { data, isLoading, isError } = useGetAPI<ContentDetailResponse>(
-    contentKey ? API.content.get(contentKey) : API.content.create,
+    normalizedContentKey
+      ? API.content.get(normalizedContentKey)
+      : API.content.create,
     undefined,
     {
-      enabled: Boolean(contentKey),
+      enabled: Boolean(normalizedContentKey) && !tutorialFallback,
     },
   );
   const content = getContentDetail(data);
@@ -68,6 +82,18 @@ function PublishedContentDetail() {
   }
 
   if (isError || !content) {
+    if (tutorialFallback) {
+      return (
+        <Section>
+          <SingleTutorial
+            tutorial={tutorialFallback}
+            relatedVideos={relatedTutorials}
+            collectionId={tutorialCollection?.id}
+          />
+        </Section>
+      );
+    }
+
     return (
       <Section>
         <MonoText $use="H5_Regular">

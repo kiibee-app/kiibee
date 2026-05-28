@@ -1,5 +1,6 @@
 "use client";
 
+import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
 export const PageContainer = styled.div`
@@ -30,7 +31,12 @@ export const Footer = styled.footer`
 
 export const Section = styled.section`
   width: 100%;
+  margin: 0 auto;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
+
+  ${media.desktopMd} {
+    max-width: 100%;
+  }
 `;
 
 export const ExploreSection = styled.section`
