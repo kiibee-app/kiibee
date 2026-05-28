@@ -3,14 +3,10 @@ import { and, eq } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
 import { users } from 'src/database/schema';
-import { ROLE } from 'src/utils/constant';
+import { isValidAvatarUrl, ROLE } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
 import { UpdateViewerProfileDto } from '../dto/updateViewerProfile.dto';
-
-const MAX_AVATAR_DATA_URL_CHARS = 500_000;
-const IMAGE_DATA_URL_RE =
-  /^data:image\/(?:png|jpe?g|webp);base64,[a-zA-Z0-9+/=\s\r\n]+$/;
 
 export const updateViewerProfileService = async (
   userId: string,
@@ -59,10 +55,7 @@ export const updateViewerProfileService = async (
     if (dto.avatarUrl === null || dto.avatarUrl === '') {
       patch.avatarUrl = null;
     } else {
-      if (
-        dto.avatarUrl.length > MAX_AVATAR_DATA_URL_CHARS ||
-        !IMAGE_DATA_URL_RE.test(dto.avatarUrl)
-      ) {
+      if (!isValidAvatarUrl(dto.avatarUrl)) {
         return fail('Invalid profile image data', HttpStatus.BAD_REQUEST);
       }
 

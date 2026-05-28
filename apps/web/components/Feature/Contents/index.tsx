@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import ConfirmationModal from "@/components/UI/ConfirmationModal";
@@ -23,18 +23,25 @@ import CouponFlowModals from "./coupon/CouponFlowModals";
 import ContentTypeModal from "./ContentTypeModal";
 import ContentUploadModal from "./ContentUploadModal";
 import { useContentsViewState } from "@/hooks/contents/useContentsViewState";
+import { useGetAPI } from "@/lib/http/api/getApi";
+import { API } from "@/lib/http/api/endpoints";
+import { CouponListResponse } from "@/types/couponType";
+import { findElement } from "@/utils/searchHelper";
 import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { APPEARANCE } from "@/utils/common";
+import { ADMISSION_REQUIREMENTS } from "@/utils/admissionRequirements";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
   CONTENT_UPLOAD_MODE,
 } from "@/utils/content";
 import { ContentFormProvider, useContentForm } from "./ContentFormContext";
+import { AppearanceFormProvider } from "./Appearance/AppearanceFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
-import { UI_TITLE_FALLBACK } from "@/utils/Constants";
+import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
+import { SCROLL_OPTIONS, UI_TITLE_FALLBACK } from "@/utils/Constants";
 
 function CreatorsContentsInner() {
   const { t } = useTranslation();
@@ -67,6 +74,137 @@ function CreatorsContentsInner() {
     handleConfirmDelete,
     setContentsMap,
   } = useContentsDataState(selectedCollection);
+
+  const { data: couponResponse } = useGetAPI<CouponListResponse>(
+    API.coupon.getAll,
+    undefined,
+    {
+      enabled: true,
+    },
+  );
+
+  const CONTENTS_TABS_INDEX = useMemo(() => {
+    const colNames = collections.map((c) => c.name);
+    const contentNames = collectionContents.map((c) => c.name);
+    const collectionsKeywords = [
+      t("contents.tabs.collections"),
+      t("contents.tabs.contents"),
+      t(CONTENTS_KEYS.title),
+      t("contents.actions.search"),
+      t("contents.actions.createCollection"),
+      t("contents.actions.createCoupon"),
+      t("contents.actions.deleteContent"),
+      t("contents.actions.addContent"),
+      t("contents.emptyCollection.title"),
+      t("contents.emptyCollection.description"),
+      ...colNames,
+      ...contentNames,
+    ];
+
+    const appearanceKeywords = [
+      t("contents.tabs.appearance"),
+      t(CONTENTS_KEYS.appearance.textColor),
+      t(CONTENTS_KEYS.appearance.textColorHint),
+      t(CONTENTS_KEYS.appearance.buttonColor),
+      t(CONTENTS_KEYS.appearance.buttonColorHint),
+      t(CONTENTS_KEYS.appearance.logo.title),
+      t(CONTENTS_KEYS.appearance.logo.subtitle),
+      t(CONTENTS_KEYS.appearance.description.label),
+      t(CONTENTS_KEYS.appearance.description.hint),
+      t(CONTENTS_KEYS.appearance.layouts.title),
+      t(CONTENTS_KEYS.appearance.layouts.subtitle),
+      t(CONTENTS_KEYS.appearance.coverImage.title),
+      t(CONTENTS_KEYS.appearance.coverImage.subtitle),
+      t(CONTENTS_KEYS.appearance.receipt),
+      t(CONTENTS_KEYS.appearance.receiptHint),
+    ];
+
+    const settingsKeywords = [
+      t("contents.tabs.settings"),
+      t("contents.admissionRequirements.title"),
+      t("contents.admissionRequirements.description"),
+      ...ADMISSION_REQUIREMENTS.map((opt) => t(opt.labelKey)),
+    ];
+
+    const coupTitles = (couponResponse?.data ?? []).flatMap((item) => [
+      item.title || "",
+      ...(item.codes ?? []),
+    ]);
+    const couponsKeywords = [
+      t("contents.tabs.coupons"),
+      t("contents.couponsCard.title"),
+      t("contents.couponsCard.description"),
+      t("contents.couponDetails.title"),
+      t("contents.couponDetails.fields.title"),
+      t("contents.couponDetails.placeholders.title"),
+      t("contents.couponDetails.discountValue"),
+      t("contents.couponDetails.discountHelp"),
+      t("contents.couponDetails.discountType.fixedAmount"),
+      t("contents.couponDetails.discountType.percentage"),
+      t("contents.couponCodes.title"),
+      t("contents.couponCodes.description"),
+      t("contents.couponCodes.fields.discountCodes"),
+      t("contents.couponCodes.placeholders.codes"),
+      t("contents.couponCodes.helper"),
+      t("contents.couponApplicableProducts.title"),
+      t("contents.couponApplicableProducts.description"),
+      ...coupTitles,
+    ];
+
+    return [
+      {
+        tab: "collections",
+        keywords: collectionsKeywords.map((k) => k.toLowerCase()),
+      },
+      {
+        tab: "appearance",
+        keywords: appearanceKeywords.map((k) => k.toLowerCase()),
+      },
+      {
+        tab: "settings",
+        keywords: settingsKeywords.map((k) => k.toLowerCase()),
+      },
+      {
+        tab: "coupons",
+        keywords: couponsKeywords.map((k) => k.toLowerCase()),
+      },
+    ];
+  }, [t, collections, collectionContents, couponResponse]);
+
+  useEffect(() => {
+    if (!searchValue || searchValue.trim().length < 2) return;
+
+    const query = searchValue.trim().toLowerCase();
+    const activeTabKeywords = CONTENTS_TABS_INDEX.find(
+      (item) => item.tab === activeTab,
+    );
+    const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
+      keyword.toLowerCase().includes(query),
+    );
+
+    if (!activeContainsQuery) {
+      const matchedTabItem = CONTENTS_TABS_INDEX.find((item) =>
+        item.keywords.some((keyword) => keyword.toLowerCase().includes(query)),
+      );
+      if (!matchedTabItem) return;
+      setActiveTabAndQuery(matchedTabItem.tab as typeof activeTab);
+    }
+
+    let attempts = 0;
+    const interval = setInterval(() => {
+      const container = document.getElementById("contents-content-area");
+      const element = container ? findElement(container, query) : null;
+      if (element) {
+        element.scrollIntoView(SCROLL_OPTIONS);
+        return clearInterval(interval);
+      }
+      if (++attempts > 10) {
+        clearInterval(interval);
+      }
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [searchValue, activeTab, setActiveTabAndQuery, CONTENTS_TABS_INDEX]);
   const {
     createCollectionFlow,
     contentTypeFlow,
@@ -103,7 +241,8 @@ function CreatorsContentsInner() {
     setCollectionPasswords,
     hasUnsavedChanges,
     handleUploadSuccess,
-    handleBackToBase,
+    handleBackToBaseStateOnly,
+    resetUploadState,
     handleHeaderSave,
     handleHeaderCancel,
     handleEditContent,
@@ -122,17 +261,53 @@ function CreatorsContentsInner() {
     contentTypeFlow,
   });
 
+  const clearSelectedCollectionContentsOverride = useCallback(() => {
+    const id = selectedCollection?.id;
+    if (!id) return;
+
+    setContentsMap((prev) => {
+      if (!prev[id]) return prev;
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
+  }, [selectedCollection?.id, setContentsMap]);
+
+  const {
+    handleBack,
+    handleBackToCollection,
+    handleEditContent: handleEditContentWithUrl,
+    handleSelectCollection,
+  } = useContentsUrlState({
+    collections,
+    selectedCollection,
+    setSelectedCollection,
+    onEditContent: (id) => void handleEditContent(id),
+    onBackStateOnly: handleBackToBaseStateOnly,
+  });
+
   const handleSaveSuccessClose = () => {
     setShowSaveSuccessModal(false);
-    handleBackToBase();
+    if (activeTab !== APPEARANCE) {
+      handleBack();
+    }
   };
+
+  const handleDeleteSuccessClose = useCallback(() => {
+    if (!isUploadMode && !editingContent?.id) return;
+    resetUploadState();
+    handleBack();
+  }, [editingContent?.id, handleBack, isUploadMode, resetUploadState]);
 
   return (
     <PageShell>
       <PageHeader>
         <HeaderRow>
-          {(selectedCollection || isUploadMode) && (
-            <AuthBackButton marginBottom="0px" onClick={handleBackToBase} />
+          {selectedCollection && (
+            <AuthBackButton
+              marginBottom="0px"
+              onClick={isUploadMode ? handleBack : handleBackToCollection}
+            />
           )}
           <Title>
             {isUploadMode
@@ -177,19 +352,20 @@ function CreatorsContentsInner() {
             }
           />
         </ContentsTabsSlot>
-        <ContentPanel>
+        <ContentPanel id="contents-content-area">
           <ContentTabPanel
             activeTab={activeTab}
             selectedCollection={selectedCollection}
             collectionContents={collectionContents}
             collections={collections}
+            editingContentId={editingContent?.id ?? null}
             setCollections={setCollections}
             setContentsMap={setContentsMap}
             setActiveTab={setActiveTabAndQuery}
-            setSelectedCollection={setSelectedCollection}
+            setSelectedCollection={handleSelectCollection}
             onDelete={openDelete}
             onEditCollection={handleEditCollection}
-            onEditContent={handleEditContent}
+            onEditContent={handleEditContentWithUrl}
             onEditCoupon={openCouponEdit}
             uploadedFile={uploadedFile}
             uploadedPreview={uploadedPreview}
@@ -235,7 +411,10 @@ function CreatorsContentsInner() {
         collectionId={selectedCollection?.id ?? null}
         onClose={closeContentUpload}
         onBack={handleContentUploadBack}
-        onUploadSuccess={handleUploadSuccess}
+        onUploadSuccess={(tab, file, preview, createdId) => {
+          clearSelectedCollectionContentsOverride();
+          handleUploadSuccess(tab, file, preview, createdId);
+        }}
       />
 
       <GenericModal
@@ -261,7 +440,7 @@ function CreatorsContentsInner() {
         confirmLabel={t("settings.notifications.discardModal.discard")}
         onConfirm={() => {
           if (isUploadMode) {
-            handleBackToBase();
+            handleBack();
           }
           closeDiscardModal();
         }}
@@ -303,6 +482,7 @@ function CreatorsContentsInner() {
         showDeleteSuccess={showDeleteSuccess}
         setShowDeleteSuccess={setShowDeleteSuccess}
         onConfirmDelete={handleConfirmDelete}
+        onSuccessClose={handleDeleteSuccessClose}
       />
     </PageShell>
   );
@@ -311,7 +491,9 @@ function CreatorsContentsInner() {
 export default function CreatorsContents() {
   return (
     <ContentFormProvider>
-      <CreatorsContentsInner />
+      <AppearanceFormProvider>
+        <CreatorsContentsInner />
+      </AppearanceFormProvider>
     </ContentFormProvider>
   );
 }

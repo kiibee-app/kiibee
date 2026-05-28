@@ -1,3 +1,6 @@
+import { authStorage } from "@/lib/auth/authStorage";
+import { API } from "@/lib/http/api/endpoints";
+import { API_BASE_URL } from "@/lib/http/config";
 import { canUseDOM, isBrowser } from "./ui";
 
 export const readFileAsDataUrl = (file: File): Promise<string> =>
@@ -16,13 +19,18 @@ export const readFileAsDataUrl = (file: File): Promise<string> =>
     reader.readAsDataURL(file);
   });
 
+export type CropDisplayState = {
+  containerWidth: number;
+  containerHeight: number;
+  cropWidth: number;
+  cropHeight: number;
+  position: { x: number; y: number };
+  zoom: number;
+};
+
 export const getCroppedImg = (
   imageSrc: string,
-  containerWidth: number,
-  containerHeight: number,
-  cropArea: { x: number; y: number; width: number; height: number },
-  position: { x: number; y: number },
-  zoom: number,
+  display: CropDisplayState,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     if (!isBrowser || !canUseDOM) {
@@ -41,71 +49,110 @@ export const getCroppedImg = (
         return;
       }
 
-      const safeZoom = zoom > 0 ? zoom : 1;
-      const scaleFactor = window.devicePixelRatio || 1;
-      const cropWidth = Math.max(1, Math.round(cropArea.width));
-      const cropHeight = Math.max(1, Math.round(cropArea.height));
-
-      canvas.width = cropWidth * scaleFactor;
-      canvas.height = cropHeight * scaleFactor;
-      ctx.scale(scaleFactor, scaleFactor);
-
-      const containScale = Math.min(
-        containerWidth / img.width,
-        containerHeight / img.height,
-      );
-      const baseWidth = img.width * containScale;
-      const baseHeight = img.height * containScale;
-
-      const transformedWidth = baseWidth * safeZoom;
-      const transformedHeight = baseHeight * safeZoom;
-      const transformedX =
-        containerWidth / 2 +
-        ((containerWidth - baseWidth) / 2) * safeZoom -
-        (containerWidth / 2) * safeZoom +
-        position.x;
-      const transformedY =
-        containerHeight / 2 +
-        ((containerHeight - baseHeight) / 2) * safeZoom -
-        (containerHeight / 2) * safeZoom +
-        position.y;
-
-      const sourceX = Math.max(
-        0,
-        ((cropArea.x - transformedX) / transformedWidth) * img.width,
-      );
-      const sourceY = Math.max(
-        0,
-        ((cropArea.y - transformedY) / transformedHeight) * img.height,
-      );
-      const sourceWidth = Math.max(
-        1,
-        Math.min(
-          img.width - sourceX,
-          (cropArea.width / transformedWidth) * img.width,
-        ),
-      );
-      const sourceHeight = Math.max(
-        1,
-        Math.min(
-          img.height - sourceY,
-          (cropArea.height / transformedHeight) * img.height,
-        ),
-      );
-
-      ctx.drawImage(
-        img,
-        sourceX,
-        sourceY,
-        sourceWidth,
-        sourceHeight,
-        0,
-        0,
+      const {
+        containerWidth,
+        containerHeight,
         cropWidth,
         cropHeight,
+        position,
+        zoom,
+      } = display;
+      const safeZoom = zoom > 0 ? zoom : 1;
+      const iw = img.naturalWidth;
+      const ih = img.naturalHeight;
+
+      const coverScale = Math.max(containerWidth / iw, containerHeight / ih);
+      const baseW = iw * coverScale;
+      const baseH = ih * coverScale;
+      const displayW = baseW * safeZoom;
+      const displayH = baseH * safeZoom;
+
+      const imgLeft = containerWidth / 2 + position.x - displayW / 2;
+      const imgTop = containerHeight / 2 + position.y - displayH / 2;
+      const cropLeft = (containerWidth - cropWidth) / 2;
+      const cropTop = (containerHeight - cropHeight) / 2;
+
+      const scaleX = iw / displayW;
+      const scaleY = ih / displayH;
+
+      let sourceX = (cropLeft - imgLeft) * scaleX;
+      let sourceY = (cropTop - imgTop) * scaleY;
+      let sourceW = cropWidth * scaleX;
+      let sourceH = cropHeight * scaleY;
+
+      if (sourceX < 0) {
+        sourceW += sourceX;
+        sourceX = 0;
+      }
+      if (sourceY < 0) {
+        sourceH += sourceY;
+        sourceY = 0;
+      }
+      sourceW = Math.min(sourceW, iw - sourceX);
+      sourceH = Math.min(sourceH, ih - sourceY);
+      sourceW = Math.max(1, sourceW);
+      sourceH = Math.max(1, sourceH);
+
+      const outputScale = Math.max(
+        3,
+        Math.min(4, window.devicePixelRatio || 3),
       );
-      resolve(canvas.toDataURL("image/webp", 1.0));
+      const outW = Math.round(cropWidth * outputScale);
+      const outH = Math.round(cropHeight * outputScale);
+
+      canvas.width = outW;
+      canvas.height = outH;
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(img, sourceX, sourceY, sourceW, sourceH, 0, 0, outW, outH);
+      resolve(canvas.toDataURL("image/png"));
     };
     img.onerror = () => reject(new Error("Failed to load image"));
   });
 };
+
+const dataUrlToFile = (dataUrl: string): File => {
+  const [header, base64 = ""] = dataUrl.split(",");
+  const mime = header?.match(/data:([^;]+)/)?.[1] ?? "image/webp";
+  const ext = mime.includes("png")
+    ? "png"
+    : mime.includes("jpeg")
+      ? "jpg"
+      : "webp";
+  const binary = atob(base64.replace(/\s/g, ""));
+  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+  return new File([bytes], `avatar.${ext}`, { type: mime });
+};
+
+/** Upload cropped data URLs via media API; pass through existing http(s) URLs. */
+export async function resolveProfileAvatarUrl(
+  avatar: string | null,
+): Promise<string | null> {
+  if (!avatar) return null;
+  if (!avatar.startsWith("data:image/")) return avatar;
+
+  const formData = new FormData();
+  formData.append("file", dataUrlToFile(avatar));
+
+  const headers: HeadersInit = { Accept: "application/json" };
+  const token = authStorage.getAccessToken();
+  if (token) headers.Authorization = `Bearer ${token}`;
+
+  const response = await fetch(`${API_BASE_URL}${API.media.imagesUpload}`, {
+    method: "POST",
+    body: formData,
+    credentials: "include",
+    headers,
+  });
+
+  const data = (await response.json().catch(() => null)) as {
+    url?: string;
+    message?: string;
+  } | null;
+
+  if (!response.ok || !data?.url) {
+    throw new Error(data?.message ?? "Image upload failed");
+  }
+
+  return data.url;
+}

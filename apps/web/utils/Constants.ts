@@ -28,6 +28,9 @@ export const SIDEBAR_COLLAPSE_BREAKPOINT = 1024;
 export const REPEAT_PASSWORD = "repeatPassword";
 export const PASSWORD = "password";
 export const CONTENT_TAB = "tab";
+export const CONTENT_COLLECTION_QUERY_KEY = "collectionId";
+export const CONTENT_ITEM_QUERY_KEY = "contentId";
+export const CONTENT_LAST_EDITED_STORAGE_KEY = "contents:lastEditedContentId";
 export const BILLING_TAB = "billingTab";
 export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [
   "settingsTab",
@@ -110,6 +113,7 @@ export const PROFILE_LAYOUT_PAGE = {
 
 export const QUERY_KEYS = {
   PROFILE_HOME_COLLECTIONS_PREVIEW: "profile-home-collections-preview",
+  PROFILE_LATEST_UPLOAD: "profile-latest-upload",
 } as const;
 
 export type ProfileLayoutPageKind =
@@ -169,6 +173,11 @@ export const ERROR_MESSAGES = {
 };
 
 export const UI_TITLE_FALLBACK = "Content Details";
+
+export const SCROLL_OPTIONS = {
+  behavior: "smooth",
+  block: "center",
+} as const;
 
 export const apiToUiAccessTypeMap: Record<string, AdmissionRequirementValue> = {
   [ACCESS_TYPE_PASSWORD]: ADMISSION_REQUIREMENT_VALUES.password,

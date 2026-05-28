@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   ADD_CONTENT_TABS,
@@ -38,13 +38,16 @@ import MoveContentModal from "./Collections/MoveContentModal";
 import { useCouponActions } from "@/hooks/contents/useCouponActions";
 import { useContentMoveActions } from "@/hooks/contents/useContentMoveActions";
 import Payment from "./Payment";
-import { CreateCouponPayload } from "@/types/couponType";
+import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
+import CouponPreviewModal from "./coupon/CouponPreviewModal";
+import { COUPON_MODE } from "@/utils/content";
 
 type Props = {
   activeTab: ContentTab;
   selectedCollection: CollectionRow | null;
   collectionContents: CollectionContentRow[];
   collections: CollectionRow[];
+  editingContentId?: string | null;
   setCollections: Dispatch<SetStateAction<CollectionRow[]>>;
   setSelectedCollection: (collection: CollectionRow) => void;
   onDelete: (id: string, type: CollectionTableType) => void;
@@ -68,6 +71,7 @@ export default function ContentTabPanel({
   selectedCollection,
   collectionContents,
   collections,
+  editingContentId,
   setCollections,
   setSelectedCollection,
   onDelete,
@@ -85,8 +89,14 @@ export default function ContentTabPanel({
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
+  const [selectedCoupon, setSelectedCoupon] = useState<CouponEntity | null>(
+    null,
+  );
+
+  const [showCouponModal, setShowCouponModal] = useState(false);
   const {
     couponRows,
+    couponList,
     handleCouponAction,
     handleCouponDeleteConfirm,
     handleCouponDeleteModalClose,
@@ -94,6 +104,7 @@ export default function ContentTabPanel({
     setShowCouponDeleteConfirm,
     showCouponDeleteSuccess,
     setShowCouponDeleteSuccess,
+    openEditCoupon,
   } = useCouponActions({
     activeTab,
     onEditCoupon,
@@ -200,7 +211,35 @@ export default function ContentTabPanel({
   if (activeTab === COUPONS)
     return (
       <>
-        <CouponTable data={couponRows} onActionSelect={handleCouponAction} />
+        <CouponTable
+          data={couponRows}
+          onActionSelect={handleCouponAction}
+          onRowClick={(row) => {
+            const fullCoupon = couponList.find((c) => c.id === row.action);
+            if (!fullCoupon) return;
+            setSelectedCoupon(fullCoupon);
+            setShowCouponModal(true);
+          }}
+        />
+        {showCouponModal && selectedCoupon && (
+          <CouponPreviewModal
+            visible={showCouponModal}
+            data={selectedCoupon}
+            collections={collections}
+            mode={COUPON_MODE.DETAILS}
+            onClose={() => {
+              setShowCouponModal(false);
+              setSelectedCoupon(null);
+            }}
+            onEdit={() => {
+              if (!selectedCoupon) return;
+              setShowCouponModal(false);
+              openEditCoupon(selectedCoupon);
+              setSelectedCoupon(null);
+            }}
+          />
+        )}
+
         <DeleteModals
           showDeleteConfirm={showCouponDeleteConfirm}
           setShowDeleteConfirm={setShowCouponDeleteConfirm}
@@ -217,8 +256,10 @@ export default function ContentTabPanel({
   if (activeTab === ADD_CONTENT_TABS.GENERAL) {
     return (
       <GeneralContent
+        id={editingContentId ?? ""}
         uploadedFile={uploadedFile}
         uploadedPreview={uploadedPreview}
+        onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
       />
     );
   }

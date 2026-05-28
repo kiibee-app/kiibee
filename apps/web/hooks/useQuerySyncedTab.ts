@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { isBrowser } from "@/utils/ui";
 
 type UseQuerySyncedTabParams<T extends string> = {
   queryKey: string;
@@ -34,7 +35,10 @@ export function useQuerySyncedTab<T extends string>({
 
   const buildUrl = useCallback(
     (tab: T) => {
-      const params = new URLSearchParams(searchParamsString);
+      const liveParams = isBrowser
+        ? window.location.search
+        : `?${searchParamsString}`;
+      const params = new URLSearchParams(liveParams);
 
       cleanupQueryKeys.forEach((key) => params.delete(key));
 

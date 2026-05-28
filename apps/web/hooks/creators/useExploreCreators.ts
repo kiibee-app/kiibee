@@ -14,6 +14,8 @@ export type ExploreCreator = {
   uploadCount: number;
   subscriberCount: number;
   createdAt: string;
+  contentDescription?: string | null;
+  exampleWorkLink?: string | null;
 };
 
 type ExploreCreatorsResponse = {

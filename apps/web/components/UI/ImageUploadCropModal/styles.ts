@@ -59,26 +59,42 @@ export const ImagePreviewWrapper = styled.div`
   aspect-ratio: 1 / 1;
   border-radius: 8px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  cursor: pointer;
+
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
 export const ImagePreview = styled.img<{
   $x: number;
   $y: number;
-  $zoom: number;
+  $width: number;
+  $height: number;
   $isDragging: boolean;
 }>`
-  width: 100%;
-  height: 100%;
-  border-radius: ${({ theme }) => theme.radius[4]};
-  object-fit: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: ${({ $width }) => $width}px;
+  height: ${({ $height }) => $height}px;
+  max-width: none;
+  max-height: none;
+  object-fit: fill;
   pointer-events: none;
-  transform: ${({ $x, $y, $zoom }) =>
-    `translate(${$x}px, ${$y}px) scale(${$zoom})`};
+  user-select: none;
+  transform: ${({ $x, $y }) =>
+    `translate(calc(-50% + ${$x}px), calc(-50% + ${$y}px))`};
   transition: ${({ $isDragging }) =>
     $isDragging ? "none" : "transform 0.1s ease-out"};
+`;
+
+export const ChangePhotoHint = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  margin-top: 8px;
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
+  text-align: center;
 `;
 
 export const CropOverlay = styled.div<{

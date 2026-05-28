@@ -9,6 +9,7 @@ import { UpdateCreatorProfileDto } from '../dto/updateCreatorProfile.dto';
 
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
+import { isValidAvatarUrl } from 'src/utils/constant';
 
 export const updateCreatorProfileService = async (
   userId: string,
@@ -28,6 +29,15 @@ export const updateCreatorProfileService = async (
       regNumber,
       accountNumber,
     } = profileData;
+
+    if (
+      avatarUrl !== undefined &&
+      avatarUrl !== null &&
+      avatarUrl !== '' &&
+      !isValidAvatarUrl(avatarUrl)
+    ) {
+      return fail('Invalid profile image data', HttpStatus.BAD_REQUEST);
+    }
 
     const now = new Date();
 

@@ -565,6 +565,19 @@
       }
     }
   },
+  "exploreCategories": {
+    "title": "Top categories to get you started",
+    "subtitle": "Browse through the platform and buy or rent easily with just a few clicks. You can watch whenever or wherever.",
+    "browseAll": "Browse all",
+    "categories": {
+      "all": "All content",
+      "technology": "Technology",
+      "design": "Design",
+      "art": "Art",
+      "literature": "Literature",
+      "comedies": "Comedies"
+    }
+  },
   "footer": {
     "information": "Information",
     "about": "About us",
@@ -923,6 +936,7 @@
     "dragPhotoHere": "Drag photo here",
     "or": "or",
     "choosePhoto": "Choose photos to upload",
+    "clickPhotoToChange": "Click the photo to choose a different image",
     "recommendedImageSize": "Use {{cropWidth}}×{{cropHeight}} pixel image",
     "zoom": "Zoom",
     "apply": "Apply",
@@ -933,6 +947,7 @@
     "loading": "Loading content...",
     "imageAlt": "Content preview",
     "seeContent": "See content",
+    "playTrailer": "Play trailer",
     "meta": {
       "createdAt": "Created:",
       "accessType": "Access:",
@@ -1290,7 +1305,10 @@
       "discountType": {
         "fixedAmount": "Fixed amount",
         "percentage": "Percentage"
-      }
+      },
+      "editButton": "Edit Coupon",
+      "createdDate": "Created Date",
+      "status": "Status"
     },
     "couponCodes": {
       "title": "Coupon codes",

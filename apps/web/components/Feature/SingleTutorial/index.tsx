@@ -51,7 +51,7 @@ export default function SingleTutorial({
         },
         {
           label: t("singleTutorial.meta.publishedByLabel"),
-          value: tutorial.creator || "Kiibee",
+          value: <strong>{tutorial.creator}</strong>,
         },
         {
           label: t("singleTutorial.meta.durationLabel"),

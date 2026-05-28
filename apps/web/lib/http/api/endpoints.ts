@@ -26,6 +26,7 @@ export const API = {
     fileUploadUrl: "/media/file/upload-url",
     fileConfirm: "/media/file/confirm",
     fileSignedUrl: "/media/file/signed-url",
+    imagesUpload: "/media/images/upload",
   },
   content: {
     create: "/content/create",
@@ -33,6 +34,7 @@ export const API = {
     get: (id: string) => `/content/${id}`,
     update: (id: string) => `/content/update/${id}`,
     delete: (id: string) => `/content/delete/${id}`,
+    appearance: "/content/appearance",
   },
   collection: {
     getAll: "/collection",

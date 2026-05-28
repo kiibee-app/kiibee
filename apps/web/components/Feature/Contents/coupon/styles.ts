@@ -6,13 +6,13 @@ import { media } from "@repo/ui/breakpoints";
 import { COUPON_STATUS } from "@/types/couponType";
 import { Dropdown } from "@/components/UI/SortDropdown/styles";
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.div<{ $details?: boolean }>`
   display: flex;
   min-height: 380px;
   flex-direction: column;
-  align-items: center;
+  align-items: ${({ $details }) => ($details ? "flex-start" : "center")};
   justify-content: center;
-  padding-top: 45px;
+  padding-top: ${({ $details }) => ($details ? "20px" : "45px")};
 
   ${media.tablet} {
     min-height: auto;
@@ -128,7 +128,11 @@ export const StatusBadge = styled.span<{ $status: string }>`
   cursor: default;
   color: ${({ theme }) => theme.colors.primary.WHITE};
   background-color: ${({ $status, theme }) => {
-    if ($status === COUPON_STATUS.INACTIVE) return theme.colors.primary.RED;
+    if (
+      $status === COUPON_STATUS.INACTIVE ||
+      $status === COUPON_STATUS.INACTIVE.toLowerCase()
+    )
+      return theme.colors.primary.RED;
     return theme.colors.secondary.MEDIUM_GREEN;
   }};
   ${MonoText} {

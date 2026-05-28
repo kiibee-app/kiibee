@@ -26,11 +26,19 @@ import {
 } from "./styles";
 import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
-import { PlayCircleIcon, PlayIcon } from "@/assets/icons";
+import {
+  EpubIcon,
+  PdfIcon,
+  PlayCircleIcon,
+  PlayIcon,
+  WebIcon,
+} from "@/assets/icons";
 import { useIsMobile } from "@/utils/useIsMobile";
 import { GenericModal } from "@/components/UI/Modals";
 import { PATHS } from "@/utils/path";
 import { MODAL_ALIGN } from "@/utils/ui";
+import { ContentType, normalizeContentTypeValue } from "@/utils/content";
+import { FORMAT_TYPE } from "@/utils/types";
 
 type LatestUploadAction = {
   title: string;
@@ -38,6 +46,7 @@ type LatestUploadAction = {
 };
 
 export type LatestUploadData = {
+  contentType?: ContentType;
   sectionTitle: string;
   badge: string;
   image: ImageSource;
@@ -65,6 +74,14 @@ type LatestUploadProps = {
   data: LatestUploadData;
 };
 
+const contentIconMap = {
+  video: PlayCircleIcon,
+  audio: PlayCircleIcon,
+  pdf: PdfIcon,
+  epub: EpubIcon,
+  web: WebIcon,
+} as const;
+
 export default function LatestUpload({ data }: LatestUploadProps) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -73,6 +90,13 @@ export default function LatestUpload({ data }: LatestUploadProps) {
   const [primaryAction, secondaryAction] = data.actions;
   const handleLogin = () => router.push(PATHS.AUTH_LOGIN);
   const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
+  const normalizedContentType = normalizeContentTypeValue(
+    String((data as { contentType?: unknown }).contentType ?? ""),
+  );
+  const isMediaPlayable =
+    normalizedContentType === FORMAT_TYPE.VIDEO ||
+    normalizedContentType === FORMAT_TYPE.AUDIO;
+  const TypeIcon = contentIconMap[normalizedContentType];
 
   return (
     <Section
@@ -97,15 +121,28 @@ export default function LatestUpload({ data }: LatestUploadProps) {
 
           <ImageOverlay>
             <BottomControls>
-              <LeftControlButton>
-                <PlayCircleIcon />
-                {t("createProfileHome.latestUpload.video")}
-              </LeftControlButton>
+              {isMediaPlayable ? (
+                <>
+                  <LeftControlButton>
+                    <PlayCircleIcon />
+                    {t("createProfileHome.latestUpload.video")}
+                  </LeftControlButton>
 
-              <RightControlButton>
-                <PlayIcon width={24} height={24} />
-                {t("createProfileHome.latestUpload.playTrailer")}
-              </RightControlButton>
+                  <RightControlButton>
+                    <PlayIcon width={24} height={24} />
+                    {t("createProfileHome.latestUpload.playTrailer")}
+                  </RightControlButton>
+                </>
+              ) : (
+                <>
+                  <LeftControlButton>
+                    <TypeIcon />
+                    {t(
+                      `contents.contentTypeModal.options.${normalizedContentType}`,
+                    )}
+                  </LeftControlButton>
+                </>
+              )}
             </BottomControls>
           </ImageOverlay>
         </ImageSection>

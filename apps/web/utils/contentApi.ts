@@ -1,4 +1,5 @@
 import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
+import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import type { SingleContentPageProps } from "@/types/contentTypes";
 import type { ImageSource } from "@/utils/Constants";
@@ -46,6 +47,7 @@ export const CONTENT_TRANSLATION_KEYS = {
   loading: "singleContent.loading",
   imageAlt: "singleContent.imageAlt",
   seeContent: "singleContent.seeContent",
+  playTrailer: "singleContent.playTrailer",
   editSuccess: "contents.contentUploadModal.updateSuccess",
   updateError: "contents.contentUploadModal.updateError",
   updateAction: "contents.contentUploadModal.details.update",
@@ -169,6 +171,9 @@ export const getSingleContentProps = (
         ? {
             mediaIcon: playCircleIcon,
             mediaIconAlt: t(CONTENT_TRANSLATION_KEYS.seeContent),
+            trailerLabel: t(CONTENT_TRANSLATION_KEYS.playTrailer),
+            trailerIcon: playIcon,
+            trailerIconAlt: t(CONTENT_TRANSLATION_KEYS.playTrailer),
           }
         : {}),
     },
