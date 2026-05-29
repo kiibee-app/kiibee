@@ -10,6 +10,7 @@ import {
   SIDEBAR_COLLAPSE_BREAKPOINT,
   VIEW,
   VIEWER_SECTION,
+  CONTENT_COLLECTION_QUERY_KEY,
   ROLE_VIEWER,
 } from "@/utils/Constants";
 import {
@@ -70,6 +71,7 @@ export default function ClientDashboardViewer({
       const params = new URLSearchParams(searchParams?.toString() ?? "");
 
       params.delete(VIEWER_SECTION);
+      params.delete(CONTENT_COLLECTION_QUERY_KEY);
 
       if (label === VIEWER_LABELS.PURCHASED) {
         params.delete(VIEW);

@@ -9,16 +9,19 @@ import {
 import { PageWrap, SectionBlock } from "./styles";
 import {
   RENTED_SECTION_KEYS,
+  RENTED_MODES,
   filterCollections,
   filterMedia,
   getRentedContentSources,
   isViewerCollectionsSectionExpanded,
   syncViewerCollectionsSectionParam,
 } from "@/utils/viewerRented";
+import { CONTENT_COLLECTION_QUERY_KEY } from "@/utils/Constants";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
 import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
 import MediaSections from "./MediaSections";
+import PurchasedCollectionDetail from "./PurchasedCollectionDetail";
 
 type Props = {
   title: string;
@@ -70,6 +73,10 @@ export default function RentedContent({
     canGoNext,
   } = useViewerRentedSectionPagination();
   const sources = useMemo(() => getRentedContentSources(mode), [mode]);
+  const selectedCollectionId =
+    mode === RENTED_MODES.PURCHASED
+      ? searchParams?.get(CONTENT_COLLECTION_QUERY_KEY)
+      : null;
 
   const filteredCollections = filterCollections(
     searchValue,
@@ -105,6 +112,55 @@ export default function RentedContent({
       [RENTED_SECTION_KEYS.PDFS]: visiblePdfs,
     };
 
+  const selectedCollection = useMemo(
+    () =>
+      selectedCollectionId
+        ? sources.collections.find((item) => item.id === selectedCollectionId)
+        : undefined,
+    [selectedCollectionId, sources.collections],
+  );
+
+  const selectedCollectionMedia = useMemo(() => {
+    if (!selectedCollection) return [];
+
+    return [...sources.videos, ...sources.audios, ...sources.pdfs].filter(
+      (item) =>
+        item.author === selectedCollection.author ||
+        item.title === selectedCollection.title,
+    );
+  }, [selectedCollection, sources.audios, sources.pdfs, sources.videos]);
+
+  const handleOpenCollection = useCallback(
+    (collectionId: string) => {
+      const params = new URLSearchParams(searchParamsString);
+      params.set(CONTENT_COLLECTION_QUERY_KEY, collectionId);
+      const query = params.toString();
+      const nextUrl = query ? `${pathname}?${query}` : pathname;
+      router.replace(nextUrl, { scroll: false });
+    },
+    [pathname, router, searchParamsString],
+  );
+
+  const handleCloseCollection = useCallback(() => {
+    const params = new URLSearchParams(searchParamsString);
+    params.delete(CONTENT_COLLECTION_QUERY_KEY);
+    const query = params.toString();
+    const nextUrl = query ? `${pathname}?${query}` : pathname;
+    router.replace(nextUrl, { scroll: false });
+  }, [pathname, router, searchParamsString]);
+
+  if (mode === RENTED_MODES.PURCHASED && selectedCollectionId) {
+    return (
+      <PageWrap>
+        <PurchasedCollectionDetail
+          collection={selectedCollection}
+          mediaItems={selectedCollectionMedia}
+          onBack={handleCloseCollection}
+        />
+      </PageWrap>
+    );
+  }
+
   return (
     <PageWrap $expandedCollections={isCollectionsExpanded}>
       <RentedHeader
@@ -137,6 +193,7 @@ export default function RentedContent({
           onOpenSection={() => setCollectionsExpanded(true)}
           showOpenSectionArrow={!isCollectionsExpanded}
           showExpandedMetaHeader={isCollectionsExpanded}
+          onCollectionPrimaryAction={(item) => handleOpenCollection(item.id)}
         />
       </SectionBlock>
 
