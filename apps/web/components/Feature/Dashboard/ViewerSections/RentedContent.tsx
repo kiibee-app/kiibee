@@ -6,7 +6,6 @@ import {
   type RentedMediaItem,
   type RentedMode,
 } from "@/utils/dummyData/viewerRentedMockData";
-import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
 import { PageWrap, SectionBlock } from "./styles";
 import {
   RENTED_SECTION_KEYS,
@@ -14,6 +13,7 @@ import {
   filterMedia,
   getRentedContentSources,
   isViewerCollectionsSectionExpanded,
+  syncViewerCollectionsSectionParam,
 } from "@/utils/viewerRented";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
 import RentedHeader from "./RentedHeader";
@@ -52,15 +52,12 @@ export default function RentedContent({
   const setCollectionsExpanded = useCallback(
     (expanded: boolean) => {
       const params = new URLSearchParams(searchParamsString);
-      if (expanded) {
-        params.set(VIEWER_SECTION, VIEWER_SECTION_VALUES.COLLECTIONS);
-      } else {
-        params.delete(VIEWER_SECTION);
-      }
+      syncViewerCollectionsSectionParam(params, expanded);
+
       const query = params.toString();
-      router.replace(query ? `${pathname}?${query}` : pathname, {
-        scroll: false,
-      });
+      const nextUrl = query ? `${pathname}?${query}` : pathname;
+
+      router.replace(nextUrl, { scroll: false });
     },
     [pathname, router, searchParamsString],
   );

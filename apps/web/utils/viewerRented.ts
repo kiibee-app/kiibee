@@ -195,6 +195,16 @@ export function isViewerCollectionsSectionExpanded(
   return value === VIEWER_SECTION_VALUES.COLLECTIONS;
 }
 
+export function syncViewerCollectionsSectionParam(
+  params: URLSearchParams,
+  expanded: boolean,
+): void {
+  const sync = expanded
+    ? () => params.set(VIEWER_SECTION, VIEWER_SECTION_VALUES.COLLECTIONS)
+    : () => params.delete(VIEWER_SECTION);
+  sync();
+}
+
 export const COLLECTION_SORT_KEYS = {
   CREATOR: "creator",
   TITLE: "title",
