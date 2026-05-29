@@ -100,6 +100,10 @@ export type ContentFormState = {
   purchaseAmount: string;
   maxDownloadLimit: string;
   physicalProductLink: string;
+  contentTypeId?: ContentType;
+  webLink?: string;
+  openInNewWindow?: boolean;
+  openDirectFromList?: boolean;
 };
 
 export const defaultState: ContentFormState = {
@@ -120,6 +124,9 @@ export const defaultState: ContentFormState = {
   purchaseAmount: "",
   maxDownloadLimit: "5",
   physicalProductLink: "",
+  openInNewWindow: false,
+  openDirectFromList: false,
+  webLink: "",
 };
 
 export type ContentFormContextType = {

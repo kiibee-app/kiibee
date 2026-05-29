@@ -4,6 +4,7 @@ import {
   PAYMENT_UNLIMITED_DOWNLOAD_LIMIT,
   PaymentDownloadLimitValue,
 } from "./common";
+import { FORMAT_TYPE } from "./types";
 
 export type TextConfig = {
   title?: string;
@@ -86,3 +87,51 @@ export const PAYMENTS_FORM_FIELDS = {
 } as const;
 export type PaymentFormField =
   (typeof PAYMENTS_FORM_FIELDS)[keyof typeof PAYMENTS_FORM_FIELDS];
+
+export const getPaymentContentTexts = (
+  t: TFunction,
+  contentTypeId?: string,
+) => {
+  const contentTypeMap: Record<
+    string,
+    {
+      rentalTitle?: string;
+      rentalDescription?: string;
+      purchaseTitle?: string;
+      purchaseDescription?: string;
+    }
+  > = {
+    video: {
+      rentalTitle: t("contents.payment.rental.title"),
+      rentalDescription: t("contents.payment.rental.description"),
+      purchaseTitle: t("contents.payment.purchase.title"),
+      purchaseDescription: t("contents.payment.purchase.description"),
+    },
+
+    web: {
+      rentalTitle: t("contents.payment.webRental.title"),
+      rentalDescription: t("contents.payment.webRental.description"),
+    },
+
+    epub: {
+      purchaseTitle: t("contents.payment.epubPurchase.title"),
+      purchaseDescription: t("contents.payment.epubPurchase.description"),
+    },
+
+    pdf: {
+      purchaseTitle: t("contents.payment.pdfPurchase.title"),
+      purchaseDescription: t("contents.payment.pdfPurchase.description"),
+    },
+
+    audio: {
+      rentalTitle: t("contents.payment.audioRental.title"),
+      rentalDescription: t("contents.payment.audioRental.description"),
+      purchaseTitle: t("contents.payment.audioPurchase.title"),
+      purchaseDescription: t("contents.payment.audioPurchase.description"),
+    },
+  };
+
+  return (
+    contentTypeMap[contentTypeId || FORMAT_TYPE.VIDEO] || contentTypeMap.video
+  );
+};

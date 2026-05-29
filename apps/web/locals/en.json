@@ -1541,6 +1541,13 @@
       "successTitle": "Moved successfully",
       "successMessage": "Content moved to {{collectionName}} successfully."
     },
+    "web": {
+      "placeholder": "https://example.com/",
+      "ePublicationLink": "E-publication link",
+      "openInNewWindow": "Always open web content in new window?",
+      "openDirectFromList": "Open web content directly from the list?",
+      "helperLiveStreaming": "Can be used, for example, in conjunction with Live streaming"
+    },
     "metadata": {
       "production": {
         "title": "Production of",
@@ -1589,6 +1596,30 @@
           "setPassword": "Set password",
           "requestEmail": "Request email"
         }
+      },
+      "webRental": {
+        "title": "Web content rental (Streaming)",
+        "description": "When web content is rented, it will be available for 48 hours."
+      },
+      "epubPurchase": {
+        "title": "E-publication purchase / download",
+        "description": "Purchased e-publications will be available in the user's profile."
+      },
+      "pdfRental": {
+        "title": "PDF rental access",
+        "description": "PDF access will expire after the rental period."
+      },
+      "pdfPurchase": {
+        "title": "PDF purchase / download",
+        "description": "Purchased PDFs remain permanently accessible in the user's profile."
+      },
+      "audioRental": {
+        "title": "Audio rental (Streaming)",
+        "description": "When audio is rented, it will be available for 48 hours."
+      },
+      "audioPurchase": {
+        "title": "Audio purchase / download",
+        "description": "Purchased audio will be available in the user's profile."
       },
       "rental": {
         "title": "Video rental (Streaming)",

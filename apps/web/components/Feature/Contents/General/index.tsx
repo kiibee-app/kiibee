@@ -12,21 +12,32 @@ import {
   PreviewBox,
   PreviewVideo,
   PlayOverlay,
+  ShareCircle,
+  WebSection,
+  CheckboxRow,
+  HelperText,
+  TopRow,
+  WebAlignWrapper,
+  ControlWrap,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import { formatFileSize } from "@/utils/file";
-import { FORMAT_TYPE, FormatType } from "@/utils/types";
+import { FORMAT_TYPE } from "@/utils/types";
 import {
   PlayCircleIcon,
   UploadAudioIcon,
   UploadEpubIcon,
   UploadPdfIcon,
+  WebLinkIcon,
 } from "@/assets/icons";
 import COLORS from "@repo/ui/colors";
-import { VARIANT } from "@/utils/variants";
-import { FILE_TYPE_CHECKERS } from "@/utils/content";
+import { INPUT_VARIANTS } from "@/utils/variants";
 import { useTranslation } from "react-i18next";
 import TrailerList from "./TrailerList";
+import { useContentForm } from "../ContentFormContext";
+import { ShareIcon } from "@/assets/icons/shareIcon";
+import InputField from "@/components/UI/InputFields";
+import { Checkbox } from "@/app/auth/signup-creator/styles";
 
 type Props = {
   id: string;
@@ -42,19 +53,67 @@ export default function GeneralContent({
   onDelete,
 }: Props) {
   const { t } = useTranslation();
+  const { formState, updateField } = useContentForm();
   if (!uploadedFile) return null;
-  const getFormatType = (file: File): FormatType => {
-    const match = Object.entries(FILE_TYPE_CHECKERS).find(([, check]) =>
-      check(file),
-    );
-    return (match?.[0] as FormatType) ?? FORMAT_TYPE.PDF;
-  };
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     onDelete?.(id);
   };
-  const uploadType = getFormatType(uploadedFile);
+
+  const uploadType = formState.contentTypeId;
   const previewUrl = uploadedPreview;
+
+  const renderWebSection = () => {
+    if (uploadType !== FORMAT_TYPE.WEB) return null;
+
+    return (
+      <WebSection>
+        <MonoText $use="Body_Medium">
+          {t("contents.web.ePublicationLink")}
+        </MonoText>
+        <ControlWrap>
+          <InputField
+            value={formState.webLink || ""}
+            onChange={(value) => updateField("webLink", value as string)}
+            placeholder={t("contents.web.placeholder")}
+            width="100%"
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
+          />
+        </ControlWrap>
+        <CheckboxRow>
+          <Checkbox
+            id="open-new-window"
+            type="checkbox"
+            checked={Boolean(formState.openInNewWindow)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              updateField("openInNewWindow", e.target.checked)
+            }
+          />
+          <MonoText $use="Body_Medium">
+            {t("contents.web.openInNewWindow")}
+          </MonoText>
+        </CheckboxRow>
+
+        <HelperText>{t("contents.web.helperLiveStreaming")}</HelperText>
+
+        <CheckboxRow>
+          <Checkbox
+            id="open-direct-list"
+            type="checkbox"
+            checked={Boolean(formState.openDirectFromList)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              updateField("openDirectFromList", e.target.checked)
+            }
+          />
+          <MonoText $use="Body_Medium">
+            {t("contents.web.openDirectFromList")}
+          </MonoText>
+        </CheckboxRow>
+
+        <HelperText>{t("contents.web.helperLiveStreaming")}</HelperText>
+      </WebSection>
+    );
+  };
 
   const renderPreview = () => {
     switch (uploadType) {
@@ -86,32 +145,47 @@ export default function GeneralContent({
         return (
           <UploadEpubIcon width={64} height={64} color={COLORS.primary.BLUE} />
         );
+      case FORMAT_TYPE.WEB:
+        return (
+          <PreviewBox>
+            <WebLinkIcon />
+            <PlayOverlay>
+              <ShareCircle>
+                <ShareIcon />
+              </ShareCircle>
+            </PlayOverlay>
+          </PreviewBox>
+        );
 
       default:
         return null;
     }
   };
-
+  const isWeb = uploadType === FORMAT_TYPE.WEB;
   return (
     <PanelStack>
       <GeneralPanel>
         <DetailsWrapper>
-          <FileRow>
-            <PreviewBox>{renderPreview()}</PreviewBox>
+          <TopRow>
+            <FileRow>
+              <PreviewBox>{renderPreview()}</PreviewBox>
 
-            <InfoColumn>
-              <MonoText $use="Body_Medium">{uploadedFile.name}</MonoText>
+              <InfoColumn>
+                <MonoText $use="Body_Medium">{uploadedFile.name}</MonoText>
+                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+                  {formatFileSize(uploadedFile.size)}
+                </MonoText>
+              </InfoColumn>
+            </FileRow>
 
-              <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-                {formatFileSize(uploadedFile.size)}
-              </MonoText>
-            </InfoColumn>
-          </FileRow>
-          <DeleteAction>
-            <DeleteButton variant={VARIANT.PRIMARY} onClick={handleDelete}>
-              {t("contents.contentUploadModal.deletePermanently")}{" "}
-            </DeleteButton>
-          </DeleteAction>
+            <DeleteAction>
+              <DeleteButton onClick={handleDelete}>
+                {t("contents.contentUploadModal.deletePermanently")}
+              </DeleteButton>
+            </DeleteAction>
+          </TopRow>
+
+          {isWeb && <WebAlignWrapper>{renderWebSection()}</WebAlignWrapper>}
         </DetailsWrapper>
       </GeneralPanel>
       <TrailerList />
