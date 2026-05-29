@@ -13,12 +13,16 @@ import type {
 } from "@/utils/dummyData/viewerRentedMockData";
 import {
   ACTIVE_RENTAL_TEXT,
+  COLLECTION_SORT_KEY_LIST,
+  COLLECTION_SORT_LABELS,
   RENTED_BUTTON_TEXT,
   RENTED_MODES,
   RENTED_SECTION_KEYS,
+  type CollectionSortKey,
   type RentedSectionKey,
   getCollectionBadgeText,
   getCollectionPrimaryActionText,
+  sortViewerCollections,
 } from "@/utils/viewerRented";
 import {
   CollectionActionRow,
@@ -41,35 +45,6 @@ import {
   CollectionMetaSortArrow,
 } from "./styles";
 import SectionPaginationArrows from "./SectionPaginationArrows";
-
-type CollectionSortKey = "creator" | "title" | "elements";
-
-const COLLECTION_SORT_LABELS: Record<CollectionSortKey, string> = {
-  creator: "Creator name",
-  title: "Title",
-  elements: "Elements",
-};
-
-function sortCollections(
-  items: RentedCollectionItem[],
-  sortKey: CollectionSortKey | null,
-) {
-  if (!sortKey) return items;
-
-  const sorted = [...items];
-  sorted.sort((a, b) => {
-    if (sortKey === "creator") {
-      return a.author.localeCompare(b.author, undefined, {
-        sensitivity: "base",
-      });
-    }
-    if (sortKey === "title") {
-      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
-    }
-    return a.elementCount - b.elementCount;
-  });
-  return sorted;
-}
 
 type Props = {
   mode: RentedMode;
@@ -107,7 +82,7 @@ export default function CollectionsSection({
   const effectiveSortKey = showExpandedMetaHeader ? activeSortKey : null;
 
   const displayItems = useMemo(
-    () => sortCollections(items, effectiveSortKey),
+    () => sortViewerCollections(items, effectiveSortKey),
     [items, effectiveSortKey],
   );
 
@@ -132,26 +107,24 @@ export default function CollectionsSection({
         </SectionTitleRow>
         {showExpandedMetaHeader ? (
           <CollectionMetaHeader>
-            {(Object.keys(COLLECTION_SORT_LABELS) as CollectionSortKey[]).map(
-              (key) => {
-                const isActive = effectiveSortKey === key;
-                return (
-                  <CollectionMetaHeaderItem
-                    key={key}
-                    type="button"
-                    $active={isActive}
-                    aria-pressed={isActive}
-                    onClick={() => toggleSort(key)}
-                  >
-                    {COLLECTION_SORT_LABELS[key]}
-                    <CollectionMetaSortArrow aria-hidden>
-                      <span>↑</span>
-                      <span>↓</span>
-                    </CollectionMetaSortArrow>
-                  </CollectionMetaHeaderItem>
-                );
-              },
-            )}
+            {COLLECTION_SORT_KEY_LIST.map((key) => {
+              const isActive = effectiveSortKey === key;
+              return (
+                <CollectionMetaHeaderItem
+                  key={key}
+                  type="button"
+                  $active={isActive}
+                  aria-pressed={isActive}
+                  onClick={() => toggleSort(key)}
+                >
+                  {COLLECTION_SORT_LABELS[key]}
+                  <CollectionMetaSortArrow aria-hidden>
+                    <span>↑</span>
+                    <span>↓</span>
+                  </CollectionMetaSortArrow>
+                </CollectionMetaHeaderItem>
+              );
+            })}
           </CollectionMetaHeader>
         ) : (
           <SectionPaginationArrows

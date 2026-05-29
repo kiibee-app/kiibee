@@ -194,3 +194,45 @@ export function isViewerCollectionsSectionExpanded(
 
   return value === VIEWER_SECTION_VALUES.COLLECTIONS;
 }
+
+export const COLLECTION_SORT_KEYS = {
+  CREATOR: "creator",
+  TITLE: "title",
+  ELEMENTS: "elements",
+} as const;
+
+export type CollectionSortKey =
+  (typeof COLLECTION_SORT_KEYS)[keyof typeof COLLECTION_SORT_KEYS];
+
+export const COLLECTION_SORT_KEY_LIST: CollectionSortKey[] = [
+  COLLECTION_SORT_KEYS.CREATOR,
+  COLLECTION_SORT_KEYS.TITLE,
+  COLLECTION_SORT_KEYS.ELEMENTS,
+];
+
+export const COLLECTION_SORT_LABELS: Record<CollectionSortKey, string> = {
+  [COLLECTION_SORT_KEYS.CREATOR]: "Creator name",
+  [COLLECTION_SORT_KEYS.TITLE]: "Title",
+  [COLLECTION_SORT_KEYS.ELEMENTS]: "Elements",
+};
+
+export function sortViewerCollections(
+  items: RentedCollectionItem[],
+  sortKey: CollectionSortKey | null,
+): RentedCollectionItem[] {
+  if (!sortKey) return items;
+
+  const sorted = [...items];
+  sorted.sort((a, b) => {
+    if (sortKey === COLLECTION_SORT_KEYS.CREATOR) {
+      return a.author.localeCompare(b.author, undefined, {
+        sensitivity: "base",
+      });
+    }
+    if (sortKey === COLLECTION_SORT_KEYS.TITLE) {
+      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+    }
+    return a.elementCount - b.elementCount;
+  });
+  return sorted;
+}
