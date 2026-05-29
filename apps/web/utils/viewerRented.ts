@@ -1,3 +1,4 @@
+import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
 import type {
   RentedMode,
   RentedCollectionItem,
@@ -173,4 +174,23 @@ export function getSearchPlaceholder(mode: RentedMode) {
   if (mode === RENTED_MODES.PURCHASED) return "Search Purchased Content";
   if (mode === RENTED_MODES.CURRENTLY) return "Search Currently Rented";
   return "Search Previously Rented";
+}
+
+type ViewerSearchParamsInput =
+  | URLSearchParams
+  | Record<string, string | string[] | undefined>;
+
+export function isViewerCollectionsSectionExpanded(
+  params: ViewerSearchParamsInput,
+): boolean {
+  const value =
+    params instanceof URLSearchParams
+      ? params.get(VIEWER_SECTION)
+      : params[VIEWER_SECTION];
+
+  if (Array.isArray(value)) {
+    return value.includes(VIEWER_SECTION_VALUES.COLLECTIONS);
+  }
+
+  return value === VIEWER_SECTION_VALUES.COLLECTIONS;
 }

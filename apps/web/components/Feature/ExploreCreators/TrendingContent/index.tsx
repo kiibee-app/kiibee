@@ -12,9 +12,12 @@ import {
 } from "../../TutorialVideos/TutorialContent/styles";
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
+import { PATHS } from "@/utils/path";
 
 export default function TrendingContent() {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <Section>
@@ -26,7 +29,7 @@ export default function TrendingContent() {
             </MonoText>
           </SectionTag>
         </SectionLabel>
-        <SectionLink href="/tutorial-videos">
+        <SectionLink onClick={() => router.push(PATHS.TUTORIAL_VIDEOS)}>
           <LeftIcon />
         </SectionLink>
       </SectionHeader>

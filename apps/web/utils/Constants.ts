@@ -47,6 +47,10 @@ export type PasswordVisibilityKey =
 
 export const STRING = "string";
 export const VIEW = "view";
+export const VIEWER_SECTION = "section";
+export const VIEWER_SECTION_VALUES = {
+  COLLECTIONS: "collections",
+} as const;
 export const ROLE_CREATOR = "creator";
 export const ROLE_VIEWER = "viewer";
 export const HTTP_STATUS_UNAUTHORIZED = 401;
