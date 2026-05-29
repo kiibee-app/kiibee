@@ -1,3 +1,4 @@
+import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
 import type {
   RentedMode,
   RentedCollectionItem,
@@ -173,4 +174,75 @@ export function getSearchPlaceholder(mode: RentedMode) {
   if (mode === RENTED_MODES.PURCHASED) return "Search Purchased Content";
   if (mode === RENTED_MODES.CURRENTLY) return "Search Currently Rented";
   return "Search Previously Rented";
+}
+
+type ViewerSearchParamsInput =
+  | URLSearchParams
+  | Record<string, string | string[] | undefined>;
+
+export function isViewerCollectionsSectionExpanded(
+  params: ViewerSearchParamsInput,
+): boolean {
+  const value =
+    params instanceof URLSearchParams
+      ? params.get(VIEWER_SECTION)
+      : params[VIEWER_SECTION];
+
+  if (Array.isArray(value)) {
+    return value.includes(VIEWER_SECTION_VALUES.COLLECTIONS);
+  }
+
+  return value === VIEWER_SECTION_VALUES.COLLECTIONS;
+}
+
+export function syncViewerCollectionsSectionParam(
+  params: URLSearchParams,
+  expanded: boolean,
+): void {
+  const sync = expanded
+    ? () => params.set(VIEWER_SECTION, VIEWER_SECTION_VALUES.COLLECTIONS)
+    : () => params.delete(VIEWER_SECTION);
+  sync();
+}
+
+export const COLLECTION_SORT_KEYS = {
+  CREATOR: "creator",
+  TITLE: "title",
+  ELEMENTS: "elements",
+} as const;
+
+export type CollectionSortKey =
+  (typeof COLLECTION_SORT_KEYS)[keyof typeof COLLECTION_SORT_KEYS];
+
+export const COLLECTION_SORT_KEY_LIST: CollectionSortKey[] = [
+  COLLECTION_SORT_KEYS.CREATOR,
+  COLLECTION_SORT_KEYS.TITLE,
+  COLLECTION_SORT_KEYS.ELEMENTS,
+];
+
+export const COLLECTION_SORT_LABELS: Record<CollectionSortKey, string> = {
+  [COLLECTION_SORT_KEYS.CREATOR]: "Creator name",
+  [COLLECTION_SORT_KEYS.TITLE]: "Title",
+  [COLLECTION_SORT_KEYS.ELEMENTS]: "Elements",
+};
+
+export function sortViewerCollections(
+  items: RentedCollectionItem[],
+  sortKey: CollectionSortKey | null,
+): RentedCollectionItem[] {
+  if (!sortKey) return items;
+
+  const sorted = [...items];
+  sorted.sort((a, b) => {
+    if (sortKey === COLLECTION_SORT_KEYS.CREATOR) {
+      return a.author.localeCompare(b.author, undefined, {
+        sensitivity: "base",
+      });
+    }
+    if (sortKey === COLLECTION_SORT_KEYS.TITLE) {
+      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+    }
+    return a.elementCount - b.elementCount;
+  });
+  return sorted;
 }

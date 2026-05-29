@@ -12,12 +12,10 @@ import { MonoText } from "@/components/UI/Monotext";
 import { LeftIcon } from "@/assets/icons";
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { recentlyAddedVideos } from "@/utils/data";
-import { useRouter } from "next/navigation";
 import { PATHS } from "@/utils/path";
 
 export default function RecentlyAdded() {
   const { t } = useTranslation();
-  const router = useRouter();
 
   return (
     <Section>
@@ -29,7 +27,7 @@ export default function RecentlyAdded() {
             </MonoText>
           </SectionTag>
         </SectionLabel>
-        <SectionLink onClick={() => router.push(PATHS.TUTORIAL_VIDEOS)}>
+        <SectionLink href={PATHS.TUTORIAL_VIDEOS}>
           <LeftIcon />
         </SectionLink>
       </SectionHeader>

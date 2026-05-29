@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import LeftIcon from "@/assets/icons/LeftIcon";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTheme } from "styled-components";
@@ -10,6 +11,8 @@ import {
   HeaderSearchArea,
   HeaderSearchButton,
   HeaderSearchInput,
+  HeaderBackButton,
+  HeaderTitleWrap,
   PageHeader,
 } from "./styles";
 import { useTranslation } from "react-i18next";
@@ -22,6 +25,7 @@ type Props = {
   onSearchChange: (value: string) => void;
   onToggleSearch: () => void;
   searchInputRef: React.RefObject<HTMLInputElement | null>;
+  onBackClick?: () => void;
 };
 
 export default function RentedHeader({
@@ -32,6 +36,7 @@ export default function RentedHeader({
   onSearchChange,
   onToggleSearch,
   searchInputRef,
+  onBackClick,
 }: Props) {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -44,7 +49,18 @@ export default function RentedHeader({
 
   return (
     <PageHeader>
-      <MonoText $use="H4_SemiBold">{title}</MonoText>
+      <HeaderTitleWrap>
+        {onBackClick ? (
+          <HeaderBackButton
+            type="button"
+            aria-label={t("common.back")}
+            onClick={onBackClick}
+          >
+            <LeftIcon style={{ transform: "rotate(180deg)" }} />
+          </HeaderBackButton>
+        ) : null}
+        <MonoText $use="H4_SemiBold">{title}</MonoText>
+      </HeaderTitleWrap>
       <HeaderSearchArea $open={isSearchOpen}>
         <HeaderSearchButton
           type="button"
