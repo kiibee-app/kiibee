@@ -19,6 +19,8 @@ import { pathPublishedContent } from "@/utils/path";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
+  onPlayClick?: (videoId: string) => void;
+  isSelected?: boolean;
 };
 
 type IconComponent = ComponentType<{
@@ -36,7 +38,11 @@ const formatIconMap: Record<FormatType, IconComponent> = {
   web: WebIcon,
 };
 
-function TutorialCard({ tutorial }: TutorialCardProps) {
+function TutorialCard({
+  tutorial,
+  onPlayClick,
+  isSelected = false,
+}: TutorialCardProps) {
   const { t } = useTranslation();
 
   const imageUrl = useMemo(
@@ -71,6 +77,7 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
 
   return (
     <GenericCard
+      coverImage
       image={imageUrl}
       badge={
         <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
@@ -82,7 +89,20 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
       footer={
         <ActionRow>
           {buttons.map((button, index) =>
-            button.href ? (
+            onPlayClick ? (
+              <GenericButton
+                key={`${button.label}-${index}`}
+                type="button"
+                variant={button.variant ?? VARIANT.SECONDARY}
+                fullWidth={button.fullWidth}
+                size={button.size}
+                minWidth={button.minWidth}
+                aria-pressed={isSelected}
+                onClick={() => onPlayClick(tutorial.id)}
+              >
+                {button.label}
+              </GenericButton>
+            ) : button.href ? (
               <GenericButton
                 key={`${button.label}-${index}`}
                 asAnchor
