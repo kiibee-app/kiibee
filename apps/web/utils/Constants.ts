@@ -178,9 +178,23 @@ export const ERROR_MESSAGES = {
 
 export const UI_TITLE_FALLBACK = "Content Details";
 
+export const SCROLL_BEHAVIOR = {
+  SMOOTH: "smooth",
+} as const;
+
+export const SCROLL_BLOCK = {
+  CENTER: "center",
+  START: "start",
+} as const;
+
 export const SCROLL_OPTIONS = {
-  behavior: "smooth",
-  block: "center",
+  behavior: SCROLL_BEHAVIOR.SMOOTH,
+  block: SCROLL_BLOCK.CENTER,
+} as const;
+
+export const SCROLL_TO_START_OPTIONS = {
+  behavior: SCROLL_BEHAVIOR.SMOOTH,
+  block: SCROLL_BLOCK.START,
 } as const;
 
 export const apiToUiAccessTypeMap: Record<string, AdmissionRequirementValue> = {

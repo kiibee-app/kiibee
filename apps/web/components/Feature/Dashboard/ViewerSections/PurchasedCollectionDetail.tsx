@@ -10,6 +10,7 @@ import {
   SingleContentBody,
   SingleContentHero,
 } from "@/components/Feature/SingleContentPage/ContentSections";
+import { SCROLL_TO_START_OPTIONS } from "@/utils/Constants";
 import {
   getPurchasedMediaDetailView,
   purchasedMediaToTutorial,
@@ -62,10 +63,7 @@ export default function PurchasedCollectionDetail({
 
   useEffect(() => {
     if (!selectedMediaId) return;
-    detailAnchorRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    detailAnchorRef.current?.scrollIntoView(SCROLL_TO_START_OPTIONS);
   }, [selectedMediaId]);
 
   if (!collection) {
