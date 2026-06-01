@@ -11,11 +11,19 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import { LeftIcon } from "@/assets/icons";
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
+import { useRecentContent } from "@/hooks/feed/useRecentContent";
+import { useRouter } from "next/navigation";
 import { recentlyAddedVideos } from "@/utils/data";
 import { PATHS } from "@/utils/path";
 
 export default function RecentlyAdded() {
   const { t } = useTranslation();
+  const router = useRouter();
+  const { tutorials, isLoading } = useRecentContent();
+
+  if (!isLoading && tutorials.length === 0) {
+    return null;
+  }
 
   return (
     <Section>
@@ -31,8 +39,8 @@ export default function RecentlyAdded() {
           <LeftIcon />
         </SectionLink>
       </SectionHeader>
-      <Grid>
-        {recentlyAddedVideos.map((tutorial) => (
+      <Grid $columnMax="300px">
+        {tutorials.map((tutorial) => (
           <TutorialCard key={tutorial.id} tutorial={tutorial} />
         ))}
       </Grid>

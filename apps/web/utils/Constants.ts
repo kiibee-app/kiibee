@@ -53,6 +53,7 @@ export const VIEWER_SECTION_VALUES = {
 } as const;
 export const ROLE_CREATOR = "creator";
 export const ROLE_VIEWER = "viewer";
+export const ROLE_ADMIN = "admin";
 export const HTTP_STATUS_UNAUTHORIZED = 401;
 export const WEBSITE = "website";
 export const OPEN_GRAPH_LOCALE_EN_US = "en_US";

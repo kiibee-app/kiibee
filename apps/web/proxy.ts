@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { AUTH_STORAGE_KEYS } from "@/lib/auth/storageKeys";
 import { getDashboardPathForRole, PATHS } from "@/utils/path";
-import { ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
+import { ROLE_ADMIN, ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
 
 const PROTECTED_PATHS = [PATHS.DASHBOARD_CREATOR, PATHS.DASHBOARD_VIEWER];
 
@@ -68,6 +68,14 @@ function isProtectedPath(pathname: string) {
   );
 }
 
+function canAccessDashboard(requiredRole: string, sessionRole: string) {
+  if (sessionRole === requiredRole) return true;
+  if (requiredRole === ROLE_CREATOR && sessionRole === ROLE_ADMIN) {
+    return true;
+  }
+  return false;
+}
+
 function getRequiredRole(pathname: string) {
   if (
     pathname === PATHS.DASHBOARD_VIEWER ||
@@ -109,7 +117,11 @@ export function proxy(request: NextRequest) {
   const requiredRole = getRequiredRole(pathname);
   const sessionRole = getSessionRole(request);
 
-  if (requiredRole && sessionRole && sessionRole !== requiredRole) {
+  if (
+    requiredRole &&
+    sessionRole &&
+    !canAccessDashboard(requiredRole, sessionRole)
+  ) {
     return NextResponse.redirect(
       new URL(getDashboardPath(request), request.url),
     );
