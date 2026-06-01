@@ -44,6 +44,7 @@ export type SingleContentPageProps = {
     label: string;
     ariaLabel?: string;
     onClick?: () => void;
+    disabled?: boolean;
   };
   metaItems?: SingleContentMetaItem[];
   shareLabel?: string;

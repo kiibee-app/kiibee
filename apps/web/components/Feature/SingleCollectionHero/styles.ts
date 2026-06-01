@@ -148,3 +148,18 @@ export const Section = styled.div`
 export const ShowcaseWrapper = styled.div`
   margin-bottom: 60px;
 `;
+
+export const EmbeddedSection = styled(Section)`
+  max-width: none;
+  margin: 0;
+  padding: 0;
+`;
+
+export const EmbeddedHeader = styled(Header)`
+  margin: 28px 0 20px;
+  align-items: center;
+`;
+
+export const EmbeddedShowcaseWrapper = styled(ShowcaseWrapper)`
+  margin-bottom: 32px;
+`;

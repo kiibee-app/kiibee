@@ -34,6 +34,8 @@ export type PurchasedCollectionItem = {
   coverSrc: string;
   actions?: CollectionAction[];
   hideBadge?: boolean;
+  descriptionLines?: string[];
+  accessPeriodLabel?: string;
 };
 
 export const VIEWER_PURCHASED_PLACEHOLDERS = {
@@ -49,6 +51,11 @@ export const MOCK_PURCHASED_COLLECTIONS: PurchasedCollectionItem[] = [
     author: "Oliver Smith",
     elementCount: 15,
     coverSrc: DESIGN_IMG_1,
+    descriptionLines: [
+      "A practical collection focused on balancing everyday cooking with smart prep routines.",
+      "Follow step-by-step sessions and repeatable recipes you can use throughout the week.",
+    ],
+    accessPeriodLabel: "Collection access: Lifetime",
   },
   {
     id: "c2",
@@ -56,6 +63,11 @@ export const MOCK_PURCHASED_COLLECTIONS: PurchasedCollectionItem[] = [
     author: "Maya Chen",
     elementCount: 8,
     coverSrc: DESIGN_IMG_2,
+    descriptionLines: [
+      "A visual storytelling collection that covers framing, pacing, and editing foundations.",
+      "Use each lesson as a building block to produce short-form content consistently.",
+    ],
+    accessPeriodLabel: "Collection access: Lifetime",
   },
 ];
 
