@@ -44,7 +44,14 @@ export const ImgWrap = styled.div`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-  transition: transform 180ms ease;
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  img {
+    object-fit: cover;
+    transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  }
 `;
 
 export const Card = styled.div`
@@ -52,11 +59,26 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: flex-start;
   max-width: 500px;
+  cursor: pointer;
+
+  &:hover {
+    ${ImgWrap} {
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    }
+    img {
+      transform: scale(1.04) !important;
+    }
+  }
 
   &:nth-child(1) {
     ${ImgWrap} {
       padding-top: 70%;
       transform: translateY(0px);
+    }
+    &:hover {
+      ${ImgWrap} {
+        transform: translateY(-8px);
+      }
     }
   }
 
@@ -65,12 +87,22 @@ export const Card = styled.div`
       padding-top: 85%;
       transform: translateY(0px);
     }
+    &:hover {
+      ${ImgWrap} {
+        transform: translateY(-8px);
+      }
+    }
   }
 
   &:nth-child(3) {
     ${ImgWrap} {
       padding-top: 105%;
       transform: translateY(-2px);
+    }
+    &:hover {
+      ${ImgWrap} {
+        transform: translateY(-10px);
+      }
     }
   }
 `;
