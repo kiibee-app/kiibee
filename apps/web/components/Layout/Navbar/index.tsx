@@ -30,7 +30,7 @@ import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
-import { POINTER_DOWN, VARIANT } from "@/utils/Constants";
+import { POINTER_DOWN, VARIANT, TONE_DARK } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
@@ -143,11 +143,12 @@ export default function NavBar({
   mobileInnerPadding,
   innerMaxWidth,
   navPosition = "center",
-  navTextTone = "dark",
+  navTextTone = TONE_DARK,
   items = NAV_ITEMS,
   brand,
   navBefore,
   navAfter,
+  actions,
 }: NavBarProps) {
   const { t } = useTranslation();
   const dashboardPath = useSessionDashboardPath();
@@ -325,24 +326,26 @@ export default function NavBar({
           {isLoggedIn && dashboardPath ? (
             <NavAccountMenu dashboardPath={dashboardPath} />
           ) : (
-            <>
-              <GenericButton
-                className="login-btn"
-                asAnchor
-                href={loginButtonHref}
-                variant={VARIANT.SECONDARY}
-              >
-                {t(NAV.login)}
-              </GenericButton>
-              <GenericButton
-                className="start-btn"
-                asAnchor
-                href={PATHS.AUTH_SIGNUP}
-                variant={VARIANT.PRIMARY}
-              >
-                {t(NAV.startCreating)}
-              </GenericButton>
-            </>
+            (actions ?? (
+              <>
+                <GenericButton
+                  className="login-btn"
+                  asAnchor
+                  href={loginButtonHref}
+                  variant={VARIANT.SECONDARY}
+                >
+                  {t(NAV.login)}
+                </GenericButton>
+                <GenericButton
+                  className="start-btn"
+                  asAnchor
+                  href={PATHS.AUTH_SIGNUP}
+                  variant={VARIANT.PRIMARY}
+                >
+                  {t(NAV.startCreating)}
+                </GenericButton>
+              </>
+            ))
           )}
         </Actions>
       </Inner>

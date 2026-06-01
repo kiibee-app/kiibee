@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { TabbedHeroState } from "@/hooks/useTabbedHeroState";
 import type { NavItem } from "@/utils/navItems";
+import { TONE_DARK, TONE_LIGHT } from "@/utils/Constants";
 
 export type HeroTabsProps = Pick<
   TabbedHeroState,
@@ -28,7 +29,7 @@ export type HeaderProps = {
 
 export type NavStyleProps = {
   $navPosition: "center" | "right";
-  $textTone: "dark" | "light";
+  $textTone: typeof TONE_DARK | typeof TONE_LIGHT;
 };
 
 export type NavBarProps = {
@@ -40,7 +41,7 @@ export type NavBarProps = {
   mobileInnerPadding?: string;
   innerMaxWidth?: string;
   navPosition?: "center" | "right";
-  navTextTone?: "dark" | "light";
+  navTextTone?: typeof TONE_DARK | typeof TONE_LIGHT;
   items?: NavBarItem[];
   brand?: ReactNode;
   navBefore?: ReactNode;
