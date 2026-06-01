@@ -9,6 +9,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   SIDEBAR_COLLAPSE_BREAKPOINT,
   VIEW,
+  VIEWER_SECTION,
   ROLE_VIEWER,
 } from "@/utils/Constants";
 import {
@@ -39,7 +40,13 @@ const ROUTABLE_VIEWER_VIEWS = new Set<string>([
   VIEWER_VIEW_VALUES.MY_PROFILE,
 ]);
 
-export default function ClientDashboardViewer() {
+type Props = {
+  initialCollectionsExpanded?: boolean;
+};
+
+export default function ClientDashboardViewer({
+  initialCollectionsExpanded = false,
+}: Props) {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
     useSidebarExpanded(SIDEBAR_COLLAPSE_BREAKPOINT);
@@ -61,6 +68,8 @@ export default function ClientDashboardViewer() {
   const getHrefForView = useCallback(
     (label: ViewerLabel) => {
       const params = new URLSearchParams(searchParams?.toString() ?? "");
+
+      params.delete(VIEWER_SECTION);
 
       if (label === VIEWER_LABELS.PURCHASED) {
         params.delete(VIEW);
@@ -143,18 +152,21 @@ export default function ClientDashboardViewer() {
           key={RENTED_MODES.PURCHASED}
           title={sectionTitle}
           mode={RENTED_MODES.PURCHASED}
+          initialCollectionsExpanded={initialCollectionsExpanded}
         />
       ) : activePage === VIEWER_LABELS.CURRENTLY_RENTED ? (
         <RentedContent
           key={RENTED_MODES.CURRENTLY}
           title={sectionTitle}
           mode={RENTED_MODES.CURRENTLY}
+          initialCollectionsExpanded={initialCollectionsExpanded}
         />
       ) : activePage === VIEWER_LABELS.PREVIOUSLY_RENTED ? (
         <RentedContent
           key={RENTED_MODES.PREVIOUSLY}
           title={sectionTitle}
           mode={RENTED_MODES.PREVIOUSLY}
+          initialCollectionsExpanded={initialCollectionsExpanded}
         />
       ) : activePage === VIEWER_LABELS.BILLINGS ? (
         <ClientViewerBillings />

@@ -12,6 +12,7 @@ import {
 } from "../../TutorialVideos/TutorialContent/styles";
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { useTranslation } from "react-i18next";
+import { PATHS } from "@/utils/path";
 
 export default function TrendingContent() {
   const { t } = useTranslation();
@@ -26,7 +27,7 @@ export default function TrendingContent() {
             </MonoText>
           </SectionTag>
         </SectionLabel>
-        <SectionLink href="/tutorial-videos">
+        <SectionLink href={PATHS.TUTORIAL_VIDEOS}>
           <LeftIcon />
         </SectionLink>
       </SectionHeader>

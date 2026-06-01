@@ -1,22 +1,28 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import PlaylistIcon from "@/assets/icons/PlaylistIcon";
+import LeftIcon from "@/assets/icons/LeftIcon";
 import type {
   RentedCollectionItem,
   RentedMode,
 } from "@/utils/dummyData/viewerRentedMockData";
 import {
   ACTIVE_RENTAL_TEXT,
+  COLLECTION_SORT_KEY_LIST,
+  COLLECTION_SORT_LABELS,
   RENTED_BUTTON_TEXT,
   RENTED_MODES,
   RENTED_SECTION_KEYS,
+  type CollectionSortKey,
   type RentedSectionKey,
   getCollectionBadgeText,
   getCollectionPrimaryActionText,
+  sortViewerCollections,
 } from "@/utils/viewerRented";
 import {
   CollectionActionRow,
@@ -31,7 +37,12 @@ import {
   ElementsPill,
   PassiveActionBlock,
   SectionHeader,
+  SectionTitleRow,
   SectionTitle,
+  InlineSectionArrow,
+  CollectionMetaHeader,
+  CollectionMetaHeaderItem,
+  CollectionMetaSortArrow,
 } from "./styles";
 import SectionPaginationArrows from "./SectionPaginationArrows";
 
@@ -44,6 +55,9 @@ type Props = {
   canGoNext: (section: RentedSectionKey, totalItems: number) => boolean;
   movePrev: (section: RentedSectionKey, totalItems: number) => void;
   moveNext: (section: RentedSectionKey, totalItems: number) => void;
+  onOpenSection?: () => void;
+  showOpenSectionArrow?: boolean;
+  showExpandedMetaHeader?: boolean;
 };
 
 export default function CollectionsSection({
@@ -55,26 +69,77 @@ export default function CollectionsSection({
   canGoNext,
   movePrev,
   moveNext,
+  onOpenSection,
+  showOpenSectionArrow = false,
+  showExpandedMetaHeader = false,
 }: Props) {
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const isPurchased = mode === RENTED_MODES.PURCHASED;
+  const [activeSortKey, setActiveSortKey] = useState<CollectionSortKey | null>(
+    null,
+  );
+
+  const effectiveSortKey = showExpandedMetaHeader ? activeSortKey : null;
+
+  const displayItems = useMemo(
+    () => sortViewerCollections(items, effectiveSortKey),
+    [items, effectiveSortKey],
+  );
+
+  const toggleSort = (key: CollectionSortKey) => {
+    setActiveSortKey((prev) => (prev === key ? null : key));
+  };
 
   return (
     <>
-      <SectionHeader>
-        <SectionTitle>Collections</SectionTitle>
-        <SectionPaginationArrows
-          sectionKey={RENTED_SECTION_KEYS.COLLECTIONS}
-          totalItems={totalItems}
-          canSlide={canSlide}
-          canGoPrev={canGoPrev}
-          canGoNext={canGoNext}
-          movePrev={movePrev}
-          moveNext={moveNext}
-        />
+      <SectionHeader $withMetaHeader={showExpandedMetaHeader}>
+        <SectionTitleRow>
+          <SectionTitle>Collections</SectionTitle>
+          {showOpenSectionArrow ? (
+            <InlineSectionArrow
+              type="button"
+              aria-label="Open collections section"
+              onClick={onOpenSection}
+            >
+              <LeftIcon />
+            </InlineSectionArrow>
+          ) : null}
+        </SectionTitleRow>
+        {showExpandedMetaHeader ? (
+          <CollectionMetaHeader>
+            {COLLECTION_SORT_KEY_LIST.map((key) => {
+              const isActive = effectiveSortKey === key;
+              return (
+                <CollectionMetaHeaderItem
+                  key={key}
+                  type="button"
+                  $active={isActive}
+                  aria-pressed={isActive}
+                  onClick={() => toggleSort(key)}
+                >
+                  {COLLECTION_SORT_LABELS[key]}
+                  <CollectionMetaSortArrow aria-hidden>
+                    <span>↑</span>
+                    <span>↓</span>
+                  </CollectionMetaSortArrow>
+                </CollectionMetaHeaderItem>
+              );
+            })}
+          </CollectionMetaHeader>
+        ) : (
+          <SectionPaginationArrows
+            sectionKey={RENTED_SECTION_KEYS.COLLECTIONS}
+            totalItems={totalItems}
+            canSlide={canSlide}
+            canGoPrev={canGoPrev}
+            canGoNext={canGoNext}
+            movePrev={movePrev}
+            moveNext={moveNext}
+          />
+        )}
       </SectionHeader>
       <CollectionGrid>
-        {items.map((item) => (
+        {displayItems.map((item) => (
           <CollectionCard key={item.id}>
             <CollectionImageWrap>
               {item.hideBadge ? null : (
