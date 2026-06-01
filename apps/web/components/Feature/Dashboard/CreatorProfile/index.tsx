@@ -37,6 +37,10 @@ import ImageUploader from "./ImageUploader";
 import { PATHS } from "@/utils/path";
 import { useCreatorProfile } from "@/hooks/auth/useCreatorProfile";
 import {
+  getDisplayFirstLetter,
+  useStoredLoginUser,
+} from "@/hooks/auth/useStoredLoginUser";
+import {
   forgotPwEmail,
   forgotPwError,
   forgotPwIsError,
@@ -49,12 +53,7 @@ export default function CreatorProfile() {
   const router = useRouter();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
-
-  const getInitial = (name: string, email = "") => {
-    const trimmedName = name.trim();
-    if (trimmedName) return trimmedName.charAt(0).toUpperCase();
-    return email ? email.charAt(0).toUpperCase() : "?";
-  };
+  const user = useStoredLoginUser();
 
   const {
     form,
@@ -120,7 +119,7 @@ export default function CreatorProfile() {
         <Row>
           <ImageUploader
             image={avatarImage}
-            fallback={getInitial(displayName, form.email)}
+            fallback={getDisplayFirstLetter(displayName, user)}
             alt={t("creatorProfile.profilePhotoAlt")}
             uploadTitle={t("creatorProfile.uploadPhotoTitle")}
             editTitle={t("creatorProfile.editPhotoTitle")}
