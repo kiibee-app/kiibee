@@ -41,7 +41,7 @@ export default function TutorialContent() {
               </SectionTag>
               <LeftIcon />
             </SectionLabel>
-            <SectionLink onClick={() => openCollection(section.id)}>
+            <SectionLink href={`/single-collection?id=${section.id}`}>
               <LeftIcon />
             </SectionLink>
           </SectionHeader>

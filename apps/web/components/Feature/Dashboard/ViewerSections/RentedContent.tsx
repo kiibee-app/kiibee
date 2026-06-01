@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   type RentedMediaItem,
   type RentedMode,
@@ -11,18 +12,55 @@ import {
   filterCollections,
   filterMedia,
   getRentedContentSources,
+  isViewerCollectionsSectionExpanded,
+  syncViewerCollectionsSectionParam,
 } from "@/utils/viewerRented";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
 import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
 import MediaSections from "./MediaSections";
 
-type Props = { title: string; mode: RentedMode };
+type Props = {
+  title: string;
+  mode: RentedMode;
+  initialCollectionsExpanded?: boolean;
+};
 
-export default function RentedContent({ title, mode }: Props) {
+export default function RentedContent({
+  title,
+  mode,
+  initialCollectionsExpanded = false,
+}: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const searchParamsString = searchParams?.toString() ?? "";
+
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const isCollectionsExpanded = useMemo(() => {
+    if (searchParamsString) {
+      return isViewerCollectionsSectionExpanded(
+        new URLSearchParams(searchParamsString),
+      );
+    }
+    return initialCollectionsExpanded;
+  }, [searchParamsString, initialCollectionsExpanded]);
+
+  const setCollectionsExpanded = useCallback(
+    (expanded: boolean) => {
+      const params = new URLSearchParams(searchParamsString);
+      syncViewerCollectionsSectionParam(params, expanded);
+
+      const query = params.toString();
+      const nextUrl = query ? `${pathname}?${query}` : pathname;
+
+      router.replace(nextUrl, { scroll: false });
+    },
+    [pathname, router, searchParamsString],
+  );
   const {
     getVisibleItems,
     canSlide,
@@ -68,7 +106,7 @@ export default function RentedContent({ title, mode }: Props) {
     };
 
   return (
-    <PageWrap>
+    <PageWrap $expandedCollections={isCollectionsExpanded}>
       <RentedHeader
         title={title}
         mode={mode}
@@ -77,31 +115,43 @@ export default function RentedContent({ title, mode }: Props) {
         onSearchChange={setSearchValue}
         onToggleSearch={() => setIsSearchOpen((prev) => !prev)}
         searchInputRef={searchInputRef}
+        onBackClick={
+          isCollectionsExpanded
+            ? () => setCollectionsExpanded(false)
+            : undefined
+        }
       />
 
       <SectionBlock>
         <CollectionsSection
           mode={mode}
-          items={visibleCollections}
+          items={
+            isCollectionsExpanded ? filteredCollections : visibleCollections
+          }
           totalItems={filteredCollections.length}
           canSlide={canSlide}
           canGoPrev={canGoPrev}
           canGoNext={canGoNext}
           movePrev={movePrev}
           moveNext={moveNext}
+          onOpenSection={() => setCollectionsExpanded(true)}
+          showOpenSectionArrow={!isCollectionsExpanded}
+          showExpandedMetaHeader={isCollectionsExpanded}
         />
       </SectionBlock>
 
-      <MediaSections
-        mode={mode}
-        sectionItems={sectionItems}
-        sectionTotals={sectionTotals}
-        canSlide={canSlide}
-        canGoPrev={canGoPrev}
-        canGoNext={canGoNext}
-        movePrev={movePrev}
-        moveNext={moveNext}
-      />
+      {isCollectionsExpanded ? null : (
+        <MediaSections
+          mode={mode}
+          sectionItems={sectionItems}
+          sectionTotals={sectionTotals}
+          canSlide={canSlide}
+          canGoPrev={canGoPrev}
+          canGoNext={canGoNext}
+          movePrev={movePrev}
+          moveNext={moveNext}
+        />
+      )}
     </PageWrap>
   );
 }

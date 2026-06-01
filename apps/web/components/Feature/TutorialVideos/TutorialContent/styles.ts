@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 export const HeroBlock = styled.section`
@@ -39,7 +40,7 @@ export const SectionLabel = styled.button.attrs({ type: "button" })`
 export const SectionTag = styled.span`
   padding: 0.35rem 0;
 `;
-export const SectionLink = styled.button.attrs({ type: "button" })`
+export const SectionLink = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,6 +51,8 @@ export const SectionLink = styled.button.attrs({ type: "button" })`
   border: none;
   background: transparent;
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 `;
 export const Content = styled.main`
   flex: 1;

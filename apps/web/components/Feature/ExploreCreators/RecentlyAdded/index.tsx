@@ -13,6 +13,7 @@ import { LeftIcon } from "@/assets/icons";
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { useRecentContent } from "@/hooks/feed/useRecentContent";
 import { useRouter } from "next/navigation";
+import { recentlyAddedVideos } from "@/utils/data";
 import { PATHS } from "@/utils/path";
 
 export default function RecentlyAdded() {
@@ -34,7 +35,7 @@ export default function RecentlyAdded() {
             </MonoText>
           </SectionTag>
         </SectionLabel>
-        <SectionLink onClick={() => router.push(PATHS.TUTORIAL_VIDEOS)}>
+        <SectionLink href={PATHS.TUTORIAL_VIDEOS}>
           <LeftIcon />
         </SectionLink>
       </SectionHeader>

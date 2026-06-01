@@ -40,3 +40,4 @@ export { default as RatingStarPathIcon } from "./RatingStarPathIcon";
 export { default as UploadAudioIcon } from "./UploadAudioIcon";
 export { default as UploadPdfIcon } from "./UploadPdfIcon";
 export { default as UploadEpubIcon } from "./UploadEpubIcon";
+export { default as WebLinkIcon } from "./WebLink";

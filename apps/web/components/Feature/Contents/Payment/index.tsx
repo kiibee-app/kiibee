@@ -33,6 +33,7 @@ import {
   AdmissionValue,
   getAdmissionOptions,
   getDownloadLimitOptions,
+  getPaymentContentTexts,
   getPhysicalProductConfig,
   PAYMENTS_FORM_FIELDS,
   toText,
@@ -55,6 +56,19 @@ export default function Payment() {
 
   const isSetPassword =
     formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD;
+
+  const paymentTexts = useMemo(
+    () => getPaymentContentTexts(t, formState.contentTypeId),
+    [t, formState.contentTypeId],
+  );
+
+  const showRentalSection = Boolean(
+    paymentTexts.rentalTitle && paymentTexts.rentalDescription,
+  );
+
+  const showPurchaseSection = Boolean(
+    paymentTexts.purchaseTitle && paymentTexts.purchaseDescription,
+  );
 
   return (
     <>
@@ -84,54 +98,53 @@ export default function Payment() {
 
           {isPayment && (
             <>
-              <Block>
-                <SectionTitle>
-                  {t("contents.payment.rental.title")}
-                </SectionTitle>
-                <SectionText>
-                  {t("contents.payment.rental.description")}
-                </SectionText>
+              {showRentalSection && (
+                <Block>
+                  <SectionTitle>{paymentTexts.rentalTitle}</SectionTitle>
 
-                <ControlWrap>
-                  <InputField
-                    value={formState.rentalAmount || ""}
-                    onChange={(v) =>
-                      updateField(PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT, toText(v))
-                    }
-                    placeholder={t("contents.payment.common.enterAmount")}
-                    variant={INPUT_VARIANTS.PRIMARY_GRAY}
-                    inputMode="decimal"
-                  />
-                </ControlWrap>
+                  <SectionText>{paymentTexts.rentalDescription}</SectionText>
 
-                <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
-              </Block>
+                  <ControlWrap>
+                    <InputField
+                      value={formState.rentalAmount || ""}
+                      onChange={(v) =>
+                        updateField(
+                          PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT,
+                          toText(v),
+                        )
+                      }
+                      placeholder={t("contents.payment.common.enterAmount")}
+                      variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                      inputMode="decimal"
+                    />
+                  </ControlWrap>
 
-              <Block>
-                <SectionTitle>
-                  {t("contents.payment.purchase.title")}
-                </SectionTitle>
-                <SectionText>
-                  {t("contents.payment.purchase.description")}
-                </SectionText>
+                  <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
+                </Block>
+              )}
 
-                <ControlWrap>
-                  <InputField
-                    value={formState.purchaseAmount || ""}
-                    onChange={(v) =>
-                      updateField(
-                        PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT,
-                        toText(v),
-                      )
-                    }
-                    placeholder={t("contents.payment.common.enterAmount")}
-                    variant={INPUT_VARIANTS.PRIMARY_GRAY}
-                    inputMode="decimal"
-                  />
-                </ControlWrap>
+              {showPurchaseSection && (
+                <Block>
+                  <SectionTitle>{paymentTexts.purchaseTitle}</SectionTitle>
+                  <SectionText>{paymentTexts.purchaseDescription}</SectionText>
+                  <ControlWrap>
+                    <InputField
+                      value={formState.purchaseAmount || ""}
+                      onChange={(v) =>
+                        updateField(
+                          PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT,
+                          toText(v),
+                        )
+                      }
+                      placeholder={t("contents.payment.common.enterAmount")}
+                      variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                      inputMode="decimal"
+                    />
+                  </ControlWrap>
 
-                <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
-              </Block>
+                  <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
+                </Block>
+              )}
 
               <Block>
                 <SectionTitle>
