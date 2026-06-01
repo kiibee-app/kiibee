@@ -11,8 +11,6 @@ import {
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 
-const TRENDING_DISPLAY_LIMIT = 4;
-
 type TrendingContentResponse = {
   success?: boolean;
   message?: string;
@@ -30,9 +28,9 @@ export const useTrendingContent = () => {
 
     const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
 
-    return dedupeFeedContentItems(query.data.data)
-      .slice(0, TRENDING_DISPLAY_LIMIT)
-      .map((item) => feedContentToTutorial(item, freeLabel));
+    return dedupeFeedContentItems(query.data.data).map((item) =>
+      feedContentToTutorial(item, freeLabel),
+    );
   }, [query.data, t]);
 
   return {
