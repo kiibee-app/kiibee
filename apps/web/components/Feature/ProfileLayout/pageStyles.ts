@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
+import { TONE_DARK, TONE_LIGHT } from "@/utils/Constants";
 
 export const avatarFrameCss = css`
   position: relative;
@@ -35,9 +36,14 @@ export const BrandAvatarImage = styled(Image)`
   object-fit: cover;
 `;
 
-export const BrandName = styled.span`
+export const BrandName = styled.span<{
+  $textTone?: typeof TONE_DARK | typeof TONE_LIGHT;
+}>`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: ${({ theme }) => theme.colors.primary.WHITE_90};
+  color: ${({ theme, $textTone }) =>
+    $textTone === TONE_LIGHT
+      ? theme.colors.primary.WHITE_90
+      : theme.colors.primary.BLACK};
 `;

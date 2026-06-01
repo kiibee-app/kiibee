@@ -91,6 +91,9 @@ export type CouponAction =
   | typeof COUPON_ACTION_STATUS
   | typeof COUPON_ACTION_DELETE;
 
+export const TONE_DARK = "dark" as const;
+export const TONE_LIGHT = "light" as const;
+
 export const profileNavShellProps = {
   position: "absolute",
   innerPadding: "15px 110px",
