@@ -35,6 +35,7 @@ export const SectionArrows = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin-right: 1rem;
 `;
 
 export const SectionArrow = styled.button`
