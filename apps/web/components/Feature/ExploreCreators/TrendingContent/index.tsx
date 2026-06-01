@@ -16,7 +16,6 @@ import { PATHS } from "@/utils/path";
 
 export default function TrendingContent() {
   const { t } = useTranslation();
-  const router = useRouter();
   const { tutorials, isLoading } = useTrendingContent();
 
   if (!isLoading && tutorials.length === 0) {
