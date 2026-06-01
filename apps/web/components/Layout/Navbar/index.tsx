@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import Image from "@/components/UI/SafeImage";
@@ -61,6 +62,7 @@ function getProfileFirstLetter(user: LoginUser | null) {
 
 function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   const { t } = useTranslation();
+  const router = useRouter();
   const user = useStoredLoginUser();
   const avatarUrl = useLoginUserAvatar();
   const { logout, isPending } = useLogout();
@@ -73,8 +75,14 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   useClickOutside({
     ref: menuRef,
     enabled: open,
+    eventType: "click",
     handler: () => setOpen(false),
   });
+
+  const handleDashboard = () => {
+    setOpen(false);
+    router.push(dashboardPath);
+  };
 
   const handleLogout = () => {
     if (isPending) return;
@@ -83,7 +91,7 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   };
 
   return (
-    <NavAccountHost ref={menuRef}>
+    <NavAccountHost ref={menuRef} $open={open}>
       <NavAccountTriggerWrap $open={open}>
         <ProfileButton
           type="button"
@@ -109,7 +117,10 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
           <NavAccountMenuItem
             href={dashboardPath}
             role="menuitem"
-            onClick={() => setOpen(false)}
+            onClick={(event) => {
+              event.preventDefault();
+              handleDashboard();
+            }}
           >
             <NavAccountMenuIcon aria-hidden>
               <HomeIcon width={18} height={18} />
@@ -157,6 +168,7 @@ export default function NavBar({
   const [active, setActive] = React.useState<string | null>(null);
   const [pinned, setPinned] = React.useState<string | null>(null);
   const navRef = React.useRef<HTMLElement | null>(null);
+  const actionsRef = React.useRef<HTMLDivElement | null>(null);
   const innerStyle = React.useMemo(() => {
     const style: React.CSSProperties & Record<string, string> = {};
 
@@ -217,7 +229,10 @@ export default function NavBar({
     (e: PointerEvent) => {
       const target = e.target as Node | null;
 
-      if (!navRef.current?.contains(target)) {
+      if (
+        !navRef.current?.contains(target) &&
+        !actionsRef.current?.contains(target)
+      ) {
         closeMenu();
       }
     },
@@ -321,7 +336,7 @@ export default function NavBar({
           {navAfter}
         </Nav>
 
-        <Actions $textTone={navTextTone}>
+        <Actions ref={actionsRef} $textTone={navTextTone}>
           {isLoggedIn && dashboardPath ? (
             <NavAccountMenu dashboardPath={dashboardPath} />
           ) : (
