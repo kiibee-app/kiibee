@@ -46,6 +46,19 @@ type CreateContentPayload = {
   contentUrl?: string;
 };
 
+type MediaUrlResponse = {
+  url?: string;
+};
+
+type PendingUploadSuccess = {
+  tab: AddContentTab;
+  file?: File | null;
+  preview?: string | null;
+  createdContentId?: string;
+  title: string;
+  description: string;
+};
+
 type ContentUploadModalProps = {
   visible: boolean;
   mode?: ContentUploadMode;
@@ -61,6 +74,7 @@ type ContentUploadModalProps = {
     file?: File | null,
     preview?: string | null,
     createdContentId?: string,
+    details?: Pick<PendingUploadSuccess, "title" | "description">,
   ) => void;
 };
 
@@ -84,6 +98,8 @@ export default function ContentUploadModal({
   const [description, setDescription] = useState(initialDescription);
   const [isSuccess, setIsSuccess] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
+  const [pendingUploadSuccess, setPendingUploadSuccess] =
+    useState<PendingUploadSuccess | null>(null);
   const createContentMutation = usePostAPI<unknown, CreateContentPayload>(
     API.content.create,
   );
@@ -112,12 +128,26 @@ export default function ContentUploadModal({
   );
 
   const handleExit = (callback: () => void) => {
+    if (isSuccess && pendingUploadSuccess) {
+      onUploadSuccess?.(
+        pendingUploadSuccess.tab,
+        pendingUploadSuccess.file,
+        pendingUploadSuccess.preview,
+        pendingUploadSuccess.createdContentId,
+        {
+          title: pendingUploadSuccess.title,
+          description: pendingUploadSuccess.description,
+        },
+      );
+    }
+
     reset();
     setWebContentLink("");
     setTitle("");
     setDescription("");
     setIsSuccess(false);
     setCreateError(null);
+    setPendingUploadSuccess(null);
     setShowDetails(false);
     callback();
   };
@@ -219,12 +249,22 @@ export default function ContentUploadModal({
       const createdId =
         (res as { data?: { id?: string } })?.data?.id ??
         (res as { id?: string })?.id;
-      onUploadSuccess?.(
-        ADD_CONTENT_TABS.GENERAL,
-        selectedFile,
-        previewUrl,
-        createdId,
-      );
+      const uploadPreview =
+        contentType === FORMAT_TYPE.VIDEO && fileKey
+          ? (
+              await axiosClient.get<MediaUrlResponse>(API.media.videoStream, {
+                params: { key: fileKey },
+              })
+            ).data.url
+          : previewUrl;
+      setPendingUploadSuccess({
+        tab: ADD_CONTENT_TABS.GENERAL,
+        file: selectedFile,
+        preview: uploadPreview ?? null,
+        createdContentId: createdId,
+        title: trimmedTitle,
+        description: trimmedDescription,
+      });
     } catch (error) {
       const message =
         error instanceof Error
