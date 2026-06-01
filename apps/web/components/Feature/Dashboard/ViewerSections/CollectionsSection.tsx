@@ -61,6 +61,7 @@ type Props = {
   onOpenSection?: () => void;
   showOpenSectionArrow?: boolean;
   showExpandedMetaHeader?: boolean;
+  onCollectionPrimaryAction?: (item: RentedCollectionItem) => void;
 };
 
 export default function CollectionsSection({
@@ -75,6 +76,7 @@ export default function CollectionsSection({
   onOpenSection,
   showOpenSectionArrow = false,
   showExpandedMetaHeader = false,
+  onCollectionPrimaryAction,
 }: Props) {
   const router = useRouter();
   const hasSession = authStorage.hasSession();
@@ -220,7 +222,15 @@ export default function CollectionsSection({
                   })
                 ) : (
                   <>
-                    <GenericButton variant={VARIANT.PRIMARY} size="md">
+                    <GenericButton
+                      variant={VARIANT.PRIMARY}
+                      size="md"
+                      onClick={
+                        isPurchased && onCollectionPrimaryAction
+                          ? () => onCollectionPrimaryAction(item)
+                          : undefined
+                      }
+                    >
                       {getCollectionPrimaryActionText(mode)}
                     </GenericButton>
                     {isCurrent ? (

@@ -365,6 +365,7 @@ export const CONTENTS = {
     visibilityHint: "contents.general.visibilityHint",
     public: "contents.general.public",
     hidden: "contents.general.hidden",
+    draft: "contents.general.draft",
   },
   deleteModal: {
     title: "contents.deleteModal.title",
