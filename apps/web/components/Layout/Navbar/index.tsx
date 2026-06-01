@@ -32,6 +32,7 @@ import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import { POINTER_DOWN, VARIANT } from "@/utils/Constants";
+import { CLICK } from "@/utils/common";
 import { PATHS } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
@@ -75,7 +76,7 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   useClickOutside({
     ref: menuRef,
     enabled: open,
-    eventType: "click",
+    eventType: CLICK,
     handler: () => setOpen(false),
   });
 
