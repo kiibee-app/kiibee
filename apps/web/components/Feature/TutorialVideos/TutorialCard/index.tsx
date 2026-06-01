@@ -1,6 +1,8 @@
 "use client";
 
 import { memo, useMemo } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { authStorage } from "@/lib/auth/authStorage";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { ActionRow, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
@@ -15,7 +17,7 @@ import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericCard from "@/components/UI/GenericCard";
-import { pathPublishedContent } from "@/utils/path";
+import { pathPublishedContent, PATHS } from "@/utils/path";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -38,6 +40,23 @@ const formatIconMap: Record<FormatType, IconComponent> = {
 
 function TutorialCard({ tutorial }: TutorialCardProps) {
   const { t } = useTranslation();
+  const router = useRouter();
+  const pathname = usePathname();
+  const hasSession = authStorage.hasSession();
+
+  const handleButtonClick = (
+    e: React.MouseEvent<HTMLElement>,
+    href: string,
+  ) => {
+    if (!hasSession) {
+      e.preventDefault();
+      const isCreatorProfile = pathname.startsWith("/creator/");
+      const nextUrl = isCreatorProfile
+        ? window.location.pathname + window.location.search
+        : href;
+      router.push(`${PATHS.AUTH_LOGIN}?next=${encodeURIComponent(nextUrl)}`);
+    }
+  };
 
   const imageUrl = useMemo(
     () => resolveImageUrl(tutorial.image),
@@ -81,12 +100,14 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
       subtitle={<MonoText $use="Body_Medium">{tutorial.creator}</MonoText>}
       footer={
         <ActionRow>
-          {buttons.map((button, index) =>
-            button.href ? (
+          {buttons.map((button, index) => {
+            const buttonHref = resolveButtonHref(button.href);
+            return button.href ? (
               <GenericButton
                 key={`${button.label}-${index}`}
                 asAnchor
-                href={resolveButtonHref(button.href)}
+                href={buttonHref}
+                onClick={(e) => handleButtonClick(e, buttonHref)}
                 variant={button.variant ?? VARIANT.SECONDARY}
                 fullWidth={button.fullWidth}
                 size={button.size}
@@ -105,8 +126,8 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
               >
                 {button.label}
               </GenericButton>
-            ),
-          )}
+            );
+          })}
         </ActionRow>
       }
     >

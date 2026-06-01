@@ -24,6 +24,9 @@ import { getContentTypeLabel } from "@/utils/content";
 import { tutorialVideos } from "@/utils/data";
 import { type TutorialVideo } from "@/utils/types";
 import { QUERY_KEYS } from "@/utils/Constants";
+import { useRouter } from "next/navigation";
+import { authStorage } from "@/lib/auth/authStorage";
+import { PATHS } from "@/utils/path";
 import {
   CollectionSection,
   CollectionSectionTag,
@@ -38,7 +41,18 @@ type CollectionWithCards = {
 
 export default function CollectionPreview() {
   const { t } = useTranslation();
+  const router = useRouter();
   const { displayName } = useCreatorChannelProfile();
+
+  const hasSession = authStorage.hasSession();
+
+  const handleCollectionClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!hasSession) {
+      e.preventDefault();
+      const nextUrl = window.location.pathname + window.location.search;
+      router.push(`${PATHS.AUTH_LOGIN}?next=${encodeURIComponent(nextUrl)}`);
+    }
+  };
 
   const { data: sections = [] } = useQuery<CollectionWithCards[]>({
     queryKey: [QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW],
@@ -95,6 +109,7 @@ export default function CollectionPreview() {
         })
         .filter((section) => section.cards.length > 0);
     },
+    enabled: hasSession,
     refetchOnWindowFocus: false,
   });
 
@@ -112,7 +127,10 @@ export default function CollectionPreview() {
                 <MonoText $use="H4_Medium">{collection.name}</MonoText>
               </CollectionSectionTag>
             </SectionLabel>
-            <SectionLink href={`/single-collection?id=${collection.id}`}>
+            <SectionLink
+              href={`/single-collection?id=${collection.id}`}
+              onClick={handleCollectionClick}
+            >
               <LeftIcon />
             </SectionLink>
           </SectionHeader>

@@ -1,6 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { authStorage } from "@/lib/auth/authStorage";
+import { PATHS } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
@@ -73,6 +76,17 @@ export default function CollectionsSection({
   showOpenSectionArrow = false,
   showExpandedMetaHeader = false,
 }: Props) {
+  const router = useRouter();
+  const hasSession = authStorage.hasSession();
+
+  const handleCtaClick = (e: React.MouseEvent<HTMLElement>, itemId: string) => {
+    if (!hasSession) {
+      e.preventDefault();
+      const nextUrl = window.location.pathname + window.location.search;
+      router.push(`${PATHS.AUTH_LOGIN}?next=${encodeURIComponent(nextUrl)}`);
+    }
+  };
+
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const isPurchased = mode === RENTED_MODES.PURCHASED;
   const [activeSortKey, setActiveSortKey] = useState<CollectionSortKey | null>(
@@ -179,6 +193,9 @@ export default function CollectionsSection({
                     return (
                       <GenericButton
                         key={`${item.id}-${action.label}`}
+                        asAnchor
+                        href={`/single-collection?id=${item.id}`}
+                        onClick={(e) => handleCtaClick(e, item.id)}
                         variant={
                           isSecondary ? VARIANT.SOFT_OUTLINE : VARIANT.PRIMARY
                         }

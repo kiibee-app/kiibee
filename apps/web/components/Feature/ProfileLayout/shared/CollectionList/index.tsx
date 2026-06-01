@@ -14,13 +14,21 @@ import { resolveImageUrl } from "@/utils/Constants";
 import { tutorialVideos } from "@/utils/data";
 import type { RentedCollectionItem } from "@/utils/dummyData/viewerRentedMockData";
 import { RENTED_MODES } from "@/utils/viewerRented";
+import { authStorage } from "@/lib/auth/authStorage";
 import { CollectionListInner, CollectionListShell } from "./styles";
 
 export default function CollectionList() {
   const { t } = useTranslation();
   const { displayName } = useCreatorChannelProfile();
+
+  const hasSession = authStorage.hasSession();
+
   const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
     API.collection.getAll,
+    undefined,
+    {
+      enabled: hasSession,
+    },
   );
 
   const items = useMemo<RentedCollectionItem[]>(() => {

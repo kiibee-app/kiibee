@@ -38,6 +38,7 @@ export default function ProfileHomeSections({
 
   const latestUploadData = latest
     ? {
+        id: String(latest.id),
         sectionTitle: latestConfig.sectionTitle,
         badge:
           (latest as { category?: string | null }).category ??

@@ -11,12 +11,16 @@ import {
 import { QUERY_KEYS } from "@/utils/Constants";
 import { CollectionContentRow } from "@/types/collectionsType";
 
+import { authStorage } from "@/lib/auth/authStorage";
+
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;
   category?: string | null;
 };
 
 export function useLatestUpload() {
+  const hasSession = authStorage.hasSession();
+
   return useQuery({
     queryKey: [QUERY_KEYS.PROFILE_LATEST_UPLOAD],
 
@@ -69,6 +73,7 @@ export function useLatestUpload() {
       }
     },
 
+    enabled: hasSession,
     refetchOnWindowFocus: true,
   });
 }

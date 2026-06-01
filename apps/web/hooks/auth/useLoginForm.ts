@@ -13,7 +13,8 @@ function getPostLoginDestination(response: LoginResponse) {
   if (typeof window === "undefined") return getPostLoginPath(response);
 
   const nextPath = new URLSearchParams(window.location.search).get("next");
-  return nextPath?.startsWith("/dashboard/")
+  return nextPath &&
+    (nextPath.startsWith("/dashboard/") || nextPath.startsWith("/creator/"))
     ? nextPath
     : getPostLoginPath(response);
 }

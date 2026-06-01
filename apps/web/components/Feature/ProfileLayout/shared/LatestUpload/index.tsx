@@ -40,12 +40,16 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 
+import { authStorage } from "@/lib/auth/authStorage";
+import { pathPublishedContent } from "@/utils/path";
+
 type LatestUploadAction = {
   title: string;
   subtitle?: string;
 };
 
 export type LatestUploadData = {
+  id?: string;
   contentType?: ContentType;
   sectionTitle: string;
   badge: string;
@@ -88,8 +92,39 @@ export default function LatestUpload({ data }: LatestUploadProps) {
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [primaryAction, secondaryAction] = data.actions;
-  const handleLogin = () => router.push(PATHS.AUTH_LOGIN);
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
+
+  const hasSession = authStorage.hasSession();
+
+  const handleActionClick = () => {
+    if (!hasSession) {
+      setLoginModalVisible(true);
+    } else if (data.id) {
+      router.push(pathPublishedContent(data.id));
+    }
+  };
+
+  const handleLogin = () => {
+    const nextUrl =
+      typeof window !== "undefined"
+        ? window.location.pathname + window.location.search
+        : "";
+    const loginPath = nextUrl
+      ? `${PATHS.AUTH_LOGIN}?next=${encodeURIComponent(nextUrl)}`
+      : PATHS.AUTH_LOGIN;
+    router.push(loginPath);
+  };
+
+  const handleCreateAccount = () => {
+    const nextUrl =
+      typeof window !== "undefined"
+        ? window.location.pathname + window.location.search
+        : "";
+    const signupPath = nextUrl
+      ? `${PATHS.AUTH_SIGNUP}?next=${encodeURIComponent(nextUrl)}`
+      : PATHS.AUTH_SIGNUP;
+    router.push(signupPath);
+  };
+
   const normalizedContentType = normalizeContentTypeValue(
     String((data as { contentType?: unknown }).contentType ?? ""),
   );
@@ -154,7 +189,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
           <ActionButtons>
             <ReadMoreButton
               type="button"
-              onClick={() => setLoginModalVisible(true)}
+              onClick={handleActionClick}
               $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
             >
               <ActionMainText
@@ -172,7 +207,11 @@ export default function LatestUpload({ data }: LatestUploadProps) {
             </ReadMoreButton>
 
             {secondaryAction ? (
-              <ReadMoreButton type="button" $tone={VARIANT.SECONDARY}>
+              <ReadMoreButton
+                type="button"
+                onClick={handleActionClick}
+                $tone={VARIANT.SECONDARY}
+              >
                 <ActionMainText $tone={VARIANT.SECONDARY}>
                   {secondaryAction.title}
                 </ActionMainText>
