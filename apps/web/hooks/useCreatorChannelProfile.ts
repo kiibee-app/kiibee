@@ -7,7 +7,7 @@ import {
   type GetCreatorProfileResponse,
 } from "@/hooks/auth/creatorProfileApi";
 import {
-  getDisplayInitial,
+  getDisplayFirstLetter,
   getLoginUserDisplayName,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
@@ -89,7 +89,7 @@ export function useCreatorChannelProfile(enabled = true) {
   }, [publicCreator, profile, storedUser]);
 
   const initial = useMemo(
-    () => getDisplayInitial(displayName, storedUser),
+    () => getDisplayFirstLetter(displayName, storedUser),
     [displayName, storedUser],
   );
 
