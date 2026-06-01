@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { API } from "@/lib/http/api/endpoints";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
+import { storage } from "@/utils/storage";
 import {
   ContentType,
   getFileNameWithoutExtension,
@@ -33,6 +34,7 @@ import {
   ERROR_MESSAGES,
   DOWNLOAD_LIMIT_DEFAULT,
   CONTENT_TYPE_FALLBACK,
+  CONTENT_LAST_EDITED_STORAGE_KEY,
   VISIBILITY_PUBLIC_UPPER,
   VISIBILITY_PUBLIC_LOWER,
   CATEGORY_EDUCATION_LOWER,
@@ -45,6 +47,8 @@ import {
   buildContentUpdatePayload,
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
+import { FORMAT_TYPE } from "@/utils/types";
+import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
 
 type Params = {
   activeTab: ContentTab;
@@ -112,15 +116,26 @@ export function useContentFormActions({
     file?: File | null,
     preview?: string | null,
     createdContentId?: string,
+    details?: { title: string; description: string },
   ) => {
     setActiveTabAndQuery(tab);
     setUploadedFile(file ?? null);
     setUploadedPreview(preview ?? null);
     prefillForm(file ?? null);
+    setFormState((prev) => ({
+      ...prev,
+      title: details?.title ?? prev.title,
+      description: details?.description ?? prev.description,
+      contentTypeId: contentTypeFlow.selectedContentType ?? prev.contentTypeId,
+    }));
     if (createdContentId) {
+      storage.set(CONTENT_LAST_EDITED_STORAGE_KEY, createdContentId);
       setEditingContent({
         id: createdContentId,
-        name: file ? getFileNameWithoutExtension(file.name) : "",
+        name:
+          details?.title ??
+          (file ? getFileNameWithoutExtension(file.name) : ""),
+        description: details?.description,
         contentType:
           contentTypeFlow.selectedContentType ??
           (CONTENT_TYPE_FALLBACK as ContentType),
@@ -278,6 +293,8 @@ export function useContentFormActions({
       description?: string;
       contentType?: string;
       contentTypeId?: string;
+      fileKey?: string | null;
+      contentUrl?: string | null;
       trailerUrl?: string;
       visibility?: string;
       publishedYear?: number;
@@ -328,7 +345,17 @@ export function useContentFormActions({
         Object.defineProperty(mockFile, "size", { value: mockSize });
 
         setUploadedFile(mockFile);
-        setUploadedPreview(null);
+
+        const preview =
+          resolvedContentType === FORMAT_TYPE.VIDEO && fullContent.fileKey
+            ? (
+                await axiosClient.get<MediaUrlResponse>(API.media.videoStream, {
+                  params: { key: fullContent.fileKey },
+                })
+              ).data.url
+            : null;
+
+        setUploadedPreview(preview ?? null);
 
         setFormState({
           title: fullContent.title || "",
