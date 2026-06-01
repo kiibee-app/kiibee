@@ -107,8 +107,9 @@ function TutorialCard({
       subtitle={<MonoText $use="Body_Medium">{tutorial.creator}</MonoText>}
       footer={
         <ActionRow>
-          {buttons.map((button, index) =>
-            onPlayClick ? (
+          {buttons.map((button, index) => {
+            const buttonHref = resolveButtonHref(button.href);
+            return onPlayClick ? (
               <GenericButton
                 key={`${button.label}-${index}`}
                 type="button"
