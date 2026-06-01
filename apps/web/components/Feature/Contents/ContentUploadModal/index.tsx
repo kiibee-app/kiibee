@@ -50,17 +50,14 @@ export type MediaUrlResponse = {
   url?: string;
 };
 
-type UploadSuccessDetails = {
-  title: string;
-  description: string;
-};
-
 type PendingUploadSuccess = {
-  tab: AddContentTab;
+  tab?: AddContentTab;
   file?: File | null;
   preview?: string | null;
   createdContentId?: string;
-} & UploadSuccessDetails;
+  title: string;
+  description: string;
+};
 
 type ContentUploadModalProps = {
   visible: boolean;
@@ -77,7 +74,7 @@ type ContentUploadModalProps = {
     file?: File | null,
     preview?: string | null,
     createdContentId?: string,
-    details?: UploadSuccessDetails,
+    details?: PendingUploadSuccess,
   ) => void;
 };
 
@@ -133,7 +130,7 @@ export default function ContentUploadModal({
   const handleExit = (callback: () => void) => {
     if (isSuccess && pendingUploadSuccess) {
       onUploadSuccess?.(
-        pendingUploadSuccess.tab,
+        pendingUploadSuccess.tab || ADD_CONTENT_TABS.GENERAL,
         pendingUploadSuccess.file,
         pendingUploadSuccess.preview,
         pendingUploadSuccess.createdContentId,

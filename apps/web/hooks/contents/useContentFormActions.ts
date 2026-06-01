@@ -346,17 +346,16 @@ export function useContentFormActions({
 
         setUploadedFile(mockFile);
 
-        if (resolvedContentType === FORMAT_TYPE.VIDEO && fullContent.fileKey) {
-          const { data: media } = await axiosClient.get<MediaUrlResponse>(
-            API.media.videoStream,
-            {
-              params: { key: fullContent.fileKey },
-            },
-          );
-          setUploadedPreview(media.url ?? null);
-        } else {
-          setUploadedPreview(null);
-        }
+        const preview =
+          resolvedContentType === FORMAT_TYPE.VIDEO && fullContent.fileKey
+            ? (
+                await axiosClient.get<MediaUrlResponse>(API.media.videoStream, {
+                  params: { key: fullContent.fileKey },
+                })
+              ).data.url
+            : null;
+
+        setUploadedPreview(preview ?? null);
 
         setFormState({
           title: fullContent.title || "",
