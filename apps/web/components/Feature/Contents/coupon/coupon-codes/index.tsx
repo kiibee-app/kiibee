@@ -62,7 +62,7 @@ export default function CouponCodesModal({
       ...prev,
       codes: value
         .split(",")
-        .map((code) => code.trim())
+        .map((c) => c.trim())
         .filter(Boolean),
     }));
   };
