@@ -131,6 +131,15 @@ export function getLoginUserEmail(user: LoginUser | null): string {
   return toTrimmedString(user?.email);
 }
 
+export function getLoginUserFirstLetter(user: LoginUser | null): string {
+  const displayName = getLoginUserDisplayName(user);
+  const trimmed = toTrimmedString(displayName);
+  if (trimmed) return trimmed.charAt(0).toUpperCase();
+
+  const email = toTrimmedString(user?.email);
+  return email ? email.charAt(0).toUpperCase() : "?";
+}
+
 export function getLoginUserDisplayName(user: LoginUser | null): string {
   const fullName = toTrimmedString(user?.fullName);
   if (fullName) return fullName;
@@ -151,4 +160,14 @@ export function getDisplayInitial(
   if (trimmed) return getNameInitials(trimmed);
 
   return getLoginUserInitial(user);
+}
+
+export function getDisplayFirstLetter(
+  displayName: string,
+  user: LoginUser | null,
+): string {
+  const trimmed = toTrimmedString(displayName);
+  if (trimmed) return trimmed.charAt(0).toUpperCase();
+
+  return getLoginUserFirstLetter(user);
 }

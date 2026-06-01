@@ -36,12 +36,10 @@ import type { NavBarItem, NavBarProps } from "@/utils/profile";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
 import { useLogout } from "@/hooks/auth/useLogout";
 import {
-  getLoginUserDisplayName,
-  getLoginUserInitial,
+  getLoginUserFirstLetter,
   useLoginUserAvatar,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
-import type { LoginUser } from "@/hooks/auth/useLogin";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { HomeIcon } from "@/assets/icons/homeIcon";
 import { LogoutIcon } from "@/assets/icons/logoutIcon";
@@ -51,14 +49,6 @@ import {
   ProfileButton,
 } from "@/components/Layout/DashboardHeader/styles";
 
-function getProfileFirstLetter(user: LoginUser | null) {
-  const displayName = getLoginUserDisplayName(user);
-  if (displayName) return displayName.trim().charAt(0).toUpperCase();
-
-  const initial = getLoginUserInitial(user).trim();
-  return initial.charAt(0).toUpperCase() || "?";
-}
-
 function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
@@ -67,7 +57,7 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   const [open, setOpen] = useState(false);
   const [failedAvatarUrl, setFailedAvatarUrl] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const firstLetter = getProfileFirstLetter(user);
+  const firstLetter = getLoginUserFirstLetter(user);
   const showAvatar = Boolean(avatarUrl) && avatarUrl !== failedAvatarUrl;
 
   useClickOutside({

@@ -50,8 +50,11 @@ export default function CreatorProfile() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
 
-  const getInitial = (email = "") =>
-    email ? email.charAt(0).toUpperCase() : "?";
+  const getInitial = (name: string, email = "") => {
+    const trimmedName = name.trim();
+    if (trimmedName) return trimmedName.charAt(0).toUpperCase();
+    return email ? email.charAt(0).toUpperCase() : "?";
+  };
 
   const {
     form,
@@ -117,7 +120,7 @@ export default function CreatorProfile() {
         <Row>
           <ImageUploader
             image={avatarImage}
-            fallback={getInitial(form.email)}
+            fallback={getInitial(displayName, form.email)}
             alt={t("creatorProfile.profilePhotoAlt")}
             uploadTitle={t("creatorProfile.uploadPhotoTitle")}
             editTitle={t("creatorProfile.editPhotoTitle")}
