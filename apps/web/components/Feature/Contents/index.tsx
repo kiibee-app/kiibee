@@ -221,6 +221,8 @@ function CreatorsContentsInner() {
     handleCreateClick,
     handleEditCollection,
     openCouponEdit,
+    requestCloseCouponFlow,
+    isCouponDiscardPending,
   } = useContentsModalFlows(
     activeTab,
     collections,
@@ -439,6 +441,9 @@ function CreatorsContentsInner() {
         cancelLabel={t("settings.notifications.discardModal.goBack")}
         confirmLabel={t("settings.notifications.discardModal.discard")}
         onConfirm={() => {
+          if (isCouponDiscardPending) {
+            closeCouponFlow();
+          }
           if (isUploadMode) {
             handleBack();
           }
@@ -471,6 +476,7 @@ function CreatorsContentsInner() {
         couponForm={couponForm}
         setCouponForm={setCouponForm}
         closeCouponFlow={closeCouponFlow}
+        requestCloseCouponFlow={requestCloseCouponFlow}
         handleBackFromCouponPreview={handleBackFromCouponPreview}
         handleCouponSubmit={handleCouponSubmit}
         isCouponSuccess={isCouponSuccess}
