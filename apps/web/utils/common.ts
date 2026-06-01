@@ -73,6 +73,7 @@ export const PAGE_VISITS = "pageVisits";
 export const CLICKS = "clicks";
 export const VIEWS = "views";
 export const MOUSE_DOWN = "mousedown";
+export const CLICK = "click";
 export const IMG = "img";
 
 export type ProfileTabKey = "home" | "collections" | "about";

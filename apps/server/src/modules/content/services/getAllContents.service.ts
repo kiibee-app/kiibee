@@ -4,7 +4,11 @@ import type { SQL } from 'drizzle-orm';
 import { sql, desc, eq, and } from 'drizzle-orm';
 import { success, fail } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
-import { CONTENT_VISIBILITY, FIXED_LIMIT } from 'src/utils/constant';
+import {
+  CONTENT_VISIBILITY,
+  FIXED_LIMIT,
+  SORT_DIRECTIONS,
+} from 'src/utils/constant';
 
 import { db } from 'src/database/db';
 import {
@@ -154,19 +158,19 @@ export const getAllContentsService = async (
     let orderBy;
 
     switch (sort) {
-      case 'new':
+      case SORT_DIRECTIONS.NEW:
         orderBy = desc(mediaFiles.publishedAt);
         break;
 
-      case 'popular':
+      case SORT_DIRECTIONS.POPULAR:
         orderBy = sql`RANDOM()`;
         break;
 
-      case 'free':
+      case SORT_DIRECTIONS.FREE:
         orderBy = desc(mediaFiles.publishedAt);
         break;
 
-      case 'all':
+      case SORT_DIRECTIONS.ALL:
       default:
         orderBy = desc(mediaFiles.publishedAt);
         break;

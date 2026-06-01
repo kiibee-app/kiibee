@@ -411,9 +411,9 @@ function CreatorsContentsInner() {
         collectionId={selectedCollection?.id ?? null}
         onClose={closeContentUpload}
         onBack={handleContentUploadBack}
-        onUploadSuccess={(tab, file, preview, createdId) => {
+        onUploadSuccess={(tab, file, preview, createdId, details) => {
           clearSelectedCollectionContentsOverride();
-          handleUploadSuccess(tab, file, preview, createdId);
+          handleUploadSuccess(tab, file, preview, createdId, details);
         }}
       />
 

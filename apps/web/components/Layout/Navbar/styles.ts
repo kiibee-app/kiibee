@@ -128,7 +128,7 @@ export const MegaMenu = styled.div`
   transition:
     background 180ms ease,
     backdrop-filter 180ms ease;
-  pointer-events: auto;
+  pointer-events: none;
   z-index: 1000;
 `;
 
@@ -140,6 +140,7 @@ export const MegaInner = styled.div`
   gap: 32px 40px;
   align-items: start;
   padding: 0 2rem;
+  pointer-events: auto;
 
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
@@ -241,9 +242,10 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
   }
 `;
 
-export const NavAccountHost = styled.div`
+export const NavAccountHost = styled.div<{ $open?: boolean }>`
   position: relative;
   display: inline-flex;
+  z-index: ${({ $open }) => ($open ? 1200 : "auto")};
 `;
 
 export const NavAccountDropdown = styled.div`

@@ -53,6 +53,7 @@ export const VIEWER_SECTION_VALUES = {
 } as const;
 export const ROLE_CREATOR = "creator";
 export const ROLE_VIEWER = "viewer";
+export const ROLE_ADMIN = "admin";
 export const HTTP_STATUS_UNAUTHORIZED = 401;
 export const WEBSITE = "website";
 export const OPEN_GRAPH_LOCALE_EN_US = "en_US";
@@ -90,6 +91,9 @@ export type CouponAction =
   | typeof COUPON_ACTION_EDIT
   | typeof COUPON_ACTION_STATUS
   | typeof COUPON_ACTION_DELETE;
+
+export const TONE_DARK = "dark" as const;
+export const TONE_LIGHT = "light" as const;
 
 export const profileNavShellProps = {
   position: "absolute",
@@ -178,9 +182,23 @@ export const ERROR_MESSAGES = {
 
 export const UI_TITLE_FALLBACK = "Content Details";
 
+export const SCROLL_BEHAVIOR = {
+  SMOOTH: "smooth",
+} as const;
+
+export const SCROLL_BLOCK = {
+  CENTER: "center",
+  START: "start",
+} as const;
+
 export const SCROLL_OPTIONS = {
-  behavior: "smooth",
-  block: "center",
+  behavior: SCROLL_BEHAVIOR.SMOOTH,
+  block: SCROLL_BLOCK.CENTER,
+} as const;
+
+export const SCROLL_TO_START_OPTIONS = {
+  behavior: SCROLL_BEHAVIOR.SMOOTH,
+  block: SCROLL_BLOCK.START,
 } as const;
 
 export const apiToUiAccessTypeMap: Record<string, AdmissionRequirementValue> = {

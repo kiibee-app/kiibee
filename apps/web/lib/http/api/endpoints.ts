@@ -46,4 +46,8 @@ export const API = {
     list: "/creators",
     byId: (id: string) => `/creators/${id}`,
   },
+  feed: {
+    trending: "/feed/trending",
+    recent: "/feed/recent",
+  },
 } as const;

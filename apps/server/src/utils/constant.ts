@@ -77,3 +77,17 @@ export const isValidAvatarUrl = (value: string): boolean => {
   return isDataUrl || isHttpUrl;
 };
 export const FIXED_LIMIT = 10;
+
+export const SORT_DIRECTIONS = {
+  ASC: 'asc',
+  DESC: 'desc',
+  NAME: 'name',
+  SUBSCRIBER_COUNT: 'subscriberCount',
+  NEWEST: 'newest',
+  TOP: 'top',
+  FEATURED: 'featured',
+  NEW: 'new',
+  POPULAR: 'popular',
+  FREE: 'free',
+  ALL: 'all',
+} as const;

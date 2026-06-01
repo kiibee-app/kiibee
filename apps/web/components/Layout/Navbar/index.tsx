@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import Image from "@/components/UI/SafeImage";
@@ -30,18 +31,17 @@ import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
-import { POINTER_DOWN, VARIANT } from "@/utils/Constants";
+import { CLICK } from "@/utils/common";
+import { POINTER_DOWN, VARIANT, TONE_DARK } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
 import { useLogout } from "@/hooks/auth/useLogout";
 import {
-  getLoginUserDisplayName,
-  getLoginUserInitial,
+  getLoginUserFirstLetter,
   useLoginUserAvatar,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
-import type { LoginUser } from "@/hooks/auth/useLogin";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { HomeIcon } from "@/assets/icons/homeIcon";
 import { LogoutIcon } from "@/assets/icons/logoutIcon";
@@ -51,30 +51,29 @@ import {
   ProfileButton,
 } from "@/components/Layout/DashboardHeader/styles";
 
-function getProfileFirstLetter(user: LoginUser | null) {
-  const displayName = getLoginUserDisplayName(user);
-  if (displayName) return displayName.trim().charAt(0).toUpperCase();
-
-  const initial = getLoginUserInitial(user).trim();
-  return initial.charAt(0).toUpperCase() || "?";
-}
-
 function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   const { t } = useTranslation();
+  const router = useRouter();
   const user = useStoredLoginUser();
   const avatarUrl = useLoginUserAvatar();
   const { logout, isPending } = useLogout();
   const [open, setOpen] = useState(false);
   const [failedAvatarUrl, setFailedAvatarUrl] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const firstLetter = getProfileFirstLetter(user);
+  const firstLetter = getLoginUserFirstLetter(user);
   const showAvatar = Boolean(avatarUrl) && avatarUrl !== failedAvatarUrl;
 
   useClickOutside({
     ref: menuRef,
     enabled: open,
+    eventType: CLICK,
     handler: () => setOpen(false),
   });
+
+  const handleDashboard = () => {
+    setOpen(false);
+    router.push(dashboardPath);
+  };
 
   const handleLogout = () => {
     if (isPending) return;
@@ -83,7 +82,7 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   };
 
   return (
-    <NavAccountHost ref={menuRef}>
+    <NavAccountHost ref={menuRef} $open={open}>
       <NavAccountTriggerWrap $open={open}>
         <ProfileButton
           type="button"
@@ -109,7 +108,10 @@ function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
           <NavAccountMenuItem
             href={dashboardPath}
             role="menuitem"
-            onClick={() => setOpen(false)}
+            onClick={(event) => {
+              event.preventDefault();
+              handleDashboard();
+            }}
           >
             <NavAccountMenuIcon aria-hidden>
               <HomeIcon width={18} height={18} />
@@ -143,11 +145,12 @@ export default function NavBar({
   mobileInnerPadding,
   innerMaxWidth,
   navPosition = "center",
-  navTextTone = "dark",
+  navTextTone = TONE_DARK,
   items = NAV_ITEMS,
   brand,
   navBefore,
   navAfter,
+  actions,
 }: NavBarProps) {
   const { t } = useTranslation();
   const dashboardPath = useSessionDashboardPath();
@@ -157,6 +160,7 @@ export default function NavBar({
   const [active, setActive] = React.useState<string | null>(null);
   const [pinned, setPinned] = React.useState<string | null>(null);
   const navRef = React.useRef<HTMLElement | null>(null);
+  const actionsRef = React.useRef<HTMLDivElement | null>(null);
   const innerStyle = React.useMemo(() => {
     const style: React.CSSProperties & Record<string, string> = {};
 
@@ -217,7 +221,10 @@ export default function NavBar({
     (e: PointerEvent) => {
       const target = e.target as Node | null;
 
-      if (!navRef.current?.contains(target)) {
+      if (
+        !navRef.current?.contains(target) &&
+        !actionsRef.current?.contains(target)
+      ) {
         closeMenu();
       }
     },
@@ -321,28 +328,30 @@ export default function NavBar({
           {navAfter}
         </Nav>
 
-        <Actions $textTone={navTextTone}>
+        <Actions ref={actionsRef} $textTone={navTextTone}>
           {isLoggedIn && dashboardPath ? (
             <NavAccountMenu dashboardPath={dashboardPath} />
           ) : (
-            <>
-              <GenericButton
-                className="login-btn"
-                asAnchor
-                href={loginButtonHref}
-                variant={VARIANT.SECONDARY}
-              >
-                {t(NAV.login)}
-              </GenericButton>
-              <GenericButton
-                className="start-btn"
-                asAnchor
-                href={PATHS.AUTH_SIGNUP}
-                variant={VARIANT.PRIMARY}
-              >
-                {t(NAV.startCreating)}
-              </GenericButton>
-            </>
+            (actions ?? (
+              <>
+                <GenericButton
+                  className="login-btn"
+                  asAnchor
+                  href={loginButtonHref}
+                  variant={VARIANT.SECONDARY}
+                >
+                  {t(NAV.login)}
+                </GenericButton>
+                <GenericButton
+                  className="start-btn"
+                  asAnchor
+                  href={PATHS.AUTH_SIGNUP}
+                  variant={VARIANT.PRIMARY}
+                >
+                  {t(NAV.startCreating)}
+                </GenericButton>
+              </>
+            ))
           )}
         </Actions>
       </Inner>

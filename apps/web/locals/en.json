@@ -1446,7 +1446,8 @@
       "visibility": "Visibility",
       "visibilityHint": "Control whether this trailer is visible to learners.",
       "public": "Public",
-      "hidden": "Hidden"
+      "hidden": "Hidden",
+      "draft": "Draft"
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",

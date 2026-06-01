@@ -23,6 +23,7 @@ export default function TrailerList({ config }: { config?: TextConfig }) {
   const visibilityOptions = [
     { value: TRAILER_VISIBILITY.PUBLIC, label: t(CONTENTS.general.public) },
     { value: TRAILER_VISIBILITY.HIDDEN, label: t(CONTENTS.general.hidden) },
+    { value: TRAILER_VISIBILITY.DRAFT, label: t(CONTENTS.general.draft) },
   ];
 
   const linkField = config?.linkField ?? TRAILER_FIELD_MAP.TRAILER;

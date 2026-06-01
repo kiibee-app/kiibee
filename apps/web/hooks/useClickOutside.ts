@@ -1,6 +1,7 @@
 "use client";
 
 import { RefObject, useEffect } from "react";
+import { CLICK, MOUSE_DOWN } from "@/utils/common";
 
 type ClickOutsideRef = RefObject<HTMLElement | null>;
 
@@ -9,7 +10,7 @@ type UseClickOutsideParams = {
   refs?: ClickOutsideRef[];
   handler: (event: MouseEvent) => void;
   enabled?: boolean;
-  eventType?: "mousedown" | "click";
+  eventType?: typeof MOUSE_DOWN | typeof CLICK;
 };
 
 export function useClickOutside({
@@ -17,7 +18,7 @@ export function useClickOutside({
   refs,
   handler,
   enabled = true,
-  eventType = "mousedown",
+  eventType = MOUSE_DOWN,
 }: UseClickOutsideParams) {
   useEffect(() => {
     if (!enabled) {
