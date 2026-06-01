@@ -28,7 +28,7 @@ import { PATHS } from "@/utils/path";
 import { ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
 import {
   getLoginUserEmail,
-  getLoginUserInitial,
+  getLoginUserFirstLetter,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
@@ -47,7 +47,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
   const isCreator = role === ROLE_CREATOR;
   const { avatarUrl: profileAvatarUrl } = useCreatorChannelProfile(isCreator);
   const email = getLoginUserEmail(user);
-  const initial = getLoginUserInitial(user);
+  const initial = getLoginUserFirstLetter(user);
   const avatarUrl =
     profileAvatarUrl ??
     getAvatarUrl(user?.avatarUrl as string | null | undefined);

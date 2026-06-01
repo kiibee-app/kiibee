@@ -1435,7 +1435,8 @@
       "visibility": "Synlighed",
       "visibilityHint": "Styr om denne trailer er synlig for brugere.",
       "public": "Offentlig",
-      "hidden": "Skjult"
+      "hidden": "Skjult",
+      "draft": "Kladde"
     },
     "admissionRequirements": {
       "title": "Adgangskrav",

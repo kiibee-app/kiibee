@@ -169,6 +169,7 @@ export const FILE_TYPE_CHECKERS: Record<FormatType, (file: File) => boolean> = {
 export const TRAILER_VISIBILITY = {
   PUBLIC: "public",
   HIDDEN: "hidden",
+  DRAFT: "draft",
 } as const;
 
 export type TrailerVisibility =

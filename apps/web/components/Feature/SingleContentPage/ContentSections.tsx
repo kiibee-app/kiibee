@@ -217,6 +217,7 @@ export function SingleContentBody({
         <MainAction
           onClick={primaryAction.onClick}
           type="button"
+          disabled={primaryAction.disabled}
           aria-label={primaryAction.ariaLabel}
         >
           <MainActionText>{primaryAction.label}</MainActionText>
