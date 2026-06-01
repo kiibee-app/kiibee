@@ -48,6 +48,7 @@ import {
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE } from "@/utils/types";
+import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
 
 type Params = {
   activeTab: ContentTab;
@@ -309,10 +310,6 @@ export function useContentFormActions({
       maxDownloadCount?: number;
       physicalProductLink?: string;
     }
-
-    type MediaUrlResponse = {
-      url?: string;
-    };
 
     try {
       const response = await axiosClient.get(API.content.get(id));

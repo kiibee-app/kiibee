@@ -46,8 +46,13 @@ type CreateContentPayload = {
   contentUrl?: string;
 };
 
-type MediaUrlResponse = {
+export type MediaUrlResponse = {
   url?: string;
+};
+
+type UploadSuccessDetails = {
+  title: string;
+  description: string;
 };
 
 type PendingUploadSuccess = {
@@ -55,9 +60,7 @@ type PendingUploadSuccess = {
   file?: File | null;
   preview?: string | null;
   createdContentId?: string;
-  title: string;
-  description: string;
-};
+} & UploadSuccessDetails;
 
 type ContentUploadModalProps = {
   visible: boolean;
@@ -74,7 +77,7 @@ type ContentUploadModalProps = {
     file?: File | null,
     preview?: string | null,
     createdContentId?: string,
-    details?: Pick<PendingUploadSuccess, "title" | "description">,
+    details?: UploadSuccessDetails,
   ) => void;
 };
 
