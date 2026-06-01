@@ -26,4 +26,25 @@ export class CreatorController {
   async getTopCreators() {
     return this.creatorService.getTopCreators();
   }
+
+  @Get('all')
+  async getAllCreators(
+    @Query('limit') limit?: string,
+    @Query('sortBy')
+    sortBy?: 'name' | 'subscriberCount' | 'newest' | 'top' | 'featured',
+    @Query('search') search?: string,
+  ) {
+    const parsedLimit = Number.parseInt(limit ?? '24', 10);
+
+    const safeLimit =
+      Number.isFinite(parsedLimit) && parsedLimit > 0 ? parsedLimit : 24;
+
+    const safeSortBy = sortBy ?? 'name';
+
+    return this.creatorService.getAllCreators({
+      limit: safeLimit,
+      sortBy: safeSortBy,
+      search: search?.trim() || undefined,
+    });
+  }
 }
