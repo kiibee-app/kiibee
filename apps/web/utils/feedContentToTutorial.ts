@@ -8,7 +8,7 @@ import {
   type TutorialVideo,
 } from "@/utils/types";
 
-export type TrendingContentItem = {
+export type FeedContentItem = {
   id: string;
   title: string;
   description?: string | null;
@@ -68,8 +68,20 @@ function formatPriceLabel(
   return `${prefix} ${amount} kr`;
 }
 
+export function dedupeFeedContentItems(
+  items: FeedContentItem[],
+): FeedContentItem[] {
+  const seen = new Set<string>();
+
+  return items.filter((item) => {
+    if (seen.has(item.id)) return false;
+    seen.add(item.id);
+    return true;
+  });
+}
+
 function buildPricingButtons(
-  item: TrendingContentItem,
+  item: FeedContentItem,
   freeLabel: string,
 ): TutorialButton[] {
   const href = pathPublishedContent(item.id);
@@ -101,7 +113,7 @@ function buildPricingButtons(
 }
 
 export function feedContentToTutorial(
-  item: TrendingContentItem,
+  item: FeedContentItem,
   freeLabel: string,
 ): TutorialVideo {
   return {

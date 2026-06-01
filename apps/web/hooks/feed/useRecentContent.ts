@@ -11,17 +11,17 @@ import {
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 
-const TRENDING_DISPLAY_LIMIT = 4;
+const RECENT_DISPLAY_LIMIT = 4;
 
-type TrendingContentResponse = {
+type RecentContentResponse = {
   success?: boolean;
   message?: string;
   data?: FeedContentItem[];
 };
 
-export const useTrendingContent = () => {
+export const useRecentContent = () => {
   const { t } = useTranslation();
-  const query = useGetAPI<TrendingContentResponse>(API.feed.trending);
+  const query = useGetAPI<RecentContentResponse>(API.feed.recent);
 
   const tutorials = useMemo((): TutorialVideo[] => {
     if (!query.data?.success || !Array.isArray(query.data.data)) {
@@ -31,7 +31,7 @@ export const useTrendingContent = () => {
     const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
 
     return dedupeFeedContentItems(query.data.data)
-      .slice(0, TRENDING_DISPLAY_LIMIT)
+      .slice(0, RECENT_DISPLAY_LIMIT)
       .map((item) => feedContentToTutorial(item, freeLabel));
   }, [query.data, t]);
 
