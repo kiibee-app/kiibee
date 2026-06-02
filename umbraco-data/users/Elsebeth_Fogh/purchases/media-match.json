@@ -1,0 +1,34 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+      "key": "43931aa8-966e-4ee7-9f99-7c435f9c1f62",
+      "resolved": true,
+      "id": 2724,
+      "name": "Styrk din indre power med Girafsprog",
+      "title": "Styrk din indre power med Girafsprog",
+      "urls": [
+        "/elsebeth-fogh/styrk-din-indre-power-med-girafsprog-alle-5-moduler/styrk-din-indre-power-med-girafsprog/"
+      ],
+      "contentTypeAlias": "media",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "/media/1561/velkommen-5-moduler.pdf",
+      "webContentURL": "",
+      "thumbnail": "/media/1564/5-enkle-steps-200x230.jpg",
+      "purchasePrice": "279",
+      "rentalPrice": "",
+      "purchaseEntryCount": 5,
+      "purchaseOrderCount": 5,
+      "nonPurchaseEntryCount": 0,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2020-02-24 17:32:35",
+      "lastPurchaseAt": "2021-09-22 20:22:30",
+      "samplePurchaseIds": [50208, 23079, 3389, 2769, 2759]
+    }
+  ],
+  "unresolvedMedia": []
+}
