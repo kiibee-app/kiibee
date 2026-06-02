@@ -31,7 +31,7 @@ import SelectedFileView from "./SelectedFileView";
 import ContentUploadDetails from "./UploadDetails";
 import WebContentLinkForm from "./WebContentLinkForm";
 import { FORMAT_TYPE } from "@/utils/types";
-import { ADD_CONTENT_TABS, AddContentTab } from "@/utils/common";
+import { ADD_CONTENT_TABS, AddContentTab, BACK, CLOSE } from "@/utils/common";
 import { API } from "@/lib/http/api/endpoints";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -286,7 +286,7 @@ export default function ContentUploadModal({
     if (isSuccess) {
       handleResetDetails();
     } else {
-      setDiscardSource("back");
+      setDiscardSource(BACK);
       setShowDiscardModal(true);
     }
   };
@@ -295,14 +295,14 @@ export default function ContentUploadModal({
     if (isSuccess) {
       handleExit(onClose);
     } else {
-      setDiscardSource("close");
+      setDiscardSource(CLOSE);
       setShowDiscardModal(true);
     }
   };
 
   const handleDiscardConfirm = () => {
     setShowDiscardModal(false);
-    handleExit(discardSource === "back" ? onBack : onClose);
+    handleExit(discardSource === BACK ? onBack : onClose);
   };
 
   const handleDiscardCancel = () => {
