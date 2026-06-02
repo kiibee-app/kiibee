@@ -22,6 +22,15 @@ export const Card = styled.div<{
   }};
   width: ${({ $width }) => $width || "100%"};
   box-shadow: 0 0 10.483px 0 ${({ theme }) => theme.colors.neutral.GRAY_300};
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
+  }
 `;
 
 export const ImageWrapper = styled.div<{
