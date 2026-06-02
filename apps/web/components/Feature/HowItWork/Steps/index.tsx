@@ -18,6 +18,8 @@ import { NAV } from "@/utils/translationKeys";
 import { howItWorksSteps } from "@/utils/steps";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
 
 export default function HowSteps() {
   const { t } = useTranslation();
@@ -26,34 +28,44 @@ export default function HowSteps() {
   return (
     <StepsSection>
       <Inner>
-        <Heading>
-          <MonoText $use="Heading2">{t(NAV.howItWorks)}</MonoText>
-        </Heading>
-        <Subtitle>
-          <MonoText $use="H4_Medium" color={COLORS.neutral.GRAY_700}>
-            {t("how.stepsSubtitle")}
-          </MonoText>
-        </Subtitle>
+        <ScrollReveal>
+          <Heading>
+            <MonoText $use="Heading2">{t(NAV.howItWorks)}</MonoText>
+          </Heading>
+        </ScrollReveal>
+
+        <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
+          <Subtitle>
+            <MonoText $use="H4_Medium" color={COLORS.neutral.GRAY_700}>
+              {t("how.stepsSubtitle")}
+            </MonoText>
+          </Subtitle>
+        </ScrollReveal>
+
         <Grid>
-          {items.map((it) => (
-            <Card key={it.id}>
-              <ImgWrap>
-                <Image
-                  src={it.img}
-                  alt={t(it.titleKey)}
-                  fill
-                  sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
-                  style={{ objectFit: "cover" }}
-                  priority
-                />
-              </ImgWrap>
-              <CardTitle>
-                <MonoText $use="Heading3">{t(it.titleKey)}</MonoText>
-              </CardTitle>
-              <CardText>
-                <MonoText $use="H5_Regular">{t(it.textKey)}</MonoText>
-              </CardText>
-            </Card>
+          {items.map((it, i) => (
+            <ScrollReveal
+              key={it.id}
+              delay={LANDING_REVEAL.shortDelay * (i + 1)}
+            >
+              <Card>
+                <ImgWrap>
+                  <Image
+                    src={it.img}
+                    alt={t(it.titleKey)}
+                    fill
+                    sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
+                    priority
+                  />
+                </ImgWrap>
+                <CardTitle>
+                  <MonoText $use="Heading3">{t(it.titleKey)}</MonoText>
+                </CardTitle>
+                <CardText>
+                  <MonoText $use="H5_Regular">{t(it.textKey)}</MonoText>
+                </CardText>
+              </Card>
+            </ScrollReveal>
           ))}
         </Grid>
       </Inner>
