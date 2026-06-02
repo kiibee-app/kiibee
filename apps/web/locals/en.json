@@ -1374,8 +1374,13 @@
       "description": "Consider what type of access your [contentType] should have",
       "options": {
         "free": "Free",
+        "payment": "Payment",
         "password": "Set password",
         "email": "Request email"
+      },
+      "password": {
+        "placeholder": "Enter passwords",
+        "helper": "Separate multiple passwords with commas."
       }
     },
     "placeholders": {

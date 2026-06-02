@@ -239,6 +239,8 @@ function CreatorsContentsInner() {
     setCollectionAccessType,
     collectionPasswords,
     setCollectionPasswords,
+    collectionDescription,
+    setCollectionDescription,
     hasUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
@@ -373,6 +375,8 @@ function CreatorsContentsInner() {
             setCollectionAccessType={setCollectionAccessType}
             collectionPasswords={collectionPasswords}
             setCollectionPasswords={setCollectionPasswords}
+            collectionDescription={collectionDescription}
+            setCollectionDescription={setCollectionDescription}
           />
         </ContentPanel>
       </ContentsScrollArea>

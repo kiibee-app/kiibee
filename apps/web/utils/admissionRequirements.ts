@@ -1,5 +1,6 @@
 export const ADMISSION_REQUIREMENT_VALUES = {
   free: "free",
+  payment: "payment",
   password: "password",
   email: "email",
 } as const;
@@ -16,6 +17,10 @@ export const ADMISSION_REQUIREMENTS: {
   {
     value: ADMISSION_REQUIREMENT_VALUES.free,
     labelKey: "contents.admissionRequirements.options.free",
+  },
+  {
+    value: ADMISSION_REQUIREMENT_VALUES.payment,
+    labelKey: "contents.admissionRequirements.options.payment",
   },
   {
     value: ADMISSION_REQUIREMENT_VALUES.password,

@@ -1443,8 +1443,13 @@
       "description": "Overvej hvilken type adgang dit [contentType] skal have",
       "options": {
         "free": "Gratis",
+        "payment": "Betaling",
         "password": "Angiv adgangskode",
         "email": "Anmod om e-mail"
+      },
+      "password": {
+        "placeholder": "Indtast adgangskoder",
+        "helper": "Adskil flere adgangskoder med kommaer."
       }
     },
     "contentTypeModal": {
