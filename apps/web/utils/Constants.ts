@@ -273,3 +273,10 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
     physicalProductLink: formState.physicalProductLink || undefined,
   };
 }
+
+export const MEDIA_TYPE_VIDEO_KEY = "discoverContent.mediaTypes.video";
+export const MEDIA_TYPE_EPUB_KEY = "discoverContent.mediaTypes.epub";
+export const FREE_LABEL = "Free";
+export const RENT_PREFIX = "Rent";
+export const BUY_PREFIX = "Buy";
+export const FALLBACK_MEDIA_TYPE_LABEL = "Video";

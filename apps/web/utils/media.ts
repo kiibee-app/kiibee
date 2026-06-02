@@ -23,3 +23,11 @@ export const MEDIA_TYPE = {
 } as const;
 
 export type MediaType = (typeof MEDIA_TYPE)[keyof typeof MEDIA_TYPE];
+
+export function resolveMediaType(contentType?: string | null): MediaType {
+  return String(contentType ?? "")
+    .trim()
+    .toLowerCase() === MEDIA_TYPE.EPUB
+    ? MEDIA_TYPE.EPUB
+    : MEDIA_TYPE.VIDEO;
+}

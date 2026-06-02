@@ -1,7 +1,9 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { discoverContentData } from "@/utils/discoverContent";
+import { API, useGetAPI } from "@/lib/http/api";
+import { type FeedContentItem } from "@/utils/feedContentToTutorial";
+import { mapFeedItemToDiscoverItem } from "@/utils/discoverContent";
 import {
   Section,
   HeaderSection,
@@ -18,8 +20,26 @@ import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
 
+type RecentContentResponse = {
+  success?: boolean;
+  message?: string;
+  data?: FeedContentItem[];
+};
+
 export default function DiscoverContent() {
   const { t, i18n } = useTranslation();
+
+  const { data: recentData, isLoading } = useGetAPI<RecentContentResponse>(
+    API.feed.recent,
+  );
+
+  const items = recentData?.data
+    ? recentData.data.slice(0, 4).map(mapFeedItemToDiscoverItem)
+    : [];
+
+  if (isLoading || items.length === 0) {
+    return null;
+  }
 
   return (
     <Section>
@@ -39,7 +59,7 @@ export default function DiscoverContent() {
       </HeaderSection>
 
       <GridContainer>
-        {discoverContentData.map((item) => (
+        {items.map((item) => (
           <DiscoverCard key={item.id} item={item} lng={i18n.language} />
         ))}
       </GridContainer>
