@@ -4,17 +4,21 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { ABOUT, HOME, ProfileTabKey } from "@/utils/common";
 import {
-  useCreatorAboutModal,
   useCreatorProfileTabs,
+  useCreatorProfileUi,
 } from "@/hooks/useCreatorChannelLayout";
+import { findActiveNavItemKey } from "@/utils/navRouteActive";
 
 export function useTabbedHeroState() {
   const router = useRouter();
   const pathname = usePathname();
   const profileTabs = useCreatorProfileTabs();
-  const { isAboutOpen, openAbout, closeAbout } = useCreatorAboutModal();
+  const { isAboutOpen, openAbout, closeAbout } = useCreatorProfileUi();
   const activeTab =
-    profileTabs.find((tab) => tab.href === pathname)?.key ?? HOME;
+    (findActiveNavItemKey(
+      pathname,
+      profileTabs.map((tab) => ({ key: tab.key, href: tab.href })),
+    ) as ProfileTabKey | null) ?? (isAboutOpen ? ABOUT : HOME);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
@@ -25,7 +29,7 @@ export function useTabbedHeroState() {
     }
     const target = profileTabs.find((item) => item.key === tab)?.href;
     if (!target) return;
-    router.push(target);
+    router.push(target, { scroll: false });
   };
 
   return {

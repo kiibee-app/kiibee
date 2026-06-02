@@ -11,6 +11,7 @@ import {
   SearchClearButton,
   SearchInput,
   TabButton,
+  TabLabel,
   TabsRow,
 } from "./styles";
 import { useTabsKeyboard } from "@/hooks/useTabsKeyboard";
@@ -95,7 +96,9 @@ export default function GenericTabs<T extends string>({
           onClick={() => onTabChange(tab.key)}
           onKeyDown={(e) => handleTabKeyDown(e, i)}
         >
-          {tab.label}
+          <TabLabel data-label={tab.label} $active={activeTab === tab.key}>
+            <span>{tab.label}</span>
+          </TabLabel>
         </TabButton>
       ))}
 

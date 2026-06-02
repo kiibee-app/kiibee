@@ -3,23 +3,37 @@
 import type { ReactNode } from "react";
 import Footer from "@/components/Feature/ProfileLayout/shared/Footer";
 import ProfileNavbar from "@/components/Feature/ProfileLayout/Navbar";
+import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
 import { Page as PageShell } from "@/components/Feature/ProfileLayout/pageStyles";
 import { useProfileSync } from "@/hooks/auth/useProfileSync";
+import {
+  CreatorProfileUiProvider,
+  useCreatorProfileUi,
+} from "@/hooks/useCreatorChannelLayout";
 
 type ProfileShellProps = {
   variant: ProfileLayoutVariant;
   children: ReactNode;
 };
 
+function ProfileAboutModal() {
+  const { isAboutOpen, closeAbout } = useCreatorProfileUi();
+
+  return <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />;
+}
+
 export default function ProfileShell({ variant, children }: ProfileShellProps) {
   useProfileSync();
 
   return (
-    <PageShell>
-      <ProfileNavbar variant={variant} />
-      {children}
-      <Footer />
-    </PageShell>
+    <CreatorProfileUiProvider>
+      <PageShell>
+        <ProfileNavbar variant={variant} />
+        {children}
+        <Footer />
+        <ProfileAboutModal />
+      </PageShell>
+    </CreatorProfileUiProvider>
   );
 }

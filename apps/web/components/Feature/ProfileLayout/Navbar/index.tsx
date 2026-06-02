@@ -19,7 +19,6 @@ import {
   TONE_LIGHT,
 } from "@/utils/Constants";
 import NavBar from "@/components/Layout/Navbar";
-import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
 import {
   Brand,
   BrandAvatar,
@@ -70,7 +69,7 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
     hasSearch: false,
   };
   const { navTextTone, showNavItems, hasSearch } = config;
-  const { navItems, isAboutOpen, closeAbout } = useCreatorNavItems();
+  const { navItems } = useCreatorNavItems();
   const { displayName, avatarUrl, initial, isPublicView, publicCreatorId } =
     useCreatorChannelProfile();
   const brandName = displayName;
@@ -116,20 +115,14 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
   );
 
   return (
-    <>
-      <NavBar
-        {...profileNavShellProps}
-        brand={brand}
-        items={showNavItems ? navItems : []}
-        navBefore={
-          hasSearch ? <SearchIcon width={18} height={18} /> : undefined
-        }
-        navTextTone={navTextTone}
-        actions={actions}
-      />
-      {showNavItems && (
-        <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />
-      )}
-    </>
+    <NavBar
+      {...profileNavShellProps}
+      brand={brand}
+      items={showNavItems ? navItems : []}
+      routeActiveItems={showNavItems}
+      navBefore={hasSearch ? <SearchIcon width={18} height={18} /> : undefined}
+      navTextTone={navTextTone}
+      actions={actions}
+    />
   );
 }
