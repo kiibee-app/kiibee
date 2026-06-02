@@ -6,8 +6,9 @@ import {
   SingleContentHero,
   SingleContentTopBar,
 } from "./ContentSections";
-import { Card, Wrapper } from "./styles";
+import { Card, ContentLayout, Wrapper } from "./styles";
 import type { SingleContentPageProps } from "@/types/contentTypes";
+import { FORMAT_TYPE } from "@/utils/types";
 
 export type {
   SingleContentHeroProps,
@@ -33,6 +34,7 @@ export default function SingleContentPage({
   children,
 }: SingleContentPageProps) {
   const router = useRouter();
+  const isPdfLayout = hero?.media?.type === FORMAT_TYPE.PDF;
 
   const handleBack = () => {
     if (onBack) {
@@ -53,18 +55,20 @@ export default function SingleContentPage({
       />
 
       <Card>
-        <SingleContentHero hero={hero} />
+        <ContentLayout $isPdf={isPdfLayout}>
+          <SingleContentHero hero={hero} isPdfLayout={isPdfLayout} />
 
-        <SingleContentBody
-          creator={creator}
-          statusLabel={statusLabel}
-          title={title}
-          descriptions={descriptions}
-          tags={tags}
-          primaryAction={primaryAction}
-          expiry={expiry}
-          metaItems={metaItems}
-        />
+          <SingleContentBody
+            creator={creator}
+            statusLabel={statusLabel}
+            title={title}
+            descriptions={descriptions}
+            tags={tags}
+            primaryAction={primaryAction}
+            expiry={expiry}
+            metaItems={metaItems}
+          />
+        </ContentLayout>
       </Card>
 
       {children}
