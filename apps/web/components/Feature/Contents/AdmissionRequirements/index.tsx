@@ -188,14 +188,15 @@ function AdmissionRequirements({
           </OptionsList>
         )}
       </DropdownShell>
-      {selected === ADMISSION_REQUIREMENT_VALUES.payment && (
-        <SettingsPaymentSection
-          t={t}
-          formState={formState}
-          updateField={updateField}
-          downloadLimitOptions={downloadLimitOptions}
-        />
-      )}
+      {selected === ADMISSION_REQUIREMENT_VALUES.payment &&
+        showPaymentOption && (
+          <SettingsPaymentSection
+            t={t}
+            formState={formState}
+            updateField={updateField}
+            downloadLimitOptions={downloadLimitOptions}
+          />
+        )}
 
       {selected === ADMISSION_REQUIREMENT_VALUES.password ? (
         <PasswordFieldShell>
