@@ -21,6 +21,7 @@ export * from "./media";
 export * from "./keyboard";
 export * from "@/lib/subscription/constants";
 
+export const BLANK = "_blank";
 export const SVG_XMLNS = "http://www.w3.org/2000/svg";
 export const DEFAULT_WINDOW_WIDTH = 1200;
 export const MOBILE_BREAKPOINT = 860;
