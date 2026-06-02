@@ -1,4 +1,5 @@
 import type { typography } from "@repo/ui/typography";
+import { type MainCategory } from "./data";
 import { COLLECTIONS, HOME } from "./common";
 import { NavBarProps } from "./profile";
 import {
@@ -227,6 +228,15 @@ export const contentTypeSizeMap: Record<string, number> = {
   [CONTENT_TYPE_AUDIO]: 45 * 1024 * 1024,
   [CONTENT_TYPE_PDF]: 4.5 * 1024 * 1024,
   [CONTENT_TYPE_EPUB]: 4.5 * 1024 * 1024,
+};
+
+export const CATEGORY_MAP: Record<MainCategory, string[]> = {
+  all: [],
+  technology: ["Education / Learning", "Education", "education"],
+  design: ["Design", "design"],
+  art: ["Arts & Illustration", "Art", "art", "arts"],
+  literature: ["Books & Writing", "books", "booksAndWriting"],
+  comedies: ["Comedy", "comedy", "comedies"],
 };
 
 export const mockSizeFallback = 12 * 1024 * 1024;

@@ -7,12 +7,9 @@ import { PATHS } from "@/utils/path";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
-import {
-  exploreCreatorsData,
-  filterMapping,
-  MainCategory,
-  EXPLORE_CATEGORIES,
-} from "@/utils/data";
+import { type MainCategory, EXPLORE_CATEGORIES } from "@/utils/data";
+import { useRecentContent } from "@/hooks/feed/useRecentContent";
+import { CATEGORY_MAP } from "@/utils/Constants";
 import {
   Section,
   HeaderSection,
@@ -28,11 +25,24 @@ import {
 export default function ExploreCategories() {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<MainCategory>("all");
+  const { tutorials, isLoading } = useRecentContent();
 
   const filteredItems = useMemo(() => {
-    const allowedIds = filterMapping[activeCategory] || [];
-    return exploreCreatorsData.filter((item) => allowedIds.includes(item.id));
-  }, [activeCategory]);
+    const targetCategories = CATEGORY_MAP[activeCategory] || [];
+    return activeCategory === "all"
+      ? tutorials
+      : tutorials.filter((item) =>
+          targetCategories.some((cat) =>
+            String(item.category || "")
+              .toLowerCase()
+              .includes(cat.toLowerCase()),
+          ),
+        );
+  }, [tutorials, activeCategory]);
+
+  if (isLoading || tutorials.length === 0) {
+    return null;
+  }
 
   return (
     <Section id="landing-top-categories">
@@ -79,7 +89,7 @@ export default function ExploreCategories() {
         <BrowseAllButton
           id="browse-all-creators-btn"
           asAnchor
-          href={PATHS.EXPLORE_CREATORS}
+          href={PATHS.EXPLORE}
         >
           <MonoText $use="Body_Bold">
             {t("exploreCategories.browseAll")}
