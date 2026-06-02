@@ -256,7 +256,7 @@ export default function ContentUploadModal({
                 params: { key: fileKey },
               })
             ).data.url
-          : previewUrl;
+          : (uploadedFile?.url ?? previewUrl);
       setPendingUploadSuccess({
         tab: ADD_CONTENT_TABS.GENERAL,
         file: selectedFile,
