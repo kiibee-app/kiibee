@@ -128,15 +128,9 @@ export const ActionsContainer = styled.div`
   }
 `;
 
-export const ActionButton = styled(GenericButton).attrs({
-  size: SIZE.SM,
+export const SingleActionButton = styled(GenericButton).attrs({
+  variant: VARIANT.SOFT_OUTLINE,
 })`
-  border-radius: 9999px;
-  border: 1px solid ${({ theme }) => theme.colors.primary.GREEN_30};
-  padding: 0.625rem 0.75rem;
-`;
-
-export const FullWidthAction = styled(ActionButton)`
   grid-column: 1 / -1;
 `;
 
@@ -161,6 +155,13 @@ export const PrimaryCtaButton = styled(GenericButton).attrs({
 
 export const SecondaryCtaButton = styled(GenericButton).attrs({
   size: SIZE.LG,
+  variant: VARIANT.SOFT_OUTLINE,
+})`
+  border-radius: 8px;
+`;
+
+export const CardActionButton = styled(GenericButton).attrs({
+  variant: VARIANT.SOFT_OUTLINE,
 })`
   border-radius: 8px;
 `;

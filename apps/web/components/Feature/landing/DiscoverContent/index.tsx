@@ -13,7 +13,7 @@ import {
 import DiscoverCard from "./DiscoverCard";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT } from "@/utils/Constants";
+import { VARIANT, SIZE } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
@@ -45,13 +45,15 @@ export default function DiscoverContent() {
       </GridContainer>
 
       <BottomCtaSection>
-        <GenericButton asAnchor href={PATHS.AUTH_SIGNUP}>
+        <GenericButton asAnchor href={PATHS.AUTH_SIGNUP} size={SIZE.LG}>
           {t("discoverContent.ctaPrimary")}
         </GenericButton>
         <GenericButton
           asAnchor
           href={PATHS.EXPLORE_CREATORS}
           variant={VARIANT.SECONDARY}
+          fullWidth
+          size={SIZE.LG}
         >
           {t("discoverContent.ctaSecondary")}
         </GenericButton>
