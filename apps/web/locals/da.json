@@ -1648,6 +1648,18 @@
           "unlimited": "Ubegrænset"
         }
       },
+      "collectionRental.title": "Leje af samling (streaming)",
+      "collectionPurchase.title": "Køb/download af samling",
+      "collectionDuration": {
+        "title": "Valgt periode",
+        "description": "Hvor længe skal dine kunder have adgang – 3, 6 eller 12 måneder?"
+      },
+      "duration": {
+        "oneMonth": "1 måned",
+        "threeMonths": "3 måneder",
+        "sixMonths": "6 måneder",
+        "twelveMonths": "12 måneder"
+      },
       "password": {
         "placeholder": "Indtast adgangskode",
         "helper": "Adskil flere koder med kommaer"

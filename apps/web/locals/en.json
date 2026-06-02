@@ -1642,6 +1642,18 @@
           "unlimited": "Unlimited"
         }
       },
+      "collectionRental.title": "Collection rental (Streaming)",
+      "collectionPurchase.title": "Collection purchase/download",
+      "collectionDuration": {
+        "title": "Selected period",
+        "description": "Should you coustomers have access for 3,6 or 12 months?"
+      },
+      "duration": {
+        "oneMonth": "1 month",
+        "threeMonths": "3 months",
+        "sixMonths": "6 months",
+        "twelveMonths": "12 months"
+      },
       "password": {
         "placeholder": "Enter password",
         "helper": "Separate multiple codes with commas"

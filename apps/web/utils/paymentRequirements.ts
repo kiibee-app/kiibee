@@ -1,6 +1,7 @@
 import { DropdownOption } from "@/components/UI/SortDropdown";
 import { TFunction } from "i18next";
 import {
+  AccessDurationValue,
   PAYMENT_UNLIMITED_DOWNLOAD_LIMIT,
   PaymentDownloadLimitValue,
 } from "./common";
@@ -84,6 +85,7 @@ export const PAYMENTS_FORM_FIELDS = {
   TRAILER_LINK: "trailerLink",
   PHYSICAL_PRODUCT_LINK: "physicalProductLink",
   VISIBILITY: "visibility",
+  MAX_ACCESS_LIMIT: "maxAccessLimit",
 } as const;
 export type PaymentFormField =
   (typeof PAYMENTS_FORM_FIELDS)[keyof typeof PAYMENTS_FORM_FIELDS];
@@ -135,3 +137,17 @@ export const getPaymentContentTexts = (
     contentTypeMap[contentTypeId || FORMAT_TYPE.VIDEO] || contentTypeMap.video
   );
 };
+
+export const getAccessDurationOptions = (
+  t: TFunction,
+  values: readonly AccessDurationValue[],
+): DropdownOption<AccessDurationValue>[] =>
+  values.map((value) => ({
+    value,
+    label: {
+      "1_month": t("contents.payment.duration.oneMonth"),
+      "3_months": t("contents.payment.duration.threeMonths"),
+      "6_months": t("contents.payment.duration.sixMonths"),
+      "12_months": t("contents.payment.duration.twelveMonths"),
+    }[value],
+  }));

@@ -27,7 +27,13 @@ import {
   SelectButton,
   TextBlock,
 } from "./styles";
-import { PAYMENT_ADMISSION_VALUE } from "@/utils/common";
+import {
+  ACCESS_DURATION_VALUES,
+  PAYMENT_ADMISSION_VALUE,
+  PAYMENT_DEFAULT_ACCESS_DURATION,
+} from "@/utils/common";
+import { getAccessDurationOptions } from "@/utils/paymentRequirements";
+import SettingsPaymentSection from "./PaymentSection";
 const updateValue = <T,>(
   value: T,
   onChange?: (value: T) => void,
@@ -70,6 +76,20 @@ function AdmissionRequirements({
   const [localDescription, setLocalDescription] = useState("");
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [formState, setFormState] = useState({
+    rentalAmount: "",
+    purchaseAmount: "",
+    maxAccessLimit: PAYMENT_DEFAULT_ACCESS_DURATION,
+    showRentalSection: true,
+    showPurchaseSection: true,
+  });
+
+  const updateField = (key: string, value: string) => {
+    setFormState((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
 
   useClickOutside({
     ref: dropdownRef,
@@ -96,6 +116,10 @@ function AdmissionRequirements({
       visibleOptions.find((option) => option.value === selected) ??
       visibleOptions[0],
     [selected, visibleOptions],
+  );
+  const downloadLimitOptions = useMemo(
+    () => getAccessDurationOptions(t, ACCESS_DURATION_VALUES),
+    [t],
   );
 
   const handleSelect = useCallback(
@@ -164,6 +188,14 @@ function AdmissionRequirements({
           </OptionsList>
         )}
       </DropdownShell>
+      {selected === ADMISSION_REQUIREMENT_VALUES.payment && (
+        <SettingsPaymentSection
+          t={t}
+          formState={formState}
+          updateField={updateField}
+          downloadLimitOptions={downloadLimitOptions}
+        />
+      )}
 
       {selected === ADMISSION_REQUIREMENT_VALUES.password ? (
         <PasswordFieldShell>

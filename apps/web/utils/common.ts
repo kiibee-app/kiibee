@@ -125,3 +125,14 @@ export const FILE_EXTENSION = {
 } as const;
 
 export const tabs = ["New", "Trending", "Curated for you"];
+
+export const ACCESS_DURATION_VALUES = [
+  "1_month",
+  "3_months",
+  "6_months",
+  "12_months",
+] as const;
+
+export type AccessDurationValue = (typeof ACCESS_DURATION_VALUES)[number];
+
+export const PAYMENT_DEFAULT_ACCESS_DURATION = "1 month" as const;
