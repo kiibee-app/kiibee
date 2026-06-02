@@ -5,7 +5,7 @@ import InputField from "@/components/UI/InputFields";
 import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
 import { INPUT_VARIANTS, SORT_DROPDOWN_VARIANT } from "@/utils/Constants";
-import { AccessDurationValue, PaymentDownloadLimitValue } from "@/utils/common";
+import { AccessDurationValue } from "@/utils/common";
 import { PAYMENTS_FORM_FIELDS, toText } from "@/utils/paymentRequirements";
 import {
   Block,
@@ -97,7 +97,7 @@ const SettingsPaymentSection = ({
             onChange={(value) =>
               updateField(
                 PAYMENTS_FORM_FIELDS.MAX_ACCESS_LIMIT,
-                String(value) as PaymentDownloadLimitValue,
+                String(value) as AccessDurationValue,
               )
             }
             variant={SORT_DROPDOWN_VARIANT.SURFACE}

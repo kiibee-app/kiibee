@@ -209,7 +209,6 @@ function AdmissionRequirements({
             )}
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
             max={500}
-            data-test-id="admission-requirements-passwords"
           />
 
           <PasswordMetaRow>
