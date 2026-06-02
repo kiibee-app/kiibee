@@ -91,7 +91,7 @@ export const getAllContentsService = async (
       sql`${mediaFiles.isDeleted} = false`,
     ];
 
-    if (sort === 'free') {
+    if (sort === SORT_DIRECTIONS.FREE) {
       baseWhere.push(sql`${mediaFiles.buyPrice} IS NULL`);
     }
 
