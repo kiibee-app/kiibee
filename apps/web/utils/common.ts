@@ -74,6 +74,10 @@ export const CLICKS = "clicks";
 export const VIEWS = "views";
 export const MOUSE_DOWN = "mousedown";
 export const CLICK = "click";
+export const PAGESHOW = "pageshow";
+export const FOCUS = "focus";
+export const VISIBILITY_CHANGE = "visibilitychange";
+export const VISIBLE = "visible";
 export const IMG = "img";
 
 export type ProfileTabKey = "home" | "collections" | "about";

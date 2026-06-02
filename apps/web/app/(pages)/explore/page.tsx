@@ -12,6 +12,7 @@ import LatestRelease from "@/components/Feature/ExploreCreators/LatestRelease";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { useQueryClient } from "@tanstack/react-query";
 import { API } from "@/lib/http/api";
+import { FOCUS, PAGESHOW, VISIBILITY_CHANGE, VISIBLE } from "@/utils/common";
 
 export default function ExplorePage() {
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
@@ -24,15 +25,15 @@ export default function ExplorePage() {
       void queryClient.refetchQueries({ queryKey: [API.feed.recent] });
     };
     const onVisible = () => {
-      if (document.visibilityState === "visible") refetch();
+      if (document.visibilityState === VISIBLE) refetch();
     };
-    window.addEventListener("pageshow", refetch);
-    window.addEventListener("focus", refetch);
-    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener(PAGESHOW, refetch);
+    window.addEventListener(FOCUS, refetch);
+    document.addEventListener(VISIBILITY_CHANGE, onVisible);
     return () => {
-      window.removeEventListener("pageshow", refetch);
-      window.removeEventListener("focus", refetch);
-      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener(PAGESHOW, refetch);
+      window.removeEventListener(FOCUS, refetch);
+      document.removeEventListener(VISIBILITY_CHANGE, onVisible);
     };
   }, [queryClient]);
 
