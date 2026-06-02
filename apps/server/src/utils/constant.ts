@@ -87,3 +87,9 @@ export const SORT_DIRECTIONS = {
   TOP: 'top',
   FEATURED: 'featured',
 } as const;
+
+export const ACCRESS_TYPES = {
+  RENTED: 'rented',
+  PURCHASED: 'purchased',
+  EXPIRED: 'Expired',
+} as const;

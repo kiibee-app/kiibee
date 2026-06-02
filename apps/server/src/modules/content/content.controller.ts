@@ -112,4 +112,11 @@ export class ContentController {
     const userId = req.user.userId;
     return this.contentService.createOrUpdateContentSetting(userId, dto);
   }
+
+  @Get(':id/:userId')
+  async getSingleContent(@Req() req: any) {
+    const contentId = req.params.id;
+    const userId = req.params.userId;
+    return this.contentService.getSingleContent(contentId, userId);
+  }
 }

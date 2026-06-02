@@ -18,6 +18,7 @@ import {
   getContentSettingByUserId,
 } from './services/contentSetting.service';
 import { ContentSettingDto } from './dto/contentSetting.dto';
+import { getSingleContentService } from './services/getSingleContent.service';
 
 @Injectable()
 export class ContentService {
@@ -73,5 +74,9 @@ export class ContentService {
 
   async createOrUpdateContentSetting(userId: string, dto: ContentSettingDto) {
     return createOrUpdateContentSetting(userId, dto);
+  }
+
+  async getSingleContent(contentId: string, userId: string) {
+    return getSingleContentService(contentId, userId);
   }
 }
