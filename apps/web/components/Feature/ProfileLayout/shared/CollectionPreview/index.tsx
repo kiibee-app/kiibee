@@ -17,6 +17,7 @@ import {
   getCollectionContentRows,
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
+import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
@@ -42,9 +43,11 @@ type CollectionWithCards = {
 export default function CollectionPreview() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { displayName } = useCreatorChannelProfile();
-
+  const { displayName, isPublicView, publicCreatorId } =
+    useCreatorChannelProfile();
   const hasSession = authStorage.hasSession();
+  const { tutorials: publicTutorials, isLoading: isLoadingPublic } =
+    usePublicCreatorContent(isPublicView ? publicCreatorId : null);
 
   const handleCollectionClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!hasSession) {
@@ -54,14 +57,15 @@ export default function CollectionPreview() {
     }
   };
 
-  const { data: sections = [] } = useQuery<CollectionWithCards[]>({
+  const { data: sections = [], isLoading: isLoadingPrivate } = useQuery<
+    CollectionWithCards[]
+  >({
     queryKey: [QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW],
     queryFn: async () => {
       const collectionsResponse = await axiosClient.get<CollectionsApiResponse>(
         API.collection.getAll,
       );
       const collections = getCollectionRows(collectionsResponse.data);
-
       if (!collections.length) return [];
 
       const contentsResponses = await Promise.all(
@@ -77,13 +81,11 @@ export default function CollectionPreview() {
           const contentRows = getCollectionContentRows(
             contentsResponses[collectionIndex]?.data,
           );
-
           const cards = contentRows.map((content, contentIndex) => {
             const fallbackTemplate =
               tutorialVideos[
                 (collectionIndex + contentIndex) % tutorialVideos.length
               ];
-
             return {
               ...fallbackTemplate,
               id: content.id,
@@ -100,22 +102,32 @@ export default function CollectionPreview() {
               ],
             } as TutorialVideo;
           });
-
-          return {
-            id: collection.id,
-            name: collection.name,
-            cards,
-          };
+          return { id: collection.id, name: collection.name, cards };
         })
         .filter((section) => section.cards.length > 0);
     },
-    enabled: hasSession,
+    enabled: hasSession && !isPublicView,
     refetchOnWindowFocus: false,
   });
 
-  const visibleSections = useMemo(() => sections.slice(0, 4), [sections]);
+  const publicSections = useMemo<CollectionWithCards[]>(() => {
+    if (!isPublicView || publicTutorials.length === 0) return [];
+    return [
+      {
+        id: "public-content",
+        name: t("nav.profile.collections"),
+        cards: publicTutorials,
+      },
+    ];
+  }, [isPublicView, publicTutorials, t]);
 
-  if (!visibleSections.length) return null;
+  const visibleSections = useMemo(() => {
+    const source = isPublicView ? publicSections : sections;
+    return source.slice(0, 4);
+  }, [isPublicView, publicSections, sections]);
+
+  const isLoading = isPublicView ? isLoadingPublic : isLoadingPrivate;
+  if (!isLoading && visibleSections.length === 0) return null;
 
   return (
     <>
@@ -127,12 +139,14 @@ export default function CollectionPreview() {
                 <MonoText $use="H4_Medium">{collection.name}</MonoText>
               </CollectionSectionTag>
             </SectionLabel>
-            <SectionLink
-              href={`/single-collection?id=${collection.id}`}
-              onClick={handleCollectionClick}
-            >
-              <LeftIcon />
-            </SectionLink>
+            {!isPublicView ? (
+              <SectionLink
+                href={`/single-collection?id=${collection.id}`}
+                onClick={handleCollectionClick}
+              >
+                <LeftIcon />
+              </SectionLink>
+            ) : null}
           </SectionHeader>
           <FourColumnGrid>
             {collection.cards.map((tutorial) => (

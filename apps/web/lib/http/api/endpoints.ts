@@ -49,5 +49,6 @@ export const API = {
   feed: {
     trending: "/feed/trending",
     recent: "/feed/recent",
+    explore: "/feed/explore",
   },
 } as const;

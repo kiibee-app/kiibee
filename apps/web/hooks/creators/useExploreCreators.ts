@@ -66,18 +66,19 @@ const TOP_CREATORS_LIMIT = 6;
 
 export const useExploreCreators = (limit?: number) => {
   const params = limit != null ? { limit } : undefined;
-  const query = useGetAPI<ExploreCreatorsResponse>(API.creators.list, params);
+  const query = useGetAPI<ExploreCreatorsResponse>(API.creators.list, params, {
+    refetchOnMount: "always",
+  });
 
   const creators = useMemo(() => {
-    if (!query.data?.success || !Array.isArray(query.data.data)) {
-      return [];
-    }
-    return query.data.data;
+    if (Array.isArray(query.data?.data)) return query.data.data;
+    if (Array.isArray(query.data)) return query.data;
+    return [];
   }, [query.data]);
 
   return {
     creators,
-    isLoading: query.isLoading,
+    isLoading: query.isLoading || query.isFetching,
     isError: query.isError,
   };
 };
@@ -96,10 +97,11 @@ export const useCreatorPublicProfile = (creatorId: string | null) => {
   );
 
   const creator = useMemo(() => {
-    if (!query.data?.success || !query.data.data) {
-      return null;
+    if (query.data?.data) return query.data.data;
+    if (query.data && "id" in query.data && "name" in query.data) {
+      return query.data as ExploreCreator;
     }
-    return query.data.data;
+    return null;
   }, [query.data]);
 
   return {

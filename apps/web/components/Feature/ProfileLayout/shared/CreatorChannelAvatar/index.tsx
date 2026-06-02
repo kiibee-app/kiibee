@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   CREATOR_CHANNEL_AVATAR_TEXT,
   type CreatorChannelAvatarTextUse,
@@ -21,11 +22,22 @@ export default function CreatorChannelAvatar({
   sizes,
   initialUse = CREATOR_CHANNEL_AVATAR_TEXT.HERO,
 }: CreatorChannelAvatarProps) {
-  if (avatarUrl) {
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  const displayInitial = initial.charAt(0).toUpperCase() || "?";
+  const showImage = Boolean(avatarUrl) && failedUrl !== avatarUrl;
+
+  if (showImage && avatarUrl) {
     return (
-      <AvatarImage src={avatarUrl} alt={alt} fill sizes={sizes} unoptimized />
+      <AvatarImage
+        src={avatarUrl}
+        alt={alt}
+        fill
+        sizes={sizes}
+        unoptimized
+        onError={() => setFailedUrl(avatarUrl)}
+      />
     );
   }
 
-  return <AvatarInitial $use={initialUse}>{initial}</AvatarInitial>;
+  return <AvatarInitial $use={initialUse}>{displayInitial}</AvatarInitial>;
 }

@@ -49,12 +49,20 @@ export const List = styled.div`
   }
 `;
 
-export const Card = styled.div`
+export const Card = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 150px;
   gap: 7px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+
   ${media.tablet} {
     min-width: 100px;
   }

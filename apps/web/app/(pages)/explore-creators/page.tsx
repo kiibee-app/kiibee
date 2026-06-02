@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import NavBar from "@/components/Layout/Navbar";
 import { Main, PageContainer, Section } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
@@ -11,10 +11,30 @@ import {
   sortExploreCreators,
   useExploreCreators,
 } from "@/hooks/creators/useExploreCreators";
+import { useQueryClient } from "@tanstack/react-query";
+import { API } from "@/lib/http/api";
 
 export default function ExploreCreatorsPage() {
   const [sortBy, setSortBy] = useState<SortValue>(DEFAULT_SORT);
   const { creators, isLoading } = useExploreCreators();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const refetch = () => {
+      void queryClient.refetchQueries({ queryKey: [API.creators.list] });
+    };
+    const onVisible = () => {
+      if (document.visibilityState === "visible") refetch();
+    };
+    window.addEventListener("pageshow", refetch);
+    window.addEventListener("focus", refetch);
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      window.removeEventListener("pageshow", refetch);
+      window.removeEventListener("focus", refetch);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
+  }, [queryClient]);
 
   const sortedCreators = useMemo(
     () => sortExploreCreators(creators, sortBy),

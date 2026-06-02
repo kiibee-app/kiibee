@@ -13,6 +13,7 @@ import {
   formatSubscriberCountK,
   useTopCreators,
 } from "@/hooks/creators/useExploreCreators";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 
 export default function TopCreators() {
   const { t } = useTranslation();
@@ -33,7 +34,12 @@ export default function TopCreators() {
 
       <List>
         {creators.map((creator) => (
-          <Card key={creator.id}>
+          <Card
+            key={creator.id}
+            href={getPublicCreatorProfilePath(creator.id)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Avatar>
               <CreatorChannelAvatar
                 avatarUrl={creator.profileImageUrl}

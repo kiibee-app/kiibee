@@ -21,23 +21,28 @@ type RecentContentResponse = {
 
 export const useRecentContent = () => {
   const { t } = useTranslation();
-  const query = useGetAPI<RecentContentResponse>(API.feed.recent);
+  const query = useGetAPI<RecentContentResponse>(API.feed.recent, undefined, {
+    refetchOnMount: "always",
+  });
 
   const tutorials = useMemo((): TutorialVideo[] => {
-    if (!query.data?.success || !Array.isArray(query.data.data)) {
-      return [];
-    }
+    const items = Array.isArray(query.data?.data)
+      ? query.data.data
+      : Array.isArray(query.data)
+        ? query.data
+        : [];
+    if (items.length === 0) return [];
 
     const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
 
-    return dedupeFeedContentItems(query.data.data)
+    return dedupeFeedContentItems(items)
       .slice(0, RECENT_DISPLAY_LIMIT)
       .map((item) => feedContentToTutorial(item, freeLabel));
   }, [query.data, t]);
 
   return {
     tutorials,
-    isLoading: query.isLoading,
+    isLoading: query.isLoading || query.isFetching,
     isError: query.isError,
   };
 };

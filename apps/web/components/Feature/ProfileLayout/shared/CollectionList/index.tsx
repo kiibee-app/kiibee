@@ -7,6 +7,7 @@ import {
   CollectionsApiResponse,
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
+import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
@@ -19,23 +20,37 @@ import { CollectionListInner, CollectionListShell } from "./styles";
 
 export default function CollectionList() {
   const { t } = useTranslation();
-  const { displayName } = useCreatorChannelProfile();
-
+  const { displayName, isPublicView, publicCreatorId } =
+    useCreatorChannelProfile();
   const hasSession = authStorage.hasSession();
+  const { tutorials: publicTutorials } = usePublicCreatorContent(
+    isPublicView ? publicCreatorId : null,
+  );
 
   const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
     API.collection.getAll,
     undefined,
-    {
-      enabled: hasSession,
-    },
+    { enabled: hasSession && !isPublicView },
   );
 
   const items = useMemo<RentedCollectionItem[]>(() => {
+    if (isPublicView) {
+      return publicTutorials.map((tutorial) => ({
+        id: tutorial.id,
+        title: tutorial.title,
+        author: displayName || tutorial.creator || "Creator",
+        elementCount: 1,
+        coverSrc: resolveImageUrl(tutorial.image),
+        hideBadge: true,
+        actions: (tutorial.buttons ?? []).map((button) => ({
+          label: button.label,
+          variant: button.variant ?? "primary",
+        })),
+      }));
+    }
+
     if (!collectionsResponse) return [];
-
     const rows = getCollectionRows(collectionsResponse);
-
     return rows.map((row, index) => ({
       id: row.id,
       title: row.name,
@@ -45,14 +60,9 @@ export default function CollectionList() {
         tutorialVideos[index % tutorialVideos.length]?.image ?? "",
       ),
       hideBadge: true,
-      actions: [
-        {
-          label: t("createProfileAbout.buy"),
-          variant: "primary",
-        },
-      ],
+      actions: [{ label: t("createProfileAbout.buy"), variant: "primary" }],
     }));
-  }, [collectionsResponse, displayName, t]);
+  }, [collectionsResponse, displayName, isPublicView, publicTutorials, t]);
 
   return (
     <CollectionListShell>

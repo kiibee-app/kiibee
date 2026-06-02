@@ -31,9 +31,10 @@ let refreshPromise: Promise<string | null> | null = null;
 const clearSessionAndRedirectToLogin = () => {
   if (typeof window === "undefined") return;
 
+  const hadSession = authStorage.hasSession();
   authStorage.clearSession();
 
-  if (window.location.pathname !== PATHS.AUTH_LOGIN) {
+  if (hadSession && window.location.pathname !== PATHS.AUTH_LOGIN) {
     window.location.replace(PATHS.AUTH_LOGIN);
   }
 };

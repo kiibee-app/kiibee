@@ -9,6 +9,7 @@ import {
 import {
   getDisplayFirstLetter,
   getLoginUserDisplayName,
+  getNameInitials,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
 import { API } from "@/lib/http/api/endpoints";
@@ -77,21 +78,27 @@ export function useCreatorChannelProfile(enabled = true) {
   }, [publicCreator, profile, storedUser]);
 
   const avatarUrl = useMemo(() => {
-    const publicAvatar = getAvatarUrl(
-      publicCreator?.profileImageUrl ?? publicCreator?.coverImageUrl,
-    );
-    if (publicAvatar) return publicAvatar;
+    if (isPublicView) {
+      return getAvatarUrl(publicCreator?.profileImageUrl);
+    }
 
     const fromApi = getAvatarUrl(profile?.user?.avatarUrl);
     if (fromApi) return fromApi;
 
     return getAvatarUrl(storedUser?.avatarUrl);
-  }, [publicCreator, profile, storedUser]);
+  }, [isPublicView, publicCreator, profile, storedUser]);
 
-  const initial = useMemo(
-    () => getDisplayFirstLetter(displayName, storedUser),
-    [displayName, storedUser],
-  );
+  const initial = useMemo(() => {
+    if (isPublicView) {
+      const name = publicCreator?.name ?? displayName;
+      if (name) {
+        return getNameInitials(name).charAt(0).toUpperCase();
+      }
+      return "?";
+    }
+
+    return getDisplayFirstLetter(displayName, storedUser);
+  }, [displayName, isPublicView, publicCreator, storedUser]);
 
   const aboutData = useMemo(() => {
     if (isPublicView) {
