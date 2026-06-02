@@ -130,3 +130,14 @@ export function feedContentToTutorial(
     buttons: buildPricingButtons(item, freeLabel),
   };
 }
+
+export const FEED_CONTENT_PAGE_SIZE = 4;
+
+export function getFeedPageSlice<T>(
+  items: T[],
+  startIndex: number,
+  pageSize = FEED_CONTENT_PAGE_SIZE,
+): T[] {
+  if (items.length <= pageSize) return items;
+  return items.slice(startIndex, startIndex + pageSize);
+}
