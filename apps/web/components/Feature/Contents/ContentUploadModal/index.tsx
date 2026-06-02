@@ -98,6 +98,8 @@ export default function ContentUploadModal({
   const [description, setDescription] = useState(initialDescription);
   const [isSuccess, setIsSuccess] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
+  const [showDiscardModal, setShowDiscardModal] = useState(false);
+  const [discardSource, setDiscardSource] = useState<"back" | "close">("close");
   const [pendingUploadSuccess, setPendingUploadSuccess] =
     useState<PendingUploadSuccess | null>(null);
   const createContentMutation = usePostAPI<unknown, CreateContentPayload>(
@@ -280,23 +282,38 @@ export default function ContentUploadModal({
     setShowDetails(true);
   };
 
-  const getBackAction = () => {
-    if (isSuccess) return () => handleResetDetails();
-    if (isEditing) return () => handleExit(onBack);
-    if (showDetails) return () => setShowDetails(false);
-    return () => handleExit(onBack);
+  const handleBackClick = () => {
+    if (isSuccess) {
+      handleResetDetails();
+    } else {
+      setDiscardSource("back");
+      setShowDiscardModal(true);
+    }
   };
 
-  const handleBackClick = () => {
-    const action = getBackAction();
-    action();
+  const handleCloseClick = () => {
+    if (isSuccess) {
+      handleExit(onClose);
+    } else {
+      setDiscardSource("close");
+      setShowDiscardModal(true);
+    }
+  };
+
+  const handleDiscardConfirm = () => {
+    setShowDiscardModal(false);
+    handleExit(discardSource === "back" ? onBack : onClose);
+  };
+
+  const handleDiscardCancel = () => {
+    setShowDiscardModal(false);
   };
 
   const isWebContent = contentType === FORMAT_TYPE.WEB;
   return (
     <GenericModal
       visible={visible}
-      onClose={() => handleExit(onClose)}
+      onClose={handleCloseClick}
       width="670px"
       height="450px"
       padding="20px"
@@ -392,6 +409,22 @@ export default function ContentUploadModal({
           )}
         </UploadBody>
       </UploadModalContent>
+
+      <GenericModal
+        visible={showDiscardModal}
+        onClose={handleDiscardCancel}
+        title={t("settings.notifications.discardModal.title")}
+        message={t("settings.notifications.discardModal.message")}
+        cancelLabel={t("settings.notifications.discardModal.goBack")}
+        confirmLabel={t("settings.notifications.discardModal.discard")}
+        onCancel={handleDiscardCancel}
+        onConfirm={handleDiscardConfirm}
+        size="sm"
+        spacing="md"
+        fullWidthButtons
+        buttonRow
+        showCloseButton={false}
+      />
     </GenericModal>
   );
 }
