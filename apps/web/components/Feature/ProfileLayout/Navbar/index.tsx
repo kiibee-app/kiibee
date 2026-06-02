@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { SearchIcon } from "@/assets/icons/searchBarIcon";
+import ProfileChannelSearch from "@/components/Feature/ProfileLayout/shared/ProfileChannelSearch";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import {
   getPublicCreatorProfilePath,
@@ -120,7 +120,7 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       brand={brand}
       items={showNavItems ? navItems : []}
       routeActiveItems={showNavItems}
-      navBefore={hasSearch ? <SearchIcon width={18} height={18} /> : undefined}
+      navBefore={hasSearch ? <ProfileChannelSearch /> : undefined}
       navTextTone={navTextTone}
       actions={actions}
     />

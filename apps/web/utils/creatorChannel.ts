@@ -134,6 +134,16 @@ export function getCreatorNavItemDefs(layout: CreatorLayoutParam) {
   ];
 }
 
+export function matchesProfileSearch(
+  query: string,
+  ...texts: Array<string | null | undefined>
+): boolean {
+  const normalized = query.trim().toLowerCase();
+  if (!normalized) return true;
+
+  return texts.some((text) => (text ?? "").toLowerCase().includes(normalized));
+}
+
 function normalizeNavPath(href: string): string {
   return href.split("?")[0].split("#")[0];
 }

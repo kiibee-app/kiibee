@@ -20,6 +20,8 @@ import {
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
+import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { getContentTypeLabel } from "@/utils/content";
 import { tutorialVideos } from "@/utils/data";
 import { type TutorialVideo } from "@/utils/types";
@@ -38,6 +40,7 @@ type CollectionWithCards = {
 
 export default function CollectionPreview() {
   const { t } = useTranslation();
+  const { searchQuery } = useCreatorProfileUi();
   const { displayName } = useCreatorChannelProfile();
 
   const { data: sections = [] } = useQuery<CollectionWithCards[]>({
@@ -98,7 +101,19 @@ export default function CollectionPreview() {
     refetchOnWindowFocus: false,
   });
 
-  const visibleSections = useMemo(() => sections.slice(0, 4), [sections]);
+  const visibleSections = useMemo(() => {
+    const limited = sections.slice(0, 4);
+    if (!searchQuery.trim()) return limited;
+
+    return limited
+      .map((section) => ({
+        ...section,
+        cards: section.cards.filter((card) =>
+          matchesProfileSearch(searchQuery, card.title),
+        ),
+      }))
+      .filter((section) => section.cards.length > 0);
+  }, [searchQuery, sections]);
 
   if (!visibleSections.length) return null;
 

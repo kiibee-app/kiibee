@@ -146,17 +146,38 @@ type CreatorProfileUiContextValue = {
   isAboutOpen: boolean;
   openAbout: () => void;
   closeAbout: () => void;
+  searchQuery: string;
+  setSearchQuery: (value: string) => void;
+  searchOpen: boolean;
+  setSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleSearch: () => void;
+  isCollectionsPage: boolean;
 };
 
 const CreatorProfileUiContext =
   createContext<CreatorProfileUiContextValue | null>(null);
 
-function useCreatorAboutModalState(): CreatorProfileUiContextValue {
+function useCreatorProfileUiState(): CreatorProfileUiContextValue {
+  const pathname = usePathname();
+  const isCollectionsPage = pathname.includes("/collections");
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
   const openAbout = useCallback(() => setIsAboutOpen(true), []);
   const closeAbout = useCallback(() => setIsAboutOpen(false), []);
+  const toggleSearch = useCallback(() => setSearchOpen((open) => !open), []);
 
-  return { isAboutOpen, openAbout, closeAbout };
+  return {
+    isAboutOpen,
+    openAbout,
+    closeAbout,
+    searchQuery,
+    setSearchQuery,
+    searchOpen,
+    setSearchOpen,
+    toggleSearch,
+    isCollectionsPage,
+  };
 }
 
 function CreatorProfileUiProviderInner({
@@ -165,12 +186,14 @@ function CreatorProfileUiProviderInner({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const value = useCreatorAboutModalState();
-  const { closeAbout } = value;
+  const value = useCreatorProfileUiState();
+  const { closeAbout, setSearchQuery, setSearchOpen } = value;
 
   useEffect(() => {
     closeAbout();
-  }, [pathname, closeAbout]);
+    setSearchQuery("");
+    setSearchOpen(false);
+  }, [pathname, closeAbout, setSearchQuery, setSearchOpen]);
 
   return (
     <CreatorProfileUiContext.Provider value={value}>
