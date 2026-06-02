@@ -7,25 +7,6 @@ export const TabsRow = styled.div`
   flex-wrap: wrap;
 `;
 
-export const TabLabel = styled.span<{ $active: boolean }>`
-  display: inline-grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  ${({ theme, $active }) =>
-    $active ? theme.typography.Body_SemiBold : theme.typography.Body_Regular};
-
-  &::before {
-    content: attr(data-label);
-    grid-area: 1 / 1;
-    visibility: hidden;
-    ${({ theme }) => theme.typography.Body_SemiBold};
-  }
-
-  & > span {
-    grid-area: 1 / 1;
-  }
-`;
-
 export const TabButton = styled.button<{ $active: boolean }>`
   position: relative;
   border: 0;
@@ -33,6 +14,8 @@ export const TabButton = styled.button<{ $active: boolean }>`
   background: transparent;
   padding: 10px 0 8px;
   cursor: pointer;
+  ${({ theme, $active }) =>
+    $active ? theme.typography.Body_SemiBold : theme.typography.Body_Regular};
   color: ${({ $active, theme }) =>
     $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_400};
 

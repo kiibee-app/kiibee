@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import ProfileHero from "@/components/Feature/ProfileLayout/Hero";
 import Footer from "@/components/Feature/ProfileLayout/shared/Footer";
 import ProfileNavbar from "@/components/Feature/ProfileLayout/Navbar";
 import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
@@ -30,6 +31,7 @@ export default function ProfileShell({ variant, children }: ProfileShellProps) {
     <CreatorProfileUiProvider>
       <PageShell>
         <ProfileNavbar variant={variant} />
+        <ProfileHero variant={variant} />
         {children}
         <Footer />
         <ProfileAboutModal />

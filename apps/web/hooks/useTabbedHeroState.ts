@@ -7,7 +7,7 @@ import {
   useCreatorProfileTabs,
   useCreatorProfileUi,
 } from "@/hooks/useCreatorChannelLayout";
-import { findActiveNavItemKey } from "@/utils/navRouteActive";
+import { findActiveNavItemKey } from "@/utils/creatorChannel";
 
 export function useTabbedHeroState() {
   const router = useRouter();

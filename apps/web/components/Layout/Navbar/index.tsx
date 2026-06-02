@@ -16,7 +16,6 @@ import {
   NavItemWrapper,
   NavAnchor,
   NavButton,
-  NavLinkLabel,
   MegaMenu,
   MegaInner,
   MegaColumn,
@@ -38,7 +37,7 @@ import { CLICK } from "@/utils/common";
 import { POINTER_DOWN, VARIANT, TONE_DARK } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
-import { findActiveNavItemKey } from "@/utils/navRouteActive";
+import { findActiveNavItemKey } from "@/utils/creatorChannel";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
 import { useLogout } from "@/hooks/auth/useLogout";
 import {
@@ -299,10 +298,6 @@ export default function NavBar({
               {items.map((item) => {
                 const isRouteActive =
                   item.isActive ?? item.key === routeActiveKey;
-                const label = renderItemLabel(item);
-                const labelText =
-                  typeof label === "string" ? label : t(item.key);
-
                 return (
                   <NavItemWrapper key={item.key}>
                     {item.onClick ? (
@@ -313,12 +308,7 @@ export default function NavBar({
                         aria-current={isRouteActive ? "page" : undefined}
                         onClick={() => item.onClick?.()}
                       >
-                        <NavLinkLabel
-                          data-label={labelText}
-                          $isActive={isRouteActive}
-                        >
-                          <span>{label}</span>
-                        </NavLinkLabel>
+                        {renderItemLabel(item)}
                       </NavButton>
                     ) : (
                       <NavAnchor
@@ -328,12 +318,7 @@ export default function NavBar({
                         $textTone={navTextTone}
                         aria-current={isRouteActive ? "page" : undefined}
                       >
-                        <NavLinkLabel
-                          data-label={labelText}
-                          $isActive={isRouteActive}
-                        >
-                          <span>{label}</span>
-                        </NavLinkLabel>
+                        {renderItemLabel(item)}
                       </NavAnchor>
                     )}
                   </NavItemWrapper>

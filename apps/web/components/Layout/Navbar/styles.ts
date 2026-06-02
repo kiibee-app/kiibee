@@ -122,26 +122,6 @@ export const NavItemWrapper = styled.div`
   display: inline-block;
 `;
 
-export const NavLinkLabel = styled.span<{ $isActive: boolean }>`
-  display: inline-grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  white-space: nowrap;
-  ${({ theme, $isActive }) =>
-    $isActive ? theme.typography.Body_SemiBold : theme.typography.Body_Medium};
-
-  &::before {
-    content: attr(data-label);
-    grid-area: 1 / 1;
-    visibility: hidden;
-    ${({ theme }) => theme.typography.Body_SemiBold};
-  }
-
-  & > span {
-    grid-area: 1 / 1;
-  }
-`;
-
 const routeActiveNavStyles = css<{
   $isActive: boolean;
   $textTone: NavStyleProps["$textTone"];
@@ -153,6 +133,8 @@ const routeActiveNavStyles = css<{
   border-radius: 0;
   background: transparent;
   white-space: nowrap;
+  ${({ theme, $isActive }) =>
+    $isActive ? theme.typography.Body_SemiBold : theme.typography.Body_Medium};
 
   &::after {
     content: "";

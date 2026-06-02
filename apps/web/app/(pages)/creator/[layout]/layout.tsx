@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import CreatorProfileLayout from "@/components/Feature/ProfileLayout/CreatorProfileLayout";
+import ProfileShell from "@/components/Feature/ProfileLayout/Shell";
 import {
   CREATOR_LAYOUT_PARAMS,
   isCreatorLayoutParam,
@@ -27,7 +27,7 @@ export default async function CreatorProfileRouteLayout({
 
   return (
     <Suspense fallback={null}>
-      <CreatorProfileLayout variant={layout}>{children}</CreatorProfileLayout>
+      <ProfileShell variant={layout}>{children}</ProfileShell>
     </Suspense>
   );
 }
