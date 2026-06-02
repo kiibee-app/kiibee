@@ -14,26 +14,37 @@ import { useQueryClient } from "@tanstack/react-query";
 import { API } from "@/lib/http/api";
 import { FOCUS, PAGESHOW, VISIBILITY_CHANGE, VISIBLE } from "@/utils/common";
 
+const REFETCH_QUERY_KEYS = [
+  [API.creators.list],
+  [API.feed.trending],
+  [API.feed.recent],
+] as const;
+
 export default function ExplorePage() {
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    const refetch = () => {
-      void queryClient.refetchQueries({ queryKey: [API.creators.list] });
-      void queryClient.refetchQueries({ queryKey: [API.feed.trending] });
-      void queryClient.refetchQueries({ queryKey: [API.feed.recent] });
+    const refetchQueries = () => {
+      REFETCH_QUERY_KEYS.forEach((queryKey) => {
+        void queryClient.refetchQueries({ queryKey });
+      });
     };
-    const onVisible = () => {
-      if (document.visibilityState === VISIBLE) refetch();
+
+    const refetchOnVisible = () => {
+      if (document.visibilityState === VISIBLE) {
+        refetchQueries();
+      }
     };
-    window.addEventListener(PAGESHOW, refetch);
-    window.addEventListener(FOCUS, refetch);
-    document.addEventListener(VISIBILITY_CHANGE, onVisible);
+
+    window.addEventListener(PAGESHOW, refetchQueries);
+    window.addEventListener(FOCUS, refetchQueries);
+    document.addEventListener(VISIBILITY_CHANGE, refetchOnVisible);
+
     return () => {
-      window.removeEventListener(PAGESHOW, refetch);
-      window.removeEventListener(FOCUS, refetch);
-      document.removeEventListener(VISIBILITY_CHANGE, onVisible);
+      window.removeEventListener(PAGESHOW, refetchQueries);
+      window.removeEventListener(FOCUS, refetchQueries);
+      document.removeEventListener(VISIBILITY_CHANGE, refetchOnVisible);
     };
   }, [queryClient]);
 

@@ -24,6 +24,9 @@ import {
 } from "@/hooks/contents/collectionApi";
 import { CREATOR_ID_PARAM } from "@/utils/creatorChannel";
 
+const getPublicInitial = (name?: string) =>
+  name ? getNameInitials(name).charAt(0).toUpperCase() : "?";
+
 export function useCreatorChannelProfile(enabled = true) {
   const searchParams = useSearchParams();
   const publicCreatorId = searchParams.get(CREATOR_ID_PARAM);
@@ -89,16 +92,12 @@ export function useCreatorChannelProfile(enabled = true) {
   }, [isPublicView, publicCreator, profile, storedUser]);
 
   const initial = useMemo(() => {
-    if (isPublicView) {
-      const name = publicCreator?.name ?? displayName;
-      if (name) {
-        return getNameInitials(name).charAt(0).toUpperCase();
-      }
-      return "?";
+    if (!isPublicView) {
+      return getDisplayFirstLetter(displayName, storedUser);
     }
 
-    return getDisplayFirstLetter(displayName, storedUser);
-  }, [displayName, isPublicView, publicCreator, storedUser]);
+    return getPublicInitial(publicCreator?.name ?? displayName);
+  }, [displayName, isPublicView, publicCreator?.name, storedUser]);
 
   const aboutData = useMemo(() => {
     if (isPublicView) {

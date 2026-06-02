@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { API, useGetAPI } from "@/lib/http/api";
 import {
   dedupeFeedContentItems,
+  FEED_CONTENT_PAGE_SIZE,
   feedContentToTutorial,
   type FeedContentItem,
 } from "@/utils/feedContentToTutorial";
@@ -37,9 +38,9 @@ export const useTrendingContent = () => {
 
     const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
 
-return dedupeFeedContentItems(items)
-  .slice(0, TRENDING_DISPLAY_LIMIT)
-  .map((item) => feedContentToTutorial(item, freeLabel));
+    return dedupeFeedContentItems(items)
+      .slice(0, FEED_CONTENT_PAGE_SIZE)
+      .map((item) => feedContentToTutorial(item, freeLabel));
   }, [query.data, t]);
 
   return {
