@@ -117,7 +117,9 @@ export default function GeneralContent({
   };
 
   const handlePreviewClick = () => {
-    if (previewUrl) {
+    if (uploadType === FORMAT_TYPE.WEB && formState.webLink) {
+      window.open(formState.webLink, BLANK);
+    } else if (previewUrl) {
       window.open(previewUrl, BLANK);
     }
   };
@@ -168,7 +170,7 @@ export default function GeneralContent({
         );
       case FORMAT_TYPE.WEB:
         return (
-          <PreviewBox>
+          <PreviewBox onClick={handlePreviewClick}>
             <WebLinkIcon />
             <PlayOverlay>
               <ShareCircle>

@@ -397,6 +397,9 @@ export function useContentFormActions({
             ? String(fullContent.maxDownloadCount)
             : DOWNLOAD_LIMIT_DEFAULT,
           physicalProductLink: fullContent.physicalProductLink || "",
+          webLink: fullContent.contentUrl || "",
+          openInNewWindow: false,
+          openDirectFromList: false,
           contentTypeId: normalizeContentTypeValue(
             fullContent.contentTypeId ?? fullContent.contentType ?? "video",
           ),
