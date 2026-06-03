@@ -23,6 +23,7 @@ import {
   getAllContentsService,
   SortField,
 } from './services/getAllContents.service';
+import { getSingleContentService } from './services/getSingleContent.service';
 
 @Injectable()
 export class ContentService {
@@ -80,12 +81,16 @@ export class ContentService {
     return createOrUpdateContentSetting(userId, dto);
   }
 
-  getAllContents(
+  async getAllContents(
     limit: number,
     search: string,
     sort: SortField,
     filter: GetAllContentsFilter,
   ) {
     return getAllContentsService(limit, search, sort, filter);
+  }
+
+  async getSingleContent(contentId: string, userId: string) {
+    return getSingleContentService(contentId, userId);
   }
 }

@@ -91,3 +91,9 @@ export const SORT_DIRECTIONS = {
   FREE: 'free',
   ALL: 'all',
 } as const;
+
+export const ACCRESS_TYPES = {
+  RENTED: 'rented',
+  PURCHASED: 'purchased',
+  EXPIRED: 'Expired',
+} as const;

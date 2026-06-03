@@ -145,4 +145,11 @@ export class ContentController {
       filter,
     );
   }
+
+  @Get(':id/:userId')
+  async getSingleContent(@Req() req: any) {
+    const contentId = req.params.id;
+    const userId = req.params.userId;
+    return this.contentService.getSingleContent(contentId, userId);
+  }
 }
