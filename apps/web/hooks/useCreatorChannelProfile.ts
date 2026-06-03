@@ -9,7 +9,6 @@ import {
 import {
   getDisplayFirstLetter,
   getLoginUserDisplayName,
-  getNameInitials,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
 import { API } from "@/lib/http/api/endpoints";
@@ -17,15 +16,16 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { toTrimmedString } from "@/utils/Constants";
 import { formatJoinedDate } from "@/utils/formatDate";
-import { displayCreatorName, getAvatarUrl } from "@/utils/creatorProfile";
+import {
+  displayCreatorName,
+  getAvatarUrl,
+  getPublicCreatorInitial,
+} from "@/utils/creatorProfile";
 import {
   type CollectionsApiResponse,
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
 import { CREATOR_ID_PARAM } from "@/utils/creatorChannel";
-
-const getPublicInitial = (name?: string) =>
-  name ? getNameInitials(name).charAt(0).toUpperCase() : "?";
 
 export function useCreatorChannelProfile(enabled = true) {
   const searchParams = useSearchParams();
@@ -96,7 +96,7 @@ export function useCreatorChannelProfile(enabled = true) {
       return getDisplayFirstLetter(displayName, storedUser);
     }
 
-    return getPublicInitial(publicCreator?.name ?? displayName);
+    return getPublicCreatorInitial(publicCreator?.name ?? displayName);
   }, [displayName, isPublicView, publicCreator?.name, storedUser]);
 
   const aboutData = useMemo(() => {

@@ -4,6 +4,7 @@ import {
   PROFILE_FIELD_MAP,
   type CreatorProfileBodyKey,
 } from "@/utils/profileFieldMap";
+import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 import { isString, toTrimmedString } from "@/utils/Constants";
 import { isBrowser } from "@/utils/ui";
 
@@ -136,6 +137,10 @@ export const getAvatarUrl = (avatarUrl?: string | null): string | null => {
   if (!isString(avatarUrl)) return null;
   return avatarUrl.length > 0 ? avatarUrl : null;
 };
+
+export function getPublicCreatorInitial(name?: string): string {
+  return name ? getNameInitials(name).charAt(0).toUpperCase() : "?";
+}
 
 export const toOptionalString = (value: string): string | undefined =>
   value || undefined;

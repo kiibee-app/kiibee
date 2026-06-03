@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import NavBar from "@/components/Layout/Navbar";
 import { ExploreSection, Main, PageContainer } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
@@ -10,9 +10,8 @@ import TopCreators from "@/components/Feature/ExploreCreators/TopCreators";
 import TrendingContent from "@/components/Feature/ExploreCreators/TrendingContent";
 import LatestRelease from "@/components/Feature/ExploreCreators/LatestRelease";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
-import { useQueryClient } from "@tanstack/react-query";
+import { useRefetchQueriesOnReturn } from "@/hooks/useRefetchQueriesOnReturn";
 import { API } from "@/lib/http/api";
-import { FOCUS, PAGESHOW, VISIBILITY_CHANGE, VISIBLE } from "@/utils/common";
 
 const REFETCH_QUERY_KEYS = [
   [API.creators.list],
@@ -22,31 +21,8 @@ const REFETCH_QUERY_KEYS = [
 
 export default function ExplorePage() {
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
-  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    const refetchQueries = () => {
-      REFETCH_QUERY_KEYS.forEach((queryKey) => {
-        void queryClient.refetchQueries({ queryKey });
-      });
-    };
-
-    const refetchOnVisible = () => {
-      if (document.visibilityState === VISIBLE) {
-        refetchQueries();
-      }
-    };
-
-    window.addEventListener(PAGESHOW, refetchQueries);
-    window.addEventListener(FOCUS, refetchQueries);
-    document.addEventListener(VISIBILITY_CHANGE, refetchOnVisible);
-
-    return () => {
-      window.removeEventListener(PAGESHOW, refetchQueries);
-      window.removeEventListener(FOCUS, refetchQueries);
-      document.removeEventListener(VISIBILITY_CHANGE, refetchOnVisible);
-    };
-  }, [queryClient]);
+  useRefetchQueriesOnReturn(REFETCH_QUERY_KEYS);
 
   return (
     <PageContainer>
