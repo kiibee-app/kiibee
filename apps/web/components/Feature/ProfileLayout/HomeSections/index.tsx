@@ -14,6 +14,8 @@ import { useLatestUpload } from "@/hooks/useLatestUpload";
 import latestUploadImage from "@/assets/images/creators/recent_creator.webp";
 import { normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
+import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
+import { matchesProfileSearch } from "@/utils/creatorChannel";
 
 type ProfileHomeSectionsProps = {
   variant: ProfileLayoutVariant;
@@ -22,6 +24,7 @@ type ProfileHomeSectionsProps = {
 export default function ProfileHomeSections({
   variant,
 }: ProfileHomeSectionsProps) {
+  const { searchQuery, isCollectionsPage } = useCreatorProfileUi();
   const {
     latestUpload: latestConfig,
     wrapLatestUpload,
@@ -55,7 +58,12 @@ export default function ProfileHomeSections({
       }
     : null;
 
-  const latestUploadSection = latestUploadData ? (
+  const showLatestUpload =
+    !isCollectionsPage &&
+    latestUploadData &&
+    matchesProfileSearch(searchQuery, latestUploadData.title);
+
+  const latestUploadSection = showLatestUpload ? (
     wrapLatestUpload ? (
       <SectionWrapper>
         <ContentAdjust>
@@ -67,15 +75,16 @@ export default function ProfileHomeSections({
     )
   ) : null;
 
-  const collectionPreviewSection = wrapLatestUpload ? (
-    <SectionWrapper>
-      <ContentAdjust>
-        <CollectionPreview />
-      </ContentAdjust>
-    </SectionWrapper>
-  ) : (
-    <CollectionPreview />
-  );
+  const collectionPreviewSection =
+    !isCollectionsPage && wrapLatestUpload ? (
+      <SectionWrapper>
+        <ContentAdjust>
+          <CollectionPreview />
+        </ContentAdjust>
+      </SectionWrapper>
+    ) : !isCollectionsPage ? (
+      <CollectionPreview />
+    ) : null;
 
   return (
     <>

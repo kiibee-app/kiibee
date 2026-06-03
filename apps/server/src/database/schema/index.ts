@@ -38,7 +38,6 @@ export * from './subscription/subscriptionInvoices.schema';
 
 // Commerce
 export * from './commerce/orders.schema';
-export * from './commerce/orderItems.schema';
 export * from './commerce/payments.schema';
 export * from './commerce/viewerPaymentMethods.schema';
 export * from './commerce/creatorPayouts.schema';

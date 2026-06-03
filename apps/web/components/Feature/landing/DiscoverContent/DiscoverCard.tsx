@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { EbookIcon, VideoIcon } from "@/assets/icons";
-import { MEDIA_TYPE } from "@/utils/Constants";
+import { MEDIA_TYPE, VARIANT } from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
@@ -20,13 +20,13 @@ import {
   CardDate,
   MediaTypeBox,
   ActionsContainer,
-  ActionButton,
-  FullWidthAction,
+  SingleActionButton,
   IconFrame,
   discoverCardRevealStyle,
   discoverCardImageStyle,
 } from "./styles";
 import ImageReveal from "@/components/UI/ImageReveal";
+import GenericButton from "@/components/UI/GenericButton";
 import { type DiscoverCardProps } from "@/utils/landingShared";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { IMAGE_SIZES } from "@/utils/landingShared";
@@ -103,16 +103,20 @@ function DiscoverCard({ item }: DiscoverCardProps) {
       </TextSection>
 
       <ActionsContainer>
-        {item.actions.map((action) =>
-          action.fullWidth ? (
-            <FullWidthAction key={action.labelKey} type="button">
+        {item.actions.length === 1 ? (
+          <SingleActionButton key={item.actions[0].labelKey} type="button">
+            {t(item.actions[0].labelKey)}
+          </SingleActionButton>
+        ) : (
+          item.actions.map((action) => (
+            <GenericButton
+              key={action.labelKey}
+              type="button"
+              variant={VARIANT.SOFT_OUTLINE}
+            >
               {t(action.labelKey)}
-            </FullWidthAction>
-          ) : (
-            <ActionButton key={action.labelKey} type="button">
-              {t(action.labelKey)}
-            </ActionButton>
-          ),
+            </GenericButton>
+          ))
         )}
       </ActionsContainer>
     </Card>

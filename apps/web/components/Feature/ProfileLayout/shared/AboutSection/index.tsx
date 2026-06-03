@@ -23,9 +23,12 @@ import {
   CLOTHES_DATA,
 } from "@/utils/dummyData/collectionData";
 import { CREATE_PROFILE_ROUTES } from "@/utils/translationKeys";
+import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
+import { matchesProfileSearch } from "@/utils/creatorChannel";
 
 export default function AboutSection() {
   const { t } = useTranslation();
+  const { searchQuery } = useCreatorProfileUi();
 
   const clothesVideos = useMemo<TutorialVideo[]>(
     () =>
@@ -56,46 +59,70 @@ export default function AboutSection() {
     [t],
   );
 
+  const filteredClothesVideos = useMemo(
+    () =>
+      !searchQuery.trim()
+        ? clothesVideos
+        : clothesVideos.filter((video) =>
+            matchesProfileSearch(searchQuery, video.title),
+          ),
+    [clothesVideos, searchQuery],
+  );
+
+  const filteredAboutVideos = useMemo(
+    () =>
+      !searchQuery.trim()
+        ? aboutVideos
+        : aboutVideos.filter((video) =>
+            matchesProfileSearch(searchQuery, video.title),
+          ),
+    [aboutVideos, searchQuery],
+  );
+
   return (
     <>
-      <Section>
-        <SectionHeader>
-          <SectionLabel>
-            <SectionTag>
-              <MonoText $use="H4_Medium">
-                {t(CREATE_PROFILE_ROUTES.about.sectionTitleClothes)}
-              </MonoText>
-            </SectionTag>
-          </SectionLabel>
-          <SectionLink href="/single-collection?id=clothes">
-            <LeftIcon />
-          </SectionLink>
-        </SectionHeader>
-        <Grid>
-          {clothesVideos.map((tutorial) => (
-            <TutorialCard key={tutorial.id} tutorial={tutorial} />
-          ))}
-        </Grid>
-      </Section>
-      <Section>
-        <SectionHeader>
-          <SectionLabel>
-            <SectionTag>
-              <MonoText $use="H4_Medium">
-                {t(CREATE_PROFILE_ROUTES.about.sectionTitle)}
-              </MonoText>
-            </SectionTag>
-          </SectionLabel>
-          <SectionLink href="/single-collection?id=plants-and-animals">
-            <LeftIcon />
-          </SectionLink>
-        </SectionHeader>
-        <Grid>
-          {aboutVideos.map((tutorial) => (
-            <TutorialCard key={tutorial.id} tutorial={tutorial} />
-          ))}
-        </Grid>
-      </Section>
+      {filteredClothesVideos.length > 0 && (
+        <Section>
+          <SectionHeader>
+            <SectionLabel>
+              <SectionTag>
+                <MonoText $use="H4_Medium">
+                  {t(CREATE_PROFILE_ROUTES.about.sectionTitleClothes)}
+                </MonoText>
+              </SectionTag>
+            </SectionLabel>
+            <SectionLink href="/single-collection?id=clothes">
+              <LeftIcon />
+            </SectionLink>
+          </SectionHeader>
+          <Grid>
+            {filteredClothesVideos.map((tutorial) => (
+              <TutorialCard key={tutorial.id} tutorial={tutorial} />
+            ))}
+          </Grid>
+        </Section>
+      )}
+      {filteredAboutVideos.length > 0 && (
+        <Section>
+          <SectionHeader>
+            <SectionLabel>
+              <SectionTag>
+                <MonoText $use="H4_Medium">
+                  {t(CREATE_PROFILE_ROUTES.about.sectionTitle)}
+                </MonoText>
+              </SectionTag>
+            </SectionLabel>
+            <SectionLink href="/single-collection?id=plants-and-animals">
+              <LeftIcon />
+            </SectionLink>
+          </SectionHeader>
+          <Grid>
+            {filteredAboutVideos.map((tutorial) => (
+              <TutorialCard key={tutorial.id} tutorial={tutorial} />
+            ))}
+          </Grid>
+        </Section>
+      )}
     </>
   );
 }

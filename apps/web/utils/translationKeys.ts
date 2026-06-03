@@ -24,6 +24,9 @@ export const CREATE_PROFILE_HOME = {
   description: "createProfileHome.description",
   more: "createProfileHome.more",
   searchPlaceholder: "createProfileHome.searchPlaceholder",
+  searchOpenPlaceholder: "createProfileHome.searchOpenPlaceholder",
+  searchCollectionsPlaceholder:
+    "createProfileHome.searchCollectionsPlaceholder",
   searchAriaLabel: "createProfileHome.searchAriaLabel",
   aboutModal: {
     moreInfo: "createProfileHome.aboutModal.moreInfo",

@@ -53,15 +53,18 @@ export default function CouponCodesModal({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    onNext();
+  };
+
+  const handleChange = (value: string) => {
+    setCodesText(value);
     setForm((prev) => ({
       ...prev,
-      codes: codesText
+      codes: value
         .split(",")
         .map((c) => c.trim())
         .filter(Boolean),
     }));
-
-    onNext();
   };
 
   return (
@@ -98,7 +101,7 @@ export default function CouponCodesModal({
               maxLength={COUPON_CODES_LIMIT}
               aria-describedby={helperId}
               placeholder={t("contents.couponCodes.placeholders.codes")}
-              onChange={(e) => setCodesText(e.target.value)}
+              onChange={(e) => handleChange(e.target.value)}
             />
             <CodesMetaRow id={helperId}>
               <CodesHelperText>

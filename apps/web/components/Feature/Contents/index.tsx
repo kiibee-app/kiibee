@@ -172,6 +172,7 @@ function CreatorsContentsInner() {
   }, [t, collections, collectionContents, couponResponse]);
 
   useEffect(() => {
+    if (selectedCollection) return;
     if (!searchValue || searchValue.trim().length < 2) return;
 
     const query = searchValue.trim().toLowerCase();
@@ -204,7 +205,13 @@ function CreatorsContentsInner() {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [searchValue, activeTab, setActiveTabAndQuery, CONTENTS_TABS_INDEX]);
+  }, [
+    searchValue,
+    activeTab,
+    selectedCollection,
+    setActiveTabAndQuery,
+    CONTENTS_TABS_INDEX,
+  ]);
   const {
     createCollectionFlow,
     contentTypeFlow,
@@ -221,6 +228,8 @@ function CreatorsContentsInner() {
     handleCreateClick,
     handleEditCollection,
     openCouponEdit,
+    requestCloseCouponFlow,
+    isCouponDiscardPending,
   } = useContentsModalFlows(
     activeTab,
     collections,
@@ -360,6 +369,7 @@ function CreatorsContentsInner() {
             selectedCollection={selectedCollection}
             collectionContents={collectionContents}
             collections={collections}
+            searchValue={searchValue}
             editingContentId={editingContent?.id ?? null}
             setCollections={setCollections}
             setContentsMap={setContentsMap}
@@ -443,6 +453,9 @@ function CreatorsContentsInner() {
         cancelLabel={t("settings.notifications.discardModal.goBack")}
         confirmLabel={t("settings.notifications.discardModal.discard")}
         onConfirm={() => {
+          if (isCouponDiscardPending) {
+            closeCouponFlow();
+          }
           if (isUploadMode) {
             handleBack();
           }
@@ -475,6 +488,7 @@ function CreatorsContentsInner() {
         couponForm={couponForm}
         setCouponForm={setCouponForm}
         closeCouponFlow={closeCouponFlow}
+        requestCloseCouponFlow={requestCloseCouponFlow}
         handleBackFromCouponPreview={handleBackFromCouponPreview}
         handleCouponSubmit={handleCouponSubmit}
         isCouponSuccess={isCouponSuccess}

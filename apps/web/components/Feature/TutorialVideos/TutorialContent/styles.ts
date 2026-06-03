@@ -54,6 +54,12 @@ export const SectionLink = styled(Link)`
   text-decoration: none;
   color: inherit;
 `;
+export const TutorialSection = styled.section`
+  scroll-margin-top: calc(
+    var(--navbar-height, 73px) + var(--navbar-top-offset, 0px) + 1rem
+  );
+`;
+
 export const Content = styled.main`
   flex: 1;
   width: 100%;

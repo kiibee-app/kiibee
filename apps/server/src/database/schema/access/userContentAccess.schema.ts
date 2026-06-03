@@ -3,13 +3,16 @@ import { baseTimestamps } from 'src/utils/dbHelper';
 import { users } from '../users/users.schema';
 import { mediaFiles } from '../content/mediaFiles.schema';
 import { collections } from '../content/collections.schema';
-import { orderItems } from '../commerce/orderItems.schema';
 import { userAccessTypeEnum } from '../enums';
+import { orders } from '../commerce/orders.schema';
 
 export const userContentAccess = pgTable(
   'user_content_access',
   {
     id: text('id').primaryKey(),
+    orderId: text('order_id')
+      .notNull()
+      .references(() => orders.id, { onDelete: 'cascade' }),
     userId: text('user_id')
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),
@@ -22,9 +25,6 @@ export const userContentAccess = pgTable(
     }),
 
     accessType: userAccessTypeEnum('access_type').notNull(),
-    orderItemId: text('order_item_id').references(() => orderItems.id, {
-      onDelete: 'set null',
-    }),
 
     rentExpiresAt: timestamp('rent_expires_at', { withTimezone: true }),
     grantedAt: timestamp('granted_at', { withTimezone: true })

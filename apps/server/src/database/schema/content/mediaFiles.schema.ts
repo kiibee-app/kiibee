@@ -56,6 +56,8 @@ export const mediaFiles = pgTable(
     isPublished: boolean('is_published').notNull().default(false),
     publishedAt: timestamp('published_at', { withTimezone: true }),
 
+    rating: numeric('rating', { precision: 3, scale: 2 }).default('0'),
+
     ...softDeleteFields,
     ...baseTimestamps,
   },

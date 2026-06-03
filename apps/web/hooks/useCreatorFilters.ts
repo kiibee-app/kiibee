@@ -1,17 +1,16 @@
 import { useCallback, useState } from "react";
 import { FilterSectionKey, PriceRange } from "@/types/filters";
 import {
-  CategoryOptionKey,
   DEFAULT_VISIBLE_CREATORS,
   FilterGroupKey,
   filterGroupMap,
-  FormatOptionKey,
 } from "@/utils/creatorFilters";
 import { sanitizeDigits } from "@/utils/numericFields";
 
 type UseCreatorFiltersParams = {
-  categoryOptions: CategoryOptionKey[];
-  formatOptions: FormatOptionKey[];
+  categoryOptions: string[];
+  formatOptions: string[];
+  initialSelectedOptions?: Partial<SelectedOptions>;
 };
 
 type SelectedOptions = Record<FilterGroupKey, string[]>;
@@ -29,8 +28,8 @@ const INITIAL_PRICE_RANGE: PriceRange = {
 
 function getAllOption(params: {
   group: FilterGroupKey;
-  categoryOptions: CategoryOptionKey[];
-  formatOptions: FormatOptionKey[];
+  categoryOptions: string[];
+  formatOptions: string[];
 }): string | null {
   const { group, categoryOptions, formatOptions } = params;
 
@@ -96,12 +95,17 @@ function useFilterPanelState() {
 function useSelectedFilterOptions({
   categoryOptions,
   formatOptions,
+  initialSelectedOptions,
 }: {
-  categoryOptions: CategoryOptionKey[];
-  formatOptions: FormatOptionKey[];
+  categoryOptions: string[];
+  formatOptions: string[];
+  initialSelectedOptions?: Partial<SelectedOptions>;
 }) {
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(
-    INITIAL_SELECTED_OPTIONS,
+    () => ({
+      ...INITIAL_SELECTED_OPTIONS,
+      ...initialSelectedOptions,
+    }),
   );
 
   const toggleOption = useCallback(
@@ -177,12 +181,14 @@ function useCreatorVisibility() {
 export function useCreatorFilters({
   categoryOptions,
   formatOptions,
+  initialSelectedOptions,
 }: UseCreatorFiltersParams) {
   const panelState = useFilterPanelState();
   const visibilityState = useCreatorVisibility();
   const selectedFilterOptions = useSelectedFilterOptions({
     categoryOptions,
     formatOptions,
+    initialSelectedOptions,
   });
   const priceFilter = usePriceRangeFilter();
   const ratingFilter = useRatingFilter();
