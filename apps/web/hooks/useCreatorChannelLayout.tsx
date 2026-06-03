@@ -8,7 +8,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import type { NavBarItem } from "@/utils/profile";
 import {
@@ -142,24 +142,102 @@ export function useCreatorProfileTabs() {
   );
 }
 
-export function useCreatorAboutModal() {
+type CreatorProfileUiContextValue = {
+  isAboutOpen: boolean;
+  openAbout: () => void;
+  closeAbout: () => void;
+  searchQuery: string;
+  setSearchQuery: (value: string) => void;
+  searchOpen: boolean;
+  setSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleSearch: () => void;
+  isCollectionsPage: boolean;
+};
+
+const CreatorProfileUiContext =
+  createContext<CreatorProfileUiContextValue | null>(null);
+
+function useCreatorProfileUiState(): CreatorProfileUiContextValue {
+  const pathname = usePathname();
+  const isCollectionsPage = pathname.includes("/collections");
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
   const openAbout = useCallback(() => setIsAboutOpen(true), []);
   const closeAbout = useCallback(() => setIsAboutOpen(false), []);
+  const toggleSearch = useCallback(() => setSearchOpen((open) => !open), []);
 
-  return { isAboutOpen, openAbout, closeAbout };
+  return {
+    isAboutOpen,
+    openAbout,
+    closeAbout,
+    searchQuery,
+    setSearchQuery,
+    searchOpen,
+    setSearchOpen,
+    toggleSearch,
+    isCollectionsPage,
+  };
+}
+
+function CreatorProfileUiProviderInner({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+  const value = useCreatorProfileUiState();
+  const { closeAbout, setSearchQuery, setSearchOpen } = value;
+
+  useEffect(() => {
+    closeAbout();
+    setSearchQuery("");
+    setSearchOpen(false);
+  }, [pathname, closeAbout, setSearchQuery, setSearchOpen]);
+
+  return (
+    <CreatorProfileUiContext.Provider value={value}>
+      {children}
+    </CreatorProfileUiContext.Provider>
+  );
+}
+
+export function CreatorProfileUiProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <CreatorProfileUiProviderInner>{children}</CreatorProfileUiProviderInner>
+  );
+}
+
+export function useCreatorProfileUi() {
+  const context = useContext(CreatorProfileUiContext);
+
+  if (!context) {
+    throw new Error(
+      "useCreatorProfileUi must be used within CreatorProfileUiProvider",
+    );
+  }
+
+  return context;
 }
 
 export function useCreatorNavItems() {
   const layoutParam = useCreatorLayoutParam();
   const publicCreatorId = useSearchParams().get("creatorId");
-  const { isAboutOpen, openAbout, closeAbout } = useCreatorAboutModal();
+  const { isAboutOpen, openAbout } = useCreatorProfileUi();
 
   const navItems = useMemo((): NavBarItem[] => {
     const defs = getCreatorNavItemDefs(layoutParam);
     return defs.map((item) =>
       item.key === "nav.profile.about"
-        ? { key: item.key, onClick: openAbout }
+        ? {
+            key: item.key,
+            onClick: openAbout,
+            isActive: isAboutOpen,
+          }
         : {
             key: item.key,
             href: item.href
@@ -167,7 +245,7 @@ export function useCreatorNavItems() {
               : undefined,
           },
     );
-  }, [layoutParam, openAbout, publicCreatorId]);
+  }, [isAboutOpen, layoutParam, openAbout, publicCreatorId]);
 
-  return { navItems, isAboutOpen, closeAbout };
+  return { navItems };
 }

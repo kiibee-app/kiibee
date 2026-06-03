@@ -55,7 +55,9 @@
     "title": "Nana Jacobson",
     "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete.",
     "more": "...mere",
-    "searchPlaceholder": "Søg",
+    "searchPlaceholder": "Søg indhold",
+    "searchOpenPlaceholder": "Søg efter opslag",
+    "searchCollectionsPlaceholder": "Søg samlinger",
     "searchAriaLabel": "Søg i profilindhold",
     "aboutModal": {
       "moreInfo": "Mere info",

@@ -59,7 +59,17 @@ export const Logo = styled.span`
   font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
 `;
 
-export const Nav = styled.nav<NavStyleProps>`
+const navLinkColor = (
+  $textTone: NavStyleProps["$textTone"],
+  theme: {
+    colors: { neutral: { OFF_WHITE: string }; primary: { BLACK: string } };
+  },
+) =>
+  $textTone === "light"
+    ? theme.colors.neutral.OFF_WHITE
+    : theme.colors.primary.BLACK;
+
+export const Nav = styled.nav<NavStyleProps & { $routeActiveItems?: boolean }>`
   display: flex;
   gap: 1.25rem;
   align-items: center;
@@ -74,32 +84,33 @@ export const Nav = styled.nav<NavStyleProps>`
           justify-content: center;
         `}
 
-  a,
-  button {
-    color: ${({ theme, $textTone }) =>
-      $textTone === "light"
-        ? theme.colors.neutral.OFF_WHITE
-        : theme.colors.primary.BLACK};
-    text-decoration: none;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.375rem;
-    white-space: nowrap;
-    transition:
-      background 120ms ease,
-      color 120ms ease;
-  }
+  ${({ $routeActiveItems, theme, $textTone }) =>
+    !$routeActiveItems &&
+    css`
+      a,
+      button {
+        color: ${navLinkColor($textTone, theme)};
+        text-decoration: none;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.375rem;
+        white-space: nowrap;
+        transition:
+          background 120ms ease,
+          color 120ms ease;
+      }
 
-  button {
-    background: none;
-    border: none;
-    font: inherit;
-    cursor: pointer;
-  }
+      button {
+        background: none;
+        border: none;
+        font: inherit;
+        cursor: pointer;
+      }
 
-  a:hover,
-  button:hover {
-    background: ${({ theme }) => theme.colors.primary.WHITE_18};
-  }
+      a:hover,
+      button:hover {
+        background: ${theme.colors.primary.WHITE_18};
+      }
+    `}
 
   @media (max-width: 640px) {
     display: none;
@@ -109,11 +120,56 @@ export const Nav = styled.nav<NavStyleProps>`
 export const NavItemWrapper = styled.div`
   position: relative;
   display: inline-block;
+`;
 
-  a,
-  button {
-    display: inline-block;
+const routeActiveNavStyles = css<{
+  $isActive: boolean;
+  $textTone: NavStyleProps["$textTone"];
+}>`
+  position: relative;
+  display: inline-block;
+  padding: 10px 4px 8px;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  white-space: nowrap;
+  ${({ theme, $isActive }) =>
+    $isActive ? theme.typography.Body_SemiBold : theme.typography.Body_Medium};
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 0;
+    background-color: ${({ $isActive, theme, $textTone }) =>
+      $isActive ? navLinkColor($textTone, theme) : "transparent"};
   }
+
+  &:hover {
+    background: transparent;
+  }
+`;
+
+export const NavAnchor = styled(Link)<{
+  $isActive: boolean;
+  $textTone: NavStyleProps["$textTone"];
+}>`
+  ${routeActiveNavStyles}
+  color: ${({ theme, $textTone }) => navLinkColor($textTone, theme)};
+  text-decoration: none;
+`;
+
+export const NavButton = styled.button<{
+  $isActive: boolean;
+  $textTone: NavStyleProps["$textTone"];
+}>`
+  ${routeActiveNavStyles}
+  color: ${({ theme, $textTone }) => navLinkColor($textTone, theme)};
+  font: inherit;
+  cursor: pointer;
 `;
 
 export const MegaMenu = styled.div`

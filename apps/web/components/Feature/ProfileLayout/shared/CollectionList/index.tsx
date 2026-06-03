@@ -8,6 +8,8 @@ import {
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
+import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { resolveImageUrl } from "@/utils/Constants";
@@ -18,6 +20,7 @@ import { CollectionListInner, CollectionListShell } from "./styles";
 
 export default function CollectionList() {
   const { t } = useTranslation();
+  const { searchQuery } = useCreatorProfileUi();
   const { displayName } = useCreatorChannelProfile();
   const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
     API.collection.getAll,
@@ -46,13 +49,20 @@ export default function CollectionList() {
     }));
   }, [collectionsResponse, displayName, t]);
 
+  const filteredItems = useMemo(() => {
+    if (!searchQuery.trim()) return items;
+    return items.filter((item) =>
+      matchesProfileSearch(searchQuery, item.title),
+    );
+  }, [items, searchQuery]);
+
   return (
     <CollectionListShell>
       <CollectionListInner>
         <CollectionsSection
           mode={RENTED_MODES.PURCHASED}
-          items={items}
-          totalItems={items.length}
+          items={filteredItems}
+          totalItems={filteredItems.length}
           canSlide={() => false}
           canGoPrev={() => false}
           canGoNext={() => false}
