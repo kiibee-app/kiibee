@@ -24,6 +24,10 @@ export const payments = pgTable(
     amount: numeric('amount', { precision: 10, scale: 2 }).notNull(),
     currency: varchar('currency', { length: 10 }).notNull().default('DKK'),
     status: paymentStatusEnum('status').notNull().default('pending'),
+    paymentMethod: varchar('payment_method', { length: 100 }),
+    cardNo: varchar('card_no', { length: 20 }),
+    cardExpiry: varchar('card_expiry', { length: 20 }),
+    cardType: varchar('card_type', { length: 50 }),
 
     paidAt: timestamp('paid_at', { withTimezone: true }),
     refundedAt: timestamp('refunded_at', { withTimezone: true }),

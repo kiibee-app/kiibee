@@ -97,3 +97,20 @@ export const ACCRESS_TYPES = {
   PURCHASED: 'purchased',
   EXPIRED: 'Expired',
 } as const;
+
+export const ORDER_STATUS = {
+  PENDING: 'pending',
+  COMPLETED: 'completed',
+  FAILED: 'failed',
+} as const;
+
+export const ORDER_TYPES = {
+  RENTAL: 'rental',
+  PURCHASE: 'purchase',
+} as const;
+
+export const PAYMENT_STATUS = {
+  PAYMENT_SUCCESS: 'SUCCESS',
+  PAYMENT_FAILED: 'FAILED',
+  PAYMENT_EXPIRED: 'EXPIRED',
+} as const;

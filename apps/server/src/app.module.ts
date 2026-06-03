@@ -11,6 +11,8 @@ import { CouponModule } from './modules/coupon/coupon.module';
 import { CollectionModule } from './modules/collection/collection.module';
 import { CreatorModule } from './modules/creator/creator.module';
 import { FeedModule } from './modules/feed/feed.module';
+import { OrderModule } from './modules/order/order.module';
+import { PaymentModule } from './modules/payment/payment.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { FeedModule } from './modules/feed/feed.module';
     CollectionModule,
     CreatorModule,
     FeedModule,
+    OrderModule,
+    PaymentModule,
   ],
 })
 export class AppModule {}
