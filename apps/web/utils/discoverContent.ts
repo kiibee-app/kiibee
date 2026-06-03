@@ -5,7 +5,6 @@ import imageFour from "@/assets/images/discover-content/c9051991a79ffc5a50dd15af
 import {
   ACCESS_TYPE_FREE,
   ImageSource,
-  MEDIA_TYPE_VIDEO_KEY,
   MEDIA_TYPE_EPUB_KEY,
   FREE_LABEL,
   RENT_PREFIX,
