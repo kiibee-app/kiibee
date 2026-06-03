@@ -6,6 +6,7 @@ import InputField from "@/components/UI/InputFields";
 import { INPUT_TYPE, MODAL_ALIGN } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import { NUMERIC_INPUT_MODE } from "@/utils/numericFields";
+import { AddCardSchema } from "@/utils/addCard";
 import { CardIcon } from "@/assets/icons";
 import { useAddCard } from "@/hooks/useAddCard";
 import { Container, ErrorText, FieldWrapper, Grid } from "./styles";
@@ -35,10 +36,11 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
     handleCVVChange,
   } = useAddCard(onClose);
 
-  const isFormValid =
-    cardNumber.trim().length > 0 &&
-    expiryDate.trim().length > 0 &&
-    securityCode.trim().length > 0;
+  const isFormValid = AddCardSchema.safeParse({
+    cardNumber,
+    expiryDate,
+    securityCode,
+  }).success;
 
   return (
     <>
