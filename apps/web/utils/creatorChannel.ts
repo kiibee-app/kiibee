@@ -133,3 +133,38 @@ export function getCreatorNavItemDefs(layout: CreatorLayoutParam) {
     { key: "nav.profile.about" as const },
   ];
 }
+
+export function matchesProfileSearch(
+  query: string,
+  ...texts: Array<string | null | undefined>
+): boolean {
+  const normalized = query.trim().toLowerCase();
+  if (!normalized) return true;
+
+  return texts.some((text) => (text ?? "").toLowerCase().includes(normalized));
+}
+
+function normalizeNavPath(href: string): string {
+  return href.split("?")[0].split("#")[0];
+}
+
+export function findActiveNavItemKey(
+  pathname: string,
+  items: ReadonlyArray<{ key: string; href?: string }>,
+): string | null {
+  const withHref = items
+    .filter((item): item is { key: string; href: string } => Boolean(item.href))
+    .map((item) => ({
+      key: item.key,
+      path: normalizeNavPath(item.href),
+    }))
+    .sort((a, b) => b.path.length - a.path.length);
+
+  for (const { key, path } of withHref) {
+    if (pathname === path || pathname.startsWith(`${path}/`)) {
+      return key;
+    }
+  }
+
+  return null;
+}

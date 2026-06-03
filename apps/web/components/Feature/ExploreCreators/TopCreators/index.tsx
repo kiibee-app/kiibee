@@ -9,14 +9,12 @@ import { CREATORS } from "@/utils/translationKeys";
 import { PATHS } from "@/utils/path";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 import { CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
-import {
-  formatSubscriberCountK,
-  useTopCreators,
-} from "@/hooks/creators/useExploreCreators";
+import { formatSubscriberCountK } from "@/hooks/creators/useExploreCreators";
+import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
 
 export default function TopCreators() {
   const { t } = useTranslation();
-  const { creators, isLoading } = useTopCreators();
+  const { creators, isLoading } = useExploreTopCreators();
 
   if (!isLoading && creators.length === 0) {
     return null;

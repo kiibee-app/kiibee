@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import Image from "@/components/UI/SafeImage";
@@ -14,6 +14,8 @@ import {
   Nav,
   Actions,
   NavItemWrapper,
+  NavAnchor,
+  NavButton,
   MegaMenu,
   MegaInner,
   MegaColumn,
@@ -35,6 +37,7 @@ import { CLICK } from "@/utils/common";
 import { POINTER_DOWN, VARIANT, TONE_DARK } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
+import { findActiveNavItemKey } from "@/utils/creatorChannel";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
 import { useLogout } from "@/hooks/auth/useLogout";
 import {
@@ -151,14 +154,22 @@ export default function NavBar({
   navBefore,
   navAfter,
   actions,
+  routeActiveItems = false,
 }: NavBarProps) {
   const { t } = useTranslation();
+  const pathname = usePathname();
   const dashboardPath = useSessionDashboardPath();
   const isLoggedIn = Boolean(dashboardPath);
   const loginButtonHref = PATHS.AUTH_LOGIN;
   const renderItemLabel = (item: NavBarItem) => item.label ?? t(item.key);
-  const [active, setActive] = React.useState<string | null>(null);
-  const [pinned, setPinned] = React.useState<string | null>(null);
+  const [openMegaKey, setOpenMegaKey] = React.useState<string | null>(null);
+  const [pinnedMegaKey, setPinnedMegaKey] = React.useState<string | null>(null);
+  const routeActiveKey = React.useMemo(() => {
+    if (!routeActiveItems) return null;
+    const explicit = items.find((item) => item.isActive)?.key;
+    if (explicit) return explicit;
+    return findActiveNavItemKey(pathname, items);
+  }, [items, pathname, routeActiveItems]);
   const navRef = React.useRef<HTMLElement | null>(null);
   const actionsRef = React.useRef<HTMLDivElement | null>(null);
   const innerStyle = React.useMemo(() => {
@@ -196,25 +207,25 @@ export default function NavBar({
   ]);
 
   const closeMenu = useCallback(() => {
-    setPinned(null);
-    setActive(null);
+    setPinnedMegaKey(null);
+    setOpenMegaKey(null);
   }, []);
 
   const openMenu = useCallback((key: string) => {
-    setActive(key);
-    setPinned(key);
+    setOpenMegaKey(key);
+    setPinnedMegaKey(key);
   }, []);
 
   const togglePin = useCallback(
     (key: string) => {
-      const shouldClose = pinned === key;
+      const shouldClose = pinnedMegaKey === key;
       if (shouldClose) {
         closeMenu();
         return;
       }
       openMenu(key);
     },
-    [pinned, closeMenu, openMenu],
+    [pinnedMegaKey, closeMenu, openMenu],
   );
 
   const handleGlobalClick = useCallback(
@@ -238,7 +249,9 @@ export default function NavBar({
     };
   }, [handleGlobalClick]);
 
-  const isMegaOpen = items.some((item) => item.children && active === item.key);
+  const isMegaOpen = items.some(
+    (item) => item.children && openMegaKey === item.key,
+  );
 
   return (
     <Header
@@ -273,58 +286,98 @@ export default function NavBar({
           )}
         </Left>
 
-        <Nav ref={navRef} $navPosition={navPosition} $textTone={navTextTone}>
+        <Nav
+          ref={navRef}
+          $navPosition={navPosition}
+          $textTone={navTextTone}
+          $routeActiveItems={routeActiveItems}
+        >
           {navBefore}
-          <MonoText $use="Body_Medium">
-            {items.map((item) => (
-              <NavItemWrapper
-                key={item.key}
-                onMouseEnter={() => openMenu(item.key)}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  togglePin(item.key);
-                }}
-              >
-                {item.onClick ? (
-                  <button
-                    type="button"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      item.onClick?.();
-                    }}
-                  >
-                    {renderItemLabel(item)}
-                  </button>
-                ) : (
-                  <Link href={item.href || "#"}>{renderItemLabel(item)}</Link>
-                )}
+          {routeActiveItems ? (
+            <>
+              {items.map((item) => {
+                const isRouteActive =
+                  item.isActive ?? item.key === routeActiveKey;
+                return (
+                  <NavItemWrapper key={item.key}>
+                    {item.onClick ? (
+                      <NavButton
+                        type="button"
+                        $isActive={isRouteActive}
+                        $textTone={navTextTone}
+                        aria-current={isRouteActive ? "page" : undefined}
+                        onClick={() => item.onClick?.()}
+                      >
+                        {renderItemLabel(item)}
+                      </NavButton>
+                    ) : (
+                      <NavAnchor
+                        href={item.href || "#"}
+                        scroll={false}
+                        $isActive={isRouteActive}
+                        $textTone={navTextTone}
+                        aria-current={isRouteActive ? "page" : undefined}
+                      >
+                        {renderItemLabel(item)}
+                      </NavAnchor>
+                    )}
+                  </NavItemWrapper>
+                );
+              })}
+            </>
+          ) : (
+            <MonoText $use="Body_Medium">
+              {items.map((item) => (
+                <NavItemWrapper
+                  key={item.key}
+                  onMouseEnter={() => item.children && openMenu(item.key)}
+                  onClick={(e) => {
+                    if (!item.children) return;
+                    e.stopPropagation();
+                    togglePin(item.key);
+                  }}
+                >
+                  {item.onClick ? (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        item.onClick?.();
+                      }}
+                    >
+                      {renderItemLabel(item)}
+                    </button>
+                  ) : (
+                    <Link href={item.href || "#"}>{renderItemLabel(item)}</Link>
+                  )}
 
-                {item.children && active === item.key && (
-                  <MegaMenu>
-                    <MegaInner>
-                      {item.children.map((col) => (
-                        <MegaColumn
-                          key={col.titleKey}
-                          className={
-                            col.titleKey.toLowerCase().includes("format")
-                              ? "twoCol"
-                              : ""
-                          }
-                        >
-                          <ColumnTitle>{t(col.titleKey)}</ColumnTitle>
-                          {col.items.map((ci) => (
-                            <ColumnItem key={ci.key} href={ci.href}>
-                              {t(ci.key)}
-                            </ColumnItem>
-                          ))}
-                        </MegaColumn>
-                      ))}
-                    </MegaInner>
-                  </MegaMenu>
-                )}
-              </NavItemWrapper>
-            ))}
-          </MonoText>
+                  {item.children && openMegaKey === item.key && (
+                    <MegaMenu>
+                      <MegaInner>
+                        {item.children.map((col) => (
+                          <MegaColumn
+                            key={col.titleKey}
+                            className={
+                              col.titleKey.toLowerCase().includes("format")
+                                ? "twoCol"
+                                : ""
+                            }
+                          >
+                            <ColumnTitle>{t(col.titleKey)}</ColumnTitle>
+                            {col.items.map((ci) => (
+                              <ColumnItem key={ci.key} href={ci.href}>
+                                {t(ci.key)}
+                              </ColumnItem>
+                            ))}
+                          </MegaColumn>
+                        ))}
+                      </MegaInner>
+                    </MegaMenu>
+                  )}
+                </NavItemWrapper>
+              ))}
+            </MonoText>
+          )}
           {navAfter}
         </Nav>
 

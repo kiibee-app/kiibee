@@ -140,3 +140,4 @@ export function toCamelCaseKey(value: string): string {
     })
     .join("");
 }
+export const tabs = ["New", "Trending", "Created for you"];

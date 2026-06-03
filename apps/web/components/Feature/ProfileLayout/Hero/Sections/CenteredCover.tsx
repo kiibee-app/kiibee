@@ -2,7 +2,6 @@
 
 import { useTranslation } from "react-i18next";
 import coverImage from "@/assets/images/creators/creator_profile_hero3.png";
-import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
@@ -22,7 +21,6 @@ import {
 export default function CenteredCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
-  const { isAboutOpen, closeAbout } = tabState;
   const { displayName, avatarUrl, initial, about } = useCreatorChannelProfile();
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
@@ -58,8 +56,6 @@ export default function CenteredCoverSection() {
 
         <HeroTabs {...tabState} centered />
       </InfoSection>
-
-      <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />
     </HeroWrapperCentered>
   );
 }

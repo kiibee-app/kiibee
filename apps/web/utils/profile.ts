@@ -18,6 +18,7 @@ export type HeroTabsProps = Pick<
 export type NavBarItem = NavItem & {
   label?: ReactNode;
   onClick?: () => void;
+  isActive?: boolean;
 };
 
 export type HeaderProps = {
@@ -47,6 +48,7 @@ export type NavBarProps = {
   navBefore?: ReactNode;
   navAfter?: ReactNode;
   actions?: ReactNode;
+  routeActiveItems?: boolean;
 };
 
 export const VIEWER_PROFILE_FIELDS = {
