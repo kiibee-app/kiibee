@@ -1378,8 +1378,13 @@
       "description": "Consider what type of access your [contentType] should have",
       "options": {
         "free": "Free",
+        "payment": "Payment",
         "password": "Set password",
         "email": "Request email"
+      },
+      "password": {
+        "placeholder": "Enter passwords",
+        "helper": "Separate multiple passwords with commas."
       }
     },
     "placeholders": {
@@ -1640,6 +1645,18 @@
         "options": {
           "unlimited": "Unlimited"
         }
+      },
+      "collectionRental.title": "Collection rental (Streaming)",
+      "collectionPurchase.title": "Collection purchase/download",
+      "collectionDuration": {
+        "title": "Selected period",
+        "description": "Should you coustomers have access for 3,6 or 12 months?"
+      },
+      "duration": {
+        "oneMonth": "1 month",
+        "threeMonths": "3 months",
+        "sixMonths": "6 months",
+        "twelveMonths": "12 months"
       },
       "password": {
         "placeholder": "Enter password",

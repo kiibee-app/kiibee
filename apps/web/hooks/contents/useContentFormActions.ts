@@ -97,6 +97,7 @@ export function useContentFormActions({
   const [collectionAccessType, setCollectionAccessType] =
     useState<AdmissionRequirementValue>(ADMISSION_REQUIREMENT_VALUES.free);
   const [collectionPasswords, setCollectionPasswords] = useState("");
+  const [collectionDescription, setCollectionDescription] = useState("");
 
   const [prevCollectionId, setPrevCollectionId] = useState<string | null>(null);
 
@@ -107,6 +108,7 @@ export function useContentFormActions({
       apiToUiAccessTypeMap[apiAccessType] || ADMISSION_REQUIREMENT_VALUES.free;
     setCollectionAccessType(uiAccessType);
     setCollectionPasswords("");
+    setCollectionDescription(selectedCollection.description ?? "");
   } else if (!selectedCollection && prevCollectionId !== null) {
     setPrevCollectionId(null);
   }
@@ -215,12 +217,17 @@ export function useContentFormActions({
 
       await axiosClient.patch(API.collection.update(selectedCollection.id), {
         accessType: apiAccessType,
+        description: collectionDescription.trim(),
       });
 
       setCollections((prev) =>
         prev.map((c) =>
           c.id === selectedCollection.id
-            ? { ...c, accessType: apiAccessType }
+            ? {
+                ...c,
+                accessType: apiAccessType,
+                description: collectionDescription.trim(),
+              }
             : c,
         ),
       );
@@ -228,6 +235,7 @@ export function useContentFormActions({
       setSelectedCollection({
         ...selectedCollection,
         accessType: apiAccessType,
+        description: collectionDescription.trim(),
       });
 
       await queryClient.invalidateQueries({
@@ -411,6 +419,8 @@ export function useContentFormActions({
     setCollectionAccessType,
     collectionPasswords,
     setCollectionPasswords,
+    collectionDescription,
+    setCollectionDescription,
     hasUnsavedChanges: hasAppearanceChanges,
     handleUploadSuccess,
     handleBackToBase,

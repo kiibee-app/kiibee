@@ -65,6 +65,8 @@ type Props = {
   setCollectionAccessType?: (value: AdmissionRequirementValue) => void;
   collectionPasswords?: string;
   setCollectionPasswords?: (value: string) => void;
+  collectionDescription?: string;
+  setCollectionDescription?: (value: string) => void;
 };
 
 export default function ContentTabPanel({
@@ -88,6 +90,8 @@ export default function ContentTabPanel({
   setCollectionAccessType,
   collectionPasswords,
   setCollectionPasswords,
+  collectionDescription,
+  setCollectionDescription,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -221,6 +225,10 @@ export default function ContentTabPanel({
         onChangeAccessType={setCollectionAccessType}
         passwords={collectionPasswords}
         onChangePasswords={setCollectionPasswords}
+        description={collectionDescription}
+        onChangeDescription={setCollectionDescription}
+        showDescription={Boolean(selectedCollection)}
+        showPaymentOption={Boolean(selectedCollection)}
       />
     );
   }
