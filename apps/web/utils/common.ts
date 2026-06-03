@@ -124,8 +124,7 @@ export const FILE_EXTENSION = {
   EPUB: ".epub",
 } as const;
 
-export const tabs = ["New", "Trending", "Curated for you"];
-
+export const tabs = ["New", "Trending", "Created for you"];
 export const ACCESS_DURATION_VALUES = [
   "1_month",
   "3_months",
