@@ -9,11 +9,17 @@ import {
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
 import { QUERY_KEYS } from "@/utils/Constants";
+import {
+  getContentDetail,
+  type ContentDetailResponse,
+} from "@/utils/contentApi";
 import { CollectionContentRow } from "@/types/collectionsType";
+import type { ImageSource } from "@/utils/Constants";
 
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;
   category?: string | null;
+  thumbnailLandscapeUrl?: ImageSource | null;
 };
 
 export function useLatestUpload() {
@@ -56,16 +62,19 @@ export function useLatestUpload() {
       if (!latest) return null;
 
       try {
-        const res = await axiosClient.get(API.content.get(String(latest.id)));
-        const category = (
-          res as {
-            data?: { data?: { categories?: { id?: string }[] } };
-          }
-        )?.data?.data?.categories?.[0]?.id;
+        const res = await axiosClient.get<ContentDetailResponse>(
+          API.content.get(String(latest.id)),
+        );
+        const content = getContentDetail(res.data);
+        const category = content?.categories?.[0]?.id;
 
-        return { ...latest, category: category ?? null };
+        return {
+          ...latest,
+          category: category ?? null,
+          thumbnailLandscapeUrl: content?.thumbnailLandscapeUrl ?? null,
+        };
       } catch {
-        return { ...latest, category: null };
+        return { ...latest, category: null, thumbnailLandscapeUrl: null };
       }
     },
 
