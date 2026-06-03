@@ -125,3 +125,18 @@ export const FILE_EXTENSION = {
 } as const;
 
 export const tabs = ["New", "Trending", "Curated for you"];
+
+export function toCamelCaseKey(value: string): string {
+  return value
+    .replace(/&|\/|and/gi, "and")
+    .replace(/[^a-zA-Z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .map((word, index) => {
+      if (index === 0) {
+        return word.toLowerCase();
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join("");
+}
