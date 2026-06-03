@@ -30,6 +30,7 @@ type GenericModalProps = {
   title?: string;
   message?: string;
   children?: React.ReactNode;
+  contentMarginBottom?: string;
   buttonRow?: boolean;
   icon?: React.ReactNode;
   confirmLabel?: string;
@@ -59,6 +60,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   title,
   message,
   children,
+  contentMarginBottom,
   icon,
   buttonRow = false,
   confirmLabel,
@@ -84,6 +86,10 @@ export const GenericModal: React.FC<GenericModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
+  const resolvedPadding =
+    padding && padding in MODAL_PADDINGS
+      ? MODAL_PADDINGS[padding as ModalPadding]
+      : padding;
 
   useEffect(() => {
     if (!visible) return;
@@ -129,7 +135,9 @@ export const GenericModal: React.FC<GenericModalProps> = ({
       <ModalContainer
         $width={width || (size ? MODAL_WIDTHS[size] : undefined)}
         $height={height}
-        $padding={padding || (spacing ? MODAL_PADDINGS[spacing] : undefined)}
+        $padding={
+          resolvedPadding || (spacing ? MODAL_PADDINGS[spacing] : undefined)
+        }
         $borderRadius={borderRadius}
         $align={textAlign}
         ref={ref}
@@ -158,7 +166,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
           </Title>
         )}
 
-        <Message id="generic-modal-message">
+        <Message id="generic-modal-message" $marginBottom={contentMarginBottom}>
           {children ? (
             children
           ) : (
