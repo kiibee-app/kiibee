@@ -33,9 +33,14 @@ import {
 type Props = {
   videos: TutorialVideo[];
   collectionId?: string;
+  title?: string;
 };
 
-export default function CollectionItems({ videos, collectionId }: Props) {
+export default function CollectionItems({
+  videos,
+  collectionId,
+  title,
+}: Props) {
   const { t } = useTranslation();
 
   if (!videos.length) return null;
@@ -49,7 +54,7 @@ export default function CollectionItems({ videos, collectionId }: Props) {
       <CollectionHeader>
         <CollectionTitleGroup as={Link} href={href}>
           <CollectionSectionTitle>
-            {t("singleTutorial.otherItemsInCollection")}
+            {title ?? t("singleTutorial.otherItemsInCollection")}
           </CollectionSectionTitle>
           <LeftIcon width={14} height={14} />
         </CollectionTitleGroup>
@@ -71,9 +76,11 @@ export default function CollectionItems({ videos, collectionId }: Props) {
                 fill
                 sizes="250px"
               />
-              <CollectionBadge>
-                <CollectionBadgeText>{video.category}</CollectionBadgeText>
-              </CollectionBadge>
+              {video.category?.trim() ? (
+                <CollectionBadge>
+                  <CollectionBadgeText>{video.category}</CollectionBadgeText>
+                </CollectionBadge>
+              ) : null}
             </CollectionImageArea>
 
             <CollectionCardBody>

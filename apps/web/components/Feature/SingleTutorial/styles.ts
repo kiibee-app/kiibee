@@ -364,6 +364,7 @@ export const CollectionBadge = styled.span`
 export const CollectionBadgeText = styled.span`
   ${({ theme }) => theme.typography.Body_Bold}
   color: ${({ theme }) => theme.colors.neutral.GRAY};
+  text-transform: capitalize;
 `;
 
 export const CollectionCardBody = styled.div`
