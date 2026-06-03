@@ -44,7 +44,7 @@ export default function StorySection() {
             <StoryMeta>
               <StoryUploadsText>
                 <MonoText $use="Body_Medium" color={COLORS.primary.WHITE_90}>
-                  {t(CREATE_PROFILE_HOME.uploads, { count: uploadsCount })}{" "}
+                  {t(CREATE_PROFILE_HOME.uploads, { count: uploadsCount })}
                 </MonoText>
               </StoryUploadsText>
             </StoryMeta>
