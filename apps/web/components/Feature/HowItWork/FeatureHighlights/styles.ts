@@ -117,6 +117,18 @@ export const MockImageWrap = styled.div<{ $active?: boolean }>`
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  & > div {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
   ${(p) =>
     p.$active &&
     css`

@@ -39,6 +39,7 @@ export type CollectionTableProps =
   | {
       type: typeof COLLECTION_TABLE_TYPE.COLLECTIONS;
       data: CollectionRow[];
+      searchValue?: string;
       onRowClick?: (row: CollectionRow) => void;
       onEdit?: (id: string) => void;
       onDelete?: (id: string) => void;
@@ -50,6 +51,7 @@ export type CollectionTableProps =
   | {
       type: typeof COLLECTION_TABLE_TYPE.CONTENTS;
       data: CollectionContentRow[];
+      searchValue?: string;
       onRowClick?: (row: CollectionContentRow) => void;
       onEdit?: (id: string) => void;
       onDelete?: (id: string) => void;

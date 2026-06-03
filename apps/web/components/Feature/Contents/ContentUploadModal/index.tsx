@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import { BackButtonIcon } from "@/assets/icons";
 import GenericButton from "@/components/UI/GenericButton";
+import ConfirmationModal from "@/components/UI/ConfirmationModal";
 import { GenericModal } from "@/components/UI/Modals";
 import {
   HiddenInput,
@@ -97,6 +98,8 @@ export default function ContentUploadModal({
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showDiscardModal, setShowDiscardModal] = useState(false);
+  const pendingExitActionRef = useRef<(() => void) | null>(null);
   const [createError, setCreateError] = useState<string | null>(null);
   const [pendingUploadSuccess, setPendingUploadSuccess] =
     useState<PendingUploadSuccess | null>(null);
@@ -157,6 +160,16 @@ export default function ContentUploadModal({
       const text = Array.isArray(value) ? value.join("") : value;
       setter(text);
     };
+
+  const hasUnsavedChanges =
+    !isSuccess &&
+    Boolean(
+      selectedFile ||
+      uploadedFile ||
+      webContentLink.trim() ||
+      title.trim() !== initialTitle.trim() ||
+      description.trim() !== initialDescription.trim(),
+    );
 
   const handleNextClick = () => {
     if (!canProceed) return;
@@ -287,16 +300,33 @@ export default function ContentUploadModal({
     return () => handleExit(onBack);
   };
 
+  const closeDiscardModal = () => {
+    pendingExitActionRef.current = null;
+    setShowDiscardModal(false);
+  };
+
   const handleBackClick = () => {
     const action = getBackAction();
     action();
+  };
+
+  const handleCloseRequest = () => {
+    const exitAction = () => handleExit(onClose);
+
+    if (hasUnsavedChanges) {
+      pendingExitActionRef.current = exitAction;
+      setShowDiscardModal(true);
+      return;
+    }
+
+    exitAction();
   };
 
   const isWebContent = contentType === FORMAT_TYPE.WEB;
   return (
     <GenericModal
       visible={visible}
-      onClose={() => handleExit(onClose)}
+      onClose={handleCloseRequest}
       width="670px"
       height="450px"
       padding="20px"
@@ -392,6 +422,23 @@ export default function ContentUploadModal({
           )}
         </UploadBody>
       </UploadModalContent>
+      <ConfirmationModal
+        isOpen={showDiscardModal}
+        onClose={closeDiscardModal}
+        title={t("settings.notifications.discardModal.title")}
+        body={t("settings.notifications.discardModal.message")}
+        cancelLabel={t("settings.notifications.discardModal.goBack")}
+        confirmLabel={t("settings.notifications.discardModal.discard")}
+        onConfirm={() => {
+          pendingExitActionRef.current?.();
+          closeDiscardModal();
+        }}
+        size="sm"
+        spacing="md"
+        fullWidthButtons
+        buttonRow
+        showCloseButton={false}
+      />
     </GenericModal>
   );
 }

@@ -30,6 +30,9 @@ export const API = {
   },
   content: {
     create: "/content/create",
+    all: "/content/all",
+    categories: "/content/categories",
+    types: "/content/types",
     collection: (id: string) => `/content/collection/${id}`,
     get: (id: string) => `/content/${id}`,
     update: (id: string) => `/content/update/${id}`,
@@ -47,6 +50,7 @@ export const API = {
     byId: (id: string) => `/creators/${id}`,
   },
   feed: {
+    explore: "/feed/explore",
     trending: "/feed/trending",
     recent: "/feed/recent",
   },

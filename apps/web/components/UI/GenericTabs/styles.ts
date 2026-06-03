@@ -10,16 +10,26 @@ export const TabsRow = styled.div`
 export const TabButton = styled.button<{ $active: boolean }>`
   position: relative;
   border: 0;
+  border-radius: 0;
   background: transparent;
-  padding: 10px 0;
+  padding: 10px 0 8px;
   cursor: pointer;
   ${({ theme, $active }) =>
     $active ? theme.typography.Body_SemiBold : theme.typography.Body_Regular};
   color: ${({ $active, theme }) =>
     $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_400};
-  border-bottom: 2px solid
-    ${({ $active, theme }) =>
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 0;
+    background-color: ${({ $active, theme }) =>
       $active ? theme.colors.primary.BLACK : "transparent"};
+  }
 
   &:focus {
     outline: none;
@@ -27,7 +37,7 @@ export const TabButton = styled.button<{ $active: boolean }>`
 
   &:focus-visible {
     outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
-    border-radius: 2px;
+    outline-offset: 2px;
   }
 `;
 

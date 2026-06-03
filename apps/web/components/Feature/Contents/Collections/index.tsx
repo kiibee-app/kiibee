@@ -46,6 +46,13 @@ export default function CollectionTable(props: CollectionTableProps) {
   const columns = isCollections
     ? COLLECTION_COLUMNS
     : COLLECTION_CONTENT_COLUMNS;
+  const searchQuery = props.searchValue?.trim().toLowerCase() ?? "";
+  const filteredData =
+    searchQuery.length < 2
+      ? props.data
+      : props.data.filter((row) =>
+          (row.name ?? "").toLowerCase().includes(searchQuery),
+        );
 
   const handleRowClick = (row: TableRow) => {
     if (isCollections) {
@@ -124,7 +131,7 @@ export default function CollectionTable(props: CollectionTableProps) {
   return (
     <Table<TableRow>
       headers={columns.map((c) => c.label)}
-      data={props.data}
+      data={filteredData}
       rowsPerPage={10}
       onRowClick={handleRowClick}
       headerToKey={(header) => {

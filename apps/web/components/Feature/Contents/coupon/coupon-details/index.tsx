@@ -30,6 +30,7 @@ type CouponDetailsModalProps = {
   setForm: React.Dispatch<React.SetStateAction<CreateCouponPayload>>;
   onClose: () => void;
   onNext: () => void;
+  onBack: () => void;
 };
 
 export default function CouponDetailsModal({
@@ -38,6 +39,7 @@ export default function CouponDetailsModal({
   setForm,
   onClose,
   onNext,
+  onBack,
 }: CouponDetailsModalProps) {
   const { t } = useTranslation();
   const titleId = useId();
@@ -86,7 +88,7 @@ export default function CouponDetailsModal({
         <BackButton
           type="button"
           aria-label={t("common.back")}
-          onClick={onClose}
+          onClick={onBack}
         >
           <BackButtonIcon size={28} strokeWidth={2.5} />
         </BackButton>

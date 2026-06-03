@@ -2,7 +2,6 @@
 
 import { useTranslation } from "react-i18next";
 import coverImage from "@/assets/images/creators/create_profile_hero1.png";
-import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
@@ -29,7 +28,7 @@ import {
 export default function ProfileCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
-  const { isAboutOpen, openAbout, closeAbout } = tabState;
+  const { openAbout } = tabState;
   const { displayName, avatarUrl, initial, about } = useCreatorChannelProfile();
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
@@ -80,8 +79,6 @@ export default function ProfileCoverSection() {
 
         <HeroTabs {...tabState} />
       </ContentInner>
-
-      <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />
     </HeroWrapper>
   );
 }

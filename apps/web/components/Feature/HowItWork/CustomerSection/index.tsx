@@ -17,6 +17,9 @@ import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
+import { LANDING_REVEAL, LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
 
 export default function CustomerSection() {
   const { t } = useTranslation();
@@ -25,33 +28,47 @@ export default function CustomerSection() {
     <Section>
       <Inner>
         <ImgWrap>
-          <Image
-            src={heroImg}
-            alt={t("how.customerAlt")}
-            fill
-            sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 50vw"
-            loading="eager"
-            style={{ objectFit: "cover" }}
-            priority
-          />
+          <ImageReveal
+            variant={LANDING_REVEAL_VARIANTS.slideLeft}
+            duration={LANDING_REVEAL.longRevealDuration}
+          >
+            <Image
+              src={heroImg}
+              alt={t("how.customerAlt")}
+              fill
+              sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 50vw"
+              loading="eager"
+              priority
+            />
+          </ImageReveal>
         </ImgWrap>
 
         <Content>
-          <Title>
-            <MonoText $use="Heading2">{t("how.customerTitle")}</MonoText>
-          </Title>
-          <Text>{t("how.customerLead")}</Text>
-          <Text>{t("how.customerBody")}</Text>
+          <ScrollReveal>
+            <Title>
+              <MonoText $use="Heading2">{t("how.customerTitle")}</MonoText>
+            </Title>
+          </ScrollReveal>
 
-          <CTAWrap>
-            <GenericButton
-              asAnchor
-              href={PATHS.ABOUT}
-              variant={VARIANT.PRIMARY}
-            >
-              {t("how.customerCta")}
-            </GenericButton>
-          </CTAWrap>
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
+            <Text>{t("how.customerLead")}</Text>
+          </ScrollReveal>
+
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay * 2}>
+            <Text>{t("how.customerBody")}</Text>
+          </ScrollReveal>
+
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay * 3}>
+            <CTAWrap>
+              <GenericButton
+                asAnchor
+                href={PATHS.ABOUT}
+                variant={VARIANT.PRIMARY}
+              >
+                {t("how.customerCta")}
+              </GenericButton>
+            </CTAWrap>
+          </ScrollReveal>
         </Content>
       </Inner>
     </Section>

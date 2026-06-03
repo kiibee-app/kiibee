@@ -7,6 +7,7 @@ import {
   Req,
   UseGuards,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ContentService } from './content.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -15,6 +16,7 @@ import { AssignUserCategoriesDto } from './dto/assignUserCategories.dto';
 import { CreatorGuard } from '../auth/guards/admin.guard';
 import { ContentAppearanceDto } from './dto/contentAppearance.dto';
 import { ContentSettingDto } from './dto/contentSetting.dto';
+import * as getAllContentsService from './services/getAllContents.service';
 
 @Controller('content')
 export class ContentController {
@@ -111,5 +113,43 @@ export class ContentController {
   ) {
     const userId = req.user.userId;
     return this.contentService.createOrUpdateContentSetting(userId, dto);
+  }
+
+  @Post('all')
+  async getAllContents(
+    @Query('limit') limit?: string,
+    @Query('search') search?: string,
+    @Query('sort') sort?: getAllContentsService.SortField,
+    @Body() body?: getAllContentsService.GetAllContentsFilter,
+  ) {
+    const parsedLimit = Number.parseInt(limit ?? '24', 10);
+
+    const safeLimit =
+      Number.isFinite(parsedLimit) && parsedLimit > 0 ? parsedLimit : 24;
+
+    const filter: getAllContentsService.GetAllContentsFilter = {
+      search: body?.search,
+      contentTypeId: body?.contentTypeId,
+      creatorId: body?.creatorId,
+      categoryId: body?.categoryId,
+      accessType: body?.accessType,
+      minPrice: body?.minPrice,
+      maxPrice: body?.maxPrice,
+      rating: body?.rating,
+    };
+
+    return this.contentService.getAllContents(
+      safeLimit,
+      search ?? '',
+      sort ?? 'all',
+      filter,
+    );
+  }
+
+  @Get(':id/:userId')
+  async getSingleContent(@Req() req: any) {
+    const contentId = req.params.id;
+    const userId = req.params.userId;
+    return this.contentService.getSingleContent(contentId, userId);
   }
 }
