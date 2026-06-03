@@ -2,7 +2,7 @@ import { pgTable, text, numeric, timestamp, index } from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
 import { mediaFiles } from '../content/mediaFiles.schema';
 import { collections } from '../content/collections.schema';
-import { orderItemTypeEnum } from '../enums';
+import { orderItemTypeEnum, orderStatusEnum } from '../enums';
 import { users } from '../users/users.schema';
 
 export const orders = pgTable(
@@ -23,6 +23,7 @@ export const orders = pgTable(
     price: numeric('price', { precision: 10, scale: 2 }).notNull(),
     currency: text('currency').notNull().default('DKK'),
     rentExpiresAt: timestamp('rent_expires_at', { withTimezone: true }),
+    status: orderStatusEnum('status').notNull().default('pending'),
 
     ...baseTimestamps,
   },
