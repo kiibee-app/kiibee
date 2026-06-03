@@ -1,0 +1,1027 @@
+[
+  {
+    "id": 47167,
+    "key": "a250f12c-8a56-499a-9e39-fe318101467c",
+    "udi": "umb://document/a250f12c8a56499a9e39fe318101467c",
+    "name": "751112062021223547",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-06-12 22:37:48",
+    "updateDate": "2021-06-12 22:37:48",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,47167",
+    "sortOrder": 10,
+    "urls": ["/chief1/purchases/751112062021223547/"],
+    "fullName": "Anja Storm",
+    "email": "Anjastorm35@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "150",
+    "expireDate": "2021-07-12 22:37:48",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2021-06-12 22:37:48",
+    "mediaRelationUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+        "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+        "resolved": true,
+        "id": 24582,
+        "name": "Chief1 Portræt & Koncertfilm",
+        "title": "Chief1 Portræt & Koncertfilm ",
+        "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+        "contentTypeAlias": "media",
+        "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2709/cover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "150",
+        "rentalPrice": "50"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Chief1 Portræt & Koncertfilm "],
+    "mediaUrls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "email": "Anjastorm35@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-07-12 22:37:48",
+      "price": "150",
+      "fullName": "Anja Storm",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/463236c85e054183b59db49d09b5c5a2"
+    }
+  },
+  {
+    "id": 39498,
+    "key": "cec285b1-d4e7-4954-b212-e80f78fcd7b2",
+    "udi": "umb://document/cec285b1d4e74954b212e80f78fcd7b2",
+    "name": "228706032021101630",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-03-06 10:16:57",
+    "updateDate": "2021-03-06 10:16:57",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,39498",
+    "sortOrder": 9,
+    "urls": ["/chief1/purchases/228706032021101630/"],
+    "fullName": "Erik Hentze",
+    "email": "erik@hentze.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "150",
+    "expireDate": "2021-04-05 10:16:56",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2021-03-06 10:16:57",
+    "mediaRelationUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+        "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+        "resolved": true,
+        "id": 24582,
+        "name": "Chief1 Portræt & Koncertfilm",
+        "title": "Chief1 Portræt & Koncertfilm ",
+        "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+        "contentTypeAlias": "media",
+        "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2709/cover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "150",
+        "rentalPrice": "50"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Chief1 Portræt & Koncertfilm "],
+    "mediaUrls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "email": "erik@hentze.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-04-05 10:16:56",
+      "price": "150",
+      "fullName": "Erik Hentze",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/463236c85e054183b59db49d09b5c5a2"
+    }
+  },
+  {
+    "id": 39350,
+    "key": "2b4bb984-08d8-434d-8616-ef786e9a7b35",
+    "udi": "umb://document/2b4bb98408d8434d8616ef786e9a7b35",
+    "name": "8h2j04032021180937",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-03-04 18:10:46",
+    "updateDate": "2021-03-04 18:10:46",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,39350",
+    "sortOrder": 8,
+    "urls": ["/chief1/purchases/8h2j04032021180937/"],
+    "fullName": "Rasmus Riis Jensen",
+    "email": "razz_0155@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "150",
+    "expireDate": "2021-04-03 18:10:45",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2021-03-04 18:10:46",
+    "mediaRelationUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+        "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+        "resolved": true,
+        "id": 24582,
+        "name": "Chief1 Portræt & Koncertfilm",
+        "title": "Chief1 Portræt & Koncertfilm ",
+        "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+        "contentTypeAlias": "media",
+        "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2709/cover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "150",
+        "rentalPrice": "50"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Chief1 Portræt & Koncertfilm "],
+    "mediaUrls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "email": "razz_0155@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-04-03 18:10:45",
+      "price": "150",
+      "fullName": "Rasmus Riis Jensen",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/463236c85e054183b59db49d09b5c5a2"
+    }
+  },
+  {
+    "id": 26743,
+    "key": "df9e05fb-9b9d-4383-b9da-764970fd2159",
+    "udi": "umb://document/df9e05fb9b9d4383b9da764970fd2159",
+    "name": "9ai302012021203058",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-01-02 20:31:09",
+    "updateDate": "2021-01-02 20:31:09",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,26743",
+    "sortOrder": 7,
+    "urls": ["/chief1/purchases/9ai302012021203058/"],
+    "fullName": "Kristian Uhre ",
+    "email": "kristianuhre@hotmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "150",
+    "expireDate": "2021-02-01 20:31:09",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2021-01-02 20:31:09",
+    "mediaRelationUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+        "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+        "resolved": true,
+        "id": 24582,
+        "name": "Chief1 Portræt & Koncertfilm",
+        "title": "Chief1 Portræt & Koncertfilm ",
+        "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+        "contentTypeAlias": "media",
+        "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2709/cover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "150",
+        "rentalPrice": "50"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Chief1 Portræt & Koncertfilm "],
+    "mediaUrls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "email": "kristianuhre@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-02-01 20:31:09",
+      "price": "150",
+      "fullName": "Kristian Uhre ",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/463236c85e054183b59db49d09b5c5a2"
+    }
+  },
+  {
+    "id": 26740,
+    "key": "41973bb1-38b4-400b-ae0c-d04edf40cfb3",
+    "udi": "umb://document/41973bb138b4400bae0cd04edf40cfb3",
+    "name": "57i602012021202106",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-01-02 20:21:21",
+    "updateDate": "2021-01-02 20:21:21",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,26740",
+    "sortOrder": 6,
+    "urls": ["/chief1/purchases/57i602012021202106/"],
+    "fullName": "Kristian Uhre",
+    "email": "kristianuhre@hotmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "50",
+    "expireDate": "2021-01-04 20:21:20",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2021-01-02 20:21:21",
+    "mediaRelationUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+        "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+        "resolved": true,
+        "id": 24582,
+        "name": "Chief1 Portræt & Koncertfilm",
+        "title": "Chief1 Portræt & Koncertfilm ",
+        "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+        "contentTypeAlias": "media",
+        "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2709/cover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "150",
+        "rentalPrice": "50"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Chief1 Portræt & Koncertfilm "],
+    "mediaUrls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "email": "kristianuhre@hotmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2021-01-04 20:21:20",
+      "price": "50",
+      "fullName": "Kristian Uhre",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/463236c85e054183b59db49d09b5c5a2"
+    }
+  },
+  {
+    "id": 25242,
+    "key": "77b303a2-7080-48e1-9c55-3b9daa6ea9f7",
+    "udi": "umb://document/77b303a2708048e19c553b9daa6ea9f7",
+    "name": "im7321122020203332",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-21 20:33:52",
+    "updateDate": "2020-12-21 20:33:52",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,25242",
+    "sortOrder": 5,
+    "urls": ["/chief1/purchases/im7321122020203332/"],
+    "fullName": "Kurt Elmegaard",
+    "email": "kurte.elmegaard@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "150",
+    "expireDate": "2021-01-20 20:33:52",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2020-12-21 20:33:52",
+    "mediaRelationUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+        "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+        "resolved": true,
+        "id": 24582,
+        "name": "Chief1 Portræt & Koncertfilm",
+        "title": "Chief1 Portræt & Koncertfilm ",
+        "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+        "contentTypeAlias": "media",
+        "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2709/cover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "150",
+        "rentalPrice": "50"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Chief1 Portræt & Koncertfilm "],
+    "mediaUrls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "email": "kurte.elmegaard@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-01-20 20:33:52",
+      "price": "150",
+      "fullName": "Kurt Elmegaard",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/463236c85e054183b59db49d09b5c5a2"
+    }
+  },
+  {
+    "id": 24945,
+    "key": "0c86c04d-a362-44aa-bf7c-44c5b6e607b5",
+    "udi": "umb://document/0c86c04da36244aabf7c44c5b6e607b5",
+    "name": "pq3j18122020194932",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-18 19:50:16",
+    "updateDate": "2020-12-18 19:50:16",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,24945",
+    "sortOrder": 4,
+    "urls": ["/chief1/purchases/pq3j18122020194932/"],
+    "fullName": "Hans Uhre",
+    "email": "hansuhre@live.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "150",
+    "expireDate": "2021-01-17 19:50:15",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2020-12-18 19:50:16",
+    "mediaRelationUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+        "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+        "resolved": true,
+        "id": 24582,
+        "name": "Chief1 Portræt & Koncertfilm",
+        "title": "Chief1 Portræt & Koncertfilm ",
+        "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+        "contentTypeAlias": "media",
+        "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2709/cover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "150",
+        "rentalPrice": "50"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Chief1 Portræt & Koncertfilm "],
+    "mediaUrls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "email": "hansuhre@live.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-01-17 19:50:15",
+      "price": "150",
+      "fullName": "Hans Uhre",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/463236c85e054183b59db49d09b5c5a2"
+    }
+  },
+  {
+    "id": 24882,
+    "key": "b8e6f806-d2a0-49c0-a379-a3e6e8250e14",
+    "udi": "umb://document/b8e6f806d2a049c0a379a3e6e8250e14",
+    "name": "4c2a18122020111830",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-18 11:18:43",
+    "updateDate": "2020-12-18 11:18:43",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,24882",
+    "sortOrder": 3,
+    "urls": ["/chief1/purchases/4c2a18122020111830/"],
+    "fullName": "Finn Darmer Christensen",
+    "email": "Finn@danpox.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "150",
+    "expireDate": "2021-01-17 11:18:43",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2020-12-18 11:18:43",
+    "mediaRelationUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+        "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+        "resolved": true,
+        "id": 24582,
+        "name": "Chief1 Portræt & Koncertfilm",
+        "title": "Chief1 Portræt & Koncertfilm ",
+        "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+        "contentTypeAlias": "media",
+        "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2709/cover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "150",
+        "rentalPrice": "50"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Chief1 Portræt & Koncertfilm "],
+    "mediaUrls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "email": "Finn@danpox.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-01-17 11:18:43",
+      "price": "150",
+      "fullName": "Finn Darmer Christensen",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/463236c85e054183b59db49d09b5c5a2"
+    }
+  },
+  {
+    "id": 24829,
+    "key": "57f5b711-3546-4388-b896-4242a21507c1",
+    "udi": "umb://document/57f5b71135464388b8964242a21507c1",
+    "name": "p2km17122020221411",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-17 22:14:25",
+    "updateDate": "2020-12-17 22:14:25",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,24829",
+    "sortOrder": 2,
+    "urls": ["/chief1/purchases/p2km17122020221411/"],
+    "fullName": "Toke Svensson",
+    "email": "toke@danishnailawards.dk",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "50",
+    "expireDate": "2020-12-19 22:14:25",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2020-12-17 22:14:25",
+    "mediaRelationUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+        "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+        "resolved": true,
+        "id": 24582,
+        "name": "Chief1 Portræt & Koncertfilm",
+        "title": "Chief1 Portræt & Koncertfilm ",
+        "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+        "contentTypeAlias": "media",
+        "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2709/cover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "150",
+        "rentalPrice": "50"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Chief1 Portræt & Koncertfilm "],
+    "mediaUrls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "email": "toke@danishnailawards.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2020-12-19 22:14:25",
+      "price": "50",
+      "fullName": "Toke Svensson",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/463236c85e054183b59db49d09b5c5a2"
+    }
+  },
+  {
+    "id": 24792,
+    "key": "e8123934-f38b-4e35-b800-7cbeb52b40c0",
+    "udi": "umb://document/e8123934f38b4e35b8007cbeb52b40c0",
+    "name": "q7cr17122020200620",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-17 20:06:44",
+    "updateDate": "2020-12-17 20:06:44",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,24792",
+    "sortOrder": 1,
+    "urls": ["/chief1/purchases/q7cr17122020200620/"],
+    "fullName": "Jesper boysen",
+    "email": "jesper_boysen@yahoo.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "150",
+    "expireDate": "2021-01-16 20:06:44",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2020-12-17 20:06:44",
+    "mediaRelationUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/463236c85e054183b59db49d09b5c5a2"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/463236c85e054183b59db49d09b5c5a2",
+        "key": "463236c8-5e05-4183-b59d-b49d09b5c5a2",
+        "resolved": true,
+        "id": 24582,
+        "name": "Chief1 Portræt & Koncertfilm",
+        "title": "Chief1 Portræt & Koncertfilm ",
+        "urls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+        "contentTypeAlias": "media",
+        "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+        "videoStatus": "ready",
+        "videoThumbnailURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/thumbnails/thumbnail.jpg",
+        "videoDownloadURL": "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/2709/cover2.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "150",
+        "rentalPrice": "50"
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": ["Chief1 Portræt & Koncertfilm "],
+    "mediaUrls": ["/chief1/koncerter/chief1-portraet-koncertfilm/"],
+    "videoDownloadURLs": [
+      "https://videodelivery.net/8405979843dccc3a66d3618b0d1d0b64/downloads/default.mp4"
+    ],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "8405979843dccc3a66d3618b0d1d0b64",
+      "email": "jesper_boysen@yahoo.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2021-01-16 20:06:44",
+      "price": "150",
+      "fullName": "Jesper boysen",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/463236c85e054183b59db49d09b5c5a2"
+    }
+  },
+  {
+    "id": 24442,
+    "key": "3494ee75-67d3-4c01-b6fc-419ebc299bd1",
+    "udi": "umb://document/3494ee7567d34c01b6fc419ebc299bd1",
+    "name": "m6zp15122020142915",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2020-12-15 14:29:41",
+    "updateDate": "2020-12-15 14:29:41",
+    "parentId": 23696,
+    "path": "-1,1067,23691,23696,24442",
+    "sortOrder": 0,
+    "urls": ["/chief1/purchases/m6zp15122020142915/"],
+    "fullName": "lars pedersen",
+    "email": "chiefment@gmail.com",
+    "isPurchase": false,
+    "downloads": 0,
+    "streams": 0,
+    "price": "50",
+    "expireDate": "2020-12-17 14:29:40",
+    "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+    "orderCreateDate": "2020-12-15 14:29:41",
+    "mediaRelationUdis": ["umb://document/d8598d013ea14062ad595bf4623586ff"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/d8598d013ea14062ad595bf4623586ff"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/d8598d013ea14062ad595bf4623586ff",
+        "key": "d8598d01-3ea1-4062-ad59-5bf4623586ff",
+        "resolved": false,
+        "id": null,
+        "name": "",
+        "title": "",
+        "urls": [],
+        "contentTypeAlias": "",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "",
+        "webContentURL": "",
+        "thumbnail": "",
+        "purchasePrice": "",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [],
+    "mediaUrls": [],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "87eecdc5aed954dd1e94867a389983ed",
+      "email": "chiefment@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "0",
+      "expireDate": "2020-12-17 14:29:40",
+      "price": "50",
+      "fullName": "lars pedersen",
+      "message": "Kære du, TUSIND tak for din indbetaling!\r\nHer er link så du kan se indholdet. Har du lejet virker det i 48 timer. Har du købt kan du downloade filen indenfor de næste 30 dage.\r\nAtter engang tak - og god fornøjelse!\r\nKærlige hilsener\r\nChief 1",
+      "media": "umb://document/d8598d013ea14062ad595bf4623586ff"
+    }
+  }
+]

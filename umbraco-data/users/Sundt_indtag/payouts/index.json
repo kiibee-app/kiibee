@@ -1,16 +1,12 @@
 {
-  "exportedAt": "2026-06-02T09:17:51.482Z",
+  "exportedAt": "2026-06-02T11:13:56.960Z",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2682",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
     "contentDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
     "mediaDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Media/GetById",
     "parentId": 2682,
-    "includeProperties": [
-      "amount",
-      "isPaid",
-      "createDate"
-    ],
+    "includeProperties": ["amount", "isPaid", "createDate"],
     "orderBy": "createDate",
     "orderDirection": "Descending",
     "orderBySystemField": true
@@ -23,9 +19,7 @@
     "contentTypeAlias": "payouts",
     "published": true,
     "hasPublishedVersion": true,
-    "urls": [
-      "/sundt-indtag/payouts/"
-    ],
+    "urls": ["/sundt-indtag/payouts/"],
     "path": "-1,1067,2679,2682",
     "properties": {
       "_umb_containerView": null,

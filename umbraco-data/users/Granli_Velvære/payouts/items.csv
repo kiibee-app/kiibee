@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+78770,1c71077d-cdf3-4a07-a306-0d0263c5c8c6,umb://document/1c71077dcdf34a07a3060d0263c5c8c6,KBF-1387,678.35,678.35,true,2023-03-09 09:22:07,2023-03-09 09:22:07,https://kiibee.dk/granli-velvaere/payouts/kbf-1387/,matched-public-payout-url,https://kiibee.dk/granli-velvaere/payouts/kbf-1387/,https://kiibee.dk/granli-velvaere/payouts/kbf-1387/,,

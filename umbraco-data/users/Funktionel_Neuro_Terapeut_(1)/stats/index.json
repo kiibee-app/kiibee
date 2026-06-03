@@ -1,0 +1,167 @@
+{
+  "exportedAt": "2026-06-02T11:03:53.811Z",
+  "collectionName": "stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/112071",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 112071,
+    "includeProperties": ["isPlay", "uID", "media"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": [],
+    "fetchDetails": false
+  },
+  "parent": {
+    "id": 112071,
+    "key": "47bd3f29-abb5-4d97-972b-98a1ca57189d",
+    "udi": "umb://document/47bd3f29abb54d97972b98a1ca57189d",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/funktionel-neuro-terapeut-1/stats/"],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": ["_umb_containerView"]
+  },
+  "counts": {
+    "totalItemsFromApi": 1983,
+    "childrenFetched": 1983,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 7,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 8,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 9,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 10,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 11,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 12,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 13,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 14,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 15,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 16,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 17,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 18,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 19,
+      "itemCount": 100,
+      "totalItems": 1983
+    },
+    {
+      "pageNumber": 20,
+      "itemCount": 83,
+      "totalItems": 1983
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

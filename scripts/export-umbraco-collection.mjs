@@ -79,6 +79,7 @@ async function readConfig() {
       : DEFAULT_INCLUDE_PROPERTIES,
     extraDetailIds: Array.isArray(config.extraDetailIds) ? config.extraDetailIds.map(Number) : [],
     detailConcurrency: Number(config.detailConcurrency || 8),
+    fetchDetails: config.fetchDetails ?? true,
   };
 }
 
@@ -628,7 +629,7 @@ async function main() {
   const { children, pages, rawPages, totalItems } = await fetchChildren(config);
   const detailIds = [
     ...new Set([
-      ...children.map((child) => contentId(child)).filter(Boolean),
+      ...(config.fetchDetails ? children.map((child) => contentId(child)).filter(Boolean) : []),
       ...config.extraDetailIds.filter(Boolean),
     ]),
   ];
@@ -670,6 +671,7 @@ async function main() {
       orderDirection: config.orderDirection,
       orderBySystemField: config.orderBySystemField,
       extraDetailIds: config.extraDetailIds,
+      fetchDetails: config.fetchDetails,
     },
     parent,
     counts: {

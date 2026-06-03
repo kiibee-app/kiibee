@@ -1,0 +1,595 @@
+{
+  "matched": [
+    {
+      "id": 116531,
+      "key": "58a3700d-0f40-44d9-a7e9-7f761a2c3b27",
+      "udi": "umb://document/58a3700d0f4044d9a7e97f761a2c3b27",
+      "name": "KBF-1702",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/116531",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2025-12-17 10:13:08",
+      "updateDate": "2025-12-17 12:20:56",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,116531",
+      "sortOrder": 11,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1702/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1702/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1702/",
+      "amount": "320.4",
+      "amountNumber": 320.4,
+      "isPaid": true,
+      "payoutCreateDate": "2025-12-17 10:13:08",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1702/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1702/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "12",
+        "transactionFee": "6",
+        "kiibeeCut": "25",
+        "rentAmount": "0",
+        "from": "2025-06-17 10:28:26",
+        "rawEarnings": "660",
+        "amount": "320.4",
+        "isPaid": "1",
+        "to": "2025-12-17 10:12:17",
+        "transactionAmount": "39.6",
+        "kiibeeCutAmount": "300"
+      }
+    },
+    {
+      "id": 110634,
+      "key": "0ea53169-4dad-42c7-8bdd-5c2dcc285d01",
+      "udi": "umb://document/0ea531694dad42c78bdd5c2dcc285d01",
+      "name": "KBF-1648",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/110634",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2025-06-17 10:28:38",
+      "updateDate": "2025-12-17 12:19:46",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,110634",
+      "sortOrder": 10,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1648/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1648/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1648/",
+      "amount": "614.1",
+      "amountNumber": 614.1,
+      "isPaid": true,
+      "payoutCreateDate": "2025-06-17 10:28:38",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1648/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1648/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "23",
+        "transactionFee": "6",
+        "kiibeeCut": "25",
+        "rentAmount": "0",
+        "from": "2025-01-08 13:14:31",
+        "rawEarnings": "1265",
+        "amount": "614.1",
+        "isPaid": "1",
+        "to": "2025-06-17 10:28:26",
+        "transactionAmount": "75.9",
+        "kiibeeCutAmount": "575"
+      }
+    },
+    {
+      "id": 104547,
+      "key": "32d60bab-dc35-4441-9cd5-210833dc9ee8",
+      "udi": "umb://document/32d60babdc3544419cd5210833dc9ee8",
+      "name": "KBF-1601",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/104547",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2025-01-08 13:15:23",
+      "updateDate": "2025-01-11 10:13:39",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,104547",
+      "sortOrder": 9,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1601/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1601/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1601/",
+      "amount": "453.9",
+      "amountNumber": 453.9,
+      "isPaid": true,
+      "payoutCreateDate": "2025-01-08 13:15:23",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1601/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1601/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "17",
+        "transactionFee": "6",
+        "kiibeeCut": "25",
+        "rentAmount": "0",
+        "from": "2024-06-14 15:05:51",
+        "rawEarnings": "935",
+        "amount": "453.9",
+        "isPaid": "1",
+        "to": "2025-01-08 13:14:31",
+        "transactionAmount": "56.1",
+        "kiibeeCutAmount": "425"
+      }
+    },
+    {
+      "id": 97857,
+      "key": "bf18d84f-2af0-44ac-891f-b783f578bf36",
+      "udi": "umb://document/bf18d84f2af044ac891fb783f578bf36",
+      "name": "KBF-1540",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/97857",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2024-06-14 15:06:13",
+      "updateDate": "2024-06-17 12:16:26",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,97857",
+      "sortOrder": 8,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1540/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1540/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1540/",
+      "amount": "1174.8",
+      "amountNumber": 1174.8,
+      "isPaid": true,
+      "payoutCreateDate": "2024-06-14 15:06:13",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1540/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1540/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "44",
+        "transactionFee": "6",
+        "kiibeeCut": "25",
+        "rentAmount": "0",
+        "from": "2023-12-11 09:16:44",
+        "rawEarnings": "2420",
+        "amount": "1174.8",
+        "isPaid": "1",
+        "to": "2024-06-14 15:05:51",
+        "transactionAmount": "145.2",
+        "kiibeeCutAmount": "1100"
+      }
+    },
+    {
+      "id": 93096,
+      "key": "b5f6964a-c872-4f01-af11-7f09900b59b5",
+      "udi": "umb://document/b5f6964ac8724f01af117f09900b59b5",
+      "name": "KBF-1472",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/93096",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-12-11 09:17:03",
+      "updateDate": "2023-12-11 12:46:39",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,93096",
+      "sortOrder": 7,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1472/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1472/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1472/",
+      "amount": "1682.1",
+      "amountNumber": 1682.1,
+      "isPaid": true,
+      "payoutCreateDate": "2023-12-11 09:17:03",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1472/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1472/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "63",
+        "transactionFee": "6",
+        "kiibeeCut": "25",
+        "rentAmount": "0",
+        "from": "2023-05-11 08:01:42",
+        "rawEarnings": "3465",
+        "amount": "1682.1",
+        "isPaid": "1",
+        "to": "2023-12-11 09:16:44",
+        "transactionAmount": "207.9",
+        "kiibeeCutAmount": "1575"
+      }
+    },
+    {
+      "id": 81707,
+      "key": "a3bdce98-7a68-4692-a629-7f079974bcda",
+      "udi": "umb://document/a3bdce987a684692a6297f079974bcda",
+      "name": "KBF-1406",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/81707",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-05-11 08:01:57",
+      "updateDate": "2023-05-12 11:09:02",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,81707",
+      "sortOrder": 6,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1406/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1406/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1406/",
+      "amount": "1042.5",
+      "amountNumber": 1042.5,
+      "isPaid": true,
+      "payoutCreateDate": "2023-05-11 08:01:57",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1406/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1406/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "25",
+        "transactionFee": "6",
+        "kiibeeCut": "10",
+        "rentAmount": "0",
+        "from": "2023-03-09 11:36:04",
+        "rawEarnings": "1375",
+        "amount": "1042.5",
+        "isPaid": "1",
+        "to": "2023-05-11 08:01:42",
+        "transactionAmount": "82.5",
+        "kiibeeCutAmount": "250"
+      }
+    },
+    {
+      "id": 78772,
+      "key": "eb6a6b44-07a9-4212-8a2a-f3b2807e6eff",
+      "udi": "umb://document/eb6a6b4407a942128a2af3b2807e6eff",
+      "name": "KBF-1388",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/78772",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-03-09 11:36:34",
+      "updateDate": "2023-03-10 10:48:31",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,78772",
+      "sortOrder": 5,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1388/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1388/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1388/",
+      "amount": "3719.5",
+      "amountNumber": 3719.5,
+      "isPaid": true,
+      "payoutCreateDate": "2023-03-09 11:36:34",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1388/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1388/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "86",
+        "transactionFee": "5",
+        "kiibeeCut": "9",
+        "rentAmount": "0",
+        "from": "2022-08-16 15:15:13",
+        "rawEarnings": "4730",
+        "amount": "3719.5",
+        "isPaid": "1",
+        "to": "2023-03-09 11:36:04",
+        "transactionAmount": "236.5",
+        "kiibeeCutAmount": "774"
+      }
+    },
+    {
+      "id": 68706,
+      "key": "2d7c1a49-56be-4b48-867d-8bea1b221086",
+      "udi": "umb://document/2d7c1a4956be4b48867d8bea1b221086",
+      "name": "KBF-1292",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/68706",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2022-08-16 15:15:32",
+      "updateDate": "2022-08-17 14:01:20",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,68706",
+      "sortOrder": 4,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1292/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1292/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1292/",
+      "amount": "4303.15",
+      "amountNumber": 4303.15,
+      "isPaid": true,
+      "payoutCreateDate": "2022-08-16 15:15:32",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1292/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1292/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "88",
+        "transactionFee": "3",
+        "kiibeeCut": "5",
+        "rentAmount": "1",
+        "from": "2021-11-29 12:36:31",
+        "rawEarnings": "4895",
+        "amount": "4303.15",
+        "isPaid": "1",
+        "to": "2022-08-16 15:15:13",
+        "transactionAmount": "146.85",
+        "kiibeeCutAmount": "445"
+      }
+    },
+    {
+      "id": 53801,
+      "key": "86ef63b9-3a95-467b-add8-169738b79857",
+      "udi": "umb://document/86ef63b93a95467badd8169738b79857",
+      "name": "KBF-1225",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/53801",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-11-29 12:37:00",
+      "updateDate": "2021-11-30 12:53:16",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,53801",
+      "sortOrder": 3,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1225/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1225/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1225/",
+      "amount": "870.3",
+      "amountNumber": 870.3,
+      "isPaid": true,
+      "payoutCreateDate": "2021-11-29 12:37:00",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1225/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1225/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "18",
+        "transactionFee": "3",
+        "kiibeeCut": "5",
+        "rentAmount": "0",
+        "from": "2021-10-29 11:21:04",
+        "rawEarnings": "990",
+        "amount": "870.3",
+        "isPaid": "1",
+        "to": "2021-11-29 12:36:31",
+        "transactionAmount": "29.7",
+        "kiibeeCutAmount": "90"
+      }
+    },
+    {
+      "id": 51102,
+      "key": "a1c04ba4-ff36-4fb8-b6da-deeadcd784cc",
+      "udi": "umb://document/a1c04ba4ff364fb8b6dadeeadcd784cc",
+      "name": "KBF-1207",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/51102",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-10-29 11:21:37",
+      "updateDate": "2021-11-01 14:07:42",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,51102",
+      "sortOrder": 2,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1207/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1207/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1207/",
+      "amount": "1015.35",
+      "amountNumber": 1015.35,
+      "isPaid": true,
+      "payoutCreateDate": "2021-10-29 11:21:37",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1207/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1207/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "21",
+        "transactionFee": "3",
+        "kiibeeCut": "5",
+        "rentAmount": "0",
+        "from": "2021-09-02 08:59:42",
+        "rawEarnings": "1155",
+        "amount": "1015.35",
+        "isPaid": "1",
+        "to": "2021-10-29 11:21:04",
+        "transactionAmount": "34.65",
+        "kiibeeCutAmount": "105"
+      }
+    },
+    {
+      "id": 49705,
+      "key": "49fdd6d4-c616-4ada-8c6d-196f4f84bcb2",
+      "udi": "umb://document/49fdd6d4c6164ada8c6d196f4f84bcb2",
+      "name": "KBF-1182",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/49705",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-09-02 09:00:10",
+      "updateDate": "2021-09-02 09:07:27",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,49705",
+      "sortOrder": 1,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1182/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1182/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1182/",
+      "amount": "5366.85",
+      "amountNumber": 5366.85,
+      "isPaid": true,
+      "payoutCreateDate": "2021-09-02 09:00:10",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1182/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1182/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "111",
+        "transactionFee": "3",
+        "kiibeeCut": "5",
+        "rentAmount": "0",
+        "from": "2021-01-26 12:44:38",
+        "rawEarnings": "6105",
+        "amount": "5366.85",
+        "isPaid": "1",
+        "to": "2021-09-02 08:59:42",
+        "transactionAmount": "183.15",
+        "kiibeeCutAmount": "555"
+      }
+    },
+    {
+      "id": 30449,
+      "key": "b584b6c6-cae4-49d8-8483-cfe0a53eaa5f",
+      "udi": "umb://document/b584b6c6cae449d88483cfe0a53eaa5f",
+      "name": "KBF-1112",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/30449",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2021-01-26 12:45:31",
+      "updateDate": "2021-01-27 16:04:46",
+      "parentId": 16706,
+      "path": "-1,1067,16702,16706,30449",
+      "sortOrder": 0,
+      "urls": [
+        "/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1112/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1112/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1112/",
+      "amount": "1934",
+      "amountNumber": 1934,
+      "isPaid": true,
+      "payoutCreateDate": "2021-01-26 12:45:31",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1112/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/paedagogisk-psykologisk-tidsskrift/payouts/kbf-1112/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "",
+        "transactionFee": "",
+        "kiibeeCut": "",
+        "rentAmount": "",
+        "from": "2020-06-05 11:00:17",
+        "rawEarnings": "",
+        "amount": "1934",
+        "isPaid": "1",
+        "to": "2021-01-26 12:44:38",
+        "transactionAmount": "",
+        "kiibeeCutAmount": ""
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

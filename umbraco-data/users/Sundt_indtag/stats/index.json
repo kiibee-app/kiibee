@@ -1,20 +1,17 @@
 {
-  "exportedAt": "2026-06-02T09:17:48.707Z",
-  "collectionName": "Stats",
+  "exportedAt": "2026-06-02T11:13:55.732Z",
+  "collectionName": "stats",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2817",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
     "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
     "parentId": 2817,
-    "includeProperties": [
-      "title",
-      "orderID",
-      "hidden"
-    ],
+    "includeProperties": ["isPlay", "uID", "media"],
     "orderBy": "createDate",
     "orderDirection": "Descending",
     "orderBySystemField": true,
-    "extraDetailIds": []
+    "extraDetailIds": [],
+    "fetchDetails": false
   },
   "parent": {
     "id": 2817,
@@ -24,9 +21,7 @@
     "contentTypeAlias": "stats",
     "published": true,
     "hasPublishedVersion": true,
-    "urls": [
-      "/sundt-indtag/stats/"
-    ],
+    "urls": ["/sundt-indtag/stats/"],
     "fields": {
       "_umb_containerView": null
     },
@@ -43,9 +38,7 @@
         "value": null
       }
     },
-    "fieldOrder": [
-      "_umb_containerView"
-    ]
+    "fieldOrder": ["_umb_containerView"]
   },
   "counts": {
     "totalItemsFromApi": 0,

@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+84845,28fb5e2f-ffcc-4626-a81a-bff7e246eaa8,umb://document/28fb5e2fffcc4626a81abff7e246eaa8,KBF-1418,1103,1103,true,2023-05-23 11:39:23,2023-05-23 11:39:23,https://kiibee.dk/foreningen-danske-revisorer/payouts/kbf-1418/,matched-public-payout-url,https://kiibee.dk/foreningen-danske-revisorer/payouts/kbf-1418/,https://kiibee.dk/foreningen-danske-revisorer/payouts/kbf-1418/,,

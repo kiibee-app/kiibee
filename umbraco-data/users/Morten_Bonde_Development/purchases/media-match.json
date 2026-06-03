@@ -1,0 +1,52 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/b1c0e082126547229a834fca2cb57005",
+      "key": "b1c0e082-1265-4722-9a83-4fca2cb57005",
+      "resolved": true,
+      "id": 15119,
+      "name": "FILMEN Dømt blind - hva' så? - et online foredrag",
+      "title": "FILMEN Dømt blind - hva' så? - et online foredrag",
+      "urls": [
+        "/morten-bonde-development/foredragsfilm/filmen-doemt-blind-hva-saa-et-online-foredrag/"
+      ],
+      "contentTypeAlias": "media",
+      "videoID": "433dd1a9aaec0f73b4f3b5c683a2d5ec",
+      "videoStatus": "ready",
+      "videoThumbnailURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/thumbnails/thumbnail.jpg",
+      "videoDownloadURL": "https://videodelivery.net/433dd1a9aaec0f73b4f3b5c683a2d5ec/downloads/default.mp4",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/1863/forside-til-videoforedrag-youtube.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "69",
+      "rentalPrice": "49",
+      "purchaseEntryCount": 16,
+      "purchaseOrderCount": 13,
+      "nonPurchaseEntryCount": 3,
+      "totalDownloads": 3,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2020-05-14 23:33:29",
+      "lastPurchaseAt": "2024-12-12 12:06:37",
+      "samplePurchaseIds": [103623, 72502, 49777, 45133, 22183]
+    }
+  ],
+  "unresolvedMedia": []
+}

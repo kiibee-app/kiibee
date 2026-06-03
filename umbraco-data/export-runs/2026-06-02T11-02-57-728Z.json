@@ -1,0 +1,4352 @@
+{
+  "startedAt": "2026-06-02T11:02:57.728Z",
+  "finishedAt": null,
+  "rootId": 1067,
+  "tasks": ["stats", "shows", "purchases", "payouts"],
+  "skipExisting": true,
+  "counts": {
+    "ok": 153,
+    "skipped": 79,
+    "error": 0
+  },
+  "users": [
+    {
+      "userDir": "Rumhed",
+      "liveName": "Rumhed",
+      "userId": 123946
+    },
+    {
+      "userDir": "Diy_for_børn",
+      "liveName": "Diy for børn",
+      "userId": 123466
+    },
+    {
+      "userDir": "Maximilian_Nielsen",
+      "liveName": "Maximilian Nielsen",
+      "userId": 123336
+    },
+    {
+      "userDir": "Maria_Birch_Rasmussen",
+      "liveName": "Maria Birch Rasmussen",
+      "userId": 123123
+    },
+    {
+      "userDir": "APHypnose",
+      "liveName": "APHypnose",
+      "userId": 122771
+    },
+    {
+      "userDir": "Mirna_Barbar",
+      "liveName": "Mirna Barbar",
+      "userId": 119675
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111
+    },
+    {
+      "userDir": "Vocal_Line",
+      "liveName": "Vocal Line",
+      "userId": 117974
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157
+    },
+    {
+      "userDir": "Ahmed_Mittani",
+      "liveName": "Ahmed Mittani",
+      "userId": 115623
+    },
+    {
+      "userDir": "Tine_Rask_Mathiesen",
+      "liveName": "Tine Rask Mathiesen",
+      "userId": 115439
+    },
+    {
+      "userDir": "jwtc",
+      "liveName": "jwtc",
+      "userId": 114463
+    },
+    {
+      "userDir": "Ali_El-Atbi",
+      "liveName": "Ali El-Atbi",
+      "userId": 113834
+    },
+    {
+      "userDir": "Ana_Castellanos",
+      "liveName": "Ana Castellanos",
+      "userId": 113739
+    },
+    {
+      "userDir": "Anne_brietzke",
+      "liveName": "Anne brietzke",
+      "userId": 112870
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070
+    },
+    {
+      "userDir": "Kiibee_(1)",
+      "liveName": "Kiibee (1)",
+      "userId": 111740
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587
+    },
+    {
+      "userDir": "Publika",
+      "liveName": "Publika",
+      "userId": 101314
+    },
+    {
+      "userDir": "Janni_-_Køreskole_og_Terapi",
+      "liveName": "Janni - Køreskole og Terapi",
+      "userId": 100586
+    },
+    {
+      "userDir": "CamComm",
+      "liveName": "CamComm",
+      "userId": 100474
+    },
+    {
+      "userDir": "VideoVisionær_kursus",
+      "liveName": "VideoVisionær kursus",
+      "userId": 100020
+    },
+    {
+      "userDir": "RauJensen",
+      "liveName": "RauJensen",
+      "userId": 99738
+    },
+    {
+      "userDir": "Lev_Dit_Liv_NU",
+      "liveName": "Lev Dit Liv NU",
+      "userId": 97418
+    },
+    {
+      "userDir": "Forlaget_AKKA",
+      "liveName": "Forlaget AKKA",
+      "userId": 96549
+    },
+    {
+      "userDir": "Fonden_Eventyrteatret",
+      "liveName": "Fonden Eventyrteatret",
+      "userId": 96011
+    },
+    {
+      "userDir": "Karina_Eckhausen",
+      "liveName": "Karina Eckhausen",
+      "userId": 95577
+    },
+    {
+      "userDir": "Damkjær_Medier",
+      "liveName": "Damkjær Medier",
+      "userId": 94485
+    },
+    {
+      "userDir": "Kitnoergaard.dk",
+      "liveName": "Kitnoergaard.dk",
+      "userId": 93855
+    },
+    {
+      "userDir": "Per_Vers",
+      "liveName": "Per Vers",
+      "userId": 91682
+    },
+    {
+      "userDir": "Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen",
+      "liveName": "Familier fødes - familiens psykolog gennem hele rejsen",
+      "userId": 91260
+    },
+    {
+      "userDir": "@lawn.dk",
+      "liveName": "@lawn.dk",
+      "userId": 79943
+    },
+    {
+      "userDir": "Line_JL_Feel_the_Heal",
+      "liveName": "Line JL Feel the Heal",
+      "userId": 78467
+    },
+    {
+      "userDir": "You_Consulting",
+      "liveName": "You Consulting",
+      "userId": 78110
+    },
+    {
+      "userDir": "Simon_Talbot",
+      "liveName": "Simon Talbot",
+      "userId": 77648
+    },
+    {
+      "userDir": "Jacob_Taarnhøj",
+      "liveName": "Jacob Taarnhøj",
+      "userId": 75778
+    },
+    {
+      "userDir": "ADHDFOKUS",
+      "liveName": "ADHDFOKUS",
+      "userId": 75311
+    },
+    {
+      "userDir": "A5_Forlag_ApS",
+      "liveName": "A5 Forlag ApS",
+      "userId": 73339
+    },
+    {
+      "userDir": "Rikke_Brünner",
+      "liveName": "Rikke Brünner ",
+      "userId": 67371
+    },
+    {
+      "userDir": "Foreningen_Danske_Revisorer",
+      "liveName": "Foreningen Danske Revisorer",
+      "userId": 65131
+    },
+    {
+      "userDir": "Vital_New_Software_ApS",
+      "liveName": "Vital New Software ApS",
+      "userId": 62344
+    },
+    {
+      "userDir": "EvaFogNoer",
+      "liveName": "EvaFogNoer",
+      "userId": 57261
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246
+    },
+    {
+      "userDir": "gymstream",
+      "liveName": "gymstream",
+      "userId": 51011
+    },
+    {
+      "userDir": "M.C._Caffe",
+      "liveName": "M.C. Caffe",
+      "userId": 50894
+    },
+    {
+      "userDir": "TjelesVenner",
+      "liveName": "TjelesVenner",
+      "userId": 50462
+    },
+    {
+      "userDir": "NSCCM_ApS",
+      "liveName": "NSCCM ApS",
+      "userId": 50069
+    },
+    {
+      "userDir": "Gottleben",
+      "liveName": "Gottleben",
+      "userId": 47444
+    },
+    {
+      "userDir": "Omar_Marzouk",
+      "liveName": "Omar Marzouk",
+      "userId": 46871
+    },
+    {
+      "userDir": "Red_Barnet",
+      "liveName": "Red Barnet",
+      "userId": 46713
+    },
+    {
+      "userDir": "Jacob_Wilson",
+      "liveName": "Jacob Wilson",
+      "userId": 46212
+    },
+    {
+      "userDir": "Kryptovaluta_for_kvinder",
+      "liveName": "Kryptovaluta for kvinder",
+      "userId": 42880
+    },
+    {
+      "userDir": "Elias_Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704
+    }
+  ],
+  "results": [
+    {
+      "userDir": "Rumhed",
+      "liveName": "Rumhed",
+      "userId": 123946,
+      "task": "stats",
+      "parentId": 123947,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:02:58.897Z",
+      "finishedAt": "2026-06-02T11:02:59.581Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Rumhed\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Rumhed",
+      "liveName": "Rumhed",
+      "userId": 123946,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Rumhed",
+      "liveName": "Rumhed",
+      "userId": 123946,
+      "task": "purchases",
+      "parentId": 123951,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:02:59.587Z",
+      "finishedAt": "2026-06-02T11:03:00.235Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Rumhed\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Rumhed",
+      "liveName": "Rumhed",
+      "userId": 123946,
+      "task": "payouts",
+      "parentId": 123950,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:00.238Z",
+      "finishedAt": "2026-06-02T11:03:00.967Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Rumhed\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Diy_for_børn",
+      "liveName": "Diy for børn",
+      "userId": 123466,
+      "task": "stats",
+      "parentId": 123467,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:01.207Z",
+      "finishedAt": "2026-06-02T11:03:01.877Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Diy_for_børn\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Diy_for_børn",
+      "liveName": "Diy for børn",
+      "userId": 123466,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Diy_for_børn",
+      "liveName": "Diy for børn",
+      "userId": 123466,
+      "task": "purchases",
+      "parentId": 123471,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:01.882Z",
+      "finishedAt": "2026-06-02T11:03:02.573Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Diy_for_børn\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Diy_for_børn",
+      "liveName": "Diy for børn",
+      "userId": 123466,
+      "task": "payouts",
+      "parentId": 123470,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:02.575Z",
+      "finishedAt": "2026-06-02T11:03:03.252Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Diy_for_børn\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Maximilian_Nielsen",
+      "liveName": "Maximilian Nielsen",
+      "userId": 123336,
+      "task": "stats",
+      "parentId": 123337,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:03.491Z",
+      "finishedAt": "2026-06-02T11:03:04.209Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Maximilian_Nielsen\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Maximilian_Nielsen",
+      "liveName": "Maximilian Nielsen",
+      "userId": 123336,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Maximilian_Nielsen",
+      "liveName": "Maximilian Nielsen",
+      "userId": 123336,
+      "task": "purchases",
+      "parentId": 123341,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:04.212Z",
+      "finishedAt": "2026-06-02T11:03:04.931Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Maximilian_Nielsen\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Maximilian_Nielsen",
+      "liveName": "Maximilian Nielsen",
+      "userId": 123336,
+      "task": "payouts",
+      "parentId": 123340,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:04.934Z",
+      "finishedAt": "2026-06-02T11:03:05.662Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Maximilian_Nielsen\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Maria_Birch_Rasmussen",
+      "liveName": "Maria Birch Rasmussen",
+      "userId": 123123,
+      "task": "stats",
+      "parentId": 123124,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:05.895Z",
+      "finishedAt": "2026-06-02T11:03:06.645Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Maria_Birch_Rasmussen\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Maria_Birch_Rasmussen",
+      "liveName": "Maria Birch Rasmussen",
+      "userId": 123123,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Maria_Birch_Rasmussen",
+      "liveName": "Maria Birch Rasmussen",
+      "userId": 123123,
+      "task": "purchases",
+      "parentId": 123128,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:06.648Z",
+      "finishedAt": "2026-06-02T11:03:07.355Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Maria_Birch_Rasmussen\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Maria_Birch_Rasmussen",
+      "liveName": "Maria Birch Rasmussen",
+      "userId": 123123,
+      "task": "payouts",
+      "parentId": 123127,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:07.358Z",
+      "finishedAt": "2026-06-02T11:03:07.999Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Maria_Birch_Rasmussen\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "APHypnose",
+      "liveName": "APHypnose",
+      "userId": 122771,
+      "task": "stats",
+      "parentId": 122772,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:08.241Z",
+      "finishedAt": "2026-06-02T11:03:08.851Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\APHypnose\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "APHypnose",
+      "liveName": "APHypnose",
+      "userId": 122771,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "APHypnose",
+      "liveName": "APHypnose",
+      "userId": 122771,
+      "task": "purchases",
+      "parentId": 122776,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:08.854Z",
+      "finishedAt": "2026-06-02T11:03:09.460Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\APHypnose\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "APHypnose",
+      "liveName": "APHypnose",
+      "userId": 122771,
+      "task": "payouts",
+      "parentId": 122775,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:09.462Z",
+      "finishedAt": "2026-06-02T11:03:10.073Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\APHypnose\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Mirna_Barbar",
+      "liveName": "Mirna Barbar",
+      "userId": 119675,
+      "task": "stats",
+      "parentId": 119676,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:10.310Z",
+      "finishedAt": "2026-06-02T11:03:10.960Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Mirna_Barbar\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 3,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 3
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Mirna_Barbar",
+      "liveName": "Mirna Barbar",
+      "userId": 119675,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Mirna_Barbar",
+      "liveName": "Mirna Barbar",
+      "userId": 119675,
+      "task": "purchases",
+      "parentId": 119680,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:10.963Z",
+      "finishedAt": "2026-06-02T11:03:12.112Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Mirna_Barbar\\purchases",
+        "purchases": 1,
+        "purchaseEntries": 1,
+        "detailsFetched": 1,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Mirna_Barbar",
+      "liveName": "Mirna Barbar",
+      "userId": 119675,
+      "task": "payouts",
+      "parentId": 119679,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:12.115Z",
+      "finishedAt": "2026-06-02T11:03:13.008Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Mirna_Barbar\\payouts",
+        "payouts": 1,
+        "paidPayouts": 1,
+        "totalAmount": 99.1,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984,
+      "task": "stats",
+      "parentId": 118985,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:13.267Z",
+      "finishedAt": "2026-06-02T11:03:14.041Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Diana_Myjak\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984,
+      "task": "purchases",
+      "parentId": 118989,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:14.043Z",
+      "finishedAt": "2026-06-02T11:03:14.711Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Diana_Myjak\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Diana_Myjak",
+      "liveName": "Diana Myjak",
+      "userId": 118984,
+      "task": "payouts",
+      "parentId": 118988,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:14.715Z",
+      "finishedAt": "2026-06-02T11:03:15.443Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Diana_Myjak\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111,
+      "task": "stats",
+      "parentId": 118112,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:15.688Z",
+      "finishedAt": "2026-06-02T11:03:16.468Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Laura_Nielsen\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 7,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 7
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111,
+      "task": "purchases",
+      "parentId": 118116,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:16.471Z",
+      "finishedAt": "2026-06-02T11:03:17.153Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Laura_Nielsen\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Laura_Nielsen",
+      "liveName": "Laura Nielsen",
+      "userId": 118111,
+      "task": "payouts",
+      "parentId": 118115,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:17.156Z",
+      "finishedAt": "2026-06-02T11:03:17.829Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Laura_Nielsen\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Vocal_Line",
+      "liveName": "Vocal Line",
+      "userId": 117974,
+      "task": "stats",
+      "parentId": 117975,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:18.118Z",
+      "finishedAt": "2026-06-02T11:03:18.877Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Vocal_Line\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Vocal_Line",
+      "liveName": "Vocal Line",
+      "userId": 117974,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Vocal_Line",
+      "liveName": "Vocal Line",
+      "userId": 117974,
+      "task": "purchases",
+      "parentId": 117979,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:18.880Z",
+      "finishedAt": "2026-06-02T11:03:19.582Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Vocal_Line\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Vocal_Line",
+      "liveName": "Vocal Line",
+      "userId": 117974,
+      "task": "payouts",
+      "parentId": 117978,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:19.585Z",
+      "finishedAt": "2026-06-02T11:03:20.281Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Vocal_Line\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534,
+      "task": "stats",
+      "parentId": 117535,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:20.530Z",
+      "finishedAt": "2026-06-02T11:03:21.302Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Dahls_regnskabsservice_ApS\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 11,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 11
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534,
+      "task": "purchases",
+      "parentId": 117539,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:21.305Z",
+      "finishedAt": "2026-06-02T11:03:22.457Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Dahls_regnskabsservice_ApS\\purchases",
+        "purchases": 2,
+        "purchaseEntries": 2,
+        "detailsFetched": 2,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Dahls_regnskabsservice_ApS",
+      "liveName": "Dahls regnskabsservice ApS",
+      "userId": 117534,
+      "task": "payouts",
+      "parentId": 117538,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:22.459Z",
+      "finishedAt": "2026-06-02T11:03:23.376Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Dahls_regnskabsservice_ApS\\payouts",
+        "payouts": 2,
+        "paidPayouts": 2,
+        "totalAmount": 344.12,
+        "detailsFetched": 2,
+        "entriesWithInvoiceLink": 2,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505,
+      "task": "stats",
+      "parentId": 117506,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:23.624Z",
+      "finishedAt": "2026-06-02T11:03:24.300Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Nethe_Nomonde_Dalgaard\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 6,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 6
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505,
+      "task": "purchases",
+      "parentId": 117510,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:24.303Z",
+      "finishedAt": "2026-06-02T11:03:25.526Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Nethe_Nomonde_Dalgaard\\purchases",
+        "purchases": 5,
+        "purchaseEntries": 5,
+        "detailsFetched": 5,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Nethe_Nomonde_Dalgaard",
+      "liveName": "Nethe Nomonde Dalgaard",
+      "userId": 117505,
+      "task": "payouts",
+      "parentId": 117509,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:25.528Z",
+      "finishedAt": "2026-06-02T11:03:26.450Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Nethe_Nomonde_Dalgaard\\payouts",
+        "payouts": 1,
+        "paidPayouts": 1,
+        "totalAmount": 166.5,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157,
+      "task": "stats",
+      "parentId": 117158,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:26.694Z",
+      "finishedAt": "2026-06-02T11:03:27.364Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Akupunktør_Stine_Vogel\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157,
+      "task": "purchases",
+      "parentId": 117162,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:27.366Z",
+      "finishedAt": "2026-06-02T11:03:28.213Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Akupunktør_Stine_Vogel\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Akupunktør_Stine_Vogel",
+      "liveName": "Akupunktør Stine Vogel",
+      "userId": 117157,
+      "task": "payouts",
+      "parentId": 117161,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:28.216Z",
+      "finishedAt": "2026-06-02T11:03:28.835Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Akupunktør_Stine_Vogel\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Ahmed_Mittani",
+      "liveName": "Ahmed Mittani",
+      "userId": 115623,
+      "task": "stats",
+      "parentId": 115624,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:29.076Z",
+      "finishedAt": "2026-06-02T11:03:29.748Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Ahmed_Mittani\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Ahmed_Mittani",
+      "liveName": "Ahmed Mittani",
+      "userId": 115623,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Ahmed_Mittani",
+      "liveName": "Ahmed Mittani",
+      "userId": 115623,
+      "task": "purchases",
+      "parentId": 115628,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:29.752Z",
+      "finishedAt": "2026-06-02T11:03:30.435Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Ahmed_Mittani\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Ahmed_Mittani",
+      "liveName": "Ahmed Mittani",
+      "userId": 115623,
+      "task": "payouts",
+      "parentId": 115627,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:30.437Z",
+      "finishedAt": "2026-06-02T11:03:31.074Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Ahmed_Mittani\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Tine_Rask_Mathiesen",
+      "liveName": "Tine Rask Mathiesen",
+      "userId": 115439,
+      "task": "stats",
+      "parentId": 115440,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:31.343Z",
+      "finishedAt": "2026-06-02T11:03:32.026Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Tine_Rask_Mathiesen\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Tine_Rask_Mathiesen",
+      "liveName": "Tine Rask Mathiesen",
+      "userId": 115439,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Tine_Rask_Mathiesen",
+      "liveName": "Tine Rask Mathiesen",
+      "userId": 115439,
+      "task": "purchases",
+      "parentId": 115444,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:32.031Z",
+      "finishedAt": "2026-06-02T11:03:32.739Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Tine_Rask_Mathiesen\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Tine_Rask_Mathiesen",
+      "liveName": "Tine Rask Mathiesen",
+      "userId": 115439,
+      "task": "payouts",
+      "parentId": 115443,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:32.742Z",
+      "finishedAt": "2026-06-02T11:03:33.497Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Tine_Rask_Mathiesen\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "jwtc",
+      "liveName": "jwtc",
+      "userId": 114463,
+      "task": "stats",
+      "parentId": 114464,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:33.763Z",
+      "finishedAt": "2026-06-02T11:03:34.547Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\jwtc\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "jwtc",
+      "liveName": "jwtc",
+      "userId": 114463,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "jwtc",
+      "liveName": "jwtc",
+      "userId": 114463,
+      "task": "purchases",
+      "parentId": 114468,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:34.551Z",
+      "finishedAt": "2026-06-02T11:03:35.175Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\jwtc\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "jwtc",
+      "liveName": "jwtc",
+      "userId": 114463,
+      "task": "payouts",
+      "parentId": 114467,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:35.177Z",
+      "finishedAt": "2026-06-02T11:03:35.906Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\jwtc\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Ali_El-Atbi",
+      "liveName": "Ali El-Atbi",
+      "userId": 113834,
+      "task": "stats",
+      "parentId": 113835,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:36.141Z",
+      "finishedAt": "2026-06-02T11:03:36.864Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Ali_El-Atbi\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Ali_El-Atbi",
+      "liveName": "Ali El-Atbi",
+      "userId": 113834,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Ali_El-Atbi",
+      "liveName": "Ali El-Atbi",
+      "userId": 113834,
+      "task": "purchases",
+      "parentId": 113839,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:36.867Z",
+      "finishedAt": "2026-06-02T11:03:37.539Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Ali_El-Atbi\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Ali_El-Atbi",
+      "liveName": "Ali El-Atbi",
+      "userId": 113834,
+      "task": "payouts",
+      "parentId": 113838,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:37.542Z",
+      "finishedAt": "2026-06-02T11:03:38.222Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Ali_El-Atbi\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Ana_Castellanos",
+      "liveName": "Ana Castellanos",
+      "userId": 113739,
+      "task": "stats",
+      "parentId": 113740,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:38.477Z",
+      "finishedAt": "2026-06-02T11:03:39.132Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Ana_Castellanos\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Ana_Castellanos",
+      "liveName": "Ana Castellanos",
+      "userId": 113739,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Ana_Castellanos",
+      "liveName": "Ana Castellanos",
+      "userId": 113739,
+      "task": "purchases",
+      "parentId": 113744,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:39.139Z",
+      "finishedAt": "2026-06-02T11:03:39.806Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Ana_Castellanos\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Ana_Castellanos",
+      "liveName": "Ana Castellanos",
+      "userId": 113739,
+      "task": "payouts",
+      "parentId": 113743,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:39.809Z",
+      "finishedAt": "2026-06-02T11:03:40.433Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Ana_Castellanos\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Anne_brietzke",
+      "liveName": "Anne brietzke",
+      "userId": 112870,
+      "task": "stats",
+      "parentId": 112871,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:40.672Z",
+      "finishedAt": "2026-06-02T11:03:41.348Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Anne_brietzke\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 25,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 25
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Anne_brietzke",
+      "liveName": "Anne brietzke",
+      "userId": 112870,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Anne_brietzke",
+      "liveName": "Anne brietzke",
+      "userId": 112870,
+      "task": "purchases",
+      "parentId": 112875,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:41.351Z",
+      "finishedAt": "2026-06-02T11:03:43.357Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Anne_brietzke\\purchases",
+        "purchases": 28,
+        "purchaseEntries": 28,
+        "detailsFetched": 28,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Anne_brietzke",
+      "liveName": "Anne brietzke",
+      "userId": 112870,
+      "task": "payouts",
+      "parentId": 112874,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:43.360Z",
+      "finishedAt": "2026-06-02T11:03:44.251Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Anne_brietzke\\payouts",
+        "payouts": 2,
+        "paidPayouts": 2,
+        "totalAmount": 501.2,
+        "detailsFetched": 2,
+        "entriesWithInvoiceLink": 2,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070,
+      "task": "stats",
+      "parentId": 112071,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:44.504Z",
+      "finishedAt": "2026-06-02T11:03:53.920Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Funktionel_Neuro_Terapeut_(1)\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 1983,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 1983
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070,
+      "task": "purchases",
+      "parentId": 112075,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:53.924Z",
+      "finishedAt": "2026-06-02T11:03:54.621Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Funktionel_Neuro_Terapeut_(1)\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut_(1)",
+      "liveName": "Funktionel Neuro Terapeut (1)",
+      "userId": 112070,
+      "task": "payouts",
+      "parentId": 112074,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:54.625Z",
+      "finishedAt": "2026-06-02T11:03:55.260Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Funktionel_Neuro_Terapeut_(1)\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kiibee_(1)",
+      "liveName": "Kiibee (1)",
+      "userId": 111740,
+      "task": "stats",
+      "parentId": 111742,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:55.506Z",
+      "finishedAt": "2026-06-02T11:03:56.155Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kiibee_(1)\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Kiibee_(1)",
+      "liveName": "Kiibee (1)",
+      "userId": 111740,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Kiibee_(1)",
+      "liveName": "Kiibee (1)",
+      "userId": 111740,
+      "task": "purchases",
+      "parentId": 111750,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:56.158Z",
+      "finishedAt": "2026-06-02T11:03:56.819Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kiibee_(1)\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kiibee_(1)",
+      "liveName": "Kiibee (1)",
+      "userId": 111740,
+      "task": "payouts",
+      "parentId": 111748,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:56.821Z",
+      "finishedAt": "2026-06-02T11:03:57.423Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kiibee_(1)\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362,
+      "task": "stats",
+      "parentId": 106363,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:57.659Z",
+      "finishedAt": "2026-06-02T11:03:58.326Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Olivia_Hvoslef_Mejer_Madsen\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362,
+      "task": "purchases",
+      "parentId": 106367,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:58.328Z",
+      "finishedAt": "2026-06-02T11:03:59.090Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Olivia_Hvoslef_Mejer_Madsen\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Olivia_Hvoslef_Mejer_Madsen",
+      "liveName": "Olivia Hvoslef Mejer Madsen",
+      "userId": 106362,
+      "task": "payouts",
+      "parentId": 106366,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:03:59.093Z",
+      "finishedAt": "2026-06-02T11:03:59.782Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Olivia_Hvoslef_Mejer_Madsen\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939,
+      "task": "stats",
+      "parentId": 103940,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:00.057Z",
+      "finishedAt": "2026-06-02T11:04:00.742Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\SkoleRo_ApS\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 1,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 1
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939,
+      "task": "purchases",
+      "parentId": 103944,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:00.745Z",
+      "finishedAt": "2026-06-02T11:04:01.356Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\SkoleRo_ApS\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "SkoleRo_ApS",
+      "liveName": "SkoleRo ApS",
+      "userId": 103939,
+      "task": "payouts",
+      "parentId": 103943,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:01.358Z",
+      "finishedAt": "2026-06-02T11:04:01.983Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\SkoleRo_ApS\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587,
+      "task": "stats",
+      "parentId": 101588,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:02.228Z",
+      "finishedAt": "2026-06-02T11:04:11.939Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Funktionel_Neuro_Terapeut\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 2058,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 2058
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587,
+      "task": "purchases",
+      "parentId": 101592,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:11.942Z",
+      "finishedAt": "2026-06-02T11:04:12.682Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Funktionel_Neuro_Terapeut\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Funktionel_Neuro_Terapeut",
+      "liveName": "Funktionel Neuro Terapeut",
+      "userId": 101587,
+      "task": "payouts",
+      "parentId": 101591,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:12.685Z",
+      "finishedAt": "2026-06-02T11:04:13.311Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Funktionel_Neuro_Terapeut\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Publika",
+      "liveName": "Publika",
+      "userId": 101314,
+      "task": "stats",
+      "parentId": 101315,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:13.561Z",
+      "finishedAt": "2026-06-02T11:04:14.290Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Publika\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 60,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 60
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Publika",
+      "liveName": "Publika",
+      "userId": 101314,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Publika",
+      "liveName": "Publika",
+      "userId": 101314,
+      "task": "purchases",
+      "parentId": 101319,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:14.294Z",
+      "finishedAt": "2026-06-02T11:04:17.210Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Publika\\purchases",
+        "purchases": 49,
+        "purchaseEntries": 49,
+        "detailsFetched": 49,
+        "uniqueMediaUdis": 2,
+        "mediaResolved": 2,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Publika",
+      "liveName": "Publika",
+      "userId": 101314,
+      "task": "payouts",
+      "parentId": 101318,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:17.214Z",
+      "finishedAt": "2026-06-02T11:04:18.151Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Publika\\payouts",
+        "payouts": 2,
+        "paidPayouts": 2,
+        "totalAmount": 1283.1,
+        "detailsFetched": 2,
+        "entriesWithInvoiceLink": 2,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Janni_-_Køreskole_og_Terapi",
+      "liveName": "Janni - Køreskole og Terapi",
+      "userId": 100586,
+      "task": "stats",
+      "parentId": 100587,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:18.392Z",
+      "finishedAt": "2026-06-02T11:04:19.027Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Janni_-_Køreskole_og_Terapi\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Janni_-_Køreskole_og_Terapi",
+      "liveName": "Janni - Køreskole og Terapi",
+      "userId": 100586,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Janni_-_Køreskole_og_Terapi",
+      "liveName": "Janni - Køreskole og Terapi",
+      "userId": 100586,
+      "task": "purchases",
+      "parentId": 100591,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:19.030Z",
+      "finishedAt": "2026-06-02T11:04:19.869Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Janni_-_Køreskole_og_Terapi\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Janni_-_Køreskole_og_Terapi",
+      "liveName": "Janni - Køreskole og Terapi",
+      "userId": 100586,
+      "task": "payouts",
+      "parentId": 100590,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:19.872Z",
+      "finishedAt": "2026-06-02T11:04:20.845Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Janni_-_Køreskole_og_Terapi\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "CamComm",
+      "liveName": "CamComm",
+      "userId": 100474,
+      "task": "stats",
+      "parentId": 100475,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:21.097Z",
+      "finishedAt": "2026-06-02T11:04:21.739Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\CamComm\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "CamComm",
+      "liveName": "CamComm",
+      "userId": 100474,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "CamComm",
+      "liveName": "CamComm",
+      "userId": 100474,
+      "task": "purchases",
+      "parentId": 100479,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:21.742Z",
+      "finishedAt": "2026-06-02T11:04:22.441Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\CamComm\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "CamComm",
+      "liveName": "CamComm",
+      "userId": 100474,
+      "task": "payouts",
+      "parentId": 100478,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:22.443Z",
+      "finishedAt": "2026-06-02T11:04:23.072Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\CamComm\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "VideoVisionær_kursus",
+      "liveName": "VideoVisionær kursus",
+      "userId": 100020,
+      "task": "stats",
+      "parentId": 100021,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:23.316Z",
+      "finishedAt": "2026-06-02T11:04:23.974Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\VideoVisionær_kursus\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "VideoVisionær_kursus",
+      "liveName": "VideoVisionær kursus",
+      "userId": 100020,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "VideoVisionær_kursus",
+      "liveName": "VideoVisionær kursus",
+      "userId": 100020,
+      "task": "purchases",
+      "parentId": 100025,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:23.978Z",
+      "finishedAt": "2026-06-02T11:04:24.613Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\VideoVisionær_kursus\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "VideoVisionær_kursus",
+      "liveName": "VideoVisionær kursus",
+      "userId": 100020,
+      "task": "payouts",
+      "parentId": 100024,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:24.616Z",
+      "finishedAt": "2026-06-02T11:04:25.403Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\VideoVisionær_kursus\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "RauJensen",
+      "liveName": "RauJensen",
+      "userId": 99738,
+      "task": "stats",
+      "parentId": 99739,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:25.640Z",
+      "finishedAt": "2026-06-02T11:04:26.290Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\RauJensen\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 1,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 1
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "RauJensen",
+      "liveName": "RauJensen",
+      "userId": 99738,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "RauJensen",
+      "liveName": "RauJensen",
+      "userId": 99738,
+      "task": "purchases",
+      "parentId": 99743,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:26.293Z",
+      "finishedAt": "2026-06-02T11:04:26.918Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\RauJensen\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "RauJensen",
+      "liveName": "RauJensen",
+      "userId": 99738,
+      "task": "payouts",
+      "parentId": 99742,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:26.921Z",
+      "finishedAt": "2026-06-02T11:04:27.543Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\RauJensen\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Lev_Dit_Liv_NU",
+      "liveName": "Lev Dit Liv NU",
+      "userId": 97418,
+      "task": "stats",
+      "parentId": 97419,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:27.792Z",
+      "finishedAt": "2026-06-02T11:04:28.462Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Lev_Dit_Liv_NU\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 6,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 6
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Lev_Dit_Liv_NU",
+      "liveName": "Lev Dit Liv NU",
+      "userId": 97418,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Lev_Dit_Liv_NU",
+      "liveName": "Lev Dit Liv NU",
+      "userId": 97418,
+      "task": "purchases",
+      "parentId": 97423,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:28.464Z",
+      "finishedAt": "2026-06-02T11:04:29.142Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Lev_Dit_Liv_NU\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Lev_Dit_Liv_NU",
+      "liveName": "Lev Dit Liv NU",
+      "userId": 97418,
+      "task": "payouts",
+      "parentId": 97422,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:29.145Z",
+      "finishedAt": "2026-06-02T11:04:29.758Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Lev_Dit_Liv_NU\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Forlaget_AKKA",
+      "liveName": "Forlaget AKKA",
+      "userId": 96549,
+      "task": "stats",
+      "parentId": 96550,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:30.000Z",
+      "finishedAt": "2026-06-02T11:04:30.648Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Forlaget_AKKA\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 15,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 15
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Forlaget_AKKA",
+      "liveName": "Forlaget AKKA",
+      "userId": 96549,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Forlaget_AKKA",
+      "liveName": "Forlaget AKKA",
+      "userId": 96549,
+      "task": "purchases",
+      "parentId": 96554,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:30.651Z",
+      "finishedAt": "2026-06-02T11:04:32.075Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Forlaget_AKKA\\purchases",
+        "purchases": 7,
+        "purchaseEntries": 7,
+        "detailsFetched": 7,
+        "uniqueMediaUdis": 2,
+        "mediaResolved": 2,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Forlaget_AKKA",
+      "liveName": "Forlaget AKKA",
+      "userId": 96549,
+      "task": "payouts",
+      "parentId": 96553,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:32.078Z",
+      "finishedAt": "2026-06-02T11:04:32.997Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Forlaget_AKKA\\payouts",
+        "payouts": 1,
+        "paidPayouts": 0,
+        "totalAmount": 391.56,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Fonden_Eventyrteatret",
+      "liveName": "Fonden Eventyrteatret",
+      "userId": 96011,
+      "task": "stats",
+      "parentId": 96012,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:33.470Z",
+      "finishedAt": "2026-06-02T11:04:42.006Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Fonden_Eventyrteatret\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 1679,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 1679
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Fonden_Eventyrteatret",
+      "liveName": "Fonden Eventyrteatret",
+      "userId": 96011,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Fonden_Eventyrteatret",
+      "liveName": "Fonden Eventyrteatret",
+      "userId": 96011,
+      "task": "purchases",
+      "parentId": 96016,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:04:42.009Z",
+      "finishedAt": "2026-06-02T11:05:01.018Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Fonden_Eventyrteatret\\purchases",
+        "purchases": 360,
+        "purchaseEntries": 168,
+        "detailsFetched": 360,
+        "uniqueMediaUdis": 14,
+        "mediaResolved": 9,
+        "mediaUnresolved": 5,
+        "mediaResolveErrors": 5
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Fonden_Eventyrteatret",
+      "liveName": "Fonden Eventyrteatret",
+      "userId": 96011,
+      "task": "payouts",
+      "parentId": 96015,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:01.022Z",
+      "finishedAt": "2026-06-02T11:05:02.229Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Fonden_Eventyrteatret\\payouts",
+        "payouts": 11,
+        "paidPayouts": 11,
+        "totalAmount": 31581.78,
+        "detailsFetched": 11,
+        "entriesWithInvoiceLink": 11,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Karina_Eckhausen",
+      "liveName": "Karina Eckhausen",
+      "userId": 95577,
+      "task": "stats",
+      "parentId": 95578,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:02.474Z",
+      "finishedAt": "2026-06-02T11:05:03.217Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Karina_Eckhausen\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 55,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 55
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Karina_Eckhausen",
+      "liveName": "Karina Eckhausen",
+      "userId": 95577,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Karina_Eckhausen",
+      "liveName": "Karina Eckhausen",
+      "userId": 95577,
+      "task": "purchases",
+      "parentId": 95582,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:03.219Z",
+      "finishedAt": "2026-06-02T11:05:04.441Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Karina_Eckhausen\\purchases",
+        "purchases": 3,
+        "purchaseEntries": 1,
+        "detailsFetched": 3,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Karina_Eckhausen",
+      "liveName": "Karina Eckhausen",
+      "userId": 95577,
+      "task": "payouts",
+      "parentId": 95581,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:04.445Z",
+      "finishedAt": "2026-06-02T11:05:05.171Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Karina_Eckhausen\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Damkjær_Medier",
+      "liveName": "Damkjær Medier",
+      "userId": 94485,
+      "task": "stats",
+      "parentId": 94486,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:05.432Z",
+      "finishedAt": "2026-06-02T11:05:06.448Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Damkjær_Medier\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 103,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 103
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Damkjær_Medier",
+      "liveName": "Damkjær Medier",
+      "userId": 94485,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Damkjær_Medier",
+      "liveName": "Damkjær Medier",
+      "userId": 94485,
+      "task": "purchases",
+      "parentId": 94490,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:06.451Z",
+      "finishedAt": "2026-06-02T11:05:07.865Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Damkjær_Medier\\purchases",
+        "purchases": 6,
+        "purchaseEntries": 5,
+        "detailsFetched": 6,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Damkjær_Medier",
+      "liveName": "Damkjær Medier",
+      "userId": 94485,
+      "task": "payouts",
+      "parentId": 94489,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:07.868Z",
+      "finishedAt": "2026-06-02T11:05:08.820Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Damkjær_Medier\\payouts",
+        "payouts": 1,
+        "paidPayouts": 1,
+        "totalAmount": 6267.36,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kitnoergaard.dk",
+      "liveName": "Kitnoergaard.dk",
+      "userId": 93855,
+      "task": "stats",
+      "parentId": 93856,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:09.074Z",
+      "finishedAt": "2026-06-02T11:05:10.088Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kitnoergaard.dk\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 138,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 138
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Kitnoergaard.dk",
+      "liveName": "Kitnoergaard.dk",
+      "userId": 93855,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Kitnoergaard.dk",
+      "liveName": "Kitnoergaard.dk",
+      "userId": 93855,
+      "task": "purchases",
+      "parentId": 93860,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:10.093Z",
+      "finishedAt": "2026-06-02T11:05:12.966Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kitnoergaard.dk\\purchases",
+        "purchases": 3,
+        "purchaseEntries": 3,
+        "detailsFetched": 3,
+        "uniqueMediaUdis": 3,
+        "mediaResolved": 1,
+        "mediaUnresolved": 2,
+        "mediaResolveErrors": 2
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kitnoergaard.dk",
+      "liveName": "Kitnoergaard.dk",
+      "userId": 93855,
+      "task": "payouts",
+      "parentId": 93859,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:12.970Z",
+      "finishedAt": "2026-06-02T11:05:13.906Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Kitnoergaard.dk\\payouts",
+        "payouts": 2,
+        "paidPayouts": 2,
+        "totalAmount": 593,
+        "detailsFetched": 2,
+        "entriesWithInvoiceLink": 2,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Per_Vers",
+      "liveName": "Per Vers",
+      "userId": 91682,
+      "task": "stats",
+      "parentId": 91683,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:14.141Z",
+      "finishedAt": "2026-06-02T11:05:14.844Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Per_Vers\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Per_Vers",
+      "liveName": "Per Vers",
+      "userId": 91682,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Per_Vers",
+      "liveName": "Per Vers",
+      "userId": 91682,
+      "task": "purchases",
+      "parentId": 91687,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:14.848Z",
+      "finishedAt": "2026-06-02T11:05:15.538Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Per_Vers\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Per_Vers",
+      "liveName": "Per Vers",
+      "userId": 91682,
+      "task": "payouts",
+      "parentId": 91686,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:15.541Z",
+      "finishedAt": "2026-06-02T11:05:16.178Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Per_Vers\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen",
+      "liveName": "Familier fødes - familiens psykolog gennem hele rejsen",
+      "userId": 91260,
+      "task": "stats",
+      "parentId": 91261,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:16.416Z",
+      "finishedAt": "2026-06-02T11:05:17.133Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 10,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 10
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen",
+      "liveName": "Familier fødes - familiens psykolog gennem hele rejsen",
+      "userId": 91260,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen",
+      "liveName": "Familier fødes - familiens psykolog gennem hele rejsen",
+      "userId": 91260,
+      "task": "purchases",
+      "parentId": 91265,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:17.138Z",
+      "finishedAt": "2026-06-02T11:05:18.332Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen\\purchases",
+        "purchases": 4,
+        "purchaseEntries": 4,
+        "detailsFetched": 4,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen",
+      "liveName": "Familier fødes - familiens psykolog gennem hele rejsen",
+      "userId": 91260,
+      "task": "payouts",
+      "parentId": 91264,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:18.335Z",
+      "finishedAt": "2026-06-02T11:05:18.983Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Familier_fødes_-_familiens_psykolog_gennem_hele_rejsen\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "@lawn.dk",
+      "liveName": "@lawn.dk",
+      "userId": 79943,
+      "task": "stats",
+      "parentId": 79944,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:19.242Z",
+      "finishedAt": "2026-06-02T11:05:20.243Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\@lawn.dk\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 174,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 174
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "@lawn.dk",
+      "liveName": "@lawn.dk",
+      "userId": 79943,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "@lawn.dk",
+      "liveName": "@lawn.dk",
+      "userId": 79943,
+      "task": "purchases",
+      "parentId": 79948,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:20.249Z",
+      "finishedAt": "2026-06-02T11:05:21.774Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\@lawn.dk\\purchases",
+        "purchases": 2,
+        "purchaseEntries": 2,
+        "detailsFetched": 2,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 0,
+        "mediaUnresolved": 1,
+        "mediaResolveErrors": 1
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "@lawn.dk",
+      "liveName": "@lawn.dk",
+      "userId": 79943,
+      "task": "payouts",
+      "parentId": 79947,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:21.777Z",
+      "finishedAt": "2026-06-02T11:05:22.668Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\@lawn.dk\\payouts",
+        "payouts": 1,
+        "paidPayouts": 1,
+        "totalAmount": 24.52,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Line_JL_Feel_the_Heal",
+      "liveName": "Line JL Feel the Heal",
+      "userId": 78467,
+      "task": "stats",
+      "parentId": 78468,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:22.924Z",
+      "finishedAt": "2026-06-02T11:05:23.643Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Line_JL_Feel_the_Heal\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 16,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 16
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Line_JL_Feel_the_Heal",
+      "liveName": "Line JL Feel the Heal",
+      "userId": 78467,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Line_JL_Feel_the_Heal",
+      "liveName": "Line JL Feel the Heal",
+      "userId": 78467,
+      "task": "purchases",
+      "parentId": 78472,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:23.647Z",
+      "finishedAt": "2026-06-02T11:05:25.040Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Line_JL_Feel_the_Heal\\purchases",
+        "purchases": 1,
+        "purchaseEntries": 1,
+        "detailsFetched": 1,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 0,
+        "mediaUnresolved": 1,
+        "mediaResolveErrors": 1
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Line_JL_Feel_the_Heal",
+      "liveName": "Line JL Feel the Heal",
+      "userId": 78467,
+      "task": "payouts",
+      "parentId": 78471,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:25.044Z",
+      "finishedAt": "2026-06-02T11:05:25.976Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Line_JL_Feel_the_Heal\\payouts",
+        "payouts": 1,
+        "paidPayouts": 1,
+        "totalAmount": 270,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "You_Consulting",
+      "liveName": "You Consulting",
+      "userId": 78110,
+      "task": "stats",
+      "parentId": 78111,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:26.224Z",
+      "finishedAt": "2026-06-02T11:05:26.892Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\You_Consulting\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 4,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 4
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "You_Consulting",
+      "liveName": "You Consulting",
+      "userId": 78110,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "You_Consulting",
+      "liveName": "You Consulting",
+      "userId": 78110,
+      "task": "purchases",
+      "parentId": 78115,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:26.895Z",
+      "finishedAt": "2026-06-02T11:05:28.152Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\You_Consulting\\purchases",
+        "purchases": 2,
+        "purchaseEntries": 2,
+        "detailsFetched": 2,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "You_Consulting",
+      "liveName": "You Consulting",
+      "userId": 78110,
+      "task": "payouts",
+      "parentId": 78114,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:28.156Z",
+      "finishedAt": "2026-06-02T11:05:29.066Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\You_Consulting\\payouts",
+        "payouts": 2,
+        "paidPayouts": 2,
+        "totalAmount": 540,
+        "detailsFetched": 2,
+        "entriesWithInvoiceLink": 2,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Simon_Talbot",
+      "liveName": "Simon Talbot",
+      "userId": 77648,
+      "task": "stats",
+      "parentId": 77649,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:29.305Z",
+      "finishedAt": "2026-06-02T11:05:30.646Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Simon_Talbot\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 282,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 282
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Simon_Talbot",
+      "liveName": "Simon Talbot",
+      "userId": 77648,
+      "task": "shows",
+      "parentId": 77663,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:30.653Z",
+      "finishedAt": "2026-06-02T11:05:32.813Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Simon_Talbot\\shows",
+        "shows": 1,
+        "statsEntriesRead": 282,
+        "showsMatchedToStats": 1,
+        "statsMediaWithoutShow": 0,
+        "detailErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Simon_Talbot",
+      "liveName": "Simon Talbot",
+      "userId": 77648,
+      "task": "purchases",
+      "parentId": 77653,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:32.816Z",
+      "finishedAt": "2026-06-02T11:05:38.507Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Simon_Talbot\\purchases",
+        "purchases": 135,
+        "purchaseEntries": 65,
+        "detailsFetched": 135,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Simon_Talbot",
+      "liveName": "Simon Talbot",
+      "userId": 77648,
+      "task": "payouts",
+      "parentId": 77652,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:38.510Z",
+      "finishedAt": "2026-06-02T11:05:39.443Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Simon_Talbot\\payouts",
+        "payouts": 5,
+        "paidPayouts": 5,
+        "totalAmount": 6115.35,
+        "detailsFetched": 5,
+        "entriesWithInvoiceLink": 5,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Taarnhøj",
+      "liveName": "Jacob Taarnhøj",
+      "userId": 75778,
+      "task": "stats",
+      "parentId": 75779,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:39.736Z",
+      "finishedAt": "2026-06-02T11:05:41.047Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Taarnhøj\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 203,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 203
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Taarnhøj",
+      "liveName": "Jacob Taarnhøj",
+      "userId": 75778,
+      "task": "shows",
+      "parentId": 75785,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:41.052Z",
+      "finishedAt": "2026-06-02T11:05:43.519Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Taarnhøj\\shows",
+        "shows": 2,
+        "statsEntriesRead": 203,
+        "showsMatchedToStats": 2,
+        "statsMediaWithoutShow": 0,
+        "detailErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Taarnhøj",
+      "liveName": "Jacob Taarnhøj",
+      "userId": 75778,
+      "task": "purchases",
+      "parentId": 75783,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:43.522Z",
+      "finishedAt": "2026-06-02T11:05:48.264Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Taarnhøj\\purchases",
+        "purchases": 98,
+        "purchaseEntries": 60,
+        "detailsFetched": 98,
+        "uniqueMediaUdis": 3,
+        "mediaResolved": 3,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Jacob_Taarnhøj",
+      "liveName": "Jacob Taarnhøj",
+      "userId": 75778,
+      "task": "payouts",
+      "parentId": 75782,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:48.267Z",
+      "finishedAt": "2026-06-02T11:05:49.247Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Taarnhøj\\payouts",
+        "payouts": 4,
+        "paidPayouts": 4,
+        "totalAmount": 3605.38,
+        "detailsFetched": 4,
+        "entriesWithInvoiceLink": 4,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "ADHDFOKUS",
+      "liveName": "ADHDFOKUS",
+      "userId": 75311,
+      "task": "stats",
+      "parentId": 75312,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:49.646Z",
+      "finishedAt": "2026-06-02T11:05:54.532Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\ADHDFOKUS\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 1171,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 1171
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "ADHDFOKUS",
+      "liveName": "ADHDFOKUS",
+      "userId": 75311,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "ADHDFOKUS",
+      "liveName": "ADHDFOKUS",
+      "userId": 75311,
+      "task": "purchases",
+      "parentId": 75316,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:54.537Z",
+      "finishedAt": "2026-06-02T11:05:59.156Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\ADHDFOKUS\\purchases",
+        "purchases": 77,
+        "purchaseEntries": 4,
+        "detailsFetched": 77,
+        "uniqueMediaUdis": 4,
+        "mediaResolved": 3,
+        "mediaUnresolved": 1,
+        "mediaResolveErrors": 1
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "ADHDFOKUS",
+      "liveName": "ADHDFOKUS",
+      "userId": 75311,
+      "task": "payouts",
+      "parentId": 75315,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:05:59.158Z",
+      "finishedAt": "2026-06-02T11:06:00.350Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\ADHDFOKUS\\payouts",
+        "payouts": 11,
+        "paidPayouts": 10,
+        "totalAmount": 18645.7,
+        "detailsFetched": 11,
+        "entriesWithInvoiceLink": 11,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "A5_Forlag_ApS",
+      "liveName": "A5 Forlag ApS",
+      "userId": 73339,
+      "task": "stats",
+      "parentId": 73340,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:00.604Z",
+      "finishedAt": "2026-06-02T11:06:01.760Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\A5_Forlag_ApS\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 37,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 37
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "A5_Forlag_ApS",
+      "liveName": "A5 Forlag ApS",
+      "userId": 73339,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "A5_Forlag_ApS",
+      "liveName": "A5 Forlag ApS",
+      "userId": 73339,
+      "task": "purchases",
+      "parentId": 73344,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:01.763Z",
+      "finishedAt": "2026-06-02T11:06:02.895Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\A5_Forlag_ApS\\purchases",
+        "purchases": 1,
+        "purchaseEntries": 1,
+        "detailsFetched": 1,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "A5_Forlag_ApS",
+      "liveName": "A5 Forlag ApS",
+      "userId": 73339,
+      "task": "payouts",
+      "parentId": 73343,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:02.898Z",
+      "finishedAt": "2026-06-02T11:06:03.537Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\A5_Forlag_ApS\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Rikke_Brünner",
+      "liveName": "Rikke Brünner ",
+      "userId": 67371,
+      "task": "stats",
+      "parentId": 67372,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:03.778Z",
+      "finishedAt": "2026-06-02T11:06:04.487Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Rikke_Brünner\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 0,
+        "detailsFetched": 0,
+        "fieldCount": 1,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 0
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Rikke_Brünner",
+      "liveName": "Rikke Brünner ",
+      "userId": 67371,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Rikke_Brünner",
+      "liveName": "Rikke Brünner ",
+      "userId": 67371,
+      "task": "purchases",
+      "parentId": 67376,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:04.492Z",
+      "finishedAt": "2026-06-02T11:06:05.126Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Rikke_Brünner\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Rikke_Brünner",
+      "liveName": "Rikke Brünner ",
+      "userId": 67371,
+      "task": "payouts",
+      "parentId": 67375,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:05.131Z",
+      "finishedAt": "2026-06-02T11:06:05.817Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Rikke_Brünner\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Foreningen_Danske_Revisorer",
+      "liveName": "Foreningen Danske Revisorer",
+      "userId": 65131,
+      "task": "stats",
+      "parentId": 65132,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:06.059Z",
+      "finishedAt": "2026-06-02T11:06:07.379Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Foreningen_Danske_Revisorer\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 224,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 224
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Foreningen_Danske_Revisorer",
+      "liveName": "Foreningen Danske Revisorer",
+      "userId": 65131,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Foreningen_Danske_Revisorer",
+      "liveName": "Foreningen Danske Revisorer",
+      "userId": 65131,
+      "task": "purchases",
+      "parentId": 65136,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:07.383Z",
+      "finishedAt": "2026-06-02T11:06:09.514Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Foreningen_Danske_Revisorer\\purchases",
+        "purchases": 11,
+        "purchaseEntries": 10,
+        "detailsFetched": 11,
+        "uniqueMediaUdis": 4,
+        "mediaResolved": 4,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Foreningen_Danske_Revisorer",
+      "liveName": "Foreningen Danske Revisorer",
+      "userId": 65131,
+      "task": "payouts",
+      "parentId": 65135,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:09.517Z",
+      "finishedAt": "2026-06-02T11:06:10.412Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Foreningen_Danske_Revisorer\\payouts",
+        "payouts": 1,
+        "paidPayouts": 1,
+        "totalAmount": 1103,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Vital_New_Software_ApS",
+      "liveName": "Vital New Software ApS",
+      "userId": 62344,
+      "task": "stats",
+      "parentId": 62345,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:10.656Z",
+      "finishedAt": "2026-06-02T11:06:11.301Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Vital_New_Software_ApS\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 22,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 22
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Vital_New_Software_ApS",
+      "liveName": "Vital New Software ApS",
+      "userId": 62344,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Vital_New_Software_ApS",
+      "liveName": "Vital New Software ApS",
+      "userId": 62344,
+      "task": "purchases",
+      "parentId": 62349,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:11.305Z",
+      "finishedAt": "2026-06-02T11:06:11.920Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Vital_New_Software_ApS\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Vital_New_Software_ApS",
+      "liveName": "Vital New Software ApS",
+      "userId": 62344,
+      "task": "payouts",
+      "parentId": 62348,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:11.923Z",
+      "finishedAt": "2026-06-02T11:06:12.568Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Vital_New_Software_ApS\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "EvaFogNoer",
+      "liveName": "EvaFogNoer",
+      "userId": 57261,
+      "task": "stats",
+      "parentId": 57262,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:12.806Z",
+      "finishedAt": "2026-06-02T11:06:13.497Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\EvaFogNoer\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 12,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 12
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "EvaFogNoer",
+      "liveName": "EvaFogNoer",
+      "userId": 57261,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "EvaFogNoer",
+      "liveName": "EvaFogNoer",
+      "userId": 57261,
+      "task": "purchases",
+      "parentId": 57266,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:13.501Z",
+      "finishedAt": "2026-06-02T11:06:14.708Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\EvaFogNoer\\purchases",
+        "purchases": 1,
+        "purchaseEntries": 1,
+        "detailsFetched": 1,
+        "uniqueMediaUdis": 1,
+        "mediaResolved": 1,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "EvaFogNoer",
+      "liveName": "EvaFogNoer",
+      "userId": 57261,
+      "task": "payouts",
+      "parentId": 57265,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:14.711Z",
+      "finishedAt": "2026-06-02T11:06:15.624Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\EvaFogNoer\\payouts",
+        "payouts": 1,
+        "paidPayouts": 1,
+        "totalAmount": 376.04,
+        "detailsFetched": 1,
+        "entriesWithInvoiceLink": 1,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246,
+      "task": "stats",
+      "parentId": 55247,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:15.868Z",
+      "finishedAt": "2026-06-02T11:06:28.603Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\B_Entertained\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 2395,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 2395
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246,
+      "task": "purchases",
+      "parentId": 55251,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:06:28.607Z",
+      "finishedAt": "2026-06-02T11:07:08.017Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\B_Entertained\\purchases",
+        "purchases": 1043,
+        "purchaseEntries": 225,
+        "detailsFetched": 1043,
+        "uniqueMediaUdis": 3,
+        "mediaResolved": 2,
+        "mediaUnresolved": 1,
+        "mediaResolveErrors": 1
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "B_Entertained",
+      "liveName": "B Entertained",
+      "userId": 55246,
+      "task": "payouts",
+      "parentId": 55250,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:07:08.020Z",
+      "finishedAt": "2026-06-02T11:07:09.245Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\B_Entertained\\payouts",
+        "payouts": 11,
+        "paidPayouts": 11,
+        "totalAmount": 47290.68,
+        "detailsFetched": 11,
+        "entriesWithInvoiceLink": 11,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "gymstream",
+      "liveName": "gymstream",
+      "userId": 51011,
+      "task": "stats",
+      "parentId": 51012,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:07:09.613Z",
+      "finishedAt": "2026-06-02T11:08:01.750Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\gymstream\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 6002,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 6002
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "gymstream",
+      "liveName": "gymstream",
+      "userId": 51011,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "gymstream",
+      "liveName": "gymstream",
+      "userId": 51011,
+      "task": "purchases",
+      "parentId": 51016,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:08:01.753Z",
+      "finishedAt": "2026-06-02T11:08:52.886Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\gymstream\\purchases",
+        "purchases": 1382,
+        "purchaseEntries": 1311,
+        "detailsFetched": 1382,
+        "uniqueMediaUdis": 9,
+        "mediaResolved": 3,
+        "mediaUnresolved": 6,
+        "mediaResolveErrors": 6
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "gymstream",
+      "liveName": "gymstream",
+      "userId": 51011,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "M.C._Caffe",
+      "liveName": "M.C. Caffe",
+      "userId": 50894,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "M.C._Caffe",
+      "liveName": "M.C. Caffe",
+      "userId": 50894,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "M.C._Caffe",
+      "liveName": "M.C. Caffe",
+      "userId": 50894,
+      "task": "purchases",
+      "parentId": 50899,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:08:53.130Z",
+      "finishedAt": "2026-06-02T11:08:53.751Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\M.C._Caffe\\purchases",
+        "purchases": 0,
+        "purchaseEntries": 0,
+        "detailsFetched": 0,
+        "uniqueMediaUdis": 0,
+        "mediaResolved": 0,
+        "mediaUnresolved": 0,
+        "mediaResolveErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "M.C._Caffe",
+      "liveName": "M.C. Caffe",
+      "userId": 50894,
+      "task": "payouts",
+      "parentId": 50898,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:08:53.754Z",
+      "finishedAt": "2026-06-02T11:08:54.368Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\M.C._Caffe\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "TjelesVenner",
+      "liveName": "TjelesVenner",
+      "userId": 50462,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "TjelesVenner",
+      "liveName": "TjelesVenner",
+      "userId": 50462,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "TjelesVenner",
+      "liveName": "TjelesVenner",
+      "userId": 50462,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "TjelesVenner",
+      "liveName": "TjelesVenner",
+      "userId": 50462,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "NSCCM_ApS",
+      "liveName": "NSCCM ApS",
+      "userId": 50069,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "NSCCM_ApS",
+      "liveName": "NSCCM ApS",
+      "userId": 50069,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "NSCCM_ApS",
+      "liveName": "NSCCM ApS",
+      "userId": 50069,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "NSCCM_ApS",
+      "liveName": "NSCCM ApS",
+      "userId": 50069,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Gottleben",
+      "liveName": "Gottleben",
+      "userId": 47444,
+      "task": "stats",
+      "parentId": 47445,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:08:55.128Z",
+      "finishedAt": "2026-06-02T11:09:00.675Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Gottleben\\stats",
+        "collectionName": "stats",
+        "childrenFetched": 1334,
+        "detailsFetched": 0,
+        "fieldCount": 4,
+        "errors": 0
+      },
+      "after": {
+        "normalizedStatsItems": 1334
+      },
+      "stderr": ""
+    },
+    {
+      "userDir": "Gottleben",
+      "liveName": "Gottleben",
+      "userId": 47444,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Gottleben",
+      "liveName": "Gottleben",
+      "userId": 47444,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Gottleben",
+      "liveName": "Gottleben",
+      "userId": 47444,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Omar_Marzouk",
+      "liveName": "Omar Marzouk",
+      "userId": 46871,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Omar_Marzouk",
+      "liveName": "Omar Marzouk",
+      "userId": 46871,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Omar_Marzouk",
+      "liveName": "Omar Marzouk",
+      "userId": 46871,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Omar_Marzouk",
+      "liveName": "Omar Marzouk",
+      "userId": 46871,
+      "task": "payouts",
+      "parentId": 46875,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:09:00.922Z",
+      "finishedAt": "2026-06-02T11:09:01.534Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Omar_Marzouk\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Red_Barnet",
+      "liveName": "Red Barnet",
+      "userId": 46713,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Red_Barnet",
+      "liveName": "Red Barnet",
+      "userId": 46713,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Red_Barnet",
+      "liveName": "Red Barnet",
+      "userId": 46713,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Red_Barnet",
+      "liveName": "Red Barnet",
+      "userId": 46713,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Jacob_Wilson",
+      "liveName": "Jacob Wilson",
+      "userId": 46212,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Jacob_Wilson",
+      "liveName": "Jacob Wilson",
+      "userId": 46212,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Jacob_Wilson",
+      "liveName": "Jacob Wilson",
+      "userId": 46212,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Jacob_Wilson",
+      "liveName": "Jacob Wilson",
+      "userId": 46212,
+      "task": "payouts",
+      "parentId": 46216,
+      "status": "ok",
+      "startedAt": "2026-06-02T11:09:02.020Z",
+      "finishedAt": "2026-06-02T11:09:02.706Z",
+      "output": {
+        "outDir": "C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Jacob_Wilson\\payouts",
+        "payouts": 0,
+        "paidPayouts": 0,
+        "totalAmount": 0,
+        "detailsFetched": 0,
+        "entriesWithInvoiceLink": 0,
+        "entriesWithoutInvoiceLink": 0,
+        "uniqueInvoiceUdis": 0,
+        "invoiceEntityErrors": 0
+      },
+      "after": null,
+      "stderr": ""
+    },
+    {
+      "userDir": "Kryptovaluta_for_kvinder",
+      "liveName": "Kryptovaluta for kvinder",
+      "userId": 42880,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Kryptovaluta_for_kvinder",
+      "liveName": "Kryptovaluta for kvinder",
+      "userId": 42880,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "section not found in Umbraco"
+    },
+    {
+      "userDir": "Kryptovaluta_for_kvinder",
+      "liveName": "Kryptovaluta for kvinder",
+      "userId": 42880,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Kryptovaluta_for_kvinder",
+      "liveName": "Kryptovaluta for kvinder",
+      "userId": 42880,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Elias_Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704,
+      "task": "stats",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Elias_Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704,
+      "task": "shows",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Elias_Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704,
+      "task": "purchases",
+      "status": "skipped",
+      "reason": "data already exists"
+    },
+    {
+      "userDir": "Elias_Ehlers",
+      "liveName": "Elias Ehlers",
+      "userId": 42704,
+      "task": "payouts",
+      "status": "skipped",
+      "reason": "data already exists"
+    }
+  ],
+  "liveUserCount": 116
+}

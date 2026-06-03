@@ -1,20 +1,17 @@
 {
-  "exportedAt": "2026-06-02T09:15:57.270Z",
-  "collectionName": "Stats",
+  "exportedAt": "2026-06-02T11:13:53.756Z",
+  "collectionName": "stats",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2829",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
     "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
     "parentId": 2829,
-    "includeProperties": [
-      "title",
-      "orderID",
-      "hidden"
-    ],
+    "includeProperties": ["isPlay", "uID", "media"],
     "orderBy": "createDate",
     "orderDirection": "Descending",
     "orderBySystemField": true,
-    "extraDetailIds": []
+    "extraDetailIds": [],
+    "fetchDetails": false
   },
   "parent": {
     "id": 2829,
@@ -24,9 +21,7 @@
     "contentTypeAlias": "stats",
     "published": true,
     "hasPublishedVersion": true,
-    "urls": [
-      "/slank-og-wellness/stats/"
-    ],
+    "urls": ["/slank-og-wellness/stats/"],
     "fields": {
       "_umb_containerView": null
     },
@@ -43,9 +38,7 @@
         "value": null
       }
     },
-    "fieldOrder": [
-      "_umb_containerView"
-    ]
+    "fieldOrder": ["_umb_containerView"]
   },
   "counts": {
     "totalItemsFromApi": 0,

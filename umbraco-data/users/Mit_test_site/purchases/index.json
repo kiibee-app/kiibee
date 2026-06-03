@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-02T09:17:05.973Z",
+  "exportedAt": "2026-06-02T11:13:33.383Z",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2554",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
@@ -25,9 +25,7 @@
     "contentTypeAlias": "purchases",
     "published": true,
     "hasPublishedVersion": true,
-    "urls": [
-      "/mit-test-site/purchases/"
-    ],
+    "urls": ["/mit-test-site/purchases/"],
     "path": "-1,1067,2550,2554",
     "properties": {
       "_umb_containerView": null
@@ -60,18 +58,13 @@
   ],
   "mediaCache": [
     {
-      "path": "umbraco-data/users/Mit_test_site/purchases/media.json",
-      "count": 0,
-      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Mit_test_site\\purchases\\media.json'"
-    },
-    {
-      "path": "umbraco-data/users/Mit_test_site/shows/items.json",
-      "count": 3
-    },
-    {
-      "path": "umbraco-data/users/Mit_test_site/stats/media.json",
+      "path": "umbraco-data\\users\\Mit_test_site\\stats\\media.json",
       "count": 0,
       "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Mit_test_site\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Mit_test_site\\purchases\\media.json",
+      "count": 0
     }
   ],
   "files": {

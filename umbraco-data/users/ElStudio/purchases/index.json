@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-02T09:18:16.954Z",
+  "exportedAt": "2026-06-02T11:12:45.137Z",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/3213",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
@@ -58,18 +58,13 @@
   ],
   "mediaCache": [
     {
-      "path": "umbraco-data/users/ElStudio/purchases/media.json",
-      "count": 0,
-      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\ElStudio\\purchases\\media.json'"
-    },
-    {
-      "path": "umbraco-data/users/ElStudio/shows/items.json",
-      "count": 2
-    },
-    {
-      "path": "umbraco-data/users/ElStudio/stats/media.json",
+      "path": "umbraco-data\\users\\ElStudio\\stats\\media.json",
       "count": 0,
       "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\ElStudio\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\ElStudio\\purchases\\media.json",
+      "count": 0
     }
   ],
   "files": {

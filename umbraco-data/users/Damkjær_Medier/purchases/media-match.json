@@ -1,0 +1,40 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/6780eaa022b34e919f0af61eab869bcf",
+      "key": "6780eaa0-22b3-4e91-9f0a-f61eab869bcf",
+      "resolved": true,
+      "id": 94669,
+      "name": "VideoVisionær Kursus",
+      "title": "VideoVisionær Kursus",
+      "urls": [
+        "/damkjaer-medier/videovisionaer-kursus/"
+      ],
+      "contentTypeAlias": "collection",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "3123",
+      "rentalPrice": "0",
+      "purchaseEntryCount": 6,
+      "purchaseOrderCount": 5,
+      "nonPurchaseEntryCount": 1,
+      "totalDownloads": 140,
+      "totalStreams": 1,
+      "firstPurchaseAt": "2024-02-13 15:18:18",
+      "lastPurchaseAt": "2024-02-29 18:54:31",
+      "samplePurchaseIds": [
+        95043,
+        95039,
+        94778,
+        94755,
+        94735
+      ]
+    }
+  ],
+  "unresolvedMedia": []
+}

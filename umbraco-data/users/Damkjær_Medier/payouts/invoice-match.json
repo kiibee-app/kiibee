@@ -1,0 +1,56 @@
+{
+  "matched": [
+    {
+      "id": 95146,
+      "key": "3db2bfed-11a8-48f5-b575-921cc4b04583",
+      "udi": "umb://document/3db2bfed11a848f5b575921cc4b04583",
+      "name": "KBF-1497",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/95146",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2024-03-05 20:23:42",
+      "updateDate": "2024-03-07 13:27:22",
+      "parentId": 94489,
+      "path": "-1,1067,94485,94489,95146",
+      "sortOrder": 0,
+      "urls": [
+        "/damkjaer-medier/payouts/kbf-1497/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/damkjaer-medier/payouts/kbf-1497/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/damkjaer-medier/payouts/kbf-1497/",
+      "amount": "6267.36",
+      "amountNumber": 6267.36,
+      "isPaid": true,
+      "payoutCreateDate": "2024-03-05 20:23:42",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/damkjaer-medier/payouts/kbf-1497/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/damkjaer-medier/payouts/kbf-1497/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "5",
+        "transactionFee": "6",
+        "kiibeeCut": "12",
+        "rentAmount": "1",
+        "from": "2024-02-01 14:34:35",
+        "rawEarnings": "6744",
+        "amount": "6267.36",
+        "isPaid": "1",
+        "to": "2024-03-05 20:23:26",
+        "transactionAmount": "404.64",
+        "kiibeeCutAmount": "72"
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

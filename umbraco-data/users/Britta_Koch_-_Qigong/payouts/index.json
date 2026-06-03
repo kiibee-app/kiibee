@@ -1,0 +1,62 @@
+{
+  "exportedAt": "2026-06-02T10:58:38.811Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/19333",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "contentDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "mediaDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Media/GetById",
+    "parentId": 19333,
+    "includeProperties": ["amount", "isPaid", "createDate"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 19333,
+    "key": "483ac141-6db4-4d47-ad34-4244d9710942",
+    "udi": "umb://document/483ac1416db44d47ad344244d9710942",
+    "name": "Payouts",
+    "contentTypeAlias": "payouts",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/britta-koch-qigong/payouts/"],
+    "path": "-1,1067,19329,19333",
+    "properties": {
+      "_umb_containerView": null,
+      "lastPayoutDateTime": "2025-12-09 09:43:57"
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 4,
+    "childrenFetched": 4,
+    "detailsFetched": 4,
+    "detailErrors": 0,
+    "paidPayouts": 4,
+    "unpaidPayouts": 0,
+    "totalAmount": 2237.7,
+    "entriesWithCandidateInvoiceProperties": 0,
+    "entriesWithPublicPayoutUrl": 4,
+    "entriesWithInvoiceLink": 4,
+    "entriesWithoutInvoiceLink": 0,
+    "uniqueInvoiceUdis": 0,
+    "invoiceEntitiesResolved": 0,
+    "invoiceEntityErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 4,
+      "totalItems": 4
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "invoiceMatch": "invoice-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "invoice-like payout properties matched by direct URL or linked Umbraco document/media UDI, with the public payout URL used as the invoice link fallback",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin/env and are not written to disk."
+  }
+}

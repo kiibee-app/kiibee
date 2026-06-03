@@ -1,0 +1,63 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/467abaf068f5425a90ded9475a5b7541",
+      "key": "467abaf0-68f5-425a-90de-d9475a5b7541",
+      "resolved": true,
+      "id": 42900,
+      "name": "KRAM DIN KROP MED KÅL - komplet adgang til hele kurset, 78 min.",
+      "title": "KRAM DIN KROP MED KÅL - komplet adgang til hele kurset, 78 min.",
+      "urls": [
+        "/kammas-kantine/kram-din-krop-med-kål-komplet-adgang-til-hele-kurset-78-min/"
+      ],
+      "contentTypeAlias": "collection",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "0",
+      "rentalPrice": "99",
+      "purchaseEntryCount": 29,
+      "purchaseOrderCount": 0,
+      "nonPurchaseEntryCount": 29,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2021-04-21 13:52:14",
+      "lastPurchaseAt": "2022-08-08 14:00:32",
+      "samplePurchaseIds": [68480, 63004, 62716, 62603, 60963]
+    },
+    {
+      "udi": "umb://document/5dce1b0a61b94048bd883b84c7786341",
+      "key": "5dce1b0a-61b9-4048-bd88-3b84c7786341",
+      "resolved": true,
+      "id": 43002,
+      "name": "KRAM DIN KROP MED KÅL - Online kogebog, fem fantastiske kålretter, 52 min. ",
+      "title": "KRAM DIN KROP MED KÅL - Online kogebog, fem fantastiske kålretter, 52 min. ",
+      "urls": [
+        "/kammas-kantine/kram-din-krop-med-kål-online-kogebog-fem-fantastiske-kaalretter-52-min/"
+      ],
+      "contentTypeAlias": "collection",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "",
+      "rentalPrice": "79",
+      "purchaseEntryCount": 2,
+      "purchaseOrderCount": 0,
+      "nonPurchaseEntryCount": 2,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2021-04-21 14:02:22",
+      "lastPurchaseAt": "2021-11-04 19:54:34",
+      "samplePurchaseIds": [51244, 43550]
+    }
+  ],
+  "unresolvedMedia": []
+}

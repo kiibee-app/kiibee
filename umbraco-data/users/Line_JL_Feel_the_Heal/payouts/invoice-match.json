@@ -1,0 +1,54 @@
+{
+  "matched": [
+    {
+      "id": 78491,
+      "key": "bd012a19-f1d9-4655-b463-0db648ecefdf",
+      "udi": "umb://document/bd012a19f1d94655b4630db648ecefdf",
+      "name": "KBF-1376",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/78491",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-02-23 17:07:49",
+      "updateDate": "2023-02-24 09:27:09",
+      "parentId": 78471,
+      "path": "-1,1067,78467,78471,78491",
+      "sortOrder": 0,
+      "urls": ["/line-jl-feel-the-heal/payouts/kbf-1376/"],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/line-jl-feel-the-heal/payouts/kbf-1376/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/line-jl-feel-the-heal/payouts/kbf-1376/",
+      "amount": "270",
+      "amountNumber": 270,
+      "isPaid": true,
+      "payoutCreateDate": "2023-02-23 17:07:49",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/line-jl-feel-the-heal/payouts/kbf-1376/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/line-jl-feel-the-heal/payouts/kbf-1376/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "5",
+        "kiibeeCut": "15",
+        "rentAmount": "0",
+        "from": "2023-02-23 13:04:20",
+        "rawEarnings": "300",
+        "amount": "270",
+        "isPaid": "1",
+        "to": "2023-02-23 17:07:19",
+        "transactionAmount": "15",
+        "kiibeeCutAmount": "15"
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

@@ -1,0 +1,50 @@
+{
+  "matched": [
+    {
+      "id": 78707,
+      "key": "d74b4f86-7afa-43a5-b318-9170cc9738e7",
+      "udi": "umb://document/d74b4f867afa43a5b3189170cc9738e7",
+      "name": "KBF-1386",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/78707",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-03-07 15:02:20",
+      "updateDate": "2023-03-07 15:15:10",
+      "parentId": 46717,
+      "path": "-1,1067,46713,46717,78707",
+      "sortOrder": 0,
+      "urls": ["/red-barnet/payouts/kbf-1386/"],
+      "publicPayoutUrls": ["https://kiibee.dk/red-barnet/payouts/kbf-1386/"],
+      "publicPayoutUrl": "https://kiibee.dk/red-barnet/payouts/kbf-1386/",
+      "amount": "1082.55",
+      "amountNumber": 1082.55,
+      "isPaid": true,
+      "payoutCreateDate": "2023-03-07 15:02:20",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": ["https://kiibee.dk/red-barnet/payouts/kbf-1386/"],
+      "invoiceUrl": "https://kiibee.dk/red-barnet/payouts/kbf-1386/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "30",
+        "transactionFee": "5",
+        "kiibeeCut": "15",
+        "rentAmount": "1",
+        "from": "2021-06-03 12:00:50",
+        "rawEarnings": "1629",
+        "amount": "1082.55",
+        "isPaid": "1",
+        "to": "2023-03-07 15:01:55",
+        "transactionAmount": "81.45",
+        "kiibeeCutAmount": "465"
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

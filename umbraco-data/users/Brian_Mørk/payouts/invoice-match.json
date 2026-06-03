@@ -1,0 +1,56 @@
+{
+  "matched": [
+    {
+      "id": 123383,
+      "key": "2275b6ef-8e9f-4dbe-a968-783e5e263d55",
+      "udi": "umb://document/2275b6ef8e9f4dbea968783e5e263d55",
+      "name": "KBF-1745",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/123383",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2026-05-19 10:32:20",
+      "updateDate": "2026-05-19 11:27:22",
+      "parentId": 42317,
+      "path": "-1,1067,42313,42317,123383",
+      "sortOrder": 0,
+      "urls": [
+        "/brian-moerk/payouts/kbf-1745/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/brian-moerk/payouts/kbf-1745/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/brian-moerk/payouts/kbf-1745/",
+      "amount": "324.08",
+      "amountNumber": 324.08,
+      "isPaid": true,
+      "payoutCreateDate": "2026-05-19 10:32:20",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/brian-moerk/payouts/kbf-1745/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/brian-moerk/payouts/kbf-1745/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "11",
+        "transactionFee": "6",
+        "kiibeeCut": "15",
+        "rentAmount": "7",
+        "from": "2021-04-07 15:44:46",
+        "rawEarnings": "632",
+        "amount": "324.08",
+        "isPaid": "1",
+        "to": "2026-05-19 10:32:13",
+        "transactionAmount": "37.92",
+        "kiibeeCutAmount": "270"
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-02T09:15:50.690Z",
+  "exportedAt": "2026-06-02T11:13:57.830Z",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1961",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
@@ -25,9 +25,7 @@
     "contentTypeAlias": "purchases",
     "published": true,
     "hasPublishedVersion": true,
-    "urls": [
-      "/tania-ellis-the-social-business-company/purchases/"
-    ],
+    "urls": ["/tania-ellis-the-social-business-company/purchases/"],
     "path": "-1,1067,1957,1961",
     "properties": {
       "_umb_containerView": null
@@ -60,18 +58,13 @@
   ],
   "mediaCache": [
     {
-      "path": "umbraco-data/users/TANIA_ELLIS_-_The_Social_Business_Company/purchases/media.json",
-      "count": 0,
-      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\TANIA_ELLIS_-_The_Social_Business_Company\\purchases\\media.json'"
-    },
-    {
-      "path": "umbraco-data/users/TANIA_ELLIS_-_The_Social_Business_Company/shows/items.json",
-      "count": 6
-    },
-    {
-      "path": "umbraco-data/users/TANIA_ELLIS_-_The_Social_Business_Company/stats/media.json",
+      "path": "umbraco-data\\users\\TANIA_ELLIS_-_The_Social_Business_Company\\stats\\media.json",
       "count": 0,
       "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\TANIA_ELLIS_-_The_Social_Business_Company\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\TANIA_ELLIS_-_The_Social_Business_Company\\purchases\\media.json",
+      "count": 0
     }
   ],
   "files": {

@@ -1,0 +1,49 @@
+[
+  {
+    "id": 84845,
+    "key": "28fb5e2f-ffcc-4626-a81a-bff7e246eaa8",
+    "udi": "umb://document/28fb5e2fffcc4626a81abff7e246eaa8",
+    "name": "KBF-1418",
+    "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/84845",
+    "contentTypeAlias": "payout",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2023-05-23 11:39:23",
+    "updateDate": "2023-05-23 11:55:42",
+    "parentId": 65135,
+    "path": "-1,1067,65131,65135,84845",
+    "sortOrder": 0,
+    "urls": ["/foreningen-danske-revisorer/payouts/kbf-1418/"],
+    "publicPayoutUrls": [
+      "https://kiibee.dk/foreningen-danske-revisorer/payouts/kbf-1418/"
+    ],
+    "publicPayoutUrl": "https://kiibee.dk/foreningen-danske-revisorer/payouts/kbf-1418/",
+    "amount": "1103",
+    "amountNumber": 1103,
+    "isPaid": true,
+    "payoutCreateDate": "2023-05-23 11:39:23",
+    "candidateInvoiceProperties": [],
+    "candidateInvoiceUrls": [],
+    "directInvoiceUrls": [],
+    "invoiceUdis": [],
+    "invoiceEntities": [],
+    "invoiceUrls": [
+      "https://kiibee.dk/foreningen-danske-revisorer/payouts/kbf-1418/"
+    ],
+    "invoiceUrl": "https://kiibee.dk/foreningen-danske-revisorer/payouts/kbf-1418/",
+    "invoiceMatchStatus": "matched-public-payout-url",
+    "properties": {
+      "salesAmount": "7",
+      "transactionFee": "6",
+      "kiibeeCut": "9",
+      "rentAmount": "1",
+      "from": "2022-06-06 10:14:41",
+      "rawEarnings": "1250",
+      "amount": "1103",
+      "isPaid": "1",
+      "to": "2023-05-23 11:38:50",
+      "transactionAmount": "75",
+      "kiibeeCutAmount": "72"
+    }
+  }
+]

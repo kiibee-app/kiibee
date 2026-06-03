@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+78491,bd012a19-f1d9-4655-b463-0db648ecefdf,umb://document/bd012a19f1d94655b4630db648ecefdf,KBF-1376,270,270,true,2023-02-23 17:07:49,2023-02-23 17:07:49,https://kiibee.dk/line-jl-feel-the-heal/payouts/kbf-1376/,matched-public-payout-url,https://kiibee.dk/line-jl-feel-the-heal/payouts/kbf-1376/,https://kiibee.dk/line-jl-feel-the-heal/payouts/kbf-1376/,,

@@ -1,0 +1,56 @@
+{
+  "matchedShows": [
+    {
+      "id": 42190,
+      "key": "75a70ce5-24ac-4e78-8f5a-e955d66d5121",
+      "udi": "umb://document/75a70ce524ac4e788f5ae955d66d5121",
+      "name": "Alter Ego",
+      "title": "Alter Ego",
+      "statsEntryCount": 72,
+      "statsPlayCount": 18,
+      "statsNonPlayCount": 54
+    },
+    {
+      "id": 42224,
+      "key": "84b206d6-9a76-4360-a873-a2b9a5a71565",
+      "udi": "umb://document/84b206d69a764360a873a2b9a5a71565",
+      "name": "Dyret!",
+      "title": "Dyret!",
+      "statsEntryCount": 38,
+      "statsPlayCount": 9,
+      "statsNonPlayCount": 29
+    },
+    {
+      "id": 42227,
+      "key": "d3977093-4c42-43f3-897c-c87e7429a8b2",
+      "udi": "umb://document/d39770934c4243f3897cc87e7429a8b2",
+      "name": "Plukker Kameler",
+      "title": "Plukker Kameler",
+      "statsEntryCount": 30,
+      "statsPlayCount": 2,
+      "statsNonPlayCount": 28
+    },
+    {
+      "id": 42177,
+      "key": "1640d68b-0aa7-448b-a8ec-6ba564e13a62",
+      "udi": "umb://document/1640d68b0aa7448ba8ec6ba564e13a62",
+      "name": "Bang! Jeg er død",
+      "title": "Bang! Jeg er død",
+      "statsEntryCount": 30,
+      "statsPlayCount": 5,
+      "statsNonPlayCount": 25
+    },
+    {
+      "id": 42225,
+      "key": "9a3617b1-d91f-412c-ac88-8c2c1634b78f",
+      "udi": "umb://document/9a3617b1d91f412cac888c2c1634b78f",
+      "name": "Har Satan En Fætter ?",
+      "title": "Har Satan En Fætter ?",
+      "statsEntryCount": 25,
+      "statsPlayCount": 2,
+      "statsNonPlayCount": 23
+    }
+  ],
+  "showsWithoutStats": [],
+  "statsMediaWithoutShow": []
+}

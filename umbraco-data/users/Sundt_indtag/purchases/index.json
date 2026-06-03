@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-06-02T09:17:50.845Z",
+  "exportedAt": "2026-06-02T11:13:56.340Z",
   "source": {
     "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2683",
     "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
@@ -25,9 +25,7 @@
     "contentTypeAlias": "purchases",
     "published": true,
     "hasPublishedVersion": true,
-    "urls": [
-      "/sundt-indtag/purchases/"
-    ],
+    "urls": ["/sundt-indtag/purchases/"],
     "path": "-1,1067,2679,2683",
     "properties": {
       "_umb_containerView": null
@@ -60,18 +58,13 @@
   ],
   "mediaCache": [
     {
-      "path": "umbraco-data/users/Sundt_indtag/purchases/media.json",
-      "count": 0,
-      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Sundt_indtag\\purchases\\media.json'"
-    },
-    {
-      "path": "umbraco-data/users/Sundt_indtag/shows/items.json",
-      "count": 1
-    },
-    {
-      "path": "umbraco-data/users/Sundt_indtag/stats/media.json",
+      "path": "umbraco-data\\users\\Sundt_indtag\\stats\\media.json",
       "count": 0,
       "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Sundt_indtag\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\Sundt_indtag\\purchases\\media.json",
+      "count": 0
     }
   ],
   "files": {

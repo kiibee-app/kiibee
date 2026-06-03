@@ -1,0 +1,104 @@
+{
+  "exportedAt": "2026-06-02T11:05:39.349Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/46934",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 46934,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden",
+      "type",
+      "rawFile",
+      "videoID",
+      "videoStatus",
+      "videoSize",
+      "videoThumbnailURL",
+      "videoDownloadURL",
+      "trailer",
+      "webContentURL",
+      "openWebContentInNewWindows",
+      "openWebContentFromList",
+      "description",
+      "expandedDescription",
+      "year",
+      "length",
+      "badge",
+      "production",
+      "productionLink",
+      "tags",
+      "thumbnail",
+      "productLink",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending"
+  },
+  "parent": {
+    "id": 46934,
+    "key": "42029f12-5792-4053-a1ff-5fdbf144a057",
+    "udi": "umb://document/42029f1257924053a1ff5fdbf144a057",
+    "name": "Shows",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/red-barnet/shows/"],
+    "path": "-1,1067,46713,46934",
+    "properties": {
+      "_umb_containerView": null,
+      "orderID": "0",
+      "access": ["58"],
+      "rentalPrice": "199",
+      "purchasePrice": "249",
+      "code": "",
+      "period": "1",
+      "headline": "",
+      "description": "Her kan du købe alle Comedy Aid & Taler gaver til børn`s shows for en samlet pris - god fornøjelse.",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "0",
+      "columnAmount": "4",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 10,
+    "childrenFetched": 10,
+    "detailsFetched": 10,
+    "detailErrors": 0,
+    "statsEntriesRead": 199,
+    "uniqueStatsMedia": 10,
+    "showsMatchedToStats": 10,
+    "showsWithoutStats": 0,
+    "statsMediaWithoutShow": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 10,
+      "totalItems": 10
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "statsMatch": "stats-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "stats mediaUdi equals show UDI derived from show key",
+    "statsSource": "umbraco-data\\users\\Red_Barnet\\stats\\items.json",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

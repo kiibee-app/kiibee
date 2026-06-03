@@ -1,0 +1,89 @@
+{
+  "exportedAt": "2026-06-02T10:59:11.114Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/22555",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 22555,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 22555,
+    "key": "387ea0d8-29e8-4013-bce9-a58c789a0c52",
+    "udi": "umb://document/387ea0d829e84013bce9a58c789a0c52",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "Dette dokument er udgivet, men ikke synligt da den overliggende side 'mariebrixtofte' ikke er udgivet!"
+    ],
+    "path": "-1,1067,22550,22555",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 109,
+    "childrenFetched": 109,
+    "detailsFetched": 109,
+    "detailErrors": 0,
+    "purchaseEntries": 71,
+    "nonPurchaseEntries": 38,
+    "entriesWithDownloads": 22,
+    "entriesWithStreams": 10,
+    "totalDownloads": 40,
+    "totalStreams": 31,
+    "uniqueMediaUdis": 3,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 1,
+    "mediaResolved": 1,
+    "mediaUnresolved": 2,
+    "mediaResolveErrors": 2
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 109
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 9,
+      "totalItems": 109
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data\\users\\mariebrixtofte\\stats\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\mariebrixtofte\\stats\\media.json'"
+    },
+    {
+      "path": "umbraco-data\\users\\mariebrixtofte\\purchases\\media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\mariebrixtofte\\purchases\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

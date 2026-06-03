@@ -1,0 +1,89 @@
+[
+  {
+    "id": 63099,
+    "key": "2413e383-1522-492b-9314-d8f45fddcd15",
+    "udi": "umb://document/2413e3831522492b9314d8f45fddcd15",
+    "name": "p9kp30032022122106",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2022-03-30 12:21:48",
+    "updateDate": "2022-03-30 12:21:48",
+    "parentId": 14222,
+    "path": "-1,1067,14217,14222,63099",
+    "sortOrder": 0,
+    "urls": [
+      "/stopsygefravaernu/purchases/p9kp30032022122106/"
+    ],
+    "fullName": "Tobias Haudrup Larsen",
+    "email": "toha.lar@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "199",
+    "expireDate": "2022-04-29 12:21:47",
+    "message": "Kære kunde.\r\nTusind tak for din henvendelse. Vi håber du bliver tilfreds med din nye ydelse fra os. Oplever du, imod al forventning, problemer, så send os endelig en mail på kontakt@stopsygefravaer.nu\r\n\r\nDe bedste hilsner \r\nKirsten Løvschall\r\nStopsygefravær.nu",
+    "orderCreateDate": "2022-03-30 12:21:48",
+    "mediaRelationUdis": [
+      "umb://document/7d978ccac261419e80d1d316b3f8937c"
+    ],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": [
+      "umb://document/7d978ccac261419e80d1d316b3f8937c"
+    ],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/7d978ccac261419e80d1d316b3f8937c",
+        "key": "7d978cca-c261-419e-80d1-d316b3f8937c",
+        "resolved": true,
+        "id": 14438,
+        "name": "PDF: Succes med at håndtere sygefravær i din forretning.",
+        "title": "PDF: Succes med at håndtere sygefravær i din forretning.",
+        "urls": [
+          "/stopsygefravaernu/e-bog-i-to-forskellige-formater-pdf-format-eller-e-pub-format-som-kan-laeses-direkte-i-e-bogs-appén/pdf-succes-med-at-haandtere-sygefravaer-i-din-forretning/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/1841/stopsygefravaer-e-bog-pdf-version.pdf",
+        "webContentURL": "",
+        "thumbnail": "/media/1844/konkret-viden.png",
+        "purchasePrice": "199",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "PDF: Succes med at håndtere sygefravær i din forretning."
+    ],
+    "mediaUrls": [
+      "/stopsygefravaernu/e-bog-i-to-forskellige-formater-pdf-format-eller-e-pub-format-som-kan-laeses-direkte-i-e-bogs-appén/pdf-succes-med-at-haandtere-sygefravaer-i-din-forretning/"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "toha.lar@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2022-04-29 12:21:47",
+      "price": "199",
+      "fullName": "Tobias Haudrup Larsen",
+      "message": "Kære kunde.\r\nTusind tak for din henvendelse. Vi håber du bliver tilfreds med din nye ydelse fra os. Oplever du, imod al forventning, problemer, så send os endelig en mail på kontakt@stopsygefravaer.nu\r\n\r\nDe bedste hilsner \r\nKirsten Løvschall\r\nStopsygefravær.nu",
+      "media": "umb://document/7d978ccac261419e80d1d316b3f8937c"
+    }
+  }
+]

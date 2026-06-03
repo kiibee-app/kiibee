@@ -1,0 +1,101 @@
+{
+  "matched": [
+    {
+      "id": 122809,
+      "key": "8589cd71-9098-47d8-ae0c-e5ac967c6efb",
+      "udi": "umb://document/8589cd71909847d8ae0ce5ac967c6efb",
+      "name": "KBF-1738",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/122809",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2026-04-30 15:24:46",
+      "updateDate": "2026-05-01 09:15:37",
+      "parentId": 117538,
+      "path": "-1,1067,117534,117538,122809",
+      "sortOrder": 1,
+      "urls": ["/dahls-regnskabsservice-aps/payouts/kbf-1738/"],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/dahls-regnskabsservice-aps/payouts/kbf-1738/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/dahls-regnskabsservice-aps/payouts/kbf-1738/",
+      "amount": "172.06",
+      "amountNumber": 172.06,
+      "isPaid": true,
+      "payoutCreateDate": "2026-04-30 15:24:46",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/dahls-regnskabsservice-aps/payouts/kbf-1738/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/dahls-regnskabsservice-aps/payouts/kbf-1738/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "6",
+        "kiibeeCut": "15",
+        "rentAmount": "0",
+        "from": "2026-03-07 09:20:12",
+        "rawEarnings": "199",
+        "amount": "172.06",
+        "isPaid": "1",
+        "to": "2026-04-30 15:24:37",
+        "transactionAmount": "11.94",
+        "kiibeeCutAmount": "15"
+      }
+    },
+    {
+      "id": 119818,
+      "key": "84d83268-85a4-4172-ae77-b114e1302332",
+      "udi": "umb://document/84d8326885a44172ae77b114e1302332",
+      "name": "KBF-1724",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/119818",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2026-03-07 09:20:22",
+      "updateDate": "2026-03-09 10:53:23",
+      "parentId": 117538,
+      "path": "-1,1067,117534,117538,119818",
+      "sortOrder": 0,
+      "urls": ["/dahls-regnskabsservice-aps/payouts/kbf-1724/"],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/dahls-regnskabsservice-aps/payouts/kbf-1724/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/dahls-regnskabsservice-aps/payouts/kbf-1724/",
+      "amount": "172.06",
+      "amountNumber": 172.06,
+      "isPaid": true,
+      "payoutCreateDate": "2026-03-07 09:20:22",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/dahls-regnskabsservice-aps/payouts/kbf-1724/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/dahls-regnskabsservice-aps/payouts/kbf-1724/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "1",
+        "transactionFee": "6",
+        "kiibeeCut": "15",
+        "rentAmount": "0",
+        "from": "2026-01-12 22:09:27",
+        "rawEarnings": "199",
+        "amount": "172.06",
+        "isPaid": "1",
+        "to": "2026-03-07 09:20:12",
+        "transactionAmount": "11.94",
+        "kiibeeCutAmount": "15"
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}
