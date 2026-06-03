@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import { BackButtonIcon } from "@/assets/icons";
@@ -154,6 +154,21 @@ export default function ContentUploadModal({
     setShowDetails(false);
     callback();
   };
+
+  const handleExitRef = useRef(handleExit);
+
+  useEffect(() => {
+    handleExitRef.current = handleExit;
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        handleExitRef.current(onClose);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess, onClose]);
 
   const handleChange =
     (setter: (v: string) => void) => (value: string | string[]) => {

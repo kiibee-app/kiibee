@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
@@ -57,6 +57,21 @@ export default function CouponPreviewModal({
   mode = COUPON_MODE.PREVIEW,
   onEdit,
 }: Props) {
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        onCloseRef.current?.();
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess]);
+
   const { t } = useTranslation();
   const { data: contentOptions = [] } = useAllContentsOptions(
     collections,
