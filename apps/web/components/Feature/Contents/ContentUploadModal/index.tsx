@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import { BackButtonIcon } from "@/assets/icons";
@@ -28,6 +28,7 @@ import {
   type ContentUploadMode,
 } from "@/utils/content";
 import { useContentUpload } from "@/hooks/contents/useContentUpload";
+import { useSuccessAutoClose } from "@/hooks/useSuccessAutoClose";
 import SelectedFileView from "./SelectedFileView";
 import ContentUploadDetails from "./UploadDetails";
 import WebContentLinkForm from "./WebContentLinkForm";
@@ -155,20 +156,10 @@ export default function ContentUploadModal({
     callback();
   };
 
-  const handleExitRef = useRef(handleExit);
-
-  useEffect(() => {
-    handleExitRef.current = handleExit;
+  useSuccessAutoClose({
+    isSuccess,
+    onClose: () => handleExit(onClose),
   });
-
-  useEffect(() => {
-    if (isSuccess) {
-      const timer = setTimeout(() => {
-        handleExitRef.current(onClose);
-      }, 1500);
-      return () => clearTimeout(timer);
-    }
-  }, [isSuccess, onClose]);
 
   const handleChange =
     (setter: (v: string) => void) => (value: string | string[]) => {

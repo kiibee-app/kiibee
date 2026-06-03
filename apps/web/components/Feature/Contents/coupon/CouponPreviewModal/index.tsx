@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
@@ -28,6 +28,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import { BUTTON } from "@/utils/Constants";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
+import { useSuccessAutoClose } from "@/hooks/useSuccessAutoClose";
 import { CollectionRow } from "@/types/collectionsType";
 import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
 import { formatDateUSShort } from "@/utils/formatDate";
@@ -57,20 +58,10 @@ export default function CouponPreviewModal({
   mode = COUPON_MODE.PREVIEW,
   onEdit,
 }: Props) {
-  const onCloseRef = useRef(onClose);
-
-  useEffect(() => {
-    onCloseRef.current = onClose;
+  useSuccessAutoClose({
+    isSuccess,
+    onClose,
   });
-
-  useEffect(() => {
-    if (isSuccess) {
-      const timer = setTimeout(() => {
-        onCloseRef.current?.();
-      }, 1500);
-      return () => clearTimeout(timer);
-    }
-  }, [isSuccess]);
 
   const { t } = useTranslation();
   const { data: contentOptions = [] } = useAllContentsOptions(
