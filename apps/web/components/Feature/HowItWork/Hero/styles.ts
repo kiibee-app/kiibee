@@ -24,6 +24,18 @@ export const Background = styled.div`
   height: calc(100% + 108px);
   z-index: 0;
   overflow: hidden;
+
+  & > div {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+    object-position: center top;
+  }
 `;
 
 export const Inner = styled.div`

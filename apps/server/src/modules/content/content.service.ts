@@ -18,6 +18,11 @@ import {
   getContentSettingByUserId,
 } from './services/contentSetting.service';
 import { ContentSettingDto } from './dto/contentSetting.dto';
+import {
+  GetAllContentsFilter,
+  getAllContentsService,
+  SortField,
+} from './services/getAllContents.service';
 import { getSingleContentService } from './services/getSingleContent.service';
 
 @Injectable()
@@ -74,6 +79,15 @@ export class ContentService {
 
   async createOrUpdateContentSetting(userId: string, dto: ContentSettingDto) {
     return createOrUpdateContentSetting(userId, dto);
+  }
+
+  async getAllContents(
+    limit: number,
+    search: string,
+    sort: SortField,
+    filter: GetAllContentsFilter,
+  ) {
+    return getAllContentsService(limit, search, sort, filter);
   }
 
   async getSingleContent(contentId: string, userId: string) {

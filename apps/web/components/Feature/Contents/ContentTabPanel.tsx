@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   ADD_CONTENT_TABS,
@@ -58,6 +58,7 @@ type Props = {
     SetStateAction<Record<string, CollectionContentRow[]>>
   >;
   setActiveTab: (tab: ContentTab) => void;
+  searchValue?: string;
   uploadedFile?: File | null;
   uploadedPreview?: string | null;
   collectionAccessType?: AdmissionRequirementValue;
@@ -80,6 +81,7 @@ export default function ContentTabPanel({
   onEditCoupon,
   setContentsMap,
   setActiveTab,
+  searchValue,
   uploadedFile,
   uploadedPreview,
   collectionAccessType,
@@ -127,9 +129,21 @@ export default function ContentTabPanel({
     setCollections,
   });
 
+  const filteredCollectionContents = useMemo(() => {
+    const query = searchValue?.trim().toLowerCase();
+
+    if (!selectedCollection || !query) {
+      return collectionContents;
+    }
+
+    return collectionContents.filter((row) =>
+      (row.name ?? "").toLowerCase().includes(query),
+    );
+  }, [collectionContents, searchValue, selectedCollection]);
+
   const renderCollectionsContent = () => {
     if (selectedCollection) {
-      const data = collectionContents;
+      const data = filteredCollectionContents;
 
       if (!data || data.length === 0) {
         return (
@@ -156,6 +170,7 @@ export default function ContentTabPanel({
           <CollectionTable
             type={COLLECTION_TABLE_TYPE.CONTENTS}
             data={data}
+            searchValue={searchValue}
             onRowClick={(row) => router.push(pathPublishedContent(row.id))}
             onEdit={onEditContent}
             onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
@@ -181,6 +196,7 @@ export default function ContentTabPanel({
       <CollectionTable
         type={COLLECTION_TABLE_TYPE.COLLECTIONS}
         data={collections}
+        searchValue={searchValue}
         onRowClick={setSelectedCollection}
         onMoveUp={handleMoveUp}
         onMoveDown={handleMoveDown}
@@ -213,6 +229,7 @@ export default function ContentTabPanel({
       <>
         <CouponTable
           data={couponRows}
+          searchValue={searchValue}
           onActionSelect={handleCouponAction}
           onRowClick={(row) => {
             const fullCoupon = couponList.find((c) => c.id === row.action);

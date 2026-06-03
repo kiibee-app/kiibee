@@ -33,6 +33,9 @@ export const useContentsModalFlows = (
   const queryClient = useQueryClient();
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [couponForm, setCouponForm] = useState(INITIAL_COUPON_FORM);
+  const [couponInitialForm, setCouponInitialForm] =
+    useState(INITIAL_COUPON_FORM);
+  const [isCouponDiscardPending, setIsCouponDiscardPending] = useState(false);
   const [isCouponSuccess, setIsCouponSuccess] = useState(false);
   const [editingCouponId, setEditingCouponId] = useState<string | null>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -52,8 +55,24 @@ export const useContentsModalFlows = (
   const createCollectionMutation = usePostAPI<unknown, { name: string }>(
     API.collection.create,
   );
+  const normalizeCouponForm = (form: typeof INITIAL_COUPON_FORM) => ({
+    ...form,
+    title: form.title.trim(),
+    discountValue: form.discountValue.trim(),
+    codes: (form.codes ?? []).map((code) => code.trim()).filter(Boolean),
+    collectionIds: form.collectionIds ?? [],
+    contentIds: form.contentIds ?? [],
+  });
+
+  const hasCouponChanges =
+    JSON.stringify(normalizeCouponForm(couponForm)) !==
+    JSON.stringify(normalizeCouponForm(couponInitialForm));
+
   const couponFlow = {
-    open: () => setCouponStep(COUPON_STEPS.DETAILS),
+    open: () => {
+      setCouponInitialForm(INITIAL_COUPON_FORM);
+      setCouponStep(COUPON_STEPS.DETAILS);
+    },
     close: () => setCouponStep(null),
     next: () =>
       setCouponStep((current) => {
@@ -202,9 +221,21 @@ export const useContentsModalFlows = (
 
   const closeCouponFlow = () => {
     setCouponForm(INITIAL_COUPON_FORM);
+    setCouponInitialForm(INITIAL_COUPON_FORM);
     setIsCouponSuccess(false);
     setEditingCouponId(null);
+    setIsCouponDiscardPending(false);
     couponFlow.close();
+  };
+
+  const requestCloseCouponFlow = () => {
+    if (!isCouponSuccess && hasCouponChanges) {
+      setIsCouponDiscardPending(true);
+      setShowDiscardModal(true);
+      return;
+    }
+
+    closeCouponFlow();
   };
 
   const handleBackFromCouponPreview = () => {
@@ -280,8 +311,14 @@ export const useContentsModalFlows = (
   ) => {
     setEditingCouponId(couponId);
     setCouponForm(formState);
+    setCouponInitialForm(formState);
     setIsCouponSuccess(false);
     setCouponStep(COUPON_STEPS.DETAILS);
+  };
+
+  const closeDiscardModal = () => {
+    setShowDiscardModal(false);
+    setIsCouponDiscardPending(false);
   };
 
   return {
@@ -292,11 +329,13 @@ export const useContentsModalFlows = (
     isCouponSuccess,
     couponFlow,
     closeCouponFlow,
+    requestCloseCouponFlow,
+    isCouponDiscardPending,
     handleBackFromCouponPreview,
     handleCouponSubmit,
     showDiscardModal,
     openDiscardModal: () => setShowDiscardModal(true),
-    closeDiscardModal: () => setShowDiscardModal(false),
+    closeDiscardModal,
     handleCreateClick,
     handleEditCollection,
     openCouponEdit,

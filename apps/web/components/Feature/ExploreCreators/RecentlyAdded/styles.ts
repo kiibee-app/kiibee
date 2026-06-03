@@ -24,3 +24,36 @@ export const SectionTag = styled.span`
   padding: 0.35rem 0.75rem;
   border-radius: ${({ theme }) => theme.radius.sm};
 `;
+
+export const HeaderActions = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const SectionArrows = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 1rem;
+`;
+
+export const SectionArrow = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  transition: opacity 120ms ease;
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+`;

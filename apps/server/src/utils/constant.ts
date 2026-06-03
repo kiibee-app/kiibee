@@ -86,6 +86,10 @@ export const SORT_DIRECTIONS = {
   NEWEST: 'newest',
   TOP: 'top',
   FEATURED: 'featured',
+  NEW: 'new',
+  POPULAR: 'popular',
+  FREE: 'free',
+  ALL: 'all',
 } as const;
 
 export const ACCRESS_TYPES = {

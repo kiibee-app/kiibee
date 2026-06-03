@@ -30,6 +30,17 @@ export const ImgWrap = styled.div`
   border-radius: 10px;
   overflow: hidden;
 
+  & > div {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
   ${media.tablet} {
     height: 300px;
     width: 100%;
