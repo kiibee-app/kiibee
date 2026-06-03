@@ -1,6 +1,7 @@
 import design1 from "@/assets/images/design1.webp";
 import design2 from "@/assets/images/design2.webp";
 import design3 from "@/assets/images/design.webp";
+import { VARIANT } from "@/utils/variants";
 
 export type RentedMode = "purchased" | "currently" | "previously";
 export type RentedMediaType = "video" | "audio" | "pdf";
@@ -10,6 +11,12 @@ export type CollectionAction = {
   sublabel?: string;
   variant?: "primary" | "secondary";
 };
+
+export function toCollectionActionVariant(
+  variant?: string,
+): CollectionAction["variant"] {
+  return variant === VARIANT.SECONDARY ? "secondary" : "primary";
+}
 
 export type RentedCollectionItem = {
   id: string;

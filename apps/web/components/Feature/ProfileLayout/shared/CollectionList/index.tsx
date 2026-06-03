@@ -13,7 +13,10 @@ import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { resolveImageUrl } from "@/utils/Constants";
 import { tutorialVideos } from "@/utils/data";
-import type { RentedCollectionItem } from "@/utils/dummyData/viewerRentedMockData";
+import {
+  type RentedCollectionItem,
+  toCollectionActionVariant,
+} from "@/utils/dummyData/viewerRentedMockData";
 import { RENTED_MODES } from "@/utils/viewerRented";
 import { authStorage } from "@/lib/auth/authStorage";
 import { CollectionListInner, CollectionListShell } from "./styles";
@@ -44,7 +47,7 @@ export default function CollectionList() {
         hideBadge: true,
         actions: (tutorial.buttons ?? []).map((button) => ({
           label: button.label,
-          variant: button.variant ?? "primary",
+          variant: toCollectionActionVariant(button.variant),
         })),
       }));
     }
