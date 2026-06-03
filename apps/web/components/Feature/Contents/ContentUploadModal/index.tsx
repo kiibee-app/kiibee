@@ -28,6 +28,7 @@ import {
   type ContentUploadMode,
 } from "@/utils/content";
 import { useContentUpload } from "@/hooks/contents/useContentUpload";
+import { useSuccessAutoClose } from "@/hooks/useSuccessAutoClose";
 import SelectedFileView from "./SelectedFileView";
 import ContentUploadDetails from "./UploadDetails";
 import WebContentLinkForm from "./WebContentLinkForm";
@@ -154,6 +155,11 @@ export default function ContentUploadModal({
     setShowDetails(false);
     callback();
   };
+
+  useSuccessAutoClose({
+    isSuccess,
+    onClose: () => handleExit(onClose),
+  });
 
   const handleChange =
     (setter: (v: string) => void) => (value: string | string[]) => {

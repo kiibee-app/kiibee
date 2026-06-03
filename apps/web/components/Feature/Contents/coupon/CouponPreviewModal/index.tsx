@@ -28,6 +28,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import { BUTTON } from "@/utils/Constants";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
+import { useSuccessAutoClose } from "@/hooks/useSuccessAutoClose";
 import { CollectionRow } from "@/types/collectionsType";
 import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
 import { formatDateUSShort } from "@/utils/formatDate";
@@ -57,6 +58,11 @@ export default function CouponPreviewModal({
   mode = COUPON_MODE.PREVIEW,
   onEdit,
 }: Props) {
+  useSuccessAutoClose({
+    isSuccess,
+    onClose,
+  });
+
   const { t } = useTranslation();
   const { data: contentOptions = [] } = useAllContentsOptions(
     collections,
