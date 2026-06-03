@@ -7,6 +7,7 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  useSyncExternalStore,
 } from "react";
 import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
@@ -39,37 +40,37 @@ type CreatorChannelLayoutContextValue = {
 const CreatorChannelLayoutContext =
   createContext<CreatorChannelLayoutContextValue | null>(null);
 
-function readInitialLayout(): CreatorLayoutKey {
-  if (typeof window === "undefined") return DEFAULT_CREATOR_LAYOUT;
-  return readSavedCreatorLayout();
+function subscribeToCreatorLayout(onStoreChange: () => void) {
+  const handler = () => onStoreChange();
+  window.addEventListener(CREATOR_LAYOUT_UPDATED, handler);
+  return () => window.removeEventListener(CREATOR_LAYOUT_UPDATED, handler);
+}
+
+function getCreatorLayoutServerSnapshot(): CreatorLayoutKey {
+  return DEFAULT_CREATOR_LAYOUT;
 }
 
 function useCreatorChannelLayoutState(): CreatorChannelLayoutContextValue {
-  const [savedLayout, setSavedLayout] =
-    useState<CreatorLayoutKey>(readInitialLayout);
-  const [selectedLayout, setSelectedLayout] =
-    useState<CreatorLayoutKey>(readInitialLayout);
+  const savedLayout = useSyncExternalStore(
+    subscribeToCreatorLayout,
+    readSavedCreatorLayout,
+    getCreatorLayoutServerSnapshot,
+  );
+  const [draftLayout, setDraftLayout] = useState<CreatorLayoutKey | null>(null);
+  const selectedLayout = draftLayout ?? savedLayout;
 
-  const syncFromStorage = useCallback(() => {
-    const stored = readSavedCreatorLayout();
-    setSavedLayout(stored);
-    setSelectedLayout(stored);
+  const setSelectedLayout = useCallback((layout: CreatorLayoutKey) => {
+    setDraftLayout(layout);
   }, []);
-
-  useEffect(() => {
-    window.addEventListener(CREATOR_LAYOUT_UPDATED, syncFromStorage);
-    return () =>
-      window.removeEventListener(CREATOR_LAYOUT_UPDATED, syncFromStorage);
-  }, [syncFromStorage]);
 
   const saveLayout = useCallback(() => {
     writeSavedCreatorLayout(selectedLayout);
-    setSavedLayout(selectedLayout);
+    setDraftLayout(null);
   }, [selectedLayout]);
 
   const cancelLayout = useCallback(() => {
-    setSelectedLayout(savedLayout);
-  }, [savedLayout]);
+    setDraftLayout(null);
+  }, []);
 
   const channelHref = useMemo(
     () => getCreatorChannelPath(savedLayout),
@@ -80,7 +81,7 @@ function useCreatorChannelLayoutState(): CreatorChannelLayoutContextValue {
     selectedLayout,
     savedLayout,
     channelHref,
-    hasUnsavedChanges: selectedLayout !== savedLayout,
+    hasUnsavedChanges: draftLayout !== null && draftLayout !== savedLayout,
     setSelectedLayout,
     saveLayout,
     cancelLayout,
