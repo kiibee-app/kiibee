@@ -29,56 +29,68 @@ interface SettingsPaymentSectionProps {
   downloadLimitOptions: DropdownOption<AccessDurationValue>[];
 }
 
+interface AmountBlockProps {
+  title: string;
+  value: string;
+  feeNote: string;
+  placeholder: string;
+  field: string;
+  updateField: (key: string, value: string) => void;
+}
+
+const AmountBlock = ({
+  title,
+  value,
+  feeNote,
+  placeholder,
+  field,
+  updateField,
+}: AmountBlockProps) => (
+  <Block>
+    <SectionTitle>{title}</SectionTitle>
+    <ControlWrap>
+      <InputField
+        value={value || ""}
+        onChange={(v) => updateField(field, toText(v))}
+        placeholder={placeholder}
+        variant={INPUT_VARIANTS.PRIMARY_GRAY}
+        inputMode="decimal"
+      />
+    </ControlWrap>
+    <FeeNote>{feeNote}</FeeNote>
+  </Block>
+);
+
 const SettingsPaymentSection = ({
   t,
   formState,
   updateField,
   downloadLimitOptions,
 }: SettingsPaymentSectionProps) => {
+  const amountPlaceholder = t("contents.payment.common.enterAmount");
+  const feeNote = t("contents.payment.common.feeNote");
+
   return (
     <>
-      {formState?.showRentalSection && (
-        <Block>
-          <SectionTitle>
-            {t("contents.payment.collectionRental.title")}
-          </SectionTitle>
-
-          <ControlWrap>
-            <InputField
-              value={formState?.rentalAmount || ""}
-              onChange={(v) =>
-                updateField(PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT, toText(v))
-              }
-              placeholder={t("contents.payment.common.enterAmount")}
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-              inputMode="decimal"
-            />
-          </ControlWrap>
-
-          <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
-        </Block>
+      {formState.showRentalSection && (
+        <AmountBlock
+          title={t("contents.payment.collectionRental.title")}
+          value={formState.rentalAmount}
+          field={PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT}
+          placeholder={amountPlaceholder}
+          feeNote={feeNote}
+          updateField={updateField}
+        />
       )}
-
-      {formState?.showPurchaseSection && (
-        <Block>
-          <SectionTitle>
-            {t("contents.payment.collectionPurchase.title")}
-          </SectionTitle>
-
-          <ControlWrap>
-            <InputField
-              value={formState?.purchaseAmount || ""}
-              onChange={(v) =>
-                updateField(PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT, toText(v))
-              }
-              placeholder={t("contents.payment.common.enterAmount")}
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-              inputMode="decimal"
-            />
-          </ControlWrap>
-
-          <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
-        </Block>
+      {formState.showPurchaseSection && (
+        <AmountBlock
+          title={t("contents.payment.collectionPurchase.title")}
+          value={formState.purchaseAmount}
+          field={PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT}
+          placeholder={amountPlaceholder}
+          feeNote={feeNote}
+          updateField={updateField}
+        />
       )}
 
       <Block>
@@ -93,7 +105,7 @@ const SettingsPaymentSection = ({
         <DropdownWrap>
           <SortDropdown
             options={downloadLimitOptions}
-            value={formState?.maxAccessLimit}
+            value={formState.maxAccessLimit}
             onChange={(value) =>
               updateField(
                 PAYMENTS_FORM_FIELDS.MAX_ACCESS_LIMIT,
