@@ -289,7 +289,7 @@ export const ExpiryCell = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
 `;
 
 export const FieldWrapper = styled.div`
@@ -308,4 +308,9 @@ export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+
+  ${media.mobileLg} {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 `;
