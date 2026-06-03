@@ -47,7 +47,7 @@ import {
   buildContentUpdatePayload,
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
-import { FORMAT_TYPE } from "@/utils/types";
+import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
 
 type Params = {
@@ -346,22 +346,25 @@ export function useContentFormActions({
 
         setUploadedFile(mockFile);
 
-        let preview: string | null = null;
-        if (fullContent.fileKey) {
-          if (resolvedContentType === FORMAT_TYPE.VIDEO) {
-            const res = await axiosClient.get<MediaUrlResponse>(
-              API.media.videoStream,
-              { params: { key: fullContent.fileKey } },
-            );
-            preview = res.data.url ?? null;
-          } else {
-            const res = await axiosClient.get<MediaUrlResponse>(
-              API.media.fileSignedUrl,
-              { params: { key: fullContent.fileKey } },
-            );
-            preview = res.data.url ?? null;
-          }
-        }
+        const getPreviewUrl = async (
+          fileKey: string,
+          contentType: FormatType,
+        ): Promise<string | null> => {
+          const endpoint =
+            contentType === FORMAT_TYPE.VIDEO
+              ? API.media.videoStream
+              : API.media.fileSignedUrl;
+
+          const res = await axiosClient.get<MediaUrlResponse>(endpoint, {
+            params: { key: fileKey },
+          });
+
+          return res.data.url ?? null;
+        };
+
+        const preview = fullContent.fileKey
+          ? await getPreviewUrl(fullContent.fileKey, resolvedContentType)
+          : null;
 
         setUploadedPreview(preview ?? null);
 
