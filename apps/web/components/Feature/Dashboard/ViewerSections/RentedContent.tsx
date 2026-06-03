@@ -2,9 +2,10 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import {
-  type RentedMediaItem,
-  type RentedMode,
+import type {
+  RentedCollectionItem,
+  RentedMediaItem,
+  RentedMode,
 } from "@/utils/dummyData/viewerRentedMockData";
 import { PageWrap, SectionBlock } from "./styles";
 import {
@@ -16,7 +17,10 @@ import {
   isViewerCollectionsSectionExpanded,
   syncViewerCollectionsSectionParam,
 } from "@/utils/viewerRented";
-import { CONTENT_COLLECTION_QUERY_KEY } from "@/utils/Constants";
+import {
+  CONTENT_COLLECTION_QUERY_KEY,
+  CONTENT_ITEM_QUERY_KEY,
+} from "@/utils/Constants";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
 import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
@@ -77,6 +81,10 @@ export default function RentedContent({
     mode === RENTED_MODES.PURCHASED
       ? searchParams?.get(CONTENT_COLLECTION_QUERY_KEY)
       : null;
+  const selectedContentId =
+    mode === RENTED_MODES.PURCHASED
+      ? searchParams?.get(CONTENT_ITEM_QUERY_KEY)
+      : null;
 
   const filteredCollections = filterCollections(
     searchValue,
@@ -130,10 +138,20 @@ export default function RentedContent({
     );
   }, [selectedCollection, sources.audios, sources.pdfs, sources.videos]);
 
+  const findMatchingCollection = useCallback(
+    (item: RentedMediaItem): RentedCollectionItem | undefined =>
+      sources.collections.find(
+        (collection) =>
+          collection.title === item.title && collection.author === item.author,
+      ),
+    [sources.collections],
+  );
+
   const handleOpenCollection = useCallback(
     (collectionId: string) => {
       const params = new URLSearchParams(searchParamsString);
       params.set(CONTENT_COLLECTION_QUERY_KEY, collectionId);
+      params.delete(CONTENT_ITEM_QUERY_KEY);
       const query = params.toString();
       const nextUrl = query ? `${pathname}?${query}` : pathname;
       router.replace(nextUrl, { scroll: false });
@@ -141,13 +159,40 @@ export default function RentedContent({
     [pathname, router, searchParamsString],
   );
 
+  const handleOpenMediaDetail = useCallback(
+    (item: RentedMediaItem) => {
+      const collection = findMatchingCollection(item);
+      if (!collection) return;
+
+      const params = new URLSearchParams(searchParamsString);
+      params.set(CONTENT_COLLECTION_QUERY_KEY, collection.id);
+      params.set(CONTENT_ITEM_QUERY_KEY, item.id);
+      const query = params.toString();
+      const nextUrl = query ? `${pathname}?${query}` : pathname;
+      router.replace(nextUrl, { scroll: false });
+    },
+    [findMatchingCollection, pathname, router, searchParamsString],
+  );
+
   const handleCloseCollection = useCallback(() => {
     const params = new URLSearchParams(searchParamsString);
     params.delete(CONTENT_COLLECTION_QUERY_KEY);
+    params.delete(CONTENT_ITEM_QUERY_KEY);
     const query = params.toString();
     const nextUrl = query ? `${pathname}?${query}` : pathname;
     router.replace(nextUrl, { scroll: false });
   }, [pathname, router, searchParamsString]);
+
+  const handleSelectDetailMedia = useCallback(
+    (mediaId: string) => {
+      const params = new URLSearchParams(searchParamsString);
+      params.set(CONTENT_ITEM_QUERY_KEY, mediaId);
+      const query = params.toString();
+      const nextUrl = query ? `${pathname}?${query}` : pathname;
+      router.replace(nextUrl, { scroll: false });
+    },
+    [pathname, router, searchParamsString],
+  );
 
   if (mode === RENTED_MODES.PURCHASED && selectedCollectionId) {
     return (
@@ -156,6 +201,8 @@ export default function RentedContent({
           collection={selectedCollection}
           mediaItems={selectedCollectionMedia}
           onBack={handleCloseCollection}
+          initialSelectedMediaId={selectedContentId}
+          onSelectMedia={handleSelectDetailMedia}
         />
       </PageWrap>
     );
@@ -207,6 +254,16 @@ export default function RentedContent({
           canGoNext={canGoNext}
           movePrev={movePrev}
           moveNext={moveNext}
+          onMediaPrimaryAction={
+            mode === RENTED_MODES.PURCHASED ? handleOpenMediaDetail : undefined
+          }
+          onOpenSection={
+            mode === RENTED_MODES.PURCHASED
+              ? (_, item) => {
+                  if (item) handleOpenMediaDetail(item);
+                }
+              : undefined
+          }
         />
       )}
     </PageWrap>

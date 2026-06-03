@@ -30,16 +30,22 @@ type Props = {
   collection: PurchasedCollectionItem | undefined;
   mediaItems: RentedMediaItem[];
   onBack: () => void;
+  initialSelectedMediaId?: string | null;
+  onSelectMedia?: (mediaId: string) => void;
 };
 
 export default function PurchasedCollectionDetail({
   collection,
   mediaItems,
   onBack,
+  initialSelectedMediaId = null,
+  onSelectMedia,
 }: Props) {
   const { t } = useTranslation();
   const detailAnchorRef = useRef<HTMLDivElement>(null);
-  const [selectedMediaId, setSelectedMediaId] = useState<string | null>(null);
+  const [selectedMediaId, setSelectedMediaId] = useState<string | null>(
+    initialSelectedMediaId,
+  );
 
   const purchasedItems = useMemo(
     () => mediaItems.map(rentedMediaToPurchasedItem),
@@ -60,6 +66,10 @@ export default function PurchasedCollectionDetail({
     if (!collection || !selectedMedia) return null;
     return getPurchasedMediaDetailView(selectedMedia, collection, t);
   }, [collection, selectedMedia, t]);
+
+  useEffect(() => {
+    setSelectedMediaId(initialSelectedMediaId);
+  }, [initialSelectedMediaId]);
 
   useEffect(() => {
     if (!selectedMediaId) return;
@@ -136,7 +146,10 @@ export default function PurchasedCollectionDetail({
         videos={tutorials}
         embedded
         selectedVideoId={selectedMediaId}
-        onSelectVideo={setSelectedMediaId}
+        onSelectVideo={(mediaId) => {
+          setSelectedMediaId(mediaId);
+          onSelectMedia?.(mediaId);
+        }}
       />
     </>
   );
