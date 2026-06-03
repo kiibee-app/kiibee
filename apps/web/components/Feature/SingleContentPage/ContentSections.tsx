@@ -1,10 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import BackButtonIcon from "@/assets/icons/BackButtonIcon";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import type {
   SingleContentBodyProps,
   SingleContentCreatorProps,
-  SingleContentHeroSectionProps,
+  SingleContentHeroProps,
   SingleContentTopBarProps,
 } from "@/types/contentTypes";
 import {
@@ -17,11 +19,6 @@ import {
   DescriptionText,
   ExpiryText,
   HeadingBlock,
-  Hero,
-  HeroMediaTag,
-  HeroMediaText,
-  HeroTag,
-  HeroTagText,
   InfoTag,
   InfoTagText,
   MainAction,
@@ -32,50 +29,15 @@ import {
   MetaRow,
   MetaSection,
   MetaValueText,
-  Preview,
-  PreviewAudio,
-  PreviewDocument,
-  PreviewVideo,
   ShareButton,
   ShareText,
   StatusBadge,
   TagRow,
   TopBar,
-  TrailerButton,
-  TrailerText,
 } from "./styles";
 import { t } from "i18next";
-import { isRemoteImageSource } from "@/utils/media";
-import { FORMAT_TYPE } from "@/utils/types";
-
-function SingleContentPreview({ hero }: SingleContentHeroSectionProps) {
-  if (hero.media?.src) {
-    if (hero.media.type === FORMAT_TYPE.VIDEO) {
-      return <PreviewVideo src={hero.media.src} controls playsInline />;
-    }
-
-    if (hero.media.type === FORMAT_TYPE.AUDIO) {
-      return <PreviewAudio src={hero.media.src} controls />;
-    }
-
-    if (
-      hero.media.type === FORMAT_TYPE.PDF ||
-      hero.media.type === FORMAT_TYPE.WEB
-    ) {
-      return <PreviewDocument src={hero.media.src} title={hero.media.title} />;
-    }
-  }
-
-  return (
-    <Image
-      src={hero.image}
-      alt={hero.imageAlt}
-      fill
-      priority
-      unoptimized={isRemoteImageSource(hero.image)}
-    />
-  );
-}
+import { resolveImageUrl } from "@/utils/media";
+import SingleContentHeroView from "./SingleContentHeroView";
 
 export function SingleContentTopBar({
   showBack,
@@ -108,49 +70,21 @@ export function SingleContentTopBar({
   );
 }
 
-export function SingleContentHero({ hero }: SingleContentHeroSectionProps) {
+export function SingleContentHero({
+  hero,
+  isPdfLayout = false,
+}: {
+  hero: SingleContentHeroProps;
+  isPdfLayout?: boolean;
+}) {
+  const heroKey = hero.media?.src ?? resolveImageUrl(hero.image);
+
   return (
-    <Hero>
-      <Preview>
-        <SingleContentPreview hero={hero} />
-      </Preview>
-
-      {hero.categoryLabel ? (
-        <HeroTag>
-          <HeroTagText>{hero.categoryLabel}</HeroTagText>
-        </HeroTag>
-      ) : null}
-
-      {hero.mediaLabel ? (
-        <HeroMediaTag>
-          {hero.mediaIcon ? (
-            <Image
-              src={hero.mediaIcon}
-              alt={hero.mediaIconAlt ?? ""}
-              width={16}
-              height={16}
-              priority
-            />
-          ) : null}
-          <HeroMediaText>{hero.mediaLabel}</HeroMediaText>
-        </HeroMediaTag>
-      ) : null}
-
-      {hero.trailerLabel ? (
-        <TrailerButton onClick={hero.onTrailerClick} type="button">
-          {hero.trailerIcon ? (
-            <Image
-              src={hero.trailerIcon}
-              alt={hero.trailerIconAlt ?? ""}
-              width={15}
-              height={15}
-              priority
-            />
-          ) : null}
-          <TrailerText>{hero.trailerLabel}</TrailerText>
-        </TrailerButton>
-      ) : null}
-    </Hero>
+    <SingleContentHeroView
+      key={heroKey}
+      hero={hero}
+      isPdfLayout={isPdfLayout}
+    />
   );
 }
 
