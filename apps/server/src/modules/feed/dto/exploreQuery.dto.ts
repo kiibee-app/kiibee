@@ -43,10 +43,6 @@ export class ExploreQueryDto {
   maxPrice?: string;
 
   @IsOptional()
-  @IsString()
-  rating?: string;
-
-  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   tags?: string[];

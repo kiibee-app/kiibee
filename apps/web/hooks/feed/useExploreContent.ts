@@ -17,14 +17,14 @@ import type { OptionItem } from "@/types/exportCreators";
 
 export const ALL_FILTER_OPTION_KEY = "all";
 
-export const EXPLORE_FEED_TYPE = {
+export const EXPLORE_CONTENT_SORT = {
   NEW: "new",
-  TRENDING: "trending",
-  CREATED_FOR_YOU: "created_for_you",
+  POPULAR: "popular",
+  ALL: "all",
 } as const;
 
-export type ExploreFeedType =
-  (typeof EXPLORE_FEED_TYPE)[keyof typeof EXPLORE_FEED_TYPE];
+export type ExploreContentSort =
+  (typeof EXPLORE_CONTENT_SORT)[keyof typeof EXPLORE_CONTENT_SORT];
 
 export type ExploreContentFilters = {
   creatorId?: string[];
@@ -42,13 +42,6 @@ type ApiResponse<T> = {
   data?: T | null;
 };
 
-type ExploreContentData = {
-  trending?: FeedContentItem[];
-  latest?: FeedContentItem[];
-  recent?: FeedContentItem[];
-  topCreators?: unknown[];
-};
-
 type TaxonomyItem = {
   id: string;
   name: string;
@@ -57,7 +50,7 @@ type TaxonomyItem = {
 type UseExploreContentParams = {
   limit?: number;
   search?: string;
-  type?: ExploreFeedType;
+  sort?: ExploreContentSort;
   filters?: ExploreContentFilters;
 };
 
@@ -103,7 +96,7 @@ function toOptionItems(items?: TaxonomyItem[] | null): OptionItem[] {
 export const useExploreContent = ({
   limit = 12,
   search,
-  type = EXPLORE_FEED_TYPE.NEW,
+  sort = EXPLORE_CONTENT_SORT.NEW,
   filters,
 }: UseExploreContentParams = {}) => {
   const { t } = useTranslation();
@@ -112,16 +105,16 @@ export const useExploreContent = ({
     () => ({
       limit,
       ...(search?.trim() ? { search: search.trim() } : {}),
-      type,
+      sort,
     }),
-    [limit, search, type],
+    [limit, search, sort],
   );
 
-  const query = useQuery<ApiResponse<ExploreContentData>>({
-    queryKey: [API.feed.explore, params, body],
+  const query = useQuery<ApiResponse<FeedContentItem[]>>({
+    queryKey: [API.content.all, params, body],
     queryFn: async () => {
-      const response = await axiosClient.post<ApiResponse<ExploreContentData>>(
-        API.feed.explore,
+      const response = await axiosClient.post<ApiResponse<FeedContentItem[]>>(
+        API.content.all,
         body,
         { params },
       );
@@ -131,15 +124,15 @@ export const useExploreContent = ({
   });
 
   const tutorials = useMemo((): TutorialVideo[] => {
-    const latest = query.data?.data?.latest;
+    const items = query.data?.data;
 
-    if (!query.data?.success || !Array.isArray(latest)) {
+    if (!query.data?.success || !Array.isArray(items)) {
       return [];
     }
 
     const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
 
-    return dedupeFeedContentItems(latest).map((item) =>
+    return dedupeFeedContentItems(items).map((item) =>
       feedContentToTutorial(item, freeLabel),
     );
   }, [query.data, t]);

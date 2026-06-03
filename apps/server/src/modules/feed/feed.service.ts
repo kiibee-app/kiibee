@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { getTrendingContentService } from './services/getTrendingContent.service';
 import { getRecentContentService } from './services/getRecentContent.service';
 import { exploreService } from './services/explore.service';
-import { ExploreType } from './dto/exploreQuery.dto';
 
 @Injectable()
 export class FeedService {
@@ -14,12 +13,7 @@ export class FeedService {
     return getRecentContentService();
   }
 
-  async exploreService(
-    limit?: number,
-    search?: string,
-    filter?: any,
-    type?: ExploreType,
-  ) {
-    return exploreService(limit, search, filter, type);
+  async exploreService(limit?: number, search?: string, filter?: any) {
+    return exploreService(limit, search, filter);
   }
 }

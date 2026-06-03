@@ -8,9 +8,9 @@ import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
 import CreatorFiltersControl from "../Hero/CreatorsFilters";
 import {
-  EXPLORE_FEED_TYPE,
+  EXPLORE_CONTENT_SORT,
   type ExploreContentFilters,
-  type ExploreFeedType,
+  type ExploreContentSort,
   useExploreContent,
   useExploreFilterOptions,
   withoutAllFilterOption,
@@ -29,10 +29,10 @@ import {
 } from "./styles";
 import { tabs } from "@/utils/common";
 
-const EXPLORE_TABS: { label: string; type: ExploreFeedType }[] = [
-  { label: tabs[0], type: EXPLORE_FEED_TYPE.NEW },
-  { label: tabs[1], type: EXPLORE_FEED_TYPE.TRENDING },
-  { label: tabs[2], type: EXPLORE_FEED_TYPE.CREATED_FOR_YOU },
+const EXPLORE_TABS: { label: string; sort: ExploreContentSort }[] = [
+  { label: tabs[0], sort: EXPLORE_CONTENT_SORT.NEW },
+  { label: tabs[1], sort: EXPLORE_CONTENT_SORT.POPULAR },
+  { label: tabs[2], sort: EXPLORE_CONTENT_SORT.ALL },
 ];
 
 const URL_FORMAT_IDS = new Set(["video", "audio", "pdf", "epub", "web"]);
@@ -45,14 +45,19 @@ function normalizeUrlFormat(format: string | null) {
   return URL_FORMAT_IDS.has(normalized) ? normalized : null;
 }
 
-function getInitialExploreType(
+function getInitialExploreSort(
   filter: string | null,
   sort: string | null,
-): ExploreFeedType {
-  if (sort === "popular") return EXPLORE_FEED_TYPE.TRENDING;
-  if (filter === EXPLORE_FEED_TYPE.NEW) return EXPLORE_FEED_TYPE.NEW;
+): ExploreContentSort {
+  if (sort === EXPLORE_CONTENT_SORT.POPULAR) {
+    return EXPLORE_CONTENT_SORT.POPULAR;
+  }
 
-  return EXPLORE_FEED_TYPE.NEW;
+  if (filter === EXPLORE_CONTENT_SORT.NEW) {
+    return EXPLORE_CONTENT_SORT.NEW;
+  }
+
+  return EXPLORE_CONTENT_SORT.NEW;
 }
 
 export default function LatestRelease() {
@@ -65,16 +70,16 @@ export default function LatestRelease() {
   const urlFilter = searchParams.get("filter");
   const urlFormat = normalizeUrlFormat(searchParams.get("format"));
   const urlAccessType = urlFilter === ACCESS_TYPE_FREE ? ACCESS_TYPE_FREE : "";
-  const initialExploreType = getInitialExploreType(
+  const initialExploreSort = getInitialExploreSort(
     urlFilter,
     searchParams.get("sort"),
   );
-  const [activeExploreType, setActiveExploreType] =
-    useState<ExploreFeedType>(initialExploreType);
+  const [activeExploreSort, setActiveExploreSort] =
+    useState<ExploreContentSort>(initialExploreSort);
 
   useEffect(() => {
-    setActiveExploreType(initialExploreType);
-  }, [initialExploreType]);
+    setActiveExploreSort(initialExploreSort);
+  }, [initialExploreSort]);
 
   const {
     creatorLabels: allCreatorLabels,
@@ -144,7 +149,7 @@ export default function LatestRelease() {
     ],
   );
   const { tutorials, isLoading } = useExploreContent({
-    type: activeExploreType,
+    sort: activeExploreSort,
     filters: exploreFilters,
   });
 
@@ -176,15 +181,15 @@ export default function LatestRelease() {
         <HeaderTabs>
           {EXPLORE_TABS.map((tab) => (
             <TabButton
-              key={tab.type}
+              key={tab.sort}
               variant={
-                activeExploreType === tab.type
+                activeExploreSort === tab.sort
                   ? VARIANT.PRIMARY
                   : VARIANT.SECONDARY
               }
               size="sm"
-              $active={activeExploreType === tab.type}
-              onClick={() => setActiveExploreType(tab.type)}
+              $active={activeExploreSort === tab.sort}
+              onClick={() => setActiveExploreSort(tab.sort)}
             >
               <MonoText $use="Body_Medium">{tab.label}</MonoText>
             </TabButton>
