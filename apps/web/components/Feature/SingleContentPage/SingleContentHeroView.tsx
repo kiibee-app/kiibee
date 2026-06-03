@@ -32,6 +32,54 @@ type SingleContentPreviewProps = SingleContentHeroSectionProps & {
   onVideoEnded: () => void;
 };
 
+function getMediaContent(
+  hero: SingleContentPreviewProps["hero"],
+  videoProps: Pick<
+    SingleContentPreviewProps,
+    | "videoRef"
+    | "showVideoControls"
+    | "onVideoPlay"
+    | "onVideoPause"
+    | "onVideoEnded"
+  >,
+) {
+  const { src, type, title } = hero.media ?? {};
+
+  if (!src) return null;
+
+  switch (type) {
+    case FORMAT_TYPE.VIDEO:
+      return (
+        <PreviewVideo
+          ref={videoProps.videoRef}
+          src={src}
+          controls={videoProps.showVideoControls}
+          playsInline
+          onPlay={videoProps.onVideoPlay}
+          onPause={videoProps.onVideoPause}
+          onEnded={videoProps.onVideoEnded}
+        />
+      );
+    case FORMAT_TYPE.AUDIO:
+      return <PreviewAudio src={src} controls />;
+    case FORMAT_TYPE.PDF:
+    case FORMAT_TYPE.WEB:
+      return <PreviewDocument src={src} title={title} />;
+    default:
+      return null;
+  }
+}
+
+const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => (
+  <Image
+    src={hero.image}
+    alt={hero.imageAlt}
+    fill
+    priority
+    unoptimized={isRemoteImageSource(hero.image)}
+  />
+);
+
 function SingleContentPreview({
   hero,
   showVideoControls,
@@ -40,40 +88,15 @@ function SingleContentPreview({
   onVideoPause,
   onVideoEnded,
 }: SingleContentPreviewProps) {
-  return hero.media?.src ? (
-    hero.media.type === FORMAT_TYPE.VIDEO ? (
-      <PreviewVideo
-        ref={videoRef}
-        src={hero.media.src}
-        controls={showVideoControls}
-        playsInline
-        onPlay={onVideoPlay}
-        onPause={onVideoPause}
-        onEnded={onVideoEnded}
-      />
-    ) : hero.media.type === FORMAT_TYPE.AUDIO ? (
-      <PreviewAudio src={hero.media.src} controls />
-    ) : hero.media.type === FORMAT_TYPE.PDF ||
-      hero.media.type === FORMAT_TYPE.WEB ? (
-      <PreviewDocument src={hero.media.src} title={hero.media.title} />
-    ) : (
-      <Image
-        src={hero.image}
-        alt={hero.imageAlt}
-        fill
-        priority
-        unoptimized={isRemoteImageSource(hero.image)}
-      />
-    )
-  ) : (
-    <Image
-      src={hero.image}
-      alt={hero.imageAlt}
-      fill
-      priority
-      unoptimized={isRemoteImageSource(hero.image)}
-    />
-  );
+  const mediaContent = getMediaContent(hero, {
+    videoRef,
+    showVideoControls,
+    onVideoPlay,
+    onVideoPause,
+    onVideoEnded,
+  });
+
+  return mediaContent ?? <HeroImage hero={hero} />;
 }
 
 export default function SingleContentHeroView({
