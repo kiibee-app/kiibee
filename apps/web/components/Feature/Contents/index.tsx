@@ -287,6 +287,7 @@ function CreatorsContentsInner() {
     handleBackToCollection,
     handleEditContent: handleEditContentWithUrl,
     handleSelectCollection,
+    syncContentIdToUrl,
   } = useContentsUrlState({
     collections,
     selectedCollection,
@@ -424,6 +425,9 @@ function CreatorsContentsInner() {
         onUploadSuccess={(tab, file, preview, createdId, details) => {
           clearSelectedCollectionContentsOverride();
           handleUploadSuccess(tab, file, preview, createdId, details);
+          if (createdId) {
+            syncContentIdToUrl(createdId);
+          }
         }}
       />
 

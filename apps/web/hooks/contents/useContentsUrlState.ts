@@ -123,16 +123,23 @@ export function useContentsUrlState({
     [replaceQuery, setSelectedCollection],
   );
 
-  const handleEditContent = useCallback(
+  const syncContentIdToUrl = useCallback(
     (id: string) => {
       storage.set(CONTENT_LAST_EDITED_STORAGE_KEY, id);
       replaceQuery({
-        collectionId: selectedCollection?.id ?? null,
+        collectionId: selectedCollection?.id ?? queryCollectionId ?? null,
         contentId: id,
       });
+    },
+    [queryCollectionId, replaceQuery, selectedCollection?.id],
+  );
+
+  const handleEditContent = useCallback(
+    (id: string) => {
+      syncContentIdToUrl(id);
       onEditContent(id);
     },
-    [onEditContent, replaceQuery, selectedCollection?.id],
+    [onEditContent, syncContentIdToUrl],
   );
 
   const handleBack = useCallback(() => {
@@ -166,5 +173,6 @@ export function useContentsUrlState({
     handleBackToCollection,
     handleEditContent,
     handleSelectCollection,
+    syncContentIdToUrl,
   };
 }

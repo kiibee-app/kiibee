@@ -273,7 +273,6 @@ export function useContentFormActions({
   };
 
   const closeContentUpload = () => {
-    setEditingContent(null);
     contentTypeFlow.close();
   };
 
