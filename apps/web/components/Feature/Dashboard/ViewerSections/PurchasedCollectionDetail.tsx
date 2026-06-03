@@ -4,7 +4,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import LeftIcon from "@/assets/icons/LeftIcon";
 import { MonoText } from "@/components/UI/Monotext";
-import type { RentedMediaItem } from "@/utils/dummyData/viewerRentedMockData";
+import type {
+  RentedMediaItem,
+  RentedMode,
+} from "@/utils/dummyData/viewerRentedMockData";
 import type { PurchasedCollectionItem } from "@/utils/dummyData/viewerPurchasedMockData";
 import {
   SingleContentBody,
@@ -17,7 +20,7 @@ import {
   rentedMediaToPurchasedItem,
 } from "@/utils/purchasedMediaToTutorial";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
-import { VIEWER_LABELS } from "@/utils/SidebarItems";
+import { getCollectionBadgeText } from "@/utils/viewerRented";
 import { HeaderBackButton, HeaderTitleWrap, PageHeader } from "./styles";
 import {
   DetailBodyWrap,
@@ -32,6 +35,8 @@ type Props = {
   onBack: () => void;
   initialSelectedMediaId?: string | null;
   onSelectMedia?: (mediaId: string) => void;
+  title: string;
+  mode: RentedMode;
 };
 
 export default function PurchasedCollectionDetail({
@@ -40,12 +45,15 @@ export default function PurchasedCollectionDetail({
   onBack,
   initialSelectedMediaId = null,
   onSelectMedia,
+  title,
+  mode,
 }: Props) {
   const { t } = useTranslation();
   const detailAnchorRef = useRef<HTMLDivElement>(null);
   const [selectedMediaId, setSelectedMediaId] = useState<string | null>(
     initialSelectedMediaId,
   );
+  const statusLabel = getCollectionBadgeText(mode);
 
   const purchasedItems = useMemo(
     () => mediaItems.map(rentedMediaToPurchasedItem),
@@ -64,8 +72,20 @@ export default function PurchasedCollectionDetail({
 
   const itemDetailView = useMemo(() => {
     if (!collection || !selectedMedia) return null;
-    return getPurchasedMediaDetailView(selectedMedia, collection, t);
-  }, [collection, selectedMedia, t]);
+    const detailView = getPurchasedMediaDetailView(
+      selectedMedia,
+      collection,
+      t,
+    );
+
+    return {
+      ...detailView,
+      body: {
+        ...detailView.body,
+        statusLabel,
+      },
+    };
+  }, [collection, selectedMedia, statusLabel, t]);
 
   useEffect(() => {
     setSelectedMediaId(initialSelectedMediaId);
@@ -96,7 +116,7 @@ export default function PurchasedCollectionDetail({
             >
               <LeftIcon style={{ transform: "rotate(180deg)" }} />
             </HeaderBackButton>
-            <MonoText $use="H4_SemiBold">{VIEWER_LABELS.PURCHASED}</MonoText>
+            <MonoText $use="H4_SemiBold">{title}</MonoText>
           </HeaderTitleWrap>
         </PageHeader>
 
@@ -116,18 +136,18 @@ export default function PurchasedCollectionDetail({
                 hero={{
                   image: collection.coverSrc,
                   imageAlt: collection.title,
-                  categoryLabel: "Owned",
+                  categoryLabel: statusLabel,
                 }}
               />
             </DetailHeroWrap>
             <DetailBodyWrap>
               <SingleContentBody
                 creator={{ name: collection.author }}
-                statusLabel="Owned"
+                statusLabel={statusLabel}
                 title={collection.title}
                 descriptions={collection.descriptionLines}
                 primaryAction={{
-                  label: "Purchased",
+                  label: statusLabel,
                   disabled: true,
                 }}
                 metaItems={[

@@ -10,7 +10,6 @@ import type {
 import { PageWrap, SectionBlock } from "./styles";
 import {
   RENTED_SECTION_KEYS,
-  RENTED_MODES,
   filterCollections,
   filterMedia,
   getRentedContentSources,
@@ -77,14 +76,8 @@ export default function RentedContent({
     canGoNext,
   } = useViewerRentedSectionPagination();
   const sources = useMemo(() => getRentedContentSources(mode), [mode]);
-  const selectedCollectionId =
-    mode === RENTED_MODES.PURCHASED
-      ? searchParams?.get(CONTENT_COLLECTION_QUERY_KEY)
-      : null;
-  const selectedContentId =
-    mode === RENTED_MODES.PURCHASED
-      ? searchParams?.get(CONTENT_ITEM_QUERY_KEY)
-      : null;
+  const selectedCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
+  const selectedContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
   const filteredCollections = filterCollections(
     searchValue,
@@ -194,7 +187,7 @@ export default function RentedContent({
     [pathname, router, searchParamsString],
   );
 
-  if (mode === RENTED_MODES.PURCHASED && selectedCollectionId) {
+  if (selectedCollectionId) {
     return (
       <PageWrap>
         <PurchasedCollectionDetail
@@ -203,6 +196,8 @@ export default function RentedContent({
           onBack={handleCloseCollection}
           initialSelectedMediaId={selectedContentId}
           onSelectMedia={handleSelectDetailMedia}
+          title={title}
+          mode={mode}
         />
       </PageWrap>
     );
@@ -254,16 +249,10 @@ export default function RentedContent({
           canGoNext={canGoNext}
           movePrev={movePrev}
           moveNext={moveNext}
-          onMediaPrimaryAction={
-            mode === RENTED_MODES.PURCHASED ? handleOpenMediaDetail : undefined
-          }
-          onOpenSection={
-            mode === RENTED_MODES.PURCHASED
-              ? (_, item) => {
-                  if (item) handleOpenMediaDetail(item);
-                }
-              : undefined
-          }
+          onMediaPrimaryAction={handleOpenMediaDetail}
+          onOpenSection={(_, item) => {
+            if (item) handleOpenMediaDetail(item);
+          }}
         />
       )}
     </PageWrap>

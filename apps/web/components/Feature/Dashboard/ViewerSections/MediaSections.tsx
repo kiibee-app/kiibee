@@ -79,7 +79,7 @@ export default function MediaSections({
   onOpenSection,
 }: Props) {
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
-  const isPurchased = mode === RENTED_MODES.PURCHASED;
+  const hasDetailView = Boolean(onMediaPrimaryAction);
 
   return (
     <>
@@ -88,7 +88,7 @@ export default function MediaSections({
           <SectionHeader>
             <SectionTitleRow>
               <SectionTitle>{section.title}</SectionTitle>
-              {isPurchased &&
+              {hasDetailView &&
               (section.key === RENTED_SECTION_KEYS.VIDEOS ||
                 section.key === RENTED_SECTION_KEYS.AUDIOS) ? (
                 <InlineSectionArrow
@@ -121,13 +121,13 @@ export default function MediaSections({
                 subtitle={<MonoText $use="Body_Medium">{item.author}</MonoText>}
                 badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
                 footer={
-                  isPurchased || isCurrent ? (
+                  hasDetailView || isCurrent ? (
                     <GenericButton
                       variant={VARIANT.SECONDARY}
                       size="md"
                       fullWidth
                       onClick={
-                        isPurchased && onMediaPrimaryAction
+                        onMediaPrimaryAction
                           ? () => onMediaPrimaryAction(item)
                           : undefined
                       }
@@ -157,7 +157,7 @@ export default function MediaSections({
                 <MonoText
                   $use="Body_Medium"
                   color={
-                    isPurchased
+                    hasDetailView
                       ? COLORS.neutral.GRAY_400
                       : isCurrent
                         ? COLORS.primary.RED
