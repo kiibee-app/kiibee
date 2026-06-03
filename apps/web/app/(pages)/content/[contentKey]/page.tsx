@@ -39,7 +39,7 @@ function PublishedContentDetail() {
   );
   const tutorialCollection =
     getTutorialCollectionByVideoId(normalizedContentKey);
-  const tutorialFallbackRelated = (tutorialCollection?.tutorials ?? []).filter(
+  const relatedTutorials = (tutorialCollection?.tutorials ?? []).filter(
     (video) => video.id !== normalizedContentKey,
   );
   const { data, isLoading, isError } = useGetAPI<ContentDetailResponse>(
@@ -95,7 +95,7 @@ function PublishedContentDetail() {
         <Section>
           <SingleTutorial
             tutorial={tutorialFallback}
-            relatedVideos={tutorialFallbackRelated}
+            relatedVideos={relatedTutorials}
             collectionId={tutorialCollection?.id}
           />
         </Section>
@@ -118,7 +118,6 @@ function PublishedContentDetail() {
           <CollectionItems
             videos={relatedCollectionQuery.data.videos}
             collectionId={relatedCollectionQuery.data.collectionId}
-            title={t("singleTutorial.otherItemsInCollection")}
           />
         ) : null}
       </SingleContentPage>

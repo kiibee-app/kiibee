@@ -33,14 +33,9 @@ import {
 type Props = {
   videos: TutorialVideo[];
   collectionId?: string;
-  title?: string;
 };
 
-export default function CollectionItems({
-  videos,
-  collectionId,
-  title,
-}: Props) {
+export default function CollectionItems({ videos, collectionId }: Props) {
   const { t } = useTranslation();
 
   if (!videos.length) return null;
@@ -54,7 +49,7 @@ export default function CollectionItems({
       <CollectionHeader>
         <CollectionTitleGroup as={Link} href={href}>
           <CollectionSectionTitle>
-            {title ?? t("singleTutorial.otherItemsInCollection")}
+            {t("singleTutorial.otherItemsInCollection")}
           </CollectionSectionTitle>
           <LeftIcon width={14} height={14} />
         </CollectionTitleGroup>

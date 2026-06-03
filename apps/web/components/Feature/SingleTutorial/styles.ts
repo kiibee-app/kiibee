@@ -1,3 +1,4 @@
+import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
@@ -299,8 +300,9 @@ export const CollectionTitleGroup = styled.a`
   color: inherit;
 `;
 
-export const CollectionSectionTitle = styled.span`
-  ${({ theme }) => theme.typography.Body_Medium}
+export const CollectionSectionTitle = styled(MonoText).attrs({
+  $use: "H4_Medium",
+})`
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
