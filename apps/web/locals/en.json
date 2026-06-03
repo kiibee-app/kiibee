@@ -24,6 +24,8 @@
       "everything": "Everything",
       "newReleases": "New releases",
       "latest": "Latest releases",
+      "loading": "Loading releases...",
+      "noResults": "No releases found",
       "popular": "Popular",
       "freeContent": "Free content",
       "formatTitle": "Format",

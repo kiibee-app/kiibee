@@ -18,10 +18,17 @@ export class FeedController {
 
   @Post('explore')
   async explore(@Query() query: ExploreQueryDto, @Body() body: any) {
+    const { limit, search, type, ...queryFilters } = query;
+    const filter = {
+      ...queryFilters,
+      ...(body ?? {}),
+    };
+
     return this.feedService.exploreService(
-      query.limit ? Number(query.limit) : 12,
-      query.search,
-      body,
+      limit ? Number(limit) : 12,
+      search,
+      filter,
+      type ?? body?.type,
     );
   }
 }

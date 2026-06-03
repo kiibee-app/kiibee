@@ -22,6 +22,8 @@
       "everything": "Alle",
       "newReleases": "Nyudgivelser",
       "latest": "Seneste udgivelser",
+      "loading": "Indlaeser udgivelser...",
+      "noResults": "Ingen udgivelser fundet",
       "popular": "Populært",
       "freeContent": "Gratis indhold",
       "formatTitle": "Format",

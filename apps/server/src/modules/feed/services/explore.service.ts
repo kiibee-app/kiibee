@@ -1,10 +1,11 @@
 import { HttpStatus } from '@nestjs/common';
-import { mediaFiles } from 'src/database/schema';
+import { mediaFileCategories, mediaFiles } from 'src/database/schema';
 import type { SQL } from 'drizzle-orm';
-import { sql, desc } from 'drizzle-orm';
+import { and, sql, desc } from 'drizzle-orm';
 import { success, fail } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 import { CONTENT_VISIBILITY, FIXED_LIMIT } from 'src/utils/constant';
+import { ExploreType } from '../dto/exploreQuery.dto';
 
 import { buildSearch, format, cleanNumber } from '../feed.helper';
 import {
@@ -14,21 +15,60 @@ import {
   getTopCreatorsQuery,
 } from '../feed.query';
 
+type ExploreFilter = {
+  contentTypeId?: string | string[];
+  creatorId?: string | string[];
+  categoryId?: string | string[];
+  accessType?: string;
+  minPrice?: string | number | null;
+  maxPrice?: string | number | null;
+  rating?: string | number | null;
+};
+
+const cleanArray = (val?: string[] | string | null) => {
+  if (!val) return undefined;
+
+  const arr = Array.isArray(val) ? val : [val];
+  const cleaned = arr.filter((item) => item && item !== 'all');
+
+  return cleaned.length ? cleaned : undefined;
+};
+
+const getExploreOrderBy = (type?: ExploreType) => {
+  switch (type) {
+    case ExploreType.TRENDING:
+      return desc(mediaFiles.sortOrder);
+
+    case ExploreType.CREATED_FOR_YOU:
+      return desc(mediaFiles.createdAt);
+
+    case ExploreType.NEW:
+    default:
+      return desc(mediaFiles.publishedAt);
+  }
+};
+
 export const exploreService = async (
   limit?: number,
   search?: string,
-  filter?: any,
+  filter: ExploreFilter = {},
+  type?: ExploreType,
 ) => {
   try {
     const searchCondition = buildSearch(search);
-    const minPrice = cleanNumber(filter?.minPrice) || undefined;
-    const maxPrice = cleanNumber(filter?.maxPrice) || undefined;
+    const minPrice = cleanNumber(filter.minPrice);
+    const maxPrice = cleanNumber(filter.maxPrice);
+    const rating = cleanNumber(filter.rating);
+    const contentTypeIds = cleanArray(filter.contentTypeId);
+    const creatorIds = cleanArray(filter.creatorId);
+    const categoryIds = cleanArray(filter.categoryId);
 
-    const baseWhere = sql`
-      ${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}
-      AND ${mediaFiles.isPublished} = true
-      AND ${mediaFiles.isDeleted} = false
-    `;
+    const baseWhereParts: SQL[] = [
+      sql`${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}`,
+      sql`${mediaFiles.isPublished} = true`,
+      sql`${mediaFiles.isDeleted} = false`,
+    ];
+    const baseWhere = and(...baseWhereParts);
 
     const [trending, recent, topCreators] = await Promise.all([
       getTrendingQuery(baseWhere, FIXED_LIMIT),
@@ -38,36 +78,39 @@ export const exploreService = async (
 
     const extra: SQL[] = [];
 
-    if (filter?.contentTypeId) {
-      const ids = (
-        Array.isArray(filter.contentTypeId)
-          ? filter.contentTypeId
-          : [filter.contentTypeId]
-      ).filter(Boolean);
-
-      if (ids.length) {
-        extra.push(
-          sql`${mediaFiles.contentTypeId} IN (${sql.join(
-            ids.map((id) => sql`${id}`),
-            sql`, `,
-          )})`,
-        );
-      }
+    if (contentTypeIds?.length) {
+      extra.push(
+        sql`${mediaFiles.contentTypeId} IN (${sql.join(
+          contentTypeIds.map((id) => sql`${id}`),
+          sql`, `,
+        )})`,
+      );
     }
 
-    if (filter?.creatorId) {
-      const ids = (
-        Array.isArray(filter.creatorId) ? filter.creatorId : [filter.creatorId]
-      ).filter(Boolean);
+    if (creatorIds?.length) {
+      extra.push(
+        sql`${mediaFiles.creatorId} IN (${sql.join(
+          creatorIds.map((id) => sql`${id}`),
+          sql`, `,
+        )})`,
+      );
+    }
 
-      if (ids.length) {
-        extra.push(
-          sql`${mediaFiles.creatorId} IN (${sql.join(
-            ids.map((id) => sql`${id}`),
+    if (categoryIds?.length) {
+      extra.push(
+        sql`${mediaFiles.id} IN (
+          SELECT ${mediaFileCategories.mediaFileId}
+          FROM ${mediaFileCategories}
+          WHERE ${mediaFileCategories.categoryId} IN (${sql.join(
+            categoryIds.map((id) => sql`${id}`),
             sql`, `,
-          )})`,
-        );
-      }
+          )})
+        )`,
+      );
+    }
+
+    if (filter.accessType) {
+      extra.push(sql`${mediaFiles.accessType} = ${filter.accessType}`);
     }
 
     if (minPrice !== undefined) {
@@ -83,19 +126,23 @@ export const exploreService = async (
       );
     }
 
-    let latestWhere = baseWhere;
+    if (rating !== undefined) {
+      extra.push(sql`CAST(${mediaFiles.rating} AS NUMERIC) >= ${rating}`);
+    }
+
+    const latestWhereParts = [...baseWhereParts];
 
     if (searchCondition) {
-      latestWhere = sql`${latestWhere} AND ${searchCondition}`;
+      latestWhereParts.push(searchCondition);
     }
 
     if (extra.length) {
-      latestWhere = sql`${latestWhere} AND ${sql.join(extra, sql` AND `)}`;
+      latestWhereParts.push(...extra);
     }
 
     const latest = await getLatestQuery(
-      latestWhere,
-      desc(mediaFiles.publishedAt),
+      and(...latestWhereParts),
+      getExploreOrderBy(type),
       limit ?? FIXED_LIMIT,
     );
 
