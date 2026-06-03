@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { memo } from "react";
-import { useRouter } from "next/navigation";
 import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { EbookIcon, VideoIcon } from "@/assets/icons";
@@ -36,13 +35,12 @@ import {
   LANDING_REVEAL_VARIANTS,
 } from "@/utils/landingUtils";
 function DiscoverCard({ item }: DiscoverCardProps) {
-  const router = useRouter();
   const theme = useTheme();
   const { t } = useTranslation();
   const targetHref = pathPublishedContent(item.contentKey);
 
   const handleOpen = () => {
-    router.push(targetHref);
+    window.open(targetHref, "_blank", "noopener,noreferrer");
   };
 
   return (
