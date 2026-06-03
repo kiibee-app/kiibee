@@ -38,6 +38,7 @@ import { useContentForm } from "../ContentFormContext";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import InputField from "@/components/UI/InputFields";
 import { Checkbox } from "@/app/auth/signup-creator/styles";
+import { BLANK } from "@/utils/Constants";
 
 type Props = {
   id: string;
@@ -115,11 +116,19 @@ export default function GeneralContent({
     );
   };
 
+  const handlePreviewClick = () => {
+    if (uploadType === FORMAT_TYPE.WEB && formState.webLink) {
+      window.open(formState.webLink, BLANK);
+    } else if (previewUrl) {
+      window.open(previewUrl, BLANK);
+    }
+  };
+
   const renderPreview = () => {
     switch (uploadType) {
       case FORMAT_TYPE.VIDEO:
         return (
-          <PreviewBox>
+          <PreviewBox onClick={handlePreviewClick}>
             {previewUrl && <PreviewVideo src={previewUrl} controls={false} />}
             <PlayOverlay>
               <PlayCircleIcon
@@ -133,21 +142,35 @@ export default function GeneralContent({
 
       case FORMAT_TYPE.AUDIO:
         return (
-          <UploadAudioIcon width={64} height={64} color={COLORS.primary.RED} />
+          <PreviewBox onClick={handlePreviewClick}>
+            <UploadAudioIcon
+              width={64}
+              height={64}
+              color={COLORS.primary.RED}
+            />
+          </PreviewBox>
         );
 
       case FORMAT_TYPE.PDF:
         return (
-          <UploadPdfIcon width={64} height={64} color={COLORS.primary.RED} />
+          <PreviewBox onClick={handlePreviewClick}>
+            <UploadPdfIcon width={64} height={64} color={COLORS.primary.RED} />
+          </PreviewBox>
         );
 
       case FORMAT_TYPE.EPUB:
         return (
-          <UploadEpubIcon width={64} height={64} color={COLORS.primary.BLUE} />
+          <PreviewBox onClick={handlePreviewClick}>
+            <UploadEpubIcon
+              width={64}
+              height={64}
+              color={COLORS.primary.BLUE}
+            />
+          </PreviewBox>
         );
       case FORMAT_TYPE.WEB:
         return (
-          <PreviewBox>
+          <PreviewBox onClick={handlePreviewClick}>
             <WebLinkIcon />
             <PlayOverlay>
               <ShareCircle>
@@ -168,7 +191,7 @@ export default function GeneralContent({
         <DetailsWrapper>
           <TopRow>
             <FileRow>
-              <PreviewBox>{renderPreview()}</PreviewBox>
+              {renderPreview()}
 
               <InfoColumn>
                 <MonoText $use="Body_Medium">{uploadedFile.name}</MonoText>

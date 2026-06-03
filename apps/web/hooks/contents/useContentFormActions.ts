@@ -47,7 +47,7 @@ import {
   buildContentUpdatePayload,
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
-import { FORMAT_TYPE } from "@/utils/types";
+import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
 
 type Params = {
@@ -354,14 +354,25 @@ export function useContentFormActions({
 
         setUploadedFile(mockFile);
 
-        const preview =
-          resolvedContentType === FORMAT_TYPE.VIDEO && fullContent.fileKey
-            ? (
-                await axiosClient.get<MediaUrlResponse>(API.media.videoStream, {
-                  params: { key: fullContent.fileKey },
-                })
-              ).data.url
-            : null;
+        const getPreviewUrl = async (
+          fileKey: string,
+          contentType: FormatType,
+        ): Promise<string | null> => {
+          const endpoint =
+            contentType === FORMAT_TYPE.VIDEO
+              ? API.media.videoStream
+              : API.media.fileSignedUrl;
+
+          const res = await axiosClient.get<MediaUrlResponse>(endpoint, {
+            params: { key: fileKey },
+          });
+
+          return res.data.url ?? null;
+        };
+
+        const preview = fullContent.fileKey
+          ? await getPreviewUrl(fullContent.fileKey, resolvedContentType)
+          : null;
 
         setUploadedPreview(preview ?? null);
 
@@ -394,6 +405,9 @@ export function useContentFormActions({
             ? String(fullContent.maxDownloadCount)
             : DOWNLOAD_LIMIT_DEFAULT,
           physicalProductLink: fullContent.physicalProductLink || "",
+          webLink: fullContent.contentUrl || "",
+          openInNewWindow: false,
+          openDirectFromList: false,
           contentTypeId: normalizeContentTypeValue(
             fullContent.contentTypeId ?? fullContent.contentType ?? "video",
           ),
