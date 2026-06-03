@@ -71,9 +71,11 @@ export default function CollectionItems({ videos, collectionId }: Props) {
                 fill
                 sizes="250px"
               />
-              <CollectionBadge>
-                <CollectionBadgeText>{video.category}</CollectionBadgeText>
-              </CollectionBadge>
+              {video.category?.trim() ? (
+                <CollectionBadge>
+                  <CollectionBadgeText>{video.category}</CollectionBadgeText>
+                </CollectionBadge>
+              ) : null}
             </CollectionImageArea>
 
             <CollectionCardBody>

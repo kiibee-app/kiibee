@@ -25,6 +25,8 @@ import { FORMAT_TYPE } from "@/utils/types";
 import { tutorialVideos } from "@/utils/data";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
+import { useRelatedCollectionContent } from "@/hooks/useRelatedCollectionContent";
+import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -53,6 +55,12 @@ function PublishedContentDetail() {
   const contentType = getContentType(content);
   const mediaKey = getContentMediaKey(content);
   const contentUrl = getContentUrl(content);
+  const relatedCollectionQuery = useRelatedCollectionContent(
+    normalizedContentKey,
+    {
+      enabled: !tutorialFallback,
+    },
+  );
   const mediaEndpoint =
     contentType === FORMAT_TYPE.VIDEO
       ? API.media.videoStream
@@ -105,7 +113,14 @@ function PublishedContentDetail() {
 
   return (
     <Section>
-      <SingleContentPage {...getSingleContentProps(content, t, mediaUrl)} />
+      <SingleContentPage {...getSingleContentProps(content, t, mediaUrl)}>
+        {relatedCollectionQuery.data?.videos?.length ? (
+          <CollectionItems
+            videos={relatedCollectionQuery.data.videos}
+            collectionId={relatedCollectionQuery.data.collectionId}
+          />
+        ) : null}
+      </SingleContentPage>
     </Section>
   );
 }
