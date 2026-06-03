@@ -34,6 +34,7 @@ export type ExploreContentFilters = {
   minPrice?: string;
   maxPrice?: string;
   rating?: number;
+  tags?: string[];
 };
 
 type ApiResponse<T> = {
@@ -52,6 +53,50 @@ type UseExploreContentParams = {
   search?: string;
   sort?: ExploreContentSort;
   filters?: ExploreContentFilters;
+};
+
+type ExploreApiType = "new" | "trending" | "created_for_you";
+
+type ExploreContentSection = "trending" | "latest" | "recent";
+
+export type ExploreTopCreator = Pick<
+  ExploreCreator,
+  "id" | "name" | "profileImageUrl" | "createdAt"
+> & {
+  uploadCount: number;
+  subscriberCount: number;
+};
+
+type ExploreTopCreatorPayload = Omit<
+  ExploreTopCreator,
+  "uploadCount" | "subscriberCount"
+> & {
+  uploadCount?: number | string | null;
+  subscriberCount?: number | string | null;
+};
+
+type ExploreFeedData = {
+  trending?: FeedContentItem[];
+  latest?: FeedContentItem[];
+  recent?: FeedContentItem[];
+  topCreators?: ExploreTopCreatorPayload[];
+};
+
+type ExploreFeedResponse = ApiResponse<ExploreFeedData>;
+
+const EXPLORE_SORT_TO_API_TYPE: Record<ExploreContentSort, ExploreApiType> = {
+  [EXPLORE_CONTENT_SORT.NEW]: "new",
+  [EXPLORE_CONTENT_SORT.POPULAR]: "trending",
+  [EXPLORE_CONTENT_SORT.ALL]: "created_for_you",
+};
+
+const EXPLORE_SORT_TO_SECTION: Record<
+  ExploreContentSort,
+  ExploreContentSection
+> = {
+  [EXPLORE_CONTENT_SORT.NEW]: "latest",
+  [EXPLORE_CONTENT_SORT.POPULAR]: "trending",
+  [EXPLORE_CONTENT_SORT.ALL]: "latest",
 };
 
 function hasOptions(values?: string[]) {
@@ -77,7 +122,37 @@ function pruneExploreFilters(
     ...(filters.minPrice ? { minPrice: filters.minPrice } : {}),
     ...(filters.maxPrice ? { maxPrice: filters.maxPrice } : {}),
     ...(filters.rating != null ? { rating: filters.rating } : {}),
+    ...(hasOptions(filters.tags) ? { tags: filters.tags } : {}),
   };
+}
+
+function toSafeNumber(value: number | string | null | undefined): number {
+  const parsed = Number(value);
+
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function normalizeTopCreator(
+  creator: ExploreTopCreatorPayload,
+): ExploreTopCreator | null {
+  if (!creator.id || !creator.name) {
+    return null;
+  }
+
+  return {
+    id: creator.id,
+    name: creator.name,
+    profileImageUrl: creator.profileImageUrl ?? null,
+    createdAt: creator.createdAt,
+    uploadCount: toSafeNumber(creator.uploadCount),
+    subscriberCount: toSafeNumber(creator.subscriberCount),
+  };
+}
+
+function getExploreContentSection(
+  sort: ExploreContentSort,
+): ExploreContentSection {
+  return EXPLORE_SORT_TO_SECTION[sort] ?? "latest";
 }
 
 function toOptionItems(items?: TaxonomyItem[] | null): OptionItem[] {
@@ -93,28 +168,27 @@ function toOptionItems(items?: TaxonomyItem[] | null): OptionItem[] {
     }));
 }
 
-export const useExploreContent = ({
+export const useExploreFeed = ({
   limit = 12,
   search,
   sort = EXPLORE_CONTENT_SORT.NEW,
   filters,
 }: UseExploreContentParams = {}) => {
-  const { t } = useTranslation();
   const body = useMemo(() => pruneExploreFilters(filters), [filters]);
   const params = useMemo(
     () => ({
       limit,
       ...(search?.trim() ? { search: search.trim() } : {}),
-      sort,
+      type: EXPLORE_SORT_TO_API_TYPE[sort],
     }),
     [limit, search, sort],
   );
 
-  const query = useQuery<ApiResponse<FeedContentItem[]>>({
-    queryKey: [API.content.all, params, body],
+  return useQuery<ExploreFeedResponse>({
+    queryKey: [API.feed.explore, params, body],
     queryFn: async () => {
-      const response = await axiosClient.post<ApiResponse<FeedContentItem[]>>(
-        API.content.all,
+      const response = await axiosClient.post<ExploreFeedResponse>(
+        API.feed.explore,
         body,
         { params },
       );
@@ -122,9 +196,17 @@ export const useExploreContent = ({
       return response.data;
     },
   });
+};
+
+function useExploreTutorialSection(
+  section: ExploreContentSection,
+  params?: UseExploreContentParams,
+) {
+  const { t } = useTranslation();
+  const query = useExploreFeed(params);
 
   const tutorials = useMemo((): TutorialVideo[] => {
-    const items = query.data?.data;
+    const items = query.data?.data?.[section];
 
     if (!query.data?.success || !Array.isArray(items)) {
       return [];
@@ -135,10 +217,48 @@ export const useExploreContent = ({
     return dedupeFeedContentItems(items).map((item) =>
       feedContentToTutorial(item, freeLabel),
     );
-  }, [query.data, t]);
+  }, [query.data, section, t]);
 
   return {
     tutorials,
+    isLoading: query.isLoading,
+    isError: query.isError,
+  };
+}
+
+export const useExploreContent = ({
+  sort = EXPLORE_CONTENT_SORT.NEW,
+  ...params
+}: UseExploreContentParams = {}) =>
+  useExploreTutorialSection(getExploreContentSection(sort), {
+    ...params,
+    sort,
+  });
+
+export const useExploreTrendingContent = () =>
+  useExploreTutorialSection("trending");
+
+export const useExploreRecentContent = () =>
+  useExploreTutorialSection("recent");
+
+export const useExploreTopCreators = (limit = 6) => {
+  const query = useExploreFeed();
+
+  const creators = useMemo((): ExploreTopCreator[] => {
+    const items = query.data?.data?.topCreators;
+
+    if (!query.data?.success || !Array.isArray(items)) {
+      return [];
+    }
+
+    return items
+      .map(normalizeTopCreator)
+      .filter((creator): creator is ExploreTopCreator => creator != null)
+      .slice(0, limit);
+  }, [limit, query.data]);
+
+  return {
+    creators,
     isLoading: query.isLoading,
     isError: query.isError,
   };

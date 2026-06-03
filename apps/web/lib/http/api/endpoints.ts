@@ -50,6 +50,7 @@ export const API = {
     byId: (id: string) => `/creators/${id}`,
   },
   feed: {
+    explore: "/feed/explore",
     trending: "/feed/trending",
     recent: "/feed/recent",
   },
