@@ -124,7 +124,7 @@ export const FILE_EXTENSION = {
   EPUB: ".epub",
 } as const;
 
-export const tabs = ["New", "Trending", "Curated for you"];
+export const tabs = ["New", "Trending", "Created for you"];
 
 export function toCamelCaseKey(value: string): string {
   return value
@@ -140,4 +140,3 @@ export function toCamelCaseKey(value: string): string {
     })
     .join("");
 }
-export const tabs = ["New", "Trending", "Created for you"];
