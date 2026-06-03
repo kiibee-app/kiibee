@@ -1,12 +1,17 @@
 import { Grid } from "@/components/Feature/TutorialVideos/TutorialsShowcase/styles";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
+import { ProfileLayoutVariant } from "../../config";
 
-export const CollectionSection = styled.section`
-  width: 100%;
+export const CollectionSection = styled.section<{
+  $variant?: ProfileLayoutVariant;
+}>`
+  width: min(100%, 1300px);
+  margin: ${({ $variant }) => ($variant === "1" ? "0" : "0 auto")};
   padding: 35px 0 0;
 
   ${media.tablet} {
+    width: 100%;
     padding: 2.5rem 1.25rem 0;
   }
 `;

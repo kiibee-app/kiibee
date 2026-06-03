@@ -1,6 +1,5 @@
 "use client";
 
-import AboutSection from "@/components/Feature/ProfileLayout/shared/AboutSection";
 import CollectionPreview from "@/components/Feature/ProfileLayout/shared/CollectionPreview";
 import LatestUpload from "@/components/Feature/ProfileLayout/shared/LatestUpload";
 import { profileHomeConfigByVariant } from "@/components/Feature/ProfileLayout/config";
@@ -46,7 +45,7 @@ export default function ProfileHomeSections({
           (latest as { category?: string | null }).category ??
           latestConfig.badge ??
           "",
-        image: latestUploadImage,
+        image: latest.thumbnailLandscapeUrl ?? latestUploadImage,
         contentType: normalizedLatestContentType || FORMAT_TYPE.VIDEO,
         imageAlt: latest.title || "",
         title: latest.title || "",
@@ -79,11 +78,11 @@ export default function ProfileHomeSections({
     !isCollectionsPage && wrapLatestUpload ? (
       <SectionWrapper>
         <ContentAdjust>
-          <CollectionPreview />
+          <CollectionPreview variant={variant} />
         </ContentAdjust>
       </SectionWrapper>
     ) : !isCollectionsPage ? (
-      <CollectionPreview />
+      <CollectionPreview variant={variant} />
     ) : null;
 
   return (
@@ -93,8 +92,6 @@ export default function ProfileHomeSections({
 
       {sections.includes(PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW) &&
         collectionPreviewSection}
-
-      {sections.includes(PROFILE_HOME_SECTION.ABOUT) && <AboutSection />}
     </>
   );
 }

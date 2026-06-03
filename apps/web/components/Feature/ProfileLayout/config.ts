@@ -29,10 +29,16 @@ export const profileHomeConfigByVariant: Record<
   },
   "2": {
     latestUpload: latestUploadDataLayout2,
-    sections: [PROFILE_HOME_SECTION.LATEST_UPLOAD, PROFILE_HOME_SECTION.ABOUT],
+    sections: [
+      PROFILE_HOME_SECTION.LATEST_UPLOAD,
+      PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW,
+    ],
   },
   "3": {
     latestUpload: latestUploadDataLayout3,
-    sections: [PROFILE_HOME_SECTION.LATEST_UPLOAD],
+    sections: [
+      PROFILE_HOME_SECTION.LATEST_UPLOAD,
+      PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW,
+    ],
   },
 };

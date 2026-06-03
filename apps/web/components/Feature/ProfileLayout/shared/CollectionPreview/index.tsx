@@ -23,6 +23,10 @@ import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { getContentTypeLabel } from "@/utils/content";
+import {
+  getContentDetail,
+  type ContentDetailResponse,
+} from "@/utils/contentApi";
 import { tutorialVideos } from "@/utils/data";
 import { type TutorialVideo } from "@/utils/types";
 import { QUERY_KEYS } from "@/utils/Constants";
@@ -31,6 +35,7 @@ import {
   CollectionSectionTag,
   FourColumnGrid,
 } from "./styles";
+import { ProfileLayoutVariant } from "../../config";
 
 type CollectionWithCards = {
   id: string;
@@ -38,7 +43,11 @@ type CollectionWithCards = {
   cards: TutorialVideo[];
 };
 
-export default function CollectionPreview() {
+type Props = {
+  variant: ProfileLayoutVariant;
+};
+
+export default function CollectionPreview({ variant }: Props) {
   const { t } = useTranslation();
   const { searchQuery } = useCreatorProfileUi();
   const { displayName } = useCreatorChannelProfile();
@@ -61,42 +70,52 @@ export default function CollectionPreview() {
         ),
       );
 
-      return collections
-        .map((collection, collectionIndex) => {
+      const collectionSections = await Promise.all(
+        collections.map(async (collection, collectionIndex) => {
           const contentRows = getCollectionContentRows(
             contentsResponses[collectionIndex]?.data,
           );
 
-          const cards = contentRows.map((content, contentIndex) => {
-            const fallbackTemplate =
-              tutorialVideos[
-                (collectionIndex + contentIndex) % tutorialVideos.length
-              ];
+          const cards = await Promise.all(
+            contentRows.map(async (content, contentIndex) => {
+              const fallbackTemplate =
+                tutorialVideos[
+                  (collectionIndex + contentIndex) % tutorialVideos.length
+                ];
+              const contentResponse =
+                await axiosClient.get<ContentDetailResponse>(
+                  API.content.get(content.id),
+                );
+              const contentDetail = getContentDetail(contentResponse.data);
 
-            return {
-              ...fallbackTemplate,
-              id: content.id,
-              title: content.name,
-              creator: displayName || fallbackTemplate.creator,
-              published: content.createdAt,
-              formatType: content.contentType,
-              formatLabel: getContentTypeLabel(content.contentType),
-              buttons: [
-                {
-                  label: t("createProfileAbout.buyCollection"),
-                  variant: "secondary",
-                },
-              ],
-            } as TutorialVideo;
-          });
+              return {
+                ...fallbackTemplate,
+                id: content.id,
+                title: content.name,
+                creator: displayName || fallbackTemplate.creator,
+                published: content.createdAt,
+                formatType: content.contentType,
+                formatLabel: getContentTypeLabel(content.contentType),
+                image: contentDetail?.thumbnailUrl ?? fallbackTemplate.image,
+                buttons: [
+                  {
+                    label: t("createProfileAbout.buyCollection"),
+                    variant: "secondary",
+                  },
+                ],
+              } as TutorialVideo;
+            }),
+          );
 
           return {
             id: collection.id,
             name: collection.name,
             cards,
           };
-        })
-        .filter((section) => section.cards.length > 0);
+        }),
+      );
+
+      return collectionSections.filter((section) => section.cards.length > 0);
     },
     refetchOnWindowFocus: false,
   });
@@ -120,7 +139,7 @@ export default function CollectionPreview() {
   return (
     <>
       {visibleSections.map((collection) => (
-        <CollectionSection key={collection.id}>
+        <CollectionSection key={collection.id} $variant={variant}>
           <SectionHeader>
             <SectionLabel>
               <CollectionSectionTag>

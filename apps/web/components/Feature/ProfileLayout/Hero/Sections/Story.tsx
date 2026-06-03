@@ -21,14 +21,16 @@ import {
 
 export default function StorySection() {
   const { t } = useTranslation();
-  const { displayName } = useCreatorChannelProfile();
+  const { displayName, avatarUrl, about } = useCreatorChannelProfile();
+  const uploadsCount = about?.uploadCount ?? 0;
+  const biography = about?.description || t(CREATE_PROFILE_HOME.description);
 
   return (
     <HeroFrame>
       <HeroGrid>
         <HeroMedia>
           <Image
-            src={heroImage}
+            src={avatarUrl || heroImage}
             alt="Creator workspace"
             fill
             sizes="(max-width: 900px) 100vw, 70vw"
@@ -42,7 +44,7 @@ export default function StorySection() {
             <StoryMeta>
               <StoryUploadsText>
                 <MonoText $use="Body_Medium" color={COLORS.primary.WHITE_90}>
-                  {t(CREATE_PROFILE_HOME.uploads, { count: 76 })}
+                  {t(CREATE_PROFILE_HOME.uploads, { count: uploadsCount })}
                 </MonoText>
               </StoryUploadsText>
             </StoryMeta>
@@ -55,7 +57,7 @@ export default function StorySection() {
 
             <StoryDescription>
               <MonoText $use="Body_Medium" color={COLORS.primary.WHITE_90}>
-                {t(CREATE_PROFILE_HOME.description)}
+                {biography}
               </MonoText>
             </StoryDescription>
           </StoryPanel>
