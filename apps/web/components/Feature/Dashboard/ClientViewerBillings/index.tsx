@@ -56,13 +56,20 @@ import {
 } from "./styles";
 import { useState } from "react";
 import AddCardModal from "./AddCardModal";
+import InvoiceModal from "./InvoiceModal";
 
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
   const [showAddCardModal, setShowAddCardModal] = useState(false);
+  const [selectedInvoice, setSelectedInvoice] =
+    useState<ViewerBillingHistoryItem | null>(null);
 
   const handleCloseModal = () => {
     setShowAddCardModal(false);
+  };
+
+  const handleCloseInvoiceModal = () => {
+    setSelectedInvoice(null);
   };
 
   const { activeTab, setActiveTabAndQuery } =
@@ -107,6 +114,7 @@ export default function ClientViewerBillings() {
               headerToKey={(header) => billingHistoryHeaderMap[header]}
               getRowKey={(row) => row.id}
               getMobileTitle={(row) => row.contentTitle}
+              onRowClick={(row) => setSelectedInvoice(row)}
               renderHeaderFilter={({ index }) => {
                 if (index === 0) {
                   return (
@@ -273,6 +281,11 @@ export default function ClientViewerBillings() {
         </>
       )}
       <AddCardModal visible={showAddCardModal} onClose={handleCloseModal} />
+      <InvoiceModal
+        visible={!!selectedInvoice}
+        item={selectedInvoice}
+        onClose={handleCloseInvoiceModal}
+      />
     </BillingShell>
   );
 }

@@ -30,6 +30,7 @@ type GenericModalProps = {
   title?: string;
   message?: string;
   children?: React.ReactNode;
+  contentMarginBottom?: string;
   buttonRow?: boolean;
   icon?: React.ReactNode;
   confirmLabel?: string;
@@ -59,6 +60,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   title,
   message,
   children,
+  contentMarginBottom,
   icon,
   buttonRow = false,
   confirmLabel,
@@ -158,7 +160,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
           </Title>
         )}
 
-        <Message id="generic-modal-message">
+        <Message id="generic-modal-message" $marginBottom={contentMarginBottom}>
           {children ? (
             children
           ) : (

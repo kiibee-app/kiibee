@@ -20,6 +20,7 @@ export type ViewerPaymentMethod = {
 
 export type ViewerBillingHistoryItem = {
   id: string;
+  orderNumber: string;
   contentTitle: string;
   contentImage: string;
   creatorName: string;
@@ -62,6 +63,7 @@ export const MOCK_VIEWER_PAYMENT_METHODS: ViewerPaymentMethod[] = [
 export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   {
     id: "bh-1",
+    orderNumber: "10011",
     contentTitle: "Colorful sweater",
     contentImage: design1.src,
     creatorName: "Ashley Byrd",
@@ -72,6 +74,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-2",
+    orderNumber: "10012",
     contentTitle: "Mittens and beanie",
     contentImage: design2.src,
     creatorName: "Ashley Byrd",
@@ -82,6 +85,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-3",
+    orderNumber: "10013",
     contentTitle: "Knitting pattern",
     contentImage: discover1.src,
     creatorName: "Helle Hansen",
@@ -92,6 +96,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-4",
+    orderNumber: "10014",
     contentTitle: "Poncho",
     contentImage: design3.src,
     creatorName: "Ashley Byrd",
@@ -102,6 +107,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-5",
+    orderNumber: "10015",
     contentTitle: "Greatest Book Cover",
     contentImage: discover2.src,
     creatorName: "Tom Wilson",
@@ -112,6 +118,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-6",
+    orderNumber: "10016",
     contentTitle: "Sculpture",
     contentImage: discover3.src,
     creatorName: "Emma Smith",
@@ -122,6 +129,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-7",
+    orderNumber: "10017",
     contentTitle: "Deer",
     contentImage: discover1.src,
     creatorName: "James White",
@@ -132,6 +140,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-8",
+    orderNumber: "10018",
     contentTitle: "Floating flowers",
     contentImage: discover4.src,
     creatorName: "Lily Green",
@@ -142,6 +151,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-9",
+    orderNumber: "10019",
     contentTitle: "Cactus",
     contentImage: design2.src,
     creatorName: "Rachel Adams",
@@ -152,6 +162,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-10",
+    orderNumber: "10020",
     contentTitle: "Sculpture",
     contentImage: discover3.src,
     creatorName: "David Johnson",

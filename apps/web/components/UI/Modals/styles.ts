@@ -54,9 +54,9 @@ export const Title = styled.h2`
   margin-bottom: 8px;
 `;
 
-export const Message = styled.div`
+export const Message = styled.div<{ $marginBottom?: string }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  margin-bottom: 24px;
+  margin-bottom: ${({ $marginBottom }) => $marginBottom || "24px"};
 `;
 
 export const ButtonGroup = styled.div<{
