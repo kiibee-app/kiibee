@@ -1,5 +1,14 @@
 import recentCreator from "@/assets/images/creators/recent_creator.webp";
-import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
+import {
+  formatPriceLabel,
+  getContentPricingActions,
+} from "@/utils/contentPricingActions";
+import {
+  ACCESS_TYPE_FREE,
+  BUY_PREFIX,
+  RENT_PREFIX,
+  VARIANT,
+} from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
 import {
   FORMAT_TYPE,
@@ -57,17 +66,6 @@ function formatFormatLabel(contentType?: string | null): string {
   return contentType;
 }
 
-function formatPriceLabel(
-  prefix: string,
-  price: string | number | null | undefined,
-): string | null {
-  if (price == null || price === "") return null;
-  const num = Number(price);
-  if (Number.isNaN(num) || num <= 0) return null;
-  const amount = Number.isInteger(num) ? String(num) : String(Math.round(num));
-  return `${prefix} ${amount} kr`;
-}
-
 export function dedupeFeedContentItems(
   items: FeedContentItem[],
 ): FeedContentItem[] {
@@ -85,31 +83,26 @@ function buildPricingButtons(
   freeLabel: string,
 ): TutorialButton[] {
   const href = pathPublishedContent(item.id);
-  const base: Pick<TutorialButton, "variant" | "href"> = {
-    variant: VARIANT.SECONDARY,
-    href,
-  };
+  const actions = getContentPricingActions(item, freeLabel);
+  const rentLabel = formatPriceLabel(RENT_PREFIX, item.rentPrice);
+  const buyLabel = formatPriceLabel(BUY_PREFIX, item.buyPrice);
+  const hasMultipleActions = actions.length > 1;
 
-  if (item.accessType === ACCESS_TYPE_FREE) {
-    return [{ label: freeLabel, ...base }];
-  }
+  return actions.map((action) => {
+    let actionHref = href;
+    if (hasMultipleActions && action.label === rentLabel) {
+      actionHref = `${href}#rent`;
+    } else if (hasMultipleActions && action.label === buyLabel) {
+      actionHref = `${href}#buy`;
+    }
 
-  const buttons: TutorialButton[] = [];
-  const rent = formatPriceLabel("Rent", item.rentPrice);
-  if (rent) {
-    buttons.push({ label: rent, ...base, href: `${href}#rent` });
-  }
-
-  const buy = formatPriceLabel("Buy", item.buyPrice);
-  if (buy) {
-    buttons.push({ label: buy, ...base, href: `${href}#buy` });
-  }
-
-  if (buttons.length === 0) {
-    return [{ label: freeLabel, ...base }];
-  }
-
-  return buttons;
+    return {
+      label: action.label,
+      variant: VARIANT.SOFT_OUTLINE,
+      href: actionHref,
+      fullWidth: action.fullWidth,
+    };
+  });
 }
 
 export function feedContentToTutorial(
