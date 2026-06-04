@@ -26,21 +26,30 @@ export default function CreateCollectionModal({
   const { t } = useTranslation();
   const [showDiscardModal, setShowDiscardModal] = useState(false);
 
-  const handleCancelClick = () => {
+  const handleClose = ({
+    discard = false,
+    keepEditing = false,
+  }: {
+    discard?: boolean;
+    keepEditing?: boolean;
+  } = {}) => {
+    if (keepEditing) {
+      setShowDiscardModal(false);
+      return;
+    }
+
+    if (discard) {
+      setShowDiscardModal(false);
+      onClose();
+      return;
+    }
+
     if (collectionName.trim()) {
       setShowDiscardModal(true);
-    } else {
-      onClose();
+      return;
     }
-  };
 
-  const handleDiscardConfirm = () => {
-    setShowDiscardModal(false);
     onClose();
-  };
-
-  const handleDiscardCancel = () => {
-    setShowDiscardModal(false);
   };
 
   return (
@@ -50,8 +59,8 @@ export default function CreateCollectionModal({
         title={t("contents.createCollectionModal.title")}
         cancelLabel={t("common.cancel")}
         confirmLabel={t("common.save")}
-        onCancel={handleCancelClick}
-        onClose={handleCancelClick}
+        onCancel={handleClose}
+        onClose={handleClose}
         onConfirm={onConfirm}
         confirmDisabled={!collectionName.trim()}
         closeOnConfirm={false}
@@ -75,13 +84,13 @@ export default function CreateCollectionModal({
 
       <GenericModal
         visible={showDiscardModal}
-        onClose={handleDiscardCancel}
+        onClose={() => handleClose({ keepEditing: true })}
         title={t("settings.notifications.discardModal.title")}
         message={t("settings.notifications.discardModal.message")}
         cancelLabel={t("settings.notifications.discardModal.goBack")}
         confirmLabel={t("settings.notifications.discardModal.discard")}
-        onCancel={handleDiscardCancel}
-        onConfirm={handleDiscardConfirm}
+        onCancel={() => handleClose({ keepEditing: true })}
+        onConfirm={() => handleClose({ discard: true })}
         size="sm"
         spacing="md"
         fullWidthButtons
