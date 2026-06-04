@@ -30,9 +30,10 @@ import {
 } from "@/utils/contentApi";
 import { tutorialVideos } from "@/utils/data";
 import { type TutorialVideo } from "@/utils/types";
-import { QUERY_KEYS } from "@/utils/Constants";
+import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
 import { authStorage } from "@/lib/auth/authStorage";
 import { PATHS } from "@/utils/path";
+import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 import {
   CollectionSection,
   CollectionSectionTag,
@@ -50,19 +51,18 @@ type Props = {
   variant: ProfileLayoutVariant;
 };
 
-export default function CollectionPreview({ variant }: Props) {
+function PrivateCollectionPreview({
+  variant,
+  searchQuery,
+  displayName,
+  handleBuyClick,
+}: {
+  variant: ProfileLayoutVariant;
+  searchQuery: string;
+  displayName: string;
+  handleBuyClick: () => void;
+}) {
   const { t } = useTranslation();
-  const { searchQuery } = useCreatorProfileUi();
-  const { displayName } = useCreatorChannelProfile();
-  const router = useRouter();
-
-  const handleBuyClick = () => {
-    if (authStorage.hasSession()) return;
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
 
   const { data: sections = [] } = useQuery<CollectionWithCards[]>({
     queryKey: [QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW],
@@ -112,19 +112,15 @@ export default function CollectionPreview({ variant }: Props) {
                 buttons: [
                   {
                     label: t("createProfileAbout.buyCollection"),
-                    variant: "secondary",
+                    variant: VARIANT.SECONDARY,
                     onClick: handleBuyClick,
                   },
                 ],
-              } as TutorialVideo;
+              };
             }),
           );
 
-          return {
-            id: collection.id,
-            name: collection.name,
-            cards,
-          };
+          return { id: collection.id, name: collection.name, cards };
         }),
       );
 
@@ -171,5 +167,94 @@ export default function CollectionPreview({ variant }: Props) {
         </CollectionSection>
       ))}
     </>
+  );
+}
+
+function PublicCollectionPreview({
+  variant,
+  publicCreatorId,
+  searchQuery,
+  handleBuyClick,
+}: {
+  variant: ProfileLayoutVariant;
+  publicCreatorId: string;
+  searchQuery: string;
+  handleBuyClick: () => void;
+}) {
+  const { t } = useTranslation();
+  const { tutorials, isLoading } = usePublicCreatorContent(publicCreatorId);
+
+  const visibleCards = useMemo((): TutorialVideo[] => {
+    const withBuyButton: TutorialVideo[] = tutorials.map((tutorial) => ({
+      ...tutorial,
+      buttons: [
+        {
+          label: t("createProfileAbout.buyCollection"),
+          variant: VARIANT.SECONDARY,
+          onClick: handleBuyClick,
+        },
+      ],
+    }));
+
+    if (!searchQuery.trim()) return withBuyButton;
+    return withBuyButton.filter((card) =>
+      matchesProfileSearch(searchQuery, card.title),
+    );
+  }, [tutorials, searchQuery, t, handleBuyClick]);
+
+  if (isLoading || !visibleCards.length) return null;
+
+  return (
+    <CollectionSection $variant={variant}>
+      <SectionHeader>
+        <SectionLabel>
+          <CollectionSectionTag>
+            <MonoText $use="H4_Medium">
+              {t("createProfileAbout.content", { defaultValue: "Content" })}
+            </MonoText>
+          </CollectionSectionTag>
+        </SectionLabel>
+      </SectionHeader>
+      <FourColumnGrid>
+        {visibleCards.map((tutorial) => (
+          <TutorialCard key={tutorial.id} tutorial={tutorial} />
+        ))}
+      </FourColumnGrid>
+    </CollectionSection>
+  );
+}
+
+export default function CollectionPreview({ variant }: Props) {
+  const { searchQuery } = useCreatorProfileUi();
+  const { displayName, isPublicView, publicCreatorId } =
+    useCreatorChannelProfile();
+  const router = useRouter();
+
+  const handleBuyClick = () => {
+    if (authStorage.hasSession()) return;
+    const next = encodeURIComponent(
+      window.location.pathname + window.location.search,
+    );
+    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
+  };
+
+  if (isPublicView && publicCreatorId) {
+    return (
+      <PublicCollectionPreview
+        variant={variant}
+        publicCreatorId={publicCreatorId}
+        searchQuery={searchQuery}
+        handleBuyClick={handleBuyClick}
+      />
+    );
+  }
+
+  return (
+    <PrivateCollectionPreview
+      variant={variant}
+      searchQuery={searchQuery}
+      displayName={displayName}
+      handleBuyClick={handleBuyClick}
+    />
   );
 }

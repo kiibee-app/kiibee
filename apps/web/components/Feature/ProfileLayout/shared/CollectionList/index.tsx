@@ -20,12 +20,21 @@ import { CollectionListInner, CollectionListShell } from "./styles";
 import { authStorage } from "@/lib/auth/authStorage";
 import { PATHS } from "@/utils/path";
 
+import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
+
 export default function CollectionList() {
   const { searchQuery } = useCreatorProfileUi();
-  const { displayName } = useCreatorChannelProfile();
+  const { displayName, isPublicView, publicCreatorId } =
+    useCreatorChannelProfile();
   const router = useRouter();
-  const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
-    API.collection.getAll,
+
+  const { data: privateCollectionsResponse } =
+    useGetAPI<CollectionsApiResponse>(API.collection.getAll, undefined, {
+      enabled: !isPublicView,
+    });
+
+  const { tutorials: publicTutorials } = usePublicCreatorContent(
+    isPublicView ? publicCreatorId : null,
   );
 
   const handleBuyClick = useCallback(() => {
@@ -37,9 +46,36 @@ export default function CollectionList() {
   }, [router]);
 
   const items = useMemo<RentedCollectionItem[]>(() => {
-    if (!collectionsResponse) return [];
+    if (isPublicView) {
+      const groups: Record<
+        string,
+        { title: string; count: number; coverSrc: string }
+      > = {};
 
-    const rows = getCollectionRows(collectionsResponse);
+      publicTutorials.forEach((tutorial) => {
+        const cat = tutorial.category || "Content";
+        if (!groups[cat]) {
+          groups[cat] = {
+            title: cat,
+            count: 0,
+            coverSrc: resolveImageUrl(tutorial.image),
+          };
+        }
+        groups[cat].count += 1;
+      });
+
+      return Object.entries(groups).map(([id, group]) => ({
+        id,
+        title: group.title,
+        author: displayName || "Creator",
+        elementCount: group.count,
+        coverSrc: group.coverSrc,
+        hideBadge: true,
+      }));
+    }
+
+    if (!privateCollectionsResponse) return [];
+    const rows = getCollectionRows(privateCollectionsResponse);
 
     return rows.map((row, index) => ({
       id: row.id,
@@ -51,7 +87,7 @@ export default function CollectionList() {
       ),
       hideBadge: true,
     }));
-  }, [collectionsResponse, displayName]);
+  }, [isPublicView, publicTutorials, privateCollectionsResponse, displayName]);
 
   const filteredItems = useMemo(() => {
     if (!searchQuery.trim()) return items;

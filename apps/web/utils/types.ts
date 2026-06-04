@@ -28,6 +28,7 @@ export type TutorialVideo = {
   title: string;
   category: string;
   creator: string;
+  creatorId?: string;
   published: string;
   focus: string;
   level: string;

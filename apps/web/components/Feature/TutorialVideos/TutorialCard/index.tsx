@@ -16,6 +16,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent } from "@/utils/path";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -85,7 +86,22 @@ function TutorialCard({
         </MonoText>
       }
       title={<MonoText $use="H5_Medium">{tutorial.title}</MonoText>}
-      subtitle={<MonoText $use="Body_Medium">{tutorial.creator}</MonoText>}
+      subtitle={
+        tutorial.creatorId ? (
+          <a
+            href={getPublicCreatorProfilePath(tutorial.creatorId)}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <MonoText $use="Body_Medium" style={{ cursor: "pointer" }}>
+              {tutorial.creator}
+            </MonoText>
+          </a>
+        ) : (
+          <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
+        )
+      }
       footer={
         <ActionRow>
           {buttons.map((button, index) =>

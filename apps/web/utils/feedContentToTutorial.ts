@@ -121,6 +121,7 @@ export function feedContentToTutorial(
     title: item.title,
     category: item.categoryName ?? "",
     creator: item.creatorName ?? "",
+    creatorId: item.creatorId,
     published: item.publishedAgo ?? "",
     focus: item.description ?? "",
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",

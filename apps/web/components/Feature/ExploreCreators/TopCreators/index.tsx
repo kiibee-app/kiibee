@@ -11,6 +11,7 @@ import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 import { CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
 import { formatSubscriberCountK } from "@/hooks/creators/useExploreCreators";
 import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 
 export default function TopCreators() {
   const { t } = useTranslation();
@@ -31,7 +32,13 @@ export default function TopCreators() {
 
       <List>
         {creators.map((creator) => (
-          <Card key={creator.id}>
+          <Card
+            key={creator.id}
+            as="a"
+            href={getPublicCreatorProfilePath(creator.id)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Avatar>
               <CreatorChannelAvatar
                 avatarUrl={creator.profileImageUrl}

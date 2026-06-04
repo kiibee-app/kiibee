@@ -55,6 +55,18 @@ export const Card = styled.div`
   align-items: center;
   min-width: 150px;
   gap: 7px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
   ${media.tablet} {
     min-width: 100px;
   }
