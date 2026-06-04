@@ -21,7 +21,6 @@ type Props = {
   videos: TutorialVideo[] | undefined;
   maxWidth?: string;
   embedded?: boolean;
-  showSearch?: boolean;
   selectedVideoId?: string | null;
   onSelectVideo?: (videoId: string) => void;
 };
@@ -30,7 +29,6 @@ export default function CollectionContent({
   videos,
   maxWidth,
   embedded = false,
-  showSearch = true,
   selectedVideoId = null,
   onSelectVideo,
 }: Props) {
@@ -39,18 +37,9 @@ export default function CollectionContent({
 
   if (!videos) return null;
 
-  const needle = search.trim().toLowerCase();
-  const filteredVideos = !needle
-    ? videos
-    : videos.filter((video) =>
-        [
-          video.title,
-          video.creator,
-          video.category,
-          video.published,
-          video.formatLabel,
-        ].some((value) => value.toLowerCase().includes(needle)),
-      );
+  const filteredVideos = videos.filter((video) =>
+    video.title.toLowerCase().includes(search.toLowerCase()),
+  );
 
   const SectionEl = embedded ? EmbeddedSection : Section;
   const HeaderEl = embedded ? EmbeddedHeader : Header;
@@ -68,14 +57,12 @@ export default function CollectionContent({
           </MonoText>
         </TitleGroup>
 
-        {showSearch ? (
-          <SearchBar
-            placeholder={t("creators.search")}
-            value={search}
-            onChange={setSearch}
-            width="min(216px, 100%)"
-          />
-        ) : null}
+        <SearchBar
+          placeholder={t("creators.search")}
+          value={search}
+          onChange={setSearch}
+          width="min(216px, 100%)"
+        />
       </HeaderEl>
       <ShowcaseEl>
         <TutorialsShowcase
