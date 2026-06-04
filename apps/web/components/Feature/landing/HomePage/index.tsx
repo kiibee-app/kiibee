@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import HeroSection from "@/components/Feature/landing/Hero";
 import InterestSection from "@/components/Feature/landing/InterestSection";
 import DiscoverContent from "@/components/Feature/landing/DiscoverContent";
-import WatchingSteps from "@/components/Feature/landing/WatchingSteps";
+import HowSteps from "@/components/Feature/HowItWork/Steps";
 import ExploreCategories from "@/components/Feature/landing/ExploreCategories";
 import SecurePaymentSection from "@/components/Feature/landing/SecurePayment";
 import TestimonialSection from "@/components/Feature/landing/Testimonial";
@@ -31,7 +31,7 @@ export default function HomePageClient() {
 
         <DiscoverContent />
 
-        <WatchingSteps />
+        <HowSteps />
 
         <ExploreCategories />
 
