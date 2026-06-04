@@ -163,7 +163,9 @@ export default function NavBar({
   const loginButtonHref = PATHS.AUTH_LOGIN;
   const renderItemLabel = (item: NavBarItem) => item.label ?? t(item.key);
   const [openMegaKey, setOpenMegaKey] = React.useState<string | null>(null);
-  const [pinnedMegaKey, setPinnedMegaKey] = React.useState<string | null>(null);
+  const [renderedMegaKey, setRenderedMegaKey] = React.useState<string | null>(
+    null,
+  );
   const routeActiveKey = React.useMemo(() => {
     if (!routeActiveItems) return null;
     const explicit = items.find((item) => item.isActive)?.key;
@@ -172,6 +174,8 @@ export default function NavBar({
   }, [items, pathname, routeActiveItems]);
   const navRef = React.useRef<HTMLElement | null>(null);
   const actionsRef = React.useRef<HTMLDivElement | null>(null);
+  const closeTimerRef = React.useRef<number | null>(null);
+  const unmountTimerRef = React.useRef<number | null>(null);
   const innerStyle = React.useMemo(() => {
     const style: React.CSSProperties & Record<string, string> = {};
 
@@ -206,27 +210,45 @@ export default function NavBar({
     topOffset,
   ]);
 
+  const clearCloseTimer = useCallback(() => {
+    if (!closeTimerRef.current) return;
+    window.clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = null;
+  }, []);
+
+  const clearUnmountTimer = useCallback(() => {
+    if (!unmountTimerRef.current) return;
+    window.clearTimeout(unmountTimerRef.current);
+    unmountTimerRef.current = null;
+  }, []);
+
   const closeMenu = useCallback(() => {
-    setPinnedMegaKey(null);
+    clearCloseTimer();
+    clearUnmountTimer();
     setOpenMegaKey(null);
-  }, []);
+    unmountTimerRef.current = window.setTimeout(() => {
+      setRenderedMegaKey(null);
+      unmountTimerRef.current = null;
+    }, 240);
+  }, [clearCloseTimer, clearUnmountTimer]);
 
-  const openMenu = useCallback((key: string) => {
-    setOpenMegaKey(key);
-    setPinnedMegaKey(key);
-  }, []);
-
-  const togglePin = useCallback(
+  const openMenu = useCallback(
     (key: string) => {
-      const shouldClose = pinnedMegaKey === key;
-      if (shouldClose) {
-        closeMenu();
-        return;
-      }
-      openMenu(key);
+      clearCloseTimer();
+      clearUnmountTimer();
+      setRenderedMegaKey(key);
+      setOpenMegaKey(key);
     },
-    [pinnedMegaKey, closeMenu, openMenu],
+    [clearCloseTimer, clearUnmountTimer],
   );
+
+  const scheduleCloseMenu = useCallback(() => {
+    clearCloseTimer();
+    closeTimerRef.current = window.setTimeout(() => {
+      closeMenu();
+      closeTimerRef.current = null;
+    }, 120);
+  }, [clearCloseTimer, closeMenu]);
 
   const handleGlobalClick = useCallback(
     (e: PointerEvent) => {
@@ -249,6 +271,14 @@ export default function NavBar({
     };
   }, [handleGlobalClick]);
 
+  useEffect(
+    () => () => {
+      clearCloseTimer();
+      clearUnmountTimer();
+    },
+    [clearCloseTimer, clearUnmountTimer],
+  );
+
   const isMegaOpen = items.some(
     (item) => item.children && openMegaKey === item.key,
   );
@@ -259,6 +289,8 @@ export default function NavBar({
       $topOffset={topOffset}
       $navbarHeight={navbarHeight}
       $isMegaOpen={isMegaOpen}
+      onMouseEnter={clearCloseTimer}
+      onMouseLeave={scheduleCloseMenu}
     >
       <Inner style={innerStyle}>
         <Left>
@@ -330,11 +362,12 @@ export default function NavBar({
               {items.map((item) => (
                 <NavItemWrapper
                   key={item.key}
-                  onMouseEnter={() => item.children && openMenu(item.key)}
-                  onClick={(e) => {
-                    if (!item.children) return;
-                    e.stopPropagation();
-                    togglePin(item.key);
+                  onMouseEnter={() => {
+                    if (item.children) {
+                      openMenu(item.key);
+                      return;
+                    }
+                    closeMenu();
                   }}
                 >
                   {item.onClick ? (
@@ -351,9 +384,13 @@ export default function NavBar({
                     <Link href={item.href || "#"}>{renderItemLabel(item)}</Link>
                   )}
 
-                  {item.children && openMegaKey === item.key && (
-                    <MegaMenu>
-                      <MegaInner>
+                  {item.children && renderedMegaKey === item.key && (
+                    <MegaMenu
+                      $isOpen={openMegaKey === item.key}
+                      onMouseEnter={clearCloseTimer}
+                      onMouseLeave={scheduleCloseMenu}
+                    >
+                      <MegaInner $isOpen={openMegaKey === item.key}>
                         {item.children.map((col) => (
                           <MegaColumn
                             key={col.titleKey}
