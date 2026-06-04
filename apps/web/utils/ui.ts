@@ -214,12 +214,12 @@ export const previewConfig: Record<ImageType, PreviewStyleConfig> = {
   },
 
   [IMAGE_TYPE.PORTRAIT]: {
-    maxWidth: "184px",
+    maxWidth: "71px",
     minHeight: "100px",
-    aspectRatio: "46 / 25",
+    aspectRatio: "71 / 100",
     tablet: {
-      maxWidth: "140px",
-      minHeight: "76px",
+      maxWidth: "71px",
+      minHeight: "100px",
     },
   },
 };
