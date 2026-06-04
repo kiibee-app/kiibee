@@ -20,6 +20,7 @@ export type TutorialButton = {
   fullWidth?: boolean;
   size?: ButtonSize;
   minWidth?: string;
+  onClick?: () => void;
 };
 
 export type TutorialVideo = {

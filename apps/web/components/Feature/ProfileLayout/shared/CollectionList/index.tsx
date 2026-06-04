@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import { useMemo, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import CollectionsSection from "@/components/Feature/Dashboard/ViewerSections/CollectionsSection";
 import {
   CollectionsApiResponse,
@@ -17,14 +17,24 @@ import { tutorialVideos } from "@/utils/data";
 import type { RentedCollectionItem } from "@/utils/dummyData/viewerRentedMockData";
 import { RENTED_MODES } from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
+import { authStorage } from "@/lib/auth/authStorage";
+import { PATHS } from "@/utils/path";
 
 export default function CollectionList() {
-  const { t } = useTranslation();
   const { searchQuery } = useCreatorProfileUi();
   const { displayName } = useCreatorChannelProfile();
+  const router = useRouter();
   const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
     API.collection.getAll,
   );
+
+  const handleBuyClick = useCallback(() => {
+    if (authStorage.hasSession()) return;
+    const next = encodeURIComponent(
+      window.location.pathname + window.location.search,
+    );
+    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
+  }, [router]);
 
   const items = useMemo<RentedCollectionItem[]>(() => {
     if (!collectionsResponse) return [];
@@ -40,14 +50,8 @@ export default function CollectionList() {
         tutorialVideos[index % tutorialVideos.length]?.image ?? "",
       ),
       hideBadge: true,
-      actions: [
-        {
-          label: t("createProfileAbout.buy"),
-          variant: "primary",
-        },
-      ],
     }));
-  }, [collectionsResponse, displayName, t]);
+  }, [collectionsResponse, displayName]);
 
   const filteredItems = useMemo(() => {
     if (!searchQuery.trim()) return items;
@@ -68,6 +72,7 @@ export default function CollectionList() {
           canGoNext={() => false}
           movePrev={() => {}}
           moveNext={() => {}}
+          onCollectionPrimaryAction={handleBuyClick}
         />
       </CollectionListInner>
     </CollectionListShell>

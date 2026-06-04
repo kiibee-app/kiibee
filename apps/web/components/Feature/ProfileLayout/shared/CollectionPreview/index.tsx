@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
 import { LeftIcon } from "@/assets/icons";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import {
@@ -30,6 +31,8 @@ import {
 import { tutorialVideos } from "@/utils/data";
 import { type TutorialVideo } from "@/utils/types";
 import { QUERY_KEYS } from "@/utils/Constants";
+import { authStorage } from "@/lib/auth/authStorage";
+import { PATHS } from "@/utils/path";
 import {
   CollectionSection,
   CollectionSectionTag,
@@ -51,6 +54,15 @@ export default function CollectionPreview({ variant }: Props) {
   const { t } = useTranslation();
   const { searchQuery } = useCreatorProfileUi();
   const { displayName } = useCreatorChannelProfile();
+  const router = useRouter();
+
+  const handleBuyClick = () => {
+    if (authStorage.hasSession()) return;
+    const next = encodeURIComponent(
+      window.location.pathname + window.location.search,
+    );
+    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
+  };
 
   const { data: sections = [] } = useQuery<CollectionWithCards[]>({
     queryKey: [QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW],
@@ -101,6 +113,7 @@ export default function CollectionPreview({ variant }: Props) {
                   {
                     label: t("createProfileAbout.buyCollection"),
                     variant: "secondary",
+                    onClick: handleBuyClick,
                   },
                 ],
               } as TutorialVideo;

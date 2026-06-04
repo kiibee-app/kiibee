@@ -57,6 +57,8 @@ export default function ExploreCreators({ creators, isLoading }: Props) {
                 <GenericButton
                   asAnchor
                   href={getPublicCreatorProfilePath(creator.id)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   variant={VARIANT.SECONDARY}
                 >
                   {t(CREATORS.viewProfile)}

@@ -122,6 +122,7 @@ function TutorialCard({
                 fullWidth={button.fullWidth}
                 size={button.size}
                 minWidth={button.minWidth}
+                onClick={button.onClick}
               >
                 {button.label}
               </GenericButton>
