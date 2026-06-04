@@ -260,6 +260,19 @@ export const DASHBOARD_VIEWER_BILLINGS = {
     edit: "dashboard.viewerBillings.paymentMethods.edit",
     delete: "dashboard.viewerBillings.paymentMethods.delete",
     more: "dashboard.viewerBillings.paymentMethods.more",
+    deleteModal: {
+      title: "dashboard.viewerBillings.paymentMethods.deleteModal.title",
+      message: "dashboard.viewerBillings.paymentMethods.deleteModal.message",
+      cancel: "dashboard.viewerBillings.paymentMethods.deleteModal.cancel",
+      confirm: "dashboard.viewerBillings.paymentMethods.deleteModal.confirm",
+    },
+    deleteSuccessModal: {
+      title: "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.title",
+      message:
+        "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.message",
+      confirm:
+        "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.confirm",
+    },
     addCardModal: {
       title: "dashboard.viewerBillings.paymentMethods.addCardModal.title",
       cardNumber:
