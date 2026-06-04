@@ -22,6 +22,18 @@ export const Card = styled.div<{
   }};
   width: ${({ $width }) => $width || "100%"};
   box-shadow: 0 0 10.483px 0 ${({ theme }) => theme.colors.neutral.GRAY_300};
+  transition:
+    transform 0.3s ease-out,
+    box-shadow 0.3s ease-out;
+  will-change: transform;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow:
+      0 8px 24px 0 ${({ theme }) => theme.colors.neutral.GRAY_300},
+      0 2px 8px 0 ${({ theme }) => theme.colors.neutral.GRAY_300};
+  }
 `;
 
 export const ImageWrapper = styled.div<{
