@@ -2,26 +2,36 @@
 
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
-import { type CSSProperties } from "react";
 
-export const Section = styled.section`
+const DEFAULT_IMAGE_ASPECT = 1440 / 682;
+
+export const Section = styled.section<{ $aspect?: number }>`
   width: 100%;
   position: relative;
-  display: block;
-  min-height: 100vh;
   overflow: hidden;
   display: flex;
-  padding: 0rem 24rem 4.5rem;
+  align-items: center;
+  justify-content: center;
+  height: clamp(
+    420px,
+    calc(100vw / ${({ $aspect = DEFAULT_IMAGE_ASPECT }) => $aspect}),
+    682px
+  );
+  padding: clamp(3rem, 8vh, 5rem) 1.5rem;
 
   ${media.tablet} {
-    padding: 120px 40px;
+    padding: clamp(2.5rem, 6vh, 4rem) 1.25rem;
   }
 `;
 
-export const Background = styled.div`
+export const Background = styled.div<{ $src: string }>`
   position: absolute;
   inset: 0;
   z-index: 0;
+  background-image: url(${({ $src }) => $src});
+  background-size: cover;
+  background-position: center 32%;
+  background-repeat: no-repeat;
 
   &::before {
     content: "";
@@ -35,9 +45,8 @@ export const Background = styled.div`
     z-index: 1;
   }
 
-  img {
-    position: relative;
-    z-index: 0;
+  ${media.tablet} {
+    background-position: center 28%;
   }
 `;
 
@@ -72,12 +81,4 @@ export const Subtitle = styled.p`
   text-align: center;
   margin: 0;
   max-width: 800px;
-
-  ${media.tablet} {
-  }
 `;
-
-export const ctaSectionBackgroundImageStyle: CSSProperties = {
-  objectFit: "cover",
-  objectPosition: "center",
-};

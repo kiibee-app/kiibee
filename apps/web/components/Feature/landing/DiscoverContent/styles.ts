@@ -6,7 +6,7 @@ import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
-  min-height: 100vh;
+  min-height: 1000px;
   background: ${({ theme }) => theme.colors.primary.GRAY};
   padding: clamp(2.5rem, 8vw, 5rem) clamp(1rem, 4vw, 1.5rem);
 `;

@@ -3,23 +3,30 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
-import Image from "@/components/UI/SafeImage";
+import type { StaticImageData } from "next/image";
 import GenericButton from "@/components/UI/GenericButton";
-import {
-  Section,
-  Background,
-  Inner,
-  Content,
-  Title,
-  Subtitle,
-  ctaSectionBackgroundImageStyle,
-} from "./styles";
+import { Section, Background, Inner, Content, Title, Subtitle } from "./styles";
 import type { CtaSectionProps } from "@/types/ctaSection";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
-import { LANDING_IMAGE_FLAGS } from "@/utils/landingUtils";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
+
+const DEFAULT_IMAGE_ASPECT = 1440 / 682;
+
+function getBackgroundMeta(bgImage: CtaSectionProps["bgImage"]) {
+  if (!bgImage) return null;
+
+  if (typeof bgImage === "string") {
+    return { src: bgImage, aspect: DEFAULT_IMAGE_ASPECT };
+  }
+
+  const image = bgImage as StaticImageData;
+  return {
+    src: image.src,
+    aspect: image.width / image.height,
+  };
+}
 
 export default function CtaSection({
   bgImage,
@@ -31,20 +38,17 @@ export default function CtaSection({
 }: CtaSectionProps) {
   const { t } = useTranslation();
   const router = useRouter();
+  const background = getBackgroundMeta(bgImage);
 
   return (
-    <Section>
-      <Background>
-        {bgImage && (
-          <Image
-            src={bgImage}
-            alt={t("ctaSection.bgAlt")}
-            fill={LANDING_IMAGE_FLAGS.fill}
-            priority={LANDING_IMAGE_FLAGS.priority}
-            style={ctaSectionBackgroundImageStyle}
-          />
-        )}
-      </Background>
+    <Section $aspect={background?.aspect}>
+      {background && (
+        <Background
+          $src={background.src}
+          role="img"
+          aria-label={t("ctaSection.bgAlt")}
+        />
+      )}
 
       <Inner>
         <Content>
