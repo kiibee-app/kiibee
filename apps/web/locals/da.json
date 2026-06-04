@@ -1511,6 +1511,7 @@
         "placeholder": "https://"
       },
       "uploading": "Uploader",
+      "uploaded": "Uploaded",
       "deletePermanently": "Slet permanent"
     },
     "emptyCollection": {
