@@ -7,12 +7,10 @@ import { PATHS } from "@/utils/path";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
-import {
-  exploreCreatorsData,
-  filterMapping,
-  MainCategory,
-  EXPLORE_CATEGORIES,
-} from "@/utils/data";
+import { useRecentContent } from "@/hooks/feed/useRecentContent";
+import { CATEGORY_ALL } from "@/utils/Constants";
+import { toCamelCaseKey } from "@/utils/common";
+import type { TFunction } from "i18next";
 import {
   Section,
   HeaderSection,
@@ -25,14 +23,58 @@ import {
   BrowseAllButton,
 } from "./styles";
 
+const getCategoryLabel = (category: string, t: TFunction) => {
+  if (category === CATEGORY_ALL) {
+    return t("exploreCategories.categories.all");
+  }
+  const key = toCamelCaseKey(category);
+
+  const paths = [
+    `viewerSignup.preference.content.options.${key}`,
+    `exploreCategories.categories.${key}`,
+    `creators.filters.options.categories.${key}`,
+  ];
+
+  for (const path of paths) {
+    const translation = t(path);
+    if (translation && translation !== path) {
+      return translation;
+    }
+  }
+  return category;
+};
+
 export default function ExploreCategories() {
   const { t } = useTranslation();
-  const [activeCategory, setActiveCategory] = useState<MainCategory>("all");
+  const [activeCategory, setActiveCategory] = useState<string>(CATEGORY_ALL);
+  const { tutorials, isLoading } = useRecentContent();
+
+  const categoriesList = useMemo(() => {
+    const uniqueCategories = new Set<string>();
+    tutorials.forEach((item) => {
+      if (item.category) {
+        uniqueCategories.add(item.category);
+      }
+    });
+    return [CATEGORY_ALL, ...Array.from(uniqueCategories)];
+  }, [tutorials]);
+
+  const resolvedActiveCategory = useMemo(() => {
+    return categoriesList.includes(activeCategory)
+      ? activeCategory
+      : CATEGORY_ALL;
+  }, [categoriesList, activeCategory]);
 
   const filteredItems = useMemo(() => {
-    const allowedIds = filterMapping[activeCategory] || [];
-    return exploreCreatorsData.filter((item) => allowedIds.includes(item.id));
-  }, [activeCategory]);
+    if (resolvedActiveCategory === CATEGORY_ALL) {
+      return tutorials;
+    }
+    return tutorials.filter((item) => item.category === resolvedActiveCategory);
+  }, [tutorials, resolvedActiveCategory]);
+
+  if (isLoading || tutorials.length === 0) {
+    return null;
+  }
 
   return (
     <Section id="landing-top-categories">
@@ -52,17 +94,18 @@ export default function ExploreCategories() {
       </HeaderSection>
 
       <FilterBar>
-        {EXPLORE_CATEGORIES.map((catKey) => {
-          const isActive = activeCategory === catKey;
+        {categoriesList.map((catKey) => {
+          const isActive = resolvedActiveCategory === catKey;
+          const sanitizedId = catKey.toLowerCase().replace(/[^a-z0-9]+/g, "-");
           return (
             <FilterPill
               key={catKey}
-              id={`category-filter-pill-${catKey}`}
+              id={`category-filter-pill-${sanitizedId}`}
               $active={isActive}
               onClick={() => setActiveCategory(catKey)}
             >
               <MonoText $use="Body_Bold">
-                {t(`exploreCategories.categories.${catKey}`)}
+                {getCategoryLabel(catKey, t)}
               </MonoText>
             </FilterPill>
           );
@@ -79,7 +122,7 @@ export default function ExploreCategories() {
         <BrowseAllButton
           id="browse-all-creators-btn"
           asAnchor
-          href={PATHS.EXPLORE_CREATORS}
+          href={PATHS.EXPLORE}
         >
           <MonoText $use="Body_Bold">
             {t("exploreCategories.browseAll")}

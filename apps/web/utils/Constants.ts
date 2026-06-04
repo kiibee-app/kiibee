@@ -281,3 +281,5 @@ export const FREE_LABEL = "Free";
 export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
+
+export const CATEGORY_ALL = "all";
