@@ -4,6 +4,7 @@ import { seedContentTypes } from './contentTypes.seed';
 import { seedCreatorAccounts } from './creatorAccounts.seed';
 import { seedPlans } from './subscriptionPlan.seed';
 import { seedTags } from './tags.seed';
+import { seedUmbracoProfiles } from './umbracoProfiles.seed';
 import { seedUsers } from './users.seed';
 
 async function main() {
@@ -16,6 +17,7 @@ async function main() {
   // Base users, then creator accounts that depend on plans
   await seedUsers();
   await seedCreatorAccounts();
+  await seedUmbracoProfiles();
 
   console.log('All seeds completed successfully');
   process.exit();
