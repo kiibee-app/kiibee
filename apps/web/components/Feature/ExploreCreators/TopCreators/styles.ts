@@ -35,8 +35,14 @@ export const List = styled.div`
   gap: 73px;
   align-self: stretch;
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   padding-right: 2rem;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   ${media.tablet} {
     gap: 60px;
