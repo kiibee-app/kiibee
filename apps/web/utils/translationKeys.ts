@@ -252,6 +252,16 @@ export const DASHBOARD_VIEWER_BILLINGS = {
         "dashboard.viewerBillings.billingHistory.tableHeaders.paymentMethod",
     },
   },
+  invoiceModal: {
+    title: "dashboard.viewerBillings.invoiceModal.title",
+    orderNumber: "dashboard.viewerBillings.invoiceModal.orderNumber",
+    type: "dashboard.viewerBillings.invoiceModal.type",
+    paymentDate: "dashboard.viewerBillings.invoiceModal.paymentDate",
+    amount: "dashboard.viewerBillings.invoiceModal.amount",
+    paymentMethod: "dashboard.viewerBillings.invoiceModal.paymentMethod",
+    contentDetails: "dashboard.viewerBillings.invoiceModal.contentDetails",
+    share: "dashboard.viewerBillings.invoiceModal.share",
+  },
   paymentMethods: {
     title: "dashboard.viewerBillings.paymentMethods.title",
     addCard: "dashboard.viewerBillings.paymentMethods.addCard",

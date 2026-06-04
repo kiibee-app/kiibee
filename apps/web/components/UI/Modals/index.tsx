@@ -86,10 +86,6 @@ export const GenericModal: React.FC<GenericModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
-  const resolvedPadding =
-    padding && padding in MODAL_PADDINGS
-      ? MODAL_PADDINGS[padding as ModalPadding]
-      : padding;
 
   useEffect(() => {
     if (!visible) return;
@@ -135,9 +131,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
       <ModalContainer
         $width={width || (size ? MODAL_WIDTHS[size] : undefined)}
         $height={height}
-        $padding={
-          resolvedPadding || (spacing ? MODAL_PADDINGS[spacing] : undefined)
-        }
+        $padding={padding || (spacing ? MODAL_PADDINGS[spacing] : undefined)}
         $borderRadius={borderRadius}
         $align={textAlign}
         ref={ref}

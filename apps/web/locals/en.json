@@ -1132,6 +1132,16 @@
           "paymentMethod": "Payment method"
         }
       },
+      "invoiceModal": {
+        "title": "Invoice",
+        "orderNumber": "Order number",
+        "type": "Type",
+        "paymentDate": "Payment date",
+        "amount": "Amount",
+        "paymentMethod": "Payment method",
+        "contentDetails": "Content details",
+        "share": "Share"
+      },
       "paymentMethods": {
         "title": "Payment methods",
         "addCard": "Add card",

@@ -1130,6 +1130,16 @@
           "paymentMethod": "Betalingsmetode"
         }
       },
+      "invoiceModal": {
+        "title": "Faktura",
+        "orderNumber": "Ordrenummer",
+        "type": "Type",
+        "paymentDate": "Betalingsdato",
+        "amount": "Beløb",
+        "paymentMethod": "Betalingsmetode",
+        "contentDetails": "Indholdsdetaljer",
+        "share": "Del"
+      },
       "paymentMethods": {
         "title": "Betalingsmetoder",
         "addCard": "Tilføj kort",

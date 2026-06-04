@@ -314,3 +314,65 @@ export const Grid = styled.div`
     gap: 16px;
   }
 `;
+
+export const InvoiceFields = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+
+export const InvoiceDetailGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 40px;
+
+  ${media.mobileLg} {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+`;
+
+export const InvoiceField = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const InvoicePaymentMethod = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const InvoicePaymentLogo = styled.div`
+  width: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const InvoiceContentDetails = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+export const InvoiceContentThumb = styled.div`
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex: 0 0 44px;
+`;
+
+export const InvoiceContentMeta = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+export const InvoiceShareButton = styled.div`
+  display: flex;
+  align-items: center;
+`;
