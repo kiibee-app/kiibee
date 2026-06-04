@@ -9,13 +9,20 @@ import {
   resolveMediaType,
   MEDIA_TYPE,
 } from "./Constants";
-import { getContentPricingActions } from "./contentPricingActions";
+import {
+  getContentPricingActions,
+  isFreeContentItem,
+  resolveContentActionHref,
+} from "./contentPricingActions";
+import { pathPublishedContent } from "./path";
 import { type FeedContentItem } from "./feedContentToTutorial";
 import fallbackImage from "@/assets/images/discover-content/3545227dd1e7a9cd6faf3b14586708d85137ed35.webp";
 
 export type DiscoverContentAction = {
   labelKey: string;
   fullWidth?: boolean;
+  href?: string;
+  requiresAuth?: boolean;
 };
 
 export type DiscoverContentMediaType = "video" | "epub";
@@ -30,6 +37,7 @@ export type DiscoverContentItem = {
   dateKey: string;
   mediaType: DiscoverContentMediaType;
   mediaTypeKey: string;
+  isFree?: boolean;
   actions: DiscoverContentAction[];
 };
 
@@ -38,9 +46,18 @@ export { formatPriceLabel } from "./contentPricingActions";
 export const mapFeedItemToDiscoverItem = (
   item: FeedContentItem,
 ): DiscoverContentItem => {
-  const actions = getContentPricingActions(item).map((action) => ({
+  const pricingActions = getContentPricingActions(item);
+  const isFree = isFreeContentItem(item);
+  const actions = pricingActions.map((action) => ({
     labelKey: action.label,
     fullWidth: action.fullWidth,
+    href: resolveContentActionHref(
+      item.id,
+      action.label,
+      item,
+      pricingActions.length,
+    ),
+    requiresAuth: !isFree,
   }));
 
   const mediaType = resolveMediaType(item.contentType);
@@ -52,6 +69,7 @@ export const mapFeedItemToDiscoverItem = (
   return {
     id: item.id,
     contentKey: item.id,
+    isFree: isFreeContentItem(item),
     categoryKey: item.categoryName || "",
     image: item.thumbnailUrl || fallbackImage,
     titleKey: item.title,
@@ -75,8 +93,16 @@ export const discoverContentData: DiscoverContentItem[] = [
     mediaType: "video",
     mediaTypeKey: "discoverContent.mediaTypes.video",
     actions: [
-      { labelKey: "discoverContent.items.1.actions.rent" },
-      { labelKey: "discoverContent.items.1.actions.buy" },
+      {
+        labelKey: "discoverContent.items.1.actions.rent",
+        href: `${pathPublishedContent("krollehjerne")}#rent`,
+        requiresAuth: true,
+      },
+      {
+        labelKey: "discoverContent.items.1.actions.buy",
+        href: `${pathPublishedContent("krollehjerne")}#buy`,
+        requiresAuth: true,
+      },
     ],
   },
   {
@@ -89,8 +115,13 @@ export const discoverContentData: DiscoverContentItem[] = [
     dateKey: "discoverContent.items.2.date",
     mediaType: "video",
     mediaTypeKey: "discoverContent.mediaTypes.video",
+    isFree: true,
     actions: [
-      { labelKey: "discoverContent.items.2.actions.free", fullWidth: true },
+      {
+        labelKey: "discoverContent.items.2.actions.free",
+        fullWidth: true,
+        href: pathPublishedContent("tech-talks"),
+      },
     ],
   },
   {

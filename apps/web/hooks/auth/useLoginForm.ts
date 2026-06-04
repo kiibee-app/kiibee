@@ -9,13 +9,13 @@ import {
   AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
   REMEMBERED_AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
 } from "@/lib/auth/storageKeys";
+import { isSafePostLoginPath } from "@/utils/path";
+
 function getPostLoginDestination(response: LoginResponse) {
   if (typeof window === "undefined") return getPostLoginPath(response);
 
   const nextPath = new URLSearchParams(window.location.search).get("next");
-  return nextPath?.startsWith("/dashboard/")
-    ? nextPath
-    : getPostLoginPath(response);
+  return isSafePostLoginPath(nextPath) ? nextPath : getPostLoginPath(response);
 }
 
 export function useLoginForm() {

@@ -1,15 +1,10 @@
 import recentCreator from "@/assets/images/creators/recent_creator.webp";
 import {
-  formatPriceLabel,
   getContentPricingActions,
+  isFreeContentItem,
+  resolveContentActionHref,
 } from "@/utils/contentPricingActions";
-import {
-  ACCESS_TYPE_FREE,
-  BUY_PREFIX,
-  RENT_PREFIX,
-  VARIANT,
-} from "@/utils/Constants";
-import { pathPublishedContent } from "@/utils/path";
+import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -82,27 +77,16 @@ function buildPricingButtons(
   item: FeedContentItem,
   freeLabel: string,
 ): TutorialButton[] {
-  const href = pathPublishedContent(item.id);
   const actions = getContentPricingActions(item, freeLabel);
-  const rentLabel = formatPriceLabel(RENT_PREFIX, item.rentPrice);
-  const buyLabel = formatPriceLabel(BUY_PREFIX, item.buyPrice);
-  const hasMultipleActions = actions.length > 1;
+  const requiresAuth = !isFreeContentItem(item);
 
-  return actions.map((action) => {
-    let actionHref = href;
-    if (hasMultipleActions && action.label === rentLabel) {
-      actionHref = `${href}#rent`;
-    } else if (hasMultipleActions && action.label === buyLabel) {
-      actionHref = `${href}#buy`;
-    }
-
-    return {
-      label: action.label,
-      variant: VARIANT.SOFT_OUTLINE,
-      href: actionHref,
-      fullWidth: action.fullWidth,
-    };
-  });
+  return actions.map((action) => ({
+    label: action.label,
+    variant: VARIANT.SOFT_OUTLINE,
+    href: resolveContentActionHref(item.id, action.label, item, actions.length),
+    requiresAuth,
+    fullWidth: action.fullWidth,
+  }));
 }
 
 export function feedContentToTutorial(
@@ -117,6 +101,7 @@ export function feedContentToTutorial(
     published: item.publishedAgo ?? "",
     focus: item.description ?? "",
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",
+    isFree: isFreeContentItem(item),
     formatLabel: formatFormatLabel(item.contentType),
     formatType: resolveFormatType(item.contentType),
     image: item.thumbnailUrl || recentCreator,

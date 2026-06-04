@@ -109,7 +109,11 @@ export const attachResponseInterceptor = (client: AxiosInstance) => {
 
         return client(originalRequest);
       } catch {
-        clearSessionAndRedirectToLogin();
+        if (authStorage.getRefreshToken()) {
+          clearSessionAndRedirectToLogin();
+        } else {
+          authStorage.clearSession();
+        }
         return Promise.reject(normalizeApiError(error));
       }
     },

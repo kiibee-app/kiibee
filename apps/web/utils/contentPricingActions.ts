@@ -4,6 +4,7 @@ import {
   FREE_LABEL,
   RENT_PREFIX,
 } from "./Constants";
+import { pathPublishedContent } from "./path";
 import type { FeedContentItem } from "./feedContentToTutorial";
 
 export type ContentPricingAction = {
@@ -20,6 +21,33 @@ export function formatPriceLabel(
   if (Number.isNaN(num) || num <= 0) return null;
   const amount = Number.isInteger(num) ? String(num) : String(Math.round(num));
   return `${prefix} ${amount} kr`;
+}
+
+export function isFreeContentItem(
+  item: Pick<FeedContentItem, "accessType" | "rentPrice" | "buyPrice">,
+): boolean {
+  if (item.accessType === ACCESS_TYPE_FREE) return true;
+  return (
+    !formatPriceLabel(RENT_PREFIX, item.rentPrice) &&
+    !formatPriceLabel(BUY_PREFIX, item.buyPrice)
+  );
+}
+
+export function resolveContentActionHref(
+  contentId: string,
+  actionLabel: string,
+  item: Pick<FeedContentItem, "rentPrice" | "buyPrice">,
+  actionsCount: number,
+): string {
+  const href = pathPublishedContent(contentId);
+  if (actionsCount <= 1) return href;
+
+  const rentLabel = formatPriceLabel(RENT_PREFIX, item.rentPrice);
+  const buyLabel = formatPriceLabel(BUY_PREFIX, item.buyPrice);
+
+  if (actionLabel === rentLabel) return `${href}#rent`;
+  if (actionLabel === buyLabel) return `${href}#buy`;
+  return href;
 }
 
 export function getContentPricingActions(

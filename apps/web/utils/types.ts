@@ -17,6 +17,7 @@ export type TutorialButton = {
   label: string;
   variant?: Variant;
   href?: string;
+  requiresAuth?: boolean;
   fullWidth?: boolean;
   size?: ButtonSize;
   minWidth?: string;
@@ -30,6 +31,7 @@ export type TutorialVideo = {
   published: string;
   focus: string;
   level: string;
+  isFree?: boolean;
   formatLabel: string;
   formatType?: FormatType;
   buttons?: TutorialButton[];
