@@ -135,3 +135,18 @@ export const ACCESS_DURATION_VALUES = [
 export type AccessDurationValue = (typeof ACCESS_DURATION_VALUES)[number];
 
 export const PAYMENT_DEFAULT_ACCESS_DURATION = "1 month" as const;
+
+export function toCamelCaseKey(value: string): string {
+  return value
+    .replace(/&|\/|and/gi, "and")
+    .replace(/[^a-zA-Z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .map((word, index) => {
+      if (index === 0) {
+        return word.toLowerCase();
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join("");
+}
