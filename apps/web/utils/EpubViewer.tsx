@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import ePub from "epubjs";
 
@@ -10,11 +12,15 @@ export default function EpubViewer({ src }: { src: string }) {
     const book = ePub(src);
 
     book.ready.then(() => {
+      const spine = book.spine as unknown as { length: number };
+      const spineLength = spine.length;
+      const isMultiPage = spineLength > 1;
+
       const rendition = book.renderTo(viewerRef.current!, {
         width: "100%",
         height: "100%",
-        flow: "scrolled-doc",
-        manager: "continuous",
+        flow: isMultiPage ? "scrolled-doc" : "paginated",
+        manager: isMultiPage ? "continuous" : "default",
       });
 
       rendition.display();
