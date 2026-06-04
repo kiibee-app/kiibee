@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
+import { useMemo, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import CollectionsSection from "@/components/Feature/Dashboard/ViewerSections/CollectionsSection";
 import {
   CollectionsApiResponse,
@@ -17,19 +17,65 @@ import { tutorialVideos } from "@/utils/data";
 import type { RentedCollectionItem } from "@/utils/dummyData/viewerRentedMockData";
 import { RENTED_MODES } from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
+import { authStorage } from "@/lib/auth/authStorage";
+import { PATHS } from "@/utils/path";
+
+import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 
 export default function CollectionList() {
-  const { t } = useTranslation();
   const { searchQuery } = useCreatorProfileUi();
-  const { displayName } = useCreatorChannelProfile();
-  const { data: collectionsResponse } = useGetAPI<CollectionsApiResponse>(
-    API.collection.getAll,
+  const { displayName, isPublicView, publicCreatorId } =
+    useCreatorChannelProfile();
+  const router = useRouter();
+
+  const { data: privateCollectionsResponse } =
+    useGetAPI<CollectionsApiResponse>(API.collection.getAll, undefined, {
+      enabled: !isPublicView,
+    });
+
+  const { tutorials: publicTutorials } = usePublicCreatorContent(
+    isPublicView ? publicCreatorId : null,
   );
 
-  const items = useMemo<RentedCollectionItem[]>(() => {
-    if (!collectionsResponse) return [];
+  const handleBuyClick = useCallback(() => {
+    if (authStorage.hasSession()) return;
+    const next = encodeURIComponent(
+      window.location.pathname + window.location.search,
+    );
+    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
+  }, [router]);
 
-    const rows = getCollectionRows(collectionsResponse);
+  const items = useMemo<RentedCollectionItem[]>(() => {
+    if (isPublicView) {
+      const groups: Record<
+        string,
+        { title: string; count: number; coverSrc: string }
+      > = {};
+
+      publicTutorials.forEach((tutorial) => {
+        const cat = tutorial.category || "Content";
+        if (!groups[cat]) {
+          groups[cat] = {
+            title: cat,
+            count: 0,
+            coverSrc: resolveImageUrl(tutorial.image),
+          };
+        }
+        groups[cat].count += 1;
+      });
+
+      return Object.entries(groups).map(([id, group]) => ({
+        id,
+        title: group.title,
+        author: displayName || "Creator",
+        elementCount: group.count,
+        coverSrc: group.coverSrc,
+        hideBadge: true,
+      }));
+    }
+
+    if (!privateCollectionsResponse) return [];
+    const rows = getCollectionRows(privateCollectionsResponse);
 
     return rows.map((row, index) => ({
       id: row.id,
@@ -40,14 +86,8 @@ export default function CollectionList() {
         tutorialVideos[index % tutorialVideos.length]?.image ?? "",
       ),
       hideBadge: true,
-      actions: [
-        {
-          label: t("createProfileAbout.buy"),
-          variant: "primary",
-        },
-      ],
     }));
-  }, [collectionsResponse, displayName, t]);
+  }, [isPublicView, publicTutorials, privateCollectionsResponse, displayName]);
 
   const filteredItems = useMemo(() => {
     if (!searchQuery.trim()) return items;
@@ -68,6 +108,7 @@ export default function CollectionList() {
           canGoNext={() => false}
           movePrev={() => {}}
           moveNext={() => {}}
+          onCollectionPrimaryAction={handleBuyClick}
         />
       </CollectionListInner>
     </CollectionListShell>

@@ -88,7 +88,12 @@ export default function LatestUpload({ data }: LatestUploadProps) {
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [primaryAction, secondaryAction] = data.actions;
-  const handleLogin = () => router.push(PATHS.AUTH_LOGIN);
+  const handleLogin = () => {
+    const next = encodeURIComponent(
+      window.location.pathname + window.location.search,
+    );
+    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
+  };
   const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
   const normalizedContentType = normalizeContentTypeValue(
     String((data as { contentType?: unknown }).contentType ?? ""),
