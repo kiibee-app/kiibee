@@ -21,6 +21,7 @@ export type FeedContentItem = {
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
   publishedAgo?: string | null;
+  createdAt?: string | null;
 };
 
 const CONTENT_TYPE_TO_FORMAT: Record<string, FormatType> = {
