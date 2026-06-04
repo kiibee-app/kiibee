@@ -1,21 +1,19 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useCallback, useRef, type KeyboardEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { useIsMobile } from "@/utils/useIsMobile";
 import { getCreatorCards } from "@/utils/creatorCardData";
-import {
-  getCardDimensions,
-  createCardTransition,
-  getCardAnimation,
-} from "@/utils/creatorAnimations";
 import { useCreatorCards } from "@/utils/useCreatorCards";
+import { useCreatorsGsap } from "./useCreatorsGsap";
 import {
   Section,
   Container,
   LeftColumn,
+  CopyBlock,
   Heading,
+  HeadingLine,
   CTAButton,
   RightColumn,
   AnimatedCard,
@@ -32,6 +30,8 @@ import { PATHS } from "@/utils/path";
 export default function CreatorsSection() {
   const { t } = useTranslation();
   const isMobile = useIsMobile();
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const cards = getCreatorCards(t);
   const {
     activeCardIndex,
@@ -39,50 +39,88 @@ export default function CreatorsSection() {
     handleMouseLeave,
     handleCardClick,
   } = useCreatorCards(isMobile);
-  const { activeWidth, inactiveWidth, activePadding, inactivePadding } =
-    getCardDimensions(isMobile);
-  const cardTransition = createCardTransition();
+
+  const { animateCardLift } = useCreatorsGsap({
+    sectionRef,
+    cardRefs,
+    activeCardIndex,
+    isMobile,
+  });
+
+  const handleCardMouseEnter = useCallback(
+    (index: number) => {
+      handleMouseEnter(index);
+      animateCardLift(index);
+    },
+    [animateCardLift, handleMouseEnter],
+  );
+
+  const handleCardsMouseLeave = useCallback(() => {
+    handleMouseLeave();
+    animateCardLift(null);
+  }, [animateCardLift, handleMouseLeave]);
+
+  const handleCardKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>, index: number) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+
+      event.preventDefault();
+      handleCardClick(index);
+    },
+    [handleCardClick],
+  );
 
   return (
-    <Section>
+    <Section ref={sectionRef}>
       <Container>
         <LeftColumn>
-          <Heading>
-            {t(CREATORS.heading.lineOne)}
-            <br />
-            {t(CREATORS.heading.lineTwo)}
-            <br />
-            {t(CREATORS.heading.lineThree)}
-          </Heading>
-          <CTAButton asAnchor href={PATHS.AUTH_SIGNUP}>
-            {t(CREATORS.cta)}
-          </CTAButton>
+          <CopyBlock>
+            <Heading>
+              <HeadingLine data-creator-hero-line>
+                {t(CREATORS.heading.lineOne)}
+              </HeadingLine>
+              <HeadingLine data-creator-hero-line>
+                {t(CREATORS.heading.lineTwo)}
+              </HeadingLine>
+              <HeadingLine data-creator-hero-line>
+                {t(CREATORS.heading.lineThree)}
+              </HeadingLine>
+            </Heading>
+            <CTAButton
+              asAnchor
+              href={PATHS.AUTH_SIGNUP}
+              data-creator-hero-animate
+              data-creator-hero-cta
+            >
+              {t(CREATORS.cta)}
+            </CTAButton>
+          </CopyBlock>
         </LeftColumn>
 
-        <RightColumn onMouseLeave={handleMouseLeave}>
+        <RightColumn onMouseLeave={handleCardsMouseLeave}>
           {cards.map((card, index) => {
             const isActive = activeCardIndex === index;
 
             return (
               <AnimatedCard
                 key={card.title}
-                as={motion.div}
+                ref={(node) => {
+                  cardRefs.current[index] = node;
+                }}
+                data-creator-card
                 $isActive={isActive}
                 $image={resolveImageUrl(card.image)}
                 $narrowBgPosition={card.narrowBgPosition}
                 $narrowBgSize={card.narrowBgSize}
                 aria-label={card.alt}
-                onMouseEnter={() => handleMouseEnter(index)}
+                aria-pressed={isActive}
+                role="button"
+                tabIndex={0}
+                onFocus={() => handleCardClick(index)}
+                onKeyDown={(event) => handleCardKeyDown(event, index)}
+                onMouseEnter={() => handleCardMouseEnter(index)}
                 onClick={() => handleCardClick(index)}
                 onTouchStart={() => handleCardClick(index)}
-                initial={false}
-                animate={getCardAnimation(isActive, {
-                  activeWidth,
-                  inactiveWidth,
-                  activePadding,
-                  inactivePadding,
-                })}
-                transition={cardTransition}
               >
                 <MainGradientOverlay $visible={isActive} />
                 <NarrowGradientOverlay $visible={!isActive} />
