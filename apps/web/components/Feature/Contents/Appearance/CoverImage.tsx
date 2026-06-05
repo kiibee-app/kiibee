@@ -149,6 +149,10 @@ export default function CoverImageSection({
                         item.label ?? (item.labelKey ? t(item.labelKey) : "")
                       }
                       $type={item.type}
+                      $aspectRatio={item.previewAspectRatio}
+                      $previewMaxWidth={item.previewMaxWidth}
+                      $previewHeight={item.previewHeight}
+                      $previewMinHeight={item.previewMinHeight}
                     />
                   )}
                 </PreviewWrapper>

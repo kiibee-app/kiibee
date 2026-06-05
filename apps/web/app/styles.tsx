@@ -42,5 +42,13 @@ export const Section = styled.section`
 export const ExploreSection = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
-  overflow-x: hidden;
+  overflow: visible;
+`;
+
+export const ExploreContentWrapper = styled.div`
+  @media (min-width: 768px) {
+    aside {
+      align-self: flex-start;
+    }
+  }
 `;

@@ -4,14 +4,27 @@ import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100svh;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.primary.GRAY};
-  padding: 2.5rem 0;
+  padding: 7.25rem 0 3.5rem;
   box-sizing: border-box;
+  overflow: hidden;
+
+  [data-creator-hero-line],
+  [data-creator-hero-animate],
+  [data-creator-card] {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  ${media.tablet} {
+    padding: 6.25rem 0 2.5rem;
+  }
 `;
 
 export const Container = styled.div`
@@ -22,15 +35,16 @@ export const Container = styled.div`
   max-width: 1440px;
   padding: 0 1.5rem;
   box-sizing: border-box;
-  gap: 3.75rem;
+  gap: 3.25rem;
 
   ${media.desktop} {
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
   }
 
   ${media.tablet} {
-    gap: 1.25rem;
+    gap: 1.75rem;
     padding: 0 1rem;
   }
 `;
@@ -39,27 +53,66 @@ export const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2.5rem;
-  flex: 1;
+  gap: 1.875rem;
+  flex: 0 1 31.5rem;
+  min-width: 20rem;
+
+  ${media.desktop} {
+    width: 100%;
+    flex: none;
+  }
 
   ${media.tablet} {
     width: 100%;
-    gap: 1.25rem;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+`;
+
+export const CopyBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.125rem;
+  width: 100%;
+
+  ${media.tablet} {
+    gap: 1.5rem;
   }
 `;
 
 export const Heading = styled.h2`
-  ${({ theme }) => theme.typography.Heading1};
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
   font-family: "Reddit Sans", sans-serif;
   font-style: normal;
   font-weight: 600;
-  line-height: 75px;
+  font-size: 5.25rem;
+  line-height: 0.98;
+  letter-spacing: 0;
+
+  ${media.desktopMd} {
+    font-size: 4.75rem;
+  }
+
+  ${media.desktop} {
+    font-size: 4.25rem;
+  }
 
   ${media.tablet} {
-    line-height: 56px;
+    font-size: 3.75rem;
+    line-height: 1.02;
   }
+
+  ${media.mobileLg} {
+    font-size: 3.375rem;
+  }
+`;
+
+export const HeadingLine = styled.span`
+  display: block;
 `;
 
 export const CTAButton = styled(GenericButton).attrs({
@@ -67,15 +120,24 @@ export const CTAButton = styled(GenericButton).attrs({
   size: SIZE.LG,
 })`
   align-self: flex-start;
-  box-shadow: none;
-  transition: opacity 0.2s ease;
+  min-width: 9.75rem;
+  box-shadow: 0 1rem 2.25rem rgba(0, 0, 0, 0.16);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: none;
+  }
 `;
 
 export const RightColumn = styled.div`
   display: flex;
   gap: 1.25rem;
-  flex: 1.2;
+  flex: 1 1 49rem;
   justify-content: flex-end;
+  min-width: 0;
 
   ${media.desktop} {
     width: 100%;
@@ -115,9 +177,9 @@ export const Card = styled.div<CardProps>`
   align-items: ${({ $isActive }) => ($isActive ? "flex-start" : "center")};
   gap: 10px;
   position: relative;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
-  will-change: transform, width, height, padding;
+  will-change: opacity, transform, filter, width, height, padding;
   box-shadow: 0 0.5rem 1.5rem
     ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
   background: ${({
@@ -145,6 +207,12 @@ export const Card = styled.div<CardProps>`
 export const AnimatedCard = styled(Card)`
   flex-shrink: 0;
   cursor: pointer;
+  touch-action: manipulation;
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 4px;
+  }
 `;
 
 export const MainGradientOverlay = styled.div<{ $visible?: boolean }>`
@@ -195,7 +263,7 @@ export const MainCardTitle = styled.h3`
   ${({ theme }) => theme.typography.H4_Medium};
   margin: 0 0 0.5rem;
   font-weight: 600;
-  letter-spacing: -0.0313rem;
+  letter-spacing: 0;
 `;
 
 export const MainCardSubtitle = styled.p`
@@ -215,7 +283,7 @@ export const NarrowCardText = styled.p<{ $visible?: boolean }>`
   color: ${({ theme }) => theme.colors.primary.WHITE};
   font-weight: 600;
   white-space: nowrap;
-  letter-spacing: -0.0313rem;
+  letter-spacing: 0;
   z-index: 2;
   margin: 0;
   opacity: ${({ $visible = true }) => ($visible ? 1 : 0)};

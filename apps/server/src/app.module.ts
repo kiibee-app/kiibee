@@ -13,6 +13,7 @@ import { CreatorModule } from './modules/creator/creator.module';
 import { FeedModule } from './modules/feed/feed.module';
 import { OrderModule } from './modules/order/order.module';
 import { PaymentModule } from './modules/payment/payment.module';
+import { ViewerModule } from './modules/viewer/viewer.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { PaymentModule } from './modules/payment/payment.module';
     FeedModule,
     OrderModule,
     PaymentModule,
+    ViewerModule,
   ],
 })
 export class AppModule {}

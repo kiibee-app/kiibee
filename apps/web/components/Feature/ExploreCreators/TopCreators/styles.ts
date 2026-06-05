@@ -35,8 +35,14 @@ export const List = styled.div`
   gap: 73px;
   align-self: stretch;
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   padding-right: 2rem;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   ${media.tablet} {
     gap: 60px;
@@ -55,6 +61,18 @@ export const Card = styled.div`
   align-items: center;
   min-width: 150px;
   gap: 7px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
   ${media.tablet} {
     min-width: 100px;
   }

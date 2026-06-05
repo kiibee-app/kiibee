@@ -25,6 +25,7 @@ export type FeedContentItem = {
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
   publishedAgo?: string | null;
+  createdAt?: string | null;
 };
 
 const CONTENT_TYPE_TO_FORMAT: Record<string, FormatType> = {
@@ -98,6 +99,7 @@ export function feedContentToTutorial(
     title: item.title,
     category: item.categoryName ?? "",
     creator: item.creatorName ?? "",
+    creatorId: item.creatorId,
     published: item.publishedAgo ?? "",
     focus: item.description ?? "",
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",

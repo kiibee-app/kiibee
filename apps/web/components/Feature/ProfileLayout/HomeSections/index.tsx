@@ -16,6 +16,8 @@ import { FORMAT_TYPE } from "@/utils/types";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+
 type ProfileHomeSectionsProps = {
   variant: ProfileLayoutVariant;
 };
@@ -24,13 +26,16 @@ export default function ProfileHomeSections({
   variant,
 }: ProfileHomeSectionsProps) {
   const { searchQuery, isCollectionsPage } = useCreatorProfileUi();
+  const { isPublicView, publicCreatorId } = useCreatorChannelProfile();
   const {
     latestUpload: latestConfig,
     wrapLatestUpload,
     sections,
   } = profileHomeConfigByVariant[variant];
 
-  const { data: latest } = useLatestUpload();
+  const { data: latest } = useLatestUpload(
+    isPublicView ? publicCreatorId : null,
+  );
 
   const normalizedLatestContentType = latest
     ? normalizeContentTypeValue(

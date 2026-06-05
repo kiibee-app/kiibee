@@ -1138,6 +1138,17 @@
         "edit": "Rediger betalingsmetode",
         "delete": "Slet betalingsmetode",
         "more": "Flere handlinger",
+        "deleteModal": {
+          "title": "Slet betaling?",
+          "message": "Er du sikker på, at du vil slette den gemte betaling?",
+          "cancel": "Gå tilbage",
+          "confirm": "Slet"
+        },
+        "deleteSuccessModal": {
+          "title": "Slettet",
+          "message": "Kortet er blevet slettet.",
+          "confirm": "Færdig"
+        },
         "addCardModal": {
           "title": "Tilføj nyt kort",
           "cardNumber": "Kortnummer",
@@ -1587,7 +1598,8 @@
         "mediaCardLabel": "Upload miniature til mediekortet",
         "mediaCardSize": "Brug størrelse 250x190 pixel billede",
         "portraitLabel": "Upload miniature til portrætformat",
-        "portraitSize": "Brug størrelse 634x345 pixel billede"
+        "portraitSize": "Brug størrelse 634x345 pixel billede",
+        "portraitPdfSize": "Brug størrelse 376x530 pixel billede"
       }
     },
     "couponSearch": {
