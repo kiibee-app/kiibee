@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -86,9 +86,11 @@ export function useCategoryContent(categoryName: string) {
     initialSelectedOptions,
   });
 
-  const { data: contentData, isLoading } = useQuery<
-    ApiResponse<FeedContentItem[]>
-  >({
+  const {
+    data: contentData,
+    isLoading,
+    isFetching,
+  } = useQuery<ApiResponse<FeedContentItem[]>>({
     queryKey: [
       "categoryContent",
       categoryName,
@@ -129,6 +131,7 @@ export function useCategoryContent(categoryName: string) {
       );
       return response.data;
     },
+    placeholderData: keepPreviousData,
     enabled: !!categoryName,
   });
 
@@ -157,6 +160,7 @@ export function useCategoryContent(categoryName: string) {
     categoryDisplayName,
     tutorials,
     isLoading,
+    isFetching,
     searchValue,
     setSearchValue,
     sortOption,

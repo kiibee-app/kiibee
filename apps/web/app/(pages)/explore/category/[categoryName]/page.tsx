@@ -73,6 +73,7 @@ export default function CategoryExplorePage() {
     categoryDisplayName,
     tutorials,
     isLoading,
+    isFetching,
     searchValue,
     setSearchValue,
     sortOption,
@@ -290,7 +291,7 @@ export default function CategoryExplorePage() {
 
         <div ref={trendingRef}>
           <MainContent>
-            <CardsGrid>
+            <CardsGrid $isFetching={isFetching}>
               {isLoading ? (
                 <ResultsState>
                   <span>{t("nav.explore.loading")}</span>

@@ -42,10 +42,12 @@ export const FiltersColumn = styled.aside`
   }
 `;
 
-export const CardsGrid = styled.div`
+export const CardsGrid = styled.div<{ $isFetching?: boolean }>`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.5rem;
+  opacity: ${({ $isFetching }) => ($isFetching ? 0.6 : 1)};
+  transition: opacity 0.2s ease-in-out;
 
   @media (min-width: 1400px) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
