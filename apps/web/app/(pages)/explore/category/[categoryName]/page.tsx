@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useMemo, useRef, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import React, { useMemo, useRef, useEffect, Suspense } from "react";
+import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import NavBar from "@/components/Layout/Navbar";
@@ -15,8 +15,6 @@ import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { useCategoryContent } from "@/hooks/feed/useCategoryContent";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { authStorage } from "@/lib/auth/authStorage";
-import { pathPublishedContent, PATHS } from "@/utils/path";
 import { Directions } from "@/utils/ui";
 import PriceFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/PriceFiltersSection";
 import RatingFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/RatingFiltersSection";
@@ -54,17 +52,8 @@ import {
   LocalPageContainer,
 } from "./styles";
 
-export default function CategoryExplorePage() {
-  const router = useRouter();
+function CategoryExplorePageContent() {
   const { t } = useTranslation();
-
-  const handlePlayClick = (tutorialId: string) => {
-    if (authStorage.hasSession()) {
-      router.push(pathPublishedContent(tutorialId));
-    } else {
-      router.push(PATHS.AUTH_LOGIN);
-    }
-  };
 
   const sortOptions = useMemo(
     () => [
@@ -310,11 +299,7 @@ export default function CategoryExplorePage() {
                 </ResultsState>
               ) : tutorials.length > 0 ? (
                 tutorials.map((tutorial) => (
-                  <TutorialCard
-                    key={tutorial.id}
-                    tutorial={tutorial}
-                    onPlayClick={handlePlayClick}
-                  />
+                  <TutorialCard key={tutorial.id} tutorial={tutorial} />
                 ))
               ) : (
                 <ResultsState>
@@ -339,5 +324,13 @@ export default function CategoryExplorePage() {
       </Main>
       <Footer />
     </LocalPageContainer>
+  );
+}
+
+export default function CategoryExplorePage() {
+  return (
+    <Suspense fallback={null}>
+      <CategoryExplorePageContent />
+    </Suspense>
   );
 }

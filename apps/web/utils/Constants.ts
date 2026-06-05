@@ -133,6 +133,8 @@ export const ADMISSION_REQUIREMENT_PAYMENT = "Payment";
 export const ADMISSION_REQUIREMENT_FREE = "Free";
 export const ACCESS_TYPE_PAID = "paid";
 export const ACCESS_TYPE_FREE = "free";
+export const ACCESS_KEYWORD_EN = "access";
+export const ACCESS_KEYWORD_DA = "adgang";
 export const ACCESS_TYPE_PASSWORD = "password";
 export const ACCESS_TYPE_EMAIL_GATED = "email_gated";
 

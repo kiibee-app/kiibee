@@ -27,10 +27,13 @@ import SingleTutorial from "@/components/Feature/SingleTutorial";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
 import { useRelatedCollectionContent } from "@/hooks/useRelatedCollectionContent";
 import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
   const params = useParams();
+  const user = useStoredLoginUser();
+  const userId = user?.id || "null";
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
   const normalizedContentKey = contentKey?.replaceAll(":", "-");
@@ -44,7 +47,7 @@ function PublishedContentDetail() {
   );
   const { data, isLoading, isError } = useGetAPI<ContentDetailResponse>(
     normalizedContentKey
-      ? API.content.get(normalizedContentKey)
+      ? `/content/${normalizedContentKey}/${userId}`
       : API.content.create,
     undefined,
     {

@@ -1,6 +1,9 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
+import { PATHS } from "@/utils/path";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { TutorialVideo } from "@/utils/types";
 import logo from "@/assets/images/logo.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
@@ -20,6 +23,16 @@ export default function SingleTutorial({
   collectionId,
 }: Props) {
   const { t } = useTranslation();
+  const router = useRouter();
+  const user = useStoredLoginUser();
+
+  const handleSeeContent = () => {
+    const isPaid = tutorial.level !== "Free";
+    const isLoggedIn = Boolean(user && user.id);
+    if (isPaid && !isLoggedIn) {
+      router.push(PATHS.AUTH_LOGIN);
+    }
+  };
 
   return (
     <SingleContentPage
@@ -43,6 +56,7 @@ export default function SingleTutorial({
       }}
       primaryAction={{
         label: t("singleTutorial.seeContent"),
+        onClick: handleSeeContent,
       }}
       metaItems={[
         {

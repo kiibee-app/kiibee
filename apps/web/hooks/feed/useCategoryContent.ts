@@ -133,6 +133,7 @@ export function useCategoryContent(categoryName: string) {
     },
     placeholderData: keepPreviousData,
     enabled: !!categoryName,
+    staleTime: 0,
   });
 
   const tutorials = useMemo((): TutorialVideo[] => {
