@@ -22,6 +22,20 @@ export const Card = styled.div<{
   }};
   width: ${({ $width }) => $width || "100%"};
   box-shadow: 0 0 10.483px 0 ${({ theme }) => theme.colors.neutral.GRAY_300};
+  transition:
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px -10px
+      ${({ theme }) => theme.colors.neutral.GRAY_400};
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
 `;
 
 export const ImageWrapper = styled.div<{
@@ -43,6 +57,10 @@ export const ImageWrapper = styled.div<{
   align-items: center;
   align-self: stretch;
   border-radius: 12px 12px 0 0;
+
+  img {
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  }
 
   ${media.tablet} {
     min-height: ${({ $coverImage }) => ($coverImage ? "180px" : undefined)};
