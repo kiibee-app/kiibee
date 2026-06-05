@@ -135,10 +135,7 @@ function TutorialCard({
                 size={button.size}
                 minWidth={button.minWidth}
                 onClick={() =>
-                  navigateToContent(
-                    resolveButtonHref(button.href),
-                    button.requiresAuth,
-                  )
+                  navigateToContent(resolveButtonHref(button.href), false)
                 }
               >
                 {button.label}
@@ -171,7 +168,7 @@ function TutorialCard({
     </GenericCard>
   );
 
-  if (isFreeContent && !onPlayClick) {
+  if (!onPlayClick) {
     return (
       <CardLink
         href={singleTutorialHref}

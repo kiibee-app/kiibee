@@ -43,11 +43,11 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   const isFreeContent = item.isFree ?? false;
 
   const handleOpen = () => {
-    navigateToContent(targetHref, !isFreeContent);
+    navigateToContent(targetHref, false);
   };
 
   const handleActionClick = (href: string, requiresAuth?: boolean) => {
-    navigateToContent(href, requiresAuth ?? !isFreeContent);
+    navigateToContent(href, false);
   };
 
   const stopCardNavigation = (event: MouseEvent) => {
@@ -55,11 +55,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   };
 
   return (
-    <Card
-      aria-label={t(item.titleKey)}
-      onClick={isFreeContent ? handleOpen : undefined}
-      $clickable={isFreeContent}
-    >
+    <Card aria-label={t(item.titleKey)} onClick={handleOpen} $clickable>
       <ImageContainer>
         <CategoryBadge>
           <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
