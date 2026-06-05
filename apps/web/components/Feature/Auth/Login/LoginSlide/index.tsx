@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "@/components/UI/SafeImage";
 import {
   Dot,
@@ -14,8 +15,19 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useSlideData } from "@/utils/useSlideData";
 
 export default function LoginSlide() {
-  const { slidesText, activeSlide, fallbackSlideLabel, stack, t } =
-    useSlideData();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const { activeSlide, fallbackSlideLabel, stack, t, slideCount } =
+    useSlideData(activeIndex);
+
+  useEffect(() => {
+    if (slideCount <= 1) return;
+
+    const intervalId = window.setInterval(() => {
+      setActiveIndex((currentIndex) => (currentIndex + 1) % slideCount);
+    }, 2000);
+
+    return () => window.clearInterval(intervalId);
+  }, [slideCount]);
 
   return (
     <SlideLayout>
@@ -51,8 +63,8 @@ export default function LoginSlide() {
         </SlideTitle>
       </SlideContent>
       <SlideDots>
-        {slidesText.map((slide, index) => (
-          <Dot key={slide.title + index} $active={index === 0} />
+        {Array.from({ length: slideCount }).map((_, index) => (
+          <Dot key={index} $active={index === activeIndex} />
         ))}
       </SlideDots>
     </SlideLayout>
