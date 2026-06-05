@@ -893,7 +893,10 @@
     "failedAalt": "Failed to load image: {{alt}}"
   },
   "table": {
-    "noData": "No Data Found"
+    "noData": "No Data Found",
+    "showing": "Showing",
+    "outOf": "out of",
+    "paginationPage": "Go to page {{page}}"
   },
   "creatorProfile": {
     "title": "My account",
