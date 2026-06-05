@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
-import { contentAccess } from 'src/database/schema/content/contentAccess.schema';
+import { userContentAccess } from 'src/database/schema/access/userContentAccess.schema';
 import { and, eq, or, isNull, gt } from 'drizzle-orm';
 
 @Injectable()
@@ -65,13 +65,20 @@ export class CheckMediaAccessGuard implements CanActivate {
     }
 
     const now = new Date();
-    const hasAccess = await db.query.contentAccess.findFirst({
-      where: and(
-        eq(contentAccess.userId, userId),
-        eq(contentAccess.mediaFileId, mediaFile.id),
-        or(isNull(contentAccess.expiresAt), gt(contentAccess.expiresAt, now)),
-      ),
-    });
+    const hasAccess = await db
+      .select()
+      .from(userContentAccess)
+      .where(
+        and(
+          eq(userContentAccess.userId, userId),
+          eq(userContentAccess.mediaFileId, mediaFile.id),
+          or(
+            isNull(userContentAccess.rentExpiresAt),
+            gt(userContentAccess.rentExpiresAt, now),
+          ),
+        ),
+      )
+      .limit(1);
 
     if (!hasAccess) {
       throw new ForbiddenException(
