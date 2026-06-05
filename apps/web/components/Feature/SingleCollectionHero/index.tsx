@@ -15,14 +15,14 @@ import { BackButtonIcon } from "@/assets/icons";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import collection from "@/assets/images/singleCollection.webp";
 import { MonoText } from "@/components/UI/Monotext";
+import GenericButton from "@/components/UI/GenericButton";
 import { useRouter } from "next/navigation";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
+import { VARIANT } from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
 import useShare from "@/hooks/useShare";
-import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT } from "@/utils/variants";
 
 type Props = {
   title: string;
