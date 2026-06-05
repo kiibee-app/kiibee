@@ -250,6 +250,18 @@ export default function NavBar({
     }, 120);
   }, [clearCloseTimer, closeMenu]);
 
+  const handleNavItemMouseEnter = useCallback(
+    (item: NavBarItem) => {
+      if (item.children) {
+        openMenu(item.key);
+        return;
+      }
+
+      closeMenu();
+    },
+    [closeMenu, openMenu],
+  );
+
   const handleGlobalClick = useCallback(
     (e: PointerEvent) => {
       const target = e.target as Node | null;
@@ -362,13 +374,7 @@ export default function NavBar({
               {items.map((item) => (
                 <NavItemWrapper
                   key={item.key}
-                  onMouseEnter={() => {
-                    if (item.children) {
-                      openMenu(item.key);
-                      return;
-                    }
-                    closeMenu();
-                  }}
+                  onMouseEnter={() => handleNavItemMouseEnter(item)}
                 >
                   {item.onClick ? (
                     <button
