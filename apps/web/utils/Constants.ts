@@ -285,3 +285,11 @@ export const BUY_PREFIX = "Buy";
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 
 export const CATEGORY_ALL = "all";
+export const SHARE_STATUS = {
+  IDLE: "idle",
+  COPIED: "copied",
+  SHARED: "shared",
+  FAILED: "failed",
+} as const;
+
+export type ShareStatus = (typeof SHARE_STATUS)[keyof typeof SHARE_STATUS];
