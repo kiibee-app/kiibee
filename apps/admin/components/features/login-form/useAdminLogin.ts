@@ -4,7 +4,12 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useLogin } from "../../../hooks/api/use-login";
-import { decodeToken, hasAdminRole, setTokens } from "../../../utils/token";
+import {
+  decodeToken,
+  hasAdminRole,
+  setAuthPayload,
+  setTokens,
+} from "../../../utils/token";
 
 export function useAdminLogin() {
   const router = useRouter();
@@ -31,6 +36,14 @@ export function useAdminLogin() {
             (data.email.includes("@") ? data.email.split("@")[0] : "Admin");
 
           setTokens(data.accessToken, data.refreshToken);
+          setAuthPayload({
+            id: data.id,
+            fullName: data.fullName,
+            email: data.email,
+            role: data.role,
+            status: data.status,
+            isEmailVerified: data.isEmailVerified,
+          });
           toast.success(`Welcome, ${safeFullName}!`);
           router.push("/");
         },
