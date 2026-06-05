@@ -891,7 +891,10 @@
     "failedAalt": "Kunne ikke indlæse billede: {{alt}}"
   },
   "table": {
-    "noData": "Ingen data fundet"
+    "noData": "Ingen data fundet",
+    "showing": "Viser",
+    "outOf": "ud af",
+    "paginationPage": "Ga til side {{page}}"
   },
   "creatorProfile": {
     "title": "Min konto",

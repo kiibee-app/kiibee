@@ -12,6 +12,7 @@ export const COUPON_DISCOUNT_FIXED_AMOUNT = "fixed_amount";
 export const COUPON_DISCOUNT_PERCENTAGE = "percentage";
 export const COUPON_CODES_LIMIT = 100;
 export const QUERY_REFETCH_TYPE_ACTIVE = "active";
+export const PAGE_SIZE_OPTIONS = [10, 20, 50];
 
 type ContentTabItem = {
   key: ContentTab;
