@@ -19,6 +19,7 @@ import {
   TrailerButton,
   TrailerText,
 } from "./styles";
+import EpubViewer from "@/utils/EpubViewer";
 
 type SingleContentHeroViewProps = SingleContentHeroSectionProps & {
   isPdfLayout?: boolean;
@@ -65,6 +66,8 @@ function getMediaContent(
     case FORMAT_TYPE.PDF:
     case FORMAT_TYPE.WEB:
       return <PreviewDocument src={src} title={title} />;
+    case FORMAT_TYPE.EPUB:
+      return <EpubViewer src={src} />;
     default:
       return null;
   }
