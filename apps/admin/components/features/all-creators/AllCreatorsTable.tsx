@@ -34,6 +34,7 @@ export function AllCreatorsTable() {
     data: creators,
     totalItems,
     initialPageSize: 10,
+    storageKey: "kiibee.admin.allCreators.pageSize",
   });
 
   if (creatorRequestsQuery.isLoading) {
