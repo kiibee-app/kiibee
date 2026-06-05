@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   VIEWER_BILLING_HISTORY_TAB,
@@ -30,8 +31,11 @@ import {
   MOCK_VIEWER_BILLING_HISTORY,
   MOCK_VIEWER_PAYMENT_METHODS,
   type ViewerBillingHistoryItem,
+  type ViewerPaymentMethod,
 } from "@/utils/dummyData/viewerBillingMockData";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
+import { GenericModal } from "@/components/UI/Modals";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import {
   Actions,
   AddCardButton,
@@ -54,15 +58,36 @@ import {
   RowNumber,
   SearchFilterWrap,
 } from "./styles";
-import { useState } from "react";
 import AddCardModal from "./AddCardModal";
 
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
   const [showAddCardModal, setShowAddCardModal] = useState(false);
+  const [paymentMethods, setPaymentMethods] = useState(
+    MOCK_VIEWER_PAYMENT_METHODS,
+  );
+  const [selectedPaymentMethod, setSelectedPaymentMethod] =
+    useState<ViewerPaymentMethod | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
 
   const handleCloseModal = () => {
     setShowAddCardModal(false);
+  };
+
+  const handleDeleteClick = (method: ViewerPaymentMethod) => {
+    setSelectedPaymentMethod(method);
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (!selectedPaymentMethod) return;
+
+    setPaymentMethods((prev) =>
+      prev.filter((method) => method.id !== selectedPaymentMethod.id),
+    );
+    setShowDeleteModal(false);
+    setShowDeleteSuccessModal(true);
   };
 
   const { activeTab, setActiveTabAndQuery } =
@@ -210,7 +235,7 @@ export default function ClientViewerBillings() {
           </PaymentHeader>
 
           <MethodsList>
-            {MOCK_VIEWER_PAYMENT_METHODS.map((method) => (
+            {paymentMethods.map((method) => (
               <MethodRow key={method.id}>
                 <CardIdentity>
                   <CardLogoWrap>
@@ -255,6 +280,7 @@ export default function ClientViewerBillings() {
                     aria-label={t(
                       DASHBOARD_VIEWER_BILLINGS.paymentMethods.delete,
                     )}
+                    onClick={() => handleDeleteClick(method)}
                   >
                     <DeleteIcon color={COLORS.gradient.NEAR_BLACK} />
                   </IconButton>
@@ -273,6 +299,55 @@ export default function ClientViewerBillings() {
         </>
       )}
       <AddCardModal visible={showAddCardModal} onClose={handleCloseModal} />
+      <GenericModal
+        visible={showDeleteModal}
+        onClose={() => {
+          setShowDeleteModal(false);
+          setSelectedPaymentMethod(null);
+        }}
+        title={t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.deleteModal.title)}
+        message={t(
+          DASHBOARD_VIEWER_BILLINGS.paymentMethods.deleteModal.message,
+        )}
+        cancelLabel={t(
+          DASHBOARD_VIEWER_BILLINGS.paymentMethods.deleteModal.cancel,
+        )}
+        confirmLabel={t(
+          DASHBOARD_VIEWER_BILLINGS.paymentMethods.deleteModal.confirm,
+        )}
+        onCancel={() => {
+          setShowDeleteModal(false);
+          setSelectedPaymentMethod(null);
+        }}
+        onConfirm={handleDeleteConfirm}
+        size="sm"
+        spacing="md"
+        fullWidthButtons
+        buttonRow
+        showCloseButton={false}
+      />
+      <GenericModal
+        visible={showDeleteSuccessModal}
+        icon={<SuccessModalIcon />}
+        title={t(
+          DASHBOARD_VIEWER_BILLINGS.paymentMethods.deleteSuccessModal.title,
+        )}
+        message={t(
+          DASHBOARD_VIEWER_BILLINGS.paymentMethods.deleteSuccessModal.message,
+        )}
+        confirmLabel={t(
+          DASHBOARD_VIEWER_BILLINGS.paymentMethods.deleteSuccessModal.confirm,
+        )}
+        onClose={() => {
+          setShowDeleteSuccessModal(false);
+          setSelectedPaymentMethod(null);
+        }}
+        onConfirm={() => {
+          setShowDeleteSuccessModal(false);
+          setSelectedPaymentMethod(null);
+        }}
+        showCloseButton={false}
+      />
     </BillingShell>
   );
 }

@@ -1140,6 +1140,17 @@
         "edit": "Edit payment method",
         "delete": "Delete payment method",
         "more": "More actions",
+        "deleteModal": {
+          "title": "Delete payment?",
+          "message": "Are you sure you want to delete the saved payment?",
+          "cancel": "Go back",
+          "confirm": "Delete"
+        },
+        "deleteSuccessModal": {
+          "title": "Delete successfully",
+          "message": "Card have been successfully deleted.",
+          "confirm": "Done"
+        },
         "addCardModal": {
           "title": "Add new card",
           "cardNumber": "Card number",
