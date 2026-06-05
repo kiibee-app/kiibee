@@ -1,5 +1,6 @@
 import { setupCreatorAccountService } from 'src/modules/auth/services/creatorAccountSetup.service';
 import { ACCOUNT_STATUS } from 'src/utils/constant';
+import { HttpException, HttpStatus } from '@nestjs/common';
 
 jest.mock('src/database/db', () => ({
   db: {
@@ -164,6 +165,52 @@ describe('setupCreatorAccountService', () => {
     );
   });
 
+  it('should return bad request when uuid plan id does not exist', async () => {
+    const mockTransaction = jest.fn().mockImplementation(async (callback) => {
+      const tx = {
+        select: jest
+          .fn()
+          .mockReturnValueOnce({
+            from: jest.fn().mockReturnValue({
+              where: jest.fn().mockReturnValue({
+                limit: jest.fn().mockResolvedValue([mockTokenData]),
+              }),
+            }),
+          })
+          .mockReturnValueOnce({
+            from: jest.fn().mockReturnValue({
+              where: jest.fn().mockReturnValue({
+                limit: jest.fn().mockResolvedValue([mockUser]),
+              }),
+            }),
+          })
+          .mockReturnValueOnce({
+            from: jest.fn().mockReturnValue({
+              where: jest.fn().mockReturnValue({
+                limit: jest.fn().mockResolvedValue([]),
+              }),
+            }),
+          }),
+        update: jest.fn(),
+        insert: jest.fn(),
+      };
+      return callback(tx);
+    });
+
+    mockDb.transaction = mockTransaction;
+
+    try {
+      await setupCreatorAccountService(mockPayload);
+      throw new Error('Expected setupCreatorAccountService to reject');
+    } catch (error) {
+      expect(error).toBeInstanceOf(HttpException);
+      expect((error as HttpException).message).toBe(
+        'Invalid subscription plan',
+      );
+      expect((error as HttpException).getStatus()).toBe(HttpStatus.BAD_REQUEST);
+    }
+  });
+
   it('should successfully setup creator account', async () => {
     const mockTransaction = jest.fn().mockImplementation(async (callback) => {
       const tx = {
@@ -180,6 +227,13 @@ describe('setupCreatorAccountService', () => {
             from: jest.fn().mockReturnValue({
               where: jest.fn().mockReturnValue({
                 limit: jest.fn().mockResolvedValue([mockUser]),
+              }),
+            }),
+          })
+          .mockReturnValueOnce({
+            from: jest.fn().mockReturnValue({
+              where: jest.fn().mockReturnValue({
+                limit: jest.fn().mockResolvedValue([{ id: TEST_PLAN_UUID }]),
               }),
             }),
           }),
@@ -233,6 +287,13 @@ describe('setupCreatorAccountService', () => {
                 limit: jest.fn().mockResolvedValue([mockUser]),
               }),
             }),
+          })
+          .mockReturnValueOnce({
+            from: jest.fn().mockReturnValue({
+              where: jest.fn().mockReturnValue({
+                limit: jest.fn().mockResolvedValue([{ id: TEST_PLAN_UUID }]),
+              }),
+            }),
           }),
         update: jest.fn().mockReturnValue({
           set: jest.fn().mockReturnValue({
@@ -279,6 +340,13 @@ describe('setupCreatorAccountService', () => {
                 limit: jest.fn().mockResolvedValue([mockUser]),
               }),
             }),
+          })
+          .mockReturnValueOnce({
+            from: jest.fn().mockReturnValue({
+              where: jest.fn().mockReturnValue({
+                limit: jest.fn().mockResolvedValue([{ id: TEST_PLAN_UUID }]),
+              }),
+            }),
           }),
         update: jest.fn().mockReturnValue({
           set: jest.fn().mockReturnValue({
@@ -323,6 +391,13 @@ describe('setupCreatorAccountService', () => {
             from: jest.fn().mockReturnValue({
               where: jest.fn().mockReturnValue({
                 limit: jest.fn().mockResolvedValue([mockUser]),
+              }),
+            }),
+          })
+          .mockReturnValueOnce({
+            from: jest.fn().mockReturnValue({
+              where: jest.fn().mockReturnValue({
+                limit: jest.fn().mockResolvedValue([{ id: TEST_PLAN_UUID }]),
               }),
             }),
           }),
