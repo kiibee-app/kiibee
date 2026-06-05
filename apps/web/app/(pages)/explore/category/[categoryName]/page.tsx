@@ -27,6 +27,7 @@ import {
   FILTER_SECTION_RATING,
   ESCAPE,
   KEYDOWN,
+  STRING,
 } from "@/utils/Constants";
 import PriceFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/PriceFiltersSection";
 import RatingFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/RatingFiltersSection";
@@ -85,8 +86,9 @@ function CategoryExplorePageContent() {
   const theme = useTheme();
   const params = useParams();
 
+  const rawCategory = params?.categoryName;
   const categoryName =
-    typeof params?.categoryName === "string" ? params.categoryName : "";
+    typeof rawCategory === STRING ? (rawCategory as string) : "";
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
   const {
     categoryDisplayName,
