@@ -30,18 +30,15 @@ import SingleTutorial from "@/components/Feature/SingleTutorial";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
 import { useRelatedCollectionContent } from "@/hooks/useRelatedCollectionContent";
 import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
   const params = useParams();
   const user = useStoredLoginUser();
-  const userId = user?.id || "null";
-  const loginUser = useStoredLoginUser();
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
   const normalizedContentKey = contentKey?.replaceAll(":", "-");
-  const viewerId = resolveContentViewerId(loginUser?.id);
+  const viewerId = resolveContentViewerId(user?.id);
   const contentViewRoute = normalizedContentKey
     ? API.content.view(normalizedContentKey, viewerId)
     : API.content.create;
@@ -54,9 +51,6 @@ function PublishedContentDetail() {
     (video) => video.id !== normalizedContentKey,
   );
   const { data, isLoading, isError } = useGetAPI<ContentDetailResponse>(
-    normalizedContentKey
-      ? `/content/${normalizedContentKey}/${userId}`
-      : API.content.create,
     contentViewRoute,
     undefined,
     {
