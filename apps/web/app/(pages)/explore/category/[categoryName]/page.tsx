@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
-import { PageContainer, Main } from "@/app/styles";
+import { Main } from "@/app/styles";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
@@ -49,6 +49,7 @@ import {
   LoadMoreContainer,
   LoadMoreButton,
   SortDropdownWrapper,
+  LocalPageContainer,
 } from "./styles";
 
 export default function CategoryExplorePage() {
@@ -163,7 +164,7 @@ export default function CategoryExplorePage() {
   }, [allCreatorLabels, showAllCreators, DEFAULT_VISIBLE_CREATORS]);
 
   return (
-    <PageContainer>
+    <LocalPageContainer $navTextTone={navTextTone}>
       <NavBar navTextTone={navTextTone} />
       <Main>
         <div ref={heroRef}>
@@ -322,6 +323,6 @@ export default function CategoryExplorePage() {
         </div>
       </Main>
       <Footer />
-    </PageContainer>
+    </LocalPageContainer>
   );
 }

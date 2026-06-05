@@ -3,6 +3,20 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import GenericButton from "@/components/UI/GenericButton";
+import { PageContainer } from "@/app/styles";
+import { ColumnTitle } from "@/components/Layout/Navbar/styles";
+
+export const LocalPageContainer = styled(PageContainer)<{
+  $navTextTone: string;
+}>`
+  ${({ $navTextTone, theme }) =>
+    $navTextTone === "light" &&
+    `
+      ${ColumnTitle} {
+        color: ${theme.colors.neutral.WHITE} !important;
+      }
+    `}
+`;
 
 export const MainContent = styled.div`
   width: min(100%, 1320px);
@@ -11,6 +25,7 @@ export const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-height: 70vh;
 
   ${media.tablet} {
     padding: 2rem 1rem 3rem;
