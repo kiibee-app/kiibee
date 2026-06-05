@@ -78,8 +78,6 @@ function TutorialCard({
     return href;
   };
 
-  const isFreeContent = tutorial.isFree ?? false;
-
   const stopCardNavigation = (event: MouseEvent) => {
     event.stopPropagation();
   };
