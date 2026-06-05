@@ -154,7 +154,7 @@ export const setupCreatorAccountService = async (
     return success(
       responseData,
       'Creator account setup successfully',
-      HttpStatus.OK,
+      HttpStatus.CREATED,
     );
   } catch (error) {
     logger.error('Error setting up creator account:', error);

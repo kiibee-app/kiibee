@@ -137,7 +137,7 @@ export const assignUserCategoriesService = async (
     return success(
       result,
       'User content preferences saved successfully',
-      HttpStatus.OK,
+      HttpStatus.CREATED,
     );
   } catch (error) {
     if (error instanceof BadRequestException) {
