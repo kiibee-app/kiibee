@@ -5,6 +5,7 @@ import { seedCreatorAccounts } from './creatorAccounts.seed';
 import { seedPlans } from './subscriptionPlan.seed';
 import { seedTags } from './tags.seed';
 import { seedUmbracoProfiles } from './umbracoProfiles.seed';
+import { seedUmbracoShows } from './umbracoShows.seed';
 import { seedUsers } from './users.seed';
 
 async function main() {
@@ -18,6 +19,7 @@ async function main() {
   await seedUsers();
   await seedCreatorAccounts();
   await seedUmbracoProfiles();
+  await seedUmbracoShows();
 
   console.log('All seeds completed successfully');
   process.exit();
