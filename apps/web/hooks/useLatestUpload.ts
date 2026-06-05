@@ -15,6 +15,7 @@ import {
 } from "@/utils/contentApi";
 import { CollectionContentRow } from "@/types/collectionsType";
 import type { ImageSource } from "@/utils/Constants";
+import type { FeedContentItem } from "@/utils/feedContentToTutorial";
 
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;
@@ -22,11 +23,41 @@ type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   thumbnailLandscapeUrl?: ImageSource | null;
 };
 
-export function useLatestUpload() {
+export function useLatestUpload(publicCreatorId: string | null = null) {
+  const isPublicView = Boolean(publicCreatorId);
+
   return useQuery({
-    queryKey: [QUERY_KEYS.PROFILE_LATEST_UPLOAD],
+    queryKey: [QUERY_KEYS.PROFILE_LATEST_UPLOAD, { publicCreatorId }],
 
     queryFn: async () => {
+      if (isPublicView) {
+        if (!publicCreatorId) return null;
+
+        const response = await axiosClient.post<{
+          success?: boolean;
+          message?: string;
+          data?: FeedContentItem[] | null;
+        }>(API.content.all, { creatorId: publicCreatorId });
+
+        const items = response.data?.data;
+        if (!Array.isArray(items) || items.length === 0) return null;
+
+        const latest = items[0];
+
+        return {
+          id: String(latest.id),
+          name: latest.title || "",
+          title: latest.title || "",
+          description: latest.description ?? "",
+          createdAt: latest.createdAt
+            ? new Date(latest.createdAt).getTime()
+            : Date.now(),
+          category: latest.categoryName ?? null,
+          contentType: latest.contentType ?? "video",
+          thumbnailLandscapeUrl: latest.thumbnailUrl ?? null,
+        } as LatestUploadItem;
+      }
+
       const collectionsResponse = await axiosClient.get<CollectionsApiResponse>(
         API.collection.getAll,
       );
@@ -70,11 +101,17 @@ export function useLatestUpload() {
 
         return {
           ...latest,
+          title: content?.title || latest.name || "",
           category: category ?? null,
           thumbnailLandscapeUrl: content?.thumbnailLandscapeUrl ?? null,
         };
       } catch {
-        return { ...latest, category: null, thumbnailLandscapeUrl: null };
+        return {
+          ...latest,
+          title: latest.name || "",
+          category: null,
+          thumbnailLandscapeUrl: null,
+        };
       }
     },
 

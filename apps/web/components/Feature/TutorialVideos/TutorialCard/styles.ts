@@ -1,4 +1,13 @@
 import styled from "styled-components";
+import Link from "next/link";
+
+export const CardLink = styled(Link)<{ $clickable?: boolean }>`
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
+`;
 
 export const CardShell = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};

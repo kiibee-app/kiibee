@@ -2,6 +2,8 @@
 
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import { type CSSProperties } from "react";
+import GenericButton from "@/components/UI/GenericButton";
 
 const DEFAULT_IMAGE_ASPECT = 1440 / 682;
 
@@ -82,3 +84,17 @@ export const Subtitle = styled.p`
   margin: 0;
   max-width: 800px;
 `;
+
+export const CTAButton = styled(GenericButton)`
+  &:hover,
+  &:focus-visible,
+  &:active {
+    color: ${({ theme }) => theme.colors.primary.WHITE} !important;
+    border-color: ${({ theme }) => theme.colors.primary.WHITE} !important;
+  }
+`;
+
+export const ctaSectionBackgroundImageStyle: CSSProperties = {
+  objectFit: "cover",
+  objectPosition: "center",
+};

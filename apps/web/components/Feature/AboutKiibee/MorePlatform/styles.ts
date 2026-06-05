@@ -10,7 +10,7 @@ export const SectionWrapper = styled.section`
 export const Inner = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0;
 `;
 
 export const Title = styled.h2`

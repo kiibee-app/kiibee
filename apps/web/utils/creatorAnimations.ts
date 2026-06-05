@@ -67,3 +67,18 @@ export const getCardAnimation = (
     ? dimensions.activePadding[3]
     : dimensions.inactivePadding[3],
 });
+
+export const HERO_MOTION = {
+  textDuration: 0.9,
+  textStagger: 0.1,
+  ctaDuration: 0.72,
+  cardEntranceDuration: 1.08,
+  cardEntranceStagger: 0.11,
+  cardResizeDuration: 0.82,
+  hoverDuration: 0.42,
+  hoverLift: -8,
+  blurFrom: "blur(12px)",
+  blurTo: "blur(0px)",
+  easeBackOut: "back.out(1.35)",
+  easeExpoOut: "expo.out",
+} as const;

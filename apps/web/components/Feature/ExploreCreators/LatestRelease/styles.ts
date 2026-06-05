@@ -70,6 +70,7 @@ export const FiltersColumn = styled.aside`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  position: sticky;
 `;
 
 export const CardsGrid = styled.div`

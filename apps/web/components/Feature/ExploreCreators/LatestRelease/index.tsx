@@ -198,7 +198,7 @@ export default function LatestRelease() {
       </HeaderWrap>
 
       <ContentGrid>
-        <FiltersColumn>
+        <FiltersColumn data-sidebar>
           <CreatorFiltersControl
             refs={filterRefs}
             state={filterState}

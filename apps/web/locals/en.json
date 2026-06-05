@@ -893,7 +893,10 @@
     "failedAalt": "Failed to load image: {{alt}}"
   },
   "table": {
-    "noData": "No Data Found"
+    "noData": "No Data Found",
+    "showing": "Showing",
+    "outOf": "out of",
+    "paginationPage": "Go to page {{page}}"
   },
   "creatorProfile": {
     "title": "My account",
@@ -1140,6 +1143,17 @@
         "edit": "Edit payment method",
         "delete": "Delete payment method",
         "more": "More actions",
+        "deleteModal": {
+          "title": "Delete payment?",
+          "message": "Are you sure you want to delete the saved payment?",
+          "cancel": "Go back",
+          "confirm": "Delete"
+        },
+        "deleteSuccessModal": {
+          "title": "Delete successfully",
+          "message": "Card have been successfully deleted.",
+          "confirm": "Done"
+        },
         "addCardModal": {
           "title": "Add new card",
           "cardNumber": "Card number",
@@ -1150,6 +1164,20 @@
           "cvvPlaceholder": "CVV",
           "successTitle": "New card added",
           "successMessage": "New card has been successfully added."
+        },
+        "editCardModal": {
+          "title": "Edit card",
+          "cardNumber": "Card number",
+          "expiryDate": "Expiry date",
+          "cvv": "Security code",
+          "cardPlaceholder": "XXXX XXXX XXXX XXXX",
+          "expiryPlaceholder": "MM/YY",
+          "cvvPlaceholder": "CVV"
+        },
+        "editSuccessModal": {
+          "title": "Changes saved",
+          "message": "Your updates have been successfully saved.",
+          "confirm": "Done"
         }
       }
     },
@@ -1513,6 +1541,7 @@
         "placeholder": "https://"
       },
       "uploading": "Uploading",
+      "uploaded": "Uploaded",
       "deletePermanently": "Delete permanently"
     },
     "emptyCollection": {
@@ -1589,7 +1618,8 @@
         "mediaCardLabel": "Upload thumbnail for the media card",
         "mediaCardSize": "Use size 250x190 pixel image",
         "portraitLabel": "Upload thumbnail for portrait format",
-        "portraitSize": "Use size 634x345 pixel image"
+        "portraitSize": "Use size 634x345 pixel image",
+        "portraitPdfSize": "Use size 376x530 pixel image"
       }
     },
     "couponSearch": {

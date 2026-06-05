@@ -14,7 +14,9 @@ export type ViewerPaymentMethod = {
   id: string;
   brand: CardBrand;
   label: string;
+  cardNumber: string;
   expiresAt: string;
+  securityCode?: string;
   isDefault?: boolean;
 };
 
@@ -42,20 +44,26 @@ export const MOCK_VIEWER_PAYMENT_METHODS: ViewerPaymentMethod[] = [
     id: "pm-1",
     brand: CARD_BRANDS.VISA,
     label: "Visa **** 123",
+    cardNumber: "7654 3578 9854",
     expiresAt: "11/2030",
+    securityCode: "346",
     isDefault: true,
   },
   {
     id: "pm-2",
     brand: CARD_BRANDS.MASTERCARD,
     label: "Mastercard **** 123",
+    cardNumber: "3210 4567 8912",
     expiresAt: "11/2030",
+    securityCode: "284",
   },
   {
     id: "pm-3",
     brand: CARD_BRANDS.VISA,
     label: "Visa **** 123",
+    cardNumber: "6543 2198 7654",
     expiresAt: "11/2030",
+    securityCode: "175",
   },
 ];
 

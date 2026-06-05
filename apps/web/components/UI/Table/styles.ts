@@ -226,11 +226,11 @@ export const StatusBadge = styled.button<{ $status: string }>`
 export const PaginationWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justify-content: space-between;
+  gap: 24px;
   width: 100%;
   margin-top: 12px;
-  padding: 8px 0 4px;
+  padding: 10px 0 2px;
 
   ${media.tablet} {
     justify-content: center;
@@ -239,17 +239,87 @@ export const PaginationWrapper = styled.div`
   }
 `;
 
+export const PaginationMeta = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  flex-wrap: wrap;
+`;
+
+export const PaginationMetaLabel = styled.span`
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+`;
+
+export const PaginationMetaSelectWrap = styled.div`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+`;
+
+export const PaginationMetaSelect = styled.select`
+  width: 56px;
+  height: 32px;
+  padding: 0 24px 0 12px;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  ${({ theme }) => theme.typography.Body_Medium};
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-sizing: border-box;
+  line-height: 1;
+  cursor: pointer;
+`;
+
+export const PaginationMetaSelectChevron = styled.span`
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  line-height: 1;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  pointer-events: none;
+
+  svg {
+    display: block;
+  }
+`;
+
+export const PaginationControls = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+export const PaginationNumberGroup = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+`;
+
 export const PaginationButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 84px;
+  min-width: 32px;
+  width: 32px;
   height: 32px;
-  padding: 0 12px;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+  box-sizing: border-box;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   cursor: pointer;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
 
   &:disabled {
     opacity: 0.45;
@@ -260,11 +330,21 @@ export const PaginationButton = styled.button`
 export const PageNumberButton = styled(PaginationButton)<{ $active?: boolean }>`
   min-width: 32px;
   width: 32px;
-  padding: 0;
   color: ${({ $active, theme }) =>
-    $active ? theme.colors.primary.WHITE : theme.colors.neutral.GRAY};
+    $active ? theme.colors.primary.WHITE : theme.colors.neutral.GRAY_500};
   background: ${({ $active, theme }) =>
-    $active ? theme.colors.primary.BLACK : theme.colors.primary.WHITE};
+    $active ? theme.colors.primary.GREEN_100 : theme.colors.primary.WHITE};
   border-color: ${({ $active, theme }) =>
-    $active ? theme.colors.primary.BLACK : theme.colors.primary.GRAY};
+    $active ? theme.colors.primary.GREEN_100 : theme.colors.neutral.GRAY_200};
+`;
+
+export const PaginationChevron = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+`;
+
+export const PaginationNextChevron = styled(PaginationChevron)`
+  transform: rotate(180deg);
 `;

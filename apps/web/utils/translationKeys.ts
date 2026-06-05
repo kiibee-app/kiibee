@@ -260,6 +260,19 @@ export const DASHBOARD_VIEWER_BILLINGS = {
     edit: "dashboard.viewerBillings.paymentMethods.edit",
     delete: "dashboard.viewerBillings.paymentMethods.delete",
     more: "dashboard.viewerBillings.paymentMethods.more",
+    deleteModal: {
+      title: "dashboard.viewerBillings.paymentMethods.deleteModal.title",
+      message: "dashboard.viewerBillings.paymentMethods.deleteModal.message",
+      cancel: "dashboard.viewerBillings.paymentMethods.deleteModal.cancel",
+      confirm: "dashboard.viewerBillings.paymentMethods.deleteModal.confirm",
+    },
+    deleteSuccessModal: {
+      title: "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.title",
+      message:
+        "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.message",
+      confirm:
+        "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.confirm",
+    },
     addCardModal: {
       title: "dashboard.viewerBillings.paymentMethods.addCardModal.title",
       cardNumber:
@@ -277,6 +290,27 @@ export const DASHBOARD_VIEWER_BILLINGS = {
         "dashboard.viewerBillings.paymentMethods.addCardModal.successTitle",
       successMessage:
         "dashboard.viewerBillings.paymentMethods.addCardModal.successMessage",
+    },
+    editCardModal: {
+      title: "dashboard.viewerBillings.paymentMethods.editCardModal.title",
+      cardNumber:
+        "dashboard.viewerBillings.paymentMethods.editCardModal.cardNumber",
+      expiryDate:
+        "dashboard.viewerBillings.paymentMethods.editCardModal.expiryDate",
+      cvv: "dashboard.viewerBillings.paymentMethods.editCardModal.cvv",
+      cardPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.editCardModal.cardPlaceholder",
+      expiryPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.editCardModal.expiryPlaceholder",
+      cvvPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.editCardModal.cvvPlaceholder",
+    },
+    editSuccessModal: {
+      title: "dashboard.viewerBillings.paymentMethods.editSuccessModal.title",
+      message:
+        "dashboard.viewerBillings.paymentMethods.editSuccessModal.message",
+      confirm:
+        "dashboard.viewerBillings.paymentMethods.editSuccessModal.confirm",
     },
   },
 };
