@@ -369,9 +369,11 @@ export default function ContentUploadModal({
               successMessage={
                 isEditing
                   ? t(CONTENT_TRANSLATION_KEYS.editSuccess)
-                  : `${t("contents.contentUploadModal.uploading")} ${
-                      contentType ?? uploadType
-                    }`
+                  : `${t("contents.contentUploadModal.uploaded")} ${t(
+                      `contents.contentTypeModal.options.${
+                        contentType ?? uploadType
+                      }`,
+                    ).toLowerCase()}`
               }
               uploadType={contentType ?? uploadType}
               isSuccess={isSuccess}

@@ -79,6 +79,7 @@ export function toTrimmedString(value: unknown): string {
 export const COUPON_ACTION_EDIT = "edit";
 export const COUPON_ACTION_STATUS = "status";
 export const COUPON_ACTION_DELETE = "delete";
+export const PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT = "markAsDefault";
 export const PROFILE_HOME_SECTION = {
   LATEST_UPLOAD: "latestUpload",
   ABOUT: "about",
@@ -205,7 +206,7 @@ export const SCROLL_TO_START_OPTIONS = {
 export const apiToUiAccessTypeMap: Record<string, AdmissionRequirementValue> = {
   [ACCESS_TYPE_PASSWORD]: ADMISSION_REQUIREMENT_VALUES.password,
   [ACCESS_TYPE_EMAIL_GATED]: ADMISSION_REQUIREMENT_VALUES.email,
-  [ACCESS_TYPE_PAID]: ADMISSION_REQUIREMENT_VALUES.password,
+  [ACCESS_TYPE_PAID]: ADMISSION_REQUIREMENT_VALUES.payment,
   [ACCESS_TYPE_FREE]: ADMISSION_REQUIREMENT_VALUES.free,
 };
 
@@ -213,6 +214,7 @@ export const uiToApiAccessTypeMap: Record<
   string,
   "free" | "paid" | "password" | "email_gated"
 > = {
+  [ADMISSION_REQUIREMENT_VALUES.payment]: ACCESS_TYPE_PAID,
   [ADMISSION_REQUIREMENT_VALUES.password]: ACCESS_TYPE_PASSWORD,
   [ADMISSION_REQUIREMENT_VALUES.email]: ACCESS_TYPE_EMAIL_GATED,
   [ADMISSION_REQUIREMENT_VALUES.free]: ACCESS_TYPE_FREE,

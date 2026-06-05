@@ -99,18 +99,33 @@ export function getPurchasedMediaDetailView(
   const tutorial = purchasedMediaToTutorial(item);
   const playLabel =
     tutorial.buttons?.[0]?.label ?? t("singleTutorial.playTrailer");
+  const isPdf = item.mediaType === PURCHASED_MEDIA_TYPES.PDF;
 
   return {
     hero: {
       image: item.thumbSrc,
       imageAlt: item.title,
+      ...(isPdf
+        ? {
+            media: {
+              type: FORMAT_TYPE.PDF,
+              src: "",
+              title: item.title,
+            },
+          }
+        : {
+            mediaIcon: playCircleIcon,
+            mediaIconAlt: tutorial.formatLabel,
+          }),
       categoryLabel: item.category,
       mediaLabel: tutorial.formatLabel,
-      mediaIcon: playCircleIcon,
-      mediaIconAlt: tutorial.formatLabel,
-      trailerLabel: playLabel,
-      trailerIcon: playIcon,
-      trailerIconAlt: playLabel,
+      ...(isPdf
+        ? {}
+        : {
+            trailerLabel: playLabel,
+            trailerIcon: playIcon,
+            trailerIconAlt: playLabel,
+          }),
     },
     body: {
       creator: {

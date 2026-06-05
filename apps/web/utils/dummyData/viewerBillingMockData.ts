@@ -14,12 +14,15 @@ export type ViewerPaymentMethod = {
   id: string;
   brand: CardBrand;
   label: string;
+  cardNumber: string;
   expiresAt: string;
+  securityCode?: string;
   isDefault?: boolean;
 };
 
 export type ViewerBillingHistoryItem = {
   id: string;
+  orderNumber: string;
   contentTitle: string;
   contentImage: string;
   creatorName: string;
@@ -42,26 +45,33 @@ export const MOCK_VIEWER_PAYMENT_METHODS: ViewerPaymentMethod[] = [
     id: "pm-1",
     brand: CARD_BRANDS.VISA,
     label: "Visa **** 123",
+    cardNumber: "7654 3578 9854",
     expiresAt: "11/2030",
+    securityCode: "346",
     isDefault: true,
   },
   {
     id: "pm-2",
     brand: CARD_BRANDS.MASTERCARD,
     label: "Mastercard **** 123",
+    cardNumber: "3210 4567 8912",
     expiresAt: "11/2030",
+    securityCode: "284",
   },
   {
     id: "pm-3",
     brand: CARD_BRANDS.VISA,
     label: "Visa **** 123",
+    cardNumber: "6543 2198 7654",
     expiresAt: "11/2030",
+    securityCode: "175",
   },
 ];
 
 export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   {
     id: "bh-1",
+    orderNumber: "10011",
     contentTitle: "Colorful sweater",
     contentImage: design1.src,
     creatorName: "Ashley Byrd",
@@ -72,6 +82,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-2",
+    orderNumber: "10012",
     contentTitle: "Mittens and beanie",
     contentImage: design2.src,
     creatorName: "Ashley Byrd",
@@ -82,6 +93,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-3",
+    orderNumber: "10013",
     contentTitle: "Knitting pattern",
     contentImage: discover1.src,
     creatorName: "Helle Hansen",
@@ -92,6 +104,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-4",
+    orderNumber: "10014",
     contentTitle: "Poncho",
     contentImage: design3.src,
     creatorName: "Ashley Byrd",
@@ -102,6 +115,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-5",
+    orderNumber: "10015",
     contentTitle: "Greatest Book Cover",
     contentImage: discover2.src,
     creatorName: "Tom Wilson",
@@ -112,6 +126,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-6",
+    orderNumber: "10016",
     contentTitle: "Sculpture",
     contentImage: discover3.src,
     creatorName: "Emma Smith",
@@ -122,6 +137,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-7",
+    orderNumber: "10017",
     contentTitle: "Deer",
     contentImage: discover1.src,
     creatorName: "James White",
@@ -132,6 +148,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-8",
+    orderNumber: "10018",
     contentTitle: "Floating flowers",
     contentImage: discover4.src,
     creatorName: "Lily Green",
@@ -142,6 +159,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-9",
+    orderNumber: "10019",
     contentTitle: "Cactus",
     contentImage: design2.src,
     creatorName: "Rachel Adams",
@@ -152,6 +170,7 @@ export const MOCK_VIEWER_BILLING_HISTORY: ViewerBillingHistoryItem[] = [
   },
   {
     id: "bh-10",
+    orderNumber: "10020",
     contentTitle: "Sculpture",
     contentImage: discover3.src,
     creatorName: "David Johnson",

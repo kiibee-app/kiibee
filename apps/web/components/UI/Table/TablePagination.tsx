@@ -3,17 +3,28 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import {
+  PaginationMeta,
+  PaginationMetaLabel,
+  PaginationMetaSelectWrap,
+  PaginationMetaSelect,
+  PaginationMetaSelectChevron,
   PaginationWrapper,
   PaginationButton,
   PageNumberButton,
+  PaginationControls,
+  PaginationNumberGroup,
+  PaginationChevron,
+  PaginationNextChevron,
 } from "./styles";
-import { MonoText } from "@/components/UI/Monotext";
-import COLORS from "@repo/ui/colors";
+import { LeftIcon } from "@/assets/icons";
+import { PAGE_SIZE_OPTIONS } from "@/utils/common";
 
 type Props = {
   totalPages: number;
   currentPage: number;
   pageNumbers: number[];
+  rowsPerPage: number;
+  onRowsPerPageChange: (rowsPerPage: number) => void;
   onChange: (page: number) => void;
 };
 
@@ -21,48 +32,74 @@ export default function Pagination({
   totalPages,
   currentPage,
   pageNumbers,
+  rowsPerPage,
+  onRowsPerPageChange,
   onChange,
 }: Props) {
   const { t } = useTranslation();
 
-  if (totalPages <= 1) return null;
-
   return (
     <PaginationWrapper>
-      <PaginationButton
-        onClick={() => onChange(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-          {t("common.previous")}
-        </MonoText>
-      </PaginationButton>
-
-      {pageNumbers.map((p) => (
-        <PageNumberButton
-          key={p}
-          $active={p === currentPage}
-          onClick={() => onChange(p)}
-        >
-          <MonoText
-            $use="Body_Medium"
-            color={
-              p === currentPage ? COLORS.primary.WHITE : COLORS.neutral.GRAY
+      <PaginationMeta>
+        <PaginationMetaLabel>{t("table.showing")}</PaginationMetaLabel>
+        <PaginationMetaSelectWrap>
+          <PaginationMetaSelect
+            value={rowsPerPage}
+            onChange={(event) =>
+              onRowsPerPageChange(Number(event.target.value))
             }
           >
-            {p}
-          </MonoText>
-        </PageNumberButton>
-      ))}
+            {PAGE_SIZE_OPTIONS.map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
+          </PaginationMetaSelect>
+          <PaginationMetaSelectChevron>
+            <LeftIcon width={12} height={12} />
+          </PaginationMetaSelectChevron>
+        </PaginationMetaSelectWrap>
+        <PaginationMetaLabel>
+          {t("table.outOf")} {totalPages}
+        </PaginationMetaLabel>
+      </PaginationMeta>
 
-      <PaginationButton
-        onClick={() => onChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-      >
-        <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-          {t("common.next")}
-        </MonoText>
-      </PaginationButton>
+      {totalPages > 1 ? (
+        <PaginationControls>
+          <PaginationButton
+            onClick={() => onChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            aria-label={t("common.previous")}
+          >
+            <PaginationNextChevron>
+              <LeftIcon />
+            </PaginationNextChevron>
+          </PaginationButton>
+
+          <PaginationNumberGroup>
+            {pageNumbers.map((p) => (
+              <PageNumberButton
+                key={p}
+                $active={p === currentPage}
+                onClick={() => onChange(p)}
+                aria-label={t("table.paginationPage", { page: p })}
+              >
+                {p}
+              </PageNumberButton>
+            ))}
+          </PaginationNumberGroup>
+
+          <PaginationButton
+            onClick={() => onChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            aria-label={t("common.next")}
+          >
+            <PaginationChevron>
+              <LeftIcon />
+            </PaginationChevron>
+          </PaginationButton>
+        </PaginationControls>
+      ) : null}
     </PaginationWrapper>
   );
 }

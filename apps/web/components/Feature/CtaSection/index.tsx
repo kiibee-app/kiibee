@@ -4,7 +4,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import Image from "@/components/UI/SafeImage";
-import GenericButton from "@/components/UI/GenericButton";
 import {
   Section,
   Background,
@@ -12,13 +11,14 @@ import {
   Content,
   Title,
   Subtitle,
+  CTAButton,
   ctaSectionBackgroundImageStyle,
 } from "./styles";
 import type { CtaSectionProps } from "@/types/ctaSection";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import { getImageBackgroundMeta } from "@/utils/media";
 import ScrollReveal from "@/components/UI/ScrollReveal";
-import { LANDING_IMAGE_FLAGS } from "@/utils/landingUtils";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
 
 export default function CtaSection({
@@ -31,20 +31,17 @@ export default function CtaSection({
 }: CtaSectionProps) {
   const { t } = useTranslation();
   const router = useRouter();
+  const background = getImageBackgroundMeta(bgImage);
 
   return (
-    <Section>
-      <Background>
-        {bgImage && (
-          <Image
-            src={bgImage}
-            alt={t("ctaSection.bgAlt")}
-            fill={LANDING_IMAGE_FLAGS.fill}
-            priority={LANDING_IMAGE_FLAGS.priority}
-            style={ctaSectionBackgroundImageStyle}
-          />
-        )}
-      </Background>
+    <Section $aspect={background?.aspect}>
+      {background && (
+        <Background
+          $src={background.src}
+          role="img"
+          aria-label={t("ctaSection.bgAlt")}
+        />
+      )}
 
       <Inner>
         <Content>
@@ -72,13 +69,13 @@ export default function CtaSection({
             ))}
 
           {ctaText && (
-            <GenericButton
+            <CTAButton
               type="button"
               onClick={() => router.push(ctaHref ?? PATHS.AUTH_SIGNUP)}
               variant={VARIANT.PRIMARY_LITE}
             >
               {ctaText}
-            </GenericButton>
+            </CTAButton>
           )}
         </Content>
       </Inner>

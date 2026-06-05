@@ -1,16 +1,13 @@
 import {
   Body,
   Controller,
-  HttpCode,
   HttpException,
   HttpStatus,
   Post,
   Req,
-  UseGuards,
 } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import { handleEpayPayment } from './hooks/paymentWebhook';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('payment')
 export class PaymentController {

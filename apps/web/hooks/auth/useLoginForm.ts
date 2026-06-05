@@ -9,19 +9,14 @@ import {
   AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
   REMEMBERED_AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
 } from "@/lib/auth/storageKeys";
+import { isSafePostLoginPath } from "@/utils/path";
 const ALLOWED_NEXT_PREFIXES = ["/dashboard/", "/creator/"];
 
 function getPostLoginDestination(response: LoginResponse) {
   if (typeof window === "undefined") return getPostLoginPath(response);
 
   const nextPath = new URLSearchParams(window.location.search).get("next");
-  if (
-    nextPath &&
-    ALLOWED_NEXT_PREFIXES.some((prefix) => nextPath.startsWith(prefix))
-  ) {
-    return nextPath;
-  }
-  return getPostLoginPath(response);
+  return isSafePostLoginPath(nextPath) ? nextPath : getPostLoginPath(response);
 }
 
 export function useLoginForm() {

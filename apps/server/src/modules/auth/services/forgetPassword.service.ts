@@ -26,7 +26,7 @@ export const forgetPasswordService = async (email: string) => {
       return success(
         null,
         'Password reset link sent if user exists',
-        HttpStatus.OK,
+        HttpStatus.CREATED,
       );
     }
 
@@ -65,7 +65,7 @@ export const forgetPasswordService = async (email: string) => {
     return success(
       null,
       'Password reset link sent if user exists',
-      HttpStatus.OK,
+      HttpStatus.CREATED,
     );
   } catch (error) {
     logger.error('Error in forgetPasswordService:', error);

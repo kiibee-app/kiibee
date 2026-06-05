@@ -44,7 +44,7 @@ export const logoutService = async (
     await revokeAccessToken(jti, expiresAt);
   }
 
-  return success(null, 'Logged out successfully', 200);
+  return success(null, 'Logged out successfully', 201);
 };
 
 export const invalidateSession = async (

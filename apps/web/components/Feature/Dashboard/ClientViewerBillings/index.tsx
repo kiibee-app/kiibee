@@ -7,12 +7,18 @@ import {
   VIEWER_BILLING_TABS,
   type ViewerBillingTab,
 } from "@/utils/common";
-import { BILLING_TAB, CARD_BRANDS } from "@/utils/Constants";
+import {
+  BILLING_TAB,
+  CARD_BRANDS,
+  PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT,
+  SORT_DROPDOWN_VARIANT,
+} from "@/utils/Constants";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { MonoText } from "@/components/UI/Monotext";
 import SearchBar from "@/components/UI/SearchBar";
 import Table from "@/components/UI/Table";
+import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
 import {
   DeleteIcon,
   EditProfileIcon,
@@ -59,10 +65,14 @@ import {
   SearchFilterWrap,
 } from "./styles";
 import AddCardModal from "./AddCardModal";
+import EditCardModal from "./EditCardModal";
+import InvoiceModal from "./InvoiceModal";
 
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
   const [showAddCardModal, setShowAddCardModal] = useState(false);
+  const [showEditCardModal, setShowEditCardModal] = useState(false);
+  const [showEditSuccessModal, setShowEditSuccessModal] = useState(false);
   const [paymentMethods, setPaymentMethods] = useState(
     MOCK_VIEWER_PAYMENT_METHODS,
   );
@@ -70,6 +80,9 @@ export default function ClientViewerBillings() {
     useState<ViewerPaymentMethod | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+  const [selectedInvoice, setSelectedInvoice] =
+    useState<ViewerBillingHistoryItem | null>(null);
+  const [showInvoiceModal, setShowInvoiceModal] = useState(false);
 
   const handleCloseModal = () => {
     setShowAddCardModal(false);
@@ -80,6 +93,27 @@ export default function ClientViewerBillings() {
     setShowDeleteModal(true);
   };
 
+  const handleEditClick = (method: ViewerPaymentMethod) => {
+    setSelectedPaymentMethod(method);
+    setShowEditCardModal(true);
+  };
+
+  const handleEditClose = () => {
+    setShowEditCardModal(false);
+    setSelectedPaymentMethod(null);
+  };
+
+  const handleEditSave = (updatedMethod: ViewerPaymentMethod) => {
+    setPaymentMethods((prev) =>
+      prev.map((method) =>
+        method.id === updatedMethod.id ? updatedMethod : method,
+      ),
+    );
+    setShowEditCardModal(false);
+    setShowEditSuccessModal(true);
+    setSelectedPaymentMethod(updatedMethod);
+  };
+
   const handleDeleteConfirm = () => {
     if (!selectedPaymentMethod) return;
 
@@ -88,6 +122,36 @@ export default function ClientViewerBillings() {
     );
     setShowDeleteModal(false);
     setShowDeleteSuccessModal(true);
+  };
+
+  const handleInvoiceOpen = (invoice: ViewerBillingHistoryItem) => {
+    setSelectedInvoice(invoice);
+    setShowInvoiceModal(true);
+  };
+
+  const handleMarkAsDefault = (method: ViewerPaymentMethod) => {
+    setPaymentMethods((prev) =>
+      prev.map((item) => ({
+        ...item,
+        isDefault: item.id === method.id,
+      })),
+    );
+  };
+
+  const getMethodActions = (): DropdownOption<string>[] => [
+    {
+      label: t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.markAsDefault),
+      value: PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT,
+    },
+  ];
+
+  const handleMethodActionSelect = (
+    method: ViewerPaymentMethod,
+    action: string,
+  ) => {
+    if (action === PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT) {
+      handleMarkAsDefault(method);
+    }
   };
 
   const { activeTab, setActiveTabAndQuery } =
@@ -128,6 +192,7 @@ export default function ClientViewerBillings() {
               headers={billingHistoryHeaders}
               data={MOCK_VIEWER_BILLING_HISTORY}
               rowsPerPage={10}
+              onRowClick={(row) => handleInvoiceOpen(row)}
               emptyText={t(DASHBOARD_VIEWER_BILLINGS.billingHistory.empty)}
               headerToKey={(header) => billingHistoryHeaderMap[header]}
               getRowKey={(row) => row.id}
@@ -272,6 +337,7 @@ export default function ClientViewerBillings() {
                     aria-label={t(
                       DASHBOARD_VIEWER_BILLINGS.paymentMethods.edit,
                     )}
+                    onClick={() => handleEditClick(method)}
                   >
                     <EditProfileIcon color={COLORS.neutral.GRAY} />
                   </IconButton>
@@ -284,14 +350,19 @@ export default function ClientViewerBillings() {
                   >
                     <DeleteIcon color={COLORS.gradient.NEAR_BLACK} />
                   </IconButton>
-                  <IconButton
-                    type="button"
-                    aria-label={t(
-                      DASHBOARD_VIEWER_BILLINGS.paymentMethods.more,
-                    )}
-                  >
-                    <ThreeDotIcon color={COLORS.gradient.NEAR_BLACK} />
-                  </IconButton>
+                  <SortDropdown<string>
+                    options={getMethodActions()}
+                    compact
+                    dropdownWidth="196px"
+                    maxWidth="196px"
+                    variant={SORT_DROPDOWN_VARIANT.SURFACE}
+                    trigger={
+                      <ThreeDotIcon color={COLORS.gradient.NEAR_BLACK} />
+                    }
+                    onChange={(action) =>
+                      handleMethodActionSelect(method, action)
+                    }
+                  />
                 </Actions>
               </MethodRow>
             ))}
@@ -299,6 +370,23 @@ export default function ClientViewerBillings() {
         </>
       )}
       <AddCardModal visible={showAddCardModal} onClose={handleCloseModal} />
+      <InvoiceModal
+        visible={showInvoiceModal}
+        invoice={selectedInvoice}
+        onClose={() => {
+          setShowInvoiceModal(false);
+          setSelectedInvoice(null);
+        }}
+      />
+      {selectedPaymentMethod ? (
+        <EditCardModal
+          key={`${selectedPaymentMethod.id}-${showEditCardModal ? "open" : "closed"}`}
+          visible={showEditCardModal}
+          paymentMethod={selectedPaymentMethod}
+          onClose={handleEditClose}
+          onSave={handleEditSave}
+        />
+      ) : null}
       <GenericModal
         visible={showDeleteModal}
         onClose={() => {
@@ -344,6 +432,28 @@ export default function ClientViewerBillings() {
         }}
         onConfirm={() => {
           setShowDeleteSuccessModal(false);
+          setSelectedPaymentMethod(null);
+        }}
+        showCloseButton={false}
+      />
+      <GenericModal
+        visible={showEditSuccessModal}
+        icon={<SuccessModalIcon />}
+        title={t(
+          DASHBOARD_VIEWER_BILLINGS.paymentMethods.editSuccessModal.title,
+        )}
+        message={t(
+          DASHBOARD_VIEWER_BILLINGS.paymentMethods.editSuccessModal.message,
+        )}
+        confirmLabel={t(
+          DASHBOARD_VIEWER_BILLINGS.paymentMethods.editSuccessModal.confirm,
+        )}
+        onClose={() => {
+          setShowEditSuccessModal(false);
+          setSelectedPaymentMethod(null);
+        }}
+        onConfirm={() => {
+          setShowEditSuccessModal(false);
           setSelectedPaymentMethod(null);
         }}
         showCloseButton={false}

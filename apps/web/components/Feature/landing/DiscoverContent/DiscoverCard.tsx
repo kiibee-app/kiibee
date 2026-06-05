@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { memo } from "react";
+import { memo, type MouseEvent } from "react";
 import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { EbookIcon, VideoIcon } from "@/assets/icons";
 import { MEDIA_TYPE, VARIANT } from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import {
@@ -37,14 +38,28 @@ import {
 function DiscoverCard({ item }: DiscoverCardProps) {
   const theme = useTheme();
   const { t } = useTranslation();
+  const { navigateToContent } = useProtectedContentNavigation();
   const targetHref = pathPublishedContent(item.contentKey);
+  const isFreeContent = item.isFree ?? false;
 
   const handleOpen = () => {
-    window.open(targetHref, "_blank", "noopener,noreferrer");
+    navigateToContent(targetHref, !isFreeContent);
+  };
+
+  const handleActionClick = (href: string, requiresAuth?: boolean) => {
+    navigateToContent(href, requiresAuth ?? !isFreeContent);
+  };
+
+  const stopCardNavigation = (event: MouseEvent) => {
+    event.stopPropagation();
   };
 
   return (
-    <Card aria-label={t(item.titleKey)} onClick={handleOpen}>
+    <Card
+      aria-label={t(item.titleKey)}
+      onClick={isFreeContent ? handleOpen : undefined}
+      $clickable={isFreeContent}
+    >
       <ImageContainer>
         <CategoryBadge>
           <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
@@ -100,9 +115,18 @@ function DiscoverCard({ item }: DiscoverCardProps) {
         </MediaTypeBox>
       </TextSection>
 
-      <ActionsContainer>
+      <ActionsContainer onClick={stopCardNavigation}>
         {item.actions.length === 1 ? (
-          <SingleActionButton key={item.actions[0].labelKey} type="button">
+          <SingleActionButton
+            key={item.actions[0].labelKey}
+            type="button"
+            onClick={() =>
+              handleActionClick(
+                item.actions[0].href ?? targetHref,
+                item.actions[0].requiresAuth,
+              )
+            }
+          >
             {t(item.actions[0].labelKey)}
           </SingleActionButton>
         ) : (
@@ -111,6 +135,12 @@ function DiscoverCard({ item }: DiscoverCardProps) {
               key={action.labelKey}
               type="button"
               variant={VARIANT.SOFT_OUTLINE}
+              onClick={() =>
+                handleActionClick(
+                  action.href ?? targetHref,
+                  action.requiresAuth,
+                )
+              }
             >
               {t(action.labelKey)}
             </GenericButton>

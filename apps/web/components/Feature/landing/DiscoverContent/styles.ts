@@ -6,7 +6,7 @@ import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
-  min-height: 100vh;
+  min-height: 900px;
   background: ${({ theme }) => theme.colors.primary.GRAY};
   padding: clamp(2.5rem, 8vw, 5rem) clamp(1rem, 4vw, 1.5rem);
 `;
@@ -39,7 +39,7 @@ export const GridContainer = styled.div`
   }
 `;
 
-export const Card = styled.article`
+export const Card = styled.article<{ $clickable?: boolean }>`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border-radius: 16px;
   padding: 1rem;
@@ -47,18 +47,21 @@ export const Card = styled.article`
   flex-direction: column;
   min-height: 100%;
   box-shadow: ${({ theme }) => theme.shadows.md};
-  cursor: pointer;
+  cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: ${({ theme }) => theme.shadows.lg};
+    transform: ${({ $clickable }) =>
+      $clickable ? "translateY(-2px)" : "none"};
+    box-shadow: ${({ theme, $clickable }) =>
+      $clickable ? theme.shadows.lg : theme.shadows.md};
   }
 
   &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline: ${({ $clickable }) => ($clickable ? "2px solid" : "none")};
+    outline-color: ${({ theme }) => theme.colors.primary.BLACK};
     outline-offset: 2px;
   }
 `;

@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Menu } from "lucide-react";
+import { apiClient } from "../../hooks/api/api-client";
+import { API_ENDPOINTS } from "../../utils/constants";
+import { clearTokens, getAccessToken } from "../../utils/token";
 import {
   AvatarFrame,
   AvatarText,
@@ -31,6 +34,7 @@ type StoredAuthPayload = {
 export function Header({ title, description, onToggleSidebar }: HeaderProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -45,12 +49,22 @@ export function Header({ title, description, onToggleSidebar }: HeaderProps) {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("adminLoggedIn");
-    localStorage.removeItem("admin.authPayload");
-    document.cookie = "adminLoggedIn=; Path=/; Max-Age=0; SameSite=Lax";
+  const handleLogout = async () => {
+    if (isLoggingOut) return;
+
+    setIsLoggingOut(true);
     setOpen(false);
-    router.push("/login");
+
+    try {
+      if (getAccessToken()) {
+        await apiClient(API_ENDPOINTS.LOGOUT, {
+          method: "POST",
+        });
+      }
+    } finally {
+      clearTokens();
+      router.replace("/login");
+    }
   };
 
   const handleProfile = () => {
@@ -108,7 +122,11 @@ export function Header({ title, description, onToggleSidebar }: HeaderProps) {
               <MenuButton type="button" onClick={handleProfile}>
                 Profile
               </MenuButton>
-              <MenuButton type="button" onClick={handleLogout}>
+              <MenuButton
+                type="button"
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+              >
                 Logout
               </MenuButton>
             </Dropdown>

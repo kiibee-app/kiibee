@@ -34,7 +34,9 @@ export default function SingleContentPage({
   children,
 }: SingleContentPageProps) {
   const router = useRouter();
-  const isPdfLayout = hero?.media?.type === FORMAT_TYPE.PDF;
+  const isPdfLayout =
+    hero?.media?.type === FORMAT_TYPE.PDF ||
+    hero?.media?.type === FORMAT_TYPE.EPUB;
 
   const handleBack = () => {
     if (onBack) {

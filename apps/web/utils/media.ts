@@ -1,14 +1,51 @@
 import type { StaticImageData } from "next/image";
+import { isString } from "@/utils/Constants";
 
 export type ImageSource = StaticImageData | string;
+
+export type ImageBackgroundMeta = {
+  src: string;
+  aspect: number;
+};
+
+export const DEFAULT_CTA_BACKGROUND_ASPECT = 1440 / 682;
+
 const REMOTE_IMAGE_PATTERN = /^https?:\/\//;
 
 export function resolveImageUrl(image: ImageSource) {
-  return typeof image === "string" ? image : image.src;
+  return isString(image) ? image : image.src;
 }
 
 export function isRemoteImageSource(image: ImageSource) {
-  return typeof image === "string" && REMOTE_IMAGE_PATTERN.test(image);
+  return isString(image) && REMOTE_IMAGE_PATTERN.test(image);
+}
+
+export function getStringImageBackgroundMeta(src: string): ImageBackgroundMeta {
+  return {
+    src,
+    aspect: DEFAULT_CTA_BACKGROUND_ASPECT,
+  };
+}
+
+export function getStaticImageBackgroundMeta(
+  image: StaticImageData,
+): ImageBackgroundMeta {
+  return {
+    src: image.src,
+    aspect: image.width / image.height,
+  };
+}
+
+export function getImageBackgroundMeta(
+  bgImage: ImageSource | undefined,
+): ImageBackgroundMeta | null {
+  if (!bgImage) return null;
+
+  if (isString(bgImage)) {
+    return getStringImageBackgroundMeta(bgImage);
+  }
+
+  return getStaticImageBackgroundMeta(bgImage);
 }
 
 export const ICON_DEFAULT_COLOR = "currentColor";

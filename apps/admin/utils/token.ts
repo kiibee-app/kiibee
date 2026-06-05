@@ -20,11 +20,12 @@ export function setTokens(accessToken: string, refreshToken: string) {
 }
 
 export function clearTokens() {
-  document.cookie = "accessToken=; Path=/; Max-Age=0";
-  document.cookie = "refreshToken=; Path=/; Max-Age=0";
-  document.cookie = "adminLoggedIn=; Path=/; Max-Age=0";
+  document.cookie = "accessToken=; Path=/; Max-Age=0; SameSite=Lax";
+  document.cookie = "refreshToken=; Path=/; Max-Age=0; SameSite=Lax";
+  document.cookie = "adminLoggedIn=; Path=/; Max-Age=0; SameSite=Lax";
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
+  localStorage.removeItem("adminLoggedIn");
   localStorage.removeItem("admin.authPayload");
 }
 

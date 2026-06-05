@@ -8,6 +8,10 @@ export type UploadConfig = {
   cropWidth: number;
   cropHeight: number;
   type: ImageType;
+  previewAspectRatio?: string;
+  previewMaxWidth?: string;
+  previewHeight?: string;
+  previewMinHeight?: string;
 };
 
 export type CoverImageSectionProps = {

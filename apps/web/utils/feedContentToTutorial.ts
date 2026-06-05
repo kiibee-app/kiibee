@@ -1,6 +1,10 @@
 import recentCreator from "@/assets/images/creators/recent_creator.webp";
+import {
+  getContentPricingActions,
+  isFreeContentItem,
+  resolveContentActionHref,
+} from "@/utils/contentPricingActions";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
-import { pathPublishedContent } from "@/utils/path";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -58,17 +62,6 @@ function formatFormatLabel(contentType?: string | null): string {
   return contentType;
 }
 
-function formatPriceLabel(
-  prefix: string,
-  price: string | number | null | undefined,
-): string | null {
-  if (price == null || price === "") return null;
-  const num = Number(price);
-  if (Number.isNaN(num) || num <= 0) return null;
-  const amount = Number.isInteger(num) ? String(num) : String(Math.round(num));
-  return `${prefix} ${amount} kr`;
-}
-
 export function dedupeFeedContentItems(
   items: FeedContentItem[],
 ): FeedContentItem[] {
@@ -85,32 +78,16 @@ function buildPricingButtons(
   item: FeedContentItem,
   freeLabel: string,
 ): TutorialButton[] {
-  const href = pathPublishedContent(item.id);
-  const base: Pick<TutorialButton, "variant" | "href"> = {
-    variant: VARIANT.SECONDARY,
-    href,
-  };
+  const actions = getContentPricingActions(item, freeLabel);
+  const requiresAuth = !isFreeContentItem(item);
 
-  if (item.accessType === ACCESS_TYPE_FREE) {
-    return [{ label: freeLabel, ...base }];
-  }
-
-  const buttons: TutorialButton[] = [];
-  const rent = formatPriceLabel("Rent", item.rentPrice);
-  if (rent) {
-    buttons.push({ label: rent, ...base, href: `${href}#rent` });
-  }
-
-  const buy = formatPriceLabel("Buy", item.buyPrice);
-  if (buy) {
-    buttons.push({ label: buy, ...base, href: `${href}#buy` });
-  }
-
-  if (buttons.length === 0) {
-    return [{ label: freeLabel, ...base }];
-  }
-
-  return buttons;
+  return actions.map((action) => ({
+    label: action.label,
+    variant: VARIANT.SOFT_OUTLINE,
+    href: resolveContentActionHref(item.id, action.label, item, actions.length),
+    requiresAuth,
+    fullWidth: action.fullWidth,
+  }));
 }
 
 export function feedContentToTutorial(
@@ -126,6 +103,7 @@ export function feedContentToTutorial(
     published: item.publishedAgo ?? "",
     focus: item.description ?? "",
     level: item.accessType === ACCESS_TYPE_FREE ? "Free" : "",
+    isFree: isFreeContentItem(item),
     formatLabel: formatFormatLabel(item.contentType),
     formatType: resolveFormatType(item.contentType),
     image: item.thumbnailUrl || recentCreator,

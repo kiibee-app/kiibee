@@ -32,6 +32,9 @@ export type CollectionsApiItem = {
   coverImageUrl?: string;
   visibility?: CollectionVisibility;
   isPublished?: boolean;
+  buyPrice?: number | string | null;
+  rentPrice?: number | string | null;
+  rentDuration?: string | null;
 };
 
 export type CollectionsApiResponse =
@@ -147,6 +150,9 @@ export const getCollectionRows = (
       coverImageUrl: item.coverImageUrl,
       visibility: item.visibility,
       isPublished: item.isPublished,
+      buyPrice: item.buyPrice != null ? Number(item.buyPrice) : null,
+      rentPrice: item.rentPrice != null ? Number(item.rentPrice) : null,
+      rentDuration: item.rentDuration ?? null,
     }));
 };
 
