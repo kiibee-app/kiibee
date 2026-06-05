@@ -81,22 +81,25 @@ export const useCreatorProfile = () => {
   const [forgotPwNotice, setForgotPwNotice] = useState<ForgotPwNotice>(null);
   const [passwordSubmitAttempted, setPasswordSubmitAttempted] = useState(false);
   const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
+  const [touched, setTouched] = useState<
+    Partial<Record<keyof PasswordState, boolean>>
+  >({});
 
   const passwordFieldErrors = useMemo(() => {
-    if (!passwordSubmitAttempted) {
-      return {} as Partial<Record<keyof PasswordState, string>>;
-    }
+    const shouldShowError = (field: keyof PasswordState) =>
+      touched[field] || passwordSubmitAttempted;
+
     const parsed = passwordSchema.safeParse(passwords);
     if (parsed.success) {
       return {} as Partial<Record<keyof PasswordState, string>>;
     }
     const fe = parsed.error.flatten().fieldErrors;
     return {
-      ...(fe.current?.[0] ? { current: fe.current[0] } : {}),
-      ...(fe.next?.[0] ? { next: fe.next[0] } : {}),
-      ...(fe.confirm?.[0] ? { confirm: fe.confirm[0] } : {}),
+      current: shouldShowError("current") ? fe.current?.[0] : undefined,
+      next: shouldShowError("next") ? fe.next?.[0] : undefined,
+      confirm: shouldShowError("confirm") ? fe.confirm?.[0] : undefined,
     };
-  }, [passwordSchema, passwords, passwordSubmitAttempted]);
+  }, [passwordSchema, passwords, touched, passwordSubmitAttempted]);
 
   const avatarDirty = avatarImage !== savedAvatarUrl;
 
@@ -176,6 +179,11 @@ export const useCreatorProfile = () => {
       setPasswords((prev) => ({
         ...prev,
         [field]: value ?? "",
+      }));
+
+      setTouched((prev) => ({
+        ...prev,
+        [field]: true,
       }));
     },
     [],
@@ -353,6 +361,24 @@ export const useCreatorProfile = () => {
   }, [forgetPasswordMutation, getErrorMessage, resetPasswords, saved.email, t]);
 
   const displayName = useMemo(() => displayCreatorName(form), [form]);
+  console.log(
+    "isPasswordFormValid",
+    passwordSchema.safeParse(passwords).success,
+    passwords,
+  );
+  const isPasswordFilled = useMemo(() => {
+    return (
+      passwords.current.trim().length > 0 &&
+      passwords.next.trim().length > 0 &&
+      passwords.confirm.trim().length > 0
+    );
+  }, [passwords]);
+
+  const isPasswordFormValid = useMemo(() => {
+    return passwordSchema.safeParse(passwords).success;
+  }, [passwordSchema, passwords]);
+
+  const canSubmitPassword = isPasswordFilled && isPasswordFormValid;
 
   return {
     form,
@@ -378,5 +404,6 @@ export const useCreatorProfile = () => {
     isSavingProfile: updateProfile.isPending || isUploadingAvatar,
     isChangingPassword: changePasswordMutation.isPending,
     isLoadingProfile: profileQuery.isLoading,
+    canSubmitPassword,
   };
 };
