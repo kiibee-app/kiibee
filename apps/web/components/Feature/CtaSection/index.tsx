@@ -17,8 +17,8 @@ import {
 import type { CtaSectionProps } from "@/types/ctaSection";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import { getImageBackgroundMeta } from "@/utils/media";
 import ScrollReveal from "@/components/UI/ScrollReveal";
-import { LANDING_IMAGE_FLAGS } from "@/utils/landingUtils";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
 
 export default function CtaSection({
@@ -31,20 +31,17 @@ export default function CtaSection({
 }: CtaSectionProps) {
   const { t } = useTranslation();
   const router = useRouter();
+  const background = getImageBackgroundMeta(bgImage);
 
   return (
-    <Section>
-      <Background>
-        {bgImage && (
-          <Image
-            src={bgImage}
-            alt={t("ctaSection.bgAlt")}
-            fill={LANDING_IMAGE_FLAGS.fill}
-            priority={LANDING_IMAGE_FLAGS.priority}
-            style={ctaSectionBackgroundImageStyle}
-          />
-        )}
-      </Background>
+    <Section $aspect={background?.aspect}>
+      {background && (
+        <Background
+          $src={background.src}
+          role="img"
+          aria-label={t("ctaSection.bgAlt")}
+        />
+      )}
 
       <Inner>
         <Content>
