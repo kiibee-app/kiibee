@@ -9,6 +9,9 @@ import { MonoText } from "@/components/UI/Monotext";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
+import { authStorage } from "@/lib/auth/authStorage";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { resolveContentViewerId } from "@/utils/path";
 import {
   CONTENT_MEDIA_QUERY_KEYS,
   CONTENT_MEDIA_RESPONSE_KEYS,
@@ -34,9 +37,14 @@ function PublishedContentDetail() {
   const params = useParams();
   const user = useStoredLoginUser();
   const userId = user?.id || "null";
+  const loginUser = useStoredLoginUser();
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
   const normalizedContentKey = contentKey?.replaceAll(":", "-");
+  const viewerId = resolveContentViewerId(loginUser?.id);
+  const contentViewRoute = normalizedContentKey
+    ? API.content.view(normalizedContentKey, viewerId)
+    : API.content.create;
   const tutorialFallback = tutorialVideos.find(
     (video) => video.id === normalizedContentKey,
   );
@@ -49,6 +57,7 @@ function PublishedContentDetail() {
     normalizedContentKey
       ? `/content/${normalizedContentKey}/${userId}`
       : API.content.create,
+    contentViewRoute,
     undefined,
     {
       enabled: Boolean(normalizedContentKey) && !tutorialFallback,
@@ -61,7 +70,7 @@ function PublishedContentDetail() {
   const relatedCollectionQuery = useRelatedCollectionContent(
     normalizedContentKey,
     {
-      enabled: !tutorialFallback,
+      enabled: !tutorialFallback && authStorage.hasSession(),
     },
   );
   const mediaEndpoint =

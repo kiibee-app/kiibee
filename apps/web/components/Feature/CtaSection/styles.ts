@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { type CSSProperties } from "react";
+import GenericButton from "@/components/UI/GenericButton";
 
 export const Section = styled.section`
   width: 100%;
@@ -74,6 +75,15 @@ export const Subtitle = styled.p`
   max-width: 800px;
 
   ${media.tablet} {
+  }
+`;
+
+export const CTAButton = styled(GenericButton)`
+  &:hover,
+  &:focus-visible,
+  &:active {
+    color: ${({ theme }) => theme.colors.primary.WHITE} !important;
+    border-color: ${({ theme }) => theme.colors.primary.WHITE} !important;
   }
 `;
 

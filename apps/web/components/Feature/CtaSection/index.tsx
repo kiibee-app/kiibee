@@ -4,7 +4,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import Image from "@/components/UI/SafeImage";
-import GenericButton from "@/components/UI/GenericButton";
 import {
   Section,
   Background,
@@ -12,6 +11,7 @@ import {
   Content,
   Title,
   Subtitle,
+  CTAButton,
   ctaSectionBackgroundImageStyle,
 } from "./styles";
 import type { CtaSectionProps } from "@/types/ctaSection";
@@ -72,13 +72,13 @@ export default function CtaSection({
             ))}
 
           {ctaText && (
-            <GenericButton
+            <CTAButton
               type="button"
               onClick={() => router.push(ctaHref ?? PATHS.AUTH_SIGNUP)}
               variant={VARIANT.PRIMARY_LITE}
             >
               {ctaText}
-            </GenericButton>
+            </CTAButton>
           )}
         </Content>
       </Inner>

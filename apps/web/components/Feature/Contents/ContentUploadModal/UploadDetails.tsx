@@ -10,6 +10,8 @@ import { useTranslation } from "react-i18next";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MonoText } from "@/components/UI/Monotext";
 
+import { SpinnerIcon } from "@/utils/icon/SpinnerIcon";
+
 type Props = {
   title: string;
   description: string;
@@ -35,8 +37,24 @@ export default function ContentUploadDetails({
   isSuccess,
   isSubmitting,
   errorMessage,
+  uploadType,
 }: Props) {
   const { t } = useTranslation();
+
+  if (isSubmitting) {
+    return (
+      <UploadSuccess>
+        <SpinnerIcon />
+        <MonoText $use="H5_Medium">
+          {t("contents.contentUploadModal.uploading")}{" "}
+          {t(
+            `contents.contentTypeModal.options.${uploadType || "video"}`,
+          ).toLowerCase()}
+        </MonoText>
+      </UploadSuccess>
+    );
+  }
+
   if (isSuccess) {
     return (
       <UploadSuccess>

@@ -78,6 +78,7 @@ export default function CreatorProfile() {
     passwordFieldErrors,
     isSavingProfile,
     isChangingPassword,
+    canSubmitPassword,
   } = useCreatorProfile();
 
   const fields = useMemo(() => getProfileFields(t), [t]);
@@ -174,7 +175,7 @@ export default function CreatorProfile() {
         size="md"
         fullWidthButtons
         buttonRow
-        confirmDisabled={isChangingPassword}
+        confirmDisabled={isChangingPassword || !canSubmitPassword}
       >
         <PasswordSection
           passwords={passwords}
