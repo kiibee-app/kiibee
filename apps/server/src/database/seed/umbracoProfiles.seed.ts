@@ -645,13 +645,7 @@ export const seedUmbracoProfiles = async () => {
           createdAt: now,
           updatedAt: now,
         })
-        .onConflictDoUpdate({
-          target: creatorPlans.id,
-          set: {
-            planId,
-            updatedAt: now,
-          },
-        });
+        .onConflictDoNothing({ target: creatorPlans.id });
 
       await tx
         .insert(auditLogs)
@@ -680,31 +674,7 @@ export const seedUmbracoProfiles = async () => {
           },
           createdAt: now,
         })
-        .onConflictDoUpdate({
-          target: auditLogs.id,
-          set: {
-            userId: mapped.userId,
-            entityId: mapped.creatorChannelId,
-            details: {
-              source:
-                profile.source === 'shows-only'
-                  ? 'umbraco-data/shows-only'
-                  : 'umbraco-data/profile-info',
-              profileKey: mapped.profileKey,
-              mapped: {
-                email: mapped.email,
-                channelSlug: mapped.channelSlug,
-                supportEmail: mapped.supportEmail,
-                notificationEmails: mapped.notificationEmails,
-                legacyOwner: mapped.legacyOwner,
-                legacySubscription: mapped.legacySubscription,
-                desiredPlanName: mapped.desiredPlanName,
-              },
-              rawFiles: mapped.rawFiles,
-            },
-            createdAt: now,
-          },
-        });
+        .onConflictDoNothing({ target: auditLogs.id });
     });
 
     processed += 1;

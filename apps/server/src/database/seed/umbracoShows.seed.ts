@@ -461,7 +461,6 @@ async function ensureDefaultCollection(
         slug: collectionSlug,
         visibility: 'public',
         isPublished: true,
-        publishedAt: now,
         updatedAt: now,
       },
     });
@@ -634,7 +633,6 @@ export const seedUmbracoShows = async () => {
               isDownloadable: !isEnabled(show.hideDownload),
               sortOrder,
               isPublished,
-              publishedAt,
               updatedAt: now,
             },
           });
@@ -649,14 +647,7 @@ export const seedUmbracoShows = async () => {
             createdAt: now,
             updatedAt: now,
           })
-          .onConflictDoUpdate({
-            target: collectionItems.id,
-            set: {
-              collectionId,
-              sortOrder,
-              updatedAt: now,
-            },
-          });
+          .onConflictDoNothing({ target: collectionItems.id });
 
         const showTags = parseTags(show.tags);
         for (const tagName of showTags) {
@@ -731,32 +722,7 @@ export const seedUmbracoShows = async () => {
             },
             createdAt: now,
           })
-          .onConflictDoUpdate({
-            target: auditLogs.id,
-            set: {
-              userId: creatorId,
-              entityId: mediaFileId,
-              details: {
-                source: 'umbraco-data/shows',
-                profileKey: profile.profileKey,
-                umbraco: {
-                  id: show.id ?? null,
-                  key: showKey,
-                  udi: show.udi ?? null,
-                  urls: show.urls ?? [],
-                },
-                mapped: {
-                  slug,
-                  contentTypeId,
-                  accessType,
-                  visibility,
-                  collectionId,
-                },
-                raw: show,
-              },
-              createdAt: now,
-            },
-          });
+          .onConflictDoNothing({ target: auditLogs.id });
       });
 
       showsProcessed += 1;
