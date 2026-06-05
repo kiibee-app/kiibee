@@ -29,6 +29,7 @@ import {
 } from "./styles";
 import {
   ACCESS_DURATION_VALUES,
+  AccessDurationValue,
   PAYMENT_ADMISSION_VALUE,
   PAYMENT_DEFAULT_ACCESS_DURATION,
 } from "@/utils/common";
@@ -53,6 +54,12 @@ interface AdmissionRequirementsProps {
   onChangePasswords?: (value: string) => void;
   description?: string;
   onChangeDescription?: (value: string) => void;
+  rentalAmount?: string;
+  onChangeRentalAmount?: (value: string) => void;
+  purchaseAmount?: string;
+  onChangePurchaseAmount?: (value: string) => void;
+  accessDuration?: AccessDurationValue;
+  onChangeAccessDuration?: (value: AccessDurationValue) => void;
   showDescription?: boolean;
   showPaymentOption?: boolean;
 }
@@ -64,6 +71,12 @@ function AdmissionRequirements({
   onChangePasswords,
   description: propDescription,
   onChangeDescription,
+  rentalAmount: propRentalAmount,
+  onChangeRentalAmount,
+  purchaseAmount: propPurchaseAmount,
+  onChangePurchaseAmount,
+  accessDuration: propAccessDuration,
+  onChangeAccessDuration,
   showDescription = true,
   showPaymentOption = true,
 }: AdmissionRequirementsProps) {
@@ -74,21 +87,33 @@ function AdmissionRequirements({
   );
   const [localPasswords, setLocalPasswords] = useState("");
   const [localDescription, setLocalDescription] = useState("");
+  const [localRentalAmount, setLocalRentalAmount] = useState("");
+  const [localPurchaseAmount, setLocalPurchaseAmount] = useState("");
+  const [localAccessDuration, setLocalAccessDuration] =
+    useState<AccessDurationValue>(PAYMENT_DEFAULT_ACCESS_DURATION);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [formState, setFormState] = useState({
-    rentalAmount: "",
-    purchaseAmount: "",
-    maxAccessLimit: PAYMENT_DEFAULT_ACCESS_DURATION,
-    showRentalSection: true,
-    showPurchaseSection: true,
-  });
+
+  const rentalAmount = propRentalAmount ?? localRentalAmount;
+  const purchaseAmount = propPurchaseAmount ?? localPurchaseAmount;
+  const accessDuration = propAccessDuration ?? localAccessDuration;
 
   const updateField = (key: string, value: string) => {
-    setFormState((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
+    switch (key) {
+      case "rentalAmount":
+        if (onChangeRentalAmount) onChangeRentalAmount(value);
+        else setLocalRentalAmount(value);
+        break;
+      case "purchaseAmount":
+        if (onChangePurchaseAmount) onChangePurchaseAmount(value);
+        else setLocalPurchaseAmount(value);
+        break;
+      case "maxAccessLimit":
+        if (onChangeAccessDuration)
+          onChangeAccessDuration(value as AccessDurationValue);
+        else setLocalAccessDuration(value as AccessDurationValue);
+        break;
+    }
   };
 
   useClickOutside({
@@ -192,7 +217,13 @@ function AdmissionRequirements({
         showPaymentOption && (
           <SettingsPaymentSection
             t={t}
-            formState={formState}
+            formState={{
+              rentalAmount,
+              purchaseAmount,
+              maxAccessLimit: accessDuration,
+              showRentalSection: true,
+              showPurchaseSection: true,
+            }}
             updateField={updateField}
             downloadLimitOptions={downloadLimitOptions}
           />

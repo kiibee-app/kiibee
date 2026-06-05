@@ -4,6 +4,7 @@ import {
   varchar,
   boolean,
   integer,
+  numeric,
   timestamp,
   index,
   uniqueIndex,
@@ -28,6 +29,9 @@ export const collections = pgTable(
     description: text('description'),
     visibility: visibilityEnum('visibility').notNull().default('draft'),
     accessType: accessTypeEnum('access_type').notNull().default('free'),
+    buyPrice: numeric('buy_price', { precision: 10, scale: 2 }),
+    rentPrice: numeric('rent_price', { precision: 10, scale: 2 }),
+    rentDuration: text('rent_duration'),
     sortOrder: integer('sort_order').notNull().default(0),
     isPublished: boolean('is_published').notNull().default(false),
     publishedAt: timestamp('published_at', {

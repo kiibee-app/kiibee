@@ -3,20 +3,39 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
-import DropdownField from "@/components/UI/InputFields/DropdownField";
+import DropdownField, {
+  type OptionItem,
+} from "@/components/UI/InputFields/DropdownField";
 import { MonoText } from "@/components/UI/Monotext";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { ControlWrap, GeneralPanel, ItemText, List } from "../General/styles";
 import { ItemRow } from "../Appearance/styles";
-import { getCategoryOptions } from "@/utils/content";
 import { useContentForm } from "../ContentFormContext";
+import { useGetAPI } from "@/lib/http/api";
+import { API } from "@/lib/http/api";
+
+type TaxonomyItem = { id: string; name: string };
+type ApiResponse<T> = { data?: T | null };
 
 export default function PublishedSection() {
   const { t } = useTranslation();
   const { formState, updateField } = useContentForm();
 
-  const categoryOptions = useMemo(() => getCategoryOptions(t), [t]);
+  const categoriesQuery = useGetAPI<ApiResponse<TaxonomyItem[]>>(
+    API.content.categories,
+  );
+
+  const categoryOptions = useMemo((): OptionItem[] => {
+    const items = categoriesQuery.data?.data;
+    if (!Array.isArray(items)) return [];
+    return items
+      .filter((item) => item.id && item.name)
+      .map((item) => ({
+        value: item.id,
+        label: item.name,
+      }));
+  }, [categoriesQuery.data]);
 
   const handleInputChange =
     (field: keyof typeof formState) => (value: string | string[]) => {

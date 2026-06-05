@@ -134,7 +134,7 @@ export const ACCESS_DURATION_VALUES = [
 
 export type AccessDurationValue = (typeof ACCESS_DURATION_VALUES)[number];
 
-export const PAYMENT_DEFAULT_ACCESS_DURATION = "1 month" as const;
+export const PAYMENT_DEFAULT_ACCESS_DURATION = "1_month" as const;
 
 export function toCamelCaseKey(value: string): string {
   return value

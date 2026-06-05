@@ -250,6 +250,12 @@ function CreatorsContentsInner() {
     setCollectionPasswords,
     collectionDescription,
     setCollectionDescription,
+    collectionRentalAmount,
+    setCollectionRentalAmount,
+    collectionPurchaseAmount,
+    setCollectionPurchaseAmount,
+    collectionAccessDuration,
+    setCollectionAccessDuration,
     hasUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
@@ -388,6 +394,12 @@ function CreatorsContentsInner() {
             setCollectionPasswords={setCollectionPasswords}
             collectionDescription={collectionDescription}
             setCollectionDescription={setCollectionDescription}
+            collectionRentalAmount={collectionRentalAmount}
+            setCollectionRentalAmount={setCollectionRentalAmount}
+            collectionPurchaseAmount={collectionPurchaseAmount}
+            setCollectionPurchaseAmount={setCollectionPurchaseAmount}
+            collectionAccessDuration={collectionAccessDuration}
+            setCollectionAccessDuration={setCollectionAccessDuration}
           />
         </ContentPanel>
       </ContentsScrollArea>
