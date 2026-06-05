@@ -33,7 +33,10 @@ import {
   PAYMENT_ADMISSION_VALUE,
   PAYMENT_DEFAULT_ACCESS_DURATION,
 } from "@/utils/common";
-import { getAccessDurationOptions } from "@/utils/paymentRequirements";
+import {
+  getAccessDurationOptions,
+  PAYMENTS_FORM_FIELDS,
+} from "@/utils/paymentRequirements";
 import SettingsPaymentSection from "./PaymentSection";
 const updateValue = <T,>(
   value: T,
@@ -99,21 +102,16 @@ function AdmissionRequirements({
   const accessDuration = propAccessDuration ?? localAccessDuration;
 
   const updateField = (key: string, value: string) => {
-    switch (key) {
-      case "rentalAmount":
-        if (onChangeRentalAmount) onChangeRentalAmount(value);
-        else setLocalRentalAmount(value);
-        break;
-      case "purchaseAmount":
-        if (onChangePurchaseAmount) onChangePurchaseAmount(value);
-        else setLocalPurchaseAmount(value);
-        break;
-      case "maxAccessLimit":
-        if (onChangeAccessDuration)
-          onChangeAccessDuration(value as AccessDurationValue);
-        else setLocalAccessDuration(value as AccessDurationValue);
-        break;
-    }
+    const handlers: Record<string, () => void> = {
+      [PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT]: () =>
+        onChangeRentalAmount?.(value) ?? setLocalRentalAmount(value),
+      [PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT]: () =>
+        onChangePurchaseAmount?.(value) ?? setLocalPurchaseAmount(value),
+      [PAYMENTS_FORM_FIELDS.MAX_ACCESS_LIMIT]: () =>
+        onChangeAccessDuration?.(value as AccessDurationValue) ??
+        setLocalAccessDuration(value as AccessDurationValue),
+    };
+    handlers[key]?.();
   };
 
   useClickOutside({
