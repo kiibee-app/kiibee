@@ -10,6 +10,7 @@ import {
   COUPONS,
   ContentTab,
   SETTINGS,
+  AccessDurationValue,
 } from "@/utils/common";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import { AdmissionRequirementValue } from "@/utils/admissionRequirements";
@@ -67,6 +68,12 @@ type Props = {
   setCollectionPasswords?: (value: string) => void;
   collectionDescription?: string;
   setCollectionDescription?: (value: string) => void;
+  collectionRentalAmount?: string;
+  setCollectionRentalAmount?: (value: string) => void;
+  collectionPurchaseAmount?: string;
+  setCollectionPurchaseAmount?: (value: string) => void;
+  collectionAccessDuration?: AccessDurationValue;
+  setCollectionAccessDuration?: (value: AccessDurationValue) => void;
 };
 
 export default function ContentTabPanel({
@@ -92,6 +99,12 @@ export default function ContentTabPanel({
   setCollectionPasswords,
   collectionDescription,
   setCollectionDescription,
+  collectionRentalAmount,
+  setCollectionRentalAmount,
+  collectionPurchaseAmount,
+  setCollectionPurchaseAmount,
+  collectionAccessDuration,
+  setCollectionAccessDuration,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -227,6 +240,12 @@ export default function ContentTabPanel({
         onChangePasswords={setCollectionPasswords}
         description={collectionDescription}
         onChangeDescription={setCollectionDescription}
+        rentalAmount={collectionRentalAmount}
+        onChangeRentalAmount={setCollectionRentalAmount}
+        purchaseAmount={collectionPurchaseAmount}
+        onChangePurchaseAmount={setCollectionPurchaseAmount}
+        accessDuration={collectionAccessDuration}
+        onChangeAccessDuration={setCollectionAccessDuration}
         showDescription={Boolean(selectedCollection)}
         showPaymentOption={Boolean(selectedCollection)}
       />

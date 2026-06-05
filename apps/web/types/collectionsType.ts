@@ -19,6 +19,9 @@ export type CollectionRow = {
   coverImageUrl?: string;
   visibility?: CollectionVisibility;
   isPublished?: boolean;
+  buyPrice?: number | null;
+  rentPrice?: number | null;
+  rentDuration?: string | null;
 };
 
 export type CollectionContentType = ContentType;

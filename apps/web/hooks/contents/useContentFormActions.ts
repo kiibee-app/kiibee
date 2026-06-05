@@ -22,11 +22,13 @@ import {
   COLLECTIONS,
   SETTINGS,
   ContentTab,
+  PAYMENT_DEFAULT_ACCESS_DURATION,
 } from "@/utils/common";
 import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
 } from "@/utils/admissionRequirements";
+import { AccessDurationValue } from "@/utils/common";
 import {
   ACCESS_TYPE_FREE,
   ADMISSION_REQUIREMENT_PAYMENT,
@@ -98,6 +100,10 @@ export function useContentFormActions({
     useState<AdmissionRequirementValue>(ADMISSION_REQUIREMENT_VALUES.free);
   const [collectionPasswords, setCollectionPasswords] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
+  const [collectionRentalAmount, setCollectionRentalAmount] = useState("");
+  const [collectionPurchaseAmount, setCollectionPurchaseAmount] = useState("");
+  const [collectionAccessDuration, setCollectionAccessDuration] =
+    useState<AccessDurationValue>(PAYMENT_DEFAULT_ACCESS_DURATION);
 
   const [prevCollectionId, setPrevCollectionId] = useState<string | null>(null);
 
@@ -109,6 +115,20 @@ export function useContentFormActions({
     setCollectionAccessType(uiAccessType);
     setCollectionPasswords("");
     setCollectionDescription(selectedCollection.description ?? "");
+    setCollectionRentalAmount(
+      selectedCollection.rentPrice != null
+        ? String(selectedCollection.rentPrice)
+        : "",
+    );
+    setCollectionPurchaseAmount(
+      selectedCollection.buyPrice != null
+        ? String(selectedCollection.buyPrice)
+        : "",
+    );
+    setCollectionAccessDuration(
+      (selectedCollection.rentDuration as AccessDurationValue) ??
+        (PAYMENT_DEFAULT_ACCESS_DURATION as AccessDurationValue),
+    );
   } else if (!selectedCollection && prevCollectionId !== null) {
     setPrevCollectionId(null);
   }
@@ -215,9 +235,19 @@ export function useContentFormActions({
       const apiAccessType =
         uiToApiAccessTypeMap[collectionAccessType] ?? ACCESS_TYPE_FREE;
 
+      const hasRental =
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
+        collectionRentalAmount !== "";
+      const hasPurchase =
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
+        collectionPurchaseAmount !== "";
+
       await axiosClient.patch(API.collection.update(selectedCollection.id), {
         accessType: apiAccessType,
         description: collectionDescription.trim(),
+        rentPrice: hasRental ? parseFloat(collectionRentalAmount) : null,
+        buyPrice: hasPurchase ? parseFloat(collectionPurchaseAmount) : null,
+        rentDuration: hasRental ? collectionAccessDuration : null,
       });
 
       setCollections((prev) =>
@@ -227,6 +257,13 @@ export function useContentFormActions({
                 ...c,
                 accessType: apiAccessType,
                 description: collectionDescription.trim(),
+                rentPrice: hasRental
+                  ? parseFloat(collectionRentalAmount)
+                  : null,
+                buyPrice: hasPurchase
+                  ? parseFloat(collectionPurchaseAmount)
+                  : null,
+                rentDuration: hasRental ? collectionAccessDuration : null,
               }
             : c,
         ),
@@ -236,6 +273,9 @@ export function useContentFormActions({
         ...selectedCollection,
         accessType: apiAccessType,
         description: collectionDescription.trim(),
+        rentPrice: hasRental ? parseFloat(collectionRentalAmount) : null,
+        buyPrice: hasPurchase ? parseFloat(collectionPurchaseAmount) : null,
+        rentDuration: hasRental ? collectionAccessDuration : null,
       });
 
       await queryClient.invalidateQueries({
@@ -434,6 +474,12 @@ export function useContentFormActions({
     setCollectionPasswords,
     collectionDescription,
     setCollectionDescription,
+    collectionRentalAmount,
+    setCollectionRentalAmount,
+    collectionPurchaseAmount,
+    setCollectionPurchaseAmount,
+    collectionAccessDuration,
+    setCollectionAccessDuration,
     hasUnsavedChanges: hasAppearanceChanges,
     handleUploadSuccess,
     handleBackToBase,
