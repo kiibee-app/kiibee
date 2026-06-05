@@ -1,6 +1,7 @@
 "use client";
 
 import { CircleCheck, Copy, Lock, Shield, UserRound } from "lucide-react";
+import { decodeToken, getAccessToken } from "../../utils/token";
 import {
   Avatar,
   Badge,
@@ -51,15 +52,31 @@ export default function ProfilePage() {
             return {};
           }
         })();
+  const tokenPayload = payload.email
+    ? null
+    : decodeToken(getAccessToken() ?? "");
+  const profilePayload: StoredAuthPayload = payload.email
+    ? payload
+    : {
+        id: tokenPayload?.sub,
+        email: tokenPayload?.email,
+        role: tokenPayload?.role,
+      };
 
   const initials =
-    String(payload.fullName ?? "")
+    String(profilePayload.fullName || profilePayload.email?.split("@")[0] || "")
       .split(" ")
       .filter(Boolean)
       .map((part) => part.charAt(0))
       .join("")
       .slice(0, 2)
       .toUpperCase() || "AD";
+  const currentName =
+    profilePayload.fullName?.trim() ||
+    (profilePayload.email?.includes("@")
+      ? profilePayload.email.split("@")[0]
+      : profilePayload.email) ||
+    PLACEHOLDER;
 
   return (
     <Page>
@@ -67,11 +84,11 @@ export default function ProfilePage() {
         <HeroLeft>
           <Avatar>{initials}</Avatar>
           <HeroIdentity>
-            <Name>{String(payload.fullName ?? PLACEHOLDER)}</Name>
-            <Email>{String(payload.email ?? PLACEHOLDER)}</Email>
+            <Name>{currentName}</Name>
+            <Email>{String(profilePayload.email ?? PLACEHOLDER)}</Email>
             <Badge $tone="blue">
               <Shield size={15} />
-              {String(payload.role ?? PLACEHOLDER)}
+              {String(profilePayload.role ?? PLACEHOLDER)}
             </Badge>
           </HeroIdentity>
         </HeroLeft>
@@ -90,20 +107,20 @@ export default function ProfilePage() {
           </CardHeader>
 
           <Field>
-            <Label>Full Name</Label>
-            <Value>{String(payload.fullName ?? PLACEHOLDER)}</Value>
+            <Label>Current Name</Label>
+            <Value>{currentName}</Value>
           </Field>
 
           <Field>
             <Label>Email</Label>
-            <Value>{String(payload.email ?? PLACEHOLDER)}</Value>
+            <Value>{String(profilePayload.email ?? PLACEHOLDER)}</Value>
           </Field>
 
           <FieldNoBorder>
             <FieldTop>
               <Label>Email Verification</Label>
-              <Badge $tone={payload.isEmailVerified ? "green" : "amber"}>
-                {payload.isEmailVerified ? (
+              <Badge $tone={profilePayload.isEmailVerified ? "green" : "amber"}>
+                {profilePayload.isEmailVerified ? (
                   <>
                     <CircleCheck size={15} />
                     Verified
@@ -133,25 +150,25 @@ export default function ProfilePage() {
               <IconAction
                 type="button"
                 onClick={() =>
-                  navigator.clipboard.writeText(String(payload.id ?? ""))
+                  navigator.clipboard.writeText(String(profilePayload.id ?? ""))
                 }
               >
                 <Copy size={14} />
               </IconAction>
             </FieldTop>
-            <Value>{String(payload.id ?? PLACEHOLDER)}</Value>
+            <Value>{String(profilePayload.id ?? PLACEHOLDER)}</Value>
           </Field>
 
           <Field>
             <Label>Role</Label>
-            <Value>{String(payload.role ?? PLACEHOLDER)}</Value>
+            <Value>{String(profilePayload.role ?? PLACEHOLDER)}</Value>
           </Field>
 
           <FieldNoBorder>
             <Label>Status</Label>
             <Badge $tone="amber">
               <Shield size={15} />
-              {String(payload.status ?? PLACEHOLDER)}
+              {String(profilePayload.status ?? PLACEHOLDER)}
             </Badge>
             <StatusText>
               This page only shows essential account details to keep profile

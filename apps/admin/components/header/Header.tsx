@@ -47,6 +47,7 @@ export function Header({ title, description, onToggleSidebar }: HeaderProps) {
 
   const handleLogout = () => {
     localStorage.removeItem("adminLoggedIn");
+    localStorage.removeItem("admin.authPayload");
     document.cookie = "adminLoggedIn=; Path=/; Max-Age=0; SameSite=Lax";
     setOpen(false);
     router.push("/login");

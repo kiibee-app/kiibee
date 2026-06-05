@@ -2,6 +2,15 @@
 
 import type { DecodedToken } from "../types/auth";
 
+type StoredAuthPayload = {
+  id?: string;
+  fullName?: string;
+  email?: string;
+  role?: string;
+  status?: string;
+  isEmailVerified?: boolean;
+};
+
 export function setTokens(accessToken: string, refreshToken: string) {
   document.cookie = `accessToken=${accessToken}; Path=/; Max-Age=86400; SameSite=Lax`;
   document.cookie = `refreshToken=${refreshToken}; Path=/; Max-Age=604800; SameSite=Lax`;
@@ -16,6 +25,7 @@ export function clearTokens() {
   document.cookie = "adminLoggedIn=; Path=/; Max-Age=0";
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
+  localStorage.removeItem("admin.authPayload");
 }
 
 export function getAccessToken(): string | null {
@@ -52,4 +62,8 @@ export function isTokenExpired(token: string): boolean {
 
 export function hasAdminRole(decodedToken: DecodedToken | null): boolean {
   return decodedToken?.role === "admin";
+}
+
+export function setAuthPayload(payload: StoredAuthPayload) {
+  localStorage.setItem("admin.authPayload", JSON.stringify(payload));
 }
