@@ -1124,6 +1124,12 @@
         "placeholder": "Faktureringshistorik vises her.",
         "searchContent": "Søg efter indholdstitel",
         "searchCreator": "Søg efter skabernavn",
+        "invoiceModal": {
+          "title": "Faktura",
+          "orderNumber": "Ordrenummer",
+          "contentDetails": "Indholdsdetaljer",
+          "share": "Del"
+        },
         "tableHeaders": {
           "contentTitle": "Indholdstitel",
           "creatorName": "Skabernavn",
@@ -1139,6 +1145,7 @@
         "defaultBadge": "Standard",
         "expires": "Udløber {{date}}",
         "edit": "Rediger betalingsmetode",
+        "markAsDefault": "Sæt som standard",
         "delete": "Slet betalingsmetode",
         "more": "Flere handlinger",
         "deleteModal": {

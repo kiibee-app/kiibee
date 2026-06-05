@@ -7,12 +7,18 @@ import {
   VIEWER_BILLING_TABS,
   type ViewerBillingTab,
 } from "@/utils/common";
-import { BILLING_TAB, CARD_BRANDS } from "@/utils/Constants";
+import {
+  BILLING_TAB,
+  CARD_BRANDS,
+  PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT,
+  SORT_DROPDOWN_VARIANT,
+} from "@/utils/Constants";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { MonoText } from "@/components/UI/Monotext";
 import SearchBar from "@/components/UI/SearchBar";
 import Table from "@/components/UI/Table";
+import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
 import {
   DeleteIcon,
   EditProfileIcon,
@@ -60,6 +66,7 @@ import {
 } from "./styles";
 import AddCardModal from "./AddCardModal";
 import EditCardModal from "./EditCardModal";
+import InvoiceModal from "./InvoiceModal";
 
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
@@ -73,6 +80,9 @@ export default function ClientViewerBillings() {
     useState<ViewerPaymentMethod | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+  const [selectedInvoice, setSelectedInvoice] =
+    useState<ViewerBillingHistoryItem | null>(null);
+  const [showInvoiceModal, setShowInvoiceModal] = useState(false);
 
   const handleCloseModal = () => {
     setShowAddCardModal(false);
@@ -114,6 +124,36 @@ export default function ClientViewerBillings() {
     setShowDeleteSuccessModal(true);
   };
 
+  const handleInvoiceOpen = (invoice: ViewerBillingHistoryItem) => {
+    setSelectedInvoice(invoice);
+    setShowInvoiceModal(true);
+  };
+
+  const handleMarkAsDefault = (method: ViewerPaymentMethod) => {
+    setPaymentMethods((prev) =>
+      prev.map((item) => ({
+        ...item,
+        isDefault: item.id === method.id,
+      })),
+    );
+  };
+
+  const getMethodActions = (): DropdownOption<string>[] => [
+    {
+      label: t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.markAsDefault),
+      value: PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT,
+    },
+  ];
+
+  const handleMethodActionSelect = (
+    method: ViewerPaymentMethod,
+    action: string,
+  ) => {
+    if (action === PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT) {
+      handleMarkAsDefault(method);
+    }
+  };
+
   const { activeTab, setActiveTabAndQuery } =
     useQuerySyncedTab<ViewerBillingTab>({
       queryKey: BILLING_TAB,
@@ -152,6 +192,7 @@ export default function ClientViewerBillings() {
               headers={billingHistoryHeaders}
               data={MOCK_VIEWER_BILLING_HISTORY}
               rowsPerPage={10}
+              onRowClick={(row) => handleInvoiceOpen(row)}
               emptyText={t(DASHBOARD_VIEWER_BILLINGS.billingHistory.empty)}
               headerToKey={(header) => billingHistoryHeaderMap[header]}
               getRowKey={(row) => row.id}
@@ -309,14 +350,19 @@ export default function ClientViewerBillings() {
                   >
                     <DeleteIcon color={COLORS.gradient.NEAR_BLACK} />
                   </IconButton>
-                  <IconButton
-                    type="button"
-                    aria-label={t(
-                      DASHBOARD_VIEWER_BILLINGS.paymentMethods.more,
-                    )}
-                  >
-                    <ThreeDotIcon color={COLORS.gradient.NEAR_BLACK} />
-                  </IconButton>
+                  <SortDropdown<string>
+                    options={getMethodActions()}
+                    compact
+                    dropdownWidth="196px"
+                    maxWidth="196px"
+                    variant={SORT_DROPDOWN_VARIANT.SURFACE}
+                    trigger={
+                      <ThreeDotIcon color={COLORS.gradient.NEAR_BLACK} />
+                    }
+                    onChange={(action) =>
+                      handleMethodActionSelect(method, action)
+                    }
+                  />
                 </Actions>
               </MethodRow>
             ))}
@@ -324,6 +370,14 @@ export default function ClientViewerBillings() {
         </>
       )}
       <AddCardModal visible={showAddCardModal} onClose={handleCloseModal} />
+      <InvoiceModal
+        visible={showInvoiceModal}
+        invoice={selectedInvoice}
+        onClose={() => {
+          setShowInvoiceModal(false);
+          setSelectedInvoice(null);
+        }}
+      />
       {selectedPaymentMethod ? (
         <EditCardModal
           key={`${selectedPaymentMethod.id}-${showEditCardModal ? "open" : "closed"}`}

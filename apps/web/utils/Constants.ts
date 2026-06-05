@@ -79,6 +79,7 @@ export function toTrimmedString(value: unknown): string {
 export const COUPON_ACTION_EDIT = "edit";
 export const COUPON_ACTION_STATUS = "status";
 export const COUPON_ACTION_DELETE = "delete";
+export const PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT = "markAsDefault";
 export const PROFILE_HOME_SECTION = {
   LATEST_UPLOAD: "latestUpload",
   ABOUT: "about",
