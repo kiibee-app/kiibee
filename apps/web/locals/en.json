@@ -1161,6 +1161,20 @@
           "cvvPlaceholder": "CVV",
           "successTitle": "New card added",
           "successMessage": "New card has been successfully added."
+        },
+        "editCardModal": {
+          "title": "Edit card",
+          "cardNumber": "Card number",
+          "expiryDate": "Expiry date",
+          "cvv": "Security code",
+          "cardPlaceholder": "XXXX XXXX XXXX XXXX",
+          "expiryPlaceholder": "MM/YY",
+          "cvvPlaceholder": "CVV"
+        },
+        "editSuccessModal": {
+          "title": "Changes saved",
+          "message": "Your updates have been successfully saved.",
+          "confirm": "Done"
         }
       }
     },

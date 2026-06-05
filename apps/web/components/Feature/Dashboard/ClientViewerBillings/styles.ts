@@ -314,3 +314,10 @@ export const Grid = styled.div`
     gap: 16px;
   }
 `;
+
+export const CardIconBox = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+`;
