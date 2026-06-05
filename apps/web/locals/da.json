@@ -1598,7 +1598,8 @@
         "mediaCardLabel": "Upload miniature til mediekortet",
         "mediaCardSize": "Brug størrelse 250x190 pixel billede",
         "portraitLabel": "Upload miniature til portrætformat",
-        "portraitSize": "Brug størrelse 634x345 pixel billede"
+        "portraitSize": "Brug størrelse 634x345 pixel billede",
+        "portraitPdfSize": "Brug størrelse 376x530 pixel billede"
       }
     },
     "couponSearch": {

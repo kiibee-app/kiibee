@@ -1600,7 +1600,8 @@
         "mediaCardLabel": "Upload thumbnail for the media card",
         "mediaCardSize": "Use size 250x190 pixel image",
         "portraitLabel": "Upload thumbnail for portrait format",
-        "portraitSize": "Use size 634x345 pixel image"
+        "portraitSize": "Use size 634x345 pixel image",
+        "portraitPdfSize": "Use size 376x530 pixel image"
       }
     },
     "couponSearch": {

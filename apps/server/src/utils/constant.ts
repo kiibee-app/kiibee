@@ -114,3 +114,9 @@ export const PAYMENT_STATUS = {
   PAYMENT_FAILED: 'FAILED',
   PAYMENT_EXPIRED: 'EXPIRED',
 } as const;
+
+export const CONTENT_TYPES = {
+  VIDEO: 'Video',
+  AUDIO: 'Audio',
+  PDF: 'PDF',
+} as const;
