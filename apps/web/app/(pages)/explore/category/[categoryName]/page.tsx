@@ -201,7 +201,6 @@ export default function CategoryExplorePage() {
                           </FilterTitle>
                         </FilterHeader>
                         <FilterSections>
-                          {/* Creators Accordion */}
                           <FilterAccordionSection
                             title={t("creators.filters.sections.creators")}
                             isOpen={expandedSection === "creators"}
@@ -225,7 +224,6 @@ export default function CategoryExplorePage() {
                               )}
                           </FilterAccordionSection>
 
-                          {/* Formats Accordion */}
                           <FilterAccordionSection
                             title={t("creators.filters.sections.formats")}
                             isOpen={expandedSection === "formats"}
@@ -236,8 +234,6 @@ export default function CategoryExplorePage() {
                           >
                             {renderOptionList("formats", formatLabels)}
                           </FilterAccordionSection>
-
-                          {/* Price Accordion */}
                           <FilterAccordionSection
                             title={t("creators.filters.sections.price")}
                             isOpen={expandedSection === "price"}
@@ -252,7 +248,6 @@ export default function CategoryExplorePage() {
                             />
                           </FilterAccordionSection>
 
-                          {/* Rating Accordion */}
                           <FilterAccordionSection
                             title={t("creators.filters.sections.rating")}
                             isOpen={expandedSection === "rating"}
