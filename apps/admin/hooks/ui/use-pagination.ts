@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { isBrowser } from "../../utils/constants";
 
 interface UsePaginationOptions {
   totalItems: number;
@@ -14,7 +15,7 @@ export function usePagination<T>({
 }: UsePaginationOptions & { data: T[] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(() => {
-    if (typeof window !== "undefined" && storageKey) {
+    if (isBrowser && storageKey) {
       const saved = localStorage.getItem(storageKey);
       const parsed = Number(saved);
       if (!isNaN(parsed) && parsed > 0) return parsed;

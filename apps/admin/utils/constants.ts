@@ -15,3 +15,9 @@ export const ACTION_ICONS = {
   APPROVE: "✓",
   REJECT: "✕",
 } as const;
+
+export const STORAGE_KEYS = {
+  PAGE_SIZE_ALL_CREATORS: "kiibee.admin.allCreators.pageSize",
+} as const;
+
+export const isBrowser = typeof window !== "undefined";
