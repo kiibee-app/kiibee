@@ -81,7 +81,7 @@ export const rejectCreatorRequestService = async (
     return success(
       responseData,
       'Creator request rejected successfully',
-      HttpStatus.OK,
+      HttpStatus.CREATED,
     );
   } catch (error) {
     logger.error('Error rejecting creator request:', error);

@@ -80,7 +80,7 @@ export const resetPasswordService = async (payload: ResetPasswordDto) => {
       return success(
         { email: user.email },
         'Password reset successfully',
-        HttpStatus.OK,
+        HttpStatus.CREATED,
       );
     });
   } catch (error) {
