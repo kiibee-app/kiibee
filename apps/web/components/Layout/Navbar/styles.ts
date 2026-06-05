@@ -13,6 +13,7 @@ export const Header = styled.header<HeaderProps>`
   backdrop-filter: blur(24px);
   background: ${({ theme }) => theme.colors.primary.WHITE_10};
   transition:
+    min-height 240ms cubic-bezier(0.22, 1, 0.36, 1),
     background 180ms ease,
     backdrop-filter 180ms ease;
   z-index: 50;
@@ -172,23 +173,31 @@ export const NavButton = styled.button<{
   cursor: pointer;
 `;
 
-export const MegaMenu = styled.div`
+export const MegaMenu = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
   left: 0;
   width: 100%;
   padding: 1.5rem 0;
   min-height: 300px;
-  backdrop-filter: blur(16px) saturate(30%);
+  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
+  visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
+  transform: translateY(${({ $isOpen }) => ($isOpen ? "0" : "-10px")});
+  transform-origin: top center;
+  backdrop-filter: ${({ $isOpen }) =>
+    $isOpen ? "blur(16px) saturate(30%)" : "blur(0) saturate(100%)"};
   background: transparent;
   transition:
+    opacity 220ms ease,
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0ms linear ${({ $isOpen }) => ($isOpen ? "0ms" : "240ms")},
     background 180ms ease,
     backdrop-filter 180ms ease;
-  pointer-events: none;
+  pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
   z-index: 1000;
 `;
 
-export const MegaInner = styled.div`
+export const MegaInner = styled.div<{ $isOpen: boolean }>`
   max-width: 1000px;
   margin: 0 auto;
   display: grid;
@@ -196,7 +205,11 @@ export const MegaInner = styled.div`
   gap: 32px 40px;
   align-items: start;
   padding: 0 2rem;
-  pointer-events: auto;
+  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
+  transform: translateY(${({ $isOpen }) => ($isOpen ? "0" : "-6px")});
+  transition:
+    opacity 180ms ease ${({ $isOpen }) => ($isOpen ? "50ms" : "0ms")},
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
