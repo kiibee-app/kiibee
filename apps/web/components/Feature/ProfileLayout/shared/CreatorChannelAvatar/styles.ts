@@ -7,6 +7,11 @@ export const AvatarImage = styled(Image)`
   object-position: center;
 `;
 
+export const RemoteAvatarImage = styled.img`
+  object-fit: cover;
+  object-position: center;
+`;
+
 export const AvatarInitial = styled(MonoText)`
   position: absolute;
   inset: 0;

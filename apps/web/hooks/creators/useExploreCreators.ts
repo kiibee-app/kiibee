@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { API, useGetAPI } from "@/lib/http/api";
+import { resolvePublicMediaUrl } from "@/utils/media";
 import type { SortValue } from "@/utils/sortOptions";
 
 export type ExploreCreator = {
@@ -59,7 +60,10 @@ export function sortExploreCreators(
 }
 
 export function getCreatorCardImage(creator: ExploreCreator): string | null {
-  return creator.coverImageUrl ?? creator.profileImageUrl;
+  return (
+    resolvePublicMediaUrl(creator.coverImageUrl) ??
+    resolvePublicMediaUrl(creator.profileImageUrl)
+  );
 }
 
 const TOP_CREATORS_LIMIT = 6;
