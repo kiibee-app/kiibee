@@ -285,3 +285,13 @@ export const BUY_PREFIX = "Buy";
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 
 export const CATEGORY_ALL = "all";
+
+export const SORT_OPTION_NEW = "new";
+export const SORT_OPTION_POPULAR = "popular";
+export const SORT_OPTION_FREE = "free";
+export const SORT_OPTION_AZ = "a-z";
+
+export const FILTER_SECTION_CREATORS = "creators";
+export const FILTER_SECTION_FORMATS = "formats";
+export const FILTER_SECTION_PRICE = "price";
+export const FILTER_SECTION_RATING = "rating";

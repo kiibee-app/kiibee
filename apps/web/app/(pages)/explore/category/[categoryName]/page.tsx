@@ -16,6 +16,16 @@ import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { useCategoryContent } from "@/hooks/feed/useCategoryContent";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { Directions } from "@/utils/ui";
+import {
+  SORT_OPTION_NEW,
+  SORT_OPTION_POPULAR,
+  SORT_OPTION_FREE,
+  SORT_OPTION_AZ,
+  FILTER_SECTION_CREATORS,
+  FILTER_SECTION_FORMATS,
+  FILTER_SECTION_PRICE,
+  FILTER_SECTION_RATING,
+} from "@/utils/Constants";
 import PriceFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/PriceFiltersSection";
 import RatingFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/RatingFiltersSection";
 import FilterAccordionSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/FilterAccordionSection";
@@ -57,10 +67,16 @@ function CategoryExplorePageContent() {
 
   const sortOptions = useMemo(
     () => [
-      { label: t("creators.newest").toLowerCase(), value: "new" },
-      { label: t("nav.explore.popular").toLowerCase(), value: "popular" },
-      { label: t("nav.explore.freeContent").toLowerCase(), value: "free" },
-      { label: t("creators.a-z").toLowerCase(), value: "a-z" },
+      { label: t("creators.newest").toLowerCase(), value: SORT_OPTION_NEW },
+      {
+        label: t("nav.explore.popular").toLowerCase(),
+        value: SORT_OPTION_POPULAR,
+      },
+      {
+        label: t("nav.explore.freeContent").toLowerCase(),
+        value: SORT_OPTION_FREE,
+      },
+      { label: t("creators.a-z").toLowerCase(), value: SORT_OPTION_AZ },
     ],
     [t],
   );
@@ -136,7 +152,7 @@ function CategoryExplorePageContent() {
     </SectionIcon>
   );
   const renderOptionList = (
-    group: "creators" | "formats",
+    group: typeof FILTER_SECTION_CREATORS | typeof FILTER_SECTION_FORMATS,
     options: typeof allCreatorLabels,
   ) => (
     <OptionList>
@@ -205,13 +221,18 @@ function CategoryExplorePageContent() {
                         <FilterSections>
                           <FilterAccordionSection
                             title={t("creators.filters.sections.creators")}
-                            isOpen={expandedSection === "creators"}
-                            onToggle={() => toggleSection("creators")}
+                            isOpen={expandedSection === FILTER_SECTION_CREATORS}
+                            onToggle={() =>
+                              toggleSection(FILTER_SECTION_CREATORS)
+                            }
                             icon={renderSectionIcon(
-                              expandedSection === "creators",
+                              expandedSection === FILTER_SECTION_CREATORS,
                             )}
                           >
-                            {renderOptionList("creators", visibleCreators)}
+                            {renderOptionList(
+                              FILTER_SECTION_CREATORS,
+                              visibleCreators,
+                            )}
                             {allCreatorLabels.length >
                               DEFAULT_VISIBLE_CREATORS &&
                               !showAllCreators && (
@@ -228,20 +249,25 @@ function CategoryExplorePageContent() {
 
                           <FilterAccordionSection
                             title={t("creators.filters.sections.formats")}
-                            isOpen={expandedSection === "formats"}
-                            onToggle={() => toggleSection("formats")}
+                            isOpen={expandedSection === FILTER_SECTION_FORMATS}
+                            onToggle={() =>
+                              toggleSection(FILTER_SECTION_FORMATS)
+                            }
                             icon={renderSectionIcon(
-                              expandedSection === "formats",
+                              expandedSection === FILTER_SECTION_FORMATS,
                             )}
                           >
-                            {renderOptionList("formats", formatLabels)}
+                            {renderOptionList(
+                              FILTER_SECTION_FORMATS,
+                              formatLabels,
+                            )}
                           </FilterAccordionSection>
                           <FilterAccordionSection
                             title={t("creators.filters.sections.price")}
-                            isOpen={expandedSection === "price"}
-                            onToggle={() => toggleSection("price")}
+                            isOpen={expandedSection === FILTER_SECTION_PRICE}
+                            onToggle={() => toggleSection(FILTER_SECTION_PRICE)}
                             icon={renderSectionIcon(
-                              expandedSection === "price",
+                              expandedSection === FILTER_SECTION_PRICE,
                             )}
                           >
                             <PriceFiltersSection
@@ -252,10 +278,12 @@ function CategoryExplorePageContent() {
 
                           <FilterAccordionSection
                             title={t("creators.filters.sections.rating")}
-                            isOpen={expandedSection === "rating"}
-                            onToggle={() => toggleSection("rating")}
+                            isOpen={expandedSection === FILTER_SECTION_RATING}
+                            onToggle={() =>
+                              toggleSection(FILTER_SECTION_RATING)
+                            }
                             icon={renderSectionIcon(
-                              expandedSection === "rating",
+                              expandedSection === FILTER_SECTION_RATING,
                             )}
                           >
                             <RatingFiltersSection
