@@ -90,7 +90,8 @@ export default function MediaSections({
               <SectionTitle>{section.title}</SectionTitle>
               {hasDetailView &&
               (section.key === RENTED_SECTION_KEYS.VIDEOS ||
-                section.key === RENTED_SECTION_KEYS.AUDIOS) ? (
+                section.key === RENTED_SECTION_KEYS.AUDIOS ||
+                section.key === RENTED_SECTION_KEYS.PDFS) ? (
                 <InlineSectionArrow
                   type="button"
                   aria-label={`Open ${section.title} details`}

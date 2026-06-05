@@ -7,7 +7,7 @@ export const PageHeader = styled.div`
   align-items: center;
   gap: ${({ theme }) => theme.spacing(2)};
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-bottom: 35px;
   width: 100%;
 `;
 
