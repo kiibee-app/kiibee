@@ -1126,6 +1126,12 @@
         "placeholder": "Billing history will appear here.",
         "searchContent": "Search content title",
         "searchCreator": "Search creator name",
+        "invoiceModal": {
+          "title": "Invoice",
+          "orderNumber": "Order number",
+          "contentDetails": "Content details",
+          "share": "Share"
+        },
         "tableHeaders": {
           "contentTitle": "Content title",
           "creatorName": "Creator name",
@@ -1141,6 +1147,7 @@
         "defaultBadge": "Default",
         "expires": "Expires {{date}}",
         "edit": "Edit payment method",
+        "markAsDefault": "Mark as default",
         "delete": "Delete payment method",
         "more": "More actions",
         "deleteModal": {

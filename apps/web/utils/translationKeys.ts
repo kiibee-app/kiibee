@@ -239,6 +239,14 @@ export const DASHBOARD_VIEWER_BILLINGS = {
     placeholder: "dashboard.viewerBillings.billingHistory.placeholder",
     searchContent: "dashboard.viewerBillings.billingHistory.searchContent",
     searchCreator: "dashboard.viewerBillings.billingHistory.searchCreator",
+    invoiceModal: {
+      title: "dashboard.viewerBillings.billingHistory.invoiceModal.title",
+      orderNumber:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.orderNumber",
+      contentDetails:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.contentDetails",
+      share: "dashboard.viewerBillings.billingHistory.invoiceModal.share",
+    },
     tableHeaders: {
       contentTitle:
         "dashboard.viewerBillings.billingHistory.tableHeaders.contentTitle",
@@ -258,6 +266,7 @@ export const DASHBOARD_VIEWER_BILLINGS = {
     defaultBadge: "dashboard.viewerBillings.paymentMethods.defaultBadge",
     expires: "dashboard.viewerBillings.paymentMethods.expires",
     edit: "dashboard.viewerBillings.paymentMethods.edit",
+    markAsDefault: "dashboard.viewerBillings.paymentMethods.markAsDefault",
     delete: "dashboard.viewerBillings.paymentMethods.delete",
     more: "dashboard.viewerBillings.paymentMethods.more",
     deleteModal: {
