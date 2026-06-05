@@ -25,6 +25,8 @@ import {
   FILTER_SECTION_FORMATS,
   FILTER_SECTION_PRICE,
   FILTER_SECTION_RATING,
+  ESCAPE,
+  KEYDOWN,
 } from "@/utils/Constants";
 import PriceFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/PriceFiltersSection";
 import RatingFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/RatingFiltersSection";
@@ -130,14 +132,14 @@ function CategoryExplorePageContent() {
     if (!isFilterOpen) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === ESCAPE) {
         toggleFilter();
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener(KEYDOWN, handleKeyDown);
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener(KEYDOWN, handleKeyDown);
     };
   }, [isFilterOpen, toggleFilter]);
 
