@@ -16,11 +16,8 @@ import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { useCategoryContent } from "@/hooks/feed/useCategoryContent";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { Directions } from "@/utils/ui";
+import { getCategorySortOptions } from "@/utils/sortOptions";
 import {
-  SORT_OPTION_NEW,
-  SORT_OPTION_POPULAR,
-  SORT_OPTION_FREE,
-  SORT_OPTION_AZ,
   FILTER_SECTION_CREATORS,
   FILTER_SECTION_FORMATS,
   FILTER_SECTION_PRICE,
@@ -68,21 +65,7 @@ import {
 function CategoryExplorePageContent() {
   const { t } = useTranslation();
 
-  const sortOptions = useMemo(
-    () => [
-      { label: t("creators.newest").toLowerCase(), value: SORT_OPTION_NEW },
-      {
-        label: t("nav.explore.popular").toLowerCase(),
-        value: SORT_OPTION_POPULAR,
-      },
-      {
-        label: t("nav.explore.freeContent").toLowerCase(),
-        value: SORT_OPTION_FREE,
-      },
-      { label: t("creators.a-z").toLowerCase(), value: SORT_OPTION_AZ },
-    ],
-    [t],
-  );
+  const sortOptions = useMemo(() => getCategorySortOptions(t), [t]);
   const theme = useTheme();
   const params = useParams();
 

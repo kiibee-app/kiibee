@@ -1,5 +1,11 @@
 import { DropdownOption } from "@/components/UI/SortDropdown";
-import { ImageSource } from "./Constants";
+import {
+  ImageSource,
+  SORT_OPTION_NEW,
+  SORT_OPTION_POPULAR,
+  SORT_OPTION_FREE,
+  SORT_OPTION_AZ,
+} from "./Constants";
 
 export type CreatorCategory = "Comedy" | "Music" | "Publication" | "Cooking";
 
@@ -74,4 +80,19 @@ export const contentActionOptions: DropdownOption<RowAction>[] = [
     label: ROW_ACTION_LABEL_MOVE_TO_ANOTHER_COLLECTION,
     value: MOVE_TO_ANOTHER_COLLECTION,
   },
+];
+
+export const getCategorySortOptions = (
+  t: (key: string) => string,
+): DropdownOption<string>[] => [
+  { label: t("creators.newest").toLowerCase(), value: SORT_OPTION_NEW },
+  {
+    label: t("nav.explore.popular").toLowerCase(),
+    value: SORT_OPTION_POPULAR,
+  },
+  {
+    label: t("nav.explore.freeContent").toLowerCase(),
+    value: SORT_OPTION_FREE,
+  },
+  { label: t("creators.a-z").toLowerCase(), value: SORT_OPTION_AZ },
 ];
