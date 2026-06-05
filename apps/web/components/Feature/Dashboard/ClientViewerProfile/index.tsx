@@ -69,6 +69,7 @@ export default function ClientViewerProfile() {
     passwordFieldErrors,
     isSavingProfile,
     isChangingPassword,
+    canSubmitPassword,
   } = useViewerProfile();
 
   return (
@@ -151,7 +152,7 @@ export default function ClientViewerProfile() {
         size="md"
         fullWidthButtons
         buttonRow
-        confirmDisabled={isChangingPassword}
+        confirmDisabled={isChangingPassword || !canSubmitPassword}
       >
         <PasswordSection
           passwords={passwords}
