@@ -26,6 +26,7 @@ export default function SingleContentPage({
   creator,
   hero,
   primaryAction,
+  primaryActions,
   metaItems = [],
   shareLabel = "Share",
   showShare = true,
@@ -69,6 +70,7 @@ export default function SingleContentPage({
             descriptions={descriptions}
             tags={tags}
             primaryAction={primaryAction}
+            primaryActions={primaryActions}
             expiry={expiry}
             metaItems={metaItems}
           />
