@@ -23,6 +23,8 @@ export const createContent = async (
       fileKey,
       contentUrl,
       contentTypeId,
+      openInNewWindow,
+      openDirectFromList,
     } = dto;
 
     const contentId = crypto.randomUUID();
@@ -38,6 +40,8 @@ export const createContent = async (
         contentUrl,
         contentTypeId,
         creatorId,
+        openInNewWindow: openInNewWindow ?? false,
+        openDirectFromList: openDirectFromList ?? false,
       });
 
       await tx.insert(collectionItems).values({

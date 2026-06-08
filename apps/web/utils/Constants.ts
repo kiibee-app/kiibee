@@ -274,6 +274,9 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
         ? parseInt(formState.maxDownloadLimit)
         : undefined,
     physicalProductLink: formState.physicalProductLink || undefined,
+    contentUrl: formState.webLink || undefined,
+    openInNewWindow: formState.openInNewWindow ?? undefined,
+    openDirectFromList: formState.openDirectFromList ?? undefined,
   };
 }
 

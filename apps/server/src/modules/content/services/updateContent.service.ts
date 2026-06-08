@@ -60,6 +60,8 @@ export const updateContentService = async (
         maxDownloadCount: dto.maximumDownloadCount,
         physicalProductLink: dto.physicalProductLink,
         isDownloadable: dto.isDownloadable,
+        openInNewWindow: dto.openInNewWindow,
+        openDirectFromList: dto.openDirectFromList,
         isPublished:
           dto.visibility === CONTENT_VISIBILITY.PUBLIC
             ? true
