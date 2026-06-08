@@ -18,6 +18,9 @@ import { filterUsersByName } from "@/utils/filterUsersByName";
 import { useSales } from "@/hooks/users/useCreatorUsers";
 import UsersEmptyState from "../EmptyState";
 import {
+  EmptySectionDescription,
+  EmptySectionHeader,
+  EmptySectionTitle,
   SectionCard,
   SectionDescription,
   SectionTitle,
@@ -58,6 +61,26 @@ export default function SalesTabContent({
     );
   }
 
+  if (rows.length === 0) {
+    return (
+      <>
+        <EmptySectionHeader>
+          <EmptySectionTitle>
+            {t(DASHBOARD_USERS.salest.title)}
+          </EmptySectionTitle>
+          <EmptySectionDescription>
+            {t(DASHBOARD_USERS.salest.description)}
+          </EmptySectionDescription>
+        </EmptySectionHeader>
+
+        <UsersEmptyState
+          title={t(DASHBOARD_USERS.salest.emptyState.title)}
+          description={t(DASHBOARD_USERS.salest.emptyState.description)}
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <SectionCard>
@@ -67,55 +90,47 @@ export default function SalesTabContent({
         </SectionDescription>
       </SectionCard>
 
-      {rows.length === 0 ? (
-        <UsersEmptyState
-          title={t(DASHBOARD_USERS.salest.emptyState.title)}
-          description={t(DASHBOARD_USERS.salest.emptyState.description)}
-        />
-      ) : (
-        <TableSection>
-          <Table<SalesRow>
-            headers={headers}
-            data={sortedSalesData}
-            rowsPerPage={10}
-            headerToKey={(header) => headerMap[header]}
-            onHeaderClick={(header) => {
-              if (header !== headers[0]) return;
-              setNameSortDirection((prev) => {
-                if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
-                if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
-                return SORT_DIRECTIONS.NONE;
-              });
-            }}
-            isHeaderSortable={(header) => header === headers[0]}
-            getHeaderSortDirection={(header) =>
-              header === headers[0] &&
-              nameSortDirection !== SORT_DIRECTIONS.NONE
-                ? nameSortDirection
-                : null
-            }
-            getRowKey={(row) => row.id}
-            getMobileTitle={(row) => row.name}
-            renderCell={({ header, row }) => {
-              const key = headerMap[header];
-              if (key === "id") return null;
+      <TableSection>
+        <Table<SalesRow>
+          headers={headers}
+          data={sortedSalesData}
+          rowsPerPage={10}
+          headerToKey={(header) => headerMap[header]}
+          onHeaderClick={(header) => {
+            if (header !== headers[0]) return;
+            setNameSortDirection((prev) => {
+              if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
+              if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
+              return SORT_DIRECTIONS.NONE;
+            });
+          }}
+          isHeaderSortable={(header) => header === headers[0]}
+          getHeaderSortDirection={(header) =>
+            header === headers[0] && nameSortDirection !== SORT_DIRECTIONS.NONE
+              ? nameSortDirection
+              : null
+          }
+          getRowKey={(row) => row.id}
+          getMobileTitle={(row) => row.name}
+          renderCell={({ header, row }) => {
+            const key = headerMap[header];
+            if (key === "id") return null;
 
-              return (
-                <MonoText
-                  $use="Body_SemiBold"
-                  color={
-                    header === headers[0]
-                      ? COLORS.primary.BLACK
-                      : COLORS.neutral.GRAY
-                  }
-                >
-                  {row[key]}
-                </MonoText>
-              );
-            }}
-          />
-        </TableSection>
-      )}
+            return (
+              <MonoText
+                $use="Body_SemiBold"
+                color={
+                  header === headers[0]
+                    ? COLORS.primary.BLACK
+                    : COLORS.neutral.GRAY
+                }
+              >
+                {row[key]}
+              </MonoText>
+            );
+          }}
+        />
+      </TableSection>
     </>
   );
 }

@@ -1,7 +1,15 @@
-import { Controller, Delete, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Req, UseGuards } from '@nestjs/common';
+import type { Request } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreatorGuard } from '../auth/guards/admin.guard';
 import { CreatorUsersService } from './creator-users.service';
+
+type AuthenticatedRequest = Request & {
+  user: {
+    userId: string;
+    role: string;
+  };
+};
 
 @Controller('creator-users')
 export class CreatorUsersController {
@@ -9,19 +17,22 @@ export class CreatorUsersController {
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Get('registrations')
-  getRegistrations() {
-    return this.creatorUsersService.getRegistrations();
+  getRegistrations(@Req() req: AuthenticatedRequest) {
+    return this.creatorUsersService.getRegistrations(req.user.userId);
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Get('sales')
-  getSales() {
-    return this.creatorUsersService.getSales();
+  getSales(@Req() req: AuthenticatedRequest) {
+    return this.creatorUsersService.getSales(req.user.userId);
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Delete('registrations/:id')
-  deleteRegistration(@Param('id') id: string) {
-    return this.creatorUsersService.deleteRegistration(id);
+  deleteRegistration(
+    @Req() req: AuthenticatedRequest,
+    @Param('id') id: string,
+  ) {
+    return this.creatorUsersService.deleteRegistration(req.user.userId, id);
   }
 }

@@ -1,11 +1,24 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
+import { and, eq } from 'drizzle-orm';
+import { db } from 'src/database/db';
+import { emailSubscribers } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
-import { deleteRegistration } from '../data/usersStore';
 
-export const deleteRegistrationService = async (id: string) => {
+export const deleteRegistrationService = async (
+  creatorId: string,
+  id: string,
+) => {
   try {
-    const deleted = deleteRegistration(id);
+    const [deleted] = await db
+      .delete(emailSubscribers)
+      .where(
+        and(
+          eq(emailSubscribers.id, id),
+          eq(emailSubscribers.creatorId, creatorId),
+        ),
+      )
+      .returning({ id: emailSubscribers.id });
 
     if (!deleted) {
       fail('Registration not found', HttpStatus.NOT_FOUND);

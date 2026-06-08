@@ -5,15 +5,15 @@ import { getSalesService } from './services/getSales.service';
 
 @Injectable()
 export class CreatorUsersService {
-  getRegistrations() {
-    return getRegistrationsService();
+  getRegistrations(creatorId: string) {
+    return getRegistrationsService(creatorId);
   }
 
-  getSales() {
-    return getSalesService();
+  getSales(creatorId: string) {
+    return getSalesService(creatorId);
   }
 
-  deleteRegistration(id: string) {
-    return deleteRegistrationService(id);
+  deleteRegistration(creatorId: string, id: string) {
+    return deleteRegistrationService(creatorId, id);
   }
 }

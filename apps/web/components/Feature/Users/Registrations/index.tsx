@@ -27,6 +27,9 @@ import UsersEmptyState from "../EmptyState";
 import COLORS from "@repo/ui/colors";
 import {
   DeleteActionButton,
+  EmptySectionDescription,
+  EmptySectionHeader,
+  EmptySectionTitle,
   SectionCard,
   SectionDescription,
   SectionTitle,
@@ -88,6 +91,26 @@ export default function RegistrationsTabContent({
     );
   }
 
+  if (rows.length === 0) {
+    return (
+      <>
+        <EmptySectionHeader>
+          <EmptySectionTitle>
+            {t(DASHBOARD_USERS.registrations.title)}
+          </EmptySectionTitle>
+          <EmptySectionDescription>
+            {t(DASHBOARD_USERS.registrations.description)}
+          </EmptySectionDescription>
+        </EmptySectionHeader>
+
+        <UsersEmptyState
+          title={t(DASHBOARD_USERS.registrations.emptyState.title)}
+          description={t(DASHBOARD_USERS.registrations.emptyState.description)}
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <SectionCard>
@@ -97,69 +120,61 @@ export default function RegistrationsTabContent({
         </SectionDescription>
       </SectionCard>
 
-      {rows.length === 0 ? (
-        <UsersEmptyState
-          title={t(DASHBOARD_USERS.registrations.emptyState.title)}
-          description={t(DASHBOARD_USERS.registrations.emptyState.description)}
-        />
-      ) : (
-        <TableSection>
-          <Table<RegistrationRow>
-            headers={headers}
-            data={sortedRows}
-            rowsPerPage={10}
-            headerToKey={(header) => headerMap[header]}
-            onHeaderClick={(header) => {
-              if (header !== headers[0]) return;
-              setNameSortDirection((prev) => {
-                if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
-                if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
-                return SORT_DIRECTIONS.NONE;
-              });
-            }}
-            isHeaderSortable={(header) => header === headers[0]}
-            getHeaderSortDirection={(header) =>
-              header === headers[0] &&
-              nameSortDirection !== SORT_DIRECTIONS.NONE
-                ? nameSortDirection
-                : null
-            }
-            getRowKey={(row) => row.id}
-            getMobileTitle={(row) => row.name}
-            renderCell={({ header, row }) => {
-              if (header === headers[3]) {
-                return (
-                  <DeleteActionButton
-                    type="button"
-                    aria-label={t(
-                      DASHBOARD_USERS.registrations.deleteModal.delete,
-                    )}
-                    onClick={() => setSelectedId(row.id)}
-                  >
-                    <DeleteIcon />
-                  </DeleteActionButton>
-                );
-              }
-
-              const key = headerMap[header];
-              if (key === "action" || key === "id" || !key) return null;
-
+      <TableSection>
+        <Table<RegistrationRow>
+          headers={headers}
+          data={sortedRows}
+          rowsPerPage={10}
+          headerToKey={(header) => headerMap[header]}
+          onHeaderClick={(header) => {
+            if (header !== headers[0]) return;
+            setNameSortDirection((prev) => {
+              if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
+              if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
+              return SORT_DIRECTIONS.NONE;
+            });
+          }}
+          isHeaderSortable={(header) => header === headers[0]}
+          getHeaderSortDirection={(header) =>
+            header === headers[0] && nameSortDirection !== SORT_DIRECTIONS.NONE
+              ? nameSortDirection
+              : null
+          }
+          getRowKey={(row) => row.id}
+          getMobileTitle={(row) => row.name}
+          renderCell={({ header, row }) => {
+            if (header === headers[3]) {
               return (
-                <MonoText
-                  $use="Body_SemiBold"
-                  color={
-                    header === headers[0]
-                      ? COLORS.primary.BLACK
-                      : COLORS.neutral.GRAY
-                  }
+                <DeleteActionButton
+                  type="button"
+                  aria-label={t(
+                    DASHBOARD_USERS.registrations.deleteModal.delete,
+                  )}
+                  onClick={() => setSelectedId(row.id)}
                 >
-                  {row[key]}
-                </MonoText>
+                  <DeleteIcon />
+                </DeleteActionButton>
               );
-            }}
-          />
-        </TableSection>
-      )}
+            }
+
+            const key = headerMap[header];
+            if (key === "action" || key === "id" || !key) return null;
+
+            return (
+              <MonoText
+                $use="Body_SemiBold"
+                color={
+                  header === headers[0]
+                    ? COLORS.primary.BLACK
+                    : COLORS.neutral.GRAY
+                }
+              >
+                {row[key]}
+              </MonoText>
+            );
+          }}
+        />
+      </TableSection>
 
       <GenericModal
         visible={Boolean(selectedId)}
