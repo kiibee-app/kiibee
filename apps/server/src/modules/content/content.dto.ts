@@ -35,16 +35,6 @@ export class CreateContentDto {
   @IsString()
   @IsNotEmpty()
   collectionId!: string;
-
-  @IsOptional()
-  @Type(() => Boolean)
-  @IsBoolean()
-  openInNewWindow?: boolean;
-
-  @IsOptional()
-  @Type(() => Boolean)
-  @IsBoolean()
-  openDirectFromList?: boolean;
 }
 
 export class UpdateContentDto {
