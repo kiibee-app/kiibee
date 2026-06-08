@@ -9,7 +9,6 @@ import { MonoText } from "@/components/UI/Monotext";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
-import { authStorage } from "@/lib/auth/authStorage";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
@@ -31,7 +30,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
-import { useRelatedCollectionContent } from "@/hooks/useRelatedCollectionContent";
+import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
 import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
 import {
   resolvePublishedContentByKey,
@@ -73,10 +72,10 @@ function PublishedContentDetail() {
   const directPlaybackUrl =
     cloudflareEmbedUrl ||
     (hasDirectPlaybackUrl(contentUrl) ? contentUrl : null);
-  const relatedCollectionQuery = useRelatedCollectionContent(
+  const relatedCollectionQuery = usePublicRelatedCollectionContent(
     normalizedContentKey,
     {
-      enabled: !fallback && authStorage.hasSession(),
+      enabled: Boolean(normalizedContentKey) && !fallback,
     },
   );
   const mediaEndpoint =
@@ -139,7 +138,11 @@ function PublishedContentDetail() {
 
   return (
     <Section>
-      <SingleContentPage {...getSingleContentProps(content, t, mediaUrl)}>
+      <SingleContentPage
+        {...getSingleContentProps(content, t, mediaUrl, {
+          inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
+        })}
+      >
         {relatedCollectionQuery.data?.videos?.length ? (
           <CollectionItems
             videos={relatedCollectionQuery.data.videos}

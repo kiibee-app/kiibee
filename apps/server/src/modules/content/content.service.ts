@@ -24,6 +24,7 @@ import {
   SortField,
 } from './services/getAllContents.service';
 import { getSingleContentService } from './services/getSingleContent.service';
+import { getRelatedCollectionContentService } from './services/getRelatedCollectionContent.service';
 
 @Injectable()
 export class ContentService {
@@ -92,5 +93,9 @@ export class ContentService {
 
   async getSingleContent(contentId: string, userId: string) {
     return getSingleContentService(contentId, userId);
+  }
+
+  async getRelatedCollectionContent(contentId: string) {
+    return getRelatedCollectionContentService(contentId);
   }
 }

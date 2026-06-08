@@ -79,10 +79,48 @@ function TutorialCard({
   };
 
   const isFreeContent = tutorial.isFree ?? false;
+  const isCardLinked = isFreeContent && !onPlayClick;
 
   const stopCardNavigation = (event: MouseEvent) => {
     event.stopPropagation();
   };
+
+  const openCreatorProfile = (event: MouseEvent) => {
+    if (!tutorial.creatorId) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    window.open(
+      getPublicCreatorProfilePath(tutorial.creatorId),
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
+
+  const creatorSubtitle = tutorial.creatorId ? (
+    isCardLinked ? (
+      <MonoText
+        $use="Body_Medium"
+        style={{ cursor: "pointer" }}
+        onClick={openCreatorProfile}
+      >
+        {tutorial.creator}
+      </MonoText>
+    ) : (
+      <a
+        href={getPublicCreatorProfilePath(tutorial.creatorId)}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <MonoText $use="Body_Medium" style={{ cursor: "pointer" }}>
+          {tutorial.creator}
+        </MonoText>
+      </a>
+    )
+  ) : (
+    <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
+  );
 
   const card = (
     <GenericCard
@@ -94,22 +132,7 @@ function TutorialCard({
         </MonoText>
       }
       title={<MonoText $use="H5_Medium">{tutorial.title}</MonoText>}
-      subtitle={
-        tutorial.creatorId ? (
-          <a
-            href={getPublicCreatorProfilePath(tutorial.creatorId)}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <MonoText $use="Body_Medium" style={{ cursor: "pointer" }}>
-              {tutorial.creator}
-            </MonoText>
-          </a>
-        ) : (
-          <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
-        )
-      }
+      subtitle={creatorSubtitle}
       footer={
         <ActionRow onClick={stopCardNavigation}>
           {buttons.map((button, index) =>
@@ -171,7 +194,7 @@ function TutorialCard({
     </GenericCard>
   );
 
-  if (!onPlayClick) {
+  if (isCardLinked) {
     return (
       <CardLink
         href={singleTutorialHref}
