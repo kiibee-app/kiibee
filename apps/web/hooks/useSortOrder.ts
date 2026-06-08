@@ -18,14 +18,16 @@ export function useSortOrder<T>(
   const sortedData = useMemo(() => {
     if (sortDirection === SORT_DIRECTIONS.NONE) return [...data];
 
-    return [...data].sort((a, b) => {
-      const valA = sortBy(a);
-      const valB = sortBy(b);
+    return [...data].sort((firstItem, secondItem) => {
+      const firstValue = sortBy(firstItem);
+      const secondValue = sortBy(secondItem);
 
       const compared =
-        isString(valA) && isString(valB)
-          ? valA.localeCompare(valB, undefined, { sensitivity: "base" })
-          : (valA as number) - (valB as number);
+        isString(firstValue) && isString(secondValue)
+          ? firstValue.localeCompare(secondValue, undefined, {
+              sensitivity: "base",
+            })
+          : (firstValue as number) - (secondValue as number);
 
       return sortDirection === SORT_DIRECTIONS.DESC ? -compared : compared;
     });
