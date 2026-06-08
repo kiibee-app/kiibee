@@ -146,6 +146,12 @@ export class ContentController {
     );
   }
 
+  @Get(':contentId/related-collection')
+  async getRelatedCollectionContent(@Req() req: any) {
+    const contentId = req.params.contentId;
+    return this.contentService.getRelatedCollectionContent(contentId);
+  }
+
   @Get(':id/:userId')
   async getSingleContent(@Req() req: any) {
     const contentId = req.params.id;
