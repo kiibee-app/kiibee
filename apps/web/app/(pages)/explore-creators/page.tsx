@@ -12,10 +12,17 @@ import {
   useExploreCreators,
 } from "@/hooks/creators/useExploreCreators";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
+import { useDebounce } from "@/hooks/useDebounce";
 
 export default function ExploreCreatorsPage() {
   const [sortBy, setSortBy] = useState<SortValue>(DEFAULT_SORT);
-  const { creators, isLoading } = useExploreCreators();
+  const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery);
+
+  const { creators, isLoading, isFetching } = useExploreCreators(
+    undefined,
+    debouncedSearchQuery,
+  );
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
 
   const sortedCreators = useMemo(
@@ -29,10 +36,17 @@ export default function ExploreCreatorsPage() {
       <Main>
         <Section>
           <div ref={heroRef}>
-            <ExploreCreatorsHero setSortBy={setSortBy} />
+            <ExploreCreatorsHero
+              setSortBy={setSortBy}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
           </div>
           <div ref={trendingRef}>
-            <ExploreCreators creators={sortedCreators} isLoading={isLoading} />
+            <ExploreCreators
+              creators={sortedCreators}
+              isLoading={isLoading || isFetching}
+            />
           </div>
         </Section>
       </Main>

@@ -51,10 +51,17 @@ const activeCreatorConditions = (): SQL[] => [
   eq(users.status, STATUS.ACTIVE),
 ];
 
-const buildCreatorsQuery = (creatorId?: string) => {
+const buildCreatorsQuery = (creatorId?: string, search?: string) => {
   const conditions = activeCreatorConditions();
   if (creatorId) {
     conditions.push(eq(users.id, creatorId));
+  }
+
+  if (search) {
+    const searchTerm = `%${search}%`;
+    conditions.push(
+      sql`(${users.fullName} ILIKE ${searchTerm} OR ${creatorChannels.name} ILIKE ${searchTerm})`,
+    );
   }
 
   return db
@@ -119,9 +126,12 @@ const mapCreatorRow = (row: {
       : String(row.createdAt),
 });
 
-export const getExploreCreatorsService = async (limit?: number) => {
+export const getExploreCreatorsService = async (
+  limit?: number,
+  search?: string,
+) => {
   try {
-    let query = buildCreatorsQuery();
+    let query = buildCreatorsQuery(undefined, search);
 
     if (limit != null) {
       const safeLimit = Math.min(Math.max(limit, 1), 100);
