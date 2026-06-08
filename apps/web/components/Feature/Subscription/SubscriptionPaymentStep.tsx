@@ -132,6 +132,9 @@ export default function SubscriptionPaymentStep() {
     handleSubmit(onSubmit)(e);
   };
 
+  const isSubmitDisabled =
+    (!isFreePlan && !isValid) || (isCreatorInviteFlow && isInviteSubmitting);
+
   return (
     <PaymentCard>
       <PaymentTitle>
@@ -286,10 +289,7 @@ export default function SubscriptionPaymentStep() {
 
           <SubmitButton
             type="submit"
-            disabled={
-              (!isFreePlan && !isValid) ||
-              (isCreatorInviteFlow && isInviteSubmitting)
-            }
+            disabled={isSubmitDisabled}
             isLoading={isCreatorInviteFlow && isInviteSubmitting}
           >
             {t("creatorFinalSteps.submit")}
