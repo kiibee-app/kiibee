@@ -38,7 +38,6 @@ export function useFormatContent(formatId: string) {
     return result;
   }, [tutorials, searchQuery]);
 
-  // Get format header title dynamically from translation keys
   const formatTitle = useMemo(() => {
     const translationKey = `nav.explore.format.${formatId}`;
     const translated = t(translationKey);
