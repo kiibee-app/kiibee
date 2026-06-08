@@ -23,6 +23,7 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import { PATHS } from "@/utils/path";
 import { ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
@@ -43,6 +44,7 @@ type Props = {
 
 const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const user = useStoredLoginUser();
   const isCreator = role === ROLE_CREATOR;
   const { avatarUrl: profileAvatarUrl } = useCreatorChannelProfile(isCreator);
@@ -64,7 +66,11 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
           <HamburgerLine />
           <HamburgerLine />
         </HamburgerButton>
-        <LogoButton type="button" aria-label={t("nav.logoAlt")}>
+        <LogoButton
+          type="button"
+          aria-label={t("nav.logoAlt")}
+          onClick={() => router.push(PATHS.HOME)}
+        >
           <Image
             src={logo}
             alt={t("nav.logoAlt")}
