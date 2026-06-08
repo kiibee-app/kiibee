@@ -41,6 +41,7 @@ import { ContentFormProvider, useContentForm } from "./ContentFormContext";
 import { AppearanceFormProvider } from "./Appearance/AppearanceFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
 import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
+import { useContentSettings } from "@/hooks/contents/useContentSettings";
 import { SCROLL_OPTIONS, UI_TITLE_FALLBACK } from "@/utils/Constants";
 
 function CreatorsContentsInner() {
@@ -238,6 +239,11 @@ function CreatorsContentsInner() {
     resetAfterRefetch,
   );
 
+  const contentSettings = useContentSettings();
+
+  const contentSettingAccessType =
+    contentSettings.data?.data?.accessType ?? undefined;
+
   const {
     uploadedFile,
     uploadedPreview,
@@ -276,6 +282,8 @@ function CreatorsContentsInner() {
     openDiscardModal,
     createCollectionFlow,
     contentTypeFlow,
+    contentSettingAccessType,
+    saveContentSetting: contentSettings.updateSetting,
   });
 
   const clearSelectedCollectionContentsOverride = useCallback(() => {
