@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const Wrapper = styled.section`
   width: 100%;
-  max-width: 1220px;
+  max-width: 1300px;
   min-height: 100vh;
   height: auto;
   box-sizing: border-box;
@@ -277,18 +277,38 @@ export const CollectionHeader = styled.div`
   margin-bottom: 1.25rem;
 `;
 
-export const CollectionLink = styled.a`
+export const CollectionHeaderActions = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+export const CollectionSectionArrows = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+export const CollectionSectionArrow = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 2.125rem;
   height: 2.125rem;
   border-radius: 50%;
+  border: 0;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  cursor: pointer;
   transition: background 0.2s ease;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
   }
 `;
 
@@ -306,24 +326,30 @@ export const CollectionSectionTitle = styled(MonoText).attrs({
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const CollectionStrip = styled.div`
+export const CollectionGrid = styled.div`
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 0.25rem;
-  scrollbar-width: none;
 
-  &::-webkit-scrollbar {
-    display: none;
+  ${media.tablet} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  ${media.mobile} {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const CollectionCardWrap = styled.div`
+  width: 100%;
+  min-width: 0;
 `;
 
 export const CollectionCard = styled.article`
   display: flex;
-  width: 290px;
-  min-width: 290px;
-  height: 400px;
+  width: 100%;
+  min-height: 400px;
   padding: 18px 20px;
   flex-direction: column;
   align-items: flex-start;
@@ -331,25 +357,27 @@ export const CollectionCard = styled.article`
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   box-shadow: 0 4px 16px 0 ${({ theme }) => theme.colors.neutral.GRAY_300};
+  box-sizing: border-box;
 `;
 
 export const CollectionImageArea = styled.div`
   position: relative;
-  display: flex;
+  width: 100%;
   height: 190px;
-  padding: 17px 152px 149px 19px;
-  align-items: center;
   align-self: stretch;
-  aspect-ratio: 25 / 19;
-  border-radius: 12px 12px 0 0;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_200} 50% / cover
-    no-repeat;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   overflow: hidden;
   box-sizing: border-box;
+`;
 
-  img {
-    object-fit: cover;
-  }
+export const CollectionCoverImage = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 `;
 
 export const CollectionBadge = styled.span`
@@ -374,7 +402,7 @@ export const CollectionCardBody = styled.div`
   flex-direction: column;
   gap: 2px;
   flex: 1;
-  width: 250px;
+  width: 100%;
 `;
 
 export const CollectionTitle = styled.h3`
@@ -410,7 +438,7 @@ export const CollectionTime = styled.p`
 `;
 
 export const CollectionVideoPill = styled.div`
-  width: 250px;
+  width: 100%;
   height: 36px;
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
@@ -437,31 +465,17 @@ export const CollectionVideoLabelText = styled.span`
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const CollectionActions = styled.div`
+export const CollectionActionRow = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 22px;
-  align-self: stretch;
+  gap: 0.5rem;
+  width: 100%;
   margin-top: auto;
-`;
+  padding-top: 0.75rem;
 
-export const CollectionFreeButton = styled.a`
-  display: flex;
-  width: 250px;
-  height: 33px;
-  padding: 13px 112px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 16px;
-  border: 1.3px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
-  background: ${({ theme }) => theme.colors.neutral.WHITE};
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  ${({ theme }) => theme.typography.Body_Bold}
-  font-size: 13px;
-  font-weight: 600;
-  line-height: normal;
-  box-sizing: border-box;
-  text-decoration: none;
+  > button {
+    flex: 1;
+    min-width: 0;
+    min-height: 33px;
+    border-radius: 16px;
+  }
 `;

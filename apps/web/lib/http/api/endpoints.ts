@@ -36,6 +36,7 @@ export const API = {
     collection: (id: string) => `/content/collection/${id}`,
     get: (id: string) => `/content/${id}`,
     view: (id: string, userId: string) => `/content/${id}/${userId}`,
+    relatedCollection: (id: string) => `/content/${id}/related-collection`,
     update: (id: string) => `/content/update/${id}`,
     delete: (id: string) => `/content/delete/${id}`,
     appearance: "/content/appearance",

@@ -1,11 +1,14 @@
 "use client";
 
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import type { TutorialVideo } from "@/utils/types";
 import logo from "@/assets/images/logo.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
+import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
+import { VARIANT } from "@/utils/Constants";
 import CollectionItems from "./CollectionItems";
 
 type Props = {
@@ -20,6 +23,42 @@ export default function SingleTutorial({
   collectionId,
 }: Props) {
   const { t } = useTranslation();
+  const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
+  const isFreeContent = useMemo(() => {
+    if (tutorial.isFree != null) {
+      return tutorial.isFree;
+    }
+
+    const firstButtonLabel = tutorial.buttons?.[0]?.label?.trim().toLowerCase();
+    return (
+      !tutorial.buttons?.length ||
+      firstButtonLabel === "free" ||
+      firstButtonLabel === freeLabel.trim().toLowerCase()
+    );
+  }, [freeLabel, tutorial.buttons, tutorial.isFree]);
+  const primaryActions = useMemo(() => {
+    if (isFreeContent) {
+      return undefined;
+    }
+
+    return (tutorial.buttons ?? []).map((button) => {
+      const normalizedLabel = button.label.toLowerCase();
+      const isBuy = normalizedLabel.includes("buy");
+      const isRent = normalizedLabel.includes("rent");
+
+      return {
+        label: button.label,
+        subtitle: isBuy
+          ? t("singleContent.pricing.downloadFiles")
+          : isRent
+            ? t("singleContent.pricing.accessDefault")
+            : undefined,
+        variant: isBuy ? VARIANT.PRIMARY : VARIANT.SOFT_OUTLINE,
+        onClick: button.onClick,
+        disabled: false,
+      };
+    });
+  }, [isFreeContent, t, tutorial.buttons]);
 
   return (
     <SingleContentPage
@@ -41,9 +80,10 @@ export default function SingleTutorial({
         trailerIcon: playIcon,
         trailerIconAlt: "Play",
       }}
-      primaryAction={{
-        label: t("singleTutorial.seeContent"),
-      }}
+      primaryAction={
+        isFreeContent ? { label: t("singleTutorial.seeContent") } : undefined
+      }
+      primaryActions={primaryActions}
       metaItems={[
         {
           label: t("singleTutorial.meta.publishedLabel"),
@@ -60,7 +100,9 @@ export default function SingleTutorial({
       ]}
       shareLabel={t("common.share")}
     >
-      <CollectionItems videos={relatedVideos} collectionId={collectionId} />
+      {relatedVideos.length ? (
+        <CollectionItems videos={relatedVideos} collectionId={collectionId} />
+      ) : null}
     </SingleContentPage>
   );
 }
