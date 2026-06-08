@@ -9,6 +9,7 @@ import {
 import { Card, ContentLayout, Wrapper } from "./styles";
 import type { SingleContentPageProps } from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
+import useShare from "@/hooks/useShare";
 
 export type {
   SingleContentHeroProps,
@@ -34,6 +35,7 @@ export default function SingleContentPage({
   children,
 }: SingleContentPageProps) {
   const router = useRouter();
+  const { share } = useShare();
   const isPdfLayout =
     hero?.media?.type === FORMAT_TYPE.PDF ||
     hero?.media?.type === FORMAT_TYPE.EPUB;
@@ -53,7 +55,7 @@ export default function SingleContentPage({
         showShare={showShare}
         shareLabel={shareLabel}
         onBackClick={handleBack}
-        onShare={onShare}
+        onShare={onShare ?? share}
       />
 
       <Card>
