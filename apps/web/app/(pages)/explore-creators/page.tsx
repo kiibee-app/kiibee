@@ -12,14 +12,16 @@ import {
   useExploreCreators,
 } from "@/hooks/creators/useExploreCreators";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
+import { useDebounce } from "@/hooks/useDebounce";
 
 export default function ExploreCreatorsPage() {
   const [sortBy, setSortBy] = useState<SortValue>(DEFAULT_SORT);
   const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery);
 
   const { creators, isLoading, isFetching } = useExploreCreators(
     undefined,
-    searchQuery,
+    debouncedSearchQuery,
   );
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
 
