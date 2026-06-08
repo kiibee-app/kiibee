@@ -14,6 +14,7 @@ import {
   SORT_DROPDOWN_VARIANT,
 } from "@/utils/Constants";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
+import { useSortOrder } from "@/hooks/useSortOrder";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { MonoText } from "@/components/UI/Monotext";
 import SearchBar from "@/components/UI/SearchBar";
@@ -169,6 +170,16 @@ export default function ClientViewerBillings() {
     BILLING_HISTORY_HEADER_KEYS,
   );
 
+  const {
+    sortedData: sortedBillingHistory,
+    isHeaderSortable,
+    getHeaderSortDirection,
+    handleHeaderClick,
+  } = useSortOrder(MOCK_VIEWER_BILLING_HISTORY, {
+    targetHeader: billingHistoryHeaders[0],
+    sortBy: (item) => item.contentTitle,
+  });
+
   return (
     <BillingShell>
       <BillingHeader>
@@ -186,17 +197,20 @@ export default function ClientViewerBillings() {
       </BillingHeader>
 
       {activeTab === VIEWER_BILLING_HISTORY_TAB ? (
-        MOCK_VIEWER_BILLING_HISTORY.length ? (
+        sortedBillingHistory.length ? (
           <BillingTableSection>
             <Table<ViewerBillingHistoryItem>
               headers={billingHistoryHeaders}
-              data={MOCK_VIEWER_BILLING_HISTORY}
+              data={sortedBillingHistory}
               rowsPerPage={10}
               onRowClick={(row) => handleInvoiceOpen(row)}
               emptyText={t(DASHBOARD_VIEWER_BILLINGS.billingHistory.empty)}
               headerToKey={(header) => billingHistoryHeaderMap[header]}
               getRowKey={(row) => row.id}
               getMobileTitle={(row) => row.contentTitle}
+              isHeaderSortable={isHeaderSortable}
+              getHeaderSortDirection={getHeaderSortDirection}
+              onHeaderClick={handleHeaderClick}
               renderHeaderFilter={({ index }) => {
                 if (index === 0) {
                   return (
