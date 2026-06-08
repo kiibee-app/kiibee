@@ -26,7 +26,6 @@ import {
   InfoTag,
   InfoTagText,
   MainAction,
-  MainActionRow,
   MainActionText,
   MainTitle,
   MetaKey,

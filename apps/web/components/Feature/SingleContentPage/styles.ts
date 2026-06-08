@@ -284,20 +284,6 @@ export const MainAction = styled(GenericButton).attrs({
   margin-bottom: 1.5rem;
 `;
 
-export const MainActionRow = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-
-  > button {
-    flex: 1;
-    min-width: 0;
-    min-height: 51px;
-    border-radius: 12px;
-  }
-`;
-
 export const PricingCtaRow = styled.div`
   display: inline-flex;
   align-items: stretch;
