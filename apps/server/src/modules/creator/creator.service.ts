@@ -8,8 +8,8 @@ import { allCreatorsService } from './services/getAllCreators.service';
 
 @Injectable()
 export class CreatorService {
-  getExploreCreators(limit?: number) {
-    return getExploreCreatorsService(limit);
+  getExploreCreators(limit?: number, search?: string) {
+    return getExploreCreatorsService(limit, search);
   }
 
   getCreatorPublicProfile(creatorId: string) {

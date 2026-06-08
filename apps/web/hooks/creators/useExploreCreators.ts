@@ -68,9 +68,15 @@ export function getCreatorCardImage(creator: ExploreCreator): string | null {
 
 const TOP_CREATORS_LIMIT = 6;
 
-export const useExploreCreators = (limit?: number) => {
-  const params = limit != null ? { limit } : undefined;
-  const query = useGetAPI<ExploreCreatorsResponse>(API.creators.list, params);
+export const useExploreCreators = (limit?: number, search?: string) => {
+  const params: Record<string, string | number> = {};
+  if (limit != null) params.limit = limit;
+  if (search) params.search = search;
+
+  const query = useGetAPI<ExploreCreatorsResponse>(
+    API.creators.list,
+    Object.keys(params).length > 0 ? params : undefined,
+  );
 
   const creators = useMemo(() => {
     if (!query.data?.success || !Array.isArray(query.data.data)) {
@@ -82,6 +88,7 @@ export const useExploreCreators = (limit?: number) => {
   return {
     creators,
     isLoading: query.isLoading,
+    isFetching: query.isFetching,
     isError: query.isError,
   };
 };
