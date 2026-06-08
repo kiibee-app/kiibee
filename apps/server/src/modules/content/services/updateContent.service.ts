@@ -14,6 +14,8 @@ import {
 } from 'src/database/schema';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
 
+type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
+
 const pickDefined = (obj: Record<string, any>) =>
   Object.fromEntries(
     Object.entries(obj).filter(([, v]) => v !== undefined && v !== null),
@@ -25,6 +27,59 @@ const slugifyTag = (value: string) =>
     .trim()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+
+const normalizeTagNames = (input: string[]) =>
+  Array.from(new Set(input.map((tag) => tag.trim()).filter(Boolean)));
+
+const findOrCreateTag = async (
+  trx: Transaction,
+  tagName: string,
+  creatorId: string,
+) => {
+  const slug = `${creatorId}-${slugifyTag(tagName)}`.slice(0, 255);
+  const [existingTag] = await trx
+    .select({ id: tags.id })
+    .from(tags)
+    .where(eq(tags.slug, slug))
+    .limit(1);
+
+  if (existingTag) {
+    return existingTag.id;
+  }
+
+  const tagId = crypto.randomUUID();
+  await trx.insert(tags).values({
+    id: tagId,
+    name: tagName,
+    slug,
+    creatorId,
+  });
+
+  return tagId;
+};
+
+const syncContentTags = async (
+  trx: Transaction,
+  contentId: string,
+  inputTags: string[],
+  creatorId: string,
+) => {
+  const tagNames = normalizeTagNames(inputTags);
+
+  await trx
+    .delete(mediaFileTags)
+    .where(eq(mediaFileTags.mediaFileId, contentId));
+
+  for (const tagName of tagNames) {
+    const tagId = await findOrCreateTag(trx, tagName, creatorId);
+
+    await trx.insert(mediaFileTags).values({
+      id: crypto.randomUUID(),
+      mediaFileId: contentId,
+      tagId,
+    });
+  }
+};
 
 export const updateContentService = async (
   contentId: string,
@@ -108,40 +163,7 @@ export const updateContentService = async (
       }
 
       if (dto.tags !== undefined) {
-        const normalizedTags = Array.from(
-          new Set(dto.tags.map((tag) => tag.trim()).filter(Boolean)),
-        );
-
-        await trx
-          .delete(mediaFileTags)
-          .where(eq(mediaFileTags.mediaFileId, contentId));
-
-        for (const tagName of normalizedTags) {
-          const slug = `${creatorId}-${slugifyTag(tagName)}`.slice(0, 255);
-
-          let [existingTag] = await trx
-            .select({ id: tags.id })
-            .from(tags)
-            .where(eq(tags.slug, slug))
-            .limit(1);
-
-          if (!existingTag) {
-            const tagId = crypto.randomUUID();
-            await trx.insert(tags).values({
-              id: tagId,
-              name: tagName,
-              slug,
-              creatorId,
-            });
-            existingTag = { id: tagId };
-          }
-
-          await trx.insert(mediaFileTags).values({
-            id: crypto.randomUUID(),
-            mediaFileId: contentId,
-            tagId: existingTag.id,
-          });
-        }
+        await syncContentTags(trx, contentId, dto.tags, creatorId);
       }
 
       if (dto.collectionId) {
