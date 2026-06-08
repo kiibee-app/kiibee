@@ -251,9 +251,6 @@ export const seedCreatorAccounts = async () => {
     );
   }
 
-  let recreatedLegacyUsers = 0;
-  let recreatedLegacyRelatedRows = 0;
-
   for (const email of emails) {
     const { firstName, lastName } = getDisplayName(email);
     const slug = slugify(email);
@@ -262,21 +259,6 @@ export const seedCreatorAccounts = async () => {
     const now = new Date();
 
     await db.transaction(async (tx) => {
-      const [existingUser] = await tx
-        .select({ id: users.id })
-        .from(users)
-        .where(eq(users.email, email))
-        .limit(1);
-
-      if (
-        existingUser?.id &&
-        existingUser.id !== userId &&
-        existingUser.id.startsWith('creator-seed-')
-      ) {
-        await tx.delete(users).where(eq(users.id, existingUser.id));
-        recreatedLegacyUsers += 1;
-      }
-
       const [seededUser] = await tx
         .insert(users)
         .values({
@@ -304,60 +286,11 @@ export const seedCreatorAccounts = async () => {
             isEmailVerified: true,
             isActive: true,
             updatedAt: now,
-            passwordHash: creatorPasswordHash,
           },
         })
         .returning({ id: users.id });
 
       const creatorId = seededUser.id;
-
-      const [existingCreatorInfo] = await tx
-        .select({ id: creatorInfo.id })
-        .from(creatorInfo)
-        .where(eq(creatorInfo.userId, creatorId))
-        .limit(1);
-      if (existingCreatorInfo?.id.startsWith('creator-info-')) {
-        await tx
-          .delete(creatorInfo)
-          .where(eq(creatorInfo.id, existingCreatorInfo.id));
-        recreatedLegacyRelatedRows += 1;
-      }
-
-      const [existingCreatorChannel] = await tx
-        .select({ id: creatorChannels.id })
-        .from(creatorChannels)
-        .where(eq(creatorChannels.creatorId, creatorId))
-        .limit(1);
-      if (existingCreatorChannel?.id.startsWith('creator-channel-')) {
-        await tx
-          .delete(creatorChannels)
-          .where(eq(creatorChannels.id, existingCreatorChannel.id));
-        recreatedLegacyRelatedRows += 1;
-      }
-
-      const [existingCreatorBankAccount] = await tx
-        .select({ id: creatorBankAccounts.id })
-        .from(creatorBankAccounts)
-        .where(eq(creatorBankAccounts.creatorId, creatorId))
-        .limit(1);
-      if (existingCreatorBankAccount?.id.startsWith('creator-bank-')) {
-        await tx
-          .delete(creatorBankAccounts)
-          .where(eq(creatorBankAccounts.id, existingCreatorBankAccount.id));
-        recreatedLegacyRelatedRows += 1;
-      }
-
-      const [existingCreatorPlan] = await tx
-        .select({ id: creatorPlans.id })
-        .from(creatorPlans)
-        .where(eq(creatorPlans.creatorId, creatorId))
-        .limit(1);
-      if (existingCreatorPlan?.id.startsWith('creator-plan-')) {
-        await tx
-          .delete(creatorPlans)
-          .where(eq(creatorPlans.id, existingCreatorPlan.id));
-        recreatedLegacyRelatedRows += 1;
-      }
 
       await tx
         .insert(creatorInfo)
@@ -445,18 +378,11 @@ export const seedCreatorAccounts = async () => {
           createdAt: now,
           updatedAt: now,
         })
-        .onConflictDoUpdate({
-          target: creatorPlans.id,
-          set: {
-            creatorId,
-            planId: plan.id,
-            updatedAt: now,
-          },
-        });
+        .onConflictDoNothing({ target: creatorPlans.id });
     });
   }
 
   console.log(
-    `Creator accounts seeded successfully (${emails.length} processed, ${recreatedLegacyUsers} legacy users recreated, ${recreatedLegacyRelatedRows} legacy related rows recreated)`,
+    `Creator accounts seeded successfully (${emails.length} processed, existing data preserved)`,
   );
 };

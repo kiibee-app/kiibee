@@ -4,6 +4,7 @@ import NextImage from "next/image";
 import { useSafeImage } from "@/hooks/useSafeImage";
 import { useTranslation } from "react-i18next";
 import { IMG } from "@/utils/common";
+import { isRemoteImageSource } from "@/utils/media";
 import {
   SAFE_IMAGE_DECODING,
   SAFE_IMAGE_FALLBACKS,
@@ -44,6 +45,41 @@ function SafeImageInner({
         aria-label={alt ? t("image.failedAlt", { alt }) : t("image.failed")}
         className={className}
         style={style}
+      />
+    );
+  }
+
+  const useNativeImage =
+    typeof imgSrc === "string" && isRemoteImageSource(imgSrc);
+
+  if (useNativeImage) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element -- arbitrary remote URLs may fall outside Next image remotePatterns
+      <img
+        alt={alt}
+        src={imgSrc}
+        decoding={rest.decoding ?? SAFE_IMAGE_DECODING}
+        className={className}
+        style={{
+          ...style,
+          ...(rest.fill
+            ? {
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }
+            : {}),
+        }}
+        onError={(event) => {
+          handleError();
+          onError?.(event);
+        }}
+        onLoad={(event) => {
+          handleLoad();
+          onLoad?.(event);
+        }}
       />
     );
   }

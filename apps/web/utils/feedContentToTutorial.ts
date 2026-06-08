@@ -5,6 +5,7 @@ import {
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
+import { resolvePublicMediaUrl } from "@/utils/media";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -106,7 +107,7 @@ export function feedContentToTutorial(
     isFree: isFreeContentItem(item),
     formatLabel: formatFormatLabel(item.contentType),
     formatType: resolveFormatType(item.contentType),
-    image: item.thumbnailUrl || recentCreator,
+    image: resolvePublicMediaUrl(item.thumbnailUrl) || recentCreator,
     buttons: buildPricingButtons(item, freeLabel),
   };
 }

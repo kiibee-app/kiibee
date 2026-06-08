@@ -5,7 +5,7 @@ import { useRef, useState, type RefObject } from "react";
 import PdfIcon from "@/assets/icons/PdfIcon";
 import type { SingleContentHeroSectionProps } from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
-import { isRemoteImageSource } from "@/utils/media";
+import { isCloudflareStreamEmbedUrl, isRemoteImageSource } from "@/utils/media";
 import {
   Hero,
   HeroMediaTag,
@@ -50,6 +50,17 @@ function getMediaContent(
 
   switch (type) {
     case FORMAT_TYPE.VIDEO:
+      if (isCloudflareStreamEmbedUrl(src)) {
+        return (
+          <PreviewDocument
+            src={src}
+            title={title}
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        );
+      }
+
       return (
         <PreviewVideo
           ref={videoProps.videoRef}
@@ -109,6 +120,8 @@ export default function SingleContentHeroView({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hasStartedPlayback, setHasStartedPlayback] = useState(false);
   const isVideoMedia = hero.media?.type === FORMAT_TYPE.VIDEO;
+  const isCloudflareVideo =
+    isVideoMedia && isCloudflareStreamEmbedUrl(hero.media?.src);
 
   const handleVideoPlay = () => {
     if (isVideoMedia) {
@@ -153,7 +166,9 @@ export default function SingleContentHeroView({
       <Preview>
         <SingleContentPreview
           hero={hero}
-          showVideoControls={!isVideoMedia || hasStartedPlayback}
+          showVideoControls={
+            !isVideoMedia || isCloudflareVideo || hasStartedPlayback
+          }
           videoRef={videoRef}
           onVideoPlay={handleVideoPlay}
           onVideoPause={handleVideoPause}
@@ -167,7 +182,8 @@ export default function SingleContentHeroView({
         </HeroTag>
       ) : null}
 
-      {hero.mediaLabel && (!isVideoMedia || !hasStartedPlayback) ? (
+      {hero.mediaLabel &&
+      (!isVideoMedia || isCloudflareVideo || !hasStartedPlayback) ? (
         <HeroMediaTag>
           {hero.media?.type === FORMAT_TYPE.PDF ? (
             <PdfIcon width={16} height={16} />
@@ -184,7 +200,7 @@ export default function SingleContentHeroView({
         </HeroMediaTag>
       ) : null}
 
-      {hero.trailerLabel && !hasStartedPlayback ? (
+      {hero.trailerLabel && !isCloudflareVideo && !hasStartedPlayback ? (
         <TrailerButton onClick={handleTrailerButtonClick} type="button">
           {hero.trailerIcon ? (
             <Image

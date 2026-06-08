@@ -4,7 +4,12 @@ import {
   CREATOR_CHANNEL_AVATAR_TEXT,
   type CreatorChannelAvatarTextUse,
 } from "@/utils/Constants";
-import { AvatarImage, AvatarInitial } from "./styles";
+import {
+  isRemoteImageSource,
+  REMOTE_COVER_IMAGE_STYLE,
+  resolvePublicMediaUrl,
+} from "@/utils/media";
+import { AvatarImage, AvatarInitial, RemoteAvatarImage } from "./styles";
 
 type CreatorChannelAvatarProps = {
   avatarUrl: string | null;
@@ -21,9 +26,29 @@ export default function CreatorChannelAvatar({
   sizes,
   initialUse = CREATOR_CHANNEL_AVATAR_TEXT.HERO,
 }: CreatorChannelAvatarProps) {
-  if (avatarUrl) {
+  const resolvedAvatarUrl = resolvePublicMediaUrl(avatarUrl);
+
+  if (resolvedAvatarUrl) {
+    if (isRemoteImageSource(resolvedAvatarUrl)) {
+      return (
+        <RemoteAvatarImage
+          src={resolvedAvatarUrl}
+          alt={alt}
+          style={REMOTE_COVER_IMAGE_STYLE}
+          loading="lazy"
+          decoding="async"
+        />
+      );
+    }
+
     return (
-      <AvatarImage src={avatarUrl} alt={alt} fill sizes={sizes} unoptimized />
+      <AvatarImage
+        src={resolvedAvatarUrl}
+        alt={alt}
+        fill
+        sizes={sizes}
+        unoptimized
+      />
     );
   }
 

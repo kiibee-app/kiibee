@@ -413,7 +413,7 @@ export function useContentFormActions({
           ? await getPreviewUrl(fullContent.fileKey, resolvedContentType)
           : null;
 
-        setUploadedPreview(preview ?? null);
+        setUploadedPreview(preview ?? fullContent.contentUrl ?? null);
 
         setFormState({
           title: fullContent.title || "",
