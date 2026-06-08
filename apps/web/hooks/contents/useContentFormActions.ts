@@ -372,6 +372,8 @@ export function useContentFormActions({
       buyPrice?: number;
       maxDownloadCount?: number;
       physicalProductLink?: string;
+      openInNewWindow?: boolean;
+      openDirectFromList?: boolean;
     }
 
     try {
@@ -461,8 +463,8 @@ export function useContentFormActions({
             : DOWNLOAD_LIMIT_DEFAULT,
           physicalProductLink: fullContent.physicalProductLink || "",
           webLink: fullContent.contentUrl || "",
-          openInNewWindow: false,
-          openDirectFromList: false,
+          openInNewWindow: fullContent.openInNewWindow ?? false,
+          openDirectFromList: fullContent.openDirectFromList ?? false,
           contentTypeId: normalizeContentTypeValue(
             fullContent.contentTypeId ?? fullContent.contentType ?? "video",
           ),
