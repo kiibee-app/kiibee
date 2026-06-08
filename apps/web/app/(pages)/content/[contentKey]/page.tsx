@@ -75,7 +75,7 @@ function PublishedContentDetail() {
   const relatedCollectionQuery = usePublicRelatedCollectionContent(
     normalizedContentKey,
     {
-      enabled: !tutorialFallback && Boolean(normalizedContentKey),
+      enabled: Boolean(normalizedContentKey) && !fallback,
     },
   );
   const mediaEndpoint =
