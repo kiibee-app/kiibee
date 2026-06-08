@@ -1061,12 +1061,18 @@
   "users": {
     "search": "Search by name",
     "tabs": {
-      "registrations": "Registrations (11)",
-      "sales": "Sales (50)"
+      "registrations": "Registrations",
+      "sales": "Sales",
+      "registrationsWithCount": "Registrations ({{count}})",
+      "salesWithCount": "Sales ({{count}})"
     },
     "registrations": {
       "title": "E-mail signups",
       "description": "An overview of all emails collected in connection with e-mail address visibility.",
+      "emptyState": {
+        "title": "You have no email subscriptions.",
+        "description": "Once you have set an access requirement for 'Request email', they will appear here on the list after registration."
+      },
       "tableHeaders": {
         "name": "Name",
         "email": "Email",
@@ -1082,7 +1088,11 @@
     },
     "salest": {
       "title": "Sales",
-      "description": "Here you can find a complete overview of all your sales.",
+      "description": "Here you will find a complete overview of all your sales.",
+      "emptyState": {
+        "title": "You have no sales yet.",
+        "description": "When you have sold, they will appear here on the list"
+      },
       "tableHeaders": {
         "name": "Name",
         "email": "Email",

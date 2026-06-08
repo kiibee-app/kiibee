@@ -55,4 +55,9 @@ export const API = {
     trending: "/feed/trending",
     recent: "/feed/recent",
   },
+  creatorUsers: {
+    registrations: "/creator-users/registrations",
+    sales: "/creator-users/sales",
+    deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
+  },
 } as const;

@@ -1059,12 +1059,18 @@
   "users": {
     "search": "Sog efter navn",
     "tabs": {
-      "registrations": "Registreringer (11)",
-      "sales": "Salg (50)"
+      "registrations": "Registreringer",
+      "sales": "Salg",
+      "registrationsWithCount": "Registreringer ({{count}})",
+      "salesWithCount": "Salg ({{count}})"
     },
     "registrations": {
       "title": "E-mail tilmeldinger",
       "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse.",
+      "emptyState": {
+        "title": "Du har ingen e-mail tilmeldinger.",
+        "description": "Når du har sat et adgangskrav for 'Anmod om e-mail', vil de blive vist her på listen efter tilmelding."
+      },
       "tableHeaders": {
         "name": "Navn",
         "email": "E-mail",
@@ -1080,7 +1086,11 @@
     },
     "salest": {
       "title": "Salg",
-      "description": "Her finder du en samlet oversigt over alt dit salg",
+      "description": "Her finder du en samlet oversigt over alt dit salg.",
+      "emptyState": {
+        "title": "Du har ingen salg endnu.",
+        "description": "Når du har solgt, vil de blive vist her på listen"
+      },
       "tableHeaders": {
         "name": "Navn",
         "email": "E-mail",

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { USER_TABS, UserTabKey } from "@/utils/usersTabs";
+import { useMemo, useState } from "react";
+import { USER_TAB_KEYS, USER_TABS, UserTabKey } from "@/utils/usersTabs";
 import RegistrationsTabContent from "../Registrations";
 import { Title, Wrapper } from "./styles";
 import GenericTabs from "@/components/UI/GenericTabs";
@@ -13,11 +13,13 @@ import {
 } from "@/utils/Constants";
 import SalesTabContent from "../Sales";
 import { DASHBOARD_USERS } from "@/utils/translationKeys";
+import { useCreatorUsersCounts } from "@/hooks/users/useCreatorUsers";
 
 const DEFAULT_USERS_TAB = USER_TABS[0].key;
 
 export default function UsersContent() {
   const { t } = useTranslation();
+  const { registrationsCount, salesCount } = useCreatorUsersCounts();
   const { activeTab, setActiveTabAndQuery } = useQuerySyncedTab<UserTabKey>({
     queryKey: CONTENT_TAB,
     defaultTab: DEFAULT_USERS_TAB,
@@ -26,6 +28,26 @@ export default function UsersContent() {
   });
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
+
+  const tabs = useMemo(
+    () =>
+      USER_TABS.map((tab) => {
+        const count =
+          tab.key === USER_TAB_KEYS.registrations
+            ? registrationsCount
+            : salesCount;
+        const labelKey =
+          tab.key === USER_TAB_KEYS.registrations
+            ? DASHBOARD_USERS.tabs.registrationsWithCount
+            : DASHBOARD_USERS.tabs.salesWithCount;
+
+        return {
+          key: tab.key,
+          label: t(labelKey, { count }),
+        };
+      }),
+    [registrationsCount, salesCount, t],
+  );
 
   const handleTabClick = (tabKey: UserTabKey) => {
     if (!searchValue.trim()) {
@@ -39,10 +61,7 @@ export default function UsersContent() {
       <Title>Users</Title>
 
       <GenericTabs
-        tabs={USER_TABS.map((tab) => ({
-          key: tab.key,
-          label: t(tab.labelKey),
-        }))}
+        tabs={tabs}
         activeTab={activeTab}
         onTabChange={handleTabClick}
         search={{
@@ -54,10 +73,12 @@ export default function UsersContent() {
           onChange: setSearchValue,
         }}
       />
-      {activeTab === "registrations" && (
+      {activeTab === USER_TAB_KEYS.registrations && (
         <RegistrationsTabContent searchValue={searchValue} />
       )}
-      {activeTab === "sales" && <SalesTabContent searchValue={searchValue} />}
+      {activeTab === USER_TAB_KEYS.sales && (
+        <SalesTabContent searchValue={searchValue} />
+      )}
     </Wrapper>
   );
 }

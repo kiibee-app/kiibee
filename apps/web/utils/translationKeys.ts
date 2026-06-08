@@ -181,10 +181,16 @@ export const DASHBOARD_USERS = {
   tabs: {
     registrations: "users.tabs.registrations",
     sales: "users.tabs.sales",
+    registrationsWithCount: "users.tabs.registrationsWithCount",
+    salesWithCount: "users.tabs.salesWithCount",
   },
   registrations: {
     title: "users.registrations.title",
     description: "users.registrations.description",
+    emptyState: {
+      title: "users.registrations.emptyState.title",
+      description: "users.registrations.emptyState.description",
+    },
     tableHeaders: {
       name: "users.registrations.tableHeaders.name",
       email: "users.registrations.tableHeaders.email",
@@ -201,6 +207,10 @@ export const DASHBOARD_USERS = {
   salest: {
     title: "users.salest.title",
     description: "users.salest.description",
+    emptyState: {
+      title: "users.salest.emptyState.title",
+      description: "users.salest.emptyState.description",
+    },
     tableHeaders: {
       name: "users.salest.tableHeaders.name",
       email: "users.salest.tableHeaders.email",
