@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { USER_TABS, UserTabKey } from "@/utils/usersTabs";
+import { USER_TAB_KEYS, USER_TABS, UserTabKey } from "@/utils/usersTabs";
 import RegistrationsTabContent from "../Registrations";
 import { Title, Wrapper } from "./styles";
 import GenericTabs from "@/components/UI/GenericTabs";
@@ -33,9 +33,11 @@ export default function UsersContent() {
     () =>
       USER_TABS.map((tab) => {
         const count =
-          tab.key === "registrations" ? registrationsCount : salesCount;
+          tab.key === USER_TAB_KEYS.registrations
+            ? registrationsCount
+            : salesCount;
         const labelKey =
-          tab.key === "registrations"
+          tab.key === USER_TAB_KEYS.registrations
             ? DASHBOARD_USERS.tabs.registrationsWithCount
             : DASHBOARD_USERS.tabs.salesWithCount;
 
@@ -71,10 +73,12 @@ export default function UsersContent() {
           onChange: setSearchValue,
         }}
       />
-      {activeTab === "registrations" && (
+      {activeTab === USER_TAB_KEYS.registrations && (
         <RegistrationsTabContent searchValue={searchValue} />
       )}
-      {activeTab === "sales" && <SalesTabContent searchValue={searchValue} />}
+      {activeTab === USER_TAB_KEYS.sales && (
+        <SalesTabContent searchValue={searchValue} />
+      )}
     </Wrapper>
   );
 }
