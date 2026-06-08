@@ -39,6 +39,7 @@ export const API = {
     update: (id: string) => `/content/update/${id}`,
     delete: (id: string) => `/content/delete/${id}`,
     appearance: "/content/appearance",
+    setting: "/content/setting",
   },
   collection: {
     getAll: "/collection",
