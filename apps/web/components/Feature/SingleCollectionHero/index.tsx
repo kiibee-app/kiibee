@@ -22,6 +22,7 @@ import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import { VARIANT } from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
+import useShare from "@/hooks/useShare";
 
 type Props = {
   title: string;
@@ -34,6 +35,7 @@ export default function SingleCollectionHero({
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
+  const { share } = useShare();
   const handleBack = () => {
     router.back();
   };
@@ -47,8 +49,7 @@ export default function SingleCollectionHero({
         <BackButtonWrapper onClick={handleBack}>
           <BackButtonIcon />
         </BackButtonWrapper>
-
-        <GenericButton variant={VARIANT.PRIMARY_LITE} href="#">
+        <GenericButton variant={VARIANT.PRIMARY_LITE} onClick={share}>
           <ShareIcon />
           {t("common.share")}
         </GenericButton>

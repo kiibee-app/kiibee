@@ -135,7 +135,7 @@ export const approveCreatorRequestService = async (
     return success(
       null,
       'Creator request approved successfully',
-      HttpStatus.OK,
+      HttpStatus.CREATED,
     );
   } catch (error) {
     logger.error('Error approving creator request:', error);

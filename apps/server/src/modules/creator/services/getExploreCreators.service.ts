@@ -2,6 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq, sql, type SQL } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
+  contentAppearance,
   creatorChannels,
   emailSubscribers,
   mediaFiles,
@@ -69,9 +70,10 @@ const buildCreatorsQuery = (creatorId?: string) => {
           nullif(${creatorChannels.logoUrl}, ''),
           nullif(${users.avatarUrl}, '')
         )`.as('profile_image_url'),
-      coverImageUrl: sql<
-        string | null
-      >`nullif(${creatorChannels.coverImageUrl}, '')`.as('cover_image_url'),
+      coverImageUrl: sql<string | null>`coalesce(
+          nullif(${creatorChannels.coverImageUrl}, ''),
+          nullif(${contentAppearance.desktopCoverImageUrl}, '')
+        )`.as('cover_image_url'),
       category: sql<string | null>`null`.as('category'),
       uploadCount:
         sql<number>`coalesce(${uploadCounts.uploadCount}, 0)::int`.as(
@@ -85,6 +87,7 @@ const buildCreatorsQuery = (creatorId?: string) => {
     })
     .from(users)
     .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
+    .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
     .leftJoin(uploadCounts, eq(uploadCounts.creatorId, users.id))
     .leftJoin(subscriberCounts, eq(subscriberCounts.creatorId, users.id))
     .where(and(...conditions))

@@ -1,7 +1,12 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
+import {
+  isRemoteImageSource,
+  REMOTE_COVER_IMAGE_STYLE,
+  resolveImageUrl,
+} from "@/utils/media";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import {
@@ -64,23 +69,47 @@ export default function GenericCard({
   children,
   width,
 }: GenericCardProps) {
+  const imageKey = image ? (typeof image === "string" ? image : image.src) : "";
+  const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
+  const imageFailed = failedImageKey === imageKey;
+
+  const imageSrc = image ? resolveImageUrl(image) : null;
+  const showRemoteImage =
+    Boolean(imageSrc) &&
+    !imageFailed &&
+    typeof imageSrc === "string" &&
+    isRemoteImageSource(imageSrc);
+  const showOptimizedImage = Boolean(image) && !imageFailed && !showRemoteImage;
+  const showInitials = Boolean(imageInitials) && (!image || imageFailed);
+
   return (
     <Card $width={width} $compact={compact} $coverImage={coverImage}>
       {(image || imageInitials) && (
         <ImageWrapper $compact={compact} $coverImage={coverImage}>
           {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
-          {image ? (
+          {showRemoteImage ? (
+            // eslint-disable-next-line @next/next/no-img-element -- arbitrary remote URLs may fall outside Next image remotePatterns
+            <img
+              src={imageSrc ?? undefined}
+              alt={alt || "card image"}
+              style={REMOTE_COVER_IMAGE_STYLE}
+              loading="eager"
+              decoding="async"
+              onError={() => setFailedImageKey(imageKey)}
+            />
+          ) : showOptimizedImage ? (
             <Image
-              src={image}
+              src={image!}
               alt={alt || "card image"}
               fill
               sizes="(max-width: 767px) 100vw, 50vw"
               style={{ objectFit: "cover" }}
               priority
+              onError={() => setFailedImageKey(imageKey)}
             />
-          ) : (
+          ) : showInitials ? (
             <ImageInitials $use="Heading3">{imageInitials}</ImageInitials>
-          )}
+          ) : null}
         </ImageWrapper>
       )}
       <Content>

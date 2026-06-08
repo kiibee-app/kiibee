@@ -26,7 +26,7 @@ export const Block = styled.div<{ $isFree?: boolean }>`
 `;
 
 export const ControlWrap = styled.div`
-  width: min(100%, 483px);
+  width: min(100%, 457px);
 `;
 
 export const FeeNote = styled.p`
@@ -50,7 +50,7 @@ export const SectionText = styled.p`
 `;
 
 export const DropdownWrap = styled.div`
-  width: min(100%, 483px);
+  width: min(100%, 457px);
 
   > div {
     max-width: 100%;

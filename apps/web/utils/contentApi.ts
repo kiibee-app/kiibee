@@ -11,6 +11,7 @@ import {
   getContentTypeLabel,
   normalizeContentTypeValue,
 } from "@/utils/content";
+import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
 import { FORMAT_TYPE } from "@/utils/types";
 
 type Translate = (key: string) => string;
@@ -27,6 +28,7 @@ export const CONTENT_RESPONSE_KEYS = {
   CONTENT_URL: "contentUrl",
   THUMBNAIL_URL: "thumbnailUrl",
   THUMBNAIL_LANDSCAPE_URL: "thumbnailLandscapeUrl",
+  TRAILER_URL: "trailerUrl",
   VISIBILITY: "visibility",
   ACCESS_TYPE: "accessType",
   CREATED_AT: "createdAt",
@@ -70,6 +72,7 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.CONTENT_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.THUMBNAIL_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL]?: string | null;
+  [CONTENT_RESPONSE_KEYS.TRAILER_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.VISIBILITY]?: string | null;
   [CONTENT_RESPONSE_KEYS.ACCESS_TYPE]?: string | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
@@ -115,6 +118,36 @@ export const getContentMediaKey = (content?: ContentDetailItem) =>
 
 export const getContentUrl = (content?: ContentDetailItem) =>
   toTrimmedString(content?.[CONTENT_RESPONSE_KEYS.CONTENT_URL]);
+
+export const hasDirectPlaybackUrl = (url?: string | null) =>
+  Boolean(url && /^https?:\/\//i.test(url));
+
+export const resolveContentPlaybackUrl = (
+  content: ContentDetailItem | undefined,
+  signedUrl?: string,
+): string => {
+  const contentType = getContentType(content);
+  const contentUrl = getContentUrl(content);
+  const fileKey = getContentMediaKey(content);
+  const cloudflareEmbedUrl = resolveCloudflareStreamPlaybackUrl(
+    fileKey,
+    contentUrl || signedUrl,
+  );
+
+  if (contentType === FORMAT_TYPE.WEB) {
+    return contentUrl;
+  }
+
+  if (cloudflareEmbedUrl) {
+    return cloudflareEmbedUrl;
+  }
+
+  if (hasDirectPlaybackUrl(contentUrl)) {
+    return contentUrl;
+  }
+
+  return signedUrl ?? "";
+};
 
 const getContentImage = (content: ContentDetailItem): ImageSource =>
   toTrimmedString(

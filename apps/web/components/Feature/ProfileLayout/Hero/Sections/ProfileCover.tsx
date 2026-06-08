@@ -29,7 +29,8 @@ export default function ProfileCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
   const { openAbout } = tabState;
-  const { displayName, avatarUrl, initial, about } = useCreatorChannelProfile();
+  const { displayName, avatarUrl, coverImageUrl, initial, about } =
+    useCreatorChannelProfile();
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
   const biography = about?.description || t(CREATE_PROFILE_HOME.description);
@@ -38,11 +39,12 @@ export default function ProfileCoverSection() {
     <HeroWrapper>
       <CoverFrame>
         <CoverImage
-          src={coverImage}
+          src={coverImageUrl || coverImage}
           alt={t(CREATE_PROFILE_HOME.title)}
           fill
           sizes="(max-width: 900px) 100vw, 1300px"
           priority
+          unoptimized={Boolean(coverImageUrl)}
         />
       </CoverFrame>
 

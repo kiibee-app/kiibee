@@ -109,6 +109,18 @@ export const setupCreatorAccountService = async (
           );
         }
         planUuid = planRow.id;
+      } else {
+        const [planRow] = await tx
+          .select({ id: plans.id })
+          .from(plans)
+          .where(and(eq(plans.id, planUuid), eq(plans.isActive, true)))
+          .limit(1);
+        if (!planRow) {
+          throw new HttpException(
+            'Invalid subscription plan',
+            HttpStatus.BAD_REQUEST,
+          );
+        }
       }
       resolvedPlanId = planUuid;
 
@@ -142,7 +154,7 @@ export const setupCreatorAccountService = async (
     return success(
       responseData,
       'Creator account setup successfully',
-      HttpStatus.OK,
+      HttpStatus.CREATED,
     );
   } catch (error) {
     logger.error('Error setting up creator account:', error);

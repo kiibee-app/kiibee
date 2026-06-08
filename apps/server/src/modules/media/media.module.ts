@@ -7,11 +7,13 @@ import { VideoDownloadService } from './services/videoDownload.service';
 import { FileUploadService } from './services/fileUpload.service';
 import { PublicImageUploadService } from './services/publicImageUpload.service';
 import { GetMediaByKeyService } from './services/getmediaByKey.service';
+import { ResolveImportedMediaUrlService } from './services/resolveImportedMediaUrl.service';
 
 @Module({
   controllers: [MediaController],
   providers: [
     MediaService,
+    ResolveImportedMediaUrlService,
     VideoMultipartService,
     VideoStreamService,
     VideoDownloadService,

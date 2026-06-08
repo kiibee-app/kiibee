@@ -72,7 +72,8 @@ export function isSafePostLoginPath(
     path === PATHS.DASHBOARD_CREATOR ||
     path.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
     path === PATHS.DASHBOARD_VIEWER ||
-    path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`)
+    path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
+    path.startsWith(`${PATHS.CREATOR_PROFILE}/`)
   );
 }
 

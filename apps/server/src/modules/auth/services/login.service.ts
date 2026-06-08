@@ -72,6 +72,6 @@ export const loginService = async (
 
     const { passwordHash, ...userWithoutPassword } = user;
 
-    return success(userWithoutPassword, 'Login successful', HttpStatus.OK);
+    return success(userWithoutPassword, 'Login successful', HttpStatus.CREATED);
   });
 };

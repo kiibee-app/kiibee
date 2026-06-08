@@ -9,7 +9,7 @@ import { type CtaImageCard } from "@/utils/landingShared";
 export const Section = styled.section`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 75vh;
   margin: 0;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.gradient.CANVAS_BG};

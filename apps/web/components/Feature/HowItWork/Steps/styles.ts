@@ -1,49 +1,80 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+
+const cardImageRatios = [70, 90, 110] as const;
 
 export const StepsSection = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
-  padding: 3.5rem 1.25rem 4.5rem;
+  padding: 118px 112px;
 `;
 
 export const Inner = styled.div`
-  max-width: 1440px;
+  max-width: 1216px;
   margin: 0 auto;
   width: 100%;
-  padding: 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 71px;
+`;
+
+export const HeaderGroup = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
 `;
 
 export const Heading = styled.h2`
-  margin: 0 0 0.5rem 0;
+  margin: 0;
   text-align: center;
 `;
 
 export const Subtitle = styled.p`
-  margin: 0 auto 2rem auto;
+  margin: 0;
   text-align: center;
   max-width: 580px;
 `;
 
 export const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem 1rem;
-  align-items: end;
+  display: flex;
   justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  width: 100%;
 
   ${media.tablet} {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
-export const ImgWrap = styled.div`
+export const GridItem = styled.div`
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 392px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+
+  ${media.tablet} {
+    flex: none;
+    max-width: 500px;
+    align-items: stretch;
+  }
+`;
+
+export const ImgWrap = styled.div<{ $ratio: (typeof cardImageRatios)[number] }>`
   position: relative;
   width: 100%;
   border-radius: 14px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  padding-top: ${({ $ratio }) => $ratio}%;
   transition:
     transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -54,73 +85,50 @@ export const ImgWrap = styled.div`
   }
 `;
 
-export const Card = styled.div`
+export const Card = styled.div<{ $index: number }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 500px;
-  cursor: pointer;
+  width: 100%;
 
-  &:hover {
-    ${ImgWrap} {
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-    }
-    img {
-      transform: scale(1.04) !important;
-    }
-  }
+  ${({ $index }) =>
+    $index === 2 &&
+    css`
+      ${ImgWrap} {
+        transform: translateY(-2px);
+      }
+    `}
 
-  &:nth-child(1) {
-    ${ImgWrap} {
-      padding-top: 70%;
-      transform: translateY(0px);
-    }
+  @media (hover: hover) {
     &:hover {
       ${ImgWrap} {
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
         transform: translateY(-8px);
       }
-    }
-  }
 
-  &:nth-child(2) {
-    ${ImgWrap} {
-      padding-top: 85%;
-      transform: translateY(0px);
-    }
-    &:hover {
-      ${ImgWrap} {
-        transform: translateY(-8px);
-      }
-    }
-  }
-
-  &:nth-child(3) {
-    ${ImgWrap} {
-      padding-top: 105%;
-      transform: translateY(-2px);
-    }
-    &:hover {
-      ${ImgWrap} {
-        transform: translateY(-10px);
+      img {
+        transform: scale(1.04) !important;
       }
     }
   }
 `;
 
 export const CardTitle = styled.h3`
-  ${({ theme }) => theme.typography.H5_Medium};
-  padding: 1rem 0 0 0;
+  margin: 1rem 0 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+
   ${media.tablet} {
-    padding: 0.5rem 0 0 0;
+    margin-top: 0.75rem;
   }
 `;
 
 export const CardText = styled.p`
-  ${({ theme }) => theme.typography.Body_Medium};
-  margin: 0;
+  margin: 0.25rem 0 0;
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+
   ${media.tablet} {
-    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 `;
+
+export const CARD_IMAGE_RATIOS = cardImageRatios;

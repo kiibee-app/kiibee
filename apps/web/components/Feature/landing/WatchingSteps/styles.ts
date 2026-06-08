@@ -22,7 +22,7 @@ export const Header = styled.div`
 `;
 
 export const Heading = styled.h2`
-  margin: 5rem 0 0.75rem;
+  margin: 3rem 0 0.75rem;
 `;
 
 export const Tagline = styled.p`
