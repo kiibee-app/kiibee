@@ -58,7 +58,7 @@ export default function ClientDashboardViewer({
   const router = useRouter();
   const { logout } = useLogout();
   const { getUser } = useAuthSession();
-  useRequireAuthSession();
+  const { isReady } = useRequireAuthSession();
 
   const viewParam = searchParams?.get(VIEW);
   const activePage: ViewerLabel =
@@ -119,6 +119,8 @@ export default function ClientDashboardViewer({
   }, [logout]);
 
   const sectionTitle = useMemo(() => activePage, [activePage]);
+
+  if (!isReady) return null;
 
   return (
     <DashboardLayout
