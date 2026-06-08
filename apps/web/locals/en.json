@@ -955,6 +955,13 @@
     "imageAlt": "Content preview",
     "seeContent": "See content",
     "playTrailer": "Play trailer",
+    "pricing": {
+      "downloadFiles": "Download files",
+      "accessDefault": "Access for 3 months",
+      "accessMonths": "Access for {{count}} months",
+      "accessDays": "Access for {{count}} days",
+      "accessHours": "Access for {{count}} hours"
+    },
     "meta": {
       "createdAt": "Created:",
       "accessType": "Access:",

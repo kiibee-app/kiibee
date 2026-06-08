@@ -953,6 +953,13 @@
     "imageAlt": "Forhaandsvisning af indhold",
     "seeContent": "Se indhold",
     "playTrailer": "Afspil trailer",
+    "pricing": {
+      "downloadFiles": "Download filer",
+      "accessDefault": "Adgang i 3 måneder",
+      "accessMonths": "Adgang i {{count}} måneder",
+      "accessDays": "Adgang i {{count}} dage",
+      "accessHours": "Adgang i {{count}} timer"
+    },
     "meta": {
       "createdAt": "Oprettet:",
       "accessType": "Adgang:",
