@@ -6,14 +6,24 @@ import Table from "@/components/UI/Table";
 import { MonoText } from "@/components/UI/Monotext";
 import { DeleteIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
+import GenericLoader from "@/components/UI/GenericLoader";
 import { DASHBOARD_USERS } from "@/utils/translationKeys";
-import { RegistrationRow, registrationData } from "@/utils/dummyData/users";
+import { RegistrationRow } from "@/types/creatorUsers";
 import {
   buildHeaderMap,
   REGISTRATION_TABLE_HEADER_KEYS,
 } from "@/utils/tableHeader";
-import { SORT_DIRECTIONS, SortDirectionWithNone } from "@/utils/ui";
+import {
+  SORT_DIRECTIONS,
+  SortDirectionWithNone,
+  LOADER_VARIANT,
+} from "@/utils/ui";
 import { filterUsersByName } from "@/utils/filterUsersByName";
+import {
+  useDeleteRegistration,
+  useRegistrations,
+} from "@/hooks/users/useCreatorUsers";
+import UsersEmptyState from "../EmptyState";
 import COLORS from "@repo/ui/colors";
 import {
   DeleteActionButton,
@@ -31,8 +41,10 @@ export default function RegistrationsTabContent({
   searchValue,
 }: RegistrationsTabContentProps) {
   const { t } = useTranslation();
-  const [rows, setRows] = useState<RegistrationRow[]>(registrationData);
-  const [selectedEmail, setSelectedEmail] = useState<string | null>(null);
+  const { rows, isLoading } = useRegistrations();
+  const { deleteRegistration } = useDeleteRegistration();
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [nameSortDirection, setNameSortDirection] =
     useState<SortDirectionWithNone>(SORT_DIRECTIONS.NONE);
   const deleteModalKeys = DASHBOARD_USERS.registrations.deleteModal;
@@ -45,8 +57,8 @@ export default function RegistrationsTabContent({
   );
 
   const rowToDelete = useMemo(
-    () => rows.find((item) => item.email === selectedEmail) ?? null,
-    [rows, selectedEmail],
+    () => rows.find((item) => item.id === selectedId) ?? null,
+    [rows, selectedId],
   );
   const sortedRows = useMemo(() => {
     const filtered = filterUsersByName(rows, searchValue);
@@ -58,6 +70,24 @@ export default function RegistrationsTabContent({
     });
   }, [rows, searchValue, nameSortDirection]);
 
+  const handleDeleteConfirm = async () => {
+    if (!rowToDelete) return;
+
+    setIsDeleting(true);
+    try {
+      await deleteRegistration(rowToDelete.id);
+      setSelectedId(null);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <GenericLoader variant={LOADER_VARIANT.INLINE} isOpen label={undefined} />
+    );
+  }
+
   return (
     <>
       <SectionCard>
@@ -67,78 +97,84 @@ export default function RegistrationsTabContent({
         </SectionDescription>
       </SectionCard>
 
-      <TableSection>
-        <Table<RegistrationRow>
-          headers={headers}
-          data={sortedRows}
-          rowsPerPage={10}
-          headerToKey={(header) => headerMap[header]}
-          onHeaderClick={(header) => {
-            if (header !== headers[0]) return;
-            setNameSortDirection((prev) => {
-              if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
-              if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
-              return SORT_DIRECTIONS.NONE;
-            });
-          }}
-          isHeaderSortable={(header) => header === headers[0]}
-          getHeaderSortDirection={(header) =>
-            header === headers[0] && nameSortDirection !== SORT_DIRECTIONS.NONE
-              ? nameSortDirection
-              : null
-          }
-          getRowKey={(row, index) => `${row.email}-${index}`}
-          getMobileTitle={(row) => row.name}
-          renderCell={({ header, row }) => {
-            if (header === headers[3]) {
-              return (
-                <DeleteActionButton
-                  type="button"
-                  aria-label={t(
-                    DASHBOARD_USERS.registrations.deleteModal.delete,
-                  )}
-                  onClick={() => setSelectedEmail(row.email)}
-                >
-                  <DeleteIcon />
-                </DeleteActionButton>
-              );
-            }
-
-            return (
-              <MonoText
-                $use="Body_SemiBold"
-                color={
-                  header === headers[0]
-                    ? COLORS.primary.BLACK
-                    : COLORS.neutral.GRAY
-                }
-              >
-                {row[headerMap[header]]}
-              </MonoText>
-            );
-          }}
+      {rows.length === 0 ? (
+        <UsersEmptyState
+          title={t(DASHBOARD_USERS.registrations.emptyState.title)}
+          description={t(DASHBOARD_USERS.registrations.emptyState.description)}
         />
-      </TableSection>
+      ) : (
+        <TableSection>
+          <Table<RegistrationRow>
+            headers={headers}
+            data={sortedRows}
+            rowsPerPage={10}
+            headerToKey={(header) => headerMap[header]}
+            onHeaderClick={(header) => {
+              if (header !== headers[0]) return;
+              setNameSortDirection((prev) => {
+                if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
+                if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
+                return SORT_DIRECTIONS.NONE;
+              });
+            }}
+            isHeaderSortable={(header) => header === headers[0]}
+            getHeaderSortDirection={(header) =>
+              header === headers[0] &&
+              nameSortDirection !== SORT_DIRECTIONS.NONE
+                ? nameSortDirection
+                : null
+            }
+            getRowKey={(row) => row.id}
+            getMobileTitle={(row) => row.name}
+            renderCell={({ header, row }) => {
+              if (header === headers[3]) {
+                return (
+                  <DeleteActionButton
+                    type="button"
+                    aria-label={t(
+                      DASHBOARD_USERS.registrations.deleteModal.delete,
+                    )}
+                    onClick={() => setSelectedId(row.id)}
+                  >
+                    <DeleteIcon />
+                  </DeleteActionButton>
+                );
+              }
+
+              const key = headerMap[header];
+              if (key === "action" || key === "id" || !key) return null;
+
+              return (
+                <MonoText
+                  $use="Body_SemiBold"
+                  color={
+                    header === headers[0]
+                      ? COLORS.primary.BLACK
+                      : COLORS.neutral.GRAY
+                  }
+                >
+                  {row[key]}
+                </MonoText>
+              );
+            }}
+          />
+        </TableSection>
+      )}
 
       <GenericModal
-        visible={Boolean(selectedEmail)}
+        visible={Boolean(selectedId)}
         title={t(deleteModalKeys.title)}
         message={t(deleteModalKeys.message)}
         cancelLabel={t(deleteModalKeys.cancel)}
         confirmLabel={t(deleteModalKeys.delete)}
-        onCancel={() => setSelectedEmail(null)}
-        onClose={() => setSelectedEmail(null)}
-        onConfirm={() => {
-          if (!rowToDelete) return;
-          setRows((prev) =>
-            prev.filter((item) => item.email !== rowToDelete.email),
-          );
-          setSelectedEmail(null);
-        }}
+        onCancel={() => setSelectedId(null)}
+        onClose={() => setSelectedId(null)}
+        onConfirm={handleDeleteConfirm}
         width="560px"
         padding="36px 40px"
         buttonRow
         showCloseButton={false}
+        confirmLoading={isDeleting}
       />
     </>
   );
