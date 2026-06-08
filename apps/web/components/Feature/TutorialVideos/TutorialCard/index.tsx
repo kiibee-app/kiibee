@@ -171,7 +171,7 @@ function TutorialCard({
     </GenericCard>
   );
 
-  if (isFreeContent && !onPlayClick) {
+  if (!onPlayClick) {
     return (
       <CardLink
         href={singleTutorialHref}
