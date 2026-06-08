@@ -32,7 +32,7 @@ export default function Table<T extends Record<string, unknown>>({
     paginatedData,
     totalPages,
     safeCurrentPage,
-    pageNumbers,
+    paginationItems,
     effectiveRowsPerPage,
   } = useTablePagination({
     data,
@@ -103,8 +103,8 @@ export default function Table<T extends Record<string, unknown>>({
       <Pagination
         totalPages={totalPages}
         currentPage={safeCurrentPage}
-        pageNumbers={pageNumbers}
-        rowsPerPage={effectiveRowsPerPage}
+        paginationItems={paginationItems}
+        rowsPerPage={currentRowsPerPage}
         onRowsPerPageChange={handleRowsPerPageChange}
         onChange={handlePageChange}
       />
