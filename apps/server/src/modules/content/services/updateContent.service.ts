@@ -4,6 +4,7 @@ import { db } from 'src/database/db';
 import { fail, success } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 import { UpdateContentDto } from '../content.dto';
+import { SLUG_EDGE_DASH_RE, SLUG_NON_ALPHANUMERIC_RE } from '../content.helper';
 import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
 import {
   collectionItems,
@@ -25,8 +26,8 @@ const slugifyTag = (value: string) =>
   value
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
+    .replace(SLUG_EDGE_DASH_RE, '');
 
 const normalizeTagNames = (input: string[]) =>
   Array.from(new Set(input.map((tag) => tag.trim()).filter(Boolean)));

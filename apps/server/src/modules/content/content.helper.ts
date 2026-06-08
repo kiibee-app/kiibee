@@ -3,12 +3,15 @@ import { eq, ilike, or } from 'drizzle-orm';
 import { mediaFiles, users } from 'src/database/schema';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
 
+export const SLUG_NON_ALPHANUMERIC_RE = /[^a-z0-9]+/g;
+export const SLUG_EDGE_DASH_RE = /^-+|-+$/g;
+
 export const contentSlugGenerator = async (title: string) => {
   const baseSlug = title
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
+    .replace(SLUG_EDGE_DASH_RE, '');
 
   let slug = baseSlug;
   let counter = 1;
