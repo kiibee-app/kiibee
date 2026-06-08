@@ -69,9 +69,10 @@ export function getCreatorCardImage(creator: ExploreCreator): string | null {
 const TOP_CREATORS_LIMIT = 6;
 
 export const useExploreCreators = (limit?: number, search?: string) => {
-  const params: Record<string, string | number> = {};
-  if (limit != null) params.limit = limit;
-  if (search) params.search = search;
+  const params = {
+    ...(limit !== undefined && { limit }),
+    ...(search?.trim() && { search: search.trim() }),
+  };
 
   const query = useGetAPI<ExploreCreatorsResponse>(
     API.creators.list,
