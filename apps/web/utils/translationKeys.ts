@@ -98,6 +98,10 @@ export const VIEWER_SIGNUP_PREFERENCE = {
 };
 
 export const CREATORS = {
+  marquee: {
+    title: "creators.marquee.title",
+    defaultDescription: "creators.marquee.defaultDescription",
+  },
   sort: "creators.sort",
   value: (v: string) => `creators.${v}`,
   topCreators: "creators.topCreators",

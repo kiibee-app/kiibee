@@ -311,7 +311,8 @@
   },
   "creators": {
     "marquee": {
-      "title": "Explore the Kiibee creators and find your favorites"
+      "title": "Explore the Kiibee creators and find your favorites",
+      "defaultDescription": "The online courses at Kammas Kantine are for those who want to learn how to take better care of their body. You'll gain knowledge about health, practical tips and tricks, and access to fantastic recipes that are simple to prepare in your own kitchen."
     },
     "trendingContent": "Trending content",
     "heading": {
