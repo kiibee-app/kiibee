@@ -33,6 +33,7 @@ import { CoverImageSectionProps, UploadConfig } from "@/types/metadataType";
 import { useContentForm } from "../ContentFormContext";
 import { FORM_FIELDS } from "@/utils/appearance";
 import { useAppearanceForm } from "./AppearanceFormContext";
+import { ErrorText } from "../MetaData/styles";
 
 const imageFieldMap = {
   [IMAGE_TYPE.MEDIA_CARD]: "mediaCardThumbnail",
@@ -48,7 +49,8 @@ export default function CoverImageSection({
   useFormContext = false,
 }: CoverImageSectionProps) {
   const { t } = useTranslation();
-  const { formState, updateField } = useContentForm();
+  const { formState, formErrors, updateField, clearFieldError } =
+    useContentForm();
   const { values: appearanceValues, updateField: updateAppearanceField } =
     useAppearanceForm();
   const [open, setOpen] = React.useState(false);
@@ -71,6 +73,7 @@ export default function CoverImageSection({
     if (!selectedConfig) return;
     const field = getImageField(selectedConfig.type);
     if (useFormContext) {
+      clearFieldError(field);
       updateField(field, cropped);
     } else if (selectedConfig.type === IMAGE_TYPE.DESKTOP) {
       updateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL, cropped);
@@ -139,6 +142,11 @@ export default function CoverImageSection({
                   <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
                     {item.sizeText ?? (item.sizeKey ? t(item.sizeKey) : "")}
                   </MonoText>
+                  {useFormContext && formErrors[getImageField(item.type)] ? (
+                    <ErrorText role="alert">
+                      {formErrors[getImageField(item.type)]}
+                    </ErrorText>
+                  ) : null}
                 </UploadButton>
 
                 <PreviewWrapper>

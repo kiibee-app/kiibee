@@ -1593,6 +1593,11 @@
       "helperLiveStreaming": "Kan f.eks. bruges sammen med livestreaming"
     },
     "metadata": {
+      "validation": {
+        "required": "Dette felt er obligatorisk.",
+        "mediaCardThumbnail": "Miniature til mediekortet er obligatorisk.",
+        "portraitThumbnail": "Portraetminiature er obligatorisk."
+      },
       "production": {
         "title": "Produktion af",
         "description": "Hvem udgav filmen og producerede filmen?",
@@ -1755,6 +1760,7 @@
   "errors": {
     "missingContentFormProvider": "useContentForm skal bruges inden for en ContentFormProvider",
     "noContentToSave": "Intet indhold at gemme",
+    "metadataValidationFailed": "Udfyld venligst alle obligatoriske metadatafelter.",
     "saveChangesFailed": "Kunne ikke gemme ændringer",
     "saveSettingsFailed": "Kunne ikke gemme indstillinger",
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer"

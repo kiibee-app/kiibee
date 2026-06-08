@@ -51,6 +51,7 @@ import {
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
+import type { ContentFormErrors } from "@/types/contentTypes";
 
 type Params = {
   activeTab: ContentTab;
@@ -83,7 +84,14 @@ export function useContentFormActions({
 }: Params) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const { formState, prefillForm, resetForm, setFormState } = useContentForm();
+  const {
+    formState,
+    prefillForm,
+    resetForm,
+    setFormState,
+    setFormErrors,
+    clearFormErrors,
+  } = useContentForm();
   const {
     hasUnsavedChanges: hasAppearanceChanges,
     saveAppearance,
@@ -106,6 +114,9 @@ export function useContentFormActions({
     useState<AccessDurationValue>(PAYMENT_DEFAULT_ACCESS_DURATION);
 
   const [prevCollectionId, setPrevCollectionId] = useState<string | null>(null);
+  const isEditingFlowTab = Object.values(ADD_CONTENT_TABS).includes(
+    activeTab as AddContentTab,
+  );
 
   if (selectedCollection && selectedCollection.id !== prevCollectionId) {
     setPrevCollectionId(selectedCollection.id);
@@ -173,6 +184,7 @@ export function useContentFormActions({
     setUploadedPreview(null);
     setEditingContent(null);
     resetForm();
+    clearFormErrors();
   };
 
   const handleBackToBase = () => {
@@ -190,13 +202,57 @@ export function useContentFormActions({
     setSelectedCollection(null);
   };
 
+  const validateMetadataForm = () => {
+    const requiredMessage = t("contents.metadata.validation.required");
+    const nextErrors: ContentFormErrors = {};
+
+    if (!formState.title.trim()) nextErrors.title = requiredMessage;
+    if (!formState.description.trim()) nextErrors.description = requiredMessage;
+    if (!formState.publishedYear.trim()) {
+      nextErrors.publishedYear = requiredMessage;
+    }
+    if (!formState.duration.trim()) nextErrors.duration = requiredMessage;
+    if (!formState.category.trim()) nextErrors.category = requiredMessage;
+    if (!formState.productionCompany.trim()) {
+      nextErrors.productionCompany = requiredMessage;
+    }
+    if (!formState.manufacturerLink.trim()) {
+      nextErrors.manufacturerLink = requiredMessage;
+    }
+    if (!formState.tags.trim()) nextErrors.tags = requiredMessage;
+    if (!formState.mediaCardThumbnail) {
+      nextErrors.mediaCardThumbnail = t(
+        "contents.metadata.validation.mediaCardThumbnail",
+      );
+    }
+    if (!formState.portraitThumbnail) {
+      nextErrors.portraitThumbnail = t(
+        "contents.metadata.validation.portraitThumbnail",
+      );
+    }
+
+    setFormErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      toast.error(t("errors.metadataValidationFailed"));
+      return false;
+    }
+
+    return true;
+  };
+
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
       toast.error(t(ERROR_MESSAGES.NO_CONTENT));
       return;
     }
 
+    if (activeTab === ADD_CONTENT_TABS.METADATA && !validateMetadataForm()) {
+      return;
+    }
+
     try {
+      clearFormErrors();
       const [thumbnailUrl, thumbnailLandscapeUrl] = await Promise.all([
         resolveProfileAvatarUrl(formState.mediaCardThumbnail),
         resolveProfileAvatarUrl(formState.portraitThumbnail),
@@ -349,6 +405,7 @@ export function useContentFormActions({
       categories?: { id: string }[];
       production_company?: string;
       manufacturerLink?: string;
+      tags?: string[];
       thumbnailUrl?: string | null;
       thumbnailLandscapeUrl?: string | null;
       accessType?: string;
@@ -427,7 +484,9 @@ export function useContentFormActions({
           category: fullContent.categories?.[0]?.id || CATEGORY_EDUCATION_LOWER,
           productionCompany: fullContent.production_company || "",
           manufacturerLink: fullContent.manufacturerLink || "",
-          tags: "",
+          tags: Array.isArray(fullContent.tags)
+            ? fullContent.tags.join(", ")
+            : "",
           mediaCardThumbnail: fullContent.thumbnailUrl || null,
           portraitThumbnail: fullContent.thumbnailLandscapeUrl || null,
           admissionRequirement:
@@ -452,7 +511,9 @@ export function useContentFormActions({
           ),
         });
 
-        setActiveTabAndQuery(ADD_CONTENT_TABS.GENERAL);
+        setActiveTabAndQuery(
+          isEditingFlowTab ? activeTab : ADD_CONTENT_TABS.GENERAL,
+        );
       }
     } catch {
       toast.error(t(ERROR_MESSAGES.LOAD_DETAILS_FAILED));

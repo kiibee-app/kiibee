@@ -6,6 +6,8 @@ import { getFileNameWithoutExtension } from "@/utils/content";
 import type {
   ContentFormState,
   ContentFormContextType,
+  ContentFormErrors,
+  ContentFormErrorKey,
 } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
 
@@ -17,6 +19,7 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [formState, setFormState] = useState<ContentFormState>(defaultState);
+  const [formErrors, setFormErrors] = useState<ContentFormErrors>({});
 
   const updateField = useCallback(
     <K extends keyof ContentFormState>(
@@ -33,6 +36,27 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const resetForm = useCallback(() => {
     setFormState(defaultState);
+    setFormErrors({});
+  }, []);
+
+  const setFieldError = useCallback(
+    (field: ContentFormErrorKey, message: string) => {
+      setFormErrors((prev) => ({ ...prev, [field]: message }));
+    },
+    [],
+  );
+
+  const clearFieldError = useCallback((field: ContentFormErrorKey) => {
+    setFormErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  }, []);
+
+  const clearFormErrors = useCallback(() => {
+    setFormErrors({});
   }, []);
 
   const prefillForm = useCallback(
@@ -51,7 +75,18 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <ContentFormContext.Provider
-      value={{ formState, setFormState, updateField, prefillForm, resetForm }}
+      value={{
+        formState,
+        formErrors,
+        setFormState,
+        setFormErrors,
+        updateField,
+        setFieldError,
+        clearFieldError,
+        clearFormErrors,
+        prefillForm,
+        resetForm,
+      }}
     >
       {children}
     </ContentFormContext.Provider>

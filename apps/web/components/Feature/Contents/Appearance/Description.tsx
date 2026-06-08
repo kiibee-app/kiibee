@@ -3,7 +3,11 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
-import { INPUT_VARIANTS, maxDescriptionCharacters } from "@/utils/Constants";
+import {
+  CONTENT_FORM_FIELDS,
+  INPUT_VARIANTS,
+  maxDescriptionCharacters,
+} from "@/utils/Constants";
 import { CONTENTS } from "@/utils/translationKeys";
 import { AppearancePanel } from "../styles";
 import {
@@ -31,7 +35,8 @@ export default function DescriptionSection({
   useFormContext = false,
 }: DescriptionSectionProps) {
   const { t } = useTranslation();
-  const { formState, updateField } = useContentForm();
+  const { formState, formErrors, updateField, clearFieldError } =
+    useContentForm();
   const { values: appearanceValues, updateField: updateAppearanceField } =
     useAppearanceForm();
   const [localTitle, setLocalTitle] = useState("");
@@ -46,7 +51,8 @@ export default function DescriptionSection({
     const text = Array.isArray(value) ? value.join("") : value;
     const truncated = text.slice(0, maxDescriptionCharacters);
     if (useFormContext) {
-      updateField("description", truncated);
+      clearFieldError(CONTENT_FORM_FIELDS.DESCRIPTION);
+      updateField(CONTENT_FORM_FIELDS.DESCRIPTION, truncated);
     } else if (!showTitle) {
       updateAppearanceField(FORM_FIELDS.DESCRIPTION, truncated);
     } else {
@@ -57,7 +63,8 @@ export default function DescriptionSection({
   const handleTitleChange = (value: string | string[]) => {
     const text = Array.isArray(value) ? value.join("") : value;
     if (useFormContext) {
-      updateField("title", text);
+      clearFieldError(CONTENT_FORM_FIELDS.TITLE);
+      updateField(CONTENT_FORM_FIELDS.TITLE, text);
     } else {
       setLocalTitle(text);
     }
@@ -82,6 +89,8 @@ export default function DescriptionSection({
                 )}
                 width="100%"
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                hasError={useFormContext && Boolean(formErrors.title)}
+                errorMessage={useFormContext ? formErrors.title : undefined}
               />
             </ControlWrap>
           </Row>
@@ -103,6 +112,8 @@ export default function DescriptionSection({
               placeholder={t(CONTENTS.appearance.description.placeholder)}
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
+              hasError={useFormContext && Boolean(formErrors.description)}
+              errorMessage={useFormContext ? formErrors.description : undefined}
             />
           </ControlWrap>
 

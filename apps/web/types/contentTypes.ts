@@ -107,6 +107,20 @@ export type ContentFormState = {
   openDirectFromList?: boolean;
 };
 
+export type ContentFormErrorKey =
+  | "title"
+  | "description"
+  | "publishedYear"
+  | "duration"
+  | "category"
+  | "productionCompany"
+  | "manufacturerLink"
+  | "tags"
+  | "mediaCardThumbnail"
+  | "portraitThumbnail";
+
+export type ContentFormErrors = Partial<Record<ContentFormErrorKey, string>>;
+
 export const defaultState: ContentFormState = {
   title: "",
   description: "",
@@ -132,11 +146,16 @@ export const defaultState: ContentFormState = {
 
 export type ContentFormContextType = {
   formState: ContentFormState;
+  formErrors: ContentFormErrors;
   setFormState: Dispatch<SetStateAction<ContentFormState>>;
+  setFormErrors: Dispatch<SetStateAction<ContentFormErrors>>;
   updateField: <K extends keyof ContentFormState>(
     field: K,
     value: ContentFormState[K],
   ) => void;
+  setFieldError: (field: ContentFormErrorKey, message: string) => void;
+  clearFieldError: (field: ContentFormErrorKey) => void;
+  clearFormErrors: () => void;
   prefillForm: (file: File | null) => void;
   resetForm: () => void;
 };

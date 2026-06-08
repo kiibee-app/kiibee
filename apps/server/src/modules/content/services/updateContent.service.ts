@@ -9,6 +9,8 @@ import {
   collectionItems,
   collections,
   mediaFileCategories,
+  mediaFileTags,
+  tags,
 } from 'src/database/schema';
 import { CONTENT_VISIBILITY } from 'src/utils/constant';
 
@@ -16,6 +18,13 @@ const pickDefined = (obj: Record<string, any>) =>
   Object.fromEntries(
     Object.entries(obj).filter(([, v]) => v !== undefined && v !== null),
   );
+
+const slugifyTag = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 
 export const updateContentService = async (
   contentId: string,
@@ -94,6 +103,43 @@ export const updateContentService = async (
             id: crypto.randomUUID(),
             categoryId: dto.categoryId,
             mediaFileId: contentId,
+          });
+        }
+      }
+
+      if (dto.tags !== undefined) {
+        const normalizedTags = Array.from(
+          new Set(dto.tags.map((tag) => tag.trim()).filter(Boolean)),
+        );
+
+        await trx
+          .delete(mediaFileTags)
+          .where(eq(mediaFileTags.mediaFileId, contentId));
+
+        for (const tagName of normalizedTags) {
+          const slug = `${creatorId}-${slugifyTag(tagName)}`.slice(0, 255);
+
+          let [existingTag] = await trx
+            .select({ id: tags.id })
+            .from(tags)
+            .where(eq(tags.slug, slug))
+            .limit(1);
+
+          if (!existingTag) {
+            const tagId = crypto.randomUUID();
+            await trx.insert(tags).values({
+              id: tagId,
+              name: tagName,
+              slug,
+              creatorId,
+            });
+            existingTag = { id: tagId };
+          }
+
+          await trx.insert(mediaFileTags).values({
+            id: crypto.randomUUID(),
+            mediaFileId: contentId,
+            tagId: existingTag.id,
           });
         }
       }
