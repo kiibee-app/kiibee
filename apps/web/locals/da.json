@@ -1757,6 +1757,8 @@
     "noContentToSave": "Intet indhold at gemme",
     "saveChangesFailed": "Kunne ikke gemme ændringer",
     "saveSettingsFailed": "Kunne ikke gemme indstillinger",
-    "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer"
+    "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
+    "imageTooLarge": "Det uploadede billede er for stort. Upload venligst et mindre billede.",
+    "imageUploadFailed": "Billedet kunne ikke uploades"
   }
 }
