@@ -1761,6 +1761,8 @@
     "noContentToSave": "No content to save",
     "saveChangesFailed": "Failed to save changes",
     "saveSettingsFailed": "Failed to save settings",
-    "loadDetailsFailed": "Failed to load content details"
+    "loadDetailsFailed": "Failed to load content details",
+    "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
+    "imageUploadFailed": "Image upload failed"
   }
 }

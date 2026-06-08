@@ -137,3 +137,11 @@ export const UploadNoteText = styled(MonoText).attrs({
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   margin-top: 12px;
 `;
+
+export const UploadErrorText = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  color: ${({ theme }) => theme.colors.primary.RED};
+  margin-top: 12px;
+  text-align: center;
+`;

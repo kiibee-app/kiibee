@@ -190,6 +190,22 @@ export function useContentFormActions({
     setSelectedCollection(null);
   };
 
+  const handleSaveError = (error: unknown) => {
+    const err = error as {
+      status?: number;
+      response?: { status?: number };
+      message?: string;
+    };
+    if (err?.status === 413 || err?.response?.status === 413) {
+      toast.error(t("errors.imageTooLarge"));
+    } else {
+      const message = err?.message;
+      toast.error(
+        (message ? t(message) : "") || t(ERROR_MESSAGES.SAVE_CHANGES_FAILED),
+      );
+    }
+  };
+
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
       toast.error(t(ERROR_MESSAGES.NO_CONTENT));
@@ -224,8 +240,8 @@ export function useContentFormActions({
       ]);
 
       setShowSaveSuccessModal(true);
-    } catch {
-      toast.error(t(ERROR_MESSAGES.SAVE_CHANGES_FAILED));
+    } catch (error) {
+      handleSaveError(error);
     }
   };
 
@@ -293,8 +309,8 @@ export function useContentFormActions({
       try {
         await saveAppearance();
         setShowSaveSuccessModal(true);
-      } catch {
-        toast.error(t(ERROR_MESSAGES.SAVE_CHANGES_FAILED));
+      } catch (error) {
+        handleSaveError(error);
       }
     },
     [SETTINGS]: saveCollectionSettings,

@@ -151,7 +151,10 @@ export async function resolveProfileAvatarUrl(
   } | null;
 
   if (!response.ok || !data?.url) {
-    throw new Error(data?.message ?? "Image upload failed");
+    if (response.status === 413) {
+      throw new Error("errors.imageTooLarge");
+    }
+    throw new Error(data?.message ?? "errors.imageUploadFailed");
   }
 
   return data.url;

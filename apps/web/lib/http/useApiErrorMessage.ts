@@ -86,8 +86,13 @@ export const useApiErrorMessage = () => {
   const getErrorMessage = (error: unknown, fallbackKey: string): string => {
     const fallbackMessage = t(fallbackKey);
     const normalizedError = normalizeApiError(error);
+
+    if (normalizedError.status === 413) {
+      return t("errors.imageTooLarge");
+    }
+
     const message = normalizedError.message || fallbackMessage;
-    return mapKnownApiMessage(message);
+    return t(mapKnownApiMessage(message));
   };
 
   const getFieldErrors = (error: unknown): ApiFieldErrors => {
