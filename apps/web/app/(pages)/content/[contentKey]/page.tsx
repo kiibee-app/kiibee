@@ -28,13 +28,15 @@ import {
   resolveContentPlaybackUrl,
 } from "@/utils/contentApi";
 import { FORMAT_TYPE } from "@/utils/types";
-import { tutorialVideos } from "@/utils/data";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
 import { useRelatedCollectionContent } from "@/hooks/useRelatedCollectionContent";
 import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
-import { resolvePublishedContentByKey } from "@/utils/resolvePublishedContentByKey";
+import {
+  resolvePublishedContentByKey,
+  CONTENT_KIND,
+} from "@/utils/resolvePublishedContentByKey";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -107,7 +109,7 @@ function PublishedContentDetail() {
 
   if (isError || !content) {
     if (fallback) {
-      if (fallback.kind === "tutorial") {
+      if (fallback.kind === CONTENT_KIND.TUTORIAL) {
         return (
           <Section>
             <SingleTutorial
@@ -117,7 +119,7 @@ function PublishedContentDetail() {
             />
           </Section>
         );
-      } else if (fallback.kind === "discover") {
+      } else if (fallback.kind === CONTENT_KIND.DISCOVER) {
         return (
           <Section>
             <SingleDiscoverContent item={fallback.item} />
