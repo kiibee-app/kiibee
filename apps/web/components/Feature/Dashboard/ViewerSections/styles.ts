@@ -8,13 +8,15 @@ export const PageHeader = styled.div`
   gap: ${({ theme }) => theme.spacing(2)};
   flex-wrap: wrap;
   margin-bottom: 35px;
+  margin-top: 15px;
   width: 100%;
 `;
 
 export const PageWrap = styled.div<{ $expandedCollections?: boolean }>`
   padding: ${({ $expandedCollections }) =>
-    $expandedCollections ? "48px 30px 40px" : "40px 30px"};
+    $expandedCollections ? "40px 30px 40px" : "40px 30px"};
   margin-right: 30px;
+  margin-left: 20px;
 
   ${media.tablet} {
     padding: ${({ $expandedCollections }) =>
