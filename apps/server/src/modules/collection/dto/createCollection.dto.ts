@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateCollectionDto {
   @IsString()
@@ -29,7 +29,6 @@ export class UpdateCollectionDto {
 
   isPublished?: boolean;
 
-  @IsOptional()
   @IsString()
   password?: string;
 }
