@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { SORT_DIRECTIONS, type SortDirectionWithNone } from "@/utils/ui";
+import { isString } from "@/utils/Constants";
 
 interface UseSortOrderConfig<T> {
   targetHeader: string;
@@ -15,33 +16,20 @@ export function useSortOrder<T>(
   );
 
   const sortedData = useMemo(() => {
-    const base = [...data];
-    if (sortDirection === SORT_DIRECTIONS.NONE) return base;
+    if (sortDirection === SORT_DIRECTIONS.NONE) return [...data];
 
-    return base.sort((a, b) => {
+    return [...data].sort((a, b) => {
       const valA = sortBy(a);
       const valB = sortBy(b);
 
-      if (typeof valA === "string" && typeof valB === "string") {
-        const compared = valA.localeCompare(valB, undefined, {
-          sensitivity: "base",
-        });
-        return sortDirection === SORT_DIRECTIONS.DESC ? -compared : compared;
-      }
+      const compared =
+        isString(valA) && isString(valB)
+          ? valA.localeCompare(valB, undefined, { sensitivity: "base" })
+          : (valA as number) - (valB as number);
 
-      const compared = (valA as number) - (valB as number);
       return sortDirection === SORT_DIRECTIONS.DESC ? -compared : compared;
     });
   }, [data, sortDirection, sortBy]);
-
-  const isHeaderSortable = (header: string) => header === targetHeader;
-
-  const getHeaderSortDirection = (header: string) => {
-    if (header === targetHeader && sortDirection !== SORT_DIRECTIONS.NONE) {
-      return sortDirection;
-    }
-    return null;
-  };
 
   const handleHeaderClick = (header: string) => {
     if (header !== targetHeader) return;
@@ -56,8 +44,11 @@ export function useSortOrder<T>(
     sortedData,
     sortDirection,
     setSortDirection,
-    isHeaderSortable,
-    getHeaderSortDirection,
+    isHeaderSortable: (header: string) => header === targetHeader,
+    getHeaderSortDirection: (header: string) =>
+      header === targetHeader && sortDirection !== SORT_DIRECTIONS.NONE
+        ? sortDirection
+        : null,
     handleHeaderClick,
   };
 }

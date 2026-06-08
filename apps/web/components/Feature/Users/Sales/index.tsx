@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import Table from "@/components/UI/Table";
 import { MonoText } from "@/components/UI/Monotext";
