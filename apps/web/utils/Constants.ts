@@ -274,6 +274,9 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
         ? parseInt(formState.maxDownloadLimit)
         : undefined,
     physicalProductLink: formState.physicalProductLink || undefined,
+    contentUrl: formState.webLink || undefined,
+    openInNewWindow: formState.openInNewWindow ?? undefined,
+    openDirectFromList: formState.openDirectFromList ?? undefined,
   };
 }
 
@@ -284,6 +287,7 @@ export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
+export const MARQUEE_LIMIT = 8;
 
 export const CATEGORY_ALL = "all";
 export const SHARE_STATUS = {
@@ -294,3 +298,5 @@ export const SHARE_STATUS = {
 } as const;
 
 export type ShareStatus = (typeof SHARE_STATUS)[keyof typeof SHARE_STATUS];
+
+export const DEFAULT_DEBOUNCE_DELAY = 300;

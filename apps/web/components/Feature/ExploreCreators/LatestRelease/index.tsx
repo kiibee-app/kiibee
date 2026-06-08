@@ -6,6 +6,7 @@ import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import CreatorFiltersControl from "../Hero/CreatorsFilters";
 import {
   EXPLORE_CONTENT_SORT,
@@ -63,6 +64,12 @@ function getInitialExploreSort(
 export default function LatestRelease() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
+  useScrollAnimation({
+    sidebarSelector: "[data-sidebar]",
+    innerSelector: "[data-sidebar] > div",
+    cardsSelector:
+      "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
+  });
 
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const filterOverlayRef = useRef<HTMLDivElement>(null);

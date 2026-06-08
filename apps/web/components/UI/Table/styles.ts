@@ -230,7 +230,9 @@ export const PaginationWrapper = styled.div`
   gap: 24px;
   width: 100%;
   margin-top: 12px;
-  padding: 10px 0 2px;
+  padding: 10px 0 16px;
+  position: relative;
+  z-index: 1;
 
   ${media.tablet} {
     justify-content: center;
@@ -258,7 +260,8 @@ export const PaginationMetaSelectWrap = styled.div`
   align-items: center;
 `;
 
-export const PaginationMetaSelect = styled.select`
+export const PaginationMetaSelectTrigger = styled.button`
+  position: relative;
   width: 56px;
   height: 32px;
   padding: 0 24px 0 12px;
@@ -267,19 +270,23 @@ export const PaginationMetaSelect = styled.select`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
   ${({ theme }) => theme.typography.Body_Medium};
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   box-sizing: border-box;
   line-height: 1;
   cursor: pointer;
+  text-align: left;
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.secondary.DEFAULT};
+    outline-offset: 1px;
+  }
 `;
 
-export const PaginationMetaSelectChevron = styled.span`
+export const PaginationMetaSelectChevron = styled.span<{ $open?: boolean }>`
   position: absolute;
   right: 9px;
   top: 50%;
-  transform: translateY(-50%) rotate(90deg);
+  transform: translateY(-50%)
+    rotate(${({ $open }) => ($open ? "-90deg" : "90deg")});
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -288,9 +295,40 @@ export const PaginationMetaSelectChevron = styled.span`
   line-height: 1;
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   pointer-events: none;
+  transition: transform 0.15s ease;
 
   svg {
     display: block;
+  }
+`;
+
+export const PageSizeMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  box-shadow: ${({ theme }) => theme.shadows.lg};
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+`;
+
+export const PageSizeMenuItem = styled.button<{ $active?: boolean }>`
+  width: 100%;
+  min-width: 48px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 4px;
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.neutral.GRAY_100 : "transparent"};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  ${({ theme }) => theme.typography.Body_Medium};
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   }
 `;
 
@@ -325,6 +363,18 @@ export const PaginationButton = styled.button`
     opacity: 0.45;
     cursor: not-allowed;
   }
+`;
+
+export const PaginationEllipsis = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  width: 32px;
+  height: 32px;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  ${({ theme }) => theme.typography.Body_Medium};
+  user-select: none;
 `;
 
 export const PageNumberButton = styled(PaginationButton)<{ $active?: boolean }>`

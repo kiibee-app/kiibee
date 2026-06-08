@@ -15,16 +15,9 @@ import TopCreators from "@/components/Feature/ExploreCreators/TopCreators";
 import TrendingContent from "@/components/Feature/ExploreCreators/TrendingContent";
 import LatestRelease from "@/components/Feature/ExploreCreators/LatestRelease";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function ExplorePage() {
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
-  useScrollAnimation({
-    sidebarSelector: "[data-sidebar]",
-    innerSelector: "[data-sidebar] > div",
-    cardsSelector:
-      "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
-  });
 
   return (
     <PageContainer>

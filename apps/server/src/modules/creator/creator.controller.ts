@@ -6,15 +6,22 @@ export class CreatorController {
   constructor(private readonly creatorService: CreatorService) {}
 
   @Get()
-  async getExploreCreators(@Query('limit') limit?: string) {
-    if (limit == null || limit === '') {
+  async getExploreCreators(
+    @Query('limit') limit?: string,
+    @Query('search') search?: string,
+  ) {
+    if ((limit == null || limit === '') && (search == null || search === '')) {
       return this.creatorService.getExploreCreators();
     }
 
-    const parsedLimit = Number.parseInt(limit, 10);
-    const safeLimit = Number.isFinite(parsedLimit) ? parsedLimit : 6;
+    const parsedLimit = limit ? Number.parseInt(limit, 10) : undefined;
+    const safeLimit =
+      parsedLimit && Number.isFinite(parsedLimit) ? parsedLimit : 6;
 
-    return this.creatorService.getExploreCreators(safeLimit);
+    return this.creatorService.getExploreCreators(
+      limit ? safeLimit : undefined,
+      search?.trim() || undefined,
+    );
   }
 
   @Get(':id')

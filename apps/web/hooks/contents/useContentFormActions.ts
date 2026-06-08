@@ -51,6 +51,7 @@ import {
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
+import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 
 type Params = {
   activeTab: ContentTab;
@@ -67,6 +68,8 @@ type Params = {
     close: () => void;
     backToTypeSelect: () => void;
   };
+  contentSettingAccessType?: string;
+  saveContentSetting?: (accessType: string) => Promise<void>;
 };
 
 export function useContentFormActions({
@@ -80,6 +83,8 @@ export function useContentFormActions({
   openDiscardModal,
   createCollectionFlow,
   contentTypeFlow,
+  contentSettingAccessType,
+  saveContentSetting,
 }: Params) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
@@ -131,6 +136,26 @@ export function useContentFormActions({
     );
   } else if (!selectedCollection && prevCollectionId !== null) {
     setPrevCollectionId(null);
+  }
+
+  const [contentSettingLoaded, setContentSettingLoaded] = useState(false);
+
+  const contentSettingToUiMap: Record<string, AdmissionRequirementValue> = {
+    free: ADMISSION_REQUIREMENT_VALUES.free,
+    set_password: ADMISSION_REQUIREMENT_VALUES.password,
+    request_email: ADMISSION_REQUIREMENT_VALUES.email,
+  };
+
+  if (
+    !selectedCollection &&
+    contentSettingAccessType &&
+    !contentSettingLoaded
+  ) {
+    const uiAccessType =
+      contentSettingToUiMap[contentSettingAccessType] ||
+      ADMISSION_REQUIREMENT_VALUES.free;
+    setCollectionAccessType(uiAccessType);
+    setContentSettingLoaded(true);
   }
 
   const handleUploadSuccess = (
@@ -190,6 +215,22 @@ export function useContentFormActions({
     setSelectedCollection(null);
   };
 
+  const handleSaveError = (error: unknown) => {
+    const err = error as {
+      status?: number;
+      response?: { status?: number };
+      message?: string;
+    };
+    if (err?.status === 413 || err?.response?.status === 413) {
+      toast.error(t("errors.imageTooLarge"));
+    } else {
+      const message = err?.message;
+      toast.error(
+        (message ? t(message) : "") || t(ERROR_MESSAGES.SAVE_CHANGES_FAILED),
+      );
+    }
+  };
+
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
       toast.error(t(ERROR_MESSAGES.NO_CONTENT));
@@ -224,8 +265,8 @@ export function useContentFormActions({
       ]);
 
       setShowSaveSuccessModal(true);
-    } catch {
-      toast.error(t(ERROR_MESSAGES.SAVE_CHANGES_FAILED));
+    } catch (error) {
+      handleSaveError(error);
     }
   };
 
@@ -248,6 +289,11 @@ export function useContentFormActions({
         rentPrice: hasRental ? parseFloat(collectionRentalAmount) : null,
         buyPrice: hasPurchase ? parseFloat(collectionPurchaseAmount) : null,
         rentDuration: hasRental ? collectionAccessDuration : null,
+        password:
+          collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+          collectionPasswords.trim()
+            ? collectionPasswords.trim()
+            : undefined,
       });
 
       setCollections((prev) =>
@@ -281,7 +327,25 @@ export function useContentFormActions({
       await queryClient.invalidateQueries({
         queryKey: [API.collection.getAll],
       });
-      toast.success(t("contents.createCollectionSuccessModal.message"));
+      setShowSaveSuccessModal(true);
+    } catch {
+      toast.error(t(ERROR_MESSAGES.SAVE_SETTINGS_FAILED));
+    }
+  };
+
+  const uiToContentSettingMap: Record<string, string> = {
+    [ADMISSION_REQUIREMENT_VALUES.free]: ADMISSION_TYPE.FREE,
+    [ADMISSION_REQUIREMENT_VALUES.password]: ADMISSION_TYPE.SET_PASSWORD,
+    [ADMISSION_REQUIREMENT_VALUES.email]: ADMISSION_TYPE.REQUEST_EMAIL,
+  };
+
+  const saveContentSettings = async () => {
+    if (!saveContentSetting) return;
+    try {
+      const apiAccessType =
+        uiToContentSettingMap[collectionAccessType] ?? ADMISSION_TYPE.FREE;
+      await saveContentSetting(apiAccessType);
+      setShowSaveSuccessModal(true);
     } catch {
       toast.error(t(ERROR_MESSAGES.SAVE_SETTINGS_FAILED));
     }
@@ -293,11 +357,13 @@ export function useContentFormActions({
       try {
         await saveAppearance();
         setShowSaveSuccessModal(true);
-      } catch {
-        toast.error(t(ERROR_MESSAGES.SAVE_CHANGES_FAILED));
+      } catch (error) {
+        handleSaveError(error);
       }
     },
-    [SETTINGS]: saveCollectionSettings,
+    [SETTINGS]: selectedCollection
+      ? saveCollectionSettings
+      : saveContentSettings,
     [ADD_CONTENT_TABS.GENERAL]: saveUploadedContent,
     [ADD_CONTENT_TABS.METADATA]: saveUploadedContent,
     [ADD_CONTENT_TABS.PAYMENT]: saveUploadedContent,
@@ -356,6 +422,8 @@ export function useContentFormActions({
       buyPrice?: number;
       maxDownloadCount?: number;
       physicalProductLink?: string;
+      openInNewWindow?: boolean;
+      openDirectFromList?: boolean;
     }
 
     try {
@@ -445,8 +513,8 @@ export function useContentFormActions({
             : DOWNLOAD_LIMIT_DEFAULT,
           physicalProductLink: fullContent.physicalProductLink || "",
           webLink: fullContent.contentUrl || "",
-          openInNewWindow: false,
-          openDirectFromList: false,
+          openInNewWindow: fullContent.openInNewWindow ?? false,
+          openDirectFromList: fullContent.openDirectFromList ?? false,
           contentTypeId: normalizeContentTypeValue(
             fullContent.contentTypeId ?? fullContent.contentType ?? "video",
           ),

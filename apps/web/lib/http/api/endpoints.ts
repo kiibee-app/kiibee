@@ -40,6 +40,7 @@ export const API = {
     update: (id: string) => `/content/update/${id}`,
     delete: (id: string) => `/content/delete/${id}`,
     appearance: "/content/appearance",
+    setting: "/content/setting",
   },
   collection: {
     getAll: "/collection",
@@ -55,5 +56,10 @@ export const API = {
     explore: "/feed/explore",
     trending: "/feed/trending",
     recent: "/feed/recent",
+  },
+  creatorUsers: {
+    registrations: "/creator-users/registrations",
+    sales: "/creator-users/sales",
+    deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
   },
 } as const;

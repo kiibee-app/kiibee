@@ -33,6 +33,7 @@ export const collections = pgTable(
     rentPrice: numeric('rent_price', { precision: 10, scale: 2 }),
     rentDuration: text('rent_duration'),
     sortOrder: integer('sort_order').notNull().default(0),
+    passwordHash: text('password_hash'),
     isPublished: boolean('is_published').notNull().default(false),
     publishedAt: timestamp('published_at', {
       withTimezone: true,

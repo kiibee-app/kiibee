@@ -22,6 +22,7 @@ import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
 import {
   EmptyCollectionCard,
+  EmptyCollectionsView,
   EmptyCollectionText,
   EmptyCollectionTitle,
   PlaceholderLine,
@@ -206,6 +207,21 @@ export default function ContentTabPanel({
             onSuccessClose={resetMoveSelection}
           />
         </>
+      );
+    }
+
+    if (collections.length === 0) {
+      return (
+        <EmptyCollectionsView>
+          <EmptyCollectionText>
+            <EmptyCollectionTitle>
+              {t("contents.emptyCollection.title")}
+            </EmptyCollectionTitle>
+            <MonoText $use="Body_Medium">
+              {t("contents.emptyCollection.description")}
+            </MonoText>
+          </EmptyCollectionText>
+        </EmptyCollectionsView>
       );
     }
 

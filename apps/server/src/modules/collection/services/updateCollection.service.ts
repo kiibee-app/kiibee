@@ -6,6 +6,7 @@ import { collections } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
+import { hashPassword } from 'src/utils/passwordHash';
 
 import { UpdateCollectionDto } from '../dto/createCollection.dto';
 import { slugGenerator } from '../collection.helper';
@@ -58,6 +59,12 @@ export const updateCollection = async (
       if (value !== undefined) {
         updateData[key] = value;
       }
+    }
+
+    if (dto.password !== undefined) {
+      updateData.passwordHash = dto.password
+        ? await hashPassword(dto.password)
+        : null;
     }
 
     // publishedAt side-effect (single condition only)
