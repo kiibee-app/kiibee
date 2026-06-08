@@ -15,6 +15,7 @@ import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 
 export default function ExploreCreatorsPage() {
   const [sortBy, setSortBy] = useState<SortValue>(DEFAULT_SORT);
+  const [searchQuery, setSearchQuery] = useState("");
   const { creators, isLoading } = useExploreCreators();
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
 
@@ -23,16 +24,31 @@ export default function ExploreCreatorsPage() {
     [creators, sortBy],
   );
 
+  const filteredCreators = useMemo(() => {
+    if (!searchQuery.trim()) return sortedCreators;
+    const query = searchQuery.toLowerCase();
+    return sortedCreators.filter((creator) =>
+      creator.name.toLowerCase().includes(query),
+    );
+  }, [sortedCreators, searchQuery]);
+
   return (
     <PageContainer>
       <NavBar navTextTone={navTextTone} />
       <Main>
         <Section>
           <div ref={heroRef}>
-            <ExploreCreatorsHero setSortBy={setSortBy} />
+            <ExploreCreatorsHero
+              setSortBy={setSortBy}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
           </div>
           <div ref={trendingRef}>
-            <ExploreCreators creators={sortedCreators} isLoading={isLoading} />
+            <ExploreCreators
+              creators={filteredCreators}
+              isLoading={isLoading}
+            />
           </div>
         </Section>
       </Main>
