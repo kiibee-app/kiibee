@@ -152,8 +152,10 @@ export const defaultState: ContentFormState = {
 
 export type ContentFormContextType = {
   formState: ContentFormState;
+  savedFormState: ContentFormState;
   formErrors: ContentFormErrors;
   setFormState: Dispatch<SetStateAction<ContentFormState>>;
+  setSavedFormState: Dispatch<SetStateAction<ContentFormState>>;
   setFormErrors: Dispatch<SetStateAction<ContentFormErrors>>;
   updateField: <K extends keyof ContentFormState>(
     field: K,
@@ -162,6 +164,7 @@ export type ContentFormContextType = {
   setFieldError: (field: ContentFormErrorKey, message: string) => void;
   clearFieldError: (field: ContentFormErrorKey) => void;
   clearFormErrors: () => void;
+  markFormAsSaved: (nextState?: ContentFormState) => void;
   prefillForm: (file: File | null) => void;
   resetForm: () => void;
 };
