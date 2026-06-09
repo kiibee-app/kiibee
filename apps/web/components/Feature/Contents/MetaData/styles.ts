@@ -45,6 +45,12 @@ export const HelperText = styled(MonoText).attrs({
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
+export const ErrorText = styled(MonoText).attrs({
+  $use: "Body_Medium",
+})`
+  color: ${({ theme }) => theme.colors.primary.RED};
+`;
+
 export const FormRow = styled.div`
   display: flex;
   flex-direction: column;

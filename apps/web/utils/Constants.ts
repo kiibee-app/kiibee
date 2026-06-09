@@ -253,6 +253,12 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       : undefined,
     productionCompany: formState.productionCompany || undefined,
     manufacturerLink: formState.manufacturerLink || undefined,
+    tags: formState.tags
+      ? formState.tags
+          .split(/[\n,]+/)
+          .map((tag) => tag.trim())
+          .filter(Boolean)
+      : undefined,
     visibility: formState.visibility
       ? formState.visibility.toLowerCase()
       : undefined,
@@ -282,6 +288,17 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
     openDirectFromList: formState.openDirectFromList ?? undefined,
   };
 }
+
+export const CONTENT_FORM_FIELDS = {
+  TITLE: "title",
+  DESCRIPTION: "description",
+  PUBLISHED_YEAR: "publishedYear",
+  DURATION: "duration",
+  CATEGORY: "category",
+  PRODUCTION_COMPANY: "productionCompany",
+  MANUFACTURER_LINK: "manufacturerLink",
+  TAGS: "tags",
+} as const;
 
 export const MEDIA_TYPE_VIDEO_KEY = "discoverContent.mediaTypes.video";
 export const MEDIA_TYPE_EPUB_KEY = "discoverContent.mediaTypes.epub";

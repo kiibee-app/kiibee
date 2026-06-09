@@ -2,13 +2,17 @@ import { db } from 'src/database/db';
 import { eq, ilike, or } from 'drizzle-orm';
 import { mediaFiles, users } from 'src/database/schema';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
+import {
+  SLUG_EDGE_DASH_RE,
+  SLUG_NON_ALPHANUMERIC_RE,
+} from 'src/utils/constant';
 
 export const contentSlugGenerator = async (title: string) => {
   const baseSlug = title
     .toLowerCase()
     .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
+    .replace(SLUG_EDGE_DASH_RE, '');
 
   let slug = baseSlug;
   let counter = 1;
