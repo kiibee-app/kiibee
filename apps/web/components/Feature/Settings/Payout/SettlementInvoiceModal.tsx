@@ -21,16 +21,16 @@ export type Props = {
   onClose: () => void;
 };
 
-export default function SettlementInvoiceModal({ open, row, onClose }: Props) {
+export default function SettlementInvoiceModal(props: Props) {
   const { t } = useTranslation();
 
-  if (!row) return null;
+  if (!props.row) return null;
 
   return (
     <GenericModal
-      visible={open}
+      visible={props.open}
       title={t(DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal.title)}
-      onClose={onClose}
+      onClose={props.onClose}
       size="md"
       spacing="start"
       textAlign={MODAL_ALIGN.START}
@@ -42,28 +42,28 @@ export default function SettlementInvoiceModal({ open, row, onClose }: Props) {
             <InvoiceLabel>
               {t("settings.payout.tableHeaders.creditNo")}
             </InvoiceLabel>
-            <MonoText $use="Body_SemiBold">{row.creditNo}</MonoText>
+            <MonoText $use="Body_SemiBold">{props.row.creditNo}</MonoText>
           </InvoiceInfo>
 
           <InvoiceInfo>
             <InvoiceLabel>
               {t("settings.payout.tableHeaders.status")}
             </InvoiceLabel>
-            <MonoText $use="Body_SemiBold">{row.status}</MonoText>
+            <MonoText $use="Body_SemiBold">{props.row.status}</MonoText>
           </InvoiceInfo>
 
           <InvoiceInfo>
             <InvoiceLabel>
               {t("settings.payout.tableHeaders.date")}
             </InvoiceLabel>
-            <MonoText $use="Body_SemiBold">{row.date}</MonoText>
+            <MonoText $use="Body_SemiBold">{props.row.date}</MonoText>
           </InvoiceInfo>
 
           <InvoiceInfo>
             <InvoiceLabel>
               {t("settings.payout.tableHeaders.amount")}
             </InvoiceLabel>
-            <MonoText $use="Body_SemiBold">{row.amount}</MonoText>
+            <MonoText $use="Body_SemiBold">{props.row.amount}</MonoText>
           </InvoiceInfo>
 
           <InvoiceInfo>
@@ -71,7 +71,7 @@ export default function SettlementInvoiceModal({ open, row, onClose }: Props) {
               {t("settings.payout.tableHeaders.bank")}
             </InvoiceLabel>
             <InvoicePaymentMethod>
-              <MonoText $use="Body_SemiBold">{row.bank}</MonoText>
+              <MonoText $use="Body_SemiBold">{props.row.bank}</MonoText>
             </InvoicePaymentMethod>
           </InvoiceInfo>
         </InvoiceGrid>
