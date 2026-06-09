@@ -1,8 +1,12 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { SearchIcon } from "@/assets/icons/searchBarIcon";
+import ProfileChannelSearch from "@/components/Feature/ProfileLayout/shared/ProfileChannelSearch";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
+import {
+  getPublicCreatorProfilePath,
+  CREATOR_LAYOUTS,
+} from "@/utils/creatorChannel";
 import { PATHS } from "@/utils/path";
 import { CREATE_PROFILE_HOME, NAV } from "@/utils/translationKeys";
 import { MonoText } from "@/components/UI/Monotext";
@@ -11,9 +15,10 @@ import {
   CREATOR_CHANNEL_AVATAR_TEXT,
   profileNavShellProps,
   VARIANT,
+  TONE_DARK,
+  TONE_LIGHT,
 } from "@/utils/Constants";
 import NavBar from "@/components/Layout/Navbar";
-import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
 import {
   Brand,
   BrandAvatar,
@@ -27,25 +32,64 @@ type ProfileNavbarProps = {
   variant: ProfileLayoutVariant;
 };
 
+const LAYOUT_1 = CREATOR_LAYOUTS[0].param;
+const LAYOUT_2 = CREATOR_LAYOUTS[1].param;
+const LAYOUT_3 = CREATOR_LAYOUTS[2].param;
+
+const navConfigByVariant: Record<
+  ProfileLayoutVariant,
+  {
+    navTextTone: typeof TONE_DARK | typeof TONE_LIGHT;
+    showNavItems: boolean;
+    hasSearch: boolean;
+  }
+> = {
+  [LAYOUT_1]: {
+    navTextTone: TONE_LIGHT,
+    showNavItems: false,
+    hasSearch: false,
+  },
+  [LAYOUT_2]: {
+    navTextTone: TONE_DARK,
+    showNavItems: true,
+    hasSearch: true,
+  },
+  [LAYOUT_3]: {
+    navTextTone: TONE_LIGHT,
+    showNavItems: false,
+    hasSearch: false,
+  },
+};
+
 export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
   const { t } = useTranslation();
-  const showNavItems = variant === "2";
-  const { navItems, isAboutOpen, closeAbout } = useCreatorNavItems();
-  const { displayName, avatarUrl, initial } = useCreatorChannelProfile();
+  const config = navConfigByVariant[variant] || {
+    navTextTone: TONE_DARK,
+    showNavItems: false,
+    hasSearch: false,
+  };
+  const { navTextTone, showNavItems, hasSearch } = config;
+  const { navItems } = useCreatorNavItems();
+  const { displayName, avatarUrl, initial, isPublicView, publicCreatorId } =
+    useCreatorChannelProfile();
   const brandName = displayName;
+  const brandHref =
+    isPublicView && publicCreatorId
+      ? getPublicCreatorProfilePath(publicCreatorId, variant)
+      : PATHS.DASHBOARD_CREATOR;
 
   const brand = (
-    <Brand href={PATHS.DASHBOARD_CREATOR}>
+    <Brand href={brandHref}>
       <BrandAvatar>
         <CreatorChannelAvatar
           avatarUrl={avatarUrl}
           initial={initial}
           alt={brandName || t(CREATE_PROFILE_HOME.brandName)}
-          sizes="40px"
+          sizes="44px"
           initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
         />
       </BrandAvatar>
-      <BrandName>
+      <BrandName $textTone={navTextTone}>
         <MonoText $use="Body_SemiBold">{brandName}</MonoText>
       </BrandName>
     </Brand>
@@ -70,27 +114,15 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
     </>
   );
 
-  if (!showNavItems) {
-    return (
-      <NavBar
-        {...profileNavShellProps}
-        items={[]}
-        brand={brand}
-        actions={actions}
-      />
-    );
-  }
-
   return (
-    <>
-      <NavBar
-        {...profileNavShellProps}
-        brand={brand}
-        items={navItems}
-        navBefore={<SearchIcon width={18} height={18} />}
-        actions={actions}
-      />
-      <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />
-    </>
+    <NavBar
+      {...profileNavShellProps}
+      brand={brand}
+      items={showNavItems ? navItems : []}
+      routeActiveItems={showNavItems}
+      navBefore={hasSearch ? <ProfileChannelSearch /> : undefined}
+      navTextTone={navTextTone}
+      actions={actions}
+    />
   );
 }

@@ -1,9 +1,11 @@
 import { media } from "@repo/ui/breakpoints";
 import styled, { css } from "styled-components";
+import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT } from "@/utils/Constants";
 
 export const Wrapper = styled.section`
   width: 100%;
-  max-width: 1220px;
+  max-width: 1300px;
   min-height: 100vh;
   height: auto;
   box-sizing: border-box;
@@ -17,9 +19,23 @@ export const Wrapper = styled.section`
 
 export const Card = styled.article`
   width: 100%;
+  margin: 0;
 
   ${media.tablet} {
     margin-top: 0.5rem;
+  }
+`;
+
+export const ContentLayout = styled.div<{ $isPdf?: boolean }>`
+  display: grid;
+  grid-template-columns: ${({ $isPdf }) =>
+    $isPdf ? "minmax(0, 0.5fr) minmax(0, 0.95fr)" : "1fr"};
+  gap: ${({ $isPdf }) => ($isPdf ? "2rem" : "0")};
+  align-items: start;
+
+  ${media.tablet} {
+    grid-template-columns: 1fr;
+    gap: ${({ $isPdf }) => ($isPdf ? "1.5rem" : "0")};
   }
 `;
 
@@ -27,7 +43,8 @@ export const TopBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2.5rem;
+  width: 100%;
+  margin-bottom: 1.75rem;
 `;
 
 export const BackButton = styled.button`
@@ -54,19 +71,20 @@ export const ShareText = styled.span`
   ${({ theme }) => theme.typography.Body_Medium}
 `;
 
-export const Hero = styled.div`
+export const Hero = styled.div<{ $isPdf?: boolean }>`
   position: relative;
-  width: min(920px, 78%);
-  aspect-ratio: 90 / 49;
+  width: ${({ $isPdf }) => ($isPdf ? "376px" : "min(100%, 900px)")};
+  height: ${({ $isPdf }) => ($isPdf ? "530px" : "auto")};
+  aspect-ratio: ${({ $isPdf }) => ($isPdf ? undefined : "90 / 49")};
+  margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "2.25rem")};
   border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 2.25rem;
-  margin-left: auto;
-  margin-right: auto;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${media.tablet} {
     width: 100%;
+    height: auto;
+    aspect-ratio: 376 / 530;
   }
 `;
 
@@ -114,6 +132,7 @@ export const HeroTag = styled.span`
 `;
 
 export const HeroTagText = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
@@ -136,6 +155,7 @@ export const HeroMediaTag = styled.span`
 `;
 
 export const HeroMediaText = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
@@ -165,8 +185,9 @@ export const TrailerText = styled.span`
   ${({ theme }) => theme.typography.Body_Medium}
 `;
 
-export const ContentShell = styled.div`
+export const ContentShell = styled.div<{ $isPdf?: boolean }>`
   width: 100%;
+  align-self: start;
 `;
 
 export const CreatorRow = styled.div`
@@ -195,7 +216,7 @@ export const CreatorName = styled.span`
 `;
 
 export const HeadingBlock = styled.div`
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.8rem;
 `;
 
 export const StatusBadge = styled.span`
@@ -206,22 +227,23 @@ export const StatusBadge = styled.span`
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  text-transform: capitalize;
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
 export const MainTitle = styled.h1`
   ${({ theme }) => theme.typography.Heading2};
   margin: 0;
-  max-width: 780px;
+  width: 100%;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const BodyTextWrap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  max-width: 760px;
-  margin-top: 1.5rem;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: 1rem;
 `;
 
 export const DescriptionText = styled.p`
@@ -244,7 +266,7 @@ export const InfoTag = styled.span`
   min-height: 36px;
   padding: 8px 16px;
   border-radius: 18px;
-  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
 export const InfoTagText = styled.span`
@@ -252,18 +274,55 @@ export const InfoTagText = styled.span`
   ${({ theme }) => theme.typography.Body_Medium}
 `;
 
-export const MainAction = styled.button`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+export const MainAction = styled(GenericButton).attrs({
+  variant: VARIANT.PRIMARY,
+  size: "lg",
+})`
+  border-radius: 12px;
   min-height: 51px;
   padding: 10px 20px;
-  border-radius: 12px;
-  border: 0;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
-  cursor: pointer;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+`;
+
+export const PricingCtaRow = styled.div`
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+
+  > button {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 160px;
+    min-height: 52px;
+    border-radius: 12px;
+    white-space: normal;
+  }
+
+  .pricing-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    text-align: center;
+  }
+`;
+
+export const PricingCtaContent = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  line-height: 1.1;
+  text-align: center;
+`;
+
+export const PricingCtaSubtext = styled.span`
+  ${({ theme }) => theme.typography.Body_Medium}
+  font-size: 12px;
 `;
 
 export const MainActionText = styled.span`
@@ -300,15 +359,16 @@ export const MetaRow = styled.div`
 `;
 
 export const MetaKey = styled.span`
-  min-width: 95px;
+  min-width: 100px;
 `;
 
 export const MetaLabelText = styled.span`
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
-  ${({ theme }) => theme.typography.Body_Regular}
+  ${({ theme }) => theme.typography.Body_Medium}
 `;
 
-export const MetaValueText = styled.span`
+export const MetaValueText = styled.span<{ $strong?: boolean }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  ${({ theme }) => theme.typography.Body_Bold}
+  ${({ theme, $strong }) =>
+    $strong ? theme.typography.Body_Bold : theme.typography.Body_Medium}
 `;

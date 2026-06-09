@@ -7,17 +7,20 @@ export const PageHeader = styled.div`
   align-items: center;
   gap: ${({ theme }) => theme.spacing(2)};
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-bottom: 35px;
+  margin-top: 15px;
   width: 100%;
-  padding-left: 10px;
 `;
 
-export const PageWrap = styled.div`
-  padding: 40px 30px;
+export const PageWrap = styled.div<{ $expandedCollections?: boolean }>`
+  padding: ${({ $expandedCollections }) =>
+    $expandedCollections ? "40px 30px 40px" : "40px 30px"};
   margin-right: 30px;
+  margin-left: 20px;
 
   ${media.tablet} {
-    padding: 20px;
+    padding: ${({ $expandedCollections }) =>
+      $expandedCollections ? "28px 20px 20px" : "20px"};
     margin-right: 10px;
   }
 `;
@@ -36,13 +39,30 @@ export const SectionTitle = styled(MonoText).attrs({
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const SectionHeader = styled.div`
+export const SectionTitleRow = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const SectionHeader = styled.div<{ $withMetaHeader?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 20px;
-  padding-left: 10px;
+  padding-inline: 0;
+
+  ${media.tablet} {
+    ${({ $withMetaHeader }) =>
+      $withMetaHeader
+        ? `
+      flex-wrap: wrap;
+      align-items: flex-start;
+      row-gap: 8px;
+    `
+        : ""}
+  }
 `;
 
 export const SectionArrow = styled.button`
@@ -65,17 +85,111 @@ export const SectionArrow = styled.button`
   }
 `;
 
+export const InlineSectionArrow = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  padding: 0;
+  cursor: pointer;
+`;
+
 export const SectionArrows = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 8px;
 `;
 
+export const CollectionMetaHeader = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 56px;
+  margin-left: auto;
+  flex-shrink: 0;
+
+  ${media.tablet} {
+    width: 100%;
+    margin-left: 0;
+    gap: 32px;
+  }
+
+  ${media.mobileLg} {
+    justify-content: space-between;
+    gap: 12px;
+  }
+`;
+
+export const CollectionMetaHeaderItem = styled.button<{ $active?: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_500};
+  ${({ theme }) => theme.typography.Body_Regular};
+  white-space: nowrap;
+  transition: color 120ms ease;
+
+  ${media.mobileLg} {
+    font-size: 14px;
+    gap: 8px;
+  }
+`;
+
+export const CollectionMetaSortArrow = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  gap: 2px;
+  color: inherit;
+
+  > span {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+  }
+`;
+
+export const HeaderTitleWrap = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const HeaderBackButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  padding: 0;
+  cursor: pointer;
+`;
+
 export const CollectionGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
   gap: 16px;
-  padding-left: 10px;
+  padding-inline: 0;
+
+  ${media.mobileLg} {
+    gap: 12px;
+  }
 `;
 
 export const CollectionCard = styled.article`
@@ -163,13 +277,27 @@ export const CollectionActionRow = styled.div`
 
   .collection-cta {
     display: inline-flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     gap: 0;
     min-height: 52px;
     min-width: 120px;
     padding: 10px 14px;
-    text-align: left;
+    text-align: center;
+  }
+
+  .collection-cta:hover,
+  .collection-cta:focus-visible,
+  .collection-cta:active {
+    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+    border-color: ${({ theme }) => theme.colors.primary.BLACK};
+  }
+
+  .collection-cta:hover *,
+  .collection-cta:focus-visible *,
+  .collection-cta:active * {
+    color: ${({ theme }) => theme.colors.primary.BLACK} !important;
   }
 
   ${media.mobileLg} {
@@ -180,10 +308,12 @@ export const CollectionActionRow = styled.div`
 export const CollectionCtaContent = styled.span`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 2px;
   white-space: normal;
   line-height: 1.1;
+  text-align: center;
 `;
 
 export const CollectionCtaSubtext = styled.span`

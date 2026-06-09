@@ -15,6 +15,7 @@ export * from './users/usersToken.schema';
 // Creator
 export * from './creator/creatorInfo.schema';
 export * from './creator/creatorChannels.schema';
+export * from './creator/featuredCreators.schema';
 
 // Content Management
 export * from './content/contentCategories.schema';
@@ -27,6 +28,8 @@ export * from './content/mediaFileTags.schema';
 export * from './content/mediaFileCategories.schema';
 export * from './content/mediaFileVersions.schema';
 export * from './content/contentAccess.schema';
+export * from './content/contentAppearance.schema';
+export * from './content/contentSetting.schema';
 
 // Subscription & Billing
 export * from './subscription/plans.schema';
@@ -35,7 +38,6 @@ export * from './subscription/subscriptionInvoices.schema';
 
 // Commerce
 export * from './commerce/orders.schema';
-export * from './commerce/orderItems.schema';
 export * from './commerce/payments.schema';
 export * from './commerce/viewerPaymentMethods.schema';
 export * from './commerce/creatorPayouts.schema';

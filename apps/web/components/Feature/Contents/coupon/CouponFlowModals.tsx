@@ -1,11 +1,11 @@
 "use client";
 
-import { CouponFormState } from "@/types/collectionsType";
 import { CollectionRow } from "@/types/collectionsType";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
 import CouponApplicableProductsModal from "@/components/Feature/Contents/coupon/coupon-applicable-products";
 import CouponPreviewModal from "./CouponPreviewModal";
+import { CreateCouponPayload } from "@/types/couponType";
 
 type CouponFlowState = {
   isOpen: {
@@ -21,9 +21,10 @@ type CouponFlowState = {
 type Props = {
   collections: CollectionRow[];
   couponFlow: CouponFlowState;
-  couponForm: CouponFormState;
-  setCouponForm: React.Dispatch<React.SetStateAction<CouponFormState>>;
+  couponForm: CreateCouponPayload;
+  setCouponForm: React.Dispatch<React.SetStateAction<CreateCouponPayload>>;
   closeCouponFlow: () => void;
+  requestCloseCouponFlow: () => void;
   handleBackFromCouponPreview: () => void;
   handleCouponSubmit: () => Promise<void>;
   isCouponSuccess: boolean;
@@ -35,6 +36,7 @@ export default function CouponFlowModals({
   couponForm,
   setCouponForm,
   closeCouponFlow,
+  requestCloseCouponFlow,
   handleBackFromCouponPreview,
   handleCouponSubmit,
   isCouponSuccess,
@@ -45,7 +47,8 @@ export default function CouponFlowModals({
         visible={couponFlow.isOpen.details}
         form={couponForm}
         setForm={setCouponForm}
-        onClose={closeCouponFlow}
+        onBack={closeCouponFlow}
+        onClose={requestCloseCouponFlow}
         onNext={couponFlow.next}
       />
 
@@ -54,7 +57,7 @@ export default function CouponFlowModals({
         form={couponForm}
         setForm={setCouponForm}
         onBack={couponFlow.back}
-        onClose={closeCouponFlow}
+        onClose={requestCloseCouponFlow}
         onNext={couponFlow.next}
       />
 
@@ -64,7 +67,7 @@ export default function CouponFlowModals({
         collections={collections}
         setForm={setCouponForm}
         onBack={couponFlow.back}
-        onClose={closeCouponFlow}
+        onClose={requestCloseCouponFlow}
         onNext={couponFlow.next}
       />
 
@@ -73,7 +76,7 @@ export default function CouponFlowModals({
         data={couponForm}
         collections={collections}
         onBack={handleBackFromCouponPreview}
-        onClose={closeCouponFlow}
+        onClose={requestCloseCouponFlow}
         onContinue={handleCouponSubmit}
         isSuccess={isCouponSuccess}
       />

@@ -21,25 +21,35 @@ import { ShareIcon } from "@/assets/icons/shareIcon";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import { VARIANT } from "@/utils/Constants";
+import { pathPublishedContent } from "@/utils/path";
+import useShare from "@/hooks/useShare";
 
 type Props = {
   title: string;
+  primaryContentId?: string;
 };
 
-export default function SingleCollectionHero({ title }: Props) {
+export default function SingleCollectionHero({
+  title,
+  primaryContentId,
+}: Props) {
   const { t } = useTranslation();
   const router = useRouter();
+  const { share } = useShare();
   const handleBack = () => {
     router.back();
   };
+  const primaryContentHref = primaryContentId
+    ? pathPublishedContent(primaryContentId)
+    : undefined;
+
   return (
     <HeroWrapper>
       <TopBar>
         <BackButtonWrapper onClick={handleBack}>
           <BackButtonIcon />
         </BackButtonWrapper>
-
-        <GenericButton variant={VARIANT.PRIMARY_LITE} href="#">
+        <GenericButton variant={VARIANT.PRIMARY_LITE} onClick={share}>
           <ShareIcon />
           {t("common.share")}
         </GenericButton>
@@ -61,7 +71,13 @@ export default function SingleCollectionHero({ title }: Props) {
           <MonoText $use="Body_Medium">
             {t("singleCollection.subtitle")}
           </MonoText>
-          <ActionButton>{t("singleCollection.seeContent")}</ActionButton>
+          <ActionButton
+            asAnchor
+            href={primaryContentHref}
+            disabled={!primaryContentHref}
+          >
+            {t("singleCollection.seeContent")}
+          </ActionButton>
         </HeroContent>
 
         <HeroImage>

@@ -2,50 +2,46 @@
 
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useForm, Controller } from "react-hook-form";
 import InputField from "@/components/UI/InputFields";
-import DropdownField from "@/components/UI/InputFields/DropdownField";
+import DropdownField, {
+  type OptionItem,
+} from "@/components/UI/InputFields/DropdownField";
 import { MonoText } from "@/components/UI/Monotext";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { ControlWrap, GeneralPanel, ItemText, List } from "../General/styles";
 import { ItemRow } from "../Appearance/styles";
-import { getCategoryOptions, CategoryKey, FIELD_KEYS } from "@/utils/content";
+import { useContentForm } from "../ContentFormContext";
+import { useGetAPI } from "@/lib/http/api";
+import { API } from "@/lib/http/api";
 
-type FormState = {
-  publishedYear: string;
-  duration: string;
-  category: CategoryKey | "";
-};
+type TaxonomyItem = { id: string; name: string };
+type ApiResponse<T> = { data?: T | null };
 
 export default function PublishedSection() {
   const { t } = useTranslation();
+  const { formState, updateField } = useContentForm();
 
-  const categoryOptions = useMemo(() => getCategoryOptions(t), [t]);
-
-  const { control } = useForm<FormState>({
-    defaultValues: {
-      publishedYear: "",
-      duration: "",
-      category: "",
-    },
-  });
-
-  const renderInput = (name: keyof FormState, placeholder: string) => (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field }) => (
-        <InputField
-          value={field.value}
-          onChange={field.onChange}
-          placeholder={placeholder}
-          width="100%"
-          variant={INPUT_VARIANTS.PRIMARY_GRAY}
-        />
-      )}
-    />
+  const categoriesQuery = useGetAPI<ApiResponse<TaxonomyItem[]>>(
+    API.content.categories,
   );
+
+  const categoryOptions = useMemo((): OptionItem[] => {
+    const items = categoriesQuery.data?.data;
+    if (!Array.isArray(items)) return [];
+    return items
+      .filter((item) => item.id && item.name)
+      .map((item) => ({
+        value: item.id,
+        label: item.name,
+      }));
+  }, [categoriesQuery.data]);
+
+  const handleInputChange =
+    (field: keyof typeof formState) => (value: string | string[]) => {
+      const text = Array.isArray(value) ? value.join("") : value;
+      updateField(field, text);
+    };
 
   return (
     <GeneralPanel>
@@ -58,10 +54,13 @@ export default function PublishedSection() {
           </ItemText>
 
           <ControlWrap>
-            {renderInput(
-              FIELD_KEYS.PUBLISHED_YEAR,
-              t("contents.metadata.published.yearPlaceholder"),
-            )}
+            <InputField
+              value={formState.publishedYear}
+              onChange={handleInputChange("publishedYear")}
+              placeholder={t("contents.metadata.published.yearPlaceholder")}
+              width="100%"
+              variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            />
           </ControlWrap>
         </ItemRow>
 
@@ -73,10 +72,13 @@ export default function PublishedSection() {
           </ItemText>
 
           <ControlWrap>
-            {renderInput(
-              FIELD_KEYS.DURATION,
-              t("contents.metadata.published.durationPlaceholder"),
-            )}
+            <InputField
+              value={formState.duration}
+              onChange={handleInputChange("duration")}
+              placeholder={t("contents.metadata.published.durationPlaceholder")}
+              width="100%"
+              variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            />
           </ControlWrap>
         </ItemRow>
 
@@ -92,16 +94,10 @@ export default function PublishedSection() {
           </ItemText>
 
           <ControlWrap>
-            <Controller
-              name={FIELD_KEYS.CATEGORY}
-              control={control}
-              render={({ field }) => (
-                <DropdownField
-                  options={categoryOptions}
-                  value={field.value}
-                  onChange={field.onChange}
-                />
-              )}
+            <DropdownField
+              options={categoryOptions}
+              value={formState.category}
+              onChange={(value) => updateField("category", String(value))}
             />
           </ControlWrap>
         </ItemRow>

@@ -16,6 +16,12 @@ type RefreshResponse = {
 
 let refreshPromise: Promise<string | null> | null = null;
 
+function redirectToLogin() {
+  if (typeof window === "undefined") return;
+  if (window.location.pathname === "/login") return;
+  window.location.assign("/login");
+}
+
 async function refreshAccessToken(): Promise<string | null> {
   if (refreshPromise) {
     return refreshPromise;
@@ -63,9 +69,12 @@ export async function apiClient<T = unknown>(
   const isAuthRefreshEndpoint = endpoint === API_ENDPOINTS.REFRESH;
 
   const headers: Record<string, string> = {
-    "Content-Type": "application/json",
     ...(options.headers as Record<string, string>),
   };
+
+  if (options.body && !headers["Content-Type"]) {
+    headers["Content-Type"] = "application/json";
+  }
 
   if (
     typeof window !== "undefined" &&
@@ -84,8 +93,8 @@ export async function apiClient<T = unknown>(
   }
 
   const config: RequestInit = {
-    headers,
     ...options,
+    headers,
   };
 
   let response = await fetch(url, config);
@@ -104,7 +113,20 @@ export async function apiClient<T = unknown>(
         ...config,
         headers,
       });
+    } else {
+      clearTokens();
+      redirectToLogin();
     }
+  }
+
+  if (
+    response.status === 401 &&
+    typeof window !== "undefined" &&
+    !isAuthLoginEndpoint &&
+    !isAuthRefreshEndpoint
+  ) {
+    clearTokens();
+    redirectToLogin();
   }
 
   const data = await response.json();

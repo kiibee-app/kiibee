@@ -1,34 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LeftIcon } from "@/assets/icons";
-import PlayIcon from "@/assets/icons/PlayIcon";
 import type { TutorialVideo } from "@/utils/types";
-import { resolveImageUrl } from "@/utils/Constants";
-import { pathPublishedContent } from "@/utils/path";
+import { getFeedPageSlice } from "@/utils/feedContentToTutorial";
+import CollectionItemCard from "./CollectionItemCard";
 import {
-  CollectionActions,
-  CollectionAuthor,
-  CollectionBadge,
-  CollectionBadgeText,
-  CollectionCard,
-  CollectionCardBody,
-  CollectionFreeButton,
+  CollectionCardWrap,
+  CollectionGrid,
   CollectionHeader,
-  CollectionImageArea,
-  CollectionLink,
+  CollectionHeaderActions,
   CollectionSection,
+  CollectionSectionArrow,
+  CollectionSectionArrows,
   CollectionSectionTitle,
-  CollectionStrip,
-  CollectionTime,
-  CollectionTitle,
   CollectionTitleGroup,
-  CollectionVideoIconBox,
-  CollectionVideoLabelText,
-  CollectionVideoPill,
 } from "./styles";
+
+export const COLLECTION_ITEMS_PAGE_SIZE = 4;
 
 type Props = {
   videos: TutorialVideo[];
@@ -37,12 +28,37 @@ type Props = {
 
 export default function CollectionItems({ videos, collectionId }: Props) {
   const { t } = useTranslation();
+  const [pageStart, setPageStart] = useState(0);
+  const totalItems = videos.length;
+  const canSlide = totalItems > COLLECTION_ITEMS_PAGE_SIZE;
+  const canGoPrev = pageStart > 0;
+  const canGoNext = pageStart + COLLECTION_ITEMS_PAGE_SIZE < totalItems;
+
+  const movePrev = useCallback(() => {
+    setPageStart((prev) => Math.max(prev - COLLECTION_ITEMS_PAGE_SIZE, 0));
+  }, []);
+
+  const moveNext = useCallback(() => {
+    setPageStart((prev) => {
+      if (totalItems <= COLLECTION_ITEMS_PAGE_SIZE) return prev;
+      return Math.min(
+        prev + COLLECTION_ITEMS_PAGE_SIZE,
+        totalItems - COLLECTION_ITEMS_PAGE_SIZE,
+      );
+    });
+  }, [totalItems]);
 
   if (!videos.length) return null;
 
   const href = collectionId
     ? `/single-collection?id=${collectionId}`
     : "/tutorial-videos";
+
+  const visibleVideos = getFeedPageSlice(
+    videos,
+    pageStart,
+    COLLECTION_ITEMS_PAGE_SIZE,
+  );
 
   return (
     <CollectionSection>
@@ -53,56 +69,38 @@ export default function CollectionItems({ videos, collectionId }: Props) {
           </CollectionSectionTitle>
           <LeftIcon width={14} height={14} />
         </CollectionTitleGroup>
-        <CollectionLink
-          as={Link}
-          href={href}
-          aria-label={t("tutorialVideos.sectionLink")}
-        >
-          <LeftIcon width={16} height={16} />
-        </CollectionLink>
-      </CollectionHeader>
-      <CollectionStrip>
-        {videos.map((video) => (
-          <CollectionCard key={video.id}>
-            <CollectionImageArea>
-              <Image
-                src={resolveImageUrl(video.image)}
-                alt={video.title}
-                fill
-                sizes="250px"
-              />
-              <CollectionBadge>
-                <CollectionBadgeText>{video.category}</CollectionBadgeText>
-              </CollectionBadge>
-            </CollectionImageArea>
-
-            <CollectionCardBody>
-              <CollectionTitle>{video.title}</CollectionTitle>
-              <CollectionAuthor>{video.creator}</CollectionAuthor>
-              <CollectionTime>{video.published}</CollectionTime>
-
-              <CollectionActions>
-                <CollectionVideoPill>
-                  <CollectionVideoIconBox>
-                    <PlayIcon width={10} height={10} />
-                  </CollectionVideoIconBox>
-                  <CollectionVideoLabelText>
-                    {video.formatLabel}
-                  </CollectionVideoLabelText>
-                </CollectionVideoPill>
-
-                <CollectionFreeButton
-                  as={Link}
-                  href={pathPublishedContent(video.id)}
+        <CollectionHeaderActions>
+          {canSlide ? (
+            <CollectionSectionArrows>
+              {canGoPrev ? (
+                <CollectionSectionArrow
+                  type="button"
+                  onClick={movePrev}
+                  aria-label={t("common.previous")}
                 >
-                  {video.buttons?.[0]?.label ??
-                    t("tutorialVideos.buttonFreeLabel")}
-                </CollectionFreeButton>
-              </CollectionActions>
-            </CollectionCardBody>
-          </CollectionCard>
+                  <LeftIcon style={{ transform: "rotate(180deg)" }} />
+                </CollectionSectionArrow>
+              ) : null}
+              <CollectionSectionArrow
+                type="button"
+                disabled={!canGoNext}
+                aria-disabled={!canGoNext}
+                onClick={moveNext}
+                aria-label={t("common.next")}
+              >
+                <LeftIcon />
+              </CollectionSectionArrow>
+            </CollectionSectionArrows>
+          ) : null}
+        </CollectionHeaderActions>
+      </CollectionHeader>
+      <CollectionGrid>
+        {visibleVideos.map((video) => (
+          <CollectionCardWrap key={video.id}>
+            <CollectionItemCard video={video} />
+          </CollectionCardWrap>
         ))}
-      </CollectionStrip>
+      </CollectionGrid>
     </CollectionSection>
   );
 }

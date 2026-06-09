@@ -81,9 +81,9 @@ export function useContentUpload({ contentType }: Params) {
   const uploadConfig = CONTENT_UPLOAD_CONFIG[uploadType];
 
   const previewUrl = useMemo(() => {
-    if (!selectedFile || uploadType !== FORMAT_TYPE.VIDEO) return null;
+    if (!selectedFile) return null;
     return URL.createObjectURL(selectedFile);
-  }, [selectedFile, uploadType]);
+  }, [selectedFile]);
 
   useEffect(() => {
     return () => {

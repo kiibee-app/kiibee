@@ -6,7 +6,13 @@ import DashboardLayout from "@/components/Layout/Dashboard";
 import Sidebar from "@/components/Layout/Sidebar";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { VIEW, ROLE_VIEWER } from "@/utils/Constants";
+import {
+  SIDEBAR_COLLAPSE_BREAKPOINT,
+  VIEW,
+  VIEWER_SECTION,
+  CONTENT_COLLECTION_QUERY_KEY,
+  ROLE_VIEWER,
+} from "@/utils/Constants";
 import {
   VIEWER_LABEL_TO_VIEW,
   VIEWER_LABELS,
@@ -35,10 +41,16 @@ const ROUTABLE_VIEWER_VIEWS = new Set<string>([
   VIEWER_VIEW_VALUES.MY_PROFILE,
 ]);
 
-export default function ClientDashboardViewer() {
+type Props = {
+  initialCollectionsExpanded?: boolean;
+};
+
+export default function ClientDashboardViewer({
+  initialCollectionsExpanded = false,
+}: Props) {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
-    useSidebarExpanded(768);
+    useSidebarExpanded(SIDEBAR_COLLAPSE_BREAKPOINT);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutEmail, setLogoutEmail] = useState("");
   const searchParams = useSearchParams();
@@ -46,7 +58,7 @@ export default function ClientDashboardViewer() {
   const router = useRouter();
   const { logout } = useLogout();
   const { getUser } = useAuthSession();
-  useRequireAuthSession();
+  const { isReady } = useRequireAuthSession();
 
   const viewParam = searchParams?.get(VIEW);
   const activePage: ViewerLabel =
@@ -57,6 +69,9 @@ export default function ClientDashboardViewer() {
   const getHrefForView = useCallback(
     (label: ViewerLabel) => {
       const params = new URLSearchParams(searchParams?.toString() ?? "");
+
+      params.delete(VIEWER_SECTION);
+      params.delete(CONTENT_COLLECTION_QUERY_KEY);
 
       if (label === VIEWER_LABELS.PURCHASED) {
         params.delete(VIEW);
@@ -105,6 +120,8 @@ export default function ClientDashboardViewer() {
 
   const sectionTitle = useMemo(() => activePage, [activePage]);
 
+  if (!isReady) return null;
+
   return (
     <DashboardLayout
       sidebarExpanded={sidebarExpanded}
@@ -139,18 +156,21 @@ export default function ClientDashboardViewer() {
           key={RENTED_MODES.PURCHASED}
           title={sectionTitle}
           mode={RENTED_MODES.PURCHASED}
+          initialCollectionsExpanded={initialCollectionsExpanded}
         />
       ) : activePage === VIEWER_LABELS.CURRENTLY_RENTED ? (
         <RentedContent
           key={RENTED_MODES.CURRENTLY}
           title={sectionTitle}
           mode={RENTED_MODES.CURRENTLY}
+          initialCollectionsExpanded={initialCollectionsExpanded}
         />
       ) : activePage === VIEWER_LABELS.PREVIOUSLY_RENTED ? (
         <RentedContent
           key={RENTED_MODES.PREVIOUSLY}
           title={sectionTitle}
           mode={RENTED_MODES.PREVIOUSLY}
+          initialCollectionsExpanded={initialCollectionsExpanded}
         />
       ) : activePage === VIEWER_LABELS.BILLINGS ? (
         <ClientViewerBillings />

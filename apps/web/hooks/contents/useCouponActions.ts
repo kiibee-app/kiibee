@@ -11,10 +11,10 @@ import {
   COUPON_ACTION_STATUS,
   CouponAction,
 } from "@/utils/Constants";
-import { CouponFormState } from "@/types/collectionsType";
 import {
   COUPON_STATUS,
   COUPON_STATUS_LABEL_MAP,
+  CreateCouponPayload,
   type CouponEntity,
   type CouponListResponse,
   type CouponRow,
@@ -22,7 +22,7 @@ import {
 
 type UseCouponActionsParams = {
   activeTab: ContentTab;
-  onEditCoupon: (couponId: string, formState: CouponFormState) => void;
+  onEditCoupon: (couponId: string, formState: CreateCouponPayload) => void;
 };
 
 export const useCouponActions = ({
@@ -45,6 +45,17 @@ export const useCouponActions = ({
   const getCouponStatusLabel = (status: CouponEntity["status"]) =>
     COUPON_STATUS_LABEL_MAP[status];
 
+  const mapCouponToForm = (coupon: CouponEntity): CreateCouponPayload => {
+    return {
+      title: coupon.title ?? "",
+      discountType: coupon.discountType ?? COUPON_DISCOUNT_TYPE.FIXED_AMOUNT,
+      discountValue: coupon.discountValue ?? "",
+      codes: coupon.codes ?? [],
+      collectionIds: coupon.applicableProducts?.collectionIds ?? [],
+      contentIds: coupon.applicableProducts?.contentIds ?? [],
+    };
+  };
+
   const couponRows: CouponRow[] = (couponResponse?.data ?? []).map((item) => ({
     title: item.title,
     codes: item.codes ?? [],
@@ -63,26 +74,15 @@ export const useCouponActions = ({
     setShowCouponDeleteSuccess(true);
   };
 
+  const openEditCoupon = (coupon: CouponEntity) => {
+    onEditCoupon(coupon.id, mapCouponToForm(coupon));
+  };
+
   const handleCouponAction = async (action: CouponAction, row: CouponRow) => {
     const couponId = row.action;
     if (!couponId) return;
 
-    const coupons = couponResponse?.data ?? [];
-    const selectedCoupon = coupons.find((item) => item.id === couponId);
-
-    const openEdit = () => {
-      if (!selectedCoupon) return;
-
-      onEditCoupon(selectedCoupon.id, {
-        title: selectedCoupon.title ?? "",
-        discountType:
-          selectedCoupon.discountType ?? COUPON_DISCOUNT_TYPE.FIXED_AMOUNT,
-        discountValue: selectedCoupon.discountValue ?? "",
-        codes: (selectedCoupon.codes ?? []).join(", "),
-        collection: selectedCoupon.applicableProducts?.collectionId ?? "",
-        content: selectedCoupon.applicableProducts?.contentId ?? "",
-      });
-    };
+    const selectedCoupon = couponResponse?.data?.find((c) => c.id === couponId);
 
     const openDelete = () => {
       setSelectedCouponId(couponId);
@@ -102,7 +102,10 @@ export const useCouponActions = ({
     };
 
     const actionMap: Record<CouponAction, () => Promise<void> | void> = {
-      [COUPON_ACTION_EDIT]: openEdit,
+      [COUPON_ACTION_EDIT]: () => {
+        if (!selectedCoupon) return;
+        openEditCoupon(selectedCoupon);
+      },
       [COUPON_ACTION_DELETE]: openDelete,
       [COUPON_ACTION_STATUS]: toggleStatus,
     };
@@ -116,6 +119,7 @@ export const useCouponActions = ({
 
   return {
     couponRows,
+    couponList: couponResponse?.data ?? [],
     handleCouponAction,
     handleCouponDeleteConfirm,
     handleCouponDeleteModalClose,
@@ -123,5 +127,6 @@ export const useCouponActions = ({
     setShowCouponDeleteConfirm,
     showCouponDeleteSuccess,
     setShowCouponDeleteSuccess,
+    openEditCoupon,
   };
 };

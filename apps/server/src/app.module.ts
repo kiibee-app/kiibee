@@ -9,6 +9,12 @@ import { validateAppEnv } from './validators/appEnvSchema';
 import { MediaModule } from './modules/media/media.module';
 import { CouponModule } from './modules/coupon/coupon.module';
 import { CollectionModule } from './modules/collection/collection.module';
+import { CreatorModule } from './modules/creator/creator.module';
+import { FeedModule } from './modules/feed/feed.module';
+import { OrderModule } from './modules/order/order.module';
+import { PaymentModule } from './modules/payment/payment.module';
+import { ViewerModule } from './modules/viewer/viewer.module';
+import { CreatorUsersModule } from './modules/creator-users/creator-users.module';
 
 @Module({
   imports: [
@@ -24,6 +30,12 @@ import { CollectionModule } from './modules/collection/collection.module';
     MediaModule,
     CouponModule,
     CollectionModule,
+    CreatorModule,
+    FeedModule,
+    OrderModule,
+    PaymentModule,
+    ViewerModule,
+    CreatorUsersModule,
   ],
 })
 export class AppModule {}

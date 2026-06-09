@@ -128,4 +128,14 @@ export class UpdateContentDto {
   @Type(() => Boolean)
   @IsBoolean()
   isDownloadable?: boolean;
+
+  @IsOptional()
+  @Type(() => Boolean)
+  @IsBoolean()
+  openInNewWindow?: boolean;
+
+  @IsOptional()
+  @Type(() => Boolean)
+  @IsBoolean()
+  openDirectFromList?: boolean;
 }

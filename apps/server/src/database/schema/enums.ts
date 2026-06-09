@@ -122,3 +122,13 @@ export const notificationTypeEnum = pgEnum('notification_type', [
   'subscription',
   'system',
 ]);
+
+export const layoutEnum = pgEnum('layout', ['layout1', 'layout2', 'layout3']);
+
+export const layoutEnumValues = ['layout1', 'layout2', 'layout3'] as const;
+
+export const contentSettingsEnum = pgEnum('content_settings_access_type', [
+  'free',
+  'set_password',
+  'request_email',
+]);

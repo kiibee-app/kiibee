@@ -5,9 +5,14 @@ import {
 } from "@/utils/discoverContent";
 import type { TutorialVideo } from "@/utils/types";
 
+export const CONTENT_KIND = {
+  TUTORIAL: "tutorial",
+  DISCOVER: "discover",
+} as const;
+
 export type ResolvedPublishedContent =
-  | { kind: "tutorial"; tutorial: TutorialVideo }
-  | { kind: "discover"; item: DiscoverContentItem };
+  | { kind: typeof CONTENT_KIND.TUTORIAL; tutorial: TutorialVideo }
+  | { kind: typeof CONTENT_KIND.DISCOVER; item: DiscoverContentItem };
 
 export function resolvePublishedContentByKey(
   contentKey: string | undefined,
@@ -17,8 +22,8 @@ export function resolvePublishedContentByKey(
   const discoverItem = discoverContentData.find(
     (i) => i.contentKey === decoded,
   );
-  if (discoverItem) return { kind: "discover", item: discoverItem };
+  if (discoverItem) return { kind: CONTENT_KIND.DISCOVER, item: discoverItem };
   const tutorial = tutorialVideos.find((t) => t.id === decoded);
-  if (tutorial) return { kind: "tutorial", tutorial };
+  if (tutorial) return { kind: CONTENT_KIND.TUTORIAL, tutorial };
   return undefined;
 }

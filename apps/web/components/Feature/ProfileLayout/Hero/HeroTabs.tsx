@@ -3,6 +3,7 @@
 import { useTranslation } from "react-i18next";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import GenericTabs from "@/components/UI/GenericTabs";
+import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import {
   TabsWrapper,
@@ -21,7 +22,11 @@ export default function HeroTabs({
   setSearchValue,
 }: HeroTabsProps) {
   const { t } = useTranslation();
+  const { isCollectionsPage } = useCreatorProfileUi();
   const Wrapper = centered ? TabsWrapperCentered : TabsWrapper;
+  const searchPlaceholder = isCollectionsPage
+    ? t(CREATE_PROFILE_HOME.searchCollectionsPlaceholder)
+    : t(CREATE_PROFILE_HOME.searchPlaceholder);
 
   return (
     <Wrapper>
@@ -32,7 +37,7 @@ export default function HeroTabs({
         search={{
           open: searchOpen,
           value: searchValue,
-          placeholder: t(CREATE_PROFILE_HOME.searchPlaceholder),
+          placeholder: searchPlaceholder,
           onToggle: () => setSearchOpen((prev) => !prev),
           onChange: setSearchValue,
           ariaLabel: t(CREATE_PROFILE_HOME.searchAriaLabel),

@@ -2,8 +2,8 @@ import type { ProfileTabKey } from "@/utils/common";
 import { PATHS } from "@/utils/path";
 export const CREATOR_LAYOUT_STORAGE_KEY = "kiibee.creatorChannelLayout";
 export const CREATOR_LAYOUT_UPDATED = "kiibee:creator-channel-layout-updated";
+export const CREATOR_ID_PARAM = "creatorId";
 
-/** Single source: storage key (layout1…) ↔ URL segment (1…) */
 export const CREATOR_LAYOUTS = [
   { key: "layout1", param: "1" },
   { key: "layout2", param: "2" },
@@ -50,6 +50,27 @@ export function layoutKeyFromParam(
 
 export function getCreatorHomePath(layout: CreatorLayoutParam): string {
   return `${PATHS.CREATOR_PROFILE}/${layout}`;
+}
+
+export function getPublicCreatorProfilePath(
+  creatorId: string,
+  layout: CreatorLayoutParam = layoutParamFromKey(DEFAULT_CREATOR_LAYOUT),
+): string {
+  const params = new URLSearchParams({ [CREATOR_ID_PARAM]: creatorId });
+  return `${getCreatorHomePath(layout)}?${params.toString()}`;
+}
+
+export function withCreatorIdQuery(
+  href: string,
+  creatorId: string | null | undefined,
+): string {
+  if (!creatorId) return href;
+
+  const [pathname, search = ""] = href.split("?");
+  const params = new URLSearchParams(search);
+  params.set(CREATOR_ID_PARAM, creatorId);
+
+  return `${pathname}?${params.toString()}`;
 }
 
 export function getCreatorCollectionsPath(layout: CreatorLayoutParam): string {
@@ -111,4 +132,39 @@ export function getCreatorNavItemDefs(layout: CreatorLayoutParam) {
     },
     { key: "nav.profile.about" as const },
   ];
+}
+
+export function matchesProfileSearch(
+  query: string,
+  ...texts: Array<string | null | undefined>
+): boolean {
+  const normalized = query.trim().toLowerCase();
+  if (!normalized) return true;
+
+  return texts.some((text) => (text ?? "").toLowerCase().includes(normalized));
+}
+
+function normalizeNavPath(href: string): string {
+  return href.split("?")[0].split("#")[0];
+}
+
+export function findActiveNavItemKey(
+  pathname: string,
+  items: ReadonlyArray<{ key: string; href?: string }>,
+): string | null {
+  const withHref = items
+    .filter((item): item is { key: string; href: string } => Boolean(item.href))
+    .map((item) => ({
+      key: item.key,
+      path: normalizeNavPath(item.href),
+    }))
+    .sort((a, b) => b.path.length - a.path.length);
+
+  for (const { key, path } of withHref) {
+    if (pathname === path || pathname.startsWith(`${path}/`)) {
+      return key;
+    }
+  }
+
+  return null;
 }

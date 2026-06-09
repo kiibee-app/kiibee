@@ -2,7 +2,6 @@
 
 import { useTranslation } from "react-i18next";
 import coverImage from "@/assets/images/creators/create_profile_hero1.png";
-import CreatorInfoModal from "@/components/Feature/ProfileLayout/shared/CreatorInfoModal";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import HeroTabs from "@/components/Feature/ProfileLayout/Hero/HeroTabs";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
@@ -26,23 +25,26 @@ import {
   UploadCountText,
 } from "@/components/Feature/ProfileLayout/Hero/styles";
 
-/** Layout 1: rounded cover, avatar beside bio, “more” opens about modal */
 export default function ProfileCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
-  const { isAboutOpen, openAbout, closeAbout } = tabState;
-  const { displayName, avatarUrl, initial } = useCreatorChannelProfile();
+  const { openAbout } = tabState;
+  const { displayName, avatarUrl, coverImageUrl, initial, about } =
+    useCreatorChannelProfile();
   const creatorName = displayName;
+  const uploadsCount = about?.uploadCount ?? 0;
+  const biography = about?.description || t(CREATE_PROFILE_HOME.description);
 
   return (
     <HeroWrapper>
       <CoverFrame>
         <CoverImage
-          src={coverImage}
+          src={coverImageUrl || coverImage}
           alt={t(CREATE_PROFILE_HOME.title)}
           fill
           sizes="(max-width: 900px) 100vw, 1300px"
           priority
+          unoptimized={Boolean(coverImageUrl)}
         />
       </CoverFrame>
 
@@ -63,13 +65,11 @@ export default function ProfileCoverSection() {
             </CreatorName>
             <UploadCount>
               <UploadCountText>
-                {t(CREATE_PROFILE_HOME.uploads, { count: 42 })}
+                {t(CREATE_PROFILE_HOME.uploads, { count: uploadsCount })}
               </UploadCountText>
             </UploadCount>
             <CreatorBio>
-              <CreatorBioText>
-                {t(CREATE_PROFILE_HOME.description)}
-              </CreatorBioText>
+              <CreatorBioText>{biography}</CreatorBioText>
               <MoreText>
                 <MoreTextLabel onClick={openAbout}>
                   {t(CREATE_PROFILE_HOME.more)}
@@ -81,8 +81,6 @@ export default function ProfileCoverSection() {
 
         <HeroTabs {...tabState} />
       </ContentInner>
-
-      <CreatorInfoModal visible={isAboutOpen} onClose={closeAbout} />
     </HeroWrapper>
   );
 }

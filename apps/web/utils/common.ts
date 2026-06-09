@@ -12,6 +12,7 @@ export const COUPON_DISCOUNT_FIXED_AMOUNT = "fixed_amount";
 export const COUPON_DISCOUNT_PERCENTAGE = "percentage";
 export const COUPON_CODES_LIMIT = 100;
 export const QUERY_REFETCH_TYPE_ACTIVE = "active";
+export const PAGE_SIZE_OPTIONS = [10, 20, 50];
 
 type ContentTabItem = {
   key: ContentTab;
@@ -73,6 +74,7 @@ export const PAGE_VISITS = "pageVisits";
 export const CLICKS = "clicks";
 export const VIEWS = "views";
 export const MOUSE_DOWN = "mousedown";
+export const CLICK = "click";
 export const IMG = "img";
 
 export type ProfileTabKey = "home" | "collections" | "about";
@@ -123,4 +125,29 @@ export const FILE_EXTENSION = {
   EPUB: ".epub",
 } as const;
 
-export const tabs = ["New", "Trending", "Curated for you"];
+export const tabs = ["New", "Trending", "Created for you"];
+export const ACCESS_DURATION_VALUES = [
+  "1_month",
+  "3_months",
+  "6_months",
+  "12_months",
+] as const;
+
+export type AccessDurationValue = (typeof ACCESS_DURATION_VALUES)[number];
+
+export const PAYMENT_DEFAULT_ACCESS_DURATION = "1_month" as const;
+
+export function toCamelCaseKey(value: string): string {
+  return value
+    .replace(/&|\/|and/gi, "and")
+    .replace(/[^a-zA-Z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .map((word, index) => {
+      if (index === 0) {
+        return word.toLowerCase();
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join("");
+}

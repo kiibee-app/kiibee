@@ -1,39 +1,39 @@
-import { pgTable, text, varchar, numeric, index } from 'drizzle-orm/pg-core';
+import { pgTable, text, numeric, timestamp, index } from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
+import { mediaFiles } from '../content/mediaFiles.schema';
+import { collections } from '../content/collections.schema';
+import { orderItemTypeEnum, orderStatusEnum } from '../enums';
 import { users } from '../users/users.schema';
-import { orderStatusEnum } from '../enums';
 
 export const orders = pgTable(
   'orders',
   {
     id: text('id').primaryKey(),
-    buyerId: text('buyer_id')
+    userId: text('user_id')
       .notNull()
-      .references(() => users.id, { onDelete: 'restrict' }),
-    creatorId: text('creator_id')
-      .notNull()
-      .references(() => users.id, { onDelete: 'restrict' }),
+      .references(() => users.id, { onDelete: 'cascade' }),
+    mediaFileId: text('media_file_id').references(() => mediaFiles.id, {
+      onDelete: 'set null',
+    }),
+    collectionId: text('collection_id').references(() => collections.id, {
+      onDelete: 'set null',
+    }),
 
-    orderNumber: varchar('order_number', { length: 50 }).notNull(),
+    itemType: orderItemTypeEnum('item_type').notNull(),
+    price: numeric('price', { precision: 10, scale: 2 }).notNull(),
+    currency: text('currency').notNull().default('DKK'),
+    rentExpiresAt: timestamp('rent_expires_at', { withTimezone: true }),
     status: orderStatusEnum('status').notNull().default('pending'),
-
-    totalAmount: numeric('total_amount', { precision: 10, scale: 2 }).notNull(),
-    discountAmount: numeric('discount_amount', {
-      precision: 10,
-      scale: 2,
-    }).default('0'),
-    currency: varchar('currency', { length: 10 }).notNull().default('DKK'),
-
-    couponCodeId: text('coupon_code_id'),
-    paymentMethodType: varchar('payment_method_type', { length: 30 }),
 
     ...baseTimestamps,
   },
   (table) => ({
-    buyerIdIdx: index('orders_buyer_id_idx').on(table.buyerId),
-    creatorIdIdx: index('orders_creator_id_idx').on(table.creatorId),
-    statusIdx: index('orders_status_idx').on(table.status),
-    orderNumberIdx: index('orders_order_number_idx').on(table.orderNumber),
-    createdAtIdx: index('orders_created_at_idx').on(table.createdAt),
+    mediaFileIdIdx: index('order_items_media_file_id_idx').on(
+      table.mediaFileId,
+    ),
+    collectionIdIdx: index('order_items_collection_id_idx').on(
+      table.collectionId,
+    ),
+    itemTypeIdx: index('order_items_item_type_idx').on(table.itemType),
   }),
 );

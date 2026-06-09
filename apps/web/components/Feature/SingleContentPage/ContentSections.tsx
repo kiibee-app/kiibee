@@ -1,12 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import BackButtonIcon from "@/assets/icons/BackButtonIcon";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import type {
   SingleContentBodyProps,
   SingleContentCreatorProps,
-  SingleContentHeroSectionProps,
+  SingleContentHeroProps,
   SingleContentTopBarProps,
 } from "@/types/contentTypes";
+import GenericButton from "@/components/UI/GenericButton";
+import { MonoText } from "@/components/UI/Monotext";
+import COLORS from "@repo/ui/colors";
+import { VARIANT } from "@/utils/Constants";
 import {
   BackButton,
   BodyTextWrap,
@@ -17,11 +23,6 @@ import {
   DescriptionText,
   ExpiryText,
   HeadingBlock,
-  Hero,
-  HeroMediaTag,
-  HeroMediaText,
-  HeroTag,
-  HeroTagText,
   InfoTag,
   InfoTagText,
   MainAction,
@@ -32,50 +33,18 @@ import {
   MetaRow,
   MetaSection,
   MetaValueText,
-  Preview,
-  PreviewAudio,
-  PreviewDocument,
-  PreviewVideo,
+  PricingCtaContent,
+  PricingCtaRow,
+  PricingCtaSubtext,
   ShareButton,
   ShareText,
   StatusBadge,
   TagRow,
   TopBar,
-  TrailerButton,
-  TrailerText,
 } from "./styles";
 import { t } from "i18next";
-import { isRemoteImageSource } from "@/utils/media";
-import { FORMAT_TYPE } from "@/utils/types";
-
-function SingleContentPreview({ hero }: SingleContentHeroSectionProps) {
-  if (hero.media?.src) {
-    if (hero.media.type === FORMAT_TYPE.VIDEO) {
-      return <PreviewVideo src={hero.media.src} controls playsInline />;
-    }
-
-    if (hero.media.type === FORMAT_TYPE.AUDIO) {
-      return <PreviewAudio src={hero.media.src} controls />;
-    }
-
-    if (
-      hero.media.type === FORMAT_TYPE.PDF ||
-      hero.media.type === FORMAT_TYPE.WEB
-    ) {
-      return <PreviewDocument src={hero.media.src} title={hero.media.title} />;
-    }
-  }
-
-  return (
-    <Image
-      src={hero.image}
-      alt={hero.imageAlt}
-      fill
-      priority
-      unoptimized={isRemoteImageSource(hero.image)}
-    />
-  );
-}
+import { resolveImageUrl } from "@/utils/media";
+import SingleContentHeroView from "./SingleContentHeroView";
 
 export function SingleContentTopBar({
   showBack,
@@ -108,49 +77,21 @@ export function SingleContentTopBar({
   );
 }
 
-export function SingleContentHero({ hero }: SingleContentHeroSectionProps) {
+export function SingleContentHero({
+  hero,
+  isPdfLayout = false,
+}: {
+  hero: SingleContentHeroProps;
+  isPdfLayout?: boolean;
+}) {
+  const heroKey = hero.media?.src ?? resolveImageUrl(hero.image);
+
   return (
-    <Hero>
-      <Preview>
-        <SingleContentPreview hero={hero} />
-      </Preview>
-
-      {hero.categoryLabel ? (
-        <HeroTag>
-          <HeroTagText>{hero.categoryLabel}</HeroTagText>
-        </HeroTag>
-      ) : null}
-
-      {hero.mediaLabel ? (
-        <HeroMediaTag>
-          {hero.mediaIcon ? (
-            <Image
-              src={hero.mediaIcon}
-              alt={hero.mediaIconAlt ?? ""}
-              width={16}
-              height={16}
-              priority
-            />
-          ) : null}
-          <HeroMediaText>{hero.mediaLabel}</HeroMediaText>
-        </HeroMediaTag>
-      ) : null}
-
-      {hero.trailerLabel ? (
-        <TrailerButton onClick={hero.onTrailerClick} type="button">
-          {hero.trailerIcon ? (
-            <Image
-              src={hero.trailerIcon}
-              alt={hero.trailerIconAlt ?? ""}
-              width={15}
-              height={15}
-              priority
-            />
-          ) : null}
-          <TrailerText>{hero.trailerLabel}</TrailerText>
-        </TrailerButton>
-      ) : null}
-    </Hero>
+    <SingleContentHeroView
+      key={heroKey}
+      hero={hero}
+      isPdfLayout={isPdfLayout}
+    />
   );
 }
 
@@ -179,12 +120,14 @@ export function SingleContentBody({
   descriptions,
   tags,
   primaryAction,
+  primaryActions,
   expiry,
   metaItems,
 }: SingleContentBodyProps) {
   const safeDescriptions = descriptions ?? [];
   const safeTags = tags ?? [];
   const safeMeta = metaItems ?? [];
+  const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
 
   return (
     <ContentShell>
@@ -213,14 +156,57 @@ export function SingleContentBody({
         </TagRow>
       ) : null}
 
-      {primaryAction ? (
+      {actions.length === 1 ? (
         <MainAction
-          onClick={primaryAction.onClick}
+          onClick={actions[0].onClick}
           type="button"
-          aria-label={primaryAction.ariaLabel}
+          disabled={actions[0].disabled}
+          aria-label={actions[0].ariaLabel ?? actions[0].label}
         >
-          <MainActionText>{primaryAction.label}</MainActionText>
+          <MainActionText>{actions[0].label}</MainActionText>
         </MainAction>
+      ) : null}
+
+      {actions.length > 1 ? (
+        <PricingCtaRow>
+          {actions.map((action) => {
+            const variant = action.variant ?? VARIANT.SOFT_OUTLINE;
+            const isPrimary = variant === VARIANT.PRIMARY;
+            const labelColor = isPrimary
+              ? COLORS.primary.WHITE
+              : COLORS.primary.BLACK;
+            const sublabelColor = isPrimary
+              ? COLORS.primary.WHITE_90
+              : COLORS.neutral.GRAY_500;
+
+            return (
+              <GenericButton
+                key={action.label}
+                type="button"
+                variant={variant}
+                size="lg"
+                minWidth="160px"
+                className="pricing-cta"
+                onClick={action.onClick}
+                disabled={action.disabled}
+                aria-label={action.ariaLabel ?? action.label}
+              >
+                {action.subtitle ? (
+                  <PricingCtaContent>
+                    <MonoText $use="Body_Medium" color={labelColor}>
+                      {action.label}
+                    </MonoText>
+                    <PricingCtaSubtext style={{ color: sublabelColor }}>
+                      {action.subtitle}
+                    </PricingCtaSubtext>
+                  </PricingCtaContent>
+                ) : (
+                  action.label
+                )}
+              </GenericButton>
+            );
+          })}
+        </PricingCtaRow>
       ) : null}
 
       {expiry ? (
@@ -229,12 +215,12 @@ export function SingleContentBody({
 
       {safeMeta.length ? (
         <MetaSection>
-          {safeMeta.map((item) => (
+          {safeMeta.map((item, index) => (
             <MetaRow key={item.label}>
               <MetaKey>
                 <MetaLabelText>{item.label}</MetaLabelText>
               </MetaKey>
-              <MetaValueText>{item.value}</MetaValueText>
+              <MetaValueText $strong={index === 1}>{item.value}</MetaValueText>
             </MetaRow>
           ))}
         </MetaSection>

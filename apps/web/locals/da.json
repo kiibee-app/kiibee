@@ -22,6 +22,8 @@
       "everything": "Alle",
       "newReleases": "Nyudgivelser",
       "latest": "Seneste udgivelser",
+      "loading": "Indlaeser udgivelser...",
+      "noResults": "Ingen udgivelser fundet",
       "popular": "Populært",
       "freeContent": "Gratis indhold",
       "formatTitle": "Format",
@@ -55,7 +57,9 @@
     "title": "Nana Jacobson",
     "description": "Online kurser og kreative guides til dig, der vil lære nye teknikker, få inspiration og gøre dine idéer mere konkrete.",
     "more": "...mere",
-    "searchPlaceholder": "Søg",
+    "searchPlaceholder": "Søg indhold",
+    "searchOpenPlaceholder": "Søg efter opslag",
+    "searchCollectionsPlaceholder": "Søg samlinger",
     "searchAriaLabel": "Søg i profilindhold",
     "aboutModal": {
       "moreInfo": "Mere info",
@@ -89,7 +93,8 @@
     "description": "Del din historie, dit arbejde og hvad folk kan forvente af din profil.",
     "sectionTitle": "Planter og dyr",
     "sectionTitleClothes": "Tøj",
-    "buyCollection": "Køb samling xx kr"
+    "buyCollection": "Køb samling xx kr",
+    "buy": "Køb samling"
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",
@@ -303,6 +308,10 @@
     "cta": "Learn more"
   },
   "creators": {
+    "marquee": {
+      "title": "Udforsk Kiibee creators og find dine favoritter",
+      "defaultDescription": "Online kurser i Kammas Kantine er til dig, der gerne vil lære at få krammet på din krop. Det får du med viden, sundhed, praktiske tips og tricks og fantastiske retter - der er enkle at lave i dit eget køkken."
+    },
     "trendingContent": "TODO: translate - Trending content",
     "heading": {
       "lineOne": "Upload.",
@@ -498,6 +507,7 @@
       "tag": "Senest tilføjet"
     },
     "viewProfile": "View profile",
+    "uploadsCount": "{{count}} uploads",
     "loadMore": "Load more",
     "a-z": "A-z",
     "subscribers": "Subscribers",
@@ -556,6 +566,19 @@
           "buy": "Køb xx kr"
         }
       }
+    }
+  },
+  "exploreCategories": {
+    "title": "Topkategorier til at komme i gang",
+    "subtitle": "Gennemse platformen og køb eller lej nemt med blot et par klik. Du kan se med når som helst og hvor som helst.",
+    "browseAll": "Gennemse alle",
+    "categories": {
+      "all": "Alt indhold",
+      "technology": "Teknologi",
+      "design": "Design",
+      "art": "Kunst",
+      "literature": "Litteratur",
+      "comedies": "Komedier"
     }
   },
   "footer": {
@@ -869,7 +892,10 @@
     "failedAalt": "Kunne ikke indlæse billede: {{alt}}"
   },
   "table": {
-    "noData": "Ingen data fundet"
+    "noData": "Ingen data fundet",
+    "showing": "Viser",
+    "outOf": "ud af",
+    "paginationPage": "Ga til side {{page}}"
   },
   "creatorProfile": {
     "title": "Min konto",
@@ -916,6 +942,7 @@
     "dragPhotoHere": "Træk foto her",
     "or": "eller",
     "choosePhoto": "Vælg fotos til upload",
+    "clickPhotoToChange": "Klik på billedet for at vælge et andet billede",
     "recommendedImageSize": "Brug {{cropWidth}}×{{cropHeight}} pixel billede",
     "zoom": "Zoom",
     "apply": "Anvend",
@@ -926,6 +953,14 @@
     "loading": "Indhold indlaeses...",
     "imageAlt": "Forhaandsvisning af indhold",
     "seeContent": "Se indhold",
+    "playTrailer": "Afspil trailer",
+    "pricing": {
+      "downloadFiles": "Download filer",
+      "accessDefault": "Adgang i 3 måneder",
+      "accessMonths": "Adgang i {{count}} måneder",
+      "accessDays": "Adgang i {{count}} dage",
+      "accessHours": "Adgang i {{count}} timer"
+    },
     "meta": {
       "createdAt": "Oprettet:",
       "accessType": "Adgang:",
@@ -1032,12 +1067,18 @@
   "users": {
     "search": "Sog efter navn",
     "tabs": {
-      "registrations": "Registreringer (11)",
-      "sales": "Salg (50)"
+      "registrations": "Registreringer",
+      "sales": "Salg",
+      "registrationsWithCount": "Registreringer ({{count}})",
+      "salesWithCount": "Salg ({{count}})"
     },
     "registrations": {
       "title": "E-mail tilmeldinger",
       "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse.",
+      "emptyState": {
+        "title": "Du har ingen e-mail tilmeldinger.",
+        "description": "Når du har sat et adgangskrav for 'Anmod om e-mail', vil de blive vist her på listen efter tilmelding."
+      },
       "tableHeaders": {
         "name": "Navn",
         "email": "E-mail",
@@ -1053,7 +1094,11 @@
     },
     "salest": {
       "title": "Salg",
-      "description": "Her finder du en samlet oversigt over alt dit salg",
+      "description": "Her finder du en samlet oversigt over alt dit salg.",
+      "emptyState": {
+        "title": "Du har ingen salg endnu.",
+        "description": "Når du har solgt, vil de blive vist her på listen"
+      },
       "tableHeaders": {
         "name": "Navn",
         "email": "E-mail",
@@ -1097,6 +1142,12 @@
         "placeholder": "Faktureringshistorik vises her.",
         "searchContent": "Søg efter indholdstitel",
         "searchCreator": "Søg efter skabernavn",
+        "invoiceModal": {
+          "title": "Faktura",
+          "orderNumber": "Ordrenummer",
+          "contentDetails": "Indholdsdetaljer",
+          "share": "Del"
+        },
         "tableHeaders": {
           "contentTitle": "Indholdstitel",
           "creatorName": "Skabernavn",
@@ -1112,8 +1163,20 @@
         "defaultBadge": "Standard",
         "expires": "Udløber {{date}}",
         "edit": "Rediger betalingsmetode",
+        "markAsDefault": "Sæt som standard",
         "delete": "Slet betalingsmetode",
         "more": "Flere handlinger",
+        "deleteModal": {
+          "title": "Slet betaling?",
+          "message": "Er du sikker på, at du vil slette den gemte betaling?",
+          "cancel": "Gå tilbage",
+          "confirm": "Slet"
+        },
+        "deleteSuccessModal": {
+          "title": "Slettet",
+          "message": "Kortet er blevet slettet.",
+          "confirm": "Færdig"
+        },
         "addCardModal": {
           "title": "Tilføj nyt kort",
           "cardNumber": "Kortnummer",
@@ -1124,6 +1187,20 @@
           "cvvPlaceholder": "CVV",
           "successTitle": "Nyt kort tilføjet",
           "successMessage": "Nyt kort er blevet tilføjet."
+        },
+        "editCardModal": {
+          "title": "Rediger kort",
+          "cardNumber": "Kortnummer",
+          "expiryDate": "Udlobsdato",
+          "cvv": "Sikkerhedskode",
+          "cardPlaceholder": "XXXX XXXX XXXX XXXX",
+          "expiryPlaceholder": "MM/AA",
+          "cvvPlaceholder": "CVV"
+        },
+        "editSuccessModal": {
+          "title": "Aendringer gemt",
+          "message": "Dine opdateringer er blevet gemt.",
+          "confirm": "Faerdig"
         }
       }
     },
@@ -1283,7 +1360,10 @@
       "discountType": {
         "fixedAmount": "Fast beloeb",
         "percentage": "Procent"
-      }
+      },
+      "editButton": "Rediger kupon",
+      "createdDate": "Oprettelsesdato",
+      "status": "Status"
     },
     "couponCodes": {
       "title": "Kuponkoder",
@@ -1412,15 +1492,21 @@
       "visibility": "Synlighed",
       "visibilityHint": "Styr om denne trailer er synlig for brugere.",
       "public": "Offentlig",
-      "hidden": "Skjult"
+      "hidden": "Skjult",
+      "draft": "Kladde"
     },
     "admissionRequirements": {
       "title": "Adgangskrav",
       "description": "Overvej hvilken type adgang dit [contentType] skal have",
       "options": {
         "free": "Gratis",
+        "payment": "Betaling",
         "password": "Angiv adgangskode",
         "email": "Anmod om e-mail"
+      },
+      "password": {
+        "placeholder": "Indtast adgangskoder",
+        "helper": "Adskil flere adgangskoder med kommaer."
       }
     },
     "contentTypeModal": {
@@ -1478,6 +1564,7 @@
         "placeholder": "https://"
       },
       "uploading": "Uploader",
+      "uploaded": "Uploaded",
       "deletePermanently": "Slet permanent"
     },
     "emptyCollection": {
@@ -1516,6 +1603,13 @@
       "successTitle": "Flyttet",
       "successMessage": "Indholdet blev flyttet til {{collectionName}}."
     },
+    "web": {
+      "placeholder": "https://eksempel.dk/",
+      "ePublicationLink": "E-publicationslink",
+      "openInNewWindow": "Åbn altid webindhold i nyt vindue?",
+      "openDirectFromList": "Åbn webindhold direkte fra listen?",
+      "helperLiveStreaming": "Kan f.eks. bruges sammen med livestreaming"
+    },
     "metadata": {
       "production": {
         "title": "Produktion af",
@@ -1547,7 +1641,8 @@
         "mediaCardLabel": "Upload miniature til mediekortet",
         "mediaCardSize": "Brug størrelse 250x190 pixel billede",
         "portraitLabel": "Upload miniature til portrætformat",
-        "portraitSize": "Brug størrelse 634x345 pixel billede"
+        "portraitSize": "Brug størrelse 634x345 pixel billede",
+        "portraitPdfSize": "Brug størrelse 376x530 pixel billede"
       }
     },
     "couponSearch": {
@@ -1559,8 +1654,43 @@
         "title": "Adgangskrav",
         "description": "Overvej hvilken type adgang dit [contentType] skal have",
         "options": {
-          "payment": "Betaling"
+          "free": "Gratis",
+          "payment": "Betaling",
+          "setPassword": "Angiv adgangskode",
+          "requestEmail": "Anmod om e-mail"
         }
+      },
+      "webRental": {
+        "title": "Website subscription access",
+        "description": "Users can access the website for a limited time."
+      },
+      "webPurchase": {
+        "title": "Website lifetime access",
+        "description": "Users will get permanent access to the website."
+      },
+      "epubRental": {
+        "title": "E-publication rental",
+        "description": "Readers can access the publication temporarily."
+      },
+      "epubPurchase": {
+        "title": "E-publication purchase",
+        "description": "Purchased publications stay in the user's library."
+      },
+      "pdfRental": {
+        "title": "PDF rental access",
+        "description": "PDF access will expire after the rental period."
+      },
+      "pdfPurchase": {
+        "title": "PDF purchase/download",
+        "description": "Purchased PDFs remain permanently accessible."
+      },
+      "audioRental": {
+        "title": "Audio streaming rental",
+        "description": "Audio content will be streamable for a limited time."
+      },
+      "audioPurchase": {
+        "title": "Audio purchase/download",
+        "description": "Purchased audio will stay in the user's library."
       },
       "rental": {
         "title": "Videoleje (Streaming)",
@@ -1577,9 +1707,35 @@
           "unlimited": "Ubegrænset"
         }
       },
+      "collectionRental.title": "Leje af samling (streaming)",
+      "collectionPurchase.title": "Køb/download af samling",
+      "collectionDuration": {
+        "title": "Valgt periode",
+        "description": "Hvor længe skal dine kunder have adgang – 3, 6 eller 12 måneder?"
+      },
+      "duration": {
+        "oneMonth": "1 måned",
+        "threeMonths": "3 måneder",
+        "sixMonths": "6 måneder",
+        "twelveMonths": "12 måneder"
+      },
+      "password": {
+        "placeholder": "Indtast adgangskode",
+        "helper": "Adskil flere koder med kommaer"
+      },
+      "physicalProduct": {
+        "title": "Fysisk produkt",
+        "description": "Hvis du har en fysisk version af produktet, kan du linke til en webshop.",
+        "placeholder": "TilfÃ¸j produktlink"
+      },
       "common": {
         "enterAmount": "Indtast beløb",
         "feeNote": "Minimum DKK 8, da Kiibee opkræver DKK 5 i transaktionsgebyr"
+      },
+      "physicalLink": {
+        "title": "Fysisk produkt",
+        "description": "Hvis du har en fysisk version af produktet, kan du linke til en webshop.",
+        "placeholder": "Tilføj produktlink"
       }
     }
   },
@@ -1613,5 +1769,14 @@
     "defaultTitle": "Noget gik galt",
     "noStack": "Stack trace er ikke tilgængelig.",
     "unknownError": "Ukendt fejlmeddelelse"
+  },
+  "errors": {
+    "missingContentFormProvider": "useContentForm skal bruges inden for en ContentFormProvider",
+    "noContentToSave": "Intet indhold at gemme",
+    "saveChangesFailed": "Kunne ikke gemme ændringer",
+    "saveSettingsFailed": "Kunne ikke gemme indstillinger",
+    "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
+    "imageTooLarge": "Det uploadede billede er for stort. Upload venligst et mindre billede.",
+    "imageUploadFailed": "Billedet kunne ikke uploades"
   }
 }

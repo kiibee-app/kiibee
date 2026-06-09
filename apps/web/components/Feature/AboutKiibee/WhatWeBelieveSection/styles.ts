@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import { media } from "@repo/ui/breakpoints";
 
 export const SectionWrapper = styled.section`
@@ -51,3 +52,14 @@ export const ImageWrapper = styled.div`
   border-radius: 8px;
   overflow: hidden;
 `;
+
+export const beliefRevealStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
+
+export const beliefImageStyle: CSSProperties = {
+  objectFit: "cover",
+};

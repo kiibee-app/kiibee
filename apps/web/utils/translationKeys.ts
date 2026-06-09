@@ -11,6 +11,8 @@ export const NAV = {
   about: "nav.about",
   login: "nav.login",
   dashboard: "nav.dashboard",
+  logout: "nav.logout",
+  profileMenu: "nav.profileMenu",
   startCreating: "nav.startCreating",
   logoAlt: "nav.logoAlt",
 };
@@ -22,7 +24,15 @@ export const CREATE_PROFILE_HOME = {
   description: "createProfileHome.description",
   more: "createProfileHome.more",
   searchPlaceholder: "createProfileHome.searchPlaceholder",
+  searchOpenPlaceholder: "createProfileHome.searchOpenPlaceholder",
+  searchCollectionsPlaceholder:
+    "createProfileHome.searchCollectionsPlaceholder",
   searchAriaLabel: "createProfileHome.searchAriaLabel",
+  aboutModal: {
+    moreInfo: "createProfileHome.aboutModal.moreInfo",
+    joined: "createProfileHome.aboutModal.joined",
+    links: "createProfileHome.aboutModal.links",
+  },
 };
 
 export const CREATE_PROFILE_ROUTES = {
@@ -88,6 +98,10 @@ export const VIEWER_SIGNUP_PREFERENCE = {
 };
 
 export const CREATORS = {
+  marquee: {
+    title: "creators.marquee.title",
+    defaultDescription: "creators.marquee.defaultDescription",
+  },
   sort: "creators.sort",
   value: (v: string) => `creators.${v}`,
   topCreators: "creators.topCreators",
@@ -112,6 +126,7 @@ export const CREATORS = {
     heading: "creators.whyChoose.heading",
   },
   viewProfile: "creators.viewProfile",
+  uploadsCount: "creators.uploadsCount",
   loadMore: "creators.loadMore",
   howToGetStarted: {
     title: "creators.howToGetStarted.title",
@@ -170,10 +185,16 @@ export const DASHBOARD_USERS = {
   tabs: {
     registrations: "users.tabs.registrations",
     sales: "users.tabs.sales",
+    registrationsWithCount: "users.tabs.registrationsWithCount",
+    salesWithCount: "users.tabs.salesWithCount",
   },
   registrations: {
     title: "users.registrations.title",
     description: "users.registrations.description",
+    emptyState: {
+      title: "users.registrations.emptyState.title",
+      description: "users.registrations.emptyState.description",
+    },
     tableHeaders: {
       name: "users.registrations.tableHeaders.name",
       email: "users.registrations.tableHeaders.email",
@@ -190,6 +211,10 @@ export const DASHBOARD_USERS = {
   salest: {
     title: "users.salest.title",
     description: "users.salest.description",
+    emptyState: {
+      title: "users.salest.emptyState.title",
+      description: "users.salest.emptyState.description",
+    },
     tableHeaders: {
       name: "users.salest.tableHeaders.name",
       email: "users.salest.tableHeaders.email",
@@ -228,6 +253,14 @@ export const DASHBOARD_VIEWER_BILLINGS = {
     placeholder: "dashboard.viewerBillings.billingHistory.placeholder",
     searchContent: "dashboard.viewerBillings.billingHistory.searchContent",
     searchCreator: "dashboard.viewerBillings.billingHistory.searchCreator",
+    invoiceModal: {
+      title: "dashboard.viewerBillings.billingHistory.invoiceModal.title",
+      orderNumber:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.orderNumber",
+      contentDetails:
+        "dashboard.viewerBillings.billingHistory.invoiceModal.contentDetails",
+      share: "dashboard.viewerBillings.billingHistory.invoiceModal.share",
+    },
     tableHeaders: {
       contentTitle:
         "dashboard.viewerBillings.billingHistory.tableHeaders.contentTitle",
@@ -247,8 +280,22 @@ export const DASHBOARD_VIEWER_BILLINGS = {
     defaultBadge: "dashboard.viewerBillings.paymentMethods.defaultBadge",
     expires: "dashboard.viewerBillings.paymentMethods.expires",
     edit: "dashboard.viewerBillings.paymentMethods.edit",
+    markAsDefault: "dashboard.viewerBillings.paymentMethods.markAsDefault",
     delete: "dashboard.viewerBillings.paymentMethods.delete",
     more: "dashboard.viewerBillings.paymentMethods.more",
+    deleteModal: {
+      title: "dashboard.viewerBillings.paymentMethods.deleteModal.title",
+      message: "dashboard.viewerBillings.paymentMethods.deleteModal.message",
+      cancel: "dashboard.viewerBillings.paymentMethods.deleteModal.cancel",
+      confirm: "dashboard.viewerBillings.paymentMethods.deleteModal.confirm",
+    },
+    deleteSuccessModal: {
+      title: "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.title",
+      message:
+        "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.message",
+      confirm:
+        "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.confirm",
+    },
     addCardModal: {
       title: "dashboard.viewerBillings.paymentMethods.addCardModal.title",
       cardNumber:
@@ -266,6 +313,27 @@ export const DASHBOARD_VIEWER_BILLINGS = {
         "dashboard.viewerBillings.paymentMethods.addCardModal.successTitle",
       successMessage:
         "dashboard.viewerBillings.paymentMethods.addCardModal.successMessage",
+    },
+    editCardModal: {
+      title: "dashboard.viewerBillings.paymentMethods.editCardModal.title",
+      cardNumber:
+        "dashboard.viewerBillings.paymentMethods.editCardModal.cardNumber",
+      expiryDate:
+        "dashboard.viewerBillings.paymentMethods.editCardModal.expiryDate",
+      cvv: "dashboard.viewerBillings.paymentMethods.editCardModal.cvv",
+      cardPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.editCardModal.cardPlaceholder",
+      expiryPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.editCardModal.expiryPlaceholder",
+      cvvPlaceholder:
+        "dashboard.viewerBillings.paymentMethods.editCardModal.cvvPlaceholder",
+    },
+    editSuccessModal: {
+      title: "dashboard.viewerBillings.paymentMethods.editSuccessModal.title",
+      message:
+        "dashboard.viewerBillings.paymentMethods.editSuccessModal.message",
+      confirm:
+        "dashboard.viewerBillings.paymentMethods.editSuccessModal.confirm",
     },
   },
 };
@@ -357,6 +425,7 @@ export const CONTENTS = {
     visibilityHint: "contents.general.visibilityHint",
     public: "contents.general.public",
     hidden: "contents.general.hidden",
+    draft: "contents.general.draft",
   },
   deleteModal: {
     title: "contents.deleteModal.title",
@@ -400,6 +469,8 @@ export const SETTINGS = {
 
 export const COMMON = {
   back: "common.back",
+  close: "common.close",
+  share: "common.share",
 };
 
 export const SUBSCRIPTION = {

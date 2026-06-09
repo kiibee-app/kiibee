@@ -4,8 +4,14 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { SIGNED_URL_EXPIRY } from 'src/utils/constant';
 import { s3 } from 'src/services/s3.client';
 
+import { ResolveImportedMediaUrlService } from './resolveImportedMediaUrl.service';
+
 @Injectable()
 export class GetMediaByKeyService {
+  constructor(
+    private readonly resolveImportedMediaUrl: ResolveImportedMediaUrlService,
+  ) {}
+
   async getSignedUrl(
     key: string,
     options: {
@@ -19,6 +25,11 @@ export class GetMediaByKeyService {
       contentType,
       disposition = 'inline',
     } = options;
+
+    const externalUrl = await this.resolveImportedMediaUrl.findExternalUrl(key);
+    if (externalUrl) {
+      return externalUrl;
+    }
 
     const isVideo =
       key.includes('/videos/') ||

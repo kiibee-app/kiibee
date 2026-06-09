@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   ADD_CONTENT_TABS,
@@ -10,17 +10,19 @@ import {
   COUPONS,
   ContentTab,
   SETTINGS,
+  AccessDurationValue,
 } from "@/utils/common";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
+import { AdmissionRequirementValue } from "@/utils/admissionRequirements";
 import AppearanceContent from "./Appearance";
 import AdmissionRequirements from "./AdmissionRequirements";
 import CouponTable from "./coupon";
 import CollectionTable from "./Collections";
 import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
-import { CouponFormState } from "@/types/collectionsType";
 import {
   EmptyCollectionCard,
+  EmptyCollectionsView,
   EmptyCollectionText,
   EmptyCollectionTitle,
   PlaceholderLine,
@@ -38,24 +40,41 @@ import MoveContentModal from "./Collections/MoveContentModal";
 import { useCouponActions } from "@/hooks/contents/useCouponActions";
 import { useContentMoveActions } from "@/hooks/contents/useContentMoveActions";
 import Payment from "./Payment";
+import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
+import CouponPreviewModal from "./coupon/CouponPreviewModal";
+import { COUPON_MODE } from "@/utils/content";
 
 type Props = {
   activeTab: ContentTab;
   selectedCollection: CollectionRow | null;
   collectionContents: CollectionContentRow[];
   collections: CollectionRow[];
+  editingContentId?: string | null;
   setCollections: Dispatch<SetStateAction<CollectionRow[]>>;
   setSelectedCollection: (collection: CollectionRow) => void;
   onDelete: (id: string, type: CollectionTableType) => void;
   onEditCollection: (id: string) => void;
   onEditContent: (id: string) => void;
-  onEditCoupon: (couponId: string, formState: CouponFormState) => void;
+  onEditCoupon: (couponId: string, formState: CreateCouponPayload) => void;
   setContentsMap: Dispatch<
     SetStateAction<Record<string, CollectionContentRow[]>>
   >;
   setActiveTab: (tab: ContentTab) => void;
+  searchValue?: string;
   uploadedFile?: File | null;
   uploadedPreview?: string | null;
+  collectionAccessType?: AdmissionRequirementValue;
+  setCollectionAccessType?: (value: AdmissionRequirementValue) => void;
+  collectionPasswords?: string;
+  setCollectionPasswords?: (value: string) => void;
+  collectionDescription?: string;
+  setCollectionDescription?: (value: string) => void;
+  collectionRentalAmount?: string;
+  setCollectionRentalAmount?: (value: string) => void;
+  collectionPurchaseAmount?: string;
+  setCollectionPurchaseAmount?: (value: string) => void;
+  collectionAccessDuration?: AccessDurationValue;
+  setCollectionAccessDuration?: (value: AccessDurationValue) => void;
 };
 
 export default function ContentTabPanel({
@@ -63,6 +82,7 @@ export default function ContentTabPanel({
   selectedCollection,
   collectionContents,
   collections,
+  editingContentId,
   setCollections,
   setSelectedCollection,
   onDelete,
@@ -71,13 +91,32 @@ export default function ContentTabPanel({
   onEditCoupon,
   setContentsMap,
   setActiveTab,
+  searchValue,
   uploadedFile,
   uploadedPreview,
+  collectionAccessType,
+  setCollectionAccessType,
+  collectionPasswords,
+  setCollectionPasswords,
+  collectionDescription,
+  setCollectionDescription,
+  collectionRentalAmount,
+  setCollectionRentalAmount,
+  collectionPurchaseAmount,
+  setCollectionPurchaseAmount,
+  collectionAccessDuration,
+  setCollectionAccessDuration,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
+  const [selectedCoupon, setSelectedCoupon] = useState<CouponEntity | null>(
+    null,
+  );
+
+  const [showCouponModal, setShowCouponModal] = useState(false);
   const {
     couponRows,
+    couponList,
     handleCouponAction,
     handleCouponDeleteConfirm,
     handleCouponDeleteModalClose,
@@ -85,6 +124,7 @@ export default function ContentTabPanel({
     setShowCouponDeleteConfirm,
     showCouponDeleteSuccess,
     setShowCouponDeleteSuccess,
+    openEditCoupon,
   } = useCouponActions({
     activeTab,
     onEditCoupon,
@@ -107,9 +147,21 @@ export default function ContentTabPanel({
     setCollections,
   });
 
+  const filteredCollectionContents = useMemo(() => {
+    const query = searchValue?.trim().toLowerCase();
+
+    if (!selectedCollection || !query) {
+      return collectionContents;
+    }
+
+    return collectionContents.filter((row) =>
+      (row.name ?? "").toLowerCase().includes(query),
+    );
+  }, [collectionContents, searchValue, selectedCollection]);
+
   const renderCollectionsContent = () => {
     if (selectedCollection) {
-      const data = collectionContents;
+      const data = filteredCollectionContents;
 
       if (!data || data.length === 0) {
         return (
@@ -136,6 +188,7 @@ export default function ContentTabPanel({
           <CollectionTable
             type={COLLECTION_TABLE_TYPE.CONTENTS}
             data={data}
+            searchValue={searchValue}
             onRowClick={(row) => router.push(pathPublishedContent(row.id))}
             onEdit={onEditContent}
             onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
@@ -157,10 +210,26 @@ export default function ContentTabPanel({
       );
     }
 
+    if (collections.length === 0) {
+      return (
+        <EmptyCollectionsView>
+          <EmptyCollectionText>
+            <EmptyCollectionTitle>
+              {t("contents.emptyCollection.title")}
+            </EmptyCollectionTitle>
+            <MonoText $use="Body_Medium">
+              {t("contents.emptyCollection.description")}
+            </MonoText>
+          </EmptyCollectionText>
+        </EmptyCollectionsView>
+      );
+    }
+
     return (
       <CollectionTable
         type={COLLECTION_TABLE_TYPE.COLLECTIONS}
         data={collections}
+        searchValue={searchValue}
         onRowClick={setSelectedCollection}
         onMoveUp={handleMoveUp}
         onMoveDown={handleMoveDown}
@@ -178,11 +247,59 @@ export default function ContentTabPanel({
   };
 
   if (activeTab === APPEARANCE) return <AppearanceContent />;
-  if (activeTab === SETTINGS) return <AdmissionRequirements />;
+  if (activeTab === SETTINGS) {
+    return (
+      <AdmissionRequirements
+        accessType={collectionAccessType}
+        onChangeAccessType={setCollectionAccessType}
+        passwords={collectionPasswords}
+        onChangePasswords={setCollectionPasswords}
+        description={collectionDescription}
+        onChangeDescription={setCollectionDescription}
+        rentalAmount={collectionRentalAmount}
+        onChangeRentalAmount={setCollectionRentalAmount}
+        purchaseAmount={collectionPurchaseAmount}
+        onChangePurchaseAmount={setCollectionPurchaseAmount}
+        accessDuration={collectionAccessDuration}
+        onChangeAccessDuration={setCollectionAccessDuration}
+        showDescription={Boolean(selectedCollection)}
+        showPaymentOption={Boolean(selectedCollection)}
+      />
+    );
+  }
   if (activeTab === COUPONS)
     return (
       <>
-        <CouponTable data={couponRows} onActionSelect={handleCouponAction} />
+        <CouponTable
+          data={couponRows}
+          searchValue={searchValue}
+          onActionSelect={handleCouponAction}
+          onRowClick={(row) => {
+            const fullCoupon = couponList.find((c) => c.id === row.action);
+            if (!fullCoupon) return;
+            setSelectedCoupon(fullCoupon);
+            setShowCouponModal(true);
+          }}
+        />
+        {showCouponModal && selectedCoupon && (
+          <CouponPreviewModal
+            visible={showCouponModal}
+            data={selectedCoupon}
+            collections={collections}
+            mode={COUPON_MODE.DETAILS}
+            onClose={() => {
+              setShowCouponModal(false);
+              setSelectedCoupon(null);
+            }}
+            onEdit={() => {
+              if (!selectedCoupon) return;
+              setShowCouponModal(false);
+              openEditCoupon(selectedCoupon);
+              setSelectedCoupon(null);
+            }}
+          />
+        )}
+
         <DeleteModals
           showDeleteConfirm={showCouponDeleteConfirm}
           setShowDeleteConfirm={setShowCouponDeleteConfirm}
@@ -199,8 +316,10 @@ export default function ContentTabPanel({
   if (activeTab === ADD_CONTENT_TABS.GENERAL) {
     return (
       <GeneralContent
+        id={editingContentId ?? ""}
         uploadedFile={uploadedFile}
         uploadedPreview={uploadedPreview}
+        onDelete={(id) => onDelete(id, COLLECTION_TABLE_TYPE.CONTENTS)}
       />
     );
   }

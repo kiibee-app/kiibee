@@ -5,14 +5,14 @@ import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import InputField from "@/components/UI/InputFields";
 import { MonoText } from "@/components/UI/Monotext";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { INPUT_VARIANTS } from "@/utils/Constants";
+import { INPUT_VARIANTS, maxDescriptionCharacters } from "@/utils/Constants";
 import {
   ADMISSION_REQUIREMENTS,
-  ADMISSION_REQUIREMENT_VALUES,
   DEFAULT_ADMISSION_REQUIREMENT,
   AdmissionRequirementValue,
+  ADMISSION_REQUIREMENT_VALUES,
 } from "@/utils/admissionRequirements";
-import { Directions } from "@/utils/ui";
+import { Directions, INPUT_TYPE } from "@/utils/ui";
 import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
 import {
@@ -27,16 +27,92 @@ import {
   SelectButton,
   TextBlock,
 } from "./styles";
+import {
+  ACCESS_DURATION_VALUES,
+  AccessDurationValue,
+  PAYMENT_ADMISSION_VALUE,
+  PAYMENT_DEFAULT_ACCESS_DURATION,
+} from "@/utils/common";
+import {
+  getAccessDurationOptions,
+  PAYMENTS_FORM_FIELDS,
+} from "@/utils/paymentRequirements";
+import SettingsPaymentSection from "./PaymentSection";
+const updateValue = <T,>(
+  value: T,
+  onChange?: (value: T) => void,
+  setLocal?: (value: T) => void,
+) => {
+  if (onChange) {
+    onChange(value);
+  } else {
+    setLocal?.(value);
+  }
+};
 
-function AdmissionRequirements() {
+interface AdmissionRequirementsProps {
+  accessType?: AdmissionRequirementValue;
+  onChangeAccessType?: (value: AdmissionRequirementValue) => void;
+  passwords?: string;
+  onChangePasswords?: (value: string) => void;
+  description?: string;
+  onChangeDescription?: (value: string) => void;
+  rentalAmount?: string;
+  onChangeRentalAmount?: (value: string) => void;
+  purchaseAmount?: string;
+  onChangePurchaseAmount?: (value: string) => void;
+  accessDuration?: AccessDurationValue;
+  onChangeAccessDuration?: (value: AccessDurationValue) => void;
+  showDescription?: boolean;
+  showPaymentOption?: boolean;
+}
+
+function AdmissionRequirements({
+  accessType,
+  onChangeAccessType,
+  passwords: propPasswords,
+  onChangePasswords,
+  description: propDescription,
+  onChangeDescription,
+  rentalAmount: propRentalAmount,
+  onChangeRentalAmount,
+  purchaseAmount: propPurchaseAmount,
+  onChangePurchaseAmount,
+  accessDuration: propAccessDuration,
+  onChangeAccessDuration,
+  showDescription = true,
+  showPaymentOption = true,
+}: AdmissionRequirementsProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<AdmissionRequirementValue>(
+  const [localSelected, setLocalSelected] = useState<AdmissionRequirementValue>(
     DEFAULT_ADMISSION_REQUIREMENT,
   );
-  const [passwords, setPasswords] = useState("");
+  const [localPasswords, setLocalPasswords] = useState("");
+  const [localDescription, setLocalDescription] = useState("");
+  const [localRentalAmount, setLocalRentalAmount] = useState("");
+  const [localPurchaseAmount, setLocalPurchaseAmount] = useState("");
+  const [localAccessDuration, setLocalAccessDuration] =
+    useState<AccessDurationValue>(PAYMENT_DEFAULT_ACCESS_DURATION);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const rentalAmount = propRentalAmount ?? localRentalAmount;
+  const purchaseAmount = propPurchaseAmount ?? localPurchaseAmount;
+  const accessDuration = propAccessDuration ?? localAccessDuration;
+
+  const updateField = (key: string, value: string) => {
+    const handlers: Record<string, () => void> = {
+      [PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT]: () =>
+        onChangeRentalAmount?.(value) ?? setLocalRentalAmount(value),
+      [PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT]: () =>
+        onChangePurchaseAmount?.(value) ?? setLocalPurchaseAmount(value),
+      [PAYMENTS_FORM_FIELDS.MAX_ACCESS_LIMIT]: () =>
+        onChangeAccessDuration?.(value as AccessDurationValue) ??
+        setLocalAccessDuration(value as AccessDurationValue),
+    };
+    handlers[key]?.();
+  };
 
   useClickOutside({
     ref: dropdownRef,
@@ -45,17 +121,45 @@ function AdmissionRequirements() {
     handler: () => setOpen(false),
   });
 
-  const selectedOption = useMemo(
+  const selected = accessType ?? localSelected;
+  const passwords = propPasswords ?? localPasswords;
+  const description = propDescription ?? localDescription;
+  const visibleOptions = useMemo(
     () =>
-      ADMISSION_REQUIREMENTS.find((option) => option.value === selected) ??
-      ADMISSION_REQUIREMENTS[0],
-    [selected],
+      showPaymentOption
+        ? ADMISSION_REQUIREMENTS
+        : ADMISSION_REQUIREMENTS.filter(
+            (option) => option.value !== PAYMENT_ADMISSION_VALUE,
+          ),
+    [showPaymentOption],
   );
 
-  const handleSelect = useCallback((value: AdmissionRequirementValue) => {
-    setSelected(value);
-    setOpen(false);
-  }, []);
+  const selectedOption = useMemo(
+    () =>
+      visibleOptions.find((option) => option.value === selected) ??
+      visibleOptions[0],
+    [selected, visibleOptions],
+  );
+  const downloadLimitOptions = useMemo(
+    () => getAccessDurationOptions(t, ACCESS_DURATION_VALUES),
+    [t],
+  );
+
+  const handleSelect = useCallback(
+    (value: AdmissionRequirementValue) => {
+      updateValue(value, onChangeAccessType, setLocalSelected);
+      setOpen(false);
+    },
+    [onChangeAccessType],
+  );
+
+  const handleDescriptionChange = (val: string) => {
+    updateValue(val, onChangeDescription, setLocalDescription);
+  };
+
+  const handlePasswordsChange = (val: string) => {
+    updateValue(val, onChangePasswords, setLocalPasswords);
+  };
 
   return (
     <AdmissionCard data-test-id="admission-requirements-card">
@@ -92,7 +196,7 @@ function AdmissionRequirements() {
             role="listbox"
             data-test-id="admission-requirements-options-list"
           >
-            {ADMISSION_REQUIREMENTS.map((option) => (
+            {visibleOptions.map((option) => (
               <OptionButton
                 key={option.value}
                 type="button"
@@ -107,25 +211,60 @@ function AdmissionRequirements() {
           </OptionsList>
         )}
       </DropdownShell>
+      {selected === ADMISSION_REQUIREMENT_VALUES.payment &&
+        showPaymentOption && (
+          <SettingsPaymentSection
+            t={t}
+            formState={{
+              rentalAmount,
+              purchaseAmount,
+              maxAccessLimit: accessDuration,
+              showRentalSection: true,
+              showPurchaseSection: true,
+            }}
+            updateField={updateField}
+            downloadLimitOptions={downloadLimitOptions}
+          />
+        )}
 
       {selected === ADMISSION_REQUIREMENT_VALUES.password ? (
         <PasswordFieldShell>
           <InputField
             type="textarea"
             value={passwords}
-            onChange={(value) => setPasswords(value as string)}
-            placeholder="Enter passwords"
+            onChange={(value) => handlePasswordsChange(value as string)}
+            placeholder={t(
+              "contents.admissionRequirements.password.placeholder",
+            )}
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
             max={500}
-            data-test-id="admission-requirements-passwords"
           />
 
           <PasswordMetaRow>
             <PasswordHelperText>
-              Separate multiple passwords with commas.
+              {t("contents.admissionRequirements.password.helper")}
             </PasswordHelperText>
-            <PasswordLimitText>500</PasswordLimitText>
+            <PasswordLimitText>{maxDescriptionCharacters}</PasswordLimitText>
           </PasswordMetaRow>
+        </PasswordFieldShell>
+      ) : null}
+
+      {showDescription ? (
+        <PasswordFieldShell>
+          <MonoText $use="Body_SemiBold">
+            {t("contents.contentUploadModal.details.description")}
+          </MonoText>
+          <InputField
+            type={INPUT_TYPE.TEXTAREA}
+            value={description}
+            onChange={(value) => handleDescriptionChange(value as string)}
+            placeholder={t(
+              "contents.contentUploadModal.details.descriptionPlaceholder",
+            )}
+            variant={INPUT_VARIANTS.PRIMARY_GRAY}
+            max={500}
+            data-test-id="admission-requirements-description"
+          />
         </PasswordFieldShell>
       ) : null}
     </AdmissionCard>

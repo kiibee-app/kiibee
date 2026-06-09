@@ -6,6 +6,7 @@ import InputField from "@/components/UI/InputFields";
 import { INPUT_TYPE, MODAL_ALIGN } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 import { NUMERIC_INPUT_MODE } from "@/utils/numericFields";
+import { AddCardSchema } from "@/utils/addCard";
 import { CardIcon } from "@/assets/icons";
 import { useAddCard } from "@/hooks/useAddCard";
 import { Container, ErrorText, FieldWrapper, Grid } from "./styles";
@@ -35,10 +36,11 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
     handleCVVChange,
   } = useAddCard(onClose);
 
-  const isFormValid =
-    cardNumber.trim().length > 0 &&
-    expiryDate.trim().length > 0 &&
-    securityCode.trim().length > 0;
+  const isFormValid = AddCardSchema.safeParse({
+    cardNumber,
+    expiryDate,
+    securityCode,
+  }).success;
 
   return (
     <>
@@ -51,10 +53,11 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
         onClose={handleClose}
         onConfirm={handleSubmit}
         size="md"
-        padding="start"
+        spacing="start"
         buttonRow
         buttonAlign={MODAL_ALIGN.END}
         textAlign={MODAL_ALIGN.START}
+        contentMarginBottom="30px"
         confirmDisabled={!isFormValid}
       >
         <Container>
@@ -76,6 +79,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
               height="40px"
               hasError={!!errors.cardNumber}
               icon={<CardIcon width={20} height={20} />}
+              labelMarginTop="0"
             />
 
             {errors.cardNumber && <ErrorText>{errors.cardNumber}</ErrorText>}
@@ -99,6 +103,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
                 height="40px"
                 hasError={!!errors.expiryDate}
+                labelMarginTop="0"
               />
 
               {errors.expiryDate && <ErrorText>{errors.expiryDate}</ErrorText>}
@@ -120,6 +125,7 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
                 height="40px"
                 hasError={!!errors.securityCode}
+                labelMarginTop="0"
               />
 
               {errors.securityCode && (

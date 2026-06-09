@@ -1,4 +1,5 @@
 import { MonoText } from "@/components/UI/Monotext";
+import { avatarFrameCss } from "@/components/Feature/ProfileLayout/pageStyles";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import Link from "next/link";
@@ -17,8 +18,8 @@ export const HeaderWrapper = styled.header`
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 
-  ${media.tablet} {
-    padding: 12px;
+  ${media.desktop} {
+    padding: 12px 16px;
   }
 `;
 
@@ -28,7 +29,7 @@ export const Left = styled.div`
   padding-left: 16px;
   gap: 10px;
 
-  ${media.tablet} {
+  ${media.desktop} {
     padding-left: 0;
   }
 `;
@@ -47,7 +48,7 @@ export const HamburgerButton = styled.button`
   cursor: pointer;
   padding: 0;
 
-  ${media.tablet} {
+  ${media.desktop} {
     display: inline-flex;
   }
 `;
@@ -89,14 +90,17 @@ export const EmailWrapper = styled.div`
 `;
 
 export const ProfileCircle = styled.div`
-  width: 48px;
-  height: 48px;
-  padding: 9px 18px;
-  border-radius: 6px;
+  ${avatarFrameCss};
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const ProfileAvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const InitialAvatar = styled(MonoText).attrs({
@@ -146,6 +150,7 @@ export const ProfileButton = styled.button`
   width: 44px;
   height: 44px;
   border-radius: 8px;
+  overflow: hidden;
   background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.H4_SemiBold};
@@ -153,4 +158,5 @@ export const ProfileButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
 `;

@@ -11,6 +11,7 @@ import { CreatorPagination } from "./CreatorPagination";
 import { CreatorDetailsModal } from "./CreatorDetailsModal";
 import { useCreatorRequestActions } from "./useCreatorRequestActions";
 import { useCreatorRequestOverrides } from "./useCreatorRequestOverrides";
+import { STORAGE_KEYS } from "@/utils/constants";
 
 export function AllCreatorsTable() {
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
@@ -34,6 +35,7 @@ export function AllCreatorsTable() {
     data: creators,
     totalItems,
     initialPageSize: 10,
+    storageKey: STORAGE_KEYS.PAGE_SIZE_ALL_CREATORS,
   });
 
   if (creatorRequestsQuery.isLoading) {

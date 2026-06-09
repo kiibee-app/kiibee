@@ -30,7 +30,10 @@ export const footerConfig: FooterColumn[] = [
     title: "footer.helpfulLinks",
     items: [
       tutorialItem,
-      { label: "footer.userGuides", href: tutorialItem.href },
+      {
+        label: "footer.userGuides",
+        href: `${PATHS.TUTORIAL_VIDEOS}#user-guides`,
+      },
     ],
   },
   {

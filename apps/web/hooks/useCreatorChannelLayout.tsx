@@ -7,8 +7,9 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  useSyncExternalStore,
 } from "react";
-import { useParams } from "next/navigation";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import type { NavBarItem } from "@/utils/profile";
 import {
@@ -22,6 +23,7 @@ import {
   isCreatorLayoutParam,
   layoutParamFromKey,
   readSavedCreatorLayout,
+  withCreatorIdQuery,
   writeSavedCreatorLayout,
 } from "@/utils/creatorChannel";
 
@@ -38,37 +40,37 @@ type CreatorChannelLayoutContextValue = {
 const CreatorChannelLayoutContext =
   createContext<CreatorChannelLayoutContextValue | null>(null);
 
-function readInitialLayout(): CreatorLayoutKey {
-  if (typeof window === "undefined") return DEFAULT_CREATOR_LAYOUT;
-  return readSavedCreatorLayout();
+function subscribeToCreatorLayout(onStoreChange: () => void) {
+  const handler = () => onStoreChange();
+  window.addEventListener(CREATOR_LAYOUT_UPDATED, handler);
+  return () => window.removeEventListener(CREATOR_LAYOUT_UPDATED, handler);
+}
+
+function getCreatorLayoutServerSnapshot(): CreatorLayoutKey {
+  return DEFAULT_CREATOR_LAYOUT;
 }
 
 function useCreatorChannelLayoutState(): CreatorChannelLayoutContextValue {
-  const [savedLayout, setSavedLayout] =
-    useState<CreatorLayoutKey>(readInitialLayout);
-  const [selectedLayout, setSelectedLayout] =
-    useState<CreatorLayoutKey>(readInitialLayout);
+  const savedLayout = useSyncExternalStore(
+    subscribeToCreatorLayout,
+    readSavedCreatorLayout,
+    getCreatorLayoutServerSnapshot,
+  );
+  const [draftLayout, setDraftLayout] = useState<CreatorLayoutKey | null>(null);
+  const selectedLayout = draftLayout ?? savedLayout;
 
-  const syncFromStorage = useCallback(() => {
-    const stored = readSavedCreatorLayout();
-    setSavedLayout(stored);
-    setSelectedLayout(stored);
+  const setSelectedLayout = useCallback((layout: CreatorLayoutKey) => {
+    setDraftLayout(layout);
   }, []);
-
-  useEffect(() => {
-    window.addEventListener(CREATOR_LAYOUT_UPDATED, syncFromStorage);
-    return () =>
-      window.removeEventListener(CREATOR_LAYOUT_UPDATED, syncFromStorage);
-  }, [syncFromStorage]);
 
   const saveLayout = useCallback(() => {
     writeSavedCreatorLayout(selectedLayout);
-    setSavedLayout(selectedLayout);
+    setDraftLayout(null);
   }, [selectedLayout]);
 
   const cancelLayout = useCallback(() => {
-    setSelectedLayout(savedLayout);
-  }, [savedLayout]);
+    setDraftLayout(null);
+  }, []);
 
   const channelHref = useMemo(
     () => getCreatorChannelPath(savedLayout),
@@ -79,7 +81,7 @@ function useCreatorChannelLayoutState(): CreatorChannelLayoutContextValue {
     selectedLayout,
     savedLayout,
     channelHref,
-    hasUnsavedChanges: selectedLayout !== savedLayout,
+    hasUnsavedChanges: draftLayout !== null && draftLayout !== savedLayout,
     setSelectedLayout,
     saveLayout,
     cancelLayout,
@@ -126,38 +128,125 @@ export function useCreatorLayoutParam(): CreatorLayoutParam {
 export function useCreatorProfileTabs() {
   const { t } = useTranslation();
   const layoutParam = useCreatorLayoutParam();
+  const publicCreatorId = useSearchParams().get("creatorId");
 
   return useMemo(
     () =>
       getCreatorProfileTabDefs(layoutParam).map((tab) => ({
         key: tab.key,
         label: t(tab.labelKey),
-        href: tab.href,
+        href: tab.href
+          ? withCreatorIdQuery(tab.href, publicCreatorId)
+          : undefined,
       })),
-    [layoutParam, t],
+    [layoutParam, publicCreatorId, t],
   );
 }
 
-export function useCreatorAboutModal() {
+type CreatorProfileUiContextValue = {
+  isAboutOpen: boolean;
+  openAbout: () => void;
+  closeAbout: () => void;
+  searchQuery: string;
+  setSearchQuery: (value: string) => void;
+  searchOpen: boolean;
+  setSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleSearch: () => void;
+  isCollectionsPage: boolean;
+};
+
+const CreatorProfileUiContext =
+  createContext<CreatorProfileUiContextValue | null>(null);
+
+function useCreatorProfileUiState(): CreatorProfileUiContextValue {
+  const pathname = usePathname();
+  const isCollectionsPage = pathname.includes("/collections");
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
   const openAbout = useCallback(() => setIsAboutOpen(true), []);
   const closeAbout = useCallback(() => setIsAboutOpen(false), []);
+  const toggleSearch = useCallback(() => setSearchOpen((open) => !open), []);
 
-  return { isAboutOpen, openAbout, closeAbout };
+  return {
+    isAboutOpen,
+    openAbout,
+    closeAbout,
+    searchQuery,
+    setSearchQuery,
+    searchOpen,
+    setSearchOpen,
+    toggleSearch,
+    isCollectionsPage,
+  };
+}
+
+function CreatorProfileUiProviderInner({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const pathname = usePathname();
+  const value = useCreatorProfileUiState();
+  const { closeAbout, setSearchQuery, setSearchOpen } = value;
+
+  useEffect(() => {
+    closeAbout();
+    setSearchQuery("");
+    setSearchOpen(false);
+  }, [pathname, closeAbout, setSearchQuery, setSearchOpen]);
+
+  return (
+    <CreatorProfileUiContext.Provider value={value}>
+      {children}
+    </CreatorProfileUiContext.Provider>
+  );
+}
+
+export function CreatorProfileUiProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <CreatorProfileUiProviderInner>{children}</CreatorProfileUiProviderInner>
+  );
+}
+
+export function useCreatorProfileUi() {
+  const context = useContext(CreatorProfileUiContext);
+
+  if (!context) {
+    throw new Error(
+      "useCreatorProfileUi must be used within CreatorProfileUiProvider",
+    );
+  }
+
+  return context;
 }
 
 export function useCreatorNavItems() {
   const layoutParam = useCreatorLayoutParam();
-  const { isAboutOpen, openAbout, closeAbout } = useCreatorAboutModal();
+  const publicCreatorId = useSearchParams().get("creatorId");
+  const { isAboutOpen, openAbout } = useCreatorProfileUi();
 
   const navItems = useMemo((): NavBarItem[] => {
     const defs = getCreatorNavItemDefs(layoutParam);
     return defs.map((item) =>
       item.key === "nav.profile.about"
-        ? { key: item.key, onClick: openAbout }
-        : { key: item.key, href: item.href },
+        ? {
+            key: item.key,
+            onClick: openAbout,
+            isActive: isAboutOpen,
+          }
+        : {
+            key: item.key,
+            href: item.href
+              ? withCreatorIdQuery(item.href, publicCreatorId)
+              : undefined,
+          },
     );
-  }, [layoutParam, openAbout]);
+  }, [isAboutOpen, layoutParam, openAbout, publicCreatorId]);
 
-  return { navItems, isAboutOpen, closeAbout };
+  return { navItems };
 }

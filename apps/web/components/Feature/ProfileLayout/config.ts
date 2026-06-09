@@ -2,7 +2,7 @@ import type { CreatorLayoutParam } from "@/utils/creatorChannel";
 import type { LatestUploadData } from "@/components/Feature/ProfileLayout/shared/LatestUpload";
 
 export type ProfileLayoutVariant = CreatorLayoutParam;
-import { ProfileHomeSectionKey } from "@/utils/Constants";
+import { PROFILE_HOME_SECTION, ProfileHomeSectionKey } from "@/utils/Constants";
 import {
   latestUploadDataLayout1,
   latestUploadDataLayout2,
@@ -22,14 +22,23 @@ export const profileHomeConfigByVariant: Record<
   "1": {
     latestUpload: latestUploadDataLayout1,
     wrapLatestUpload: true,
-    sections: ["latestUpload"],
+    sections: [
+      PROFILE_HOME_SECTION.LATEST_UPLOAD,
+      PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW,
+    ],
   },
   "2": {
     latestUpload: latestUploadDataLayout2,
-    sections: ["latestUpload", "about"],
+    sections: [
+      PROFILE_HOME_SECTION.LATEST_UPLOAD,
+      PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW,
+    ],
   },
   "3": {
     latestUpload: latestUploadDataLayout3,
-    sections: ["latestUpload"],
+    sections: [
+      PROFILE_HOME_SECTION.LATEST_UPLOAD,
+      PROFILE_HOME_SECTION.COLLECTIONS_PREVIEW,
+    ],
   },
 };

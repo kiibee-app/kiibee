@@ -1,8 +1,8 @@
 "use client";
 
-import { memo, useMemo } from "react";
+import { memo, useMemo, type MouseEvent } from "react";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
-import { ActionRow, VideoBox } from "./styles";
+import { ActionRow, CardLink, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
@@ -16,9 +16,13 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent } from "@/utils/path";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
+  onPlayClick?: (videoId: string) => void;
+  isSelected?: boolean;
 };
 
 type IconComponent = ComponentType<{
@@ -36,8 +40,13 @@ const formatIconMap: Record<FormatType, IconComponent> = {
   web: WebIcon,
 };
 
-function TutorialCard({ tutorial }: TutorialCardProps) {
+function TutorialCard({
+  tutorial,
+  onPlayClick,
+  isSelected = false,
+}: TutorialCardProps) {
   const { t } = useTranslation();
+  const { navigateToContent } = useProtectedContentNavigation();
 
   const imageUrl = useMemo(
     () => resolveImageUrl(tutorial.image),
@@ -69,8 +78,53 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
     return href;
   };
 
-  return (
+  const isFreeContent = tutorial.isFree ?? false;
+  const isCardLinked = isFreeContent && !onPlayClick;
+
+  const stopCardNavigation = (event: MouseEvent) => {
+    event.stopPropagation();
+  };
+
+  const openCreatorProfile = (event: MouseEvent) => {
+    if (!tutorial.creatorId) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    window.open(
+      getPublicCreatorProfilePath(tutorial.creatorId),
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
+
+  const creatorSubtitle = tutorial.creatorId ? (
+    isCardLinked ? (
+      <MonoText
+        $use="Body_Medium"
+        style={{ cursor: "pointer" }}
+        onClick={openCreatorProfile}
+      >
+        {tutorial.creator}
+      </MonoText>
+    ) : (
+      <a
+        href={getPublicCreatorProfilePath(tutorial.creatorId)}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <MonoText $use="Body_Medium" style={{ cursor: "pointer" }}>
+          {tutorial.creator}
+        </MonoText>
+      </a>
+    )
+  ) : (
+    <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
+  );
+
+  const card = (
     <GenericCard
+      coverImage
       image={imageUrl}
       badge={
         <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
@@ -78,19 +132,37 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
         </MonoText>
       }
       title={<MonoText $use="H5_Medium">{tutorial.title}</MonoText>}
-      subtitle={<MonoText $use="Body_Medium">{tutorial.creator}</MonoText>}
+      subtitle={creatorSubtitle}
       footer={
-        <ActionRow>
+        <ActionRow onClick={stopCardNavigation}>
           {buttons.map((button, index) =>
-            button.href ? (
+            onPlayClick ? (
               <GenericButton
                 key={`${button.label}-${index}`}
-                asAnchor
-                href={resolveButtonHref(button.href)}
+                type="button"
                 variant={button.variant ?? VARIANT.SECONDARY}
                 fullWidth={button.fullWidth}
                 size={button.size}
                 minWidth={button.minWidth}
+                aria-pressed={isSelected}
+                onClick={() => onPlayClick(tutorial.id)}
+              >
+                {button.label}
+              </GenericButton>
+            ) : button.href ? (
+              <GenericButton
+                key={`${button.label}-${index}`}
+                type="button"
+                variant={button.variant ?? VARIANT.SECONDARY}
+                fullWidth={button.fullWidth}
+                size={button.size}
+                minWidth={button.minWidth}
+                onClick={() =>
+                  navigateToContent(
+                    resolveButtonHref(button.href),
+                    button.requiresAuth,
+                  )
+                }
               >
                 {button.label}
               </GenericButton>
@@ -102,6 +174,7 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
                 fullWidth={button.fullWidth}
                 size={button.size}
                 minWidth={button.minWidth}
+                onClick={button.onClick}
               >
                 {button.label}
               </GenericButton>
@@ -120,6 +193,20 @@ function TutorialCard({ tutorial }: TutorialCardProps) {
       </VideoBox>
     </GenericCard>
   );
+
+  if (isCardLinked) {
+    return (
+      <CardLink
+        href={singleTutorialHref}
+        $clickable
+        aria-label={tutorial.title}
+      >
+        {card}
+      </CardLink>
+    );
+  }
+
+  return card;
 }
 
 export default memo(TutorialCard);

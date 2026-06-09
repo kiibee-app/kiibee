@@ -373,22 +373,16 @@ function parseTags(value: unknown): string[] {
     .filter(Boolean);
 }
 
-function findUmbracoUsersRoot(): string {
+function findUmbracoUsersRoot(): string | null {
+  const envRoot = process.env.UMBRACO_DATA_USERS_PATH?.trim();
   const candidates = [
+    ...(envRoot ? [resolve(envRoot)] : []),
     resolve(process.cwd(), 'umbraco-data', 'users'),
     resolve(process.cwd(), '..', 'umbraco-data', 'users'),
     resolve(process.cwd(), '..', '..', 'umbraco-data', 'users'),
   ];
 
-  const root = candidates.find((candidate) => existsSync(candidate));
-
-  if (!root) {
-    throw new Error(
-      `Could not find umbraco-data/users. Checked: ${candidates.join(', ')}`,
-    );
-  }
-
-  return root;
+  return candidates.find((candidate) => existsSync(candidate)) ?? null;
 }
 
 function readShowsFile(profileKey: string, root: string): UmbracoShow[] | null {
@@ -418,11 +412,7 @@ function loadProfileShows(root: string): LoadedProfileShows[] {
   return readdirSync(root, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
-    .filter(
-      (profileKey) =>
-        existsSync(join(root, profileKey, 'profile-info')) &&
-        readShowsFile(profileKey, root),
-    )
+    .filter((profileKey) => readShowsFile(profileKey, root))
     .sort((left, right) => left.localeCompare(right))
     .map((profileKey) => ({
       profileKey,
@@ -471,7 +461,6 @@ async function ensureDefaultCollection(
         slug: collectionSlug,
         visibility: 'public',
         isPublished: true,
-        publishedAt: now,
         updatedAt: now,
       },
     });
@@ -481,7 +470,18 @@ async function ensureDefaultCollection(
 
 export const seedUmbracoShows = async () => {
   const root = findUmbracoUsersRoot();
+  if (!root) {
+    console.log(
+      'Umbraco shows seed skipped (umbraco-data/users not found; set UMBRACO_DATA_USERS_PATH to override)',
+    );
+    return;
+  }
+
   const profiles = loadProfileShows(root);
+  if (!profiles.length) {
+    console.log(`Umbraco shows seed skipped (no shows found in ${root})`);
+    return;
+  }
 
   let profilesProcessed = 0;
   let showsProcessed = 0;
@@ -633,7 +633,6 @@ export const seedUmbracoShows = async () => {
               isDownloadable: !isEnabled(show.hideDownload),
               sortOrder,
               isPublished,
-              publishedAt,
               updatedAt: now,
             },
           });
@@ -648,14 +647,7 @@ export const seedUmbracoShows = async () => {
             createdAt: now,
             updatedAt: now,
           })
-          .onConflictDoUpdate({
-            target: collectionItems.id,
-            set: {
-              collectionId,
-              sortOrder,
-              updatedAt: now,
-            },
-          });
+          .onConflictDoNothing({ target: collectionItems.id });
 
         const showTags = parseTags(show.tags);
         for (const tagName of showTags) {
@@ -730,32 +722,7 @@ export const seedUmbracoShows = async () => {
             },
             createdAt: now,
           })
-          .onConflictDoUpdate({
-            target: auditLogs.id,
-            set: {
-              userId: creatorId,
-              entityId: mediaFileId,
-              details: {
-                source: 'umbraco-data/shows',
-                profileKey: profile.profileKey,
-                umbraco: {
-                  id: show.id ?? null,
-                  key: showKey,
-                  udi: show.udi ?? null,
-                  urls: show.urls ?? [],
-                },
-                mapped: {
-                  slug,
-                  contentTypeId,
-                  accessType,
-                  visibility,
-                  collectionId,
-                },
-                raw: show,
-              },
-              createdAt: now,
-            },
-          });
+          .onConflictDoNothing({ target: auditLogs.id });
       });
 
       showsProcessed += 1;

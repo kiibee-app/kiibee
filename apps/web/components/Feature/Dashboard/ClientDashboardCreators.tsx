@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useSidebarExpanded } from "@/hooks/useSidebarExpanded";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import CreatorProfile from "@/components/Feature/Dashboard/CreatorProfile";
@@ -10,7 +10,11 @@ import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import DashboardHeader from "@/components/Layout/DashboardHeader";
 import OverviewContent from "@/components/Feature/Overview/OverviewContent";
 import SettingsContent from "../Settings";
-import { VIEW, ROLE_CREATOR } from "@/utils/Constants";
+import {
+  SIDEBAR_COLLAPSE_BREAKPOINT,
+  VIEW,
+  ROLE_CREATOR,
+} from "@/utils/Constants";
 import CreatorsContents from "../Contents";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
@@ -21,6 +25,7 @@ import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import { useProfileSync } from "@/hooks/auth/useProfileSync";
 import { CreatorChannelLayoutProvider } from "@/hooks/useCreatorChannelLayout";
 import { useRequireAuthSession } from "@/hooks/auth/useRequireAuthSession";
+import { sanitizeDashboardQueryParams } from "@/utils/dashboardQueryParams";
 
 const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
   CREATORS_LABELS.OVERVIEW,
@@ -34,7 +39,7 @@ const ROUTABLE_DASHBOARD_VIEWS = new Set<string>([
 export default function ClientDashboardCreators() {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
-    useSidebarExpanded(768);
+    useSidebarExpanded(SIDEBAR_COLLAPSE_BREAKPOINT);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutEmail, setLogoutEmail] = useState("");
   const router = useRouter();
@@ -42,7 +47,7 @@ export default function ClientDashboardCreators() {
   const searchParams = useSearchParams();
   const { logout } = useLogout();
   const { getUser } = useAuthSession();
-  useRequireAuthSession();
+  const { isReady } = useRequireAuthSession();
   useProfileSync();
 
   const handleLogoutClick = useCallback(() => {
@@ -76,6 +81,8 @@ export default function ClientDashboardCreators() {
   const getHrefForView = useCallback(
     (label: string) => {
       const params = new URLSearchParams(searchParams?.toString() ?? "");
+      const targetView =
+        label === CREATORS_LABELS.OVERVIEW ? CREATORS_LABELS.OVERVIEW : label;
 
       if (label === CREATORS_LABELS.OVERVIEW) {
         params.delete(VIEW);
@@ -83,11 +90,21 @@ export default function ClientDashboardCreators() {
         params.set(VIEW, label);
       }
 
+      sanitizeDashboardQueryParams(params, targetView);
+
       const qs = params.toString();
       return qs ? `${pathname}?${qs}` : pathname;
     },
     [pathname, searchParams],
   );
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams?.toString() ?? "");
+    if (!sanitizeDashboardQueryParams(params, view)) return;
+
+    const qs = params.toString();
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  }, [pathname, router, searchParams, view]);
 
   const handleSelect = useCallback(
     (label: string) => {
@@ -104,6 +121,8 @@ export default function ClientDashboardCreators() {
     if (activePage === CREATORS_LABELS.USERS) return <UsersContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   }, [activePage, view]);
+
+  if (!isReady) return null;
 
   return (
     <CreatorChannelLayoutProvider>

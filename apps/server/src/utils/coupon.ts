@@ -37,3 +37,6 @@ export const normalizeCouponDiscountType = (
 
   return normalizedDiscountType;
 };
+
+export const APPLICABLE_PRODUCT_KEYS = ['collectionIds', 'contentIds'] as const;
+export type ApplicableProductKey = (typeof APPLICABLE_PRODUCT_KEYS)[number];

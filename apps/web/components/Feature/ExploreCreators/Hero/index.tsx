@@ -21,6 +21,8 @@ import { ExploreCreatorsHeroProps, FilterSectionKey } from "@/types/filters";
 export default function ExploreCreatorsHero({
   showControls = true,
   setSortBy,
+  searchQuery,
+  setSearchQuery,
 }: ExploreCreatorsHeroProps) {
   const { t } = useTranslation();
   const filterButtonRef = useRef<HTMLButtonElement>(null);
@@ -140,7 +142,11 @@ export default function ExploreCreatorsHero({
                 defaultVisibleCreators={DEFAULT_VISIBLE_CREATORS}
               />
             )}
-            <SearchBar placeholder={t("creators.search")} />
+            <SearchBar
+              placeholder={t("creators.search")}
+              value={searchQuery}
+              onChange={setSearchQuery}
+            />
             {showControls && (
               <SortDropdown
                 options={SORT_OPTIONS}

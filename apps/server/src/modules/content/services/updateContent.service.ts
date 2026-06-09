@@ -10,6 +10,7 @@ import {
   collections,
   mediaFileCategories,
 } from 'src/database/schema';
+import { CONTENT_VISIBILITY } from 'src/utils/constant';
 
 const pickDefined = (obj: Record<string, any>) =>
   Object.fromEntries(
@@ -59,6 +60,16 @@ export const updateContentService = async (
         maxDownloadCount: dto.maximumDownloadCount,
         physicalProductLink: dto.physicalProductLink,
         isDownloadable: dto.isDownloadable,
+        openInNewWindow: dto.openInNewWindow,
+        openDirectFromList: dto.openDirectFromList,
+        isPublished:
+          dto.visibility === CONTENT_VISIBILITY.PUBLIC
+            ? true
+            : existing.isPublished,
+        publishedAt:
+          dto.visibility === CONTENT_VISIBILITY.PUBLIC && !existing.isPublished
+            ? new Date()
+            : existing.publishedAt,
       });
 
       if (Object.keys(updatePayload).length) {

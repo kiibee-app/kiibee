@@ -16,6 +16,7 @@ import {
   COLLECTIONS,
   ContentTab,
   SETTINGS,
+  ADD_CONTENT_TABS,
 } from "@/utils/common";
 import COLORS from "@repo/ui/colors";
 
@@ -55,7 +56,11 @@ export default function ContentsHeaderAction({
     );
   }
 
-  if (activeTab === SETTINGS || activeTab === APPEARANCE) {
+  const isUploadMode = (Object.values(ADD_CONTENT_TABS) as string[]).includes(
+    activeTab,
+  );
+
+  if (isUploadMode || activeTab === SETTINGS || activeTab === APPEARANCE) {
     return (
       <HeaderActions>
         <CancelButton type="button" onClick={onCancel}>

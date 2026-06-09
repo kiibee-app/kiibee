@@ -1,4 +1,5 @@
 import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
+import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import type { SingleContentPageProps } from "@/types/contentTypes";
 import type { ImageSource } from "@/utils/Constants";
@@ -10,6 +11,11 @@ import {
   getContentTypeLabel,
   normalizeContentTypeValue,
 } from "@/utils/content";
+import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
+import {
+  getContentDetailPricingActions,
+  isFreeContentItem,
+} from "@/utils/contentPricingActions";
 import { FORMAT_TYPE } from "@/utils/types";
 
 type Translate = (key: string) => string;
@@ -26,8 +32,12 @@ export const CONTENT_RESPONSE_KEYS = {
   CONTENT_URL: "contentUrl",
   THUMBNAIL_URL: "thumbnailUrl",
   THUMBNAIL_LANDSCAPE_URL: "thumbnailLandscapeUrl",
+  TRAILER_URL: "trailerUrl",
   VISIBILITY: "visibility",
   ACCESS_TYPE: "accessType",
+  BUY_PRICE: "buyPrice",
+  RENT_PRICE: "rentPrice",
+  RENT_DURATION_HOURS: "rentDurationHours",
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
   NAME: "name",
@@ -46,6 +56,7 @@ export const CONTENT_TRANSLATION_KEYS = {
   loading: "singleContent.loading",
   imageAlt: "singleContent.imageAlt",
   seeContent: "singleContent.seeContent",
+  playTrailer: "singleContent.playTrailer",
   editSuccess: "contents.contentUploadModal.updateSuccess",
   updateError: "contents.contentUploadModal.updateError",
   updateAction: "contents.contentUploadModal.details.update",
@@ -68,8 +79,12 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.CONTENT_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.THUMBNAIL_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL]?: string | null;
+  [CONTENT_RESPONSE_KEYS.TRAILER_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.VISIBILITY]?: string | null;
   [CONTENT_RESPONSE_KEYS.ACCESS_TYPE]?: string | null;
+  [CONTENT_RESPONSE_KEYS.BUY_PRICE]?: string | number | null;
+  [CONTENT_RESPONSE_KEYS.RENT_PRICE]?: string | number | null;
+  [CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
 };
@@ -114,6 +129,36 @@ export const getContentMediaKey = (content?: ContentDetailItem) =>
 export const getContentUrl = (content?: ContentDetailItem) =>
   toTrimmedString(content?.[CONTENT_RESPONSE_KEYS.CONTENT_URL]);
 
+export const hasDirectPlaybackUrl = (url?: string | null) =>
+  Boolean(url && /^https?:\/\//i.test(url));
+
+export const resolveContentPlaybackUrl = (
+  content: ContentDetailItem | undefined,
+  signedUrl?: string,
+): string => {
+  const contentType = getContentType(content);
+  const contentUrl = getContentUrl(content);
+  const fileKey = getContentMediaKey(content);
+  const cloudflareEmbedUrl = resolveCloudflareStreamPlaybackUrl(
+    fileKey,
+    contentUrl || signedUrl,
+  );
+
+  if (contentType === FORMAT_TYPE.WEB) {
+    return contentUrl;
+  }
+
+  if (cloudflareEmbedUrl) {
+    return cloudflareEmbedUrl;
+  }
+
+  if (hasDirectPlaybackUrl(contentUrl)) {
+    return contentUrl;
+  }
+
+  return signedUrl ?? "";
+};
+
 const getContentImage = (content: ContentDetailItem): ImageSource =>
   toTrimmedString(
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL] ??
@@ -129,6 +174,7 @@ export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
   mediaUrl?: string,
+  options?: { inCollection?: boolean },
 ): SingleContentPageProps => {
   const title =
     toTrimmedString(content[CONTENT_RESPONSE_KEYS.TITLE]) ||
@@ -145,6 +191,14 @@ export const getSingleContentProps = (
     content[CONTENT_RESPONSE_KEYS.ACCESS_TYPE],
   );
   const visibility = toTrimmedString(content[CONTENT_RESPONSE_KEYS.VISIBILITY]);
+  const buyPrice = content[CONTENT_RESPONSE_KEYS.BUY_PRICE];
+  const rentPrice = content[CONTENT_RESPONSE_KEYS.RENT_PRICE];
+  const rentDurationHours = content[CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS];
+  const pricingItem = { accessType, buyPrice, rentPrice, rentDurationHours };
+  const isFree = isFreeContentItem(pricingItem);
+  const pricingActions = getContentDetailPricingActions(pricingItem, t, {
+    inCollection: options?.inCollection,
+  });
 
   return {
     title,
@@ -169,12 +223,25 @@ export const getSingleContentProps = (
         ? {
             mediaIcon: playCircleIcon,
             mediaIconAlt: t(CONTENT_TRANSLATION_KEYS.seeContent),
+            trailerLabel: t(CONTENT_TRANSLATION_KEYS.playTrailer),
+            trailerIcon: playIcon,
+            trailerIconAlt: t(CONTENT_TRANSLATION_KEYS.playTrailer),
           }
         : {}),
     },
-    primaryAction: {
-      label: t(CONTENT_TRANSLATION_KEYS.seeContent),
-    },
+    ...(isFree
+      ? {
+          primaryAction: {
+            label: t(CONTENT_TRANSLATION_KEYS.seeContent),
+          },
+        }
+      : {
+          primaryActions: pricingActions.map((action) => ({
+            label: action.label,
+            subtitle: action.subtitle,
+            variant: action.variant,
+          })),
+        }),
     metaItems: [
       createdAt
         ? {

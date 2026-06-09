@@ -6,11 +6,9 @@ import { collections } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
+import { hashPassword } from 'src/utils/passwordHash';
 
-import {
-  CreateCollectionDto,
-  UpdateCollectionDto,
-} from '../dto/createCollection.dto';
+import { UpdateCollectionDto } from '../dto/createCollection.dto';
 import { slugGenerator } from '../collection.helper';
 
 export const updateCollection = async (
@@ -49,6 +47,10 @@ export const updateCollection = async (
       coverImageUrl: dto.coverImageUrl,
       visibility: dto.visibility,
       accessType: dto.accessType,
+      buyPrice: dto.buyPrice != null ? String(dto.buyPrice) : null,
+      rentPrice: dto.rentPrice != null ? String(dto.rentPrice) : null,
+      rentDuration: dto.rentDuration,
+      description: dto.description,
       sortOrder: dto.sortOrder,
       isPublished: dto.isPublished,
     };
@@ -57,6 +59,12 @@ export const updateCollection = async (
       if (value !== undefined) {
         updateData[key] = value;
       }
+    }
+
+    if (dto.password !== undefined) {
+      updateData.passwordHash = dto.password
+        ? await hashPassword(dto.password)
+        : null;
     }
 
     // publishedAt side-effect (single condition only)

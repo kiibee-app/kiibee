@@ -17,25 +17,50 @@ import {
   SectionList,
 } from "./styles";
 import { INPUT_TYPE } from "@/utils/ui";
+import { useContentForm } from "../ContentFormContext";
+import { FORM_FIELDS } from "@/utils/appearance";
+import { useAppearanceForm } from "./AppearanceFormContext";
 
 interface DescriptionSectionProps {
   showTitle?: boolean;
+  useFormContext?: boolean;
 }
 
 export default function DescriptionSection({
   showTitle = false,
+  useFormContext = false,
 }: DescriptionSectionProps) {
   const { t } = useTranslation();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const { formState, updateField } = useContentForm();
+  const { values: appearanceValues, updateField: updateAppearanceField } =
+    useAppearanceForm();
+  const [localTitle, setLocalTitle] = useState("");
+  const [localDescription, setLocalDescription] = useState("");
+  const title = useFormContext ? formState.title : localTitle;
+  const description = useFormContext
+    ? formState.description
+    : showTitle
+      ? localDescription
+      : appearanceValues.description;
   const handleDescriptionChange = (value: string | string[]) => {
     const text = Array.isArray(value) ? value.join("") : value;
-    setDescription(text.slice(0, maxDescriptionCharacters));
+    const truncated = text.slice(0, maxDescriptionCharacters);
+    if (useFormContext) {
+      updateField("description", truncated);
+    } else if (!showTitle) {
+      updateAppearanceField(FORM_FIELDS.DESCRIPTION, truncated);
+    } else {
+      setLocalDescription(truncated);
+    }
   };
 
   const handleTitleChange = (value: string | string[]) => {
     const text = Array.isArray(value) ? value.join("") : value;
-    setTitle(text);
+    if (useFormContext) {
+      updateField("title", text);
+    } else {
+      setLocalTitle(text);
+    }
   };
 
   return (

@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { type CSSProperties } from "react";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
-  min-height: 100vh;
+  min-height: 900px;
   background: ${({ theme }) => theme.colors.primary.GRAY};
   padding: clamp(2.5rem, 8vw, 5rem) clamp(1rem, 4vw, 1.5rem);
 `;
@@ -38,7 +39,7 @@ export const GridContainer = styled.div`
   }
 `;
 
-export const Card = styled.article`
+export const Card = styled.article<{ $clickable?: boolean }>`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border-radius: 16px;
   padding: 1rem;
@@ -46,18 +47,21 @@ export const Card = styled.article`
   flex-direction: column;
   min-height: 100%;
   box-shadow: ${({ theme }) => theme.shadows.md};
-  cursor: pointer;
+  cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: ${({ theme }) => theme.shadows.lg};
+    transform: ${({ $clickable }) =>
+      $clickable ? "translateY(-2px)" : "none"};
+    box-shadow: ${({ theme, $clickable }) =>
+      $clickable ? theme.shadows.lg : theme.shadows.md};
   }
 
   &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline: ${({ $clickable }) => ($clickable ? "2px solid" : "none")};
+    outline-color: ${({ theme }) => theme.colors.primary.BLACK};
     outline-offset: 2px;
   }
 `;
@@ -127,15 +131,9 @@ export const ActionsContainer = styled.div`
   }
 `;
 
-export const ActionButton = styled(GenericButton).attrs({
+export const SingleActionButton = styled(GenericButton).attrs({
   variant: VARIANT.SOFT_OUTLINE,
-  size: SIZE.SM,
 })`
-  border-radius: 999px;
-  padding: 0.625rem 0.75rem;
-`;
-
-export const FullWidthAction = styled(ActionButton)`
   grid-column: 1 / -1;
 `;
 
@@ -160,6 +158,13 @@ export const PrimaryCtaButton = styled(GenericButton).attrs({
 
 export const SecondaryCtaButton = styled(GenericButton).attrs({
   size: SIZE.LG,
+  variant: VARIANT.SOFT_OUTLINE,
+})`
+  border-radius: 8px;
+`;
+
+export const CardActionButton = styled(GenericButton).attrs({
+  variant: VARIANT.SOFT_OUTLINE,
 })`
   border-radius: 8px;
 `;
@@ -167,3 +172,14 @@ export const SecondaryCtaButton = styled(GenericButton).attrs({
 export const IconFrame = styled.span`
   display: inline-flex;
 `;
+
+export const discoverCardRevealStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
+
+export const discoverCardImageStyle: CSSProperties = {
+  objectFit: "cover",
+};

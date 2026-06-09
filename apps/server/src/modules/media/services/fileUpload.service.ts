@@ -6,10 +6,15 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 import { s3 } from 'src/services/s3.client';
 
+import { ResolveImportedMediaUrlService } from './resolveImportedMediaUrl.service';
+
 type FileType = 'documents' | 'audio' | 'ebooks';
 
 @Injectable()
 export class FileUploadService {
+  constructor(
+    private readonly resolveImportedMediaUrl: ResolveImportedMediaUrlService,
+  ) {}
   private readonly allowedExtensions: Record<FileType, string[]> = {
     documents: ['pdf'],
     ebooks: ['epub'],
@@ -60,6 +65,11 @@ export class FileUploadService {
   }
 
   async getSignedUrl(key: string) {
+    const externalUrl = await this.resolveImportedMediaUrl.findExternalUrl(key);
+    if (externalUrl) {
+      return externalUrl;
+    }
+
     const command = new GetObjectCommand({
       Bucket: process.env.DO_BUCKET!,
       Key: key,

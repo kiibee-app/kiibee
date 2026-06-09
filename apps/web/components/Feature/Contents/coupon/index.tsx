@@ -41,12 +41,16 @@ import SearchBar from "@/components/UI/SearchBar";
 
 type CouponTableProps = {
   data: CouponRow[];
+  searchValue?: string;
   onActionSelect?: (action: CouponAction, row: CouponRow) => void;
+  onRowClick?: (row: CouponRow) => void;
 };
 
 export default function CouponTable({
   data,
+  searchValue,
   onActionSelect,
+  onRowClick,
 }: CouponTableProps) {
   const { t } = useTranslation();
   const [nameSortDirection, setNameSortDirection] =
@@ -62,10 +66,13 @@ export default function CouponTable({
   };
 
   const filteredRows = useMemo(() => {
+    const globalQuery = searchValue?.trim().toLowerCase() ?? "";
     const titleQuery = search.title.toLowerCase().trim();
     const codeQuery = search.codes.toLowerCase().trim();
 
     return data.filter((row) => {
+      const matchGlobal =
+        globalQuery.length < 2 || row.title.toLowerCase().includes(globalQuery);
       const matchTitle =
         !titleQuery || row.title.toLowerCase().includes(titleQuery);
 
@@ -73,9 +80,9 @@ export default function CouponTable({
         !codeQuery ||
         row.codes.some((c) => c.toLowerCase().includes(codeQuery));
 
-      return matchTitle && matchCodes;
+      return matchGlobal && matchTitle && matchCodes;
     });
-  }, [data, search]);
+  }, [data, search, searchValue]);
 
   const sortedRows = useMemo(() => {
     const base = filteredRows;
@@ -233,6 +240,7 @@ export default function CouponTable({
               </SearchFilterWrap>
             );
           }}
+          onRowClick={(row) => onRowClick?.(row)}
         />
       </TableSection>
     </>

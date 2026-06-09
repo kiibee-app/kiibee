@@ -8,6 +8,23 @@ import { getContentByCollectionIdService } from './services/getContentByCollecti
 import { updateContentService } from './services/updateContent.service';
 import { getContentByIdService } from './services/getContentById.service';
 import { deleteContentService } from './services/delete.content.service';
+import {
+  contentAppearanceService,
+  getContentAppearanceService,
+} from './services/contentAppearance.service';
+import { ContentAppearanceDto } from './dto/contentAppearance.dto';
+import {
+  createOrUpdateContentSetting,
+  getContentSettingByUserId,
+} from './services/contentSetting.service';
+import { ContentSettingDto } from './dto/contentSetting.dto';
+import {
+  GetAllContentsFilter,
+  getAllContentsService,
+  SortField,
+} from './services/getAllContents.service';
+import { getSingleContentService } from './services/getSingleContent.service';
+import { getRelatedCollectionContentService } from './services/getRelatedCollectionContent.service';
 
 @Injectable()
 export class ContentService {
@@ -47,5 +64,38 @@ export class ContentService {
 
   async deleteContentService(contentId: string) {
     return deleteContentService(contentId);
+  }
+
+  async ContentAppearanceService(userId: string, dto: ContentAppearanceDto) {
+    return contentAppearanceService(userId, dto);
+  }
+
+  async getContentAppearanceService(userId: string) {
+    return getContentAppearanceService(userId);
+  }
+
+  async getContentSettingByUserId(userId: string) {
+    return getContentSettingByUserId(userId);
+  }
+
+  async createOrUpdateContentSetting(userId: string, dto: ContentSettingDto) {
+    return createOrUpdateContentSetting(userId, dto);
+  }
+
+  async getAllContents(
+    limit: number,
+    search: string,
+    sort: SortField,
+    filter: GetAllContentsFilter,
+  ) {
+    return getAllContentsService(limit, search, sort, filter);
+  }
+
+  async getSingleContent(contentId: string, userId: string) {
+    return getSingleContentService(contentId, userId);
+  }
+
+  async getRelatedCollectionContent(contentId: string) {
+    return getRelatedCollectionContentService(contentId);
   }
 }

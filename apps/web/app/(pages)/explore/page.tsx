@@ -1,8 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import NavBar from "@/components/Layout/Navbar";
-import { ExploreSection, Main, PageContainer } from "@/app/styles";
+import {
+  ExploreContentWrapper,
+  ExploreSection,
+  Main,
+  PageContainer,
+} from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
 import RecentlyAdded from "@/components/Feature/ExploreCreators/RecentlyAdded";
 import Footer from "@/components/Layout/Footer";
@@ -26,7 +31,11 @@ export default function ExplorePage() {
             <TrendingContent />
           </div>
           <TopCreators />
-          <LatestRelease />
+          <Suspense fallback={null}>
+            <ExploreContentWrapper>
+              <LatestRelease />
+            </ExploreContentWrapper>
+          </Suspense>
           <RecentlyAdded />
         </ExploreSection>
       </Main>

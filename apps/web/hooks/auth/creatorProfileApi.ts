@@ -22,6 +22,7 @@ export type CreatorProfileUser = {
   fullName?: string | null;
   email?: string;
   avatarUrl?: string | null;
+  createdAt?: string | null;
 };
 
 export type CreatorProfileInfo = {
@@ -31,6 +32,8 @@ export type CreatorProfileInfo = {
   address?: string | null;
   city?: string | null;
   postalCode?: string | null;
+  contentDescription?: string | null;
+  exampleWorkLink?: string | null;
 };
 
 export type CreatorProfileBankAccount = {

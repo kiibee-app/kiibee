@@ -40,6 +40,8 @@ type ProfileFiles = Partial<Record<ProfileFileName, JsonRecord>>;
 type LoadedProfile = {
   profileKey: string;
   files: ProfileFiles;
+  preferredChannelSlug?: string;
+  source?: 'profile-info' | 'shows-only';
 };
 
 type MappedProfile = {
@@ -244,12 +246,56 @@ function resolveDesiredPlanName(subscription: unknown): string {
   return FALLBACK_PLAN_NAME;
 }
 
+function deriveNameFromProfileKey(profileKey: string): string {
+  return profileKey.replace(/_/g, ' ').trim();
+}
+
+function channelSlugFromShowsUrl(url: unknown): string | null {
+  const value = textOrNull(url);
+  if (!value) {
+    return null;
+  }
+
+  const parts = value.split('/').filter(Boolean);
+  return parts[0] ? truncate(slugify(parts[0]), 220) : null;
+}
+
+function readShowsIndex(profileKey: string, root: string): JsonRecord | null {
+  const indexPath = join(root, profileKey, 'shows', 'index.json');
+  if (!existsSync(indexPath)) {
+    return null;
+  }
+
+  return readJsonFile(indexPath);
+}
+
+function preferredChannelSlugFromShows(
+  profileKey: string,
+  root: string,
+): string | null {
+  const index = readShowsIndex(profileKey, root);
+  const parentUrls = index?.parent?.urls;
+
+  if (!Array.isArray(parentUrls)) {
+    return null;
+  }
+
+  for (const url of parentUrls) {
+    const slug = channelSlugFromShowsUrl(url);
+    if (slug) {
+      return slug;
+    }
+  }
+
+  return null;
+}
+
 function profileName(profile: LoadedProfile): string {
   return (
     textOrNull(profile.files['general.json']?.name) ??
     textOrNull(profile.files['layout.json']?.name) ??
     textOrNull(profile.files['info.json']?.name) ??
-    profile.profileKey
+    deriveNameFromProfileKey(profile.profileKey)
   );
 }
 
@@ -257,25 +303,19 @@ function readJsonFile(filePath: string): JsonRecord {
   return JSON.parse(readFileSync(filePath, 'utf8')) as JsonRecord;
 }
 
-function findUmbracoProfileRoot(): string {
+function findUmbracoProfileRoot(): string | null {
+  const envRoot = process.env.UMBRACO_DATA_USERS_PATH?.trim();
   const candidates = [
+    ...(envRoot ? [resolve(envRoot)] : []),
     resolve(process.cwd(), 'umbraco-data', 'users'),
     resolve(process.cwd(), '..', 'umbraco-data', 'users'),
     resolve(process.cwd(), '..', '..', 'umbraco-data', 'users'),
   ];
 
-  const root = candidates.find((candidate) => existsSync(candidate));
-
-  if (!root) {
-    throw new Error(
-      `Could not find umbraco-data/users. Checked: ${candidates.join(', ')}`,
-    );
-  }
-
-  return root;
+  return candidates.find((candidate) => existsSync(candidate)) ?? null;
 }
 
-function loadProfiles(root: string): LoadedProfile[] {
+function loadProfilesWithInfo(root: string): LoadedProfile[] {
   return readdirSync(root, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
@@ -292,8 +332,69 @@ function loadProfiles(root: string): LoadedProfile[] {
         }
       }
 
-      return { profileKey, files };
+      return {
+        profileKey,
+        files,
+        source: 'profile-info' as const,
+      };
     });
+}
+
+function hasNonEmptyShows(profileKey: string, root: string): boolean {
+  const showsDir = join(root, profileKey, 'shows');
+
+  for (const fileName of ['items.json', 'shows.json']) {
+    const filePath = join(showsDir, fileName);
+    if (!existsSync(filePath)) {
+      continue;
+    }
+
+    const parsed = JSON.parse(readFileSync(filePath, 'utf8'));
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function loadShowsOnlyProfiles(root: string): LoadedProfile[] {
+  return readdirSync(root, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter(
+      (profileKey) =>
+        !existsSync(join(root, profileKey, 'profile-info')) &&
+        hasNonEmptyShows(profileKey, root),
+    )
+    .sort((left, right) => left.localeCompare(right))
+    .map((profileKey) => {
+      const name = deriveNameFromProfileKey(profileKey);
+
+      return {
+        profileKey,
+        source: 'shows-only' as const,
+        preferredChannelSlug:
+          preferredChannelSlugFromShows(profileKey, root) ?? undefined,
+        files: {
+          'layout.json': {
+            name,
+            logoText: name,
+          },
+        },
+      };
+    });
+}
+
+function loadProfiles(root: string): LoadedProfile[] {
+  const withInfo = loadProfilesWithInfo(root);
+  const showsOnly = loadShowsOnlyProfiles(root);
+  const seen = new Set(withInfo.map((profile) => profile.profileKey));
+
+  return [
+    ...withInfo,
+    ...showsOnly.filter((profile) => !seen.has(profile.profileKey)),
+  ];
 }
 
 function buildUniqueChannelSlugs(
@@ -303,7 +404,10 @@ function buildUniqueChannelSlugs(
   const baseSlugs = new Map<string, string>();
 
   for (const profile of profiles) {
-    const baseSlug = truncate(slugify(profileName(profile)), 220);
+    const baseSlug = truncate(
+      profile.preferredChannelSlug ?? slugify(profileName(profile)),
+      220,
+    );
     baseSlugs.set(profile.profileKey, baseSlug);
     baseSlugCounts.set(baseSlug, (baseSlugCounts.get(baseSlug) ?? 0) + 1);
   }
@@ -412,7 +516,18 @@ async function resolvePlanId(desiredPlanName: string): Promise<string> {
 
 export const seedUmbracoProfiles = async () => {
   const root = findUmbracoProfileRoot();
+  if (!root) {
+    console.log(
+      'Umbraco profile seed skipped (umbraco-data/users not found; set UMBRACO_DATA_USERS_PATH to override)',
+    );
+    return;
+  }
+
   const profiles = loadProfiles(root);
+  if (!profiles.length) {
+    console.log(`Umbraco profile seed skipped (no profiles found in ${root})`);
+    return;
+  }
   const channelSlugs = buildUniqueChannelSlugs(profiles);
   const creatorPasswordHash = process.env.CREATOR_SEED_PASSWORD_HASH?.trim();
 
@@ -530,13 +645,7 @@ export const seedUmbracoProfiles = async () => {
           createdAt: now,
           updatedAt: now,
         })
-        .onConflictDoUpdate({
-          target: creatorPlans.id,
-          set: {
-            planId,
-            updatedAt: now,
-          },
-        });
+        .onConflictDoNothing({ target: creatorPlans.id });
 
       await tx
         .insert(auditLogs)
@@ -547,7 +656,10 @@ export const seedUmbracoProfiles = async () => {
           entityType: 'creator_profile',
           entityId: mapped.creatorChannelId,
           details: {
-            source: 'umbraco-data/profile-info',
+            source:
+              profile.source === 'shows-only'
+                ? 'umbraco-data/shows-only'
+                : 'umbraco-data/profile-info',
             profileKey: mapped.profileKey,
             mapped: {
               email: mapped.email,
@@ -562,28 +674,7 @@ export const seedUmbracoProfiles = async () => {
           },
           createdAt: now,
         })
-        .onConflictDoUpdate({
-          target: auditLogs.id,
-          set: {
-            userId: mapped.userId,
-            entityId: mapped.creatorChannelId,
-            details: {
-              source: 'umbraco-data/profile-info',
-              profileKey: mapped.profileKey,
-              mapped: {
-                email: mapped.email,
-                channelSlug: mapped.channelSlug,
-                supportEmail: mapped.supportEmail,
-                notificationEmails: mapped.notificationEmails,
-                legacyOwner: mapped.legacyOwner,
-                legacySubscription: mapped.legacySubscription,
-                desiredPlanName: mapped.desiredPlanName,
-              },
-              rawFiles: mapped.rawFiles,
-            },
-            createdAt: now,
-          },
-        });
+        .onConflictDoNothing({ target: auditLogs.id });
     });
 
     processed += 1;

@@ -10,9 +10,9 @@ import {
   ModalContent,
   ModalTitle,
   NextButton,
+  StatusBadge,
 } from "../styles";
-import { CouponFormState } from "@/types/collectionsType";
-import { CollectionRow } from "@/types/collectionsType";
+
 import {
   Chip,
   ChipList,
@@ -28,15 +28,23 @@ import { MonoText } from "@/components/UI/Monotext";
 import { BUTTON } from "@/utils/Constants";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
+import { useSuccessAutoClose } from "@/hooks/useSuccessAutoClose";
+import { CollectionRow } from "@/types/collectionsType";
+import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
+import { formatDateUSShort } from "@/utils/formatDate";
+import { MODAL_ALIGN } from "@/utils/ui";
+import { COUPON_MODE, CouponMode } from "@/utils/content";
 
 type Props = {
   visible: boolean;
-  data: CouponFormState;
+  data: CouponEntity | CreateCouponPayload;
   collections: CollectionRow[];
-  onBack: () => void;
-  onClose: () => void;
-  onContinue: () => Promise<void> | void;
+  onBack?: () => void;
+  onClose?: () => void;
+  onContinue?: () => Promise<void> | void;
   isSuccess?: boolean;
+  mode?: CouponMode;
+  onEdit?: () => void;
 };
 
 export default function CouponPreviewModal({
@@ -47,7 +55,14 @@ export default function CouponPreviewModal({
   onClose,
   onContinue,
   isSuccess = false,
+  mode = COUPON_MODE.PREVIEW,
+  onEdit,
 }: Props) {
+  useSuccessAutoClose({
+    isSuccess,
+    onClose,
+  });
+
   const { t } = useTranslation();
   const { data: contentOptions = [] } = useAllContentsOptions(
     collections,
@@ -63,32 +78,57 @@ export default function CouponPreviewModal({
     value: item.id,
     label: item.name,
   }));
-  const collectionLabel = getLabel(data.collection, collectionOptions);
-  const contentLabel = getLabel(data.content, contentOptions);
-  const codes = data.codes ? data.codes.split(",").map((c) => c.trim()) : [];
+
+  const isDetails = mode === COUPON_MODE.DETAILS;
+
+  const collectionIds = isDetails
+    ? ((data as CouponEntity).applicableProducts?.collectionIds ?? [])
+    : ((data as CreateCouponPayload).collectionIds ?? []);
+
+  const contentIds = isDetails
+    ? ((data as CouponEntity).applicableProducts?.contentIds ?? [])
+    : ((data as CreateCouponPayload).contentIds ?? []);
+
+  const codes = data.codes ?? [];
+
+  const collectionLabels =
+    collectionIds.length > 0
+      ? collectionIds.map((id) => getLabel(id, collectionOptions))
+      : ["-"];
+
+  const contentLabels =
+    contentIds.length > 0
+      ? contentIds.map((id) => getLabel(id, contentOptions))
+      : ["-"];
 
   return (
     <GenericModal
       visible={visible}
       onClose={onClose}
       iconMargin={isSuccess ? "0 auto 8px" : undefined}
-      width="670px"
+      size="md"
       height="480px"
-      padding="20px"
+      spacing="xs"
       borderRadius="20px"
+      textAlign={MODAL_ALIGN.START}
+      title={isDetails ? t("contents.couponDetails.title") : undefined}
+      onConfirm={isDetails ? onEdit : undefined}
+      confirmLabel={
+        isDetails ? t("contents.couponDetails.editButton") : undefined
+      }
     >
-      <ModalContent>
-        <BackButton
-          type={BUTTON}
-          aria-label={t("common.back")}
-          onClick={onBack}
-        >
-          <BackButtonIcon size={28} strokeWidth={2.5} />
-        </BackButton>
+      <ModalContent $details={isDetails}>
+        {!isDetails && (
+          <BackButton type={BUTTON} onClick={onBack}>
+            <BackButtonIcon size={28} strokeWidth={2.5} />
+          </BackButton>
+        )}
 
         {!isSuccess && (
           <FormShell>
-            <ModalTitle>{t("contents.couponPreview.title")}</ModalTitle>
+            {!isDetails && (
+              <ModalTitle>{t("contents.couponPreview.title")}</ModalTitle>
+            )}
 
             <SelectorList>
               <Section>
@@ -117,7 +157,31 @@ export default function CouponPreviewModal({
                   <SectionValue>{data.discountValue}</SectionValue>
                 </Section>
               </SectionRow>
+              {isDetails && (
+                <SectionRow>
+                  <Section>
+                    <SectionLabel>
+                      {t("contents.couponDetails.createdDate")}
+                    </SectionLabel>
+                    <SectionValue>
+                      {formatDateUSShort((data as CouponEntity).createdAt)}
+                    </SectionValue>
+                  </Section>
 
+                  <Section>
+                    <SectionLabel>
+                      {t("contents.couponDetails.status")}
+                    </SectionLabel>{" "}
+                    <SectionValue>
+                      <StatusBadge $status={(data as CouponEntity).status}>
+                        <MonoText $use="Body_Bold">
+                          {(data as CouponEntity).status}
+                        </MonoText>
+                      </StatusBadge>
+                    </SectionValue>
+                  </Section>
+                </SectionRow>
+              )}
               <Section>
                 <SectionLabel>
                   {t("contents.couponPreview.fields.codes")}
@@ -134,16 +198,18 @@ export default function CouponPreviewModal({
                   {t("contents.couponPreview.fields.applicableProducts")}
                 </SectionLabel>
                 <ChipList>
-                  {[collectionLabel, contentLabel].map((item, i) => (
+                  {[...collectionLabels, ...contentLabels].map((item, i) => (
                     <Chip key={i}>{item}</Chip>
                   ))}
                 </ChipList>
               </Section>
             </SelectorList>
 
-            <NextButton onClick={onContinue} type="button">
-              {t("contents.couponPreview.confirm")}
-            </NextButton>
+            {!isDetails && (
+              <NextButton onClick={onContinue} type="button">
+                {t("contents.couponPreview.confirm")}
+              </NextButton>
+            )}
           </FormShell>
         )}
         {isSuccess && (

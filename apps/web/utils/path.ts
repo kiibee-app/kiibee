@@ -42,6 +42,8 @@ export const PATHS = {
 
 const VIEWER_ROLE = "viewer";
 
+export const ANONYMOUS_VIEWER_ID = "anonymous";
+
 export function getDashboardPathForRole(role: unknown): string {
   return String(role ?? "").toLowerCase() === VIEWER_ROLE
     ? PATHS.DASHBOARD_VIEWER
@@ -50,4 +52,32 @@ export function getDashboardPathForRole(role: unknown): string {
 
 export function pathPublishedContent(contentKey: string): string {
   return `${PATHS.CONTENT}/${encodeURIComponent(contentKey)}`;
+}
+
+export function resolveContentViewerId(userId?: string | null): string {
+  const trimmed = String(userId ?? "").trim();
+  return trimmed || ANONYMOUS_VIEWER_ID;
+}
+
+export function isSafePostLoginPath(
+  path: string | null | undefined,
+): path is string {
+  if (!path?.startsWith("/") || path.startsWith("//")) {
+    return false;
+  }
+
+  return (
+    path === PATHS.CONTENT ||
+    path.startsWith(`${PATHS.CONTENT}/`) ||
+    path === PATHS.DASHBOARD_CREATOR ||
+    path.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
+    path === PATHS.DASHBOARD_VIEWER ||
+    path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
+    path.startsWith(`${PATHS.CREATOR_PROFILE}/`)
+  );
+}
+
+export function pathLoginWithNext(returnTo: string): string {
+  const params = new URLSearchParams({ next: returnTo });
+  return `${PATHS.AUTH_LOGIN}?${params.toString()}`;
 }

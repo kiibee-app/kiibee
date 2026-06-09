@@ -1,5 +1,6 @@
 "use client";
 
+import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
 export const PageContainer = styled.div`
@@ -30,11 +31,24 @@ export const Footer = styled.footer`
 
 export const Section = styled.section`
   width: 100%;
+  margin: 0 auto;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
+
+  ${media.desktopMd} {
+    max-width: 100%;
+  }
 `;
 
 export const ExploreSection = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
-  overflow-x: hidden;
+  overflow: visible;
+`;
+
+export const ExploreContentWrapper = styled.div`
+  @media (min-width: 768px) {
+    aside {
+      align-self: flex-start;
+    }
+  }
 `;

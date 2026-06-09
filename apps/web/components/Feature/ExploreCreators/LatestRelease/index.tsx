@@ -1,17 +1,21 @@
 "use client";
 
-import React, { useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
-import { latestReleaseVideos } from "@/utils/data";
 import { MonoText } from "@/components/UI/Monotext";
-import { VARIANT } from "@/utils/Constants";
+import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import CreatorFiltersControl from "../Hero/CreatorsFilters";
 import {
-  CATEGORY_OPTION_KEYS,
-  CREATOR_OPTIONS,
-  FORMAT_OPTION_KEYS,
-} from "@/utils/creatorFilters";
+  EXPLORE_CONTENT_SORT,
+  type ExploreContentFilters,
+  type ExploreContentSort,
+  useExploreContent,
+  useExploreFilterOptions,
+  withoutAllFilterOption,
+} from "@/hooks/feed/useExploreContent";
 import { useTranslation } from "react-i18next";
 import { FilterSectionKey } from "@/types/filters";
 import {
@@ -20,33 +24,83 @@ import {
   FiltersColumn,
   HeaderTabs,
   HeaderWrap,
+  ResultsState,
   Section,
   TabButton,
 } from "./styles";
 import { tabs } from "@/utils/common";
 
+const EXPLORE_TABS: { label: string; sort: ExploreContentSort }[] = [
+  { label: tabs[0], sort: EXPLORE_CONTENT_SORT.NEW },
+  { label: tabs[1], sort: EXPLORE_CONTENT_SORT.POPULAR },
+  { label: tabs[2], sort: EXPLORE_CONTENT_SORT.ALL },
+];
+
+const URL_FORMAT_IDS = new Set(["video", "audio", "pdf", "epub", "web"]);
+
+function normalizeUrlFormat(format: string | null) {
+  if (!format) return null;
+
+  const normalized = format.trim().toLowerCase();
+
+  return URL_FORMAT_IDS.has(normalized) ? normalized : null;
+}
+
+function getInitialExploreSort(
+  filter: string | null,
+  sort: string | null,
+): ExploreContentSort {
+  if (sort === EXPLORE_CONTENT_SORT.POPULAR) {
+    return EXPLORE_CONTENT_SORT.POPULAR;
+  }
+
+  if (filter === EXPLORE_CONTENT_SORT.NEW) {
+    return EXPLORE_CONTENT_SORT.NEW;
+  }
+
+  return EXPLORE_CONTENT_SORT.NEW;
+}
+
 export default function LatestRelease() {
   const { t } = useTranslation();
+  const searchParams = useSearchParams();
+  useScrollAnimation({
+    sidebarSelector: "[data-sidebar]",
+    innerSelector: "[data-sidebar] > div",
+    cardsSelector:
+      "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
+  });
 
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const filterOverlayRef = useRef<HTMLDivElement>(null);
 
-  const categoryLabels = useMemo(
-    () =>
-      CATEGORY_OPTION_KEYS.map((key) => ({
-        key,
-        label: t(`creators.filters.options.categories.${key}`),
-      })),
-    [t],
+  const urlFilter = searchParams.get("filter");
+  const urlFormat = normalizeUrlFormat(searchParams.get("format"));
+  const urlAccessType = urlFilter === ACCESS_TYPE_FREE ? ACCESS_TYPE_FREE : "";
+  const initialExploreSort = getInitialExploreSort(
+    urlFilter,
+    searchParams.get("sort"),
   );
+  const [activeExploreSort, setActiveExploreSort] =
+    useState<ExploreContentSort>(initialExploreSort);
 
-  const formatLabels = useMemo(
-    () =>
-      FORMAT_OPTION_KEYS.map((key) => ({
-        key,
-        label: t(`creators.filters.options.formats.${key}`),
-      })),
-    [t],
+  useEffect(() => {
+    setActiveExploreSort(initialExploreSort);
+  }, [initialExploreSort]);
+
+  const {
+    creatorLabels: allCreatorLabels,
+    categoryLabels,
+    formatLabels,
+    categoryOptions,
+    formatOptions,
+  } = useExploreFilterOptions();
+
+  const initialSelectedOptions = useMemo(
+    () => ({
+      formats: urlFormat ? [urlFormat] : [],
+    }),
+    [urlFormat],
   );
 
   const {
@@ -64,18 +118,47 @@ export default function LatestRelease() {
     handlePriceChange,
     DEFAULT_VISIBLE_CREATORS,
   } = useCreatorFilters({
-    categoryOptions: [...CATEGORY_OPTION_KEYS],
-    formatOptions: [...FORMAT_OPTION_KEYS],
+    categoryOptions,
+    formatOptions,
+    initialSelectedOptions,
   });
 
   const visibleCreators = showAllCreators
-    ? CREATOR_OPTIONS
-    : CREATOR_OPTIONS.slice(0, DEFAULT_VISIBLE_CREATORS);
+    ? allCreatorLabels
+    : allCreatorLabels.slice(0, DEFAULT_VISIBLE_CREATORS);
 
-  const creatorLabels = visibleCreators.map((key) => ({
-    key,
-    label: key,
-  }));
+  const selectedCategoryIds = useMemo(
+    () => withoutAllFilterOption(selectedOptions.categories),
+    [selectedOptions.categories],
+  );
+  const selectedFormatIds = useMemo(
+    () => withoutAllFilterOption(selectedOptions.formats),
+    [selectedOptions.formats],
+  );
+  const exploreFilters = useMemo(
+    (): ExploreContentFilters => ({
+      creatorId: selectedOptions.creators,
+      categoryId: selectedCategoryIds,
+      contentTypeId: selectedFormatIds,
+      accessType: urlAccessType || undefined,
+      minPrice: priceRange.min || undefined,
+      maxPrice: priceRange.max || undefined,
+      rating: selectedRating ?? undefined,
+    }),
+    [
+      selectedOptions.creators,
+      selectedCategoryIds,
+      selectedFormatIds,
+      urlAccessType,
+      priceRange.min,
+      priceRange.max,
+      selectedRating,
+    ],
+  );
+  const { tutorials, isLoading } = useExploreContent({
+    sort: activeExploreSort,
+    filters: exploreFilters,
+  });
 
   const filterRefs = { filterButtonRef, filterOverlayRef };
   const filterState = {
@@ -103,28 +186,33 @@ export default function LatestRelease() {
           <MonoText $use="H4_Medium">{t("nav.explore.latest")}</MonoText>
         </div>
         <HeaderTabs>
-          {tabs.map((tab, index) => (
+          {EXPLORE_TABS.map((tab) => (
             <TabButton
-              key={tab}
-              variant={index === 0 ? VARIANT.PRIMARY : VARIANT.SECONDARY}
+              key={tab.sort}
+              variant={
+                activeExploreSort === tab.sort
+                  ? VARIANT.PRIMARY
+                  : VARIANT.SECONDARY
+              }
               size="sm"
-              $active={index === 0}
+              $active={activeExploreSort === tab.sort}
+              onClick={() => setActiveExploreSort(tab.sort)}
             >
-              <MonoText $use="Body_Medium">{tab}</MonoText>
+              <MonoText $use="Body_Medium">{tab.label}</MonoText>
             </TabButton>
           ))}
         </HeaderTabs>
       </HeaderWrap>
 
       <ContentGrid>
-        <FiltersColumn>
+        <FiltersColumn data-sidebar>
           <CreatorFiltersControl
             refs={filterRefs}
             state={filterState}
             actions={filterActions}
             categoryLabels={categoryLabels}
             formatLabels={formatLabels}
-            creatorLabels={creatorLabels}
+            creatorLabels={visibleCreators}
             defaultVisibleCreators={DEFAULT_VISIBLE_CREATORS}
             showButton={false}
             forceOpen
@@ -136,9 +224,23 @@ export default function LatestRelease() {
 
         <div>
           <CardsGrid>
-            {latestReleaseVideos.map((tutorial) => (
-              <TutorialCard key={tutorial.id} tutorial={tutorial} />
-            ))}
+            {isLoading ? (
+              <ResultsState>
+                <MonoText $use="Body_Medium">
+                  {t("nav.explore.loading")}
+                </MonoText>
+              </ResultsState>
+            ) : tutorials.length > 0 ? (
+              tutorials.map((tutorial) => (
+                <TutorialCard key={tutorial.id} tutorial={tutorial} />
+              ))
+            ) : (
+              <ResultsState>
+                <MonoText $use="Body_Medium">
+                  {t("nav.explore.noResults")}
+                </MonoText>
+              </ResultsState>
+            )}
           </CardsGrid>
         </div>
       </ContentGrid>

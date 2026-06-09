@@ -10,6 +10,8 @@
     "about": "About Kiibee",
     "login": "Log in",
     "dashboard": "Dashboard",
+    "logout": "Log out",
+    "profileMenu": "Account menu",
     "startCreating": "Start creating",
     "logoAlt": "Kiibee",
     "profile": {
@@ -22,6 +24,8 @@
       "everything": "Everything",
       "newReleases": "New releases",
       "latest": "Latest releases",
+      "loading": "Loading releases...",
+      "noResults": "No releases found",
       "popular": "Popular",
       "freeContent": "Free content",
       "formatTitle": "Format",
@@ -55,7 +59,9 @@
     "title": "Nana Jacobson",
     "description": "Online courses and creative guides for people who want to learn new techniques, get inspiration, and make their ideas more concrete.",
     "more": "...more",
-    "searchPlaceholder": "Search",
+    "searchPlaceholder": "Search content",
+    "searchOpenPlaceholder": "Search for posts",
+    "searchCollectionsPlaceholder": "Search collections",
     "searchAriaLabel": "Search profile content",
     "aboutModal": {
       "moreInfo": "More info",
@@ -89,7 +95,8 @@
     "description": "Share your story, your work, and what people can expect from your profile.",
     "sectionTitle": "Plants and animals",
     "sectionTitleClothes": "Clothes",
-    "buyCollection": "Buy collection xx kr"
+    "buyCollection": "Buy collection xx kr",
+    "buy": "Buy collection"
   },
   "createProfileFooter": {
     "tagline": "Sell and showcase online products",
@@ -303,6 +310,10 @@
     "cta": "Learn more"
   },
   "creators": {
+    "marquee": {
+      "title": "Explore the Kiibee creators and find your favorites",
+      "defaultDescription": "The online courses at Kammas Kantine are for those who want to learn how to take better care of their body. You'll gain knowledge about health, practical tips and tricks, and access to fantastic recipes that are simple to prepare in your own kitchen."
+    },
     "trendingContent": "Trending content",
     "heading": {
       "lineOne": "Upload.",
@@ -498,6 +509,7 @@
       "tag": "Recently added"
     },
     "viewProfile": "View profile",
+    "uploadsCount": "{{count}} uploads",
     "loadMore": "Load more",
     "a-z": "A-Z",
     "subscribers": "Subscribers",
@@ -556,6 +568,19 @@
           "buy": "Buy xx kr"
         }
       }
+    }
+  },
+  "exploreCategories": {
+    "title": "Top categories to get you started",
+    "subtitle": "Browse through the platform and buy or rent easily with just a few clicks. You can watch whenever or wherever.",
+    "browseAll": "Browse all",
+    "categories": {
+      "all": "All content",
+      "technology": "Technology",
+      "design": "Design",
+      "art": "Art",
+      "literature": "Literature",
+      "comedies": "Comedies"
     }
   },
   "footer": {
@@ -869,7 +894,10 @@
     "failedAalt": "Failed to load image: {{alt}}"
   },
   "table": {
-    "noData": "No Data Found"
+    "noData": "No Data Found",
+    "showing": "Showing",
+    "outOf": "out of",
+    "paginationPage": "Go to page {{page}}"
   },
   "creatorProfile": {
     "title": "My account",
@@ -916,6 +944,7 @@
     "dragPhotoHere": "Drag photo here",
     "or": "or",
     "choosePhoto": "Choose photos to upload",
+    "clickPhotoToChange": "Click the photo to choose a different image",
     "recommendedImageSize": "Use {{cropWidth}}×{{cropHeight}} pixel image",
     "zoom": "Zoom",
     "apply": "Apply",
@@ -926,6 +955,14 @@
     "loading": "Loading content...",
     "imageAlt": "Content preview",
     "seeContent": "See content",
+    "playTrailer": "Play trailer",
+    "pricing": {
+      "downloadFiles": "Download files",
+      "accessDefault": "Access for 3 months",
+      "accessMonths": "Access for {{count}} months",
+      "accessDays": "Access for {{count}} days",
+      "accessHours": "Access for {{count}} hours"
+    },
     "meta": {
       "createdAt": "Created:",
       "accessType": "Access:",
@@ -1032,12 +1069,18 @@
   "users": {
     "search": "Search by name",
     "tabs": {
-      "registrations": "Registrations (11)",
-      "sales": "Sales (50)"
+      "registrations": "Registrations",
+      "sales": "Sales",
+      "registrationsWithCount": "Registrations ({{count}})",
+      "salesWithCount": "Sales ({{count}})"
     },
     "registrations": {
       "title": "E-mail signups",
       "description": "An overview of all emails collected in connection with e-mail address visibility.",
+      "emptyState": {
+        "title": "You have no email subscriptions.",
+        "description": "Once you have set an access requirement for 'Request email', they will appear here on the list after registration."
+      },
       "tableHeaders": {
         "name": "Name",
         "email": "Email",
@@ -1053,7 +1096,11 @@
     },
     "salest": {
       "title": "Sales",
-      "description": "Here you can find a complete overview of all your sales.",
+      "description": "Here you will find a complete overview of all your sales.",
+      "emptyState": {
+        "title": "You have no sales yet.",
+        "description": "When you have sold, they will appear here on the list"
+      },
       "tableHeaders": {
         "name": "Name",
         "email": "Email",
@@ -1097,6 +1144,12 @@
         "placeholder": "Billing history will appear here.",
         "searchContent": "Search content title",
         "searchCreator": "Search creator name",
+        "invoiceModal": {
+          "title": "Invoice",
+          "orderNumber": "Order number",
+          "contentDetails": "Content details",
+          "share": "Share"
+        },
         "tableHeaders": {
           "contentTitle": "Content title",
           "creatorName": "Creator name",
@@ -1112,8 +1165,20 @@
         "defaultBadge": "Default",
         "expires": "Expires {{date}}",
         "edit": "Edit payment method",
+        "markAsDefault": "Mark as default",
         "delete": "Delete payment method",
         "more": "More actions",
+        "deleteModal": {
+          "title": "Delete payment?",
+          "message": "Are you sure you want to delete the saved payment?",
+          "cancel": "Go back",
+          "confirm": "Delete"
+        },
+        "deleteSuccessModal": {
+          "title": "Delete successfully",
+          "message": "Card have been successfully deleted.",
+          "confirm": "Done"
+        },
         "addCardModal": {
           "title": "Add new card",
           "cardNumber": "Card number",
@@ -1124,6 +1189,20 @@
           "cvvPlaceholder": "CVV",
           "successTitle": "New card added",
           "successMessage": "New card has been successfully added."
+        },
+        "editCardModal": {
+          "title": "Edit card",
+          "cardNumber": "Card number",
+          "expiryDate": "Expiry date",
+          "cvv": "Security code",
+          "cardPlaceholder": "XXXX XXXX XXXX XXXX",
+          "expiryPlaceholder": "MM/YY",
+          "cvvPlaceholder": "CVV"
+        },
+        "editSuccessModal": {
+          "title": "Changes saved",
+          "message": "Your updates have been successfully saved.",
+          "confirm": "Done"
         }
       }
     },
@@ -1283,7 +1362,10 @@
       "discountType": {
         "fixedAmount": "Fixed amount",
         "percentage": "Percentage"
-      }
+      },
+      "editButton": "Edit Coupon",
+      "createdDate": "Created Date",
+      "status": "Status"
     },
     "couponCodes": {
       "title": "Coupon codes",
@@ -1349,8 +1431,13 @@
       "description": "Consider what type of access your [contentType] should have",
       "options": {
         "free": "Free",
+        "payment": "Payment",
         "password": "Set password",
         "email": "Request email"
+      },
+      "password": {
+        "placeholder": "Enter passwords",
+        "helper": "Separate multiple passwords with commas."
       }
     },
     "placeholders": {
@@ -1421,7 +1508,8 @@
       "visibility": "Visibility",
       "visibilityHint": "Control whether this trailer is visible to learners.",
       "public": "Public",
-      "hidden": "Hidden"
+      "hidden": "Hidden",
+      "draft": "Draft"
     },
     "contentTypeModal": {
       "title": "Choose the type of content you want to add",
@@ -1478,6 +1566,7 @@
         "placeholder": "https://"
       },
       "uploading": "Uploading",
+      "uploaded": "Uploaded",
       "deletePermanently": "Delete permanently"
     },
     "emptyCollection": {
@@ -1516,6 +1605,13 @@
       "successTitle": "Moved successfully",
       "successMessage": "Content moved to {{collectionName}} successfully."
     },
+    "web": {
+      "placeholder": "https://example.com/",
+      "ePublicationLink": "E-publication link",
+      "openInNewWindow": "Always open web content in new window?",
+      "openDirectFromList": "Open web content directly from the list?",
+      "helperLiveStreaming": "Can be used, for example, in conjunction with Live streaming"
+    },
     "metadata": {
       "production": {
         "title": "Production of",
@@ -1547,7 +1643,8 @@
         "mediaCardLabel": "Upload thumbnail for the media card",
         "mediaCardSize": "Use size 250x190 pixel image",
         "portraitLabel": "Upload thumbnail for portrait format",
-        "portraitSize": "Use size 634x345 pixel image"
+        "portraitSize": "Use size 634x345 pixel image",
+        "portraitPdfSize": "Use size 376x530 pixel image"
       }
     },
     "couponSearch": {
@@ -1559,8 +1656,35 @@
         "title": "Admission requirements",
         "description": "Consider what type of access your [contentType] should have",
         "options": {
-          "payment": "Payment"
+          "free": "Free",
+          "payment": "Payment",
+          "setPassword": "Set password",
+          "requestEmail": "Request email"
         }
+      },
+      "webRental": {
+        "title": "Web content rental (Streaming)",
+        "description": "When web content is rented, it will be available for 48 hours."
+      },
+      "epubPurchase": {
+        "title": "E-publication purchase / download",
+        "description": "Purchased e-publications will be available in the user's profile."
+      },
+      "pdfRental": {
+        "title": "PDF rental access",
+        "description": "PDF access will expire after the rental period."
+      },
+      "pdfPurchase": {
+        "title": "PDF purchase / download",
+        "description": "Purchased PDFs remain permanently accessible in the user's profile."
+      },
+      "audioRental": {
+        "title": "Audio rental (Streaming)",
+        "description": "When audio is rented, it will be available for 48 hours."
+      },
+      "audioPurchase": {
+        "title": "Audio purchase / download",
+        "description": "Purchased audio will be available in the user's profile."
       },
       "rental": {
         "title": "Video rental (Streaming)",
@@ -1577,9 +1701,35 @@
           "unlimited": "Unlimited"
         }
       },
+      "collectionRental.title": "Collection rental (Streaming)",
+      "collectionPurchase.title": "Collection purchase/download",
+      "collectionDuration": {
+        "title": "Selected period",
+        "description": "Should you coustomers have access for 3,6 or 12 months?"
+      },
+      "duration": {
+        "oneMonth": "1 month",
+        "threeMonths": "3 months",
+        "sixMonths": "6 months",
+        "twelveMonths": "12 months"
+      },
+      "password": {
+        "placeholder": "Enter password",
+        "helper": "Separate multiple codes with commas"
+      },
+      "physicalProduct": {
+        "title": "Physical product",
+        "description": "If you have a physical version of the product, you can link to a webshop.",
+        "placeholder": "Add product link"
+      },
       "common": {
         "enterAmount": "Enter amount",
         "feeNote": "Minimum DKK 8, as Kiibee charges DKK 5 in transaction fees"
+      },
+      "physicalLink": {
+        "title": "Physical product",
+        "description": "If you have a physical version of the product, you can link to a webshop.",
+        "placeholder": "Add product link"
       }
     }
   },
@@ -1613,5 +1763,14 @@
     "defaultTitle": "Something went wrong",
     "noStack": "Stack trace is not available.",
     "unknownError": "Unknown error message"
+  },
+  "errors": {
+    "missingContentFormProvider": "useContentForm must be used within a ContentFormProvider",
+    "noContentToSave": "No content to save",
+    "saveChangesFailed": "Failed to save changes",
+    "saveSettingsFailed": "Failed to save settings",
+    "loadDetailsFailed": "Failed to load content details",
+    "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
+    "imageUploadFailed": "Image upload failed"
   }
 }

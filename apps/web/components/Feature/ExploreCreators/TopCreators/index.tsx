@@ -1,16 +1,26 @@
 "use client";
 
-import Image from "@/components/UI/SafeImage";
+import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import { Wrapper, Header, SeeAll, List, Card, Avatar } from "./styles";
-import { creators } from "@/utils/dummyData/creators.data";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { PATHS } from "@/utils/path";
+import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
+import { CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
+import { formatSubscriberCountK } from "@/hooks/creators/useExploreCreators";
+import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 
 export default function TopCreators() {
   const { t } = useTranslation();
+  const { creators, isLoading } = useExploreTopCreators();
+
+  if (!isLoading && creators.length === 0) {
+    return null;
+  }
+
   return (
     <Wrapper>
       <Header>
@@ -21,21 +31,29 @@ export default function TopCreators() {
       </Header>
 
       <List>
-        {creators.slice(0, 6).map((creator) => (
-          <Card key={creator.id}>
+        {creators.map((creator) => (
+          <Card
+            key={creator.id}
+            as="a"
+            href={getPublicCreatorProfilePath(creator.id)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Avatar>
-              <Image
-                src={creator.image}
+              <CreatorChannelAvatar
+                avatarUrl={creator.profileImageUrl}
+                initial={getNameInitials(creator.name)}
                 alt={creator.name}
-                fill
-                style={{ objectFit: "cover" }}
-                priority
+                sizes="150px"
+                initialUse={CREATOR_CHANNEL_AVATAR_TEXT.HERO}
               />
             </Avatar>
 
             <MonoText $use="Body_Medium">{creator.name}</MonoText>
             <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-              {t(CREATORS.subscribersCount, { count: creator.uploads })}
+              {t(CREATORS.subscribersCount, {
+                count: formatSubscriberCountK(creator.subscriberCount),
+              })}
             </MonoText>
           </Card>
         ))}

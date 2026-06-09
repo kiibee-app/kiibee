@@ -17,7 +17,18 @@ export class UpdateCollectionDto {
 
   accessType?: 'free' | 'paid' | 'password' | 'email_gated';
 
+  buyPrice?: number;
+
+  rentPrice?: number;
+
+  rentDuration?: string;
+
+  description?: string;
+
   sortOrder?: number;
 
   isPublished?: boolean;
+
+  @IsString()
+  password?: string;
 }

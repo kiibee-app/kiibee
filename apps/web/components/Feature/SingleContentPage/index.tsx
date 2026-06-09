@@ -6,8 +6,10 @@ import {
   SingleContentHero,
   SingleContentTopBar,
 } from "./ContentSections";
-import { Card, Wrapper } from "./styles";
+import { Card, ContentLayout, Wrapper } from "./styles";
 import type { SingleContentPageProps } from "@/types/contentTypes";
+import { FORMAT_TYPE } from "@/utils/types";
+import useShare from "@/hooks/useShare";
 
 export type {
   SingleContentHeroProps,
@@ -24,6 +26,7 @@ export default function SingleContentPage({
   creator,
   hero,
   primaryAction,
+  primaryActions,
   metaItems = [],
   shareLabel = "Share",
   showShare = true,
@@ -33,6 +36,10 @@ export default function SingleContentPage({
   children,
 }: SingleContentPageProps) {
   const router = useRouter();
+  const { share } = useShare();
+  const isPdfLayout =
+    hero?.media?.type === FORMAT_TYPE.PDF ||
+    hero?.media?.type === FORMAT_TYPE.EPUB;
 
   const handleBack = () => {
     if (onBack) {
@@ -44,27 +51,30 @@ export default function SingleContentPage({
 
   return (
     <Wrapper>
+      <SingleContentTopBar
+        showBack={showBack}
+        showShare={showShare}
+        shareLabel={shareLabel}
+        onBackClick={handleBack}
+        onShare={onShare ?? share}
+      />
+
       <Card>
-        <SingleContentTopBar
-          showBack={showBack}
-          showShare={showShare}
-          shareLabel={shareLabel}
-          onBackClick={handleBack}
-          onShare={onShare}
-        />
+        <ContentLayout $isPdf={isPdfLayout}>
+          <SingleContentHero hero={hero} isPdfLayout={isPdfLayout} />
 
-        <SingleContentHero hero={hero} />
-
-        <SingleContentBody
-          creator={creator}
-          statusLabel={statusLabel}
-          title={title}
-          descriptions={descriptions}
-          tags={tags}
-          primaryAction={primaryAction}
-          expiry={expiry}
-          metaItems={metaItems}
-        />
+          <SingleContentBody
+            creator={creator}
+            statusLabel={statusLabel}
+            title={title}
+            descriptions={descriptions}
+            tags={tags}
+            primaryAction={primaryAction}
+            primaryActions={primaryActions}
+            expiry={expiry}
+            metaItems={metaItems}
+          />
+        </ContentLayout>
       </Card>
 
       {children}

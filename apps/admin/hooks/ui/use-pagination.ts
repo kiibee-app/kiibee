@@ -1,19 +1,27 @@
-"use client";
-
 import { useMemo, useState } from "react";
+import { isBrowser } from "../../utils/constants";
 
 interface UsePaginationOptions {
   totalItems: number;
   initialPageSize?: number;
+  storageKey?: string;
 }
 
 export function usePagination<T>({
   data,
   totalItems,
   initialPageSize = 5,
+  storageKey,
 }: UsePaginationOptions & { data: T[] }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(initialPageSize);
+  const [pageSize, setPageSize] = useState(() => {
+    if (isBrowser && storageKey) {
+      const saved = localStorage.getItem(storageKey);
+      const parsed = Number(saved);
+      if (!isNaN(parsed) && parsed > 0) return parsed;
+    }
+    return initialPageSize;
+  });
 
   const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
   const safePage = Math.min(currentPage, totalPages);
@@ -44,6 +52,13 @@ export function usePagination<T>({
   const onPageSizeChange = (size: number) => {
     setPageSize(size);
     setCurrentPage(1);
+    if (storageKey) {
+      try {
+        localStorage.setItem(storageKey, String(size));
+      } catch (error) {
+        console.error("Error saving pageSize to localStorage:", error);
+      }
+    }
   };
 
   return {

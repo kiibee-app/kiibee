@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import { BackButtonIcon } from "@/assets/icons";
 import GenericButton from "@/components/UI/GenericButton";
+import ConfirmationModal from "@/components/UI/ConfirmationModal";
 import { GenericModal } from "@/components/UI/Modals";
 import {
   HiddenInput,
@@ -27,6 +28,7 @@ import {
   type ContentUploadMode,
 } from "@/utils/content";
 import { useContentUpload } from "@/hooks/contents/useContentUpload";
+import { useSuccessAutoClose } from "@/hooks/useSuccessAutoClose";
 import SelectedFileView from "./SelectedFileView";
 import ContentUploadDetails from "./UploadDetails";
 import WebContentLinkForm from "./WebContentLinkForm";
@@ -46,6 +48,19 @@ type CreateContentPayload = {
   contentUrl?: string;
 };
 
+export type MediaUrlResponse = {
+  url?: string;
+};
+
+type PendingUploadSuccess = {
+  tab?: AddContentTab;
+  file?: File | null;
+  preview?: string | null;
+  createdContentId?: string;
+  title: string;
+  description: string;
+};
+
 type ContentUploadModalProps = {
   visible: boolean;
   mode?: ContentUploadMode;
@@ -60,6 +75,8 @@ type ContentUploadModalProps = {
     tab: AddContentTab,
     file?: File | null,
     preview?: string | null,
+    createdContentId?: string,
+    details?: PendingUploadSuccess,
   ) => void;
 };
 
@@ -82,7 +99,11 @@ export default function ContentUploadModal({
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showDiscardModal, setShowDiscardModal] = useState(false);
+  const pendingExitActionRef = useRef<(() => void) | null>(null);
   const [createError, setCreateError] = useState<string | null>(null);
+  const [pendingUploadSuccess, setPendingUploadSuccess] =
+    useState<PendingUploadSuccess | null>(null);
   const createContentMutation = usePostAPI<unknown, CreateContentPayload>(
     API.content.create,
   );
@@ -111,21 +132,50 @@ export default function ContentUploadModal({
   );
 
   const handleExit = (callback: () => void) => {
+    if (isSuccess && pendingUploadSuccess) {
+      onUploadSuccess?.(
+        pendingUploadSuccess.tab || ADD_CONTENT_TABS.GENERAL,
+        pendingUploadSuccess.file,
+        pendingUploadSuccess.preview,
+        pendingUploadSuccess.createdContentId,
+        {
+          title: pendingUploadSuccess.title,
+          description: pendingUploadSuccess.description,
+        },
+      );
+    }
+
     reset();
     setWebContentLink("");
     setTitle("");
     setDescription("");
     setIsSuccess(false);
     setCreateError(null);
+    setPendingUploadSuccess(null);
     setShowDetails(false);
     callback();
   };
+
+  useSuccessAutoClose({
+    isSuccess,
+    onClose: () => handleExit(onClose),
+  });
 
   const handleChange =
     (setter: (v: string) => void) => (value: string | string[]) => {
       const text = Array.isArray(value) ? value.join("") : value;
       setter(text);
     };
+
+  const hasUnsavedChanges =
+    !isSuccess &&
+    Boolean(
+      selectedFile ||
+      uploadedFile ||
+      webContentLink.trim() ||
+      title.trim() !== initialTitle.trim() ||
+      description.trim() !== initialDescription.trim(),
+    );
 
   const handleNextClick = () => {
     if (!canProceed) return;
@@ -207,13 +257,33 @@ export default function ContentUploadModal({
     setCreateError(null);
 
     try {
-      await createContentMutation.mutateAsync(payload);
+      const res = await createContentMutation.mutateAsync(payload);
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: [API.collection.getAll] }),
         queryClient.invalidateQueries({
           queryKey: [API.content.collection(collectionId)],
         }),
       ]);
+      setIsSuccess(true);
+      const createdId =
+        (res as { data?: { id?: string } })?.data?.id ??
+        (res as { id?: string })?.id;
+      const uploadPreview =
+        contentType === FORMAT_TYPE.VIDEO && fileKey
+          ? (
+              await axiosClient.get<MediaUrlResponse>(API.media.videoStream, {
+                params: { key: fileKey },
+              })
+            ).data.url
+          : (uploadedFile?.url ?? previewUrl);
+      setPendingUploadSuccess({
+        tab: ADD_CONTENT_TABS.GENERAL,
+        file: selectedFile,
+        preview: uploadPreview ?? null,
+        createdContentId: createdId,
+        title: trimmedTitle,
+        description: trimmedDescription,
+      });
     } catch (error) {
       const message =
         error instanceof Error
@@ -222,9 +292,6 @@ export default function ContentUploadModal({
       setCreateError(message);
       return;
     }
-
-    setIsSuccess(true);
-    onUploadSuccess?.(ADD_CONTENT_TABS.GENERAL, selectedFile, previewUrl);
   };
 
   const handleResetDetails = () => {
@@ -239,16 +306,33 @@ export default function ContentUploadModal({
     return () => handleExit(onBack);
   };
 
+  const closeDiscardModal = () => {
+    pendingExitActionRef.current = null;
+    setShowDiscardModal(false);
+  };
+
   const handleBackClick = () => {
     const action = getBackAction();
     action();
+  };
+
+  const handleCloseRequest = () => {
+    const exitAction = () => handleExit(onClose);
+
+    if (hasUnsavedChanges) {
+      pendingExitActionRef.current = exitAction;
+      setShowDiscardModal(true);
+      return;
+    }
+
+    exitAction();
   };
 
   const isWebContent = contentType === FORMAT_TYPE.WEB;
   return (
     <GenericModal
       visible={visible}
-      onClose={() => handleExit(onClose)}
+      onClose={handleCloseRequest}
       width="670px"
       height="450px"
       padding="20px"
@@ -285,9 +369,11 @@ export default function ContentUploadModal({
               successMessage={
                 isEditing
                   ? t(CONTENT_TRANSLATION_KEYS.editSuccess)
-                  : `${t("contents.contentUploadModal.uploading")} ${
-                      contentType ?? uploadType
-                    }`
+                  : `${t("contents.contentUploadModal.uploaded")} ${t(
+                      `contents.contentTypeModal.options.${
+                        contentType ?? uploadType
+                      }`,
+                    ).toLowerCase()}`
               }
               uploadType={contentType ?? uploadType}
               isSuccess={isSuccess}
@@ -344,6 +430,23 @@ export default function ContentUploadModal({
           )}
         </UploadBody>
       </UploadModalContent>
+      <ConfirmationModal
+        isOpen={showDiscardModal}
+        onClose={closeDiscardModal}
+        title={t("settings.notifications.discardModal.title")}
+        body={t("settings.notifications.discardModal.message")}
+        cancelLabel={t("settings.notifications.discardModal.goBack")}
+        confirmLabel={t("settings.notifications.discardModal.discard")}
+        onConfirm={() => {
+          pendingExitActionRef.current?.();
+          closeDiscardModal();
+        }}
+        size="sm"
+        spacing="md"
+        fullWidthButtons
+        buttonRow
+        showCloseButton={false}
+      />
     </GenericModal>
   );
 }

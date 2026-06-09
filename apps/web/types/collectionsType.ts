@@ -1,9 +1,12 @@
 import { COLLECTION_TABLE_TYPE } from "@/utils/collection";
-import {
-  COUPON_DISCOUNT_FIXED_AMOUNT,
-  CouponDiscountType,
-} from "@/utils/common";
+import { COUPON_DISCOUNT_FIXED_AMOUNT } from "@/utils/common";
 import type { ContentType } from "@/utils/content";
+import type {
+  CollectionAccessType,
+  CollectionVisibility,
+  CollectionContentVisibilityType,
+} from "@/utils/Constants";
+import { CreateCouponPayload } from "./couponType";
 
 export type CollectionRow = {
   id: string;
@@ -11,6 +14,15 @@ export type CollectionRow = {
   contentsCount: number;
   createdAt: string;
   actions: string;
+  accessType?: CollectionAccessType;
+  description?: string;
+  coverImageUrl?: string;
+  visibility?: CollectionVisibility;
+  isPublished?: boolean;
+  buyPrice?: number | null;
+  rentPrice?: number | null;
+  rentDuration?: string | null;
+  hasPassword?: boolean;
 };
 
 export type CollectionContentType = ContentType;
@@ -19,16 +31,19 @@ export type CollectionContentRow = {
   id: string;
   name: string;
   description?: string;
-  visibility: "Hidden" | "Public" | "Draft" | "Private";
+  visibility: CollectionContentVisibilityType;
   createdAt: string;
   contentType: CollectionContentType;
   actions: string;
+  title?: string;
+  videoUrl?: string;
 };
 
 export type CollectionTableProps =
   | {
       type: typeof COLLECTION_TABLE_TYPE.COLLECTIONS;
       data: CollectionRow[];
+      searchValue?: string;
       onRowClick?: (row: CollectionRow) => void;
       onEdit?: (id: string) => void;
       onDelete?: (id: string) => void;
@@ -40,6 +55,7 @@ export type CollectionTableProps =
   | {
       type: typeof COLLECTION_TABLE_TYPE.CONTENTS;
       data: CollectionContentRow[];
+      searchValue?: string;
       onRowClick?: (row: CollectionContentRow) => void;
       onEdit?: (id: string) => void;
       onDelete?: (id: string) => void;
@@ -55,20 +71,11 @@ export function isCollectionContentRow(
   return "contentType" in row;
 }
 
-export type CouponFormState = {
-  title: string;
-  discountType: CouponDiscountType;
-  discountValue: string;
-  codes: string;
-  collection: string;
-  content: string;
-};
-
-export const INITIAL_COUPON_FORM: CouponFormState = {
+export const INITIAL_COUPON_FORM: CreateCouponPayload = {
   title: "",
   discountType: COUPON_DISCOUNT_FIXED_AMOUNT,
   discountValue: "",
-  codes: "",
-  collection: "",
-  content: "",
+  codes: [],
+  collectionIds: [],
+  contentIds: [],
 };

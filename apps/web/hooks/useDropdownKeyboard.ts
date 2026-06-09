@@ -7,6 +7,7 @@ type UseDropdownKeyboardOptions = {
   optionsLength: number;
   onSelect: (index: number) => void;
   triggerRef: React.RefObject<HTMLElement | null>;
+  keepOpenOnSelect?: boolean;
 };
 
 export function useDropdownKeyboard({
@@ -15,6 +16,7 @@ export function useDropdownKeyboard({
   optionsLength,
   onSelect,
   triggerRef,
+  keepOpenOnSelect = false,
 }: UseDropdownKeyboardOptions) {
   const [activeIndex, setActiveIndex] = useState(-1);
   const optionRefs = useRef<(HTMLElement | null)[]>([]);
@@ -90,9 +92,11 @@ export function useDropdownKeyboard({
         case KEYBOARD_KEYS.SPACE:
           e.preventDefault();
           onSelect(index);
-          setIsOpen(false);
-          setActiveIndex(-1);
-          triggerRef.current?.focus();
+          if (!keepOpenOnSelect) {
+            setIsOpen(false);
+            setActiveIndex(-1);
+            triggerRef.current?.focus();
+          }
           break;
         case KEYBOARD_KEYS.ESCAPE:
           setIsOpen(false);
@@ -105,7 +109,7 @@ export function useDropdownKeyboard({
           break;
       }
     },
-    [onSelect, setIsOpen, optionsLength, triggerRef],
+    [onSelect, setIsOpen, optionsLength, triggerRef, keepOpenOnSelect],
   );
 
   return {

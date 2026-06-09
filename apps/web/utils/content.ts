@@ -169,6 +169,7 @@ export const FILE_TYPE_CHECKERS: Record<FormatType, (file: File) => boolean> = {
 export const TRAILER_VISIBILITY = {
   PUBLIC: "public",
   HIDDEN: "hidden",
+  DRAFT: "draft",
 } as const;
 
 export type TrailerVisibility =
@@ -202,3 +203,14 @@ export const getCategoryOptions = (t: TFunction) => [
     label: t("contents.metadata.category.design"),
   },
 ];
+
+export const getFileNameWithoutExtension = (filename: string): string => {
+  return filename.replace(/\.[^/.]+$/, "");
+};
+
+export const COUPON_MODE = {
+  PREVIEW: "preview",
+  DETAILS: "details",
+} as const;
+
+export type CouponMode = (typeof COUPON_MODE)[keyof typeof COUPON_MODE];

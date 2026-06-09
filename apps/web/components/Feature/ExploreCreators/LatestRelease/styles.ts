@@ -70,6 +70,7 @@ export const FiltersColumn = styled.aside`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  position: sticky;
 `;
 
 export const CardsGrid = styled.div`
@@ -84,4 +85,16 @@ export const CardsGrid = styled.div`
   ${media.tablet} {
     grid-template-columns: 1fr;
   }
+`;
+
+export const ResultsState = styled.div`
+  grid-column: 1 / -1;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border-radius: ${({ theme }) => theme.radius.md};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
 `;

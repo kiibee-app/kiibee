@@ -276,19 +276,31 @@ export const PreviewWrapper = styled.div`
   align-items: center;
 `;
 
-export const PreviewImage = styled.img<{ $type: ImageType }>`
+export const PreviewImage = styled.img<{
+  $type: ImageType;
+  $aspectRatio?: string;
+  $previewMaxWidth?: string;
+  $previewHeight?: string;
+  $previewMinHeight?: string;
+}>`
   object-fit: cover;
   border-radius: 8px;
   width: 100%;
 
-  ${({ $type }) => {
+  ${({
+    $type,
+    $aspectRatio,
+    $previewMaxWidth,
+    $previewHeight,
+    $previewMinHeight,
+  }) => {
     const config = previewConfig[$type];
 
     return `
-      max-width: ${config.maxWidth};
-      aspect-ratio: ${config.aspectRatio ?? "auto"};
-      height: ${config.height ?? "auto"};
-      min-height: ${config.minHeight ?? "unset"};
+      max-width: ${$previewMaxWidth ?? config.maxWidth};
+      aspect-ratio: ${$aspectRatio ?? config.aspectRatio ?? "auto"};
+      height: ${$previewHeight ?? config.height ?? "auto"};
+      min-height: ${$previewMinHeight ?? config.minHeight ?? "unset"};
     `;
   }}
 

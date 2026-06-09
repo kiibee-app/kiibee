@@ -48,6 +48,10 @@ export const mediaFiles = pgTable(
     rentDurationHours: integer('rent_duration_hours'),
     currency: varchar('currency', { length: 10 }).default('DKK'),
     physicalProductLink: text('physical_product_link'),
+    openInNewWindow: boolean('open_in_new_window').notNull().default(false),
+    openDirectFromList: boolean('open_direct_from_list')
+      .notNull()
+      .default(false),
 
     passwordHash: text('password_hash'),
     isDownloadable: boolean('is_downloadable').notNull().default(false),
@@ -55,6 +59,8 @@ export const mediaFiles = pgTable(
     sortOrder: integer('sort_order').notNull().default(0),
     isPublished: boolean('is_published').notNull().default(false),
     publishedAt: timestamp('published_at', { withTimezone: true }),
+
+    rating: numeric('rating', { precision: 3, scale: 2 }).default('0'),
 
     ...softDeleteFields,
     ...baseTimestamps,

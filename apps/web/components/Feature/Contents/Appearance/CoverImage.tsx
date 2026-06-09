@@ -30,12 +30,27 @@ import {
 import { useIsMobile } from "@/utils/useIsMobile";
 import { CoverImageSectionProps, UploadConfig } from "@/types/metadataType";
 
+import { useContentForm } from "../ContentFormContext";
+import { FORM_FIELDS } from "@/utils/appearance";
+import { useAppearanceForm } from "./AppearanceFormContext";
+
+const imageFieldMap = {
+  [IMAGE_TYPE.MEDIA_CARD]: "mediaCardThumbnail",
+  [IMAGE_TYPE.PORTRAIT]: "portraitThumbnail",
+} as const;
+const getImageField = (type: ImageType) =>
+  imageFieldMap[type as keyof typeof imageFieldMap];
+
 export default function CoverImageSection({
   title,
   subtitle = false,
   uploadConfigs = defaultUploadConfigs,
+  useFormContext = false,
 }: CoverImageSectionProps) {
   const { t } = useTranslation();
+  const { formState, updateField } = useContentForm();
+  const { values: appearanceValues, updateField: updateAppearanceField } =
+    useAppearanceForm();
   const [open, setOpen] = React.useState(false);
   const isMobile = useIsMobile();
   const [selectedConfig, setSelectedConfig] =
@@ -54,17 +69,49 @@ export default function CoverImageSection({
 
   const handleImageApply = (cropped: string) => {
     if (!selectedConfig) return;
-    setImages((prev) => ({
-      ...prev,
-      [selectedConfig.type]: cropped,
-    }));
+    const field = getImageField(selectedConfig.type);
+    if (useFormContext) {
+      updateField(field, cropped);
+    } else if (selectedConfig.type === IMAGE_TYPE.DESKTOP) {
+      updateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL, cropped);
+    } else if (selectedConfig.type === IMAGE_TYPE.MOBILE) {
+      updateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL, cropped);
+    } else {
+      setImages((prev) => ({
+        ...prev,
+        [selectedConfig.type]: cropped,
+      }));
+    }
     setOpen(false);
   };
 
   const getCurrentImage = () => {
     if (!selectedConfig) return null;
+    if (useFormContext) {
+      return formState[getImageField(selectedConfig.type)];
+    }
+    if (selectedConfig.type === IMAGE_TYPE.DESKTOP) {
+      return appearanceValues.desktopCoverImageUrl;
+    }
+    if (selectedConfig.type === IMAGE_TYPE.MOBILE) {
+      return appearanceValues.mobileCoverImageUrl;
+    }
     return images[selectedConfig.type];
   };
+
+  const imagesToShow = useFormContext
+    ? {
+        [IMAGE_TYPE.DESKTOP]: null,
+        [IMAGE_TYPE.MOBILE]: null,
+        [IMAGE_TYPE.MEDIA_CARD]: formState.mediaCardThumbnail,
+        [IMAGE_TYPE.PORTRAIT]: formState.portraitThumbnail,
+      }
+    : {
+        [IMAGE_TYPE.DESKTOP]: appearanceValues.desktopCoverImageUrl,
+        [IMAGE_TYPE.MOBILE]: appearanceValues.mobileCoverImageUrl,
+        [IMAGE_TYPE.MEDIA_CARD]: images[IMAGE_TYPE.MEDIA_CARD],
+        [IMAGE_TYPE.PORTRAIT]: images[IMAGE_TYPE.PORTRAIT],
+      };
 
   return (
     <AppearancePanel>
@@ -95,13 +142,17 @@ export default function CoverImageSection({
                 </UploadButton>
 
                 <PreviewWrapper>
-                  {images[item.type] && (
+                  {imagesToShow[item.type] && (
                     <PreviewImage
-                      src={images[item.type]!}
+                      src={imagesToShow[item.type]!}
                       alt={
                         item.label ?? (item.labelKey ? t(item.labelKey) : "")
                       }
                       $type={item.type}
+                      $aspectRatio={item.previewAspectRatio}
+                      $previewMaxWidth={item.previewMaxWidth}
+                      $previewHeight={item.previewHeight}
+                      $previewMinHeight={item.previewMinHeight}
                     />
                   )}
                 </PreviewWrapper>

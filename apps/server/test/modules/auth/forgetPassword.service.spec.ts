@@ -7,13 +7,14 @@ jest.mock('src/database/db', () => ({
 
 jest.mock('src/logger/logger');
 jest.mock('src/utils/backgroundTask');
-jest.mock('src/lib/sendTemplateEmail');
+jest.mock('src/lib/sendTemplateEmail', () => ({
+  sendTemplateEmail: jest.fn(),
+}));
 jest.mock('crypto', () => ({
   randomBytes: jest.fn(),
   randomUUID: jest.fn(),
 }));
 
-import { logger } from 'src/logger/logger';
 import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { Time } from 'src/utils/constant';
@@ -132,7 +133,7 @@ describe('forgetPasswordService', () => {
     expect(result).toEqual({
       success: true,
       message: 'Password reset link sent if user exists',
-      statusCode: 200,
+      statusCode: 201,
       data: null,
     });
   });
@@ -162,7 +163,7 @@ describe('forgetPasswordService', () => {
       variables: {
         name: 'John',
         resetLink:
-          'https://app.example.com/auth/forget-password?token=mocked-token',
+          'https://app.example.com/auth/reset-password?token=mocked-token',
       },
     });
   });
@@ -232,7 +233,7 @@ describe('forgetPasswordService', () => {
     expect(result).toEqual({
       success: true,
       message: 'Password reset link sent if user exists',
-      statusCode: 200,
+      statusCode: 201,
       data: null,
     });
   });

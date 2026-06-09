@@ -51,12 +51,12 @@ export const IconWrapper = styled.div<{ $margin?: string }>`
 
 export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  margin-bottom: 8px;
+  margin: 0 0 8px;
 `;
 
-export const Message = styled.div`
+export const Message = styled.div<{ $marginBottom?: string }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  margin-bottom: 24px;
+  margin-bottom: ${({ $marginBottom }) => $marginBottom || "24px"};
 `;
 
 export const ButtonGroup = styled.div<{

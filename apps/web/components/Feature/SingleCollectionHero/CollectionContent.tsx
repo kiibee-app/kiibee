@@ -3,7 +3,15 @@
 import { useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import TutorialsShowcase from "@/components/Feature/TutorialVideos/TutorialsShowcase";
-import { Header, Section, ShowcaseWrapper, TitleGroup } from "./styles";
+import {
+  EmbeddedHeader,
+  EmbeddedSection,
+  EmbeddedShowcaseWrapper,
+  Header,
+  Section,
+  ShowcaseWrapper,
+  TitleGroup,
+} from "./styles";
 import type { TutorialVideo } from "@/utils/types";
 import SearchBar from "@/components/UI/SearchBar";
 import COLORS from "@repo/ui/colors";
@@ -12,9 +20,18 @@ import { useTranslation } from "react-i18next";
 type Props = {
   videos: TutorialVideo[] | undefined;
   maxWidth?: string;
+  embedded?: boolean;
+  selectedVideoId?: string | null;
+  onSelectVideo?: (videoId: string) => void;
 };
 
-export default function CollectionContent({ videos, maxWidth }: Props) {
+export default function CollectionContent({
+  videos,
+  maxWidth,
+  embedded = false,
+  selectedVideoId = null,
+  onSelectVideo,
+}: Props) {
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
 
@@ -24,9 +41,13 @@ export default function CollectionContent({ videos, maxWidth }: Props) {
     video.title.toLowerCase().includes(search.toLowerCase()),
   );
 
+  const SectionEl = embedded ? EmbeddedSection : Section;
+  const HeaderEl = embedded ? EmbeddedHeader : Header;
+  const ShowcaseEl = embedded ? EmbeddedShowcaseWrapper : ShowcaseWrapper;
+
   return (
-    <Section>
-      <Header>
+    <SectionEl>
+      <HeaderEl>
         <TitleGroup>
           <MonoText $use="Body_Medium">
             {t("singleCollection.inCollection")}
@@ -40,12 +61,17 @@ export default function CollectionContent({ videos, maxWidth }: Props) {
           placeholder={t("creators.search")}
           value={search}
           onChange={setSearch}
-          width="216px"
+          width="min(216px, 100%)"
         />
-      </Header>
-      <ShowcaseWrapper>
-        <TutorialsShowcase videos={filteredVideos} maxWidth={maxWidth} />
-      </ShowcaseWrapper>
-    </Section>
+      </HeaderEl>
+      <ShowcaseEl>
+        <TutorialsShowcase
+          videos={filteredVideos}
+          maxWidth={maxWidth}
+          selectedVideoId={selectedVideoId}
+          onSelectVideo={onSelectVideo}
+        />
+      </ShowcaseEl>
+    </SectionEl>
   );
 }

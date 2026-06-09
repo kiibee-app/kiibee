@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 export const HeroBlock = styled.section`
@@ -24,18 +25,22 @@ export const SectionHeader = styled.div`
   flex-wrap: wrap;
   margin-bottom: 1rem;
 `;
-export const SectionLabel = styled.div`
+export const SectionLabel = styled.button.attrs({ type: "button" })`
   display: flex;
   align-items: center;
   gap: 0.25rem;
   font-weight: 600;
   font-size: 1.05rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
 `;
 export const SectionTag = styled.span`
   padding: 0.35rem 0;
 `;
-export const SectionLink = styled.a`
+export const SectionLink = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,7 +48,18 @@ export const SectionLink = styled.a`
   width: 1.766rem;
   padding: 0.432rem 0.353rem;
   border-radius: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 `;
+export const TutorialSection = styled.section`
+  scroll-margin-top: calc(
+    var(--navbar-height, 73px) + var(--navbar-top-offset, 0px) + 1rem
+  );
+`;
+
 export const Content = styled.main`
   flex: 1;
   width: 100%;

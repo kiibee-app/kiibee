@@ -3,16 +3,15 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
-import SortDropdown, {
-  type DropdownOption,
-} from "@/components/UI/SortDropdown";
+import SortDropdown from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
-import { INPUT_VARIANTS, SORT_DROPDOWN_VARIANT } from "@/utils/Constants";
 import {
-  PAYMENT_ADMISSION_VALUE,
-  PAYMENT_DEFAULT_DOWNLOAD_LIMIT,
+  INPUT_VARIANTS,
+  maxDescriptionCharacters,
+  SORT_DROPDOWN_VARIANT,
+} from "@/utils/Constants";
+import {
   PAYMENT_DOWNLOAD_LIMIT_VALUES,
-  PAYMENT_UNLIMITED_DOWNLOAD_LIMIT,
   type PaymentDownloadLimitValue,
 } from "@/utils/common";
 import {
@@ -24,120 +23,185 @@ import {
   PaymentForm,
   SectionText,
   SectionTitle,
+  HelperFormRow,
+  HelperText,
 } from "./styles";
-
-type AdmissionValue = typeof PAYMENT_ADMISSION_VALUE;
+import { INPUT_TYPE } from "@/utils/ui";
+import TrailerList from "../General/TrailerList";
+import {
+  ADMISSION_TYPE,
+  AdmissionValue,
+  getAdmissionOptions,
+  getDownloadLimitOptions,
+  getPaymentContentTexts,
+  getPhysicalProductConfig,
+  PAYMENTS_FORM_FIELDS,
+  toText,
+} from "@/utils/paymentRequirements";
+import { useContentForm } from "../ContentFormContext";
 
 export default function Payment() {
   const { t } = useTranslation();
-  const [admissionType, setAdmissionType] = useState<AdmissionValue>(
-    PAYMENT_ADMISSION_VALUE,
-  );
-  const [rentalAmount, setRentalAmount] = useState("");
-  const [purchaseAmount, setPurchaseAmount] = useState("");
-  const [downloadLimit, setDownloadLimit] = useState<PaymentDownloadLimitValue>(
-    PAYMENT_DEFAULT_DOWNLOAD_LIMIT,
-  );
-  const admissionOptions: DropdownOption<AdmissionValue>[] = useMemo(
-    () => [
-      {
-        label: t("contents.payment.admission.options.payment"),
-        value: PAYMENT_ADMISSION_VALUE,
-      },
-    ],
+  const { formState, updateField } = useContentForm();
+  const [password, setPassword] = useState("");
+  const admissionOptions = useMemo(() => getAdmissionOptions(t), [t]);
+  const downloadLimitOptions = useMemo(
+    () => getDownloadLimitOptions(t, PAYMENT_DOWNLOAD_LIMIT_VALUES),
     [t],
   );
-  const downloadLimitOptions: DropdownOption<PaymentDownloadLimitValue>[] =
-    useMemo(
-      () =>
-        PAYMENT_DOWNLOAD_LIMIT_VALUES.map((value) => ({
-          value,
-          label:
-            value === PAYMENT_UNLIMITED_DOWNLOAD_LIMIT
-              ? t("contents.payment.downloadLimit.options.unlimited")
-              : value,
-        })),
-      [t],
-    );
 
-  const selectedLimit = downloadLimitOptions.find(
-    (opt) => opt.value === downloadLimit,
+  const physicalProductConfig = useMemo(() => getPhysicalProductConfig(t), [t]);
+
+  const isPayment = formState.admissionRequirement === ADMISSION_TYPE.PAYMENT;
+
+  const isSetPassword =
+    formState.admissionRequirement === ADMISSION_TYPE.SET_PASSWORD;
+
+  const paymentTexts = useMemo(
+    () => getPaymentContentTexts(t, formState.contentTypeId),
+    [t, formState.contentTypeId],
+  );
+
+  const showRentalSection = Boolean(
+    paymentTexts.rentalTitle && paymentTexts.rentalDescription,
+  );
+
+  const showPurchaseSection = Boolean(
+    paymentTexts.purchaseTitle && paymentTexts.purchaseDescription,
   );
 
   return (
-    <PaymentCard>
-      <PaymentForm>
-        <Block>
-          <SectionTitle>{t("contents.payment.admission.title")}</SectionTitle>
-          <SectionText>
-            {t("contents.payment.admission.description")}
-          </SectionText>
-          <DropdownWrap>
-            <SortDropdown
-              options={admissionOptions}
-              value={admissionType}
-              onChange={(value) => setAdmissionType(value as AdmissionValue)}
-              variant={SORT_DROPDOWN_VARIANT.SURFACE}
-              maxWidth="100%"
-            />
-          </DropdownWrap>
-        </Block>
+    <>
+      <PaymentCard>
+        <PaymentForm>
+          <Block>
+            <SectionTitle>{t("contents.payment.admission.title")}</SectionTitle>
+            <SectionText>
+              {t("contents.payment.admission.description")}
+            </SectionText>
 
-        <Block>
-          <SectionTitle>{t("contents.payment.rental.title")}</SectionTitle>
-          <SectionText>{t("contents.payment.rental.description")}</SectionText>
-          <ControlWrap>
-            <InputField
-              value={rentalAmount}
-              onChange={(value) => setRentalAmount(value as string)}
-              placeholder={t("contents.payment.common.enterAmount")}
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-              inputMode="decimal"
-            />
-          </ControlWrap>
-          <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
-        </Block>
+            <DropdownWrap>
+              <SortDropdown
+                options={admissionOptions}
+                value={formState[PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT]}
+                onChange={(value) =>
+                  updateField(
+                    PAYMENTS_FORM_FIELDS.ADMISSION_REQUIREMENT,
+                    value as AdmissionValue,
+                  )
+                }
+                variant={SORT_DROPDOWN_VARIANT.SURFACE}
+                maxWidth="100%"
+              />
+            </DropdownWrap>
+          </Block>
 
-        <Block>
-          <SectionTitle>{t("contents.payment.purchase.title")}</SectionTitle>
-          <SectionText>
-            {t("contents.payment.purchase.description")}
-          </SectionText>
-          <ControlWrap>
-            <InputField
-              value={purchaseAmount}
-              onChange={(value) => setPurchaseAmount(value as string)}
-              placeholder={t("contents.payment.common.enterAmount")}
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-              inputMode="decimal"
-            />
-          </ControlWrap>
-          <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
-        </Block>
+          {isPayment && (
+            <>
+              {showRentalSection && (
+                <Block>
+                  <SectionTitle>{paymentTexts.rentalTitle}</SectionTitle>
 
-        <Block>
-          <SectionTitle>
-            {t("contents.payment.downloadLimit.title")}
-          </SectionTitle>
-          <SectionText>
-            {t("contents.payment.downloadLimit.description")}
-          </SectionText>
-          <DropdownWrap>
-            <SortDropdown
-              options={downloadLimitOptions}
-              value={downloadLimit}
-              onChange={setDownloadLimit}
-              variant={SORT_DROPDOWN_VARIANT.SURFACE}
-              maxWidth="100%"
-              renderSelectedLabel={() => (
-                <MonoText $use="Body_Regular">
-                  {selectedLimit?.label ?? PAYMENT_DEFAULT_DOWNLOAD_LIMIT}
-                </MonoText>
+                  <SectionText>{paymentTexts.rentalDescription}</SectionText>
+
+                  <ControlWrap>
+                    <InputField
+                      value={formState.rentalAmount || ""}
+                      onChange={(v) =>
+                        updateField(
+                          PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT,
+                          toText(v),
+                        )
+                      }
+                      placeholder={t("contents.payment.common.enterAmount")}
+                      variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                      inputMode="decimal"
+                    />
+                  </ControlWrap>
+
+                  <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
+                </Block>
               )}
-            />
-          </DropdownWrap>
-        </Block>
-      </PaymentForm>
-    </PaymentCard>
+
+              {showPurchaseSection && (
+                <Block>
+                  <SectionTitle>{paymentTexts.purchaseTitle}</SectionTitle>
+                  <SectionText>{paymentTexts.purchaseDescription}</SectionText>
+                  <ControlWrap>
+                    <InputField
+                      value={formState.purchaseAmount || ""}
+                      onChange={(v) =>
+                        updateField(
+                          PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT,
+                          toText(v),
+                        )
+                      }
+                      placeholder={t("contents.payment.common.enterAmount")}
+                      variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                      inputMode="decimal"
+                    />
+                  </ControlWrap>
+
+                  <FeeNote>{t("contents.payment.common.feeNote")}</FeeNote>
+                </Block>
+              )}
+
+              <Block>
+                <SectionTitle>
+                  {t("contents.payment.downloadLimit.title")}
+                </SectionTitle>
+                <SectionText>
+                  {t("contents.payment.downloadLimit.description")}
+                </SectionText>
+
+                <DropdownWrap>
+                  <SortDropdown
+                    options={downloadLimitOptions}
+                    value={formState.maxDownloadLimit}
+                    onChange={(value) =>
+                      updateField(
+                        PAYMENTS_FORM_FIELDS.MAX_DOWNLOAD_LIMIT,
+                        String(value) as PaymentDownloadLimitValue,
+                      )
+                    }
+                    variant={SORT_DROPDOWN_VARIANT.SURFACE}
+                    maxWidth="100%"
+                    renderSelectedLabel={(value, option) => (
+                      <MonoText $use="Body_Regular">
+                        {option?.label ?? value}
+                      </MonoText>
+                    )}
+                  />
+                </DropdownWrap>
+              </Block>
+            </>
+          )}
+
+          {isSetPassword && (
+            <ControlWrap>
+              <InputField
+                value={password}
+                onChange={(v) => {
+                  const text = toText(v).slice(0, maxDescriptionCharacters);
+                  setPassword(text);
+                }}
+                placeholder={t("contents.payment.password.placeholder")}
+                variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                type={INPUT_TYPE.TEXTAREA}
+              />
+
+              <HelperFormRow>
+                <HelperText>{t("contents.payment.password.helper")}</HelperText>
+                <HelperText>
+                  {password.length}/{maxDescriptionCharacters}
+                </HelperText>
+              </HelperFormRow>
+            </ControlWrap>
+          )}
+        </PaymentForm>
+      </PaymentCard>
+
+      <TrailerList config={physicalProductConfig} />
+    </>
   );
 }

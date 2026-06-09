@@ -54,3 +54,69 @@ export const SIGNED_URL_EXPIRY = {
   DAY: 86400,
   MAX: 604800,
 } as const;
+
+export const CONTENT_VISIBILITY = {
+  DRAFT: 'draft',
+  PUBLIC: 'public',
+  PRIVATE: 'private',
+  HIDDEN: 'hidden',
+} as const;
+
+const MAX_AVATAR_DATA_URL_CHARS = 500_000;
+const MAX_AVATAR_HTTP_URL_CHARS = 2_048;
+const IMAGE_DATA_URL_RE =
+  /^data:image\/(?:png|jpe?g|webp);base64,[a-zA-Z0-9+/=\s\r\n]+$/;
+const HTTP_URL_RE = /^https?:\/\/.+/i;
+
+export const isValidAvatarUrl = (value: string): boolean => {
+  const isDataUrl =
+    IMAGE_DATA_URL_RE.test(value) && value.length <= MAX_AVATAR_DATA_URL_CHARS;
+  const isHttpUrl =
+    HTTP_URL_RE.test(value) && value.length <= MAX_AVATAR_HTTP_URL_CHARS;
+
+  return isDataUrl || isHttpUrl;
+};
+export const FIXED_LIMIT = 10;
+
+export const SORT_DIRECTIONS = {
+  ASC: 'asc',
+  DESC: 'desc',
+  NAME: 'name',
+  SUBSCRIBER_COUNT: 'subscriberCount',
+  NEWEST: 'newest',
+  TOP: 'top',
+  FEATURED: 'featured',
+  NEW: 'new',
+  POPULAR: 'popular',
+  FREE: 'free',
+  ALL: 'all',
+} as const;
+
+export const ACCRESS_TYPES = {
+  RENTED: 'rented',
+  PURCHASED: 'purchased',
+  EXPIRED: 'Expired',
+} as const;
+
+export const ORDER_STATUS = {
+  PENDING: 'pending',
+  COMPLETED: 'completed',
+  FAILED: 'failed',
+} as const;
+
+export const ORDER_TYPES = {
+  RENTAL: 'rental',
+  PURCHASE: 'purchase',
+} as const;
+
+export const PAYMENT_STATUS = {
+  PAYMENT_SUCCESS: 'SUCCESS',
+  PAYMENT_FAILED: 'FAILED',
+  PAYMENT_EXPIRED: 'EXPIRED',
+} as const;
+
+export const CONTENT_TYPES = {
+  VIDEO: 'Video',
+  AUDIO: 'Audio',
+  PDF: 'PDF',
+} as const;

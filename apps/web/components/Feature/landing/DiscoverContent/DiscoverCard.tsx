@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { memo } from "react";
-import { useRouter } from "next/navigation";
+import { memo, type MouseEvent } from "react";
 import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { EbookIcon, VideoIcon } from "@/assets/icons";
-import { MEDIA_TYPE } from "@/utils/Constants";
-import type { DiscoverContentItem } from "@/utils/discoverContent";
+import { MEDIA_TYPE, VARIANT } from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import {
@@ -21,42 +20,62 @@ import {
   CardDate,
   MediaTypeBox,
   ActionsContainer,
-  ActionButton,
-  FullWidthAction,
+  SingleActionButton,
   IconFrame,
+  discoverCardRevealStyle,
+  discoverCardImageStyle,
 } from "./styles";
-
-type Props = {
-  item: DiscoverContentItem;
-  lng?: string;
-};
-
-function DiscoverCard({ item }: Props) {
-  const router = useRouter();
+import ImageReveal from "@/components/UI/ImageReveal";
+import GenericButton from "@/components/UI/GenericButton";
+import { type DiscoverCardProps } from "@/utils/landingShared";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
+import { IMAGE_SIZES } from "@/utils/landingShared";
+import {
+  LANDING_IMAGE_DIMENSIONS,
+  LANDING_IMAGE_FLAGS,
+  LANDING_REVEAL_VARIANTS,
+} from "@/utils/landingUtils";
+function DiscoverCard({ item }: DiscoverCardProps) {
   const theme = useTheme();
   const { t } = useTranslation();
+  const { navigateToContent } = useProtectedContentNavigation();
   const targetHref = pathPublishedContent(item.contentKey);
+  const isFreeContent = item.isFree ?? false;
 
   const handleOpen = () => {
-    router.push(targetHref);
+    navigateToContent(targetHref, false);
+  };
+
+  const handleActionClick = (href: string, requiresAuth?: boolean) => {
+    navigateToContent(href, requiresAuth ?? !isFreeContent);
+  };
+
+  const stopCardNavigation = (event: MouseEvent) => {
+    event.stopPropagation();
   };
 
   return (
-    <Card aria-label={t(item.titleKey)} onClick={handleOpen}>
+    <Card aria-label={t(item.titleKey)} onClick={handleOpen} $clickable={true}>
       <ImageContainer>
         <CategoryBadge>
           <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
             {t(item.categoryKey)}
           </MonoText>
         </CategoryBadge>
-        <Image
-          src={item.image}
-          alt={t(item.titleKey)}
-          fill
-          sizes="(max-width: 767px) 100vw, (max-width: 1199px) 50vw, 33vw"
-          style={{ objectFit: "cover" }}
-          priority
-        />
+        <ImageReveal
+          variant={LANDING_REVEAL_VARIANTS.fadeScale}
+          duration={LANDING_REVEAL.revealDuration}
+          style={discoverCardRevealStyle}
+        >
+          <Image
+            src={item.image}
+            alt={t(item.titleKey)}
+            fill={LANDING_IMAGE_FLAGS.fill}
+            sizes={IMAGE_SIZES.discoverCard}
+            style={discoverCardImageStyle}
+            priority={LANDING_IMAGE_FLAGS.priority}
+          />
+        </ImageReveal>
       </ImageContainer>
 
       <TextSection>
@@ -78,8 +97,8 @@ function DiscoverCard({ item }: Props) {
           <IconFrame>
             {item.mediaType === MEDIA_TYPE.EPUB ? (
               <EbookIcon
-                width={24}
-                height={24}
+                width={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.width}
+                height={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.height}
                 color={theme.colors.neutral.BLACK}
               />
             ) : (
@@ -92,17 +111,36 @@ function DiscoverCard({ item }: Props) {
         </MediaTypeBox>
       </TextSection>
 
-      <ActionsContainer>
-        {item.actions.map((action) =>
-          action.fullWidth ? (
-            <FullWidthAction key={action.labelKey} type="button">
+      <ActionsContainer onClick={stopCardNavigation}>
+        {item.actions.length === 1 ? (
+          <SingleActionButton
+            key={item.actions[0].labelKey}
+            type="button"
+            onClick={() =>
+              handleActionClick(
+                item.actions[0].href ?? targetHref,
+                item.actions[0].requiresAuth,
+              )
+            }
+          >
+            {t(item.actions[0].labelKey)}
+          </SingleActionButton>
+        ) : (
+          item.actions.map((action) => (
+            <GenericButton
+              key={action.labelKey}
+              type="button"
+              variant={VARIANT.SOFT_OUTLINE}
+              onClick={() =>
+                handleActionClick(
+                  action.href ?? targetHref,
+                  action.requiresAuth,
+                )
+              }
+            >
               {t(action.labelKey)}
-            </FullWidthAction>
-          ) : (
-            <ActionButton key={action.labelKey} type="button">
-              {t(action.labelKey)}
-            </ActionButton>
-          ),
+            </GenericButton>
+          ))
         )}
       </ActionsContainer>
     </Card>
@@ -111,6 +149,6 @@ function DiscoverCard({ item }: Props) {
 
 export default memo(
   DiscoverCard,
-  (prev: Readonly<Props>, next: Readonly<Props>) =>
+  (prev: Readonly<DiscoverCardProps>, next: Readonly<DiscoverCardProps>) =>
     prev.item === next.item && prev.lng === next.lng,
 );

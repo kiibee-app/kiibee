@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { LeftIcon } from "@/assets/icons";
 import {
   Content,
@@ -9,34 +10,37 @@ import {
   SectionLabel,
   SectionLink,
   SectionTag,
+  TutorialSection,
 } from "./styles";
 import TutorialsShowcase from "../TutorialsShowcase";
 import { useTranslation } from "react-i18next";
-import { tutorialVideoSections, tutorialVideos } from "@/utils/data";
-import type { TutorialVideo } from "@/utils/types";
 import { MonoText } from "@/components/UI/Monotext";
 import { useRouter } from "next/navigation";
+import { tutorialCollections } from "@/utils/tutorialCollections";
+import { SCROLL_TO_START_OPTIONS } from "@/utils/Constants";
 
-type SectionWithTutorials = (typeof tutorialVideoSections)[number] & {
-  tutorials: TutorialVideo[];
-};
+function scrollToSectionHash() {
+  const id = window.location.hash.slice(1);
+  if (!id) return;
+  document.getElementById(id)?.scrollIntoView(SCROLL_TO_START_OPTIONS);
+}
 
 export default function TutorialContent() {
   const { t } = useTranslation();
   const router = useRouter();
-  const sections: SectionWithTutorials[] = tutorialVideoSections.map(
-    (section) => ({
-      ...section,
-      tutorials: section.videoIds
-        .map((videoId) =>
-          tutorialVideos.find((tutorial) => tutorial.id === videoId),
-        )
-        .filter((tutorial): tutorial is TutorialVideo => Boolean(tutorial)),
-    }),
-  );
-  const handleClick = (id: string) => {
+  const openCollection = (id: string) =>
     router.push(`/single-collection?id=${id}`);
-  };
+
+  useEffect(() => {
+    scrollToSectionHash();
+    const retry = window.setTimeout(scrollToSectionHash, 100);
+    window.addEventListener("hashchange", scrollToSectionHash);
+    return () => {
+      window.clearTimeout(retry);
+      window.removeEventListener("hashchange", scrollToSectionHash);
+    };
+  }, []);
+
   return (
     <Content>
       <HeroBlock>
@@ -47,16 +51,16 @@ export default function TutorialContent() {
           </MonoText>
         </HeroSubtitle>
       </HeroBlock>
-      {sections.map((section) => (
-        <section key={section.id}>
+      {tutorialCollections.map((section) => (
+        <TutorialSection key={section.id} id={section.id}>
           <SectionHeader>
-            <SectionLabel>
+            <SectionLabel onClick={() => openCollection(section.id)}>
               <SectionTag>
                 <MonoText $use="H4_Medium">{section.title}</MonoText>
               </SectionTag>
               <LeftIcon />
             </SectionLabel>
-            <SectionLink onClick={() => handleClick(section.id)}>
+            <SectionLink href={`/single-collection?id=${section.id}`}>
               <LeftIcon />
             </SectionLink>
           </SectionHeader>
@@ -64,7 +68,7 @@ export default function TutorialContent() {
             videos={section.tutorials}
             maxWidth={section.gridMaxWidth}
           />
-        </section>
+        </TutorialSection>
       ))}
     </Content>
   );
