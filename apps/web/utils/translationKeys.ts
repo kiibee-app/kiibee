@@ -11,6 +11,7 @@ export const NAV = {
   about: "nav.about",
   login: "nav.login",
   dashboard: "nav.dashboard",
+  accountProfile: "nav.accountProfile",
   logout: "nav.logout",
   profileMenu: "nav.profileMenu",
   startCreating: "nav.startCreating",

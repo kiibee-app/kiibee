@@ -27,6 +27,7 @@ import { useTranslation } from "react-i18next";
 import { PATHS } from "@/utils/path";
 import { ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
 import { CLICK } from "@/utils/common";
+import { NAV } from "@/utils/translationKeys";
 import {
   getLoginUserEmail,
   getLoginUserFirstLetter,
@@ -227,7 +228,7 @@ const CreatorHeaderRight = ({
             <NavAccountMenuIcon aria-hidden>
               <ProfileIcon width={18} height={18} />
             </NavAccountMenuIcon>
-            Profile
+            {t(NAV.accountProfile)}
           </NavAccountMenuItem>
         )}
       />
@@ -278,7 +279,7 @@ const ViewerHeaderRight = ({
           <NavAccountMenuIcon aria-hidden>
             <ProfileIcon width={18} height={18} />
           </NavAccountMenuIcon>
-          Profile
+          {t(NAV.accountProfile)}
         </NavAccountMenuButton>
       )}
     />
