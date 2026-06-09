@@ -38,12 +38,6 @@ export type PurchasedCollectionItem = {
   accessPeriodLabel?: string;
 };
 
-export const VIEWER_PURCHASED_PLACEHOLDERS = {
-  search: "Search purchased content",
-  emptyCollections: "No collections match your search.",
-  emptyMedia: "No items match your search.",
-} as const;
-
 export const MOCK_PURCHASED_COLLECTIONS: PurchasedCollectionItem[] = [
   {
     id: "c1",
