@@ -190,6 +190,13 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('all-creators')
+  async getAllExistingCreators() {
+    const result = await this.authService.getAllExistingCreators();
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
   @Post('approve-creator')
   async approveCreatorRequest(
     @Body() body: CreatorRequestActionDto,
