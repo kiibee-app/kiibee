@@ -67,17 +67,7 @@ export const getAllExistingCreatorsService = async () => {
       .where(and(eq(users.role, ROLE.CREATOR), eq(users.isDeleted, false)))
       .groupBy(
         users.id,
-        users.firstName,
-        users.lastName,
-        users.fullName,
-        users.email,
-        users.role,
-        users.status,
-        users.isEmailVerified,
-        users.isActive,
-        users.avatarUrl,
-        users.createdAt,
-        users.updatedAt,
+
         creatorInfo.companyName,
         creatorInfo.phone,
         creatorInfo.city,
