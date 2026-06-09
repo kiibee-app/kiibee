@@ -13,11 +13,8 @@ import {
   buildHeaderMap,
   REGISTRATION_TABLE_HEADER_KEYS,
 } from "@/utils/tableHeader";
-import {
-  SORT_DIRECTIONS,
-  SortDirectionWithNone,
-  LOADER_VARIANT,
-} from "@/utils/ui";
+import { useTableSort } from "@/hooks/useTableSort";
+import { LOADER_VARIANT } from "@/utils/ui";
 import { filterUsersByName } from "@/utils/filterUsersByName";
 import {
   useDeleteRegistration,
@@ -48,8 +45,6 @@ export default function RegistrationsTabContent({
   const { deleteRegistration } = useDeleteRegistration();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [nameSortDirection, setNameSortDirection] =
-    useState<SortDirectionWithNone>(SORT_DIRECTIONS.NONE);
   const deleteModalKeys = DASHBOARD_USERS.registrations.deleteModal;
   const headers = REGISTRATION_TABLE_HEADER_KEYS.map((headerKey) =>
     t(DASHBOARD_USERS.registrations.tableHeaders[headerKey]),
@@ -63,15 +58,20 @@ export default function RegistrationsTabContent({
     () => rows.find((item) => item.id === selectedId) ?? null,
     [rows, selectedId],
   );
-  const sortedRows = useMemo(() => {
-    const filtered = filterUsersByName(rows, searchValue);
-    return [...filtered].sort((a, b) => {
-      const compared = a.name.localeCompare(b.name, undefined, {
-        sensitivity: "base",
-      });
-      return nameSortDirection === SORT_DIRECTIONS.DESC ? -compared : compared;
-    });
-  }, [rows, searchValue, nameSortDirection]);
+
+  const filteredRows = useMemo(() => {
+    return filterUsersByName(rows, searchValue);
+  }, [rows, searchValue]);
+
+  const {
+    sortedData: sortedRows,
+    isHeaderSortable,
+    getHeaderSortDirection,
+    toggleSort,
+  } = useTableSort(filteredRows, {
+    sortableHeader: headers[0],
+    sortBy: (item) => item.name,
+  });
 
   const handleDeleteConfirm = async () => {
     if (!rowToDelete) return;
@@ -126,20 +126,9 @@ export default function RegistrationsTabContent({
           data={sortedRows}
           rowsPerPage={10}
           headerToKey={(header) => headerMap[header]}
-          onHeaderClick={(header) => {
-            if (header !== headers[0]) return;
-            setNameSortDirection((prev) => {
-              if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
-              if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
-              return SORT_DIRECTIONS.NONE;
-            });
-          }}
-          isHeaderSortable={(header) => header === headers[0]}
-          getHeaderSortDirection={(header) =>
-            header === headers[0] && nameSortDirection !== SORT_DIRECTIONS.NONE
-              ? nameSortDirection
-              : null
-          }
+          onHeaderClick={toggleSort}
+          isHeaderSortable={isHeaderSortable}
+          getHeaderSortDirection={getHeaderSortDirection}
           getRowKey={(row) => row.id}
           getMobileTitle={(row) => row.name}
           renderCell={({ header, row }) => {
