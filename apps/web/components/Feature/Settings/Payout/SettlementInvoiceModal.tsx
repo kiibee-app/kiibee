@@ -15,7 +15,7 @@ import {
   InvoicePaymentMethod,
 } from "./styles";
 
-type Props = {
+export type Props = {
   open: boolean;
   row: SettlementRow | null;
   onClose: () => void;
