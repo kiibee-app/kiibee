@@ -1,0 +1,39 @@
+import React from "react";
+import { SVG_XMLNS } from "@/utils/Constants";
+
+type IconProps = {
+  width?: number | string;
+  height?: number | string;
+  color?: string;
+};
+
+export const ProfileIcon: React.FC<IconProps> = ({
+  width = 18,
+  height = 18,
+  color = "currentColor",
+}) => {
+  return (
+    <svg
+      xmlns={SVG_XMLNS}
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20"
+        stroke={color}
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};

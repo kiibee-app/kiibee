@@ -418,7 +418,6 @@ export const NavAccountMenuDivider = styled.div`
 export const NavAccountTriggerWrap = styled.div<{ $open?: boolean }>`
   display: inline-flex;
   border-radius: 10px;
-  box-shadow: ${({ $open, theme }) =>
-    $open ? `0 0 0 2px ${theme.colors.primary.BLACK}` : "none"};
+  box-shadow: none;
   transition: box-shadow 0.15s ease;
 `;
