@@ -30,6 +30,10 @@ export const List = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  > [data-scroll-reveal] {
+    width: 100%;
+  }
 `;
 
 export const Item = styled.button`
