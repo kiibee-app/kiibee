@@ -18,7 +18,6 @@ export type CreatorProfile = {
   createdAt: number;
 };
 
-export const SORT_OPTION_AZ = "a-z";
 export const SORT_OPTION_SUBSCRIBERS = "subscribers";
 export const SORT_OPTION_NEWEST = "newest";
 
