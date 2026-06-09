@@ -62,4 +62,7 @@ export const API = {
     sales: "/creator-users/sales",
     deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
   },
+  export: {
+    request: "/export/request",
+  },
 } as const;

@@ -13,17 +13,26 @@ import COLORS from "@repo/ui/colors";
 import { EXPORT_TYPE_OPTIONS } from "@/utils/exportOptions";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import { useExportRequest } from "@/hooks/useExport";
 
 export default function ExportContent() {
   const { t } = useTranslation();
+  const { requestExport, isPending } = useExportRequest();
 
   const [exportType, setExportType] = useState<string>("users-email-signups");
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const handleRequest = () => {
-    setShowSuccessModal(true);
+  const handleRequest = async () => {
+    try {
+      await requestExport({
+        type: exportType,
+        startDate: startDate || undefined,
+        endDate: endDate || undefined,
+      });
+      setShowSuccessModal(true);
+    } catch {}
   };
 
   return (
@@ -37,7 +46,11 @@ export default function ExportContent() {
           </MonoText>
         </TextBlock>
 
-        <GenericButton variant={VARIANT.PRIMARY} onClick={handleRequest}>
+        <GenericButton
+          variant={VARIANT.PRIMARY}
+          onClick={handleRequest}
+          isLoading={isPending}
+        >
           {t(SETTINGS.export.buildCsv)}
         </GenericButton>
       </CardTop>
