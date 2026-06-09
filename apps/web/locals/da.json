@@ -1313,7 +1313,14 @@
       "balance": "Saldo",
       "purchase": "Køb",
       "rent": "Leje",
-      "settlementHistory": "Afregningshistorik"
+      "settlementHistory": "Afregningshistorik",
+      "tableHeaders": {
+        "amount": "Beløb",
+        "status": "Status",
+        "creditNo": "Kreditnr.",
+        "bank": "Bank",
+        "date": "Dato"
+      }
     },
     "export": {
       "title": "Eksporter dine data",
