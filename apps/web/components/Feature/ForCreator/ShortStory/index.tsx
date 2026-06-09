@@ -17,6 +17,9 @@ import {
 import { resolveImageUrl, MOBILE_BREAKPOINT } from "@/utils/Constants";
 import { useIsMobile } from "@/utils/useIsMobile";
 import { PATHS } from "@/utils/path";
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import ImageReveal from "@/components/UI/ImageReveal";
+import { LANDING_REVEAL, LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
 
 export default function ShortStory() {
   const { t } = useTranslation();
@@ -26,21 +29,35 @@ export default function ShortStory() {
     <Section>
       <ContentWrapper $isMobile={isMobile}>
         <ImageSection>
-          <StoryImage
-            src={resolveImageUrl(creatorsStoryImage)}
-            alt={t(CREATORS.shortStory.imageAlt)}
-          />
+          <ImageReveal
+            id="short-story-image-reveal"
+            variant={LANDING_REVEAL_VARIANTS.slideUp}
+            duration={LANDING_REVEAL.longRevealDuration}
+          >
+            <StoryImage
+              src={resolveImageUrl(creatorsStoryImage)}
+              alt={t(CREATORS.shortStory.imageAlt)}
+            />
+          </ImageReveal>
         </ImageSection>
 
         <TextSection>
-          <Title $isMobile={isMobile}>{t(CREATORS.shortStory.title)}</Title>
+          <ScrollReveal>
+            <Title $isMobile={isMobile}>{t(CREATORS.shortStory.title)}</Title>
+          </ScrollReveal>
 
-          <Paragraph>{t(CREATORS.shortStory.lead)}</Paragraph>
-          <Paragraph>{t(CREATORS.shortStory.body)}</Paragraph>
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
+            <Paragraph>{t(CREATORS.shortStory.lead)}</Paragraph>
+          </ScrollReveal>
+          <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>
+            <Paragraph>{t(CREATORS.shortStory.body)}</Paragraph>
+          </ScrollReveal>
 
-          <ReadMoreButton asAnchor href={PATHS.ABOUT}>
-            {t(CREATORS.shortStory.cta)}
-          </ReadMoreButton>
+          <ScrollReveal delay={LANDING_REVEAL.shortDelay * 3}>
+            <ReadMoreButton asAnchor href={PATHS.ABOUT}>
+              {t(CREATORS.shortStory.cta)}
+            </ReadMoreButton>
+          </ScrollReveal>
         </TextSection>
       </ContentWrapper>
     </Section>
