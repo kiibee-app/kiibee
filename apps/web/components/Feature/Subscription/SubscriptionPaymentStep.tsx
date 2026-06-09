@@ -15,7 +15,10 @@ import SortDropdown from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
 import { INPUT_TYPE } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
-import { subscriptionPlans } from "@/utils/subscriptionPlans";
+import {
+  isFreeSubscriptionPlan,
+  subscriptionPlans,
+} from "@/utils/subscriptionPlans";
 import {
   DEFAULT_PAYMENT_METHOD,
   PAYMENT_METHODS,
@@ -53,6 +56,10 @@ export default function SubscriptionPaymentStep() {
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(
     DEFAULT_PAYMENT_METHOD,
   );
+
+  const isFreePlan = selectedPlan
+    ? isFreeSubscriptionPlan(selectedPlan)
+    : false;
   const schema = useMemo(
     () =>
       createPaymentSchema({
@@ -108,11 +115,25 @@ export default function SubscriptionPaymentStep() {
     });
   };
 
-  const onPaymentSubmit = handleSubmit(async () => {
+  const onSubmit = async () => {
     if (isCreatorInviteFlow) {
       await completeCreatorInviteSignup();
     }
-  });
+  };
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (isFreePlan) {
+      onSubmit();
+      return;
+    }
+
+    handleSubmit(onSubmit)(e);
+  };
+
+  const isSubmitDisabled =
+    (!isFreePlan && !isValid) || (isCreatorInviteFlow && isInviteSubmitting);
 
   return (
     <PaymentCard>
@@ -121,7 +142,7 @@ export default function SubscriptionPaymentStep() {
       </PaymentTitle>
 
       <FormProvider {...methods}>
-        <Form onSubmit={onPaymentSubmit}>
+        <Form onSubmit={handleFormSubmit}>
           <PlanSelectWrap>
             <SortDropdown
               options={planOptions}
@@ -143,122 +164,132 @@ export default function SubscriptionPaymentStep() {
             />
           </PlanSelectWrap>
 
-          <PaymentMethods
-            role="group"
-            aria-label={t("creatorFinalSteps.fields.payment")}
-          >
-            <PaymentMethodButton
-              type="button"
-              $active={paymentMethod === PAYMENT_METHODS.CARD}
-              aria-pressed={paymentMethod === PAYMENT_METHODS.CARD}
-              aria-label={t("creatorFinalSteps.payment.card")}
-              onClick={() => setPaymentMethod(PAYMENT_METHODS.CARD)}
-            >
-              <PaymentCardLogoWrap>
-                <Image
-                  src={visaLogo}
-                  alt="Visa credit card"
-                  width={31}
-                  height={10}
+          {!isFreePlan && (
+            <>
+              <PaymentMethods
+                role="group"
+                aria-label={t("creatorFinalSteps.fields.payment")}
+              >
+                <PaymentMethodButton
+                  type="button"
+                  $active={paymentMethod === PAYMENT_METHODS.CARD}
+                  aria-pressed={paymentMethod === PAYMENT_METHODS.CARD}
+                  aria-label={t("creatorFinalSteps.payment.card")}
+                  onClick={() => setPaymentMethod(PAYMENT_METHODS.CARD)}
+                >
+                  <PaymentCardLogoWrap>
+                    <Image
+                      src={visaLogo}
+                      alt="Visa credit card"
+                      width={31}
+                      height={10}
+                    />
+                    <Image
+                      src={masterCardLogo}
+                      alt="Mastercard credit card"
+                      width={21}
+                      height={16}
+                    />
+                  </PaymentCardLogoWrap>
+                  <RadioDot $active={paymentMethod === PAYMENT_METHODS.CARD} />
+                </PaymentMethodButton>
+
+                <PaymentMethodButton
+                  type="button"
+                  $active={paymentMethod === PAYMENT_METHODS.MOBILEPAY}
+                  aria-pressed={paymentMethod === PAYMENT_METHODS.MOBILEPAY}
+                  aria-label={t("creatorFinalSteps.payment.mobilePay")}
+                  onClick={() => setPaymentMethod(PAYMENT_METHODS.MOBILEPAY)}
+                >
+                  <PaymentMobileLogoWrap>
+                    <Image
+                      src={mobilePayLogo}
+                      alt="MobilePay"
+                      width={50}
+                      height={16}
+                    />
+                  </PaymentMobileLogoWrap>
+                  <RadioDot
+                    $active={paymentMethod === PAYMENT_METHODS.MOBILEPAY}
+                  />
+                </PaymentMethodButton>
+              </PaymentMethods>
+
+              <Fields>
+                <FormField<PaymentFormValues>
+                  id="creator-card-number"
+                  name="cardNumber"
+                  label={t("creatorFinalSteps.fields.cardNumber")}
+                  placeholder={t("creatorFinalSteps.fields.cardNumber")}
+                  labelFontStyle="Body_Regular"
+                  labelMarginTop="0"
+                  type={INPUT_TYPE.TEXT}
+                  inputMode={NUMERIC_INPUT_MODE}
+                  autoComplete="cc-number"
+                  onChange={(value) => updateField("cardNumber", value)}
+                  variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                  height="38px"
+                  icon={
+                    <CardIcon
+                      width={18}
+                      height={18}
+                      color={COLORS.primary.BLACK}
+                    />
+                  }
                 />
-                <Image
-                  src={masterCardLogo}
-                  alt="Mastercard credit card"
-                  width={21}
-                  height={16}
+
+                <FormField<PaymentFormValues>
+                  id="creator-cardholder-name"
+                  name="cardholderName"
+                  label={t("creatorFinalSteps.fields.cardholderName")}
+                  placeholder={t("creatorFinalSteps.fields.cardholderName")}
+                  labelFontStyle="Body_Regular"
+                  labelMarginTop="0"
+                  type={INPUT_TYPE.TEXT}
+                  autoComplete="cc-name"
+                  onChange={(value) => updateField("cardholderName", value)}
+                  variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                  height="38px"
                 />
-              </PaymentCardLogoWrap>
-              <RadioDot $active={paymentMethod === PAYMENT_METHODS.CARD} />
-            </PaymentMethodButton>
 
-            <PaymentMethodButton
-              type="button"
-              $active={paymentMethod === PAYMENT_METHODS.MOBILEPAY}
-              aria-pressed={paymentMethod === PAYMENT_METHODS.MOBILEPAY}
-              aria-label={t("creatorFinalSteps.payment.mobilePay")}
-              onClick={() => setPaymentMethod(PAYMENT_METHODS.MOBILEPAY)}
-            >
-              <PaymentMobileLogoWrap>
-                <Image
-                  src={mobilePayLogo}
-                  alt="MobilePay"
-                  width={50}
-                  height={16}
-                />
-              </PaymentMobileLogoWrap>
-              <RadioDot $active={paymentMethod === PAYMENT_METHODS.MOBILEPAY} />
-            </PaymentMethodButton>
-          </PaymentMethods>
+                <InlineFields>
+                  <FormField<PaymentFormValues>
+                    id="creator-card-expiry"
+                    name="expiryDate"
+                    label={t("creatorFinalSteps.fields.expiryDate")}
+                    labelFontStyle="Body_Regular"
+                    labelMarginTop="0"
+                    type={INPUT_TYPE.TEXT}
+                    inputMode={NUMERIC_INPUT_MODE}
+                    autoComplete="cc-exp"
+                    placeholder="MM/YY"
+                    onChange={(value) => updateField("expiryDate", value)}
+                    variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                    height="38px"
+                  />
 
-          <Fields>
-            <FormField<PaymentFormValues>
-              id="creator-card-number"
-              name="cardNumber"
-              label={t("creatorFinalSteps.fields.cardNumber")}
-              placeholder={t("creatorFinalSteps.fields.cardNumber")}
-              labelFontStyle="Body_Regular"
-              labelMarginTop="0"
-              type={INPUT_TYPE.TEXT}
-              inputMode={NUMERIC_INPUT_MODE}
-              autoComplete="cc-number"
-              onChange={(value) => updateField("cardNumber", value)}
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-              height="38px"
-              icon={
-                <CardIcon width={18} height={18} color={COLORS.primary.BLACK} />
-              }
-            />
-
-            <FormField<PaymentFormValues>
-              id="creator-cardholder-name"
-              name="cardholderName"
-              label={t("creatorFinalSteps.fields.cardholderName")}
-              placeholder={t("creatorFinalSteps.fields.cardholderName")}
-              labelFontStyle="Body_Regular"
-              labelMarginTop="0"
-              type={INPUT_TYPE.TEXT}
-              autoComplete="cc-name"
-              onChange={(value) => updateField("cardholderName", value)}
-              variant={INPUT_VARIANTS.PRIMARY_GRAY}
-              height="38px"
-            />
-
-            <InlineFields>
-              <FormField<PaymentFormValues>
-                id="creator-card-expiry"
-                name="expiryDate"
-                label={t("creatorFinalSteps.fields.expiryDate")}
-                labelFontStyle="Body_Regular"
-                labelMarginTop="0"
-                type={INPUT_TYPE.TEXT}
-                inputMode={NUMERIC_INPUT_MODE}
-                autoComplete="cc-exp"
-                placeholder="MM/YY"
-                onChange={(value) => updateField("expiryDate", value)}
-                variant={INPUT_VARIANTS.PRIMARY_GRAY}
-                height="38px"
-              />
-
-              <FormField<PaymentFormValues>
-                id="creator-card-cvc"
-                name="cvc"
-                label={t("creatorFinalSteps.fields.cvc")}
-                placeholder={t("creatorFinalSteps.fields.cvc")}
-                labelFontStyle="Body_Regular"
-                labelMarginTop="0"
-                type={INPUT_TYPE.TEXT}
-                inputMode={NUMERIC_INPUT_MODE}
-                autoComplete="cc-csc"
-                onChange={(value) => updateField("cvc", value)}
-                variant={INPUT_VARIANTS.PRIMARY_GRAY}
-                height="38px"
-              />
-            </InlineFields>
-          </Fields>
+                  <FormField<PaymentFormValues>
+                    id="creator-card-cvc"
+                    name="cvc"
+                    label={t("creatorFinalSteps.fields.cvc")}
+                    placeholder={t("creatorFinalSteps.fields.cvc")}
+                    labelFontStyle="Body_Regular"
+                    labelMarginTop="0"
+                    type={INPUT_TYPE.TEXT}
+                    inputMode={NUMERIC_INPUT_MODE}
+                    autoComplete="cc-csc"
+                    onChange={(value) => updateField("cvc", value)}
+                    variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                    height="38px"
+                  />
+                </InlineFields>
+              </Fields>
+            </>
+          )}
 
           <SubmitButton
             type="submit"
-            disabled={!isValid || (isCreatorInviteFlow && isInviteSubmitting)}
+            disabled={isSubmitDisabled}
             isLoading={isCreatorInviteFlow && isInviteSubmitting}
           >
             {t("creatorFinalSteps.submit")}

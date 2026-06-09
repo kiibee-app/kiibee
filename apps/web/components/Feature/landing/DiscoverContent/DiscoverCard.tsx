@@ -54,6 +54,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
 
   return (
     <Card aria-label={t(item.titleKey)} onClick={handleOpen} $clickable>
+    <Card aria-label={t(item.titleKey)} onClick={handleOpen} $clickable={true}>
       <ImageContainer>
         <CategoryBadge>
           <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>

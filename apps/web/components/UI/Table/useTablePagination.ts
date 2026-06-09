@@ -1,4 +1,6 @@
 import { useMemo } from "react";
+import { getPaginationItems } from "@/utils/pagination";
+import { PAGE_SIZE_OPTIONS } from "@/utils/common";
 
 interface UseTablePaginationParams<T> {
   data: T[];
@@ -7,7 +9,7 @@ interface UseTablePaginationParams<T> {
   maxRowsPerPage?: number;
 }
 
-const DEFAULT_MAX_ROWS_PER_PAGE = 10;
+const DEFAULT_MAX_ROWS_PER_PAGE = Math.max(...PAGE_SIZE_OPTIONS);
 
 const clamp = (value: number, min: number, max: number) => {
   return Math.min(Math.max(value, min), max);
@@ -38,15 +40,15 @@ export function useTablePagination<T>({
     return data.slice(startIndex, endIndex);
   }, [data, safeCurrentPage, effectiveRowsPerPage]);
 
-  const pageNumbers = useMemo(() => {
-    return Array.from({ length: totalPages }, (_, index) => index + 1);
-  }, [totalPages]);
+  const paginationItems = useMemo(() => {
+    return getPaginationItems(safeCurrentPage, totalPages);
+  }, [safeCurrentPage, totalPages]);
 
   return {
     effectiveRowsPerPage,
     totalPages,
     safeCurrentPage,
     paginatedData,
-    pageNumbers,
+    paginationItems,
   };
 }

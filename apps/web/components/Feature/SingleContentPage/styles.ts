@@ -5,7 +5,7 @@ import { VARIANT } from "@/utils/Constants";
 
 export const Wrapper = styled.section`
   width: 100%;
-  max-width: 1220px;
+  max-width: 1300px;
   min-height: 100vh;
   height: auto;
   box-sizing: border-box;
@@ -282,6 +282,47 @@ export const MainAction = styled(GenericButton).attrs({
   min-height: 51px;
   padding: 10px 20px;
   margin-bottom: 1.5rem;
+`;
+
+export const PricingCtaRow = styled.div`
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+
+  > button {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 160px;
+    min-height: 52px;
+    border-radius: 12px;
+    white-space: normal;
+  }
+
+  .pricing-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    text-align: center;
+  }
+`;
+
+export const PricingCtaContent = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  line-height: 1.1;
+  text-align: center;
+`;
+
+export const PricingCtaSubtext = styled.span`
+  ${({ theme }) => theme.typography.Body_Medium}
+  font-size: 12px;
 `;
 
 export const MainActionText = styled.span`

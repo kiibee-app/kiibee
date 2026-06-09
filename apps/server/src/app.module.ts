@@ -14,6 +14,7 @@ import { FeedModule } from './modules/feed/feed.module';
 import { OrderModule } from './modules/order/order.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { ViewerModule } from './modules/viewer/viewer.module';
+import { CreatorUsersModule } from './modules/creator-users/creator-users.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ViewerModule } from './modules/viewer/viewer.module';
     OrderModule,
     PaymentModule,
     ViewerModule,
+    CreatorUsersModule,
   ],
 })
 export class AppModule {}

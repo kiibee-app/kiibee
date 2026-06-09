@@ -33,6 +33,7 @@ export default function SingleContentPage({
   creator,
   hero,
   primaryAction,
+  primaryActions,
   metaItems = [],
   shareLabel = "Share",
   showShare = true,

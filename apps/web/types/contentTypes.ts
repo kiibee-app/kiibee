@@ -1,10 +1,19 @@
 import type { ReactNode, Dispatch, SetStateAction } from "react";
-import type { ImageSource } from "@/utils/Constants";
+import type { ImageSource, Variant } from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
 
 export type SingleContentMetaItem = {
   label: string;
   value: ReactNode;
+};
+
+export type SingleContentAction = {
+  label: string;
+  subtitle?: string;
+  variant?: Variant;
+  ariaLabel?: string;
+  onClick?: () => void;
+  disabled?: boolean;
 };
 
 export type SingleContentHeroProps = {
@@ -40,12 +49,8 @@ export type SingleContentPageProps = {
     avatarAlt?: string;
   };
   hero: SingleContentHeroProps;
-  primaryAction?: {
-    label: string;
-    ariaLabel?: string;
-    onClick?: () => void;
-    disabled?: boolean;
-  };
+  primaryAction?: SingleContentAction;
+  primaryActions?: SingleContentAction[];
   metaItems?: SingleContentMetaItem[];
   shareLabel?: string;
   showShare?: boolean;
@@ -79,6 +84,7 @@ export type SingleContentBodyProps = Pick<
   | "descriptions"
   | "tags"
   | "primaryAction"
+  | "primaryActions"
   | "expiry"
   | "metaItems"
 >;

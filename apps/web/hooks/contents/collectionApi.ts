@@ -35,6 +35,7 @@ export type CollectionsApiItem = {
   buyPrice?: number | string | null;
   rentPrice?: number | string | null;
   rentDuration?: string | null;
+  passwordHash?: string | null;
 };
 
 export type CollectionsApiResponse =
@@ -153,6 +154,7 @@ export const getCollectionRows = (
       buyPrice: item.buyPrice != null ? Number(item.buyPrice) : null,
       rentPrice: item.rentPrice != null ? Number(item.rentPrice) : null,
       rentDuration: item.rentDuration ?? null,
+      hasPassword: Boolean(item.passwordHash),
     }));
 };
 

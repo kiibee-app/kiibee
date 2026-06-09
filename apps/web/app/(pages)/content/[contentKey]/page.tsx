@@ -9,7 +9,6 @@ import { MonoText } from "@/components/UI/Monotext";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
-import { authStorage } from "@/lib/auth/authStorage";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
@@ -28,11 +27,15 @@ import {
   resolveContentPlaybackUrl,
 } from "@/utils/contentApi";
 import { FORMAT_TYPE } from "@/utils/types";
-import { tutorialVideos } from "@/utils/data";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
+import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
-import { useRelatedCollectionContent } from "@/hooks/useRelatedCollectionContent";
+import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
 import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
+import {
+  resolvePublishedContentByKey,
+  CONTENT_KIND,
+} from "@/utils/resolvePublishedContentByKey";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -45,9 +48,7 @@ function PublishedContentDetail() {
   const contentViewRoute = normalizedContentKey
     ? API.content.view(normalizedContentKey, viewerId)
     : API.content.create;
-  const tutorialFallback = tutorialVideos.find(
-    (video) => video.id === normalizedContentKey,
-  );
+  const fallback = resolvePublishedContentByKey(normalizedContentKey);
   const tutorialCollection =
     getTutorialCollectionByVideoId(normalizedContentKey);
   const relatedTutorials = (tutorialCollection?.tutorials ?? []).filter(
@@ -57,7 +58,7 @@ function PublishedContentDetail() {
     contentViewRoute,
     undefined,
     {
-      enabled: Boolean(normalizedContentKey) && !tutorialFallback,
+      enabled: Boolean(normalizedContentKey) && !fallback,
     },
   );
   const content = getContentDetail(data);
@@ -71,10 +72,10 @@ function PublishedContentDetail() {
   const directPlaybackUrl =
     cloudflareEmbedUrl ||
     (hasDirectPlaybackUrl(contentUrl) ? contentUrl : null);
-  const relatedCollectionQuery = useRelatedCollectionContent(
+  const relatedCollectionQuery = usePublicRelatedCollectionContent(
     normalizedContentKey,
     {
-      enabled: !tutorialFallback && authStorage.hasSession(),
+      enabled: Boolean(normalizedContentKey) && !fallback,
     },
   );
   const mediaEndpoint =
@@ -106,16 +107,24 @@ function PublishedContentDetail() {
   }
 
   if (isError || !content) {
-    if (tutorialFallback) {
-      return (
-        <Section>
-          <SingleTutorial
-            tutorial={tutorialFallback}
-            relatedVideos={relatedTutorials}
-            collectionId={tutorialCollection?.id}
-          />
-        </Section>
-      );
+    if (fallback) {
+      if (fallback.kind === CONTENT_KIND.TUTORIAL) {
+        return (
+          <Section>
+            <SingleTutorial
+              tutorial={fallback.tutorial}
+              relatedVideos={relatedTutorials}
+              collectionId={tutorialCollection?.id}
+            />
+          </Section>
+        );
+      } else if (fallback.kind === CONTENT_KIND.DISCOVER) {
+        return (
+          <Section>
+            <SingleDiscoverContent item={fallback.item} />
+          </Section>
+        );
+      }
     }
 
     return (
@@ -129,7 +138,11 @@ function PublishedContentDetail() {
 
   return (
     <Section>
-      <SingleContentPage {...getSingleContentProps(content, t, mediaUrl)}>
+      <SingleContentPage
+        {...getSingleContentProps(content, t, mediaUrl, {
+          inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
+        })}
+      >
         {relatedCollectionQuery.data?.videos?.length ? (
           <CollectionItems
             videos={relatedCollectionQuery.data.videos}

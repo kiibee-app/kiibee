@@ -162,6 +162,7 @@ export const IMAGE_ZOOM = {
   DEFAULT: 1,
 };
 export const IMAGE_FILE_ACCEPT = "image/*";
+export const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
 
 export type ImageModalStep = (typeof IMAGE_MODAL)[keyof typeof IMAGE_MODAL];
 

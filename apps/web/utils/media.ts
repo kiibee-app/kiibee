@@ -64,6 +64,10 @@ export function resolvePublicMediaUrl(url?: string | null): string | null {
     return trimmed;
   }
 
+  if (trimmed.startsWith("//")) {
+    return `https:${trimmed}`;
+  }
+
   if (trimmed.startsWith("/")) {
     return `${KIIBEE_MEDIA_BASE_URL}${trimmed}`;
   }

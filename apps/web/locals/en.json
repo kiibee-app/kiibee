@@ -311,7 +311,8 @@
   },
   "creators": {
     "marquee": {
-      "title": "Explore the Kiibee creators and find your favorites"
+      "title": "Explore the Kiibee creators and find your favorites",
+      "defaultDescription": "The online courses at Kammas Kantine are for those who want to learn how to take better care of their body. You'll gain knowledge about health, practical tips and tricks, and access to fantastic recipes that are simple to prepare in your own kitchen."
     },
     "trendingContent": "Trending content",
     "heading": {
@@ -955,6 +956,13 @@
     "imageAlt": "Content preview",
     "seeContent": "See content",
     "playTrailer": "Play trailer",
+    "pricing": {
+      "downloadFiles": "Download files",
+      "accessDefault": "Access for 3 months",
+      "accessMonths": "Access for {{count}} months",
+      "accessDays": "Access for {{count}} days",
+      "accessHours": "Access for {{count}} hours"
+    },
     "meta": {
       "createdAt": "Created:",
       "accessType": "Access:",
@@ -1061,12 +1069,18 @@
   "users": {
     "search": "Search by name",
     "tabs": {
-      "registrations": "Registrations (11)",
-      "sales": "Sales (50)"
+      "registrations": "Registrations",
+      "sales": "Sales",
+      "registrationsWithCount": "Registrations ({{count}})",
+      "salesWithCount": "Sales ({{count}})"
     },
     "registrations": {
       "title": "E-mail signups",
       "description": "An overview of all emails collected in connection with e-mail address visibility.",
+      "emptyState": {
+        "title": "You have no email subscriptions.",
+        "description": "Once you have set an access requirement for 'Request email', they will appear here on the list after registration."
+      },
       "tableHeaders": {
         "name": "Name",
         "email": "Email",
@@ -1082,7 +1096,11 @@
     },
     "salest": {
       "title": "Sales",
-      "description": "Here you can find a complete overview of all your sales.",
+      "description": "Here you will find a complete overview of all your sales.",
+      "emptyState": {
+        "title": "You have no sales yet.",
+        "description": "When you have sold, they will appear here on the list"
+      },
       "tableHeaders": {
         "name": "Name",
         "email": "Email",
@@ -1751,6 +1769,8 @@
     "noContentToSave": "No content to save",
     "saveChangesFailed": "Failed to save changes",
     "saveSettingsFailed": "Failed to save settings",
-    "loadDetailsFailed": "Failed to load content details"
+    "loadDetailsFailed": "Failed to load content details",
+    "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
+    "imageUploadFailed": "Image upload failed"
   }
 }

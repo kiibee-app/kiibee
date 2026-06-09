@@ -16,6 +16,7 @@ import {
   HiddenInput,
   UploadNoteText,
   ChangePhotoHint,
+  UploadErrorText,
 } from "./styles";
 import { GenericModal } from "@/components/UI/Modals";
 import GenericButton from "@/components/UI/GenericButton";
@@ -31,6 +32,7 @@ import {
   IMAGE_ZOOM,
   MODAL_ALIGN,
   PREVIEW_FRAME_SIZE,
+  MAX_IMAGE_SIZE,
 } from "@/utils/ui";
 import { getCroppedImg, readFileAsDataUrl } from "@/utils/image";
 import { useTranslation } from "react-i18next";
@@ -46,6 +48,7 @@ type Props = {
   cropWidth?: number;
   cropHeight?: number;
   recommendedText?: boolean;
+  maxSize?: number;
 };
 
 export default function ImageUploadCropModal({
@@ -59,9 +62,11 @@ export default function ImageUploadCropModal({
   cropWidth = DEFAULT_CROP_SIZE,
   cropHeight = DEFAULT_CROP_SIZE,
   recommendedText = false,
+  maxSize = MAX_IMAGE_SIZE,
 }: Props) {
   const { t } = useTranslation();
   const [pendingImage, setPendingImage] = useState<string | null>(image);
+  const [sizeError, setSizeError] = useState<string | null>(null);
   const [naturalSize, setNaturalSize] = useState({ width: 0, height: 0 });
   const [frameSize, setFrameSize] = useState({
     width: PREVIEW_FRAME_SIZE,
@@ -127,6 +132,7 @@ export default function ImageUploadCropModal({
     setDragging(false);
     dragRef.current = null;
     dragMovedRef.current = false;
+    setSizeError(null);
     onClose();
   }, [image, onClose]);
 
@@ -140,6 +146,12 @@ export default function ImageUploadCropModal({
       if (!file) return;
 
       event.target.value = "";
+      if (file.size > maxSize) {
+        setSizeError(t("errors.imageTooLarge"));
+        return;
+      }
+
+      setSizeError(null);
 
       readFileAsDataUrl(file).then((imageDataUrl) => {
         if (!imageDataUrl) return;
@@ -150,7 +162,7 @@ export default function ImageUploadCropModal({
         dragMovedRef.current = false;
       });
     },
-    [],
+    [maxSize, t],
   );
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -254,6 +266,7 @@ export default function ImageUploadCropModal({
                 })}
               </UploadNoteText>
             )}
+            {sizeError && <UploadErrorText>{sizeError}</UploadErrorText>}
           </UploadDropZone>
         ) : (
           <>

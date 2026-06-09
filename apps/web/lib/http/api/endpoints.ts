@@ -36,9 +36,11 @@ export const API = {
     collection: (id: string) => `/content/collection/${id}`,
     get: (id: string) => `/content/${id}`,
     view: (id: string, userId: string) => `/content/${id}/${userId}`,
+    relatedCollection: (id: string) => `/content/${id}/related-collection`,
     update: (id: string) => `/content/update/${id}`,
     delete: (id: string) => `/content/delete/${id}`,
     appearance: "/content/appearance",
+    setting: "/content/setting",
   },
   collection: {
     getAll: "/collection",
@@ -54,5 +56,10 @@ export const API = {
     explore: "/feed/explore",
     trending: "/feed/trending",
     recent: "/feed/recent",
+  },
+  creatorUsers: {
+    registrations: "/creator-users/registrations",
+    sales: "/creator-users/sales",
+    deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
   },
 } as const;

@@ -12,6 +12,10 @@ import {
   normalizeContentTypeValue,
 } from "@/utils/content";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
+import {
+  getContentDetailPricingActions,
+  isFreeContentItem,
+} from "@/utils/contentPricingActions";
 import { FORMAT_TYPE } from "@/utils/types";
 
 type Translate = (key: string) => string;
@@ -31,6 +35,9 @@ export const CONTENT_RESPONSE_KEYS = {
   TRAILER_URL: "trailerUrl",
   VISIBILITY: "visibility",
   ACCESS_TYPE: "accessType",
+  BUY_PRICE: "buyPrice",
+  RENT_PRICE: "rentPrice",
+  RENT_DURATION_HOURS: "rentDurationHours",
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
   NAME: "name",
@@ -75,6 +82,9 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.TRAILER_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.VISIBILITY]?: string | null;
   [CONTENT_RESPONSE_KEYS.ACCESS_TYPE]?: string | null;
+  [CONTENT_RESPONSE_KEYS.BUY_PRICE]?: string | number | null;
+  [CONTENT_RESPONSE_KEYS.RENT_PRICE]?: string | number | null;
+  [CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
 };
@@ -164,6 +174,7 @@ export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
   mediaUrl?: string,
+  options?: { inCollection?: boolean },
 ): SingleContentPageProps => {
   const title =
     toTrimmedString(content[CONTENT_RESPONSE_KEYS.TITLE]) ||
@@ -180,6 +191,14 @@ export const getSingleContentProps = (
     content[CONTENT_RESPONSE_KEYS.ACCESS_TYPE],
   );
   const visibility = toTrimmedString(content[CONTENT_RESPONSE_KEYS.VISIBILITY]);
+  const buyPrice = content[CONTENT_RESPONSE_KEYS.BUY_PRICE];
+  const rentPrice = content[CONTENT_RESPONSE_KEYS.RENT_PRICE];
+  const rentDurationHours = content[CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS];
+  const pricingItem = { accessType, buyPrice, rentPrice, rentDurationHours };
+  const isFree = isFreeContentItem(pricingItem);
+  const pricingActions = getContentDetailPricingActions(pricingItem, t, {
+    inCollection: options?.inCollection,
+  });
 
   return {
     title,
@@ -210,9 +229,19 @@ export const getSingleContentProps = (
           }
         : {}),
     },
-    primaryAction: {
-      label: t(CONTENT_TRANSLATION_KEYS.seeContent),
-    },
+    ...(isFree
+      ? {
+          primaryAction: {
+            label: t(CONTENT_TRANSLATION_KEYS.seeContent),
+          },
+        }
+      : {
+          primaryActions: pricingActions.map((action) => ({
+            label: action.label,
+            subtitle: action.subtitle,
+            variant: action.variant,
+          })),
+        }),
     metaItems: [
       createdAt
         ? {
