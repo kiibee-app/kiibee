@@ -129,6 +129,10 @@ export default function CouponTable({
     },
   ];
 
+  const stopPropagation = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   const handleSearchChange = (key: CouponSearchKey, value: string) => {
     setSearch((prev) => ({
       ...prev,
@@ -188,7 +192,7 @@ export default function CouponTable({
 
             if (typedHeader === COUPON_TABLE_COLUMNS[4]) {
               return (
-                <ActionWrapper>
+                <ActionWrapper onClick={stopPropagation}>
                   <SortDropdown<CouponAction>
                     options={getCouponActionOptions(row.status)}
                     allowNoSelection
