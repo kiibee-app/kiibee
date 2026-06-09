@@ -3,7 +3,7 @@ import {
   ImageSource,
   SORT_OPTION_NEW,
   SORT_OPTION_POPULAR,
-  SORT_OPTION_FREE,
+  ACCESS_TYPE_FREE,
   SORT_OPTION_AZ,
 } from "./Constants";
 
@@ -92,7 +92,7 @@ export const getCategorySortOptions = (
   },
   {
     label: t("nav.explore.freeContent").toLowerCase(),
-    value: SORT_OPTION_FREE,
+    value: ACCESS_TYPE_FREE,
   },
   { label: t("creators.a-z").toLowerCase(), value: SORT_OPTION_AZ },
 ];

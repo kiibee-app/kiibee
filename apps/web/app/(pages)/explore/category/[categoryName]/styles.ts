@@ -112,9 +112,3 @@ export const LoadMoreButton = styled(GenericButton)`
     transform: translateY(-1px);
   }
 `;
-
-export const SortDropdownWrapper = styled.div`
-  & > div > div {
-    white-space: nowrap;
-  }
-`;

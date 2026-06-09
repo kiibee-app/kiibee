@@ -58,7 +58,6 @@ import {
   ResultsState,
   LoadMoreContainer,
   LoadMoreButton,
-  SortDropdownWrapper,
   LocalPageContainer,
 } from "./styles";
 
@@ -289,16 +288,14 @@ function CategoryExplorePageContent() {
                     onChange={setSearchValue}
                   />
 
-                  <SortDropdownWrapper>
-                    <SortDropdown
-                      options={sortOptions}
-                      value={sortOption}
-                      onChange={setSortOption}
-                      label={t("creators.sort")}
-                      width="auto"
-                      maxWidth="280px"
-                    />
-                  </SortDropdownWrapper>
+                  <SortDropdown
+                    options={sortOptions}
+                    value={sortOption}
+                    onChange={setSortOption}
+                    label={t("creators.sort")}
+                    width="auto"
+                    maxWidth="280px"
+                  />
                 </Controls>
               </Content>
             </Inner>

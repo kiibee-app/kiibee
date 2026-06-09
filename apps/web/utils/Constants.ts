@@ -284,18 +284,18 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
 
 export const MEDIA_TYPE_VIDEO_KEY = "discoverContent.mediaTypes.video";
 export const MEDIA_TYPE_EPUB_KEY = "discoverContent.mediaTypes.epub";
-export const FREE_LABEL = "Free";
+export const FREE_LABEL = ADMISSION_REQUIREMENT_FREE;
 export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 export const MARQUEE_LIMIT = 8;
+export const EXPLORE_PAGE_SIZE = 12;
 
 export const CATEGORY_ALL = "all";
 
 export const SORT_OPTION_NEW = "new";
 export const SORT_OPTION_POPULAR = "popular";
-export const SORT_OPTION_FREE = "free";
 export const SORT_OPTION_AZ = "a-z";
 
 export const FILTER_SECTION_CREATORS = "creators";

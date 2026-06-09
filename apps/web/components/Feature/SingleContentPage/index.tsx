@@ -7,6 +7,7 @@ import {
   ACCESS_TYPE_FREE,
   ACCESS_KEYWORD_EN,
   ACCESS_KEYWORD_DA,
+  STRING,
 } from "@/utils/Constants";
 import {
   SingleContentBody,
@@ -58,7 +59,7 @@ export default function SingleContentPage({
     );
     const isPaid =
       accessMeta &&
-      typeof accessMeta.value === "string" &&
+      typeof accessMeta.value === STRING &&
       accessMeta.value !== ACCESS_TYPE_FREE;
     const isLoggedIn = Boolean(user && user.id);
 

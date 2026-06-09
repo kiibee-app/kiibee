@@ -78,8 +78,7 @@ function TutorialCard({
     return href;
   };
 
-  const isFreeContent = tutorial.isFree ?? false;
-  const isCardLinked = isFreeContent && !onPlayClick;
+  const isCardLinked = !onPlayClick;
 
   const stopCardNavigation = (event: MouseEvent) => {
     event.stopPropagation();
@@ -191,7 +190,6 @@ function TutorialCard({
     </GenericCard>
   );
 
-  if (!onPlayClick) {
   if (isCardLinked) {
     return (
       <CardLink

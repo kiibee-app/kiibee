@@ -14,6 +14,12 @@ import {
 } from "@/utils/feedContentToTutorial";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
+import {
+  EXPLORE_PAGE_SIZE,
+  SORT_OPTION_AZ,
+  SORT_OPTION_NEW,
+  CATEGORY_ALL,
+} from "@/utils/Constants";
 
 type ApiResponse<T> = {
   success?: boolean;
@@ -31,8 +37,8 @@ export function useCategoryContent(categoryName: string) {
   const searchParams = useSearchParams();
   const [searchValue, setSearchValue] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [sortOption, setSortOption] = useState<string>("new");
-  const [limit, setLimit] = useState(24);
+  const [sortOption, setSortOption] = useState<string>(SORT_OPTION_NEW);
+  const [limit, setLimit] = useState(EXPLORE_PAGE_SIZE);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -53,16 +59,23 @@ export function useCategoryContent(categoryName: string) {
     },
   });
 
-  const categoryDisplayName = useMemo(() => {
+  const resolvedCategory = useMemo(() => {
     const categoriesList = categoriesData?.data || [];
-    const matched = categoriesList.find(
-      (c) => c.id.toLowerCase() === categoryName.toLowerCase(),
+    return categoriesList.find(
+      (c) =>
+        c.id.toLowerCase() === categoryName.toLowerCase() ||
+        c.name.toLowerCase() === categoryName.toLowerCase(),
     );
-    if (matched) return matched.name;
+  }, [categoriesData, categoryName]);
+
+  const categoryId = resolvedCategory ? resolvedCategory.id : categoryName;
+
+  const categoryDisplayName = useMemo(() => {
+    if (resolvedCategory) return resolvedCategory.name;
     return categoryName
       ? categoryName.charAt(0).toUpperCase() + categoryName.slice(1)
       : "";
-  }, [categoriesData, categoryName]);
+  }, [resolvedCategory, categoryName]);
 
   const {
     creatorLabels: allCreatorLabels,
@@ -93,7 +106,7 @@ export function useCategoryContent(categoryName: string) {
   } = useQuery<ApiResponse<FeedContentItem[]>>({
     queryKey: [
       "categoryContent",
-      categoryName,
+      categoryId,
       sortOption,
       debouncedSearch,
       filterStates.selectedOptions.creators,
@@ -104,7 +117,7 @@ export function useCategoryContent(categoryName: string) {
     ],
     queryFn: async () => {
       const body = {
-        categoryId: [categoryName],
+        categoryId: [categoryId],
         creatorId:
           filterStates.selectedOptions.creators.length > 0
             ? filterStates.selectedOptions.creators
@@ -121,7 +134,7 @@ export function useCategoryContent(categoryName: string) {
       const queryParams = {
         limit,
         search: debouncedSearch || undefined,
-        sort: sortOption === "a-z" ? "all" : sortOption,
+        sort: sortOption === SORT_OPTION_AZ ? CATEGORY_ALL : sortOption,
       };
 
       const response = await axiosClient.post<ApiResponse<FeedContentItem[]>>(
@@ -132,7 +145,7 @@ export function useCategoryContent(categoryName: string) {
       return response.data;
     },
     placeholderData: keepPreviousData,
-    enabled: !!categoryName,
+    enabled: !!categoryName && !!categoriesData,
     staleTime: 0,
   });
 
@@ -144,7 +157,7 @@ export function useCategoryContent(categoryName: string) {
     const parsed = rawItems.map((item) =>
       feedContentToTutorial(item, freeLabel),
     );
-    if (sortOption === "a-z") {
+    if (sortOption === SORT_OPTION_AZ) {
       return [...parsed].sort((a, b) => a.title.localeCompare(b.title));
     }
 
@@ -152,7 +165,7 @@ export function useCategoryContent(categoryName: string) {
   }, [contentData, sortOption, t]);
 
   const handleLoadMore = () => {
-    setLimit((prev) => prev + 24);
+    setLimit((prev) => prev + EXPLORE_PAGE_SIZE);
   };
 
   const showLoadMoreButton = tutorials.length >= limit;
