@@ -1316,7 +1316,14 @@
       "balance": "Balance",
       "purchase": "Purchase",
       "rent": "Rent",
-      "settlementHistory": "Settlement history"
+      "settlementHistory": "Settlement history",
+      "tableHeaders": {
+        "amount": "Amount",
+        "status": "Status",
+        "creditNo": "Credit No",
+        "bank": "Bank",
+        "date": "Date"
+      }
     },
     "export": {
       "title": "Export your data",
