@@ -12,8 +12,13 @@ import { usePatchAPI } from "@/lib/http/api/patchApi";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { createResetPasswordSchema } from "@/lib/validation/schema";
-import { emptyPasswords } from "@/utils/dummyData/profile.data";
 import { PasswordState } from "@/utils/creatorProfile";
+
+const emptyPasswords: PasswordState = {
+  current: "",
+  next: "",
+  confirm: "",
+};
 import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import { FORM_MESSAGE_TONE } from "@/utils/ui";
 import {
