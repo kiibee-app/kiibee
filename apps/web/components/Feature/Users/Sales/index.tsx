@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import Table from "@/components/UI/Table";
 import { MonoText } from "@/components/UI/Monotext";
@@ -9,11 +9,8 @@ import { DASHBOARD_USERS } from "@/utils/translationKeys";
 import COLORS from "@repo/ui/colors";
 import { SalesRow } from "@/types/creatorUsers";
 import { buildHeaderMap, SALES_TABLE_HEADER_KEYS } from "@/utils/tableHeader";
-import {
-  SORT_DIRECTIONS,
-  SortDirectionWithNone,
-  LOADER_VARIANT,
-} from "@/utils/ui";
+import { useSortOrder } from "@/hooks/useSortOrder";
+import { LOADER_VARIANT } from "@/utils/ui";
 import { filterUsersByName } from "@/utils/filterUsersByName";
 import { useSales } from "@/hooks/users/useCreatorUsers";
 import UsersEmptyState from "../EmptyState";
@@ -36,8 +33,6 @@ export default function SalesTabContent({
 }: SalestTabContentProps) {
   const { t } = useTranslation();
   const { rows, isLoading } = useSales();
-  const [nameSortDirection, setNameSortDirection] =
-    useState<SortDirectionWithNone>(SORT_DIRECTIONS.NONE);
   const headers = SALES_TABLE_HEADER_KEYS.map((headerKey) =>
     t(DASHBOARD_USERS.salest.tableHeaders[headerKey]),
   );
@@ -45,15 +40,19 @@ export default function SalesTabContent({
     headers,
     SALES_TABLE_HEADER_KEYS,
   );
-  const sortedSalesData = useMemo(() => {
-    const filtered = filterUsersByName(rows, searchValue);
-    return [...filtered].sort((a, b) => {
-      const compared = a.name.localeCompare(b.name, undefined, {
-        sensitivity: "base",
-      });
-      return nameSortDirection === SORT_DIRECTIONS.DESC ? -compared : compared;
-    });
-  }, [rows, searchValue, nameSortDirection]);
+  const filteredSalesData = useMemo(() => {
+    return filterUsersByName(rows, searchValue);
+  }, [rows, searchValue]);
+
+  const {
+    sortedData: sortedSalesData,
+    isHeaderSortable,
+    getHeaderSortDirection,
+    handleHeaderClick,
+  } = useSortOrder(filteredSalesData, {
+    targetHeader: headers[0],
+    sortBy: (item) => item.name,
+  });
 
   if (isLoading) {
     return (
@@ -96,20 +95,9 @@ export default function SalesTabContent({
           data={sortedSalesData}
           rowsPerPage={10}
           headerToKey={(header) => headerMap[header]}
-          onHeaderClick={(header) => {
-            if (header !== headers[0]) return;
-            setNameSortDirection((prev) => {
-              if (prev === SORT_DIRECTIONS.NONE) return SORT_DIRECTIONS.ASC;
-              if (prev === SORT_DIRECTIONS.ASC) return SORT_DIRECTIONS.DESC;
-              return SORT_DIRECTIONS.NONE;
-            });
-          }}
-          isHeaderSortable={(header) => header === headers[0]}
-          getHeaderSortDirection={(header) =>
-            header === headers[0] && nameSortDirection !== SORT_DIRECTIONS.NONE
-              ? nameSortDirection
-              : null
-          }
+          onHeaderClick={handleHeaderClick}
+          isHeaderSortable={isHeaderSortable}
+          getHeaderSortDirection={getHeaderSortDirection}
           getRowKey={(row) => row.id}
           getMobileTitle={(row) => row.name}
           renderCell={({ header, row }) => {
