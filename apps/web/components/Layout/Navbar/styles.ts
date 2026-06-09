@@ -37,7 +37,7 @@ export const Inner = styled.div`
     padding: var(--navbar-inner-tablet-padding, 0.9rem 1.5rem);
   }
 
-  @media (max-width: 640px) {
+  ${media.mobileMd} {
     flex-direction: row;
     align-items: stretch;
     padding: var(--navbar-inner-mobile-padding, 0.75rem 1rem);
