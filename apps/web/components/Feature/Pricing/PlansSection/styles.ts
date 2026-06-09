@@ -39,6 +39,13 @@ export const CardsWrapper = styled.div`
   align-items: stretch;
   gap: 22px;
   flex-wrap: wrap;
+
+  > [data-scroll-reveal] {
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    flex: 1 1 280px;
+  }
 `;
 
 export const Card = styled.article<{ $highlight?: boolean }>`
