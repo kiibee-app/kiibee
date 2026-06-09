@@ -99,7 +99,7 @@ export default function CollectionTable(props: CollectionTableProps) {
     };
 
     return (
-      <ActionWrapper>
+      <ActionWrapper onClick={stopPropagation}>
         <IconButton type={BUTTON} onClick={(e) => handleEdit(e, id)}>
           <EditProfileIcon color={COLORS.neutral.GRAY} />
         </IconButton>
