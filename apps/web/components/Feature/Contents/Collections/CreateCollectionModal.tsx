@@ -26,6 +26,16 @@ export default function CreateCollectionModal({
   const { t } = useTranslation();
   const [showDiscardModal, setShowDiscardModal] = useState(false);
 
+  const [prevVisible, setPrevVisible] = useState(false);
+  const [initialName, setInitialName] = useState("");
+
+  if (visible !== prevVisible) {
+    setPrevVisible(visible);
+    if (visible) {
+      setInitialName(collectionName);
+    }
+  }
+
   const handleClose = ({
     discard = false,
     keepEditing = false,
@@ -44,7 +54,8 @@ export default function CreateCollectionModal({
       return;
     }
 
-    if (collectionName.trim()) {
+    const hasChanges = collectionName.trim() !== initialName.trim();
+    if (hasChanges) {
       setShowDiscardModal(true);
       return;
     }
