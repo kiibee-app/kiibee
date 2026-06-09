@@ -34,7 +34,6 @@ import {
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { getAvatarUrl } from "@/utils/creatorProfile";
-import { useRouter } from "next/navigation";
 
 type Props = {
   role: typeof ROLE_CREATOR | typeof ROLE_VIEWER;
@@ -46,7 +45,6 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
   const isCreator = role === ROLE_CREATOR;
-  const router = useRouter();
   const { avatarUrl: profileAvatarUrl } = useCreatorChannelProfile(isCreator);
   const email = getLoginUserEmail(user);
   const initial = getLoginUserFirstLetter(user);
@@ -66,11 +64,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
           <HamburgerLine />
           <HamburgerLine />
         </HamburgerButton>
-        <LogoButton
-          type="button"
-          aria-label={t("nav.logoAlt")}
-          onClick={() => router.push(PATHS.HOME)}
-        >
+        <LogoButton type="button" aria-label={t("nav.logoAlt")}>
           <Image
             src={logo}
             alt={t("nav.logoAlt")}
