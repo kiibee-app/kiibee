@@ -49,6 +49,10 @@ export const ImageSection = styled.div`
     width: 100%;
     padding: 0;
   }
+
+  > div {
+    width: 100%;
+  }
 `;
 
 export const StoryImage = styled.img`
@@ -67,6 +71,10 @@ export const TextSection = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
+
+  > [data-scroll-reveal] {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.h2<{ $isMobile: boolean }>`

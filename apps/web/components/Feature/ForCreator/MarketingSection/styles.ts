@@ -38,6 +38,10 @@ export const TextColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  > [data-scroll-reveal] {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.h2`
@@ -71,6 +75,10 @@ export const BulletList = styled.ul`
 
 export const BulletItem = styled.li`
   margin-bottom: 0.25rem;
+
+  > [data-scroll-reveal] {
+    width: 100%;
+  }
 `;
 
 export const Summary = styled.p`
@@ -107,6 +115,10 @@ export const ImagesColumn = styled.div`
 
 export const LeftImageWrap = styled.div`
   height: 100%;
+
+  > div {
+    height: 100%;
+  }
 `;
 
 export const RightImagesWrap = styled.div`
@@ -114,6 +126,10 @@ export const RightImagesWrap = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr;
   gap: 1rem;
+
+  > div {
+    height: 100%;
+  }
 `;
 
 export const ImageCard = styled.div`
