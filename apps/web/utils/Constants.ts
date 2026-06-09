@@ -134,6 +134,8 @@ export const ADMISSION_REQUIREMENT_PAYMENT = "Payment";
 export const ADMISSION_REQUIREMENT_FREE = "Free";
 export const ACCESS_TYPE_PAID = "paid";
 export const ACCESS_TYPE_FREE = "free";
+export const ACCESS_KEYWORD_EN = "access";
+export const ACCESS_KEYWORD_DA = "adgang";
 export const ACCESS_TYPE_PASSWORD = "password";
 export const ACCESS_TYPE_EMAIL_GATED = "email_gated";
 
@@ -288,8 +290,19 @@ export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 export const MARQUEE_LIMIT = 8;
+export const EXPLORE_PAGE_SIZE = 12;
 
 export const CATEGORY_ALL = "all";
+
+export const SORT_OPTION_NEW = "new";
+export const SORT_OPTION_POPULAR = "popular";
+export const SORT_OPTION_AZ = "a-z";
+
+export const FILTER_SECTION_CREATORS = "creators";
+export const FILTER_SECTION_FORMATS = "formats";
+export const FILTER_SECTION_PRICE = "price";
+export const FILTER_SECTION_RATING = "rating";
+
 export const SHARE_STATUS = {
   IDLE: "idle",
   COPIED: "copied",
