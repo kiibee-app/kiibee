@@ -48,12 +48,14 @@ import {
   contentTypeSizeMap,
   mockSizeFallback,
   buildContentUpdatePayload,
+  GENERAL_FORM_FIELDS,
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
 import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
+import { defaultState } from "@/types/contentTypes";
 
 type Params = {
   activeTab: ContentTab;
@@ -92,11 +94,13 @@ export function useContentFormActions({
   const queryClient = useQueryClient();
   const {
     formState,
-    prefillForm,
+    savedFormState,
     resetForm,
     setFormState,
+    setSavedFormState,
     setFormErrors,
     clearFormErrors,
+    markFormAsSaved,
   } = useContentForm();
   const {
     hasUnsavedChanges: hasAppearanceChanges,
@@ -177,13 +181,22 @@ export function useContentFormActions({
     setActiveTabAndQuery(tab);
     setUploadedFile(file ?? null);
     setUploadedPreview(preview ?? null);
-    prefillForm(file ?? null);
-    setFormState((prev) => ({
-      ...prev,
-      title: details?.title ?? prev.title,
-      description: details?.description ?? prev.description,
-      contentTypeId: contentTypeFlow.selectedContentType ?? prev.contentTypeId,
-    }));
+    const prefilledState =
+      file == null
+        ? formState
+        : {
+            ...defaultState,
+            title: getFileNameWithoutExtension(file.name),
+          };
+    const nextFormState = {
+      ...prefilledState,
+      title: details?.title ?? prefilledState.title,
+      description: details?.description ?? prefilledState.description,
+      contentTypeId:
+        contentTypeFlow.selectedContentType ?? prefilledState.contentTypeId,
+    };
+    setFormState(nextFormState);
+    setSavedFormState(nextFormState);
     if (createdContentId) {
       storage.set(CONTENT_LAST_EDITED_STORAGE_KEY, createdContentId);
       setEditingContent({
@@ -313,6 +326,7 @@ export function useContentFormActions({
       };
 
       setFormState(nextFormState);
+      markFormAsSaved(nextFormState);
 
       const payload = buildContentUpdatePayload(nextFormState);
 
@@ -449,6 +463,10 @@ export function useContentFormActions({
     openDiscardModal();
   };
 
+  const hasGeneralUnsavedChanges = GENERAL_FORM_FIELDS.some(
+    (field) => formState[field] !== savedFormState[field],
+  );
+
   const closeContentUpload = () => {
     contentTypeFlow.close();
   };
@@ -551,7 +569,7 @@ export function useContentFormActions({
 
         setUploadedPreview(preview ?? fullContent.contentUrl ?? null);
 
-        setFormState({
+        const nextFormState = {
           title: fullContent.title || "",
           description: fullContent.description || "",
           trailerLink: fullContent.trailerUrl || "",
@@ -586,7 +604,10 @@ export function useContentFormActions({
           contentTypeId: normalizeContentTypeValue(
             fullContent.contentTypeId ?? fullContent.contentType ?? "video",
           ),
-        });
+        };
+
+        setFormState(nextFormState);
+        setSavedFormState(nextFormState);
 
         setActiveTabAndQuery(nextUploadTab);
       }
@@ -617,6 +638,7 @@ export function useContentFormActions({
     collectionAccessDuration,
     setCollectionAccessDuration,
     hasUnsavedChanges: hasAppearanceChanges,
+    hasGeneralUnsavedChanges,
     handleUploadSuccess,
     handleBackToBase,
     handleBackToBaseStateOnly,
