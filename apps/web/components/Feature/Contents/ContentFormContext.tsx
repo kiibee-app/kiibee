@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { getFileNameWithoutExtension } from "@/utils/content";
 import type {
@@ -17,6 +23,8 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [formState, setFormState] = useState<ContentFormState>(defaultState);
+  const [savedFormState, setSavedFormState] =
+    useState<ContentFormState>(defaultState);
 
   const updateField = useCallback(
     <K extends keyof ContentFormState>(
@@ -33,7 +41,15 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const resetForm = useCallback(() => {
     setFormState(defaultState);
+    setSavedFormState(defaultState);
   }, []);
+
+  const markCurrentFormAsSaved = useCallback(
+    (nextState?: ContentFormState) => {
+      setSavedFormState(nextState ?? formState);
+    },
+    [formState],
+  );
 
   const prefillForm = useCallback(
     (file: File | null) => {
@@ -41,17 +57,32 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
         resetForm();
         return;
       }
-      setFormState({
+      const nextState = {
         ...defaultState,
         title: getFileNameWithoutExtension(file.name),
-      });
+      };
+      setFormState(nextState);
+      setSavedFormState(nextState);
     },
     [resetForm],
   );
 
+  const hasUnsavedChanges = useMemo(
+    () => JSON.stringify(formState) !== JSON.stringify(savedFormState),
+    [formState, savedFormState],
+  );
+
   return (
     <ContentFormContext.Provider
-      value={{ formState, setFormState, updateField, prefillForm, resetForm }}
+      value={{
+        formState,
+        setFormState,
+        hasUnsavedChanges,
+        updateField,
+        markCurrentFormAsSaved,
+        prefillForm,
+        resetForm,
+      }}
     >
       {children}
     </ContentFormContext.Provider>

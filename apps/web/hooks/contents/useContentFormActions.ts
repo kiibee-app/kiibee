@@ -88,7 +88,14 @@ export function useContentFormActions({
 }: Params) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const { formState, prefillForm, resetForm, setFormState } = useContentForm();
+  const {
+    formState,
+    hasUnsavedChanges: hasGeneralChanges,
+    markCurrentFormAsSaved,
+    prefillForm,
+    resetForm,
+    setFormState,
+  } = useContentForm();
   const {
     hasUnsavedChanges: hasAppearanceChanges,
     saveAppearance,
@@ -169,12 +176,17 @@ export function useContentFormActions({
     setUploadedFile(file ?? null);
     setUploadedPreview(preview ?? null);
     prefillForm(file ?? null);
-    setFormState((prev) => ({
-      ...prev,
-      title: details?.title ?? prev.title,
-      description: details?.description ?? prev.description,
-      contentTypeId: contentTypeFlow.selectedContentType ?? prev.contentTypeId,
-    }));
+    setFormState((prev) => {
+      const nextState = {
+        ...prev,
+        title: details?.title ?? prev.title,
+        description: details?.description ?? prev.description,
+        contentTypeId:
+          contentTypeFlow.selectedContentType ?? prev.contentTypeId,
+      };
+      markCurrentFormAsSaved(nextState);
+      return nextState;
+    });
     if (createdContentId) {
       storage.set(CONTENT_LAST_EDITED_STORAGE_KEY, createdContentId);
       setEditingContent({
@@ -254,6 +266,7 @@ export function useContentFormActions({
       const payload = buildContentUpdatePayload(nextFormState);
 
       await axiosClient.put(API.content.update(editingContent.id), payload);
+      markCurrentFormAsSaved(nextFormState);
 
       await Promise.all([
         selectedCollection?.id
@@ -483,7 +496,7 @@ export function useContentFormActions({
 
         setUploadedPreview(preview ?? fullContent.contentUrl ?? null);
 
-        setFormState({
+        const nextFormState = {
           title: fullContent.title || "",
           description: fullContent.description || "",
           trailerLink: fullContent.trailerUrl || "",
@@ -518,7 +531,10 @@ export function useContentFormActions({
           contentTypeId: normalizeContentTypeValue(
             fullContent.contentTypeId ?? fullContent.contentType ?? "video",
           ),
-        });
+        };
+
+        setFormState(nextFormState);
+        markCurrentFormAsSaved(nextFormState);
 
         setActiveTabAndQuery(ADD_CONTENT_TABS.GENERAL);
       }
@@ -549,6 +565,7 @@ export function useContentFormActions({
     collectionAccessDuration,
     setCollectionAccessDuration,
     hasUnsavedChanges: hasAppearanceChanges,
+    hasGeneralChanges,
     handleUploadSuccess,
     handleBackToBase,
     handleBackToBaseStateOnly,

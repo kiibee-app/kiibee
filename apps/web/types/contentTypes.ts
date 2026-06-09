@@ -139,10 +139,12 @@ export const defaultState: ContentFormState = {
 export type ContentFormContextType = {
   formState: ContentFormState;
   setFormState: Dispatch<SetStateAction<ContentFormState>>;
+  hasUnsavedChanges: boolean;
   updateField: <K extends keyof ContentFormState>(
     field: K,
     value: ContentFormState[K],
   ) => void;
+  markCurrentFormAsSaved: (nextState?: ContentFormState) => void;
   prefillForm: (file: File | null) => void;
   resetForm: () => void;
 };
