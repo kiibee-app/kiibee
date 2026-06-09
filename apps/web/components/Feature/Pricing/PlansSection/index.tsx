@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import PlanCard from "./PlanCard";
 import { CardsWrapper, Section, SectionTitle } from "./styles";
 import { planOrder } from "@/utils/pricingPlanKeys";
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
 
 type PricingPlansSectionProps = {
   titleKey?: string;
@@ -16,23 +18,29 @@ export default function PricingPlansSection({
 
   return (
     <Section>
-      <SectionTitle>{t(titleKey)}</SectionTitle>
+      <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
+        <SectionTitle>{t(titleKey)}</SectionTitle>
+      </ScrollReveal>
       <CardsWrapper>
-        {planOrder.map((planKey) => {
+        {planOrder.map((planKey, index) => {
           const baseKey = `pricingPlans.plans.${planKey}`;
 
           return (
-            <PlanCard
+            <ScrollReveal
               key={planKey}
-              title={t(`${baseKey}.title`)}
-              price={t(`${baseKey}.price`)}
-              descriptions={[t(`${baseKey}.desc1`), t(`${baseKey}.desc2`)]}
-              features={
-                t(`${baseKey}.features`, { returnObjects: true }) as string[]
-              }
-              cta={t("pricingPlans.cta")}
-              highlight={planKey === "growth"}
-            />
+              delay={(index + 1) * LANDING_REVEAL.ctaCardStaggerDelay}
+            >
+              <PlanCard
+                title={t(`${baseKey}.title`)}
+                price={t(`${baseKey}.price`)}
+                descriptions={[t(`${baseKey}.desc1`), t(`${baseKey}.desc2`)]}
+                features={
+                  t(`${baseKey}.features`, { returnObjects: true }) as string[]
+                }
+                cta={t("pricingPlans.cta")}
+                highlight={planKey === "growth"}
+              />
+            </ScrollReveal>
           );
         })}
       </CardsWrapper>

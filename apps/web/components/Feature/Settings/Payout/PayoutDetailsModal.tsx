@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import { PayoutWrapper, Row, Divider, FooterNote } from "./styles";
 import { payoutRows, payoutTotal } from "@/utils/payout";
@@ -14,12 +15,14 @@ type Props = {
 };
 
 export default function PayoutDetailsModal({ open, onClose }: Props) {
+  const { t } = useTranslation();
+
   return (
     <GenericModal
       visible={open}
       title="Payment details"
       textAlign={MODAL_ALIGN.START}
-      confirmLabel={payoutTotal.value}
+      confirmLabel={`${t("settings.payout.title")} ${payoutTotal.value}`}
       cancelLabel="Cancel"
       onClose={onClose}
       onCancel={onClose}

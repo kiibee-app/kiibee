@@ -5,6 +5,8 @@ import {
   mediaFiles,
   mediaFileCategories,
   contentCategories,
+  mediaFileTags,
+  tags,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
@@ -37,9 +39,18 @@ export const getContentByIdService = async (contentId: string) => {
       )
       .where(eq(mediaFileCategories.mediaFileId, contentId));
 
+    const contentTags = await db
+      .select({
+        name: tags.name,
+      })
+      .from(mediaFileTags)
+      .innerJoin(tags, eq(tags.id, mediaFileTags.tagId))
+      .where(eq(mediaFileTags.mediaFileId, contentId));
+
     const responseData = {
       ...content,
       categories,
+      tags: contentTags.map((tag) => tag.name),
     };
 
     return success(responseData, 'Content fetched successfully');

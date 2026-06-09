@@ -7,6 +7,7 @@ import {
   IsOptional,
   IsString,
   ValidateIf,
+  IsArray,
 } from 'class-validator';
 
 export class CreateContentDto {
@@ -83,6 +84,11 @@ export class UpdateContentDto {
   @IsOptional()
   @IsString()
   manufacturerLink?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  tags?: string[];
 
   @IsOptional()
   @IsString()

@@ -4,18 +4,24 @@ import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { typography } from "@repo/ui/typography";
+import { type CSSProperties } from "react";
 
-export const Hero = styled.section<{ $backgroundImage: string }>`
+export const Hero = styled.section`
   position: relative;
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(${({ $backgroundImage }) => $backgroundImage});
-  background-size: cover;
-  background-position: center;
   font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
+  overflow: hidden;
+`;
+
+export const Background = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
 `;
 
 export const Overlay = styled.div`
@@ -77,3 +83,15 @@ export const PrimaryButton = styled(GenericButton).attrs({
     border-color ${({ theme }) => theme.animations.fast},
     box-shadow ${({ theme }) => theme.animations.fast};
 `;
+
+export const heroRevealStyle: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
+
+export const heroImageStyle: CSSProperties = {
+  objectFit: "cover",
+  objectPosition: "center",
+};

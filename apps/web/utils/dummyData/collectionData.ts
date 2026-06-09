@@ -3,76 +3,7 @@ import design2 from "@/assets/images/design2.webp";
 import design3 from "@/assets/images/design.webp";
 import design4 from "@/assets/images/crafts.png";
 import design5 from "@/assets/images/flower.png";
-import { PurchasedCollectionItem } from "./viewerPurchasedMockData";
 import { FORMAT_TYPE } from "../types";
-
-export const COLLECTIONS_FOR_PAGE: PurchasedCollectionItem[] = [
-  {
-    id: "c1",
-    title: "Asian recipes",
-    author: "creatorName",
-    elementCount: 10,
-    coverSrc: design1.src,
-    hideBadge: true,
-    actions: [
-      {
-        label: "Buy xx kr",
-        sublabel: "Instant access",
-        variant: "primary",
-      },
-    ],
-  },
-  {
-    id: "c2",
-    title: "Winter soups",
-    author: "creatorName",
-    elementCount: 13,
-    coverSrc: design2.src,
-    hideBadge: true,
-    actions: [
-      {
-        label: "See content",
-        sublabel: "Already owned",
-        variant: "primary",
-      },
-    ],
-  },
-  {
-    id: "c3",
-    title: "Mexican dishes",
-    author: "creatorName",
-    elementCount: 22,
-    coverSrc: design3.src,
-    hideBadge: true,
-    actions: [
-      {
-        label: "Buy xx kr",
-        sublabel: "Instant access",
-        variant: "primary",
-      },
-      {
-        label: "Rent xx kr",
-        sublabel: "24h access",
-        variant: "secondary",
-      },
-    ],
-  },
-  {
-    id: "c4",
-    title: "Salads",
-    author: "creatorName",
-    elementCount: 23,
-    coverSrc: design1.src,
-    hideBadge: true,
-    actions: [
-      {
-        label: "Rent xx kr",
-        sublabel: "24h access",
-        variant: "secondary",
-      },
-    ],
-  },
-];
 
 export const ABOUT_VIDEO_OVERRIDES = [
   {

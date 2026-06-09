@@ -90,3 +90,13 @@ export const Badge = styled.span`
     background: ${({ theme }) => theme.colors.primary.GREEN_50};
   }
 `;
+
+export const EmptyState = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  width: 100%;
+`;

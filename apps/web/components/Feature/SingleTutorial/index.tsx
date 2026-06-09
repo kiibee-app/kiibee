@@ -2,13 +2,20 @@
 
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
+import { PATHS } from "@/utils/path";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { TutorialVideo } from "@/utils/types";
 import logo from "@/assets/images/logo.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
-import { VARIANT } from "@/utils/Constants";
+import {
+  VARIANT,
+  ADMISSION_REQUIREMENT_FREE,
+  ACCESS_TYPE_FREE,
+} from "@/utils/Constants";
 import CollectionItems from "./CollectionItems";
 
 type Props = {
@@ -23,6 +30,16 @@ export default function SingleTutorial({
   collectionId,
 }: Props) {
   const { t } = useTranslation();
+  const router = useRouter();
+  const user = useStoredLoginUser();
+
+  const handleSeeContent = () => {
+    const isPaid = tutorial.level !== ADMISSION_REQUIREMENT_FREE;
+    const isLoggedIn = Boolean(user && user.id);
+    if (isPaid && !isLoggedIn) {
+      router.push(PATHS.AUTH_LOGIN);
+    }
+  };
   const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
   const isFreeContent = useMemo(() => {
     if (tutorial.isFree != null) {
@@ -32,7 +49,7 @@ export default function SingleTutorial({
     const firstButtonLabel = tutorial.buttons?.[0]?.label?.trim().toLowerCase();
     return (
       !tutorial.buttons?.length ||
-      firstButtonLabel === "free" ||
+      firstButtonLabel === ACCESS_TYPE_FREE ||
       firstButtonLabel === freeLabel.trim().toLowerCase()
     );
   }, [freeLabel, tutorial.buttons, tutorial.isFree]);
@@ -81,7 +98,12 @@ export default function SingleTutorial({
         trailerIconAlt: "Play",
       }}
       primaryAction={
-        isFreeContent ? { label: t("singleTutorial.seeContent") } : undefined
+        isFreeContent
+          ? {
+              label: t("singleTutorial.seeContent"),
+              onClick: handleSeeContent,
+            }
+          : undefined
       }
       primaryActions={primaryActions}
       metaItems={[

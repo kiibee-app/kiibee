@@ -33,6 +33,12 @@ export type PasswordState = {
   confirm: string;
 };
 
+export const emptyPasswords: PasswordState = {
+  current: "",
+  next: "",
+  confirm: "",
+};
+
 export type PaymentKeys = "reg" | "account";
 export type CompanyKeys =
   | "company"

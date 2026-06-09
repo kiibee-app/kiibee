@@ -40,11 +40,11 @@ import {
 function PublishedContentDetail() {
   const { t } = useTranslation();
   const params = useParams();
-  const loginUser = useStoredLoginUser();
+  const user = useStoredLoginUser();
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
   const normalizedContentKey = contentKey?.replaceAll(":", "-");
-  const viewerId = resolveContentViewerId(loginUser?.id);
+  const viewerId = resolveContentViewerId(user?.id);
   const contentViewRoute = normalizedContentKey
     ? API.content.view(normalizedContentKey, viewerId)
     : API.content.create;
