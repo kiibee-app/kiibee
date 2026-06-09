@@ -1,6 +1,7 @@
 import { HeaderProps, NavStyleProps } from "@/utils/profile";
 import styled, { css } from "styled-components";
 import Link from "next/link";
+import { media } from "@repo/ui/breakpoints";
 
 export const Header = styled.header<HeaderProps>`
   position: ${({ $position }) => $position};
@@ -49,10 +50,10 @@ export const Left = styled.div`
   align-items: center;
   gap: 1rem;
 
-  @media (max-width: 640px) {
+  ${media.mobileMd} {
     width: 100%;
   }
-  @media (max-width: 320px) {
+  ${media.mobile} {
     flex-shrink: 3;
   }
 `;
@@ -305,7 +306,7 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
     transform: none;
   }
 
-  @media (max-width: 640px) {
+  ${media.mobileMd} {
     width: 100%;
     margin-left: 0;
     justify-content: flex-end;
@@ -313,7 +314,7 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
     order: 2;
   }
 
-  @media (max-width: 320px) {
+  ${media.mobile} {
     flex-grow: 2;
   }
 `;
