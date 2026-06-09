@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { SORT_DIRECTIONS, type SortDirectionWithNone } from "@/utils/ui";
-import { isString } from "@/utils/Constants";
+import { isString, SENSITIVITY_BASE } from "@/utils/Constants";
 
 interface UseSortOrderConfig<T> {
   targetHeader: string;
@@ -25,7 +25,7 @@ export function useSortOrder<T>(
       const compared =
         isString(firstValue) && isString(secondValue)
           ? firstValue.localeCompare(secondValue, undefined, {
-              sensitivity: "base",
+              sensitivity: SENSITIVITY_BASE,
             })
           : (firstValue as number) - (secondValue as number);
 
