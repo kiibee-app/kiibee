@@ -37,7 +37,7 @@ export const Inner = styled.div`
   }
 
   @media (max-width: 640px) {
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch;
     padding: var(--navbar-inner-mobile-padding, 0.75rem 1rem);
     gap: 0.5rem;
@@ -51,6 +51,9 @@ export const Left = styled.div`
 
   @media (max-width: 640px) {
     width: 100%;
+  }
+  @media (max-width: 320px) {
+    flex-shrink: 3;
   }
 `;
 
@@ -308,6 +311,10 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
     justify-content: flex-end;
     gap: 0.5rem;
     order: 2;
+  }
+
+  @media (max-width: 320px) {
+    flex-grow: 2;
   }
 `;
 
