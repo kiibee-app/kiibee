@@ -13,7 +13,7 @@ import {
   buildHeaderMap,
   REGISTRATION_TABLE_HEADER_KEYS,
 } from "@/utils/tableHeader";
-import { useSortOrder } from "@/hooks/useSortOrder";
+import { useTableSort } from "@/hooks/useTableSort";
 import { LOADER_VARIANT } from "@/utils/ui";
 import { filterUsersByName } from "@/utils/filterUsersByName";
 import {
@@ -67,9 +67,9 @@ export default function RegistrationsTabContent({
     sortedData: sortedRows,
     isHeaderSortable,
     getHeaderSortDirection,
-    handleHeaderClick,
-  } = useSortOrder(filteredRows, {
-    targetHeader: headers[0],
+    toggleSort,
+  } = useTableSort(filteredRows, {
+    sortableHeader: headers[0],
     sortBy: (item) => item.name,
   });
 
@@ -126,7 +126,7 @@ export default function RegistrationsTabContent({
           data={sortedRows}
           rowsPerPage={10}
           headerToKey={(header) => headerMap[header]}
-          onHeaderClick={handleHeaderClick}
+          onHeaderClick={toggleSort}
           isHeaderSortable={isHeaderSortable}
           getHeaderSortDirection={getHeaderSortDirection}
           getRowKey={(row) => row.id}

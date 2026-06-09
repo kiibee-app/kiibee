@@ -9,7 +9,7 @@ import { DASHBOARD_USERS } from "@/utils/translationKeys";
 import COLORS from "@repo/ui/colors";
 import { SalesRow } from "@/types/creatorUsers";
 import { buildHeaderMap, SALES_TABLE_HEADER_KEYS } from "@/utils/tableHeader";
-import { useSortOrder } from "@/hooks/useSortOrder";
+import { useTableSort } from "@/hooks/useTableSort";
 import { LOADER_VARIANT } from "@/utils/ui";
 import { filterUsersByName } from "@/utils/filterUsersByName";
 import { useSales } from "@/hooks/users/useCreatorUsers";
@@ -48,9 +48,9 @@ export default function SalesTabContent({
     sortedData: sortedSalesData,
     isHeaderSortable,
     getHeaderSortDirection,
-    handleHeaderClick,
-  } = useSortOrder(filteredSalesData, {
-    targetHeader: headers[0],
+    toggleSort,
+  } = useTableSort(filteredSalesData, {
+    sortableHeader: headers[0],
     sortBy: (item) => item.name,
   });
 
@@ -95,7 +95,7 @@ export default function SalesTabContent({
           data={sortedSalesData}
           rowsPerPage={10}
           headerToKey={(header) => headerMap[header]}
-          onHeaderClick={handleHeaderClick}
+          onHeaderClick={toggleSort}
           isHeaderSortable={isHeaderSortable}
           getHeaderSortDirection={getHeaderSortDirection}
           getRowKey={(row) => row.id}
