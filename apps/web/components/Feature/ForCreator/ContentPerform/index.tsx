@@ -35,6 +35,7 @@ export default function ContentPerform() {
       <ContentWrapper>
         <ImageColumn>
           <ImageReveal
+            id="cp-image-reveal"
             variant={LANDING_REVEAL_VARIANTS.slideUp}
             duration={LANDING_REVEAL.longRevealDuration}
             style={DASHBOARD_REVEAL_STYLE}

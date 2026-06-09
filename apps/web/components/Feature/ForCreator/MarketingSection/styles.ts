@@ -116,7 +116,7 @@ export const ImagesColumn = styled.div`
 export const LeftImageWrap = styled.div`
   height: 100%;
 
-  > div {
+  > #marketing-left-image {
     height: 100%;
   }
 `;
@@ -127,7 +127,8 @@ export const RightImagesWrap = styled.div`
   grid-template-rows: 1fr 1fr;
   gap: 1rem;
 
-  > div {
+  > #marketing-right-image-1,
+  > #marketing-right-image-2 {
     height: 100%;
   }
 `;

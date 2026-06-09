@@ -30,6 +30,7 @@ export default function ShortStory() {
       <ContentWrapper $isMobile={isMobile}>
         <ImageSection>
           <ImageReveal
+            id="short-story-image-reveal"
             variant={LANDING_REVEAL_VARIANTS.slideUp}
             duration={LANDING_REVEAL.longRevealDuration}
           >

@@ -87,6 +87,7 @@ export default function MarketingSection() {
         <ImagesColumn>
           <LeftImageWrap>
             <ImageReveal
+              id="marketing-left-image"
               variant={LANDING_REVEAL_VARIANTS.slideUp}
               duration={LANDING_REVEAL.longRevealDuration}
               style={IMAGE_REVEAL_STYLE}
@@ -123,6 +124,7 @@ export default function MarketingSection() {
 
           <RightImagesWrap>
             <ImageReveal
+              id="marketing-right-image-1"
               variant={LANDING_REVEAL_VARIANTS.fadeScale}
               duration={LANDING_REVEAL.revealDuration}
               delay={LANDING_REVEAL.shortDelay}
@@ -158,6 +160,7 @@ export default function MarketingSection() {
             </ImageReveal>
 
             <ImageReveal
+              id="marketing-right-image-2"
               variant={LANDING_REVEAL_VARIANTS.fadeScale}
               duration={LANDING_REVEAL.revealDuration}
               delay={LANDING_REVEAL.mediumDelay}

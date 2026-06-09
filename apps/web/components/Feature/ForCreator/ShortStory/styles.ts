@@ -50,7 +50,7 @@ export const ImageSection = styled.div`
     padding: 0;
   }
 
-  > div {
+  > #short-story-image-reveal {
     width: 100%;
   }
 `;

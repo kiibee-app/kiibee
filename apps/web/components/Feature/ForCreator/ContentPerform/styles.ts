@@ -29,7 +29,7 @@ export const ImageColumn = styled.div`
   display: flex;
   justify-content: flex-start;
 
-  > div {
+  > #cp-image-reveal {
     width: 100%;
   }
 `;
