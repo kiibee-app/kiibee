@@ -1,6 +1,6 @@
 "use client";
 
-import { Grid, LoadMoreRow, PageWrapper } from "./styles";
+import { Grid, LoadMoreRow, PageWrapper, EmptyState } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
@@ -24,7 +24,15 @@ export default function ExploreCreators({ creators, isLoading }: Props) {
   const { t } = useTranslation();
 
   if (!isLoading && creators.length === 0) {
-    return null;
+    return (
+      <PageWrapper>
+        <EmptyState>
+          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+            {t(CREATORS.noCreatorsFound)}
+          </MonoText>
+        </EmptyState>
+      </PageWrapper>
+    );
   }
 
   return (
