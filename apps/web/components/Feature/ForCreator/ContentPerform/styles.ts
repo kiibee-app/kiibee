@@ -28,6 +28,10 @@ export const ImageColumn = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
+
+  > #cp-image-reveal {
+    width: 100%;
+  }
 `;
 
 export const ImageFrame = styled.div`
@@ -87,6 +91,10 @@ export const TextColumn = styled.div`
   flex-direction: column;
   align-items: flex-start;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
+
+  > [data-scroll-reveal] {
+    width: 100%;
+  }
 `;
 
 export const Title = styled(MonoText).attrs({
@@ -143,6 +151,10 @@ export const PointItem = styled(MonoText).attrs({
   ${({ theme }) => theme.typography.Body_Regular};
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
+
+  > [data-scroll-reveal] {
+    width: 100%;
+  }
 
   &::before {
     content: "";
