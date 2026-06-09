@@ -463,6 +463,11 @@ export function useContentFormActions({
 
   const handleEditContent = async (id: string) => {
     const item = collectionContents.find((content) => content.id === id);
+    const nextUploadTab = Object.values(ADD_CONTENT_TABS).includes(
+      activeTab as AddContentTab,
+    )
+      ? (activeTab as AddContentTab)
+      : ADD_CONTENT_TABS.GENERAL;
 
     interface ContentDetailsResponse {
       title?: string;
@@ -583,7 +588,7 @@ export function useContentFormActions({
           ),
         });
 
-        setActiveTabAndQuery(ADD_CONTENT_TABS.GENERAL);
+        setActiveTabAndQuery(nextUploadTab);
       }
     } catch {
       toast.error(t(ERROR_MESSAGES.LOAD_DETAILS_FAILED));
