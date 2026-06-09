@@ -18,7 +18,7 @@ async function main() {
   await seedTags();
   await seedPlans();
 
-  // Base admin + viewer accounts
+  // Only admin + demo viewer; all creators/viewers from umbraco-data
   await seedUsers();
 
   // Creator profiles & content from umbraco-data
