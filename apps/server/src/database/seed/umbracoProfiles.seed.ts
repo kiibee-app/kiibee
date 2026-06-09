@@ -26,6 +26,25 @@ const PROFILE_FILES = [
 
 const FALLBACK_PLAN_NAME = 'Pro';
 const UMBRACO_PROFILE_EMAIL_DOMAIN = 'umbraco-profile.local';
+const UMBRACO_SKIP_PROFILE_KEYS = new Set([
+  'Admin',
+  'ADHDFOKUS',
+  'APHypnose',
+  'Ahmed_Mittani',
+  'Diy_for_børn',
+  'Foreningen_Danske_Revisorer',
+  'Fredensborg_Sundhedscenter',
+  'Galleri_EVIG',
+  'Go_Video',
+  'LindaAndrews',
+  'Maria_Birch_Rasmussen',
+  'Maximilian_Nielsen',
+  'Rumhed',
+  'TjelesVenner',
+  'Vocal_Line',
+  'gymstream',
+  'jwtc',
+]);
 
 const LEGACY_PLAN_DOCUMENT_NAMES: Record<string, string> = {
   'umb://document/5ba7f17c7cf64beea5db1176fd45d365': 'Try Kiibee',
@@ -41,7 +60,7 @@ type LoadedProfile = {
   profileKey: string;
   files: ProfileFiles;
   preferredChannelSlug?: string;
-  source?: 'profile-info' | 'shows-only';
+  source?: 'profile-info' | 'shows-only' | 'data-only';
 };
 
 type MappedProfile = {
@@ -315,29 +334,60 @@ function findUmbracoProfileRoot(): string | null {
   return candidates.find((candidate) => existsSync(candidate)) ?? null;
 }
 
-function loadProfilesWithInfo(root: string): LoadedProfile[] {
-  return readdirSync(root, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .filter((profileKey) => existsSync(join(root, profileKey, 'profile-info')))
-    .sort((left, right) => left.localeCompare(right))
-    .map((profileKey) => {
-      const profileInfoRoot = join(root, profileKey, 'profile-info');
-      const files: ProfileFiles = {};
+function hasNonEmptyItems(
+  profileKey: string,
+  root: string,
+  folder: string,
+): boolean {
+  const filePath = join(root, profileKey, folder, 'items.json');
+  if (!existsSync(filePath)) {
+    return false;
+  }
 
-      for (const fileName of PROFILE_FILES) {
-        const filePath = join(profileInfoRoot, fileName);
-        if (existsSync(filePath)) {
-          files[fileName] = readJsonFile(filePath);
-        }
-      }
+  try {
+    const parsed = JSON.parse(readFileSync(filePath, 'utf8'));
+    return Array.isArray(parsed) && parsed.length > 0;
+  } catch {
+    return false;
+  }
+}
 
-      return {
-        profileKey,
-        files,
-        source: 'profile-info' as const,
-      };
-    });
+function hasAnyUmbracoData(profileKey: string, root: string): boolean {
+  return (
+    hasNonEmptyItems(profileKey, root, 'purchases') ||
+    hasNonEmptyItems(profileKey, root, 'stats') ||
+    hasNonEmptyItems(profileKey, root, 'payouts') ||
+    hasNonEmptyItems(profileKey, root, 'logs')
+  );
+}
+
+function hasSeedableUmbracoData(profileKey: string, root: string): boolean {
+  return (
+    hasNonEmptyShows(profileKey, root) || hasAnyUmbracoData(profileKey, root)
+  );
+}
+
+function buildMinimalProfile(
+  profileKey: string,
+  root: string,
+  source: 'shows-only' | 'data-only',
+): LoadedProfile {
+  const name = deriveNameFromProfileKey(profileKey);
+
+  return {
+    profileKey,
+    source,
+    preferredChannelSlug:
+      source === 'shows-only'
+        ? (preferredChannelSlugFromShows(profileKey, root) ?? undefined)
+        : undefined,
+    files: {
+      'layout.json': {
+        name,
+        logoText: name,
+      },
+    },
+  };
 }
 
 function hasNonEmptyShows(profileKey: string, root: string): boolean {
@@ -358,43 +408,38 @@ function hasNonEmptyShows(profileKey: string, root: string): boolean {
   return false;
 }
 
-function loadShowsOnlyProfiles(root: string): LoadedProfile[] {
+function loadProfiles(root: string): LoadedProfile[] {
   return readdirSync(root, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
-    .filter(
-      (profileKey) =>
-        !existsSync(join(root, profileKey, 'profile-info')) &&
-        hasNonEmptyShows(profileKey, root),
-    )
+    .filter((profileKey) => !UMBRACO_SKIP_PROFILE_KEYS.has(profileKey))
+    .filter((profileKey) => hasSeedableUmbracoData(profileKey, root))
     .sort((left, right) => left.localeCompare(right))
     .map((profileKey) => {
-      const name = deriveNameFromProfileKey(profileKey);
+      const profileInfoRoot = join(root, profileKey, 'profile-info');
+      if (existsSync(profileInfoRoot)) {
+        const files: ProfileFiles = {};
 
-      return {
-        profileKey,
-        source: 'shows-only' as const,
-        preferredChannelSlug:
-          preferredChannelSlugFromShows(profileKey, root) ?? undefined,
-        files: {
-          'layout.json': {
-            name,
-            logoText: name,
-          },
-        },
-      };
+        for (const fileName of PROFILE_FILES) {
+          const filePath = join(profileInfoRoot, fileName);
+          if (existsSync(filePath)) {
+            files[fileName] = readJsonFile(filePath);
+          }
+        }
+
+        return {
+          profileKey,
+          files,
+          source: 'profile-info' as const,
+        };
+      }
+
+      if (hasNonEmptyShows(profileKey, root)) {
+        return buildMinimalProfile(profileKey, root, 'shows-only');
+      }
+
+      return buildMinimalProfile(profileKey, root, 'data-only');
     });
-}
-
-function loadProfiles(root: string): LoadedProfile[] {
-  const withInfo = loadProfilesWithInfo(root);
-  const showsOnly = loadShowsOnlyProfiles(root);
-  const seen = new Set(withInfo.map((profile) => profile.profileKey));
-
-  return [
-    ...withInfo,
-    ...showsOnly.filter((profile) => !seen.has(profile.profileKey)),
-  ];
 }
 
 function buildUniqueChannelSlugs(
@@ -657,9 +702,11 @@ export const seedUmbracoProfiles = async () => {
           entityId: mapped.creatorChannelId,
           details: {
             source:
-              profile.source === 'shows-only'
-                ? 'umbraco-data/shows-only'
-                : 'umbraco-data/profile-info',
+              profile.source === 'profile-info'
+                ? 'umbraco-data/profile-info'
+                : profile.source === 'shows-only'
+                  ? 'umbraco-data/shows-only'
+                  : 'umbraco-data/data-only',
             profileKey: mapped.profileKey,
             mapped: {
               email: mapped.email,
