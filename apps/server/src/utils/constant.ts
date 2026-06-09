@@ -67,6 +67,8 @@ const MAX_AVATAR_HTTP_URL_CHARS = 2_048;
 const IMAGE_DATA_URL_RE =
   /^data:image\/(?:png|jpe?g|webp);base64,[a-zA-Z0-9+/=\s\r\n]+$/;
 const HTTP_URL_RE = /^https?:\/\/.+/i;
+export const SLUG_NON_ALPHANUMERIC_RE = /[^a-z0-9]+/g;
+export const SLUG_EDGE_DASH_RE = /^-+|-+$/g;
 
 export const isValidAvatarUrl = (value: string): boolean => {
   const isDataUrl =

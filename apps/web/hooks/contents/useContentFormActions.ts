@@ -33,6 +33,7 @@ import {
   ACCESS_TYPE_FREE,
   ADMISSION_REQUIREMENT_PAYMENT,
   ADMISSION_REQUIREMENT_FREE,
+  CONTENT_FORM_FIELDS,
   ERROR_MESSAGES,
   DOWNLOAD_LIMIT_DEFAULT,
   CONTENT_TYPE_FALLBACK,
@@ -52,6 +53,7 @@ import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
 import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
+import type { ContentFormErrors } from "@/types/contentTypes";
 
 type Params = {
   activeTab: ContentTab;
@@ -88,7 +90,14 @@ export function useContentFormActions({
 }: Params) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const { formState, prefillForm, resetForm, setFormState } = useContentForm();
+  const {
+    formState,
+    prefillForm,
+    resetForm,
+    setFormState,
+    setFormErrors,
+    clearFormErrors,
+  } = useContentForm();
   const {
     hasUnsavedChanges: hasAppearanceChanges,
     saveAppearance,
@@ -231,13 +240,67 @@ export function useContentFormActions({
     }
   };
 
+  const validateMetadataForm = () => {
+    const requiredMessage = t("contents.metadata.validation.required");
+    const nextErrors: ContentFormErrors = {};
+
+    if (!formState.title.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.TITLE] = requiredMessage;
+    }
+    if (!formState.description.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.DESCRIPTION] = requiredMessage;
+    }
+    if (!formState.publishedYear.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = requiredMessage;
+    }
+    if (!formState.duration.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.DURATION] = requiredMessage;
+    }
+    if (!formState.category.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.CATEGORY] = requiredMessage;
+    }
+    if (!formState.productionCompany.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.PRODUCTION_COMPANY] = requiredMessage;
+    }
+    if (!formState.manufacturerLink.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.MANUFACTURER_LINK] = requiredMessage;
+    }
+    if (!formState.tags.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.TAGS] = requiredMessage;
+    }
+    if (!formState.mediaCardThumbnail) {
+      nextErrors.mediaCardThumbnail = t(
+        "contents.metadata.validation.mediaCardThumbnail",
+      );
+    }
+    if (!formState.portraitThumbnail) {
+      nextErrors.portraitThumbnail = t(
+        "contents.metadata.validation.portraitThumbnail",
+      );
+    }
+
+    setFormErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      toast.error(t("errors.metadataValidationFailed"));
+      return false;
+    }
+
+    return true;
+  };
+
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
       toast.error(t(ERROR_MESSAGES.NO_CONTENT));
       return;
     }
 
+    if (activeTab === ADD_CONTENT_TABS.METADATA && !validateMetadataForm()) {
+      return;
+    }
+
     try {
+      clearFormErrors();
       const [thumbnailUrl, thumbnailLandscapeUrl] = await Promise.all([
         resolveProfileAvatarUrl(formState.mediaCardThumbnail),
         resolveProfileAvatarUrl(formState.portraitThumbnail),

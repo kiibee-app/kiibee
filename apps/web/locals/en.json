@@ -1613,6 +1613,11 @@
       "helperLiveStreaming": "Can be used, for example, in conjunction with Live streaming"
     },
     "metadata": {
+      "validation": {
+        "required": "This field is required.",
+        "mediaCardThumbnail": "Media card thumbnail is required.",
+        "portraitThumbnail": "Portrait thumbnail is required."
+      },
       "production": {
         "title": "Production of",
         "description": "Who released the film and produced the film?",
@@ -1767,6 +1772,7 @@
   "errors": {
     "missingContentFormProvider": "useContentForm must be used within a ContentFormProvider",
     "noContentToSave": "No content to save",
+    "metadataValidationFailed": "Please complete all required metadata fields.",
     "saveChangesFailed": "Failed to save changes",
     "saveSettingsFailed": "Failed to save settings",
     "loadDetailsFailed": "Failed to load content details",
