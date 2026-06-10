@@ -16,6 +16,8 @@ import {
   Footer,
   Badge,
   ImageInitials,
+  CardHeader,
+  CardChildren,
 } from "./styles";
 
 type GenericCardProps = {
@@ -113,9 +115,11 @@ export default function GenericCard({
         </ImageWrapper>
       )}
       <Content>
-        {title}
-        {subtitle}
-        {children}
+        <CardHeader>
+          {title}
+          {subtitle}
+        </CardHeader>
+        {children && <CardChildren>{children}</CardChildren>}
       </Content>
 
       {footer && <Footer>{applySoftOutlineToFooterButtons(footer)}</Footer>}
