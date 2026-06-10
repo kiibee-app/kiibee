@@ -40,13 +40,11 @@ export default function ContentPreviewModal({
 }: ContentPreviewModalProps) {
   useEffect(() => {
     if (!visible) return;
-
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === ESCAPE) {
         onClose();
       }
     };
-
     window.addEventListener(KEYDOWN, handleKey);
     return () => window.removeEventListener(KEYDOWN, handleKey);
   }, [visible, onClose]);
