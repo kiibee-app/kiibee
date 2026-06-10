@@ -7,6 +7,8 @@ import { getDashboardPathForRole } from "@/utils/path";
 
 const SESSION_CHECK_INTERVAL_MS = 60 * 60 * 1000;
 
+let isClientMounted = false;
+
 function readSessionDashboardPath() {
   if (!authStorage.hasSession()) return null;
 
@@ -15,11 +17,12 @@ function readSessionDashboardPath() {
 }
 
 export function useSessionDashboardPath() {
-  const [dashboardPath, setDashboardPath] = useState<string | null>(
-    readSessionDashboardPath(),
-  );
+  const [dashboardPath, setDashboardPath] = useState<string | null>(() => {
+    return isClientMounted ? readSessionDashboardPath() : null;
+  });
 
   useEffect(() => {
+    isClientMounted = true;
     let timeoutId: number | undefined;
 
     const sync = () => {
