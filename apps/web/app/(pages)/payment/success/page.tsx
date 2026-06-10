@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
+import { usePostAPI } from "@/lib/http/api/postApi";
 import { PATHS } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 
@@ -24,8 +25,9 @@ export default function PaymentSuccessPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId") ?? "";
+  const hasRequestedFallbackRef = useRef(false);
 
-  const { data, isLoading } = useGetAPI<OrderByIdResponse>(
+  const { data, isLoading, refetch } = useGetAPI<OrderByIdResponse>(
     orderId ? API.order.getById(orderId) : API.order.create,
     undefined,
     {
@@ -34,6 +36,9 @@ export default function PaymentSuccessPage() {
       refetchInterval: (query) =>
         query.state.data?.data?.status === "completed" ? false : 1500,
     },
+  );
+  const confirmPaymentMutation = usePostAPI<OrderByIdResponse, void>(
+    orderId ? API.order.confirmPayment(orderId) : API.order.create,
   );
 
   useEffect(() => {
@@ -64,6 +69,19 @@ export default function PaymentSuccessPage() {
 
     router.replace(PATHS.DASHBOARD_VIEWER);
   }, [data?.data?.mediaFileId, data?.data?.status, isLoading, orderId, router]);
+
+  useEffect(() => {
+    if (!orderId || isLoading || hasRequestedFallbackRef.current) return;
+    if (data?.data?.status !== "pending") return;
+
+    hasRequestedFallbackRef.current = true;
+    confirmPaymentMutation
+      .mutateAsync(undefined)
+      .then(() => refetch())
+      .catch(() => {
+        hasRequestedFallbackRef.current = false;
+      });
+  }, [confirmPaymentMutation, data?.data?.status, isLoading, orderId, refetch]);
 
   return (
     <div

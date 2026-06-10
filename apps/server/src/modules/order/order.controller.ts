@@ -28,4 +28,14 @@ export class OrderController {
     const userId = req.user.userId;
     return this.orderService.getOrderById(userId, orderId);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Post(':orderId/confirm-payment')
+  async confirmOrderPayment(
+    @Req() req: any,
+    @Param('orderId') orderId: string,
+  ) {
+    const userId = req.user.userId;
+    return this.orderService.confirmOrderPayment(userId, orderId);
+  }
 }

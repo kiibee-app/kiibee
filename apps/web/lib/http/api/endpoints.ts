@@ -71,5 +71,6 @@ export const API = {
   order: {
     create: "/order/create",
     getById: (orderId: string) => `/order/${orderId}`,
+    confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
   },
 } as const;
