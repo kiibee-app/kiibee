@@ -35,6 +35,8 @@ export type SingleContentHeroProps = {
 };
 
 export type SingleContentPageProps = {
+  contentId?: string;
+  collectionId?: string;
   title: string;
   descriptions?: string[];
   tags?: string[];

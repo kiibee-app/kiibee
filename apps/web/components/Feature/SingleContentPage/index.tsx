@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { PATHS } from "@/utils/path";
 import {
@@ -9,6 +10,10 @@ import {
   ACCESS_KEYWORD_DA,
   STRING,
 } from "@/utils/Constants";
+import { usePostAPI } from "@/lib/http/api/postApi";
+import { API } from "@/lib/http/api/endpoints";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { toast } from "react-toastify";
 import {
   SingleContentBody,
   SingleContentHero,
@@ -26,6 +31,8 @@ export type {
 } from "@/types/contentTypes";
 
 export default function SingleContentPage({
+  contentId,
+  collectionId,
   title,
   descriptions = [],
   tags = [],
@@ -45,6 +52,82 @@ export default function SingleContentPage({
 }: SingleContentPageProps) {
   const router = useRouter();
   const user = useStoredLoginUser();
+  const { getErrorMessage } = useApiErrorMessage();
+
+  type CreateOrderPayload = {
+    contentId: string;
+    collectionId?: string;
+    itemType: "purchase" | "rental";
+  };
+
+  type CreateOrderResponse = {
+    success: boolean;
+    statusCode: number;
+    message: string;
+    data: {
+      orderId: string;
+      url: string;
+    };
+  };
+
+  const createOrderMutation = usePostAPI<
+    CreateOrderResponse,
+    CreateOrderPayload
+  >(API.order.create);
+
+  const actionsWithPayment = useMemo(() => {
+    const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
+
+    if (!actions.length || !contentId) {
+      return actions;
+    }
+
+    return actions.map((action) => {
+      const normalizedLabel = action.label.toLowerCase();
+      const isPurchase = normalizedLabel.includes("buy");
+      const isRental = normalizedLabel.includes("rent");
+
+      if (!isPurchase && !isRental) {
+        return action;
+      }
+
+      return {
+        ...action,
+        disabled: action.disabled || createOrderMutation.isPending,
+        onClick: async () => {
+          if (!user?.id) {
+            router.push(PATHS.AUTH_LOGIN);
+            return;
+          }
+
+          try {
+            const response = await createOrderMutation.mutateAsync({
+              contentId,
+              collectionId,
+              itemType: isPurchase ? "purchase" : "rental",
+            });
+            const paymentUrl = response?.data?.url;
+            if (!paymentUrl) {
+              throw new Error("Payment URL missing");
+            }
+            window.location.assign(paymentUrl);
+          } catch (error) {
+            const message = getErrorMessage(error, "errors.saveChangesFailed");
+            toast.error(message);
+          }
+        },
+      };
+    });
+  }, [
+    collectionId,
+    contentId,
+    createOrderMutation,
+    getErrorMessage,
+    primaryAction,
+    primaryActions,
+    router,
+    user?.id,
+  ]);
 
   const handlePrimaryActionClick = () => {
     if (primaryAction?.onClick) {
@@ -109,6 +192,7 @@ export default function SingleContentPage({
             descriptions={descriptions}
             tags={tags}
             primaryAction={modifiedPrimaryAction}
+            primaryActions={actionsWithPayment}
             expiry={expiry}
             metaItems={metaItems}
           />

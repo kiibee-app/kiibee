@@ -87,6 +87,12 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
+  accessInfo?: {
+    accessType?: string;
+    rentExpiresAt?: string | null;
+    grantedAt?: string | null;
+    timeLeftText?: string;
+  } | null;
 };
 
 export type ContentMediaUrlResponse = {
@@ -196,11 +202,13 @@ export const getSingleContentProps = (
   const rentDurationHours = content[CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS];
   const pricingItem = { accessType, buyPrice, rentPrice, rentDurationHours };
   const isFree = isFreeContentItem(pricingItem);
+  const hasViewerAccess = Boolean(content.accessInfo);
   const pricingActions = getContentDetailPricingActions(pricingItem, t, {
     inCollection: options?.inCollection,
   });
 
   return {
+    contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
     title,
     descriptions: description ? [description] : [],
     tags: categories,
@@ -229,7 +237,7 @@ export const getSingleContentProps = (
           }
         : {}),
     },
-    ...(isFree
+    ...(isFree || hasViewerAccess
       ? {
           primaryAction: {
             label: t(CONTENT_TRANSLATION_KEYS.seeContent),

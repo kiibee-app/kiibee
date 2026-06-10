@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
@@ -36,13 +38,19 @@ import {
   resolvePublishedContentByKey,
   CONTENT_KIND,
 } from "@/utils/resolvePublishedContentByKey";
+import { toast } from "react-toastify";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const params = useParams();
   const user = useStoredLoginUser();
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
+  const paymentStatus = searchParams.get("payment");
+  const hasHandledPaymentToastRef = useRef(false);
   const normalizedContentKey = contentKey?.replaceAll(":", "-");
   const viewerId = resolveContentViewerId(user?.id);
   const contentViewRoute = normalizedContentKey
@@ -59,6 +67,7 @@ function PublishedContentDetail() {
     undefined,
     {
       enabled: Boolean(normalizedContentKey) && !fallback,
+      refetchInterval: paymentStatus === "success" ? 1500 : false,
     },
   );
   const content = getContentDetail(data);
@@ -95,6 +104,21 @@ function PublishedContentDetail() {
     content,
     mediaResponse?.[CONTENT_MEDIA_RESPONSE_KEYS.URL],
   );
+
+  useEffect(() => {
+    if (paymentStatus !== "success" || hasHandledPaymentToastRef.current)
+      return;
+
+    const hasAccess = Boolean(content?.accessInfo);
+    if (!hasAccess) return;
+
+    hasHandledPaymentToastRef.current = true;
+    toast.success("Payment successful. You can access this content now.");
+    const nextParams = new URLSearchParams(searchParams.toString());
+    nextParams.delete("payment");
+    const next = nextParams.toString();
+    router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
+  }, [content?.accessInfo, pathname, paymentStatus, router, searchParams]);
 
   if (isLoading) {
     return (

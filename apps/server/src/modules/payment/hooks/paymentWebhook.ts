@@ -12,6 +12,11 @@ import {
 } from 'src/utils/constant';
 
 export async function handleEpayPayment(body: any) {
+  if (!body?.data?.transaction) {
+    logger.error('⚠️ Invalid webhook payload: missing transaction data');
+    return;
+  }
+
   const {
     state,
     reference,
@@ -72,18 +77,28 @@ export async function handleEpayPayment(body: any) {
       .set({ status: ORDER_STATUS.COMPLETED, rentExpiresAt })
       .where(eq(orders.id, orderId));
 
-    await db.insert(userContentAccess).values({
-      id: randomUUID(),
-      orderId: orderId,
-      userId: orderInfo?.userId || '',
-      mediaFileId: orderInfo?.mediaFileId || null,
-      collectionId: orderInfo?.collectionId || null,
-      accessType:
-        orderInfo?.itemType === ORDER_TYPES.PURCHASE
-          ? ACCRESS_TYPES.PURCHASED
-          : ACCRESS_TYPES.RENTED,
-      rentExpiresAt,
-    } as any);
+    const [existingAccess] = await db
+      .select({ id: userContentAccess.id })
+      .from(userContentAccess)
+      .where(eq(userContentAccess.orderId, orderId))
+      .limit(1);
+
+    if (!existingAccess) {
+      await db.insert(userContentAccess).values({
+        id: randomUUID(),
+        orderId: orderId,
+        userId: orderInfo?.userId || '',
+        mediaFileId: orderInfo?.mediaFileId || null,
+        collectionId: orderInfo?.collectionId || null,
+        accessType:
+          orderInfo?.itemType === ORDER_TYPES.PURCHASE
+            ? ACCRESS_TYPES.PURCHASED
+            : ACCRESS_TYPES.RENTED,
+        rentExpiresAt,
+      } as any);
+    }
+
+    return;
   }
 
   if (status === PAYMENT_STATUS.PAYMENT_FAILED) {
