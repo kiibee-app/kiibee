@@ -64,6 +64,9 @@ export const API = {
     sales: "/creator-users/sales",
     deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
   },
+  export: {
+    request: "/export/request",
+  },
   creatorOverview: {
     contentPerformance: "/creator-overview/content-performance",
     analytics: "/creator-overview/analytics",

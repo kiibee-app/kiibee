@@ -313,14 +313,38 @@ export const DateDisplay = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
   min-height: 44px;
   border: 1px solid transparent;
   cursor: pointer;
 `;
 
-export const DateText = styled.div`
+export const DateText = styled.div<{ $isPlaceholder?: boolean }>`
   ${({ theme }) => theme.typography.Body_Regular};
-  color: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ $isPlaceholder, theme }) =>
+    $isPlaceholder
+      ? theme.colors.neutral.GRAY_400
+      : theme.colors.primary.BLACK};
+  flex: 1;
+  min-width: 0;
+`;
+
+export const DateFieldActions = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+`;
+
+export const DateCalendarButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
 `;
 
 export const DatePopup = styled.div<{
