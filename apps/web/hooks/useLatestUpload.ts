@@ -16,16 +16,7 @@ import {
 import { CollectionContentRow } from "@/types/collectionsType";
 import type { ImageSource } from "@/utils/Constants";
 import type { FeedContentItem } from "@/utils/feedContentToTutorial";
-
-function convertRentDurationToHours(
-  rentDuration: string | null | undefined,
-): number | null {
-  if (!rentDuration) return null;
-  const match = rentDuration.match(/^(\d+)_months?$/);
-  if (match) return Number(match[1]) * 30 * 24;
-  const num = Number(rentDuration);
-  return Number.isFinite(num) ? num : null;
-}
+import { convertRentDurationToHours } from "@/utils/formatDate";
 
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;

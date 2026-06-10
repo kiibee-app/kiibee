@@ -72,3 +72,13 @@ export function formatJoinedDate(dateString?: string | null): string {
 
   return `${day}${suffix} ${month} ${year}`;
 }
+
+export function convertRentDurationToHours(
+  rentDuration: string | null | undefined,
+): number | null {
+  if (!rentDuration) return null;
+  const match = rentDuration.match(/^(\d+)_months?$/);
+  if (match) return Number(match[1]) * 30 * 24;
+  const num = Number(rentDuration);
+  return Number.isFinite(num) ? num : null;
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import type { ImageSource } from "@/utils/Constants";
 import {
@@ -100,6 +101,7 @@ type ComputedAction = {
 
 export default function LatestUpload({ data }: LatestUploadProps) {
   const { t } = useTranslation();
+  const router = useRouter();
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const { navigateToContent } = useProtectedContentNavigation();
@@ -154,11 +156,9 @@ export default function LatestUpload({ data }: LatestUploadProps) {
     const next = encodeURIComponent(
       window.location.pathname + window.location.search,
     );
-    window.location.href = `${PATHS.AUTH_LOGIN}?next=${next}`;
+    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
   };
-  const handleCreateAccount = () => {
-    window.location.href = PATHS.AUTH_SIGNUP;
-  };
+  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
   const normalizedContentType = normalizeContentTypeValue(
     String((data as { contentType?: unknown }).contentType ?? ""),
   );
