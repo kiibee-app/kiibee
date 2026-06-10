@@ -14,14 +14,14 @@ import { EXPORT_TYPE_OPTIONS } from "@/utils/exportOptions";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { useExportRequest } from "@/hooks/useExport";
+import { useExportDateRange } from "@/hooks/useExportDateRange";
 
 export default function ExportContent() {
   const { t } = useTranslation();
   const { requestExport, isPending } = useExportRequest();
+  const { startDate, endDate, setDateRange } = useExportDateRange();
 
   const [exportType, setExportType] = useState<string>("users-email-signups");
-  const [startDate, setStartDate] = useState<string>("");
-  const [endDate, setEndDate] = useState<string>("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleRequest = async () => {
@@ -83,8 +83,7 @@ export default function ExportContent() {
           <DateRangeField
             start={startDate}
             end={endDate}
-            onChangeStart={setStartDate}
-            onChangeEnd={setEndDate}
+            onChangeRange={setDateRange}
           />
         </FieldBox>
       </Section>
