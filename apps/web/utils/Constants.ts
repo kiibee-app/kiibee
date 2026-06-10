@@ -31,6 +31,7 @@ export const PASSWORD = "password";
 export const CONTENT_TAB = "tab";
 export const CONTENT_COLLECTION_QUERY_KEY = "collectionId";
 export const CONTENT_ITEM_QUERY_KEY = "contentId";
+export const QUERY_KEY_FORMAT = "format";
 export const CONTENT_LAST_EDITED_STORAGE_KEY = "contents:lastEditedContentId";
 export const BILLING_TAB = "billingTab";
 export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [
@@ -133,6 +134,7 @@ export const PROFILE_LAYOUT_PAGE = {
 export const QUERY_KEYS = {
   PROFILE_HOME_COLLECTIONS_PREVIEW: "profile-home-collections-preview",
   PROFILE_LATEST_UPLOAD: "profile-latest-upload",
+  ALL_CONTENT_SUB: "allContentSub",
 } as const;
 
 export type ProfileLayoutPageKind =
@@ -323,6 +325,7 @@ export const CATEGORY_ALL = "all";
 export const SORT_OPTION_NEW = "new";
 export const SORT_OPTION_POPULAR = "popular";
 export const SORT_OPTION_AZ = "a-z";
+export const EXPLORE_SUBSECTION_EVERYTHING = "everything";
 
 export const FILTER_SECTION_CREATORS = "creators";
 export const FILTER_SECTION_FORMATS = "formats";

@@ -29,7 +29,7 @@ const NAV_ITEMS: NavItem[] = [
       {
         titleKey: "nav.explore.allContentTitle",
         items: [
-          { key: "nav.explore.everything", href: PATHS.EXPLORE },
+          { key: "nav.explore.everything", href: PATHS.EXPLORE_EVERYTHING },
           { key: "nav.explore.newReleases", href: PATHS.EXPLORE_NEW },
           { key: "nav.explore.popular", href: PATHS.EXPLORE_POPULAR },
           { key: "nav.explore.freeContent", href: PATHS.EXPLORE_FREE },
