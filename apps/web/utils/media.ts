@@ -166,56 +166,40 @@ export function resolveCloudflareStreamPlaybackUrl(
 }
 
 const YOUTUBE_HOST_PATTERN = /(?:youtube\.com|youtu\.be)/i;
+const URL_PATTERN = /^https?:\/\/.+/i;
+
+function safeParseUrl(url: string): URL | null {
+  if (!URL_PATTERN.test(url)) return null;
+  return new URL(url);
+}
 
 export function isYouTubeUrl(url?: string | null): boolean {
-  const trimmed = url?.trim();
-  if (!trimmed) return false;
-  try {
-    return YOUTUBE_HOST_PATTERN.test(new URL(trimmed).hostname);
-  } catch {
-    return false;
-  }
+  const parsed = safeParseUrl(url?.trim() ?? "");
+  return parsed ? YOUTUBE_HOST_PATTERN.test(parsed.hostname) : false;
 }
 
 export function getYouTubeEmbedUrl(url: string): string {
-  try {
-    const parsed = new URL(url);
-    let videoId = "";
-
-    if (parsed.hostname === "youtu.be") {
-      videoId = parsed.pathname.replace(/^\/+/, "").split("/")[0];
-    } else {
-      videoId = parsed.searchParams.get("v") || "";
-    }
-
-    if (!videoId) return url;
-    return `https://www.youtube.com/embed/${videoId}`;
-  } catch {
-    return url;
-  }
+  const parsed = safeParseUrl(url);
+  if (!parsed) return url;
+  const videoId =
+    parsed.hostname === "youtu.be"
+      ? parsed.pathname.replace(/^\/+/, "").split("/")[0]
+      : parsed.searchParams.get("v") || "";
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
 }
 
 const VIMEO_HOST_PATTERN = /vimeo\.com/i;
 
 export function isVimeoUrl(url?: string | null): boolean {
-  const trimmed = url?.trim();
-  if (!trimmed) return false;
-  try {
-    return VIMEO_HOST_PATTERN.test(new URL(trimmed).hostname);
-  } catch {
-    return false;
-  }
+  const parsed = safeParseUrl(url?.trim() ?? "");
+  return parsed ? VIMEO_HOST_PATTERN.test(parsed.hostname) : false;
 }
 
 export function getVimeoEmbedUrl(url: string): string {
-  try {
-    const parsed = new URL(url);
-    const videoId = parsed.pathname.replace(/^\/+/, "").split("/")[0];
-    if (!videoId) return url;
-    return `https://player.vimeo.com/video/${videoId}`;
-  } catch {
-    return url;
-  }
+  const parsed = safeParseUrl(url);
+  if (!parsed) return url;
+  const videoId = parsed.pathname.replace(/^\/+/, "").split("/")[0];
+  return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
 }
 
 export function isThirdPartyVideoUrl(src: string): boolean {
