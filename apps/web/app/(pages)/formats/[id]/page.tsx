@@ -3,7 +3,7 @@
 import React, { Suspense } from "react";
 import { useParams } from "next/navigation";
 import NavBar from "@/components/Layout/Navbar";
-import { Main, PageContainer, Section } from "@/app/styles";
+import { Main, Section } from "@/app/styles";
 import Footer from "@/components/Layout/Footer";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { useTranslation } from "react-i18next";
@@ -27,6 +27,7 @@ import {
   Title,
   Controls,
 } from "@/components/Feature/ExploreCreators/Hero/styles";
+import { LocalPageContainer } from "@/app/(pages)/explore/category/[categoryName]/styles";
 
 function FormatPageContent() {
   const { id } = useParams() as { id: string };
@@ -43,7 +44,7 @@ function FormatPageContent() {
   } = useFormatContent(id);
 
   return (
-    <>
+    <LocalPageContainer $navTextTone={navTextTone}>
       <NavBar navTextTone={navTextTone} />
       <Main>
         <Section>
@@ -104,17 +105,15 @@ function FormatPageContent() {
           </div>
         </Section>
       </Main>
-    </>
+      <Footer />
+    </LocalPageContainer>
   );
 }
 
 export default function FormatPage() {
   return (
-    <PageContainer>
-      <Suspense fallback={null}>
-        <FormatPageContent />
-      </Suspense>
-      <Footer />
-    </PageContainer>
+    <Suspense fallback={null}>
+      <FormatPageContent />
+    </Suspense>
   );
 }
