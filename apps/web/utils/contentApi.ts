@@ -41,6 +41,7 @@ export const CONTENT_RESPONSE_KEYS = {
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
   NAME: "name",
+  CREATOR_ID: "creatorId",
 } as const;
 
 export const CONTENT_MEDIA_RESPONSE_KEYS = {
@@ -87,6 +88,7 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
+  [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
 };
 
 export type ContentMediaUrlResponse = {
@@ -174,7 +176,7 @@ export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
   mediaUrl?: string,
-  options?: { inCollection?: boolean },
+  options?: { inCollection?: boolean; viewerId?: string },
 ): SingleContentPageProps => {
   const title =
     toTrimmedString(content[CONTENT_RESPONSE_KEYS.TITLE]) ||
@@ -206,6 +208,10 @@ export const getSingleContentProps = (
 
   const isVideo = contentType === FORMAT_TYPE.VIDEO;
   const showTrailerInHero = isVideo && Boolean(trailerUrl);
+  const isOwner = Boolean(
+    options?.viewerId &&
+    content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
+  );
 
   return {
     title,
@@ -248,7 +254,7 @@ export const getSingleContentProps = (
           }
         : {}),
     },
-    ...(isFree || contentType === FORMAT_TYPE.WEB
+    ...(isFree || isOwner
       ? {
           primaryAction: {
             label: t(CONTENT_TRANSLATION_KEYS.seeContent),

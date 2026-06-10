@@ -387,7 +387,7 @@ export const PreviewOverlay = styled.div`
 export const PreviewModalContainer = styled.div`
   position: relative;
   width: 90vw;
-  max-width: 1200px;
+  max-width: 900px;
   height: 85vh;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 12px;

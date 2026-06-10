@@ -64,21 +64,12 @@ export default function SingleContentPage({
   const canPreview =
     isPreviewableType && Boolean(hero?.media?.src || hero?.contentUrl);
 
-  const handleOpenPreview = () => {
-    if (isWebType && hero?.media?.src) {
-      window.open(hero.media.src, "_blank", "noopener,noreferrer");
-      return;
-    }
-    if (canPreview) {
-      setShowPreviewModal(true);
-    }
-  };
-
   const handlePrimaryActionClick = () => {
     if (isWebType && hero?.media?.src) {
       window.open(hero.media.src, "_blank", "noopener,noreferrer");
       return;
     }
+
     if (canPreview) {
       setShowPreviewModal(true);
       return;
@@ -115,7 +106,7 @@ export default function SingleContentPage({
   const modifiedPrimaryActions: SingleContentAction[] | undefined =
     primaryActions?.map((action) => ({
       ...action,
-      onClick: canPreview ? handleOpenPreview : action.onClick,
+      onClick: handlePrimaryActionClick,
     }));
 
   const { share } = useShare();

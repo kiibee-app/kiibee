@@ -141,6 +141,7 @@ function PublishedContentDetail() {
       <SingleContentPage
         {...getSingleContentProps(content, t, mediaUrl, {
           inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
+          viewerId: user?.id,
         })}
       >
         {relatedCollectionQuery.data?.videos?.length ? (
