@@ -12,12 +12,7 @@ export type ScrollAnimationOptions = {
 };
 
 export function useScrollAnimation({
-  sidebarSelector = "[data-sidebar]",
-  innerSelector = "[data-sidebar] > div",
   cardsSelector = "article, [class*='Card']",
-  startOffset = "top 120px",
-  unpinOffset = 120,
-  minWidth = "(min-width: 768px)",
 }: ScrollAnimationOptions = {}) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -27,30 +22,9 @@ export function useScrollAnimation({
     let refreshTimeout: NodeJS.Timeout;
 
     const initGSAP = () => {
-      const filterSidebar = document.querySelector(sidebarSelector);
-      const innerContent = document.querySelector(innerSelector);
-      if (!filterSidebar || !innerContent) return false;
-
-      const sidebarParent = filterSidebar.parentElement;
-      if (sidebarParent) {
-        sidebarParent.style.alignItems = "flex-start";
-      }
-
       ctx = gsap.context(() => {
-        const mm = gsap.matchMedia();
-        mm.add(minWidth, () => {
-          ScrollTrigger.create({
-            trigger: innerContent,
-            start: startOffset,
-            endTrigger: sidebarParent || undefined,
-            end: () =>
-              `bottom ${unpinOffset + (innerContent as HTMLElement).offsetHeight}px`,
-            pin: true,
-            pinSpacing: false,
-            invalidateOnRefresh: true,
-          });
-        });
         const cards = gsap.utils.toArray<HTMLElement>(cardsSelector);
+        if (cards.length === 0) return;
         cards.forEach((card) => {
           gsap.fromTo(
             card,
@@ -97,12 +71,5 @@ export function useScrollAnimation({
       if (refreshTimeout) clearTimeout(refreshTimeout);
       if (ctx) ctx.revert();
     };
-  }, [
-    sidebarSelector,
-    innerSelector,
-    cardsSelector,
-    startOffset,
-    unpinOffset,
-    minWidth,
-  ]);
+  }, [cardsSelector]);
 }
