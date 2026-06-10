@@ -9,6 +9,41 @@ export const AllCreatorsPanel = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.sm};
 `;
 
+export const AllCreatorsLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+`;
+
+export const AllCreatorsTabs = styled.div`
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 10px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+`;
+
+export const AllCreatorsTabButton = styled.button<{ $active: boolean }>`
+  min-height: 34px;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 14px;
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.neutral.PALE_GREEN : "transparent"};
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.GREEN_100 : theme.colors.secondary.muted};
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    color ${({ theme }) => theme.animations.fast};
+`;
+
 export const AllCreatorsState = styled.div`
   padding: 20px 16px;
   font-size: 14px;
@@ -81,6 +116,34 @@ export const MiniText = styled.span`
   font-weight: 500;
 `;
 
+export const CreatorIdentity = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 210px;
+`;
+
+export const CreatorAvatar = styled.div`
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+  font-size: 12px;
+  font-weight: 800;
+  overflow: hidden;
+`;
+
+export const CreatorAvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const DescriptionText = styled.div`
   display: -webkit-box;
   overflow: hidden;
@@ -149,6 +212,64 @@ export const StatusDot = styled.span<{ $status: CreatorStatus }>`
       background: ${theme.colors.primary.ORANGE};
     `;
   }}
+`;
+
+export const AccountStatusBadge = styled.span<{ $status: string }>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 8px;
+  text-transform: capitalize;
+
+  ${({ $status, theme }) => {
+    if ($status === "active") {
+      return css`
+        background: ${theme.colors.neutral.PALE_GREEN};
+        color: ${theme.colors.primary.GREEN_100};
+      `;
+    }
+
+    if ($status === "pending-setup") {
+      return css`
+        background: ${theme.colors.primary.WHITE};
+        color: ${theme.colors.primary.ORANGE};
+        border: 1px solid ${theme.colors.primary.ORANGE};
+      `;
+    }
+
+    return css`
+      background: ${theme.colors.neutral.GRAY_100};
+      color: ${theme.colors.secondary.main};
+    `;
+  }}
+`;
+
+export const PublicationBadge = styled.span<{ $published: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: ${({ $published, theme }) =>
+    $published
+      ? theme.colors.neutral.PALE_GREEN
+      : theme.colors.neutral.GRAY_100};
+  color: ${({ $published, theme }) =>
+    $published ? theme.colors.primary.GREEN_100 : theme.colors.secondary.muted};
+`;
+
+export const MetricGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 96px;
 `;
 
 export const RowActionGroup = styled.div`
