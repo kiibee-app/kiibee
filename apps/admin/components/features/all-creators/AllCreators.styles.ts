@@ -4,7 +4,7 @@ import type { CreatorStatus } from "../../../types/creator-request";
 export const AllCreatorsPanel = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border: 1px solid ${({ theme }) => theme.colors.secondary.border};
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.radius.lg};
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows.sm};
 `;
@@ -12,15 +12,15 @@ export const AllCreatorsPanel = styled.div`
 export const AllCreatorsLayout = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: ${({ theme }) => theme.spacing(3.5)};
 `;
 
 export const AllCreatorsTabs = styled.div`
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
-  gap: 4px;
-  padding: 4px;
+  gap: ${({ theme }) => theme.spacing(1)};
+  padding: ${({ theme }) => theme.spacing(1)};
   border: 1px solid ${({ theme }) => theme.colors.secondary.border};
   border-radius: 10px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
@@ -28,16 +28,16 @@ export const AllCreatorsTabs = styled.div`
 `;
 
 export const AllCreatorsTabButton = styled.button<{ $active: boolean }>`
-  min-height: 34px;
+  min-height: ${({ theme }) => theme.spacing(8.5)};
   border: 0;
-  border-radius: 8px;
-  padding: 0 14px;
+  border-radius: ${({ theme }) => theme.radius.md};
+  padding: ${({ theme }) => `0 ${theme.spacing(3.5)}`};
   background: ${({ $active, theme }) =>
     $active ? theme.colors.neutral.PALE_GREEN : "transparent"};
   color: ${({ $active, theme }) =>
     $active ? theme.colors.primary.GREEN_100 : theme.colors.secondary.muted};
   font-size: 13px;
-  font-weight: 700;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
   cursor: pointer;
   transition:
     background ${({ theme }) => theme.animations.fast},
@@ -45,9 +45,9 @@ export const AllCreatorsTabButton = styled.button<{ $active: boolean }>`
 `;
 
 export const AllCreatorsState = styled.div`
-  padding: 20px 16px;
+  padding: ${({ theme }) => `${theme.spacing(5)} ${theme.spacing(4)}`};
   font-size: 14px;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.typography.Body_Medium.fontWeight};
   color: ${({ theme }) => theme.colors.secondary.muted};
 `;
 
@@ -74,10 +74,10 @@ export const RequestTableRow = styled.tr`
 export const TableHeaderCell = styled.th`
   text-align: left;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.typography.Body_SemiBold.fontWeight};
   line-height: 1.4;
   color: ${({ theme }) => theme.colors.secondary.main};
-  padding: 12px 14px;
+  padding: ${({ theme }) => `${theme.spacing(3)} ${theme.spacing(3.5)}`};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -85,9 +85,9 @@ export const TableHeaderCell = styled.th`
 `;
 
 export const TableBodyCell = styled.td`
-  padding: 12px 14px;
+  padding: ${({ theme }) => `${theme.spacing(3)} ${theme.spacing(3.5)}`};
   font-size: 14px;
-  font-weight: 400;
+  font-weight: ${({ theme }) => theme.typography.Body_Regular.fontWeight};
   line-height: 1.4;
   color: ${({ theme }) => theme.colors.secondary.muted};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
@@ -102,31 +102,31 @@ export const TableBodyCell = styled.td`
 export const CreatorCell = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: ${({ theme }) => theme.spacing(0.5)};
 `;
 
 export const CreatorName = styled.span`
   color: ${({ theme }) => theme.colors.secondary.main};
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.typography.Body_SemiBold.fontWeight};
 `;
 
 export const MiniText = styled.span`
   color: ${({ theme }) => theme.colors.secondary.muted};
   font-size: 12px;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.typography.Body_Medium.fontWeight};
 `;
 
 export const CreatorIdentity = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: ${({ theme }) => theme.spacing(2.5)};
   min-width: 210px;
 `;
 
 export const CreatorAvatar = styled.div`
   width: 34px;
   height: 34px;
-  border-radius: 999px;
+  border-radius: ${({ theme }) => theme.radius.full};
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
@@ -159,11 +159,11 @@ export const StatusBadge = styled.span<{ $status: CreatorStatus }>`
   align-items: center;
   justify-content: flex-start;
   min-height: 28px;
-  padding: 0 12px;
-  border-radius: 999px;
+  padding: ${({ theme }) => `0 ${theme.spacing(3)}`};
+  border-radius: ${({ theme }) => theme.radius.full};
   font-size: 12px;
-  font-weight: 700;
-  gap: 8px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  gap: ${({ theme }) => theme.spacing(2)};
   text-transform: capitalize;
 
   ${({ $status, theme }) => {
@@ -219,11 +219,11 @@ export const AccountStatusBadge = styled.span<{ $status: string }>`
   align-items: center;
   justify-content: flex-start;
   min-height: 28px;
-  padding: 0 12px;
-  border-radius: 999px;
+  padding: ${({ theme }) => `0 ${theme.spacing(3)}`};
+  border-radius: ${({ theme }) => theme.radius.full};
   font-size: 12px;
-  font-weight: 700;
-  gap: 8px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  gap: ${({ theme }) => theme.spacing(2)};
   text-transform: capitalize;
 
   ${({ $status, theme }) => {
@@ -253,10 +253,10 @@ export const PublicationBadge = styled.span<{ $published: boolean }>`
   display: inline-flex;
   align-items: center;
   min-height: 26px;
-  padding: 0 10px;
-  border-radius: 999px;
+  padding: ${({ theme }) => `0 ${theme.spacing(2.5)}`};
+  border-radius: ${({ theme }) => theme.radius.full};
   font-size: 12px;
-  font-weight: 700;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
   background: ${({ $published, theme }) =>
     $published
       ? theme.colors.neutral.PALE_GREEN
@@ -268,14 +268,14 @@ export const PublicationBadge = styled.span<{ $published: boolean }>`
 export const MetricGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: ${({ theme }) => theme.spacing(0.5)};
   min-width: 96px;
 `;
 
 export const RowActionGroup = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing(2)};
 `;
 
 export const RowActionButton = styled.button<{
