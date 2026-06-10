@@ -64,5 +64,6 @@ export const API = {
   },
   creatorOverview: {
     contentPerformance: "/creator-overview/content-performance",
+    analytics: "/creator-overview/analytics",
   },
 } as const;

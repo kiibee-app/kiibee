@@ -26,9 +26,7 @@ import {
   ContentLabel,
 } from "./styles";
 import OVERVIEW_STATS, {
-  OVERVIEW_ACTIVITY_DATA,
   OVERVIEW_RANGES,
-  type OverviewRange,
 } from "@/utils/dummyData/overviewData";
 import { renderContentIcon } from "@/utils/overviewContent";
 import OverviewActivityChart from "./OverviewActivityChart";
@@ -36,6 +34,8 @@ import { CLICKS, NAME, PAGE_VISITS, VIEWS } from "@/utils/common";
 import { useContentPerformance } from "@/hooks/overview/useContentPerformance";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { LOADER_VARIANT } from "@/utils/ui";
+import { useOverviewAnalytics } from "@/hooks/overview/useOverviewAnalytics";
+import type { OverviewRange } from "@/types/overview";
 
 export default function OverviewContent() {
   const { t } = useTranslation();
@@ -44,7 +44,11 @@ export default function OverviewContent() {
     rows: contentPerformanceRows,
     isLoading: isContentPerformanceLoading,
   } = useContentPerformance();
-  const activityData = OVERVIEW_ACTIVITY_DATA[range];
+  const {
+    stats: overviewStats,
+    chart: activityData,
+    isLoading: isOverviewAnalyticsLoading,
+  } = useOverviewAnalytics(range);
   const contentNameLabel = t("dashboard.contentName");
   const pageVisitsLabel = t("dashboard.pageVisits");
   const clicksLabel = t("dashboard.clicks");
@@ -75,12 +79,22 @@ export default function OverviewContent() {
               <StatDot $color={s.color} />
               <StatLabel>{s.label}</StatLabel>
             </StatRow>
-            <StatValue>{s.value}</StatValue>
+            <StatValue>
+              {overviewStats[s.id as keyof typeof overviewStats]}
+            </StatValue>
           </StatCard>
         ))}
       </CardsRow>
 
-      <OverviewActivityChart data={activityData} />
+      {isOverviewAnalyticsLoading ? (
+        <GenericLoader
+          variant={LOADER_VARIANT.INLINE}
+          isOpen
+          label={undefined}
+        />
+      ) : (
+        <OverviewActivityChart data={activityData} />
+      )}
 
       <PerformanceSection>
         <SectionTitle>{t("dashboard.contentPerformance")}</SectionTitle>

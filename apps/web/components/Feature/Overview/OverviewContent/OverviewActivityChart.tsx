@@ -1,6 +1,6 @@
 import React from "react";
 import COLORS from "@repo/ui/colors";
-import type { OverviewActivityPoint } from "@/utils/dummyData/overviewData";
+import type { OverviewActivityPoint } from "@/types/overview";
 import { ChartCard, ChartScroll, ChartSvg } from "./styles";
 import { t } from "i18next";
 
