@@ -15,7 +15,9 @@ function readSessionDashboardPath() {
 }
 
 export function useSessionDashboardPath() {
-  const [dashboardPath, setDashboardPath] = useState<string | null>(null);
+  const [dashboardPath, setDashboardPath] = useState<string | null>(
+    readSessionDashboardPath(),
+  );
 
   useEffect(() => {
     let timeoutId: number | undefined;
