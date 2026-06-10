@@ -15,7 +15,9 @@ export const API = {
   coupon: {
     create: "/coupons/create",
     getAll: "/coupons",
+    getById: (id: string) => `/coupons/${id}`,
     update: (id: string) => `/coupons/${id}`,
+    replace: (id: string) => `/coupons/${id}`,
     delete: (id: string) => `/coupons/${id}`,
   },
   media: {
@@ -64,5 +66,9 @@ export const API = {
   },
   export: {
     request: "/export/request",
+  },
+  creatorOverview: {
+    contentPerformance: "/creator-overview/content-performance",
+    analytics: "/creator-overview/analytics",
   },
 } as const;

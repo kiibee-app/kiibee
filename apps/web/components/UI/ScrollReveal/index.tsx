@@ -14,6 +14,7 @@ if (typeof window !== "undefined") {
 export default function ScrollReveal({
   children,
   delay = SCROLL_REVEAL.delay,
+  sequence = true,
   className = "",
   style,
   ...props
@@ -54,7 +55,7 @@ export default function ScrollReveal({
       });
 
       media.add(LANDING_MOTION.noReducedMotionQuery, () => {
-        const sequenceDelay = getSequenceDelay();
+        const sequenceDelay = sequence ? getSequenceDelay() : 0;
 
         gsap.fromTo(
           element,
@@ -82,7 +83,7 @@ export default function ScrollReveal({
     }, container);
 
     return () => ctx.revert();
-  }, [delay]);
+  }, [delay, sequence]);
 
   return (
     <div

@@ -68,11 +68,7 @@ export default function ContentsHeaderAction({
             {t("common.cancel")}
           </MonoText>
         </CancelButton>
-        <SaveButton
-          type="button"
-          onClick={onSave}
-          disabled={activeTab === APPEARANCE ? isSaveDisabled : false}
-        >
+        <SaveButton type="button" onClick={onSave} disabled={isSaveDisabled}>
           <MonoText $use="Body_Medium" color="inherit">
             {t("common.save")}
           </MonoText>

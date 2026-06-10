@@ -19,6 +19,8 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [formState, setFormState] = useState<ContentFormState>(defaultState);
+  const [savedFormState, setSavedFormState] =
+    useState<ContentFormState>(defaultState);
   const [formErrors, setFormErrors] = useState<ContentFormErrors>({});
 
   const updateField = useCallback(
@@ -36,8 +38,16 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const resetForm = useCallback(() => {
     setFormState(defaultState);
+    setSavedFormState(defaultState);
     setFormErrors({});
   }, []);
+
+  const markFormAsSaved = useCallback(
+    (nextState?: ContentFormState) => {
+      setSavedFormState(nextState ?? formState);
+    },
+    [formState],
+  );
 
   const setFieldError = useCallback(
     (field: ContentFormErrorKey, message: string) => {
@@ -69,6 +79,10 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
         ...defaultState,
         title: getFileNameWithoutExtension(file.name),
       });
+      setSavedFormState({
+        ...defaultState,
+        title: getFileNameWithoutExtension(file.name),
+      });
     },
     [resetForm],
   );
@@ -77,13 +91,16 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
     <ContentFormContext.Provider
       value={{
         formState,
+        savedFormState,
         formErrors,
         setFormState,
+        setSavedFormState,
         setFormErrors,
         updateField,
         setFieldError,
         clearFieldError,
         clearFormErrors,
+        markFormAsSaved,
         prefillForm,
         resetForm,
       }}

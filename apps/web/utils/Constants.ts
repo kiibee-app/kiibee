@@ -38,6 +38,14 @@ export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [
   "usersTab",
 ] as const;
 
+export const GENERAL_FORM_FIELDS: Array<keyof ContentFormState> = [
+  "webLink",
+  "openInNewWindow",
+  "openDirectFromList",
+  "trailerLink",
+  "visibility",
+];
+
 export const PASSWORD_VISIBILITY_KEY = {
   PASSWORD,
   REPEAT_PASSWORD,

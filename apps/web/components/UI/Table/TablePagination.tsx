@@ -21,18 +21,22 @@ import PageSizeSelect from "./PageSizeSelect";
 
 type Props = {
   totalPages: number;
+  totalItems: number;
   currentPage: number;
   paginationItems: PaginationItem[];
   rowsPerPage: number;
+  disablePagination?: boolean;
   onRowsPerPageChange: (rowsPerPage: number) => void;
   onChange: (page: number) => void;
 };
 
 export default function Pagination({
   totalPages,
+  totalItems,
   currentPage,
   paginationItems,
   rowsPerPage,
+  disablePagination = false,
   onRowsPerPageChange,
   onChange,
 }: Props) {
@@ -41,18 +45,26 @@ export default function Pagination({
   return (
     <PaginationWrapper>
       <PaginationMeta>
-        <PaginationMetaLabel>{t("table.showing")}</PaginationMetaLabel>
-        <PageSizeSelect
-          value={rowsPerPage}
-          options={PAGE_SIZE_OPTIONS}
-          onChange={onRowsPerPageChange}
-        />
-        <PaginationMetaLabel>
-          {t("table.outOf")} {totalPages}
-        </PaginationMetaLabel>
+        {disablePagination ? (
+          <PaginationMetaLabel>
+            {t("table.showing")} {rowsPerPage} {t("table.outOf")} {totalItems}
+          </PaginationMetaLabel>
+        ) : (
+          <>
+            <PaginationMetaLabel>{t("table.showing")}</PaginationMetaLabel>
+            <PageSizeSelect
+              value={rowsPerPage}
+              options={PAGE_SIZE_OPTIONS}
+              onChange={onRowsPerPageChange}
+            />
+            <PaginationMetaLabel>
+              {t("table.outOf")} {totalItems}
+            </PaginationMetaLabel>
+          </>
+        )}
       </PaginationMeta>
 
-      {totalPages > 1 ? (
+      {!disablePagination && totalPages > 1 ? (
         <PaginationControls>
           <PaginationButton
             onClick={() => onChange(currentPage - 1)}

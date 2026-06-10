@@ -26,19 +26,29 @@ import {
   ContentLabel,
 } from "./styles";
 import OVERVIEW_STATS, {
-  OVERVIEW_ACTIVITY_DATA,
-  OVERVIEW_CONTENT_PERFORMANCE,
   OVERVIEW_RANGES,
-  type OverviewRange,
 } from "@/utils/dummyData/overviewData";
 import { renderContentIcon } from "@/utils/overviewContent";
 import OverviewActivityChart from "./OverviewActivityChart";
 import { CLICKS, NAME, PAGE_VISITS, VIEWS } from "@/utils/common";
+import { useContentPerformance } from "@/hooks/overview/useContentPerformance";
+import GenericLoader from "@/components/UI/GenericLoader";
+import { LOADER_VARIANT } from "@/utils/ui";
+import { useOverviewAnalytics } from "@/hooks/overview/useOverviewAnalytics";
+import type { OverviewRange } from "@/types/overview";
 
 export default function OverviewContent() {
   const { t } = useTranslation();
   const [range, setRange] = useState<OverviewRange>("Day");
-  const activityData = OVERVIEW_ACTIVITY_DATA[range];
+  const {
+    rows: contentPerformanceRows,
+    isLoading: isContentPerformanceLoading,
+  } = useContentPerformance();
+  const {
+    stats: overviewStats,
+    chart: activityData,
+    isLoading: isOverviewAnalyticsLoading,
+  } = useOverviewAnalytics(range);
   const contentNameLabel = t("dashboard.contentName");
   const pageVisitsLabel = t("dashboard.pageVisits");
   const clicksLabel = t("dashboard.clicks");
@@ -69,60 +79,78 @@ export default function OverviewContent() {
               <StatDot $color={s.color} />
               <StatLabel>{s.label}</StatLabel>
             </StatRow>
-            <StatValue>{s.value}</StatValue>
+            <StatValue>
+              {overviewStats[s.id as keyof typeof overviewStats]}
+            </StatValue>
           </StatCard>
         ))}
       </CardsRow>
 
-      <OverviewActivityChart data={activityData} />
+      {isOverviewAnalyticsLoading ? (
+        <GenericLoader
+          variant={LOADER_VARIANT.INLINE}
+          isOpen
+          label={undefined}
+        />
+      ) : (
+        <OverviewActivityChart data={activityData} />
+      )}
 
       <PerformanceSection>
         <SectionTitle>{t("dashboard.contentPerformance")}</SectionTitle>
         <TableCard>
-          <Table
-            headers={[
-              contentNameLabel,
-              pageVisitsLabel,
-              clicksLabel,
-              viewsLabel,
-            ]}
-            data={OVERVIEW_CONTENT_PERFORMANCE}
-            rowsPerPage={OVERVIEW_CONTENT_PERFORMANCE.length}
-            getRowKey={(row) => row.id}
-            headerToKey={(header) => {
-              if (header === contentNameLabel) return NAME;
-              if (header === pageVisitsLabel) return PAGE_VISITS;
-              if (header === clicksLabel) return CLICKS;
-              return VIEWS;
-            }}
-            getColumnAlignment={(_header, index) =>
-              index === 0 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
-            }
-            getMobileTitle={(row) => row.name}
-            renderCell={({ header, row }) => {
-              if (header === contentNameLabel) {
-                return (
-                  <ContentMeta>
-                    <ContentIcon>{renderContentIcon(row.icon)}</ContentIcon>
-                    <ContentLabel>{row.name}</ContentLabel>
-                  </ContentMeta>
-                );
+          {isContentPerformanceLoading ? (
+            <GenericLoader
+              variant={LOADER_VARIANT.INLINE}
+              isOpen
+              label={undefined}
+            />
+          ) : (
+            <Table
+              headers={[
+                contentNameLabel,
+                pageVisitsLabel,
+                clicksLabel,
+                viewsLabel,
+              ]}
+              data={contentPerformanceRows}
+              rowsPerPage={contentPerformanceRows.length || 6}
+              getRowKey={(row) => row.id}
+              headerToKey={(header) => {
+                if (header === contentNameLabel) return NAME;
+                if (header === pageVisitsLabel) return PAGE_VISITS;
+                if (header === clicksLabel) return CLICKS;
+                return VIEWS;
+              }}
+              getColumnAlignment={(_header, index) =>
+                index === 0 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
               }
+              getMobileTitle={(row) => row.name}
+              renderCell={({ header, row }) => {
+                if (header === contentNameLabel) {
+                  return (
+                    <ContentMeta>
+                      <ContentIcon>{renderContentIcon(row.icon)}</ContentIcon>
+                      <ContentLabel>{row.name}</ContentLabel>
+                    </ContentMeta>
+                  );
+                }
 
-              const value =
-                header === pageVisitsLabel
-                  ? row.pageVisits
-                  : header === clicksLabel
-                    ? row.clicks
-                    : row.views;
+                const value =
+                  header === pageVisitsLabel
+                    ? row.pageVisits
+                    : header === clicksLabel
+                      ? row.clicks
+                      : row.views;
 
-              return (
-                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_700}>
-                  {value}
-                </MonoText>
-              );
-            }}
-          />
+                return (
+                  <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_700}>
+                    {value}
+                  </MonoText>
+                );
+              }}
+            />
+          )}
         </TableCard>
       </PerformanceSection>
     </Wrapper>
