@@ -1,4 +1,4 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Query, Req, UseGuards } from '@nestjs/common';
 import type { Request } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreatorGuard } from '../auth/guards/admin.guard';
@@ -21,5 +21,17 @@ export class CreatorOverviewController {
   @Get('content-performance')
   getContentPerformance(@Req() req: AuthenticatedRequest) {
     return this.creatorOverviewService.getContentPerformance(req.user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Get('analytics')
+  getOverviewAnalytics(
+    @Req() req: AuthenticatedRequest,
+    @Query('range') range?: string,
+  ) {
+    return this.creatorOverviewService.getOverviewAnalytics(
+      req.user.userId,
+      range,
+    );
   }
 }
