@@ -74,10 +74,10 @@ export const RequestTableRow = styled.tr`
 export const TableHeaderCell = styled.th`
   text-align: left;
   font-size: 12px;
-  font-weight: ${({ theme }) => theme.typography.Body_SemiBold.fontWeight};
+  font-weight: 600;
   line-height: 1.4;
   color: ${({ theme }) => theme.colors.secondary.main};
-  padding: ${({ theme }) => `${theme.spacing(3)} ${theme.spacing(3.5)}`};
+  padding: 12px 14px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -85,9 +85,9 @@ export const TableHeaderCell = styled.th`
 `;
 
 export const TableBodyCell = styled.td`
-  padding: ${({ theme }) => `${theme.spacing(3)} ${theme.spacing(3.5)}`};
+  padding: 12px 14px;
   font-size: 14px;
-  font-weight: ${({ theme }) => theme.typography.Body_Regular.fontWeight};
+  font-weight: 400;
   line-height: 1.4;
   color: ${({ theme }) => theme.colors.secondary.muted};
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
@@ -102,12 +102,12 @@ export const TableBodyCell = styled.td`
 export const CreatorCell = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing(0.5)};
+  gap: 2px;
 `;
 
 export const CreatorName = styled.span`
   color: ${({ theme }) => theme.colors.secondary.main};
-  font-weight: ${({ theme }) => theme.typography.Body_SemiBold.fontWeight};
+  font-weight: 600;
 `;
 
 export const MiniText = styled.span`
