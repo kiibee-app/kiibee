@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Put,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -32,6 +33,15 @@ export class CouponController {
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Get(':id')
+  async getCouponById(
+    @Req() req: AuthenticatedRequest,
+    @Param('id') id: string,
+  ) {
+    return this.couponService.getCouponById(req.user.userId, id);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
   @Post('create')
   async createCoupon(
     @Req() req: AuthenticatedRequest,
@@ -48,6 +58,16 @@ export class CouponController {
     @Body() payload: Record<string, unknown>,
   ) {
     return this.couponService.updateCoupon(req.user.userId, id, payload);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Put(':id')
+  async replaceCoupon(
+    @Req() req: AuthenticatedRequest,
+    @Param('id') id: string,
+    @Body() payload: Record<string, unknown>,
+  ) {
+    return this.couponService.replaceCoupon(req.user.userId, id, payload);
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
