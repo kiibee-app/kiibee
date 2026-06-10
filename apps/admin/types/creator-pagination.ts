@@ -6,6 +6,7 @@ export interface CreatorPaginationProps {
   totalPages: number;
   pageNumbers: number[];
   pageSize: number;
+  itemLabel?: string;
   onPageChange: (page: number) => void;
   onPageSizeChange: (size: number) => void;
 }
