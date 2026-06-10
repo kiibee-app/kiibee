@@ -15,6 +15,7 @@ import { OrderModule } from './modules/order/order.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { ViewerModule } from './modules/viewer/viewer.module';
 import { CreatorUsersModule } from './modules/creator-users/creator-users.module';
+import { CreatorOverviewModule } from './modules/creator-overview/creator-overview.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { CreatorUsersModule } from './modules/creator-users/creator-users.module
     PaymentModule,
     ViewerModule,
     CreatorUsersModule,
+    CreatorOverviewModule,
   ],
 })
 export class AppModule {}

@@ -78,6 +78,7 @@ export const TableCard = styled.div`
     0 10px 28px ${(p) => p.theme.colors.neutral.GRAY_300},
     0 2px 6px ${(p) => p.theme.colors.gradient.CARD_SHADOW};
   overflow: hidden;
+  padding: 20px;
 
   ${media.tablet} {
     border-radius: 18px;
