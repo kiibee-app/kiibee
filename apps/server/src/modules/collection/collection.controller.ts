@@ -32,6 +32,7 @@ export class CollectionController {
   constructor(private readonly collectionService: CollectionService) {}
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Post()
   @Post('create')
   async createCollection(
     @Body() dto: CreateCollectionDto,

@@ -48,6 +48,7 @@ export class ContentController {
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Post()
   @Post('create')
   async createContent(@Req() req: any, @Body() body: CreateContentDto) {
     const creatorId = req.user.userId;
@@ -63,6 +64,7 @@ export class ContentController {
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Put(':contentId')
   @Put('update/:contentId')
   async updateContent(@Req() req: any, @Body() body: UpdateContentDto) {
     const contentId = req.params.contentId;
@@ -78,6 +80,7 @@ export class ContentController {
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Delete(':contentId')
   @Delete('delete/:contentId')
   async deleteContent(@Req() req: any) {
     const contentId = req.params.contentId;

@@ -42,6 +42,7 @@ export class CouponController {
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Post()
   @Post('create')
   async createCoupon(
     @Req() req: AuthenticatedRequest,
