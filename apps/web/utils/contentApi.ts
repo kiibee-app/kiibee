@@ -200,6 +200,13 @@ export const getSingleContentProps = (
     inCollection: options?.inCollection,
   });
 
+  const trailerUrl = toTrimmedString(
+    content[CONTENT_RESPONSE_KEYS.TRAILER_URL],
+  );
+
+  const isVideo = contentType === FORMAT_TYPE.VIDEO;
+  const showTrailerInHero = isVideo && Boolean(trailerUrl);
+
   return {
     title,
     descriptions: description ? [description] : [],
@@ -208,18 +215,30 @@ export const getSingleContentProps = (
     hero: {
       image: getContentImage(content),
       imageAlt: title,
-      ...(mediaUrl
+      contentType,
+      ...(showTrailerInHero && trailerUrl
         ? {
             media: {
               type: contentType,
-              src: mediaUrl,
+              src: trailerUrl,
               title,
             },
+            contentUrl: mediaUrl,
           }
-        : {}),
+        : mediaUrl && !isVideo
+          ? {
+              media: {
+                type: contentType,
+                src: mediaUrl,
+                title,
+              },
+            }
+          : isVideo && mediaUrl
+            ? { contentUrl: mediaUrl }
+            : {}),
       categoryLabel: categories[0],
       mediaLabel: getContentTypeLabel(contentType),
-      ...(contentType === FORMAT_TYPE.VIDEO
+      ...(isVideo
         ? {
             mediaIcon: playCircleIcon,
             mediaIconAlt: t(CONTENT_TRANSLATION_KEYS.seeContent),
@@ -229,7 +248,7 @@ export const getSingleContentProps = (
           }
         : {}),
     },
-    ...(isFree
+    ...(isFree || contentType === FORMAT_TYPE.WEB
       ? {
           primaryAction: {
             label: t(CONTENT_TRANSLATION_KEYS.seeContent),

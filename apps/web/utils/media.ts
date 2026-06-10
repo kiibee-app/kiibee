@@ -164,3 +164,66 @@ export function resolveCloudflareStreamPlaybackUrl(
   const videoId = extractCloudflareStreamVideoId(fileKey, contentUrl);
   return videoId ? getCloudflareStreamEmbedUrl(videoId) : null;
 }
+
+const YOUTUBE_HOST_PATTERN = /(?:youtube\.com|youtu\.be)/i;
+
+export function isYouTubeUrl(url?: string | null): boolean {
+  const trimmed = url?.trim();
+  if (!trimmed) return false;
+  try {
+    return YOUTUBE_HOST_PATTERN.test(new URL(trimmed).hostname);
+  } catch {
+    return false;
+  }
+}
+
+export function getYouTubeEmbedUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    let videoId = "";
+
+    if (parsed.hostname === "youtu.be") {
+      videoId = parsed.pathname.replace(/^\/+/, "").split("/")[0];
+    } else {
+      videoId = parsed.searchParams.get("v") || "";
+    }
+
+    if (!videoId) return url;
+    return `https://www.youtube.com/embed/${videoId}`;
+  } catch {
+    return url;
+  }
+}
+
+const VIMEO_HOST_PATTERN = /vimeo\.com/i;
+
+export function isVimeoUrl(url?: string | null): boolean {
+  const trimmed = url?.trim();
+  if (!trimmed) return false;
+  try {
+    return VIMEO_HOST_PATTERN.test(new URL(trimmed).hostname);
+  } catch {
+    return false;
+  }
+}
+
+export function getVimeoEmbedUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    const videoId = parsed.pathname.replace(/^\/+/, "").split("/")[0];
+    if (!videoId) return url;
+    return `https://player.vimeo.com/video/${videoId}`;
+  } catch {
+    return url;
+  }
+}
+
+export function isThirdPartyVideoUrl(src: string): boolean {
+  return isYouTubeUrl(src) || isVimeoUrl(src);
+}
+
+export function getThirdPartyEmbedUrl(src: string): string {
+  if (isYouTubeUrl(src)) return `${getYouTubeEmbedUrl(src)}?autoplay=1`;
+  if (isVimeoUrl(src)) return `${getVimeoEmbedUrl(src)}?autoplay=1`;
+  return src;
+}
