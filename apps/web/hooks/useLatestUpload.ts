@@ -17,10 +17,25 @@ import { CollectionContentRow } from "@/types/collectionsType";
 import type { ImageSource } from "@/utils/Constants";
 import type { FeedContentItem } from "@/utils/feedContentToTutorial";
 
+function convertRentDurationToHours(
+  rentDuration: string | null | undefined,
+): number | null {
+  if (!rentDuration) return null;
+  const match = rentDuration.match(/^(\d+)_months?$/);
+  if (match) return Number(match[1]) * 30 * 24;
+  const num = Number(rentDuration);
+  return Number.isFinite(num) ? num : null;
+}
+
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;
   category?: string | null;
   thumbnailLandscapeUrl?: ImageSource | null;
+  accessType?: string | null;
+  buyPrice?: string | number | null;
+  rentPrice?: string | number | null;
+  rentDurationHours?: string | number | null;
+  collectionId?: string;
 };
 
 export function useLatestUpload(publicCreatorId: string | null = null) {
@@ -55,6 +70,9 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           category: latest.categoryName ?? null,
           contentType: latest.contentType ?? "video",
           thumbnailLandscapeUrl: latest.thumbnailUrl ?? null,
+          accessType: latest.accessType ?? null,
+          buyPrice: latest.buyPrice ?? null,
+          rentPrice: latest.rentPrice ?? null,
         } as LatestUploadItem;
       }
 
@@ -74,16 +92,21 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
       );
 
       const allContents: LatestUploadItem[] = contentsResponses
-        .flatMap((res) => {
+        .flatMap((res, collectionIndex) => {
           const data = res.data as
             | CollectionContentRow[]
             | { data: CollectionContentRow[] };
 
-          return Array.isArray(data) ? data : (data?.data ?? []);
+          const rows = Array.isArray(data) ? data : (data?.data ?? []);
+          return rows.map((row) => ({
+            row,
+            collectionId: collections[collectionIndex]?.id,
+          }));
         })
-        .map((item) => ({
-          ...item,
-          createdAt: new Date(item.createdAt).getTime(),
+        .map(({ row, collectionId }) => ({
+          ...row,
+          createdAt: new Date(row.createdAt).getTime(),
+          collectionId,
         }))
         .filter((i) => !isNaN(i.createdAt));
 
@@ -91,6 +114,10 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
 
       const latest = allContents[0];
       if (!latest) return null;
+
+      const parentCollection = collections.find(
+        (c) => c.id === latest.collectionId,
+      );
 
       try {
         const res = await axiosClient.get<ContentDetailResponse>(
@@ -104,6 +131,12 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           title: content?.title || latest.name || "",
           category: category ?? null,
           thumbnailLandscapeUrl: content?.thumbnailLandscapeUrl ?? null,
+          accessType: parentCollection?.accessType ?? null,
+          buyPrice: parentCollection?.buyPrice ?? null,
+          rentPrice: parentCollection?.rentPrice ?? null,
+          rentDurationHours: convertRentDurationToHours(
+            parentCollection?.rentDuration,
+          ),
         };
       } catch {
         return {
@@ -111,6 +144,12 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           title: latest.name || "",
           category: null,
           thumbnailLandscapeUrl: null,
+          accessType: parentCollection?.accessType ?? null,
+          buyPrice: parentCollection?.buyPrice ?? null,
+          rentPrice: parentCollection?.rentPrice ?? null,
+          rentDurationHours: convertRentDurationToHours(
+            parentCollection?.rentDuration,
+          ),
         };
       }
     },

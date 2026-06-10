@@ -8,6 +8,8 @@ import {
 } from "./Constants";
 import { pathPublishedContent } from "./path";
 import type { FeedContentItem } from "./feedContentToTutorial";
+import type { TutorialButton } from "./types";
+import { CONTENT_RESPONSE_KEYS } from "./contentApi";
 
 export type ContentPricingAction = {
   label: string;
@@ -194,4 +196,53 @@ export function getContentPrimaryAction(
     label: actions[0]?.label ?? seeContentLabel,
     isFree: false,
   };
+}
+
+function extractPricingFromRecord(record: Record<string, unknown>) {
+  return {
+    accessType:
+      (record[CONTENT_RESPONSE_KEYS.ACCESS_TYPE] as string | null) ?? undefined,
+    buyPrice:
+      (record[CONTENT_RESPONSE_KEYS.BUY_PRICE] as string | number | null) ??
+      undefined,
+    rentPrice:
+      (record[CONTENT_RESPONSE_KEYS.RENT_PRICE] as string | number | null) ??
+      undefined,
+  };
+}
+
+export function buildPricingButtonsForContent(
+  contentId: string,
+  contentDetail: Record<string, unknown> | undefined,
+  freeLabel: string,
+): TutorialButton[] {
+  if (!contentDetail) {
+    return [{ label: freeLabel, variant: VARIANT.SECONDARY }];
+  }
+
+  const pricingItem = extractPricingFromRecord(contentDetail);
+
+  if (isFreeContentItem(pricingItem)) {
+    return [
+      {
+        label: freeLabel,
+        variant: VARIANT.SECONDARY,
+        href: pathPublishedContent(contentId),
+      },
+    ];
+  }
+
+  const actions = getContentPricingActions(pricingItem, freeLabel);
+
+  return actions.map((action) => ({
+    label: action.label,
+    variant: VARIANT.SECONDARY,
+    href: resolveContentActionHref(
+      contentId,
+      action.label,
+      pricingItem,
+      actions.length,
+    ),
+    fullWidth: action.fullWidth,
+  }));
 }
