@@ -80,7 +80,7 @@ export class CheckMediaAccessGuard implements CanActivate {
       )
       .limit(1);
 
-    if (!hasAccess) {
+    if (!hasAccess.length) {
       throw new ForbiddenException(
         'Access denied. You do not have permission to access this media.',
       );
