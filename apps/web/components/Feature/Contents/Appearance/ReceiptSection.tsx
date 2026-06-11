@@ -44,6 +44,15 @@ export default function ReceiptSection() {
     [clearFieldError, updateField],
   );
 
+  const handleBlur = useCallback(
+    (fieldKey: string) => () => {
+      if (fieldKey !== RECEIPT_FIELD) {
+        validateField(FORM_FIELDS.SUPPORT_EMAIL);
+      }
+    },
+    [validateField],
+  );
+
   const fields = useMemo(
     () =>
       getReceiptFields({
@@ -77,11 +86,7 @@ export default function ReceiptSection() {
                 width="100%"
                 height="46px"
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
-                onBlur={() => {
-                  if (field.key !== RECEIPT_FIELD) {
-                    validateField(FORM_FIELDS.SUPPORT_EMAIL);
-                  }
-                }}
+                onBlur={handleBlur(field.key)}
                 hasError={
                   field.key !== RECEIPT_FIELD && Boolean(errors.supportEmail)
                 }
