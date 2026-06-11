@@ -29,7 +29,7 @@ async function bootstrap() {
         logger: false,
       }),
       {
-        logger: false,
+        logger: ['log', 'error', 'warn', 'debug', 'verbose'],
       },
     );
 
