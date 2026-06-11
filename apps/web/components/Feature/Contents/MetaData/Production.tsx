@@ -3,6 +3,7 @@
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
+import TagsInput from "@/components/UI/InputFields/TagsInput";
 import {
   CONTENT_FORM_FIELDS,
   INPUT_VARIANTS,
@@ -87,18 +88,19 @@ export default function ProductionSection() {
           </SectionHeader>
 
           <FieldWrapper>
-            <InputField
-              type={INPUT_TYPE.TEXT}
+            <TagsInput
               value={formState.tags}
-              onChange={handleChange(
-                CONTENT_FORM_FIELDS.TAGS,
-                maxLogoNameCharacters,
-              )}
+              onChange={(value) => {
+                clearFieldError(CONTENT_FORM_FIELDS.TAGS);
+                updateField(
+                  CONTENT_FORM_FIELDS.TAGS,
+                  value.slice(0, maxLogoNameCharacters),
+                );
+              }}
               placeholder={t("contents.metadata.tags.placeholder")}
-              width="100%"
+              maxLength={maxLogoNameCharacters}
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               hasError={Boolean(formErrors.tags)}
-              errorMessage={formErrors.tags}
             />
           </FieldWrapper>
 

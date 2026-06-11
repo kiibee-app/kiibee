@@ -2,6 +2,7 @@ const KEY_SPACE = " ";
 const KEY_SPACEBAR = "Spacebar";
 
 export const KEY_ENTER = "Enter";
+export const KEY_BACKSPACE = "Backspace";
 export const ESCAPE = "Escape";
 export const KEYDOWN = "keydown";
 export const BUTTON = "button";

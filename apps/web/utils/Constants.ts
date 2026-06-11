@@ -263,12 +263,7 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       : undefined,
     productionCompany: formState.productionCompany || undefined,
     manufacturerLink: formState.manufacturerLink || undefined,
-    tags: formState.tags
-      ? formState.tags
-          .split(/[\n,]+/)
-          .map((tag) => tag.trim())
-          .filter(Boolean)
-      : undefined,
+    tags: formState.tags ? parseTags(formState.tags) : undefined,
     visibility: formState.visibility
       ? formState.visibility.toLowerCase()
       : undefined,
@@ -309,6 +304,21 @@ export const CONTENT_FORM_FIELDS = {
   MANUFACTURER_LINK: "manufacturerLink",
   TAGS: "tags",
 } as const;
+
+export const TAG_DELIMITER = /[\n,]+/;
+
+export function parseTags(value: string): string[] {
+  return value
+    ? value
+        .split(TAG_DELIMITER)
+        .map((tag) => tag.trim())
+        .filter(Boolean)
+    : [];
+}
+
+export function joinTags(tags: string[]): string {
+  return tags.join(", ");
+}
 
 export const MEDIA_TYPE_VIDEO_KEY = "discoverContent.mediaTypes.video";
 export const MEDIA_TYPE_EPUB_KEY = "discoverContent.mediaTypes.epub";
