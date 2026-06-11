@@ -322,7 +322,7 @@ export const CollectionCtaContent = styled.span`
 `;
 
 export const CollectionCtaSubtext = styled.span`
-  ${({ theme }) => theme.typography.Body_Small}
+  ${({ theme }) => theme.typography.Body_Medium}
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
 `;
 

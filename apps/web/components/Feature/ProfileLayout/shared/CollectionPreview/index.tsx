@@ -204,7 +204,7 @@ function PublicCollectionPreview({
         <SectionLabel>
           <CollectionSectionTag>
             <MonoText $use="H4_Medium">
-              {t("createProfileAbout.content", { defaultValue: "Content" })}
+              {t("createProfileHome.latestUpload.seeContent")}
             </MonoText>
           </CollectionSectionTag>
         </SectionLabel>

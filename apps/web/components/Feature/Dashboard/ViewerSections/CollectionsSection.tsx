@@ -243,7 +243,7 @@ export default function CollectionsSection({
                         }
                       >
                         <CollectionCtaContent>
-                          <MonoText $use="Body_SemiBold" color={labelColor}>
+                          <MonoText $use="Body_Medium" color={labelColor}>
                             {action.label}
                           </MonoText>
                           {action.sublabel ? (
@@ -262,12 +262,11 @@ export default function CollectionsSection({
                     <GenericButton
                       variant={VARIANT.PRIMARY}
                       size="md"
-                      onClick={(e: React.MouseEvent) => {
-                        e.stopPropagation();
-                        if (isPurchased && onCollectionPrimaryAction) {
-                          onCollectionPrimaryAction(item);
-                        }
-                      }}
+                      onClick={
+                        isPurchased && onCollectionPrimaryAction
+                          ? () => onCollectionPrimaryAction(item)
+                          : undefined
+                      }
                     >
                       {getCollectionPrimaryActionText(mode)}
                     </GenericButton>
