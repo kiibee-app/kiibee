@@ -117,10 +117,6 @@ export default function CollectionsSection({
     [navigateToContent],
   );
 
-  const stopPropagation = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-  }, []);
-
   return (
     <>
       <SectionHeader $withMetaHeader={showExpandedMetaHeader}>
@@ -200,7 +196,7 @@ export default function CollectionsSection({
                 </MonoText>
               </ElementsPill>
 
-              <CollectionActionRow onClick={stopPropagation}>
+              <CollectionActionRow>
                 {isPurchased ? (
                   <CollectionBuyButton
                     className="collection-cta"

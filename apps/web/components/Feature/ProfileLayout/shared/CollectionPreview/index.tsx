@@ -224,17 +224,13 @@ export default function CollectionPreview({ variant }: Props) {
   const { displayName, isPublicView, publicCreatorId } =
     useCreatorChannelProfile();
 
-  const seeContentLabel = t("singleCollection.seeContent", {
-    defaultValue: "See content",
-  });
-
   if (isPublicView && publicCreatorId) {
     return (
       <PublicCollectionPreview
         variant={variant}
         publicCreatorId={publicCreatorId}
         searchQuery={searchQuery}
-        seeContentLabel={seeContentLabel}
+        seeContentLabel={t("createProfileHome.latestUpload.seeContent")}
       />
     );
   }
@@ -244,7 +240,7 @@ export default function CollectionPreview({ variant }: Props) {
       variant={variant}
       searchQuery={searchQuery}
       displayName={displayName}
-      seeContentLabel={seeContentLabel}
+      seeContentLabel={t("createProfileHome.latestUpload.seeContent")}
     />
   );
 }

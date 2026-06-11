@@ -78,8 +78,6 @@ export default function CollectionList() {
     isPublicView ? publicCreatorId : null,
   );
 
-  const seeContentLabel = t("createProfileHome.latestUpload.seeContent");
-
   const handleBuyClick = useCallback(
     (item: RentedCollectionItem) => {
       if (!authStorage.hasSession()) {
@@ -160,7 +158,7 @@ export default function CollectionList() {
 
       const pricingActions = getContentPricingActions(
         pricingItem,
-        seeContentLabel,
+        t("createProfileHome.latestUpload.seeContent"),
         {
           inCollection: true,
         },
@@ -201,7 +199,7 @@ export default function CollectionList() {
     privateCollectionsResponse,
     collectionContentsMap,
     displayName,
-    seeContentLabel,
+    t,
   ]);
 
   const filteredItems = useMemo(() => {
