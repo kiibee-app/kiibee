@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FAILED, PAYMENT_QUERY_KEY } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 
-export default function PaymentFailurePage() {
+function PaymentFailureContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const orderId = searchParams.get("orderId");
+  const orderId = searchParams.get("orderId") ?? searchParams.get("orderid");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,4 +26,12 @@ export default function PaymentFailurePage() {
   }, [orderId, router]);
 
   return null;
+}
+
+export default function PaymentFailurePage() {
+  return (
+    <Suspense fallback={null}>
+      <PaymentFailureContent />
+    </Suspense>
+  );
 }

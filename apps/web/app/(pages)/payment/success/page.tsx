@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { API } from "@/lib/http/api/endpoints";
@@ -45,7 +45,7 @@ type OrderByIdResponse = {
   data: OrderRecord;
 };
 
-export default function PaymentSuccessPage() {
+function PaymentSuccessContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -191,5 +191,13 @@ export default function PaymentSuccessPage() {
         </ProgressDots>
       </StatusCard>
     </PageShell>
+  );
+}
+
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense fallback={null}>
+      <PaymentSuccessContent />
+    </Suspense>
   );
 }
