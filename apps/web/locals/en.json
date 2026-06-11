@@ -84,7 +84,8 @@
         "cancelLabel": "Login",
         "confirmLabel": "Create account",
         "message": "To continue with your purchase, please log in to your Kiibee account. If you don't have an account yet, you can create one in just a moment."
-      }
+      },
+      "seeContent": "See content"
     }
   },
   "createProfileCollections": {
