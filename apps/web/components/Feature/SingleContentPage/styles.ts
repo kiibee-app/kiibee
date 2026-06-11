@@ -320,13 +320,21 @@ export const PricingCtaContent = styled.span`
   text-align: center;
 `;
 
-export const PricingCtaSubtext = styled.span`
+export const PricingCtaSubtext = styled.span<{ $isPrimary?: boolean }>`
   ${({ theme }) => theme.typography.Body_Medium}
   font-size: 12px;
+  color: ${({ theme, $isPrimary }) =>
+    $isPrimary ? theme.colors.primary.WHITE_90 : theme.colors.neutral.GRAY_500};
+  transition: color 120ms ease;
+
+  .pricing-cta:hover & {
+    color: ${({ theme, $isPrimary }) =>
+      $isPrimary ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_500};
+  }
 `;
 
 export const MainActionText = styled.span`
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: inherit;
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
