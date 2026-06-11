@@ -310,6 +310,17 @@ export const CONTENT_FORM_FIELDS = {
   TAGS: "tags",
 } as const;
 
+export const TAG_DELIMITER = /[\n,]+/;
+
+export function parseTags(value: string): string[] {
+  return value
+    ? value
+        .split(TAG_DELIMITER)
+        .map((tag) => tag.trim())
+        .filter(Boolean)
+    : [];
+}
+
 export const MEDIA_TYPE_VIDEO_KEY = "discoverContent.mediaTypes.video";
 export const MEDIA_TYPE_EPUB_KEY = "discoverContent.mediaTypes.epub";
 export const FREE_LABEL = "Free";

@@ -513,6 +513,7 @@ export function useContentFormActions({
       categories?: { id: string }[];
       production_company?: string;
       manufacturerLink?: string;
+      tags?: string[];
       thumbnailUrl?: string | null;
       thumbnailLandscapeUrl?: string | null;
       accessType?: string;
@@ -593,7 +594,9 @@ export function useContentFormActions({
           category: fullContent.categories?.[0]?.id || CATEGORY_EDUCATION_LOWER,
           productionCompany: fullContent.production_company || "",
           manufacturerLink: fullContent.manufacturerLink || "",
-          tags: "",
+          tags: Array.isArray(fullContent.tags)
+            ? fullContent.tags.join(", ")
+            : "",
           mediaCardThumbnail: fullContent.thumbnailUrl || null,
           portraitThumbnail: fullContent.thumbnailLandscapeUrl || null,
           admissionRequirement:
