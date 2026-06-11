@@ -39,7 +39,6 @@ export const Inner = styled.div`
 
   ${media.mobileMd} {
     flex-direction: row;
-    align-items: stretch;
     padding: var(--navbar-inner-mobile-padding, 0.75rem 1rem);
     gap: 0.5rem;
   }
@@ -49,10 +48,6 @@ export const Left = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-
-  ${media.mobileMd} {
-    width: 100%;
-  }
   ${media.mobile} {
     flex-shrink: 3;
   }
@@ -62,6 +57,14 @@ export const Logo = styled.span`
   font-weight: 700;
   font-size: 1.125rem;
   font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
+  display: flex;
+  align-items: center;
+
+  img {
+    ${media.mobileMd} {
+      max-height: 32px !important;
+    }
+  }
 `;
 
 const navLinkColor = (
@@ -307,11 +310,8 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
   }
 
   ${media.mobileMd} {
-    width: 100%;
     margin-left: 0;
-    justify-content: flex-end;
     gap: 0.5rem;
-    order: 2;
   }
 
   ${media.mobile} {
