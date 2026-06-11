@@ -7,6 +7,7 @@ import {
   emailSubscribers,
   mediaFiles,
   users,
+  creatorInfo,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { ROLE, STATUS } from 'src/utils/constant';
@@ -22,6 +23,8 @@ export type ExploreCreatorItem = {
   uploadCount: number;
   subscriberCount: number;
   createdAt: string;
+  contentDescription: string | null;
+  exampleWorkLink: string | null;
 };
 
 const subscriberCounts = db
@@ -91,12 +94,15 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
           'subscriber_count',
         ),
       createdAt: users.createdAt,
+      contentDescription: creatorInfo.contentDescription,
+      exampleWorkLink: creatorInfo.exampleWorkLink,
     })
     .from(users)
     .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
     .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
     .leftJoin(uploadCounts, eq(uploadCounts.creatorId, users.id))
     .leftJoin(subscriberCounts, eq(subscriberCounts.creatorId, users.id))
+    .leftJoin(creatorInfo, eq(creatorInfo.userId, users.id))
     .where(and(...conditions))
     .orderBy(desc(sql`coalesce(${subscriberCounts.subscriberCount}, 0)`));
 };
@@ -111,6 +117,8 @@ const mapCreatorRow = (row: {
   uploadCount: number;
   subscriberCount: number;
   createdAt: Date | string;
+  contentDescription: string | null;
+  exampleWorkLink: string | null;
 }): ExploreCreatorItem => ({
   id: row.id,
   name: row.name,
@@ -124,6 +132,8 @@ const mapCreatorRow = (row: {
     row.createdAt instanceof Date
       ? row.createdAt.toISOString()
       : String(row.createdAt),
+  contentDescription: row.contentDescription,
+  exampleWorkLink: row.exampleWorkLink,
 });
 
 export const getExploreCreatorsService = async (
