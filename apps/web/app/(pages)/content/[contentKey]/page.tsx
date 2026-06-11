@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useParams } from "next/navigation";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
@@ -14,6 +14,7 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
@@ -50,12 +51,14 @@ function PublishedContentDetail() {
   const searchParams = useSearchParams();
   const params = useParams();
   const user = useStoredLoginUser();
+  const resolvedUserId = user?.id ?? readStoredLoginUser()?.id;
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
   const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);
+  const isPaymentSuccess = paymentStatus === STATUS_TONE.SUCCESS;
   const [dismissedPaymentSuccess, setDismissedPaymentSuccess] = useState(false);
   const normalizedContentKey = contentKey?.replaceAll(":", "-");
-  const viewerId = resolveContentViewerId(user?.id);
+  const viewerId = resolveContentViewerId(resolvedUserId);
   const contentViewRoute = normalizedContentKey
     ? API.content.view(normalizedContentKey, viewerId)
     : API.content.create;
@@ -70,7 +73,7 @@ function PublishedContentDetail() {
     undefined,
     {
       enabled: Boolean(normalizedContentKey) && !fallback,
-      refetchInterval: paymentStatus === STATUS_TONE.SUCCESS ? 1500 : false,
+      refetchInterval: isPaymentSuccess ? 1500 : false,
     },
   );
   const content = getContentDetail(data);
@@ -107,10 +110,9 @@ function PublishedContentDetail() {
     content,
     mediaResponse?.[CONTENT_MEDIA_RESPONSE_KEYS.URL],
   );
+  const hasUnlockedContent = Boolean(content?.accessInfo);
   const showPaymentSuccessModal =
-    paymentStatus === STATUS_TONE.SUCCESS &&
-    Boolean(content?.accessInfo) &&
-    !dismissedPaymentSuccess;
+    isPaymentSuccess && hasUnlockedContent && !dismissedPaymentSuccess;
 
   const handlePaymentSuccessClose = () => {
     setDismissedPaymentSuccess(true);
@@ -119,6 +121,22 @@ function PublishedContentDetail() {
     const next = nextParams.toString();
     router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
   };
+
+  const paymentSuccessModal = (
+    <GenericModal
+      visible={showPaymentSuccessModal}
+      icon={<SuccessModalIcon />}
+      iconMargin="0 auto 8px"
+      textAlign={MODAL_ALIGN.CENTER}
+      title="Payment successful!"
+      message="Your content is now unlocked. You can start enjoying it right away."
+      confirmLabel="Start watching"
+      onClose={handlePaymentSuccessClose}
+      onConfirm={handlePaymentSuccessClose}
+      size="sm"
+      showCloseButton={false}
+    />
+  );
 
   if (isLoading) {
     return (
@@ -162,36 +180,35 @@ function PublishedContentDetail() {
 
   return (
     <>
-      <GenericModal
-        visible={showPaymentSuccessModal}
-        icon={<SuccessModalIcon />}
-        iconMargin="0 auto 8px"
-        textAlign={MODAL_ALIGN.CENTER}
-        title="Payment successful!"
-        message="Your content is now unlocked. You can start enjoying it right away."
-        confirmLabel="Start watching"
-        onClose={handlePaymentSuccessClose}
-        onConfirm={handlePaymentSuccessClose}
-        size="sm"
-        showCloseButton={false}
-      />
-
-    <Section>
-      <SingleContentPage
-        {...getSingleContentProps(content, t, mediaUrl, {
-          inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
-          viewerId: user?.id,
-        })}
-      >
-        {relatedCollectionQuery.data?.videos?.length ? (
-          <CollectionItems
-            videos={relatedCollectionQuery.data.videos}
-            collectionId={relatedCollectionQuery.data.collectionId}
-          />
-        ) : null}
-      </SingleContentPage>
-    </Section>
+      {paymentSuccessModal}
+      <Section>
+        <SingleContentPage
+          {...getSingleContentProps(content, t, mediaUrl, {
+            inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
+            viewerId: resolvedUserId,
+          })}
+        >
+          {relatedCollectionQuery.data?.videos?.length ? (
+            <CollectionItems
+              videos={relatedCollectionQuery.data.videos}
+              collectionId={relatedCollectionQuery.data.collectionId}
+            />
+          ) : null}
+        </SingleContentPage>
+      </Section>
     </>
+  );
+}
+
+function PublishedContentLoading() {
+  const { t } = useTranslation();
+
+  return (
+    <Section>
+      <MonoText $use="H5_Regular">
+        {t(CONTENT_TRANSLATION_KEYS.loading)}
+      </MonoText>
+    </Section>
   );
 }
 
@@ -200,7 +217,9 @@ export default function PublishedContentPage() {
     <PageContainer>
       <NavBar />
       <Main>
-        <PublishedContentDetail />
+        <Suspense fallback={<PublishedContentLoading />}>
+          <PublishedContentDetail />
+        </Suspense>
       </Main>
       <Footer />
     </PageContainer>

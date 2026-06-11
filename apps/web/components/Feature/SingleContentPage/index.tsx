@@ -186,11 +186,12 @@ export default function SingleContentPage({
       }
     : undefined;
 
-  const modifiedPrimaryActions: SingleContentAction[] | undefined =
-    primaryActions?.map((action) => ({
-      ...action,
-      onClick: handlePrimaryActionClick,
-    }));
+  const bodyPrimaryActions: SingleContentAction[] | undefined =
+    primaryActions != null
+      ? actionsWithPayment
+      : modifiedPrimaryAction
+        ? [modifiedPrimaryAction]
+        : undefined;
 
   const { share } = useShare();
   const isPdfLayout =
@@ -220,13 +221,12 @@ export default function SingleContentPage({
 
           <SingleContentBody
             creator={creator}
-            primaryActions={modifiedPrimaryActions}
             statusLabel={statusLabel}
             title={title}
             descriptions={descriptions}
             tags={tags}
             primaryAction={modifiedPrimaryAction}
-            primaryActions={actionsWithPayment}
+            primaryActions={bodyPrimaryActions}
             expiry={expiry}
             metaItems={metaItems}
           />
