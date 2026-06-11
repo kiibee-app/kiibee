@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
-import { usePostAPI } from "@/lib/http/api/postApi";
 import { PATHS } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
 
@@ -24,64 +24,83 @@ type OrderByIdResponse = {
 export default function PaymentSuccessPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const orderId = searchParams.get("orderId") ?? "";
-  const hasRequestedFallbackRef = useRef(false);
 
-  const { data, isLoading, refetch } = useGetAPI<OrderByIdResponse>(
-    orderId ? API.order.getById(orderId) : API.order.create,
+  const orderId = searchParams.get("orderId");
+
+  const { data, isLoading, isError } = useGetAPI<OrderByIdResponse>(
+    orderId ? API.order.getById(orderId) : "",
     undefined,
     {
-      enabled: Boolean(orderId),
+      enabled: !!orderId,
       retry: 3,
-      refetchInterval: (query) =>
-        query.state.data?.data?.status === "completed" ? false : 1500,
+      refetchInterval: (query) => {
+        const status = query.state.data?.data?.status;
+
+        if (status === "completed" || status === "failed") {
+          return false;
+        }
+
+        return 1500;
+      },
     },
   );
-  const confirmPaymentMutation = usePostAPI<OrderByIdResponse, void>(
-    orderId ? API.order.confirmPayment(orderId) : API.order.create,
-  );
+
+  const order = data?.data;
 
   useEffect(() => {
-    if (!orderId) {
-      router.replace(PATHS.DASHBOARD_VIEWER);
-      return;
-    }
-
-    if (isLoading) return;
-
-    const status = data?.data?.status;
-    const mediaFileId = data?.data?.mediaFileId;
-    if (status === "pending" || !status) {
-      return;
-    }
-
-    if (status === "failed") {
-      router.replace(`${PATHS.DASHBOARD_VIEWER}?payment=failed`);
-      return;
-    }
-
-    if (status === "completed" && mediaFileId) {
+    if (order?.status === "completed" && order.mediaFileId) {
       router.replace(
-        `${PATHS.CONTENT}/${encodeURIComponent(mediaFileId)}?payment=success`,
+        `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}`,
       );
-      return;
     }
+  }, [order?.status, order?.mediaFileId, router]);
 
-    router.replace(PATHS.DASHBOARD_VIEWER);
-  }, [data?.data?.mediaFileId, data?.data?.status, isLoading, orderId, router]);
+  if (!orderId) {
+    return (
+      <div
+        style={{
+          minHeight: "50vh",
+          display: "grid",
+          placeItems: "center",
+          padding: "24px",
+        }}
+      >
+        <MonoText>Invalid order reference.</MonoText>
+      </div>
+    );
+  }
 
-  useEffect(() => {
-    if (!orderId || isLoading || hasRequestedFallbackRef.current) return;
-    if (data?.data?.status !== "pending") return;
+  if (isError) {
+    return (
+      <div
+        style={{
+          minHeight: "50vh",
+          display: "grid",
+          placeItems: "center",
+          padding: "24px",
+        }}
+      >
+        <MonoText>
+          Unable to verify your payment. Please refresh the page.
+        </MonoText>
+      </div>
+    );
+  }
 
-    hasRequestedFallbackRef.current = true;
-    confirmPaymentMutation
-      .mutateAsync(undefined)
-      .then(() => refetch())
-      .catch(() => {
-        hasRequestedFallbackRef.current = false;
-      });
-  }, [confirmPaymentMutation, data?.data?.status, isLoading, orderId, refetch]);
+  if (order?.status === "failed") {
+    return (
+      <div
+        style={{
+          minHeight: "50vh",
+          display: "grid",
+          placeItems: "center",
+          padding: "24px",
+        }}
+      >
+        <MonoText>Payment was not completed. Please try again.</MonoText>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -90,10 +109,13 @@ export default function PaymentSuccessPage() {
         display: "grid",
         placeItems: "center",
         padding: "24px",
+        backgroundColor: "#f9f9f9",
       }}
     >
-      <MonoText $use="H5_Regular">
-        Confirming your payment and unlocking content...
+      <MonoText style={{ fontSize: "18px", textAlign: "center" }}>
+        {isLoading
+          ? "Checking payment status..."
+          : "Confirming your payment and unlocking content..."}
       </MonoText>
     </div>
   );
