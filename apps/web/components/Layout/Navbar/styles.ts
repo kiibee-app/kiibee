@@ -19,8 +19,8 @@ export const Header = styled.header<HeaderProps>`
     backdrop-filter 180ms ease;
   z-index: 50;
 
-  @media (max-width: 640px) {
-    height: auto;
+  ${media.mobileMd} {
+    height: var(--navbar-height, 73px);
   }
 `;
 
@@ -50,7 +50,7 @@ export const Left = styled.div`
   gap: 1rem;
 
   ${media.mobileMd} {
-    width: 100%;
+    width: auto;
   }
   ${media.mobile} {
     flex-shrink: 3;
@@ -124,7 +124,7 @@ export const Nav = styled.nav<NavStyleProps & { $routeActiveItems?: boolean }>`
       }
     `}
 
-  @media (max-width: 640px) {
+  ${media.mobileMd} {
     display: none;
   }
 `;
