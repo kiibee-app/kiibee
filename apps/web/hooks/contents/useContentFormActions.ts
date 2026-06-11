@@ -467,6 +467,18 @@ export function useContentFormActions({
     (field) => formState[field] !== savedFormState[field],
   );
 
+  const hasMetadataUnsavedChanges =
+    formState.title !== savedFormState.title ||
+    formState.description !== savedFormState.description ||
+    formState.publishedYear !== savedFormState.publishedYear ||
+    formState.duration !== savedFormState.duration ||
+    formState.category !== savedFormState.category ||
+    formState.productionCompany !== savedFormState.productionCompany ||
+    formState.manufacturerLink !== savedFormState.manufacturerLink ||
+    formState.tags !== savedFormState.tags ||
+    formState.mediaCardThumbnail !== savedFormState.mediaCardThumbnail ||
+    formState.portraitThumbnail !== savedFormState.portraitThumbnail;
+
   const closeContentUpload = () => {
     contentTypeFlow.close();
   };
@@ -639,6 +651,7 @@ export function useContentFormActions({
     setCollectionAccessDuration,
     hasUnsavedChanges: hasAppearanceChanges,
     hasGeneralUnsavedChanges,
+    hasMetadataUnsavedChanges,
     handleUploadSuccess,
     handleBackToBase,
     handleBackToBaseStateOnly,
