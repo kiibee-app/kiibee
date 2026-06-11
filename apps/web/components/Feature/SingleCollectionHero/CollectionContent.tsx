@@ -8,6 +8,7 @@ import {
   EmbeddedSection,
   EmbeddedShowcaseWrapper,
   Header,
+  ResultsState,
   Section,
   ShowcaseWrapper,
   TitleGroup,
@@ -65,12 +66,20 @@ export default function CollectionContent({
         />
       </HeaderEl>
       <ShowcaseEl>
-        <TutorialsShowcase
-          videos={filteredVideos}
-          maxWidth={maxWidth}
-          selectedVideoId={selectedVideoId}
-          onSelectVideo={onSelectVideo}
-        />
+        {filteredVideos.length > 0 ? (
+          <TutorialsShowcase
+            videos={filteredVideos}
+            maxWidth={maxWidth}
+            selectedVideoId={selectedVideoId}
+            onSelectVideo={onSelectVideo}
+          />
+        ) : (
+          <ResultsState>
+            <MonoText $use="Body_Medium">
+              {t("singleCollection.noResults")}
+            </MonoText>
+          </ResultsState>
+        )}
       </ShowcaseEl>
     </SectionEl>
   );
