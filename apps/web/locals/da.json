@@ -975,7 +975,8 @@
     "seeContent": "Se indhold",
     "notFound": "Samling ikke fundet",
     "inCollection": "I denne samling",
-    "uploads": "uploads"
+    "uploads": "uploads",
+    "noResults": "Ingen uploads matcher din søgning."
   },
   "singleTutorial": {
     "title": "Del 1. Oprettelse af profil og kanal & site",
