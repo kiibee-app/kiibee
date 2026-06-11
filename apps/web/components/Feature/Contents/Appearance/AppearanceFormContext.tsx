@@ -1,48 +1,21 @@
 "use client";
 
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
-import { useTranslation } from "react-i18next";
+import React, { createContext, useCallback, useContext, useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
-import { createAppearanceSchema } from "@/lib/validation/schema";
 import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
-import { FORM_FIELDS } from "@/utils/appearance";
 import {
-  areAppearanceValuesEqual,
   mapAppearanceFromApi,
   mapAppearanceToApi,
-  type AppearanceFormValues,
 } from "@/utils/appearanceApi";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
-import type { CreatorLayoutKey } from "@/utils/creatorChannel";
 import { writeSavedCreatorLayout } from "@/utils/creatorChannel";
 import { CONTENTS } from "@/utils/translationKeys";
-
-type AppearanceFormErrors = Partial<Record<keyof AppearanceFormValues, string>>;
-
-type AppearanceFormContextValue = {
-  values: AppearanceFormValues;
-  errors: AppearanceFormErrors;
-  isLoading: boolean;
-  hasUnsavedChanges: boolean;
-  updateField: <K extends keyof AppearanceFormValues>(
-    key: K,
-    value: AppearanceFormValues[K],
-  ) => void;
-  clearFieldError: (key: keyof AppearanceFormValues) => void;
-  validateField: (key: keyof AppearanceFormValues) => void;
-  setLayout: (layout: CreatorLayoutKey) => void;
-  saveAppearance: () => Promise<void>;
-  cancelAppearance: () => void;
-};
+import type { AppearanceFormContextValue } from "./appearanceFormTypes";
+import { useAppearanceDraft } from "./useAppearanceDraft";
+import { useAppearanceValidation } from "./useAppearanceValidation";
 
 const AppearanceFormContext = createContext<AppearanceFormContextValue | null>(
   null,
@@ -53,7 +26,6 @@ export function AppearanceFormProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const { t } = useTranslation();
   const { setSelectedLayout } = useCreatorChannelLayout();
   const queryClient = useQueryClient();
 
@@ -64,138 +36,31 @@ export function AppearanceFormProvider({
     () => mapAppearanceFromApi(appearanceResponse?.data ?? null),
     [appearanceResponse],
   );
-
-  const [draft, setDraft] = useState<AppearanceFormValues | null>(null);
-  const [errors, setErrors] = useState<AppearanceFormErrors>({});
-
-  const schema = useMemo(
-    () =>
-      createAppearanceSchema({
-        invalidHex: t(CONTENTS.appearance.validation.invalidHex),
-        invalidSupportEmail: t(
-          CONTENTS.appearance.validation.invalidSupportEmail,
-        ),
-        descriptionRequired: t(
-          CONTENTS.appearance.validation.descriptionRequired,
-        ),
-        logoNameRequired: t(CONTENTS.appearance.validation.logoNameRequired),
-        logoImageRequired: t(CONTENTS.appearance.validation.logoImageRequired),
-        desktopCoverRequired: t(
-          CONTENTS.appearance.validation.desktopCoverRequired,
-        ),
-        mobileCoverRequired: t(
-          CONTENTS.appearance.validation.mobileCoverRequired,
-        ),
-        layoutRequired: t(CONTENTS.appearance.validation.layoutRequired),
-      }),
-    [t],
-  );
-
-  const values = draft ?? serverValues;
-
-  const hasUnsavedChanges = useMemo(
-    () => draft !== null && !areAppearanceValuesEqual(draft, serverValues),
-    [draft, serverValues],
-  );
-
-  const getValidationErrors = useCallback(
-    (nextValues: AppearanceFormValues): AppearanceFormErrors => {
-      const result = schema.safeParse({
-        buttonColor: nextValues.buttonColor,
-        buttonHex: nextValues.buttonHex,
-        textColor: nextValues.textColor,
-        logoType: nextValues.logoType,
-        logoName: nextValues.logoName,
-        logoUrl: nextValues.logoUrl,
-        description: nextValues.description,
-        desktopCoverImageUrl: nextValues.desktopCoverImageUrl,
-        mobileCoverImageUrl: nextValues.mobileCoverImageUrl,
-        layout: nextValues.layout,
-        supportEmail: nextValues.supportEmail,
-      });
-
-      if (result.success) return {};
-
-      const nextErrors: AppearanceFormErrors = {};
-
-      for (const issue of result.error.issues) {
-        const key = issue.path[0] as keyof AppearanceFormValues | undefined;
-        if (key && !nextErrors[key]) {
-          nextErrors[key] = issue.message;
-        }
-      }
-
-      return nextErrors;
-    },
-    [schema],
-  );
-
-  const updateField = useCallback(
-    <K extends keyof AppearanceFormValues>(
-      key: K,
-      value: AppearanceFormValues[K],
-    ) => {
-      setDraft((prev) => {
-        const nextValues = {
-          ...(prev ?? serverValues),
-          [key]: value,
-        };
-
-        setErrors((prevErrors) =>
-          Object.keys(prevErrors).length > 0
-            ? getValidationErrors(nextValues)
-            : prevErrors,
-        );
-
-        return nextValues;
-      });
-    },
-    [getValidationErrors, serverValues],
-  );
-
-  const clearFieldError = useCallback((key: keyof AppearanceFormValues) => {
-    setErrors((prev) => {
-      if (!prev[key]) return prev;
-      const next = { ...prev };
-      delete next[key];
-      return next;
+  const {
+    errors,
+    clearFieldError,
+    validateField: validateFieldState,
+    validateAll,
+    syncErrors,
+    resetErrors,
+  } = useAppearanceValidation();
+  const { values, hasUnsavedChanges, updateField, setLayout, resetDraft } =
+    useAppearanceDraft({
+      serverValues,
+      setSelectedLayout,
+      syncErrors,
     });
-  }, []);
 
   const validateField = useCallback(
-    (key: keyof AppearanceFormValues) => {
-      setErrors((prev) => {
-        const nextErrors = getValidationErrors(values);
-        const next = { ...prev };
-        const fieldError = nextErrors[key];
-
-        if (fieldError) {
-          next[key] = fieldError;
-        } else {
-          delete next[key];
-        }
-
-        return next;
-      });
+    (key: keyof typeof values) => {
+      validateFieldState(key, values);
     },
-    [getValidationErrors, values],
-  );
-
-  const setLayout = useCallback(
-    (layout: CreatorLayoutKey) => {
-      setSelectedLayout(layout);
-      setDraft((prev) => ({
-        ...(prev ?? serverValues),
-        [FORM_FIELDS.LAYOUT]: layout,
-      }));
-    },
-    [setSelectedLayout, serverValues],
+    [validateFieldState, values],
   );
 
   const saveAppearance = useCallback(async () => {
-    const nextErrors = getValidationErrors(values);
+    const nextErrors = validateAll(values);
     if (Object.keys(nextErrors).length > 0) {
-      setErrors(nextErrors);
       throw new Error(CONTENTS.appearance.validation.fixErrors);
     }
 
@@ -204,18 +69,25 @@ export function AppearanceFormProvider({
 
     writeSavedCreatorLayout(values.layout);
     setSelectedLayout(values.layout);
-    setDraft(null);
-    setErrors({});
+    resetDraft();
+    resetErrors();
     await queryClient.invalidateQueries({
       queryKey: [API.content.appearance],
     });
-  }, [getValidationErrors, queryClient, setSelectedLayout, values]);
+  }, [
+    queryClient,
+    resetDraft,
+    resetErrors,
+    setSelectedLayout,
+    validateAll,
+    values,
+  ]);
 
   const cancelAppearance = useCallback(() => {
-    setDraft(null);
-    setErrors({});
+    resetDraft();
+    resetErrors();
     setSelectedLayout(serverValues.layout);
-  }, [serverValues.layout, setSelectedLayout]);
+  }, [resetDraft, resetErrors, serverValues.layout, setSelectedLayout]);
 
   const contextValue = useMemo(
     () => ({
