@@ -23,14 +23,16 @@ export class OrderController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get(':orderId')
-  async getOrderById(@Req() req: any, @Param('orderId') orderId: string) {
-    const userId = req.user.userId;
-    return this.orderService.getOrderById(userId, orderId);
-  @UseGuards(JwtAuthGuard)
   @Get('billing-history')
   async getBillingHistory(@Req() req: any) {
     const userId = req.user.userId;
     return this.orderService.getBillingHistory(userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get(':orderId')
+  async getOrderById(@Req() req: any, @Param('orderId') orderId: string) {
+    const userId = req.user.userId;
+    return this.orderService.getOrderById(userId, orderId);
   }
 }

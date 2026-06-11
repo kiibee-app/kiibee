@@ -12,6 +12,8 @@ export class OrderService {
 
   async getOrderById(userId: string, orderId: string) {
     return getOrderByIdService(userId, orderId);
+  }
+
   async getBillingHistory(userId: string) {
     return getBillingHistoryService(userId);
   }
