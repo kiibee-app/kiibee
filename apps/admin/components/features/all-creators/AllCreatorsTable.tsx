@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 import type { CreatorRequest } from "../../../types/creator-request";
-import { useCreatorRequests, useExistingCreators } from "../../../hooks/api";
+import {
+  useCreatorRequests,
+  useExistingCreators,
+  useViewers,
+} from "../../../hooks/api";
 import { usePagination } from "../../../hooks/ui/use-pagination";
 import {
   AllCreatorsLayout,
@@ -12,6 +16,7 @@ import {
   AllCreatorsTabs,
 } from "./AllCreators.styles";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
+import { ViewersTable } from "./ViewersTable";
 import { CreatorRequestsTable } from "./CreatorRequestsTable";
 import { CreatorRequestsTableSkeleton } from "./CreatorRequestsTableSkeleton";
 import { CreatorPagination } from "./CreatorPagination";
@@ -20,7 +25,7 @@ import { useCreatorRequestActions } from "./useCreatorRequestActions";
 import { useCreatorRequestOverrides } from "./useCreatorRequestOverrides";
 import { STORAGE_KEYS } from "@/utils/constants";
 
-type AllCreatorsTab = "creators" | "requests";
+type AllCreatorsTab = "creators" | "requests" | "viewers";
 
 export function AllCreatorsTable() {
   const [activeTab, setActiveTab] = useState<AllCreatorsTab>("creators");
@@ -29,6 +34,7 @@ export function AllCreatorsTable() {
   );
   const existingCreatorsQuery = useExistingCreators();
   const creatorRequestsQuery = useCreatorRequests();
+  const viewersQuery = useViewers();
   const { creators, updateCreatorStatus } = useCreatorRequestOverrides(
     creatorRequestsQuery.data ?? [],
   );
@@ -56,6 +62,15 @@ export function AllCreatorsTable() {
     totalItems: totalRequests,
     initialPageSize: 10,
     storageKey: STORAGE_KEYS.PAGE_SIZE_CREATOR_REQUESTS,
+  });
+
+  const viewers = viewersQuery.data ?? [];
+  const totalViewers = viewers.length;
+  const viewersPagination = usePagination({
+    data: viewers,
+    totalItems: totalViewers,
+    initialPageSize: 10,
+    storageKey: STORAGE_KEYS.PAGE_SIZE_VIEWERS,
   });
 
   const renderExistingCreators = () => {
@@ -156,6 +171,43 @@ export function AllCreatorsTable() {
     );
   };
 
+  const renderViewers = () => {
+    if (viewersQuery.isLoading) {
+      return <CreatorRequestsTableSkeleton />;
+    }
+
+    if (viewersQuery.isError) {
+      return (
+        <AllCreatorsState>
+          {viewersQuery.error?.message || "Failed to load viewers."}
+        </AllCreatorsState>
+      );
+    }
+
+    if (!totalViewers) {
+      return <AllCreatorsState>No viewers found.</AllCreatorsState>;
+    }
+
+    return (
+      <>
+        <ViewersTable viewers={viewersPagination.paginatedData} />
+
+        <CreatorPagination
+          startIndex={viewersPagination.startIndex}
+          endIndex={viewersPagination.endIndex}
+          totalItems={totalViewers}
+          currentPage={viewersPagination.currentPage}
+          totalPages={viewersPagination.totalPages}
+          pageNumbers={viewersPagination.pageNumbers}
+          pageSize={viewersPagination.pageSize}
+          itemLabel="viewers"
+          onPageChange={viewersPagination.onPageChange}
+          onPageSizeChange={viewersPagination.onPageSizeChange}
+        />
+      </>
+    );
+  };
+
   return (
     <AllCreatorsLayout>
       <AllCreatorsTabs aria-label="Creator list views">
@@ -165,6 +217,13 @@ export function AllCreatorsTable() {
           onClick={() => setActiveTab("creators")}
         >
           Existing Creators ({totalExistingCreators})
+        </AllCreatorsTabButton>
+        <AllCreatorsTabButton
+          type="button"
+          $active={activeTab === "viewers"}
+          onClick={() => setActiveTab("viewers")}
+        >
+          Viewers ({totalViewers})
         </AllCreatorsTabButton>
         <AllCreatorsTabButton
           type="button"
@@ -178,7 +237,9 @@ export function AllCreatorsTable() {
       <AllCreatorsPanel>
         {activeTab === "creators"
           ? renderExistingCreators()
-          : renderCreatorRequests()}
+          : activeTab === "viewers"
+            ? renderViewers()
+            : renderCreatorRequests()}
       </AllCreatorsPanel>
 
       <CreatorDetailsModal
