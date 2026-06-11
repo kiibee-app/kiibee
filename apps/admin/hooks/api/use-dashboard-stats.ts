@@ -37,6 +37,9 @@ export function useDashboardStats() {
           creators: 0,
           viewers: 0,
           pendingRequests: 0,
+          totalContent: 0,
+          freeContent: 0,
+          paidContent: 0,
         }
       );
     },

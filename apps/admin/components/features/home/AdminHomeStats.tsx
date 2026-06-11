@@ -1,7 +1,17 @@
 "use client";
 
-import { Clock3, Eye, UserRound, Users } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import {
+  Clock3,
+  CreditCard,
+  Eye,
+  Gift,
+  Layers,
+  UserRound,
+  Users,
+} from "lucide-react";
 import { useDashboardStats } from "../../../hooks/api/use-dashboard-stats";
+import type { DashboardStats } from "../../../types/dashboard-stats";
 import { STAT_ACCENT, type StatAccent } from "../../../utils/constants";
 import {
   HomeStatsGrid,
@@ -21,16 +31,11 @@ type StatCardConfig = {
   label: string;
   hint: string;
   accent: StatAccent;
-  icon: typeof Users;
-  getValue: (stats: {
-    totalUsers: number;
-    creators: number;
-    viewers: number;
-    pendingRequests: number;
-  }) => number;
+  icon: LucideIcon;
+  getValue: (stats: DashboardStats) => number;
 };
 
-const statCards: StatCardConfig[] = [
+const userStatCards: StatCardConfig[] = [
   {
     key: "total-users",
     label: "Total Users",
@@ -65,6 +70,60 @@ const statCards: StatCardConfig[] = [
   },
 ];
 
+const contentStatCards: StatCardConfig[] = [
+  {
+    key: "total-content",
+    label: "Total Content",
+    hint: "Media files and collections",
+    accent: STAT_ACCENT.PURPLE,
+    icon: Layers,
+    getValue: (stats) => stats.totalContent,
+  },
+  {
+    key: "free-content",
+    label: "Free Content",
+    hint: "Content available for free access",
+    accent: STAT_ACCENT.GREEN,
+    icon: Gift,
+    getValue: (stats) => stats.freeContent,
+  },
+  {
+    key: "paid-content",
+    label: "Paid Content",
+    hint: "Content with paid access",
+    accent: STAT_ACCENT.ORANGE,
+    icon: CreditCard,
+    getValue: (stats) => stats.paidContent,
+  },
+];
+
+function renderStatCards(cards: StatCardConfig[], stats: DashboardStats) {
+  return cards.map((card) => {
+    const Icon = card.icon;
+
+    return (
+      <StatCard key={card.key} $accent={card.accent}>
+        <StatCardTop>
+          <div>
+            <StatLabel>{card.label}</StatLabel>
+            <StatValue>{card.getValue(stats).toLocaleString()}</StatValue>
+          </div>
+          <StatIconWrap $accent={card.accent}>
+            <Icon size={22} strokeWidth={2.2} />
+          </StatIconWrap>
+        </StatCardTop>
+        <StatHint>{card.hint}</StatHint>
+      </StatCard>
+    );
+  });
+}
+
+function renderStatSkeletons(count: number) {
+  return Array.from({ length: count }, (_, index) => (
+    <StatSkeleton key={`stat-skeleton-${index}`} aria-hidden />
+  ));
+}
+
 export function AdminHomeStats() {
   const statsQuery = useDashboardStats();
 
@@ -72,9 +131,10 @@ export function AdminHomeStats() {
     return (
       <HomeStatsLayout>
         <HomeStatsGrid>
-          {statCards.map((card) => (
-            <StatSkeleton key={card.key} aria-hidden />
-          ))}
+          {renderStatSkeletons(userStatCards.length)}
+        </HomeStatsGrid>
+        <HomeStatsGrid $columns={3}>
+          {renderStatSkeletons(contentStatCards.length)}
         </HomeStatsGrid>
       </HomeStatsLayout>
     );
@@ -93,26 +153,10 @@ export function AdminHomeStats() {
   return (
     <HomeStatsLayout>
       <HomeStatsGrid>
-        {statCards.map((card) => {
-          const Icon = card.icon;
-
-          return (
-            <StatCard key={card.key} $accent={card.accent}>
-              <StatCardTop>
-                <div>
-                  <StatLabel>{card.label}</StatLabel>
-                  <StatValue>
-                    {card.getValue(statsQuery.data).toLocaleString()}
-                  </StatValue>
-                </div>
-                <StatIconWrap $accent={card.accent}>
-                  <Icon size={22} strokeWidth={2.2} />
-                </StatIconWrap>
-              </StatCardTop>
-              <StatHint>{card.hint}</StatHint>
-            </StatCard>
-          );
-        })}
+        {renderStatCards(userStatCards, statsQuery.data)}
+      </HomeStatsGrid>
+      <HomeStatsGrid $columns={3}>
+        {renderStatCards(contentStatCards, statsQuery.data)}
       </HomeStatsGrid>
     </HomeStatsLayout>
   );

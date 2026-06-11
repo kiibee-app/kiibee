@@ -33,6 +33,7 @@ export const STAT_ACCENT = {
   GREEN: "green",
   TEAL: "teal",
   ORANGE: "orange",
+  PURPLE: "purple",
 } as const;
 
 export type StatAccent = (typeof STAT_ACCENT)[keyof typeof STAT_ACCENT];

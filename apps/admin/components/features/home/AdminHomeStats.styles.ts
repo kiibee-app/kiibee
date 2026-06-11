@@ -8,14 +8,20 @@ const shimmer = keyframes`
 
 export const HomeStatsLayout = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: ${({ theme }) => theme.spacing(3)};
   padding: ${({ theme }) => `${theme.spacing(2)} 0 0`};
+  width: 100%;
 `;
 
-export const HomeStatsGrid = styled.div`
+export const HomeStatsGrid = styled.div<{ $columns?: number }>`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(
+    ${({ $columns }) => $columns ?? 4},
+    minmax(0, 1fr)
+  );
   gap: ${({ theme }) => theme.spacing(3)};
   width: 100%;
 
@@ -69,6 +75,8 @@ export const StatCard = styled.article<{
           return theme.colors.neutral.DUSTY_TEAL;
         case STAT_ACCENT.ORANGE:
           return theme.colors.primary.ORANGE;
+        case STAT_ACCENT.PURPLE:
+          return theme.colors.gradient.DARK_BLUE;
         default:
           return theme.colors.primary.GREEN_100;
       }
@@ -115,6 +123,11 @@ export const StatIconWrap = styled.div<{
         return css`
           background: rgba(249, 115, 22, 0.12);
           color: ${theme.colors.primary.ORANGE};
+        `;
+      case STAT_ACCENT.PURPLE:
+        return css`
+          background: rgba(30, 58, 138, 0.12);
+          color: ${theme.colors.gradient.DARK_BLUE};
         `;
       default:
         return css`

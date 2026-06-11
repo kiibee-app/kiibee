@@ -3,4 +3,7 @@ export type DashboardStats = {
   creators: number;
   viewers: number;
   pendingRequests: number;
+  totalContent: number;
+  freeContent: number;
+  paidContent: number;
 };
