@@ -263,7 +263,12 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       : undefined,
     productionCompany: formState.productionCompany || undefined,
     manufacturerLink: formState.manufacturerLink || undefined,
-    tags: formState.tags ? parseTags(formState.tags) : undefined,
+    tags: formState.tags
+      ? formState.tags
+          .split(/[\n,]+/)
+          .map((tag) => tag.trim())
+          .filter(Boolean)
+      : undefined,
     visibility: formState.visibility
       ? formState.visibility.toLowerCase()
       : undefined,
@@ -314,10 +319,6 @@ export function parseTags(value: string): string[] {
         .map((tag) => tag.trim())
         .filter(Boolean)
     : [];
-}
-
-export function joinTags(tags: string[]): string {
-  return tags.join(", ");
 }
 
 export const MEDIA_TYPE_VIDEO_KEY = "discoverContent.mediaTypes.video";

@@ -14,12 +14,12 @@ import {
   InputVariant,
   KEY_ENTER,
   parseTags,
-  joinTags,
   TAG_DELIMITER,
   BUTTON,
   maxLogoNameCharacters,
 } from "@/utils/Constants";
 import { ChipCloseIcon } from "@/assets/icons";
+import { INPUT_TYPE } from "@/utils/ui";
 
 export type TagsInputProps = {
   value: string;
@@ -58,7 +58,7 @@ export default function TagsInput({
         return;
       }
 
-      onChange(joinTags([...tags, trimmedTag]));
+      onChange([...tags, trimmedTag].join(", "));
       setInputValue("");
     },
     [tags, onChange, maxLength, currentTotalLength],
@@ -66,7 +66,7 @@ export default function TagsInput({
 
   const removeTag = useCallback(
     (tagToRemove: string) => {
-      onChange(joinTags(tags.filter((tag) => tag !== tagToRemove)));
+      onChange(tags.filter((tag) => tag !== tagToRemove).join(", "));
     },
     [tags, onChange],
   );
@@ -113,7 +113,7 @@ export default function TagsInput({
         ))}
         <TagsInputField
           ref={inputRef}
-          type="text"
+          type={INPUT_TYPE.TEXT}
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}

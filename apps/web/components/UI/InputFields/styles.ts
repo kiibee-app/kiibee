@@ -479,7 +479,6 @@ export const TagRemoveButton = styled.button`
   height: 18px;
   border-radius: 999px;
   border: 0;
-  padding: 0;
   background: transparent;
   cursor: pointer;
   color: inherit;

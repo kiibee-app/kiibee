@@ -98,7 +98,6 @@ export default function ProductionSection() {
                 );
               }}
               placeholder={t("contents.metadata.tags.placeholder")}
-              maxLength={maxLogoNameCharacters}
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               hasError={Boolean(formErrors.tags)}
             />
