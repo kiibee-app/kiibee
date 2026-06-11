@@ -2,12 +2,15 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslation } from "react-i18next";
+import COLORS from "@repo/ui/colors";
+import { MonoText } from "@/components/UI/Monotext";
 import type {
   RentedCollectionItem,
   RentedMediaItem,
   RentedMode,
 } from "@/utils/dummyData/viewerRentedMockData";
-import { PageWrap, SectionBlock } from "./styles";
+import { PageWrap, SectionBlock, EmptyState } from "./styles";
 import {
   RENTED_SECTION_KEYS,
   filterCollections,
@@ -41,6 +44,7 @@ export default function RentedContent({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchParamsString = searchParams?.toString() ?? "";
+  const { t } = useTranslation();
 
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -112,6 +116,14 @@ export default function RentedContent({
       [RENTED_SECTION_KEYS.AUDIOS]: visibleAudios,
       [RENTED_SECTION_KEYS.PDFS]: visiblePdfs,
     };
+
+  const hasNoResults =
+    filteredCollections.length === 0 &&
+    filteredVideos.length === 0 &&
+    filteredAudios.length === 0 &&
+    filteredPdfs.length === 0;
+
+  const isSearchEmpty = searchValue.trim() !== "" && hasNoResults;
 
   const selectedCollection = useMemo(
     () =>
@@ -220,40 +232,52 @@ export default function RentedContent({
         }
       />
 
-      <SectionBlock>
-        <CollectionsSection
-          mode={mode}
-          items={
-            isCollectionsExpanded ? filteredCollections : visibleCollections
-          }
-          totalItems={filteredCollections.length}
-          canSlide={canSlide}
-          canGoPrev={canGoPrev}
-          canGoNext={canGoNext}
-          movePrev={movePrev}
-          moveNext={moveNext}
-          onOpenSection={() => setCollectionsExpanded(true)}
-          showOpenSectionArrow={!isCollectionsExpanded}
-          showExpandedMetaHeader={isCollectionsExpanded}
-          onCollectionPrimaryAction={(item) => handleOpenCollection(item.id)}
-        />
-      </SectionBlock>
+      {isSearchEmpty ? (
+        <EmptyState>
+          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+            {t("dashboard.noData")}
+          </MonoText>
+        </EmptyState>
+      ) : (
+        <>
+          <SectionBlock>
+            <CollectionsSection
+              mode={mode}
+              items={
+                isCollectionsExpanded ? filteredCollections : visibleCollections
+              }
+              totalItems={filteredCollections.length}
+              canSlide={canSlide}
+              canGoPrev={canGoPrev}
+              canGoNext={canGoNext}
+              movePrev={movePrev}
+              moveNext={moveNext}
+              onOpenSection={() => setCollectionsExpanded(true)}
+              showOpenSectionArrow={!isCollectionsExpanded}
+              showExpandedMetaHeader={isCollectionsExpanded}
+              onCollectionPrimaryAction={(item) =>
+                handleOpenCollection(item.id)
+              }
+            />
+          </SectionBlock>
 
-      {isCollectionsExpanded ? null : (
-        <MediaSections
-          mode={mode}
-          sectionItems={sectionItems}
-          sectionTotals={sectionTotals}
-          canSlide={canSlide}
-          canGoPrev={canGoPrev}
-          canGoNext={canGoNext}
-          movePrev={movePrev}
-          moveNext={moveNext}
-          onMediaPrimaryAction={handleOpenMediaDetail}
-          onOpenSection={(_, item) => {
-            if (item) handleOpenMediaDetail(item);
-          }}
-        />
+          {isCollectionsExpanded ? null : (
+            <MediaSections
+              mode={mode}
+              sectionItems={sectionItems}
+              sectionTotals={sectionTotals}
+              canSlide={canSlide}
+              canGoPrev={canGoPrev}
+              canGoNext={canGoNext}
+              movePrev={movePrev}
+              moveNext={moveNext}
+              onMediaPrimaryAction={handleOpenMediaDetail}
+              onOpenSection={(_, item) => {
+                if (item) handleOpenMediaDetail(item);
+              }}
+            />
+          )}
+        </>
       )}
     </PageWrap>
   );

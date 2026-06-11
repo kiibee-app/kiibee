@@ -4,10 +4,10 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import type { ExistingCreator } from "../../types/existing-creator";
 import type { CreatorRequest } from "../../types/creator-request";
-import { API_ENDPOINTS } from "../../utils/constants";
+import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
 
-const CREATOR_REQUESTS_QUERY_KEY = ["creator-requests"];
-const EXISTING_CREATORS_QUERY_KEY = ["existing-creators"];
+const CREATOR_REQUESTS_QUERY_KEY = [QUERY_KEY.CREATOR_REQUESTS];
+const EXISTING_CREATORS_QUERY_KEY = [QUERY_KEY.EXISTING_CREATORS];
 
 type CreatorActionPayload = {
   requestId: string;

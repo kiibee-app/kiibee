@@ -223,7 +223,7 @@ export const MainAction = styled.button`
 `;
 
 export const MainActionText = styled.span`
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: inherit;
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
