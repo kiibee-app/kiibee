@@ -46,15 +46,28 @@ function subscribeToCreatorLayout(onStoreChange: () => void) {
   return () => window.removeEventListener(CREATOR_LAYOUT_UPDATED, handler);
 }
 
-function getCreatorLayoutServerSnapshot(): CreatorLayoutKey {
-  return DEFAULT_CREATOR_LAYOUT;
+function subscribeToHydration() {
+  return () => {};
+}
+
+function getHydrationSnapshot() {
+  return true;
+}
+
+function getHydrationServerSnapshot() {
+  return false;
 }
 
 function useCreatorChannelLayoutState(): CreatorChannelLayoutContextValue {
+  const isHydrated = useSyncExternalStore(
+    subscribeToHydration,
+    getHydrationSnapshot,
+    getHydrationServerSnapshot,
+  );
   const savedLayout = useSyncExternalStore(
     subscribeToCreatorLayout,
-    readSavedCreatorLayout,
-    getCreatorLayoutServerSnapshot,
+    () => (isHydrated ? readSavedCreatorLayout() : DEFAULT_CREATOR_LAYOUT),
+    () => DEFAULT_CREATOR_LAYOUT,
   );
   const [draftLayout, setDraftLayout] = useState<CreatorLayoutKey | null>(null);
   const selectedLayout = draftLayout ?? savedLayout;
