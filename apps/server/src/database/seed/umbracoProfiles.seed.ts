@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import { existsSync, readdirSync, readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { eq } from 'drizzle-orm';
 
@@ -12,6 +12,11 @@ import {
   plans,
   users,
 } from '../schema';
+import {
+  loadUmbracoProfileKeys,
+  resolveCreatorEmailFromUmbraco,
+  resolveUmbracoMediaUrl,
+} from './umbracoSeed.helpers';
 
 const PROFILE_FILES = [
   'access-and-price.json',
@@ -25,26 +30,6 @@ const PROFILE_FILES = [
 ] as const;
 
 const FALLBACK_PLAN_NAME = 'Pro';
-const UMBRACO_PROFILE_EMAIL_DOMAIN = 'umbraco-profile.local';
-const UMBRACO_SKIP_PROFILE_KEYS = new Set([
-  'Admin',
-  'ADHDFOKUS',
-  'APHypnose',
-  'Ahmed_Mittani',
-  'Diy_for_børn',
-  'Foreningen_Danske_Revisorer',
-  'Fredensborg_Sundhedscenter',
-  'Galleri_EVIG',
-  'Go_Video',
-  'LindaAndrews',
-  'Maria_Birch_Rasmussen',
-  'Maximilian_Nielsen',
-  'Rumhed',
-  'TjelesVenner',
-  'Vocal_Line',
-  'gymstream',
-  'jwtc',
-]);
 
 const LEGACY_PLAN_DOCUMENT_NAMES: Record<string, string> = {
   'umb://document/5ba7f17c7cf64beea5db1176fd45d365': 'Try Kiibee',
@@ -60,7 +45,7 @@ type LoadedProfile = {
   profileKey: string;
   files: ProfileFiles;
   preferredChannelSlug?: string;
-  source?: 'profile-info' | 'shows-only' | 'data-only';
+  source?: 'profile-info';
 };
 
 type MappedProfile = {
@@ -158,16 +143,6 @@ function slugify(value: string): string {
   );
 }
 
-function uniqueSyntheticEmail(profileKey: string): string {
-  const slug = truncate(slugify(profileKey), 48);
-  const suffix = createHash('sha256')
-    .update(profileKey)
-    .digest('hex')
-    .slice(0, 8);
-
-  return `${slug}-${suffix}@${UMBRACO_PROFILE_EMAIL_DOMAIN}`;
-}
-
 function splitName(fullName: string): {
   firstName: string | null;
   lastName: string | null;
@@ -189,7 +164,7 @@ function imageUrl(value: unknown): string | null {
     return null;
   }
 
-  return textOrNull((value as JsonRecord).src);
+  return resolveUmbracoMediaUrl((value as JsonRecord).src);
 }
 
 function isEnabled(value: unknown): boolean {
@@ -269,46 +244,6 @@ function deriveNameFromProfileKey(profileKey: string): string {
   return profileKey.replace(/_/g, ' ').trim();
 }
 
-function channelSlugFromShowsUrl(url: unknown): string | null {
-  const value = textOrNull(url);
-  if (!value) {
-    return null;
-  }
-
-  const parts = value.split('/').filter(Boolean);
-  return parts[0] ? truncate(slugify(parts[0]), 220) : null;
-}
-
-function readShowsIndex(profileKey: string, root: string): JsonRecord | null {
-  const indexPath = join(root, profileKey, 'shows', 'index.json');
-  if (!existsSync(indexPath)) {
-    return null;
-  }
-
-  return readJsonFile(indexPath);
-}
-
-function preferredChannelSlugFromShows(
-  profileKey: string,
-  root: string,
-): string | null {
-  const index = readShowsIndex(profileKey, root);
-  const parentUrls = index?.parent?.urls;
-
-  if (!Array.isArray(parentUrls)) {
-    return null;
-  }
-
-  for (const url of parentUrls) {
-    const slug = channelSlugFromShowsUrl(url);
-    if (slug) {
-      return slug;
-    }
-  }
-
-  return null;
-}
-
 function profileName(profile: LoadedProfile): string {
   return (
     textOrNull(profile.files['general.json']?.name) ??
@@ -334,112 +269,39 @@ function findUmbracoProfileRoot(): string | null {
   return candidates.find((candidate) => existsSync(candidate)) ?? null;
 }
 
-function hasNonEmptyItems(
-  profileKey: string,
-  root: string,
-  folder: string,
-): boolean {
-  const filePath = join(root, profileKey, folder, 'items.json');
-  if (!existsSync(filePath)) {
-    return false;
-  }
+function resolveCreatorEmail(
+  profile: LoadedProfile,
+  usedEmails: Set<string>,
+): string {
+  const general = profile.files['general.json'] ?? {};
+  const notifications = profile.files['notifications.json'] ?? {};
 
-  try {
-    const parsed = JSON.parse(readFileSync(filePath, 'utf8'));
-    return Array.isArray(parsed) && parsed.length > 0;
-  } catch {
-    return false;
-  }
-}
-
-function hasAnyUmbracoData(profileKey: string, root: string): boolean {
-  return (
-    hasNonEmptyItems(profileKey, root, 'purchases') ||
-    hasNonEmptyItems(profileKey, root, 'stats') ||
-    hasNonEmptyItems(profileKey, root, 'payouts') ||
-    hasNonEmptyItems(profileKey, root, 'logs')
+  return resolveCreatorEmailFromUmbraco(
+    profile.profileKey,
+    general.supportEmail,
+    notifications.emails,
+    usedEmails,
   );
-}
-
-function hasSeedableUmbracoData(profileKey: string, root: string): boolean {
-  return (
-    hasNonEmptyShows(profileKey, root) || hasAnyUmbracoData(profileKey, root)
-  );
-}
-
-function buildMinimalProfile(
-  profileKey: string,
-  root: string,
-  source: 'shows-only' | 'data-only',
-): LoadedProfile {
-  const name = deriveNameFromProfileKey(profileKey);
-
-  return {
-    profileKey,
-    source,
-    preferredChannelSlug:
-      source === 'shows-only'
-        ? (preferredChannelSlugFromShows(profileKey, root) ?? undefined)
-        : undefined,
-    files: {
-      'layout.json': {
-        name,
-        logoText: name,
-      },
-    },
-  };
-}
-
-function hasNonEmptyShows(profileKey: string, root: string): boolean {
-  const showsDir = join(root, profileKey, 'shows');
-
-  for (const fileName of ['items.json', 'shows.json']) {
-    const filePath = join(showsDir, fileName);
-    if (!existsSync(filePath)) {
-      continue;
-    }
-
-    const parsed = JSON.parse(readFileSync(filePath, 'utf8'));
-    if (Array.isArray(parsed) && parsed.length > 0) {
-      return true;
-    }
-  }
-
-  return false;
 }
 
 function loadProfiles(root: string): LoadedProfile[] {
-  return readdirSync(root, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .filter((profileKey) => !UMBRACO_SKIP_PROFILE_KEYS.has(profileKey))
-    .filter((profileKey) => hasSeedableUmbracoData(profileKey, root))
-    .sort((left, right) => left.localeCompare(right))
-    .map((profileKey) => {
-      const profileInfoRoot = join(root, profileKey, 'profile-info');
-      if (existsSync(profileInfoRoot)) {
-        const files: ProfileFiles = {};
+  return loadUmbracoProfileKeys(root).map((profileKey) => {
+    const profileInfoRoot = join(root, profileKey, 'profile-info');
+    const files: ProfileFiles = {};
 
-        for (const fileName of PROFILE_FILES) {
-          const filePath = join(profileInfoRoot, fileName);
-          if (existsSync(filePath)) {
-            files[fileName] = readJsonFile(filePath);
-          }
-        }
-
-        return {
-          profileKey,
-          files,
-          source: 'profile-info' as const,
-        };
+    for (const fileName of PROFILE_FILES) {
+      const filePath = join(profileInfoRoot, fileName);
+      if (existsSync(filePath)) {
+        files[fileName] = readJsonFile(filePath);
       }
+    }
 
-      if (hasNonEmptyShows(profileKey, root)) {
-        return buildMinimalProfile(profileKey, root, 'shows-only');
-      }
-
-      return buildMinimalProfile(profileKey, root, 'data-only');
-    });
+    return {
+      profileKey,
+      files,
+      source: 'profile-info' as const,
+    };
+  });
 }
 
 function buildUniqueChannelSlugs(
@@ -485,6 +347,7 @@ function buildUniqueChannelSlugs(
 function mapProfile(
   profile: LoadedProfile,
   channelSlug: string,
+  usedEmails: Set<string>,
 ): MappedProfile {
   const general = profile.files['general.json'] ?? {};
   const layout = profile.files['layout.json'] ?? {};
@@ -515,7 +378,7 @@ function mapProfile(
     creatorChannelId: seedUuid('creator-channel', profile.profileKey),
     creatorPlanId: seedUuid('creator-plan', profile.profileKey),
     auditLogId: seedUuid('audit-log', profile.profileKey),
-    email: uniqueSyntheticEmail(profile.profileKey),
+    email: resolveCreatorEmail(profile, usedEmails),
     firstName,
     lastName,
     fullName: name,
@@ -575,6 +438,7 @@ export const seedUmbracoProfiles = async () => {
   }
   const channelSlugs = buildUniqueChannelSlugs(profiles);
   const creatorPasswordHash = process.env.CREATOR_SEED_PASSWORD_HASH?.trim();
+  const usedEmails = new Set<string>(['admin@gmail.com']);
 
   let processed = 0;
 
@@ -582,6 +446,7 @@ export const seedUmbracoProfiles = async () => {
     const mapped = mapProfile(
       profile,
       channelSlugs.get(profile.profileKey) ?? slugify(profile.profileKey),
+      usedEmails,
     );
     const planId = await resolvePlanId(mapped.desiredPlanName);
     const now = new Date();
@@ -701,12 +566,7 @@ export const seedUmbracoProfiles = async () => {
           entityType: 'creator_profile',
           entityId: mapped.creatorChannelId,
           details: {
-            source:
-              profile.source === 'profile-info'
-                ? 'umbraco-data/profile-info'
-                : profile.source === 'shows-only'
-                  ? 'umbraco-data/shows-only'
-                  : 'umbraco-data/data-only',
+            source: 'umbraco-data/profile-info',
             profileKey: mapped.profileKey,
             mapped: {
               email: mapped.email,

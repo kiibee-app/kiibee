@@ -1,11 +1,15 @@
 import { createHash } from 'crypto';
-import { existsSync, readdirSync, readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { eq } from 'drizzle-orm';
 
 import { hashPassword } from 'src/utils/passwordHash';
 
 import { db } from '../db';
+import {
+  loadUmbracoProfileKeys,
+  resolveUmbracoMediaUrl,
+} from './umbracoSeed.helpers';
 import {
   auditLogs,
   collectionItems,
@@ -17,7 +21,6 @@ import {
   users,
 } from '../schema';
 
-const KIIBEE_BASE_URL = 'https://kiibee.dk';
 const DEFAULT_RENT_DURATION_HOURS = 48;
 const DEFAULT_COLLECTION_NAME = 'Shows';
 
@@ -191,15 +194,7 @@ function resolveMediaUrl(value: unknown): string | null {
   }
 
   if (typeof value === 'string') {
-    if (value.startsWith('http://') || value.startsWith('https://')) {
-      return value;
-    }
-
-    if (value.startsWith('/')) {
-      return `${KIIBEE_BASE_URL}${value}`;
-    }
-
-    return value;
+    return resolveUmbracoMediaUrl(value);
   }
 
   if (typeof value === 'object' && value !== null) {
@@ -409,11 +404,8 @@ function readShowsFile(profileKey: string, root: string): UmbracoShow[] | null {
 }
 
 function loadProfileShows(root: string): LoadedProfileShows[] {
-  return readdirSync(root, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
+  return loadUmbracoProfileKeys(root)
     .filter((profileKey) => readShowsFile(profileKey, root))
-    .sort((left, right) => left.localeCompare(right))
     .map((profileKey) => ({
       profileKey,
       shows: readShowsFile(profileKey, root) ?? [],

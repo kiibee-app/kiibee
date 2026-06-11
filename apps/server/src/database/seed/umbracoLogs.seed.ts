@@ -1,7 +1,5 @@
-import { eq } from 'drizzle-orm';
-
 import { db } from '../db';
-import { auditLogs, users } from '../schema';
+import { auditLogs } from '../schema';
 import {
   batchInsert,
   findUmbracoUsersRoot,
@@ -14,6 +12,7 @@ import {
   umbracoSeedUuid,
   type JsonRecord,
 } from './umbracoSeed.helpers';
+import { loadSeededProfileUserIds } from './umbracoSeed.db';
 
 const BATCH_SIZE = 500;
 
@@ -26,14 +25,7 @@ export const seedUmbracoLogs = async () => {
     return;
   }
 
-  const existingCreatorIds = new Set(
-    (
-      await db
-        .select({ id: users.id })
-        .from(users)
-        .where(eq(users.role, 'creator'))
-    ).map((row) => row.id),
-  );
+  const seededProfileUserIds = await loadSeededProfileUserIds(root);
 
   const pendingLogs: (typeof auditLogs.$inferInsert)[] = [];
   let profilesProcessed = 0;
@@ -42,7 +34,7 @@ export const seedUmbracoLogs = async () => {
 
   for (const profileKey of loadProfileKeys(root)) {
     const creatorId = profileUserId(profileKey);
-    if (!existingCreatorIds.has(creatorId)) {
+    if (!seededProfileUserIds.has(creatorId)) {
       continue;
     }
 

@@ -1,28 +1,25 @@
-import { eq } from 'drizzle-orm';
-
 import { db } from '../db';
 import {
   analyticsDailySummary,
   analyticsEvents,
   auditLogs,
   mediaFiles,
-  users,
 } from '../schema';
 import {
   batchInsert,
   deterministicUuid,
   findUmbracoUsersRoot,
-  isEnabled,
   loadProfileKeys,
-  mediaKeyFromUdi,
   parseDate,
   profileUserId,
   readItemsFile,
   resolveMediaFileId,
+  resolveStatsMediaKey,
   textOrNull,
   umbracoSeedUuid,
   type JsonRecord,
 } from './umbracoSeed.helpers';
+import { loadSeededProfileUserIds } from './umbracoSeed.db';
 
 type DailySummaryKey = string;
 
@@ -38,24 +35,19 @@ type DailySummaryAggregate = {
 
 const BATCH_SIZE = 500;
 
-function resolveStatsMediaKey(entry: JsonRecord): string | null {
-  const directKey = textOrNull(entry.mediaKey);
-  if (directKey) {
-    return directKey.toLowerCase();
-  }
-
-  const fields = (entry.fields as JsonRecord | undefined) ?? {};
-  const fromFields = mediaKeyFromUdi(fields.media);
-  if (fromFields) {
-    return fromFields.toLowerCase();
-  }
-
-  return mediaKeyFromUdi(entry.mediaUdi)?.toLowerCase() ?? null;
-}
-
 function resolveEventType(entry: JsonRecord): 'view' | 'play_start' | 'click' {
   const fields = (entry.fields as JsonRecord | undefined) ?? {};
-  const isPlay = isEnabled(entry.isPlay) || isEnabled(fields.isPlay);
+  const isPlay =
+    entry.isPlay === true ||
+    entry.isPlay === 1 ||
+    fields.isPlay === true ||
+    fields.isPlay === 1 ||
+    String(entry.isPlay ?? fields.isPlay ?? '')
+      .trim()
+      .toLowerCase() === '1' ||
+    String(entry.isPlay ?? fields.isPlay ?? '')
+      .trim()
+      .toLowerCase() === 'true';
 
   if (isPlay) {
     return 'play_start';
@@ -87,14 +79,7 @@ export const seedUmbracoStats = async () => {
     ),
   );
 
-  const existingCreatorIds = new Set(
-    (
-      await db
-        .select({ id: users.id })
-        .from(users)
-        .where(eq(users.role, 'creator'))
-    ).map((row) => row.id),
-  );
+  const seededProfileUserIds = await loadSeededProfileUserIds(root);
 
   const pendingEvents: (typeof analyticsEvents.$inferInsert)[] = [];
   const dailySummaryMap = new Map<DailySummaryKey, DailySummaryAggregate>();
@@ -105,7 +90,7 @@ export const seedUmbracoStats = async () => {
 
   for (const profileKey of loadProfileKeys(root)) {
     const creatorId = profileUserId(profileKey);
-    if (!existingCreatorIds.has(creatorId)) {
+    if (!seededProfileUserIds.has(creatorId)) {
       continue;
     }
 
@@ -199,12 +184,7 @@ export const seedUmbracoStats = async () => {
         .insert(analyticsDailySummary)
         .values(row)
         .onConflictDoUpdate({
-          target: [
-            analyticsDailySummary.creatorId,
-            analyticsDailySummary.mediaFileId,
-            analyticsDailySummary.collectionId,
-            analyticsDailySummary.date,
-          ],
+          target: analyticsDailySummary.id,
           set: {
             views: row.views,
             clicks: row.clicks,

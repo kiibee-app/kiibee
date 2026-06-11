@@ -1,5 +1,3 @@
-import { eq } from 'drizzle-orm';
-
 import { db } from '../db';
 import {
   auditLogs,
@@ -15,18 +13,23 @@ import {
   isEnabled,
   loadProfileKeys,
   mapPaymentProvider,
-  mediaKeyFromUdi,
   normalizeEmail,
   parseDate,
   parseDecimal,
   profileUserId,
   readItemsFile,
   resolveMediaFileId,
+  resolveOrderUserId,
+  resolvePurchaseMediaKey,
+  shouldInsertViewerAccount,
   textOrNull,
   umbracoSeedUuid,
-  viewerUserId,
   type JsonRecord,
 } from './umbracoSeed.helpers';
+import {
+  loadCreatorIdsByRole,
+  loadSeededProfileUserIds,
+} from './umbracoSeed.db';
 
 type LogLookup = {
   transactionId: string | null;
@@ -70,37 +73,6 @@ function buildLogLookup(
   return lookup;
 }
 
-function resolvePurchaseMediaKey(purchase: JsonRecord): string | null {
-  const mediaItems = purchase.media;
-  if (Array.isArray(mediaItems) && mediaItems.length > 0) {
-    const first = mediaItems[0] as JsonRecord;
-    const directKey = textOrNull(first.key);
-    if (directKey) {
-      return directKey.toLowerCase();
-    }
-  }
-
-  const mediaUdis = purchase.mediaUdis;
-  if (Array.isArray(mediaUdis) && mediaUdis.length > 0) {
-    const fromUdi = mediaKeyFromUdi(mediaUdis[0]);
-    if (fromUdi) {
-      return fromUdi.toLowerCase();
-    }
-  }
-
-  const properties = (purchase.properties as JsonRecord | undefined) ?? {};
-  const propertyMedia = textOrNull(properties.media);
-  if (propertyMedia) {
-    return (
-      mediaKeyFromUdi(propertyMedia) ??
-      textOrNull(propertyMedia)?.toLowerCase() ??
-      null
-    );
-  }
-
-  return null;
-}
-
 function splitName(fullName: string): {
   firstName: string;
   lastName: string;
@@ -127,14 +99,14 @@ export const seedUmbracoPurchases = async () => {
     ),
   );
 
-  const existingCreatorIds = new Set(
-    (
-      await db
-        .select({ id: users.id })
-        .from(users)
-        .where(eq(users.role, 'creator'))
-    ).map((row) => row.id),
+  const existingUsers = await db
+    .select({ id: users.id, email: users.email, role: users.role })
+    .from(users);
+  const existingUsersByEmail = new Map(
+    existingUsers.map((row) => [row.email.toLowerCase(), row.id]),
   );
+  const seededProfileUserIds = await loadSeededProfileUserIds(root);
+  const creatorRoleIds = await loadCreatorIdsByRole();
 
   const viewerCache = new Map<string, PendingViewer>();
   const pendingOrders: PendingOrder[] = [];
@@ -148,7 +120,7 @@ export const seedUmbracoPurchases = async () => {
 
   for (const profileKey of loadProfileKeys(root)) {
     const creatorId = profileUserId(profileKey);
-    if (!existingCreatorIds.has(creatorId)) {
+    if (!seededProfileUserIds.has(creatorId)) {
       continue;
     }
 
@@ -180,11 +152,11 @@ export const seedUmbracoPurchases = async () => {
         continue;
       }
 
-      const viewerId = viewerUserId(buyerEmail);
+      const orderUserId = resolveOrderUserId(buyerEmail, existingUsersByEmail);
+
       if (!viewerCache.has(buyerEmail)) {
-        const { firstName, lastName } = splitName(buyerName);
         viewerCache.set(buyerEmail, {
-          id: viewerId,
+          id: orderUserId,
           email: buyerEmail,
           fullName: buyerName,
         });
@@ -225,7 +197,7 @@ export const seedUmbracoPurchases = async () => {
 
       pendingOrders.push({
         id: orderId,
-        userId: viewerId,
+        userId: orderUserId,
         mediaFileId,
         itemType,
         price,
@@ -253,7 +225,7 @@ export const seedUmbracoPurchases = async () => {
       pendingAccess.push({
         id: accessId,
         orderId,
-        userId: viewerId,
+        userId: orderUserId,
         mediaFileId,
         accessType,
         rentExpiresAt,
@@ -285,6 +257,16 @@ export const seedUmbracoPurchases = async () => {
 
   const viewerNow = new Date();
   for (const viewer of viewerCache.values()) {
+    if (
+      !shouldInsertViewerAccount(
+        viewer,
+        existingUsersByEmail,
+        seededProfileUserIds,
+      )
+    ) {
+      continue;
+    }
+
     const { firstName, lastName } = splitName(viewer.fullName);
     await db
       .insert(users)
@@ -301,19 +283,9 @@ export const seedUmbracoPurchases = async () => {
         createdAt: viewerNow,
         updatedAt: viewerNow,
       })
-      .onConflictDoUpdate({
-        target: users.email,
-        set: {
-          firstName,
-          lastName,
-          fullName: viewer.fullName,
-          role: 'viewer',
-          status: 'active',
-          isEmailVerified: true,
-          isActive: true,
-          updatedAt: viewerNow,
-        },
-      });
+      .onConflictDoNothing({ target: users.id });
+
+    existingUsersByEmail.set(viewer.email, viewer.id);
   }
 
   await batchInsert(pendingOrders, BATCH_SIZE, async (batch) => {
@@ -383,6 +355,6 @@ export const seedUmbracoPurchases = async () => {
   });
 
   console.log(
-    `Umbraco purchases seed completed (${purchasesProcessed} orders, ${viewerCache.size} viewers across ${profilesProcessed} profiles, ${purchasesSkipped} skipped from ${root})`,
+    `Umbraco purchases seed completed (${purchasesProcessed} orders, ${viewerCache.size} buyer accounts, ${creatorRoleIds.size} creators preserved across ${profilesProcessed} profiles, ${purchasesSkipped} skipped from ${root})`,
   );
 };
