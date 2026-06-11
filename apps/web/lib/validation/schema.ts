@@ -1,4 +1,10 @@
 import { z } from "zod";
+import {
+  BUTTON_COLOR_VALUES,
+  HEX_COLOR_INPUT_RE,
+  TEXT_COLOR_VALUES,
+} from "@/utils/appearance";
+import { LOGO_MODE } from "@/utils/ui";
 
 export const createLoginSchema = (messages: {
   emailRequired: string;
@@ -160,3 +166,131 @@ export const createResetPasswordSchema = (
       path: ["confirm"],
     });
 };
+
+export const createAppearanceSchema = (messages: {
+  invalidHex: string;
+  invalidSupportEmail: string;
+  descriptionRequired: string;
+  logoNameRequired: string;
+  logoImageRequired: string;
+  desktopCoverRequired: string;
+  mobileCoverRequired: string;
+  layoutRequired: string;
+}) =>
+  z
+    .object({
+      buttonColor: z.string(),
+      buttonHex: z.string().trim(),
+      textColor: z.string(),
+      logoType: z.string(),
+      logoName: z.string().trim(),
+      logoUrl: z.string().nullable(),
+      description: z.string().trim(),
+      desktopCoverImageUrl: z.string().nullable(),
+      mobileCoverImageUrl: z.string().nullable(),
+      layout: z.string().trim(),
+      supportEmail: z.string().trim(),
+    })
+    .superRefine((values, ctx) => {
+      if (
+        !Object.values(TEXT_COLOR_VALUES).includes(values.textColor as never)
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["textColor"],
+          message: messages.layoutRequired,
+        });
+      }
+
+      if (!values.description) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["description"],
+          message: messages.descriptionRequired,
+        });
+      }
+
+      if (
+        values.buttonColor === BUTTON_COLOR_VALUES.CUSTOM &&
+        !HEX_COLOR_INPUT_RE.test(values.buttonHex)
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["buttonHex"],
+          message: messages.invalidHex,
+        });
+      }
+
+      if (
+        values.buttonColor !== BUTTON_COLOR_VALUES.DEFAULT &&
+        values.buttonColor !== BUTTON_COLOR_VALUES.CUSTOM
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["buttonColor"],
+          message: messages.layoutRequired,
+        });
+      }
+
+      if (
+        values.logoType !== LOGO_MODE.TEXT &&
+        values.logoType !== LOGO_MODE.PICTURE
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["logoType"],
+          message: messages.layoutRequired,
+        });
+      }
+
+      if (values.logoType === LOGO_MODE.TEXT && !values.logoName) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["logoName"],
+          message: messages.logoNameRequired,
+        });
+      }
+
+      if (values.logoType === LOGO_MODE.PICTURE && !values.logoUrl) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["logoUrl"],
+          message: messages.logoImageRequired,
+        });
+      }
+
+      if (!values.desktopCoverImageUrl) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["desktopCoverImageUrl"],
+          message: messages.desktopCoverRequired,
+        });
+      }
+
+      if (!values.mobileCoverImageUrl) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["mobileCoverImageUrl"],
+          message: messages.mobileCoverRequired,
+        });
+      }
+
+      if (!values.layout) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["layout"],
+          message: messages.layoutRequired,
+        });
+      }
+
+      if (
+        values.supportEmail.length > 0 &&
+        !z.email().safeParse(values.supportEmail).success
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["supportEmail"],
+          message: messages.invalidSupportEmail,
+        });
+      }
+    });

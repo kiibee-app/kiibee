@@ -51,8 +51,13 @@ export default function CoverImageSection({
   const { t } = useTranslation();
   const { formState, formErrors, updateField, clearFieldError } =
     useContentForm();
-  const { values: appearanceValues, updateField: updateAppearanceField } =
-    useAppearanceForm();
+  const {
+    values: appearanceValues,
+    errors: appearanceErrors,
+    updateField: updateAppearanceField,
+    clearFieldError: clearAppearanceFieldError,
+    validateField: validateAppearanceField,
+  } = useAppearanceForm();
   const [open, setOpen] = React.useState(false);
   const isMobile = useIsMobile();
   const [selectedConfig, setSelectedConfig] =
@@ -76,9 +81,13 @@ export default function CoverImageSection({
       clearFieldError(field);
       updateField(field, cropped);
     } else if (selectedConfig.type === IMAGE_TYPE.DESKTOP) {
+      clearAppearanceFieldError(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL);
       updateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL, cropped);
+      validateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL);
     } else if (selectedConfig.type === IMAGE_TYPE.MOBILE) {
+      clearAppearanceFieldError(FORM_FIELDS.MOBILE_COVER_IMAGE_URL);
       updateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL, cropped);
+      validateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL);
     } else {
       setImages((prev) => ({
         ...prev,
@@ -145,6 +154,18 @@ export default function CoverImageSection({
                   {useFormContext && formErrors[getImageField(item.type)] ? (
                     <ErrorText role="alert">
                       {formErrors[getImageField(item.type)]}
+                    </ErrorText>
+                  ) : !useFormContext &&
+                    item.type === IMAGE_TYPE.DESKTOP &&
+                    appearanceErrors.desktopCoverImageUrl ? (
+                    <ErrorText role="alert">
+                      {appearanceErrors.desktopCoverImageUrl}
+                    </ErrorText>
+                  ) : !useFormContext &&
+                    item.type === IMAGE_TYPE.MOBILE &&
+                    appearanceErrors.mobileCoverImageUrl ? (
+                    <ErrorText role="alert">
+                      {appearanceErrors.mobileCoverImageUrl}
                     </ErrorText>
                   ) : null}
                 </UploadButton>

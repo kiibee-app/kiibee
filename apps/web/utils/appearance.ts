@@ -32,6 +32,7 @@ export const UI_DEFAULT_COLOR = "default-color";
 export const DEFAULT_HEX = lightTheme.colors.brand.dark;
 export const FALLBACK_HEX = "#000000";
 export const HEX_COLOR_RE = /^#[0-9a-f]{6}$/i;
+export const HEX_COLOR_INPUT_RE = /^#?[0-9a-f]{6}$/i;
 
 export function normalizeHexColor(value: string, fallback: string): string {
   const fb = (fallback.startsWith("#") ? fallback : `#${fallback}`).trim();

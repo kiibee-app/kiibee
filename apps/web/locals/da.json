@@ -1451,6 +1451,17 @@
       "supportEmail": "Support e-mail",
       "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, sÃ¥ indtast den her.",
       "supportEmailPlaceholder": "Indtast support e-mail",
+      "validation": {
+        "invalidHex": "Indtast en gyldig hex-farve som #1a2b3c.",
+        "invalidSupportEmail": "Indtast en gyldig support e-mailadresse.",
+        "fixErrors": "Ret fejlene i appearance-sektionen, fÃ¸r du gemmer.",
+        "descriptionRequired": "Beskrivelse er påkrævet.",
+        "logoNameRequired": "Logotekst er påkrævet.",
+        "logoImageRequired": "Upload venligst et logobillede.",
+        "desktopCoverRequired": "Upload venligst et desktop-forsidebillede.",
+        "mobileCoverRequired": "Upload venligst et mobil-forsidebillede.",
+        "layoutRequired": "Vælg venligst et layout."
+      },
       "coverImage": {
         "title": "Forsidebillede",
         "subtitle": "Det store billede øverst på siden",
