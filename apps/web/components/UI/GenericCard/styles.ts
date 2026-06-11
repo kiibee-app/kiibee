@@ -15,6 +15,7 @@ export const Card = styled.div<{
   border-radius: 12px;
   gap: ${({ $compact }) => ($compact ? "6px" : "8px")};
   align-items: stretch;
+  height: 100%;
   min-height: ${({ $compact, $coverImage }) => {
     if ($compact) return "0";
     if ($coverImage) return "280px";
@@ -73,6 +74,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
+  flex-grow: 1;
 `;
 
 export const Badge = styled.span<{ $variant?: "default" | "owned" }>`
@@ -118,4 +120,17 @@ export const Footer = styled.div`
     flex: 1;
     min-width: 0;
   }
+`;
+
+export const CardHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+export const CardChildren = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: auto;
 `;

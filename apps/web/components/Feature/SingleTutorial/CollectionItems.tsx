@@ -12,12 +12,15 @@ import {
   CollectionGrid,
   CollectionHeader,
   CollectionHeaderActions,
+  CollectionSearchBar,
   CollectionSection,
   CollectionSectionArrow,
   CollectionSectionArrows,
   CollectionSectionTitle,
   CollectionTitleGroup,
 } from "./styles";
+import SearchBar from "@/components/UI/SearchBar";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 
 export const COLLECTION_ITEMS_PAGE_SIZE = 4;
 
@@ -28,8 +31,21 @@ type Props = {
 
 export default function CollectionItems({ videos, collectionId }: Props) {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
+  const isLoggedIn = Boolean(user?.id);
+  const [search, setSearch] = useState("");
   const [pageStart, setPageStart] = useState(0);
-  const totalItems = videos.length;
+
+  const handleSearchChange = useCallback((value: string) => {
+    setSearch(value);
+    setPageStart(0);
+  }, []);
+
+  const filteredVideos = videos.filter((video) =>
+    video.title.toLowerCase().includes(search.toLowerCase()),
+  );
+
+  const totalItems = filteredVideos.length;
   const canSlide = totalItems > COLLECTION_ITEMS_PAGE_SIZE;
   const canGoPrev = pageStart > 0;
   const canGoNext = pageStart + COLLECTION_ITEMS_PAGE_SIZE < totalItems;
@@ -55,7 +71,7 @@ export default function CollectionItems({ videos, collectionId }: Props) {
     : "/tutorial-videos";
 
   const visibleVideos = getFeedPageSlice(
-    videos,
+    filteredVideos,
     pageStart,
     COLLECTION_ITEMS_PAGE_SIZE,
   );
@@ -70,6 +86,15 @@ export default function CollectionItems({ videos, collectionId }: Props) {
           <LeftIcon width={14} height={14} />
         </CollectionTitleGroup>
         <CollectionHeaderActions>
+          {isLoggedIn ? (
+            <CollectionSearchBar>
+              <SearchBar
+                placeholder={t("creators.search")}
+                value={search}
+                onChange={handleSearchChange}
+              />
+            </CollectionSearchBar>
+          ) : null}
           {canSlide ? (
             <CollectionSectionArrows>
               {canGoPrev ? (

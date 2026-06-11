@@ -19,11 +19,13 @@ export type SingleContentAction = {
 export type SingleContentHeroProps = {
   image: ImageSource;
   imageAlt: string;
+  contentType?: ContentType;
   media?: {
     type: ContentType;
     src: string;
     title: string;
   };
+  contentUrl?: string;
   categoryLabel?: string;
   mediaLabel?: string;
   mediaIcon?: ImageSource;

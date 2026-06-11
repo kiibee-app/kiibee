@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { type CSSProperties } from "react";
+import { media } from "@repo/ui/breakpoints";
 
 export const Section = styled.section`
   width: 100%;
@@ -56,6 +57,12 @@ export const StepsColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 0;
+
+  ${media.mobileLg} {
+    flex: 1 1 auto;
+    width: 100%;
+  }
 `;
 
 export const StepCard = styled.article`
@@ -65,7 +72,7 @@ export const StepCard = styled.article`
   border: 1px solid ${({ theme }) => theme.colors.primary.GREEN_30};
   display: flex;
   justify-content: space-between;
-  gap: 8rem;
+  gap: clamp(1rem, 8vw, 8rem);
 `;
 
 export const StepNumber = styled.span`

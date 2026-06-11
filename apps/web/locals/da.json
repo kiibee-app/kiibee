@@ -10,6 +10,9 @@
     "about": "Om Kiibee",
     "login": "Log ind",
     "dashboard": "Dashboard",
+    "accountProfile": "Profil",
+    "logout": "Log ud",
+    "profileMenu": "Kontomenu",
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee",
     "profile": {
@@ -972,7 +975,8 @@
     "seeContent": "Se indhold",
     "notFound": "Samling ikke fundet",
     "inCollection": "I denne samling",
-    "uploads": "uploads"
+    "uploads": "uploads",
+    "noResults": "Ingen uploads matcher din søgning."
   },
   "singleTutorial": {
     "title": "Del 1. Oprettelse af profil og kanal & site",

@@ -41,6 +41,7 @@ export const CONTENT_RESPONSE_KEYS = {
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
   NAME: "name",
+  CREATOR_ID: "creatorId",
 } as const;
 
 export const CONTENT_MEDIA_RESPONSE_KEYS = {
@@ -93,6 +94,7 @@ export type ContentDetailItem = {
     grantedAt?: string | null;
     timeLeftText?: string;
   } | null;
+  [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
 };
 
 export type ContentMediaUrlResponse = {
@@ -180,7 +182,7 @@ export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
   mediaUrl?: string,
-  options?: { inCollection?: boolean },
+  options?: { inCollection?: boolean; viewerId?: string },
 ): SingleContentPageProps => {
   const title =
     toTrimmedString(content[CONTENT_RESPONSE_KEYS.TITLE]) ||
@@ -207,6 +209,17 @@ export const getSingleContentProps = (
     inCollection: options?.inCollection,
   });
 
+  const trailerUrl = toTrimmedString(
+    content[CONTENT_RESPONSE_KEYS.TRAILER_URL],
+  );
+
+  const isVideo = contentType === FORMAT_TYPE.VIDEO;
+  const showTrailerInHero = isVideo && Boolean(trailerUrl);
+  const isOwner = Boolean(
+    options?.viewerId &&
+    content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
+  );
+
   return {
     contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
     title,
@@ -216,18 +229,30 @@ export const getSingleContentProps = (
     hero: {
       image: getContentImage(content),
       imageAlt: title,
-      ...(mediaUrl
+      contentType,
+      ...(showTrailerInHero && trailerUrl
         ? {
             media: {
               type: contentType,
-              src: mediaUrl,
+              src: trailerUrl,
               title,
             },
+            contentUrl: mediaUrl,
           }
-        : {}),
+        : mediaUrl && !isVideo
+          ? {
+              media: {
+                type: contentType,
+                src: mediaUrl,
+                title,
+              },
+            }
+          : isVideo && mediaUrl
+            ? { contentUrl: mediaUrl }
+            : {}),
       categoryLabel: categories[0],
       mediaLabel: getContentTypeLabel(contentType),
-      ...(contentType === FORMAT_TYPE.VIDEO
+      ...(isVideo
         ? {
             mediaIcon: playCircleIcon,
             mediaIconAlt: t(CONTENT_TRANSLATION_KEYS.seeContent),
@@ -237,7 +262,7 @@ export const getSingleContentProps = (
           }
         : {}),
     },
-    ...(isFree || hasViewerAccess
+    ...(isFree || hasViewerAccess || isOwner
       ? {
           primaryAction: {
             label: t(CONTENT_TRANSLATION_KEYS.seeContent),

@@ -3,7 +3,6 @@
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
 import { LeftIcon } from "@/assets/icons";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import {
@@ -28,11 +27,10 @@ import {
   getContentDetail,
   type ContentDetailResponse,
 } from "@/utils/contentApi";
+import { buildPricingButtonsForContent } from "@/utils/contentPricingActions";
 import { tutorialVideos } from "@/utils/data";
 import { type TutorialVideo } from "@/utils/types";
-import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
-import { authStorage } from "@/lib/auth/authStorage";
-import { PATHS } from "@/utils/path";
+import { QUERY_KEYS } from "@/utils/Constants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 import {
   CollectionSection,
@@ -55,15 +53,13 @@ function PrivateCollectionPreview({
   variant,
   searchQuery,
   displayName,
-  handleBuyClick,
+  freeLabel,
 }: {
   variant: ProfileLayoutVariant;
   searchQuery: string;
   displayName: string;
-  handleBuyClick: () => void;
+  freeLabel: string;
 }) {
-  const { t } = useTranslation();
-
   const { data: sections = [] } = useQuery<CollectionWithCards[]>({
     queryKey: [QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW],
     queryFn: async () => {
@@ -109,13 +105,11 @@ function PrivateCollectionPreview({
                 formatType: content.contentType,
                 formatLabel: getContentTypeLabel(content.contentType),
                 image: contentDetail?.thumbnailUrl ?? fallbackTemplate.image,
-                buttons: [
-                  {
-                    label: t("createProfileAbout.buyCollection"),
-                    variant: VARIANT.SECONDARY,
-                    onClick: handleBuyClick,
-                  },
-                ],
+                buttons: buildPricingButtonsForContent(
+                  content.id,
+                  contentDetail,
+                  freeLabel,
+                ),
               };
             }),
           );
@@ -174,33 +168,20 @@ function PublicCollectionPreview({
   variant,
   publicCreatorId,
   searchQuery,
-  handleBuyClick,
 }: {
   variant: ProfileLayoutVariant;
   publicCreatorId: string;
   searchQuery: string;
-  handleBuyClick: () => void;
 }) {
   const { t } = useTranslation();
   const { tutorials, isLoading } = usePublicCreatorContent(publicCreatorId);
 
   const visibleCards = useMemo((): TutorialVideo[] => {
-    const withBuyButton: TutorialVideo[] = tutorials.map((tutorial) => ({
-      ...tutorial,
-      buttons: [
-        {
-          label: t("createProfileAbout.buyCollection"),
-          variant: VARIANT.SECONDARY,
-          onClick: handleBuyClick,
-        },
-      ],
-    }));
-
-    if (!searchQuery.trim()) return withBuyButton;
-    return withBuyButton.filter((card) =>
+    if (!searchQuery.trim()) return tutorials;
+    return tutorials.filter((card) =>
       matchesProfileSearch(searchQuery, card.title),
     );
-  }, [tutorials, searchQuery, t, handleBuyClick]);
+  }, [tutorials, searchQuery]);
 
   if (isLoading || !visibleCards.length) return null;
 
@@ -225,18 +206,10 @@ function PublicCollectionPreview({
 }
 
 export default function CollectionPreview({ variant }: Props) {
+  const { t } = useTranslation();
   const { searchQuery } = useCreatorProfileUi();
   const { displayName, isPublicView, publicCreatorId } =
     useCreatorChannelProfile();
-  const router = useRouter();
-
-  const handleBuyClick = () => {
-    if (authStorage.hasSession()) return;
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
 
   if (isPublicView && publicCreatorId) {
     return (
@@ -244,7 +217,6 @@ export default function CollectionPreview({ variant }: Props) {
         variant={variant}
         publicCreatorId={publicCreatorId}
         searchQuery={searchQuery}
-        handleBuyClick={handleBuyClick}
       />
     );
   }
@@ -254,7 +226,7 @@ export default function CollectionPreview({ variant }: Props) {
       variant={variant}
       searchQuery={searchQuery}
       displayName={displayName}
-      handleBuyClick={handleBuyClick}
+      freeLabel={t("tutorialVideos.buttonFreeLabel")}
     />
   );
 }

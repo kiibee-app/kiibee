@@ -5,6 +5,7 @@ export const API_ENDPOINTS = {
   USER_PROFILE: "/auth/user/profile",
   APPROVE_CREATOR: "/auth/approve-creator",
   REJECT_CREATOR: "/auth/reject-creator",
+  ALL_CREATORS: "/auth/all-creators",
   ALL_CREATOR_REQUESTS: "/auth/all-creator-requests",
 } as const;
 
@@ -19,6 +20,7 @@ export const ACTION_ICONS = {
 
 export const STORAGE_KEYS = {
   PAGE_SIZE_ALL_CREATORS: "kiibee.admin.allCreators.pageSize",
+  PAGE_SIZE_CREATOR_REQUESTS: "kiibee.admin.creatorRequests.pageSize",
 } as const;
 
 export const isBrowser = typeof window !== "undefined";

@@ -283,6 +283,10 @@ export const CollectionHeaderActions = styled.div`
   gap: 0.5rem;
 `;
 
+export const CollectionSearchBar = styled.div`
+  width: min(216px, 100%);
+`;
+
 export const CollectionSectionArrows = styled.div`
   display: inline-flex;
   align-items: center;

@@ -17,13 +17,14 @@ export function CreatorPagination({
   totalPages,
   pageNumbers,
   pageSize,
+  itemLabel = "requests",
   onPageChange,
   onPageSizeChange,
 }: CreatorPaginationProps) {
   return (
     <PaginationFooter>
       <span>
-        Showing {startIndex + 1} to {endIndex} of {totalItems} requests
+        Showing {startIndex + 1} to {endIndex} of {totalItems} {itemLabel}
       </span>
       <PaginationControlGroup>
         <PaginationButton

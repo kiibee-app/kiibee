@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import NavBar from "@/components/Layout/Navbar";
-import { Main, PageContainer, Section } from "@/app/styles";
+import { Main, Section } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
 import Footer from "@/components/Layout/Footer";
 import ExploreCreators from "@/components/Feature/ExploreCreators/Creators";
@@ -13,6 +13,7 @@ import {
 } from "@/hooks/creators/useExploreCreators";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { useDebounce } from "@/hooks/useDebounce";
+import { LocalPageContainer } from "@/app/(pages)/explore/category/[categoryName]/styles";
 
 export default function ExploreCreatorsPage() {
   const [sortBy, setSortBy] = useState<SortValue>(DEFAULT_SORT);
@@ -31,7 +32,7 @@ export default function ExploreCreatorsPage() {
   );
 
   return (
-    <PageContainer>
+    <LocalPageContainer $navTextTone={navTextTone}>
       <NavBar navTextTone={navTextTone} />
       <Main>
         <Section>
@@ -51,6 +52,6 @@ export default function ExploreCreatorsPage() {
         </Section>
       </Main>
       <Footer />
-    </PageContainer>
+    </LocalPageContainer>
   );
 }

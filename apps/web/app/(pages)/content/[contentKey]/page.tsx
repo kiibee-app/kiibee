@@ -176,20 +176,21 @@ function PublishedContentDetail() {
         showCloseButton={false}
       />
 
-      <Section>
-        <SingleContentPage
-          {...getSingleContentProps(content, t, mediaUrl, {
-            inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
-          })}
-        >
-          {relatedCollectionQuery.data?.videos?.length ? (
-            <CollectionItems
-              videos={relatedCollectionQuery.data.videos}
-              collectionId={relatedCollectionQuery.data.collectionId}
-            />
-          ) : null}
-        </SingleContentPage>
-      </Section>
+    <Section>
+      <SingleContentPage
+        {...getSingleContentProps(content, t, mediaUrl, {
+          inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
+          viewerId: user?.id,
+        })}
+      >
+        {relatedCollectionQuery.data?.videos?.length ? (
+          <CollectionItems
+            videos={relatedCollectionQuery.data.videos}
+            collectionId={relatedCollectionQuery.data.collectionId}
+          />
+        ) : null}
+      </SingleContentPage>
+    </Section>
     </>
   );
 }
