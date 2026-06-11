@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { PATHS } from "@/utils/path";
@@ -15,9 +16,13 @@ import {
   SingleContentTopBar,
 } from "./ContentSections";
 import { Card, ContentLayout, Wrapper } from "./styles";
-import type { SingleContentPageProps } from "@/types/contentTypes";
+import type {
+  SingleContentPageProps,
+  SingleContentAction,
+} from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
 import useShare from "@/hooks/useShare";
+import ContentPreviewModal from "./ContentPreviewModal";
 
 export type {
   SingleContentHeroProps,
@@ -45,8 +50,31 @@ export default function SingleContentPage({
 }: SingleContentPageProps) {
   const router = useRouter();
   const user = useStoredLoginUser();
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+
+  const isPreviewableType =
+    hero?.contentType === FORMAT_TYPE.PDF ||
+    hero?.contentType === FORMAT_TYPE.WEB ||
+    hero?.contentType === FORMAT_TYPE.EPUB ||
+    hero?.contentType === FORMAT_TYPE.VIDEO ||
+    hero?.contentType === FORMAT_TYPE.AUDIO;
+
+  const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
+
+  const canPreview =
+    isPreviewableType && Boolean(hero?.media?.src || hero?.contentUrl);
 
   const handlePrimaryActionClick = () => {
+    if (isWebType && hero?.media?.src) {
+      window.open(hero.media.src, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    if (canPreview) {
+      setShowPreviewModal(true);
+      return;
+    }
+
     if (primaryAction?.onClick) {
       primaryAction.onClick();
       return;
@@ -75,6 +103,12 @@ export default function SingleContentPage({
       }
     : undefined;
 
+  const modifiedPrimaryActions: SingleContentAction[] | undefined =
+    primaryActions?.map((action) => ({
+      ...action,
+      onClick: handlePrimaryActionClick,
+    }));
+
   const { share } = useShare();
   const isPdfLayout =
     hero?.media?.type === FORMAT_TYPE.PDF ||
@@ -97,13 +131,13 @@ export default function SingleContentPage({
         onBackClick={handleBack}
         onShare={onShare ?? share}
       />
-
       <Card>
         <ContentLayout $isPdf={isPdfLayout}>
           <SingleContentHero hero={hero} isPdfLayout={isPdfLayout} />
 
           <SingleContentBody
             creator={creator}
+            primaryActions={modifiedPrimaryActions}
             statusLabel={statusLabel}
             title={title}
             descriptions={descriptions}
@@ -116,6 +150,15 @@ export default function SingleContentPage({
       </Card>
 
       {children}
+      {canPreview && (
+        <ContentPreviewModal
+          visible={showPreviewModal}
+          onClose={() => setShowPreviewModal(false)}
+          src={hero.contentUrl || hero.media?.src || ""}
+          type={hero.contentType || hero.media?.type || FORMAT_TYPE.VIDEO}
+          title={title}
+        />
+      )}
     </Wrapper>
   );
 }
