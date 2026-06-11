@@ -2,14 +2,21 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useMemo } from "react";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { PATHS } from "@/utils/path";
 import {
   ACCESS_TYPE_FREE,
   ACCESS_KEYWORD_EN,
   ACCESS_KEYWORD_DA,
+  ORDER_TYPES,
+  type OrderItemType,
   STRING,
 } from "@/utils/Constants";
+import { usePostAPI } from "@/lib/http/api/postApi";
+import { API } from "@/lib/http/api/endpoints";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { toast } from "react-toastify";
 import {
   SingleContentBody,
   SingleContentHero,
@@ -31,6 +38,8 @@ export type {
 } from "@/types/contentTypes";
 
 export default function SingleContentPage({
+  contentId,
+  collectionId,
   title,
   descriptions = [],
   tags = [],
@@ -50,6 +59,82 @@ export default function SingleContentPage({
 }: SingleContentPageProps) {
   const router = useRouter();
   const user = useStoredLoginUser();
+  const { getErrorMessage } = useApiErrorMessage();
+
+  type CreateOrderPayload = {
+    contentId: string;
+    collectionId?: string;
+    itemType: OrderItemType;
+  };
+
+  type CreateOrderResponse = {
+    success: boolean;
+    statusCode: number;
+    message: string;
+    data: {
+      orderId: string;
+      url: string;
+    };
+  };
+
+  const createOrderMutation = usePostAPI<
+    CreateOrderResponse,
+    CreateOrderPayload
+  >(API.order.create);
+
+  const actionsWithPayment = useMemo(() => {
+    const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
+
+    if (!actions.length || !contentId) {
+      return actions;
+    }
+
+    return actions.map((action) => {
+      const normalizedLabel = action.label.toLowerCase();
+      const isPurchase = normalizedLabel.includes("buy");
+      const isRental = normalizedLabel.includes("rent");
+
+      if (!isPurchase && !isRental) {
+        return action;
+      }
+
+      return {
+        ...action,
+        disabled: action.disabled || createOrderMutation.isPending,
+        onClick: async () => {
+          if (!user?.id) {
+            router.push(PATHS.AUTH_LOGIN);
+            return;
+          }
+
+          try {
+            const response = await createOrderMutation.mutateAsync({
+              contentId,
+              collectionId,
+              itemType: isPurchase ? ORDER_TYPES.PURCHASE : ORDER_TYPES.RENTAL,
+            });
+            const paymentUrl = response?.data?.url;
+            if (!paymentUrl) {
+              throw new Error("Payment URL missing");
+            }
+            window.location.assign(paymentUrl);
+          } catch (error) {
+            const message = getErrorMessage(error, "errors.saveChangesFailed");
+            toast.error(message);
+          }
+        },
+      };
+    });
+  }, [
+    collectionId,
+    contentId,
+    createOrderMutation,
+    getErrorMessage,
+    primaryAction,
+    primaryActions,
+    router,
+    user?.id,
+  ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
 
   const isPreviewableType =
@@ -103,11 +188,12 @@ export default function SingleContentPage({
       }
     : undefined;
 
-  const modifiedPrimaryActions: SingleContentAction[] | undefined =
-    primaryActions?.map((action) => ({
-      ...action,
-      onClick: handlePrimaryActionClick,
-    }));
+  const bodyPrimaryActions: SingleContentAction[] | undefined =
+    primaryActions != null
+      ? actionsWithPayment
+      : modifiedPrimaryAction
+        ? [modifiedPrimaryAction]
+        : undefined;
 
   const { share } = useShare();
   const isPdfLayout =
@@ -137,12 +223,12 @@ export default function SingleContentPage({
 
           <SingleContentBody
             creator={creator}
-            primaryActions={modifiedPrimaryActions}
             statusLabel={statusLabel}
             title={title}
             descriptions={descriptions}
             tags={tags}
             primaryAction={modifiedPrimaryAction}
+            primaryActions={bodyPrimaryActions}
             expiry={expiry}
             metaItems={metaItems}
           />

@@ -71,4 +71,9 @@ export const API = {
     contentPerformance: "/creator-overview/content-performance",
     analytics: "/creator-overview/analytics",
   },
+  order: {
+    create: "/order/create",
+    getById: (orderId: string) => `/order/${orderId}`,
+    // confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
+  },
 } as const;
