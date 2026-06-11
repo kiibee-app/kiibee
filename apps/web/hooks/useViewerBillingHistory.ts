@@ -66,7 +66,7 @@ function toBillingHistoryItem(
     amount: `${item.amount} kr`,
     paymentMethod: {
       brand: resolveCardBrand(item.paymentMethod),
-      last4: item.cardNumber || "",
+      last4: item.cardNumber ? item.cardNumber.slice(-3) : "",
     },
   };
 }
