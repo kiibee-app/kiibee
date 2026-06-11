@@ -438,7 +438,9 @@ export const HeaderSearchInput = styled.input<{ $open: boolean }>`
   padding: 0;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
-  width: ${({ $open }) => ($open ? "100%" : "0")};
+  flex: ${({ $open }) => ($open ? 1 : "0 0 auto")};
+  min-width: 0;
+  width: ${({ $open }) => ($open ? "auto" : "0")};
   opacity: ${({ $open }) => ($open ? 1 : 0)};
   transition: all 0.25s ease;
 
