@@ -15,6 +15,13 @@ export const ROLE = {
   ADMIN: 'admin',
 } as const;
 
+export const ACCESS_TYPE = {
+  FREE: 'free',
+  PAID: 'paid',
+  PASSWORD: 'password',
+  EMAIL_GATED: 'email_gated',
+} as const;
+
 export const Time = {
   FIFTEEN_MINUTES: 15 * 60 * 1000,
   ONE_HOUR: 60 * 60 * 1000,

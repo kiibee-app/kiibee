@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 import type { CreatorRequest } from "../../../types/creator-request";
-import { useCreatorRequests, useExistingCreators } from "../../../hooks/api";
+import {
+  useCreatorRequests,
+  useExistingCreators,
+  useViewers,
+} from "../../../hooks/api";
 import { usePagination } from "../../../hooks/ui/use-pagination";
 import {
   AllCreatorsLayout,
@@ -12,23 +16,29 @@ import {
   AllCreatorsTabs,
 } from "./AllCreators.styles";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
+import { ViewersTable } from "./ViewersTable";
 import { CreatorRequestsTable } from "./CreatorRequestsTable";
 import { CreatorRequestsTableSkeleton } from "./CreatorRequestsTableSkeleton";
 import { CreatorPagination } from "./CreatorPagination";
 import { CreatorDetailsModal } from "./CreatorDetailsModal";
 import { useCreatorRequestActions } from "./useCreatorRequestActions";
 import { useCreatorRequestOverrides } from "./useCreatorRequestOverrides";
-import { STORAGE_KEYS } from "@/utils/constants";
-
-type AllCreatorsTab = "creators" | "requests";
+import {
+  ALL_CREATORS_TAB,
+  type AllCreatorsTab,
+  STORAGE_KEYS,
+} from "@/utils/constants";
 
 export function AllCreatorsTable() {
-  const [activeTab, setActiveTab] = useState<AllCreatorsTab>("creators");
+  const [activeTab, setActiveTab] = useState<AllCreatorsTab>(
+    ALL_CREATORS_TAB.CREATORS,
+  );
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
     null,
   );
   const existingCreatorsQuery = useExistingCreators();
   const creatorRequestsQuery = useCreatorRequests();
+  const viewersQuery = useViewers();
   const { creators, updateCreatorStatus } = useCreatorRequestOverrides(
     creatorRequestsQuery.data ?? [],
   );
@@ -56,6 +66,15 @@ export function AllCreatorsTable() {
     totalItems: totalRequests,
     initialPageSize: 10,
     storageKey: STORAGE_KEYS.PAGE_SIZE_CREATOR_REQUESTS,
+  });
+
+  const viewers = viewersQuery.data ?? [];
+  const totalViewers = viewers.length;
+  const viewersPagination = usePagination({
+    data: viewers,
+    totalItems: totalViewers,
+    initialPageSize: 10,
+    storageKey: STORAGE_KEYS.PAGE_SIZE_VIEWERS,
   });
 
   const renderExistingCreators = () => {
@@ -89,7 +108,7 @@ export function AllCreatorsTable() {
           totalPages={existingCreatorsPagination.totalPages}
           pageNumbers={existingCreatorsPagination.pageNumbers}
           pageSize={existingCreatorsPagination.pageSize}
-          itemLabel="creators"
+          itemLabel={ALL_CREATORS_TAB.CREATORS}
           onPageChange={existingCreatorsPagination.onPageChange}
           onPageSizeChange={existingCreatorsPagination.onPageSizeChange}
         />
@@ -148,9 +167,46 @@ export function AllCreatorsTable() {
           totalPages={requestsPagination.totalPages}
           pageNumbers={requestsPagination.pageNumbers}
           pageSize={requestsPagination.pageSize}
-          itemLabel="requests"
+          itemLabel={ALL_CREATORS_TAB.REQUESTS}
           onPageChange={requestsPagination.onPageChange}
           onPageSizeChange={requestsPagination.onPageSizeChange}
+        />
+      </>
+    );
+  };
+
+  const renderViewers = () => {
+    if (viewersQuery.isLoading) {
+      return <CreatorRequestsTableSkeleton />;
+    }
+
+    if (viewersQuery.isError) {
+      return (
+        <AllCreatorsState>
+          {viewersQuery.error?.message || "Failed to load viewers."}
+        </AllCreatorsState>
+      );
+    }
+
+    if (!totalViewers) {
+      return <AllCreatorsState>No viewers found.</AllCreatorsState>;
+    }
+
+    return (
+      <>
+        <ViewersTable viewers={viewersPagination.paginatedData} />
+
+        <CreatorPagination
+          startIndex={viewersPagination.startIndex}
+          endIndex={viewersPagination.endIndex}
+          totalItems={totalViewers}
+          currentPage={viewersPagination.currentPage}
+          totalPages={viewersPagination.totalPages}
+          pageNumbers={viewersPagination.pageNumbers}
+          pageSize={viewersPagination.pageSize}
+          itemLabel={ALL_CREATORS_TAB.VIEWERS}
+          onPageChange={viewersPagination.onPageChange}
+          onPageSizeChange={viewersPagination.onPageSizeChange}
         />
       </>
     );
@@ -161,24 +217,33 @@ export function AllCreatorsTable() {
       <AllCreatorsTabs aria-label="Creator list views">
         <AllCreatorsTabButton
           type="button"
-          $active={activeTab === "creators"}
-          onClick={() => setActiveTab("creators")}
+          $active={activeTab === ALL_CREATORS_TAB.CREATORS}
+          onClick={() => setActiveTab(ALL_CREATORS_TAB.CREATORS)}
         >
           Existing Creators ({totalExistingCreators})
         </AllCreatorsTabButton>
         <AllCreatorsTabButton
           type="button"
-          $active={activeTab === "requests"}
-          onClick={() => setActiveTab("requests")}
+          $active={activeTab === ALL_CREATORS_TAB.VIEWERS}
+          onClick={() => setActiveTab(ALL_CREATORS_TAB.VIEWERS)}
+        >
+          Viewers ({totalViewers})
+        </AllCreatorsTabButton>
+        <AllCreatorsTabButton
+          type="button"
+          $active={activeTab === ALL_CREATORS_TAB.REQUESTS}
+          onClick={() => setActiveTab(ALL_CREATORS_TAB.REQUESTS)}
         >
           Pending Requests ({totalRequests})
         </AllCreatorsTabButton>
       </AllCreatorsTabs>
 
       <AllCreatorsPanel>
-        {activeTab === "creators"
+        {activeTab === ALL_CREATORS_TAB.CREATORS
           ? renderExistingCreators()
-          : renderCreatorRequests()}
+          : activeTab === ALL_CREATORS_TAB.VIEWERS
+            ? renderViewers()
+            : renderCreatorRequests()}
       </AllCreatorsPanel>
 
       <CreatorDetailsModal

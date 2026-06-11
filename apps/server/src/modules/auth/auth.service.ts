@@ -15,6 +15,8 @@ import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { creatorRequestService } from './services/creatorRequest.service';
 import { approveCreatorRequestService } from './services/approvCreatorRequest.service';
 import { getAllExistingCreatorsService } from './services/getAllExistingCreators.service';
+import { getAllViewersService } from './services/getAllViewers.service';
+import { getAdminDashboardStatsService } from './services/getAdminDashboardStats.service';
 import { getCreatorRequestService } from './services/getCreatorRequest.service';
 import { rejectCreatorRequestService } from './services/rejectCreatorRequest.service';
 import { validateTokenService } from './services/validateToken.service';
@@ -157,6 +159,12 @@ export class AuthService {
   }
   async getAllExistingCreators() {
     return getAllExistingCreatorsService();
+  }
+  async getAllViewers() {
+    return getAllViewersService();
+  }
+  async getAdminDashboardStats() {
+    return getAdminDashboardStatsService();
   }
   async approveCreatorRequest(requestId: string, approverUserId: string) {
     const frontendBaseUrl =
