@@ -511,8 +511,8 @@ export const DrawerPanel = styled.aside<{ $open: boolean }>`
     transform: ${({ $open }) =>
       $open ? "translateX(0)" : "translateX(-100%)"};
     transition: transform 0.3s ease;
-    box-shadow: ${({ $open }) =>
-      $open ? "6px 0 24px rgba(15, 23, 42, 0.12)" : "none"};
+    box-shadow: ${({ $open, theme }) =>
+      $open ? `6px 0 24px ${theme.colors.gradient.FRAME_BG}` : "none"};
   }
 `;
 
