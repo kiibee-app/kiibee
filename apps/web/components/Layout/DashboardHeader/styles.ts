@@ -159,4 +159,36 @@ export const ProfileButton = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+`;
+
+export const ChannelLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const RightProfileWrapper = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
 `;
