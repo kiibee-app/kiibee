@@ -69,7 +69,7 @@ export default function CreatorInfoModal({
   const { displayName, about } = useCreatorChannelProfile();
 
   const title = displayName ?? "";
-  const body = about?.description ?? "";
+  const body = about?.description || t(CREATE_PROFILE_HOME.description);
   const joinedDate = about?.joinedDate ?? "";
   const uploadsCount = about?.uploadCount ?? 0;
   const links = about?.websiteLink ? [about.websiteLink] : [];
@@ -116,26 +116,28 @@ export default function CreatorInfoModal({
           </InfoList>
         </Section>
 
-        <Section>
-          <SectionTitle>
-            <MonoText $use="H5_Medium">
-              {t(CREATE_PROFILE_HOME.aboutModal.links)}
-            </MonoText>
-          </SectionTitle>
-          <LinksList>
-            {links.map((url) => (
-              <LinkItem
-                key={url}
-                href={toAbsoluteUrl(url)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <SocialIcon url={url} />
-                <MonoText $use="Body_Medium">{getDisplayUrl(url)}</MonoText>
-              </LinkItem>
-            ))}
-          </LinksList>
-        </Section>
+        {links.length > 0 && (
+          <Section>
+            <SectionTitle>
+              <MonoText $use="H5_Medium">
+                {t(CREATE_PROFILE_HOME.aboutModal.links)}
+              </MonoText>
+            </SectionTitle>
+            <LinksList>
+              {links.map((url) => (
+                <LinkItem
+                  key={url}
+                  href={toAbsoluteUrl(url)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SocialIcon url={url} />
+                  <MonoText $use="Body_Medium">{getDisplayUrl(url)}</MonoText>
+                </LinkItem>
+              ))}
+            </LinksList>
+          </Section>
+        )}
 
         <ShareButton type="button" aria-label={t(COMMON.share)}>
           <ShareIcon width={18} height={18} />
