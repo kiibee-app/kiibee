@@ -34,7 +34,7 @@ export const GridContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
 
-  ${media.tablet} {
+  ${media.mobileLg} {
     grid-template-columns: 1fr;
   }
 `;
