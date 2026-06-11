@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import type { ImageSource } from "@/utils/Constants";
@@ -35,10 +35,16 @@ import {
 } from "@/assets/icons";
 import { useIsMobile } from "@/utils/useIsMobile";
 import { GenericModal } from "@/components/UI/Modals";
-import { PATHS } from "@/utils/path";
+import { PATHS, pathPublishedContent } from "@/utils/path";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
+import {
+  getContentDetailPricingActions,
+  isFreeContentItem,
+  resolveContentActionHref,
+} from "@/utils/contentPricingActions";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 
 type LatestUploadAction = {
   title: string;
@@ -55,6 +61,11 @@ export type LatestUploadData = {
   year: string;
   description: string;
   actions: [LatestUploadAction, LatestUploadAction?];
+  contentId?: string;
+  accessType?: string | null;
+  buyPrice?: string | number | null;
+  rentPrice?: string | number | null;
+  rentDurationHours?: string | number | null;
   imageStyle?: {
     width?: string;
     height?: string;
@@ -82,12 +93,65 @@ const contentIconMap = {
   web: WebIcon,
 } as const;
 
+type ComputedAction = {
+  title: string;
+  subtitle?: string;
+  href?: string;
+};
+
 export default function LatestUpload({ data }: LatestUploadProps) {
   const { t } = useTranslation();
   const router = useRouter();
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
-  const [primaryAction, secondaryAction] = data.actions;
+  const { navigateToContent } = useProtectedContentNavigation();
+
+  const computedActions = useMemo((): ComputedAction[] => {
+    if (data.contentId) {
+      const pricingItem = {
+        accessType: data.accessType,
+        buyPrice: data.buyPrice,
+        rentPrice: data.rentPrice,
+        rentDurationHours: data.rentDurationHours,
+      };
+
+      if (isFreeContentItem(pricingItem)) {
+        return [
+          {
+            title: t("createProfileHome.latestUpload.seeContent"),
+            subtitle: undefined as string | undefined,
+            href: pathPublishedContent(data.contentId),
+          },
+        ];
+      }
+
+      const pricingActions = getContentDetailPricingActions(pricingItem, t);
+
+      return pricingActions.map((action) => ({
+        title: action.label,
+        subtitle: action.subtitle,
+        href: resolveContentActionHref(
+          data.contentId!,
+          action.label,
+          pricingItem,
+          pricingActions.length,
+        ),
+      }));
+    }
+
+    const fallbackActions = data.actions[0]
+      ? [data.actions[0], data.actions[1]].filter(
+          (a): a is NonNullable<typeof a> => Boolean(a),
+        )
+      : [];
+    return fallbackActions.map((action) => ({
+      title: action.title,
+      subtitle: action.subtitle,
+      href: undefined as string | undefined,
+    }));
+  }, [data, t]);
+
+  const [primaryAction, secondaryAction] = computedActions;
   const handleLogin = () => {
     const next = encodeURIComponent(
       window.location.pathname + window.location.search,
@@ -159,7 +223,13 @@ export default function LatestUpload({ data }: LatestUploadProps) {
           <ActionButtons>
             <ReadMoreButton
               type="button"
-              onClick={() => setLoginModalVisible(true)}
+              onClick={() => {
+                if (primaryAction.href) {
+                  navigateToContent(primaryAction.href, true);
+                } else {
+                  setLoginModalVisible(true);
+                }
+              }}
               $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
             >
               <ActionMainText
@@ -177,7 +247,15 @@ export default function LatestUpload({ data }: LatestUploadProps) {
             </ReadMoreButton>
 
             {secondaryAction ? (
-              <ReadMoreButton type="button" $tone={VARIANT.SECONDARY}>
+              <ReadMoreButton
+                type="button"
+                onClick={() => {
+                  if (secondaryAction.href) {
+                    navigateToContent(secondaryAction.href, true);
+                  }
+                }}
+                $tone={VARIANT.SECONDARY}
+              >
                 <ActionMainText $tone={VARIANT.SECONDARY}>
                   {secondaryAction.title}
                 </ActionMainText>

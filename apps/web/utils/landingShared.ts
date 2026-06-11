@@ -37,6 +37,7 @@ export interface SmoothScrollProviderProps {
 export interface ScrollRevealProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   delay?: number;
+  sequence?: boolean;
 }
 
 export type SafeImageSrc = string | StaticImageData;

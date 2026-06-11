@@ -31,7 +31,7 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { APPEARANCE } from "@/utils/common";
+import { ADD_CONTENT_TABS, APPEARANCE } from "@/utils/common";
 import { ADMISSION_REQUIREMENTS } from "@/utils/admissionRequirements";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
@@ -263,6 +263,8 @@ function CreatorsContentsInner() {
     collectionAccessDuration,
     setCollectionAccessDuration,
     hasUnsavedChanges,
+    hasGeneralUnsavedChanges,
+    hasMetadataUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
     resetUploadState,
@@ -350,7 +352,13 @@ function CreatorsContentsInner() {
           onCancel={handleHeaderCancel}
           onCreateCoupon={couponFlow.open}
           onSave={handleHeaderSave}
-          isSaveDisabled={activeTab === APPEARANCE && !hasUnsavedChanges}
+          isSaveDisabled={
+            (activeTab === APPEARANCE && !hasUnsavedChanges) ||
+            (activeTab === ADD_CONTENT_TABS.GENERAL &&
+              !hasGeneralUnsavedChanges) ||
+            (activeTab === ADD_CONTENT_TABS.METADATA &&
+              !hasMetadataUnsavedChanges)
+          }
           isCollectionContentMode={isCollectionContentMode}
         />
       </PageHeader>

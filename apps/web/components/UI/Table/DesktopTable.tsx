@@ -41,20 +41,6 @@ export default function DesktopTable<T extends Record<string, unknown>>({
 }: BaseTableProps<T>) {
   const { t } = useTranslation();
 
-  if (!hasData) {
-    return (
-      <TableWrapper>
-        <tbody>
-          <tr>
-            <td colSpan={headers.length}>
-              <NoDataCell>{emptyText ?? t("table.noData")}</NoDataCell>
-            </td>
-          </tr>
-        </tbody>
-      </TableWrapper>
-    );
-  }
-
   return (
     <TableWrapper>
       <thead>
@@ -109,54 +95,62 @@ export default function DesktopTable<T extends Record<string, unknown>>({
       </thead>
 
       <tbody>
-        {data.map((row, index) => {
-          const globalIndex = getGlobalIndex(index, pagination, data.length);
-          const rowKey = getRowKey?.(row, globalIndex) ?? globalIndex;
-          const clickable = Boolean(onRowClick);
+        {!hasData ? (
+          <tr>
+            <td colSpan={headers.length}>
+              <NoDataCell>{emptyText ?? t("table.noData")}</NoDataCell>
+            </td>
+          </tr>
+        ) : (
+          data.map((row, index) => {
+            const globalIndex = getGlobalIndex(index, pagination, data.length);
+            const rowKey = getRowKey?.(row, globalIndex) ?? globalIndex;
+            const clickable = Boolean(onRowClick);
 
-          return (
-            <ClickableDesktopRow
-              key={rowKey}
-              $clickable={clickable}
-              onClick={
-                clickable ? () => onRowClick?.(row, globalIndex) : undefined
-              }
-            >
-              {headers.map((header, colIndex) => {
-                const key = getColumnKey<T>(header, headerToKey);
-                const value = row[key];
-                const isFirstColumn = colIndex === 0;
-                const align = getColumnAlignment?.(header, colIndex);
+            return (
+              <ClickableDesktopRow
+                key={rowKey}
+                $clickable={clickable}
+                onClick={
+                  clickable ? () => onRowClick?.(row, globalIndex) : undefined
+                }
+              >
+                {headers.map((header, colIndex) => {
+                  const key = getColumnKey<T>(header, headerToKey);
+                  const value = row[key];
+                  const isFirstColumn = colIndex === 0;
+                  const align = getColumnAlignment?.(header, colIndex);
 
-                if (renderCell) {
+                  if (renderCell) {
+                    return (
+                      <TableCell key={header} $align={align}>
+                        {renderCell({
+                          header,
+                          value,
+                          row,
+                          rowIndex: globalIndex,
+                        })}
+                      </TableCell>
+                    );
+                  }
+
+                  const content = renderDefaultCellContent(header, value);
+
                   return (
                     <TableCell key={header} $align={align}>
-                      {renderCell({
-                        header,
-                        value,
-                        row,
-                        rowIndex: globalIndex,
-                      })}
+                      <MonoText
+                        $use="Body_SemiBold"
+                        color={isFirstColumn ? undefined : COLORS.neutral.GRAY}
+                      >
+                        {content}
+                      </MonoText>
                     </TableCell>
                   );
-                }
-
-                const content = renderDefaultCellContent(header, value);
-
-                return (
-                  <TableCell key={header} $align={align}>
-                    <MonoText
-                      $use="Body_SemiBold"
-                      color={isFirstColumn ? undefined : COLORS.neutral.GRAY}
-                    >
-                      {content}
-                    </MonoText>
-                  </TableCell>
-                );
-              })}
-            </ClickableDesktopRow>
-          );
-        })}
+                })}
+              </ClickableDesktopRow>
+            );
+          })
+        )}
       </tbody>
     </TableWrapper>
   );

@@ -15,7 +15,9 @@ export const API = {
   coupon: {
     create: "/coupons/create",
     getAll: "/coupons",
+    getById: (id: string) => `/coupons/${id}`,
     update: (id: string) => `/coupons/${id}`,
+    replace: (id: string) => `/coupons/${id}`,
     delete: (id: string) => `/coupons/${id}`,
   },
   media: {
@@ -61,5 +63,17 @@ export const API = {
     registrations: "/creator-users/registrations",
     sales: "/creator-users/sales",
     deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
+  },
+  export: {
+    request: "/export/request",
+  },
+  creatorOverview: {
+    contentPerformance: "/creator-overview/content-performance",
+    analytics: "/creator-overview/analytics",
+  },
+  order: {
+    create: "/order/create",
+    getById: (orderId: string) => `/order/${orderId}`,
+    // confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
   },
 } as const;

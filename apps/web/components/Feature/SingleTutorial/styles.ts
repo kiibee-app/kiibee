@@ -223,7 +223,7 @@ export const MainAction = styled.button`
 `;
 
 export const MainActionText = styled.span`
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: inherit;
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
@@ -281,6 +281,10 @@ export const CollectionHeaderActions = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+`;
+
+export const CollectionSearchBar = styled.div`
+  width: min(216px, 100%);
 `;
 
 export const CollectionSectionArrows = styled.div`

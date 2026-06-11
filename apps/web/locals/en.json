@@ -10,6 +10,7 @@
     "about": "About Kiibee",
     "login": "Log in",
     "dashboard": "Dashboard",
+    "accountProfile": "Profile",
     "logout": "Log out",
     "profileMenu": "Account menu",
     "startCreating": "Start creating",
@@ -509,6 +510,7 @@
       "tag": "Recently added"
     },
     "viewProfile": "View profile",
+    "noCreatorsFound": "No creators found",
     "uploadsCount": "{{count}} uploads",
     "loadMore": "Load more",
     "a-z": "A-Z",
@@ -974,7 +976,8 @@
     "seeContent": "See content",
     "notFound": "Collection not found",
     "inCollection": "In this collection",
-    "uploads": "uploads"
+    "uploads": "uploads",
+    "noResults": "No uploads match your search."
   },
   "singleTutorial": {
     "title": "Del 1. Oprettelse af profil og kanal & site",
@@ -1315,7 +1318,14 @@
       "balance": "Balance",
       "purchase": "Purchase",
       "rent": "Rent",
-      "settlementHistory": "Settlement history"
+      "settlementHistory": "Settlement history",
+      "tableHeaders": {
+        "amount": "Amount",
+        "status": "Status",
+        "creditNo": "Credit No",
+        "bank": "Bank",
+        "date": "Date"
+      }
     },
     "export": {
       "title": "Export your data",
@@ -1613,6 +1623,11 @@
       "helperLiveStreaming": "Can be used, for example, in conjunction with Live streaming"
     },
     "metadata": {
+      "validation": {
+        "required": "This field is required.",
+        "mediaCardThumbnail": "Media card thumbnail is required.",
+        "portraitThumbnail": "Portrait thumbnail is required."
+      },
       "production": {
         "title": "Production of",
         "description": "Who released the film and produced the film?",
@@ -1767,6 +1782,7 @@
   "errors": {
     "missingContentFormProvider": "useContentForm must be used within a ContentFormProvider",
     "noContentToSave": "No content to save",
+    "metadataValidationFailed": "Please complete all required metadata fields.",
     "saveChangesFailed": "Failed to save changes",
     "saveSettingsFailed": "Failed to save settings",
     "loadDetailsFailed": "Failed to load content details",

@@ -11,7 +11,6 @@ import type {
 } from "@/types/contentTypes";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
-import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
 import {
   BackButton,
@@ -172,12 +171,6 @@ export function SingleContentBody({
           {actions.map((action) => {
             const variant = action.variant ?? VARIANT.SOFT_OUTLINE;
             const isPrimary = variant === VARIANT.PRIMARY;
-            const labelColor = isPrimary
-              ? COLORS.primary.WHITE
-              : COLORS.primary.BLACK;
-            const sublabelColor = isPrimary
-              ? COLORS.primary.WHITE_90
-              : COLORS.neutral.GRAY_500;
 
             return (
               <GenericButton
@@ -193,10 +186,10 @@ export function SingleContentBody({
               >
                 {action.subtitle ? (
                   <PricingCtaContent>
-                    <MonoText $use="Body_Medium" color={labelColor}>
+                    <MonoText $use="Body_Medium" color="inherit">
                       {action.label}
                     </MonoText>
-                    <PricingCtaSubtext style={{ color: sublabelColor }}>
+                    <PricingCtaSubtext $isPrimary={isPrimary}>
                       {action.subtitle}
                     </PricingCtaSubtext>
                   </PricingCtaContent>

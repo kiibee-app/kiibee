@@ -99,6 +99,12 @@ export const AvatarFrame = styled.button`
   justify-content: center;
   border: none;
   cursor: pointer;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
 `;
 
 export const AvatarText = styled.span`
@@ -144,5 +150,11 @@ export const MenuButton = styled.button`
 
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
   }
 `;

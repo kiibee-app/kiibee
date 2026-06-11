@@ -23,7 +23,7 @@ import {
   ChipCloseCircle,
   SelectedChipWrapper,
 } from "./styles";
-import { COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS } from "@/utils/dummyData/couponApplicableProducts";
+import { COUPON_APPLICABLE_PRODUCTS_FIELD_KEYS } from "@/utils/couponApplicableProducts";
 import { CollectionRow } from "@/types/collectionsType";
 import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
 import { CreateCouponPayload } from "@/types/couponType";

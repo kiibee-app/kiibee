@@ -71,6 +71,14 @@ export const FiltersColumn = styled.aside`
   align-items: flex-start;
   justify-content: flex-start;
   position: sticky;
+  top: 120px;
+  z-index: 10;
+  height: max-content;
+
+  ${media.tablet} {
+    position: static;
+    max-width: 100%;
+  }
 `;
 
 export const CardsGrid = styled.div`

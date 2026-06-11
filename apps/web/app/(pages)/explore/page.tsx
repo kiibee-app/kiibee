@@ -2,25 +2,26 @@
 
 import React, { Suspense } from "react";
 import NavBar from "@/components/Layout/Navbar";
-import {
-  ExploreContentWrapper,
-  ExploreSection,
-  Main,
-  PageContainer,
-} from "@/app/styles";
+import { ExploreContentWrapper, ExploreSection, Main } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
 import RecentlyAdded from "@/components/Feature/ExploreCreators/RecentlyAdded";
 import Footer from "@/components/Layout/Footer";
 import TopCreators from "@/components/Feature/ExploreCreators/TopCreators";
 import TrendingContent from "@/components/Feature/ExploreCreators/TrendingContent";
-import LatestRelease from "@/components/Feature/ExploreCreators/LatestRelease";
+import dynamic from "next/dynamic";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
+import { LocalPageContainer } from "./category/[categoryName]/styles";
+
+const LatestRelease = dynamic(
+  () => import("@/components/Feature/ExploreCreators/LatestRelease"),
+  { ssr: false },
+);
 
 export default function ExplorePage() {
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
 
   return (
-    <PageContainer>
+    <LocalPageContainer $navTextTone={navTextTone}>
       <NavBar navTextTone={navTextTone} />
       <Main>
         <ExploreSection>
@@ -40,6 +41,6 @@ export default function ExplorePage() {
         </ExploreSection>
       </Main>
       <Footer />
-    </PageContainer>
+    </LocalPageContainer>
   );
 }

@@ -320,13 +320,21 @@ export const PricingCtaContent = styled.span`
   text-align: center;
 `;
 
-export const PricingCtaSubtext = styled.span`
+export const PricingCtaSubtext = styled.span<{ $isPrimary?: boolean }>`
   ${({ theme }) => theme.typography.Body_Medium}
   font-size: 12px;
+  color: ${({ theme, $isPrimary }) =>
+    $isPrimary ? theme.colors.primary.WHITE_90 : theme.colors.neutral.GRAY_500};
+  transition: color 120ms ease;
+
+  .pricing-cta:hover & {
+    color: ${({ theme, $isPrimary }) =>
+      $isPrimary ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_500};
+  }
 `;
 
 export const MainActionText = styled.span`
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: inherit;
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
@@ -371,4 +379,58 @@ export const MetaValueText = styled.span<{ $strong?: boolean }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme, $strong }) =>
     $strong ? theme.typography.Body_Bold : theme.typography.Body_Medium}
+`;
+
+export const PreviewOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: ${({ theme }) => theme.colors.primary.BLACK_90};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+`;
+
+export const PreviewModalContainer = styled.div`
+  position: relative;
+  width: 90vw;
+  max-width: 900px;
+  height: 85vh;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  border-radius: 12px;
+  overflow: hidden;
+`;
+
+export const PreviewCloseButton = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  }
+`;
+
+export const PreviewContent = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 0;
+
+  iframe& {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
 `;

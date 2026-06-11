@@ -1,6 +1,7 @@
 import { HeaderProps, NavStyleProps } from "@/utils/profile";
 import styled, { css } from "styled-components";
 import Link from "next/link";
+import { media } from "@repo/ui/breakpoints";
 
 export const Header = styled.header<HeaderProps>`
   position: ${({ $position }) => $position};
@@ -36,9 +37,8 @@ export const Inner = styled.div`
     padding: var(--navbar-inner-tablet-padding, 0.9rem 1.5rem);
   }
 
-  @media (max-width: 640px) {
-    flex-direction: column;
-    align-items: stretch;
+  ${media.mobileMd} {
+    flex-direction: row;
     padding: var(--navbar-inner-mobile-padding, 0.75rem 1rem);
     gap: 0.5rem;
   }
@@ -48,9 +48,8 @@ export const Left = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-
-  @media (max-width: 640px) {
-    width: 100%;
+  ${media.mobile} {
+    flex-shrink: 3;
   }
 `;
 
@@ -58,6 +57,14 @@ export const Logo = styled.span`
   font-weight: 700;
   font-size: 1.125rem;
   font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
+  display: flex;
+  align-items: center;
+
+  img {
+    ${media.mobileMd} {
+      max-height: 32px !important;
+    }
+  }
 `;
 
 const navLinkColor = (
@@ -302,12 +309,13 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
     transform: none;
   }
 
-  @media (max-width: 640px) {
-    width: 100%;
+  ${media.mobileMd} {
     margin-left: 0;
-    justify-content: flex-end;
     gap: 0.5rem;
-    order: 2;
+  }
+
+  ${media.mobile} {
+    flex-grow: 2;
   }
 `;
 
@@ -418,7 +426,6 @@ export const NavAccountMenuDivider = styled.div`
 export const NavAccountTriggerWrap = styled.div<{ $open?: boolean }>`
   display: inline-flex;
   border-radius: 10px;
-  box-shadow: ${({ $open, theme }) =>
-    $open ? `0 0 0 2px ${theme.colors.primary.BLACK}` : "none"};
+  box-shadow: none;
   transition: box-shadow 0.15s ease;
 `;

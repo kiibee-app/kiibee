@@ -78,8 +78,7 @@ function TutorialCard({
     return href;
   };
 
-  const isFreeContent = tutorial.isFree ?? false;
-  const isCardLinked = isFreeContent && !onPlayClick;
+  const isCardLinked = !onPlayClick;
 
   const stopCardNavigation = (event: MouseEvent) => {
     event.stopPropagation();
@@ -158,10 +157,7 @@ function TutorialCard({
                 size={button.size}
                 minWidth={button.minWidth}
                 onClick={() =>
-                  navigateToContent(
-                    resolveButtonHref(button.href),
-                    button.requiresAuth,
-                  )
+                  navigateToContent(resolveButtonHref(button.href), false)
                 }
               >
                 {button.label}

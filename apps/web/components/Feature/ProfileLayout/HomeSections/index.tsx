@@ -57,6 +57,16 @@ export default function ProfileHomeSections({
         year: new Date(latest.createdAt).getFullYear().toString(),
         description: latest.description ?? "",
         actions: latestConfig.actions,
+        contentId: latest.id,
+        accessType:
+          (latest as { accessType?: string | null }).accessType ?? null,
+        buyPrice:
+          (latest as { buyPrice?: string | number | null }).buyPrice ?? null,
+        rentPrice:
+          (latest as { rentPrice?: string | number | null }).rentPrice ?? null,
+        rentDurationHours:
+          (latest as { rentDurationHours?: string | number | null })
+            .rentDurationHours ?? null,
         imageStyle: latestConfig.imageStyle,
         containerStyle: latestConfig.containerStyle,
       }

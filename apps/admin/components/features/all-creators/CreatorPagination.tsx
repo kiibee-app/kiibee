@@ -1,6 +1,7 @@
 "use client";
 
 import type { CreatorPaginationProps } from "../../../types/creator-pagination";
+import { ALL_CREATORS_TAB } from "../../../utils/constants";
 import {
   Ellipsis,
   PaginationControlGroup,
@@ -17,13 +18,14 @@ export function CreatorPagination({
   totalPages,
   pageNumbers,
   pageSize,
+  itemLabel = ALL_CREATORS_TAB.REQUESTS,
   onPageChange,
   onPageSizeChange,
 }: CreatorPaginationProps) {
   return (
     <PaginationFooter>
       <span>
-        Showing {startIndex + 1} to {endIndex} of {totalItems} requests
+        Showing {startIndex + 1} to {endIndex} of {totalItems} {itemLabel}
       </span>
       <PaginationControlGroup>
         <PaginationButton

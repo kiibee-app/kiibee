@@ -19,11 +19,13 @@ export type SingleContentAction = {
 export type SingleContentHeroProps = {
   image: ImageSource;
   imageAlt: string;
+  contentType?: ContentType;
   media?: {
     type: ContentType;
     src: string;
     title: string;
   };
+  contentUrl?: string;
   categoryLabel?: string;
   mediaLabel?: string;
   mediaIcon?: ImageSource;
@@ -35,6 +37,8 @@ export type SingleContentHeroProps = {
 };
 
 export type SingleContentPageProps = {
+  contentId?: string;
+  collectionId?: string;
   title: string;
   descriptions?: string[];
   tags?: string[];
@@ -113,6 +117,20 @@ export type ContentFormState = {
   openDirectFromList?: boolean;
 };
 
+export type ContentFormErrorKey =
+  | "title"
+  | "description"
+  | "publishedYear"
+  | "duration"
+  | "category"
+  | "productionCompany"
+  | "manufacturerLink"
+  | "tags"
+  | "mediaCardThumbnail"
+  | "portraitThumbnail";
+
+export type ContentFormErrors = Partial<Record<ContentFormErrorKey, string>>;
+
 export const defaultState: ContentFormState = {
   title: "",
   description: "",
@@ -138,11 +156,19 @@ export const defaultState: ContentFormState = {
 
 export type ContentFormContextType = {
   formState: ContentFormState;
+  savedFormState: ContentFormState;
+  formErrors: ContentFormErrors;
   setFormState: Dispatch<SetStateAction<ContentFormState>>;
+  setSavedFormState: Dispatch<SetStateAction<ContentFormState>>;
+  setFormErrors: Dispatch<SetStateAction<ContentFormErrors>>;
   updateField: <K extends keyof ContentFormState>(
     field: K,
     value: ContentFormState[K],
   ) => void;
+  setFieldError: (field: ContentFormErrorKey, message: string) => void;
+  clearFieldError: (field: ContentFormErrorKey) => void;
+  clearFormErrors: () => void;
+  markFormAsSaved: (nextState?: ContentFormState) => void;
   prefillForm: (file: File | null) => void;
   resetForm: () => void;
 };

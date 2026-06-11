@@ -164,3 +164,50 @@ export function resolveCloudflareStreamPlaybackUrl(
   const videoId = extractCloudflareStreamVideoId(fileKey, contentUrl);
   return videoId ? getCloudflareStreamEmbedUrl(videoId) : null;
 }
+
+const YOUTUBE_HOST_PATTERN = /(?:youtube\.com|youtu\.be)/i;
+const URL_PATTERN = /^https?:\/\/.+/i;
+
+function safeParseUrl(url: string): URL | null {
+  if (!URL_PATTERN.test(url)) return null;
+  return new URL(url);
+}
+
+export function isYouTubeUrl(url?: string | null): boolean {
+  const parsed = safeParseUrl(url?.trim() ?? "");
+  return parsed ? YOUTUBE_HOST_PATTERN.test(parsed.hostname) : false;
+}
+
+export function getYouTubeEmbedUrl(url: string): string {
+  const parsed = safeParseUrl(url);
+  if (!parsed) return url;
+  const videoId =
+    parsed.hostname === "youtu.be"
+      ? parsed.pathname.replace(/^\/+/, "").split("/")[0]
+      : parsed.searchParams.get("v") || "";
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+}
+
+const VIMEO_HOST_PATTERN = /vimeo\.com/i;
+
+export function isVimeoUrl(url?: string | null): boolean {
+  const parsed = safeParseUrl(url?.trim() ?? "");
+  return parsed ? VIMEO_HOST_PATTERN.test(parsed.hostname) : false;
+}
+
+export function getVimeoEmbedUrl(url: string): string {
+  const parsed = safeParseUrl(url);
+  if (!parsed) return url;
+  const videoId = parsed.pathname.replace(/^\/+/, "").split("/")[0];
+  return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
+}
+
+export function isThirdPartyVideoUrl(src: string): boolean {
+  return isYouTubeUrl(src) || isVimeoUrl(src);
+}
+
+export function getThirdPartyEmbedUrl(src: string): string {
+  if (isYouTubeUrl(src)) return `${getYouTubeEmbedUrl(src)}?autoplay=1`;
+  if (isVimeoUrl(src)) return `${getVimeoEmbedUrl(src)}?autoplay=1`;
+  return src;
+}

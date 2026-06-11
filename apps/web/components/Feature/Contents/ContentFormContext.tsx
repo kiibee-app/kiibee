@@ -6,6 +6,8 @@ import { getFileNameWithoutExtension } from "@/utils/content";
 import type {
   ContentFormState,
   ContentFormContextType,
+  ContentFormErrors,
+  ContentFormErrorKey,
 } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
 
@@ -17,6 +19,9 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [formState, setFormState] = useState<ContentFormState>(defaultState);
+  const [savedFormState, setSavedFormState] =
+    useState<ContentFormState>(defaultState);
+  const [formErrors, setFormErrors] = useState<ContentFormErrors>({});
 
   const updateField = useCallback(
     <K extends keyof ContentFormState>(
@@ -33,6 +38,35 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const resetForm = useCallback(() => {
     setFormState(defaultState);
+    setSavedFormState(defaultState);
+    setFormErrors({});
+  }, []);
+
+  const markFormAsSaved = useCallback(
+    (nextState?: ContentFormState) => {
+      setSavedFormState(nextState ?? formState);
+    },
+    [formState],
+  );
+
+  const setFieldError = useCallback(
+    (field: ContentFormErrorKey, message: string) => {
+      setFormErrors((prev) => ({ ...prev, [field]: message }));
+    },
+    [],
+  );
+
+  const clearFieldError = useCallback((field: ContentFormErrorKey) => {
+    setFormErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  }, []);
+
+  const clearFormErrors = useCallback(() => {
+    setFormErrors({});
   }, []);
 
   const prefillForm = useCallback(
@@ -45,13 +79,31 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
         ...defaultState,
         title: getFileNameWithoutExtension(file.name),
       });
+      setSavedFormState({
+        ...defaultState,
+        title: getFileNameWithoutExtension(file.name),
+      });
     },
     [resetForm],
   );
 
   return (
     <ContentFormContext.Provider
-      value={{ formState, setFormState, updateField, prefillForm, resetForm }}
+      value={{
+        formState,
+        savedFormState,
+        formErrors,
+        setFormState,
+        setSavedFormState,
+        setFormErrors,
+        updateField,
+        setFieldError,
+        clearFieldError,
+        clearFormErrors,
+        markFormAsSaved,
+        prefillForm,
+        resetForm,
+      }}
     >
       {children}
     </ContentFormContext.Provider>

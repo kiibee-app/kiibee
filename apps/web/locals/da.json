@@ -10,6 +10,9 @@
     "about": "Om Kiibee",
     "login": "Log ind",
     "dashboard": "Dashboard",
+    "accountProfile": "Profil",
+    "logout": "Log ud",
+    "profileMenu": "Kontomenu",
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee",
     "profile": {
@@ -309,8 +312,7 @@
   },
   "creators": {
     "marquee": {
-      "title": "Udforsk Kiibee creators og find dine favoritter",
-      "defaultDescription": "Online kurser i Kammas Kantine er til dig, der gerne vil lære at få krammet på din krop. Det får du med viden, sundhed, praktiske tips og tricks og fantastiske retter - der er enkle at lave i dit eget køkken."
+      "title": "Udforsk Kiibee creators og find dine favoritter"
     },
     "trendingContent": "TODO: translate - Trending content",
     "heading": {
@@ -507,6 +509,7 @@
       "tag": "Senest tilføjet"
     },
     "viewProfile": "View profile",
+    "noCreatorsFound": "Ingen skabere fundet",
     "uploadsCount": "{{count}} uploads",
     "loadMore": "Load more",
     "a-z": "A-z",
@@ -972,7 +975,8 @@
     "seeContent": "Se indhold",
     "notFound": "Samling ikke fundet",
     "inCollection": "I denne samling",
-    "uploads": "uploads"
+    "uploads": "uploads",
+    "noResults": "Ingen uploads matcher din søgning."
   },
   "singleTutorial": {
     "title": "Del 1. Oprettelse af profil og kanal & site",
@@ -1067,10 +1071,8 @@
   "users": {
     "search": "Sog efter navn",
     "tabs": {
-      "registrations": "Registreringer",
-      "sales": "Salg",
-      "registrationsWithCount": "Registreringer ({{count}})",
-      "salesWithCount": "Salg ({{count}})"
+      "registrations": "Registreringer (11)",
+      "sales": "Salg (50)"
     },
     "registrations": {
       "title": "E-mail tilmeldinger",
@@ -1094,11 +1096,7 @@
     },
     "salest": {
       "title": "Salg",
-      "description": "Her finder du en samlet oversigt over alt dit salg.",
-      "emptyState": {
-        "title": "Du har ingen salg endnu.",
-        "description": "Når du har solgt, vil de blive vist her på listen"
-      },
+      "description": "Her finder du en samlet oversigt over alt dit salg",
       "tableHeaders": {
         "name": "Navn",
         "email": "E-mail",
@@ -1313,7 +1311,14 @@
       "balance": "Saldo",
       "purchase": "Køb",
       "rent": "Leje",
-      "settlementHistory": "Afregningshistorik"
+      "settlementHistory": "Afregningshistorik",
+      "tableHeaders": {
+        "amount": "Beløb",
+        "status": "Status",
+        "creditNo": "Kreditnr.",
+        "bank": "Bank",
+        "date": "Dato"
+      }
     },
     "export": {
       "title": "Eksporter dine data",
@@ -1611,6 +1616,11 @@
       "helperLiveStreaming": "Kan f.eks. bruges sammen med livestreaming"
     },
     "metadata": {
+      "validation": {
+        "required": "Dette felt er obligatorisk.",
+        "mediaCardThumbnail": "Miniature til mediekortet er obligatorisk.",
+        "portraitThumbnail": "Portraetminiature er obligatorisk."
+      },
       "production": {
         "title": "Produktion af",
         "description": "Hvem udgav filmen og producerede filmen?",
@@ -1773,10 +1783,9 @@
   "errors": {
     "missingContentFormProvider": "useContentForm skal bruges inden for en ContentFormProvider",
     "noContentToSave": "Intet indhold at gemme",
+    "metadataValidationFailed": "Udfyld venligst alle obligatoriske metadatafelter.",
     "saveChangesFailed": "Kunne ikke gemme ændringer",
     "saveSettingsFailed": "Kunne ikke gemme indstillinger",
-    "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
-    "imageTooLarge": "Det uploadede billede er for stort. Upload venligst et mindre billede.",
-    "imageUploadFailed": "Billedet kunne ikke uploades"
+    "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer"
   }
 }

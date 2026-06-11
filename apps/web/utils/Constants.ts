@@ -20,7 +20,7 @@ export * from "./variants";
 export * from "./media";
 export * from "./keyboard";
 export * from "@/lib/subscription/constants";
-
+export const EXPORT_DATE_RANGE_KEY = "export-date-range";
 export const BLANK = "_blank";
 export const SVG_XMLNS = "http://www.w3.org/2000/svg";
 export const DEFAULT_WINDOW_WIDTH = 1200;
@@ -31,12 +31,21 @@ export const PASSWORD = "password";
 export const CONTENT_TAB = "tab";
 export const CONTENT_COLLECTION_QUERY_KEY = "collectionId";
 export const CONTENT_ITEM_QUERY_KEY = "contentId";
+export const QUERY_KEY_FORMAT = "format";
 export const CONTENT_LAST_EDITED_STORAGE_KEY = "contents:lastEditedContentId";
 export const BILLING_TAB = "billingTab";
 export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [
   "settingsTab",
   "usersTab",
 ] as const;
+
+export const GENERAL_FORM_FIELDS: Array<keyof ContentFormState> = [
+  "webLink",
+  "openInNewWindow",
+  "openDirectFromList",
+  "trailerLink",
+  "visibility",
+];
 
 export const PASSWORD_VISIBILITY_KEY = {
   PASSWORD,
@@ -47,6 +56,7 @@ export type PasswordVisibilityKey =
   (typeof PASSWORD_VISIBILITY_KEY)[keyof typeof PASSWORD_VISIBILITY_KEY];
 
 export const STRING = "string";
+export const SENSITIVITY_BASE = "base";
 export const VIEW = "view";
 export const VIEWER_SECTION = "section";
 export const VIEWER_SECTION_VALUES = {
@@ -124,6 +134,7 @@ export const PROFILE_LAYOUT_PAGE = {
 export const QUERY_KEYS = {
   PROFILE_HOME_COLLECTIONS_PREVIEW: "profile-home-collections-preview",
   PROFILE_LATEST_UPLOAD: "profile-latest-upload",
+  ALL_CONTENT_SUB: "allContentSub",
 } as const;
 
 export type ProfileLayoutPageKind =
@@ -134,6 +145,8 @@ export const ADMISSION_REQUIREMENT_PAYMENT = "Payment";
 export const ADMISSION_REQUIREMENT_FREE = "Free";
 export const ACCESS_TYPE_PAID = "paid";
 export const ACCESS_TYPE_FREE = "free";
+export const ACCESS_KEYWORD_EN = "access";
+export const ACCESS_KEYWORD_DA = "adgang";
 export const ACCESS_TYPE_PASSWORD = "password";
 export const ACCESS_TYPE_EMAIL_GATED = "email_gated";
 
@@ -250,6 +263,12 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       : undefined,
     productionCompany: formState.productionCompany || undefined,
     manufacturerLink: formState.manufacturerLink || undefined,
+    tags: formState.tags
+      ? formState.tags
+          .split(/[\n,]+/)
+          .map((tag) => tag.trim())
+          .filter(Boolean)
+      : undefined,
     visibility: formState.visibility
       ? formState.visibility.toLowerCase()
       : undefined,
@@ -280,6 +299,17 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
   };
 }
 
+export const CONTENT_FORM_FIELDS = {
+  TITLE: "title",
+  DESCRIPTION: "description",
+  PUBLISHED_YEAR: "publishedYear",
+  DURATION: "duration",
+  CATEGORY: "category",
+  PRODUCTION_COMPANY: "productionCompany",
+  MANUFACTURER_LINK: "manufacturerLink",
+  TAGS: "tags",
+} as const;
+
 export const MEDIA_TYPE_VIDEO_KEY = "discoverContent.mediaTypes.video";
 export const MEDIA_TYPE_EPUB_KEY = "discoverContent.mediaTypes.epub";
 export const FREE_LABEL = "Free";
@@ -288,8 +318,20 @@ export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 export const MARQUEE_LIMIT = 8;
+export const EXPLORE_PAGE_SIZE = 12;
 
 export const CATEGORY_ALL = "all";
+
+export const SORT_OPTION_NEW = "new";
+export const SORT_OPTION_POPULAR = "popular";
+export const SORT_OPTION_AZ = "a-z";
+export const EXPLORE_SUBSECTION_EVERYTHING = "everything";
+
+export const FILTER_SECTION_CREATORS = "creators";
+export const FILTER_SECTION_FORMATS = "formats";
+export const FILTER_SECTION_PRICE = "price";
+export const FILTER_SECTION_RATING = "rating";
+
 export const SHARE_STATUS = {
   IDLE: "idle",
   COPIED: "copied",
@@ -300,3 +342,22 @@ export const SHARE_STATUS = {
 export type ShareStatus = (typeof SHARE_STATUS)[keyof typeof SHARE_STATUS];
 
 export const DEFAULT_DEBOUNCE_DELAY = 300;
+export const COMPLETED = "completed";
+export const FAILED = "failed";
+
+export const ORDER_TYPES = {
+  PURCHASE: "purchase",
+  RENTAL: "rental",
+} as const;
+
+export type OrderItemType = (typeof ORDER_TYPES)[keyof typeof ORDER_TYPES];
+
+export const STATUS_TONE = {
+  SUCCESS: "success",
+  ERROR: "error",
+  LOADING: "loading",
+} as const;
+
+export type StatusTone = (typeof STATUS_TONE)[keyof typeof STATUS_TONE];
+
+export const PAYMENT_QUERY_KEY = "payment";
