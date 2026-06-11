@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { logger } from 'src/logger/logger';
+import { MAX_DURATION_SECONDS } from 'src/utils/constant';
 
 @Injectable()
 export class CloudflareStreamService {
@@ -12,7 +13,7 @@ export class CloudflareStreamService {
       const response = await axios.post(
         `https://api.cloudflare.com/client/v4/accounts/${this.accountId}/stream/direct_upload`,
         {
-          maxDurationSeconds: 7200,
+          maxDurationSeconds: MAX_DURATION_SECONDS,
           requireSignedURLs: true,
         },
         {

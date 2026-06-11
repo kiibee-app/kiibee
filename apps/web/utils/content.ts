@@ -214,3 +214,4 @@ export const COUPON_MODE = {
 } as const;
 
 export type CouponMode = (typeof COUPON_MODE)[keyof typeof COUPON_MODE];
+export const POST_METHOD = "POST";

@@ -7,6 +7,7 @@ import { API } from "@/lib/http/api/endpoints";
 import {
   CONTENT_UPLOAD_CONFIG,
   MEDIA_UPLOAD_FILE_TYPE_MAP,
+  POST_METHOD,
   resolveUploadContentType,
   type ContentType,
   type UploadContentType,
@@ -102,7 +103,7 @@ export function useContentUpload({ contentType }: Params) {
     formData.append("file", file);
 
     await fetch(init.uploadURL, {
-      method: "POST",
+      method: POST_METHOD,
       body: formData,
     });
 
