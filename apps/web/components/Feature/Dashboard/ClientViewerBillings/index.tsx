@@ -36,13 +36,15 @@ import {
 import {
   CARD_BRAND_LOGOS,
   MOCK_VIEWER_PAYMENT_METHODS,
-  type ViewerBillingHistoryItem,
   type ViewerPaymentMethod,
 } from "@/utils/dummyData/viewerBillingMockData";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { useViewerBillingHistory } from "@/hooks/useViewerBillingHistory";
+import {
+  useViewerBillingHistory,
+  type ViewerBillingHistoryItem,
+} from "@/hooks/useViewerBillingHistory";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { LOADER_VARIANT } from "@/utils/ui";
 

@@ -2,8 +2,22 @@
 
 import { useMemo } from "react";
 import { API, useGetAPI } from "@/lib/http/api";
-import { type ViewerBillingHistoryItem } from "@/utils/dummyData/viewerBillingMockData";
 import { BILLING_TYPES, CARD_BRANDS, type CardBrand } from "@/utils/Constants";
+
+export type ViewerBillingHistoryItem = {
+  id: string;
+  orderNumber: string;
+  contentTitle: string;
+  contentImage: string;
+  creatorName: string;
+  type: string;
+  paymentDate: string;
+  amount: string;
+  paymentMethod: {
+    brand: CardBrand;
+    last4: string;
+  };
+};
 import { formatDateUSShort } from "@/utils/formatDate";
 
 type BackendBillingItem = {
