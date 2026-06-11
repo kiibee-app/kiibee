@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import LeftIcon from "@/assets/icons/LeftIcon";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
+import { CrossIcon } from "@/assets/icons/crossIcon";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTheme } from "styled-components";
 import { getSearchPlaceholder } from "@/utils/viewerRented";
@@ -15,6 +16,7 @@ import {
   HeaderTitleWrap,
   PageHeader,
 } from "./styles";
+import { SearchClearButton } from "@/components/UI/GenericTabs/styles";
 import { useTranslation } from "react-i18next";
 
 type Props = {
@@ -40,6 +42,14 @@ export default function RentedHeader({
 }: Props) {
   const { t } = useTranslation();
   const theme = useTheme();
+
+  const handleSearchClear = () => {
+    onSearchChange("");
+    searchInputRef.current?.focus();
+  };
+
+  const hasSearchText = Boolean(searchValue.trim());
+  const showClearButton = isSearchOpen && hasSearchText;
 
   useEffect(() => {
     if (isSearchOpen) {
@@ -81,6 +91,16 @@ export default function RentedHeader({
           value={searchValue}
           onChange={(e) => onSearchChange(e.target.value)}
         />
+
+        {showClearButton ? (
+          <SearchClearButton
+            type="button"
+            aria-label={t("common.clearSearch")}
+            onClick={handleSearchClear}
+          >
+            <CrossIcon width={20} height={20} />
+          </SearchClearButton>
+        ) : null}
       </HeaderSearchArea>
     </PageHeader>
   );
