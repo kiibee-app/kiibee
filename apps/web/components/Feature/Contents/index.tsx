@@ -264,6 +264,7 @@ function CreatorsContentsInner() {
     setCollectionAccessDuration,
     hasUnsavedChanges,
     hasGeneralUnsavedChanges,
+    hasMetadataUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
     resetUploadState,
@@ -354,7 +355,9 @@ function CreatorsContentsInner() {
           isSaveDisabled={
             (activeTab === APPEARANCE && !hasUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
-              !hasGeneralUnsavedChanges)
+              !hasGeneralUnsavedChanges) ||
+            (activeTab === ADD_CONTENT_TABS.METADATA &&
+              !hasMetadataUnsavedChanges)
           }
           isCollectionContentMode={isCollectionContentMode}
         />
