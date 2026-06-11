@@ -81,7 +81,8 @@
         "cancelLabel": "Log ind",
         "confirmLabel": "Opret konto",
         "message": "For at fortsætte med dit køb, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik."
-      }
+      },
+      "seeContent": "Se indhold"
     }
   },
   "createProfileCollections": {

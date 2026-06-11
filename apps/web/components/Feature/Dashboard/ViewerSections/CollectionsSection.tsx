@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import PlaylistIcon from "@/assets/icons/PlaylistIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import type {
   RentedCollectionItem,
   RentedMode,
@@ -26,8 +27,10 @@ import {
 } from "@/utils/viewerRented";
 import {
   CollectionActionRow,
+  CollectionBuyButton,
   CollectionCtaContent,
   CollectionCtaSubtext,
+  CollectionRentButton,
   CollectionBadge,
   CollectionBody,
   CollectionCard,
@@ -59,6 +62,7 @@ type Props = {
   showOpenSectionArrow?: boolean;
   showExpandedMetaHeader?: boolean;
   onCollectionPrimaryAction?: (item: RentedCollectionItem) => void;
+  onCollectionClick?: (item: RentedCollectionItem) => void;
 };
 
 export default function CollectionsSection({
@@ -74,9 +78,11 @@ export default function CollectionsSection({
   showOpenSectionArrow = false,
   showExpandedMetaHeader = false,
   onCollectionPrimaryAction,
+  onCollectionClick,
 }: Props) {
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const isPurchased = mode === RENTED_MODES.PURCHASED;
+  const { navigateToContent } = useProtectedContentNavigation();
   const [activeSortKey, setActiveSortKey] = useState<CollectionSortKey | null>(
     null,
   );
@@ -91,6 +97,29 @@ export default function CollectionsSection({
   const toggleSort = (key: CollectionSortKey) => {
     setActiveSortKey((prev) => (prev === key ? null : key));
   };
+
+  const handleCardClick = useCallback(
+    (item: RentedCollectionItem) => {
+      if (onCollectionClick) {
+        onCollectionClick(item);
+      }
+    },
+    [onCollectionClick],
+  );
+
+  const handleActionClick = useCallback(
+    (e: React.MouseEvent, href?: string) => {
+      e.stopPropagation();
+      if (href) {
+        navigateToContent(href, false);
+      }
+    },
+    [navigateToContent],
+  );
+
+  const stopPropagation = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+  }, []);
 
   return (
     <>
@@ -142,7 +171,11 @@ export default function CollectionsSection({
       </SectionHeader>
       <CollectionGrid>
         {displayItems.map((item) => (
-          <CollectionCard key={item.id}>
+          <CollectionCard
+            key={item.id}
+            onClick={() => handleCardClick(item)}
+            style={{ cursor: onCollectionClick ? "pointer" : undefined }}
+          >
             <CollectionImageWrap>
               {item.hideBadge ? null : (
                 <CollectionBadge>
@@ -167,10 +200,29 @@ export default function CollectionsSection({
                 </MonoText>
               </ElementsPill>
 
-              <CollectionActionRow>
-                {item.actions?.length ? (
-                  item.actions.map((action) => {
-                    const isSecondary = action.variant === VARIANT.SECONDARY;
+              <CollectionActionRow onClick={stopPropagation}>
+                {isPurchased ? (
+                  <CollectionBuyButton
+                    className="collection-cta"
+                    onClick={(e: React.MouseEvent) => {
+                      e.stopPropagation();
+                      if (onCollectionPrimaryAction) {
+                        onCollectionPrimaryAction(item);
+                      }
+                    }}
+                  >
+                    <CollectionCtaContent>
+                      <MonoText
+                        $use="Body_SemiBold"
+                        color={COLORS.primary.WHITE}
+                      >
+                        {getCollectionPrimaryActionText(mode)}
+                      </MonoText>
+                    </CollectionCtaContent>
+                  </CollectionBuyButton>
+                ) : item.actions?.length ? (
+                  item.actions.map((action, index) => {
+                    const isSecondary = index > 0;
                     const labelColor = isSecondary
                       ? COLORS.primary.BLACK
                       : COLORS.primary.WHITE;
@@ -178,18 +230,20 @@ export default function CollectionsSection({
                       ? COLORS.neutral.GRAY_500
                       : COLORS.primary.WHITE_90;
 
+                    const Button = isSecondary
+                      ? CollectionRentButton
+                      : CollectionBuyButton;
+
                     return (
-                      <GenericButton
+                      <Button
                         key={`${item.id}-${action.label}`}
-                        variant={
-                          isSecondary ? VARIANT.SOFT_OUTLINE : VARIANT.PRIMARY
-                        }
-                        size="md"
-                        minWidth="120px"
                         className="collection-cta"
+                        onClick={(e: React.MouseEvent) =>
+                          handleActionClick(e, action.href)
+                        }
                       >
                         <CollectionCtaContent>
-                          <MonoText $use="Body_Medium" color={labelColor}>
+                          <MonoText $use="Body_SemiBold" color={labelColor}>
                             {action.label}
                           </MonoText>
                           {action.sublabel ? (
@@ -200,7 +254,7 @@ export default function CollectionsSection({
                             </CollectionCtaSubtext>
                           ) : null}
                         </CollectionCtaContent>
-                      </GenericButton>
+                      </Button>
                     );
                   })
                 ) : (
@@ -208,11 +262,12 @@ export default function CollectionsSection({
                     <GenericButton
                       variant={VARIANT.PRIMARY}
                       size="md"
-                      onClick={
-                        isPurchased && onCollectionPrimaryAction
-                          ? () => onCollectionPrimaryAction(item)
-                          : undefined
-                      }
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation();
+                        if (isPurchased && onCollectionPrimaryAction) {
+                          onCollectionPrimaryAction(item);
+                        }
+                      }}
                     >
                       {getCollectionPrimaryActionText(mode)}
                     </GenericButton>

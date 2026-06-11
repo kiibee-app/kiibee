@@ -1,6 +1,8 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
+import GenericButton from "@/components/UI/GenericButton";
+import { SIZE, VARIANT } from "@/utils/Constants";
 
 export const PageHeader = styled.div`
   display: flex;
@@ -289,9 +291,12 @@ export const CollectionActionRow = styled.div`
   .collection-cta:hover,
   .collection-cta:focus-visible,
   .collection-cta:active {
-    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
     color: ${({ theme }) => theme.colors.primary.BLACK};
     border-color: ${({ theme }) => theme.colors.primary.BLACK};
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
   }
 
   .collection-cta:hover *,
@@ -317,8 +322,50 @@ export const CollectionCtaContent = styled.span`
 `;
 
 export const CollectionCtaSubtext = styled.span`
-  ${({ theme }) => theme.typography.Body_Medium}
+  ${({ theme }) => theme.typography.Body_Small}
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+`;
+
+export const CollectionBuyButton = styled(GenericButton).attrs({
+  variant: VARIANT.PRIMARY,
+  size: SIZE.SM,
+})`
+  min-width: 120px;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: none;
+  transform: none;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.BLACK};
+    color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+  }
+`;
+
+export const CollectionRentButton = styled(GenericButton).attrs({
+  variant: VARIANT.SECONDARY,
+  size: SIZE.SM,
+})`
+  min-width: 120px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: none;
+  transform: none;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+  }
 `;
 
 export const PassiveActionBlock = styled.div`
