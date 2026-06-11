@@ -446,3 +446,13 @@ export const HeaderSearchInput = styled.input<{ $open: boolean }>`
     color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   }
 `;
+
+export const EmptyState = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px;
+  width: 100%;
+`;
