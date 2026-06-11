@@ -42,6 +42,7 @@ export default function SingleContentPage({
   onBack,
   onShare,
   children,
+  gate,
 }: SingleContentPageProps) {
   const router = useRouter();
   const user = useStoredLoginUser();
@@ -109,8 +110,10 @@ export default function SingleContentPage({
             descriptions={descriptions}
             tags={tags}
             primaryAction={modifiedPrimaryAction}
+            primaryActions={primaryActions}
             expiry={expiry}
             metaItems={metaItems}
+            gate={gate}
           />
         </ContentLayout>
       </Card>

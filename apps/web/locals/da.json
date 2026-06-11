@@ -1783,5 +1783,57 @@
     "saveChangesFailed": "Kunne ikke gemme ændringer",
     "saveSettingsFailed": "Kunne ikke gemme indstillinger",
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer"
+  },
+  "profileGate": {
+    "success": "Profilen er låst op!",
+    "errors": {
+      "passwordRequired": "Adgangskode er påkrævet",
+      "incorrectPassword": "Forkert adgangskode",
+      "fieldsRequired": "Navn og e-mail er påkrævet",
+      "failed": "Det lykkedes ikke at låse profilen op"
+    },
+    "password": {
+      "title": "Denne side kræver en kode for at få adgang",
+      "description": "Indtast adgangskoden fra producenten for at se deres profil.",
+      "label": "Indtast adgangskode",
+      "placeholder": "Adgangskode",
+      "submit": "Lås profil op"
+    },
+    "email": {
+      "title": "Denne side kræver din e-mail for at få adgang",
+      "description": "Indtast din e-mailadresse nedenfor for at tilmelde dig nyhedsbrevet og låse profilen op.",
+      "nameLabel": "Dit navn*",
+      "namePlaceholder": "Dit navn",
+      "emailLabel": "Din e-mail*",
+      "emailPlaceholder": "Din e-mail",
+      "policy": "Ved at indsende accepterer du at modtage opdateringer, kampagner og andre beskeder. Du kan til enhver tid afmelde dig disse opdateringer. Læs vores ",
+      "policyLink": "Privatlivspolitik",
+      "submit": "Lås profil op"
+    }
+  },
+  "contentGate": {
+    "success": "Indholdet er låst op!",
+    "errors": {
+      "passwordRequired": "Adgangskode er påkrævet",
+      "incorrectPassword": "Forkert adgangskode",
+      "fieldsRequired": "Navn og e-mail er påkrævet",
+      "failed": "Det lykkedes ikke at låse indholdet op"
+    },
+    "password": {
+      "title": "Dette indhold kræver en kode for at få adgang",
+      "label": "Indtast adgangskode",
+      "placeholder": "Adgangskode",
+      "submit": "Lås indhold op"
+    },
+    "email": {
+      "title": "Dette indhold kræver din e-mail for at få adgang",
+      "nameLabel": "Dit navn*",
+      "namePlaceholder": "Dit navn",
+      "emailLabel": "Din e-mail*",
+      "emailPlaceholder": "Din e-mail",
+      "policy": "Ved at indsende accepterer du at modtage opdateringer, kampagner og andre beskeder. Du kan til enhver tid afmelde dig disse opdateringer. Læs vores ",
+      "policyLink": "Privatlivspolitik",
+      "submit": "Lås indhold op"
+    }
   }
 }

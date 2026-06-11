@@ -56,6 +56,7 @@ import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadMod
 import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 
 type Params = {
   activeTab: ContentTab;
@@ -159,15 +160,21 @@ export function useContentFormActions({
     request_email: ADMISSION_REQUIREMENT_VALUES.email,
   };
 
+  const user = useStoredLoginUser();
+
   if (
     !selectedCollection &&
     contentSettingAccessType &&
-    !contentSettingLoaded
+    !contentSettingLoaded &&
+    user?.id
   ) {
     const uiAccessType =
       contentSettingToUiMap[contentSettingAccessType] ||
       ADMISSION_REQUIREMENT_VALUES.free;
     setCollectionAccessType(uiAccessType);
+    const savedPassword =
+      localStorage.getItem(`kiibee.creator.settings.password.${user.id}`) || "";
+    setCollectionPasswords(savedPassword);
     setContentSettingLoaded(true);
   }
 
@@ -421,6 +428,24 @@ export function useContentFormActions({
     try {
       const apiAccessType =
         uiToContentSettingMap[collectionAccessType] ?? ADMISSION_TYPE.FREE;
+
+      if (user?.id) {
+        localStorage.setItem(
+          `kiibee.creator.settings.accessType.${user.id}`,
+          apiAccessType,
+        );
+        if (collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password) {
+          localStorage.setItem(
+            `kiibee.creator.settings.password.${user.id}`,
+            collectionPasswords.trim(),
+          );
+        } else {
+          localStorage.removeItem(
+            `kiibee.creator.settings.password.${user.id}`,
+          );
+        }
+      }
+
       await saveContentSetting(apiAccessType);
       setShowSaveSuccessModal(true);
     } catch {

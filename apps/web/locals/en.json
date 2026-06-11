@@ -1786,5 +1786,57 @@
     "loadDetailsFailed": "Failed to load content details",
     "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
     "imageUploadFailed": "Image upload failed"
+  },
+  "profileGate": {
+    "success": "Unlocked successfully!",
+    "errors": {
+      "passwordRequired": "Access code is required",
+      "incorrectPassword": "Incorrect access code",
+      "fieldsRequired": "Name and email are required",
+      "failed": "Failed to unlock profile"
+    },
+    "password": {
+      "title": "This page requires a code to access",
+      "description": "Enter the access code provided by the creator to view their profile.",
+      "label": "Enter access code",
+      "placeholder": "Access code",
+      "submit": "Unlock profile"
+    },
+    "email": {
+      "title": "This page requires your email to access",
+      "description": "Please provide your email address below to join the mailing list and unlock this profile.",
+      "nameLabel": "Your name*",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Your email*",
+      "emailPlaceholder": "Your email",
+      "policy": "By submitting, you agree to receive updates, promotions, and other messages. You can unsubscribe from these updates at any time. Read our ",
+      "policyLink": "Privacy Policy",
+      "submit": "Unlock profile"
+    }
+  },
+  "contentGate": {
+    "success": "Content unlocked successfully!",
+    "errors": {
+      "passwordRequired": "Access code is required",
+      "incorrectPassword": "Incorrect access code",
+      "fieldsRequired": "Name and email are required",
+      "failed": "Failed to unlock content"
+    },
+    "password": {
+      "title": "This content requires a code to access",
+      "label": "Enter access code",
+      "placeholder": "Access code",
+      "submit": "Unlock content"
+    },
+    "email": {
+      "title": "This content requires your email to access",
+      "nameLabel": "Your name*",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Your email*",
+      "emailPlaceholder": "Your email",
+      "policy": "By submitting, you agree to receive updates, promotions, and other messages. You can unsubscribe from these updates at any time. Read our ",
+      "policyLink": "Privacy Policy",
+      "submit": "Unlock content"
+    }
   }
 }

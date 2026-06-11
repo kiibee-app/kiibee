@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import NavBar from "@/components/Layout/Navbar";
@@ -7,6 +8,7 @@ import Footer from "@/components/Layout/Footer";
 import { Main, PageContainer, Section } from "../../../styles";
 import { MonoText } from "@/components/UI/Monotext";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
+import ContentGate from "@/components/Feature/SingleContentPage/ContentGate";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -27,6 +29,10 @@ import {
   resolveContentPlaybackUrl,
 } from "@/utils/contentApi";
 import { FORMAT_TYPE } from "@/utils/types";
+import {
+  ACCESS_TYPE_PASSWORD,
+  ACCESS_TYPE_EMAIL_GATED,
+} from "@/utils/Constants";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
@@ -96,6 +102,23 @@ function PublishedContentDetail() {
     mediaResponse?.[CONTENT_MEDIA_RESPONSE_KEYS.URL],
   );
 
+  const [isUnlocked, setIsUnlocked] = useState(false);
+
+  useEffect(() => {
+    if (content?.id) {
+      const unlocked =
+        localStorage.getItem(`kiibee.content.unlocked.${content.id}`) ===
+        "true";
+      Promise.resolve().then(() => {
+        setIsUnlocked(unlocked);
+      });
+    }
+  }, [content?.id]);
+
+  const handleUnlockSuccess = () => {
+    setIsUnlocked(true);
+  };
+
   if (isLoading) {
     return (
       <Section>
@@ -136,12 +159,35 @@ function PublishedContentDetail() {
     );
   }
 
+  const isOwner =
+    user?.id && content?.creatorId && user.id === content.creatorId;
+  const accessType = content?.accessType;
+  const isGated =
+    !isOwner &&
+    (accessType === ACCESS_TYPE_PASSWORD ||
+      accessType === ACCESS_TYPE_EMAIL_GATED);
+  const showGate = isGated && !isUnlocked;
+
   return (
     <Section>
       <SingleContentPage
         {...getSingleContentProps(content, t, mediaUrl, {
           inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
         })}
+        gate={
+          showGate ? (
+            <ContentGate
+              contentId={content.id || ""}
+              accessType={
+                accessType as
+                  | typeof ACCESS_TYPE_PASSWORD
+                  | typeof ACCESS_TYPE_EMAIL_GATED
+              }
+              correctPassword={content.passwordHash || ""}
+              onUnlockSuccess={handleUnlockSuccess}
+            />
+          ) : undefined
+        }
       >
         {relatedCollectionQuery.data?.videos?.length ? (
           <CollectionItems

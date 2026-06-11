@@ -58,6 +58,7 @@ export type SingleContentPageProps = {
   onBack?: () => void;
   onShare?: () => void;
   children?: ReactNode;
+  gate?: ReactNode;
 };
 
 export type SingleContentTopBarProps = {
@@ -87,7 +88,7 @@ export type SingleContentBodyProps = Pick<
   | "primaryActions"
   | "expiry"
   | "metaItems"
->;
+> & { gate?: ReactNode };
 
 export type ContentFormState = {
   title: string;

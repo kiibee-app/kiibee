@@ -123,6 +123,7 @@ export function SingleContentBody({
   primaryActions,
   expiry,
   metaItems,
+  gate,
 }: SingleContentBodyProps) {
   const safeDescriptions = descriptions ?? [];
   const safeTags = tags ?? [];
@@ -137,7 +138,7 @@ export function SingleContentBody({
         {statusLabel ? <StatusBadge>{statusLabel}</StatusBadge> : null}
         <MainTitle>{title}</MainTitle>
 
-        {safeDescriptions.length ? (
+        {!gate && safeDescriptions.length ? (
           <BodyTextWrap>
             {safeDescriptions.map((description) => (
               <DescriptionText key={description}>{description}</DescriptionText>
@@ -146,85 +147,93 @@ export function SingleContentBody({
         ) : null}
       </HeadingBlock>
 
-      {safeTags.length ? (
-        <TagRow>
-          {safeTags.map((tag) => (
-            <InfoTag key={tag}>
-              <InfoTagText>{tag}</InfoTagText>
-            </InfoTag>
-          ))}
-        </TagRow>
-      ) : null}
+      {gate ? (
+        gate
+      ) : (
+        <>
+          {safeTags.length ? (
+            <TagRow>
+              {safeTags.map((tag) => (
+                <InfoTag key={tag}>
+                  <InfoTagText>{tag}</InfoTagText>
+                </InfoTag>
+              ))}
+            </TagRow>
+          ) : null}
 
-      {actions.length === 1 ? (
-        <MainAction
-          onClick={actions[0].onClick}
-          type="button"
-          disabled={actions[0].disabled}
-          aria-label={actions[0].ariaLabel ?? actions[0].label}
-        >
-          <MainActionText>{actions[0].label}</MainActionText>
-        </MainAction>
-      ) : null}
+          {actions.length === 1 ? (
+            <MainAction
+              onClick={actions[0].onClick}
+              type="button"
+              disabled={actions[0].disabled}
+              aria-label={actions[0].ariaLabel ?? actions[0].label}
+            >
+              <MainActionText>{actions[0].label}</MainActionText>
+            </MainAction>
+          ) : null}
 
-      {actions.length > 1 ? (
-        <PricingCtaRow>
-          {actions.map((action) => {
-            const variant = action.variant ?? VARIANT.SOFT_OUTLINE;
-            const isPrimary = variant === VARIANT.PRIMARY;
-            const labelColor = isPrimary
-              ? COLORS.primary.WHITE
-              : COLORS.primary.BLACK;
-            const sublabelColor = isPrimary
-              ? COLORS.primary.WHITE_90
-              : COLORS.neutral.GRAY_500;
+          {actions.length > 1 ? (
+            <PricingCtaRow>
+              {actions.map((action) => {
+                const variant = action.variant ?? VARIANT.SOFT_OUTLINE;
+                const isPrimary = variant === VARIANT.PRIMARY;
+                const labelColor = isPrimary
+                  ? COLORS.primary.WHITE
+                  : COLORS.primary.BLACK;
+                const sublabelColor = isPrimary
+                  ? COLORS.primary.WHITE_90
+                  : COLORS.neutral.GRAY_500;
 
-            return (
-              <GenericButton
-                key={action.label}
-                type="button"
-                variant={variant}
-                size="lg"
-                minWidth="160px"
-                className="pricing-cta"
-                onClick={action.onClick}
-                disabled={action.disabled}
-                aria-label={action.ariaLabel ?? action.label}
-              >
-                {action.subtitle ? (
-                  <PricingCtaContent>
-                    <MonoText $use="Body_Medium" color={labelColor}>
-                      {action.label}
-                    </MonoText>
-                    <PricingCtaSubtext style={{ color: sublabelColor }}>
-                      {action.subtitle}
-                    </PricingCtaSubtext>
-                  </PricingCtaContent>
-                ) : (
-                  action.label
-                )}
-              </GenericButton>
-            );
-          })}
-        </PricingCtaRow>
-      ) : null}
+                return (
+                  <GenericButton
+                    key={action.label}
+                    type="button"
+                    variant={variant}
+                    size="lg"
+                    minWidth="160px"
+                    className="pricing-cta"
+                    onClick={action.onClick}
+                    disabled={action.disabled}
+                    aria-label={action.ariaLabel ?? action.label}
+                  >
+                    {action.subtitle ? (
+                      <PricingCtaContent>
+                        <MonoText $use="Body_Medium" color={labelColor}>
+                          {action.label}
+                        </MonoText>
+                        <PricingCtaSubtext style={{ color: sublabelColor }}>
+                          {action.subtitle}
+                        </PricingCtaSubtext>
+                      </PricingCtaContent>
+                    ) : (
+                      action.label
+                    )}
+                  </GenericButton>
+                );
+              })}
+            </PricingCtaRow>
+          ) : null}
 
-      {expiry ? (
-        <ExpiryText $tone={expiry.tone}>{expiry.label}</ExpiryText>
-      ) : null}
+          {expiry ? (
+            <ExpiryText $tone={expiry.tone}>{expiry.label}</ExpiryText>
+          ) : null}
 
-      {safeMeta.length ? (
-        <MetaSection>
-          {safeMeta.map((item, index) => (
-            <MetaRow key={item.label}>
-              <MetaKey>
-                <MetaLabelText>{item.label}</MetaLabelText>
-              </MetaKey>
-              <MetaValueText $strong={index === 1}>{item.value}</MetaValueText>
-            </MetaRow>
-          ))}
-        </MetaSection>
-      ) : null}
+          {safeMeta.length ? (
+            <MetaSection>
+              {safeMeta.map((item, index) => (
+                <MetaRow key={item.label}>
+                  <MetaKey>
+                    <MetaLabelText>{item.label}</MetaLabelText>
+                  </MetaKey>
+                  <MetaValueText $strong={index === 1}>
+                    {item.value}
+                  </MetaValueText>
+                </MetaRow>
+              ))}
+            </MetaSection>
+          ) : null}
+        </>
+      )}
     </ContentShell>
   );
 }

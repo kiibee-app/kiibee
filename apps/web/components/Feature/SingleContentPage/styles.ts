@@ -372,3 +372,51 @@ export const MetaValueText = styled.span<{ $strong?: boolean }>`
   ${({ theme, $strong }) =>
     $strong ? theme.typography.Body_Bold : theme.typography.Body_Medium}
 `;
+
+export const GateBoxContainer = styled.div`
+  background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  border: 1px solid
+    ${({ theme }) =>
+      theme.colors.primary.PALE_GREEN || theme.colors.neutral.PALE_GREEN};
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 440px;
+
+  ${media.mobileMd} {
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+`;
+
+export const GateBoxTitle = styled.h4`
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  margin: 0;
+`;
+
+export const GateForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+export const GatePolicyText = styled.p`
+  font-size: 0.75rem;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  line-height: 1.4;
+  margin: 0;
+`;
+
+export const GatePolicyLink = styled.a`
+  color: ${({ theme }) => theme.colors.primary.GREEN};
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary.GREEN_200};
+  }
+`;

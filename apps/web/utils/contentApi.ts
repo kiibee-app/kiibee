@@ -41,6 +41,8 @@ export const CONTENT_RESPONSE_KEYS = {
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
   NAME: "name",
+  CREATOR_ID: "creatorId",
+  PASSWORD_HASH: "passwordHash",
 } as const;
 
 export const CONTENT_MEDIA_RESPONSE_KEYS = {
@@ -87,6 +89,8 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
+  [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string;
+  [CONTENT_RESPONSE_KEYS.PASSWORD_HASH]?: string;
 };
 
 export type ContentMediaUrlResponse = {
