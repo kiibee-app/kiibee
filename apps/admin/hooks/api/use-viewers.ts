@@ -3,9 +3,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import type { Viewer } from "../../types/viewer";
-import { API_ENDPOINTS } from "../../utils/constants";
+import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
 
-const VIEWERS_QUERY_KEY = ["viewers"];
+const VIEWERS_QUERY_KEY = [QUERY_KEY.VIEWERS];
 
 async function ensureSuccess<T>(
   promise: Promise<{

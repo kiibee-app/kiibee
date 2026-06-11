@@ -37,3 +37,29 @@ export const STAT_ACCENT = {
 } as const;
 
 export type StatAccent = (typeof STAT_ACCENT)[keyof typeof STAT_ACCENT];
+
+export const ALL_CREATORS_TAB = {
+  CREATORS: "creators",
+  VIEWERS: "viewers",
+  REQUESTS: "requests",
+} as const;
+
+export type AllCreatorsTab =
+  (typeof ALL_CREATORS_TAB)[keyof typeof ALL_CREATORS_TAB];
+
+export const QUERY_KEY = {
+  CREATOR_REQUESTS: "creator-requests",
+  EXISTING_CREATORS: "existing-creators",
+  VIEWERS: "viewers",
+  DASHBOARD_STATS: "dashboard-stats",
+} as const;
+
+export const DASHBOARD_STAT_KEY = {
+  TOTAL_USERS: "total-users",
+  CREATORS: "creators",
+  VIEWERS: "viewers",
+  PENDING_REQUESTS: "pending-requests",
+  TOTAL_CONTENT: "total-content",
+  FREE_CONTENT: "free-content",
+  PAID_CONTENT: "paid-content",
+} as const;

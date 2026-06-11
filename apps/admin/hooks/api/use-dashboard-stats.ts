@@ -3,9 +3,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import type { DashboardStats } from "../../types/dashboard-stats";
-import { API_ENDPOINTS } from "../../utils/constants";
+import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
 
-const DASHBOARD_STATS_QUERY_KEY = ["dashboard-stats"];
+const DASHBOARD_STATS_QUERY_KEY = [QUERY_KEY.DASHBOARD_STATS];
 
 async function ensureSuccess<T>(
   promise: Promise<{

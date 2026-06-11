@@ -12,7 +12,11 @@ import {
 } from "lucide-react";
 import { useDashboardStats } from "../../../hooks/api/use-dashboard-stats";
 import type { DashboardStats } from "../../../types/dashboard-stats";
-import { STAT_ACCENT, type StatAccent } from "../../../utils/constants";
+import {
+  DASHBOARD_STAT_KEY,
+  STAT_ACCENT,
+  type StatAccent,
+} from "../../../utils/constants";
 import {
   HomeStatsGrid,
   HomeStatsLayout,
@@ -37,7 +41,7 @@ type StatCardConfig = {
 
 const userStatCards: StatCardConfig[] = [
   {
-    key: "total-users",
+    key: DASHBOARD_STAT_KEY.TOTAL_USERS,
     label: "Total Users",
     hint: "All registered platform users",
     accent: STAT_ACCENT.BLUE,
@@ -45,7 +49,7 @@ const userStatCards: StatCardConfig[] = [
     getValue: (stats) => stats.totalUsers,
   },
   {
-    key: "creators",
+    key: DASHBOARD_STAT_KEY.CREATORS,
     label: "Creators",
     hint: "Active creator accounts",
     accent: STAT_ACCENT.GREEN,
@@ -53,7 +57,7 @@ const userStatCards: StatCardConfig[] = [
     getValue: (stats) => stats.creators,
   },
   {
-    key: "viewers",
+    key: DASHBOARD_STAT_KEY.VIEWERS,
     label: "Viewers",
     hint: "Registered viewer accounts",
     accent: STAT_ACCENT.TEAL,
@@ -61,7 +65,7 @@ const userStatCards: StatCardConfig[] = [
     getValue: (stats) => stats.viewers,
   },
   {
-    key: "pending-requests",
+    key: DASHBOARD_STAT_KEY.PENDING_REQUESTS,
     label: "Pending Requests",
     hint: "Creator applications awaiting review",
     accent: STAT_ACCENT.ORANGE,
@@ -72,7 +76,7 @@ const userStatCards: StatCardConfig[] = [
 
 const contentStatCards: StatCardConfig[] = [
   {
-    key: "total-content",
+    key: DASHBOARD_STAT_KEY.TOTAL_CONTENT,
     label: "Total Content",
     hint: "Media files and collections",
     accent: STAT_ACCENT.PURPLE,
@@ -80,7 +84,7 @@ const contentStatCards: StatCardConfig[] = [
     getValue: (stats) => stats.totalContent,
   },
   {
-    key: "free-content",
+    key: DASHBOARD_STAT_KEY.FREE_CONTENT,
     label: "Free Content",
     hint: "Content available for free access",
     accent: STAT_ACCENT.GREEN,
@@ -88,7 +92,7 @@ const contentStatCards: StatCardConfig[] = [
     getValue: (stats) => stats.freeContent,
   },
   {
-    key: "paid-content",
+    key: DASHBOARD_STAT_KEY.PAID_CONTENT,
     label: "Paid Content",
     hint: "Content with paid access",
     accent: STAT_ACCENT.ORANGE,

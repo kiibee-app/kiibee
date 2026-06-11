@@ -23,12 +23,16 @@ import { CreatorPagination } from "./CreatorPagination";
 import { CreatorDetailsModal } from "./CreatorDetailsModal";
 import { useCreatorRequestActions } from "./useCreatorRequestActions";
 import { useCreatorRequestOverrides } from "./useCreatorRequestOverrides";
-import { STORAGE_KEYS } from "@/utils/constants";
-
-type AllCreatorsTab = "creators" | "requests" | "viewers";
+import {
+  ALL_CREATORS_TAB,
+  type AllCreatorsTab,
+  STORAGE_KEYS,
+} from "@/utils/constants";
 
 export function AllCreatorsTable() {
-  const [activeTab, setActiveTab] = useState<AllCreatorsTab>("creators");
+  const [activeTab, setActiveTab] = useState<AllCreatorsTab>(
+    ALL_CREATORS_TAB.CREATORS,
+  );
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
     null,
   );
@@ -104,7 +108,7 @@ export function AllCreatorsTable() {
           totalPages={existingCreatorsPagination.totalPages}
           pageNumbers={existingCreatorsPagination.pageNumbers}
           pageSize={existingCreatorsPagination.pageSize}
-          itemLabel="creators"
+          itemLabel={ALL_CREATORS_TAB.CREATORS}
           onPageChange={existingCreatorsPagination.onPageChange}
           onPageSizeChange={existingCreatorsPagination.onPageSizeChange}
         />
@@ -163,7 +167,7 @@ export function AllCreatorsTable() {
           totalPages={requestsPagination.totalPages}
           pageNumbers={requestsPagination.pageNumbers}
           pageSize={requestsPagination.pageSize}
-          itemLabel="requests"
+          itemLabel={ALL_CREATORS_TAB.REQUESTS}
           onPageChange={requestsPagination.onPageChange}
           onPageSizeChange={requestsPagination.onPageSizeChange}
         />
@@ -200,7 +204,7 @@ export function AllCreatorsTable() {
           totalPages={viewersPagination.totalPages}
           pageNumbers={viewersPagination.pageNumbers}
           pageSize={viewersPagination.pageSize}
-          itemLabel="viewers"
+          itemLabel={ALL_CREATORS_TAB.VIEWERS}
           onPageChange={viewersPagination.onPageChange}
           onPageSizeChange={viewersPagination.onPageSizeChange}
         />
@@ -213,31 +217,31 @@ export function AllCreatorsTable() {
       <AllCreatorsTabs aria-label="Creator list views">
         <AllCreatorsTabButton
           type="button"
-          $active={activeTab === "creators"}
-          onClick={() => setActiveTab("creators")}
+          $active={activeTab === ALL_CREATORS_TAB.CREATORS}
+          onClick={() => setActiveTab(ALL_CREATORS_TAB.CREATORS)}
         >
           Existing Creators ({totalExistingCreators})
         </AllCreatorsTabButton>
         <AllCreatorsTabButton
           type="button"
-          $active={activeTab === "viewers"}
-          onClick={() => setActiveTab("viewers")}
+          $active={activeTab === ALL_CREATORS_TAB.VIEWERS}
+          onClick={() => setActiveTab(ALL_CREATORS_TAB.VIEWERS)}
         >
           Viewers ({totalViewers})
         </AllCreatorsTabButton>
         <AllCreatorsTabButton
           type="button"
-          $active={activeTab === "requests"}
-          onClick={() => setActiveTab("requests")}
+          $active={activeTab === ALL_CREATORS_TAB.REQUESTS}
+          onClick={() => setActiveTab(ALL_CREATORS_TAB.REQUESTS)}
         >
           Pending Requests ({totalRequests})
         </AllCreatorsTabButton>
       </AllCreatorsTabs>
 
       <AllCreatorsPanel>
-        {activeTab === "creators"
+        {activeTab === ALL_CREATORS_TAB.CREATORS
           ? renderExistingCreators()
-          : activeTab === "viewers"
+          : activeTab === ALL_CREATORS_TAB.VIEWERS
             ? renderViewers()
             : renderCreatorRequests()}
       </AllCreatorsPanel>
