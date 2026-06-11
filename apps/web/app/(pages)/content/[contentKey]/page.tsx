@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,9 @@ import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { Main, PageContainer, Section } from "../../../styles";
 import { MonoText } from "@/components/UI/Monotext";
+import { GenericModal } from "@/components/UI/Modals";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import { MODAL_ALIGN } from "@/utils/ui";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -38,7 +41,7 @@ import {
   resolvePublishedContentByKey,
   CONTENT_KIND,
 } from "@/utils/resolvePublishedContentByKey";
-import { toast } from "react-toastify";
+import { PAYMENT_QUERY_KEY, STATUS_TONE } from "@/utils/Constants";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -49,8 +52,8 @@ function PublishedContentDetail() {
   const user = useStoredLoginUser();
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
-  const paymentStatus = searchParams.get("payment");
-  const hasHandledPaymentToastRef = useRef(false);
+  const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);
+  const [dismissedPaymentSuccess, setDismissedPaymentSuccess] = useState(false);
   const normalizedContentKey = contentKey?.replaceAll(":", "-");
   const viewerId = resolveContentViewerId(user?.id);
   const contentViewRoute = normalizedContentKey
@@ -67,7 +70,7 @@ function PublishedContentDetail() {
     undefined,
     {
       enabled: Boolean(normalizedContentKey) && !fallback,
-      refetchInterval: paymentStatus === "success" ? 1500 : false,
+      refetchInterval: paymentStatus === STATUS_TONE.SUCCESS ? 1500 : false,
     },
   );
   const content = getContentDetail(data);
@@ -104,21 +107,18 @@ function PublishedContentDetail() {
     content,
     mediaResponse?.[CONTENT_MEDIA_RESPONSE_KEYS.URL],
   );
+  const showPaymentSuccessModal =
+    paymentStatus === STATUS_TONE.SUCCESS &&
+    Boolean(content?.accessInfo) &&
+    !dismissedPaymentSuccess;
 
-  useEffect(() => {
-    if (paymentStatus !== "success" || hasHandledPaymentToastRef.current)
-      return;
-
-    const hasAccess = Boolean(content?.accessInfo);
-    if (!hasAccess) return;
-
-    hasHandledPaymentToastRef.current = true;
-    toast.success("Payment successful. You can access this content now.");
+  const handlePaymentSuccessClose = () => {
+    setDismissedPaymentSuccess(true);
     const nextParams = new URLSearchParams(searchParams.toString());
-    nextParams.delete("payment");
+    nextParams.delete(PAYMENT_QUERY_KEY);
     const next = nextParams.toString();
     router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
-  }, [content?.accessInfo, pathname, paymentStatus, router, searchParams]);
+  };
 
   if (isLoading) {
     return (
@@ -161,20 +161,36 @@ function PublishedContentDetail() {
   }
 
   return (
-    <Section>
-      <SingleContentPage
-        {...getSingleContentProps(content, t, mediaUrl, {
-          inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
-        })}
-      >
-        {relatedCollectionQuery.data?.videos?.length ? (
-          <CollectionItems
-            videos={relatedCollectionQuery.data.videos}
-            collectionId={relatedCollectionQuery.data.collectionId}
-          />
-        ) : null}
-      </SingleContentPage>
-    </Section>
+    <>
+      <GenericModal
+        visible={showPaymentSuccessModal}
+        icon={<SuccessModalIcon />}
+        iconMargin="0 auto 8px"
+        textAlign={MODAL_ALIGN.CENTER}
+        title="Payment successful!"
+        message="Your content is now unlocked. You can start enjoying it right away."
+        confirmLabel="Start watching"
+        onClose={handlePaymentSuccessClose}
+        onConfirm={handlePaymentSuccessClose}
+        size="sm"
+        showCloseButton={false}
+      />
+
+      <Section>
+        <SingleContentPage
+          {...getSingleContentProps(content, t, mediaUrl, {
+            inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
+          })}
+        >
+          {relatedCollectionQuery.data?.videos?.length ? (
+            <CollectionItems
+              videos={relatedCollectionQuery.data.videos}
+              collectionId={relatedCollectionQuery.data.collectionId}
+            />
+          ) : null}
+        </SingleContentPage>
+      </Section>
+    </>
   );
 }
 

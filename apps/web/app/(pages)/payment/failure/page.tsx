@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { FAILED, PAYMENT_QUERY_KEY } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 
 export default function PaymentFailurePage() {
@@ -12,7 +13,10 @@ export default function PaymentFailurePage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (orderId) {
-        router.replace(`${PATHS.DASHBOARD_VIEWER}?payment=failed`);
+        const paymentParams = new URLSearchParams({
+          [PAYMENT_QUERY_KEY]: FAILED,
+        });
+        router.replace(`${PATHS.DASHBOARD_VIEWER}?${paymentParams.toString()}`);
         return;
       }
       router.replace(PATHS.DASHBOARD_VIEWER);

@@ -3,7 +3,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
-import Image from "@/components/UI/SafeImage";
 import {
   Section,
   Background,
@@ -12,7 +11,6 @@ import {
   Title,
   Subtitle,
   CTAButton,
-  ctaSectionBackgroundImageStyle,
 } from "./styles";
 import type { CtaSectionProps } from "@/types/ctaSection";
 import { VARIANT } from "@/utils/Constants";

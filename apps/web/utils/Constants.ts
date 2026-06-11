@@ -341,3 +341,13 @@ export type ShareStatus = (typeof SHARE_STATUS)[keyof typeof SHARE_STATUS];
 export const DEFAULT_DEBOUNCE_DELAY = 300;
 export const COMPLETED = "completed";
 export const FAILED = "failed";
+
+export const STATUS_TONE = {
+  SUCCESS: "success",
+  ERROR: "error",
+  LOADING: "loading",
+} as const;
+
+export type StatusTone = (typeof STATUS_TONE)[keyof typeof STATUS_TONE];
+
+export const PAYMENT_QUERY_KEY = "payment";
