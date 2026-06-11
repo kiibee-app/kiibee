@@ -339,3 +339,5 @@ export const SHARE_STATUS = {
 export type ShareStatus = (typeof SHARE_STATUS)[keyof typeof SHARE_STATUS];
 
 export const DEFAULT_DEBOUNCE_DELAY = 300;
+export const COMPLETED = "completed";
+export const FAILED = "failed";

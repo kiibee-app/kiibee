@@ -7,6 +7,7 @@ import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { PATHS } from "@/utils/path";
 import { MonoText } from "@/components/UI/Monotext";
+import { COMPLETED, FAILED } from "@/utils/Constants";
 
 type OrderRecord = {
   id: string;
@@ -36,7 +37,7 @@ export default function PaymentSuccessPage() {
       refetchInterval: (query) => {
         const status = query.state.data?.data?.status;
 
-        if (status === "completed" || status === "failed") {
+        if (status === COMPLETED || status === FAILED) {
           return false;
         }
 
@@ -48,7 +49,7 @@ export default function PaymentSuccessPage() {
   const order = data?.data;
 
   useEffect(() => {
-    if (order?.status === "completed" && order.mediaFileId) {
+    if (order?.status === COMPLETED && order.mediaFileId) {
       router.replace(
         `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}`,
       );
@@ -87,7 +88,7 @@ export default function PaymentSuccessPage() {
     );
   }
 
-  if (order?.status === "failed") {
+  if (order?.status === FAILED) {
     return (
       <div
         style={{
