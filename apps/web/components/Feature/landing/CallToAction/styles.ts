@@ -197,7 +197,7 @@ export const BrandLogo = styled.span`
   }
 
   ${media.tablet} {
-    width: 116px;
+    width: 96px;
   }
 `;
 
@@ -209,6 +209,10 @@ export const Heading = styled.h1`
 
   ${media.tablet} {
     margin-bottom: 22px;
+
+    > * {
+      ${({ theme }) => theme.typography.Heading2};
+    }
   }
 `;
 
@@ -222,6 +226,10 @@ export const Subtitle = styled.p`
   ${media.tablet} {
     max-width: 100%;
     margin-bottom: 32px;
+
+    > * {
+      ${({ theme }) => theme.typography.Body_Regular};
+    }
   }
 `;
 

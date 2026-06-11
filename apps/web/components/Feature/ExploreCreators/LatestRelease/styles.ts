@@ -19,6 +19,21 @@ export const HeaderWrap = styled.div`
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1.35rem;
+
+  ${media.desktopMd} {
+    width: 100%;
+    padding: 0 25px;
+  }
+
+  ${media.desktop} {
+    width: 100%;
+    padding: 0 25px;
+  }
+
+  ${media.tablet} {
+    align-items: flex-start;
+    padding: 0;
+  }
 `;
 
 export const HeaderTabs = styled.div`
@@ -59,8 +74,19 @@ export const ContentGrid = styled.div`
   gap: 1rem;
   align-items: start;
 
+  ${media.desktopMd} {
+    width: 100%;
+    padding: 40px 25px;
+  }
+
+  ${media.desktop} {
+    width: 100%;
+    padding: 40px 25px;
+  }
+
   ${media.tablet} {
     grid-template-columns: 1fr;
+    padding: 0;
   }
 `;
 
