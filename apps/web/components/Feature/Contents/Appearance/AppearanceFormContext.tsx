@@ -1,40 +1,21 @@
 "use client";
 
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
+import React, { createContext, useCallback, useContext, useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
-import { FORM_FIELDS } from "@/utils/appearance";
 import {
-  areAppearanceValuesEqual,
   mapAppearanceFromApi,
   mapAppearanceToApi,
-  type AppearanceFormValues,
 } from "@/utils/appearanceApi";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
-import type { CreatorLayoutKey } from "@/utils/creatorChannel";
 import { writeSavedCreatorLayout } from "@/utils/creatorChannel";
-
-type AppearanceFormContextValue = {
-  values: AppearanceFormValues;
-  isLoading: boolean;
-  hasUnsavedChanges: boolean;
-  updateField: <K extends keyof AppearanceFormValues>(
-    key: K,
-    value: AppearanceFormValues[K],
-  ) => void;
-  setLayout: (layout: CreatorLayoutKey) => void;
-  saveAppearance: () => Promise<void>;
-  cancelAppearance: () => void;
-};
+import { CONTENTS } from "@/utils/translationKeys";
+import type { AppearanceFormContextValue } from "./appearanceFormTypes";
+import { useAppearanceDraft } from "./useAppearanceDraft";
+import { useAppearanceValidation } from "./useAppearanceValidation";
 
 const AppearanceFormContext = createContext<AppearanceFormContextValue | null>(
   null,
@@ -55,72 +36,80 @@ export function AppearanceFormProvider({
     () => mapAppearanceFromApi(appearanceResponse?.data ?? null),
     [appearanceResponse],
   );
+  const {
+    errors,
+    clearFieldError,
+    validateField: validateFieldState,
+    validateAll,
+    syncErrors,
+    resetErrors,
+  } = useAppearanceValidation();
+  const { values, hasUnsavedChanges, updateField, setLayout, resetDraft } =
+    useAppearanceDraft({
+      serverValues,
+      setSelectedLayout,
+      syncErrors,
+    });
 
-  const [draft, setDraft] = useState<AppearanceFormValues | null>(null);
-
-  const values = draft ?? serverValues;
-
-  const hasUnsavedChanges = useMemo(
-    () => draft !== null && !areAppearanceValuesEqual(draft, serverValues),
-    [draft, serverValues],
-  );
-
-  const updateField = useCallback(
-    <K extends keyof AppearanceFormValues>(
-      key: K,
-      value: AppearanceFormValues[K],
-    ) => {
-      setDraft((prev) => ({
-        ...(prev ?? serverValues),
-        [key]: value,
-      }));
+  const validateField = useCallback(
+    (key: keyof typeof values) => {
+      validateFieldState(key, values);
     },
-    [serverValues],
-  );
-
-  const setLayout = useCallback(
-    (layout: CreatorLayoutKey) => {
-      setSelectedLayout(layout);
-      setDraft((prev) => ({
-        ...(prev ?? serverValues),
-        [FORM_FIELDS.LAYOUT]: layout,
-      }));
-    },
-    [setSelectedLayout, serverValues],
+    [validateFieldState, values],
   );
 
   const saveAppearance = useCallback(async () => {
+    const nextErrors = validateAll(values);
+    if (Object.keys(nextErrors).length > 0) {
+      throw new Error(CONTENTS.appearance.validation.fixErrors);
+    }
+
     const payload = mapAppearanceToApi(values);
     await axiosClient.put(API.content.appearance, payload);
 
     writeSavedCreatorLayout(values.layout);
     setSelectedLayout(values.layout);
-    setDraft(null);
+    resetDraft();
+    resetErrors();
     await queryClient.invalidateQueries({
       queryKey: [API.content.appearance],
     });
-  }, [values, queryClient, setSelectedLayout]);
+  }, [
+    queryClient,
+    resetDraft,
+    resetErrors,
+    setSelectedLayout,
+    validateAll,
+    values,
+  ]);
 
   const cancelAppearance = useCallback(() => {
-    setDraft(null);
+    resetDraft();
+    resetErrors();
     setSelectedLayout(serverValues.layout);
-  }, [serverValues.layout, setSelectedLayout]);
+  }, [resetDraft, resetErrors, serverValues.layout, setSelectedLayout]);
 
   const contextValue = useMemo(
     () => ({
       values,
+      errors,
       isLoading,
       hasUnsavedChanges,
       updateField,
+      clearFieldError,
+      validateField,
       setLayout,
       saveAppearance,
       cancelAppearance,
     }),
     [
       values,
+      errors,
       isLoading,
       hasUnsavedChanges,
       updateField,
+      clearFieldError,
+      validateField,
       setLayout,
       saveAppearance,
       cancelAppearance,

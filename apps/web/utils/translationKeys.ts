@@ -384,6 +384,18 @@ export const CONTENTS = {
     supportEmail: "contents.appearance.supportEmail",
     supportEmailHint: "contents.appearance.supportEmailHint",
     supportEmailPlaceholder: "contents.appearance.supportEmailPlaceholder",
+    validation: {
+      invalidHex: "contents.appearance.validation.invalidHex",
+      invalidSupportEmail: "contents.appearance.validation.invalidSupportEmail",
+      fixErrors: "contents.appearance.validation.fixErrors",
+      descriptionRequired: "contents.appearance.validation.descriptionRequired",
+      logoNameRequired: "contents.appearance.validation.logoNameRequired",
+      logoImageRequired: "contents.appearance.validation.logoImageRequired",
+      desktopCoverRequired:
+        "contents.appearance.validation.desktopCoverRequired",
+      mobileCoverRequired: "contents.appearance.validation.mobileCoverRequired",
+      layoutRequired: "contents.appearance.validation.layoutRequired",
+    },
     coverImage: {
       title: "contents.appearance.coverImage.title",
       subtitle: "contents.appearance.coverImage.subtitle",

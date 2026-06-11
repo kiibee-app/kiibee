@@ -37,8 +37,13 @@ export default function DescriptionSection({
   const { t } = useTranslation();
   const { formState, formErrors, updateField, clearFieldError } =
     useContentForm();
-  const { values: appearanceValues, updateField: updateAppearanceField } =
-    useAppearanceForm();
+  const {
+    values: appearanceValues,
+    errors: appearanceErrors,
+    updateField: updateAppearanceField,
+    clearFieldError: clearAppearanceFieldError,
+    validateField: validateAppearanceField,
+  } = useAppearanceForm();
   const [localTitle, setLocalTitle] = useState("");
   const [localDescription, setLocalDescription] = useState("");
   const title = useFormContext ? formState.title : localTitle;
@@ -54,6 +59,7 @@ export default function DescriptionSection({
       clearFieldError(CONTENT_FORM_FIELDS.DESCRIPTION);
       updateField(CONTENT_FORM_FIELDS.DESCRIPTION, truncated);
     } else if (!showTitle) {
+      clearAppearanceFieldError(FORM_FIELDS.DESCRIPTION);
       updateAppearanceField(FORM_FIELDS.DESCRIPTION, truncated);
     } else {
       setLocalDescription(truncated);
@@ -112,8 +118,21 @@ export default function DescriptionSection({
               placeholder={t(CONTENTS.appearance.description.placeholder)}
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
-              hasError={useFormContext && Boolean(formErrors.description)}
-              errorMessage={useFormContext ? formErrors.description : undefined}
+              onBlur={() => {
+                if (!useFormContext && !showTitle) {
+                  validateAppearanceField(FORM_FIELDS.DESCRIPTION);
+                }
+              }}
+              hasError={
+                useFormContext
+                  ? Boolean(formErrors.description)
+                  : Boolean(appearanceErrors.description)
+              }
+              errorMessage={
+                useFormContext
+                  ? formErrors.description
+                  : appearanceErrors.description
+              }
             />
           </ControlWrap>
 
