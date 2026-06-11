@@ -9,6 +9,8 @@ import {
   ACCESS_TYPE_FREE,
   ACCESS_KEYWORD_EN,
   ACCESS_KEYWORD_DA,
+  ORDER_TYPES,
+  type OrderItemType,
   STRING,
 } from "@/utils/Constants";
 import { usePostAPI } from "@/lib/http/api/postApi";
@@ -62,7 +64,7 @@ export default function SingleContentPage({
   type CreateOrderPayload = {
     contentId: string;
     collectionId?: string;
-    itemType: "purchase" | "rental";
+    itemType: OrderItemType;
   };
 
   type CreateOrderResponse = {
@@ -109,7 +111,7 @@ export default function SingleContentPage({
             const response = await createOrderMutation.mutateAsync({
               contentId,
               collectionId,
-              itemType: isPurchase ? "purchase" : "rental",
+              itemType: isPurchase ? ORDER_TYPES.PURCHASE : ORDER_TYPES.RENTAL,
             });
             const paymentUrl = response?.data?.url;
             if (!paymentUrl) {

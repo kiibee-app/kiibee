@@ -345,6 +345,13 @@ export const DEFAULT_DEBOUNCE_DELAY = 300;
 export const COMPLETED = "completed";
 export const FAILED = "failed";
 
+export const ORDER_TYPES = {
+  PURCHASE: "purchase",
+  RENTAL: "rental",
+} as const;
+
+export type OrderItemType = (typeof ORDER_TYPES)[keyof typeof ORDER_TYPES];
+
 export const STATUS_TONE = {
   SUCCESS: "success",
   ERROR: "error",
