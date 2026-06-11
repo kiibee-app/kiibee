@@ -14,4 +14,8 @@ export const Grid = styled.div<{ $maxWidth?: string; $columnMax?: string }>`
   ${media.desktop} {
     gap: 1.25rem;
   }
+
+  ${media.tablet} {
+    grid-template-columns: none;
+  }
 `;

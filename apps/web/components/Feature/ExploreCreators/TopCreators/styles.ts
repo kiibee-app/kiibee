@@ -6,9 +6,19 @@ export const Wrapper = styled.section`
   margin: 0 auto;
   padding: 40px 0;
 
+  ${media.desktopMd} {
+    width: 100%;
+    padding: 40px 25px;
+  }
+
+  ${media.desktop} {
+    width: 100%;
+    padding: 40px 25px;
+  }
+
   ${media.tablet} {
     width: 100%;
-    padding: 2rem 0;
+    padding: 2rem 1.75rem;
   }
 `;
 
