@@ -8,7 +8,6 @@ import { seedUmbracoLogs } from './umbracoLogs.seed';
 import { seedUmbracoPayouts } from './umbracoPayouts.seed';
 import { seedUmbracoProfiles } from './umbracoProfiles.seed';
 import { seedUmbracoPurchases } from './umbracoPurchases.seed';
-import { seedUmbracoReferencedMedia } from './umbracoReferencedMedia.seed';
 import { seedUmbracoShows } from './umbracoShows.seed';
 import { seedUmbracoStats } from './umbracoStats.seed';
 import { seedUsers } from './users.seed';
@@ -29,7 +28,6 @@ async function main() {
   // Creator profiles & content from umbraco-data
   await seedUmbracoProfiles();
   await seedUmbracoShows();
-  await seedUmbracoReferencedMedia();
 
   // Commerce, analytics, and activity logs from umbraco-data
   await seedUmbracoPurchases();
