@@ -25,7 +25,7 @@ export async function getBillingHistoryService(userId: string) {
         contentTitle: mediaFiles.title,
         creatorName: mediaCreators.fullName,
         itemType: orders.itemType,
-        paymentDate: payments.paidAt,
+        paymentDate: sql<Date>`coalesce(${payments.paidAt}, ${payments.createdAt})`,
         amount: payments.amount,
         paymentMethod: payments.paymentMethod,
         cardNumber: payments.cardNo,
