@@ -11,9 +11,7 @@ export function useRequireAuthSession() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [isReady, setIsReady] = useState(
-    () => typeof window !== "undefined" && authStorage.hasSession(),
-  );
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     let timeoutId: number | undefined;
