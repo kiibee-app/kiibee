@@ -32,9 +32,13 @@ export const GateInner = styled.div<{ $variant?: string }>`
 
 export const GateCard = styled.div<{ $variant?: string }>`
   background: ${({ $variant, theme }) =>
-    $variant === "content" ? "#DBF3D9" : theme.colors.neutral.GRAY_100};
-  border: ${({ $variant }) =>
-    $variant === "content" ? "1px solid #C1E7BD" : "none"};
+    $variant === "content"
+      ? theme.colors.neutral.PALE_GREEN
+      : theme.colors.neutral.GRAY_100};
+  border: ${({ $variant, theme }) =>
+    $variant === "content"
+      ? `1px solid ${theme.colors.neutral.DUSTY_TEAL}`
+      : "none"};
   border-radius: ${({ theme }) => theme.radius.lg};
   padding: ${({ $variant }) => ($variant === "content" ? "24px" : "28px 32px")};
   max-width: ${({ $variant }) => ($variant === "content" ? "100%" : "480px")};
