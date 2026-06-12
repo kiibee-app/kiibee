@@ -642,7 +642,9 @@
         "phoneInvalid": "Enter a valid phone number",
         "messageRequired": "Message is required"
       },
-      "submit": "Send message"
+      "submit": "Send message",
+      "submitSuccess": "Your message was sent successfully.",
+      "submitError": "We couldn't send your message right now. Please try again."
     }
   },
   "value": {

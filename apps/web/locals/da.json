@@ -641,7 +641,9 @@
         "phoneInvalid": "Indtast et gyldigt telefonnummer",
         "messageRequired": "Besked er påkrævet"
       },
-      "submit": "Send besked"
+      "submit": "Send besked",
+      "submitSuccess": "Din besked blev sendt.",
+      "submitError": "Vi kunne ikke sende din besked lige nu. Prøv igen."
     }
   },
   "value": {

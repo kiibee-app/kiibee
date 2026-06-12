@@ -76,4 +76,7 @@ export const API = {
     getById: (orderId: string) => `/order/${orderId}`,
     // confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
   },
+  support: {
+    contact: "/support/contact",
+  },
 } as const;
