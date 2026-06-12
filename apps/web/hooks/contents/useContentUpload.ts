@@ -7,6 +7,7 @@ import { API } from "@/lib/http/api/endpoints";
 import {
   CONTENT_UPLOAD_CONFIG,
   MEDIA_UPLOAD_FILE_TYPE_MAP,
+  POST_METHOD,
   resolveUploadContentType,
   type ContentType,
   type UploadContentType,
@@ -24,20 +25,6 @@ type UploadedFile = {
   contentType?: string;
 };
 
-type VideoInitResponse = {
-  uploadId: string;
-  key: string;
-};
-
-type VideoPartUrlResponse = {
-  url: string;
-};
-
-type VideoCompleteResponse = {
-  key: string;
-  location: string;
-};
-
 type FileUploadUrlResponse = {
   key: string;
   uploadUrl: string;
@@ -49,7 +36,6 @@ type FileConfirmResponse = {
   url: string;
 };
 
-const VIDEO_PART_SIZE = 10 * 1024 * 1024;
 const MAX_UPLOAD_SIZE = 2 * 1024 * 1024 * 1024;
 
 const getExtension = (file: File) =>
@@ -108,50 +94,21 @@ export function useContentUpload({ contentType }: Params) {
   };
 
   const uploadVideo = async (file: File): Promise<UploadedFile> => {
-    const { data: init } = await axiosClient.post<VideoInitResponse>(
-      API.media.videoInit,
-    );
-    const parts: { PartNumber: number; ETag: string }[] = [];
-    const totalParts = Math.ceil(file.size / VIDEO_PART_SIZE);
+    const { data: init } = await axiosClient.post<{
+      uid: string;
+      uploadURL: string;
+    }>(API.media.videoUpload);
 
-    for (let partNumber = 1; partNumber <= totalParts; partNumber += 1) {
-      const start = (partNumber - 1) * VIDEO_PART_SIZE;
-      const end = Math.min(start + VIDEO_PART_SIZE, file.size);
-      const chunk = file.slice(start, end, file.type || "video/mp4");
+    const formData = new FormData();
+    formData.append("file", file);
 
-      const { data } = await axiosClient.get<VideoPartUrlResponse>(
-        API.media.videoPartUrl,
-        {
-          params: {
-            key: init.key,
-            uploadId: init.uploadId,
-            partNumber,
-          },
-        },
-      );
-
-      const response = await putSignedFile(data.url, chunk);
-      const etag = response.headers.get("ETag") ?? response.headers.get("etag");
-
-      if (!etag) {
-        throw new Error("Upload ETag missing");
-      }
-
-      parts.push({ PartNumber: partNumber, ETag: etag });
-    }
-
-    const { data: completed } = await axiosClient.post<VideoCompleteResponse>(
-      API.media.videoComplete,
-      {
-        key: init.key,
-        uploadId: init.uploadId,
-        parts,
-      },
-    );
+    await fetch(init.uploadURL, {
+      method: POST_METHOD,
+      body: formData,
+    });
 
     return {
-      key: completed.key,
-      location: completed.location,
+      key: init.uid,
       contentType: file.type || "video/mp4",
     };
   };

@@ -15,6 +15,7 @@ export const Section = styled.section`
 
   ${media.tablet} {
     min-height: auto;
+    padding: 48px 20px;
   }
 `;
 
@@ -24,6 +25,10 @@ export const Title = styled.h2`
   ${media.tablet} {
     margin-bottom: 2.5rem;
     max-width: 100%;
+
+    > * {
+      ${({ theme }) => theme.typography.Heading3};
+    }
   }
 `;
 
@@ -35,7 +40,8 @@ export const PillsWrapper = styled.div`
   max-width: 850px;
 
   ${media.tablet} {
-    gap: 0.75rem;
+    gap: 0.625rem;
+    max-width: 18rem;
   }
 `;
 
@@ -82,7 +88,7 @@ export const Pill = styled(MonoText)<{
   }
 
   ${media.tablet} {
-    padding: 0.7rem 1.3rem;
-    font-size: 0.9rem;
+    ${({ theme }) => theme.typography.Body_Regular};
+    padding: 0.7rem 1.1rem;
   }
 `;

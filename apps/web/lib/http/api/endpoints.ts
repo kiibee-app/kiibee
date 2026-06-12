@@ -21,7 +21,7 @@ export const API = {
     delete: (id: string) => `/coupons/${id}`,
   },
   media: {
-    videoInit: "/media/videos/init",
+    videoUpload: "/media/videos/upload",
     videoPartUrl: "/media/videos/part-url",
     videoComplete: "/media/videos/complete",
     videoStream: "/media/videos/stream",

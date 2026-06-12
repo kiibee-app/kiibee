@@ -30,9 +30,10 @@ import {
 } from "@/utils/contentApi";
 import { buildPricingButtonsForContent } from "@/utils/contentPricingActions";
 import { tutorialVideos } from "@/utils/data";
-import { type TutorialVideo } from "@/utils/types";
-import { QUERY_KEYS } from "@/utils/Constants";
+import { type TutorialVideo, type TutorialButton } from "@/utils/types";
+import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
+import { pathPublishedContent } from "@/utils/path";
 import {
   CollectionSection,
   CollectionSectionTag,
@@ -54,12 +55,12 @@ function PrivateCollectionPreview({
   variant,
   searchQuery,
   displayName,
-  freeLabel,
+  seeContentLabel,
 }: {
   variant: ProfileLayoutVariant;
   searchQuery: string;
   displayName: string;
-  freeLabel: string;
+  seeContentLabel: string;
 }) {
   const { data: sections = [] } = useQuery<CollectionWithCards[]>({
     queryKey: [QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW],
@@ -91,11 +92,12 @@ function PrivateCollectionPreview({
                 tutorialVideos[
                   (collectionIndex + contentIndex) % tutorialVideos.length
                 ];
-              const contentResponse =
-                await axiosClient.get<ContentDetailResponse>(
-                  API.content.get(content.id),
-                );
-              const contentDetail = getContentDetail(contentResponse.data);
+
+              const seeContentButton: TutorialButton = {
+                label: seeContentLabel,
+                variant: VARIANT.SECONDARY,
+                href: pathPublishedContent(content.id),
+              };
 
               return {
                 ...fallbackTemplate,
@@ -113,6 +115,7 @@ function PrivateCollectionPreview({
                   contentDetail,
                   freeLabel,
                 ),
+                buttons: [seeContentButton],
               };
             }),
           );
@@ -171,20 +174,40 @@ function PublicCollectionPreview({
   variant,
   publicCreatorId,
   searchQuery,
+  seeContentLabel,
 }: {
   variant: ProfileLayoutVariant;
   publicCreatorId: string;
   searchQuery: string;
+  seeContentLabel: string;
 }) {
   const { t } = useTranslation();
   const { tutorials, isLoading } = usePublicCreatorContent(publicCreatorId);
 
+  const cardsWithSeeContent = useMemo((): TutorialVideo[] => {
+    return tutorials.map((tutorial) => {
+      if (tutorial.isFree) {
+        return {
+          ...tutorial,
+          buttons: [
+            {
+              label: seeContentLabel,
+              variant: VARIANT.SECONDARY,
+              href: pathPublishedContent(tutorial.id),
+            },
+          ],
+        };
+      }
+      return tutorial;
+    });
+  }, [tutorials, seeContentLabel]);
+
   const visibleCards = useMemo((): TutorialVideo[] => {
-    if (!searchQuery.trim()) return tutorials;
-    return tutorials.filter((card) =>
+    if (!searchQuery.trim()) return cardsWithSeeContent;
+    return cardsWithSeeContent.filter((card) =>
       matchesProfileSearch(searchQuery, card.title),
     );
-  }, [tutorials, searchQuery]);
+  }, [cardsWithSeeContent, searchQuery]);
 
   if (isLoading || !visibleCards.length) return null;
 
@@ -194,7 +217,7 @@ function PublicCollectionPreview({
         <SectionLabel>
           <CollectionSectionTag>
             <MonoText $use="H4_Medium">
-              {t("createProfileAbout.content", { defaultValue: "Content" })}
+              {t("createProfileHome.latestUpload.seeContent")}
             </MonoText>
           </CollectionSectionTag>
         </SectionLabel>
@@ -220,6 +243,7 @@ export default function CollectionPreview({ variant }: Props) {
         variant={variant}
         publicCreatorId={publicCreatorId}
         searchQuery={searchQuery}
+        seeContentLabel={t("createProfileHome.latestUpload.seeContent")}
       />
     );
   }
@@ -229,7 +253,7 @@ export default function CollectionPreview({ variant }: Props) {
       variant={variant}
       searchQuery={searchQuery}
       displayName={displayName}
-      freeLabel={t("tutorialVideos.buttonFreeLabel")}
+      seeContentLabel={t("createProfileHome.latestUpload.seeContent")}
     />
   );
 }

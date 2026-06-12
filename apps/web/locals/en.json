@@ -84,7 +84,8 @@
         "cancelLabel": "Login",
         "confirmLabel": "Create account",
         "message": "To continue with your purchase, please log in to your Kiibee account. If you don't have an account yet, you can create one in just a moment."
-      }
+      },
+      "seeContent": "See content"
     }
   },
   "createProfileCollections": {
@@ -1476,6 +1477,17 @@
       "supportEmail": "Support email",
       "supportEmailHint": "If you want a different email than your account email for support, enter it here.",
       "supportEmailPlaceholder": "Enter support email",
+      "validation": {
+        "invalidHex": "Enter a valid hex color like #1a2b3c.",
+        "invalidSupportEmail": "Enter a valid support email address.",
+        "fixErrors": "Please fix the errors in the appearance section before saving.",
+        "descriptionRequired": "Description is required.",
+        "logoNameRequired": "Logo text is required.",
+        "logoImageRequired": "Please upload a logo image.",
+        "desktopCoverRequired": "Please upload a desktop cover image.",
+        "mobileCoverRequired": "Please upload a mobile cover image.",
+        "layoutRequired": "Please select a layout."
+      },
       "coverImage": {
         "title": "Cover image",
         "subtitle": "The large image at the top of the page",

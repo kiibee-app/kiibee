@@ -129,3 +129,5 @@ export const CONTENT_TYPES = {
   AUDIO: 'Audio',
   PDF: 'PDF',
 } as const;
+
+export const MAX_DURATION_SECONDS = 7200;

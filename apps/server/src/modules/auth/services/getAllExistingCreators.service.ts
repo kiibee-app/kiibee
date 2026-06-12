@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, desc, eq, sql } from 'drizzle-orm';
+import { and, desc, eq, ilike, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   creatorChannels,
@@ -14,7 +14,11 @@ import { logger } from 'src/logger/logger';
 import { ROLE } from 'src/utils/constant';
 import { success } from 'src/utils/sendResponse';
 
-export const getAllExistingCreatorsService = async () => {
+export const getAllExistingCreatorsService = async ({
+  search,
+}: {
+  search?: string;
+} = {}) => {
   try {
     const uploadCountSql = sql<number>`
       COUNT(DISTINCT ${mediaFiles.id})::int
@@ -25,6 +29,22 @@ export const getAllExistingCreatorsService = async () => {
     const planNameSql = sql<string | null>`
       MAX(${plans.name})
     `;
+    const searchTerm = search?.trim();
+    const searchPattern = searchTerm ? `%${searchTerm}%` : undefined;
+    const filters = [eq(users.role, ROLE.CREATOR), eq(users.isDeleted, false)];
+
+    if (searchPattern) {
+      const searchFilter = or(
+        ilike(users.firstName, searchPattern),
+        ilike(users.lastName, searchPattern),
+        ilike(users.fullName, searchPattern),
+        ilike(users.email, searchPattern),
+      );
+
+      if (searchFilter) {
+        filters.push(searchFilter);
+      }
+    }
 
     const creators = await db
       .select({
@@ -64,7 +84,7 @@ export const getAllExistingCreatorsService = async () => {
           eq(emailSubscribers.isActive, true),
         ),
       )
-      .where(and(eq(users.role, ROLE.CREATOR), eq(users.isDeleted, false)))
+      .where(and(...filters))
       .groupBy(
         users.id,
 

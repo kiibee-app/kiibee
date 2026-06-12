@@ -21,10 +21,11 @@ import { CONTENTS } from "@/utils/translationKeys";
 import { layoutCards } from "@/utils/data";
 import { useAppearanceForm } from "./AppearanceFormContext";
 import type { CreatorLayoutKey } from "@/utils/creatorChannel";
+import { ErrorText } from "../MetaData/styles";
 
 export default function LayoutsSection() {
   const { t } = useTranslation();
-  const { values, setLayout } = useAppearanceForm();
+  const { values, errors, setLayout } = useAppearanceForm();
 
   return (
     <AppearancePanel>
@@ -61,6 +62,9 @@ export default function LayoutsSection() {
               </LayoutCardWrap>
             ))}
           </LayoutGrid>
+          {errors.layout ? (
+            <ErrorText role="alert">{errors.layout}</ErrorText>
+          ) : null}
         </Row>
       </SectionList>
     </AppearancePanel>

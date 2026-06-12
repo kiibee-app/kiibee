@@ -9,6 +9,7 @@ export type CollectionAction = {
   label: string;
   sublabel?: string;
   variant?: "primary" | "secondary";
+  href?: string;
 };
 
 export type RentedCollectionItem = {
@@ -19,6 +20,7 @@ export type RentedCollectionItem = {
   coverSrc: string;
   actions?: CollectionAction[];
   hideBadge?: boolean;
+  href?: string;
 };
 
 export type RentedMediaItem = {
