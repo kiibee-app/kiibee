@@ -122,7 +122,24 @@ export default function ClientDashboardCreators() {
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   }, [activePage, view]);
 
-  if (!isReady) return null;
+  if (!isReady) {
+    return (
+      <CreatorChannelLayoutProvider>
+        <DashboardLayout
+          header={<DashboardHeader role={ROLE_CREATOR} />}
+          sidebarExpanded={false}
+          sidebar={
+            <Sidebar
+              expanded={false}
+              onCollapse={() => {}}
+              activeItem=""
+              onSelect={() => {}}
+            />
+          }
+        />
+      </CreatorChannelLayoutProvider>
+    );
+  }
 
   return (
     <CreatorChannelLayoutProvider>
