@@ -1,4 +1,8 @@
-import { HttpException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import axios from 'axios';
 import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
@@ -57,16 +61,35 @@ export const createSubscriptionService = async ({
 
     return response.data;
   } catch (error: any) {
+    const status = error?.response?.status;
     const epayError = error?.response?.data;
 
-    throw new HttpException(
-      {
+    console.error('ePay Error:', {
+      status,
+      errorCode: epayError?.errorCode,
+      message: epayError?.message,
+    });
+
+    if (status === 403) {
+      throw new ForbiddenException({
         success: false,
-        message: epayError?.message || error.message,
         errorCode: epayError?.errorCode,
-        data: epayError,
-      },
-      error?.response?.status || 500,
-    );
+        message: epayError?.message,
+      });
+    }
+
+    if (status === 400) {
+      throw new BadRequestException({
+        success: false,
+        errorCode: epayError?.errorCode,
+        message: epayError?.message,
+      });
+    }
+
+    throw new InternalServerErrorException({
+      success: false,
+      message: epayError?.message || error.message,
+      errorCode: epayError?.errorCode,
+    });
   }
 };
