@@ -109,9 +109,28 @@ export const CodeBadge = styled(MonoText).attrs({
   display: flex;
   padding: 4px 8px;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   border-radius: 15px;
   background: ${({ theme }) => theme.colors.primary.GRAY};
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const CopyButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  line-height: 0;
 `;
 
 export const StatusBadge = styled.span<{ $status: string }>`
