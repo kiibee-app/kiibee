@@ -57,6 +57,7 @@ export const CONTENT_TRANSLATION_KEYS = {
   loading: "singleContent.loading",
   imageAlt: "singleContent.imageAlt",
   seeContent: "singleContent.seeContent",
+  playVideo: "singleContent.playVideo",
   playTrailer: "singleContent.playTrailer",
   editSuccess: "contents.contentUploadModal.updateSuccess",
   updateError: "contents.contentUploadModal.updateError",
@@ -209,12 +210,8 @@ export const getSingleContentProps = (
     inCollection: options?.inCollection,
   });
 
-  const trailerUrl = toTrimmedString(
-    content[CONTENT_RESPONSE_KEYS.TRAILER_URL],
-  );
-
   const isVideo = contentType === FORMAT_TYPE.VIDEO;
-  const showTrailerInHero = isVideo && Boolean(trailerUrl);
+  const showVideoInHero = isVideo && Boolean(mediaUrl);
   const isOwner = Boolean(
     options?.viewerId &&
     content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
@@ -230,11 +227,11 @@ export const getSingleContentProps = (
       image: getContentImage(content),
       imageAlt: title,
       contentType,
-      ...(showTrailerInHero && trailerUrl
+      ...(showVideoInHero && mediaUrl
         ? {
             media: {
               type: contentType,
-              src: trailerUrl,
+              src: mediaUrl,
               title,
             },
             contentUrl: mediaUrl,
@@ -256,9 +253,9 @@ export const getSingleContentProps = (
         ? {
             mediaIcon: playCircleIcon,
             mediaIconAlt: t(CONTENT_TRANSLATION_KEYS.seeContent),
-            trailerLabel: t(CONTENT_TRANSLATION_KEYS.playTrailer),
+            trailerLabel: t(CONTENT_TRANSLATION_KEYS.playVideo),
             trailerIcon: playIcon,
-            trailerIconAlt: t(CONTENT_TRANSLATION_KEYS.playTrailer),
+            trailerIconAlt: t(CONTENT_TRANSLATION_KEYS.playVideo),
           }
         : {}),
     },
