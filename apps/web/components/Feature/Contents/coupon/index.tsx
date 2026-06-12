@@ -135,8 +135,7 @@ export default function CouponTable({
     e.stopPropagation();
   };
 
-  const handleCopyCode = useCallback((code: string, e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleCopyCode = useCallback((code: string) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
   }, []);
@@ -186,10 +185,18 @@ export default function CouponTable({
                   {row.codes.map((code) => (
                     <CodeBadge
                       key={code}
-                      onClick={(e) => handleCopyCode(code, e)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCopyCode(code);
+                      }}
                     >
                       {code}
-                      <CopyButton onClick={(e) => handleCopyCode(code, e)}>
+                      <CopyButton
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCopyCode(code);
+                        }}
+                      >
                         {copiedCode === code ? (
                           <CheckIcon width={14} height={14} />
                         ) : (
