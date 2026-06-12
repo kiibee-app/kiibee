@@ -19,11 +19,14 @@ import {
 import { useTranslation } from "react-i18next";
 import { FilterSectionKey } from "@/types/filters";
 import {
+  CardsColumn,
   CardsGrid,
   ContentGrid,
   FiltersColumn,
   HeaderTabs,
   HeaderWrap,
+  LoadMoreButton,
+  LoadMoreContainer,
   ResultsState,
   Section,
   TabButton,
@@ -83,10 +86,16 @@ export default function LatestRelease() {
   );
   const [activeExploreSort, setActiveExploreSort] =
     useState<ExploreContentSort>(initialExploreSort);
+  const [limit, setLimit] = useState(12);
 
   useEffect(() => {
     setActiveExploreSort(initialExploreSort);
   }, [initialExploreSort]);
+
+  const handleSortChange = (sort: ExploreContentSort) => {
+    setActiveExploreSort(sort);
+    setLimit(12);
+  };
 
   const {
     creatorLabels: allCreatorLabels,
@@ -158,7 +167,14 @@ export default function LatestRelease() {
   const { tutorials, isLoading } = useExploreContent({
     sort: activeExploreSort,
     filters: exploreFilters,
+    limit,
   });
+
+  const hasMore = tutorials.length >= limit;
+
+  const handleLoadMore = () => {
+    setLimit((prev) => prev + 12);
+  };
 
   const filterRefs = { filterButtonRef, filterOverlayRef };
   const filterState = {
@@ -196,7 +212,7 @@ export default function LatestRelease() {
               }
               size="sm"
               $active={activeExploreSort === tab.sort}
-              onClick={() => setActiveExploreSort(tab.sort)}
+              onClick={() => handleSortChange(tab.sort)}
             >
               <MonoText $use="Body_Medium">{tab.label}</MonoText>
             </TabButton>
@@ -222,7 +238,7 @@ export default function LatestRelease() {
           />
         </FiltersColumn>
 
-        <div>
+        <CardsColumn>
           <CardsGrid>
             {isLoading ? (
               <ResultsState>
@@ -242,7 +258,18 @@ export default function LatestRelease() {
               </ResultsState>
             )}
           </CardsGrid>
-        </div>
+          {hasMore && !isLoading && (
+            <LoadMoreContainer>
+              <LoadMoreButton
+                variant="primary"
+                type="button"
+                onClick={handleLoadMore}
+              >
+                {t("creators.loadMore")}
+              </LoadMoreButton>
+            </LoadMoreContainer>
+          )}
+        </CardsColumn>
       </ContentGrid>
     </Section>
   );

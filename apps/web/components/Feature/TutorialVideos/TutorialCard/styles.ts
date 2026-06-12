@@ -2,7 +2,9 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export const CardLink = styled(Link)<{ $clickable?: boolean }>`
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   width: 100%;
   text-decoration: none;
   color: inherit;
