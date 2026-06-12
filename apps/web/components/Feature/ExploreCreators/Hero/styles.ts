@@ -49,6 +49,23 @@ export const HeroTitleText = styled(MonoText).attrs({
   color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
 `;
 
+export const FilterControlWrap = styled.div`
+  position: relative;
+  flex: 0 0 auto;
+  z-index: 200;
+
+  ${media.tablet} {
+    width: 100%;
+    max-width: 100%;
+
+    button {
+      width: 100%;
+      min-width: 0;
+      justify-content: center;
+    }
+  }
+`;
+
 export const Controls = styled.div`
   display: flex;
   align-items: stretch;
@@ -57,15 +74,19 @@ export const Controls = styled.div`
   flex-wrap: wrap;
   width: 100%;
 
-  ${media.mobile} {
-    flex-wrap: nowrap;
+  ${media.tablet} {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    & > * {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    div {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
   }
-`;
-
-export const FilterControlWrap = styled.div`
-  position: relative;
-  flex: 0 0 auto;
-  z-index: 200;
 `;
 
 export const FilterBtn = styled.button<{ $active: boolean }>`
