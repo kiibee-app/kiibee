@@ -19,11 +19,13 @@ export type ViewerBillingHistoryItem = {
   };
 };
 import { formatDateUSShort } from "@/utils/formatDate";
+import { resolvePublicMediaUrl } from "@/utils/media";
 
 type BackendBillingItem = {
   id: string;
   orderNumber: string;
   contentTitle: string;
+  contentImage?: string | null;
   creatorName: string;
   type: string;
   paymentDate: string;
@@ -59,7 +61,7 @@ function toBillingHistoryItem(
     id: item.id,
     orderNumber: item.orderNumber ?? "",
     contentTitle: item.contentTitle ?? "",
-    contentImage: "",
+    contentImage: resolvePublicMediaUrl(item.contentImage) ?? "",
     creatorName: item.creatorName ?? "",
     type: resolveDisplayType(item.type),
     paymentDate: formatDateUSShort(item.paymentDate),
