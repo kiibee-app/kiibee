@@ -28,7 +28,6 @@ import {
   getContentDetail,
   type ContentDetailResponse,
 } from "@/utils/contentApi";
-import { buildPricingButtonsForContent } from "@/utils/contentPricingActions";
 import { tutorialVideos } from "@/utils/data";
 import { type TutorialVideo, type TutorialButton } from "@/utils/types";
 import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
@@ -93,6 +92,12 @@ function PrivateCollectionPreview({
                   (collectionIndex + contentIndex) % tutorialVideos.length
                 ];
 
+              const contentResponse =
+                await axiosClient.get<ContentDetailResponse>(
+                  API.content.get(content.id),
+                );
+              const contentDetail = getContentDetail(contentResponse.data);
+
               const seeContentButton: TutorialButton = {
                 label: seeContentLabel,
                 variant: VARIANT.SECONDARY,
@@ -110,11 +115,6 @@ function PrivateCollectionPreview({
                 image:
                   resolvePublicMediaUrl(contentDetail?.thumbnailUrl) ??
                   fallbackTemplate.image,
-                buttons: buildPricingButtonsForContent(
-                  content.id,
-                  contentDetail,
-                  freeLabel,
-                ),
                 buttons: [seeContentButton],
               };
             }),

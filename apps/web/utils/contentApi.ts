@@ -11,7 +11,10 @@ import {
   getContentTypeLabel,
   normalizeContentTypeValue,
 } from "@/utils/content";
-import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
+import {
+  resolveCloudflareStreamPlaybackUrl,
+  resolvePublicMediaUrl,
+} from "@/utils/media";
 import {
   getContentDetailPricingActions,
   isFreeContentItem,
@@ -167,11 +170,14 @@ export const resolveContentPlaybackUrl = (
   return signedUrl ?? "";
 };
 
-const getContentImage = (content: ContentDetailItem): ImageSource =>
-  toTrimmedString(
+const getContentImage = (content: ContentDetailItem): ImageSource => {
+  const raw = toTrimmedString(
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL] ??
       content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
-  ) || contentFallbackImage;
+  );
+
+  return resolvePublicMediaUrl(raw) || contentFallbackImage;
+};
 
 const getCategoryNames = (content: ContentDetailItem) =>
   (content[CONTENT_RESPONSE_KEYS.CATEGORIES] ?? [])
