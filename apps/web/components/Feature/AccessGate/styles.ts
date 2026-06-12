@@ -1,31 +1,43 @@
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
 
-export const GateWrapper = styled.div`
+export const GateWrapper = styled.div<{ $variant?: string }>`
   width: 100%;
-  padding: 32px 73px;
-  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  ${({ $variant, theme }) =>
+    $variant === "content"
+      ? `
+        padding: 0;
+        background: transparent;
+      `
+      : `
+        padding: 32px 73px;
+        background: ${theme.colors.neutral.WHITE};
 
-  ${({ theme }) => theme.media.desktopSm} {
-    padding: 28px 28px;
-  }
+        ${theme.media.desktopSm} {
+          padding: 28px 28px;
+        }
 
-  ${({ theme }) => theme.media.mobileLg} {
-    padding: 24px 16px;
-  }
+        ${theme.media.mobileLg} {
+          padding: 24px 16px;
+        }
+      `}
 `;
 
-export const GateInner = styled.div`
-  width: min(100%, 1380px);
+export const GateInner = styled.div<{ $variant?: string }>`
+  width: ${({ $variant }) =>
+    $variant === "content" ? "100%" : "min(100%, 1380px)"};
   margin: 0 auto;
-  padding: 0 6px;
+  padding: ${({ $variant }) => ($variant === "content" ? "0" : "0 6px")};
 `;
 
-export const GateCard = styled.div`
-  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+export const GateCard = styled.div<{ $variant?: string }>`
+  background: ${({ $variant, theme }) =>
+    $variant === "content" ? "#DBF3D9" : theme.colors.neutral.GRAY_100};
+  border: ${({ $variant }) =>
+    $variant === "content" ? "1px solid #C1E7BD" : "none"};
   border-radius: ${({ theme }) => theme.radius.lg};
-  padding: 28px 32px;
-  max-width: 480px;
+  padding: ${({ $variant }) => ($variant === "content" ? "24px" : "28px 32px")};
+  max-width: ${({ $variant }) => ($variant === "content" ? "100%" : "480px")};
 
   ${({ theme }) => theme.media.mobileLg} {
     padding: 24px 20px;

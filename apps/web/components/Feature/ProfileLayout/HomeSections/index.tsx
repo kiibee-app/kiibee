@@ -86,6 +86,15 @@ export default function ProfileHomeSections({
         type={gateType}
         variant={VARIANT_PAGE}
         creatorName={displayName ?? undefined}
+        onSuccess={() => {
+          if (publicCreatorId) {
+            window.localStorage.setItem(
+              `kiibee:gate:unlocked:creator:${publicCreatorId}`,
+              "true",
+            );
+            window.location.reload();
+          }
+        }}
       />
     );
   }

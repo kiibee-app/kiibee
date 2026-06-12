@@ -42,7 +42,13 @@ import {
   resolvePublishedContentByKey,
   CONTENT_KIND,
 } from "@/utils/resolvePublishedContentByKey";
-import { PAYMENT_QUERY_KEY, STATUS_TONE } from "@/utils/Constants";
+import {
+  PAYMENT_QUERY_KEY,
+  STATUS_TONE,
+  VARIANT_CONTENT,
+} from "@/utils/Constants";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useContentAccessGate } from "@/hooks/useContentAccessGate";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -110,6 +116,12 @@ function PublishedContentDetail() {
     content,
     mediaResponse?.[CONTENT_MEDIA_RESPONSE_KEYS.URL],
   );
+  const {
+    gateType: activeGateType,
+    isLoading: gateLoading,
+    handleSuccess: handleGateSuccess,
+  } = useContentAccessGate(content, relatedCollectionQuery.data?.collectionId);
+
   const hasUnlockedContent = Boolean(content?.accessInfo);
   const showPaymentSuccessModal =
     isPaymentSuccess && hasUnlockedContent && !dismissedPaymentSuccess;
@@ -138,7 +150,7 @@ function PublishedContentDetail() {
     />
   );
 
-  if (isLoading) {
+  if (isLoading || gateLoading) {
     return (
       <Section>
         <MonoText $use="H5_Regular">
@@ -187,6 +199,15 @@ function PublishedContentDetail() {
             inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
             viewerId: resolvedUserId,
           })}
+          accessGate={
+            activeGateType ? (
+              <AccessGate
+                type={activeGateType}
+                variant={VARIANT_CONTENT}
+                onSuccess={handleGateSuccess}
+              />
+            ) : undefined
+          }
         >
           {relatedCollectionQuery.data?.videos?.length ? (
             <CollectionItems

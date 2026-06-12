@@ -20,13 +20,14 @@ import {
 } from "@/hooks/contents/collectionApi";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 
-export function useCollectionAccessGate(): {
+export function useCollectionAccessGate(customCollectionId?: string | null): {
   gateType: AccessGateType | null;
   isLoading: boolean;
 } {
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
-  const id = searchParams.get(ID_QUERY_PARAM);
+  const queryId = searchParams.get(ID_QUERY_PARAM);
+  const id = customCollectionId !== undefined ? customCollectionId : queryId;
 
   const { isPublicView } = useCreatorChannelProfile();
 
@@ -40,6 +41,17 @@ export function useCollectionAccessGate(): {
     },
   );
 
+  // Check if visitor has already unlocked this collection's gate
+  const storageKey = id ? `kiibee:gate:unlocked:collection:${id}` : "";
+  const isUnlocked =
+    typeof window !== "undefined" && storageKey
+      ? window.localStorage.getItem(storageKey) === "true"
+      : false;
+
+  if (isUnlocked) {
+    return { gateType: null, isLoading: false };
+  }
+
   if (gateParam === TYPE_CODE || gateParam === TYPE_EMAIL) {
     return { gateType: gateParam, isLoading: false };
   }
@@ -51,14 +63,13 @@ export function useCollectionAccessGate(): {
   }
 
   let accessType: string | null = null;
-  let isOwner = !isPublicView;
+  const isOwner = !isPublicView;
 
   if (collectionsQuery.data) {
     const collections = getCollectionRows(collectionsQuery.data);
     const matched = collections.find((col) => col.id === id);
     if (matched) {
       accessType = matched.accessType ?? null;
-      isOwner = true;
     }
   }
 

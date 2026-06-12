@@ -34,7 +34,19 @@ function SingleCollectionContent() {
         primaryContentId={section.tutorials[0]?.id}
       />
       {gateType ? (
-        <AccessGate type={gateType} variant={VARIANT_CONTENT} />
+        <AccessGate
+          type={gateType}
+          variant={VARIANT_CONTENT}
+          onSuccess={() => {
+            if (id) {
+              window.localStorage.setItem(
+                `kiibee:gate:unlocked:collection:${id}`,
+                "true",
+              );
+              window.location.reload();
+            }
+          }}
+        />
       ) : (
         <CollectionContent
           videos={section.tutorials}

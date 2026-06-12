@@ -69,7 +69,7 @@ function CodeGate({
   };
 
   return (
-    <GateCard>
+    <GateCard $variant={variant}>
       <GateTitle>
         <GateTitleText>{t(titleKey)}</GateTitleText>
       </GateTitle>
@@ -81,7 +81,7 @@ function CodeGate({
           </GateLabel>
           <GateInput
             id={HTML_ID_CODE}
-            type={INPUT_TYPE_TEXT}
+            type="password"
             value={code}
             onChange={(e) => setCode(e.target.value)}
             placeholder={t(ACCESS_GATE.codePlaceholder)}
@@ -123,7 +123,7 @@ function EmailGate({
   };
 
   return (
-    <GateCard>
+    <GateCard $variant={variant}>
       <GateTitle>
         <GateTitleText>{t(titleKey)}</GateTitleText>
       </GateTitle>
@@ -179,8 +179,8 @@ export default function AccessGate({
   onSuccess,
 }: AccessGateProps) {
   return (
-    <GateWrapper>
-      <GateInner>
+    <GateWrapper $variant={variant}>
+      <GateInner $variant={variant}>
         {type === TYPE_CODE ? (
           <CodeGate variant={variant} onSuccess={onSuccess} />
         ) : (
