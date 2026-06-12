@@ -41,7 +41,6 @@ export function useCollectionAccessGate(customCollectionId?: string | null): {
     },
   );
 
-  // Check if visitor has already unlocked this collection's gate
   const storageKey = id ? `kiibee:gate:unlocked:collection:${id}` : "";
   const isUnlocked =
     typeof window !== "undefined" && storageKey
@@ -77,12 +76,12 @@ export function useCollectionAccessGate(customCollectionId?: string | null): {
     return { gateType: null, isLoading: false };
   }
 
-  let gateType: AccessGateType | null = null;
-  if (accessType === ACCESS_TYPE_PASSWORD) {
-    gateType = TYPE_CODE;
-  } else if (accessType === ACCESS_TYPE_EMAIL_GATED) {
-    gateType = TYPE_EMAIL;
-  }
+  const gateType: AccessGateType | null =
+    accessType === ACCESS_TYPE_PASSWORD
+      ? TYPE_CODE
+      : accessType === ACCESS_TYPE_EMAIL_GATED
+        ? TYPE_EMAIL
+        : null;
 
   return { gateType, isLoading: false };
 }

@@ -14,7 +14,6 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
-import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
 import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
@@ -57,7 +56,7 @@ function PublishedContentDetail() {
   const searchParams = useSearchParams();
   const params = useParams();
   const user = useStoredLoginUser();
-  const resolvedUserId = user?.id ?? readStoredLoginUser()?.id;
+  const resolvedUserId = user?.id;
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
   const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);

@@ -4,7 +4,6 @@ import { useSearchParams } from "next/navigation";
 import { useCreatorAccessGate } from "./useCreatorAccessGate";
 import { useCollectionAccessGate } from "./useCollectionAccessGate";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import {
   GATE_QUERY_PARAM,
   TYPE_CODE,
@@ -27,9 +26,7 @@ export function useContentAccessGate(
 } {
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
-  const storedUser =
-    useStoredLoginUser() ??
-    (typeof window !== "undefined" ? readStoredLoginUser() : null);
+  const storedUser = useStoredLoginUser();
 
   const { gateType: creatorGateType, isLoading: creatorLoading } =
     useCreatorAccessGate(content?.creatorId);

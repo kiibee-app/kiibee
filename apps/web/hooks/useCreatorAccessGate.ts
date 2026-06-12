@@ -17,7 +17,6 @@ import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 
 export function useCreatorAccessGate(customCreatorId?: string | null): {
   gateType: AccessGateType | null;
@@ -28,9 +27,7 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
 
   const { isPublicView: profileIsPublic, publicCreatorId: profileCreatorId } =
     useCreatorChannelProfile();
-  const storedUser =
-    useStoredLoginUser() ??
-    (typeof window !== "undefined" ? readStoredLoginUser() : null);
+  const storedUser = useStoredLoginUser();
 
   const publicCreatorId =
     customCreatorId !== undefined ? customCreatorId : profileCreatorId;
@@ -79,18 +76,13 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
     ? publicCreator?.accessType
     : privateSettings?.data?.accessType;
 
-  let gateType: AccessGateType | null = null;
-  if (
-    accessType === SET_PASSWORD_ACCESS ||
-    accessType === ACCESS_TYPE_PASSWORD
-  ) {
-    gateType = TYPE_CODE;
-  } else if (
-    accessType === REQUEST_EMAIL_ACCESS ||
-    accessType === ACCESS_TYPE_EMAIL_GATED
-  ) {
-    gateType = TYPE_EMAIL;
-  }
+  const gateType: AccessGateType | null =
+    accessType === SET_PASSWORD_ACCESS || accessType === ACCESS_TYPE_PASSWORD
+      ? TYPE_CODE
+      : accessType === REQUEST_EMAIL_ACCESS ||
+          accessType === ACCESS_TYPE_EMAIL_GATED
+        ? TYPE_EMAIL
+        : null;
 
   return { gateType, isLoading: false };
 }
