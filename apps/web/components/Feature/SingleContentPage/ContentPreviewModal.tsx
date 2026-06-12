@@ -7,6 +7,7 @@ import { canUseDOM } from "@/utils/ui";
 import { FORMAT_TYPE } from "@/utils/types";
 import type { ContentType } from "@/utils/content";
 import {
+  isCloudflareStreamEmbedUrl,
   isYouTubeUrl,
   getYouTubeEmbedUrl,
   isVimeoUrl,
@@ -73,6 +74,18 @@ export default function ContentPreviewModal({
           </PreviewContent>
         );
       case FORMAT_TYPE.VIDEO:
+        if (isCloudflareStreamEmbedUrl(src)) {
+          return (
+            <PreviewContent
+              as="iframe"
+              src={src}
+              title={title}
+              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+              style={{ background: COLORS.primary.BLACK }}
+            />
+          );
+        }
         if (isYouTubeUrl(src)) {
           return (
             <PreviewContent
@@ -102,7 +115,7 @@ export default function ContentPreviewModal({
             as="video"
             src={src}
             controls
-            autoPlay
+            preload="metadata"
             style={{ background: COLORS.primary.BLACK }}
           />
         );
@@ -117,7 +130,12 @@ export default function ContentPreviewModal({
               height: "100%",
             }}
           >
-            <audio src={src} controls autoPlay style={{ width: "80%" }} />
+            <audio
+              src={src}
+              controls
+              preload="metadata"
+              style={{ width: "80%" }}
+            />
           </div>
         );
       default:

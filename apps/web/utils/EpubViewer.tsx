@@ -9,22 +9,37 @@ export default function EpubViewer({ src }: { src: string }) {
   useEffect(() => {
     if (!src || !viewerRef.current) return;
 
+    const container = viewerRef.current;
+    let cancelled = false;
+    let rendition: ReturnType<ReturnType<typeof ePub>["renderTo"]> | null =
+      null;
     const book = ePub(src);
 
-    book.ready.then(() => {
-      const spine = book.spine as unknown as { length: number };
-      const spineLength = spine.length;
-      const isMultiPage = spineLength > 1;
+    book.ready
+      .then(() => {
+        if (cancelled || !container) return;
 
-      const rendition = book.renderTo(viewerRef.current!, {
-        width: "100%",
-        height: "100%",
-        flow: isMultiPage ? "scrolled-doc" : "paginated",
-        manager: isMultiPage ? "continuous" : "default",
-      });
+        const spine = book.spine as unknown as { length: number };
+        const spineLength = spine.length;
+        const isMultiPage = spineLength > 1;
 
-      rendition.display();
-    });
+        rendition = book.renderTo(container, {
+          width: "100%",
+          height: "100%",
+          flow: isMultiPage ? "scrolled-doc" : "paginated",
+          manager: isMultiPage ? "continuous" : "default",
+        });
+
+        return rendition.display();
+      })
+      .catch(() => {});
+
+    return () => {
+      cancelled = true;
+      rendition?.destroy();
+      book.destroy?.();
+      container.innerHTML = "";
+    };
   }, [src]);
 
   return <div ref={viewerRef} style={{ width: "100%", height: "100%" }} />;
