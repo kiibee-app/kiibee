@@ -17,6 +17,7 @@ export type ExploreCreator = {
   createdAt: string;
   contentDescription?: string | null;
   exampleWorkLink?: string | null;
+  accessType?: string | null;
 };
 
 type ExploreCreatorsResponse = {
