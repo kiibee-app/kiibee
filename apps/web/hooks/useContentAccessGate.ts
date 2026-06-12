@@ -61,26 +61,57 @@ export function useContentAccessGate(
           : null
       : null;
 
+  const hasCodeGate =
+    contentGateType === TYPE_CODE ||
+    collectionGateType === TYPE_CODE ||
+    creatorGateType === TYPE_CODE;
+
+  const hasEmailGate =
+    contentGateType === TYPE_EMAIL ||
+    collectionGateType === TYPE_EMAIL ||
+    creatorGateType === TYPE_EMAIL;
+
+  const resolvedGateType = hasCodeGate
+    ? TYPE_CODE
+    : hasEmailGate
+      ? TYPE_EMAIL
+      : null;
+
   const finalGateType = isOwner
     ? null
     : gateParam === TYPE_CODE || gateParam === TYPE_EMAIL
       ? gateParam
-      : contentGateType || collectionGateType || creatorGateType;
+      : resolvedGateType;
 
   const handleSuccess = () => {
-    if (creatorGateType && content?.creatorId) {
+    if (contentGateType === TYPE_CODE && content?.id) {
       window.localStorage.setItem(
-        `kiibee:gate:unlocked:creator:${content.creatorId}`,
+        `kiibee:gate:unlocked:content:${content.id}`,
         "true",
       );
-    } else if (collectionGateType && collectionId) {
+    } else if (collectionGateType === TYPE_CODE && collectionId) {
       window.localStorage.setItem(
         `kiibee:gate:unlocked:collection:${collectionId}`,
         "true",
       );
-    } else if (contentGateType && content?.id) {
+    } else if (creatorGateType === TYPE_CODE && content?.creatorId) {
+      window.localStorage.setItem(
+        `kiibee:gate:unlocked:creator:${content.creatorId}`,
+        "true",
+      );
+    } else if (contentGateType === TYPE_EMAIL && content?.id) {
       window.localStorage.setItem(
         `kiibee:gate:unlocked:content:${content.id}`,
+        "true",
+      );
+    } else if (collectionGateType === TYPE_EMAIL && collectionId) {
+      window.localStorage.setItem(
+        `kiibee:gate:unlocked:collection:${collectionId}`,
+        "true",
+      );
+    } else if (creatorGateType === TYPE_EMAIL && content?.creatorId) {
+      window.localStorage.setItem(
+        `kiibee:gate:unlocked:creator:${content.creatorId}`,
         "true",
       );
     }
