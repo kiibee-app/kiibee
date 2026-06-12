@@ -56,6 +56,16 @@ import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadMod
 import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
+import type { SaveContentSettingPayload } from "@/hooks/contents/useContentSettings";
+
+type SettingsSnapshot = {
+  accessType: AdmissionRequirementValue;
+  passwords: string;
+  description: string;
+  rentalAmount: string;
+  purchaseAmount: string;
+  accessDuration: AccessDurationValue;
+};
 
 type Params = {
   activeTab: ContentTab;
@@ -73,7 +83,7 @@ type Params = {
     backToTypeSelect: () => void;
   };
   contentSettingAccessType?: string;
-  saveContentSetting?: (accessType: string) => Promise<void>;
+  saveContentSetting?: (payload: SaveContentSettingPayload) => Promise<void>;
 };
 
 export function useContentFormActions({
@@ -122,42 +132,76 @@ export function useContentFormActions({
   const [collectionPurchaseAmount, setCollectionPurchaseAmount] = useState("");
   const [collectionAccessDuration, setCollectionAccessDuration] =
     useState<AccessDurationValue>(PAYMENT_DEFAULT_ACCESS_DURATION);
+  const [savedSettings, setSavedSettings] = useState<SettingsSnapshot>({
+    accessType: ADMISSION_REQUIREMENT_VALUES.free,
+    passwords: "",
+    description: "",
+    rentalAmount: "",
+    purchaseAmount: "",
+    accessDuration: PAYMENT_DEFAULT_ACCESS_DURATION,
+  });
 
   const [prevCollectionId, setPrevCollectionId] = useState<string | null>(null);
-
-  if (selectedCollection && selectedCollection.id !== prevCollectionId) {
-    setPrevCollectionId(selectedCollection.id);
-    const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
-    const uiAccessType =
-      apiToUiAccessTypeMap[apiAccessType] || ADMISSION_REQUIREMENT_VALUES.free;
-    setCollectionAccessType(uiAccessType);
-    setCollectionPasswords("");
-    setCollectionDescription(selectedCollection.description ?? "");
-    setCollectionRentalAmount(
-      selectedCollection.rentPrice != null
-        ? String(selectedCollection.rentPrice)
-        : "",
-    );
-    setCollectionPurchaseAmount(
-      selectedCollection.buyPrice != null
-        ? String(selectedCollection.buyPrice)
-        : "",
-    );
-    setCollectionAccessDuration(
-      (selectedCollection.rentDuration as AccessDurationValue) ??
-        (PAYMENT_DEFAULT_ACCESS_DURATION as AccessDurationValue),
-    );
-  } else if (!selectedCollection && prevCollectionId !== null) {
-    setPrevCollectionId(null);
-  }
-
-  const [contentSettingLoaded, setContentSettingLoaded] = useState(false);
 
   const contentSettingToUiMap: Record<string, AdmissionRequirementValue> = {
     free: ADMISSION_REQUIREMENT_VALUES.free,
     set_password: ADMISSION_REQUIREMENT_VALUES.password,
     request_email: ADMISSION_REQUIREMENT_VALUES.email,
   };
+
+  const buildSettingsSnapshot = (
+    accessType: AdmissionRequirementValue,
+    overrides?: Partial<SettingsSnapshot>,
+  ): SettingsSnapshot => ({
+    accessType,
+    passwords: "",
+    description: "",
+    rentalAmount: "",
+    purchaseAmount: "",
+    accessDuration: PAYMENT_DEFAULT_ACCESS_DURATION,
+    ...overrides,
+  });
+
+  const applySettingsSnapshot = (snapshot: SettingsSnapshot) => {
+    setCollectionAccessType(snapshot.accessType);
+    setCollectionPasswords(snapshot.passwords);
+    setCollectionDescription(snapshot.description);
+    setCollectionRentalAmount(snapshot.rentalAmount);
+    setCollectionPurchaseAmount(snapshot.purchaseAmount);
+    setCollectionAccessDuration(snapshot.accessDuration);
+    setSavedSettings(snapshot);
+  };
+
+  if (selectedCollection && selectedCollection.id !== prevCollectionId) {
+    setPrevCollectionId(selectedCollection.id);
+    const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
+    const uiAccessType =
+      apiToUiAccessTypeMap[apiAccessType] || ADMISSION_REQUIREMENT_VALUES.free;
+    applySettingsSnapshot(
+      buildSettingsSnapshot(uiAccessType, {
+        description: selectedCollection.description ?? "",
+        rentalAmount:
+          selectedCollection.rentPrice != null
+            ? String(selectedCollection.rentPrice)
+            : "",
+        purchaseAmount:
+          selectedCollection.buyPrice != null
+            ? String(selectedCollection.buyPrice)
+            : "",
+        accessDuration:
+          (selectedCollection.rentDuration as AccessDurationValue) ??
+          PAYMENT_DEFAULT_ACCESS_DURATION,
+      }),
+    );
+  } else if (!selectedCollection && prevCollectionId !== null) {
+    setPrevCollectionId(null);
+    const uiAccessType =
+      contentSettingToUiMap[contentSettingAccessType ?? ""] ||
+      ADMISSION_REQUIREMENT_VALUES.free;
+    applySettingsSnapshot(buildSettingsSnapshot(uiAccessType));
+  }
+
+  const [contentSettingLoaded, setContentSettingLoaded] = useState(false);
 
   if (
     !selectedCollection &&
@@ -167,7 +211,7 @@ export function useContentFormActions({
     const uiAccessType =
       contentSettingToUiMap[contentSettingAccessType] ||
       ADMISSION_REQUIREMENT_VALUES.free;
-    setCollectionAccessType(uiAccessType);
+    applySettingsSnapshot(buildSettingsSnapshot(uiAccessType));
     setContentSettingLoaded(true);
   }
 
@@ -373,6 +417,11 @@ export function useContentFormActions({
             : undefined,
       });
 
+      const nextHasPassword =
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+        (Boolean(collectionPasswords.trim()) ||
+          Boolean(selectedCollection.hasPassword));
+
       setCollections((prev) =>
         prev.map((c) =>
           c.id === selectedCollection.id
@@ -387,18 +436,33 @@ export function useContentFormActions({
                   ? parseFloat(collectionPurchaseAmount)
                   : null,
                 rentDuration: hasRental ? collectionAccessDuration : null,
+                hasPassword: nextHasPassword,
               }
             : c,
         ),
       );
 
-      setSelectedCollection({
+      const nextCollection = {
         ...selectedCollection,
         accessType: apiAccessType,
         description: collectionDescription.trim(),
         rentPrice: hasRental ? parseFloat(collectionRentalAmount) : null,
         buyPrice: hasPurchase ? parseFloat(collectionPurchaseAmount) : null,
         rentDuration: hasRental ? collectionAccessDuration : null,
+        hasPassword: nextHasPassword,
+      };
+
+      setSelectedCollection(nextCollection);
+
+      applySettingsSnapshot({
+        accessType: collectionAccessType,
+        passwords: "",
+        description: collectionDescription.trim(),
+        rentalAmount: hasRental ? collectionRentalAmount : "",
+        purchaseAmount: hasPurchase ? collectionPurchaseAmount : "",
+        accessDuration: hasRental
+          ? collectionAccessDuration
+          : PAYMENT_DEFAULT_ACCESS_DURATION,
       });
 
       await queryClient.invalidateQueries({
@@ -421,7 +485,26 @@ export function useContentFormActions({
     try {
       const apiAccessType =
         uiToContentSettingMap[collectionAccessType] ?? ADMISSION_TYPE.FREE;
-      await saveContentSetting(apiAccessType);
+      const payload: SaveContentSettingPayload = { accessType: apiAccessType };
+
+      if (
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+        collectionPasswords.trim()
+      ) {
+        payload.password = collectionPasswords.trim();
+      }
+
+      await saveContentSetting(payload);
+
+      applySettingsSnapshot({
+        accessType: collectionAccessType,
+        passwords: "",
+        description: "",
+        rentalAmount: "",
+        purchaseAmount: "",
+        accessDuration: PAYMENT_DEFAULT_ACCESS_DURATION,
+      });
+
       setShowSaveSuccessModal(true);
     } catch {
       toast.error(t(ERROR_MESSAGES.SAVE_SETTINGS_FAILED));
@@ -460,6 +543,10 @@ export function useContentFormActions({
       cancelAppearance();
       return;
     }
+    if (activeTab === SETTINGS) {
+      applySettingsSnapshot(savedSettings);
+      return;
+    }
     openDiscardModal();
   };
 
@@ -478,6 +565,14 @@ export function useContentFormActions({
     formState.tags !== savedFormState.tags ||
     formState.mediaCardThumbnail !== savedFormState.mediaCardThumbnail ||
     formState.portraitThumbnail !== savedFormState.portraitThumbnail;
+
+  const hasSettingsUnsavedChanges =
+    collectionAccessType !== savedSettings.accessType ||
+    collectionPasswords !== savedSettings.passwords ||
+    collectionDescription !== savedSettings.description ||
+    collectionRentalAmount !== savedSettings.rentalAmount ||
+    collectionPurchaseAmount !== savedSettings.purchaseAmount ||
+    collectionAccessDuration !== savedSettings.accessDuration;
 
   const closeContentUpload = () => {
     contentTypeFlow.close();
@@ -655,6 +750,7 @@ export function useContentFormActions({
     hasUnsavedChanges: hasAppearanceChanges,
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
+    hasSettingsUnsavedChanges,
     handleUploadSuccess,
     handleBackToBase,
     handleBackToBaseStateOnly,

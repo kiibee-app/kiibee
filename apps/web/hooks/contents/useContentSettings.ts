@@ -5,11 +5,19 @@ import { axiosClient } from "@/lib/http/axiosClient";
 import { API } from "@/lib/http/api/endpoints";
 import { CACHE_CONFIG } from "@/config/queryCacheConfig";
 
+export type ContentSettingData = {
+  accessType?: string;
+  userId?: string;
+  hasPassword?: boolean;
+};
+
 type ContentSettingResponse = {
-  data?: {
-    accessType?: string;
-    userId?: string;
-  };
+  data?: ContentSettingData;
+};
+
+export type SaveContentSettingPayload = {
+  accessType: string;
+  password?: string;
 };
 
 export const CONTENT_SETTING_QUERY_KEY = [API.content.setting];
@@ -27,8 +35,8 @@ export function useContentSettings() {
   });
 
   const mutation = useMutation({
-    mutationFn: async (accessType: string) => {
-      const res = await axiosClient.put(API.content.setting, { accessType });
+    mutationFn: async (payload: SaveContentSettingPayload) => {
+      const res = await axiosClient.put(API.content.setting, payload);
       return res.data;
     },
     onSuccess: () => {

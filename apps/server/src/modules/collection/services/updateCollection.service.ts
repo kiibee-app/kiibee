@@ -6,7 +6,7 @@ import { collections } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
-import { hashPassword } from 'src/utils/passwordHash';
+import { hashAccessPasswords } from 'src/utils/accessPassword';
 
 import { UpdateCollectionDto } from '../dto/createCollection.dto';
 import { slugGenerator } from '../collection.helper';
@@ -61,9 +61,13 @@ export const updateCollection = async (
       }
     }
 
+    if (dto.accessType !== undefined && dto.accessType !== 'password') {
+      updateData.passwordHash = null;
+    }
+
     if (dto.password !== undefined) {
-      updateData.passwordHash = dto.password
-        ? await hashPassword(dto.password)
+      updateData.passwordHash = dto.password.trim()
+        ? await hashAccessPasswords(dto.password)
         : null;
     }
 
