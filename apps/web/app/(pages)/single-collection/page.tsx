@@ -10,12 +10,16 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
 import { getTutorialCollectionById } from "@/utils/tutorialCollections";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
+import { VARIANT_CONTENT } from "@/utils/Constants";
 
 function SingleCollectionContent() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const section = getTutorialCollectionById(id);
+  const { gateType } = useCollectionAccessGate();
 
   if (!section) {
     return (
@@ -29,10 +33,14 @@ function SingleCollectionContent() {
         title={section.title}
         primaryContentId={section.tutorials[0]?.id}
       />
-      <CollectionContent
-        videos={section.tutorials}
-        maxWidth={section.gridMaxWidth}
-      />
+      {gateType ? (
+        <AccessGate type={gateType} variant={VARIANT_CONTENT} />
+      ) : (
+        <CollectionContent
+          videos={section.tutorials}
+          maxWidth={section.gridMaxWidth}
+        />
+      )}
     </Section>
   );
 }

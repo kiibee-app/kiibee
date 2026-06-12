@@ -372,3 +372,24 @@ export const STATUS_TONE = {
 export type StatusTone = (typeof STATUS_TONE)[keyof typeof STATUS_TONE];
 
 export const PAYMENT_QUERY_KEY = "payment";
+
+export type AccessGateType = "code" | "email";
+export type AccessGateVariant = "page" | "content";
+
+export const VARIANT_CONTENT: AccessGateVariant = "content";
+export const VARIANT_PAGE: AccessGateVariant = "page";
+export const TYPE_CODE: AccessGateType = "code";
+export const TYPE_EMAIL: AccessGateType = "email";
+export const GATE_QUERY_PARAM = "gate";
+
+export const INPUT_TYPE_TEXT = "text";
+export const INPUT_TYPE_EMAIL = "email";
+export const BUTTON_TYPE_SUBMIT = "submit";
+
+export const AUTOCOMPLETE_OFF = "off";
+export const AUTOCOMPLETE_NAME = "name";
+export const AUTOCOMPLETE_EMAIL = "email";
+
+export const HTML_ID_CODE = "access-gate-code";
+export const HTML_ID_NAME = "access-gate-name";
+export const HTML_ID_EMAIL = "access-gate-email";
