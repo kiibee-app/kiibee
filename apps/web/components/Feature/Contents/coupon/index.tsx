@@ -183,13 +183,7 @@ export default function CouponTable({
               return (
                 <CodesWrapper>
                   {row.codes.map((code) => (
-                    <CodeBadge
-                      key={code}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCopyCode(code);
-                      }}
-                    >
+                    <CodeBadge key={code}>
                       {code}
                       <CopyButton
                         onClick={(e) => {
