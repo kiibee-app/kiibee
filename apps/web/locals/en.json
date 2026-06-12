@@ -1595,6 +1595,10 @@
       "title": "Your collection is empty.",
       "description": "Add content to your collection which will then be displayed on your channel."
     },
+    "emptyCoupon": {
+      "title": "No coupons yet.",
+      "description": "Create your first coupon to start offering discounts."
+    },
     "deleteModal": {
       "title": "Delete content?",
       "message": "Are you sure you want to delete this content? This action cannot be undone.",

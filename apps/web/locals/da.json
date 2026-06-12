@@ -1588,6 +1588,10 @@
       "title": "Din samling er tom.",
       "description": "Tilføj indhold til din samling, som derefter vises på din kanal."
     },
+    "emptyCoupon": {
+      "title": "Ingen kuponer endnu.",
+      "description": "Opret din første kupon for at begynde at tilbyde rabatter."
+    },
     "deleteModal": {
       "title": "Delete content?",
       "message": "Are you sure you want to delete this content? This action cannot be undone.",
