@@ -3,6 +3,8 @@ import { existsSync, readdirSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { eq } from 'drizzle-orm';
 
+import { resolvePublicMediaUrl } from 'src/utils/resolvePublicMediaUrl';
+
 import { db } from '../db';
 import {
   auditLogs,
@@ -170,7 +172,7 @@ function imageUrl(value: unknown): string | null {
     return null;
   }
 
-  return textOrNull((value as JsonRecord).src);
+  return resolvePublicMediaUrl(textOrNull((value as JsonRecord).src));
 }
 
 function isEnabled(value: unknown): boolean {

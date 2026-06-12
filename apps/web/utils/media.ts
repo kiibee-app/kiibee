@@ -13,6 +13,54 @@ export const DEFAULT_CTA_BACKGROUND_ASPECT = 1440 / 682;
 
 const REMOTE_IMAGE_PATTERN = /^https?:\/\//;
 const KIIBEE_MEDIA_BASE_URL = "https://kiibee.dk";
+const KIIBEE_MEDIA_HOSTS = new Set(["kiibee.dk", "www.kiibee.dk"]);
+const KIIBEE_MEDIA_PATH_PREFIX = /^\/media\//;
+
+function getMediaCdnBase(): string | null {
+  const base = process.env.NEXT_PUBLIC_MEDIA_CDN_URL?.trim();
+  return base ? base.replace(/\/$/, "") : null;
+}
+
+function getMediaCdnStripPrefix(): string {
+  return process.env.NEXT_PUBLIC_MEDIA_CDN_STRIP_PREFIX?.trim() || "media";
+}
+
+function toCdnMediaPath(pathname: string): string {
+  const path = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  const stripPrefix = getMediaCdnStripPrefix();
+  const mediaPrefix = `/${stripPrefix}`;
+
+  if (stripPrefix && path.startsWith(`${mediaPrefix}/`)) {
+    return path.slice(mediaPrefix.length);
+  }
+
+  return path;
+}
+
+function buildCdnMediaUrl(pathname: string): string | null {
+  const cdnBase = getMediaCdnBase();
+  if (!cdnBase) {
+    return null;
+  }
+
+  return `${cdnBase}${toCdnMediaPath(pathname)}`;
+}
+
+function rewriteKiibeeMediaUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    if (
+      KIIBEE_MEDIA_HOSTS.has(parsed.hostname) &&
+      KIIBEE_MEDIA_PATH_PREFIX.test(parsed.pathname)
+    ) {
+      return buildCdnMediaUrl(parsed.pathname) ?? url;
+    }
+  } catch {
+    return url;
+  }
+
+  return url;
+}
 
 export function resolveImageUrl(image: ImageSource) {
   return isString(image) ? image : image.src;
@@ -61,15 +109,15 @@ export function resolvePublicMediaUrl(url?: string | null): string | null {
   }
 
   if (REMOTE_IMAGE_PATTERN.test(trimmed)) {
-    return trimmed;
+    return rewriteKiibeeMediaUrl(trimmed);
   }
 
   if (trimmed.startsWith("//")) {
-    return `https:${trimmed}`;
+    return rewriteKiibeeMediaUrl(`https:${trimmed}`);
   }
 
   if (trimmed.startsWith("/")) {
-    return `${KIIBEE_MEDIA_BASE_URL}${trimmed}`;
+    return buildCdnMediaUrl(trimmed) ?? `${KIIBEE_MEDIA_BASE_URL}${trimmed}`;
   }
 
   return trimmed;
