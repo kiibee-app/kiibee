@@ -38,6 +38,7 @@ export const CONTENT_RESPONSE_KEYS = {
   BUY_PRICE: "buyPrice",
   RENT_PRICE: "rentPrice",
   RENT_DURATION_HOURS: "rentDurationHours",
+  DURATION: "duration",
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
   NAME: "name",
@@ -67,6 +68,7 @@ export const CONTENT_TRANSLATION_KEYS = {
     createdAt: "singleContent.meta.createdAt",
     accessType: "singleContent.meta.accessType",
     visibility: "singleContent.meta.visibility",
+    duration: "singleContent.meta.duration",
   },
 } as const;
 
@@ -86,6 +88,7 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.BUY_PRICE]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.RENT_PRICE]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS]?: string | number | null;
+  [CONTENT_RESPONSE_KEYS.DURATION]?: number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
   accessInfo?: {
@@ -292,6 +295,12 @@ export const getSingleContentProps = (
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.visibility),
             value: visibility,
+          }
+        : undefined,
+      content[CONTENT_RESPONSE_KEYS.DURATION]
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.duration),
+            value: `${content[CONTENT_RESPONSE_KEYS.DURATION]} min`,
           }
         : undefined,
     ].filter(Boolean) as NonNullable<SingleContentPageProps["metaItems"]>,

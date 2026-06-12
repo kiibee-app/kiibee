@@ -968,7 +968,8 @@
     "meta": {
       "createdAt": "Oprettet:",
       "accessType": "Adgang:",
-      "visibility": "Synlighed:"
+      "visibility": "Synlighed:",
+      "duration": "Varighed:"
     }
   },
   "singleCollection": {

@@ -969,7 +969,8 @@
     "meta": {
       "createdAt": "Created:",
       "accessType": "Access:",
-      "visibility": "Visibility:"
+      "visibility": "Visibility:",
+      "duration": "Duration:"
     }
   },
   "singleCollection": {
