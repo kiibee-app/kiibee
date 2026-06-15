@@ -4,6 +4,7 @@ import { join, resolve } from 'path';
 import { eq } from 'drizzle-orm';
 
 import { hashPassword } from 'src/utils/passwordHash';
+import { resolvePublicMediaUrl } from 'src/utils/resolvePublicMediaUrl';
 
 import { db } from '../db';
 import {
@@ -17,7 +18,6 @@ import {
   users,
 } from '../schema';
 
-const KIIBEE_BASE_URL = 'https://kiibee.dk';
 const DEFAULT_RENT_DURATION_HOURS = 48;
 const DEFAULT_COLLECTION_NAME = 'Shows';
 
@@ -191,15 +191,7 @@ function resolveMediaUrl(value: unknown): string | null {
   }
 
   if (typeof value === 'string') {
-    if (value.startsWith('http://') || value.startsWith('https://')) {
-      return value;
-    }
-
-    if (value.startsWith('/')) {
-      return `${KIIBEE_BASE_URL}${value}`;
-    }
-
-    return value;
+    return resolvePublicMediaUrl(value);
   }
 
   if (typeof value === 'object' && value !== null) {

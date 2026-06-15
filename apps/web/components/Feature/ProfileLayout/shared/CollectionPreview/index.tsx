@@ -23,6 +23,11 @@ import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { getContentTypeLabel } from "@/utils/content";
+import { resolvePublicMediaUrl } from "@/utils/media";
+import {
+  getContentDetail,
+  type ContentDetailResponse,
+} from "@/utils/contentApi";
 import { tutorialVideos } from "@/utils/data";
 import { type TutorialVideo, type TutorialButton } from "@/utils/types";
 import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
@@ -87,6 +92,12 @@ function PrivateCollectionPreview({
                   (collectionIndex + contentIndex) % tutorialVideos.length
                 ];
 
+              const contentResponse =
+                await axiosClient.get<ContentDetailResponse>(
+                  API.content.get(content.id),
+                );
+              const contentDetail = getContentDetail(contentResponse.data);
+
               const seeContentButton: TutorialButton = {
                 label: seeContentLabel,
                 variant: VARIANT.SECONDARY,
@@ -101,7 +112,9 @@ function PrivateCollectionPreview({
                 published: content.createdAt,
                 formatType: content.contentType,
                 formatLabel: getContentTypeLabel(content.contentType),
-                image: fallbackTemplate.image,
+                image:
+                  resolvePublicMediaUrl(contentDetail?.thumbnailUrl) ??
+                  fallbackTemplate.image,
                 buttons: [seeContentButton],
               };
             }),
