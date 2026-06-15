@@ -379,6 +379,14 @@ export const MetaValueText = styled.span<{ $strong?: boolean }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme, $strong }) =>
     $strong ? theme.typography.Body_Bold : theme.typography.Body_Medium}
+
+  a {
+    color: ${({ theme }) => theme.colors.primary.BLUE};
+    text-decoration: underline;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 `;
 
 export const PreviewOverlay = styled.div`

@@ -1,3 +1,4 @@
+import React from "react";
 import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
@@ -17,6 +18,7 @@ import {
   isFreeContentItem,
 } from "@/utils/contentPricingActions";
 import { FORMAT_TYPE } from "@/utils/types";
+import { URL_PROTOCOL_REGEX, formatExternalUrl } from "@/utils/common";
 
 type Translate = (key: string) => string;
 type UnknownRecord = Record<string, unknown>;
@@ -42,6 +44,8 @@ export const CONTENT_RESPONSE_KEYS = {
   CATEGORIES: "categories",
   NAME: "name",
   CREATOR_ID: "creatorId",
+  PRODUCTION_COMPANY: "production_company",
+  MANUFACTURER_LINK: "manufacturerLink",
 } as const;
 
 export const CONTENT_MEDIA_RESPONSE_KEYS = {
@@ -67,6 +71,8 @@ export const CONTENT_TRANSLATION_KEYS = {
     createdAt: "singleContent.meta.createdAt",
     accessType: "singleContent.meta.accessType",
     visibility: "singleContent.meta.visibility",
+    productionCompany: "singleContent.meta.productionCompany",
+    manufacturerLink: "singleContent.meta.manufacturerLink",
   },
 } as const;
 
@@ -95,6 +101,8 @@ export type ContentDetailItem = {
     timeLeftText?: string;
   } | null;
   [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
+  [CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY]?: string | null;
+  [CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK]?: string | null;
 };
 
 export type ContentMediaUrlResponse = {
@@ -138,7 +146,7 @@ export const getContentUrl = (content?: ContentDetailItem) =>
   toTrimmedString(content?.[CONTENT_RESPONSE_KEYS.CONTENT_URL]);
 
 export const hasDirectPlaybackUrl = (url?: string | null) =>
-  Boolean(url && /^https?:\/\//i.test(url));
+  Boolean(url && URL_PROTOCOL_REGEX.test(url));
 
 export const resolveContentPlaybackUrl = (
   content: ContentDetailItem | undefined,
@@ -220,6 +228,13 @@ export const getSingleContentProps = (
     content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
   );
 
+  const productionCompany = toTrimmedString(
+    content[CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY],
+  );
+  const manufacturerLink = toTrimmedString(
+    content[CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK],
+  );
+
   return {
     contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
     title,
@@ -292,6 +307,26 @@ export const getSingleContentProps = (
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.visibility),
             value: visibility,
+          }
+        : undefined,
+      productionCompany
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.productionCompany),
+            value: productionCompany,
+          }
+        : undefined,
+      manufacturerLink
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.manufacturerLink),
+            value: React.createElement(
+              "a",
+              {
+                href: formatExternalUrl(manufacturerLink),
+                target: "_blank",
+                rel: "noopener noreferrer",
+              },
+              manufacturerLink,
+            ),
           }
         : undefined,
     ].filter(Boolean) as NonNullable<SingleContentPageProps["metaItems"]>,

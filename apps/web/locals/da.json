@@ -968,7 +968,9 @@
     "meta": {
       "createdAt": "Oprettet:",
       "accessType": "Adgang:",
-      "visibility": "Synlighed:"
+      "visibility": "Synlighed:",
+      "productionCompany": "Produktionsselskab:",
+      "manufacturerLink": "Producentlink:"
     }
   },
   "singleCollection": {

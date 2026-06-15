@@ -151,3 +151,12 @@ export function toCamelCaseKey(value: string): string {
     })
     .join("");
 }
+
+export const URL_PROTOCOL_REGEX = /^https?:\/\//i;
+
+export function formatExternalUrl(url: string): string {
+  if (URL_PROTOCOL_REGEX.test(url)) {
+    return url;
+  }
+  return `https://${url}`;
+}

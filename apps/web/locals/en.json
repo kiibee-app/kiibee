@@ -969,7 +969,9 @@
     "meta": {
       "createdAt": "Created:",
       "accessType": "Access:",
-      "visibility": "Visibility:"
+      "visibility": "Visibility:",
+      "productionCompany": "Production company:",
+      "manufacturerLink": "Manufacturer link:"
     }
   },
   "singleCollection": {
