@@ -32,6 +32,10 @@ type PricingItem = Pick<
   "accessType" | "rentPrice" | "buyPrice"
 >;
 
+export function extractPriceNumber(priceLabel: string): number {
+  return Number(priceLabel.replace(/[^0-9]/g, "")) || 0;
+}
+
 export function formatPriceLabel(
   prefix: string,
   price: string | number | null | undefined,

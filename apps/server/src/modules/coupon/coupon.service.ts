@@ -4,6 +4,7 @@ import { deleteCouponService } from './services/deleteCoupon.service';
 import { getCouponByIdService } from './services/getCouponById.service';
 import { getCouponsService } from './services/getCoupons.service';
 import { updateCouponService } from './services/updateCoupon.service';
+import { verifyCouponService } from './services/verifyCoupon.service';
 
 type CreateCouponPayload = {
   title?: string;
@@ -51,5 +52,9 @@ export class CouponService {
 
   async deleteCoupon(creatorId: string, couponId: string) {
     return deleteCouponService(creatorId, couponId);
+  }
+
+  async verifyCoupon(code: string, contentId?: string) {
+    return verifyCouponService(code, contentId);
   }
 }

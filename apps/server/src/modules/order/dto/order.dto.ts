@@ -10,4 +10,8 @@ export class CreateOrderInputDto {
 
   @IsString()
   itemType!: string;
+
+  @IsOptional()
+  @IsString()
+  couponCode?: string;
 }
