@@ -79,6 +79,7 @@ export default function CreatorProfile() {
     isSavingProfile,
     isChangingPassword,
     canSubmitPassword,
+    profileFieldErrors,
   } = useCreatorProfile();
 
   const fields = useMemo(() => getProfileFields(t), [t]);
@@ -144,6 +145,8 @@ export default function CreatorProfile() {
               onChange={onChange(field.key as keyof ProfileForm)}
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               labelMarginTop={index ? "16px" : undefined}
+              hasError={!!profileFieldErrors[field.key as keyof ProfileForm]}
+              errorMessage={profileFieldErrors[field.key as keyof ProfileForm]}
             />
           ))}
 
@@ -158,7 +161,12 @@ export default function CreatorProfile() {
           </Action>
         </Fields>
       </Card>
-      <CompanySection form={form} onChange={onChange} t={t} />
+      <CompanySection
+        form={form}
+        onChange={onChange}
+        t={t}
+        fieldErrors={profileFieldErrors}
+      />
       <PaymentSection form={form} onChange={onChange} t={t} />
       <DeleteSection onDelete={() => setShowDeleteModal(true)} />
 
