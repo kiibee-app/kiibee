@@ -12,10 +12,24 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+function shouldUseSmoothScroll(pathname: string) {
+  return !(
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/creator/") ||
+    pathname.startsWith("/auth") ||
+    pathname.startsWith("/explore") ||
+    pathname.startsWith("/content/") ||
+    pathname.startsWith("/subscription") ||
+    pathname.startsWith("/payment")
+  );
+}
+
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (!shouldUseSmoothScroll(pathname)) return;
+
     const lenis = new Lenis({
       autoRaf: false,
       smoothWheel: true,

@@ -8,7 +8,7 @@ import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import { LANDING_REVEAL } from "@/utils/landingUtils";
 import { useRecentContent } from "@/hooks/feed/useRecentContent";
-import { CATEGORY_ALL } from "@/utils/Constants";
+import { CATEGORY_ALL, EXPLORE_PAGE_SIZE } from "@/utils/Constants";
 import { toCamelCaseKey } from "@/utils/common";
 import type { TFunction } from "i18next";
 import {
@@ -47,7 +47,9 @@ const getCategoryLabel = (category: string, t: TFunction) => {
 export default function ExploreCategories() {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<string>(CATEGORY_ALL);
-  const { tutorials, isLoading } = useRecentContent();
+  const { tutorials, isLoading } = useRecentContent({
+    limit: EXPLORE_PAGE_SIZE,
+  });
 
   const categoriesList = useMemo(() => {
     const uniqueCategories = new Set<string>();

@@ -238,8 +238,8 @@ export const useExploreContent = ({
 export const useExploreTrendingContent = () =>
   useExploreTutorialSection("trending");
 
-export const useExploreRecentContent = () =>
-  useExploreTutorialSection("recent");
+export const useExploreRecentContent = (params?: UseExploreContentParams) =>
+  useExploreTutorialSection("recent", params);
 
 export const useExploreTopCreators = (limit = 6) => {
   const query = useExploreFeed();

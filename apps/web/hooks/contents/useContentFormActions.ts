@@ -57,6 +57,12 @@ import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
 
+const contentSettingToUiMap: Record<string, AdmissionRequirementValue> = {
+  free: ADMISSION_REQUIREMENT_VALUES.free,
+  set_password: ADMISSION_REQUIREMENT_VALUES.password,
+  request_email: ADMISSION_REQUIREMENT_VALUES.email,
+};
+
 type Params = {
   activeTab: ContentTab;
   isUploadMode: boolean;
@@ -123,52 +129,54 @@ export function useContentFormActions({
   const [collectionAccessDuration, setCollectionAccessDuration] =
     useState<AccessDurationValue>(PAYMENT_DEFAULT_ACCESS_DURATION);
 
-  const [prevCollectionId, setPrevCollectionId] = useState<string | null>(null);
+  const collectionId = selectedCollection?.id ?? null;
+  const [syncedCollectionId, setSyncedCollectionId] = useState<string | null>(
+    collectionId,
+  );
+  const [syncedSettingsKey, setSyncedSettingsKey] = useState(
+    contentSettingAccessType ?? null,
+  );
 
-  if (selectedCollection && selectedCollection.id !== prevCollectionId) {
-    setPrevCollectionId(selectedCollection.id);
-    const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
-    const uiAccessType =
-      apiToUiAccessTypeMap[apiAccessType] || ADMISSION_REQUIREMENT_VALUES.free;
-    setCollectionAccessType(uiAccessType);
-    setCollectionPasswords("");
-    setCollectionDescription(selectedCollection.description ?? "");
-    setCollectionRentalAmount(
-      selectedCollection.rentPrice != null
-        ? String(selectedCollection.rentPrice)
-        : "",
-    );
-    setCollectionPurchaseAmount(
-      selectedCollection.buyPrice != null
-        ? String(selectedCollection.buyPrice)
-        : "",
-    );
-    setCollectionAccessDuration(
-      (selectedCollection.rentDuration as AccessDurationValue) ??
-        (PAYMENT_DEFAULT_ACCESS_DURATION as AccessDurationValue),
-    );
-  } else if (!selectedCollection && prevCollectionId !== null) {
-    setPrevCollectionId(null);
-  }
+  if (selectedCollection) {
+    if (collectionId !== syncedCollectionId) {
+      setSyncedCollectionId(collectionId);
+      setSyncedSettingsKey(null);
 
-  const [contentSettingLoaded, setContentSettingLoaded] = useState(false);
+      const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
+      const uiAccessType =
+        apiToUiAccessTypeMap[apiAccessType] ||
+        ADMISSION_REQUIREMENT_VALUES.free;
+      setCollectionAccessType(uiAccessType);
+      setCollectionPasswords("");
+      setCollectionDescription(selectedCollection.description ?? "");
+      setCollectionRentalAmount(
+        selectedCollection.rentPrice != null
+          ? String(selectedCollection.rentPrice)
+          : "",
+      );
+      setCollectionPurchaseAmount(
+        selectedCollection.buyPrice != null
+          ? String(selectedCollection.buyPrice)
+          : "",
+      );
+      setCollectionAccessDuration(
+        (selectedCollection.rentDuration as AccessDurationValue) ??
+          (PAYMENT_DEFAULT_ACCESS_DURATION as AccessDurationValue),
+      );
+    }
+  } else {
+    if (syncedCollectionId !== null) {
+      setSyncedCollectionId(null);
+      setSyncedSettingsKey(null);
+    }
 
-  const contentSettingToUiMap: Record<string, AdmissionRequirementValue> = {
-    free: ADMISSION_REQUIREMENT_VALUES.free,
-    set_password: ADMISSION_REQUIREMENT_VALUES.password,
-    request_email: ADMISSION_REQUIREMENT_VALUES.email,
-  };
-
-  if (
-    !selectedCollection &&
-    contentSettingAccessType &&
-    !contentSettingLoaded
-  ) {
-    const uiAccessType =
-      contentSettingToUiMap[contentSettingAccessType] ||
-      ADMISSION_REQUIREMENT_VALUES.free;
-    setCollectionAccessType(uiAccessType);
-    setContentSettingLoaded(true);
+    const settingsKey = contentSettingAccessType ?? null;
+    if (settingsKey && settingsKey !== syncedSettingsKey) {
+      setSyncedSettingsKey(settingsKey);
+      const uiAccessType =
+        contentSettingToUiMap[settingsKey] || ADMISSION_REQUIREMENT_VALUES.free;
+      setCollectionAccessType(uiAccessType);
+    }
   }
 
   const handleUploadSuccess = (
