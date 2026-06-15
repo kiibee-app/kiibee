@@ -93,6 +93,24 @@ export const createCreatorRequestSchema = (messages: {
       path: ["agreed"],
     });
 
+export const createCreatorProfileSchema = (messages: {
+  firstNameRequired: string;
+  lastNameRequired: string;
+  cvrInvalid: string;
+}) =>
+  z
+    .object({
+      firstName: z.string().trim().min(1, messages.firstNameRequired),
+      lastName: z.string().trim().min(1, messages.lastNameRequired),
+      cvr: z
+        .string()
+        .trim()
+        .refine((val) => val.length === 0 || val.length >= 8, {
+          message: messages.cvrInvalid,
+        }),
+    })
+    .passthrough();
+
 export const createSupportContactSchema = (messages: {
   firstNameRequired: string;
   emailRequired: string;

@@ -907,7 +907,10 @@
   "creatorProfile": {
     "title": "Min konto",
     "firstName": "Fornavn",
+    "firstNameRequired": "Fornavn er påkrævet",
     "lastName": "Efternavn",
+    "lastNameRequired": "Efternavn er påkrævet",
+    "cvrInvalid": "CVR skal være på mindst 8 cifre",
     "passwordLabel": "Adgangskode",
     "changePassword": "Skift adgangskode",
     "companyName": "Firmanavn",

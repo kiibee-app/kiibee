@@ -26,6 +26,7 @@ import {
   type UpdateCreatorProfileResponse,
 } from "@/hooks/auth/creatorProfileApi";
 import { useProfileBase } from "@/hooks/useProfileBase";
+import { createCreatorProfileSchema } from "@/lib/validation/schema";
 import {
   applyDigitsOnlyInput,
   CREATOR_PROFILE_DIGITS_ONLY_SET,
@@ -37,6 +38,30 @@ export const useCreatorProfile = () => {
 
   const [form, setForm] = useState<ProfileForm>(EMPTY_CREATOR_PROFILE_FORM);
   const [saved, setSaved] = useState<ProfileForm>(EMPTY_CREATOR_PROFILE_FORM);
+  const [profileSubmitAttempted, setProfileSubmitAttempted] = useState(false);
+
+  const profileSchema = useMemo(
+    () =>
+      createCreatorProfileSchema({
+        firstNameRequired: t("creatorProfile.firstNameRequired"),
+        lastNameRequired: t("creatorProfile.lastNameRequired"),
+        cvrInvalid: t("creatorProfile.cvrInvalid"),
+      }),
+    [t],
+  );
+
+  const profileFieldErrors = useMemo(() => {
+    if (!profileSubmitAttempted) return {};
+
+    const parsed = profileSchema.safeParse(form);
+    if (parsed.success) return {};
+
+    return Object.fromEntries(
+      Object.entries(parsed.error.flatten().fieldErrors).map(
+        ([key, errors]) => [key, errors?.[0]],
+      ),
+    );
+  }, [profileSchema, form, profileSubmitAttempted]);
 
   const base = useProfileBase({
     form,
@@ -110,6 +135,13 @@ export const useCreatorProfile = () => {
   }, [base, saved, setAvatarImage]);
 
   const handleSave = async () => {
+    setProfileSubmitAttempted(true);
+
+    const parsed = profileSchema.safeParse(form);
+    if (!parsed.success) {
+      return;
+    }
+
     if (
       !base.isProfileChanged ||
       updateProfile.isPending ||
@@ -219,5 +251,6 @@ export const useCreatorProfile = () => {
     isChangingPassword: base.isChangingPassword,
     isLoadingProfile: profileQuery.isLoading,
     canSubmitPassword: base.canSubmitPassword,
+    profileFieldErrors,
   };
 };
