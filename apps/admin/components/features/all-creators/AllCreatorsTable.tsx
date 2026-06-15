@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { CreatorRequest } from "../../../types/creator-request";
 import {
   useCreatorRequests,
@@ -14,6 +14,13 @@ import {
   AllCreatorsState,
   AllCreatorsTabButton,
   AllCreatorsTabs,
+  SearchContainer,
+  SearchIconWrapper,
+  SearchInput,
+  AllCreatorsHeader,
+  SearchClearButton,
+  SearchIcon,
+  ClearIcon,
 } from "./AllCreators.styles";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
 import { ViewersTable } from "./ViewersTable";
@@ -27,16 +34,27 @@ import {
   ALL_CREATORS_TAB,
   type AllCreatorsTab,
   STORAGE_KEYS,
+  PLACEHOLDERS,
 } from "@/utils/constants";
+import { useDebounce } from "@/hooks/ui/use-debounce";
 
 export function AllCreatorsTable() {
   const [activeTab, setActiveTab] = useState<AllCreatorsTab>(
     ALL_CREATORS_TAB.CREATORS,
   );
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearch = useDebounce(searchTerm);
+
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
     null,
   );
-  const existingCreatorsQuery = useExistingCreators();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const handleSearchClear = () => {
+    setSearchTerm("");
+    searchInputRef.current?.focus();
+  };
+  const existingCreatorsQuery = useExistingCreators(debouncedSearch);
   const creatorRequestsQuery = useCreatorRequests();
   const viewersQuery = useViewers();
   const { creators, updateCreatorStatus } = useCreatorRequestOverrides(
@@ -60,18 +78,39 @@ export function AllCreatorsTable() {
     storageKey: STORAGE_KEYS.PAGE_SIZE_ALL_CREATORS,
   });
 
-  const totalRequests = creators.length;
+  const debouncedSearchLower = debouncedSearch.toLowerCase().trim();
+
+  const matchUser = (user: {
+    firstName?: string | null;
+    lastName?: string | null;
+    fullName?: string | null;
+    email: string;
+  }) => {
+    if (!debouncedSearchLower) return true;
+    return (
+      user.fullName?.toLowerCase().includes(debouncedSearchLower) ||
+      user.firstName?.toLowerCase().includes(debouncedSearchLower) ||
+      user.lastName?.toLowerCase().includes(debouncedSearchLower) ||
+      user.email.toLowerCase().includes(debouncedSearchLower)
+    );
+  };
+
+  const filteredRequests = creators.filter(matchUser);
+
+  const totalRequests = filteredRequests.length;
   const requestsPagination = usePagination({
-    data: creators,
+    data: filteredRequests,
     totalItems: totalRequests,
     initialPageSize: 10,
     storageKey: STORAGE_KEYS.PAGE_SIZE_CREATOR_REQUESTS,
   });
 
   const viewers = viewersQuery.data ?? [];
-  const totalViewers = viewers.length;
+  const filteredViewers = viewers.filter(matchUser);
+
+  const totalViewers = filteredViewers.length;
   const viewersPagination = usePagination({
-    data: viewers,
+    data: filteredViewers,
     totalItems: totalViewers,
     initialPageSize: 10,
     storageKey: STORAGE_KEYS.PAGE_SIZE_VIEWERS,
@@ -214,29 +253,52 @@ export function AllCreatorsTable() {
 
   return (
     <AllCreatorsLayout>
-      <AllCreatorsTabs aria-label="Creator list views">
-        <AllCreatorsTabButton
-          type="button"
-          $active={activeTab === ALL_CREATORS_TAB.CREATORS}
-          onClick={() => setActiveTab(ALL_CREATORS_TAB.CREATORS)}
-        >
-          Existing Creators ({totalExistingCreators})
-        </AllCreatorsTabButton>
-        <AllCreatorsTabButton
-          type="button"
-          $active={activeTab === ALL_CREATORS_TAB.VIEWERS}
-          onClick={() => setActiveTab(ALL_CREATORS_TAB.VIEWERS)}
-        >
-          Viewers ({totalViewers})
-        </AllCreatorsTabButton>
-        <AllCreatorsTabButton
-          type="button"
-          $active={activeTab === ALL_CREATORS_TAB.REQUESTS}
-          onClick={() => setActiveTab(ALL_CREATORS_TAB.REQUESTS)}
-        >
-          Pending Requests ({totalRequests})
-        </AllCreatorsTabButton>
-      </AllCreatorsTabs>
+      <AllCreatorsHeader>
+        <AllCreatorsTabs aria-label="Creator list views">
+          <AllCreatorsTabButton
+            type="button"
+            $active={activeTab === ALL_CREATORS_TAB.CREATORS}
+            onClick={() => setActiveTab(ALL_CREATORS_TAB.CREATORS)}
+          >
+            Existing Creators ({totalExistingCreators})
+          </AllCreatorsTabButton>
+          <AllCreatorsTabButton
+            type="button"
+            $active={activeTab === ALL_CREATORS_TAB.VIEWERS}
+            onClick={() => setActiveTab(ALL_CREATORS_TAB.VIEWERS)}
+          >
+            Viewers ({totalViewers})
+          </AllCreatorsTabButton>
+          <AllCreatorsTabButton
+            type="button"
+            $active={activeTab === ALL_CREATORS_TAB.REQUESTS}
+            onClick={() => setActiveTab(ALL_CREATORS_TAB.REQUESTS)}
+          >
+            Pending Requests ({totalRequests})
+          </AllCreatorsTabButton>
+        </AllCreatorsTabs>
+
+        <SearchContainer>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <SearchInput
+            ref={searchInputRef}
+            placeholder={PLACEHOLDERS.SEARCH_USERS}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          {searchTerm ? (
+            <SearchClearButton
+              type="button"
+              onClick={handleSearchClear}
+              aria-label="Clear search"
+            >
+              <ClearIcon />
+            </SearchClearButton>
+          ) : null}
+        </SearchContainer>
+      </AllCreatorsHeader>
 
       <AllCreatorsPanel>
         {activeTab === ALL_CREATORS_TAB.CREATORS
