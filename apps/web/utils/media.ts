@@ -199,7 +199,11 @@ export function isCloudflareStreamEmbedUrl(url?: string | null): boolean {
   }
 
   try {
-    return new URL(trimmed).hostname === "iframe.cloudflarestream.com";
+    const hostname = new URL(trimmed).hostname;
+    return (
+      hostname === "iframe.cloudflarestream.com" ||
+      hostname.endsWith(".cloudflarestream.com")
+    );
   } catch {
     return false;
   }
