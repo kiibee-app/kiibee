@@ -19,4 +19,11 @@ export class ViewerController {
     const userId = req.user.userId;
     return this.viewerService.getRentedDataService(userId);
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('previously-rented-data')
+  async getExpiredRentedData(@Req() req: any) {
+    const userId = req.user.userId;
+    return this.viewerService.getExpiredRentedDataService(userId);
+  }
 }

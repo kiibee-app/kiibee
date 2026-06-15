@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { getPurchasedData } from './services/getPurchasedData.service';
 import { getRentedData } from './services/getRentedData.service';
+import { getExpiredRentedData } from './services/getExpiredRentedData.service';
 
 @Injectable()
 export class ViewerService {
@@ -10,5 +11,9 @@ export class ViewerService {
 
   async getRentedDataService(userId: string) {
     return getRentedData(userId);
+  }
+
+  async getExpiredRentedDataService(userId: string) {
+    return getExpiredRentedData(userId);
   }
 }
