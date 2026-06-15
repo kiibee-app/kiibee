@@ -967,6 +967,7 @@
       "accessHours": "Access for {{count}} hours"
     },
     "meta": {
+      "category": "Category:",
       "publishedYear": "Published:",
       "createdAt": "Created:",
       "accessType": "Access:",
