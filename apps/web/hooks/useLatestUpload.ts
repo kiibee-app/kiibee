@@ -43,7 +43,7 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           success?: boolean;
           message?: string;
           data?: FeedContentItem[] | null;
-        }>(API.content.all, { creatorId: publicCreatorId });
+        }>(API.content.public, { creatorId: publicCreatorId });
 
         const items = response.data?.data;
         if (!Array.isArray(items) || items.length === 0) return null;

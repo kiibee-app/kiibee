@@ -138,7 +138,7 @@ export function useCategoryContent(categoryName: string) {
       };
 
       const response = await axiosClient.post<ApiResponse<FeedContentItem[]>>(
-        API.content.all,
+        API.content.public,
         body,
         { params: queryParams },
       );

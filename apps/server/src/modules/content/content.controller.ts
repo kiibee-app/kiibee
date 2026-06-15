@@ -115,8 +115,10 @@ export class ContentController {
     return this.contentService.createOrUpdateContentSetting(userId, dto);
   }
 
+  @UseGuards(JwtAuthGuard, CreatorGuard)
   @Post('all')
   async getAllContents(
+    @Req() req: any,
     @Query('limit') limit?: string,
     @Query('search') search?: string,
     @Query('sort') sort?: getAllContentsService.SortField,
@@ -130,7 +132,7 @@ export class ContentController {
     const filter: getAllContentsService.GetAllContentsFilter = {
       search: body?.search,
       contentTypeId: body?.contentTypeId,
-      creatorId: body?.creatorId,
+      creatorId: req.user.userId,
       categoryId: body?.categoryId,
       accessType: body?.accessType,
       minPrice: body?.minPrice,
@@ -146,12 +148,49 @@ export class ContentController {
     );
   }
 
+  @Post('public')
+  async getPublicContents(
+    @Query('limit') limit?: string,
+    @Query('search') search?: string,
+    @Query('sort') sort?: getAllContentsService.SortField,
+    @Body() body?: getAllContentsService.GetAllContentsFilter,
+  ) {
+    if (!body?.creatorId) {
+      return { success: false, message: 'creatorId is required' };
+    }
+
+    const parsedLimit = Number.parseInt(limit ?? '24', 10);
+
+    const safeLimit =
+      Number.isFinite(parsedLimit) && parsedLimit > 0 ? parsedLimit : 24;
+
+    const filter: getAllContentsService.GetAllContentsFilter = {
+      search: body?.search,
+      contentTypeId: body?.contentTypeId,
+      creatorId: body.creatorId,
+      categoryId: body?.categoryId,
+      accessType: body?.accessType,
+      minPrice: body?.minPrice,
+      maxPrice: body?.maxPrice,
+      rating: body?.rating,
+    };
+
+    return this.contentService.getAllContents(
+      safeLimit,
+      search ?? '',
+      sort ?? 'all',
+      filter,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Get(':contentId/related-collection')
   async getRelatedCollectionContent(@Req() req: any) {
     const contentId = req.params.contentId;
     return this.contentService.getRelatedCollectionContent(contentId);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id/:userId')
   async getSingleContent(@Req() req: any) {
     const contentId = req.params.id;

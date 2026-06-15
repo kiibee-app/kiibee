@@ -41,7 +41,7 @@ export default function CollectionList() {
 
   const { data: privateCollectionsResponse } =
     useGetAPI<CollectionsApiResponse>(API.collection.getAll, undefined, {
-      enabled: !isPublicView,
+      enabled: !isPublicView && authStorage.hasSession(),
     });
 
   const { data: collectionContentsMap } = useQuery<Record<string, string>>({

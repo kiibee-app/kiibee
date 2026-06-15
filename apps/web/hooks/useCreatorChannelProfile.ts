@@ -23,11 +23,13 @@ import {
 } from "@/hooks/contents/collectionApi";
 import { CREATOR_ID_PARAM } from "@/utils/creatorChannel";
 import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
+import { authStorage } from "@/lib/auth/authStorage";
 
 export function useCreatorChannelProfile(enabled = true) {
   const searchParams = useSearchParams();
   const publicCreatorId = searchParams.get(CREATOR_ID_PARAM);
   const isPublicView = Boolean(publicCreatorId);
+  const hasSession = authStorage.hasSession();
 
   const storedUser = useStoredLoginUser();
   const { creator: publicCreator, isLoading: isLoadingPublic } =
@@ -37,7 +39,7 @@ export function useCreatorChannelProfile(enabled = true) {
     API.auth.creatorProfile,
     undefined,
     {
-      enabled: enabled && !isPublicView,
+      enabled: enabled && !isPublicView && hasSession,
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -47,7 +49,7 @@ export function useCreatorChannelProfile(enabled = true) {
     API.content.appearance,
     undefined,
     {
-      enabled: enabled && !isPublicView,
+      enabled: enabled && !isPublicView && hasSession,
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -57,7 +59,7 @@ export function useCreatorChannelProfile(enabled = true) {
     API.collection.getAll,
     undefined,
     {
-      enabled: enabled && !isPublicView,
+      enabled: enabled && !isPublicView && hasSession,
       retry: false,
       refetchOnWindowFocus: false,
     },

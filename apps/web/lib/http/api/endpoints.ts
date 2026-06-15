@@ -33,6 +33,7 @@ export const API = {
   content: {
     create: "/content/create",
     all: "/content/all",
+    public: "/content/public",
     categories: "/content/categories",
     types: "/content/types",
     collection: (id: string) => `/content/collection/${id}`,

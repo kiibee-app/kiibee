@@ -14,16 +14,18 @@ import {
   getAvatarUrl,
   toOptionalString,
 } from "@/utils/creatorProfile";
+import { authStorage } from "@/lib/auth/authStorage";
 
 export function useProfileSync() {
   const searchParams = useSearchParams();
   const publicCreatorId = searchParams.get("creatorId");
+  const hasSession = authStorage.hasSession();
 
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
     API.auth.creatorProfile,
     undefined,
     {
-      enabled: !publicCreatorId,
+      enabled: !publicCreatorId && hasSession,
       retry: false,
       refetchOnWindowFocus: false,
     },

@@ -22,10 +22,10 @@ export function usePublicCreatorContent(creatorId: string | null) {
   const { t } = useTranslation();
 
   const query = useQuery<PublicCreatorContentResponse>({
-    queryKey: [API.content.all, { creatorId }],
+    queryKey: [API.content.public, { creatorId }],
     queryFn: async () => {
       const response = await axiosClient.post<PublicCreatorContentResponse>(
-        API.content.all,
+        API.content.public,
         { creatorId },
       );
       return response.data;
