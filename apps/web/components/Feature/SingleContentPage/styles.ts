@@ -473,6 +473,10 @@ export const PurchaseModalCardImage = styled.div`
   overflow: hidden;
   flex-shrink: 0;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+
+  img {
+    object-fit: cover;
+  }
 `;
 
 export const PurchaseModalCardInfo = styled.div`
@@ -595,4 +599,8 @@ export const PurchaseModalPriceLabel = styled.span`
 
 export const PurchaseModalPriceValue = styled.span`
   color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalButtonWrapper = styled.div`
+  padding: 0 1.5rem 1.5rem;
 `;
