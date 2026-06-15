@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { ImageSource } from "@/utils/Constants";
 import {
   ReadMoreButton,
@@ -112,6 +114,11 @@ export default function LatestUpload({ data }: LatestUploadProps) {
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const { navigateToContent } = useProtectedContentNavigation();
+  const { publicCreatorId } = useCreatorChannelProfile();
+  const storedUser = useStoredLoginUser();
+  const isCreator = Boolean(
+    publicCreatorId && storedUser?.id && storedUser.id === publicCreatorId,
+  );
 
   const computedActions = useMemo((): ComputedAction[] => {
     if (data.contentId) {
@@ -165,7 +172,12 @@ export default function LatestUpload({ data }: LatestUploadProps) {
     }));
   }, [data, t]);
 
-  const [primaryAction, secondaryAction] = computedActions;
+  const visibleActions = useMemo(() => {
+    if (!isCreator) return computedActions;
+    return computedActions.filter((action) => !action.href?.includes("#buy"));
+  }, [computedActions, isCreator]);
+
+  const [primaryAction, secondaryAction] = visibleActions;
   const handleLogin = () => {
     const next = encodeURIComponent(
       window.location.pathname + window.location.search,
@@ -234,60 +246,64 @@ export default function LatestUpload({ data }: LatestUploadProps) {
           <Title>{data.title}</Title>
           <Paragraph>{data.description}</Paragraph>
 
-          <ActionButtons>
-            <ReadMoreButton
-              type="button"
-              onClick={() => {
-                if (primaryAction.href) {
-                  const isBuy =
-                    primaryAction.title.toLowerCase().includes("buy") ||
-                    primaryAction.title.toLowerCase().includes("køb");
-                  if (isBuy && !authStorage.hasSession()) {
-                    setLoginModalVisible(true);
-                  } else {
-                    navigateToContent(primaryAction.href, true);
-                  }
-                } else {
-                  setLoginModalVisible(true);
-                }
-              }}
-              $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
-            >
-              <ActionMainText
-                $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
-              >
-                {primaryAction.title}
-              </ActionMainText>
-              {primaryAction.subtitle ? (
-                <ActionSubText
-                  $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
-                >
-                  {primaryAction.subtitle}
-                </ActionSubText>
-              ) : null}
-            </ReadMoreButton>
-
-            {secondaryAction ? (
+          {primaryAction ? (
+            <ActionButtons>
               <ReadMoreButton
                 type="button"
                 onClick={() => {
-                  if (secondaryAction.href) {
-                    navigateToContent(secondaryAction.href, true);
+                  if (primaryAction.href) {
+                    const isBuy =
+                      primaryAction.title.toLowerCase().includes("buy") ||
+                      primaryAction.title.toLowerCase().includes("køb");
+                    if (isBuy && !authStorage.hasSession()) {
+                      setLoginModalVisible(true);
+                    } else {
+                      navigateToContent(primaryAction.href, true);
+                    }
+                  } else {
+                    setLoginModalVisible(true);
                   }
                 }}
-                $tone={VARIANT.SECONDARY}
+                $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
               >
-                <ActionMainText $tone={VARIANT.SECONDARY}>
-                  {secondaryAction.title}
+                <ActionMainText
+                  $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
+                >
+                  {primaryAction.title}
                 </ActionMainText>
-                {secondaryAction.subtitle ? (
-                  <ActionSubText $tone={VARIANT.SECONDARY}>
-                    {secondaryAction.subtitle}
+                {primaryAction.subtitle ? (
+                  <ActionSubText
+                    $tone={
+                      secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY
+                    }
+                  >
+                    {primaryAction.subtitle}
                   </ActionSubText>
                 ) : null}
               </ReadMoreButton>
-            ) : null}
-          </ActionButtons>
+
+              {secondaryAction ? (
+                <ReadMoreButton
+                  type="button"
+                  onClick={() => {
+                    if (secondaryAction.href) {
+                      navigateToContent(secondaryAction.href, true);
+                    }
+                  }}
+                  $tone={VARIANT.SECONDARY}
+                >
+                  <ActionMainText $tone={VARIANT.SECONDARY}>
+                    {secondaryAction.title}
+                  </ActionMainText>
+                  {secondaryAction.subtitle ? (
+                    <ActionSubText $tone={VARIANT.SECONDARY}>
+                      {secondaryAction.subtitle}
+                    </ActionSubText>
+                  ) : null}
+                </ReadMoreButton>
+              ) : null}
+            </ActionButtons>
+          ) : null}
         </TextSection>
       </ContentWrapper>
 
