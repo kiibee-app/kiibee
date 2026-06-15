@@ -41,6 +41,11 @@ export class CouponController {
     return this.couponService.getCouponById(req.user.userId, id);
   }
 
+  @Post('verify')
+  async verifyCoupon(@Body() body: { code: string; contentId?: string }) {
+    return this.couponService.verifyCoupon(body.code, body.contentId);
+  }
+
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Post('create')
   async createCoupon(

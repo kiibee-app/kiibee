@@ -442,3 +442,165 @@ export const PreviewContent = styled.div`
     border: 0;
   }
 `;
+
+export const PurchaseModalCard = styled.div`
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  border-radius: 12px;
+  margin: 3.5rem 1.5rem 0;
+  overflow: hidden;
+`;
+
+export const PurchaseModalCardHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+`;
+
+export const PurchaseModalCardHeaderLabel = styled.span`
+  ${({ theme }) => theme.typography.Body_Bold}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalCardHeaderExpiry = styled.span`
+  ${({ theme }) => theme.typography.Body_Medium}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalCardBody = styled.div`
+  display: flex;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+`;
+
+export const PurchaseModalCardImage = styled.div`
+  position: relative;
+  width: 120px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+`;
+
+export const PurchaseModalCardInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+`;
+
+export const PurchaseModalCardBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  width: fit-content;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalCardTitle = styled.div`
+  ${({ theme }) => theme.typography.Body_Bold}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const PurchaseModalCardCreator = styled.div`
+  ${({ theme }) => theme.typography.Body_Medium}
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+`;
+
+export const PurchaseModalCardPrice = styled.div`
+  ${({ theme }) => theme.typography.Body_Bold}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalRentalInfo = styled.div`
+  padding: 1.25rem 1.5rem;
+`;
+
+export const PurchaseModalRentalTitle = styled.div`
+  margin-bottom: 0.75rem;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalRentalList = styled.ul`
+  margin: 0;
+  padding-left: 1.25rem;
+`;
+
+export const PurchaseModalRentalItem = styled.li`
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const PurchaseModalDiscountSection = styled.div`
+  padding: 0 1.5rem 1.25rem;
+`;
+
+export const PurchaseModalDiscountLabel = styled.div`
+  margin-bottom: 0.75rem;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalDiscountRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+`;
+
+export const PurchaseModalDiscountInput = styled.input`
+  flex: 1;
+  height: 48px;
+  padding: 0 1rem;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  ${({ theme }) => theme.typography.Body_Medium}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  outline: none;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  }
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.primary.BLACK};
+  }
+`;
+
+export const PurchaseModalPriceSummary = styled.div`
+  padding: 0 1.5rem 1.25rem;
+`;
+
+export const PurchaseModalPriceRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+`;
+
+export const PurchaseModalPriceRowTotal = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+`;
+
+export const PurchaseModalPriceLabel = styled.span`
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+`;
+
+export const PurchaseModalPriceValue = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
