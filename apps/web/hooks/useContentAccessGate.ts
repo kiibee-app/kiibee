@@ -52,20 +52,20 @@ export function useContentAccessGate(
     storedUser?.id && content?.creatorId === storedUser.id,
   );
 
-  const contentGateType =
-    !isOwner && !isContentUnlocked
-      ? isContentCode
-        ? TYPE_CODE
-        : isContentEmail
-          ? TYPE_EMAIL
-          : null
-      : null;
+  const hasContentGate = isContentCode || isContentEmail;
+  const isContentLocked = hasContentGate && !isContentUnlocked;
 
-  const resolvedGateType = contentGateType
-    ? contentGateType
-    : collectionGateType
-      ? collectionGateType
-      : creatorGateType;
+  const resolvedGateType = isOwner
+    ? null
+    : hasContentGate
+      ? isContentLocked
+        ? isContentCode
+          ? TYPE_CODE
+          : TYPE_EMAIL
+        : null
+      : collectionGateType
+        ? collectionGateType
+        : creatorGateType;
 
   const finalGateType = isOwner
     ? null
@@ -74,21 +74,23 @@ export function useContentAccessGate(
       : resolvedGateType;
 
   const handleSuccess = () => {
-    if (contentGateType && content?.id) {
-      window.localStorage.setItem(
-        `kiibee:gate:unlocked:content:${content.id}`,
-        "true",
-      );
-    } else if (collectionGateType && collectionId) {
-      window.localStorage.setItem(
-        `kiibee:gate:unlocked:collection:${collectionId}`,
-        "true",
-      );
-    } else if (creatorGateType && content?.creatorId) {
-      window.localStorage.setItem(
-        `kiibee:gate:unlocked:creator:${content.creatorId}`,
-        "true",
-      );
+    if (!isOwner) {
+      if (isContentLocked && content?.id) {
+        window.localStorage.setItem(
+          `kiibee:gate:unlocked:content:${content.id}`,
+          "true",
+        );
+      } else if (!hasContentGate && collectionGateType && collectionId) {
+        window.localStorage.setItem(
+          `kiibee:gate:unlocked:collection:${collectionId}`,
+          "true",
+        );
+      } else if (!hasContentGate && creatorGateType && content?.creatorId) {
+        window.localStorage.setItem(
+          `kiibee:gate:unlocked:creator:${content.creatorId}`,
+          "true",
+        );
+      }
     }
     window.location.reload();
   };

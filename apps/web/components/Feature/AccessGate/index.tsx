@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { ACCESS_GATE } from "@/utils/translationKeys";
 import {
@@ -83,7 +83,9 @@ function CodeGate({
             id={HTML_ID_CODE}
             type="password"
             value={code}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setCode(e.target.value)
+            }
             placeholder={t(ACCESS_GATE.codePlaceholder)}
             autoComplete={AUTOCOMPLETE_OFF}
           />
@@ -137,7 +139,9 @@ function EmailGate({
             id={HTML_ID_NAME}
             type={INPUT_TYPE_TEXT}
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setName(e.target.value)
+            }
             placeholder={t(ACCESS_GATE.namePlaceholder)}
             autoComplete={AUTOCOMPLETE_NAME}
           />
@@ -151,7 +155,9 @@ function EmailGate({
             id={HTML_ID_EMAIL}
             type={INPUT_TYPE_EMAIL}
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
             placeholder={t(ACCESS_GATE.emailPlaceholder)}
             autoComplete={AUTOCOMPLETE_EMAIL}
             required
