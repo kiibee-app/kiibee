@@ -71,15 +71,22 @@ export function AllCreatorsTable() {
 
   const debouncedSearchLower = debouncedSearch.toLowerCase().trim();
 
-  const filteredRequests = debouncedSearchLower
-    ? creators.filter(
-        (c) =>
-          c.fullName?.toLowerCase().includes(debouncedSearchLower) ||
-          c.firstName?.toLowerCase().includes(debouncedSearchLower) ||
-          c.lastName?.toLowerCase().includes(debouncedSearchLower) ||
-          c.email.toLowerCase().includes(debouncedSearchLower),
-      )
-    : creators;
+  const matchUser = (user: {
+    firstName?: string | null;
+    lastName?: string | null;
+    fullName?: string | null;
+    email: string;
+  }) => {
+    if (!debouncedSearchLower) return true;
+    return (
+      user.fullName?.toLowerCase().includes(debouncedSearchLower) ||
+      user.firstName?.toLowerCase().includes(debouncedSearchLower) ||
+      user.lastName?.toLowerCase().includes(debouncedSearchLower) ||
+      user.email.toLowerCase().includes(debouncedSearchLower)
+    );
+  };
+
+  const filteredRequests = creators.filter(matchUser);
 
   const totalRequests = filteredRequests.length;
   const requestsPagination = usePagination({
@@ -90,15 +97,7 @@ export function AllCreatorsTable() {
   });
 
   const viewers = viewersQuery.data ?? [];
-  const filteredViewers = debouncedSearchLower
-    ? viewers.filter(
-        (v) =>
-          v.fullName?.toLowerCase().includes(debouncedSearchLower) ||
-          v.firstName?.toLowerCase().includes(debouncedSearchLower) ||
-          v.lastName?.toLowerCase().includes(debouncedSearchLower) ||
-          v.email.toLowerCase().includes(debouncedSearchLower),
-      )
-    : viewers;
+  const filteredViewers = viewers.filter(matchUser);
 
   const totalViewers = filteredViewers.length;
   const viewersPagination = usePagination({
