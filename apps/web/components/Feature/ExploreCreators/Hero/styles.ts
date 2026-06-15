@@ -53,17 +53,6 @@ export const FilterControlWrap = styled.div`
   position: relative;
   flex: 0 0 auto;
   z-index: 200;
-
-  ${media.tablet} {
-    width: 100%;
-    max-width: 100%;
-
-    button {
-      width: 100%;
-      min-width: 0;
-      justify-content: center;
-    }
-  }
 `;
 
 export const Controls = styled.div`
@@ -78,14 +67,24 @@ export const Controls = styled.div`
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
-    & > * {
-      width: 100% !important;
-      max-width: 100% !important;
-    }
-    div {
-      width: 100% !important;
-      max-width: 100% !important;
-    }
+  }
+`;
+
+export const SearchBarContainer = styled.div`
+  width: 100%;
+  max-width: 31.6875rem;
+
+  ${media.tablet} {
+    max-width: 100%;
+  }
+`;
+
+export const SortDropdownContainer = styled.div`
+  width: 100%;
+  max-width: 200px;
+
+  ${media.tablet} {
+    max-width: 100%;
   }
 `;
 
