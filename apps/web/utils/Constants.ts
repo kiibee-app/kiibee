@@ -56,6 +56,7 @@ export type PasswordVisibilityKey =
   (typeof PASSWORD_VISIBILITY_KEY)[keyof typeof PASSWORD_VISIBILITY_KEY];
 
 export const STRING = "string";
+export const STRING_EMPTY = "";
 export const SENSITIVITY_BASE = "base";
 export const VIEW = "view";
 export const VIEWER_SECTION = "section";

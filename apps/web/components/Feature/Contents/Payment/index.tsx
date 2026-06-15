@@ -9,6 +9,7 @@ import {
   INPUT_VARIANTS,
   maxDescriptionCharacters,
   SORT_DROPDOWN_VARIANT,
+  STRING_EMPTY,
 } from "@/utils/Constants";
 import {
   PAYMENT_DOWNLOAD_LIMIT_VALUES,
@@ -77,7 +78,9 @@ export default function Payment() {
   };
 
   const handleNumericChange = (
-    field: "rentalAmount" | "purchaseAmount",
+    field:
+      | typeof PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT
+      | typeof PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT,
     value: string | string[],
   ) => {
     const text = toText(value);
@@ -125,7 +128,7 @@ export default function Payment() {
 
                   <ControlWrap>
                     <InputField
-                      value={formState.rentalAmount || ""}
+                      value={formState.rentalAmount || STRING_EMPTY}
                       onChange={(v) => handleNumericChange("rentalAmount", v)}
                       placeholder={t("contents.payment.common.enterAmount")}
                       variant={INPUT_VARIANTS.PRIMARY_GRAY}
@@ -145,7 +148,7 @@ export default function Payment() {
                   <SectionText>{paymentTexts.purchaseDescription}</SectionText>
                   <ControlWrap>
                     <InputField
-                      value={formState.purchaseAmount || ""}
+                      value={formState.purchaseAmount || STRING_EMPTY}
                       onChange={(v) => handleNumericChange("purchaseAmount", v)}
                       placeholder={t("contents.payment.common.enterAmount")}
                       variant={INPUT_VARIANTS.PRIMARY_GRAY}

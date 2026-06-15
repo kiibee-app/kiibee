@@ -4,7 +4,11 @@ import React, { useState } from "react";
 import InputField from "@/components/UI/InputFields";
 import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
-import { INPUT_VARIANTS, SORT_DROPDOWN_VARIANT } from "@/utils/Constants";
+import {
+  INPUT_VARIANTS,
+  SORT_DROPDOWN_VARIANT,
+  STRING_EMPTY,
+} from "@/utils/Constants";
 import { AccessDurationValue } from "@/utils/common";
 import { PAYMENTS_FORM_FIELDS, toText } from "@/utils/paymentRequirements";
 import {
@@ -60,7 +64,7 @@ const AmountBlock = ({
       <SectionTitle>{title}</SectionTitle>
       <ControlWrap>
         <InputField
-          value={value || ""}
+          value={value || STRING_EMPTY}
           onChange={(v) => {
             const text = toText(v);
             updateField(field, text);
