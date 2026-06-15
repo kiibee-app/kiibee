@@ -985,6 +985,7 @@
       "couponInvalid": "Invalid coupon code"
     },
     "meta": {
+      "category": "Category:",
       "publishedYear": "Published:",
       "createdAt": "Created:",
       "accessType": "Access:",

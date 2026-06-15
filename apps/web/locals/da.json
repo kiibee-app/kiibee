@@ -984,6 +984,7 @@
       "couponInvalid": "Ugyldig kuponkode"
     },
     "meta": {
+      "category": "Kategori:",
       "publishedYear": "Udgivet:",
       "createdAt": "Oprettet:",
       "accessType": "Adgang:",

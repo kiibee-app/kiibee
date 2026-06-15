@@ -78,6 +78,7 @@ export const CONTENT_TRANSLATION_KEYS = {
     accessType: "singleContent.meta.accessType",
     visibility: "singleContent.meta.visibility",
     duration: "singleContent.meta.duration",
+    category: "singleContent.meta.category",
     productionCompany: "singleContent.meta.productionCompany",
     manufacturerLink: "singleContent.meta.manufacturerLink",
   },
@@ -212,6 +213,7 @@ export const getSingleContentProps = (
   );
   const contentType = getContentType(content);
   const categories = getCategoryNames(content);
+  const mainCategory = categories[0];
   const createdAt = formatDateUSShort(
     content[CONTENT_RESPONSE_KEYS.CREATED_AT] ?? undefined,
   );
@@ -303,6 +305,12 @@ export const getSingleContentProps = (
           })),
         }),
     metaItems: [
+      mainCategory
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.category),
+            value: mainCategory,
+          }
+        : undefined,
       content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.publishedYear),
