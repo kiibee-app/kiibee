@@ -963,7 +963,18 @@
       "accessDefault": "Adgang i 3 måneder",
       "accessMonths": "Adgang i {{count}} måneder",
       "accessDays": "Adgang i {{count}} dage",
-      "accessHours": "Adgang i {{count}} timer"
+      "accessHours": "Adgang i {{count}} timer",
+      "rental": "48 timers leje",
+      "discountCode": "Rabatkode",
+      "enterCode": "Indtast kode",
+      "apply": "Anvend",
+      "remove": "Fjern",
+      "subtotal": "Subtotal",
+      "discount": "Rabat",
+      "total": "Total",
+      "purchase": "Køb",
+      "couponApplied": "Kupon anvendt",
+      "couponInvalid": "Ugyldig kuponkode"
     },
     "meta": {
       "createdAt": "Oprettet:",

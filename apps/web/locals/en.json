@@ -964,7 +964,18 @@
       "accessDefault": "Access for 3 months",
       "accessMonths": "Access for {{count}} months",
       "accessDays": "Access for {{count}} days",
-      "accessHours": "Access for {{count}} hours"
+      "accessHours": "Access for {{count}} hours",
+      "rental": "48 hrs rental",
+      "discountCode": "Discount code",
+      "enterCode": "Enter code",
+      "apply": "Apply",
+      "remove": "Remove",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "total": "Total",
+      "purchase": "Purchase",
+      "couponApplied": "Coupon applied successfully",
+      "couponInvalid": "Invalid coupon code"
     },
     "meta": {
       "createdAt": "Created:",

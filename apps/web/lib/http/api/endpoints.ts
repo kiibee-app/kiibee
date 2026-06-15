@@ -19,6 +19,7 @@ export const API = {
     update: (id: string) => `/coupons/${id}`,
     replace: (id: string) => `/coupons/${id}`,
     delete: (id: string) => `/coupons/${id}`,
+    verify: "/coupons/verify",
   },
   media: {
     videoUpload: "/media/videos/upload",
