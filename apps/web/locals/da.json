@@ -905,9 +905,9 @@
   "creatorProfile": {
     "title": "Min konto",
     "firstName": "Fornavn",
-    "firstNameRequired": "Fornavn er påkrævet og skal være på mindst 2 bogstaver",
+    "firstNameRequired": "Fornavn er påkrævet",
     "lastName": "Efternavn",
-    "lastNameRequired": "Efternavn er påkrævet og skal være på mindst 2 bogstaver",
+    "lastNameRequired": "Efternavn er påkrævet",
     "cvrInvalid": "CVR skal være på mindst 8 cifre",
     "passwordLabel": "Adgangskode",
     "changePassword": "Skift adgangskode",

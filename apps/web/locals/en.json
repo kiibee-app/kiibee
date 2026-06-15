@@ -906,9 +906,9 @@
   "creatorProfile": {
     "title": "My account",
     "firstName": "First name",
-    "firstNameRequired": "First name is required and at least 2 letters",
+    "firstNameRequired": "First name is required",
     "lastName": "Last name",
-    "lastNameRequired": "Last name is required and at least 2 letters",
+    "lastNameRequired": "Last name is required",
     "cvrInvalid": "CVR must be at least 8 digits",
     "passwordLabel": "Password",
     "changePassword": "Change password",

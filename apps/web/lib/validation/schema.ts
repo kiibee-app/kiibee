@@ -100,8 +100,8 @@ export const createCreatorProfileSchema = (messages: {
 }) =>
   z
     .object({
-      firstName: z.string().trim().min(2, messages.firstNameRequired),
-      lastName: z.string().trim().min(2, messages.lastNameRequired),
+      firstName: z.string().trim().min(1, messages.firstNameRequired),
+      lastName: z.string().trim().min(1, messages.lastNameRequired),
       cvr: z
         .string()
         .trim()
