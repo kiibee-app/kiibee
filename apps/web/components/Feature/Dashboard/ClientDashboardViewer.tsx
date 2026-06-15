@@ -125,15 +125,7 @@ export default function ClientDashboardViewer({
       <DashboardLayout
         sidebarExpanded={false}
         header={<DashboardHeader role={ROLE_VIEWER} />}
-        sidebar={
-          <Sidebar
-            expanded={false}
-            onCollapse={() => {}}
-            activeItem=""
-            onSelect={() => {}}
-            items={viewerItems}
-          />
-        }
+        sidebar={<Sidebar expanded={false} items={viewerItems} />}
       />
     );
   }

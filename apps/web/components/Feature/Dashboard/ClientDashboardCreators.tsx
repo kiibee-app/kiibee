@@ -128,14 +128,7 @@ export default function ClientDashboardCreators() {
         <DashboardLayout
           header={<DashboardHeader role={ROLE_CREATOR} />}
           sidebarExpanded={false}
-          sidebar={
-            <Sidebar
-              expanded={false}
-              onCollapse={() => {}}
-              activeItem=""
-              onSelect={() => {}}
-            />
-          }
+          sidebar={<Sidebar expanded={false} />}
         />
       </CreatorChannelLayoutProvider>
     );
