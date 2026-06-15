@@ -5,6 +5,7 @@ import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { LeftIcon } from "@/assets/icons";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTrendingContent } from "@/hooks/feed/useTrendingContent";
+import Skeleton from "@/components/UI/Skeleton";
 import {
   FEED_CONTENT_PAGE_SIZE,
   getFeedPageSlice,
@@ -49,7 +50,26 @@ export default function TrendingContent() {
     );
   }, [canSlide, totalItems]);
 
-  if (!isLoading && tutorials.length === 0) {
+  if (isLoading) {
+    return (
+      <Section>
+        <SectionHeader>
+          <SectionLabel>
+            <SectionTag>
+              <Skeleton.Tag />
+            </SectionTag>
+          </SectionLabel>
+        </SectionHeader>
+        <Grid $columnMax="300px">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <Skeleton.Card key={i} />
+          ))}
+        </Grid>
+      </Section>
+    );
+  }
+
+  if (tutorials.length === 0) {
     return null;
   }
 

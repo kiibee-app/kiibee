@@ -8,6 +8,7 @@ import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { Main } from "@/app/styles";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
+import Skeleton from "@/components/UI/Skeleton";
 import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
@@ -130,11 +131,7 @@ function AllContentExplorePageContent() {
 
   const renderContent = () => {
     if (isLoading) {
-      return (
-        <ResultsState>
-          <span>{t("nav.explore.loading")}</span>
-        </ResultsState>
-      );
+      return Array.from({ length: 6 }).map((_, i) => <Skeleton.Card key={i} />);
     }
 
     return tutorials.length > 0 ? (

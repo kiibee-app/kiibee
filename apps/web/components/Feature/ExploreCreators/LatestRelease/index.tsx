@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
+import Skeleton from "@/components/UI/Skeleton";
 import { MonoText } from "@/components/UI/Monotext";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
@@ -225,11 +226,7 @@ export default function LatestRelease() {
         <div>
           <CardsGrid>
             {isLoading ? (
-              <ResultsState>
-                <MonoText $use="Body_Medium">
-                  {t("nav.explore.loading")}
-                </MonoText>
-              </ResultsState>
+              Array.from({ length: 6 }).map((_, i) => <Skeleton.Card key={i} />)
             ) : tutorials.length > 0 ? (
               tutorials.map((tutorial) => (
                 <TutorialCard key={tutorial.id} tutorial={tutorial} />

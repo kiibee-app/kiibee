@@ -12,12 +12,28 @@ import { CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
 import { formatSubscriberCountK } from "@/hooks/creators/useExploreCreators";
 import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import Skeleton from "@/components/UI/Skeleton";
 
 export default function TopCreators() {
   const { t } = useTranslation();
   const { creators, isLoading } = useExploreTopCreators();
 
-  if (!isLoading && creators.length === 0) {
+  if (isLoading) {
+    return (
+      <Wrapper>
+        <Header>
+          <Skeleton.Header />
+        </Header>
+        <List>
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton.Creator key={i} />
+          ))}
+        </List>
+      </Wrapper>
+    );
+  }
+
+  if (creators.length === 0) {
     return null;
   }
 

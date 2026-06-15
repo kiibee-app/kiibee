@@ -8,6 +8,7 @@ import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { Main } from "@/app/styles";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
+import Skeleton from "@/components/UI/Skeleton";
 import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { FilterIcon } from "@/assets/icons/filterIcon";
@@ -306,9 +307,9 @@ function CategoryExplorePageContent() {
           <MainContent>
             <CardsGrid $isFetching={isFetching}>
               {isLoading ? (
-                <ResultsState>
-                  <span>{t("nav.explore.loading")}</span>
-                </ResultsState>
+                Array.from({ length: 6 }).map((_, i) => (
+                  <Skeleton.Card key={i} />
+                ))
               ) : tutorials.length > 0 ? (
                 tutorials.map((tutorial) => (
                   <TutorialCard key={tutorial.id} tutorial={tutorial} />
