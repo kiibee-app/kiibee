@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import Table from "@/components/UI/Table";
 import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import { ThreeDotIcon } from "@/assets/icons";
+import { CheckIcon, CopyIcon, ThreeDotIcon } from "@/assets/icons";
 import {
   SORT_DIRECTIONS,
   SortDirectionWithNone,
@@ -15,6 +15,7 @@ import {
   ActionWrapper,
   CodeBadge,
   CodesWrapper,
+  CopyButton,
   CouponActionText,
   StatusBadge,
   TableSection,
@@ -64,6 +65,7 @@ export default function CouponTable({
     [COUPON_SEARCH_KEYS.TITLE]: "",
     [COUPON_SEARCH_KEYS.CODES]: "",
   });
+  const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const resolveHeaderToKey = (header: string) => {
     const col = COUPON_TABLE_COLUMNS.find((c) => c.label === header);
@@ -138,6 +140,11 @@ export default function CouponTable({
     e.stopPropagation();
   };
 
+  const handleCopyCode = useCallback((code: string) => {
+    navigator.clipboard.writeText(code);
+    setCopiedCode(code);
+  }, []);
+
   const handleSearchChange = (key: CouponSearchKey, value: string) => {
     setSearch((prev) => ({
       ...prev,
@@ -193,7 +200,21 @@ export default function CouponTable({
                 return (
                   <CodesWrapper>
                     {row.codes.map((code) => (
-                      <CodeBadge key={code}>{code}</CodeBadge>
+                      <CodeBadge key={code}>
+                        {code}
+                        <CopyButton
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCopyCode(code);
+                          }}
+                        >
+                          {copiedCode === code ? (
+                            <CheckIcon width={14} height={14} />
+                          ) : (
+                            <CopyIcon width={14} height={14} />
+                          )}
+                        </CopyButton>
+                      </CodeBadge>
                     ))}
                   </CodesWrapper>
                 );
