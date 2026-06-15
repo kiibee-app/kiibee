@@ -85,6 +85,28 @@ export const SearchInput = styled.input`
   }
 `;
 
+export const SearchClearButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  cursor: pointer;
+  padding: 0;
+  margin-left: ${({ theme }) => theme.spacing(1)};
+  transition: color ${({ theme }) => theme.animations.fast};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.secondary.main};
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+`;
+
 export const AllCreatorsTabButton = styled.button<{ $active: boolean }>`
   min-height: ${({ theme }) => theme.spacing(8.5)};
   border: 0;

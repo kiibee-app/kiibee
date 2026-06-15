@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { CreatorRequest } from "../../../types/creator-request";
 import {
   useCreatorRequests,
@@ -19,8 +19,9 @@ import {
   SearchIconWrapper,
   SearchInput,
   AllCreatorsHeader,
+  SearchClearButton,
 } from "./AllCreators.styles";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
 import { ViewersTable } from "./ViewersTable";
 import { CreatorRequestsTable } from "./CreatorRequestsTable";
@@ -45,6 +46,12 @@ export function AllCreatorsTable() {
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
     null,
   );
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const handleSearchClear = () => {
+    setSearchTerm("");
+    searchInputRef.current?.focus();
+  };
   const existingCreatorsQuery = useExistingCreators(debouncedSearch);
   const creatorRequestsQuery = useCreatorRequests();
   const viewersQuery = useViewers();
@@ -274,10 +281,20 @@ export function AllCreatorsTable() {
             <Search />
           </SearchIconWrapper>
           <SearchInput
+            ref={searchInputRef}
             placeholder="Search users..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
+          {searchTerm ? (
+            <SearchClearButton
+              type="button"
+              onClick={handleSearchClear}
+              aria-label="Clear search"
+            >
+              <X />
+            </SearchClearButton>
+          ) : null}
         </SearchContainer>
       </AllCreatorsHeader>
 
