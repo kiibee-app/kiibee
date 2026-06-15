@@ -159,53 +159,38 @@ export default function CouponTable({
         description={t(CONTENTS_KEYS.couponsCard.description)}
       />
       <TableSection>
-        <Table<CouponRow>
-          headers={[...COUPON_TABLE_COLUMNS.map((c) => c.label)]}
-          data={sortedRows}
-          rowsPerPage={10}
-          headerToKey={resolveHeaderToKey}
-          onHeaderClick={(header) =>
-            handleHeaderClick(header, setNameSortDirection)
-          }
-          isHeaderSortable={(header) =>
-            header === COUPON_TABLE_COLUMNS[0].label
-          }
-          getHeaderSortDirection={(header) =>
-            header === COUPON_TABLE_COLUMNS[0].label &&
-            nameSortDirection !== SORT_DIRECTIONS.NONE
-              ? nameSortDirection
-              : null
-          }
-          getRowKey={(row, index) => `${row.title}-${index}`}
-          getColumnAlignment={(_header, index) =>
-            index === 0 || index === 1 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
-          }
-          renderCell={({ header, row }) => {
-            const typedHeader = COUPON_TABLE_COLUMNS.find(
-              (c) => c.label === header,
-            );
-            if (typedHeader === COUPON_TABLE_COLUMNS[1]) {
-              return (
-                <CodesWrapper>
-                  {row.codes.map((code) => (
-                    <CodeBadge key={code}>
-                      {code}
-                      <CopyButton
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleCopyCode(code);
-                        }}
-                      >
-                        {copiedCode === code ? (
-                          <CheckIcon width={14} height={14} />
-                        ) : (
-                          <CopyIcon width={14} height={14} />
-                        )}
-                      </CopyButton>
-                    </CodeBadge>
-                  ))}
-                </CodesWrapper>
-              );
+        {data.length === 0 ? (
+          <EmptyCollectionCard>
+            <EmptyCollectionText>
+              <EmptyCollectionTitle>
+                {t("contents.emptyCoupon.title")}
+              </EmptyCollectionTitle>
+              <MonoText $use="Body_Medium">
+                {t("contents.emptyCoupon.description")}
+              </MonoText>
+            </EmptyCollectionText>
+          </EmptyCollectionCard>
+        ) : (
+          <Table<CouponRow>
+            headers={[...COUPON_TABLE_COLUMNS.map((c) => c.label)]}
+            data={sortedRows}
+            rowsPerPage={10}
+            headerToKey={resolveHeaderToKey}
+            onHeaderClick={(header) =>
+              handleHeaderClick(header, setNameSortDirection)
+            }
+            isHeaderSortable={(header) =>
+              header === COUPON_TABLE_COLUMNS[0].label
+            }
+            getHeaderSortDirection={(header) =>
+              header === COUPON_TABLE_COLUMNS[0].label &&
+              nameSortDirection !== SORT_DIRECTIONS.NONE
+                ? nameSortDirection
+                : null
+            }
+            getRowKey={(row, index) => `${row.title}-${index}`}
+            getColumnAlignment={(_header, index) =>
+              index === 0 || index === 1 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
             }
             renderCell={({ header, row }) => {
               const typedHeader = COUPON_TABLE_COLUMNS.find(
@@ -215,7 +200,21 @@ export default function CouponTable({
                 return (
                   <CodesWrapper>
                     {row.codes.map((code) => (
-                      <CodeBadge key={code}>{code}</CodeBadge>
+                      <CodeBadge key={code}>
+                        {code}
+                        <CopyButton
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCopyCode(code);
+                          }}
+                        >
+                          {copiedCode === code ? (
+                            <CheckIcon width={14} height={14} />
+                          ) : (
+                            <CopyIcon width={14} height={14} />
+                          )}
+                        </CopyButton>
+                      </CodeBadge>
                     ))}
                   </CodesWrapper>
                 );
