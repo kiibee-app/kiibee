@@ -214,7 +214,7 @@ export const getSingleContentProps = (
   );
 
   const isVideo = contentType === FORMAT_TYPE.VIDEO;
-  const showTrailerInHero = isVideo && Boolean(trailerUrl);
+  const showTrailerInHero = Boolean(trailerUrl);
   const isOwner = Boolean(
     options?.viewerId &&
     content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
@@ -233,7 +233,7 @@ export const getSingleContentProps = (
       ...(showTrailerInHero && trailerUrl
         ? {
             media: {
-              type: contentType,
+              type: FORMAT_TYPE.VIDEO,
               src: trailerUrl,
               title,
             },
@@ -252,7 +252,7 @@ export const getSingleContentProps = (
             : {}),
       categoryLabel: categories[0],
       mediaLabel: getContentTypeLabel(contentType),
-      ...(isVideo
+      ...(isVideo || showTrailerInHero
         ? {
             mediaIcon: playCircleIcon,
             mediaIconAlt: t(CONTENT_TRANSLATION_KEYS.seeContent),
