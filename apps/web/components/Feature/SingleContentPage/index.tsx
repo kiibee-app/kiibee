@@ -31,6 +31,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import useShare from "@/hooks/useShare";
 import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
+import { resolveImageUrl } from "@/utils/media";
 
 export type {
   SingleContentHeroProps,
@@ -277,13 +278,7 @@ export default function SingleContentPage({
         onClose={handleClosePurchaseModal}
         onPurchase={handlePurchaseConfirm}
         title={title}
-        image={
-          hero.image
-            ? typeof hero.image === "string"
-              ? hero.image
-              : hero.image.src
-            : undefined
-        }
+        image={hero.image ? resolveImageUrl(hero.image) : undefined}
         imageAlt={hero.imageAlt}
         creator={creator?.name}
         contentType={hero.contentType || hero.media?.type}

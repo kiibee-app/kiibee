@@ -8,6 +8,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import { VARIANT } from "@/utils/Constants";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { useTranslation } from "react-i18next";
+import { extractPriceNumber } from "@/utils/contentPricingActions";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
@@ -31,14 +32,16 @@ import {
   PurchaseModalPriceRowTotal,
   PurchaseModalPriceLabel,
   PurchaseModalPriceValue,
+  PurchaseModalButtonWrapper,
 } from "./styles";
+import { COUPON_DISCOUNT_PERCENTAGE, CouponDiscountType } from "@/utils/common";
 
 type VerifyCouponResponse = {
   success: boolean;
   statusCode: number;
   message: string;
   data: {
-    discountType: "fixed_amount" | "percentage";
+    discountType: CouponDiscountType;
     discountValue: number;
     code: string;
     title: string;
@@ -84,7 +87,7 @@ export default function PurchaseModal({
     { code: string; contentId?: string }
   >(API.coupon.verify);
 
-  const priceNumber = Number(priceLabel.replace(/[^0-9]/g, "")) || 0;
+  const priceNumber = extractPriceNumber(priceLabel);
   const total = priceNumber - discount;
 
   const handleApplyDiscount = async () => {
@@ -99,24 +102,17 @@ export default function PurchaseModal({
       if (response.success && response.data) {
         const { discountType, discountValue } = response.data;
         const calculatedDiscount =
-          discountType === "percentage"
+          discountType === COUPON_DISCOUNT_PERCENTAGE
             ? Math.round((priceNumber * discountValue) / 100)
             : discountValue;
         setDiscount(Math.min(calculatedDiscount, priceNumber));
         setAppliedCode(response.data.code);
-        toast.success(
-          t(
-            "singleContent.pricing.couponApplied",
-            "Coupon applied successfully",
-          ),
-        );
+        toast.success(t("singleContent.pricing.couponApplied"));
       }
     } catch {
       setDiscount(0);
       setAppliedCode(null);
-      toast.error(
-        t("singleContent.pricing.couponInvalid", "Invalid coupon code"),
-      );
+      toast.error(t("singleContent.pricing.couponInvalid"));
     }
   };
 
@@ -130,7 +126,7 @@ export default function PurchaseModal({
     <GenericModal
       visible={visible}
       onClose={onClose}
-      width="520px"
+      size="md"
       padding="0"
       borderRadius="16px"
       showCloseButton={true}
@@ -146,12 +142,7 @@ export default function PurchaseModal({
         <PurchaseModalCardBody>
           {image ? (
             <PurchaseModalCardImage>
-              <Image
-                src={image}
-                alt={imageAlt || title}
-                fill
-                style={{ objectFit: "cover" }}
-              />
+              <Image src={image} alt={imageAlt || title} fill />
             </PurchaseModalCardImage>
           ) : null}
 
@@ -245,7 +236,7 @@ export default function PurchaseModal({
         </PurchaseModalPriceRowTotal>
       </PurchaseModalPriceSummary>
 
-      <div style={{ padding: "0 1.5rem 1.5rem" }}>
+      <PurchaseModalButtonWrapper>
         <GenericButton
           variant={VARIANT.PRIMARY}
           fullWidth
@@ -255,7 +246,7 @@ export default function PurchaseModal({
         >
           {t("singleContent.pricing.purchase")}
         </GenericButton>
-      </div>
+      </PurchaseModalButtonWrapper>
     </GenericModal>
   );
 }
