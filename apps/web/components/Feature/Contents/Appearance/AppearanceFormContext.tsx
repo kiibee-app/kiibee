@@ -13,6 +13,7 @@ import {
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import { writeSavedCreatorLayout } from "@/utils/creatorChannel";
 import { CONTENTS } from "@/utils/translationKeys";
+import { resolveProfileAvatarUrl } from "@/utils/image";
 import type { AppearanceFormContextValue } from "./appearanceFormTypes";
 import { useAppearanceDraft } from "./useAppearanceDraft";
 import { useAppearanceValidation } from "./useAppearanceValidation";
@@ -65,7 +66,20 @@ export function AppearanceFormProvider({
     }
 
     const payload = mapAppearanceToApi(values);
-    await axiosClient.put(API.content.appearance, payload);
+
+    const [logoUrl, desktopCoverImageUrl, mobileCoverImageUrl] =
+      await Promise.all([
+        resolveProfileAvatarUrl(payload.logoUrl ?? null),
+        resolveProfileAvatarUrl(payload.desktopCoverImageUrl ?? null),
+        resolveProfileAvatarUrl(payload.mobileCoverImageUrl ?? null),
+      ]);
+
+    await axiosClient.put(API.content.appearance, {
+      ...payload,
+      logoUrl,
+      desktopCoverImageUrl,
+      mobileCoverImageUrl,
+    });
 
     writeSavedCreatorLayout(values.layout);
     setSelectedLayout(values.layout);
