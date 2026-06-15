@@ -1801,5 +1801,20 @@
     "saveChangesFailed": "Kunne ikke gemme ændringer",
     "saveSettingsFailed": "Kunne ikke gemme indstillinger",
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer"
+  },
+  "accessGate": {
+    "pageCodeTitle": "Denne side kræver en kode for at få adgang",
+    "pageEmailTitle": "Denne side kræver din e-mail for at få adgang",
+    "contentCodeTitle": "Dette indhold kræver en kode for at få adgang",
+    "contentEmailTitle": "Dette indhold kræver din e-mail for at få adgang",
+    "codePlaceholder": "Adgangskode",
+    "codeLabel": "Indtast adgangskode",
+    "nameLabel": "Dit navn",
+    "namePlaceholder": "Navn",
+    "emailLabel": "Indtast din e-mail",
+    "emailPlaceholder": "E-mail",
+    "submitCode": "Tilgå indhold",
+    "submitEmail": "Tilgå indhold",
+    "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee."
   }
 }

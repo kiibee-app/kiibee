@@ -6,6 +6,17 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { logger } from 'src/logger/logger';
 import { ContentSettingDto } from '../dto/contentSetting.dto';
 import { randomUUID } from 'crypto';
+import { hashAccessPasswords } from 'src/utils/accessPassword';
+
+const toContentSettingResponse = (setting: {
+  userId: string;
+  accessType: string;
+  passwordHash?: string | null;
+}) => ({
+  userId: setting.userId,
+  accessType: setting.accessType,
+  hasPassword: Boolean(setting.passwordHash),
+});
 
 export const getContentSettingByUserId = async (userId: string) => {
   try {
@@ -17,16 +28,17 @@ export const getContentSettingByUserId = async (userId: string) => {
 
     if (!contentSetting || contentSetting.length === 0) {
       return success(
-        {
+        toContentSettingResponse({
           userId,
           accessType: 'free',
-        },
+          passwordHash: null,
+        }),
         'Content setting not found, returning default',
         HttpStatus.OK,
       );
     }
     return success(
-      contentSetting[0],
+      toContentSettingResponse(contentSetting[0]),
       'Content setting fetched successfully',
       HttpStatus.OK,
     );
@@ -48,7 +60,7 @@ export const createOrUpdateContentSetting = async (
   contentSettingDto: ContentSettingDto,
 ) => {
   try {
-    const { accessType } = contentSettingDto;
+    const { accessType, password } = contentSettingDto;
 
     const existingSetting = await db
       .select()
@@ -56,15 +68,30 @@ export const createOrUpdateContentSetting = async (
       .where(eq(contentSettings.userId, userId))
       .limit(1);
 
+    const updatePayload: {
+      accessType: ContentSettingDto['accessType'];
+      updatedAt: Date;
+      passwordHash?: string | null;
+    } = {
+      accessType,
+      updatedAt: new Date(),
+    };
+
+    if (accessType !== 'set_password') {
+      updatePayload.passwordHash = null;
+    } else if (password?.trim()) {
+      updatePayload.passwordHash = await hashAccessPasswords(password);
+    }
+
     if (existingSetting && existingSetting.length > 0) {
       const updatedSetting = await db
         .update(contentSettings)
-        .set({ accessType, updatedAt: new Date() })
+        .set(updatePayload)
         .where(eq(contentSettings.userId, userId))
         .returning();
 
       return success(
-        updatedSetting[0],
+        toContentSettingResponse(updatedSetting[0]),
         'Content setting updated successfully',
         HttpStatus.OK,
       );
@@ -75,13 +102,17 @@ export const createOrUpdateContentSetting = async (
           id: randomUUID(),
           userId,
           accessType,
+          passwordHash:
+            accessType === 'set_password' && password?.trim()
+              ? await hashAccessPasswords(password)
+              : null,
           createdAt: new Date(),
           updatedAt: new Date(),
         })
         .returning();
 
       return success(
-        newSetting[0],
+        toContentSettingResponse(newSetting[0]),
         'Content setting created successfully',
         HttpStatus.CREATED,
       );
