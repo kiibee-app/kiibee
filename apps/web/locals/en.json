@@ -975,7 +975,9 @@
       "createdAt": "Created:",
       "accessType": "Access:",
       "visibility": "Visibility:",
-      "duration": "Duration:"
+      "duration": "Duration:",
+      "productionCompany": "Production company:",
+      "manufacturerLink": "Manufacturer link:"
     }
   },
   "singleCollection": {
