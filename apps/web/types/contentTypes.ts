@@ -127,7 +127,9 @@ export type ContentFormErrorKey =
   | "manufacturerLink"
   | "tags"
   | "mediaCardThumbnail"
-  | "portraitThumbnail";
+  | "portraitThumbnail"
+  | "rentalAmount"
+  | "purchaseAmount";
 
 export type ContentFormErrors = Partial<Record<ContentFormErrorKey, string>>;
 

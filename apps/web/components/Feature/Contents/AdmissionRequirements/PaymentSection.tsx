@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import InputField from "@/components/UI/InputFields";
 import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
@@ -36,6 +36,7 @@ interface AmountBlockProps {
   placeholder: string;
   field: string;
   updateField: (key: string, value: string) => void;
+  t: (key: string) => string;
 }
 
 const AmountBlock = ({
@@ -45,21 +46,41 @@ const AmountBlock = ({
   placeholder,
   field,
   updateField,
-}: AmountBlockProps) => (
-  <Block>
-    <SectionTitle>{title}</SectionTitle>
-    <ControlWrap>
-      <InputField
-        value={value || ""}
-        onChange={(v) => updateField(field, toText(v))}
-        placeholder={placeholder}
-        variant={INPUT_VARIANTS.PRIMARY_GRAY}
-        inputMode="decimal"
-      />
-    </ControlWrap>
-    <FeeNote>{feeNote}</FeeNote>
-  </Block>
-);
+  t,
+}: AmountBlockProps) => {
+  const [error, setError] = useState<string | null>(null);
+
+  const isValidNumeric = (v: string): boolean => {
+    if (v === "") return true;
+    return !isNaN(Number(v)) && isFinite(Number(v));
+  };
+
+  return (
+    <Block>
+      <SectionTitle>{title}</SectionTitle>
+      <ControlWrap>
+        <InputField
+          value={value || ""}
+          onChange={(v) => {
+            const text = toText(v);
+            updateField(field, text);
+            if (!isValidNumeric(text)) {
+              setError(t("contents.payment.common.invalidNumber"));
+            } else {
+              setError(null);
+            }
+          }}
+          placeholder={placeholder}
+          variant={INPUT_VARIANTS.PRIMARY_GRAY}
+          inputMode="decimal"
+          hasError={Boolean(error)}
+          errorMessage={error}
+        />
+      </ControlWrap>
+      {error ? null : <FeeNote>{feeNote}</FeeNote>}
+    </Block>
+  );
+};
 
 const SettingsPaymentSection = ({
   t,
@@ -80,6 +101,7 @@ const SettingsPaymentSection = ({
           placeholder={amountPlaceholder}
           feeNote={feeNote}
           updateField={updateField}
+          t={t}
         />
       )}
       {formState.showPurchaseSection && (
@@ -90,6 +112,7 @@ const SettingsPaymentSection = ({
           placeholder={amountPlaceholder}
           feeNote={feeNote}
           updateField={updateField}
+          t={t}
         />
       )}
 
