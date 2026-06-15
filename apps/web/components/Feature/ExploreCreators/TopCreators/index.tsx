@@ -8,17 +8,18 @@ import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { PATHS } from "@/utils/path";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
-import { CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
+import {
+  CREATOR_CHANNEL_AVATAR_TEXT,
+  TOP_CREATORS_LIMIT,
+} from "@/utils/Constants";
 import { formatSubscriberCountK } from "@/hooks/creators/useExploreCreators";
 import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import Skeleton from "@/components/UI/Skeleton";
 
-const SKELETON_COUNT = 6;
-
 export default function TopCreators() {
   const { t } = useTranslation();
-  const { creators, isLoading } = useExploreTopCreators(SKELETON_COUNT);
+  const { creators, isLoading } = useExploreTopCreators();
 
   if (isLoading) {
     return (
@@ -27,7 +28,7 @@ export default function TopCreators() {
           <Skeleton.Header />
         </Header>
         <List>
-          {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+          {Array.from({ length: TOP_CREATORS_LIMIT }).map((_, i) => (
             <Skeleton.Creator key={i} />
           ))}
         </List>
