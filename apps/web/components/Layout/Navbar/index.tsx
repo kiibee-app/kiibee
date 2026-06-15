@@ -13,6 +13,7 @@ import {
   Logo,
   Nav,
   Actions,
+  ActionsPlaceholder,
   NavItemWrapper,
   NavAnchor,
   NavButton,
@@ -58,11 +59,13 @@ import {
   useLoginUserAvatar,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
+import { getAvatarUrl } from "@/utils/creatorProfile";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { HomeIcon } from "@/assets/icons/homeIcon";
 import { LogoutIcon } from "@/assets/icons/logoutIcon";
 import { ArrowIcon } from "@/assets/icons";
-import { Directions } from "@/utils/ui";
+import { Directions, isBrowser } from "@/utils/ui";
 import {
   InitialAvatar,
   ProfileAvatarImage,
@@ -72,12 +75,16 @@ import {
 function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   const { t } = useTranslation();
   const router = useRouter();
-  const user = useStoredLoginUser();
-  const avatarUrl = useLoginUserAvatar();
+  const userFromHook = useStoredLoginUser();
+  const avatarUrlFromHook = useLoginUserAvatar();
   const { logout, isPending } = useLogout();
   const [open, setOpen] = useState(false);
   const [failedAvatarUrl, setFailedAvatarUrl] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const user = userFromHook || (isBrowser ? readStoredLoginUser() : null);
+  const avatarUrl = avatarUrlFromHook || getAvatarUrl(user?.avatarUrl);
+
   const firstLetter = getLoginUserFirstLetter(user);
   const showAvatar = Boolean(avatarUrl) && avatarUrl !== failedAvatarUrl;
 
@@ -182,6 +189,16 @@ export default function NavBar({
     null,
   );
   const [sidebarExpanded, setSidebarExpanded] = React.useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const handle = requestAnimationFrame(() => {
+      setIsMounted(true);
+    });
+    return () => {
+      cancelAnimationFrame(handle);
+    };
+  }, []);
   const [mobileOpenSubKeys, setMobileOpenSubKeys] = useState<
     Record<string, boolean>
   >({});
@@ -469,7 +486,13 @@ export default function NavBar({
         </Nav>
 
         <Actions ref={actionsRef} $textTone={navTextTone}>
-          {isLoggedIn && dashboardPath ? (
+          {!isMounted ? (
+            actions ? (
+              actions
+            ) : (
+              <ActionsPlaceholder />
+            )
+          ) : isLoggedIn && dashboardPath ? (
             <NavAccountMenu dashboardPath={dashboardPath} />
           ) : (
             (actions ?? (
