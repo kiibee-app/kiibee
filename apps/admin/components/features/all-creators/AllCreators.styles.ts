@@ -15,6 +15,14 @@ export const AllCreatorsLayout = styled.div`
   gap: ${({ theme }) => theme.spacing(3.5)};
 `;
 
+export const AllCreatorsHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing(4)};
+`;
+
 export const AllCreatorsTabs = styled.div`
   display: inline-flex;
   align-items: center;
@@ -25,6 +33,56 @@ export const AllCreatorsTabs = styled.div`
   border-radius: 10px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   box-shadow: ${({ theme }) => theme.shadows.sm};
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 10px;
+  padding: 0 ${({ theme }) => theme.spacing(3)};
+  height: ${({ theme }) => theme.spacing(10.5)};
+  min-width: 300px;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition:
+    border-color ${({ theme }) => theme.animations.fast},
+    box-shadow ${({ theme }) => theme.animations.fast};
+
+  &:focus-within {
+    border-color: ${({ theme }) => theme.colors.primary.GREEN};
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+    min-width: 100%;
+  }
+`;
+
+export const SearchIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  margin-right: ${({ theme }) => theme.spacing(2)};
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+export const SearchInput = styled.input`
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  outline: none;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.secondary.muted};
+  }
 `;
 
 export const AllCreatorsTabButton = styled.button<{ $active: boolean }>`

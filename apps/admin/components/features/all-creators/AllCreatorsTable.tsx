@@ -14,7 +14,12 @@ import {
   AllCreatorsState,
   AllCreatorsTabButton,
   AllCreatorsTabs,
+  SearchContainer,
+  SearchIconWrapper,
+  SearchInput,
+  AllCreatorsHeader,
 } from "./AllCreators.styles";
+import { Search } from "lucide-react";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
 import { ViewersTable } from "./ViewersTable";
 import { CreatorRequestsTable } from "./CreatorRequestsTable";
@@ -33,6 +38,7 @@ export function AllCreatorsTable() {
   const [activeTab, setActiveTab] = useState<AllCreatorsTab>(
     ALL_CREATORS_TAB.CREATORS,
   );
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
     null,
   );
@@ -214,29 +220,42 @@ export function AllCreatorsTable() {
 
   return (
     <AllCreatorsLayout>
-      <AllCreatorsTabs aria-label="Creator list views">
-        <AllCreatorsTabButton
-          type="button"
-          $active={activeTab === ALL_CREATORS_TAB.CREATORS}
-          onClick={() => setActiveTab(ALL_CREATORS_TAB.CREATORS)}
-        >
-          Existing Creators ({totalExistingCreators})
-        </AllCreatorsTabButton>
-        <AllCreatorsTabButton
-          type="button"
-          $active={activeTab === ALL_CREATORS_TAB.VIEWERS}
-          onClick={() => setActiveTab(ALL_CREATORS_TAB.VIEWERS)}
-        >
-          Viewers ({totalViewers})
-        </AllCreatorsTabButton>
-        <AllCreatorsTabButton
-          type="button"
-          $active={activeTab === ALL_CREATORS_TAB.REQUESTS}
-          onClick={() => setActiveTab(ALL_CREATORS_TAB.REQUESTS)}
-        >
-          Pending Requests ({totalRequests})
-        </AllCreatorsTabButton>
-      </AllCreatorsTabs>
+      <AllCreatorsHeader>
+        <AllCreatorsTabs aria-label="Creator list views">
+          <AllCreatorsTabButton
+            type="button"
+            $active={activeTab === ALL_CREATORS_TAB.CREATORS}
+            onClick={() => setActiveTab(ALL_CREATORS_TAB.CREATORS)}
+          >
+            Existing Creators ({totalExistingCreators})
+          </AllCreatorsTabButton>
+          <AllCreatorsTabButton
+            type="button"
+            $active={activeTab === ALL_CREATORS_TAB.VIEWERS}
+            onClick={() => setActiveTab(ALL_CREATORS_TAB.VIEWERS)}
+          >
+            Viewers ({totalViewers})
+          </AllCreatorsTabButton>
+          <AllCreatorsTabButton
+            type="button"
+            $active={activeTab === ALL_CREATORS_TAB.REQUESTS}
+            onClick={() => setActiveTab(ALL_CREATORS_TAB.REQUESTS)}
+          >
+            Pending Requests ({totalRequests})
+          </AllCreatorsTabButton>
+        </AllCreatorsTabs>
+
+        <SearchContainer>
+          <SearchIconWrapper>
+            <Search />
+          </SearchIconWrapper>
+          <SearchInput
+            placeholder="Search users..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </SearchContainer>
+      </AllCreatorsHeader>
 
       <AllCreatorsPanel>
         {activeTab === ALL_CREATORS_TAB.CREATORS
