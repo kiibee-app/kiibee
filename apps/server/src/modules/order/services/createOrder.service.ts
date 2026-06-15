@@ -9,13 +9,14 @@ import { mediaFiles } from 'src/database/schema';
 import { eq } from 'drizzle-orm';
 import { createPayment } from 'src/modules/payment/services/createPayment.service';
 import { ORDER_TYPES } from 'src/utils/constant';
+import { verifyCouponService } from 'src/modules/coupon/services/verifyCoupon.service';
 
 export async function createOrderService(
   userId: string,
   dto: CreateOrderInputDto,
 ) {
   try {
-    const { contentId, collectionId, itemType } = dto;
+    const { contentId, collectionId, itemType, couponCode } = dto;
 
     if (!contentId) {
       return fail('contentId must be provided', HttpStatus.BAD_REQUEST);
@@ -39,17 +40,24 @@ export async function createOrderService(
       return fail('Content not found', HttpStatus.NOT_FOUND);
     }
 
-    const resolvedPrice =
+    const price =
       normalizedItemType === ORDER_TYPES.PURCHASE
         ? contentInfo.buyPrice
         : contentInfo.rentPrice;
 
-    if (resolvedPrice == null) {
+    if (price == null) {
       return fail(
         'Price is not configured for this item',
         HttpStatus.BAD_REQUEST,
       );
     }
+
+    let discountAmount = 0;
+    if (couponCode) {
+      const couponInfo = await verifyCouponService(couponCode, contentId);
+      discountAmount = Number(couponInfo.data.discountValue) || 0;
+    }
+    const resolvedPrice = Number(price) - discountAmount;
 
     const resolvedCurrency = contentInfo.currency;
 
@@ -66,7 +74,7 @@ export async function createOrderService(
       mediaFileId: contentId || null,
       collectionId: collectionId || null,
       itemType: normalizedItemType,
-      price: resolvedPrice,
+      price: String(resolvedPrice),
       currency: resolvedCurrency,
       status: 'pending' as const,
     };
