@@ -19,8 +19,9 @@ import {
   SearchInput,
   AllCreatorsHeader,
   SearchClearButton,
+  SearchIcon,
+  ClearIcon,
 } from "./AllCreators.styles";
-import { Search, X } from "lucide-react";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
 import { ViewersTable } from "./ViewersTable";
 import { CreatorRequestsTable } from "./CreatorRequestsTable";
@@ -279,7 +280,7 @@ export function AllCreatorsTable() {
 
         <SearchContainer>
           <SearchIconWrapper>
-            <Search />
+            <SearchIcon />
           </SearchIconWrapper>
           <SearchInput
             ref={searchInputRef}
@@ -293,7 +294,7 @@ export function AllCreatorsTable() {
               onClick={handleSearchClear}
               aria-label="Clear search"
             >
-              <X />
+              <ClearIcon />
             </SearchClearButton>
           ) : null}
         </SearchContainer>

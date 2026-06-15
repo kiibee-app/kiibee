@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import type { CreatorStatus } from "../../../types/creator-request";
+import { Search, X } from "lucide-react";
 
 export const AllCreatorsPanel = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
@@ -66,11 +67,11 @@ export const SearchIconWrapper = styled.div`
   justify-content: center;
   color: ${({ theme }) => theme.colors.secondary.muted};
   margin-right: ${({ theme }) => theme.spacing(2)};
+`;
 
-  svg {
-    width: 18px;
-    height: 18px;
-  }
+export const SearchIcon = styled(Search)`
+  width: 18px;
+  height: 18px;
 `;
 
 export const SearchInput = styled.input`
@@ -101,11 +102,11 @@ export const SearchClearButton = styled.button`
   &:hover {
     color: ${({ theme }) => theme.colors.secondary.main};
   }
+`;
 
-  svg {
-    width: 16px;
-    height: 16px;
-  }
+export const ClearIcon = styled(X)`
+  width: 16px;
+  height: 16px;
 `;
 
 export const AllCreatorsTabButton = styled.button<{ $active: boolean }>`
