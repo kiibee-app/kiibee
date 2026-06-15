@@ -73,7 +73,7 @@ export default function Payment() {
   );
 
   const isValidNumeric = (value: string): boolean => {
-    if (value === "") return true;
+    if (value === STRING_EMPTY) return true;
     return !isNaN(Number(value)) && isFinite(Number(value));
   };
 

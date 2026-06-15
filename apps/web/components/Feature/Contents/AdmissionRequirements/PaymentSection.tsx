@@ -55,7 +55,7 @@ const AmountBlock = ({
   const [error, setError] = useState<string | null>(null);
 
   const isValidNumeric = (v: string): boolean => {
-    if (v === "") return true;
+    if (v === STRING_EMPTY) return true;
     return !isNaN(Number(v)) && isFinite(Number(v));
   };
 
