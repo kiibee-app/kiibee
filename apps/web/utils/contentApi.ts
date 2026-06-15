@@ -46,6 +46,7 @@ export const CONTENT_RESPONSE_KEYS = {
   CATEGORIES: "categories",
   NAME: "name",
   CREATOR_ID: "creatorId",
+  PUBLISHED_YEAR: "publishedYear",
 } as const;
 
 export const CONTENT_MEDIA_RESPONSE_KEYS = {
@@ -68,6 +69,7 @@ export const CONTENT_TRANSLATION_KEYS = {
   addAction: "contents.contentUploadModal.details.add",
   share: "common.share",
   meta: {
+    publishedYear: "singleContent.meta.publishedYear",
     createdAt: "singleContent.meta.createdAt",
     accessType: "singleContent.meta.accessType",
     visibility: "singleContent.meta.visibility",
@@ -101,6 +103,7 @@ export type ContentDetailItem = {
     timeLeftText?: string;
   } | null;
   [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
+  [CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]?: number | null;
 };
 
 export type ContentMediaUrlResponse = {
@@ -285,6 +288,12 @@ export const getSingleContentProps = (
           })),
         }),
     metaItems: [
+      content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.publishedYear),
+            value: String(content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]),
+          }
+        : undefined,
       createdAt
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.createdAt),

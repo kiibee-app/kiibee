@@ -966,6 +966,7 @@
       "accessHours": "Adgang i {{count}} timer"
     },
     "meta": {
+      "publishedYear": "Udgivet:",
       "createdAt": "Oprettet:",
       "accessType": "Adgang:",
       "visibility": "Synlighed:",
