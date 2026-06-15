@@ -970,7 +970,9 @@
       "createdAt": "Oprettet:",
       "accessType": "Adgang:",
       "visibility": "Synlighed:",
-      "duration": "Varighed:"
+      "duration": "Varighed:",
+      "productionCompany": "Produktionsselskab:",
+      "manufacturerLink": "Producentlink:"
     }
   },
   "singleCollection": {
