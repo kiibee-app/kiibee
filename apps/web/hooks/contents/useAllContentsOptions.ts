@@ -41,6 +41,6 @@ export const useAllContentsOptions = (
 
       return Array.from(uniqueOptions.values());
     },
-    initialData: [],
+    placeholderData: [],
   });
 };
