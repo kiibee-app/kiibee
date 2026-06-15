@@ -235,8 +235,8 @@ export const useExploreContent = ({
     sort,
   });
 
-export const useExploreTrendingContent = () =>
-  useExploreTutorialSection("trending");
+export const useExploreTrendingContent = (limit?: number) =>
+  useExploreTutorialSection("trending", limit ? { limit } : undefined);
 
 export const useExploreRecentContent = (params?: UseExploreContentParams) =>
   useExploreTutorialSection("recent", params);

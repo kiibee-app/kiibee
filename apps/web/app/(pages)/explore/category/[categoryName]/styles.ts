@@ -30,6 +30,10 @@ export const MainContent = styled.div`
   ${media.tablet} {
     padding: 2rem 1rem 3rem;
   }
+
+  ${media.mobileLg} {
+    padding: 1.5rem 0.75rem 2.5rem;
+  }
 `;
 
 export const LayoutGrid = styled.div<{ $showSidebar?: boolean }>`
@@ -60,7 +64,7 @@ export const FiltersColumn = styled.aside`
 export const CardsGrid = styled.div<{ $isFetching?: boolean }>`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: 1.25rem;
   opacity: ${({ $isFetching }) => ($isFetching ? 0.6 : 1)};
   transition: opacity 0.2s ease-in-out;
 
@@ -72,8 +76,14 @@ export const CardsGrid = styled.div<{ $isFetching?: boolean }>`
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  ${media.mobileMd} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
   ${media.mobileLg} {
     grid-template-columns: 1fr;
+    gap: 0.875rem;
   }
 `;
 
@@ -95,20 +105,31 @@ export const ResultsState = styled.div`
 export const LoadMoreContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
   width: 100%;
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
 export const LoadMoreButton = styled(GenericButton)`
-  min-width: 150px;
-  border-radius: 2rem;
-  padding: 0.75rem 2rem;
+  width: 160px;
+  height: 48px;
+  border-radius: ${({ theme }) => theme.radius.lg};
+  padding: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  flex-shrink: 0;
   background: ${({ theme }) => theme.colors.neutral.BLACK};
   color: ${({ theme }) => theme.colors.neutral.WHITE};
   transition: all 0.2s ease-in-out;
 
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.GRAY_700};
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: ${({ theme }) => theme.shadows.lg};
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;

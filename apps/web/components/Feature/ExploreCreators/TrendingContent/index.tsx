@@ -1,59 +1,33 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
-import { LeftIcon } from "@/assets/icons";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTrendingContent } from "@/hooks/feed/useTrendingContent";
-import {
-  FEED_CONTENT_PAGE_SIZE,
-  getFeedPageSlice,
-} from "@/utils/feedContentToTutorial";
-import {
-  HeaderActions,
-  Section,
-  SectionArrow,
-  SectionArrows,
-  SectionTag,
-} from "../RecentlyAdded/styles";
+import { Section, SectionTag } from "../RecentlyAdded/styles";
 import {
   SectionHeader,
   SectionLabel,
-  SectionLink,
 } from "../../TutorialVideos/TutorialContent/styles";
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { useTranslation } from "react-i18next";
-import { PATHS } from "@/utils/path";
+import { LoadMoreContainer, LoadMoreButton } from "./styles";
+
+const LOAD_MORE_SIZE = 12;
 
 export default function TrendingContent() {
   const { t } = useTranslation();
-  const { tutorials, isLoading } = useTrendingContent();
-  const [pageStart, setPageStart] = useState(0);
+  const [limit, setLimit] = useState(LOAD_MORE_SIZE);
+  const { tutorials, isLoading } = useTrendingContent(limit);
+  const hasMore = tutorials.length >= limit;
 
-  const totalItems = tutorials.length;
-  const canSlide = totalItems > FEED_CONTENT_PAGE_SIZE;
-  const canGoPrev = pageStart > 0;
-  const canGoNext = pageStart + FEED_CONTENT_PAGE_SIZE < totalItems;
-
-  const movePrev = useCallback(() => {
-    setPageStart((prev) => Math.max(prev - FEED_CONTENT_PAGE_SIZE, 0));
-  }, []);
-
-  const moveNext = useCallback(() => {
-    if (!canSlide) return;
-    setPageStart((prev) =>
-      Math.min(
-        prev + FEED_CONTENT_PAGE_SIZE,
-        totalItems - FEED_CONTENT_PAGE_SIZE,
-      ),
-    );
-  }, [canSlide, totalItems]);
+  const handleLoadMore = () => {
+    setLimit((prev) => prev + LOAD_MORE_SIZE);
+  };
 
   if (!isLoading && tutorials.length === 0) {
     return null;
   }
-
-  const visibleTutorials = getFeedPageSlice(tutorials, pageStart);
 
   return (
     <Section>
@@ -65,40 +39,23 @@ export default function TrendingContent() {
             </MonoText>
           </SectionTag>
         </SectionLabel>
-        <HeaderActions>
-          {canSlide ? (
-            <SectionArrows>
-              {canGoPrev ? (
-                <SectionArrow
-                  type="button"
-                  onClick={movePrev}
-                  aria-label="Previous"
-                >
-                  <LeftIcon style={{ transform: "rotate(180deg)" }} />
-                </SectionArrow>
-              ) : null}
-              <SectionArrow
-                type="button"
-                disabled={!canGoNext}
-                aria-disabled={!canGoNext}
-                onClick={moveNext}
-                aria-label="Next"
-              >
-                <LeftIcon />
-              </SectionArrow>
-            </SectionArrows>
-          ) : (
-            <SectionLink href={PATHS.TUTORIAL_VIDEOS}>
-              <LeftIcon />
-            </SectionLink>
-          )}
-        </HeaderActions>
       </SectionHeader>
       <Grid $columnMax="300px">
-        {visibleTutorials.map((tutorial) => (
+        {tutorials.map((tutorial) => (
           <TutorialCard key={tutorial.id} tutorial={tutorial} />
         ))}
       </Grid>
+      {hasMore && !isLoading && (
+        <LoadMoreContainer>
+          <LoadMoreButton
+            variant="primary"
+            type="button"
+            onClick={handleLoadMore}
+          >
+            {t("creators.loadMore")}
+          </LoadMoreButton>
+        </LoadMoreContainer>
+      )}
     </Section>
   );
 }
