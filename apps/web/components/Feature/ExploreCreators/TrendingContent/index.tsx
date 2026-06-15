@@ -61,7 +61,7 @@ export default function TrendingContent() {
           </SectionLabel>
         </SectionHeader>
         <Grid $columnMax="300px">
-          {Array.from({ length: 3 }).map((_, i) => (
+          {Array.from({ length: FEED_CONTENT_PAGE_SIZE }).map((_, i) => (
             <Skeleton.Card key={i} />
           ))}
         </Grid>

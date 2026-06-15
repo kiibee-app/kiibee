@@ -29,11 +29,7 @@ import {
 import { Avatar as CreatorAvatar } from "@/components/Feature/ExploreCreators/TopCreators/styles";
 
 export default function Skeleton() {
-  return (
-    <SkeletonBase
-      style={{ width: "100%", height: "100%", borderRadius: "8px" }}
-    />
-  );
+  return <SkeletonBase />;
 }
 
 function TutorialCardSkeleton() {

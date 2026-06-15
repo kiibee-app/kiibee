@@ -26,6 +26,7 @@ import {
   ESCAPE,
   KEYDOWN,
   STRING,
+  EXPLORE_PAGE_SIZE,
 } from "@/utils/Constants";
 import PriceFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/PriceFiltersSection";
 import RatingFiltersSection from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters/RatingFiltersSection";
@@ -307,7 +308,7 @@ function CategoryExplorePageContent() {
           <MainContent>
             <CardsGrid $isFetching={isFetching}>
               {isLoading ? (
-                Array.from({ length: 6 }).map((_, i) => (
+                Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
                   <Skeleton.Card key={i} />
                 ))
               ) : tutorials.length > 0 ? (

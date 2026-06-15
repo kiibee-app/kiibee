@@ -17,6 +17,9 @@ export const shimmer = keyframes`
 
 export const SkeletonBase = styled.div`
   display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
   background: linear-gradient(
     90deg,
     ${({ theme }) => theme.colors.neutral.GRAY_100} 25%,

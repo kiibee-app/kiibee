@@ -14,9 +14,11 @@ import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import Skeleton from "@/components/UI/Skeleton";
 
+const SKELETON_COUNT = 6;
+
 export default function TopCreators() {
   const { t } = useTranslation();
-  const { creators, isLoading } = useExploreTopCreators();
+  const { creators, isLoading } = useExploreTopCreators(SKELETON_COUNT);
 
   if (isLoading) {
     return (
@@ -25,7 +27,7 @@ export default function TopCreators() {
           <Skeleton.Header />
         </Header>
         <List>
-          {Array.from({ length: 6 }).map((_, i) => (
+          {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
             <Skeleton.Creator key={i} />
           ))}
         </List>

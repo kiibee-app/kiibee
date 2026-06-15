@@ -5,7 +5,11 @@ import { useSearchParams } from "next/navigation";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import Skeleton from "@/components/UI/Skeleton";
 import { MonoText } from "@/components/UI/Monotext";
-import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
+import {
+  ACCESS_TYPE_FREE,
+  EXPLORE_PAGE_SIZE,
+  VARIANT,
+} from "@/utils/Constants";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import CreatorFiltersControl from "../Hero/CreatorsFilters";
@@ -226,7 +230,9 @@ export default function LatestRelease() {
         <div>
           <CardsGrid>
             {isLoading ? (
-              Array.from({ length: 6 }).map((_, i) => <Skeleton.Card key={i} />)
+              Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+                <Skeleton.Card key={i} />
+              ))
             ) : tutorials.length > 0 ? (
               tutorials.map((tutorial) => (
                 <TutorialCard key={tutorial.id} tutorial={tutorial} />
