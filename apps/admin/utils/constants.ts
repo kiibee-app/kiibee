@@ -65,3 +65,7 @@ export const DASHBOARD_STAT_KEY = {
 } as const;
 
 export const DEBOUNCE_DELAY = 300;
+
+export const PLACEHOLDERS = {
+  SEARCH_USERS: "Search users...",
+} as const;

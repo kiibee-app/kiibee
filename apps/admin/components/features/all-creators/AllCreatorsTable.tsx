@@ -8,7 +8,6 @@ import {
   useViewers,
 } from "../../../hooks/api";
 import { usePagination } from "../../../hooks/ui/use-pagination";
-import { useDebounce } from "../../../hooks/ui/use-debounce";
 import {
   AllCreatorsLayout,
   AllCreatorsPanel,
@@ -34,7 +33,9 @@ import {
   ALL_CREATORS_TAB,
   type AllCreatorsTab,
   STORAGE_KEYS,
+  PLACEHOLDERS,
 } from "@/utils/constants";
+import { useDebounce } from "@/hooks/ui/use-debounce";
 
 export function AllCreatorsTable() {
   const [activeTab, setActiveTab] = useState<AllCreatorsTab>(
@@ -282,7 +283,7 @@ export function AllCreatorsTable() {
           </SearchIconWrapper>
           <SearchInput
             ref={searchInputRef}
-            placeholder="Search users..."
+            placeholder={PLACEHOLDERS.SEARCH_USERS}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />

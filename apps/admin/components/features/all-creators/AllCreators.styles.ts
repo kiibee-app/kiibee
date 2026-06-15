@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 import type { CreatorStatus } from "../../../types/creator-request";
 
 export const AllCreatorsPanel = styled.div`
@@ -54,7 +55,7 @@ export const SearchContainer = styled.div`
     box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.neutral.PALE_GREEN};
   }
 
-  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+  ${media.mobileLg} {
     min-width: 100%;
   }
 `;
@@ -437,7 +438,7 @@ export const PaginationFooter = styled.div`
   color: ${({ theme }) => theme.colors.secondary.muted};
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
-  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+  ${media.mobileLg} {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
@@ -449,7 +450,7 @@ export const PaginationControlGroup = styled.div`
   align-items: center;
   gap: 6px;
 
-  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+  ${media.mobileLg} {
     justify-content: center;
     flex-wrap: wrap;
   }
