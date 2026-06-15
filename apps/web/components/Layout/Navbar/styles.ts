@@ -25,6 +25,7 @@ export const Header = styled.header<HeaderProps>`
 `;
 
 export const Inner = styled.div`
+  position: relative;
   max-width: var(--navbar-inner-max-width, 1440px);
   width: 100%;
   margin: 0 auto;
@@ -93,7 +94,10 @@ export const Nav = styled.nav<NavStyleProps & { $routeActiveItems?: boolean }>`
           justify-content: flex-end;
         `
       : css`
-          justify-content: center;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
         `}
 
   ${({ $routeActiveItems, theme, $textTone }) =>
@@ -635,4 +639,9 @@ export const DrawerActions = styled.div`
   button {
     width: 100%;
   }
+`;
+
+export const ActionsPlaceholder = styled.div`
+  min-width: 120px;
+  height: 40px;
 `;
