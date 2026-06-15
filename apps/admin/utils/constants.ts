@@ -63,3 +63,5 @@ export const DASHBOARD_STAT_KEY = {
   FREE_CONTENT: "free-content",
   PAID_CONTENT: "paid-content",
 } as const;
+
+export const DEBOUNCE_DELAY = 300;

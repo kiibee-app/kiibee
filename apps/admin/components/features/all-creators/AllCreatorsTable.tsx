@@ -8,6 +8,7 @@ import {
   useViewers,
 } from "../../../hooks/api";
 import { usePagination } from "../../../hooks/ui/use-pagination";
+import { useDebounce } from "../../../hooks/ui/use-debounce";
 import {
   AllCreatorsLayout,
   AllCreatorsPanel,
@@ -39,10 +40,12 @@ export function AllCreatorsTable() {
     ALL_CREATORS_TAB.CREATORS,
   );
   const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearch = useDebounce(searchTerm);
+
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
     null,
   );
-  const existingCreatorsQuery = useExistingCreators();
+  const existingCreatorsQuery = useExistingCreators(debouncedSearch);
   const creatorRequestsQuery = useCreatorRequests();
   const viewersQuery = useViewers();
   const { creators, updateCreatorStatus } = useCreatorRequestOverrides(
@@ -66,18 +69,40 @@ export function AllCreatorsTable() {
     storageKey: STORAGE_KEYS.PAGE_SIZE_ALL_CREATORS,
   });
 
-  const totalRequests = creators.length;
+  const debouncedSearchLower = debouncedSearch.toLowerCase().trim();
+
+  const filteredRequests = debouncedSearchLower
+    ? creators.filter(
+        (c) =>
+          c.fullName?.toLowerCase().includes(debouncedSearchLower) ||
+          c.firstName?.toLowerCase().includes(debouncedSearchLower) ||
+          c.lastName?.toLowerCase().includes(debouncedSearchLower) ||
+          c.email.toLowerCase().includes(debouncedSearchLower),
+      )
+    : creators;
+
+  const totalRequests = filteredRequests.length;
   const requestsPagination = usePagination({
-    data: creators,
+    data: filteredRequests,
     totalItems: totalRequests,
     initialPageSize: 10,
     storageKey: STORAGE_KEYS.PAGE_SIZE_CREATOR_REQUESTS,
   });
 
   const viewers = viewersQuery.data ?? [];
-  const totalViewers = viewers.length;
+  const filteredViewers = debouncedSearchLower
+    ? viewers.filter(
+        (v) =>
+          v.fullName?.toLowerCase().includes(debouncedSearchLower) ||
+          v.firstName?.toLowerCase().includes(debouncedSearchLower) ||
+          v.lastName?.toLowerCase().includes(debouncedSearchLower) ||
+          v.email.toLowerCase().includes(debouncedSearchLower),
+      )
+    : viewers;
+
+  const totalViewers = filteredViewers.length;
   const viewersPagination = usePagination({
-    data: viewers,
+    data: filteredViewers,
     totalItems: totalViewers,
     initialPageSize: 10,
     storageKey: STORAGE_KEYS.PAGE_SIZE_VIEWERS,
