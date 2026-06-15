@@ -116,6 +116,9 @@ export type ContentDetailItem = {
 
 export type ContentMediaUrlResponse = {
   [CONTENT_MEDIA_RESPONSE_KEYS.URL]?: string;
+  iframeUrl?: string;
+  streamUrl?: string;
+  token?: string;
 };
 
 export type ContentDetailResponse =
@@ -164,14 +167,19 @@ export const resolveContentPlaybackUrl = (
   const contentType = getContentType(content);
   const contentUrl = getContentUrl(content);
   const fileKey = getContentMediaKey(content);
-  const cloudflareEmbedUrl = resolveCloudflareStreamPlaybackUrl(
-    fileKey,
-    contentUrl || signedUrl,
-  );
 
   if (contentType === FORMAT_TYPE.WEB) {
     return contentUrl;
   }
+
+  if (signedUrl) {
+    return signedUrl;
+  }
+
+  const cloudflareEmbedUrl = resolveCloudflareStreamPlaybackUrl(
+    fileKey,
+    contentUrl,
+  );
 
   if (cloudflareEmbedUrl) {
     return cloudflareEmbedUrl;
@@ -181,7 +189,7 @@ export const resolveContentPlaybackUrl = (
     return contentUrl;
   }
 
-  return signedUrl ?? "";
+  return "";
 };
 
 const getContentImage = (content: ContentDetailItem): ImageSource => {

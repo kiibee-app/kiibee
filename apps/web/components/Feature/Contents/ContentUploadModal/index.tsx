@@ -50,6 +50,9 @@ type CreateContentPayload = {
 
 export type MediaUrlResponse = {
   url?: string;
+  iframeUrl?: string;
+  streamUrl?: string;
+  token?: string;
 };
 
 type PendingUploadSuccess = {
@@ -268,14 +271,14 @@ export default function ContentUploadModal({
       const createdId =
         (res as { data?: { id?: string } })?.data?.id ??
         (res as { id?: string })?.id;
-      const uploadPreview =
-        contentType === FORMAT_TYPE.VIDEO && fileKey
-          ? (
-              await axiosClient.get<MediaUrlResponse>(API.media.videoStream, {
-                params: { key: fileKey },
-              })
-            ).data.url
-          : (uploadedFile?.url ?? previewUrl);
+      let uploadPreview = uploadedFile?.url ?? previewUrl;
+      if (contentType === FORMAT_TYPE.VIDEO && fileKey) {
+        const streamRes = await axiosClient.get<MediaUrlResponse>(
+          API.media.videoStream,
+          { params: { key: fileKey } },
+        );
+        uploadPreview = streamRes.data.url || streamRes.data.iframeUrl || null;
+      }
       setPendingUploadSuccess({
         tab: ADD_CONTENT_TABS.GENERAL,
         file: selectedFile,

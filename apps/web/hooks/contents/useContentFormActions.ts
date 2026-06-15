@@ -13,6 +13,7 @@ import {
   getFileNameWithoutExtension,
   normalizeContentTypeValue,
 } from "@/utils/content";
+import { type ContentMediaUrlResponse } from "@/utils/contentApi";
 import { useContentForm } from "@/components/Feature/Contents/ContentFormContext";
 import { useAppearanceForm } from "@/components/Feature/Contents/Appearance/AppearanceFormContext";
 import {
@@ -52,7 +53,6 @@ import {
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
-import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
 import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
@@ -577,11 +577,11 @@ export function useContentFormActions({
               ? API.media.videoStream
               : API.media.fileSignedUrl;
 
-          const res = await axiosClient.get<MediaUrlResponse>(endpoint, {
+          const res = await axiosClient.get<ContentMediaUrlResponse>(endpoint, {
             params: { key: fileKey },
           });
 
-          return res.data.url ?? null;
+          return res.data.url || res.data.iframeUrl || null;
         };
 
         const preview = fullContent.fileKey
