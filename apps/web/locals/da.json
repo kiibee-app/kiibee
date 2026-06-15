@@ -85,7 +85,8 @@
         "confirmLabel": "Opret konto",
         "message": "For at fortsætte med dit køb, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik."
       },
-      "seeContent": "Se indhold"
+      "seeContent": "Se indhold",
+      "buy": "Køb 99 kr"
     }
   },
   "createProfileCollections": {
@@ -957,6 +958,7 @@
     "loading": "Indhold indlaeses...",
     "imageAlt": "Forhaandsvisning af indhold",
     "seeContent": "Se indhold",
+    "playVideo": "Afspil video",
     "playTrailer": "Afspil trailer",
     "pricing": {
       "downloadFiles": "Download filer",
@@ -966,9 +968,11 @@
       "accessHours": "Adgang i {{count}} timer"
     },
     "meta": {
+      "publishedYear": "Udgivet:",
       "createdAt": "Oprettet:",
       "accessType": "Adgang:",
-      "visibility": "Synlighed:"
+      "visibility": "Synlighed:",
+      "duration": "Varighed:"
     }
   },
   "singleCollection": {
@@ -1587,6 +1591,10 @@
     "emptyCollection": {
       "title": "Din samling er tom.",
       "description": "Tilføj indhold til din samling, som derefter vises på din kanal."
+    },
+    "emptyCoupon": {
+      "title": "Ingen kuponer endnu.",
+      "description": "Opret din første kupon for at begynde at tilbyde rabatter."
     },
     "deleteModal": {
       "title": "Delete content?",

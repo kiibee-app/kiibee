@@ -372,3 +372,8 @@ export const STATUS_TONE = {
 export type StatusTone = (typeof STATUS_TONE)[keyof typeof STATUS_TONE];
 
 export const PAYMENT_QUERY_KEY = "payment";
+
+export const BILLING_TYPES = {
+  RENTED: { value: "rented", label: "Rented" },
+  PURCHASED: { value: "purchased", label: "Purchased" },
+} as const;

@@ -195,7 +195,7 @@ export const HeaderRow = styled.div`
 
 export const EmptyCollectionCard = styled.div`
   display: flex;
-  padding: 20px 16px;
+  padding: 50px 16px;
   flex-direction: column;
   justify-content: center;
   align-items: center;

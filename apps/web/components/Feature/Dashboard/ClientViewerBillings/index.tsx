@@ -35,14 +35,19 @@ import {
 } from "@/utils/tableHeader";
 import {
   CARD_BRAND_LOGOS,
-  MOCK_VIEWER_BILLING_HISTORY,
   MOCK_VIEWER_PAYMENT_METHODS,
-  type ViewerBillingHistoryItem,
   type ViewerPaymentMethod,
 } from "@/utils/dummyData/viewerBillingMockData";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import {
+  useViewerBillingHistory,
+  type ViewerBillingHistoryItem,
+} from "@/hooks/useViewerBillingHistory";
+import GenericLoader from "@/components/UI/GenericLoader";
+import { LOADER_VARIANT } from "@/utils/ui";
+
 import {
   Actions,
   AddCardButton,
@@ -71,6 +76,8 @@ import InvoiceModal from "./InvoiceModal";
 
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
+  const { billingHistory, isLoading: isBillingHistoryLoading } =
+    useViewerBillingHistory();
   const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [showEditSuccessModal, setShowEditSuccessModal] = useState(false);
@@ -175,7 +182,7 @@ export default function ClientViewerBillings() {
     isHeaderSortable,
     getHeaderSortDirection,
     toggleSort,
-  } = useTableSort(MOCK_VIEWER_BILLING_HISTORY, {
+  } = useTableSort(billingHistory, {
     sortableHeader: billingHistoryHeaders[0],
     sortBy: (item) => item.contentTitle,
   });
@@ -197,7 +204,9 @@ export default function ClientViewerBillings() {
       </BillingHeader>
 
       {activeTab === VIEWER_BILLING_HISTORY_TAB ? (
-        sortedBillingHistory.length ? (
+        isBillingHistoryLoading ? (
+          <GenericLoader variant={LOADER_VARIANT.INLINE} />
+        ) : sortedBillingHistory.length ? (
           <BillingTableSection>
             <Table<ViewerBillingHistoryItem>
               headers={billingHistoryHeaders}

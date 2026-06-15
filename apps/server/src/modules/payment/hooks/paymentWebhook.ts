@@ -65,6 +65,7 @@ export async function handleEpayPayment(body: any) {
       cardNo: paymentMethodDisplayText,
       cardExpiry: paymentMethodExpiry,
       cardType: paymentMethodSubType,
+      paidAt: new Date(),
     } as any);
 
     await db

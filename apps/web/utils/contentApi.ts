@@ -11,7 +11,10 @@ import {
   getContentTypeLabel,
   normalizeContentTypeValue,
 } from "@/utils/content";
-import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
+import {
+  resolveCloudflareStreamPlaybackUrl,
+  resolvePublicMediaUrl,
+} from "@/utils/media";
 import {
   getContentDetailPricingActions,
   isFreeContentItem,
@@ -38,10 +41,12 @@ export const CONTENT_RESPONSE_KEYS = {
   BUY_PRICE: "buyPrice",
   RENT_PRICE: "rentPrice",
   RENT_DURATION_HOURS: "rentDurationHours",
+  DURATION: "duration",
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
   NAME: "name",
   CREATOR_ID: "creatorId",
+  PUBLISHED_YEAR: "publishedYear",
 } as const;
 
 export const CONTENT_MEDIA_RESPONSE_KEYS = {
@@ -64,9 +69,11 @@ export const CONTENT_TRANSLATION_KEYS = {
   addAction: "contents.contentUploadModal.details.add",
   share: "common.share",
   meta: {
+    publishedYear: "singleContent.meta.publishedYear",
     createdAt: "singleContent.meta.createdAt",
     accessType: "singleContent.meta.accessType",
     visibility: "singleContent.meta.visibility",
+    duration: "singleContent.meta.duration",
   },
 } as const;
 
@@ -86,6 +93,7 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.BUY_PRICE]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.RENT_PRICE]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS]?: string | number | null;
+  [CONTENT_RESPONSE_KEYS.DURATION]?: number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
   accessInfo?: {
@@ -95,6 +103,7 @@ export type ContentDetailItem = {
     timeLeftText?: string;
   } | null;
   [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
+  [CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]?: number | null;
 };
 
 export type ContentMediaUrlResponse = {
@@ -167,11 +176,14 @@ export const resolveContentPlaybackUrl = (
   return signedUrl ?? "";
 };
 
-const getContentImage = (content: ContentDetailItem): ImageSource =>
-  toTrimmedString(
+const getContentImage = (content: ContentDetailItem): ImageSource => {
+  const raw = toTrimmedString(
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL] ??
       content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
-  ) || contentFallbackImage;
+  );
+
+  return resolvePublicMediaUrl(raw) || contentFallbackImage;
+};
 
 const getCategoryNames = (content: ContentDetailItem) =>
   (content[CONTENT_RESPONSE_KEYS.CATEGORIES] ?? [])
@@ -276,6 +288,12 @@ export const getSingleContentProps = (
           })),
         }),
     metaItems: [
+      content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.publishedYear),
+            value: String(content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]),
+          }
+        : undefined,
       createdAt
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.createdAt),
@@ -292,6 +310,12 @@ export const getSingleContentProps = (
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.visibility),
             value: visibility,
+          }
+        : undefined,
+      content[CONTENT_RESPONSE_KEYS.DURATION]
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.duration),
+            value: `${content[CONTENT_RESPONSE_KEYS.DURATION]} min`,
           }
         : undefined,
     ].filter(Boolean) as NonNullable<SingleContentPageProps["metaItems"]>,

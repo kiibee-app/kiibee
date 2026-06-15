@@ -24,7 +24,12 @@ import {
   ModalContentWrapper,
   ModalDescription,
 } from "./styles";
-import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
+import {
+  resolveImageUrl,
+  MOBILE_BREAKPOINT,
+  VARIANT,
+  BUY_PREFIX,
+} from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
 import {
   EpubIcon,
@@ -40,10 +45,12 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
+  formatPriceLabel,
   getContentDetailPricingActions,
   isFreeContentItem,
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
+import { authStorage } from "@/lib/auth/authStorage";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 
 type LatestUploadAction = {
@@ -116,10 +123,17 @@ export default function LatestUpload({ data }: LatestUploadProps) {
       };
 
       if (isFreeContentItem(pricingItem)) {
+        const buyLabel =
+          formatPriceLabel(BUY_PREFIX, data.buyPrice) ||
+          t("createProfileHome.latestUpload.buy");
         return [
           {
+            title: buyLabel,
+            subtitle: t("singleContent.pricing.downloadFiles"),
+            href: `${pathPublishedContent(data.contentId)}#buy`,
+          },
+          {
             title: t("createProfileHome.latestUpload.seeContent"),
-            subtitle: undefined as string | undefined,
             href: pathPublishedContent(data.contentId),
           },
         ];
@@ -225,7 +239,14 @@ export default function LatestUpload({ data }: LatestUploadProps) {
               type="button"
               onClick={() => {
                 if (primaryAction.href) {
-                  navigateToContent(primaryAction.href, true);
+                  const isBuy =
+                    primaryAction.title.toLowerCase().includes("buy") ||
+                    primaryAction.title.toLowerCase().includes("køb");
+                  if (isBuy && !authStorage.hasSession()) {
+                    setLoginModalVisible(true);
+                  } else {
+                    navigateToContent(primaryAction.href, true);
+                  }
                 } else {
                   setLoginModalVisible(true);
                 }

@@ -22,10 +22,13 @@ export async function getBillingHistoryService(userId: string) {
       .select({
         id: payments.id,
         orderNumber: orders.id,
-        contentTitle: mediaFiles.title,
-        creatorName: mediaCreators.fullName,
+        contentTitle: sql<string>`coalesce(${mediaFiles.title}, ${collections.name})`,
+        contentImage: sql<
+          string | null
+        >`coalesce(${mediaFiles.thumbnailUrl}, ${collections.coverImageUrl})`,
+        creatorName: sql<string>`coalesce(${mediaCreators.fullName}, ${collectionCreators.fullName})`,
         itemType: orders.itemType,
-        paymentDate: payments.paidAt,
+        paymentDate: sql<Date>`coalesce(${payments.paidAt}, ${payments.createdAt})`,
         amount: payments.amount,
         paymentMethod: payments.paymentMethod,
         cardNumber: payments.cardNo,
@@ -52,6 +55,7 @@ export async function getBillingHistoryService(userId: string) {
       id: row.id,
       orderNumber: row.orderNumber,
       contentTitle: row.contentTitle ?? '',
+      contentImage: row.contentImage ?? '',
       creatorName: row.creatorName ?? '',
       type:
         row.itemType === ORDER_TYPES.RENTAL

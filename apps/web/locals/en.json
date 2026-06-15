@@ -85,7 +85,8 @@
         "confirmLabel": "Create account",
         "message": "To continue with your purchase, please log in to your Kiibee account. If you don't have an account yet, you can create one in just a moment."
       },
-      "seeContent": "See content"
+      "seeContent": "See content",
+      "buy": "Buy 99 kr"
     }
   },
   "createProfileCollections": {
@@ -958,6 +959,7 @@
     "loading": "Loading content...",
     "imageAlt": "Content preview",
     "seeContent": "See content",
+    "playVideo": "Play video",
     "playTrailer": "Play trailer",
     "pricing": {
       "downloadFiles": "Download files",
@@ -967,9 +969,11 @@
       "accessHours": "Access for {{count}} hours"
     },
     "meta": {
+      "publishedYear": "Published:",
       "createdAt": "Created:",
       "accessType": "Access:",
-      "visibility": "Visibility:"
+      "visibility": "Visibility:",
+      "duration": "Duration:"
     }
   },
   "singleCollection": {
@@ -1594,6 +1598,10 @@
     "emptyCollection": {
       "title": "Your collection is empty.",
       "description": "Add content to your collection which will then be displayed on your channel."
+    },
+    "emptyCoupon": {
+      "title": "No coupons yet.",
+      "description": "Create your first coupon to start offering discounts."
     },
     "deleteModal": {
       "title": "Delete content?",
