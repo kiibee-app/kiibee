@@ -77,4 +77,7 @@ export const API = {
     billingHistory: "/order/billing-history",
     // confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
   },
+  support: {
+    contact: "/support/contact",
+  },
 } as const;

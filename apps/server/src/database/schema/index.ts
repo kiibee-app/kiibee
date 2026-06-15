@@ -67,3 +67,4 @@ export * from './integrations/externalImports.schema';
 // System
 export * from './system/auditLogs.schema';
 export * from './system/notifications.schema';
+export * from './system/supportContactMessages.schema';
