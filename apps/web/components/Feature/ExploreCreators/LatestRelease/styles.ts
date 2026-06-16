@@ -39,8 +39,24 @@ export const HeaderWrap = styled.div`
 export const HeaderTabs = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 2rem;
   flex-wrap: wrap;
+
+  ${media.desktopLg} {
+    gap: 2rem;
+  }
+
+  ${media.desktopMd} {
+    gap: 1.75rem;
+  }
+
+  ${media.desktop} {
+    gap: 1.5rem;
+  }
+
+  ${media.tablet} {
+    gap: 0.5rem;
+  }
 `;
 
 export const TabButton = styled(GenericButton)<{ $active?: boolean }>`
