@@ -27,6 +27,7 @@ async function bootstrap() {
       AppModule,
       new FastifyAdapter({
         logger: false,
+        bodyLimit: FILE_SIZE_LIMIT,
       }),
       {
         logger: ['log', 'error', 'warn', 'debug', 'verbose'],
