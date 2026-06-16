@@ -58,7 +58,7 @@ export default function CenteredCoverSection() {
         </UploadsText>
         <BioText>{biography}</BioText>
         <BioMoreButton onClick={openAbout}>
-          ...{t(CREATE_PROFILE_HOME.more)}
+          {t(CREATE_PROFILE_HOME.more)}
         </BioMoreButton>
 
         <HeroTabs {...tabState} centered />

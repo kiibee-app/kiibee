@@ -67,7 +67,7 @@ export default function StorySection() {
                 </MonoText>
               </StoryBioText>
               <StoryMoreButton onClick={openAbout}>
-                ...{t(CREATE_PROFILE_HOME.more)}
+                {t(CREATE_PROFILE_HOME.more)}
               </StoryMoreButton>
             </StoryDescription>
           </StoryPanel>

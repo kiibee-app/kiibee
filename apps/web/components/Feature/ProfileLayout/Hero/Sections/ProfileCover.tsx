@@ -70,7 +70,7 @@ export default function ProfileCoverSection() {
             <CreatorBio>
               <CreatorBioText>{biography}</CreatorBioText>
               <MoreTextLabel onClick={openAbout}>
-                ...{t(CREATE_PROFILE_HOME.more)}
+                {t(CREATE_PROFILE_HOME.more)}
               </MoreTextLabel>
             </CreatorBio>
           </ProfileMeta>
