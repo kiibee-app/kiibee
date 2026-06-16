@@ -4,7 +4,12 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
-import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
+import {
+  ACCESS_TYPE_FREE,
+  EXPLORE_PAGE_SIZE,
+  VARIANT,
+} from "@/utils/Constants";
+import Skeleton from "@/components/UI/Skeleton";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import CreatorFiltersControl from "../Hero/CreatorsFilters";
@@ -241,11 +246,9 @@ export default function LatestRelease() {
         <CardsColumn>
           <CardsGrid>
             {isLoading ? (
-              <ResultsState>
-                <MonoText $use="Body_Medium">
-                  {t("nav.explore.loading")}
-                </MonoText>
-              </ResultsState>
+              Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+                <Skeleton.Card key={i} />
+              ))
             ) : tutorials.length > 0 ? (
               tutorials.map((tutorial) => (
                 <TutorialCard key={tutorial.id} tutorial={tutorial} />
