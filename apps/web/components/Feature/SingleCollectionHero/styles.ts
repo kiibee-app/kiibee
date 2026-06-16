@@ -163,3 +163,11 @@ export const EmbeddedHeader = styled(Header)`
 export const EmbeddedShowcaseWrapper = styled(ShowcaseWrapper)`
   margin-bottom: 32px;
 `;
+
+export const ResultsState = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors?.neutral?.GRAY_500};
+`;

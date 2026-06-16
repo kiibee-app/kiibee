@@ -1,22 +1,42 @@
 import { Injectable } from '@nestjs/common';
-import { GetObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { s3 } from 'src/services/s3.client';
 
 @Injectable()
 export class VideoStreamService {
-  async getStreamUrl(key: string) {
-    const command = new GetObjectCommand({
-      Bucket: process.env.DO_BUCKET!,
-      Key: key,
-      ResponseContentDisposition: 'inline',
-      ResponseContentType: 'video/mp4',
-    });
+  private readonly accountId = process.env.CF_ACCOUNT_ID as string;
+  private readonly apiToken = process.env.CF_API_TOKEN as string;
+  private readonly keyId = process.env.CF_STREAM_KEY_ID as string;
+  private readonly pem = process.env.CF_STREAM_PEM as string;
+  private readonly customerId = process.env.CF_STREAM_ACCOUNT_HASH as string;
 
-    const url = await getSignedUrl(s3, command, {
-      expiresIn: 60 * 30,
-    });
+  async getStreamUrl(videoId: string, expiresInSec = 3600) {
+    const response = await fetch(
+      `https://api.cloudflare.com/client/v4/accounts/${this.accountId}/stream/${videoId}/token`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${this.apiToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: this.keyId,
+          pem: this.pem,
+          exp: Math.floor(Date.now() / 1000) + expiresInSec,
+        }),
+      },
+    );
 
-    return { url };
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(
+        `Cloudflare Stream token error: ${data.errors?.map((e: any) => e.message).join(', ')}`,
+      );
+    }
+
+    return {
+      token: data.result.token as string,
+      streamUrl: `https://customer-${this.customerId}.cloudflarestream.com/${data.result.token}/manifest/video.m3u8`,
+      iframeUrl: `https://customer-${this.customerId}.cloudflarestream.com/${data.result.token}/iframe`,
+    };
   }
 }

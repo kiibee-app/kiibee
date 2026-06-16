@@ -5,7 +5,6 @@ import {
   Get,
   Post,
   Query,
-  ParseIntPipe,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -20,25 +19,17 @@ type FileType = 'documents' | 'audio' | 'ebooks';
 export class MediaController {
   constructor(private readonly mediaService: MediaService) {}
 
-  @Post('videos/init')
-  init() {
-    return this.mediaService.initUpload();
+  @Post('videos/upload')
+  createVideoUpload() {
+    return this.mediaService.createVideoUpload();
   }
 
-  @Get('videos/part-url')
-  getPartUrl(
-    @Query('key') key: string,
-    @Query('uploadId') uploadId: string,
-    @Query('partNumber', ParseIntPipe) partNumber: number,
-  ) {
-    return this.mediaService.getPartUrl(key, uploadId, partNumber);
+  @Get('videos/playback')
+  getPlayback(@Query('uid') uid: string) {
+    return this.mediaService.getStreamUrl(uid);
   }
 
-  @Post('videos/complete')
-  complete(@Body() body: any) {
-    return this.mediaService.completeUpload(body);
-  }
-
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('videos/stream')
   stream(@Query('key') key: string) {
     return this.mediaService.getStreamUrl(key);

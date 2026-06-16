@@ -47,7 +47,7 @@ export default function ClientDashboardCreators() {
   const searchParams = useSearchParams();
   const { logout } = useLogout();
   const { getUser } = useAuthSession();
-  useRequireAuthSession();
+  const { isReady } = useRequireAuthSession();
   useProfileSync();
 
   const handleLogoutClick = useCallback(() => {
@@ -121,6 +121,18 @@ export default function ClientDashboardCreators() {
     if (activePage === CREATORS_LABELS.USERS) return <UsersContent />;
     return <div style={{ padding: 20 }}>Content for {activePage}</div>;
   }, [activePage, view]);
+
+  if (!isReady) {
+    return (
+      <CreatorChannelLayoutProvider>
+        <DashboardLayout
+          header={<DashboardHeader role={ROLE_CREATOR} />}
+          sidebarExpanded={false}
+          sidebar={<Sidebar expanded={false} />}
+        />
+      </CreatorChannelLayoutProvider>
+    );
+  }
 
   return (
     <CreatorChannelLayoutProvider>

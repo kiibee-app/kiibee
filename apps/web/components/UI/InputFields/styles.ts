@@ -313,14 +313,38 @@ export const DateDisplay = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8px;
   min-height: 44px;
   border: 1px solid transparent;
   cursor: pointer;
 `;
 
-export const DateText = styled.div`
+export const DateText = styled.div<{ $isPlaceholder?: boolean }>`
   ${({ theme }) => theme.typography.Body_Regular};
-  color: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ $isPlaceholder, theme }) =>
+    $isPlaceholder
+      ? theme.colors.neutral.GRAY_400
+      : theme.colors.primary.BLACK};
+  flex: 1;
+  min-width: 0;
+`;
+
+export const DateFieldActions = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+`;
+
+export const DateCalendarButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
 `;
 
 export const DatePopup = styled.div<{
@@ -392,4 +416,89 @@ export const DatePopupWrapper = styled.div`
   position: absolute;
   inset: 0;
   z-index: 1400;
+`;
+
+export const TagsInputWrapper = styled.div<{
+  $hasError?: boolean;
+  $variant?: InputVariant;
+}>`
+  padding: 8px 12px;
+  background: ${({ $hasError, $variant, theme }) =>
+    $hasError
+      ? theme.colors.primary.RED
+      : $variant === INPUT_VARIANTS.PRIMARY_GRAY
+        ? theme.colors.primary.GRAY
+        : theme.colors.neutral.GRAY_100};
+  border: 1px solid
+    ${({ $hasError, theme }) =>
+      $hasError ? theme.colors.primary.RED : theme.colors.neutral.GRAY_200};
+  border-radius: ${({ theme }) => theme.radius.lg};
+  min-height: 40px;
+  cursor: text;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+
+  &:focus-within {
+    border-color: ${({ $hasError, theme }) =>
+      $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
+  }
+`;
+
+export const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+`;
+
+export const TagChip = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_250};
+  border-radius: 16px;
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const TagText = styled.span`
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const TagRemoveButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export const TagsInputField = styled.input`
+  flex: 1;
+  min-width: 120px;
+  border: none;
+  background: transparent;
+  outline: none;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  padding: 4px 0;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  }
 `;

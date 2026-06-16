@@ -1,11 +1,21 @@
 "use client";
 
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
+import { PATHS } from "@/utils/path";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { TutorialVideo } from "@/utils/types";
 import logo from "@/assets/images/logo.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
+import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
+import {
+  VARIANT,
+  ADMISSION_REQUIREMENT_FREE,
+  ACCESS_TYPE_FREE,
+} from "@/utils/Constants";
 import CollectionItems from "./CollectionItems";
 
 type Props = {
@@ -20,6 +30,52 @@ export default function SingleTutorial({
   collectionId,
 }: Props) {
   const { t } = useTranslation();
+  const router = useRouter();
+  const user = useStoredLoginUser();
+
+  const handleSeeContent = () => {
+    const isPaid = tutorial.level !== ADMISSION_REQUIREMENT_FREE;
+    const isLoggedIn = Boolean(user && user.id);
+    if (isPaid && !isLoggedIn) {
+      router.push(PATHS.AUTH_LOGIN);
+    }
+  };
+  const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
+  const isFreeContent = useMemo(() => {
+    if (tutorial.isFree != null) {
+      return tutorial.isFree;
+    }
+
+    const firstButtonLabel = tutorial.buttons?.[0]?.label?.trim().toLowerCase();
+    return (
+      !tutorial.buttons?.length ||
+      firstButtonLabel === ACCESS_TYPE_FREE ||
+      firstButtonLabel === freeLabel.trim().toLowerCase()
+    );
+  }, [freeLabel, tutorial.buttons, tutorial.isFree]);
+  const primaryActions = useMemo(() => {
+    if (isFreeContent) {
+      return undefined;
+    }
+
+    return (tutorial.buttons ?? []).map((button) => {
+      const normalizedLabel = button.label.toLowerCase();
+      const isBuy = normalizedLabel.includes("buy");
+      const isRent = normalizedLabel.includes("rent");
+
+      return {
+        label: button.label,
+        subtitle: isBuy
+          ? t("singleContent.pricing.downloadFiles")
+          : isRent
+            ? t("singleContent.pricing.accessDefault")
+            : undefined,
+        variant: isBuy ? VARIANT.PRIMARY : VARIANT.SOFT_OUTLINE,
+        onClick: button.onClick,
+        disabled: false,
+      };
+    });
+  }, [isFreeContent, t, tutorial.buttons]);
 
   return (
     <SingleContentPage
@@ -41,9 +97,15 @@ export default function SingleTutorial({
         trailerIcon: playIcon,
         trailerIconAlt: "Play",
       }}
-      primaryAction={{
-        label: t("singleTutorial.seeContent"),
-      }}
+      primaryAction={
+        isFreeContent
+          ? {
+              label: t("singleTutorial.seeContent"),
+              onClick: handleSeeContent,
+            }
+          : undefined
+      }
+      primaryActions={primaryActions}
       metaItems={[
         {
           label: t("singleTutorial.meta.publishedLabel"),
@@ -60,7 +122,9 @@ export default function SingleTutorial({
       ]}
       shareLabel={t("common.share")}
     >
-      <CollectionItems videos={relatedVideos} collectionId={collectionId} />
+      {relatedVideos.length ? (
+        <CollectionItems videos={relatedVideos} collectionId={collectionId} />
+      ) : null}
     </SingleContentPage>
   );
 }

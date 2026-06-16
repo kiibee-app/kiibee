@@ -2,10 +2,12 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
+import type { ExistingCreator } from "../../types/existing-creator";
 import type { CreatorRequest } from "../../types/creator-request";
-import { API_ENDPOINTS } from "../../utils/constants";
+import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
 
-const CREATOR_REQUESTS_QUERY_KEY = ["creator-requests"];
+const CREATOR_REQUESTS_QUERY_KEY = [QUERY_KEY.CREATOR_REQUESTS];
+const EXISTING_CREATORS_QUERY_KEY = [QUERY_KEY.EXISTING_CREATORS];
 
 type CreatorActionPayload = {
   requestId: string;
@@ -47,6 +49,24 @@ export function useCreatorRequests() {
   });
 }
 
+export function useExistingCreators(search?: string) {
+  return useQuery({
+    queryKey: search
+      ? [...EXISTING_CREATORS_QUERY_KEY, search]
+      : EXISTING_CREATORS_QUERY_KEY,
+    queryFn: async () => {
+      const url = search
+        ? `${API_ENDPOINTS.ALL_CREATORS}?search=${encodeURIComponent(search)}`
+        : API_ENDPOINTS.ALL_CREATORS;
+      const data = await ensureSuccess<ExistingCreator[]>(
+        apiClient<ExistingCreator[]>(url),
+      );
+
+      return data ?? [];
+    },
+  });
+}
+
 export function useCreatorAction(action: CreatorAction) {
   const queryClient = useQueryClient();
 
@@ -59,9 +79,14 @@ export function useCreatorAction(action: CreatorAction) {
         }),
       ),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: CREATOR_REQUESTS_QUERY_KEY,
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: CREATOR_REQUESTS_QUERY_KEY,
+        }),
+        queryClient.invalidateQueries({
+          queryKey: EXISTING_CREATORS_QUERY_KEY,
+        }),
+      ]);
     },
   });
 }

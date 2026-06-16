@@ -3,9 +3,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import {
-  creators,
-  CREATOR_DESCRIPTIONS,
-} from "@/utils/dummyData/creators.data";
+  useExploreCreators,
+  getCreatorCardImage,
+} from "@/hooks/creators/useExploreCreators";
 import SafeImage from "@/components/UI/SafeImage";
 import { MonoText } from "@/components/UI/Monotext";
 import { PATHS } from "@/utils/path";
@@ -29,34 +29,25 @@ import {
   BottomCta,
   SeeAllButton,
 } from "./styles";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import { MARQUEE_LIMIT } from "@/utils/Constants";
 
 export default function ExploreCreatorsMarquee() {
   const { t } = useTranslation();
-
-  const uniqueCreators = creators.slice(0, 4);
-
-  const row1Creators = [
-    uniqueCreators[0],
-    uniqueCreators[2],
-    uniqueCreators[1],
-    uniqueCreators[3],
-  ];
-  const row2Creators = [
-    uniqueCreators[3],
-    uniqueCreators[1],
-    uniqueCreators[2],
-    uniqueCreators[0],
-  ];
-
-  const duplicatedRow1 = [...row1Creators, ...row1Creators];
-  const duplicatedRow2 = [...row2Creators, ...row2Creators];
+  const { creators: allCreators } = useExploreCreators();
+  const creators = allCreators
+    .filter((c) => Boolean(c.profileImageUrl))
+    .slice(0, MARQUEE_LIMIT);
+  const displayCreators = [...creators, ...creators];
 
   const renderCreatorCard = (
     creator: (typeof creators)[0],
     idx: number,
     prefix: string,
   ) => {
-    const description = CREATOR_DESCRIPTIONS[creator.name];
+    const imageUrl = getCreatorCardImage(creator) ?? undefined;
+    const description =
+      creator.contentDescription ?? t(CREATORS.marquee.defaultDescription);
 
     return (
       <CreatorCard key={`${prefix}-${creator.id}-${idx}`}>
@@ -65,37 +56,41 @@ export default function ExploreCreatorsMarquee() {
             <CardTitle>
               <MonoText $use="Body_Bold">{creator.name}</MonoText>
             </CardTitle>
-            <CategoryBadge>
+            {creator.category && (
+              <CategoryBadge>
+                <MonoText
+                  $use="Body_Bold"
+                  style={{ fontSize: "inherit", color: "inherit" }}
+                >
+                  {creator.category}
+                </MonoText>
+              </CategoryBadge>
+            )}
+          </CardHeader>
+          {description && (
+            <CardDescription>
               <MonoText
-                $use="Body_Bold"
+                $use="Body_Small"
                 style={{ fontSize: "inherit", color: "inherit" }}
               >
-                {creator.category}
+                {description}
               </MonoText>
-            </CategoryBadge>
-          </CardHeader>
-          <CardDescription>
-            <MonoText
-              $use="Body_Small"
-              style={{ fontSize: "inherit", color: "inherit" }}
-            >
-              {description}
-            </MonoText>
-          </CardDescription>
-          <ProfileButton
-            href={`${PATHS.EXPLORE_CREATORS}?creator=${encodeURIComponent(creator.name)}`}
-          >
+            </CardDescription>
+          )}
+          <ProfileButton href={getPublicCreatorProfilePath(creator.id)}>
             {t(CREATORS.viewProfile)}
           </ProfileButton>
         </CardLeft>
         <CardRight>
-          <SafeImage
-            src={creator.image}
-            alt={creator.name}
-            fill
-            style={{ objectFit: "cover", objectPosition: "center" }}
-            sizes="(max-width: 768px) 90px, 120px"
-          />
+          {imageUrl ? (
+            <SafeImage
+              src={imageUrl}
+              alt={creator.name}
+              fill
+              style={{ objectFit: "cover", objectPosition: "center" }}
+              sizes="(max-width: 768px) 90px, 120px"
+            />
+          ) : null}
         </CardRight>
       </CreatorCard>
     );
@@ -110,20 +105,15 @@ export default function ExploreCreatorsMarquee() {
       </HeaderSection>
 
       <MarqueeContainer>
-        <MarqueeRow>
-          <MarqueeTrackLeft>
-            {duplicatedRow1.map((creator, idx) =>
-              renderCreatorCard(creator, idx, "row1"),
-            )}
-          </MarqueeTrackLeft>
-        </MarqueeRow>
-        <MarqueeRow>
-          <MarqueeTrackRight>
-            {duplicatedRow2.map((creator, idx) =>
-              renderCreatorCard(creator, idx, "row2"),
-            )}
-          </MarqueeTrackRight>
-        </MarqueeRow>
+        {[MarqueeTrackLeft, MarqueeTrackRight].map((Track, i) => (
+          <MarqueeRow key={i}>
+            <Track>
+              {displayCreators.map((creator, idx) =>
+                renderCreatorCard(creator, idx, `row${i}`),
+              )}
+            </Track>
+          </MarqueeRow>
+        ))}
       </MarqueeContainer>
 
       <BottomCta>

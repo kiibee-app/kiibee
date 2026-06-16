@@ -15,11 +15,14 @@ export const API = {
   coupon: {
     create: "/coupons/create",
     getAll: "/coupons",
+    getById: (id: string) => `/coupons/${id}`,
     update: (id: string) => `/coupons/${id}`,
+    replace: (id: string) => `/coupons/${id}`,
     delete: (id: string) => `/coupons/${id}`,
+    verify: "/coupons/verify",
   },
   media: {
-    videoInit: "/media/videos/init",
+    videoUpload: "/media/videos/upload",
     videoPartUrl: "/media/videos/part-url",
     videoComplete: "/media/videos/complete",
     videoStream: "/media/videos/stream",
@@ -36,9 +39,11 @@ export const API = {
     collection: (id: string) => `/content/collection/${id}`,
     get: (id: string) => `/content/${id}`,
     view: (id: string, userId: string) => `/content/${id}/${userId}`,
+    relatedCollection: (id: string) => `/content/${id}/related-collection`,
     update: (id: string) => `/content/update/${id}`,
     delete: (id: string) => `/content/delete/${id}`,
     appearance: "/content/appearance",
+    setting: "/content/setting",
   },
   collection: {
     getAll: "/collection",
@@ -54,5 +59,26 @@ export const API = {
     explore: "/feed/explore",
     trending: "/feed/trending",
     recent: "/feed/recent",
+  },
+  creatorUsers: {
+    registrations: "/creator-users/registrations",
+    sales: "/creator-users/sales",
+    deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
+  },
+  export: {
+    request: "/export/request",
+  },
+  creatorOverview: {
+    contentPerformance: "/creator-overview/content-performance",
+    analytics: "/creator-overview/analytics",
+  },
+  order: {
+    create: "/order/create",
+    getById: (orderId: string) => `/order/${orderId}`,
+    billingHistory: "/order/billing-history",
+    // confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
+  },
+  support: {
+    contact: "/support/contact",
   },
 } as const;

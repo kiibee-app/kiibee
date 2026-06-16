@@ -1,18 +1,135 @@
 import styled, { css, keyframes } from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 import type { CreatorStatus } from "../../../types/creator-request";
+import { Search, X } from "lucide-react";
 
 export const AllCreatorsPanel = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border: 1px solid ${({ theme }) => theme.colors.secondary.border};
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.radius.lg};
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows.sm};
 `;
 
-export const AllCreatorsState = styled.div`
-  padding: 20px 16px;
+export const AllCreatorsLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(3.5)};
+`;
+
+export const AllCreatorsHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing(4)};
+`;
+
+export const AllCreatorsTabs = styled.div`
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: ${({ theme }) => theme.spacing(1)};
+  padding: ${({ theme }) => theme.spacing(1)};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 10px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 10px;
+  padding: 0 ${({ theme }) => theme.spacing(3)};
+  height: ${({ theme }) => theme.spacing(10.5)};
+  min-width: 300px;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition:
+    border-color ${({ theme }) => theme.animations.fast},
+    box-shadow ${({ theme }) => theme.animations.fast};
+
+  &:focus-within {
+    border-color: ${({ theme }) => theme.colors.primary.GREEN};
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  }
+
+  ${media.mobileLg} {
+    min-width: 100%;
+  }
+`;
+
+export const SearchIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  margin-right: ${({ theme }) => theme.spacing(2)};
+`;
+
+export const SearchIcon = styled(Search)`
+  width: 18px;
+  height: 18px;
+`;
+
+export const SearchInput = styled.input`
+  flex: 1;
+  border: none;
+  background: transparent;
   font-size: 14px;
-  font-weight: 500;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  outline: none;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.secondary.muted};
+  }
+`;
+
+export const SearchClearButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  cursor: pointer;
+  padding: 0;
+  margin-left: ${({ theme }) => theme.spacing(1)};
+  transition: color ${({ theme }) => theme.animations.fast};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.secondary.main};
+  }
+`;
+
+export const ClearIcon = styled(X)`
+  width: 16px;
+  height: 16px;
+`;
+
+export const AllCreatorsTabButton = styled.button<{ $active: boolean }>`
+  min-height: ${({ theme }) => theme.spacing(8.5)};
+  border: 0;
+  border-radius: ${({ theme }) => theme.radius.md};
+  padding: ${({ theme }) => `0 ${theme.spacing(3.5)}`};
+  background: ${({ $active, theme }) =>
+    $active ? theme.colors.neutral.PALE_GREEN : "transparent"};
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.primary.GREEN_100 : theme.colors.secondary.muted};
+  font-size: 13px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  cursor: pointer;
+  transition:
+    background ${({ theme }) => theme.animations.fast},
+    color ${({ theme }) => theme.animations.fast};
+`;
+
+export const AllCreatorsState = styled.div`
+  padding: ${({ theme }) => `${theme.spacing(5)} ${theme.spacing(4)}`};
+  font-size: 14px;
+  font-weight: ${({ theme }) => theme.typography.Body_Medium.fontWeight};
   color: ${({ theme }) => theme.colors.secondary.muted};
 `;
 
@@ -78,7 +195,35 @@ export const CreatorName = styled.span`
 export const MiniText = styled.span`
   color: ${({ theme }) => theme.colors.secondary.muted};
   font-size: 12px;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.typography.Body_Medium.fontWeight};
+`;
+
+export const CreatorIdentity = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(2.5)};
+  min-width: 210px;
+`;
+
+export const CreatorAvatar = styled.div`
+  width: 34px;
+  height: 34px;
+  border-radius: ${({ theme }) => theme.radius.full};
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+  font-size: 12px;
+  font-weight: 800;
+  overflow: hidden;
+`;
+
+export const CreatorAvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const DescriptionText = styled.div`
@@ -96,11 +241,11 @@ export const StatusBadge = styled.span<{ $status: CreatorStatus }>`
   align-items: center;
   justify-content: flex-start;
   min-height: 28px;
-  padding: 0 12px;
-  border-radius: 999px;
+  padding: ${({ theme }) => `0 ${theme.spacing(3)}`};
+  border-radius: ${({ theme }) => theme.radius.full};
   font-size: 12px;
-  font-weight: 700;
-  gap: 8px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  gap: ${({ theme }) => theme.spacing(2)};
   text-transform: capitalize;
 
   ${({ $status, theme }) => {
@@ -151,10 +296,68 @@ export const StatusDot = styled.span<{ $status: CreatorStatus }>`
   }}
 `;
 
+export const AccountStatusBadge = styled.span<{ $status: string }>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 28px;
+  padding: ${({ theme }) => `0 ${theme.spacing(3)}`};
+  border-radius: ${({ theme }) => theme.radius.full};
+  font-size: 12px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  gap: ${({ theme }) => theme.spacing(2)};
+  text-transform: capitalize;
+
+  ${({ $status, theme }) => {
+    if ($status === "active") {
+      return css`
+        background: ${theme.colors.neutral.PALE_GREEN};
+        color: ${theme.colors.primary.GREEN_100};
+      `;
+    }
+
+    if ($status === "pending-setup") {
+      return css`
+        background: ${theme.colors.primary.WHITE};
+        color: ${theme.colors.primary.ORANGE};
+        border: 1px solid ${theme.colors.primary.ORANGE};
+      `;
+    }
+
+    return css`
+      background: ${theme.colors.neutral.GRAY_100};
+      color: ${theme.colors.secondary.main};
+    `;
+  }}
+`;
+
+export const PublicationBadge = styled.span<{ $published: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: ${({ theme }) => `0 ${theme.spacing(2.5)}`};
+  border-radius: ${({ theme }) => theme.radius.full};
+  font-size: 12px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  background: ${({ $published, theme }) =>
+    $published
+      ? theme.colors.neutral.PALE_GREEN
+      : theme.colors.neutral.GRAY_100};
+  color: ${({ $published, theme }) =>
+    $published ? theme.colors.primary.GREEN_100 : theme.colors.secondary.muted};
+`;
+
+export const MetricGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(0.5)};
+  min-width: 96px;
+`;
+
 export const RowActionGroup = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing(2)};
 `;
 
 export const RowActionButton = styled.button<{
@@ -236,7 +439,7 @@ export const PaginationFooter = styled.div`
   color: ${({ theme }) => theme.colors.secondary.muted};
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
-  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+  ${media.mobileLg} {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
@@ -248,7 +451,7 @@ export const PaginationControlGroup = styled.div`
   align-items: center;
   gap: 6px;
 
-  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+  ${media.mobileLg} {
     justify-content: center;
     flex-wrap: wrap;
   }

@@ -1,4 +1,4 @@
-import { eq, and, inArray, gt, isNull, or } from 'drizzle-orm';
+import { eq, and, inArray, gt, isNull, lte, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   mediaFiles,
@@ -29,6 +29,27 @@ export const getUserOrders = async (
         eq(orders.status, 'completed'),
         eq(orders.itemType, itemType),
         or(isNull(orders.rentExpiresAt), gt(orders.rentExpiresAt, now)),
+      ),
+    );
+};
+
+export const getExpiredRentalOrders = async (userId: string) => {
+  const now = new Date();
+
+  return db
+    .select({
+      mediaFileId: orders.mediaFileId,
+      collectionId: orders.collectionId,
+      purchasedAt: orders.createdAt,
+      rentExpiresAt: orders.rentExpiresAt,
+    })
+    .from(orders)
+    .where(
+      and(
+        eq(orders.userId, userId),
+        eq(orders.status, 'completed'),
+        eq(orders.itemType, 'rental'),
+        lte(orders.rentExpiresAt, now),
       ),
     );
 };

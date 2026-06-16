@@ -14,6 +14,10 @@ import { FeedModule } from './modules/feed/feed.module';
 import { OrderModule } from './modules/order/order.module';
 import { PaymentModule } from './modules/payment/payment.module';
 import { ViewerModule } from './modules/viewer/viewer.module';
+import { CreatorUsersModule } from './modules/creator-users/creator-users.module';
+import { ExportModule } from './modules/export/export.module';
+import { CreatorOverviewModule } from './modules/creator-overview/creator-overview.module';
+import { SupportModule } from './modules/support/support.module';
 
 @Module({
   imports: [
@@ -34,6 +38,10 @@ import { ViewerModule } from './modules/viewer/viewer.module';
     OrderModule,
     PaymentModule,
     ViewerModule,
+    CreatorUsersModule,
+    ExportModule,
+    CreatorOverviewModule,
+    SupportModule,
   ],
 })
 export class AppModule {}

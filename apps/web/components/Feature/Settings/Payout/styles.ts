@@ -84,3 +84,80 @@ export const FooterNote = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
 `;
+
+export const InvoiceCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const InvoiceGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 32px;
+
+  ${({ theme }) => theme.media.mobileLg} {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+`;
+
+export const InvoiceInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const InvoiceLabel = styled.span`
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
+`;
+
+export const InvoicePaymentMethod = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const InvoiceLogoWrap = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+`;
+
+export const InvoiceContentMeta = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+`;
+
+export const InvoiceThumb = styled.div`
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex: 0 0 34px;
+`;
+
+export const InvoiceContentText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+export const InvoiceShareButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: fit-content;
+  min-height: 32px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: ${({ theme }) => theme.colors.primary.PALE_GREEN};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  cursor: pointer;
+`;

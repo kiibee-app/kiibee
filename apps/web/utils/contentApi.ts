@@ -1,3 +1,4 @@
+import React from "react";
 import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
@@ -11,7 +12,16 @@ import {
   getContentTypeLabel,
   normalizeContentTypeValue,
 } from "@/utils/content";
+import {
+  resolveCloudflareStreamPlaybackUrl,
+  resolvePublicMediaUrl,
+} from "@/utils/media";
+import {
+  getContentDetailPricingActions,
+  isFreeContentItem,
+} from "@/utils/contentPricingActions";
 import { FORMAT_TYPE } from "@/utils/types";
+import { URL_PROTOCOL_REGEX, isValidUrl } from "@/utils/common";
 
 type Translate = (key: string) => string;
 type UnknownRecord = Record<string, unknown>;
@@ -27,11 +37,20 @@ export const CONTENT_RESPONSE_KEYS = {
   CONTENT_URL: "contentUrl",
   THUMBNAIL_URL: "thumbnailUrl",
   THUMBNAIL_LANDSCAPE_URL: "thumbnailLandscapeUrl",
+  TRAILER_URL: "trailerUrl",
   VISIBILITY: "visibility",
   ACCESS_TYPE: "accessType",
+  BUY_PRICE: "buyPrice",
+  RENT_PRICE: "rentPrice",
+  RENT_DURATION_HOURS: "rentDurationHours",
+  DURATION: "duration",
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
   NAME: "name",
+  CREATOR_ID: "creatorId",
+  PUBLISHED_YEAR: "publishedYear",
+  PRODUCTION_COMPANY: "production_company",
+  MANUFACTURER_LINK: "manufacturerLink",
 } as const;
 
 export const CONTENT_MEDIA_RESPONSE_KEYS = {
@@ -54,9 +73,14 @@ export const CONTENT_TRANSLATION_KEYS = {
   addAction: "contents.contentUploadModal.details.add",
   share: "common.share",
   meta: {
+    publishedYear: "singleContent.meta.publishedYear",
     createdAt: "singleContent.meta.createdAt",
     accessType: "singleContent.meta.accessType",
     visibility: "singleContent.meta.visibility",
+    duration: "singleContent.meta.duration",
+    category: "singleContent.meta.category",
+    productionCompany: "singleContent.meta.productionCompany",
+    manufacturerLink: "singleContent.meta.manufacturerLink",
   },
 } as const;
 
@@ -70,14 +94,32 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.CONTENT_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.THUMBNAIL_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL]?: string | null;
+  [CONTENT_RESPONSE_KEYS.TRAILER_URL]?: string | null;
   [CONTENT_RESPONSE_KEYS.VISIBILITY]?: string | null;
   [CONTENT_RESPONSE_KEYS.ACCESS_TYPE]?: string | null;
+  [CONTENT_RESPONSE_KEYS.BUY_PRICE]?: string | number | null;
+  [CONTENT_RESPONSE_KEYS.RENT_PRICE]?: string | number | null;
+  [CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS]?: string | number | null;
+  [CONTENT_RESPONSE_KEYS.DURATION]?: number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
+  accessInfo?: {
+    accessType?: string;
+    rentExpiresAt?: string | null;
+    grantedAt?: string | null;
+    timeLeftText?: string;
+  } | null;
+  [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
+  [CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]?: number | null;
+  [CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY]?: string | null;
+  [CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK]?: string | null;
 };
 
 export type ContentMediaUrlResponse = {
   [CONTENT_MEDIA_RESPONSE_KEYS.URL]?: string;
+  iframeUrl?: string;
+  streamUrl?: string;
+  token?: string;
 };
 
 export type ContentDetailResponse =
@@ -116,11 +158,49 @@ export const getContentMediaKey = (content?: ContentDetailItem) =>
 export const getContentUrl = (content?: ContentDetailItem) =>
   toTrimmedString(content?.[CONTENT_RESPONSE_KEYS.CONTENT_URL]);
 
-const getContentImage = (content: ContentDetailItem): ImageSource =>
-  toTrimmedString(
+export const hasDirectPlaybackUrl = (url?: string | null) =>
+  Boolean(url && URL_PROTOCOL_REGEX.test(url));
+
+export const resolveContentPlaybackUrl = (
+  content: ContentDetailItem | undefined,
+  signedUrl?: string,
+): string => {
+  const contentType = getContentType(content);
+  const contentUrl = getContentUrl(content);
+  const fileKey = getContentMediaKey(content);
+
+  if (contentType === FORMAT_TYPE.WEB) {
+    return contentUrl;
+  }
+
+  if (signedUrl) {
+    return signedUrl;
+  }
+
+  const cloudflareEmbedUrl = resolveCloudflareStreamPlaybackUrl(
+    fileKey,
+    contentUrl,
+  );
+
+  if (cloudflareEmbedUrl) {
+    return cloudflareEmbedUrl;
+  }
+
+  if (hasDirectPlaybackUrl(contentUrl)) {
+    return contentUrl;
+  }
+
+  return "";
+};
+
+const getContentImage = (content: ContentDetailItem): ImageSource => {
+  const raw = toTrimmedString(
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL] ??
       content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
-  ) || contentFallbackImage;
+  );
+
+  return resolvePublicMediaUrl(raw) || contentFallbackImage;
+};
 
 const getCategoryNames = (content: ContentDetailItem) =>
   (content[CONTENT_RESPONSE_KEYS.CATEGORIES] ?? [])
@@ -131,6 +211,7 @@ export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
   mediaUrl?: string,
+  options?: { inCollection?: boolean; viewerId?: string },
 ): SingleContentPageProps => {
   const title =
     toTrimmedString(content[CONTENT_RESPONSE_KEYS.TITLE]) ||
@@ -140,6 +221,7 @@ export const getSingleContentProps = (
   );
   const contentType = getContentType(content);
   const categories = getCategoryNames(content);
+  const mainCategory = categories[0];
   const createdAt = formatDateUSShort(
     content[CONTENT_RESPONSE_KEYS.CREATED_AT] ?? undefined,
   );
@@ -147,8 +229,36 @@ export const getSingleContentProps = (
     content[CONTENT_RESPONSE_KEYS.ACCESS_TYPE],
   );
   const visibility = toTrimmedString(content[CONTENT_RESPONSE_KEYS.VISIBILITY]);
+  const buyPrice = content[CONTENT_RESPONSE_KEYS.BUY_PRICE];
+  const rentPrice = content[CONTENT_RESPONSE_KEYS.RENT_PRICE];
+  const rentDurationHours = content[CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS];
+  const pricingItem = { accessType, buyPrice, rentPrice, rentDurationHours };
+  const isFree = isFreeContentItem(pricingItem);
+  const hasViewerAccess = Boolean(content.accessInfo);
+  const pricingActions = getContentDetailPricingActions(pricingItem, t, {
+    inCollection: options?.inCollection,
+  });
+
+  const trailerUrl = toTrimmedString(
+    content[CONTENT_RESPONSE_KEYS.TRAILER_URL],
+  );
+
+  const isVideo = contentType === FORMAT_TYPE.VIDEO;
+  const showTrailerInHero = Boolean(trailerUrl);
+  const isOwner = Boolean(
+    options?.viewerId &&
+    content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
+  );
+
+  const productionCompany = toTrimmedString(
+    content[CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY],
+  );
+  const manufacturerLink = toTrimmedString(
+    content[CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK],
+  );
 
   return {
+    contentId: toTrimmedString(content[CONTENT_RESPONSE_KEYS.ID]),
     title,
     descriptions: description ? [description] : [],
     tags: categories,
@@ -156,18 +266,30 @@ export const getSingleContentProps = (
     hero: {
       image: getContentImage(content),
       imageAlt: title,
-      ...(mediaUrl
+      contentType,
+      ...(showTrailerInHero && trailerUrl
         ? {
             media: {
-              type: contentType,
-              src: mediaUrl,
+              type: FORMAT_TYPE.VIDEO,
+              src: trailerUrl,
               title,
             },
+            contentUrl: mediaUrl,
           }
-        : {}),
+        : mediaUrl && !isVideo
+          ? {
+              media: {
+                type: contentType,
+                src: mediaUrl,
+                title,
+              },
+            }
+          : isVideo && mediaUrl
+            ? { contentUrl: mediaUrl }
+            : {}),
       categoryLabel: categories[0],
       mediaLabel: getContentTypeLabel(contentType),
-      ...(contentType === FORMAT_TYPE.VIDEO
+      ...(isVideo || showTrailerInHero
         ? {
             mediaIcon: playCircleIcon,
             mediaIconAlt: t(CONTENT_TRANSLATION_KEYS.seeContent),
@@ -177,10 +299,32 @@ export const getSingleContentProps = (
           }
         : {}),
     },
-    primaryAction: {
-      label: t(CONTENT_TRANSLATION_KEYS.seeContent),
-    },
+    ...(isFree || hasViewerAccess || isOwner
+      ? {
+          primaryAction: {
+            label: t(CONTENT_TRANSLATION_KEYS.seeContent),
+          },
+        }
+      : {
+          primaryActions: pricingActions.map((action) => ({
+            label: action.label,
+            subtitle: action.subtitle,
+            variant: action.variant,
+          })),
+        }),
     metaItems: [
+      mainCategory
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.category),
+            value: mainCategory,
+          }
+        : undefined,
+      content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.publishedYear),
+            value: String(content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]),
+          }
+        : undefined,
       createdAt
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.createdAt),
@@ -197,6 +341,32 @@ export const getSingleContentProps = (
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.visibility),
             value: visibility,
+          }
+        : undefined,
+      content[CONTENT_RESPONSE_KEYS.DURATION]
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.duration),
+            value: `${content[CONTENT_RESPONSE_KEYS.DURATION]} min`,
+          }
+        : undefined,
+      productionCompany
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.productionCompany),
+            value: productionCompany,
+          }
+        : undefined,
+      isValidUrl(manufacturerLink)
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.manufacturerLink),
+            value: React.createElement(
+              "a",
+              {
+                href: manufacturerLink,
+                target: "_blank",
+                rel: "noopener noreferrer",
+              },
+              manufacturerLink,
+            ),
           }
         : undefined,
     ].filter(Boolean) as NonNullable<SingleContentPageProps["metaItems"]>,

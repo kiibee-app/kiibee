@@ -13,6 +13,7 @@ import {
   Logo,
   Nav,
   Actions,
+  ActionsPlaceholder,
   NavItemWrapper,
   NavAnchor,
   NavButton,
@@ -28,6 +29,19 @@ import {
   NavAccountMenuIcon,
   NavAccountMenuItem,
   NavAccountTriggerWrap,
+  HamburgerButton,
+  HamburgerLine,
+  DrawerOverlay,
+  DrawerPanel,
+  DrawerContent,
+  DrawerMenu,
+  DrawerMenuItem,
+  DrawerMenuLink,
+  DrawerMenuButton,
+  DrawerSubMenu,
+  DrawerSubMenuColumn,
+  DrawerSubMenuTitle,
+  DrawerSubMenuLink,
 } from "./styles";
 import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
@@ -45,9 +59,13 @@ import {
   useLoginUserAvatar,
   useStoredLoginUser,
 } from "@/hooks/auth/useStoredLoginUser";
+import { readStoredLoginUser } from "@/hooks/auth/useLogin";
+import { getAvatarUrl } from "@/utils/creatorProfile";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { HomeIcon } from "@/assets/icons/homeIcon";
 import { LogoutIcon } from "@/assets/icons/logoutIcon";
+import { ArrowIcon } from "@/assets/icons";
+import { Directions, isBrowser } from "@/utils/ui";
 import {
   InitialAvatar,
   ProfileAvatarImage,
@@ -57,12 +75,16 @@ import {
 function NavAccountMenu({ dashboardPath }: { dashboardPath: string }) {
   const { t } = useTranslation();
   const router = useRouter();
-  const user = useStoredLoginUser();
-  const avatarUrl = useLoginUserAvatar();
+  const userFromHook = useStoredLoginUser();
+  const avatarUrlFromHook = useLoginUserAvatar();
   const { logout, isPending } = useLogout();
   const [open, setOpen] = useState(false);
   const [failedAvatarUrl, setFailedAvatarUrl] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  const user = userFromHook || (isBrowser ? readStoredLoginUser() : null);
+  const avatarUrl = avatarUrlFromHook || getAvatarUrl(user?.avatarUrl);
+
   const firstLetter = getLoginUserFirstLetter(user);
   const showAvatar = Boolean(avatarUrl) && avatarUrl !== failedAvatarUrl;
 
@@ -166,6 +188,35 @@ export default function NavBar({
   const [renderedMegaKey, setRenderedMegaKey] = React.useState<string | null>(
     null,
   );
+  const [sidebarExpanded, setSidebarExpanded] = React.useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    const handle = requestAnimationFrame(() => {
+      setIsMounted(true);
+    });
+    return () => {
+      cancelAnimationFrame(handle);
+    };
+  }, []);
+  const [mobileOpenSubKeys, setMobileOpenSubKeys] = useState<
+    Record<string, boolean>
+  >({});
+  const toggleSidebar = () => setSidebarExpanded((prev) => !prev);
+  const collapseSidebar = () => setSidebarExpanded(false);
+
+  const toggleMobileSubMenu = (key: string) => {
+    setMobileOpenSubKeys((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  const [prevPathname, setPrevPathname] = React.useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setSidebarExpanded(false);
+  }
   const routeActiveKey = React.useMemo(() => {
     if (!routeActiveItems) return null;
     const explicit = items.find((item) => item.isActive)?.key;
@@ -306,6 +357,16 @@ export default function NavBar({
     >
       <Inner style={innerStyle}>
         <Left>
+          <HamburgerButton
+            type="button"
+            $textTone={navTextTone}
+            onClick={toggleSidebar}
+            aria-label={t("dashboard.toggleSidebar")}
+          >
+            <HamburgerLine $textTone={navTextTone} />
+            <HamburgerLine $textTone={navTextTone} />
+            <HamburgerLine $textTone={navTextTone} />
+          </HamburgerButton>
           {brand ?? (
             <Logo>
               <Link href="/">
@@ -425,7 +486,13 @@ export default function NavBar({
         </Nav>
 
         <Actions ref={actionsRef} $textTone={navTextTone}>
-          {isLoggedIn && dashboardPath ? (
+          {!isMounted ? (
+            actions ? (
+              actions
+            ) : (
+              <ActionsPlaceholder />
+            )
+          ) : isLoggedIn && dashboardPath ? (
             <NavAccountMenu dashboardPath={dashboardPath} />
           ) : (
             (actions ?? (
@@ -451,6 +518,87 @@ export default function NavBar({
           )}
         </Actions>
       </Inner>
+      <DrawerOverlay $open={sidebarExpanded} onClick={collapseSidebar} />
+      <DrawerPanel $open={sidebarExpanded}>
+        <DrawerContent>
+          <DrawerMenu>
+            {items.map((item) => {
+              const isRouteActive =
+                routeActiveItems &&
+                (item.isActive ?? item.key === routeActiveKey);
+              const hasChildren = Boolean(
+                item.children && item.children.length > 0,
+              );
+              const isSubMenuOpen = Boolean(mobileOpenSubKeys[item.key]);
+
+              return (
+                <DrawerMenuItem key={item.key}>
+                  {hasChildren ? (
+                    <>
+                      <DrawerMenuButton
+                        type="button"
+                        $isActive={isRouteActive}
+                        $expanded={isSubMenuOpen}
+                        onClick={() => toggleMobileSubMenu(item.key)}
+                      >
+                        {renderItemLabel(item)}
+                        <ArrowIcon
+                          direction={
+                            isSubMenuOpen ? Directions.UP : Directions.DOWN
+                          }
+                        />
+                      </DrawerMenuButton>
+                      {isSubMenuOpen && item.children && (
+                        <DrawerSubMenu>
+                          {item.children.map((col) => (
+                            <DrawerSubMenuColumn key={col.titleKey}>
+                              <DrawerSubMenuTitle>
+                                {t(col.titleKey)}
+                              </DrawerSubMenuTitle>
+                              {col.items.map((ci) => {
+                                const isSubActive = pathname === ci.href;
+                                return (
+                                  <DrawerSubMenuLink
+                                    key={ci.key}
+                                    href={ci.href}
+                                    $isActive={isSubActive}
+                                    onClick={collapseSidebar}
+                                  >
+                                    {t(ci.key)}
+                                  </DrawerSubMenuLink>
+                                );
+                              })}
+                            </DrawerSubMenuColumn>
+                          ))}
+                        </DrawerSubMenu>
+                      )}
+                    </>
+                  ) : item.onClick ? (
+                    <DrawerMenuButton
+                      type="button"
+                      $isActive={isRouteActive}
+                      onClick={() => {
+                        item.onClick?.();
+                        collapseSidebar();
+                      }}
+                    >
+                      {renderItemLabel(item)}
+                    </DrawerMenuButton>
+                  ) : (
+                    <DrawerMenuLink
+                      href={item.href || "#"}
+                      $isActive={isRouteActive}
+                      onClick={collapseSidebar}
+                    >
+                      {renderItemLabel(item)}
+                    </DrawerMenuLink>
+                  )}
+                </DrawerMenuItem>
+              );
+            })}
+          </DrawerMenu>
+        </DrawerContent>
+      </DrawerPanel>
     </Header>
   );
 }

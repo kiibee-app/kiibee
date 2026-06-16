@@ -40,14 +40,12 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   const { t } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const targetHref = pathPublishedContent(item.contentKey);
-  const isFreeContent = item.isFree ?? false;
-
   const handleOpen = () => {
-    navigateToContent(targetHref, !isFreeContent);
+    navigateToContent(targetHref, false);
   };
 
-  const handleActionClick = (href: string, requiresAuth?: boolean) => {
-    navigateToContent(href, requiresAuth ?? !isFreeContent);
+  const handleActionClick = (href: string) => {
+    navigateToContent(href, false);
   };
 
   const stopCardNavigation = (event: MouseEvent) => {
@@ -55,11 +53,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   };
 
   return (
-    <Card
-      aria-label={t(item.titleKey)}
-      onClick={isFreeContent ? handleOpen : undefined}
-      $clickable={isFreeContent}
-    >
+    <Card aria-label={t(item.titleKey)} onClick={handleOpen} $clickable={true}>
       <ImageContainer>
         <CategoryBadge>
           <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
@@ -121,10 +115,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
             key={item.actions[0].labelKey}
             type="button"
             onClick={() =>
-              handleActionClick(
-                item.actions[0].href ?? targetHref,
-                item.actions[0].requiresAuth,
-              )
+              handleActionClick(item.actions[0].href ?? targetHref)
             }
           >
             {t(item.actions[0].labelKey)}
@@ -135,12 +126,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
               key={action.labelKey}
               type="button"
               variant={VARIANT.SOFT_OUTLINE}
-              onClick={() =>
-                handleActionClick(
-                  action.href ?? targetHref,
-                  action.requiresAuth,
-                )
-              }
+              onClick={() => handleActionClick(action.href ?? targetHref)}
             >
               {t(action.labelKey)}
             </GenericButton>

@@ -7,6 +7,7 @@ import {
   IsOptional,
   IsString,
   ValidateIf,
+  IsArray,
 } from 'class-validator';
 
 export class CreateContentDto {
@@ -85,6 +86,11 @@ export class UpdateContentDto {
   manufacturerLink?: string;
 
   @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  tags?: string[];
+
+  @IsOptional()
   @IsString()
   thumbnailUrl?: string;
 
@@ -128,4 +134,14 @@ export class UpdateContentDto {
   @Type(() => Boolean)
   @IsBoolean()
   isDownloadable?: boolean;
+
+  @IsOptional()
+  @Type(() => Boolean)
+  @IsBoolean()
+  openInNewWindow?: boolean;
+
+  @IsOptional()
+  @Type(() => Boolean)
+  @IsBoolean()
+  openDirectFromList?: boolean;
 }

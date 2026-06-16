@@ -21,7 +21,8 @@ import {
 export default function CenteredCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
-  const { displayName, avatarUrl, initial, about } = useCreatorChannelProfile();
+  const { displayName, avatarUrl, coverImageUrl, initial, about } =
+    useCreatorChannelProfile();
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
   const biography = about?.description || t(CREATE_PROFILE_HOME.description);
@@ -30,11 +31,12 @@ export default function CenteredCoverSection() {
     <HeroWrapperCentered>
       <CoverFrameFull>
         <CoverImage
-          src={coverImage}
+          src={coverImageUrl || coverImage}
           alt={t(CREATE_PROFILE_HOME.title)}
           fill
           sizes="100vw"
           priority
+          unoptimized={Boolean(coverImageUrl)}
         />
       </CoverFrameFull>
 

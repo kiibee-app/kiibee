@@ -15,9 +15,15 @@ type CompanyProps = {
   form: Record<string, string>;
   onChange: (key: CompanyKeys) => (value: string | string[]) => void;
   t: (key: string) => string;
+  fieldErrors?: Partial<Record<string, string>>;
 };
 
-export default function CompanySection({ form, onChange, t }: CompanyProps) {
+export default function CompanySection({
+  form,
+  onChange,
+  t,
+  fieldErrors,
+}: CompanyProps) {
   const fields = getCompanyFields(t);
 
   return (
@@ -38,6 +44,8 @@ export default function CompanySection({ form, onChange, t }: CompanyProps) {
             labelFontStyle="Body_Regular"
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
             labelMarginTop={index !== 0 ? "16px" : undefined}
+            hasError={!!fieldErrors?.[field.key]}
+            errorMessage={fieldErrors?.[field.key]}
           />
         ))}
       </Fields>

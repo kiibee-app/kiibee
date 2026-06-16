@@ -14,6 +14,7 @@ import {
   SORT_DROPDOWN_VARIANT,
 } from "@/utils/Constants";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
+import { useTableSort } from "@/hooks/useTableSort";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { MonoText } from "@/components/UI/Monotext";
 import SearchBar from "@/components/UI/SearchBar";
@@ -34,14 +35,19 @@ import {
 } from "@/utils/tableHeader";
 import {
   CARD_BRAND_LOGOS,
-  MOCK_VIEWER_BILLING_HISTORY,
   MOCK_VIEWER_PAYMENT_METHODS,
-  type ViewerBillingHistoryItem,
   type ViewerPaymentMethod,
 } from "@/utils/dummyData/viewerBillingMockData";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import {
+  useViewerBillingHistory,
+  type ViewerBillingHistoryItem,
+} from "@/hooks/useViewerBillingHistory";
+import GenericLoader from "@/components/UI/GenericLoader";
+import { LOADER_VARIANT } from "@/utils/ui";
+
 import {
   Actions,
   AddCardButton,
@@ -70,6 +76,8 @@ import InvoiceModal from "./InvoiceModal";
 
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
+  const { billingHistory, isLoading: isBillingHistoryLoading } =
+    useViewerBillingHistory();
   const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [showEditSuccessModal, setShowEditSuccessModal] = useState(false);
@@ -169,6 +177,16 @@ export default function ClientViewerBillings() {
     BILLING_HISTORY_HEADER_KEYS,
   );
 
+  const {
+    sortedData: sortedBillingHistory,
+    isHeaderSortable,
+    getHeaderSortDirection,
+    toggleSort,
+  } = useTableSort(billingHistory, {
+    sortableHeader: billingHistoryHeaders[0],
+    sortBy: (item) => item.contentTitle,
+  });
+
   return (
     <BillingShell>
       <BillingHeader>
@@ -186,15 +204,20 @@ export default function ClientViewerBillings() {
       </BillingHeader>
 
       {activeTab === VIEWER_BILLING_HISTORY_TAB ? (
-        MOCK_VIEWER_BILLING_HISTORY.length ? (
+        isBillingHistoryLoading ? (
+          <GenericLoader variant={LOADER_VARIANT.INLINE} />
+        ) : sortedBillingHistory.length ? (
           <BillingTableSection>
             <Table<ViewerBillingHistoryItem>
               headers={billingHistoryHeaders}
-              data={MOCK_VIEWER_BILLING_HISTORY}
+              data={sortedBillingHistory}
               rowsPerPage={10}
               onRowClick={(row) => handleInvoiceOpen(row)}
               emptyText={t(DASHBOARD_VIEWER_BILLINGS.billingHistory.empty)}
               headerToKey={(header) => billingHistoryHeaderMap[header]}
+              onHeaderClick={toggleSort}
+              isHeaderSortable={isHeaderSortable}
+              getHeaderSortDirection={getHeaderSortDirection}
               getRowKey={(row) => row.id}
               getMobileTitle={(row) => row.contentTitle}
               renderHeaderFilter={({ index }) => {

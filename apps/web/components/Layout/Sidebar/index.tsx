@@ -21,11 +21,11 @@ import {
 } from "@/utils/SidebarItems";
 
 type SidebarProps = {
-  activeItem: string;
-  onSelect: (label: string) => void;
+  activeItem?: string;
+  onSelect?: (label: string) => void;
   onLogout?: () => void;
   expanded: boolean;
-  onCollapse: () => void;
+  onCollapse?: () => void;
   items?: DashboardSidebarItem[];
   logoutLabel?: string;
 };
@@ -53,20 +53,20 @@ const Sidebar = ({
     (label: string) => {
       if (label === logoutLabel) {
         onLogout?.();
-        onCollapse();
+        onCollapse?.();
         return;
       }
 
-      onSelect(label);
+      onSelect?.(label);
       setHelpOpen(false);
-      onCollapse();
+      onCollapse?.();
     },
     [logoutLabel, onSelect, onCollapse, onLogout],
   );
 
   const handleCloseDrawer = useCallback(() => {
     setHelpOpen(false);
-    onCollapse();
+    onCollapse?.();
   }, [onCollapse]);
 
   const renderItems = useCallback(

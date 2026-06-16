@@ -27,5 +27,5 @@ export const seedUsers = async () => {
         isActive: true,
       },
     ])
-    .onConflictDoNothing();
+    .onConflictDoNothing({ target: users.email });
 };

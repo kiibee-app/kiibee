@@ -6,6 +6,8 @@ import {
   InputWrapper,
   DateDisplay,
   DateText,
+  DateFieldActions,
+  DateCalendarButton,
   DatePopup,
   DatePopupBody,
   DatePopupActions,
@@ -19,6 +21,7 @@ const RangeCalendar = React.lazy(
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import { CalendarIcon } from "@/assets/icons";
+import { CrossIcon } from "@/assets/icons/crossIcon";
 import COLORS from "@repo/ui/colors";
 import { formatDate } from "@/utils/formatDate";
 import { useTranslation } from "react-i18next";
@@ -31,6 +34,7 @@ type Props = {
   end?: string;
   onChangeStart?: (value: string) => void;
   onChangeEnd?: (value: string) => void;
+  onChangeRange?: (start: string, end: string) => void;
 };
 
 export default function DateRangeField({
@@ -39,6 +43,7 @@ export default function DateRangeField({
   end,
   onChangeStart,
   onChangeEnd,
+  onChangeRange,
 }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -47,6 +52,11 @@ export default function DateRangeField({
   const [tempStart, setTempStart] = useState(start || "");
   const [tempEnd, setTempEnd] = useState(end || "");
   const [pos, setPos] = useState({ top: 0, left: 0 });
+
+  const hasValue = !!(start || end);
+  const displayText = hasValue
+    ? `${formatDate(start)}${start && end ? " - " : ""}${formatDate(end)}`
+    : t("common.selectDateRange");
 
   useEffect(() => {
     if (!open) return;
@@ -80,8 +90,12 @@ export default function DateRangeField({
   };
 
   const handleSave = () => {
-    onChangeStart?.(tempStart);
-    onChangeEnd?.(tempEnd);
+    if (onChangeRange) {
+      onChangeRange(tempStart, tempEnd);
+    } else {
+      onChangeStart?.(tempStart);
+      onChangeEnd?.(tempEnd);
+    }
     setOpen(false);
   };
 
@@ -91,12 +105,20 @@ export default function DateRangeField({
     setOpen(false);
   };
 
-  const displayText =
-    tempStart || tempEnd
-      ? `${formatDate(tempStart)}${
-          tempStart && tempEnd ? " - " : ""
-        }${formatDate(tempEnd)}`
-      : t("common.selectDateRange");
+  const handleClear = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    if (onChangeRange) {
+      onChangeRange("", "");
+      return;
+    }
+    onChangeStart?.("");
+    onChangeEnd?.("");
+  };
+
+  const handleCalendarClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    openPopup();
+  };
 
   return (
     <Container ref={wrapperRef}>
@@ -104,8 +126,29 @@ export default function DateRangeField({
 
       <InputWrapper>
         <DateDisplay onClick={openPopup}>
-          <DateText>{displayText}</DateText>
-          <CalendarIcon color={COLORS.primary.BLACK_90} />
+          <DateText $isPlaceholder={!hasValue}>{displayText}</DateText>
+          <DateFieldActions>
+            {hasValue && (
+              <DateCalendarButton
+                type="button"
+                aria-label={t("common.clearSearch")}
+                onClick={handleClear}
+              >
+                <CrossIcon
+                  width={18}
+                  height={18}
+                  crossColor={COLORS.neutral.GRAY_400}
+                />
+              </DateCalendarButton>
+            )}
+            <DateCalendarButton
+              type="button"
+              aria-label={t("common.selectDateRange")}
+              onClick={handleCalendarClick}
+            >
+              <CalendarIcon color={COLORS.primary.BLACK_90} />
+            </DateCalendarButton>
+          </DateFieldActions>
         </DateDisplay>
 
         {open &&

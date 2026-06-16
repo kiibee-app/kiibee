@@ -235,11 +235,11 @@ export const useExploreContent = ({
     sort,
   });
 
-export const useExploreTrendingContent = () =>
-  useExploreTutorialSection("trending");
+export const useExploreTrendingContent = (limit?: number) =>
+  useExploreTutorialSection("trending", limit ? { limit } : undefined);
 
-export const useExploreRecentContent = () =>
-  useExploreTutorialSection("recent");
+export const useExploreRecentContent = (params?: UseExploreContentParams) =>
+  useExploreTutorialSection("recent", params);
 
 export const useExploreTopCreators = (limit = 6) => {
   const query = useExploreFeed();

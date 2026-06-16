@@ -13,6 +13,7 @@ import {
   getFileNameWithoutExtension,
   normalizeContentTypeValue,
 } from "@/utils/content";
+import { type ContentMediaUrlResponse } from "@/utils/contentApi";
 import { useContentForm } from "@/components/Feature/Contents/ContentFormContext";
 import { useAppearanceForm } from "@/components/Feature/Contents/Appearance/AppearanceFormContext";
 import {
@@ -33,6 +34,7 @@ import {
   ACCESS_TYPE_FREE,
   ADMISSION_REQUIREMENT_PAYMENT,
   ADMISSION_REQUIREMENT_FREE,
+  CONTENT_FORM_FIELDS,
   ERROR_MESSAGES,
   DOWNLOAD_LIMIT_DEFAULT,
   CONTENT_TYPE_FALLBACK,
@@ -47,10 +49,19 @@ import {
   contentTypeSizeMap,
   mockSizeFallback,
   buildContentUpdatePayload,
+  GENERAL_FORM_FIELDS,
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
-import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
+import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
+import type { ContentFormErrors } from "@/types/contentTypes";
+import { defaultState } from "@/types/contentTypes";
+
+const contentSettingToUiMap: Record<string, AdmissionRequirementValue> = {
+  free: ADMISSION_REQUIREMENT_VALUES.free,
+  set_password: ADMISSION_REQUIREMENT_VALUES.password,
+  request_email: ADMISSION_REQUIREMENT_VALUES.email,
+};
 
 type Params = {
   activeTab: ContentTab;
@@ -67,6 +78,8 @@ type Params = {
     close: () => void;
     backToTypeSelect: () => void;
   };
+  contentSettingAccessType?: string;
+  saveContentSetting?: (accessType: string) => Promise<void>;
 };
 
 export function useContentFormActions({
@@ -80,10 +93,21 @@ export function useContentFormActions({
   openDiscardModal,
   createCollectionFlow,
   contentTypeFlow,
+  contentSettingAccessType,
+  saveContentSetting,
 }: Params) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const { formState, prefillForm, resetForm, setFormState } = useContentForm();
+  const {
+    formState,
+    savedFormState,
+    resetForm,
+    setFormState,
+    setSavedFormState,
+    setFormErrors,
+    clearFormErrors,
+    markFormAsSaved,
+  } = useContentForm();
   const {
     hasUnsavedChanges: hasAppearanceChanges,
     saveAppearance,
@@ -105,32 +129,54 @@ export function useContentFormActions({
   const [collectionAccessDuration, setCollectionAccessDuration] =
     useState<AccessDurationValue>(PAYMENT_DEFAULT_ACCESS_DURATION);
 
-  const [prevCollectionId, setPrevCollectionId] = useState<string | null>(null);
+  const collectionId = selectedCollection?.id ?? null;
+  const [syncedCollectionId, setSyncedCollectionId] = useState<string | null>(
+    collectionId,
+  );
+  const [syncedSettingsKey, setSyncedSettingsKey] = useState(
+    contentSettingAccessType ?? null,
+  );
 
-  if (selectedCollection && selectedCollection.id !== prevCollectionId) {
-    setPrevCollectionId(selectedCollection.id);
-    const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
-    const uiAccessType =
-      apiToUiAccessTypeMap[apiAccessType] || ADMISSION_REQUIREMENT_VALUES.free;
-    setCollectionAccessType(uiAccessType);
-    setCollectionPasswords("");
-    setCollectionDescription(selectedCollection.description ?? "");
-    setCollectionRentalAmount(
-      selectedCollection.rentPrice != null
-        ? String(selectedCollection.rentPrice)
-        : "",
-    );
-    setCollectionPurchaseAmount(
-      selectedCollection.buyPrice != null
-        ? String(selectedCollection.buyPrice)
-        : "",
-    );
-    setCollectionAccessDuration(
-      (selectedCollection.rentDuration as AccessDurationValue) ??
-        (PAYMENT_DEFAULT_ACCESS_DURATION as AccessDurationValue),
-    );
-  } else if (!selectedCollection && prevCollectionId !== null) {
-    setPrevCollectionId(null);
+  if (selectedCollection) {
+    if (collectionId !== syncedCollectionId) {
+      setSyncedCollectionId(collectionId);
+      setSyncedSettingsKey(null);
+
+      const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
+      const uiAccessType =
+        apiToUiAccessTypeMap[apiAccessType] ||
+        ADMISSION_REQUIREMENT_VALUES.free;
+      setCollectionAccessType(uiAccessType);
+      setCollectionPasswords("");
+      setCollectionDescription(selectedCollection.description ?? "");
+      setCollectionRentalAmount(
+        selectedCollection.rentPrice != null
+          ? String(selectedCollection.rentPrice)
+          : "",
+      );
+      setCollectionPurchaseAmount(
+        selectedCollection.buyPrice != null
+          ? String(selectedCollection.buyPrice)
+          : "",
+      );
+      setCollectionAccessDuration(
+        (selectedCollection.rentDuration as AccessDurationValue) ??
+          (PAYMENT_DEFAULT_ACCESS_DURATION as AccessDurationValue),
+      );
+    }
+  } else {
+    if (syncedCollectionId !== null) {
+      setSyncedCollectionId(null);
+      setSyncedSettingsKey(null);
+    }
+
+    const settingsKey = contentSettingAccessType ?? null;
+    if (settingsKey && settingsKey !== syncedSettingsKey) {
+      setSyncedSettingsKey(settingsKey);
+      const uiAccessType =
+        contentSettingToUiMap[settingsKey] || ADMISSION_REQUIREMENT_VALUES.free;
+      setCollectionAccessType(uiAccessType);
+    }
   }
 
   const handleUploadSuccess = (
@@ -143,13 +189,22 @@ export function useContentFormActions({
     setActiveTabAndQuery(tab);
     setUploadedFile(file ?? null);
     setUploadedPreview(preview ?? null);
-    prefillForm(file ?? null);
-    setFormState((prev) => ({
-      ...prev,
-      title: details?.title ?? prev.title,
-      description: details?.description ?? prev.description,
-      contentTypeId: contentTypeFlow.selectedContentType ?? prev.contentTypeId,
-    }));
+    const prefilledState =
+      file == null
+        ? formState
+        : {
+            ...defaultState,
+            title: getFileNameWithoutExtension(file.name),
+          };
+    const nextFormState = {
+      ...prefilledState,
+      title: details?.title ?? prefilledState.title,
+      description: details?.description ?? prefilledState.description,
+      contentTypeId:
+        contentTypeFlow.selectedContentType ?? prefilledState.contentTypeId,
+    };
+    setFormState(nextFormState);
+    setSavedFormState(nextFormState);
     if (createdContentId) {
       storage.set(CONTENT_LAST_EDITED_STORAGE_KEY, createdContentId);
       setEditingContent({
@@ -190,13 +245,83 @@ export function useContentFormActions({
     setSelectedCollection(null);
   };
 
+  const handleSaveError = (error: unknown) => {
+    const err = error as {
+      status?: number;
+      response?: { status?: number };
+      message?: string;
+    };
+    if (err?.status === 413 || err?.response?.status === 413) {
+      toast.error(t("errors.imageTooLarge"));
+    } else {
+      const message = err?.message;
+      toast.error(
+        (message ? t(message) : "") || t(ERROR_MESSAGES.SAVE_CHANGES_FAILED),
+      );
+    }
+  };
+
+  const validateMetadataForm = () => {
+    const requiredMessage = t("contents.metadata.validation.required");
+    const nextErrors: ContentFormErrors = {};
+
+    if (!formState.title.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.TITLE] = requiredMessage;
+    }
+    if (!formState.description.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.DESCRIPTION] = requiredMessage;
+    }
+    if (!formState.publishedYear.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = requiredMessage;
+    }
+    if (!formState.duration.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.DURATION] = requiredMessage;
+    }
+    if (!formState.category.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.CATEGORY] = requiredMessage;
+    }
+    if (!formState.productionCompany.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.PRODUCTION_COMPANY] = requiredMessage;
+    }
+    if (!formState.manufacturerLink.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.MANUFACTURER_LINK] = requiredMessage;
+    }
+    if (!formState.tags.trim()) {
+      nextErrors[CONTENT_FORM_FIELDS.TAGS] = requiredMessage;
+    }
+    if (!formState.mediaCardThumbnail) {
+      nextErrors.mediaCardThumbnail = t(
+        "contents.metadata.validation.mediaCardThumbnail",
+      );
+    }
+    if (!formState.portraitThumbnail) {
+      nextErrors.portraitThumbnail = t(
+        "contents.metadata.validation.portraitThumbnail",
+      );
+    }
+
+    setFormErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      toast.error(t("errors.metadataValidationFailed"));
+      return false;
+    }
+
+    return true;
+  };
+
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
       toast.error(t(ERROR_MESSAGES.NO_CONTENT));
       return;
     }
 
+    if (activeTab === ADD_CONTENT_TABS.METADATA && !validateMetadataForm()) {
+      return;
+    }
+
     try {
+      clearFormErrors();
       const [thumbnailUrl, thumbnailLandscapeUrl] = await Promise.all([
         resolveProfileAvatarUrl(formState.mediaCardThumbnail),
         resolveProfileAvatarUrl(formState.portraitThumbnail),
@@ -209,6 +334,7 @@ export function useContentFormActions({
       };
 
       setFormState(nextFormState);
+      markFormAsSaved(nextFormState);
 
       const payload = buildContentUpdatePayload(nextFormState);
 
@@ -224,8 +350,8 @@ export function useContentFormActions({
       ]);
 
       setShowSaveSuccessModal(true);
-    } catch {
-      toast.error(t(ERROR_MESSAGES.SAVE_CHANGES_FAILED));
+    } catch (error) {
+      handleSaveError(error);
     }
   };
 
@@ -248,6 +374,11 @@ export function useContentFormActions({
         rentPrice: hasRental ? parseFloat(collectionRentalAmount) : null,
         buyPrice: hasPurchase ? parseFloat(collectionPurchaseAmount) : null,
         rentDuration: hasRental ? collectionAccessDuration : null,
+        password:
+          collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+          collectionPasswords.trim()
+            ? collectionPasswords.trim()
+            : undefined,
       });
 
       setCollections((prev) =>
@@ -281,7 +412,25 @@ export function useContentFormActions({
       await queryClient.invalidateQueries({
         queryKey: [API.collection.getAll],
       });
-      toast.success(t("contents.createCollectionSuccessModal.message"));
+      setShowSaveSuccessModal(true);
+    } catch {
+      toast.error(t(ERROR_MESSAGES.SAVE_SETTINGS_FAILED));
+    }
+  };
+
+  const uiToContentSettingMap: Record<string, string> = {
+    [ADMISSION_REQUIREMENT_VALUES.free]: ADMISSION_TYPE.FREE,
+    [ADMISSION_REQUIREMENT_VALUES.password]: ADMISSION_TYPE.SET_PASSWORD,
+    [ADMISSION_REQUIREMENT_VALUES.email]: ADMISSION_TYPE.REQUEST_EMAIL,
+  };
+
+  const saveContentSettings = async () => {
+    if (!saveContentSetting) return;
+    try {
+      const apiAccessType =
+        uiToContentSettingMap[collectionAccessType] ?? ADMISSION_TYPE.FREE;
+      await saveContentSetting(apiAccessType);
+      setShowSaveSuccessModal(true);
     } catch {
       toast.error(t(ERROR_MESSAGES.SAVE_SETTINGS_FAILED));
     }
@@ -293,11 +442,13 @@ export function useContentFormActions({
       try {
         await saveAppearance();
         setShowSaveSuccessModal(true);
-      } catch {
-        toast.error(t(ERROR_MESSAGES.SAVE_CHANGES_FAILED));
+      } catch (error) {
+        handleSaveError(error);
       }
     },
-    [SETTINGS]: saveCollectionSettings,
+    [SETTINGS]: selectedCollection
+      ? saveCollectionSettings
+      : saveContentSettings,
     [ADD_CONTENT_TABS.GENERAL]: saveUploadedContent,
     [ADD_CONTENT_TABS.METADATA]: saveUploadedContent,
     [ADD_CONTENT_TABS.PAYMENT]: saveUploadedContent,
@@ -320,6 +471,22 @@ export function useContentFormActions({
     openDiscardModal();
   };
 
+  const hasGeneralUnsavedChanges = GENERAL_FORM_FIELDS.some(
+    (field) => formState[field] !== savedFormState[field],
+  );
+
+  const hasMetadataUnsavedChanges =
+    formState.title !== savedFormState.title ||
+    formState.description !== savedFormState.description ||
+    formState.publishedYear !== savedFormState.publishedYear ||
+    formState.duration !== savedFormState.duration ||
+    formState.category !== savedFormState.category ||
+    formState.productionCompany !== savedFormState.productionCompany ||
+    formState.manufacturerLink !== savedFormState.manufacturerLink ||
+    formState.tags !== savedFormState.tags ||
+    formState.mediaCardThumbnail !== savedFormState.mediaCardThumbnail ||
+    formState.portraitThumbnail !== savedFormState.portraitThumbnail;
+
   const closeContentUpload = () => {
     contentTypeFlow.close();
   };
@@ -334,6 +501,11 @@ export function useContentFormActions({
 
   const handleEditContent = async (id: string) => {
     const item = collectionContents.find((content) => content.id === id);
+    const nextUploadTab = Object.values(ADD_CONTENT_TABS).includes(
+      activeTab as AddContentTab,
+    )
+      ? (activeTab as AddContentTab)
+      : ADD_CONTENT_TABS.GENERAL;
 
     interface ContentDetailsResponse {
       title?: string;
@@ -349,6 +521,7 @@ export function useContentFormActions({
       categories?: { id: string }[];
       production_company?: string;
       manufacturerLink?: string;
+      tags?: string[];
       thumbnailUrl?: string | null;
       thumbnailLandscapeUrl?: string | null;
       accessType?: string;
@@ -356,6 +529,8 @@ export function useContentFormActions({
       buyPrice?: number;
       maxDownloadCount?: number;
       physicalProductLink?: string;
+      openInNewWindow?: boolean;
+      openDirectFromList?: boolean;
     }
 
     try {
@@ -402,20 +577,20 @@ export function useContentFormActions({
               ? API.media.videoStream
               : API.media.fileSignedUrl;
 
-          const res = await axiosClient.get<MediaUrlResponse>(endpoint, {
+          const res = await axiosClient.get<ContentMediaUrlResponse>(endpoint, {
             params: { key: fileKey },
           });
 
-          return res.data.url ?? null;
+          return res.data.url || res.data.iframeUrl || null;
         };
 
         const preview = fullContent.fileKey
           ? await getPreviewUrl(fullContent.fileKey, resolvedContentType)
           : null;
 
-        setUploadedPreview(preview ?? null);
+        setUploadedPreview(preview ?? fullContent.contentUrl ?? null);
 
-        setFormState({
+        const nextFormState = {
           title: fullContent.title || "",
           description: fullContent.description || "",
           trailerLink: fullContent.trailerUrl || "",
@@ -427,7 +602,9 @@ export function useContentFormActions({
           category: fullContent.categories?.[0]?.id || CATEGORY_EDUCATION_LOWER,
           productionCompany: fullContent.production_company || "",
           manufacturerLink: fullContent.manufacturerLink || "",
-          tags: "",
+          tags: Array.isArray(fullContent.tags)
+            ? fullContent.tags.join(", ")
+            : "",
           mediaCardThumbnail: fullContent.thumbnailUrl || null,
           portraitThumbnail: fullContent.thumbnailLandscapeUrl || null,
           admissionRequirement:
@@ -445,14 +622,17 @@ export function useContentFormActions({
             : DOWNLOAD_LIMIT_DEFAULT,
           physicalProductLink: fullContent.physicalProductLink || "",
           webLink: fullContent.contentUrl || "",
-          openInNewWindow: false,
-          openDirectFromList: false,
+          openInNewWindow: fullContent.openInNewWindow ?? false,
+          openDirectFromList: fullContent.openDirectFromList ?? false,
           contentTypeId: normalizeContentTypeValue(
             fullContent.contentTypeId ?? fullContent.contentType ?? "video",
           ),
-        });
+        };
 
-        setActiveTabAndQuery(ADD_CONTENT_TABS.GENERAL);
+        setFormState(nextFormState);
+        setSavedFormState(nextFormState);
+
+        setActiveTabAndQuery(nextUploadTab);
       }
     } catch {
       toast.error(t(ERROR_MESSAGES.LOAD_DETAILS_FAILED));
@@ -481,6 +661,8 @@ export function useContentFormActions({
     collectionAccessDuration,
     setCollectionAccessDuration,
     hasUnsavedChanges: hasAppearanceChanges,
+    hasGeneralUnsavedChanges,
+    hasMetadataUnsavedChanges,
     handleUploadSuccess,
     handleBackToBase,
     handleBackToBaseStateOnly,

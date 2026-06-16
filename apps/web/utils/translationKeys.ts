@@ -11,6 +11,7 @@ export const NAV = {
   about: "nav.about",
   login: "nav.login",
   dashboard: "nav.dashboard",
+  accountProfile: "nav.accountProfile",
   logout: "nav.logout",
   profileMenu: "nav.profileMenu",
   startCreating: "nav.startCreating",
@@ -98,6 +99,10 @@ export const VIEWER_SIGNUP_PREFERENCE = {
 };
 
 export const CREATORS = {
+  marquee: {
+    title: "creators.marquee.title",
+    defaultDescription: "creators.marquee.defaultDescription",
+  },
   sort: "creators.sort",
   value: (v: string) => `creators.${v}`,
   topCreators: "creators.topCreators",
@@ -122,6 +127,7 @@ export const CREATORS = {
     heading: "creators.whyChoose.heading",
   },
   viewProfile: "creators.viewProfile",
+  noCreatorsFound: "creators.noCreatorsFound",
   uploadsCount: "creators.uploadsCount",
   loadMore: "creators.loadMore",
   howToGetStarted: {
@@ -181,10 +187,16 @@ export const DASHBOARD_USERS = {
   tabs: {
     registrations: "users.tabs.registrations",
     sales: "users.tabs.sales",
+    registrationsWithCount: "users.tabs.registrationsWithCount",
+    salesWithCount: "users.tabs.salesWithCount",
   },
   registrations: {
     title: "users.registrations.title",
     description: "users.registrations.description",
+    emptyState: {
+      title: "users.registrations.emptyState.title",
+      description: "users.registrations.emptyState.description",
+    },
     tableHeaders: {
       name: "users.registrations.tableHeaders.name",
       email: "users.registrations.tableHeaders.email",
@@ -201,6 +213,10 @@ export const DASHBOARD_USERS = {
   salest: {
     title: "users.salest.title",
     description: "users.salest.description",
+    emptyState: {
+      title: "users.salest.emptyState.title",
+      description: "users.salest.emptyState.description",
+    },
     tableHeaders: {
       name: "users.salest.tableHeaders.name",
       email: "users.salest.tableHeaders.email",
@@ -368,6 +384,18 @@ export const CONTENTS = {
     supportEmail: "contents.appearance.supportEmail",
     supportEmailHint: "contents.appearance.supportEmailHint",
     supportEmailPlaceholder: "contents.appearance.supportEmailPlaceholder",
+    validation: {
+      invalidHex: "contents.appearance.validation.invalidHex",
+      invalidSupportEmail: "contents.appearance.validation.invalidSupportEmail",
+      fixErrors: "contents.appearance.validation.fixErrors",
+      descriptionRequired: "contents.appearance.validation.descriptionRequired",
+      logoNameRequired: "contents.appearance.validation.logoNameRequired",
+      logoImageRequired: "contents.appearance.validation.logoImageRequired",
+      desktopCoverRequired:
+        "contents.appearance.validation.desktopCoverRequired",
+      mobileCoverRequired: "contents.appearance.validation.mobileCoverRequired",
+      layoutRequired: "contents.appearance.validation.layoutRequired",
+    },
     coverImage: {
       title: "contents.appearance.coverImage.title",
       subtitle: "contents.appearance.coverImage.subtitle",

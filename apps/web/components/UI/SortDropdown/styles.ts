@@ -17,7 +17,7 @@ export const SortBox = styled.div<{
   justify-content: space-between;
   padding: ${({ $variant, $compact }) =>
     $compact
-      ? "4px 2px"
+      ? "8px 10px"
       : $variant === SORT_DROPDOWN_VARIANT.SURFACE
         ? "10px 16px"
         : $variant === SORT_DROPDOWN_VARIANT.SUCCESS
@@ -122,4 +122,5 @@ export const Text = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 `;

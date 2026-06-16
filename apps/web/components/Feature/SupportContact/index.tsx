@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
+import { toast } from "react-toastify";
 import { SuccessCheckIcon } from "@/assets/icons";
 import FormField from "@/components/UI/FormField";
 import {
@@ -12,6 +13,8 @@ import {
 } from "@/utils/supportContact";
 import { createSupportContactSchema } from "@/lib/validation/schema";
 import { sanitizeDigits, SUPPORT_FIELD } from "@/utils/numericFields";
+import { useSupportContact } from "@/hooks/support/useSupportContact";
+import { normalizeApiError } from "@/lib/http/errors/apiError";
 import {
   ContactBlock,
   ContactList,
@@ -40,6 +43,8 @@ import COLORS from "@repo/ui/colors";
 export default function SupportContact() {
   const { t } = useTranslation();
   const [isSuccess, setIsSuccess] = useState(false);
+  const { mutateAsync: submitSupportContact, isPending: isSubmitting } =
+    useSupportContact();
   const fields = useMemo(() => getSupportContactFields(t), [t]);
   const schema = useMemo(
     () =>
@@ -94,8 +99,22 @@ export default function SupportContact() {
     });
   };
 
-  const onSubmit = () => {
-    setIsSuccess(true);
+  const onSubmit = async (values: SupportContactValues) => {
+    try {
+      const response = await submitSupportContact({
+        firstName: values.firstName.trim(),
+        lastName: values.lastName.trim() || undefined,
+        companyName: values.companyName.trim() || undefined,
+        phoneNumber: values.phoneNumber.trim() || undefined,
+        email: values.email.trim(),
+        message: values.message.trim(),
+      });
+      toast.success(response.message || t("supportPage.form.submitSuccess"));
+      setIsSuccess(true);
+    } catch (error) {
+      const apiError = normalizeApiError(error);
+      toast.error(apiError.message || t("supportPage.form.submitError"));
+    }
   };
 
   return (
@@ -193,7 +212,11 @@ export default function SupportContact() {
                   </FormGrid>
 
                   <FormActions>
-                    <SubmitButton type="submit" disabled={!isValid}>
+                    <SubmitButton
+                      type="submit"
+                      disabled={!isValid || isSubmitting}
+                      isLoading={isSubmitting}
+                    >
                       {t("supportPage.form.submit")}
                     </SubmitButton>
                   </FormActions>

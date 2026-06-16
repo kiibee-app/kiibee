@@ -16,6 +16,7 @@ import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import PayoutDetailsModal from "./PayoutDetailsModal";
+import SettlementInvoiceModal from "./SettlementInvoiceModal";
 import Table from "@/components/UI/Table";
 import { SettlementRow } from "@/types/tableContract";
 import { settlementData, settlementHeaders } from "@/utils/dummyData/payout";
@@ -31,6 +32,7 @@ type StatItem = {
 export default function PayoutContent() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<SettlementRow | null>(null);
 
   const stats: StatItem[] = useMemo(
     () => [
@@ -113,10 +115,19 @@ export default function PayoutContent() {
           }}
           getRowKey={(row, index) => `${row.creditNo}-${index}`}
           getMobileTitle={(row) => row.amount}
+          onRowClick={(row) => {
+            setSelectedRow(row);
+          }}
         />
       </Settlement>
 
       <PayoutDetailsModal open={open} onClose={() => setOpen(false)} />
+
+      <SettlementInvoiceModal
+        open={!!selectedRow}
+        row={selectedRow}
+        onClose={() => setSelectedRow(null)}
+      />
     </>
   );
 }

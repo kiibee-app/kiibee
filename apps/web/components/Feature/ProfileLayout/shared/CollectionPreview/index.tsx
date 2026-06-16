@@ -3,7 +3,6 @@
 import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
 import { LeftIcon } from "@/assets/icons";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import {
@@ -24,16 +23,16 @@ import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { getContentTypeLabel } from "@/utils/content";
+import { resolvePublicMediaUrl } from "@/utils/media";
 import {
   getContentDetail,
   type ContentDetailResponse,
 } from "@/utils/contentApi";
 import { tutorialVideos } from "@/utils/data";
-import { type TutorialVideo } from "@/utils/types";
+import { type TutorialVideo, type TutorialButton } from "@/utils/types";
 import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
-import { authStorage } from "@/lib/auth/authStorage";
-import { PATHS } from "@/utils/path";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
+import { pathPublishedContent } from "@/utils/path";
 import {
   CollectionSection,
   CollectionSectionTag,
@@ -55,15 +54,13 @@ function PrivateCollectionPreview({
   variant,
   searchQuery,
   displayName,
-  handleBuyClick,
+  seeContentLabel,
 }: {
   variant: ProfileLayoutVariant;
   searchQuery: string;
   displayName: string;
-  handleBuyClick: () => void;
+  seeContentLabel: string;
 }) {
-  const { t } = useTranslation();
-
   const { data: sections = [] } = useQuery<CollectionWithCards[]>({
     queryKey: [QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW],
     queryFn: async () => {
@@ -94,11 +91,18 @@ function PrivateCollectionPreview({
                 tutorialVideos[
                   (collectionIndex + contentIndex) % tutorialVideos.length
                 ];
+
               const contentResponse =
                 await axiosClient.get<ContentDetailResponse>(
                   API.content.get(content.id),
                 );
               const contentDetail = getContentDetail(contentResponse.data);
+
+              const seeContentButton: TutorialButton = {
+                label: seeContentLabel,
+                variant: VARIANT.SECONDARY,
+                href: pathPublishedContent(content.id),
+              };
 
               return {
                 ...fallbackTemplate,
@@ -108,14 +112,10 @@ function PrivateCollectionPreview({
                 published: content.createdAt,
                 formatType: content.contentType,
                 formatLabel: getContentTypeLabel(content.contentType),
-                image: contentDetail?.thumbnailUrl ?? fallbackTemplate.image,
-                buttons: [
-                  {
-                    label: t("createProfileAbout.buyCollection"),
-                    variant: VARIANT.SECONDARY,
-                    onClick: handleBuyClick,
-                  },
-                ],
+                image:
+                  resolvePublicMediaUrl(contentDetail?.thumbnailUrl) ??
+                  fallbackTemplate.image,
+                buttons: [seeContentButton],
               };
             }),
           );
@@ -174,33 +174,40 @@ function PublicCollectionPreview({
   variant,
   publicCreatorId,
   searchQuery,
-  handleBuyClick,
+  seeContentLabel,
 }: {
   variant: ProfileLayoutVariant;
   publicCreatorId: string;
   searchQuery: string;
-  handleBuyClick: () => void;
+  seeContentLabel: string;
 }) {
   const { t } = useTranslation();
   const { tutorials, isLoading } = usePublicCreatorContent(publicCreatorId);
 
-  const visibleCards = useMemo((): TutorialVideo[] => {
-    const withBuyButton: TutorialVideo[] = tutorials.map((tutorial) => ({
-      ...tutorial,
-      buttons: [
-        {
-          label: t("createProfileAbout.buyCollection"),
-          variant: VARIANT.SECONDARY,
-          onClick: handleBuyClick,
-        },
-      ],
-    }));
+  const cardsWithSeeContent = useMemo((): TutorialVideo[] => {
+    return tutorials.map((tutorial) => {
+      if (tutorial.isFree) {
+        return {
+          ...tutorial,
+          buttons: [
+            {
+              label: seeContentLabel,
+              variant: VARIANT.SECONDARY,
+              href: pathPublishedContent(tutorial.id),
+            },
+          ],
+        };
+      }
+      return tutorial;
+    });
+  }, [tutorials, seeContentLabel]);
 
-    if (!searchQuery.trim()) return withBuyButton;
-    return withBuyButton.filter((card) =>
+  const visibleCards = useMemo((): TutorialVideo[] => {
+    if (!searchQuery.trim()) return cardsWithSeeContent;
+    return cardsWithSeeContent.filter((card) =>
       matchesProfileSearch(searchQuery, card.title),
     );
-  }, [tutorials, searchQuery, t, handleBuyClick]);
+  }, [cardsWithSeeContent, searchQuery]);
 
   if (isLoading || !visibleCards.length) return null;
 
@@ -210,7 +217,7 @@ function PublicCollectionPreview({
         <SectionLabel>
           <CollectionSectionTag>
             <MonoText $use="H4_Medium">
-              {t("createProfileAbout.content", { defaultValue: "Content" })}
+              {t("createProfileHome.latestUpload.seeContent")}
             </MonoText>
           </CollectionSectionTag>
         </SectionLabel>
@@ -225,18 +232,10 @@ function PublicCollectionPreview({
 }
 
 export default function CollectionPreview({ variant }: Props) {
+  const { t } = useTranslation();
   const { searchQuery } = useCreatorProfileUi();
   const { displayName, isPublicView, publicCreatorId } =
     useCreatorChannelProfile();
-  const router = useRouter();
-
-  const handleBuyClick = () => {
-    if (authStorage.hasSession()) return;
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
 
   if (isPublicView && publicCreatorId) {
     return (
@@ -244,7 +243,7 @@ export default function CollectionPreview({ variant }: Props) {
         variant={variant}
         publicCreatorId={publicCreatorId}
         searchQuery={searchQuery}
-        handleBuyClick={handleBuyClick}
+        seeContentLabel={t("createProfileHome.latestUpload.seeContent")}
       />
     );
   }
@@ -254,7 +253,7 @@ export default function CollectionPreview({ variant }: Props) {
       variant={variant}
       searchQuery={searchQuery}
       displayName={displayName}
-      handleBuyClick={handleBuyClick}
+      seeContentLabel={t("createProfileHome.latestUpload.seeContent")}
     />
   );
 }

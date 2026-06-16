@@ -5,7 +5,12 @@ import { useRef, useState, type RefObject } from "react";
 import PdfIcon from "@/assets/icons/PdfIcon";
 import type { SingleContentHeroSectionProps } from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
-import { isRemoteImageSource } from "@/utils/media";
+import {
+  getThirdPartyEmbedUrl,
+  isCloudflareStreamEmbedUrl,
+  isRemoteImageSource,
+  isThirdPartyVideoUrl,
+} from "@/utils/media";
 import {
   Hero,
   HeroMediaTag,
@@ -13,13 +18,11 @@ import {
   HeroTag,
   HeroTagText,
   Preview,
-  PreviewAudio,
   PreviewDocument,
   PreviewVideo,
   TrailerButton,
   TrailerText,
 } from "./styles";
-import EpubViewer from "@/utils/EpubViewer";
 
 type SingleContentHeroViewProps = SingleContentHeroSectionProps & {
   isPdfLayout?: boolean;
@@ -43,6 +46,9 @@ function getMediaContent(
     | "onVideoPause"
     | "onVideoEnded"
   >,
+  isTrailerPlaying: boolean,
+  isCloudflarePlaying: boolean,
+  deferCloudflareEmbed: boolean,
 ) {
   const { src, type, title } = hero.media ?? {};
 
@@ -50,24 +56,47 @@ function getMediaContent(
 
   switch (type) {
     case FORMAT_TYPE.VIDEO:
+      if (isCloudflareStreamEmbedUrl(src)) {
+        if (deferCloudflareEmbed && !isCloudflarePlaying) return null;
+        return (
+          <PreviewDocument
+            src={src}
+            title={title}
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        );
+      }
+
+      if (isThirdPartyVideoUrl(src)) {
+        if (!isTrailerPlaying) return null;
+        return (
+          <PreviewDocument
+            src={getThirdPartyEmbedUrl(src)}
+            title={title}
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        );
+      }
+
       return (
         <PreviewVideo
           ref={videoProps.videoRef}
           src={src}
           controls={videoProps.showVideoControls}
           playsInline
+          preload="metadata"
           onPlay={videoProps.onVideoPlay}
           onPause={videoProps.onVideoPause}
           onEnded={videoProps.onVideoEnded}
         />
       );
     case FORMAT_TYPE.AUDIO:
-      return <PreviewAudio src={src} controls />;
     case FORMAT_TYPE.PDF:
     case FORMAT_TYPE.WEB:
-      return <PreviewDocument src={src} title={title} />;
     case FORMAT_TYPE.EPUB:
-      return <EpubViewer src={src} />;
+      return null;
     default:
       return null;
   }
@@ -90,14 +119,27 @@ function SingleContentPreview({
   onVideoPlay,
   onVideoPause,
   onVideoEnded,
-}: SingleContentPreviewProps) {
-  const mediaContent = getMediaContent(hero, {
-    videoRef,
-    showVideoControls,
-    onVideoPlay,
-    onVideoPause,
-    onVideoEnded,
-  });
+  isTrailerPlaying,
+  isCloudflarePlaying,
+  deferCloudflareEmbed,
+}: SingleContentPreviewProps & {
+  isTrailerPlaying: boolean;
+  isCloudflarePlaying: boolean;
+  deferCloudflareEmbed: boolean;
+}) {
+  const mediaContent = getMediaContent(
+    hero,
+    {
+      videoRef,
+      showVideoControls,
+      onVideoPlay,
+      onVideoPause,
+      onVideoEnded,
+    },
+    isTrailerPlaying,
+    isCloudflarePlaying,
+    deferCloudflareEmbed,
+  );
 
   return mediaContent ?? <HeroImage hero={hero} />;
 }
@@ -108,11 +150,19 @@ export default function SingleContentHeroView({
 }: SingleContentHeroViewProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hasStartedPlayback, setHasStartedPlayback] = useState(false);
+  const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
+  const [isCloudflarePlaying, setIsCloudflarePlaying] = useState(false);
   const isVideoMedia = hero.media?.type === FORMAT_TYPE.VIDEO;
+  const isCloudflareVideo =
+    isVideoMedia && isCloudflareStreamEmbedUrl(hero.media?.src);
+  const isThirdPartyVideo =
+    isVideoMedia && isThirdPartyVideoUrl(hero.media?.src ?? "");
+  const deferCloudflareEmbed = isCloudflareVideo && Boolean(hero.trailerLabel);
 
   const handleVideoPlay = () => {
     if (isVideoMedia) {
       setHasStartedPlayback(true);
+      setIsTrailerPlaying(false);
     }
   };
 
@@ -132,6 +182,15 @@ export default function SingleContentHeroView({
   };
 
   const handleTrailerClick = async () => {
+    if (isCloudflareVideo) {
+      setIsCloudflarePlaying(true);
+      setHasStartedPlayback(true);
+      return;
+    }
+    if (isThirdPartyVideo) {
+      setIsTrailerPlaying(true);
+      return;
+    }
     const videoElement = videoRef.current;
     if (!videoElement) return;
 
@@ -148,16 +207,27 @@ export default function SingleContentHeroView({
     void handleTrailerClick();
   };
 
+  const showTrailerButton =
+    hero.trailerLabel &&
+    !hasStartedPlayback &&
+    !isTrailerPlaying &&
+    !isCloudflarePlaying;
+
   return (
     <Hero $isPdf={isPdfLayout}>
       <Preview>
         <SingleContentPreview
           hero={hero}
-          showVideoControls={!isVideoMedia || hasStartedPlayback}
+          showVideoControls={
+            !isVideoMedia || isCloudflareVideo || hasStartedPlayback
+          }
           videoRef={videoRef}
           onVideoPlay={handleVideoPlay}
           onVideoPause={handleVideoPause}
           onVideoEnded={handleVideoEnded}
+          isTrailerPlaying={isTrailerPlaying}
+          isCloudflarePlaying={isCloudflarePlaying}
+          deferCloudflareEmbed={deferCloudflareEmbed}
         />
       </Preview>
 
@@ -167,7 +237,8 @@ export default function SingleContentHeroView({
         </HeroTag>
       ) : null}
 
-      {hero.mediaLabel && (!isVideoMedia || !hasStartedPlayback) ? (
+      {hero.mediaLabel &&
+      (!isVideoMedia || (!hasStartedPlayback && !isTrailerPlaying)) ? (
         <HeroMediaTag>
           {hero.media?.type === FORMAT_TYPE.PDF ? (
             <PdfIcon width={16} height={16} />
@@ -184,7 +255,7 @@ export default function SingleContentHeroView({
         </HeroMediaTag>
       ) : null}
 
-      {hero.trailerLabel && !hasStartedPlayback ? (
+      {showTrailerButton ? (
         <TrailerButton onClick={handleTrailerButtonClick} type="button">
           {hero.trailerIcon ? (
             <Image

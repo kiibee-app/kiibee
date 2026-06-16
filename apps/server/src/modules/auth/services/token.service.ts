@@ -82,7 +82,7 @@ export class TokenService {
         sub: payload.sub,
         email: payload.email,
       };
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('Invalid or expired refresh token');
     }
   }

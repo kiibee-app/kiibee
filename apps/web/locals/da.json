@@ -10,6 +10,9 @@
     "about": "Om Kiibee",
     "login": "Log ind",
     "dashboard": "Dashboard",
+    "accountProfile": "Profil",
+    "logout": "Log ud",
+    "profileMenu": "Kontomenu",
     "startCreating": "Begynd at skabe",
     "logoAlt": "Kiibee",
     "profile": {
@@ -81,7 +84,9 @@
         "cancelLabel": "Log ind",
         "confirmLabel": "Opret konto",
         "message": "For at fortsætte med dit køb, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik."
-      }
+      },
+      "seeContent": "Se indhold",
+      "buy": "Køb 99 kr"
     }
   },
   "createProfileCollections": {
@@ -506,6 +511,7 @@
       "tag": "Senest tilføjet"
     },
     "viewProfile": "View profile",
+    "noCreatorsFound": "Ingen skabere fundet",
     "uploadsCount": "{{count}} uploads",
     "loadMore": "Load more",
     "a-z": "A-z",
@@ -636,7 +642,9 @@
         "phoneInvalid": "Indtast et gyldigt telefonnummer",
         "messageRequired": "Besked er påkrævet"
       },
-      "submit": "Send besked"
+      "submit": "Send besked",
+      "submitSuccess": "Din besked blev sendt.",
+      "submitError": "Vi kunne ikke sende din besked lige nu. Prøv igen."
     }
   },
   "value": {
@@ -899,7 +907,10 @@
   "creatorProfile": {
     "title": "Min konto",
     "firstName": "Fornavn",
+    "firstNameRequired": "Fornavn er påkrævet",
     "lastName": "Efternavn",
+    "lastNameRequired": "Efternavn er påkrævet",
+    "cvrInvalid": "CVR skal være på mindst 8 cifre",
     "passwordLabel": "Adgangskode",
     "changePassword": "Skift adgangskode",
     "companyName": "Firmanavn",
@@ -952,11 +963,35 @@
     "loading": "Indhold indlaeses...",
     "imageAlt": "Forhaandsvisning af indhold",
     "seeContent": "Se indhold",
+    "playVideo": "Afspil video",
     "playTrailer": "Afspil trailer",
+    "pricing": {
+      "downloadFiles": "Download filer",
+      "accessDefault": "Adgang i 3 måneder",
+      "accessMonths": "Adgang i {{count}} måneder",
+      "accessDays": "Adgang i {{count}} dage",
+      "accessHours": "Adgang i {{count}} timer",
+      "rental": "48 timers leje",
+      "discountCode": "Rabatkode",
+      "enterCode": "Indtast kode",
+      "apply": "Anvend",
+      "remove": "Fjern",
+      "subtotal": "Subtotal",
+      "discount": "Rabat",
+      "total": "Total",
+      "purchase": "Køb",
+      "couponApplied": "Kupon anvendt",
+      "couponInvalid": "Ugyldig kuponkode"
+    },
     "meta": {
+      "category": "Kategori:",
+      "publishedYear": "Udgivet:",
       "createdAt": "Oprettet:",
       "accessType": "Adgang:",
-      "visibility": "Synlighed:"
+      "visibility": "Synlighed:",
+      "duration": "Varighed:",
+      "productionCompany": "Produktionsselskab:",
+      "manufacturerLink": "Producentlink:"
     }
   },
   "singleCollection": {
@@ -964,7 +999,8 @@
     "seeContent": "Se indhold",
     "notFound": "Samling ikke fundet",
     "inCollection": "I denne samling",
-    "uploads": "uploads"
+    "uploads": "uploads",
+    "noResults": "Ingen uploads matcher din søgning."
   },
   "singleTutorial": {
     "title": "Del 1. Oprettelse af profil og kanal & site",
@@ -1065,6 +1101,10 @@
     "registrations": {
       "title": "E-mail tilmeldinger",
       "description": "En oversigt over alle de mails der er indsamlet i forbindelse visning imod e-mail adresse.",
+      "emptyState": {
+        "title": "Du har ingen e-mail tilmeldinger.",
+        "description": "Når du har sat et adgangskrav for 'Anmod om e-mail', vil de blive vist her på listen efter tilmelding."
+      },
       "tableHeaders": {
         "name": "Navn",
         "email": "E-mail",
@@ -1295,7 +1335,14 @@
       "balance": "Saldo",
       "purchase": "Køb",
       "rent": "Leje",
-      "settlementHistory": "Afregningshistorik"
+      "settlementHistory": "Afregningshistorik",
+      "tableHeaders": {
+        "amount": "Beløb",
+        "status": "Status",
+        "creditNo": "Kreditnr.",
+        "bank": "Bank",
+        "date": "Dato"
+      }
     },
     "export": {
       "title": "Eksporter dine data",
@@ -1432,6 +1479,17 @@
       "supportEmail": "Support e-mail",
       "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, sÃ¥ indtast den her.",
       "supportEmailPlaceholder": "Indtast support e-mail",
+      "validation": {
+        "invalidHex": "Indtast en gyldig hex-farve som #1a2b3c.",
+        "invalidSupportEmail": "Indtast en gyldig support e-mailadresse.",
+        "fixErrors": "Ret fejlene i appearance-sektionen, fÃ¸r du gemmer.",
+        "descriptionRequired": "Beskrivelse er påkrævet.",
+        "logoNameRequired": "Logotekst er påkrævet.",
+        "logoImageRequired": "Upload venligst et logobillede.",
+        "desktopCoverRequired": "Upload venligst et desktop-forsidebillede.",
+        "mobileCoverRequired": "Upload venligst et mobil-forsidebillede.",
+        "layoutRequired": "Vælg venligst et layout."
+      },
       "coverImage": {
         "title": "Forsidebillede",
         "subtitle": "Det store billede øverst på siden",
@@ -1553,6 +1611,10 @@
       "title": "Din samling er tom.",
       "description": "Tilføj indhold til din samling, som derefter vises på din kanal."
     },
+    "emptyCoupon": {
+      "title": "Ingen kuponer endnu.",
+      "description": "Opret din første kupon for at begynde at tilbyde rabatter."
+    },
     "deleteModal": {
       "title": "Delete content?",
       "message": "Are you sure you want to delete this content? This action cannot be undone.",
@@ -1593,6 +1655,11 @@
       "helperLiveStreaming": "Kan f.eks. bruges sammen med livestreaming"
     },
     "metadata": {
+      "validation": {
+        "required": "Dette felt er obligatorisk.",
+        "mediaCardThumbnail": "Miniature til mediekortet er obligatorisk.",
+        "portraitThumbnail": "Portraetminiature er obligatorisk."
+      },
       "production": {
         "title": "Produktion af",
         "description": "Hvem udgav filmen og producerede filmen?",
@@ -1755,6 +1822,7 @@
   "errors": {
     "missingContentFormProvider": "useContentForm skal bruges inden for en ContentFormProvider",
     "noContentToSave": "Intet indhold at gemme",
+    "metadataValidationFailed": "Udfyld venligst alle obligatoriske metadatafelter.",
     "saveChangesFailed": "Kunne ikke gemme ændringer",
     "saveSettingsFailed": "Kunne ikke gemme indstillinger",
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer"

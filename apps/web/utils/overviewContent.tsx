@@ -7,6 +7,26 @@ import {
 } from "@/assets/icons";
 import type { OverviewPerformanceIcon } from "@/utils/dummyData/overviewData";
 
+export function mapContentTypeToOverviewIcon(
+  contentType?: string | null,
+): OverviewPerformanceIcon {
+  const normalized = contentType?.trim().toLowerCase();
+
+  switch (normalized) {
+    case "audio":
+      return "audio";
+    case "video":
+      return "video";
+    case "epub":
+      return "book";
+    case "web":
+      return "web";
+    case "pdf":
+    default:
+      return "pdf";
+  }
+}
+
 export function renderContentIcon(icon: OverviewPerformanceIcon) {
   switch (icon) {
     case "pdf":

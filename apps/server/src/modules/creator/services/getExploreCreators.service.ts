@@ -2,10 +2,12 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq, sql, type SQL } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
+  contentAppearance,
   creatorChannels,
   emailSubscribers,
   mediaFiles,
   users,
+  creatorInfo,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { ROLE, STATUS } from 'src/utils/constant';
@@ -21,6 +23,8 @@ export type ExploreCreatorItem = {
   uploadCount: number;
   subscriberCount: number;
   createdAt: string;
+  contentDescription: string | null;
+  exampleWorkLink: string | null;
 };
 
 const subscriberCounts = db
@@ -50,10 +54,17 @@ const activeCreatorConditions = (): SQL[] => [
   eq(users.status, STATUS.ACTIVE),
 ];
 
-const buildCreatorsQuery = (creatorId?: string) => {
+const buildCreatorsQuery = (creatorId?: string, search?: string) => {
   const conditions = activeCreatorConditions();
   if (creatorId) {
     conditions.push(eq(users.id, creatorId));
+  }
+
+  if (search) {
+    const searchTerm = `%${search}%`;
+    conditions.push(
+      sql`(${users.fullName} ILIKE ${searchTerm} OR ${creatorChannels.name} ILIKE ${searchTerm})`,
+    );
   }
 
   return db
@@ -69,9 +80,10 @@ const buildCreatorsQuery = (creatorId?: string) => {
           nullif(${creatorChannels.logoUrl}, ''),
           nullif(${users.avatarUrl}, '')
         )`.as('profile_image_url'),
-      coverImageUrl: sql<
-        string | null
-      >`nullif(${creatorChannels.coverImageUrl}, '')`.as('cover_image_url'),
+      coverImageUrl: sql<string | null>`coalesce(
+          nullif(${creatorChannels.coverImageUrl}, ''),
+          nullif(${contentAppearance.desktopCoverImageUrl}, '')
+        )`.as('cover_image_url'),
       category: sql<string | null>`null`.as('category'),
       uploadCount:
         sql<number>`coalesce(${uploadCounts.uploadCount}, 0)::int`.as(
@@ -82,11 +94,15 @@ const buildCreatorsQuery = (creatorId?: string) => {
           'subscriber_count',
         ),
       createdAt: users.createdAt,
+      contentDescription: creatorInfo.contentDescription,
+      exampleWorkLink: creatorInfo.exampleWorkLink,
     })
     .from(users)
     .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
+    .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
     .leftJoin(uploadCounts, eq(uploadCounts.creatorId, users.id))
     .leftJoin(subscriberCounts, eq(subscriberCounts.creatorId, users.id))
+    .leftJoin(creatorInfo, eq(creatorInfo.userId, users.id))
     .where(and(...conditions))
     .orderBy(desc(sql`coalesce(${subscriberCounts.subscriberCount}, 0)`));
 };
@@ -101,6 +117,8 @@ const mapCreatorRow = (row: {
   uploadCount: number;
   subscriberCount: number;
   createdAt: Date | string;
+  contentDescription: string | null;
+  exampleWorkLink: string | null;
 }): ExploreCreatorItem => ({
   id: row.id,
   name: row.name,
@@ -114,11 +132,16 @@ const mapCreatorRow = (row: {
     row.createdAt instanceof Date
       ? row.createdAt.toISOString()
       : String(row.createdAt),
+  contentDescription: row.contentDescription,
+  exampleWorkLink: row.exampleWorkLink,
 });
 
-export const getExploreCreatorsService = async (limit?: number) => {
+export const getExploreCreatorsService = async (
+  limit?: number,
+  search?: string,
+) => {
   try {
-    let query = buildCreatorsQuery();
+    let query = buildCreatorsQuery(undefined, search);
 
     if (limit != null) {
       const safeLimit = Math.min(Math.max(limit, 1), 100);

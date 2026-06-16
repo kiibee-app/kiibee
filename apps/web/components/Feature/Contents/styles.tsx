@@ -195,7 +195,7 @@ export const HeaderRow = styled.div`
 
 export const EmptyCollectionCard = styled.div`
   display: flex;
-  padding: 20px 16px;
+  padding: 50px 16px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -205,10 +205,24 @@ export const EmptyCollectionCard = styled.div`
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
 `;
 
+export const EmptyCollectionsView = styled.div`
+  display: flex;
+  min-height: 280px;
+  padding: 48px 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 16px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+`;
+
 export const EmptyCollectionText = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  max-width: 640px;
+  gap: 8px;
 `;
 
 export const EmptyCollectionTitle = styled(MonoText).attrs({

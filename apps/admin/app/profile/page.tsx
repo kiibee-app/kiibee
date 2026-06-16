@@ -24,42 +24,56 @@ import {
   StatusText,
   Value,
 } from "./styles";
-
-type StoredAuthPayload = {
-  id?: string;
-  fullName?: string;
-  email?: string;
-  role?: string;
-  status?: string;
-  isEmailVerified?: boolean;
-  [key: string]: unknown;
-};
+import { useAdminProfile } from "../../hooks/api";
 
 const PLACEHOLDER = "-";
 
-export default function ProfilePage() {
-  const payload: StoredAuthPayload =
-    typeof window === "undefined"
-      ? {}
-      : (() => {
-          const fromStorage = window.localStorage.getItem("admin.authPayload");
-          if (!fromStorage) return {};
+function getDisplayName(
+  fullName?: string | null,
+  firstName?: string | null,
+  lastName?: string | null,
+  email?: string,
+) {
+  const nameFromParts = [firstName, lastName]
+    .map((part) => part?.trim())
+    .filter(Boolean)
+    .join(" ");
 
-          try {
-            return JSON.parse(fromStorage) as StoredAuthPayload;
-          } catch {
-            return {};
-          }
-        })();
+  if (fullName?.trim()) return fullName.trim();
+  if (nameFromParts) return nameFromParts;
+  if (email?.includes("@")) return email.split("@")[0];
+  return PLACEHOLDER;
+}
 
-  const initials =
-    String(payload.fullName ?? "")
-      .split(" ")
+function getInitials(name: string, email?: string) {
+  const source = name !== PLACEHOLDER ? name : email || "";
+
+  return (
+    source
+      .split(/[\s@.]+/)
       .filter(Boolean)
       .map((part) => part.charAt(0))
       .join("")
       .slice(0, 2)
-      .toUpperCase() || "AD";
+      .toUpperCase() || "AD"
+  );
+}
+
+export default function ProfilePage() {
+  const profileQuery = useAdminProfile();
+  const profile = profileQuery.data;
+  const displayName = profileQuery.isLoading
+    ? "Loading..."
+    : getDisplayName(
+        profile?.fullName,
+        profile?.firstName,
+        profile?.lastName,
+        profile?.email,
+      );
+  const email = profile?.email ?? PLACEHOLDER;
+  const role = profile?.role ?? PLACEHOLDER;
+  const status = profile?.status ?? PLACEHOLDER;
+  const initials = getInitials(displayName, profile?.email);
 
   return (
     <Page>
@@ -67,12 +81,17 @@ export default function ProfilePage() {
         <HeroLeft>
           <Avatar>{initials}</Avatar>
           <HeroIdentity>
-            <Name>{String(payload.fullName ?? PLACEHOLDER)}</Name>
-            <Email>{String(payload.email ?? PLACEHOLDER)}</Email>
+            <Name>{displayName}</Name>
+            <Email>{email}</Email>
             <Badge $tone="blue">
               <Shield size={15} />
-              {String(payload.role ?? PLACEHOLDER)}
+              {role}
             </Badge>
+            {profileQuery.isError ? (
+              <StatusText>
+                {profileQuery.error?.message || "Failed to load admin profile."}
+              </StatusText>
+            ) : null}
           </HeroIdentity>
         </HeroLeft>
       </HeroCard>
@@ -91,19 +110,19 @@ export default function ProfilePage() {
 
           <Field>
             <Label>Full Name</Label>
-            <Value>{String(payload.fullName ?? PLACEHOLDER)}</Value>
+            <Value>{displayName}</Value>
           </Field>
 
           <Field>
             <Label>Email</Label>
-            <Value>{String(payload.email ?? PLACEHOLDER)}</Value>
+            <Value>{email}</Value>
           </Field>
 
           <FieldNoBorder>
             <FieldTop>
               <Label>Email Verification</Label>
-              <Badge $tone={payload.isEmailVerified ? "green" : "amber"}>
-                {payload.isEmailVerified ? (
+              <Badge $tone={profile?.isEmailVerified ? "green" : "amber"}>
+                {profile?.isEmailVerified ? (
                   <>
                     <CircleCheck size={15} />
                     Verified
@@ -132,30 +151,33 @@ export default function ProfilePage() {
               <Label>User ID</Label>
               <IconAction
                 type="button"
+                disabled={!profile?.id}
                 onClick={() =>
-                  navigator.clipboard.writeText(String(payload.id ?? ""))
+                  navigator.clipboard.writeText(String(profile?.id ?? ""))
                 }
+                aria-label="Copy user ID"
               >
                 <Copy size={14} />
               </IconAction>
             </FieldTop>
-            <Value>{String(payload.id ?? PLACEHOLDER)}</Value>
+            <Value>{profile?.id ?? PLACEHOLDER}</Value>
           </Field>
 
           <Field>
             <Label>Role</Label>
-            <Value>{String(payload.role ?? PLACEHOLDER)}</Value>
+            <Value>{role}</Value>
           </Field>
 
           <FieldNoBorder>
             <Label>Status</Label>
-            <Badge $tone="amber">
+            <Badge $tone={status === "active" ? "green" : "amber"}>
               <Shield size={15} />
-              {String(payload.status ?? PLACEHOLDER)}
+              {status}
             </Badge>
             <StatusText>
-              This page only shows essential account details to keep profile
-              management clean and focused.
+              {profile
+                ? `Account is ${profile.isActive ? "active" : "inactive"} and ready for admin dashboard access.`
+                : "Account details will appear after the profile loads."}
             </StatusText>
           </FieldNoBorder>
         </Card>

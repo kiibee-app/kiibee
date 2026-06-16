@@ -9,13 +9,81 @@ import {
   collectionItems,
   collections,
   mediaFileCategories,
+  mediaFileTags,
+  tags,
 } from 'src/database/schema';
-import { CONTENT_VISIBILITY } from 'src/utils/constant';
+import {
+  CONTENT_VISIBILITY,
+  SLUG_EDGE_DASH_RE,
+  SLUG_NON_ALPHANUMERIC_RE,
+} from 'src/utils/constant';
+
+type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
 
 const pickDefined = (obj: Record<string, any>) =>
   Object.fromEntries(
     Object.entries(obj).filter(([, v]) => v !== undefined && v !== null),
   );
+
+const slugifyTag = (value: string) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(SLUG_NON_ALPHANUMERIC_RE, '-')
+    .replace(SLUG_EDGE_DASH_RE, '');
+
+const normalizeTagNames = (input: string[]) =>
+  Array.from(new Set(input.map((tag) => tag.trim()).filter(Boolean)));
+
+const findOrCreateTag = async (
+  trx: Transaction,
+  tagName: string,
+  creatorId: string,
+) => {
+  const slug = `${creatorId}-${slugifyTag(tagName)}`.slice(0, 255);
+  const [existingTag] = await trx
+    .select({ id: tags.id })
+    .from(tags)
+    .where(eq(tags.slug, slug))
+    .limit(1);
+
+  if (existingTag) {
+    return existingTag.id;
+  }
+
+  const tagId = crypto.randomUUID();
+  await trx.insert(tags).values({
+    id: tagId,
+    name: tagName,
+    slug,
+    creatorId,
+  });
+
+  return tagId;
+};
+
+const syncContentTags = async (
+  trx: Transaction,
+  contentId: string,
+  inputTags: string[],
+  creatorId: string,
+) => {
+  const tagNames = normalizeTagNames(inputTags);
+
+  await trx
+    .delete(mediaFileTags)
+    .where(eq(mediaFileTags.mediaFileId, contentId));
+
+  for (const tagName of tagNames) {
+    const tagId = await findOrCreateTag(trx, tagName, creatorId);
+
+    await trx.insert(mediaFileTags).values({
+      id: crypto.randomUUID(),
+      mediaFileId: contentId,
+      tagId,
+    });
+  }
+};
 
 export const updateContentService = async (
   contentId: string,
@@ -96,6 +164,10 @@ export const updateContentService = async (
             mediaFileId: contentId,
           });
         }
+      }
+
+      if (dto.tags !== undefined) {
+        await syncContentTags(trx, contentId, dto.tags, creatorId);
       }
 
       if (dto.collectionId) {

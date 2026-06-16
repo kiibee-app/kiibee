@@ -5,6 +5,7 @@ import {
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
+import { resolvePublicMediaUrl } from "@/utils/media";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -17,6 +18,7 @@ export type FeedContentItem = {
   title: string;
   description?: string | null;
   thumbnailUrl?: string | null;
+  thumbnailLandscapeUrl?: string | null;
   creatorId?: string;
   creatorName?: string | null;
   contentType?: string | null;
@@ -77,14 +79,21 @@ export function dedupeFeedContentItems(
 function buildPricingButtons(
   item: FeedContentItem,
   freeLabel: string,
+  options?: { inCollection?: boolean },
 ): TutorialButton[] {
-  const actions = getContentPricingActions(item, freeLabel);
+  const actions = getContentPricingActions(item, freeLabel, options);
   const requiresAuth = !isFreeContentItem(item);
 
   return actions.map((action) => ({
     label: action.label,
     variant: VARIANT.SOFT_OUTLINE,
-    href: resolveContentActionHref(item.id, action.label, item, actions.length),
+    href: resolveContentActionHref(
+      item.id,
+      action.label,
+      item,
+      actions.length,
+      options,
+    ),
     requiresAuth,
     fullWidth: action.fullWidth,
   }));
@@ -93,6 +102,7 @@ function buildPricingButtons(
 export function feedContentToTutorial(
   item: FeedContentItem,
   freeLabel: string,
+  options?: { inCollection?: boolean },
 ): TutorialVideo {
   return {
     id: item.id,
@@ -106,8 +116,10 @@ export function feedContentToTutorial(
     isFree: isFreeContentItem(item),
     formatLabel: formatFormatLabel(item.contentType),
     formatType: resolveFormatType(item.contentType),
-    image: item.thumbnailUrl || recentCreator,
-    buttons: buildPricingButtons(item, freeLabel),
+    image:
+      resolvePublicMediaUrl(item.thumbnailLandscapeUrl ?? item.thumbnailUrl) ||
+      recentCreator,
+    buttons: buildPricingButtons(item, freeLabel, options),
   };
 }
 

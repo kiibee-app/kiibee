@@ -27,16 +27,20 @@ export default function Table<T extends Record<string, unknown>>({
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRowsPerPage, setCurrentRowsPerPage] = useState(rowsPerPage);
+  const shouldDisablePagination = data.length <= 10;
+  const rowsPerPageForPagination = shouldDisablePagination
+    ? Math.max(data.length, 1)
+    : currentRowsPerPage;
 
   const {
     paginatedData,
     totalPages,
     safeCurrentPage,
-    pageNumbers,
+    paginationItems,
     effectiveRowsPerPage,
   } = useTablePagination({
     data,
-    rowsPerPage: currentRowsPerPage,
+    rowsPerPage: rowsPerPageForPagination,
     currentPage,
   });
 
@@ -102,9 +106,11 @@ export default function Table<T extends Record<string, unknown>>({
       </TableContainer>
       <Pagination
         totalPages={totalPages}
+        totalItems={data.length}
         currentPage={safeCurrentPage}
-        pageNumbers={pageNumbers}
-        rowsPerPage={effectiveRowsPerPage}
+        paginationItems={paginationItems}
+        rowsPerPage={rowsPerPageForPagination}
+        disablePagination={shouldDisablePagination}
         onRowsPerPageChange={handleRowsPerPageChange}
         onChange={handlePageChange}
       />

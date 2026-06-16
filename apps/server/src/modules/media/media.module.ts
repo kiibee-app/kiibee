@@ -1,18 +1,20 @@
 import { Module } from '@nestjs/common';
 import { MediaController } from './media.controller';
 import { MediaService } from './media.service';
-import { VideoMultipartService } from './services/videoMultipart.service';
+import { CloudflareStreamService } from './services/videoMultipart.service';
 import { VideoStreamService } from './services/videoStream.service';
 import { VideoDownloadService } from './services/videoDownload.service';
 import { FileUploadService } from './services/fileUpload.service';
 import { PublicImageUploadService } from './services/publicImageUpload.service';
 import { GetMediaByKeyService } from './services/getmediaByKey.service';
+import { ResolveImportedMediaUrlService } from './services/resolveImportedMediaUrl.service';
 
 @Module({
   controllers: [MediaController],
   providers: [
     MediaService,
-    VideoMultipartService,
+    ResolveImportedMediaUrlService,
+    CloudflareStreamService,
     VideoStreamService,
     VideoDownloadService,
     FileUploadService,

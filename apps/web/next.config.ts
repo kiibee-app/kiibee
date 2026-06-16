@@ -38,6 +38,26 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "**.digitaloceanspaces.com",
       },
+      {
+        protocol: "https",
+        hostname: "kiibee.dk",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.kiibee.dk",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "videodelivery.net",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cloudflarestream.com",
+        pathname: "/**",
+      },
     ],
   },
 };

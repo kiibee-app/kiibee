@@ -22,6 +22,7 @@ import {
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
 import { CREATOR_ID_PARAM } from "@/utils/creatorChannel";
+import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
 
 export function useCreatorChannelProfile(enabled = true) {
   const searchParams = useSearchParams();
@@ -34,6 +35,16 @@ export function useCreatorChannelProfile(enabled = true) {
 
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
     API.auth.creatorProfile,
+    undefined,
+    {
+      enabled: enabled && !isPublicView,
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  );
+
+  const appearanceQuery = useGetAPI<ContentAppearanceResponse>(
+    API.content.appearance,
     undefined,
     {
       enabled: enabled && !isPublicView,
@@ -88,6 +99,13 @@ export function useCreatorChannelProfile(enabled = true) {
     return getAvatarUrl(storedUser?.avatarUrl);
   }, [publicCreator, profile, storedUser]);
 
+  const coverImageUrl = useMemo(() => {
+    if (isPublicView) {
+      return getAvatarUrl(publicCreator?.coverImageUrl);
+    }
+    return getAvatarUrl(appearanceQuery.data?.data?.desktopCoverImageUrl);
+  }, [isPublicView, publicCreator, appearanceQuery.data]);
+
   const initial = useMemo(
     () => getDisplayFirstLetter(displayName, storedUser),
     [displayName, storedUser],
@@ -116,8 +134,11 @@ export function useCreatorChannelProfile(enabled = true) {
   return {
     displayName,
     avatarUrl,
+    coverImageUrl,
     initial,
-    isLoadingProfile: isPublicView ? isLoadingPublic : profileQuery.isLoading,
+    isLoadingProfile: isPublicView
+      ? isLoadingPublic
+      : profileQuery.isLoading || appearanceQuery.isLoading,
     isPublicView,
     publicCreatorId,
     about: aboutData,

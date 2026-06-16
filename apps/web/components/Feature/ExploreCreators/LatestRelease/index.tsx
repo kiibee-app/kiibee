@@ -6,6 +6,7 @@ import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import CreatorFiltersControl from "../Hero/CreatorsFilters";
 import {
   EXPLORE_CONTENT_SORT,
@@ -18,11 +19,14 @@ import {
 import { useTranslation } from "react-i18next";
 import { FilterSectionKey } from "@/types/filters";
 import {
+  CardsColumn,
   CardsGrid,
   ContentGrid,
   FiltersColumn,
   HeaderTabs,
   HeaderWrap,
+  LoadMoreButton,
+  LoadMoreContainer,
   ResultsState,
   Section,
   TabButton,
@@ -63,6 +67,12 @@ function getInitialExploreSort(
 export default function LatestRelease() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
+  useScrollAnimation({
+    sidebarSelector: "[data-sidebar]",
+    innerSelector: "[data-sidebar] > div",
+    cardsSelector:
+      "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
+  });
 
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const filterOverlayRef = useRef<HTMLDivElement>(null);
@@ -76,10 +86,16 @@ export default function LatestRelease() {
   );
   const [activeExploreSort, setActiveExploreSort] =
     useState<ExploreContentSort>(initialExploreSort);
+  const [limit, setLimit] = useState(12);
 
   useEffect(() => {
     setActiveExploreSort(initialExploreSort);
   }, [initialExploreSort]);
+
+  const handleSortChange = (sort: ExploreContentSort) => {
+    setActiveExploreSort(sort);
+    setLimit(12);
+  };
 
   const {
     creatorLabels: allCreatorLabels,
@@ -151,7 +167,14 @@ export default function LatestRelease() {
   const { tutorials, isLoading } = useExploreContent({
     sort: activeExploreSort,
     filters: exploreFilters,
+    limit,
   });
+
+  const hasMore = tutorials.length >= limit;
+
+  const handleLoadMore = () => {
+    setLimit((prev) => prev + 12);
+  };
 
   const filterRefs = { filterButtonRef, filterOverlayRef };
   const filterState = {
@@ -189,7 +212,7 @@ export default function LatestRelease() {
               }
               size="sm"
               $active={activeExploreSort === tab.sort}
-              onClick={() => setActiveExploreSort(tab.sort)}
+              onClick={() => handleSortChange(tab.sort)}
             >
               <MonoText $use="Body_Medium">{tab.label}</MonoText>
             </TabButton>
@@ -215,7 +238,7 @@ export default function LatestRelease() {
           />
         </FiltersColumn>
 
-        <div>
+        <CardsColumn>
           <CardsGrid>
             {isLoading ? (
               <ResultsState>
@@ -235,7 +258,18 @@ export default function LatestRelease() {
               </ResultsState>
             )}
           </CardsGrid>
-        </div>
+          {hasMore && !isLoading && (
+            <LoadMoreContainer>
+              <LoadMoreButton
+                variant="primary"
+                type="button"
+                onClick={handleLoadMore}
+              >
+                {t("creators.loadMore")}
+              </LoadMoreButton>
+            </LoadMoreContainer>
+          )}
+        </CardsColumn>
       </ContentGrid>
     </Section>
   );

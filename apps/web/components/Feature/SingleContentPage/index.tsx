@@ -1,14 +1,37 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useMemo } from "react";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { PATHS } from "@/utils/path";
+import {
+  ACCESS_TYPE_FREE,
+  ACCESS_KEYWORD_EN,
+  ACCESS_KEYWORD_DA,
+  ORDER_TYPES,
+  type OrderItemType,
+  STRING,
+} from "@/utils/Constants";
+import { usePostAPI } from "@/lib/http/api/postApi";
+import { API } from "@/lib/http/api/endpoints";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { toast } from "react-toastify";
 import {
   SingleContentBody,
   SingleContentHero,
   SingleContentTopBar,
 } from "./ContentSections";
 import { Card, ContentLayout, Wrapper } from "./styles";
-import type { SingleContentPageProps } from "@/types/contentTypes";
+import type {
+  SingleContentPageProps,
+  SingleContentAction,
+} from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
+import useShare from "@/hooks/useShare";
+import ContentPreviewModal from "./ContentPreviewModal";
+import PurchaseModal from "./PurchaseModal";
+import { resolveImageUrl } from "@/utils/media";
 
 export type {
   SingleContentHeroProps,
@@ -17,6 +40,8 @@ export type {
 } from "@/types/contentTypes";
 
 export default function SingleContentPage({
+  contentId,
+  collectionId,
   title,
   descriptions = [],
   tags = [],
@@ -25,6 +50,7 @@ export default function SingleContentPage({
   creator,
   hero,
   primaryAction,
+  primaryActions,
   metaItems = [],
   shareLabel = "Share",
   showShare = true,
@@ -34,6 +60,139 @@ export default function SingleContentPage({
   children,
 }: SingleContentPageProps) {
   const router = useRouter();
+  const user = useStoredLoginUser();
+  const { getErrorMessage } = useApiErrorMessage();
+
+  type CreateOrderPayload = {
+    contentId: string;
+    collectionId?: string;
+    itemType: OrderItemType;
+  };
+
+  type CreateOrderResponse = {
+    success: boolean;
+    statusCode: number;
+    message: string;
+    data: {
+      orderId: string;
+      url: string;
+    };
+  };
+
+  const createOrderMutation = usePostAPI<
+    CreateOrderResponse,
+    CreateOrderPayload
+  >(API.order.create);
+
+  const actionsWithPayment = useMemo(() => {
+    const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
+
+    if (!actions.length || !contentId) {
+      return actions;
+    }
+
+    return actions.map((action) => {
+      const normalizedLabel = action.label.toLowerCase();
+      const isPurchase = normalizedLabel.includes("buy");
+      const isRental = normalizedLabel.includes("rent");
+
+      if (!isPurchase && !isRental) {
+        return action;
+      }
+
+      return {
+        ...action,
+        disabled: action.disabled || createOrderMutation.isPending,
+        onClick: async () => {
+          if (!user?.id) {
+            router.push(PATHS.AUTH_LOGIN);
+            return;
+          }
+
+          setSelectedAction({
+            label: action.label,
+            subtitle: action.subtitle,
+            isPurchase,
+          });
+          setShowPurchaseModal(true);
+        },
+      };
+    });
+  }, [
+    contentId,
+    createOrderMutation,
+    primaryAction,
+    primaryActions,
+    router,
+    user?.id,
+  ]);
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [selectedAction, setSelectedAction] = useState<{
+    label: string;
+    subtitle?: string;
+    isPurchase: boolean;
+  } | null>(null);
+
+  const isPreviewableType =
+    hero?.contentType === FORMAT_TYPE.PDF ||
+    hero?.contentType === FORMAT_TYPE.WEB ||
+    hero?.contentType === FORMAT_TYPE.EPUB ||
+    hero?.contentType === FORMAT_TYPE.VIDEO ||
+    hero?.contentType === FORMAT_TYPE.AUDIO;
+
+  const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
+
+  const canPreview =
+    isPreviewableType && Boolean(hero?.media?.src || hero?.contentUrl);
+
+  const handlePrimaryActionClick = () => {
+    if (isWebType && hero?.media?.src) {
+      window.open(hero.media.src, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    if (canPreview) {
+      setShowPreviewModal(true);
+      return;
+    }
+
+    if (primaryAction?.onClick) {
+      primaryAction.onClick();
+      return;
+    }
+
+    const accessMeta = metaItems.find(
+      (item) =>
+        item.label.toLowerCase().includes(ACCESS_KEYWORD_EN) ||
+        item.label.toLowerCase().includes(ACCESS_KEYWORD_DA),
+    );
+    const isPaid =
+      accessMeta &&
+      typeof accessMeta.value === STRING &&
+      accessMeta.value !== ACCESS_TYPE_FREE;
+    const isLoggedIn = Boolean(user && user.id);
+
+    if (isPaid && !isLoggedIn) {
+      router.push(PATHS.AUTH_LOGIN);
+    }
+  };
+
+  const modifiedPrimaryAction = primaryAction
+    ? {
+        ...primaryAction,
+        onClick: handlePrimaryActionClick,
+      }
+    : undefined;
+
+  const bodyPrimaryActions: SingleContentAction[] | undefined =
+    primaryActions != null
+      ? actionsWithPayment
+      : modifiedPrimaryAction
+        ? [modifiedPrimaryAction]
+        : undefined;
+
+  const { share } = useShare();
   const isPdfLayout =
     hero?.media?.type === FORMAT_TYPE.PDF ||
     hero?.media?.type === FORMAT_TYPE.EPUB;
@@ -46,6 +205,36 @@ export default function SingleContentPage({
     router.back();
   };
 
+  const handlePurchaseConfirm = async (couponCode?: string) => {
+    if (!selectedAction || !contentId) return;
+
+    try {
+      const response = await createOrderMutation.mutateAsync({
+        contentId,
+        collectionId,
+        itemType: selectedAction.isPurchase
+          ? ORDER_TYPES.PURCHASE
+          : ORDER_TYPES.RENTAL,
+        ...(couponCode ? { couponCode } : {}),
+      });
+      const paymentUrl = response?.data?.url;
+      if (!paymentUrl) {
+        throw new Error("Payment URL missing");
+      }
+      setShowPurchaseModal(false);
+      setSelectedAction(null);
+      window.location.assign(paymentUrl);
+    } catch (error) {
+      const message = getErrorMessage(error, "errors.saveChangesFailed");
+      toast.error(message);
+    }
+  };
+
+  const handleClosePurchaseModal = () => {
+    setShowPurchaseModal(false);
+    setSelectedAction(null);
+  };
+
   return (
     <Wrapper>
       <SingleContentTopBar
@@ -53,9 +242,8 @@ export default function SingleContentPage({
         showShare={showShare}
         shareLabel={shareLabel}
         onBackClick={handleBack}
-        onShare={onShare}
+        onShare={onShare ?? share}
       />
-
       <Card>
         <ContentLayout $isPdf={isPdfLayout}>
           <SingleContentHero hero={hero} isPdfLayout={isPdfLayout} />
@@ -66,7 +254,8 @@ export default function SingleContentPage({
             title={title}
             descriptions={descriptions}
             tags={tags}
-            primaryAction={primaryAction}
+            primaryAction={modifiedPrimaryAction}
+            primaryActions={bodyPrimaryActions}
             expiry={expiry}
             metaItems={metaItems}
           />
@@ -74,6 +263,30 @@ export default function SingleContentPage({
       </Card>
 
       {children}
+      {canPreview && (
+        <ContentPreviewModal
+          visible={showPreviewModal}
+          onClose={() => setShowPreviewModal(false)}
+          src={hero.contentUrl || hero.media?.src || ""}
+          type={hero.contentType || hero.media?.type || FORMAT_TYPE.VIDEO}
+          title={title}
+        />
+      )}
+
+      <PurchaseModal
+        visible={showPurchaseModal}
+        onClose={handleClosePurchaseModal}
+        onPurchase={handlePurchaseConfirm}
+        title={title}
+        image={hero.image ? resolveImageUrl(hero.image) : undefined}
+        imageAlt={hero.imageAlt}
+        creator={creator?.name}
+        contentType={hero.contentType || hero.media?.type}
+        priceLabel={selectedAction?.label || ""}
+        accessLabel={selectedAction?.subtitle}
+        contentId={contentId}
+        loading={createOrderMutation.isPending}
+      />
     </Wrapper>
   );
 }

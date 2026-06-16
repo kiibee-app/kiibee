@@ -10,7 +10,6 @@ import {
   REMEMBERED_AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
 } from "@/lib/auth/storageKeys";
 import { isSafePostLoginPath } from "@/utils/path";
-const ALLOWED_NEXT_PREFIXES = ["/dashboard/", "/creator/"];
 
 function getPostLoginDestination(response: LoginResponse) {
   if (typeof window === "undefined") return getPostLoginPath(response);

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Menu } from "lucide-react";
-import { apiClient } from "../../hooks/api/api-client";
+import { apiClient, useAdminProfile } from "../../hooks/api";
 import { API_ENDPOINTS } from "../../utils/constants";
 import { clearTokens, getAccessToken } from "../../utils/token";
 import {
@@ -27,12 +27,9 @@ interface HeaderProps {
   onToggleSidebar?: () => void;
 }
 
-type StoredAuthPayload = {
-  fullName?: string;
-};
-
 export function Header({ title, description, onToggleSidebar }: HeaderProps) {
   const router = useRouter();
+  const profileQuery = useAdminProfile();
   const [open, setOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
@@ -73,19 +70,15 @@ export function Header({ title, description, onToggleSidebar }: HeaderProps) {
   };
 
   const displayName =
-    typeof window === "undefined"
-      ? "Admin"
-      : (() => {
-          const fromStorage = window.localStorage.getItem("admin.authPayload");
-          if (!fromStorage) return "Admin";
-
-          try {
-            const parsed = JSON.parse(fromStorage) as StoredAuthPayload;
-            return parsed.fullName?.trim() || "Admin";
-          } catch {
-            return "Admin";
-          }
-        })();
+    profileQuery.data?.fullName?.trim() ||
+    [profileQuery.data?.firstName, profileQuery.data?.lastName]
+      .map((part) => part?.trim())
+      .filter(Boolean)
+      .join(" ") ||
+    (profileQuery.data?.email.includes("@")
+      ? profileQuery.data.email.split("@")[0]
+      : undefined) ||
+    "Admin";
 
   const initials =
     displayName

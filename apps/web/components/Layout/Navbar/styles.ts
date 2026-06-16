@@ -1,6 +1,7 @@
 import { HeaderProps, NavStyleProps } from "@/utils/profile";
 import styled, { css } from "styled-components";
 import Link from "next/link";
+import { media } from "@repo/ui/breakpoints";
 
 export const Header = styled.header<HeaderProps>`
   position: ${({ $position }) => $position};
@@ -18,12 +19,13 @@ export const Header = styled.header<HeaderProps>`
     backdrop-filter 180ms ease;
   z-index: 50;
 
-  @media (max-width: 640px) {
-    height: auto;
+  ${media.mobileMd} {
+    height: var(--navbar-height, 73px);
   }
 `;
 
 export const Inner = styled.div`
+  position: relative;
   max-width: var(--navbar-inner-max-width, 1440px);
   width: 100%;
   margin: 0 auto;
@@ -36,9 +38,8 @@ export const Inner = styled.div`
     padding: var(--navbar-inner-tablet-padding, 0.9rem 1.5rem);
   }
 
-  @media (max-width: 640px) {
-    flex-direction: column;
-    align-items: stretch;
+  ${media.mobileMd} {
+    flex-direction: row;
     padding: var(--navbar-inner-mobile-padding, 0.75rem 1rem);
     gap: 0.5rem;
   }
@@ -49,8 +50,11 @@ export const Left = styled.div`
   align-items: center;
   gap: 1rem;
 
-  @media (max-width: 640px) {
-    width: 100%;
+  ${media.mobileMd} {
+    width: auto;
+  }
+  ${media.mobile} {
+    flex-shrink: 3;
   }
 `;
 
@@ -58,6 +62,14 @@ export const Logo = styled.span`
   font-weight: 700;
   font-size: 1.125rem;
   font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
+  display: flex;
+  align-items: center;
+
+  img {
+    ${media.mobileMd} {
+      max-height: 32px !important;
+    }
+  }
 `;
 
 const navLinkColor = (
@@ -82,7 +94,10 @@ export const Nav = styled.nav<NavStyleProps & { $routeActiveItems?: boolean }>`
           justify-content: flex-end;
         `
       : css`
-          justify-content: center;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
         `}
 
   ${({ $routeActiveItems, theme, $textTone }) =>
@@ -113,7 +128,7 @@ export const Nav = styled.nav<NavStyleProps & { $routeActiveItems?: boolean }>`
       }
     `}
 
-  @media (max-width: 640px) {
+  ${media.mobileMd} {
     display: none;
   }
 `;
@@ -302,12 +317,13 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
     transform: none;
   }
 
-  @media (max-width: 640px) {
-    width: 100%;
+  ${media.mobileMd} {
     margin-left: 0;
-    justify-content: flex-end;
     gap: 0.5rem;
-    order: 2;
+  }
+
+  ${media.mobile} {
+    flex-grow: 2;
   }
 `;
 
@@ -418,7 +434,214 @@ export const NavAccountMenuDivider = styled.div`
 export const NavAccountTriggerWrap = styled.div<{ $open?: boolean }>`
   display: inline-flex;
   border-radius: 10px;
-  box-shadow: ${({ $open, theme }) =>
-    $open ? `0 0 0 2px ${theme.colors.primary.BLACK}` : "none"};
+  box-shadow: none;
   transition: box-shadow 0.15s ease;
+`;
+
+export const HamburgerButton = styled.button<{ $textTone?: "dark" | "light" }>`
+  width: 40px;
+  height: 40px;
+  border: 1px solid
+    ${({ theme, $textTone }) =>
+      $textTone === "light"
+        ? theme.colors.neutral.OFF_WHITE
+        : theme.colors.primary.GRAY};
+  border-radius: 8px;
+  background: ${({ theme, $textTone }) =>
+    $textTone === "light" ? "transparent" : theme.colors.primary.WHITE};
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0;
+
+  ${media.mobileMd} {
+    display: inline-flex;
+  }
+`;
+
+export const HamburgerLine = styled.span<{ $textTone?: "dark" | "light" }>`
+  width: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: ${({ theme, $textTone }) =>
+    $textTone === "light"
+      ? theme.colors.neutral.OFF_WHITE
+      : theme.colors.primary.BLACK};
+`;
+
+export const DrawerOverlay = styled.div<{ $open: boolean }>`
+  display: none;
+
+  ${media.mobileMd} {
+    display: ${({ $open }) => ($open ? "block" : "none")};
+    position: fixed;
+    top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${({ theme }) => theme.colors.neutral.OVERLAY};
+    z-index: 85;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
+export const DrawerPanel = styled.aside<{ $open: boolean }>`
+  display: none;
+
+  ${media.mobileMd} {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
+    left: 0;
+    width: min(84vw, 300px);
+    height: calc(
+      100dvh - var(--navbar-height, 73px) - var(--navbar-top-offset, 0px)
+    );
+    background: ${({ theme }) => theme.colors.primary.WHITE};
+    z-index: 95;
+    transform: ${({ $open }) =>
+      $open ? "translateX(0)" : "translateX(-100%)"};
+    transition: transform 0.3s ease;
+    box-shadow: ${({ $open, theme }) =>
+      $open ? `6px 0 24px ${theme.colors.gradient.FRAME_BG}` : "none"};
+  }
+`;
+
+export const DrawerContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 20px;
+  gap: 24px;
+`;
+
+export const DrawerMenu = styled.nav`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const DrawerMenuItem = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DrawerMenuLink = styled(Link)<{ $isActive?: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: ${({ $isActive, theme }) =>
+    $isActive ? theme.colors.primary.GRAY : "transparent"};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.GRAY};
+  }
+`;
+
+export const DrawerMenuButton = styled.button<{
+  $isActive?: boolean;
+  $expanded?: boolean;
+}>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: ${({ $isActive, theme }) =>
+    $isActive ? theme.colors.primary.GRAY : "transparent"};
+  border: none;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.GRAY};
+  }
+
+  svg {
+    transform: ${({ $expanded }) =>
+      $expanded ? "rotate(180deg)" : "rotate(0)"};
+    transition: transform 0.2s ease;
+  }
+`;
+
+export const DrawerSubMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 16px;
+  margin-top: 8px;
+  gap: 12px;
+  border-left: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+`;
+
+export const DrawerSubMenuColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+export const DrawerSubMenuTitle = styled.div`
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  padding: 4px 12px;
+`;
+
+export const DrawerSubMenuLink = styled(Link)<{ $isActive?: boolean }>`
+  display: block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.15s;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.GRAY};
+  }
+`;
+
+export const DrawerActions = styled.div`
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+
+  a,
+  button {
+    width: 100%;
+  }
+`;
+
+export const ActionsPlaceholder = styled.div`
+  min-width: 120px;
+  height: 40px;
 `;

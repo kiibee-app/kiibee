@@ -5,6 +5,7 @@ import {
   type CreatorProfileBodyKey,
 } from "@/utils/profileFieldMap";
 import { isString, toTrimmedString } from "@/utils/Constants";
+import { resolvePublicMediaUrl } from "@/utils/media";
 import { isBrowser } from "@/utils/ui";
 
 export type Passwords = {
@@ -31,6 +32,12 @@ export type PasswordState = {
   current: string;
   next: string;
   confirm: string;
+};
+
+export const emptyPasswords: PasswordState = {
+  current: "",
+  next: "",
+  confirm: "",
 };
 
 export type PaymentKeys = "reg" | "account";
@@ -134,7 +141,7 @@ export function applyCreatorProfileResponseToForm(
 
 export const getAvatarUrl = (avatarUrl?: string | null): string | null => {
   if (!isString(avatarUrl)) return null;
-  return avatarUrl.length > 0 ? avatarUrl : null;
+  return avatarUrl.length > 0 ? resolvePublicMediaUrl(avatarUrl) : null;
 };
 
 export const toOptionalString = (value: string): string | undefined =>

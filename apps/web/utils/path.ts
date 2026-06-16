@@ -14,14 +14,15 @@ export const PATHS = {
   EXPLORE: "/explore",
   DASHBOARD_CREATOR_PROFILE: "/dashboard/creators?view=profile",
   HOW_IT_WORKS: "/how-it-works",
-  EXPLORE_NEW: "/explore?filter=new",
-  EXPLORE_POPULAR: "/explore?sort=popular",
-  EXPLORE_FREE: "/explore?filter=free",
-  EXPLORE_VIDEO: "/explore?format=video",
-  EXPLORE_AUDIO: "/explore?format=audio",
-  EXPLORE_PDF: "/explore?format=pdf",
-  EXPLORE_EPUB: "/explore?format=epub",
-  EXPLORE_WEB: "/explore?format=web",
+  EXPLORE_EVERYTHING: "/explore/all-content/everything",
+  EXPLORE_NEW: "/explore/all-content/new",
+  EXPLORE_POPULAR: "/explore/all-content/popular",
+  EXPLORE_FREE: "/explore/all-content/free",
+  EXPLORE_VIDEO: "/formats/video",
+  EXPLORE_AUDIO: "/formats/audio",
+  EXPLORE_PDF: "/formats/pdf",
+  EXPLORE_EPUB: "/formats/epub",
+  EXPLORE_WEB: "/formats/web",
   CATEGORY_COMEDY: "/explore/category/comedy",
   CATEGORY_EDUCATION: "/explore/category/education",
   CATEGORY_BUSINESS: "/explore/category/business",
@@ -72,7 +73,8 @@ export function isSafePostLoginPath(
     path === PATHS.DASHBOARD_CREATOR ||
     path.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
     path === PATHS.DASHBOARD_VIEWER ||
-    path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`)
+    path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
+    path.startsWith(`${PATHS.CREATOR_PROFILE}/`)
   );
 }
 

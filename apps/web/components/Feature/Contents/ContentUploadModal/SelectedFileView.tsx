@@ -46,7 +46,13 @@ export default function SelectedFileView({
   const renderPreview = () => {
     switch (uploadType) {
       case FORMAT_TYPE.VIDEO:
-        return <PreviewVideo src={previewUrl ?? ""} controls={false} />;
+        return (
+          <PreviewVideo
+            src={previewUrl ?? ""}
+            controls={false}
+            preload="none"
+          />
+        );
       case FORMAT_TYPE.AUDIO:
         return (
           <UploadAudioIcon width={64} height={64} color={COLORS.primary.RED} />

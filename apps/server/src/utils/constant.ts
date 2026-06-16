@@ -15,6 +15,13 @@ export const ROLE = {
   ADMIN: 'admin',
 } as const;
 
+export const ACCESS_TYPE = {
+  FREE: 'free',
+  PAID: 'paid',
+  PASSWORD: 'password',
+  EMAIL_GATED: 'email_gated',
+} as const;
+
 export const Time = {
   FIFTEEN_MINUTES: 15 * 60 * 1000,
   ONE_HOUR: 60 * 60 * 1000,
@@ -67,6 +74,8 @@ const MAX_AVATAR_HTTP_URL_CHARS = 2_048;
 const IMAGE_DATA_URL_RE =
   /^data:image\/(?:png|jpe?g|webp);base64,[a-zA-Z0-9+/=\s\r\n]+$/;
 const HTTP_URL_RE = /^https?:\/\/.+/i;
+export const SLUG_NON_ALPHANUMERIC_RE = /[^a-z0-9]+/g;
+export const SLUG_EDGE_DASH_RE = /^-+|-+$/g;
 
 export const isValidAvatarUrl = (value: string): boolean => {
   const isDataUrl =
@@ -129,3 +138,4 @@ export const PAYMENT_TEXT = 'PAYMENT';
 export const NORMAL_TEXT = 'NORMAL';
 export const TIMEOUT = 120;
 export const MAX_ATTEMPTS = 25;
+export const MAX_DURATION_SECONDS = 7200;

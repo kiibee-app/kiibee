@@ -1,28 +1,36 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { authStorage } from "@/lib/auth/authStorage";
-import { PATHS } from "@/utils/path";
+import { pathLoginWithNext } from "@/utils/path";
 
 const SESSION_CHECK_INTERVAL_MS = 60 * 60 * 1000;
 
 export function useRequireAuthSession() {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     let timeoutId: number | undefined;
 
     const redirectToLogin = () => {
       authStorage.clearSession();
-      router.replace(PATHS.AUTH_LOGIN);
+      const search = searchParams?.toString();
+      const returnTo = search ? `${pathname}?${search}` : pathname;
+      router.replace(pathLoginWithNext(returnTo));
     };
 
     const scheduleSessionCheck = () => {
       if (!authStorage.hasSession()) {
+        setIsReady(false);
         redirectToLogin();
         return;
       }
+
+      setIsReady(true);
 
       const expiresAt = authStorage.getSessionExpiresAt();
       if (!expiresAt) return;
@@ -30,6 +38,7 @@ export function useRequireAuthSession() {
       const delay = expiresAt - Date.now();
 
       if (delay <= 0) {
+        setIsReady(false);
         redirectToLogin();
         return;
       }
@@ -45,5 +54,7 @@ export function useRequireAuthSession() {
     return () => {
       if (timeoutId !== undefined) window.clearTimeout(timeoutId);
     };
-  }, [router]);
+  }, [pathname, router, searchParams]);
+
+  return { isReady };
 }

@@ -28,4 +28,7 @@ export class UpdateCollectionDto {
   sortOrder?: number;
 
   isPublished?: boolean;
+
+  @IsString()
+  password?: string;
 }

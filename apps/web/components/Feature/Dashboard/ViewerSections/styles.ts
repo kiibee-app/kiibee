@@ -1,6 +1,8 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
+import GenericButton from "@/components/UI/GenericButton";
+import { SIZE, VARIANT } from "@/utils/Constants";
 
 export const PageHeader = styled.div`
   display: flex;
@@ -8,13 +10,15 @@ export const PageHeader = styled.div`
   gap: ${({ theme }) => theme.spacing(2)};
   flex-wrap: wrap;
   margin-bottom: 35px;
+  margin-top: 15px;
   width: 100%;
 `;
 
 export const PageWrap = styled.div<{ $expandedCollections?: boolean }>`
   padding: ${({ $expandedCollections }) =>
-    $expandedCollections ? "48px 30px 40px" : "40px 30px"};
+    $expandedCollections ? "40px 30px 40px" : "40px 30px"};
   margin-right: 30px;
+  margin-left: 20px;
 
   ${media.tablet} {
     padding: ${({ $expandedCollections }) =>
@@ -287,9 +291,12 @@ export const CollectionActionRow = styled.div`
   .collection-cta:hover,
   .collection-cta:focus-visible,
   .collection-cta:active {
-    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
     color: ${({ theme }) => theme.colors.primary.BLACK};
     border-color: ${({ theme }) => theme.colors.primary.BLACK};
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
   }
 
   .collection-cta:hover *,
@@ -317,6 +324,48 @@ export const CollectionCtaContent = styled.span`
 export const CollectionCtaSubtext = styled.span`
   ${({ theme }) => theme.typography.Body_Medium}
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+`;
+
+export const CollectionBuyButton = styled(GenericButton).attrs({
+  variant: VARIANT.PRIMARY,
+  size: SIZE.SM,
+})`
+  min-width: 120px;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: none;
+  transform: none;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.BLACK};
+    color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+  }
+`;
+
+export const CollectionRentButton = styled(GenericButton).attrs({
+  variant: VARIANT.SECONDARY,
+  size: SIZE.SM,
+})`
+  min-width: 120px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: none;
+  transform: none;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+  }
 `;
 
 export const PassiveActionBlock = styled.div`
@@ -436,11 +485,23 @@ export const HeaderSearchInput = styled.input<{ $open: boolean }>`
   padding: 0;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.neutral.GRAY_700};
-  width: ${({ $open }) => ($open ? "100%" : "0")};
+  flex: ${({ $open }) => ($open ? 1 : "0 0 auto")};
+  min-width: 0;
+  width: ${({ $open }) => ($open ? "auto" : "0")};
   opacity: ${({ $open }) => ($open ? 1 : 0)};
   transition: all 0.25s ease;
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   }
+`;
+
+export const EmptyState = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 50vh;
 `;
