@@ -601,6 +601,7 @@
     "privacyPolicy": "Privatlivspolitik",
     "termsOfService": "Servicevilkår",
     "cookieSettings": "Cookie-indstillinger",
+    "subscriptionTerms": "Abonnementsbetingelser",
     "copyright": "© {{year}} Kiibee ApS - CVR: 34898634 - info@kiibee.dk"
   },
   "supportPage": {
@@ -1032,64 +1033,136 @@
   },
   "legalPages": {
     "privacyPolicy": {
-      "updatedAt": "Sidst opdateret: April 15, 2026",
-      "intro": "Kiibee respekterer dit privatliv. Denne politik forklarer hvilke oplysninger vi indsamler, hvordan vi bruger dem, og hvilke valg du har, nar du bruger vores website og tjenester.",
+      "updatedAt": "Sidst opdateret: Juni 16, 2026",
+      "intro": "Hos KIIBEE ApS respekterer vi dine personlige oplysninger og derfor deler vi dem ikke med en tredjemand.\n\nDenne privatpolitik regulerer måden, hvorpå KIIBEE ApS indsamler, opbevarer og anvender oplysninger indsamlet fra brugere (herefter kaldet \"Brugere\") af hjemmesiden www.kiibee.dk / www.kiibee.com (herefter kaldet \"Hjemmesiden\"). Denne privatpolitik omfatter Hjemmesiden og alle produkter tilbudt af KIIBEE ApS",
       "sections": {
         "collect": {
-          "title": "Oplysninger vi indsamler",
-          "body": "Vi kan indsamle kontooplysninger som navn og e-mail, betalings- og ordreoplysninger, supporthenvendelser samt tekniske data som enhedstype, browser og brugsaktivitet."
+          "title": "Personlige oplysninger",
+          "body": "Vi kan indsamle personlige oplysninger fra Brugere enten via nyhedsbrev sign-up eller ved køb/leje af en service.\nBrugere kan blive spurgt om navn, e-mail, postadresse, tlf. nr. virksomhedsoplysninger og kreditkortoplysninger efter behov.\nVed indsendelse af kontaktformular, giver du KIIBEE samtykke til, at må opbevare dine fremsendte oplysninger. Du kan til enhver tid tilbagekalde dette samtykke ved at kontakte os på info@kiibee.dk.\nBrugere kan til enhver tid besøge hjemmesiden anonymt og vi vil kun indsamle data fra Brugere, når de frivilligt giver sådanne oplysninger til os. Brugere kan opleve, at de ikke vil kunne tilgå alle dele af hjemmesiden, hvis de vælger ikke at give personlige oplysninger."
+        },
+        "nonPersonal": {
+          "title": "Ikke-personlige oplysninger",
+          "body": "Vi kan indsamle ikke-personlige oplysninger om Brugere når de besøger vores hjemmeside. Disse ikke-personlige oplysninger omfatter browser-navn, computertype og andre tekniske oplysninger om computeren såsom styresystem, internetudbyder og andre lignende oplysninger."
+        },
+        "cookies": {
+          "title": "Web browser cookies",
+          "body": "Hjemmesiden anvender cookies for at kunne forbedre Brugernes oplevelse. Brugerens webbrowser gemmer cookies på sin harddisk til registreringsformål og til tider for at tracke oplysninger om dem. Brugere kan vælge at sætte deres browser til at afvise cookies eller varsle dig, når cookies bliver sendt. Brugeren skal dog være opmærksom på, at visse dele af Hjemmesiden herefter kan have nedsat funktionalitet."
         },
         "use": {
-          "title": "Hvordan vi bruger oplysninger",
-          "body": "Vi bruger dine oplysninger til at levere Kiibees tjenester, behandle kob, yde support, forbedre produktkvalitet og sende vigtige konto- og serviceopdateringer."
+          "title": "Anvendelse af personlige oplysninger",
+          "body": "Opfyldelse af vores salgsrelaterede forpligtelser: Det omfatter opfyldelse af vores forpligtelser over for dig som kunde, herunder levering, relevant service, kundeopfølgning og besvarelse af spørgsmål samt opfyldelse af vores forpligtelser i henhold til gældende lov.\nRelevante råd samt tilbud til dig om opfølgning og tilbud: Vi vil benytte dine personoplysninger til at give dig relevante råd, opfølgning og tilbud på produkter og tjenester relateret til det, du allerede har købt hos os.\nOprette kundeprofil: Vi vil kunne oprette en kundeprofil baseret på købshistorik og tilgængelige oplysninger som grundlag for nyhedsbreve, produktinformationer, tilpasset markedsføring og købsanalyser.\nAdministration af brugerprofiler: Vi har adgang til din brugerprofil for at kunne administrere dine kontaktoplysninger og eventuelle samtykker til at modtage vores nyhedsbrev, deltagelse i kampagner eller lignende.\nVidereudvikling af tjenester og sikker drift: For at kunne videreudvikle vores tjenester og drive hjemmesiden på en god og forsvarlig måde er vi bl.a. afhængige af at kunne producere statistik om ting som trafik, køb og adfærd på hjemmesiden. Vi vil også kunne få brug for at få viden om svindel og at træffe modforanstaltninger.\nKampagner og undersøgelser: Hvis du vælger at deltage i en undersøgelse, kampagne eller gå ind på hjemmesiden, kan du blive bedt om at angive personoplysninger såsom navn, adresse og/eller telefonnummer. Formålet er at kunne identificere dig, hvis du f.eks. vinder en præmie.\nBrug af eksterne leverandører: Hvis du bestiller eksterne tjenester, vil kontaktoplysninger og andre relevante oplysninger, vi har registreret om dig, kunne blive udleveret til leverandøren."
         },
         "share": {
-          "title": "Hvordan oplysninger deles",
-          "body": "Vi deler kun oplysninger med betroede leverandorer, der er nodvendige for at drive Kiibee, fx betalings-, hosting- og analysepartnere. Vi saelger ikke persondata."
+          "title": "Beskyttelse af din personoplysninger",
+          "body": "Vi deler ikke Brugeres oplysninger med andre medmindre det er krævet for at kunne levere et produkt til Brugeren såsom en underleverandør som skal levere en del leverance til Brugere."
+        },
+        "changes": {
+          "title": "Ændring til denne privatpolitik",
+          "body": "Vi forbeholder os retten til at ændre i denne privatpolitik til enhver tid. Når vi gør dette, vil vi ændre datoen for seneste opdatering på privatpolitiken."
         },
         "rights": {
-          "title": "Dine rettigheder",
-          "body": "Du kan anmode om indsigt, rettelse eller sletning af dine personoplysninger, og du kan kontakte os med sporgsmal om, hvordan dine data behandles."
+          "title": "Retten til at blive glemt",
+          "body": "Hvis du er oprettet som bruger og ikke længere ønsker, at dine data bliver i vores database, kan du få disse fjernet ved, at skrive til info@kiibee.dk og angive e-mail adressen, som du bruger som login."
+        },
+        "acceptance": {
+          "title": "Din accept",
+          "body": "Ved at anvende Hjemmesiden, acceptere du denne politik og vilkår for vores service. Hvis du ikke accepterer denne politik, bedes Brugeren ikke benytte Hjemmesiden. Den fortsatte brug af denne Hjemmeside vil anses for accept af sådanne ændringer."
         },
         "contact": {
-          "title": "Kontakt",
-          "body": "Har du sporgsmal om privatliv, kan du kontakte os pa support@kiibee.dk."
+          "title": "Kontakt os",
+          "body": "Hvis du har spørgsmål angående denne privatpolitik eller andet, bedes du kontakte os på:\nKIIBEE ApS\nEmail: info@kiibee.dk\n\nDenne privatpolitik er opdateret den 16 Juni 2026"
         }
       }
     },
     "termsOfService": {
-      "updatedAt": "Sidst opdateret: April 15, 2026",
-      "intro": "Disse vilkar gaelder, nar du tilgar eller bruger Kiibee. Ved at bruge tjenesten accepterer du disse vilkar og gaeldende lovgivning.",
+      "updatedAt": "Sidst opdateret: Juni 16, 2026",
+      "intro": "Nedenstående handelsbetingelser gælder for brug af KIIBEEs platform og køb af digitalt indhold.",
       "sections": {
         "acceptance": {
-          "title": "Brug af tjenesten",
-          "body": "Du ma kun bruge Kiibee til lovlige formal og i overensstemmelse med disse vilkar. Misbrug af platformen, herunder svindel eller uautoriseret adgang, er forbudt."
+          "title": "Accept af betingelser",
+          "body": "Ved at benytte dette website accepterer du disse handelsbetingelser. Hvis du ikke accepterer betingelserne, bedes du undlade at anvende websitet.\nKIIBEE forbeholder sig retten til løbende at ændre, opdatere eller fjerne dele af disse betingelser uden varsel. Det er dit ansvar løbende at holde dig opdateret. Fortsat brug af websitet efter ændringer betragtes som accept af de opdaterede betingelser.\nKIIBEE giver dig en personlig, ikke-eksklusiv, ikke-overdragelig og begrænset ret til at tilgå og anvende websitet i overensstemmelse med disse betingelser."
         },
-        "accounts": {
-          "title": "Konti og sikkerhed",
-          "body": "Du er ansvarlig for at holde dine loginoplysninger sikre og for aktivitet, der sker under din konto."
+        "intellectualProperty": {
+          "title": "Immateriale rettigheder og indhold",
+          "body": "Alt indhold på websitet, herunder men ikke begrænset til tekst, grafik, videoer, filer og software, tilhører KIIBEE eller dets licensgivere og er beskyttet af ophavsret og anden gældende lovgivning.\nIndhold må ikke kopieres, reproduceres, distribueres, offentliggøres eller anvendes kommercielt uden forudgående skriftlig tilladelse fra KIIBEE.\nMateriale, der stilles til rådighed til download (f.eks. PDF, videoer, lyd, billeder mv.), må kun anvendes til personligt og ikke-kommercielt brug, forudsat at:\n- Ophavsretsmeddelelser ikke fjernes\n- Materialet ikke ændres\n- Materialet ikke distribueres videre\n- Der ikke gives yderligere garantier vedrørende materialet"
+        },
+        "thirdParty": {
+          "title": "Tredjepartsindhold",
+          "body": "Websitet kan indeholde indhold, produkter eller links til tredjepartswebsites.\nKIIBEE påtager sig intet ansvar for tredjepartsindhold, herunder dets nøjagtighed, lovlighed eller kvalitet. Brug af tredjepartsindhold sker på eget ansvar.\nDu forpligter dig til ikke at anvende tredjepartsindhold på en måde, der krænker andres rettigheder."
+        },
+        "offensiveContent": {
+          "title": "Stødende indhold",
+          "body": "Ved brug af websitet kan du blive eksponeret for indhold, som kan opfattes som stødende eller upassende.\nKIIBEE er ikke ansvarlig for sådant indhold, og brug sker på eget ansvar.\nHvis du oplever upassende indhold, kan du kontakte KIIBEE på info@kiibee.dk"
+        },
+        "digitalPurchase": {
+          "title": "Køb af digitalt indhold",
+          "body": "Ved køb af digitalt indhold (f.eks. videoer, PDF-filer, billeder mv.) er købet som udgangspunkt bindende og uden fortrydelsesret, jf. gældende forbrugerlovgivning om digitalt indhold leveret straks.\nDer ydes dog reklamationsret i tilfælde af:\n- Tekniske fejl i leveringen\n- Indhold der væsentligt afviger fra beskrivelsen\nDet er købers eget ansvar at downloade, streame eller på anden måde tilgå det købte digitale indhold inden for den periode, der er angivet ved købet. Når den angivne adgangsperiode udløber, bortfalder adgangen til indholdet automatisk. Udgiveren og Kiibee er ikke forpligtet til at forlænge adgangsperioden, genetablere adgang eller stille indholdet til rådighed efter periodens udløb, uanset årsagen til, at indholdet ikke er blevet downloadet, streamet eller anvendt inden fristens udløb.\nReklamation skal ske via:\nEmail: info@kiibee.dk\n\nKIIBEE behandler klagen inden for 5 hverdage og vender tilbage med en afgørelse."
         },
         "payments": {
-          "title": "Betaling og kob",
-          "body": "Betalt indhold er underlagt de priser, der vises ved checkout. Kob kan vaere engangskob, leje eller abonnement afhængigt af skaberens opsaetning."
+          "title": "Betaling",
+          "body": "KIIBEE accepterer betaling via:\n- Dankort / VISA-Dankort\n- MasterCard\n- MobilePay\n- Googlepay og Applepay\nBetalingen trækkes ved gennemførelse af købet.\nPå dit kontoudtog vil fremgå: Kiibee ApS"
         },
-        "content": {
-          "title": "Indhold og immaterielle rettigheder",
-          "body": "Skabere bevarer ejerskabet af deres indhold. Du ma ikke kopiere, distribuere eller genbruge indhold, medmindre skaberen eller loven tillader det."
+        "platform": {
+          "title": "Platform og ansvar",
+          "body": "KIIBEE ApS ejer og driver platformen www.kiibee.dk, herunder domænerne kiibee.dk og kiibee.com.\nPlatformen stiller software til rådighed, som gør det muligt at distribuere digitalt indhold.\nKIIBEE forbeholder sig retten til at:\n- Fjerne indhold, der krænker rettigheder\n- Fjerne indhold, der er vildledende eller stødende\n- Lukke eller begrænse adgang til brugere, der overtræder betingelserne\nKIIBEE kan ikke holdes ansvarlig for indirekte tab, følgeskader eller tab som følge af brug af platformen."
         },
         "liability": {
           "title": "Ansvarsfraskrivelse",
-          "body": "Kiibee leverer tjenesten som den er tilgaengelig. I det omfang loven tillader det, er Kiibee ikke ansvarlig for indirekte tab eller folgeskader ved brug af tjenesten."
+          "body": "Websitet og dets indhold stilles til rådighed \"som det er\" og \"som tilgængeligt\".\nKIIBEE giver ingen garantier for:\n- At platformen er fejlfri eller uden afbrydelser\n- At indhold er fuldstændigt eller opdateret\n- At tjenester lever op til specifikke forventninger"
+        },
+        "governingLaw": {
+          "title": "Lovvalg og væmeting",
+          "body": "Disse betingelser er underlagt dansk ret.\nEventuelle tvister skal afgøres ved danske domstole."
         },
         "contact": {
           "title": "Kontakt",
-          "body": "Har du sporgsmal til disse vilkar, kan du kontakte os pa support@kiibee.dk."
+          "body": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:\nKIIBEE ApS\nEmail: info@kiibee.dk"
         }
       }
     },
     "cookieSettings": {
-      "body1": "Cookie-indstillinger bliver tilgaengelige her.",
-      "body2": "Hvis du har brug for hjaelp nu, kan du kontakte os via supportsiden."
+      "updatedAt": "Sidst opdateret: Juni 16, 2026",
+      "intro": "KIIBEE bruger cookies på hjemmesiden, ifølge loven er der krævet af os at informere vores kunder om dette. Cookies er små filer på jeres computer, som hjælper serveren med at identificere besøgende. De kan ikke skade din computer på nogen måde. De kan ikke indeholde virus.\n\nKIIBEE anvender primært cookies til disse formål:\n\n- Indsamling af data, så vi kan optimere vores hjemmeside, så den passer til de besøgendes behov.\n- Trafikmåling, så vi ved hvor mange, der besøger vores hjemmeside, og på hvilke tidspunkter efterspørgslen er størst.",
+      "sections": {
+        "what": {
+          "title": "Hvad bruger vi cookies til?",
+          "body": "Når du besøger vores hjemmeside, indsamles nogle informationer om dig og din adfærd. Oplysninger bruges til at tilpasse og forbedre vores indhold og til at øge værdien af de annoncer, der vises på siden. Hvis du ikke ønsker, at der indsamles oplysninger, bør du slette dine cookies. (Se vejledning) http://minecookies.org/cookiehandtering"
+        },
+        "kiibee": {
+          "title": "Hvad anvender KIIBEE cookies til?",
+          "body": "Hos www.kiibee.dk anvender vi cookies til at fastlægge hvem, der besøger vores hjemmeside og hvor i landet de besøgende kommer fra. Vores cookies anvendes også til at målrette vores online annoncer. Ligeledes registrerer vi om der bliver klikket på vores annoncer."
+        },
+        "analytics": {
+          "title": "Google Analytics",
+          "body": "KIIBEE anvender Google Analytics til at måle trafikken på vores hjemmeside. Google Analytics bliver også anvendt til remarketing. Konkret betyder det, at besøgende, som har vist interesse for www.kiibee.dk og vores service, bliver præsenteret for bannere eller annoncer på andre sider på internettet via en cookie.\nDu kan fravælge cookies fra Google Analytics med dette værktøj:\n(Se vejledning) https://tools.google.com/dlpage/gaoptout"
+        }
+      }
+    },
+    "subscriptionTerms": {
+      "updatedAt": "Sidst opdateret: Juni 16, 2026",
+      "intro": "Ved oprettelse af et abonnement hos KIIBEE accepterer du, at abonnementet løber løbende, indtil det opsiges af enten dig (kunden) eller KIIBEE ApS.",
+      "sections": {
+        "general": {
+          "title": "Generelt",
+          "body": "Ved oprettelse af et abonnement hos KIIBEE accepterer du, at abonnementet løber løbende, indtil det opsiges af enten dig (kunden) eller KIIBEE ApS."
+        },
+        "payment": {
+          "title": "Betaling og fakturering",
+          "body": "Abonnementet faktureres forud i henhold til den valgte abonnementsperiode (månedligt, kvartalsvist, årligt eller tilsvarende).\nBetaling sker automatisk via den betalingsmetode, du har registreret, på forfaldsdatoen.\nDu er selv ansvarlig for at sikre, at dine betalingsoplysninger er korrekte og opdaterede."
+        },
+        "cancellation": {
+          "title": "Opsigelse",
+          "body": "Abonnementet kan opsiges med 31 dages varsel til udgangen af en abonnementsperiode.\nOpsigelse kan foretages via din konto i KIIBEE's kundeportal eller ved henvendelse til kundeservice.\nAllerede betalte abonnementsperioder refunderes hverken helt eller delvist."
+        },
+        "nonPayment": {
+          "title": "Manglende betaling",
+          "body": "Ved manglende betaling forbeholder KIIBEE sig retten til at:\n- Suspendere din adgang til abonnementet\n- Lukke abonnementet helt\nDette kan ske uden yderligere varsel, indtil betaling er modtaget."
+        },
+        "contact": {
+          "title": "Kontakt",
+          "body": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:\nKIIBEE ApS\nEmail: info@kiibee.dk"
+        }
+      }
     }
   },
   "users": {
