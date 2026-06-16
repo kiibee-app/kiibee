@@ -43,6 +43,7 @@ import {
   CONTENT_KIND,
 } from "@/utils/resolvePublishedContentByKey";
 import { PAYMENT_QUERY_KEY, STATUS_TONE } from "@/utils/Constants";
+import { ErrorFallbackContent } from "@/components/Feature/ExploreCreators/SkeletonCard/styles";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -227,21 +228,11 @@ function ErrorFallback({ error }: { error: Error }) {
 
   return (
     <Section>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: 400,
-          padding: 24,
-          gap: 16,
-        }}
-      >
+      <ErrorFallbackContent>
         <MonoText $use="H5_Regular">
           {t(CONTENT_TRANSLATION_KEYS.loading)}
         </MonoText>
-      </div>
+      </ErrorFallbackContent>
     </Section>
   );
 }

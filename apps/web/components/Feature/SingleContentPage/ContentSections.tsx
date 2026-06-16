@@ -104,6 +104,7 @@ function SingleContentCreator({ creator }: SingleContentCreatorProps) {
             alt={creator.avatarAlt ?? creator.name}
             fill
             priority
+            sizes="30px"
           />
         </CreatorAvatar>
       ) : null}
