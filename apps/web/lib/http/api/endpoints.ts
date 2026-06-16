@@ -81,4 +81,9 @@ export const API = {
   support: {
     contact: "/support/contact",
   },
+  viewer: {
+    purchasedData: "/viewer/purchased-data",
+    rentedData: "/viewer/rented-data",
+    previouslyRentedData: "/viewer/previously-rented-data",
+  },
 } as const;

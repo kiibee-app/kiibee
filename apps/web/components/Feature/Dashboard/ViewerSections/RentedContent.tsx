@@ -11,11 +11,12 @@ import type {
   RentedMode,
 } from "@/utils/dummyData/viewerRentedMockData";
 import { PageWrap, SectionBlock, EmptyState } from "./styles";
+import GenericLoader from "@/components/UI/GenericLoader";
+import { LOADER_VARIANT } from "@/utils/ui";
 import {
   RENTED_SECTION_KEYS,
   filterCollections,
   filterMedia,
-  getRentedContentSources,
   isViewerCollectionsSectionExpanded,
   syncViewerCollectionsSectionParam,
 } from "@/utils/viewerRented";
@@ -24,6 +25,7 @@ import {
   CONTENT_ITEM_QUERY_KEY,
 } from "@/utils/Constants";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
+import { useViewerRentedData } from "@/hooks/useViewerRentedData";
 import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
 import MediaSections from "./MediaSections";
@@ -79,7 +81,7 @@ export default function RentedContent({
     canGoPrev,
     canGoNext,
   } = useViewerRentedSectionPagination();
-  const sources = useMemo(() => getRentedContentSources(mode), [mode]);
+  const { sources, isLoading } = useViewerRentedData(mode);
   const selectedCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
   const selectedContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
@@ -198,6 +200,18 @@ export default function RentedContent({
     },
     [pathname, router, searchParamsString],
   );
+
+  if (isLoading) {
+    return (
+      <PageWrap>
+        <GenericLoader
+          variant={LOADER_VARIANT.INLINE}
+          isOpen
+          label={undefined}
+        />
+      </PageWrap>
+    );
+  }
 
   if (selectedCollectionId) {
     return (
