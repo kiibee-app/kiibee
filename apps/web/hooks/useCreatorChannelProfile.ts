@@ -124,12 +124,21 @@ export function useCreatorChannelProfile(enabled = true) {
 
     if (!profile) return null;
     return {
-      description: profile.creatorInfo?.contentDescription ?? "",
+      description:
+        appearanceQuery.data?.data?.description ||
+        profile.creatorInfo?.contentDescription ||
+        "",
       joinedDate: formatJoinedDate(profile.user?.createdAt),
       uploadCount: uploadCountPrivate,
       websiteLink: profile.creatorInfo?.exampleWorkLink ?? "",
     };
-  }, [isPublicView, publicCreator, profile, uploadCountPrivate]);
+  }, [
+    isPublicView,
+    publicCreator,
+    profile,
+    uploadCountPrivate,
+    appearanceQuery.data,
+  ]);
 
   return {
     displayName,
