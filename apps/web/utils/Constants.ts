@@ -330,7 +330,8 @@ export const BUY_COLLECTION_PREFIX = "Buy collection";
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 export const MARQUEE_LIMIT = 8;
 export const EXPLORE_PAGE_SIZE = 12;
-
+export const TOP_CREATORS_LIMIT = 6;
+export const LOAD_MORE_SIZE = 12;
 export const CATEGORY_ALL = "all";
 
 export const SORT_OPTION_NEW = "new";

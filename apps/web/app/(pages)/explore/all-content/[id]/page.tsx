@@ -14,7 +14,8 @@ import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { useAllContent } from "@/hooks/feed/useAllContent";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { getCategorySortOptions } from "@/utils/sortOptions";
-import { ESCAPE, KEYDOWN, STRING } from "@/utils/Constants";
+import { ESCAPE, EXPLORE_PAGE_SIZE, KEYDOWN, STRING } from "@/utils/Constants";
+import Skeleton from "@/components/UI/Skeleton";
 import CreatorFiltersControl from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters";
 import {
   Hero,
@@ -130,11 +131,9 @@ function AllContentExplorePageContent() {
 
   const renderContent = () => {
     if (isLoading) {
-      return (
-        <ResultsState>
-          <span>{t("nav.explore.loading")}</span>
-        </ResultsState>
-      );
+      return Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+        <Skeleton.Card key={i} />
+      ));
     }
 
     return tutorials.length > 0 ? (
