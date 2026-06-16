@@ -188,6 +188,9 @@ export default function NavBar({
   const [renderedMegaKey, setRenderedMegaKey] = React.useState<string | null>(
     null,
   );
+  const activeItem = items.find(
+    (item) => item.children && renderedMegaKey === item.key,
+  );
   const [sidebarExpanded, setSidebarExpanded] = React.useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -225,6 +228,7 @@ export default function NavBar({
   }, [items, pathname, routeActiveItems]);
   const navRef = React.useRef<HTMLElement | null>(null);
   const actionsRef = React.useRef<HTMLDivElement | null>(null);
+  const megaMenuRef = React.useRef<HTMLDivElement | null>(null);
   const closeTimerRef = React.useRef<number | null>(null);
   const unmountTimerRef = React.useRef<number | null>(null);
   const innerStyle = React.useMemo(() => {
@@ -319,7 +323,8 @@ export default function NavBar({
 
       if (
         !navRef.current?.contains(target) &&
-        !actionsRef.current?.contains(target)
+        !actionsRef.current?.contains(target) &&
+        !megaMenuRef.current?.contains(target)
       ) {
         closeMenu();
       }
@@ -450,34 +455,6 @@ export default function NavBar({
                   ) : (
                     <Link href={item.href || "#"}>{renderItemLabel(item)}</Link>
                   )}
-
-                  {item.children && renderedMegaKey === item.key && (
-                    <MegaMenu
-                      $isOpen={openMegaKey === item.key}
-                      onMouseEnter={clearCloseTimer}
-                      onMouseLeave={scheduleCloseMenu}
-                    >
-                      <MegaInner $isOpen={openMegaKey === item.key}>
-                        {item.children.map((col) => (
-                          <MegaColumn
-                            key={col.titleKey}
-                            className={
-                              col.titleKey.toLowerCase().includes("format")
-                                ? "twoCol"
-                                : ""
-                            }
-                          >
-                            <ColumnTitle>{t(col.titleKey)}</ColumnTitle>
-                            {col.items.map((ci) => (
-                              <ColumnItem key={ci.key} href={ci.href}>
-                                {t(ci.key)}
-                              </ColumnItem>
-                            ))}
-                          </MegaColumn>
-                        ))}
-                      </MegaInner>
-                    </MegaMenu>
-                  )}
                 </NavItemWrapper>
               ))}
             </MonoText>
@@ -518,6 +495,35 @@ export default function NavBar({
           )}
         </Actions>
       </Inner>
+
+      {!routeActiveItems && activeItem && activeItem.children && (
+        <MegaMenu
+          ref={megaMenuRef}
+          $textTone={navTextTone}
+          $isOpen={openMegaKey === activeItem.key}
+          onMouseEnter={clearCloseTimer}
+          onMouseLeave={scheduleCloseMenu}
+        >
+          <MegaInner $isOpen={openMegaKey === activeItem.key}>
+            {activeItem.children.map((col) => (
+              <MegaColumn
+                key={col.titleKey}
+                className={
+                  col.titleKey.toLowerCase().includes("format") ? "twoCol" : ""
+                }
+              >
+                <ColumnTitle>{t(col.titleKey)}</ColumnTitle>
+                {col.items.map((ci) => (
+                  <ColumnItem key={ci.key} href={ci.href}>
+                    {t(ci.key)}
+                  </ColumnItem>
+                ))}
+              </MegaColumn>
+            ))}
+          </MegaInner>
+        </MegaMenu>
+      )}
+
       <DrawerOverlay $open={sidebarExpanded} onClick={collapseSidebar} />
       <DrawerPanel $open={sidebarExpanded}>
         <DrawerContent>
