@@ -6,6 +6,7 @@ import COLORS from "@repo/ui/colors";
 import heroImage from "@/assets/images/creators/creator_profile_hero.png";
 import { MonoText } from "@/components/UI/Monotext";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import { useTabbedHeroState } from "@/hooks/useTabbedHeroState";
 import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import {
   HeroContent,
@@ -17,11 +18,15 @@ import {
   StoryPanel,
   StoryTitle,
   StoryUploadsText,
+  StoryBioText,
+  StoryMoreButton,
 } from "@/components/Feature/ProfileLayout/Hero/styles";
 
 export default function StorySection() {
   const { t } = useTranslation();
-  const { displayName, avatarUrl, about } = useCreatorChannelProfile();
+  const tabState = useTabbedHeroState();
+  const { openAbout } = tabState;
+  const { displayName, coverImageUrl, about } = useCreatorChannelProfile();
   const uploadsCount = about?.uploadCount ?? 0;
   const biography = about?.description || t(CREATE_PROFILE_HOME.description);
 
@@ -30,7 +35,7 @@ export default function StorySection() {
       <HeroGrid>
         <HeroMedia>
           <Image
-            src={avatarUrl || heroImage}
+            src={coverImageUrl || heroImage}
             alt="Creator workspace"
             fill
             sizes="(max-width: 900px) 100vw, 70vw"
@@ -56,9 +61,14 @@ export default function StorySection() {
             </StoryTitle>
 
             <StoryDescription>
-              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE_90}>
-                {biography}
-              </MonoText>
+              <StoryBioText>
+                <MonoText $use="Body_Medium" color={COLORS.primary.WHITE_90}>
+                  {biography}
+                </MonoText>
+              </StoryBioText>
+              <StoryMoreButton onClick={openAbout}>
+                ...{t(CREATE_PROFILE_HOME.more)}
+              </StoryMoreButton>
             </StoryDescription>
           </StoryPanel>
         </HeroContent>
