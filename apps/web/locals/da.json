@@ -519,7 +519,9 @@
     "newest": "Newest",
     "topCreators": "Topskabere",
     "seeAll": "Se alle skabere",
-    "subscribersCount": "{{count}}K abonnenter"
+    "subscribersCount": "{{count}}K abonnenter",
+    "creators": "Skabere",
+    "contents": "Indhold"
   },
   "discoverContent": {
     "title": "Opdag indhold",
@@ -877,6 +879,7 @@
     "share": "Del",
     "search": "TODO: translate - Search",
     "clearSearch": "TODO: translate - Clear search",
+    "noResults": "Ingen resultater fundet",
     "toggleSearch": "TODO: translate - Toggle search",
     "optional": "valgfrit",
     "save": "Save",

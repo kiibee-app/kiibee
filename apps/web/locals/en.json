@@ -520,7 +520,9 @@
     "newest": "Newest",
     "topCreators": "Top creators",
     "seeAll": "See all creators",
-    "subscribersCount": "{{count}}K Subscribers"
+    "subscribersCount": "{{count}}K Subscribers",
+    "creators": "Creators",
+    "contents": "Contents"
   },
   "discoverContent": {
     "title": "Discover content",
@@ -878,6 +880,7 @@
     "share": "Share",
     "search": "Search",
     "clearSearch": "Clear search",
+    "noResults": "No results found",
     "toggleSearch": "Toggle search",
     "optional": "optional",
     "save": "Save",

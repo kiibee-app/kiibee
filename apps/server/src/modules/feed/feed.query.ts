@@ -66,6 +66,7 @@ export const getLatestQuery = async (
   const idRows = await db
     .select({ id: mediaFiles.id })
     .from(mediaFiles)
+    .leftJoin(users, eq(users.id, mediaFiles.creatorId))
     .where(where)
     .orderBy(orderBy)
     .limit(limit);

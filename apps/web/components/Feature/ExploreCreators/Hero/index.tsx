@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import SearchBar from "@/components/UI/SearchBar";
+import GlobalSearch from "./GlobalSearch";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 import { CREATORS } from "@/utils/translationKeys";
@@ -39,11 +39,9 @@ export default function ExploreCreatorsHero({
           )}
           <Controls>
             <SearchBarContainer>
-              <SearchBar
-                placeholder={t("creators.search")}
-                value={searchQuery}
-                onChange={setSearchQuery}
-                width="100%"
+              <GlobalSearch
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
               />
             </SearchBarContainer>
             {showControls && (
