@@ -15,6 +15,7 @@ import {
 } from "@/utils/Constants";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import { useTableSort } from "@/hooks/useTableSort";
+import { useDebounce } from "@/hooks/useDebounce";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { MonoText } from "@/components/UI/Monotext";
 import SearchBar from "@/components/UI/SearchBar";
@@ -76,8 +77,16 @@ import InvoiceModal from "./InvoiceModal";
 
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
+  const [searchContent, setSearchContent] = useState("");
+  const [searchCreator, setSearchCreator] = useState("");
+  const debouncedSearchContent = useDebounce(searchContent);
+  const debouncedSearchCreator = useDebounce(searchCreator);
+
   const { billingHistory, isLoading: isBillingHistoryLoading } =
-    useViewerBillingHistory();
+    useViewerBillingHistory({
+      searchContent: debouncedSearchContent || undefined,
+      searchCreator: debouncedSearchCreator || undefined,
+    });
   const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [showEditSuccessModal, setShowEditSuccessModal] = useState(false);
@@ -206,7 +215,7 @@ export default function ClientViewerBillings() {
       {activeTab === VIEWER_BILLING_HISTORY_TAB ? (
         isBillingHistoryLoading ? (
           <GenericLoader variant={LOADER_VARIANT.INLINE} />
-        ) : sortedBillingHistory.length ? (
+        ) : (
           <BillingTableSection>
             <Table<ViewerBillingHistoryItem>
               headers={billingHistoryHeaders}
@@ -227,6 +236,8 @@ export default function ClientViewerBillings() {
                       <SearchBar
                         placeholder={t(billingHistoryKeys.searchContent)}
                         width="100%"
+                        value={searchContent}
+                        onChange={setSearchContent}
                       />
                     </SearchFilterWrap>
                   );
@@ -238,6 +249,8 @@ export default function ClientViewerBillings() {
                       <SearchBar
                         placeholder={t(billingHistoryKeys.searchCreator)}
                         width="100%"
+                        value={searchCreator}
+                        onChange={setSearchCreator}
                       />
                     </SearchFilterWrap>
                   );
@@ -300,10 +313,6 @@ export default function ClientViewerBillings() {
               }}
             />
           </BillingTableSection>
-        ) : (
-          <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY}>
-            {t(DASHBOARD_VIEWER_BILLINGS.billingHistory.empty)}
-          </MonoText>
         )
       ) : (
         <>
