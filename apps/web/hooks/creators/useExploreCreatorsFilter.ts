@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { SORT_OPTION_AZ, EXPLORE_PAGE_SIZE } from "@/utils/Constants";
 import {
   SortValue,
@@ -17,8 +16,6 @@ import { useDebounce } from "@/hooks/useDebounce";
 import { CREATORS } from "@/utils/translationKeys";
 
 export function useExploreCreatorsFilter(filter: string) {
-  const { t } = useTranslation();
-
   const initialSortBy = useMemo(() => {
     if (filter === SORT_NEW) return SORT_OPTION_NEWEST as SortValue;
     if (filter === SORT_POPULAR) return SORT_OPTION_SUBSCRIBERS as SortValue;
@@ -70,8 +67,8 @@ export function useExploreCreatorsFilter(filter: string) {
       [SORT_NEW]: CREATORS.newCreators,
       [SORT_POPULAR]: CREATORS.popular,
     };
-    return t(translationKeys[filter] || CREATORS.title);
-  }, [filter, t]);
+    return translationKeys[filter] || CREATORS.title;
+  }, [filter]);
 
   return {
     filter,

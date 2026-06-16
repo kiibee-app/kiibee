@@ -3,7 +3,17 @@
 import { useMemo } from "react";
 import { API, useGetAPI } from "@/lib/http/api";
 import { resolvePublicMediaUrl } from "@/utils/media";
-import type { SortValue } from "@/utils/sortOptions";
+import {
+  SORT_ALL,
+  SORT_FEATURED,
+  SORT_NEW,
+  SORT_POPULAR,
+  SORT_OPTION_NEWEST,
+  type SortValue,
+} from "@/utils/sortOptions";
+
+const BACKEND_SORT_SUBSCRIBER_COUNT = "subscriberCount";
+const BACKEND_SORT_NAME = "name";
 
 export type ExploreCreator = {
   id: string;
@@ -75,11 +85,16 @@ export const useExploreCreators = (
 ) => {
   const isAllEndpoint = filter !== undefined;
 
-  let sortBy: string | undefined = undefined;
-  if (filter === "featured") sortBy = "featured";
-  else if (filter === "new") sortBy = "newest";
-  else if (filter === "popular") sortBy = "subscriberCount";
-  else if (filter === "all") sortBy = "name";
+  const sortBy =
+    filter === SORT_FEATURED
+      ? SORT_FEATURED
+      : filter === SORT_NEW
+        ? SORT_OPTION_NEWEST
+        : filter === SORT_POPULAR
+          ? BACKEND_SORT_SUBSCRIBER_COUNT
+          : filter === SORT_ALL
+            ? BACKEND_SORT_NAME
+            : undefined;
 
   const params = {
     ...(limit !== undefined && { limit }),
