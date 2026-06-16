@@ -76,13 +76,8 @@ import InvoiceModal from "./InvoiceModal";
 
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
-  const [searchContent, setSearchContent] = useState("");
-  const [searchCreator, setSearchCreator] = useState("");
   const { billingHistory, isLoading: isBillingHistoryLoading } =
-    useViewerBillingHistory({
-      searchContent: searchContent || undefined,
-      searchCreator: searchCreator || undefined,
-    });
+    useViewerBillingHistory();
   const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [showEditSuccessModal, setShowEditSuccessModal] = useState(false);
@@ -232,8 +227,6 @@ export default function ClientViewerBillings() {
                       <SearchBar
                         placeholder={t(billingHistoryKeys.searchContent)}
                         width="100%"
-                        value={searchContent}
-                        onChange={setSearchContent}
                       />
                     </SearchFilterWrap>
                   );
@@ -245,8 +238,6 @@ export default function ClientViewerBillings() {
                       <SearchBar
                         placeholder={t(billingHistoryKeys.searchCreator)}
                         width="100%"
-                        value={searchCreator}
-                        onChange={setSearchCreator}
                       />
                     </SearchFilterWrap>
                   );

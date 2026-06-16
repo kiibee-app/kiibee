@@ -73,29 +73,8 @@ function toBillingHistoryItem(
   };
 }
 
-export type BillingHistorySearchParams = {
-  searchContent?: string;
-  searchCreator?: string;
-};
-
-export const useViewerBillingHistory = (
-  searchParams?: BillingHistorySearchParams,
-) => {
-  const params = searchParams
-    ? {
-        ...(searchParams.searchContent && {
-          searchContent: searchParams.searchContent,
-        }),
-        ...(searchParams.searchCreator && {
-          searchCreator: searchParams.searchCreator,
-        }),
-      }
-    : undefined;
-
-  const query = useGetAPI<BillingHistoryResponse>(
-    API.order.billingHistory,
-    params,
-  );
+export const useViewerBillingHistory = () => {
+  const query = useGetAPI<BillingHistoryResponse>(API.order.billingHistory);
 
   const billingHistory = useMemo((): ViewerBillingHistoryItem[] => {
     const items = query.data?.data;
