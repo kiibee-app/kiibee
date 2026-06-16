@@ -32,6 +32,22 @@ export default function PrivacyPolicySection() {
         </Section>
         <Section>
           <SectionTitle>
+            {t("legalPages.privacyPolicy.sections.nonPersonal.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.privacyPolicy.sections.nonPersonal.body")}
+          </Description>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.privacyPolicy.sections.cookies.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.privacyPolicy.sections.cookies.body")}
+          </Description>
+        </Section>
+        <Section>
+          <SectionTitle>
             {t("legalPages.privacyPolicy.sections.use.title")}
           </SectionTitle>
           <Description>
@@ -48,10 +64,26 @@ export default function PrivacyPolicySection() {
         </Section>
         <Section>
           <SectionTitle>
+            {t("legalPages.privacyPolicy.sections.changes.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.privacyPolicy.sections.changes.body")}
+          </Description>
+        </Section>
+        <Section>
+          <SectionTitle>
             {t("legalPages.privacyPolicy.sections.rights.title")}
           </SectionTitle>
           <Description>
             {t("legalPages.privacyPolicy.sections.rights.body")}
+          </Description>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.privacyPolicy.sections.acceptance.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.privacyPolicy.sections.acceptance.body")}
           </Description>
         </Section>
         <ContactCard>
