@@ -1,74 +1,48 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { SORT_OPTION_AZ, EXPLORE_PAGE_SIZE } from "@/utils/Constants";
+import { useState } from "react";
+import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
 import {
-  SortValue,
-  SORT_OPTION_SUBSCRIBERS,
-  SORT_OPTION_NEWEST,
-  SORT_NEW,
-  SORT_POPULAR,
-  SORT_FEATURED,
-  SORT_ALL,
+  getExploreCreatorInitialSort,
+  getExploreCreatorTitleKey,
+  mapCreatorSortToExploreFilter,
+  type ExploreCreatorFilter,
+  type SortValue,
 } from "@/utils/sortOptions";
 import { useExploreCreators } from "./useExploreCreators";
 import { useDebounce } from "@/hooks/useDebounce";
-import { CREATORS } from "@/utils/translationKeys";
 
-export function useExploreCreatorsFilter(filter: string) {
-  const initialSortBy = useMemo(() => {
-    if (filter === SORT_NEW) return SORT_OPTION_NEWEST as SortValue;
-    if (filter === SORT_POPULAR) return SORT_OPTION_SUBSCRIBERS as SortValue;
-    return SORT_OPTION_AZ as SortValue;
-  }, [filter]);
-
-  const [sortBy, setSortBy] = useState<SortValue>(initialSortBy);
+export function useExploreCreatorsFilter(filter: ExploreCreatorFilter) {
+  const [sortBy, setSortBy] = useState<SortValue>(() =>
+    getExploreCreatorInitialSort(filter),
+  );
   const [searchQuery, setSearchQuery] = useState("");
-  const debouncedSearchQuery = useDebounce(searchQuery);
   const [limit, setLimit] = useState(EXPLORE_PAGE_SIZE);
+  const debouncedSearchQuery = useDebounce(searchQuery);
 
-  const handleSortChange = (val: SortValue) => {
-    setSortBy(val);
+  const resetLimit = () => {
     setLimit(EXPLORE_PAGE_SIZE);
   };
 
-  const handleSearchChange = (val: string) => {
-    setSearchQuery(val);
-    setLimit(EXPLORE_PAGE_SIZE);
+  const handleSortChange = (value: SortValue) => {
+    setSortBy(value);
+    resetLimit();
   };
 
-  const queryFilter = useMemo(() => {
-    if (filter === SORT_FEATURED && sortBy === SORT_OPTION_AZ) {
-      return SORT_FEATURED;
-    }
-    if (sortBy === SORT_OPTION_NEWEST) return SORT_NEW;
-    if (sortBy === SORT_OPTION_SUBSCRIBERS) return SORT_POPULAR;
-    return SORT_ALL;
-  }, [filter, sortBy]);
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    resetLimit();
+  };
 
   const { creators, isLoading, isFetching } = useExploreCreators(
     limit,
     debouncedSearchQuery,
-    queryFilter,
+    mapCreatorSortToExploreFilter(filter, sortBy),
   );
-
-  const showLoadMoreButton = useMemo(() => {
-    return creators.length > 0 && creators.length === limit;
-  }, [creators.length, limit]);
 
   const handleLoadMore = () => {
     setLimit((prev) => prev + EXPLORE_PAGE_SIZE);
   };
-
-  const pageTitle = useMemo(() => {
-    const translationKeys: Record<string, string> = {
-      [SORT_ALL]: CREATORS.allCreators,
-      [SORT_FEATURED]: CREATORS.featured,
-      [SORT_NEW]: CREATORS.newCreators,
-      [SORT_POPULAR]: CREATORS.popular,
-    };
-    return translationKeys[filter] || CREATORS.title;
-  }, [filter]);
 
   return {
     filter,
@@ -79,8 +53,8 @@ export function useExploreCreatorsFilter(filter: string) {
     creators,
     isLoading,
     isFetching,
-    pageTitle,
-    showLoadMoreButton,
+    pageTitle: getExploreCreatorTitleKey(filter),
+    showLoadMoreButton: creators.length > 0 && creators.length === limit,
     handleLoadMore,
   };
 }

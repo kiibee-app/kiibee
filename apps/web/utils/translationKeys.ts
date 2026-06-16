@@ -18,6 +18,10 @@ export const NAV = {
   logoAlt: "nav.logoAlt",
 };
 
+export const DASHBOARD = {
+  toggleSidebar: "dashboard.toggleSidebar",
+};
+
 export const CREATE_PROFILE_HOME = {
   brandName: "createProfileHome.brandName",
   uploads: "createProfileHome.uploads",
@@ -507,6 +511,7 @@ export const SUBSCRIPTION = {
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
+  DASHBOARD,
   AUTH,
   AUTH_FORM,
   AUTH_CREATOR,

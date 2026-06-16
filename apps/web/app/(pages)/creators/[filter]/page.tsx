@@ -10,10 +10,16 @@ import ExploreCreators from "@/components/Feature/ExploreCreators/Creators";
 import { useExploreCreatorsFilter } from "@/hooks/creators/useExploreCreatorsFilter";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { LocalPageContainer } from "@/app/(pages)/explore/category/[categoryName]/styles";
-import { isString } from "@/utils/Constants";
-import { SORT_ALL } from "@/utils/sortOptions";
+import {
+  resolveExploreCreatorFilter,
+  type ExploreCreatorFilter,
+} from "@/utils/sortOptions";
 
-function CreatorsFilterPageContent({ filter }: { filter: string }) {
+function CreatorsFilterPageContent({
+  filter,
+}: {
+  filter: ExploreCreatorFilter;
+}) {
   const {
     sortBy,
     setSortBy,
@@ -59,9 +65,8 @@ function CreatorsFilterPageContent({ filter }: { filter: string }) {
 }
 
 export default function CreatorsFilterPage() {
-  const params = useParams();
-  const rawFilter = params?.filter;
-  const filter = isString(rawFilter) ? rawFilter : SORT_ALL;
+  const { filter: rawFilter } = useParams<{ filter?: string }>();
+  const filter = resolveExploreCreatorFilter(rawFilter);
 
   return <CreatorsFilterPageContent key={filter} filter={filter} />;
 }
