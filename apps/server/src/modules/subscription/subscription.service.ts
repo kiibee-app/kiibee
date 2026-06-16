@@ -11,7 +11,7 @@ export class SubscriptionService {
   }
 
   async createSubscription(userId: string, planId: string) {
-    const { data } = await createSubscriptionService({ userId, planId });
-    return data;
+    const result = await createSubscriptionService({ userId, planId });
+    return result;
   }
 }

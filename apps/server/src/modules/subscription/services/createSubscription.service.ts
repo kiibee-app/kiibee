@@ -1,7 +1,14 @@
 import axios from 'axios';
 import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { plans } from 'src/database/schema';
+import { creatorPlans, plans } from 'src/database/schema';
+import {
+  MAX_ATTEMPTS,
+  NORMAL_TEXT,
+  PAYMENT_TEXT,
+  PAYMENT_TYPES,
+  TIMEOUT,
+} from 'src/utils/constant';
 
 const epay = axios.create({
   baseURL: process.env.EPAY_BASE_URL,
@@ -40,6 +47,23 @@ export const createSubscriptionService = async ({
 
     if (!user) throw new Error('User not found');
 
+    if (plan.price === 0) {
+      await db
+        .insert(creatorPlans)
+        .values({
+          id: `cp_${planId}_${userId}`,
+          creatorId: userId,
+          planId,
+        })
+        .onConflictDoNothing();
+
+      return {
+        success: true,
+        type: PAYMENT_TYPES.FREE,
+        message: 'Free subscription created',
+      };
+    }
+
     const billingPlanId =
       plan.name === 'Pro'
         ? process.env.EPAY_PLAN_PRO
@@ -50,9 +74,8 @@ export const createSubscriptionService = async ({
     const nextChargeAt = new Date();
     nextChargeAt.setMonth(nextChargeAt.getMonth() + 1);
 
-    const reference = createSafeReference('ref', userId);
-    const subscriptionReference = createSafeReference('sub', userId);
-    const agreementReference = createSafeReference('ag', userId);
+    const reference = createSafeReference('ref', planId);
+    const subscriptionReference = planId;
 
     const notificationUrl = process.env.EPAY_WEBHOOK_URL;
 
@@ -72,7 +95,7 @@ export const createSubscriptionService = async ({
 
     const payload = {
       pointOfSaleId: process.env.EPAY_POINT_OF_SALE_ID,
-      reference,
+      reference: planId,
       amount: plan.price * 100,
       currency,
 
@@ -86,10 +109,10 @@ export const createSubscriptionService = async ({
         email: user.email,
       },
 
-      transactionType: 'PAYMENT',
-      scaMode: 'NORMAL',
-      timeout: 120,
-      maxAttempts: 25,
+      transactionType: PAYMENT_TEXT,
+      scaMode: NORMAL_TEXT,
+      timeout: TIMEOUT,
+      maxAttempts: MAX_ATTEMPTS,
       dynamicAmount: false,
       reportFailure: false,
       reportExpired: false,
@@ -102,21 +125,24 @@ export const createSubscriptionService = async ({
       retryUrl: `${process.env.FRONTEND_URL}/subscription/retry`,
 
       subscription: {
-        amount: 0,
+        amount: plan.price * 100,
         type: 'SCHEDULED',
         reference: subscriptionReference,
 
         billingAgreement: {
           billingPlanId,
-          reference: agreementReference,
+          reference: planId,
           nextChargeAt: nextChargeAt.toISOString().split('T')[0],
         },
       },
     };
-
     const response = await epay.post('/public/api/v1/cit', payload);
 
-    return response;
+    return {
+      success: true,
+      type: PAYMENT_TYPES.PAID,
+      data: response.data,
+    };
   } catch (error: any) {
     console.error(error?.response?.data || error.message);
     throw new Error('Failed to create subscription');

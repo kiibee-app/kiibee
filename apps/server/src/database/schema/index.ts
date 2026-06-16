@@ -35,7 +35,7 @@ export * from './content/contentSetting.schema';
 export * from './subscription/plans.schema';
 export * from './subscription/creatorPlan.schema';
 export * from './subscription/subscriptionInvoices.schema';
-
+export * from './subscription/subscriptionPaymentsHistory.schema';
 // Commerce
 export * from './commerce/orders.schema';
 export * from './commerce/payments.schema';
