@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useParams } from "next/navigation";
 import NavBar from "@/components/Layout/Navbar";
 import { Main, Section } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
@@ -9,8 +10,10 @@ import ExploreCreators from "@/components/Feature/ExploreCreators/Creators";
 import { useExploreCreatorsFilter } from "@/hooks/creators/useExploreCreatorsFilter";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { LocalPageContainer } from "@/app/(pages)/explore/category/[categoryName]/styles";
+import { isString } from "@/utils/Constants";
+import { SORT_ALL } from "@/utils/sortOptions";
 
-export default function CreatorsFilterPage() {
+function CreatorsFilterPageContent({ filter }: { filter: string }) {
   const {
     sortBy,
     setSortBy,
@@ -20,7 +23,9 @@ export default function CreatorsFilterPage() {
     isLoading,
     isFetching,
     pageTitle,
-  } = useExploreCreatorsFilter();
+    showLoadMoreButton,
+    handleLoadMore,
+  } = useExploreCreatorsFilter(filter);
 
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
 
@@ -42,6 +47,8 @@ export default function CreatorsFilterPage() {
             <ExploreCreators
               creators={creators}
               isLoading={isLoading || isFetching}
+              showLoadMoreButton={showLoadMoreButton}
+              onLoadMore={handleLoadMore}
             />
           </div>
         </Section>
@@ -49,4 +56,12 @@ export default function CreatorsFilterPage() {
       <Footer />
     </LocalPageContainer>
   );
+}
+
+export default function CreatorsFilterPage() {
+  const params = useParams();
+  const rawFilter = params?.filter;
+  const filter = isString(rawFilter) ? rawFilter : SORT_ALL;
+
+  return <CreatorsFilterPageContent key={filter} filter={filter} />;
 }

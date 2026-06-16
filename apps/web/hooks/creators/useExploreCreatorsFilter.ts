@@ -1,9 +1,8 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { SORT_OPTION_AZ, isString } from "@/utils/Constants";
+import { SORT_OPTION_AZ, EXPLORE_PAGE_SIZE } from "@/utils/Constants";
 import {
   SortValue,
   SORT_OPTION_SUBSCRIBERS,
@@ -17,12 +16,8 @@ import { useExploreCreators } from "./useExploreCreators";
 import { useDebounce } from "@/hooks/useDebounce";
 import { CREATORS } from "@/utils/translationKeys";
 
-export function useExploreCreatorsFilter() {
+export function useExploreCreatorsFilter(filter: string) {
   const { t } = useTranslation();
-  const params = useParams();
-
-  const rawFilter = params?.filter;
-  const filter = isString(rawFilter) ? rawFilter : SORT_ALL;
 
   const initialSortBy = useMemo(() => {
     if (filter === SORT_NEW) return SORT_OPTION_NEWEST as SortValue;
@@ -33,10 +28,17 @@ export function useExploreCreatorsFilter() {
   const [sortBy, setSortBy] = useState<SortValue>(initialSortBy);
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearchQuery = useDebounce(searchQuery);
+  const [limit, setLimit] = useState(EXPLORE_PAGE_SIZE);
 
-  useEffect(() => {
-    setSortBy(initialSortBy);
-  }, [initialSortBy]);
+  const handleSortChange = (val: SortValue) => {
+    setSortBy(val);
+    setLimit(EXPLORE_PAGE_SIZE);
+  };
+
+  const handleSearchChange = (val: string) => {
+    setSearchQuery(val);
+    setLimit(EXPLORE_PAGE_SIZE);
+  };
 
   const queryFilter = useMemo(() => {
     if (filter === SORT_FEATURED && sortBy === SORT_OPTION_AZ) {
@@ -48,10 +50,18 @@ export function useExploreCreatorsFilter() {
   }, [filter, sortBy]);
 
   const { creators, isLoading, isFetching } = useExploreCreators(
-    undefined,
+    limit,
     debouncedSearchQuery,
     queryFilter,
   );
+
+  const showLoadMoreButton = useMemo(() => {
+    return creators.length > 0 && creators.length === limit;
+  }, [creators.length, limit]);
+
+  const handleLoadMore = () => {
+    setLimit((prev) => prev + EXPLORE_PAGE_SIZE);
+  };
 
   const pageTitle = useMemo(() => {
     const translationKeys: Record<string, string> = {
@@ -66,12 +76,14 @@ export function useExploreCreatorsFilter() {
   return {
     filter,
     sortBy,
-    setSortBy,
+    setSortBy: handleSortChange,
     searchQuery,
-    setSearchQuery,
+    setSearchQuery: handleSearchChange,
     creators,
     isLoading,
     isFetching,
     pageTitle,
+    showLoadMoreButton,
+    handleLoadMore,
   };
 }
