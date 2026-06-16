@@ -217,6 +217,7 @@ export function useContentFormActions({
       ADMISSION_REQUIREMENT_VALUES.free;
     applySettingsSnapshot(buildSettingsSnapshot(uiAccessType));
     setContentSettingLoaded(true);
+  }
   const collectionId = selectedCollection?.id ?? null;
   const [syncedCollectionId, setSyncedCollectionId] = useState<string | null>(
     collectionId,
