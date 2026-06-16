@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import { API, useGetAPI } from "@/lib/http/api";
 import { RentedContentSources } from "@/utils/viewerRented";
 import { resolvePublicMediaUrl } from "@/utils/media";
+import { UNKNOWN } from "@/utils/Constants";
+import type { ContentType } from "@/utils/content";
 
 type PurchasedMediaResponse = {
   id: string;
@@ -14,7 +16,7 @@ type PurchasedMediaResponse = {
   rentPrice: string;
   accessType: string;
   createdAt: string;
-  contentType: "video" | "audio" | "pdf";
+  contentType: ContentType;
   creatorName: string;
   categoryName: string | null;
   purchasedAt: string | null;
@@ -45,7 +47,7 @@ type PurchasedDataResponse = {
 const mapMediaItem = (item: PurchasedMediaResponse) => ({
   id: item.id,
   mediaType: item.contentType,
-  category: item.categoryName || "Unknown",
+  category: item.categoryName || UNKNOWN,
   thumbSrc: resolvePublicMediaUrl(item.thumbnailUrl) || "",
   title: item.title,
   author: item.creatorName || "",
