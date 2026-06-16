@@ -25,7 +25,7 @@ import {
   CONTENT_ITEM_QUERY_KEY,
 } from "@/utils/Constants";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
-import { useViewerRentedData } from "@/hooks/useViewerRentedData";
+import { useViewerRentedData } from "@/hooks/useViewerRented";
 import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
 import MediaSections from "./MediaSections";
