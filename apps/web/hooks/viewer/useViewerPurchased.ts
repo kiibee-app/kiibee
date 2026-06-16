@@ -57,8 +57,8 @@ const mapMediaItem = (item: PurchasedMediaResponse) => ({
 const mapCollectionItem = (item: PurchasedCollectionResponse) => ({
   id: item.id,
   title: item.name,
-  author: item.creatorId || "", // Backend currently doesn't return creatorName for collections
-  elementCount: 0, // Backend currently doesn't return elementCount
+  author: item.creatorId || "",
+  elementCount: 0,
   coverSrc: resolvePublicMediaUrl(item.coverImageUrl) || "",
 });
 
