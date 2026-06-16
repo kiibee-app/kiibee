@@ -24,7 +24,10 @@ import {
   Row,
   LogoImage,
   LogoUploadWrap,
+  PreviewWrapper,
+  DeleteImageButton,
 } from "./styles";
+import { DeleteIcon } from "@/assets/icons";
 import { FORM_FIELDS } from "@/utils/appearance";
 import { CROP_SHAPE, INPUT_TYPE, LOGO_MODE } from "@/utils/ui";
 import GenericButton from "@/components/UI/GenericButton";
@@ -74,6 +77,12 @@ export default function LogoSection() {
     updateField(FORM_FIELDS.LOGO_URL, cropped);
     validateField(FORM_FIELDS.LOGO_URL);
     setOpen(false);
+  };
+
+  const handleImageDelete = () => {
+    clearFieldError(FORM_FIELDS.LOGO_URL);
+    updateField(FORM_FIELDS.LOGO_URL, "");
+    validateField(FORM_FIELDS.LOGO_URL);
   };
 
   return (
@@ -126,7 +135,17 @@ export default function LogoSection() {
                   {texts.uploadButton}
                 </GenericButton>
 
-                {values.logoUrl && <LogoImage src={values.logoUrl} />}
+                {values.logoUrl && (
+                  <PreviewWrapper>
+                    <LogoImage src={values.logoUrl} />
+                    <DeleteImageButton
+                      type="button"
+                      onClick={handleImageDelete}
+                    >
+                      <DeleteIcon width={14} height={16} />
+                    </DeleteImageButton>
+                  </PreviewWrapper>
+                )}
                 {errors.logoUrl ? (
                   <ErrorText role="alert">{errors.logoUrl}</ErrorText>
                 ) : null}

@@ -80,16 +80,39 @@ export class MediaController {
 
   @Post('images/upload')
   async uploadImage(@Req() req: FastifyRequest) {
-    const file = await req.file();
-    if (!file) {
-      throw new BadRequestException('No image file provided');
+    if (req.isMultipart()) {
+      const file = await req.file();
+      if (!file) {
+        throw new BadRequestException('No image file provided');
+      }
+
+      const buffer = await this.streamToBuffer(file.file);
+      return this.mediaService.uploadPublicImage({
+        buffer,
+        mimetype: file.mimetype,
+        filename: file.filename,
+      });
     }
 
-    const buffer = await this.streamToBuffer(file.file);
+    const body = req.body as { image?: string };
+    if (!body || !body.image) {
+      throw new BadRequestException('No image provided');
+    }
+
+    const match = body.image.match(/^data:([^;]+);base64,(.+)$/);
+    if (!match) {
+      throw new BadRequestException('Invalid image format');
+    }
+
+    const mimetype = match[1];
+    const base64Data = match[2];
+    const buffer = Buffer.from(base64Data, 'base64');
+    const ext = mimetype.split('/')[1] || 'png';
+
     return this.mediaService.uploadPublicImage({
       buffer,
-      mimetype: file.mimetype,
-      filename: file.filename,
+      mimetype,
+      filename: `avatar.${ext}`,
     });
   }
 
