@@ -49,6 +49,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import {
   formatPriceLabel,
   getContentDetailPricingActions,
+  isBuyActionLabel,
   isFreeContentItem,
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
@@ -185,6 +186,19 @@ export default function LatestUpload({ data }: LatestUploadProps) {
     router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
   };
   const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
+  const handlePrimaryActionClick = () => {
+    if (!primaryAction.href) {
+      setLoginModalVisible(true);
+      return;
+    }
+
+    if (isBuyActionLabel(primaryAction.title) && !authStorage.hasSession()) {
+      setLoginModalVisible(true);
+      return;
+    }
+
+    navigateToContent(primaryAction.href, true);
+  };
   const normalizedContentType = normalizeContentTypeValue(
     String((data as { contentType?: unknown }).contentType ?? ""),
   );
@@ -250,20 +264,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
             <ActionButtons>
               <ReadMoreButton
                 type="button"
-                onClick={() => {
-                  if (primaryAction.href) {
-                    const isBuy =
-                      primaryAction.title.toLowerCase().includes("buy") ||
-                      primaryAction.title.toLowerCase().includes("køb");
-                    if (isBuy && !authStorage.hasSession()) {
-                      setLoginModalVisible(true);
-                    } else {
-                      navigateToContent(primaryAction.href, true);
-                    }
-                  } else {
-                    setLoginModalVisible(true);
-                  }
-                }}
+                onClick={handlePrimaryActionClick}
                 $tone={secondaryAction ? VARIANT.PRIMARY : VARIANT.SECONDARY}
               >
                 <ActionMainText

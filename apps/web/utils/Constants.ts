@@ -327,6 +327,7 @@ export const FREE_LABEL = "Free";
 export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";
+export const BUY_KEYWORDS = ["buy", "køb"];
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 export const MARQUEE_LIMIT = 8;
 export const EXPLORE_PAGE_SIZE = 12;
