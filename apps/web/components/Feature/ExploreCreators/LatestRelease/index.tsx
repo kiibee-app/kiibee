@@ -32,6 +32,14 @@ import {
   TabButton,
 } from "./styles";
 import { tabs } from "@/utils/common";
+import {
+  SkeletonCard,
+  SkeletonImage,
+  SkeletonTitle,
+  SkeletonSubtitle,
+  SkeletonBadge,
+  SkeletonFooter,
+} from "../SkeletonCard";
 
 const EXPLORE_TABS: { label: string; sort: ExploreContentSort }[] = [
   { label: tabs[0], sort: EXPLORE_CONTENT_SORT.NEW },
@@ -241,11 +249,15 @@ export default function LatestRelease() {
         <CardsColumn>
           <CardsGrid>
             {isLoading ? (
-              <ResultsState>
-                <MonoText $use="Body_Medium">
-                  {t("nav.explore.loading")}
-                </MonoText>
-              </ResultsState>
+              Array.from({ length: 6 }).map((_, i) => (
+                <SkeletonCard key={i}>
+                  <SkeletonImage />
+                  <SkeletonBadge />
+                  <SkeletonTitle />
+                  <SkeletonSubtitle />
+                  <SkeletonFooter />
+                </SkeletonCard>
+              ))
             ) : tutorials.length > 0 ? (
               tutorials.map((tutorial) => (
                 <TutorialCard key={tutorial.id} tutorial={tutorial} />

@@ -24,6 +24,16 @@ import {
   getFeedPageSlice,
 } from "@/utils/feedContentToTutorial";
 import { PATHS } from "@/utils/path";
+import {
+  SkeletonCard,
+  SkeletonImage,
+  SkeletonTitle,
+  SkeletonSubtitle,
+  SkeletonBadge,
+  SkeletonFooter,
+} from "../SkeletonCard";
+
+const SKELETON_COUNT = 6;
 
 export default function RecentlyAdded() {
   const { t } = useTranslation();
@@ -95,9 +105,19 @@ export default function RecentlyAdded() {
         </HeaderActions>
       </SectionHeader>
       <Grid $columnMax="300px">
-        {visibleTutorials.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
-        ))}
+        {isLoading
+          ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+              <SkeletonCard key={i}>
+                <SkeletonImage />
+                <SkeletonBadge />
+                <SkeletonTitle />
+                <SkeletonSubtitle />
+                <SkeletonFooter />
+              </SkeletonCard>
+            ))
+          : visibleTutorials.map((tutorial) => (
+              <TutorialCard key={tutorial.id} tutorial={tutorial} />
+            ))}
       </Grid>
     </Section>
   );

@@ -12,8 +12,17 @@ import {
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { useTranslation } from "react-i18next";
 import { LoadMoreContainer, LoadMoreButton } from "./styles";
+import {
+  SkeletonCard,
+  SkeletonImage,
+  SkeletonTitle,
+  SkeletonSubtitle,
+  SkeletonBadge,
+  SkeletonFooter,
+} from "../SkeletonCard";
 
 const LOAD_MORE_SIZE = 12;
+const SKELETON_COUNT = 6;
 
 export default function TrendingContent() {
   const { t } = useTranslation();
@@ -41,9 +50,19 @@ export default function TrendingContent() {
         </SectionLabel>
       </SectionHeader>
       <Grid $columnMax="300px">
-        {tutorials.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
-        ))}
+        {isLoading
+          ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+              <SkeletonCard key={i}>
+                <SkeletonImage />
+                <SkeletonBadge />
+                <SkeletonTitle />
+                <SkeletonSubtitle />
+                <SkeletonFooter />
+              </SkeletonCard>
+            ))
+          : tutorials.map((tutorial) => (
+              <TutorialCard key={tutorial.id} tutorial={tutorial} />
+            ))}
       </Grid>
       {hasMore && !isLoading && (
         <LoadMoreContainer>

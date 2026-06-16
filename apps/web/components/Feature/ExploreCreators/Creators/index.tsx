@@ -1,6 +1,18 @@
 "use client";
 
-import { Grid, LoadMoreRow, PageWrapper, EmptyState } from "./styles";
+import {
+  Grid,
+  LoadMoreRow,
+  PageWrapper,
+  EmptyState,
+  SkeletonCard,
+  SkeletonImage,
+  SkeletonTitleRow,
+  SkeletonAvatar,
+  SkeletonTextBlock,
+  SkeletonRow,
+  SkeletonFooter,
+} from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
@@ -22,6 +34,29 @@ type Props = {
 
 export default function ExploreCreators({ creators, isLoading }: Props) {
   const { t } = useTranslation();
+
+  if (isLoading) {
+    return (
+      <PageWrapper>
+        <Grid>
+          {Array.from({ length: 3 }).map((_, i) => (
+            <SkeletonCard key={i}>
+              <SkeletonImage />
+              <SkeletonTitleRow>
+                <SkeletonAvatar />
+                <SkeletonTextBlock>
+                  <SkeletonRow $width="70%" $height="16px" />
+                  <SkeletonRow $width="100%" $height="12px" />
+                  <SkeletonRow $width="50%" $height="12px" />
+                </SkeletonTextBlock>
+              </SkeletonTitleRow>
+              <SkeletonFooter />
+            </SkeletonCard>
+          ))}
+        </Grid>
+      </PageWrapper>
+    );
+  }
 
   if (!isLoading && creators.length === 0) {
     return (

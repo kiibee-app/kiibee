@@ -8,6 +8,9 @@ import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { Main, PageContainer, Section } from "../../../styles";
 import { MonoText } from "@/components/UI/Monotext";
+import GenericLoader from "@/components/UI/GenericLoader";
+import { LOADER_SIZE, LOADER_VARIANT } from "@/utils/ui";
+import { ErrorBoundary } from "react-error-boundary";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
@@ -51,7 +54,7 @@ function PublishedContentDetail() {
   const resolvedUserId = user?.id ?? readStoredLoginUser()?.id;
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
-  const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);
+  const paymentStatus = searchParams?.get(PAYMENT_QUERY_KEY);
   const isPaymentSuccess = paymentStatus === STATUS_TONE.SUCCESS;
   const [dismissedPaymentSuccess, setDismissedPaymentSuccess] = useState(false);
   const normalizedContentKey = contentKey?.replaceAll(":", "-");
@@ -105,7 +108,7 @@ function PublishedContentDetail() {
 
   const handlePaymentSuccessClose = () => {
     setDismissedPaymentSuccess(true);
-    const nextParams = new URLSearchParams(searchParams.toString());
+    const nextParams = new URLSearchParams(searchParams?.toString() || "");
     nextParams.delete(PAYMENT_QUERY_KEY);
     const next = nextParams.toString();
     router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
@@ -129,10 +132,19 @@ function PublishedContentDetail() {
 
   if (isLoading) {
     return (
-      <Section>
-        <MonoText $use="H5_Regular">
-          {t(CONTENT_TRANSLATION_KEYS.loading)}
-        </MonoText>
+      <Section
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "60vh",
+        }}
+      >
+        <GenericLoader
+          variant={LOADER_VARIANT.INLINE}
+          size={LOADER_SIZE.MD}
+          label={t(CONTENT_TRANSLATION_KEYS.loading)}
+        />
       </Section>
     );
   }
@@ -193,10 +205,43 @@ function PublishedContentLoading() {
   const { t } = useTranslation();
 
   return (
+    <Section
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "60vh",
+      }}
+    >
+      <GenericLoader
+        variant={LOADER_VARIANT.INLINE}
+        size={LOADER_SIZE.MD}
+        label={t(CONTENT_TRANSLATION_KEYS.loading)}
+      />
+    </Section>
+  );
+}
+
+function ErrorFallback({ error }: { error: Error }) {
+  const { t } = useTranslation();
+
+  return (
     <Section>
-      <MonoText $use="H5_Regular">
-        {t(CONTENT_TRANSLATION_KEYS.loading)}
-      </MonoText>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: 400,
+          padding: 24,
+          gap: 16,
+        }}
+      >
+        <MonoText $use="H5_Regular">
+          {t(CONTENT_TRANSLATION_KEYS.loading)}
+        </MonoText>
+      </div>
     </Section>
   );
 }
@@ -206,9 +251,11 @@ export default function PublishedContentPage() {
     <PageContainer>
       <NavBar />
       <Main>
-        <Suspense fallback={<PublishedContentLoading />}>
-          <PublishedContentDetail />
-        </Suspense>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Suspense fallback={<PublishedContentLoading />}>
+            <PublishedContentDetail />
+          </Suspense>
+        </ErrorBoundary>
       </Main>
       <Footer />
     </PageContainer>
