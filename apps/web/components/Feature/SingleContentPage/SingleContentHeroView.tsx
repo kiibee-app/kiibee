@@ -47,6 +47,8 @@ function getMediaContent(
     | "onVideoEnded"
   >,
   isTrailerPlaying: boolean,
+  isCloudflarePlaying: boolean,
+  deferCloudflareEmbed: boolean,
 ) {
   const { src, type, title } = hero.media ?? {};
 
@@ -55,6 +57,7 @@ function getMediaContent(
   switch (type) {
     case FORMAT_TYPE.VIDEO:
       if (isCloudflareStreamEmbedUrl(src)) {
+        if (deferCloudflareEmbed && !isCloudflarePlaying) return null;
         return (
           <PreviewDocument
             src={src}
@@ -83,6 +86,7 @@ function getMediaContent(
           src={src}
           controls={videoProps.showVideoControls}
           playsInline
+          preload="metadata"
           onPlay={videoProps.onVideoPlay}
           onPause={videoProps.onVideoPause}
           onEnded={videoProps.onVideoEnded}
@@ -116,7 +120,13 @@ function SingleContentPreview({
   onVideoPause,
   onVideoEnded,
   isTrailerPlaying,
-}: SingleContentPreviewProps & { isTrailerPlaying: boolean }) {
+  isCloudflarePlaying,
+  deferCloudflareEmbed,
+}: SingleContentPreviewProps & {
+  isTrailerPlaying: boolean;
+  isCloudflarePlaying: boolean;
+  deferCloudflareEmbed: boolean;
+}) {
   const mediaContent = getMediaContent(
     hero,
     {
@@ -127,6 +137,8 @@ function SingleContentPreview({
       onVideoEnded,
     },
     isTrailerPlaying,
+    isCloudflarePlaying,
+    deferCloudflareEmbed,
   );
 
   return mediaContent ?? <HeroImage hero={hero} />;
@@ -139,11 +151,13 @@ export default function SingleContentHeroView({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hasStartedPlayback, setHasStartedPlayback] = useState(false);
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
+  const [isCloudflarePlaying, setIsCloudflarePlaying] = useState(false);
   const isVideoMedia = hero.media?.type === FORMAT_TYPE.VIDEO;
   const isCloudflareVideo =
     isVideoMedia && isCloudflareStreamEmbedUrl(hero.media?.src);
   const isThirdPartyVideo =
     isVideoMedia && isThirdPartyVideoUrl(hero.media?.src ?? "");
+  const deferCloudflareEmbed = isCloudflareVideo && Boolean(hero.trailerLabel);
 
   const handleVideoPlay = () => {
     if (isVideoMedia) {
@@ -168,6 +182,11 @@ export default function SingleContentHeroView({
   };
 
   const handleTrailerClick = async () => {
+    if (isCloudflareVideo) {
+      setIsCloudflarePlaying(true);
+      setHasStartedPlayback(true);
+      return;
+    }
     if (isThirdPartyVideo) {
       setIsTrailerPlaying(true);
       return;
@@ -190,9 +209,9 @@ export default function SingleContentHeroView({
 
   const showTrailerButton =
     hero.trailerLabel &&
-    (!isCloudflareVideo || isThirdPartyVideo) &&
     !hasStartedPlayback &&
-    !isTrailerPlaying;
+    !isTrailerPlaying &&
+    !isCloudflarePlaying;
 
   return (
     <Hero $isPdf={isPdfLayout}>
@@ -207,6 +226,8 @@ export default function SingleContentHeroView({
           onVideoPause={handleVideoPause}
           onVideoEnded={handleVideoEnded}
           isTrailerPlaying={isTrailerPlaying}
+          isCloudflarePlaying={isCloudflarePlaying}
+          deferCloudflareEmbed={deferCloudflareEmbed}
         />
       </Preview>
 
@@ -217,9 +238,7 @@ export default function SingleContentHeroView({
       ) : null}
 
       {hero.mediaLabel &&
-      (!isVideoMedia ||
-        isCloudflareVideo ||
-        (!hasStartedPlayback && !isTrailerPlaying)) ? (
+      (!isVideoMedia || (!hasStartedPlayback && !isTrailerPlaying)) ? (
         <HeroMediaTag>
           {hero.media?.type === FORMAT_TYPE.PDF ? (
             <PdfIcon width={16} height={16} />

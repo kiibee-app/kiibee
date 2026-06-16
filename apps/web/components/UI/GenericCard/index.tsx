@@ -33,6 +33,7 @@ type GenericCardProps = {
   footer?: ReactNode;
   children?: ReactNode;
   width?: string;
+  imagePriority?: boolean;
 };
 
 function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
@@ -70,6 +71,7 @@ export default function GenericCard({
   footer,
   children,
   width,
+  imagePriority = false,
 }: GenericCardProps) {
   const imageKey = image ? (typeof image === "string" ? image : image.src) : "";
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
@@ -95,7 +97,7 @@ export default function GenericCard({
               src={imageSrc ?? undefined}
               alt={alt || "card image"}
               style={REMOTE_COVER_IMAGE_STYLE}
-              loading="eager"
+              loading={imagePriority ? "eager" : "lazy"}
               decoding="async"
               onError={() => setFailedImageKey(imageKey)}
             />
@@ -106,7 +108,7 @@ export default function GenericCard({
               fill
               sizes="(max-width: 767px) 100vw, 50vw"
               style={{ objectFit: "cover" }}
-              priority
+              priority={imagePriority}
               onError={() => setFailedImageKey(imageKey)}
             />
           ) : showInitials ? (

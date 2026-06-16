@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import { useTranslation } from "react-i18next";
 import { getFileNameWithoutExtension } from "@/utils/content";
 import type {
@@ -87,24 +93,38 @@ export const ContentFormProvider: React.FC<{ children: React.ReactNode }> = ({
     [resetForm],
   );
 
+  const value = useMemo(
+    () => ({
+      formState,
+      savedFormState,
+      formErrors,
+      setFormState,
+      setSavedFormState,
+      setFormErrors,
+      updateField,
+      setFieldError,
+      clearFieldError,
+      clearFormErrors,
+      markFormAsSaved,
+      prefillForm,
+      resetForm,
+    }),
+    [
+      formState,
+      savedFormState,
+      formErrors,
+      updateField,
+      setFieldError,
+      clearFieldError,
+      clearFormErrors,
+      markFormAsSaved,
+      prefillForm,
+      resetForm,
+    ],
+  );
+
   return (
-    <ContentFormContext.Provider
-      value={{
-        formState,
-        savedFormState,
-        formErrors,
-        setFormState,
-        setSavedFormState,
-        setFormErrors,
-        updateField,
-        setFieldError,
-        clearFieldError,
-        clearFormErrors,
-        markFormAsSaved,
-        prefillForm,
-        resetForm,
-      }}
-    >
+    <ContentFormContext.Provider value={value}>
       {children}
     </ContentFormContext.Provider>
   );

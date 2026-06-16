@@ -120,7 +120,15 @@ export default function ClientDashboardViewer({
 
   const sectionTitle = useMemo(() => activePage, [activePage]);
 
-  if (!isReady) return null;
+  if (!isReady) {
+    return (
+      <DashboardLayout
+        sidebarExpanded={false}
+        header={<DashboardHeader role={ROLE_VIEWER} />}
+        sidebar={<Sidebar expanded={false} items={viewerItems} />}
+      />
+    );
+  }
 
   return (
     <DashboardLayout

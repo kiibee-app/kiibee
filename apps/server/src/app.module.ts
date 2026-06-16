@@ -17,6 +17,7 @@ import { ViewerModule } from './modules/viewer/viewer.module';
 import { CreatorUsersModule } from './modules/creator-users/creator-users.module';
 import { ExportModule } from './modules/export/export.module';
 import { CreatorOverviewModule } from './modules/creator-overview/creator-overview.module';
+import { SupportModule } from './modules/support/support.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { CreatorOverviewModule } from './modules/creator-overview/creator-overvi
     CreatorUsersModule,
     ExportModule,
     CreatorOverviewModule,
+    SupportModule,
   ],
 })
 export class AppModule {}

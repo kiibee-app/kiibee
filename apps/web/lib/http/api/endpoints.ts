@@ -19,6 +19,7 @@ export const API = {
     update: (id: string) => `/coupons/${id}`,
     replace: (id: string) => `/coupons/${id}`,
     delete: (id: string) => `/coupons/${id}`,
+    verify: "/coupons/verify",
   },
   media: {
     videoUpload: "/media/videos/upload",
@@ -76,5 +77,8 @@ export const API = {
     getById: (orderId: string) => `/order/${orderId}`,
     billingHistory: "/order/billing-history",
     // confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
+  },
+  support: {
+    contact: "/support/contact",
   },
 } as const;

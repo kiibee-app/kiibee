@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import Table from "@/components/UI/Table";
 import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import { ThreeDotIcon } from "@/assets/icons";
+import { CheckIcon, CopyIcon, ThreeDotIcon } from "@/assets/icons";
 import {
   SORT_DIRECTIONS,
   SortDirectionWithNone,
@@ -15,10 +15,16 @@ import {
   ActionWrapper,
   CodeBadge,
   CodesWrapper,
+  CopyButton,
   CouponActionText,
   StatusBadge,
   TableSection,
 } from "./styles";
+import {
+  EmptyCollectionCard,
+  EmptyCollectionText,
+  EmptyCollectionTitle,
+} from "../styles";
 import { COUPON_STATUS, CouponRow, CouponStatus } from "@/types/couponType";
 import { CONTENTS as CONTENTS_KEYS } from "@/utils/translationKeys";
 import {
@@ -59,6 +65,7 @@ export default function CouponTable({
     [COUPON_SEARCH_KEYS.TITLE]: "",
     [COUPON_SEARCH_KEYS.CODES]: "",
   });
+  const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const resolveHeaderToKey = (header: string) => {
     const col = COUPON_TABLE_COLUMNS.find((c) => c.label === header);
@@ -133,6 +140,11 @@ export default function CouponTable({
     e.stopPropagation();
   };
 
+  const handleCopyCode = useCallback((code: string) => {
+    navigator.clipboard.writeText(code);
+    setCopiedCode(code);
+  }, []);
+
   const handleSearchChange = (key: CouponSearchKey, value: string) => {
     setSearch((prev) => ({
       ...prev,
@@ -147,105 +159,132 @@ export default function CouponTable({
         description={t(CONTENTS_KEYS.couponsCard.description)}
       />
       <TableSection>
-        <Table<CouponRow>
-          headers={[...COUPON_TABLE_COLUMNS.map((c) => c.label)]}
-          data={sortedRows}
-          rowsPerPage={10}
-          headerToKey={resolveHeaderToKey}
-          onHeaderClick={(header) =>
-            handleHeaderClick(header, setNameSortDirection)
-          }
-          isHeaderSortable={(header) =>
-            header === COUPON_TABLE_COLUMNS[0].label
-          }
-          getHeaderSortDirection={(header) =>
-            header === COUPON_TABLE_COLUMNS[0].label &&
-            nameSortDirection !== SORT_DIRECTIONS.NONE
-              ? nameSortDirection
-              : null
-          }
-          getRowKey={(row, index) => `${row.title}-${index}`}
-          getColumnAlignment={(_header, index) =>
-            index === 0 || index === 1 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
-          }
-          renderCell={({ header, row }) => {
-            const typedHeader = COUPON_TABLE_COLUMNS.find(
-              (c) => c.label === header,
-            );
-            if (typedHeader === COUPON_TABLE_COLUMNS[1]) {
-              return (
-                <CodesWrapper>
-                  {row.codes.map((code) => (
-                    <CodeBadge key={code}>{code}</CodeBadge>
-                  ))}
-                </CodesWrapper>
-              );
-            }
-
-            if (typedHeader === COUPON_TABLE_COLUMNS[2]) {
-              return (
-                <StatusBadge $status={row.status}>
-                  <MonoText $use="Body_Bold">{row.status}</MonoText>
-                </StatusBadge>
-              );
-            }
-
-            if (typedHeader === COUPON_TABLE_COLUMNS[4]) {
-              return (
-                <ActionWrapper onClick={stopPropagation}>
-                  <SortDropdown<CouponAction>
-                    options={getCouponActionOptions(row.status)}
-                    allowNoSelection
-                    onChange={(action) => onActionSelect?.(action, row)}
-                    compact
-                    dropdownWidth="200px"
-                    maxWidth="200px"
-                    variant={SORT_DROPDOWN_VARIANT.SURFACE}
-                    trigger={<ThreeDotIcon />}
-                    renderOptionLabel={(option) => (
-                      <CouponActionText
-                        $danger={option.value === COUPON_ACTION_DELETE}
-                      >
-                        {option.label}
-                      </CouponActionText>
-                    )}
-                  />
-                </ActionWrapper>
-              );
-            }
-            const key = typedHeader?.key as keyof CouponRow;
-            return (
-              <MonoText
-                $use="Body_SemiBold"
-                color={
-                  typedHeader === COUPON_TABLE_COLUMNS[0]
-                    ? COLORS.primary.BLACK
-                    : COLORS.neutral.GRAY
-                }
-              >
-                {row[key]}
+        {data.length === 0 ? (
+          <EmptyCollectionCard>
+            <EmptyCollectionText>
+              <EmptyCollectionTitle>
+                {t("contents.emptyCoupon.title")}
+              </EmptyCollectionTitle>
+              <MonoText $use="Body_Medium">
+                {t("contents.emptyCoupon.description")}
               </MonoText>
-            );
-          }}
-          renderHeaderFilter={({ index }) => {
-            const filter = SEARCH_FILTERS(t)?.[index];
-            if (!filter) return null;
+            </EmptyCollectionText>
+          </EmptyCollectionCard>
+        ) : (
+          <Table<CouponRow>
+            headers={[...COUPON_TABLE_COLUMNS.map((c) => c.label)]}
+            data={sortedRows}
+            rowsPerPage={10}
+            headerToKey={resolveHeaderToKey}
+            onHeaderClick={(header) =>
+              handleHeaderClick(header, setNameSortDirection)
+            }
+            isHeaderSortable={(header) =>
+              header === COUPON_TABLE_COLUMNS[0].label
+            }
+            getHeaderSortDirection={(header) =>
+              header === COUPON_TABLE_COLUMNS[0].label &&
+              nameSortDirection !== SORT_DIRECTIONS.NONE
+                ? nameSortDirection
+                : null
+            }
+            getRowKey={(row, index) => `${row.title}-${index}`}
+            getColumnAlignment={(_header, index) =>
+              index === 0 || index === 1 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
+            }
+            renderCell={({ header, row }) => {
+              const typedHeader = COUPON_TABLE_COLUMNS.find(
+                (c) => c.label === header,
+              );
+              if (typedHeader === COUPON_TABLE_COLUMNS[1]) {
+                return (
+                  <CodesWrapper>
+                    {row.codes.map((code) => (
+                      <CodeBadge key={code}>
+                        {code}
+                        <CopyButton
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCopyCode(code);
+                          }}
+                        >
+                          {copiedCode === code ? (
+                            <CheckIcon width={14} height={14} />
+                          ) : (
+                            <CopyIcon width={14} height={14} />
+                          )}
+                        </CopyButton>
+                      </CodeBadge>
+                    ))}
+                  </CodesWrapper>
+                );
+              }
 
-            return (
-              <SearchFilterWrap>
-                <SearchBar
-                  placeholder={filter.placeholder}
-                  width="100%"
-                  value={search[filter.key]}
-                  onChange={(val: string) =>
-                    handleSearchChange(filter.key, val)
+              if (typedHeader === COUPON_TABLE_COLUMNS[2]) {
+                return (
+                  <StatusBadge $status={row.status}>
+                    <MonoText $use="Body_Bold">{row.status}</MonoText>
+                  </StatusBadge>
+                );
+              }
+
+              if (typedHeader === COUPON_TABLE_COLUMNS[4]) {
+                return (
+                  <ActionWrapper onClick={stopPropagation}>
+                    <SortDropdown<CouponAction>
+                      options={getCouponActionOptions(row.status)}
+                      allowNoSelection
+                      onChange={(action) => onActionSelect?.(action, row)}
+                      compact
+                      dropdownWidth="200px"
+                      maxWidth="200px"
+                      variant={SORT_DROPDOWN_VARIANT.SURFACE}
+                      trigger={<ThreeDotIcon />}
+                      renderOptionLabel={(option) => (
+                        <CouponActionText
+                          $danger={option.value === COUPON_ACTION_DELETE}
+                        >
+                          {option.label}
+                        </CouponActionText>
+                      )}
+                    />
+                  </ActionWrapper>
+                );
+              }
+              const key = typedHeader?.key as keyof CouponRow;
+              return (
+                <MonoText
+                  $use="Body_SemiBold"
+                  color={
+                    typedHeader === COUPON_TABLE_COLUMNS[0]
+                      ? COLORS.primary.BLACK
+                      : COLORS.neutral.GRAY
                   }
-                />
-              </SearchFilterWrap>
-            );
-          }}
-          onRowClick={(row) => onRowClick?.(row)}
-        />
+                >
+                  {row[key]}
+                </MonoText>
+              );
+            }}
+            renderHeaderFilter={({ index }) => {
+              const filter = SEARCH_FILTERS(t)?.[index];
+              if (!filter) return null;
+
+              return (
+                <SearchFilterWrap>
+                  <SearchBar
+                    placeholder={filter.placeholder}
+                    width="100%"
+                    value={search[filter.key]}
+                    onChange={(val: string) =>
+                      handleSearchChange(filter.key, val)
+                    }
+                  />
+                </SearchFilterWrap>
+              );
+            }}
+            onRowClick={(row) => onRowClick?.(row)}
+          />
+        )}
       </TableSection>
     </>
   );

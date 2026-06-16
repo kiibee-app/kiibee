@@ -30,6 +30,8 @@ import type {
 import { FORMAT_TYPE } from "@/utils/types";
 import useShare from "@/hooks/useShare";
 import ContentPreviewModal from "./ContentPreviewModal";
+import PurchaseModal from "./PurchaseModal";
+import { resolveImageUrl } from "@/utils/media";
 
 export type {
   SingleContentHeroProps,
@@ -109,35 +111,30 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             return;
           }
 
-          try {
-            const response = await createOrderMutation.mutateAsync({
-              contentId,
-              collectionId,
-              itemType: isPurchase ? ORDER_TYPES.PURCHASE : ORDER_TYPES.RENTAL,
-            });
-            const paymentUrl = response?.data?.url;
-            if (!paymentUrl) {
-              throw new Error("Payment URL missing");
-            }
-            window.location.assign(paymentUrl);
-          } catch (error) {
-            const message = getErrorMessage(error, "errors.saveChangesFailed");
-            toast.error(message);
-          }
+          setSelectedAction({
+            label: action.label,
+            subtitle: action.subtitle,
+            isPurchase,
+          });
+          setShowPurchaseModal(true);
         },
       };
     });
   }, [
-    collectionId,
     contentId,
     createOrderMutation,
-    getErrorMessage,
     primaryAction,
     primaryActions,
     router,
     user?.id,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [selectedAction, setSelectedAction] = useState<{
+    label: string;
+    subtitle?: string;
+    isPurchase: boolean;
+  } | null>(null);
 
   const isPreviewableType =
     hero?.contentType === FORMAT_TYPE.PDF ||
@@ -210,6 +207,36 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     router.back();
   };
 
+  const handlePurchaseConfirm = async (couponCode?: string) => {
+    if (!selectedAction || !contentId) return;
+
+    try {
+      const response = await createOrderMutation.mutateAsync({
+        contentId,
+        collectionId,
+        itemType: selectedAction.isPurchase
+          ? ORDER_TYPES.PURCHASE
+          : ORDER_TYPES.RENTAL,
+        ...(couponCode ? { couponCode } : {}),
+      });
+      const paymentUrl = response?.data?.url;
+      if (!paymentUrl) {
+        throw new Error("Payment URL missing");
+      }
+      setShowPurchaseModal(false);
+      setSelectedAction(null);
+      window.location.assign(paymentUrl);
+    } catch (error) {
+      const message = getErrorMessage(error, "errors.saveChangesFailed");
+      toast.error(message);
+    }
+  };
+
+  const handleClosePurchaseModal = () => {
+    setShowPurchaseModal(false);
+    setSelectedAction(null);
+  };
+
   return (
     <Wrapper>
       <SingleContentTopBar
@@ -248,6 +275,21 @@ export default function SingleContentPage(props: SingleContentPageProps) {
           title={title}
         />
       )}
+
+      <PurchaseModal
+        visible={showPurchaseModal}
+        onClose={handleClosePurchaseModal}
+        onPurchase={handlePurchaseConfirm}
+        title={title}
+        image={hero.image ? resolveImageUrl(hero.image) : undefined}
+        imageAlt={hero.imageAlt}
+        creator={creator?.name}
+        contentType={hero.contentType || hero.media?.type}
+        priceLabel={selectedAction?.label || ""}
+        accessLabel={selectedAction?.subtitle}
+        contentId={contentId}
+        loading={createOrderMutation.isPending}
+      />
     </Wrapper>
   );
 }

@@ -49,12 +49,17 @@ export function useCreatorRequests() {
   });
 }
 
-export function useExistingCreators() {
+export function useExistingCreators(search?: string) {
   return useQuery({
-    queryKey: EXISTING_CREATORS_QUERY_KEY,
+    queryKey: search
+      ? [...EXISTING_CREATORS_QUERY_KEY, search]
+      : EXISTING_CREATORS_QUERY_KEY,
     queryFn: async () => {
+      const url = search
+        ? `${API_ENDPOINTS.ALL_CREATORS}?search=${encodeURIComponent(search)}`
+        : API_ENDPOINTS.ALL_CREATORS;
       const data = await ensureSuccess<ExistingCreator[]>(
-        apiClient<ExistingCreator[]>(API_ENDPOINTS.ALL_CREATORS),
+        apiClient<ExistingCreator[]>(url),
       );
 
       return data ?? [];

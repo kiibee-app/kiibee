@@ -43,10 +43,15 @@ import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
 import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
 import { SCROLL_OPTIONS, UI_TITLE_FALLBACK } from "@/utils/Constants";
+import { COUPONS } from "@/utils/common";
+
+function ContentsUploadTitle({ fallback }: { fallback: string }) {
+  const { formState } = useContentForm();
+  return <>{formState.title || fallback}</>;
+}
 
 function CreatorsContentsInner() {
   const { t } = useTranslation();
-  const { formState } = useContentForm();
   const {
     activeTab,
     visibleTabs,
@@ -76,11 +81,14 @@ function CreatorsContentsInner() {
     setContentsMap,
   } = useContentsDataState(selectedCollection);
 
+  const needsCouponSearchData =
+    searchValue.trim().length >= 2 || activeTab === COUPONS;
+
   const { data: couponResponse } = useGetAPI<CouponListResponse>(
     API.coupon.getAll,
     undefined,
     {
-      enabled: true,
+      enabled: needsCouponSearchData,
     },
   );
 
@@ -339,11 +347,13 @@ function CreatorsContentsInner() {
             />
           )}
           <Title>
-            {isUploadMode
-              ? formState.title || UI_TITLE_FALLBACK
-              : selectedCollection
-                ? selectedCollection.name
-                : t(CONTENTS_KEYS.title)}
+            {isUploadMode ? (
+              <ContentsUploadTitle fallback={UI_TITLE_FALLBACK} />
+            ) : selectedCollection ? (
+              selectedCollection.name
+            ) : (
+              t(CONTENTS_KEYS.title)
+            )}
           </Title>
         </HeaderRow>
 
@@ -422,99 +432,113 @@ function CreatorsContentsInner() {
         </ContentPanel>
       </ContentsScrollArea>
 
-      <CreateCollectionModal
-        visible={createCollectionFlow.showCreateModal}
-        collectionName={createCollectionFlow.collectionName}
-        onChangeCollectionName={createCollectionFlow.setCollectionName}
-        onClose={createCollectionFlow.closeCreate}
-        onConfirm={createCollectionFlow.completeCreate}
-      />
+      {createCollectionFlow.showCreateModal && (
+        <CreateCollectionModal
+          visible={createCollectionFlow.showCreateModal}
+          collectionName={createCollectionFlow.collectionName}
+          onChangeCollectionName={createCollectionFlow.setCollectionName}
+          onClose={createCollectionFlow.closeCreate}
+          onConfirm={createCollectionFlow.completeCreate}
+        />
+      )}
 
-      <ContentTypeModal
-        visible={contentTypeFlow.showContentTypeModal}
-        onClose={contentTypeFlow.close}
-        onBack={contentTypeFlow.close}
-        onContinue={contentTypeFlow.continueWithType}
-      />
+      {contentTypeFlow.showContentTypeModal && (
+        <ContentTypeModal
+          visible={contentTypeFlow.showContentTypeModal}
+          onClose={contentTypeFlow.close}
+          onBack={contentTypeFlow.close}
+          onContinue={contentTypeFlow.continueWithType}
+        />
+      )}
 
-      <ContentUploadModal
-        key={
-          editingContent?.id ??
-          contentTypeFlow.selectedContentType ??
-          CONTENT_MODAL_KEY_FALLBACK
-        }
-        visible={contentTypeFlow.showContentUploadModal}
-        mode={
-          editingContent ? CONTENT_UPLOAD_MODE.EDIT : CONTENT_UPLOAD_MODE.CREATE
-        }
-        contentId={editingContent?.id}
-        initialTitle={editingContent?.name}
-        initialDescription={editingContent?.description}
-        contentType={
-          editingContent?.contentType ?? contentTypeFlow.selectedContentType
-        }
-        collectionId={selectedCollection?.id ?? null}
-        onClose={closeContentUpload}
-        onBack={handleContentUploadBack}
-        onUploadSuccess={(tab, file, preview, createdId, details) => {
-          clearSelectedCollectionContentsOverride();
-          handleUploadSuccess(tab, file, preview, createdId, details);
-          if (createdId) {
-            syncContentIdToUrl(createdId);
+      {contentTypeFlow.showContentUploadModal && (
+        <ContentUploadModal
+          key={
+            editingContent?.id ??
+            contentTypeFlow.selectedContentType ??
+            CONTENT_MODAL_KEY_FALLBACK
           }
-        }}
-      />
-
-      <GenericModal
-        visible={createCollectionFlow.showSuccessModal}
-        icon={<SuccessModalIcon />}
-        iconMargin="0 auto 8px"
-        title={t("contents.createCollectionSuccessModal.title")}
-        message={t("contents.createCollectionSuccessModal.message")}
-        confirmLabel={t("contents.createCollectionSuccessModal.done")}
-        onClose={createCollectionFlow.closeSuccess}
-        onConfirm={createCollectionFlow.closeSuccess}
-        size="sm"
-        spacing="xs"
-        showCloseButton={false}
-      />
-
-      <ConfirmationModal
-        isOpen={showDiscardModal}
-        onClose={closeDiscardModal}
-        title={t("settings.notifications.discardModal.title")}
-        body={t("settings.notifications.discardModal.message")}
-        cancelLabel={t("settings.notifications.discardModal.goBack")}
-        confirmLabel={t("settings.notifications.discardModal.discard")}
-        onConfirm={() => {
-          if (isCouponDiscardPending) {
-            closeCouponFlow();
+          visible={contentTypeFlow.showContentUploadModal}
+          mode={
+            editingContent
+              ? CONTENT_UPLOAD_MODE.EDIT
+              : CONTENT_UPLOAD_MODE.CREATE
           }
-          if (isUploadMode) {
-            handleBack();
+          contentId={editingContent?.id}
+          initialTitle={editingContent?.name}
+          initialDescription={editingContent?.description}
+          contentType={
+            editingContent?.contentType ?? contentTypeFlow.selectedContentType
           }
-          closeDiscardModal();
-        }}
-        size="sm"
-        spacing="md"
-        fullWidthButtons
-        buttonRow
-        showCloseButton={false}
-      />
+          collectionId={selectedCollection?.id ?? null}
+          onClose={closeContentUpload}
+          onBack={handleContentUploadBack}
+          onUploadSuccess={(tab, file, preview, createdId, details) => {
+            clearSelectedCollectionContentsOverride();
+            handleUploadSuccess(tab, file, preview, createdId, details);
+            if (createdId) {
+              syncContentIdToUrl(createdId);
+            }
+          }}
+        />
+      )}
 
-      <GenericModal
-        visible={showSaveSuccessModal}
-        icon={<SuccessModalIcon />}
-        iconMargin="0 auto 8px"
-        title={t("settings.notifications.successModal.title")}
-        message={t("settings.notifications.successModal.message")}
-        confirmLabel={t("settings.notifications.successModal.done")}
-        onClose={handleSaveSuccessClose}
-        onConfirm={handleSaveSuccessClose}
-        size="sm"
-        spacing="xs"
-        showCloseButton={false}
-      />
+      {createCollectionFlow.showSuccessModal && (
+        <GenericModal
+          visible={createCollectionFlow.showSuccessModal}
+          icon={<SuccessModalIcon />}
+          iconMargin="0 auto 8px"
+          title={t("contents.createCollectionSuccessModal.title")}
+          message={t("contents.createCollectionSuccessModal.message")}
+          confirmLabel={t("contents.createCollectionSuccessModal.done")}
+          onClose={createCollectionFlow.closeSuccess}
+          onConfirm={createCollectionFlow.closeSuccess}
+          size="sm"
+          spacing="xs"
+          showCloseButton={false}
+        />
+      )}
+
+      {showDiscardModal && (
+        <ConfirmationModal
+          isOpen={showDiscardModal}
+          onClose={closeDiscardModal}
+          title={t("settings.notifications.discardModal.title")}
+          body={t("settings.notifications.discardModal.message")}
+          cancelLabel={t("settings.notifications.discardModal.goBack")}
+          confirmLabel={t("settings.notifications.discardModal.discard")}
+          onConfirm={() => {
+            if (isCouponDiscardPending) {
+              closeCouponFlow();
+            }
+            if (isUploadMode) {
+              handleBack();
+            }
+            closeDiscardModal();
+          }}
+          size="sm"
+          spacing="md"
+          fullWidthButtons
+          buttonRow
+          showCloseButton={false}
+        />
+      )}
+
+      {showSaveSuccessModal && (
+        <GenericModal
+          visible={showSaveSuccessModal}
+          icon={<SuccessModalIcon />}
+          iconMargin="0 auto 8px"
+          title={t("settings.notifications.successModal.title")}
+          message={t("settings.notifications.successModal.message")}
+          confirmLabel={t("settings.notifications.successModal.done")}
+          onClose={handleSaveSuccessClose}
+          onConfirm={handleSaveSuccessClose}
+          size="sm"
+          spacing="xs"
+          showCloseButton={false}
+        />
+      )}
 
       <CouponFlowModals
         collections={collections}

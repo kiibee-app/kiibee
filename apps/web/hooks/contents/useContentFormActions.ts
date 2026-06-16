@@ -13,6 +13,7 @@ import {
   getFileNameWithoutExtension,
   normalizeContentTypeValue,
 } from "@/utils/content";
+import { type ContentMediaUrlResponse } from "@/utils/contentApi";
 import { useContentForm } from "@/components/Feature/Contents/ContentFormContext";
 import { useAppearanceForm } from "@/components/Feature/Contents/Appearance/AppearanceFormContext";
 import {
@@ -50,7 +51,6 @@ import {
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
-import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
 import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
@@ -63,6 +63,12 @@ type SettingsSnapshot = {
   rentalAmount: string;
   purchaseAmount: string;
   accessDuration: AccessDurationValue;
+};
+
+const contentSettingToUiMap: Record<string, AdmissionRequirementValue> = {
+  free: ADMISSION_REQUIREMENT_VALUES.free,
+  set_password: ADMISSION_REQUIREMENT_VALUES.password,
+  request_email: ADMISSION_REQUIREMENT_VALUES.email,
 };
 
 type Params = {
@@ -211,6 +217,54 @@ export function useContentFormActions({
       ADMISSION_REQUIREMENT_VALUES.free;
     applySettingsSnapshot(buildSettingsSnapshot(uiAccessType));
     setContentSettingLoaded(true);
+  const collectionId = selectedCollection?.id ?? null;
+  const [syncedCollectionId, setSyncedCollectionId] = useState<string | null>(
+    collectionId,
+  );
+  const [syncedSettingsKey, setSyncedSettingsKey] = useState(
+    contentSettingAccessType ?? null,
+  );
+
+  if (selectedCollection) {
+    if (collectionId !== syncedCollectionId) {
+      setSyncedCollectionId(collectionId);
+      setSyncedSettingsKey(null);
+
+      const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
+      const uiAccessType =
+        apiToUiAccessTypeMap[apiAccessType] ||
+        ADMISSION_REQUIREMENT_VALUES.free;
+      setCollectionAccessType(uiAccessType);
+      setCollectionPasswords("");
+      setCollectionDescription(selectedCollection.description ?? "");
+      setCollectionRentalAmount(
+        selectedCollection.rentPrice != null
+          ? String(selectedCollection.rentPrice)
+          : "",
+      );
+      setCollectionPurchaseAmount(
+        selectedCollection.buyPrice != null
+          ? String(selectedCollection.buyPrice)
+          : "",
+      );
+      setCollectionAccessDuration(
+        (selectedCollection.rentDuration as AccessDurationValue) ??
+          (PAYMENT_DEFAULT_ACCESS_DURATION as AccessDurationValue),
+      );
+    }
+  } else {
+    if (syncedCollectionId !== null) {
+      setSyncedCollectionId(null);
+      setSyncedSettingsKey(null);
+    }
+
+    const settingsKey = contentSettingAccessType ?? null;
+    if (settingsKey && settingsKey !== syncedSettingsKey) {
+      setSyncedSettingsKey(settingsKey);
+      const uiAccessType =
+        contentSettingToUiMap[settingsKey] || ADMISSION_REQUIREMENT_VALUES.free;
+      setCollectionAccessType(uiAccessType);
+    }
   }
 
   const handleUploadSuccess = (
@@ -662,11 +716,11 @@ export function useContentFormActions({
               ? API.media.videoStream
               : API.media.fileSignedUrl;
 
-          const res = await axiosClient.get<MediaUrlResponse>(endpoint, {
+          const res = await axiosClient.get<ContentMediaUrlResponse>(endpoint, {
             params: { key: fileKey },
           });
 
-          return res.data.url ?? null;
+          return res.data.url || res.data.iframeUrl || null;
         };
 
         const preview = fullContent.fileKey

@@ -30,9 +30,11 @@ export const exploreService = async (
       AND ${mediaFiles.isDeleted} = false
     `;
 
+    const resolvedLimit = limit ?? FIXED_LIMIT;
+
     const [trending, recent, topCreators] = await Promise.all([
-      getTrendingQuery(baseWhere, FIXED_LIMIT),
-      getRecentQuery(baseWhere, FIXED_LIMIT),
+      getTrendingQuery(baseWhere, resolvedLimit),
+      getRecentQuery(baseWhere, resolvedLimit),
       getTopCreatorsQuery(),
     ]);
 
@@ -96,7 +98,7 @@ export const exploreService = async (
     const latest = await getLatestQuery(
       latestWhere,
       desc(mediaFiles.publishedAt),
-      limit ?? FIXED_LIMIT,
+      resolvedLimit,
     );
 
     return success(

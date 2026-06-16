@@ -16,19 +16,16 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
-import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
+
 import {
   CONTENT_MEDIA_QUERY_KEYS,
-  CONTENT_MEDIA_RESPONSE_KEYS,
   CONTENT_TRANSLATION_KEYS,
   type ContentMediaUrlResponse,
   type ContentDetailResponse,
   getContentMediaKey,
   getContentType,
-  getContentUrl,
   getContentDetail,
   getSingleContentProps,
-  hasDirectPlaybackUrl,
   resolveContentPlaybackUrl,
 } from "@/utils/contentApi";
 import { FORMAT_TYPE } from "@/utils/types";
@@ -84,14 +81,6 @@ function PublishedContentDetail() {
   const content = getContentDetail(data);
   const contentType = getContentType(content);
   const mediaKey = getContentMediaKey(content);
-  const contentUrl = getContentUrl(content);
-  const cloudflareEmbedUrl = resolveCloudflareStreamPlaybackUrl(
-    mediaKey,
-    contentUrl,
-  );
-  const directPlaybackUrl =
-    cloudflareEmbedUrl ||
-    (hasDirectPlaybackUrl(contentUrl) ? contentUrl : null);
   const relatedCollectionQuery = usePublicRelatedCollectionContent(
     normalizedContentKey,
     {
@@ -103,7 +92,7 @@ function PublishedContentDetail() {
       ? API.media.videoStream
       : API.media.fileSignedUrl;
   const shouldFetchSignedMediaUrl =
-    Boolean(mediaKey) && contentType !== FORMAT_TYPE.WEB && !directPlaybackUrl;
+    Boolean(mediaKey) && contentType !== FORMAT_TYPE.WEB;
   const { data: mediaResponse } = useGetAPI<ContentMediaUrlResponse>(
     mediaEndpoint,
     { [CONTENT_MEDIA_QUERY_KEYS.KEY]: mediaKey },
@@ -113,7 +102,7 @@ function PublishedContentDetail() {
   );
   const mediaUrl = resolveContentPlaybackUrl(
     content,
-    mediaResponse?.[CONTENT_MEDIA_RESPONSE_KEYS.URL],
+    mediaResponse?.url || mediaResponse?.iframeUrl,
   );
   const {
     gateType: activeGateType,

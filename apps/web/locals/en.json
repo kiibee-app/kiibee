@@ -85,7 +85,8 @@
         "confirmLabel": "Create account",
         "message": "To continue with your purchase, please log in to your Kiibee account. If you don't have an account yet, you can create one in just a moment."
       },
-      "seeContent": "See content"
+      "seeContent": "See content",
+      "buy": "Buy 99 kr"
     }
   },
   "createProfileCollections": {
@@ -642,7 +643,9 @@
         "phoneInvalid": "Enter a valid phone number",
         "messageRequired": "Message is required"
       },
-      "submit": "Send message"
+      "submit": "Send message",
+      "submitSuccess": "Your message was sent successfully.",
+      "submitError": "We couldn't send your message right now. Please try again."
     }
   },
   "value": {
@@ -905,7 +908,10 @@
   "creatorProfile": {
     "title": "My account",
     "firstName": "First name",
+    "firstNameRequired": "First name is required",
     "lastName": "Last name",
+    "lastNameRequired": "Last name is required",
+    "cvrInvalid": "CVR must be at least 8 digits",
     "passwordLabel": "Password",
     "changePassword": "Change password",
     "companyName": "Company Name",
@@ -958,20 +964,35 @@
     "loading": "Loading content...",
     "imageAlt": "Content preview",
     "seeContent": "See content",
+    "playVideo": "Play video",
     "playTrailer": "Play trailer",
     "pricing": {
       "downloadFiles": "Download files",
       "accessDefault": "Access for 3 months",
       "accessMonths": "Access for {{count}} months",
       "accessDays": "Access for {{count}} days",
-      "accessHours": "Access for {{count}} hours"
+      "accessHours": "Access for {{count}} hours",
+      "rental": "48 hrs rental",
+      "discountCode": "Discount code",
+      "enterCode": "Enter code",
+      "apply": "Apply",
+      "remove": "Remove",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "total": "Total",
+      "purchase": "Purchase",
+      "couponApplied": "Coupon applied successfully",
+      "couponInvalid": "Invalid coupon code"
     },
     "meta": {
+      "category": "Category:",
       "publishedYear": "Published:",
       "createdAt": "Created:",
       "accessType": "Access:",
       "visibility": "Visibility:",
-      "duration": "Duration:"
+      "duration": "Duration:",
+      "productionCompany": "Production company:",
+      "manufacturerLink": "Manufacturer link:"
     }
   },
   "singleCollection": {
@@ -1596,6 +1617,10 @@
     "emptyCollection": {
       "title": "Your collection is empty.",
       "description": "Add content to your collection which will then be displayed on your channel."
+    },
+    "emptyCoupon": {
+      "title": "No coupons yet.",
+      "description": "Create your first coupon to start offering discounts."
     },
     "deleteModal": {
       "title": "Delete content?",
