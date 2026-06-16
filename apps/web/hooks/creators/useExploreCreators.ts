@@ -68,14 +68,27 @@ export function getCreatorCardImage(creator: ExploreCreator): string | null {
 
 const TOP_CREATORS_LIMIT = 6;
 
-export const useExploreCreators = (limit?: number, search?: string) => {
+export const useExploreCreators = (
+  limit?: number,
+  search?: string,
+  filter?: string,
+) => {
+  const isAllEndpoint = filter !== undefined;
+
+  let sortBy: string | undefined = undefined;
+  if (filter === "featured") sortBy = "featured";
+  else if (filter === "new") sortBy = "newest";
+  else if (filter === "popular") sortBy = "subscriberCount";
+  else if (filter === "all") sortBy = "name";
+
   const params = {
     ...(limit !== undefined && { limit }),
     ...(search?.trim() && { search: search.trim() }),
+    ...(sortBy !== undefined && { sortBy }),
   };
 
   const query = useGetAPI<ExploreCreatorsResponse>(
-    API.creators.list,
+    isAllEndpoint ? API.creators.all : API.creators.list,
     Object.keys(params).length > 0 ? params : undefined,
   );
 

@@ -1,35 +1,28 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React from "react";
 import NavBar from "@/components/Layout/Navbar";
 import { Main, Section } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
 import Footer from "@/components/Layout/Footer";
 import ExploreCreators from "@/components/Feature/ExploreCreators/Creators";
-import { DEFAULT_SORT, SortValue } from "@/utils/sortOptions";
-import {
-  sortExploreCreators,
-  useExploreCreators,
-} from "@/hooks/creators/useExploreCreators";
+import { useExploreCreatorsFilter } from "@/hooks/creators/useExploreCreatorsFilter";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
-import { useDebounce } from "@/hooks/useDebounce";
 import { LocalPageContainer } from "@/app/(pages)/explore/category/[categoryName]/styles";
 
-export default function ExploreCreatorsPage() {
-  const [sortBy, setSortBy] = useState<SortValue>(DEFAULT_SORT);
-  const [searchQuery, setSearchQuery] = useState("");
-  const debouncedSearchQuery = useDebounce(searchQuery);
+export default function CreatorsFilterPage() {
+  const {
+    sortBy,
+    setSortBy,
+    searchQuery,
+    setSearchQuery,
+    creators,
+    isLoading,
+    isFetching,
+    pageTitle,
+  } = useExploreCreatorsFilter();
 
-  const { creators, isLoading, isFetching } = useExploreCreators(
-    undefined,
-    debouncedSearchQuery,
-  );
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
-
-  const sortedCreators = useMemo(
-    () => sortExploreCreators(creators, sortBy),
-    [creators, sortBy],
-  );
 
   return (
     <LocalPageContainer $navTextTone={navTextTone}>
@@ -38,6 +31,7 @@ export default function ExploreCreatorsPage() {
         <Section>
           <div ref={heroRef}>
             <ExploreCreatorsHero
+              title={pageTitle}
               sortBy={sortBy}
               setSortBy={setSortBy}
               searchQuery={searchQuery}
@@ -46,7 +40,7 @@ export default function ExploreCreatorsPage() {
           </div>
           <div ref={trendingRef}>
             <ExploreCreators
-              creators={sortedCreators}
+              creators={creators}
               isLoading={isLoading || isFetching}
             />
           </div>

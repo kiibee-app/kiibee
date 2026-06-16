@@ -130,6 +130,11 @@ export const CREATORS = {
   noCreatorsFound: "creators.noCreatorsFound",
   uploadsCount: "creators.uploadsCount",
   loadMore: "creators.loadMore",
+  title: "creators.title",
+  allCreators: "nav.explore.creator.allCreators",
+  featured: "nav.explore.creator.featured",
+  newCreators: "nav.explore.creator.newCreators",
+  popular: "nav.explore.creator.popular",
   howToGetStarted: {
     title: "creators.howToGetStarted.title",
   },
