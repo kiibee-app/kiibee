@@ -59,21 +59,23 @@ const AmountBlock = ({
     return !isNaN(Number(v)) && isFinite(Number(v));
   };
 
+  const handleChange = (v: string | string[]) => {
+    const text = toText(v);
+    updateField(field, text);
+    if (!isValidNumeric(text)) {
+      setError(t("contents.payment.common.invalidNumber"));
+    } else {
+      setError(null);
+    }
+  };
+
   return (
     <Block>
       <SectionTitle>{title}</SectionTitle>
       <ControlWrap>
         <InputField
           value={value || STRING_EMPTY}
-          onChange={(v) => {
-            const text = toText(v);
-            updateField(field, text);
-            if (!isValidNumeric(text)) {
-              setError(t("contents.payment.common.invalidNumber"));
-            } else {
-              setError(null);
-            }
-          }}
+          onChange={handleChange}
           placeholder={placeholder}
           variant={INPUT_VARIANTS.PRIMARY_GRAY}
           inputMode="decimal"
