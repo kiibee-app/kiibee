@@ -310,7 +310,7 @@ function CreatorsContentsInner() {
     }
   }, [queryContentId, editingContent, resetUploadState]);
 
-  const handleCreateClickWithReset = useCallback(() => {
+  const handleCreate = useCallback(() => {
     resetUploadState();
     handleCreateClick();
   }, [handleCreateClick, resetUploadState]);
@@ -377,7 +377,7 @@ function CreatorsContentsInner() {
 
         <ContentsHeaderAction
           activeTab={activeTab}
-          onCreate={handleCreateClickWithReset}
+          onCreate={handleCreate}
           onCancel={handleHeaderCancel}
           onCreateCoupon={couponFlow.open}
           onSave={handleHeaderSave}
