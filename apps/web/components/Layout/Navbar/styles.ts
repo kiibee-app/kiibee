@@ -188,7 +188,10 @@ export const NavButton = styled.button<{
   cursor: pointer;
 `;
 
-export const MegaMenu = styled.div<{ $isOpen: boolean }>`
+export const MegaMenu = styled.div<{
+  $isOpen: boolean;
+  $textTone?: "dark" | "light";
+}>`
   position: fixed;
   top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
   left: 0;
@@ -210,6 +213,21 @@ export const MegaMenu = styled.div<{ $isOpen: boolean }>`
     backdrop-filter 180ms ease;
   pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
   z-index: 1000;
+
+  ${({ $textTone, theme }) =>
+    $textTone === "light" &&
+    css`
+      ${ColumnTitle} {
+        color: ${theme.colors.neutral.OFF_WHITE};
+      }
+      ${ColumnItem} {
+        color: ${theme.colors.neutral.OFF_WHITE};
+      }
+      ${ColumnItem}:hover {
+        color: ${theme.colors.neutral.WHITE};
+        opacity: 0.8;
+      }
+    `}
 `;
 
 export const MegaInner = styled.div<{ $isOpen: boolean }>`

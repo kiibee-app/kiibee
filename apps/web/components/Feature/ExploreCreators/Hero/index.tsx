@@ -23,6 +23,8 @@ export default function ExploreCreatorsHero({
   setSortBy,
   searchQuery,
   setSearchQuery,
+  title = CREATORS.title,
+  sortBy = DEFAULT_SORT,
 }: ExploreCreatorsHeroProps) {
   const { t } = useTranslation();
 
@@ -32,7 +34,7 @@ export default function ExploreCreatorsHero({
         <Content>
           {showControls && (
             <Title>
-              <HeroTitleText>{t("creators.title")}</HeroTitleText>
+              <HeroTitleText>{t(title)}</HeroTitleText>
             </Title>
           )}
           <Controls>
@@ -48,7 +50,7 @@ export default function ExploreCreatorsHero({
               <SortDropdownContainer>
                 <SortDropdown
                   options={SORT_OPTIONS}
-                  value={DEFAULT_SORT}
+                  value={sortBy}
                   onChange={setSortBy}
                   label={t(CREATORS.sort)}
                   renderSelectedLabel={(value) =>

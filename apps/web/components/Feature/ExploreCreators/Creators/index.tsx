@@ -18,9 +18,16 @@ import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 type Props = {
   creators: ExploreCreator[];
   isLoading?: boolean;
+  showLoadMoreButton?: boolean;
+  onLoadMore?: () => void;
 };
 
-export default function ExploreCreators({ creators, isLoading }: Props) {
+export default function ExploreCreators({
+  creators,
+  isLoading,
+  showLoadMoreButton,
+  onLoadMore,
+}: Props) {
   const { t } = useTranslation();
 
   if (!isLoading && creators.length === 0) {
@@ -77,11 +84,17 @@ export default function ExploreCreators({ creators, isLoading }: Props) {
         })}
       </Grid>
 
-      <LoadMoreRow>
-        <GenericButton asAnchor href="#load" variant={VARIANT.PRIMARY}>
-          {t(CREATORS.loadMore)}
-        </GenericButton>
-      </LoadMoreRow>
+      {showLoadMoreButton && (
+        <LoadMoreRow>
+          <GenericButton
+            onClick={onLoadMore}
+            variant={VARIANT.PRIMARY}
+            type="button"
+          >
+            {t(CREATORS.loadMore)}
+          </GenericButton>
+        </LoadMoreRow>
+      )}
     </PageWrapper>
   );
 }
