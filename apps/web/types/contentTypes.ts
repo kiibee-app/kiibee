@@ -48,6 +48,7 @@ export type SingleContentPageProps = {
     tone?: "default" | "urgent";
   };
   creator?: {
+    id?: string;
     name: string;
     avatar?: ImageSource;
     avatarAlt?: string;
