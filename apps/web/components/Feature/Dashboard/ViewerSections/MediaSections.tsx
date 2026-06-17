@@ -81,101 +81,110 @@ export default function MediaSections({
 
   return (
     <>
-      {RENTED_MEDIA_SECTIONS.map((section) => (
-        <SectionBlock key={section.title}>
-          <SectionHeader>
-            <SectionTitleRow>
-              <SectionTitle>{section.title}</SectionTitle>
-              {hasDetailView &&
-              (section.key === RENTED_SECTION_KEYS.VIDEOS ||
-                section.key === RENTED_SECTION_KEYS.AUDIOS ||
-                section.key === RENTED_SECTION_KEYS.PDFS) ? (
-                <InlineSectionArrow
-                  type="button"
-                  aria-label={`Open ${section.title} details`}
-                  onClick={() =>
-                    onOpenSection?.(section.key, sectionItems[section.key][0])
+      {RENTED_MEDIA_SECTIONS.map((section) => {
+        if (
+          !sectionItems[section.key] ||
+          sectionItems[section.key].length === 0
+        )
+          return null;
+        return (
+          <SectionBlock key={section.title}>
+            <SectionHeader>
+              <SectionTitleRow>
+                <SectionTitle>{section.title}</SectionTitle>
+                {hasDetailView &&
+                (section.key === RENTED_SECTION_KEYS.VIDEOS ||
+                  section.key === RENTED_SECTION_KEYS.AUDIOS ||
+                  section.key === RENTED_SECTION_KEYS.PDFS) ? (
+                  <InlineSectionArrow
+                    type="button"
+                    aria-label={`Open ${section.title} details`}
+                    onClick={() =>
+                      onOpenSection?.(section.key, sectionItems[section.key][0])
+                    }
+                  >
+                    <LeftIcon />
+                  </InlineSectionArrow>
+                ) : null}
+              </SectionTitleRow>
+              <SectionPaginationArrows
+                sectionKey={section.key}
+                totalItems={sectionTotals[section.key]}
+                canSlide={canSlide}
+                canGoPrev={canGoPrev}
+                canGoNext={canGoNext}
+                movePrev={movePrev}
+                moveNext={moveNext}
+              />
+            </SectionHeader>
+            <MediaGrid>
+              {sectionItems[section.key].map((item) => (
+                <GenericCard
+                  key={item.id}
+                  image={item.thumbSrc}
+                  title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
+                  subtitle={
+                    <MonoText $use="Body_Medium">{item.author}</MonoText>
                   }
-                >
-                  <LeftIcon />
-                </InlineSectionArrow>
-              ) : null}
-            </SectionTitleRow>
-            <SectionPaginationArrows
-              sectionKey={section.key}
-              totalItems={sectionTotals[section.key]}
-              canSlide={canSlide}
-              canGoPrev={canGoPrev}
-              canGoNext={canGoNext}
-              movePrev={movePrev}
-              moveNext={moveNext}
-            />
-          </SectionHeader>
-          <MediaGrid>
-            {sectionItems[section.key].map((item) => (
-              <GenericCard
-                key={item.id}
-                image={item.thumbSrc}
-                title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
-                subtitle={<MonoText $use="Body_Medium">{item.author}</MonoText>}
-                badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
-                footer={
-                  hasDetailView || isCurrent ? (
-                    <GenericButton
-                      variant={VARIANT.SECONDARY}
-                      size="md"
-                      fullWidth
-                      onClick={
-                        onMediaPrimaryAction
-                          ? () => onMediaPrimaryAction(item)
-                          : undefined
-                      }
-                    >
-                      {getMediaAction(item.mediaType)}
-                    </GenericButton>
-                  ) : (
-                    <TwoButtonRow>
+                  badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
+                  footer={
+                    hasDetailView || isCurrent ? (
                       <GenericButton
                         variant={VARIANT.SECONDARY}
                         size="md"
                         fullWidth
+                        onClick={
+                          onMediaPrimaryAction
+                            ? () => onMediaPrimaryAction(item)
+                            : undefined
+                        }
                       >
-                        {RENTED_BUTTON_TEXT.buy}
+                        {getMediaAction(item.mediaType)}
                       </GenericButton>
-                      <GenericButton
-                        variant={VARIANT.SECONDARY}
-                        size="md"
-                        fullWidth
-                      >
-                        {RENTED_BUTTON_TEXT.rent}
-                      </GenericButton>
-                    </TwoButtonRow>
-                  )
-                }
-              >
-                <MonoText
-                  $use="Body_Medium"
-                  color={
-                    hasDetailView
-                      ? COLORS.neutral.GRAY_400
-                      : isCurrent
-                        ? COLORS.primary.RED
-                        : COLORS.neutral.GRAY_400
+                    ) : (
+                      <TwoButtonRow>
+                        <GenericButton
+                          variant={VARIANT.SECONDARY}
+                          size="md"
+                          fullWidth
+                        >
+                          {RENTED_BUTTON_TEXT.buy}
+                        </GenericButton>
+                        <GenericButton
+                          variant={VARIANT.SECONDARY}
+                          size="md"
+                          fullWidth
+                        >
+                          {RENTED_BUTTON_TEXT.rent}
+                        </GenericButton>
+                      </TwoButtonRow>
+                    )
                   }
                 >
-                  {item.expiryText}
-                </MonoText>
-                <MediaTypePill>
-                  <MediaTypeIcon type={item.mediaType} />
-                  <MonoText $use="Body_Bold">
-                    {getMediaLabel(item.mediaType)}
+                  <MonoText
+                    $use="Body_Medium"
+                    color={
+                      hasDetailView
+                        ? COLORS.neutral.GRAY_400
+                        : isCurrent
+                          ? COLORS.primary.RED
+                          : COLORS.neutral.GRAY_400
+                    }
+                  >
+                    {item.expiryText}
                   </MonoText>
-                </MediaTypePill>
-              </GenericCard>
-            ))}
-          </MediaGrid>
-        </SectionBlock>
-      ))}
+                  <MediaTypePill>
+                    <MediaTypeIcon type={item.mediaType} />
+                    <MonoText $use="Body_Bold">
+                      {getMediaLabel(item.mediaType)}
+                    </MonoText>
+                  </MediaTypePill>
+                </GenericCard>
+              ))}
+            </MediaGrid>
+          </SectionBlock>
+        );
+      })}
     </>
   );
 }

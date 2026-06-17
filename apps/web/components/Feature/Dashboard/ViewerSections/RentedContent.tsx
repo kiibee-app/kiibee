@@ -257,26 +257,30 @@ export default function RentedContent({
         </EmptyState>
       ) : (
         <>
-          <SectionBlock>
-            <CollectionsSection
-              mode={mode}
-              items={
-                isCollectionsExpanded ? filteredCollections : visibleCollections
-              }
-              totalItems={filteredCollections.length}
-              canSlide={canSlide}
-              canGoPrev={canGoPrev}
-              canGoNext={canGoNext}
-              movePrev={movePrev}
-              moveNext={moveNext}
-              onOpenSection={() => setCollectionsExpanded(true)}
-              showOpenSectionArrow={!isCollectionsExpanded}
-              showExpandedMetaHeader={isCollectionsExpanded}
-              onCollectionPrimaryAction={(item) =>
-                handleOpenCollection(item.id)
-              }
-            />
-          </SectionBlock>
+          {filteredCollections.length > 0 && (
+            <SectionBlock>
+              <CollectionsSection
+                mode={mode}
+                items={
+                  isCollectionsExpanded
+                    ? filteredCollections
+                    : visibleCollections
+                }
+                totalItems={filteredCollections.length}
+                canSlide={canSlide}
+                canGoPrev={canGoPrev}
+                canGoNext={canGoNext}
+                movePrev={movePrev}
+                moveNext={moveNext}
+                onOpenSection={() => setCollectionsExpanded(true)}
+                showOpenSectionArrow={!isCollectionsExpanded}
+                showExpandedMetaHeader={isCollectionsExpanded}
+                onCollectionPrimaryAction={(item) =>
+                  handleOpenCollection(item.id)
+                }
+              />
+            </SectionBlock>
+          )}
 
           {isCollectionsExpanded ? null : (
             <MediaSections
