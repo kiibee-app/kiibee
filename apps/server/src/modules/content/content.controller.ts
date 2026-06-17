@@ -152,6 +152,12 @@ export class ContentController {
     return this.contentService.getRelatedCollectionContent(contentId);
   }
 
+  @Get('public/collection/:id')
+  async getPublicCollection(@Req() req: any) {
+    const collectionId = req.params.id;
+    return this.contentService.getPublicCollectionService(collectionId);
+  }
+
   @Get(':id/:userId')
   async getSingleContent(@Req() req: any) {
     const contentId = req.params.id;
