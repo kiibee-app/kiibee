@@ -3,15 +3,13 @@
 import { useMemo } from "react";
 import { API, useGetAPI } from "@/lib/http/api";
 import { resolvePublicMediaUrl } from "@/utils/media";
-import type {
-  RentedCollectionItem,
-  RentedMediaItem,
-  RentedMode,
-} from "@/utils/dummyData/viewerRentedMockData";
 import {
   RENTED_MODES,
   formatExpiryText,
   formatExpiredText,
+  RentedMode,
+  RentedMediaItem,
+  RentedCollectionItem,
 } from "@/utils/viewerRented";
 
 type BackendMediaItem = {

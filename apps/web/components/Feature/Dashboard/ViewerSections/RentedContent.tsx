@@ -6,8 +6,6 @@ import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
 import { PageWrap, SectionBlock, EmptyState } from "./styles";
-import GenericLoader from "@/components/UI/GenericLoader";
-import { LOADER_VARIANT } from "@/utils/ui";
 import {
   RENTED_SECTION_KEYS,
   RENTED_MODES,
@@ -212,18 +210,6 @@ export default function RentedContent({
     [pathname, router, searchParamsString],
   );
 
-  if (isLoading) {
-    return (
-      <PageWrap>
-        <GenericLoader
-          variant={LOADER_VARIANT.INLINE}
-          isOpen
-          label={undefined}
-        />
-      </PageWrap>
-    );
-  }
-
   if (selectedCollectionId) {
     return (
       <PageWrap>
@@ -257,7 +243,7 @@ export default function RentedContent({
         }
       />
 
-      {mode === RENTED_MODES.PURCHASED && isPurchasedLoading ? (
+      {(mode === RENTED_MODES.PURCHASED ? isPurchasedLoading : isLoading) ? (
         <EmptyState>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
             Loading...
