@@ -22,7 +22,7 @@ import {
   SkeletonSubtitle,
   SkeletonBadge,
   SkeletonFooter,
-} from "../SkeletonCard";
+} from "../Creators/styles";
 
 export default function TrendingContent() {
   const { t } = useTranslation();

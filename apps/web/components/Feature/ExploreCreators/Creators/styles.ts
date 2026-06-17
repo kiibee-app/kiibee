@@ -110,7 +110,7 @@ const shimmerKeyframes = keyframes`
   }
 `;
 
-const shimmer = css`
+export const shimmer = css`
   background: linear-gradient(
     90deg,
     ${({ theme }) => theme.colors.neutral.GRAY_200} 25%,
@@ -173,10 +173,67 @@ export const SkeletonTextBlock = styled.div`
   flex: 1;
 `;
 
-export const SkeletonFooter = styled.div`
+export const CreatorSkeletonFooter = styled.div`
   width: 100%;
   margin-top: auto;
   ${shimmer}
   height: 40px;
   border-radius: 8px;
+`;
+
+export const SkeletonBadge = styled.div`
+  width: 60px;
+  height: 22px;
+  border-radius: 5px;
+  ${shimmer}
+`;
+
+export const SkeletonTitle = styled.div`
+  width: 80%;
+  height: 18px;
+  ${shimmer}
+`;
+
+export const SkeletonSubtitle = styled.div`
+  width: 50%;
+  height: 14px;
+  ${shimmer}
+`;
+
+export const LargeSkeletonAvatar = styled.div`
+  width: 150px;
+  height: 150px;
+  border-radius: 90px;
+  flex-shrink: 0;
+  ${shimmer}
+`;
+
+export const SkeletonAvatarName = styled.div`
+  width: 80px;
+  height: 14px;
+  ${shimmer}
+`;
+
+export const SkeletonAvatarSubscribers = styled.div`
+  width: 60px;
+  height: 12px;
+  ${shimmer}
+`;
+
+export const SkeletonFooter = styled.div`
+  width: 100%;
+  margin-top: auto;
+  height: 40px;
+  border-radius: 8px;
+  ${shimmer}
+`;
+
+export const ErrorFallbackContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 24px;
+  gap: 16px;
 `;

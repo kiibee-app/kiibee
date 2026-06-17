@@ -17,10 +17,10 @@ import { formatSubscriberCountK } from "@/hooks/creators/useExploreCreators";
 import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import {
-  SkeletonAvatar,
+  LargeSkeletonAvatar,
   SkeletonAvatarName,
   SkeletonAvatarSubscribers,
-} from "../SkeletonCard";
+} from "../Creators/styles";
 import Skeleton from "@/components/UI/Skeleton";
 
 export default function TopCreators() {
@@ -60,7 +60,7 @@ export default function TopCreators() {
           ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
               <Card key={i}>
                 <Avatar>
-                  <SkeletonAvatar />
+                  <LargeSkeletonAvatar />
                 </Avatar>
                 <SkeletonAvatarName />
                 <SkeletonAvatarSubscribers />

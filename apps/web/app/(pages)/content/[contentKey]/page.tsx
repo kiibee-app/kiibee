@@ -42,8 +42,12 @@ import {
   resolvePublishedContentByKey,
   CONTENT_KIND,
 } from "@/utils/resolvePublishedContentByKey";
-import { PAYMENT_QUERY_KEY, STATUS_TONE } from "@/utils/Constants";
-import { ErrorFallbackContent } from "@/components/Feature/ExploreCreators/SkeletonCard/styles";
+import {
+  PAYMENT_QUERY_KEY,
+  STATUS_TONE,
+  STRING_EMPTY,
+} from "@/utils/Constants";
+import { ErrorFallbackContent } from "@/components/Feature/ExploreCreators/Creators/styles";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -109,7 +113,9 @@ function PublishedContentDetail() {
 
   const handlePaymentSuccessClose = () => {
     setDismissedPaymentSuccess(true);
-    const nextParams = new URLSearchParams(searchParams?.toString() || "");
+    const nextParams = new URLSearchParams(
+      searchParams?.toString() || STRING_EMPTY,
+    );
     nextParams.delete(PAYMENT_QUERY_KEY);
     const next = nextParams.toString();
     router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });

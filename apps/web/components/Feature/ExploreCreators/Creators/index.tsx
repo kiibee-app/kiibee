@@ -11,7 +11,7 @@ import {
   SkeletonAvatar,
   SkeletonTextBlock,
   SkeletonRow,
-  SkeletonFooter,
+  CreatorSkeletonFooter,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
@@ -57,7 +57,7 @@ export default function ExploreCreators({
                   <SkeletonRow $width="50%" $height="12px" />
                 </SkeletonTextBlock>
               </SkeletonTitleRow>
-              <SkeletonFooter />
+              <CreatorSkeletonFooter />
             </SkeletonCard>
           ))}
         </Grid>

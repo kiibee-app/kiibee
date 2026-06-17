@@ -7,6 +7,8 @@ import { MonoText } from "@/components/UI/Monotext";
 import {
   ACCESS_TYPE_FREE,
   EXPLORE_PAGE_SIZE,
+  EXPLORE_TABS,
+  URL_FORMAT_IDS,
   VARIANT,
 } from "@/utils/Constants";
 import Skeleton from "@/components/UI/Skeleton";
@@ -36,23 +38,6 @@ import {
   Section,
   TabButton,
 } from "./styles";
-import { tabs } from "@/utils/common";
-import {
-  SkeletonCard,
-  SkeletonImage,
-  SkeletonTitle,
-  SkeletonSubtitle,
-  SkeletonBadge,
-  SkeletonFooter,
-} from "../SkeletonCard";
-
-const EXPLORE_TABS: { label: string; sort: ExploreContentSort }[] = [
-  { label: tabs[0], sort: EXPLORE_CONTENT_SORT.NEW },
-  { label: tabs[1], sort: EXPLORE_CONTENT_SORT.POPULAR },
-  { label: tabs[2], sort: EXPLORE_CONTENT_SORT.ALL },
-];
-
-const URL_FORMAT_IDS = new Set(["video", "audio", "pdf", "epub", "web"]);
 
 function normalizeUrlFormat(format: string | null) {
   if (!format) return null;

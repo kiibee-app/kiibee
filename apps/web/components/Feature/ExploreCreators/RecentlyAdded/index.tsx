@@ -32,7 +32,7 @@ import {
   SkeletonSubtitle,
   SkeletonBadge,
   SkeletonFooter,
-} from "../SkeletonCard";
+} from "../Creators/styles";
 import { SKELETON_COUNT } from "@/utils/Constants";
 
 export default function RecentlyAdded() {
