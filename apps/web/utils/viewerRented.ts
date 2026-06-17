@@ -156,8 +156,7 @@ export function getCollectionBadgeText(mode: RentedMode) {
 }
 
 export function getCollectionPrimaryActionText(mode: RentedMode) {
-  if (mode === RENTED_MODES.PURCHASED) return "See content";
-  return "Buy xx kr";
+  return "See content";
 }
 
 export const ACTIVE_RENTAL_TEXT = {

@@ -122,13 +122,16 @@ export default function MediaSections({
                 subtitle={<MonoText $use="Body_Medium">{item.author}</MonoText>}
                 badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
                 footer={
-                  hasDetailView || isCurrent ? (
+                  hasDetailView ||
+                  isCurrent ||
+                  mode === RENTED_MODES.PREVIOUSLY ? (
                     <GenericButton
                       variant={VARIANT.SECONDARY}
                       size="md"
                       fullWidth
+                      disabled={mode === RENTED_MODES.PREVIOUSLY}
                       onClick={
-                        onMediaPrimaryAction
+                        onMediaPrimaryAction && mode !== RENTED_MODES.PREVIOUSLY
                           ? () => onMediaPrimaryAction(item)
                           : undefined
                       }

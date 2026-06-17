@@ -197,7 +197,7 @@ export default function CollectionsSection({
               </ElementsPill>
 
               <CollectionActionRow>
-                {isPurchased ? (
+                {isPurchased || isCurrent ? (
                   <CollectionBuyButton
                     className="collection-cta"
                     onClick={(e: React.MouseEvent) => {
@@ -258,8 +258,9 @@ export default function CollectionsSection({
                     <GenericButton
                       variant={VARIANT.PRIMARY}
                       size="md"
+                      disabled={mode === RENTED_MODES.PREVIOUSLY}
                       onClick={
-                        isPurchased && onCollectionPrimaryAction
+                        (isPurchased || isCurrent) && onCollectionPrimaryAction
                           ? () => onCollectionPrimaryAction(item)
                           : undefined
                       }
@@ -278,7 +279,8 @@ export default function CollectionsSection({
                           {ACTIVE_RENTAL_TEXT.expiresIn}
                         </MonoText>
                       </PassiveActionBlock>
-                    ) : isPurchased ? null : (
+                    ) : isPurchased ||
+                      mode === RENTED_MODES.PREVIOUSLY ? null : (
                       <GenericButton variant={VARIANT.SOFT_OUTLINE} size="md">
                         {RENTED_BUTTON_TEXT.rent}
                       </GenericButton>
