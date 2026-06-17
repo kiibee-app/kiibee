@@ -4,7 +4,7 @@ import { useState } from "react";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTrendingContent } from "@/hooks/feed/useTrendingContent";
-import { LOAD_MORE_SIZE } from "@/utils/Constants";
+import { LOAD_MORE_SIZE, SKELETON_COUNT } from "@/utils/Constants";
 import { Section, SectionTag } from "../RecentlyAdded/styles";
 import Skeleton from "@/components/UI/Skeleton";
 import { FEED_CONTENT_PAGE_SIZE } from "@/utils/feedContentToTutorial";
@@ -23,9 +23,6 @@ import {
   SkeletonBadge,
   SkeletonFooter,
 } from "../SkeletonCard";
-
-const LOAD_MORE_SIZE = 12;
-const SKELETON_COUNT = 6;
 
 export default function TrendingContent() {
   const { t } = useTranslation();

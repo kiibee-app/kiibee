@@ -33,8 +33,7 @@ import {
   SkeletonBadge,
   SkeletonFooter,
 } from "../SkeletonCard";
-
-const SKELETON_COUNT = 6;
+import { SKELETON_COUNT } from "@/utils/Constants";
 
 export default function RecentlyAdded() {
   const { t } = useTranslation();

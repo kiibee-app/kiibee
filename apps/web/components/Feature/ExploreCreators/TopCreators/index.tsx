@@ -10,6 +10,7 @@ import { PATHS } from "@/utils/path";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 import {
   CREATOR_CHANNEL_AVATAR_TEXT,
+  SKELETON_COUNT,
   TOP_CREATORS_LIMIT,
 } from "@/utils/Constants";
 import { formatSubscriberCountK } from "@/hooks/creators/useExploreCreators";
@@ -20,8 +21,6 @@ import {
   SkeletonAvatarName,
   SkeletonAvatarSubscribers,
 } from "../SkeletonCard";
-
-const SKELETON_COUNT = 5;
 import Skeleton from "@/components/UI/Skeleton";
 
 export default function TopCreators() {
