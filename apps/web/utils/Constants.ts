@@ -17,6 +17,7 @@ export const CREATOR_CHANNEL_AVATAR_TEXT = {
   COMPACT: "Heading3",
 } as const satisfies Record<string, keyof typeof typography>;
 export const UNKNOWN = "Unknown";
+export const CREATOR = "Creator";
 
 export type CreatorChannelAvatarTextUse =
   (typeof CREATOR_CHANNEL_AVATAR_TEXT)[keyof typeof CREATOR_CHANNEL_AVATAR_TEXT];

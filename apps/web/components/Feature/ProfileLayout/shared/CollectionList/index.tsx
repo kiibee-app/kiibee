@@ -17,7 +17,7 @@ import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { useGetAPI } from "@/lib/http/api/getApi";
-import { resolveImageUrl, VARIANT } from "@/utils/Constants";
+import { CREATOR, resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { tutorialVideos } from "@/utils/data";
 import {
   RENTED_MODES,
@@ -153,7 +153,7 @@ export default function CollectionList() {
         return {
           id,
           title: group.title,
-          author: displayName || "Creator",
+          author: displayName || CREATOR,
           elementCount: group.count,
           coverSrc: group.coverSrc,
           hideBadge: true,
