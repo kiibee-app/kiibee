@@ -1,11 +1,15 @@
 import type { typography } from "@repo/ui/typography";
-import { COLLECTIONS, HOME } from "./common";
+import { COLLECTIONS, HOME, tabs } from "./common";
 import { NavBarProps } from "./profile";
 import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
 } from "./admissionRequirements";
 import type { ContentFormState } from "@/types/contentTypes";
+import {
+  EXPLORE_CONTENT_SORT,
+  ExploreContentSort,
+} from "@/hooks/feed/useExploreContent";
 
 export const CREATOR_CHANNEL_AVATAR_TEXT = {
   HERO: "Heading2",
@@ -336,6 +340,7 @@ export const EXPLORE_PAGE_SIZE = 12;
 export const TOP_CREATORS_LIMIT = 6;
 export const LOAD_MORE_SIZE = 12;
 export const CATEGORY_ALL = "all";
+export const SKELETON_COUNT = 5;
 
 export const SORT_OPTION_NEW = "new";
 export const SORT_OPTION_POPULAR = "popular";
@@ -388,6 +393,14 @@ export const ORDER_TYPES = {
   PURCHASE: "purchase",
   RENTAL: "rental",
 } as const;
+
+export const EXPLORE_TABS: { label: string; sort: ExploreContentSort }[] = [
+  { label: tabs[0], sort: EXPLORE_CONTENT_SORT.NEW },
+  { label: tabs[1], sort: EXPLORE_CONTENT_SORT.POPULAR },
+  { label: tabs[2], sort: EXPLORE_CONTENT_SORT.ALL },
+];
+
+export const URL_FORMAT_IDS = new Set(["video", "audio", "pdf", "epub", "web"]);
 
 export type OrderItemType = (typeof ORDER_TYPES)[keyof typeof ORDER_TYPES];
 

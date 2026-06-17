@@ -85,6 +85,7 @@ export default function SingleCollectionHero({
             src={collection}
             alt={title}
             fill
+            sizes="(max-width: 768px) 100vw, 560px"
             style={{ objectFit: "cover" }}
             priority
           />

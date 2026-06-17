@@ -10,11 +10,17 @@ import { PATHS } from "@/utils/path";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 import {
   CREATOR_CHANNEL_AVATAR_TEXT,
+  SKELETON_COUNT,
   TOP_CREATORS_LIMIT,
 } from "@/utils/Constants";
 import { formatSubscriberCountK } from "@/hooks/creators/useExploreCreators";
 import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import {
+  LargeSkeletonAvatar,
+  SkeletonAvatarName,
+  SkeletonAvatarSubscribers,
+} from "../Creators/styles";
 import Skeleton from "@/components/UI/Skeleton";
 
 export default function TopCreators() {
@@ -50,32 +56,42 @@ export default function TopCreators() {
       </Header>
 
       <List>
-        {creators.map((creator) => (
-          <Card
-            key={creator.id}
-            as="a"
-            href={getPublicCreatorProfilePath(creator.id)}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Avatar>
-              <CreatorChannelAvatar
-                avatarUrl={creator.profileImageUrl}
-                initial={getNameInitials(creator.name)}
-                alt={creator.name}
-                sizes="150px"
-                initialUse={CREATOR_CHANNEL_AVATAR_TEXT.HERO}
-              />
-            </Avatar>
+        {isLoading
+          ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+              <Card key={i}>
+                <Avatar>
+                  <LargeSkeletonAvatar />
+                </Avatar>
+                <SkeletonAvatarName />
+                <SkeletonAvatarSubscribers />
+              </Card>
+            ))
+          : creators.map((creator) => (
+              <Card
+                key={creator.id}
+                as="a"
+                href={getPublicCreatorProfilePath(creator.id)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Avatar>
+                  <CreatorChannelAvatar
+                    avatarUrl={creator.profileImageUrl}
+                    initial={getNameInitials(creator.name)}
+                    alt={creator.name}
+                    sizes="150px"
+                    initialUse={CREATOR_CHANNEL_AVATAR_TEXT.HERO}
+                  />
+                </Avatar>
 
-            <MonoText $use="Body_Medium">{creator.name}</MonoText>
-            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-              {t(CREATORS.subscribersCount, {
-                count: formatSubscriberCountK(creator.subscriberCount),
-              })}
-            </MonoText>
-          </Card>
-        ))}
+                <MonoText $use="Body_Medium">{creator.name}</MonoText>
+                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+                  {t(CREATORS.subscribersCount, {
+                    count: formatSubscriberCountK(creator.subscriberCount),
+                  })}
+                </MonoText>
+              </Card>
+            ))}
       </List>
     </Wrapper>
   );

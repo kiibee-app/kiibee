@@ -25,6 +25,15 @@ import {
 } from "@/utils/feedContentToTutorial";
 import Skeleton from "@/components/UI/Skeleton";
 import { PATHS } from "@/utils/path";
+import {
+  SkeletonCard,
+  SkeletonImage,
+  SkeletonTitle,
+  SkeletonSubtitle,
+  SkeletonBadge,
+  SkeletonFooter,
+} from "../Creators/styles";
+import { SKELETON_COUNT } from "@/utils/Constants";
 
 export default function RecentlyAdded() {
   const { t } = useTranslation();
@@ -115,9 +124,19 @@ export default function RecentlyAdded() {
         </HeaderActions>
       </SectionHeader>
       <Grid $columnMax="300px">
-        {visibleTutorials.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
-        ))}
+        {isLoading
+          ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+              <SkeletonCard key={i}>
+                <SkeletonImage />
+                <SkeletonBadge />
+                <SkeletonTitle />
+                <SkeletonSubtitle />
+                <SkeletonFooter />
+              </SkeletonCard>
+            ))
+          : visibleTutorials.map((tutorial) => (
+              <TutorialCard key={tutorial.id} tutorial={tutorial} />
+            ))}
       </Grid>
     </Section>
   );
