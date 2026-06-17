@@ -11,6 +11,13 @@ export const SidebarRoot = styled.aside<{ $isOpen: boolean }>`
   height: 100vh;
 
   @media (max-width: ${({ theme }) => theme.media.tablet}) {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100dvh;
+    border-radius: 0;
+    border-right: none;
     z-index: 50;
     transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
     transition: transform ${({ theme }) => theme.animations.normal};

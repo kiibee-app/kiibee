@@ -2,36 +2,10 @@ import design1 from "@/assets/images/design1.webp";
 import design2 from "@/assets/images/design2.webp";
 import design3 from "@/assets/images/design.webp";
 
-export type RentedMode = "purchased" | "currently" | "previously";
-export type RentedMediaType = "video" | "audio" | "pdf";
-
-export type CollectionAction = {
-  label: string;
-  sublabel?: string;
-  variant?: "primary" | "secondary";
-  href?: string;
-};
-
-export type RentedCollectionItem = {
-  id: string;
-  title: string;
-  author: string;
-  elementCount: number;
-  coverSrc: string;
-  actions?: CollectionAction[];
-  hideBadge?: boolean;
-  href?: string;
-};
-
-export type RentedMediaItem = {
-  id: string;
-  mediaType: RentedMediaType;
-  category: string;
-  thumbSrc: string;
-  title: string;
-  author: string;
-  expiryText: string;
-};
+import type {
+  RentedCollectionItem,
+  RentedMediaItem,
+} from "@/utils/viewerRented";
 
 const DESIGN_IMG_1 = design1.src;
 const DESIGN_IMG_2 = design2.src;

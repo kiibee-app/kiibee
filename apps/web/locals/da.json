@@ -9,7 +9,7 @@
     "exploreCreators": "Udforsk skabere",
     "about": "Om Kiibee",
     "login": "Log ind",
-    "dashboard": "Oversigt",
+    "dashboard": "Dashboard",
     "accountProfile": "Profil",
     "logout": "Log ud",
     "profileMenu": "Kontomenu",
@@ -1903,15 +1903,6 @@
     "noStack": "Stack trace er ikke tilgængelig.",
     "unknownError": "Ukendt fejlmeddelelse"
   },
-  "sidebar": {
-    "users": "Brugere",
-    "help": "Hjælp",
-    "currentlyRented": "Aktuelt lejet",
-    "previouslyRented": "Tidligere lejet",
-    "helpVideos": "Hjælpevideoer",
-    "userManual": "Brugervejledning",
-    "conditions": "Vilkår"
-  },
   "errors": {
     "missingContentFormProvider": "useContentForm skal bruges inden for en ContentFormProvider",
     "noContentToSave": "Intet indhold at gemme",
@@ -1921,5 +1912,20 @@
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
     "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
     "imageUploadFailed": "Billedupload mislykkedes"
+  },
+  "accessGate": {
+    "pageCodeTitle": "Denne side kræver en kode for at få adgang",
+    "pageEmailTitle": "Denne side kræver din e-mail for at få adgang",
+    "contentCodeTitle": "Dette indhold kræver en kode for at få adgang",
+    "contentEmailTitle": "Dette indhold kræver din e-mail for at få adgang",
+    "codePlaceholder": "Adgangskode",
+    "codeLabel": "Indtast adgangskode",
+    "nameLabel": "Dit navn",
+    "namePlaceholder": "Navn",
+    "emailLabel": "Indtast din e-mail",
+    "emailPlaceholder": "E-mail",
+    "submitCode": "Tilgå indhold",
+    "submitEmail": "Tilgå indhold",
+    "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee."
   }
 }
