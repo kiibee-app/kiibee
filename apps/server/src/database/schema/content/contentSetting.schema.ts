@@ -11,6 +11,7 @@ export const contentSettings = pgTable(
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),
     accessType: contentSettingsEnum('access_type').notNull().default('free'),
+    passwordHash: text('password_hash'),
     ...baseTimestamps,
   },
   (table) => ({

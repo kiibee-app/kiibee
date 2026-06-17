@@ -39,26 +39,28 @@ export type {
   SingleContentPageProps,
 } from "@/types/contentTypes";
 
-export default function SingleContentPage({
-  contentId,
-  collectionId,
-  title,
-  descriptions = [],
-  tags = [],
-  statusLabel,
-  expiry,
-  creator,
-  hero,
-  primaryAction,
-  primaryActions,
-  metaItems = [],
-  shareLabel = "Share",
-  showShare = true,
-  showBack = true,
-  onBack,
-  onShare,
-  children,
-}: SingleContentPageProps) {
+export default function SingleContentPage(props: SingleContentPageProps) {
+  const {
+    contentId,
+    collectionId,
+    title,
+    descriptions = [],
+    tags = [],
+    statusLabel,
+    expiry,
+    creator,
+    hero,
+    primaryAction,
+    primaryActions,
+    metaItems = [],
+    shareLabel = "Share",
+    showShare = true,
+    showBack = true,
+    onBack,
+    onShare,
+    children,
+    accessGate,
+  } = props;
   const router = useRouter();
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
@@ -258,6 +260,7 @@ export default function SingleContentPage({
             primaryActions={bodyPrimaryActions}
             expiry={expiry}
             metaItems={metaItems}
+            accessGate={accessGate}
           />
         </ContentLayout>
       </Card>

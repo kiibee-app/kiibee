@@ -14,7 +14,6 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
-import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
 
@@ -39,7 +38,13 @@ import {
   resolvePublishedContentByKey,
   CONTENT_KIND,
 } from "@/utils/resolvePublishedContentByKey";
-import { PAYMENT_QUERY_KEY, STATUS_TONE } from "@/utils/Constants";
+import {
+  PAYMENT_QUERY_KEY,
+  STATUS_TONE,
+  VARIANT_CONTENT,
+} from "@/utils/Constants";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useContentAccessGate } from "@/hooks/useContentAccessGate";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -48,7 +53,7 @@ function PublishedContentDetail() {
   const searchParams = useSearchParams();
   const params = useParams();
   const user = useStoredLoginUser();
-  const resolvedUserId = user?.id ?? readStoredLoginUser()?.id;
+  const resolvedUserId = user?.id;
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
   const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);
@@ -99,6 +104,12 @@ function PublishedContentDetail() {
     content,
     mediaResponse?.url || mediaResponse?.iframeUrl,
   );
+  const {
+    gateType: activeGateType,
+    isLoading: gateLoading,
+    handleSuccess: handleGateSuccess,
+  } = useContentAccessGate(content, relatedCollectionQuery.data?.collectionId);
+
   const hasUnlockedContent = Boolean(content?.accessInfo);
   const showPaymentSuccessModal =
     isPaymentSuccess && hasUnlockedContent && !dismissedPaymentSuccess;
@@ -127,7 +138,7 @@ function PublishedContentDetail() {
     />
   );
 
-  if (isLoading) {
+  if (isLoading || gateLoading) {
     return (
       <Section>
         <MonoText $use="H5_Regular">
@@ -176,6 +187,15 @@ function PublishedContentDetail() {
             inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
             viewerId: resolvedUserId,
           })}
+          accessGate={
+            activeGateType ? (
+              <AccessGate
+                type={activeGateType}
+                variant={VARIANT_CONTENT}
+                onSuccess={handleGateSuccess}
+              />
+            ) : undefined
+          }
         >
           {relatedCollectionQuery.data?.videos?.length ? (
             <CollectionItems

@@ -232,6 +232,8 @@ export const uiToApiAccessTypeMap: Record<
   [ADMISSION_REQUIREMENT_VALUES.password]: ACCESS_TYPE_PASSWORD,
   [ADMISSION_REQUIREMENT_VALUES.email]: ACCESS_TYPE_EMAIL_GATED,
   [ADMISSION_REQUIREMENT_VALUES.free]: ACCESS_TYPE_FREE,
+  set_password: ACCESS_TYPE_PASSWORD,
+  request_email: ACCESS_TYPE_EMAIL_GATED,
 };
 
 export const contentTypeMimeMap: Record<string, string> = {
@@ -274,10 +276,8 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       ? formState.visibility.toLowerCase()
       : undefined,
     accessType: formState.admissionRequirement
-      ? formState.admissionRequirement.toLowerCase() ===
-        ADMISSION_REQUIREMENT_PAYMENT.toLowerCase()
-        ? ACCESS_TYPE_PAID
-        : ACCESS_TYPE_FREE
+      ? (uiToApiAccessTypeMap[formState.admissionRequirement.toLowerCase()] ??
+        ACCESS_TYPE_FREE)
       : undefined,
     buyPrice: formState.purchaseAmount
       ? parseFloat(formState.purchaseAmount)
@@ -345,6 +345,30 @@ export const FILTER_SECTION_CREATORS = "creators";
 export const FILTER_SECTION_FORMATS = "formats";
 export const FILTER_SECTION_PRICE = "price";
 export const FILTER_SECTION_RATING = "rating";
+
+export type AccessGateType = "code" | "email";
+export type AccessGateVariant = "page" | "content";
+
+export const VARIANT_CONTENT: AccessGateVariant = "content";
+export const VARIANT_PAGE: AccessGateVariant = "page";
+export const TYPE_CODE: AccessGateType = "code";
+export const TYPE_EMAIL: AccessGateType = "email";
+export const GATE_QUERY_PARAM = "gate";
+export const ID_QUERY_PARAM = "id";
+export const SET_PASSWORD_ACCESS = "set_password";
+export const REQUEST_EMAIL_ACCESS = "request_email";
+
+export const INPUT_TYPE_TEXT = "text";
+export const INPUT_TYPE_EMAIL = "email";
+export const BUTTON_TYPE_SUBMIT = "submit";
+
+export const AUTOCOMPLETE_OFF = "off";
+export const AUTOCOMPLETE_NAME = "name";
+export const AUTOCOMPLETE_EMAIL = "email";
+
+export const HTML_ID_CODE = "access-gate-code";
+export const HTML_ID_NAME = "access-gate-name";
+export const HTML_ID_EMAIL = "access-gate-email";
 
 export const SHARE_STATUS = {
   IDLE: "idle",
