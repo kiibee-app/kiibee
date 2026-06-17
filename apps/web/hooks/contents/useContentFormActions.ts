@@ -57,12 +57,6 @@ import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
 
-const contentSettingToUiMap: Record<string, AdmissionRequirementValue> = {
-  free: ADMISSION_REQUIREMENT_VALUES.free,
-  set_password: ADMISSION_REQUIREMENT_VALUES.password,
-  request_email: ADMISSION_REQUIREMENT_VALUES.email,
-};
-
 type Params = {
   activeTab: ContentTab;
   isUploadMode: boolean;
@@ -138,6 +132,12 @@ export function useContentFormActions({
   const [syncedSettingsKey, setSyncedSettingsKey] = useState(
     contentSettingAccessType ?? null,
   );
+
+  const contentSettingToUiMap: Record<string, AdmissionRequirementValue> = {
+    free: ADMISSION_REQUIREMENT_VALUES.free,
+    set_password: ADMISSION_REQUIREMENT_VALUES.password,
+    request_email: ADMISSION_REQUIREMENT_VALUES.email,
+  };
 
   if (selectedCollection) {
     if (collectionId !== syncedCollectionId) {
