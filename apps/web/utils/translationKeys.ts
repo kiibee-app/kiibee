@@ -508,6 +508,22 @@ export const SUBSCRIPTION = {
   },
 };
 
+export const ACCESS_GATE = {
+  pageCodeTitle: "accessGate.pageCodeTitle",
+  pageEmailTitle: "accessGate.pageEmailTitle",
+  contentCodeTitle: "accessGate.contentCodeTitle",
+  contentEmailTitle: "accessGate.contentEmailTitle",
+  codePlaceholder: "accessGate.codePlaceholder",
+  codeLabel: "accessGate.codeLabel",
+  nameLabel: "accessGate.nameLabel",
+  namePlaceholder: "accessGate.namePlaceholder",
+  emailLabel: "accessGate.emailLabel",
+  emailPlaceholder: "accessGate.emailPlaceholder",
+  submitCode: "accessGate.submitCode",
+  submitEmail: "accessGate.submitEmail",
+  consentText: "accessGate.consentText",
+} as const;
+
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
@@ -525,6 +541,7 @@ const TRANSLATION_KEYS = {
   SETTINGS,
   COMMON,
   SUBSCRIPTION,
+  ACCESS_GATE,
 };
 
 export default TRANSLATION_KEYS;

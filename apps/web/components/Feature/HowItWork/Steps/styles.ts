@@ -1,7 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
-
-const cardImageRatios = [70, 90, 110] as const;
+import { CARD_IMAGE_RATIOS } from "@/utils/landingUtils";
 
 export const StepsSection = styled.section`
   width: 100%;
@@ -59,15 +58,20 @@ export const GridItem = styled.div`
   width: 100%;
   display: flex;
   align-items: flex-end;
+  will-change: transform;
+  backface-visibility: hidden;
 
   ${media.tablet} {
     flex: none;
     max-width: 500px;
     align-items: stretch;
+    will-change: auto;
   }
 `;
 
-export const ImgWrap = styled.div<{ $ratio: (typeof cardImageRatios)[number] }>`
+export const ImgWrap = styled.div<{
+  $ratio: (typeof CARD_IMAGE_RATIOS)[number];
+}>`
   position: relative;
   width: 100%;
   border-radius: 14px;
@@ -90,14 +94,6 @@ export const Card = styled.div<{ $index: number }>`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-
-  ${({ $index }) =>
-    $index === 2 &&
-    css`
-      ${ImgWrap} {
-        transform: translateY(-2px);
-      }
-    `}
 
   @media (hover: hover) {
     &:hover {
@@ -131,4 +127,4 @@ export const CardText = styled.p`
   }
 `;
 
-export const CARD_IMAGE_RATIOS = cardImageRatios;
+export { CARD_IMAGE_RATIOS };

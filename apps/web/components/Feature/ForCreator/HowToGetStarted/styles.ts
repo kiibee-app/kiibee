@@ -64,11 +64,12 @@ export const ImageWrapper = styled.div<{ $active: boolean }>`
 
 export const ContentContainer = styled.div`
   width: 100%;
+  padding-bottom: 10vh;
 
   @media (min-width: ${breakpoints.tablet}) {
     width: 55%;
+    padding-bottom: 0;
   }
-  padding-bottom: 10vh;
 `;
 
 export const Title = styled.h1`
@@ -103,9 +104,17 @@ export const StepWrapper = styled.div`
   min-height: 20vh;
   padding-bottom: 7.5rem;
 
+  &:last-child {
+    padding-bottom: 0;
+  }
+
   @media (min-width: ${breakpoints.tablet}) {
     min-height: 0;
     padding-bottom: 7.75rem;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
   }
 `;
 
@@ -203,4 +212,8 @@ export const Bullet = styled.span`
 
 export const Spacer = styled.div`
   height: 5vh;
+
+  @media (min-width: ${breakpoints.tablet}) {
+    display: none;
+  }
 `;

@@ -46,8 +46,11 @@ import {
   PAYMENT_QUERY_KEY,
   STATUS_TONE,
   STRING_EMPTY,
+  VARIANT_CONTENT,
 } from "@/utils/Constants";
 import { ErrorFallbackContent } from "@/components/Feature/ExploreCreators/Creators/styles";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useContentAccessGate } from "@/hooks/useContentAccessGate";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -107,6 +110,12 @@ function PublishedContentDetail() {
     content,
     mediaResponse?.url || mediaResponse?.iframeUrl,
   );
+  const {
+    gateType: activeGateType,
+    isLoading: gateLoading,
+    handleSuccess: handleGateSuccess,
+  } = useContentAccessGate(content, relatedCollectionQuery.data?.collectionId);
+
   const hasUnlockedContent = Boolean(content?.accessInfo);
   const showPaymentSuccessModal =
     isPaymentSuccess && hasUnlockedContent && !dismissedPaymentSuccess;
@@ -137,7 +146,7 @@ function PublishedContentDetail() {
     />
   );
 
-  if (isLoading) {
+  if (isLoading || gateLoading) {
     return (
       <Section>
         <GenericLoader
@@ -188,6 +197,15 @@ function PublishedContentDetail() {
             inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
             viewerId: resolvedUserId,
           })}
+          accessGate={
+            activeGateType ? (
+              <AccessGate
+                type={activeGateType}
+                variant={VARIANT_CONTENT}
+                onSuccess={handleGateSuccess}
+              />
+            ) : undefined
+          }
         >
           {relatedCollectionQuery.data?.videos?.length ? (
             <CollectionItems
