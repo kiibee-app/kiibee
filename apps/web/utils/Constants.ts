@@ -1,17 +1,22 @@
 import type { typography } from "@repo/ui/typography";
-import { COLLECTIONS, HOME } from "./common";
+import { COLLECTIONS, HOME, tabs } from "./common";
 import { NavBarProps } from "./profile";
 import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
 } from "./admissionRequirements";
 import type { ContentFormState } from "@/types/contentTypes";
+import {
+  EXPLORE_CONTENT_SORT,
+  ExploreContentSort,
+} from "@/hooks/feed/useExploreContent";
 
 export const CREATOR_CHANNEL_AVATAR_TEXT = {
   HERO: "Heading2",
   NAVBAR: "H4_SemiBold",
   COMPACT: "Heading3",
 } as const satisfies Record<string, keyof typeof typography>;
+export const UNKNOWN = "Unknown";
 
 export type CreatorChannelAvatarTextUse =
   (typeof CREATOR_CHANNEL_AVATAR_TEXT)[keyof typeof CREATOR_CHANNEL_AVATAR_TEXT];
@@ -232,6 +237,8 @@ export const uiToApiAccessTypeMap: Record<
   [ADMISSION_REQUIREMENT_VALUES.password]: ACCESS_TYPE_PASSWORD,
   [ADMISSION_REQUIREMENT_VALUES.email]: ACCESS_TYPE_EMAIL_GATED,
   [ADMISSION_REQUIREMENT_VALUES.free]: ACCESS_TYPE_FREE,
+  set_password: ACCESS_TYPE_PASSWORD,
+  request_email: ACCESS_TYPE_EMAIL_GATED,
 };
 
 export const contentTypeMimeMap: Record<string, string> = {
@@ -274,10 +281,8 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       ? formState.visibility.toLowerCase()
       : undefined,
     accessType: formState.admissionRequirement
-      ? formState.admissionRequirement.toLowerCase() ===
-        ADMISSION_REQUIREMENT_PAYMENT.toLowerCase()
-        ? ACCESS_TYPE_PAID
-        : ACCESS_TYPE_FREE
+      ? (uiToApiAccessTypeMap[formState.admissionRequirement.toLowerCase()] ??
+        ACCESS_TYPE_FREE)
       : undefined,
     buyPrice: formState.purchaseAmount
       ? parseFloat(formState.purchaseAmount)
@@ -335,6 +340,7 @@ export const EXPLORE_PAGE_SIZE = 12;
 export const TOP_CREATORS_LIMIT = 6;
 export const LOAD_MORE_SIZE = 12;
 export const CATEGORY_ALL = "all";
+export const SKELETON_COUNT = 5;
 
 export const SORT_OPTION_NEW = "new";
 export const SORT_OPTION_POPULAR = "popular";
@@ -345,6 +351,30 @@ export const FILTER_SECTION_CREATORS = "creators";
 export const FILTER_SECTION_FORMATS = "formats";
 export const FILTER_SECTION_PRICE = "price";
 export const FILTER_SECTION_RATING = "rating";
+
+export type AccessGateType = "code" | "email";
+export type AccessGateVariant = "page" | "content";
+
+export const VARIANT_CONTENT: AccessGateVariant = "content";
+export const VARIANT_PAGE: AccessGateVariant = "page";
+export const TYPE_CODE: AccessGateType = "code";
+export const TYPE_EMAIL: AccessGateType = "email";
+export const GATE_QUERY_PARAM = "gate";
+export const ID_QUERY_PARAM = "id";
+export const SET_PASSWORD_ACCESS = "set_password";
+export const REQUEST_EMAIL_ACCESS = "request_email";
+
+export const INPUT_TYPE_TEXT = "text";
+export const INPUT_TYPE_EMAIL = "email";
+export const BUTTON_TYPE_SUBMIT = "submit";
+
+export const AUTOCOMPLETE_OFF = "off";
+export const AUTOCOMPLETE_NAME = "name";
+export const AUTOCOMPLETE_EMAIL = "email";
+
+export const HTML_ID_CODE = "access-gate-code";
+export const HTML_ID_NAME = "access-gate-name";
+export const HTML_ID_EMAIL = "access-gate-email";
 
 export const SHARE_STATUS = {
   IDLE: "idle",
@@ -363,6 +393,14 @@ export const ORDER_TYPES = {
   PURCHASE: "purchase",
   RENTAL: "rental",
 } as const;
+
+export const EXPLORE_TABS: { label: string; sort: ExploreContentSort }[] = [
+  { label: tabs[0], sort: EXPLORE_CONTENT_SORT.NEW },
+  { label: tabs[1], sort: EXPLORE_CONTENT_SORT.POPULAR },
+  { label: tabs[2], sort: EXPLORE_CONTENT_SORT.ALL },
+];
+
+export const URL_FORMAT_IDS = new Set(["video", "audio", "pdf", "epub", "web"]);
 
 export type OrderItemType = (typeof ORDER_TYPES)[keyof typeof ORDER_TYPES];
 

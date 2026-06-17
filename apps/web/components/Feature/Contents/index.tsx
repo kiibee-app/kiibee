@@ -32,7 +32,7 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { ADD_CONTENT_TABS, APPEARANCE } from "@/utils/common";
+import { ADD_CONTENT_TABS, APPEARANCE, SETTINGS } from "@/utils/common";
 import { ADMISSION_REQUIREMENTS } from "@/utils/admissionRequirements";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
@@ -278,6 +278,7 @@ function CreatorsContentsInner() {
     hasUnsavedChanges,
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
+    hasSettingsUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
     resetUploadState,
@@ -383,6 +384,7 @@ function CreatorsContentsInner() {
           onSave={handleHeaderSave}
           isSaveDisabled={
             (activeTab === APPEARANCE && !hasUnsavedChanges) ||
+            (activeTab === SETTINGS && !hasSettingsUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
               !hasGeneralUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.METADATA &&

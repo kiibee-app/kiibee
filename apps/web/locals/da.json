@@ -293,30 +293,31 @@
     }
   },
   "watchingSteps": {
-    "heading": "How it works",
-    "tagline": "Start watching in just a few steps.",
-    "previewAlt": "How it works",
+    "heading": "Sådan fungerer det",
+    "tagline": "Start med at se i få trin.",
+    "previewAlt": "Sådan fungerer det",
     "steps": {
       "browse": {
-        "label": "Browse",
-        "description": "Discover creators and collections that match your interests."
+        "label": "Gennemse",
+        "description": "Opdag skabere og samlinger, der matcher dine interesser."
       },
       "choose": {
-        "label": "Choose",
-        "description": "Rent, buy, or access content directly on Kiibee."
+        "label": "Vælg",
+        "description": "Lej, køb eller få adgang til indhold direkte på Kiibee."
       },
       "enjoy": {
-        "label": "Enjoy",
-        "description": "Stream or download instantly, anytime, anywhere."
+        "label": "Nyd",
+        "description": "Stream eller download øjeblikkeligt, når som helst, hvor som helst."
       }
     },
-    "cta": "Learn more"
+    "cta": "Lær mere"
   },
   "creators": {
     "marquee": {
-      "title": "Udforsk Kiibee creators og find dine favoritter"
+      "title": "Udforsk Kiibee creators og find dine favoritter",
+      "defaultDescription": "Onlinekurserne hos Kammas Kantine er for dig, der vil lære at tage bedre vare på din krop. Du får viden om sundhed, praktiske tips og tricks samt adgang til fantastiske opskrifter, der er enkle at tilberede i dit eget køkken."
     },
-    "trendingContent": "TODO: translate - Trending content",
+    "trendingContent": "Populært indhold",
     "heading": {
       "lineOne": "Upload.",
       "lineTwo": "Market.",
@@ -396,25 +397,25 @@
       "guide": "Brugervejledning"
     },
     "whyChoose": {
-      "heading": "Why creators choose Kiibee",
+      "heading": "Hvorfor skabere vælger Kiibee",
       "leftItems": [
-        "Get your own digital content website in just a few clicks",
-        "Collect content from multiple platforms (YouTube, Vimeo, Dropbox, etc.) in one place",
-        "Sell content or offer it for free",
-        "Protect content with access codes or email signups",
-        "Use your own payment module (Dankort, credit card, MobilePay)",
-        "Offer content as downloads or online streaming",
-        "Create online programs and digital courses",
-        "Take payment for live streaming events"
+        "Få din egen digitale indholds-hjemmeside med få klik",
+        "Saml indhold fra flere platforme (YouTube, Vimeo, Dropbox osv.) på ét sted",
+        "Sælg indhold eller tilbyd det gratis",
+        "Beskyt indhold med adgangskoder eller e-mailtilmeldinger",
+        "Brug dit eget betalingsmodul (Dankort, kreditkort, MobilePay)",
+        "Tilbyd indhold som downloads eller online streaming",
+        "Opret online programmer og digitale kurser",
+        "Tag betaling for livestreaming-begivenheder"
       ],
       "rightItems": [
-        "See statistics on views and sales",
-        "Show content on all devices — mobile, tablet and desktop",
-        "Sell multiple formats (video, PDF, ePub, MP3, audio)",
-        "Store content securely on Danish servers, fully GDPR compliant",
-        "Get tailored solutions based on your needs",
-        "Sell and show your content anywhere on the web",
-        "Create your own channel or site with curated collections"
+        "Se statistik over visninger og salg",
+        "Vis indhold på alle enheder — mobil, tablet og desktop",
+        "Sælg flere formater (video, PDF, ePub, MP3, lyd)",
+        "Opbevar indhold sikkert på danske servere, fuldt GDPR-kompatibelt",
+        "Få skræddersyede løsninger baseret på dine behov",
+        "Sælg og vis dit indhold hvor som helst på nettet",
+        "Opret din egen kanal eller side med kuraterede samlinger"
       ]
     },
     "howToGetStarted": {
@@ -503,20 +504,20 @@
         }
       }
     },
-    "search": "Search for posts",
-    "sort": "Sort by:",
+    "search": "Søg efter opslag",
+    "sort": "Sorter efter:",
     "recentlyAdded": {
       "badge": "Senest tilføjet",
       "heading": "Senest tilføjet indhold",
       "tag": "Senest tilføjet"
     },
-    "viewProfile": "View profile",
+    "viewProfile": "Se profil",
     "noCreatorsFound": "Ingen skabere fundet",
     "uploadsCount": "{{count}} uploads",
-    "loadMore": "Load more",
-    "a-z": "A-z",
-    "subscribers": "Subscribers",
-    "newest": "Newest",
+    "loadMore": "Indlæs mere",
+    "a-z": "A-Å",
+    "subscribers": "Abonnenter",
+    "newest": "Nyeste",
     "topCreators": "Topskabere",
     "seeAll": "Se alle skabere",
     "subscribersCount": "{{count}}K abonnenter",
@@ -717,33 +718,33 @@
     "items": [
       {
         "title": "Gratis brugerkonto",
-        "text": "Create and update your profile at any time.",
+        "text": "Opret og opdater din profil når som helst.",
         "imageAlt": "produkt skærmbillede"
       },
       {
         "title": "Personlige anbefalinger",
-        "text": "Get content suggestions based on your interests and viewing preferences.",
+        "text": "Få indholdsforslag baseret på dine interesser og visningspræferencer.",
         "imageAlt": "anbefalinger preview"
       },
       {
         "title": "Alle køb samlet ét sted",
-        "text": "After buying or renting, you're redirected to your purchase page. You'll also receive a receipt by email with a direct link to your content.",
+        "text": "Efter køb eller leje omdirigeres du til din købsside. Du modtager også en kvittering via e-mail med et direkte link til dit indhold.",
         "imageAlt": "købshistorik"
       },
       {
         "title": "Se når som helst, på enhver enhed",
-        "text": "Access your content whenever you want: stream online or download, across mobile, tablet, and desktop.",
+        "text": "Få adgang til dit indhold, når du vil: stream online eller download, på tværs af mobil, tablet og desktop.",
         "imageAlt": "enheder preview"
       }
     ]
   },
   "tutorialVideos": {
-    "heroTitle": "Tutorial videos",
-    "heroSubtitle": "Step-by-step guides to help you succeed with Kiibee and get the most out of every launch.",
-    "sectionTag": "Getting started",
-    "sectionLabel": "Foundational chapters",
-    "sectionLink": "View playlist",
-    "buttonFreeLabel": "Free"
+    "heroTitle": "Videovejledninger",
+    "heroSubtitle": "Trin-for-trin guides til at hjælpe dig med at få succes med Kiibee og få mest muligt ud af hver lancering.",
+    "sectionTag": "Kom godt i gang",
+    "sectionLabel": "Grundlæggende kapitler",
+    "sectionLink": "Se playliste",
+    "buttonFreeLabel": "Gratis"
   },
   "callToAction": {
     "logoAlt": "Kiibee",
@@ -770,14 +771,14 @@
     "articles": "Artikler og essays"
   },
   "pricingPage": {
-    "title": "Find the perfect plan for your creative business",
-    "descriptionLine1": "Choose the plan that fits your goals. Start small, grow big, and sell your content your way.",
-    "descriptionLine2": "No hidden fees, no complicated setup, just creativity made simple.",
-    "cta": "Get started for free"
+    "title": "Find den perfekte plan til din kreative virksomhed",
+    "descriptionLine1": "Vælg den plan, der passer til dine mål. Start småt, vokse stort, og sælg dit indhold på din måde.",
+    "descriptionLine2": "Ingen skjulte gebyrer, ingen kompliceret opsætning, bare kreativitet gjort enkelt.",
+    "cta": "Kom gratis i gang"
   },
   "pricingPlans": {
-    "title": "Pricing plans overview",
-    "cta": "Get started",
+    "title": "Oversigt over prisplaner",
+    "cta": "Kom i gang",
     "plans": {
       "launch": {
         "title": "Launch",
@@ -862,37 +863,37 @@
     "title": "FAQ",
     "items": [
       {
-        "question": "Can I sell content with the free plan?",
-        "answer": "Yes. The free Launch plan lets you upload and sell up to two products with no monthly cost. It’s a great way to test your idea before upgrading."
+        "question": "Kan jeg sælge indhold med den gratis plan?",
+        "answer": "Ja. Den gratis Launch-plan lader dig uploade og sælge op til to produkter uden månedlige omkostninger. Det er en god måde at teste din idé på, før du opgraderer."
       },
       {
-        "question": "Can I change or cancel my plan?",
-        "answer": "Absolutely. You can upgrade, downgrade, or cancel your subscription at any time directly from your account settings."
+        "question": "Kan jeg ændre eller annullere min plan?",
+        "answer": "Absolut. Du kan opgradere, nedgradere eller annullere dit abonnement når som helst direkte fra dine kontoindstillinger."
       },
       {
-        "question": "Do viewers need a subscription?",
-        "answer": "No. Your customers only pay for the content you choose to sell. They do not need their own subscription to access purchases."
+        "question": "Har seere brug for et abonnement?",
+        "answer": "Nej. Dine kunder betaler kun for det indhold, du vælger at sælge. De behøver ikke deres eget abonnement for at få adgang til køb."
       }
     ]
   },
   "common": {
     "confirmationModalError": "Fejl ved bekræftelsesmodal:",
     "share": "Del",
-    "search": "TODO: translate - Search",
-    "clearSearch": "TODO: translate - Clear search",
+    "search": "Søg",
+    "clearSearch": "Ryd søgning",
     "noResults": "Ingen resultater fundet",
-    "toggleSearch": "TODO: translate - Toggle search",
+    "toggleSearch": "Skift søgning",
     "optional": "valgfrit",
-    "save": "Save",
-    "cancel": "Cancel",
+    "save": "Gem",
+    "cancel": "Annuller",
     "back": "Tilbage",
-    "goBack": "TODO: translate - Go back",
+    "goBack": "Gå tilbage",
     "close": "Luk",
-    "helpOptions": "TODO: translate - Help options",
-    "viewerProfile": "TODO: translate - Viewer profile",
-    "creatorProfile": "TODO: translate - Creator profile",
-    "createProfileFooterAria": "TODO: translate - Create profile footer",
-    "creatorActivityChart": "TODO: translate - Creator activity stacked bar chart",
+    "helpOptions": "Hjælpemuligheder",
+    "viewerProfile": "Seerprofil",
+    "creatorProfile": "Skaberprofil",
+    "createProfileFooterAria": "Opret profilefooter",
+    "creatorActivityChart": "Skaberaktivitet stablet søjlediagram",
     "previous": "Forrige",
     "next": "Næste",
     "selectDateRange": "Vælg datointerval",
@@ -1026,10 +1027,10 @@
     }
   },
   "startCreating": {
-    "heading": "Start creating with Kiibee today",
-    "description1": "Join hundreds of creators sharing their work and growing their audience on Kiibee.",
-    "description2": "You can start for free, and upgrade when you're ready.",
-    "cta": "Get started for free"
+    "heading": "Start med at skabe med Kiibee i dag",
+    "description1": "Bliv en af hundredsvis af skabere, der deler deres arbejde og vokser deres publikum på Kiibee.",
+    "description2": "Du kan starte gratis og opgradere, når du er klar.",
+    "cta": "Kom gratis i gang"
   },
   "ctaSection": {
     "bgAlt": "CTA background"
@@ -1171,8 +1172,10 @@
   "users": {
     "search": "Sog efter navn",
     "tabs": {
-      "registrations": "Registreringer (11)",
-      "sales": "Salg (50)"
+      "registrations": "Registreringer",
+      "sales": "Salg",
+      "registrationsWithCount": "Registreringer ({{count}})",
+      "salesWithCount": "Salg ({{count}})"
     },
     "registrations": {
       "title": "E-mail tilmeldinger",
@@ -1197,6 +1200,10 @@
     "salest": {
       "title": "Salg",
       "description": "Her finder du en samlet oversigt over alt dit salg",
+      "emptyState": {
+        "title": "Du har endnu ikke noget salg.",
+        "description": "Når du har solgt noget, vil det fremgå her på listen."
+      },
       "tableHeaders": {
         "name": "Navn",
         "email": "E-mail",
@@ -1447,8 +1454,8 @@
       "search": "Sog indhold",
       "cancel": "Annuller",
       "save": "Gem",
-      "deleteContent": "Delete content",
-      "addContent": "Add content"
+      "deleteContent": "Slet indhold",
+      "addContent": "Tilføj indhold"
     },
     "couponDetails": {
       "title": "Kupondetaljer",
@@ -1500,7 +1507,7 @@
     "couponPreview": {
       "title": "Kupon forhåndsvisning",
       "confirm": "Bekræft",
-      "uploading": "Uploading coupon",
+      "uploading": "Uploader kupon",
       "fields": {
         "title": "Titel",
         "discountType": "Rabattype",
@@ -1692,19 +1699,19 @@
       "description": "Opret din første kupon for at begynde at tilbyde rabatter."
     },
     "deleteModal": {
-      "title": "Delete content?",
-      "message": "Are you sure you want to delete this content? This action cannot be undone.",
-      "cancel": "Cancel",
-      "delete": "Delete"
+      "title": "Slet indhold?",
+      "message": "Er du sikker på, at du vil slette dette indhold? Denne handling kan ikke fortrydes.",
+      "cancel": "Annuller",
+      "delete": "Slet"
     },
     "couponDeleteModal": {
       "title": "Delete coupon?",
       "message": "Er du sikker på, at du vil slette denne kupon? Denne handling kan ikke fortrydes."
     },
     "deleteSuccessModal": {
-      "title": "Delete successfully",
-      "message": "Content deleted successfully.",
-      "done": "Done"
+      "title": "Slettet",
+      "message": "Indhold slettet.",
+      "done": "Færdig"
     },
     "createCollectionModal": {
       "title": "Opret samling",
@@ -1786,36 +1793,36 @@
         }
       },
       "webRental": {
-        "title": "Website subscription access",
-        "description": "Users can access the website for a limited time."
+        "title": "Webindhold leje (abonnement)",
+        "description": "Brugere kan få adgang til webindhold i en begrænset periode."
       },
       "webPurchase": {
-        "title": "Website lifetime access",
-        "description": "Users will get permanent access to the website."
+        "title": "Webindhold køb (livstidsadgang)",
+        "description": "Brugere får permanent adgang til webindholdet."
       },
       "epubRental": {
-        "title": "E-publication rental",
-        "description": "Readers can access the publication temporarily."
+        "title": "E-publikation leje",
+        "description": "Læsere kan få midlertidig adgang til publikationen."
       },
       "epubPurchase": {
-        "title": "E-publication purchase",
-        "description": "Purchased publications stay in the user's library."
+        "title": "E-publikation køb/download",
+        "description": "Købte publikationer forbliver i brugerens bibliotek."
       },
       "pdfRental": {
-        "title": "PDF rental access",
-        "description": "PDF access will expire after the rental period."
+        "title": "PDF lejeadgang",
+        "description": "PDF-adgang udløber efter lejeperioden."
       },
       "pdfPurchase": {
-        "title": "PDF purchase/download",
-        "description": "Purchased PDFs remain permanently accessible."
+        "title": "PDF køb/download",
+        "description": "Købte PDF'er forbliver permanent tilgængelige."
       },
       "audioRental": {
-        "title": "Audio streaming rental",
-        "description": "Audio content will be streamable for a limited time."
+        "title": "Lyd leje (streaming)",
+        "description": "Lydindhold kan streames i en begrænset periode."
       },
       "audioPurchase": {
-        "title": "Audio purchase/download",
-        "description": "Purchased audio will stay in the user's library."
+        "title": "Lyd køb/download",
+        "description": "Købt lyd forbliver i brugerens bibliotek."
       },
       "rental": {
         "title": "Videoleje (Streaming)",
@@ -1902,6 +1909,32 @@
     "metadataValidationFailed": "Udfyld venligst alle obligatoriske metadatafelter.",
     "saveChangesFailed": "Kunne ikke gemme ændringer",
     "saveSettingsFailed": "Kunne ikke gemme indstillinger",
-    "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer"
+    "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
+    "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
+    "imageUploadFailed": "Billedupload mislykkedes"
+  },
+  "sidebar": {
+    "users": "Brugere",
+    "help": "Hjælp",
+    "currentlyRented": "I øjeblikket lejet",
+    "previouslyRented": "Tidligere lejet",
+    "helpVideos": "Hjælpevideoer",
+    "userManual": "Brugervejledning",
+    "conditions": "Betingelser"
+  },
+  "accessGate": {
+    "pageCodeTitle": "Denne side kræver en kode for at få adgang",
+    "pageEmailTitle": "Denne side kræver din e-mail for at få adgang",
+    "contentCodeTitle": "Dette indhold kræver en kode for at få adgang",
+    "contentEmailTitle": "Dette indhold kræver din e-mail for at få adgang",
+    "codePlaceholder": "Adgangskode",
+    "codeLabel": "Indtast adgangskode",
+    "nameLabel": "Dit navn",
+    "namePlaceholder": "Navn",
+    "emailLabel": "Indtast din e-mail",
+    "emailPlaceholder": "E-mail",
+    "submitCode": "Tilgå indhold",
+    "submitEmail": "Tilgå indhold",
+    "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee."
   }
 }

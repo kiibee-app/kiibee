@@ -142,7 +142,7 @@ export default function PurchaseModal({
         <PurchaseModalCardBody>
           {image ? (
             <PurchaseModalCardImage>
-              <Image src={image} alt={imageAlt || title} fill />
+              <Image src={image} alt={imageAlt || title} fill sizes="120px" />
             </PurchaseModalCardImage>
           ) : null}
 

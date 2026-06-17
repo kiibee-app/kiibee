@@ -11,18 +11,26 @@ import { useTranslation } from "react-i18next";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
 import { getTutorialCollectionById } from "@/utils/tutorialCollections";
 import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
+import { VARIANT_CONTENT } from "@/utils/Constants";
 
 function SingleCollectionContent() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const staticSection = getTutorialCollectionById(id);
+  const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
+    !staticSection ? id : null,
+  );
 
   const {
     data: dynamicSection,
-    isLoading,
+    isLoading: isDynamicLoading,
     isError,
-  } = usePublicCollectionContent(!staticSection ? id : null);
+  } = usePublicCollectionContent(
+    !staticSection && !gateType && !isGateLoading ? id : null,
+  );
 
   if (staticSection) {
     return (
@@ -39,10 +47,34 @@ function SingleCollectionContent() {
     );
   }
 
-  if (isLoading) {
+  if (isGateLoading || isDynamicLoading) {
     return (
       <Section>
         <MonoText $use="H5_Regular">{t("common.loading")}</MonoText>
+      </Section>
+    );
+  }
+
+  if (gateType) {
+    return (
+      <Section>
+        <SingleCollectionHero
+          title={dynamicSection?.name ?? ""}
+          primaryContentId={dynamicSection?.videos?.[0]?.id}
+        />
+        <AccessGate
+          type={gateType}
+          variant={VARIANT_CONTENT}
+          onSuccess={() => {
+            if (id) {
+              window.localStorage.setItem(
+                `kiibee:gate:unlocked:collection:${id}`,
+                "true",
+              );
+              window.location.reload();
+            }
+          }}
+        />
       </Section>
     );
   }

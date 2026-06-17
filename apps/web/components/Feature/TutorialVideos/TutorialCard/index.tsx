@@ -121,6 +121,15 @@ function TutorialCard({
     <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
   );
 
+  const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
+    event.preventDefault();
+    event.stopPropagation();
+    navigateToContent(
+      resolveButtonHref(button.href),
+      button.requiresAuth ?? false,
+    );
+  };
+
   const card = (
     <GenericCard
       coverImage
@@ -156,9 +165,7 @@ function TutorialCard({
                 fullWidth={button.fullWidth}
                 size={button.size}
                 minWidth={button.minWidth}
-                onClick={() =>
-                  navigateToContent(resolveButtonHref(button.href), false)
-                }
+                onClick={(event) => handleButtonClick(event, button)}
               >
                 {button.label}
               </GenericButton>

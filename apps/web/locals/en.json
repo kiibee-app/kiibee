@@ -1895,6 +1895,15 @@
     "noStack": "Stack trace is not available.",
     "unknownError": "Unknown error message"
   },
+  "sidebar": {
+    "users": "Users",
+    "help": "Help",
+    "currentlyRented": "Currently Rented",
+    "previouslyRented": "Previously Rented",
+    "helpVideos": "Help videos",
+    "userManual": "User manual",
+    "conditions": "Conditions"
+  },
   "errors": {
     "missingContentFormProvider": "useContentForm must be used within a ContentFormProvider",
     "noContentToSave": "No content to save",
@@ -1904,5 +1913,20 @@
     "loadDetailsFailed": "Failed to load content details",
     "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
     "imageUploadFailed": "Image upload failed"
+  },
+  "accessGate": {
+    "pageCodeTitle": "This page requires a code to access",
+    "pageEmailTitle": "This page requires your email to access",
+    "contentCodeTitle": "This content requires a code to access",
+    "contentEmailTitle": "This content requires your email to access",
+    "codePlaceholder": "Access code",
+    "codeLabel": "Enter access code",
+    "nameLabel": "Your name",
+    "namePlaceholder": "Name",
+    "emailLabel": "Enter your email",
+    "emailPlaceholder": "Email",
+    "submitCode": "Access content",
+    "submitEmail": "Access content",
+    "consentText": "By submitting my email to Kiibee, I hereby subscribe to {{creatorName}}'s newsletter. I can unsubscribe from these at any time through Kiibee."
   }
 }
