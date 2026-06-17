@@ -10,29 +10,58 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
 import { getTutorialCollectionById } from "@/utils/tutorialCollections";
+import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
 
 function SingleCollectionContent() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  const section = getTutorialCollectionById(id);
+  const staticSection = getTutorialCollectionById(id);
 
-  if (!section) {
+  const {
+    data: dynamicSection,
+    isLoading,
+    isError,
+  } = usePublicCollectionContent(!staticSection ? id : null);
+
+  if (staticSection) {
     return (
-      <MonoText $use="H5_Regular">{t("singleCollection.notFound")}</MonoText>
+      <Section>
+        <SingleCollectionHero
+          title={staticSection.title}
+          primaryContentId={staticSection.tutorials[0]?.id}
+        />
+        <CollectionContent
+          videos={staticSection.tutorials}
+          maxWidth={staticSection.gridMaxWidth}
+        />
+      </Section>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <Section>
+        <MonoText $use="H5_Regular">{t("common.loading")}</MonoText>
+      </Section>
+    );
+  }
+
+  if (isError || !dynamicSection) {
+    return (
+      <Section>
+        <MonoText $use="H5_Regular">{t("singleCollection.notFound")}</MonoText>
+      </Section>
     );
   }
 
   return (
     <Section>
       <SingleCollectionHero
-        title={section.title}
-        primaryContentId={section.tutorials[0]?.id}
+        title={dynamicSection.name}
+        primaryContentId={dynamicSection.videos[0]?.id}
       />
-      <CollectionContent
-        videos={section.tutorials}
-        maxWidth={section.gridMaxWidth}
-      />
+      <CollectionContent videos={dynamicSection.videos} />
     </Section>
   );
 }
