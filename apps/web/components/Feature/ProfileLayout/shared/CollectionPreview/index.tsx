@@ -29,7 +29,7 @@ import {
   type ContentDetailResponse,
 } from "@/utils/contentApi";
 import { tutorialVideos } from "@/utils/data";
-import { type TutorialVideo, type TutorialButton } from "@/utils/types";
+import { type TutorialVideo } from "@/utils/types";
 import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 import { pathPublishedContent } from "@/utils/path";
