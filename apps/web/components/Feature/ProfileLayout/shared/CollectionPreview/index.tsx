@@ -33,6 +33,7 @@ import { type TutorialVideo, type TutorialButton } from "@/utils/types";
 import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 import { pathPublishedContent } from "@/utils/path";
+import { buildPricingButtonsForContent } from "@/utils/contentPricingActions";
 import {
   CollectionSection,
   CollectionSectionTag,
@@ -98,11 +99,11 @@ function PrivateCollectionPreview({
                 );
               const contentDetail = getContentDetail(contentResponse.data);
 
-              const seeContentButton: TutorialButton = {
-                label: seeContentLabel,
-                variant: VARIANT.SECONDARY,
-                href: pathPublishedContent(content.id),
-              };
+              const buttons = buildPricingButtonsForContent(
+                content.id,
+                contentDetail,
+                seeContentLabel,
+              );
 
               return {
                 ...fallbackTemplate,
@@ -115,7 +116,7 @@ function PrivateCollectionPreview({
                 image:
                   resolvePublicMediaUrl(contentDetail?.thumbnailUrl) ??
                   fallbackTemplate.image,
-                buttons: [seeContentButton],
+                buttons,
               };
             }),
           );
