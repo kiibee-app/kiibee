@@ -263,6 +263,7 @@ function CreatorsContentsInner() {
     editingContent,
     showSaveSuccessModal,
     setShowSaveSuccessModal,
+    isSaving,
     collectionAccessType,
     setCollectionAccessType,
     collectionPasswords,
@@ -390,6 +391,7 @@ function CreatorsContentsInner() {
             (activeTab === ADD_CONTENT_TABS.METADATA &&
               !hasMetadataUnsavedChanges)
           }
+          isSaving={isSaving}
           isCollectionContentMode={isCollectionContentMode}
         />
       </PageHeader>

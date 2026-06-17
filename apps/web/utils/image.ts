@@ -61,7 +61,7 @@ export const getCroppedImg = (
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
 
-      const coverScale = Math.max(containerWidth / iw, containerHeight / ih);
+      const coverScale = Math.min(containerWidth / iw, containerHeight / ih);
       const baseW = iw * coverScale;
       const baseH = ih * coverScale;
       const displayW = baseW * safeZoom;

@@ -152,6 +152,7 @@ export function useContentsUrlState({
     });
     onBackStateOnly();
     hasRestoredContentRef.current = false;
+    isClearingParamsRef.current = false;
   }, [onBackStateOnly, replaceQuery, selectedCollection?.id]);
 
   const handleBackToCollection = useCallback(() => {

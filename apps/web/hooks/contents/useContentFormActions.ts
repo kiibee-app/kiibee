@@ -127,6 +127,8 @@ export function useContentFormActions({
   const [editingContent, setEditingContent] =
     useState<CollectionContentRow | null>(null);
   const [showSaveSuccessModal, setShowSaveSuccessModal] = useState(false);
+  const [isEditingLoading, setIsEditingLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const [collectionAccessType, setCollectionAccessType] =
     useState<AdmissionRequirementValue>(ADMISSION_REQUIREMENT_VALUES.free);
@@ -409,6 +411,7 @@ export function useContentFormActions({
       return;
     }
 
+    setIsSaving(true);
     try {
       clearFormErrors();
       const [thumbnailUrl, thumbnailLandscapeUrl] = await Promise.all([
@@ -430,6 +433,9 @@ export function useContentFormActions({
       await axiosClient.put(API.content.update(editingContent.id), payload);
 
       await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: [API.content.get(editingContent.id)],
+        }),
         selectedCollection?.id
           ? queryClient.invalidateQueries({
               queryKey: [API.content.collection(selectedCollection.id)],
@@ -438,9 +444,12 @@ export function useContentFormActions({
         queryClient.invalidateQueries({ queryKey: [API.collection.getAll] }),
       ]);
 
+      toast.success(t("settings.notifications.successModal.message"));
       setShowSaveSuccessModal(true);
     } catch (error) {
       handleSaveError(error);
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -640,40 +649,41 @@ export function useContentFormActions({
   };
 
   const handleEditContent = async (id: string) => {
-    const item = collectionContents.find((content) => content.id === id);
-    const nextUploadTab = Object.values(ADD_CONTENT_TABS).includes(
-      activeTab as AddContentTab,
-    )
-      ? (activeTab as AddContentTab)
-      : ADD_CONTENT_TABS.GENERAL;
-
-    interface ContentDetailsResponse {
-      title?: string;
-      description?: string;
-      contentType?: string;
-      contentTypeId?: string;
-      fileKey?: string | null;
-      contentUrl?: string | null;
-      trailerUrl?: string;
-      visibility?: string;
-      publishedYear?: number;
-      duration?: number;
-      categories?: { id: string }[];
-      production_company?: string;
-      manufacturerLink?: string;
-      tags?: string[];
-      thumbnailUrl?: string | null;
-      thumbnailLandscapeUrl?: string | null;
-      accessType?: string;
-      rentPrice?: number;
-      buyPrice?: number;
-      maxDownloadCount?: number;
-      physicalProductLink?: string;
-      openInNewWindow?: boolean;
-      openDirectFromList?: boolean;
-    }
-
+    setIsEditingLoading(true);
     try {
+      const item = collectionContents.find((content) => content.id === id);
+      const nextUploadTab = Object.values(ADD_CONTENT_TABS).includes(
+        activeTab as AddContentTab,
+      )
+        ? (activeTab as AddContentTab)
+        : ADD_CONTENT_TABS.GENERAL;
+
+      interface ContentDetailsResponse {
+        title?: string;
+        description?: string;
+        contentType?: string;
+        contentTypeId?: string;
+        fileKey?: string | null;
+        contentUrl?: string | null;
+        trailerUrl?: string;
+        visibility?: string;
+        publishedYear?: number;
+        duration?: number;
+        categories?: { id: string }[];
+        production_company?: string;
+        manufacturerLink?: string;
+        tags?: string[];
+        thumbnailUrl?: string | null;
+        thumbnailLandscapeUrl?: string | null;
+        accessType?: string;
+        rentPrice?: number;
+        buyPrice?: number;
+        maxDownloadCount?: number;
+        physicalProductLink?: string;
+        openInNewWindow?: boolean;
+        openDirectFromList?: boolean;
+      }
+
       const response = await axiosClient.get(API.content.get(id));
       const fullContent = (
         response as { data?: { data?: ContentDetailsResponse } }
@@ -782,6 +792,8 @@ export function useContentFormActions({
       }
     } catch {
       toast.error(t(ERROR_MESSAGES.LOAD_DETAILS_FAILED));
+    } finally {
+      setIsEditingLoading(false);
     }
   };
 
@@ -794,6 +806,8 @@ export function useContentFormActions({
     setEditingContent,
     showSaveSuccessModal,
     setShowSaveSuccessModal,
+    isEditingLoading,
+    isSaving,
     collectionAccessType,
     setCollectionAccessType,
     collectionPasswords,
