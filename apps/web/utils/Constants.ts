@@ -12,6 +12,7 @@ export const CREATOR_CHANNEL_AVATAR_TEXT = {
   NAVBAR: "H4_SemiBold",
   COMPACT: "Heading3",
 } as const satisfies Record<string, keyof typeof typography>;
+export const UNKNOWN = "Unknown";
 
 export type CreatorChannelAvatarTextUse =
   (typeof CREATOR_CHANNEL_AVATAR_TEXT)[keyof typeof CREATOR_CHANNEL_AVATAR_TEXT];

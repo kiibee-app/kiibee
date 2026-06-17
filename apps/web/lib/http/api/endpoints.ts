@@ -82,4 +82,7 @@ export const API = {
   support: {
     contact: "/support/contact",
   },
+  viewer: {
+    purchasedData: "/viewer/purchased-data",
+  },
 } as const;

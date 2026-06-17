@@ -196,7 +196,7 @@ export const UploadsText = styled(MonoText).attrs(({ theme }) => ({
   margin-top: 8px;
 `;
 
-export const CreatorBio = styled.p`
+export const CreatorBio = styled.div`
   margin: 10px 0 0;
   max-width: 700px;
 `;
