@@ -28,10 +28,12 @@ import {
 
 type ExistingCreatorsTableProps = {
   creators: ExistingCreator[];
+  onSelectCreator?: (creator: ExistingCreator) => void;
 };
 
 export function ExistingCreatorsTable({
   creators,
+  onSelectCreator,
 }: ExistingCreatorsTableProps) {
   return (
     <TableScrollWrapper>
@@ -48,7 +50,11 @@ export function ExistingCreatorsTable({
             const displayName = getExistingCreatorDisplayName(creator);
 
             return (
-              <RequestTableRow key={creator.id}>
+              <RequestTableRow
+                key={creator.id}
+                onClick={() => onSelectCreator?.(creator)}
+                style={{ cursor: onSelectCreator ? "pointer" : "default" }}
+              >
                 <TableBodyCell>
                   <CreatorIdentity>
                     <CreatorAvatar>

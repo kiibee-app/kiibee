@@ -1,4 +1,4 @@
-import type { CollectionAction } from "./viewerRentedMockData";
+import type { CollectionAction } from "@/utils/viewerRented";
 import design1 from "@/assets/images/design1.webp";
 import design2 from "@/assets/images/design2.webp";
 import design3 from "@/assets/images/design.webp";

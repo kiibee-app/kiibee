@@ -83,6 +83,7 @@ export default function SingleTutorial({
       descriptions={[tutorial.focus, t("singleTutorial.descriptionSecondary")]}
       tags={[tutorial.category, t("singleTutorial.tags.tutorials")]}
       creator={{
+        id: tutorial.creatorId,
         name: tutorial.creator,
         avatar: logo,
       }}

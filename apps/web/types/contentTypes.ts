@@ -48,6 +48,7 @@ export type SingleContentPageProps = {
     tone?: "default" | "urgent";
   };
   creator?: {
+    id?: string;
     name: string;
     avatar?: ImageSource;
     avatarAlt?: string;
@@ -62,6 +63,7 @@ export type SingleContentPageProps = {
   onBack?: () => void;
   onShare?: () => void;
   children?: ReactNode;
+  accessGate?: ReactNode;
 };
 
 export type SingleContentTopBarProps = {
@@ -91,7 +93,9 @@ export type SingleContentBodyProps = Pick<
   | "primaryActions"
   | "expiry"
   | "metaItems"
->;
+> & {
+  accessGate?: ReactNode;
+};
 
 export type ContentFormState = {
   title: string;
@@ -127,7 +131,9 @@ export type ContentFormErrorKey =
   | "manufacturerLink"
   | "tags"
   | "mediaCardThumbnail"
-  | "portraitThumbnail";
+  | "portraitThumbnail"
+  | "rentalAmount"
+  | "purchaseAmount";
 
 export type ContentFormErrors = Partial<Record<ContentFormErrorKey, string>>;
 
@@ -144,7 +150,7 @@ export const defaultState: ContentFormState = {
   tags: "",
   mediaCardThumbnail: null,
   portraitThumbnail: null,
-  admissionRequirement: "Payment",
+  admissionRequirement: "payment",
   rentalAmount: "",
   purchaseAmount: "",
   maxDownloadLimit: "5",

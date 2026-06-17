@@ -95,6 +95,11 @@ const Footer = () => {
                 {t("footer.cookieSettings")}
               </MonoText>
             </BottomLink>
+            <BottomLink href="/subscription-terms">
+              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                {t("footer.subscriptionTerms")}
+              </MonoText>
+            </BottomLink>
           </LinkRow>
           <CardWrapper>
             <PaymentCardImage

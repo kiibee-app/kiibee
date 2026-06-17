@@ -28,6 +28,10 @@ import { CreatorRequestsTable } from "./CreatorRequestsTable";
 import { CreatorRequestsTableSkeleton } from "./CreatorRequestsTableSkeleton";
 import { CreatorPagination } from "./CreatorPagination";
 import { CreatorDetailsModal } from "./CreatorDetailsModal";
+import { ExistingCreatorDetailsModal } from "./ExistingCreatorDetailsModal";
+import { ViewerDetailsModal } from "./ViewerDetailsModal";
+import type { ExistingCreator } from "../../../types/existing-creator";
+import type { Viewer } from "../../../types/viewer";
 import { useCreatorRequestActions } from "./useCreatorRequestActions";
 import { useCreatorRequestOverrides } from "./useCreatorRequestOverrides";
 import {
@@ -48,6 +52,9 @@ export function AllCreatorsTable() {
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
     null,
   );
+  const [selectedExistingCreator, setSelectedExistingCreator] =
+    useState<ExistingCreator | null>(null);
+  const [selectedViewer, setSelectedViewer] = useState<Viewer | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const handleSearchClear = () => {
@@ -137,6 +144,7 @@ export function AllCreatorsTable() {
       <>
         <ExistingCreatorsTable
           creators={existingCreatorsPagination.paginatedData}
+          onSelectCreator={(creator) => setSelectedExistingCreator(creator)}
         />
 
         <CreatorPagination
@@ -233,7 +241,10 @@ export function AllCreatorsTable() {
 
     return (
       <>
-        <ViewersTable viewers={viewersPagination.paginatedData} />
+        <ViewersTable
+          viewers={viewersPagination.paginatedData}
+          onSelectViewer={(viewer) => setSelectedViewer(viewer)}
+        />
 
         <CreatorPagination
           startIndex={viewersPagination.startIndex}
@@ -311,6 +322,14 @@ export function AllCreatorsTable() {
       <CreatorDetailsModal
         creator={selectedCreator}
         onClose={() => setSelectedCreator(null)}
+      />
+      <ExistingCreatorDetailsModal
+        creator={selectedExistingCreator}
+        onClose={() => setSelectedExistingCreator(null)}
+      />
+      <ViewerDetailsModal
+        viewer={selectedViewer}
+        onClose={() => setSelectedViewer(null)}
       />
     </AllCreatorsLayout>
   );

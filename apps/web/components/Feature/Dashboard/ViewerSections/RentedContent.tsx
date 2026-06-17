@@ -5,16 +5,15 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
-import type {
-  RentedCollectionItem,
-  RentedMediaItem,
-  RentedMode,
-} from "@/utils/dummyData/viewerRentedMockData";
 import { PageWrap, SectionBlock, EmptyState } from "./styles";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { LOADER_VARIANT } from "@/utils/ui";
 import {
   RENTED_SECTION_KEYS,
+  RENTED_MODES,
+  type RentedMode,
+  type RentedCollectionItem,
+  type RentedMediaItem,
   filterCollections,
   filterMedia,
   isViewerCollectionsSectionExpanded,
@@ -26,6 +25,7 @@ import {
 } from "@/utils/Constants";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
 import { useViewerRentedData } from "@/hooks/useViewerRented";
+import { useViewerPurchased } from "@/hooks/viewer/useViewerPurchased";
 import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
 import MediaSections from "./MediaSections";
@@ -81,7 +81,18 @@ export default function RentedContent({
     canGoPrev,
     canGoNext,
   } = useViewerRentedSectionPagination();
-  const { sources, isLoading } = useViewerRentedData(mode);
+  const { sources: rentedSources, isLoading } = useViewerRentedData(mode);
+  const { data: purchasedData, isLoading: isPurchasedLoading } =
+    useViewerPurchased(mode === RENTED_MODES.PURCHASED);
+
+  const sources = useMemo(() => {
+    if (mode === RENTED_MODES.PURCHASED) {
+      return (
+        purchasedData || { collections: [], videos: [], audios: [], pdfs: [] }
+      );
+    }
+    return rentedSources;
+  }, [mode, purchasedData, rentedSources]);
   const selectedCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
   const selectedContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
@@ -246,7 +257,13 @@ export default function RentedContent({
         }
       />
 
-      {isSearchEmpty ? (
+      {mode === RENTED_MODES.PURCHASED && isPurchasedLoading ? (
+        <EmptyState>
+          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+            Loading...
+          </MonoText>
+        </EmptyState>
+      ) : isSearchEmpty ? (
         <EmptyState>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
             {t("dashboard.noData")}

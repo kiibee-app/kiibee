@@ -21,7 +21,7 @@ export const footerConfig: FooterColumn[] = [
     items: [
       { label: "footer.about", href: PATHS.ABOUT },
       { label: "footer.howItWorks", href: PATHS.HOW_IT_WORKS },
-      { label: "footer.forCreators", href: PATHS.CREATORS },
+      { label: "footer.forCreators", href: PATHS.FOR_CREATORS },
       { label: "footer.exploreCreators", href: PATHS.EXPLORE_CREATORS },
       { label: "footer.pricing", href: PATHS.PRICING },
     ],

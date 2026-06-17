@@ -6,10 +6,6 @@ import LeftIcon from "@/assets/icons/LeftIcon";
 import { CrossIcon } from "@/assets/icons/crossIcon";
 import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { MonoText } from "@/components/UI/Monotext";
-import type {
-  RentedMediaItem,
-  RentedMode,
-} from "@/utils/dummyData/viewerRentedMockData";
 import type { PurchasedCollectionItem } from "@/utils/dummyData/viewerPurchasedMockData";
 import {
   SingleContentBody,
@@ -22,7 +18,11 @@ import {
   rentedMediaToPurchasedItem,
 } from "@/utils/purchasedMediaToTutorial";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
-import { getCollectionBadgeText } from "@/utils/viewerRented";
+import {
+  getCollectionBadgeText,
+  type RentedMode,
+  type RentedMediaItem,
+} from "@/utils/viewerRented";
 import { PURCHASED_MEDIA_TYPES } from "@/utils/dummyData/viewerPurchasedMockData";
 import {
   HeaderBackButton,

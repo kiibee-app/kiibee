@@ -105,3 +105,5 @@ export const LANDING_MOTION = {
   defaultScaleTo: 1,
   defaultPositionTo: 0,
 } as const;
+
+export const CARD_IMAGE_RATIOS = [80, 100, 120] as const;

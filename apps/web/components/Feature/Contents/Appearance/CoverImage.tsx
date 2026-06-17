@@ -13,7 +13,9 @@ import {
   PreviewWrapper,
   SectionList,
   UploadButton,
+  DeleteImageButton,
 } from "./styles";
+import { DeleteIcon } from "@/assets/icons";
 
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
@@ -97,6 +99,27 @@ export default function CoverImageSection({
     setOpen(false);
   };
 
+  const handleImageDelete = (type: ImageType) => {
+    const field = getImageField(type);
+    if (useFormContext) {
+      clearFieldError(field);
+      updateField(field, "");
+    } else if (type === IMAGE_TYPE.DESKTOP) {
+      clearAppearanceFieldError(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL);
+      updateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL, "");
+      validateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL);
+    } else if (type === IMAGE_TYPE.MOBILE) {
+      clearAppearanceFieldError(FORM_FIELDS.MOBILE_COVER_IMAGE_URL);
+      updateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL, "");
+      validateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL);
+    } else {
+      setImages((prev) => ({
+        ...prev,
+        [type]: null,
+      }));
+    }
+  };
+
   const getCurrentImage = () => {
     if (!selectedConfig) return null;
     if (useFormContext) {
@@ -172,17 +195,25 @@ export default function CoverImageSection({
 
                 <PreviewWrapper>
                   {imagesToShow[item.type] && (
-                    <PreviewImage
-                      src={imagesToShow[item.type]!}
-                      alt={
-                        item.label ?? (item.labelKey ? t(item.labelKey) : "")
-                      }
-                      $type={item.type}
-                      $aspectRatio={item.previewAspectRatio}
-                      $previewMaxWidth={item.previewMaxWidth}
-                      $previewHeight={item.previewHeight}
-                      $previewMinHeight={item.previewMinHeight}
-                    />
+                    <>
+                      <PreviewImage
+                        src={imagesToShow[item.type]!}
+                        alt={
+                          item.label ?? (item.labelKey ? t(item.labelKey) : "")
+                        }
+                        $type={item.type}
+                        $aspectRatio={item.previewAspectRatio}
+                        $previewMaxWidth={item.previewMaxWidth}
+                        $previewHeight={item.previewHeight}
+                        $previewMinHeight={item.previewMinHeight}
+                      />
+                      <DeleteImageButton
+                        type="button"
+                        onClick={() => handleImageDelete(item.type)}
+                      >
+                        <DeleteIcon width={14} height={16} />
+                      </DeleteImageButton>
+                    </>
                   )}
                 </PreviewWrapper>
               </LogoUploadWrap>

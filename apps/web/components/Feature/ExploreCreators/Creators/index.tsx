@@ -1,6 +1,18 @@
 "use client";
 
-import { Grid, LoadMoreRow, PageWrapper, EmptyState } from "./styles";
+import {
+  Grid,
+  LoadMoreRow,
+  PageWrapper,
+  EmptyState,
+  SkeletonCard,
+  SkeletonImage,
+  SkeletonTitleRow,
+  SkeletonAvatar,
+  SkeletonTextBlock,
+  SkeletonRow,
+  CreatorSkeletonFooter,
+} from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericButton from "@/components/UI/GenericButton";
@@ -18,10 +30,40 @@ import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 type Props = {
   creators: ExploreCreator[];
   isLoading?: boolean;
+  showLoadMoreButton?: boolean;
+  onLoadMore?: () => void;
 };
 
-export default function ExploreCreators({ creators, isLoading }: Props) {
+export default function ExploreCreators({
+  creators,
+  isLoading,
+  showLoadMoreButton,
+  onLoadMore,
+}: Props) {
   const { t } = useTranslation();
+
+  if (isLoading) {
+    return (
+      <PageWrapper>
+        <Grid>
+          {Array.from({ length: 3 }).map((_, i) => (
+            <SkeletonCard key={i}>
+              <SkeletonImage />
+              <SkeletonTitleRow>
+                <SkeletonAvatar />
+                <SkeletonTextBlock>
+                  <SkeletonRow $width="70%" $height="16px" />
+                  <SkeletonRow $width="100%" $height="12px" />
+                  <SkeletonRow $width="50%" $height="12px" />
+                </SkeletonTextBlock>
+              </SkeletonTitleRow>
+              <CreatorSkeletonFooter />
+            </SkeletonCard>
+          ))}
+        </Grid>
+      </PageWrapper>
+    );
+  }
 
   if (!isLoading && creators.length === 0) {
     return (
@@ -77,11 +119,17 @@ export default function ExploreCreators({ creators, isLoading }: Props) {
         })}
       </Grid>
 
-      <LoadMoreRow>
-        <GenericButton asAnchor href="#load" variant={VARIANT.PRIMARY}>
-          {t(CREATORS.loadMore)}
-        </GenericButton>
-      </LoadMoreRow>
+      {showLoadMoreButton && (
+        <LoadMoreRow>
+          <GenericButton
+            onClick={onLoadMore}
+            variant={VARIANT.PRIMARY}
+            type="button"
+          >
+            {t(CREATORS.loadMore)}
+          </GenericButton>
+        </LoadMoreRow>
+      )}
     </PageWrapper>
   );
 }

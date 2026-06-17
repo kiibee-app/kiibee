@@ -38,6 +38,7 @@ export default function ExploreCreatorsPage() {
         <Section>
           <div ref={heroRef}>
             <ExploreCreatorsHero
+              sortBy={sortBy}
               setSortBy={setSortBy}
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}

@@ -18,6 +18,10 @@ export const NAV = {
   logoAlt: "nav.logoAlt",
 };
 
+export const DASHBOARD = {
+  toggleSidebar: "dashboard.toggleSidebar",
+};
+
 export const CREATE_PROFILE_HOME = {
   brandName: "createProfileHome.brandName",
   uploads: "createProfileHome.uploads",
@@ -130,6 +134,11 @@ export const CREATORS = {
   noCreatorsFound: "creators.noCreatorsFound",
   uploadsCount: "creators.uploadsCount",
   loadMore: "creators.loadMore",
+  title: "creators.title",
+  allCreators: "nav.explore.creator.allCreators",
+  featured: "nav.explore.creator.featured",
+  newCreators: "nav.explore.creator.newCreators",
+  popular: "nav.explore.creator.popular",
   howToGetStarted: {
     title: "creators.howToGetStarted.title",
   },
@@ -499,9 +508,26 @@ export const SUBSCRIPTION = {
   },
 };
 
+export const ACCESS_GATE = {
+  pageCodeTitle: "accessGate.pageCodeTitle",
+  pageEmailTitle: "accessGate.pageEmailTitle",
+  contentCodeTitle: "accessGate.contentCodeTitle",
+  contentEmailTitle: "accessGate.contentEmailTitle",
+  codePlaceholder: "accessGate.codePlaceholder",
+  codeLabel: "accessGate.codeLabel",
+  nameLabel: "accessGate.nameLabel",
+  namePlaceholder: "accessGate.namePlaceholder",
+  emailLabel: "accessGate.emailLabel",
+  emailPlaceholder: "accessGate.emailPlaceholder",
+  submitCode: "accessGate.submitCode",
+  submitEmail: "accessGate.submitEmail",
+  consentText: "accessGate.consentText",
+} as const;
+
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
+  DASHBOARD,
   AUTH,
   AUTH_FORM,
   AUTH_CREATOR,
@@ -515,6 +541,7 @@ const TRANSLATION_KEYS = {
   SETTINGS,
   COMMON,
   SUBSCRIPTION,
+  ACCESS_GATE,
 };
 
 export default TRANSLATION_KEYS;

@@ -61,7 +61,7 @@ export const getCroppedImg = (
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
 
-      const coverScale = Math.max(containerWidth / iw, containerHeight / ih);
+      const coverScale = Math.min(containerWidth / iw, containerHeight / ih);
       const baseW = iw * coverScale;
       const baseH = ih * coverScale;
       const displayW = baseW * safeZoom;
@@ -105,42 +105,28 @@ export const getCroppedImg = (
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high";
       ctx.drawImage(img, sourceX, sourceY, sourceW, sourceH, 0, 0, outW, outH);
-      resolve(canvas.toDataURL("image/png"));
+      resolve(canvas.toDataURL("image/jpeg", 0.85));
     };
     img.onerror = () => reject(new Error("Failed to load image"));
   });
 };
 
-const dataUrlToFile = (dataUrl: string): File => {
-  const [header, base64 = ""] = dataUrl.split(",");
-  const mime = header?.match(/data:([^;]+)/)?.[1] ?? "image/webp";
-  const ext = mime.includes("png")
-    ? "png"
-    : mime.includes("jpeg")
-      ? "jpg"
-      : "webp";
-  const binary = atob(base64.replace(/\s/g, ""));
-  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
-  return new File([bytes], `avatar.${ext}`, { type: mime });
-};
-
-/** Upload cropped data URLs via media API; pass through existing http(s) URLs. */
 export async function resolveProfileAvatarUrl(
   avatar: string | null,
 ): Promise<string | null> {
   if (!avatar) return null;
   if (!avatar.startsWith("data:image/")) return avatar;
 
-  const formData = new FormData();
-  formData.append("file", dataUrlToFile(avatar));
-
-  const headers: HeadersInit = { Accept: "application/json" };
+  const headers: HeadersInit = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
   const token = authStorage.getAccessToken();
   if (token) headers.Authorization = `Bearer ${token}`;
 
   const response = await fetch(`${API_BASE_URL}${API.media.imagesUpload}`, {
     method: "POST",
-    body: formData,
+    body: JSON.stringify({ image: avatar }),
     credentials: "include",
     headers,
   });

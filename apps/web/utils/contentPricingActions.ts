@@ -1,6 +1,7 @@
 import {
   ACCESS_TYPE_FREE,
   BUY_COLLECTION_PREFIX,
+  BUY_KEYWORDS,
   BUY_PREFIX,
   FREE_LABEL,
   RENT_PREFIX,
@@ -45,6 +46,10 @@ export function formatPriceLabel(
   if (Number.isNaN(num) || num <= 0) return null;
   const amount = Number.isInteger(num) ? String(num) : String(Math.round(num));
   return `${prefix} ${amount} kr`;
+}
+
+export function isBuyActionLabel(label: string): boolean {
+  return BUY_KEYWORDS.some((keyword) => label.toLowerCase().includes(keyword));
 }
 
 export function isFreeContentItem(

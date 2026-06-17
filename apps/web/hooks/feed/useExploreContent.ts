@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { API, useGetAPI } from "@/lib/http/api";
@@ -186,15 +186,16 @@ export const useExploreFeed = ({
 
   return useQuery<ExploreFeedResponse>({
     queryKey: [API.feed.explore, params, body],
-    queryFn: async () => {
+    queryFn: async ({ signal }) => {
       const response = await axiosClient.post<ExploreFeedResponse>(
         API.feed.explore,
         body,
-        { params },
+        { params, signal },
       );
 
       return response.data;
     },
+    placeholderData: keepPreviousData,
   });
 };
 
@@ -219,9 +220,11 @@ function useExploreTutorialSection(
     );
   }, [query.data, section, t]);
 
+  const isLoading = query.isPending;
+
   return {
     tutorials,
-    isLoading: query.isLoading,
+    isLoading,
     isError: query.isError,
   };
 }
@@ -257,9 +260,11 @@ export const useExploreTopCreators = (limit = 6) => {
       .slice(0, limit);
   }, [limit, query.data]);
 
+  const isLoading = query.isPending;
+
   return {
     creators,
-    isLoading: query.isLoading,
+    isLoading,
     isError: query.isError,
   };
 };
