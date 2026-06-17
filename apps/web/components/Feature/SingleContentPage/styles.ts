@@ -190,11 +190,21 @@ export const ContentShell = styled.div<{ $isPdf?: boolean }>`
   align-self: start;
 `;
 
+export const CreatorName = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_Medium}
+`;
+
 export const CreatorRow = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1.8rem;
+  text-decoration: none;
+
+  &:hover ${CreatorName} {
+    text-decoration: underline;
+  }
 `;
 
 export const CreatorAvatar = styled.span`
@@ -208,11 +218,6 @@ export const CreatorAvatar = styled.span`
   img {
     object-fit: cover;
   }
-`;
-
-export const CreatorName = styled.span`
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  ${({ theme }) => theme.typography.Body_Medium}
 `;
 
 export const HeadingBlock = styled.div`

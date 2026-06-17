@@ -201,21 +201,10 @@ export const CreatorBio = styled.p`
   max-width: 700px;
 `;
 
-export const CreatorBioText = styled(MonoText).attrs(({ theme }) => ({
-  $use: "Body_Medium",
-  color: theme.colors.neutral.GRAY_500,
-}))``;
-
-export const BioText = styled(MonoText).attrs(({ theme }) => ({
-  $use: "Body_Medium",
-  color: theme.colors.neutral.GRAY_500,
-}))`
-  margin-top: 10px;
-  max-width: 540px;
-`;
-
-export const MoreText = styled.span`
-  color: ${({ theme }) => theme.colors.primary.BLACK};
+export const CreatorBioText = styled.div`
+  max-height: 2.4em;
+  overflow: hidden;
+  word-break: break-word;
 `;
 
 export const MoreTextLabel = styled(MonoText).attrs(({ theme }) => ({
@@ -223,6 +212,27 @@ export const MoreTextLabel = styled(MonoText).attrs(({ theme }) => ({
   color: theme.colors.primary.BLACK,
 }))`
   cursor: pointer;
+  margin-top: 2px;
+`;
+
+export const BioText = styled.div`
+  margin-top: 10px;
+  max-width: 540px;
+  max-height: 2.4em;
+  overflow: hidden;
+  word-break: break-word;
+`;
+
+export const BioMoreButton = styled(MonoText).attrs(({ theme }) => ({
+  $use: "Body_SemiBold",
+  color: theme.colors.primary.BLACK,
+}))`
+  cursor: pointer;
+  margin-top: 2px;
+`;
+
+export const MoreText = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const TabsWrapper = styled.div`
@@ -354,6 +364,20 @@ export const StoryDescription = styled.div`
   ${({ theme }) => theme.media.mobileMd} {
     max-width: 100%;
   }
+`;
+
+export const StoryBioText = styled.div`
+  max-height: 2.4em;
+  overflow: hidden;
+  word-break: break-word;
+`;
+
+export const StoryMoreButton = styled(MonoText).attrs(({ theme }) => ({
+  $use: "Body_SemiBold",
+  color: theme.colors.primary.WHITE,
+}))`
+  cursor: pointer;
+  margin-top: 2px;
 `;
 
 export const HeroMedia = styled.div`

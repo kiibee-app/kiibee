@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import BackButtonIcon from "@/assets/icons/BackButtonIcon";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import type {
@@ -12,6 +13,7 @@ import type {
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
 import { VARIANT } from "@/utils/Constants";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import {
   BackButton,
   BodyTextWrap,
@@ -95,8 +97,8 @@ export function SingleContentHero({
 }
 
 function SingleContentCreator({ creator }: SingleContentCreatorProps) {
-  return (
-    <CreatorRow>
+  const content = (
+    <>
       {creator.avatar ? (
         <CreatorAvatar>
           <Image
@@ -109,8 +111,18 @@ function SingleContentCreator({ creator }: SingleContentCreatorProps) {
         </CreatorAvatar>
       ) : null}
       <CreatorName>{creator.name}</CreatorName>
-    </CreatorRow>
+    </>
   );
+
+  if (creator.id) {
+    return (
+      <CreatorRow as={Link} href={getPublicCreatorProfilePath(creator.id)}>
+        {content}
+      </CreatorRow>
+    );
+  }
+
+  return <CreatorRow>{content}</CreatorRow>;
 }
 
 export function SingleContentBody({

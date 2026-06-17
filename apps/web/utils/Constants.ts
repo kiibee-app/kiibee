@@ -56,6 +56,7 @@ export type PasswordVisibilityKey =
   (typeof PASSWORD_VISIBILITY_KEY)[keyof typeof PASSWORD_VISIBILITY_KEY];
 
 export const STRING = "string";
+export const STRING_EMPTY = "";
 export const SENSITIVITY_BASE = "base";
 export const VIEW = "view";
 export const VIEWER_SECTION = "section";
@@ -327,10 +328,12 @@ export const FREE_LABEL = "Free";
 export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";
+export const BUY_KEYWORDS = ["buy", "køb"];
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 export const MARQUEE_LIMIT = 8;
 export const EXPLORE_PAGE_SIZE = 12;
-
+export const TOP_CREATORS_LIMIT = 6;
+export const LOAD_MORE_SIZE = 12;
 export const CATEGORY_ALL = "all";
 
 export const SORT_OPTION_NEW = "new";

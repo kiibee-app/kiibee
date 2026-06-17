@@ -22,6 +22,7 @@ export const Meta = styled.p`
 export const Intro = styled.p`
   margin: 0 0 24px;
   ${({ theme }) => theme.typography.Body_Regular};
+  white-space: pre-line;
 `;
 
 export const Body = styled.div`
@@ -34,12 +35,14 @@ export const Section = styled.section``;
 
 export const SectionTitle = styled.h2`
   margin: 0 0 8px;
-  ${({ theme }) => theme.typography.H5_Medium};
+  padding-top: 24px;
+  ${({ theme }) => theme.typography.H4_SemiBold};
 `;
 
 export const Description = styled.p`
   margin: 0;
   ${({ theme }) => theme.typography.Body_Regular};
+  white-space: pre-line;
 `;
 
 export const ContactCard = styled.section`

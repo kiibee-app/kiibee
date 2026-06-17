@@ -4,7 +4,10 @@ import { useState } from "react";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTrendingContent } from "@/hooks/feed/useTrendingContent";
+import { LOAD_MORE_SIZE } from "@/utils/Constants";
 import { Section, SectionTag } from "../RecentlyAdded/styles";
+import Skeleton from "@/components/UI/Skeleton";
+import { FEED_CONTENT_PAGE_SIZE } from "@/utils/feedContentToTutorial";
 import {
   SectionHeader,
   SectionLabel,
@@ -34,7 +37,26 @@ export default function TrendingContent() {
     setLimit((prev) => prev + LOAD_MORE_SIZE);
   };
 
-  if (!isLoading && tutorials.length === 0) {
+  if (isLoading) {
+    return (
+      <Section>
+        <SectionHeader>
+          <SectionLabel>
+            <SectionTag>
+              <Skeleton.Tag />
+            </SectionTag>
+          </SectionLabel>
+        </SectionHeader>
+        <Grid $columnMax="300px">
+          {Array.from({ length: FEED_CONTENT_PAGE_SIZE }).map((_, i) => (
+            <Skeleton.Card key={i} />
+          ))}
+        </Grid>
+      </Section>
+    );
+  }
+
+  if (tutorials.length === 0) {
     return null;
   }
 

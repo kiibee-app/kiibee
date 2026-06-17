@@ -18,6 +18,10 @@ export const NAV = {
   logoAlt: "nav.logoAlt",
 };
 
+export const DASHBOARD = {
+  toggleSidebar: "dashboard.toggleSidebar",
+};
+
 export const CREATE_PROFILE_HOME = {
   brandName: "createProfileHome.brandName",
   uploads: "createProfileHome.uploads",
@@ -130,6 +134,11 @@ export const CREATORS = {
   noCreatorsFound: "creators.noCreatorsFound",
   uploadsCount: "creators.uploadsCount",
   loadMore: "creators.loadMore",
+  title: "creators.title",
+  allCreators: "nav.explore.creator.allCreators",
+  featured: "nav.explore.creator.featured",
+  newCreators: "nav.explore.creator.newCreators",
+  popular: "nav.explore.creator.popular",
   howToGetStarted: {
     title: "creators.howToGetStarted.title",
   },
@@ -502,6 +511,7 @@ export const SUBSCRIPTION = {
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
+  DASHBOARD,
   AUTH,
   AUTH_FORM,
   AUTH_CREATOR,

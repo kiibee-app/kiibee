@@ -48,6 +48,7 @@ export type SingleContentPageProps = {
     tone?: "default" | "urgent";
   };
   creator?: {
+    id?: string;
     name: string;
     avatar?: ImageSource;
     avatarAlt?: string;
@@ -127,7 +128,9 @@ export type ContentFormErrorKey =
   | "manufacturerLink"
   | "tags"
   | "mediaCardThumbnail"
-  | "portraitThumbnail";
+  | "portraitThumbnail"
+  | "rentalAmount"
+  | "purchaseAmount";
 
 export type ContentFormErrors = Partial<Record<ContentFormErrorKey, string>>;
 

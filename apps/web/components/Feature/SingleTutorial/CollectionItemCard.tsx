@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, type ComponentType } from "react";
+import Link from "next/link";
 import recentCreator from "@/assets/images/creators/recent_creator.webp";
 import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
@@ -9,6 +10,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, type ImageSource } from "@/utils/Constants";
 import { resolveImageUrl, resolvePublicMediaUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -98,7 +100,12 @@ export default function CollectionItemCard({ video }: Props) {
 
   return (
     <CollectionCard>
-      <CollectionImageArea>
+      <CollectionImageArea
+        as={Link}
+        href={contentHref}
+        tabIndex={-1}
+        aria-hidden="true"
+      >
         <CollectionThumbnail image={video.image} alt={video.title} />
         {video.category?.trim() ? (
           <CollectionBadge>
@@ -108,8 +115,19 @@ export default function CollectionItemCard({ video }: Props) {
       </CollectionImageArea>
 
       <CollectionCardBody>
-        <CollectionTitle>{video.title}</CollectionTitle>
-        <CollectionAuthor>{video.creator}</CollectionAuthor>
+        <CollectionTitle as={Link} href={contentHref}>
+          {video.title}
+        </CollectionTitle>
+        {video.creatorId ? (
+          <CollectionAuthor
+            as={Link}
+            href={getPublicCreatorProfilePath(video.creatorId)}
+          >
+            {video.creator}
+          </CollectionAuthor>
+        ) : (
+          <CollectionAuthor>{video.creator}</CollectionAuthor>
+        )}
         <CollectionTime>{video.published}</CollectionTime>
 
         <CollectionVideoPill>

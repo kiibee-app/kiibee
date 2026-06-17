@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "next/navigation";
 import { GenericModal } from "@/components/UI/Modals";
 import ConfirmationModal from "@/components/UI/ConfirmationModal";
 import {
@@ -42,7 +43,11 @@ import { AppearanceFormProvider } from "./Appearance/AppearanceFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
 import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
-import { SCROLL_OPTIONS, UI_TITLE_FALLBACK } from "@/utils/Constants";
+import {
+  SCROLL_OPTIONS,
+  UI_TITLE_FALLBACK,
+  CONTENT_ITEM_QUERY_KEY,
+} from "@/utils/Constants";
 import { COUPONS } from "@/utils/common";
 
 function ContentsUploadTitle({ fallback }: { fallback: string }) {
@@ -296,6 +301,20 @@ function CreatorsContentsInner() {
     saveContentSetting: contentSettings.updateSetting,
   });
 
+  const searchParams = useSearchParams();
+  const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
+
+  useEffect(() => {
+    if (!queryContentId && editingContent !== null) {
+      resetUploadState();
+    }
+  }, [queryContentId, editingContent, resetUploadState]);
+
+  const handleCreate = useCallback(() => {
+    resetUploadState();
+    handleCreateClick();
+  }, [handleCreateClick, resetUploadState]);
+
   const clearSelectedCollectionContentsOverride = useCallback(() => {
     const id = selectedCollection?.id;
     if (!id) return;
@@ -358,7 +377,7 @@ function CreatorsContentsInner() {
 
         <ContentsHeaderAction
           activeTab={activeTab}
-          onCreate={handleCreateClick}
+          onCreate={handleCreate}
           onCancel={handleHeaderCancel}
           onCreateCoupon={couponFlow.open}
           onSave={handleHeaderSave}

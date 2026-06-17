@@ -1,7 +1,16 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import { Body, Description, Title, Wrap } from "./styles";
+import {
+  Body,
+  Description,
+  Intro,
+  Meta,
+  Section,
+  SectionTitle,
+  Title,
+  Wrap,
+} from "./styles";
 
 export default function CookieSettingsSection() {
   const { t } = useTranslation();
@@ -9,9 +18,33 @@ export default function CookieSettingsSection() {
   return (
     <Wrap>
       <Title>{t("footer.cookieSettings")}</Title>
+      <Meta>{t("legalPages.cookieSettings.updatedAt")}</Meta>
+      <Intro>{t("legalPages.cookieSettings.intro")}</Intro>
       <Body>
-        <Description>{t("legalPages.cookieSettings.body1")}</Description>
-        <Description>{t("legalPages.cookieSettings.body2")}</Description>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.cookieSettings.sections.what.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.cookieSettings.sections.what.body")}
+          </Description>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.cookieSettings.sections.kiibee.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.cookieSettings.sections.kiibee.body")}
+          </Description>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.cookieSettings.sections.analytics.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.cookieSettings.sections.analytics.body")}
+          </Description>
+        </Section>
       </Body>
     </Wrap>
   );
