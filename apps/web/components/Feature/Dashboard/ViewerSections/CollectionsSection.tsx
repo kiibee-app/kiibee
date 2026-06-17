@@ -8,7 +8,6 @@ import COLORS from "@repo/ui/colors";
 import PlaylistIcon from "@/assets/icons/PlaylistIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
-import type { RentedCollectionItem } from "@/utils/dummyData/viewerRentedMockData";
 import {
   ACTIVE_RENTAL_TEXT,
   COLLECTION_SORT_KEY_LIST,
@@ -19,6 +18,7 @@ import {
   type CollectionSortKey,
   type RentedSectionKey,
   type RentedMode,
+  type RentedCollectionItem,
   getCollectionBadgeText,
   getCollectionPrimaryActionText,
   sortViewerCollections,

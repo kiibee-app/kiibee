@@ -5,7 +5,7 @@ import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bo
 import { VARIANT } from "@/utils/Constants";
 import type { SingleContentBodyProps } from "@/types/contentTypes";
 import type { SingleContentHeroProps } from "@/types/contentTypes";
-import type { RentedMediaItem } from "@/utils/dummyData/viewerRentedMockData";
+import type { RentedMediaItem } from "@/utils/viewerRented";
 import {
   PURCHASED_MEDIA_TYPES,
   type PurchasedCollectionItem,

@@ -5,15 +5,13 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
-import type {
-  RentedCollectionItem,
-  RentedMediaItem,
-} from "@/utils/dummyData/viewerRentedMockData";
 import { PageWrap, SectionBlock, EmptyState } from "./styles";
 import {
   RENTED_SECTION_KEYS,
   RENTED_MODES,
   type RentedMode,
+  type RentedCollectionItem,
+  type RentedMediaItem,
   filterCollections,
   filterMedia,
   getRentedContentSources,

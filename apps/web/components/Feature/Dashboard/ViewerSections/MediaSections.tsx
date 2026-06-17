@@ -9,7 +9,6 @@ import { VideoIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
-import type { RentedMediaItem } from "@/utils/dummyData/viewerRentedMockData";
 import {
   RENTED_BUTTON_TEXT,
   RENTED_MEDIA_SECTIONS,
@@ -18,6 +17,7 @@ import {
   RENTED_MODES,
   type RentedSectionKey,
   type RentedMode,
+  type RentedMediaItem,
   getMediaAction,
   getMediaLabel,
 } from "@/utils/viewerRented";

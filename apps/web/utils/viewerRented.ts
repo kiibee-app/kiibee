@@ -1,9 +1,33 @@
 import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
-import type {
-  RentedCollectionItem,
-  RentedMediaItem,
-} from "@/utils/dummyData/viewerRentedMockData";
+
+export type CollectionAction = {
+  label: string;
+  sublabel?: string;
+  variant?: "primary" | "secondary";
+  href?: string;
+};
+
+export type RentedCollectionItem = {
+  id: string;
+  title: string;
+  author: string;
+  elementCount: number;
+  coverSrc: string;
+  actions?: CollectionAction[];
+  hideBadge?: boolean;
+  href?: string;
+};
+
+export type RentedMediaItem = {
+  id: string;
+  mediaType: RentedMediaType;
+  category: string;
+  thumbSrc: string;
+  title: string;
+  author: string;
+  expiryText: string;
+};
 import {
   CURRENT_RENTED_AUDIOS,
   CURRENT_RENTED_COLLECTIONS,
