@@ -133,14 +133,7 @@ function PublishedContentDetail() {
 
   if (isLoading) {
     return (
-      <Section
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "60vh",
-        }}
-      >
+      <Section>
         <GenericLoader
           variant={LOADER_VARIANT.INLINE}
           size={LOADER_SIZE.MD}
