@@ -1,6 +1,6 @@
 import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
+import type { ContentType } from "@/utils/content";
 import type {
-  RentedMode,
   RentedCollectionItem,
   RentedMediaItem,
 } from "@/utils/dummyData/viewerRentedMockData";
@@ -28,6 +28,9 @@ export const RENTED_MODES = {
   CURRENTLY: "currently",
   PREVIOUSLY: "previously",
 } as const;
+
+export type RentedMode = (typeof RENTED_MODES)[keyof typeof RENTED_MODES];
+export type RentedMediaType = ContentType;
 
 export const RENTED_MEDIA_TYPES = {
   VIDEO: "video",

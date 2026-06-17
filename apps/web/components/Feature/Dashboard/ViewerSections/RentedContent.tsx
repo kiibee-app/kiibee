@@ -8,12 +8,12 @@ import { MonoText } from "@/components/UI/Monotext";
 import type {
   RentedCollectionItem,
   RentedMediaItem,
-  RentedMode,
 } from "@/utils/dummyData/viewerRentedMockData";
 import { PageWrap, SectionBlock, EmptyState } from "./styles";
 import {
   RENTED_SECTION_KEYS,
   RENTED_MODES,
+  type RentedMode,
   filterCollections,
   filterMedia,
   getRentedContentSources,

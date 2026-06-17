@@ -1,11 +1,9 @@
 import design1 from "@/assets/images/design1.webp";
 import design2 from "@/assets/images/design2.webp";
 import design3 from "@/assets/images/design.webp";
-import type { ContentType } from "@/utils/content";
-import { RENTED_MODES } from "@/utils/viewerRented";
 
-export type RentedMode = (typeof RENTED_MODES)[keyof typeof RENTED_MODES];
-export type RentedMediaType = ContentType;
+export type RentedMode = "purchased" | "currently" | "previously";
+export type RentedMediaType = "video" | "audio" | "pdf";
 
 export type CollectionAction = {
   label: string;
