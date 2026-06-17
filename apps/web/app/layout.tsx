@@ -13,6 +13,7 @@ import {
   TWITTER_CARD_SUMMARY_LARGE_IMAGE,
   WEBSITE,
 } from "@/utils/Constants";
+import { DA } from "@/utils/common";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="da" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={DA} className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
         <ThemeProvider>
           <QueryProvider>
