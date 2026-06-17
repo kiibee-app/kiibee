@@ -71,7 +71,7 @@ export default function SidebarHelpDropdown({
               role="menuitem"
               onClick={onClose}
             >
-              {helpItem.label}
+              {t(helpItem.labelKey)}
             </SidebarDropdownItem>
           ))}
         </SidebarDropdown>

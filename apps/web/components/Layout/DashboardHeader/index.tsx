@@ -26,6 +26,7 @@ import { getAvatarUrl } from "@/utils/creatorProfile";
 import { useRouter } from "next/navigation";
 import CreatorHeaderRight from "./CreatorHeaderRight";
 import ViewerHeaderRight from "./ViewerHeaderRight";
+import LanguageToggle from "@/components/UI/LanguageToggle";
 
 type Props = {
   role: typeof ROLE_CREATOR | typeof ROLE_VIEWER;
@@ -83,6 +84,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
       )}
 
       <Right>
+        <LanguageToggle />
         {role === ROLE_CREATOR ? (
           <CreatorHeaderRight
             initial={initial}
