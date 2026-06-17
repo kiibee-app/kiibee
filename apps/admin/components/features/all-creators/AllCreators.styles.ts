@@ -641,6 +641,15 @@ export const DrawerCardItem = styled.div`
   }
 `;
 
+export const InteractiveDrawerCardItem = styled(DrawerCardItem)`
+  cursor: pointer;
+  transition: background ${({ theme }) => theme.animations.fast};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  }
+`;
+
 export const DrawerIconWrapper = styled.div`
   color: ${({ theme }) => theme.colors.primary.GREEN};
   display: flex;

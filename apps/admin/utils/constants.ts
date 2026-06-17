@@ -9,10 +9,12 @@ export const API_ENDPOINTS = {
   ALL_CREATOR_REQUESTS: "/auth/all-creator-requests",
   ALL_VIEWERS: "/auth/all-viewers",
   DASHBOARD_STATS: "/auth/dashboard-stats",
+  CREATOR_UPLOADS: "/content/all",
 } as const;
 
 export const ERROR_MESSAGES = {
   LOGIN_FAILED: "Login failed",
+  FETCH_CREATOR_UPLOADS_FAILED: "Failed to fetch creator uploads",
 } as const;
 
 export const ACTION_ICONS = {
@@ -52,6 +54,7 @@ export const QUERY_KEY = {
   EXISTING_CREATORS: "existing-creators",
   VIEWERS: "viewers",
   DASHBOARD_STATS: "dashboard-stats",
+  CREATOR_UPLOADS: "creator-uploads",
 } as const;
 
 export const DASHBOARD_STAT_KEY = {

@@ -5,6 +5,7 @@ export {
   useCreatorRequests,
   useExistingCreators,
 } from "./use-creator-requests";
+export { useCreatorUploads, type UploadItem } from "./use-creator-uploads";
 export { useViewers } from "./use-viewers";
 export { useDashboardStats } from "./use-dashboard-stats";
 export { useLogin } from "./use-login";
