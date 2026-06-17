@@ -46,6 +46,7 @@ export type CreatorVariant =
 
 export type DashboardSidebarItem = {
   label: string;
+  labelKey?: string;
   icon?: React.ReactNode;
   section: CreatorSection;
   variant?: CreatorVariant;
@@ -84,32 +85,38 @@ export const VIEWER_VIEW_TO_LABEL: Record<ViewerViewValue, ViewerLabel> = {
 export const creatorsItems: DashboardSidebarItem[] = [
   {
     label: CREATORS_LABELS.OVERVIEW,
+    labelKey: "dashboard.overview",
     icon: <HomeIcon />,
     section: CREATOR_SECTIONS.TOP,
   },
   {
     label: CREATORS_LABELS.CONTENTS,
+    labelKey: "contents.title",
     icon: <ShoppingBagIcon />,
     section: CREATOR_SECTIONS.TOP,
   },
   {
     label: CREATORS_LABELS.USERS,
+    labelKey: "sidebar.users",
     icon: <UsersIcon />,
     section: CREATOR_SECTIONS.TOP,
   },
 
   {
     label: CREATORS_LABELS.SETTINGS,
+    labelKey: "settings.title",
     icon: <SettingsIcon />,
     section: CREATOR_SECTIONS.BOTTOM,
   },
   {
     label: CREATORS_LABELS.HELP,
+    labelKey: "sidebar.help",
     icon: <QuestionIcon />,
     section: CREATOR_SECTIONS.BOTTOM,
   },
   {
     label: CREATORS_LABELS.LOG_OUT,
+    labelKey: "nav.logout",
     icon: <LogoutIcon />,
     section: CREATOR_SECTIONS.BOTTOM,
     variant: CREATOR_VARIANTS.DANGER,
@@ -119,26 +126,32 @@ export const creatorsItems: DashboardSidebarItem[] = [
 export const viewerItems: DashboardSidebarItem[] = [
   {
     label: VIEWER_LABELS.PURCHASED,
+    labelKey: "dashboard.viewerPurchased.title",
     section: CREATOR_SECTIONS.TOP,
   },
   {
     label: VIEWER_LABELS.CURRENTLY_RENTED,
+    labelKey: "sidebar.currentlyRented",
     section: CREATOR_SECTIONS.TOP,
   },
   {
     label: VIEWER_LABELS.PREVIOUSLY_RENTED,
+    labelKey: "sidebar.previouslyRented",
     section: CREATOR_SECTIONS.TOP,
   },
   {
     label: VIEWER_LABELS.BILLINGS,
+    labelKey: "dashboard.viewerBillings.title",
     section: CREATOR_SECTIONS.TOP,
   },
   {
     label: VIEWER_LABELS.MY_PROFILE,
+    labelKey: "dashboard.viewerProfile.title",
     section: CREATOR_SECTIONS.TOP,
   },
   {
     label: VIEWER_LABELS.LOG_OUT,
+    labelKey: "nav.logout",
     icon: <LogoutIcon />,
     section: CREATOR_SECTIONS.BOTTOM,
     variant: CREATOR_VARIANTS.DANGER,
@@ -146,9 +159,17 @@ export const viewerItems: DashboardSidebarItem[] = [
 ];
 
 export const HELP_MENU_ITEMS = [
-  { label: "Help videos", href: "/tutorial-videos" },
-  { label: "User manual", href: "/support" },
-  { label: "Conditions", href: "/terms-of-service" },
+  {
+    label: "Help videos",
+    labelKey: "sidebar.helpVideos",
+    href: "/tutorial-videos",
+  },
+  { label: "User manual", labelKey: "sidebar.userManual", href: "/support" },
+  {
+    label: "Conditions",
+    labelKey: "sidebar.conditions",
+    href: "/terms-of-service",
+  },
 ] as const;
 
 export type HelpMenuItem = (typeof HELP_MENU_ITEMS)[number];

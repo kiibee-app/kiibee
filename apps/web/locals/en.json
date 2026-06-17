@@ -1895,6 +1895,15 @@
     "noStack": "Stack trace is not available.",
     "unknownError": "Unknown error message"
   },
+  "sidebar": {
+    "users": "Users",
+    "help": "Help",
+    "currentlyRented": "Currently Rented",
+    "previouslyRented": "Previously Rented",
+    "helpVideos": "Help videos",
+    "userManual": "User manual",
+    "conditions": "Conditions"
+  },
   "errors": {
     "missingContentFormProvider": "useContentForm must be used within a ContentFormProvider",
     "noContentToSave": "No content to save",

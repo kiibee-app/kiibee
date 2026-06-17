@@ -13,6 +13,7 @@ import {
   SidebarContent,
 } from "./styles";
 import SidebarHelpDropdown from "@/components/Feature/HelpDropdown";
+import { useTranslation } from "react-i18next";
 import {
   CREATORS_LABELS,
   CREATOR_SECTIONS,
@@ -39,6 +40,7 @@ const Sidebar = ({
   items = creatorsItems,
   logoutLabel = CREATORS_LABELS.LOG_OUT,
 }: SidebarProps) => {
+  const { t } = useTranslation();
   const [helpOpen, setHelpOpen] = useState(false);
   const { mainItems, settingsItems } = useMemo(() => {
     return {
@@ -71,27 +73,30 @@ const Sidebar = ({
 
   const renderItems = useCallback(
     (itemsToRender: DashboardSidebarItem[]) =>
-      itemsToRender.map((item) => (
-        <SidebarItemStyled
-          key={item.label}
-          onClick={() => handleSelect(item.label)}
-          $active={activeItem === item.label}
-          $variant={item.variant}
-          $expanded={expanded}
-          title={!expanded ? item.label : undefined}
-        >
-          {item.icon && <IconWrapper>{item.icon}</IconWrapper>}
-          {expanded && (
-            <SidebarText
-              $active={activeItem === item.label}
-              $variant={item.variant}
-            >
-              {item.label}
-            </SidebarText>
-          )}
-        </SidebarItemStyled>
-      )),
-    [activeItem, expanded, handleSelect],
+      itemsToRender.map((item) => {
+        const displayLabel = t(item.labelKey || item.label) as string;
+        return (
+          <SidebarItemStyled
+            key={item.label}
+            onClick={() => handleSelect(item.label)}
+            $active={activeItem === item.label}
+            $variant={item.variant}
+            $expanded={expanded}
+            title={!expanded ? displayLabel : undefined}
+          >
+            {item.icon && <IconWrapper>{item.icon}</IconWrapper>}
+            {expanded && (
+              <SidebarText
+                $active={activeItem === item.label}
+                $variant={item.variant}
+              >
+                {displayLabel}
+              </SidebarText>
+            )}
+          </SidebarItemStyled>
+        );
+      }),
+    [activeItem, expanded, handleSelect, t],
   );
 
   return (
@@ -106,11 +111,12 @@ const Sidebar = ({
 
           <BottomMenu $expanded={expanded}>
             {settingsItems.map((item) => {
+              const displayLabel = t(item.labelKey || item.label) as string;
               if (item.label === HELP) {
                 return (
                   <SidebarHelpDropdown
                     key={item.label}
-                    label={item.label}
+                    label={displayLabel}
                     icon={item.icon}
                     variant={item.variant}
                     expanded={expanded}
@@ -128,7 +134,7 @@ const Sidebar = ({
                   $active={activeItem === item.label}
                   $variant={item.variant}
                   $expanded={expanded}
-                  title={!expanded ? item.label : undefined}
+                  title={!expanded ? displayLabel : undefined}
                 >
                   {item.icon && <IconWrapper>{item.icon}</IconWrapper>}
                   {expanded && (
@@ -136,7 +142,7 @@ const Sidebar = ({
                       $active={activeItem === item.label}
                       $variant={item.variant}
                     >
-                      {item.label}
+                      {displayLabel}
                     </SidebarText>
                   )}
                 </SidebarItemStyled>

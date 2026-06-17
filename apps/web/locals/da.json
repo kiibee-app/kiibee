@@ -9,7 +9,7 @@
     "exploreCreators": "Udforsk skabere",
     "about": "Om Kiibee",
     "login": "Log ind",
-    "dashboard": "Dashboard",
+    "dashboard": "Oversigt",
     "accountProfile": "Profil",
     "logout": "Log ud",
     "profileMenu": "Kontomenu",
@@ -1902,6 +1902,15 @@
     "defaultTitle": "Noget gik galt",
     "noStack": "Stack trace er ikke tilgængelig.",
     "unknownError": "Ukendt fejlmeddelelse"
+  },
+  "sidebar": {
+    "users": "Brugere",
+    "help": "Hjælp",
+    "currentlyRented": "Aktuelt lejet",
+    "previouslyRented": "Tidligere lejet",
+    "helpVideos": "Hjælpevideoer",
+    "userManual": "Brugervejledning",
+    "conditions": "Vilkår"
   },
   "errors": {
     "missingContentFormProvider": "useContentForm skal bruges inden for en ContentFormProvider",
