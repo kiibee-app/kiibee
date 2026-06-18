@@ -6,6 +6,7 @@ import { I18nextProvider, initReactI18next } from "react-i18next";
 import en from "../locals/en.json";
 import da from "../locals/da.json";
 import {
+  COOKIE_KEY,
   DA,
   EN,
   STORAGE_KEY,
@@ -14,6 +15,8 @@ import {
   LANGUAGE_CHANGED_EVENT,
   UNDEFINED,
 } from "@/utils/common";
+
+const COOKIE_MAX_AGE = 31536000; // 1 year
 
 type ResourceBundle = Record<string, Record<string, typeof en>>;
 
@@ -34,7 +37,8 @@ const syncResources = () => {
   });
 };
 
-const getInitialLanguage = (): string => {
+const getInitialLanguage = (serverLang?: string): string => {
+  if (serverLang && SUPPORTED_LANGS.includes(serverLang)) return serverLang;
   if (typeof window !== UNDEFINED) {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored && SUPPORTED_LANGS.includes(stored)) return stored;
@@ -42,10 +46,19 @@ const getInitialLanguage = (): string => {
   return DA;
 };
 
+const setLanguageCookie = (lng: string) => {
+  if (typeof window === UNDEFINED) return;
+  const expires = new Date(Date.now() + COOKIE_MAX_AGE * 1000).toUTCString();
+  document.cookie = `${COOKIE_KEY}=${encodeURIComponent(lng)}; Path=/; Max-Age=${COOKIE_MAX_AGE}; Expires=${expires}; SameSite=Lax`;
+};
+
 if (!i18n.isInitialized) {
+  const initialLang = getInitialLanguage();
+  setLanguageCookie(initialLang);
+
   const opts: InitOptions & { initImmediate?: boolean } = {
     resources: resources as unknown as InitOptions["resources"],
-    lng: getInitialLanguage(),
+    lng: initialLang,
     fallbackLng: EN,
     interpolation: { escapeValue: false },
     initImmediate: false,
@@ -58,18 +71,35 @@ if (!i18n.isInitialized) {
 
 syncResources();
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+export function LanguageProvider({
+  children,
+  initialLang,
+}: {
+  children: React.ReactNode;
+  initialLang?: string;
+}) {
   useEffect(() => {
     syncResources();
     document.documentElement.lang = i18n.language;
 
+    if (initialLang && i18n.language !== initialLang) {
+      i18n.changeLanguage(initialLang);
+      localStorage.setItem(STORAGE_KEY, initialLang);
+      setLanguageCookie(initialLang);
+    }
+
     const onLangChange = (lng: string) => {
       document.documentElement.lang = lng;
+      if (typeof window !== UNDEFINED) {
+        localStorage.setItem(STORAGE_KEY, lng);
+      }
+      setLanguageCookie(lng);
     };
     i18n.on(LANGUAGE_CHANGED_EVENT, onLangChange);
     return () => {
       i18n.off(LANGUAGE_CHANGED_EVENT, onLangChange);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
