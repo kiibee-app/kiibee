@@ -7,7 +7,6 @@ export function getScrollRevealContainerStyle(
   return {
     visibility: SCROLL_REVEAL.initialVisibility,
     opacity: SCROLL_REVEAL.initialOpacity,
-    willChange: SCROLL_REVEAL.willChange,
     ...style,
   };
 }
