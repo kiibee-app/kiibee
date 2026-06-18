@@ -189,6 +189,7 @@ export default function CouponTable({
                 : null
             }
             getRowKey={(row, index) => `${row.title}-${index}`}
+            getMobileTitle={(row) => String(row.title)}
             getColumnAlignment={(_header, index) =>
               index === 0 || index === 1 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
             }
