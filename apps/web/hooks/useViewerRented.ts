@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import { API, useGetAPI } from "@/lib/http/api";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import {
@@ -55,6 +57,7 @@ type ViewerDataResponse = {
 function toMediaItem(
   item: BackendMediaItem,
   mode: RentedMode,
+  t: TFunction,
 ): RentedMediaItem {
   return {
     id: item.id,
@@ -66,8 +69,8 @@ function toMediaItem(
     author: item.creatorName ?? "",
     expiryText:
       mode === RENTED_MODES.PREVIOUSLY
-        ? formatExpiredText(item.rentExpiresAt)
-        : formatExpiryText(item.rentExpiresAt),
+        ? formatExpiredText(item.rentExpiresAt, t)
+        : formatExpiryText(item.rentExpiresAt, t),
   };
 }
 
@@ -89,6 +92,7 @@ const ENDPOINT_MAP: Record<RentedMode, string> = {
 
 export const useViewerRentedData = (mode: RentedMode) => {
   const query = useGetAPI<ViewerDataResponse>(ENDPOINT_MAP[mode]);
+  const { t } = useTranslation();
 
   const sources = useMemo(() => {
     const data = query.data?.data;
@@ -96,11 +100,11 @@ export const useViewerRentedData = (mode: RentedMode) => {
 
     return {
       collections: data.collections.map(toCollectionItem),
-      videos: data.videos.map((item) => toMediaItem(item, mode)),
-      audios: data.audios.map((item) => toMediaItem(item, mode)),
-      pdfs: data.pdfs.map((item) => toMediaItem(item, mode)),
+      videos: data.videos.map((item) => toMediaItem(item, mode, t)),
+      audios: data.audios.map((item) => toMediaItem(item, mode, t)),
+      pdfs: data.pdfs.map((item) => toMediaItem(item, mode, t)),
     };
-  }, [query.data, mode]);
+  }, [query.data, mode, t]);
 
   return {
     sources,

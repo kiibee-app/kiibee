@@ -9,9 +9,9 @@ import { VideoIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
+import { useTranslation } from "react-i18next";
 import {
-  RENTED_BUTTON_TEXT,
-  RENTED_MEDIA_SECTIONS,
+  getRentedMediaSections,
   RENTED_SECTION_KEYS,
   RENTED_MEDIA_TYPES,
   RENTED_MODES,
@@ -76,12 +76,13 @@ export default function MediaSections({
   onMediaPrimaryAction,
   onOpenSection,
 }: Props) {
+  const { t } = useTranslation();
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const hasDetailView = Boolean(onMediaPrimaryAction);
 
   return (
     <>
-      {RENTED_MEDIA_SECTIONS.map((section) => {
+      {getRentedMediaSections(t).map((section) => {
         if (
           !sectionItems[section.key] ||
           sectionItems[section.key].length === 0
@@ -139,7 +140,7 @@ export default function MediaSections({
                             : undefined
                         }
                       >
-                        {getMediaAction(item.mediaType)}
+                        {getMediaAction(item.mediaType, t)}
                       </GenericButton>
                     ) : (
                       <TwoButtonRow>
@@ -148,14 +149,14 @@ export default function MediaSections({
                           size="md"
                           fullWidth
                         >
-                          {RENTED_BUTTON_TEXT.buy}
+                          {t("pricingLabels.buy")}
                         </GenericButton>
                         <GenericButton
                           variant={VARIANT.SECONDARY}
                           size="md"
                           fullWidth
                         >
-                          {RENTED_BUTTON_TEXT.rent}
+                          {t("pricingLabels.rent")}
                         </GenericButton>
                       </TwoButtonRow>
                     )
@@ -176,7 +177,7 @@ export default function MediaSections({
                   <MediaTypePill>
                     <MediaTypeIcon type={item.mediaType} />
                     <MonoText $use="Body_Bold">
-                      {getMediaLabel(item.mediaType)}
+                      {getMediaLabel(item.mediaType, t)}
                     </MonoText>
                   </MediaTypePill>
                 </GenericCard>

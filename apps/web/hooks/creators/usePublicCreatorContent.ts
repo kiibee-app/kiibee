@@ -9,6 +9,7 @@ import {
   feedContentToTutorial,
   type FeedContentItem,
 } from "@/utils/feedContentToTutorial";
+import { getPricingLabels } from "@/utils/contentPricingActions";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 
@@ -40,7 +41,9 @@ export function usePublicCreatorContent(creatorId: string | null) {
     if (!Array.isArray(items) || items.length === 0) return [];
 
     const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
-    return items.map((item) => feedContentToTutorial(item, freeLabel));
+    return items.map((item) =>
+      feedContentToTutorial(item, freeLabel, { labels: getPricingLabels(t) }),
+    );
   }, [query.data, t]);
 
   return {

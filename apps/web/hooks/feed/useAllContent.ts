@@ -10,6 +10,7 @@ import {
   feedContentToTutorial,
   type FeedContentItem,
 } from "@/utils/feedContentToTutorial";
+import { getPricingLabels } from "@/utils/contentPricingActions";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -108,7 +109,7 @@ export function useAllContent(allContentId: string) {
 
     const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
     const parsed = rawItems.map((item) =>
-      feedContentToTutorial(item, freeLabel),
+      feedContentToTutorial(item, freeLabel, { labels: getPricingLabels(t) }),
     );
     if (sortOption === SORT_OPTION_AZ) {
       return [...parsed].sort((a, b) => a.title.localeCompare(b.title));

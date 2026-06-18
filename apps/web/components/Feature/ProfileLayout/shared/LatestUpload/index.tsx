@@ -26,12 +26,7 @@ import {
   ModalContentWrapper,
   ModalDescription,
 } from "./styles";
-import {
-  resolveImageUrl,
-  MOBILE_BREAKPOINT,
-  VARIANT,
-  BUY_PREFIX,
-} from "@/utils/Constants";
+import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
 import {
   EpubIcon,
@@ -49,6 +44,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import {
   formatPriceLabel,
   getContentDetailPricingActions,
+  getPricingLabels,
   isBuyActionLabel,
   isFreeContentItem,
   resolveContentActionHref,
@@ -132,7 +128,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
 
       if (isFreeContentItem(pricingItem)) {
         const buyLabel =
-          formatPriceLabel(BUY_PREFIX, data.buyPrice) ||
+          formatPriceLabel(t("pricingLabels.buy"), data.buyPrice) ||
           t("createProfileHome.latestUpload.buy");
         return [
           {
@@ -147,7 +143,9 @@ export default function LatestUpload({ data }: LatestUploadProps) {
         ];
       }
 
-      const pricingActions = getContentDetailPricingActions(pricingItem, t);
+      const pricingActions = getContentDetailPricingActions(pricingItem, t, {
+        labels: getPricingLabels(t),
+      });
 
       return pricingActions.map((action) => ({
         title: action.label,
@@ -157,6 +155,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
           action.label,
           pricingItem,
           pricingActions.length,
+          { labels: getPricingLabels(t) },
         ),
       }));
     }

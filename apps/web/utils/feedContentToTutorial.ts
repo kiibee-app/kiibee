@@ -3,6 +3,7 @@ import {
   getContentPricingActions,
   isFreeContentItem,
   resolveContentActionHref,
+  type PricingLabels,
 } from "@/utils/contentPricingActions";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
 import { resolvePublicMediaUrl } from "@/utils/media";
@@ -79,7 +80,7 @@ export function dedupeFeedContentItems(
 function buildPricingButtons(
   item: FeedContentItem,
   freeLabel: string,
-  options?: { inCollection?: boolean },
+  options?: { inCollection?: boolean; labels?: PricingLabels },
 ): TutorialButton[] {
   const actions = getContentPricingActions(item, freeLabel, options);
   const requiresAuth = !isFreeContentItem(item);
@@ -102,7 +103,7 @@ function buildPricingButtons(
 export function feedContentToTutorial(
   item: FeedContentItem,
   freeLabel: string,
-  options?: { inCollection?: boolean },
+  options?: { inCollection?: boolean; labels?: PricingLabels },
 ): TutorialVideo {
   return {
     id: item.id,

@@ -1928,5 +1928,38 @@
     "submitCode": "Access content",
     "submitEmail": "Access content",
     "consentText": "By submitting my email to Kiibee, I hereby subscribe to {{creatorName}}'s newsletter. I can unsubscribe from these at any time through Kiibee."
+  },
+  "pricingLabels": {
+    "rent": "Rent",
+    "buy": "Buy",
+    "buyCollection": "Buy collection",
+    "free": "Free"
+  },
+  "viewerRented": {
+    "owned": "Owned",
+    "inRental": "In rental",
+    "rented": "Rented",
+    "activeRental": "Active rental",
+    "expiresIn": "Expires in 2 days",
+    "seeContent": "See content",
+    "buyPlaceholder": "Buy xx kr",
+    "searchPurchased": "Search Purchased Content",
+    "searchCurrentlyRented": "Search Currently Rented",
+    "searchPreviouslyRented": "Search Previously Rented",
+    "playVideo": "Play video",
+    "playAudio": "Play audio",
+    "openPdf": "Open pdf",
+    "mediaLabelVideo": "Video",
+    "mediaLabelAudio": "Audio",
+    "mediaLabelPdf": "PDF",
+    "expired": "Expired",
+    "expiresInHours": "Expires in {{count}} hrs",
+    "expiresInDays": "Expires in {{count}} days",
+    "expiredOn": "Expired on {{date}}"
+  },
+  "explore": {
+    "sortNew": "New",
+    "sortTrending": "Trending",
+    "sortCreatedForYou": "Created for you"
   }
 }
