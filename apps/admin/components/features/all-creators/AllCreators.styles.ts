@@ -226,6 +226,14 @@ export const CreatorAvatarImage = styled.img`
   object-fit: cover;
 `;
 
+export const DrawerAvatarImage = styled.img`
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+`;
+
 export const DescriptionText = styled.div`
   display: -webkit-box;
   overflow: hidden;
@@ -638,6 +646,15 @@ export const DrawerCardItem = styled.div`
 
   &:last-child {
     border-bottom: none;
+  }
+`;
+
+export const InteractiveDrawerCardItem = styled(DrawerCardItem)`
+  cursor: pointer;
+  transition: background ${({ theme }) => theme.animations.fast};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   }
 `;
 
