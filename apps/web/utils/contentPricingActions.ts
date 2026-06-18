@@ -6,7 +6,6 @@ import {
   BUY_PREFIX,
   FREE_LABEL,
   RENT_PREFIX,
-  BUY_COLLECTION_PREFIX,
   VARIANT,
 } from "./Constants";
 import { pathPublishedContent } from "./path";
