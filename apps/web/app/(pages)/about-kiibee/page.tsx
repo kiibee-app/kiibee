@@ -11,19 +11,23 @@ import CtaSection from "@/components/Feature/CtaSection";
 import Footer from "@/components/Layout/Footer";
 import ctaImage from "@/assets/images/cta-buttom1.webp";
 import { useTranslation } from "react-i18next";
+import { useAboutNavTone } from "@/hooks/useAboutNavTone";
 
 export default function AboutKiibeePage() {
   const { t } = useTranslation();
+  const { darkSectionRef, navTextTone } = useAboutNavTone();
 
   return (
     <PageContainer>
-      <NavBar />
+      <NavBar navTextTone={navTextTone} />
       <Main>
         <Section>
           <AboutHero />
           <AboutStorySection />
           <WhatWeBelieveSection />
-          <MoreThanPlatformSection />
+          <div ref={darkSectionRef}>
+            <MoreThanPlatformSection />
+          </div>
         </Section>
       </Main>
       <CtaSection
