@@ -14,7 +14,6 @@ import {
   type RentedMediaItem,
   filterCollections,
   filterMedia,
-  getRentedContentSources,
   isViewerCollectionsSectionExpanded,
   syncViewerCollectionsSectionParam,
 } from "@/utils/viewerRented";
@@ -23,6 +22,7 @@ import {
   CONTENT_ITEM_QUERY_KEY,
 } from "@/utils/Constants";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
+import { useViewerRentedData } from "@/hooks/useViewerRented";
 import { useViewerPurchased } from "@/hooks/viewer/useViewerPurchased";
 import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
@@ -79,6 +79,7 @@ export default function RentedContent({
     canGoPrev,
     canGoNext,
   } = useViewerRentedSectionPagination();
+  const { sources: rentedSources, isLoading } = useViewerRentedData(mode);
   const { data: purchasedData, isLoading: isPurchasedLoading } =
     useViewerPurchased(mode === RENTED_MODES.PURCHASED);
 
@@ -88,8 +89,8 @@ export default function RentedContent({
         purchasedData || { collections: [], videos: [], audios: [], pdfs: [] }
       );
     }
-    return getRentedContentSources(mode);
-  }, [mode, purchasedData]);
+    return rentedSources;
+  }, [mode, purchasedData, rentedSources]);
   const selectedCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
   const selectedContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
@@ -242,7 +243,7 @@ export default function RentedContent({
         }
       />
 
-      {mode === RENTED_MODES.PURCHASED && isPurchasedLoading ? (
+      {(mode === RENTED_MODES.PURCHASED ? isPurchasedLoading : isLoading) ? (
         <EmptyState>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
             Loading...
@@ -256,26 +257,30 @@ export default function RentedContent({
         </EmptyState>
       ) : (
         <>
-          <SectionBlock>
-            <CollectionsSection
-              mode={mode}
-              items={
-                isCollectionsExpanded ? filteredCollections : visibleCollections
-              }
-              totalItems={filteredCollections.length}
-              canSlide={canSlide}
-              canGoPrev={canGoPrev}
-              canGoNext={canGoNext}
-              movePrev={movePrev}
-              moveNext={moveNext}
-              onOpenSection={() => setCollectionsExpanded(true)}
-              showOpenSectionArrow={!isCollectionsExpanded}
-              showExpandedMetaHeader={isCollectionsExpanded}
-              onCollectionPrimaryAction={(item) =>
-                handleOpenCollection(item.id)
-              }
-            />
-          </SectionBlock>
+          {filteredCollections.length > 0 && (
+            <SectionBlock>
+              <CollectionsSection
+                mode={mode}
+                items={
+                  isCollectionsExpanded
+                    ? filteredCollections
+                    : visibleCollections
+                }
+                totalItems={filteredCollections.length}
+                canSlide={canSlide}
+                canGoPrev={canGoPrev}
+                canGoNext={canGoNext}
+                movePrev={movePrev}
+                moveNext={moveNext}
+                onOpenSection={() => setCollectionsExpanded(true)}
+                showOpenSectionArrow={!isCollectionsExpanded}
+                showExpandedMetaHeader={isCollectionsExpanded}
+                onCollectionPrimaryAction={(item) =>
+                  handleOpenCollection(item.id)
+                }
+              />
+            </SectionBlock>
+          )}
 
           {isCollectionsExpanded ? null : (
             <MediaSections

@@ -273,3 +273,21 @@ export function sortViewerCollections(
   });
   return sorted;
 }
+
+export function formatExpiryText(rentExpiresAt?: string | null): string {
+  if (!rentExpiresAt) return "";
+  const hrs = Math.round(
+    (new Date(rentExpiresAt).getTime() - Date.now()) / 36e5,
+  );
+  if (hrs <= 0) return "Expired";
+  return hrs < 24
+    ? `Expires in ${hrs} hrs`
+    : `Expires in ${Math.round(hrs / 24)} days`;
+}
+
+export function formatExpiredText(rentExpiresAt?: string | null): string {
+  if (!rentExpiresAt) return "";
+  const d = new Date(rentExpiresAt);
+  if (isNaN(d.getTime())) return "";
+  return `Expired on ${d.getDate()} ${d.toLocaleString(undefined, { month: "long" })} ${d.getFullYear()}`;
+}

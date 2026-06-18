@@ -1,5 +1,4 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { db } from 'src/database/db';
 import { fail } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 
@@ -9,7 +8,7 @@ import {
   getMediaByType,
   getMediaCategories,
   enrichMedia,
-  enrichCollections,
+  getCollectionsWithDetails,
   emptyPurchasedResult,
 } from '../viewer.helper';
 import { CONTENT_TYPES } from 'src/utils/constant';
@@ -44,12 +43,7 @@ export const getExpiredRentedData = async (userId: string) => {
       getMediaByType(mediaIds, CONTENT_TYPES.VIDEO),
       getMediaByType(mediaIds, CONTENT_TYPES.AUDIO),
       getMediaByType(mediaIds, CONTENT_TYPES.PDF),
-      collectionIds.length
-        ? db.query.collections.findMany({
-            where: (c, { inArray }) => inArray(c.id, collectionIds),
-            limit: 12,
-          })
-        : [],
+      getCollectionsWithDetails(collectionIds),
     ]);
 
     const allMediaIds = [...videos, ...audios, ...pdfs].map((m) => m.id);
@@ -62,7 +56,10 @@ export const getExpiredRentedData = async (userId: string) => {
         videos: enrichMedia(videos, mediaMap, categoryMap, expiresMap),
         audios: enrichMedia(audios, mediaMap, categoryMap, expiresMap),
         pdfs: enrichMedia(pdfs, mediaMap, categoryMap, expiresMap),
-        collections: enrichCollections(collectionsData, collectionMap),
+        collections: collectionsData.map((c) => ({
+          ...c,
+          purchasedAt: collectionMap.get(c.id) ?? null,
+        })),
       },
     };
   } catch (error) {

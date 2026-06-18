@@ -84,5 +84,7 @@ export const API = {
   },
   viewer: {
     purchasedData: "/viewer/purchased-data",
+    rentedData: "/viewer/rented-data",
+    previouslyRentedData: "/viewer/previously-rented-data",
   },
 } as const;
