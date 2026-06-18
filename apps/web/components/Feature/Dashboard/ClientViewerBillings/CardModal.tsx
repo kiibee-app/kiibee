@@ -11,6 +11,8 @@ import { CardIcon } from "@/assets/icons";
 import { useCardForm } from "@/hooks/useCardForm";
 import {
   CARD_BRAND_LOGOS,
+  CARD_FORM_MODE,
+  type CardFormMode,
   type CardFormPayload,
   type ViewerPaymentMethod,
 } from "@/types/cardTypes";
@@ -26,7 +28,7 @@ import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
 type CardModalProps = {
-  mode: "add" | "edit";
+  mode: CardFormMode;
   visible: boolean;
   onClose: () => void;
   onSubmit: (payload: CardFormPayload) => Promise<void>;
@@ -41,7 +43,7 @@ export default function CardModal({
   paymentMethod,
 }: CardModalProps) {
   const { t } = useTranslation();
-  const isEdit = mode === "edit";
+  const isEdit = mode === CARD_FORM_MODE.EDIT;
   const modalKeys = isEdit
     ? DASHBOARD_VIEWER_BILLINGS.paymentMethods.editCardModal
     : DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal;
@@ -68,18 +70,19 @@ export default function CardModal({
     onSubmit,
   });
 
-  const cardIcon = isEdit && paymentMethod ? (
-    <CardIconBox>
-      <SafeImage
-        src={CARD_BRAND_LOGOS[paymentMethod.brand]}
-        alt={paymentMethod.brand}
-        width={paymentMethod.brand === CARD_BRANDS.VISA ? 26 : 20}
-        height={paymentMethod.brand === CARD_BRANDS.VISA ? 8 : 14}
-      />
-    </CardIconBox>
-  ) : (
-    <CardIcon width={20} height={20} />
-  );
+  const cardIcon =
+    isEdit && paymentMethod ? (
+      <CardIconBox>
+        <SafeImage
+          src={CARD_BRAND_LOGOS[paymentMethod.brand]}
+          alt={paymentMethod.brand}
+          width={paymentMethod.brand === CARD_BRANDS.VISA ? 26 : 20}
+          height={paymentMethod.brand === CARD_BRANDS.VISA ? 8 : 14}
+        />
+      </CardIconBox>
+    ) : (
+      <CardIcon width={20} height={20} />
+    );
 
   return (
     <>
@@ -87,7 +90,11 @@ export default function CardModal({
         visible={visible}
         title={t(modalKeys.title)}
         cancelLabel={t("common.cancel")}
-        confirmLabel={isEdit ? t("common.save") : t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)}
+        confirmLabel={
+          isEdit
+            ? t("common.save")
+            : t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)
+        }
         onCancel={handleClose}
         onClose={handleClose}
         onConfirm={handleSubmit}
@@ -166,7 +173,8 @@ export default function CardModal({
             DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.successTitle,
           )}
           message={t(
-            DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.successMessage,
+            DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal
+              .successMessage,
           )}
           confirmLabel={t("contents.deleteSuccessModal.done")}
           onCancel={() => setSuccessOpen(false)}

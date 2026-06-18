@@ -11,10 +11,12 @@ import {
   isMaskedCardNumber,
   CARD_FIELDS,
 } from "@/utils/addCard";
-import type {
-  CardFormErrors,
-  CardFormPayload,
-  ViewerPaymentMethod,
+import {
+  CARD_FORM_MODE,
+  type CardFormErrors,
+  type CardFormMode,
+  type CardFormPayload,
+  type ViewerPaymentMethod,
 } from "@/types/cardTypes";
 
 const initialErrors: CardFormErrors = {
@@ -24,7 +26,7 @@ const initialErrors: CardFormErrors = {
 };
 
 type UseCardFormOptions = {
-  mode: "add" | "edit";
+  mode: CardFormMode;
   visible?: boolean;
   paymentMethod?: ViewerPaymentMethod;
   onClose: () => void;
@@ -38,7 +40,7 @@ export function useCardForm({
   onClose,
   onSubmit,
 }: UseCardFormOptions) {
-  const isEdit = mode === "edit";
+  const isEdit = mode === CARD_FORM_MODE.EDIT;
   const editValues =
     isEdit && paymentMethod ? getEditCardFormValues(paymentMethod) : null;
 
@@ -214,4 +216,4 @@ export function useCardForm({
 
 export const useAddCard = (
   options: Omit<UseCardFormOptions, "mode" | "paymentMethod">,
-) => useCardForm({ ...options, mode: "add" });
+) => useCardForm({ ...options, mode: CARD_FORM_MODE.ADD });

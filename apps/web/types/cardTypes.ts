@@ -2,6 +2,13 @@ import masterCardLogo from "@/assets/icons/masterCard.svg";
 import visaLogo from "@/assets/icons/visa.svg";
 import { type CardBrand, CARD_BRANDS } from "@/utils/Constants";
 
+export const CARD_FORM_MODE = {
+  ADD: "add",
+  EDIT: "edit",
+} as const;
+
+export type CardFormMode = (typeof CARD_FORM_MODE)[keyof typeof CARD_FORM_MODE];
+
 export type CardFormErrors = {
   cardNumber: string;
   expiryDate: string;

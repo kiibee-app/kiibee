@@ -35,7 +35,11 @@ import {
   BILLING_HISTORY_KEY_MAP,
   buildHeaderMap,
 } from "@/utils/tableHeader";
-import { CARD_BRAND_LOGOS, type ViewerPaymentMethod } from "@/types/cardTypes";
+import {
+  CARD_BRAND_LOGOS,
+  CARD_FORM_MODE,
+  type ViewerPaymentMethod,
+} from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
@@ -411,7 +415,7 @@ export default function ClientViewerBillings() {
         </>
       )}
       <CardModal
-        mode="add"
+        mode={CARD_FORM_MODE.ADD}
         visible={showAddCardModal}
         onClose={handleCloseModal}
         onSubmit={async (payload) => {
@@ -434,7 +438,7 @@ export default function ClientViewerBillings() {
       {selectedPaymentMethod ? (
         <CardModal
           key={`edit-${selectedPaymentMethod.id}-${showEditCardModal ? "open" : "closed"}`}
-          mode="edit"
+          mode={CARD_FORM_MODE.EDIT}
           visible={showEditCardModal}
           paymentMethod={selectedPaymentMethod}
           onClose={handleEditClose}
