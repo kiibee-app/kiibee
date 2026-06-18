@@ -6,7 +6,7 @@ import {
 
 export const SectionWrapper = styled(HeroWrapper)`
   margin-top: 0;
-  padding-top: 35px;
+  padding: 10px;
   background: transparent;
 `;
 

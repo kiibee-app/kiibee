@@ -17,11 +17,11 @@ export const Section = styled.section<{
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  padding: ${({ $padding }) => $padding || "35px 0 0"};
+  padding: ${({ $padding }) => $padding || "10px"};
 
   ${media.tablet} {
     width: 100%;
-    padding: 2.5rem 1.25rem;
+    padding: 10px;
   }
 `;
 
