@@ -18,6 +18,7 @@ import {
   type RentedSectionKey,
   type RentedMode,
   type RentedMediaItem,
+  getMediaAction,
   getMediaLabel,
 } from "@/utils/viewerRented";
 import {
@@ -139,7 +140,7 @@ export default function MediaSections({
                             : undefined
                         }
                       >
-                        {t("pricingLabels.buy")}
+                        {getMediaAction(item.mediaType, t)}
                       </GenericButton>
                     ) : (
                       <TwoButtonRow>
@@ -176,7 +177,7 @@ export default function MediaSections({
                   <MediaTypePill>
                     <MediaTypeIcon type={item.mediaType} />
                     <MonoText $use="Body_Bold">
-                      {getMediaLabel(item.mediaType)}
+                      {getMediaLabel(item.mediaType, t)}
                     </MonoText>
                   </MediaTypePill>
                 </GenericCard>
