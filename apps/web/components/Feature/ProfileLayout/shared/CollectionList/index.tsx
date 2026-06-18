@@ -28,6 +28,7 @@ import { CollectionListInner, CollectionListShell } from "./styles";
 import { authStorage } from "@/lib/auth/authStorage";
 import { PATHS, pathPublishedContent } from "@/utils/path";
 import { QUERY_KEYS } from "@/utils/Constants";
+import { VARIANT } from "@/utils/variants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 
 export default function CollectionList() {
@@ -134,7 +135,9 @@ export default function CollectionList() {
               const action: CollectionAction = {
                 label: button.label,
                 variant:
-                  button.variant === "secondary" ? "secondary" : "primary",
+                  button.variant === VARIANT.SECONDARY
+                    ? VARIANT.SECONDARY
+                    : VARIANT.PRIMARY,
                 href:
                   button.href ??
                   (group.firstContentId
