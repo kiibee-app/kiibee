@@ -25,6 +25,7 @@ import {
 } from './services/getAllContents.service';
 import { getSingleContentService } from './services/getSingleContent.service';
 import { getRelatedCollectionContentService } from './services/getRelatedCollectionContent.service';
+import { getPublicCollectionService } from './services/getPublicCollection.service';
 
 @Injectable()
 export class ContentService {
@@ -97,5 +98,9 @@ export class ContentService {
 
   async getRelatedCollectionContent(contentId: string) {
     return getRelatedCollectionContentService(contentId);
+  }
+
+  async getPublicCollectionService(collectionId: string) {
+    return getPublicCollectionService(collectionId);
   }
 }
