@@ -130,4 +130,12 @@ export const CONTENT_TYPES = {
   PDF: 'PDF',
 } as const;
 
+export const PAYMENT_TYPES = {
+  FREE: 'free',
+  PAID: 'paid',
+} as const;
+export const PAYMENT_TEXT = 'PAYMENT';
+export const NORMAL_TEXT = 'NORMAL';
+export const TIMEOUT = 120;
+export const MAX_ATTEMPTS = 25;
 export const MAX_DURATION_SECONDS = 7200;
