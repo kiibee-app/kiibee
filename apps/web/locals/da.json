@@ -1265,6 +1265,8 @@
       },
       "paymentMethods": {
         "title": "Betalingsmetoder",
+        "emptyTitle": "Intet kort tilføjet",
+        "emptyDescription": "Tilføj et kort for hurtigt at betale, når du lejer eller køber indhold.",
         "addCard": "Tilføj kort",
         "defaultBadge": "Standard",
         "expires": "Udløber {{date}}",

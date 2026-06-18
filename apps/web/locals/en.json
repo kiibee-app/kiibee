@@ -1265,6 +1265,8 @@
       },
       "paymentMethods": {
         "title": "Payment methods",
+        "emptyTitle": "No card added",
+        "emptyDescription": "Save a card to pay quickly when you rent or purchase content.",
         "addCard": "Add card",
         "defaultBadge": "Default",
         "expires": "Expires {{date}}",

@@ -8,11 +8,9 @@ import { ShareIcon } from "@/assets/icons/shareIcon";
 import COLORS from "@repo/ui/colors";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { CARD_BRANDS } from "@/utils/Constants";
-import {
-  CARD_BRAND_LOGOS,
-  type ViewerBillingHistoryItem,
-} from "@/utils/dummyData/viewerBillingMockData";
+import { CARD_BRAND_LOGOS } from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
+import type { ViewerBillingHistoryItem } from "@/hooks/useViewerBillingHistory";
 import {
   InvoiceCard,
   InvoiceContentMeta,
