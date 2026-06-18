@@ -449,6 +449,7 @@ function CreatorsContentsInner() {
             setCollectionPurchaseAmount={setCollectionPurchaseAmount}
             collectionAccessDuration={collectionAccessDuration}
             setCollectionAccessDuration={setCollectionAccessDuration}
+            onBack={handleBackToCollection}
           />
         </ContentPanel>
       </ContentsScrollArea>

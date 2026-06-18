@@ -13,9 +13,18 @@ import { getTutorialCollectionById } from "@/utils/tutorialCollections";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
 import { VARIANT_CONTENT } from "@/utils/Constants";
+import {
+  HeroWrapper,
+  TopBar,
+  BackButtonWrapper,
+  EmptyState,
+} from "@/components/Feature/SingleCollectionHero/styles";
+import { BackButtonIcon } from "@/assets/icons";
+import { useRouter } from "next/navigation";
 
 function SingleCollectionContent() {
   const { t } = useTranslation();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const section = getTutorialCollectionById(id);
@@ -23,7 +32,18 @@ function SingleCollectionContent() {
 
   if (!section) {
     return (
-      <MonoText $use="H5_Regular">{t("singleCollection.notFound")}</MonoText>
+      <HeroWrapper>
+        <TopBar>
+          <BackButtonWrapper onClick={() => router.back()}>
+            <BackButtonIcon />
+          </BackButtonWrapper>
+        </TopBar>
+        <EmptyState>
+          <MonoText $use="H5_Regular">
+            {t("singleCollection.noContent")}
+          </MonoText>
+        </EmptyState>
+      </HeroWrapper>
     );
   }
 
