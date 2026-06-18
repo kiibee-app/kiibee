@@ -37,6 +37,45 @@ export const AllCreatorsTabs = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.sm};
 `;
 
+export const HeaderControls = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(3)};
+
+  ${media.mobileLg} {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+`;
+
+export const PlanFilterSelect = styled.select`
+  height: ${({ theme }) => theme.spacing(10.5)};
+  min-width: 122px;
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 10px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.secondary.main};
+  padding-left: ${({ theme }) => theme.spacing(3)};
+  padding-right: ${({ theme }) => theme.spacing(5)};
+  ${({ theme }) => theme.typography.Body_Medium};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  cursor: pointer;
+  outline: none;
+  transition:
+    border-color ${({ theme }) => theme.animations.fast},
+    box-shadow ${({ theme }) => theme.animations.fast};
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.primary.GREEN};
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  }
+
+  ${media.mobileLg} {
+    width: 100%;
+  }
+`;
+
 export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
