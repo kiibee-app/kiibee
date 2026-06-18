@@ -1,26 +1,50 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { GenericModal } from "@/components/UI/Modals";
 import InputField from "@/components/UI/InputFields";
 import { INPUT_TYPE, MODAL_ALIGN } from "@/utils/ui";
-import { INPUT_VARIANTS } from "@/utils/Constants";
+import { INPUT_VARIANTS, CARD_BRANDS } from "@/utils/Constants";
 import { NUMERIC_INPUT_MODE } from "@/utils/numericFields";
-import { AddCardSchema } from "@/utils/addCard";
 import { CardIcon } from "@/assets/icons";
-import { useAddCard } from "@/hooks/useAddCard";
-import { Container, ErrorText, FieldWrapper, Grid } from "./styles";
+import { useCardForm } from "@/hooks/useCardForm";
+import {
+  CARD_BRAND_LOGOS,
+  type CardFormPayload,
+  type ViewerPaymentMethod,
+} from "@/types/cardTypes";
+import SafeImage from "@/components/UI/SafeImage";
+import {
+  CardIconBox,
+  Container,
+  ErrorText,
+  FieldWrapper,
+  Grid,
+} from "./styles";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
-import { useTranslation } from "react-i18next";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
-type AddCardModalProps = {
+type CardModalProps = {
+  mode: "add" | "edit";
   visible: boolean;
   onClose: () => void;
+  onSubmit: (payload: CardFormPayload) => Promise<void>;
+  paymentMethod?: ViewerPaymentMethod;
 };
 
-export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
+export default function CardModal({
+  mode,
+  visible,
+  onClose,
+  onSubmit,
+  paymentMethod,
+}: CardModalProps) {
   const { t } = useTranslation();
+  const isEdit = mode === "edit";
+  const modalKeys = isEdit
+    ? DASHBOARD_VIEWER_BILLINGS.paymentMethods.editCardModal
+    : DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal;
 
   const {
     cardNumber,
@@ -29,26 +53,41 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
     errors,
     successOpen,
     setSuccessOpen,
+    isSubmitting,
+    isFormValid,
     handleSubmit,
     handleClose,
     handleCardNumberChange,
     handleExpiryChange,
     handleCVVChange,
-  } = useAddCard(onClose);
+  } = useCardForm({
+    mode,
+    visible,
+    paymentMethod,
+    onClose,
+    onSubmit,
+  });
 
-  const isFormValid = AddCardSchema.safeParse({
-    cardNumber,
-    expiryDate,
-    securityCode,
-  }).success;
+  const cardIcon = isEdit && paymentMethod ? (
+    <CardIconBox>
+      <SafeImage
+        src={CARD_BRAND_LOGOS[paymentMethod.brand]}
+        alt={paymentMethod.brand}
+        width={paymentMethod.brand === CARD_BRANDS.VISA ? 26 : 20}
+        height={paymentMethod.brand === CARD_BRANDS.VISA ? 8 : 14}
+      />
+    </CardIconBox>
+  ) : (
+    <CardIcon width={20} height={20} />
+  );
 
   return (
     <>
       <GenericModal
         visible={visible}
-        title={t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.title)}
+        title={t(modalKeys.title)}
         cancelLabel={t("common.cancel")}
-        confirmLabel={t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)}
+        confirmLabel={isEdit ? t("common.save") : t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)}
         onCancel={handleClose}
         onClose={handleClose}
         onConfirm={handleSubmit}
@@ -58,27 +97,21 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
         buttonAlign={MODAL_ALIGN.END}
         textAlign={MODAL_ALIGN.START}
         contentMarginBottom="30px"
-        confirmDisabled={!isFormValid}
+        confirmDisabled={!isFormValid || isSubmitting}
       >
         <Container>
           <FieldWrapper>
             <InputField
-              label={t(
-                DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal
-                  .cardNumber,
-              )}
+              label={t(modalKeys.cardNumber)}
               type={INPUT_TYPE.TEXT}
               inputMode={NUMERIC_INPUT_MODE}
               value={cardNumber}
               onChange={handleCardNumberChange}
-              placeholder={t(
-                DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal
-                  .cardPlaceholder,
-              )}
+              placeholder={t(modalKeys.cardPlaceholder)}
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               height="40px"
               hasError={!!errors.cardNumber}
-              icon={<CardIcon width={20} height={20} />}
+              icon={cardIcon}
               labelMarginTop="0"
             />
 
@@ -88,18 +121,12 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
           <Grid>
             <FieldWrapper>
               <InputField
-                label={t(
-                  DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal
-                    .expiryDate,
-                )}
+                label={t(modalKeys.expiryDate)}
                 type={INPUT_TYPE.TEXT}
                 inputMode={NUMERIC_INPUT_MODE}
                 value={expiryDate}
                 onChange={handleExpiryChange}
-                placeholder={t(
-                  DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal
-                    .expiryPlaceholder,
-                )}
+                placeholder={t(modalKeys.expiryPlaceholder)}
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
                 height="40px"
                 hasError={!!errors.expiryDate}
@@ -111,17 +138,12 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
 
             <FieldWrapper>
               <InputField
-                label={t(
-                  DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.cvv,
-                )}
+                label={t(modalKeys.cvv)}
                 type={INPUT_TYPE.TEXT}
                 inputMode={NUMERIC_INPUT_MODE}
                 value={securityCode}
                 onChange={handleCVVChange}
-                placeholder={t(
-                  DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal
-                    .cvvPlaceholder,
-                )}
+                placeholder={t(modalKeys.cvvPlaceholder)}
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
                 height="40px"
                 hasError={!!errors.securityCode}
@@ -136,20 +158,22 @@ export default function AddCardModal({ visible, onClose }: AddCardModalProps) {
         </Container>
       </GenericModal>
 
-      <GenericModal
-        visible={successOpen}
-        icon={<SuccessModalIcon />}
-        title={t(
-          DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.successTitle,
-        )}
-        message={t(
-          DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.successMessage,
-        )}
-        confirmLabel={t("contents.deleteSuccessModal.done")}
-        onCancel={() => setSuccessOpen(false)}
-        onConfirm={() => setSuccessOpen(false)}
-        showCloseButton={false}
-      />
+      {!isEdit ? (
+        <GenericModal
+          visible={successOpen}
+          icon={<SuccessModalIcon />}
+          title={t(
+            DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.successTitle,
+          )}
+          message={t(
+            DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCardModal.successMessage,
+          )}
+          confirmLabel={t("contents.deleteSuccessModal.done")}
+          onCancel={() => setSuccessOpen(false)}
+          onConfirm={() => setSuccessOpen(false)}
+          showCloseButton={false}
+        />
+      ) : null}
     </>
   );
 }
