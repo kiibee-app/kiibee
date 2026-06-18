@@ -1,5 +1,5 @@
 export const SMOOTH_SCROLL = {
-  lerp: 0.15,
+  lerp: 0.2,
   wheelMultiplier: 1.0,
   touchMultiplier: 1.0,
   easingPower: 5,
@@ -22,10 +22,9 @@ export const SCROLL_REVEAL = {
   yFrom: 30,
   duration: 1.2,
   start: "top 85%",
-  toggleActions: "play none none reverse",
+  toggleActions: "play none none none",
   initialVisibility: "hidden",
   initialOpacity: 0,
-  willChange: "opacity, transform",
 } as const;
 
 export const SAFE_IMAGE_FALLBACKS = {
