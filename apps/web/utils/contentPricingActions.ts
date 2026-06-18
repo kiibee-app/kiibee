@@ -1,5 +1,4 @@
 import {
-  ACCESS_TYPE_FREE,
   BUY_COLLECTION_PREFIX,
   BUY_KEYWORDS,
   BUY_PREFIX,
@@ -55,7 +54,6 @@ export function isBuyActionLabel(label: string): boolean {
 export function isFreeContentItem(
   item: Pick<FeedContentItem, "accessType" | "rentPrice" | "buyPrice">,
 ): boolean {
-  if (item.accessType === ACCESS_TYPE_FREE) return true;
   return (
     !formatPriceLabel(RENT_PREFIX, item.rentPrice) &&
     !formatPriceLabel(BUY_PREFIX, item.buyPrice)
@@ -94,14 +92,13 @@ export function getContentPricingActions(
   freeLabel: string = FREE_LABEL,
   options?: { inCollection?: boolean },
 ): ContentPricingAction[] {
-  const isFree = item.accessType === ACCESS_TYPE_FREE;
   const rent = formatPriceLabel(RENT_PREFIX, item.rentPrice);
   const buy = formatPriceLabel(
     options?.inCollection ? BUY_COLLECTION_PREFIX : BUY_PREFIX,
     item.buyPrice,
   );
 
-  if (isFree || (!rent && !buy)) {
+  if (!rent && !buy) {
     return [{ label: freeLabel, fullWidth: true }];
   }
 

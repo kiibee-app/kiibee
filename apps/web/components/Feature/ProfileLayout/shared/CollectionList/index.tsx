@@ -17,18 +17,18 @@ import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { useGetAPI } from "@/lib/http/api/getApi";
-import { resolveImageUrl, VARIANT } from "@/utils/Constants";
+import { CREATOR, resolveImageUrl } from "@/utils/Constants";
 import { tutorialVideos } from "@/utils/data";
-import { RENTED_MODES, type RentedCollectionItem } from "@/utils/viewerRented";
+import {
+  RENTED_MODES,
+  type CollectionAction,
+  type RentedCollectionItem,
+} from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
 import { authStorage } from "@/lib/auth/authStorage";
 import { PATHS, pathPublishedContent } from "@/utils/path";
-import {
-  getContentPricingActions,
-  isFreeContentItem,
-  resolveContentActionHref,
-} from "@/utils/contentPricingActions";
 import { QUERY_KEYS } from "@/utils/Constants";
+import { VARIANT } from "@/utils/variants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 
 export default function CollectionList() {
@@ -111,6 +111,7 @@ export default function CollectionList() {
           count: number;
           coverSrc: string;
           firstContentId?: string;
+          firstTutorial?: (typeof publicTutorials)[number];
         }
       > = {};
 
@@ -122,22 +123,44 @@ export default function CollectionList() {
             count: 0,
             coverSrc: resolveImageUrl(tutorial.image),
             firstContentId: tutorial.id,
+            firstTutorial: tutorial,
           };
         }
         groups[cat].count += 1;
       });
 
-      return Object.entries(groups).map(([id, group]) => ({
-        id,
-        title: group.title,
-        author: displayName || "Creator",
-        elementCount: group.count,
-        coverSrc: group.coverSrc,
-        hideBadge: true,
-        href: group.firstContentId
-          ? pathPublishedContent(group.firstContentId)
-          : `/single-collection?id=${id}`,
-      }));
+      return Object.entries(groups).map(([id, group]) => {
+        const actions = group.firstTutorial?.buttons?.length
+          ? group.firstTutorial.buttons.map((button) => {
+              const action: CollectionAction = {
+                label: button.label,
+                variant:
+                  button.variant === VARIANT.SECONDARY
+                    ? VARIANT.SECONDARY
+                    : VARIANT.PRIMARY,
+                href:
+                  button.href ??
+                  (group.firstContentId
+                    ? pathPublishedContent(group.firstContentId)
+                    : `/single-collection?id=${id}`),
+              };
+              return action;
+            })
+          : undefined;
+
+        return {
+          id,
+          title: group.title,
+          author: displayName || CREATOR,
+          elementCount: group.count,
+          coverSrc: group.coverSrc,
+          hideBadge: true,
+          href: group.firstContentId
+            ? pathPublishedContent(group.firstContentId)
+            : `/single-collection?id=${id}`,
+          actions,
+        };
+      });
     }
 
     if (!privateCollectionsResponse) return [];
@@ -149,36 +172,6 @@ export default function CollectionList() {
         ? pathPublishedContent(firstContentId)
         : `/single-collection?id=${row.id}`;
 
-      const pricingItem = {
-        accessType: row.accessType,
-        buyPrice: row.buyPrice,
-        rentPrice: row.rentPrice,
-      };
-
-      const pricingActions = getContentPricingActions(
-        pricingItem,
-        t("createProfileHome.latestUpload.seeContent"),
-        {
-          inCollection: true,
-        },
-      );
-
-      const isFree = isFreeContentItem(pricingItem);
-
-      const actions = pricingActions.map((action) => ({
-        label: action.label,
-        variant: isFree ? VARIANT.SECONDARY : VARIANT.PRIMARY,
-        href: firstContentId
-          ? resolveContentActionHref(
-              firstContentId,
-              action.label,
-              pricingItem,
-              pricingActions.length,
-              { inCollection: true },
-            )
-          : contentHref,
-      }));
-
       return {
         id: row.id,
         title: row.name,
@@ -189,7 +182,6 @@ export default function CollectionList() {
         ),
         hideBadge: true,
         href: contentHref,
-        actions: actions.length > 0 ? actions : undefined,
       };
     });
   }, [
@@ -198,7 +190,6 @@ export default function CollectionList() {
     privateCollectionsResponse,
     collectionContentsMap,
     displayName,
-    t,
   ]);
 
   const filteredItems = useMemo(() => {
