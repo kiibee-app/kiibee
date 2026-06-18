@@ -8,6 +8,19 @@ export const VISIBILITY = {
   DRAFT: "draft",
 } as const;
 
+export type UploadBadgeType =
+  | (typeof ACCESS_TYPE)[keyof typeof ACCESS_TYPE]
+  | (typeof VISIBILITY)[keyof typeof VISIBILITY];
+
+export const STATUS_MESSAGE_VARIANT = {
+  LOADING: "loading",
+  ERROR: "error",
+  EMPTY: "empty",
+} as const;
+
+export type StatusMessageVariant =
+  (typeof STATUS_MESSAGE_VARIANT)[keyof typeof STATUS_MESSAGE_VARIANT];
+
 export const creatorUploadLabels = {
   backToUploads: "Back to Uploads",
   defaultContentType: "video",

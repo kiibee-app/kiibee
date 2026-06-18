@@ -1,5 +1,12 @@
 import styled, { css } from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import {
+  ACCESS_TYPE,
+  VISIBILITY,
+  type UploadBadgeType,
+  STATUS_MESSAGE_VARIANT,
+  type StatusMessageVariant,
+} from "../../../utils/creatorUploadsConfig";
 
 export const BackButton = styled.button`
   display: inline-flex;
@@ -115,7 +122,7 @@ export const UploadMeta = styled.div`
 `;
 
 export const UploadBadge = styled.span<{
-  $type?: "free" | "paid" | "draft" | "public";
+  $type?: UploadBadgeType;
 }>`
   font-size: 10px;
   font-weight: 700;
@@ -127,13 +134,13 @@ export const UploadBadge = styled.span<{
   align-items: center;
 
   ${({ $type, theme }) => {
-    if ($type === "free" || $type === "public") {
+    if ($type === ACCESS_TYPE.FREE || $type === VISIBILITY.PUBLIC) {
       return css`
         background: ${theme.colors.neutral.PALE_GREEN};
         color: ${theme.colors.primary.GREEN_100};
       `;
     }
-    if ($type === "draft") {
+    if ($type === VISIBILITY.DRAFT) {
       return css`
         background: ${theme.colors.neutral.GRAY_100};
         color: ${theme.colors.secondary.muted};
@@ -227,14 +234,17 @@ export const AssetLink = styled.a`
 `;
 
 export const StatusMessage = styled.div<{
-  $variant?: "loading" | "error" | "empty";
+  $variant?: StatusMessageVariant;
 }>`
   padding: 30px 0;
   text-align: center;
-  font-weight: ${({ $variant }) => ($variant === "empty" ? 400 : 500)};
+  font-weight: ${({ $variant }) =>
+    $variant === STATUS_MESSAGE_VARIANT.EMPTY ? 400 : 500};
   color: ${({ $variant, theme }) => {
-    if ($variant === "error") return theme.colors.secondary.RED;
-    if ($variant === "empty") return theme.colors.secondary.muted;
+    if ($variant === STATUS_MESSAGE_VARIANT.ERROR)
+      return theme.colors.secondary.RED;
+    if ($variant === STATUS_MESSAGE_VARIANT.EMPTY)
+      return theme.colors.secondary.muted;
     return theme.colors.secondary.main;
   }};
 `;
