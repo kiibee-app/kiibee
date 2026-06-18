@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import { CollectionRow, INITIAL_COUPON_FORM } from "@/types/collectionsType";
 import {
   COLLECTIONS,
@@ -125,17 +126,56 @@ export const useContentsModalFlows = (
       const trimmedName = collectionName.trim();
       if (!trimmedName) return;
 
-      if (editingCollectionId) {
-        await axiosClient.patch(API.collection.update(editingCollectionId), {
+      try {
+        if (editingCollectionId) {
+          await axiosClient.patch(API.collection.update(editingCollectionId), {
+            name: trimmedName,
+          });
+          setCollections((prev) =>
+            prev.map((item) =>
+              item.id === editingCollectionId
+                ? { ...item, name: trimmedName }
+                : item,
+            ),
+          );
+          await queryClient.invalidateQueries({
+            queryKey: [API.collection.getAll],
+          });
+          await queryClient.refetchQueries({
+            queryKey: [API.collection.getAll],
+            type: QUERY_REFETCH_TYPE_ACTIVE,
+          });
+          resetAfterRefetch();
+          resetCreateFlow();
+          return;
+        }
+
+        const created = (await createCollectionMutation.mutateAsync({
           name: trimmedName,
-        });
-        setCollections((prev) =>
-          prev.map((item) =>
-            item.id === editingCollectionId
-              ? { ...item, name: trimmedName }
-              : item,
-          ),
-        );
+        })) as { id?: string; name?: string };
+
+        const createdId = created?.id;
+        const createdName = created?.name;
+
+        if (!createdId || !createdName) {
+          await queryClient.invalidateQueries({
+            queryKey: [API.collection.getAll],
+          });
+          resetCreateFlow();
+          return;
+        }
+
+        setCollections((prev) => [
+          ...prev,
+          {
+            id: createdId,
+            name: createdName,
+            contentsCount: 0,
+            createdAt: new Date().toISOString(),
+            actions: "",
+          },
+        ]);
+
         await queryClient.invalidateQueries({
           queryKey: [API.collection.getAll],
         });
@@ -145,44 +185,17 @@ export const useContentsModalFlows = (
         });
         resetAfterRefetch();
         resetCreateFlow();
-        return;
+      } catch (error) {
+        const err = error as {
+          response?: { data?: { message?: string } };
+          message?: string;
+        };
+        const apiError =
+          err?.response?.data?.message ||
+          err?.message ||
+          "Failed to save collection";
+        toast.error(apiError);
       }
-
-      const created = (await createCollectionMutation.mutateAsync({
-        name: trimmedName,
-      })) as { id?: string; name?: string };
-
-      const createdId = created?.id;
-      const createdName = created?.name;
-
-      if (!createdId || !createdName) {
-        await queryClient.invalidateQueries({
-          queryKey: [API.collection.getAll],
-        });
-        resetCreateFlow();
-        return;
-      }
-
-      setCollections((prev) => [
-        ...prev,
-        {
-          id: createdId,
-          name: createdName,
-          contentsCount: 0,
-          createdAt: new Date().toISOString(),
-          actions: "",
-        },
-      ]);
-
-      await queryClient.invalidateQueries({
-        queryKey: [API.collection.getAll],
-      });
-      await queryClient.refetchQueries({
-        queryKey: [API.collection.getAll],
-        type: QUERY_REFETCH_TYPE_ACTIVE,
-      });
-      resetAfterRefetch();
-      resetCreateFlow();
     },
     closeSuccess: () => setShowSuccessModal(false),
     openSuccess: () => setShowSuccessModal(true),
