@@ -1,7 +1,7 @@
 export const SMOOTH_SCROLL = {
   lerp: 0.15,
   wheelMultiplier: 1.0,
-  touchMultiplier: 2.0,
+  touchMultiplier: 1.0,
   easingPower: 5,
   gsapTimeMultiplier: 1000,
   refreshDelay: 0.15,
