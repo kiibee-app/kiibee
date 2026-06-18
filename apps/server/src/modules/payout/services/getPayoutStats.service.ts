@@ -16,9 +16,15 @@ export async function getPayoutStatsService(creatorId: string) {
   try {
     const totalEarnings = await db
       .select({
-        total: sql<string>`coalesce(sum(${orders.price}), 0)`,
-        purchases: sql<number>`count(case when ${orders.itemType} = 'purchase' then 1 end)`,
-        rentals: sql<number>`count(case when ${orders.itemType} = 'rental' then 1 end)`,
+        total: sql<number>`coalesce(sum(${orders.price}), 0)`.mapWith(Number),
+        purchases:
+          sql<number>`count(case when ${orders.itemType} = 'purchase' then 1 end)`.mapWith(
+            Number,
+          ),
+        rentals:
+          sql<number>`count(case when ${orders.itemType} = 'rental' then 1 end)`.mapWith(
+            Number,
+          ),
       })
       .from(orders)
       .innerJoin(payments, eq(payments.orderId, orders.id))
@@ -34,7 +40,9 @@ export async function getPayoutStatsService(creatorId: string) {
 
     const totalPaidOut = await db
       .select({
-        total: sql<string>`coalesce(sum(${creatorPayouts.amount}), 0)`,
+        total: sql<number>`coalesce(sum(${creatorPayouts.amount}), 0)`.mapWith(
+          Number,
+        ),
       })
       .from(creatorPayouts)
       .where(
@@ -44,8 +52,8 @@ export async function getPayoutStatsService(creatorId: string) {
         ),
       );
 
-    const earnings = Number(totalEarnings[0]?.total ?? 0);
-    const paidOut = Number(totalPaidOut[0]?.total ?? 0);
+    const earnings = totalEarnings[0]?.total ?? 0;
+    const paidOut = totalPaidOut[0]?.total ?? 0;
     const balance = earnings - paidOut;
 
     const stats = {
