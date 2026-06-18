@@ -252,3 +252,9 @@ export const StatusMessage = styled.div<{
 export const ContentTypeLabel = styled.span`
   text-transform: capitalize;
 `;
+
+export const PriceStack = styled.span`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+`;

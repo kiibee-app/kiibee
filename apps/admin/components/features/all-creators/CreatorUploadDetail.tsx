@@ -35,6 +35,7 @@ import {
   PlaceholderVideoIcon,
   BadgeContainer,
   AssetLink,
+  PriceStack,
 } from "./CreatorUploads.styles";
 import {
   DrawerSection,
@@ -144,11 +145,10 @@ export function CreatorUploadDetail({
               icon={<DollarSign size={16} />}
               label={creatorUploadLabels.pricing}
               value={
-                <>
-                  {formatBuyPrice(upload.buyPrice)}
-                  <br />
-                  {formatRentPrice(upload.rentPrice)}
-                </>
+                <PriceStack>
+                  <span>{formatBuyPrice(upload.buyPrice)}</span>
+                  <span>{formatRentPrice(upload.rentPrice)}</span>
+                </PriceStack>
               }
             />
           )}
