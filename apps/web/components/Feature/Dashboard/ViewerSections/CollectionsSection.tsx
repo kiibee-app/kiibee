@@ -197,26 +197,7 @@ export default function CollectionsSection({
               </ElementsPill>
 
               <CollectionActionRow>
-                {isPurchased ? (
-                  <CollectionBuyButton
-                    className="collection-cta"
-                    onClick={(e: React.MouseEvent) => {
-                      e.stopPropagation();
-                      if (onCollectionPrimaryAction) {
-                        onCollectionPrimaryAction(item);
-                      }
-                    }}
-                  >
-                    <CollectionCtaContent>
-                      <MonoText
-                        $use="Body_SemiBold"
-                        color={COLORS.primary.WHITE}
-                      >
-                        {getCollectionPrimaryActionText(mode)}
-                      </MonoText>
-                    </CollectionCtaContent>
-                  </CollectionBuyButton>
-                ) : item.actions?.length ? (
+                {item.actions?.length ? (
                   item.actions.map((action, index) => {
                     const isSecondary = index > 0;
                     const labelColor = isSecondary
@@ -253,6 +234,25 @@ export default function CollectionsSection({
                       </Button>
                     );
                   })
+                ) : isPurchased ? (
+                  <CollectionBuyButton
+                    className="collection-cta"
+                    onClick={(e: React.MouseEvent) => {
+                      e.stopPropagation();
+                      if (onCollectionPrimaryAction) {
+                        onCollectionPrimaryAction(item);
+                      }
+                    }}
+                  >
+                    <CollectionCtaContent>
+                      <MonoText
+                        $use="Body_SemiBold"
+                        color={COLORS.primary.WHITE}
+                      >
+                        {getCollectionPrimaryActionText(mode)}
+                      </MonoText>
+                    </CollectionCtaContent>
+                  </CollectionBuyButton>
                 ) : (
                   <>
                     <GenericButton
