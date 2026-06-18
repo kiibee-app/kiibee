@@ -336,12 +336,7 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
   }
 
   ${media.mobileMd} {
-    margin-left: 0;
-    gap: 0.5rem;
-  }
-
-  ${media.mobile} {
-    flex-grow: 2;
+    display: none;
   }
 `;
 

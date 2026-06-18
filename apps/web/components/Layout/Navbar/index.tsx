@@ -49,6 +49,7 @@ import {
   DrawerSubMenuColumn,
   DrawerSubMenuTitle,
   DrawerSubMenuLink,
+  DrawerActions,
 } from "./styles";
 import NAV_ITEMS from "@/utils/navItems";
 import logo from "@/assets/images/kiibee-wordmark.webp";
@@ -660,6 +661,32 @@ export default function NavBar({
               </DrawerMenuItem>
             ))}
           </DrawerMenu>
+          <DrawerActions>
+            {isLoggedIn && dashboardPath ? (
+              <NavAccountMenu dashboardPath={dashboardPath} />
+            ) : (
+              (actions ?? (
+                <>
+                  <GenericButton
+                    className="login-btn"
+                    asAnchor
+                    href={loginButtonHref}
+                    variant={VARIANT.SECONDARY}
+                  >
+                    {t(NAV.login)}
+                  </GenericButton>
+                  <GenericButton
+                    className="start-btn"
+                    asAnchor
+                    href={PATHS.AUTH_SIGNUP}
+                    variant={VARIANT.PRIMARY}
+                  >
+                    {t(NAV.startCreating)}
+                  </GenericButton>
+                </>
+              ))
+            )}
+          </DrawerActions>
         </DrawerContent>
       </DrawerPanel>
     </Header>

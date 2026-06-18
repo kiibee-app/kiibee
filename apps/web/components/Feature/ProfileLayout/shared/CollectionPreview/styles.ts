@@ -28,7 +28,7 @@ export const FourColumnGrid = styled(Grid)`
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  ${media.mobile} {
+  ${media.mobileMd} {
     grid-template-columns: 1fr;
   }
 `;

@@ -10,7 +10,7 @@ const imageCoverStyles = css`
 export const HeroWrapper = styled.section`
   width: 100%;
   max-width: 100%;
-  margin: 60px auto 0;
+  margin: 70px auto 0;
   padding: 14px 73px 0;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
@@ -33,7 +33,7 @@ export const HeroWrapper = styled.section`
 
 export const HeroWrapperCentered = styled.section`
   width: 100%;
-  margin-top: 60px;
+  margin-top: 70px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
@@ -258,7 +258,7 @@ export const HeroFrame = styled.section`
   position: relative;
   width: 100%;
   height: 500px;
-  margin: 0;
+  margin: 70px 0 0;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
