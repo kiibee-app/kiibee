@@ -1,6 +1,5 @@
 import type { TFunction } from "i18next";
 import {
-  ACCESS_TYPE_FREE,
   BUY_COLLECTION_PREFIX,
   BUY_KEYWORDS,
   BUY_PREFIX,
@@ -134,7 +133,6 @@ export function getContentPricingActions(
   freeLabel: string = FREE_LABEL,
   options?: { inCollection?: boolean; labels?: PricingLabels },
 ): ContentPricingAction[] {
-  const isFree = item.accessType === ACCESS_TYPE_FREE;
   const { rentPrefix } = resolvePricingPrefixes(options?.labels);
 
   const rent = formatPriceLabel(rentPrefix, item.rentPrice);
