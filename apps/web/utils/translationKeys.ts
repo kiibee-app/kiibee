@@ -287,6 +287,9 @@ export const DASHBOARD_VIEWER_BILLINGS = {
   },
   paymentMethods: {
     title: "dashboard.viewerBillings.paymentMethods.title",
+    emptyTitle: "dashboard.viewerBillings.paymentMethods.emptyTitle",
+    emptyDescription:
+      "dashboard.viewerBillings.paymentMethods.emptyDescription",
     addCard: "dashboard.viewerBillings.paymentMethods.addCard",
     defaultBadge: "dashboard.viewerBillings.paymentMethods.defaultBadge",
     expires: "dashboard.viewerBillings.paymentMethods.expires",

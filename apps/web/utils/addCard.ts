@@ -1,10 +1,6 @@
 import { z } from "zod";
 
-export type AddCardErrors = {
-  cardNumber: string;
-  expiryDate: string;
-  securityCode: string;
-};
+export type { CardFormErrors, AddCardErrors } from "@/types/cardTypes";
 
 export const CARD_FIELDS = {
   CARD_NUMBER: "cardNumber",
@@ -31,6 +27,59 @@ export const formatExpiryDate = (value: string) => {
 export const formatCVV = (value: string) =>
   value.replace(/\D/g, "").slice(0, 4);
 
+export function toFormExpiry(expiresAt: string): string {
+  const match = expiresAt.match(/^(\d{2})\/(\d{2,4})$/);
+  if (!match) return expiresAt;
+
+  const month = match[1];
+  const year = match[2].length === 4 ? match[2].slice(-2) : match[2];
+  return `${month}/${year}`;
+}
+
+export function isMaskedCardNumber(value: string): boolean {
+  return value.includes("*");
+}
+
+export function getEditCardFormValues(paymentMethod: {
+  cardNumber: string;
+  expiresAt: string;
+}) {
+  return {
+    cardNumber: paymentMethod.cardNumber,
+    expiryDate: toFormExpiry(paymentMethod.expiresAt),
+    securityCode: "",
+  };
+}
+
+const expiryDateSchema = z.string().superRefine((val, ctx) => {
+  const match = val.match(/^(\d{2})\/(\d{2})$/);
+  if (!match) {
+    ctx.addIssue({
+      code: "custom",
+      message: "Invalid format (MM/YY)",
+    });
+    return;
+  }
+
+  const month = Number(match[1]);
+  const year = Number(`20${match[2]}`);
+  if (month < 1 || month > 12) {
+    ctx.addIssue({ code: "custom", message: "Invalid month" });
+    return;
+  }
+
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1;
+  if (year < currentYear || (year === currentYear && month < currentMonth)) {
+    ctx.addIssue({ code: "custom", message: "Card expired" });
+  }
+});
+
+const securityCodeSchema = z.string().refine((val) => /^\d{3,4}$/.test(val), {
+  message: "CVV must be 3 or 4 digits",
+});
+
 export const AddCardSchema = z.object({
   cardNumber: z
     .string()
@@ -38,32 +87,18 @@ export const AddCardSchema = z.object({
     .refine((val) => /^\d{16}$/.test(val), {
       message: "Card number must be 16 digits",
     }),
+  expiryDate: expiryDateSchema,
+  securityCode: securityCodeSchema,
+});
 
-  expiryDate: z.string().superRefine((val, ctx) => {
-    const match = val.match(/^(\d{2})\/(\d{2})$/);
-    if (!match) {
-      ctx.addIssue({
-        code: "custom",
-        message: "Invalid format (MM/YY)",
-      });
-      return;
-    }
-
-    const month = Number(match[1]);
-    const year = Number("20" + match[2]);
-    if (month < 1 || month > 12) {
-      ctx.addIssue({ code: "custom", message: "Invalid month" });
-      return;
-    }
-    const now = new Date();
-    const currentYear = now.getFullYear();
-    const currentMonth = now.getMonth() + 1;
-    if (year < currentYear || (year === currentYear && month < currentMonth)) {
-      ctx.addIssue({ code: "custom", message: "Card expired" });
-    }
-  }),
-
-  securityCode: z.string().refine((val) => /^\d{3,4}$/.test(val), {
-    message: "CVV must be 3 or 4 digits",
-  }),
+export const EditCardSchema = z.object({
+  cardNumber: z
+    .string()
+    .refine(
+      (val) =>
+        isMaskedCardNumber(val) || /^\d{16}$/.test(val.replace(/\s/g, "")),
+      { message: "Card number must be 16 digits" },
+    ),
+  expiryDate: expiryDateSchema,
+  securityCode: securityCodeSchema,
 });
