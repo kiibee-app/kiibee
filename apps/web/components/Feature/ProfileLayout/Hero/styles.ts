@@ -151,6 +151,8 @@ export const InfoSection = styled.div`
 
 export const CreatorName = styled.h1`
   margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 `;
 
 export const CreatorNameText = styled(MonoText).attrs(({ theme }) => ({
@@ -163,6 +165,8 @@ export const NameText = styled(MonoText).attrs(({ theme }) => ({
   color: theme.colors.primary.BLACK,
 }))`
   margin-top: 22px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 `;
 
 export const UploadCount = styled.p`
@@ -341,6 +345,8 @@ export const StoryUploadsText = styled.div`
 
 export const StoryTitle = styled.h1`
   margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 `;
 
 export const StoryDescription = styled.div`
