@@ -10,10 +10,8 @@ import PlaylistIcon from "@/assets/icons/PlaylistIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import {
-  ACTIVE_RENTAL_TEXT,
   COLLECTION_SORT_KEY_LIST,
   COLLECTION_SORT_LABELS,
-  RENTED_BUTTON_TEXT,
   RENTED_MODES,
   RENTED_SECTION_KEYS,
   type CollectionSortKey,
@@ -272,15 +270,15 @@ export default function CollectionsSection({
                           $use="Body_Medium"
                           color={COLORS.neutral.GRAY_400}
                         >
-                          {ACTIVE_RENTAL_TEXT.title}
+                          {t("viewerRented.activeRental")}
                         </MonoText>
                         <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
-                          {ACTIVE_RENTAL_TEXT.expiresIn}
+                          {t("viewerRented.expiresIn")}
                         </MonoText>
                       </PassiveActionBlock>
                     ) : isPurchased ? null : (
                       <GenericButton variant={VARIANT.SOFT_OUTLINE} size="md">
-                        {RENTED_BUTTON_TEXT.rent}
+                        {t("pricingLabels.rent")}
                       </GenericButton>
                     )}
                   </>

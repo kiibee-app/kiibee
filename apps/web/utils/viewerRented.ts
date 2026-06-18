@@ -213,16 +213,6 @@ export function getCollectionPrimaryActionText(mode: RentedMode) {
   return "Buy xx kr";
 }
 
-export const ACTIVE_RENTAL_TEXT = {
-  title: "Active rental",
-  expiresIn: "Expires in 2 days",
-} as const;
-
-export const RENTED_BUTTON_TEXT = {
-  buy: "Buy xx kr",
-  rent: "Rent xx kr",
-} as const;
-
 export function getSearchPlaceholder(mode: RentedMode, t?: TFunction) {
   if (mode === RENTED_MODES.PURCHASED)
     return t ? t("viewerRented.searchPurchased") : "Search Purchased Content";
