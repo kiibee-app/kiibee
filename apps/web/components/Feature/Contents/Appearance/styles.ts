@@ -274,6 +274,28 @@ export const LogoUploadWrap = styled.div`
 export const PreviewWrapper = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
+`;
+
+export const DeleteImageButton = styled.button`
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+  border-radius: 50%;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  z-index: 2;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
 `;
 
 export const PreviewImage = styled.img<{

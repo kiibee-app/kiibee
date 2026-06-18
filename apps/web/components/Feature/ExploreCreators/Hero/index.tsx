@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslation } from "react-i18next";
-import SearchBar from "@/components/UI/SearchBar";
+import GlobalSearch from "./GlobalSearch";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 import { CREATORS } from "@/utils/translationKeys";
@@ -23,6 +23,8 @@ export default function ExploreCreatorsHero({
   setSortBy,
   searchQuery,
   setSearchQuery,
+  title = CREATORS.title,
+  sortBy = DEFAULT_SORT,
 }: ExploreCreatorsHeroProps) {
   const { t } = useTranslation();
 
@@ -32,23 +34,21 @@ export default function ExploreCreatorsHero({
         <Content>
           {showControls && (
             <Title>
-              <HeroTitleText>{t("creators.title")}</HeroTitleText>
+              <HeroTitleText>{t(title)}</HeroTitleText>
             </Title>
           )}
           <Controls>
             <SearchBarContainer>
-              <SearchBar
-                placeholder={t("creators.search")}
-                value={searchQuery}
-                onChange={setSearchQuery}
-                width="100%"
+              <GlobalSearch
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
               />
             </SearchBarContainer>
             {showControls && (
               <SortDropdownContainer>
                 <SortDropdown
                   options={SORT_OPTIONS}
-                  value={DEFAULT_SORT}
+                  value={sortBy}
                   onChange={setSortBy}
                   label={t(CREATORS.sort)}
                   renderSelectedLabel={(value) =>

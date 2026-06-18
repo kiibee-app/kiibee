@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { keepPreviousData } from "@tanstack/react-query";
 import { API, useGetAPI } from "@/lib/http/api";
 import { BILLING_TYPES, CARD_BRANDS, type CardBrand } from "@/utils/Constants";
 
@@ -73,8 +74,32 @@ function toBillingHistoryItem(
   };
 }
 
-export const useViewerBillingHistory = () => {
-  const query = useGetAPI<BillingHistoryResponse>(API.order.billingHistory);
+export type BillingHistorySearchParams = {
+  searchContent?: string;
+  searchCreator?: string;
+};
+
+export const useViewerBillingHistory = (
+  searchParams?: BillingHistorySearchParams,
+) => {
+  const params = searchParams
+    ? {
+        ...(searchParams.searchContent && {
+          searchContent: searchParams.searchContent,
+        }),
+        ...(searchParams.searchCreator && {
+          searchCreator: searchParams.searchCreator,
+        }),
+      }
+    : undefined;
+
+  const query = useGetAPI<BillingHistoryResponse>(
+    API.order.billingHistory,
+    params,
+    {
+      placeholderData: keepPreviousData,
+    },
+  );
 
   const billingHistory = useMemo((): ViewerBillingHistoryItem[] => {
     const items = query.data?.data;

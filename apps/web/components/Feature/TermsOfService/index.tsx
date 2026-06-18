@@ -32,10 +32,34 @@ export default function TermsOfServiceSection() {
         </Section>
         <Section>
           <SectionTitle>
-            {t("legalPages.termsOfService.sections.accounts.title")}
+            {t("legalPages.termsOfService.sections.intellectualProperty.title")}
           </SectionTitle>
           <Description>
-            {t("legalPages.termsOfService.sections.accounts.body")}
+            {t("legalPages.termsOfService.sections.intellectualProperty.body")}
+          </Description>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.thirdParty.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.termsOfService.sections.thirdParty.body")}
+          </Description>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.offensiveContent.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.termsOfService.sections.offensiveContent.body")}
+          </Description>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.digitalPurchase.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.termsOfService.sections.digitalPurchase.body")}
           </Description>
         </Section>
         <Section>
@@ -48,10 +72,10 @@ export default function TermsOfServiceSection() {
         </Section>
         <Section>
           <SectionTitle>
-            {t("legalPages.termsOfService.sections.content.title")}
+            {t("legalPages.termsOfService.sections.platform.title")}
           </SectionTitle>
           <Description>
-            {t("legalPages.termsOfService.sections.content.body")}
+            {t("legalPages.termsOfService.sections.platform.body")}
           </Description>
         </Section>
         <Section>
@@ -60,6 +84,14 @@ export default function TermsOfServiceSection() {
           </SectionTitle>
           <Description>
             {t("legalPages.termsOfService.sections.liability.body")}
+          </Description>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.governingLaw.title")}
+          </SectionTitle>
+          <Description>
+            {t("legalPages.termsOfService.sections.governingLaw.body")}
           </Description>
         </Section>
         <ContactCard>

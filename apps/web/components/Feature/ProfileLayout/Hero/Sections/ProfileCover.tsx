@@ -17,7 +17,6 @@ import {
   CreatorName,
   CreatorNameText,
   HeroWrapper,
-  MoreText,
   MoreTextLabel,
   ProfileMeta,
   ProfileSection,
@@ -70,11 +69,9 @@ export default function ProfileCoverSection() {
             </UploadCount>
             <CreatorBio>
               <CreatorBioText>{biography}</CreatorBioText>
-              <MoreText>
-                <MoreTextLabel onClick={openAbout}>
-                  {t(CREATE_PROFILE_HOME.more)}
-                </MoreTextLabel>
-              </MoreText>
+              <MoreTextLabel onClick={openAbout}>
+                {t(CREATE_PROFILE_HOME.more)}
+              </MoreTextLabel>
             </CreatorBio>
           </ProfileMeta>
         </ProfileSection>

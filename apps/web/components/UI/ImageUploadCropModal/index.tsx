@@ -91,8 +91,13 @@ export default function ImageUploadCropModal({
     ? IMAGE_MODAL.EDIT
     : IMAGE_MODAL.UPLOAD;
 
+  const prevNaturalSizeRef = useRef({ width: 0, height: 0 });
+  const fitZoomRef = useRef(IMAGE_ZOOM.DEFAULT);
+
   useEffect(() => {
     if (!pendingImage) return;
+
+    fitZoomRef.current = IMAGE_ZOOM.DEFAULT;
 
     const img = new Image();
     img.onload = () => {
@@ -103,6 +108,34 @@ export default function ImageUploadCropModal({
     };
     img.src = pendingImage;
   }, [pendingImage]);
+
+  useEffect(() => {
+    const prev = prevNaturalSizeRef.current;
+    const curr = naturalSize;
+    prevNaturalSizeRef.current = curr;
+
+    const justLoaded =
+      prev.width === 0 &&
+      prev.height === 0 &&
+      curr.width > 0 &&
+      curr.height > 0;
+    if (!justLoaded) return;
+
+    const cs = Math.min(
+      frameSize.width / curr.width,
+      frameSize.height / curr.height,
+    );
+    const zoomToFit = Math.min(
+      cropWidth / (curr.width * cs),
+      cropHeight / (curr.height * cs),
+    );
+    fitZoomRef.current = Math.max(
+      IMAGE_ZOOM.MIN,
+      Math.min(IMAGE_ZOOM.MAX, zoomToFit),
+    );
+    setZoom(fitZoomRef.current);
+    setPosition({ x: 0, y: 0 });
+  }, [naturalSize, frameSize, cropWidth, cropHeight]);
 
   useEffect(() => {
     const el = previewFrameRef.current;
@@ -127,7 +160,7 @@ export default function ImageUploadCropModal({
 
   const resetState = useCallback(() => {
     setPendingImage(image);
-    setZoom(IMAGE_ZOOM.DEFAULT);
+    setZoom(fitZoomRef.current);
     setPosition({ x: 0, y: 0 });
     setDragging(false);
     dragRef.current = null;
@@ -157,8 +190,7 @@ export default function ImageUploadCropModal({
         if (!imageDataUrl) return;
 
         setPendingImage(imageDataUrl);
-        setZoom(IMAGE_ZOOM.DEFAULT);
-        setPosition({ x: 0, y: 0 });
+        setNaturalSize({ width: 0, height: 0 });
         dragMovedRef.current = false;
       });
     },
@@ -230,7 +262,7 @@ export default function ImageUploadCropModal({
   const frameH = frameSize.height;
   const coverScale =
     naturalSize.width > 0 && naturalSize.height > 0
-      ? Math.max(frameW / naturalSize.width, frameH / naturalSize.height)
+      ? Math.min(frameW / naturalSize.width, frameH / naturalSize.height)
       : 1;
   const displayW = naturalSize.width * coverScale * zoom;
   const displayH = naturalSize.height * coverScale * zoom;

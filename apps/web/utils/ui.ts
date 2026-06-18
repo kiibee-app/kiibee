@@ -156,13 +156,13 @@ export const PREVIEW_FRAME_SIZE = 320;
 export const DRAG_CLICK_THRESHOLD_PX = 8;
 export const DEFAULT_CROP_SIZE = 320;
 export const IMAGE_ZOOM = {
-  MIN: 1,
+  MIN: 0.1,
   MAX: 3,
   STEP: 0.01,
   DEFAULT: 1,
 };
 export const IMAGE_FILE_ACCEPT = "image/*";
-export const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
+export const MAX_IMAGE_SIZE = 15 * 1024 * 1024;
 
 export type ImageModalStep = (typeof IMAGE_MODAL)[keyof typeof IMAGE_MODAL];
 

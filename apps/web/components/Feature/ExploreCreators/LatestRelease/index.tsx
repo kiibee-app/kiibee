@@ -4,7 +4,14 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
-import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
+import {
+  ACCESS_TYPE_FREE,
+  EXPLORE_PAGE_SIZE,
+  EXPLORE_TABS,
+  URL_FORMAT_IDS,
+  VARIANT,
+} from "@/utils/Constants";
+import Skeleton from "@/components/UI/Skeleton";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import CreatorFiltersControl from "../Hero/CreatorsFilters";
@@ -31,15 +38,6 @@ import {
   Section,
   TabButton,
 } from "./styles";
-import { tabs } from "@/utils/common";
-
-const EXPLORE_TABS: { label: string; sort: ExploreContentSort }[] = [
-  { label: tabs[0], sort: EXPLORE_CONTENT_SORT.NEW },
-  { label: tabs[1], sort: EXPLORE_CONTENT_SORT.POPULAR },
-  { label: tabs[2], sort: EXPLORE_CONTENT_SORT.ALL },
-];
-
-const URL_FORMAT_IDS = new Set(["video", "audio", "pdf", "epub", "web"]);
 
 function normalizeUrlFormat(format: string | null) {
   if (!format) return null;
@@ -241,11 +239,9 @@ export default function LatestRelease() {
         <CardsColumn>
           <CardsGrid>
             {isLoading ? (
-              <ResultsState>
-                <MonoText $use="Body_Medium">
-                  {t("nav.explore.loading")}
-                </MonoText>
-              </ResultsState>
+              Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+                <Skeleton.Card key={i} />
+              ))
             ) : tutorials.length > 0 ? (
               tutorials.map((tutorial) => (
                 <TutorialCard key={tutorial.id} tutorial={tutorial} />

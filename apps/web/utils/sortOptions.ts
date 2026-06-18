@@ -6,6 +6,7 @@ import {
   ACCESS_TYPE_FREE,
   SORT_OPTION_AZ,
 } from "./Constants";
+import { CREATORS } from "./translationKeys";
 
 export type CreatorCategory = "Comedy" | "Music" | "Publication" | "Cooking";
 
@@ -34,6 +35,56 @@ export const SORT_NEW = "new";
 export const SORT_POPULAR = "popular";
 export const SORT_FEATURED = "featured";
 export const SORT_ALL = "all";
+
+export const EXPLORE_CREATOR_FILTERS = [
+  SORT_ALL,
+  SORT_FEATURED,
+  SORT_NEW,
+  SORT_POPULAR,
+] as const;
+
+export type ExploreCreatorFilter = (typeof EXPLORE_CREATOR_FILTERS)[number];
+
+export const EXPLORE_CREATOR_FILTER_TITLE_KEYS: Record<
+  ExploreCreatorFilter,
+  string
+> = {
+  [SORT_ALL]: CREATORS.allCreators,
+  [SORT_FEATURED]: CREATORS.featured,
+  [SORT_NEW]: CREATORS.newCreators,
+  [SORT_POPULAR]: CREATORS.popular,
+};
+
+export const EXPLORE_CREATOR_INITIAL_SORT: Partial<
+  Record<ExploreCreatorFilter, SortValue>
+> = {
+  [SORT_NEW]: SORT_OPTION_NEWEST,
+  [SORT_POPULAR]: SORT_OPTION_SUBSCRIBERS,
+};
+
+export function isExploreCreatorFilter(
+  value: unknown,
+): value is ExploreCreatorFilter {
+  return EXPLORE_CREATOR_FILTERS.includes(value as ExploreCreatorFilter);
+}
+
+export function resolveExploreCreatorFilter(
+  value: unknown,
+): ExploreCreatorFilter {
+  return isExploreCreatorFilter(value) ? value : SORT_ALL;
+}
+
+export function getExploreCreatorInitialSort(
+  filter: ExploreCreatorFilter,
+): SortValue {
+  return EXPLORE_CREATOR_INITIAL_SORT[filter] ?? DEFAULT_SORT;
+}
+
+export function getExploreCreatorTitleKey(
+  filter: ExploreCreatorFilter,
+): string {
+  return EXPLORE_CREATOR_FILTER_TITLE_KEYS[filter];
+}
 
 export const ROW_ACTION_LABEL_MOVE_UP = "Move up";
 export const ROW_ACTION_LABEL_MOVE_DOWN = "Move down";
@@ -94,6 +145,15 @@ export function mapSortValueToExploreSort(
   sortBy: SortValue,
 ): typeof SORT_NEW | typeof SORT_POPULAR | typeof SORT_ALL {
   return SORT_MAP[sortBy] ?? SORT_ALL;
+}
+
+export function mapCreatorSortToExploreFilter(
+  filter: ExploreCreatorFilter,
+  sortBy: SortValue,
+): ExploreCreatorFilter {
+  return filter === SORT_FEATURED && sortBy === DEFAULT_SORT
+    ? SORT_FEATURED
+    : mapSortValueToExploreSort(sortBy);
 }
 
 export const contentActionOptions: DropdownOption<RowAction>[] = [

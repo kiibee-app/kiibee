@@ -4,12 +4,13 @@ import {
   Get,
   Param,
   Post,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { CreateOrderInputDto } from './dto/order.dto';
+import { BillingHistoryQueryDto, CreateOrderInputDto } from './dto/order.dto';
 
 @Controller('order')
 export class OrderController {
@@ -24,9 +25,12 @@ export class OrderController {
 
   @UseGuards(JwtAuthGuard)
   @Get('billing-history')
-  async getBillingHistory(@Req() req: any) {
+  async getBillingHistory(
+    @Req() req: any,
+    @Query() query: BillingHistoryQueryDto,
+  ) {
     const userId = req.user.userId;
-    return this.orderService.getBillingHistory(userId);
+    return this.orderService.getBillingHistory(userId, query);
   }
 
   @UseGuards(JwtAuthGuard)

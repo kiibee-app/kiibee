@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "next/navigation";
 import { GenericModal } from "@/components/UI/Modals";
 import ConfirmationModal from "@/components/UI/ConfirmationModal";
 import {
@@ -31,7 +32,7 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { ADD_CONTENT_TABS, APPEARANCE } from "@/utils/common";
+import { ADD_CONTENT_TABS, APPEARANCE, SETTINGS } from "@/utils/common";
 import { ADMISSION_REQUIREMENTS } from "@/utils/admissionRequirements";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
@@ -42,7 +43,11 @@ import { AppearanceFormProvider } from "./Appearance/AppearanceFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
 import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
-import { SCROLL_OPTIONS, UI_TITLE_FALLBACK } from "@/utils/Constants";
+import {
+  SCROLL_OPTIONS,
+  UI_TITLE_FALLBACK,
+  CONTENT_ITEM_QUERY_KEY,
+} from "@/utils/Constants";
 import { COUPONS } from "@/utils/common";
 
 function ContentsUploadTitle({ fallback }: { fallback: string }) {
@@ -258,6 +263,7 @@ function CreatorsContentsInner() {
     editingContent,
     showSaveSuccessModal,
     setShowSaveSuccessModal,
+    isSaving,
     collectionAccessType,
     setCollectionAccessType,
     collectionPasswords,
@@ -273,6 +279,7 @@ function CreatorsContentsInner() {
     hasUnsavedChanges,
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
+    hasSettingsUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
     resetUploadState,
@@ -295,6 +302,20 @@ function CreatorsContentsInner() {
     contentSettingAccessType,
     saveContentSetting: contentSettings.updateSetting,
   });
+
+  const searchParams = useSearchParams();
+  const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
+
+  useEffect(() => {
+    if (!queryContentId && editingContent !== null) {
+      resetUploadState();
+    }
+  }, [queryContentId, editingContent, resetUploadState]);
+
+  const handleCreate = useCallback(() => {
+    resetUploadState();
+    handleCreateClick();
+  }, [handleCreateClick, resetUploadState]);
 
   const clearSelectedCollectionContentsOverride = useCallback(() => {
     const id = selectedCollection?.id;
@@ -358,17 +379,19 @@ function CreatorsContentsInner() {
 
         <ContentsHeaderAction
           activeTab={activeTab}
-          onCreate={handleCreateClick}
+          onCreate={handleCreate}
           onCancel={handleHeaderCancel}
           onCreateCoupon={couponFlow.open}
           onSave={handleHeaderSave}
           isSaveDisabled={
             (activeTab === APPEARANCE && !hasUnsavedChanges) ||
+            (activeTab === SETTINGS && !hasSettingsUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
               !hasGeneralUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.METADATA &&
               !hasMetadataUnsavedChanges)
           }
+          isSaving={isSaving}
           isCollectionContentMode={isCollectionContentMode}
         />
       </PageHeader>

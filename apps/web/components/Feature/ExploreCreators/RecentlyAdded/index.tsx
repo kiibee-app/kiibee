@@ -23,7 +23,17 @@ import {
   FEED_CONTENT_PAGE_SIZE,
   getFeedPageSlice,
 } from "@/utils/feedContentToTutorial";
+import Skeleton from "@/components/UI/Skeleton";
 import { PATHS } from "@/utils/path";
+import {
+  SkeletonCard,
+  SkeletonImage,
+  SkeletonTitle,
+  SkeletonSubtitle,
+  SkeletonBadge,
+  SkeletonFooter,
+} from "../Creators/styles";
+import { SKELETON_COUNT } from "@/utils/Constants";
 
 export default function RecentlyAdded() {
   const { t } = useTranslation();
@@ -49,7 +59,26 @@ export default function RecentlyAdded() {
     );
   }, [canSlide, totalItems]);
 
-  if (!isLoading && tutorials.length === 0) {
+  if (isLoading) {
+    return (
+      <Section>
+        <SectionHeader>
+          <SectionLabel>
+            <SectionTag>
+              <Skeleton.Tag />
+            </SectionTag>
+          </SectionLabel>
+        </SectionHeader>
+        <Grid $columnMax="300px">
+          {Array.from({ length: FEED_CONTENT_PAGE_SIZE }).map((_, i) => (
+            <Skeleton.Card key={i} />
+          ))}
+        </Grid>
+      </Section>
+    );
+  }
+
+  if (tutorials.length === 0) {
     return null;
   }
 
@@ -95,9 +124,19 @@ export default function RecentlyAdded() {
         </HeaderActions>
       </SectionHeader>
       <Grid $columnMax="300px">
-        {visibleTutorials.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
-        ))}
+        {isLoading
+          ? Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+              <SkeletonCard key={i}>
+                <SkeletonImage />
+                <SkeletonBadge />
+                <SkeletonTitle />
+                <SkeletonSubtitle />
+                <SkeletonFooter />
+              </SkeletonCard>
+            ))
+          : visibleTutorials.map((tutorial) => (
+              <TutorialCard key={tutorial.id} tutorial={tutorial} />
+            ))}
       </Grid>
     </Section>
   );

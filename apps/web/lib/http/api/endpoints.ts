@@ -53,6 +53,7 @@ export const API = {
   },
   creators: {
     list: "/creators",
+    all: "/creators/all",
     byId: (id: string) => `/creators/${id}`,
   },
   feed: {
@@ -80,5 +81,8 @@ export const API = {
   },
   support: {
     contact: "/support/contact",
+  },
+  viewer: {
+    purchasedData: "/viewer/purchased-data",
   },
 } as const;

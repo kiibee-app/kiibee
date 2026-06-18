@@ -9,6 +9,7 @@ import {
   INPUT_VARIANTS,
   maxDescriptionCharacters,
   SORT_DROPDOWN_VARIANT,
+  STRING_EMPTY,
 } from "@/utils/Constants";
 import {
   PAYMENT_DOWNLOAD_LIMIT_VALUES,
@@ -42,7 +43,8 @@ import { useContentForm } from "../ContentFormContext";
 
 export default function Payment() {
   const { t } = useTranslation();
-  const { formState, updateField } = useContentForm();
+  const { formState, formErrors, updateField, setFieldError, clearFieldError } =
+    useContentForm();
   const [password, setPassword] = useState("");
   const admissionOptions = useMemo(() => getAdmissionOptions(t), [t]);
   const downloadLimitOptions = useMemo(
@@ -69,6 +71,26 @@ export default function Payment() {
   const showPurchaseSection = Boolean(
     paymentTexts.purchaseTitle && paymentTexts.purchaseDescription,
   );
+
+  const isValidNumeric = (value: string): boolean => {
+    if (value === STRING_EMPTY) return true;
+    return !isNaN(Number(value)) && isFinite(Number(value));
+  };
+
+  const handleNumericChange = (
+    field:
+      | typeof PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT
+      | typeof PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT,
+    value: string | string[],
+  ) => {
+    const text = toText(value);
+    updateField(field, text);
+    if (!isValidNumeric(text)) {
+      setFieldError(field, t("contents.payment.common.invalidNumber"));
+    } else {
+      clearFieldError(field);
+    }
+  };
 
   return (
     <>
@@ -106,16 +128,13 @@ export default function Payment() {
 
                   <ControlWrap>
                     <InputField
-                      value={formState.rentalAmount || ""}
-                      onChange={(v) =>
-                        updateField(
-                          PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT,
-                          toText(v),
-                        )
-                      }
+                      value={formState.rentalAmount || STRING_EMPTY}
+                      onChange={(v) => handleNumericChange("rentalAmount", v)}
                       placeholder={t("contents.payment.common.enterAmount")}
                       variant={INPUT_VARIANTS.PRIMARY_GRAY}
                       inputMode="decimal"
+                      hasError={Boolean(formErrors.rentalAmount)}
+                      errorMessage={formErrors.rentalAmount}
                     />
                   </ControlWrap>
 
@@ -129,16 +148,13 @@ export default function Payment() {
                   <SectionText>{paymentTexts.purchaseDescription}</SectionText>
                   <ControlWrap>
                     <InputField
-                      value={formState.purchaseAmount || ""}
-                      onChange={(v) =>
-                        updateField(
-                          PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT,
-                          toText(v),
-                        )
-                      }
+                      value={formState.purchaseAmount || STRING_EMPTY}
+                      onChange={(v) => handleNumericChange("purchaseAmount", v)}
                       placeholder={t("contents.payment.common.enterAmount")}
                       variant={INPUT_VARIANTS.PRIMARY_GRAY}
                       inputMode="decimal"
+                      hasError={Boolean(formErrors.purchaseAmount)}
+                      errorMessage={formErrors.purchaseAmount}
                     />
                   </ControlWrap>
 
