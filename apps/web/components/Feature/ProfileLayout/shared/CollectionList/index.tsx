@@ -187,7 +187,6 @@ export default function CollectionList() {
     privateCollectionsResponse,
     collectionContentsMap,
     displayName,
-    t,
   ]);
 
   const filteredItems = useMemo(() => {
