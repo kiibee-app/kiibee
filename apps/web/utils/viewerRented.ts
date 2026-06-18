@@ -155,7 +155,7 @@ export function getCollectionBadgeText(mode: RentedMode) {
   return "Rented";
 }
 
-export function getCollectionPrimaryActionText(mode: RentedMode) {
+export function getCollectionPrimaryActionText() {
   return "See content";
 }
 

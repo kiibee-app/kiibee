@@ -212,7 +212,7 @@ export default function CollectionsSection({
                         $use="Body_SemiBold"
                         color={COLORS.primary.WHITE}
                       >
-                        {getCollectionPrimaryActionText(mode)}
+                        {getCollectionPrimaryActionText()}
                       </MonoText>
                     </CollectionCtaContent>
                   </CollectionBuyButton>
@@ -265,7 +265,7 @@ export default function CollectionsSection({
                           : undefined
                       }
                     >
-                      {getCollectionPrimaryActionText(mode)}
+                      {getCollectionPrimaryActionText()}
                     </GenericButton>
                     {isCurrent ? (
                       <PassiveActionBlock>
