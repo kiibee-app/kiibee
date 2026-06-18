@@ -29,25 +29,25 @@ export type UploadItem = {
   publishedAt?: string | null;
 };
 
+const UPLOADS_QUERY_KEY = (creatorId: string | null) => [
+  QUERY_KEY.CREATOR_UPLOADS,
+  creatorId,
+];
+
 export function useCreatorUploads(creatorId: string | null) {
   return useQuery({
-    queryKey: [QUERY_KEY.CREATOR_UPLOADS, creatorId],
+    queryKey: UPLOADS_QUERY_KEY(creatorId),
     queryFn: async () => {
       if (!creatorId) return [];
       const response = await apiClient<UploadItem[]>(
         API_ENDPOINTS.CREATOR_UPLOADS,
-        {
-          method: "POST",
-          body: JSON.stringify({ creatorId }),
-        },
+        { method: "POST", body: JSON.stringify({ creatorId }) },
       );
-
       if (!response.success) {
         throw new Error(
           response.message || ERROR_MESSAGES.FETCH_CREATOR_UPLOADS_FAILED,
         );
       }
-
       return response.data ?? [];
     },
     enabled: Boolean(creatorId),

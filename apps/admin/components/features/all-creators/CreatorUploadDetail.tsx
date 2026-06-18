@@ -52,7 +52,7 @@ export type CreatorUploadDetailProps = {
   onBack: () => void;
 };
 
-function DetailItem({
+function InfoRow({
   icon,
   label,
   value,
@@ -140,7 +140,7 @@ export function CreatorUploadDetail({
         </DrawerSectionTitle>
         <DrawerCardList>
           {upload.accessType === ACCESS_TYPE.PAID && (
-            <DetailItem
+            <InfoRow
               icon={<DollarSign size={16} />}
               label={creatorUploadLabels.pricing}
               value={
@@ -152,26 +152,23 @@ export function CreatorUploadDetail({
               }
             />
           )}
-
           {upload.accessType === ACCESS_TYPE.PAID &&
             upload.rentDurationHours && (
-              <DetailItem
+              <InfoRow
                 icon={<Clock size={16} />}
                 label={creatorUploadLabels.rentalDuration}
                 value={formatRentDuration(upload.rentDurationHours)}
               />
             )}
-
           {upload.duration && (
-            <DetailItem
+            <InfoRow
               icon={<Clock size={16} />}
               label={creatorUploadLabels.duration}
               value={formatDuration(upload.duration)}
             />
           )}
-
           {upload.fileSize && (
-            <DetailItem
+            <InfoRow
               icon={<FileText size={16} />}
               label={creatorUploadLabels.fileSize}
               value={formatBytes(upload.fileSize)}
@@ -186,7 +183,7 @@ export function CreatorUploadDetail({
         </DrawerSectionTitle>
         <DrawerCardList>
           {upload.contentUrl && (
-            <DetailItem
+            <InfoRow
               icon={<Globe size={16} />}
               label={creatorUploadLabels.contentAccessUrl}
               value={
@@ -200,9 +197,8 @@ export function CreatorUploadDetail({
               }
             />
           )}
-
           {upload.trailerUrl && (
-            <DetailItem
+            <InfoRow
               icon={<Video size={16} />}
               label={creatorUploadLabels.trailerUrl}
               value={
@@ -225,15 +221,14 @@ export function CreatorUploadDetail({
         </DrawerSectionTitle>
         <DrawerCardList>
           {upload.createdAt && (
-            <DetailItem
+            <InfoRow
               icon={<Calendar size={16} />}
               label={creatorUploadLabels.uploadedAt}
               value={new Date(upload.createdAt).toLocaleString()}
             />
           )}
-
           {upload.publishedAt && (
-            <DetailItem
+            <InfoRow
               icon={<Calendar size={16} />}
               label={creatorUploadLabels.publishedAt}
               value={new Date(upload.publishedAt).toLocaleString()}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { Drawer } from "../../common/Drawer";
 import type { ExistingCreator } from "../../../types/existing-creator";
 import {
@@ -33,7 +33,7 @@ import {
   DrawerItemLabel,
   DrawerItemValue,
   LinkText,
-  CreatorAvatarImage,
+  DrawerAvatarImage,
   AccountStatusBadge,
 } from "./AllCreators.styles";
 import { CreatorUploadsList } from "./CreatorUploadsList";
@@ -49,13 +49,33 @@ export type ExistingCreatorDetailsModalProps = {
   onClose: () => void;
 };
 
+function InfoRow({
+  icon,
+  label,
+  value,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: ReactNode;
+}) {
+  return (
+    <DrawerCardItem>
+      <DrawerIconWrapper>{icon}</DrawerIconWrapper>
+      <DrawerItemContent>
+        <DrawerItemLabel>{label}</DrawerItemLabel>
+        <DrawerItemValue>{value}</DrawerItemValue>
+      </DrawerItemContent>
+    </DrawerCardItem>
+  );
+}
+
+type View = "details" | "uploads" | "upload-detail";
+
 export function ExistingCreatorDetailsModal({
   creator,
   onClose,
 }: ExistingCreatorDetailsModalProps) {
-  const [view, setView] = useState<"details" | "uploads" | "upload-detail">(
-    "details",
-  );
+  const [view, setView] = useState<View>("details");
   const [selectedUpload, setSelectedUpload] = useState<UploadItem | null>(null);
   const [lastCreatorId, setLastCreatorId] = useState(creator?.id);
 
@@ -72,18 +92,15 @@ export function ExistingCreatorDetailsModal({
       (creator.firstName?.[0] || "") + (creator.lastName?.[0] || "")
     ).toUpperCase() || "CR";
 
-  const getDrawerTitle = () => {
-    if (view === "uploads") {
-      return formatCreatorUploadsTitle(creator.fullName);
-    }
-    if (view === "upload-detail" && selectedUpload) {
-      return selectedUpload.title;
-    }
-    return existingCreatorLabels.creatorDetailsTitle;
-  };
+  const drawerTitle =
+    view === "uploads"
+      ? formatCreatorUploadsTitle(creator.fullName)
+      : view === "upload-detail" && selectedUpload
+        ? selectedUpload.title
+        : existingCreatorLabels.creatorDetailsTitle;
 
   return (
-    <Drawer title={getDrawerTitle()} open={Boolean(creator)} onClose={onClose}>
+    <Drawer title={drawerTitle} open={Boolean(creator)} onClose={onClose}>
       {view === "uploads" ? (
         <CreatorUploadsList
           creatorId={creator.id}
@@ -102,15 +119,9 @@ export function ExistingCreatorDetailsModal({
         <>
           <DrawerHeaderCard>
             {creator.avatarUrl ? (
-              <CreatorAvatarImage
+              <DrawerAvatarImage
                 src={creator.avatarUrl}
-                alt={creator.fullName || "Creator"}
-                style={{
-                  width: 64,
-                  height: 64,
-                  borderRadius: "50%",
-                  marginBottom: 12,
-                }}
+                alt={creator.fullName ?? undefined}
               />
             ) : (
               <AvatarCircle>{initials}</AvatarCircle>
@@ -127,42 +138,21 @@ export function ExistingCreatorDetailsModal({
               <User size={14} /> Contact Information
             </DrawerSectionTitle>
             <DrawerCardList>
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <Mail size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>Email Address</DrawerItemLabel>
-                  <DrawerItemValue>
-                    {creator.email}{" "}
-                    {creator.isEmailVerified ? "(Verified)" : "(Unverified)"}
-                  </DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
-
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <Phone size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>Phone Number</DrawerItemLabel>
-                  <DrawerItemValue>
-                    {creator.phone || "Not provided"}
-                  </DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
-
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <MapPin size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>City</DrawerItemLabel>
-                  <DrawerItemValue>
-                    {creator.city || "Not provided"}
-                  </DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
+              <InfoRow
+                icon={<Mail size={16} />}
+                label="Email Address"
+                value={`${creator.email} ${creator.isEmailVerified ? "(Verified)" : "(Unverified)"}`}
+              />
+              <InfoRow
+                icon={<Phone size={16} />}
+                label="Phone Number"
+                value={creator.phone || "Not provided"}
+              />
+              <InfoRow
+                icon={<MapPin size={16} />}
+                label="City"
+                value={creator.city || "Not provided"}
+              />
             </DrawerCardList>
           </DrawerSection>
 
@@ -171,70 +161,48 @@ export function ExistingCreatorDetailsModal({
               <Building2 size={14} /> Professional Details
             </DrawerSectionTitle>
             <DrawerCardList>
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <Layers size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>CVR / Business ID</DrawerItemLabel>
-                  <DrawerItemValue>{creator.cvr || "N/A"}</DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <Building2 size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>Company Name</DrawerItemLabel>
-                  <DrawerItemValue>
-                    {creator.companyName || "N/A"}
-                  </DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
+              <InfoRow
+                icon={<Layers size={16} />}
+                label="CVR / Business ID"
+                value={creator.cvr}
+              />
+              <InfoRow
+                icon={<Building2 size={16} />}
+                label="Company Name"
+                value={creator.companyName}
+              />
             </DrawerCardList>
           </DrawerSection>
 
+          {/* Channel */}
           <DrawerSection>
             <DrawerSectionTitle>
               <Globe size={14} /> Channel Details
             </DrawerSectionTitle>
             <DrawerCardList>
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <Globe size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>Channel Name</DrawerItemLabel>
-                  <DrawerItemValue>
-                    {creator.channelName || "N/A"}
-                  </DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
-              <DrawerCardItem>
-                <DrawerIconWrapper>
+              <InfoRow
+                icon={<Globe size={16} />}
+                label="Channel Name"
+                value={creator.channelName || "N/A"}
+              />
+              <InfoRow
+                icon={
                   <LinkText href="#" as="span">
                     @
                   </LinkText>
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>Channel Slug</DrawerItemLabel>
-                  <DrawerItemValue>
-                    {creator.channelSlug ? `/${creator.channelSlug}` : "N/A"}
-                  </DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <FileText size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>Plan Name</DrawerItemLabel>
-                  <DrawerItemValue>{creator.planName || "N/A"}</DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
+                }
+                label="Channel Slug"
+                value={creator.channelSlug ? `/${creator.channelSlug}` : "N/A"}
+              />
+              <InfoRow
+                icon={<FileText size={16} />}
+                label="Plan Name"
+                value={creator.planName || "N/A"}
+              />
             </DrawerCardList>
           </DrawerSection>
 
+          {/* Content Stats */}
           <DrawerSection>
             <DrawerSectionTitle>
               <Video size={14} /> Content Statistics
@@ -246,7 +214,6 @@ export function ExistingCreatorDetailsModal({
                 </DrawerIconWrapper>
                 <DrawerItemContent
                   style={{
-                    display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
                     alignItems: "center",
@@ -269,56 +236,41 @@ export function ExistingCreatorDetailsModal({
                   </span>
                 </DrawerItemContent>
               </InteractiveDrawerCardItem>
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <Users size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>Subscribers</DrawerItemLabel>
-                  <DrawerItemValue>{creator.subscriberCount}</DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
+              <InfoRow
+                icon={<Users size={16} />}
+                label="Subscribers"
+                value={creator.subscriberCount}
+              />
             </DrawerCardList>
           </DrawerSection>
 
+          {/* System Info */}
           <DrawerSection>
             <DrawerSectionTitle>
-              <Database size={14} /> System Info & Status
+              <Database size={14} /> System Info &amp; Status
             </DrawerSectionTitle>
             <DrawerCardList>
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <Database size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>Account ID</DrawerItemLabel>
-                  <DrawerItemValue>{creator.id}</DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
-
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <ShieldCheck size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>Role</DrawerItemLabel>
-                  <DrawerItemValue>{creator.role}</DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
-
-              <DrawerCardItem>
-                <DrawerIconWrapper>
-                  <Calendar size={16} />
-                </DrawerIconWrapper>
-                <DrawerItemContent>
-                  <DrawerItemLabel>Timeline</DrawerItemLabel>
-                  <DrawerItemValue>
+              <InfoRow
+                icon={<Database size={16} />}
+                label="Account ID"
+                value={creator.id}
+              />
+              <InfoRow
+                icon={<ShieldCheck size={16} />}
+                label="Role"
+                value={creator.role}
+              />
+              <InfoRow
+                icon={<Calendar size={16} />}
+                label="Timeline"
+                value={
+                  <>
                     Created: {new Date(creator.createdAt).toLocaleString()}
                     <br />
                     Updated: {new Date(creator.updatedAt).toLocaleString()}
-                  </DrawerItemValue>
-                </DrawerItemContent>
-              </DrawerCardItem>
+                  </>
+                }
+              />
             </DrawerCardList>
           </DrawerSection>
         </>
