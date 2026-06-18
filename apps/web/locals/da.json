@@ -1959,7 +1959,11 @@
     "openPdf": "Åben PDF",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Lyd",
-    "mediaLabelPdf": "PDF"
+    "mediaLabelPdf": "PDF",
+    "expired": "Udløbet",
+    "expiresInHours": "Udløber om {{count}} timer",
+    "expiresInDays": "Udløber om {{count}} dage",
+    "expiredOn": "Udløbet den {{date}}"
   },
   "explore": {
     "sortNew": "Ny",

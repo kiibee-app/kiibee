@@ -158,24 +158,21 @@ export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
 
 export function getMediaLabel(
   type: RentedMediaItem["mediaType"],
-  t?: TFunction,
+  t: TFunction,
 ) {
   if (type === RENTED_MEDIA_TYPES.AUDIO)
-    return t ? t("viewerRented.mediaLabelAudio") : "Audio";
-  if (type === RENTED_MEDIA_TYPES.PDF)
-    return t ? t("viewerRented.mediaLabelPdf") : "PDF";
-  return t ? t("viewerRented.mediaLabelVideo") : "Video";
+    return t("viewerRented.mediaLabelAudio");
+  if (type === RENTED_MEDIA_TYPES.PDF) return t("viewerRented.mediaLabelPdf");
+  return t("viewerRented.mediaLabelVideo");
 }
 
 export function getMediaAction(
   type: RentedMediaItem["mediaType"],
-  t?: TFunction,
+  t: TFunction,
 ) {
-  if (type === RENTED_MEDIA_TYPES.AUDIO)
-    return t ? t("viewerRented.playAudio") : "Play audio";
-  if (type === RENTED_MEDIA_TYPES.PDF)
-    return t ? t("viewerRented.openPdf") : "Open pdf";
-  return t ? t("viewerRented.playVideo") : "Play video";
+  if (type === RENTED_MEDIA_TYPES.AUDIO) return t("viewerRented.playAudio");
+  if (type === RENTED_MEDIA_TYPES.PDF) return t("viewerRented.openPdf");
+  return t("viewerRented.playVideo");
 }
 
 export function getRentedContentSources(
@@ -200,29 +197,22 @@ export function getRentedContentSources(
   };
 }
 
-export function getCollectionBadgeText(mode: RentedMode, t?: TFunction) {
-  if (mode === RENTED_MODES.PURCHASED)
-    return t ? t("viewerRented.owned") : "Owned";
-  if (mode === RENTED_MODES.CURRENTLY)
-    return t ? t("viewerRented.inRental") : "In rental";
-  return t ? t("viewerRented.rented") : "Rented";
+export function getCollectionBadgeText(mode: RentedMode, t: TFunction) {
+  if (mode === RENTED_MODES.PURCHASED) return t("viewerRented.owned");
+  if (mode === RENTED_MODES.CURRENTLY) return t("viewerRented.inRental");
+  return t("viewerRented.rented");
 }
 
-export function getCollectionPrimaryActionText(mode: RentedMode) {
-  if (mode === RENTED_MODES.PURCHASED) return "See content";
-  return "Buy xx kr";
+export function getCollectionPrimaryActionText(mode: RentedMode, t: TFunction) {
+  if (mode === RENTED_MODES.PURCHASED) return t("viewerRented.seeContent");
+  return t("viewerRented.buyPlaceholder");
 }
 
-export function getSearchPlaceholder(mode: RentedMode, t?: TFunction) {
-  if (mode === RENTED_MODES.PURCHASED)
-    return t ? t("viewerRented.searchPurchased") : "Search Purchased Content";
+export function getSearchPlaceholder(mode: RentedMode, t: TFunction) {
+  if (mode === RENTED_MODES.PURCHASED) return t("viewerRented.searchPurchased");
   if (mode === RENTED_MODES.CURRENTLY)
-    return t
-      ? t("viewerRented.searchCurrentlyRented")
-      : "Search Currently Rented";
-  return t
-    ? t("viewerRented.searchPreviouslyRented")
-    : "Search Previously Rented";
+    return t("viewerRented.searchCurrentlyRented");
+  return t("viewerRented.searchPreviouslyRented");
 }
 
 type ViewerSearchParamsInput =
@@ -296,20 +286,28 @@ export function sortViewerCollections(
   return sorted;
 }
 
-export function formatExpiryText(rentExpiresAt?: string | null): string {
+export function formatExpiryText(
+  rentExpiresAt: string | null | undefined,
+  t: TFunction,
+): string {
   if (!rentExpiresAt) return "";
   const hrs = Math.round(
     (new Date(rentExpiresAt).getTime() - Date.now()) / 36e5,
   );
-  if (hrs <= 0) return "Expired";
+  if (hrs <= 0) return t("viewerRented.expired");
   return hrs < 24
-    ? `Expires in ${hrs} hrs`
-    : `Expires in ${Math.round(hrs / 24)} days`;
+    ? t("viewerRented.expiresInHours", { count: hrs })
+    : t("viewerRented.expiresInDays", { count: Math.round(hrs / 24) });
 }
 
-export function formatExpiredText(rentExpiresAt?: string | null): string {
+export function formatExpiredText(
+  rentExpiresAt: string | null | undefined,
+  t: TFunction,
+): string {
   if (!rentExpiresAt) return "";
   const d = new Date(rentExpiresAt);
   if (isNaN(d.getTime())) return "";
-  return `Expired on ${d.getDate()} ${d.toLocaleString(undefined, { month: "long" })} ${d.getFullYear()}`;
+  return t("viewerRented.expiredOn", {
+    date: `${d.getDate()} ${d.toLocaleString(undefined, { month: "long" })} ${d.getFullYear()}`,
+  });
 }

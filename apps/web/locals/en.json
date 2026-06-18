@@ -1951,7 +1951,11 @@
     "openPdf": "Open pdf",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Audio",
-    "mediaLabelPdf": "PDF"
+    "mediaLabelPdf": "PDF",
+    "expired": "Expired",
+    "expiresInHours": "Expires in {{count}} hrs",
+    "expiresInDays": "Expires in {{count}} days",
+    "expiredOn": "Expired on {{date}}"
   },
   "explore": {
     "sortNew": "New",

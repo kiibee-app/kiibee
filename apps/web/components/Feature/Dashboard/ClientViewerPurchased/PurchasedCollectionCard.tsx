@@ -52,7 +52,7 @@ export default function PurchasedCollectionCard({ item }: Props) {
 
         <CollectionActionRow>
           <GenericButton variant={VARIANT.PRIMARY} size="md">
-            {getCollectionPrimaryActionText(mode)}
+            {getCollectionPrimaryActionText(mode, t)}
           </GenericButton>
         </CollectionActionRow>
       </CollectionBody>
