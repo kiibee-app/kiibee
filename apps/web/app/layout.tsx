@@ -48,7 +48,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={DA} className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang={DA}
+      className={`${geistSans.variable} ${geistMono.variable} notranslate`}
+      translate="no"
+    >
       <body>
         <ThemeProvider>
           <QueryProvider>
