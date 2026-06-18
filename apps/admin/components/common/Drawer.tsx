@@ -10,6 +10,13 @@ import {
   Overlay,
   Title,
 } from "./Drawer.styles";
+import {
+  DrawerCardItem,
+  DrawerIconWrapper,
+  DrawerItemContent,
+  DrawerItemLabel,
+  DrawerItemValue,
+} from "../features/all-creators/AllCreators.styles";
 
 interface DrawerProps {
   title: string;
@@ -54,5 +61,23 @@ export function Drawer({ title, open, onClose, children }: DrawerProps) {
         <Body>{children}</Body>
       </DrawerCard>
     </Overlay>
+  );
+}
+
+export type InfoRowProps = {
+  icon: ReactNode;
+  label: string;
+  value: ReactNode;
+};
+
+export function InfoRow({ icon, label, value }: InfoRowProps) {
+  return (
+    <DrawerCardItem>
+      <DrawerIconWrapper>{icon}</DrawerIconWrapper>
+      <DrawerItemContent>
+        <DrawerItemLabel>{label}</DrawerItemLabel>
+        <DrawerItemValue>{value}</DrawerItemValue>
+      </DrawerItemContent>
+    </DrawerCardItem>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import type { ReactNode } from "react";
 import {
   ArrowLeft,
   FileText,
@@ -13,6 +12,7 @@ import {
   Link as LinkIcon,
 } from "lucide-react";
 import type { UploadItem } from "../../../hooks/api";
+import { InfoRow } from "../../common/Drawer";
 import {
   ACCESS_TYPE,
   VISIBILITY,
@@ -52,26 +52,6 @@ export type CreatorUploadDetailProps = {
   upload: UploadItem;
   onBack: () => void;
 };
-
-function InfoRow({
-  icon,
-  label,
-  value,
-}: {
-  icon: ReactNode;
-  label: string;
-  value: ReactNode;
-}) {
-  return (
-    <DrawerCardItem>
-      <DrawerIconWrapper>{icon}</DrawerIconWrapper>
-      <DrawerItemContent>
-        <DrawerItemLabel>{label}</DrawerItemLabel>
-        <DrawerItemValue>{value}</DrawerItemValue>
-      </DrawerItemContent>
-    </DrawerCardItem>
-  );
-}
 
 export function CreatorUploadDetail({
   upload,
