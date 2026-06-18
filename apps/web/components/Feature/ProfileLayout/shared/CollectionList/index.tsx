@@ -25,6 +25,7 @@ import { authStorage } from "@/lib/auth/authStorage";
 import { PATHS, pathPublishedContent } from "@/utils/path";
 import {
   getContentPricingActions,
+  getPricingLabels,
   isFreeContentItem,
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
@@ -155,19 +156,12 @@ export default function CollectionList() {
         rentPrice: row.rentPrice,
       };
 
-      const pricingLabels = {
-        rent: t("pricingLabels.rent"),
-        buy: t("pricingLabels.buy"),
-        buyCollection: t("pricingLabels.buyCollection"),
-        free: t("pricingLabels.free"),
-      };
-
       const pricingActions = getContentPricingActions(
         pricingItem,
         t("createProfileHome.latestUpload.seeContent"),
         {
           inCollection: true,
-          labels: pricingLabels,
+          labels: getPricingLabels(t),
         },
       );
 
@@ -182,7 +176,7 @@ export default function CollectionList() {
               action.label,
               pricingItem,
               pricingActions.length,
-              { inCollection: true, labels: pricingLabels },
+              { inCollection: true, labels: getPricingLabels(t) },
             )
           : contentHref,
       }));

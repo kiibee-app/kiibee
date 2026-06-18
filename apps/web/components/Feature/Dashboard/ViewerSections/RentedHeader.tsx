@@ -6,7 +6,7 @@ import { SearchIcon } from "@/assets/icons/searchBarIcon";
 import { CrossIcon } from "@/assets/icons/crossIcon";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTheme } from "styled-components";
-import { RENTED_MODES, type RentedMode } from "@/utils/viewerRented";
+import { getSearchPlaceholder, type RentedMode } from "@/utils/viewerRented";
 import {
   HeaderSearchArea,
   HeaderSearchButton,
@@ -86,13 +86,7 @@ export default function RentedHeader({
         <HeaderSearchInput
           ref={searchInputRef}
           $open={isSearchOpen}
-          placeholder={
-            mode === RENTED_MODES.PURCHASED
-              ? t("viewerRented.searchPurchased")
-              : mode === RENTED_MODES.CURRENTLY
-                ? t("viewerRented.searchCurrentlyRented")
-                : t("viewerRented.searchPreviouslyRented")
-          }
+          placeholder={getSearchPlaceholder(mode, t)}
           value={searchValue}
           onChange={(e) => onSearchChange(e.target.value)}
         />

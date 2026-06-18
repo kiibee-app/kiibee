@@ -44,6 +44,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import {
   formatPriceLabel,
   getContentDetailPricingActions,
+  getPricingLabels,
   isBuyActionLabel,
   isFreeContentItem,
   resolveContentActionHref,
@@ -142,15 +143,8 @@ export default function LatestUpload({ data }: LatestUploadProps) {
         ];
       }
 
-      const pricingLabels = {
-        rent: t("pricingLabels.rent"),
-        buy: t("pricingLabels.buy"),
-        buyCollection: t("pricingLabels.buyCollection"),
-        free: t("pricingLabels.free"),
-      };
-
       const pricingActions = getContentDetailPricingActions(pricingItem, t, {
-        labels: pricingLabels,
+        labels: getPricingLabels(t),
       });
 
       return pricingActions.map((action) => ({
@@ -161,7 +155,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
           action.label,
           pricingItem,
           pricingActions.length,
-          { labels: pricingLabels },
+          { labels: getPricingLabels(t) },
         ),
       }));
     }

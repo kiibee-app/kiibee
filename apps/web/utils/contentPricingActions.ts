@@ -1,3 +1,4 @@
+import type { TFunction } from "i18next";
 import {
   ACCESS_TYPE_FREE,
   BUY_KEYWORDS,
@@ -18,6 +19,15 @@ export type PricingLabels = {
   buyCollection: string;
   free: string;
 };
+
+export function getPricingLabels(t: TFunction): PricingLabels {
+  return {
+    rent: t("pricingLabels.rent"),
+    buy: t("pricingLabels.buy"),
+    buyCollection: t("pricingLabels.buyCollection"),
+    free: t("pricingLabels.free"),
+  };
+}
 
 export type ContentPricingAction = {
   label: string;
@@ -69,6 +79,26 @@ export function isFreeContentItem(
   );
 }
 
+function resolvePricingPrefixes(labels?: PricingLabels) {
+  return {
+    rentPrefix: labels?.rent ?? RENT_PREFIX,
+    buyPrefix: labels?.buy ?? BUY_PREFIX,
+    buyCollectionPrefix: labels?.buyCollection ?? BUY_COLLECTION_PREFIX,
+  };
+}
+
+function formatBuyPrice(
+  buyPrice: string | number | null | undefined,
+  inCollection: boolean | undefined,
+  labels?: PricingLabels,
+): string | null {
+  const { buyPrefix, buyCollectionPrefix } = resolvePricingPrefixes(labels);
+  return formatPriceLabel(
+    inCollection ? buyCollectionPrefix : buyPrefix,
+    buyPrice,
+  );
+}
+
 export function resolveContentActionHref(
   contentId: string,
   actionLabel: string,
@@ -79,10 +109,9 @@ export function resolveContentActionHref(
   const href = pathPublishedContent(contentId);
   if (actionsCount <= 1) return href;
 
-  const rentPrefix = options?.labels?.rent ?? RENT_PREFIX;
-  const buyPrefix = options?.labels?.buy ?? BUY_PREFIX;
-  const buyCollectionPrefix =
-    options?.labels?.buyCollection ?? BUY_COLLECTION_PREFIX;
+  const { rentPrefix, buyPrefix, buyCollectionPrefix } = resolvePricingPrefixes(
+    options?.labels,
+  );
 
   const rentLabel = formatPriceLabel(rentPrefix, item.rentPrice);
   const buyLabel = formatPriceLabel(buyPrefix, item.buyPrice);
@@ -107,15 +136,13 @@ export function getContentPricingActions(
   options?: { inCollection?: boolean; labels?: PricingLabels },
 ): ContentPricingAction[] {
   const isFree = item.accessType === ACCESS_TYPE_FREE;
-  const rentPrefix = options?.labels?.rent ?? RENT_PREFIX;
-  const buyPrefix = options?.labels?.buy ?? BUY_PREFIX;
-  const buyCollectionPrefix =
-    options?.labels?.buyCollection ?? BUY_COLLECTION_PREFIX;
+  const { rentPrefix } = resolvePricingPrefixes(options?.labels);
 
   const rent = formatPriceLabel(rentPrefix, item.rentPrice);
-  const buy = formatPriceLabel(
-    options?.inCollection ? buyCollectionPrefix : buyPrefix,
+  const buy = formatBuyPrice(
     item.buyPrice,
+    options?.inCollection,
+    options?.labels,
   );
 
   if (isFree || (!rent && !buy)) {
@@ -168,15 +195,13 @@ export function getContentDetailPricingActions(
     return [];
   }
 
-  const rentPrefix = options?.labels?.rent ?? RENT_PREFIX;
-  const buyPrefix = options?.labels?.buy ?? BUY_PREFIX;
-  const buyCollectionPrefix =
-    options?.labels?.buyCollection ?? BUY_COLLECTION_PREFIX;
+  const { rentPrefix } = resolvePricingPrefixes(options?.labels);
 
   const rent = formatPriceLabel(rentPrefix, item.rentPrice);
-  const buy = formatPriceLabel(
-    options?.inCollection ? buyCollectionPrefix : buyPrefix,
+  const buy = formatBuyPrice(
     item.buyPrice,
+    options?.inCollection,
+    options?.labels,
   );
   const actions: ContentDetailPricingAction[] = [];
 
@@ -209,15 +234,14 @@ export function getContentPrimaryAction(
     return { label: seeContentLabel, isFree: true };
   }
 
-  const rentPrefix = options?.labels?.rent ?? RENT_PREFIX;
-  const buyPrefix = options?.labels?.buy ?? BUY_PREFIX;
-  const buyCollectionPrefix =
-    options?.labels?.buyCollection ?? BUY_COLLECTION_PREFIX;
+  const { rentPrefix } = resolvePricingPrefixes(options?.labels);
 
   const rent = formatPriceLabel(rentPrefix, item.rentPrice);
-  const buy = options?.inCollection
-    ? formatPriceLabel(buyCollectionPrefix, item.buyPrice)
-    : formatPriceLabel(buyPrefix, item.buyPrice);
+  const buy = formatBuyPrice(
+    item.buyPrice,
+    options?.inCollection,
+    options?.labels,
+  );
 
   if (buy) {
     return { label: buy, isFree: false };

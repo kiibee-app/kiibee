@@ -213,10 +213,16 @@ export const RENTED_BUTTON_TEXT = {
   rent: "Rent xx kr",
 } as const;
 
-export function getSearchPlaceholder(mode: RentedMode) {
-  if (mode === RENTED_MODES.PURCHASED) return "Search Purchased Content";
-  if (mode === RENTED_MODES.CURRENTLY) return "Search Currently Rented";
-  return "Search Previously Rented";
+export function getSearchPlaceholder(mode: RentedMode, t?: TFunction) {
+  if (mode === RENTED_MODES.PURCHASED)
+    return t ? t("viewerRented.searchPurchased") : "Search Purchased Content";
+  if (mode === RENTED_MODES.CURRENTLY)
+    return t
+      ? t("viewerRented.searchCurrentlyRented")
+      : "Search Currently Rented";
+  return t
+    ? t("viewerRented.searchPreviouslyRented")
+    : "Search Previously Rented";
 }
 
 type ViewerSearchParamsInput =
