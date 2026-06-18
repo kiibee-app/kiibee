@@ -65,12 +65,6 @@ type SettingsSnapshot = {
   accessDuration: AccessDurationValue;
 };
 
-const contentSettingToUiMap: Record<string, AdmissionRequirementValue> = {
-  free: ADMISSION_REQUIREMENT_VALUES.free,
-  set_password: ADMISSION_REQUIREMENT_VALUES.password,
-  request_email: ADMISSION_REQUIREMENT_VALUES.email,
-};
-
 type Params = {
   activeTab: ContentTab;
   isUploadMode: boolean;
@@ -277,7 +271,9 @@ export function useContentFormActions({
     createdContentId?: string,
     details?: { title: string; description: string },
   ) => {
-    setActiveTabAndQuery(tab);
+    if (!createdContentId) {
+      setActiveTabAndQuery(tab);
+    }
     setUploadedFile(file ?? null);
     setUploadedPreview(preview ?? null);
     const prefilledState =
@@ -652,11 +648,6 @@ export function useContentFormActions({
     setIsEditingLoading(true);
     try {
       const item = collectionContents.find((content) => content.id === id);
-      const nextUploadTab = Object.values(ADD_CONTENT_TABS).includes(
-        activeTab as AddContentTab,
-      )
-        ? (activeTab as AddContentTab)
-        : ADD_CONTENT_TABS.GENERAL;
 
       interface ContentDetailsResponse {
         title?: string;
@@ -787,8 +778,6 @@ export function useContentFormActions({
 
         setFormState(nextFormState);
         setSavedFormState(nextFormState);
-
-        setActiveTabAndQuery(nextUploadTab);
       }
     } catch {
       toast.error(t(ERROR_MESSAGES.LOAD_DETAILS_FAILED));

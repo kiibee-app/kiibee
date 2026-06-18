@@ -341,6 +341,7 @@ function CreatorsContentsInner() {
     setSelectedCollection,
     onEditContent: (id) => void handleEditContent(id),
     onBackStateOnly: handleBackToBaseStateOnly,
+    activeTab,
   });
 
   const handleSaveSuccessClose = () => {
