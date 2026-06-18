@@ -37,6 +37,7 @@ export interface SmoothScrollProviderProps {
 export interface ScrollRevealProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   delay?: number;
+  once?: boolean;
   sequence?: boolean;
 }
 

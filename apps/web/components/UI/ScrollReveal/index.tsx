@@ -41,6 +41,7 @@ const prefersReducedMotion = () =>
 export default function ScrollReveal({
   children,
   delay = SCROLL_REVEAL.delay,
+  once = false,
   sequence = true,
   className = "",
   style,
@@ -87,7 +88,10 @@ export default function ScrollReveal({
         scrollTrigger: {
           trigger: element,
           start: SCROLL_REVEAL.start,
-          toggleActions: SCROLL_REVEAL.toggleActions,
+          toggleActions: once
+            ? SCROLL_REVEAL.onceToggleActions
+            : SCROLL_REVEAL.toggleActions,
+          once,
           fastScrollEnd: true,
         },
       },
@@ -98,7 +102,7 @@ export default function ScrollReveal({
       tween.kill();
       element.style.willChange = "auto";
     };
-  }, [delay, sequence]);
+  }, [delay, once, sequence]);
 
   return (
     <div
