@@ -14,7 +14,9 @@ if (typeof window !== "undefined") {
 export default function ScrollReveal({
   children,
   delay = SCROLL_REVEAL.delay,
+  once = false,
   sequence = true,
+  withBlur = true,
   className = "",
   style,
   ...props
@@ -56,41 +58,42 @@ export default function ScrollReveal({
 
       media.add(LANDING_MOTION.noReducedMotionQuery, () => {
         const sequenceDelay = sequence ? getSequenceDelay() : 0;
+        const fromVars = {
+          autoAlpha: LANDING_MOTION.hiddenAlpha,
+          y: SCROLL_REVEAL.yFrom,
+          ...(withBlur ? { filter: SCROLL_REVEAL.blurFrom } : {}),
+        };
+        const toVars = {
+          autoAlpha: LANDING_MOTION.visibleAlpha,
+          y: LANDING_MOTION.defaultPositionTo,
+          ...(withBlur ? { filter: SCROLL_REVEAL.blurTo } : {}),
+          duration: SCROLL_REVEAL.duration,
+          delay: delay + sequenceDelay,
+          ease: LANDING_MOTION.easePower2Out,
+          scrollTrigger: {
+            trigger: element,
+            start: SCROLL_REVEAL.start,
+            toggleActions: once
+              ? SCROLL_REVEAL.onceToggleActions
+              : SCROLL_REVEAL.toggleActions,
+            once,
+            invalidateOnRefresh: true,
+          },
+        };
 
-        gsap.fromTo(
-          element,
-          {
-            autoAlpha: LANDING_MOTION.hiddenAlpha,
-            y: SCROLL_REVEAL.yFrom,
-            filter: SCROLL_REVEAL.blurFrom,
-          },
-          {
-            autoAlpha: LANDING_MOTION.visibleAlpha,
-            y: LANDING_MOTION.defaultPositionTo,
-            filter: SCROLL_REVEAL.blurTo,
-            duration: SCROLL_REVEAL.duration,
-            delay: delay + sequenceDelay,
-            ease: LANDING_MOTION.easePower2Out,
-            scrollTrigger: {
-              trigger: element,
-              start: SCROLL_REVEAL.start,
-              toggleActions: SCROLL_REVEAL.toggleActions,
-              invalidateOnRefresh: true,
-            },
-          },
-        );
+        gsap.fromTo(element, fromVars, toVars);
       });
     }, container);
 
     return () => ctx.revert();
-  }, [delay, sequence]);
+  }, [delay, once, sequence, withBlur]);
 
   return (
     <div
       ref={container}
       data-scroll-reveal
       className={className}
-      style={getScrollRevealContainerStyle(style)}
+      style={getScrollRevealContainerStyle(style, withBlur)}
       {...props}
     >
       {children}

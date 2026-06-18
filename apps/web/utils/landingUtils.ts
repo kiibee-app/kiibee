@@ -23,10 +23,12 @@ export const SCROLL_REVEAL = {
   blurTo: "blur(0px)",
   duration: 1.2,
   start: "top 85%",
+  onceToggleActions: "play none none none",
   toggleActions: "play none none reverse",
   initialVisibility: "hidden",
   initialOpacity: 0,
   willChange: "opacity, transform, filter",
+  willChangeWithoutBlur: "opacity, transform",
 } as const;
 
 export const SAFE_IMAGE_FALLBACKS = {

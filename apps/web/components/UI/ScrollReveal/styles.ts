@@ -3,11 +3,14 @@ import { SCROLL_REVEAL } from "@/utils/landingUtils";
 
 export function getScrollRevealContainerStyle(
   style?: CSSProperties,
+  withBlur = true,
 ): CSSProperties {
   return {
     visibility: SCROLL_REVEAL.initialVisibility,
     opacity: SCROLL_REVEAL.initialOpacity,
-    willChange: SCROLL_REVEAL.willChange,
+    willChange: withBlur
+      ? SCROLL_REVEAL.willChange
+      : SCROLL_REVEAL.willChangeWithoutBlur,
     ...style,
   };
 }
