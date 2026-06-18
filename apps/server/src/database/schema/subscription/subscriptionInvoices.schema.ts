@@ -4,46 +4,61 @@ import {
   varchar,
   numeric,
   timestamp,
-  date,
   index,
+  jsonb,
+  uniqueIndex,
 } from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
 import { users } from '../users/users.schema';
 import { creatorPlans } from './creatorPlan.schema';
 import { invoiceStatusEnum } from '../enums';
 
-export const subscriptionInvoices = pgTable(
-  'subscription_invoices',
+export const subscriptions = pgTable(
+  'subscriptions',
   {
     id: text('id').primaryKey(),
-    creatorPlanId: text('creator_plan_id')
+    planId: text('plan_id')
       .notNull()
       .references(() => creatorPlans.id, { onDelete: 'restrict' }),
     creatorId: text('creator_id')
       .notNull()
       .references(() => users.id, { onDelete: 'restrict' }),
-
     amount: numeric('amount', { precision: 10, scale: 2 }).notNull(),
     currency: varchar('currency', { length: 10 }).notNull().default('DKK'),
     status: invoiceStatusEnum('status').notNull().default('pending'),
-
     invoiceNumber: varchar('invoice_number', { length: 50 }).notNull(),
-    billingPeriodStart: date('billing_period_start').notNull(),
-    billingPeriodEnd: date('billing_period_end').notNull(),
-    paidAt: timestamp('paid_at', { withTimezone: true }),
-
+    billingPeriod: varchar('billing_period', { length: 20 }),
+    startAt: timestamp('start_at').notNull(),
+    endAt: timestamp('end_at').notNull(),
+    nextPaymentAttemptAt: timestamp('next_payment_attempt_at'),
+    paymentProvider: varchar('payment_provider', { length: 20 })
+      .notNull()
+      .default('epay'),
+    paymentReference: text('payment_reference'),
+    agreementId: text('agreement_id'),
+    rawPayload: jsonb('raw_payload'),
+    processedAt: timestamp('processed_at'),
     ...baseTimestamps,
   },
   (table) => ({
-    creatorPlanIdIdx: index('subscription_invoices_creator_plan_id_idx').on(
-      table.creatorPlanId,
-    ),
+    planIdIdx: index('subscription_invoices_plan_id_idx').on(table.planId),
     creatorIdIdx: index('subscription_invoices_creator_id_idx').on(
       table.creatorId,
     ),
     statusIdx: index('subscription_invoices_status_idx').on(table.status),
     invoiceNumberIdx: index('subscription_invoices_invoice_number_idx').on(
       table.invoiceNumber,
+    ),
+    agreementIdIdx: index('subscription_invoices_agreement_id_idx').on(
+      table.agreementId,
+    ),
+    paymentReferenceIdx: index(
+      'subscription_invoices_payment_reference_idx',
+    ).on(table.paymentReference),
+    uniqueInvoice: uniqueIndex('subscription_invoice_unique').on(
+      table.creatorId,
+      table.planId,
+      table.billingPeriod,
     ),
   }),
 );

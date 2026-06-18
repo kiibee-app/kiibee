@@ -9,9 +9,9 @@ import { VideoIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
-import { useTranslation } from "react-i18next";
 import {
-  getRentedMediaSections,
+  RENTED_BUTTON_TEXT,
+  RENTED_MEDIA_SECTIONS,
   RENTED_SECTION_KEYS,
   RENTED_MEDIA_TYPES,
   RENTED_MODES,
@@ -76,107 +76,115 @@ export default function MediaSections({
   onMediaPrimaryAction,
   onOpenSection,
 }: Props) {
-  const { t } = useTranslation();
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const hasDetailView = Boolean(onMediaPrimaryAction);
 
   return (
     <>
-      {getRentedMediaSections(t).map((section) => (
-        <SectionBlock key={section.title}>
-          <SectionHeader>
-            <SectionTitleRow>
-              <SectionTitle>{section.title}</SectionTitle>
-              {hasDetailView &&
-              (section.key === RENTED_SECTION_KEYS.VIDEOS ||
-                section.key === RENTED_SECTION_KEYS.AUDIOS ||
-                section.key === RENTED_SECTION_KEYS.PDFS) ? (
-                <InlineSectionArrow
-                  type="button"
-                  aria-label={`Open ${section.title} details`}
-                  onClick={() =>
-                    onOpenSection?.(section.key, sectionItems[section.key][0])
+      {RENTED_MEDIA_SECTIONS.map((section) => {
+        if (
+          !sectionItems[section.key] ||
+          sectionItems[section.key].length === 0
+        )
+          return null;
+        return (
+          <SectionBlock key={section.title}>
+            <SectionHeader>
+              <SectionTitleRow>
+                <SectionTitle>{section.title}</SectionTitle>
+                {hasDetailView &&
+                (section.key === RENTED_SECTION_KEYS.VIDEOS ||
+                  section.key === RENTED_SECTION_KEYS.AUDIOS ||
+                  section.key === RENTED_SECTION_KEYS.PDFS) ? (
+                  <InlineSectionArrow
+                    type="button"
+                    aria-label={`Open ${section.title} details`}
+                    onClick={() =>
+                      onOpenSection?.(section.key, sectionItems[section.key][0])
+                    }
+                  >
+                    <LeftIcon />
+                  </InlineSectionArrow>
+                ) : null}
+              </SectionTitleRow>
+              <SectionPaginationArrows
+                sectionKey={section.key}
+                totalItems={sectionTotals[section.key]}
+                canSlide={canSlide}
+                canGoPrev={canGoPrev}
+                canGoNext={canGoNext}
+                movePrev={movePrev}
+                moveNext={moveNext}
+              />
+            </SectionHeader>
+            <MediaGrid>
+              {sectionItems[section.key].map((item) => (
+                <GenericCard
+                  key={item.id}
+                  image={item.thumbSrc}
+                  title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
+                  subtitle={
+                    <MonoText $use="Body_Medium">{item.author}</MonoText>
                   }
-                >
-                  <LeftIcon />
-                </InlineSectionArrow>
-              ) : null}
-            </SectionTitleRow>
-            <SectionPaginationArrows
-              sectionKey={section.key}
-              totalItems={sectionTotals[section.key]}
-              canSlide={canSlide}
-              canGoPrev={canGoPrev}
-              canGoNext={canGoNext}
-              movePrev={movePrev}
-              moveNext={moveNext}
-            />
-          </SectionHeader>
-          <MediaGrid>
-            {sectionItems[section.key].map((item) => (
-              <GenericCard
-                key={item.id}
-                image={item.thumbSrc}
-                title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
-                subtitle={<MonoText $use="Body_Medium">{item.author}</MonoText>}
-                badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
-                footer={
-                  hasDetailView || isCurrent ? (
-                    <GenericButton
-                      variant={VARIANT.SECONDARY}
-                      size="md"
-                      fullWidth
-                      onClick={
-                        onMediaPrimaryAction
-                          ? () => onMediaPrimaryAction(item)
-                          : undefined
-                      }
-                    >
-                      {getMediaAction(item.mediaType, t)}
-                    </GenericButton>
-                  ) : (
-                    <TwoButtonRow>
+                  badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
+                  footer={
+                    hasDetailView || isCurrent ? (
                       <GenericButton
                         variant={VARIANT.SECONDARY}
                         size="md"
                         fullWidth
+                        onClick={
+                          onMediaPrimaryAction
+                            ? () => onMediaPrimaryAction(item)
+                            : undefined
+                        }
                       >
-                        {t("pricingLabels.buy")}
+                        {getMediaAction(item.mediaType)}
                       </GenericButton>
-                      <GenericButton
-                        variant={VARIANT.SECONDARY}
-                        size="md"
-                        fullWidth
-                      >
-                        {t("pricingLabels.rent")}
-                      </GenericButton>
-                    </TwoButtonRow>
-                  )
-                }
-              >
-                <MonoText
-                  $use="Body_Medium"
-                  color={
-                    hasDetailView
-                      ? COLORS.neutral.GRAY_400
-                      : isCurrent
-                        ? COLORS.primary.RED
-                        : COLORS.neutral.GRAY_400
+                    ) : (
+                      <TwoButtonRow>
+                        <GenericButton
+                          variant={VARIANT.SECONDARY}
+                          size="md"
+                          fullWidth
+                        >
+                          {RENTED_BUTTON_TEXT.buy}
+                        </GenericButton>
+                        <GenericButton
+                          variant={VARIANT.SECONDARY}
+                          size="md"
+                          fullWidth
+                        >
+                          {RENTED_BUTTON_TEXT.rent}
+                        </GenericButton>
+                      </TwoButtonRow>
+                    )
                   }
                 >
-                  {item.expiryText}
-                </MonoText>
-                <MediaTypePill>
-                  <MediaTypeIcon type={item.mediaType} />
-                  <MonoText $use="Body_Bold">
-                    {getMediaLabel(item.mediaType, t)}
+                  <MonoText
+                    $use="Body_Medium"
+                    color={
+                      hasDetailView
+                        ? COLORS.neutral.GRAY_400
+                        : isCurrent
+                          ? COLORS.primary.RED
+                          : COLORS.neutral.GRAY_400
+                    }
+                  >
+                    {item.expiryText}
                   </MonoText>
-                </MediaTypePill>
-              </GenericCard>
-            ))}
-          </MediaGrid>
-        </SectionBlock>
-      ))}
+                  <MediaTypePill>
+                    <MediaTypeIcon type={item.mediaType} />
+                    <MonoText $use="Body_Bold">
+                      {getMediaLabel(item.mediaType)}
+                    </MonoText>
+                  </MediaTypePill>
+                </GenericCard>
+              ))}
+            </MediaGrid>
+          </SectionBlock>
+        );
+      })}
     </>
   );
 }

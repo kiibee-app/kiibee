@@ -11,5 +11,6 @@ export const creatorPlans = pgTable('creator_plans', {
   creatorId: text('creator_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
+  status: text('status').notNull().default('active'),
   ...baseTimestamps,
 });

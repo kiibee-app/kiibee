@@ -139,6 +139,7 @@ export default function CollectionTable(props: CollectionTableProps) {
         return col?.key as keyof TableRow;
       }}
       getRowKey={(row) => row.id}
+      getMobileTitle={(row) => String(row.name)}
       getColumnAlignment={(_header, index) =>
         index === 0 ? TABLE_ALIGN.LEFT : TABLE_ALIGN.CENTER
       }

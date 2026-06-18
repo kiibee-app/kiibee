@@ -10,6 +10,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
 import { getTutorialCollectionById } from "@/utils/tutorialCollections";
+import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
 import { VARIANT_CONTENT } from "@/utils/Constants";
@@ -18,22 +19,49 @@ function SingleCollectionContent() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  const section = getTutorialCollectionById(id);
-  const { gateType } = useCollectionAccessGate();
+  const staticSection = getTutorialCollectionById(id);
+  const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
+    !staticSection ? id : null,
+  );
 
-  if (!section) {
+  const {
+    data: dynamicSection,
+    isLoading: isDynamicLoading,
+    isError,
+  } = usePublicCollectionContent(
+    !staticSection && !gateType && !isGateLoading ? id : null,
+  );
+
+  if (staticSection) {
     return (
-      <MonoText $use="H5_Regular">{t("singleCollection.notFound")}</MonoText>
+      <Section>
+        <SingleCollectionHero
+          title={staticSection.title}
+          primaryContentId={staticSection.tutorials[0]?.id}
+        />
+        <CollectionContent
+          videos={staticSection.tutorials}
+          maxWidth={staticSection.gridMaxWidth}
+        />
+      </Section>
     );
   }
 
-  return (
-    <Section>
-      <SingleCollectionHero
-        title={section.title}
-        primaryContentId={section.tutorials[0]?.id}
-      />
-      {gateType ? (
+  if (isGateLoading || isDynamicLoading) {
+    return (
+      <Section>
+        <MonoText $use="H5_Regular">{t("common.loading")}</MonoText>
+      </Section>
+    );
+  }
+
+  if (gateType) {
+    return (
+      <Section>
+        <SingleCollectionHero
+          title={dynamicSection?.name ?? ""}
+          primaryContentId={dynamicSection?.videos?.[0]?.id}
+        />
         <AccessGate
           type={gateType}
           variant={VARIANT_CONTENT}
@@ -47,12 +75,25 @@ function SingleCollectionContent() {
             }
           }}
         />
-      ) : (
-        <CollectionContent
-          videos={section.tutorials}
-          maxWidth={section.gridMaxWidth}
-        />
-      )}
+      </Section>
+    );
+  }
+
+  if (isError || !dynamicSection) {
+    return (
+      <Section>
+        <MonoText $use="H5_Regular">{t("singleCollection.notFound")}</MonoText>
+      </Section>
+    );
+  }
+
+  return (
+    <Section>
+      <SingleCollectionHero
+        title={dynamicSection.name}
+        primaryContentId={dynamicSection.videos[0]?.id}
+      />
+      <CollectionContent videos={dynamicSection.videos} />
     </Section>
   );
 }

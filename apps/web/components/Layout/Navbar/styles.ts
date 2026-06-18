@@ -336,12 +336,7 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
   }
 
   ${media.mobileMd} {
-    margin-left: 0;
-    gap: 0.5rem;
-  }
-
-  ${media.mobile} {
-    flex-grow: 2;
+    display: none;
   }
 `;
 
@@ -456,17 +451,12 @@ export const NavAccountTriggerWrap = styled.div<{ $open?: boolean }>`
   transition: box-shadow 0.15s ease;
 `;
 
-export const HamburgerButton = styled.button<{ $textTone?: "dark" | "light" }>`
+export const HamburgerButton = styled.button`
   width: 40px;
   height: 40px;
-  border: 1px solid
-    ${({ theme, $textTone }) =>
-      $textTone === "light"
-        ? theme.colors.neutral.OFF_WHITE
-        : theme.colors.primary.GRAY};
+  border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
   border-radius: 8px;
-  background: ${({ theme, $textTone }) =>
-    $textTone === "light" ? "transparent" : theme.colors.primary.WHITE};
+  background: ${({ theme }) => theme.colors.primary.WHITE};
   display: none;
   align-items: center;
   justify-content: center;
@@ -480,14 +470,11 @@ export const HamburgerButton = styled.button<{ $textTone?: "dark" | "light" }>`
   }
 `;
 
-export const HamburgerLine = styled.span<{ $textTone?: "dark" | "light" }>`
+export const HamburgerLine = styled.span`
   width: 16px;
   height: 2px;
   border-radius: 999px;
-  background: ${({ theme, $textTone }) =>
-    $textTone === "light"
-      ? theme.colors.neutral.OFF_WHITE
-      : theme.colors.primary.BLACK};
+  background: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const DrawerOverlay = styled.div<{ $open: boolean }>`

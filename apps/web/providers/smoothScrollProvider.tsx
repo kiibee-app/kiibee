@@ -33,7 +33,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     const lenis = new Lenis({
       autoRaf: false,
       smoothWheel: true,
-      syncTouch: false,
+      syncTouch: true,
       lerp: SMOOTH_SCROLL.lerp,
       wheelMultiplier: SMOOTH_SCROLL.wheelMultiplier,
       touchMultiplier: SMOOTH_SCROLL.touchMultiplier,
@@ -42,7 +42,7 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     });
 
     let resizeRafId: number | null = null;
-    let refreshRafId: number | null = null;
+
     let destroyed = false;
     let bodyResizeObserver: ResizeObserver | null = null;
     const removeLenisScrollHandler = lenis.on("scroll", ScrollTrigger.update);
@@ -57,10 +57,10 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     gsap.ticker.add(updateLenis);
     gsap.ticker.lagSmoothing(0);
 
+    let refreshCall: gsap.core.Tween | null = null;
     const scheduleRefresh = () => {
-      if (refreshRafId !== null) return;
-      refreshRafId = requestAnimationFrame(() => {
-        refreshRafId = null;
+      if (refreshCall) refreshCall.kill();
+      refreshCall = gsap.delayedCall(SMOOTH_SCROLL.refreshDelay, () => {
         ScrollTrigger.refresh();
       });
     };
@@ -127,8 +127,8 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       if (resizeRafId !== null) {
         cancelAnimationFrame(resizeRafId);
       }
-      if (refreshRafId !== null) {
-        cancelAnimationFrame(refreshRafId);
+      if (refreshCall) {
+        refreshCall.kill();
       }
       bodyResizeObserver?.disconnect();
       document.removeEventListener(

@@ -1,9 +1,10 @@
 export const SMOOTH_SCROLL = {
-  lerp: 0.08,
+  lerp: 0.15,
   wheelMultiplier: 1.0,
   touchMultiplier: 1.0,
   easingPower: 5,
   gsapTimeMultiplier: 1000,
+  refreshDelay: 0.15,
 } as const;
 
 export const SMOOTH_SCROLL_EVENTS = {
@@ -19,14 +20,12 @@ export const SCROLL_REVEAL = {
   delay: 0,
   sequenceDelayStep: 0.12,
   yFrom: 30,
-  blurFrom: "blur(12px)",
-  blurTo: "blur(0px)",
   duration: 1.2,
   start: "top 85%",
   toggleActions: "play none none reverse",
   initialVisibility: "hidden",
   initialOpacity: 0,
-  willChange: "opacity, transform, filter",
+  willChange: "opacity, transform",
 } as const;
 
 export const SAFE_IMAGE_FALLBACKS = {

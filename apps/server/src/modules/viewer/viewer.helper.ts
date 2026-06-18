@@ -1,4 +1,4 @@
-import { eq, and, inArray, gt, isNull, lte, or } from 'drizzle-orm';
+import { eq, and, inArray, gt, isNull, lte, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   mediaFiles,
@@ -7,6 +7,8 @@ import {
   orders,
   mediaFileCategories,
   contentCategories,
+  collections,
+  collectionItems,
 } from 'src/database/schema';
 
 export const getUserOrders = async (
@@ -130,6 +132,42 @@ export const enrichMedia = (
       rentExpiresAt: expiresAt ?? null,
     };
   });
+};
+
+export const getCollectionsWithDetails = async (collectionIds: string[]) => {
+  if (!collectionIds.length) return [];
+
+  const items = await db
+    .select({
+      id: collections.id,
+      name: collections.name,
+      coverImageUrl: collections.coverImageUrl,
+      description: collections.description,
+      creatorId: collections.creatorId,
+      creatorName: users.fullName,
+    })
+    .from(collections)
+    .leftJoin(users, eq(collections.creatorId, users.id))
+    .where(inArray(collections.id, collectionIds));
+
+  const counts = await db
+    .select({
+      collectionId: collectionItems.collectionId,
+      count: sql<number>`count(*)::int`,
+    })
+    .from(collectionItems)
+    .where(inArray(collectionItems.collectionId, collectionIds))
+    .groupBy(collectionItems.collectionId);
+
+  const countMap = new Map<string, number>();
+  for (const row of counts) {
+    countMap.set(row.collectionId, row.count);
+  }
+
+  return items.map((item) => ({
+    ...item,
+    elementCount: countMap.get(item.id) ?? 0,
+  }));
 };
 
 export const enrichCollections = (
