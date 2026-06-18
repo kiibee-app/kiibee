@@ -27,7 +27,7 @@ export default function FaqSection() {
 
   return (
     <Section>
-      <ScrollReveal>
+      <ScrollReveal once sequence={false}>
         <Heading>{t("pricingFaq.title")}</Heading>
       </ScrollReveal>
       <List>
@@ -47,6 +47,8 @@ export default function FaqSection() {
             <ScrollReveal
               key={item.id}
               delay={index * LANDING_REVEAL.ctaCardStaggerDelay}
+              once
+              sequence={false}
             >
               <Item
                 type="button"

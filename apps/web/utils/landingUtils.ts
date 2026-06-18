@@ -22,6 +22,7 @@ export const SCROLL_REVEAL = {
   yFrom: 30,
   duration: 1.2,
   start: "top 85%",
+  onceToggleActions: "play none none none",
   toggleActions: "play none none reverse",
   initialVisibility: "hidden",
   initialOpacity: 0,
