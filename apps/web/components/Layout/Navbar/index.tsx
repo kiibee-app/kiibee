@@ -533,13 +533,12 @@ export default function NavBar({
         <Left>
           <HamburgerButton
             type="button"
-            $textTone={navTextTone}
             onClick={toggleSidebar}
             aria-label={t(DASHBOARD.toggleSidebar)}
           >
-            <HamburgerLine $textTone={navTextTone} />
-            <HamburgerLine $textTone={navTextTone} />
-            <HamburgerLine $textTone={navTextTone} />
+            <HamburgerLine />
+            <HamburgerLine />
+            <HamburgerLine />
           </HamburgerButton>
           {brand ?? (
             <Logo>
