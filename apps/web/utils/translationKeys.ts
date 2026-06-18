@@ -490,6 +490,18 @@ export const SETTINGS = {
   },
 };
 
+export const VIEWER_RENTED = {
+  owned: "viewerRented.owned",
+  inRental: "viewerRented.inRental",
+  rented: "viewerRented.rented",
+};
+
+export const EXPLORE = {
+  sortNew: "explore.sortNew",
+  sortTrending: "explore.sortTrending",
+  sortCreatedForYou: "explore.sortCreatedForYou",
+};
+
 export const COMMON = {
   back: "common.back",
   close: "common.close",

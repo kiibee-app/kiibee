@@ -27,6 +27,12 @@ import {
 import { CollectionListInner, CollectionListShell } from "./styles";
 import { authStorage } from "@/lib/auth/authStorage";
 import { PATHS, pathPublishedContent } from "@/utils/path";
+import {
+  getContentPricingActions,
+  getPricingLabels,
+  isFreeContentItem,
+  resolveContentActionHref,
+} from "@/utils/contentPricingActions";
 import { QUERY_KEYS } from "@/utils/Constants";
 import { VARIANT } from "@/utils/variants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
@@ -172,6 +178,37 @@ export default function CollectionList() {
         ? pathPublishedContent(firstContentId)
         : `/single-collection?id=${row.id}`;
 
+      const pricingItem = {
+        accessType: row.accessType,
+        buyPrice: row.buyPrice,
+        rentPrice: row.rentPrice,
+      };
+
+      const pricingActions = getContentPricingActions(
+        pricingItem,
+        t("createProfileHome.latestUpload.seeContent"),
+        {
+          inCollection: true,
+          labels: getPricingLabels(t),
+        },
+      );
+
+      const isFree = isFreeContentItem(pricingItem);
+
+      const actions = pricingActions.map((action) => ({
+        label: action.label,
+        variant: isFree ? VARIANT.SECONDARY : VARIANT.PRIMARY,
+        href: firstContentId
+          ? resolveContentActionHref(
+              firstContentId,
+              action.label,
+              pricingItem,
+              pricingActions.length,
+              { inCollection: true, labels: getPricingLabels(t) },
+            )
+          : contentHref,
+      }));
+
       return {
         id: row.id,
         title: row.name,
@@ -182,6 +219,7 @@ export default function CollectionList() {
         ),
         hideBadge: true,
         href: contentHref,
+        actions,
       };
     });
   }, [
@@ -190,6 +228,7 @@ export default function CollectionList() {
     privateCollectionsResponse,
     collectionContentsMap,
     displayName,
+    t,
   ]);
 
   const filteredItems = useMemo(() => {

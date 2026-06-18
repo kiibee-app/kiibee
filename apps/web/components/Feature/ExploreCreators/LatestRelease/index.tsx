@@ -212,7 +212,7 @@ export default function LatestRelease() {
               $active={activeExploreSort === tab.sort}
               onClick={() => handleSortChange(tab.sort)}
             >
-              <MonoText $use="Body_Medium">{tab.label}</MonoText>
+              <MonoText $use="Body_Medium">{t(tab.labelKey)}</MonoText>
             </TabButton>
           ))}
         </HeaderTabs>

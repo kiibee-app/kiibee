@@ -68,7 +68,7 @@ export default function PurchasedCollectionDetail({
   );
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const statusLabel = getCollectionBadgeText(mode);
+  const statusLabel = getCollectionBadgeText(mode, t);
 
   const purchasedItems = useMemo(
     () => mediaItems.map(rentedMediaToPurchasedItem),

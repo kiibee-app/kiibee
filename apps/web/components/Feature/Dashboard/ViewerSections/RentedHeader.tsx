@@ -86,7 +86,7 @@ export default function RentedHeader({
         <HeaderSearchInput
           ref={searchInputRef}
           $open={isSearchOpen}
-          placeholder={getSearchPlaceholder(mode)}
+          placeholder={getSearchPlaceholder(mode, t)}
           value={searchValue}
           onChange={(e) => onSearchChange(e.target.value)}
         />

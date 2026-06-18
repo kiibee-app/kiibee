@@ -9,6 +9,7 @@ import {
   feedContentToTutorial,
   type FeedContentItem,
 } from "@/utils/feedContentToTutorial";
+import { getPricingLabels } from "@/utils/contentPricingActions";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 
@@ -56,7 +57,10 @@ export function usePublicRelatedCollectionContent(
       return {
         collectionId: payload.collectionId,
         videos: payload.items.map((item) =>
-          feedContentToTutorial(item, freeLabel, { inCollection: true }),
+          feedContentToTutorial(item, freeLabel, {
+            inCollection: true,
+            labels: getPricingLabels(t),
+          }),
         ),
       };
     },

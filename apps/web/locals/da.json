@@ -9,7 +9,7 @@
     "exploreCreators": "Udforsk skabere",
     "about": "Om Kiibee",
     "login": "Log ind",
-    "dashboard": "Dashboard",
+    "dashboard": "Kontrolpanel",
     "accountProfile": "Profil",
     "logout": "Log ud",
     "profileMenu": "Kontomenu",
@@ -1936,5 +1936,34 @@
     "submitCode": "Tilgå indhold",
     "submitEmail": "Tilgå indhold",
     "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee."
+  },
+  "pricingLabels": {
+    "rent": "Lej",
+    "buy": "Køb",
+    "buyCollection": "Køb samling",
+    "free": "Gratis"
+  },
+  "viewerRented": {
+    "owned": "Ejet",
+    "inRental": "I leje",
+    "rented": "Lejet",
+    "activeRental": "Aktiv leje",
+    "expiresIn": "Udløber om 2 dage",
+    "seeContent": "Se indhold",
+    "buyPlaceholder": "Køb xx kr",
+    "searchPurchased": "Søg i købt indhold",
+    "searchCurrentlyRented": "Søg i nuværende leje",
+    "searchPreviouslyRented": "Søg i tidligere leje",
+    "playVideo": "Afspil video",
+    "playAudio": "Afspil lyd",
+    "openPdf": "Åben PDF",
+    "mediaLabelVideo": "Video",
+    "mediaLabelAudio": "Lyd",
+    "mediaLabelPdf": "PDF"
+  },
+  "explore": {
+    "sortNew": "Ny",
+    "sortTrending": "Trendende",
+    "sortCreatedForYou": "Oprettet til dig"
   }
 }

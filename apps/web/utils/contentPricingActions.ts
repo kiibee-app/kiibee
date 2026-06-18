@@ -1,15 +1,34 @@
+import type { TFunction } from "i18next";
 import {
+  ACCESS_TYPE_FREE,
   BUY_COLLECTION_PREFIX,
   BUY_KEYWORDS,
   BUY_PREFIX,
   FREE_LABEL,
   RENT_PREFIX,
+  BUY_COLLECTION_PREFIX,
   VARIANT,
 } from "./Constants";
 import { pathPublishedContent } from "./path";
 import type { FeedContentItem } from "./feedContentToTutorial";
 import type { TutorialButton } from "./types";
 import { CONTENT_RESPONSE_KEYS } from "./contentApi";
+
+export type PricingLabels = {
+  rent: string;
+  buy: string;
+  buyCollection: string;
+  free: string;
+};
+
+export function getPricingLabels(t: TFunction): PricingLabels {
+  return {
+    rent: t("pricingLabels.rent"),
+    buy: t("pricingLabels.buy"),
+    buyCollection: t("pricingLabels.buyCollection"),
+    free: t("pricingLabels.free"),
+  };
+}
 
 export type ContentPricingAction = {
   label: string;
@@ -60,20 +79,44 @@ export function isFreeContentItem(
   );
 }
 
+function resolvePricingPrefixes(labels?: PricingLabels) {
+  return {
+    rentPrefix: labels?.rent ?? RENT_PREFIX,
+    buyPrefix: labels?.buy ?? BUY_PREFIX,
+    buyCollectionPrefix: labels?.buyCollection ?? BUY_COLLECTION_PREFIX,
+  };
+}
+
+function formatBuyPrice(
+  buyPrice: string | number | null | undefined,
+  inCollection: boolean | undefined,
+  labels?: PricingLabels,
+): string | null {
+  const { buyPrefix, buyCollectionPrefix } = resolvePricingPrefixes(labels);
+  return formatPriceLabel(
+    inCollection ? buyCollectionPrefix : buyPrefix,
+    buyPrice,
+  );
+}
+
 export function resolveContentActionHref(
   contentId: string,
   actionLabel: string,
   item: Pick<FeedContentItem, "rentPrice" | "buyPrice">,
   actionsCount: number,
-  options?: { inCollection?: boolean },
+  options?: { inCollection?: boolean; labels?: PricingLabels },
 ): string {
   const href = pathPublishedContent(contentId);
   if (actionsCount <= 1) return href;
 
-  const rentLabel = formatPriceLabel(RENT_PREFIX, item.rentPrice);
-  const buyLabel = formatPriceLabel(BUY_PREFIX, item.buyPrice);
+  const { rentPrefix, buyPrefix, buyCollectionPrefix } = resolvePricingPrefixes(
+    options?.labels,
+  );
+
+  const rentLabel = formatPriceLabel(rentPrefix, item.rentPrice);
+  const buyLabel = formatPriceLabel(buyPrefix, item.buyPrice);
   const collectionBuyLabel = formatPriceLabel(
-    BUY_COLLECTION_PREFIX,
+    buyCollectionPrefix,
     item.buyPrice,
   );
 
@@ -90,12 +133,16 @@ export function resolveContentActionHref(
 export function getContentPricingActions(
   item: Pick<FeedContentItem, "accessType" | "rentPrice" | "buyPrice">,
   freeLabel: string = FREE_LABEL,
-  options?: { inCollection?: boolean },
+  options?: { inCollection?: boolean; labels?: PricingLabels },
 ): ContentPricingAction[] {
-  const rent = formatPriceLabel(RENT_PREFIX, item.rentPrice);
-  const buy = formatPriceLabel(
-    options?.inCollection ? BUY_COLLECTION_PREFIX : BUY_PREFIX,
+  const isFree = item.accessType === ACCESS_TYPE_FREE;
+  const { rentPrefix } = resolvePricingPrefixes(options?.labels);
+
+  const rent = formatPriceLabel(rentPrefix, item.rentPrice);
+  const buy = formatBuyPrice(
     item.buyPrice,
+    options?.inCollection,
+    options?.labels,
   );
 
   if (!rent && !buy) {
@@ -142,16 +189,19 @@ function formatRentAccessSubtitle(
 export function getContentDetailPricingActions(
   item: DetailPricingItem,
   t: (key: string, options?: Record<string, unknown>) => string,
-  options?: { inCollection?: boolean },
+  options?: { inCollection?: boolean; labels?: PricingLabels },
 ): ContentDetailPricingAction[] {
   if (isFreeContentItem(item)) {
     return [];
   }
 
-  const rent = formatPriceLabel(RENT_PREFIX, item.rentPrice);
-  const buy = formatPriceLabel(
-    options?.inCollection ? BUY_COLLECTION_PREFIX : BUY_PREFIX,
+  const { rentPrefix } = resolvePricingPrefixes(options?.labels);
+
+  const rent = formatPriceLabel(rentPrefix, item.rentPrice);
+  const buy = formatBuyPrice(
     item.buyPrice,
+    options?.inCollection,
+    options?.labels,
   );
   const actions: ContentDetailPricingAction[] = [];
 
@@ -178,16 +228,20 @@ export function getContentPrimaryAction(
   item: PricingItem,
   seeContentLabel: string,
   freeLabel: string = FREE_LABEL,
-  options?: { inCollection?: boolean },
+  options?: { inCollection?: boolean; labels?: PricingLabels },
 ): ContentPrimaryAction {
   if (isFreeContentItem(item)) {
     return { label: seeContentLabel, isFree: true };
   }
 
-  const rent = formatPriceLabel(RENT_PREFIX, item.rentPrice);
-  const buy = options?.inCollection
-    ? formatPriceLabel(BUY_COLLECTION_PREFIX, item.buyPrice)
-    : formatPriceLabel(BUY_PREFIX, item.buyPrice);
+  const { rentPrefix } = resolvePricingPrefixes(options?.labels);
+
+  const rent = formatPriceLabel(rentPrefix, item.rentPrice);
+  const buy = formatBuyPrice(
+    item.buyPrice,
+    options?.inCollection,
+    options?.labels,
+  );
 
   if (buy) {
     return { label: buy, isFree: false };
@@ -197,7 +251,7 @@ export function getContentPrimaryAction(
     return { label: rent, isFree: false };
   }
 
-  const actions = getContentPricingActions(item, freeLabel);
+  const actions = getContentPricingActions(item, freeLabel, options);
   return {
     label: actions[0]?.label ?? seeContentLabel,
     isFree: false,

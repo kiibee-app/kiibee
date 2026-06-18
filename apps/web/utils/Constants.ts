@@ -1,5 +1,6 @@
 import type { typography } from "@repo/ui/typography";
-import { COLLECTIONS, HOME, tabs } from "./common";
+import { COLLECTIONS, HOME } from "./common";
+import { EXPLORE } from "./translationKeys";
 import { NavBarProps } from "./profile";
 import {
   AdmissionRequirementValue,
@@ -395,10 +396,10 @@ export const ORDER_TYPES = {
   RENTAL: "rental",
 } as const;
 
-export const EXPLORE_TABS: { label: string; sort: ExploreContentSort }[] = [
-  { label: tabs[0], sort: EXPLORE_CONTENT_SORT.NEW },
-  { label: tabs[1], sort: EXPLORE_CONTENT_SORT.POPULAR },
-  { label: tabs[2], sort: EXPLORE_CONTENT_SORT.ALL },
+export const EXPLORE_TABS: { labelKey: string; sort: ExploreContentSort }[] = [
+  { labelKey: EXPLORE.sortNew, sort: EXPLORE_CONTENT_SORT.NEW },
+  { labelKey: EXPLORE.sortTrending, sort: EXPLORE_CONTENT_SORT.POPULAR },
+  { labelKey: EXPLORE.sortCreatedForYou, sort: EXPLORE_CONTENT_SORT.ALL },
 ];
 
 export const URL_FORMAT_IDS = new Set(["video", "audio", "pdf", "epub", "web"]);
