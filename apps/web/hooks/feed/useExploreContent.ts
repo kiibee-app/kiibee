@@ -11,6 +11,7 @@ import {
   feedContentToTutorial,
   type FeedContentItem,
 } from "@/utils/feedContentToTutorial";
+import { getPricingLabels } from "@/utils/contentPricingActions";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 import type { OptionItem } from "@/types/exportCreators";
@@ -216,7 +217,7 @@ function useExploreTutorialSection(
     const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
 
     return dedupeFeedContentItems(items).map((item) =>
-      feedContentToTutorial(item, freeLabel),
+      feedContentToTutorial(item, freeLabel, { labels: getPricingLabels(t) }),
     );
   }, [query.data, section, t]);
 
