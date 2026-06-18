@@ -21,6 +21,8 @@ import {
   SearchClearButton,
   SearchIcon,
   ClearIcon,
+  HeaderControls,
+  PlanFilterSelect,
 } from "./AllCreators.styles";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
 import { ViewersTable } from "./ViewersTable";
@@ -39,6 +41,7 @@ import {
   type AllCreatorsTab,
   STORAGE_KEYS,
   PLACEHOLDERS,
+  CREATOR_PLAN_FILTER_OPTIONS,
 } from "@/utils/constants";
 import { useDebounce } from "@/hooks/ui/use-debounce";
 
@@ -47,6 +50,7 @@ export function AllCreatorsTable() {
     ALL_CREATORS_TAB.CREATORS,
   );
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState("");
   const debouncedSearch = useDebounce(searchTerm);
 
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
@@ -61,7 +65,10 @@ export function AllCreatorsTable() {
     setSearchTerm("");
     searchInputRef.current?.focus();
   };
-  const existingCreatorsQuery = useExistingCreators(debouncedSearch);
+  const existingCreatorsQuery = useExistingCreators(
+    debouncedSearch,
+    selectedPlan || undefined,
+  );
   const creatorRequestsQuery = useCreatorRequests();
   const viewersQuery = useViewers();
   const { creators, updateCreatorStatus } = useCreatorRequestOverrides(
@@ -289,26 +296,43 @@ export function AllCreatorsTable() {
           </AllCreatorsTabButton>
         </AllCreatorsTabs>
 
-        <SearchContainer>
-          <SearchIconWrapper>
-            <SearchIcon />
-          </SearchIconWrapper>
-          <SearchInput
-            ref={searchInputRef}
-            placeholder={PLACEHOLDERS.SEARCH_USERS}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          {searchTerm ? (
-            <SearchClearButton
-              type="button"
-              onClick={handleSearchClear}
-              aria-label="Clear search"
+        <HeaderControls>
+          {activeTab === ALL_CREATORS_TAB.CREATORS ? (
+            <PlanFilterSelect
+              aria-label="Filter creators by plan"
+              value={selectedPlan}
+              onChange={(event) => setSelectedPlan(event.target.value)}
             >
-              <ClearIcon />
-            </SearchClearButton>
+              <option value="">All plans</option>
+              {CREATOR_PLAN_FILTER_OPTIONS.map((plan) => (
+                <option key={plan} value={plan}>
+                  {plan}
+                </option>
+              ))}
+            </PlanFilterSelect>
           ) : null}
-        </SearchContainer>
+
+          <SearchContainer>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <SearchInput
+              ref={searchInputRef}
+              placeholder={PLACEHOLDERS.SEARCH_USERS}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            {searchTerm ? (
+              <SearchClearButton
+                type="button"
+                onClick={handleSearchClear}
+                aria-label="Clear search"
+              >
+                <ClearIcon />
+              </SearchClearButton>
+            ) : null}
+          </SearchContainer>
+        </HeaderControls>
       </AllCreatorsHeader>
 
       <AllCreatorsPanel>

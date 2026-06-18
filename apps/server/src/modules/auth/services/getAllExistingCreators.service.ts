@@ -16,8 +16,10 @@ import { success } from 'src/utils/sendResponse';
 
 export const getAllExistingCreatorsService = async ({
   search,
+  plan,
 }: {
   search?: string;
+  plan?: string;
 } = {}) => {
   try {
     const uploadCountSql = sql<number>`
@@ -31,6 +33,7 @@ export const getAllExistingCreatorsService = async ({
     `;
     const searchTerm = search?.trim();
     const searchPattern = searchTerm ? `%${searchTerm}%` : undefined;
+    const planTerm = plan?.trim();
     const filters = [eq(users.role, ROLE.CREATOR), eq(users.isDeleted, false)];
 
     if (searchPattern) {
@@ -44,6 +47,10 @@ export const getAllExistingCreatorsService = async ({
       if (searchFilter) {
         filters.push(searchFilter);
       }
+    }
+
+    if (planTerm) {
+      filters.push(ilike(plans.name, planTerm));
     }
 
     const creators = await db

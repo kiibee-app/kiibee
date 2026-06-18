@@ -72,3 +72,9 @@ export const DEBOUNCE_DELAY = 300;
 export const PLACEHOLDERS = {
   SEARCH_USERS: "Search creators...",
 } as const;
+
+export const CREATOR_PLAN_FILTER_OPTIONS = [
+  "Try Kiibee",
+  "Start-up",
+  "Pro",
+] as const;

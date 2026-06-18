@@ -49,14 +49,21 @@ export function useCreatorRequests() {
   });
 }
 
-export function useExistingCreators(search?: string) {
+export function useExistingCreators(search?: string, plan?: string) {
   return useQuery({
-    queryKey: search
-      ? [...EXISTING_CREATORS_QUERY_KEY, search]
-      : EXISTING_CREATORS_QUERY_KEY,
+    queryKey:
+      search || plan
+        ? [...EXISTING_CREATORS_QUERY_KEY, { search, plan }]
+        : EXISTING_CREATORS_QUERY_KEY,
     queryFn: async () => {
-      const url = search
-        ? `${API_ENDPOINTS.ALL_CREATORS}?search=${encodeURIComponent(search)}`
+      const params = new URLSearchParams({
+        ...(search && { search }),
+        ...(plan && { plan }),
+      });
+
+      const query = params.toString();
+      const url = query
+        ? `${API_ENDPOINTS.ALL_CREATORS}?${query}`
         : API_ENDPOINTS.ALL_CREATORS;
       const data = await ensureSuccess<ExistingCreator[]>(
         apiClient<ExistingCreator[]>(url),
