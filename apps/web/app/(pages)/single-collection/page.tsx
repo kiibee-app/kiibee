@@ -2,11 +2,13 @@
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { PageContainer, Main, Section } from "../../styles";
 import SingleCollectionHero from "@/components/Feature/SingleCollectionHero";
 import { MonoText } from "@/components/UI/Monotext";
+import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
 import { getTutorialCollectionById } from "@/utils/tutorialCollections";
@@ -14,9 +16,20 @@ import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
 import { VARIANT_CONTENT } from "@/utils/Constants";
+import {
+  HeroWrapper,
+  TopBar,
+  BackButtonWrapper,
+  LogoRow,
+  EmptyState,
+} from "@/components/Feature/SingleCollectionHero/styles";
+import { BackButtonIcon } from "@/assets/icons";
+import { NAV } from "@/utils/translationKeys";
+import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
 function SingleCollectionContent() {
   const { t } = useTranslation();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const staticSection = getTutorialCollectionById(id);
@@ -81,9 +94,28 @@ function SingleCollectionContent() {
 
   if (isError || !dynamicSection) {
     return (
-      <Section>
-        <MonoText $use="H5_Regular">{t("singleCollection.notFound")}</MonoText>
-      </Section>
+      <HeroWrapper>
+        <TopBar>
+          <BackButtonWrapper onClick={() => router.back()}>
+            <BackButtonIcon />
+          </BackButtonWrapper>
+        </TopBar>
+        <EmptyState>
+          <LogoRow>
+            <Image
+              src={logo}
+              alt="Kiibee Logo"
+              width={30}
+              height={30}
+              priority
+            />
+            <MonoText $use="H4_Medium">{t(NAV.logoAlt)}</MonoText>
+          </LogoRow>
+          <MonoText $use="H5_Regular">
+            {t("singleCollection.noContent")}
+          </MonoText>
+        </EmptyState>
+      </HeroWrapper>
     );
   }
 

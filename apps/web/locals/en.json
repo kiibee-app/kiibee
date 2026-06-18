@@ -1003,6 +1003,7 @@
     "subtitle": "Learn how to use our platform",
     "seeContent": "See content",
     "notFound": "Collection not found",
+    "noContent": "No content in this collection",
     "inCollection": "In this collection",
     "uploads": "uploads",
     "noResults": "No uploads match your search."
