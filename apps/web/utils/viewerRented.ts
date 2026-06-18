@@ -156,16 +156,26 @@ export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
   );
 }
 
-export function getMediaLabel(type: RentedMediaItem["mediaType"]) {
-  if (type === RENTED_MEDIA_TYPES.AUDIO) return "Audio";
-  if (type === RENTED_MEDIA_TYPES.PDF) return "PDF";
-  return "Video";
+export function getMediaLabel(
+  type: RentedMediaItem["mediaType"],
+  t?: TFunction,
+) {
+  if (type === RENTED_MEDIA_TYPES.AUDIO)
+    return t ? t("viewerRented.mediaLabelAudio") : "Audio";
+  if (type === RENTED_MEDIA_TYPES.PDF)
+    return t ? t("viewerRented.mediaLabelPdf") : "PDF";
+  return t ? t("viewerRented.mediaLabelVideo") : "Video";
 }
 
-export function getMediaAction(type: RentedMediaItem["mediaType"]) {
-  if (type === RENTED_MEDIA_TYPES.AUDIO) return "Play audio";
-  if (type === RENTED_MEDIA_TYPES.PDF) return "Open pdf";
-  return "Play video";
+export function getMediaAction(
+  type: RentedMediaItem["mediaType"],
+  t?: TFunction,
+) {
+  if (type === RENTED_MEDIA_TYPES.AUDIO)
+    return t ? t("viewerRented.playAudio") : "Play audio";
+  if (type === RENTED_MEDIA_TYPES.PDF)
+    return t ? t("viewerRented.openPdf") : "Open pdf";
+  return t ? t("viewerRented.playVideo") : "Play video";
 }
 
 export function getRentedContentSources(

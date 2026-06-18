@@ -1945,6 +1945,17 @@
     "buyPlaceholder": "Buy xx kr",
     "searchPurchased": "Search Purchased Content",
     "searchCurrentlyRented": "Search Currently Rented",
-    "searchPreviouslyRented": "Search Previously Rented"
+    "searchPreviouslyRented": "Search Previously Rented",
+    "playVideo": "Play video",
+    "playAudio": "Play audio",
+    "openPdf": "Open pdf",
+    "mediaLabelVideo": "Video",
+    "mediaLabelAudio": "Audio",
+    "mediaLabelPdf": "PDF"
+  },
+  "explore": {
+    "sortNew": "New",
+    "sortTrending": "Trending",
+    "sortCreatedForYou": "Created for you"
   }
 }

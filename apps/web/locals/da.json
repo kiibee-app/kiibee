@@ -1953,6 +1953,17 @@
     "buyPlaceholder": "Køb xx kr",
     "searchPurchased": "Søg i købt indhold",
     "searchCurrentlyRented": "Søg i nuværende leje",
-    "searchPreviouslyRented": "Søg i tidligere leje"
+    "searchPreviouslyRented": "Søg i tidligere leje",
+    "playVideo": "Afspil video",
+    "playAudio": "Afspil lyd",
+    "openPdf": "Åben PDF",
+    "mediaLabelVideo": "Video",
+    "mediaLabelAudio": "Lyd",
+    "mediaLabelPdf": "PDF"
+  },
+  "explore": {
+    "sortNew": "Ny",
+    "sortTrending": "Trendende",
+    "sortCreatedForYou": "Oprettet til dig"
   }
 }
