@@ -157,8 +157,8 @@ export class AuthService {
   async getCreatorRequests() {
     return getCreatorRequestService();
   }
-  async getAllExistingCreators(search?: string) {
-    return getAllExistingCreatorsService({ search });
+  async getAllExistingCreators(search?: string, plan?: string) {
+    return getAllExistingCreatorsService({ search, plan });
   }
   async getAllViewers() {
     return getAllViewersService();
