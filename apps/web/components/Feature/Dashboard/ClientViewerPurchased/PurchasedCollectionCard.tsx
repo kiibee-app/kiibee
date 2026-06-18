@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
@@ -26,12 +27,13 @@ type Props = {
 };
 
 export default function PurchasedCollectionCard({ item }: Props) {
+  const { t } = useTranslation();
   const mode = RENTED_MODES.PURCHASED;
 
   return (
     <CollectionCard>
       <CollectionImageWrap>
-        <CollectionBadge>{getCollectionBadgeText(mode)}</CollectionBadge>
+        <CollectionBadge>{getCollectionBadgeText(mode, t)}</CollectionBadge>
         <CollectionImage src={item.coverSrc} alt={item.title} />
       </CollectionImageWrap>
 

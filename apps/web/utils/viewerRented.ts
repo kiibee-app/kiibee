@@ -1,3 +1,4 @@
+import type { TFunction } from "i18next";
 import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
 
@@ -97,11 +98,24 @@ const PURCHASED_SOURCES: RentedContentSources = {
   })),
 };
 
-export const RENTED_MEDIA_SECTIONS: ViewerRentedMediaSection[] = [
-  { key: RENTED_SECTION_KEYS.VIDEOS, title: "Videos" },
-  { key: RENTED_SECTION_KEYS.AUDIOS, title: "Audios" },
-  { key: RENTED_SECTION_KEYS.PDFS, title: "PDF" },
-];
+export function getRentedMediaSections(
+  t: TFunction,
+): ViewerRentedMediaSection[] {
+  return [
+    {
+      key: RENTED_SECTION_KEYS.VIDEOS,
+      title: t("dashboard.viewerPurchased.sections.videos"),
+    },
+    {
+      key: RENTED_SECTION_KEYS.AUDIOS,
+      title: t("dashboard.viewerPurchased.sections.audios"),
+    },
+    {
+      key: RENTED_SECTION_KEYS.PDFS,
+      title: t("dashboard.viewerPurchased.sections.pdf"),
+    },
+  ];
+}
 
 export const RENTED_PAGE_SIZE: Record<RentedSectionKey, number> = {
   [RENTED_SECTION_KEYS.COLLECTIONS]: 2,
@@ -176,10 +190,12 @@ export function getRentedContentSources(
   };
 }
 
-export function getCollectionBadgeText(mode: RentedMode) {
-  if (mode === RENTED_MODES.PURCHASED) return "Owned";
-  if (mode === RENTED_MODES.CURRENTLY) return "In rental";
-  return "Rented";
+export function getCollectionBadgeText(mode: RentedMode, t?: TFunction) {
+  if (mode === RENTED_MODES.PURCHASED)
+    return t ? t("viewerRented.owned") : "Owned";
+  if (mode === RENTED_MODES.CURRENTLY)
+    return t ? t("viewerRented.inRental") : "In rental";
+  return t ? t("viewerRented.rented") : "Rented";
 }
 
 export function getCollectionPrimaryActionText(mode: RentedMode) {

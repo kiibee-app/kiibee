@@ -19,7 +19,7 @@ import {
 } from "@/utils/purchasedMediaToTutorial";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
 import {
-  getCollectionBadgeText,
+  RENTED_MODES,
   type RentedMode,
   type RentedMediaItem,
 } from "@/utils/viewerRented";
@@ -68,7 +68,12 @@ export default function PurchasedCollectionDetail({
   );
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const statusLabel = getCollectionBadgeText(mode);
+  const statusLabel =
+    mode === RENTED_MODES.PURCHASED
+      ? t("viewerRented.owned")
+      : mode === RENTED_MODES.CURRENTLY
+        ? t("viewerRented.inRental")
+        : t("viewerRented.rented");
 
   const purchasedItems = useMemo(
     () => mediaItems.map(rentedMediaToPurchasedItem),

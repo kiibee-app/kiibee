@@ -155,11 +155,19 @@ export default function CollectionList() {
         rentPrice: row.rentPrice,
       };
 
+      const pricingLabels = {
+        rent: t("pricingLabels.rent"),
+        buy: t("pricingLabels.buy"),
+        buyCollection: t("pricingLabels.buyCollection"),
+        free: t("pricingLabels.free"),
+      };
+
       const pricingActions = getContentPricingActions(
         pricingItem,
         t("createProfileHome.latestUpload.seeContent"),
         {
           inCollection: true,
+          labels: pricingLabels,
         },
       );
 
@@ -174,7 +182,7 @@ export default function CollectionList() {
               action.label,
               pricingItem,
               pricingActions.length,
-              { inCollection: true },
+              { inCollection: true, labels: pricingLabels },
             )
           : contentHref,
       }));

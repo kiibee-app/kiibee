@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
@@ -78,6 +79,7 @@ export default function CollectionsSection({
   onCollectionPrimaryAction,
   onCollectionClick,
 }: Props) {
+  const { t } = useTranslation();
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const isPurchased = mode === RENTED_MODES.PURCHASED;
   const { navigateToContent } = useProtectedContentNavigation();
@@ -173,7 +175,7 @@ export default function CollectionsSection({
             <CollectionImageWrap>
               {item.hideBadge ? null : (
                 <CollectionBadge>
-                  {getCollectionBadgeText(mode)}
+                  {getCollectionBadgeText(mode, t)}
                 </CollectionBadge>
               )}
               <CollectionImage src={item.coverSrc} alt={item.title} />
