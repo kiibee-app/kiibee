@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 
 const fadeIn = keyframes`
   from {
@@ -34,7 +35,7 @@ export const DrawerCard = styled.div`
   max-width: 100vw;
   height: 100dvh;
 
-  @media (max-width: 768px) {
+  ${media.tablet} {
     width: 100vw;
   }
   background: ${({ theme }) => theme.colors.neutral.WHITE};

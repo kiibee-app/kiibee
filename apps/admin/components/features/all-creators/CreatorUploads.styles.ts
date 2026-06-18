@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 
 export const BackButton = styled.button`
   display: inline-flex;
@@ -50,7 +51,7 @@ export const UploadCard = styled.div`
     box-shadow: ${({ theme }) => theme.shadows.md};
   }
 
-  @media (max-width: 480px) {
+  ${media.mobileLg} {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
@@ -65,7 +66,7 @@ export const UploadThumbnail = styled.img`
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   flex-shrink: 0;
 
-  @media (max-width: 480px) {
+  ${media.mobileLg} {
     width: 100%;
     height: 120px;
   }
@@ -82,7 +83,7 @@ export const UploadThumbnailPlaceholder = styled.div`
   color: ${({ theme }) => theme.colors.primary.GREEN_100};
   flex-shrink: 0;
 
-  @media (max-width: 480px) {
+  ${media.mobileLg} {
     width: 100%;
     height: 120px;
   }
