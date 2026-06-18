@@ -1,5 +1,6 @@
 import type { TFunction } from "i18next";
 import {
+  ACCESS_TYPE_FREE,
   BUY_COLLECTION_PREFIX,
   BUY_KEYWORDS,
   BUY_PREFIX,
@@ -72,8 +73,9 @@ export function isFreeContentItem(
   item: Pick<FeedContentItem, "accessType" | "rentPrice" | "buyPrice">,
 ): boolean {
   return (
-    !formatPriceLabel(RENT_PREFIX, item.rentPrice) &&
-    !formatPriceLabel(BUY_PREFIX, item.buyPrice)
+    item.accessType === ACCESS_TYPE_FREE ||
+    (!formatPriceLabel(RENT_PREFIX, item.rentPrice) &&
+      !formatPriceLabel(BUY_PREFIX, item.buyPrice))
   );
 }
 
@@ -133,6 +135,10 @@ export function getContentPricingActions(
   freeLabel: string = FREE_LABEL,
   options?: { inCollection?: boolean; labels?: PricingLabels },
 ): ContentPricingAction[] {
+  if (isFreeContentItem(item)) {
+    return [{ label: freeLabel, fullWidth: true }];
+  }
+
   const { rentPrefix } = resolvePricingPrefixes(options?.labels);
 
   const rent = formatPriceLabel(rentPrefix, item.rentPrice);
