@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
 import {
@@ -19,32 +19,24 @@ import PayoutDetailsModal from "./PayoutDetailsModal";
 import SettlementInvoiceModal from "./SettlementInvoiceModal";
 import Table from "@/components/UI/Table";
 import { SettlementRow } from "@/types/tableContract";
-import { settlementData, settlementHeaders } from "@/utils/dummyData/payout";
+import { settlementHeaders } from "@/utils/dummyData/payout";
 import { CENTER_ALIGNED_HEADERS } from "@/utils/payout";
 import { Settlement } from "../styles";
 import { Directions, MODAL_ALIGN } from "@/utils/ui";
-
-type StatItem = {
-  label: string;
-  value: string | number;
-};
+import { useSettlementHistory } from "@/hooks/useSettlementHistory";
+import { usePayoutStats } from "@/hooks/usePayoutStats";
 
 export default function PayoutContent() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState<SettlementRow | null>(null);
 
-  const stats: StatItem[] = useMemo(
-    () => [
-      { label: t("settings.payout.balance"), value: "14.51 kr." },
-      { label: t("settings.payout.purchase"), value: 94 },
-      { label: t("settings.payout.rent"), value: 39 },
-    ],
-    [t],
-  );
+  const { stats } = usePayoutStats();
+  const { settlements } = useSettlementHistory();
 
-  const balance = stats[0];
-  const restStats = stats.slice(1);
+  const balanceValue = stats?.balance ?? "";
+  const purchasesValue = stats?.purchases ?? 0;
+  const rentalsValue = stats?.rentals ?? 0;
 
   return (
     <>
@@ -71,22 +63,27 @@ export default function PayoutContent() {
         <Stats>
           <BalanceCard>
             <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-              {balance.label}
+              {t("settings.payout.balance")}
             </MonoText>
 
-            <MonoText $use="H4_SemiBold">{balance.value}</MonoText>
+            <MonoText $use="H4_SemiBold">{balanceValue}</MonoText>
           </BalanceCard>
 
           <SmallCards>
-            {restStats.map((item) => (
-              <SmallCard key={item.label}>
-                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-                  {item.label}
-                </MonoText>
+            <SmallCard>
+              <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+                {t("settings.payout.purchase")}
+              </MonoText>
 
-                <MonoText $use="H4_SemiBold">{item.value}</MonoText>
-              </SmallCard>
-            ))}
+              <MonoText $use="H4_SemiBold">{purchasesValue}</MonoText>
+            </SmallCard>
+            <SmallCard>
+              <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+                {t("settings.payout.rent")}
+              </MonoText>
+
+              <MonoText $use="H4_SemiBold">{rentalsValue}</MonoText>
+            </SmallCard>
           </SmallCards>
         </Stats>
       </Card>
@@ -96,7 +93,7 @@ export default function PayoutContent() {
         </MonoText>
         <Table<SettlementRow>
           headers={settlementHeaders}
-          data={settlementData}
+          data={settlements}
           rowsPerPage={10}
           getColumnAlignment={(header, index) =>
             index === 0 || !CENTER_ALIGNED_HEADERS.includes(header)
