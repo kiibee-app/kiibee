@@ -13,6 +13,7 @@ import {
   DayCell,
   DayButtonBase,
   WeekDayCell,
+  DesktopOnly,
 } from "./styles";
 import { ArrowWrap } from "../InputFields/styles";
 import { ArrowIcon } from "@/assets/icons";
@@ -131,7 +132,7 @@ export default function RangeCalendar({
       </MonthNav>
 
       {renderMonth(leftMonth)}
-      {renderMonth(rightMonth)}
+      <DesktopOnly>{renderMonth(rightMonth)}</DesktopOnly>
 
       <MonthNav>
         <ArrowWrap onClick={() => setLeftMonth((m) => addMonths(m, 1))}>
