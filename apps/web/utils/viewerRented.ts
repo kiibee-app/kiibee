@@ -156,23 +156,22 @@ export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
   );
 }
 
-export function getMediaLabel(
-  type: RentedMediaItem["mediaType"],
-  t: TFunction,
-) {
-  if (type === RENTED_MEDIA_TYPES.AUDIO)
-    return t("viewerRented.mediaLabelAudio");
-  if (type === RENTED_MEDIA_TYPES.PDF) return t("viewerRented.mediaLabelPdf");
-  return t("viewerRented.mediaLabelVideo");
+export function getMediaLabel(type: RentedSectionKey, t: TFunction) {
+  const map: Record<string, string> = {
+    [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.mediaLabelVideo"),
+    [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.mediaLabelAudio"),
+    [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.mediaLabelPdf"),
+  };
+  return map[type] ?? "";
 }
 
-export function getMediaAction(
-  type: RentedMediaItem["mediaType"],
-  t: TFunction,
-) {
-  if (type === RENTED_MEDIA_TYPES.AUDIO) return t("viewerRented.playAudio");
-  if (type === RENTED_MEDIA_TYPES.PDF) return t("viewerRented.openPdf");
-  return t("viewerRented.playVideo");
+export function getMediaAction(type: RentedSectionKey, t: TFunction) {
+  const map: Record<string, string> = {
+    [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.playVideo"),
+    [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.playAudio"),
+    [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.openPdf"),
+  };
+  return map[type] ?? "";
 }
 
 export function getRentedContentSources(

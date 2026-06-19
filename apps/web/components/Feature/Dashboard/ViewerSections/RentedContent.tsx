@@ -28,6 +28,8 @@ import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
 import MediaSections from "./MediaSections";
 import PurchasedCollectionDetail from "./PurchasedCollectionDetail";
+import { pathPublishedContent } from "@/utils/path";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 
 type Props = {
   title: string;
@@ -45,6 +47,7 @@ export default function RentedContent({
   const searchParams = useSearchParams();
   const searchParamsString = searchParams?.toString() ?? "";
   const { t } = useTranslation();
+  const { navigateToContent } = useProtectedContentNavigation();
 
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -190,6 +193,13 @@ export default function RentedContent({
     [findMatchingCollection, pathname, router, searchParamsString],
   );
 
+  const handleCardClick = useCallback(
+    (id: string) => {
+      navigateToContent(pathPublishedContent(id), true);
+    },
+    [navigateToContent],
+  );
+
   const handleCloseCollection = useCallback(() => {
     const params = new URLSearchParams(searchParamsString);
     params.delete(CONTENT_COLLECTION_QUERY_KEY);
@@ -278,6 +288,7 @@ export default function RentedContent({
                 onCollectionPrimaryAction={(item) =>
                   handleOpenCollection(item.id)
                 }
+                onCollectionClick={(item) => handleCardClick(item.id)}
               />
             </SectionBlock>
           )}
@@ -293,6 +304,7 @@ export default function RentedContent({
               movePrev={movePrev}
               moveNext={moveNext}
               onMediaPrimaryAction={handleOpenMediaDetail}
+              onCardClick={(item) => handleCardClick(item.id)}
               onOpenSection={(_, item) => {
                 if (item) handleOpenMediaDetail(item);
               }}

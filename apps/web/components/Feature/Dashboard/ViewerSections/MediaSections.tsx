@@ -13,7 +13,6 @@ import { useTranslation } from "react-i18next";
 import {
   getRentedMediaSections,
   RENTED_SECTION_KEYS,
-  RENTED_MEDIA_TYPES,
   RENTED_MODES,
   type RentedSectionKey,
   type RentedMode,
@@ -46,19 +45,20 @@ type Props = {
   movePrev: (section: RentedSectionKey, totalItems: number) => void;
   moveNext: (section: RentedSectionKey, totalItems: number) => void;
   onMediaPrimaryAction?: (item: RentedMediaItem) => void;
+  onCardClick?: (item: RentedMediaItem) => void;
   onOpenSection?: (
     section: Exclude<RentedSectionKey, "collections">,
     item: RentedMediaItem | undefined,
   ) => void;
 };
 
-function MediaTypeIcon({ type }: { type: RentedMediaItem["mediaType"] }) {
-  if (type === RENTED_MEDIA_TYPES.AUDIO) {
+function MediaTypeIcon({ type }: { type: RentedSectionKey }) {
+  if (type === RENTED_SECTION_KEYS.AUDIOS) {
     return (
       <AudioFileIcon width={22} height={22} color={COLORS.neutral.BLACK} />
     );
   }
-  if (type === RENTED_MEDIA_TYPES.PDF) {
+  if (type === RENTED_SECTION_KEYS.PDFS) {
     return <PdfFileIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
   }
   return <VideoIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
@@ -74,6 +74,7 @@ export default function MediaSections({
   movePrev,
   moveNext,
   onMediaPrimaryAction,
+  onCardClick,
   onOpenSection,
 }: Props) {
   const { t } = useTranslation();
@@ -128,6 +129,7 @@ export default function MediaSections({
                     <MonoText $use="Body_Medium">{item.author}</MonoText>
                   }
                   badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
+                  onClick={onCardClick ? () => onCardClick(item) : undefined}
                   footer={
                     hasDetailView || isCurrent ? (
                       <GenericButton
@@ -140,7 +142,7 @@ export default function MediaSections({
                             : undefined
                         }
                       >
-                        {getMediaAction(item.mediaType, t)}
+                        {getMediaAction(section.key, t)}
                       </GenericButton>
                     ) : (
                       <TwoButtonRow>
@@ -175,9 +177,9 @@ export default function MediaSections({
                     {item.expiryText}
                   </MonoText>
                   <MediaTypePill>
-                    <MediaTypeIcon type={item.mediaType} />
+                    <MediaTypeIcon type={section.key} />
                     <MonoText $use="Body_Bold">
-                      {getMediaLabel(item.mediaType, t)}
+                      {getMediaLabel(section.key, t)}
                     </MonoText>
                   </MediaTypePill>
                 </GenericCard>
