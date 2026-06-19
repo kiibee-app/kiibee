@@ -219,10 +219,24 @@ export const SidebarDropdown = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.frame};
   border: 1px solid ${({ theme }) => theme.colors.gradient.FRAME_BORDER};
 
-  ${media.desktop} {
-    left: 0;
-    top: calc(100% + 10px);
-    bottom: auto;
+  ${media.desktopSm} {
+    left: 50px;
+    top: auto;
+    bottom: calc(100% + 10px);
+    transform: none;
+  }
+
+  ${media.tablet} {
+    left: 50px;
+    top: auto;
+    bottom: calc(100% + 10px);
+    transform: none;
+  }
+
+  ${media.mobileMd} {
+    left: 50px;
+    top: auto;
+    bottom: calc(100% + 10px);
     transform: none;
   }
 `;
