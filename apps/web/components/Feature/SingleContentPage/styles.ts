@@ -29,14 +29,9 @@ export const Card = styled.article`
 export const ContentLayout = styled.div<{ $isPdf?: boolean }>`
   display: grid;
   grid-template-columns: ${({ $isPdf }) =>
-    $isPdf ? "minmax(0, 376px) minmax(0, 1fr)" : "1fr"};
+    $isPdf ? "minmax(0, 0.5fr) minmax(0, 0.95fr)" : "1fr"};
   gap: ${({ $isPdf }) => ($isPdf ? "2rem" : "0")};
   align-items: start;
-
-  ${media.desktopSm} {
-    grid-template-columns: 1fr;
-    gap: ${({ $isPdf }) => ($isPdf ? "1.5rem" : "0")};
-  }
 
   ${media.tablet} {
     grid-template-columns: 1fr;
@@ -78,9 +73,9 @@ export const ShareText = styled.span`
 
 export const Hero = styled.div<{ $isPdf?: boolean }>`
   position: relative;
-  width: ${({ $isPdf }) => ($isPdf ? "min(100%, 376px)" : "min(100%, 900px)")};
-  height: auto;
-  aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
+  width: ${({ $isPdf }) => ($isPdf ? "376px" : "min(100%, 900px)")};
+  height: ${({ $isPdf }) => ($isPdf ? "530px" : "auto")};
+  aspect-ratio: ${({ $isPdf }) => ($isPdf ? undefined : "90 / 49")};
   margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "2.25rem")};
   border-radius: 12px;
   overflow: hidden;
@@ -89,7 +84,7 @@ export const Hero = styled.div<{ $isPdf?: boolean }>`
   ${media.tablet} {
     width: 100%;
     height: auto;
-    aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
+    aspect-ratio: 376 / 530;
   }
 `;
 
@@ -193,6 +188,7 @@ export const TrailerText = styled.span`
 export const ContentShell = styled.div<{ $isPdf?: boolean }>`
   width: 100%;
   align-self: start;
+  min-width: 0;
 `;
 
 export const CreatorName = styled.span`
@@ -246,6 +242,8 @@ export const MainTitle = styled.h1`
   margin: 0;
   width: 100%;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  word-break: break-word;
+  overflow-wrap: break-word;
 `;
 
 export const BodyTextWrap = styled.div`
@@ -260,6 +258,8 @@ export const DescriptionText = styled.p`
   ${({ theme }) => theme.typography.Body_Medium};
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  word-break: break-word;
+  overflow-wrap: break-word;
 `;
 
 export const TagRow = styled.div`
