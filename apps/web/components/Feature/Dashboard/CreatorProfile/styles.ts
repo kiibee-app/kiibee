@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 
@@ -18,17 +19,36 @@ export const HeaderRow = styled.div`
   z-index: 110;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   padding: 18px 28px;
+
+  ${media.desktop} {
+    left: 0;
+    padding: 14px 16px;
+  }
+
+  ${media.mobileLg} {
+    gap: 10px;
+  }
 `;
 
 export const HeaderActions = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
+  flex-shrink: 0;
+
+  ${media.mobileLg} {
+    gap: 8px;
+  }
 `;
 
 export const Title = styled.h2`
   margin: 0 0 8px 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+
+  ${media.desktop} {
+    margin: 0;
+    min-width: 0;
+  }
 `;
 
 export const Card = styled.section`
@@ -186,6 +206,10 @@ export const Button = styled.button`
 
   ${MonoText} {
     color: inherit;
+  }
+
+  ${media.mobileLg} {
+    padding: 10px 16px;
   }
 `;
 
