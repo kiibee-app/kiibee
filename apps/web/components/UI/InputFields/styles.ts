@@ -357,11 +357,29 @@ export const DatePopup = styled.div<{
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 12px;
   box-shadow: 0 12px 30px ${({ theme }) => theme.colors.neutral.GRAY_300};
-  padding: 20px;
   max-width: 92vw;
   z-index: 1400;
+  overflow: hidden;
+
+  ${media.mobileMd} {
+    position: fixed;
+    top: auto;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 16px);
+    max-width: calc(100% - 16px);
+  }
+`;
+
+export const DatePopupScroll = styled.div`
   max-height: calc(100vh - 160px);
   overflow: auto;
+  padding: 20px;
+
+  ${media.mobileMd} {
+    max-height: calc(100vh - 160px - 2px);
+  }
 `;
 
 export const DatePopupBody = styled.div`
@@ -416,6 +434,13 @@ export const DatePopupWrapper = styled.div`
   position: absolute;
   inset: 0;
   z-index: 1400;
+
+  ${media.mobileMd} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
 `;
 
 export const TagsInputWrapper = styled.div<{
