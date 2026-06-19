@@ -4,6 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import SearchBar from "@/components/UI/SearchBar";
 import { useGlobalSearch, UseGlobalSearchProps } from "@/hooks/useGlobalSearch";
+import { CREATORS } from "@/utils/translationKeys";
 import {
   GlobalSearchWrapper,
   SearchDropdown,
@@ -13,7 +14,14 @@ import {
   SearchEmptyText,
 } from "./styles";
 
-export default function GlobalSearch(props: UseGlobalSearchProps) {
+type GlobalSearchProps = UseGlobalSearchProps & {
+  placeholderKey?: string;
+};
+
+export default function GlobalSearch({
+  placeholderKey = CREATORS.search,
+  ...props
+}: GlobalSearchProps) {
   const { t } = useTranslation();
 
   const {
@@ -32,7 +40,7 @@ export default function GlobalSearch(props: UseGlobalSearchProps) {
   return (
     <GlobalSearchWrapper ref={containerRef}>
       <SearchBar
-        placeholder={t("creators.search")}
+        placeholder={t(placeholderKey)}
         value={searchQuery}
         onChange={setSearchQuery}
         width="100%"

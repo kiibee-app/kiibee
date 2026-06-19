@@ -23,6 +23,7 @@ export default function ExploreCreatorsHero({
   setSortBy,
   searchQuery,
   setSearchQuery,
+  placeholderKey,
   title = CREATORS.title,
   sortBy = DEFAULT_SORT,
 }: ExploreCreatorsHeroProps) {
@@ -40,6 +41,7 @@ export default function ExploreCreatorsHero({
           <Controls>
             <SearchBarContainer>
               <GlobalSearch
+                placeholderKey={placeholderKey}
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
               />

@@ -9,6 +9,7 @@ export type ExploreCreatorsHeroProps = {
   setSortBy?: (value: SortValue) => void;
   searchQuery?: string;
   setSearchQuery?: (value: string) => void;
+  placeholderKey?: string;
   title?: string;
 };
 

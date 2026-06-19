@@ -134,6 +134,8 @@ export const CREATORS = {
   noCreatorsFound: "creators.noCreatorsFound",
   uploadsCount: "creators.uploadsCount",
   loadMore: "creators.loadMore",
+  search: "creators.search",
+  searchCreators: "creators.searchCreators",
   title: "creators.title",
   allCreators: "nav.explore.creator.allCreators",
   featured: "nav.explore.creator.featured",
