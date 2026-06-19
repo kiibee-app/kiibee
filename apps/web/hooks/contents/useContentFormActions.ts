@@ -54,6 +54,7 @@ import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import {
   ADMISSION_TYPE,
   isValidPaymentAmount,
+  PAYMENT_AMOUNT_FIELDS,
   parsePaymentAmount,
 } from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
@@ -416,13 +417,11 @@ export function useContentFormActions({
     const invalidNumberMessage = t("contents.payment.common.invalidNumber");
     const nextErrors: Partial<ContentFormErrors> = {};
 
-    if (!isValidPaymentAmount(formState.rentalAmount)) {
-      nextErrors.rentalAmount = invalidNumberMessage;
-    }
-
-    if (!isValidPaymentAmount(formState.purchaseAmount)) {
-      nextErrors.purchaseAmount = invalidNumberMessage;
-    }
+    PAYMENT_AMOUNT_FIELDS.forEach((field) => {
+      if (!isValidPaymentAmount(formState[field])) {
+        nextErrors[field] = invalidNumberMessage;
+      }
+    });
 
     setFormErrors((prev) => {
       const mergedErrors = { ...prev };

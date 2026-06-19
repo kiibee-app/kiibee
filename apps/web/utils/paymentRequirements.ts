@@ -100,6 +100,12 @@ export const PAYMENTS_FORM_FIELDS = {
   VISIBILITY: "visibility",
   MAX_ACCESS_LIMIT: "maxAccessLimit",
 } as const;
+
+export const PAYMENT_AMOUNT_FIELDS = [
+  PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT,
+  PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT,
+] as const;
+
 export type PaymentFormField =
   (typeof PAYMENTS_FORM_FIELDS)[keyof typeof PAYMENTS_FORM_FIELDS];
 
