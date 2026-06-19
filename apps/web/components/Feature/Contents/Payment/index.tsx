@@ -9,7 +9,6 @@ import {
   INPUT_VARIANTS,
   maxDescriptionCharacters,
   SORT_DROPDOWN_VARIANT,
-  STRING_EMPTY,
 } from "@/utils/Constants";
 import {
   PAYMENT_DOWNLOAD_LIMIT_VALUES,
@@ -35,6 +34,7 @@ import {
   getAdmissionOptions,
   getDownloadLimitOptions,
   getPaymentContentTexts,
+  isValidPaymentAmount,
   getPhysicalProductConfig,
   PAYMENTS_FORM_FIELDS,
   toText,
@@ -72,11 +72,6 @@ export default function Payment() {
     paymentTexts.purchaseTitle && paymentTexts.purchaseDescription,
   );
 
-  const isValidNumeric = (value: string): boolean => {
-    if (value === STRING_EMPTY) return true;
-    return !isNaN(Number(value)) && isFinite(Number(value));
-  };
-
   const handleNumericChange = (
     field:
       | typeof PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT
@@ -85,7 +80,7 @@ export default function Payment() {
   ) => {
     const text = toText(value);
     updateField(field, text);
-    if (!isValidNumeric(text)) {
+    if (!isValidPaymentAmount(text)) {
       setFieldError(field, t("contents.payment.common.invalidNumber"));
     } else {
       clearFieldError(field);

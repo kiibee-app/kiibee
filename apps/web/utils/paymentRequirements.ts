@@ -57,6 +57,19 @@ export type AdmissionValue =
 export const toText = (value: string | string[]) =>
   Array.isArray(value) ? value.join("") : value;
 
+export const parsePaymentAmount = (
+  value: string | null | undefined,
+): number | null => {
+  const normalizedValue = value?.trim();
+  if (!normalizedValue) return null;
+
+  const amount = Number(normalizedValue);
+  return Number.isFinite(amount) ? amount : null;
+};
+
+export const isValidPaymentAmount = (value: string): boolean =>
+  !value.trim() || parsePaymentAmount(value) !== null;
+
 export const getPhysicalProductConfig = (t: TFunction) => ({
   title: t("contents.payment.physicalProduct.title"),
   description: t("contents.payment.physicalProduct.description"),
