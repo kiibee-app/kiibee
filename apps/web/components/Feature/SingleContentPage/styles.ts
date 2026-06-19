@@ -89,7 +89,7 @@ export const Hero = styled.div<{ $isPdf?: boolean }>`
   ${media.tablet} {
     width: 100%;
     height: auto;
-    aspect-ratio: 376 / 530;
+    aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
   }
 `;
 
