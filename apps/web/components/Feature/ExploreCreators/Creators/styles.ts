@@ -23,16 +23,19 @@ export const Grid = styled.div`
   max-width: 1300px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   justify-content: center;
   gap: 20px;
 
-  ${media.tablet} {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
+  ${media.desktop} {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  ${media.mobile} {
+  ${media.tablet} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  ${media.mobileLg} {
     grid-template-columns: 1fr;
     gap: 16px;
   }
