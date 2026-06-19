@@ -460,7 +460,12 @@ export function useContentFormActions({
       return;
     }
 
-    if (activeTab === ADD_CONTENT_TABS.METADATA && !validateMetadataForm()) {
+    const isPublic = formState.visibility === VISIBILITY_PUBLIC_LOWER;
+
+    if (
+      (activeTab === ADD_CONTENT_TABS.METADATA || isPublic) &&
+      !validateMetadataForm()
+    ) {
       return;
     }
 
