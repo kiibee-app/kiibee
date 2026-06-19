@@ -7,6 +7,7 @@ import { pathPublishedContent } from "@/utils/path";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useDebounce } from "@/hooks/useDebounce";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import type { CreatorLayoutKey } from "@/utils/creatorChannel";
 import { DEFAULT_DEBOUNCE_DELAY } from "@/utils/Constants";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -60,9 +61,9 @@ export const useGlobalSearch = ({
   );
 
   const handleCreatorClick = useCallback(
-    (id: string) => () => {
+    (id: string, layout?: CreatorLayoutKey | null) => () => {
       closeSearch();
-      router.push(getPublicCreatorProfilePath(id));
+      router.push(getPublicCreatorProfilePath(id, layout));
     },
     [closeSearch, router],
   );

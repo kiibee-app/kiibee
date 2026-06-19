@@ -1,7 +1,9 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq, sql, and, asc, desc, inArray, ilike } from 'drizzle-orm';
+import { eq, sql, and, asc, desc, inArray, ilike, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
+  contentAppearance,
+  creatorChannels,
   emailSubscribers,
   mediaFiles,
   userContentCategory,
@@ -10,10 +12,23 @@ import {
   featureCreators,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { ROLE, SORT_DIRECTIONS } from 'src/utils/constant';
+import { CONTENT_VISIBILITY, ROLE, SORT_DIRECTIONS } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
 type SortBy = 'name' | 'subscriberCount' | 'newest' | 'top' | 'featured';
+
+const publishedMediaJoinCondition = and(
+  eq(mediaFiles.creatorId, users.id),
+  eq(mediaFiles.isDeleted, false),
+  eq(mediaFiles.isPublished, true),
+  eq(mediaFiles.visibility, CONTENT_VISIBILITY.PUBLIC),
+);
+
+const creatorDisplayNameSql = sql<string>`trim(coalesce(
+  nullif(${creatorChannels.name}, ''),
+  nullif(${users.fullName}, ''),
+  nullif(concat(coalesce(${users.firstName}, ''), ' ', coalesce(${users.lastName}, '')), '')
+))`;
 
 export const allCreatorsService = async ({
   limit,
@@ -41,7 +56,7 @@ export const allCreatorsService = async ({
       ? desc(
           sql`
               CASE 
-                WHEN ${users.fullName} ILIKE ${'%' + search + '%'} 
+                WHEN ${creatorDisplayNameSql} ILIKE ${'%' + search + '%'} 
                 THEN 1 ELSE 0 
               END
             `,
@@ -52,20 +67,23 @@ export const allCreatorsService = async ({
           ? desc(uploadCountSql)
           : sortBy === SORT_DIRECTIONS.NEWEST
             ? desc(users.createdAt)
-            : asc(users.fullName);
+            : asc(creatorDisplayNameSql);
 
     const allCreators = await db
       .select({
         id: users.id,
-        name: users.fullName,
+        name: creatorDisplayNameSql.as('name'),
         profileImageUrl: users.avatarUrl,
         createdAt: users.createdAt,
         uploadCount: uploadCountSql,
         subscriberCount: subscriberCountSql,
+        layout: contentAppearance.layout,
         categoryIds: userContentCategory.categoryIds,
       })
       .from(users)
-      .leftJoin(mediaFiles, eq(mediaFiles.creatorId, users.id))
+      .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
+      .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
+      .leftJoin(mediaFiles, publishedMediaJoinCondition)
       .leftJoin(emailSubscribers, eq(emailSubscribers.creatorId, users.id))
       .leftJoin(userContentCategory, eq(userContentCategory.userId, users.id))
       .leftJoin(featureCreators, eq(featureCreators.creatorId, users.id))
@@ -79,14 +97,26 @@ export const allCreatorsService = async ({
             ? sql`${featureCreators.creatorId} IS NOT NULL`
             : sql`TRUE`,
 
-          hasSearch ? ilike(users.fullName, `%${search}%`) : sql`TRUE`,
+          hasSearch
+            ? or(
+                ilike(users.fullName, `%${search}%`),
+                ilike(users.firstName, `%${search}%`),
+                ilike(users.lastName, `%${search}%`),
+                ilike(creatorChannels.name, `%${search}%`),
+                sql`${creatorDisplayNameSql} ILIKE ${'%' + search + '%'}`,
+              )
+            : sql`TRUE`,
         ),
       )
       .groupBy(
         users.id,
         users.fullName,
+        users.firstName,
+        users.lastName,
         users.avatarUrl,
         users.createdAt,
+        creatorChannels.name,
+        contentAppearance.layout,
         userContentCategory.categoryIds,
         featureCreators.creatorId,
       )
@@ -113,17 +143,20 @@ export const allCreatorsService = async ({
       }
     }
 
-    const result = allCreators.map((creator) => ({
-      id: creator.id,
-      name: creator.name,
-      profileImageUrl: creator.profileImageUrl,
-      createdAt: creator.createdAt,
-      uploadCount: creator.uploadCount,
-      subscriberCount: creator.subscriberCount,
-      contentCategory: (creator.categoryIds || [])
-        .map((id) => categoryNameMap.get(id))
-        .filter((name): name is string => !!name),
-    }));
+    const result = allCreators
+      .map((creator) => ({
+        id: creator.id,
+        name: creator.name,
+        profileImageUrl: creator.profileImageUrl,
+        createdAt: creator.createdAt,
+        uploadCount: Number(creator.uploadCount ?? 0),
+        subscriberCount: Number(creator.subscriberCount ?? 0),
+        layout: creator.layout,
+        contentCategory: (creator.categoryIds || [])
+          .map((id) => categoryNameMap.get(id))
+          .filter((name): name is string => !!name),
+      }))
+      .filter((creator) => creator.name.trim().length > 0);
 
     return success(result, 'All creators fetched successfully', HttpStatus.OK);
   } catch (error) {

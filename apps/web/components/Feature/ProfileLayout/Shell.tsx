@@ -12,6 +12,7 @@ import {
   CreatorProfileUiProvider,
   useCreatorProfileUi,
 } from "@/hooks/useCreatorChannelLayout";
+import { usePublicCreatorLayoutRedirect } from "@/hooks/usePublicCreatorLayoutRedirect";
 
 type ProfileShellProps = {
   variant: ProfileLayoutVariant;
@@ -26,6 +27,11 @@ function ProfileAboutModal() {
 
 export default function ProfileShell({ variant, children }: ProfileShellProps) {
   useProfileSync();
+  const isLayoutPending = usePublicCreatorLayoutRedirect(variant);
+
+  if (isLayoutPending) {
+    return null;
+  }
 
   return (
     <CreatorProfileUiProvider>

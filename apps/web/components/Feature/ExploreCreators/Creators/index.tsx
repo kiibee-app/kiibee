@@ -99,14 +99,16 @@ export default function ExploreCreators({
               }
               title={<MonoText $use="Body_Medium">{creator.name}</MonoText>}
               subtitle={
-                <MonoText $use="Body_Small">
-                  {t(CREATORS.uploadsCount, { count: creator.uploadCount })}
-                </MonoText>
+                creator.uploadCount > 0 ? (
+                  <MonoText $use="Body_Small">
+                    {t(CREATORS.uploadsCount, { count: creator.uploadCount })}
+                  </MonoText>
+                ) : undefined
               }
               footer={
                 <GenericButton
                   asAnchor
-                  href={getPublicCreatorProfilePath(creator.id)}
+                  href={getPublicCreatorProfilePath(creator.id, creator.layout)}
                   target="_blank"
                   rel="noopener noreferrer"
                   variant={VARIANT.SECONDARY}

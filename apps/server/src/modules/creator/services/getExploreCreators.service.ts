@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, desc, eq, sql, type SQL } from 'drizzle-orm';
+import { and, desc, eq, ilike, or, sql, type SQL } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   contentAppearance,
@@ -11,7 +11,7 @@ import {
   contentSettings,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { ROLE, STATUS } from 'src/utils/constant';
+import { CONTENT_VISIBILITY, ROLE, STATUS } from 'src/utils/constant';
 import { success } from 'src/utils/sendResponse';
 
 export type ExploreCreatorItem = {
@@ -27,6 +27,7 @@ export type ExploreCreatorItem = {
   contentDescription: string | null;
   exampleWorkLink: string | null;
   accessType: string | null;
+  layout: string | null;
 };
 
 const subscriberCounts = db
@@ -45,7 +46,13 @@ const uploadCounts = db
     uploadCount: sql<number>`count(*)::int`.as('upload_count'),
   })
   .from(mediaFiles)
-  .where(eq(mediaFiles.isDeleted, false))
+  .where(
+    and(
+      eq(mediaFiles.isDeleted, false),
+      eq(mediaFiles.isPublished, true),
+      eq(mediaFiles.visibility, CONTENT_VISIBILITY.PUBLIC),
+    ),
+  )
   .groupBy(mediaFiles.creatorId)
   .as('upload_counts');
 
@@ -56,6 +63,12 @@ const activeCreatorConditions = (): SQL[] => [
   eq(users.status, STATUS.ACTIVE),
 ];
 
+const creatorDisplayNameSql = sql<string>`trim(coalesce(
+  nullif(${creatorChannels.name}, ''),
+  nullif(${users.fullName}, ''),
+  nullif(concat(coalesce(${users.firstName}, ''), ' ', coalesce(${users.lastName}, '')), '')
+))`;
+
 const buildCreatorsQuery = (creatorId?: string, search?: string) => {
   const conditions = activeCreatorConditions();
   if (creatorId) {
@@ -65,18 +78,20 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
   if (search) {
     const searchTerm = `%${search}%`;
     conditions.push(
-      sql`(${users.fullName} ILIKE ${searchTerm} OR ${creatorChannels.name} ILIKE ${searchTerm})`,
+      or(
+        ilike(users.fullName, searchTerm),
+        ilike(users.firstName, searchTerm),
+        ilike(users.lastName, searchTerm),
+        ilike(creatorChannels.name, searchTerm),
+        sql`${creatorDisplayNameSql} ILIKE ${searchTerm}`,
+      )!,
     );
   }
 
   return db
     .select({
       id: users.id,
-      name: sql<string>`trim(coalesce(
-          nullif(${creatorChannels.name}, ''),
-          nullif(${users.fullName}, ''),
-          nullif(concat(coalesce(${users.firstName}, ''), ' ', coalesce(${users.lastName}, '')), '')
-        ))`.as('name'),
+      name: creatorDisplayNameSql.as('name'),
       slug: creatorChannels.slug,
       profileImageUrl: sql<string | null>`coalesce(
           nullif(${creatorChannels.logoUrl}, ''),
@@ -99,6 +114,7 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
       contentDescription: creatorInfo.contentDescription,
       exampleWorkLink: creatorInfo.exampleWorkLink,
       accessType: contentSettings.accessType,
+      layout: contentAppearance.layout,
     })
     .from(users)
     .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
@@ -124,6 +140,7 @@ const mapCreatorRow = (row: {
   contentDescription: string | null;
   exampleWorkLink: string | null;
   accessType: string | null;
+  layout: string | null;
 }): ExploreCreatorItem => ({
   id: row.id,
   name: row.name,
@@ -140,6 +157,7 @@ const mapCreatorRow = (row: {
   contentDescription: row.contentDescription,
   exampleWorkLink: row.exampleWorkLink,
   accessType: row.accessType,
+  layout: row.layout,
 });
 
 export const getExploreCreatorsService = async (
