@@ -12,6 +12,7 @@ export function getImageRevealContainerStyle(
         ? "visible"
         : "hidden",
     opacity: variant === IMAGE_REVEAL_DEFAULTS.clipRevealVariant ? 1 : 0,
+    willChange: IMAGE_REVEAL_DEFAULTS.willChange,
     overflow: noClip ? undefined : "hidden",
     ...style,
   };

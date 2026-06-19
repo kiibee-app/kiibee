@@ -26,6 +26,7 @@ export const Card = styled.div<{
   transition:
     transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
     box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity;
 
   &:hover {
     transform: translateY(-5px);
