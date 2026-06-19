@@ -6,6 +6,7 @@ import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
 } from "./admissionRequirements";
+import { ADMISSION_TYPE, parsePaymentAmount } from "./paymentRequirements";
 import type { ContentFormState } from "@/types/contentTypes";
 import {
   EXPLORE_CONTENT_SORT,
@@ -277,6 +278,11 @@ export const contentTypeSizeMap: Record<string, number> = {
 export const mockSizeFallback = 12 * 1024 * 1024;
 
 export function buildContentUpdatePayload(formState: ContentFormState) {
+  const isPaymentAdmission =
+    formState.admissionRequirement === ADMISSION_TYPE.PAYMENT;
+  const parsedBuyPrice = parsePaymentAmount(formState.purchaseAmount);
+  const parsedRentPrice = parsePaymentAmount(formState.rentalAmount);
+
   return {
     title: formState.title,
     description: formState.description,
@@ -305,15 +311,12 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       ? (uiToApiAccessTypeMap[formState.admissionRequirement.toLowerCase()] ??
         ACCESS_TYPE_FREE)
       : undefined,
-    buyPrice: formState.purchaseAmount
-      ? parseFloat(formState.purchaseAmount)
-      : undefined,
-    rentPrice: formState.rentalAmount
-      ? parseFloat(formState.rentalAmount)
-      : undefined,
-    rentDurationHours: formState.rentalAmount
-      ? RENT_DURATION_DEFAULT
-      : undefined,
+    buyPrice: isPaymentAdmission ? (parsedBuyPrice ?? undefined) : undefined,
+    rentPrice: isPaymentAdmission ? (parsedRentPrice ?? undefined) : undefined,
+    rentDurationHours:
+      isPaymentAdmission && parsedRentPrice != null
+        ? RENT_DURATION_DEFAULT
+        : undefined,
     maximumDownloadCount:
       formState.maxDownloadLimit &&
       formState.maxDownloadLimit !== DOWNLOAD_LIMIT_UNLIMITED

@@ -51,7 +51,12 @@ import {
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
-import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
+import {
+  ADMISSION_TYPE,
+  isValidPaymentAmount,
+  PAYMENT_AMOUNT_FIELDS,
+  parsePaymentAmount,
+} from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
 import type { SaveContentSettingPayload } from "@/hooks/contents/useContentSettings";
@@ -397,6 +402,58 @@ export function useContentFormActions({
     return true;
   };
 
+  const validateContentPaymentAmounts = () => {
+    if (formState.admissionRequirement !== ADMISSION_TYPE.PAYMENT) {
+      setFormErrors((prev) => {
+        if (!prev.rentalAmount && !prev.purchaseAmount) return prev;
+        const mergedErrors = { ...prev };
+        delete mergedErrors.rentalAmount;
+        delete mergedErrors.purchaseAmount;
+        return mergedErrors;
+      });
+      return true;
+    }
+
+    const invalidNumberMessage = t("contents.payment.common.invalidNumber");
+    const nextErrors: Partial<ContentFormErrors> = {};
+
+    PAYMENT_AMOUNT_FIELDS.forEach((field) => {
+      if (!isValidPaymentAmount(formState[field])) {
+        nextErrors[field] = invalidNumberMessage;
+      }
+    });
+
+    setFormErrors((prev) => {
+      const mergedErrors = { ...prev };
+      delete mergedErrors.rentalAmount;
+      delete mergedErrors.purchaseAmount;
+      return { ...mergedErrors, ...nextErrors };
+    });
+
+    if (Object.keys(nextErrors).length > 0) {
+      toast.error(invalidNumberMessage);
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateCollectionPaymentAmounts = () => {
+    if (collectionAccessType !== ADMISSION_REQUIREMENT_VALUES.payment) {
+      return true;
+    }
+
+    const hasInvalidRental = !isValidPaymentAmount(collectionRentalAmount);
+    const hasInvalidPurchase = !isValidPaymentAmount(collectionPurchaseAmount);
+
+    if (hasInvalidRental || hasInvalidPurchase) {
+      toast.error(t("contents.payment.common.invalidNumber"));
+      return false;
+    }
+
+    return true;
+  };
+
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
       toast.error(t(ERROR_MESSAGES.NO_CONTENT));
@@ -404,6 +461,10 @@ export function useContentFormActions({
     }
 
     if (activeTab === ADD_CONTENT_TABS.METADATA && !validateMetadataForm()) {
+      return;
+    }
+
+    if (!validateContentPaymentAmounts()) {
       return;
     }
 
@@ -451,22 +512,25 @@ export function useContentFormActions({
 
   const saveCollectionSettings = async () => {
     if (!selectedCollection) return;
+    if (!validateCollectionPaymentAmounts()) return;
     try {
       const apiAccessType =
         uiToApiAccessTypeMap[collectionAccessType] ?? ACCESS_TYPE_FREE;
+      const parsedRentalAmount = parsePaymentAmount(collectionRentalAmount);
+      const parsedPurchaseAmount = parsePaymentAmount(collectionPurchaseAmount);
 
       const hasRental =
         collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
-        collectionRentalAmount !== "";
+        collectionRentalAmount.trim() !== "";
       const hasPurchase =
         collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
-        collectionPurchaseAmount !== "";
+        collectionPurchaseAmount.trim() !== "";
 
       await axiosClient.patch(API.collection.update(selectedCollection.id), {
         accessType: apiAccessType,
         description: collectionDescription.trim(),
-        rentPrice: hasRental ? parseFloat(collectionRentalAmount) : null,
-        buyPrice: hasPurchase ? parseFloat(collectionPurchaseAmount) : null,
+        rentPrice: hasRental ? parsedRentalAmount : null,
+        buyPrice: hasPurchase ? parsedPurchaseAmount : null,
         rentDuration: hasRental ? collectionAccessDuration : null,
         password:
           collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
@@ -487,12 +551,8 @@ export function useContentFormActions({
                 ...c,
                 accessType: apiAccessType,
                 description: collectionDescription.trim(),
-                rentPrice: hasRental
-                  ? parseFloat(collectionRentalAmount)
-                  : null,
-                buyPrice: hasPurchase
-                  ? parseFloat(collectionPurchaseAmount)
-                  : null,
+                rentPrice: hasRental ? parsedRentalAmount : null,
+                buyPrice: hasPurchase ? parsedPurchaseAmount : null,
                 rentDuration: hasRental ? collectionAccessDuration : null,
                 hasPassword: nextHasPassword,
               }
@@ -504,8 +564,8 @@ export function useContentFormActions({
         ...selectedCollection,
         accessType: apiAccessType,
         description: collectionDescription.trim(),
-        rentPrice: hasRental ? parseFloat(collectionRentalAmount) : null,
-        buyPrice: hasPurchase ? parseFloat(collectionPurchaseAmount) : null,
+        rentPrice: hasRental ? parsedRentalAmount : null,
+        buyPrice: hasPurchase ? parsedPurchaseAmount : null,
         rentDuration: hasRental ? collectionAccessDuration : null,
         hasPassword: nextHasPassword,
       };

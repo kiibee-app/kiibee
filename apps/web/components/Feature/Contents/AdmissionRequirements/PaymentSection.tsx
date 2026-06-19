@@ -10,7 +10,11 @@ import {
   STRING_EMPTY,
 } from "@/utils/Constants";
 import { AccessDurationValue } from "@/utils/common";
-import { PAYMENTS_FORM_FIELDS, toText } from "@/utils/paymentRequirements";
+import {
+  isValidPaymentAmount,
+  PAYMENTS_FORM_FIELDS,
+  toText,
+} from "@/utils/paymentRequirements";
 import {
   Block,
   ControlWrap,
@@ -54,15 +58,10 @@ const AmountBlock = ({
 }: AmountBlockProps) => {
   const [error, setError] = useState<string | null>(null);
 
-  const isValidNumeric = (v: string): boolean => {
-    if (v === STRING_EMPTY) return true;
-    return !isNaN(Number(v)) && isFinite(Number(v));
-  };
-
   const handleChange = (v: string | string[]) => {
     const text = toText(v);
     updateField(field, text);
-    if (!isValidNumeric(text)) {
+    if (!isValidPaymentAmount(text)) {
       setError(t("contents.payment.common.invalidNumber"));
     } else {
       setError(null);
