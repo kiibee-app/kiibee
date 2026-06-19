@@ -156,22 +156,16 @@ export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
   );
 }
 
-export function getMediaLabel(
-  type: RentedMediaItem["mediaType"],
-  t: TFunction,
-) {
-  if (type === RENTED_MEDIA_TYPES.AUDIO)
+export function getMediaLabel(type: RentedSectionKey, t: TFunction) {
+  if (type === RENTED_SECTION_KEYS.AUDIOS)
     return t("viewerRented.mediaLabelAudio");
-  if (type === RENTED_MEDIA_TYPES.PDF) return t("viewerRented.mediaLabelPdf");
+  if (type === RENTED_SECTION_KEYS.PDFS) return t("viewerRented.mediaLabelPdf");
   return t("viewerRented.mediaLabelVideo");
 }
 
-export function getMediaAction(
-  type: RentedMediaItem["mediaType"],
-  t: TFunction,
-) {
-  if (type === RENTED_MEDIA_TYPES.AUDIO) return t("viewerRented.playAudio");
-  if (type === RENTED_MEDIA_TYPES.PDF) return t("viewerRented.openPdf");
+export function getMediaAction(type: RentedSectionKey, t: TFunction) {
+  if (type === RENTED_SECTION_KEYS.AUDIOS) return t("viewerRented.playAudio");
+  if (type === RENTED_SECTION_KEYS.PDFS) return t("viewerRented.openPdf");
   return t("viewerRented.playVideo");
 }
 

@@ -34,6 +34,7 @@ type GenericCardProps = {
   children?: ReactNode;
   width?: string;
   imagePriority?: boolean;
+  onClick?: () => void;
 };
 
 function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
@@ -72,6 +73,7 @@ export default function GenericCard({
   children,
   width,
   imagePriority = false,
+  onClick,
 }: GenericCardProps) {
   const imageKey = image ? (typeof image === "string" ? image : image.src) : "";
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
@@ -87,7 +89,13 @@ export default function GenericCard({
   const showInitials = Boolean(imageInitials) && (!image || imageFailed);
 
   return (
-    <Card $width={width} $compact={compact} $coverImage={coverImage}>
+    <Card
+      $width={width}
+      $compact={compact}
+      $coverImage={coverImage}
+      onClick={onClick}
+      style={onClick ? { cursor: "pointer" } : undefined}
+    >
       {(image || imageInitials) && (
         <ImageWrapper $compact={compact} $coverImage={coverImage}>
           {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
