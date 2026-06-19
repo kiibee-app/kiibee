@@ -5,6 +5,10 @@ import { media } from "@repo/ui/breakpoints";
 export const SectionWrapper = styled.section`
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
   padding: 80px 0;
+
+  ${media.tablet} {
+    padding: 56px 16px;
+  }
 `;
 
 export const Inner = styled.div`
@@ -15,11 +19,19 @@ export const Inner = styled.div`
 
 export const Title = styled.h2`
   margin-bottom: 25px;
+
+  ${media.tablet} {
+    margin-bottom: 18px;
+  }
 `;
 
 export const Subtitle = styled.div`
   max-width: 800px;
   margin-bottom: 50px;
+
+  ${media.tablet} {
+    margin-bottom: 32px;
+  }
 `;
 
 export const Grid = styled.div`
@@ -29,6 +41,7 @@ export const Grid = styled.div`
 
   ${media.tablet} {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 `;
 
@@ -54,6 +67,14 @@ export const Card = styled.div`
 
   &:hover img {
     transform: scale(1.08) !important;
+  }
+
+  ${media.tablet} {
+    min-height: 17.5rem;
+  }
+
+  ${media.mobileLg} {
+    min-height: 13rem;
   }
 `;
 
