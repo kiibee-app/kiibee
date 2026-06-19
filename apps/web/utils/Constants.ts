@@ -46,6 +46,25 @@ export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [
   "usersTab",
 ] as const;
 
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+export function registerGsapPlugins() {
+  if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+}
+
+export const CTA_CARD = {
+  selector: "[data-cta-card]",
+  attr: "data-cta-card",
+  keyPrefix: "reveal-",
+  mobileLabel: "mobile",
+  desktopLabel: "desktop",
+  fromVars: { autoAlpha: 0, scale: 0.96 } as const,
+  toVars: { autoAlpha: 1, scale: 1 } as const,
+  initialTransform: "scale(0.96)",
+} as const;
 export const GENERAL_FORM_FIELDS: Array<keyof ContentFormState> = [
   "webLink",
   "openInNewWindow",

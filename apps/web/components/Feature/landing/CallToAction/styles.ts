@@ -5,6 +5,7 @@ import { VARIANT, SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import SafeImage from "@/components/UI/SafeImage";
 import { type CtaImageCard } from "@/utils/landingShared";
+import { CTA_CARD } from "@/utils/Constants";
 
 export const Section = styled.section`
   position: relative;
@@ -251,6 +252,8 @@ export function getRevealCardStyle(
     top: !mobile && card.top != null ? `${card.top}%` : undefined,
     width: !mobile && card.width != null ? `${card.width}%` : undefined,
     height: !mobile && card.height != null ? `${card.height}%` : undefined,
+    opacity: 0,
+    transform: CTA_CARD.initialTransform,
   };
 }
 
