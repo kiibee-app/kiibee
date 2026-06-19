@@ -33,6 +33,11 @@ export const ContentLayout = styled.div<{ $isPdf?: boolean }>`
   gap: ${({ $isPdf }) => ($isPdf ? "2rem" : "0")};
   align-items: start;
 
+  ${media.desktopSm} {
+    grid-template-columns: 1fr;
+    gap: ${({ $isPdf }) => ($isPdf ? "1.5rem" : "0")};
+  }
+
   ${media.tablet} {
     grid-template-columns: 1fr;
     gap: ${({ $isPdf }) => ($isPdf ? "1.5rem" : "0")};
@@ -73,18 +78,25 @@ export const ShareText = styled.span`
 
 export const Hero = styled.div<{ $isPdf?: boolean }>`
   position: relative;
-  width: ${({ $isPdf }) => ($isPdf ? "376px" : "min(100%, 900px)")};
-  height: ${({ $isPdf }) => ($isPdf ? "530px" : "auto")};
-  aspect-ratio: ${({ $isPdf }) => ($isPdf ? undefined : "90 / 49")};
+  width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 900px)")};
+  max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "none")};
+  height: auto;
+  aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
   margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "2.25rem")};
   border-radius: 12px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
+  ${media.desktopSm} {
+    max-width: none;
+    margin: 0 auto ${({ $isPdf }) => ($isPdf ? "1.5rem" : "2.25rem")};
+  }
+
   ${media.tablet} {
     width: 100%;
+    max-width: none;
     height: auto;
-    aspect-ratio: 376 / 530;
+    aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
   }
 `;
 
