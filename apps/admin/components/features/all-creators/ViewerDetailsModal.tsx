@@ -2,7 +2,7 @@
 
 import { Drawer } from "../../common/Drawer";
 import type { Viewer } from "../../../types/viewer";
-import { StatusBadge } from "./AllCreators.styles";
+import { formatViewerStatus } from "../../../utils/viewersConfig";
 import {
   User,
   Mail,
@@ -28,6 +28,7 @@ import {
   DrawerItemLabel,
   DrawerItemValue,
   CreatorAvatarImage,
+  AccountStatusBadge,
 } from "./AllCreators.styles";
 
 export type ViewerDetailsModalProps = {
@@ -65,7 +66,9 @@ export function ViewerDetailsModal({
         )}
         <DrawerHeaderName>{viewer.fullName}</DrawerHeaderName>
         <DrawerHeaderEmail>{viewer.email}</DrawerHeaderEmail>
-        <StatusBadge $status={viewer.status}>{viewer.status}</StatusBadge>
+        <AccountStatusBadge $status={viewer.status}>
+          {formatViewerStatus(viewer.status)}
+        </AccountStatusBadge>
       </DrawerHeaderCard>
 
       <DrawerSection>
