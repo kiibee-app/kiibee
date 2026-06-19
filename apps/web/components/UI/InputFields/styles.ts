@@ -215,6 +215,8 @@ export const FieldMessage = styled.div`
 export const RequiredIndicator = styled.span`
   color: ${({ theme }) => theme.colors.primary.RED};
   margin-left: 4px;
+  position: relative;
+  top: 1px;
 `;
 
 export const Field = styled.div`
@@ -450,7 +452,7 @@ export const TagsInputWrapper = styled.div<{
   padding: 8px 12px;
   background: ${({ $hasError, $variant, theme }) =>
     $hasError
-      ? theme.colors.primary.RED
+      ? `color-mix(in srgb, ${theme.colors.primary.RED} 8%, transparent)`
       : $variant === INPUT_VARIANTS.PRIMARY_GRAY
         ? theme.colors.primary.GRAY
         : theme.colors.neutral.GRAY_100};

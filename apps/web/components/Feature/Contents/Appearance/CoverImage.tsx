@@ -36,6 +36,7 @@ import { useContentForm } from "../ContentFormContext";
 import { FORM_FIELDS } from "@/utils/appearance";
 import { useAppearanceForm } from "./AppearanceFormContext";
 import { ErrorText } from "../MetaData/styles";
+import { RequiredIndicator } from "@/components/UI/InputFields/styles";
 
 const imageFieldMap = {
   [IMAGE_TYPE.MEDIA_CARD]: "mediaCardThumbnail",
@@ -153,7 +154,10 @@ export default function CoverImageSection({
       <SectionList>
         <ItemRow>
           <Copy>
-            <Label>{title ?? t(CONTENTS.appearance.coverImage.title)}</Label>
+            <Label>
+              {title ?? t(CONTENTS.appearance.coverImage.title)}
+              {useFormContext && <RequiredIndicator>*</RequiredIndicator>}
+            </Label>
             {!subtitle && (
               <Hint>{t(CONTENTS.appearance.coverImage.subtitle)}</Hint>
             )}

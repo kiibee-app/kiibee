@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
+import { RequiredIndicator } from "@/components/UI/InputFields/styles";
 import {
   CONTENT_FORM_FIELDS,
   INPUT_VARIANTS,
@@ -82,7 +83,10 @@ export default function DescriptionSection({
         {showTitle && (
           <Row>
             <Copy>
-              <Label>{t("contents.contentUploadModal.details.title")}</Label>
+              <Label>
+                {t("contents.contentUploadModal.details.title")}
+                {useFormContext && <RequiredIndicator>*</RequiredIndicator>}
+              </Label>
             </Copy>
 
             <ControlWrap>
@@ -96,7 +100,7 @@ export default function DescriptionSection({
                 width="100%"
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
                 hasError={useFormContext && Boolean(formErrors.title)}
-                errorMessage={useFormContext ? formErrors.title : undefined}
+                errorMessage={undefined}
               />
             </ControlWrap>
           </Row>
@@ -104,7 +108,10 @@ export default function DescriptionSection({
 
         <Row>
           <Copy>
-            <Label>{t(CONTENTS.appearance.description.label)}</Label>
+            <Label>
+              {t(CONTENTS.appearance.description.label)}
+              {useFormContext && <RequiredIndicator>*</RequiredIndicator>}
+            </Label>
             {!showTitle && (
               <Hint>{t(CONTENTS.appearance.description.hint)}</Hint>
             )}
@@ -129,9 +136,7 @@ export default function DescriptionSection({
                   : Boolean(appearanceErrors.description)
               }
               errorMessage={
-                useFormContext
-                  ? formErrors.description
-                  : appearanceErrors.description
+                useFormContext ? undefined : appearanceErrors.description
               }
             />
           </ControlWrap>
