@@ -31,6 +31,7 @@ import {
   CTA_CARD,
   registerGsapPlugins,
   resolveImageUrl,
+  STRING_EMPTY,
 } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
@@ -50,7 +51,7 @@ export default function CallToAction() {
   const renderCard = (card: CtaImageCard, index: number, mobile = false) => (
     <div
       key={`${CTA_CARD.keyPrefix}${card.src}-${mobile ? CTA_CARD.mobileLabel : CTA_CARD.desktopLabel}-${index}`}
-      {...{ [CTA_CARD.attr]: "" }}
+      {...{ [CTA_CARD.attr]: STRING_EMPTY }}
       style={getRevealCardStyle(card, mobile)}
     >
       <Card
