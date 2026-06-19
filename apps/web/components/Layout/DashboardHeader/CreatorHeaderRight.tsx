@@ -3,14 +3,7 @@
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import { PATHS } from "@/utils/path";
-import { NAV } from "@/utils/translationKeys";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
-import {
-  NavAccountMenuIcon,
-  NavAccountMenuItem,
-} from "@/components/Layout/Navbar/styles";
-import { ProfileIcon } from "@/assets/icons/profileIcon";
-import AccountMenu from "./AccountMenu";
 import {
   ChannelLink,
   ChannelText,
@@ -44,43 +37,24 @@ const CreatorHeaderRight = ({
         </ChannelText>
       </ChannelLink>
       <Divider />
-      <AccountMenu
-        trigger={({ open, toggle }) => (
-          <RightProfileWrapper
-            type="button"
-            aria-label={t("common.creatorProfile")}
-            aria-haspopup="menu"
-            aria-expanded={open}
-            onClick={toggle}
-          >
-            <ProfileCircle>
-              {avatarUrl ? (
-                <ProfileAvatarImage
-                  src={avatarUrl}
-                  alt={t("common.creatorProfile")}
-                />
-              ) : (
-                <InitialAvatar>{initial}</InitialAvatar>
-              )}
-            </ProfileCircle>
-            <EmailWrapper>
-              <MonoText $use="Body_Medium">{email}</MonoText>
-            </EmailWrapper>
-          </RightProfileWrapper>
-        )}
-        profileAction={(closeMenu) => (
-          <NavAccountMenuItem
-            href={PATHS.DASHBOARD_CREATOR_PROFILE}
-            role="menuitem"
-            onClick={closeMenu}
-          >
-            <NavAccountMenuIcon aria-hidden>
-              <ProfileIcon width={18} height={18} />
-            </NavAccountMenuIcon>
-            {t(NAV.accountProfile)}
-          </NavAccountMenuItem>
-        )}
-      />
+      <RightProfileWrapper
+        href={PATHS.DASHBOARD_CREATOR_PROFILE}
+        aria-label={t("common.creatorProfile")}
+      >
+        <ProfileCircle>
+          {avatarUrl ? (
+            <ProfileAvatarImage
+              src={avatarUrl}
+              alt={t("common.creatorProfile")}
+            />
+          ) : (
+            <InitialAvatar>{initial}</InitialAvatar>
+          )}
+        </ProfileCircle>
+        <EmailWrapper>
+          <MonoText $use="Body_Medium">{email}</MonoText>
+        </EmailWrapper>
+      </RightProfileWrapper>
     </>
   );
 };

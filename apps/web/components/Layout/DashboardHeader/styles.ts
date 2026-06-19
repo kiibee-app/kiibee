@@ -176,12 +176,13 @@ export const ChannelLink = styled(Link)`
   }
 `;
 
-export const RightProfileWrapper = styled.button`
+export const RightProfileWrapper = styled(Link)`
   display: inline-flex;
   align-items: center;
   gap: 12px;
   cursor: pointer;
   text-decoration: none;
+  color: inherit;
   border: none;
   background: transparent;
   padding: 0;
