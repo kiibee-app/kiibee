@@ -34,6 +34,16 @@ export class OrderController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Get('billing-history/:billingId')
+  async getBillingInvoice(
+    @Req() req: any,
+    @Param('billingId') billingId: string,
+  ) {
+    const userId = req.user.userId;
+    return this.orderService.getBillingInvoice(userId, billingId);
+  }
+
+  @UseGuards(JwtAuthGuard)
   @Get(':orderId')
   async getOrderById(@Req() req: any, @Param('orderId') orderId: string) {
     const userId = req.user.userId;
