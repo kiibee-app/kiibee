@@ -379,7 +379,7 @@ export const MetaSection = styled.div`
 
 export const MetaRow = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   margin-bottom: 0.4rem;
 
@@ -401,10 +401,15 @@ export const MetaValueText = styled.span<{ $strong?: boolean }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme, $strong }) =>
     $strong ? theme.typography.Body_Bold : theme.typography.Body_Medium}
+  word-break: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
+  flex: 1;
 
   a {
     color: ${({ theme }) => theme.colors.primary.BLUE};
     text-decoration: underline;
+    word-break: break-all;
     &:hover {
       opacity: 0.8;
     }
