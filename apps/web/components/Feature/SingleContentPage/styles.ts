@@ -33,6 +33,11 @@ export const ContentLayout = styled.div<{ $isPdf?: boolean }>`
   gap: ${({ $isPdf }) => ($isPdf ? "2rem" : "0")};
   align-items: start;
 
+  ${media.desktopSm} {
+    grid-template-columns: 1fr;
+    gap: ${({ $isPdf }) => ($isPdf ? "1.5rem" : "0")};
+  }
+
   ${media.tablet} {
     grid-template-columns: 1fr;
     gap: ${({ $isPdf }) => ($isPdf ? "1.5rem" : "0")};
@@ -73,18 +78,25 @@ export const ShareText = styled.span`
 
 export const Hero = styled.div<{ $isPdf?: boolean }>`
   position: relative;
-  width: ${({ $isPdf }) => ($isPdf ? "376px" : "min(100%, 900px)")};
-  height: ${({ $isPdf }) => ($isPdf ? "530px" : "auto")};
-  aspect-ratio: ${({ $isPdf }) => ($isPdf ? undefined : "90 / 49")};
+  width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 900px)")};
+  max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "none")};
+  height: auto;
+  aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
   margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "2.25rem")};
   border-radius: 12px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
+  ${media.desktopSm} {
+    max-width: none;
+    margin: 0 auto ${({ $isPdf }) => ($isPdf ? "1.5rem" : "2.25rem")};
+  }
+
   ${media.tablet} {
     width: 100%;
+    max-width: none;
     height: auto;
-    aspect-ratio: 376 / 530;
+    aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
   }
 `;
 
@@ -188,6 +200,7 @@ export const TrailerText = styled.span`
 export const ContentShell = styled.div<{ $isPdf?: boolean }>`
   width: 100%;
   align-self: start;
+  min-width: 0;
 `;
 
 export const CreatorName = styled.span`
@@ -241,6 +254,8 @@ export const MainTitle = styled.h1`
   margin: 0;
   width: 100%;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  word-break: break-word;
+  overflow-wrap: break-word;
 `;
 
 export const BodyTextWrap = styled.div`
@@ -255,6 +270,8 @@ export const DescriptionText = styled.p`
   ${({ theme }) => theme.typography.Body_Medium};
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  word-break: break-word;
+  overflow-wrap: break-word;
 `;
 
 export const TagRow = styled.div`
@@ -362,7 +379,7 @@ export const MetaSection = styled.div`
 
 export const MetaRow = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   margin-bottom: 0.4rem;
 
@@ -384,10 +401,15 @@ export const MetaValueText = styled.span<{ $strong?: boolean }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme, $strong }) =>
     $strong ? theme.typography.Body_Bold : theme.typography.Body_Medium}
+  word-break: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
+  flex: 1;
 
   a {
     color: ${({ theme }) => theme.colors.primary.BLUE};
     text-decoration: underline;
+    word-break: break-all;
     &:hover {
       opacity: 0.8;
     }
