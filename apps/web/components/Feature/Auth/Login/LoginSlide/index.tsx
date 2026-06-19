@@ -49,6 +49,7 @@ export default function LoginSlide() {
               })}
               fill
               sizes="(max-width: 768px) 260px, 320px"
+              style={{ objectFit: "cover" }}
               priority
             />
           </SlideImage>
