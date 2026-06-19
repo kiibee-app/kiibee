@@ -234,7 +234,10 @@ export const getSingleContentProps = (
   const rentDurationHours = content[CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS];
   const pricingItem = { accessType, buyPrice, rentPrice, rentDurationHours };
   const isFree = isFreeContentItem(pricingItem);
-  const hasViewerAccess = Boolean(content.accessInfo);
+  const rentExpiresAt = content.accessInfo?.rentExpiresAt;
+  const isRentalExpired =
+    Boolean(rentExpiresAt) && new Date(rentExpiresAt!).getTime() <= Date.now();
+  const hasViewerAccess = Boolean(content.accessInfo) && !isRentalExpired;
   const pricingActions = getContentDetailPricingActions(pricingItem, t, {
     inCollection: options?.inCollection,
   });
