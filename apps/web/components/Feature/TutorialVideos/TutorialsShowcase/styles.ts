@@ -10,6 +10,7 @@ export const Grid = styled.div<{ $maxWidth?: string; $columnMax?: string }>`
     minmax(260px, ${({ $columnMax }) => $columnMax ?? "1fr"})
   );
   gap: 1.75rem;
+  justify-content: center;
 
   ${media.desktop} {
     gap: 1.25rem;
