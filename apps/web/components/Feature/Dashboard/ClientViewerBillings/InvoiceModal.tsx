@@ -11,6 +11,7 @@ import { CARD_BRANDS } from "@/utils/Constants";
 import { CARD_BRAND_LOGOS } from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import type { ViewerBillingHistoryItem } from "@/hooks/useViewerBillingHistory";
+import useShare from "@/hooks/useShare";
 import {
   InvoiceCard,
   InvoiceContentMeta,
@@ -36,6 +37,7 @@ export default function InvoiceModal({
   onClose,
 }: InvoiceModalProps) {
   const { t } = useTranslation();
+  const { share } = useShare();
 
   if (!invoice) return null;
 
@@ -138,7 +140,7 @@ export default function InvoiceModal({
           </InvoiceContentMeta>
         </InvoiceInfo>
 
-        <InvoiceShareButton type="button">
+        <InvoiceShareButton type="button" onClick={share}>
           <ShareIcon width={16} height={16} />
           <MonoText $use="Body_Medium">
             {t(DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal.share)}
