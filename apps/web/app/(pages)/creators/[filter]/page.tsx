@@ -12,8 +12,10 @@ import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { LocalPageContainer } from "@/app/(pages)/explore/category/[categoryName]/styles";
 import {
   resolveExploreCreatorFilter,
+  SORT_ALL,
   type ExploreCreatorFilter,
 } from "@/utils/sortOptions";
+import { CREATORS } from "@/utils/translationKeys";
 
 function CreatorsFilterPageContent({
   filter,
@@ -35,6 +37,9 @@ function CreatorsFilterPageContent({
 
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
 
+  const placeholderKey =
+    filter === SORT_ALL ? CREATORS.searchCreators : undefined;
+
   return (
     <LocalPageContainer $navTextTone={navTextTone}>
       <NavBar navTextTone={navTextTone} />
@@ -47,6 +52,7 @@ function CreatorsFilterPageContent({
               setSortBy={setSortBy}
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
+              placeholderKey={placeholderKey}
             />
           </div>
           <div ref={trendingRef}>

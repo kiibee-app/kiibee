@@ -505,6 +505,7 @@
       }
     },
     "search": "Search for posts",
+    "searchCreators": "Search for creators",
     "sort": "Sort by:",
     "recentlyAdded": {
       "badge": "Recently added",
