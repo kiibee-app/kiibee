@@ -15,7 +15,6 @@ import { ItemRow } from "../Appearance/styles";
 import { useContentForm } from "../ContentFormContext";
 import { useGetAPI } from "@/lib/http/api";
 import { API } from "@/lib/http/api";
-import { ErrorText } from "./styles";
 
 type TaxonomyItem = { id: string; name: string };
 type ApiResponse<T> = { data?: T | null };
