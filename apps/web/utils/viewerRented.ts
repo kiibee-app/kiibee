@@ -157,16 +157,21 @@ export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
 }
 
 export function getMediaLabel(type: RentedSectionKey, t: TFunction) {
-  if (type === RENTED_SECTION_KEYS.AUDIOS)
-    return t("viewerRented.mediaLabelAudio");
-  if (type === RENTED_SECTION_KEYS.PDFS) return t("viewerRented.mediaLabelPdf");
-  return t("viewerRented.mediaLabelVideo");
+  const map: Record<string, string> = {
+    [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.mediaLabelVideo"),
+    [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.mediaLabelAudio"),
+    [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.mediaLabelPdf"),
+  };
+  return map[type] ?? "";
 }
 
 export function getMediaAction(type: RentedSectionKey, t: TFunction) {
-  if (type === RENTED_SECTION_KEYS.AUDIOS) return t("viewerRented.playAudio");
-  if (type === RENTED_SECTION_KEYS.PDFS) return t("viewerRented.openPdf");
-  return t("viewerRented.playVideo");
+  const map: Record<string, string> = {
+    [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.playVideo"),
+    [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.playAudio"),
+    [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.openPdf"),
+  };
+  return map[type] ?? "";
 }
 
 export function getRentedContentSources(
