@@ -109,6 +109,7 @@ const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => (
     fill
     priority
     sizes="(max-width: 900px) 100vw, 900px"
+    style={{ objectFit: "cover" }}
     unoptimized={isRemoteImageSource(hero.image)}
   />
 );

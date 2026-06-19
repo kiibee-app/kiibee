@@ -29,9 +29,14 @@ export const Card = styled.article`
 export const ContentLayout = styled.div<{ $isPdf?: boolean }>`
   display: grid;
   grid-template-columns: ${({ $isPdf }) =>
-    $isPdf ? "minmax(0, 0.5fr) minmax(0, 0.95fr)" : "1fr"};
+    $isPdf ? "minmax(0, 376px) minmax(0, 1fr)" : "1fr"};
   gap: ${({ $isPdf }) => ($isPdf ? "2rem" : "0")};
   align-items: start;
+
+  ${media.desktopSm} {
+    grid-template-columns: 1fr;
+    gap: ${({ $isPdf }) => ($isPdf ? "1.5rem" : "0")};
+  }
 
   ${media.tablet} {
     grid-template-columns: 1fr;
@@ -73,9 +78,9 @@ export const ShareText = styled.span`
 
 export const Hero = styled.div<{ $isPdf?: boolean }>`
   position: relative;
-  width: ${({ $isPdf }) => ($isPdf ? "376px" : "min(100%, 900px)")};
-  height: ${({ $isPdf }) => ($isPdf ? "530px" : "auto")};
-  aspect-ratio: ${({ $isPdf }) => ($isPdf ? undefined : "90 / 49")};
+  width: ${({ $isPdf }) => ($isPdf ? "min(100%, 376px)" : "min(100%, 900px)")};
+  height: auto;
+  aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
   margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "2.25rem")};
   border-radius: 12px;
   overflow: hidden;
