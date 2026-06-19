@@ -384,6 +384,19 @@ export const NavAccountDropdown = styled.div`
       transform: translateY(0);
     }
   }
+
+  ${media.mobileMd} {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 10px);
+    top: auto;
+    z-index: 1200;
+    animation: none;
+
+    &::before {
+      display: none;
+    }
+  }
 `;
 
 const navAccountMenuItemStyles = css`
@@ -449,6 +462,10 @@ export const NavAccountTriggerWrap = styled.div<{ $open?: boolean }>`
   border-radius: 10px;
   box-shadow: none;
   transition: box-shadow 0.15s ease;
+
+  ${media.tablet} {
+    padding: 8px;
+  }
 `;
 
 export const HamburgerButton = styled.button`
