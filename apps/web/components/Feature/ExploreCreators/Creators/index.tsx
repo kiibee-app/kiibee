@@ -46,7 +46,7 @@ export default function ExploreCreators({
     return (
       <PageWrapper>
         <Grid>
-          {Array.from({ length: 3 }).map((_, i) => (
+          {Array.from({ length: 4 }).map((_, i) => (
             <SkeletonCard key={i}>
               <SkeletonImage />
               <SkeletonTitleRow>
