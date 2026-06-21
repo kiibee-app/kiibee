@@ -15,10 +15,7 @@ import {
   WEBSITE,
 } from "@/utils/Constants";
 import { STORAGE_KEY } from "@/utils/common";
-import {
-  LANGUAGE_BOOTSTRAP_SCRIPT,
-  normalizeAppLanguage,
-} from "@/utils/language";
+import { normalizeAppLanguage } from "@/utils/language";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,9 +59,6 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body>
-        <script
-          dangerouslySetInnerHTML={{ __html: LANGUAGE_BOOTSTRAP_SCRIPT }}
-        />
         <ThemeProvider>
           <QueryProvider>
             <LanguageProvider initialLang={initialLang}>

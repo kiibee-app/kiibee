@@ -496,6 +496,24 @@ export const SETTINGS = {
 };
 
 export const VIEWER_RENTED = {
+  emptyStates: {
+    purchased: {
+      title: "viewerRented.emptyStates.purchased.title",
+      description: "viewerRented.emptyStates.purchased.description",
+    },
+    currently: {
+      title: "viewerRented.emptyStates.currently.title",
+      description: "viewerRented.emptyStates.currently.description",
+    },
+    previously: {
+      title: "viewerRented.emptyStates.previously.title",
+      description: "viewerRented.emptyStates.previously.description",
+    },
+    search: {
+      title: "viewerRented.emptyStates.search.title",
+      description: "viewerRented.emptyStates.search.description",
+    },
+  },
   owned: "viewerRented.owned",
   inRental: "viewerRented.inRental",
   rented: "viewerRented.rented",

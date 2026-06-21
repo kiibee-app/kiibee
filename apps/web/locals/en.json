@@ -1940,6 +1940,24 @@
     "free": "Free"
   },
   "viewerRented": {
+    "emptyStates": {
+      "purchased": {
+        "title": "No purchased content yet",
+        "description": "You haven't purchased anything yet. Explore creators to find content you love."
+      },
+      "currently": {
+        "title": "No active rentals",
+        "description": "You haven't rented anything yet. Rented content will appear here while it's available."
+      },
+      "previously": {
+        "title": "No rental history",
+        "description": "You don't have any previously rented content yet."
+      },
+      "search": {
+        "title": "No results found",
+        "description": "Try adjusting your search to find what you're looking for."
+      }
+    },
     "owned": "Owned",
     "inRental": "In rental",
     "rented": "Rented",

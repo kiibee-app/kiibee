@@ -2,7 +2,6 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
 import { PageWrap, SectionBlock, EmptyState } from "./styles";
@@ -28,6 +27,7 @@ import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
 import MediaSections from "./MediaSections";
 import PurchasedCollectionDetail from "./PurchasedCollectionDetail";
+import ViewerEmptyState from "./ViewerEmptyState";
 import { pathPublishedContent } from "@/utils/path";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 
@@ -46,7 +46,6 @@ export default function RentedContent({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchParamsString = searchParams?.toString() ?? "";
-  const { t } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
 
   const [searchValue, setSearchValue] = useState("");
@@ -138,6 +137,7 @@ export default function RentedContent({
     filteredPdfs.length === 0;
 
   const isSearchEmpty = searchValue.trim() !== "" && hasNoResults;
+  const isDataEmpty = searchValue.trim() === "" && hasNoResults;
 
   const selectedCollection = useMemo(
     () =>
@@ -259,12 +259,10 @@ export default function RentedContent({
             Loading...
           </MonoText>
         </EmptyState>
+      ) : isDataEmpty ? (
+        <ViewerEmptyState mode={mode} variant="empty" />
       ) : isSearchEmpty ? (
-        <EmptyState>
-          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            {t("dashboard.noData")}
-          </MonoText>
-        </EmptyState>
+        <ViewerEmptyState mode={mode} variant="search" />
       ) : (
         <>
           {filteredCollections.length > 0 && (

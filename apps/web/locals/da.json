@@ -1948,6 +1948,24 @@
     "free": "Gratis"
   },
   "viewerRented": {
+    "emptyStates": {
+      "purchased": {
+        "title": "Intet købt indhold endnu",
+        "description": "Du har ikke købt noget endnu. Udforsk skabere for at finde indhold, du elsker."
+      },
+      "currently": {
+        "title": "Ingen aktive leje",
+        "description": "Du har ikke lejet noget endnu. Lejet indhold vises her, mens det er tilgængeligt."
+      },
+      "previously": {
+        "title": "Ingen lejehistorik",
+        "description": "Du har ikke noget tidligere lejet indhold endnu."
+      },
+      "search": {
+        "title": "Ingen resultater fundet",
+        "description": "Prøv at justere din søgning for at finde det, du leder efter."
+      }
+    },
     "owned": "Ejet",
     "inRental": "I leje",
     "rented": "Lejet",
