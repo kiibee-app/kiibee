@@ -1,26 +1,55 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { STORAGE_KEY } from "@/utils/common";
-import { Wrapper, Slider, LangButton } from "./styles";
 import { DA, EN } from "@/utils/common";
+import {
+  getStoredAppLanguage,
+  normalizeAppLanguage,
+  persistAppLanguage,
+  type AppLanguage,
+} from "@/utils/language";
+import { Wrapper, Slider, LangButton } from "./styles";
 
 const LanguageToggle = () => {
   const { i18n } = useTranslation();
-  const currentLang = i18n.language as typeof DA | typeof EN;
+  const [currentLang, setCurrentLang] =
+    useState<AppLanguage>(getStoredAppLanguage);
+
+  useEffect(() => {
+    const syncLanguage = (lng: string) => {
+      setCurrentLang(normalizeAppLanguage(lng));
+    };
+
+    const stored = getStoredAppLanguage();
+    const active = normalizeAppLanguage(i18n.resolvedLanguage || i18n.language);
+
+    if (active !== stored) {
+      void i18n.changeLanguage(stored);
+    }
+
+    i18n.on("languageChanged", syncLanguage);
+    return () => {
+      i18n.off("languageChanged", syncLanguage);
+    };
+  }, [i18n]);
 
   const setLang = useCallback(
-    (lng: typeof DA | typeof EN) => {
+    (lng: AppLanguage) => {
       if (lng === currentLang) return;
-      localStorage.setItem(STORAGE_KEY, lng);
-      i18n.changeLanguage(lng);
+      persistAppLanguage(lng);
+      void i18n.changeLanguage(lng);
     },
     [currentLang, i18n],
   );
 
   return (
-    <Wrapper role="radiogroup" aria-label="Language selection">
+    <Wrapper
+      className="notranslate"
+      translate="no"
+      role="radiogroup"
+      aria-label="Language selection"
+    >
       <Slider $active={currentLang} />
       <LangButton
         $active={currentLang === DA}

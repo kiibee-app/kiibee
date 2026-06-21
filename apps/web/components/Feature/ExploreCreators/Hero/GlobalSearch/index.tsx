@@ -62,7 +62,7 @@ export default function GlobalSearch({
               {creators.map((creator) => (
                 <SearchDropdownItem
                   key={creator.id}
-                  onClick={handleCreatorClick(creator.id)}
+                  onClick={handleCreatorClick(creator.id, creator.layout)}
                 >
                   <SearchEmptyText>{creator.name}</SearchEmptyText>
                 </SearchDropdownItem>
@@ -70,25 +70,21 @@ export default function GlobalSearch({
             </SearchDropdownSection>
           )}
 
-          {!isLoading &&
-            hasResults &&
-            !(creators && creators.length > 0) &&
-            tutorials &&
-            tutorials.length > 0 && (
-              <SearchDropdownSection>
-                <SearchDropdownTitle>
-                  {t("creators.contents")}
-                </SearchDropdownTitle>
-                {tutorials.map((tutorial) => (
-                  <SearchDropdownItem
-                    key={tutorial.id}
-                    onClick={handleContentClick(tutorial.id)}
-                  >
-                    <SearchEmptyText>{tutorial.title}</SearchEmptyText>
-                  </SearchDropdownItem>
-                ))}
-              </SearchDropdownSection>
-            )}
+          {!isLoading && hasResults && tutorials && tutorials.length > 0 && (
+            <SearchDropdownSection>
+              <SearchDropdownTitle>
+                {t("creators.contents")}
+              </SearchDropdownTitle>
+              {tutorials.map((tutorial) => (
+                <SearchDropdownItem
+                  key={tutorial.id}
+                  onClick={handleContentClick(tutorial.id)}
+                >
+                  <SearchEmptyText>{tutorial.title}</SearchEmptyText>
+                </SearchDropdownItem>
+              ))}
+            </SearchDropdownSection>
+          )}
 
           {!isLoading && !hasResults && (
             <SearchDropdownItem $interactive={false}>

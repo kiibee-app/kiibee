@@ -75,12 +75,10 @@ const langBtn = css`
 export const LangButton = styled.button<{ $active: boolean }>`
   ${langBtn}
   color: ${({ $active, theme }) =>
-    $active ? theme.colors.primary.WHITE : theme.colors.neutral.GRAY_400};
-  background-color: ${({ $active, theme }) =>
-    $active ? theme.colors.primary.BLACK : theme.colors.primary.WHITE};
+    $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_400};
+  background-color: transparent;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.primary.WHITE};
     color: ${({ theme }) => theme.colors.primary.BLACK};
   }
 `;

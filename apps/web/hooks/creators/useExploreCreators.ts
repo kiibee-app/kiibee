@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { API, useGetAPI } from "@/lib/http/api";
 import { resolvePublicMediaUrl } from "@/utils/media";
+import type { CreatorLayoutKey } from "@/utils/creatorChannel";
 import {
   SORT_ALL,
   SORT_FEATURED,
@@ -28,6 +29,7 @@ export type ExploreCreator = {
   contentDescription?: string | null;
   exampleWorkLink?: string | null;
   accessType?: string | null;
+  layout?: CreatorLayoutKey | null;
 };
 
 type ExploreCreatorsResponse = {

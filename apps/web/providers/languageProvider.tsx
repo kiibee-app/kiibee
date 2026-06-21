@@ -8,12 +8,17 @@ import da from "../locals/da.json";
 import {
   DA,
   EN,
-  STORAGE_KEY,
   SUPPORTED_LANGS,
   RESOURCE_NAMESPACE,
   LANGUAGE_CHANGED_EVENT,
   UNDEFINED,
 } from "@/utils/common";
+import {
+  getStoredAppLanguage,
+  normalizeAppLanguage,
+  syncDocumentLanguage,
+  type AppLanguage,
+} from "@/utils/language";
 
 type ResourceBundle = Record<string, Record<string, typeof en>>;
 
@@ -34,21 +39,16 @@ const syncResources = () => {
   });
 };
 
-const getInitialLanguage = (): string => {
-  if (typeof window !== UNDEFINED) {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored && SUPPORTED_LANGS.includes(stored)) return stored;
-  }
-  return DA;
-};
-
 if (!i18n.isInitialized) {
-  const opts: InitOptions & { initImmediate?: boolean } = {
+  const lng = typeof window !== UNDEFINED ? getStoredAppLanguage() : DA;
+
+  const opts: InitOptions = {
     resources: resources as unknown as InitOptions["resources"],
-    lng: getInitialLanguage(),
+    lng,
     fallbackLng: EN,
+    supportedLngs: SUPPORTED_LANGS,
+    nonExplicitSupportedLngs: false,
     interpolation: { escapeValue: false },
-    initImmediate: false,
   };
 
   i18n.use(initReactI18next).init(opts);
@@ -58,19 +58,40 @@ if (!i18n.isInitialized) {
 
 syncResources();
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+type LanguageProviderProps = {
+  children: React.ReactNode;
+  initialLang?: AppLanguage;
+};
+
+export function LanguageProvider({
+  children,
+  initialLang = DA,
+}: LanguageProviderProps) {
   useEffect(() => {
     syncResources();
-    document.documentElement.lang = i18n.language;
+
+    const stored = getStoredAppLanguage();
+    const active = normalizeAppLanguage(i18n.resolvedLanguage || i18n.language);
 
     const onLangChange = (lng: string) => {
-      document.documentElement.lang = lng;
+      syncDocumentLanguage(lng);
     };
+
+    if (active !== stored) {
+      void i18n.changeLanguage(stored);
+    } else {
+      syncDocumentLanguage(active);
+    }
+
+    if (normalizeAppLanguage(initialLang) !== stored) {
+      syncDocumentLanguage(stored);
+    }
+
     i18n.on(LANGUAGE_CHANGED_EVENT, onLangChange);
     return () => {
       i18n.off(LANGUAGE_CHANGED_EVENT, onLangChange);
     };
-  }, []);
+  }, [initialLang]);
 
   return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
 }
