@@ -24,14 +24,14 @@ function readLanguageCookie(): string | null {
 export function getStoredAppLanguage(): AppLanguage {
   if (typeof window === "undefined") return DA;
 
-  const fromStorage = localStorage.getItem(STORAGE_KEY);
-  if (fromStorage && SUPPORTED_LANGS.includes(fromStorage)) {
-    return normalizeAppLanguage(fromStorage);
-  }
-
   const fromCookie = readLanguageCookie();
   if (fromCookie && SUPPORTED_LANGS.includes(fromCookie)) {
     return normalizeAppLanguage(fromCookie);
+  }
+
+  const fromStorage = localStorage.getItem(STORAGE_KEY);
+  if (fromStorage && SUPPORTED_LANGS.includes(fromStorage)) {
+    return normalizeAppLanguage(fromStorage);
   }
 
   return DA;
@@ -51,5 +51,3 @@ export function syncDocumentLanguage(language?: string | null) {
   const lang = normalizeAppLanguage(language);
   document.documentElement.lang = lang;
 }
-
-export const LANGUAGE_BOOTSTRAP_SCRIPT = `(function(){try{var k=${JSON.stringify(STORAGE_KEY)};var l=localStorage.getItem(k);if(!l||l!=="da"&&l!=="en"){var m=document.cookie.match(new RegExp("(?:^|; )"+k+"=([^;]*)"));l=m?decodeURIComponent(m[1]):"da"}if(l!=="en"&&l!=="da")l="da";document.documentElement.lang=l}catch(e){}})();`;

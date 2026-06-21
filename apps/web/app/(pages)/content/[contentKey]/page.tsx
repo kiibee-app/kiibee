@@ -233,7 +233,7 @@ function PublishedContentLoading() {
   );
 }
 
-function ErrorFallback({ error }: { error: Error }) {
+function ErrorFallback() {
   const { t } = useTranslation();
 
   return (

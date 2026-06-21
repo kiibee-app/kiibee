@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { DA, EN } from "@/utils/common";
 import {
-  getStoredAppLanguage,
   normalizeAppLanguage,
   persistAppLanguage,
   type AppLanguage,
@@ -13,26 +12,9 @@ import { Wrapper, Slider, LangButton } from "./styles";
 
 const LanguageToggle = () => {
   const { i18n } = useTranslation();
-  const [currentLang, setCurrentLang] =
-    useState<AppLanguage>(getStoredAppLanguage);
-
-  useEffect(() => {
-    const syncLanguage = (lng: string) => {
-      setCurrentLang(normalizeAppLanguage(lng));
-    };
-
-    const stored = getStoredAppLanguage();
-    const active = normalizeAppLanguage(i18n.resolvedLanguage || i18n.language);
-
-    if (active !== stored) {
-      void i18n.changeLanguage(stored);
-    }
-
-    i18n.on("languageChanged", syncLanguage);
-    return () => {
-      i18n.off("languageChanged", syncLanguage);
-    };
-  }, [i18n]);
+  const currentLang = normalizeAppLanguage(
+    i18n.resolvedLanguage || i18n.language,
+  );
 
   const setLang = useCallback(
     (lng: AppLanguage) => {
