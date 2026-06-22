@@ -13,6 +13,7 @@ import pricingHeroImage from "@/assets/images/pricing/pricing-hero.webp";
 import ctaImage from "@/assets/images/cta-buttom1.webp";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
+import { usePricingNavTone } from "@/hooks/usePricingNavTone";
 import {
   Background,
   Container,
@@ -36,12 +37,13 @@ import { IMAGE_SIZES } from "@/utils/landingShared";
 export default function PricingPage() {
   const { t } = useTranslation();
   const router = useRouter();
+  const { heroRef, navTextTone } = usePricingNavTone();
 
   return (
     <PageContainer>
-      <NavBar />
+      <NavBar navTextTone={navTextTone} />
       <Main>
-        <Hero>
+        <Hero ref={heroRef}>
           <Background>
             <ImageReveal
               variant={LANDING_REVEAL_VARIANTS.kenBurns}
