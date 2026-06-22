@@ -33,7 +33,8 @@ import {
   LocalPageContainer,
   SortDropdownWrapper,
   LocalControls,
-  LocalSearchBarContainer,
+  DesktopSearchBarContainer,
+  MobileSearchBarContainer,
 } from "./styles";
 
 function AllContentExplorePageContent() {
@@ -160,6 +161,14 @@ function AllContentExplorePageContent() {
                   <HeroTitleText>{title}</HeroTitleText>
                 </Title>
                 <LocalControls>
+                  <MobileSearchBarContainer>
+                    <SearchBar
+                      placeholder={t("creators.search")}
+                      value={searchValue}
+                      onChange={setSearchValue}
+                    />
+                  </MobileSearchBarContainer>
+
                   <CreatorFiltersControl
                     refs={filterRefs}
                     state={filterState}
@@ -171,13 +180,13 @@ function AllContentExplorePageContent() {
                     showButton={true}
                   />
 
-                  <LocalSearchBarContainer>
+                  <DesktopSearchBarContainer>
                     <SearchBar
                       placeholder={t("creators.search")}
                       value={searchValue}
                       onChange={setSearchValue}
                     />
-                  </LocalSearchBarContainer>
+                  </DesktopSearchBarContainer>
 
                   <SortDropdownWrapper>
                     <SortDropdown

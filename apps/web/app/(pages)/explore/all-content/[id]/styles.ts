@@ -6,6 +6,7 @@ import GenericButton from "@/components/UI/GenericButton";
 import { PageContainer } from "@/app/styles";
 import { ColumnTitle } from "@/components/Layout/Navbar/styles";
 import { SortBox } from "@/components/UI/SortDropdown/styles";
+import { SearchBarContainer } from "@/components/Feature/ExploreCreators/Hero/styles";
 
 export const LocalPageContainer = styled(PageContainer)<{
   $navTextTone: string;
@@ -136,15 +137,23 @@ export const LocalControls = styled.div`
   }
 `;
 
-export const LocalSearchBarContainer = styled.div`
-  width: 100%;
-  max-width: 31.6875rem;
+export const LocalSearchBarContainer = styled(SearchBarContainer)`
   display: flex;
   justify-content: center;
+`;
+
+export const DesktopSearchBarContainer = styled(LocalSearchBarContainer)`
+  ${media.tablet} {
+    display: none;
+  }
+`;
+
+export const MobileSearchBarContainer = styled(LocalSearchBarContainer)`
+  display: none;
 
   ${media.tablet} {
+    display: flex;
     max-width: 100%;
-    order: -1;
     flex-basis: 100%;
   }
 `;
