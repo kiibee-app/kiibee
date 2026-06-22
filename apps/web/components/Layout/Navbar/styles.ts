@@ -1,4 +1,5 @@
 import { HeaderProps, NavStyleProps } from "@/utils/profile";
+import { TONE_DARK, TONE_LIGHT } from "@/utils/Constants";
 import styled, { css } from "styled-components";
 import Link from "next/link";
 import { media } from "@repo/ui/breakpoints";
@@ -188,7 +189,7 @@ export const NavButton = styled.button<{
 
 export const MegaMenu = styled.div<{
   $isOpen: boolean;
-  $textTone?: "dark" | "light";
+  $textTone?: typeof TONE_DARK | typeof TONE_LIGHT;
 }>`
   position: fixed;
   top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
@@ -278,7 +279,10 @@ export const ColumnItem = styled.a`
   }
 `;
 
-export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
+export const Actions = styled.div<{
+  $textTone: typeof TONE_DARK | typeof TONE_LIGHT;
+  $showOnMobile?: boolean;
+}>`
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -333,9 +337,26 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
     transform: none;
   }
 
-  ${media.mobileMd} {
-    display: none;
-  }
+  ${({ $showOnMobile }) =>
+    $showOnMobile
+      ? css`
+          ${media.mobileMd} {
+            gap: 0.5rem;
+            margin-left: auto;
+
+            a,
+            button {
+              min-height: 30px;
+              padding: 4px 10px;
+              font-size: 12px;
+            }
+          }
+        `
+      : css`
+          ${media.mobileMd} {
+            display: none;
+          }
+        `}
 `;
 
 export const NavAccountHost = styled.div<{ $open?: boolean }>`
@@ -386,8 +407,8 @@ export const NavAccountDropdown = styled.div`
   ${media.mobileMd} {
     position: absolute;
     right: 0;
-    bottom: calc(100% + 10px);
-    top: auto;
+    top: calc(100% + 10px);
+    bottom: auto;
     z-index: 1200;
     animation: none;
 

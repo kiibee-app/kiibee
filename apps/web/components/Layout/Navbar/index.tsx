@@ -236,6 +236,7 @@ export default function NavBar({
   mobileDrawerVariant = DRAWER_VARIANT.DRAWER,
   mobileDrawerRouteActiveItems = routeActiveItems,
   hideMobileHamburger = false,
+  showActionsOnMobile = false,
 }: NavBarProps) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -619,7 +620,11 @@ export default function NavBar({
           {navAfter}
         </Nav>
 
-        <Actions ref={actionsRef} $textTone={navTextTone}>
+        <Actions
+          ref={actionsRef}
+          $textTone={navTextTone}
+          $showOnMobile={showActionsOnMobile}
+        >
           {!isMounted ? (
             actions ? (
               actions

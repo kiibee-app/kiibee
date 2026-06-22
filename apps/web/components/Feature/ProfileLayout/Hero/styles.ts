@@ -82,8 +82,8 @@ export const ProfileSection = styled.div`
   }
 
   ${({ theme }) => theme.media.mobileMd} {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: column-reverse;
     gap: 12px;
     margin-top: 16px;
   }
