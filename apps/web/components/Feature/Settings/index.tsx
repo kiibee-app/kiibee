@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { findElement } from "@/utils/searchHelper";
 import { MonoText } from "@/components/UI/Monotext";
 import {
@@ -110,25 +110,41 @@ export default function SettingsContent() {
       },
     ];
   }, [t]);
+  const lastAutoMatchedQueryRef = useRef("");
+
+  const handleSearchChange = useCallback((value: string) => {
+    if (!value.trim()) {
+      lastAutoMatchedQueryRef.current = "";
+    }
+
+    setSearchValue(value);
+  }, []);
 
   useEffect(() => {
     if (!searchValue || searchValue.trim().length < 2) return;
 
     const query = searchValue.trim().toLowerCase();
+    const searchChanged = lastAutoMatchedQueryRef.current !== query;
 
-    const activeTabKeywords = SETTINGS_TABS_INDEX.find(
-      (item) => item.tab === activeTab,
-    );
-    const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
-      keyword.toLowerCase().includes(query),
-    );
+    if (searchChanged) {
+      lastAutoMatchedQueryRef.current = query;
 
-    if (!activeContainsQuery) {
-      const matchedTabItem = SETTINGS_TABS_INDEX.find((item) =>
-        item.keywords.some((keyword) => keyword.toLowerCase().includes(query)),
+      const activeTabKeywords = SETTINGS_TABS_INDEX.find(
+        (item) => item.tab === activeTab,
       );
-      if (!matchedTabItem) return;
-      setActiveTabAndQuery(matchedTabItem.tab);
+      const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(query),
+      );
+
+      if (!activeContainsQuery) {
+        const matchedTabItem = SETTINGS_TABS_INDEX.find((item) =>
+          item.keywords.some((keyword) =>
+            keyword.toLowerCase().includes(query),
+          ),
+        );
+        if (!matchedTabItem) return;
+        setActiveTabAndQuery(matchedTabItem.tab);
+      }
     }
 
     let attempts = 0;
@@ -207,7 +223,7 @@ export default function SettingsContent() {
           value: searchValue,
           placeholder: t("search"),
           onToggle: () => setOpenSearch((prev) => !prev),
-          onChange: setSearchValue,
+          onChange: handleSearchChange,
           ariaLabel: t("search"),
         }}
       />

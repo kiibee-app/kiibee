@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "next/navigation";
 import { GenericModal } from "@/components/UI/Modals";
@@ -184,25 +184,45 @@ function CreatorsContentsInner() {
       },
     ];
   }, [t, collections, collectionContents, couponResponse]);
+  const lastAutoMatchedQueryRef = useRef("");
+
+  const handleSearchChange = useCallback(
+    (value: string) => {
+      if (!value.trim()) {
+        lastAutoMatchedQueryRef.current = "";
+      }
+
+      setSearchValue(value);
+    },
+    [setSearchValue],
+  );
 
   useEffect(() => {
     if (selectedCollection) return;
     if (!searchValue || searchValue.trim().length < 2) return;
 
     const query = searchValue.trim().toLowerCase();
-    const activeTabKeywords = CONTENTS_TABS_INDEX.find(
-      (item) => item.tab === activeTab,
-    );
-    const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
-      keyword.toLowerCase().includes(query),
-    );
+    const searchChanged = lastAutoMatchedQueryRef.current !== query;
 
-    if (!activeContainsQuery) {
-      const matchedTabItem = CONTENTS_TABS_INDEX.find((item) =>
-        item.keywords.some((keyword) => keyword.toLowerCase().includes(query)),
+    if (searchChanged) {
+      lastAutoMatchedQueryRef.current = query;
+
+      const activeTabKeywords = CONTENTS_TABS_INDEX.find(
+        (item) => item.tab === activeTab,
       );
-      if (!matchedTabItem) return;
-      setActiveTabAndQuery(matchedTabItem.tab as typeof activeTab);
+      const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(query),
+      );
+
+      if (!activeContainsQuery) {
+        const matchedTabItem = CONTENTS_TABS_INDEX.find((item) =>
+          item.keywords.some((keyword) =>
+            keyword.toLowerCase().includes(query),
+          ),
+        );
+        if (!matchedTabItem) return;
+        setActiveTabAndQuery(matchedTabItem.tab as typeof activeTab);
+      }
     }
 
     let attempts = 0;
@@ -419,7 +439,7 @@ function CreatorsContentsInner() {
                     value: searchValue,
                     placeholder: t(CONTENTS_KEYS.actions.search),
                     onToggle: () => setOpenSearch((prev) => !prev),
-                    onChange: setSearchValue,
+                    onChange: handleSearchChange,
                     ariaLabel: t(CONTENTS_KEYS.actions.search),
                   }
             }
