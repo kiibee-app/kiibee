@@ -303,12 +303,7 @@ export const StoryPanel = styled.aside`
   width: min(620px, 100%);
   padding: 50px 0;
   color: ${({ theme }) => theme.colors.primary.WHITE};
-  background: linear-gradient(
-    90deg,
-    ${({ theme }) => theme.colors.neutral.GRAY_300} 0%,
-    ${({ theme }) => theme.colors.neutral.GRAY_250} 22%,
-    ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
-  );
+  background: none;
 
   ${({ theme }) => theme.media.desktopMd} {
     width: min(560px, 100%);
@@ -324,12 +319,6 @@ export const StoryPanel = styled.aside`
     width: 100%;
     padding: 24px 0 18px;
     gap: 8px;
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.colors.neutral.GRAY_300} 0%,
-      ${({ theme }) => theme.colors.neutral.GRAY_250} 14%,
-      ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
-    );
   }
 `;
 
