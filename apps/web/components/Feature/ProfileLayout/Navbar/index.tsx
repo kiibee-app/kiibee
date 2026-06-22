@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import { ThreeDotIcon } from "@/assets/icons";
 import ProfileChannelSearch from "@/components/Feature/ProfileLayout/shared/ProfileChannelSearch";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import {
@@ -17,14 +18,23 @@ import {
   VARIANT,
   TONE_DARK,
   TONE_LIGHT,
+  DRAWER_SIDE,
+  DRAWER_VARIANT,
 } from "@/utils/Constants";
 import NavBar from "@/components/Layout/Navbar";
 import {
   Brand,
   BrandAvatar,
   BrandName,
+  MobileProfileTriggerAvatar,
+  MobileProfileTriggerButton,
 } from "@/components/Feature/ProfileLayout/pageStyles";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
+import {
+  getLoginUserFirstLetter,
+  useLoginUserAvatar,
+  useStoredLoginUser,
+} from "@/hooks/auth/useStoredLoginUser";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorNavItems } from "@/hooks/useCreatorChannelLayout";
 
@@ -70,6 +80,8 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
   };
   const { navTextTone, showNavItems, hasSearch } = config;
   const { navItems } = useCreatorNavItems();
+  const storedUser = useStoredLoginUser();
+  const loginUserAvatarUrl = useLoginUserAvatar();
   const { displayName, avatarUrl, initial, isPublicView, publicCreatorId } =
     useCreatorChannelProfile();
   const brandName = displayName;
@@ -113,12 +125,34 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       </GenericButton>
     </>
   );
-
+  const mobileProfileTrigger = (
+    <MobileProfileTriggerButton type="button" aria-label={t(NAV.profileMenu)}>
+      {storedUser ? (
+        <MobileProfileTriggerAvatar>
+          <CreatorChannelAvatar
+            avatarUrl={loginUserAvatarUrl}
+            initial={getLoginUserFirstLetter(storedUser)}
+            alt={t(NAV.profileMenu)}
+            sizes="36px"
+            initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
+          />
+        </MobileProfileTriggerAvatar>
+      ) : (
+        <ThreeDotIcon />
+      )}
+    </MobileProfileTriggerButton>
+  );
   return (
     <NavBar
       {...profileNavShellProps}
       brand={brand}
       items={showNavItems ? navItems : []}
+      mobileDrawerItems={showNavItems ? navItems : []}
+      mobileDrawerTrigger={mobileProfileTrigger}
+      mobileDrawerSide={DRAWER_SIDE.RIGHT}
+      mobileDrawerVariant={DRAWER_VARIANT.DROPDOWN}
+      mobileDrawerRouteActiveItems={true}
+      hideMobileHamburger={true}
       routeActiveItems={showNavItems}
       navBefore={hasSearch ? <ProfileChannelSearch /> : undefined}
       navTextTone={navTextTone}

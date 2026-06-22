@@ -1,7 +1,12 @@
 import type { ReactNode } from "react";
 import type { TabbedHeroState } from "@/hooks/useTabbedHeroState";
 import type { NavItem } from "@/utils/navItems";
-import { TONE_DARK, TONE_LIGHT } from "@/utils/Constants";
+import {
+  TONE_DARK,
+  TONE_LIGHT,
+  DrawerSide,
+  DrawerVariant,
+} from "@/utils/Constants";
 
 export type HeroTabsProps = Pick<
   TabbedHeroState,
@@ -49,6 +54,12 @@ export type NavBarProps = {
   navAfter?: ReactNode;
   actions?: ReactNode;
   routeActiveItems?: boolean;
+  mobileDrawerItems?: NavBarItem[];
+  mobileDrawerTrigger?: ReactNode;
+  mobileDrawerSide?: DrawerSide;
+  mobileDrawerVariant?: DrawerVariant;
+  mobileDrawerRouteActiveItems?: boolean;
+  hideMobileHamburger?: boolean;
 };
 
 export const VIEWER_PROFILE_FIELDS = {

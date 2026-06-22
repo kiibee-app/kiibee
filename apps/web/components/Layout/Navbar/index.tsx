@@ -38,6 +38,7 @@ import {
   NavAccountTriggerWrap,
   HamburgerButton,
   HamburgerLine,
+  MobileDrawerTriggerWrap,
   DrawerOverlay,
   DrawerPanel,
   DrawerContent,
@@ -61,6 +62,8 @@ import {
   VARIANT,
   TONE_DARK,
   TONE_LIGHT,
+  DRAWER_SIDE,
+  DRAWER_VARIANT,
 } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
@@ -227,11 +230,19 @@ export default function NavBar({
   navAfter,
   actions,
   routeActiveItems = false,
+  mobileDrawerItems,
+  mobileDrawerTrigger,
+  mobileDrawerSide = DRAWER_SIDE.LEFT,
+  mobileDrawerVariant = DRAWER_VARIANT.DRAWER,
+  mobileDrawerRouteActiveItems = routeActiveItems,
+  hideMobileHamburger = false,
 }: NavBarProps) {
   const { t } = useTranslation();
+  const router = useRouter();
   const pathname = usePathname();
   const dashboardPath = useSessionDashboardPath();
   const isLoggedIn = Boolean(dashboardPath);
+  const { logout: logoutFromNav, isPending: isLogoutPending } = useLogout();
   const loginButtonHref = PATHS.AUTH_LOGIN;
   const renderItemLabel = (item: NavBarItem) => item.label ?? t(item.key);
   const [openMegaKey, setOpenMegaKey] = useState<string | null>(null);
@@ -256,6 +267,7 @@ export default function NavBar({
   const [mobileOpenSubKeys, setMobileOpenSubKeys] = useState<
     Record<string, boolean>
   >({});
+  const drawerItems = mobileDrawerItems ?? items;
   const sidebarExpanded =
     sidebarState.pathname === pathname && sidebarState.expanded;
   const toggleSidebar = () => {
@@ -267,6 +279,16 @@ export default function NavBar({
   const collapseSidebar = () => {
     setSidebarState({ pathname, expanded: false });
   };
+  const handleDrawerDashboard = () => {
+    if (!dashboardPath) return;
+    collapseSidebar();
+    router.push(dashboardPath);
+  };
+  const handleDrawerLogout = () => {
+    if (isLogoutPending) return;
+    collapseSidebar();
+    void logoutFromNav();
+  };
 
   const toggleMobileSubMenu = (key: string) => {
     setMobileOpenSubKeys((prev) => ({
@@ -276,11 +298,18 @@ export default function NavBar({
   };
 
   const routeActiveKey = useMemo(() => {
-    if (!routeActiveItems) return null;
-    const explicit = items.find((item) => item.isActive)?.key;
+    if (!routeActiveItems && !mobileDrawerRouteActiveItems) return null;
+    const activeRouteItems = routeActiveItems ? items : drawerItems;
+    const explicit = activeRouteItems.find((item) => item.isActive)?.key;
     if (explicit) return explicit;
-    return findActiveNavItemKey(pathname, items);
-  }, [items, pathname, routeActiveItems]);
+    return findActiveNavItemKey(pathname, activeRouteItems);
+  }, [
+    drawerItems,
+    items,
+    mobileDrawerRouteActiveItems,
+    pathname,
+    routeActiveItems,
+  ]);
   const navRef = useRef<HTMLElement | null>(null);
   const actionsRef = useRef<HTMLDivElement | null>(null);
   const megaMenuRef = useRef<HTMLDivElement | null>(null);
@@ -476,7 +505,8 @@ export default function NavBar({
     ) : null;
 
   const renderDrawerItem = (item: NavBarItem) => {
-    const isRouteActive = routeActiveItems && getRouteActiveState(item);
+    const isRouteActive =
+      mobileDrawerRouteActiveItems && getRouteActiveState(item);
     const isSubMenuOpen = Boolean(mobileOpenSubKeys[item.key]);
 
     if (item.children?.length) {
@@ -531,15 +561,18 @@ export default function NavBar({
     >
       <Inner style={innerStyle}>
         <Left>
-          <HamburgerButton
-            type="button"
-            onClick={toggleSidebar}
-            aria-label={t(DASHBOARD.toggleSidebar)}
-          >
-            <HamburgerLine />
-            <HamburgerLine />
-            <HamburgerLine />
-          </HamburgerButton>
+          {!hideMobileHamburger && (
+            <HamburgerButton
+              type="button"
+              onClick={toggleSidebar}
+              aria-label={t(DASHBOARD.toggleSidebar)}
+              aria-expanded={sidebarExpanded}
+            >
+              <HamburgerLine />
+              <HamburgerLine />
+              <HamburgerLine />
+            </HamburgerButton>
+          )}
           {brand ?? (
             <Logo>
               <Link href={PATHS.HOME}>
@@ -618,6 +651,12 @@ export default function NavBar({
             ))
           )}
         </Actions>
+
+        {mobileDrawerTrigger && (
+          <MobileDrawerTriggerWrap onClick={toggleSidebar}>
+            {mobileDrawerTrigger}
+          </MobileDrawerTriggerWrap>
+        )}
       </Inner>
 
       {!routeActiveItems && activeItem && activeItem.children && (
@@ -650,18 +689,58 @@ export default function NavBar({
         </MegaMenu>
       )}
 
-      <DrawerOverlay $open={sidebarExpanded} onClick={collapseSidebar} />
-      <DrawerPanel $open={sidebarExpanded}>
+      <DrawerOverlay
+        $open={sidebarExpanded}
+        $variant={mobileDrawerVariant}
+        onClick={collapseSidebar}
+      />
+      <DrawerPanel
+        $open={sidebarExpanded}
+        $side={mobileDrawerSide}
+        $variant={mobileDrawerVariant}
+      >
         <DrawerContent>
-          <DrawerMenu>
-            {items.map((item) => (
-              <DrawerMenuItem key={item.key}>
-                {renderDrawerItem(item)}
-              </DrawerMenuItem>
-            ))}
-          </DrawerMenu>
-          <DrawerActions>
-            {isLoggedIn && dashboardPath ? (
+          {drawerItems.length > 0 && (
+            <DrawerMenu>
+              {drawerItems.map((item) => (
+                <DrawerMenuItem key={item.key}>
+                  {renderDrawerItem(item)}
+                </DrawerMenuItem>
+              ))}
+            </DrawerMenu>
+          )}
+          <DrawerActions $showDivider={drawerItems.length > 0}>
+            {isLoggedIn &&
+            dashboardPath &&
+            mobileDrawerVariant === DRAWER_VARIANT.DROPDOWN ? (
+              <>
+                <NavAccountMenuItem
+                  href={dashboardPath}
+                  role="menuitem"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleDrawerDashboard();
+                  }}
+                >
+                  <NavAccountMenuIcon aria-hidden>
+                    <HomeIcon width={18} height={18} />
+                  </NavAccountMenuIcon>
+                  {t(NAV.dashboard)}
+                </NavAccountMenuItem>
+                <NavAccountMenuDivider />
+                <NavAccountMenuButton
+                  type="button"
+                  role="menuitem"
+                  onClick={handleDrawerLogout}
+                  disabled={isLogoutPending}
+                >
+                  <NavAccountMenuIcon aria-hidden>
+                    <LogoutIcon width={18} height={18} />
+                  </NavAccountMenuIcon>
+                  {t(NAV.logout)}
+                </NavAccountMenuButton>
+              </>
+            ) : isLoggedIn && dashboardPath ? (
               <NavAccountMenu dashboardPath={dashboardPath} />
             ) : (
               (actions ?? (
