@@ -33,11 +33,15 @@ import {
   LANDING_REVEAL_VARIANTS,
 } from "@/utils/landingUtils";
 import { IMAGE_SIZES } from "@/utils/landingShared";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 
 export default function PricingPage() {
   const { t } = useTranslation();
   const router = useRouter();
   const { heroRef, ctaRef, navTextTone } = usePricingNavTone();
+
+  const user = useStoredLoginUser();
+  const isLoggedIn = !!user;
 
   return (
     <PageContainer>
@@ -79,9 +83,13 @@ export default function PricingPage() {
               <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>
                 <PrimaryButton
                   type="button"
-                  onClick={() => router.push(PATHS.AUTH_SIGNUP_CREATOR)}
+                  onClick={() =>
+                    router.push(
+                      isLoggedIn ? PATHS.EXPLORE : PATHS.AUTH_SIGNUP_CREATOR,
+                    )
+                  }
                 >
-                  {t("pricingPage.cta")}
+                  {isLoggedIn ? t("how.cta") : t("pricingPage.cta")}
                 </PrimaryButton>
               </ScrollReveal>
             </Content>
@@ -97,8 +105,8 @@ export default function PricingPage() {
             t("startCreating.description1"),
             t("startCreating.description2"),
           ]}
-          ctaText={t("startCreating.cta")}
-          ctaHref={PATHS.AUTH_SIGNUP_CREATOR}
+          ctaText={isLoggedIn ? t("how.cta") : t("startCreating.cta")}
+          ctaHref={isLoggedIn ? PATHS.EXPLORE : PATHS.AUTH_SIGNUP_CREATOR}
         />
       </Main>
       <Footer />

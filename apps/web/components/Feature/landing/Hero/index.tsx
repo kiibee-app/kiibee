@@ -3,6 +3,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { HERO } from "@/utils/translationKeys";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
   Hero,
   Inner,
@@ -32,6 +33,8 @@ import {
 
 export default function HeroSection() {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
+  const isLoggedIn = !!user;
   return (
     <Hero>
       <Background>
@@ -75,10 +78,10 @@ export default function HeroSection() {
             <CTAWrap>
               <GenericButton
                 asAnchor
-                href={PATHS.AUTH_SIGNUP}
+                href={isLoggedIn ? PATHS.EXPLORE : PATHS.AUTH_SIGNUP}
                 variant={VARIANT.PRIMARY}
               >
-                {t(HERO.cta)}
+                {isLoggedIn ? t("how.cta") : t(HERO.cta)}
               </GenericButton>
             </CTAWrap>
           </ScrollReveal>

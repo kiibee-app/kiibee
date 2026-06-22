@@ -137,11 +137,12 @@ export const SingleActionButton = styled(GenericButton).attrs({
   grid-column: 1 / -1;
 `;
 
-export const BottomCtaSection = styled.div`
-  max-width: 640px;
+export const BottomCtaSection = styled.div<{ $isSingle?: boolean }>`
+  max-width: ${({ $isSingle }) => ($isSingle ? "320px" : "640px")};
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: ${({ $isSingle }) =>
+    $isSingle ? "1fr" : "repeat(2, minmax(0, 1fr))"};
   gap: 1rem;
 
   ${media.tablet} {
