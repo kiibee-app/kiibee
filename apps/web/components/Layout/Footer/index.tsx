@@ -19,6 +19,7 @@ import {
   LinkRow,
   BottomLink,
   PaymentCardImage,
+  LinkGroup,
 } from "./styles";
 import logo from "../../../assets/images/kiibee-logo.svg";
 import card from "../../../assets/images/card.webp";
@@ -80,26 +81,30 @@ const Footer = () => {
         <BottomLeft>{t("footer.copyright", { year })}</BottomLeft>
         <BottomRight>
           <LinkRow>
-            <BottomLink href="/privacy-policy">
-              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-                {t("footer.privacyPolicy")}
-              </MonoText>
-            </BottomLink>
-            <BottomLink href="/terms-of-service">
-              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-                {t("footer.termsOfService")}
-              </MonoText>
-            </BottomLink>
-            <BottomLink href="/cookie-settings">
-              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-                {t("footer.cookieSettings")}
-              </MonoText>
-            </BottomLink>
-            <BottomLink href="/subscription-terms">
-              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-                {t("footer.subscriptionTerms")}
-              </MonoText>
-            </BottomLink>
+            <LinkGroup>
+              <BottomLink href="/privacy-policy">
+                <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                  {t("footer.privacyPolicy")}
+                </MonoText>
+              </BottomLink>
+              <BottomLink href="/terms-of-service">
+                <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                  {t("footer.termsOfService")}
+                </MonoText>
+              </BottomLink>
+            </LinkGroup>
+            <LinkGroup>
+              <BottomLink href="/cookie-settings">
+                <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                  {t("footer.cookieSettings")}
+                </MonoText>
+              </BottomLink>
+              <BottomLink href="/subscription-terms">
+                <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                  {t("footer.subscriptionTerms")}
+                </MonoText>
+              </BottomLink>
+            </LinkGroup>
           </LinkRow>
           <CardWrapper>
             <PaymentCardImage
