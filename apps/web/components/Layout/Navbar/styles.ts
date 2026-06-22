@@ -567,7 +567,7 @@ export const DrawerPanel = styled.aside<{
       $variant === "dropdown" &&
       css`
         top: calc(
-          var(--navbar-height, 73px) + var(--navbar-top-offset, 0px) + 8px
+          var(--navbar-height, 73px) + var(--navbar-top-offset, 0px) - 6px
         );
         left: auto;
         right: 16px;
