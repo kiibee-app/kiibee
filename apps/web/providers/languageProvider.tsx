@@ -15,11 +15,9 @@ import {
   SUPPORTED_LANGS,
   RESOURCE_NAMESPACE,
   LANGUAGE_CHANGED_EVENT,
-  STORAGE_KEY,
 } from "@/utils/common";
 import {
   normalizeAppLanguage,
-  persistAppLanguage,
   syncDocumentLanguage,
   type AppLanguage,
 } from "@/utils/language";
@@ -61,34 +59,20 @@ export function LanguageProvider({
   const i18nInstance = useMemo(() => createI18nInstance(lang), [lang]);
 
   useEffect(() => {
-    const onLangChange = (nextLang: string) => {
-      syncDocumentLanguage(nextLang);
-    };
-
-    const fromStorage = localStorage.getItem(STORAGE_KEY);
-    const preferred =
-      fromStorage && SUPPORTED_LANGS.includes(fromStorage)
-        ? normalizeAppLanguage(fromStorage)
-        : lang;
-
     const active = normalizeAppLanguage(
       i18nInstance.resolvedLanguage || i18nInstance.language,
     );
+    syncDocumentLanguage(active);
 
-    if (preferred !== active) {
-      if (preferred !== lang) {
-        persistAppLanguage(preferred);
-      }
-      void i18nInstance.changeLanguage(preferred);
-    } else {
-      syncDocumentLanguage(active);
-    }
+    const onLangChange = (nextLang: string) => {
+      syncDocumentLanguage(nextLang);
+    };
 
     i18nInstance.on(LANGUAGE_CHANGED_EVENT, onLangChange);
     return () => {
       i18nInstance.off(LANGUAGE_CHANGED_EVENT, onLangChange);
     };
-  }, [i18nInstance, lang]);
+  }, [i18nInstance]);
 
   return <I18nextProvider i18n={i18nInstance}>{children}</I18nextProvider>;
 }

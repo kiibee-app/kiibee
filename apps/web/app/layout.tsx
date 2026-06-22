@@ -14,7 +14,7 @@ import {
   TWITTER_CARD_SUMMARY_LARGE_IMAGE,
   WEBSITE,
 } from "@/utils/Constants";
-import { STORAGE_KEY } from "@/utils/common";
+import { STORAGE_KEY, SYNC_LANGUAGE_SCRIPT } from "@/utils/common";
 import { normalizeAppLanguage } from "@/utils/language";
 
 const geistSans = Geist({
@@ -59,6 +59,11 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: SYNC_LANGUAGE_SCRIPT,
+          }}
+        />
         <ThemeProvider>
           <QueryProvider>
             <LanguageProvider initialLang={initialLang}>
