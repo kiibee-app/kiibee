@@ -278,7 +278,10 @@ export const ColumnItem = styled.a`
   }
 `;
 
-export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
+export const Actions = styled.div<{
+  $textTone: "dark" | "light";
+  $showOnMobile?: boolean;
+}>`
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -333,9 +336,13 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
     transform: none;
   }
 
-  ${media.mobileMd} {
-    display: none;
-  }
+  ${({ $showOnMobile }) =>
+    !$showOnMobile &&
+    css`
+      ${media.mobileMd} {
+        display: none;
+      }
+    `}
 `;
 
 export const NavAccountHost = styled.div<{ $open?: boolean }>`

@@ -60,6 +60,7 @@ export type NavBarProps = {
   mobileDrawerVariant?: DrawerVariant;
   mobileDrawerRouteActiveItems?: boolean;
   hideMobileHamburger?: boolean;
+  showActionsOnMobile?: boolean;
 };
 
 export const VIEWER_PROFILE_FIELDS = {
