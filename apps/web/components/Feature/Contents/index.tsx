@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "next/navigation";
 import { GenericModal } from "@/components/UI/Modals";
@@ -43,6 +43,7 @@ import { AppearanceFormProvider } from "./Appearance/AppearanceFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
 import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
+import { useAutoMatchedQuery } from "@/hooks/useAutoMatchedQuery";
 import {
   SCROLL_OPTIONS,
   UI_TITLE_FALLBACK,
@@ -184,18 +185,8 @@ function CreatorsContentsInner() {
       },
     ];
   }, [t, collections, collectionContents, couponResponse]);
-  const lastAutoMatchedQueryRef = useRef("");
-
-  const handleSearchChange = useCallback(
-    (value: string) => {
-      if (!value.trim()) {
-        lastAutoMatchedQueryRef.current = "";
-      }
-
-      setSearchValue(value);
-    },
-    [setSearchValue],
-  );
+  const { lastAutoMatchedQueryRef, handleSearchChange } =
+    useAutoMatchedQuery(setSearchValue);
 
   useEffect(() => {
     if (selectedCollection) return;
@@ -243,6 +234,7 @@ function CreatorsContentsInner() {
     searchValue,
     activeTab,
     selectedCollection,
+    lastAutoMatchedQueryRef,
     setActiveTabAndQuery,
     CONTENTS_TABS_INDEX,
   ]);

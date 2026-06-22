@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { findElement } from "@/utils/searchHelper";
 import { MonoText } from "@/components/UI/Monotext";
 import {
@@ -26,6 +26,7 @@ import {
 import { EXPORT_TYPE_OPTIONS } from "@/utils/exportOptions";
 import { SETTINGS as SETTINGS_KEYS_CONST } from "@/utils/translationKeys";
 import { NOTIFICATION_MODAL, NotificationModalType } from "@/utils/ui";
+import { useAutoMatchedQuery } from "@/hooks/useAutoMatchedQuery";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import {
   CONTENT_TAB,
@@ -110,15 +111,8 @@ export default function SettingsContent() {
       },
     ];
   }, [t]);
-  const lastAutoMatchedQueryRef = useRef("");
-
-  const handleSearchChange = useCallback((value: string) => {
-    if (!value.trim()) {
-      lastAutoMatchedQueryRef.current = "";
-    }
-
-    setSearchValue(value);
-  }, []);
+  const { lastAutoMatchedQueryRef, handleSearchChange } =
+    useAutoMatchedQuery(setSearchValue);
 
   useEffect(() => {
     if (!searchValue || searchValue.trim().length < 2) return;
@@ -161,7 +155,13 @@ export default function SettingsContent() {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [searchValue, activeTab, setActiveTabAndQuery, SETTINGS_TABS_INDEX]);
+  }, [
+    searchValue,
+    activeTab,
+    lastAutoMatchedQueryRef,
+    setActiveTabAndQuery,
+    SETTINGS_TABS_INDEX,
+  ]);
 
   const isNotificationTab = useMemo(
     () => activeTab === TAB_KEYS.notifications,
