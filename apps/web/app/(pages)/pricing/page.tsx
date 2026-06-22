@@ -13,7 +13,6 @@ import pricingHeroImage from "@/assets/images/pricing/pricing-hero.webp";
 import ctaImage from "@/assets/images/cta-buttom1.webp";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
   Background,
   Container,
@@ -33,10 +32,12 @@ import {
   LANDING_REVEAL_VARIANTS,
 } from "@/utils/landingUtils";
 import { IMAGE_SIZES } from "@/utils/landingShared";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 
 export default function PricingPage() {
   const { t } = useTranslation();
   const router = useRouter();
+
   const user = useStoredLoginUser();
   const isLoggedIn = !!user;
 
