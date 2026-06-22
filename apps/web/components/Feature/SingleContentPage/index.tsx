@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { pathLoginWithNext } from "@/utils/path";
+import { PATHS, pathLoginWithNext } from "@/utils/path";
 import {
   ACCESS_TYPE_FREE,
   ACCESS_KEYWORD_EN,
@@ -22,7 +23,16 @@ import {
   SingleContentHero,
   SingleContentTopBar,
 } from "./ContentSections";
-import { Card, ContentLayout, Wrapper } from "./styles";
+import {
+  Card,
+  ContentLayout,
+  Wrapper,
+  ModalContentWrapper,
+  ModalDescription,
+} from "./styles";
+import { GenericModal } from "@/components/UI/Modals";
+import { MonoText } from "@/components/UI/Monotext";
+import { MODAL_ALIGN } from "@/utils/ui";
 import type {
   SingleContentPageProps,
   SingleContentAction,
@@ -62,8 +72,22 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     accessGate,
   } = props;
   const router = useRouter();
+  const { t } = useTranslation();
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const handleLoginRedirect = () => {
+    setShowLoginModal(false);
+    router.push(
+      pathLoginWithNext(window.location.pathname + window.location.search),
+    );
+  };
+
+  const handleSignupRedirect = () => {
+    setShowLoginModal(false);
+    router.push(PATHS.AUTH_SIGNUP);
+  };
 
   type CreateOrderPayload = {
     contentId: string;
@@ -107,11 +131,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
           if (!user?.id) {
-            router.push(
-              pathLoginWithNext(
-                window.location.pathname + window.location.search,
-              ),
-            );
+            setShowLoginModal(true);
             return;
           }
 
@@ -180,9 +200,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     const isLoggedIn = Boolean(user && user.id);
 
     if (isPaid && !isLoggedIn) {
-      router.push(
-        pathLoginWithNext(window.location.pathname + window.location.search),
-      );
+      setShowLoginModal(true);
     }
   };
 
@@ -296,6 +314,32 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         contentId={contentId}
         loading={createOrderMutation.isPending}
       />
+
+      <GenericModal
+        visible={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onCancel={handleLoginRedirect}
+        onConfirm={handleSignupRedirect}
+        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
+        confirmLabel={t(
+          "createProfileHome.latestUpload.loginModal.confirmLabel",
+        )}
+        buttonRow
+        buttonAlign={MODAL_ALIGN.CENTER}
+        fullWidthButtons={false}
+        size="md"
+        spacing="start"
+        showCloseButton
+      >
+        <ModalContentWrapper>
+          <MonoText $use="Heading3">
+            {t("createProfileHome.latestUpload.loginModal.title")}
+          </MonoText>
+          <ModalDescription>
+            {t("createProfileHome.latestUpload.loginModal.message")}
+          </ModalDescription>
+        </ModalContentWrapper>
+      </GenericModal>
     </Wrapper>
   );
 }

@@ -639,3 +639,25 @@ export const PurchaseModalPriceValue = styled.span`
 export const PurchaseModalButtonWrapper = styled.div`
   padding: 0 1.5rem 1.5rem;
 `;
+
+export const ModalContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px 24px;
+  box-sizing: border-box;
+  gap: 10px;
+
+  ${media.tablet} {
+    padding: 32px 16px 16px;
+  }
+`;
+
+export const ModalDescription = styled.p`
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  max-width: 420px;
+  line-height: 1.6;
+  margin: 0;
+`;
