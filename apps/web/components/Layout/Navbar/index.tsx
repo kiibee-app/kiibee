@@ -65,7 +65,7 @@ import {
   DRAWER_SIDE,
   DRAWER_VARIANT,
 } from "@/utils/Constants";
-import { PATHS } from "@/utils/path";
+import { PATHS, pathLoginWithNext } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
 import { findActiveNavItemKey } from "@/utils/creatorChannel";
 import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
@@ -240,10 +240,14 @@ export default function NavBar({
   const { t } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
   const dashboardPath = useSessionDashboardPath();
   const isLoggedIn = Boolean(dashboardPath);
   const { logout: logoutFromNav, isPending: isLogoutPending } = useLogout();
-  const loginButtonHref = PATHS.AUTH_LOGIN;
+  const loginButtonHref =
+    isMounted && typeof window !== "undefined"
+      ? pathLoginWithNext(window.location.pathname + window.location.search)
+      : PATHS.AUTH_LOGIN;
   const renderItemLabel = (item: NavBarItem) => item.label ?? t(item.key);
   const [openMegaKey, setOpenMegaKey] = useState<string | null>(null);
   const [renderedMegaKey, setRenderedMegaKey] = useState<string | null>(null);
@@ -254,7 +258,6 @@ export default function NavBar({
     pathname,
     expanded: false,
   });
-  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const handle = requestAnimationFrame(() => {

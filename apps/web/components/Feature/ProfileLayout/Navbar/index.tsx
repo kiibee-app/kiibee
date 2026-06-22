@@ -8,7 +8,7 @@ import {
   getPublicCreatorProfilePath,
   CREATOR_LAYOUTS,
 } from "@/utils/creatorChannel";
-import { PATHS } from "@/utils/path";
+import { PATHS, pathLoginWithNext } from "@/utils/path";
 import { CREATE_PROFILE_HOME, NAV } from "@/utils/translationKeys";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
@@ -107,13 +107,14 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
     </Brand>
   );
 
+  const loginHref =
+    typeof window !== "undefined"
+      ? pathLoginWithNext(window.location.pathname + window.location.search)
+      : PATHS.AUTH_LOGIN;
+
   const actions = (
     <>
-      <GenericButton
-        asAnchor
-        href={PATHS.AUTH_LOGIN}
-        variant={VARIANT.SECONDARY}
-      >
+      <GenericButton asAnchor href={loginHref} variant={VARIANT.SECONDARY}>
         {t(NAV.login)}
       </GenericButton>
       <GenericButton

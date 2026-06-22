@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { PATHS } from "@/utils/path";
+import { pathLoginWithNext } from "@/utils/path";
 import {
   ACCESS_TYPE_FREE,
   ACCESS_KEYWORD_EN,
@@ -107,7 +107,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
           if (!user?.id) {
-            router.push(PATHS.AUTH_LOGIN);
+            router.push(
+              pathLoginWithNext(
+                window.location.pathname + window.location.search,
+              ),
+            );
             return;
           }
 
@@ -176,7 +180,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     const isLoggedIn = Boolean(user && user.id);
 
     if (isPaid && !isLoggedIn) {
-      router.push(PATHS.AUTH_LOGIN);
+      router.push(
+        pathLoginWithNext(window.location.pathname + window.location.search),
+      );
     }
   };
 

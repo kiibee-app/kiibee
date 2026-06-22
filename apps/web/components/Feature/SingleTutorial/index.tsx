@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
-import { PATHS } from "@/utils/path";
+import { pathLoginWithNext } from "@/utils/path";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { TutorialVideo } from "@/utils/types";
 import logo from "@/assets/images/logo.png";
@@ -37,7 +37,9 @@ export default function SingleTutorial({
     const isPaid = tutorial.level !== ADMISSION_REQUIREMENT_FREE;
     const isLoggedIn = Boolean(user && user.id);
     if (isPaid && !isLoggedIn) {
-      router.push(PATHS.AUTH_LOGIN);
+      router.push(
+        pathLoginWithNext(window.location.pathname + window.location.search),
+      );
     }
   };
   const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
