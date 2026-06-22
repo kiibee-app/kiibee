@@ -5,11 +5,15 @@ import { MonoText } from "@/components/UI/Monotext";
 export const AvatarImage = styled(Image)`
   object-fit: cover;
   object-position: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export const RemoteAvatarImage = styled.img`
   object-fit: cover;
   object-position: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export const AvatarInitial = styled(MonoText)`

@@ -5,6 +5,8 @@ import { MonoText } from "@/components/UI/Monotext";
 const imageCoverStyles = css`
   object-fit: cover;
   object-position: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export const HeroWrapper = styled.section`
@@ -370,6 +372,10 @@ export const HeroMedia = styled.div`
 
   img {
     filter: saturate(0.95) contrast(0.96);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   ${({ theme }) => theme.media.mobileMd} {
