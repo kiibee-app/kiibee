@@ -21,6 +21,10 @@ export const HeaderWrapper = styled.header`
   ${media.desktop} {
     padding: 12px 16px;
   }
+
+  ${media.mobileMd} {
+    padding: 12px 10px;
+  }
 `;
 
 export const Left = styled.div`
@@ -66,8 +70,11 @@ export const Right = styled.div`
   gap: 24px;
 
   ${media.tablet} {
-    position: absolute;
-    right: 12px;
+    gap: 12px;
+  }
+
+  ${media.mobileMd} {
+    gap: 8px;
   }
 `;
 
@@ -118,7 +125,7 @@ export const LogoButton = styled.button`
   cursor: pointer;
 `;
 export const ChannelText = styled(MonoText)`
-  ${media.tablet} {
+  ${media.mobile} {
     display: none;
   }
 `;
