@@ -62,6 +62,8 @@ import {
   VARIANT,
   TONE_DARK,
   TONE_LIGHT,
+  DRAWER_SIDE,
+  DRAWER_VARIANT,
 } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
@@ -230,8 +232,8 @@ export default function NavBar({
   routeActiveItems = false,
   mobileDrawerItems,
   mobileDrawerTrigger,
-  mobileDrawerSide = "left",
-  mobileDrawerVariant = "drawer",
+  mobileDrawerSide = DRAWER_SIDE.LEFT,
+  mobileDrawerVariant = DRAWER_VARIANT.DRAWER,
   mobileDrawerRouteActiveItems = routeActiveItems,
   hideMobileHamburger = false,
 }: NavBarProps) {
@@ -710,7 +712,7 @@ export default function NavBar({
           <DrawerActions $showDivider={drawerItems.length > 0}>
             {isLoggedIn &&
             dashboardPath &&
-            mobileDrawerVariant === "dropdown" ? (
+            mobileDrawerVariant === DRAWER_VARIANT.DROPDOWN ? (
               <>
                 <NavAccountMenuItem
                   href={dashboardPath}

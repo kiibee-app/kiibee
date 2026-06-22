@@ -18,6 +18,8 @@ import {
   VARIANT,
   TONE_DARK,
   TONE_LIGHT,
+  DRAWER_SIDE,
+  DRAWER_VARIANT,
 } from "@/utils/Constants";
 import NavBar from "@/components/Layout/Navbar";
 import {
@@ -147,8 +149,8 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       items={showNavItems ? navItems : []}
       mobileDrawerItems={showNavItems ? navItems : []}
       mobileDrawerTrigger={mobileProfileTrigger}
-      mobileDrawerSide="right"
-      mobileDrawerVariant="dropdown"
+      mobileDrawerSide={DRAWER_SIDE.RIGHT}
+      mobileDrawerVariant={DRAWER_VARIANT.DROPDOWN}
       mobileDrawerRouteActiveItems={true}
       hideMobileHamburger={true}
       routeActiveItems={showNavItems}
