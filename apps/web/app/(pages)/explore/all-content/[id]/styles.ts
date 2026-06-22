@@ -120,3 +120,31 @@ export const SortDropdownWrapper = styled.div`
     max-width: 280px;
   }
 `;
+
+export const LocalControls = styled.div`
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+
+  ${media.tablet} {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+`;
+
+export const LocalSearchBarContainer = styled.div`
+  width: 100%;
+  max-width: 31.6875rem;
+  display: flex;
+  justify-content: center;
+
+  ${media.tablet} {
+    max-width: 100%;
+    order: -1;
+    flex-basis: 100%;
+  }
+`;

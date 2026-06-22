@@ -23,7 +23,6 @@ import {
   Content,
   Title,
   HeroTitleText,
-  Controls,
 } from "@/components/Feature/ExploreCreators/Hero/styles";
 import {
   MainContent,
@@ -33,6 +32,8 @@ import {
   LoadMoreButton,
   LocalPageContainer,
   SortDropdownWrapper,
+  LocalControls,
+  LocalSearchBarContainer,
 } from "./styles";
 
 function AllContentExplorePageContent() {
@@ -158,7 +159,7 @@ function AllContentExplorePageContent() {
                 <Title>
                   <HeroTitleText>{title}</HeroTitleText>
                 </Title>
-                <Controls>
+                <LocalControls>
                   <CreatorFiltersControl
                     refs={filterRefs}
                     state={filterState}
@@ -170,11 +171,13 @@ function AllContentExplorePageContent() {
                     showButton={true}
                   />
 
-                  <SearchBar
-                    placeholder={t("creators.search")}
-                    value={searchValue}
-                    onChange={setSearchValue}
-                  />
+                  <LocalSearchBarContainer>
+                    <SearchBar
+                      placeholder={t("creators.search")}
+                      value={searchValue}
+                      onChange={setSearchValue}
+                    />
+                  </LocalSearchBarContainer>
 
                   <SortDropdownWrapper>
                     <SortDropdown
@@ -184,7 +187,7 @@ function AllContentExplorePageContent() {
                       label={t("creators.sort")}
                     />
                   </SortDropdownWrapper>
-                </Controls>
+                </LocalControls>
               </Content>
             </Inner>
           </Hero>
