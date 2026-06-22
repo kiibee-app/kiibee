@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import gsap from "gsap";
 import kiibeeLogo from "@/assets/images/kiibee-logo.svg";
 import {
@@ -46,6 +47,8 @@ registerGsapPlugins();
 
 export default function CallToAction() {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
+  const isLoggedIn = !!user;
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const renderCard = (card: CtaImageCard, index: number, mobile = false) => (
@@ -140,9 +143,11 @@ export default function CallToAction() {
             </MonoText>
           </Subtitle>
         </ScrollReveal>
-        <CTAButton asAnchor href={PATHS.AUTH_SIGNUP}>
-          {t("callToAction.cta")}
-        </CTAButton>
+        {!isLoggedIn && (
+          <CTAButton asAnchor href={PATHS.AUTH_SIGNUP}>
+            {t("callToAction.cta")}
+          </CTAButton>
+        )}
       </Content>
     </Section>
   );

@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import { API, useGetAPI } from "@/lib/http/api";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { type FeedContentItem } from "@/utils/feedContentToTutorial";
 import { mapFeedItemToDiscoverItem } from "@/utils/discoverContent";
 import {
@@ -28,6 +29,8 @@ type RecentContentResponse = {
 
 export default function DiscoverContent() {
   const { t, i18n } = useTranslation();
+  const user = useStoredLoginUser();
+  const isLoggedIn = !!user;
 
   const { data: recentData, isLoading } = useGetAPI<RecentContentResponse>(
     API.feed.recent,
@@ -64,10 +67,12 @@ export default function DiscoverContent() {
         ))}
       </GridContainer>
 
-      <BottomCtaSection>
-        <GenericButton asAnchor href={PATHS.AUTH_SIGNUP} size={SIZE.LG}>
-          {t("discoverContent.ctaPrimary")}
-        </GenericButton>
+      <BottomCtaSection $isSingle={isLoggedIn}>
+        {!isLoggedIn && (
+          <GenericButton asAnchor href={PATHS.AUTH_SIGNUP} size={SIZE.LG}>
+            {t("discoverContent.ctaPrimary")}
+          </GenericButton>
+        )}
         <GenericButton
           asAnchor
           href={PATHS.EXPLORE_CREATORS}
