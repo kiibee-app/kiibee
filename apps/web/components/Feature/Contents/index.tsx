@@ -500,7 +500,7 @@ function CreatorsContentsInner() {
             clearSelectedCollectionContentsOverride();
             handleUploadSuccess(tab, file, preview, createdId, details);
             if (createdId) {
-              syncContentIdToUrl(createdId);
+              syncContentIdToUrl(createdId, tab);
             }
           }}
         />
