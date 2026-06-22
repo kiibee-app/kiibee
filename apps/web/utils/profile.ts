@@ -49,6 +49,7 @@ export type NavBarProps = {
   navAfter?: ReactNode;
   actions?: ReactNode;
   routeActiveItems?: boolean;
+  hideHamburger?: boolean;
 };
 
 export const VIEWER_PROFILE_FIELDS = {

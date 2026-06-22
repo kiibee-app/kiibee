@@ -227,6 +227,7 @@ export default function NavBar({
   navAfter,
   actions,
   routeActiveItems = false,
+  hideHamburger = false,
 }: NavBarProps) {
   const { t } = useTranslation();
   const pathname = usePathname();
@@ -531,15 +532,17 @@ export default function NavBar({
     >
       <Inner style={innerStyle}>
         <Left>
-          <HamburgerButton
-            type="button"
-            onClick={toggleSidebar}
-            aria-label={t(DASHBOARD.toggleSidebar)}
-          >
-            <HamburgerLine />
-            <HamburgerLine />
-            <HamburgerLine />
-          </HamburgerButton>
+          {!hideHamburger && (
+            <HamburgerButton
+              type="button"
+              onClick={toggleSidebar}
+              aria-label={t(DASHBOARD.toggleSidebar)}
+            >
+              <HamburgerLine />
+              <HamburgerLine />
+              <HamburgerLine />
+            </HamburgerButton>
+          )}
           {brand ?? (
             <Logo>
               <Link href={PATHS.HOME}>
@@ -650,44 +653,48 @@ export default function NavBar({
         </MegaMenu>
       )}
 
-      <DrawerOverlay $open={sidebarExpanded} onClick={collapseSidebar} />
-      <DrawerPanel $open={sidebarExpanded}>
-        <DrawerContent>
-          <DrawerMenu>
-            {items.map((item) => (
-              <DrawerMenuItem key={item.key}>
-                {renderDrawerItem(item)}
-              </DrawerMenuItem>
-            ))}
-          </DrawerMenu>
-          <DrawerActions>
-            {isLoggedIn && dashboardPath ? (
-              <NavAccountMenu dashboardPath={dashboardPath} />
-            ) : (
-              (actions ?? (
-                <>
-                  <GenericButton
-                    className="login-btn"
-                    asAnchor
-                    href={loginButtonHref}
-                    variant={VARIANT.SECONDARY}
-                  >
-                    {t(NAV.login)}
-                  </GenericButton>
-                  <GenericButton
-                    className="start-btn"
-                    asAnchor
-                    href={PATHS.AUTH_SIGNUP}
-                    variant={VARIANT.PRIMARY}
-                  >
-                    {t(NAV.startCreating)}
-                  </GenericButton>
-                </>
-              ))
-            )}
-          </DrawerActions>
-        </DrawerContent>
-      </DrawerPanel>
+      {!hideHamburger && (
+        <>
+          <DrawerOverlay $open={sidebarExpanded} onClick={collapseSidebar} />
+          <DrawerPanel $open={sidebarExpanded}>
+            <DrawerContent>
+              <DrawerMenu>
+                {items.map((item) => (
+                  <DrawerMenuItem key={item.key}>
+                    {renderDrawerItem(item)}
+                  </DrawerMenuItem>
+                ))}
+              </DrawerMenu>
+              <DrawerActions>
+                {isLoggedIn && dashboardPath ? (
+                  <NavAccountMenu dashboardPath={dashboardPath} />
+                ) : (
+                  (actions ?? (
+                    <>
+                      <GenericButton
+                        className="login-btn"
+                        asAnchor
+                        href={loginButtonHref}
+                        variant={VARIANT.SECONDARY}
+                      >
+                        {t(NAV.login)}
+                      </GenericButton>
+                      <GenericButton
+                        className="start-btn"
+                        asAnchor
+                        href={PATHS.AUTH_SIGNUP}
+                        variant={VARIANT.PRIMARY}
+                      >
+                        {t(NAV.startCreating)}
+                      </GenericButton>
+                    </>
+                  ))
+                )}
+              </DrawerActions>
+            </DrawerContent>
+          </DrawerPanel>
+        </>
+      )}
     </Header>
   );
 }
