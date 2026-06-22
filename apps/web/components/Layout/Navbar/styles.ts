@@ -337,12 +337,25 @@ export const Actions = styled.div<{
   }
 
   ${({ $showOnMobile }) =>
-    !$showOnMobile &&
-    css`
-      ${media.mobileMd} {
-        display: none;
-      }
-    `}
+    $showOnMobile
+      ? css`
+          ${media.mobileMd} {
+            gap: 0.5rem;
+            margin-left: auto;
+
+            a,
+            button {
+              min-height: 30px;
+              padding: 4px 10px;
+              font-size: 12px;
+            }
+          }
+        `
+      : css`
+          ${media.mobileMd} {
+            display: none;
+          }
+        `}
 `;
 
 export const NavAccountHost = styled.div<{ $open?: boolean }>`
@@ -393,8 +406,8 @@ export const NavAccountDropdown = styled.div`
   ${media.mobileMd} {
     position: absolute;
     right: 0;
-    bottom: calc(100% + 10px);
-    top: auto;
+    top: calc(100% + 10px);
+    bottom: auto;
     z-index: 1200;
     animation: none;
 
