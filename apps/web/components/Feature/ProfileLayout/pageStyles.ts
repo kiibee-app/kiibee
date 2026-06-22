@@ -63,6 +63,8 @@ export const MobileProfileTriggerButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 36px;
+  height: 36px;
   border: none;
   background: transparent;
   cursor: pointer;
