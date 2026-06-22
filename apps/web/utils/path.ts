@@ -76,11 +76,7 @@ export function isSafePostLoginPath(
     path.startsWith(`${PATHS.DASHBOARD_CREATOR}/`) ||
     path === PATHS.DASHBOARD_VIEWER ||
     path.startsWith(`${PATHS.DASHBOARD_VIEWER}/`) ||
-    path.startsWith(`${PATHS.CREATOR_PROFILE}/`) ||
-    path === PATHS.EXPLORE ||
-    path.startsWith(`${PATHS.EXPLORE}/`) ||
-    path.startsWith("/creators/") ||
-    path.startsWith("/formats/")
+    path.startsWith(`${PATHS.CREATOR_PROFILE}/`)
   );
 }
 

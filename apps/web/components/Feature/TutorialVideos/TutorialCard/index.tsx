@@ -1,14 +1,8 @@
 "use client";
 
-import { memo, useMemo, useState, type MouseEvent } from "react";
+import { memo, useMemo, type MouseEvent } from "react";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
-import {
-  ActionRow,
-  CardLink,
-  VideoBox,
-  ModalContentWrapper,
-  ModalDescription,
-} from "./styles";
+import { ActionRow, CardLink, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
@@ -21,13 +15,9 @@ import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericCard from "@/components/UI/GenericCard";
-import { useRouter } from "next/navigation";
-import { PATHS, pathLoginWithNext, pathPublishedContent } from "@/utils/path";
+import { pathPublishedContent } from "@/utils/path";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
-import { authStorage } from "@/lib/auth/authStorage";
-import { GenericModal } from "@/components/UI/Modals";
-import { MODAL_ALIGN } from "@/utils/ui";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -56,21 +46,7 @@ function TutorialCard({
   isSelected = false,
 }: TutorialCardProps) {
   const { t } = useTranslation();
-  const router = useRouter();
   const { navigateToContent } = useProtectedContentNavigation();
-  const [showLoginModal, setShowLoginModal] = useState(false);
-
-  const handleLoginRedirect = () => {
-    setShowLoginModal(false);
-    router.push(
-      pathLoginWithNext(window.location.pathname + window.location.search),
-    );
-  };
-
-  const handleSignupRedirect = () => {
-    setShowLoginModal(false);
-    router.push(PATHS.AUTH_SIGNUP);
-  };
 
   const imageUrl = useMemo(
     () => resolveImageUrl(tutorial.image),
@@ -148,10 +124,6 @@ function TutorialCard({
   const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
     event.preventDefault();
     event.stopPropagation();
-    if (button.requiresAuth && !authStorage.hasSession()) {
-      setShowLoginModal(true);
-      return;
-    }
     navigateToContent(
       resolveButtonHref(button.href),
       button.requiresAuth ?? false,
@@ -225,53 +197,19 @@ function TutorialCard({
     </GenericCard>
   );
 
-  const modal = (
-    <GenericModal
-      visible={showLoginModal}
-      onClose={() => setShowLoginModal(false)}
-      onCancel={handleLoginRedirect}
-      onConfirm={handleSignupRedirect}
-      cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-      confirmLabel={t("createProfileHome.latestUpload.loginModal.confirmLabel")}
-      buttonRow
-      buttonAlign={MODAL_ALIGN.CENTER}
-      fullWidthButtons={false}
-      size="md"
-      spacing="start"
-      showCloseButton
-    >
-      <ModalContentWrapper>
-        <MonoText $use="Heading3">
-          {t("createProfileHome.latestUpload.loginModal.title")}
-        </MonoText>
-        <ModalDescription>
-          {t("createProfileHome.latestUpload.loginModal.message")}
-        </ModalDescription>
-      </ModalContentWrapper>
-    </GenericModal>
-  );
-
   if (isCardLinked) {
     return (
-      <>
-        <CardLink
-          href={singleTutorialHref}
-          $clickable
-          aria-label={tutorial.title}
-        >
-          {card}
-        </CardLink>
-        {modal}
-      </>
+      <CardLink
+        href={singleTutorialHref}
+        $clickable
+        aria-label={tutorial.title}
+      >
+        {card}
+      </CardLink>
     );
   }
 
-  return (
-    <>
-      {card}
-      {modal}
-    </>
-  );
+  return card;
 }
 
 export default memo(TutorialCard);
