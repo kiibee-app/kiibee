@@ -32,7 +32,7 @@ export default function ProfileCoverSection() {
     useCreatorChannelProfile();
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
-  const biography = about?.description || t(CREATE_PROFILE_HOME.description);
+  const biography = about?.description ?? "";
 
   return (
     <HeroWrapper>
