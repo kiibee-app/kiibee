@@ -30,6 +30,8 @@ export function useCreatorChannelProfile(enabled = true) {
   const isPublicView = Boolean(publicCreatorId);
 
   const storedUser = useStoredLoginUser();
+  const isOwnerOfPublicView =
+    isPublicView && storedUser?.id === publicCreatorId;
   const { creator: publicCreator, isLoading: isLoadingPublic } =
     useCreatorPublicProfile(publicCreatorId);
 
@@ -47,7 +49,7 @@ export function useCreatorChannelProfile(enabled = true) {
     API.content.appearance,
     undefined,
     {
-      enabled: enabled && !isPublicView,
+      enabled: enabled && (!isPublicView || isOwnerOfPublicView),
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -114,8 +116,15 @@ export function useCreatorChannelProfile(enabled = true) {
   const aboutData = useMemo(() => {
     if (isPublicView) {
       if (!publicCreator) return null;
+      const hasAppearance = isOwnerOfPublicView && appearanceQuery.data?.data;
+      const customDesc = hasAppearance
+        ? (appearanceQuery.data?.data?.description ?? "")
+        : undefined;
       return {
-        description: publicCreator.contentDescription ?? "",
+        description:
+          customDesc !== undefined
+            ? customDesc
+            : (publicCreator.contentDescription ?? ""),
         joinedDate: formatJoinedDate(publicCreator.createdAt),
         uploadCount: publicCreator.uploadCount ?? 0,
         websiteLink: publicCreator.exampleWorkLink ?? "",
@@ -124,10 +133,9 @@ export function useCreatorChannelProfile(enabled = true) {
 
     if (!profile) return null;
     return {
-      description:
-        appearanceQuery.data?.data?.description ||
-        profile.creatorInfo?.contentDescription ||
-        "",
+      description: appearanceQuery.data?.data
+        ? (appearanceQuery.data.data.description ?? "")
+        : (profile.creatorInfo?.contentDescription ?? ""),
       joinedDate: formatJoinedDate(profile.user?.createdAt),
       uploadCount: uploadCountPrivate,
       websiteLink: profile.creatorInfo?.exampleWorkLink ?? "",
@@ -138,6 +146,7 @@ export function useCreatorChannelProfile(enabled = true) {
     profile,
     uploadCountPrivate,
     appearanceQuery.data,
+    isOwnerOfPublicView,
   ]);
 
   return {

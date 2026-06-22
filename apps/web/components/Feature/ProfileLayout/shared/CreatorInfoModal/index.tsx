@@ -71,7 +71,7 @@ export default function CreatorInfoModal({
   const { share } = useShare();
 
   const title = displayName ?? "";
-  const body = about?.description || t(CREATE_PROFILE_HOME.description);
+  const body = about?.description ?? "";
   const joinedDate = about?.joinedDate ?? "";
   const uploadsCount = about?.uploadCount ?? 0;
   const links = about?.websiteLink ? [about.websiteLink] : [];

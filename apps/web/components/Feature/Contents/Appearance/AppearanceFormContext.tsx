@@ -6,6 +6,7 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
+import type { GetCreatorProfileResponse } from "@/hooks/auth/creatorProfileApi";
 import {
   mapAppearanceFromApi,
   mapAppearanceToApi,
@@ -17,6 +18,7 @@ import { resolveProfileAvatarUrl } from "@/utils/image";
 import type { AppearanceFormContextValue } from "./appearanceFormTypes";
 import { useAppearanceDraft } from "./useAppearanceDraft";
 import { useAppearanceValidation } from "./useAppearanceValidation";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 
 const AppearanceFormContext = createContext<AppearanceFormContextValue | null>(
   null,
@@ -29,14 +31,23 @@ export function AppearanceFormProvider({
 }) {
   const { setSelectedLayout } = useCreatorChannelLayout();
   const queryClient = useQueryClient();
+  const storedUser = useStoredLoginUser();
 
   const { data: appearanceResponse, isLoading } =
     useGetAPI<ContentAppearanceResponse>(API.content.appearance);
 
-  const serverValues = useMemo(
-    () => mapAppearanceFromApi(appearanceResponse?.data ?? null),
-    [appearanceResponse],
+  const { data: profileResponse } = useGetAPI<GetCreatorProfileResponse>(
+    API.auth.creatorProfile,
   );
+
+  const serverValues = useMemo(() => {
+    const apiData = appearanceResponse?.data;
+    const mapped = mapAppearanceFromApi(apiData ?? null);
+    if (!apiData && profileResponse?.data?.creatorInfo?.contentDescription) {
+      mapped.description = profileResponse.data.creatorInfo.contentDescription;
+    }
+    return mapped;
+  }, [appearanceResponse, profileResponse]);
   const {
     errors,
     clearFieldError,
@@ -83,11 +94,24 @@ export function AppearanceFormProvider({
 
     writeSavedCreatorLayout(values.layout);
     setSelectedLayout(values.layout);
+
+    const creatorId = storedUser?.id;
+    await Promise.all([
+      queryClient.invalidateQueries({
+        queryKey: [API.content.appearance],
+      }),
+      creatorId
+        ? queryClient.invalidateQueries({
+            queryKey: [API.creators.byId(creatorId)],
+          })
+        : Promise.resolve(),
+      queryClient.invalidateQueries({
+        queryKey: [API.creators.list],
+      }),
+    ]);
+
     resetDraft();
     resetErrors();
-    await queryClient.invalidateQueries({
-      queryKey: [API.content.appearance],
-    });
   }, [
     queryClient,
     resetDraft,
@@ -95,6 +119,7 @@ export function AppearanceFormProvider({
     setSelectedLayout,
     validateAll,
     values,
+    storedUser,
   ]);
 
   const cancelAppearance = useCallback(() => {

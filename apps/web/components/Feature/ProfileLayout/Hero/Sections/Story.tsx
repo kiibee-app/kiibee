@@ -28,7 +28,7 @@ export default function StorySection() {
   const { openAbout } = tabState;
   const { displayName, coverImageUrl, about } = useCreatorChannelProfile();
   const uploadsCount = about?.uploadCount ?? 0;
-  const biography = about?.description || t(CREATE_PROFILE_HOME.description);
+  const biography = about?.description ?? "";
 
   return (
     <HeroFrame>
