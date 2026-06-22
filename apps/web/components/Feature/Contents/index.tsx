@@ -306,12 +306,6 @@ function CreatorsContentsInner() {
   const searchParams = useSearchParams();
   const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
-  useEffect(() => {
-    if (!queryContentId && editingContent !== null) {
-      resetUploadState();
-    }
-  }, [queryContentId, editingContent, resetUploadState]);
-
   const handleCreate = useCallback(() => {
     resetUploadState();
     handleCreateClick();
@@ -335,6 +329,7 @@ function CreatorsContentsInner() {
     handleEditContent: handleEditContentWithUrl,
     handleSelectCollection,
     syncContentIdToUrl,
+    isStartingEditRef,
   } = useContentsUrlState({
     collections,
     selectedCollection,
@@ -343,6 +338,16 @@ function CreatorsContentsInner() {
     onBackStateOnly: handleBackToBaseStateOnly,
     activeTab,
   });
+
+  useEffect(() => {
+    if (
+      !queryContentId &&
+      editingContent !== null &&
+      !isStartingEditRef.current
+    ) {
+      resetUploadState();
+    }
+  }, [queryContentId, editingContent, resetUploadState, isStartingEditRef]);
 
   const handleSaveSuccessClose = () => {
     setShowSaveSuccessModal(false);

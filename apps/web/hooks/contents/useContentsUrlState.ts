@@ -44,8 +44,14 @@ export function useContentsUrlState({
   const isClearingParamsRef = useRef(false);
   const hasRestoredCollectionRef = useRef(false);
   const hasRestoredContentRef = useRef(false);
-
+  const isStartingEditRef = useRef(false);
   const effectiveContentId = queryContentId;
+
+  useEffect(() => {
+    if (queryContentId) {
+      isStartingEditRef.current = false;
+    }
+  }, [queryContentId]);
 
   const replaceQuery = useCallback(
     (updates: {
@@ -141,6 +147,7 @@ export function useContentsUrlState({
       )
         ? (activeTab as AddContentTab)
         : ADD_CONTENT_TABS.GENERAL;
+      isStartingEditRef.current = true;
       syncContentIdToUrl(id, nextUploadTab);
       onEditContent(id);
     },
@@ -180,5 +187,6 @@ export function useContentsUrlState({
     handleEditContent,
     handleSelectCollection,
     syncContentIdToUrl,
+    isStartingEditRef,
   };
 }
