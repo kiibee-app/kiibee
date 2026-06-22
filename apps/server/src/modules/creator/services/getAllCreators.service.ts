@@ -52,7 +52,15 @@ export const allCreatorsService = async ({
 
     const hasSearch = !!search?.trim();
 
-    const orderCondition = hasSearch
+    const hasImageSql = sql<number>`
+      CASE 
+        WHEN ${creatorChannels.coverImageUrl} IS NOT NULL AND trim(${creatorChannels.coverImageUrl}) <> '' THEN 1
+        WHEN ${users.avatarUrl} IS NOT NULL AND trim(${users.avatarUrl}) <> '' THEN 1
+        ELSE 0
+      END
+    `;
+
+    const primarySort = hasSearch
       ? desc(
           sql`
               CASE 
@@ -69,11 +77,14 @@ export const allCreatorsService = async ({
             ? desc(users.createdAt)
             : asc(creatorDisplayNameSql);
 
+    const orderCondition = [desc(hasImageSql), primarySort];
+
     const allCreators = await db
       .select({
         id: users.id,
         name: creatorDisplayNameSql.as('name'),
         profileImageUrl: users.avatarUrl,
+        coverImageUrl: creatorChannels.coverImageUrl,
         createdAt: users.createdAt,
         uploadCount: uploadCountSql,
         subscriberCount: subscriberCountSql,
@@ -116,11 +127,12 @@ export const allCreatorsService = async ({
         users.avatarUrl,
         users.createdAt,
         creatorChannels.name,
+        creatorChannels.coverImageUrl,
         contentAppearance.layout,
         userContentCategory.categoryIds,
         featureCreators.creatorId,
       )
-      .orderBy(orderCondition)
+      .orderBy(...orderCondition)
       .limit(limit ?? 24);
 
     const allCategoryIds = allCreators
@@ -148,6 +160,7 @@ export const allCreatorsService = async ({
         id: creator.id,
         name: creator.name,
         profileImageUrl: creator.profileImageUrl,
+        coverImageUrl: creator.coverImageUrl,
         createdAt: creator.createdAt,
         uploadCount: Number(creator.uploadCount ?? 0),
         subscriberCount: Number(creator.subscriberCount ?? 0),
