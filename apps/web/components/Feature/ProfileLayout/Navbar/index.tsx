@@ -23,6 +23,8 @@ import {
   Brand,
   BrandAvatar,
   BrandName,
+  MobileProfileTriggerAvatar,
+  MobileProfileTriggerButton,
 } from "@/components/Feature/ProfileLayout/pageStyles";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
@@ -113,12 +115,33 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       </GenericButton>
     </>
   );
-
+  const mobileProfileTrigger = (
+    <MobileProfileTriggerButton
+      type="button"
+      aria-label={t("common.creatorProfile")}
+    >
+      <MobileProfileTriggerAvatar>
+        <CreatorChannelAvatar
+          avatarUrl={avatarUrl}
+          initial={initial}
+          alt={brandName || t(CREATE_PROFILE_HOME.brandName)}
+          sizes="34px"
+          initialUse={CREATOR_CHANNEL_AVATAR_TEXT.NAVBAR}
+        />
+      </MobileProfileTriggerAvatar>
+    </MobileProfileTriggerButton>
+  );
   return (
     <NavBar
       {...profileNavShellProps}
       brand={brand}
       items={showNavItems ? navItems : []}
+      mobileDrawerItems={showNavItems ? navItems : []}
+      mobileDrawerTrigger={mobileProfileTrigger}
+      mobileDrawerSide="right"
+      mobileDrawerVariant="dropdown"
+      mobileDrawerRouteActiveItems={true}
+      hideMobileHamburger={true}
       routeActiveItems={showNavItems}
       navBefore={hasSearch ? <ProfileChannelSearch /> : undefined}
       navTextTone={navTextTone}

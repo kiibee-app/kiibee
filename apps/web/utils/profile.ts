@@ -49,6 +49,12 @@ export type NavBarProps = {
   navAfter?: ReactNode;
   actions?: ReactNode;
   routeActiveItems?: boolean;
+  mobileDrawerItems?: NavBarItem[];
+  mobileDrawerTrigger?: ReactNode;
+  mobileDrawerSide?: "left" | "right";
+  mobileDrawerVariant?: "drawer" | "dropdown";
+  mobileDrawerRouteActiveItems?: boolean;
+  hideMobileHamburger?: boolean;
 };
 
 export const VIEWER_PROFILE_FIELDS = {
