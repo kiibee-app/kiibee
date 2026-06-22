@@ -13,6 +13,7 @@ export const CreatorInfoContent = styled.div`
   scrollbar-width: none;
   -ms-overflow-style: none;
   padding-right: 4px;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 
   &::-webkit-scrollbar {
     display: none;
@@ -30,6 +31,7 @@ export const CreatorInfoHeader = styled.div`
 export const BodyText = styled.div`
   white-space: pre-line;
   margin: 0;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const CloseIconButton = styled.button`

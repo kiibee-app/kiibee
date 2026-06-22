@@ -194,6 +194,7 @@ export const CreatorBioText = styled.div`
   max-height: 2.4em;
   overflow: hidden;
   word-break: break-word;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
 `;
 
 export const MoreTextLabel = styled(MonoText).attrs(({ theme }) => ({
@@ -210,6 +211,7 @@ export const BioText = styled.div`
   max-height: 2.4em;
   overflow: hidden;
   word-break: break-word;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
 `;
 
 export const BioMoreButton = styled(MonoText).attrs(({ theme }) => ({
