@@ -1,4 +1,5 @@
 import { HeaderProps, NavStyleProps } from "@/utils/profile";
+import { TONE_DARK, TONE_LIGHT } from "@/utils/Constants";
 import styled, { css } from "styled-components";
 import Link from "next/link";
 import { media } from "@repo/ui/breakpoints";
@@ -188,7 +189,7 @@ export const NavButton = styled.button<{
 
 export const MegaMenu = styled.div<{
   $isOpen: boolean;
-  $textTone?: "dark" | "light";
+  $textTone?: typeof TONE_DARK | typeof TONE_LIGHT;
 }>`
   position: fixed;
   top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
@@ -279,7 +280,7 @@ export const ColumnItem = styled.a`
 `;
 
 export const Actions = styled.div<{
-  $textTone: "dark" | "light";
+  $textTone: typeof TONE_DARK | typeof TONE_LIGHT;
   $showOnMobile?: boolean;
 }>`
   display: flex;
