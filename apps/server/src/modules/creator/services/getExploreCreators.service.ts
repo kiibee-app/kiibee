@@ -111,7 +111,10 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
           'subscriber_count',
         ),
       createdAt: users.createdAt,
-      contentDescription: creatorInfo.contentDescription,
+      contentDescription: sql<string | null>`case
+        when ${contentAppearance.userId} is not null then ${contentAppearance.description}
+        else ${creatorInfo.contentDescription}
+      end`.as('content_description'),
       exampleWorkLink: creatorInfo.exampleWorkLink,
       accessType: contentSettings.accessType,
       layout: contentAppearance.layout,
