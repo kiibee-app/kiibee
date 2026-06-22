@@ -37,7 +37,7 @@ import { IMAGE_SIZES } from "@/utils/landingShared";
 export default function PricingPage() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { heroRef, navTextTone } = usePricingNavTone();
+  const { heroRef, ctaRef, navTextTone } = usePricingNavTone();
 
   return (
     <PageContainer>
@@ -90,6 +90,7 @@ export default function PricingPage() {
         <PricingPlansSection />
         <FaqSection />
         <CtaSection
+          sectionRef={ctaRef}
           bgImage={ctaImage}
           title={t("startCreating.heading")}
           subtitleLines={[

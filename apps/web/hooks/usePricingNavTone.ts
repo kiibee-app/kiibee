@@ -4,6 +4,7 @@ import { NAV_TONE as NAV_TEXT_TONE } from "@/types/exploreNavTone";
 
 type UsePricingNavToneResult = {
   heroRef: React.RefObject<HTMLElement | null>;
+  ctaRef: React.RefObject<HTMLElement | null>;
   navTextTone: NavTextTone;
 };
 
@@ -11,6 +12,7 @@ export function usePricingNavTone(
   headerTriggerY = 108,
 ): UsePricingNavToneResult {
   const heroRef = useRef<HTMLElement>(null);
+  const ctaRef = useRef<HTMLElement>(null);
   const [navTextTone, setNavTextTone] = useState<NavTextTone>(
     NAV_TEXT_TONE.LIGHT,
   );
@@ -20,9 +22,13 @@ export function usePricingNavTone(
       const heroBottom =
         heroRef.current?.getBoundingClientRect().bottom ??
         Number.NEGATIVE_INFINITY;
+      const ctaTop =
+        ctaRef.current?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
 
       setNavTextTone(
-        heroBottom > headerTriggerY ? NAV_TEXT_TONE.LIGHT : NAV_TEXT_TONE.DARK,
+        heroBottom > headerTriggerY || ctaTop <= headerTriggerY
+          ? NAV_TEXT_TONE.LIGHT
+          : NAV_TEXT_TONE.DARK,
       );
     };
 
@@ -36,5 +42,5 @@ export function usePricingNavTone(
     };
   }, [headerTriggerY]);
 
-  return { heroRef, navTextTone };
+  return { heroRef, ctaRef, navTextTone };
 }
