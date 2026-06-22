@@ -115,7 +115,7 @@ export default function GenericCard({
               alt={alt || "card image"}
               fill
               sizes="(max-width: 767px) 100vw, 50vw"
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", objectPosition: "center" }}
               priority={imagePriority}
               onError={() => setFailedImageKey(imageKey)}
             />

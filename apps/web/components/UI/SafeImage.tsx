@@ -22,6 +22,15 @@ export default function SafeImage(props: SafeImageProps) {
   return <SafeImageInner key={imageKey} {...props} />;
 }
 
+const COVER_FILL_STYLE: React.CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  objectPosition: "center",
+} as const;
+
 function SafeImageInner({
   src,
   fallback = FALLBACKS.default,
@@ -49,6 +58,7 @@ function SafeImageInner({
     );
   }
 
+  const isFill = Boolean(rest.fill);
   const useNativeImage =
     typeof imgSrc === "string" && isRemoteImageSource(imgSrc);
 
@@ -60,18 +70,7 @@ function SafeImageInner({
         src={imgSrc}
         decoding={rest.decoding ?? SAFE_IMAGE_DECODING}
         className={className}
-        style={{
-          ...style,
-          ...(rest.fill
-            ? {
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }
-            : {}),
-        }}
+        style={isFill ? { ...COVER_FILL_STYLE, ...style } : style}
         onError={(event) => {
           handleError();
           onError?.(event);
@@ -91,7 +90,7 @@ function SafeImageInner({
       src={imgSrc}
       decoding={rest.decoding ?? SAFE_IMAGE_DECODING}
       className={className}
-      style={style}
+      style={isFill ? { ...COVER_FILL_STYLE, ...style } : style}
       onError={(event) => {
         handleError();
         onError?.(event);

@@ -129,6 +129,7 @@ export const REMOTE_COVER_IMAGE_STYLE: CSSProperties = {
   width: "100%",
   height: "100%",
   objectFit: "cover",
+  objectPosition: "center",
 };
 
 export const ICON_DEFAULT_COLOR = "currentColor";
