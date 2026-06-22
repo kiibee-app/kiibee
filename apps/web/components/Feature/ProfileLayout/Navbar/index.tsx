@@ -40,23 +40,19 @@ const navConfigByVariant: Record<
   ProfileLayoutVariant,
   {
     navTextTone: typeof TONE_DARK | typeof TONE_LIGHT;
-    showNavItems: boolean;
     hasSearch: boolean;
   }
 > = {
   [LAYOUT_1]: {
     navTextTone: TONE_LIGHT,
-    showNavItems: false,
     hasSearch: false,
   },
   [LAYOUT_2]: {
     navTextTone: TONE_DARK,
-    showNavItems: true,
     hasSearch: true,
   },
   [LAYOUT_3]: {
     navTextTone: TONE_LIGHT,
-    showNavItems: false,
     hasSearch: false,
   },
 };
@@ -65,10 +61,9 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
   const { t } = useTranslation();
   const config = navConfigByVariant[variant] || {
     navTextTone: TONE_DARK,
-    showNavItems: false,
     hasSearch: false,
   };
-  const { navTextTone, showNavItems, hasSearch } = config;
+  const { navTextTone, hasSearch } = config;
   const { navItems } = useCreatorNavItems();
   const { displayName, avatarUrl, initial, isPublicView, publicCreatorId } =
     useCreatorChannelProfile();
@@ -118,8 +113,9 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
     <NavBar
       {...profileNavShellProps}
       brand={brand}
-      items={showNavItems ? navItems : []}
-      routeActiveItems={showNavItems}
+      items={navItems}
+      routeActiveItems
+      hideHamburger
       navBefore={hasSearch ? <ProfileChannelSearch /> : undefined}
       navTextTone={navTextTone}
       actions={actions}
