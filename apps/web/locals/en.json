@@ -1559,7 +1559,10 @@
       },
       "password": {
         "placeholder": "Enter passwords",
-        "helper": "Separate multiple passwords with commas."
+        "helper": "Separate multiple passwords with commas.",
+        "error": {
+          "minLength": "Each password must be at least 6 characters."
+        }
       }
     },
     "placeholders": {

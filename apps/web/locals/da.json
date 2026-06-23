@@ -1641,7 +1641,10 @@
       },
       "password": {
         "placeholder": "Indtast adgangskoder",
-        "helper": "Adskil flere adgangskoder med kommaer."
+        "helper": "Adskil flere adgangskoder med kommaer.",
+        "error": {
+          "minLength": "Hver adgangskode skal være mindst 6 tegn."
+        }
       }
     },
     "contentTypeModal": {
