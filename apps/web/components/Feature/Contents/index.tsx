@@ -62,7 +62,6 @@ function CreatorsContentsInner() {
     null,
   );
   const [showPostCreateModal, setShowPostCreateModal] = useState(false);
-  const [pendingEditId, setPendingEditId] = useState<string | null>(null);
   const {
     activeTab,
     visibleTabs,
@@ -351,28 +350,34 @@ function CreatorsContentsInner() {
     collections,
     selectedCollection,
     setSelectedCollection,
-    onEditContent: (id) => {
-      setPendingEditId(id);
-      void handleEditContent(id);
-    },
+    onEditContent: (id) => void handleEditContent(id),
     onBackStateOnly: handleBackToBaseStateOnly,
     activeTab,
   });
 
   useEffect(() => {
-    if (
-      !queryContentId &&
-      editingContent !== null &&
-      !isStartingEditRef.current
-    ) {
+    if (queryContentId) {
+      if (postCreateContentId && queryContentId !== postCreateContentId) {
+        setPostCreateContentId(null);
+        setShowPostCreateModal(false);
+      }
+      return;
+    }
+
+    if (editingContent && !isStartingEditRef.current && !postCreateContentId) {
       resetUploadState();
     }
-  }, [queryContentId, editingContent, resetUploadState, isStartingEditRef]);
+  }, [
+    queryContentId,
+    editingContent,
+    isStartingEditRef,
+    postCreateContentId,
+    resetUploadState,
+  ]);
 
   const handleSaveSuccessClose = () => {
     setShowSaveSuccessModal(false);
     setPostCreateContentId(null);
-    setPendingEditId(null);
     if (activeTab !== APPEARANCE) {
       handleBack();
     }
@@ -393,7 +398,6 @@ function CreatorsContentsInner() {
   const handleDeleteSuccessClose = useCallback(() => {
     if (!isUploadMode && !editingContent?.id) return;
     setPostCreateContentId(null);
-    setPendingEditId(null);
     resetUploadState();
     handleBack();
   }, [editingContent?.id, handleBack, isUploadMode, resetUploadState]);
