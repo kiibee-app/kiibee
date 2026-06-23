@@ -6,9 +6,11 @@ import {
   HttpStatus,
   Post,
   Req,
+  UseGuards,
 } from '@nestjs/common';
 import { SubscriptionService } from './subscription.service';
 import { handleSubscriptionPayment } from './hooks/subscriptionPayWebhook';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('subscription')
 export class SubscriptionController {
@@ -37,5 +39,12 @@ export class SubscriptionController {
     await handleSubscriptionPayment(body);
 
     return { received: true };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('creator/plan')
+  async getCreatorPlan(@Req() req: any) {
+    const creatorId = req.user.userId;
+    return this.subscriptionService.getCreatorPlan(creatorId);
   }
 }
