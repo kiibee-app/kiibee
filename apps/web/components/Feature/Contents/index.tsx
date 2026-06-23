@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "next/navigation";
 import { GenericModal } from "@/components/UI/Modals";
@@ -57,6 +57,11 @@ function ContentsUploadTitle({ fallback }: { fallback: string }) {
 
 function CreatorsContentsInner() {
   const { t } = useTranslation();
+  const [postCreateContentId, setPostCreateContentId] = useState<string | null>(
+    null,
+  );
+  const [showPostCreateModal, setShowPostCreateModal] = useState(false);
+  const [pendingEditId, setPendingEditId] = useState<string | null>(null);
   const {
     activeTab,
     visibleTabs,
@@ -307,10 +312,32 @@ function CreatorsContentsInner() {
   const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
   useEffect(() => {
-    if (!queryContentId && editingContent !== null) {
+    const shouldResetUpload =
+      !queryContentId && editingContent && !pendingEditId;
+    const didEditUrlSync = pendingEditId && queryContentId;
+    const didLeavePostCreateContent =
+      Boolean(postCreateContentId && queryContentId) &&
+      queryContentId !== postCreateContentId;
+
+    if (shouldResetUpload) {
       resetUploadState();
     }
-  }, [queryContentId, editingContent, resetUploadState]);
+
+    if (didEditUrlSync) {
+      setPendingEditId(null);
+    }
+
+    if (didLeavePostCreateContent) {
+      setPostCreateContentId(null);
+      setShowPostCreateModal(false);
+    }
+  }, [
+    editingContent,
+    pendingEditId,
+    postCreateContentId,
+    queryContentId,
+    resetUploadState,
+  ]);
 
   const handleCreate = useCallback(() => {
     resetUploadState();
@@ -339,20 +366,39 @@ function CreatorsContentsInner() {
     collections,
     selectedCollection,
     setSelectedCollection,
-    onEditContent: (id) => void handleEditContent(id),
+    onEditContent: (id) => {
+      setPendingEditId(id);
+      void handleEditContent(id);
+    },
     onBackStateOnly: handleBackToBaseStateOnly,
     activeTab,
   });
 
   const handleSaveSuccessClose = () => {
     setShowSaveSuccessModal(false);
+    setPostCreateContentId(null);
+    setPendingEditId(null);
     if (activeTab !== APPEARANCE) {
       handleBack();
     }
   };
 
+  const handleUploadBackClick = useCallback(() => {
+    const isPostCreateContent =
+      Boolean(postCreateContentId) && queryContentId === postCreateContentId;
+
+    if (isPostCreateContent) {
+      setShowPostCreateModal(true);
+      return;
+    }
+
+    handleBack();
+  }, [handleBack, postCreateContentId, queryContentId]);
+
   const handleDeleteSuccessClose = useCallback(() => {
     if (!isUploadMode && !editingContent?.id) return;
+    setPostCreateContentId(null);
+    setPendingEditId(null);
     resetUploadState();
     handleBack();
   }, [editingContent?.id, handleBack, isUploadMode, resetUploadState]);
@@ -364,7 +410,9 @@ function CreatorsContentsInner() {
           {selectedCollection && (
             <AuthBackButton
               marginBottom="0px"
-              onClick={isUploadMode ? handleBack : handleBackToCollection}
+              onClick={
+                isUploadMode ? handleUploadBackClick : handleBackToCollection
+              }
             />
           )}
           <Title>
@@ -500,6 +548,7 @@ function CreatorsContentsInner() {
             clearSelectedCollectionContentsOverride();
             handleUploadSuccess(tab, file, preview, createdId, details);
             if (createdId) {
+              setPostCreateContentId(createdId);
               syncContentIdToUrl(createdId, tab);
             }
           }}
@@ -535,9 +584,31 @@ function CreatorsContentsInner() {
               closeCouponFlow();
             }
             if (isUploadMode) {
+              setPostCreateContentId(null);
               handleBack();
             }
             closeDiscardModal();
+          }}
+          size="sm"
+          spacing="md"
+          fullWidthButtons
+          buttonRow
+          showCloseButton={false}
+        />
+      )}
+
+      {showPostCreateModal && (
+        <ConfirmationModal
+          isOpen={showPostCreateModal}
+          onClose={() => setShowPostCreateModal(false)}
+          title={t("contents.postCreateBackModal.title")}
+          body={t("contents.postCreateBackModal.message")}
+          cancelLabel={t("contents.postCreateBackModal.cancel")}
+          confirmLabel={t("contents.postCreateBackModal.confirm")}
+          onConfirm={() => {
+            setPostCreateContentId(null);
+            setShowPostCreateModal(false);
+            handleBack();
           }}
           size="sm"
           spacing="md"

@@ -1530,6 +1530,12 @@
       "metadata": "Metadata",
       "payment": "Betaling"
     },
+    "postCreateBackModal": {
+      "title": "Ikke-gemte indholdsændringer",
+      "message": "Du har ikke-gemte indholdsændringer. Er du sikker på, at du vil forlade denne side?",
+      "cancel": "Bliv på siden",
+      "confirm": "Forlad siden"
+    },
     "couponsCard": {
       "title": "Kuponer",
       "description": "Opret og administrer alle dine rabatkuponer."
