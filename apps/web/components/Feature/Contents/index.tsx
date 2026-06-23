@@ -314,8 +314,8 @@ function CreatorsContentsInner() {
   useEffect(() => {
     const shouldResetUpload =
       !queryContentId && editingContent && !pendingEditId;
-    const didEditUrlSync = pendingEditId && queryContentId;
-    const didLeavePostCreateContent =
+    const editUrlSynced = pendingEditId && queryContentId;
+    const leftPostCreateContent =
       Boolean(postCreateContentId && queryContentId) &&
       queryContentId !== postCreateContentId;
 
@@ -323,11 +323,11 @@ function CreatorsContentsInner() {
       resetUploadState();
     }
 
-    if (didEditUrlSync) {
+    if (editUrlSynced) {
       setPendingEditId(null);
     }
 
-    if (didLeavePostCreateContent) {
+    if (leftPostCreateContent) {
       setPostCreateContentId(null);
       setShowPostCreateModal(false);
     }
