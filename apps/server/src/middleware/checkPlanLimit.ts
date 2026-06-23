@@ -9,6 +9,7 @@ import { eq, sql } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
 import { creatorPlans, mediaFiles, plans, users } from 'src/database/schema';
+import { ROLE } from 'src/utils/constant';
 
 @Injectable()
 export class CheckPlanLimit implements CanActivate {
@@ -22,7 +23,7 @@ export class CheckPlanLimit implements CanActivate {
       throw new NotFoundException('User not found');
     }
 
-    if (user.role !== 'creator') {
+    if (user.role !== ROLE.CREATOR) {
       throw new ForbiddenException('Only creators are subject to plan limits');
     }
 
