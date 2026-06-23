@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { PATHS } from "@/utils/path";
 import {
@@ -32,6 +33,13 @@ import useShare from "@/hooks/useShare";
 import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import { resolveImageUrl } from "@/utils/media";
+import { GenericModal } from "@/components/UI/Modals";
+import { MonoText } from "@/components/UI/Monotext";
+import { MODAL_ALIGN } from "@/utils/ui";
+import {
+  ModalContentWrapper,
+  ModalDescription,
+} from "@/components/Feature/ProfileLayout/shared/LatestUpload/styles";
 
 export type {
   SingleContentHeroProps,
@@ -40,6 +48,7 @@ export type {
 } from "@/types/contentTypes";
 
 export default function SingleContentPage(props: SingleContentPageProps) {
+  const { t } = useTranslation();
   const {
     contentId,
     collectionId,
@@ -64,6 +73,17 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const router = useRouter();
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
+  const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+
+  const handleShowLoginModal = () => setLoginModalVisible(true);
+  const handleCloseLoginModal = () => setLoginModalVisible(false);
+  const handleLoginRedirect = () => {
+    const next = encodeURIComponent(
+      window.location.pathname + window.location.search,
+    );
+    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
+  };
+  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   type CreateOrderPayload = {
     contentId: string;
@@ -107,7 +127,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
           if (!user?.id) {
-            router.push(PATHS.AUTH_LOGIN);
+            handleShowLoginModal();
             return;
           }
 
@@ -176,7 +196,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     const isLoggedIn = Boolean(user && user.id);
 
     if (isPaid && !isLoggedIn) {
-      router.push(PATHS.AUTH_LOGIN);
+      handleShowLoginModal();
     }
   };
 
@@ -290,6 +310,32 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         contentId={contentId}
         loading={createOrderMutation.isPending}
       />
+
+      <GenericModal
+        visible={isLoginModalVisible}
+        onClose={handleCloseLoginModal}
+        onCancel={handleLoginRedirect}
+        onConfirm={handleCreateAccount}
+        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
+        confirmLabel={t(
+          "createProfileHome.latestUpload.loginModal.confirmLabel",
+        )}
+        buttonRow
+        buttonAlign={MODAL_ALIGN.CENTER}
+        fullWidthButtons={false}
+        size="md"
+        spacing="start"
+        showCloseButton
+      >
+        <ModalContentWrapper>
+          <MonoText $use="Heading3">
+            {t("createProfileHome.latestUpload.loginModal.title")}
+          </MonoText>
+          <ModalDescription $use="Body_Medium">
+            {t("createProfileHome.latestUpload.loginModal.message")}
+          </ModalDescription>
+        </ModalContentWrapper>
+      </GenericModal>
     </Wrapper>
   );
 }
