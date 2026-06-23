@@ -7,6 +7,7 @@ export {
 } from "./use-creator-requests";
 export { useCreatorUploads, type UploadItem } from "./use-creator-uploads";
 export { useViewers } from "./use-viewers";
+export { useViewerSales } from "./use-viewer-sales";
 export { useDashboardStats } from "./use-dashboard-stats";
 export { useLogin } from "./use-login";
 export { setTokens, clearTokens, getAccessToken } from "../../utils/token";

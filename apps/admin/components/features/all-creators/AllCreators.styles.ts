@@ -727,6 +727,135 @@ export const DrawerItemValue = styled.span`
   word-break: break-word;
 `;
 
+export const SaleItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+export const SaleThumb = styled.img`
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex: 0 0 auto;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+`;
+
+export const SaleThumbFallback = styled.div`
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+`;
+
+export const SaleMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+`;
+
+export const SaleTitle = styled.span`
+  font-size: 14px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const SaleCreator = styled.span`
+  font-size: 12px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const SaleTypeBadge = styled.span<{ $type: string }>`
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 20px;
+  padding: ${({ theme }) => `0 ${theme.spacing(2)}`};
+  border-radius: ${({ theme }) => theme.radius.full};
+  font-size: 11px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  text-transform: capitalize;
+
+  ${({ $type, theme }) => {
+    if ($type === "rented") {
+      return css`
+        background: ${theme.colors.primary.WHITE};
+        color: ${theme.colors.primary.ORANGE};
+        border: 1px solid ${theme.colors.primary.ORANGE};
+      `;
+    }
+
+    return css`
+      background: ${theme.colors.neutral.PALE_GREEN};
+      color: ${theme.colors.primary.GREEN_100};
+    `;
+  }}
+`;
+
+export const SaleRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex: 0 0 auto;
+  text-align: right;
+`;
+
+export const SaleAmount = styled.span`
+  font-size: 14px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  white-space: nowrap;
+`;
+
+export const SaleDate = styled.span`
+  font-size: 11px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  white-space: nowrap;
+`;
+
+export const DrawerSectionActionRow = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+`;
+
+export const DrawerSectionActionButton = styled.button`
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 13px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const DescriptionBlock = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   border: 1px solid ${({ theme }) => theme.colors.secondary.border};

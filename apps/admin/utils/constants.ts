@@ -10,6 +10,8 @@ export const API_ENDPOINTS = {
   ALL_VIEWERS: "/auth/all-viewers",
   DASHBOARD_STATS: "/auth/dashboard-stats",
   CREATOR_UPLOADS: "/content/all",
+  VIEWER_SALES: (viewerId: string) =>
+    `/order/admin/billing-history/${viewerId}`,
 } as const;
 
 export const ERROR_MESSAGES = {
@@ -53,6 +55,7 @@ export const QUERY_KEY = {
   CREATOR_REQUESTS: "creator-requests",
   EXISTING_CREATORS: "existing-creators",
   VIEWERS: "viewers",
+  VIEWER_SALES: "viewer-sales",
   DASHBOARD_STATS: "dashboard-stats",
   CREATOR_UPLOADS: "creator-uploads",
 } as const;
