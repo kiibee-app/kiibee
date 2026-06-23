@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "next/navigation";
 import { GenericModal } from "@/components/UI/Modals";
@@ -58,6 +58,10 @@ function ContentsUploadTitle({ fallback }: { fallback: string }) {
 
 function CreatorsContentsInner() {
   const { t } = useTranslation();
+  const [postCreateContentId, setPostCreateContentId] = useState<string | null>(
+    null,
+  );
+  const [showPostCreateModal, setShowPostCreateModal] = useState(false);
   const {
     activeTab,
     visibleTabs,
@@ -352,24 +356,48 @@ function CreatorsContentsInner() {
   });
 
   useEffect(() => {
-    if (
-      !queryContentId &&
-      editingContent !== null &&
-      !isStartingEditRef.current
-    ) {
+    if (queryContentId) {
+      if (postCreateContentId && queryContentId !== postCreateContentId) {
+        setPostCreateContentId(null);
+        setShowPostCreateModal(false);
+      }
+      return;
+    }
+
+    if (editingContent && !isStartingEditRef.current && !postCreateContentId) {
       resetUploadState();
     }
-  }, [queryContentId, editingContent, resetUploadState, isStartingEditRef]);
+  }, [
+    queryContentId,
+    editingContent,
+    isStartingEditRef,
+    postCreateContentId,
+    resetUploadState,
+  ]);
 
   const handleSaveSuccessClose = () => {
     setShowSaveSuccessModal(false);
+    setPostCreateContentId(null);
     if (activeTab !== APPEARANCE) {
       handleBack();
     }
   };
 
+  const handleUploadBackClick = useCallback(() => {
+    const isPostCreateContent =
+      Boolean(postCreateContentId) && queryContentId === postCreateContentId;
+
+    if (isPostCreateContent) {
+      setShowPostCreateModal(true);
+      return;
+    }
+
+    handleBack();
+  }, [handleBack, postCreateContentId, queryContentId]);
+
   const handleDeleteSuccessClose = useCallback(() => {
     if (!isUploadMode && !editingContent?.id) return;
+    setPostCreateContentId(null);
     resetUploadState();
     handleBack();
   }, [editingContent?.id, handleBack, isUploadMode, resetUploadState]);
@@ -381,7 +409,9 @@ function CreatorsContentsInner() {
           {selectedCollection && (
             <AuthBackButton
               marginBottom="0px"
-              onClick={isUploadMode ? handleBack : handleBackToCollection}
+              onClick={
+                isUploadMode ? handleUploadBackClick : handleBackToCollection
+              }
             />
           )}
           <Title>
@@ -517,7 +547,8 @@ function CreatorsContentsInner() {
             clearSelectedCollectionContentsOverride();
             handleUploadSuccess(tab, file, preview, createdId, details);
             if (createdId) {
-              syncContentIdToUrl(createdId);
+              setPostCreateContentId(createdId);
+              syncContentIdToUrl(createdId, tab);
             }
           }}
         />
@@ -552,9 +583,31 @@ function CreatorsContentsInner() {
               closeCouponFlow();
             }
             if (isUploadMode) {
+              setPostCreateContentId(null);
               handleBack();
             }
             closeDiscardModal();
+          }}
+          size="sm"
+          spacing="md"
+          fullWidthButtons
+          buttonRow
+          showCloseButton={false}
+        />
+      )}
+
+      {showPostCreateModal && (
+        <ConfirmationModal
+          isOpen={showPostCreateModal}
+          onClose={() => setShowPostCreateModal(false)}
+          title={t("contents.postCreateBackModal.title")}
+          body={t("contents.postCreateBackModal.message")}
+          cancelLabel={t("contents.postCreateBackModal.cancel")}
+          confirmLabel={t("contents.postCreateBackModal.confirm")}
+          onConfirm={() => {
+            setPostCreateContentId(null);
+            setShowPostCreateModal(false);
+            handleBack();
           }}
           size="sm"
           spacing="md"

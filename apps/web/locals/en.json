@@ -1530,6 +1530,12 @@
       "metadata": "MetaData",
       "payment": "Payment"
     },
+    "postCreateBackModal": {
+      "title": "Continue without updating?",
+      "message": "This content was created successfully, but your latest changes haven't been saved. Are you sure you want to leave this page?",
+      "cancel": "Stay on page",
+      "confirm": "Leave page"
+    },
     "couponsCard": {
       "title": "Coupons",
       "description": "Create and manage all your discount coupons."
