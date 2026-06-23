@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import {
@@ -8,6 +9,7 @@ import {
 } from "@/components/Layout/Navbar/styles";
 import { ProfileIcon } from "@/assets/icons/profileIcon";
 import AccountMenu from "./AccountMenu";
+import { resolveCreatorMediaUrl } from "@/utils/media";
 import { ProfileAvatarImage, ProfileButton } from "./styles";
 
 type ViewerHeaderRightProps = {
@@ -22,6 +24,13 @@ const ViewerHeaderRight = ({
   onProfileClick,
 }: ViewerHeaderRightProps) => {
   const { t } = useTranslation();
+  const [failedForUrl, setFailedForUrl] = useState<string | null>(null);
+  const resolvedAvatarUrl = useMemo(
+    () => resolveCreatorMediaUrl(avatarUrl),
+    [avatarUrl],
+  );
+  const hasFailed = failedForUrl === resolvedAvatarUrl;
+  const showAvatar = Boolean(resolvedAvatarUrl) && !hasFailed;
 
   return (
     <AccountMenu
@@ -33,10 +42,11 @@ const ViewerHeaderRight = ({
           aria-expanded={open}
           onClick={toggle}
         >
-          {avatarUrl ? (
+          {showAvatar ? (
             <ProfileAvatarImage
-              src={avatarUrl}
+              src={resolvedAvatarUrl ?? undefined}
               alt={t("common.viewerProfile")}
+              onError={() => setFailedForUrl(resolvedAvatarUrl)}
             />
           ) : (
             initial

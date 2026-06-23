@@ -4,6 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import React, { ReactNode, useState } from "react";
 import {
   isRemoteImageSource,
+  isStaticImageData,
   REMOTE_COVER_IMAGE_STYLE,
   resolveImageUrl,
 } from "@/utils/media";
@@ -22,6 +23,7 @@ import {
 
 type GenericCardProps = {
   image?: string | StaticImageData;
+  imageFallback?: string;
   imageInitials?: string;
   coverImage?: boolean;
   alt?: string;
@@ -61,6 +63,7 @@ function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
 
 export default function GenericCard({
   image,
+  imageFallback,
   imageInitials,
   coverImage = false,
   alt,
@@ -77,15 +80,29 @@ export default function GenericCard({
 }: GenericCardProps) {
   const imageKey = image ? (typeof image === "string" ? image : image.src) : "";
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
-  const imageFailed = failedImageKey === imageKey;
+  const [activeFallback, setActiveFallback] = useState<{
+    forKey: string;
+    url: string;
+  } | null>(null);
+  const resolvedFallback =
+    activeFallback?.forKey === imageKey ? activeFallback.url : null;
+  const imageFailed = failedImageKey === imageKey && !resolvedFallback;
 
-  const imageSrc = image ? resolveImageUrl(image) : null;
+  const imageSrc = resolvedFallback ?? (image ? resolveImageUrl(image) : null);
+
   const showRemoteImage =
     Boolean(imageSrc) &&
     !imageFailed &&
     typeof imageSrc === "string" &&
     isRemoteImageSource(imageSrc);
-  const showOptimizedImage = Boolean(image) && !imageFailed && !showRemoteImage;
+  const showOptimizedImage =
+    isStaticImageData(image) && !imageFailed && !showRemoteImage;
+  const showStringImage =
+    Boolean(imageSrc) &&
+    !imageFailed &&
+    typeof imageSrc === "string" &&
+    !isRemoteImageSource(imageSrc) &&
+    !isStaticImageData(image);
   const showInitials = Boolean(imageInitials) && (!image || imageFailed);
 
   return (
@@ -107,17 +124,47 @@ export default function GenericCard({
               style={REMOTE_COVER_IMAGE_STYLE}
               loading={imagePriority ? "eager" : "lazy"}
               decoding="async"
-              onError={() => setFailedImageKey(imageKey)}
+              onError={() => {
+                if (
+                  imageFallback &&
+                  resolvedFallback !== imageFallback &&
+                  imageSrc !== imageFallback
+                ) {
+                  setActiveFallback({ forKey: imageKey, url: imageFallback });
+                  return;
+                }
+                setFailedImageKey(imageKey);
+              }}
             />
           ) : showOptimizedImage ? (
             <Image
-              src={image!}
+              src={image}
               alt={alt || "card image"}
               fill
               sizes="(max-width: 767px) 100vw, 50vw"
               style={{ objectFit: "cover" }}
               priority={imagePriority}
               onError={() => setFailedImageKey(imageKey)}
+            />
+          ) : showStringImage ? (
+            // eslint-disable-next-line @next/next/no-img-element -- resolved media paths may be non-remote before normalization
+            <img
+              src={imageSrc ?? undefined}
+              alt={alt || "card image"}
+              style={REMOTE_COVER_IMAGE_STYLE}
+              loading={imagePriority ? "eager" : "lazy"}
+              decoding="async"
+              onError={() => {
+                if (
+                  imageFallback &&
+                  resolvedFallback !== imageFallback &&
+                  imageSrc !== imageFallback
+                ) {
+                  setActiveFallback({ forKey: imageKey, url: imageFallback });
+                  return;
+                }
+                setFailedImageKey(imageKey);
+              }}
             />
           ) : showInitials ? (
             <ImageInitials $use="Heading3">{imageInitials}</ImageInitials>

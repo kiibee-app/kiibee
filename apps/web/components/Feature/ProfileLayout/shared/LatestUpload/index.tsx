@@ -27,6 +27,7 @@ import {
   ModalDescription,
 } from "./styles";
 import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
+import { resolvePublicMediaUrl } from "@/utils/media";
 import { MonoText } from "@/components/UI/Monotext";
 import {
   EpubIcon,
@@ -62,6 +63,7 @@ export type LatestUploadData = {
   sectionTitle: string;
   badge: string;
   image: ImageSource;
+  imageFallback?: string;
   imageAlt: string;
   title: string;
   year: string;
@@ -211,6 +213,27 @@ export default function LatestUpload({ data }: LatestUploadProps) {
     normalizedContentType === FORMAT_TYPE.AUDIO;
   const TypeIcon = contentIconMap[normalizedContentType];
 
+  const imageKey = data.image
+    ? typeof data.image === "string"
+      ? data.image
+      : data.image.src
+    : "";
+  const fallbackKey = `${imageKey}|${data.imageFallback ?? ""}`;
+  const [activeFallback, setActiveFallback] = useState<{
+    forKey: string;
+    url: string;
+  } | null>(null);
+  const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
+  const resolvedFallback =
+    activeFallback?.forKey === fallbackKey ? activeFallback.url : null;
+
+  const resolvedImageSrc =
+    resolvedFallback ??
+    (typeof data.image === "string"
+      ? (resolvePublicMediaUrl(data.image) ?? data.image)
+      : resolveImageUrl(data.image));
+  const imageFailed = failedImageKey === imageKey && !resolvedFallback;
+
   return (
     <Section
       $padding={data.containerStyle?.padding}
@@ -230,7 +253,23 @@ export default function LatestUpload({ data }: LatestUploadProps) {
         >
           <Badge>{data.badge}</Badge>
 
-          <UploadImage src={resolveImageUrl(data.image)} alt={data.imageAlt} />
+          <UploadImage
+            src={imageFailed ? undefined : resolvedImageSrc}
+            alt={data.imageAlt}
+            onError={() => {
+              const fallback = data.imageFallback
+                ? (resolvePublicMediaUrl(data.imageFallback) ??
+                  data.imageFallback)
+                : null;
+
+              if (fallback && !resolvedFallback) {
+                setActiveFallback({ forKey: fallbackKey, url: fallback });
+                return;
+              }
+
+              setFailedImageKey(imageKey);
+            }}
+          />
 
           <ImageOverlay>
             <BottomControls>

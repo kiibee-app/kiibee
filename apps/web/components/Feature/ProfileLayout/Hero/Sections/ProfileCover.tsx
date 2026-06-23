@@ -54,7 +54,6 @@ export default function ProfileCoverSection() {
               avatarUrl={avatarUrl}
               initial={initial}
               alt={creatorName || t(CREATE_PROFILE_HOME.title)}
-              sizes="152px"
             />
           </AvatarWrap>
 

@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { API, useGetAPI } from "@/lib/http/api";
-import { resolvePublicMediaUrl } from "@/utils/media";
+import { resolveCreatorMediaUrl } from "@/utils/media";
 import type { CreatorLayoutKey } from "@/utils/creatorChannel";
 import {
   SORT_ALL,
@@ -73,10 +73,25 @@ export function sortExploreCreators(
 }
 
 export function getCreatorCardImage(creator: ExploreCreator): string | null {
-  return (
-    resolvePublicMediaUrl(creator.coverImageUrl) ??
-    resolvePublicMediaUrl(creator.profileImageUrl)
+  return resolveCreatorMediaUrl(creator.coverImageUrl, creator.profileImageUrl);
+}
+
+export function getCreatorCardImageFallback(
+  creator: ExploreCreator,
+): string | null {
+  const candidates = [
+    resolveCreatorMediaUrl(creator.coverImageUrl, creator.profileImageUrl),
+    resolveCreatorMediaUrl(creator.profileImageUrl, creator.coverImageUrl),
+  ].filter(
+    (url, index, urls): url is string =>
+      Boolean(url) && urls.indexOf(url) === index,
   );
+
+  return candidates[1] ?? null;
+}
+
+export function getCreatorAvatarUrl(creator: ExploreCreator): string | null {
+  return resolveCreatorMediaUrl(creator.profileImageUrl, creator.coverImageUrl);
 }
 
 const TOP_CREATORS_LIMIT = 6;

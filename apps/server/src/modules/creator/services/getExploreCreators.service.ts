@@ -130,6 +130,8 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
     .orderBy(
       desc(sql`CASE 
         WHEN (${creatorChannels.coverImageUrl} IS NOT NULL AND trim(${creatorChannels.coverImageUrl}) <> '') 
+          OR (${contentAppearance.desktopCoverImageUrl} IS NOT NULL AND trim(${contentAppearance.desktopCoverImageUrl}) <> '')
+          OR (${creatorChannels.logoUrl} IS NOT NULL AND trim(${creatorChannels.logoUrl}) <> '')
           OR (${users.avatarUrl} IS NOT NULL AND trim(${users.avatarUrl}) <> '') 
         THEN 1 ELSE 0 
       END`),

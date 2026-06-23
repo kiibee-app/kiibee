@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import PdfIcon from "@/assets/icons/PdfIcon";
 import type { SingleContentHeroSectionProps } from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
@@ -9,10 +9,14 @@ import {
   getThirdPartyEmbedUrl,
   isCloudflareStreamEmbedUrl,
   isRemoteImageSource,
+  isStaticImageData,
   isThirdPartyVideoUrl,
+  REMOTE_COVER_IMAGE_STYLE,
 } from "@/utils/media";
 import {
   Hero,
+  HeroCoverImage,
+  HeroMediaLayer,
   HeroMediaTag,
   HeroMediaText,
   HeroTag,
@@ -36,6 +40,18 @@ type SingleContentPreviewProps = SingleContentHeroSectionProps & {
   onVideoEnded: () => void;
 };
 
+function getHeroCoverCandidates(
+  hero: SingleContentPreviewProps["hero"],
+): string[] {
+  return [
+    typeof hero.image === "string" ? hero.image : hero.image.src,
+    hero.imageFallback,
+  ].filter(
+    (src, index, sources): src is string =>
+      Boolean(src) && sources.indexOf(src) === index,
+  );
+}
+
 function getMediaContent(
   hero: SingleContentPreviewProps["hero"],
   videoProps: Pick<
@@ -46,11 +62,20 @@ function getMediaContent(
     | "onVideoPause"
     | "onVideoEnded"
   >,
-  isTrailerPlaying: boolean,
-  isCloudflarePlaying: boolean,
-  deferCloudflareEmbed: boolean,
+  options: {
+    isTrailerPlaying: boolean;
+    isCloudflarePlaying: boolean;
+    deferCloudflareEmbed: boolean;
+    poster?: string;
+  },
 ) {
   const { src, type, title } = hero.media ?? {};
+  const {
+    isTrailerPlaying,
+    isCloudflarePlaying,
+    deferCloudflareEmbed,
+    poster,
+  } = options;
 
   if (!src) return null;
 
@@ -84,9 +109,10 @@ function getMediaContent(
         <PreviewVideo
           ref={videoProps.videoRef}
           src={src}
+          poster={poster}
           controls={videoProps.showVideoControls}
           playsInline
-          preload="metadata"
+          preload="none"
           onPlay={videoProps.onVideoPlay}
           onPause={videoProps.onVideoPause}
           onEnded={videoProps.onVideoEnded}
@@ -102,17 +128,109 @@ function getMediaContent(
   }
 }
 
-const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => (
-  <Image
-    src={hero.image}
-    alt={hero.imageAlt}
-    fill
-    priority
-    sizes="(max-width: 900px) 100vw, 900px"
-    style={{ objectFit: "cover" }}
-    unoptimized={isRemoteImageSource(hero.image)}
-  />
-);
+const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
+  const candidates = getHeroCoverCandidates(hero);
+  const candidatesKey = candidates.join("\0");
+  const [loadState, setLoadState] = useState({
+    key: "",
+    index: 0,
+    loaded: false,
+  });
+  const candidateIndex = loadState.key === candidatesKey ? loadState.index : 0;
+  const isLoaded = loadState.key === candidatesKey ? loadState.loaded : false;
+
+  const src = candidates[candidateIndex] ?? candidates[0];
+
+  if (!src) return null;
+
+  if (isRemoteImageSource(src)) {
+    return (
+      <HeroCoverImage
+        src={src}
+        alt={hero.imageAlt}
+        $loaded={isLoaded}
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        onLoad={() =>
+          setLoadState({
+            key: candidatesKey,
+            index: candidateIndex,
+            loaded: true,
+          })
+        }
+        onError={() => {
+          if (candidateIndex < candidates.length - 1) {
+            setLoadState({
+              key: candidatesKey,
+              index: candidateIndex + 1,
+              loaded: false,
+            });
+            return;
+          }
+          setLoadState({
+            key: candidatesKey,
+            index: candidateIndex,
+            loaded: false,
+          });
+        }}
+      />
+    );
+  }
+
+  if (isStaticImageData(hero.image)) {
+    return (
+      <Image
+        src={hero.image}
+        alt={hero.imageAlt}
+        fill
+        priority
+        sizes="(max-width: 900px) 100vw, 900px"
+        style={{ objectFit: "cover", objectPosition: "center" }}
+        onLoad={() =>
+          setLoadState({
+            key: candidatesKey,
+            index: candidateIndex,
+            loaded: true,
+          })
+        }
+      />
+    );
+  }
+
+  return (
+    <HeroCoverImage
+      src={src}
+      alt={hero.imageAlt}
+      $loaded={isLoaded}
+      loading="eager"
+      decoding="async"
+      style={REMOTE_COVER_IMAGE_STYLE}
+      onLoad={() =>
+        setLoadState({
+          key: candidatesKey,
+          index: candidateIndex,
+          loaded: true,
+        })
+      }
+      onError={() => {
+        if (candidateIndex < candidates.length - 1) {
+          setLoadState({
+            key: candidatesKey,
+            index: candidateIndex + 1,
+            loaded: false,
+          });
+          return;
+        }
+        setLoadState({
+          key: candidatesKey,
+          index: candidateIndex,
+          loaded: false,
+        });
+      }}
+    />
+  );
+};
 
 function SingleContentPreview({
   hero,
@@ -124,26 +242,46 @@ function SingleContentPreview({
   isTrailerPlaying,
   isCloudflarePlaying,
   deferCloudflareEmbed,
+  hasStartedPlayback,
 }: SingleContentPreviewProps & {
   isTrailerPlaying: boolean;
   isCloudflarePlaying: boolean;
   deferCloudflareEmbed: boolean;
+  hasStartedPlayback: boolean;
 }) {
-  const mediaContent = getMediaContent(
-    hero,
-    {
-      videoRef,
-      showVideoControls,
-      onVideoPlay,
-      onVideoPause,
-      onVideoEnded,
-    },
-    isTrailerPlaying,
-    isCloudflarePlaying,
-    deferCloudflareEmbed,
-  );
+  const coverCandidates = getHeroCoverCandidates(hero);
+  const shouldShowMedia =
+    Boolean(hero.media?.src) &&
+    (!hero.trailerLabel ||
+      isTrailerPlaying ||
+      isCloudflarePlaying ||
+      hasStartedPlayback);
 
-  return mediaContent ?? <HeroImage hero={hero} />;
+  const mediaContent = shouldShowMedia
+    ? getMediaContent(
+        hero,
+        {
+          videoRef,
+          showVideoControls,
+          onVideoPlay,
+          onVideoPause,
+          onVideoEnded,
+        },
+        {
+          isTrailerPlaying,
+          isCloudflarePlaying,
+          deferCloudflareEmbed,
+          poster: coverCandidates[0],
+        },
+      )
+    : null;
+
+  return (
+    <>
+      <HeroImage hero={hero} />
+      {mediaContent ? <HeroMediaLayer>{mediaContent}</HeroMediaLayer> : null}
+    </>
+  );
 }
 
 export default function SingleContentHeroView({
@@ -183,7 +321,7 @@ export default function SingleContentHeroView({
     setHasStartedPlayback(false);
   };
 
-  const handleTrailerClick = async () => {
+  const handleTrailerClick = () => {
     if (isCloudflareVideo) {
       setIsCloudflarePlaying(true);
       setHasStartedPlayback(true);
@@ -193,16 +331,24 @@ export default function SingleContentHeroView({
       setIsTrailerPlaying(true);
       return;
     }
-    const videoElement = videoRef.current;
-    if (!videoElement) return;
-
-    try {
-      await videoElement.play();
-      setHasStartedPlayback(true);
-    } catch {
-      setHasStartedPlayback(false);
-    }
+    setIsTrailerPlaying(true);
   };
+
+  useEffect(() => {
+    if (!isTrailerPlaying || isCloudflareVideo || isThirdPartyVideo) {
+      return;
+    }
+
+    const videoElement = videoRef.current;
+    if (!videoElement) {
+      return;
+    }
+
+    void videoElement.play().then(
+      () => setHasStartedPlayback(true),
+      () => setHasStartedPlayback(false),
+    );
+  }, [isTrailerPlaying, isCloudflareVideo, isThirdPartyVideo]);
 
   const handleTrailerButtonClick = () => {
     hero.onTrailerClick?.();
@@ -230,6 +376,7 @@ export default function SingleContentHeroView({
           isTrailerPlaying={isTrailerPlaying}
           isCloudflarePlaying={isCloudflarePlaying}
           deferCloudflareEmbed={deferCloudflareEmbed}
+          hasStartedPlayback={hasStartedPlayback}
         />
       </Preview>
 

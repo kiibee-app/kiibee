@@ -79,7 +79,6 @@ export default function TopCreators() {
                     avatarUrl={creator.profileImageUrl}
                     initial={getNameInitials(creator.name)}
                     alt={creator.name}
-                    sizes="150px"
                     initialUse={CREATOR_CHANNEL_AVATAR_TEXT.HERO}
                   />
                 </Avatar>

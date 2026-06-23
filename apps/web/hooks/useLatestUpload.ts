@@ -17,12 +17,13 @@ import { CollectionContentRow } from "@/types/collectionsType";
 import type { ImageSource } from "@/utils/Constants";
 import type { FeedContentItem } from "@/utils/feedContentToTutorial";
 import { convertRentDurationToHours } from "@/utils/formatDate";
-import { resolvePublicMediaUrl } from "@/utils/media";
+import { resolveContentThumbnailCandidates } from "@/utils/media";
 
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;
   category?: string | null;
-  thumbnailLandscapeUrl?: ImageSource | null;
+  thumbnailImage?: ImageSource | null;
+  thumbnailImageFallback?: string | null;
   accessType?: string | null;
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
@@ -50,6 +51,10 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
         if (!Array.isArray(items) || items.length === 0) return null;
 
         const latest = items[0];
+        const thumbnailCandidates = resolveContentThumbnailCandidates(
+          latest.thumbnailUrl,
+          latest.thumbnailLandscapeUrl,
+        );
 
         return {
           id: String(latest.id),
@@ -61,8 +66,8 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
             : Date.now(),
           category: latest.categoryName ?? null,
           contentType: latest.contentType ?? "video",
-          thumbnailLandscapeUrl:
-            resolvePublicMediaUrl(latest.thumbnailUrl) ?? null,
+          thumbnailImage: thumbnailCandidates[0] ?? null,
+          thumbnailImageFallback: thumbnailCandidates[1] ?? null,
           accessType: latest.accessType ?? null,
           buyPrice: latest.buyPrice ?? null,
           rentPrice: latest.rentPrice ?? null,
@@ -118,15 +123,17 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
         );
         const content = getContentDetail(res.data);
         const category = content?.categories?.[0]?.id;
+        const thumbnailCandidates = resolveContentThumbnailCandidates(
+          content?.thumbnailUrl,
+          content?.thumbnailLandscapeUrl,
+        );
 
         return {
           ...latest,
           title: content?.title || latest.name || "",
           category: category ?? null,
-          thumbnailLandscapeUrl:
-            resolvePublicMediaUrl(
-              content?.thumbnailLandscapeUrl ?? content?.thumbnailUrl,
-            ) ?? null,
+          thumbnailImage: thumbnailCandidates[0] ?? null,
+          thumbnailImageFallback: thumbnailCandidates[1] ?? null,
           accessType: parentCollection?.accessType ?? null,
           buyPrice: parentCollection?.buyPrice ?? null,
           rentPrice: parentCollection?.rentPrice ?? null,
@@ -139,7 +146,8 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           ...latest,
           title: latest.name || "",
           category: null,
-          thumbnailLandscapeUrl: null,
+          thumbnailImage: null,
+          thumbnailImageFallback: null,
           accessType: parentCollection?.accessType ?? null,
           buyPrice: parentCollection?.buyPrice ?? null,
           rentPrice: parentCollection?.rentPrice ?? null,

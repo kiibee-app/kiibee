@@ -23,6 +23,7 @@ import GenericCard from "@/components/UI/GenericCard";
 import {
   type ExploreCreator,
   getCreatorCardImage,
+  getCreatorCardImageFallback,
 } from "@/hooks/creators/useExploreCreators";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
@@ -82,13 +83,15 @@ export default function ExploreCreators({
       <Grid>
         {creators.map((creator) => {
           const image = getCreatorCardImage(creator);
+          const imageFallback = getCreatorCardImageFallback(creator);
 
           return (
             <GenericCard
               key={creator.id}
               coverImage
               image={image ?? undefined}
-              imageInitials={image ? undefined : getNameInitials(creator.name)}
+              imageFallback={imageFallback ?? undefined}
+              imageInitials={getNameInitials(creator.name)}
               alt={creator.name}
               badge={
                 creator.category ? (

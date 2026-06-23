@@ -53,7 +53,8 @@ export default function ProfileHomeSections({
           (latest as { category?: string | null }).category ??
           latestConfig.badge ??
           "",
-        image: latest.thumbnailLandscapeUrl ?? latestUploadImage,
+        image: latest.thumbnailImage ?? latestUploadImage,
+        imageFallback: latest.thumbnailImageFallback ?? undefined,
         contentType: normalizedLatestContentType || FORMAT_TYPE.VIDEO,
         imageAlt: latest.title || "",
         title: latest.title || "",

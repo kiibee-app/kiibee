@@ -1,9 +1,11 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import { PATHS } from "@/utils/path";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
+import { resolveCreatorMediaUrl } from "@/utils/media";
 import {
   ChannelLink,
   ChannelText,
@@ -28,6 +30,13 @@ const CreatorHeaderRight = ({
 }: CreatorHeaderRightProps) => {
   const { t } = useTranslation();
   const { channelHref } = useCreatorChannelLayout();
+  const [failedForUrl, setFailedForUrl] = useState<string | null>(null);
+  const resolvedAvatarUrl = useMemo(
+    () => resolveCreatorMediaUrl(avatarUrl),
+    [avatarUrl],
+  );
+  const hasFailed = failedForUrl === resolvedAvatarUrl;
+  const showAvatar = Boolean(resolvedAvatarUrl) && !hasFailed;
 
   return (
     <>
@@ -42,10 +51,11 @@ const CreatorHeaderRight = ({
         aria-label={t("common.creatorProfile")}
       >
         <ProfileCircle>
-          {avatarUrl ? (
+          {showAvatar ? (
             <ProfileAvatarImage
-              src={avatarUrl}
+              src={resolvedAvatarUrl ?? undefined}
               alt={t("common.creatorProfile")}
+              onError={() => setFailedForUrl(resolvedAvatarUrl)}
             />
           ) : (
             <InitialAvatar>{initial}</InitialAvatar>

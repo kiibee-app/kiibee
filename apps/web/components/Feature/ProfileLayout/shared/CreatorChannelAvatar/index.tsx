@@ -1,56 +1,72 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import {
   CREATOR_CHANNEL_AVATAR_TEXT,
   type CreatorChannelAvatarTextUse,
 } from "@/utils/Constants";
 import {
-  isRemoteImageSource,
   REMOTE_COVER_IMAGE_STYLE,
-  resolvePublicMediaUrl,
+  resolveCreatorMediaCandidates,
 } from "@/utils/media";
-import { AvatarImage, AvatarInitial, RemoteAvatarImage } from "./styles";
+import { AvatarInitial, RemoteAvatarImage } from "./styles";
 
 type CreatorChannelAvatarProps = {
-  avatarUrl: string | null;
+  avatarUrl?: string | null;
+  fallbackImageUrl?: string | null;
   initial: string;
   alt: string;
-  sizes: string;
   initialUse?: CreatorChannelAvatarTextUse;
 };
 
 export default function CreatorChannelAvatar({
   avatarUrl,
+  fallbackImageUrl,
   initial,
   alt,
-  sizes,
   initialUse = CREATOR_CHANNEL_AVATAR_TEXT.HERO,
 }: CreatorChannelAvatarProps) {
-  const resolvedAvatarUrl = resolvePublicMediaUrl(avatarUrl);
+  const candidates = useMemo(
+    () => resolveCreatorMediaCandidates(avatarUrl, fallbackImageUrl),
+    [avatarUrl, fallbackImageUrl],
+  );
+  const candidatesKey = candidates.join("\0");
+  const [loadState, setLoadState] = useState({
+    key: "",
+    index: 0,
+    failed: false,
+  });
+  const candidateIndex = loadState.key === candidatesKey ? loadState.index : 0;
+  const hasFailed = loadState.key === candidatesKey ? loadState.failed : false;
 
-  if (resolvedAvatarUrl) {
-    if (isRemoteImageSource(resolvedAvatarUrl)) {
-      return (
-        <RemoteAvatarImage
-          src={resolvedAvatarUrl}
-          alt={alt}
-          style={REMOTE_COVER_IMAGE_STYLE}
-          loading="lazy"
-          decoding="async"
-        />
-      );
-    }
+  const src = candidates[candidateIndex];
 
-    return (
-      <AvatarImage
-        src={resolvedAvatarUrl}
-        alt={alt}
-        fill
-        sizes={sizes}
-        unoptimized
-      />
-    );
+  if (!src || hasFailed) {
+    return <AvatarInitial $use={initialUse}>{initial}</AvatarInitial>;
   }
 
-  return <AvatarInitial $use={initialUse}>{initial}</AvatarInitial>;
+  return (
+    <RemoteAvatarImage
+      src={src}
+      alt={alt}
+      style={REMOTE_COVER_IMAGE_STYLE}
+      loading="lazy"
+      decoding="async"
+      onError={() => {
+        if (candidateIndex < candidates.length - 1) {
+          setLoadState({
+            key: candidatesKey,
+            index: candidateIndex + 1,
+            failed: false,
+          });
+          return;
+        }
+        setLoadState({
+          key: candidatesKey,
+          index: candidateIndex,
+          failed: true,
+        });
+      }}
+    />
+  );
 }

@@ -60,6 +60,8 @@ export const ImageWrapper = styled.div<{
 
   img {
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    object-fit: cover;
+    object-position: center;
   }
 
   ${media.tablet} {

@@ -1,13 +1,9 @@
 import styled from "styled-components";
-import Image from "next/image";
 import { MonoText } from "@/components/UI/Monotext";
 
-export const AvatarImage = styled(Image)`
-  object-fit: cover;
-  object-position: center;
-`;
-
 export const RemoteAvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
 `;

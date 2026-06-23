@@ -48,7 +48,6 @@ export default function CenteredCoverSection() {
             avatarUrl={avatarUrl}
             initial={initial}
             alt={creatorName || t(CREATE_PROFILE_HOME.title)}
-            sizes="180px"
           />
         </AvatarWrapCentered>
 

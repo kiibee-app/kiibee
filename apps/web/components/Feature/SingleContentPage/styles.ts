@@ -108,14 +108,33 @@ export const Preview = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
   }
+`;
+
+export const HeroCoverImage = styled.img<{ $loaded?: boolean }>`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
+  transition: opacity 0.3s ease;
+`;
+
+export const HeroMediaLayer = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 `;
 
 export const PreviewVideo = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
+  object-position: center;
+  background: transparent;
 `;
 
 export const PreviewAudio = styled.audio`

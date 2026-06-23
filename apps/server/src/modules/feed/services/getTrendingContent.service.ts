@@ -19,6 +19,7 @@ const trendingSelect = {
   title: mediaFiles.title,
   description: mediaFiles.description,
   thumbnailUrl: mediaFiles.thumbnailUrl,
+  thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
   contentType: contentTypes.name,

@@ -55,6 +55,8 @@ export const allCreatorsService = async ({
     const hasImageSql = sql<number>`
       CASE 
         WHEN ${creatorChannels.coverImageUrl} IS NOT NULL AND trim(${creatorChannels.coverImageUrl}) <> '' THEN 1
+        WHEN ${contentAppearance.desktopCoverImageUrl} IS NOT NULL AND trim(${contentAppearance.desktopCoverImageUrl}) <> '' THEN 1
+        WHEN ${creatorChannels.logoUrl} IS NOT NULL AND trim(${creatorChannels.logoUrl}) <> '' THEN 1
         WHEN ${users.avatarUrl} IS NOT NULL AND trim(${users.avatarUrl}) <> '' THEN 1
         ELSE 0
       END
@@ -83,8 +85,14 @@ export const allCreatorsService = async ({
       .select({
         id: users.id,
         name: creatorDisplayNameSql.as('name'),
-        profileImageUrl: users.avatarUrl,
-        coverImageUrl: creatorChannels.coverImageUrl,
+        profileImageUrl: sql<string | null>`coalesce(
+          nullif(${creatorChannels.logoUrl}, ''),
+          nullif(${users.avatarUrl}, '')
+        )`.as('profile_image_url'),
+        coverImageUrl: sql<string | null>`coalesce(
+          nullif(${creatorChannels.coverImageUrl}, ''),
+          nullif(${contentAppearance.desktopCoverImageUrl}, '')
+        )`.as('cover_image_url'),
         createdAt: users.createdAt,
         uploadCount: uploadCountSql,
         subscriberCount: subscriberCountSql,
@@ -128,6 +136,8 @@ export const allCreatorsService = async ({
         users.createdAt,
         creatorChannels.name,
         creatorChannels.coverImageUrl,
+        creatorChannels.logoUrl,
+        contentAppearance.desktopCoverImageUrl,
         contentAppearance.layout,
         userContentCategory.categoryIds,
         featureCreators.creatorId,
