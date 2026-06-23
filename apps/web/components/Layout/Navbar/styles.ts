@@ -41,7 +41,7 @@ export const Inner = styled.div`
 
   ${media.mobileMd} {
     flex-direction: row;
-    padding: var(--navbar-inner-mobile-padding, 0.75rem 1rem);
+    padding: var(--navbar-inner-mobile-padding, 0.75rem 1.25rem);
     gap: 0.5rem;
   }
 `;
@@ -722,6 +722,7 @@ export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   flex-direction: column;
   gap: 8px;
   padding-top: ${({ $showDivider }) => ($showDivider ? "16px" : "0")};
+  padding-bottom: 16px;
   border-top: ${({ $showDivider, theme }) =>
     $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
 

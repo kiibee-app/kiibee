@@ -715,9 +715,7 @@ export default function NavBar({
             </DrawerMenu>
           )}
           <DrawerActions $showDivider={drawerItems.length > 0}>
-            {isLoggedIn &&
-            dashboardPath &&
-            mobileDrawerVariant === DRAWER_VARIANT.DROPDOWN ? (
+            {isLoggedIn && dashboardPath ? (
               <>
                 <NavAccountMenuItem
                   href={dashboardPath}
@@ -745,8 +743,6 @@ export default function NavBar({
                   {t(NAV.logout)}
                 </NavAccountMenuButton>
               </>
-            ) : isLoggedIn && dashboardPath ? (
-              <NavAccountMenu dashboardPath={dashboardPath} />
             ) : (
               (actions ?? (
                 <>
