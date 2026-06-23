@@ -74,6 +74,7 @@ type Props = {
   setCollectionPurchaseAmount?: (value: string) => void;
   collectionAccessDuration?: AccessDurationValue;
   setCollectionAccessDuration?: (value: AccessDurationValue) => void;
+  onPasswordValidationChange?: (hasError: boolean) => void;
   onBack?: () => void;
 };
 
@@ -106,6 +107,7 @@ export default function ContentTabPanel({
   setCollectionPurchaseAmount,
   collectionAccessDuration,
   setCollectionAccessDuration,
+  onPasswordValidationChange,
   onBack,
 }: Props) {
   const { t } = useTranslation();
@@ -264,6 +266,7 @@ export default function ContentTabPanel({
         onChangeAccessDuration={setCollectionAccessDuration}
         showDescription={Boolean(selectedCollection)}
         showPaymentOption={Boolean(selectedCollection)}
+        onValidationChange={onPasswordValidationChange}
       />
     );
   }

@@ -65,6 +65,8 @@ interface AdmissionRequirementsProps {
   onChangeAccessDuration?: (value: AccessDurationValue) => void;
   showDescription?: boolean;
   showPaymentOption?: boolean;
+  showPasswordMeta?: boolean;
+  onValidationChange?: (hasError: boolean) => void;
 }
 
 function AdmissionRequirements({
@@ -82,6 +84,8 @@ function AdmissionRequirements({
   onChangeAccessDuration,
   showDescription = true,
   showPaymentOption = true,
+  showPasswordMeta = false,
+  onValidationChange,
 }: AdmissionRequirementsProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -148,17 +152,23 @@ function AdmissionRequirements({
   const handleSelect = useCallback(
     (value: AdmissionRequirementValue) => {
       updateValue(value, onChangeAccessType, setLocalSelected);
+      if (value !== ADMISSION_REQUIREMENT_VALUES.password) {
+        onValidationChange?.(false);
+      }
       setOpen(false);
     },
-    [onChangeAccessType],
+    [onChangeAccessType, onValidationChange],
   );
 
   const handleDescriptionChange = (val: string) => {
     updateValue(val, onChangeDescription, setLocalDescription);
   };
 
+  const validatePassword = (val: string) => !!val && val.trim().length < 6;
+
   const handlePasswordsChange = (val: string) => {
     updateValue(val, onChangePasswords, setLocalPasswords);
+    onValidationChange?.(validatePassword(val));
   };
 
   return (
@@ -230,22 +240,30 @@ function AdmissionRequirements({
       {selected === ADMISSION_REQUIREMENT_VALUES.password ? (
         <PasswordFieldShell>
           <InputField
-            type="textarea"
+            type="text"
             value={passwords}
             onChange={(value) => handlePasswordsChange(value as string)}
             placeholder={t(
               "contents.admissionRequirements.password.placeholder",
             )}
             variant={INPUT_VARIANTS.PRIMARY_GRAY}
-            max={500}
+            hasError={validatePassword(passwords)}
+            errorMessage={
+              validatePassword(passwords)
+                ? t("contents.admissionRequirements.password.error.minLength")
+                : ""
+            }
+            max={6}
           />
 
-          <PasswordMetaRow>
-            <PasswordHelperText>
-              {t("contents.admissionRequirements.password.helper")}
-            </PasswordHelperText>
-            <PasswordLimitText>{maxDescriptionCharacters}</PasswordLimitText>
-          </PasswordMetaRow>
+          {showPasswordMeta && (
+            <PasswordMetaRow>
+              <PasswordHelperText>
+                {t("contents.admissionRequirements.password.helper")}
+              </PasswordHelperText>
+              <PasswordLimitText>{maxDescriptionCharacters}</PasswordLimitText>
+            </PasswordMetaRow>
+          )}
         </PasswordFieldShell>
       ) : null}
 

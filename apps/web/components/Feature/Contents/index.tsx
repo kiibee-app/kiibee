@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "next/navigation";
 import { GenericModal } from "@/components/UI/Modals";
@@ -315,6 +315,8 @@ function CreatorsContentsInner() {
     saveContentSetting: contentSettings.updateSetting,
   });
 
+  const [hasPasswordError, setHasPasswordError] = useState(false);
+
   const searchParams = useSearchParams();
   const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
@@ -404,6 +406,7 @@ function CreatorsContentsInner() {
           isSaveDisabled={
             (activeTab === APPEARANCE && !hasUnsavedChanges) ||
             (activeTab === SETTINGS && !hasSettingsUnsavedChanges) ||
+            (activeTab === SETTINGS && hasPasswordError) ||
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
               !hasGeneralUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.METADATA &&
@@ -467,6 +470,7 @@ function CreatorsContentsInner() {
             setCollectionPurchaseAmount={setCollectionPurchaseAmount}
             collectionAccessDuration={collectionAccessDuration}
             setCollectionAccessDuration={setCollectionAccessDuration}
+            onPasswordValidationChange={setHasPasswordError}
             onBack={handleBackToCollection}
           />
         </ContentPanel>
