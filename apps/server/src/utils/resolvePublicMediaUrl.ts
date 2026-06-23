@@ -78,7 +78,17 @@ export function resolvePublicMediaUrl(url?: string | null): string | null {
   }
 
   if (trimmed.startsWith('/')) {
+    if (KIIBEE_MEDIA_PATH_PREFIX.test(trimmed)) {
+      return buildCdnMediaUrl(trimmed) ?? `${KIIBEE_MEDIA_BASE_URL}${trimmed}`;
+    }
+
     return buildCdnMediaUrl(trimmed) ?? `${KIIBEE_MEDIA_BASE_URL}${trimmed}`;
+  }
+
+  if (/^media\//i.test(trimmed)) {
+    return (
+      buildCdnMediaUrl(`/${trimmed}`) ?? `${KIIBEE_MEDIA_BASE_URL}/${trimmed}`
+    );
   }
 
   return trimmed;

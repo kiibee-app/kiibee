@@ -17,8 +17,18 @@ const KIIBEE_MEDIA_HOSTS = new Set(["kiibee.dk", "www.kiibee.dk"]);
 const KIIBEE_MEDIA_PATH_PREFIX = /^\/media\//;
 
 function getMediaCdnBase(): string | null {
-  const base = process.env.NEXT_PUBLIC_MEDIA_CDN_URL?.trim();
-  return base ? base.replace(/\/$/, "") : null;
+  const explicit = process.env.NEXT_PUBLIC_MEDIA_CDN_URL?.trim();
+  if (explicit) {
+    return explicit.replace(/\/$/, "");
+  }
+
+  const bucket = process.env.NEXT_PUBLIC_DO_BUCKET?.trim();
+  const region = process.env.NEXT_PUBLIC_DO_REGION?.trim();
+  if (bucket && region) {
+    return `https://${bucket}.${region}.digitaloceanspaces.com`;
+  }
+
+  return null;
 }
 
 function getMediaCdnStripPrefix(): string {
@@ -46,12 +56,21 @@ function buildCdnMediaUrl(pathname: string): string | null {
   return `${cdnBase}${toCdnMediaPath(pathname)}`;
 }
 
+function isLegacyKiibeeMediaPath(pathname: string): boolean {
+  return KIIBEE_MEDIA_PATH_PREFIX.test(pathname);
+}
+
+function resolveLegacyKiibeeMediaPath(pathname: string): string {
+  const path = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  return `${KIIBEE_MEDIA_BASE_URL}${path}`;
+}
+
 function rewriteKiibeeMediaUrl(url: string): string {
   try {
     const parsed = new URL(url);
     if (
       KIIBEE_MEDIA_HOSTS.has(parsed.hostname) &&
-      KIIBEE_MEDIA_PATH_PREFIX.test(parsed.pathname)
+      isLegacyKiibeeMediaPath(parsed.pathname)
     ) {
       return buildCdnMediaUrl(parsed.pathname) ?? url;
     }
@@ -117,10 +136,54 @@ export function resolvePublicMediaUrl(url?: string | null): string | null {
   }
 
   if (trimmed.startsWith("/")) {
-    return buildCdnMediaUrl(trimmed) ?? `${KIIBEE_MEDIA_BASE_URL}${trimmed}`;
+    if (isLegacyKiibeeMediaPath(trimmed)) {
+      return buildCdnMediaUrl(trimmed) ?? resolveLegacyKiibeeMediaPath(trimmed);
+    }
+
+    return buildCdnMediaUrl(trimmed) ?? resolveLegacyKiibeeMediaPath(trimmed);
+  }
+
+  if (/^media\//i.test(trimmed)) {
+    return (
+      buildCdnMediaUrl(`/${trimmed}`) ??
+      resolveLegacyKiibeeMediaPath(`/${trimmed}`)
+    );
   }
 
   return trimmed;
+}
+
+export function resolveContentThumbnailCandidates(
+  thumbnailUrl?: string | null,
+  thumbnailLandscapeUrl?: string | null,
+  options?: { preferLandscape?: boolean },
+): string[] {
+  const primary = options?.preferLandscape
+    ? thumbnailLandscapeUrl
+    : thumbnailUrl;
+  const secondary = options?.preferLandscape
+    ? thumbnailUrl
+    : thumbnailLandscapeUrl;
+
+  const candidates = [primary, secondary]
+    .map((url) => resolvePublicMediaUrl(url))
+    .filter((url): url is string => Boolean(url));
+
+  return [...new Set(candidates)];
+}
+
+export function resolveContentThumbnailUrl(
+  thumbnailUrl?: string | null,
+  thumbnailLandscapeUrl?: string | null,
+  options?: { preferLandscape?: boolean },
+): string | null {
+  return (
+    resolveContentThumbnailCandidates(
+      thumbnailUrl,
+      thumbnailLandscapeUrl,
+      options,
+    )[0] ?? null
+  );
 }
 
 export const REMOTE_COVER_IMAGE_STYLE: CSSProperties = {

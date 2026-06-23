@@ -14,7 +14,7 @@ import {
 } from "@/utils/content";
 import {
   resolveCloudflareStreamPlaybackUrl,
-  resolvePublicMediaUrl,
+  resolveContentThumbnailUrl,
 } from "@/utils/media";
 import {
   getContentDetailPricingActions,
@@ -194,12 +194,12 @@ export const resolveContentPlaybackUrl = (
 };
 
 const getContentImage = (content: ContentDetailItem): ImageSource => {
-  const raw = toTrimmedString(
-    content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL] ??
+  return (
+    resolveContentThumbnailUrl(
       content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
+      content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL],
+    ) || contentFallbackImage
   );
-
-  return resolvePublicMediaUrl(raw) || contentFallbackImage;
 };
 
 const getCategoryNames = (content: ContentDetailItem) =>

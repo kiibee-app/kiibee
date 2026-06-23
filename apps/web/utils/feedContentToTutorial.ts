@@ -6,7 +6,7 @@ import {
   type PricingLabels,
 } from "@/utils/contentPricingActions";
 import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
-import { resolvePublicMediaUrl } from "@/utils/media";
+import { resolveContentThumbnailCandidates } from "@/utils/media";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -105,6 +105,11 @@ export function feedContentToTutorial(
   freeLabel: string,
   options?: { inCollection?: boolean; labels?: PricingLabels },
 ): TutorialVideo {
+  const thumbnailCandidates = resolveContentThumbnailCandidates(
+    item.thumbnailUrl,
+    item.thumbnailLandscapeUrl,
+  );
+
   return {
     id: item.id,
     title: item.title,
@@ -117,9 +122,7 @@ export function feedContentToTutorial(
     isFree: isFreeContentItem(item),
     formatLabel: formatFormatLabel(item.contentType),
     formatType: resolveFormatType(item.contentType),
-    image:
-      resolvePublicMediaUrl(item.thumbnailLandscapeUrl ?? item.thumbnailUrl) ||
-      recentCreator,
+    image: thumbnailCandidates[0] ?? recentCreator,
     buttons: buildPricingButtons(item, freeLabel, options),
   };
 }
