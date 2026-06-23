@@ -26,6 +26,7 @@ export const STORAGE_KEYS = {
   PAGE_SIZE_ALL_CREATORS: "kiibee.admin.allCreators.pageSize",
   PAGE_SIZE_CREATOR_REQUESTS: "kiibee.admin.creatorRequests.pageSize",
   PAGE_SIZE_VIEWERS: "kiibee.admin.viewers.pageSize",
+  PAGE_SIZE_CREATOR_SALES: "kiibee.admin.creatorSales.pageSize",
 } as const;
 
 export const isBrowser = typeof window !== "undefined";
@@ -44,6 +45,7 @@ export const ALL_CREATORS_TAB = {
   CREATORS: "creators",
   VIEWERS: "viewers",
   REQUESTS: "requests",
+  SALES: "sales",
 } as const;
 
 export type AllCreatorsTab =

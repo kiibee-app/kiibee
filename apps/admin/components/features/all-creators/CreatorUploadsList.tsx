@@ -25,22 +25,26 @@ import {
 
 export type CreatorUploadsListProps = {
   creatorId: string;
-  onBack: () => void;
+  onBack?: () => void;
   onSelectUpload: (upload: UploadItem) => void;
+  hideBackButton?: boolean;
 };
 
 export function CreatorUploadsList({
   creatorId,
   onBack,
   onSelectUpload,
+  hideBackButton,
 }: CreatorUploadsListProps) {
   const { data: uploads, isLoading, isError } = useCreatorUploads(creatorId);
 
   return (
     <>
-      <BackButton onClick={onBack}>
-        <ArrowLeft size={16} /> {existingCreatorLabels.backToDetails}
-      </BackButton>
+      {!hideBackButton && onBack && (
+        <BackButton onClick={onBack}>
+          <ArrowLeft size={16} /> {existingCreatorLabels.backToDetails}
+        </BackButton>
+      )}
 
       {isLoading ? (
         <StatusMessage $variant="loading">
