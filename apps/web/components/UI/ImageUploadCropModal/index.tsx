@@ -49,7 +49,6 @@ type Props = {
   cropHeight?: number;
   recommendedText?: boolean;
   maxSize?: number;
-  allowSkipCrop?: boolean;
 };
 
 export default function ImageUploadCropModal({
@@ -64,7 +63,6 @@ export default function ImageUploadCropModal({
   cropHeight = DEFAULT_CROP_SIZE,
   recommendedText = false,
   maxSize = MAX_IMAGE_SIZE,
-  allowSkipCrop = false,
 }: Props) {
   const { t } = useTranslation();
   const [pendingImage, setPendingImage] = useState<string | null>(image);
@@ -238,12 +236,6 @@ export default function ImageUploadCropModal({
     openFilePicker();
   };
 
-  const handleSkipCrop = useCallback(() => {
-    if (!pendingImage) return;
-    onApply(pendingImage);
-    onClose();
-  }, [pendingImage, onApply, onClose]);
-
   const applyCrop = useCallback(async () => {
     if (!pendingImage || !previewFrameRef.current) return;
 
@@ -355,14 +347,6 @@ export default function ImageUploadCropModal({
               <GenericButton variant={VARIANT.SECONDARY} onClick={resetState}>
                 {t("common.cancel")}
               </GenericButton>
-              {allowSkipCrop && (
-                <GenericButton
-                  variant={VARIANT.SECONDARY}
-                  onClick={handleSkipCrop}
-                >
-                  {t("common.useAsIs", "Use as-is")}
-                </GenericButton>
-              )}
               <GenericButton variant={VARIANT.PRIMARY} onClick={applyCrop}>
                 {t("creatorProfile.apply")}
               </GenericButton>
