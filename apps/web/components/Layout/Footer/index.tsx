@@ -24,7 +24,7 @@ import {
 import logo from "../../../assets/images/kiibee-logo.svg";
 import card from "../../../assets/images/card.webp";
 import { FacebookIcon, InstagramIcon } from "@/assets/icons";
-import { footerConfig } from "@/utils/footerConfig";
+import { footerConfig, footerLinks } from "@/utils/footerConfig";
 import { MonoText } from "@/components/UI/Monotext";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
@@ -81,30 +81,22 @@ const Footer = () => {
         <BottomLeft>{t("footer.copyright", { year })}</BottomLeft>
         <BottomRight>
           <LinkRow>
-            <LinkGroup>
-              <BottomLink href="/privacy-policy">
-                <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-                  {t("footer.privacyPolicy")}
-                </MonoText>
-              </BottomLink>
-              <BottomLink href="/terms-of-service">
-                <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-                  {t("footer.termsOfService")}
-                </MonoText>
-              </BottomLink>
-            </LinkGroup>
-            <LinkGroup>
-              <BottomLink href="/cookie-settings">
-                <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-                  {t("footer.cookieSettings")}
-                </MonoText>
-              </BottomLink>
-              <BottomLink href="/subscription-terms">
-                <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-                  {t("footer.subscriptionTerms")}
-                </MonoText>
-              </BottomLink>
-            </LinkGroup>
+            {footerLinks.map((group, groupIndex) => (
+              <LinkGroup key={groupIndex}>
+                {group.map(({ href, label }) => (
+                  <BottomLink
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
+                      {t(label)}
+                    </MonoText>
+                  </BottomLink>
+                ))}
+              </LinkGroup>
+            ))}
           </LinkRow>
           <CardWrapper>
             <PaymentCardImage

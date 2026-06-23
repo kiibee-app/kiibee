@@ -41,3 +41,31 @@ export const footerConfig: FooterColumn[] = [
     items: [{ label: "footer.support", href: PATHS.SUPPORT }],
   },
 ];
+
+export type FooterLink = {
+  href: string;
+  label: string;
+};
+
+export const footerLinks: FooterLink[][] = [
+  [
+    {
+      href: "/privacy-policy",
+      label: "footer.privacyPolicy",
+    },
+    {
+      href: "/terms-of-service",
+      label: "footer.termsOfService",
+    },
+  ],
+  [
+    {
+      href: "/cookie-settings",
+      label: "footer.cookieSettings",
+    },
+    {
+      href: "/subscription-terms",
+      label: "footer.subscriptionTerms",
+    },
+  ],
+];
