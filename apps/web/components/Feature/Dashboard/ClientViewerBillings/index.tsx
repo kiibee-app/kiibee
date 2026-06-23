@@ -107,8 +107,9 @@ export default function ClientViewerBillings() {
     useState<ViewerPaymentMethod | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
-  const [selectedInvoice, setSelectedInvoice] =
-    useState<ViewerBillingHistoryItem | null>(null);
+  const [selectedBillingId, setSelectedBillingId] = useState<string | null>(
+    null,
+  );
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
 
   const handleCloseModal = () => {
@@ -139,7 +140,7 @@ export default function ClientViewerBillings() {
   };
 
   const handleInvoiceOpen = (invoice: ViewerBillingHistoryItem) => {
-    setSelectedInvoice(invoice);
+    setSelectedBillingId(invoice.id);
     setShowInvoiceModal(true);
   };
 
@@ -429,10 +430,10 @@ export default function ClientViewerBillings() {
       />
       <InvoiceModal
         visible={showInvoiceModal}
-        invoice={selectedInvoice}
+        billingId={selectedBillingId}
         onClose={() => {
           setShowInvoiceModal(false);
-          setSelectedInvoice(null);
+          setSelectedBillingId(null);
         }}
       />
       {selectedPaymentMethod ? (

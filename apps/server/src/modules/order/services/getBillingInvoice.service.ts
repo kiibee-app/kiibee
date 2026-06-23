@@ -36,6 +36,7 @@ export async function getBillingInvoiceService(
         creatorName: sql<string>`coalesce(${mediaCreators.fullName}, ${collectionCreators.fullName})`,
         paymentDate: sql<Date>`coalesce(${payments.paidAt}, ${payments.createdAt})`,
         amount: payments.amount,
+        cardNumber: payments.cardNo,
         paymentMethod: payments.paymentMethod,
       })
       .from(payments)
@@ -71,6 +72,7 @@ export async function getBillingInvoiceService(
         paymentDate: invoice.paymentDate,
         amount: invoice.amount,
         paymentMethod: invoice.paymentMethod,
+        cardNumber: invoice.cardNumber,
         contentDetails: {
           contentTitle: invoice.contentTitle ?? '',
           contentImage: invoice.contentImage ?? '',
