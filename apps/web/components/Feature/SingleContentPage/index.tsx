@@ -86,7 +86,10 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const handleSignupRedirect = () => {
     setShowLoginModal(false);
-    router.push(PATHS.AUTH_SIGNUP);
+    const next = encodeURIComponent(
+      window.location.pathname + window.location.search,
+    );
+    router.push(`${PATHS.AUTH_SIGNUP}?next=${next}`);
   };
 
   type CreateOrderPayload = {

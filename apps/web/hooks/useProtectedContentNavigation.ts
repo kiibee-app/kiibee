@@ -15,6 +15,15 @@ export function useProtectedContentNavigation() {
         return;
       }
 
+      if (typeof window !== "undefined") {
+        const event = new CustomEvent("kiibee:open-login-modal", {
+          cancelable: true,
+          detail: { href },
+        });
+        const wasPrevented = !window.dispatchEvent(event);
+        if (wasPrevented) return;
+      }
+
       router.push(pathLoginWithNext(href));
     },
     [router],

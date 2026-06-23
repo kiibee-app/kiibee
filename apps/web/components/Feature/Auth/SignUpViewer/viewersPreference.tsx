@@ -9,12 +9,19 @@ import GenericButton from "@/components/UI/GenericButton";
 import { ContentWrap } from "@/app/auth/signup-creator/styles";
 import { VIEWER_SIGNUP_PREFERENCE } from "@/utils/translationKeys";
 import { PREF_STEP, ViewerPreferenceStep } from "@/utils/preferenceOptions";
-import { PATHS } from "@/utils/path";
+import { PATHS, isSafePostLoginPath } from "@/utils/path";
+import { useSearchParams } from "next/navigation";
 import { PrepCard, PreContentWrap } from "./styles";
 import PreferenceStepContent from "./PreferenceStepContent";
 
 export default function ViewerPreference() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextParam = searchParams?.get("next");
+  const backHref = nextParam
+    ? `${PATHS.AUTH_SIGNUP_VIEWER}?next=${encodeURIComponent(nextParam)}`
+    : PATHS.AUTH_SIGNUP_VIEWER;
+
   const { t } = useTranslation();
   const theme = useTheme();
   const [step, setStep] = useState<ViewerPreferenceStep>(PREF_STEP.INTRO);
@@ -48,13 +55,17 @@ export default function ViewerPreference() {
       return;
     }
 
-    router.push(PATHS.DASHBOARD_VIEWER);
+    if (isSafePostLoginPath(nextParam)) {
+      router.push(nextParam);
+    } else {
+      router.push(PATHS.DASHBOARD_VIEWER);
+    }
   };
 
   return (
     <PreContentWrap>
       <ContentWrap>
-        <AuthBackButton href={PATHS.AUTH_SIGNUP_VIEWER} />
+        <AuthBackButton href={backHref} />
       </ContentWrap>
       <PrepCard>
         <PreferenceStepContent

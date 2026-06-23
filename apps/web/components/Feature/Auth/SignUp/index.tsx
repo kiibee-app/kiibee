@@ -25,9 +25,13 @@ import mediaCard2 from "@/assets/images/auth/mediaCard2.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import { useSearchParams } from "next/navigation";
 
 export default function SignUpSection() {
   const { t } = useTranslation();
+  const searchParams = useSearchParams();
+  const nextParam = searchParams?.get("next");
+  const nextQuery = nextParam ? `?next=${encodeURIComponent(nextParam)}` : "";
 
   return (
     <Container>
@@ -44,14 +48,14 @@ export default function SignUpSection() {
             <CTAWrap>
               <GenericButton
                 asAnchor
-                href={PATHS.AUTH_SIGNUP_CREATOR}
+                href={`${PATHS.AUTH_SIGNUP_CREATOR}${nextQuery}`}
                 variant={VARIANT.PRIMARY}
               >
                 {t(AUTH.signupCreator)}
               </GenericButton>
               <GenericButton
                 asAnchor
-                href={PATHS.AUTH_SIGNUP_VIEWER}
+                href={`${PATHS.AUTH_SIGNUP_VIEWER}${nextQuery}`}
                 variant={VARIANT.SECONDARY}
               >
                 {t(AUTH.signupViewer)}
@@ -60,7 +64,7 @@ export default function SignUpSection() {
 
             <AccountText>
               <MonoText $use="Body_Medium">{t(AUTH.haveAccount)}</MonoText>
-              <LoginLink href={PATHS.AUTH_LOGIN}>
+              <LoginLink href={`${PATHS.AUTH_LOGIN}${nextQuery}`}>
                 <MonoText $use="Body_Medium">{t(AUTH.login)} </MonoText>
               </LoginLink>
             </AccountText>

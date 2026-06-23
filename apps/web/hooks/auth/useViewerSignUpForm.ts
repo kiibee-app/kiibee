@@ -1,6 +1,6 @@
 "use client";
 
-import { PATHS } from "@/utils/path";
+import { PATHS, isSafePostLoginPath } from "@/utils/path";
 import { PasswordVisibility } from "@/utils/signup";
 import { useViewerSignUp } from "./useViewerSignUp";
 import { useAuthSession } from "./useAuthSession";
@@ -14,7 +14,14 @@ export function useViewerSignUpForm() {
     useMutation: useViewerSignUp,
     onSuccess: (response, { router }) => {
       setSession(response);
-      router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
+      const nextPath = new URLSearchParams(window.location.search).get("next");
+      if (isSafePostLoginPath(nextPath)) {
+        router.push(
+          `${PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES}?next=${encodeURIComponent(nextPath)}`,
+        );
+      } else {
+        router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
+      }
     },
   });
 

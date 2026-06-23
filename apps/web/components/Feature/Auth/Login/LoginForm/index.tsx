@@ -24,9 +24,15 @@ import { ALERT } from "@/utils/common";
 import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
 import { useLoginForm } from "@/hooks/auth/useLoginForm";
+import { useSearchParams } from "next/navigation";
 
 export default function LoginForm() {
   const { t } = useTranslation();
+  const searchParams = useSearchParams();
+  const nextParam = searchParams?.get("next");
+  const signUpHref = nextParam
+    ? `${PATHS.AUTH_SIGNUP}?next=${encodeURIComponent(nextParam)}`
+    : PATHS.AUTH_SIGNUP;
 
   const {
     methods,
@@ -97,7 +103,7 @@ export default function LoginForm() {
         </ForgotLink>
         <FooterText>
           <MonoText $use="Body_Medium"> {t("authForm.footer")}</MonoText>
-          <SignUpLink href={PATHS.AUTH_SIGNUP}>
+          <SignUpLink href={signUpHref}>
             <MonoText $use="Body_Medium">{t("authForm.signUp")}</MonoText>
           </SignUpLink>
         </FooterText>

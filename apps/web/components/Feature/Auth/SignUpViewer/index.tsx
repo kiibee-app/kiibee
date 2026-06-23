@@ -34,6 +34,7 @@ import {
   Wrapper,
 } from "./styles";
 import { useViewerSignUpForm } from "@/hooks/auth/useViewerSignUpForm";
+import { useSearchParams } from "next/navigation";
 
 type PasswordFieldKey = keyof PasswordVisibility;
 
@@ -44,6 +45,15 @@ const isPasswordField = (
 
 export default function SignUpViewer() {
   const { t } = useTranslation();
+  const searchParams = useSearchParams();
+  const nextParam = searchParams?.get("next");
+  const nextQuery = nextParam ? `?next=${encodeURIComponent(nextParam)}` : "";
+  const backHref = nextParam
+    ? `/auth/signup?next=${encodeURIComponent(nextParam)}`
+    : "/auth/signup";
+  const loginHref = nextParam
+    ? `${PATHS.AUTH_LOGIN}?next=${encodeURIComponent(nextParam)}`
+    : PATHS.AUTH_LOGIN;
 
   const {
     methods,
@@ -103,7 +113,7 @@ export default function SignUpViewer() {
 
   return (
     <ContentWrap>
-      <AuthBackButton href="/auth/signup" />
+      <AuthBackButton href={backHref} />
       <Wrapper>
         <Card>
           <Image src={logo} alt="Kiibee Logo" width={42} height={42} priority />
@@ -159,7 +169,7 @@ export default function SignUpViewer() {
             <MonoText $use="Body_Medium">
               {t("viewerSignup.haveAccount")}
             </MonoText>
-            <LoginLink href={PATHS.AUTH_LOGIN}>
+            <LoginLink href={loginHref}>
               <MonoText $use="Body_Medium">{t("viewerSignup.login")}</MonoText>
             </LoginLink>
           </LoginRow>
