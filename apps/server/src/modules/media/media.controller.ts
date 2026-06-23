@@ -12,6 +12,8 @@ import type { FastifyRequest } from 'fastify';
 import { MediaService } from './media.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CheckMediaAccessGuard } from 'src/middleware/CheckMediaAccess';
+import { CheckPlanLimit } from 'src/middleware/checkPlanLimit';
+import { CreatorGuard } from '../auth/guards/admin.guard';
 
 type FileType = 'documents' | 'audio' | 'ebooks';
 
@@ -19,6 +21,7 @@ type FileType = 'documents' | 'audio' | 'ebooks';
 export class MediaController {
   constructor(private readonly mediaService: MediaService) {}
 
+  @UseGuards(JwtAuthGuard, CreatorGuard, CheckPlanLimit)
   @Post('videos/upload')
   createVideoUpload() {
     return this.mediaService.createVideoUpload();
@@ -40,6 +43,7 @@ export class MediaController {
     return this.mediaService.getDownloadUrl(key);
   }
 
+  @UseGuards(JwtAuthGuard, CreatorGuard, CheckPlanLimit)
   @Post('file/upload-url')
   getUploadUrl(
     @Body()
@@ -60,6 +64,7 @@ export class MediaController {
     });
   }
 
+  @UseGuards(JwtAuthGuard, CreatorGuard, CheckPlanLimit)
   @Post('file/confirm')
   async confirmUpload(@Body() body: { key: string }) {
     const url = await this.mediaService.fileUpload.getSignedUrl(body.key);
