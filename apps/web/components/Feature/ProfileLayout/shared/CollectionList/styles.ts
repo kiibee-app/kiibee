@@ -21,7 +21,7 @@ export const CollectionListShell = styled.section`
   }
 
   ${({ theme }) => theme.media.mobileLg} {
-    padding: 10px 10px 56px;
+    padding: 10px 10px 46px;
   }
 `;
 
