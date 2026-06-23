@@ -1885,11 +1885,7 @@
     "submitFailed": "We could not reset your password right now. Please try again.",
     "successTitle": "Your password has been successfully reset!",
     "successDescription": "You can now log in with your new password. If you encounter any issues, please contact support.",
-    "backToLogin": "Back to login",
-    "error": {
-      "minLength": "Password must be at least 6 characters.",
-      "passwordMismatch": "Passwords do not match."
-    }
+    "backToLogin": "Back to login"
   },
   "notFound": {
     "badge": "Error 404",
@@ -1938,8 +1934,7 @@
     "emailPlaceholder": "Email",
     "submitCode": "Access content",
     "submitEmail": "Access content",
-    "consentText": "By submitting my email to Kiibee, I hereby subscribe to {{creatorName}}'s newsletter. I can unsubscribe from these at any time through Kiibee.",
-    "codeErrorMinLength": "Code must be at least 6 characters."
+    "consentText": "By submitting my email to Kiibee, I hereby subscribe to {{creatorName}}'s newsletter. I can unsubscribe from these at any time through Kiibee."
   },
   "pricingLabels": {
     "rent": "Rent",

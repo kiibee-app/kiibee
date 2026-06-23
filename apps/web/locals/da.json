@@ -1893,11 +1893,7 @@
     "submitFailed": "Vi kunne ikke nulstille din adgangskode lige nu. Prøv igen.",
     "successTitle": "Din adgangskode er blevet nulstillet!",
     "successDescription": "Du kan nu logge ind med din nye adgangskode. Kontakt support, hvis du oplever problemer.",
-    "backToLogin": "Tilbage til login",
-    "error": {
-      "minLength": "Adgangskoden skal være mindst 6 tegn.",
-      "passwordMismatch": "Adgangskoderne matcher ikke."
-    }
+    "backToLogin": "Tilbage til login"
   },
   "notFound": {
     "badge": "Fejl 404",
@@ -1946,8 +1942,7 @@
     "emailPlaceholder": "E-mail",
     "submitCode": "Tilgå indhold",
     "submitEmail": "Tilgå indhold",
-    "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee.",
-    "codeErrorMinLength": "Koden skal være mindst 6 tegn."
+    "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee."
   },
   "pricingLabels": {
     "rent": "Lej",
