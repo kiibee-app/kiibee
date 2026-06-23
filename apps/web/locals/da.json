@@ -522,6 +522,8 @@
     "topCreators": "Topskabere",
     "seeAll": "Se alle skabere",
     "subscribersCount": "{{count}}K abonnenter",
+    "topCreatorUploads_one": "{{formattedCount}} content upload",
+    "topCreatorUploads_other": "{{formattedCount}} content uploads",
     "creators": "Skabere",
     "contents": "Indhold"
   },

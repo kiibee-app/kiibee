@@ -51,6 +51,14 @@ export function formatSubscriberCountK(count: number): number {
   return count;
 }
 
+export function formatUploadCount(count: number): string {
+  if (count >= 1000) {
+    const kCount = (count / 1000).toFixed(count % 1000 === 0 ? 0 : 1);
+    return `${kCount}K`;
+  }
+  return String(count);
+}
+
 export function sortExploreCreators(
   creators: ExploreCreator[],
   sortBy: SortValue,

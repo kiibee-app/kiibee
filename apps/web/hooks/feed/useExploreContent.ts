@@ -258,6 +258,7 @@ export const useExploreTopCreators = (limit = 6) => {
     return items
       .map(normalizeTopCreator)
       .filter((creator): creator is ExploreTopCreator => creator != null)
+      .sort((a, b) => b.uploadCount - a.uploadCount)
       .slice(0, limit);
   }, [limit, query.data]);
 

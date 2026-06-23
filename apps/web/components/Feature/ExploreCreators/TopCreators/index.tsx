@@ -13,7 +13,7 @@ import {
   SKELETON_COUNT,
   TOP_CREATORS_LIMIT,
 } from "@/utils/Constants";
-import { formatSubscriberCountK } from "@/hooks/creators/useExploreCreators";
+import { formatUploadCount } from "@/hooks/creators/useExploreCreators";
 import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import {
@@ -86,8 +86,9 @@ export default function TopCreators() {
 
                 <MonoText $use="Body_Medium">{creator.name}</MonoText>
                 <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-                  {t(CREATORS.subscribersCount, {
-                    count: formatSubscriberCountK(creator.subscriberCount),
+                  {t(CREATORS.topCreatorUploads, {
+                    count: creator.uploadCount,
+                    formattedCount: formatUploadCount(creator.uploadCount),
                   })}
                 </MonoText>
               </Card>
