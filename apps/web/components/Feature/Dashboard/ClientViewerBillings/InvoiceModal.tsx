@@ -41,9 +41,7 @@ export default function InvoiceModal({
 }: InvoiceModalProps) {
   const { t } = useTranslation();
   const { share } = useShare();
-  const { invoice, isLoading } = useViewerBillingInvoice(
-    visible ? billingId : null,
-  );
+  const { invoice, isLoading } = useViewerBillingInvoice(billingId ?? "");
 
   const { contentTitle, contentImage, creatorName } =
     invoice?.contentDetails ?? {};

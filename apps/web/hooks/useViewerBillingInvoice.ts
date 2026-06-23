@@ -22,9 +22,9 @@ type BillingInvoiceResponse = {
   statusCode: number;
 };
 
-export const useViewerBillingInvoice = (billingId?: string | null) => {
+export const useViewerBillingInvoice = (billingId: string) => {
   const query = useGetAPI<BillingInvoiceResponse>(
-    billingId ? API.order.billingInvoice(billingId) : API.order.billingHistory,
+    API.order.billingInvoice(billingId),
     undefined,
     {
       enabled: Boolean(billingId),
