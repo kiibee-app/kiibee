@@ -18,6 +18,7 @@ export type SingleContentAction = {
 
 export type SingleContentHeroProps = {
   image: ImageSource;
+  imageFallback?: string;
   imageAlt: string;
   contentType?: ContentType;
   media?: {
