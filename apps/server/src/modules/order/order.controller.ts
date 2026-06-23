@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { AdminGuard } from '../auth/guards/admin.guard';
 import { BillingHistoryQueryDto, CreateOrderInputDto } from './dto/order.dto';
 
 @Controller('order')
@@ -41,6 +42,15 @@ export class OrderController {
   ) {
     const userId = req.user.userId;
     return this.orderService.getBillingInvoice(userId, billingId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/billing-history/:viewerId')
+  async getViewerBillingHistory(
+    @Param('viewerId') viewerId: string,
+    @Query() query: BillingHistoryQueryDto,
+  ) {
+    return this.orderService.getBillingHistory(viewerId, query);
   }
 
   @UseGuards(JwtAuthGuard)

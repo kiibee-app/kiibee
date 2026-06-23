@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
+
 import { Drawer } from "../../common/Drawer";
 import type { Viewer } from "../../../types/viewer";
 import { formatViewerStatus } from "../../../utils/viewersConfig";
+import { useViewerSales } from "../../../hooks/api";
 import {
   User,
   Mail,
@@ -13,6 +16,7 @@ import {
   ShieldCheck,
   CreditCard,
   Video,
+  Receipt,
 } from "lucide-react";
 import {
   DrawerHeaderCard,
@@ -29,7 +33,11 @@ import {
   DrawerItemValue,
   CreatorAvatarImage,
   AccountStatusBadge,
+  DrawerSectionActionRow,
+  DrawerSectionActionButton,
 } from "./AllCreators.styles";
+import { ViewerSalesHistoryList } from "./ViewerSalesHistoryList";
+import { INITIAL_SALES_HISTORY_COUNT } from "./viewerSalesHistory";
 
 export type ViewerDetailsModalProps = {
   viewer: Viewer | null;
@@ -40,6 +48,9 @@ export function ViewerDetailsModal({
   viewer,
   onClose,
 }: ViewerDetailsModalProps) {
+  const salesQuery = useViewerSales(viewer?.id ?? null);
+  const [expandedViewerId, setExpandedViewerId] = useState<string | null>(null);
+
   if (!viewer) return null;
 
   const initials =
@@ -47,8 +58,20 @@ export function ViewerDetailsModal({
       (viewer.firstName?.[0] || "") + (viewer.lastName?.[0] || "")
     ).toUpperCase() || "VW";
 
+  const sales = salesQuery.data ?? [];
+  const showAllSales = expandedViewerId === viewer.id;
+  const visibleSales = showAllSales
+    ? sales
+    : sales.slice(0, INITIAL_SALES_HISTORY_COUNT);
+  const hasMoreSales = sales.length > INITIAL_SALES_HISTORY_COUNT;
+
+  const handleClose = () => {
+    setExpandedViewerId(null);
+    onClose();
+  };
+
   return (
-    <Drawer title="Viewer Details" open={Boolean(viewer)} onClose={onClose}>
+    <Drawer title="Viewer Details" open={Boolean(viewer)} onClose={handleClose}>
       <DrawerHeaderCard>
         {viewer.avatarUrl ? (
           <CreatorAvatarImage
@@ -137,6 +160,31 @@ export function ViewerDetailsModal({
             </DrawerItemContent>
           </DrawerCardItem>
         </DrawerCardList>
+      </DrawerSection>
+
+      <DrawerSection>
+        <DrawerSectionTitle>
+          <Receipt size={14} /> Sales History
+        </DrawerSectionTitle>
+        <ViewerSalesHistoryList
+          isLoading={salesQuery.isLoading}
+          isError={salesQuery.isError}
+          errorMessage={salesQuery.error?.message}
+          sales={visibleSales}
+        />
+        {!salesQuery.isLoading &&
+        !salesQuery.isError &&
+        hasMoreSales &&
+        !showAllSales ? (
+          <DrawerSectionActionRow>
+            <DrawerSectionActionButton
+              type="button"
+              onClick={() => setExpandedViewerId(viewer.id)}
+            >
+              See all
+            </DrawerSectionActionButton>
+          </DrawerSectionActionRow>
+        ) : null}
       </DrawerSection>
 
       <DrawerSection>
