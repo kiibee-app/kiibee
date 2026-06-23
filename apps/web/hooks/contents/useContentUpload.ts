@@ -13,6 +13,8 @@ import {
   type UploadContentType,
 } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 type Params = {
   contentType: ContentType | null;
@@ -94,50 +96,77 @@ export function useContentUpload({ contentType }: Params) {
   };
 
   const uploadVideo = async (file: File): Promise<UploadedFile> => {
-    const { data: init } = await axiosClient.post<{
-      uid: string;
-      uploadURL: string;
-    }>(API.media.videoUpload);
+    try {
+      const { data: init } = await axiosClient.post<{
+        uid: string;
+        uploadURL: string;
+      }>(API.media.videoUpload);
 
-    const formData = new FormData();
-    formData.append("file", file);
+      const formData = new FormData();
+      formData.append("file", file);
 
-    await fetch(init.uploadURL, {
-      method: POST_METHOD,
-      body: formData,
-    });
+      const response = await fetch(init.uploadURL, {
+        method: POST_METHOD,
+        body: formData,
+      });
 
-    return {
-      key: init.uid,
-      contentType: file.type || "video/mp4",
-    };
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+
+      return {
+        key: init.uid,
+        contentType: file.type || "video/mp4",
+      };
+    } catch (error) {
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.message
+        : error instanceof Error
+          ? error.message
+          : "Something went wrong.";
+
+      toast.error(message);
+      throw error;
+    }
   };
 
   const uploadFile = async (
     file: File,
     type: Exclude<UploadContentType, typeof FORMAT_TYPE.VIDEO>,
   ): Promise<UploadedFile> => {
-    const { data: upload } = await axiosClient.post<FileUploadUrlResponse>(
-      API.media.fileUploadUrl,
-      {
-        type: MEDIA_UPLOAD_FILE_TYPE_MAP[type],
-        extension: getExtension(file),
-        contentType: file.type,
-      },
-    );
+    try {
+      const { data: upload } = await axiosClient.post<FileUploadUrlResponse>(
+        API.media.fileUploadUrl,
+        {
+          type: MEDIA_UPLOAD_FILE_TYPE_MAP[type],
+          extension: getExtension(file),
+          contentType: file.type,
+        },
+      );
 
-    await putSignedFile(upload.uploadUrl, file, upload.contentType);
+      await putSignedFile(upload.uploadUrl, file, upload.contentType);
 
-    const { data: confirmed } = await axiosClient.post<FileConfirmResponse>(
-      API.media.fileConfirm,
-      { key: upload.key },
-    );
+      const { data: confirmed } = await axiosClient.post<FileConfirmResponse>(
+        API.media.fileConfirm,
+        { key: upload.key },
+      );
 
-    return {
-      key: confirmed.key,
-      url: confirmed.url,
-      contentType: upload.contentType,
-    };
+      return {
+        key: confirmed.key,
+        url: confirmed.url,
+        contentType: upload.contentType,
+      };
+    } catch (error) {
+      toast.error(
+        axios.isAxiosError(error)
+          ? error.response?.data?.message
+          : error instanceof Error
+            ? error.message
+            : "Upload failed.",
+      );
+
+      throw error;
+    }
   };
 
   const uploadSelectedFile = (file: File) => {

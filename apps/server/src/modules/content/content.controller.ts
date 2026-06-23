@@ -17,6 +17,7 @@ import { CreatorGuard } from '../auth/guards/admin.guard';
 import { ContentAppearanceDto } from './dto/contentAppearance.dto';
 import { ContentSettingDto } from './dto/contentSetting.dto';
 import * as getAllContentsService from './services/getAllContents.service';
+import { CheckPlanLimit } from 'src/middleware/checkPlanLimit';
 
 @Controller('content')
 export class ContentController {
@@ -47,7 +48,7 @@ export class ContentController {
     });
   }
 
-  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @UseGuards(JwtAuthGuard, CreatorGuard, CheckPlanLimit)
   @Post('create')
   async createContent(@Req() req: any, @Body() body: CreateContentDto) {
     const creatorId = req.user.userId;
