@@ -110,5 +110,4 @@ export const heroRevealStyle: CSSProperties = {
 
 export const heroImageStyle: CSSProperties = {
   objectFit: "cover",
-  objectPosition: "center top",
 };
