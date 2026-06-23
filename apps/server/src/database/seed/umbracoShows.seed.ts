@@ -7,14 +7,19 @@ import { hashPassword } from 'src/utils/passwordHash';
 
 import { db } from '../db';
 import {
+  inferContentCategoryId,
+  loadProfileCategoryContext,
   loadUmbracoProfileKeys,
+  resolveProfileDefaultCategoryId,
   resolveUmbracoMediaUrl,
+  resolveUmbracoShowThumbnails,
 } from './umbracoSeed.helpers';
 import {
   auditLogs,
   collectionItems,
   collections,
   creatorChannels,
+  mediaFileCategories,
   mediaFileTags,
   mediaFiles,
   tags,
@@ -79,6 +84,7 @@ type UmbracoShow = {
   hidePlay?: boolean | string | number;
   tags?: string;
   properties?: JsonRecord;
+  fields?: JsonRecord;
 };
 
 type LoadedProfileShows = {
@@ -412,14 +418,22 @@ function loadProfileShows(root: string): LoadedProfileShows[] {
     }));
 }
 
-async function resolveChannelSlug(creatorId: string): Promise<string | null> {
+async function resolveCreatorChannel(creatorId: string): Promise<{
+  slug: string;
+  coverImageUrl: string | null;
+  logoUrl: string | null;
+} | null> {
   const [channel] = await db
-    .select({ slug: creatorChannels.slug })
+    .select({
+      slug: creatorChannels.slug,
+      coverImageUrl: creatorChannels.coverImageUrl,
+      logoUrl: creatorChannels.logoUrl,
+    })
     .from(creatorChannels)
     .where(eq(creatorChannels.creatorId, creatorId))
     .limit(1);
 
-  return channel?.slug ?? null;
+  return channel ?? null;
 }
 
 async function ensureDefaultCollection(
@@ -493,11 +507,13 @@ export const seedUmbracoShows = async () => {
       continue;
     }
 
-    const channelSlug = await resolveChannelSlug(creatorId);
-    if (!channelSlug) {
+    const channel = await resolveCreatorChannel(creatorId);
+    if (!channel?.slug) {
       showsSkipped += profile.shows.length;
       continue;
     }
+
+    const channelSlug = channel.slug;
 
     const now = new Date();
     const collectionId = await ensureDefaultCollection(
@@ -505,6 +521,25 @@ export const seedUmbracoShows = async () => {
       creatorId,
       channelSlug,
       now,
+    );
+
+    const profileContextText = loadProfileCategoryContext(
+      profile.profileKey,
+      root,
+    );
+    const profileDefaultCategoryId = resolveProfileDefaultCategoryId(
+      profile.profileKey,
+      profileContextText,
+      profile.shows.map((show) => ({
+        tags: parseTags(show.tags),
+        title: textOrNull(show.title) ?? textOrNull(show.name),
+        description:
+          stripHtml(
+            textOrNull(show.expandedDescription) ??
+              textOrNull(show.description),
+          ) ?? null,
+        contentTypeId: inferContentTypeId(show),
+      })),
     );
 
     for (const show of profile.shows) {
@@ -533,10 +568,11 @@ export const seedUmbracoShows = async () => {
       const duration = parseInteger(show.length);
       const buyPrice = parseDecimal(show.purchasePrice);
       const rentPrice = parseDecimal(show.rentalPrice);
-      const thumbnailUrl =
-        resolveMediaUrl(show.thumbnail) ??
-        resolveMediaUrl(show.videoThumbnailURL);
-      const thumbnailLandscapeUrl = resolveMediaUrl(show.videoThumbnailURL);
+      const { thumbnailUrl, thumbnailLandscapeUrl } =
+        resolveUmbracoShowThumbnails(show, title, {
+          creatorCoverImageUrl: channel.coverImageUrl,
+          creatorLogoUrl: channel.logoUrl,
+        });
       const trailerUrl = resolveMediaUrl(show.trailer);
       const accessCode = textOrNull(show.code);
       const passwordHash = accessCode ? await hashPassword(accessCode) : null;
@@ -549,6 +585,20 @@ export const seedUmbracoShows = async () => {
       const auditLogId = showSeedUuid('audit', profile.profileKey, showKey);
       const isPublished = visibility === 'public';
       const publishedAt = isPublished ? now : null;
+      const categoryId = inferContentCategoryId({
+        profileKey: profile.profileKey,
+        profileContextText,
+        profileDefaultCategoryId,
+        tags: parseTags(show.tags),
+        title,
+        description: description || null,
+        contentTypeId,
+      });
+      const mediaCategoryId = showSeedUuid(
+        'media-category',
+        profile.profileKey,
+        showKey,
+      );
 
       await db.transaction(async (tx) => {
         await tx
@@ -687,6 +737,18 @@ export const seedUmbracoShows = async () => {
         }
 
         await tx
+          .delete(mediaFileCategories)
+          .where(eq(mediaFileCategories.mediaFileId, mediaFileId));
+
+        await tx.insert(mediaFileCategories).values({
+          id: mediaCategoryId,
+          mediaFileId,
+          categoryId,
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        await tx
           .insert(auditLogs)
           .values({
             id: auditLogId,
@@ -709,6 +771,7 @@ export const seedUmbracoShows = async () => {
                 accessType,
                 visibility,
                 collectionId,
+                categoryId,
               },
               raw: show,
             },

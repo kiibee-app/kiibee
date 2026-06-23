@@ -488,3 +488,367 @@ export async function batchInsert<T>(
     await insertBatch(items.slice(index, index + batchSize));
   }
 }
+
+const CATEGORY_KEYWORDS: Record<string, string[]> = {
+  comedy: [
+    'comedy',
+    'stand-up',
+    'standup',
+    'stand up',
+    'komik',
+    'comedyaid',
+    'comedy aid',
+    'entertainment',
+  ],
+  music: ['music', 'song', 'album', 'koncert', 'lyd', 'studio'],
+  podcasts: ['podcast'],
+  arts: ['art', 'gallery', 'illustration', 'kunst', 'galleri', 'attraction'],
+  books: [
+    'book',
+    'e-bog',
+    'ebog',
+    'e bog',
+    'forlag',
+    'writing',
+    'tidsskrift',
+    'publication',
+  ],
+  wellness: [
+    'wellness',
+    'mindfulness',
+    'qigong',
+    'sundhed',
+    'sundt',
+    'slank',
+    'hypnose',
+    'terapi',
+    'psykolog',
+    'heal',
+  ],
+  education: [
+    'education',
+    'learning',
+    'kursus',
+    'course',
+    'skole',
+    'conference',
+    'miniconference',
+    'undervisning',
+    'hjælpe',
+  ],
+  lifestyle: ['lifestyle', 'vlog', 'daily', 'business'],
+  food: ['food', 'cooking', 'koge', 'mad', 'kantine', 'indtag', 'opskrift'],
+  fitness: ['fitness', 'sport', 'motion', 'gym', 'træning'],
+};
+
+const PROFILE_CATEGORY_OVERRIDES: Record<string, string> = {
+  Art_attraction: 'arts',
+  ElStudio: 'music',
+  Elsebeth_Fogh: 'books',
+  Kiibee_hjælpe_videoer: 'education',
+  'Lindhardt_A-S': 'education',
+  Sundt_indtag: 'food',
+  slank_og_wellness: 'wellness',
+  'TANIA_ELLIS_-_The_Social_Business_Company': 'education',
+  'Microphone Entertainment': 'comedy',
+  'FBI.DK': 'comedy',
+};
+
+const CONTENT_TYPE_CATEGORY_FALLBACK: Record<string, string> = {
+  audio: 'music',
+  pdf: 'books',
+  epub: 'books',
+};
+
+const DEFAULT_CONTENT_CATEGORY_ID = 'lifestyle';
+
+export type ContentCategoryInferenceInput = {
+  profileKey: string;
+  profileContextText?: string | null;
+  profileDefaultCategoryId?: string | null;
+  tags?: string[];
+  title?: string | null;
+  description?: string | null;
+  contentTypeId: string;
+};
+
+function normalizeCategoryHaystack(value: string): string {
+  return value
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
+function matchCategoryInText(value: string | null | undefined): string | null {
+  const haystack = normalizeCategoryHaystack(value ?? '');
+  if (!haystack) {
+    return null;
+  }
+
+  for (const [categoryId, keywords] of Object.entries(CATEGORY_KEYWORDS)) {
+    if (keywords.some((keyword) => haystack.includes(keyword))) {
+      return categoryId;
+    }
+  }
+
+  return null;
+}
+
+function matchCategoryInTags(tags: string[] | undefined): string | null {
+  if (!tags?.length) {
+    return null;
+  }
+
+  for (const tag of tags) {
+    const matched = matchCategoryInText(tag);
+    if (matched) {
+      return matched;
+    }
+  }
+
+  return null;
+}
+
+export function inferContentCategoryId(
+  input: ContentCategoryInferenceInput,
+): string {
+  const fromTags = matchCategoryInTags(input.tags);
+  if (fromTags) {
+    return fromTags;
+  }
+
+  const fromTitle = matchCategoryInText(input.title);
+  if (fromTitle) {
+    return fromTitle;
+  }
+
+  const fromDescription = matchCategoryInText(input.description);
+  if (fromDescription) {
+    return fromDescription;
+  }
+
+  if (input.profileDefaultCategoryId) {
+    return input.profileDefaultCategoryId;
+  }
+
+  const override = PROFILE_CATEGORY_OVERRIDES[input.profileKey];
+  if (override) {
+    return override;
+  }
+
+  const profileHaystack = [input.profileKey, input.profileContextText]
+    .filter(Boolean)
+    .join(' ');
+
+  const fromProfile = matchCategoryInText(profileHaystack);
+  if (fromProfile) {
+    return fromProfile;
+  }
+
+  const fromContentType =
+    CONTENT_TYPE_CATEGORY_FALLBACK[input.contentTypeId] ?? null;
+  if (fromContentType) {
+    return fromContentType;
+  }
+
+  return DEFAULT_CONTENT_CATEGORY_ID;
+}
+
+export function loadProfileCategoryContext(
+  profileKey: string,
+  root: string,
+): string | null {
+  const layoutPath = join(root, profileKey, 'profile-info', 'layout.json');
+  if (!existsSync(layoutPath)) {
+    return null;
+  }
+
+  const layout = JSON.parse(readFileSync(layoutPath, 'utf8')) as JsonRecord;
+  const parts = [
+    textOrNull(layout.name),
+    textOrNull(layout.logoText),
+    textOrNull(layout.headline),
+    textOrNull(layout.descriptionHtml),
+    textOrNull(layout.description),
+    textOrNull((layout.coverImage as JsonRecord | undefined)?.visibleText),
+    textOrNull(
+      (layout.coverImageMobile as JsonRecord | undefined)?.visibleText,
+    ),
+  ].filter(Boolean);
+
+  return parts.length ? parts.join(' ') : null;
+}
+
+export function resolveProfileDefaultCategoryId(
+  profileKey: string,
+  profileContextText: string | null,
+  showCategoryInputs: Array<{
+    tags: string[];
+    title: string | null;
+    description: string | null;
+    contentTypeId: string;
+  }>,
+): string | null {
+  for (const show of showCategoryInputs) {
+    const matched = inferContentCategoryId({
+      profileKey,
+      profileContextText,
+      tags: show.tags,
+      title: show.title,
+      description: show.description,
+      contentTypeId: show.contentTypeId,
+    });
+
+    if (matched !== DEFAULT_CONTENT_CATEGORY_ID) {
+      return matched;
+    }
+  }
+
+  const override = PROFILE_CATEGORY_OVERRIDES[profileKey];
+  if (override) {
+    return override;
+  }
+
+  const fromProfile = matchCategoryInText(
+    [profileKey, profileContextText].filter(Boolean).join(' '),
+  );
+  if (fromProfile) {
+    return fromProfile;
+  }
+
+  return null;
+}
+
+const CLOUDFLARE_VIDEO_ID_PATTERN =
+  /(?:videodelivery\.net|cloudflarestream\.com|customer-[a-z0-9-]+\.cloudflarestream\.com)\/([a-f0-9]{32})/i;
+
+const IMAGE_MEDIA_PATH_PATTERN = /\.(jpe?g|png|webp|gif|avif)(\?.*)?$/i;
+
+export function getUmbracoShowValue(show: JsonRecord, key: string): unknown {
+  const direct = show[key];
+  if (direct !== undefined && direct !== null && direct !== '') {
+    return direct;
+  }
+
+  const fromProperties = (show.properties as JsonRecord | undefined)?.[key];
+  if (
+    fromProperties !== undefined &&
+    fromProperties !== null &&
+    fromProperties !== ''
+  ) {
+    return fromProperties;
+  }
+
+  const fromFields = (show.fields as JsonRecord | undefined)?.[key];
+  if (fromFields !== undefined && fromFields !== null && fromFields !== '') {
+    return fromFields;
+  }
+
+  return undefined;
+}
+
+export function extractCloudflareVideoId(value: unknown): string | null {
+  const text = textOrNull(value);
+  if (!text) {
+    return null;
+  }
+
+  if (/^[a-f0-9]{32}$/i.test(text)) {
+    return text.toLowerCase();
+  }
+
+  const match = text.match(CLOUDFLARE_VIDEO_ID_PATTERN);
+  return match?.[1]?.toLowerCase() ?? null;
+}
+
+export function buildCloudflareVideoThumbnailUrl(videoId: string): string {
+  return `https://videodelivery.net/${videoId}/thumbnails/thumbnail.jpg`;
+}
+
+export function isImageMediaPath(value: string): boolean {
+  return IMAGE_MEDIA_PATH_PATTERN.test(value);
+}
+
+export function buildContentPlaceholderThumbnailUrl(title: string): string {
+  const label = (title || 'Content').trim().slice(0, 72);
+  const escaped = label
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="${escaped}">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <text x="320" y="180" fill="#f9fafb" font-family="system-ui,-apple-system,sans-serif" font-size="28" font-weight="600" text-anchor="middle">${escaped}</text>
+</svg>`;
+
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+export type UmbracoShowThumbnailFallbacks = {
+  creatorCoverImageUrl?: string | null;
+  creatorLogoUrl?: string | null;
+};
+
+function resolveUmbracoThumbnailMediaUrl(value: unknown): string | null {
+  if (!value) {
+    return null;
+  }
+
+  if (typeof value === 'string') {
+    return resolveUmbracoMediaUrl(value);
+  }
+
+  if (typeof value === 'object' && value !== null) {
+    return resolveUmbracoThumbnailMediaUrl((value as JsonRecord).src);
+  }
+
+  return null;
+}
+
+export function resolveUmbracoShowThumbnails(
+  show: JsonRecord,
+  title: string,
+  fallbacks: UmbracoShowThumbnailFallbacks = {},
+): { thumbnailUrl: string; thumbnailLandscapeUrl: string } {
+  const videoId =
+    extractCloudflareVideoId(getUmbracoShowValue(show, 'videoID')) ??
+    extractCloudflareVideoId(getUmbracoShowValue(show, 'videoDownloadURL')) ??
+    extractCloudflareVideoId(getUmbracoShowValue(show, 'contentUrl'));
+
+  const cloudflareThumbnail = videoId
+    ? buildCloudflareVideoThumbnailUrl(videoId)
+    : null;
+
+  const rawFile = textOrNull(getUmbracoShowValue(show, 'rawFile'));
+  const rawFileImageUrl =
+    rawFile && isImageMediaPath(rawFile)
+      ? resolveUmbracoMediaUrl(rawFile)
+      : null;
+
+  const thumbnailUrl =
+    resolveUmbracoThumbnailMediaUrl(getUmbracoShowValue(show, 'thumbnail')) ??
+    resolveUmbracoThumbnailMediaUrl(
+      getUmbracoShowValue(show, 'videoThumbnailURL'),
+    ) ??
+    cloudflareThumbnail ??
+    rawFileImageUrl ??
+    fallbacks.creatorCoverImageUrl ??
+    fallbacks.creatorLogoUrl ??
+    buildContentPlaceholderThumbnailUrl(title);
+
+  const thumbnailLandscapeUrl =
+    resolveUmbracoThumbnailMediaUrl(
+      getUmbracoShowValue(show, 'videoThumbnailURL'),
+    ) ??
+    cloudflareThumbnail ??
+    thumbnailUrl;
+
+  return { thumbnailUrl, thumbnailLandscapeUrl };
+}
