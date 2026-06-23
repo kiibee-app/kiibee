@@ -134,6 +134,7 @@ function TutorialCard({
     <GenericCard
       coverImage
       image={imageUrl}
+      imageFallback={tutorial.imageFallback}
       badge={
         <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
           {tutorial.category}

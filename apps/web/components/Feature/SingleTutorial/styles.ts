@@ -368,7 +368,7 @@ export const CollectionImageArea = styled.div`
   display: block;
   position: relative;
   width: 100%;
-  height: 190px;
+  height: 220px;
   align-self: stretch;
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
@@ -383,6 +383,7 @@ export const CollectionCoverImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
 `;
 

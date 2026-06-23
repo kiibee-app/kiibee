@@ -85,6 +85,12 @@ export function resolveImageUrl(image: ImageSource) {
   return isString(image) ? image : image.src;
 }
 
+export function isStaticImageData(
+  image: ImageSource | undefined,
+): image is StaticImageData {
+  return typeof image === "object" && image !== null && "src" in image;
+}
+
 export function isRemoteImageSource(image: ImageSource) {
   return isString(image) && REMOTE_IMAGE_PATTERN.test(image);
 }
@@ -192,6 +198,19 @@ export const REMOTE_COVER_IMAGE_STYLE: CSSProperties = {
   width: "100%",
   height: "100%",
   objectFit: "cover",
+  objectPosition: "center",
+};
+
+/** Content cards — fill frame, keep poster title/top visible. */
+export const CONTENT_POSTER_IMAGE_STYLE: CSSProperties = {
+  ...REMOTE_COVER_IMAGE_STYLE,
+  objectPosition: "center top",
+};
+
+/** Single content / wide hero — center the subject in landscape frames. */
+export const CONTENT_HERO_IMAGE_STYLE: CSSProperties = {
+  ...REMOTE_COVER_IMAGE_STYLE,
+  objectPosition: "center",
 };
 
 export const ICON_DEFAULT_COLOR = "currentColor";

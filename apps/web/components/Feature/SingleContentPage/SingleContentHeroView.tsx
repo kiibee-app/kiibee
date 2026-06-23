@@ -6,10 +6,13 @@ import PdfIcon from "@/assets/icons/PdfIcon";
 import type { SingleContentHeroSectionProps } from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
+  CONTENT_POSTER_IMAGE_STYLE,
   getThirdPartyEmbedUrl,
   isCloudflareStreamEmbedUrl,
   isRemoteImageSource,
+  isStaticImageData,
   isThirdPartyVideoUrl,
+  resolveImageUrl,
 } from "@/utils/media";
 import {
   Hero,
@@ -102,17 +105,60 @@ function getMediaContent(
   }
 }
 
-const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => (
-  <Image
-    src={hero.image}
-    alt={hero.imageAlt}
-    fill
-    priority
-    sizes="(max-width: 900px) 100vw, 900px"
-    style={{ objectFit: "cover" }}
-    unoptimized={isRemoteImageSource(hero.image)}
-  />
-);
+const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
+  const primarySrc = resolveImageUrl(hero.image);
+  const [fallbackForSrc, setFallbackForSrc] = useState<string | null>(null);
+  const src =
+    fallbackForSrc === primarySrc && hero.imageFallback
+      ? hero.imageFallback
+      : primarySrc;
+
+  const handleError = () => {
+    if (hero.imageFallback && fallbackForSrc !== primarySrc) {
+      setFallbackForSrc(primarySrc);
+    }
+  };
+
+  if (isRemoteImageSource(src)) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element -- full-res remote poster URLs render sharper than scaled Next/Image
+      <img
+        src={src}
+        alt={hero.imageAlt}
+        style={CONTENT_POSTER_IMAGE_STYLE}
+        decoding="async"
+        onError={handleError}
+      />
+    );
+  }
+
+  if (isStaticImageData(hero.image)) {
+    return (
+      <Image
+        src={hero.image}
+        alt={hero.imageAlt}
+        fill
+        priority
+        sizes="(max-width: 720px) 100vw, 720px"
+        style={CONTENT_POSTER_IMAGE_STYLE}
+        onError={handleError}
+      />
+    );
+  }
+
+  return (
+    <Image
+      src={hero.image}
+      alt={hero.imageAlt}
+      fill
+      priority
+      sizes="(max-width: 720px) 100vw, 720px"
+      style={CONTENT_POSTER_IMAGE_STYLE}
+      unoptimized
+      onError={handleError}
+    />
+  );
+};
 
 function SingleContentPreview({
   hero,

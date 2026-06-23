@@ -123,6 +123,9 @@ export function feedContentToTutorial(
     formatLabel: formatFormatLabel(item.contentType),
     formatType: resolveFormatType(item.contentType),
     image: thumbnailCandidates[0] ?? recentCreator,
+    ...(thumbnailCandidates[1]
+      ? { imageFallback: thumbnailCandidates[1] }
+      : {}),
     buttons: buildPricingButtons(item, freeLabel, options),
   };
 }

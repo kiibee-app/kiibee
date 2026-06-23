@@ -69,7 +69,7 @@ export const Card = styled.article<{ $clickable?: boolean }>`
 export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 180px;
+  height: 200px;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 1rem;
@@ -183,4 +183,5 @@ export const discoverCardRevealStyle: CSSProperties = {
 
 export const discoverCardImageStyle: CSSProperties = {
   objectFit: "cover",
+  objectPosition: "center top",
 };
