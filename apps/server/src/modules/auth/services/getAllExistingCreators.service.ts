@@ -2,11 +2,13 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq, ilike, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
+  collections,
   creatorChannels,
   creatorInfo,
   creatorPlans,
   emailSubscribers,
   mediaFiles,
+  orders,
   plans,
   users,
 } from 'src/database/schema';
@@ -30,6 +32,26 @@ export const getAllExistingCreatorsService = async ({
     `;
     const planNameSql = sql<string | null>`
       MAX(${plans.name})
+    `;
+    const totalSoldSql = sql<number>`
+      (
+        SELECT COALESCE(COUNT(*), 0)::int
+        FROM ${orders}
+        LEFT JOIN ${mediaFiles} ON ${orders.mediaFileId} = ${mediaFiles.id}
+        LEFT JOIN ${collections} ON ${orders.collectionId} = ${collections.id}
+        WHERE ${orders.status} = 'completed'
+          AND (${mediaFiles.creatorId} = ${users.id} OR ${collections.creatorId} = ${users.id})
+      )
+    `;
+    const totalEarnedSql = sql<number>`
+      (
+        SELECT COALESCE(SUM(${orders.price}), 0)::float
+        FROM ${orders}
+        LEFT JOIN ${mediaFiles} ON ${orders.mediaFileId} = ${mediaFiles.id}
+        LEFT JOIN ${collections} ON ${orders.collectionId} = ${collections.id}
+        WHERE ${orders.status} = 'completed'
+          AND (${mediaFiles.creatorId} = ${users.id} OR ${collections.creatorId} = ${users.id})
+      )
     `;
     const searchTerm = search?.trim();
     const searchPattern = searchTerm ? `%${searchTerm}%` : undefined;
@@ -77,6 +99,8 @@ export const getAllExistingCreatorsService = async ({
         planName: planNameSql,
         uploadCount: uploadCountSql,
         subscriberCount: subscriberCountSql,
+        totalSold: totalSoldSql,
+        totalEarned: totalEarnedSql,
       })
       .from(users)
       .leftJoin(creatorInfo, eq(creatorInfo.userId, users.id))
@@ -110,6 +134,8 @@ export const getAllExistingCreatorsService = async ({
         ...creator,
         uploadCount: Number(creator.uploadCount ?? 0),
         subscriberCount: Number(creator.subscriberCount ?? 0),
+        totalSold: Number(creator.totalSold ?? 0),
+        totalEarned: Number(creator.totalEarned ?? 0),
       })),
       'Creators fetched successfully',
       HttpStatus.OK,

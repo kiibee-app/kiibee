@@ -28,4 +28,6 @@ export type ExistingCreator = {
   planName: string | null;
   uploadCount: number;
   subscriberCount: number;
+  totalSold: number;
+  totalEarned: number;
 };

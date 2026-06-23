@@ -98,7 +98,7 @@ export function CreatorSalesDetailsModal({
                 </DrawerIconWrapper>
                 <DrawerItemContent>
                   <DrawerItemLabel>Total Sold</DrawerItemLabel>
-                  <DrawerItemValue>0</DrawerItemValue>
+                  <DrawerItemValue>{creator.totalSold}</DrawerItemValue>
                 </DrawerItemContent>
               </DrawerCardItem>
               <DrawerCardItem>
@@ -107,7 +107,7 @@ export function CreatorSalesDetailsModal({
                 </DrawerIconWrapper>
                 <DrawerItemContent>
                   <DrawerItemLabel>Total Earned</DrawerItemLabel>
-                  <DrawerItemValue>0 DKK</DrawerItemValue>
+                  <DrawerItemValue>{creator.totalEarned} DKK</DrawerItemValue>
                 </DrawerItemContent>
               </DrawerCardItem>
             </DrawerCardList>
