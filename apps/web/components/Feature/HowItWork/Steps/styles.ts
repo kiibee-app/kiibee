@@ -6,6 +6,10 @@ export const StepsSection = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   padding: 118px 112px;
+
+  ${media.mobileMd} {
+    padding: 80px 24px;
+  }
 `;
 
 export const Inner = styled.div`

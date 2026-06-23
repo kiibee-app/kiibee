@@ -39,6 +39,7 @@ export default function WhatWeBelieveSection() {
                   src={beliefImg}
                   alt={t("about.believe.alt")}
                   fill
+                  loading="eager"
                   sizes="(max-width: 767px) 100vw, 50vw"
                   style={beliefImageStyle}
                 />

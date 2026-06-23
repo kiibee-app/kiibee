@@ -114,6 +114,7 @@ export const InitialAvatar = styled(MonoText).attrs({
   $use: "H4_SemiBold",
 })`
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  padding: 15px;
 `;
 
 export const LogoButton = styled.button`
