@@ -78,6 +78,8 @@ export const API = {
     create: "/order/create",
     getById: (orderId: string) => `/order/${orderId}`,
     billingHistory: "/order/billing-history",
+    billingInvoice: (billingId: string) =>
+      `/order/billing-history/${billingId}`,
     // confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
   },
   payout: {

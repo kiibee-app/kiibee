@@ -49,11 +49,11 @@ function resolveDisplayType(type: string): string {
   return type;
 }
 
-function resolveCardBrand(paymentMethod?: string): CardBrand {
+export const resolveCardBrand = (paymentMethod?: string): CardBrand => {
   const lower = paymentMethod?.toLowerCase() ?? "";
   if (lower.includes(CARD_BRANDS.MASTERCARD)) return CARD_BRANDS.MASTERCARD;
   return CARD_BRANDS.VISA;
-}
+};
 
 function toBillingHistoryItem(
   item: BackendBillingItem,
