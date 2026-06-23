@@ -111,6 +111,21 @@ export const LinkRow = styled.div`
   gap: 12px;
   flex-wrap: wrap;
   justify-content: flex-end;
+
+  ${media.tablet} {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+`;
+
+export const LinkGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+
   a {
     display: inline-flex;
     align-items: center;
