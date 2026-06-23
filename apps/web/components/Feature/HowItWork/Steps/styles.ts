@@ -5,7 +5,7 @@ import { CARD_IMAGE_RATIOS } from "@/utils/landingUtils";
 export const StepsSection = styled.section`
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
-  padding: 118px 112px;
+  padding: 80px 80px;
 `;
 
 export const Inner = styled.div`
