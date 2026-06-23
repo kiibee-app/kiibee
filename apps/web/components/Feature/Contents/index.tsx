@@ -312,22 +312,18 @@ function CreatorsContentsInner() {
   const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
   useEffect(() => {
-    const shouldResetUpload =
-      !queryContentId && editingContent && !pendingEditId;
-    const editUrlSynced = pendingEditId && queryContentId;
-    const leftPostCreateContent =
-      Boolean(postCreateContentId && queryContentId) &&
-      queryContentId !== postCreateContentId;
-
-    if (shouldResetUpload) {
-      resetUploadState();
+    if (!queryContentId) {
+      if (editingContent && !pendingEditId && !postCreateContentId) {
+        resetUploadState();
+      }
+      return;
     }
 
-    if (editUrlSynced) {
+    if (pendingEditId) {
       setPendingEditId(null);
     }
 
-    if (leftPostCreateContent) {
+    if (postCreateContentId && queryContentId !== postCreateContentId) {
       setPostCreateContentId(null);
       setShowPostCreateModal(false);
     }
