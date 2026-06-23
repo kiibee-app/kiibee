@@ -111,10 +111,49 @@ export const useSubscriptionFlow = (
   );
   const { mutateAsync: loginMutate } = useLogin();
 
+  const isEmailValid = useMemo(() => {
+    if (!email) return true;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  }, [email]);
+
+  const isPasswordValid = useMemo(() => {
+    if (!password) return true;
+    return password.length >= 6;
+  }, [password]);
+
+  const passwordsMatch = useMemo(() => {
+    if (!password || !repeatPassword) return true;
+    return password === repeatPassword;
+  }, [password, repeatPassword]);
+
+  const validationError = useMemo(() => {
+    if (email && !isEmailValid) {
+      return t("subscriptionPage.invite.emailInvalid");
+    }
+    if (password && !isPasswordValid) {
+      return t("subscriptionPage.invite.passwordMinLength");
+    }
+    if (password && repeatPassword && !passwordsMatch) {
+      return t("subscriptionPage.invite.passwordMismatch");
+    }
+    return null;
+  }, [
+    email,
+    isEmailValid,
+    password,
+    isPasswordValid,
+    repeatPassword,
+    passwordsMatch,
+    t,
+  ]);
+
   const isSubmitEnabled =
     Boolean(email.trim()) &&
+    isEmailValid &&
     Boolean(password.trim()) &&
+    isPasswordValid &&
     Boolean(repeatPassword.trim()) &&
+    passwordsMatch &&
     (!isCreatorInviteFlow || (isInviteTokenValid && !isValidatingInviteToken));
 
   const getPlanPriceLabel = (planId: string) => {
@@ -241,6 +280,10 @@ export const useSubscriptionFlow = (
     password,
     repeatPassword,
     isSubmitEnabled,
+    isEmailValid,
+    isPasswordValid,
+    passwordsMatch,
+    validationError,
     setSelectedPlan,
     setCurrentStep,
     handleContinue,
