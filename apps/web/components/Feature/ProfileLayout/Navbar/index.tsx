@@ -119,6 +119,8 @@ export default function ProfileNavbar({ variant }: ProfileNavbarProps) {
       {...profileNavShellProps}
       brand={brand}
       items={showNavItems ? navItems : []}
+      hideMobileHamburger={true}
+      showActionsOnMobile={true}
       routeActiveItems={showNavItems}
       navBefore={hasSearch ? <ProfileChannelSearch /> : undefined}
       navTextTone={navTextTone}

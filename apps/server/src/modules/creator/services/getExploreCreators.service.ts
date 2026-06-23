@@ -111,7 +111,10 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
           'subscriber_count',
         ),
       createdAt: users.createdAt,
-      contentDescription: creatorInfo.contentDescription,
+      contentDescription: sql<string | null>`case
+        when ${contentAppearance.userId} is not null then ${contentAppearance.description}
+        else ${creatorInfo.contentDescription}
+      end`.as('content_description'),
       exampleWorkLink: creatorInfo.exampleWorkLink,
       accessType: contentSettings.accessType,
       layout: contentAppearance.layout,
@@ -124,7 +127,14 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
     .leftJoin(creatorInfo, eq(creatorInfo.userId, users.id))
     .leftJoin(contentSettings, eq(contentSettings.userId, users.id))
     .where(and(...conditions))
-    .orderBy(desc(sql`coalesce(${subscriberCounts.subscriberCount}, 0)`));
+    .orderBy(
+      desc(sql`CASE 
+        WHEN (${creatorChannels.coverImageUrl} IS NOT NULL AND trim(${creatorChannels.coverImageUrl}) <> '') 
+          OR (${users.avatarUrl} IS NOT NULL AND trim(${users.avatarUrl}) <> '') 
+        THEN 1 ELSE 0 
+      END`),
+      desc(sql`coalesce(${subscriberCounts.subscriberCount}, 0)`),
+    );
 };
 
 const mapCreatorRow = (row: {

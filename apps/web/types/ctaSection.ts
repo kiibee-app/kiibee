@@ -1,3 +1,4 @@
+import type { Ref } from "react";
 import { ImageSource } from "@/utils/Constants";
 
 export type CtaSectionProps = {
@@ -7,4 +8,5 @@ export type CtaSectionProps = {
   subtitleLines?: string[];
   ctaText?: string;
   ctaHref?: string;
+  sectionRef?: Ref<HTMLElement>;
 };

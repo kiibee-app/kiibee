@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 
 import HeroSection from "@/components/Feature/landing/Hero";
 import InterestSection from "@/components/Feature/landing/InterestSection";
@@ -19,6 +20,8 @@ import WatchingSteps from "../WatchingSteps";
 
 export default function HomePageClient() {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
+  const isLoggedIn = !!user;
 
   return (
     <PageContainer>
@@ -47,7 +50,7 @@ export default function HomePageClient() {
           bgImage={ctaImage}
           title={t("value.title")}
           subtitle={t("value.subtitle")}
-          ctaText={t("value.cta")}
+          ctaText={isLoggedIn ? undefined : t("value.cta")}
         />
       </Main>
 

@@ -1,4 +1,5 @@
 import { HeaderProps, NavStyleProps } from "@/utils/profile";
+import { TONE_DARK, TONE_LIGHT } from "@/utils/Constants";
 import styled, { css } from "styled-components";
 import Link from "next/link";
 import { media } from "@repo/ui/breakpoints";
@@ -51,10 +52,8 @@ export const Left = styled.div`
   gap: 1rem;
 
   ${media.mobileMd} {
-    width: auto;
-  }
-  ${media.mobile} {
-    flex-shrink: 3;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 `;
 
@@ -190,7 +189,7 @@ export const NavButton = styled.button<{
 
 export const MegaMenu = styled.div<{
   $isOpen: boolean;
-  $textTone?: "dark" | "light";
+  $textTone?: typeof TONE_DARK | typeof TONE_LIGHT;
 }>`
   position: fixed;
   top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
@@ -280,7 +279,10 @@ export const ColumnItem = styled.a`
   }
 `;
 
-export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
+export const Actions = styled.div<{
+  $textTone: typeof TONE_DARK | typeof TONE_LIGHT;
+  $showOnMobile?: boolean;
+}>`
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -335,9 +337,26 @@ export const Actions = styled.div<{ $textTone: "dark" | "light" }>`
     transform: none;
   }
 
-  ${media.mobileMd} {
-    display: none;
-  }
+  ${({ $showOnMobile }) =>
+    $showOnMobile
+      ? css`
+          ${media.mobileMd} {
+            gap: 0.5rem;
+            margin-left: auto;
+
+            a,
+            button {
+              min-height: 30px;
+              padding: 4px 10px;
+              font-size: 12px;
+            }
+          }
+        `
+      : css`
+          ${media.mobileMd} {
+            display: none;
+          }
+        `}
 `;
 
 export const NavAccountHost = styled.div<{ $open?: boolean }>`
@@ -388,8 +407,8 @@ export const NavAccountDropdown = styled.div`
   ${media.mobileMd} {
     position: absolute;
     right: 0;
-    bottom: calc(100% + 10px);
-    top: auto;
+    top: calc(100% + 10px);
+    bottom: auto;
     z-index: 1200;
     animation: none;
 
@@ -494,7 +513,20 @@ export const HamburgerLine = styled.span`
   background: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
-export const DrawerOverlay = styled.div<{ $open: boolean }>`
+export const MobileDrawerTriggerWrap = styled.div`
+  display: none;
+
+  ${media.mobileMd} {
+    display: inline-flex;
+    margin-left: auto;
+    flex: 0 0 auto;
+  }
+`;
+
+export const DrawerOverlay = styled.div<{
+  $open: boolean;
+  $variant?: "drawer" | "dropdown";
+}>`
   display: none;
 
   ${media.mobileMd} {
@@ -504,7 +536,8 @@ export const DrawerOverlay = styled.div<{ $open: boolean }>`
     left: 0;
     right: 0;
     bottom: 0;
-    background: ${({ theme }) => theme.colors.neutral.OVERLAY};
+    background: ${({ $variant, theme }) =>
+      $variant === "dropdown" ? "transparent" : theme.colors.neutral.OVERLAY};
     z-index: 85;
     animation: fadeIn 0.2s ease;
   }
@@ -519,7 +552,11 @@ export const DrawerOverlay = styled.div<{ $open: boolean }>`
   }
 `;
 
-export const DrawerPanel = styled.aside<{ $open: boolean }>`
+export const DrawerPanel = styled.aside<{
+  $open: boolean;
+  $side?: "left" | "right";
+  $variant?: "drawer" | "dropdown";
+}>`
   display: none;
 
   ${media.mobileMd} {
@@ -527,18 +564,48 @@ export const DrawerPanel = styled.aside<{ $open: boolean }>`
     flex-direction: column;
     position: fixed;
     top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
-    left: 0;
+    left: ${({ $side }) => ($side === "right" ? "auto" : "0")};
+    right: ${({ $side }) => ($side === "right" ? "0" : "auto")};
     width: min(84vw, 300px);
     height: calc(
       100dvh - var(--navbar-height, 73px) - var(--navbar-top-offset, 0px)
     );
     background: ${({ theme }) => theme.colors.primary.WHITE};
     z-index: 95;
-    transform: ${({ $open }) =>
-      $open ? "translateX(0)" : "translateX(-100%)"};
+    transform: ${({ $open, $side }) =>
+      $open
+        ? "translateX(0)"
+        : $side === "right"
+          ? "translateX(100%)"
+          : "translateX(-100%)"};
     transition: transform 0.3s ease;
-    box-shadow: ${({ $open, theme }) =>
-      $open ? `6px 0 24px ${theme.colors.gradient.FRAME_BG}` : "none"};
+    box-shadow: ${({ $open, $side, theme }) =>
+      $open
+        ? `${$side === "right" ? "-6px" : "6px"} 0 24px ${theme.colors.gradient.FRAME_BG}`
+        : "none"};
+
+    ${({ $open, theme, $variant }) =>
+      $variant === "dropdown" &&
+      css`
+        top: calc(
+          var(--navbar-height, 73px) + var(--navbar-top-offset, 0px) - 6px
+        );
+        left: auto;
+        right: 16px;
+        width: min(calc(100vw - 32px), 300px);
+        height: auto;
+        max-height: calc(
+          100dvh - var(--navbar-height, 73px) - var(--navbar-top-offset, 0px) -
+            20px
+        );
+        border: 1px solid ${theme.colors.neutral.GRAY_300};
+        border-radius: 12px;
+        opacity: ${$open ? 1 : 0};
+        pointer-events: ${$open ? "auto" : "none"};
+        transform: none;
+        box-shadow: none;
+        transition: opacity 0.15s ease;
+      `}
   }
 `;
 
@@ -548,8 +615,8 @@ export const DrawerContent = styled.div`
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 20px;
-  gap: 24px;
+  padding: 16px;
+  gap: 16px;
 `;
 
 export const DrawerMenu = styled.nav`
@@ -649,13 +716,14 @@ export const DrawerSubMenuLink = styled(Link)<{ $isActive?: boolean }>`
   }
 `;
 
-export const DrawerActions = styled.div`
+export const DrawerActions = styled.div<{ $showDivider?: boolean }>`
   margin-top: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-top: 20px;
-  border-top: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
+  gap: 8px;
+  padding-top: ${({ $showDivider }) => ($showDivider ? "16px" : "0")};
+  border-top: ${({ $showDivider, theme }) =>
+    $showDivider ? `1px solid ${theme.colors.primary.GRAY}` : "none"};
 
   a,
   button {

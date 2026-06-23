@@ -135,6 +135,21 @@ export type CouponAction =
 export const TONE_DARK = "dark" as const;
 export const TONE_LIGHT = "light" as const;
 
+export const DRAWER_SIDE = {
+  LEFT: "left",
+  RIGHT: "right",
+} as const;
+
+export type DrawerSide = (typeof DRAWER_SIDE)[keyof typeof DRAWER_SIDE];
+
+export const DRAWER_VARIANT = {
+  DRAWER: "drawer",
+  DROPDOWN: "dropdown",
+} as const;
+
+export type DrawerVariant =
+  (typeof DRAWER_VARIANT)[keyof typeof DRAWER_VARIANT];
+
 export const profileNavShellProps = {
   position: "absolute",
   innerPadding: "15px 110px",

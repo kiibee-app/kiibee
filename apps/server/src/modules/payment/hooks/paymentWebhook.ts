@@ -25,6 +25,7 @@ export async function handleEpayPayment(body: any) {
 
   const orderId = reference;
   const status = state;
+  const resolvedAmount = amount / 100;
 
   if (!orderId) {
     logger.error('⚠️ Missing reference in webhook');
@@ -58,7 +59,7 @@ export async function handleEpayPayment(body: any) {
       orderId: orderId,
       provider: 'card',
       providerReference: orderId,
-      amount: amount,
+      amount: resolvedAmount,
       currency: currency,
       status: ORDER_STATUS.COMPLETED,
       paymentMethod: paymentMethodType,

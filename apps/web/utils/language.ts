@@ -1,4 +1,4 @@
-import { DA, EN, STORAGE_KEY, SUPPORTED_LANGS } from "@/utils/common";
+import { DA, EN, STORAGE_KEY } from "@/utils/common";
 
 export type AppLanguage = typeof DA | typeof EN;
 
@@ -9,32 +9,6 @@ export function normalizeAppLanguage(language?: string | null): AppLanguage {
 
   const normalized = language.toLowerCase().split("-")[0];
   return normalized === EN ? EN : DA;
-}
-
-function readLanguageCookie(): string | null {
-  if (typeof document === "undefined") return null;
-
-  const match = document.cookie.match(
-    new RegExp(`(?:^|; )${STORAGE_KEY}=([^;]*)`),
-  );
-
-  return match ? decodeURIComponent(match[1]) : null;
-}
-
-export function getStoredAppLanguage(): AppLanguage {
-  if (typeof window === "undefined") return DA;
-
-  const fromCookie = readLanguageCookie();
-  if (fromCookie && SUPPORTED_LANGS.includes(fromCookie)) {
-    return normalizeAppLanguage(fromCookie);
-  }
-
-  const fromStorage = localStorage.getItem(STORAGE_KEY);
-  if (fromStorage && SUPPORTED_LANGS.includes(fromStorage)) {
-    return normalizeAppLanguage(fromStorage);
-  }
-
-  return DA;
 }
 
 export function persistAppLanguage(language: AppLanguage) {

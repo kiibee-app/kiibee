@@ -43,6 +43,7 @@ import { AppearanceFormProvider } from "./Appearance/AppearanceFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
 import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
+import { useAutoMatchedQuery } from "@/hooks/useAutoMatchedQuery";
 import {
   SCROLL_OPTIONS,
   UI_TITLE_FALLBACK,
@@ -189,25 +190,35 @@ function CreatorsContentsInner() {
       },
     ];
   }, [t, collections, collectionContents, couponResponse]);
+  const { lastAutoMatchedQueryRef, handleSearchChange } =
+    useAutoMatchedQuery(setSearchValue);
 
   useEffect(() => {
     if (selectedCollection) return;
     if (!searchValue || searchValue.trim().length < 2) return;
 
     const query = searchValue.trim().toLowerCase();
-    const activeTabKeywords = CONTENTS_TABS_INDEX.find(
-      (item) => item.tab === activeTab,
-    );
-    const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
-      keyword.toLowerCase().includes(query),
-    );
+    const searchChanged = lastAutoMatchedQueryRef.current !== query;
 
-    if (!activeContainsQuery) {
-      const matchedTabItem = CONTENTS_TABS_INDEX.find((item) =>
-        item.keywords.some((keyword) => keyword.toLowerCase().includes(query)),
+    if (searchChanged) {
+      lastAutoMatchedQueryRef.current = query;
+
+      const activeTabKeywords = CONTENTS_TABS_INDEX.find(
+        (item) => item.tab === activeTab,
       );
-      if (!matchedTabItem) return;
-      setActiveTabAndQuery(matchedTabItem.tab as typeof activeTab);
+      const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(query),
+      );
+
+      if (!activeContainsQuery) {
+        const matchedTabItem = CONTENTS_TABS_INDEX.find((item) =>
+          item.keywords.some((keyword) =>
+            keyword.toLowerCase().includes(query),
+          ),
+        );
+        if (!matchedTabItem) return;
+        setActiveTabAndQuery(matchedTabItem.tab as typeof activeTab);
+      }
     }
 
     let attempts = 0;
@@ -228,6 +239,7 @@ function CreatorsContentsInner() {
     searchValue,
     activeTab,
     selectedCollection,
+    lastAutoMatchedQueryRef,
     setActiveTabAndQuery,
     CONTENTS_TABS_INDEX,
   ]);
@@ -311,30 +323,6 @@ function CreatorsContentsInner() {
   const searchParams = useSearchParams();
   const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
-  useEffect(() => {
-    if (!queryContentId) {
-      if (editingContent && !pendingEditId && !postCreateContentId) {
-        resetUploadState();
-      }
-      return;
-    }
-
-    if (pendingEditId) {
-      setPendingEditId(null);
-    }
-
-    if (postCreateContentId && queryContentId !== postCreateContentId) {
-      setPostCreateContentId(null);
-      setShowPostCreateModal(false);
-    }
-  }, [
-    editingContent,
-    pendingEditId,
-    postCreateContentId,
-    queryContentId,
-    resetUploadState,
-  ]);
-
   const handleCreate = useCallback(() => {
     resetUploadState();
     handleCreateClick();
@@ -358,6 +346,7 @@ function CreatorsContentsInner() {
     handleEditContent: handleEditContentWithUrl,
     handleSelectCollection,
     syncContentIdToUrl,
+    isStartingEditRef,
   } = useContentsUrlState({
     collections,
     selectedCollection,
@@ -369,6 +358,16 @@ function CreatorsContentsInner() {
     onBackStateOnly: handleBackToBaseStateOnly,
     activeTab,
   });
+
+  useEffect(() => {
+    if (
+      !queryContentId &&
+      editingContent !== null &&
+      !isStartingEditRef.current
+    ) {
+      resetUploadState();
+    }
+  }, [queryContentId, editingContent, resetUploadState, isStartingEditRef]);
 
   const handleSaveSuccessClose = () => {
     setShowSaveSuccessModal(false);
@@ -458,7 +457,7 @@ function CreatorsContentsInner() {
                     value: searchValue,
                     placeholder: t(CONTENTS_KEYS.actions.search),
                     onToggle: () => setOpenSearch((prev) => !prev),
-                    onChange: setSearchValue,
+                    onChange: handleSearchChange,
                     ariaLabel: t(CONTENTS_KEYS.actions.search),
                   }
             }

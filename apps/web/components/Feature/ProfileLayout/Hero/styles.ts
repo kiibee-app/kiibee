@@ -82,8 +82,8 @@ export const ProfileSection = styled.div`
   }
 
   ${({ theme }) => theme.media.mobileMd} {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: column-reverse;
     gap: 12px;
     margin-top: 16px;
   }
@@ -194,6 +194,7 @@ export const CreatorBioText = styled.div`
   max-height: 2.4em;
   overflow: hidden;
   word-break: break-word;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
 `;
 
 export const MoreTextLabel = styled(MonoText).attrs(({ theme }) => ({
@@ -210,6 +211,7 @@ export const BioText = styled.div`
   max-height: 2.4em;
   overflow: hidden;
   word-break: break-word;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
 `;
 
 export const BioMoreButton = styled(MonoText).attrs(({ theme }) => ({
@@ -303,12 +305,7 @@ export const StoryPanel = styled.aside`
   width: min(620px, 100%);
   padding: 50px 0;
   color: ${({ theme }) => theme.colors.primary.WHITE};
-  background: linear-gradient(
-    90deg,
-    ${({ theme }) => theme.colors.neutral.GRAY_300} 0%,
-    ${({ theme }) => theme.colors.neutral.GRAY_250} 22%,
-    ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
-  );
+  background: none;
 
   ${({ theme }) => theme.media.desktopMd} {
     width: min(560px, 100%);
@@ -324,12 +321,6 @@ export const StoryPanel = styled.aside`
     width: 100%;
     padding: 24px 0 18px;
     gap: 8px;
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.colors.neutral.GRAY_300} 0%,
-      ${({ theme }) => theme.colors.neutral.GRAY_250} 14%,
-      ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
-    );
   }
 `;
 
