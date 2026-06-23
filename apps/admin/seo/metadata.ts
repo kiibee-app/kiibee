@@ -17,6 +17,10 @@ const pageMeta: Record<string, PageMeta> = {
     title: "Profile",
     description: "View full authenticated admin account details and tokens.",
   },
+  "/creator-sales": {
+    title: "Creator Sales",
+    description: "View creator sales, content, and revenue details.",
+  },
 };
 
 export function getPageMeta(pathname: string): PageMeta {

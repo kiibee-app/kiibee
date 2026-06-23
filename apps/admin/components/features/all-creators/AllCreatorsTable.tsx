@@ -32,8 +32,6 @@ import { CreatorPagination } from "./CreatorPagination";
 import { CreatorDetailsModal } from "./CreatorDetailsModal";
 import { ExistingCreatorDetailsModal } from "./ExistingCreatorDetailsModal";
 import { ViewerDetailsModal } from "./ViewerDetailsModal";
-import { CreatorSalesTable } from "./CreatorSalesTable";
-import { CreatorSalesDetailsModal } from "./CreatorSalesDetailsModal";
 import type { ExistingCreator } from "../../../types/existing-creator";
 import type { Viewer } from "../../../types/viewer";
 import { useCreatorRequestActions } from "./useCreatorRequestActions";
@@ -59,8 +57,6 @@ export function AllCreatorsTable() {
     null,
   );
   const [selectedExistingCreator, setSelectedExistingCreator] =
-    useState<ExistingCreator | null>(null);
-  const [selectedSalesCreator, setSelectedSalesCreator] =
     useState<ExistingCreator | null>(null);
   const [selectedViewer, setSelectedViewer] = useState<Viewer | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -94,13 +90,6 @@ export function AllCreatorsTable() {
     totalItems: totalExistingCreators,
     initialPageSize: 10,
     storageKey: STORAGE_KEYS.PAGE_SIZE_ALL_CREATORS,
-  });
-
-  const salesPagination = usePagination({
-    data: existingCreators,
-    totalItems: totalExistingCreators,
-    initialPageSize: 10,
-    storageKey: STORAGE_KEYS.PAGE_SIZE_CREATOR_SALES,
   });
 
   const debouncedSearchLower = debouncedSearch.toLowerCase().trim();
@@ -176,46 +165,6 @@ export function AllCreatorsTable() {
           itemLabel={ALL_CREATORS_TAB.CREATORS}
           onPageChange={existingCreatorsPagination.onPageChange}
           onPageSizeChange={existingCreatorsPagination.onPageSizeChange}
-        />
-      </>
-    );
-  };
-
-  const renderSalesCreators = () => {
-    if (existingCreatorsQuery.isLoading) {
-      return <CreatorRequestsTableSkeleton />;
-    }
-
-    if (existingCreatorsQuery.isError) {
-      return (
-        <AllCreatorsState>
-          {existingCreatorsQuery.error?.message || "Failed to load creators."}
-        </AllCreatorsState>
-      );
-    }
-
-    if (!totalExistingCreators) {
-      return <AllCreatorsState>No creators found.</AllCreatorsState>;
-    }
-
-    return (
-      <>
-        <CreatorSalesTable
-          creators={salesPagination.paginatedData}
-          onSelectCreator={(creator) => setSelectedSalesCreator(creator)}
-        />
-
-        <CreatorPagination
-          startIndex={salesPagination.startIndex}
-          endIndex={salesPagination.endIndex}
-          totalItems={totalExistingCreators}
-          currentPage={salesPagination.currentPage}
-          totalPages={salesPagination.totalPages}
-          pageNumbers={salesPagination.pageNumbers}
-          pageSize={salesPagination.pageSize}
-          itemLabel={ALL_CREATORS_TAB.SALES}
-          onPageChange={salesPagination.onPageChange}
-          onPageSizeChange={salesPagination.onPageSizeChange}
         />
       </>
     );
@@ -331,13 +280,7 @@ export function AllCreatorsTable() {
           >
             Existing Creators ({totalExistingCreators})
           </AllCreatorsTabButton>
-          <AllCreatorsTabButton
-            type="button"
-            $active={activeTab === ALL_CREATORS_TAB.SALES}
-            onClick={() => setActiveTab(ALL_CREATORS_TAB.SALES)}
-          >
-            Sales
-          </AllCreatorsTabButton>
+
           <AllCreatorsTabButton
             type="button"
             $active={activeTab === ALL_CREATORS_TAB.VIEWERS}
@@ -355,8 +298,7 @@ export function AllCreatorsTable() {
         </AllCreatorsTabs>
 
         <HeaderControls>
-          {activeTab === ALL_CREATORS_TAB.CREATORS ||
-          activeTab === ALL_CREATORS_TAB.SALES ? (
+          {activeTab === ALL_CREATORS_TAB.CREATORS ? (
             <PlanFilterSelect
               aria-label="Filter creators by plan"
               value={selectedPlan}
@@ -397,11 +339,9 @@ export function AllCreatorsTable() {
       <AllCreatorsPanel>
         {activeTab === ALL_CREATORS_TAB.CREATORS
           ? renderExistingCreators()
-          : activeTab === ALL_CREATORS_TAB.SALES
-            ? renderSalesCreators()
-            : activeTab === ALL_CREATORS_TAB.VIEWERS
-              ? renderViewers()
-              : renderCreatorRequests()}
+          : activeTab === ALL_CREATORS_TAB.VIEWERS
+            ? renderViewers()
+            : renderCreatorRequests()}
       </AllCreatorsPanel>
 
       <CreatorDetailsModal
@@ -412,10 +352,7 @@ export function AllCreatorsTable() {
         creator={selectedExistingCreator}
         onClose={() => setSelectedExistingCreator(null)}
       />
-      <CreatorSalesDetailsModal
-        creator={selectedSalesCreator}
-        onClose={() => setSelectedSalesCreator(null)}
-      />
+
       <ViewerDetailsModal
         viewer={selectedViewer}
         onClose={() => setSelectedViewer(null)}

@@ -45,7 +45,6 @@ export const ALL_CREATORS_TAB = {
   CREATORS: "creators",
   VIEWERS: "viewers",
   REQUESTS: "requests",
-  SALES: "sales",
 } as const;
 
 export type AllCreatorsTab =
