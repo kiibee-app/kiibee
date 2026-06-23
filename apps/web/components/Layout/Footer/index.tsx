@@ -84,12 +84,7 @@ const Footer = () => {
             {footerLinks.map((group, groupIndex) => (
               <LinkGroup key={groupIndex}>
                 {group.map(({ href, label }) => (
-                  <BottomLink
-                    key={href}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <BottomLink key={href} href={href} rel="noopener noreferrer">
                     <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
                       {t(label)}
                     </MonoText>
