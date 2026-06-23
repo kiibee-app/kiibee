@@ -1,7 +1,16 @@
 "use client";
 
-import { memo, useMemo, type MouseEvent } from "react";
+import { memo, useMemo, useState, type MouseEvent } from "react";
+import { useRouter } from "next/navigation";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
+import { GenericModal } from "@/components/UI/Modals";
+import { MODAL_ALIGN } from "@/utils/ui";
+import { PATHS } from "@/utils/path";
+import {
+  ModalContentWrapper,
+  ModalDescription,
+} from "@/components/Feature/ProfileLayout/shared/LatestUpload/styles";
 import { ActionRow, CardLink, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
@@ -46,7 +55,24 @@ function TutorialCard({
   isSelected = false,
 }: TutorialCardProps) {
   const { t } = useTranslation();
+  const router = useRouter();
+  const user = useStoredLoginUser();
   const { navigateToContent } = useProtectedContentNavigation();
+  const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+  const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
+
+  const handleShowLoginModal = (url: string) => {
+    setPendingRedirectUrl(url);
+    setLoginModalVisible(true);
+  };
+  const handleCloseLoginModal = () => setLoginModalVisible(false);
+  const handleLoginRedirect = () => {
+    const next = encodeURIComponent(
+      pendingRedirectUrl || window.location.pathname + window.location.search,
+    );
+    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
+  };
+  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   const imageUrl = useMemo(
     () => resolveImageUrl(tutorial.image),
@@ -124,10 +150,16 @@ function TutorialCard({
   const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
     event.preventDefault();
     event.stopPropagation();
-    navigateToContent(
-      resolveButtonHref(button.href),
-      button.requiresAuth ?? false,
-    );
+
+    const isLoggedIn = Boolean(user && user.id);
+    const targetHref = resolveButtonHref(button.href);
+
+    if (button.requiresAuth && !isLoggedIn) {
+      handleShowLoginModal(targetHref);
+      return;
+    }
+
+    navigateToContent(targetHref, button.requiresAuth ?? false);
   };
 
   const card = (
@@ -197,19 +229,53 @@ function TutorialCard({
     </GenericCard>
   );
 
+  const loginModal = (
+    <GenericModal
+      visible={isLoginModalVisible}
+      onClose={handleCloseLoginModal}
+      onCancel={handleLoginRedirect}
+      onConfirm={handleCreateAccount}
+      cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
+      confirmLabel={t("createProfileHome.latestUpload.loginModal.confirmLabel")}
+      buttonRow
+      buttonAlign={MODAL_ALIGN.CENTER}
+      fullWidthButtons={false}
+      size="md"
+      spacing="start"
+      showCloseButton
+    >
+      <ModalContentWrapper>
+        <MonoText $use="Heading3">
+          {t("createProfileHome.latestUpload.loginModal.title")}
+        </MonoText>
+        <ModalDescription $use="Body_Medium">
+          {t("createProfileHome.latestUpload.loginModal.message")}
+        </ModalDescription>
+      </ModalContentWrapper>
+    </GenericModal>
+  );
+
   if (isCardLinked) {
     return (
-      <CardLink
-        href={singleTutorialHref}
-        $clickable
-        aria-label={tutorial.title}
-      >
-        {card}
-      </CardLink>
+      <>
+        <CardLink
+          href={singleTutorialHref}
+          $clickable
+          aria-label={tutorial.title}
+        >
+          {card}
+        </CardLink>
+        {loginModal}
+      </>
     );
   }
 
-  return card;
+  return (
+    <>
+      {card}
+      {loginModal}
+    </>
+  );
 }
 
 export default memo(TutorialCard);
