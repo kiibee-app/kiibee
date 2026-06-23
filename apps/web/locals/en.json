@@ -522,6 +522,8 @@
     "topCreators": "Top creators",
     "seeAll": "See all creators",
     "subscribersCount": "{{count}}K Subscribers",
+    "topCreatorUploads_one": "{{formattedCount}} content upload",
+    "topCreatorUploads_other": "{{formattedCount}} content uploads",
     "creators": "Creators",
     "contents": "Contents"
   },
