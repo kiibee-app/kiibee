@@ -7,6 +7,7 @@ import {
   userContentAccess,
   users,
 } from '../schema';
+import { hashPassword } from 'src/utils/passwordHash';
 import {
   batchInsert,
   findUmbracoUsersRoot,
@@ -255,6 +256,9 @@ export const seedUmbracoPurchases = async () => {
     }
   }
 
+  const viewerPasswordHash =
+    process.env.CREATOR_SEED_PASSWORD_HASH?.trim() ||
+    (await hashPassword('123456'));
   const viewerNow = new Date();
   for (const viewer of viewerCache.values()) {
     if (
@@ -278,6 +282,7 @@ export const seedUmbracoPurchases = async () => {
         fullName: viewer.fullName,
         role: 'viewer',
         status: 'active',
+        passwordHash: viewerPasswordHash,
         isEmailVerified: true,
         isActive: true,
         createdAt: viewerNow,

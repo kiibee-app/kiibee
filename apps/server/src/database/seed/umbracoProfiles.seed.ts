@@ -1,7 +1,9 @@
 import { createHash } from 'crypto';
 import { existsSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
+
+import { hashPassword } from 'src/utils/passwordHash';
 
 import { resolvePublicMediaUrl } from 'src/utils/resolvePublicMediaUrl';
 
@@ -439,7 +441,9 @@ export const seedUmbracoProfiles = async () => {
     return;
   }
   const channelSlugs = buildUniqueChannelSlugs(profiles);
-  const creatorPasswordHash = process.env.CREATOR_SEED_PASSWORD_HASH?.trim();
+  const creatorPasswordHash =
+    process.env.CREATOR_SEED_PASSWORD_HASH?.trim() ||
+    (await hashPassword('123456'));
   const usedEmails = new Set<string>(['admin@gmail.com']);
 
   let processed = 0;
@@ -459,7 +463,7 @@ export const seedUmbracoProfiles = async () => {
         .values({
           id: mapped.userId,
           email: mapped.email,
-          passwordHash: creatorPasswordHash || null,
+          passwordHash: creatorPasswordHash,
           firstName: mapped.firstName,
           lastName: mapped.lastName,
           fullName: mapped.fullName,
@@ -483,6 +487,7 @@ export const seedUmbracoProfiles = async () => {
             avatarUrl: mapped.logoUrl,
             isEmailVerified: true,
             isActive: true,
+            passwordHash: sql`COALESCE(${users.passwordHash}, ${creatorPasswordHash})`,
             updatedAt: now,
           },
         });

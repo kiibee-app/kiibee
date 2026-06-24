@@ -11,6 +11,7 @@ import { seedUmbracoPurchases } from './umbracoPurchases.seed';
 import { seedUmbracoShows } from './umbracoShows.seed';
 import { seedUmbracoStats } from './umbracoStats.seed';
 import { seedUsers } from './users.seed';
+import { backfillMissingPasswordHashes } from './backfillPasswordHashes.seed';
 
 async function main() {
   // Optional full wipe — skipped by default so re-runs merge new umbraco-data
@@ -34,6 +35,8 @@ async function main() {
   await seedUmbracoLogs();
   await seedUmbracoPayouts();
   await seedUmbracoStats();
+
+  await backfillMissingPasswordHashes();
 
   console.log('All seeds completed successfully');
   process.exit();

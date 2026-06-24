@@ -489,6 +489,8 @@ export const seedUmbracoShows = async () => {
     return;
   }
 
+  const defaultSeedPasswordHash = await hashPassword('123456');
+
   let profilesProcessed = 0;
   let showsProcessed = 0;
   let showsSkipped = 0;
@@ -575,7 +577,11 @@ export const seedUmbracoShows = async () => {
         });
       const trailerUrl = resolveMediaUrl(show.trailer);
       const accessCode = textOrNull(show.code);
-      const passwordHash = accessCode ? await hashPassword(accessCode) : null;
+      const passwordHash = accessCode
+        ? await hashPassword(accessCode)
+        : accessType === 'password'
+          ? defaultSeedPasswordHash
+          : null;
       const mediaFileId = showSeedUuid('media', profile.profileKey, showKey);
       const collectionItemId = showSeedUuid(
         'collection-item',
