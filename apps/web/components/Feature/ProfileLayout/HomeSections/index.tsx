@@ -92,28 +92,30 @@ export default function ProfileHomeSections({
     latestUploadData &&
     matchesProfileSearch(searchQuery, latestUploadData.title);
 
-  const hasNoContent = useMemo(() => {
-    if (isPublicView) {
-      const matched = searchQuery.trim()
-        ? publicTutorials.filter((t) =>
-            matchesProfileSearch(searchQuery, t.title),
-          )
-        : publicTutorials;
-      return matched.length === 0;
-    } else {
-      const matched = searchQuery.trim()
-        ? privateSections
-            .map((section) => ({
-              ...section,
-              cards: section.cards.filter((card) =>
-                matchesProfileSearch(searchQuery, card.title),
-              ),
-            }))
-            .filter((section) => section.cards.length > 0)
-        : privateSections;
-      return matched.length === 0;
-    }
-  }, [isPublicView, publicTutorials, privateSections, searchQuery]);
+  const hasNoPublicContent = useMemo(() => {
+    const matched = searchQuery.trim()
+      ? publicTutorials.filter((t) =>
+          matchesProfileSearch(searchQuery, t.title),
+        )
+      : publicTutorials;
+    return matched.length === 0;
+  }, [publicTutorials, searchQuery]);
+
+  const hasNoPrivateContent = useMemo(() => {
+    const matched = searchQuery.trim()
+      ? privateSections
+          .map((section) => ({
+            ...section,
+            cards: section.cards.filter((card) =>
+              matchesProfileSearch(searchQuery, card.title),
+            ),
+          }))
+          .filter((section) => section.cards.length > 0)
+      : privateSections;
+    return matched.length === 0;
+  }, [privateSections, searchQuery]);
+
+  const hasNoContent = isPublicView ? hasNoPublicContent : hasNoPrivateContent;
 
   if (gateType) {
     return (
