@@ -10,6 +10,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { AdminGuard } from '../auth/guards/admin.guard';
 import { ViewerService } from './viewer.service';
 import {
   CreatePaymentMethodDto,
@@ -39,6 +40,24 @@ export class ViewerController {
   async getExpiredRentedData(@Req() req: any) {
     const userId = req.user.userId;
     return this.viewerService.getExpiredRentedDataService(userId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/purchased-data/:viewerId')
+  async getAdminPurchasedData(@Param('viewerId') viewerId: string) {
+    return this.viewerService.getPurchasedDataService(viewerId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/rented-data/:viewerId')
+  async getAdminRentedData(@Param('viewerId') viewerId: string) {
+    return this.viewerService.getRentedDataService(viewerId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/previously-rented-data/:viewerId')
+  async getAdminExpiredRentedData(@Param('viewerId') viewerId: string) {
+    return this.viewerService.getExpiredRentedDataService(viewerId);
   }
 
   @UseGuards(JwtAuthGuard)

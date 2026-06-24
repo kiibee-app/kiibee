@@ -26,6 +26,8 @@ import {
 import { getSingleContentService } from './services/getSingleContent.service';
 import { getRelatedCollectionContentService } from './services/getRelatedCollectionContent.service';
 import { getPublicCollectionService } from './services/getPublicCollection.service';
+import { getAdminCreatorContentsService } from './services/getAdminCreatorContents.service';
+import { getAdminContentEngagementService } from './services/getAdminContentEngagement.service';
 
 @Injectable()
 export class ContentService {
@@ -102,5 +104,13 @@ export class ContentService {
 
   async getPublicCollectionService(collectionId: string) {
     return getPublicCollectionService(collectionId);
+  }
+
+  async getAdminCreatorContents(creatorId: string) {
+    return getAdminCreatorContentsService(creatorId);
+  }
+
+  async getAdminContentEngagement(contentId: string) {
+    return getAdminContentEngagementService(contentId);
   }
 }

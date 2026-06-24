@@ -1,12 +1,12 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, desc, eq, sql } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { orders, userProfiles, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { ORDER_STATUS, ORDER_TYPES, ROLE } from 'src/utils/constant';
-import { success } from 'src/utils/sendResponse';
+import { fail, success } from 'src/utils/sendResponse';
 
-export const getAllViewersService = async () => {
+export const getViewerByIdService = async (viewerId: string) => {
   try {
     const purchaseCountSql = sql<number>`
       COUNT(DISTINCT CASE
@@ -23,7 +23,7 @@ export const getAllViewersService = async () => {
       END)::int
     `;
 
-    const viewers = await db
+    const [viewer] = await db
       .select({
         id: users.id,
         firstName: users.firstName,
@@ -48,7 +48,13 @@ export const getAllViewersService = async () => {
       .from(users)
       .leftJoin(userProfiles, eq(userProfiles.userId, users.id))
       .leftJoin(orders, eq(orders.userId, users.id))
-      .where(and(eq(users.role, ROLE.VIEWER), eq(users.isDeleted, false)))
+      .where(
+        and(
+          eq(users.id, viewerId),
+          eq(users.role, ROLE.VIEWER),
+          eq(users.isDeleted, false),
+        ),
+      )
       .groupBy(
         users.id,
         userProfiles.phone,
@@ -57,26 +63,30 @@ export const getAllViewersService = async () => {
         userProfiles.city,
         userProfiles.postalCode,
       )
-      .orderBy(desc(users.createdAt));
+      .limit(1);
+
+    if (!viewer) {
+      return fail('Viewer not found', HttpStatus.NOT_FOUND);
+    }
 
     return success(
-      viewers.map((viewer) => ({
+      {
         ...viewer,
         purchaseCount: Number(viewer.purchaseCount ?? 0),
         rentalCount: Number(viewer.rentalCount ?? 0),
-      })),
-      'Viewers fetched successfully',
+      },
+      'Viewer fetched successfully',
       HttpStatus.OK,
     );
   } catch (error) {
-    logger.error('Error fetching viewers:', error);
+    logger.error('Error fetching viewer:', error);
 
     if (error instanceof HttpException) {
       throw error;
     }
 
     throw new HttpException(
-      'Failed to fetch viewers',
+      'Failed to fetch viewer',
       HttpStatus.INTERNAL_SERVER_ERROR,
     );
   }

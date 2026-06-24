@@ -1,7 +1,6 @@
 "use client";
 
 import type { CreatorPaginationProps } from "../../../types/creator-pagination";
-import { ALL_CREATORS_TAB } from "../../../utils/constants";
 import {
   Ellipsis,
   PaginationControlGroup,
@@ -18,7 +17,7 @@ export function CreatorPagination({
   totalPages,
   pageNumbers,
   pageSize,
-  itemLabel = ALL_CREATORS_TAB.REQUESTS,
+  itemLabel = "items",
   onPageChange,
   onPageSizeChange,
 }: CreatorPaginationProps) {
