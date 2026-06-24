@@ -18,6 +18,7 @@ import {
 } from "@/utils/common";
 import {
   normalizeAppLanguage,
+  persistAppLanguage,
   syncDocumentLanguage,
   type AppLanguage,
 } from "@/utils/language";
@@ -63,6 +64,7 @@ export function LanguageProvider({
     const active = normalizeAppLanguage(
       i18nInstance.resolvedLanguage || i18nInstance.language,
     );
+    persistAppLanguage(active);
     syncDocumentLanguage(active);
 
     const onLangChange = (nextLang: string) => {
