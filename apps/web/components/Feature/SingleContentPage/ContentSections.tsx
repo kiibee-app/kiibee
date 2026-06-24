@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import BackButtonIcon from "@/assets/icons/BackButtonIcon";
 import { ShareIcon } from "@/assets/icons/shareIcon";
+import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import type {
   SingleContentBodyProps,
   SingleContentCreatorProps,
@@ -12,7 +12,12 @@ import type {
 } from "@/types/contentTypes";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
-import { VARIANT } from "@/utils/Constants";
+import {
+  CREATOR,
+  CREATOR_CHANNEL_AVATAR_TEXT,
+  isString,
+  VARIANT,
+} from "@/utils/Constants";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import {
   BackButton,
@@ -97,19 +102,18 @@ export function SingleContentHero({
 }
 
 function SingleContentCreator({ creator }: SingleContentCreatorProps) {
+  const initial = creator.name.trim().charAt(0).toUpperCase() || CREATOR[0];
   const content = (
     <>
-      {creator.avatar ? (
-        <CreatorAvatar>
-          <Image
-            src={creator.avatar}
-            alt={creator.avatarAlt ?? creator.name}
-            fill
-            priority
-            sizes="30px"
-          />
-        </CreatorAvatar>
-      ) : null}
+      <CreatorAvatar>
+        <CreatorChannelAvatar
+          avatarUrl={isString(creator.avatar) ? creator.avatar : null}
+          initial={initial}
+          alt={creator.avatarAlt ?? creator.name}
+          sizes="30px"
+          initialUse={CREATOR_CHANNEL_AVATAR_TEXT.COMPACT}
+        />
+      </CreatorAvatar>
       <CreatorName>{creator.name}</CreatorName>
     </>
   );
