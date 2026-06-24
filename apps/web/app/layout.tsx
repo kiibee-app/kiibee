@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,12 +9,11 @@ import StyledComponentsRegistry from "@/lib/registry";
 import { QueryProvider } from "@/providers/queryProvider";
 import { ToastProvider } from "@/providers/toastProvider";
 import {
-  OPEN_GRAPH_LOCALE_EN_US,
+  OPEN_GRAPH_LOCALE_DA_DK,
   TWITTER_CARD_SUMMARY_LARGE_IMAGE,
   WEBSITE,
 } from "@/utils/Constants";
-import { STORAGE_KEY, SYNC_LANGUAGE_SCRIPT } from "@/utils/common";
-import { normalizeAppLanguage } from "@/utils/language";
+import { DA } from "@/utils/common";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +34,7 @@ export const metadata: Metadata = {
     "Discover and enjoy unique digital content from your favorite creators. Watch, listen, and learn directly from independent creators. Rent or buy exclusive content in just a few clicks.",
   openGraph: {
     siteName: "Kiibee",
-    locale: OPEN_GRAPH_LOCALE_EN_US,
+    locale: OPEN_GRAPH_LOCALE_DA_DK,
     type: WEBSITE,
   },
   twitter: {
@@ -49,24 +47,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const initialLang = normalizeAppLanguage(cookieStore.get(STORAGE_KEY)?.value);
-
   return (
     <html
-      lang={initialLang}
+      lang={DA}
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: SYNC_LANGUAGE_SCRIPT,
-          }}
-        />
         <ThemeProvider>
           <QueryProvider>
-            <LanguageProvider initialLang={initialLang}>
+            <LanguageProvider initialLang={DA}>
               <SmoothScrollProvider>
                 <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
                 <ToastProvider />
