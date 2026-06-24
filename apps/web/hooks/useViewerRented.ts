@@ -67,7 +67,6 @@ function toMediaItem(
     thumbSrc: resolvePublicMediaUrl(item.thumbnailUrl) ?? "",
     title: item.title ?? "",
     author: item.creatorName ?? "",
-    rentExpiresAt: item.rentExpiresAt ?? null,
     expiryText:
       mode === RENTED_MODES.PREVIOUSLY
         ? formatExpiredText(item.rentExpiresAt, t)
