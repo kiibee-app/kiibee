@@ -20,7 +20,7 @@ export const STORAGE_KEY = "kiibee_language";
 export const RESOURCE_NAMESPACE = "translation";
 export const LANGUAGE_CHANGED_EVENT = "languageChanged";
 
-export const SYNC_LANGUAGE_SCRIPT = "";
+export const SYNC_LANGUAGE_SCRIPT = `(function(){var v=localStorage.getItem('${STORAGE_KEY}');document.cookie='${STORAGE_KEY}='+(v==='${EN}'?'${EN}':'${DA}')+';path=/;max-age=31536000;SameSite=Lax';})()`;
 export const UNDEFINED = "undefined";
 export const RESOURCES = "resources";
 
