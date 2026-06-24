@@ -10,7 +10,7 @@ import StyledComponentsRegistry from "@/lib/registry";
 import { QueryProvider } from "@/providers/queryProvider";
 import { ToastProvider } from "@/providers/toastProvider";
 import {
-  OPEN_GRAPH_LOCALE_EN_US,
+  OPEN_GRAPH_LOCALE_DA_DK,
   TWITTER_CARD_SUMMARY_LARGE_IMAGE,
   WEBSITE,
 } from "@/utils/Constants";
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "Discover and enjoy unique digital content from your favorite creators. Watch, listen, and learn directly from independent creators. Rent or buy exclusive content in just a few clicks.",
   openGraph: {
     siteName: "Kiibee",
-    locale: OPEN_GRAPH_LOCALE_EN_US,
+    locale: OPEN_GRAPH_LOCALE_DA_DK,
     type: WEBSITE,
   },
   twitter: {

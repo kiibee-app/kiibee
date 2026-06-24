@@ -32,14 +32,15 @@ const resources: ResourceBundle = {
 function createI18nInstance(lng: AppLanguage): I18nInstance {
   const instance = createInstance();
 
-  const opts: InitOptions = {
+  const opts: InitOptions & { initImmediate?: boolean } = {
     resources: resources as unknown as InitOptions["resources"],
     lng,
-    fallbackLng: EN,
+    fallbackLng: DA,
     supportedLngs: SUPPORTED_LANGS,
     nonExplicitSupportedLngs: false,
     interpolation: { escapeValue: false },
     react: { useSuspense: false },
+    initImmediate: false,
   };
 
   instance.use(initReactI18next).init(opts);
