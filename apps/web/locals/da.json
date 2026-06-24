@@ -859,7 +859,10 @@
     "invite": {
       "invalidToken": "Dette opsætningslink er ugyldigt eller udløbet. Kontakt Kiibee, hvis du har brug for en ny invitation.",
       "setupFailed": "Vi kunne ikke færdiggøre din kontooversigt. Tjek din e-mail og adgangskode, og prøv igen.",
-      "loginAfterSetupFailed": "Din konto blev oprettet, men login mislykkedes. Prøv at logge ind fra login-siden."
+      "loginAfterSetupFailed": "Din konto blev oprettet, men login mislykkedes. Prøv at logge ind fra login-siden.",
+      "emailInvalid": "Indtast en gyldig e-mailadresse",
+      "passwordMinLength": "Adgangskoden skal være mindst 6 tegn",
+      "passwordMismatch": "Adgangskoderne matcher ikke"
     }
   },
   "pricingFaq": {

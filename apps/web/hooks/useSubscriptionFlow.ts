@@ -10,6 +10,7 @@ import {
   isFreeSubscriptionPlan,
   subscriptionPlans,
 } from "@/utils/subscriptionPlans";
+import { isValidEmail, MIN_PASSWORD_LENGTH } from "@/utils/common";
 import type {
   SubscriptionContextValue,
   SubscriptionStep,
@@ -111,10 +112,41 @@ export const useSubscriptionFlow = (
   );
   const { mutateAsync: loginMutate } = useLogin();
 
+  const { isEmailValid, isPasswordValid, passwordsMatch, validationError } =
+    useMemo(() => {
+      const isEmailValid = !email ? true : isValidEmail(email);
+
+      const isPasswordValid =
+        !password || password.length >= MIN_PASSWORD_LENGTH;
+
+      const passwordsMatch =
+        !password || !repeatPassword || password === repeatPassword;
+
+      let validationError: string | null = null;
+
+      if (email && !isEmailValid) {
+        validationError = t("subscriptionPage.invite.emailInvalid");
+      } else if (password && !isPasswordValid) {
+        validationError = t("subscriptionPage.invite.passwordMinLength");
+      } else if (password && repeatPassword && !passwordsMatch) {
+        validationError = t("subscriptionPage.invite.passwordMismatch");
+      }
+
+      return {
+        isEmailValid,
+        isPasswordValid,
+        passwordsMatch,
+        validationError,
+      };
+    }, [email, password, repeatPassword, t]);
+
   const isSubmitEnabled =
     Boolean(email.trim()) &&
+    isEmailValid &&
     Boolean(password.trim()) &&
+    isPasswordValid &&
     Boolean(repeatPassword.trim()) &&
+    passwordsMatch &&
     (!isCreatorInviteFlow || (isInviteTokenValid && !isValidatingInviteToken));
 
   const getPlanPriceLabel = (planId: string) => {
@@ -241,6 +273,10 @@ export const useSubscriptionFlow = (
     password,
     repeatPassword,
     isSubmitEnabled,
+    isEmailValid,
+    isPasswordValid,
+    passwordsMatch,
+    validationError,
     setSelectedPlan,
     setCurrentStep,
     handleContinue,

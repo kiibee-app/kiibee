@@ -20,6 +20,8 @@ import {
   PlanSelectRow,
   StyledInputField,
   TwoColumnRow,
+  ValidationErrorContainer,
+  ValidationErrorMsg,
 } from "./styles";
 
 export default function SubscriptionDetailsForm() {
@@ -39,6 +41,10 @@ export default function SubscriptionDetailsForm() {
     getPlanPriceLabel,
     onSubmit,
     isInviteSubmitting,
+    isEmailValid,
+    isPasswordValid,
+    passwordsMatch,
+    validationError,
   } = useSubscriptionContext();
 
   const planOptions = useMemo(
@@ -80,6 +86,12 @@ export default function SubscriptionDetailsForm() {
           placeholder={t(SUBSCRIPTION.creatorDetails.email)}
           value={email}
           onChange={(value) => onEmailChange(String(value))}
+          errorMessage={
+            email && !isEmailValid
+              ? t("subscriptionPage.invite.emailInvalid")
+              : undefined
+          }
+          hasError={email ? !isEmailValid : false}
         />
 
         <TwoColumnRow>
@@ -101,6 +113,12 @@ export default function SubscriptionDetailsForm() {
             onIconClick={() =>
               onTogglePasswordVisibility(PASSWORD_VISIBILITY_KEY.PASSWORD)
             }
+            errorMessage={
+              password && !isPasswordValid
+                ? t("subscriptionPage.invite.passwordMinLength")
+                : undefined
+            }
+            hasError={password ? !isPasswordValid : false}
           />
 
           <StyledInputField
@@ -127,9 +145,21 @@ export default function SubscriptionDetailsForm() {
                 PASSWORD_VISIBILITY_KEY.REPEAT_PASSWORD,
               )
             }
+            errorMessage={
+              password && repeatPassword && !passwordsMatch
+                ? t("subscriptionPage.invite.passwordMismatch")
+                : undefined
+            }
+            hasError={password && repeatPassword ? !passwordsMatch : false}
           />
         </TwoColumnRow>
       </FieldGrid>
+
+      {validationError && (
+        <ValidationErrorContainer>
+          <ValidationErrorMsg>{validationError}</ValidationErrorMsg>
+        </ValidationErrorContainer>
+      )}
 
       <ContinueButton
         type="submit"
