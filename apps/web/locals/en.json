@@ -64,6 +64,10 @@
     "searchOpenPlaceholder": "Search for posts",
     "searchCollectionsPlaceholder": "Search collections",
     "searchAriaLabel": "Search profile content",
+    "noContentTitle": "Content coming soon",
+    "noContentDescription": "This creator hasn't published any content yet.",
+    "noSearchResultsTitle": "No results found",
+    "noSearchResultsDescription": "We couldn't find any content matching your search term.",
     "aboutModal": {
       "moreInfo": "More info",
       "joined": "Joined",

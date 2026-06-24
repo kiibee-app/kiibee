@@ -64,6 +64,10 @@
     "searchOpenPlaceholder": "Søg efter opslag",
     "searchCollectionsPlaceholder": "Søg samlinger",
     "searchAriaLabel": "Søg i profilindhold",
+    "noContentTitle": "Indhold på vej",
+    "noContentDescription": "Denne kreatør har ikke publiceret noget indhold endnu.",
+    "noSearchResultsTitle": "Ingen resultater fundet",
+    "noSearchResultsDescription": "Vi kunne ikke finde noget indhold, der matcher dit søgeord.",
     "aboutModal": {
       "moreInfo": "Mere info",
       "joined": "Tilsluttet",
