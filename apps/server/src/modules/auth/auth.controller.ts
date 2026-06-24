@@ -10,6 +10,7 @@ import {
   UnauthorizedException,
   UseGuards,
   Param,
+  Delete,
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { IsNotEmpty, IsString } from 'class-validator';
@@ -281,5 +282,26 @@ export class AuthController {
     @Body() profileData: UpdateCreatorProfileDto,
   ) {
     return this.authService.updateCreatorProfile(req.user.userId, profileData);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('delete-user')
+  async deleteUser(
+    @Req() req: AuthenticatedRequest,
+    @Headers('authorization') authorization?: string,
+  ) {
+    let jti: string | undefined;
+    let exp: number | undefined;
+
+    if (authorization && authorization.startsWith('Bearer ')) {
+      const token = authorization.replace('Bearer ', '');
+      const payload = this.tokenService.decodeAccessToken(token);
+      if (payload) {
+        jti = payload.jti;
+        exp = payload.exp;
+      }
+    }
+    const userId = req.user.userId;
+    return this.authService.deleteUserService(userId, jti, exp);
   }
 }
