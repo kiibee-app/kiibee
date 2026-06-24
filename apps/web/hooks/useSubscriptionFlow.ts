@@ -111,41 +111,34 @@ export const useSubscriptionFlow = (
   );
   const { mutateAsync: loginMutate } = useLogin();
 
-  const isEmailValid = useMemo(() => {
-    if (!email) return true;
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-  }, [email]);
+  const { isEmailValid, isPasswordValid, passwordsMatch, validationError } =
+    useMemo(() => {
+      const isEmailValid = !email
+        ? true
+        : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
-  const isPasswordValid = useMemo(() => {
-    if (!password) return true;
-    return password.length >= 6;
-  }, [password]);
+      const isPasswordValid = !password || password.length >= 6;
 
-  const passwordsMatch = useMemo(() => {
-    if (!password || !repeatPassword) return true;
-    return password === repeatPassword;
-  }, [password, repeatPassword]);
+      const passwordsMatch =
+        !password || !repeatPassword || password === repeatPassword;
 
-  const validationError = useMemo(() => {
-    if (email && !isEmailValid) {
-      return t("subscriptionPage.invite.emailInvalid");
-    }
-    if (password && !isPasswordValid) {
-      return t("subscriptionPage.invite.passwordMinLength");
-    }
-    if (password && repeatPassword && !passwordsMatch) {
-      return t("subscriptionPage.invite.passwordMismatch");
-    }
-    return null;
-  }, [
-    email,
-    isEmailValid,
-    password,
-    isPasswordValid,
-    repeatPassword,
-    passwordsMatch,
-    t,
-  ]);
+      let validationError: string | null = null;
+
+      if (email && !isEmailValid) {
+        validationError = t("subscriptionPage.invite.emailInvalid");
+      } else if (password && !isPasswordValid) {
+        validationError = t("subscriptionPage.invite.passwordMinLength");
+      } else if (password && repeatPassword && !passwordsMatch) {
+        validationError = t("subscriptionPage.invite.passwordMismatch");
+      }
+
+      return {
+        isEmailValid,
+        isPasswordValid,
+        passwordsMatch,
+        validationError,
+      };
+    }, [email, password, repeatPassword, t]);
 
   const isSubmitEnabled =
     Boolean(email.trim()) &&
