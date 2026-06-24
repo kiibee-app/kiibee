@@ -129,7 +129,9 @@ export default function GeneralContent({
       case FORMAT_TYPE.VIDEO:
         return (
           <PreviewBox onClick={handlePreviewClick}>
-            {previewUrl && <PreviewVideo src={previewUrl} controls={false} />}
+            {previewUrl && (
+              <PreviewVideo src={previewUrl} controls={false} preload="none" />
+            )}
             <PlayOverlay>
               <PlayCircleIcon
                 width={40}

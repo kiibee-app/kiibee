@@ -5,7 +5,6 @@ import {
   Get,
   Post,
   Query,
-  ParseIntPipe,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -13,6 +12,8 @@ import type { FastifyRequest } from 'fastify';
 import { MediaService } from './media.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CheckMediaAccessGuard } from 'src/middleware/CheckMediaAccess';
+import { CheckPlanLimit } from 'src/middleware/checkPlanLimit';
+import { CreatorGuard } from '../auth/guards/admin.guard';
 
 type FileType = 'documents' | 'audio' | 'ebooks';
 
@@ -20,25 +21,18 @@ type FileType = 'documents' | 'audio' | 'ebooks';
 export class MediaController {
   constructor(private readonly mediaService: MediaService) {}
 
-  @Post('videos/init')
-  init() {
-    return this.mediaService.initUpload();
+  @UseGuards(JwtAuthGuard, CreatorGuard, CheckPlanLimit)
+  @Post('videos/upload')
+  createVideoUpload() {
+    return this.mediaService.createVideoUpload();
   }
 
-  @Get('videos/part-url')
-  getPartUrl(
-    @Query('key') key: string,
-    @Query('uploadId') uploadId: string,
-    @Query('partNumber', ParseIntPipe) partNumber: number,
-  ) {
-    return this.mediaService.getPartUrl(key, uploadId, partNumber);
+  @Get('videos/playback')
+  getPlayback(@Query('uid') uid: string) {
+    return this.mediaService.getStreamUrl(uid);
   }
 
-  @Post('videos/complete')
-  complete(@Body() body: any) {
-    return this.mediaService.completeUpload(body);
-  }
-
+  @UseGuards(JwtAuthGuard, CheckMediaAccessGuard)
   @Get('videos/stream')
   stream(@Query('key') key: string) {
     return this.mediaService.getStreamUrl(key);
@@ -49,6 +43,7 @@ export class MediaController {
     return this.mediaService.getDownloadUrl(key);
   }
 
+  @UseGuards(JwtAuthGuard, CreatorGuard, CheckPlanLimit)
   @Post('file/upload-url')
   getUploadUrl(
     @Body()
@@ -69,6 +64,7 @@ export class MediaController {
     });
   }
 
+  @UseGuards(JwtAuthGuard, CreatorGuard, CheckPlanLimit)
   @Post('file/confirm')
   async confirmUpload(@Body() body: { key: string }) {
     const url = await this.mediaService.fileUpload.getSignedUrl(body.key);
@@ -89,16 +85,39 @@ export class MediaController {
 
   @Post('images/upload')
   async uploadImage(@Req() req: FastifyRequest) {
-    const file = await req.file();
-    if (!file) {
-      throw new BadRequestException('No image file provided');
+    if (req.isMultipart()) {
+      const file = await req.file();
+      if (!file) {
+        throw new BadRequestException('No image file provided');
+      }
+
+      const buffer = await this.streamToBuffer(file.file);
+      return this.mediaService.uploadPublicImage({
+        buffer,
+        mimetype: file.mimetype,
+        filename: file.filename,
+      });
     }
 
-    const buffer = await this.streamToBuffer(file.file);
+    const body = req.body as { image?: string };
+    if (!body || !body.image) {
+      throw new BadRequestException('No image provided');
+    }
+
+    const match = body.image.match(/^data:([^;]+);base64,(.+)$/);
+    if (!match) {
+      throw new BadRequestException('Invalid image format');
+    }
+
+    const mimetype = match[1];
+    const base64Data = match[2];
+    const buffer = Buffer.from(base64Data, 'base64');
+    const ext = mimetype.split('/')[1] || 'png';
+
     return this.mediaService.uploadPublicImage({
       buffer,
-      mimetype: file.mimetype,
-      filename: file.filename,
+      mimetype,
+      filename: `avatar.${ext}`,
     });
   }
 

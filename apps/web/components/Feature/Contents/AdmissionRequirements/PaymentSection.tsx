@@ -1,12 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import InputField from "@/components/UI/InputFields";
 import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
 import { MonoText } from "@/components/UI/Monotext";
-import { INPUT_VARIANTS, SORT_DROPDOWN_VARIANT } from "@/utils/Constants";
+import {
+  INPUT_VARIANTS,
+  SORT_DROPDOWN_VARIANT,
+  STRING_EMPTY,
+} from "@/utils/Constants";
 import { AccessDurationValue } from "@/utils/common";
-import { PAYMENTS_FORM_FIELDS, toText } from "@/utils/paymentRequirements";
+import {
+  isValidPaymentAmount,
+  PAYMENTS_FORM_FIELDS,
+  toText,
+} from "@/utils/paymentRequirements";
 import {
   Block,
   ControlWrap,
@@ -36,6 +44,7 @@ interface AmountBlockProps {
   placeholder: string;
   field: string;
   updateField: (key: string, value: string) => void;
+  t: (key: string) => string;
 }
 
 const AmountBlock = ({
@@ -45,21 +54,38 @@ const AmountBlock = ({
   placeholder,
   field,
   updateField,
-}: AmountBlockProps) => (
-  <Block>
-    <SectionTitle>{title}</SectionTitle>
-    <ControlWrap>
-      <InputField
-        value={value || ""}
-        onChange={(v) => updateField(field, toText(v))}
-        placeholder={placeholder}
-        variant={INPUT_VARIANTS.PRIMARY_GRAY}
-        inputMode="decimal"
-      />
-    </ControlWrap>
-    <FeeNote>{feeNote}</FeeNote>
-  </Block>
-);
+  t,
+}: AmountBlockProps) => {
+  const [error, setError] = useState<string | null>(null);
+
+  const handleChange = (v: string | string[]) => {
+    const text = toText(v);
+    updateField(field, text);
+    if (!isValidPaymentAmount(text)) {
+      setError(t("contents.payment.common.invalidNumber"));
+    } else {
+      setError(null);
+    }
+  };
+
+  return (
+    <Block>
+      <SectionTitle>{title}</SectionTitle>
+      <ControlWrap>
+        <InputField
+          value={value || STRING_EMPTY}
+          onChange={handleChange}
+          placeholder={placeholder}
+          variant={INPUT_VARIANTS.PRIMARY_GRAY}
+          inputMode="decimal"
+          hasError={Boolean(error)}
+          errorMessage={error}
+        />
+      </ControlWrap>
+      {error ? null : <FeeNote>{feeNote}</FeeNote>}
+    </Block>
+  );
+};
 
 const SettingsPaymentSection = ({
   t,
@@ -80,6 +106,7 @@ const SettingsPaymentSection = ({
           placeholder={amountPlaceholder}
           feeNote={feeNote}
           updateField={updateField}
+          t={t}
         />
       )}
       {formState.showPurchaseSection && (
@@ -90,6 +117,7 @@ const SettingsPaymentSection = ({
           placeholder={amountPlaceholder}
           feeNote={feeNote}
           updateField={updateField}
+          t={t}
         />
       )}
 

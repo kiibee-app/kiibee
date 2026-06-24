@@ -21,6 +21,10 @@ export const HeaderWrapper = styled.header`
   ${media.desktop} {
     padding: 12px 16px;
   }
+
+  ${media.mobileMd} {
+    padding: 12px 10px;
+  }
 `;
 
 export const Left = styled.div`
@@ -66,8 +70,11 @@ export const Right = styled.div`
   gap: 24px;
 
   ${media.tablet} {
-    position: absolute;
-    right: 12px;
+    gap: 12px;
+  }
+
+  ${media.mobileMd} {
+    gap: 8px;
   }
 `;
 
@@ -107,6 +114,7 @@ export const InitialAvatar = styled(MonoText).attrs({
   $use: "H4_SemiBold",
 })`
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  padding: 15px;
 `;
 
 export const LogoButton = styled.button`
@@ -118,7 +126,7 @@ export const LogoButton = styled.button`
   cursor: pointer;
 `;
 export const ChannelText = styled(MonoText)`
-  ${media.tablet} {
+  ${media.mobile} {
     display: none;
   }
 `;
@@ -176,12 +184,13 @@ export const ChannelLink = styled(Link)`
   }
 `;
 
-export const RightProfileWrapper = styled.button`
+export const RightProfileWrapper = styled(Link)`
   display: inline-flex;
   align-items: center;
   gap: 12px;
   cursor: pointer;
   text-decoration: none;
+  color: inherit;
   border: none;
   background: transparent;
   padding: 0;

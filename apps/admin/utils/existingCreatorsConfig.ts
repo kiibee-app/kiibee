@@ -21,7 +21,16 @@ export const existingCreatorLabels = {
   draft: "Draft",
   uploads: "uploads",
   subscribers: "subscribers",
+  backToDetails: "Back to Details",
+  loadingUploads: "Loading uploads...",
+  failedToLoadUploads: "Failed to load uploads.",
+  noUploadsFound: "No uploads found for this creator.",
+  creatorDetailsTitle: "Creator Details",
 } as const;
+
+export function formatCreatorUploadsTitle(name?: string | null) {
+  return `${name}'s Uploads`;
+}
 
 export function getExistingCreatorDisplayName(creator: ExistingCreator) {
   return (

@@ -25,7 +25,8 @@ import { useAppearanceForm } from "./AppearanceFormContext";
 
 export default function ReceiptSection() {
   const { t } = useTranslation();
-  const { values, updateField } = useAppearanceForm();
+  const { values, errors, updateField, clearFieldError, validateField } =
+    useAppearanceForm();
 
   const normalizeValue = (value: string | string[]) =>
     Array.isArray(value) ? value.join("") : value;
@@ -37,9 +38,19 @@ export default function ReceiptSection() {
     ) =>
       (value: string | string[]) => {
         const nextValue = normalizeValue(value);
+        clearFieldError(key);
         updateField(key, limit ? nextValue.slice(0, limit) : nextValue);
       },
-    [updateField],
+    [clearFieldError, updateField],
+  );
+
+  const handleBlur = useCallback(
+    (fieldKey: string) => () => {
+      if (fieldKey !== RECEIPT_FIELD) {
+        validateField(FORM_FIELDS.SUPPORT_EMAIL);
+      }
+    },
+    [validateField],
   );
 
   const fields = useMemo(
@@ -75,6 +86,13 @@ export default function ReceiptSection() {
                 width="100%"
                 height="46px"
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                onBlur={handleBlur(field.key)}
+                hasError={
+                  field.key !== RECEIPT_FIELD && Boolean(errors.supportEmail)
+                }
+                errorMessage={
+                  field.key !== RECEIPT_FIELD ? errors.supportEmail : undefined
+                }
               />
             </ControlWrap>
 

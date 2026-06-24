@@ -171,3 +171,10 @@ export const ResultsState = styled.div`
   justify-content: center;
   color: ${({ theme }) => theme.colors?.neutral?.GRAY_500};
 `;
+
+export const EmptyState = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+`;

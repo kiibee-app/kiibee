@@ -1,53 +1,78 @@
 "use client";
 
-import React, { useEffect } from "react";
-import i18n from "i18next";
-import type { InitOptions } from "i18next";
+import React, { useEffect, useMemo } from "react";
+import {
+  createInstance,
+  type i18n as I18nInstance,
+  InitOptions,
+} from "i18next";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import en from "../locals/en.json";
 import da from "../locals/da.json";
+import {
+  DA,
+  EN,
+  SUPPORTED_LANGS,
+  RESOURCE_NAMESPACE,
+  LANGUAGE_CHANGED_EVENT,
+} from "@/utils/common";
+import {
+  normalizeAppLanguage,
+  syncDocumentLanguage,
+  type AppLanguage,
+} from "@/utils/language";
 
-const resources = {
-  en: { translation: en },
-  da: { translation: da },
-  dn: { translation: da },
+type ResourceBundle = Record<string, Record<string, typeof en>>;
+
+const resources: ResourceBundle = {
+  [EN]: { [RESOURCE_NAMESPACE]: en },
+  [DA]: { [RESOURCE_NAMESPACE]: da },
 };
 
-const syncResources = () => {
-  Object.entries(resources).forEach(([language, bundle]) => {
-    i18n.addResourceBundle(
-      language,
-      "translation",
-      bundle.translation,
-      true,
-      true,
-    );
-  });
-};
+function createI18nInstance(lng: AppLanguage): I18nInstance {
+  const instance = createInstance();
 
-if (!i18n.isInitialized) {
-  const opts: InitOptions & { initImmediate?: boolean } = {
+  const opts: InitOptions = {
     resources: resources as unknown as InitOptions["resources"],
-    lng: "en",
-    fallbackLng: "en",
+    lng,
+    fallbackLng: EN,
+    supportedLngs: SUPPORTED_LANGS,
+    nonExplicitSupportedLngs: false,
     interpolation: { escapeValue: false },
-    initImmediate: false,
+    react: { useSuspense: false },
   };
 
-  i18n.use(initReactI18next).init(opts);
-} else {
-  syncResources();
+  instance.use(initReactI18next).init(opts);
+  return instance;
 }
 
-syncResources();
+type LanguageProviderProps = {
+  children: React.ReactNode;
+  initialLang?: AppLanguage;
+};
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+export function LanguageProvider({
+  children,
+  initialLang = DA,
+}: LanguageProviderProps) {
+  const lang = normalizeAppLanguage(initialLang);
+  const i18nInstance = useMemo(() => createI18nInstance(lang), [lang]);
+
   useEffect(() => {
-    syncResources();
+    const active = normalizeAppLanguage(
+      i18nInstance.resolvedLanguage || i18nInstance.language,
+    );
+    syncDocumentLanguage(active);
 
-    const currentLang = i18n.resolvedLanguage || i18n.language || "en";
-    document.documentElement.lang = currentLang;
-  }, []);
+    const onLangChange = (nextLang: string) => {
+      syncDocumentLanguage(nextLang);
+    };
 
-  return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
+    i18nInstance.on(LANGUAGE_CHANGED_EVENT, onLangChange);
+    return () => {
+      i18nInstance.off(LANGUAGE_CHANGED_EVENT, onLangChange);
+    };
+  }, [i18nInstance]);
+
+  return <I18nextProvider i18n={i18nInstance}>{children}</I18nextProvider>;
 }

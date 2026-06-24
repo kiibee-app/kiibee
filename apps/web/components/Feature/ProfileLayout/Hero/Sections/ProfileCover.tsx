@@ -17,7 +17,6 @@ import {
   CreatorName,
   CreatorNameText,
   HeroWrapper,
-  MoreText,
   MoreTextLabel,
   ProfileMeta,
   ProfileSection,
@@ -33,7 +32,7 @@ export default function ProfileCoverSection() {
     useCreatorChannelProfile();
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
-  const biography = about?.description || t(CREATE_PROFILE_HOME.description);
+  const biography = about?.description ?? "";
 
   return (
     <HeroWrapper>
@@ -70,11 +69,9 @@ export default function ProfileCoverSection() {
             </UploadCount>
             <CreatorBio>
               <CreatorBioText>{biography}</CreatorBioText>
-              <MoreText>
-                <MoreTextLabel onClick={openAbout}>
-                  {t(CREATE_PROFILE_HOME.more)}
-                </MoreTextLabel>
-              </MoreText>
+              <MoreTextLabel onClick={openAbout}>
+                {t(CREATE_PROFILE_HOME.more)}
+              </MoreTextLabel>
             </CreatorBio>
           </ProfileMeta>
         </ProfileSection>

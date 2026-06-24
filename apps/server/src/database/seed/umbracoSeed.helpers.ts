@@ -2,6 +2,8 @@ import { createHash } from 'crypto';
 import { existsSync, readdirSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
 
+import { resolvePublicMediaUrl } from 'src/utils/resolvePublicMediaUrl';
+
 export type JsonRecord = Record<string, unknown>;
 
 export function deterministicUuid(value: string): string {
@@ -44,72 +46,14 @@ export function umbracoSeedUuid(
   return deterministicUuid(`umbraco-${scope}:${profileKey}:${itemKey}`);
 }
 
-const KIIBEE_MEDIA_BASE_URL = 'https://kiibee.dk';
-
-function getMediaCdnBase(): string | null {
-  const base = process.env.PUBLIC_MEDIA_CDN_URL?.trim();
-  return base ? base.replace(/\/$/, '') : null;
-}
-
-function toCdnMediaPath(pathname: string): string {
-  const path = pathname.startsWith('/') ? pathname : `/${pathname}`;
-  const stripPrefix = process.env.PUBLIC_MEDIA_CDN_STRIP_PREFIX ?? 'media';
-  const mediaPrefix = `/${stripPrefix}`;
-
-  if (stripPrefix && path.startsWith(`${mediaPrefix}/`)) {
-    return path.slice(mediaPrefix.length);
-  }
-
-  return path;
-}
-
-/** Resolve Umbraco `/media/...` paths to CDN or legacy kiibee.dk URLs. */
+/** Resolve Umbraco media paths/URLs via shared CDN rewrite logic. */
 export function resolveUmbracoMediaUrl(value: unknown): string | null {
   const text = textOrNull(value);
   if (!text) {
     return null;
   }
 
-  if (text.startsWith('http://') || text.startsWith('https://')) {
-    const cdn = getMediaCdnBase();
-    if (cdn) {
-      try {
-        const parsed = new URL(text);
-        if (
-          (parsed.hostname === 'kiibee.dk' ||
-            parsed.hostname === 'www.kiibee.dk') &&
-          parsed.pathname.startsWith('/media/')
-        ) {
-          return `${cdn}${toCdnMediaPath(parsed.pathname)}`;
-        }
-      } catch {
-        // fall through
-      }
-    }
-
-    return text;
-  }
-
-  if (text.startsWith('/')) {
-    const cdn = getMediaCdnBase();
-    if (cdn && text.startsWith('/media/')) {
-      return `${cdn}${toCdnMediaPath(text)}`;
-    }
-
-    return `${KIIBEE_MEDIA_BASE_URL}${text}`;
-  }
-
-  if (text.startsWith('media/')) {
-    const cdn = getMediaCdnBase();
-    const path = `/${text}`;
-    if (cdn) {
-      return `${cdn}${toCdnMediaPath(path)}`;
-    }
-
-    return `${KIIBEE_MEDIA_BASE_URL}${path}`;
-  }
-
-  return text;
+  return resolvePublicMediaUrl(text);
 }
 
 export function textOrNull(value: unknown): string | null {
@@ -848,6 +792,8 @@ export function resolveUmbracoShowThumbnails(
       getUmbracoShowValue(show, 'videoThumbnailURL'),
     ) ??
     cloudflareThumbnail ??
+    resolveUmbracoThumbnailMediaUrl(getUmbracoShowValue(show, 'thumbnail')) ??
+    rawFileImageUrl ??
     thumbnailUrl;
 
   return { thumbnailUrl, thumbnailLandscapeUrl };

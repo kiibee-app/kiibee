@@ -1,4 +1,4 @@
-import { eq, and, inArray, gt, isNull, or } from 'drizzle-orm';
+import { eq, and, inArray, gt, isNull, lte, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   mediaFiles,
@@ -7,6 +7,8 @@ import {
   orders,
   mediaFileCategories,
   contentCategories,
+  collections,
+  collectionItems,
 } from 'src/database/schema';
 
 export const getUserOrders = async (
@@ -29,6 +31,27 @@ export const getUserOrders = async (
         eq(orders.status, 'completed'),
         eq(orders.itemType, itemType),
         or(isNull(orders.rentExpiresAt), gt(orders.rentExpiresAt, now)),
+      ),
+    );
+};
+
+export const getExpiredRentalOrders = async (userId: string) => {
+  const now = new Date();
+
+  return db
+    .select({
+      mediaFileId: orders.mediaFileId,
+      collectionId: orders.collectionId,
+      purchasedAt: orders.createdAt,
+      rentExpiresAt: orders.rentExpiresAt,
+    })
+    .from(orders)
+    .where(
+      and(
+        eq(orders.userId, userId),
+        eq(orders.status, 'completed'),
+        eq(orders.itemType, 'rental'),
+        lte(orders.rentExpiresAt, now),
       ),
     );
 };
@@ -109,6 +132,42 @@ export const enrichMedia = (
       rentExpiresAt: expiresAt ?? null,
     };
   });
+};
+
+export const getCollectionsWithDetails = async (collectionIds: string[]) => {
+  if (!collectionIds.length) return [];
+
+  const items = await db
+    .select({
+      id: collections.id,
+      name: collections.name,
+      coverImageUrl: collections.coverImageUrl,
+      description: collections.description,
+      creatorId: collections.creatorId,
+      creatorName: users.fullName,
+    })
+    .from(collections)
+    .leftJoin(users, eq(collections.creatorId, users.id))
+    .where(inArray(collections.id, collectionIds));
+
+  const counts = await db
+    .select({
+      collectionId: collectionItems.collectionId,
+      count: sql<number>`count(*)::int`,
+    })
+    .from(collectionItems)
+    .where(inArray(collectionItems.collectionId, collectionIds))
+    .groupBy(collectionItems.collectionId);
+
+  const countMap = new Map<string, number>();
+  for (const row of counts) {
+    countMap.set(row.collectionId, row.count);
+  }
+
+  return items.map((item) => ({
+    ...item,
+    elementCount: countMap.get(item.id) ?? 0,
+  }));
 };
 
 export const enrichCollections = (

@@ -24,16 +24,21 @@ import {
   Row,
   LogoImage,
   LogoUploadWrap,
+  PreviewWrapper,
+  DeleteImageButton,
 } from "./styles";
+import { DeleteIcon } from "@/assets/icons";
 import { FORM_FIELDS } from "@/utils/appearance";
 import { CROP_SHAPE, INPUT_TYPE, LOGO_MODE } from "@/utils/ui";
 import GenericButton from "@/components/UI/GenericButton";
 import ImageUploadCropModal from "@/components/UI/ImageUploadCropModal";
 import { useAppearanceForm } from "./AppearanceFormContext";
+import { ErrorText } from "../MetaData/styles";
 
 export default function LogoSection() {
   const { t } = useTranslation();
-  const { values, updateField } = useAppearanceForm();
+  const { values, errors, updateField, clearFieldError, validateField } =
+    useAppearanceForm();
   const [open, setOpen] = React.useState(false);
 
   const texts = useMemo(
@@ -59,16 +64,25 @@ export default function LogoSection() {
   const handleChange = useCallback(
     (value: string | string[]) => {
       const text = Array.isArray(value) ? value.join("") : value;
+      clearFieldError(FORM_FIELDS.LOGO_NAME);
       updateField(FORM_FIELDS.LOGO_NAME, text.slice(0, maxLogoNameCharacters));
     },
-    [updateField],
+    [clearFieldError, updateField],
   );
 
   const isTextMode = values.logoType === LOGO_MODE.TEXT;
 
   const handleImageApply = (cropped: string) => {
+    clearFieldError(FORM_FIELDS.LOGO_URL);
     updateField(FORM_FIELDS.LOGO_URL, cropped);
+    validateField(FORM_FIELDS.LOGO_URL);
     setOpen(false);
+  };
+
+  const handleImageDelete = () => {
+    clearFieldError(FORM_FIELDS.LOGO_URL);
+    updateField(FORM_FIELDS.LOGO_URL, "");
+    validateField(FORM_FIELDS.LOGO_URL);
   };
 
   return (
@@ -104,9 +118,12 @@ export default function LogoSection() {
                 type={INPUT_TYPE.TEXT}
                 value={values.logoName}
                 onChange={handleChange}
+                onBlur={() => validateField(FORM_FIELDS.LOGO_NAME)}
                 placeholder={texts.placeholder}
                 width="100%"
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
+                hasError={Boolean(errors.logoName)}
+                errorMessage={errors.logoName}
               />
             ) : (
               <LogoUploadWrap>
@@ -118,7 +135,20 @@ export default function LogoSection() {
                   {texts.uploadButton}
                 </GenericButton>
 
-                {values.logoUrl && <LogoImage src={values.logoUrl} />}
+                {values.logoUrl && (
+                  <PreviewWrapper>
+                    <LogoImage src={values.logoUrl} />
+                    <DeleteImageButton
+                      type="button"
+                      onClick={handleImageDelete}
+                    >
+                      <DeleteIcon width={14} height={16} />
+                    </DeleteImageButton>
+                  </PreviewWrapper>
+                )}
+                {errors.logoUrl ? (
+                  <ErrorText role="alert">{errors.logoUrl}</ErrorText>
+                ) : null}
               </LogoUploadWrap>
             )}
           </ControlWrap>

@@ -1,9 +1,34 @@
+import type { TFunction } from "i18next";
 import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
-import type {
-  RentedMode,
-  RentedCollectionItem,
-  RentedMediaItem,
-} from "@/utils/dummyData/viewerRentedMockData";
+import type { ContentType } from "@/utils/content";
+
+export type CollectionAction = {
+  label: string;
+  sublabel?: string;
+  variant?: "primary" | "secondary";
+  href?: string;
+};
+
+export type RentedCollectionItem = {
+  id: string;
+  title: string;
+  author: string;
+  elementCount: number;
+  coverSrc: string;
+  actions?: CollectionAction[];
+  hideBadge?: boolean;
+  href?: string;
+};
+
+export type RentedMediaItem = {
+  id: string;
+  mediaType: RentedMediaType;
+  category: string;
+  thumbSrc: string;
+  title: string;
+  author: string;
+  expiryText: string;
+};
 import {
   CURRENT_RENTED_AUDIOS,
   CURRENT_RENTED_COLLECTIONS,
@@ -28,6 +53,9 @@ export const RENTED_MODES = {
   CURRENTLY: "currently",
   PREVIOUSLY: "previously",
 } as const;
+
+export type RentedMode = (typeof RENTED_MODES)[keyof typeof RENTED_MODES];
+export type RentedMediaType = ContentType;
 
 export const RENTED_MEDIA_TYPES = {
   VIDEO: "video",
@@ -70,11 +98,24 @@ const PURCHASED_SOURCES: RentedContentSources = {
   })),
 };
 
-export const RENTED_MEDIA_SECTIONS: ViewerRentedMediaSection[] = [
-  { key: RENTED_SECTION_KEYS.VIDEOS, title: "Videos" },
-  { key: RENTED_SECTION_KEYS.AUDIOS, title: "Audios" },
-  { key: RENTED_SECTION_KEYS.PDFS, title: "PDF" },
-];
+export function getRentedMediaSections(
+  t: TFunction,
+): ViewerRentedMediaSection[] {
+  return [
+    {
+      key: RENTED_SECTION_KEYS.VIDEOS,
+      title: t("dashboard.viewerPurchased.sections.videos"),
+    },
+    {
+      key: RENTED_SECTION_KEYS.AUDIOS,
+      title: t("dashboard.viewerPurchased.sections.audios"),
+    },
+    {
+      key: RENTED_SECTION_KEYS.PDFS,
+      title: t("dashboard.viewerPurchased.sections.pdf"),
+    },
+  ];
+}
 
 export const RENTED_PAGE_SIZE: Record<RentedSectionKey, number> = {
   [RENTED_SECTION_KEYS.COLLECTIONS]: 2,
@@ -115,16 +156,22 @@ export function filterMedia(searchValue: string, items: RentedMediaItem[]) {
   );
 }
 
-export function getMediaLabel(type: RentedMediaItem["mediaType"]) {
-  if (type === RENTED_MEDIA_TYPES.AUDIO) return "Audio";
-  if (type === RENTED_MEDIA_TYPES.PDF) return "PDF";
-  return "Video";
+export function getMediaLabel(type: RentedSectionKey, t: TFunction) {
+  const map: Record<string, string> = {
+    [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.mediaLabelVideo"),
+    [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.mediaLabelAudio"),
+    [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.mediaLabelPdf"),
+  };
+  return map[type] ?? "";
 }
 
-export function getMediaAction(type: RentedMediaItem["mediaType"]) {
-  if (type === RENTED_MEDIA_TYPES.AUDIO) return "Play audio";
-  if (type === RENTED_MEDIA_TYPES.PDF) return "Open pdf";
-  return "Play video";
+export function getMediaAction(type: RentedSectionKey, t: TFunction) {
+  const map: Record<string, string> = {
+    [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.playVideo"),
+    [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.playAudio"),
+    [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.openPdf"),
+  };
+  return map[type] ?? "";
 }
 
 export function getRentedContentSources(
@@ -149,31 +196,22 @@ export function getRentedContentSources(
   };
 }
 
-export function getCollectionBadgeText(mode: RentedMode) {
-  if (mode === RENTED_MODES.PURCHASED) return "Owned";
-  if (mode === RENTED_MODES.CURRENTLY) return "In rental";
-  return "Rented";
+export function getCollectionBadgeText(mode: RentedMode, t: TFunction) {
+  if (mode === RENTED_MODES.PURCHASED) return t("viewerRented.owned");
+  if (mode === RENTED_MODES.CURRENTLY) return t("viewerRented.inRental");
+  return t("viewerRented.rented");
 }
 
-export function getCollectionPrimaryActionText(mode: RentedMode) {
-  if (mode === RENTED_MODES.PURCHASED) return "See content";
-  return "Buy xx kr";
+export function getCollectionPrimaryActionText(mode: RentedMode, t: TFunction) {
+  if (mode === RENTED_MODES.PURCHASED) return t("viewerRented.seeContent");
+  return t("viewerRented.buyPlaceholder");
 }
 
-export const ACTIVE_RENTAL_TEXT = {
-  title: "Active rental",
-  expiresIn: "Expires in 2 days",
-} as const;
-
-export const RENTED_BUTTON_TEXT = {
-  buy: "Buy xx kr",
-  rent: "Rent xx kr",
-} as const;
-
-export function getSearchPlaceholder(mode: RentedMode) {
-  if (mode === RENTED_MODES.PURCHASED) return "Search Purchased Content";
-  if (mode === RENTED_MODES.CURRENTLY) return "Search Currently Rented";
-  return "Search Previously Rented";
+export function getSearchPlaceholder(mode: RentedMode, t: TFunction) {
+  if (mode === RENTED_MODES.PURCHASED) return t("viewerRented.searchPurchased");
+  if (mode === RENTED_MODES.CURRENTLY)
+    return t("viewerRented.searchCurrentlyRented");
+  return t("viewerRented.searchPreviouslyRented");
 }
 
 type ViewerSearchParamsInput =
@@ -245,4 +283,30 @@ export function sortViewerCollections(
     return a.elementCount - b.elementCount;
   });
   return sorted;
+}
+
+export function formatExpiryText(
+  rentExpiresAt: string | null | undefined,
+  t: TFunction,
+): string {
+  if (!rentExpiresAt) return "";
+  const hrs = Math.round(
+    (new Date(rentExpiresAt).getTime() - Date.now()) / 36e5,
+  );
+  if (hrs <= 0) return t("viewerRented.expired");
+  return hrs < 24
+    ? t("viewerRented.expiresInHours", { count: hrs })
+    : t("viewerRented.expiresInDays", { count: Math.round(hrs / 24) });
+}
+
+export function formatExpiredText(
+  rentExpiresAt: string | null | undefined,
+  t: TFunction,
+): string {
+  if (!rentExpiresAt) return "";
+  const d = new Date(rentExpiresAt);
+  if (isNaN(d.getTime())) return "";
+  return t("viewerRented.expiredOn", {
+    date: `${d.getDate()} ${d.toLocaleString(undefined, { month: "long" })} ${d.getFullYear()}`,
+  });
 }

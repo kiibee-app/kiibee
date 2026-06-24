@@ -1,17 +1,25 @@
 import type { typography } from "@repo/ui/typography";
 import { COLLECTIONS, HOME } from "./common";
+import { EXPLORE } from "./translationKeys";
 import { NavBarProps } from "./profile";
 import {
   AdmissionRequirementValue,
   ADMISSION_REQUIREMENT_VALUES,
 } from "./admissionRequirements";
+import { ADMISSION_TYPE, parsePaymentAmount } from "./paymentRequirements";
 import type { ContentFormState } from "@/types/contentTypes";
+import {
+  EXPLORE_CONTENT_SORT,
+  ExploreContentSort,
+} from "@/hooks/feed/useExploreContent";
 
 export const CREATOR_CHANNEL_AVATAR_TEXT = {
   HERO: "Heading2",
   NAVBAR: "H4_SemiBold",
   COMPACT: "Heading3",
 } as const satisfies Record<string, keyof typeof typography>;
+export const UNKNOWN = "Unknown";
+export const CREATOR = "Creator";
 
 export type CreatorChannelAvatarTextUse =
   (typeof CREATOR_CHANNEL_AVATAR_TEXT)[keyof typeof CREATOR_CHANNEL_AVATAR_TEXT];
@@ -39,6 +47,25 @@ export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [
   "usersTab",
 ] as const;
 
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+export function registerGsapPlugins() {
+  if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+  }
+}
+
+export const CTA_CARD = {
+  selector: "[data-cta-card]",
+  attr: "data-cta-card",
+  keyPrefix: "reveal-",
+  mobileLabel: "mobile",
+  desktopLabel: "desktop",
+  fromVars: { autoAlpha: 0, scale: 0.96 } as const,
+  toVars: { autoAlpha: 1, scale: 1 } as const,
+  initialTransform: "scale(0.96)",
+} as const;
 export const GENERAL_FORM_FIELDS: Array<keyof ContentFormState> = [
   "webLink",
   "openInNewWindow",
@@ -56,6 +83,7 @@ export type PasswordVisibilityKey =
   (typeof PASSWORD_VISIBILITY_KEY)[keyof typeof PASSWORD_VISIBILITY_KEY];
 
 export const STRING = "string";
+export const STRING_EMPTY = "";
 export const SENSITIVITY_BASE = "base";
 export const VIEW = "view";
 export const VIEWER_SECTION = "section";
@@ -106,6 +134,21 @@ export type CouponAction =
 
 export const TONE_DARK = "dark" as const;
 export const TONE_LIGHT = "light" as const;
+
+export const DRAWER_SIDE = {
+  LEFT: "left",
+  RIGHT: "right",
+} as const;
+
+export type DrawerSide = (typeof DRAWER_SIDE)[keyof typeof DRAWER_SIDE];
+
+export const DRAWER_VARIANT = {
+  DRAWER: "drawer",
+  DROPDOWN: "dropdown",
+} as const;
+
+export type DrawerVariant =
+  (typeof DRAWER_VARIANT)[keyof typeof DRAWER_VARIANT];
 
 export const profileNavShellProps = {
   position: "absolute",
@@ -231,6 +274,8 @@ export const uiToApiAccessTypeMap: Record<
   [ADMISSION_REQUIREMENT_VALUES.password]: ACCESS_TYPE_PASSWORD,
   [ADMISSION_REQUIREMENT_VALUES.email]: ACCESS_TYPE_EMAIL_GATED,
   [ADMISSION_REQUIREMENT_VALUES.free]: ACCESS_TYPE_FREE,
+  set_password: ACCESS_TYPE_PASSWORD,
+  request_email: ACCESS_TYPE_EMAIL_GATED,
 };
 
 export const contentTypeMimeMap: Record<string, string> = {
@@ -248,6 +293,11 @@ export const contentTypeSizeMap: Record<string, number> = {
 export const mockSizeFallback = 12 * 1024 * 1024;
 
 export function buildContentUpdatePayload(formState: ContentFormState) {
+  const isPaymentAdmission =
+    formState.admissionRequirement === ADMISSION_TYPE.PAYMENT;
+  const parsedBuyPrice = parsePaymentAmount(formState.purchaseAmount);
+  const parsedRentPrice = parsePaymentAmount(formState.rentalAmount);
+
   return {
     title: formState.title,
     description: formState.description,
@@ -273,20 +323,15 @@ export function buildContentUpdatePayload(formState: ContentFormState) {
       ? formState.visibility.toLowerCase()
       : undefined,
     accessType: formState.admissionRequirement
-      ? formState.admissionRequirement.toLowerCase() ===
-        ADMISSION_REQUIREMENT_PAYMENT.toLowerCase()
-        ? ACCESS_TYPE_PAID
-        : ACCESS_TYPE_FREE
+      ? (uiToApiAccessTypeMap[formState.admissionRequirement.toLowerCase()] ??
+        ACCESS_TYPE_FREE)
       : undefined,
-    buyPrice: formState.purchaseAmount
-      ? parseFloat(formState.purchaseAmount)
-      : undefined,
-    rentPrice: formState.rentalAmount
-      ? parseFloat(formState.rentalAmount)
-      : undefined,
-    rentDurationHours: formState.rentalAmount
-      ? RENT_DURATION_DEFAULT
-      : undefined,
+    buyPrice: isPaymentAdmission ? (parsedBuyPrice ?? undefined) : undefined,
+    rentPrice: isPaymentAdmission ? (parsedRentPrice ?? undefined) : undefined,
+    rentDurationHours:
+      isPaymentAdmission && parsedRentPrice != null
+        ? RENT_DURATION_DEFAULT
+        : undefined,
     maximumDownloadCount:
       formState.maxDownloadLimit &&
       formState.maxDownloadLimit !== DOWNLOAD_LIMIT_UNLIMITED
@@ -310,17 +355,31 @@ export const CONTENT_FORM_FIELDS = {
   TAGS: "tags",
 } as const;
 
+export const TAG_DELIMITER = /[\n,]+/;
+
+export function parseTags(value: string): string[] {
+  return value
+    ? value
+        .split(TAG_DELIMITER)
+        .map((tag) => tag.trim())
+        .filter(Boolean)
+    : [];
+}
+
 export const MEDIA_TYPE_VIDEO_KEY = "discoverContent.mediaTypes.video";
 export const MEDIA_TYPE_EPUB_KEY = "discoverContent.mediaTypes.epub";
 export const FREE_LABEL = "Free";
 export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";
+export const BUY_KEYWORDS = ["buy", "køb"];
 export const FALLBACK_MEDIA_TYPE_LABEL = "Video";
 export const MARQUEE_LIMIT = 8;
 export const EXPLORE_PAGE_SIZE = 12;
-
+export const TOP_CREATORS_LIMIT = 6;
+export const LOAD_MORE_SIZE = 12;
 export const CATEGORY_ALL = "all";
+export const SKELETON_COUNT = 5;
 
 export const SORT_OPTION_NEW = "new";
 export const SORT_OPTION_POPULAR = "popular";
@@ -331,6 +390,30 @@ export const FILTER_SECTION_CREATORS = "creators";
 export const FILTER_SECTION_FORMATS = "formats";
 export const FILTER_SECTION_PRICE = "price";
 export const FILTER_SECTION_RATING = "rating";
+
+export type AccessGateType = "code" | "email";
+export type AccessGateVariant = "page" | "content";
+
+export const VARIANT_CONTENT: AccessGateVariant = "content";
+export const VARIANT_PAGE: AccessGateVariant = "page";
+export const TYPE_CODE: AccessGateType = "code";
+export const TYPE_EMAIL: AccessGateType = "email";
+export const GATE_QUERY_PARAM = "gate";
+export const ID_QUERY_PARAM = "id";
+export const SET_PASSWORD_ACCESS = "set_password";
+export const REQUEST_EMAIL_ACCESS = "request_email";
+
+export const INPUT_TYPE_TEXT = "text";
+export const INPUT_TYPE_EMAIL = "email";
+export const BUTTON_TYPE_SUBMIT = "submit";
+
+export const AUTOCOMPLETE_OFF = "off";
+export const AUTOCOMPLETE_NAME = "name";
+export const AUTOCOMPLETE_EMAIL = "email";
+
+export const HTML_ID_CODE = "access-gate-code";
+export const HTML_ID_NAME = "access-gate-name";
+export const HTML_ID_EMAIL = "access-gate-email";
 
 export const SHARE_STATUS = {
   IDLE: "idle",
@@ -350,6 +433,14 @@ export const ORDER_TYPES = {
   RENTAL: "rental",
 } as const;
 
+export const EXPLORE_TABS: { labelKey: string; sort: ExploreContentSort }[] = [
+  { labelKey: EXPLORE.sortNew, sort: EXPLORE_CONTENT_SORT.NEW },
+  { labelKey: EXPLORE.sortTrending, sort: EXPLORE_CONTENT_SORT.POPULAR },
+  { labelKey: EXPLORE.sortCreatedForYou, sort: EXPLORE_CONTENT_SORT.ALL },
+];
+
+export const URL_FORMAT_IDS = new Set(["video", "audio", "pdf", "epub", "web"]);
+
 export type OrderItemType = (typeof ORDER_TYPES)[keyof typeof ORDER_TYPES];
 
 export const STATUS_TONE = {
@@ -361,3 +452,8 @@ export const STATUS_TONE = {
 export type StatusTone = (typeof STATUS_TONE)[keyof typeof STATUS_TONE];
 
 export const PAYMENT_QUERY_KEY = "payment";
+
+export const BILLING_TYPES = {
+  RENTED: { value: "rented", label: "Rented" },
+  PURCHASED: { value: "purchased", label: "Purchased" },
+} as const;

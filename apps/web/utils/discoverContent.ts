@@ -17,6 +17,7 @@ import {
 import { pathPublishedContent } from "./path";
 import { type FeedContentItem } from "./feedContentToTutorial";
 import fallbackImage from "@/assets/images/discover-content/3545227dd1e7a9cd6faf3b14586708d85137ed35.webp";
+import { resolveContentThumbnailUrl } from "@/utils/media";
 
 export type DiscoverContentAction = {
   labelKey: string;
@@ -71,7 +72,11 @@ export const mapFeedItemToDiscoverItem = (
     contentKey: item.id,
     isFree: isFreeContentItem(item),
     categoryKey: item.categoryName || "",
-    image: item.thumbnailUrl || fallbackImage,
+    image:
+      resolveContentThumbnailUrl(
+        item.thumbnailUrl,
+        item.thumbnailLandscapeUrl,
+      ) || fallbackImage,
     titleKey: item.title,
     authorKey: item.creatorName || "",
     dateKey: item.publishedAgo || "",

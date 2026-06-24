@@ -26,6 +26,7 @@ import {
 import { EXPORT_TYPE_OPTIONS } from "@/utils/exportOptions";
 import { SETTINGS as SETTINGS_KEYS_CONST } from "@/utils/translationKeys";
 import { NOTIFICATION_MODAL, NotificationModalType } from "@/utils/ui";
+import { useAutoMatchedQuery } from "@/hooks/useAutoMatchedQuery";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import {
   CONTENT_TAB,
@@ -110,25 +111,34 @@ export default function SettingsContent() {
       },
     ];
   }, [t]);
+  const { lastAutoMatchedQueryRef, handleSearchChange } =
+    useAutoMatchedQuery(setSearchValue);
 
   useEffect(() => {
     if (!searchValue || searchValue.trim().length < 2) return;
 
     const query = searchValue.trim().toLowerCase();
+    const searchChanged = lastAutoMatchedQueryRef.current !== query;
 
-    const activeTabKeywords = SETTINGS_TABS_INDEX.find(
-      (item) => item.tab === activeTab,
-    );
-    const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
-      keyword.toLowerCase().includes(query),
-    );
+    if (searchChanged) {
+      lastAutoMatchedQueryRef.current = query;
 
-    if (!activeContainsQuery) {
-      const matchedTabItem = SETTINGS_TABS_INDEX.find((item) =>
-        item.keywords.some((keyword) => keyword.toLowerCase().includes(query)),
+      const activeTabKeywords = SETTINGS_TABS_INDEX.find(
+        (item) => item.tab === activeTab,
       );
-      if (!matchedTabItem) return;
-      setActiveTabAndQuery(matchedTabItem.tab);
+      const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(query),
+      );
+
+      if (!activeContainsQuery) {
+        const matchedTabItem = SETTINGS_TABS_INDEX.find((item) =>
+          item.keywords.some((keyword) =>
+            keyword.toLowerCase().includes(query),
+          ),
+        );
+        if (!matchedTabItem) return;
+        setActiveTabAndQuery(matchedTabItem.tab);
+      }
     }
 
     let attempts = 0;
@@ -145,7 +155,13 @@ export default function SettingsContent() {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [searchValue, activeTab, setActiveTabAndQuery, SETTINGS_TABS_INDEX]);
+  }, [
+    searchValue,
+    activeTab,
+    lastAutoMatchedQueryRef,
+    setActiveTabAndQuery,
+    SETTINGS_TABS_INDEX,
+  ]);
 
   const isNotificationTab = useMemo(
     () => activeTab === TAB_KEYS.notifications,
@@ -207,7 +223,7 @@ export default function SettingsContent() {
           value: searchValue,
           placeholder: t("search"),
           onToggle: () => setOpenSearch((prev) => !prev),
-          onChange: setSearchValue,
+          onChange: handleSearchChange,
           ariaLabel: t("search"),
         }}
       />

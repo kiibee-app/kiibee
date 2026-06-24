@@ -3,6 +3,7 @@
 import Image, { StaticImageData } from "next/image";
 import React, { ReactNode, useState } from "react";
 import {
+  CONTENT_POSTER_IMAGE_STYLE,
   isRemoteImageSource,
   REMOTE_COVER_IMAGE_STYLE,
   resolveImageUrl,
@@ -22,6 +23,7 @@ import {
 
 type GenericCardProps = {
   image?: string | StaticImageData;
+  imageFallback?: string;
   imageInitials?: string;
   coverImage?: boolean;
   alt?: string;
@@ -33,6 +35,8 @@ type GenericCardProps = {
   footer?: ReactNode;
   children?: ReactNode;
   width?: string;
+  imagePriority?: boolean;
+  onClick?: () => void;
 };
 
 function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
@@ -59,6 +63,7 @@ function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
 
 export default function GenericCard({
   image,
+  imageFallback,
   imageInitials,
   coverImage = false,
   alt,
@@ -70,12 +75,20 @@ export default function GenericCard({
   footer,
   children,
   width,
+  imagePriority = false,
+  onClick,
 }: GenericCardProps) {
   const imageKey = image ? (typeof image === "string" ? image : image.src) : "";
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
-  const imageFailed = failedImageKey === imageKey;
+  const [fallbackState, setFallbackState] = useState<{
+    forKey: string;
+    url: string;
+  } | null>(null);
+  const activeFallback =
+    fallbackState?.forKey === imageKey ? fallbackState.url : null;
+  const imageFailed = failedImageKey === imageKey && !activeFallback;
 
-  const imageSrc = image ? resolveImageUrl(image) : null;
+  const imageSrc = activeFallback ?? (image ? resolveImageUrl(image) : null);
   const showRemoteImage =
     Boolean(imageSrc) &&
     !imageFailed &&
@@ -84,8 +97,26 @@ export default function GenericCard({
   const showOptimizedImage = Boolean(image) && !imageFailed && !showRemoteImage;
   const showInitials = Boolean(imageInitials) && (!image || imageFailed);
 
+  const handleImageError = () => {
+    if (imageFallback && activeFallback !== imageFallback) {
+      setFallbackState({ forKey: imageKey, url: imageFallback });
+      return;
+    }
+    setFailedImageKey(imageKey);
+  };
+
+  const posterImageStyle = coverImage
+    ? CONTENT_POSTER_IMAGE_STYLE
+    : REMOTE_COVER_IMAGE_STYLE;
+
   return (
-    <Card $width={width} $compact={compact} $coverImage={coverImage}>
+    <Card
+      $width={width}
+      $compact={compact}
+      $coverImage={coverImage}
+      onClick={onClick}
+      style={onClick ? { cursor: "pointer" } : undefined}
+    >
       {(image || imageInitials) && (
         <ImageWrapper $compact={compact} $coverImage={coverImage}>
           {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
@@ -94,10 +125,10 @@ export default function GenericCard({
             <img
               src={imageSrc ?? undefined}
               alt={alt || "card image"}
-              style={REMOTE_COVER_IMAGE_STYLE}
-              loading="eager"
+              style={posterImageStyle}
+              loading={imagePriority ? "eager" : "lazy"}
               decoding="async"
-              onError={() => setFailedImageKey(imageKey)}
+              onError={handleImageError}
             />
           ) : showOptimizedImage ? (
             <Image
@@ -105,9 +136,9 @@ export default function GenericCard({
               alt={alt || "card image"}
               fill
               sizes="(max-width: 767px) 100vw, 50vw"
-              style={{ objectFit: "cover" }}
-              priority
-              onError={() => setFailedImageKey(imageKey)}
+              style={posterImageStyle}
+              priority={imagePriority}
+              onError={handleImageError}
             />
           ) : showInitials ? (
             <ImageInitials $use="Heading3">{imageInitials}</ImageInitials>

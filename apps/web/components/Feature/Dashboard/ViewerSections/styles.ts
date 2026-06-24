@@ -1,6 +1,8 @@
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
+import GenericButton from "@/components/UI/GenericButton";
+import { SIZE, VARIANT } from "@/utils/Constants";
 
 export const PageHeader = styled.div`
   display: flex;
@@ -10,6 +12,17 @@ export const PageHeader = styled.div`
   margin-bottom: 35px;
   margin-top: 15px;
   width: 100%;
+
+  ${media.tablet} {
+    margin-bottom: 20px;
+    margin-top: 8px;
+  }
+
+  ${media.mobileLg} {
+    margin-bottom: 16px;
+    margin-top: 4px;
+    gap: 10px;
+  }
 `;
 
 export const PageWrap = styled.div<{ $expandedCollections?: boolean }>`
@@ -20,8 +33,19 @@ export const PageWrap = styled.div<{ $expandedCollections?: boolean }>`
 
   ${media.tablet} {
     padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "28px 20px 20px" : "20px"};
-    margin-right: 10px;
+      $expandedCollections ? "20px 16px 16px" : "16px"};
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  ${media.mobileLg} {
+    padding: ${({ $expandedCollections }) =>
+      $expandedCollections ? "16px 12px 12px" : "14px 16px"};
+  }
+
+  ${media.mobile} {
+    padding: ${({ $expandedCollections }) =>
+      $expandedCollections ? "14px 10px 10px" : "10px 12px"};
   }
 `;
 
@@ -30,6 +54,22 @@ export const SectionBlock = styled.section`
 
   &:first-of-type {
     margin-top: 24px;
+  }
+
+  ${media.tablet} {
+    margin-top: 24px;
+
+    &:first-of-type {
+      margin-top: 12px;
+    }
+  }
+
+  ${media.mobileLg} {
+    margin-top: 18px;
+
+    &:first-of-type {
+      margin-top: 8px;
+    }
   }
 `;
 
@@ -54,6 +94,8 @@ export const SectionHeader = styled.div<{ $withMetaHeader?: boolean }>`
   padding-inline: 0;
 
   ${media.tablet} {
+    margin-bottom: 14px;
+
     ${({ $withMetaHeader }) =>
       $withMetaHeader
         ? `
@@ -62,6 +104,10 @@ export const SectionHeader = styled.div<{ $withMetaHeader?: boolean }>`
       row-gap: 8px;
     `
         : ""}
+  }
+
+  ${media.mobileLg} {
+    margin-bottom: 10px;
   }
 `;
 
@@ -188,7 +234,7 @@ export const CollectionGrid = styled.div`
   padding-inline: 0;
 
   ${media.mobileLg} {
-    gap: 12px;
+    gap: 10px;
   }
 `;
 
@@ -205,6 +251,8 @@ export const CollectionCard = styled.article`
 
   ${media.mobileLg} {
     flex-direction: column;
+    padding: 16px;
+    gap: 10px;
   }
 `;
 
@@ -289,9 +337,12 @@ export const CollectionActionRow = styled.div`
   .collection-cta:hover,
   .collection-cta:focus-visible,
   .collection-cta:active {
-    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
     color: ${({ theme }) => theme.colors.primary.BLACK};
     border-color: ${({ theme }) => theme.colors.primary.BLACK};
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
   }
 
   .collection-cta:hover *,
@@ -319,6 +370,48 @@ export const CollectionCtaContent = styled.span`
 export const CollectionCtaSubtext = styled.span`
   ${({ theme }) => theme.typography.Body_Medium}
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+`;
+
+export const CollectionBuyButton = styled(GenericButton).attrs({
+  variant: VARIANT.PRIMARY,
+  size: SIZE.SM,
+})`
+  min-width: 120px;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: none;
+  transform: none;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.BLACK};
+    color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+  }
+`;
+
+export const CollectionRentButton = styled(GenericButton).attrs({
+  variant: VARIANT.SECONDARY,
+  size: SIZE.SM,
+})`
+  min-width: 120px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: none;
+  transform: none;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+  }
 `;
 
 export const PassiveActionBlock = styled.div`
@@ -351,10 +444,13 @@ export const MediaGrid = styled.div`
 
   ${media.tablet} {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-left: 0;
+    gap: 12px;
   }
 
   ${media.mobileLg} {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 `;
 
@@ -457,4 +553,61 @@ export const EmptyState = styled.div`
   text-align: center;
   width: 100%;
   height: 50vh;
+`;
+
+export const ViewerEmptyStateBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 24px;
+  padding: 56px 32px;
+  border-radius: 16px;
+  border: 1px dashed ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  text-align: center;
+  box-sizing: border-box;
+  min-height: 280px;
+
+  ${media.tablet} {
+    padding: 48px 24px;
+    min-height: 240px;
+  }
+
+  ${media.mobileLg} {
+    margin-top: 12px;
+    padding: 32px 16px;
+    min-height: 180px;
+  }
+
+  ${media.mobile} {
+    padding: 28px 16px;
+    min-height: 160px;
+  }
+`;
+
+export const ViewerEmptyStateIconWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+`;
+
+export const ViewerEmptyStateTitle = styled.p`
+  margin: 0;
+  ${({ theme }) => theme.typography.Body_SemiBold};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const ViewerEmptyStateDescription = styled.p`
+  margin: 8px 0 0;
+  max-width: 420px;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
 `;

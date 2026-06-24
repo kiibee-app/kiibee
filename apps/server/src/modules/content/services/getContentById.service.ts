@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   mediaFiles,
@@ -20,7 +20,7 @@ export const getContentByIdService = async (contentId: string) => {
     const [content] = await db
       .select()
       .from(mediaFiles)
-      .where(eq(mediaFiles.id, contentId))
+      .where(and(eq(mediaFiles.id, contentId), eq(mediaFiles.isDeleted, false)))
       .limit(1);
 
     if (!content) {

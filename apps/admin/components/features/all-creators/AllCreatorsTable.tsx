@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { CreatorRequest } from "../../../types/creator-request";
 import {
   useCreatorRequests,
@@ -14,6 +14,15 @@ import {
   AllCreatorsState,
   AllCreatorsTabButton,
   AllCreatorsTabs,
+  SearchContainer,
+  SearchIconWrapper,
+  SearchInput,
+  AllCreatorsHeader,
+  SearchClearButton,
+  SearchIcon,
+  ClearIcon,
+  HeaderControls,
+  PlanFilterSelect,
 } from "./AllCreators.styles";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
 import { ViewersTable } from "./ViewersTable";
@@ -21,22 +30,45 @@ import { CreatorRequestsTable } from "./CreatorRequestsTable";
 import { CreatorRequestsTableSkeleton } from "./CreatorRequestsTableSkeleton";
 import { CreatorPagination } from "./CreatorPagination";
 import { CreatorDetailsModal } from "./CreatorDetailsModal";
+import { ExistingCreatorDetailsModal } from "./ExistingCreatorDetailsModal";
+import { ViewerDetailsModal } from "./ViewerDetailsModal";
+import type { ExistingCreator } from "../../../types/existing-creator";
+import type { Viewer } from "../../../types/viewer";
 import { useCreatorRequestActions } from "./useCreatorRequestActions";
 import { useCreatorRequestOverrides } from "./useCreatorRequestOverrides";
 import {
   ALL_CREATORS_TAB,
   type AllCreatorsTab,
   STORAGE_KEYS,
+  PLACEHOLDERS,
+  CREATOR_PLAN_FILTER_OPTIONS,
 } from "@/utils/constants";
+import { useDebounce } from "@/hooks/ui/use-debounce";
 
 export function AllCreatorsTable() {
   const [activeTab, setActiveTab] = useState<AllCreatorsTab>(
     ALL_CREATORS_TAB.CREATORS,
   );
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState("");
+  const debouncedSearch = useDebounce(searchTerm);
+
   const [selectedCreator, setSelectedCreator] = useState<CreatorRequest | null>(
     null,
   );
-  const existingCreatorsQuery = useExistingCreators();
+  const [selectedExistingCreator, setSelectedExistingCreator] =
+    useState<ExistingCreator | null>(null);
+  const [selectedViewer, setSelectedViewer] = useState<Viewer | null>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const handleSearchClear = () => {
+    setSearchTerm("");
+    searchInputRef.current?.focus();
+  };
+  const existingCreatorsQuery = useExistingCreators(
+    debouncedSearch,
+    selectedPlan || undefined,
+  );
   const creatorRequestsQuery = useCreatorRequests();
   const viewersQuery = useViewers();
   const { creators, updateCreatorStatus } = useCreatorRequestOverrides(
@@ -60,18 +92,39 @@ export function AllCreatorsTable() {
     storageKey: STORAGE_KEYS.PAGE_SIZE_ALL_CREATORS,
   });
 
-  const totalRequests = creators.length;
+  const debouncedSearchLower = debouncedSearch.toLowerCase().trim();
+
+  const matchUser = (user: {
+    firstName?: string | null;
+    lastName?: string | null;
+    fullName?: string | null;
+    email: string;
+  }) => {
+    if (!debouncedSearchLower) return true;
+    return (
+      user.fullName?.toLowerCase().includes(debouncedSearchLower) ||
+      user.firstName?.toLowerCase().includes(debouncedSearchLower) ||
+      user.lastName?.toLowerCase().includes(debouncedSearchLower) ||
+      user.email.toLowerCase().includes(debouncedSearchLower)
+    );
+  };
+
+  const filteredRequests = creators.filter(matchUser);
+
+  const totalRequests = filteredRequests.length;
   const requestsPagination = usePagination({
-    data: creators,
+    data: filteredRequests,
     totalItems: totalRequests,
     initialPageSize: 10,
     storageKey: STORAGE_KEYS.PAGE_SIZE_CREATOR_REQUESTS,
   });
 
   const viewers = viewersQuery.data ?? [];
-  const totalViewers = viewers.length;
+  const filteredViewers = viewers.filter(matchUser);
+
+  const totalViewers = filteredViewers.length;
   const viewersPagination = usePagination({
-    data: viewers,
+    data: filteredViewers,
     totalItems: totalViewers,
     initialPageSize: 10,
     storageKey: STORAGE_KEYS.PAGE_SIZE_VIEWERS,
@@ -98,6 +151,7 @@ export function AllCreatorsTable() {
       <>
         <ExistingCreatorsTable
           creators={existingCreatorsPagination.paginatedData}
+          onSelectCreator={(creator) => setSelectedExistingCreator(creator)}
         />
 
         <CreatorPagination
@@ -194,7 +248,10 @@ export function AllCreatorsTable() {
 
     return (
       <>
-        <ViewersTable viewers={viewersPagination.paginatedData} />
+        <ViewersTable
+          viewers={viewersPagination.paginatedData}
+          onSelectViewer={(viewer) => setSelectedViewer(viewer)}
+        />
 
         <CreatorPagination
           startIndex={viewersPagination.startIndex}
@@ -214,29 +271,69 @@ export function AllCreatorsTable() {
 
   return (
     <AllCreatorsLayout>
-      <AllCreatorsTabs aria-label="Creator list views">
-        <AllCreatorsTabButton
-          type="button"
-          $active={activeTab === ALL_CREATORS_TAB.CREATORS}
-          onClick={() => setActiveTab(ALL_CREATORS_TAB.CREATORS)}
-        >
-          Existing Creators ({totalExistingCreators})
-        </AllCreatorsTabButton>
-        <AllCreatorsTabButton
-          type="button"
-          $active={activeTab === ALL_CREATORS_TAB.VIEWERS}
-          onClick={() => setActiveTab(ALL_CREATORS_TAB.VIEWERS)}
-        >
-          Viewers ({totalViewers})
-        </AllCreatorsTabButton>
-        <AllCreatorsTabButton
-          type="button"
-          $active={activeTab === ALL_CREATORS_TAB.REQUESTS}
-          onClick={() => setActiveTab(ALL_CREATORS_TAB.REQUESTS)}
-        >
-          Pending Requests ({totalRequests})
-        </AllCreatorsTabButton>
-      </AllCreatorsTabs>
+      <AllCreatorsHeader>
+        <AllCreatorsTabs aria-label="Creator list views">
+          <AllCreatorsTabButton
+            type="button"
+            $active={activeTab === ALL_CREATORS_TAB.CREATORS}
+            onClick={() => setActiveTab(ALL_CREATORS_TAB.CREATORS)}
+          >
+            Existing Creators ({totalExistingCreators})
+          </AllCreatorsTabButton>
+          <AllCreatorsTabButton
+            type="button"
+            $active={activeTab === ALL_CREATORS_TAB.VIEWERS}
+            onClick={() => setActiveTab(ALL_CREATORS_TAB.VIEWERS)}
+          >
+            Viewers ({totalViewers})
+          </AllCreatorsTabButton>
+          <AllCreatorsTabButton
+            type="button"
+            $active={activeTab === ALL_CREATORS_TAB.REQUESTS}
+            onClick={() => setActiveTab(ALL_CREATORS_TAB.REQUESTS)}
+          >
+            Pending Requests ({totalRequests})
+          </AllCreatorsTabButton>
+        </AllCreatorsTabs>
+
+        <HeaderControls>
+          {activeTab === ALL_CREATORS_TAB.CREATORS ? (
+            <PlanFilterSelect
+              aria-label="Filter creators by plan"
+              value={selectedPlan}
+              onChange={(event) => setSelectedPlan(event.target.value)}
+            >
+              <option value="">All plans</option>
+              {CREATOR_PLAN_FILTER_OPTIONS.map((plan) => (
+                <option key={plan} value={plan}>
+                  {plan}
+                </option>
+              ))}
+            </PlanFilterSelect>
+          ) : null}
+
+          <SearchContainer>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <SearchInput
+              ref={searchInputRef}
+              placeholder={PLACEHOLDERS.SEARCH_USERS}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            {searchTerm ? (
+              <SearchClearButton
+                type="button"
+                onClick={handleSearchClear}
+                aria-label="Clear search"
+              >
+                <ClearIcon />
+              </SearchClearButton>
+            ) : null}
+          </SearchContainer>
+        </HeaderControls>
+      </AllCreatorsHeader>
 
       <AllCreatorsPanel>
         {activeTab === ALL_CREATORS_TAB.CREATORS
@@ -249,6 +346,14 @@ export function AllCreatorsTable() {
       <CreatorDetailsModal
         creator={selectedCreator}
         onClose={() => setSelectedCreator(null)}
+      />
+      <ExistingCreatorDetailsModal
+        creator={selectedExistingCreator}
+        onClose={() => setSelectedExistingCreator(null)}
+      />
+      <ViewerDetailsModal
+        viewer={selectedViewer}
+        onClose={() => setSelectedViewer(null)}
       />
     </AllCreatorsLayout>
   );

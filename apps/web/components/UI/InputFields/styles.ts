@@ -215,6 +215,8 @@ export const FieldMessage = styled.div`
 export const RequiredIndicator = styled.span`
   color: ${({ theme }) => theme.colors.primary.RED};
   margin-left: 4px;
+  position: relative;
+  top: 1px;
 `;
 
 export const Field = styled.div`
@@ -357,11 +359,29 @@ export const DatePopup = styled.div<{
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 12px;
   box-shadow: 0 12px 30px ${({ theme }) => theme.colors.neutral.GRAY_300};
-  padding: 20px;
   max-width: 92vw;
   z-index: 1400;
+  overflow: hidden;
+
+  ${media.mobileMd} {
+    position: fixed;
+    top: auto;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 16px);
+    max-width: calc(100% - 16px);
+  }
+`;
+
+export const DatePopupScroll = styled.div`
   max-height: calc(100vh - 160px);
   overflow: auto;
+  padding: 20px;
+
+  ${media.mobileMd} {
+    max-height: calc(100vh - 160px - 2px);
+  }
 `;
 
 export const DatePopupBody = styled.div`
@@ -416,4 +436,96 @@ export const DatePopupWrapper = styled.div`
   position: absolute;
   inset: 0;
   z-index: 1400;
+
+  ${media.mobileMd} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+`;
+
+export const TagsInputWrapper = styled.div<{
+  $hasError?: boolean;
+  $variant?: InputVariant;
+}>`
+  padding: 8px 12px;
+  background: ${({ $hasError, $variant, theme }) =>
+    $hasError
+      ? `color-mix(in srgb, ${theme.colors.primary.RED} 8%, transparent)`
+      : $variant === INPUT_VARIANTS.PRIMARY_GRAY
+        ? theme.colors.primary.GRAY
+        : theme.colors.neutral.GRAY_100};
+  border: 1px solid
+    ${({ $hasError, theme }) =>
+      $hasError ? theme.colors.primary.RED : theme.colors.neutral.GRAY_200};
+  border-radius: ${({ theme }) => theme.radius.lg};
+  min-height: 40px;
+  cursor: text;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+
+  &:focus-within {
+    border-color: ${({ $hasError, theme }) =>
+      $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
+  }
+`;
+
+export const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+`;
+
+export const TagChip = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_250};
+  border-radius: 16px;
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const TagText = styled.span`
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const TagRemoveButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export const TagsInputField = styled.input`
+  flex: 1;
+  min-width: 120px;
+  border: none;
+  background: transparent;
+  outline: none;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  padding: 4px 0;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  }
 `;

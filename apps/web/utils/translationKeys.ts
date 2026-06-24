@@ -18,6 +18,10 @@ export const NAV = {
   logoAlt: "nav.logoAlt",
 };
 
+export const DASHBOARD = {
+  toggleSidebar: "dashboard.toggleSidebar",
+};
+
 export const CREATE_PROFILE_HOME = {
   brandName: "createProfileHome.brandName",
   uploads: "createProfileHome.uploads",
@@ -108,6 +112,7 @@ export const CREATORS = {
   topCreators: "creators.topCreators",
   seeAll: "creators.seeAll",
   subscribersCount: "creators.subscribersCount",
+  topCreatorUploads: "creators.topCreatorUploads",
   heading: {
     lineOne: "creators.heading.lineOne",
     lineTwo: "creators.heading.lineTwo",
@@ -130,6 +135,13 @@ export const CREATORS = {
   noCreatorsFound: "creators.noCreatorsFound",
   uploadsCount: "creators.uploadsCount",
   loadMore: "creators.loadMore",
+  search: "creators.search",
+  searchCreators: "creators.searchCreators",
+  title: "creators.title",
+  allCreators: "nav.explore.creator.allCreators",
+  featured: "nav.explore.creator.featured",
+  newCreators: "nav.explore.creator.newCreators",
+  popular: "nav.explore.creator.popular",
   howToGetStarted: {
     title: "creators.howToGetStarted.title",
   },
@@ -278,6 +290,9 @@ export const DASHBOARD_VIEWER_BILLINGS = {
   },
   paymentMethods: {
     title: "dashboard.viewerBillings.paymentMethods.title",
+    emptyTitle: "dashboard.viewerBillings.paymentMethods.emptyTitle",
+    emptyDescription:
+      "dashboard.viewerBillings.paymentMethods.emptyDescription",
     addCard: "dashboard.viewerBillings.paymentMethods.addCard",
     defaultBadge: "dashboard.viewerBillings.paymentMethods.defaultBadge",
     expires: "dashboard.viewerBillings.paymentMethods.expires",
@@ -384,6 +399,18 @@ export const CONTENTS = {
     supportEmail: "contents.appearance.supportEmail",
     supportEmailHint: "contents.appearance.supportEmailHint",
     supportEmailPlaceholder: "contents.appearance.supportEmailPlaceholder",
+    validation: {
+      invalidHex: "contents.appearance.validation.invalidHex",
+      invalidSupportEmail: "contents.appearance.validation.invalidSupportEmail",
+      fixErrors: "contents.appearance.validation.fixErrors",
+      descriptionRequired: "contents.appearance.validation.descriptionRequired",
+      logoNameRequired: "contents.appearance.validation.logoNameRequired",
+      logoImageRequired: "contents.appearance.validation.logoImageRequired",
+      desktopCoverRequired:
+        "contents.appearance.validation.desktopCoverRequired",
+      mobileCoverRequired: "contents.appearance.validation.mobileCoverRequired",
+      layoutRequired: "contents.appearance.validation.layoutRequired",
+    },
     coverImage: {
       title: "contents.appearance.coverImage.title",
       subtitle: "contents.appearance.coverImage.subtitle",
@@ -469,6 +496,36 @@ export const SETTINGS = {
   },
 };
 
+export const VIEWER_RENTED = {
+  emptyStates: {
+    purchased: {
+      title: "viewerRented.emptyStates.purchased.title",
+      description: "viewerRented.emptyStates.purchased.description",
+    },
+    currently: {
+      title: "viewerRented.emptyStates.currently.title",
+      description: "viewerRented.emptyStates.currently.description",
+    },
+    previously: {
+      title: "viewerRented.emptyStates.previously.title",
+      description: "viewerRented.emptyStates.previously.description",
+    },
+    search: {
+      title: "viewerRented.emptyStates.search.title",
+      description: "viewerRented.emptyStates.search.description",
+    },
+  },
+  owned: "viewerRented.owned",
+  inRental: "viewerRented.inRental",
+  rented: "viewerRented.rented",
+};
+
+export const EXPLORE = {
+  sortNew: "explore.sortNew",
+  sortTrending: "explore.sortTrending",
+  sortCreatedForYou: "explore.sortCreatedForYou",
+};
+
 export const COMMON = {
   back: "common.back",
   close: "common.close",
@@ -487,9 +544,26 @@ export const SUBSCRIPTION = {
   },
 };
 
+export const ACCESS_GATE = {
+  pageCodeTitle: "accessGate.pageCodeTitle",
+  pageEmailTitle: "accessGate.pageEmailTitle",
+  contentCodeTitle: "accessGate.contentCodeTitle",
+  contentEmailTitle: "accessGate.contentEmailTitle",
+  codePlaceholder: "accessGate.codePlaceholder",
+  codeLabel: "accessGate.codeLabel",
+  nameLabel: "accessGate.nameLabel",
+  namePlaceholder: "accessGate.namePlaceholder",
+  emailLabel: "accessGate.emailLabel",
+  emailPlaceholder: "accessGate.emailPlaceholder",
+  submitCode: "accessGate.submitCode",
+  submitEmail: "accessGate.submitEmail",
+  consentText: "accessGate.consentText",
+} as const;
+
 const TRANSLATION_KEYS = {
   HERO,
   NAV,
+  DASHBOARD,
   AUTH,
   AUTH_FORM,
   AUTH_CREATOR,
@@ -503,6 +577,7 @@ const TRANSLATION_KEYS = {
   SETTINGS,
   COMMON,
   SUBSCRIPTION,
+  ACCESS_GATE,
 };
 
 export default TRANSLATION_KEYS;

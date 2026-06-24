@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 
 const fadeIn = keyframes`
   from {
@@ -30,8 +31,13 @@ export const Overlay = styled.div`
 `;
 
 export const DrawerCard = styled.div`
-  width: min(500px, 100vw);
+  width: 500px;
+  max-width: 100vw;
   height: 100dvh;
+
+  ${media.tablet} {
+    width: 100vw;
+  }
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   box-shadow: ${({ theme }) => theme.shadows.lg};
   display: flex;

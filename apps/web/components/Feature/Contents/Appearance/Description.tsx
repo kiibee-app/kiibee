@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
+import { RequiredIndicator } from "@/components/UI/InputFields/styles";
 import {
   CONTENT_FORM_FIELDS,
   INPUT_VARIANTS,
@@ -37,8 +38,13 @@ export default function DescriptionSection({
   const { t } = useTranslation();
   const { formState, formErrors, updateField, clearFieldError } =
     useContentForm();
-  const { values: appearanceValues, updateField: updateAppearanceField } =
-    useAppearanceForm();
+  const {
+    values: appearanceValues,
+    errors: appearanceErrors,
+    updateField: updateAppearanceField,
+    clearFieldError: clearAppearanceFieldError,
+    validateField: validateAppearanceField,
+  } = useAppearanceForm();
   const [localTitle, setLocalTitle] = useState("");
   const [localDescription, setLocalDescription] = useState("");
   const title = useFormContext ? formState.title : localTitle;
@@ -54,6 +60,7 @@ export default function DescriptionSection({
       clearFieldError(CONTENT_FORM_FIELDS.DESCRIPTION);
       updateField(CONTENT_FORM_FIELDS.DESCRIPTION, truncated);
     } else if (!showTitle) {
+      clearAppearanceFieldError(FORM_FIELDS.DESCRIPTION);
       updateAppearanceField(FORM_FIELDS.DESCRIPTION, truncated);
     } else {
       setLocalDescription(truncated);
@@ -76,7 +83,10 @@ export default function DescriptionSection({
         {showTitle && (
           <Row>
             <Copy>
-              <Label>{t("contents.contentUploadModal.details.title")}</Label>
+              <Label>
+                {t("contents.contentUploadModal.details.title")}
+                {useFormContext && <RequiredIndicator>*</RequiredIndicator>}
+              </Label>
             </Copy>
 
             <ControlWrap>
@@ -90,7 +100,7 @@ export default function DescriptionSection({
                 width="100%"
                 variant={INPUT_VARIANTS.PRIMARY_GRAY}
                 hasError={useFormContext && Boolean(formErrors.title)}
-                errorMessage={useFormContext ? formErrors.title : undefined}
+                errorMessage={undefined}
               />
             </ControlWrap>
           </Row>
@@ -98,7 +108,10 @@ export default function DescriptionSection({
 
         <Row>
           <Copy>
-            <Label>{t(CONTENTS.appearance.description.label)}</Label>
+            <Label>
+              {t(CONTENTS.appearance.description.label)}
+              {useFormContext && <RequiredIndicator>*</RequiredIndicator>}
+            </Label>
             {!showTitle && (
               <Hint>{t(CONTENTS.appearance.description.hint)}</Hint>
             )}
@@ -112,8 +125,19 @@ export default function DescriptionSection({
               placeholder={t(CONTENTS.appearance.description.placeholder)}
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
-              hasError={useFormContext && Boolean(formErrors.description)}
-              errorMessage={useFormContext ? formErrors.description : undefined}
+              onBlur={() => {
+                if (!useFormContext && !showTitle) {
+                  validateAppearanceField(FORM_FIELDS.DESCRIPTION);
+                }
+              }}
+              hasError={
+                useFormContext
+                  ? Boolean(formErrors.description)
+                  : Boolean(appearanceErrors.description)
+              }
+              errorMessage={
+                useFormContext ? undefined : appearanceErrors.description
+              }
             />
           </ControlWrap>
 

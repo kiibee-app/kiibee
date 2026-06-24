@@ -10,6 +10,7 @@ import { CREATE_PROFILE_HOME } from "@/utils/translationKeys";
 import {
   AvatarWrapCentered,
   BioText,
+  BioMoreButton,
   CoverFrameFull,
   CoverImage,
   HeroWrapperCentered,
@@ -21,11 +22,12 @@ import {
 export default function CenteredCoverSection() {
   const { t } = useTranslation();
   const tabState = useTabbedHeroState();
+  const { openAbout } = tabState;
   const { displayName, avatarUrl, coverImageUrl, initial, about } =
     useCreatorChannelProfile();
   const creatorName = displayName;
   const uploadsCount = about?.uploadCount ?? 0;
-  const biography = about?.description || t(CREATE_PROFILE_HOME.description);
+  const biography = about?.description ?? "";
 
   return (
     <HeroWrapperCentered>
@@ -55,6 +57,9 @@ export default function CenteredCoverSection() {
           {t(CREATE_PROFILE_HOME.uploads, { count: uploadsCount })}
         </UploadsText>
         <BioText>{biography}</BioText>
+        <BioMoreButton onClick={openAbout}>
+          {t(CREATE_PROFILE_HOME.more)}
+        </BioMoreButton>
 
         <HeroTabs {...tabState} centered />
       </InfoSection>

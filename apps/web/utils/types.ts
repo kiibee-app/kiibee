@@ -38,6 +38,7 @@ export type TutorialVideo = {
   formatType?: FormatType;
   buttons?: TutorialButton[];
   image: ImageSource;
+  imageFallback?: string;
 };
 
 export type TutorialVideoSection = {

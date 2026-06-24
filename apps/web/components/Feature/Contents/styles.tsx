@@ -3,6 +3,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
+import FolderIcon from "@/assets/icons/FolderIcon";
 
 export const PageShell = styled.div`
   display: flex;
@@ -195,7 +196,7 @@ export const HeaderRow = styled.div`
 
 export const EmptyCollectionCard = styled.div`
   display: flex;
-  padding: 20px 16px;
+  padding: 50px 16px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -231,3 +232,9 @@ export const EmptyCollectionTitle = styled(MonoText).attrs({
   margin: 0 0 8px;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
+
+export const EmptyCollectionFolderIcon = styled(FolderIcon).attrs({
+  width: 54,
+  height: 42,
+  color: COLORS.neutral.GRAY_400,
+})``;

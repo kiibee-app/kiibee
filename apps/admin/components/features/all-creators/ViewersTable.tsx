@@ -28,9 +28,10 @@ import {
 
 type ViewersTableProps = {
   viewers: Viewer[];
+  onSelectViewer?: (viewer: Viewer) => void;
 };
 
-export function ViewersTable({ viewers }: ViewersTableProps) {
+export function ViewersTable({ viewers, onSelectViewer }: ViewersTableProps) {
   return (
     <TableScrollWrapper>
       <RequestsTable>
@@ -46,7 +47,11 @@ export function ViewersTable({ viewers }: ViewersTableProps) {
             const displayName = getViewerDisplayName(viewer);
 
             return (
-              <RequestTableRow key={viewer.id}>
+              <RequestTableRow
+                key={viewer.id}
+                onClick={() => onSelectViewer?.(viewer)}
+                style={{ cursor: onSelectViewer ? "pointer" : "default" }}
+              >
                 <TableBodyCell>
                   <CreatorIdentity>
                     <CreatorAvatar>

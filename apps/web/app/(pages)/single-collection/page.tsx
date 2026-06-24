@@ -2,37 +2,130 @@
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { PageContainer, Main, Section } from "../../styles";
 import SingleCollectionHero from "@/components/Feature/SingleCollectionHero";
 import { MonoText } from "@/components/UI/Monotext";
+import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
 import { getTutorialCollectionById } from "@/utils/tutorialCollections";
+import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
+import { VARIANT_CONTENT } from "@/utils/Constants";
+import {
+  HeroWrapper,
+  TopBar,
+  BackButtonWrapper,
+  LogoRow,
+  EmptyState,
+} from "@/components/Feature/SingleCollectionHero/styles";
+import { BackButtonIcon } from "@/assets/icons";
+import { NAV } from "@/utils/translationKeys";
+import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
 function SingleCollectionContent() {
   const { t } = useTranslation();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  const section = getTutorialCollectionById(id);
+  const staticSection = getTutorialCollectionById(id);
+  const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
+    !staticSection ? id : null,
+  );
 
-  if (!section) {
+  const {
+    data: dynamicSection,
+    isLoading: isDynamicLoading,
+    isError,
+  } = usePublicCollectionContent(
+    !staticSection && !gateType && !isGateLoading ? id : null,
+  );
+
+  if (staticSection) {
     return (
-      <MonoText $use="H5_Regular">{t("singleCollection.notFound")}</MonoText>
+      <Section>
+        <SingleCollectionHero
+          title={staticSection.title}
+          primaryContentId={staticSection.tutorials[0]?.id}
+        />
+        <CollectionContent
+          videos={staticSection.tutorials}
+          maxWidth={staticSection.gridMaxWidth}
+        />
+      </Section>
+    );
+  }
+
+  if (isGateLoading || isDynamicLoading) {
+    return (
+      <Section>
+        <MonoText $use="H5_Regular">{t("common.loading")}</MonoText>
+      </Section>
+    );
+  }
+
+  if (gateType) {
+    return (
+      <Section>
+        <SingleCollectionHero
+          title={dynamicSection?.name ?? ""}
+          primaryContentId={dynamicSection?.videos?.[0]?.id}
+        />
+        <AccessGate
+          type={gateType}
+          variant={VARIANT_CONTENT}
+          onSuccess={() => {
+            if (id) {
+              window.localStorage.setItem(
+                `kiibee:gate:unlocked:collection:${id}`,
+                "true",
+              );
+              window.location.reload();
+            }
+          }}
+        />
+      </Section>
+    );
+  }
+
+  if (isError || !dynamicSection) {
+    return (
+      <HeroWrapper>
+        <TopBar>
+          <BackButtonWrapper onClick={() => router.back()}>
+            <BackButtonIcon />
+          </BackButtonWrapper>
+        </TopBar>
+        <EmptyState>
+          <LogoRow>
+            <Image
+              src={logo}
+              alt="Kiibee Logo"
+              width={30}
+              height={30}
+              priority
+            />
+            <MonoText $use="H4_Medium">{t(NAV.logoAlt)}</MonoText>
+          </LogoRow>
+          <MonoText $use="H5_Regular">
+            {t("singleCollection.noContent")}
+          </MonoText>
+        </EmptyState>
+      </HeroWrapper>
     );
   }
 
   return (
     <Section>
       <SingleCollectionHero
-        title={section.title}
-        primaryContentId={section.tutorials[0]?.id}
+        title={dynamicSection.name}
+        primaryContentId={dynamicSection.videos[0]?.id}
       />
-      <CollectionContent
-        videos={section.tutorials}
-        maxWidth={section.gridMaxWidth}
-      />
+      <CollectionContent videos={dynamicSection.videos} />
     </Section>
   );
 }

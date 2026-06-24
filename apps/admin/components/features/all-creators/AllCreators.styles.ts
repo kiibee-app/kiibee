@@ -1,5 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 import type { CreatorStatus } from "../../../types/creator-request";
+import { Search, X } from "lucide-react";
 
 export const AllCreatorsPanel = styled.div`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
@@ -15,6 +17,14 @@ export const AllCreatorsLayout = styled.div`
   gap: ${({ theme }) => theme.spacing(3.5)};
 `;
 
+export const AllCreatorsHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.spacing(4)};
+`;
+
 export const AllCreatorsTabs = styled.div`
   display: inline-flex;
   align-items: center;
@@ -25,6 +35,117 @@ export const AllCreatorsTabs = styled.div`
   border-radius: 10px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   box-shadow: ${({ theme }) => theme.shadows.sm};
+`;
+
+export const HeaderControls = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(3)};
+
+  ${media.mobileLg} {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+`;
+
+export const PlanFilterSelect = styled.select`
+  height: ${({ theme }) => theme.spacing(10.5)};
+  min-width: 122px;
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 10px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.secondary.main};
+  padding-left: ${({ theme }) => theme.spacing(3)};
+  padding-right: ${({ theme }) => theme.spacing(5)};
+  ${({ theme }) => theme.typography.Body_Medium};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  cursor: pointer;
+  outline: none;
+  transition:
+    border-color ${({ theme }) => theme.animations.fast},
+    box-shadow ${({ theme }) => theme.animations.fast};
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.primary.GREEN};
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  }
+
+  ${media.mobileLg} {
+    width: 100%;
+  }
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: 10px;
+  padding: 0 ${({ theme }) => theme.spacing(3)};
+  height: ${({ theme }) => theme.spacing(10.5)};
+  min-width: 300px;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  transition:
+    border-color ${({ theme }) => theme.animations.fast},
+    box-shadow ${({ theme }) => theme.animations.fast};
+
+  &:focus-within {
+    border-color: ${({ theme }) => theme.colors.primary.GREEN};
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  }
+
+  ${media.mobileLg} {
+    min-width: 100%;
+  }
+`;
+
+export const SearchIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  margin-right: ${({ theme }) => theme.spacing(2)};
+`;
+
+export const SearchIcon = styled(Search)`
+  width: 18px;
+  height: 18px;
+`;
+
+export const SearchInput = styled.input`
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  outline: none;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.secondary.muted};
+  }
+`;
+
+export const SearchClearButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  cursor: pointer;
+  padding: 0;
+  margin-left: ${({ theme }) => theme.spacing(1)};
+  transition: color ${({ theme }) => theme.animations.fast};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.secondary.main};
+  }
+`;
+
+export const ClearIcon = styled(X)`
+  width: 16px;
+  height: 16px;
 `;
 
 export const AllCreatorsTabButton = styled.button<{ $active: boolean }>`
@@ -142,6 +263,14 @@ export const CreatorAvatarImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+export const DrawerAvatarImage = styled.img`
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
 `;
 
 export const DescriptionText = styled.div`
@@ -357,7 +486,7 @@ export const PaginationFooter = styled.div`
   color: ${({ theme }) => theme.colors.secondary.muted};
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
-  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+  ${media.mobileLg} {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
@@ -369,7 +498,7 @@ export const PaginationControlGroup = styled.div`
   align-items: center;
   gap: 6px;
 
-  @media (max-width: ${({ theme }) => theme.media.mobileLg}) {
+  ${media.mobileLg} {
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -559,6 +688,15 @@ export const DrawerCardItem = styled.div`
   }
 `;
 
+export const InteractiveDrawerCardItem = styled(DrawerCardItem)`
+  cursor: pointer;
+  transition: background ${({ theme }) => theme.animations.fast};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  }
+`;
+
 export const DrawerIconWrapper = styled.div`
   color: ${({ theme }) => theme.colors.primary.GREEN};
   display: flex;
@@ -587,6 +725,135 @@ export const DrawerItemValue = styled.span`
   font-weight: 500;
   color: ${({ theme }) => theme.colors.secondary.main};
   word-break: break-word;
+`;
+
+export const SaleItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary.border};
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+export const SaleThumb = styled.img`
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex: 0 0 auto;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+`;
+
+export const SaleThumbFallback = styled.div`
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+`;
+
+export const SaleMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+`;
+
+export const SaleTitle = styled.span`
+  font-size: 14px;
+  font-weight: 600;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const SaleCreator = styled.span`
+  font-size: 12px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const SaleTypeBadge = styled.span<{ $type: string }>`
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 20px;
+  padding: ${({ theme }) => `0 ${theme.spacing(2)}`};
+  border-radius: ${({ theme }) => theme.radius.full};
+  font-size: 11px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  text-transform: capitalize;
+
+  ${({ $type, theme }) => {
+    if ($type === "rented") {
+      return css`
+        background: ${theme.colors.primary.WHITE};
+        color: ${theme.colors.primary.ORANGE};
+        border: 1px solid ${theme.colors.primary.ORANGE};
+      `;
+    }
+
+    return css`
+      background: ${theme.colors.neutral.PALE_GREEN};
+      color: ${theme.colors.primary.GREEN_100};
+    `;
+  }}
+`;
+
+export const SaleRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex: 0 0 auto;
+  text-align: right;
+`;
+
+export const SaleAmount = styled.span`
+  font-size: 14px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.secondary.main};
+  white-space: nowrap;
+`;
+
+export const SaleDate = styled.span`
+  font-size: 11px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.secondary.muted};
+  white-space: nowrap;
+`;
+
+export const DrawerSectionActionRow = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+`;
+
+export const DrawerSectionActionButton = styled.button`
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 13px;
+  font-weight: ${({ theme }) => theme.typography.Body_Bold.fontWeight};
+  color: ${({ theme }) => theme.colors.primary.GREEN_100};
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const DescriptionBlock = styled.div`

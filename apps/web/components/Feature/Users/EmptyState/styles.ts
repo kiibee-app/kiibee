@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const EmptyStateBox = styled.div`
   margin-top: 16px;
   padding: 48px 24px;
-  border-radius: 14px;
-  background: rgba(239, 246, 255, 1);
+  border-radius: 16px;
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -365,14 +365,16 @@ export const CollectionCard = styled.article`
 `;
 
 export const CollectionImageArea = styled.div`
+  display: block;
   position: relative;
   width: 100%;
-  height: 190px;
+  height: 220px;
   align-self: stretch;
   border-radius: 12px;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   overflow: hidden;
   box-sizing: border-box;
+  text-decoration: none;
 `;
 
 export const CollectionCoverImage = styled.img`
@@ -381,6 +383,7 @@ export const CollectionCoverImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
 `;
 
@@ -420,6 +423,11 @@ export const CollectionTitle = styled.h3`
   ${({ theme }) => theme.typography.H5_Medium}
   font-weight: 500;
   line-height: normal;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const CollectionAuthor = styled.p`
@@ -430,6 +438,11 @@ export const CollectionAuthor = styled.p`
   font-size: 14px;
   font-weight: 500;
   line-height: normal;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const CollectionTime = styled.p`

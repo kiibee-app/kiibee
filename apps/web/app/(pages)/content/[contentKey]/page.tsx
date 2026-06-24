@@ -8,6 +8,9 @@ import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { Main, PageContainer, Section } from "../../../styles";
 import { MonoText } from "@/components/UI/Monotext";
+import GenericLoader from "@/components/UI/GenericLoader";
+import { LOADER_SIZE, LOADER_VARIANT } from "@/utils/ui";
+import { ErrorBoundary } from "react-error-boundary";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
@@ -17,19 +20,16 @@ import { API } from "@/lib/http/api/endpoints";
 import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
-import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
+
 import {
   CONTENT_MEDIA_QUERY_KEYS,
-  CONTENT_MEDIA_RESPONSE_KEYS,
   CONTENT_TRANSLATION_KEYS,
   type ContentMediaUrlResponse,
   type ContentDetailResponse,
   getContentMediaKey,
   getContentType,
-  getContentUrl,
   getContentDetail,
   getSingleContentProps,
-  hasDirectPlaybackUrl,
   resolveContentPlaybackUrl,
 } from "@/utils/contentApi";
 import { FORMAT_TYPE } from "@/utils/types";
@@ -37,12 +37,22 @@ import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
 import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
+import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
 import {
   resolvePublishedContentByKey,
   CONTENT_KIND,
 } from "@/utils/resolvePublishedContentByKey";
-import { PAYMENT_QUERY_KEY, STATUS_TONE } from "@/utils/Constants";
+import {
+  PAYMENT_QUERY_KEY,
+  STATUS_TONE,
+  STRING_EMPTY,
+  VARIANT_CONTENT,
+} from "@/utils/Constants";
+import { ErrorFallbackContent } from "@/components/Feature/ExploreCreators/Creators/styles";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useContentAccessGate } from "@/hooks/useContentAccessGate";
+import { resolvePublicMediaUrl } from "@/utils/media";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -54,7 +64,7 @@ function PublishedContentDetail() {
   const resolvedUserId = user?.id ?? readStoredLoginUser()?.id;
   const raw = params?.contentKey;
   const contentKey = Array.isArray(raw) ? raw[0] : raw;
-  const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);
+  const paymentStatus = searchParams?.get(PAYMENT_QUERY_KEY);
   const isPaymentSuccess = paymentStatus === STATUS_TONE.SUCCESS;
   const [dismissedPaymentSuccess, setDismissedPaymentSuccess] = useState(false);
   const normalizedContentKey = contentKey?.replaceAll(":", "-");
@@ -79,14 +89,9 @@ function PublishedContentDetail() {
   const content = getContentDetail(data);
   const contentType = getContentType(content);
   const mediaKey = getContentMediaKey(content);
-  const contentUrl = getContentUrl(content);
-  const cloudflareEmbedUrl = resolveCloudflareStreamPlaybackUrl(
-    mediaKey,
-    contentUrl,
+  const { creator: publicCreator } = useCreatorPublicProfile(
+    content?.creatorId ?? null,
   );
-  const directPlaybackUrl =
-    cloudflareEmbedUrl ||
-    (hasDirectPlaybackUrl(contentUrl) ? contentUrl : null);
   const relatedCollectionQuery = usePublicRelatedCollectionContent(
     normalizedContentKey,
     {
@@ -98,7 +103,7 @@ function PublishedContentDetail() {
       ? API.media.videoStream
       : API.media.fileSignedUrl;
   const shouldFetchSignedMediaUrl =
-    Boolean(mediaKey) && contentType !== FORMAT_TYPE.WEB && !directPlaybackUrl;
+    Boolean(mediaKey) && contentType !== FORMAT_TYPE.WEB;
   const { data: mediaResponse } = useGetAPI<ContentMediaUrlResponse>(
     mediaEndpoint,
     { [CONTENT_MEDIA_QUERY_KEYS.KEY]: mediaKey },
@@ -108,15 +113,23 @@ function PublishedContentDetail() {
   );
   const mediaUrl = resolveContentPlaybackUrl(
     content,
-    mediaResponse?.[CONTENT_MEDIA_RESPONSE_KEYS.URL],
+    mediaResponse?.url || mediaResponse?.iframeUrl,
   );
+  const {
+    gateType: activeGateType,
+    isLoading: gateLoading,
+    handleSuccess: handleGateSuccess,
+  } = useContentAccessGate(content, relatedCollectionQuery.data?.collectionId);
+
   const hasUnlockedContent = Boolean(content?.accessInfo);
   const showPaymentSuccessModal =
     isPaymentSuccess && hasUnlockedContent && !dismissedPaymentSuccess;
 
   const handlePaymentSuccessClose = () => {
     setDismissedPaymentSuccess(true);
-    const nextParams = new URLSearchParams(searchParams.toString());
+    const nextParams = new URLSearchParams(
+      searchParams?.toString() || STRING_EMPTY,
+    );
     nextParams.delete(PAYMENT_QUERY_KEY);
     const next = nextParams.toString();
     router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
@@ -138,12 +151,14 @@ function PublishedContentDetail() {
     />
   );
 
-  if (isLoading) {
+  if (isLoading || gateLoading) {
     return (
       <Section>
-        <MonoText $use="H5_Regular">
-          {t(CONTENT_TRANSLATION_KEYS.loading)}
-        </MonoText>
+        <GenericLoader
+          variant={LOADER_VARIANT.INLINE}
+          size={LOADER_SIZE.MD}
+          label={t(CONTENT_TRANSLATION_KEYS.loading)}
+        />
       </Section>
     );
   }
@@ -187,6 +202,29 @@ function PublishedContentDetail() {
             inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
             viewerId: resolvedUserId,
           })}
+          creator={
+            publicCreator
+              ? {
+                  id: publicCreator.id,
+                  name: publicCreator.name,
+                  avatar:
+                    resolvePublicMediaUrl(
+                      publicCreator.profileImageUrl ??
+                        publicCreator.coverImageUrl,
+                    ) ?? undefined,
+                  avatarAlt: publicCreator.name,
+                }
+              : undefined
+          }
+          accessGate={
+            activeGateType ? (
+              <AccessGate
+                type={activeGateType}
+                variant={VARIANT_CONTENT}
+                onSuccess={handleGateSuccess}
+              />
+            ) : undefined
+          }
         >
           {relatedCollectionQuery.data?.videos?.length ? (
             <CollectionItems
@@ -205,9 +243,25 @@ function PublishedContentLoading() {
 
   return (
     <Section>
-      <MonoText $use="H5_Regular">
-        {t(CONTENT_TRANSLATION_KEYS.loading)}
-      </MonoText>
+      <GenericLoader
+        variant={LOADER_VARIANT.INLINE}
+        size={LOADER_SIZE.MD}
+        label={t(CONTENT_TRANSLATION_KEYS.loading)}
+      />
+    </Section>
+  );
+}
+
+function ErrorFallback() {
+  const { t } = useTranslation();
+
+  return (
+    <Section>
+      <ErrorFallbackContent>
+        <MonoText $use="H5_Regular">
+          {t(CONTENT_TRANSLATION_KEYS.loading)}
+        </MonoText>
+      </ErrorFallbackContent>
     </Section>
   );
 }
@@ -217,9 +271,11 @@ export default function PublishedContentPage() {
     <PageContainer>
       <NavBar />
       <Main>
-        <Suspense fallback={<PublishedContentLoading />}>
-          <PublishedContentDetail />
-        </Suspense>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Suspense fallback={<PublishedContentLoading />}>
+            <PublishedContentDetail />
+          </Suspense>
+        </ErrorBoundary>
       </Main>
       <Footer />
     </PageContainer>

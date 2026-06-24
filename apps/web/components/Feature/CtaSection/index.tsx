@@ -26,13 +26,14 @@ export default function CtaSection({
   subtitleLines,
   ctaText,
   ctaHref,
+  sectionRef,
 }: CtaSectionProps) {
   const { t } = useTranslation();
   const router = useRouter();
   const background = getImageBackgroundMeta(bgImage);
 
   return (
-    <Section $aspect={background?.aspect}>
+    <Section ref={sectionRef} $aspect={background?.aspect}>
       {background && (
         <Background
           $src={background.src}

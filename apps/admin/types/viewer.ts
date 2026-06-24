@@ -23,3 +23,16 @@ export type Viewer = {
   purchaseCount: number;
   rentalCount: number;
 };
+
+export type ViewerSale = {
+  id: string;
+  orderNumber: string;
+  contentTitle: string;
+  contentImage: string;
+  creatorName: string;
+  type: string;
+  paymentDate: string;
+  amount: string | number;
+  paymentMethod: string | null;
+  cardNumber: string | null;
+};

@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
+import { RequiredIndicator } from "@/components/UI/InputFields/styles";
 import DropdownField, {
   type OptionItem,
 } from "@/components/UI/InputFields/DropdownField";
@@ -14,7 +15,6 @@ import { ItemRow } from "../Appearance/styles";
 import { useContentForm } from "../ContentFormContext";
 import { useGetAPI } from "@/lib/http/api";
 import { API } from "@/lib/http/api";
-import { ErrorText } from "./styles";
 
 type TaxonomyItem = { id: string; name: string };
 type ApiResponse<T> = { data?: T | null };
@@ -59,6 +59,7 @@ export default function PublishedSection() {
           <ItemText>
             <MonoText $use="Body_SemiBold">
               {t("contents.metadata.published.title")}
+              <RequiredIndicator>*</RequiredIndicator>
             </MonoText>
           </ItemText>
 
@@ -70,7 +71,6 @@ export default function PublishedSection() {
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               hasError={Boolean(formErrors.publishedYear)}
-              errorMessage={formErrors.publishedYear}
             />
           </ControlWrap>
         </ItemRow>
@@ -79,6 +79,7 @@ export default function PublishedSection() {
           <ItemText>
             <MonoText $use="Body_SemiBold">
               {t("contents.metadata.published.duration")}
+              <RequiredIndicator>*</RequiredIndicator>
             </MonoText>
           </ItemText>
 
@@ -90,7 +91,6 @@ export default function PublishedSection() {
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               hasError={Boolean(formErrors.duration)}
-              errorMessage={formErrors.duration}
             />
           </ControlWrap>
         </ItemRow>
@@ -99,6 +99,7 @@ export default function PublishedSection() {
           <ItemText>
             <MonoText $use="Body_SemiBold">
               {t("contents.metadata.published.category")}
+              <RequiredIndicator>*</RequiredIndicator>
             </MonoText>
 
             <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
@@ -115,9 +116,6 @@ export default function PublishedSection() {
                 updateField(CONTENT_FORM_FIELDS.CATEGORY, String(value));
               }}
             />
-            {formErrors.category ? (
-              <ErrorText role="alert">{formErrors.category}</ErrorText>
-            ) : null}
           </ControlWrap>
         </ItemRow>
       </List>

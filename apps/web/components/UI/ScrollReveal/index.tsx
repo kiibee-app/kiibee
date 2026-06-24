@@ -9,11 +9,39 @@ import { getScrollRevealContainerStyle } from "./styles";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({
+    limitCallbacks: true,
+    ignoreMobileResize: true,
+  });
 }
+
+const sectionIndexCache = new WeakMap<Element, Map<HTMLElement, number>>();
+
+function getSequenceIndex(element: HTMLElement): number {
+  const section = element.closest(LANDING_MOTION.sectionSelector);
+  if (!section) return 0;
+
+  let map = sectionIndexCache.get(section);
+  if (!map) {
+    map = new Map();
+    section
+      .querySelectorAll<HTMLElement>(LANDING_MOTION.scrollRevealSelector)
+      .forEach((el, i) => map!.set(el, i));
+    sectionIndexCache.set(section, map);
+    (section as HTMLElement).dataset[LANDING_MOTION.sectionFadeInitializedKey] =
+      "true";
+  }
+  return map.get(element) ?? 0;
+}
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia(LANDING_MOTION.reducedMotionQuery).matches;
 
 export default function ScrollReveal({
   children,
   delay = SCROLL_REVEAL.delay,
+  once = false,
   sequence = true,
   className = "",
   style,
@@ -22,68 +50,59 @@ export default function ScrollReveal({
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const element = container.current;
-      if (!element) return;
+    const element = container.current;
+    if (!element) return;
 
-      const media = gsap.matchMedia();
-
-      const getSequenceDelay = () => {
-        const parentSection = element.closest(LANDING_MOTION.sectionSelector);
-        if (!parentSection) return 0;
-
-        const revealElements = Array.from(
-          parentSection.querySelectorAll<HTMLElement>(
-            LANDING_MOTION.scrollRevealSelector,
-          ),
-        );
-
-        const revealIndex = Math.max(0, revealElements.indexOf(element));
-
-        parentSection.dataset[LANDING_MOTION.sectionFadeInitializedKey] =
-          "true";
-
-        return revealIndex * SCROLL_REVEAL.sequenceDelayStep;
-      };
-
-      media.add(LANDING_MOTION.reducedMotionQuery, () => {
-        gsap.set(element, {
-          clearProps: LANDING_MOTION.clearPropsAll,
-          opacity: LANDING_MOTION.visibleAlpha,
-          visibility: LANDING_MOTION.visibilityInherit,
-        });
+    if (prefersReducedMotion()) {
+      gsap.set(element, {
+        opacity: LANDING_MOTION.visibleAlpha,
+        visibility: LANDING_MOTION.visibilityInherit,
+        clearProps: "transform",
       });
+      return;
+    }
 
-      media.add(LANDING_MOTION.noReducedMotionQuery, () => {
-        const sequenceDelay = sequence ? getSequenceDelay() : 0;
+    const sequenceDelay = sequence
+      ? getSequenceIndex(element) * SCROLL_REVEAL.sequenceDelayStep
+      : 0;
 
-        gsap.fromTo(
-          element,
-          {
-            autoAlpha: LANDING_MOTION.hiddenAlpha,
-            y: SCROLL_REVEAL.yFrom,
-            filter: SCROLL_REVEAL.blurFrom,
-          },
-          {
-            autoAlpha: LANDING_MOTION.visibleAlpha,
-            y: LANDING_MOTION.defaultPositionTo,
-            filter: SCROLL_REVEAL.blurTo,
-            duration: SCROLL_REVEAL.duration,
-            delay: delay + sequenceDelay,
-            ease: LANDING_MOTION.easePower2Out,
-            scrollTrigger: {
-              trigger: element,
-              start: SCROLL_REVEAL.start,
-              toggleActions: SCROLL_REVEAL.toggleActions,
-              invalidateOnRefresh: true,
-            },
-          },
-        );
-      });
-    }, container);
+    const tween = gsap.fromTo(
+      element,
+      {
+        autoAlpha: LANDING_MOTION.hiddenAlpha,
+        y: SCROLL_REVEAL.yFrom,
+      },
+      {
+        autoAlpha: LANDING_MOTION.visibleAlpha,
+        y: LANDING_MOTION.defaultPositionTo,
+        duration: SCROLL_REVEAL.duration,
+        delay: delay + sequenceDelay,
+        ease: LANDING_MOTION.easePower2Out,
+        force3D: true,
+        onStart: () => {
+          element.style.willChange = "opacity, transform";
+        },
+        onComplete: () => {
+          element.style.willChange = "auto";
+        },
+        scrollTrigger: {
+          trigger: element,
+          start: SCROLL_REVEAL.start,
+          toggleActions: once
+            ? SCROLL_REVEAL.onceToggleActions
+            : SCROLL_REVEAL.toggleActions,
+          once,
+          fastScrollEnd: true,
+        },
+      },
+    );
 
-    return () => ctx.revert();
-  }, [delay, sequence]);
+    return () => {
+      tween.scrollTrigger?.kill();
+      tween.kill();
+      element.style.willChange = "auto";
+    };
+  }, [delay, once, sequence]);
 
   return (
     <div

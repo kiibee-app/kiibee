@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { PATHS } from "@/utils/path";
 import {
@@ -30,6 +31,15 @@ import type {
 import { FORMAT_TYPE } from "@/utils/types";
 import useShare from "@/hooks/useShare";
 import ContentPreviewModal from "./ContentPreviewModal";
+import PurchaseModal from "./PurchaseModal";
+import { resolveImageUrl } from "@/utils/media";
+import { GenericModal } from "@/components/UI/Modals";
+import { MonoText } from "@/components/UI/Monotext";
+import { MODAL_ALIGN } from "@/utils/ui";
+import {
+  ModalContentWrapper,
+  ModalDescription,
+} from "@/components/Feature/ProfileLayout/shared/LatestUpload/styles";
 
 export type {
   SingleContentHeroProps,
@@ -37,29 +47,43 @@ export type {
   SingleContentPageProps,
 } from "@/types/contentTypes";
 
-export default function SingleContentPage({
-  contentId,
-  collectionId,
-  title,
-  descriptions = [],
-  tags = [],
-  statusLabel,
-  expiry,
-  creator,
-  hero,
-  primaryAction,
-  primaryActions,
-  metaItems = [],
-  shareLabel = "Share",
-  showShare = true,
-  showBack = true,
-  onBack,
-  onShare,
-  children,
-}: SingleContentPageProps) {
+export default function SingleContentPage(props: SingleContentPageProps) {
+  const { t } = useTranslation();
+  const {
+    contentId,
+    collectionId,
+    title,
+    descriptions = [],
+    tags = [],
+    statusLabel,
+    expiry,
+    creator,
+    hero,
+    primaryAction,
+    primaryActions,
+    metaItems = [],
+    shareLabel = "Share",
+    showShare = true,
+    showBack = true,
+    onBack,
+    onShare,
+    children,
+    accessGate,
+  } = props;
   const router = useRouter();
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
+  const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+
+  const handleShowLoginModal = () => setLoginModalVisible(true);
+  const handleCloseLoginModal = () => setLoginModalVisible(false);
+  const handleLoginRedirect = () => {
+    const next = encodeURIComponent(
+      window.location.pathname + window.location.search,
+    );
+    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
+  };
+  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   type CreateOrderPayload = {
     contentId: string;
@@ -103,39 +127,34 @@ export default function SingleContentPage({
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
           if (!user?.id) {
-            router.push(PATHS.AUTH_LOGIN);
+            handleShowLoginModal();
             return;
           }
 
-          try {
-            const response = await createOrderMutation.mutateAsync({
-              contentId,
-              collectionId,
-              itemType: isPurchase ? ORDER_TYPES.PURCHASE : ORDER_TYPES.RENTAL,
-            });
-            const paymentUrl = response?.data?.url;
-            if (!paymentUrl) {
-              throw new Error("Payment URL missing");
-            }
-            window.location.assign(paymentUrl);
-          } catch (error) {
-            const message = getErrorMessage(error, "errors.saveChangesFailed");
-            toast.error(message);
-          }
+          setSelectedAction({
+            label: action.label,
+            subtitle: action.subtitle,
+            isPurchase,
+          });
+          setShowPurchaseModal(true);
         },
       };
     });
   }, [
-    collectionId,
     contentId,
     createOrderMutation,
-    getErrorMessage,
     primaryAction,
     primaryActions,
     router,
     user?.id,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [selectedAction, setSelectedAction] = useState<{
+    label: string;
+    subtitle?: string;
+    isPurchase: boolean;
+  } | null>(null);
 
   const isPreviewableType =
     hero?.contentType === FORMAT_TYPE.PDF ||
@@ -177,7 +196,7 @@ export default function SingleContentPage({
     const isLoggedIn = Boolean(user && user.id);
 
     if (isPaid && !isLoggedIn) {
-      router.push(PATHS.AUTH_LOGIN);
+      handleShowLoginModal();
     }
   };
 
@@ -208,6 +227,36 @@ export default function SingleContentPage({
     router.back();
   };
 
+  const handlePurchaseConfirm = async (couponCode?: string) => {
+    if (!selectedAction || !contentId) return;
+
+    try {
+      const response = await createOrderMutation.mutateAsync({
+        contentId,
+        collectionId,
+        itemType: selectedAction.isPurchase
+          ? ORDER_TYPES.PURCHASE
+          : ORDER_TYPES.RENTAL,
+        ...(couponCode ? { couponCode } : {}),
+      });
+      const paymentUrl = response?.data?.url;
+      if (!paymentUrl) {
+        throw new Error("Payment URL missing");
+      }
+      setShowPurchaseModal(false);
+      setSelectedAction(null);
+      window.location.assign(paymentUrl);
+    } catch (error) {
+      const message = getErrorMessage(error, "errors.saveChangesFailed");
+      toast.error(message);
+    }
+  };
+
+  const handleClosePurchaseModal = () => {
+    setShowPurchaseModal(false);
+    setSelectedAction(null);
+  };
+
   return (
     <Wrapper>
       <SingleContentTopBar
@@ -231,6 +280,7 @@ export default function SingleContentPage({
             primaryActions={bodyPrimaryActions}
             expiry={expiry}
             metaItems={metaItems}
+            accessGate={accessGate}
           />
         </ContentLayout>
       </Card>
@@ -245,6 +295,47 @@ export default function SingleContentPage({
           title={title}
         />
       )}
+
+      <PurchaseModal
+        visible={showPurchaseModal}
+        onClose={handleClosePurchaseModal}
+        onPurchase={handlePurchaseConfirm}
+        title={title}
+        image={hero.image ? resolveImageUrl(hero.image) : undefined}
+        imageAlt={hero.imageAlt}
+        creator={creator?.name}
+        contentType={hero.contentType || hero.media?.type}
+        priceLabel={selectedAction?.label || ""}
+        accessLabel={selectedAction?.subtitle}
+        contentId={contentId}
+        loading={createOrderMutation.isPending}
+      />
+
+      <GenericModal
+        visible={isLoginModalVisible}
+        onClose={handleCloseLoginModal}
+        onCancel={handleLoginRedirect}
+        onConfirm={handleCreateAccount}
+        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
+        confirmLabel={t(
+          "createProfileHome.latestUpload.loginModal.confirmLabel",
+        )}
+        buttonRow
+        buttonAlign={MODAL_ALIGN.CENTER}
+        fullWidthButtons={false}
+        size="md"
+        spacing="start"
+        showCloseButton
+      >
+        <ModalContentWrapper>
+          <MonoText $use="Heading3">
+            {t("createProfileHome.latestUpload.loginModal.title")}
+          </MonoText>
+          <ModalDescription $use="Body_Medium">
+            {t("createProfileHome.latestUpload.loginModal.message")}
+          </ModalDescription>
+        </ModalContentWrapper>
+      </GenericModal>
     </Wrapper>
   );
 }

@@ -17,6 +17,7 @@ import { CollectionContentRow } from "@/types/collectionsType";
 import type { ImageSource } from "@/utils/Constants";
 import type { FeedContentItem } from "@/utils/feedContentToTutorial";
 import { convertRentDurationToHours } from "@/utils/formatDate";
+import { resolveContentThumbnailUrl } from "@/utils/media";
 
 type LatestUploadItem = Omit<CollectionContentRow, "createdAt"> & {
   createdAt: number;
@@ -60,7 +61,11 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
             : Date.now(),
           category: latest.categoryName ?? null,
           contentType: latest.contentType ?? "video",
-          thumbnailLandscapeUrl: latest.thumbnailUrl ?? null,
+          thumbnailLandscapeUrl:
+            resolveContentThumbnailUrl(
+              latest.thumbnailUrl,
+              latest.thumbnailLandscapeUrl,
+            ) ?? null,
           accessType: latest.accessType ?? null,
           buyPrice: latest.buyPrice ?? null,
           rentPrice: latest.rentPrice ?? null,
@@ -121,7 +126,11 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
           ...latest,
           title: content?.title || latest.name || "",
           category: category ?? null,
-          thumbnailLandscapeUrl: content?.thumbnailLandscapeUrl ?? null,
+          thumbnailLandscapeUrl:
+            resolveContentThumbnailUrl(
+              content?.thumbnailUrl,
+              content?.thumbnailLandscapeUrl,
+            ) ?? null,
           accessType: parentCollection?.accessType ?? null,
           buyPrice: parentCollection?.buyPrice ?? null,
           rentPrice: parentCollection?.rentPrice ?? null,

@@ -15,6 +15,7 @@ import {
 } from "@/utils/Constants";
 import { useQuerySyncedTab } from "@/hooks/useQuerySyncedTab";
 import { useTableSort } from "@/hooks/useTableSort";
+import { useDebounce } from "@/hooks/useDebounce";
 import GenericTabs from "@/components/UI/GenericTabs";
 import { MonoText } from "@/components/UI/Monotext";
 import SearchBar from "@/components/UI/SearchBar";
@@ -25,6 +26,7 @@ import {
   EditProfileIcon,
   PlusIcon,
   ThreeDotIcon,
+  CardIcon,
 } from "@/assets/icons";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
@@ -35,14 +37,20 @@ import {
 } from "@/utils/tableHeader";
 import {
   CARD_BRAND_LOGOS,
-  MOCK_VIEWER_BILLING_HISTORY,
-  MOCK_VIEWER_PAYMENT_METHODS,
-  type ViewerBillingHistoryItem,
+  CARD_FORM_MODE,
   type ViewerPaymentMethod,
-} from "@/utils/dummyData/viewerBillingMockData";
+} from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import {
+  useViewerBillingHistory,
+  type ViewerBillingHistoryItem,
+} from "@/hooks/useViewerBillingHistory";
+import { useViewerPaymentMethods } from "@/hooks/useViewerPaymentMethods";
+import GenericLoader from "@/components/UI/GenericLoader";
+import { LOADER_VARIANT } from "@/utils/ui";
+
 import {
   Actions,
   AddCardButton,
@@ -55,6 +63,10 @@ import {
   ContentThumb,
   ContentTitleCell,
   DefaultBadge,
+  EmptyStateBox,
+  EmptyStateDescription,
+  EmptyStateIconWrap,
+  EmptyStateTitle,
   ExpiryCell,
   IconButton,
   MethodRow,
@@ -65,24 +77,39 @@ import {
   RowNumber,
   SearchFilterWrap,
 } from "./styles";
-import AddCardModal from "./AddCardModal";
-import EditCardModal from "./EditCardModal";
+import CardModal from "./CardModal";
 import InvoiceModal from "./InvoiceModal";
 
 export default function ClientViewerBillings() {
   const { t } = useTranslation();
+  const [searchContent, setSearchContent] = useState("");
+  const [searchCreator, setSearchCreator] = useState("");
+  const debouncedSearchContent = useDebounce(searchContent);
+  const debouncedSearchCreator = useDebounce(searchCreator);
+
+  const { billingHistory, isLoading: isBillingHistoryLoading } =
+    useViewerBillingHistory({
+      searchContent: debouncedSearchContent || undefined,
+      searchCreator: debouncedSearchCreator || undefined,
+    });
+  const {
+    paymentMethods,
+    isLoading: isPaymentMethodsLoading,
+    addCard,
+    updateCard,
+    deleteCard,
+    markAsDefault,
+  } = useViewerPaymentMethods();
   const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [showEditSuccessModal, setShowEditSuccessModal] = useState(false);
-  const [paymentMethods, setPaymentMethods] = useState(
-    MOCK_VIEWER_PAYMENT_METHODS,
-  );
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<ViewerPaymentMethod | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
-  const [selectedInvoice, setSelectedInvoice] =
-    useState<ViewerBillingHistoryItem | null>(null);
+  const [selectedBillingId, setSelectedBillingId] = useState<string | null>(
+    null,
+  );
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
 
   const handleCloseModal = () => {
@@ -104,39 +131,21 @@ export default function ClientViewerBillings() {
     setSelectedPaymentMethod(null);
   };
 
-  const handleEditSave = (updatedMethod: ViewerPaymentMethod) => {
-    setPaymentMethods((prev) =>
-      prev.map((method) =>
-        method.id === updatedMethod.id ? updatedMethod : method,
-      ),
-    );
-    setShowEditCardModal(false);
-    setShowEditSuccessModal(true);
-    setSelectedPaymentMethod(updatedMethod);
-  };
-
-  const handleDeleteConfirm = () => {
+  const handleDeleteConfirm = async () => {
     if (!selectedPaymentMethod) return;
 
-    setPaymentMethods((prev) =>
-      prev.filter((method) => method.id !== selectedPaymentMethod.id),
-    );
+    await deleteCard(selectedPaymentMethod.id);
     setShowDeleteModal(false);
     setShowDeleteSuccessModal(true);
   };
 
   const handleInvoiceOpen = (invoice: ViewerBillingHistoryItem) => {
-    setSelectedInvoice(invoice);
+    setSelectedBillingId(invoice.id);
     setShowInvoiceModal(true);
   };
 
-  const handleMarkAsDefault = (method: ViewerPaymentMethod) => {
-    setPaymentMethods((prev) =>
-      prev.map((item) => ({
-        ...item,
-        isDefault: item.id === method.id,
-      })),
-    );
+  const handleMarkAsDefault = async (method: ViewerPaymentMethod) => {
+    await markAsDefault(method.id);
   };
 
   const getMethodActions = (): DropdownOption<string>[] => [
@@ -175,7 +184,7 @@ export default function ClientViewerBillings() {
     isHeaderSortable,
     getHeaderSortDirection,
     toggleSort,
-  } = useTableSort(MOCK_VIEWER_BILLING_HISTORY, {
+  } = useTableSort(billingHistory, {
     sortableHeader: billingHistoryHeaders[0],
     sortBy: (item) => item.contentTitle,
   });
@@ -197,7 +206,9 @@ export default function ClientViewerBillings() {
       </BillingHeader>
 
       {activeTab === VIEWER_BILLING_HISTORY_TAB ? (
-        sortedBillingHistory.length ? (
+        isBillingHistoryLoading ? (
+          <GenericLoader variant={LOADER_VARIANT.INLINE} />
+        ) : (
           <BillingTableSection>
             <Table<ViewerBillingHistoryItem>
               headers={billingHistoryHeaders}
@@ -218,6 +229,8 @@ export default function ClientViewerBillings() {
                       <SearchBar
                         placeholder={t(billingHistoryKeys.searchContent)}
                         width="100%"
+                        value={searchContent}
+                        onChange={setSearchContent}
                       />
                     </SearchFilterWrap>
                   );
@@ -229,6 +242,8 @@ export default function ClientViewerBillings() {
                       <SearchBar
                         placeholder={t(billingHistoryKeys.searchCreator)}
                         width="100%"
+                        value={searchCreator}
+                        onChange={setSearchCreator}
                       />
                     </SearchFilterWrap>
                   );
@@ -291,10 +306,6 @@ export default function ClientViewerBillings() {
               }}
             />
           </BillingTableSection>
-        ) : (
-          <MonoText $use="Body_Regular" color={COLORS.neutral.GRAY}>
-            {t(DASHBOARD_VIEWER_BILLINGS.billingHistory.empty)}
-          </MonoText>
         )
       ) : (
         <>
@@ -313,92 +324,130 @@ export default function ClientViewerBillings() {
             </AddCardButton>
           </PaymentHeader>
 
-          <MethodsList>
-            {paymentMethods.map((method) => (
-              <MethodRow key={method.id}>
-                <CardIdentity>
-                  <CardLogoWrap>
-                    <SafeImage
-                      src={CARD_BRAND_LOGOS[method.brand]}
-                      alt={method.brand}
-                      width={method.brand === CARD_BRANDS.VISA ? 32 : 22}
-                      height={method.brand === CARD_BRANDS.VISA ? 10 : 16}
+          {isPaymentMethodsLoading ? (
+            <GenericLoader variant={LOADER_VARIANT.INLINE} />
+          ) : paymentMethods.length === 0 ? (
+            <EmptyStateBox>
+              <EmptyStateIconWrap>
+                <CardIcon
+                  width={28}
+                  height={28}
+                  color={COLORS.neutral.GRAY_400}
+                />
+              </EmptyStateIconWrap>
+              <EmptyStateTitle>
+                {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.emptyTitle)}
+              </EmptyStateTitle>
+              <EmptyStateDescription>
+                {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.emptyDescription)}
+              </EmptyStateDescription>
+            </EmptyStateBox>
+          ) : (
+            <MethodsList>
+              {paymentMethods.map((method) => (
+                <MethodRow key={method.id}>
+                  <CardIdentity>
+                    <CardLogoWrap>
+                      <SafeImage
+                        src={CARD_BRAND_LOGOS[method.brand]}
+                        alt={method.brand}
+                        width={method.brand === CARD_BRANDS.VISA ? 32 : 22}
+                        height={method.brand === CARD_BRANDS.VISA ? 10 : 16}
+                      />
+                    </CardLogoWrap>
+                    <CardLabel>
+                      <MonoText $use="Body_SemiBold">{method.label}</MonoText>
+                      {method.isDefault ? (
+                        <DefaultBadge>
+                          {t(
+                            DASHBOARD_VIEWER_BILLINGS.paymentMethods
+                              .defaultBadge,
+                          )}
+                        </DefaultBadge>
+                      ) : null}
+                    </CardLabel>
+                  </CardIdentity>
+
+                  <ExpiryCell>
+                    <MonoText $use="Body_SemiBold" color={COLORS.neutral.GRAY}>
+                      {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.expires, {
+                        date: method.expiresAt,
+                      })}
+                    </MonoText>
+                  </ExpiryCell>
+
+                  <Actions>
+                    <IconButton
+                      type="button"
+                      aria-label={t(
+                        DASHBOARD_VIEWER_BILLINGS.paymentMethods.edit,
+                      )}
+                      onClick={() => handleEditClick(method)}
+                    >
+                      <EditProfileIcon color={COLORS.neutral.GRAY} />
+                    </IconButton>
+                    <IconButton
+                      type="button"
+                      aria-label={t(
+                        DASHBOARD_VIEWER_BILLINGS.paymentMethods.delete,
+                      )}
+                      onClick={() => handleDeleteClick(method)}
+                    >
+                      <DeleteIcon color={COLORS.gradient.NEAR_BLACK} />
+                    </IconButton>
+                    <SortDropdown<string>
+                      options={getMethodActions()}
+                      compact
+                      dropdownWidth="196px"
+                      maxWidth="196px"
+                      variant={SORT_DROPDOWN_VARIANT.SURFACE}
+                      trigger={
+                        <ThreeDotIcon color={COLORS.gradient.NEAR_BLACK} />
+                      }
+                      onChange={(action) =>
+                        handleMethodActionSelect(method, action)
+                      }
                     />
-                  </CardLogoWrap>
-                  <CardLabel>
-                    <MonoText $use="Body_SemiBold">{method.label}</MonoText>
-                    {method.isDefault ? (
-                      <DefaultBadge>
-                        {t(
-                          DASHBOARD_VIEWER_BILLINGS.paymentMethods.defaultBadge,
-                        )}
-                      </DefaultBadge>
-                    ) : null}
-                  </CardLabel>
-                </CardIdentity>
-
-                <ExpiryCell>
-                  <MonoText $use="Body_SemiBold" color={COLORS.neutral.GRAY}>
-                    {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.expires, {
-                      date: method.expiresAt,
-                    })}
-                  </MonoText>
-                </ExpiryCell>
-
-                <Actions>
-                  <IconButton
-                    type="button"
-                    aria-label={t(
-                      DASHBOARD_VIEWER_BILLINGS.paymentMethods.edit,
-                    )}
-                    onClick={() => handleEditClick(method)}
-                  >
-                    <EditProfileIcon color={COLORS.neutral.GRAY} />
-                  </IconButton>
-                  <IconButton
-                    type="button"
-                    aria-label={t(
-                      DASHBOARD_VIEWER_BILLINGS.paymentMethods.delete,
-                    )}
-                    onClick={() => handleDeleteClick(method)}
-                  >
-                    <DeleteIcon color={COLORS.gradient.NEAR_BLACK} />
-                  </IconButton>
-                  <SortDropdown<string>
-                    options={getMethodActions()}
-                    compact
-                    dropdownWidth="196px"
-                    maxWidth="196px"
-                    variant={SORT_DROPDOWN_VARIANT.SURFACE}
-                    trigger={
-                      <ThreeDotIcon color={COLORS.gradient.NEAR_BLACK} />
-                    }
-                    onChange={(action) =>
-                      handleMethodActionSelect(method, action)
-                    }
-                  />
-                </Actions>
-              </MethodRow>
-            ))}
-          </MethodsList>
+                  </Actions>
+                </MethodRow>
+              ))}
+            </MethodsList>
+          )}
         </>
       )}
-      <AddCardModal visible={showAddCardModal} onClose={handleCloseModal} />
+      <CardModal
+        mode={CARD_FORM_MODE.ADD}
+        visible={showAddCardModal}
+        onClose={handleCloseModal}
+        onSubmit={async (payload) => {
+          if (!payload.cardNumber) return;
+          await addCard({
+            cardNumber: payload.cardNumber,
+            expiryDate: payload.expiryDate,
+            securityCode: payload.securityCode,
+          });
+        }}
+      />
       <InvoiceModal
         visible={showInvoiceModal}
-        invoice={selectedInvoice}
+        billingId={selectedBillingId}
         onClose={() => {
           setShowInvoiceModal(false);
-          setSelectedInvoice(null);
+          setSelectedBillingId(null);
         }}
       />
       {selectedPaymentMethod ? (
-        <EditCardModal
-          key={`${selectedPaymentMethod.id}-${showEditCardModal ? "open" : "closed"}`}
+        <CardModal
+          key={`edit-${selectedPaymentMethod.id}-${showEditCardModal ? "open" : "closed"}`}
+          mode={CARD_FORM_MODE.EDIT}
           visible={showEditCardModal}
           paymentMethod={selectedPaymentMethod}
           onClose={handleEditClose}
-          onSave={handleEditSave}
+          onSubmit={async (payload) => {
+            await updateCard(selectedPaymentMethod.id, payload);
+            setShowEditCardModal(false);
+            setShowEditSuccessModal(true);
+          }}
         />
       ) : null}
       <GenericModal

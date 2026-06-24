@@ -1,33 +1,33 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import PlaylistIcon from "@/assets/icons/PlaylistIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
-import type {
-  RentedCollectionItem,
-  RentedMode,
-} from "@/utils/dummyData/viewerRentedMockData";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import {
-  ACTIVE_RENTAL_TEXT,
   COLLECTION_SORT_KEY_LIST,
   COLLECTION_SORT_LABELS,
-  RENTED_BUTTON_TEXT,
   RENTED_MODES,
   RENTED_SECTION_KEYS,
   type CollectionSortKey,
   type RentedSectionKey,
+  type RentedMode,
+  type RentedCollectionItem,
   getCollectionBadgeText,
   getCollectionPrimaryActionText,
   sortViewerCollections,
 } from "@/utils/viewerRented";
 import {
   CollectionActionRow,
+  CollectionBuyButton,
   CollectionCtaContent,
   CollectionCtaSubtext,
+  CollectionRentButton,
   CollectionBadge,
   CollectionBody,
   CollectionCard,
@@ -59,6 +59,7 @@ type Props = {
   showOpenSectionArrow?: boolean;
   showExpandedMetaHeader?: boolean;
   onCollectionPrimaryAction?: (item: RentedCollectionItem) => void;
+  onCollectionClick?: (item: RentedCollectionItem) => void;
 };
 
 export default function CollectionsSection({
@@ -74,9 +75,12 @@ export default function CollectionsSection({
   showOpenSectionArrow = false,
   showExpandedMetaHeader = false,
   onCollectionPrimaryAction,
+  onCollectionClick,
 }: Props) {
+  const { t } = useTranslation();
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const isPurchased = mode === RENTED_MODES.PURCHASED;
+  const { navigateToContent } = useProtectedContentNavigation();
   const [activeSortKey, setActiveSortKey] = useState<CollectionSortKey | null>(
     null,
   );
@@ -91,6 +95,25 @@ export default function CollectionsSection({
   const toggleSort = (key: CollectionSortKey) => {
     setActiveSortKey((prev) => (prev === key ? null : key));
   };
+
+  const handleCardClick = useCallback(
+    (item: RentedCollectionItem) => {
+      if (onCollectionClick) {
+        onCollectionClick(item);
+      }
+    },
+    [onCollectionClick],
+  );
+
+  const handleActionClick = useCallback(
+    (e: React.MouseEvent, href?: string) => {
+      e.stopPropagation();
+      if (href) {
+        navigateToContent(href, false);
+      }
+    },
+    [navigateToContent],
+  );
 
   return (
     <>
@@ -142,11 +165,15 @@ export default function CollectionsSection({
       </SectionHeader>
       <CollectionGrid>
         {displayItems.map((item) => (
-          <CollectionCard key={item.id}>
+          <CollectionCard
+            key={item.id}
+            onClick={() => handleCardClick(item)}
+            style={{ cursor: onCollectionClick ? "pointer" : undefined }}
+          >
             <CollectionImageWrap>
               {item.hideBadge ? null : (
                 <CollectionBadge>
-                  {getCollectionBadgeText(mode)}
+                  {getCollectionBadgeText(mode, t)}
                 </CollectionBadge>
               )}
               <CollectionImage src={item.coverSrc} alt={item.title} />
@@ -169,8 +196,8 @@ export default function CollectionsSection({
 
               <CollectionActionRow>
                 {item.actions?.length ? (
-                  item.actions.map((action) => {
-                    const isSecondary = action.variant === VARIANT.SECONDARY;
+                  item.actions.map((action, index) => {
+                    const isSecondary = index > 0;
                     const labelColor = isSecondary
                       ? COLORS.primary.BLACK
                       : COLORS.primary.WHITE;
@@ -178,15 +205,17 @@ export default function CollectionsSection({
                       ? COLORS.neutral.GRAY_500
                       : COLORS.primary.WHITE_90;
 
+                    const Button = isSecondary
+                      ? CollectionRentButton
+                      : CollectionBuyButton;
+
                     return (
-                      <GenericButton
+                      <Button
                         key={`${item.id}-${action.label}`}
-                        variant={
-                          isSecondary ? VARIANT.SOFT_OUTLINE : VARIANT.PRIMARY
-                        }
-                        size="md"
-                        minWidth="120px"
                         className="collection-cta"
+                        onClick={(e: React.MouseEvent) =>
+                          handleActionClick(e, action.href)
+                        }
                       >
                         <CollectionCtaContent>
                           <MonoText $use="Body_Medium" color={labelColor}>
@@ -200,9 +229,28 @@ export default function CollectionsSection({
                             </CollectionCtaSubtext>
                           ) : null}
                         </CollectionCtaContent>
-                      </GenericButton>
+                      </Button>
                     );
                   })
+                ) : isPurchased ? (
+                  <CollectionBuyButton
+                    className="collection-cta"
+                    onClick={(e: React.MouseEvent) => {
+                      e.stopPropagation();
+                      if (onCollectionPrimaryAction) {
+                        onCollectionPrimaryAction(item);
+                      }
+                    }}
+                  >
+                    <CollectionCtaContent>
+                      <MonoText
+                        $use="Body_SemiBold"
+                        color={COLORS.primary.WHITE}
+                      >
+                        {getCollectionPrimaryActionText(mode, t)}
+                      </MonoText>
+                    </CollectionCtaContent>
+                  </CollectionBuyButton>
                 ) : (
                   <>
                     <GenericButton
@@ -214,7 +262,7 @@ export default function CollectionsSection({
                           : undefined
                       }
                     >
-                      {getCollectionPrimaryActionText(mode)}
+                      {getCollectionPrimaryActionText(mode, t)}
                     </GenericButton>
                     {isCurrent ? (
                       <PassiveActionBlock>
@@ -222,15 +270,15 @@ export default function CollectionsSection({
                           $use="Body_Medium"
                           color={COLORS.neutral.GRAY_400}
                         >
-                          {ACTIVE_RENTAL_TEXT.title}
+                          {t("viewerRented.activeRental")}
                         </MonoText>
                         <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
-                          {ACTIVE_RENTAL_TEXT.expiresIn}
+                          {t("viewerRented.expiresIn")}
                         </MonoText>
                       </PassiveActionBlock>
                     ) : isPurchased ? null : (
                       <GenericButton variant={VARIANT.SOFT_OUTLINE} size="md">
-                        {RENTED_BUTTON_TEXT.rent}
+                        {t("pricingLabels.rent")}
                       </GenericButton>
                     )}
                   </>

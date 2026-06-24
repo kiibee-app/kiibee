@@ -33,6 +33,11 @@ export const ContentLayout = styled.div<{ $isPdf?: boolean }>`
   gap: ${({ $isPdf }) => ($isPdf ? "2rem" : "0")};
   align-items: start;
 
+  ${media.desktopSm} {
+    grid-template-columns: 1fr;
+    gap: ${({ $isPdf }) => ($isPdf ? "1.5rem" : "0")};
+  }
+
   ${media.tablet} {
     grid-template-columns: 1fr;
     gap: ${({ $isPdf }) => ($isPdf ? "1.5rem" : "0")};
@@ -73,18 +78,25 @@ export const ShareText = styled.span`
 
 export const Hero = styled.div<{ $isPdf?: boolean }>`
   position: relative;
-  width: ${({ $isPdf }) => ($isPdf ? "376px" : "min(100%, 900px)")};
-  height: ${({ $isPdf }) => ($isPdf ? "530px" : "auto")};
-  aspect-ratio: ${({ $isPdf }) => ($isPdf ? undefined : "90 / 49")};
+  width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 900px)")};
+  max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "none")};
+  height: auto;
+  aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
   margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "2.25rem")};
   border-radius: 12px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
+  ${media.desktopSm} {
+    max-width: none;
+    margin: 0 auto ${({ $isPdf }) => ($isPdf ? "1.5rem" : "2.25rem")};
+  }
+
   ${media.tablet} {
     width: 100%;
+    max-width: none;
     height: auto;
-    aspect-ratio: 376 / 530;
+    aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
   }
 `;
 
@@ -188,19 +200,32 @@ export const TrailerText = styled.span`
 export const ContentShell = styled.div<{ $isPdf?: boolean }>`
   width: 100%;
   align-self: start;
+  min-width: 0;
+`;
+
+export const CreatorName = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_Medium}
 `;
 
 export const CreatorRow = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 1.8rem;
+  width: fit-content;
+  margin-bottom: 1rem;
+  text-decoration: none;
+
+  &:hover ${CreatorName} {
+    text-decoration: underline;
+  }
 `;
 
 export const CreatorAvatar = styled.span`
   position: relative;
   width: 30px;
   height: 30px;
+  flex: 0 0 30px;
   border-radius: 6px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
@@ -208,11 +233,6 @@ export const CreatorAvatar = styled.span`
   img {
     object-fit: cover;
   }
-`;
-
-export const CreatorName = styled.span`
-  color: ${({ theme }) => theme.colors.primary.BLACK};
-  ${({ theme }) => theme.typography.Body_Medium}
 `;
 
 export const HeadingBlock = styled.div`
@@ -236,6 +256,8 @@ export const MainTitle = styled.h1`
   margin: 0;
   width: 100%;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  word-break: break-word;
+  overflow-wrap: break-word;
 `;
 
 export const BodyTextWrap = styled.div`
@@ -250,6 +272,8 @@ export const DescriptionText = styled.p`
   ${({ theme }) => theme.typography.Body_Medium};
   margin: 0;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  word-break: break-word;
+  overflow-wrap: break-word;
 `;
 
 export const TagRow = styled.div`
@@ -357,7 +381,7 @@ export const MetaSection = styled.div`
 
 export const MetaRow = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   margin-bottom: 0.4rem;
 
@@ -379,6 +403,19 @@ export const MetaValueText = styled.span<{ $strong?: boolean }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme, $strong }) =>
     $strong ? theme.typography.Body_Bold : theme.typography.Body_Medium}
+  word-break: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
+  flex: 1;
+
+  a {
+    color: ${({ theme }) => theme.colors.primary.BLUE};
+    text-decoration: underline;
+    word-break: break-all;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 `;
 
 export const PreviewOverlay = styled.div`
@@ -433,4 +470,174 @@ export const PreviewContent = styled.div`
     height: 100%;
     border: 0;
   }
+`;
+
+export const PurchaseModalCard = styled.div`
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  border-radius: 12px;
+  margin: 3.5rem 1.5rem 0;
+  overflow: hidden;
+`;
+
+export const PurchaseModalCardHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+`;
+
+export const PurchaseModalCardHeaderLabel = styled.span`
+  ${({ theme }) => theme.typography.Body_Bold}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalCardHeaderExpiry = styled.span`
+  ${({ theme }) => theme.typography.Body_Medium}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalCardBody = styled.div`
+  display: flex;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+`;
+
+export const PurchaseModalCardImage = styled.div`
+  position: relative;
+  width: 120px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+
+  img {
+    object-fit: cover;
+  }
+`;
+
+export const PurchaseModalCardInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+`;
+
+export const PurchaseModalCardBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  width: fit-content;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalCardTitle = styled.div`
+  ${({ theme }) => theme.typography.Body_Bold}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const PurchaseModalCardCreator = styled.div`
+  ${({ theme }) => theme.typography.Body_Medium}
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+`;
+
+export const PurchaseModalCardPrice = styled.div`
+  ${({ theme }) => theme.typography.Body_Bold}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalRentalInfo = styled.div`
+  padding: 1.25rem 1.5rem;
+`;
+
+export const PurchaseModalRentalTitle = styled.div`
+  margin-bottom: 0.75rem;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalRentalList = styled.ul`
+  margin: 0;
+  padding-left: 1.25rem;
+`;
+
+export const PurchaseModalRentalItem = styled.li`
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+export const PurchaseModalDiscountSection = styled.div`
+  padding: 0 1.5rem 1.25rem;
+`;
+
+export const PurchaseModalDiscountLabel = styled.div`
+  margin-bottom: 0.75rem;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalDiscountRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+`;
+
+export const PurchaseModalDiscountInput = styled.input`
+  flex: 1;
+  height: 48px;
+  padding: 0 1rem;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  ${({ theme }) => theme.typography.Body_Medium}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  outline: none;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  }
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.primary.BLACK};
+  }
+`;
+
+export const PurchaseModalPriceSummary = styled.div`
+  padding: 0 1.5rem 1.25rem;
+`;
+
+export const PurchaseModalPriceRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+`;
+
+export const PurchaseModalPriceRowTotal = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+`;
+
+export const PurchaseModalPriceLabel = styled.span`
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+`;
+
+export const PurchaseModalPriceValue = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalButtonWrapper = styled.div`
+  padding: 0 1.5rem 1.5rem;
 `;

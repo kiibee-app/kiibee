@@ -10,30 +10,15 @@ const imageCoverStyles = css`
 export const HeroWrapper = styled.section`
   width: 100%;
   max-width: 100%;
-  margin: 60px auto 0;
-  padding: 14px 73px 0;
+  margin: 70px auto 0;
+  padding: 20px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
-
-  ${({ theme }) => theme.media.desktopMd} {
-    padding: 14px 72px 0;
-  }
-
-  ${({ theme }) => theme.media.tablet} {
-    padding: 12px 73px 0;
-  }
-
-  ${({ theme }) => theme.media.desktopSm} {
-    padding: 12px 28px 0;
-  }
-
-  ${({ theme }) => theme.media.mobileLg} {
-    padding: 10px 16px 0;
-  }
 `;
 
 export const HeroWrapperCentered = styled.section`
   width: 100%;
-  margin-top: 60px;
+  margin-top: 70px;
+  padding: 10px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
@@ -97,8 +82,8 @@ export const ProfileSection = styled.div`
   }
 
   ${({ theme }) => theme.media.mobileMd} {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: column-reverse;
     gap: 12px;
     margin-top: 16px;
   }
@@ -166,6 +151,8 @@ export const InfoSection = styled.div`
 
 export const CreatorName = styled.h1`
   margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 `;
 
 export const CreatorNameText = styled(MonoText).attrs(({ theme }) => ({
@@ -178,6 +165,8 @@ export const NameText = styled(MonoText).attrs(({ theme }) => ({
   color: theme.colors.primary.BLACK,
 }))`
   margin-top: 22px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 `;
 
 export const UploadCount = styled.p`
@@ -196,26 +185,16 @@ export const UploadsText = styled(MonoText).attrs(({ theme }) => ({
   margin-top: 8px;
 `;
 
-export const CreatorBio = styled.p`
+export const CreatorBio = styled.div`
   margin: 10px 0 0;
   max-width: 700px;
 `;
 
-export const CreatorBioText = styled(MonoText).attrs(({ theme }) => ({
-  $use: "Body_Medium",
-  color: theme.colors.neutral.GRAY_500,
-}))``;
-
-export const BioText = styled(MonoText).attrs(({ theme }) => ({
-  $use: "Body_Medium",
-  color: theme.colors.neutral.GRAY_500,
-}))`
-  margin-top: 10px;
-  max-width: 540px;
-`;
-
-export const MoreText = styled.span`
-  color: ${({ theme }) => theme.colors.primary.BLACK};
+export const CreatorBioText = styled.div`
+  max-height: 2.4em;
+  overflow: hidden;
+  word-break: break-word;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
 `;
 
 export const MoreTextLabel = styled(MonoText).attrs(({ theme }) => ({
@@ -223,6 +202,28 @@ export const MoreTextLabel = styled(MonoText).attrs(({ theme }) => ({
   color: theme.colors.primary.BLACK,
 }))`
   cursor: pointer;
+  margin-top: 2px;
+`;
+
+export const BioText = styled.div`
+  margin-top: 10px;
+  max-width: 540px;
+  max-height: 2.4em;
+  overflow: hidden;
+  word-break: break-word;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+`;
+
+export const BioMoreButton = styled(MonoText).attrs(({ theme }) => ({
+  $use: "Body_SemiBold",
+  color: theme.colors.primary.BLACK,
+}))`
+  cursor: pointer;
+  margin-top: 2px;
+`;
+
+export const MoreText = styled.span`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const TabsWrapper = styled.div`
@@ -248,7 +249,8 @@ export const HeroFrame = styled.section`
   position: relative;
   width: 100%;
   height: 500px;
-  margin: 0;
+  margin: 70px 0 0;
+  padding: 0 10px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
@@ -303,12 +305,7 @@ export const StoryPanel = styled.aside`
   width: min(620px, 100%);
   padding: 50px 0;
   color: ${({ theme }) => theme.colors.primary.WHITE};
-  background: linear-gradient(
-    90deg,
-    ${({ theme }) => theme.colors.neutral.GRAY_300} 0%,
-    ${({ theme }) => theme.colors.neutral.GRAY_250} 22%,
-    ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
-  );
+  background: none;
 
   ${({ theme }) => theme.media.desktopMd} {
     width: min(560px, 100%);
@@ -324,12 +321,6 @@ export const StoryPanel = styled.aside`
     width: 100%;
     padding: 24px 0 18px;
     gap: 8px;
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.colors.neutral.GRAY_300} 0%,
-      ${({ theme }) => theme.colors.neutral.GRAY_250} 14%,
-      ${({ theme }) => theme.colors.gradient.TRANSPARENT} 100%
-    );
   }
 `;
 
@@ -345,6 +336,8 @@ export const StoryUploadsText = styled.div`
 
 export const StoryTitle = styled.h1`
   margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 `;
 
 export const StoryDescription = styled.div`
@@ -354,6 +347,20 @@ export const StoryDescription = styled.div`
   ${({ theme }) => theme.media.mobileMd} {
     max-width: 100%;
   }
+`;
+
+export const StoryBioText = styled.div`
+  max-height: 2.4em;
+  overflow: hidden;
+  word-break: break-word;
+`;
+
+export const StoryMoreButton = styled(MonoText).attrs(({ theme }) => ({
+  $use: "Body_SemiBold",
+  color: theme.colors.primary.WHITE,
+}))`
+  cursor: pointer;
+  margin-top: 2px;
 `;
 
 export const HeroMedia = styled.div`

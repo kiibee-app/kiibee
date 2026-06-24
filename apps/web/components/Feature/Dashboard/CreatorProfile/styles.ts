@@ -1,29 +1,41 @@
 import styled from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 
 export const Container = styled.div`
-  padding: 45px 28px 8px 28px;
+  padding: 24px 28px 36px;
+
+  ${media.tablet} {
+    padding: 20px 16px 28px;
+  }
 `;
 
 export const HeaderRow = styled.div`
-  position: fixed;
-  top: 70px;
-  left: 250px;
-  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  z-index: 110;
-  background: ${({ theme }) => theme.colors.neutral.WHITE};
-  padding: 18px 28px;
+  margin-bottom: 16px;
+
+  ${media.mobile} {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 `;
 
 export const HeaderActions = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
+
+  ${media.mobile} {
+    width: 100%;
+
+    & > * {
+      flex: 1;
+    }
+  }
 `;
 
 export const Title = styled.h2`
@@ -36,12 +48,20 @@ export const Card = styled.section`
   background: ${(p) => p.theme.colors.neutral.OFF_WHITE};
   border-radius: 12px;
   padding: 28px;
+
+  ${media.tablet} {
+    padding: 20px;
+  }
 `;
 
 export const Row = styled.div`
   display: flex;
   gap: 24px;
   align-items: center;
+
+  ${media.mobile} {
+    gap: 16px;
+  }
 `;
 
 export const AvatarEditButton = styled.button`
@@ -69,6 +89,7 @@ export const Avatar = styled.div`
   position: relative;
   width: 120px;
   height: 120px;
+  flex-shrink: 0;
   border-radius: 9999px;
   background: ${(p) => p.theme.colors.gradient.PALE_GREEN};
   display: flex;
@@ -76,6 +97,11 @@ export const Avatar = styled.div`
   justify-content: center;
   overflow: hidden;
   cursor: pointer;
+
+  ${media.mobile} {
+    width: 88px;
+    height: 88px;
+  }
 
   &::after {
     content: "";

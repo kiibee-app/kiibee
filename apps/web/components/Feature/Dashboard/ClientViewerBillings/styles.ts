@@ -147,6 +147,54 @@ export const MethodsList = styled.div`
   width: 100%;
 `;
 
+export const EmptyStateBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 8px;
+  padding: 56px 32px;
+  border-radius: 16px;
+  border: 1px dashed ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  text-align: center;
+  box-sizing: border-box;
+
+  ${media.tablet} {
+    padding: 48px 24px;
+  }
+
+  ${media.mobileLg} {
+    padding: 40px 20px;
+  }
+`;
+
+export const EmptyStateIconWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+`;
+
+export const EmptyStateTitle = styled.p`
+  margin: 0;
+  ${({ theme }) => theme.typography.Body_SemiBold};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const EmptyStateDescription = styled.p`
+  margin: 8px 0 0;
+  max-width: 360px;
+  ${({ theme }) => theme.typography.Body_Regular};
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
+`;
+
 export const MethodRow = styled.div`
   display: flex;
   align-self: stretch;

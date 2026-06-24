@@ -13,6 +13,16 @@ export const COUPON_DISCOUNT_PERCENTAGE = "percentage";
 export const COUPON_CODES_LIMIT = 100;
 export const QUERY_REFETCH_TYPE_ACTIVE = "active";
 export const PAGE_SIZE_OPTIONS = [10, 20, 50];
+export const DA = "da";
+export const EN = "en";
+export const SUPPORTED_LANGS = ["da", "en"];
+export const STORAGE_KEY = "kiibee_language";
+export const RESOURCE_NAMESPACE = "translation";
+export const LANGUAGE_CHANGED_EVENT = "languageChanged";
+
+export const SYNC_LANGUAGE_SCRIPT = `(function(){var v=localStorage.getItem('${STORAGE_KEY}');document.cookie='${STORAGE_KEY}='+(v==='${EN}'?'${EN}':'${DA}')+';path=/;max-age=31536000;SameSite=Lax';})()`;
+export const UNDEFINED = "undefined";
+export const RESOURCES = "resources";
 
 type ContentTabItem = {
   key: ContentTab;
@@ -151,3 +161,10 @@ export function toCamelCaseKey(value: string): string {
     })
     .join("");
 }
+
+export const URL_PROTOCOL_REGEX = /^https?:\/\//i;
+
+export const isValidUrl = (url?: string | null): boolean => {
+  if (!url) return false;
+  return URL_PROTOCOL_REGEX.test(url);
+};

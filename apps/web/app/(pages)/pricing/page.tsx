@@ -13,6 +13,7 @@ import pricingHeroImage from "@/assets/images/pricing/pricing-hero.webp";
 import ctaImage from "@/assets/images/cta-buttom1.webp";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
+import { usePricingNavTone } from "@/hooks/usePricingNavTone";
 import {
   Background,
   Container,
@@ -32,16 +33,21 @@ import {
   LANDING_REVEAL_VARIANTS,
 } from "@/utils/landingUtils";
 import { IMAGE_SIZES } from "@/utils/landingShared";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 
 export default function PricingPage() {
   const { t } = useTranslation();
   const router = useRouter();
+  const { heroRef, ctaRef, navTextTone } = usePricingNavTone();
+
+  const user = useStoredLoginUser();
+  const isLoggedIn = !!user;
 
   return (
     <PageContainer>
-      <NavBar />
+      <NavBar navTextTone={navTextTone} />
       <Main>
-        <Hero>
+        <Hero ref={heroRef}>
           <Background>
             <ImageReveal
               variant={LANDING_REVEAL_VARIANTS.kenBurns}
@@ -77,9 +83,13 @@ export default function PricingPage() {
               <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>
                 <PrimaryButton
                   type="button"
-                  onClick={() => router.push(PATHS.AUTH_SIGNUP_CREATOR)}
+                  onClick={() =>
+                    router.push(
+                      isLoggedIn ? PATHS.EXPLORE : PATHS.AUTH_SIGNUP_CREATOR,
+                    )
+                  }
                 >
-                  {t("pricingPage.cta")}
+                  {isLoggedIn ? t("how.cta") : t("pricingPage.cta")}
                 </PrimaryButton>
               </ScrollReveal>
             </Content>
@@ -88,14 +98,15 @@ export default function PricingPage() {
         <PricingPlansSection />
         <FaqSection />
         <CtaSection
+          sectionRef={ctaRef}
           bgImage={ctaImage}
           title={t("startCreating.heading")}
           subtitleLines={[
             t("startCreating.description1"),
             t("startCreating.description2"),
           ]}
-          ctaText={t("startCreating.cta")}
-          ctaHref={PATHS.AUTH_SIGNUP_CREATOR}
+          ctaText={isLoggedIn ? t("how.cta") : t("startCreating.cta")}
+          ctaHref={isLoggedIn ? PATHS.EXPLORE : PATHS.AUTH_SIGNUP_CREATOR}
         />
       </Main>
       <Footer />

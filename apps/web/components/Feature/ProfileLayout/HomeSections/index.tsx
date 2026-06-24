@@ -4,7 +4,7 @@ import CollectionPreview from "@/components/Feature/ProfileLayout/shared/Collect
 import LatestUpload from "@/components/Feature/ProfileLayout/shared/LatestUpload";
 import { profileHomeConfigByVariant } from "@/components/Feature/ProfileLayout/config";
 import type { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
-import { PROFILE_HOME_SECTION } from "@/utils/Constants";
+import { PROFILE_HOME_SECTION, VARIANT_PAGE } from "@/utils/Constants";
 import {
   ContentAdjust,
   SectionWrapper,
@@ -15,8 +15,9 @@ import { normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
-
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 
 type ProfileHomeSectionsProps = {
   variant: ProfileLayoutVariant;
@@ -26,7 +27,9 @@ export default function ProfileHomeSections({
   variant,
 }: ProfileHomeSectionsProps) {
   const { searchQuery, isCollectionsPage } = useCreatorProfileUi();
-  const { isPublicView, publicCreatorId } = useCreatorChannelProfile();
+  const { isPublicView, publicCreatorId, displayName } =
+    useCreatorChannelProfile();
+  const { gateType } = useCreatorAccessGate();
   const {
     latestUpload: latestConfig,
     wrapLatestUpload,
@@ -76,6 +79,25 @@ export default function ProfileHomeSections({
     !isCollectionsPage &&
     latestUploadData &&
     matchesProfileSearch(searchQuery, latestUploadData.title);
+
+  if (gateType) {
+    return (
+      <AccessGate
+        type={gateType}
+        variant={VARIANT_PAGE}
+        creatorName={displayName ?? undefined}
+        onSuccess={() => {
+          if (publicCreatorId) {
+            window.localStorage.setItem(
+              `kiibee:gate:unlocked:creator:${publicCreatorId}`,
+              "true",
+            );
+            window.location.reload();
+          }
+        }}
+      />
+    );
+  }
 
   const latestUploadSection = showLatestUpload ? (
     wrapLatestUpload ? (

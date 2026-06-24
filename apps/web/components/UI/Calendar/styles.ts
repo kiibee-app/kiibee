@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 
 export const CalendarWrapper = styled.div`
   display: flex;
   gap: 24px;
   align-items: flex-start;
   position: relative;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
 
   &::before {
     content: "";
@@ -15,12 +17,26 @@ export const CalendarWrapper = styled.div`
     width: 1px;
     background: ${({ theme }) => theme.colors.neutral.GRAY_200};
     transform: translateX(-50%);
+
+    ${media.mobileMd} {
+      display: none;
+    }
   }
 `;
 
 export const CalendarMonth = styled.div`
   min-width: 300px;
   flex: 1;
+
+  ${media.mobileMd} {
+    min-width: unset;
+  }
+`;
+
+export const DesktopOnly = styled.div`
+  ${media.mobileMd} {
+    display: none;
+  }
 `;
 
 export const CalendarHeader = styled.div`
@@ -72,6 +88,11 @@ export const DayButton = styled.div`
   align-items: center;
   justify-content: center;
   ${({ theme }) => theme.typography.Body_Regular};
+
+  ${media.mobileMd} {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 export const DaySelected = styled.div`
@@ -84,6 +105,11 @@ export const DaySelected = styled.div`
   align-items: center;
   justify-content: center;
   ${({ theme }) => theme.typography.Body_Regular};
+
+  ${media.mobileMd} {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 export const DayInRange = styled.div`
@@ -96,6 +122,11 @@ export const DayInRange = styled.div`
   align-items: center;
   justify-content: center;
   ${({ theme }) => theme.typography.Body_Regular};
+
+  ${media.mobileMd} {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 export const MonthNav = styled.div`

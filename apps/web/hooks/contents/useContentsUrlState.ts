@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { CollectionRow } from "@/types/collectionsType";
 import {
@@ -11,6 +11,7 @@ import {
 } from "@/utils/Constants";
 import { isBrowser } from "@/utils/ui";
 import { storage } from "@/utils/storage";
+import { ADD_CONTENT_TABS, type AddContentTab } from "@/utils/common";
 
 type Params = {
   collections: CollectionRow[];
@@ -18,6 +19,7 @@ type Params = {
   setSelectedCollection: (collection: CollectionRow | null) => void;
   onEditContent: (id: string) => void;
   onBackStateOnly: () => void;
+  activeTab?: string;
 };
 
 const getLiveSearch = (fallback: string) =>
@@ -29,6 +31,7 @@ export function useContentsUrlState({
   setSelectedCollection,
   onEditContent,
   onBackStateOnly,
+  activeTab,
 }: Params) {
   const router = useRouter();
   const pathname = usePathname();
@@ -41,12 +44,14 @@ export function useContentsUrlState({
   const isClearingParamsRef = useRef(false);
   const hasRestoredCollectionRef = useRef(false);
   const hasRestoredContentRef = useRef(false);
+  const isStartingEditRef = useRef(false);
+  const effectiveContentId = queryContentId;
 
-  const storedContentId = useMemo(() => {
-    return storage.get(CONTENT_LAST_EDITED_STORAGE_KEY);
-  }, []);
-
-  const effectiveContentId = queryContentId ?? storedContentId;
+  useEffect(() => {
+    if (queryContentId) {
+      isStartingEditRef.current = false;
+    }
+  }, [queryContentId]);
 
   const replaceQuery = useCallback(
     (updates: {
@@ -124,11 +129,12 @@ export function useContentsUrlState({
   );
 
   const syncContentIdToUrl = useCallback(
-    (id: string) => {
+    (id: string, tab?: string | null) => {
       storage.set(CONTENT_LAST_EDITED_STORAGE_KEY, id);
       replaceQuery({
         collectionId: selectedCollection?.id ?? queryCollectionId ?? null,
         contentId: id,
+        tab: tab,
       });
     },
     [queryCollectionId, replaceQuery, selectedCollection?.id],
@@ -136,10 +142,16 @@ export function useContentsUrlState({
 
   const handleEditContent = useCallback(
     (id: string) => {
-      syncContentIdToUrl(id);
+      const nextUploadTab = Object.values(ADD_CONTENT_TABS).includes(
+        activeTab as AddContentTab,
+      )
+        ? (activeTab as AddContentTab)
+        : ADD_CONTENT_TABS.GENERAL;
+      isStartingEditRef.current = true;
+      syncContentIdToUrl(id, nextUploadTab);
       onEditContent(id);
     },
-    [onEditContent, syncContentIdToUrl],
+    [onEditContent, syncContentIdToUrl, activeTab],
   );
 
   const handleBack = useCallback(() => {
@@ -152,6 +164,7 @@ export function useContentsUrlState({
     });
     onBackStateOnly();
     hasRestoredContentRef.current = false;
+    isClearingParamsRef.current = false;
   }, [onBackStateOnly, replaceQuery, selectedCollection?.id]);
 
   const handleBackToCollection = useCallback(() => {
@@ -174,5 +187,6 @@ export function useContentsUrlState({
     handleEditContent,
     handleSelectCollection,
     syncContentIdToUrl,
+    isStartingEditRef,
   };
 }

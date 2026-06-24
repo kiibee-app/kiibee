@@ -1,6 +1,9 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import gsap from "gsap";
 import kiibeeLogo from "@/assets/images/kiibee-logo.svg";
 import {
   Section,
@@ -25,27 +28,36 @@ import { desktopCards, mobileCards } from "@/utils/cards";
 import { MonoText } from "@/components/UI/Monotext";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
-import { resolveImageUrl } from "@/utils/Constants";
+import {
+  CTA_CARD,
+  registerGsapPlugins,
+  resolveImageUrl,
+  STRING_EMPTY,
+} from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
-import ImageReveal from "@/components/UI/ImageReveal";
-import { LANDING_REVEAL } from "@/utils/landingUtils";
+import {
+  LANDING_REVEAL,
+  LANDING_MOTION,
+  SCROLL_REVEAL,
+} from "@/utils/landingUtils";
 import { type CtaImageCard } from "@/utils/landingShared";
-import { LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
+
+registerGsapPlugins();
 
 export default function CallToAction() {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
+  const isLoggedIn = !!user;
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const renderCard = (card: CtaImageCard, index: number, mobile = false) => (
-    <ImageReveal
-      key={`reveal-${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
-      variant={LANDING_REVEAL_VARIANTS.fadeScale}
-      delay={index * LANDING_REVEAL.ctaCardStaggerDelay}
-      duration={LANDING_REVEAL.revealDuration}
+    <div
+      key={`${CTA_CARD.keyPrefix}${card.src}-${mobile ? CTA_CARD.mobileLabel : CTA_CARD.desktopLabel}-${index}`}
+      {...{ [CTA_CARD.attr]: STRING_EMPTY }}
       style={getRevealCardStyle(card, mobile)}
     >
       <Card
-        key={`${card.src}-${mobile ? "mobile" : "desktop"}-${index}`}
         $left={!mobile ? card.left : undefined}
         $top={!mobile ? card.top : undefined}
         $width={!mobile ? card.width : undefined}
@@ -59,11 +71,45 @@ export default function CallToAction() {
         />
         <CardTint />
       </Card>
-    </ImageReveal>
+    </div>
   );
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const cards = gsap.utils.toArray<HTMLElement>(
+        section.querySelectorAll(CTA_CARD.selector),
+      );
+      if (cards.length === 0) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add(LANDING_MOTION.reducedMotionQuery, () => {
+        gsap.set(cards, { clearProps: LANDING_MOTION.clearPropsAll });
+      });
+
+      mm.add(LANDING_MOTION.noReducedMotionQuery, () => {
+        gsap.fromTo(cards, CTA_CARD.fromVars, {
+          ...CTA_CARD.toVars,
+          duration: LANDING_REVEAL.revealDuration,
+          stagger: LANDING_REVEAL.ctaCardStaggerDelay,
+          ease: LANDING_MOTION.easePower2Out,
+          scrollTrigger: {
+            trigger: section,
+            start: LANDING_REVEAL.imageRevealStart,
+            toggleActions: SCROLL_REVEAL.onceToggleActions,
+          },
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <Section>
+    <Section ref={sectionRef}>
       <Backdrop>
         {desktopCards.map((card, index) => renderCard(card, index))}
       </Backdrop>
@@ -97,9 +143,11 @@ export default function CallToAction() {
             </MonoText>
           </Subtitle>
         </ScrollReveal>
-        <CTAButton asAnchor href={PATHS.AUTH_SIGNUP}>
-          {t("callToAction.cta")}
-        </CTAButton>
+        {!isLoggedIn && (
+          <CTAButton asAnchor href={PATHS.AUTH_SIGNUP}>
+            {t("callToAction.cta")}
+          </CTAButton>
+        )}
       </Content>
     </Section>
   );

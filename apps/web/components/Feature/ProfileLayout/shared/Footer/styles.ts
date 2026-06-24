@@ -10,7 +10,7 @@ export const Container = styled.footer`
 export const Inner = styled.div`
   max-width: 1400px;
   margin: 35px auto 0 auto;
-  padding: 18px 24px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,7 +18,7 @@ export const Inner = styled.div`
   min-height: 98px;
 
   ${media.tablet} {
-    padding: 18px 20px;
+    padding: 10px;
   }
 
   ${media.mobileLg} {
@@ -27,7 +27,7 @@ export const Inner = styled.div`
     justify-content: center;
     gap: 14px;
     min-height: unset;
-    padding: 18px 16px 20px;
+    padding: 10px;
   }
 `;
 

@@ -13,9 +13,82 @@ export const DEFAULT_CTA_BACKGROUND_ASPECT = 1440 / 682;
 
 const REMOTE_IMAGE_PATTERN = /^https?:\/\//;
 const KIIBEE_MEDIA_BASE_URL = "https://kiibee.dk";
+const KIIBEE_MEDIA_HOSTS = new Set(["kiibee.dk", "www.kiibee.dk"]);
+const KIIBEE_MEDIA_PATH_PREFIX = /^\/media\//;
+
+function getMediaCdnBase(): string | null {
+  const explicit = process.env.NEXT_PUBLIC_MEDIA_CDN_URL?.trim();
+  if (explicit) {
+    return explicit.replace(/\/$/, "");
+  }
+
+  const bucket = process.env.NEXT_PUBLIC_DO_BUCKET?.trim();
+  const region = process.env.NEXT_PUBLIC_DO_REGION?.trim();
+  if (bucket && region) {
+    return `https://${bucket}.${region}.digitaloceanspaces.com`;
+  }
+
+  return null;
+}
+
+function getMediaCdnStripPrefix(): string {
+  return process.env.NEXT_PUBLIC_MEDIA_CDN_STRIP_PREFIX?.trim() || "media";
+}
+
+function toCdnMediaPath(pathname: string): string {
+  const path = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  const stripPrefix = getMediaCdnStripPrefix();
+  const mediaPrefix = `/${stripPrefix}`;
+
+  if (stripPrefix && path.startsWith(`${mediaPrefix}/`)) {
+    return path.slice(mediaPrefix.length);
+  }
+
+  return path;
+}
+
+function buildCdnMediaUrl(pathname: string): string | null {
+  const cdnBase = getMediaCdnBase();
+  if (!cdnBase) {
+    return null;
+  }
+
+  return `${cdnBase}${toCdnMediaPath(pathname)}`;
+}
+
+function isLegacyKiibeeMediaPath(pathname: string): boolean {
+  return KIIBEE_MEDIA_PATH_PREFIX.test(pathname);
+}
+
+function resolveLegacyKiibeeMediaPath(pathname: string): string {
+  const path = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  return `${KIIBEE_MEDIA_BASE_URL}${path}`;
+}
+
+function rewriteKiibeeMediaUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    if (
+      KIIBEE_MEDIA_HOSTS.has(parsed.hostname) &&
+      isLegacyKiibeeMediaPath(parsed.pathname)
+    ) {
+      return buildCdnMediaUrl(parsed.pathname) ?? url;
+    }
+  } catch {
+    return url;
+  }
+
+  return url;
+}
 
 export function resolveImageUrl(image: ImageSource) {
   return isString(image) ? image : image.src;
+}
+
+export function isStaticImageData(
+  image: ImageSource | undefined,
+): image is StaticImageData {
+  return typeof image === "object" && image !== null && "src" in image;
 }
 
 export function isRemoteImageSource(image: ImageSource) {
@@ -61,18 +134,62 @@ export function resolvePublicMediaUrl(url?: string | null): string | null {
   }
 
   if (REMOTE_IMAGE_PATTERN.test(trimmed)) {
-    return trimmed;
+    return rewriteKiibeeMediaUrl(trimmed);
   }
 
   if (trimmed.startsWith("//")) {
-    return `https:${trimmed}`;
+    return rewriteKiibeeMediaUrl(`https:${trimmed}`);
   }
 
   if (trimmed.startsWith("/")) {
-    return `${KIIBEE_MEDIA_BASE_URL}${trimmed}`;
+    if (isLegacyKiibeeMediaPath(trimmed)) {
+      return buildCdnMediaUrl(trimmed) ?? resolveLegacyKiibeeMediaPath(trimmed);
+    }
+
+    return buildCdnMediaUrl(trimmed) ?? resolveLegacyKiibeeMediaPath(trimmed);
+  }
+
+  if (/^media\//i.test(trimmed)) {
+    return (
+      buildCdnMediaUrl(`/${trimmed}`) ??
+      resolveLegacyKiibeeMediaPath(`/${trimmed}`)
+    );
   }
 
   return trimmed;
+}
+
+export function resolveContentThumbnailCandidates(
+  thumbnailUrl?: string | null,
+  thumbnailLandscapeUrl?: string | null,
+  options?: { preferLandscape?: boolean },
+): string[] {
+  const primary = options?.preferLandscape
+    ? thumbnailLandscapeUrl
+    : thumbnailUrl;
+  const secondary = options?.preferLandscape
+    ? thumbnailUrl
+    : thumbnailLandscapeUrl;
+
+  const candidates = [primary, secondary]
+    .map((url) => resolvePublicMediaUrl(url))
+    .filter((url): url is string => Boolean(url));
+
+  return [...new Set(candidates)];
+}
+
+export function resolveContentThumbnailUrl(
+  thumbnailUrl?: string | null,
+  thumbnailLandscapeUrl?: string | null,
+  options?: { preferLandscape?: boolean },
+): string | null {
+  return (
+    resolveContentThumbnailCandidates(
+      thumbnailUrl,
+      thumbnailLandscapeUrl,
+      options,
+    )[0] ?? null
+  );
 }
 
 export const REMOTE_COVER_IMAGE_STYLE: CSSProperties = {
@@ -81,6 +198,19 @@ export const REMOTE_COVER_IMAGE_STYLE: CSSProperties = {
   width: "100%",
   height: "100%",
   objectFit: "cover",
+  objectPosition: "center",
+};
+
+/** Content cards — fill frame, keep poster title/top visible. */
+export const CONTENT_POSTER_IMAGE_STYLE: CSSProperties = {
+  ...REMOTE_COVER_IMAGE_STYLE,
+  objectPosition: "center top",
+};
+
+/** Single content / wide hero — center the subject in landscape frames. */
+export const CONTENT_HERO_IMAGE_STYLE: CSSProperties = {
+  ...REMOTE_COVER_IMAGE_STYLE,
+  objectPosition: "center",
 };
 
 export const ICON_DEFAULT_COLOR = "currentColor";
@@ -151,7 +281,11 @@ export function isCloudflareStreamEmbedUrl(url?: string | null): boolean {
   }
 
   try {
-    return new URL(trimmed).hostname === "iframe.cloudflarestream.com";
+    const hostname = new URL(trimmed).hostname;
+    return (
+      hostname === "iframe.cloudflarestream.com" ||
+      hostname.endsWith(".cloudflarestream.com")
+    );
   } catch {
     return false;
   }

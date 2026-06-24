@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "next/navigation";
 import { GenericModal } from "@/components/UI/Modals";
 import ConfirmationModal from "@/components/UI/ConfirmationModal";
 import {
@@ -31,7 +32,7 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { ADD_CONTENT_TABS, APPEARANCE } from "@/utils/common";
+import { ADD_CONTENT_TABS, APPEARANCE, SETTINGS } from "@/utils/common";
 import { ADMISSION_REQUIREMENTS } from "@/utils/admissionRequirements";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
@@ -42,11 +43,25 @@ import { AppearanceFormProvider } from "./Appearance/AppearanceFormContext";
 import { useContentFormActions } from "@/hooks/contents/useContentFormActions";
 import { useContentsUrlState } from "@/hooks/contents/useContentsUrlState";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
-import { SCROLL_OPTIONS, UI_TITLE_FALLBACK } from "@/utils/Constants";
+import { useAutoMatchedQuery } from "@/hooks/useAutoMatchedQuery";
+import {
+  SCROLL_OPTIONS,
+  UI_TITLE_FALLBACK,
+  CONTENT_ITEM_QUERY_KEY,
+} from "@/utils/Constants";
+import { COUPONS } from "@/utils/common";
+
+function ContentsUploadTitle({ fallback }: { fallback: string }) {
+  const { formState } = useContentForm();
+  return <>{formState.title || fallback}</>;
+}
 
 function CreatorsContentsInner() {
   const { t } = useTranslation();
-  const { formState } = useContentForm();
+  const [postCreateContentId, setPostCreateContentId] = useState<string | null>(
+    null,
+  );
+  const [showPostCreateModal, setShowPostCreateModal] = useState(false);
   const {
     activeTab,
     visibleTabs,
@@ -76,11 +91,14 @@ function CreatorsContentsInner() {
     setContentsMap,
   } = useContentsDataState(selectedCollection);
 
+  const needsCouponSearchData =
+    searchValue.trim().length >= 2 || activeTab === COUPONS;
+
   const { data: couponResponse } = useGetAPI<CouponListResponse>(
     API.coupon.getAll,
     undefined,
     {
-      enabled: true,
+      enabled: needsCouponSearchData,
     },
   );
 
@@ -171,25 +189,35 @@ function CreatorsContentsInner() {
       },
     ];
   }, [t, collections, collectionContents, couponResponse]);
+  const { lastAutoMatchedQueryRef, handleSearchChange } =
+    useAutoMatchedQuery(setSearchValue);
 
   useEffect(() => {
     if (selectedCollection) return;
     if (!searchValue || searchValue.trim().length < 2) return;
 
     const query = searchValue.trim().toLowerCase();
-    const activeTabKeywords = CONTENTS_TABS_INDEX.find(
-      (item) => item.tab === activeTab,
-    );
-    const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
-      keyword.toLowerCase().includes(query),
-    );
+    const searchChanged = lastAutoMatchedQueryRef.current !== query;
 
-    if (!activeContainsQuery) {
-      const matchedTabItem = CONTENTS_TABS_INDEX.find((item) =>
-        item.keywords.some((keyword) => keyword.toLowerCase().includes(query)),
+    if (searchChanged) {
+      lastAutoMatchedQueryRef.current = query;
+
+      const activeTabKeywords = CONTENTS_TABS_INDEX.find(
+        (item) => item.tab === activeTab,
       );
-      if (!matchedTabItem) return;
-      setActiveTabAndQuery(matchedTabItem.tab as typeof activeTab);
+      const activeContainsQuery = activeTabKeywords?.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(query),
+      );
+
+      if (!activeContainsQuery) {
+        const matchedTabItem = CONTENTS_TABS_INDEX.find((item) =>
+          item.keywords.some((keyword) =>
+            keyword.toLowerCase().includes(query),
+          ),
+        );
+        if (!matchedTabItem) return;
+        setActiveTabAndQuery(matchedTabItem.tab as typeof activeTab);
+      }
     }
 
     let attempts = 0;
@@ -210,6 +238,7 @@ function CreatorsContentsInner() {
     searchValue,
     activeTab,
     selectedCollection,
+    lastAutoMatchedQueryRef,
     setActiveTabAndQuery,
     CONTENTS_TABS_INDEX,
   ]);
@@ -250,6 +279,7 @@ function CreatorsContentsInner() {
     editingContent,
     showSaveSuccessModal,
     setShowSaveSuccessModal,
+    isSaving,
     collectionAccessType,
     setCollectionAccessType,
     collectionPasswords,
@@ -265,6 +295,7 @@ function CreatorsContentsInner() {
     hasUnsavedChanges,
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
+    hasSettingsUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
     resetUploadState,
@@ -288,6 +319,16 @@ function CreatorsContentsInner() {
     saveContentSetting: contentSettings.updateSetting,
   });
 
+  const [hasPasswordError, setHasPasswordError] = useState(false);
+
+  const searchParams = useSearchParams();
+  const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
+
+  const handleCreate = useCallback(() => {
+    resetUploadState();
+    handleCreateClick();
+  }, [handleCreateClick, resetUploadState]);
+
   const clearSelectedCollectionContentsOverride = useCallback(() => {
     const id = selectedCollection?.id;
     if (!id) return;
@@ -306,23 +347,59 @@ function CreatorsContentsInner() {
     handleEditContent: handleEditContentWithUrl,
     handleSelectCollection,
     syncContentIdToUrl,
+    isStartingEditRef,
   } = useContentsUrlState({
     collections,
     selectedCollection,
     setSelectedCollection,
     onEditContent: (id) => void handleEditContent(id),
     onBackStateOnly: handleBackToBaseStateOnly,
+    activeTab,
   });
+
+  useEffect(() => {
+    if (queryContentId) {
+      if (postCreateContentId && queryContentId !== postCreateContentId) {
+        setPostCreateContentId(null);
+        setShowPostCreateModal(false);
+      }
+      return;
+    }
+
+    if (editingContent && !isStartingEditRef.current && !postCreateContentId) {
+      resetUploadState();
+    }
+  }, [
+    queryContentId,
+    editingContent,
+    isStartingEditRef,
+    postCreateContentId,
+    resetUploadState,
+  ]);
 
   const handleSaveSuccessClose = () => {
     setShowSaveSuccessModal(false);
+    setPostCreateContentId(null);
     if (activeTab !== APPEARANCE) {
       handleBack();
     }
   };
 
+  const handleUploadBackClick = useCallback(() => {
+    const isPostCreateContent =
+      Boolean(postCreateContentId) && queryContentId === postCreateContentId;
+
+    if (isPostCreateContent) {
+      setShowPostCreateModal(true);
+      return;
+    }
+
+    handleBack();
+  }, [handleBack, postCreateContentId, queryContentId]);
+
   const handleDeleteSuccessClose = useCallback(() => {
     if (!isUploadMode && !editingContent?.id) return;
+    setPostCreateContentId(null);
     resetUploadState();
     handleBack();
   }, [editingContent?.id, handleBack, isUploadMode, resetUploadState]);
@@ -334,31 +411,38 @@ function CreatorsContentsInner() {
           {selectedCollection && (
             <AuthBackButton
               marginBottom="0px"
-              onClick={isUploadMode ? handleBack : handleBackToCollection}
+              onClick={
+                isUploadMode ? handleUploadBackClick : handleBackToCollection
+              }
             />
           )}
           <Title>
-            {isUploadMode
-              ? formState.title || UI_TITLE_FALLBACK
-              : selectedCollection
-                ? selectedCollection.name
-                : t(CONTENTS_KEYS.title)}
+            {isUploadMode ? (
+              <ContentsUploadTitle fallback={UI_TITLE_FALLBACK} />
+            ) : selectedCollection ? (
+              selectedCollection.name
+            ) : (
+              t(CONTENTS_KEYS.title)
+            )}
           </Title>
         </HeaderRow>
 
         <ContentsHeaderAction
           activeTab={activeTab}
-          onCreate={handleCreateClick}
+          onCreate={handleCreate}
           onCancel={handleHeaderCancel}
           onCreateCoupon={couponFlow.open}
           onSave={handleHeaderSave}
           isSaveDisabled={
             (activeTab === APPEARANCE && !hasUnsavedChanges) ||
+            (activeTab === SETTINGS && !hasSettingsUnsavedChanges) ||
+            (activeTab === SETTINGS && hasPasswordError) ||
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
               !hasGeneralUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.METADATA &&
               !hasMetadataUnsavedChanges)
           }
+          isSaving={isSaving}
           isCollectionContentMode={isCollectionContentMode}
         />
       </PageHeader>
@@ -380,7 +464,7 @@ function CreatorsContentsInner() {
                     value: searchValue,
                     placeholder: t(CONTENTS_KEYS.actions.search),
                     onToggle: () => setOpenSearch((prev) => !prev),
-                    onChange: setSearchValue,
+                    onChange: handleSearchChange,
                     ariaLabel: t(CONTENTS_KEYS.actions.search),
                   }
             }
@@ -416,103 +500,142 @@ function CreatorsContentsInner() {
             setCollectionPurchaseAmount={setCollectionPurchaseAmount}
             collectionAccessDuration={collectionAccessDuration}
             setCollectionAccessDuration={setCollectionAccessDuration}
+            onPasswordValidationChange={setHasPasswordError}
+            onBack={handleBackToCollection}
           />
         </ContentPanel>
       </ContentsScrollArea>
 
-      <CreateCollectionModal
-        visible={createCollectionFlow.showCreateModal}
-        collectionName={createCollectionFlow.collectionName}
-        onChangeCollectionName={createCollectionFlow.setCollectionName}
-        onClose={createCollectionFlow.closeCreate}
-        onConfirm={createCollectionFlow.completeCreate}
-      />
+      {createCollectionFlow.showCreateModal && (
+        <CreateCollectionModal
+          visible={createCollectionFlow.showCreateModal}
+          collectionName={createCollectionFlow.collectionName}
+          onChangeCollectionName={createCollectionFlow.setCollectionName}
+          onClose={createCollectionFlow.closeCreate}
+          onConfirm={createCollectionFlow.completeCreate}
+        />
+      )}
 
-      <ContentTypeModal
-        visible={contentTypeFlow.showContentTypeModal}
-        onClose={contentTypeFlow.close}
-        onBack={contentTypeFlow.close}
-        onContinue={contentTypeFlow.continueWithType}
-      />
+      {contentTypeFlow.showContentTypeModal && (
+        <ContentTypeModal
+          visible={contentTypeFlow.showContentTypeModal}
+          onClose={contentTypeFlow.close}
+          onBack={contentTypeFlow.close}
+          onContinue={contentTypeFlow.continueWithType}
+        />
+      )}
 
-      <ContentUploadModal
-        key={
-          editingContent?.id ??
-          contentTypeFlow.selectedContentType ??
-          CONTENT_MODAL_KEY_FALLBACK
-        }
-        visible={contentTypeFlow.showContentUploadModal}
-        mode={
-          editingContent ? CONTENT_UPLOAD_MODE.EDIT : CONTENT_UPLOAD_MODE.CREATE
-        }
-        contentId={editingContent?.id}
-        initialTitle={editingContent?.name}
-        initialDescription={editingContent?.description}
-        contentType={
-          editingContent?.contentType ?? contentTypeFlow.selectedContentType
-        }
-        collectionId={selectedCollection?.id ?? null}
-        onClose={closeContentUpload}
-        onBack={handleContentUploadBack}
-        onUploadSuccess={(tab, file, preview, createdId, details) => {
-          clearSelectedCollectionContentsOverride();
-          handleUploadSuccess(tab, file, preview, createdId, details);
-          if (createdId) {
-            syncContentIdToUrl(createdId);
+      {contentTypeFlow.showContentUploadModal && (
+        <ContentUploadModal
+          key={
+            editingContent?.id ??
+            contentTypeFlow.selectedContentType ??
+            CONTENT_MODAL_KEY_FALLBACK
           }
-        }}
-      />
-
-      <GenericModal
-        visible={createCollectionFlow.showSuccessModal}
-        icon={<SuccessModalIcon />}
-        iconMargin="0 auto 8px"
-        title={t("contents.createCollectionSuccessModal.title")}
-        message={t("contents.createCollectionSuccessModal.message")}
-        confirmLabel={t("contents.createCollectionSuccessModal.done")}
-        onClose={createCollectionFlow.closeSuccess}
-        onConfirm={createCollectionFlow.closeSuccess}
-        size="sm"
-        spacing="xs"
-        showCloseButton={false}
-      />
-
-      <ConfirmationModal
-        isOpen={showDiscardModal}
-        onClose={closeDiscardModal}
-        title={t("settings.notifications.discardModal.title")}
-        body={t("settings.notifications.discardModal.message")}
-        cancelLabel={t("settings.notifications.discardModal.goBack")}
-        confirmLabel={t("settings.notifications.discardModal.discard")}
-        onConfirm={() => {
-          if (isCouponDiscardPending) {
-            closeCouponFlow();
+          visible={contentTypeFlow.showContentUploadModal}
+          mode={
+            editingContent
+              ? CONTENT_UPLOAD_MODE.EDIT
+              : CONTENT_UPLOAD_MODE.CREATE
           }
-          if (isUploadMode) {
+          contentId={editingContent?.id}
+          initialTitle={editingContent?.name}
+          initialDescription={editingContent?.description}
+          contentType={
+            editingContent?.contentType ?? contentTypeFlow.selectedContentType
+          }
+          collectionId={selectedCollection?.id ?? null}
+          onClose={closeContentUpload}
+          onBack={handleContentUploadBack}
+          onUploadSuccess={(tab, file, preview, createdId, details) => {
+            clearSelectedCollectionContentsOverride();
+            handleUploadSuccess(tab, file, preview, createdId, details);
+            if (createdId) {
+              setPostCreateContentId(createdId);
+              syncContentIdToUrl(createdId, tab);
+            }
+          }}
+        />
+      )}
+
+      {createCollectionFlow.showSuccessModal && (
+        <GenericModal
+          visible={createCollectionFlow.showSuccessModal}
+          icon={<SuccessModalIcon />}
+          iconMargin="0 auto 8px"
+          title={t("contents.createCollectionSuccessModal.title")}
+          message={t("contents.createCollectionSuccessModal.message")}
+          confirmLabel={t("contents.createCollectionSuccessModal.done")}
+          onClose={createCollectionFlow.closeSuccess}
+          onConfirm={createCollectionFlow.closeSuccess}
+          size="sm"
+          spacing="xs"
+          showCloseButton={false}
+        />
+      )}
+
+      {showDiscardModal && (
+        <ConfirmationModal
+          isOpen={showDiscardModal}
+          onClose={closeDiscardModal}
+          title={t("settings.notifications.discardModal.title")}
+          body={t("settings.notifications.discardModal.message")}
+          cancelLabel={t("settings.notifications.discardModal.goBack")}
+          confirmLabel={t("settings.notifications.discardModal.discard")}
+          onConfirm={() => {
+            if (isCouponDiscardPending) {
+              closeCouponFlow();
+            }
+            if (isUploadMode) {
+              setPostCreateContentId(null);
+              handleBack();
+            }
+            closeDiscardModal();
+          }}
+          size="sm"
+          spacing="md"
+          fullWidthButtons
+          buttonRow
+          showCloseButton={false}
+        />
+      )}
+
+      {showPostCreateModal && (
+        <ConfirmationModal
+          isOpen={showPostCreateModal}
+          onClose={() => setShowPostCreateModal(false)}
+          title={t("contents.postCreateBackModal.title")}
+          body={t("contents.postCreateBackModal.message")}
+          cancelLabel={t("contents.postCreateBackModal.cancel")}
+          confirmLabel={t("contents.postCreateBackModal.confirm")}
+          onConfirm={() => {
+            setPostCreateContentId(null);
+            setShowPostCreateModal(false);
             handleBack();
-          }
-          closeDiscardModal();
-        }}
-        size="sm"
-        spacing="md"
-        fullWidthButtons
-        buttonRow
-        showCloseButton={false}
-      />
+          }}
+          size="sm"
+          spacing="md"
+          fullWidthButtons
+          buttonRow
+          showCloseButton={false}
+        />
+      )}
 
-      <GenericModal
-        visible={showSaveSuccessModal}
-        icon={<SuccessModalIcon />}
-        iconMargin="0 auto 8px"
-        title={t("settings.notifications.successModal.title")}
-        message={t("settings.notifications.successModal.message")}
-        confirmLabel={t("settings.notifications.successModal.done")}
-        onClose={handleSaveSuccessClose}
-        onConfirm={handleSaveSuccessClose}
-        size="sm"
-        spacing="xs"
-        showCloseButton={false}
-      />
+      {showSaveSuccessModal && (
+        <GenericModal
+          visible={showSaveSuccessModal}
+          icon={<SuccessModalIcon />}
+          iconMargin="0 auto 8px"
+          title={t("settings.notifications.successModal.title")}
+          message={t("settings.notifications.successModal.message")}
+          confirmLabel={t("settings.notifications.successModal.done")}
+          onClose={handleSaveSuccessClose}
+          onConfirm={handleSaveSuccessClose}
+          size="sm"
+          spacing="xs"
+          showCloseButton={false}
+        />
+      )}
 
       <CouponFlowModals
         collections={collections}

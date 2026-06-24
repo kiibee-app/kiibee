@@ -66,11 +66,27 @@ export const Title = styled.h1`
 
   max-width: 64px;
   max-width: 58rem;
+
+  ${media.tablet} {
+    max-width: 22rem;
+
+    > * {
+      ${({ theme }) => theme.typography.Heading2};
+    }
+  }
 `;
 
 export const Subtitle = styled.p`
   margin: 0 0 2rem 0;
   max-width: 32rem;
+
+  ${media.tablet} {
+    max-width: 20rem;
+
+    > * {
+      ${({ theme }) => theme.typography.Body_Regular};
+    }
+  }
 `;
 
 export const CTAWrap = styled.div`
@@ -94,5 +110,4 @@ export const heroRevealStyle: CSSProperties = {
 
 export const heroImageStyle: CSSProperties = {
   objectFit: "cover",
-  objectPosition: "center top",
 };

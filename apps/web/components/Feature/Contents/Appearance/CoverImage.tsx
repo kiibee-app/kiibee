@@ -13,7 +13,9 @@ import {
   PreviewWrapper,
   SectionList,
   UploadButton,
+  DeleteImageButton,
 } from "./styles";
+import { DeleteIcon } from "@/assets/icons";
 
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
@@ -34,6 +36,7 @@ import { useContentForm } from "../ContentFormContext";
 import { FORM_FIELDS } from "@/utils/appearance";
 import { useAppearanceForm } from "./AppearanceFormContext";
 import { ErrorText } from "../MetaData/styles";
+import { RequiredIndicator } from "@/components/UI/InputFields/styles";
 
 const imageFieldMap = {
   [IMAGE_TYPE.MEDIA_CARD]: "mediaCardThumbnail",
@@ -51,8 +54,13 @@ export default function CoverImageSection({
   const { t } = useTranslation();
   const { formState, formErrors, updateField, clearFieldError } =
     useContentForm();
-  const { values: appearanceValues, updateField: updateAppearanceField } =
-    useAppearanceForm();
+  const {
+    values: appearanceValues,
+    errors: appearanceErrors,
+    updateField: updateAppearanceField,
+    clearFieldError: clearAppearanceFieldError,
+    validateField: validateAppearanceField,
+  } = useAppearanceForm();
   const [open, setOpen] = React.useState(false);
   const isMobile = useIsMobile();
   const [selectedConfig, setSelectedConfig] =
@@ -76,9 +84,13 @@ export default function CoverImageSection({
       clearFieldError(field);
       updateField(field, cropped);
     } else if (selectedConfig.type === IMAGE_TYPE.DESKTOP) {
+      clearAppearanceFieldError(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL);
       updateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL, cropped);
+      validateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL);
     } else if (selectedConfig.type === IMAGE_TYPE.MOBILE) {
+      clearAppearanceFieldError(FORM_FIELDS.MOBILE_COVER_IMAGE_URL);
       updateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL, cropped);
+      validateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL);
     } else {
       setImages((prev) => ({
         ...prev,
@@ -86,6 +98,27 @@ export default function CoverImageSection({
       }));
     }
     setOpen(false);
+  };
+
+  const handleImageDelete = (type: ImageType) => {
+    const field = getImageField(type);
+    if (useFormContext) {
+      clearFieldError(field);
+      updateField(field, "");
+    } else if (type === IMAGE_TYPE.DESKTOP) {
+      clearAppearanceFieldError(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL);
+      updateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL, "");
+      validateAppearanceField(FORM_FIELDS.DESKTOP_COVER_IMAGE_URL);
+    } else if (type === IMAGE_TYPE.MOBILE) {
+      clearAppearanceFieldError(FORM_FIELDS.MOBILE_COVER_IMAGE_URL);
+      updateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL, "");
+      validateAppearanceField(FORM_FIELDS.MOBILE_COVER_IMAGE_URL);
+    } else {
+      setImages((prev) => ({
+        ...prev,
+        [type]: null,
+      }));
+    }
   };
 
   const getCurrentImage = () => {
@@ -121,7 +154,10 @@ export default function CoverImageSection({
       <SectionList>
         <ItemRow>
           <Copy>
-            <Label>{title ?? t(CONTENTS.appearance.coverImage.title)}</Label>
+            <Label>
+              {title ?? t(CONTENTS.appearance.coverImage.title)}
+              {useFormContext && <RequiredIndicator>*</RequiredIndicator>}
+            </Label>
             {!subtitle && (
               <Hint>{t(CONTENTS.appearance.coverImage.subtitle)}</Hint>
             )}
@@ -146,22 +182,42 @@ export default function CoverImageSection({
                     <ErrorText role="alert">
                       {formErrors[getImageField(item.type)]}
                     </ErrorText>
+                  ) : !useFormContext &&
+                    item.type === IMAGE_TYPE.DESKTOP &&
+                    appearanceErrors.desktopCoverImageUrl ? (
+                    <ErrorText role="alert">
+                      {appearanceErrors.desktopCoverImageUrl}
+                    </ErrorText>
+                  ) : !useFormContext &&
+                    item.type === IMAGE_TYPE.MOBILE &&
+                    appearanceErrors.mobileCoverImageUrl ? (
+                    <ErrorText role="alert">
+                      {appearanceErrors.mobileCoverImageUrl}
+                    </ErrorText>
                   ) : null}
                 </UploadButton>
 
                 <PreviewWrapper>
                   {imagesToShow[item.type] && (
-                    <PreviewImage
-                      src={imagesToShow[item.type]!}
-                      alt={
-                        item.label ?? (item.labelKey ? t(item.labelKey) : "")
-                      }
-                      $type={item.type}
-                      $aspectRatio={item.previewAspectRatio}
-                      $previewMaxWidth={item.previewMaxWidth}
-                      $previewHeight={item.previewHeight}
-                      $previewMinHeight={item.previewMinHeight}
-                    />
+                    <>
+                      <PreviewImage
+                        src={imagesToShow[item.type]!}
+                        alt={
+                          item.label ?? (item.labelKey ? t(item.labelKey) : "")
+                        }
+                        $type={item.type}
+                        $aspectRatio={item.previewAspectRatio}
+                        $previewMaxWidth={item.previewMaxWidth}
+                        $previewHeight={item.previewHeight}
+                        $previewMinHeight={item.previewMinHeight}
+                      />
+                      <DeleteImageButton
+                        type="button"
+                        onClick={() => handleImageDelete(item.type)}
+                      >
+                        <DeleteIcon width={14} height={16} />
+                      </DeleteImageButton>
+                    </>
                   )}
                 </PreviewWrapper>
               </LogoUploadWrap>

@@ -25,6 +25,7 @@ import {
   BUTTON_COLOR_VALUES,
   getButtonColorOptions,
   getTextColorOptions,
+  HEX_COLOR_INPUT_RE,
   normalizeHexColor,
 } from "@/utils/appearance";
 import AppearanceColorPickerModal from "@/components/UI/Modals/ColorPickerModal";
@@ -32,30 +33,37 @@ import { useAppearanceForm } from "./AppearanceFormContext";
 
 export default function AppearanceSettingsSection() {
   const { t } = useTranslation();
-  const { values, updateField } = useAppearanceForm();
+  const { values, errors, updateField, clearFieldError, validateField } =
+    useAppearanceForm();
   const [colorPickerOpen, setColorPickerOpen] = useState(false);
   const textColorOptions = useMemo(() => getTextColorOptions(t), [t]);
   const buttonColorOptions = useMemo(() => getButtonColorOptions(t), [t]);
 
   const handleHexChange = useCallback(
     (value: string | string[]) => {
+      clearFieldError(FORM_FIELDS.BUTTON_HEX);
       updateField(FORM_FIELDS.BUTTON_HEX, String(value));
     },
-    [updateField],
+    [clearFieldError, updateField],
   );
 
   const handleHexBlur = useCallback(() => {
-    updateField(
-      FORM_FIELDS.BUTTON_HEX,
-      normalizeHexColor(values.buttonHex, DEFAULT_HEX),
-    );
-  }, [updateField, values.buttonHex]);
+    if (HEX_COLOR_INPUT_RE.test(values.buttonHex.trim())) {
+      updateField(
+        FORM_FIELDS.BUTTON_HEX,
+        normalizeHexColor(values.buttonHex, DEFAULT_HEX),
+      );
+    }
+
+    validateField(FORM_FIELDS.BUTTON_HEX);
+  }, [updateField, validateField, values.buttonHex]);
 
   const handleColorPicked = useCallback(
     (hex: string) => {
       updateField(FORM_FIELDS.BUTTON_HEX, hex);
+      validateField(FORM_FIELDS.BUTTON_HEX);
     },
-    [updateField],
+    [updateField, validateField],
   );
 
   const handleButtonColorChange = useCallback(
@@ -127,6 +135,8 @@ export default function AppearanceSettingsSection() {
                   }
                   onIconClick={() => setColorPickerOpen(true)}
                   variant={INPUT_VARIANTS.SURFACE}
+                  hasError={Boolean(errors.buttonHex)}
+                  errorMessage={errors.buttonHex}
                 />
                 {colorPickerOpen ? (
                   <AppearanceColorPickerModal

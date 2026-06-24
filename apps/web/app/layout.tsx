@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +14,8 @@ import {
   TWITTER_CARD_SUMMARY_LARGE_IMAGE,
   WEBSITE,
 } from "@/utils/Constants";
+import { STORAGE_KEY, SYNC_LANGUAGE_SCRIPT } from "@/utils/common";
+import { normalizeAppLanguage } from "@/utils/language";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,17 +44,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const initialLang = normalizeAppLanguage(cookieStore.get(STORAGE_KEY)?.value);
+
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang={initialLang}
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: SYNC_LANGUAGE_SCRIPT,
+          }}
+        />
         <ThemeProvider>
           <QueryProvider>
-            <LanguageProvider>
+            <LanguageProvider initialLang={initialLang}>
               <SmoothScrollProvider>
                 <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
                 <ToastProvider />

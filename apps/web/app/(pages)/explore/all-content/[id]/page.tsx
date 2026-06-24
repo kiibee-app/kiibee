@@ -14,7 +14,8 @@ import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { useAllContent } from "@/hooks/feed/useAllContent";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { getCategorySortOptions } from "@/utils/sortOptions";
-import { ESCAPE, KEYDOWN, STRING } from "@/utils/Constants";
+import { ESCAPE, EXPLORE_PAGE_SIZE, KEYDOWN, STRING } from "@/utils/Constants";
+import Skeleton from "@/components/UI/Skeleton";
 import CreatorFiltersControl from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters";
 import {
   Hero,
@@ -22,7 +23,6 @@ import {
   Content,
   Title,
   HeroTitleText,
-  Controls,
 } from "@/components/Feature/ExploreCreators/Hero/styles";
 import {
   MainContent,
@@ -32,6 +32,9 @@ import {
   LoadMoreButton,
   LocalPageContainer,
   SortDropdownWrapper,
+  LocalControls,
+  DesktopSearchBarContainer,
+  MobileSearchBarContainer,
 } from "./styles";
 
 function AllContentExplorePageContent() {
@@ -130,11 +133,9 @@ function AllContentExplorePageContent() {
 
   const renderContent = () => {
     if (isLoading) {
-      return (
-        <ResultsState>
-          <span>{t("nav.explore.loading")}</span>
-        </ResultsState>
-      );
+      return Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+        <Skeleton.Card key={i} />
+      ));
     }
 
     return tutorials.length > 0 ? (
@@ -159,7 +160,15 @@ function AllContentExplorePageContent() {
                 <Title>
                   <HeroTitleText>{title}</HeroTitleText>
                 </Title>
-                <Controls>
+                <LocalControls>
+                  <MobileSearchBarContainer>
+                    <SearchBar
+                      placeholder={t("creators.search")}
+                      value={searchValue}
+                      onChange={setSearchValue}
+                    />
+                  </MobileSearchBarContainer>
+
                   <CreatorFiltersControl
                     refs={filterRefs}
                     state={filterState}
@@ -171,11 +180,13 @@ function AllContentExplorePageContent() {
                     showButton={true}
                   />
 
-                  <SearchBar
-                    placeholder={t("creators.search")}
-                    value={searchValue}
-                    onChange={setSearchValue}
-                  />
+                  <DesktopSearchBarContainer>
+                    <SearchBar
+                      placeholder={t("creators.search")}
+                      value={searchValue}
+                      onChange={setSearchValue}
+                    />
+                  </DesktopSearchBarContainer>
 
                   <SortDropdownWrapper>
                     <SortDropdown
@@ -185,7 +196,7 @@ function AllContentExplorePageContent() {
                       label={t("creators.sort")}
                     />
                   </SortDropdownWrapper>
-                </Controls>
+                </LocalControls>
               </Content>
             </Inner>
           </Hero>

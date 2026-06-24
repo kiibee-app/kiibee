@@ -7,11 +7,14 @@ import { API } from "@/lib/http/api/endpoints";
 import {
   CONTENT_UPLOAD_CONFIG,
   MEDIA_UPLOAD_FILE_TYPE_MAP,
+  POST_METHOD,
   resolveUploadContentType,
   type ContentType,
   type UploadContentType,
 } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 type Params = {
   contentType: ContentType | null;
@@ -22,20 +25,6 @@ type UploadedFile = {
   url?: string;
   location?: string;
   contentType?: string;
-};
-
-type VideoInitResponse = {
-  uploadId: string;
-  key: string;
-};
-
-type VideoPartUrlResponse = {
-  url: string;
-};
-
-type VideoCompleteResponse = {
-  key: string;
-  location: string;
 };
 
 type FileUploadUrlResponse = {
@@ -49,7 +38,6 @@ type FileConfirmResponse = {
   url: string;
 };
 
-const VIDEO_PART_SIZE = 10 * 1024 * 1024;
 const MAX_UPLOAD_SIZE = 2 * 1024 * 1024 * 1024;
 
 const getExtension = (file: File) =>
@@ -108,79 +96,77 @@ export function useContentUpload({ contentType }: Params) {
   };
 
   const uploadVideo = async (file: File): Promise<UploadedFile> => {
-    const { data: init } = await axiosClient.post<VideoInitResponse>(
-      API.media.videoInit,
-    );
-    const parts: { PartNumber: number; ETag: string }[] = [];
-    const totalParts = Math.ceil(file.size / VIDEO_PART_SIZE);
+    try {
+      const { data: init } = await axiosClient.post<{
+        uid: string;
+        uploadURL: string;
+      }>(API.media.videoUpload);
 
-    for (let partNumber = 1; partNumber <= totalParts; partNumber += 1) {
-      const start = (partNumber - 1) * VIDEO_PART_SIZE;
-      const end = Math.min(start + VIDEO_PART_SIZE, file.size);
-      const chunk = file.slice(start, end, file.type || "video/mp4");
+      const formData = new FormData();
+      formData.append("file", file);
 
-      const { data } = await axiosClient.get<VideoPartUrlResponse>(
-        API.media.videoPartUrl,
-        {
-          params: {
-            key: init.key,
-            uploadId: init.uploadId,
-            partNumber,
-          },
-        },
-      );
+      const response = await fetch(init.uploadURL, {
+        method: POST_METHOD,
+        body: formData,
+      });
 
-      const response = await putSignedFile(data.url, chunk);
-      const etag = response.headers.get("ETag") ?? response.headers.get("etag");
-
-      if (!etag) {
-        throw new Error("Upload ETag missing");
+      if (!response.ok) {
+        throw new Error(await response.text());
       }
 
-      parts.push({ PartNumber: partNumber, ETag: etag });
+      return {
+        key: init.uid,
+        contentType: file.type || "video/mp4",
+      };
+    } catch (error) {
+      const message = axios.isAxiosError(error)
+        ? error.response?.data?.message
+        : error instanceof Error
+          ? error.message
+          : "Something went wrong.";
+
+      toast.error(message);
+      throw error;
     }
-
-    const { data: completed } = await axiosClient.post<VideoCompleteResponse>(
-      API.media.videoComplete,
-      {
-        key: init.key,
-        uploadId: init.uploadId,
-        parts,
-      },
-    );
-
-    return {
-      key: completed.key,
-      location: completed.location,
-      contentType: file.type || "video/mp4",
-    };
   };
 
   const uploadFile = async (
     file: File,
     type: Exclude<UploadContentType, typeof FORMAT_TYPE.VIDEO>,
   ): Promise<UploadedFile> => {
-    const { data: upload } = await axiosClient.post<FileUploadUrlResponse>(
-      API.media.fileUploadUrl,
-      {
-        type: MEDIA_UPLOAD_FILE_TYPE_MAP[type],
-        extension: getExtension(file),
-        contentType: file.type,
-      },
-    );
+    try {
+      const { data: upload } = await axiosClient.post<FileUploadUrlResponse>(
+        API.media.fileUploadUrl,
+        {
+          type: MEDIA_UPLOAD_FILE_TYPE_MAP[type],
+          extension: getExtension(file),
+          contentType: file.type,
+        },
+      );
 
-    await putSignedFile(upload.uploadUrl, file, upload.contentType);
+      await putSignedFile(upload.uploadUrl, file, upload.contentType);
 
-    const { data: confirmed } = await axiosClient.post<FileConfirmResponse>(
-      API.media.fileConfirm,
-      { key: upload.key },
-    );
+      const { data: confirmed } = await axiosClient.post<FileConfirmResponse>(
+        API.media.fileConfirm,
+        { key: upload.key },
+      );
 
-    return {
-      key: confirmed.key,
-      url: confirmed.url,
-      contentType: upload.contentType,
-    };
+      return {
+        key: confirmed.key,
+        url: confirmed.url,
+        contentType: upload.contentType,
+      };
+    } catch (error) {
+      toast.error(
+        axios.isAxiosError(error)
+          ? error.response?.data?.message
+          : error instanceof Error
+            ? error.message
+            : "Upload failed.",
+      );
+
+      throw error;
+    }
   };
 
   const uploadSelectedFile = (file: File) => {

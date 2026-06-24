@@ -20,12 +20,15 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
 import { LANDING_REVEAL, LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
 
 export default function AboutHero() {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
+  const isLoggedIn = !!user;
 
   return (
     <Hero>
@@ -77,13 +80,15 @@ export default function AboutHero() {
                 {t("about.hero.cta.explore")}
               </GenericButton>
 
-              <GenericButton
-                asAnchor
-                href={PATHS.AUTH_SIGNUP_CREATOR}
-                variant={VARIANT.SECONDARY}
-              >
-                {t("about.hero.cta.creator")}
-              </GenericButton>
+              {!isLoggedIn && (
+                <GenericButton
+                  asAnchor
+                  href={PATHS.AUTH_SIGNUP_CREATOR}
+                  variant={VARIANT.SECONDARY}
+                >
+                  {t("about.hero.cta.creator")}
+                </GenericButton>
+              )}
             </CTAWrap>
           </ScrollReveal>
         </Content>

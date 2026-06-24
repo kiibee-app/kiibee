@@ -10,4 +10,18 @@ export class CreateOrderInputDto {
 
   @IsString()
   itemType!: string;
+
+  @IsOptional()
+  @IsString()
+  couponCode?: string;
+}
+
+export class BillingHistoryQueryDto {
+  @IsOptional()
+  @IsString()
+  searchContent?: string;
+
+  @IsOptional()
+  @IsString()
+  searchCreator?: string;
 }

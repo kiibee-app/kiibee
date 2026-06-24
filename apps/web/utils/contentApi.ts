@@ -1,3 +1,4 @@
+import React from "react";
 import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
@@ -11,12 +12,16 @@ import {
   getContentTypeLabel,
   normalizeContentTypeValue,
 } from "@/utils/content";
-import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
+import {
+  resolveCloudflareStreamPlaybackUrl,
+  resolveContentThumbnailCandidates,
+} from "@/utils/media";
 import {
   getContentDetailPricingActions,
   isFreeContentItem,
 } from "@/utils/contentPricingActions";
 import { FORMAT_TYPE } from "@/utils/types";
+import { URL_PROTOCOL_REGEX, isValidUrl } from "@/utils/common";
 
 type Translate = (key: string) => string;
 type UnknownRecord = Record<string, unknown>;
@@ -38,10 +43,14 @@ export const CONTENT_RESPONSE_KEYS = {
   BUY_PRICE: "buyPrice",
   RENT_PRICE: "rentPrice",
   RENT_DURATION_HOURS: "rentDurationHours",
+  DURATION: "duration",
   CREATED_AT: "createdAt",
   CATEGORIES: "categories",
   NAME: "name",
   CREATOR_ID: "creatorId",
+  PUBLISHED_YEAR: "publishedYear",
+  PRODUCTION_COMPANY: "production_company",
+  MANUFACTURER_LINK: "manufacturerLink",
 } as const;
 
 export const CONTENT_MEDIA_RESPONSE_KEYS = {
@@ -64,9 +73,14 @@ export const CONTENT_TRANSLATION_KEYS = {
   addAction: "contents.contentUploadModal.details.add",
   share: "common.share",
   meta: {
+    publishedYear: "singleContent.meta.publishedYear",
     createdAt: "singleContent.meta.createdAt",
     accessType: "singleContent.meta.accessType",
     visibility: "singleContent.meta.visibility",
+    duration: "singleContent.meta.duration",
+    category: "singleContent.meta.category",
+    productionCompany: "singleContent.meta.productionCompany",
+    manufacturerLink: "singleContent.meta.manufacturerLink",
   },
 } as const;
 
@@ -86,6 +100,7 @@ export type ContentDetailItem = {
   [CONTENT_RESPONSE_KEYS.BUY_PRICE]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.RENT_PRICE]?: string | number | null;
   [CONTENT_RESPONSE_KEYS.RENT_DURATION_HOURS]?: string | number | null;
+  [CONTENT_RESPONSE_KEYS.DURATION]?: number | null;
   [CONTENT_RESPONSE_KEYS.CREATED_AT]?: string | null;
   [CONTENT_RESPONSE_KEYS.CATEGORIES]?: { id?: string; name?: string }[];
   accessInfo?: {
@@ -95,10 +110,16 @@ export type ContentDetailItem = {
     timeLeftText?: string;
   } | null;
   [CONTENT_RESPONSE_KEYS.CREATOR_ID]?: string | null;
+  [CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]?: number | null;
+  [CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY]?: string | null;
+  [CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK]?: string | null;
 };
 
 export type ContentMediaUrlResponse = {
   [CONTENT_MEDIA_RESPONSE_KEYS.URL]?: string;
+  iframeUrl?: string;
+  streamUrl?: string;
+  token?: string;
 };
 
 export type ContentDetailResponse =
@@ -138,7 +159,7 @@ export const getContentUrl = (content?: ContentDetailItem) =>
   toTrimmedString(content?.[CONTENT_RESPONSE_KEYS.CONTENT_URL]);
 
 export const hasDirectPlaybackUrl = (url?: string | null) =>
-  Boolean(url && /^https?:\/\//i.test(url));
+  Boolean(url && URL_PROTOCOL_REGEX.test(url));
 
 export const resolveContentPlaybackUrl = (
   content: ContentDetailItem | undefined,
@@ -147,14 +168,19 @@ export const resolveContentPlaybackUrl = (
   const contentType = getContentType(content);
   const contentUrl = getContentUrl(content);
   const fileKey = getContentMediaKey(content);
-  const cloudflareEmbedUrl = resolveCloudflareStreamPlaybackUrl(
-    fileKey,
-    contentUrl || signedUrl,
-  );
 
   if (contentType === FORMAT_TYPE.WEB) {
     return contentUrl;
   }
+
+  if (signedUrl) {
+    return signedUrl;
+  }
+
+  const cloudflareEmbedUrl = resolveCloudflareStreamPlaybackUrl(
+    fileKey,
+    contentUrl,
+  );
 
   if (cloudflareEmbedUrl) {
     return cloudflareEmbedUrl;
@@ -164,14 +190,22 @@ export const resolveContentPlaybackUrl = (
     return contentUrl;
   }
 
-  return signedUrl ?? "";
+  return "";
 };
 
-const getContentImage = (content: ContentDetailItem): ImageSource =>
-  toTrimmedString(
-    content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL] ??
-      content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
-  ) || contentFallbackImage;
+const getContentHeroImages = (
+  content: ContentDetailItem,
+): { image: ImageSource; imageFallback?: string } => {
+  const candidates = resolveContentThumbnailCandidates(
+    content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
+    content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL],
+  );
+
+  return {
+    image: candidates[0] ?? contentFallbackImage,
+    ...(candidates[1] ? { imageFallback: candidates[1] } : {}),
+  };
+};
 
 const getCategoryNames = (content: ContentDetailItem) =>
   (content[CONTENT_RESPONSE_KEYS.CATEGORIES] ?? [])
@@ -192,6 +226,7 @@ export const getSingleContentProps = (
   );
   const contentType = getContentType(content);
   const categories = getCategoryNames(content);
+  const mainCategory = categories[0];
   const createdAt = formatDateUSShort(
     content[CONTENT_RESPONSE_KEYS.CREATED_AT] ?? undefined,
   );
@@ -214,10 +249,17 @@ export const getSingleContentProps = (
   );
 
   const isVideo = contentType === FORMAT_TYPE.VIDEO;
-  const showTrailerInHero = isVideo && Boolean(trailerUrl);
+  const showTrailerInHero = Boolean(trailerUrl);
   const isOwner = Boolean(
     options?.viewerId &&
     content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
+  );
+
+  const productionCompany = toTrimmedString(
+    content[CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY],
+  );
+  const manufacturerLink = toTrimmedString(
+    content[CONTENT_RESPONSE_KEYS.MANUFACTURER_LINK],
   );
 
   return {
@@ -227,13 +269,13 @@ export const getSingleContentProps = (
     tags: categories,
     statusLabel: visibility,
     hero: {
-      image: getContentImage(content),
+      ...getContentHeroImages(content),
       imageAlt: title,
       contentType,
       ...(showTrailerInHero && trailerUrl
         ? {
             media: {
-              type: contentType,
+              type: FORMAT_TYPE.VIDEO,
               src: trailerUrl,
               title,
             },
@@ -252,7 +294,7 @@ export const getSingleContentProps = (
             : {}),
       categoryLabel: categories[0],
       mediaLabel: getContentTypeLabel(contentType),
-      ...(isVideo
+      ...(isVideo || showTrailerInHero
         ? {
             mediaIcon: playCircleIcon,
             mediaIconAlt: t(CONTENT_TRANSLATION_KEYS.seeContent),
@@ -276,6 +318,18 @@ export const getSingleContentProps = (
           })),
         }),
     metaItems: [
+      mainCategory
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.category),
+            value: mainCategory,
+          }
+        : undefined,
+      content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.publishedYear),
+            value: String(content[CONTENT_RESPONSE_KEYS.PUBLISHED_YEAR]),
+          }
+        : undefined,
       createdAt
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.createdAt),
@@ -292,6 +346,32 @@ export const getSingleContentProps = (
         ? {
             label: t(CONTENT_TRANSLATION_KEYS.meta.visibility),
             value: visibility,
+          }
+        : undefined,
+      content[CONTENT_RESPONSE_KEYS.DURATION]
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.duration),
+            value: `${content[CONTENT_RESPONSE_KEYS.DURATION]} min`,
+          }
+        : undefined,
+      productionCompany
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.productionCompany),
+            value: productionCompany,
+          }
+        : undefined,
+      isValidUrl(manufacturerLink)
+        ? {
+            label: t(CONTENT_TRANSLATION_KEYS.meta.manufacturerLink),
+            value: React.createElement(
+              "a",
+              {
+                href: manufacturerLink,
+                target: "_blank",
+                rel: "noopener noreferrer",
+              },
+              manufacturerLink,
+            ),
           }
         : undefined,
     ].filter(Boolean) as NonNullable<SingleContentPageProps["metaItems"]>,

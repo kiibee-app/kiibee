@@ -7,14 +7,16 @@ import {
   contentCategories,
   emailSubscribers,
 } from 'src/database/schema';
-import { eq, desc, and, sql } from 'drizzle-orm';
+import { eq, desc, and, sql, inArray } from 'drizzle-orm';
 import { ROLE } from 'src/utils/constant';
+import { dedupeFeedMediaById, orderFeedMediaByIds } from './feed.helper';
 
 const baseSelect = {
   id: mediaFiles.id,
   title: mediaFiles.title,
   description: mediaFiles.description,
   thumbnailUrl: mediaFiles.thumbnailUrl,
+  thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
   creatorId: mediaFiles.creatorId,
   creatorName: users.fullName,
   contentType: contentTypes.name,
@@ -25,8 +27,10 @@ const baseSelect = {
   createdAt: mediaFiles.createdAt,
 };
 
-export const getTrendingQuery = (where: any, limit: number) =>
-  db
+async function fetchMediaFilesByIds(ids: string[]) {
+  if (ids.length === 0) return [];
+
+  const rows = await db
     .select(baseSelect)
     .from(mediaFiles)
     .leftJoin(users, eq(users.id, mediaFiles.creatorId))
@@ -39,45 +43,48 @@ export const getTrendingQuery = (where: any, limit: number) =>
       contentCategories,
       eq(contentCategories.id, mediaFileCategories.categoryId),
     )
+    .where(inArray(mediaFiles.id, ids));
+
+  return orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
+}
+
+export const getTrendingQuery = async (where: any, limit: number) => {
+  const idRows = await db
+    .select({ id: mediaFiles.id })
+    .from(mediaFiles)
     .where(where)
     .orderBy(desc(mediaFiles.sortOrder))
     .limit(limit);
 
-export const getLatestQuery = (where: any, orderBy: any, limit: number) =>
-  db
-    .select(baseSelect)
+  return fetchMediaFilesByIds(idRows.map((row) => row.id));
+};
+
+export const getLatestQuery = async (
+  where: any,
+  orderBy: any,
+  limit: number,
+) => {
+  const idRows = await db
+    .select({ id: mediaFiles.id })
     .from(mediaFiles)
     .leftJoin(users, eq(users.id, mediaFiles.creatorId))
-    .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
-    .leftJoin(
-      mediaFileCategories,
-      eq(mediaFileCategories.mediaFileId, mediaFiles.id),
-    )
-    .leftJoin(
-      contentCategories,
-      eq(contentCategories.id, mediaFileCategories.categoryId),
-    )
     .where(where)
     .orderBy(orderBy)
     .limit(limit);
 
-export const getRecentQuery = (where: any, limit: number) =>
-  db
-    .select(baseSelect)
+  return fetchMediaFilesByIds(idRows.map((row) => row.id));
+};
+
+export const getRecentQuery = async (where: any, limit: number) => {
+  const idRows = await db
+    .select({ id: mediaFiles.id })
     .from(mediaFiles)
-    .leftJoin(users, eq(users.id, mediaFiles.creatorId))
-    .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
-    .leftJoin(
-      mediaFileCategories,
-      eq(mediaFileCategories.mediaFileId, mediaFiles.id),
-    )
-    .leftJoin(
-      contentCategories,
-      eq(contentCategories.id, mediaFileCategories.categoryId),
-    )
     .where(where)
     .orderBy(desc(mediaFiles.createdAt))
     .limit(limit);
+
+  return fetchMediaFilesByIds(idRows.map((row) => row.id));
+};
 
 export const getTopCreatorsQuery = () =>
   db

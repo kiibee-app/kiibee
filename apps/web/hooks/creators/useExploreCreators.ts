@@ -3,7 +3,18 @@
 import { useMemo } from "react";
 import { API, useGetAPI } from "@/lib/http/api";
 import { resolvePublicMediaUrl } from "@/utils/media";
-import type { SortValue } from "@/utils/sortOptions";
+import type { CreatorLayoutKey } from "@/utils/creatorChannel";
+import {
+  SORT_ALL,
+  SORT_FEATURED,
+  SORT_NEW,
+  SORT_POPULAR,
+  SORT_OPTION_NEWEST,
+  type SortValue,
+} from "@/utils/sortOptions";
+
+const BACKEND_SORT_SUBSCRIBER_COUNT = "subscriberCount";
+const BACKEND_SORT_NAME = "name";
 
 export type ExploreCreator = {
   id: string;
@@ -17,6 +28,8 @@ export type ExploreCreator = {
   createdAt: string;
   contentDescription?: string | null;
   exampleWorkLink?: string | null;
+  accessType?: string | null;
+  layout?: CreatorLayoutKey | null;
 };
 
 type ExploreCreatorsResponse = {
@@ -36,6 +49,14 @@ export function formatSubscriberCountK(count: number): number {
     return Math.round(count / 1000);
   }
   return count;
+}
+
+export function formatUploadCount(count: number): string {
+  if (count >= 1000) {
+    const kCount = (count / 1000).toFixed(count % 1000 === 0 ? 0 : 1);
+    return `${kCount}K`;
+  }
+  return String(count);
 }
 
 export function sortExploreCreators(
@@ -68,14 +89,32 @@ export function getCreatorCardImage(creator: ExploreCreator): string | null {
 
 const TOP_CREATORS_LIMIT = 6;
 
-export const useExploreCreators = (limit?: number, search?: string) => {
+export const useExploreCreators = (
+  limit?: number,
+  search?: string,
+  filter?: string,
+) => {
+  const isAllEndpoint = filter !== undefined;
+
+  const sortBy =
+    filter === SORT_FEATURED
+      ? SORT_FEATURED
+      : filter === SORT_NEW
+        ? SORT_OPTION_NEWEST
+        : filter === SORT_POPULAR
+          ? BACKEND_SORT_SUBSCRIBER_COUNT
+          : filter === SORT_ALL
+            ? BACKEND_SORT_NAME
+            : undefined;
+
   const params = {
     ...(limit !== undefined && { limit }),
     ...(search?.trim() && { search: search.trim() }),
+    ...(sortBy !== undefined && { sortBy }),
   };
 
   const query = useGetAPI<ExploreCreatorsResponse>(
-    API.creators.list,
+    isAllEndpoint ? API.creators.all : API.creators.list,
     Object.keys(params).length > 0 ? params : undefined,
   );
 

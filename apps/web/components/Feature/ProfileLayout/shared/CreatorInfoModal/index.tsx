@@ -14,6 +14,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import useShare from "@/hooks/useShare";
 import {
   CloseIconButton,
   CreatorInfoContent,
@@ -67,9 +68,10 @@ export default function CreatorInfoModal({
 }: CreatorInfoModalProps) {
   const { t } = useTranslation();
   const { displayName, about } = useCreatorChannelProfile();
+  const { share } = useShare();
 
   const title = displayName ?? "";
-  const body = about?.description || t(CREATE_PROFILE_HOME.description);
+  const body = about?.description ?? "";
   const joinedDate = about?.joinedDate ?? "";
   const uploadsCount = about?.uploadCount ?? 0;
   const links = about?.websiteLink ? [about.websiteLink] : [];
@@ -139,7 +141,7 @@ export default function CreatorInfoModal({
           </Section>
         )}
 
-        <ShareButton type="button" aria-label={t(COMMON.share)}>
+        <ShareButton type="button" aria-label={t(COMMON.share)} onClick={share}>
           <ShareIcon width={18} height={18} />
           <MonoText $use="Body_Medium">{t(COMMON.share)}</MonoText>
         </ShareButton>

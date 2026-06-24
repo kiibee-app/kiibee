@@ -54,10 +54,16 @@ export function getCreatorHomePath(layout: CreatorLayoutParam): string {
 
 export function getPublicCreatorProfilePath(
   creatorId: string,
-  layout: CreatorLayoutParam = layoutParamFromKey(DEFAULT_CREATOR_LAYOUT),
+  layout?: CreatorLayoutParam | CreatorLayoutKey | null,
 ): string {
+  const layoutParam =
+    layout == null
+      ? layoutParamFromKey(DEFAULT_CREATOR_LAYOUT)
+      : isCreatorLayoutKey(layout)
+        ? layoutParamFromKey(layout)
+        : layout;
   const params = new URLSearchParams({ [CREATOR_ID_PARAM]: creatorId });
-  return `${getCreatorHomePath(layout)}?${params.toString()}`;
+  return `${getCreatorHomePath(layoutParam)}?${params.toString()}`;
 }
 
 export function withCreatorIdQuery(

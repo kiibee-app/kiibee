@@ -18,7 +18,7 @@ export const Card = styled.div<{
   height: 100%;
   min-height: ${({ $compact, $coverImage }) => {
     if ($compact) return "0";
-    if ($coverImage) return "280px";
+    if ($coverImage) return "300px";
     return "315px";
   }};
   width: ${({ $width }) => $width || "100%"};
@@ -26,7 +26,6 @@ export const Card = styled.div<{
   transition:
     transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
     box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: transform, opacity;
 
   &:hover {
     transform: translateY(-5px);
@@ -48,11 +47,11 @@ export const ImageWrapper = styled.div<{
   overflow: hidden;
   display: flex;
   min-height: ${({ $compact, $coverImage }) => {
-    if ($coverImage) return "200px";
+    if ($coverImage) return "220px";
     if ($compact) return "104px";
     return "190px";
   }};
-  aspect-ratio: ${({ $coverImage }) => ($coverImage ? "5 / 4" : "auto")};
+  aspect-ratio: ${({ $coverImage }) => ($coverImage ? "1 / 1" : "auto")};
   padding: ${({ $compact, $coverImage }) =>
     $coverImage || $compact ? "0" : "12px 178px 154px 10px"};
   align-items: center;
@@ -61,10 +60,13 @@ export const ImageWrapper = styled.div<{
 
   img {
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    object-fit: cover;
+    object-position: ${({ $coverImage }) =>
+      $coverImage ? "center top" : "center"};
   }
 
   ${media.tablet} {
-    min-height: ${({ $coverImage }) => ($coverImage ? "180px" : undefined)};
+    min-height: ${({ $coverImage }) => ($coverImage ? "200px" : undefined)};
     padding: ${({ $compact, $coverImage }) =>
       $coverImage || $compact ? "0" : "0"};
   }

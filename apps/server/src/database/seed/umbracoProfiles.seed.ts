@@ -3,6 +3,8 @@ import { existsSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { eq } from 'drizzle-orm';
 
+import { resolvePublicMediaUrl } from 'src/utils/resolvePublicMediaUrl';
+
 import { db } from '../db';
 import {
   auditLogs,

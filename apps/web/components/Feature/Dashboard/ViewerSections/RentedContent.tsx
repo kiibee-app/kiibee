@@ -2,20 +2,17 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
-import type {
-  RentedCollectionItem,
-  RentedMediaItem,
-  RentedMode,
-} from "@/utils/dummyData/viewerRentedMockData";
 import { PageWrap, SectionBlock, EmptyState } from "./styles";
 import {
   RENTED_SECTION_KEYS,
+  RENTED_MODES,
+  type RentedMode,
+  type RentedCollectionItem,
+  type RentedMediaItem,
   filterCollections,
   filterMedia,
-  getRentedContentSources,
   isViewerCollectionsSectionExpanded,
   syncViewerCollectionsSectionParam,
 } from "@/utils/viewerRented";
@@ -24,10 +21,15 @@ import {
   CONTENT_ITEM_QUERY_KEY,
 } from "@/utils/Constants";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
+import { useViewerRentedData } from "@/hooks/useViewerRented";
+import { useViewerPurchased } from "@/hooks/viewer/useViewerPurchased";
 import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
 import MediaSections from "./MediaSections";
 import PurchasedCollectionDetail from "./PurchasedCollectionDetail";
+import ViewerEmptyState from "./ViewerEmptyState";
+import { pathPublishedContent } from "@/utils/path";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 
 type Props = {
   title: string;
@@ -44,7 +46,7 @@ export default function RentedContent({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchParamsString = searchParams?.toString() ?? "";
-  const { t } = useTranslation();
+  const { navigateToContent } = useProtectedContentNavigation();
 
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -79,7 +81,18 @@ export default function RentedContent({
     canGoPrev,
     canGoNext,
   } = useViewerRentedSectionPagination();
-  const sources = useMemo(() => getRentedContentSources(mode), [mode]);
+  const { sources: rentedSources, isLoading } = useViewerRentedData(mode);
+  const { data: purchasedData, isLoading: isPurchasedLoading } =
+    useViewerPurchased(mode === RENTED_MODES.PURCHASED);
+
+  const sources = useMemo(() => {
+    if (mode === RENTED_MODES.PURCHASED) {
+      return (
+        purchasedData || { collections: [], videos: [], audios: [], pdfs: [] }
+      );
+    }
+    return rentedSources;
+  }, [mode, purchasedData, rentedSources]);
   const selectedCollectionId = searchParams?.get(CONTENT_COLLECTION_QUERY_KEY);
   const selectedContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
 
@@ -124,6 +137,7 @@ export default function RentedContent({
     filteredPdfs.length === 0;
 
   const isSearchEmpty = searchValue.trim() !== "" && hasNoResults;
+  const isDataEmpty = searchValue.trim() === "" && hasNoResults;
 
   const selectedCollection = useMemo(
     () =>
@@ -179,6 +193,13 @@ export default function RentedContent({
     [findMatchingCollection, pathname, router, searchParamsString],
   );
 
+  const handleCardClick = useCallback(
+    (id: string) => {
+      navigateToContent(pathPublishedContent(id), true);
+    },
+    [navigateToContent],
+  );
+
   const handleCloseCollection = useCallback(() => {
     const params = new URLSearchParams(searchParamsString);
     params.delete(CONTENT_COLLECTION_QUERY_KEY);
@@ -232,34 +253,43 @@ export default function RentedContent({
         }
       />
 
-      {isSearchEmpty ? (
+      {(mode === RENTED_MODES.PURCHASED ? isPurchasedLoading : isLoading) ? (
         <EmptyState>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            {t("dashboard.noData")}
+            Loading...
           </MonoText>
         </EmptyState>
+      ) : isDataEmpty ? (
+        <ViewerEmptyState mode={mode} variant="empty" />
+      ) : isSearchEmpty ? (
+        <ViewerEmptyState mode={mode} variant="search" />
       ) : (
         <>
-          <SectionBlock>
-            <CollectionsSection
-              mode={mode}
-              items={
-                isCollectionsExpanded ? filteredCollections : visibleCollections
-              }
-              totalItems={filteredCollections.length}
-              canSlide={canSlide}
-              canGoPrev={canGoPrev}
-              canGoNext={canGoNext}
-              movePrev={movePrev}
-              moveNext={moveNext}
-              onOpenSection={() => setCollectionsExpanded(true)}
-              showOpenSectionArrow={!isCollectionsExpanded}
-              showExpandedMetaHeader={isCollectionsExpanded}
-              onCollectionPrimaryAction={(item) =>
-                handleOpenCollection(item.id)
-              }
-            />
-          </SectionBlock>
+          {filteredCollections.length > 0 && (
+            <SectionBlock>
+              <CollectionsSection
+                mode={mode}
+                items={
+                  isCollectionsExpanded
+                    ? filteredCollections
+                    : visibleCollections
+                }
+                totalItems={filteredCollections.length}
+                canSlide={canSlide}
+                canGoPrev={canGoPrev}
+                canGoNext={canGoNext}
+                movePrev={movePrev}
+                moveNext={moveNext}
+                onOpenSection={() => setCollectionsExpanded(true)}
+                showOpenSectionArrow={!isCollectionsExpanded}
+                showExpandedMetaHeader={isCollectionsExpanded}
+                onCollectionPrimaryAction={(item) =>
+                  handleOpenCollection(item.id)
+                }
+                onCollectionClick={(item) => handleCardClick(item.id)}
+              />
+            </SectionBlock>
+          )}
 
           {isCollectionsExpanded ? null : (
             <MediaSections
@@ -272,6 +302,7 @@ export default function RentedContent({
               movePrev={movePrev}
               moveNext={moveNext}
               onMediaPrimaryAction={handleOpenMediaDetail}
+              onCardClick={(item) => handleCardClick(item.id)}
               onOpenSection={(_, item) => {
                 if (item) handleOpenMediaDetail(item);
               }}

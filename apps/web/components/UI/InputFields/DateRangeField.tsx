@@ -9,6 +9,7 @@ import {
   DateFieldActions,
   DateCalendarButton,
   DatePopup,
+  DatePopupScroll,
   DatePopupBody,
   DatePopupActions,
   CancelButton,
@@ -156,25 +157,30 @@ export default function DateRangeField({
           createPortal(
             <DatePopupWrapper ref={popupRef}>
               <DatePopup $top={pos.top} $left={pos.left}>
-                <DatePopupBody>
-                  <React.Suspense fallback={<div>{t("common.loading")}</div>}>
-                    <RangeCalendar
-                      start={tempStart}
-                      end={tempEnd}
-                      onChangeStart={setTempStart}
-                      onChangeEnd={setTempEnd}
-                    />
-                  </React.Suspense>
-                </DatePopupBody>
+                <DatePopupScroll>
+                  <DatePopupBody>
+                    <React.Suspense fallback={<div>{t("common.loading")}</div>}>
+                      <RangeCalendar
+                        start={tempStart}
+                        end={tempEnd}
+                        onChangeStart={setTempStart}
+                        onChangeEnd={setTempEnd}
+                      />
+                    </React.Suspense>
+                  </DatePopupBody>
 
-                <DatePopupActions>
-                  <CancelButton onClick={handleCancel}>
-                    {t("common.cancel")}
-                  </CancelButton>
-                  <GenericButton variant={VARIANT.PRIMARY} onClick={handleSave}>
-                    {t("common.save")}
-                  </GenericButton>
-                </DatePopupActions>
+                  <DatePopupActions>
+                    <CancelButton onClick={handleCancel}>
+                      {t("common.cancel")}
+                    </CancelButton>
+                    <GenericButton
+                      variant={VARIANT.PRIMARY}
+                      onClick={handleSave}
+                    >
+                      {t("common.save")}
+                    </GenericButton>
+                  </DatePopupActions>
+                </DatePopupScroll>
               </DatePopup>
             </DatePopupWrapper>,
             document.body,

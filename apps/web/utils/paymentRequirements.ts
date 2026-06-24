@@ -57,6 +57,19 @@ export type AdmissionValue =
 export const toText = (value: string | string[]) =>
   Array.isArray(value) ? value.join("") : value;
 
+export const parsePaymentAmount = (
+  value: string | null | undefined,
+): number | null => {
+  const normalizedValue = value?.trim();
+  if (!normalizedValue) return null;
+
+  const amount = Number(normalizedValue);
+  return Number.isFinite(amount) ? amount : null;
+};
+
+export const isValidPaymentAmount = (value: string): boolean =>
+  !value.trim() || parsePaymentAmount(value) !== null;
+
 export const getPhysicalProductConfig = (t: TFunction) => ({
   title: t("contents.payment.physicalProduct.title"),
   description: t("contents.payment.physicalProduct.description"),
@@ -87,6 +100,12 @@ export const PAYMENTS_FORM_FIELDS = {
   VISIBILITY: "visibility",
   MAX_ACCESS_LIMIT: "maxAccessLimit",
 } as const;
+
+export const PAYMENT_AMOUNT_FIELDS = [
+  PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT,
+  PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT,
+] as const;
+
 export type PaymentFormField =
   (typeof PAYMENTS_FORM_FIELDS)[keyof typeof PAYMENTS_FORM_FIELDS];
 

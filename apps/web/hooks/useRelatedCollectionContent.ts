@@ -10,6 +10,7 @@ import {
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
 import { getContentTypeLabel } from "@/utils/content";
+import { resolveContentThumbnailUrl } from "@/utils/media";
 import {
   getContentDetail,
   type ContentDetailResponse,
@@ -87,7 +88,11 @@ export function useRelatedCollectionContent(
             level: fallback.level,
             formatLabel: getContentTypeLabel(row.contentType),
             formatType: row.contentType,
-            image: detail?.thumbnailUrl ?? fallback.image,
+            image:
+              resolveContentThumbnailUrl(
+                detail?.thumbnailUrl,
+                detail?.thumbnailLandscapeUrl,
+              ) ?? fallback.image,
             buttons: fallback.buttons,
           } as TutorialVideo;
         }),

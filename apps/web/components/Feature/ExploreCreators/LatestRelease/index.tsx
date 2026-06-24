@@ -4,7 +4,14 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
-import { ACCESS_TYPE_FREE, VARIANT } from "@/utils/Constants";
+import {
+  ACCESS_TYPE_FREE,
+  EXPLORE_PAGE_SIZE,
+  EXPLORE_TABS,
+  URL_FORMAT_IDS,
+  VARIANT,
+} from "@/utils/Constants";
+import Skeleton from "@/components/UI/Skeleton";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import CreatorFiltersControl from "../Hero/CreatorsFilters";
@@ -19,24 +26,18 @@ import {
 import { useTranslation } from "react-i18next";
 import { FilterSectionKey } from "@/types/filters";
 import {
+  CardsColumn,
   CardsGrid,
   ContentGrid,
   FiltersColumn,
   HeaderTabs,
   HeaderWrap,
+  LoadMoreButton,
+  LoadMoreContainer,
   ResultsState,
   Section,
   TabButton,
 } from "./styles";
-import { tabs } from "@/utils/common";
-
-const EXPLORE_TABS: { label: string; sort: ExploreContentSort }[] = [
-  { label: tabs[0], sort: EXPLORE_CONTENT_SORT.NEW },
-  { label: tabs[1], sort: EXPLORE_CONTENT_SORT.POPULAR },
-  { label: tabs[2], sort: EXPLORE_CONTENT_SORT.ALL },
-];
-
-const URL_FORMAT_IDS = new Set(["video", "audio", "pdf", "epub", "web"]);
 
 function normalizeUrlFormat(format: string | null) {
   if (!format) return null;
@@ -83,10 +84,16 @@ export default function LatestRelease() {
   );
   const [activeExploreSort, setActiveExploreSort] =
     useState<ExploreContentSort>(initialExploreSort);
+  const [limit, setLimit] = useState(12);
 
   useEffect(() => {
     setActiveExploreSort(initialExploreSort);
   }, [initialExploreSort]);
+
+  const handleSortChange = (sort: ExploreContentSort) => {
+    setActiveExploreSort(sort);
+    setLimit(12);
+  };
 
   const {
     creatorLabels: allCreatorLabels,
@@ -158,7 +165,14 @@ export default function LatestRelease() {
   const { tutorials, isLoading } = useExploreContent({
     sort: activeExploreSort,
     filters: exploreFilters,
+    limit,
   });
+
+  const hasMore = tutorials.length >= limit;
+
+  const handleLoadMore = () => {
+    setLimit((prev) => prev + 12);
+  };
 
   const filterRefs = { filterButtonRef, filterOverlayRef };
   const filterState = {
@@ -196,9 +210,9 @@ export default function LatestRelease() {
               }
               size="sm"
               $active={activeExploreSort === tab.sort}
-              onClick={() => setActiveExploreSort(tab.sort)}
+              onClick={() => handleSortChange(tab.sort)}
             >
-              <MonoText $use="Body_Medium">{tab.label}</MonoText>
+              <MonoText $use="Body_Medium">{t(tab.labelKey)}</MonoText>
             </TabButton>
           ))}
         </HeaderTabs>
@@ -222,14 +236,12 @@ export default function LatestRelease() {
           />
         </FiltersColumn>
 
-        <div>
+        <CardsColumn>
           <CardsGrid>
             {isLoading ? (
-              <ResultsState>
-                <MonoText $use="Body_Medium">
-                  {t("nav.explore.loading")}
-                </MonoText>
-              </ResultsState>
+              Array.from({ length: EXPLORE_PAGE_SIZE }).map((_, i) => (
+                <Skeleton.Card key={i} />
+              ))
             ) : tutorials.length > 0 ? (
               tutorials.map((tutorial) => (
                 <TutorialCard key={tutorial.id} tutorial={tutorial} />
@@ -242,7 +254,18 @@ export default function LatestRelease() {
               </ResultsState>
             )}
           </CardsGrid>
-        </div>
+          {hasMore && !isLoading && (
+            <LoadMoreContainer>
+              <LoadMoreButton
+                variant="primary"
+                type="button"
+                onClick={handleLoadMore}
+              >
+                {t("creators.loadMore")}
+              </LoadMoreButton>
+            </LoadMoreContainer>
+          )}
+        </CardsColumn>
       </ContentGrid>
     </Section>
   );

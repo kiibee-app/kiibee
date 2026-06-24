@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
 import BackButtonIcon from "@/assets/icons/BackButtonIcon";
 import { ShareIcon } from "@/assets/icons/shareIcon";
+import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import type {
   SingleContentBodyProps,
   SingleContentCreatorProps,
@@ -11,7 +12,13 @@ import type {
 } from "@/types/contentTypes";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
-import { VARIANT } from "@/utils/Constants";
+import {
+  CREATOR,
+  CREATOR_CHANNEL_AVATAR_TEXT,
+  isString,
+  VARIANT,
+} from "@/utils/Constants";
+import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import {
   BackButton,
   BodyTextWrap,
@@ -95,21 +102,31 @@ export function SingleContentHero({
 }
 
 function SingleContentCreator({ creator }: SingleContentCreatorProps) {
-  return (
-    <CreatorRow>
-      {creator.avatar ? (
-        <CreatorAvatar>
-          <Image
-            src={creator.avatar}
-            alt={creator.avatarAlt ?? creator.name}
-            fill
-            priority
-          />
-        </CreatorAvatar>
-      ) : null}
+  const initial = creator.name.trim().charAt(0).toUpperCase() || CREATOR[0];
+  const content = (
+    <>
+      <CreatorAvatar>
+        <CreatorChannelAvatar
+          avatarUrl={isString(creator.avatar) ? creator.avatar : null}
+          initial={initial}
+          alt={creator.avatarAlt ?? creator.name}
+          sizes="30px"
+          initialUse={CREATOR_CHANNEL_AVATAR_TEXT.COMPACT}
+        />
+      </CreatorAvatar>
       <CreatorName>{creator.name}</CreatorName>
-    </CreatorRow>
+    </>
   );
+
+  if (creator.id) {
+    return (
+      <CreatorRow as={Link} href={getPublicCreatorProfilePath(creator.id)}>
+        {content}
+      </CreatorRow>
+    );
+  }
+
+  return <CreatorRow>{content}</CreatorRow>;
 }
 
 export function SingleContentBody({
@@ -122,6 +139,7 @@ export function SingleContentBody({
   primaryActions,
   expiry,
   metaItems,
+  accessGate,
 }: SingleContentBodyProps) {
   const safeDescriptions = descriptions ?? [];
   const safeTags = tags ?? [];
@@ -155,52 +173,58 @@ export function SingleContentBody({
         </TagRow>
       ) : null}
 
-      {actions.length === 1 ? (
-        <MainAction
-          onClick={actions[0].onClick}
-          type="button"
-          disabled={actions[0].disabled}
-          aria-label={actions[0].ariaLabel ?? actions[0].label}
-        >
-          <MainActionText>{actions[0].label}</MainActionText>
-        </MainAction>
-      ) : null}
+      {accessGate ? (
+        accessGate
+      ) : (
+        <>
+          {actions.length === 1 ? (
+            <MainAction
+              onClick={actions[0].onClick}
+              type="button"
+              disabled={actions[0].disabled}
+              aria-label={actions[0].ariaLabel ?? actions[0].label}
+            >
+              <MainActionText>{actions[0].label}</MainActionText>
+            </MainAction>
+          ) : null}
 
-      {actions.length > 1 ? (
-        <PricingCtaRow>
-          {actions.map((action) => {
-            const variant = action.variant ?? VARIANT.SOFT_OUTLINE;
-            const isPrimary = variant === VARIANT.PRIMARY;
+          {actions.length > 1 ? (
+            <PricingCtaRow>
+              {actions.map((action) => {
+                const variant = action.variant ?? VARIANT.SOFT_OUTLINE;
+                const isPrimary = variant === VARIANT.PRIMARY;
 
-            return (
-              <GenericButton
-                key={action.label}
-                type="button"
-                variant={variant}
-                size="lg"
-                minWidth="160px"
-                className="pricing-cta"
-                onClick={action.onClick}
-                disabled={action.disabled}
-                aria-label={action.ariaLabel ?? action.label}
-              >
-                {action.subtitle ? (
-                  <PricingCtaContent>
-                    <MonoText $use="Body_Medium" color="inherit">
-                      {action.label}
-                    </MonoText>
-                    <PricingCtaSubtext $isPrimary={isPrimary}>
-                      {action.subtitle}
-                    </PricingCtaSubtext>
-                  </PricingCtaContent>
-                ) : (
-                  action.label
-                )}
-              </GenericButton>
-            );
-          })}
-        </PricingCtaRow>
-      ) : null}
+                return (
+                  <GenericButton
+                    key={action.label}
+                    type="button"
+                    variant={variant}
+                    size="lg"
+                    minWidth="160px"
+                    className="pricing-cta"
+                    onClick={action.onClick}
+                    disabled={action.disabled}
+                    aria-label={action.ariaLabel ?? action.label}
+                  >
+                    {action.subtitle ? (
+                      <PricingCtaContent>
+                        <MonoText $use="Body_Medium" color="inherit">
+                          {action.label}
+                        </MonoText>
+                        <PricingCtaSubtext $isPrimary={isPrimary}>
+                          {action.subtitle}
+                        </PricingCtaSubtext>
+                      </PricingCtaContent>
+                    ) : (
+                      action.label
+                    )}
+                  </GenericButton>
+                );
+              })}
+            </PricingCtaRow>
+          ) : null}
+        </>
+      )}
 
       {expiry ? (
         <ExpiryText $tone={expiry.tone}>{expiry.label}</ExpiryText>

@@ -8,11 +8,12 @@ import { ShareIcon } from "@/assets/icons/shareIcon";
 import COLORS from "@repo/ui/colors";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { CARD_BRANDS } from "@/utils/Constants";
-import {
-  CARD_BRAND_LOGOS,
-  type ViewerBillingHistoryItem,
-} from "@/utils/dummyData/viewerBillingMockData";
+import { CARD_BRAND_LOGOS } from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
+import { useViewerBillingInvoice } from "@/hooks/useViewerBillingInvoice";
+import useShare from "@/hooks/useShare";
+import GenericLoader from "@/components/UI/GenericLoader";
+import { LOADER_VARIANT } from "@/utils/ui";
 import {
   InvoiceCard,
   InvoiceContentMeta,
@@ -25,21 +26,27 @@ import {
   InvoiceShareButton,
   InvoiceThumb,
 } from "./styles";
+import { resolveCardBrand } from "@/hooks/useViewerBillingHistory";
 
 type InvoiceModalProps = {
   visible: boolean;
-  invoice: ViewerBillingHistoryItem | null;
+  billingId: string | null;
   onClose: () => void;
 };
 
 export default function InvoiceModal({
   visible,
-  invoice,
+  billingId,
   onClose,
 }: InvoiceModalProps) {
   const { t } = useTranslation();
+  const { share } = useShare();
+  const { invoice, isLoading } = useViewerBillingInvoice(billingId ?? "");
 
-  if (!invoice) return null;
+  const { contentTitle, contentImage, creatorName } =
+    invoice?.contentDetails ?? {};
+  const paymentMethod = resolveCardBrand(invoice?.paymentMethod) ?? null;
+  const cardNumber = invoice?.cardNumber ? invoice.cardNumber.slice(-3) : "";
 
   return (
     <GenericModal
@@ -51,102 +58,116 @@ export default function InvoiceModal({
       textAlign={MODAL_ALIGN.START}
       contentMarginBottom="0"
     >
-      <InvoiceCard>
-        <InvoiceGrid>
-          <InvoiceInfo>
-            <InvoiceLabel>
-              {t(
-                DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal
-                  .orderNumber,
-              )}
-            </InvoiceLabel>
-            <MonoText $use="Body_SemiBold">{invoice.orderNumber}</MonoText>
-          </InvoiceInfo>
+      {isLoading || !invoice ? (
+        <GenericLoader variant={LOADER_VARIANT.INLINE} />
+      ) : (
+        <InvoiceCard>
+          <InvoiceGrid>
+            <InvoiceInfo>
+              <InvoiceLabel>
+                {t(
+                  DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal
+                    .orderNumber,
+                )}
+              </InvoiceLabel>
+              <MonoText $use="Body_SemiBold">{invoice.orderNumber}</MonoText>
+            </InvoiceInfo>
 
-          <InvoiceInfo>
-            <InvoiceLabel>
-              {t(DASHBOARD_VIEWER_BILLINGS.billingHistory.tableHeaders.type)}
-            </InvoiceLabel>
-            <MonoText $use="Body_SemiBold">{invoice.type}</MonoText>
-          </InvoiceInfo>
+            <InvoiceInfo>
+              <InvoiceLabel>
+                {t(DASHBOARD_VIEWER_BILLINGS.billingHistory.tableHeaders.type)}
+              </InvoiceLabel>
+              <MonoText $use="Body_SemiBold">{invoice.type}</MonoText>
+            </InvoiceInfo>
 
-          <InvoiceInfo>
-            <InvoiceLabel>
-              {t(
-                DASHBOARD_VIEWER_BILLINGS.billingHistory.tableHeaders
-                  .paymentDate,
-              )}
-            </InvoiceLabel>
-            <MonoText $use="Body_SemiBold">{invoice.paymentDate}</MonoText>
-          </InvoiceInfo>
+            <InvoiceInfo>
+              <InvoiceLabel>
+                {t(
+                  DASHBOARD_VIEWER_BILLINGS.billingHistory.tableHeaders
+                    .paymentDate,
+                )}
+              </InvoiceLabel>
+              <MonoText $use="Body_SemiBold">{invoice.paymentDate}</MonoText>
+            </InvoiceInfo>
 
-          <InvoiceInfo>
-            <InvoiceLabel>
-              {t(DASHBOARD_VIEWER_BILLINGS.billingHistory.tableHeaders.amount)}
-            </InvoiceLabel>
-            <MonoText $use="Body_SemiBold">{invoice.amount}</MonoText>
-          </InvoiceInfo>
-        </InvoiceGrid>
+            <InvoiceInfo>
+              <InvoiceLabel>
+                {t(
+                  DASHBOARD_VIEWER_BILLINGS.billingHistory.tableHeaders.amount,
+                )}
+              </InvoiceLabel>
+              <MonoText $use="Body_SemiBold">{invoice.amount}</MonoText>
+            </InvoiceInfo>
+          </InvoiceGrid>
 
-        <InvoiceInfo>
-          <InvoiceLabel>
-            {t(
-              DASHBOARD_VIEWER_BILLINGS.billingHistory.tableHeaders
-                .paymentMethod,
-            )}
-          </InvoiceLabel>
-          <InvoicePaymentMethod>
-            <InvoiceLogoWrap>
-              <SafeImage
-                src={CARD_BRAND_LOGOS[invoice.paymentMethod.brand]}
-                alt={invoice.paymentMethod.brand}
-                width={
-                  invoice.paymentMethod.brand === CARD_BRANDS.VISA ? 31 : 21
-                }
-                height={
-                  invoice.paymentMethod.brand === CARD_BRANDS.VISA ? 10 : 16
-                }
-              />
-            </InvoiceLogoWrap>
-            <MonoText $use="Body_SemiBold">
-              **** {invoice.paymentMethod.last4}
+          {paymentMethod && (
+            <InvoiceInfo>
+              <InvoiceLabel>
+                {t(
+                  DASHBOARD_VIEWER_BILLINGS.billingHistory.tableHeaders
+                    .paymentMethod,
+                )}
+              </InvoiceLabel>
+              <InvoicePaymentMethod>
+                {paymentMethod && (
+                  <InvoiceLogoWrap>
+                    <SafeImage
+                      src={CARD_BRAND_LOGOS[paymentMethod]}
+                      alt={paymentMethod}
+                      width={paymentMethod === CARD_BRANDS.VISA ? 31 : 21}
+                      height={paymentMethod === CARD_BRANDS.VISA ? 10 : 16}
+                    />
+                  </InvoiceLogoWrap>
+                )}
+                {cardNumber && (
+                  <MonoText $use="Body_SemiBold">**** {cardNumber}</MonoText>
+                )}
+              </InvoicePaymentMethod>
+            </InvoiceInfo>
+          )}
+
+          {(contentTitle || contentImage || creatorName) && (
+            <InvoiceInfo>
+              <InvoiceLabel>
+                {t(
+                  DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal
+                    .contentDetails,
+                )}
+              </InvoiceLabel>
+              <InvoiceContentMeta>
+                {contentImage && (
+                  <InvoiceThumb>
+                    <SafeImage
+                      src={contentImage}
+                      alt=""
+                      fill
+                      sizes="34px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </InvoiceThumb>
+                )}
+                <InvoiceContentText>
+                  {contentTitle && (
+                    <MonoText $use="Body_SemiBold">{contentTitle}</MonoText>
+                  )}
+                  {creatorName && (
+                    <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+                      {creatorName}
+                    </MonoText>
+                  )}
+                </InvoiceContentText>
+              </InvoiceContentMeta>
+            </InvoiceInfo>
+          )}
+
+          <InvoiceShareButton type="button" onClick={share}>
+            <ShareIcon width={16} height={16} />
+            <MonoText $use="Body_Medium">
+              {t(DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal.share)}
             </MonoText>
-          </InvoicePaymentMethod>
-        </InvoiceInfo>
-
-        <InvoiceInfo>
-          <InvoiceLabel>
-            {t(
-              DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal
-                .contentDetails,
-            )}
-          </InvoiceLabel>
-          <InvoiceContentMeta>
-            <InvoiceThumb>
-              <SafeImage
-                src={invoice.contentImage}
-                alt=""
-                fill
-                sizes="34px"
-                style={{ objectFit: "cover" }}
-              />
-            </InvoiceThumb>
-            <InvoiceContentText>
-              <MonoText $use="Body_SemiBold">{invoice.contentTitle}</MonoText>
-              <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-                {invoice.creatorName}
-              </MonoText>
-            </InvoiceContentText>
-          </InvoiceContentMeta>
-        </InvoiceInfo>
-
-        <InvoiceShareButton type="button">
-          <ShareIcon width={16} height={16} />
-          <MonoText $use="Body_Medium">
-            {t(DASHBOARD_VIEWER_BILLINGS.billingHistory.invoiceModal.share)}
-          </MonoText>
-        </InvoiceShareButton>
-      </InvoiceCard>
+          </InvoiceShareButton>
+        </InvoiceCard>
+      )}
     </GenericModal>
   );
 }

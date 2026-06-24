@@ -9,10 +9,14 @@ export const API_ENDPOINTS = {
   ALL_CREATOR_REQUESTS: "/auth/all-creator-requests",
   ALL_VIEWERS: "/auth/all-viewers",
   DASHBOARD_STATS: "/auth/dashboard-stats",
+  CREATOR_UPLOADS: "/content/all",
+  VIEWER_SALES: (viewerId: string) =>
+    `/order/admin/billing-history/${viewerId}`,
 } as const;
 
 export const ERROR_MESSAGES = {
   LOGIN_FAILED: "Login failed",
+  FETCH_CREATOR_UPLOADS_FAILED: "Failed to fetch creator uploads",
 } as const;
 
 export const ACTION_ICONS = {
@@ -51,7 +55,9 @@ export const QUERY_KEY = {
   CREATOR_REQUESTS: "creator-requests",
   EXISTING_CREATORS: "existing-creators",
   VIEWERS: "viewers",
+  VIEWER_SALES: "viewer-sales",
   DASHBOARD_STATS: "dashboard-stats",
+  CREATOR_UPLOADS: "creator-uploads",
 } as const;
 
 export const DASHBOARD_STAT_KEY = {
@@ -63,3 +69,15 @@ export const DASHBOARD_STAT_KEY = {
   FREE_CONTENT: "free-content",
   PAID_CONTENT: "paid-content",
 } as const;
+
+export const DEBOUNCE_DELAY = 300;
+
+export const PLACEHOLDERS = {
+  SEARCH_USERS: "Search creators...",
+} as const;
+
+export const CREATOR_PLAN_FILTER_OPTIONS = [
+  "Try Kiibee",
+  "Start-up",
+  "Pro",
+] as const;

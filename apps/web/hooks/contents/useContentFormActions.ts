@@ -13,6 +13,7 @@ import {
   getFileNameWithoutExtension,
   normalizeContentTypeValue,
 } from "@/utils/content";
+import { type ContentMediaUrlResponse } from "@/utils/contentApi";
 import { useContentForm } from "@/components/Feature/Contents/ContentFormContext";
 import { useAppearanceForm } from "@/components/Feature/Contents/Appearance/AppearanceFormContext";
 import {
@@ -31,8 +32,6 @@ import {
 import { AccessDurationValue } from "@/utils/common";
 import {
   ACCESS_TYPE_FREE,
-  ADMISSION_REQUIREMENT_PAYMENT,
-  ADMISSION_REQUIREMENT_FREE,
   CONTENT_FORM_FIELDS,
   ERROR_MESSAGES,
   DOWNLOAD_LIMIT_DEFAULT,
@@ -52,10 +51,24 @@ import {
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
-import { MediaUrlResponse } from "@/components/Feature/Contents/ContentUploadModal";
-import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
+import {
+  ADMISSION_TYPE,
+  isValidPaymentAmount,
+  PAYMENT_AMOUNT_FIELDS,
+  parsePaymentAmount,
+} from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
+import type { SaveContentSettingPayload } from "@/hooks/contents/useContentSettings";
+
+type SettingsSnapshot = {
+  accessType: AdmissionRequirementValue;
+  passwords: string;
+  description: string;
+  rentalAmount: string;
+  purchaseAmount: string;
+  accessDuration: AccessDurationValue;
+};
 
 type Params = {
   activeTab: ContentTab;
@@ -73,7 +86,7 @@ type Params = {
     backToTypeSelect: () => void;
   };
   contentSettingAccessType?: string;
-  saveContentSetting?: (accessType: string) => Promise<void>;
+  saveContentSetting?: (payload: SaveContentSettingPayload) => Promise<void>;
 };
 
 export function useContentFormActions({
@@ -113,6 +126,8 @@ export function useContentFormActions({
   const [editingContent, setEditingContent] =
     useState<CollectionContentRow | null>(null);
   const [showSaveSuccessModal, setShowSaveSuccessModal] = useState(false);
+  const [isEditingLoading, setIsEditingLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   const [collectionAccessType, setCollectionAccessType] =
     useState<AdmissionRequirementValue>(ADMISSION_REQUIREMENT_VALUES.free);
@@ -122,42 +137,76 @@ export function useContentFormActions({
   const [collectionPurchaseAmount, setCollectionPurchaseAmount] = useState("");
   const [collectionAccessDuration, setCollectionAccessDuration] =
     useState<AccessDurationValue>(PAYMENT_DEFAULT_ACCESS_DURATION);
+  const [savedSettings, setSavedSettings] = useState<SettingsSnapshot>({
+    accessType: ADMISSION_REQUIREMENT_VALUES.free,
+    passwords: "",
+    description: "",
+    rentalAmount: "",
+    purchaseAmount: "",
+    accessDuration: PAYMENT_DEFAULT_ACCESS_DURATION,
+  });
 
   const [prevCollectionId, setPrevCollectionId] = useState<string | null>(null);
-
-  if (selectedCollection && selectedCollection.id !== prevCollectionId) {
-    setPrevCollectionId(selectedCollection.id);
-    const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
-    const uiAccessType =
-      apiToUiAccessTypeMap[apiAccessType] || ADMISSION_REQUIREMENT_VALUES.free;
-    setCollectionAccessType(uiAccessType);
-    setCollectionPasswords("");
-    setCollectionDescription(selectedCollection.description ?? "");
-    setCollectionRentalAmount(
-      selectedCollection.rentPrice != null
-        ? String(selectedCollection.rentPrice)
-        : "",
-    );
-    setCollectionPurchaseAmount(
-      selectedCollection.buyPrice != null
-        ? String(selectedCollection.buyPrice)
-        : "",
-    );
-    setCollectionAccessDuration(
-      (selectedCollection.rentDuration as AccessDurationValue) ??
-        (PAYMENT_DEFAULT_ACCESS_DURATION as AccessDurationValue),
-    );
-  } else if (!selectedCollection && prevCollectionId !== null) {
-    setPrevCollectionId(null);
-  }
-
-  const [contentSettingLoaded, setContentSettingLoaded] = useState(false);
 
   const contentSettingToUiMap: Record<string, AdmissionRequirementValue> = {
     free: ADMISSION_REQUIREMENT_VALUES.free,
     set_password: ADMISSION_REQUIREMENT_VALUES.password,
     request_email: ADMISSION_REQUIREMENT_VALUES.email,
   };
+
+  const buildSettingsSnapshot = (
+    accessType: AdmissionRequirementValue,
+    overrides?: Partial<SettingsSnapshot>,
+  ): SettingsSnapshot => ({
+    accessType,
+    passwords: "",
+    description: "",
+    rentalAmount: "",
+    purchaseAmount: "",
+    accessDuration: PAYMENT_DEFAULT_ACCESS_DURATION,
+    ...overrides,
+  });
+
+  const applySettingsSnapshot = (snapshot: SettingsSnapshot) => {
+    setCollectionAccessType(snapshot.accessType);
+    setCollectionPasswords(snapshot.passwords);
+    setCollectionDescription(snapshot.description);
+    setCollectionRentalAmount(snapshot.rentalAmount);
+    setCollectionPurchaseAmount(snapshot.purchaseAmount);
+    setCollectionAccessDuration(snapshot.accessDuration);
+    setSavedSettings(snapshot);
+  };
+
+  if (selectedCollection && selectedCollection.id !== prevCollectionId) {
+    setPrevCollectionId(selectedCollection.id);
+    const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
+    const uiAccessType =
+      apiToUiAccessTypeMap[apiAccessType] || ADMISSION_REQUIREMENT_VALUES.free;
+    applySettingsSnapshot(
+      buildSettingsSnapshot(uiAccessType, {
+        description: selectedCollection.description ?? "",
+        rentalAmount:
+          selectedCollection.rentPrice != null
+            ? String(selectedCollection.rentPrice)
+            : "",
+        purchaseAmount:
+          selectedCollection.buyPrice != null
+            ? String(selectedCollection.buyPrice)
+            : "",
+        accessDuration:
+          (selectedCollection.rentDuration as AccessDurationValue) ??
+          PAYMENT_DEFAULT_ACCESS_DURATION,
+      }),
+    );
+  } else if (!selectedCollection && prevCollectionId !== null) {
+    setPrevCollectionId(null);
+    const uiAccessType =
+      contentSettingToUiMap[contentSettingAccessType ?? ""] ||
+      ADMISSION_REQUIREMENT_VALUES.free;
+    applySettingsSnapshot(buildSettingsSnapshot(uiAccessType));
+  }
+
+  const [contentSettingLoaded, setContentSettingLoaded] = useState(false);
 
   if (
     !selectedCollection &&
@@ -167,8 +216,57 @@ export function useContentFormActions({
     const uiAccessType =
       contentSettingToUiMap[contentSettingAccessType] ||
       ADMISSION_REQUIREMENT_VALUES.free;
-    setCollectionAccessType(uiAccessType);
+    applySettingsSnapshot(buildSettingsSnapshot(uiAccessType));
     setContentSettingLoaded(true);
+  }
+  const collectionId = selectedCollection?.id ?? null;
+  const [syncedCollectionId, setSyncedCollectionId] = useState<string | null>(
+    collectionId,
+  );
+  const [syncedSettingsKey, setSyncedSettingsKey] = useState(
+    contentSettingAccessType ?? null,
+  );
+
+  if (selectedCollection) {
+    if (collectionId !== syncedCollectionId) {
+      setSyncedCollectionId(collectionId);
+      setSyncedSettingsKey(null);
+
+      const apiAccessType = selectedCollection.accessType ?? ACCESS_TYPE_FREE;
+      const uiAccessType =
+        apiToUiAccessTypeMap[apiAccessType] ||
+        ADMISSION_REQUIREMENT_VALUES.free;
+      setCollectionAccessType(uiAccessType);
+      setCollectionPasswords("");
+      setCollectionDescription(selectedCollection.description ?? "");
+      setCollectionRentalAmount(
+        selectedCollection.rentPrice != null
+          ? String(selectedCollection.rentPrice)
+          : "",
+      );
+      setCollectionPurchaseAmount(
+        selectedCollection.buyPrice != null
+          ? String(selectedCollection.buyPrice)
+          : "",
+      );
+      setCollectionAccessDuration(
+        (selectedCollection.rentDuration as AccessDurationValue) ??
+          (PAYMENT_DEFAULT_ACCESS_DURATION as AccessDurationValue),
+      );
+    }
+  } else {
+    if (syncedCollectionId !== null) {
+      setSyncedCollectionId(null);
+      setSyncedSettingsKey(null);
+    }
+
+    const settingsKey = contentSettingAccessType ?? null;
+    if (settingsKey && settingsKey !== syncedSettingsKey) {
+      setSyncedSettingsKey(settingsKey);
+      const uiAccessType =
+        contentSettingToUiMap[settingsKey] || ADMISSION_REQUIREMENT_VALUES.free;
+      setCollectionAccessType(uiAccessType);
+    }
   }
 
   const handleUploadSuccess = (
@@ -178,7 +276,9 @@ export function useContentFormActions({
     createdContentId?: string,
     details?: { title: string; description: string },
   ) => {
-    setActiveTabAndQuery(tab);
+    if (!createdContentId) {
+      setActiveTabAndQuery(tab);
+    }
     setUploadedFile(file ?? null);
     setUploadedPreview(preview ?? null);
     const prefilledState =
@@ -302,16 +402,78 @@ export function useContentFormActions({
     return true;
   };
 
+  const validateContentPaymentAmounts = () => {
+    if (formState.admissionRequirement !== ADMISSION_TYPE.PAYMENT) {
+      setFormErrors((prev) => {
+        if (!prev.rentalAmount && !prev.purchaseAmount) return prev;
+        const mergedErrors = { ...prev };
+        delete mergedErrors.rentalAmount;
+        delete mergedErrors.purchaseAmount;
+        return mergedErrors;
+      });
+      return true;
+    }
+
+    const invalidNumberMessage = t("contents.payment.common.invalidNumber");
+    const nextErrors: Partial<ContentFormErrors> = {};
+
+    PAYMENT_AMOUNT_FIELDS.forEach((field) => {
+      if (!isValidPaymentAmount(formState[field])) {
+        nextErrors[field] = invalidNumberMessage;
+      }
+    });
+
+    setFormErrors((prev) => {
+      const mergedErrors = { ...prev };
+      delete mergedErrors.rentalAmount;
+      delete mergedErrors.purchaseAmount;
+      return { ...mergedErrors, ...nextErrors };
+    });
+
+    if (Object.keys(nextErrors).length > 0) {
+      toast.error(invalidNumberMessage);
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateCollectionPaymentAmounts = () => {
+    if (collectionAccessType !== ADMISSION_REQUIREMENT_VALUES.payment) {
+      return true;
+    }
+
+    const hasInvalidRental = !isValidPaymentAmount(collectionRentalAmount);
+    const hasInvalidPurchase = !isValidPaymentAmount(collectionPurchaseAmount);
+
+    if (hasInvalidRental || hasInvalidPurchase) {
+      toast.error(t("contents.payment.common.invalidNumber"));
+      return false;
+    }
+
+    return true;
+  };
+
   const saveUploadedContent = async () => {
     if (!editingContent?.id) {
       toast.error(t(ERROR_MESSAGES.NO_CONTENT));
       return;
     }
 
-    if (activeTab === ADD_CONTENT_TABS.METADATA && !validateMetadataForm()) {
+    const isPublic = formState.visibility === VISIBILITY_PUBLIC_LOWER;
+
+    if (
+      (activeTab === ADD_CONTENT_TABS.METADATA || isPublic) &&
+      !validateMetadataForm()
+    ) {
       return;
     }
 
+    if (!validateContentPaymentAmounts()) {
+      return;
+    }
+
+    setIsSaving(true);
     try {
       clearFormErrors();
       const [thumbnailUrl, thumbnailLandscapeUrl] = await Promise.all([
@@ -333,6 +495,9 @@ export function useContentFormActions({
       await axiosClient.put(API.content.update(editingContent.id), payload);
 
       await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: [API.content.get(editingContent.id)],
+        }),
         selectedCollection?.id
           ? queryClient.invalidateQueries({
               queryKey: [API.content.collection(selectedCollection.id)],
@@ -341,30 +506,36 @@ export function useContentFormActions({
         queryClient.invalidateQueries({ queryKey: [API.collection.getAll] }),
       ]);
 
+      toast.success(t("settings.notifications.successModal.message"));
       setShowSaveSuccessModal(true);
     } catch (error) {
       handleSaveError(error);
+    } finally {
+      setIsSaving(false);
     }
   };
 
   const saveCollectionSettings = async () => {
     if (!selectedCollection) return;
+    if (!validateCollectionPaymentAmounts()) return;
     try {
       const apiAccessType =
         uiToApiAccessTypeMap[collectionAccessType] ?? ACCESS_TYPE_FREE;
+      const parsedRentalAmount = parsePaymentAmount(collectionRentalAmount);
+      const parsedPurchaseAmount = parsePaymentAmount(collectionPurchaseAmount);
 
       const hasRental =
         collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
-        collectionRentalAmount !== "";
+        collectionRentalAmount.trim() !== "";
       const hasPurchase =
         collectionAccessType === ADMISSION_REQUIREMENT_VALUES.payment &&
-        collectionPurchaseAmount !== "";
+        collectionPurchaseAmount.trim() !== "";
 
       await axiosClient.patch(API.collection.update(selectedCollection.id), {
         accessType: apiAccessType,
         description: collectionDescription.trim(),
-        rentPrice: hasRental ? parseFloat(collectionRentalAmount) : null,
-        buyPrice: hasPurchase ? parseFloat(collectionPurchaseAmount) : null,
+        rentPrice: hasRental ? parsedRentalAmount : null,
+        buyPrice: hasPurchase ? parsedPurchaseAmount : null,
         rentDuration: hasRental ? collectionAccessDuration : null,
         password:
           collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
@@ -373,6 +544,11 @@ export function useContentFormActions({
             : undefined,
       });
 
+      const nextHasPassword =
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+        (Boolean(collectionPasswords.trim()) ||
+          Boolean(selectedCollection.hasPassword));
+
       setCollections((prev) =>
         prev.map((c) =>
           c.id === selectedCollection.id
@@ -380,25 +556,36 @@ export function useContentFormActions({
                 ...c,
                 accessType: apiAccessType,
                 description: collectionDescription.trim(),
-                rentPrice: hasRental
-                  ? parseFloat(collectionRentalAmount)
-                  : null,
-                buyPrice: hasPurchase
-                  ? parseFloat(collectionPurchaseAmount)
-                  : null,
+                rentPrice: hasRental ? parsedRentalAmount : null,
+                buyPrice: hasPurchase ? parsedPurchaseAmount : null,
                 rentDuration: hasRental ? collectionAccessDuration : null,
+                hasPassword: nextHasPassword,
               }
             : c,
         ),
       );
 
-      setSelectedCollection({
+      const nextCollection = {
         ...selectedCollection,
         accessType: apiAccessType,
         description: collectionDescription.trim(),
-        rentPrice: hasRental ? parseFloat(collectionRentalAmount) : null,
-        buyPrice: hasPurchase ? parseFloat(collectionPurchaseAmount) : null,
+        rentPrice: hasRental ? parsedRentalAmount : null,
+        buyPrice: hasPurchase ? parsedPurchaseAmount : null,
         rentDuration: hasRental ? collectionAccessDuration : null,
+        hasPassword: nextHasPassword,
+      };
+
+      setSelectedCollection(nextCollection);
+
+      applySettingsSnapshot({
+        accessType: collectionAccessType,
+        passwords: "",
+        description: collectionDescription.trim(),
+        rentalAmount: hasRental ? collectionRentalAmount : "",
+        purchaseAmount: hasPurchase ? collectionPurchaseAmount : "",
+        accessDuration: hasRental
+          ? collectionAccessDuration
+          : PAYMENT_DEFAULT_ACCESS_DURATION,
       });
 
       await queryClient.invalidateQueries({
@@ -421,7 +608,26 @@ export function useContentFormActions({
     try {
       const apiAccessType =
         uiToContentSettingMap[collectionAccessType] ?? ADMISSION_TYPE.FREE;
-      await saveContentSetting(apiAccessType);
+      const payload: SaveContentSettingPayload = { accessType: apiAccessType };
+
+      if (
+        collectionAccessType === ADMISSION_REQUIREMENT_VALUES.password &&
+        collectionPasswords.trim()
+      ) {
+        payload.password = collectionPasswords.trim();
+      }
+
+      await saveContentSetting(payload);
+
+      applySettingsSnapshot({
+        accessType: collectionAccessType,
+        passwords: "",
+        description: "",
+        rentalAmount: "",
+        purchaseAmount: "",
+        accessDuration: PAYMENT_DEFAULT_ACCESS_DURATION,
+      });
+
       setShowSaveSuccessModal(true);
     } catch {
       toast.error(t(ERROR_MESSAGES.SAVE_SETTINGS_FAILED));
@@ -460,6 +666,10 @@ export function useContentFormActions({
       cancelAppearance();
       return;
     }
+    if (activeTab === SETTINGS) {
+      applySettingsSnapshot(savedSettings);
+      return;
+    }
     openDiscardModal();
   };
 
@@ -479,6 +689,14 @@ export function useContentFormActions({
     formState.mediaCardThumbnail !== savedFormState.mediaCardThumbnail ||
     formState.portraitThumbnail !== savedFormState.portraitThumbnail;
 
+  const hasSettingsUnsavedChanges =
+    collectionAccessType !== savedSettings.accessType ||
+    collectionPasswords !== savedSettings.passwords ||
+    collectionDescription !== savedSettings.description ||
+    collectionRentalAmount !== savedSettings.rentalAmount ||
+    collectionPurchaseAmount !== savedSettings.purchaseAmount ||
+    collectionAccessDuration !== savedSettings.accessDuration;
+
   const closeContentUpload = () => {
     contentTypeFlow.close();
   };
@@ -492,39 +710,36 @@ export function useContentFormActions({
   };
 
   const handleEditContent = async (id: string) => {
-    const item = collectionContents.find((content) => content.id === id);
-    const nextUploadTab = Object.values(ADD_CONTENT_TABS).includes(
-      activeTab as AddContentTab,
-    )
-      ? (activeTab as AddContentTab)
-      : ADD_CONTENT_TABS.GENERAL;
-
-    interface ContentDetailsResponse {
-      title?: string;
-      description?: string;
-      contentType?: string;
-      contentTypeId?: string;
-      fileKey?: string | null;
-      contentUrl?: string | null;
-      trailerUrl?: string;
-      visibility?: string;
-      publishedYear?: number;
-      duration?: number;
-      categories?: { id: string }[];
-      production_company?: string;
-      manufacturerLink?: string;
-      thumbnailUrl?: string | null;
-      thumbnailLandscapeUrl?: string | null;
-      accessType?: string;
-      rentPrice?: number;
-      buyPrice?: number;
-      maxDownloadCount?: number;
-      physicalProductLink?: string;
-      openInNewWindow?: boolean;
-      openDirectFromList?: boolean;
-    }
-
+    setIsEditingLoading(true);
     try {
+      const item = collectionContents.find((content) => content.id === id);
+
+      interface ContentDetailsResponse {
+        title?: string;
+        description?: string;
+        contentType?: string;
+        contentTypeId?: string;
+        fileKey?: string | null;
+        contentUrl?: string | null;
+        trailerUrl?: string;
+        visibility?: string;
+        publishedYear?: number;
+        duration?: number;
+        categories?: { id: string }[];
+        production_company?: string;
+        manufacturerLink?: string;
+        tags?: string[];
+        thumbnailUrl?: string | null;
+        thumbnailLandscapeUrl?: string | null;
+        accessType?: string;
+        rentPrice?: number;
+        buyPrice?: number;
+        maxDownloadCount?: number;
+        physicalProductLink?: string;
+        openInNewWindow?: boolean;
+        openDirectFromList?: boolean;
+      }
+
       const response = await axiosClient.get(API.content.get(id));
       const fullContent = (
         response as { data?: { data?: ContentDetailsResponse } }
@@ -568,11 +783,11 @@ export function useContentFormActions({
               ? API.media.videoStream
               : API.media.fileSignedUrl;
 
-          const res = await axiosClient.get<MediaUrlResponse>(endpoint, {
+          const res = await axiosClient.get<ContentMediaUrlResponse>(endpoint, {
             params: { key: fileKey },
           });
 
-          return res.data.url ?? null;
+          return res.data.url || res.data.iframeUrl || null;
         };
 
         const preview = fullContent.fileKey
@@ -593,13 +808,21 @@ export function useContentFormActions({
           category: fullContent.categories?.[0]?.id || CATEGORY_EDUCATION_LOWER,
           productionCompany: fullContent.production_company || "",
           manufacturerLink: fullContent.manufacturerLink || "",
-          tags: "",
+          tags: Array.isArray(fullContent.tags)
+            ? fullContent.tags.join(", ")
+            : "",
           mediaCardThumbnail: fullContent.thumbnailUrl || null,
           portraitThumbnail: fullContent.thumbnailLandscapeUrl || null,
           admissionRequirement:
-            fullContent.accessType === ACCESS_TYPE_FREE
-              ? ADMISSION_REQUIREMENT_FREE
-              : ADMISSION_REQUIREMENT_PAYMENT,
+            fullContent.accessType === "free"
+              ? "free"
+              : fullContent.accessType === "paid"
+                ? "payment"
+                : fullContent.accessType === "password"
+                  ? "set_password"
+                  : fullContent.accessType === "email_gated"
+                    ? "request_email"
+                    : "free",
           rentalAmount: fullContent.rentPrice
             ? String(fullContent.rentPrice)
             : "",
@@ -620,11 +843,11 @@ export function useContentFormActions({
 
         setFormState(nextFormState);
         setSavedFormState(nextFormState);
-
-        setActiveTabAndQuery(nextUploadTab);
       }
     } catch {
       toast.error(t(ERROR_MESSAGES.LOAD_DETAILS_FAILED));
+    } finally {
+      setIsEditingLoading(false);
     }
   };
 
@@ -637,6 +860,8 @@ export function useContentFormActions({
     setEditingContent,
     showSaveSuccessModal,
     setShowSaveSuccessModal,
+    isEditingLoading,
+    isSaving,
     collectionAccessType,
     setCollectionAccessType,
     collectionPasswords,
@@ -652,6 +877,7 @@ export function useContentFormActions({
     hasUnsavedChanges: hasAppearanceChanges,
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
+    hasSettingsUnsavedChanges,
     handleUploadSuccess,
     handleBackToBase,
     handleBackToBaseStateOnly,

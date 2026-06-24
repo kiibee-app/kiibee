@@ -19,9 +19,10 @@ export const API = {
     update: (id: string) => `/coupons/${id}`,
     replace: (id: string) => `/coupons/${id}`,
     delete: (id: string) => `/coupons/${id}`,
+    verify: "/coupons/verify",
   },
   media: {
-    videoInit: "/media/videos/init",
+    videoUpload: "/media/videos/upload",
     videoPartUrl: "/media/videos/part-url",
     videoComplete: "/media/videos/complete",
     videoStream: "/media/videos/stream",
@@ -39,6 +40,7 @@ export const API = {
     get: (id: string) => `/content/${id}`,
     view: (id: string, userId: string) => `/content/${id}/${userId}`,
     relatedCollection: (id: string) => `/content/${id}/related-collection`,
+    publicCollection: (id: string) => `/content/public/collection/${id}`,
     update: (id: string) => `/content/update/${id}`,
     delete: (id: string) => `/content/delete/${id}`,
     appearance: "/content/appearance",
@@ -52,6 +54,7 @@ export const API = {
   },
   creators: {
     list: "/creators",
+    all: "/creators/all",
     byId: (id: string) => `/creators/${id}`,
   },
   feed: {
@@ -74,6 +77,25 @@ export const API = {
   order: {
     create: "/order/create",
     getById: (orderId: string) => `/order/${orderId}`,
+    billingHistory: "/order/billing-history",
+    billingInvoice: (billingId: string) =>
+      `/order/billing-history/${billingId}`,
     // confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
+  },
+  payout: {
+    settlementHistory: "/payout/settlement-history",
+    stats: "/payout/stats",
+  },
+  support: {
+    contact: "/support/contact",
+  },
+  viewer: {
+    purchasedData: "/viewer/purchased-data",
+    rentedData: "/viewer/rented-data",
+    previouslyRentedData: "/viewer/previously-rented-data",
+    paymentMethods: "/viewer/payment-methods",
+    paymentMethod: (id: string) => `/viewer/payment-methods/${id}`,
+    paymentMethodDefault: (id: string) =>
+      `/viewer/payment-methods/${id}/default`,
   },
 } as const;
