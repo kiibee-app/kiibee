@@ -84,7 +84,9 @@ export default function PurchasedCollectionDetail({
     () => purchasedItems.find((item) => item.id === selectedMediaId),
     [purchasedItems, selectedMediaId],
   );
-  const isPdfLayout = selectedMedia?.mediaType === PURCHASED_MEDIA_TYPES.PDF;
+  const isPdfLayout =
+    Boolean(selectedMedia?.mediaType) &&
+    selectedMedia?.mediaType !== PURCHASED_MEDIA_TYPES.VIDEO;
   const hasSearchText = Boolean(searchValue.trim());
 
   const filteredTutorials = useMemo(() => {

@@ -25,6 +25,7 @@ export default function SingleDiscoverContent({ item }: Props) {
       hero={{
         image: item.image,
         imageAlt: t(item.titleKey),
+        contentType: item.mediaType,
         categoryLabel: t(item.categoryKey),
         mediaLabel: t(item.mediaTypeKey),
         ...(isVideo
