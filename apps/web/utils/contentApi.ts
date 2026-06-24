@@ -5,7 +5,11 @@ import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bo
 import type { SingleContentPageProps } from "@/types/contentTypes";
 import type { ImageSource } from "@/utils/Constants";
 import { JAVASCRIPT_TYPE } from "@/utils/collection";
-import { toTrimmedString } from "@/utils/Constants";
+import {
+  toTrimmedString,
+  ACCESS_TYPE_RENTED,
+  ACCESS_STATUS_EXPIRED,
+} from "@/utils/Constants";
 import { formatDateUSShort } from "@/utils/formatDate";
 import {
   type ContentType,
@@ -240,6 +244,18 @@ export const getSingleContentProps = (
   const pricingItem = { accessType, buyPrice, rentPrice, rentDurationHours };
   const isFree = isFreeContentItem(pricingItem);
   const hasViewerAccess = Boolean(content.accessInfo);
+  const isRented = content.accessInfo?.accessType === ACCESS_TYPE_RENTED;
+  const isExpired =
+    isRented && content.accessInfo?.timeLeftText === ACCESS_STATUS_EXPIRED;
+
+  let statusLabel: string | undefined = undefined;
+  if (content.accessInfo && !isExpired) {
+    statusLabel =
+      content.accessInfo.accessType === ACCESS_TYPE_RENTED
+        ? t("viewerRented.inRental")
+        : t("viewerRented.owned");
+  }
+
   const pricingActions = getContentDetailPricingActions(pricingItem, t, {
     inCollection: options?.inCollection,
   });
@@ -267,7 +283,7 @@ export const getSingleContentProps = (
     title,
     descriptions: description ? [description] : [],
     tags: categories,
-    statusLabel: visibility,
+    statusLabel: statusLabel,
     hero: {
       ...getContentHeroImages(content),
       imageAlt: title,
