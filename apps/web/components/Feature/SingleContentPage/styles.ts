@@ -78,25 +78,25 @@ export const ShareText = styled.span`
 
 export const Hero = styled.div<{ $isPdf?: boolean }>`
   position: relative;
-  width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 900px)")};
-  max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "none")};
+  width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 500px)")};
+  max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "500px")};
   height: auto;
-  aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
+  aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "2 / 3")};
   margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "2.25rem")};
   border-radius: 12px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${media.desktopSm} {
-    max-width: none;
+    max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "500px")};
     margin: 0 auto ${({ $isPdf }) => ($isPdf ? "1.5rem" : "2.25rem")};
   }
 
   ${media.tablet} {
     width: 100%;
-    max-width: none;
+    max-width: 500px;
     height: auto;
-    aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
+    aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "2 / 3")};
   }
 `;
 
@@ -107,7 +107,8 @@ export const Preview = styled.div`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
   }
 `;
 

@@ -138,7 +138,10 @@ const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
         fill
         priority
         sizes="(max-width: 900px) 100vw, 900px"
-        style={{ objectFit: "cover" }}
+        style={{
+          objectFit: "contain",
+          objectPosition: "center",
+        }}
         onError={handleError}
       />
     );
@@ -151,7 +154,10 @@ const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
       fill
       priority
       sizes="(max-width: 900px) 100vw, 900px"
-      style={{ objectFit: "cover" }}
+      style={{
+        objectFit: "contain",
+        objectPosition: "center",
+      }}
       unoptimized
       onError={handleError}
     />
