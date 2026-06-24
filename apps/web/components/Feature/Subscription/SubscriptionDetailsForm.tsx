@@ -20,6 +20,8 @@ import {
   PlanSelectRow,
   StyledInputField,
   TwoColumnRow,
+  ValidationErrorContainer,
+  ValidationErrorMsg,
 } from "./styles";
 
 export default function SubscriptionDetailsForm() {
@@ -154,17 +156,9 @@ export default function SubscriptionDetailsForm() {
       </FieldGrid>
 
       {validationError && (
-        <div style={{ textAlign: "center", marginBottom: "16px" }}>
-          <span
-            style={{
-              color: "var(--primary-red, #FF3B30)",
-              fontSize: "14px",
-              fontWeight: 500,
-            }}
-          >
-            {validationError}
-          </span>
-        </div>
+        <ValidationErrorContainer>
+          <ValidationErrorMsg>{validationError}</ValidationErrorMsg>
+        </ValidationErrorContainer>
       )}
 
       <ContinueButton
