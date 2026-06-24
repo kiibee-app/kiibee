@@ -6,7 +6,6 @@ import PdfIcon from "@/assets/icons/PdfIcon";
 import type { SingleContentHeroSectionProps } from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
-  CONTENT_POSTER_IMAGE_STYLE,
   getThirdPartyEmbedUrl,
   isCloudflareStreamEmbedUrl,
   isRemoteImageSource,
@@ -125,7 +124,6 @@ const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
       <img
         src={src}
         alt={hero.imageAlt}
-        style={CONTENT_POSTER_IMAGE_STYLE}
         decoding="async"
         onError={handleError}
       />
@@ -139,8 +137,8 @@ const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
         alt={hero.imageAlt}
         fill
         priority
-        sizes="(max-width: 720px) 100vw, 720px"
-        style={CONTENT_POSTER_IMAGE_STYLE}
+        sizes="(max-width: 900px) 100vw, 900px"
+        style={{ objectFit: "cover" }}
         onError={handleError}
       />
     );
@@ -152,8 +150,8 @@ const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
       alt={hero.imageAlt}
       fill
       priority
-      sizes="(max-width: 720px) 100vw, 720px"
-      style={CONTENT_POSTER_IMAGE_STYLE}
+      sizes="(max-width: 900px) 100vw, 900px"
+      style={{ objectFit: "cover" }}
       unoptimized
       onError={handleError}
     />
