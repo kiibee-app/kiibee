@@ -10,6 +10,7 @@ import {
   isFreeSubscriptionPlan,
   subscriptionPlans,
 } from "@/utils/subscriptionPlans";
+import { isValidEmail, MIN_PASSWORD_LENGTH } from "@/utils/common";
 import type {
   SubscriptionContextValue,
   SubscriptionStep,
@@ -113,11 +114,10 @@ export const useSubscriptionFlow = (
 
   const { isEmailValid, isPasswordValid, passwordsMatch, validationError } =
     useMemo(() => {
-      const isEmailValid = !email
-        ? true
-        : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+      const isEmailValid = !email ? true : isValidEmail(email);
 
-      const isPasswordValid = !password || password.length >= 6;
+      const isPasswordValid =
+        !password || password.length >= MIN_PASSWORD_LENGTH;
 
       const passwordsMatch =
         !password || !repeatPassword || password === repeatPassword;

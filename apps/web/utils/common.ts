@@ -168,3 +168,11 @@ export const isValidUrl = (url?: string | null): boolean => {
   if (!url) return false;
   return URL_PROTOCOL_REGEX.test(url);
 };
+
+export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const MIN_PASSWORD_LENGTH = 6;
+
+export const isValidEmail = (email: string): boolean => {
+  return EMAIL_REGEX.test(email.trim());
+};
