@@ -23,7 +23,7 @@ import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { getContentTypeLabel } from "@/utils/content";
-import { resolvePublicMediaUrl } from "@/utils/media";
+import { resolveContentThumbnailUrl } from "@/utils/media";
 import {
   getContentDetail,
   type ContentDetailResponse,
@@ -114,8 +114,10 @@ function PrivateCollectionPreview({
                 formatType: content.contentType,
                 formatLabel: getContentTypeLabel(content.contentType),
                 image:
-                  resolvePublicMediaUrl(contentDetail?.thumbnailUrl) ??
-                  fallbackTemplate.image,
+                  resolveContentThumbnailUrl(
+                    contentDetail?.thumbnailUrl,
+                    contentDetail?.thumbnailLandscapeUrl,
+                  ) ?? fallbackTemplate.image,
                 buttons,
               };
             }),

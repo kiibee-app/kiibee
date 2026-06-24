@@ -14,7 +14,7 @@ import {
 } from "@/utils/content";
 import {
   resolveCloudflareStreamPlaybackUrl,
-  resolvePublicMediaUrl,
+  resolveContentThumbnailCandidates,
 } from "@/utils/media";
 import {
   getContentDetailPricingActions,
@@ -193,13 +193,18 @@ export const resolveContentPlaybackUrl = (
   return "";
 };
 
-const getContentImage = (content: ContentDetailItem): ImageSource => {
-  const raw = toTrimmedString(
-    content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL] ??
-      content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
+const getContentHeroImages = (
+  content: ContentDetailItem,
+): { image: ImageSource; imageFallback?: string } => {
+  const candidates = resolveContentThumbnailCandidates(
+    content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
+    content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL],
   );
 
-  return resolvePublicMediaUrl(raw) || contentFallbackImage;
+  return {
+    image: candidates[0] ?? contentFallbackImage,
+    ...(candidates[1] ? { imageFallback: candidates[1] } : {}),
+  };
 };
 
 const getCategoryNames = (content: ContentDetailItem) =>
@@ -264,7 +269,7 @@ export const getSingleContentProps = (
     tags: categories,
     statusLabel: visibility,
     hero: {
-      image: getContentImage(content),
+      ...getContentHeroImages(content),
       imageAlt: title,
       contentType,
       ...(showTrailerInHero && trailerUrl
