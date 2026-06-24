@@ -79,7 +79,9 @@ export default function MediaSections({
 }: Props) {
   const { t } = useTranslation();
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
-  const hasDetailView = Boolean(onMediaPrimaryAction);
+  const canOpenMediaDetail = Boolean(onMediaPrimaryAction);
+  const shouldShowAccessCta =
+    mode === RENTED_MODES.CURRENTLY || mode === RENTED_MODES.PURCHASED;
 
   return (
     <>
@@ -94,7 +96,7 @@ export default function MediaSections({
             <SectionHeader>
               <SectionTitleRow>
                 <SectionTitle>{section.title}</SectionTitle>
-                {hasDetailView &&
+                {canOpenMediaDetail &&
                 (section.key === RENTED_SECTION_KEYS.VIDEOS ||
                   section.key === RENTED_SECTION_KEYS.AUDIOS ||
                   section.key === RENTED_SECTION_KEYS.PDFS) ? (
@@ -131,7 +133,7 @@ export default function MediaSections({
                   badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
                   onClick={onCardClick ? () => onCardClick(item) : undefined}
                   footer={
-                    hasDetailView || isCurrent ? (
+                    shouldShowAccessCta ? (
                       <GenericButton
                         variant={VARIANT.SECONDARY}
                         size="md"
@@ -167,11 +169,7 @@ export default function MediaSections({
                   <MonoText
                     $use="Body_Medium"
                     color={
-                      hasDetailView
-                        ? COLORS.neutral.GRAY_400
-                        : isCurrent
-                          ? COLORS.primary.RED
-                          : COLORS.neutral.GRAY_400
+                      isCurrent ? COLORS.primary.RED : COLORS.neutral.GRAY_400
                     }
                   >
                     {item.expiryText}
