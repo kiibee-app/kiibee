@@ -457,3 +457,7 @@ export const BILLING_TYPES = {
   RENTED: { value: "rented", label: "Rented" },
   PURCHASED: { value: "purchased", label: "Purchased" },
 } as const;
+
+export const ACCESS_TYPE_RENTED = "rented";
+export const ACCESS_TYPE_PURCHASED = "purchased";
+export const ACCESS_STATUS_EXPIRED = "expired";
