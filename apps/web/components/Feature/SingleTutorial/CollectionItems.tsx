@@ -5,7 +5,10 @@ import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LeftIcon } from "@/assets/icons";
 import type { TutorialVideo } from "@/utils/types";
-import { getFeedPageSlice } from "@/utils/feedContentToTutorial";
+import {
+  getFeedPageSlice,
+  getPaginationState,
+} from "@/utils/feedContentToTutorial";
 import CollectionItemCard from "./CollectionItemCard";
 import {
   CollectionCardWrap,
@@ -46,9 +49,11 @@ export default function CollectionItems({ videos, collectionId }: Props) {
   );
 
   const totalItems = filteredVideos.length;
-  const canSlide = totalItems > COLLECTION_ITEMS_PAGE_SIZE;
-  const canGoPrev = pageStart > 0;
-  const canGoNext = pageStart + COLLECTION_ITEMS_PAGE_SIZE < totalItems;
+  const { canSlide, canGoPrev, canGoNext } = getPaginationState(
+    totalItems,
+    pageStart,
+    COLLECTION_ITEMS_PAGE_SIZE,
+  );
 
   const movePrev = useCallback(() => {
     setPageStart((prev) => Math.max(prev - COLLECTION_ITEMS_PAGE_SIZE, 0));

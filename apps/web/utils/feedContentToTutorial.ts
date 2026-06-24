@@ -140,3 +140,15 @@ export function getFeedPageSlice<T>(
   if (items.length <= pageSize) return items;
   return items.slice(startIndex, startIndex + pageSize);
 }
+
+export function getPaginationState(
+  totalItems: number,
+  pageStart: number,
+  pageSize = FEED_CONTENT_PAGE_SIZE,
+) {
+  return {
+    canSlide: totalItems > pageSize,
+    canGoPrev: pageStart > 0,
+    canGoNext: pageStart + pageSize < totalItems,
+  };
+}
