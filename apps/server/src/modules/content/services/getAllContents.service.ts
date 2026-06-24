@@ -179,7 +179,10 @@ export const getAllContentsService = async (
     const data = await db
       .select(baseSelect)
       .from(mediaFiles)
-      .leftJoin(users, eq(users.id, mediaFiles.creatorId))
+      .innerJoin(
+        users,
+        and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+      )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(
         mediaFileCategories,

@@ -36,6 +36,7 @@ import { ChangePasswordDto } from './dto/changePassword.dto';
 import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
 import { updateCreatorProfileService } from './services/updateCreatorProfile.service';
 import { getCreatorProfileService } from './services/getCreatorProfile.service';
+import { deleteUserService } from './services/deleteUser.service';
 
 @Injectable()
 export class AuthService {
@@ -224,5 +225,9 @@ export class AuthService {
     profileData: UpdateCreatorProfileDto,
   ) {
     return updateCreatorProfileService(userId, profileData);
+  }
+
+  async deleteUserService(userId: string, jti?: string, exp?: number) {
+    return deleteUserService(userId, jti, exp);
   }
 }
