@@ -14,7 +14,6 @@ export function normalizeAppLanguage(language?: string | null): AppLanguage {
 export function persistAppLanguage(language: AppLanguage) {
   if (typeof window === "undefined") return;
 
-  localStorage.setItem(STORAGE_KEY, language);
   document.cookie = `${STORAGE_KEY}=${language};path=/;max-age=${LANGUAGE_COOKIE_MAX_AGE_SECONDS};SameSite=Lax`;
   syncDocumentLanguage(language);
 }
