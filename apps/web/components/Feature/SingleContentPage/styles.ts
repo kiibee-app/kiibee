@@ -212,7 +212,8 @@ export const CreatorRow = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 1.8rem;
+  width: fit-content;
+  margin-bottom: 1rem;
   text-decoration: none;
 
   &:hover ${CreatorName} {
@@ -224,6 +225,7 @@ export const CreatorAvatar = styled.span`
   position: relative;
   width: 30px;
   height: 30px;
+  flex: 0 0 30px;
   border-radius: 6px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};

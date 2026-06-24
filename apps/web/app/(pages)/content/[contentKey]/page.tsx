@@ -37,6 +37,7 @@ import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
 import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
+import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
 import {
   resolvePublishedContentByKey,
@@ -51,6 +52,7 @@ import {
 import { ErrorFallbackContent } from "@/components/Feature/ExploreCreators/Creators/styles";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useContentAccessGate } from "@/hooks/useContentAccessGate";
+import { resolvePublicMediaUrl } from "@/utils/media";
 
 function PublishedContentDetail() {
   const { t } = useTranslation();
@@ -87,6 +89,9 @@ function PublishedContentDetail() {
   const content = getContentDetail(data);
   const contentType = getContentType(content);
   const mediaKey = getContentMediaKey(content);
+  const { creator: publicCreator } = useCreatorPublicProfile(
+    content?.creatorId ?? null,
+  );
   const relatedCollectionQuery = usePublicRelatedCollectionContent(
     normalizedContentKey,
     {
@@ -197,6 +202,20 @@ function PublishedContentDetail() {
             inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
             viewerId: resolvedUserId,
           })}
+          creator={
+            publicCreator
+              ? {
+                  id: publicCreator.id,
+                  name: publicCreator.name,
+                  avatar:
+                    resolvePublicMediaUrl(
+                      publicCreator.profileImageUrl ??
+                        publicCreator.coverImageUrl,
+                    ) ?? undefined,
+                  avatarAlt: publicCreator.name,
+                }
+              : undefined
+          }
           accessGate={
             activeGateType ? (
               <AccessGate
