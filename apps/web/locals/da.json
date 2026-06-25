@@ -1383,6 +1383,12 @@
     "pageVisits": "Sidebesog",
     "clicks": "Klik",
     "views": "Visninger",
+    "range": {
+      "Day": "Dag",
+      "Week": "Uge",
+      "Month": "Måned",
+      "Year": "År"
+    },
     "paginationSummary": "Viser {{start}}-{{end}} af {{total}}",
     "previous": "Forrige",
     "next": "Naeste",

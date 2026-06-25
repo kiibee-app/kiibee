@@ -66,7 +66,7 @@ export default function OverviewContent() {
               $active={range === r.key}
               onClick={() => setRange(r.key)}
             >
-              {r.key}
+              {t(`dashboard.range.${r.key}`)}
             </RangeButton>
           ))}
         </RangeGroup>

@@ -1383,6 +1383,12 @@
     "pageVisits": "Page visits",
     "clicks": "Clicks",
     "views": "Views",
+    "range": {
+      "Day": "Day",
+      "Week": "Week",
+      "Month": "Month",
+      "Year": "Year"
+    },
     "paginationSummary": "Showing {{start}}-{{end}} of {{total}}",
     "previous": "Previous",
     "next": "Next",
