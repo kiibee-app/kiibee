@@ -107,7 +107,7 @@
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",
-    "cta": "Join Kiibee"
+    "cta": "Tilmeld Kiibee"
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",
@@ -597,7 +597,7 @@
     }
   },
   "footer": {
-    "information": "Information",
+    "information": "Oplysninger",
     "about": "Om os",
     "howItWorks": "Sådan fungerer det",
     "forCreators": "For skabere",
@@ -1383,6 +1383,20 @@
     "pageVisits": "Sidebesog",
     "clicks": "Klik",
     "views": "Visninger",
+    "range": {
+      "Day": "Dag",
+      "Week": "Uge",
+      "Month": "Måned",
+      "Year": "År"
+    },
+    "overviewStats": {
+      "total": "Totalt",
+      "rentals": "Antal leje",
+      "purchases": "Antal køb",
+      "views": "Antal visninger",
+      "visits": "Antal besøg",
+      "downloads": "Antal downloads"
+    },
     "paginationSummary": "Viser {{start}}-{{end}} af {{total}}",
     "previous": "Forrige",
     "next": "Naeste",
@@ -1578,9 +1592,9 @@
       "receiptHint": "Skriv en besked til din kunde, nÃ¥r de modtager en kvittering",
       "receiptPlaceholder": "Indtast kvittering",
       "maximumCharacter": "Maksimalt antal tegn",
-      "supportEmail": "Support e-mail",
-      "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, sÃ¥ indtast den her.",
-      "supportEmailPlaceholder": "Indtast support e-mail",
+      "supportEmail": "Kundeservice-e-mail",
+      "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, så indtast den her.",
+      "supportEmailPlaceholder": "Indtast kundeservice-e-mail",
       "validation": {
         "invalidHex": "Indtast en gyldig hex-farve som #1a2b3c.",
         "invalidSupportEmail": "Indtast en gyldig support e-mailadresse.",
@@ -1611,7 +1625,7 @@
         "title": "Layouts",
         "subtitle": "Vælg hvordan din kanal skal vises for brugerne.",
         "saveSuccess": "Layout gemt. Din kanal er blevet opdateret.",
-        "preview": "Preview example",
+        "preview": "Forhåndsvisningseksempel",
         "options": {
           "layout1": "Layout 1",
           "layout2": "Layout 2",
@@ -1621,8 +1635,8 @@
       "logo": {
         "title": "Logo",
         "subtitle": "Brug dit eget logo eller skriv en tekst som logo",
-        "toggleText": "Text",
-        "togglePicture": "Picture",
+        "toggleText": "Tekst",
+        "togglePicture": "Billede",
         "placeholder": "Indtast logo navn",
         "upload": "Upload logo"
       }
@@ -2009,5 +2023,14 @@
     "sortNew": "Ny",
     "sortTrending": "Trendende",
     "sortCreatedForYou": "Oprettet til dig"
+  },
+  "collections": {
+    "sectionTitle": "Samlinger",
+    "elementsCount": "{{count}} elementer",
+    "sort": {
+      "creator": "Skabernavn",
+      "title": "Titel",
+      "elements": "Elementer"
+    }
   }
 }

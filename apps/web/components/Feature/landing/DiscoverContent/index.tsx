@@ -37,7 +37,9 @@ export default function DiscoverContent() {
   );
 
   const items = recentData?.data
-    ? recentData.data.slice(0, 4).map(mapFeedItemToDiscoverItem)
+    ? recentData.data
+        .slice(0, 4)
+        .map((item) => mapFeedItemToDiscoverItem(item, t))
     : [];
 
   if (isLoading || items.length === 0) {

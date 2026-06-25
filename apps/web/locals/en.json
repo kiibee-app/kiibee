@@ -1383,6 +1383,20 @@
     "pageVisits": "Page visits",
     "clicks": "Clicks",
     "views": "Views",
+    "range": {
+      "Day": "Day",
+      "Week": "Week",
+      "Month": "Month",
+      "Year": "Year"
+    },
+    "overviewStats": {
+      "total": "Total",
+      "rentals": "No of rentals",
+      "purchases": "No of purchases",
+      "views": "No of views",
+      "visits": "No of visits",
+      "downloads": "No of downloads"
+    },
     "paginationSummary": "Showing {{start}}-{{end}} of {{total}}",
     "previous": "Previous",
     "next": "Next",
@@ -2001,5 +2015,14 @@
     "sortNew": "New",
     "sortTrending": "Trending",
     "sortCreatedForYou": "Created for you"
+  },
+  "collections": {
+    "sectionTitle": "Collections",
+    "elementsCount": "{{count}} elements",
+    "sort": {
+      "creator": "Creator name",
+      "title": "Title",
+      "elements": "Elements"
+    }
   }
 }

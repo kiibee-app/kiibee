@@ -17,34 +17,39 @@ export type OverviewPerformanceItem = {
 };
 
 export const OVERVIEW_STATS = [
-  { id: "total", label: "Total", value: 66, color: COLORS.primary.BLACK },
+  {
+    id: "total",
+    labelKey: "dashboard.overviewStats.total",
+    value: 66,
+    color: COLORS.primary.BLACK,
+  },
   {
     id: "rentals",
-    label: "No of rentals",
+    labelKey: "dashboard.overviewStats.rentals",
     value: 10,
     color: COLORS.primary.BLUE,
   },
   {
     id: "purchases",
-    label: "No of purchases",
+    labelKey: "dashboard.overviewStats.purchases",
     value: 18,
     color: COLORS.primary.ORANGE,
   },
   {
     id: "views",
-    label: "No of views",
+    labelKey: "dashboard.overviewStats.views",
     value: 23,
     color: COLORS.secondary.MEDIUM_GREEN,
   },
   {
     id: "visits",
-    label: "No of visits",
+    labelKey: "dashboard.overviewStats.visits",
     value: 23,
     color: COLORS.gradient.PALE_GREEN,
   },
   {
     id: "downloads",
-    label: "No of downloads",
+    labelKey: "dashboard.overviewStats.downloads",
     value: 14,
     color: COLORS.primary.GREEN_100,
   },
