@@ -1,6 +1,7 @@
 import {
   index,
   text,
+  timestamp,
   uniqueIndex,
   varchar,
   pgTable,
@@ -28,6 +29,7 @@ export const notificationSettings = pgTable(
       .notNull()
       .default('account_email'),
     otherEmail: varchar('other_email', { length: 255 }),
+    lastSentAt: timestamp('last_sent_at', { withTimezone: true }),
     ...baseTimestamps,
   },
   (table) => ({

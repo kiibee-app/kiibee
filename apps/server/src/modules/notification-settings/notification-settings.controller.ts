@@ -1,8 +1,17 @@
-import { Body, Controller, Get, Put, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Put,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import type { Request } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreatorGuard } from '../auth/guards/admin.guard';
 import { NotificationSettingsService } from './notification-settings.service';
+import { NotificationReportService } from './sendNotificationReport.service';
 import { UpdateNotificationSettingsDto } from './dto/notificationSettings.dto';
 
 type AuthenticatedRequest = Request & {
@@ -17,6 +26,7 @@ type AuthenticatedRequest = Request & {
 export class NotificationSettingsController {
   constructor(
     private readonly notificationSettingsService: NotificationSettingsService,
+    private readonly notificationReportService: NotificationReportService,
   ) {}
 
   @Get()
@@ -33,5 +43,12 @@ export class NotificationSettingsController {
       req.user.userId,
       payload,
     );
+  }
+
+  @Post('send-test')
+  async sendTestReport(@Req() req: AuthenticatedRequest) {
+    return this.notificationReportService.sendReportForUser(req.user.userId, {
+      ignoreSchedule: true,
+    });
   }
 }
