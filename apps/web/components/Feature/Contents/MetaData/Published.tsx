@@ -8,7 +8,11 @@ import DropdownField, {
   type OptionItem,
 } from "@/components/UI/InputFields/DropdownField";
 import { MonoText } from "@/components/UI/Monotext";
-import { CONTENT_FORM_FIELDS, INPUT_VARIANTS } from "@/utils/Constants";
+import {
+  CONTENT_FORM_FIELDS,
+  INPUT_VARIANTS,
+  NON_DIGIT_REGEX,
+} from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { ControlWrap, GeneralPanel, ItemText, List } from "../General/styles";
 import { ItemRow } from "../Appearance/styles";
@@ -47,7 +51,7 @@ export default function PublishedSection() {
         field === CONTENT_FORM_FIELDS.PUBLISHED_YEAR ||
         field === CONTENT_FORM_FIELDS.DURATION
       ) {
-        text = text.replace(/\D/g, "");
+        text = text.replace(NON_DIGIT_REGEX, "");
       }
       if (
         field === CONTENT_FORM_FIELDS.PUBLISHED_YEAR ||
