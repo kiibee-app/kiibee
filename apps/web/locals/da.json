@@ -1645,6 +1645,7 @@
       "trailerLink": "Trailer-link",
       "trailerLinkHint": "Hvis du vil tilfoje en trailer, skal du indtaste linket her.",
       "trailerLinkPlaceholder": "Tilfoj YouTube- eller Video-link",
+      "trailerLinkInvalid": "Indtast venligst en gyldig URL (fx: https://example.com)",
       "visibility": "Synlighed",
       "visibilityHint": "Styr om denne trailer er synlig for brugere.",
       "public": "Offentlig",

@@ -24,6 +24,7 @@ import {
   SETTINGS,
   ContentTab,
   PAYMENT_DEFAULT_ACCESS_DURATION,
+  isValidUrl,
 } from "@/utils/common";
 import {
   AdmissionRequirementValue,
@@ -377,6 +378,10 @@ export function useContentFormActions({
     }
     if (!formState.manufacturerLink.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.MANUFACTURER_LINK] = requiredMessage;
+    } else if (!isValidUrl(formState.manufacturerLink)) {
+      nextErrors[CONTENT_FORM_FIELDS.MANUFACTURER_LINK] = t(
+        "contents.general.trailerLinkInvalid",
+      );
     }
     if (!formState.tags.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.TAGS] = requiredMessage;
@@ -396,6 +401,29 @@ export function useContentFormActions({
 
     if (Object.keys(nextErrors).length > 0) {
       toast.error(t("errors.metadataValidationFailed"));
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateGeneralForm = () => {
+    const nextErrors: Partial<ContentFormErrors> = {};
+
+    if (formState.trailerLink.trim() && !isValidUrl(formState.trailerLink)) {
+      nextErrors.trailerLink = t("contents.general.trailerLinkInvalid");
+    }
+
+    setFormErrors((prev) => {
+      const rest = { ...prev };
+      delete rest.trailerLink;
+      return nextErrors.trailerLink
+        ? { ...rest, trailerLink: nextErrors.trailerLink }
+        : rest;
+    });
+
+    if (Object.keys(nextErrors).length > 0) {
+      toast.error(t("authForm.errors.fixHighlightedFields"));
       return false;
     }
 
@@ -466,6 +494,10 @@ export function useContentFormActions({
       (activeTab === ADD_CONTENT_TABS.METADATA || isPublic) &&
       !validateMetadataForm()
     ) {
+      return;
+    }
+
+    if (!validateGeneralForm()) {
       return;
     }
 
