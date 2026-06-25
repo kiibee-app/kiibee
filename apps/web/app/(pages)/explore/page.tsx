@@ -2,6 +2,7 @@
 
 import React, { Suspense } from "react";
 import NavBar from "@/components/Layout/Navbar";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 import { ExploreContentWrapper, ExploreSection, Main } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
 import RecentlyAdded from "@/components/Feature/ExploreCreators/RecentlyAdded";
@@ -11,6 +12,7 @@ import TrendingContent from "@/components/Feature/ExploreCreators/TrendingConten
 import dynamic from "next/dynamic";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { LocalPageContainer } from "./category/[categoryName]/styles";
+import { useMounted } from "@/utils/common";
 
 const LatestRelease = dynamic(
   () => import("@/components/Feature/ExploreCreators/LatestRelease"),
@@ -19,6 +21,7 @@ const LatestRelease = dynamic(
 
 export default function ExplorePage() {
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
+  const mounted = useMounted();
 
   return (
     <LocalPageContainer $navTextTone={navTextTone}>
@@ -32,7 +35,7 @@ export default function ExplorePage() {
             <TrendingContent />
           </div>
           <TopCreators />
-          <Suspense fallback={null}>
+          <Suspense fallback={<GenericSpinner isLocal size={40} />}>
             <ExploreContentWrapper>
               <LatestRelease />
             </ExploreContentWrapper>
@@ -41,6 +44,7 @@ export default function ExplorePage() {
         </ExploreSection>
       </Main>
       <Footer />
+      {!mounted && <GenericSpinner isOverlay size={48} />}
     </LocalPageContainer>
   );
 }

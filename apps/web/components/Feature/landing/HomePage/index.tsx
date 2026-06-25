@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 
 import HeroSection from "@/components/Feature/landing/Hero";
 import InterestSection from "@/components/Feature/landing/InterestSection";
@@ -17,11 +18,13 @@ import Footer from "@/components/Layout/Footer";
 import ctaImage from "@/assets/images/cta-buttom.webp";
 import { Main, PageContainer } from "@/app/styles";
 import WatchingSteps from "../WatchingSteps";
+import { useMounted } from "@/utils/common";
 
 export default function HomePageClient() {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
   const isLoggedIn = !!user;
+  const mounted = useMounted();
 
   return (
     <PageContainer>
@@ -55,6 +58,7 @@ export default function HomePageClient() {
       </Main>
 
       <Footer />
+      {!mounted && <GenericSpinner isOverlay size={48} />}
     </PageContainer>
   );
 }
