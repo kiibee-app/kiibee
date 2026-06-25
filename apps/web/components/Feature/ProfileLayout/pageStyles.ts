@@ -39,6 +39,9 @@ export const BrandAvatar = styled.span`
 
 export const BrandAvatarImage = styled(Image)`
   object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export const BrandName = styled.span<{
