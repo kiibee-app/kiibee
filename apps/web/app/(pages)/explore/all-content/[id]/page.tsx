@@ -16,6 +16,7 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 import { getCategorySortOptions } from "@/utils/sortOptions";
 import { ESCAPE, EXPLORE_PAGE_SIZE, KEYDOWN, STRING } from "@/utils/Constants";
 import Skeleton from "@/components/UI/Skeleton";
+import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import CreatorFiltersControl from "@/components/Feature/ExploreCreators/Hero/CreatorsFilters";
 import {
   Hero,
@@ -144,7 +145,7 @@ function AllContentExplorePageContent() {
       ))
     ) : (
       <ResultsState>
-        <span>{t("nav.explore.noResults")}</span>
+        <GenericEmptyState title={t("nav.explore.noResults")} />
       </ResultsState>
     );
   };

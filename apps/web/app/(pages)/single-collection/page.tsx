@@ -20,9 +20,8 @@ import {
   HeroWrapper,
   TopBar,
   BackButtonWrapper,
-  LogoRow,
-  EmptyState,
 } from "@/components/Feature/SingleCollectionHero/styles";
+import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
 import { NAV } from "@/utils/translationKeys";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
@@ -100,8 +99,9 @@ function SingleCollectionContent() {
             <BackButtonIcon />
           </BackButtonWrapper>
         </TopBar>
-        <EmptyState>
-          <LogoRow>
+        <GenericEmptyState
+          title={t("singleCollection.noContent")}
+          icon={
             <Image
               src={logo}
               alt="Kiibee Logo"
@@ -109,12 +109,8 @@ function SingleCollectionContent() {
               height={30}
               priority
             />
-            <MonoText $use="H4_Medium">{t(NAV.logoAlt)}</MonoText>
-          </LogoRow>
-          <MonoText $use="H5_Regular">
-            {t("singleCollection.noContent")}
-          </MonoText>
-        </EmptyState>
+          }
+        />
       </HeroWrapper>
     );
   }
