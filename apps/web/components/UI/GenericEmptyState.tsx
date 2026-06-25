@@ -6,7 +6,7 @@ import FolderIcon from "@/assets/icons/FolderIcon";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
 
-const Container = styled.div`
+const Container = styled.div<{ $bg?: string; $border?: string }>`
   display: flex;
   padding: 50px 16px;
   flex-direction: column;
@@ -15,7 +15,15 @@ const Container = styled.div`
   gap: 24px;
   align-self: stretch;
   border-radius: 16px;
-  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  background: ${({ theme, $bg }) => {
+    if ($bg === "white") return theme.colors.neutral.WHITE;
+    if ($bg === "off_white") return theme.colors.neutral.OFF_WHITE;
+    return $bg || theme.colors.neutral.OFF_WHITE;
+  }};
+  border: ${({ theme, $border }) => {
+    if ($border === "gray") return `1px solid ${theme.colors.neutral.GRAY_200}`;
+    return $border || "none";
+  }};
 `;
 
 const ContentText = styled.div`
@@ -51,15 +59,19 @@ type GenericEmptyStateProps = {
   title: string;
   description?: string;
   icon?: React.ReactNode;
+  bg?: string;
+  border?: string;
 };
 
 export default function GenericEmptyState({
   title,
   description,
   icon,
+  bg,
+  border,
 }: GenericEmptyStateProps) {
   return (
-    <Container>
+    <Container $bg={bg} $border={border}>
       {icon || <FolderIconStyled />}
       <ContentText>
         <TitleText>{title}</TitleText>

@@ -96,7 +96,10 @@ function FormatPageContent() {
                   ))}
                 </Grid>
               ) : (
-                <GenericEmptyState title={t("nav.explore.noResults")} />
+                <GenericEmptyState
+                  title={t("nav.explore.noResults")}
+                  bg="white"
+                />
               )}
             </PageWrapper>
           </div>
