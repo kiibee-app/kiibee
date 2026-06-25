@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import NavBar from "@/components/Layout/Navbar";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import AboutHero from "@/components/Feature/AboutKiibee/Hero";
@@ -15,18 +15,14 @@ import { useTranslation } from "react-i18next";
 import { useAboutNavTone } from "@/hooks/useAboutNavTone";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { PATHS } from "@/utils/path";
+import { useMounted } from "@/utils/common";
 
 export default function AboutKiibeePage() {
   const { t } = useTranslation();
   const { darkSectionRef, navTextTone } = useAboutNavTone();
   const user = useStoredLoginUser();
   const isLoggedIn = !!user;
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   return (
     <PageContainer>

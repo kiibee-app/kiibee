@@ -1,3 +1,5 @@
+import React from "react";
+
 export const ALERT = "alert";
 
 export const COLLECTIONS = "collections";
@@ -176,3 +178,23 @@ export const MIN_PASSWORD_LENGTH = 6;
 export const isValidEmail = (email: string): boolean => {
   return EMAIL_REGEX.test(email.trim());
 };
+
+const emptySubscribe = () => () => {};
+
+export function useMounted() {
+  const syncExternalStore = (
+    React as unknown as {
+      useSyncExternalStore: <T>(
+        subscribe: (onStoreChange: () => void) => () => void,
+        getSnapshot: () => T,
+        getServerSnapshot?: () => T,
+      ) => T;
+    }
+  ).useSyncExternalStore;
+
+  return syncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
+}

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import GenericSpinner from "@/components/UI/GenericSpinner";
@@ -19,17 +18,13 @@ import Footer from "@/components/Layout/Footer";
 import ctaImage from "@/assets/images/cta-buttom.webp";
 import { Main, PageContainer } from "@/app/styles";
 import WatchingSteps from "../WatchingSteps";
+import { useMounted } from "@/utils/common";
 
 export default function HomePageClient() {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
   const isLoggedIn = !!user;
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   return (
     <PageContainer>
