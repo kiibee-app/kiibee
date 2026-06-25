@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 
 import HeroSection from "@/components/Feature/landing/Hero";
 import InterestSection from "@/components/Feature/landing/InterestSection";
@@ -22,6 +24,16 @@ export default function HomePageClient() {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
   const isLoggedIn = !!user;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <GenericSpinner isOverlay size={48} />;
+  }
 
   return (
     <PageContainer>

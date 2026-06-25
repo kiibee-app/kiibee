@@ -8,6 +8,7 @@ import Footer from "@/components/Layout/Footer";
 import { PageContainer, Main, Section } from "../../styles";
 import SingleCollectionHero from "@/components/Feature/SingleCollectionHero";
 import { MonoText } from "@/components/UI/Monotext";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
@@ -61,11 +62,7 @@ function SingleCollectionContent() {
   }
 
   if (isGateLoading || isDynamicLoading) {
-    return (
-      <Section>
-        <MonoText $use="H5_Regular">{t("common.loading")}</MonoText>
-      </Section>
-    );
+    return <GenericSpinner isOverlay size={48} label={t("common.loading")} />;
   }
 
   if (gateType) {

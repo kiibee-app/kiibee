@@ -1,7 +1,8 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import NavBar from "@/components/Layout/Navbar";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 import { ExploreContentWrapper, ExploreSection, Main } from "@/app/styles";
 import ExploreCreatorsHero from "@/components/Feature/ExploreCreators/Hero";
 import RecentlyAdded from "@/components/Feature/ExploreCreators/RecentlyAdded";
@@ -19,6 +20,16 @@ const LatestRelease = dynamic(
 
 export default function ExplorePage() {
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <GenericSpinner isOverlay size={48} />;
+  }
 
   return (
     <LocalPageContainer $navTextTone={navTextTone}>
@@ -32,7 +43,7 @@ export default function ExplorePage() {
             <TrendingContent />
           </div>
           <TopCreators />
-          <Suspense fallback={null}>
+          <Suspense fallback={<GenericSpinner isLocal size={40} />}>
             <ExploreContentWrapper>
               <LatestRelease />
             </ExploreContentWrapper>

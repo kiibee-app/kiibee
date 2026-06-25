@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "@/components/Layout/Navbar";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 import AboutHero from "@/components/Feature/AboutKiibee/Hero";
 import AboutStorySection from "@/components/Feature/AboutKiibee/AboutStorySection";
 import { Main, PageContainer, Section } from "@/app/styles";
@@ -20,6 +21,16 @@ export default function AboutKiibeePage() {
   const { darkSectionRef, navTextTone } = useAboutNavTone();
   const user = useStoredLoginUser();
   const isLoggedIn = !!user;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <GenericSpinner isOverlay size={48} />;
+  }
 
   return (
     <PageContainer>
