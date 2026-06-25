@@ -1389,6 +1389,14 @@
       "Month": "Month",
       "Year": "Year"
     },
+    "overviewStats": {
+      "total": "Total",
+      "rentals": "No of rentals",
+      "purchases": "No of purchases",
+      "views": "No of views",
+      "visits": "No of visits",
+      "downloads": "No of downloads"
+    },
     "paginationSummary": "Showing {{start}}-{{end}} of {{total}}",
     "previous": "Previous",
     "next": "Next",

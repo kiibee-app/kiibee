@@ -1389,6 +1389,14 @@
       "Month": "Måned",
       "Year": "År"
     },
+    "overviewStats": {
+      "total": "Totalt",
+      "rentals": "Antal leje",
+      "purchases": "Antal køb",
+      "views": "Antal visninger",
+      "visits": "Antal besøg",
+      "downloads": "Antal downloads"
+    },
     "paginationSummary": "Viser {{start}}-{{end}} af {{total}}",
     "previous": "Forrige",
     "next": "Naeste",
@@ -1584,9 +1592,9 @@
       "receiptHint": "Skriv en besked til din kunde, nÃ¥r de modtager en kvittering",
       "receiptPlaceholder": "Indtast kvittering",
       "maximumCharacter": "Maksimalt antal tegn",
-      "supportEmail": "Support e-mail",
-      "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, sÃ¥ indtast den her.",
-      "supportEmailPlaceholder": "Indtast support e-mail",
+      "supportEmail": "Kundeservice-e-mail",
+      "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, så indtast den her.",
+      "supportEmailPlaceholder": "Indtast kundeservice-e-mail",
       "validation": {
         "invalidHex": "Indtast en gyldig hex-farve som #1a2b3c.",
         "invalidSupportEmail": "Indtast en gyldig support e-mailadresse.",
@@ -1627,8 +1635,8 @@
       "logo": {
         "title": "Logo",
         "subtitle": "Brug dit eget logo eller skriv en tekst som logo",
-        "toggleText": "Text",
-        "togglePicture": "Picture",
+        "toggleText": "Tekst",
+        "togglePicture": "Billede",
         "placeholder": "Indtast logo navn",
         "upload": "Upload logo"
       }
