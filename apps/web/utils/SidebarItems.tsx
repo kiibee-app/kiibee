@@ -164,7 +164,11 @@ export const HELP_MENU_ITEMS = [
     labelKey: "sidebar.helpVideos",
     href: "/tutorial-videos",
   },
-  { label: "User manual", labelKey: "sidebar.userManual", href: "/support" },
+  {
+    label: "User manual",
+    labelKey: "sidebar.userManual",
+    href: "/tutorial-videos#user-guides",
+  },
   {
     label: "Conditions",
     labelKey: "sidebar.conditions",
