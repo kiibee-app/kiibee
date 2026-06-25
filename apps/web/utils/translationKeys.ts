@@ -450,6 +450,7 @@ export const CONTENTS = {
     trailerLink: "contents.general.trailerLink",
     trailerLinkHint: "contents.general.trailerLinkHint",
     trailerLinkPlaceholder: "contents.general.trailerLinkPlaceholder",
+    trailerLinkInvalid: "contents.general.trailerLinkInvalid",
     visibility: "contents.general.visibility",
     visibilityHint: "contents.general.visibilityHint",
     public: "contents.general.public",

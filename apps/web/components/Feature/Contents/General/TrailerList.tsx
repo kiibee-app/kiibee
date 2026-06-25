@@ -18,7 +18,8 @@ import { useContentForm } from "../ContentFormContext";
 
 export default function TrailerList({ config }: { config?: TextConfig }) {
   const { t } = useTranslation();
-  const { formState, updateField } = useContentForm();
+  const { formState, updateField, formErrors, clearFieldError } =
+    useContentForm();
 
   const visibilityOptions = [
     { value: TRAILER_VISIBILITY.PUBLIC, label: t(CONTENTS.general.public) },
@@ -43,18 +44,21 @@ export default function TrailerList({ config }: { config?: TextConfig }) {
           <ControlWrap>
             <InputField
               value={formState[linkField] ?? ""}
-              onChange={(value) =>
-                updateField(
-                  linkField,
-                  Array.isArray(value) ? value.join("") : value,
-                )
-              }
+              onChange={(value) => {
+                const valStr = Array.isArray(value) ? value.join("") : value;
+                updateField(linkField, valStr);
+                if (formErrors[linkField]) {
+                  clearFieldError(linkField);
+                }
+              }}
               placeholder={
                 config?.placeholder ??
                 t(CONTENTS.general.trailerLinkPlaceholder)
               }
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
+              hasError={Boolean(formErrors[linkField])}
+              errorMessage={formErrors[linkField]}
             />
           </ControlWrap>
         </ItemRow>

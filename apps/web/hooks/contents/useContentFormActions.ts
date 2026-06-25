@@ -24,6 +24,7 @@ import {
   SETTINGS,
   ContentTab,
   PAYMENT_DEFAULT_ACCESS_DURATION,
+  isValidUrl,
 } from "@/utils/common";
 import {
   AdmissionRequirementValue,
@@ -402,6 +403,31 @@ export function useContentFormActions({
     return true;
   };
 
+  const validateGeneralForm = () => {
+    const nextErrors: Partial<ContentFormErrors> = {};
+
+    if (formState.trailerLink.trim() && !isValidUrl(formState.trailerLink)) {
+      nextErrors.trailerLink = t("contents.general.trailerLinkInvalid");
+    }
+
+    setFormErrors((prev) => {
+      const mergedErrors = { ...prev };
+      if (nextErrors.trailerLink) {
+        mergedErrors.trailerLink = nextErrors.trailerLink;
+      } else {
+        delete mergedErrors.trailerLink;
+      }
+      return mergedErrors;
+    });
+
+    if (Object.keys(nextErrors).length > 0) {
+      toast.error(t("authForm.errors.fixHighlightedFields"));
+      return false;
+    }
+
+    return true;
+  };
+
   const validateContentPaymentAmounts = () => {
     if (formState.admissionRequirement !== ADMISSION_TYPE.PAYMENT) {
       setFormErrors((prev) => {
@@ -466,6 +492,10 @@ export function useContentFormActions({
       (activeTab === ADD_CONTENT_TABS.METADATA || isPublic) &&
       !validateMetadataForm()
     ) {
+      return;
+    }
+
+    if (!validateGeneralForm()) {
       return;
     }
 
