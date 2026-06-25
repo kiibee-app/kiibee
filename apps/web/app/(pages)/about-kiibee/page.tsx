@@ -28,10 +28,6 @@ export default function AboutKiibeePage() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <GenericSpinner isOverlay size={48} />;
-  }
-
   return (
     <PageContainer>
       <NavBar navTextTone={navTextTone} />
@@ -54,6 +50,7 @@ export default function AboutKiibeePage() {
       />
 
       <Footer />
+      {!mounted && <GenericSpinner isOverlay size={48} />}
     </PageContainer>
   );
 }

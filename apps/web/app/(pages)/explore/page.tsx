@@ -27,10 +27,6 @@ export default function ExplorePage() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <GenericSpinner isOverlay size={48} />;
-  }
-
   return (
     <LocalPageContainer $navTextTone={navTextTone}>
       <NavBar navTextTone={navTextTone} />
@@ -52,6 +48,7 @@ export default function ExplorePage() {
         </ExploreSection>
       </Main>
       <Footer />
+      {!mounted && <GenericSpinner isOverlay size={48} />}
     </LocalPageContainer>
   );
 }

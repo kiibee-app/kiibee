@@ -31,10 +31,6 @@ export default function HomePageClient() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <GenericSpinner isOverlay size={48} />;
-  }
-
   return (
     <PageContainer>
       <NavBar />
@@ -67,6 +63,7 @@ export default function HomePageClient() {
       </Main>
 
       <Footer />
+      {!mounted && <GenericSpinner isOverlay size={48} />}
     </PageContainer>
   );
 }

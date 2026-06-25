@@ -37,7 +37,7 @@ const SpinnerOverlay = styled.div<{
         position: fixed;
         inset: 0;
         z-index: 9999;
-        background-color: rgba(255, 255, 255, 0.15);
+        background-color: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(${$blurAmount});
         -webkit-backdrop-filter: blur(${$blurAmount});
       `;
@@ -47,7 +47,7 @@ const SpinnerOverlay = styled.div<{
         position: absolute;
         inset: 0;
         z-index: 50;
-        background-color: rgba(255, 255, 255, 0.15);
+        background-color: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(${$blurAmount});
         -webkit-backdrop-filter: blur(${$blurAmount});
       `;
@@ -87,7 +87,7 @@ const Dot = styled.div<{ $opacity: number; $scale: number; $color?: string }>`
   width: 100%;
   height: 100%;
   background-color: ${({ $color, theme }) =>
-    $color || theme.colors?.neutral?.GRAY_500 || "rgba(6, 6, 6, 0.70)"};
+    $color || theme.colors.primary.GREEN};
   border-radius: 50%;
   opacity: ${({ $opacity }) => $opacity};
   transform: scale(${({ $scale }) => $scale});
@@ -96,13 +96,12 @@ const Dot = styled.div<{ $opacity: number; $scale: number; $color?: string }>`
   animation-delay: -${({ $opacity }) => (1 - $opacity) * 1.2}s;
 `;
 
-const Label = styled.span`
+const Label = styled.span<{ $color?: string }>`
   font-family: ${({ theme }) =>
     theme.typography?.Body_Regular?.fontFamily || "sans-serif"};
   font-size: 0.875rem;
   font-weight: 500;
-  color: ${({ theme }) =>
-    theme.colors?.neutral?.GRAY_500 || "rgba(6, 6, 6, 0.7)"};
+  color: ${({ $color, theme }) => $color || theme.colors.primary.GREEN};
 `;
 
 interface GenericSpinnerProps {
@@ -145,7 +144,7 @@ export default function GenericSpinner({
       aria-label={label || "Loading"}
     >
       <SpinnerContainer $size={size}>{dots}</SpinnerContainer>
-      {label && <Label>{label}</Label>}
+      {label && <Label $color={color}>{label}</Label>}
     </SpinnerOverlay>
   );
 }
