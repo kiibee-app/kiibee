@@ -11,7 +11,6 @@ import LeftIcon from "@/assets/icons/LeftIcon";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import {
   COLLECTION_SORT_KEY_LIST,
-  COLLECTION_SORT_LABELS,
   RENTED_MODES,
   RENTED_SECTION_KEYS,
   type CollectionSortKey,
@@ -119,7 +118,7 @@ export default function CollectionsSection({
     <>
       <SectionHeader $withMetaHeader={showExpandedMetaHeader}>
         <SectionTitleRow>
-          <SectionTitle>Collections</SectionTitle>
+          <SectionTitle>{t("collections.sectionTitle")}</SectionTitle>
           {showOpenSectionArrow ? (
             <InlineSectionArrow
               type="button"
@@ -142,7 +141,7 @@ export default function CollectionsSection({
                   aria-pressed={isActive}
                   onClick={() => toggleSort(key)}
                 >
-                  {COLLECTION_SORT_LABELS[key]}
+                  {t(`collections.sort.${key}`)}
                   <CollectionMetaSortArrow aria-hidden>
                     <span>↑</span>
                     <span>↓</span>
@@ -190,7 +189,7 @@ export default function CollectionsSection({
                   color={COLORS.neutral.GRAY_700}
                 />
                 <MonoText $use="Body_Bold">
-                  {item.elementCount} elements
+                  {t("collections.elementsCount", { count: item.elementCount })}
                 </MonoText>
               </ElementsPill>
 

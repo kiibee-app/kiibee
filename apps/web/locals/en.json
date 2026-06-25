@@ -2001,5 +2001,14 @@
     "sortNew": "New",
     "sortTrending": "Trending",
     "sortCreatedForYou": "Created for you"
+  },
+  "collections": {
+    "sectionTitle": "Collections",
+    "elementsCount": "{{count}} elements",
+    "sort": {
+      "creator": "Creator name",
+      "title": "Title",
+      "elements": "Elements"
+    }
   }
 }

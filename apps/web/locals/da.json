@@ -107,7 +107,7 @@
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",
-    "cta": "Join Kiibee"
+    "cta": "Tilmeld Kiibee"
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",
@@ -597,7 +597,7 @@
     }
   },
   "footer": {
-    "information": "Information",
+    "information": "Oplysninger",
     "about": "Om os",
     "howItWorks": "Sådan fungerer det",
     "forCreators": "For skabere",
@@ -1611,7 +1611,7 @@
         "title": "Layouts",
         "subtitle": "Vælg hvordan din kanal skal vises for brugerne.",
         "saveSuccess": "Layout gemt. Din kanal er blevet opdateret.",
-        "preview": "Preview example",
+        "preview": "Forhåndsvisningseksempel",
         "options": {
           "layout1": "Layout 1",
           "layout2": "Layout 2",
@@ -2009,5 +2009,14 @@
     "sortNew": "Ny",
     "sortTrending": "Trendende",
     "sortCreatedForYou": "Oprettet til dig"
+  },
+  "collections": {
+    "sectionTitle": "Samlinger",
+    "elementsCount": "{{count}} elementer",
+    "sort": {
+      "creator": "Skabernavn",
+      "title": "Titel",
+      "elements": "Elementer"
+    }
   }
 }

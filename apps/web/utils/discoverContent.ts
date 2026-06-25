@@ -1,3 +1,4 @@
+import type { TFunction } from "i18next";
 import imageOne from "@/assets/images/discover-content/3545227dd1e7a9cd6faf3b14586708d85137ed35.webp";
 import imageTwo from "@/assets/images/discover-content/4ccc137164285071261595311fa290373bc45c72.webp";
 import imageThree from "@/assets/images/discover-content/52c1c126e76296e3c8e39b9ac60f6d9a34156583.webp";
@@ -11,6 +12,7 @@ import {
 } from "./Constants";
 import {
   getContentPricingActions,
+  getPricingLabels,
   isFreeContentItem,
   resolveContentActionHref,
 } from "./contentPricingActions";
@@ -46,8 +48,12 @@ export { formatPriceLabel } from "./contentPricingActions";
 
 export const mapFeedItemToDiscoverItem = (
   item: FeedContentItem,
+  t?: TFunction,
 ): DiscoverContentItem => {
-  const pricingActions = getContentPricingActions(item);
+  const labels = t ? getPricingLabels(t) : undefined;
+  const pricingActions = getContentPricingActions(item, labels?.free, {
+    labels,
+  });
   const isFree = isFreeContentItem(item);
   const actions = pricingActions.map((action) => ({
     labelKey: action.label,
