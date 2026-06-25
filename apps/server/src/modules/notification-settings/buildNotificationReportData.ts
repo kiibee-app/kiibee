@@ -350,11 +350,16 @@ export const resolveNotificationRecipientEmail = (
   accountEmail: string,
   otherEmail: string | null | undefined,
 ) => {
-  if (recipient === 'other_email' && otherEmail?.trim()) {
-    return otherEmail.trim();
+  if (recipient === 'other_email') {
+    const trimmedOtherEmail = otherEmail?.trim();
+    if (!trimmedOtherEmail) {
+      return null;
+    }
+
+    return trimmedOtherEmail;
   }
 
-  return accountEmail;
+  return accountEmail.trim();
 };
 
 export const getNotificationTemplateName = (type: NotificationType) => {

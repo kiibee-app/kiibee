@@ -77,6 +77,10 @@ export class NotificationReportService {
       effectiveSettings.otherEmail,
     );
 
+    if (!recipientEmail) {
+      return { sent: false, reason: 'missing_other_email' as const };
+    }
+
     const displayName = formatUserDisplayName(user);
     const variables = await buildNotificationReportVariables(
       userId,

@@ -1,4 +1,4 @@
-import { IsEmail, IsIn, IsOptional, ValidateIf } from 'class-validator';
+import { IsEmail, IsIn, IsNotEmpty, ValidateIf } from 'class-validator';
 
 export const notificationSettingTypes = ['overview', 'form', 'sales'] as const;
 export const notificationFrequencies = ['monthly', 'weekly', 'daily'] as const;
@@ -18,10 +18,11 @@ export class UpdateNotificationSettingsDto {
   @IsIn(notificationRecipients)
   recipient!: NotificationRecipient;
 
-  @IsOptional()
-  @ValidateIf((payload: UpdateNotificationSettingsDto) => {
-    return payload.recipient === 'other_email' && Boolean(payload.otherEmail);
-  })
+  @ValidateIf(
+    (payload: UpdateNotificationSettingsDto) =>
+      payload.recipient === 'other_email',
+  )
+  @IsNotEmpty({ message: 'Other email is required' })
   @IsEmail()
   otherEmail?: string;
 }

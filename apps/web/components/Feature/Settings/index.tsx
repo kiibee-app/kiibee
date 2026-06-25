@@ -23,8 +23,10 @@ import {
   DEFAULT_NOTIFICATION_VALUES,
   notificationSettings,
   NOTIFICATION_OPTIONS,
+  NOTIFICATION_RECIPIENT,
   NotificationValues,
 } from "@/utils/notificationSettings";
+import { isValidEmail } from "@/utils/common";
 import { EXPORT_TYPE_OPTIONS } from "@/utils/exportOptions";
 import { SETTINGS as SETTINGS_KEYS_CONST } from "@/utils/translationKeys";
 import { NOTIFICATION_MODAL, NotificationModalType } from "@/utils/ui";
@@ -54,6 +56,7 @@ export default function SettingsContent() {
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
   const [modalType, setModalType] = useState<NotificationModalType>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [notificationValues, setNotificationValues] =
     useState<NotificationValues>(DEFAULT_NOTIFICATION_VALUES);
   const {
@@ -214,9 +217,31 @@ export default function SettingsContent() {
   }, [savedNotificationValues]);
 
   const handleSave = useCallback(async () => {
-    await updateSettings(notificationValues);
+    const trimmedOtherEmail = notificationValues.otherEmail.trim();
+
+    if (
+      notificationValues.recipient === NOTIFICATION_RECIPIENT.OTHER_EMAIL &&
+      !trimmedOtherEmail
+    ) {
+      setSaveError(t("settings.notifications.enterEmail"));
+      return;
+    }
+
+    if (
+      notificationValues.recipient === NOTIFICATION_RECIPIENT.OTHER_EMAIL &&
+      !isValidEmail(trimmedOtherEmail)
+    ) {
+      setSaveError(t("auth.login.errors.emailInvalid"));
+      return;
+    }
+
+    setSaveError(null);
+    await updateSettings({
+      ...notificationValues,
+      otherEmail: trimmedOtherEmail,
+    });
     setModalType(NOTIFICATION_MODAL.SUCCESS);
-  }, [notificationValues, updateSettings]);
+  }, [notificationValues, t, updateSettings]);
 
   const handleTabClick = useCallback(
     (tabKey: TabKey) => {
@@ -265,10 +290,20 @@ export default function SettingsContent() {
       <Content id="settings-content-area">
         {activeTab === TAB_KEYS.payout && <PayoutContent />}
         {activeTab === TAB_KEYS.notifications && (
-          <NotificationContent
-            values={notificationValues}
-            onChange={setNotificationValues}
-          />
+          <>
+            {saveError && (
+              <MonoText $use="Body_Medium" color="#dc2626">
+                {saveError}
+              </MonoText>
+            )}
+            <NotificationContent
+              values={notificationValues}
+              onChange={(values) => {
+                setSaveError(null);
+                setNotificationValues(values);
+              }}
+            />
+          </>
         )}
         {activeTab === TAB_KEYS.export && <ExportContent />}
       </Content>
