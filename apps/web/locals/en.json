@@ -34,7 +34,7 @@
         "video": "Video",
         "audio": "Audio",
         "pdf": "PDF",
-        "epub": "ePub",
+        "epub": "Epub",
         "web": "Web content"
       },
       "categoryTitle": "Category",
@@ -415,7 +415,7 @@
       "rightItems": [
         "See statistics on views and sales",
         "Show content on all devices — mobile, tablet and desktop",
-        "Sell multiple formats (video, PDF, ePub, MP3, audio)",
+        "Sell multiple formats (video, PDF, Epub, MP3, audio)",
         "Store content securely on Danish servers, fully GDPR compliant",
         "Get tailored solutions based on your needs",
         "Sell and show your content anywhere on the web",
