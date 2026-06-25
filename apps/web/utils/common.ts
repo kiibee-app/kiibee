@@ -166,6 +166,17 @@ export function toCamelCaseKey(value: string): string {
 
 export const URL_PROTOCOL_REGEX = /^https?:\/\//i;
 
+export const URL_REGEX = /(https?:\/\/[^\s<>"]+|www\.[^\s<>"]+)/g;
+
+export const LINE_BREAK = "\n";
+
+export const LIST_PREFIX = "- ";
+
+export const getHrefFromUrl = (url: string): string =>
+  url.startsWith("www.") ? `https://${url}` : url;
+
+export const INITIAL_INDEX = 0;
+
 export const isValidUrl = (url?: string | null): boolean => {
   if (!url) return false;
   return URL_PROTOCOL_REGEX.test(url);

@@ -1,11 +1,11 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import FormattedBody from "../FormattedBody";
 import {
   Body,
-  Description,
   Divider,
-  Intro,
+  FormattedDescription,
   Meta,
   Section,
   SectionTitle,
@@ -21,34 +21,42 @@ export default function CookieSettingsSection() {
       <Title>{t("footer.cookieSettings")}</Title>
       <Meta>{t("legalPages.cookieSettings.updatedAt")}</Meta>
       <Divider />
-      <Intro>{t("legalPages.cookieSettings.intro")}</Intro>
+      <FormattedDescription>
+        <FormattedBody text={t("legalPages.cookieSettings.intro")} />
+      </FormattedDescription>
       <Divider />
       <Body>
         <Section>
           <SectionTitle>
             {t("legalPages.cookieSettings.sections.what.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.cookieSettings.sections.what.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.cookieSettings.sections.what.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.cookieSettings.sections.kiibee.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.cookieSettings.sections.kiibee.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.cookieSettings.sections.kiibee.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.cookieSettings.sections.analytics.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.cookieSettings.sections.analytics.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.cookieSettings.sections.analytics.body")}
+            />
+          </FormattedDescription>
         </Section>
       </Body>
     </Wrap>

@@ -1053,7 +1053,7 @@
       "sections": {
         "collect": {
           "title": "Personlige oplysninger",
-          "body": "Vi kan indsamle personlige oplysninger fra Brugere enten via nyhedsbrev sign-up eller ved køb/leje af en service.\nBrugere kan blive spurgt om navn, e-mail, postadresse, tlf. nr. virksomhedsoplysninger og kreditkortoplysninger efter behov.\nVed indsendelse af kontaktformular, giver du KIIBEE samtykke til, at må opbevare dine fremsendte oplysninger. Du kan til enhver tid tilbagekalde dette samtykke ved at kontakte os på info@kiibee.dk.\nBrugere kan til enhver tid besøge hjemmesiden anonymt og vi vil kun indsamle data fra Brugere, når de frivilligt giver sådanne oplysninger til os. Brugere kan opleve, at de ikke vil kunne tilgå alle dele af hjemmesiden, hvis de vælger ikke at give personlige oplysninger."
+          "body": "Vi kan indsamle personlige oplysninger fra Brugere enten via nyhedsbrev sign-up eller ved køb/leje af en service.\n\nBrugere kan blive spurgt om navn, e-mail, postadresse, tlf. nr. virksomhedsoplysninger og kreditkortoplysninger efter behov.\n\nVed indsendelse af kontaktformular, giver du KIIBEE samtykke til, at må opbevare dine fremsendte oplysninger. Du kan til enhver tid tilbagekalde dette samtykke ved at kontakte os på info@kiibee.dk.\n\nBrugere kan til enhver tid besøge hjemmesiden anonymt og vi vil kun indsamle data fra Brugere, når de frivilligt giver sådanne oplysninger til os. Brugere kan opleve, at de ikke vil kunne tilgå alle dele af hjemmesiden, hvis de vælger ikke at give personlige oplysninger."
         },
         "nonPersonal": {
           "title": "Ikke-personlige oplysninger",
@@ -1065,7 +1065,7 @@
         },
         "use": {
           "title": "Anvendelse af personlige oplysninger",
-          "body": "Opfyldelse af vores salgsrelaterede forpligtelser: Det omfatter opfyldelse af vores forpligtelser over for dig som kunde, herunder levering, relevant service, kundeopfølgning og besvarelse af spørgsmål samt opfyldelse af vores forpligtelser i henhold til gældende lov.\nRelevante råd samt tilbud til dig om opfølgning og tilbud: Vi vil benytte dine personoplysninger til at give dig relevante råd, opfølgning og tilbud på produkter og tjenester relateret til det, du allerede har købt hos os.\nOprette kundeprofil: Vi vil kunne oprette en kundeprofil baseret på købshistorik og tilgængelige oplysninger som grundlag for nyhedsbreve, produktinformationer, tilpasset markedsføring og købsanalyser.\nAdministration af brugerprofiler: Vi har adgang til din brugerprofil for at kunne administrere dine kontaktoplysninger og eventuelle samtykker til at modtage vores nyhedsbrev, deltagelse i kampagner eller lignende.\nVidereudvikling af tjenester og sikker drift: For at kunne videreudvikle vores tjenester og drive hjemmesiden på en god og forsvarlig måde er vi bl.a. afhængige af at kunne producere statistik om ting som trafik, køb og adfærd på hjemmesiden. Vi vil også kunne få brug for at få viden om svindel og at træffe modforanstaltninger.\nKampagner og undersøgelser: Hvis du vælger at deltage i en undersøgelse, kampagne eller gå ind på hjemmesiden, kan du blive bedt om at angive personoplysninger såsom navn, adresse og/eller telefonnummer. Formålet er at kunne identificere dig, hvis du f.eks. vinder en præmie.\nBrug af eksterne leverandører: Hvis du bestiller eksterne tjenester, vil kontaktoplysninger og andre relevante oplysninger, vi har registreret om dig, kunne blive udleveret til leverandøren."
+          "body": "Opfyldelse af vores salgsrelaterede forpligtelser: Det omfatter opfyldelse af vores forpligtelser over for dig som kunde, herunder levering, relevant service, kundeopfølgning og besvarelse af spørgsmål samt opfyldelse af vores forpligtelser i henhold til gældende lov.\n\nRelevante råd samt tilbud til dig om opfølgning og tilbud: Vi vil benytte dine personoplysninger til at give dig relevante råd, opfølgning og tilbud på produkter og tjenester relateret til det, du allerede har købt hos os.\n\nOprette kundeprofil: Vi vil kunne oprette en kundeprofil baseret på købshistorik og tilgængelige oplysninger som grundlag for nyhedsbreve, produktinformationer, tilpasset markedsføring og købsanalyser.\n\nAdministration af brugerprofiler: Vi har adgang til din brugerprofil for at kunne administrere dine kontaktoplysninger og eventuelle samtykker til at modtage vores nyhedsbrev, deltagelse i kampagner eller lignende.\n\nVidereudvikling af tjenester og sikker drift: For at kunne videreudvikle vores tjenester og drive hjemmesiden på en god og forsvarlig måde er vi bl.a. afhængige af at kunne producere statistik om ting som trafik, køb og adfærd på hjemmesiden. Vi vil også kunne få brug for at få viden om svindel og at træffe modforanstaltninger.\n\nKampagner og undersøgelser: Hvis du vælger at deltage i en undersøgelse, kampagne eller gå ind på hjemmesiden, kan du blive bedt om at angive personoplysninger såsom navn, adresse og/eller telefonnummer. Formålet er at kunne identificere dig, hvis du f.eks. vinder en præmie.\n\nBrug af eksterne leverandører: Hvis du bestiller eksterne tjenester, vil kontaktoplysninger og andre relevante oplysninger, vi har registreret om dig, kunne blive udleveret til leverandøren."
         },
         "share": {
           "title": "Beskyttelse af din personoplysninger",
@@ -1082,6 +1082,10 @@
         "acceptance": {
           "title": "Din accept",
           "body": "Ved at anvende Hjemmesiden, acceptere du denne politik og vilkår for vores service. Hvis du ikke accepterer denne politik, bedes Brugeren ikke benytte Hjemmesiden. Den fortsatte brug af denne Hjemmeside vil anses for accept af sådanne ændringer."
+        },
+        "publisherGdpr": {
+          "title": "Persondata for udgivere (GDPR)",
+          "body": "Behandling af personoplysninger sker i henhold til gældende databeskyttelseslovgivning, herunder EU's generelle databeskyttelsesforordning (GDPR).\nKIIBEE indsamler og behandler personoplysninger med det formål at:\n- Drifte og vedligeholde Platformen\n- Behandle betalinger og udbetalinger til udgivere\n- Overholde juridiske forpligtelser\n- Kommunikere med udgivere vedrørende deres konto og indhold\nUdgivere har ret til at:\n- Få adgang til deres personoplysninger\n- Anmode om rettelse af unøjagtige oplysninger\n- Anmode om sletning af deres data\n- Gøre indsigelse mod behandling af deres oplysninger\nHvis du har spørgsmål til behandlingen af dine personoplysninger, bedes du kontakte os på info@kiibee.dk."
         },
         "contact": {
           "title": "Kontakt os",
@@ -1129,9 +1133,33 @@
           "title": "Lovvalg og væmeting",
           "body": "Disse betingelser er underlagt dansk ret.\nEventuelle tvister skal afgøres ved danske domstole."
         },
+        "publisherAccount": {
+          "title": "Udgiverkonto og brugeransvar",
+          "body": "For at anvende Platformen som udgiver skal du oprette en konto.\nDu er ansvarlig for:\n- at holde dine loginoplysninger fortrolige\n- alle aktiviteter, der sker via din Konto\n- at afgive korrekte og opdaterede oplysninger\nKIIBEE er ikke ansvarlig for tab som følge af uautoriseret brug af din Konto. Du skal straks kontakte KIIBEE ved mistanke om misbrug."
+        },
+        "publisherContent": {
+          "title": "Indhold og brugergenereret materiale",
+          "body": "Du kan via Platformen uploade og dele indhold.\nDu er eneansvarlig for dit indhold og garanterer, at:\n- du har alle nødvendige rettigheder\n- indholdet ikke krænker tredjeparts rettigheder\n- indholdet overholder gældende lovgivning\n- indholdet ikke er af stødende karakter\nKIIBEE kan til enhver tid, uden varsel:\n- afvise, redigere eller fjerne indhold\n- suspendere eller lukke konti ved misligholdelse\nVed fejl, misvisende indhold eller snyd kan betalinger tilbageholdes eller tilbageføres."
+        },
+        "publisherRole": {
+          "title": "KIIBEE's rolle som udgiverplatform",
+          "body": "KIIBEE fungerer som en platform for formidling af digitalt indhold mellem brugere og slutkunder.\nKIIBEE er ikke ansvarlig for:\n- kvaliteten af det indhold, der udbydes af brugere\n- aftaler indgået mellem bruger og slutkunde\nKIIBEE har dog ret til at fjerne indhold, der ikke lever op til platformens krav."
+        },
+        "publisherFees": {
+          "title": "Betingelser og gebyrer for udgivere",
+          "body": "Ved salg via platformen: KIIBEE overfører dit udbytte fra salg af digitale materialer, når du ønsker det, med op til 5-7 bankdage. Dit udbytte udbetales efter der er trukket et gebyr og indsættes på din bankkonto. Gebyret indeholder blandt andet udgifter til betalingsudbyder: Dankort/MasterCard/Visa & MobilePay for indløsning.\nKIIBEE tager et gebyr per solgt materiale til blandt andet afholdelse af udgifter til udvikling/hosting og vedligeholdelse af softwaren. KIIBEE's gebyr per solgt vare ses under aktuelle priser: kiibee.dk/pricing.\nKIIBEE kan tilbageholde betaling ved:\n- mistanke om snyd\n- klager fra slutkunder\n- manglende levering af indhold\nAbonnementer opkræves løbende og manglende betaling kan medføre lukning af konto."
+        },
+        "publisherMarketing": {
+          "title": "E-mail og markedsføring",
+          "body": "Ved indsamling af e-mails via platformen skal du:\n- Overholde markedsføringsloven (§6)\n- Sikre samtykke\n- Give mulighed for afmelding\nDet er ikke tilladt at videregive e-mails til tredjepart uden samtykke."
+        },
+        "publisherTermination": {
+          "title": "Opsigelse af udgiverkonto",
+          "body": "KIIBEE kan til enhver tid:\n- suspendere eller lukke din konto ved misligholdelse\n- ændre eller ophøre Platformen med rimeligt varsel\n- opsige din konto med en måneds varsel, betalt abonnement vil ikke blive refunderet, hvorefter din konto nedlægges og dine data og indhold slettes."
+        },
         "contact": {
           "title": "Kontakt",
-          "body": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:\nKIIBEE ApS\nEmail: info@kiibee.dk"
+          "body": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:\nKIIBEE ApS\nCVR: 34898634\nEmail: info@kiibee.dk"
         }
       }
     },

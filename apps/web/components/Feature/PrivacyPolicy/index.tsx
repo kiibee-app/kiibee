@@ -1,12 +1,13 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import FormattedBody from "../FormattedBody";
 import {
   Body,
   ContactCard,
   Description,
   Divider,
-  Intro,
+  FormattedDescription,
   Meta,
   Section,
   SectionTitle,
@@ -22,16 +23,20 @@ export default function PrivacyPolicySection() {
       <Title>{t("footer.privacyPolicy")}</Title>
       <Meta>{t("legalPages.privacyPolicy.updatedAt")}</Meta>
       <Divider />
-      <Intro>{t("legalPages.privacyPolicy.intro")}</Intro>
+      <FormattedDescription>
+        <FormattedBody text={t("legalPages.privacyPolicy.intro")} />
+      </FormattedDescription>
       <Divider />
       <Body>
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.collect.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.privacyPolicy.sections.collect.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.privacyPolicy.sections.collect.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Divider />
         <Section>
@@ -56,9 +61,11 @@ export default function PrivacyPolicySection() {
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.use.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.privacyPolicy.sections.use.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.privacyPolicy.sections.use.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Divider />
         <Section>
@@ -95,6 +102,17 @@ export default function PrivacyPolicySection() {
           <Description>
             {t("legalPages.privacyPolicy.sections.acceptance.body")}
           </Description>
+        </Section>
+        <Divider />
+        <Section>
+          <SectionTitle>
+            {t("legalPages.privacyPolicy.sections.publisherGdpr.title")}
+          </SectionTitle>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.privacyPolicy.sections.publisherGdpr.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Divider />
         <ContactCard>

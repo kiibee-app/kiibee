@@ -1,11 +1,13 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import FormattedBody from "../FormattedBody";
 import {
   Body,
   ContactCard,
   Description,
   Divider,
+  FormattedDescription,
   Intro,
   Meta,
   Section,
@@ -56,9 +58,11 @@ export default function SubscriptionTermsSection() {
           <SectionTitle>
             {t("legalPages.subscriptionTerms.sections.nonPayment.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.subscriptionTerms.sections.nonPayment.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.subscriptionTerms.sections.nonPayment.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Divider />
         <ContactCard>

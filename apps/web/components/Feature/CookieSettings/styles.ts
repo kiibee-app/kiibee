@@ -3,9 +3,14 @@ import styled from "styled-components";
 export const Wrap = styled.div`
   max-width: 1100px;
   margin: 0 auto;
-  padding: 48px 24px 64px;
+  padding: 110px 24px 64px;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-align: left;
+
+  a {
+    color: ${({ theme }) => theme.colors.primary.BLUE};
+    text-decoration: underline;
+  }
 `;
 
 export const Title = styled.h1`
@@ -34,6 +39,7 @@ export const Intro = styled.p`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
+  counter-reset: section;
 `;
 
 export const Section = styled.section`
@@ -43,10 +49,39 @@ export const Section = styled.section`
 export const SectionTitle = styled.h2`
   margin: 0 0 12px;
   ${({ theme }) => theme.typography.H4_SemiBold};
+  counter-increment: section;
+
+  &::before {
+    content: counter(section) ". ";
+  }
 `;
 
 export const Description = styled.p`
   margin: 0;
   ${({ theme }) => theme.typography.Body_Regular};
   white-space: pre-line;
+`;
+
+export const FormattedDescription = styled.div`
+  margin: 0;
+  ${({ theme }) => theme.typography.Body_Regular};
+  white-space: pre-line;
+
+  p {
+    margin: 0 0 16px;
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.primary.BLUE};
+    text-decoration: underline;
+  }
+
+  ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  li {
+    margin: 4px 0;
+  }
 `;
