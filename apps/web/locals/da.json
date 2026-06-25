@@ -1237,7 +1237,8 @@
         "collections": "Samlinger",
         "videos": "Videoer",
         "audios": "Lydfiler",
-        "pdf": "PDF"
+        "pdf": "PDF",
+        "web": "Weblink"
       },
       "buttons": {
         "seeContent": "Se indhold"
@@ -2012,9 +2013,11 @@
     "playVideo": "Afspil video",
     "playAudio": "Afspil lyd",
     "openPdf": "Åben PDF",
+    "openWeb": "Åben link",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Lyd",
     "mediaLabelPdf": "PDF",
+    "mediaLabelWeb": "Weblink",
     "expired": "Udløbet",
     "expiresInHours": "Udløber om {{count}} timer",
     "expiresInDays": "Udløber om {{count}} dage",

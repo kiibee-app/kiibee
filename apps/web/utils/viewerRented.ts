@@ -46,7 +46,12 @@ import {
   MOCK_PURCHASED_VIDEOS,
 } from "@/utils/dummyData/viewerPurchasedMockData";
 
-export type RentedSectionKey = "collections" | "videos" | "audios" | "pdfs";
+export type RentedSectionKey =
+  | "collections"
+  | "videos"
+  | "audios"
+  | "pdfs"
+  | "webs";
 
 export const RENTED_MODES = {
   PURCHASED: "purchased",
@@ -61,6 +66,7 @@ export const RENTED_MEDIA_TYPES = {
   VIDEO: "video",
   AUDIO: "audio",
   PDF: "pdf",
+  WEB: "web",
 } as const;
 
 export const RENTED_SECTION_KEYS = {
@@ -68,10 +74,13 @@ export const RENTED_SECTION_KEYS = {
   VIDEOS: "videos",
   AUDIOS: "audios",
   PDFS: "pdfs",
+  WEBS: "webs",
 } as const;
 
+export type RentedMediaSectionKey = Exclude<RentedSectionKey, "collections">;
+
 type ViewerRentedMediaSection = {
-  key: Exclude<RentedSectionKey, "collections">;
+  key: RentedMediaSectionKey;
   title: string;
 };
 
@@ -80,7 +89,13 @@ export type RentedContentSources = {
   videos: RentedMediaItem[];
   audios: RentedMediaItem[];
   pdfs: RentedMediaItem[];
+  webs: RentedMediaItem[];
 };
+
+export type RentedMediaSectionItems = Record<
+  RentedMediaSectionKey,
+  RentedMediaItem[]
+>;
 
 const PURCHASED_SOURCES: RentedContentSources = {
   collections: MOCK_PURCHASED_COLLECTIONS.map((item) => ({ ...item })),
@@ -96,6 +111,7 @@ const PURCHASED_SOURCES: RentedContentSources = {
     ...item,
     expiryText: item.dateLabel,
   })),
+  webs: [],
 };
 
 export function getRentedMediaSections(
@@ -114,7 +130,25 @@ export function getRentedMediaSections(
       key: RENTED_SECTION_KEYS.PDFS,
       title: t("dashboard.viewerPurchased.sections.pdf"),
     },
+    {
+      key: RENTED_SECTION_KEYS.WEBS,
+      title: t("dashboard.viewerPurchased.sections.web"),
+    },
   ];
+}
+
+export function getRentedMediaSectionItems(items: {
+  videos: RentedMediaItem[];
+  audios: RentedMediaItem[];
+  pdfs: RentedMediaItem[];
+  webs: RentedMediaItem[];
+}): RentedMediaSectionItems {
+  return {
+    [RENTED_SECTION_KEYS.VIDEOS]: items.videos,
+    [RENTED_SECTION_KEYS.AUDIOS]: items.audios,
+    [RENTED_SECTION_KEYS.PDFS]: items.pdfs,
+    [RENTED_SECTION_KEYS.WEBS]: items.webs,
+  };
 }
 
 export const RENTED_PAGE_SIZE: Record<RentedSectionKey, number> = {
@@ -122,6 +156,7 @@ export const RENTED_PAGE_SIZE: Record<RentedSectionKey, number> = {
   [RENTED_SECTION_KEYS.VIDEOS]: 4,
   [RENTED_SECTION_KEYS.AUDIOS]: 4,
   [RENTED_SECTION_KEYS.PDFS]: 4,
+  [RENTED_SECTION_KEYS.WEBS]: 4,
 };
 
 export function paginateSectionItems<T>(
@@ -161,6 +196,7 @@ export function getMediaLabel(type: RentedSectionKey, t: TFunction) {
     [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.mediaLabelVideo"),
     [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.mediaLabelAudio"),
     [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.mediaLabelPdf"),
+    [RENTED_SECTION_KEYS.WEBS]: t("viewerRented.mediaLabelWeb"),
   };
   return map[type] ?? "";
 }
@@ -170,6 +206,7 @@ export function getMediaAction(type: RentedSectionKey, t: TFunction) {
     [RENTED_SECTION_KEYS.VIDEOS]: t("viewerRented.playVideo"),
     [RENTED_SECTION_KEYS.AUDIOS]: t("viewerRented.playAudio"),
     [RENTED_SECTION_KEYS.PDFS]: t("viewerRented.openPdf"),
+    [RENTED_SECTION_KEYS.WEBS]: t("viewerRented.openWeb"),
   };
   return map[type] ?? "";
 }
@@ -185,6 +222,7 @@ export function getRentedContentSources(
       videos: CURRENT_RENTED_VIDEOS,
       audios: CURRENT_RENTED_AUDIOS,
       pdfs: CURRENT_RENTED_PDFS,
+      webs: [],
     };
   }
 
@@ -193,6 +231,7 @@ export function getRentedContentSources(
     videos: PREVIOUS_RENTED_VIDEOS,
     audios: PREVIOUS_RENTED_AUDIOS,
     pdfs: PREVIOUS_RENTED_PDFS,
+    webs: [],
   };
 }
 

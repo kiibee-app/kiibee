@@ -1237,7 +1237,8 @@
         "collections": "Collections",
         "videos": "Videos",
         "audios": "Audios",
-        "pdf": "PDF"
+        "pdf": "PDF",
+        "web": "Web Link"
       },
       "buttons": {
         "seeContent": "See content"
@@ -2004,9 +2005,11 @@
     "playVideo": "Play video",
     "playAudio": "Play audio",
     "openPdf": "Open pdf",
+    "openWeb": "Open Link",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Audio",
     "mediaLabelPdf": "PDF",
+    "mediaLabelWeb": "Web Link",
     "expired": "Expired",
     "expiresInHours": "Expires in {{count}} hrs",
     "expiresInDays": "Expires in {{count}} days",
