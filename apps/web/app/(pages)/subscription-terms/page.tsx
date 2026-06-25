@@ -2,7 +2,7 @@
 
 import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
-import { Main, PageContainer, PageHeader, Section } from "@/app/styles";
+import { Main, PageContainer, Section } from "@/app/styles";
 import SubscriptionTermsSection from "@/components/Feature/SubscriptionTerms";
 
 export default function SubscriptionTermsPage() {
@@ -10,7 +10,6 @@ export default function SubscriptionTermsPage() {
     <PageContainer>
       <NavBar />
       <Main>
-        <PageHeader>Subscription Terms</PageHeader>
         <Section>
           <SubscriptionTermsSection />
         </Section>

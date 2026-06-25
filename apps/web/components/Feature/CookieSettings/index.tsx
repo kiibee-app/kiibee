@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import {
   Body,
   Description,
+  Divider,
   Intro,
   Meta,
   Section,
@@ -19,7 +20,9 @@ export default function CookieSettingsSection() {
     <Wrap>
       <Title>{t("footer.cookieSettings")}</Title>
       <Meta>{t("legalPages.cookieSettings.updatedAt")}</Meta>
+      <Divider />
       <Intro>{t("legalPages.cookieSettings.intro")}</Intro>
+      <Divider />
       <Body>
         <Section>
           <SectionTitle>
@@ -29,6 +32,7 @@ export default function CookieSettingsSection() {
             {t("legalPages.cookieSettings.sections.what.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.cookieSettings.sections.kiibee.title")}
@@ -37,6 +41,7 @@ export default function CookieSettingsSection() {
             {t("legalPages.cookieSettings.sections.kiibee.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.cookieSettings.sections.analytics.title")}

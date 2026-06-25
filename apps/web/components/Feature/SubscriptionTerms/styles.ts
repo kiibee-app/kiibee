@@ -10,13 +10,19 @@ export const Wrap = styled.div`
 
 export const Title = styled.h1`
   margin: 0 0 12px;
-  ${({ theme }) => theme.typography.Heading2};
+  ${({ theme }) => theme.typography.Heading1};
 `;
 
 export const Meta = styled.p`
   margin: 0 0 20px;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.BLACK_90};
+`;
+
+export const Divider = styled.hr`
+  border: none;
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+  margin: 0 0 24px;
 `;
 
 export const Intro = styled.p`
@@ -28,14 +34,14 @@ export const Intro = styled.p`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
 `;
 
-export const Section = styled.section``;
+export const Section = styled.section`
+  padding: 0 0 24px;
+`;
 
 export const SectionTitle = styled.h2`
-  margin: 0 0 8px;
-  padding-top: 24px;
+  margin: 0 0 12px;
   ${({ theme }) => theme.typography.H4_SemiBold};
 `;
 

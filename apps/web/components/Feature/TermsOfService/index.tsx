@@ -5,6 +5,7 @@ import {
   Body,
   ContactCard,
   Description,
+  Divider,
   Intro,
   Meta,
   Section,
@@ -20,7 +21,9 @@ export default function TermsOfServiceSection() {
     <Wrap>
       <Title>{t("footer.termsOfService")}</Title>
       <Meta>{t("legalPages.termsOfService.updatedAt")}</Meta>
+      <Divider />
       <Intro>{t("legalPages.termsOfService.intro")}</Intro>
+      <Divider />
       <Body>
         <Section>
           <SectionTitle>
@@ -30,6 +33,7 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.acceptance.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.intellectualProperty.title")}
@@ -38,6 +42,7 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.intellectualProperty.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.thirdParty.title")}
@@ -46,6 +51,7 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.thirdParty.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.offensiveContent.title")}
@@ -54,6 +60,7 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.offensiveContent.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.digitalPurchase.title")}
@@ -62,6 +69,7 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.digitalPurchase.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.payments.title")}
@@ -70,6 +78,7 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.payments.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.platform.title")}
@@ -78,6 +87,7 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.platform.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.liability.title")}
@@ -86,6 +96,7 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.liability.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.governingLaw.title")}
@@ -94,6 +105,7 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.governingLaw.body")}
           </Description>
         </Section>
+        <Divider />
         <ContactCard>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.contact.title")}

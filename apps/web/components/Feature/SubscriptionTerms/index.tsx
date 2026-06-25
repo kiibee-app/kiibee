@@ -5,6 +5,7 @@ import {
   Body,
   ContactCard,
   Description,
+  Divider,
   Intro,
   Meta,
   Section,
@@ -20,7 +21,9 @@ export default function SubscriptionTermsSection() {
     <Wrap>
       <Title>{t("footer.subscriptionTerms")}</Title>
       <Meta>{t("legalPages.subscriptionTerms.updatedAt")}</Meta>
+      <Divider />
       <Intro>{t("legalPages.subscriptionTerms.intro")}</Intro>
+      <Divider />
       <Body>
         <Section>
           <SectionTitle>
@@ -30,6 +33,7 @@ export default function SubscriptionTermsSection() {
             {t("legalPages.subscriptionTerms.sections.general.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.subscriptionTerms.sections.payment.title")}
@@ -38,6 +42,7 @@ export default function SubscriptionTermsSection() {
             {t("legalPages.subscriptionTerms.sections.payment.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.subscriptionTerms.sections.cancellation.title")}
@@ -46,6 +51,7 @@ export default function SubscriptionTermsSection() {
             {t("legalPages.subscriptionTerms.sections.cancellation.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.subscriptionTerms.sections.nonPayment.title")}
@@ -54,6 +60,7 @@ export default function SubscriptionTermsSection() {
             {t("legalPages.subscriptionTerms.sections.nonPayment.body")}
           </Description>
         </Section>
+        <Divider />
         <ContactCard>
           <SectionTitle>
             {t("legalPages.subscriptionTerms.sections.contact.title")}

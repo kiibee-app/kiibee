@@ -5,6 +5,7 @@ import {
   Body,
   ContactCard,
   Description,
+  Divider,
   Intro,
   Meta,
   Section,
@@ -20,7 +21,9 @@ export default function PrivacyPolicySection() {
     <Wrap>
       <Title>{t("footer.privacyPolicy")}</Title>
       <Meta>{t("legalPages.privacyPolicy.updatedAt")}</Meta>
+      <Divider />
       <Intro>{t("legalPages.privacyPolicy.intro")}</Intro>
+      <Divider />
       <Body>
         <Section>
           <SectionTitle>
@@ -30,6 +33,7 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.collect.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.nonPersonal.title")}
@@ -38,6 +42,7 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.nonPersonal.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.cookies.title")}
@@ -46,6 +51,7 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.cookies.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.use.title")}
@@ -54,6 +60,7 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.use.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.share.title")}
@@ -62,6 +69,7 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.share.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.changes.title")}
@@ -70,6 +78,7 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.changes.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.rights.title")}
@@ -78,6 +87,7 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.rights.body")}
           </Description>
         </Section>
+        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.acceptance.title")}
@@ -86,6 +96,7 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.acceptance.body")}
           </Description>
         </Section>
+        <Divider />
         <ContactCard>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.contact.title")}
