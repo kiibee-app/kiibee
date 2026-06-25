@@ -501,7 +501,6 @@ function CreatorsContentsInner() {
             collectionAccessDuration={collectionAccessDuration}
             setCollectionAccessDuration={setCollectionAccessDuration}
             onPasswordValidationChange={setHasPasswordError}
-            onBack={handleBackToCollection}
           />
         </ContentPanel>
       </ContentsScrollArea>

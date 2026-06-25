@@ -31,7 +31,6 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import GeneralContent from "./General";
 import DeleteModals from "./CollectionDeleteModal";
-import AuthBackButton from "../Auth/AuthBackButton";
 import { useRouter } from "next/navigation";
 import { pathPublishedContent } from "@/utils/path";
 import MetaData from "./MetaData";
@@ -75,7 +74,6 @@ type Props = {
   collectionAccessDuration?: AccessDurationValue;
   setCollectionAccessDuration?: (value: AccessDurationValue) => void;
   onPasswordValidationChange?: (hasError: boolean) => void;
-  onBack?: () => void;
 };
 
 export default function ContentTabPanel({
@@ -108,7 +106,6 @@ export default function ContentTabPanel({
   collectionAccessDuration,
   setCollectionAccessDuration,
   onPasswordValidationChange,
-  onBack,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -168,20 +165,17 @@ export default function ContentTabPanel({
 
       if (!data || data.length === 0) {
         return (
-          <>
-            {onBack && <AuthBackButton marginBottom="0px" onClick={onBack} />}
-            <EmptyCollectionCard>
-              <EmptyCollectionFolderIcon />
-              <EmptyCollectionText>
-                <EmptyCollectionTitle>
-                  {t("contents.emptyCollection.title")}
-                </EmptyCollectionTitle>
-                <MonoText $use="Body_Medium">
-                  {t("contents.emptyCollection.description")}
-                </MonoText>
-              </EmptyCollectionText>
-            </EmptyCollectionCard>
-          </>
+          <EmptyCollectionCard>
+            <EmptyCollectionFolderIcon />
+            <EmptyCollectionText>
+              <EmptyCollectionTitle>
+                {t("contents.emptyCollection.title")}
+              </EmptyCollectionTitle>
+              <MonoText $use="Body_Medium">
+                {t("contents.emptyCollection.description")}
+              </MonoText>
+            </EmptyCollectionText>
+          </EmptyCollectionCard>
         );
       }
 
