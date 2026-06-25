@@ -63,6 +63,7 @@ export type InputFieldProps = {
     HTMLInputElement | HTMLTextAreaElement
   >;
   onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onChangeEvent?: React.ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   >;
@@ -106,6 +107,7 @@ export default React.forwardRef<
     iconDataTestId,
     onKeyDown,
     onBlur,
+    onFocus,
     max,
     min,
     onChangeEvent,
@@ -162,6 +164,12 @@ export default React.forwardRef<
     e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     onBlur?.(e);
+  };
+
+  const handleFocus = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    onFocus?.(e);
   };
 
   const normalizeError = (err: boolean | undefined) => !!err;
@@ -227,6 +235,7 @@ export default React.forwardRef<
                 data-test-id={dataTestId ? `${dataTestId}-${i}` : undefined}
                 onKeyDown={onKeyDown}
                 onBlur={handleBlur}
+                onFocus={handleFocus}
                 min={min}
               />
             );
@@ -253,6 +262,7 @@ export default React.forwardRef<
             maxLength={max}
             onKeyDown={handleKeyDown}
             onBlur={handleBlur}
+            onFocus={handleFocus}
             name={name}
           />
         ) : (
@@ -282,6 +292,7 @@ export default React.forwardRef<
               maxLength={max}
               onKeyDown={handleKeyDown}
               onBlur={handleBlur}
+              onFocus={handleFocus}
               name={name}
               min={min}
             />

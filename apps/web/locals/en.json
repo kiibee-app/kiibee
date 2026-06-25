@@ -1776,6 +1776,7 @@
     "metadata": {
       "validation": {
         "required": "This field is required.",
+        "numbersOnly": "Only numbers are allowed.",
         "mediaCardThumbnail": "Media card thumbnail is required.",
         "portraitThumbnail": "Portrait thumbnail is required."
       },

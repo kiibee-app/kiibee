@@ -363,11 +363,21 @@ export function useContentFormActions({
     if (!formState.description.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.DESCRIPTION] = requiredMessage;
     }
+    const numberRegex = /^\d+$/;
+
     if (!formState.publishedYear.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = requiredMessage;
+    } else if (!numberRegex.test(formState.publishedYear)) {
+      nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = t(
+        "contents.metadata.validation.numbersOnly",
+      );
     }
     if (!formState.duration.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.DURATION] = requiredMessage;
+    } else if (!numberRegex.test(formState.duration)) {
+      nextErrors[CONTENT_FORM_FIELDS.DURATION] = t(
+        "contents.metadata.validation.numbersOnly",
+      );
     }
     if (!formState.category.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.CATEGORY] = requiredMessage;
