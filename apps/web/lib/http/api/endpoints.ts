@@ -82,6 +82,11 @@ export const API = {
       `/order/billing-history/${billingId}`,
     // confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
   },
+  subscription: {
+    create: "/subscription/create",
+    plans: "/subscription/plans",
+    creatorPlan: "/subscription/creator/plan",
+  },
   payout: {
     settlementHistory: "/payout/settlement-history",
     stats: "/payout/stats",

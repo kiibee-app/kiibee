@@ -105,7 +105,10 @@ export const createSubscriptionService = async ({
       customerId: userId,
       customer: {
         firstName: user.fullName?.split(' ')?.[0] || 'User',
-        lastName: user.fullName?.split(' ')?.slice(1)?.join(' ') || '',
+        lastName:
+          user.fullName?.split(' ')?.slice(1)?.join(' ') ||
+          user.fullName?.split(' ')?.[0] ||
+          'User',
         email: user.email,
       },
 

@@ -41,6 +41,7 @@ export const PATHS = {
   PRIVACY_POLICY: "/privacy-policy",
   SUBSCRIPTION_TERMS: "/subscription-terms",
   CREATOR_PROFILE: "/creator",
+  CREATOR_PLANS: "/creator-plans",
 } as const;
 
 const VIEWER_ROLE = "viewer";
