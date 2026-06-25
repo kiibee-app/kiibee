@@ -415,13 +415,11 @@ export function useContentFormActions({
     }
 
     setFormErrors((prev) => {
-      const mergedErrors = { ...prev };
-      if (nextErrors.trailerLink) {
-        mergedErrors.trailerLink = nextErrors.trailerLink;
-      } else {
-        delete mergedErrors.trailerLink;
-      }
-      return mergedErrors;
+      const rest = { ...prev };
+      delete rest.trailerLink;
+      return nextErrors.trailerLink
+        ? { ...rest, trailerLink: nextErrors.trailerLink }
+        : rest;
     });
 
     if (Object.keys(nextErrors).length > 0) {
