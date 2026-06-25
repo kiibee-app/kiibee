@@ -7,19 +7,21 @@ import {
   index,
   jsonb,
   uniqueIndex,
+  uuid,
+  boolean,
 } from 'drizzle-orm/pg-core';
 import { baseTimestamps } from 'src/utils/dbHelper';
 import { users } from '../users/users.schema';
-import { creatorPlans } from './creatorPlan.schema';
 import { invoiceStatusEnum } from '../enums';
+import { plans } from './plans.schema';
 
 export const subscriptions = pgTable(
   'subscriptions',
   {
     id: text('id').primaryKey(),
-    planId: text('plan_id')
+    planId: uuid('plan_id')
       .notNull()
-      .references(() => creatorPlans.id, { onDelete: 'restrict' }),
+      .references(() => plans.id, { onDelete: 'restrict' }),
     creatorId: text('creator_id')
       .notNull()
       .references(() => users.id, { onDelete: 'restrict' }),
@@ -38,6 +40,7 @@ export const subscriptions = pgTable(
     agreementId: text('agreement_id'),
     rawPayload: jsonb('raw_payload'),
     processedAt: timestamp('processed_at'),
+    isActive: boolean('is_active').notNull().default(true),
     ...baseTimestamps,
   },
   (table) => ({

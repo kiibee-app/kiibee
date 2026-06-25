@@ -114,7 +114,7 @@ export async function handleSubscriptionPayment(body: any) {
     });
 
     const baseData = {
-      planId: creatorPlanId,
+      planId: reference,
       creatorId: customerId,
       amount: formattedAmount,
       currency,
@@ -167,7 +167,13 @@ export async function handleSubscriptionPayment(body: any) {
 
     logger.info('✅ Subscription processed successfully');
   } catch (error: any) {
-    logger.error('❌ webhook error:', error.message);
+    logger.error('❌ webhook error:', error);
+
+    if (error instanceof Error) {
+      logger.error('Message:', error.message);
+      logger.error('Stack:', error.stack);
+    }
+
     throw error;
   }
 }
