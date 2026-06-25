@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import PlanCard from './PlanCard';
-import { CardsWrapper, Section, SectionTitle } from './styles';
-import { planOrder, pricingPlanToPlanName } from '@/utils/pricingPlanKeys';
-import ScrollReveal from '@/components/UI/ScrollReveal';
-import { LANDING_REVEAL } from '@/utils/landingUtils';
-import { useGetAPI } from '@/lib/http/api/getApi';
-import { API } from '@/lib/http/api/endpoints';
+import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import PlanCard from "./PlanCard";
+import { CardsWrapper, Section, SectionTitle } from "./styles";
+import { planOrder, pricingPlanToPlanName } from "@/utils/pricingPlanKeys";
+import ScrollReveal from "@/components/UI/ScrollReveal";
+import { LANDING_REVEAL } from "@/utils/landingUtils";
+import { useGetAPI } from "@/lib/http/api/getApi";
+import { API } from "@/lib/http/api/endpoints";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 
 type ApiPlan = {
   id: string;
@@ -25,18 +26,30 @@ type PlansResponse = {
   data?: ApiPlan[];
 };
 
+type CreatorPlanResponse = {
+  success: boolean;
+  data?: ApiPlan[];
+};
+
 type PricingPlansSectionProps = {
   titleKey?: string;
 };
 
 export default function PricingPlansSection({
-  titleKey = 'pricingPlans.title',
+  titleKey = "pricingPlans.title",
 }: PricingPlansSectionProps) {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
 
   const { data: plansData } = useGetAPI<PlansResponse>(API.subscription.plans);
+  const { data: creatorPlanData } = useGetAPI<CreatorPlanResponse>(
+    API.subscription.creatorPlan,
+    undefined,
+    { enabled: !!user?.id },
+  );
 
   const apiPlans = useMemo(() => plansData?.data ?? [], [plansData]);
+  const activePlanId = creatorPlanData?.data?.[0]?.id;
 
   const matchedPlans = useMemo(() => {
     return planOrder.map((planKey) => {
@@ -56,6 +69,7 @@ export default function PricingPlansSection({
       <CardsWrapper>
         {matchedPlans.map(({ planKey, apiPlan }, index) => {
           const baseKey = `pricingPlans.plans.${planKey}`;
+          const isCurrentPlan = !!apiPlan && apiPlan.id === activePlanId;
 
           return (
             <ScrollReveal
@@ -71,10 +85,15 @@ export default function PricingPlansSection({
                 features={
                   t(`${baseKey}.features`, { returnObjects: true }) as string[]
                 }
-                cta={t('pricingPlans.cta')}
-                highlight={planKey === 'growth'}
+                cta={
+                  isCurrentPlan
+                    ? t("pricingPlans.active", "Active")
+                    : t("pricingPlans.cta")
+                }
+                highlight={planKey === "growth"}
                 planKey={planKey}
                 planId={apiPlan?.id}
+                isCurrentPlan={isCurrentPlan}
               />
             </ScrollReveal>
           );

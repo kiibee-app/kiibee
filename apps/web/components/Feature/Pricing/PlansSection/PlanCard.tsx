@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Card,
   Description,
@@ -12,15 +12,15 @@ import {
   PlanPrice,
   PlanTitle,
   TickIcon,
-} from './styles';
-import { PATHS } from '@/utils/path';
-import { useRouter } from 'next/navigation';
-import { useStoredLoginUser } from '@/hooks/auth/useStoredLoginUser';
-import { usePostAPI } from '@/lib/http/api/postApi';
-import { API } from '@/lib/http/api/endpoints';
-import { toast } from 'react-toastify';
-import { useApiErrorMessage } from '@/lib/http/useApiErrorMessage';
-import type { PlanKey } from '@/utils/pricingPlanKeys';
+} from "./styles";
+import { PATHS } from "@/utils/path";
+import { useRouter } from "next/navigation";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { usePostAPI } from "@/lib/http/api/postApi";
+import { API } from "@/lib/http/api/endpoints";
+import { toast } from "react-toastify";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import type { PlanKey } from "@/utils/pricingPlanKeys";
 
 type CreateSubscriptionResponse = {
   success: boolean;
@@ -45,6 +45,7 @@ export interface PlanCardProps {
   highlight?: boolean;
   planKey?: PlanKey;
   planId?: string;
+  isCurrentPlan?: boolean;
 }
 
 export default function PlanCard({
@@ -55,6 +56,7 @@ export default function PlanCard({
   cta,
   highlight = false,
   planId,
+  isCurrentPlan = false,
 }: PlanCardProps) {
   const router = useRouter();
   const user = useStoredLoginUser();
@@ -74,7 +76,7 @@ export default function PlanCard({
     }
 
     if (!user?.id || !planId) {
-      toast.error('Plan not found');
+      toast.error("Plan not found");
       return;
     }
 
@@ -85,20 +87,20 @@ export default function PlanCard({
         planId,
       });
 
-      if (response.type === 'FREE') {
-        toast.success(response.message || 'Subscription activated!');
+      if (response.type === "FREE") {
+        toast.success(response.message || "Subscription activated!");
         router.push(PATHS.DASHBOARD_CREATOR);
         return;
       }
 
       const paymentUrl = response?.data?.paymentWindowUrl;
       if (!paymentUrl) {
-        throw new Error('Payment URL missing');
+        throw new Error("Payment URL missing");
       }
 
       window.location.assign(paymentUrl);
     } catch (error) {
-      const message = getErrorMessage(error, 'errors.saveChangesFailed');
+      const message = getErrorMessage(error, "errors.saveChangesFailed");
       toast.error(message);
     } finally {
       setIsSubmitting(false);
@@ -126,8 +128,9 @@ export default function PlanCard({
 
       <PlanButton
         type="button"
-        onClick={handlePlanClick}
-        disabled={isSubmitting}
+        variant={isCurrentPlan ? "secondary" : "primary"}
+        onClick={isCurrentPlan ? undefined : handlePlanClick}
+        disabled={isSubmitting || isCurrentPlan}
         isLoading={isSubmitting}
       >
         {cta}
