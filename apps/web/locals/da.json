@@ -1778,6 +1778,7 @@
     "metadata": {
       "validation": {
         "required": "Dette felt er obligatorisk.",
+        "numbersOnly": "Kun tal er tilladt.",
         "mediaCardThumbnail": "Miniature til mediekortet er obligatorisk.",
         "portraitThumbnail": "Portraetminiature er obligatorisk."
       },

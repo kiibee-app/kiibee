@@ -461,3 +461,6 @@ export const BILLING_TYPES = {
 export const ACCESS_TYPE_RENTED = "rented";
 export const ACCESS_TYPE_PURCHASED = "purchased";
 export const ACCESS_STATUS_EXPIRED = "expired";
+
+export const NUMERIC_ONLY_REGEX = /^\d+$/;
+export const NON_DIGIT_REGEX = /\D/g;

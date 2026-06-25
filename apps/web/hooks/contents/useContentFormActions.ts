@@ -49,6 +49,7 @@ import {
   mockSizeFallback,
   buildContentUpdatePayload,
   GENERAL_FORM_FIELDS,
+  NUMERIC_ONLY_REGEX,
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
@@ -366,9 +367,17 @@ export function useContentFormActions({
     }
     if (!formState.publishedYear.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = requiredMessage;
+    } else if (!NUMERIC_ONLY_REGEX.test(formState.publishedYear)) {
+      nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = t(
+        "contents.metadata.validation.numbersOnly",
+      );
     }
     if (!formState.duration.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.DURATION] = requiredMessage;
+    } else if (!NUMERIC_ONLY_REGEX.test(formState.duration)) {
+      nextErrors[CONTENT_FORM_FIELDS.DURATION] = t(
+        "contents.metadata.validation.numbersOnly",
+      );
     }
     if (!formState.category.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.CATEGORY] = requiredMessage;
