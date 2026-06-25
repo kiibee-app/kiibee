@@ -48,6 +48,7 @@ import {
   mockSizeFallback,
   buildContentUpdatePayload,
   GENERAL_FORM_FIELDS,
+  NUMERIC_ONLY_REGEX,
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
@@ -363,18 +364,16 @@ export function useContentFormActions({
     if (!formState.description.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.DESCRIPTION] = requiredMessage;
     }
-    const numberRegex = /^\d+$/;
-
     if (!formState.publishedYear.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = requiredMessage;
-    } else if (!numberRegex.test(formState.publishedYear)) {
+    } else if (!NUMERIC_ONLY_REGEX.test(formState.publishedYear)) {
       nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = t(
         "contents.metadata.validation.numbersOnly",
       );
     }
     if (!formState.duration.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.DURATION] = requiredMessage;
-    } else if (!numberRegex.test(formState.duration)) {
+    } else if (!NUMERIC_ONLY_REGEX.test(formState.duration)) {
       nextErrors[CONTENT_FORM_FIELDS.DURATION] = t(
         "contents.metadata.validation.numbersOnly",
       );
