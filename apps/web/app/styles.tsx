@@ -49,6 +49,14 @@ export const ExploreSection = styled.section`
   overflow: visible;
 `;
 
+export const PageHeader = styled.h1`
+  ${({ theme }) => theme.typography.Heading1};
+  text-align: center;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  margin: 0;
+  padding: 120px 24px 0;
+`;
+
 export const ExploreContentWrapper = styled.div`
   @media (min-width: 768px) {
     aside {

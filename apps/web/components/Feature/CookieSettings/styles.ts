@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrap = styled.div`
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 110px 24px 64px;
   color: ${({ theme }) => theme.colors.primary.BLACK};
