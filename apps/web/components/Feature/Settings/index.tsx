@@ -20,8 +20,10 @@ import GenericTabs from "@/components/UI/GenericTabs";
 import NotificationModals from "./Notification/notificationModals";
 import { settlementData, settlementHeaders } from "@/utils/dummyData/payout";
 import {
+  DEFAULT_NOTIFICATION_VALUES,
   notificationSettings,
   NOTIFICATION_OPTIONS,
+  NotificationValues,
 } from "@/utils/notificationSettings";
 import { EXPORT_TYPE_OPTIONS } from "@/utils/exportOptions";
 import { SETTINGS as SETTINGS_KEYS_CONST } from "@/utils/translationKeys";
@@ -33,6 +35,7 @@ import {
   LEGACY_DASHBOARD_TAB_QUERY_KEYS,
   SCROLL_OPTIONS,
 } from "@/utils/Constants";
+import { useNotificationSettings } from "@/hooks/settings/useNotificationSettings";
 
 export default function SettingsContent() {
   const { t } = useTranslation();
@@ -51,6 +54,13 @@ export default function SettingsContent() {
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
   const [modalType, setModalType] = useState<NotificationModalType>(null);
+  const [notificationValues, setNotificationValues] =
+    useState<NotificationValues>(DEFAULT_NOTIFICATION_VALUES);
+  const {
+    data: savedNotificationValues,
+    updateSettings,
+    isUpdating,
+  } = useNotificationSettings();
 
   const SETTINGS_TABS_INDEX = useMemo(() => {
     const payoutKeywords = [
@@ -115,6 +125,17 @@ export default function SettingsContent() {
     useAutoMatchedQuery(setSearchValue);
 
   useEffect(() => {
+    if (!savedNotificationValues) return;
+
+    setNotificationValues({
+      type: savedNotificationValues.type,
+      frequency: savedNotificationValues.frequency,
+      recipient: savedNotificationValues.recipient,
+      otherEmail: savedNotificationValues.otherEmail ?? "",
+    });
+  }, [savedNotificationValues]);
+
+  useEffect(() => {
     if (!searchValue || searchValue.trim().length < 2) return;
 
     const query = searchValue.trim().toLowerCase();
@@ -177,14 +198,25 @@ export default function SettingsContent() {
   }, []);
 
   const handleConfirmDiscard = useCallback(() => {
+    setNotificationValues({
+      type: savedNotificationValues?.type ?? DEFAULT_NOTIFICATION_VALUES.type,
+      frequency:
+        savedNotificationValues?.frequency ??
+        DEFAULT_NOTIFICATION_VALUES.frequency,
+      recipient:
+        savedNotificationValues?.recipient ??
+        DEFAULT_NOTIFICATION_VALUES.recipient,
+      otherEmail: savedNotificationValues?.otherEmail ?? "",
+    });
     setSearchValue("");
     setOpenSearch(false);
     setModalType(null);
-  }, []);
+  }, [savedNotificationValues]);
 
-  const handleSave = useCallback(() => {
+  const handleSave = useCallback(async () => {
+    await updateSettings(notificationValues);
     setModalType(NOTIFICATION_MODAL.SUCCESS);
-  }, []);
+  }, [notificationValues, updateSettings]);
 
   const handleTabClick = useCallback(
     (tabKey: TabKey) => {
@@ -204,8 +236,10 @@ export default function SettingsContent() {
             <SecondaryButton type="button" onClick={handleCancel}>
               <MonoText $use="Body_Medium">{t("common.cancel")}</MonoText>
             </SecondaryButton>
-            <Button type="button" onClick={handleSave}>
-              <MonoText $use="Body_Medium">{t("common.save")}</MonoText>
+            <Button type="button" onClick={handleSave} disabled={isUpdating}>
+              <MonoText $use="Body_Medium">
+                {isUpdating ? "Saving..." : t("common.save")}
+              </MonoText>
             </Button>
           </HeaderActions>
         )}
@@ -230,7 +264,12 @@ export default function SettingsContent() {
 
       <Content id="settings-content-area">
         {activeTab === TAB_KEYS.payout && <PayoutContent />}
-        {activeTab === TAB_KEYS.notifications && <NotificationContent />}
+        {activeTab === TAB_KEYS.notifications && (
+          <NotificationContent
+            values={notificationValues}
+            onChange={setNotificationValues}
+          />
+        )}
         {activeTab === TAB_KEYS.export && <ExportContent />}
       </Content>
 
