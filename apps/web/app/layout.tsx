@@ -8,12 +8,14 @@ import { SmoothScrollProvider } from "../providers/smoothScrollProvider";
 import StyledComponentsRegistry from "@/lib/registry";
 import { QueryProvider } from "@/providers/queryProvider";
 import { ToastProvider } from "@/providers/toastProvider";
+import { cookies } from "next/headers";
 import {
   OPEN_GRAPH_LOCALE_DA_DK,
   TWITTER_CARD_SUMMARY_LARGE_IMAGE,
   WEBSITE,
 } from "@/utils/Constants";
-import { DA } from "@/utils/common";
+import { STORAGE_KEY } from "@/utils/common";
+import { normalizeAppLanguage } from "@/utils/language";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,16 +49,20 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const cookieLang = cookieStore.get(STORAGE_KEY)?.value;
+  const initialLang = normalizeAppLanguage(cookieLang);
+
   return (
     <html
-      lang={DA}
+      lang={initialLang}
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body>
         <ThemeProvider>
           <QueryProvider>
-            <LanguageProvider initialLang={DA}>
+            <LanguageProvider initialLang={initialLang}>
               <SmoothScrollProvider>
                 <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
                 <ToastProvider />
