@@ -15,6 +15,7 @@ import {
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
 import { ResultsState } from "@/components/Feature/ExploreCreators/LatestRelease/styles";
+import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
@@ -95,11 +96,10 @@ function FormatPageContent() {
                   ))}
                 </Grid>
               ) : (
-                <ResultsState>
-                  <MonoText $use="Body_Medium">
-                    {t("nav.explore.noResults")}
-                  </MonoText>
-                </ResultsState>
+                <GenericEmptyState
+                  title={t("nav.explore.noResults")}
+                  bg="white"
+                />
               )}
             </PageWrapper>
           </div>
