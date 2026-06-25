@@ -184,5 +184,6 @@ export const emptyPurchasedResult = () => ({
   videos: [],
   audios: [],
   pdfs: [],
+  webs: [],
   collections: [],
 });
