@@ -378,6 +378,10 @@ export function useContentFormActions({
     }
     if (!formState.manufacturerLink.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.MANUFACTURER_LINK] = requiredMessage;
+    } else if (!isValidUrl(formState.manufacturerLink)) {
+      nextErrors[CONTENT_FORM_FIELDS.MANUFACTURER_LINK] = t(
+        "contents.general.trailerLinkInvalid",
+      );
     }
     if (!formState.tags.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.TAGS] = requiredMessage;
