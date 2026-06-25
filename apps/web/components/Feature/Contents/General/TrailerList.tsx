@@ -29,6 +29,14 @@ export default function TrailerList({ config }: { config?: TextConfig }) {
 
   const linkField = config?.linkField ?? TRAILER_FIELD_MAP.TRAILER;
 
+  const handleLink = (value: string | string[]) => {
+    const valStr = Array.isArray(value) ? value.join("") : value;
+    updateField(linkField, valStr);
+    if (formErrors[linkField]) {
+      clearFieldError(linkField);
+    }
+  };
+
   return (
     <GeneralPanel>
       <List>
@@ -44,13 +52,7 @@ export default function TrailerList({ config }: { config?: TextConfig }) {
           <ControlWrap>
             <InputField
               value={formState[linkField] ?? ""}
-              onChange={(value) => {
-                const valStr = Array.isArray(value) ? value.join("") : value;
-                updateField(linkField, valStr);
-                if (formErrors[linkField]) {
-                  clearFieldError(linkField);
-                }
-              }}
+              onChange={handleLink}
               placeholder={
                 config?.placeholder ??
                 t(CONTENTS.general.trailerLinkPlaceholder)
