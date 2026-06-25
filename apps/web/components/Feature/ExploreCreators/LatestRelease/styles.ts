@@ -160,7 +160,6 @@ export const LoadMoreContainer = styled.div`
   margin-top: 2rem;
   padding-top: 1.25rem;
   width: 100%;
-  border-top: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
 export const LoadMoreButton = styled(GenericButton)`

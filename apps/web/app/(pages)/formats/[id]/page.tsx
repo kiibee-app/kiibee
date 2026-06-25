@@ -14,7 +14,11 @@ import {
 } from "@/components/Feature/ExploreCreators/Creators/styles";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
-import { ResultsState } from "@/components/Feature/ExploreCreators/LatestRelease/styles";
+import {
+  ResultsState,
+  LoadMoreContainer,
+  LoadMoreButton,
+} from "@/components/Feature/ExploreCreators/LatestRelease/styles";
 import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
 import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
@@ -41,6 +45,8 @@ function FormatPageContent() {
     searchQuery,
     setSearchQuery,
     formatTitle,
+    showLoadMoreButton,
+    handleLoadMore,
   } = useFormatContent(id);
 
   return (
@@ -100,6 +106,17 @@ function FormatPageContent() {
                     {t("nav.explore.noResults")}
                   </MonoText>
                 </ResultsState>
+              )}
+              {showLoadMoreButton && !isLoading && (
+                <LoadMoreContainer>
+                  <LoadMoreButton
+                    variant="primary"
+                    type="button"
+                    onClick={handleLoadMore}
+                  >
+                    {t("creators.loadMore")}
+                  </LoadMoreButton>
+                </LoadMoreContainer>
               )}
             </PageWrapper>
           </div>
