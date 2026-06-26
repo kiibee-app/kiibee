@@ -6,7 +6,7 @@ import {
   LINE_BREAK,
   LIST_PREFIX,
   URL_REGEX,
-} from "../../utils/common";
+} from "../../../utils/common";
 
 function renderInline(text: string): React.ReactNode[] {
   const parts: React.ReactNode[] = [];

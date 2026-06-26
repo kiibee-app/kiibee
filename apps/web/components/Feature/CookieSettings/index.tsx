@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import FormattedBody from "../FormattedBody";
+import FormattedBody from "../Shared/FormattedBody";
 import {
   Body,
   FormattedDescription,
