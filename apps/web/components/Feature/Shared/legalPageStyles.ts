@@ -62,21 +62,21 @@ export const Header = styled.header`
 
 export const Title = styled.h1`
   margin: 0 0 10px;
-  ${({ theme }) => theme.typography.Heading1};
+  ${({ theme }) => theme.typography.Heading2};
   color: ${({ theme }) => theme.colors.primary.GREEN_100};
-  line-height: 1.15;
+  line-height: 1.2;
   word-break: break-word;
   overflow-wrap: break-word;
 
   ${media.tablet} {
-    ${({ theme }) => theme.typography.Heading2};
-    line-height: 1.2;
+    ${({ theme }) => theme.typography.Heading3};
+    line-height: 1.25;
     margin-bottom: 8px;
   }
 
   ${media.mobileLg} {
-    ${({ theme }) => theme.typography.Heading3};
-    line-height: 1.25;
+    ${({ theme }) => theme.typography.H4_SemiBold};
+    line-height: 1.3;
   }
 `;
 
@@ -182,11 +182,12 @@ export const Section = styled.section`
 export const SectionTitle = styled.h2`
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  margin: 0 0 14px;
+  gap: 12px;
+  margin: 0 0 12px;
   min-width: 0;
   flex-wrap: wrap;
-  ${({ theme }) => theme.typography.H4_SemiBold};
+  ${({ theme }) => theme.typography.H5_Medium};
+  font-weight: 600;
   color: ${({ theme }) => theme.colors.primary.GREEN_100};
   line-height: 1.35;
   word-break: break-word;
@@ -199,26 +200,25 @@ export const SectionTitle = styled.h2`
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     margin-top: 1px;
-    border-radius: 10px;
+    border-radius: 8px;
     background: ${({ theme }) => theme.colors.primary.GREEN_100};
     color: ${({ theme }) => theme.colors.primary.WHITE};
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 1;
   }
 
   ${media.tablet} {
     gap: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 
     &::before {
-      width: 28px;
-      height: 28px;
-      font-size: 13px;
-      border-radius: 8px;
+      width: 26px;
+      height: 26px;
+      font-size: 11px;
     }
   }
 
@@ -226,9 +226,9 @@ export const SectionTitle = styled.h2`
     gap: 8px;
 
     &::before {
-      width: 26px;
-      height: 26px;
-      font-size: 12px;
+      width: 24px;
+      height: 24px;
+      font-size: 11px;
     }
   }
 `;

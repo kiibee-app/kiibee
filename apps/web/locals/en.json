@@ -608,6 +608,7 @@
     "userGuides": "User guides",
     "contactUs": "Contact Us",
     "support": "Support",
+    "creatorTerms": "Creator Terms",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "cookieSettings": "Cookie Settings",
@@ -1224,6 +1225,72 @@
           "intro": "If you have questions about these terms and conditions, please contact:",
           "company": "KIIBEE ApS",
           "email": "info@kiibee.dk"
+        }
+      }
+    },
+    "creatorTerms": {
+      "pageTitle": "KIIBEE – Creator Terms",
+      "updatedAt": "Last updated: June 26, 2026",
+      "sections": {
+        "general": {
+          "title": "General",
+          "body": "These terms (\"the Terms\") govern your use of KIIBEE ApS' platform, including kiibee.dk & kiibee.com and related software and services (\"the Platform\").\n\nBy creating an account or using the Platform, you accept these Terms. If you do not accept the Terms, you must not use the Platform."
+        },
+        "account": {
+          "title": "Account and user responsibility",
+          "body": "To use the Platform, you must create an account (\"Account\").\nYou are responsible for:\n- keeping your login credentials confidential\n- all activities that occur via your Account\n- providing correct and up-to-date information\nKIIBEE is not liable for losses resulting from unauthorized use of your Account. You must immediately contact KIIBEE if you suspect misuse."
+        },
+        "useOfService": {
+          "title": "Use of service",
+          "body": "You may not:\n- attempt to circumvent or breach security\n- perform reverse engineering, decompilation, or similar\n- use the Platform in violation of applicable law\nKIIBEE reserves the right to monitor usage and enforce these rules without notice."
+        },
+        "content": {
+          "title": "Content and user-generated material",
+          "body": "You may upload and share content (\"Content\") via the Platform.\nYou are solely responsible for your Content and warrant that:\n- you have all necessary rights\n- the content does not infringe third-party rights\n- the content complies with applicable law\n- Content is not offensive\nKIIBEE may at any time, without notice:\n- reject, edit, or remove content\n- suspend or close accounts for non-compliance\nIn case of errors, misleading content, or fraud, payments may be withheld or reversed."
+        },
+        "role": {
+          "title": "KIIBEE's role",
+          "body": "KIIBEE functions as a platform for distribution of digital content between users and end customers.\nKIIBEE is not responsible for:\n- the quality of content offered by users\n- agreements entered into between users and end customers\nKIIBEE does, however, reserve the right to remove content that does not meet the platform's requirements."
+        },
+        "thirdParty": {
+          "title": "Third-party content",
+          "body": "The Platform may contain links or access to third-party content.\nKIIBEE is not responsible for:\n- the accuracy of the content\n- third-party products or services\nUse of such content is at your own risk."
+        },
+        "payment": {
+          "title": "Payment and fees",
+          "body": "For sales via the platform: KIIBEE transfers your earnings from the sale of digital materials when you request it, within 5-7 banking days. Your earnings are paid out after a fee has been deducted and deposited into your bank account. The fee includes, among other things, costs for payment providers: Dankort/MasterCard/Visa & MobilePay for processing. KIIBEE charges a fee per sold material to cover, among other things, development/hosting and software maintenance costs. KIIBEE's fee per sold item can be found at current prices: kiibee.dk/pricing.\nKIIBEE may withhold payment in case of:\n- suspected fraud\n- complaints from end customers\n- failure to deliver content\nSubscriptions are charged continuously and non-payment may result in account closure."
+        },
+        "emailMarketing": {
+          "title": "Email and marketing",
+          "body": "When collecting emails via the platform, you must:\n- Comply with the Marketing Act (§6)\n- Ensure consent.\n- Provide the option to unsubscribe\nIt is not permitted to share emails with third parties without consent."
+        },
+        "intellectualProperty": {
+          "title": "Intellectual property rights",
+          "body": "All rights to the Platform belong to KIIBEE ApS.\nYou may not copy, distribute, or misuse the platform or its content without permission."
+        },
+        "limitationOfLiability": {
+          "title": "Limitation of liability",
+          "body": "KIIBEE is not liable for indirect losses, including:\n- loss of revenue\n- loss of profit\n- data loss"
+        },
+        "termination": {
+          "title": "11. Termination",
+          "body": "KIIBEE may at any time:\n- suspend or close your account for non-compliance\n- change or discontinue the Platform with reasonable notice\n- Terminate your account with one month's notice; paid subscriptions will not be refunded, after which your account will be closed and your data and content will be deleted."
+        },
+        "changes": {
+          "title": "12. Amendments",
+          "body": "KIIBEE may amend these Terms with reasonable notice. Continued use of the Platform constitutes acceptance of the amendments."
+        },
+        "personalData": {
+          "title": "13. Personal data (GDPR)",
+          "body": "The processing of personal data is carried out in accordance with KIIBEE's privacy policy."
+        },
+        "governingLaw": {
+          "title": "14. Governing law and jurisdiction",
+          "body": "These Terms are governed by Danish law. Any disputes shall be settled by the Danish courts."
+        },
+        "contact": {
+          "title": "Contact",
+          "body": "KIIBEE ApS\nCVR: 34898634\nE-mail: info@kiibee.dk"
         }
       }
     }
