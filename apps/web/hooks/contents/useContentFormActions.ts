@@ -382,18 +382,13 @@ export function useContentFormActions({
     if (!formState.category.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.CATEGORY] = requiredMessage;
     }
-    if (!formState.productionCompany.trim()) {
-      nextErrors[CONTENT_FORM_FIELDS.PRODUCTION_COMPANY] = requiredMessage;
-    }
-    if (!formState.manufacturerLink.trim()) {
-      nextErrors[CONTENT_FORM_FIELDS.MANUFACTURER_LINK] = requiredMessage;
-    } else if (!isValidUrl(formState.manufacturerLink)) {
+    if (
+      formState.manufacturerLink.trim() &&
+      !isValidUrl(formState.manufacturerLink)
+    ) {
       nextErrors[CONTENT_FORM_FIELDS.MANUFACTURER_LINK] = t(
         "contents.general.trailerLinkInvalid",
       );
-    }
-    if (!formState.tags.trim()) {
-      nextErrors[CONTENT_FORM_FIELDS.TAGS] = requiredMessage;
     }
     if (!formState.mediaCardThumbnail) {
       nextErrors.mediaCardThumbnail = t(

@@ -4,7 +4,6 @@ import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import TagsInput from "@/components/UI/InputFields/TagsInput";
-import { RequiredIndicator } from "@/components/UI/InputFields/styles";
 import {
   CONTENT_FORM_FIELDS,
   INPUT_VARIANTS,
@@ -60,7 +59,7 @@ export default function ProductionSection() {
             <InputField
               type={INPUT_TYPE.TEXT}
               label={t("contents.metadata.production.companyPlaceholder")}
-              required={true}
+              required={false}
               value={formState.productionCompany}
               onChange={handleChange(CONTENT_FORM_FIELDS.PRODUCTION_COMPANY)}
               placeholder={t("contents.metadata.production.companyPlaceholder")}
@@ -75,7 +74,7 @@ export default function ProductionSection() {
             <InputField
               type={INPUT_TYPE.TEXT}
               label={t("contents.metadata.production.linkPlaceholder")}
-              required={true}
+              required={false}
               value={formState.manufacturerLink}
               onChange={handleChange(CONTENT_FORM_FIELDS.MANUFACTURER_LINK)}
               placeholder={t("contents.metadata.production.linkPlaceholder")}
@@ -89,10 +88,7 @@ export default function ProductionSection() {
 
         <FormRow>
           <SectionHeader>
-            <Title>
-              {t("contents.metadata.tags.title")}
-              <RequiredIndicator>*</RequiredIndicator>
-            </Title>
+            <Title>{t("contents.metadata.tags.title")}</Title>
           </SectionHeader>
 
           <FieldWrapper>
