@@ -29,7 +29,7 @@ export default function TestimonialSection() {
         transitionType="fade"
         prevAriaLabel={t("testimonial.prevAriaLabel")}
         nextAriaLabel={t("testimonial.nextAriaLabel")}
-        renderItem={(item, index, isActive) => (
+        renderItem={(item) => (
           <SlideWrapper>
             <Background
               $src={item.image.src}
