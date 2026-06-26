@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import { alpha } from "@/utils/common";
 
 export const CarouselContainer = styled.div`
   position: relative;
@@ -60,19 +61,10 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: color-mix(
-    in srgb,
-    ${({ theme }) => theme.colors.primary.WHITE} 15%,
-    transparent
-  );
+  background: ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.15)};
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid
-    color-mix(
-      in srgb,
-      ${({ theme }) => theme.colors.primary.WHITE} 25%,
-      transparent
-    );
+  border: 1px solid ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.25)};
   color: ${({ theme }) => theme.colors.primary.WHITE};
   display: flex;
   align-items: center;
@@ -84,16 +76,8 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
   padding: 0;
 
   &:hover {
-    background: color-mix(
-      in srgb,
-      ${({ theme }) => theme.colors.primary.WHITE} 30%,
-      transparent
-    );
-    border-color: color-mix(
-      in srgb,
-      ${({ theme }) => theme.colors.primary.WHITE} 40%,
-      transparent
-    );
+    background: ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.3)};
+    border-color: ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.4)};
     transform: translateY(-50%) scale(1.08);
   }
 
@@ -103,11 +87,7 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
 
   &:focus-visible {
     box-shadow: 0 0 0 3px
-      color-mix(
-        in srgb,
-        ${({ theme }) => theme.colors.primary.WHITE} 40%,
-        transparent
-      );
+      ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.4)};
   }
 
   svg {
@@ -155,7 +135,7 @@ export const Dot = styled.button<{ $active: boolean }>`
   background: ${({ $active, theme }) =>
     $active
       ? theme.colors.primary.WHITE
-      : `color-mix(in srgb, ${theme.colors.primary.WHITE} 40%, transparent)`};
+      : alpha(theme.colors.primary.WHITE, 0.4)};
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   padding: 0;
@@ -168,10 +148,6 @@ export const Dot = styled.button<{ $active: boolean }>`
 
   &:focus-visible {
     box-shadow: 0 0 0 2px
-      color-mix(
-        in srgb,
-        ${({ theme }) => theme.colors.primary.WHITE} 40%,
-        transparent
-      );
+      ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.4)};
   }
 `;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import { alpha } from "@/utils/common";
 
 const IMAGE_ASPECT = 4096 / 2731;
 const MAX_SECTION_HEIGHT = 760;
@@ -66,19 +67,10 @@ export const Card = styled.div`
   align-items: flex-start;
   gap: 25px;
   border-radius: 20px;
-  background: color-mix(
-    in srgb,
-    ${({ theme }) => theme.colors.primary.WHITE} 42%,
-    transparent
-  );
+  background: ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.42)};
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid
-    color-mix(
-      in srgb,
-      ${({ theme }) => theme.colors.primary.WHITE} 35%,
-      transparent
-    );
+  border: 1px solid ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.35)};
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 
