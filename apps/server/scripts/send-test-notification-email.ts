@@ -11,7 +11,17 @@ import {
   resolveNotificationRecipientEmail,
 } from '../src/modules/notification-settings/buildNotificationReportData';
 
-const REPORT_TYPES = ['overview', 'sales', 'form'] as const;
+import {
+  NOTIFICATION_FREQUENCY,
+  NOTIFICATION_RECIPIENT,
+  NOTIFICATION_TYPE,
+} from '../src/utils/notificationSettings.constant';
+
+const REPORT_TYPES = [
+  NOTIFICATION_TYPE.OVERVIEW,
+  NOTIFICATION_TYPE.SALES,
+  NOTIFICATION_TYPE.FORM,
+] as const;
 type ReportType = (typeof REPORT_TYPES)[number];
 
 const printUsage = () => {
@@ -125,9 +135,9 @@ async function main() {
     .limit(1);
 
   const effectiveSettings = settings ?? {
-    type: 'overview' as const,
-    frequency: 'monthly' as const,
-    recipient: 'account_email' as const,
+    type: NOTIFICATION_TYPE.OVERVIEW,
+    frequency: NOTIFICATION_FREQUENCY.MONTHLY,
+    recipient: NOTIFICATION_RECIPIENT.ACCOUNT_EMAIL,
     otherEmail: null,
   };
 

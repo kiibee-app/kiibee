@@ -3,12 +3,17 @@ import { eq } from 'drizzle-orm';
 import { randomUUID } from 'crypto';
 import { db } from 'src/database/db';
 import { notificationSettings } from 'src/database/schema';
+import {
+  NOTIFICATION_FREQUENCY,
+  NOTIFICATION_RECIPIENT,
+  NOTIFICATION_TYPE,
+} from 'src/utils/notificationSettings.constant';
 import { UpdateNotificationSettingsDto } from './dto/notificationSettings.dto';
 
 const DEFAULT_NOTIFICATION_SETTINGS = {
-  type: 'overview',
-  frequency: 'monthly',
-  recipient: 'account_email',
+  type: NOTIFICATION_TYPE.OVERVIEW,
+  frequency: NOTIFICATION_FREQUENCY.MONTHLY,
+  recipient: NOTIFICATION_RECIPIENT.ACCOUNT_EMAIL,
   otherEmail: null,
 } as const;
 
@@ -27,7 +32,10 @@ export class NotificationSettingsService {
   async updateSettings(userId: string, payload: UpdateNotificationSettingsDto) {
     const otherEmail = payload.otherEmail?.trim() || null;
 
-    if (payload.recipient === 'other_email' && !otherEmail) {
+    if (
+      payload.recipient === NOTIFICATION_RECIPIENT.OTHER_EMAIL &&
+      !otherEmail
+    ) {
       throw new BadRequestException('Other email is required');
     }
 
@@ -35,7 +43,10 @@ export class NotificationSettingsService {
       type: payload.type,
       frequency: payload.frequency,
       recipient: payload.recipient,
-      otherEmail: payload.recipient === 'other_email' ? otherEmail : null,
+      otherEmail:
+        payload.recipient === NOTIFICATION_RECIPIENT.OTHER_EMAIL
+          ? otherEmail
+          : null,
       updatedAt: new Date(),
     };
 

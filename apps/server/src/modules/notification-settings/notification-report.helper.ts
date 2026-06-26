@@ -1,4 +1,10 @@
-type NotificationFrequency = 'daily' | 'weekly' | 'monthly';
+import {
+  NOTIFICATION_FREQUENCY,
+  NOTIFICATION_FREQUENCY_LABEL,
+  NOTIFICATION_TYPE_LABEL,
+  type NotificationFrequency,
+  type NotificationType,
+} from 'src/utils/notification.constant';
 
 const startOfDay = (date: Date) => {
   const next = new Date(date);
@@ -29,7 +35,7 @@ export const getReportDateRange = (
   frequency: NotificationFrequency,
   now = new Date(),
 ) => {
-  if (frequency === 'daily') {
+  if (frequency === NOTIFICATION_FREQUENCY.DAILY) {
     const day = addDays(now, -1);
     return {
       start: startOfDay(day),
@@ -40,7 +46,7 @@ export const getReportDateRange = (
     };
   }
 
-  if (frequency === 'weekly') {
+  if (frequency === NOTIFICATION_FREQUENCY.WEEKLY) {
     const current = startOfDay(now);
     const day = current.getDay();
     const diffToMonday = (day + 6) % 7;
@@ -72,17 +78,11 @@ export const getReportDateRange = (
   };
 };
 
-export const getFrequencyLabel = (frequency: NotificationFrequency) => {
-  if (frequency === 'daily') return 'Daily';
-  if (frequency === 'weekly') return 'Weekly';
-  return 'Monthly';
-};
+export const getFrequencyLabel = (frequency: NotificationFrequency) =>
+  NOTIFICATION_FREQUENCY_LABEL[frequency];
 
-export const getReportTypeLabel = (type: 'overview' | 'sales' | 'form') => {
-  if (type === 'sales') return 'Sales';
-  if (type === 'form') return 'Form';
-  return 'Overview';
-};
+export const getReportTypeLabel = (type: NotificationType) =>
+  NOTIFICATION_TYPE_LABEL[type];
 
 export const shouldSendForFrequency = (
   frequency: NotificationFrequency,
@@ -102,11 +102,11 @@ export const isScheduledRunDay = (
   frequency: NotificationFrequency,
   now = new Date(),
 ) => {
-  if (frequency === 'daily') {
+  if (frequency === NOTIFICATION_FREQUENCY.DAILY) {
     return true;
   }
 
-  if (frequency === 'weekly') {
+  if (frequency === NOTIFICATION_FREQUENCY.WEEKLY) {
     return now.getDay() === 1;
   }
 

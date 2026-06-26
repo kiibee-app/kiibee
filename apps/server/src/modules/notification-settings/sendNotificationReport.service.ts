@@ -15,6 +15,11 @@ import {
   isScheduledRunDay,
   shouldSendForFrequency,
 } from './notification-report.helper';
+import {
+  NOTIFICATION_FREQUENCY,
+  NOTIFICATION_RECIPIENT,
+  NOTIFICATION_TYPE,
+} from 'src/utils/notificationSettings.constant';
 
 @Injectable()
 export class NotificationReportService {
@@ -47,9 +52,9 @@ export class NotificationReportService {
       .limit(1);
 
     const effectiveSettings = settings ?? {
-      type: 'overview' as const,
-      frequency: 'monthly' as const,
-      recipient: 'account_email' as const,
+      type: NOTIFICATION_TYPE.OVERVIEW,
+      frequency: NOTIFICATION_FREQUENCY.MONTHLY,
+      recipient: NOTIFICATION_RECIPIENT.ACCOUNT_EMAIL,
       otherEmail: null,
       lastSentAt: null,
     };

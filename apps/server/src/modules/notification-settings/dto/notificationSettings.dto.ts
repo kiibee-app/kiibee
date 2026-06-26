@@ -1,12 +1,23 @@
 import { IsEmail, IsIn, IsNotEmpty, ValidateIf } from 'class-validator';
+import {
+  NOTIFICATION_FREQUENCIES,
+  NOTIFICATION_RECIPIENT,
+  NOTIFICATION_RECIPIENTS,
+  NOTIFICATION_SETTING_TYPES,
+  type NotificationFrequency,
+  type NotificationRecipient,
+  type NotificationSettingType,
+} from 'src/utils/notificationSettings.constant';
 
-export const notificationSettingTypes = ['overview', 'form', 'sales'] as const;
-export const notificationFrequencies = ['monthly', 'weekly', 'daily'] as const;
-export const notificationRecipients = ['account_email', 'other_email'] as const;
+export const notificationSettingTypes = NOTIFICATION_SETTING_TYPES;
+export const notificationFrequencies = NOTIFICATION_FREQUENCIES;
+export const notificationRecipients = NOTIFICATION_RECIPIENTS;
 
-export type NotificationSettingType = (typeof notificationSettingTypes)[number];
-export type NotificationFrequency = (typeof notificationFrequencies)[number];
-export type NotificationRecipient = (typeof notificationRecipients)[number];
+export type {
+  NotificationFrequency,
+  NotificationRecipient,
+  NotificationSettingType,
+};
 
 export class UpdateNotificationSettingsDto {
   @IsIn(notificationSettingTypes)
@@ -20,7 +31,7 @@ export class UpdateNotificationSettingsDto {
 
   @ValidateIf(
     (payload: UpdateNotificationSettingsDto) =>
-      payload.recipient === 'other_email',
+      payload.recipient === NOTIFICATION_RECIPIENT.OTHER_EMAIL,
   )
   @IsNotEmpty({ message: 'Other email is required' })
   @IsEmail()
