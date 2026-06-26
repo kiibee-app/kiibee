@@ -21,7 +21,7 @@ export const Section = styled.section`
 
 export const SlideWrapper = styled.div`
   position: relative;
-  width: 100%;\
+  width: 100%;
   height: 100%;
 `;
 
