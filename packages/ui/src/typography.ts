@@ -79,7 +79,7 @@ export const typography = {
   },
 
   Body_Medium: {
-    fontSize: fluid(12, 16),
+    fontSize: fluid(14, 16),
     fontFamily: FontFamily.Default,
     fontWeight: 500,
     lineHeight: "normal",
