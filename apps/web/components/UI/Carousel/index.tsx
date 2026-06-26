@@ -9,6 +9,7 @@ import {
   DotsContainer,
   Dot,
 } from "./styles";
+import { LeftArrow, RightArrow } from "./SVG";
 
 export interface CarouselProps<T> {
   items: T[];
@@ -136,18 +137,7 @@ export default function Carousel<T>({
             }}
             aria-label={prevAriaLabel}
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
+            <LeftArrow />
           </NavigationArrow>
           <NavigationArrow
             $direction="right"
@@ -157,18 +147,7 @@ export default function Carousel<T>({
             }}
             aria-label={nextAriaLabel}
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
+            <RightArrow />
           </NavigationArrow>
         </>
       )}
