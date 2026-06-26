@@ -19,7 +19,7 @@ import {
   NOTIFICATION_FREQUENCY,
   NOTIFICATION_RECIPIENT,
   NOTIFICATION_TYPE,
-} from 'src/utils/notificationSettings.constant';
+} from 'src/utils/notification.constant';
 
 @Injectable()
 export class NotificationReportService {

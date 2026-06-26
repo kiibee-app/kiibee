@@ -15,7 +15,7 @@ import {
   NOTIFICATION_FREQUENCY,
   NOTIFICATION_RECIPIENT,
   NOTIFICATION_TYPE,
-} from '../src/utils/notificationSettings.constant';
+} from '../src/utils/notification.constant';
 
 const REPORT_TYPES = [
   NOTIFICATION_TYPE.OVERVIEW,

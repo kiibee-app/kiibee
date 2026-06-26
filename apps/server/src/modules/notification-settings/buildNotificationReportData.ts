@@ -8,7 +8,7 @@ import {
   type NotificationFrequency,
   type NotificationRecipient,
   type NotificationType,
-} from 'src/utils/notificationSettings.constant';
+} from 'src/utils/notification.constant';
 import { buildFormReportVariables } from './buildFormReportVariables';
 import { buildOverviewReportVariables } from './buildOverviewReportVariables';
 import { buildSalesReportVariables } from './buildSalesReportVariables';

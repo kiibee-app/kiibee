@@ -7,7 +7,7 @@ import {
   type NotificationFrequency,
   type NotificationRecipient,
   type NotificationSettingType,
-} from 'src/utils/notificationSettings.constant';
+} from 'src/utils/notification.constant';
 
 export const notificationSettingTypes = NOTIFICATION_SETTING_TYPES;
 export const notificationFrequencies = NOTIFICATION_FREQUENCIES;
