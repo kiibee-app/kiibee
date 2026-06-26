@@ -60,11 +60,20 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: color-mix(
+    in srgb,
+    ${({ theme }) => theme.colors.primary.WHITE} 15%,
+    transparent
+  );
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: ${({ theme }) => theme.colors.primary.WHITE || "#ffffff"};
+  border: 1px solid
+    color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.WHITE} 25%,
+      transparent
+    );
+  color: ${({ theme }) => theme.colors.primary.WHITE};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,8 +84,16 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
   padding: 0;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.4);
+    background: color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.WHITE} 30%,
+      transparent
+    );
+    border-color: color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.WHITE} 40%,
+      transparent
+    );
     transform: translateY(-50%) scale(1.08);
   }
 
@@ -85,7 +102,12 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 0 3px
+      color-mix(
+        in srgb,
+        ${({ theme }) => theme.colors.primary.WHITE} 40%,
+        transparent
+      );
   }
 
   svg {
@@ -130,19 +152,26 @@ export const Dot = styled.button<{ $active: boolean }>`
   height: 8px;
   border-radius: 4px;
   border: none;
-  background: ${({ $active }) =>
-    $active ? "#ffffff" : "rgba(255, 255, 255, 0.4)"};
+  background: ${({ $active, theme }) =>
+    $active
+      ? theme.colors.primary.WHITE
+      : `color-mix(in srgb, ${theme.colors.primary.WHITE} 40%, transparent)`};
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   padding: 0;
   outline: none;
 
   &:hover {
-    background: #ffffff;
+    background: ${({ theme }) => theme.colors.primary.WHITE};
     ${({ $active }) => !$active && "opacity: 0.8;"}
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 0 2px
+      color-mix(
+        in srgb,
+        ${({ theme }) => theme.colors.primary.WHITE} 40%,
+        transparent
+      );
   }
 `;

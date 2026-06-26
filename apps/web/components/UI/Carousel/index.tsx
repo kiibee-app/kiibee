@@ -52,7 +52,6 @@ export default function Carousel<T>({
     setActiveIndex(index);
   }, []);
 
-  // Keyboard navigation
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === "ArrowLeft") {
@@ -64,7 +63,6 @@ export default function Carousel<T>({
     [nextSlide, prevSlide],
   );
 
-  // Auto-play timer
   useEffect(() => {
     if (!autoPlay || isPaused || items.length <= 1) return;
 
@@ -75,7 +73,6 @@ export default function Carousel<T>({
     return () => clearInterval(timer);
   }, [autoPlay, isPaused, autoPlayInterval, nextSlide, items.length]);
 
-  // Touch handlers for swipe support
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.targetTouches[0].clientX;
     touchEndX.current = e.targetTouches[0].clientX;
@@ -88,7 +85,7 @@ export default function Carousel<T>({
   const handleTouchEnd = () => {
     if (touchStartX.current === null || touchEndX.current === null) return;
     const diff = touchStartX.current - touchEndX.current;
-    const threshold = 50; // swipe threshold in pixels
+    const threshold = 50;
     if (diff > threshold) {
       nextSlide();
     } else if (diff < -threshold) {
