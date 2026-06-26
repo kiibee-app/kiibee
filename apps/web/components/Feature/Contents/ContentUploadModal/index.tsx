@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import { BackButtonIcon } from "@/assets/icons";
@@ -230,7 +231,7 @@ export default function ContentUploadModal({
           error instanceof Error
             ? error.message
             : t(CONTENT_TRANSLATION_KEYS.updateError);
-        setCreateError(message);
+        toast.error(message);
         return;
       }
 
@@ -292,7 +293,7 @@ export default function ContentUploadModal({
         error instanceof Error
           ? error.message
           : t("contents.contentUploadModal.createError");
-      setCreateError(message);
+      toast.error(message);
       return;
     }
   };

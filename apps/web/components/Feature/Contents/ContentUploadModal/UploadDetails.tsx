@@ -100,7 +100,6 @@ export default function ContentUploadDetails({
         >
           {submitLabel}
         </GenericButton>
-        {errorMessage && <UploadHelperText>{errorMessage}</UploadHelperText>}
       </AddButtom>
     </>
   );
