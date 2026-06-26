@@ -171,6 +171,7 @@ export const URL_REGEX = /(https?:\/\/[^\s<>"]+|www\.[^\s<>"]+)/g;
 export const LINE_BREAK = "\n";
 
 export const LIST_PREFIX = "- ";
+export const SPACE = " ";
 
 export const getHrefFromUrl = (url: string): string =>
   url.startsWith("www.") ? `https://${url}` : url;
