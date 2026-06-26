@@ -2,6 +2,7 @@ import { authStorage } from "@/lib/auth/authStorage";
 import { API } from "@/lib/http/api/endpoints";
 import { API_BASE_URL } from "@/lib/http/config";
 import { canUseDOM, isBrowser } from "./ui";
+import React, { useCallback, useRef, useState } from "react";
 
 export const readFileAsDataUrl = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -144,4 +145,121 @@ export async function resolveProfileAvatarUrl(
   }
 
   return data.url;
+}
+
+export type DragPosition = { x: number; y: number };
+
+export function useImageDrag(
+  pendingImage: string | null,
+  dragClickThresholdPx: number = 8,
+) {
+  const [position, setPosition] = useState<DragPosition>({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+
+  const dragMovedRef = useRef(false);
+  const dragRef = useRef<{
+    startX: number;
+    startY: number;
+    originX: number;
+    originY: number;
+  } | null>(null);
+
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent) => {
+      if (!pendingImage) return;
+
+      dragMovedRef.current = false;
+      dragRef.current = {
+        startX: e.clientX,
+        startY: e.clientY,
+        originX: position.x,
+        originY: position.y,
+      };
+
+      setDragging(true);
+    },
+    [pendingImage, position],
+  );
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      if (!dragRef.current) return;
+
+      const dx = e.clientX - dragRef.current.startX;
+      const dy = e.clientY - dragRef.current.startY;
+
+      if (Math.hypot(dx, dy) > dragClickThresholdPx) {
+        dragMovedRef.current = true;
+      }
+
+      setPosition({
+        x: dragRef.current.originX + dx,
+        y: dragRef.current.originY + dy,
+      });
+    },
+    [dragClickThresholdPx],
+  );
+
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      if (!pendingImage || e.touches.length !== 1) return;
+      const touch = e.touches[0];
+
+      dragMovedRef.current = false;
+      dragRef.current = {
+        startX: touch.clientX,
+        startY: touch.clientY,
+        originX: position.x,
+        originY: position.y,
+      };
+
+      setDragging(true);
+    },
+    [pendingImage, position],
+  );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (!dragRef.current || e.touches.length !== 1) return;
+      const touch = e.touches[0];
+
+      const dx = touch.clientX - dragRef.current.startX;
+      const dy = touch.clientY - dragRef.current.startY;
+
+      if (Math.hypot(dx, dy) > dragClickThresholdPx) {
+        dragMovedRef.current = true;
+      }
+
+      setPosition({
+        x: dragRef.current.originX + dx,
+        y: dragRef.current.originY + dy,
+      });
+    },
+    [dragClickThresholdPx],
+  );
+
+  const stopDragging = useCallback(() => {
+    dragRef.current = null;
+    setDragging(false);
+  }, []);
+
+  const resetDragPosition = useCallback(() => {
+    setPosition({ x: 0, y: 0 });
+    setDragging(false);
+    dragRef.current = null;
+    dragMovedRef.current = false;
+  }, []);
+
+  return {
+    position,
+    dragging,
+    dragMoved: dragMovedRef,
+    handleMouseDown,
+    handleMouseMove,
+    handleTouchStart,
+    handleTouchMove,
+    stopDragging,
+    resetDragPosition,
+    setPosition,
+  };
 }

@@ -10,15 +10,22 @@ export const PhotoModalBody = styled.div`
   margin-top: 20px;
 `;
 
-export const UploadDropZone = styled.div`
+export const UploadDropZone = styled.div<{ $isDragActive?: boolean }>`
   min-height: 290px;
-  border: 2px dashed ${({ theme }) => theme.colors.neutral.GRAY_300};
+  border: 2px dashed
+    ${({ theme, $isDragActive }) =>
+      $isDragActive
+        ? theme.colors.primary.BLACK
+        : theme.colors.neutral.GRAY_300};
+  background-color: ${({ theme, $isDragActive }) =>
+    $isDragActive ? theme.colors.neutral.OFF_WHITE : "transparent"};
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  transition: all 0.2s ease-in-out;
 `;
 
 export const UploadHint = styled(MonoText).attrs({

@@ -112,6 +112,7 @@ export default function ContentUploadModal({
     API.content.create,
   );
   const isEditing = mode === CONTENT_UPLOAD_MODE.EDIT;
+  const [isDragActive, setIsDragActive] = useState(false);
   const {
     fileInputRef,
     selectedFile,
@@ -127,6 +128,29 @@ export default function ContentUploadModal({
     handleDrop,
     reset,
   } = useContentUpload({ contentType });
+
+  const handleDragEnter = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(true);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(false);
+  };
+
+  const handleDropWrapper = (e: React.DragEvent<HTMLDivElement>) => {
+    setIsDragActive(false);
+    handleDrop(e);
+  };
 
   const helperLineOne = t(
     `contents.contentUploadModal.${uploadType}.helperLineOne`,
@@ -157,6 +181,7 @@ export default function ContentUploadModal({
     setCreateError(null);
     setPendingUploadSuccess(null);
     setShowDetails(false);
+    setIsDragActive(false);
     callback();
   };
 
@@ -392,8 +417,11 @@ export default function ContentUploadModal({
             />
           ) : !selectedFile ? (
             <ContentUploadDropZone
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={handleDrop}
+              onDragEnter={handleDragEnter}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDropWrapper}
+              $isDragActive={isDragActive}
             >
               <UploadHint>
                 {t("contents.contentUploadModal.dragFileHere")}

@@ -34,7 +34,7 @@ import {
   PREVIEW_FRAME_SIZE,
   MAX_IMAGE_SIZE,
 } from "@/utils/ui";
-import { getCroppedImg, readFileAsDataUrl } from "@/utils/image";
+import { getCroppedImg, readFileAsDataUrl, useImageDrag } from "@/utils/image";
 import { useTranslation } from "react-i18next";
 
 type Props = {
@@ -80,19 +80,23 @@ export default function ImageUploadCropModal({
     height: PREVIEW_FRAME_SIZE,
   });
   const [zoom, setZoom] = useState(IMAGE_ZOOM.DEFAULT);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [dragging, setDragging] = useState(false);
+  const [isDragActive, setIsDragActive] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const previewFrameRef = useRef<HTMLDivElement | null>(null);
-  const dragMovedRef = useRef(false);
 
-  const dragRef = useRef<{
-    startX: number;
-    startY: number;
-    originX: number;
-    originY: number;
-  } | null>(null);
+  const {
+    position,
+    dragging,
+    dragMoved: dragMovedRef,
+    handleMouseDown,
+    handleMouseMove,
+    handleTouchStart,
+    handleTouchMove,
+    stopDragging,
+    resetDragPosition,
+    setPosition,
+  } = useImageDrag(pendingImage, DRAG_CLICK_THRESHOLD_PX);
 
   const step: ImageModalStep = pendingImage
     ? IMAGE_MODAL.EDIT
@@ -131,7 +135,7 @@ export default function ImageUploadCropModal({
     fitZoomRef.current = IMAGE_ZOOM.DEFAULT;
     setZoom(fitZoomRef.current);
     setPosition({ x: 0, y: 0 });
-  }, [naturalSize]);
+  }, [naturalSize, setPosition]);
 
   useEffect(() => {
     const el = previewFrameRef.current;
@@ -157,13 +161,11 @@ export default function ImageUploadCropModal({
   const resetState = useCallback(() => {
     setPendingImage(image);
     setZoom(fitZoomRef.current);
-    setPosition({ x: 0, y: 0 });
-    setDragging(false);
-    dragRef.current = null;
-    dragMovedRef.current = false;
+    resetDragPosition();
+    setIsDragActive(false);
     setSizeError(null);
     onClose();
-  }, [image, onClose]);
+  }, [image, onClose, resetDragPosition]);
 
   const openFilePicker = useCallback(() => {
     fileInputRef.current?.click();
@@ -190,43 +192,53 @@ export default function ImageUploadCropModal({
         dragMovedRef.current = false;
       });
     },
-    [maxSize, t],
+    [maxSize, t, dragMovedRef],
   );
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!pendingImage) return;
-
-    dragMovedRef.current = false;
-    dragRef.current = {
-      startX: e.clientX,
-      startY: e.clientY,
-      originX: position.x,
-      originY: position.y,
-    };
-
-    setDragging(true);
+  const handleDragEnter = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(true);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!dragRef.current) return;
-
-    const dx = e.clientX - dragRef.current.startX;
-    const dy = e.clientY - dragRef.current.startY;
-
-    if (Math.hypot(dx, dy) > DRAG_CLICK_THRESHOLD_PX) {
-      dragMovedRef.current = true;
-    }
-
-    setPosition({
-      x: dragRef.current.originX + dx,
-      y: dragRef.current.originY + dy,
-    });
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(true);
   };
 
-  const stopDragging = () => {
-    dragRef.current = null;
-    setDragging(false);
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(false);
   };
+
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setIsDragActive(false);
+
+      const file = e.dataTransfer.files?.[0];
+      if (!file) return;
+
+      if (file.size > maxSize) {
+        setSizeError(t("errors.imageTooLarge"));
+        return;
+      }
+
+      setSizeError(null);
+
+      readFileAsDataUrl(file).then((imageDataUrl) => {
+        if (!imageDataUrl) return;
+
+        setPendingImage(imageDataUrl);
+        setNaturalSize({ width: 0, height: 0 });
+        dragMovedRef.current = false;
+      });
+    },
+    [maxSize, t, dragMovedRef],
+  );
 
   const handlePreviewClick = () => {
     if (dragMovedRef.current) {
@@ -235,6 +247,31 @@ export default function ImageUploadCropModal({
     }
     openFilePicker();
   };
+
+  useEffect(() => {
+    const el = previewFrameRef.current;
+    if (!el || !pendingImage) return;
+
+    const handleWheelEvent = (e: WheelEvent) => {
+      e.preventDefault();
+
+      const zoomStep = 0.05;
+      const zoomDirection = e.deltaY < 0 ? 1 : -1;
+
+      setZoom((prevZoom) => {
+        const newZoom = Math.min(
+          IMAGE_ZOOM.MAX,
+          Math.max(IMAGE_ZOOM.MIN, prevZoom + zoomDirection * zoomStep),
+        );
+        return Number(newZoom.toFixed(2));
+      });
+    };
+
+    el.addEventListener("wheel", handleWheelEvent, { passive: false });
+    return () => {
+      el.removeEventListener("wheel", handleWheelEvent);
+    };
+  }, [pendingImage]);
 
   const applyCrop = useCallback(async () => {
     if (!pendingImage || !previewFrameRef.current) return;
@@ -280,7 +317,13 @@ export default function ImageUploadCropModal({
         />
 
         {step === IMAGE_MODAL.UPLOAD ? (
-          <UploadDropZone>
+          <UploadDropZone
+            onDragEnter={handleDragEnter}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            $isDragActive={isDragActive}
+          >
             <UploadHint>{t("creatorProfile.dragPhotoHere")}</UploadHint>
             <UploadOrText>{t("creatorProfile.or")}</UploadOrText>
             <GenericButton variant={VARIANT.PRIMARY} onClick={openFilePicker}>
@@ -305,6 +348,9 @@ export default function ImageUploadCropModal({
                 onMouseMove={handleMouseMove}
                 onMouseUp={stopDragging}
                 onMouseLeave={stopDragging}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={stopDragging}
                 onClick={handlePreviewClick}
                 title={t("creatorProfile.clickPhotoToChange")}
               >
