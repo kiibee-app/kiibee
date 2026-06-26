@@ -9,7 +9,7 @@ import {
   DotsContainer,
   Dot,
 } from "./styles";
-import { LeftArrow, RightArrow } from "./SVG";
+import { LeftArrow, RightArrow } from "@/assets/icons";
 import {
   CAROUSEL_DEFAULT_AUTOPLAY,
   CAROUSEL_DEFAULT_AUTOPLAY_INTERVAL,
