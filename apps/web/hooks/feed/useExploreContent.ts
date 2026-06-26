@@ -15,6 +15,7 @@ import { getPricingLabels } from "@/utils/contentPricingActions";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
 import type { OptionItem } from "@/types/exportCreators";
+import { TRENDING, TRENDING_LIMIT } from "@/utils/common";
 
 export const ALL_FILTER_OPTION_KEY = "all";
 
@@ -240,7 +241,7 @@ export const useExploreContent = ({
   });
 
 export const useExploreTrendingContent = (limit?: number) =>
-  useExploreTutorialSection("trending", limit ? { limit } : undefined);
+  useExploreTutorialSection(TRENDING, { limit: limit ?? TRENDING_LIMIT });
 
 export const useExploreRecentContent = (params?: UseExploreContentParams) =>
   useExploreTutorialSection("recent", params);
