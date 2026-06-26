@@ -320,8 +320,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
         buttonRow
         buttonAlign={MODAL_ALIGN.CENTER}
         fullWidthButtons={false}
-        size="md"
-        height={isMobile ? "400px" : "570.941px"}
+        size="sm"
         spacing="start"
         showCloseButton
       >

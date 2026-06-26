@@ -162,7 +162,7 @@ export default function SingleTutorial({
         buttonRow
         buttonAlign={MODAL_ALIGN.CENTER}
         fullWidthButtons={false}
-        size="md"
+        size="sm"
         spacing="start"
         showCloseButton
       >
