@@ -316,7 +316,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         buttonRow
         buttonAlign={MODAL_ALIGN.CENTER}
         fullWidthButtons={false}
-        size="md"
+        size="sm"
         spacing="start"
         showCloseButton
       >
