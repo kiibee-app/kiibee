@@ -7,6 +7,7 @@ import { subscriptions } from 'src/database/schema/subscription/subscriptionInvo
 import { users } from 'src/database/schema/users/users.schema';
 import { logger } from 'src/logger/logger';
 import { fail } from 'src/utils/sendResponse';
+import { externalApi } from 'src/utils/extranalApi';
 
 export const deleteSubscriptionService = async (userId: string) => {
   try {
@@ -41,7 +42,7 @@ export const deleteSubscriptionService = async (userId: string) => {
     const subscriptionId = currentSubscription.agreementId;
 
     const { data: agreements } = await axios.get(
-      'https://payments.epay.eu/public/api/v1/subscriptions/billing/agreements',
+      externalApi.getBillingAgreements,
       {
         headers: {
           Accept: 'application/json',
@@ -61,7 +62,7 @@ export const deleteSubscriptionService = async (userId: string) => {
     const billingAgreementId = agreement.billingAgreement.id;
 
     const { data } = await axios.post(
-      `https://payments.epay.eu/public/api/v1/subscriptions/billing/agreements/${billingAgreementId}/stop`,
+      externalApi.stopAgreement(billingAgreementId),
       {},
       {
         headers: {
