@@ -90,7 +90,7 @@ export default function ExploreCreatorsMarquee() {
               alt={creator.name}
               fill
               style={{ objectFit: "cover", objectPosition: "center" }}
-              sizes="(max-width: 768px) 90px, 120px"
+              sizes="(max-width: 768px) 110px, 150px"
             />
           ) : null}
         </CardRight>
