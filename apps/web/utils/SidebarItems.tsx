@@ -150,6 +150,12 @@ export const viewerItems: DashboardSidebarItem[] = [
     section: CREATOR_SECTIONS.TOP,
   },
   {
+    label: CREATORS_LABELS.HELP,
+    labelKey: "sidebar.help",
+    icon: <QuestionIcon />,
+    section: CREATOR_SECTIONS.BOTTOM,
+  },
+  {
     label: VIEWER_LABELS.LOG_OUT,
     labelKey: "nav.logout",
     icon: <LogoutIcon />,

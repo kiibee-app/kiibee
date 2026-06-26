@@ -8,7 +8,6 @@ import {
   EmbeddedSection,
   EmbeddedShowcaseWrapper,
   Header,
-  ResultsState,
   Section,
   ShowcaseWrapper,
   TitleGroup,
@@ -17,6 +16,7 @@ import type { TutorialVideo } from "@/utils/types";
 import SearchBar from "@/components/UI/SearchBar";
 import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
+import GenericEmptyState from "@/components/UI/GenericEmptyState";
 
 type Props = {
   videos: TutorialVideo[] | undefined;
@@ -46,6 +46,14 @@ export default function CollectionContent({
   const HeaderEl = embedded ? EmbeddedHeader : Header;
   const ShowcaseEl = embedded ? EmbeddedShowcaseWrapper : ShowcaseWrapper;
 
+  if (videos.length === 0) {
+    return (
+      <SectionEl>
+        <GenericEmptyState title={t("singleCollection.noContent")} />
+      </SectionEl>
+    );
+  }
+
   return (
     <SectionEl>
       <HeaderEl>
@@ -74,11 +82,7 @@ export default function CollectionContent({
             onSelectVideo={onSelectVideo}
           />
         ) : (
-          <ResultsState>
-            <MonoText $use="Body_Medium">
-              {t("singleCollection.noResults")}
-            </MonoText>
-          </ResultsState>
+          <GenericEmptyState title={t("singleCollection.noResults")} />
         )}
       </ShowcaseEl>
     </SectionEl>

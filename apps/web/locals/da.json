@@ -34,7 +34,7 @@
         "video": "Video",
         "audio": "Audio",
         "pdf": "PDF",
-        "epub": "ePub",
+        "epub": "Epub",
         "web": "Webindhold"
       },
       "categoryTitle": "Kategori",
@@ -415,7 +415,7 @@
       "rightItems": [
         "Se statistik over visninger og salg",
         "Vis indhold på alle enheder — mobil, tablet og desktop",
-        "Sælg flere formater (video, PDF, ePub, MP3, lyd)",
+        "Sælg flere formater (video, PDF, Epub, MP3, lyd)",
         "Opbevar indhold sikkert på danske servere, fuldt GDPR-kompatibelt",
         "Få skræddersyede løsninger baseret på dine behov",
         "Sælg og vis dit indhold hvor som helst på nettet",
@@ -1237,7 +1237,8 @@
         "collections": "Samlinger",
         "videos": "Videoer",
         "audios": "Lydfiler",
-        "pdf": "PDF"
+        "pdf": "PDF",
+        "web": "Weblink"
       },
       "buttons": {
         "seeContent": "Se indhold"
@@ -1645,6 +1646,7 @@
       "trailerLink": "Trailer-link",
       "trailerLinkHint": "Hvis du vil tilfoje en trailer, skal du indtaste linket her.",
       "trailerLinkPlaceholder": "Tilfoj YouTube- eller Video-link",
+      "trailerLinkInvalid": "Indtast venligst en gyldig URL (fx: https://example.com)",
       "visibility": "Synlighed",
       "visibilityHint": "Styr om denne trailer er synlig for brugere.",
       "public": "Offentlig",
@@ -1776,6 +1778,7 @@
     "metadata": {
       "validation": {
         "required": "Dette felt er obligatorisk.",
+        "numbersOnly": "Kun tal er tilladt.",
         "mediaCardThumbnail": "Miniature til mediekortet er obligatorisk.",
         "portraitThumbnail": "Portraetminiature er obligatorisk."
       },
@@ -2011,9 +2014,11 @@
     "playVideo": "Afspil video",
     "playAudio": "Afspil lyd",
     "openPdf": "Åben PDF",
+    "openWeb": "Åben link",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Lyd",
     "mediaLabelPdf": "PDF",
+    "mediaLabelWeb": "Weblink",
     "expired": "Udløbet",
     "expiresInHours": "Udløber om {{count}} timer",
     "expiresInDays": "Udløber om {{count}} dage",

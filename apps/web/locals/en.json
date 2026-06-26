@@ -34,7 +34,7 @@
         "video": "Video",
         "audio": "Audio",
         "pdf": "PDF",
-        "epub": "ePub",
+        "epub": "Epub",
         "web": "Web content"
       },
       "categoryTitle": "Category",
@@ -415,7 +415,7 @@
       "rightItems": [
         "See statistics on views and sales",
         "Show content on all devices — mobile, tablet and desktop",
-        "Sell multiple formats (video, PDF, ePub, MP3, audio)",
+        "Sell multiple formats (video, PDF, Epub, MP3, audio)",
         "Store content securely on Danish servers, fully GDPR compliant",
         "Get tailored solutions based on your needs",
         "Sell and show your content anywhere on the web",
@@ -1237,7 +1237,8 @@
         "collections": "Collections",
         "videos": "Videos",
         "audios": "Audios",
-        "pdf": "PDF"
+        "pdf": "PDF",
+        "web": "Web Link"
       },
       "buttons": {
         "seeContent": "See content"
@@ -1662,6 +1663,7 @@
       "trailerLink": "Trailer link",
       "trailerLinkHint": "If you want to add a trailer, enter the link here.",
       "trailerLinkPlaceholder": "Add YouTube or Video link",
+      "trailerLinkInvalid": "Please enter a valid URL (e.g.: https://example.com)",
       "visibility": "Visibility",
       "visibilityHint": "Control whether this trailer is visible to learners.",
       "public": "Public",
@@ -1776,6 +1778,7 @@
     "metadata": {
       "validation": {
         "required": "This field is required.",
+        "numbersOnly": "Only numbers are allowed.",
         "mediaCardThumbnail": "Media card thumbnail is required.",
         "portraitThumbnail": "Portrait thumbnail is required."
       },
@@ -2003,9 +2006,11 @@
     "playVideo": "Play video",
     "playAudio": "Play audio",
     "openPdf": "Open pdf",
+    "openWeb": "Open Link",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Audio",
     "mediaLabelPdf": "PDF",
+    "mediaLabelWeb": "Web Link",
     "expired": "Expired",
     "expiresInHours": "Expires in {{count}} hrs",
     "expiresInDays": "Expires in {{count}} days",
