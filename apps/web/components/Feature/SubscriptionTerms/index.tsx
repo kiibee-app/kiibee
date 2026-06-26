@@ -1,26 +1,34 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import FormattedBody from "../Shared/FormattedBody";
+import LegalContactSection from "../Shared/LegalContactSection";
 import {
   Body,
-  ContactCard,
   Description,
+  FormattedDescription,
+  Header,
   Intro,
+  IntroArea,
   Meta,
   Section,
   SectionTitle,
   Title,
   Wrap,
-} from "./styles";
+} from "../Shared/legalPageStyles";
 
 export default function SubscriptionTermsSection() {
   const { t } = useTranslation();
 
   return (
     <Wrap>
-      <Title>{t("footer.subscriptionTerms")}</Title>
-      <Meta>{t("legalPages.subscriptionTerms.updatedAt")}</Meta>
-      <Intro>{t("legalPages.subscriptionTerms.intro")}</Intro>
+      <Header>
+        <Title>{t("footer.subscriptionTerms")}</Title>
+        <Meta>{t("legalPages.subscriptionTerms.updatedAt")}</Meta>
+      </Header>
+      <IntroArea>
+        <Intro>{t("legalPages.subscriptionTerms.intro")}</Intro>
+      </IntroArea>
       <Body>
         <Section>
           <SectionTitle>
@@ -50,18 +58,13 @@ export default function SubscriptionTermsSection() {
           <SectionTitle>
             {t("legalPages.subscriptionTerms.sections.nonPayment.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.subscriptionTerms.sections.nonPayment.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.subscriptionTerms.sections.nonPayment.body")}
+            />
+          </FormattedDescription>
         </Section>
-        <ContactCard>
-          <SectionTitle>
-            {t("legalPages.subscriptionTerms.sections.contact.title")}
-          </SectionTitle>
-          <Description>
-            {t("legalPages.subscriptionTerms.sections.contact.body")}
-          </Description>
-        </ContactCard>
+        <LegalContactSection translationPrefix="legalPages.subscriptionTerms.sections.contact" />
       </Body>
     </Wrap>
   );

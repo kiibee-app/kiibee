@@ -608,6 +608,7 @@
     "userGuides": "User guides",
     "contactUs": "Contact Us",
     "support": "Support",
+    "creatorTerms": "Creator Terms",
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "cookieSettings": "Cookie Settings",
@@ -1047,13 +1048,17 @@
     "bgAlt": "CTA background"
   },
   "legalPages": {
+    "common": {
+      "email": "Email",
+      "cvr": "CVR"
+    },
     "privacyPolicy": {
       "updatedAt": "Last updated: June 16, 2026",
       "intro": "At KIIBEE ApS, we respect your personal information and therefore do not share it with third parties.\n\nThis privacy policy governs how KIIBEE ApS collects, stores, and uses information collected from users (hereinafter \"Users\") of the website www.kiibee.dk / www.kiibee.com (hereinafter \"Website\"). This privacy policy covers the Website and all products offered by KIIBEE ApS",
       "sections": {
         "collect": {
           "title": "Personal information",
-          "body": "We may collect personal information from Users either via newsletter sign-up or when purchasing/renting a service.\nUsers may be asked for name, email, postal address, phone number, company information, and credit card information as needed.\nBy submitting a contact form, you give KIIBEE consent to store your submitted information. You may withdraw this consent at any time by contacting us at info@kiibee.dk.\nUsers may visit the website anonymously at any time, and we will only collect data from Users when they voluntarily provide such information to us. Users may experience that they cannot access all parts of the website if they choose not to provide personal information."
+          "body": "We may collect personal information from Users either via newsletter sign-up or when purchasing/renting a service.\n\nUsers may be asked for name, email, postal address, phone number, company information, and credit card information as needed.\n\nBy submitting a contact form, you give KIIBEE consent to store your submitted information. You may withdraw this consent at any time by contacting us at info@kiibee.dk.\n\nUsers may visit the website anonymously at any time, and we will only collect data from Users when they voluntarily provide such information to us. Users may experience that they cannot access all parts of the website if they choose not to provide personal information."
         },
         "nonPersonal": {
           "title": "Non-personal information",
@@ -1065,7 +1070,7 @@
         },
         "use": {
           "title": "Use of personal information",
-          "body": "Fulfillment of our sales-related obligations: This includes fulfilling our obligations to you as a customer, including delivery, relevant service, customer follow-up, answering questions, and fulfilling our obligations under applicable law.\nRelevant advice and offers for follow-up: We will use your personal information to provide you with relevant advice, follow-up, and offers on products and services related to what you have already purchased from us.\nCreating customer profiles: We may create a customer profile based on purchase history and available information as a basis for newsletters, product information, targeted marketing, and purchase analysis.\nAdministration of user profiles: We have access to your user profile to manage your contact information and any consents to receive our newsletter, participate in campaigns, or similar.\nFurther development of services and secure operations: To further develop our services and operate the website in a proper manner, we depend on being able to produce statistics on traffic, purchases, and behavior on the website. We may also need to detect fraud and take countermeasures.\nCampaigns and surveys: If you choose to participate in a survey, campaign, or enter the website, you may be asked to provide personal information such as name, address, and/or phone number. The purpose is to identify you if, for example, you win a prize.\nUse of external suppliers: If you order external services, contact information and other relevant information we have registered about you may be disclosed to the supplier."
+          "body": "Fulfillment of our sales-related obligations: This includes fulfilling our obligations to you as a customer, including delivery, relevant service, customer follow-up, answering questions, and fulfilling our obligations under applicable law.\n\nRelevant advice and offers for follow-up: We will use your personal information to provide you with relevant advice, follow-up, and offers on products and services related to what you have already purchased from us.\n\nCreating customer profiles: We may create a customer profile based on purchase history and available information as a basis for newsletters, product information, targeted marketing, and purchase analysis.\n\nAdministration of user profiles: We have access to your user profile to manage your contact information and any consents to receive our newsletter, participate in campaigns, or similar.\n\nFurther development of services and secure operations: To further develop our services and operate the website in a proper manner, we depend on being able to produce statistics on traffic, purchases, and behavior on the website. We may also need to detect fraud and take countermeasures.\n\nCampaigns and surveys: If you choose to participate in a survey, campaign, or enter the website, you may be asked to provide personal information such as name, address, and/or phone number. The purpose is to identify you if, for example, you win a prize.\n\nUse of external suppliers: If you order external services, contact information and other relevant information we have registered about you may be disclosed to the supplier."
         },
         "share": {
           "title": "Protection of your personal information",
@@ -1083,9 +1088,16 @@
           "title": "Your acceptance",
           "body": "By using the Website, you accept this policy and our terms of service. If you do not accept this policy, please do not use the Website. Continued use of this Website will be considered acceptance of such changes."
         },
+        "publisherGdpr": {
+          "title": "Personal data for publishers (GDPR)",
+          "body": "The processing of personal data is carried out in accordance with applicable data protection legislation, including the EU General Data Protection Regulation (GDPR).\nKIIBEE collects and processes personal data for the purpose of:\n- Operating and maintaining the Platform\n- Processing payments and payouts to publishers\n- Complying with legal obligations\n- Communicating with publishers regarding their account and content\nPublishers have the right to:\n- Access their personal data\n- Request correction of inaccurate data\n- Request deletion of their data\n- Object to the processing of their data\nIf you have questions about the processing of your personal data, please contact us at info@kiibee.dk."
+        },
         "contact": {
           "title": "Contact us",
-          "body": "If you have questions regarding this privacy policy or anything else, please contact us at:\nKIIBEE ApS\nEmail: info@kiibee.dk\n\nThis privacy policy was last updated on June 16, 2026"
+          "intro": "If you have questions regarding this privacy policy or anything else, please contact us at:",
+          "company": "KIIBEE ApS",
+          "email": "info@kiibee.dk",
+          "footer": "This privacy policy was last updated on June 16, 2026"
         }
       }
     },
@@ -1119,7 +1131,7 @@
         },
         "platform": {
           "title": "Platform and responsibility",
-          "body": "KIIBEE ApS owns and operates the platform www.kiibee.dk, including the domains kiibee.dk and kiibee.com.\nThe platform provides software that makes it possible to distribute digital content.\nKIIBEE reserves the right to:\n- Remove content that infringes rights\n- Remove content that is misleading or offensive\n- Close or restrict access for users who violate the terms\nKIIBEE cannot be held liable for indirect losses, consequential damages, or losses resulting from use of the platform."
+          "body": "KIIBEE ApS owns and operates the platform www.kiibee.dk, including the domains kiibee.dk and kiibee.com.\nThe platform provides software that makes it possible to distribute digital content.\nKIIBEE reserves the right to:\n- Remove content that infringes rights\n- Remove content that is misleading or offensive\n- Close or restrict access for users who violate the terms\nKIIBEE is not liable for indirect losses, including:\n- loss of revenue\n- loss of profit\n- data loss"
         },
         "liability": {
           "title": "Disclaimer",
@@ -1129,9 +1141,44 @@
           "title": "Governing law and jurisdiction",
           "body": "These terms are governed by Danish law.\nAny disputes shall be settled by the Danish courts."
         },
+        "publisherAccount": {
+          "title": "Publisher account and user responsibility",
+          "body": "To use the Platform as a publisher, you must create an account.\nYou are responsible for:\n- keeping your login credentials confidential\n- all activities that occur via your Account\n- providing correct and up-to-date information\nKIIBEE is not liable for losses resulting from unauthorized use of your Account. You must immediately contact KIIBEE if you suspect misuse."
+        },
+        "publisherContent": {
+          "title": "Content and user-generated material",
+          "body": "You may upload and share content via the Platform.\nYou are solely responsible for your content and warrant that:\n- you have all necessary rights\n- the content does not infringe third-party rights\n- the content complies with applicable law\n- the content is not offensive\nKIIBEE may at any time, without notice:\n- reject, edit, or remove content\n- suspend or close accounts for non-compliance\nIn case of errors, misleading content, or fraud, payments may be withheld or reversed."
+        },
+        "useOfService": {
+          "title": "Use of service",
+          "body": "You may not:\n- attempt to circumvent or breach security\n- perform reverse engineering, decompilation, or similar\n- use the Platform in violation of applicable law\nKIIBEE reserves the right to monitor usage and enforce these rules without notice."
+        },
+        "publisherRole": {
+          "title": "KIIBEE's role as a publisher platform",
+          "body": "KIIBEE functions as a platform for distribution of digital content between users and end customers.\nKIIBEE is not responsible for:\n- the quality of content offered by users\n- agreements entered into between users and end customers\nKIIBEE does, however, reserve the right to remove content that does not meet the platform's requirements."
+        },
+        "publisherFees": {
+          "title": "Publisher terms and fees",
+          "body": "For sales via the platform: KIIBEE transfers your earnings from the sale of digital materials when you request it, within 5-7 banking days. Your earnings are paid out after a fee has been deducted and deposited into your bank account. The fee includes, among other things, costs for payment providers: Dankort/MasterCard/Visa & MobilePay for processing.\nKIIBEE charges a fee per sold material to cover, among other things, development/hosting and software maintenance costs. KIIBEE's fee per sold item can be found at current prices: kiibee.dk/pricing.\nKIIBEE may withhold payment in case of:\n- suspected fraud\n- complaints from end customers\n- failure to deliver content\nSubscriptions are charged continuously and non-payment may result in account closure."
+        },
+        "publisherMarketing": {
+          "title": "Email and marketing",
+          "body": "When collecting emails via the platform, you must:\n- Comply with the Marketing Act (§6)\n- Ensure consent\n- Provide the option to unsubscribe\nIt is not permitted to share emails with third parties without consent."
+        },
+        "publisherTermination": {
+          "title": "Termination of publisher account",
+          "body": "KIIBEE may at any time:\n- suspend or close your account for non-compliance\n- change or discontinue the Platform with reasonable notice\n- terminate your account with one month's notice, paid subscriptions will not be refunded, after which your account will be closed and your data and content will be deleted."
+        },
+        "amendments": {
+          "title": "Amendments",
+          "body": "KIIBEE may amend these Terms with reasonable notice.\nContinued use of the Platform constitutes acceptance of the amendments."
+        },
         "contact": {
           "title": "Contact",
-          "body": "If you have questions about these terms and conditions, please contact:\nKIIBEE ApS\nEmail: info@kiibee.dk"
+          "intro": "If you have questions about these terms and conditions, please contact:",
+          "company": "KIIBEE ApS",
+          "cvr": "34898634",
+          "email": "info@kiibee.dk"
         }
       }
     },
@@ -1175,7 +1222,75 @@
         },
         "contact": {
           "title": "Contact",
-          "body": "If you have questions about these terms and conditions, please contact:\nKIIBEE ApS\nEmail: info@kiibee.dk"
+          "intro": "If you have questions about these terms and conditions, please contact:",
+          "company": "KIIBEE ApS",
+          "email": "info@kiibee.dk"
+        }
+      }
+    },
+    "creatorTerms": {
+      "pageTitle": "KIIBEE – Creator Terms",
+      "updatedAt": "Last updated: June 26, 2026",
+      "sections": {
+        "general": {
+          "title": "General",
+          "body": "These terms (\"the Terms\") govern your use of KIIBEE ApS' platform, including kiibee.dk & kiibee.com and related software and services (\"the Platform\").\n\nBy creating an account or using the Platform, you accept these Terms. If you do not accept the Terms, you must not use the Platform."
+        },
+        "account": {
+          "title": "Account and user responsibility",
+          "body": "To use the Platform, you must create an account (\"Account\").\nYou are responsible for:\n- keeping your login credentials confidential\n- all activities that occur via your Account\n- providing correct and up-to-date information\nKIIBEE is not liable for losses resulting from unauthorized use of your Account. You must immediately contact KIIBEE if you suspect misuse."
+        },
+        "useOfService": {
+          "title": "Use of service",
+          "body": "You may not:\n- attempt to circumvent or breach security\n- perform reverse engineering, decompilation, or similar\n- use the Platform in violation of applicable law\nKIIBEE reserves the right to monitor usage and enforce these rules without notice."
+        },
+        "content": {
+          "title": "Content and user-generated material",
+          "body": "You may upload and share content (\"Content\") via the Platform.\nYou are solely responsible for your Content and warrant that:\n- you have all necessary rights\n- the content does not infringe third-party rights\n- the content complies with applicable law\n- Content is not offensive\nKIIBEE may at any time, without notice:\n- reject, edit, or remove content\n- suspend or close accounts for non-compliance\nIn case of errors, misleading content, or fraud, payments may be withheld or reversed."
+        },
+        "role": {
+          "title": "KIIBEE's role",
+          "body": "KIIBEE functions as a platform for distribution of digital content between users and end customers.\nKIIBEE is not responsible for:\n- the quality of content offered by users\n- agreements entered into between users and end customers\nKIIBEE does, however, reserve the right to remove content that does not meet the platform's requirements."
+        },
+        "thirdParty": {
+          "title": "Third-party content",
+          "body": "The Platform may contain links or access to third-party content.\nKIIBEE is not responsible for:\n- the accuracy of the content\n- third-party products or services\nUse of such content is at your own risk."
+        },
+        "payment": {
+          "title": "Payment and fees",
+          "body": "For sales via the platform: KIIBEE transfers your earnings from the sale of digital materials when you request it, within 5-7 banking days. Your earnings are paid out after a fee has been deducted and deposited into your bank account. The fee includes, among other things, costs for payment providers: Dankort/MasterCard/Visa & MobilePay for processing. KIIBEE charges a fee per sold material to cover, among other things, development/hosting and software maintenance costs. KIIBEE's fee per sold item can be found at current prices: kiibee.dk/pricing.\nKIIBEE may withhold payment in case of:\n- suspected fraud\n- complaints from end customers\n- failure to deliver content\nSubscriptions are charged continuously and non-payment may result in account closure."
+        },
+        "emailMarketing": {
+          "title": "Email and marketing",
+          "body": "When collecting emails via the platform, you must:\n- Comply with the Marketing Act (§6)\n- Ensure consent.\n- Provide the option to unsubscribe\nIt is not permitted to share emails with third parties without consent."
+        },
+        "intellectualProperty": {
+          "title": "Intellectual property rights",
+          "body": "All rights to the Platform belong to KIIBEE ApS.\nYou may not copy, distribute, or misuse the platform or its content without permission."
+        },
+        "limitationOfLiability": {
+          "title": "Limitation of liability",
+          "body": "KIIBEE is not liable for indirect losses, including:\n- loss of revenue\n- loss of profit\n- data loss"
+        },
+        "termination": {
+          "title": "11. Termination",
+          "body": "KIIBEE may at any time:\n- suspend or close your account for non-compliance\n- change or discontinue the Platform with reasonable notice\n- Terminate your account with one month's notice; paid subscriptions will not be refunded, after which your account will be closed and your data and content will be deleted."
+        },
+        "changes": {
+          "title": "12. Amendments",
+          "body": "KIIBEE may amend these Terms with reasonable notice. Continued use of the Platform constitutes acceptance of the amendments."
+        },
+        "personalData": {
+          "title": "13. Personal data (GDPR)",
+          "body": "The processing of personal data is carried out in accordance with KIIBEE's privacy policy."
+        },
+        "governingLaw": {
+          "title": "14. Governing law and jurisdiction",
+          "body": "These Terms are governed by Danish law. Any disputes shall be settled by the Danish courts."
+        },
+        "contact": {
+          "title": "Contact",
+          "body": "KIIBEE ApS\nCVR: 34898634\nE-mail: info@kiibee.dk"
         }
       }
     }
