@@ -43,9 +43,7 @@ export const Slide = styled.div<{
     opacity: ${$active ? 1 : 0};
     pointer-events: ${$active ? "auto" : "none"};
     z-index: ${$active ? 2 : 1};
-    transition: ${
-      $active ? "opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1)" : "opacity 0s 0.8s"
-    };
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
   `
       : `
     position: relative;

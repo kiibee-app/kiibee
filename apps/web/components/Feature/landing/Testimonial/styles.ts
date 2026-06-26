@@ -16,11 +16,12 @@ export const Section = styled.section`
     ${MAX_SECTION_HEIGHT}px
   );
   overflow: hidden;
+  background-color: ${({ theme }) => theme.colors.gradient.CANVAS_BG};
 `;
 
 export const SlideWrapper = styled.div`
   position: relative;
-  width: 100%;
+  width: 100%;\
   height: 100%;
 `;
 
