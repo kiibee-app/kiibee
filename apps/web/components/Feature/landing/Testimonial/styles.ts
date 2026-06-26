@@ -37,7 +37,7 @@ export const Background = styled.div<{
   background-position: ${({ $bgPosition }) => $bgPosition || "center"};
   background-repeat: no-repeat;
 
-  ${media.tablet} {
+  ${media.desktop} {
     background-position: ${({ $bgPositionMobile }) =>
       $bgPositionMobile || "center"};
   }
@@ -51,7 +51,7 @@ export const SectionInner = styled.div`
   height: 100%;
   margin: 0 auto;
 
-  ${media.tablet} {
+  ${media.desktop} {
     padding: 0 1rem;
   }
 `;
@@ -74,14 +74,15 @@ export const Card = styled.div`
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 
-  ${media.tablet} {
+  ${media.desktop} {
     left: 50%;
     right: auto;
-    top: 50%;
+    top: auto;
+    bottom: 48px;
     width: min(506px, calc(100% - 2rem));
     padding: 1.5rem;
     gap: 1.25rem;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     align-items: center;
     text-align: center;
   }

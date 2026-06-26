@@ -100,9 +100,10 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
     transform: scale(1.1);
   }
 
-  ${media.tablet} {
+  ${media.desktop} {
     width: 40px;
     height: 40px;
+    top: 38%;
     ${({ $direction }) =>
       $direction === "left" ? "left: 16px;" : "right: 16px;"}
 
@@ -122,7 +123,7 @@ export const DotsContainer = styled.div`
   gap: 10px;
   z-index: 10;
 
-  ${media.tablet} {
+  ${media.desktop} {
     bottom: 20px;
   }
 `;
