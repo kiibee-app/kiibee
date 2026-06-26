@@ -1047,6 +1047,10 @@
     "bgAlt": "CTA background"
   },
   "legalPages": {
+    "common": {
+      "email": "Email",
+      "cvr": "CVR"
+    },
     "privacyPolicy": {
       "updatedAt": "Last updated: June 16, 2026",
       "intro": "At KIIBEE ApS, we respect your personal information and therefore do not share it with third parties.\n\nThis privacy policy governs how KIIBEE ApS collects, stores, and uses information collected from users (hereinafter \"Users\") of the website www.kiibee.dk / www.kiibee.com (hereinafter \"Website\"). This privacy policy covers the Website and all products offered by KIIBEE ApS",
@@ -1089,7 +1093,10 @@
         },
         "contact": {
           "title": "Contact us",
-          "body": "If you have questions regarding this privacy policy or anything else, please contact us at:\nKIIBEE ApS\nEmail: info@kiibee.dk\n\nThis privacy policy was last updated on June 16, 2026"
+          "intro": "If you have questions regarding this privacy policy or anything else, please contact us at:",
+          "company": "KIIBEE ApS",
+          "email": "info@kiibee.dk",
+          "footer": "This privacy policy was last updated on June 16, 2026"
         }
       }
     },
@@ -1159,7 +1166,10 @@
         },
         "contact": {
           "title": "Contact",
-          "body": "If you have questions about these terms and conditions, please contact:\nKIIBEE ApS\nCVR: 34898634\nEmail: info@kiibee.dk"
+          "intro": "If you have questions about these terms and conditions, please contact:",
+          "company": "KIIBEE ApS",
+          "cvr": "34898634",
+          "email": "info@kiibee.dk"
         }
       }
     },
@@ -1203,7 +1213,9 @@
         },
         "contact": {
           "title": "Contact",
-          "body": "If you have questions about these terms and conditions, please contact:\nKIIBEE ApS\nEmail: info@kiibee.dk"
+          "intro": "If you have questions about these terms and conditions, please contact:",
+          "company": "KIIBEE ApS",
+          "email": "info@kiibee.dk"
         }
       }
     }

@@ -2,30 +2,33 @@
 
 import { useTranslation } from "react-i18next";
 import FormattedBody from "../FormattedBody";
+import LegalContactSection from "../Shared/LegalContactSection";
 import {
   Body,
-  ContactCard,
   Description,
-  Divider,
   FormattedDescription,
+  Header,
   Intro,
+  IntroArea,
   Meta,
   Section,
   SectionTitle,
   Title,
   Wrap,
-} from "./styles";
+} from "../Shared/legalPageStyles";
 
 export default function TermsOfServiceSection() {
   const { t } = useTranslation();
 
   return (
     <Wrap>
-      <Title>{t("footer.termsOfService")}</Title>
-      <Meta>{t("legalPages.termsOfService.updatedAt")}</Meta>
-      <Divider />
-      <Intro>{t("legalPages.termsOfService.intro")}</Intro>
-      <Divider />
+      <Header>
+        <Title>{t("footer.termsOfService")}</Title>
+        <Meta>{t("legalPages.termsOfService.updatedAt")}</Meta>
+      </Header>
+      <IntroArea>
+        <Intro>{t("legalPages.termsOfService.intro")}</Intro>
+      </IntroArea>
       <Body>
         <Section>
           <SectionTitle>
@@ -35,7 +38,6 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.acceptance.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.intellectualProperty.title")}
@@ -48,7 +50,6 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.thirdParty.title")}
@@ -57,7 +58,6 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.thirdParty.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.offensiveContent.title")}
@@ -66,7 +66,6 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.offensiveContent.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.digitalPurchase.title")}
@@ -79,7 +78,6 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.payments.title")}
@@ -90,7 +88,6 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.platform.title")}
@@ -101,7 +98,6 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.liability.title")}
@@ -112,7 +108,6 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.governingLaw.title")}
@@ -121,7 +116,6 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.governingLaw.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.publisherAccount.title")}
@@ -134,7 +128,6 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.publisherContent.title")}
@@ -147,7 +140,6 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.publisherRole.title")}
@@ -158,7 +150,6 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.publisherFees.title")}
@@ -169,7 +160,6 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.publisherMarketing.title")}
@@ -182,7 +172,6 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.publisherTermination.title")}
@@ -195,15 +184,7 @@ export default function TermsOfServiceSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
-        <ContactCard>
-          <SectionTitle>
-            {t("legalPages.termsOfService.sections.contact.title")}
-          </SectionTitle>
-          <Description>
-            {t("legalPages.termsOfService.sections.contact.body")}
-          </Description>
-        </ContactCard>
+        <LegalContactSection translationPrefix="legalPages.termsOfService.sections.contact" />
       </Body>
     </Wrap>
   );

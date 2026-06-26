@@ -4,27 +4,30 @@ import { useTranslation } from "react-i18next";
 import FormattedBody from "../FormattedBody";
 import {
   Body,
-  Divider,
   FormattedDescription,
+  Header,
+  IntroArea,
   Meta,
   Section,
   SectionTitle,
   Title,
   Wrap,
-} from "./styles";
+} from "../Shared/legalPageStyles";
 
 export default function CookieSettingsSection() {
   const { t } = useTranslation();
 
   return (
     <Wrap>
-      <Title>{t("footer.cookieSettings")}</Title>
-      <Meta>{t("legalPages.cookieSettings.updatedAt")}</Meta>
-      <Divider />
-      <FormattedDescription>
-        <FormattedBody text={t("legalPages.cookieSettings.intro")} />
-      </FormattedDescription>
-      <Divider />
+      <Header>
+        <Title>{t("footer.cookieSettings")}</Title>
+        <Meta>{t("legalPages.cookieSettings.updatedAt")}</Meta>
+      </Header>
+      <IntroArea>
+        <FormattedDescription>
+          <FormattedBody text={t("legalPages.cookieSettings.intro")} />
+        </FormattedDescription>
+      </IntroArea>
       <Body>
         <Section>
           <SectionTitle>
@@ -36,7 +39,6 @@ export default function CookieSettingsSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.cookieSettings.sections.kiibee.title")}
@@ -47,7 +49,6 @@ export default function CookieSettingsSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.cookieSettings.sections.analytics.title")}

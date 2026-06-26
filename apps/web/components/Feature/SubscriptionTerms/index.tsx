@@ -2,30 +2,33 @@
 
 import { useTranslation } from "react-i18next";
 import FormattedBody from "../FormattedBody";
+import LegalContactSection from "../Shared/LegalContactSection";
 import {
   Body,
-  ContactCard,
   Description,
-  Divider,
   FormattedDescription,
+  Header,
   Intro,
+  IntroArea,
   Meta,
   Section,
   SectionTitle,
   Title,
   Wrap,
-} from "./styles";
+} from "../Shared/legalPageStyles";
 
 export default function SubscriptionTermsSection() {
   const { t } = useTranslation();
 
   return (
     <Wrap>
-      <Title>{t("footer.subscriptionTerms")}</Title>
-      <Meta>{t("legalPages.subscriptionTerms.updatedAt")}</Meta>
-      <Divider />
-      <Intro>{t("legalPages.subscriptionTerms.intro")}</Intro>
-      <Divider />
+      <Header>
+        <Title>{t("footer.subscriptionTerms")}</Title>
+        <Meta>{t("legalPages.subscriptionTerms.updatedAt")}</Meta>
+      </Header>
+      <IntroArea>
+        <Intro>{t("legalPages.subscriptionTerms.intro")}</Intro>
+      </IntroArea>
       <Body>
         <Section>
           <SectionTitle>
@@ -35,7 +38,6 @@ export default function SubscriptionTermsSection() {
             {t("legalPages.subscriptionTerms.sections.general.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.subscriptionTerms.sections.payment.title")}
@@ -44,7 +46,6 @@ export default function SubscriptionTermsSection() {
             {t("legalPages.subscriptionTerms.sections.payment.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.subscriptionTerms.sections.cancellation.title")}
@@ -53,7 +54,6 @@ export default function SubscriptionTermsSection() {
             {t("legalPages.subscriptionTerms.sections.cancellation.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.subscriptionTerms.sections.nonPayment.title")}
@@ -64,15 +64,7 @@ export default function SubscriptionTermsSection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
-        <ContactCard>
-          <SectionTitle>
-            {t("legalPages.subscriptionTerms.sections.contact.title")}
-          </SectionTitle>
-          <Description>
-            {t("legalPages.subscriptionTerms.sections.contact.body")}
-          </Description>
-        </ContactCard>
+        <LegalContactSection translationPrefix="legalPages.subscriptionTerms.sections.contact" />
       </Body>
     </Wrap>
   );

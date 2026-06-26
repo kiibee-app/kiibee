@@ -2,31 +2,34 @@
 
 import { useTranslation } from "react-i18next";
 import FormattedBody from "../FormattedBody";
+import LegalContactSection from "../Shared/LegalContactSection";
 import {
   Body,
-  ContactCard,
   Description,
-  Divider,
   FormattedDescription,
+  Header,
+  IntroArea,
   Meta,
   Section,
   SectionTitle,
   Title,
   Wrap,
-} from "./styles";
+} from "../Shared/legalPageStyles";
 
 export default function PrivacyPolicySection() {
   const { t } = useTranslation();
 
   return (
     <Wrap>
-      <Title>{t("footer.privacyPolicy")}</Title>
-      <Meta>{t("legalPages.privacyPolicy.updatedAt")}</Meta>
-      <Divider />
-      <FormattedDescription>
-        <FormattedBody text={t("legalPages.privacyPolicy.intro")} />
-      </FormattedDescription>
-      <Divider />
+      <Header>
+        <Title>{t("footer.privacyPolicy")}</Title>
+        <Meta>{t("legalPages.privacyPolicy.updatedAt")}</Meta>
+      </Header>
+      <IntroArea>
+        <FormattedDescription>
+          <FormattedBody text={t("legalPages.privacyPolicy.intro")} />
+        </FormattedDescription>
+      </IntroArea>
       <Body>
         <Section>
           <SectionTitle>
@@ -38,7 +41,6 @@ export default function PrivacyPolicySection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.nonPersonal.title")}
@@ -47,7 +49,6 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.nonPersonal.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.cookies.title")}
@@ -56,7 +57,6 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.cookies.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.use.title")}
@@ -67,7 +67,6 @@ export default function PrivacyPolicySection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.share.title")}
@@ -76,7 +75,6 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.share.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.changes.title")}
@@ -85,7 +83,6 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.changes.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.rights.title")}
@@ -94,7 +91,6 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.rights.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.acceptance.title")}
@@ -103,7 +99,6 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.acceptance.body")}
           </Description>
         </Section>
-        <Divider />
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.publisherGdpr.title")}
@@ -114,15 +109,7 @@ export default function PrivacyPolicySection() {
             />
           </FormattedDescription>
         </Section>
-        <Divider />
-        <ContactCard>
-          <SectionTitle>
-            {t("legalPages.privacyPolicy.sections.contact.title")}
-          </SectionTitle>
-          <Description>
-            {t("legalPages.privacyPolicy.sections.contact.body")}
-          </Description>
-        </ContactCard>
+        <LegalContactSection translationPrefix="legalPages.privacyPolicy.sections.contact" />
       </Body>
     </Wrap>
   );

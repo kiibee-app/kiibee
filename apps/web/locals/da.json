@@ -1047,6 +1047,10 @@
     "bgAlt": "CTA background"
   },
   "legalPages": {
+    "common": {
+      "email": "Email",
+      "cvr": "CVR"
+    },
     "privacyPolicy": {
       "updatedAt": "Sidst opdateret: Juni 16, 2026",
       "intro": "Hos KIIBEE ApS respekterer vi dine personlige oplysninger og derfor deler vi dem ikke med en tredjemand.\n\nDenne privatpolitik regulerer måden, hvorpå KIIBEE ApS indsamler, opbevarer og anvender oplysninger indsamlet fra brugere (herefter kaldet \"Brugere\") af hjemmesiden www.kiibee.dk / www.kiibee.com (herefter kaldet \"Hjemmesiden\"). Denne privatpolitik omfatter Hjemmesiden og alle produkter tilbudt af KIIBEE ApS",
@@ -1089,7 +1093,10 @@
         },
         "contact": {
           "title": "Kontakt os",
-          "body": "Hvis du har spørgsmål angående denne privatpolitik eller andet, bedes du kontakte os på:\nKIIBEE ApS\nEmail: info@kiibee.dk\n\nDenne privatpolitik er opdateret den 16 Juni 2026"
+          "intro": "Hvis du har spørgsmål angående denne privatpolitik eller andet, bedes du kontakte os på:",
+          "company": "KIIBEE ApS",
+          "email": "info@kiibee.dk",
+          "footer": "Denne privatpolitik er opdateret den 16 Juni 2026"
         }
       }
     },
@@ -1159,7 +1166,10 @@
         },
         "contact": {
           "title": "Kontakt",
-          "body": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:\nKIIBEE ApS\nCVR: 34898634\nEmail: info@kiibee.dk"
+          "intro": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:",
+          "company": "KIIBEE ApS",
+          "cvr": "34898634",
+          "email": "info@kiibee.dk"
         }
       }
     },
@@ -1203,7 +1213,9 @@
         },
         "contact": {
           "title": "Kontakt",
-          "body": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:\nKIIBEE ApS\nEmail: info@kiibee.dk"
+          "intro": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:",
+          "company": "KIIBEE ApS",
+          "email": "info@kiibee.dk"
         }
       }
     }
