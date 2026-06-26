@@ -18,9 +18,9 @@ import {
   CAROUSEL_DEFAULT_PREV_ARIA_LABEL,
   CAROUSEL_DEFAULT_NEXT_ARIA_LABEL,
   CarouselTransitionType,
+  getNavigationArrows,
 } from "@/utils/Constants";
 import { KEYBOARD_KEYS } from "@/utils/ui";
-import { getNavigationArrows } from "@/utils/carousel";
 
 export interface CarouselProps<T> {
   items: T[];
