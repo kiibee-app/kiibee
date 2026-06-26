@@ -5,7 +5,7 @@ import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
-import { VideoIcon } from "@/assets/icons";
+import { VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
@@ -17,6 +17,7 @@ import {
   type RentedSectionKey,
   type RentedMode,
   type RentedMediaItem,
+  type RentedMediaSectionItems,
   getMediaAction,
   getMediaLabel,
 } from "@/utils/viewerRented";
@@ -34,10 +35,7 @@ import SectionPaginationArrows from "./SectionPaginationArrows";
 
 type Props = {
   mode: RentedMode;
-  sectionItems: Record<
-    Exclude<RentedSectionKey, "collections">,
-    RentedMediaItem[]
-  >;
+  sectionItems: RentedMediaSectionItems;
   sectionTotals: Record<Exclude<RentedSectionKey, "collections">, number>;
   canSlide: (section: RentedSectionKey, totalItems: number) => boolean;
   canGoPrev: (section: RentedSectionKey) => boolean;
@@ -61,6 +59,9 @@ function MediaTypeIcon({ type }: { type: RentedSectionKey }) {
   if (type === RENTED_SECTION_KEYS.PDFS) {
     return <PdfFileIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
   }
+  if (type === RENTED_SECTION_KEYS.WEBS) {
+    return <WebIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
+  }
   return <VideoIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
 }
 
@@ -79,7 +80,9 @@ export default function MediaSections({
 }: Props) {
   const { t } = useTranslation();
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
-  const hasDetailView = Boolean(onMediaPrimaryAction);
+  const canOpenMediaDetail = Boolean(onMediaPrimaryAction);
+  const shouldShowAccessCta =
+    mode === RENTED_MODES.CURRENTLY || mode === RENTED_MODES.PURCHASED;
 
   return (
     <>
@@ -94,10 +97,11 @@ export default function MediaSections({
             <SectionHeader>
               <SectionTitleRow>
                 <SectionTitle>{section.title}</SectionTitle>
-                {hasDetailView &&
+                {canOpenMediaDetail &&
                 (section.key === RENTED_SECTION_KEYS.VIDEOS ||
                   section.key === RENTED_SECTION_KEYS.AUDIOS ||
-                  section.key === RENTED_SECTION_KEYS.PDFS) ? (
+                  section.key === RENTED_SECTION_KEYS.PDFS ||
+                  section.key === RENTED_SECTION_KEYS.WEBS) ? (
                   <InlineSectionArrow
                     type="button"
                     aria-label={`Open ${section.title} details`}
@@ -131,7 +135,7 @@ export default function MediaSections({
                   badge={<MonoText $use="Body_Bold">{item.category}</MonoText>}
                   onClick={onCardClick ? () => onCardClick(item) : undefined}
                   footer={
-                    hasDetailView || isCurrent ? (
+                    shouldShowAccessCta ? (
                       <GenericButton
                         variant={VARIANT.SECONDARY}
                         size="md"
@@ -167,11 +171,7 @@ export default function MediaSections({
                   <MonoText
                     $use="Body_Medium"
                     color={
-                      hasDetailView
-                        ? COLORS.neutral.GRAY_400
-                        : isCurrent
-                          ? COLORS.primary.RED
-                          : COLORS.neutral.GRAY_400
+                      isCurrent ? COLORS.primary.RED : COLORS.neutral.GRAY_400
                     }
                   >
                     {item.expiryText}

@@ -41,11 +41,6 @@ import {
   DrawerSection,
   DrawerSectionTitle,
   DrawerCardList,
-  DrawerCardItem,
-  DrawerIconWrapper,
-  DrawerItemContent,
-  DrawerItemLabel,
-  DrawerItemValue,
 } from "./AllCreators.styles";
 
 export type CreatorUploadDetailProps = {

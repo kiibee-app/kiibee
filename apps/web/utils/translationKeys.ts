@@ -246,6 +246,7 @@ export const DASHBOARD_VIEWER_PURCHASED = {
     videos: "dashboard.viewerPurchased.sections.videos",
     audios: "dashboard.viewerPurchased.sections.audios",
     pdf: "dashboard.viewerPurchased.sections.pdf",
+    web: "dashboard.viewerPurchased.sections.web",
   },
   buttons: {
     seeContent: "dashboard.viewerPurchased.buttons.seeContent",
@@ -450,6 +451,7 @@ export const CONTENTS = {
     trailerLink: "contents.general.trailerLink",
     trailerLinkHint: "contents.general.trailerLinkHint",
     trailerLinkPlaceholder: "contents.general.trailerLinkPlaceholder",
+    trailerLinkInvalid: "contents.general.trailerLinkInvalid",
     visibility: "contents.general.visibility",
     visibilityHint: "contents.general.visibilityHint",
     public: "contents.general.public",

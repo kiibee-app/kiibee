@@ -66,7 +66,7 @@ export default function OverviewContent() {
               $active={range === r.key}
               onClick={() => setRange(r.key)}
             >
-              {r.key}
+              {t(`dashboard.range.${r.key}`)}
             </RangeButton>
           ))}
         </RangeGroup>
@@ -77,7 +77,7 @@ export default function OverviewContent() {
           <StatCard key={s.id}>
             <StatRow>
               <StatDot $color={s.color} />
-              <StatLabel>{s.label}</StatLabel>
+              <StatLabel>{t(s.labelKey)}</StatLabel>
             </StatRow>
             <StatValue>
               {overviewStats[s.id as keyof typeof overviewStats]}

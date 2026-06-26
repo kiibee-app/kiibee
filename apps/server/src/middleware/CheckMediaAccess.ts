@@ -11,6 +11,7 @@ import { db } from 'src/database/db';
 import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
 import { userContentAccess } from 'src/database/schema/access/userContentAccess.schema';
 import { and, eq, or, isNull, gt } from 'drizzle-orm';
+import { ACCESS_TYPE } from 'src/utils/constant';
 
 @Injectable()
 export class CheckMediaAccessGuard implements CanActivate {
@@ -35,31 +36,29 @@ export class CheckMediaAccessGuard implements CanActivate {
       throw new BadRequestException('Media ID or key is required');
     }
 
-    let mediaFile: { id: string; creatorId: string } | undefined;
-
     const whereClause = mediaId
       ? eq(mediaFiles.id, mediaId)
-      : mediaKey
-        ? eq(mediaFiles.fileKey, mediaKey)
-        : undefined;
+      : eq(mediaFiles.fileKey, mediaKey);
 
-    if (whereClause) {
-      mediaFile = await db.query.mediaFiles.findFirst({
-        where: whereClause,
-        columns: {
-          id: true,
-          creatorId: true,
-        },
-      });
-    }
+    const mediaFile = await db.query.mediaFiles.findFirst({
+      where: whereClause,
+      columns: {
+        id: true,
+        creatorId: true,
+        accessType: true,
+      },
+    });
 
     if (!mediaFile) {
       throw new NotFoundException('Media not found');
     }
 
-    const isCreator = mediaFile.creatorId === userId;
+    if (mediaFile.accessType === ACCESS_TYPE.FREE) {
+      request.mediaFile = mediaFile;
+      return true;
+    }
 
-    if (isCreator) {
+    if (mediaFile.creatorId === userId) {
       request.mediaFile = mediaFile;
       return true;
     }

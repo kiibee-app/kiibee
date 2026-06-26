@@ -38,7 +38,10 @@ export const getAllViewersService = async () => {
         createdAt: users.createdAt,
         updatedAt: users.updatedAt,
         phone: userProfiles.phone,
+        cvr: userProfiles.cvr,
+        address: userProfiles.address,
         city: userProfiles.city,
+        postalCode: userProfiles.postalCode,
         purchaseCount: purchaseCountSql,
         rentalCount: rentalCountSql,
       })
@@ -46,7 +49,14 @@ export const getAllViewersService = async () => {
       .leftJoin(userProfiles, eq(userProfiles.userId, users.id))
       .leftJoin(orders, eq(orders.userId, users.id))
       .where(and(eq(users.role, ROLE.VIEWER), eq(users.isDeleted, false)))
-      .groupBy(users.id, userProfiles.phone, userProfiles.city)
+      .groupBy(
+        users.id,
+        userProfiles.phone,
+        userProfiles.cvr,
+        userProfiles.address,
+        userProfiles.city,
+        userProfiles.postalCode,
+      )
       .orderBy(desc(users.createdAt));
 
     return success(

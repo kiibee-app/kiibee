@@ -11,7 +11,15 @@ const pageMeta: Record<string, PageMeta> = {
   },
   "/all-creators": {
     title: "All Creators",
-    description: "Review creator requests and manage approval status.",
+    description: "Browse and manage existing creator accounts.",
+  },
+  "/pending-requests": {
+    title: "Pending Requests",
+    description: "Review and approve new creator applications.",
+  },
+  "/viewers": {
+    title: "All Viewers",
+    description: "Browse viewer accounts, billing history, and content access.",
   },
   "/profile": {
     title: "Profile",
@@ -24,6 +32,33 @@ export function getPageMeta(pathname: string): PageMeta {
     pathname !== "/" && pathname.endsWith("/")
       ? pathname.slice(0, -1)
       : pathname;
+
+  if (normalized.startsWith("/viewers/") && normalized !== "/viewers") {
+    return {
+      title: "Viewer Details",
+      description: "View profile, billing history, purchases, and rentals.",
+    };
+  }
+
+  if (
+    normalized.startsWith("/all-creators/") &&
+    normalized.includes("/content/")
+  ) {
+    return {
+      title: "Content Engagement",
+      description: "View purchases, rentals, and downloads for this content.",
+    };
+  }
+
+  if (
+    normalized.startsWith("/all-creators/") &&
+    normalized !== "/all-creators"
+  ) {
+    return {
+      title: "Creator Details",
+      description: "View creator profile and content performance.",
+    };
+  }
 
   return pageMeta[normalized] ?? pageMeta["/all-creators"];
 }

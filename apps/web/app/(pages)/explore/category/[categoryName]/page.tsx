@@ -14,6 +14,7 @@ import { FilterIcon } from "@/assets/icons/filterIcon";
 import { ArrowIcon } from "@/assets/icons/arrowIcon";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { useCategoryContent } from "@/hooks/feed/useCategoryContent";
+import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { Directions } from "@/utils/ui";
 import { getCategorySortOptions } from "@/utils/sortOptions";
@@ -317,7 +318,7 @@ function CategoryExplorePageContent() {
                 ))
               ) : (
                 <ResultsState>
-                  <span>{t("nav.explore.noResults")}</span>
+                  <GenericEmptyState title={t("nav.explore.noResults")} />
                 </ResultsState>
               )}
             </CardsGrid>

@@ -67,6 +67,7 @@ export default function ProductionSection() {
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               hasError={Boolean(formErrors.productionCompany)}
+              errorMessage={formErrors.productionCompany}
             />
           </FieldWrapper>
 
@@ -81,6 +82,7 @@ export default function ProductionSection() {
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               hasError={Boolean(formErrors.manufacturerLink)}
+              errorMessage={formErrors.manufacturerLink}
             />
           </FieldWrapper>
         </FormRow>

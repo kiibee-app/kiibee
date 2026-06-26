@@ -22,6 +22,7 @@ import { useRecentContent } from "@/hooks/feed/useRecentContent";
 import {
   FEED_CONTENT_PAGE_SIZE,
   getFeedPageSlice,
+  getPaginationState,
 } from "@/utils/feedContentToTutorial";
 import Skeleton from "@/components/UI/Skeleton";
 import { PATHS } from "@/utils/path";
@@ -41,9 +42,10 @@ export default function RecentlyAdded() {
   const [pageStart, setPageStart] = useState(0);
 
   const totalItems = tutorials.length;
-  const canSlide = totalItems > FEED_CONTENT_PAGE_SIZE;
-  const canGoPrev = pageStart > 0;
-  const canGoNext = pageStart + FEED_CONTENT_PAGE_SIZE < totalItems;
+  const { canSlide, canGoPrev, canGoNext } = getPaginationState(
+    totalItems,
+    pageStart,
+  );
 
   const movePrev = useCallback(() => {
     setPageStart((prev) => Math.max(prev - FEED_CONTENT_PAGE_SIZE, 0));

@@ -13,6 +13,7 @@ import {
   type RentedMediaItem,
   filterCollections,
   filterMedia,
+  getRentedMediaSectionItems,
   isViewerCollectionsSectionExpanded,
   syncViewerCollectionsSectionParam,
 } from "@/utils/viewerRented";
@@ -88,7 +89,13 @@ export default function RentedContent({
   const sources = useMemo(() => {
     if (mode === RENTED_MODES.PURCHASED) {
       return (
-        purchasedData || { collections: [], videos: [], audios: [], pdfs: [] }
+        purchasedData || {
+          collections: [],
+          videos: [],
+          audios: [],
+          pdfs: [],
+          webs: [],
+        }
       );
     }
     return rentedSources;
@@ -103,6 +110,7 @@ export default function RentedContent({
   const filteredVideos = filterMedia(searchValue, sources.videos);
   const filteredAudios = filterMedia(searchValue, sources.audios);
   const filteredPdfs = filterMedia(searchValue, sources.pdfs);
+  const filteredWebs = filterMedia(searchValue, sources.webs || []);
 
   const visibleCollections = getVisibleItems(
     RENTED_SECTION_KEYS.COLLECTIONS,
@@ -117,24 +125,27 @@ export default function RentedContent({
     filteredAudios,
   );
   const visiblePdfs = getVisibleItems(RENTED_SECTION_KEYS.PDFS, filteredPdfs);
+  const visibleWebs = getVisibleItems(RENTED_SECTION_KEYS.WEBS, filteredWebs);
   const sectionTotals = {
     [RENTED_SECTION_KEYS.VIDEOS]: filteredVideos.length,
     [RENTED_SECTION_KEYS.AUDIOS]: filteredAudios.length,
     [RENTED_SECTION_KEYS.PDFS]: filteredPdfs.length,
+    [RENTED_SECTION_KEYS.WEBS]: filteredWebs.length,
   } as const;
 
-  const sectionItems: Record<"videos" | "audios" | "pdfs", RentedMediaItem[]> =
-    {
-      [RENTED_SECTION_KEYS.VIDEOS]: visibleVideos,
-      [RENTED_SECTION_KEYS.AUDIOS]: visibleAudios,
-      [RENTED_SECTION_KEYS.PDFS]: visiblePdfs,
-    };
+  const sectionItems = getRentedMediaSectionItems({
+    videos: visibleVideos,
+    audios: visibleAudios,
+    pdfs: visiblePdfs,
+    webs: visibleWebs,
+  });
 
   const hasNoResults =
     filteredCollections.length === 0 &&
     filteredVideos.length === 0 &&
     filteredAudios.length === 0 &&
-    filteredPdfs.length === 0;
+    filteredPdfs.length === 0 &&
+    filteredWebs.length === 0;
 
   const isSearchEmpty = searchValue.trim() !== "" && hasNoResults;
   const isDataEmpty = searchValue.trim() === "" && hasNoResults;
@@ -150,12 +161,23 @@ export default function RentedContent({
   const selectedCollectionMedia = useMemo(() => {
     if (!selectedCollection) return [];
 
-    return [...sources.videos, ...sources.audios, ...sources.pdfs].filter(
+    return [
+      ...sources.videos,
+      ...sources.audios,
+      ...sources.pdfs,
+      ...(sources.webs || []),
+    ].filter(
       (item) =>
         item.author === selectedCollection.author ||
         item.title === selectedCollection.title,
     );
-  }, [selectedCollection, sources.audios, sources.pdfs, sources.videos]);
+  }, [
+    selectedCollection,
+    sources.audios,
+    sources.pdfs,
+    sources.videos,
+    sources.webs,
+  ]);
 
   const findMatchingCollection = useCallback(
     (item: RentedMediaItem): RentedCollectionItem | undefined =>

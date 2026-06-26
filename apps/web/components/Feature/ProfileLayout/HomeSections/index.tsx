@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import CollectionPreview from "@/components/Feature/ProfileLayout/shared/CollectionPreview";
 import LatestUpload from "@/components/Feature/ProfileLayout/shared/LatestUpload";
 import { profileHomeConfigByVariant } from "@/components/Feature/ProfileLayout/config";
@@ -9,6 +10,7 @@ import {
   ContentAdjust,
   SectionWrapper,
 } from "@/components/Feature/ProfileLayout/HomeSections/styles";
+import { useTranslation } from "react-i18next";
 import { useLatestUpload } from "@/hooks/useLatestUpload";
 import latestUploadImage from "@/assets/images/creators/recent_creator.webp";
 import { normalizeContentTypeValue } from "@/utils/content";
@@ -18,6 +20,9 @@ import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
+import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
+import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
+import { useProfileHomeCollections } from "@/hooks/useProfileHomeCollections";
 
 type ProfileHomeSectionsProps = {
   variant: ProfileLayoutVariant;
@@ -26,6 +31,7 @@ type ProfileHomeSectionsProps = {
 export default function ProfileHomeSections({
   variant,
 }: ProfileHomeSectionsProps) {
+  const { t } = useTranslation();
   const { searchQuery, isCollectionsPage } = useCreatorProfileUi();
   const { isPublicView, publicCreatorId, displayName } =
     useCreatorChannelProfile();
@@ -36,9 +42,15 @@ export default function ProfileHomeSections({
     sections,
   } = profileHomeConfigByVariant[variant];
 
-  const { data: latest } = useLatestUpload(
+  const { data: latest, isLoading: isLatestLoading } = useLatestUpload(
     isPublicView ? publicCreatorId : null,
   );
+
+  const { tutorials: publicTutorials, isLoading: isPublicLoading } =
+    usePublicCreatorContent(isPublicView ? publicCreatorId : null);
+
+  const { data: privateSections = [], isLoading: isPrivateLoading } =
+    useProfileHomeCollections(displayName || "", !isPublicView);
 
   const normalizedLatestContentType = latest
     ? normalizeContentTypeValue(
@@ -79,6 +91,31 @@ export default function ProfileHomeSections({
     !isCollectionsPage &&
     latestUploadData &&
     matchesProfileSearch(searchQuery, latestUploadData.title);
+
+  const hasNoPublicContent = useMemo(() => {
+    const matched = searchQuery.trim()
+      ? publicTutorials.filter((t) =>
+          matchesProfileSearch(searchQuery, t.title),
+        )
+      : publicTutorials;
+    return matched.length === 0;
+  }, [publicTutorials, searchQuery]);
+
+  const hasNoPrivateContent = useMemo(() => {
+    const matched = searchQuery.trim()
+      ? privateSections
+          .map((section) => ({
+            ...section,
+            cards: section.cards.filter((card) =>
+              matchesProfileSearch(searchQuery, card.title),
+            ),
+          }))
+          .filter((section) => section.cards.length > 0)
+      : privateSections;
+    return matched.length === 0;
+  }, [privateSections, searchQuery]);
+
+  const hasNoContent = isPublicView ? hasNoPublicContent : hasNoPrivateContent;
 
   if (gateType) {
     return (
@@ -121,6 +158,27 @@ export default function ProfileHomeSections({
     ) : !isCollectionsPage ? (
       <CollectionPreview variant={variant} />
     ) : null;
+
+  const isLoading =
+    isLatestLoading || (isPublicView ? isPublicLoading : isPrivateLoading);
+
+  if (hasNoContent && !isLoading) {
+    const isSearching = searchQuery.trim() !== "";
+    return (
+      <ProfileEmptyState
+        title={
+          isSearching
+            ? t("createProfileHome.noSearchResultsTitle")
+            : t("createProfileHome.noContentTitle")
+        }
+        description={
+          isSearching
+            ? t("createProfileHome.noSearchResultsDescription")
+            : t("createProfileHome.noContentDescription")
+        }
+      />
+    );
+  }
 
   return (
     <>

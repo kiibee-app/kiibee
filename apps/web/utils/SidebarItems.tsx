@@ -150,6 +150,12 @@ export const viewerItems: DashboardSidebarItem[] = [
     section: CREATOR_SECTIONS.TOP,
   },
   {
+    label: CREATORS_LABELS.HELP,
+    labelKey: "sidebar.help",
+    icon: <QuestionIcon />,
+    section: CREATOR_SECTIONS.BOTTOM,
+  },
+  {
     label: VIEWER_LABELS.LOG_OUT,
     labelKey: "nav.logout",
     icon: <LogoutIcon />,
@@ -164,7 +170,11 @@ export const HELP_MENU_ITEMS = [
     labelKey: "sidebar.helpVideos",
     href: "/tutorial-videos",
   },
-  { label: "User manual", labelKey: "sidebar.userManual", href: "/support" },
+  {
+    label: "User manual",
+    labelKey: "sidebar.userManual",
+    href: "/tutorial-videos#user-guides",
+  },
   {
     label: "Conditions",
     labelKey: "sidebar.conditions",

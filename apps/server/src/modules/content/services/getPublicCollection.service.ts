@@ -63,7 +63,10 @@ export const getPublicCollectionService = async (collectionId: string) => {
       .select(collectionItemSelect)
       .from(collectionItems)
       .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
-      .leftJoin(users, eq(users.id, mediaFiles.creatorId))
+      .innerJoin(
+        users,
+        and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+      )
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(
         mediaFileCategories,

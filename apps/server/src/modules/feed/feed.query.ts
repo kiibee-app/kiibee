@@ -33,7 +33,10 @@ async function fetchMediaFilesByIds(ids: string[]) {
   const rows = await db
     .select(baseSelect)
     .from(mediaFiles)
-    .leftJoin(users, eq(users.id, mediaFiles.creatorId))
+    .innerJoin(
+      users,
+      and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+    )
     .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
     .leftJoin(
       mediaFileCategories,
@@ -43,7 +46,7 @@ async function fetchMediaFilesByIds(ids: string[]) {
       contentCategories,
       eq(contentCategories.id, mediaFileCategories.categoryId),
     )
-    .where(inArray(mediaFiles.id, ids));
+    .where(and(inArray(mediaFiles.id, ids), eq(mediaFiles.isDeleted, false)));
 
   return orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
 }
@@ -52,6 +55,10 @@ export const getTrendingQuery = async (where: any, limit: number) => {
   const idRows = await db
     .select({ id: mediaFiles.id })
     .from(mediaFiles)
+    .innerJoin(
+      users,
+      and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+    )
     .where(where)
     .orderBy(desc(mediaFiles.sortOrder))
     .limit(limit);
@@ -67,7 +74,10 @@ export const getLatestQuery = async (
   const idRows = await db
     .select({ id: mediaFiles.id })
     .from(mediaFiles)
-    .leftJoin(users, eq(users.id, mediaFiles.creatorId))
+    .innerJoin(
+      users,
+      and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+    )
     .where(where)
     .orderBy(orderBy)
     .limit(limit);
@@ -79,6 +89,10 @@ export const getRecentQuery = async (where: any, limit: number) => {
   const idRows = await db
     .select({ id: mediaFiles.id })
     .from(mediaFiles)
+    .innerJoin(
+      users,
+      and(eq(users.id, mediaFiles.creatorId), eq(users.isDeleted, false)),
+    )
     .where(where)
     .orderBy(desc(mediaFiles.createdAt))
     .limit(limit);

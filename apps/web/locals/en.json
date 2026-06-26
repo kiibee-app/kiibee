@@ -6,7 +6,7 @@
   },
   "nav": {
     "howItWorks": "How it works",
-    "exploreCreators": "Explore creators",
+    "exploreCreators": "Explore",
     "about": "About Kiibee",
     "login": "Log in",
     "dashboard": "Dashboard",
@@ -34,7 +34,7 @@
         "video": "Video",
         "audio": "Audio",
         "pdf": "PDF",
-        "epub": "ePub",
+        "epub": "Epub",
         "web": "Web content"
       },
       "categoryTitle": "Category",
@@ -64,6 +64,10 @@
     "searchOpenPlaceholder": "Search for posts",
     "searchCollectionsPlaceholder": "Search collections",
     "searchAriaLabel": "Search profile content",
+    "noContentTitle": "Content coming soon",
+    "noContentDescription": "This creator hasn't published any content yet.",
+    "noSearchResultsTitle": "No results found",
+    "noSearchResultsDescription": "We couldn't find any content matching your search term.",
     "aboutModal": {
       "moreInfo": "More info",
       "joined": "Joined",
@@ -411,7 +415,7 @@
       "rightItems": [
         "See statistics on views and sales",
         "Show content on all devices — mobile, tablet and desktop",
-        "Sell multiple formats (video, PDF, ePub, MP3, audio)",
+        "Sell multiple formats (video, PDF, Epub, MP3, audio)",
         "Store content securely on Danish servers, fully GDPR compliant",
         "Get tailored solutions based on your needs",
         "Sell and show your content anywhere on the web",
@@ -859,7 +863,10 @@
     "invite": {
       "invalidToken": "This setup link is invalid or has expired. Please contact Kiibee if you need a new invitation.",
       "setupFailed": "We could not finish your account setup. Check your email and password, then try again.",
-      "loginAfterSetupFailed": "Your account was created but sign-in failed. Please try logging in from the login page."
+      "loginAfterSetupFailed": "Your account was created but sign-in failed. Please try logging in from the login page.",
+      "emailInvalid": "Enter a valid email address",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match"
     }
   },
   "pricingFaq": {
@@ -1230,7 +1237,8 @@
         "collections": "Collections",
         "videos": "Videos",
         "audios": "Audios",
-        "pdf": "PDF"
+        "pdf": "PDF",
+        "web": "Web Link"
       },
       "buttons": {
         "seeContent": "See content"
@@ -1376,6 +1384,20 @@
     "pageVisits": "Page visits",
     "clicks": "Clicks",
     "views": "Views",
+    "range": {
+      "Day": "Day",
+      "Week": "Week",
+      "Month": "Month",
+      "Year": "Year"
+    },
+    "overviewStats": {
+      "total": "Total",
+      "rentals": "No of rentals",
+      "purchases": "No of purchases",
+      "views": "No of views",
+      "visits": "No of visits",
+      "downloads": "No of downloads"
+    },
     "paginationSummary": "Showing {{start}}-{{end}} of {{total}}",
     "previous": "Previous",
     "next": "Next",
@@ -1641,6 +1663,7 @@
       "trailerLink": "Trailer link",
       "trailerLinkHint": "If you want to add a trailer, enter the link here.",
       "trailerLinkPlaceholder": "Add YouTube or Video link",
+      "trailerLinkInvalid": "Please enter a valid URL (e.g.: https://example.com)",
       "visibility": "Visibility",
       "visibilityHint": "Control whether this trailer is visible to learners.",
       "public": "Public",
@@ -1755,6 +1778,7 @@
     "metadata": {
       "validation": {
         "required": "This field is required.",
+        "numbersOnly": "Only numbers are allowed.",
         "mediaCardThumbnail": "Media card thumbnail is required.",
         "portraitThumbnail": "Portrait thumbnail is required."
       },
@@ -1982,9 +2006,11 @@
     "playVideo": "Play video",
     "playAudio": "Play audio",
     "openPdf": "Open pdf",
+    "openWeb": "Open Link",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Audio",
     "mediaLabelPdf": "PDF",
+    "mediaLabelWeb": "Web Link",
     "expired": "Expired",
     "expiresInHours": "Expires in {{count}} hrs",
     "expiresInDays": "Expires in {{count}} days",
@@ -1994,5 +2020,14 @@
     "sortNew": "New",
     "sortTrending": "Trending",
     "sortCreatedForYou": "Created for you"
+  },
+  "collections": {
+    "sectionTitle": "Collections",
+    "elementsCount": "{{count}} elements",
+    "sort": {
+      "creator": "Creator name",
+      "title": "Title",
+      "elements": "Elements"
+    }
   }
 }

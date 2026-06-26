@@ -6,7 +6,7 @@
   },
   "nav": {
     "howItWorks": "Sådan fungerer det",
-    "exploreCreators": "Udforsk skabere",
+    "exploreCreators": "Udforsk",
     "about": "Om Kiibee",
     "login": "Log ind",
     "dashboard": "Kontrolpanel",
@@ -34,7 +34,7 @@
         "video": "Video",
         "audio": "Audio",
         "pdf": "PDF",
-        "epub": "ePub",
+        "epub": "Epub",
         "web": "Webindhold"
       },
       "categoryTitle": "Kategori",
@@ -64,6 +64,10 @@
     "searchOpenPlaceholder": "Søg efter opslag",
     "searchCollectionsPlaceholder": "Søg samlinger",
     "searchAriaLabel": "Søg i profilindhold",
+    "noContentTitle": "Indhold på vej",
+    "noContentDescription": "Denne kreatør har ikke publiceret noget indhold endnu.",
+    "noSearchResultsTitle": "Ingen resultater fundet",
+    "noSearchResultsDescription": "Vi kunne ikke finde noget indhold, der matcher dit søgeord.",
     "aboutModal": {
       "moreInfo": "Mere info",
       "joined": "Tilsluttet",
@@ -103,7 +107,7 @@
   },
   "createProfileFooter": {
     "tagline": "Salg og visning af online produkter",
-    "cta": "Join Kiibee"
+    "cta": "Tilmeld Kiibee"
   },
   "auth": {
     "title": "Stedet hvor skabere og støtter mødes",
@@ -411,7 +415,7 @@
       "rightItems": [
         "Se statistik over visninger og salg",
         "Vis indhold på alle enheder — mobil, tablet og desktop",
-        "Sælg flere formater (video, PDF, ePub, MP3, lyd)",
+        "Sælg flere formater (video, PDF, Epub, MP3, lyd)",
         "Opbevar indhold sikkert på danske servere, fuldt GDPR-kompatibelt",
         "Få skræddersyede løsninger baseret på dine behov",
         "Sælg og vis dit indhold hvor som helst på nettet",
@@ -593,7 +597,7 @@
     }
   },
   "footer": {
-    "information": "Information",
+    "information": "Oplysninger",
     "about": "Om os",
     "howItWorks": "Sådan fungerer det",
     "forCreators": "For skabere",
@@ -859,7 +863,10 @@
     "invite": {
       "invalidToken": "Dette opsætningslink er ugyldigt eller udløbet. Kontakt Kiibee, hvis du har brug for en ny invitation.",
       "setupFailed": "Vi kunne ikke færdiggøre din kontooversigt. Tjek din e-mail og adgangskode, og prøv igen.",
-      "loginAfterSetupFailed": "Din konto blev oprettet, men login mislykkedes. Prøv at logge ind fra login-siden."
+      "loginAfterSetupFailed": "Din konto blev oprettet, men login mislykkedes. Prøv at logge ind fra login-siden.",
+      "emailInvalid": "Indtast en gyldig e-mailadresse",
+      "passwordMinLength": "Adgangskoden skal være mindst 6 tegn",
+      "passwordMismatch": "Adgangskoderne matcher ikke"
     }
   },
   "pricingFaq": {
@@ -1230,7 +1237,8 @@
         "collections": "Samlinger",
         "videos": "Videoer",
         "audios": "Lydfiler",
-        "pdf": "PDF"
+        "pdf": "PDF",
+        "web": "Weblink"
       },
       "buttons": {
         "seeContent": "Se indhold"
@@ -1376,6 +1384,20 @@
     "pageVisits": "Sidebesog",
     "clicks": "Klik",
     "views": "Visninger",
+    "range": {
+      "Day": "Dag",
+      "Week": "Uge",
+      "Month": "Måned",
+      "Year": "År"
+    },
+    "overviewStats": {
+      "total": "Totalt",
+      "rentals": "Antal leje",
+      "purchases": "Antal køb",
+      "views": "Antal visninger",
+      "visits": "Antal besøg",
+      "downloads": "Antal downloads"
+    },
     "paginationSummary": "Viser {{start}}-{{end}} af {{total}}",
     "previous": "Forrige",
     "next": "Naeste",
@@ -1571,9 +1593,9 @@
       "receiptHint": "Skriv en besked til din kunde, nÃ¥r de modtager en kvittering",
       "receiptPlaceholder": "Indtast kvittering",
       "maximumCharacter": "Maksimalt antal tegn",
-      "supportEmail": "Support e-mail",
-      "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, sÃ¥ indtast den her.",
-      "supportEmailPlaceholder": "Indtast support e-mail",
+      "supportEmail": "Kundeservice-e-mail",
+      "supportEmailHint": "Hvis du vil bruge en anden e-mail end din konto-e-mail til support, så indtast den her.",
+      "supportEmailPlaceholder": "Indtast kundeservice-e-mail",
       "validation": {
         "invalidHex": "Indtast en gyldig hex-farve som #1a2b3c.",
         "invalidSupportEmail": "Indtast en gyldig support e-mailadresse.",
@@ -1604,7 +1626,7 @@
         "title": "Layouts",
         "subtitle": "Vælg hvordan din kanal skal vises for brugerne.",
         "saveSuccess": "Layout gemt. Din kanal er blevet opdateret.",
-        "preview": "Preview example",
+        "preview": "Forhåndsvisningseksempel",
         "options": {
           "layout1": "Layout 1",
           "layout2": "Layout 2",
@@ -1614,8 +1636,8 @@
       "logo": {
         "title": "Logo",
         "subtitle": "Brug dit eget logo eller skriv en tekst som logo",
-        "toggleText": "Text",
-        "togglePicture": "Picture",
+        "toggleText": "Tekst",
+        "togglePicture": "Billede",
         "placeholder": "Indtast logo navn",
         "upload": "Upload logo"
       }
@@ -1624,6 +1646,7 @@
       "trailerLink": "Trailer-link",
       "trailerLinkHint": "Hvis du vil tilfoje en trailer, skal du indtaste linket her.",
       "trailerLinkPlaceholder": "Tilfoj YouTube- eller Video-link",
+      "trailerLinkInvalid": "Indtast venligst en gyldig URL (fx: https://example.com)",
       "visibility": "Synlighed",
       "visibilityHint": "Styr om denne trailer er synlig for brugere.",
       "public": "Offentlig",
@@ -1755,6 +1778,7 @@
     "metadata": {
       "validation": {
         "required": "Dette felt er obligatorisk.",
+        "numbersOnly": "Kun tal er tilladt.",
         "mediaCardThumbnail": "Miniature til mediekortet er obligatorisk.",
         "portraitThumbnail": "Portraetminiature er obligatorisk."
       },
@@ -1990,9 +2014,11 @@
     "playVideo": "Afspil video",
     "playAudio": "Afspil lyd",
     "openPdf": "Åben PDF",
+    "openWeb": "Åben link",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Lyd",
     "mediaLabelPdf": "PDF",
+    "mediaLabelWeb": "Weblink",
     "expired": "Udløbet",
     "expiresInHours": "Udløber om {{count}} timer",
     "expiresInDays": "Udløber om {{count}} dage",
@@ -2002,5 +2028,14 @@
     "sortNew": "Ny",
     "sortTrending": "Trendende",
     "sortCreatedForYou": "Oprettet til dig"
+  },
+  "collections": {
+    "sectionTitle": "Samlinger",
+    "elementsCount": "{{count}} elementer",
+    "sort": {
+      "creator": "Skabernavn",
+      "title": "Titel",
+      "elements": "Elementer"
+    }
   }
 }

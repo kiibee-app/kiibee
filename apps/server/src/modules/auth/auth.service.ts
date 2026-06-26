@@ -15,7 +15,9 @@ import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { creatorRequestService } from './services/creatorRequest.service';
 import { approveCreatorRequestService } from './services/approvCreatorRequest.service';
 import { getAllExistingCreatorsService } from './services/getAllExistingCreators.service';
+import { getCreatorByIdService } from './services/getCreatorById.service';
 import { getAllViewersService } from './services/getAllViewers.service';
+import { getViewerByIdService } from './services/getViewerById.service';
 import { getAdminDashboardStatsService } from './services/getAdminDashboardStats.service';
 import { getCreatorRequestService } from './services/getCreatorRequest.service';
 import { rejectCreatorRequestService } from './services/rejectCreatorRequest.service';
@@ -34,6 +36,7 @@ import { ChangePasswordDto } from './dto/changePassword.dto';
 import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
 import { updateCreatorProfileService } from './services/updateCreatorProfile.service';
 import { getCreatorProfileService } from './services/getCreatorProfile.service';
+import { deleteUserService } from './services/deleteUser.service';
 
 @Injectable()
 export class AuthService {
@@ -160,8 +163,14 @@ export class AuthService {
   async getAllExistingCreators(search?: string, plan?: string) {
     return getAllExistingCreatorsService({ search, plan });
   }
+  async getCreatorById(creatorId: string) {
+    return getCreatorByIdService(creatorId);
+  }
   async getAllViewers() {
     return getAllViewersService();
+  }
+  async getViewerById(viewerId: string) {
+    return getViewerByIdService(viewerId);
   }
   async getAdminDashboardStats() {
     return getAdminDashboardStatsService();
@@ -216,5 +225,9 @@ export class AuthService {
     profileData: UpdateCreatorProfileDto,
   ) {
     return updateCreatorProfileService(userId, profileData);
+  }
+
+  async deleteUserService(userId: string, jti?: string, exp?: number) {
+    return deleteUserService(userId, jti, exp);
   }
 }

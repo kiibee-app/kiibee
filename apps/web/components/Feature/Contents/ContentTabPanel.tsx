@@ -20,14 +20,8 @@ import CouponTable from "./coupon";
 import CollectionTable from "./Collections";
 import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
-import {
-  EmptyCollectionCard,
-  EmptyCollectionsView,
-  EmptyCollectionFolderIcon,
-  EmptyCollectionText,
-  EmptyCollectionTitle,
-  PlaceholderLine,
-} from "./styles";
+import { PlaceholderLine } from "./styles";
+import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { MonoText } from "@/components/UI/Monotext";
 import GeneralContent from "./General";
 import DeleteModals from "./CollectionDeleteModal";
@@ -170,17 +164,10 @@ export default function ContentTabPanel({
         return (
           <>
             {onBack && <AuthBackButton marginBottom="0px" onClick={onBack} />}
-            <EmptyCollectionCard>
-              <EmptyCollectionFolderIcon />
-              <EmptyCollectionText>
-                <EmptyCollectionTitle>
-                  {t("contents.emptyCollection.title")}
-                </EmptyCollectionTitle>
-                <MonoText $use="Body_Medium">
-                  {t("contents.emptyCollection.description")}
-                </MonoText>
-              </EmptyCollectionText>
-            </EmptyCollectionCard>
+            <GenericEmptyState
+              title={t("contents.emptyCollection.title")}
+              description={t("contents.emptyCollection.description")}
+            />
           </>
         );
       }
@@ -214,16 +201,10 @@ export default function ContentTabPanel({
 
     if (collections.length === 0) {
       return (
-        <EmptyCollectionsView>
-          <EmptyCollectionText>
-            <EmptyCollectionTitle>
-              {t("contents.emptyCollection.title")}
-            </EmptyCollectionTitle>
-            <MonoText $use="Body_Medium">
-              {t("contents.emptyCollection.description")}
-            </MonoText>
-          </EmptyCollectionText>
-        </EmptyCollectionsView>
+        <GenericEmptyState
+          title={t("contents.emptyCollection.title")}
+          description={t("contents.emptyCollection.description")}
+        />
       );
     }
 

@@ -22,6 +22,7 @@ import {
   HomeStatsLayout,
   HomeStatsState,
   StatCard,
+  StatCardLink,
   StatCardTop,
   StatHint,
   StatIconWrap,
@@ -37,6 +38,7 @@ type StatCardConfig = {
   accent: StatAccent;
   icon: LucideIcon;
   getValue: (stats: DashboardStats) => number;
+  href?: string;
 };
 
 const userStatCards: StatCardConfig[] = [
@@ -55,6 +57,7 @@ const userStatCards: StatCardConfig[] = [
     accent: STAT_ACCENT.GREEN,
     icon: UserRound,
     getValue: (stats) => stats.creators,
+    href: "/all-creators",
   },
   {
     key: DASHBOARD_STAT_KEY.VIEWERS,
@@ -63,6 +66,7 @@ const userStatCards: StatCardConfig[] = [
     accent: STAT_ACCENT.TEAL,
     icon: Eye,
     getValue: (stats) => stats.viewers,
+    href: "/viewers",
   },
   {
     key: DASHBOARD_STAT_KEY.PENDING_REQUESTS,
@@ -71,6 +75,7 @@ const userStatCards: StatCardConfig[] = [
     accent: STAT_ACCENT.ORANGE,
     icon: Clock3,
     getValue: (stats) => stats.pendingRequests,
+    href: "/pending-requests",
   },
 ];
 
@@ -104,9 +109,8 @@ const contentStatCards: StatCardConfig[] = [
 function renderStatCards(cards: StatCardConfig[], stats: DashboardStats) {
   return cards.map((card) => {
     const Icon = card.icon;
-
-    return (
-      <StatCard key={card.key} $accent={card.accent}>
+    const content = (
+      <>
         <StatCardTop>
           <div>
             <StatLabel>{card.label}</StatLabel>
@@ -117,6 +121,20 @@ function renderStatCards(cards: StatCardConfig[], stats: DashboardStats) {
           </StatIconWrap>
         </StatCardTop>
         <StatHint>{card.hint}</StatHint>
+      </>
+    );
+
+    if (card.href) {
+      return (
+        <StatCardLink key={card.key} href={card.href} $accent={card.accent}>
+          {content}
+        </StatCardLink>
+      );
+    }
+
+    return (
+      <StatCard key={card.key} $accent={card.accent}>
+        {content}
       </StatCard>
     );
   });

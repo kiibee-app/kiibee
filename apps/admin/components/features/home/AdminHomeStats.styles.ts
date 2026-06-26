@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
+import Link from "next/link";
 import { STAT_ACCENT, type StatAccent } from "../../../utils/constants";
 
 const shimmer = keyframes`
@@ -65,24 +66,72 @@ export const StatCard = styled.article<{
     left: 0;
     right: 0;
     height: 4px;
-    background: ${({ $accent, theme }) => {
-      switch ($accent) {
-        case STAT_ACCENT.BLUE:
-          return theme.colors.primary.BLUE;
-        case STAT_ACCENT.GREEN:
-          return theme.colors.primary.GREEN_100;
-        case STAT_ACCENT.TEAL:
-          return theme.colors.neutral.DUSTY_TEAL;
-        case STAT_ACCENT.ORANGE:
-          return theme.colors.primary.ORANGE;
-        case STAT_ACCENT.PURPLE:
-          return theme.colors.gradient.DARK_BLUE;
-        default:
-          return theme.colors.primary.GREEN_100;
-      }
-    }};
+    background: ${({ $accent, theme }) => getAccentColor($accent, theme)};
   }
 `;
+
+export const StatCardLink = styled(Link)<{
+  $accent: StatAccent;
+}>`
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(2.5)};
+  min-height: 148px;
+  padding: ${({ theme }) => theme.spacing(4)};
+  border: 1px solid ${({ theme }) => theme.colors.secondary.border};
+  border-radius: ${({ theme }) => theme.radius.lg};
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    transform ${({ theme }) => theme.animations.fast},
+    box-shadow ${({ theme }) => theme.animations.fast};
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: ${({ theme }) => theme.shadows.md};
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: ${({ $accent, theme }) => getAccentColor($accent, theme)};
+  }
+`;
+
+function getAccentColor(
+  $accent: StatAccent,
+  theme: {
+    colors: {
+      primary: { BLUE: string; GREEN_100: string; ORANGE: string };
+      neutral: { DUSTY_TEAL: string };
+      gradient: { DARK_BLUE: string };
+    };
+  },
+) {
+  switch ($accent) {
+    case STAT_ACCENT.BLUE:
+      return theme.colors.primary.BLUE;
+    case STAT_ACCENT.GREEN:
+      return theme.colors.primary.GREEN_100;
+    case STAT_ACCENT.TEAL:
+      return theme.colors.neutral.DUSTY_TEAL;
+    case STAT_ACCENT.ORANGE:
+      return theme.colors.primary.ORANGE;
+    case STAT_ACCENT.PURPLE:
+      return theme.colors.gradient.DARK_BLUE;
+    default:
+      return theme.colors.primary.GREEN_100;
+  }
+}
 
 export const StatCardTop = styled.div`
   display: flex;

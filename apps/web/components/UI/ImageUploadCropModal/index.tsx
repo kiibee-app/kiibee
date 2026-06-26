@@ -66,6 +66,13 @@ export default function ImageUploadCropModal({
 }: Props) {
   const { t } = useTranslation();
   const [pendingImage, setPendingImage] = useState<string | null>(image);
+  const [prevVisible, setPrevVisible] = useState(visible);
+  if (visible !== prevVisible) {
+    setPrevVisible(visible);
+    if (visible) {
+      setPendingImage(image);
+    }
+  }
   const [sizeError, setSizeError] = useState<string | null>(null);
   const [naturalSize, setNaturalSize] = useState({ width: 0, height: 0 });
   const [frameSize, setFrameSize] = useState({
@@ -121,21 +128,10 @@ export default function ImageUploadCropModal({
       curr.height > 0;
     if (!justLoaded) return;
 
-    const cs = Math.min(
-      frameSize.width / curr.width,
-      frameSize.height / curr.height,
-    );
-    const zoomToFit = Math.min(
-      cropWidth / (curr.width * cs),
-      cropHeight / (curr.height * cs),
-    );
-    fitZoomRef.current = Math.max(
-      IMAGE_ZOOM.MIN,
-      Math.min(IMAGE_ZOOM.MAX, zoomToFit),
-    );
+    fitZoomRef.current = IMAGE_ZOOM.DEFAULT;
     setZoom(fitZoomRef.current);
     setPosition({ x: 0, y: 0 });
-  }, [naturalSize, frameSize, cropWidth, cropHeight]);
+  }, [naturalSize]);
 
   useEffect(() => {
     const el = previewFrameRef.current;
@@ -326,8 +322,8 @@ export default function ImageUploadCropModal({
                 )}
                 <CropOverlay
                   $shape={shape}
-                  $width={cropWidth}
-                  $height={cropHeight}
+                  $width={Math.max(cropWidth, frameW)}
+                  $height={Math.max(cropHeight, frameH)}
                 />
               </ImagePreviewWrapper>
             </CropCanvas>

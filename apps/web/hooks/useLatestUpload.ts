@@ -65,6 +65,7 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
             resolveContentThumbnailUrl(
               latest.thumbnailUrl,
               latest.thumbnailLandscapeUrl,
+              { preferLandscape: true },
             ) ?? null,
           accessType: latest.accessType ?? null,
           buyPrice: latest.buyPrice ?? null,
@@ -130,6 +131,7 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
             resolveContentThumbnailUrl(
               content?.thumbnailUrl,
               content?.thumbnailLandscapeUrl,
+              { preferLandscape: true },
             ) ?? null,
           accessType: parentCollection?.accessType ?? null,
           buyPrice: parentCollection?.buyPrice ?? null,

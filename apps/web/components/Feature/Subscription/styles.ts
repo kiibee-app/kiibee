@@ -236,3 +236,14 @@ export const StyledInputField = styled(InputField)`
     margin-top: 0;
   }
 `;
+
+export const ValidationErrorContainer = styled.div`
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.spacing(4)};
+`;
+
+export const ValidationErrorMsg = styled.span`
+  color: ${({ theme }) => theme.colors.primary.RED};
+  font-size: 14px;
+  font-weight: 500;
+`;

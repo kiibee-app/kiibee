@@ -13,6 +13,7 @@ const INITIAL_PAGE_START: Record<RentedSectionKey, number> = {
   [RENTED_SECTION_KEYS.VIDEOS]: 0,
   [RENTED_SECTION_KEYS.AUDIOS]: 0,
   [RENTED_SECTION_KEYS.PDFS]: 0,
+  [RENTED_SECTION_KEYS.WEBS]: 0,
 };
 
 export function useViewerRentedSectionPagination() {

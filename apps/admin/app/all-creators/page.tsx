@@ -1,5 +1,5 @@
-import { AllCreatorsTable } from "../../components/features/all-creators/AllCreatorsTable";
+import { ExistingCreatorsList } from "../../components/features/all-creators/ExistingCreatorsList";
 
 export default function AllCreatorsPage() {
-  return <AllCreatorsTable />;
+  return <ExistingCreatorsList />;
 }

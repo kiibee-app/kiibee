@@ -95,7 +95,7 @@ export const ROLE_VIEWER = "viewer";
 export const ROLE_ADMIN = "admin";
 export const HTTP_STATUS_UNAUTHORIZED = 401;
 export const WEBSITE = "website";
-export const OPEN_GRAPH_LOCALE_EN_US = "en_US";
+export const OPEN_GRAPH_LOCALE_DA_DK = "da_DK";
 export const TWITTER_CARD_SUMMARY_LARGE_IMAGE = "summary_large_image";
 export const KIIBEE_LANDING_PAGE_PREVIEW_ALT = "Kiibee landing page preview";
 
@@ -457,3 +457,10 @@ export const BILLING_TYPES = {
   RENTED: { value: "rented", label: "Rented" },
   PURCHASED: { value: "purchased", label: "Purchased" },
 } as const;
+
+export const ACCESS_TYPE_RENTED = "rented";
+export const ACCESS_TYPE_PURCHASED = "purchased";
+export const ACCESS_STATUS_EXPIRED = "expired";
+
+export const NUMERIC_ONLY_REGEX = /^\d+$/;
+export const NON_DIGIT_REGEX = /\D/g;

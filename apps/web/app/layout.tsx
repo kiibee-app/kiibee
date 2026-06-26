@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,12 +8,13 @@ import { SmoothScrollProvider } from "../providers/smoothScrollProvider";
 import StyledComponentsRegistry from "@/lib/registry";
 import { QueryProvider } from "@/providers/queryProvider";
 import { ToastProvider } from "@/providers/toastProvider";
+import { cookies } from "next/headers";
 import {
-  OPEN_GRAPH_LOCALE_EN_US,
+  OPEN_GRAPH_LOCALE_DA_DK,
   TWITTER_CARD_SUMMARY_LARGE_IMAGE,
   WEBSITE,
 } from "@/utils/Constants";
-import { STORAGE_KEY, SYNC_LANGUAGE_SCRIPT } from "@/utils/common";
+import { STORAGE_KEY } from "@/utils/common";
 import { normalizeAppLanguage } from "@/utils/language";
 
 const geistSans = Geist({
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "Discover and enjoy unique digital content from your favorite creators. Watch, listen, and learn directly from independent creators. Rent or buy exclusive content in just a few clicks.",
   openGraph: {
     siteName: "Kiibee",
-    locale: OPEN_GRAPH_LOCALE_EN_US,
+    locale: OPEN_GRAPH_LOCALE_DA_DK,
     type: WEBSITE,
   },
   twitter: {
@@ -50,7 +50,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
-  const initialLang = normalizeAppLanguage(cookieStore.get(STORAGE_KEY)?.value);
+  const cookieLang = cookieStore.get(STORAGE_KEY)?.value;
+  const initialLang = normalizeAppLanguage(cookieLang);
 
   return (
     <html
@@ -59,11 +60,6 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: SYNC_LANGUAGE_SCRIPT,
-          }}
-        />
         <ThemeProvider>
           <QueryProvider>
             <LanguageProvider initialLang={initialLang}>

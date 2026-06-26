@@ -15,7 +15,6 @@ import {
   FORMAT_TYPE,
   type FormatType,
   type TutorialVideo,
-  type TutorialButton,
 } from "@/utils/types";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { useTranslation } from "react-i18next";

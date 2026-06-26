@@ -128,6 +128,7 @@ export const CONTENT_TYPES = {
   VIDEO: 'Video',
   AUDIO: 'Audio',
   PDF: 'PDF',
+  WEB: 'Web Link',
 } as const;
 
 export const PAYMENT_TYPES = {

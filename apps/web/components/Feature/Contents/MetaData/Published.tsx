@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "@/components/UI/InputFields";
 import { RequiredIndicator } from "@/components/UI/InputFields/styles";
@@ -8,7 +8,11 @@ import DropdownField, {
   type OptionItem,
 } from "@/components/UI/InputFields/DropdownField";
 import { MonoText } from "@/components/UI/Monotext";
-import { CONTENT_FORM_FIELDS, INPUT_VARIANTS } from "@/utils/Constants";
+import {
+  CONTENT_FORM_FIELDS,
+  INPUT_VARIANTS,
+  NON_DIGIT_REGEX,
+} from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { ControlWrap, GeneralPanel, ItemText, List } from "../General/styles";
 import { ItemRow } from "../Appearance/styles";
@@ -23,6 +27,7 @@ export default function PublishedSection() {
   const { t } = useTranslation();
   const { formState, formErrors, updateField, clearFieldError } =
     useContentForm();
+  const [isDurationFocused, setIsDurationFocused] = useState(false);
 
   const categoriesQuery = useGetAPI<ApiResponse<TaxonomyItem[]>>(
     API.content.categories,
@@ -41,7 +46,13 @@ export default function PublishedSection() {
 
   const handleInputChange =
     (field: keyof typeof formState) => (value: string | string[]) => {
-      const text = Array.isArray(value) ? value.join("") : value;
+      let text = Array.isArray(value) ? value.join("") : value;
+      if (
+        field === CONTENT_FORM_FIELDS.PUBLISHED_YEAR ||
+        field === CONTENT_FORM_FIELDS.DURATION
+      ) {
+        text = text.replace(NON_DIGIT_REGEX, "");
+      }
       if (
         field === CONTENT_FORM_FIELDS.PUBLISHED_YEAR ||
         field === CONTENT_FORM_FIELDS.DURATION ||
@@ -71,6 +82,7 @@ export default function PublishedSection() {
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               hasError={Boolean(formErrors.publishedYear)}
+              inputMode="numeric"
             />
           </ControlWrap>
         </ItemRow>
@@ -85,12 +97,21 @@ export default function PublishedSection() {
 
           <ControlWrap>
             <InputField
-              value={formState.duration}
+              value={
+                isDurationFocused
+                  ? formState.duration
+                  : formState.duration
+                    ? `${formState.duration} min`
+                    : ""
+              }
               onChange={handleInputChange(CONTENT_FORM_FIELDS.DURATION)}
+              onFocus={() => setIsDurationFocused(true)}
+              onBlur={() => setIsDurationFocused(false)}
               placeholder={t("contents.metadata.published.durationPlaceholder")}
               width="100%"
               variant={INPUT_VARIANTS.PRIMARY_GRAY}
               hasError={Boolean(formErrors.duration)}
+              inputMode="numeric"
             />
           </ControlWrap>
         </ItemRow>

@@ -24,6 +24,7 @@ import {
   withoutAllFilterOption,
 } from "@/hooks/feed/useExploreContent";
 import { useTranslation } from "react-i18next";
+import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { FilterSectionKey } from "@/types/filters";
 import {
   CardsColumn,
@@ -248,9 +249,10 @@ export default function LatestRelease() {
               ))
             ) : (
               <ResultsState>
-                <MonoText $use="Body_Medium">
-                  {t("nav.explore.noResults")}
-                </MonoText>
+                <GenericEmptyState
+                  title={t("nav.explore.noResults")}
+                  bg="white"
+                />
               </ResultsState>
             )}
           </CardsGrid>

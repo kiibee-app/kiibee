@@ -140,14 +140,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         },
       };
     });
-  }, [
-    contentId,
-    createOrderMutation,
-    primaryAction,
-    primaryActions,
-    router,
-    user?.id,
-  ]);
+  }, [contentId, createOrderMutation, primaryAction, primaryActions, user?.id]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
@@ -215,9 +208,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         : undefined;
 
   const { share } = useShare();
+  const resolvedContentType = hero?.contentType ?? hero?.media?.type;
   const isPdfLayout =
-    hero?.media?.type === FORMAT_TYPE.PDF ||
-    hero?.media?.type === FORMAT_TYPE.EPUB;
+    Boolean(resolvedContentType) && resolvedContentType !== FORMAT_TYPE.VIDEO;
 
   const handleBack = () => {
     if (onBack) {

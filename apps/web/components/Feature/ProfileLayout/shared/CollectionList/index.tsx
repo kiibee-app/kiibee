@@ -36,6 +36,7 @@ import {
 import { QUERY_KEYS } from "@/utils/Constants";
 import { VARIANT } from "@/utils/variants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
+import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
 
 export default function CollectionList() {
   const { t } = useTranslation();
@@ -44,7 +45,7 @@ export default function CollectionList() {
     useCreatorChannelProfile();
   const router = useRouter();
 
-  const { data: privateCollectionsResponse } =
+  const { data: privateCollectionsResponse, isLoading: isPrivateLoading } =
     useGetAPI<CollectionsApiResponse>(API.collection.getAll, undefined, {
       enabled: !isPublicView,
     });
@@ -79,9 +80,8 @@ export default function CollectionList() {
     refetchOnWindowFocus: false,
   });
 
-  const { tutorials: publicTutorials } = usePublicCreatorContent(
-    isPublicView ? publicCreatorId : null,
-  );
+  const { tutorials: publicTutorials, isLoading: isPublicLoading } =
+    usePublicCreatorContent(isPublicView ? publicCreatorId : null);
 
   const handleBuyClick = useCallback(
     (item: RentedCollectionItem) => {
@@ -238,21 +238,38 @@ export default function CollectionList() {
     );
   }, [items, searchQuery]);
 
+  const isLoading = isPublicView ? isPublicLoading : isPrivateLoading;
+
   return (
     <CollectionListShell>
       <CollectionListInner>
-        <CollectionsSection
-          mode={RENTED_MODES.PURCHASED}
-          items={filteredItems}
-          totalItems={filteredItems.length}
-          canSlide={() => false}
-          canGoPrev={() => false}
-          canGoNext={() => false}
-          movePrev={() => {}}
-          moveNext={() => {}}
-          onCollectionPrimaryAction={handleBuyClick}
-          onCollectionClick={handleCardClick}
-        />
+        {filteredItems.length === 0 && !isLoading ? (
+          <ProfileEmptyState
+            title={
+              searchQuery.trim() !== ""
+                ? t("createProfileHome.noSearchResultsTitle")
+                : t("createProfileHome.noContentTitle")
+            }
+            description={
+              searchQuery.trim() !== ""
+                ? t("createProfileHome.noSearchResultsDescription")
+                : t("createProfileHome.noContentDescription")
+            }
+          />
+        ) : (
+          <CollectionsSection
+            mode={RENTED_MODES.PURCHASED}
+            items={filteredItems}
+            totalItems={filteredItems.length}
+            canSlide={() => false}
+            canGoPrev={() => false}
+            canGoNext={() => false}
+            movePrev={() => {}}
+            moveNext={() => {}}
+            onCollectionPrimaryAction={handleBuyClick}
+            onCollectionClick={handleCardClick}
+          />
+        )}
       </CollectionListInner>
     </CollectionListShell>
   );

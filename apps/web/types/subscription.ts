@@ -37,6 +37,10 @@ export interface SubscriptionContextValue {
   password: string;
   repeatPassword: string;
   isSubmitEnabled: boolean;
+  isEmailValid: boolean;
+  isPasswordValid: boolean;
+  passwordsMatch: boolean;
+  validationError: string | null;
   setSelectedPlan: (planId: string) => void;
   setCurrentStep: (step: SubscriptionStep) => void;
   handleContinue: () => void;

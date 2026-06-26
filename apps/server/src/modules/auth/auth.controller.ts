@@ -10,6 +10,7 @@ import {
   UnauthorizedException,
   UseGuards,
   Param,
+  Delete,
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { IsNotEmpty, IsString } from 'class-validator';
@@ -204,9 +205,23 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('all-creators/:creatorId')
+  async getCreatorById(@Param('creatorId') creatorId: string) {
+    const result = await this.authService.getCreatorById(creatorId);
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
   @Get('all-viewers')
   async getAllViewers() {
     const result = await this.authService.getAllViewers();
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('all-viewers/:viewerId')
+  async getViewerById(@Param('viewerId') viewerId: string) {
+    const result = await this.authService.getViewerById(viewerId);
     return result;
   }
 
@@ -281,5 +296,26 @@ export class AuthController {
     @Body() profileData: UpdateCreatorProfileDto,
   ) {
     return this.authService.updateCreatorProfile(req.user.userId, profileData);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('delete-user')
+  async deleteUser(
+    @Req() req: AuthenticatedRequest,
+    @Headers('authorization') authorization?: string,
+  ) {
+    let jti: string | undefined;
+    let exp: number | undefined;
+
+    if (authorization && authorization.startsWith('Bearer ')) {
+      const token = authorization.replace('Bearer ', '');
+      const payload = this.tokenService.decodeAccessToken(token);
+      if (payload) {
+        jti = payload.jti;
+        exp = payload.exp;
+      }
+    }
+    const userId = req.user.userId;
+    return this.authService.deleteUserService(userId, jti, exp);
   }
 }

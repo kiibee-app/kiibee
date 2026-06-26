@@ -8,12 +8,13 @@ import {
   UseGuards,
   Delete,
   Query,
+  Param,
 } from '@nestjs/common';
 import { ContentService } from './content.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateContentDto, UpdateContentDto } from './content.dto';
 import { AssignUserCategoriesDto } from './dto/assignUserCategories.dto';
-import { CreatorGuard } from '../auth/guards/admin.guard';
+import { CreatorGuard, AdminGuard } from '../auth/guards/admin.guard';
 import { ContentAppearanceDto } from './dto/contentAppearance.dto';
 import { ContentSettingDto } from './dto/contentSetting.dto';
 import * as getAllContentsService from './services/getAllContents.service';
@@ -69,6 +70,18 @@ export class ContentController {
     const contentId = req.params.contentId;
     const creatorId = req.user.userId;
     return this.contentService.updateContentService(contentId, body, creatorId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/creator-contents/:creatorId')
+  async getAdminCreatorContents(@Param('creatorId') creatorId: string) {
+    return this.contentService.getAdminCreatorContents(creatorId);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/content-engagement/:contentId')
+  async getAdminContentEngagement(@Param('contentId') contentId: string) {
+    return this.contentService.getAdminContentEngagement(contentId);
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)

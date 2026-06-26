@@ -50,6 +50,7 @@ type ViewerDataResponse = {
     videos: BackendMediaItem[];
     audios: BackendMediaItem[];
     pdfs: BackendMediaItem[];
+    webs?: BackendMediaItem[];
     collections: BackendCollectionItem[];
   };
 };
@@ -96,13 +97,15 @@ export const useViewerRentedData = (mode: RentedMode) => {
 
   const sources = useMemo(() => {
     const data = query.data?.data;
-    if (!data) return { collections: [], videos: [], audios: [], pdfs: [] };
+    if (!data)
+      return { collections: [], videos: [], audios: [], pdfs: [], webs: [] };
 
     return {
       collections: data.collections.map(toCollectionItem),
       videos: data.videos.map((item) => toMediaItem(item, mode, t)),
       audios: data.audios.map((item) => toMediaItem(item, mode, t)),
       pdfs: data.pdfs.map((item) => toMediaItem(item, mode, t)),
+      webs: (data.webs || []).map((item) => toMediaItem(item, mode, t)),
     };
   }, [query.data, mode, t]);
 

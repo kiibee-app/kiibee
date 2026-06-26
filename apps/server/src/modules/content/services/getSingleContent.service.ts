@@ -73,18 +73,15 @@ export const getSingleContentService = async (
             )}h left`
         : undefined;
 
-    const accessInfo = access
-      ? {
-          accessType: access.accessType,
-          rentExpiresAt: access.rentExpiresAt,
-          grantedAt: access.grantedAt,
-          ...(isRented && { timeLeftText }),
-        }
-      : null;
-
-    if (isExpired) {
-      return fail('Rental period has expired', HttpStatus.FORBIDDEN);
-    }
+    const accessInfo =
+      access && !isExpired
+        ? {
+            accessType: access.accessType,
+            rentExpiresAt: access.rentExpiresAt,
+            grantedAt: access.grantedAt,
+            ...(isRented && { timeLeftText }),
+          }
+        : null;
 
     return success(
       {

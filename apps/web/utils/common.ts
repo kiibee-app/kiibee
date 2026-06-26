@@ -1,3 +1,5 @@
+import React from "react";
+
 export const ALERT = "alert";
 
 export const COLLECTIONS = "collections";
@@ -168,3 +170,31 @@ export const isValidUrl = (url?: string | null): boolean => {
   if (!url) return false;
   return URL_PROTOCOL_REGEX.test(url);
 };
+
+export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const MIN_PASSWORD_LENGTH = 6;
+
+export const isValidEmail = (email: string): boolean => {
+  return EMAIL_REGEX.test(email.trim());
+};
+
+const emptySubscribe = () => () => {};
+
+export function useMounted() {
+  const syncExternalStore = (
+    React as unknown as {
+      useSyncExternalStore: <T>(
+        subscribe: (onStoreChange: () => void) => () => void,
+        getSnapshot: () => T,
+        getServerSnapshot?: () => T,
+      ) => T;
+    }
+  ).useSyncExternalStore;
+
+  return syncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
+}

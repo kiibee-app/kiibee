@@ -1,13 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTrendingContent } from "@/hooks/feed/useTrendingContent";
 import { LOAD_MORE_SIZE, SKELETON_COUNT } from "@/utils/Constants";
-import { Section, SectionTag } from "../RecentlyAdded/styles";
+import {
+  Section,
+  SectionTag,
+  HeaderActions,
+  SectionArrows,
+  SectionArrow,
+} from "../RecentlyAdded/styles";
 import Skeleton from "@/components/UI/Skeleton";
-import { FEED_CONTENT_PAGE_SIZE } from "@/utils/feedContentToTutorial";
+import {
+  FEED_CONTENT_PAGE_SIZE,
+  getFeedPageSlice,
+  getPaginationState,
+} from "@/utils/feedContentToTutorial";
 import {
   SectionHeader,
   SectionLabel,
@@ -15,6 +25,7 @@ import {
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { useTranslation } from "react-i18next";
 import { LoadMoreContainer, LoadMoreButton } from "./styles";
+import { LeftIcon } from "@/assets/icons";
 import {
   SkeletonCard,
   SkeletonImage,
@@ -27,12 +38,33 @@ import {
 export default function TrendingContent() {
   const { t } = useTranslation();
   const [limit, setLimit] = useState(LOAD_MORE_SIZE);
+  const [pageStart, setPageStart] = useState(0);
   const { tutorials, isLoading } = useTrendingContent(limit);
   const hasMore = tutorials.length >= limit;
+
+  const totalItems = tutorials.length;
+  const { canSlide, canGoPrev, canGoNext } = getPaginationState(
+    totalItems,
+    pageStart,
+  );
 
   const handleLoadMore = () => {
     setLimit((prev) => prev + LOAD_MORE_SIZE);
   };
+
+  const movePrev = useCallback(() => {
+    setPageStart((prev) => Math.max(prev - FEED_CONTENT_PAGE_SIZE, 0));
+  }, []);
+
+  const moveNext = useCallback(() => {
+    if (!canSlide) return;
+    setPageStart((prev) =>
+      Math.min(
+        prev + FEED_CONTENT_PAGE_SIZE,
+        totalItems - FEED_CONTENT_PAGE_SIZE,
+      ),
+    );
+  }, [canSlide, totalItems]);
 
   if (isLoading) {
     return (
@@ -57,6 +89,8 @@ export default function TrendingContent() {
     return null;
   }
 
+  const visibleTutorials = getFeedPageSlice(tutorials, pageStart);
+
   return (
     <Section>
       <SectionHeader>
@@ -67,6 +101,30 @@ export default function TrendingContent() {
             </MonoText>
           </SectionTag>
         </SectionLabel>
+        <HeaderActions>
+          {canSlide && (
+            <SectionArrows>
+              {canGoPrev ? (
+                <SectionArrow
+                  type="button"
+                  onClick={movePrev}
+                  aria-label="Previous"
+                >
+                  <LeftIcon style={{ transform: "rotate(180deg)" }} />
+                </SectionArrow>
+              ) : null}
+              <SectionArrow
+                type="button"
+                disabled={!canGoNext}
+                aria-disabled={!canGoNext}
+                onClick={moveNext}
+                aria-label="Next"
+              >
+                <LeftIcon />
+              </SectionArrow>
+            </SectionArrows>
+          )}
+        </HeaderActions>
       </SectionHeader>
       <Grid $columnMax="300px">
         {isLoading
@@ -79,7 +137,7 @@ export default function TrendingContent() {
                 <SkeletonFooter />
               </SkeletonCard>
             ))
-          : tutorials.map((tutorial) => (
+          : visibleTutorials.map((tutorial) => (
               <TutorialCard key={tutorial.id} tutorial={tutorial} />
             ))}
       </Grid>

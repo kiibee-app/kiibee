@@ -8,8 +8,7 @@ import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { Main, PageContainer, Section } from "../../../styles";
 import { MonoText } from "@/components/UI/Monotext";
-import GenericLoader from "@/components/UI/GenericLoader";
-import { LOADER_SIZE, LOADER_VARIANT } from "@/utils/ui";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 import { ErrorBoundary } from "react-error-boundary";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
@@ -153,13 +152,11 @@ function PublishedContentDetail() {
 
   if (isLoading || gateLoading) {
     return (
-      <Section>
-        <GenericLoader
-          variant={LOADER_VARIANT.INLINE}
-          size={LOADER_SIZE.MD}
-          label={t(CONTENT_TRANSLATION_KEYS.loading)}
-        />
-      </Section>
+      <GenericSpinner
+        isOverlay
+        size={48}
+        label={t(CONTENT_TRANSLATION_KEYS.loading)}
+      />
     );
   }
 
@@ -242,13 +239,11 @@ function PublishedContentLoading() {
   const { t } = useTranslation();
 
   return (
-    <Section>
-      <GenericLoader
-        variant={LOADER_VARIANT.INLINE}
-        size={LOADER_SIZE.MD}
-        label={t(CONTENT_TRANSLATION_KEYS.loading)}
-      />
-    </Section>
+    <GenericSpinner
+      isOverlay
+      size={48}
+      label={t(CONTENT_TRANSLATION_KEYS.loading)}
+    />
   );
 }
 
