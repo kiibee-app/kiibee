@@ -9,7 +9,6 @@ import {
   DotsContainer,
   Dot,
 } from "./styles";
-import { LeftArrow, RightArrow } from "@/assets/icons";
 import {
   CAROUSEL_DEFAULT_AUTOPLAY,
   CAROUSEL_DEFAULT_AUTOPLAY_INTERVAL,
@@ -21,6 +20,7 @@ import {
   CarouselTransitionType,
 } from "@/utils/Constants";
 import { KEYBOARD_KEYS } from "@/utils/ui";
+import { getNavigationArrows } from "@/utils/carousel";
 
 export interface CarouselProps<T> {
   items: T[];
@@ -63,7 +63,6 @@ export default function Carousel<T>({
   const goToSlide = useCallback((index: number) => {
     setActiveIndex(index);
   }, []);
-
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === KEYBOARD_KEYS.ARROW_LEFT) {
@@ -107,6 +106,13 @@ export default function Carousel<T>({
     touchEndX.current = null;
   };
 
+  const navigationArrows = getNavigationArrows(
+    prevSlide,
+    nextSlide,
+    prevAriaLabel,
+    nextAriaLabel,
+  );
+
   if (!items || items.length === 0) return null;
 
   return (
@@ -140,26 +146,19 @@ export default function Carousel<T>({
 
       {showArrows && items.length > 1 && (
         <>
-          <NavigationArrow
-            $direction="left"
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-              e.stopPropagation();
-              prevSlide();
-            }}
-            aria-label={prevAriaLabel}
-          >
-            <LeftArrow />
-          </NavigationArrow>
-          <NavigationArrow
-            $direction="right"
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-              e.stopPropagation();
-              nextSlide();
-            }}
-            aria-label={nextAriaLabel}
-          >
-            <RightArrow />
-          </NavigationArrow>
+          {navigationArrows.map(({ direction, onClick, label, Icon }) => (
+            <NavigationArrow
+              key={direction}
+              $direction={direction}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.stopPropagation();
+                onClick();
+              }}
+              aria-label={label}
+            >
+              <Icon />
+            </NavigationArrow>
+          ))}
         </>
       )}
 
