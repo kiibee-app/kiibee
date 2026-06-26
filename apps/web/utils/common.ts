@@ -25,6 +25,8 @@ export const LANGUAGE_CHANGED_EVENT = "languageChanged";
 export const SYNC_LANGUAGE_SCRIPT = `(function(){var v=localStorage.getItem('${STORAGE_KEY}');document.cookie='${STORAGE_KEY}='+(v==='${EN}'?'${EN}':'${DA}')+';path=/;max-age=31536000;SameSite=Lax';})()`;
 export const UNDEFINED = "undefined";
 export const RESOURCES = "resources";
+export const TRENDING_LIMIT = 100;
+export const TRENDING = "trending";
 
 type ContentTabItem = {
   key: ContentTab;
