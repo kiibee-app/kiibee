@@ -54,12 +54,12 @@ export default function ExploreCreatorsMarquee() {
         <CardLeft>
           <CardHeader>
             <CardTitle>
-              <MonoText $use="Body_Bold">{creator.name}</MonoText>
+              <MonoText $use="H5_Medium">{creator.name}</MonoText>
             </CardTitle>
             {creator.category && (
               <CategoryBadge>
                 <MonoText
-                  $use="Body_Bold"
+                  $use="Body_SemiMedium"
                   style={{ fontSize: "inherit", color: "inherit" }}
                 >
                   {creator.category}
@@ -70,7 +70,7 @@ export default function ExploreCreatorsMarquee() {
           {description && (
             <CardDescription>
               <MonoText
-                $use="Body_Small"
+                $use="Body_SemiMedium"
                 style={{ fontSize: "inherit", color: "inherit" }}
               >
                 {description}

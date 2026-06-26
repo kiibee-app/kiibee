@@ -184,8 +184,7 @@ export const CategoryBadge = styled.span`
 
 export const CardDescription = styled.p`
   margin: 8px 0 12px;
-  font-size: 0.8125rem;
-  line-height: 1.4;
+  ${({ theme }) => theme.typography.Body_SemiMedium};
   color: ${({ theme }) => theme.colors.neutral.GRAY};
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -193,7 +192,6 @@ export const CardDescription = styled.p`
   overflow: hidden;
 
   ${media.tablet} {
-    font-size: 0.75rem;
     margin: 6px 0 10px;
     -webkit-line-clamp: 2;
   }
