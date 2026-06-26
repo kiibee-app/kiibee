@@ -464,3 +464,11 @@ export const ACCESS_STATUS_EXPIRED = "expired";
 
 export const NUMERIC_ONLY_REGEX = /^\d+$/;
 export const NON_DIGIT_REGEX = /\D/g;
+
+export const CAROUSEL_DEFAULT_AUTOPLAY = true;
+export const CAROUSEL_DEFAULT_AUTOPLAY_INTERVAL = 6000;
+export const CAROUSEL_DEFAULT_SHOW_ARROWS = true;
+export const CAROUSEL_DEFAULT_SHOW_DOTS = true;
+export const CAROUSEL_DEFAULT_TRANSITION_TYPE = "fade" as const;
+export const CAROUSEL_DEFAULT_PREV_ARIA_LABEL = "Previous slide";
+export const CAROUSEL_DEFAULT_NEXT_ARIA_LABEL = "Next slide";

@@ -10,6 +10,15 @@ import {
   Dot,
 } from "./styles";
 import { LeftArrow, RightArrow } from "./SVG";
+import {
+  CAROUSEL_DEFAULT_AUTOPLAY,
+  CAROUSEL_DEFAULT_AUTOPLAY_INTERVAL,
+  CAROUSEL_DEFAULT_SHOW_ARROWS,
+  CAROUSEL_DEFAULT_SHOW_DOTS,
+  CAROUSEL_DEFAULT_TRANSITION_TYPE,
+  CAROUSEL_DEFAULT_PREV_ARIA_LABEL,
+  CAROUSEL_DEFAULT_NEXT_ARIA_LABEL,
+} from "@/utils/Constants";
 
 export interface CarouselProps<T> {
   items: T[];
@@ -27,14 +36,14 @@ export interface CarouselProps<T> {
 export default function Carousel<T>({
   items,
   renderItem,
-  autoPlay = true,
-  autoPlayInterval = 6000,
-  showArrows = true,
-  showDots = true,
+  autoPlay = CAROUSEL_DEFAULT_AUTOPLAY,
+  autoPlayInterval = CAROUSEL_DEFAULT_AUTOPLAY_INTERVAL,
+  showArrows = CAROUSEL_DEFAULT_SHOW_ARROWS,
+  showDots = CAROUSEL_DEFAULT_SHOW_DOTS,
   className,
-  transitionType = "fade",
-  prevAriaLabel = "Previous slide",
-  nextAriaLabel = "Next slide",
+  transitionType = CAROUSEL_DEFAULT_TRANSITION_TYPE,
+  prevAriaLabel = CAROUSEL_DEFAULT_PREV_ARIA_LABEL,
+  nextAriaLabel = CAROUSEL_DEFAULT_NEXT_ARIA_LABEL,
 }: CarouselProps<T>) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
