@@ -165,7 +165,7 @@ export const Section = styled.section`
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary.GREEN_50};
-    box-shadow: 0 4px 20px rgba(4, 41, 11, 0.07);
+    box-shadow: ${({ theme }) => theme.shadows.md};
   }
 
   ${media.tablet} {
