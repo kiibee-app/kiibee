@@ -16,7 +16,8 @@ export async function createOrderService(
   dto: CreateOrderInputDto,
 ) {
   try {
-    const { contentId, collectionId, itemType, couponCode } = dto;
+    const { contentId, collectionId, itemType, couponCode, subscriptionId } =
+      dto;
 
     if (!contentId) {
       return fail('contentId must be provided', HttpStatus.BAD_REQUEST);
@@ -80,12 +81,13 @@ export async function createOrderService(
     };
 
     const [result] = await db.insert(orders).values(newOrder).returning();
-    const paymentResult = await createPayment(
-      result.id,
-      Number(resolvedPrice),
-      resolvedCurrency,
-    );
-
+    const paymentResult = await createPayment({
+      orderId: result.id,
+      amount: Number(resolvedPrice),
+      currency: resolvedCurrency,
+      customerId: userId,
+      subscriptionId: subscriptionId ?? undefined,
+    });
     return success(
       {
         orderId: result.id,

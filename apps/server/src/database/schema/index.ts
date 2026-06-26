@@ -42,6 +42,7 @@ export * from './commerce/payments.schema';
 export * from './commerce/viewerPaymentMethods.schema';
 export * from './commerce/creatorPayouts.schema';
 export * from './commerce/creatorBankAccounts.schema';
+export * from './commerce/userCardInfo.schema';
 
 // Coupons
 export * from './coupons/coupons.schema';
