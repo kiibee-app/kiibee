@@ -1130,7 +1130,7 @@
         },
         "platform": {
           "title": "Platform og ansvar",
-          "body": "KIIBEE ApS ejer og driver platformen www.kiibee.dk, herunder domænerne kiibee.dk og kiibee.com.\nPlatformen stiller software til rådighed, som gør det muligt at distribuere digitalt indhold.\nKIIBEE forbeholder sig retten til at:\n- Fjerne indhold, der krænker rettigheder\n- Fjerne indhold, der er vildledende eller stødende\n- Lukke eller begrænse adgang til brugere, der overtræder betingelserne\nKIIBEE kan ikke holdes ansvarlig for indirekte tab, følgeskader eller tab som følge af brug af platformen."
+          "body": "KIIBEE ApS ejer og driver platformen www.kiibee.dk, herunder domænerne kiibee.dk og kiibee.com.\nPlatformen stiller software til rådighed, som gør det muligt at distribuere digitalt indhold.\nKIIBEE forbeholder sig retten til at:\n- Fjerne indhold, der krænker rettigheder\n- Fjerne indhold, der er vildledende eller stødende\n- Lukke eller begrænse adgang til brugere, der overtræder betingelserne\nKIIBEE er ikke ansvarlig for indirekte tab, herunder:\n- driftstab\n- tabt fortjeneste\n- datatab"
         },
         "liability": {
           "title": "Ansvarsfraskrivelse",
@@ -1148,6 +1148,10 @@
           "title": "Indhold og brugergenereret materiale",
           "body": "Du kan via Platformen uploade og dele indhold.\nDu er eneansvarlig for dit indhold og garanterer, at:\n- du har alle nødvendige rettigheder\n- indholdet ikke krænker tredjeparts rettigheder\n- indholdet overholder gældende lovgivning\n- indholdet ikke er af stødende karakter\nKIIBEE kan til enhver tid, uden varsel:\n- afvise, redigere eller fjerne indhold\n- suspendere eller lukke konti ved misligholdelse\nVed fejl, misvisende indhold eller snyd kan betalinger tilbageholdes eller tilbageføres."
         },
+        "useOfService": {
+          "title": "Brug af tjenesten",
+          "body": "Du må ikke:\n- forsøge at omgå eller bryde sikkerheden\n- foretage reverse engineering, dekompilering eller lignende\n- anvende Platformen i strid med gældende lovgivning\nKIIBEE forbeholder sig ret til at overvåge brugen og håndhæve disse regler uden varsel."
+        },
         "publisherRole": {
           "title": "KIIBEE's rolle som udgiverplatform",
           "body": "KIIBEE fungerer som en platform for formidling af digitalt indhold mellem brugere og slutkunder.\nKIIBEE er ikke ansvarlig for:\n- kvaliteten af det indhold, der udbydes af brugere\n- aftaler indgået mellem bruger og slutkunde\nKIIBEE har dog ret til at fjerne indhold, der ikke lever op til platformens krav."
@@ -1163,6 +1167,10 @@
         "publisherTermination": {
           "title": "Opsigelse af udgiverkonto",
           "body": "KIIBEE kan til enhver tid:\n- suspendere eller lukke din konto ved misligholdelse\n- ændre eller ophøre Platformen med rimeligt varsel\n- opsige din konto med en måneds varsel, betalt abonnement vil ikke blive refunderet, hvorefter din konto nedlægges og dine data og indhold slettes."
+        },
+        "amendments": {
+          "title": "Ændringer",
+          "body": "KIIBEE kan ændre disse Betingelser med rimeligt varsel.\nFortsat brug af Platformen udgør accept af ændringerne."
         },
         "contact": {
           "title": "Kontakt",

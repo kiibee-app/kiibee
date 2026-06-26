@@ -1130,7 +1130,7 @@
         },
         "platform": {
           "title": "Platform and responsibility",
-          "body": "KIIBEE ApS owns and operates the platform www.kiibee.dk, including the domains kiibee.dk and kiibee.com.\nThe platform provides software that makes it possible to distribute digital content.\nKIIBEE reserves the right to:\n- Remove content that infringes rights\n- Remove content that is misleading or offensive\n- Close or restrict access for users who violate the terms\nKIIBEE cannot be held liable for indirect losses, consequential damages, or losses resulting from use of the platform."
+          "body": "KIIBEE ApS owns and operates the platform www.kiibee.dk, including the domains kiibee.dk and kiibee.com.\nThe platform provides software that makes it possible to distribute digital content.\nKIIBEE reserves the right to:\n- Remove content that infringes rights\n- Remove content that is misleading or offensive\n- Close or restrict access for users who violate the terms\nKIIBEE is not liable for indirect losses, including:\n- loss of revenue\n- loss of profit\n- data loss"
         },
         "liability": {
           "title": "Disclaimer",
@@ -1148,6 +1148,10 @@
           "title": "Content and user-generated material",
           "body": "You may upload and share content via the Platform.\nYou are solely responsible for your content and warrant that:\n- you have all necessary rights\n- the content does not infringe third-party rights\n- the content complies with applicable law\n- the content is not offensive\nKIIBEE may at any time, without notice:\n- reject, edit, or remove content\n- suspend or close accounts for non-compliance\nIn case of errors, misleading content, or fraud, payments may be withheld or reversed."
         },
+        "useOfService": {
+          "title": "Use of service",
+          "body": "You may not:\n- attempt to circumvent or breach security\n- perform reverse engineering, decompilation, or similar\n- use the Platform in violation of applicable law\nKIIBEE reserves the right to monitor usage and enforce these rules without notice."
+        },
         "publisherRole": {
           "title": "KIIBEE's role as a publisher platform",
           "body": "KIIBEE functions as a platform for distribution of digital content between users and end customers.\nKIIBEE is not responsible for:\n- the quality of content offered by users\n- agreements entered into between users and end customers\nKIIBEE does, however, reserve the right to remove content that does not meet the platform's requirements."
@@ -1163,6 +1167,10 @@
         "publisherTermination": {
           "title": "Termination of publisher account",
           "body": "KIIBEE may at any time:\n- suspend or close your account for non-compliance\n- change or discontinue the Platform with reasonable notice\n- terminate your account with one month's notice, paid subscriptions will not be refunded, after which your account will be closed and your data and content will be deleted."
+        },
+        "amendments": {
+          "title": "Amendments",
+          "body": "KIIBEE may amend these Terms with reasonable notice.\nContinued use of the Platform constitutes acceptance of the amendments."
         },
         "contact": {
           "title": "Contact",

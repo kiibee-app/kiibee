@@ -142,6 +142,16 @@ export default function TermsOfServiceSection() {
         </Section>
         <Section>
           <SectionTitle>
+            {t("legalPages.termsOfService.sections.useOfService.title")}
+          </SectionTitle>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.termsOfService.sections.useOfService.body")}
+            />
+          </FormattedDescription>
+        </Section>
+        <Section>
+          <SectionTitle>
             {t("legalPages.termsOfService.sections.publisherRole.title")}
           </SectionTitle>
           <FormattedDescription>
@@ -181,6 +191,16 @@ export default function TermsOfServiceSection() {
               text={t(
                 "legalPages.termsOfService.sections.publisherTermination.body",
               )}
+            />
+          </FormattedDescription>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.amendments.title")}
+          </SectionTitle>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.termsOfService.sections.amendments.body")}
             />
           </FormattedDescription>
         </Section>
