@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { alpha } from "@/utils/common";
+import {
+  CarouselTransitionType,
+  CAROUSEL_TRANSITION_TYPES,
+} from "@/utils/Constants";
 
 export const CarouselContainer = styled.div`
   position: relative;
@@ -11,7 +15,7 @@ export const CarouselContainer = styled.div`
 `;
 
 export const SlideTrack = styled.div<{
-  $transitionType: "fade" | "slide";
+  $transitionType: CarouselTransitionType;
   $activeIndex: number;
 }>`
   position: relative;
@@ -19,7 +23,7 @@ export const SlideTrack = styled.div<{
   height: 100%;
 
   ${({ $transitionType, $activeIndex }) =>
-    $transitionType === "slide" &&
+    $transitionType === CAROUSEL_TRANSITION_TYPES.SLIDE &&
     `
     display: flex;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
@@ -28,7 +32,7 @@ export const SlideTrack = styled.div<{
 `;
 
 export const Slide = styled.div<{
-  $transitionType: "fade" | "slide";
+  $transitionType: CarouselTransitionType;
   $active: boolean;
 }>`
   width: 100%;
@@ -36,7 +40,7 @@ export const Slide = styled.div<{
   flex-shrink: 0;
 
   ${({ $transitionType, $active }) =>
-    $transitionType === "fade"
+    $transitionType === CAROUSEL_TRANSITION_TYPES.FADE
       ? `
     position: absolute;
     inset: 0;

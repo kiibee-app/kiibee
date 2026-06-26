@@ -18,7 +18,9 @@ import {
   CAROUSEL_DEFAULT_TRANSITION_TYPE,
   CAROUSEL_DEFAULT_PREV_ARIA_LABEL,
   CAROUSEL_DEFAULT_NEXT_ARIA_LABEL,
+  CarouselTransitionType,
 } from "@/utils/Constants";
+import { KEYBOARD_KEYS } from "@/utils/ui";
 
 export interface CarouselProps<T> {
   items: T[];
@@ -28,7 +30,7 @@ export interface CarouselProps<T> {
   showArrows?: boolean;
   showDots?: boolean;
   className?: string;
-  transitionType?: "fade" | "slide";
+  transitionType?: CarouselTransitionType;
   prevAriaLabel?: string;
   nextAriaLabel?: string;
 }
@@ -64,9 +66,9 @@ export default function Carousel<T>({
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
+      if (e.key === KEYBOARD_KEYS.ARROW_LEFT) {
         prevSlide();
-      } else if (e.key === "ArrowRight") {
+      } else if (e.key === KEYBOARD_KEYS.ARROW_RIGHT) {
         nextSlide();
       }
     },
