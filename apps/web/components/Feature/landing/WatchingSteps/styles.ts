@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { type CSSProperties } from "react";
 import { media } from "@repo/ui/breakpoints";
+import GenericButton from "@/components/UI/GenericButton";
+import { VARIANT } from "@/utils/Constants";
 
 export const Section = styled.section`
   width: 100%;
@@ -94,6 +96,15 @@ export const StepDescription = styled.p`
 export const CTAWrapper = styled.div`
   margin-top: 1.875rem;
   align-self: flex-start;
+`;
+
+export const CTAButton = styled(GenericButton).attrs({
+  variant: VARIANT.PRIMARY,
+})`
+  &:not([type="submit"]):hover {
+    color: ${({ theme }) => theme.colors.primary.WHITE};
+    border-color: ${({ theme }) => theme.colors.primary.WHITE};
+  }
 `;
 
 export const NumberPart = styled.div`
