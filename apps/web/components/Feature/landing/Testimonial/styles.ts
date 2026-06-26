@@ -55,7 +55,7 @@ export const SectionInner = styled.div`
   }
 `;
 
-export const Card = styled.div<{ $active?: boolean }>`
+export const Card = styled.div`
   position: absolute;
   top: clamp(60px, 10.4vw, 150px);
   right: clamp(24px, 16.7vw, 240px);
@@ -81,12 +81,6 @@ export const Card = styled.div<{ $active?: boolean }>`
     );
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
-  opacity: ${({ $active }) => ($active ? 1 : 0)};
-  transform: ${({ $active }) =>
-    $active ? "translateY(0)" : "translateY(20px)"};
-  transition:
-    opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-    transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 
   ${media.tablet} {
     left: 50%;
@@ -95,8 +89,7 @@ export const Card = styled.div<{ $active?: boolean }>`
     width: min(506px, calc(100% - 2rem));
     padding: 1.5rem;
     gap: 1.25rem;
-    transform: ${({ $active }) =>
-      $active ? "translate(-50%, -50%)" : "translate(-50%, -40%)"};
+    transform: translate(-50%, -50%);
     align-items: center;
     text-align: center;
   }

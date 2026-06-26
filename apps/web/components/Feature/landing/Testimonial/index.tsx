@@ -63,7 +63,7 @@ export default function TestimonialSection() {
             />
 
             <SectionInner>
-              <Card $active={isActive}>
+              <Card>
                 <Quote>{item.quote}</Quote>
                 <Author>{item.author}</Author>
               </Card>
