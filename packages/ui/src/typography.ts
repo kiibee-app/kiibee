@@ -87,6 +87,15 @@ export const typography = {
     letterSpacing: "0px",
   },
 
+  Body_SemiMedium: {
+    fontSize: fluid(12, 14),
+    fontFamily: FontFamily.Default,
+    fontWeight: 500,
+    lineHeight: "normal",
+    fontStyle: "normal",
+    letterSpacing: "0px",
+  },
+
   Body_Small: {
     fontSize: fluid(10, 11),
     fontFamily: FontFamily.Default,
