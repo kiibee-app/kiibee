@@ -60,6 +60,8 @@ export async function getPayoutStatsService(creatorId: string) {
       balance: `${balance.toFixed(2)} kr.`,
       purchases: totalEarnings[0]?.purchases ?? 0,
       rentals: totalEarnings[0]?.rentals ?? 0,
+      earnings,
+      paidOut,
     };
 
     return success(stats, 'Payout stats retrieved successfully', HttpStatus.OK);
