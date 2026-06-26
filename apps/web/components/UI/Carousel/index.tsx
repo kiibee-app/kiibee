@@ -133,7 +133,7 @@ export default function Carousel<T>({
         <>
           <NavigationArrow
             $direction="left"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               prevSlide();
             }}
@@ -154,7 +154,7 @@ export default function Carousel<T>({
           </NavigationArrow>
           <NavigationArrow
             $direction="right"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               nextSlide();
             }}
@@ -182,7 +182,7 @@ export default function Carousel<T>({
             <Dot
               key={index}
               $active={index === activeIndex}
-              onClick={(e) => {
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.stopPropagation();
                 goToSlide(index);
               }}
