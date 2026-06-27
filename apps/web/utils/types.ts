@@ -54,3 +54,12 @@ export type LayoutCardConfig = {
   captionKey: string;
   image: string | StaticImageData;
 };
+
+export type TestimonialSlideConfig = {
+  id: number;
+  image: StaticImageData;
+  bgPosition: string;
+  bgPositionMobile: string;
+  quoteKey: string;
+  authorKey: string;
+};

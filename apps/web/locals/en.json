@@ -670,7 +670,11 @@
     "prevAriaLabel": "Previous testimonial",
     "nextAriaLabel": "Next testimonial",
     "quote": "As a graphic designer, I'm always looking to expand my skills and stay inspired. Kiibe has been a game-changer for me. Its content is practical, creative, and easy to follow. I've picked up new techniques and design tips I wouldn't have found anywhere else. It's like having a mini design workshop right at my fingertips!",
-    "author": "Kamma, freelance graphic designer"
+    "author": "Kamma, freelance graphic designer",
+    "quote2": "Kiibee made it incredibly easy to package my online tutorials and sell them directly to my audience. I don't have to worry about managing subscription platforms or payment systems; it just works. I went from zero earnings to a steady side income in a matter of weeks!",
+    "author2": "Sarah, online content creator",
+    "quote3": "As an educator, I wanted a simple way to distribute my coding courses without forcing my students into a monthly subscription. Kiibee's rental model is exactly what we needed. The playback is smooth, and the setup was seamless.",
+    "author3": "Marcus, tech educator"
   },
   "securePayment": {
     "title": "Secure and instant payment with MobilePay",
