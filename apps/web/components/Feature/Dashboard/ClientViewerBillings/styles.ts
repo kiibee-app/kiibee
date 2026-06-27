@@ -124,23 +124,6 @@ export const PaymentHeader = styled.div`
   }
 `;
 
-export const AddCardButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 36px;
-  padding: 9px 16px;
-  border: 0;
-  border-radius: 8px;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
-  color: ${({ theme }) => theme.colors.primary.WHITE};
-  cursor: pointer;
-
-  ${media.mobileLg} {
-    width: auto;
-  }
-`;
-
 export const MethodsList = styled.div`
   display: flex;
   flex-direction: column;

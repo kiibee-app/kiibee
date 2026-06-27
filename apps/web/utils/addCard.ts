@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export type { CardFormErrors, AddCardErrors } from "@/types/cardTypes";
+export type { CardFormErrors } from "@/types/cardTypes";
 
 export const CARD_FIELDS = {
   CARD_NUMBER: "cardNumber",
@@ -78,17 +78,6 @@ const expiryDateSchema = z.string().superRefine((val, ctx) => {
 
 const securityCodeSchema = z.string().refine((val) => /^\d{3,4}$/.test(val), {
   message: "CVV must be 3 or 4 digits",
-});
-
-export const AddCardSchema = z.object({
-  cardNumber: z
-    .string()
-    .transform((val) => val.replace(/\s/g, ""))
-    .refine((val) => /^\d{16}$/.test(val), {
-      message: "Card number must be 16 digits",
-    }),
-  expiryDate: expiryDateSchema,
-  securityCode: securityCodeSchema,
 });
 
 export const EditCardSchema = z.object({

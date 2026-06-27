@@ -1,4 +1,6 @@
 import type { typography } from "@repo/ui/typography";
+import { LeftArrow, RightArrow } from "@/assets/icons/carouselArrows";
+import { Directions } from "./ui";
 import { COLLECTIONS, HOME } from "./common";
 import { EXPLORE } from "./translationKeys";
 import { NavBarProps } from "./profile";
@@ -464,3 +466,40 @@ export const ACCESS_STATUS_EXPIRED = "expired";
 
 export const NUMERIC_ONLY_REGEX = /^\d+$/;
 export const NON_DIGIT_REGEX = /\D/g;
+
+export const CAROUSEL_TRANSITION_TYPES = {
+  FADE: "fade",
+  SLIDE: "slide",
+} as const;
+
+export type CarouselTransitionType =
+  (typeof CAROUSEL_TRANSITION_TYPES)[keyof typeof CAROUSEL_TRANSITION_TYPES];
+
+export const CAROUSEL_DEFAULT_AUTOPLAY = true;
+export const CAROUSEL_DEFAULT_AUTOPLAY_INTERVAL = 6000;
+export const CAROUSEL_DEFAULT_SHOW_ARROWS = true;
+export const CAROUSEL_DEFAULT_SHOW_DOTS = true;
+export const CAROUSEL_DEFAULT_TRANSITION_TYPE = CAROUSEL_TRANSITION_TYPES.FADE;
+export const CAROUSEL_DEFAULT_PREV_ARIA_LABEL = "Previous slide";
+export const CAROUSEL_DEFAULT_NEXT_ARIA_LABEL = "Next slide";
+
+export const getNavigationArrows = (
+  prevSlide: () => void,
+  nextSlide: () => void,
+  prevAriaLabel?: string,
+  nextAriaLabel?: string,
+) =>
+  [
+    {
+      direction: Directions.LEFT,
+      onClick: prevSlide,
+      label: prevAriaLabel,
+      Icon: LeftArrow,
+    },
+    {
+      direction: Directions.RIGHT,
+      onClick: nextSlide,
+      label: nextAriaLabel,
+      Icon: RightArrow,
+    },
+  ] as const;

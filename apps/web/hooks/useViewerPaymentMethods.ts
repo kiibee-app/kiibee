@@ -48,11 +48,6 @@ export const useViewerPaymentMethods = () => {
       queryKey: [API.viewer.paymentMethods],
     });
 
-  const addCard = async (payload: PaymentMethodPayload) => {
-    await axiosClient.post(API.viewer.paymentMethods, payload);
-    await invalidate();
-  };
-
   const updateCard = async (id: string, payload: PaymentMethodPayload) => {
     await axiosClient.patch(API.viewer.paymentMethod(id), payload);
     await invalidate();
@@ -72,7 +67,6 @@ export const useViewerPaymentMethods = () => {
     paymentMethods,
     isLoading: query.isLoading,
     isError: query.isError,
-    addCard,
     updateCard,
     deleteCard,
     markAsDefault,

@@ -294,7 +294,6 @@ export const DASHBOARD_VIEWER_BILLINGS = {
     emptyTitle: "dashboard.viewerBillings.paymentMethods.emptyTitle",
     emptyDescription:
       "dashboard.viewerBillings.paymentMethods.emptyDescription",
-    addCard: "dashboard.viewerBillings.paymentMethods.addCard",
     defaultBadge: "dashboard.viewerBillings.paymentMethods.defaultBadge",
     expires: "dashboard.viewerBillings.paymentMethods.expires",
     edit: "dashboard.viewerBillings.paymentMethods.edit",
@@ -313,24 +312,6 @@ export const DASHBOARD_VIEWER_BILLINGS = {
         "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.message",
       confirm:
         "dashboard.viewerBillings.paymentMethods.deleteSuccessModal.confirm",
-    },
-    addCardModal: {
-      title: "dashboard.viewerBillings.paymentMethods.addCardModal.title",
-      cardNumber:
-        "dashboard.viewerBillings.paymentMethods.addCardModal.cardNumber",
-      expiryDate:
-        "dashboard.viewerBillings.paymentMethods.addCardModal.expiryDate",
-      cvv: "dashboard.viewerBillings.paymentMethods.addCardModal.cvv",
-      cardPlaceholder:
-        "dashboard.viewerBillings.paymentMethods.addCardModal.cardPlaceholder",
-      expiryPlaceholder:
-        "dashboard.viewerBillings.paymentMethods.addCardModal.expiryPlaceholder",
-      cvvPlaceholder:
-        "dashboard.viewerBillings.paymentMethods.addCardModal.cvvPlaceholder",
-      successTitle:
-        "dashboard.viewerBillings.paymentMethods.addCardModal.successTitle",
-      successMessage:
-        "dashboard.viewerBillings.paymentMethods.addCardModal.successMessage",
     },
     editCardModal: {
       title: "dashboard.viewerBillings.paymentMethods.editCardModal.title",
