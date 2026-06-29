@@ -8,15 +8,11 @@ import loginSlide2 from "../assets/images/auth/loginSlide2.webp";
 import layoutOneImage from "@/assets/images/layout1.png";
 import layoutTwoImage from "@/assets/images/layout2.png";
 import layoutThreeImage from "@/assets/images/layout3.png";
-import creator from "@/assets/images/testimonial/creator.webp";
-import valueBg from "@/assets/images/cta-buttom.webp";
-import ctaImage from "@/assets/images/cta-buttom1.webp";
 
 import type {
   LayoutCardConfig,
   TutorialVideo,
   TutorialVideoSection,
-  TestimonialSlideConfig,
 } from "./types";
 
 export const tutorialVideos: TutorialVideo[] = [
@@ -165,32 +161,5 @@ export const slideImages = [
     offsetY: "44px",
     z: 1,
     height: "280px",
-  },
-];
-
-export const testimonialSlides: TestimonialSlideConfig[] = [
-  {
-    id: 1,
-    image: creator,
-    bgPosition: "32% 22%",
-    bgPositionMobile: "center 20%",
-    quoteKey: "testimonial.quote",
-    authorKey: "testimonial.author",
-  },
-  {
-    id: 2,
-    image: valueBg,
-    bgPosition: "center",
-    bgPositionMobile: "center",
-    quoteKey: "testimonial.quote2",
-    authorKey: "testimonial.author2",
-  },
-  {
-    id: 3,
-    image: ctaImage,
-    bgPosition: "center",
-    bgPositionMobile: "center",
-    quoteKey: "testimonial.quote3",
-    authorKey: "testimonial.author3",
   },
 ];

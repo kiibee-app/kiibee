@@ -670,11 +670,7 @@
     "prevAriaLabel": "Forrige udtalelse",
     "nextAriaLabel": "Næste udtalelse",
     "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibe har været en gamechanger for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
-    "author": "Kamma, freelance grafisk designer",
-    "quote2": "Kiibee har gjort det utroligt nemt at pakke mine online tutorials og sælge dem direkte til mit publikum. Jeg behøver ikke bekymre mig om at administrere abonnementsplatforme eller betalingssystemer; det virker bare. Jeg gik fra nul indtjening til en stabil sideindkomst på få uger!",
-    "author2": "Sarah, online indholdsskaber",
-    "quote3": "Som underviser ønskede jeg en simpel måde at distribuere mine kodningskurser på uden at tvinge mine studerende ind i et månedligt abonnement. Kiibees udlejningsmodel er præcis, hvad vi havde brug for. Afspilningen er glat, og opsætningen var problemfri.",
-    "author3": "Marcus, teknologi-underviser"
+    "author": "Kamma, freelance grafisk designer"
   },
   "securePayment": {
     "title": "Sikker og øjeblikkelig betaling med MobilePay",
@@ -1397,6 +1393,7 @@
         "title": "Betalingsmetoder",
         "emptyTitle": "Intet kort tilføjet",
         "emptyDescription": "Tilføj et kort for hurtigt at betale, når du lejer eller køber indhold.",
+        "addCard": "Tilføj kort",
         "defaultBadge": "Standard",
         "expires": "Udløber {{date}}",
         "edit": "Rediger betalingsmetode",
@@ -1413,6 +1410,17 @@
           "title": "Slettet",
           "message": "Kortet er blevet slettet.",
           "confirm": "Færdig"
+        },
+        "addCardModal": {
+          "title": "Tilføj nyt kort",
+          "cardNumber": "Kortnummer",
+          "expiryDate": "Udløbsdato",
+          "cvv": "Sikkerhedskode",
+          "cardPlaceholder": "XXXX XXXX XXXX XXXX",
+          "expiryPlaceholder": "MM/ÅÅ",
+          "cvvPlaceholder": "CVV",
+          "successTitle": "Nyt kort tilføjet",
+          "successMessage": "Nyt kort er blevet tilføjet."
         },
         "editCardModal": {
           "title": "Rediger kort",

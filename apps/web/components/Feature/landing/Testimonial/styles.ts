@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
-import { alpha } from "@/utils/common";
 
 const IMAGE_ASPECT = 4096 / 2731;
 const MAX_SECTION_HEIGHT = 760;
@@ -16,31 +15,19 @@ export const Section = styled.section`
     ${MAX_SECTION_HEIGHT}px
   );
   overflow: hidden;
-  background-color: ${({ theme }) => theme.colors.gradient.CANVAS_BG};
 `;
 
-export const SlideWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
-export const Background = styled.div<{
-  $src: string;
-  $bgPosition?: string;
-  $bgPositionMobile?: string;
-}>`
+export const Background = styled.div<{ $src: string }>`
   position: absolute;
   inset: 0;
   z-index: 0;
   background-image: url(${({ $src }) => $src});
   background-size: cover;
-  background-position: ${({ $bgPosition }) => $bgPosition || "center"};
+  background-position: 32% 22%;
   background-repeat: no-repeat;
 
-  ${media.desktop} {
-    background-position: ${({ $bgPositionMobile }) =>
-      $bgPositionMobile || "center"};
+  ${media.tablet} {
+    background-position: center 20%;
   }
 `;
 
@@ -52,7 +39,7 @@ export const SectionInner = styled.div`
   height: 100%;
   margin: 0 auto;
 
-  ${media.desktop} {
+  ${media.tablet} {
     padding: 0 1rem;
   }
 `;
@@ -68,22 +55,30 @@ export const Card = styled.div`
   align-items: flex-start;
   gap: 25px;
   border-radius: 20px;
-  background: ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.42)};
+  background: color-mix(
+    in srgb,
+    ${({ theme }) => theme.colors.primary.WHITE} 42%,
+    transparent
+  );
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.35)};
+  border: 1px solid
+    color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.WHITE} 35%,
+      transparent
+    );
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
 
-  ${media.desktop} {
+  ${media.tablet} {
     left: 50%;
     right: auto;
-    top: auto;
-    bottom: 48px;
+    top: 50%;
     width: min(506px, calc(100% - 2rem));
     padding: 1.5rem;
     gap: 1.25rem;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     align-items: center;
     text-align: center;
   }

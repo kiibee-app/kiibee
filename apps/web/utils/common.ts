@@ -212,7 +212,3 @@ export function useMounted() {
     () => false,
   );
 }
-
-export const alpha = (color: string, opacity: number): string => {
-  return `color-mix(in srgb, ${color} ${Math.round(opacity * 100)}%, transparent)`;
-};

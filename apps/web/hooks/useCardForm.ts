@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import {
+  AddCardSchema,
   EditCardSchema,
   formatCardNumber,
   formatCVV,
@@ -11,7 +12,9 @@ import {
   CARD_FIELDS,
 } from "@/utils/addCard";
 import {
+  CARD_FORM_MODE,
   type CardFormErrors,
+  type CardFormMode,
   type CardFormPayload,
   type ViewerPaymentMethod,
 } from "@/types/cardTypes";
@@ -23,6 +26,7 @@ const initialErrors: CardFormErrors = {
 };
 
 type UseCardFormOptions = {
+  mode: CardFormMode;
   visible?: boolean;
   paymentMethod?: ViewerPaymentMethod;
   onClose: () => void;
@@ -30,36 +34,50 @@ type UseCardFormOptions = {
 };
 
 export function useCardForm({
+  mode,
   visible = true,
   paymentMethod,
   onClose,
   onSubmit,
 }: UseCardFormOptions) {
-  const editValues = paymentMethod
-    ? getEditCardFormValues(paymentMethod)
-    : null;
+  const isEdit = mode === CARD_FORM_MODE.EDIT;
+  const editValues =
+    isEdit && paymentMethod ? getEditCardFormValues(paymentMethod) : null;
 
   const [cardNumber, setCardNumber] = useState(editValues?.cardNumber ?? "");
   const [expiryDate, setExpiryDate] = useState(editValues?.expiryDate ?? "");
   const [securityCode, setSecurityCode] = useState("");
   const [errors, setErrors] = useState<CardFormErrors>(initialErrors);
+  const [successOpen, setSuccessOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!visible || !paymentMethod) return;
+    if (!visible) return;
 
-    const values = getEditCardFormValues(paymentMethod);
-    setCardNumber(values.cardNumber);
-    setExpiryDate(values.expiryDate);
-    setSecurityCode(values.securityCode);
-    setErrors(initialErrors);
-  }, [visible, paymentMethod]);
+    if (isEdit && paymentMethod) {
+      const values = getEditCardFormValues(paymentMethod);
+      setCardNumber(values.cardNumber);
+      setExpiryDate(values.expiryDate);
+      setSecurityCode(values.securityCode);
+      setErrors(initialErrors);
+      return;
+    }
+
+    if (!isEdit) {
+      setCardNumber("");
+      setExpiryDate("");
+      setSecurityCode("");
+      setErrors(initialErrors);
+    }
+  }, [visible, isEdit, paymentMethod]);
+
+  const schema = isEdit ? EditCardSchema : AddCardSchema;
 
   const normalizeInput = (v: string | string[]) =>
     Array.isArray(v) ? v[0] : v;
 
   const validateField = (field: keyof CardFormErrors, value: string) => {
-    const result = EditCardSchema.safeParse({
+    const result = schema.safeParse({
       cardNumber,
       expiryDate,
       securityCode,
@@ -79,7 +97,7 @@ export function useCardForm({
   };
 
   const validateAll = () => {
-    const result = EditCardSchema.safeParse({
+    const result = schema.safeParse({
       cardNumber,
       expiryDate,
       securityCode,
@@ -103,7 +121,7 @@ export function useCardForm({
   };
 
   const reset = () => {
-    if (paymentMethod) {
+    if (isEdit && paymentMethod) {
       const values = getEditCardFormValues(paymentMethod);
       setCardNumber(values.cardNumber);
       setExpiryDate(values.expiryDate);
@@ -133,12 +151,19 @@ export function useCardForm({
       };
 
       const digits = cardNumber.replace(/\D/g, "");
-      if (!isMaskedCardNumber(cardNumber)) {
+      if (!isEdit || !isMaskedCardNumber(cardNumber)) {
         payload.cardNumber = digits;
       }
 
       await onSubmit(payload);
-      onClose();
+
+      if (isEdit) {
+        onClose();
+        return;
+      }
+
+      setSuccessOpen(true);
+      handleClose();
     } finally {
       setIsSubmitting(false);
     }
@@ -146,7 +171,8 @@ export function useCardForm({
 
   const handleCardNumberChange = (v: string | string[]) => {
     const raw = normalizeInput(v);
-    const input = isMaskedCardNumber(cardNumber) ? raw.replace(/\D/g, "") : raw;
+    const input =
+      isEdit && isMaskedCardNumber(cardNumber) ? raw.replace(/\D/g, "") : raw;
     const val = formatCardNumber(input);
     setCardNumber(val);
     validateField(CARD_FIELDS.CARD_NUMBER, val);
@@ -164,7 +190,7 @@ export function useCardForm({
     validateField(CARD_FIELDS.SECURITY_CODE, val);
   };
 
-  const isFormValid = EditCardSchema.safeParse({
+  const isFormValid = schema.safeParse({
     cardNumber,
     expiryDate,
     securityCode,
@@ -175,8 +201,11 @@ export function useCardForm({
     expiryDate,
     securityCode,
     errors,
+    successOpen,
+    setSuccessOpen,
     isSubmitting,
     isFormValid,
+    isEdit,
     handleSubmit,
     handleClose,
     handleCardNumberChange,
@@ -184,3 +213,7 @@ export function useCardForm({
     handleCVVChange,
   };
 }
+
+export const useAddCard = (
+  options: Omit<UseCardFormOptions, "mode" | "paymentMethod">,
+) => useCardForm({ ...options, mode: CARD_FORM_MODE.ADD });
