@@ -85,7 +85,7 @@ export const Hero = styled.div<{ $isPdf?: boolean }>`
   margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "2.25rem")};
   border-radius: 12px;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${media.desktopSm} {
     max-width: none;
@@ -100,14 +100,27 @@ export const Hero = styled.div<{ $isPdf?: boolean }>`
   }
 `;
 
+export const HeroBlurBg = styled.div`
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px) brightness(0.6) saturate(1.2);
+  transform: scale(1.1);
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+`;
+
 export const Preview = styled.div`
   position: absolute;
   inset: 0;
+  z-index: 1;
 
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
 

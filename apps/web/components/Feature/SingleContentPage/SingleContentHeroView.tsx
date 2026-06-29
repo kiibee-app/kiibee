@@ -8,13 +8,13 @@ import { FORMAT_TYPE } from "@/utils/types";
 import {
   getThirdPartyEmbedUrl,
   isCloudflareStreamEmbedUrl,
-  isRemoteImageSource,
   isStaticImageData,
   isThirdPartyVideoUrl,
   resolveImageUrl,
 } from "@/utils/media";
 import {
   Hero,
+  HeroBlurBg,
   HeroMediaTag,
   HeroMediaText,
   HeroTag,
@@ -104,56 +104,41 @@ function getMediaContent(
   }
 }
 
-const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
-  const primarySrc = resolveImageUrl(hero.image);
-  const [fallbackForSrc, setFallbackForSrc] = useState<string | null>(null);
-  const src =
-    fallbackForSrc === primarySrc && hero.imageFallback
-      ? hero.imageFallback
-      : primarySrc;
-
-  const handleError = () => {
-    if (hero.imageFallback && fallbackForSrc !== primarySrc) {
-      setFallbackForSrc(primarySrc);
-    }
-  };
-
-  if (isRemoteImageSource(src)) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element -- full-res remote poster URLs render sharper than scaled Next/Image
-      <img
-        src={src}
-        alt={hero.imageAlt}
-        decoding="async"
-        onError={handleError}
-      />
-    );
-  }
-
+const HeroImage = ({
+  hero,
+  currentSrc,
+  onImageError,
+}: {
+  hero: SingleContentPreviewProps["hero"];
+  currentSrc: string;
+  onImageError: () => void;
+}) => {
   if (isStaticImageData(hero.image)) {
+    const imageToRender =
+      currentSrc === resolveImageUrl(hero.image) ? hero.image : currentSrc;
     return (
       <Image
-        src={hero.image}
+        src={imageToRender}
         alt={hero.imageAlt}
         fill
         priority
         sizes="(max-width: 900px) 100vw, 900px"
-        style={{ objectFit: "cover" }}
-        onError={handleError}
+        style={{ objectFit: "contain" }}
+        onError={onImageError}
       />
     );
   }
 
   return (
     <Image
-      src={hero.image}
+      src={currentSrc}
       alt={hero.imageAlt}
       fill
       priority
       sizes="(max-width: 900px) 100vw, 900px"
-      style={{ objectFit: "cover" }}
+      style={{ objectFit: "contain" }}
       unoptimized
-      onError={handleError}
+      onError={onImageError}
     />
   );
 };
@@ -168,10 +153,14 @@ function SingleContentPreview({
   isTrailerPlaying,
   isCloudflarePlaying,
   deferCloudflareEmbed,
+  currentSrc,
+  onImageError,
 }: SingleContentPreviewProps & {
   isTrailerPlaying: boolean;
   isCloudflarePlaying: boolean;
   deferCloudflareEmbed: boolean;
+  currentSrc: string;
+  onImageError: () => void;
 }) {
   const mediaContent = getMediaContent(
     hero,
@@ -187,7 +176,15 @@ function SingleContentPreview({
     deferCloudflareEmbed,
   );
 
-  return mediaContent ?? <HeroImage hero={hero} />;
+  return (
+    mediaContent ?? (
+      <HeroImage
+        hero={hero}
+        currentSrc={currentSrc}
+        onImageError={onImageError}
+      />
+    )
+  );
 }
 
 export default function SingleContentHeroView({
@@ -204,6 +201,30 @@ export default function SingleContentHeroView({
   const isThirdPartyVideo =
     isVideoMedia && isThirdPartyVideoUrl(hero.media?.src ?? "");
   const deferCloudflareEmbed = isCloudflareVideo && Boolean(hero.trailerLabel);
+
+  const primarySrc = resolveImageUrl(hero.image);
+  const [fallbackForSrc, setFallbackForSrc] = useState<string | null>(null);
+
+  const currentSrc =
+    fallbackForSrc === primarySrc && hero.imageFallback
+      ? resolveImageUrl(hero.imageFallback)
+      : primarySrc;
+
+  const handleImageError = () => {
+    if (hero.imageFallback && fallbackForSrc !== primarySrc) {
+      setFallbackForSrc(primarySrc);
+    }
+  };
+
+  const getCssUrl = (urlStr: string) => {
+    if (urlStr.startsWith("data:")) {
+      return urlStr;
+    }
+    return encodeURI(urlStr);
+  };
+
+  const blurSrc = currentSrc;
+  const encodedBlurSrc = blurSrc ? getCssUrl(blurSrc) : "";
 
   const handleVideoPlay = () => {
     if (isVideoMedia) {
@@ -261,6 +282,9 @@ export default function SingleContentHeroView({
 
   return (
     <Hero $isPdf={isPdfLayout}>
+      {encodedBlurSrc && (
+        <HeroBlurBg style={{ backgroundImage: `url("${encodedBlurSrc}")` }} />
+      )}
       <Preview>
         <SingleContentPreview
           hero={hero}
@@ -274,6 +298,8 @@ export default function SingleContentHeroView({
           isTrailerPlaying={isTrailerPlaying}
           isCloudflarePlaying={isCloudflarePlaying}
           deferCloudflareEmbed={deferCloudflareEmbed}
+          currentSrc={currentSrc}
+          onImageError={handleImageError}
         />
       </Preview>
 
