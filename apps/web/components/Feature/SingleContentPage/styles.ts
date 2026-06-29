@@ -105,7 +105,7 @@ export const HeroBlurBg = styled.div`
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: blur(20px) brightness(0.6) saturate(1.2);
+  filter: blur(7px) brightness(0.6) saturate(1.2);
   transform: scale(1.1);
   z-index: 0;
   pointer-events: none;
