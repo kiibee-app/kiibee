@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+78707,d74b4f86-7afa-43a5-b318-9170cc9738e7,umb://document/d74b4f867afa43a5b3189170cc9738e7,KBF-1386,1082.55,1082.55,true,2023-03-07 15:02:20,2023-03-07 15:02:20,https://kiibee.dk/red-barnet/payouts/kbf-1386/,matched-public-payout-url,https://kiibee.dk/red-barnet/payouts/kbf-1386/,https://kiibee.dk/red-barnet/payouts/kbf-1386/,,

@@ -1,0 +1,138 @@
+{
+  "_umb_containerView": {
+    "alias": "_umb_containerView",
+    "labels": [],
+    "tabs": [
+      "Undersider"
+    ],
+    "editors": [
+      "listview"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "isPlay": {
+    "alias": "isPlay",
+    "labels": [],
+    "tabs": [],
+    "editors": [
+      "Umbraco.TrueFalse"
+    ],
+    "seenOn": [
+      "item:72724",
+      "item:63260",
+      "item:33491",
+      "item:17808",
+      "item:17372",
+      "item:17371",
+      "item:17369",
+      "item:17307",
+      "item:17306",
+      "item:17303",
+      "item:17301",
+      "item:17300",
+      "item:17299",
+      "item:17106",
+      "item:16969",
+      "item:16727",
+      "item:16686",
+      "item:16685",
+      "item:16684",
+      "item:16677",
+      "item:16592",
+      "item:16549",
+      "item:16548",
+      "item:16530",
+      "item:16529",
+      "item:16528",
+      "item:16495",
+      "item:16494",
+      "item:16487",
+      "item:16484",
+      "item:16481"
+    ]
+  },
+  "media": {
+    "alias": "media",
+    "labels": [],
+    "tabs": [],
+    "editors": [
+      "Umbraco.ContentPicker2"
+    ],
+    "seenOn": [
+      "item:72724",
+      "item:63260",
+      "item:33491",
+      "item:17808",
+      "item:17372",
+      "item:17371",
+      "item:17369",
+      "item:17307",
+      "item:17306",
+      "item:17303",
+      "item:17301",
+      "item:17300",
+      "item:17299",
+      "item:17106",
+      "item:16969",
+      "item:16727",
+      "item:16686",
+      "item:16685",
+      "item:16684",
+      "item:16677",
+      "item:16592",
+      "item:16549",
+      "item:16548",
+      "item:16530",
+      "item:16529",
+      "item:16528",
+      "item:16495",
+      "item:16494",
+      "item:16487",
+      "item:16484",
+      "item:16481"
+    ]
+  },
+  "uID": {
+    "alias": "uID",
+    "labels": [],
+    "tabs": [],
+    "editors": [
+      "Umbraco.Textbox"
+    ],
+    "seenOn": [
+      "item:72724",
+      "item:63260",
+      "item:33491",
+      "item:17808",
+      "item:17372",
+      "item:17371",
+      "item:17369",
+      "item:17307",
+      "item:17306",
+      "item:17303",
+      "item:17301",
+      "item:17300",
+      "item:17299",
+      "item:17106",
+      "item:16969",
+      "item:16727",
+      "item:16686",
+      "item:16685",
+      "item:16684",
+      "item:16677",
+      "item:16592",
+      "item:16549",
+      "item:16548",
+      "item:16530",
+      "item:16529",
+      "item:16528",
+      "item:16495",
+      "item:16494",
+      "item:16487",
+      "item:16484",
+      "item:16481"
+    ]
+  }
+}

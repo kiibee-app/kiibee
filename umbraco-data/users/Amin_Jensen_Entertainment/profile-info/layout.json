@@ -1,0 +1,70 @@
+{
+  "tab": "Layout",
+  "name": "Amin Jensen Entertainment",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Amin Jensen Entertainment",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2601/logo_amin_jensen300.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "B3S"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1231/top.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "B3W"
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3380/amin-jensen-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600,
+        "$$hashKey": "B40"
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["68"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Amin Jensen - Alsidig underholdningskunstner</h1>\n<p>Amin Jensen er kendt for sin alsidighed og evne til at underholde på flere fronter. I sine one-man shows kombinerer han vitser og personlige betroelser med imponerende musikalske indslag.</p>\n<h2>Mester i komik, parodi og opera</h2>\n<p>Amin mestrer både imitationer af danske kunstnere som Povl Dissing og Bamse samt mundharmonika-spil til operastykker som O Sole Mio og Nessun Dorma. Han beviser dermed, at han behersker både comedy, parodi og opera på højt niveau.</p>\n<p>Inden Amin blev komiker, nåede han at prøve kræfter med en række andre erhverv - fra taxachauffør til massør og vinduespudser. Han var desuden med helt fra starten af den spæde danske stand-up-scene. Amins iver efter at udvikle sig har gjort ham til en eftertragtet entertainer, der mestrer flere instrumenter og både kan synge pop og opera.</p>",
+  "css": "",
+  "javaScript": ""
+}

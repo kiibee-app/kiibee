@@ -1,0 +1,23 @@
+{
+  "tab": "Subscription",
+  "name": "TANIA ELLIS - The Social Business Company",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "subscription": "umb://document/5ba7f17c7cf64beea5db1176fd45d365",
+  "price": "",
+  "price3": "",
+  "price6": "",
+  "price12": "",
+  "maxFiles": 50,
+  "kiibeeCut": 10,
+  "transactionFee": 3,
+  "paymentPeriod": ["385"]
+}

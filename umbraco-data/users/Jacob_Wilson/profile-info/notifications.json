@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Jacob Wilson",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2024-09-18",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": []
+}

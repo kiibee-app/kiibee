@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "NSCCM ApS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/87f663e9b3dd48f6932f878c8f801e4b",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

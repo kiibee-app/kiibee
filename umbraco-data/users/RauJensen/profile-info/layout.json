@@ -1,0 +1,67 @@
+{
+  "tab": "Layout",
+  "name": "RauJensen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "RauJensen",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4772/opnaa-dine-maal-laer-at-holde-aftaler-med-dig-selv-4.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4756/opnaa-dine-maal-laer-at-holde-aftaler-med-dig-selv-2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4757/design-uden-navn-6.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "Er du en mor, der føler dig overvældet af hverdagens krav og har svært ved at finde tid til dig selv?\r\n\r\nMini kursus er skabt specielt til mødre som dig. Gennem fem nøje udvalgte moduler vil du lære at skabe balance, opnå dine personlige mål og prioritere din egen trivsel.\r\n\r\nKlik på vis alle her nednunder og køb hele samlingen. Derefter kommer du på en side, hvor du trykker køb!",
+  "css": "",
+  "javaScript": ""
+}

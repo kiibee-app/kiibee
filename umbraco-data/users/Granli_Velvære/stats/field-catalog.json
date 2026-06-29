@@ -1,0 +1,111 @@
+{
+  "_umb_containerView": {
+    "alias": "_umb_containerView",
+    "labels": [],
+    "tabs": [
+      "Undersider"
+    ],
+    "editors": [
+      "listview"
+    ],
+    "seenOn": [
+      "parent"
+    ]
+  },
+  "isPlay": {
+    "alias": "isPlay",
+    "labels": [],
+    "tabs": [],
+    "editors": [
+      "Umbraco.TrueFalse"
+    ],
+    "seenOn": [
+      "item:92703",
+      "item:92702",
+      "item:88114",
+      "item:88095",
+      "item:77525",
+      "item:77524",
+      "item:77523",
+      "item:77522",
+      "item:77521",
+      "item:20251",
+      "item:20250",
+      "item:20079",
+      "item:19996",
+      "item:19762",
+      "item:19761",
+      "item:19543",
+      "item:19290",
+      "item:19289",
+      "item:19273",
+      "item:19236",
+      "item:19193",
+      "item:19129"
+    ]
+  },
+  "media": {
+    "alias": "media",
+    "labels": [],
+    "tabs": [],
+    "editors": [
+      "Umbraco.ContentPicker2"
+    ],
+    "seenOn": [
+      "item:92703",
+      "item:92702",
+      "item:88114",
+      "item:88095",
+      "item:77525",
+      "item:77524",
+      "item:77523",
+      "item:77522",
+      "item:77521",
+      "item:20251",
+      "item:20250",
+      "item:20079",
+      "item:19996",
+      "item:19762",
+      "item:19761",
+      "item:19543",
+      "item:19290",
+      "item:19289",
+      "item:19273",
+      "item:19236",
+      "item:19193",
+      "item:19129"
+    ]
+  },
+  "uID": {
+    "alias": "uID",
+    "labels": [],
+    "tabs": [],
+    "editors": [
+      "Umbraco.Textbox"
+    ],
+    "seenOn": [
+      "item:92703",
+      "item:92702",
+      "item:88114",
+      "item:88095",
+      "item:77525",
+      "item:77524",
+      "item:77523",
+      "item:77522",
+      "item:77521",
+      "item:20251",
+      "item:20250",
+      "item:20079",
+      "item:19996",
+      "item:19762",
+      "item:19761",
+      "item:19543",
+      "item:19290",
+      "item:19289",
+      "item:19273",
+      "item:19236",
+      "item:19193",
+      "item:19129"
+    ]
+  }
+}

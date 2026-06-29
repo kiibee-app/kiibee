@@ -1,0 +1,5790 @@
+[
+  {
+    "pageNumber": 1,
+    "pageSize": 100,
+    "totalPages": 2,
+    "totalItems": 111,
+    "items": [
+      {
+        "properties": [
+          {
+            "id": 1971216,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1971217,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1971218,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/578eecbae6364c2b8cccb978af1033f1",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2025-04-01 14:49:56",
+        "createDate": "2025-04-01 14:49:56",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 110,
+        "name": "9542c092445043a1bed0aa8136056016",
+        "id": 108205,
+        "udi": "umb://document/e4ea3a83c9ad44058b95eb2677ee5089",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "e4ea3a83-c9ad-4405-8b95-eb2677ee5089",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,108205",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1971213,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1971214,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1971215,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/b75a7ffedcfa4cc4b9f106ef32d27ca3",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2025-04-01 14:48:13",
+        "createDate": "2025-04-01 14:48:13",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 109,
+        "name": "84df36316fa4486fa611688a4acc0d2b",
+        "id": 108204,
+        "udi": "umb://document/b583da72852c484190704b09f4dfa569",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "b583da72-852c-4841-9070-4b09f4dfa569",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,108204",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1855630,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1855631,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1855632,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2024-09-17 21:12:18",
+        "createDate": "2024-09-17 21:12:18",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 108,
+        "name": "f708f56c41fe44a7a672f8bd21ac6e03",
+        "id": 100470,
+        "udi": "umb://document/e0954425386447d68ee28b40fc1c2f95",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "e0954425-3864-47d6-8ee2-8b40fc1c2f95",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,100470",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1855627,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1855628,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1855629,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2024-09-17 21:10:24",
+        "createDate": "2024-09-17 21:10:24",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 107,
+        "name": "89385b92b7a2472c8a6685cb827d5078",
+        "id": 100469,
+        "udi": "umb://document/dd0a935d4eda40a294bcf028b56998c7",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "dd0a935d-4eda-40a2-94bc-f028b56998c7",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,100469",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1855624,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1855625,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1855626,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/578eecbae6364c2b8cccb978af1033f1",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2024-09-17 21:09:05",
+        "createDate": "2024-09-17 21:09:05",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 106,
+        "name": "56dce387ac7d400ab0e59c77320950bb",
+        "id": 100468,
+        "udi": "umb://document/a5a17d4d3bb441af9ddfd1f77f43ebd7",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "a5a17d4d-3bb4-41af-9ddf-d1f77f43ebd7",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,100468",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1751900,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1751901,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1751902,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/fb1fe1fd537c4d83bb27b3748fc32ceb",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2024-04-10 05:10:13",
+        "createDate": "2024-04-10 05:10:13",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 105,
+        "name": "2adcc7decf2a47158832cb745b344979",
+        "id": 96204,
+        "udi": "umb://document/3ad7e31f97c54e2e93496453ef017708",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "3ad7e31f-97c5-4e2e-9349-6453ef017708",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,96204",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1705581,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1705582,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1705583,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2024-02-13 13:28:02",
+        "createDate": "2024-02-13 13:28:02",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 104,
+        "name": "970fc53785674115a2ee1219c009f0f4",
+        "id": 94716,
+        "udi": "umb://document/199a1b56090b4122bf943cfe7ed487e2",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "199a1b56-090b-4122-bf94-3cfe7ed487e2",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,94716",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1617561,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1617562,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1617563,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/fb1fe1fd537c4d83bb27b3748fc32ceb",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-09-22 14:17:17",
+        "createDate": "2023-09-22 14:17:17",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 103,
+        "name": "b54e5b55e0c143039fa268eedd31b921",
+        "id": 90377,
+        "udi": "umb://document/2674f9389ec94acd8d3fde1521b480d3",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "2674f938-9ec9-4acd-8d3f-de1521b480d3",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,90377",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1617558,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1617559,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1617560,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/9715ee36dd60454da6de9c1d900db5ef",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-09-22 14:15:45",
+        "createDate": "2023-09-22 14:15:45",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 102,
+        "name": "0b7229a73de544718e89c09f3d5ec8db",
+        "id": 90376,
+        "udi": "umb://document/0730e1916bb94e2aae665804e2bc0fd5",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "0730e191-6bb9-4e2a-ae66-5804e2bc0fd5",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,90376",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1617555,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1617556,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1617557,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/578eecbae6364c2b8cccb978af1033f1",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-09-22 14:14:14",
+        "createDate": "2023-09-22 14:14:14",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 101,
+        "name": "9087fb36b3a942b6ac2baca48f06ae7e",
+        "id": 90375,
+        "udi": "umb://document/4136cbb8430242029500e470d814a63d",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "4136cbb8-4302-4202-9500-e470d814a63d",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,90375",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1617552,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1617553,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1617554,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-09-22 14:12:45",
+        "createDate": "2023-09-22 14:12:45",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 100,
+        "name": "900caa0aeace42098c63460c6bb41c13",
+        "id": 90374,
+        "udi": "umb://document/28903efe43fc4395a1cc9e75f548a4a8",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "28903efe-43fc-4395-a1cc-9e75f548a4a8",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,90374",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1617549,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1617550,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1617551,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-09-22 14:10:18",
+        "createDate": "2023-09-22 14:10:18",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 99,
+        "name": "df7288a8a0c24efc930e49af975983ad",
+        "id": 90373,
+        "udi": "umb://document/588eec3687f143269c425ab65ac5909c",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "588eec36-87f1-4326-9c42-5ab65ac5909c",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,90373",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1488560,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1488561,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1488562,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-05-02 16:24:50",
+        "createDate": "2023-05-02 16:24:50",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 98,
+        "name": "07ed8450be7547bbaa31337ef7c5f6b3",
+        "id": 81506,
+        "udi": "umb://document/c9b42b92b3c54506b6faa29a6169b4ab",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "c9b42b92-b3c5-4506-b6fa-a29a6169b4ab",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,81506",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1483778,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1483779,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1483780,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/b75a7ffedcfa4cc4b9f106ef32d27ca3",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-04-25 10:11:46",
+        "createDate": "2023-04-25 10:11:46",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 97,
+        "name": "409a670945464910a0d6a53c3ca09c21",
+        "id": 80766,
+        "udi": "umb://document/c8866273337c448d9bef785e746646ff",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "c8866273-337c-448d-9bef-785e746646ff",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,80766",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1463214,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1463215,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1463216,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/b75a7ffedcfa4cc4b9f106ef32d27ca3",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2023-03-18 10:30:09",
+        "createDate": "2023-03-18 10:30:09",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 96,
+        "name": "4664589161ec4c67b5e83d2637d41705",
+        "id": 79208,
+        "udi": "umb://document/9fdc0243548e43d69296e29182987b42",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "9fdc0243-548e-43d6-9296-e29182987b42",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,79208",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1196244,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1196245,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1196246,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-06-10 14:54:13",
+        "createDate": "2022-06-10 14:54:13",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 95,
+        "name": "9e3dedcaf27d450bac13936171f2f121",
+        "id": 65922,
+        "udi": "umb://document/6bdc65e5f4964b75bb20db6c04d99eb5",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "6bdc65e5-f496-4b75-bb20-db6c04d99eb5",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,65922",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1196241,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1196242,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1196243,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/578eecbae6364c2b8cccb978af1033f1",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-06-10 14:52:53",
+        "createDate": "2022-06-10 14:52:53",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 94,
+        "name": "a0adb7f1b00b40599ccb6e71d99beb87",
+        "id": 65921,
+        "udi": "umb://document/e1e48f614cc8431aa2b0691e3804ad01",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "e1e48f61-4cc8-431a-a2b0-691e3804ad01",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,65921",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1150825,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1150826,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1150827,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-04-07 13:39:23",
+        "createDate": "2022-04-07 13:39:23",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 93,
+        "name": "97a30dc0156340b1bfe97d2384653114",
+        "id": 63333,
+        "udi": "umb://document/c89ae2dafa7a4bf7b7a0f086b0692d67",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "c89ae2da-fa7a-4bf7-b7a0-f086b0692d67",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,63333",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1150822,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1150823,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1150824,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/9715ee36dd60454da6de9c1d900db5ef",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-04-07 13:39:15",
+        "createDate": "2022-04-07 13:39:15",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 92,
+        "name": "efc8fd4930cc4a81962e29d20b29c1e6",
+        "id": 63332,
+        "udi": "umb://document/11d0d174a94647b68898a6272e9b70c8",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "11d0d174-a946-47b6-8898-a6272e9b70c8",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,63332",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1150819,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1150820,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1150821,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-04-07 13:39:08",
+        "createDate": "2022-04-07 13:39:08",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 91,
+        "name": "25678137349640f987bcec194a83929a",
+        "id": 63331,
+        "udi": "umb://document/5f6e74ee409e4cb7bec5a6ff2fdc33dd",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "5f6e74ee-409e-4cb7-bec5-a6ff2fdc33dd",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,63331",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1150816,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1150817,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1150818,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-04-07 13:38:58",
+        "createDate": "2022-04-07 13:38:58",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 90,
+        "name": "75d080447b394471abad56001a4696c7",
+        "id": 63330,
+        "udi": "umb://document/79c45f348b104bbaa8e45cf5d20ad056",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "79c45f34-8b10-4bba-a8e4-5cf5d20ad056",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,63330",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1146865,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1146866,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1146867,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/7d978ccac261419e80d1d316b3f8937c",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-03-30 12:22:02",
+        "createDate": "2022-03-30 12:22:02",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 89,
+        "name": "14a6c21f7bcb4c28bc6b98d4ca4356c0",
+        "id": 63100,
+        "udi": "umb://document/9bc9226d5bb1402a8171866631d937fb",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "9bc9226d-5bb1-402a-8171-866631d937fb",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,63100",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1146846,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1146847,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1146848,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/9715ee36dd60454da6de9c1d900db5ef",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-03-30 12:18:22",
+        "createDate": "2022-03-30 12:18:22",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 88,
+        "name": "d5f69c602d594af8a38f131d48674ec2",
+        "id": 63097,
+        "udi": "umb://document/b7a19110947041a584489414a8ffd0bb",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "b7a19110-9470-41a5-8448-9414a8ffd0bb",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,63097",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1146843,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1146844,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1146845,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-03-30 12:17:09",
+        "createDate": "2022-03-30 12:17:09",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 87,
+        "name": "3f6e3b4b9d88400b84c86264c1f1165c",
+        "id": 63096,
+        "udi": "umb://document/147f2952bbdc47af87e0c2a759c7a264",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "147f2952-bbdc-47af-87e0-c2a759c7a264",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,63096",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1146840,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1146841,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1146842,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/fb1fe1fd537c4d83bb27b3748fc32ceb",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-03-30 12:14:03",
+        "createDate": "2022-03-30 12:14:03",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 86,
+        "name": "1440012302df4053a5e7389c30e4e41b",
+        "id": 63095,
+        "udi": "umb://document/e4977bb93dc44806ae55b986386d72f7",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "e4977bb9-3dc4-4806-ae55-b986386d72f7",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,63095",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1146383,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1146384,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1146385,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/578eecbae6364c2b8cccb978af1033f1",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-03-29 08:58:07",
+        "createDate": "2022-03-29 08:58:07",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 85,
+        "name": "2ad2078ee2654596a72d4a5795dd2852",
+        "id": 63058,
+        "udi": "umb://document/f6822b5ca1cb4f09a4bef3e4a160d900",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "f6822b5c-a1cb-4f09-a4be-f3e4a160d900",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,63058",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1146380,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1146381,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1146382,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-03-29 08:57:44",
+        "createDate": "2022-03-29 08:57:44",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 84,
+        "name": "9061c66b45634c78bfe1c8edd8806413",
+        "id": 63057,
+        "udi": "umb://document/3b240a6a1d414329bf91ffedf2c7b469",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "3b240a6a-1d41-4329-bf91-ffedf2c7b469",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,63057",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1111483,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1111484,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1111485,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-03-05 17:23:51",
+        "createDate": "2022-03-05 17:23:51",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 83,
+        "name": "ac4a088aee8c44dba40ccd036a92b697",
+        "id": 62021,
+        "udi": "umb://document/e388c4407e9c44c0b653532018b0e329",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "e388c440-7e9c-44c0-b653-532018b0e329",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,62021",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1098391,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1098392,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1098393,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/b75a7ffedcfa4cc4b9f106ef32d27ca3",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2022-02-10 09:51:49",
+        "createDate": "2022-02-10 09:51:49",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 82,
+        "name": "6e669af9f8f34726afba4e619536df6d",
+        "id": 61440,
+        "udi": "umb://document/c4c6153af202426cb9839fe3b53fdafe",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "c4c6153a-f202-426c-b983-9fe3b53fdafe",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,61440",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1033949,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1033950,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1033951,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-12-22 09:27:03",
+        "createDate": "2021-12-22 09:27:03",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 81,
+        "name": "82e73f786aaf46d1900ba9795bf0335a",
+        "id": 55332,
+        "udi": "umb://document/b6664d5cbcd6447f908ca1b2d0d5e565",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "b6664d5c-bcd6-447f-908c-a1b2d0d5e565",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,55332",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 1015382,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 1015383,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 1015384,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-12-15 10:54:58",
+        "createDate": "2021-12-15 10:54:58",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 80,
+        "name": "228a642e16e940aebd9a9fbc8d789026",
+        "id": 54858,
+        "udi": "umb://document/e2e277a334ec49c2bde3736a3e48f238",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "e2e277a3-34ec-49c2-bde3-736a3e48f238",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,54858",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 926836,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 926837,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 926838,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-09-04 12:19:06",
+        "createDate": "2021-09-04 12:19:06",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 79,
+        "name": "06064838e40246b3b76b3fc3fa5fb9f8",
+        "id": 49751,
+        "udi": "umb://document/6b83c1e28e4f483e8e1a56482808590e",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "6b83c1e2-8e4f-483e-8e1a-56482808590e",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,49751",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 919725,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 919726,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 919727,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/39caa42595784057b89c0304d06fb75c",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-08-19 07:55:12",
+        "createDate": "2021-08-19 07:55:12",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 78,
+        "name": "cc8aef657abc46c5be34a0c956989933",
+        "id": 49339,
+        "udi": "umb://document/79e5df7db6ea4736af605c9e73eecf10",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "79e5df7d-b6ea-4736-af60-5c9e73eecf10",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,49339",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 919722,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 919723,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 919724,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/39caa42595784057b89c0304d06fb75c",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-08-19 07:49:07",
+        "createDate": "2021-08-19 07:49:07",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 77,
+        "name": "9af8145f30964e8db3220266def20af0",
+        "id": 49338,
+        "udi": "umb://document/9f0a77f7f31f42dbaf3739409be63da6",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "9f0a77f7-f31f-42db-af37-39409be63da6",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,49338",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 725144,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 725145,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 725146,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/cef9ccf88ea844af8354569d98a733df",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-04-05 12:35:08",
+        "createDate": "2021-04-05 12:35:08",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 76,
+        "name": "882c9e25f6154f2e8c4b8a3d2b90a102",
+        "id": 42152,
+        "udi": "umb://document/7287da19ec6545a0b34946fb6b2b525a",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "7287da19-ec65-45a0-b349-46fb6b2b525a",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,42152",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 684180,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 684181,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 684182,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/39caa42595784057b89c0304d06fb75c",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 14:23:05",
+        "createDate": "2021-03-02 14:23:05",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 75,
+        "name": "9a81381fb7a342e0ab92390c7292a4fa",
+        "id": 39094,
+        "udi": "umb://document/841ec34962ab48ada6caefe4b4cd6376",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "841ec349-62ab-48ad-a6ca-efe4b4cd6376",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39094",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 683279,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 683280,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 683281,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/39caa42595784057b89c0304d06fb75c",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 12:56:24",
+        "createDate": "2021-03-02 12:56:24",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 74,
+        "name": "cd50fb49d0d9441ea9e60a9bd26653cf",
+        "id": 39089,
+        "udi": "umb://document/85254e4b7d84419f916cebef29011fc8",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "85254e4b-7d84-419f-916c-ebef29011fc8",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39089",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 683189,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 683190,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 683191,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/9715ee36dd60454da6de9c1d900db5ef",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 12:32:41",
+        "createDate": "2021-03-02 12:32:41",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 73,
+        "name": "10f8c87036684de2b0696660193de117",
+        "id": 39086,
+        "udi": "umb://document/2a2ef7121f314e80b54f2778e56eb5e9",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "2a2ef712-1f31-4e80-b54f-2778e56eb5e9",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39086",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 683158,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 683159,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 683160,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 12:29:50",
+        "createDate": "2021-03-02 12:29:50",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 72,
+        "name": "5fcc52886a73462d810ebbdd44af8a0a",
+        "id": 39085,
+        "udi": "umb://document/7d909b783fd24281a7c17ece75c5e8c8",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "7d909b78-3fd2-4281-a7c1-7ece75c5e8c8",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39085",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 683155,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 683156,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 683157,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 12:29:40",
+        "createDate": "2021-03-02 12:29:40",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 71,
+        "name": "7c7f06cc0919401092223320fbaed598",
+        "id": 39084,
+        "udi": "umb://document/75671eafc667497698a091416c2245ee",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "75671eaf-c667-4976-98a0-91416c2245ee",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39084",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 683152,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 683153,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 683154,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 12:29:25",
+        "createDate": "2021-03-02 12:29:25",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 70,
+        "name": "5cb610814491449dbd35705d3b275de5",
+        "id": 39083,
+        "udi": "umb://document/a104853adc7a4820b1ae9ec5386f7492",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "a104853a-dc7a-4820-b1ae-9ec5386f7492",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39083",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 683149,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 683150,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 683151,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 12:29:11",
+        "createDate": "2021-03-02 12:29:11",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 69,
+        "name": "99c8e003ac874a5abb3bcd9b2c19d015",
+        "id": 39082,
+        "udi": "umb://document/0403352d0b3b41ddac212b8c4d9a55e5",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "0403352d-0b3b-41dd-ac21-2b8c4d9a55e5",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39082",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 683146,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 683147,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 683148,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 12:29:03",
+        "createDate": "2021-03-02 12:29:03",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 68,
+        "name": "40b1749b4d114c3ba67768c96f583b7f",
+        "id": 39081,
+        "udi": "umb://document/cf862b8ec9c240ca9e79aeba0da0e90f",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "cf862b8e-c9c2-40ca-9e79-aeba0da0e90f",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39081",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 683043,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 683044,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 683045,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 12:01:18",
+        "createDate": "2021-03-02 12:01:18",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 67,
+        "name": "430eb6fde5c14308a36aacf3db19b210",
+        "id": 39056,
+        "udi": "umb://document/246237a235614df7a1e0b3bf8819928c",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "246237a2-3561-4df7-a1e0-b3bf8819928c",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39056",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 682989,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 682990,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 682991,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 11:44:38",
+        "createDate": "2021-03-02 11:44:38",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 66,
+        "name": "eee673d58bfb40a2904b580da499263c",
+        "id": 39038,
+        "udi": "umb://document/34d808569c4841cd9c389652c8eda0a0",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "34d80856-9c48-41cd-9c38-9652c8eda0a0",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39038",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 682986,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 682987,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 682988,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-02 11:44:19",
+        "createDate": "2021-03-02 11:44:19",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 65,
+        "name": "347f66134cf146a5b62a08547ec8166c",
+        "id": 39037,
+        "udi": "umb://document/0dd1dbdc8a6341a58bfca127e57361a5",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "0dd1dbdc-8a63-41a5-8bfc-a127e57361a5",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,39037",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 682258,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 682259,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 682260,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-01 12:21:09",
+        "createDate": "2021-03-01 12:21:09",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 64,
+        "name": "bf4356e541cc4248b7da9a8e34487480",
+        "id": 38930,
+        "udi": "umb://document/34c2614c3bc545e2a11154a442ffab17",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "34c2614c-3bc5-45e2-a111-54a442ffab17",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,38930",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 682255,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 682256,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 682257,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-01 12:21:02",
+        "createDate": "2021-03-01 12:21:02",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 63,
+        "name": "338de5d0df6b461eb8a619ad2e35e63d",
+        "id": 38929,
+        "udi": "umb://document/beb81a1aba0142bbb457907e1d616cae",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "beb81a1a-ba01-42bb-b457-907e1d616cae",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,38929",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 682252,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 682253,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 682254,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-01 12:20:51",
+        "createDate": "2021-03-01 12:20:51",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 62,
+        "name": "3a87adf1b4e143d085362dffcef17129",
+        "id": 38928,
+        "udi": "umb://document/837daffaa9fb4e728d7e0d2095708553",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "837daffa-a9fb-4e72-8d7e-0d2095708553",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,38928",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 682249,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 682250,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 682251,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-01 12:20:15",
+        "createDate": "2021-03-01 12:20:15",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 61,
+        "name": "2fab84aa07e54f25a206de59ee9b4854",
+        "id": 38927,
+        "udi": "umb://document/b9b1856036784640b8fd19f6d8249881",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "b9b18560-3678-4640-b8fd-19f6d8249881",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,38927",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 682246,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 682247,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 682248,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-01 12:19:54",
+        "createDate": "2021-03-01 12:19:54",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 60,
+        "name": "bfad7b38ed3a4a16bc530043319d9145",
+        "id": 38926,
+        "udi": "umb://document/a7402071c8c34bb8ab7e8ff9e4fc9663",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "a7402071-c8c3-4bb8-ab7e-8ff9e4fc9663",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,38926",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 682243,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 682244,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 682245,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-03-01 12:19:41",
+        "createDate": "2021-03-01 12:19:41",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 59,
+        "name": "35d15b1f99e14bb39933e6886bb5b61c",
+        "id": 38925,
+        "udi": "umb://document/0d9350ba4cc44e19b6f1260656818699",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "0d9350ba-4cc4-4e19-b6f1-260656818699",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,38925",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 608531,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 608532,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 608533,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-02-05 14:18:17",
+        "createDate": "2021-02-05 14:18:17",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 58,
+        "name": "c499282a2cf844fe90540aa0033b5656",
+        "id": 33551,
+        "udi": "umb://document/3c22b12308374eebb2e595edba3ad6c0",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "3c22b123-0837-4eeb-b2e5-95edba3ad6c0",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,33551",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 538904,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 538905,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 538906,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2021-01-25 15:50:36",
+        "createDate": "2021-01-25 15:50:36",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 57,
+        "name": "6ce982c15f6f4287a9311d5843c7af5a",
+        "id": 30324,
+        "udi": "umb://document/fbcb973acbcd434895ecedf7940d61ac",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "fbcb973a-cbcd-4348-95ec-edf7940d61ac",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,30324",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 405486,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 405487,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 405488,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/9715ee36dd60454da6de9c1d900db5ef",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-11-08 10:09:15",
+        "createDate": "2020-11-08 10:09:15",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 56,
+        "name": "e568dfdd020e4f54a415da8e656901de",
+        "id": 21991,
+        "udi": "umb://document/197b01a8059a48f9bfaeb03181200a57",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "197b01a8-059a-48f9-bfae-b03181200a57",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,21991",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 405483,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 405484,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 405485,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/fb1fe1fd537c4d83bb27b3748fc32ceb",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-11-08 10:09:09",
+        "createDate": "2020-11-08 10:09:09",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 55,
+        "name": "02b961a258674d888eb404cb2ab496ef",
+        "id": 21990,
+        "udi": "umb://document/86e2d2b8406e4040a0458c0259961371",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "86e2d2b8-406e-4040-a045-8c0259961371",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,21990",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 405480,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 405481,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 405482,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/fb1fe1fd537c4d83bb27b3748fc32ceb",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-11-08 10:09:06",
+        "createDate": "2020-11-08 10:09:06",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 54,
+        "name": "e102359984b74f0db81721634dd89c03",
+        "id": 21989,
+        "udi": "umb://document/4a4c67d88cd9434ab1e3da756df139ca",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "4a4c67d8-8cd9-434a-b1e3-da756df139ca",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,21989",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 405477,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 405478,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 405479,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/fb1fe1fd537c4d83bb27b3748fc32ceb",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-11-08 10:08:50",
+        "createDate": "2020-11-08 10:08:50",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 53,
+        "name": "095a60873324440184ed2a5cde924d20",
+        "id": 21988,
+        "udi": "umb://document/61c7876bf4674306bb863665dfdc5a07",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "61c7876b-f467-4306-bb86-3665dfdc5a07",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,21988",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 405474,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 405475,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 405476,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-11-08 10:08:39",
+        "createDate": "2020-11-08 10:08:39",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 52,
+        "name": "11073d2c2d994801b8e64fddabfb4ee7",
+        "id": 21987,
+        "udi": "umb://document/45041877395f41b8a9d0c3eb49750001",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "45041877-395f-41b8-a9d0-c3eb49750001",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,21987",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 326240,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 326241,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 326242,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-15 13:51:20",
+        "createDate": "2020-09-15 13:51:20",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 51,
+        "name": "d67b31ee112646ffb70e60b26b26db09",
+        "id": 19772,
+        "udi": "umb://document/ce77e3e83fef423496dee6f871146f78",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "ce77e3e8-3fef-4234-96de-e6f871146f78",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19772",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 326237,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 326238,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 326239,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-15 13:46:05",
+        "createDate": "2020-09-15 13:46:05",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 50,
+        "name": "825e06e889474672815492593c597a17",
+        "id": 19771,
+        "udi": "umb://document/ab5bcf85057c46fd8a17e1c8dc4caf94",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "ab5bcf85-057c-46fd-8a17-e1c8dc4caf94",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19771",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 326234,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 326235,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 326236,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/9715ee36dd60454da6de9c1d900db5ef",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-15 13:45:56",
+        "createDate": "2020-09-15 13:45:56",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 49,
+        "name": "a561ab95061744c6b83766d972e48a39",
+        "id": 19770,
+        "udi": "umb://document/af505e0c53784bbc877558f4230909d6",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "af505e0c-5378-4bbc-8775-58f4230909d6",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19770",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 326231,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 326232,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 326233,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/fb1fe1fd537c4d83bb27b3748fc32ceb",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-15 13:44:29",
+        "createDate": "2020-09-15 13:44:29",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 48,
+        "name": "0327e51a88694620996a0cbae8513f33",
+        "id": 19769,
+        "udi": "umb://document/60877cc8da494e74a17c1d509097028a",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "60877cc8-da49-4e74-a17c-1d509097028a",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19769",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 318046,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 318047,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 318048,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/9715ee36dd60454da6de9c1d900db5ef",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 19:20:32",
+        "createDate": "2020-09-02 19:20:32",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 47,
+        "name": "097dd142c7b6447db3c70ac330d21eba",
+        "id": 19396,
+        "udi": "umb://document/be00d85c6c5a45a0957a87793581f958",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "be00d85c-6c5a-45a0-957a-87793581f958",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19396",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 318043,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 318044,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 318045,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 19:19:52",
+        "createDate": "2020-09-02 19:19:52",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 46,
+        "name": "5e0fbbebafe149a3a57960d54dfa744c",
+        "id": 19395,
+        "udi": "umb://document/eb12e823da4a4d9f93fbdfdaeb2fcb50",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "eb12e823-da4a-4d9f-93fb-dfdaeb2fcb50",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19395",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317968,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317969,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317970,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 13:54:48",
+        "createDate": "2020-09-02 13:54:48",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 45,
+        "name": "edf228c5a34242829868e95c00729a75",
+        "id": 19373,
+        "udi": "umb://document/4c000bce10024b82bb20dcfe3ee94bb3",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "4c000bce-1002-4b82-bb20-dcfe3ee94bb3",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19373",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317962,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317963,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317964,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 13:46:44",
+        "createDate": "2020-09-02 13:46:44",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 44,
+        "name": "a76242bf4e494c1a9bfbd6df4d353d40",
+        "id": 19371,
+        "udi": "umb://document/74588c190c194aacb6b7659e8403f6a6",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "74588c19-0c19-4aac-b6b7-659e8403f6a6",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19371",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317605,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317606,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317607,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e4eda6e7819c4de0b22b8f0e1a0f5428",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 13:31:14",
+        "createDate": "2020-09-02 13:31:14",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 43,
+        "name": "7434953d51434b02ae255a0c9aac84d0",
+        "id": 19366,
+        "udi": "umb://document/e7184f58f18642cc82d3bf3fe3a8bb2b",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "e7184f58-f186-42cc-82d3-bf3fe3a8bb2b",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19366",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317353,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317354,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317355,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/78302d41577c43268ae0945800cd1690",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 12:45:25",
+        "createDate": "2020-09-02 12:45:25",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 42,
+        "name": "cb09302554ea4a2299dc26788a81fb9a",
+        "id": 19362,
+        "udi": "umb://document/f739b2b95aaa4eda8730a1cc8ca050c3",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "f739b2b9-5aaa-4eda-8730-a1cc8ca050c3",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19362",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317350,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317351,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317352,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 12:45:11",
+        "createDate": "2020-09-02 12:45:11",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 41,
+        "name": "308161bdcb1b4fefa94a5434872b2df2",
+        "id": 19361,
+        "udi": "umb://document/2129686e4d3c4737baee5fbbe303ff76",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "2129686e-4d3c-4737-baee-5fbbe303ff76",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19361",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317347,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317348,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317349,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/81055e88a6f4498295d428026f13f000",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 12:41:18",
+        "createDate": "2020-09-02 12:41:18",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 40,
+        "name": "2a93cd29b2f74e4b9e3361e80ec18892",
+        "id": 19360,
+        "udi": "umb://document/87ec7146ed1349b29097e6440c009bad",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "87ec7146-ed13-49b2-9097-e6440c009bad",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19360",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317344,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317345,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317346,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 12:40:52",
+        "createDate": "2020-09-02 12:40:52",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 39,
+        "name": "610a2606939448ff96a9b4f332118c41",
+        "id": 19359,
+        "udi": "umb://document/b0280dc13e5e406c80882c9b6d22efe3",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "b0280dc1-3e5e-406c-8088-2c9b6d22efe3",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19359",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317341,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317342,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317343,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/78302d41577c43268ae0945800cd1690",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 12:40:25",
+        "createDate": "2020-09-02 12:40:25",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 38,
+        "name": "1c5cedaa07df4f99b05b04ca50b7b5ff",
+        "id": 19358,
+        "udi": "umb://document/4498721b4431413c8bb50605d99de67b",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "4498721b-4431-413c-8bb5-0605d99de67b",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19358",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317281,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317282,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317283,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/81055e88a6f4498295d428026f13f000",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 11:14:37",
+        "createDate": "2020-09-02 11:14:37",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 37,
+        "name": "d1dae50404c345a1bfdfc41c69f1e8ce",
+        "id": 19356,
+        "udi": "umb://document/fe1a3811fb1a4b51a54df352c5d947e9",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "fe1a3811-fb1a-4b51-a54d-f352c5d947e9",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19356",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317278,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317279,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317280,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/68d1cc789fbc4babb576845a2a7b866e",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 11:14:27",
+        "createDate": "2020-09-02 11:14:27",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 36,
+        "name": "549a6975d94e40a48fd74f31f7fd2fee",
+        "id": 19355,
+        "udi": "umb://document/c992b2543f8c40d58f4a5b32f191dfef",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "c992b254-3f8c-40d5-8f4a-5b32f191dfef",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19355",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317275,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317276,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317277,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/78302d41577c43268ae0945800cd1690",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 11:03:18",
+        "createDate": "2020-09-02 11:03:18",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 35,
+        "name": "363ed3497efc44dcbc57fcd758aaf94d",
+        "id": 19354,
+        "udi": "umb://document/3c86ed0e317743678f511e169152c61d",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "3c86ed0e-3177-4367-8f51-1e169152c61d",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19354",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317272,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317273,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317274,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/78302d41577c43268ae0945800cd1690",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:46:08",
+        "createDate": "2020-09-02 10:46:08",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 34,
+        "name": "460733742e79456c9f38b38acaf3eae2",
+        "id": 19353,
+        "udi": "umb://document/5911e9a97afa42ee92970d72be9036e2",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "5911e9a9-7afa-42ee-9297-0d72be9036e2",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19353",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317269,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317270,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317271,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/78302d41577c43268ae0945800cd1690",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:46:05",
+        "createDate": "2020-09-02 10:46:05",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 33,
+        "name": "f6032db6ab6b4c86935a79e7e1457682",
+        "id": 19352,
+        "udi": "umb://document/51ea5e8c37014e368619398797999dcf",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "51ea5e8c-3701-4e36-8619-398797999dcf",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19352",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317266,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317267,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317268,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/78302d41577c43268ae0945800cd1690",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:45:23",
+        "createDate": "2020-09-02 10:45:23",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 32,
+        "name": "3dc7e0f1991144f4adaa86adfe7b3fdc",
+        "id": 19351,
+        "udi": "umb://document/cf7cf87a1772461b950ab6a6d3a1f83b",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "cf7cf87a-1772-461b-950a-b6a6d3a1f83b",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19351",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317263,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317264,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317265,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/78302d41577c43268ae0945800cd1690",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:44:09",
+        "createDate": "2020-09-02 10:44:09",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 31,
+        "name": "435a9f47da4f4c51b50ad3e0150b85c9",
+        "id": 19350,
+        "udi": "umb://document/36f9dba844924e14a05f663a8d537076",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "36f9dba8-4492-4e14-a05f-663a8d537076",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19350",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317260,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317261,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317262,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/78302d41577c43268ae0945800cd1690",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:42:43",
+        "createDate": "2020-09-02 10:42:43",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 30,
+        "name": "69b631037a4541689c0dd15914a0679f",
+        "id": 19349,
+        "udi": "umb://document/06959706bb38400daf312d7be08a2dec",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "06959706-bb38-400d-af31-2d7be08a2dec",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19349",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317257,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317258,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317259,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/78302d41577c43268ae0945800cd1690",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:42:05",
+        "createDate": "2020-09-02 10:42:05",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 29,
+        "name": "4fabd56930094355b3b4984bf2ab5a16",
+        "id": 19348,
+        "udi": "umb://document/96afdef2c41147f0af5748c4f511713c",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "96afdef2-c411-47f0-af57-48c4f511713c",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19348",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317254,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317255,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317256,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/68d1cc789fbc4babb576845a2a7b866e",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:35:26",
+        "createDate": "2020-09-02 10:35:26",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 28,
+        "name": "de770c328e2249f998ae643b2696f076",
+        "id": 19347,
+        "udi": "umb://document/739a69ed9e74465f979dd621929c8c48",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "739a69ed-9e74-465f-979d-d621929c8c48",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19347",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317251,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317252,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317253,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/81055e88a6f4498295d428026f13f000",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:32:54",
+        "createDate": "2020-09-02 10:32:54",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 27,
+        "name": "9ffc158edce4403f971936919684be80",
+        "id": 19346,
+        "udi": "umb://document/6c48329f24aa4bccb8ec5e7ff77ea89b",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "6c48329f-24aa-4bcc-b8ec-5e7ff77ea89b",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19346",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317248,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317249,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317250,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/68d1cc789fbc4babb576845a2a7b866e",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:31:58",
+        "createDate": "2020-09-02 10:31:58",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 26,
+        "name": "ed13d16f7041408e9b9891e4b58ff6a2",
+        "id": 19345,
+        "udi": "umb://document/e3729a431171403397af5d286e90c94e",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "e3729a43-1171-4033-97af-5d286e90c94e",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19345",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317245,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317246,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317247,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/78302d41577c43268ae0945800cd1690",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:30:26",
+        "createDate": "2020-09-02 10:30:26",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 25,
+        "name": "7c1f5b96b07b43dfa230dc2d7f742c80",
+        "id": 19344,
+        "udi": "umb://document/cf7f32c61ff34d2c93dac4cb0aa14438",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "cf7f32c6-1ff3-4d2c-93da-c4cb0aa14438",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19344",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 317215,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 317216,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 317217,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/81055e88a6f4498295d428026f13f000",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-09-02 10:05:47",
+        "createDate": "2020-09-02 10:05:47",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 24,
+        "name": "9373747879cb47d8a6ebf100b5087050",
+        "id": 19343,
+        "udi": "umb://document/268de9ae369f4de28adc98044eafbaca",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "268de9ae-369f-4de2-8adc-98044eafbaca",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,19343",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 268799,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 268800,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 268801,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-06-05 12:25:53",
+        "createDate": "2020-06-05 12:25:53",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 23,
+        "name": "cc3b82873111480b9ee3e5b9db0b0103",
+        "id": 16724,
+        "udi": "umb://document/42185ab859e342ee98569e72f6230792",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "42185ab8-59e3-42ee-9856-9e72f6230792",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,16724",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 268769,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 268770,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 268771,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-06-05 12:24:19",
+        "createDate": "2020-06-05 12:24:19",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 22,
+        "name": "457a2dfa54754976a2bd5b86f1188676",
+        "id": 16723,
+        "udi": "umb://document/7ef9c30602614a7b87ba440f926abf7c",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "7ef9c306-0261-4a7b-87ba-440f926abf7c",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,16723",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 266926,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 266927,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 266928,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-06-04 15:12:43",
+        "createDate": "2020-06-04 15:12:43",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 21,
+        "name": "71639de0b06940889ab807d7bbbe4f0a",
+        "id": 16667,
+        "udi": "umb://document/92f4c00362cb4756b21b8bb4af38e00e",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "92f4c003-62cb-4756-b21b-8bb4af38e00e",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,16667",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 266923,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 266924,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 266925,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-06-04 15:12:40",
+        "createDate": "2020-06-04 15:12:40",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 20,
+        "name": "15038dafc0344fed8af1a170745eb960",
+        "id": 16666,
+        "udi": "umb://document/5d96f6636c2a4b2c96371b0fcd2faa31",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "5d96f663-6c2a-4b2c-9637-1b0fcd2faa31",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,16666",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 266869,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 266870,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 266871,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-06-04 13:15:49",
+        "createDate": "2020-06-04 13:15:49",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 19,
+        "name": "a8648fee65464debb558f619bdf41926",
+        "id": 16648,
+        "udi": "umb://document/5c8794dbed1440c3a53812c6f64ee68a",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "5c8794db-ed14-40c3-a538-12c6f64ee68a",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,16648",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 257758,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 257759,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 257760,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-22 17:36:33",
+        "createDate": "2020-05-22 17:36:33",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 18,
+        "name": "5962c58a2df0485c9a227c1f866c2a8b",
+        "id": 16096,
+        "udi": "umb://document/661b3aa6f24c4500abeffb173c2de3b4",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "661b3aa6-f24c-4500-abef-fb173c2de3b4",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,16096",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 255271,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 255272,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 255273,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-18 13:07:57",
+        "createDate": "2020-05-18 13:07:57",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 17,
+        "name": "dc4a0273da7b4f23aa8b7ad888a7b2c8",
+        "id": 15834,
+        "udi": "umb://document/399d248135354b63a7c198bf6f5daa58",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "399d2481-3535-4b63-a7c1-98bf6f5daa58",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,15834",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 252369,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 252370,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 252371,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-17 13:58:24",
+        "createDate": "2020-05-17 13:58:24",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 16,
+        "name": "7c1e9e73ff9e47afa3f151f7aa5e0102",
+        "id": 15701,
+        "udi": "umb://document/de3d152b01c54506bad634772caa1fd7",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "de3d152b-01c5-4506-bad6-34772caa1fd7",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,15701",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 251968,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 251969,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 251970,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-17 07:40:00",
+        "createDate": "2020-05-17 07:40:00",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 15,
+        "name": "304af25568294b549029dc69ff637ecf",
+        "id": 15651,
+        "udi": "umb://document/5c5ffc0780a44bfc99c062bda8ce93b8",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "5c5ffc07-80a4-4bfc-99c0-62bda8ce93b8",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,15651",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 250680,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 250681,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 250682,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-15 15:16:21",
+        "createDate": "2020-05-15 15:16:21",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 14,
+        "name": "40a8168ff2114133a05461e04f7cb163",
+        "id": 15455,
+        "udi": "umb://document/14848a7d16e947ec92bb1f8b0152756f",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "14848a7d-16e9-47ec-92bb-1f8b0152756f",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,15455",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 250677,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 250678,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 250679,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-15 15:15:04",
+        "createDate": "2020-05-15 15:15:04",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 13,
+        "name": "71793ec4542a4c6c8978567a452bdbff",
+        "id": 15454,
+        "udi": "umb://document/8eb1f8f62aa94aa0b31c418509b00709",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "8eb1f8f6-2aa9-4aa0-b31c-418509b00709",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,15454",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 250438,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 250439,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 250440,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/745a7aae97b844708601ae76f6092fe9",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-15 08:02:52",
+        "createDate": "2020-05-15 08:02:52",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 12,
+        "name": "8d24f5b941d94b5fbfebd40ff5bcacd7",
+        "id": 15386,
+        "udi": "umb://document/22521ca623ea4a65891bec66f8c3b9a4",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "22521ca6-23ea-4a65-891b-ec66f8c3b9a4",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,15386",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 241703,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 241704,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 241705,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-12 14:24:43",
+        "createDate": "2020-05-12 14:24:43",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 11,
+        "name": "7f57472d79fc44d3b046a30e471d1125",
+        "id": 14513,
+        "udi": "umb://document/f8ee7f00d00646c485b580dbf23097c4",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "f8ee7f00-d006-46c4-85b5-80dbf23097c4",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14513",
+        "metaData": {}
+      }
+    ]
+  },
+  {
+    "pageNumber": 2,
+    "pageSize": 100,
+    "totalPages": 2,
+    "totalItems": 111,
+    "items": [
+      {
+        "properties": [
+          {
+            "id": 241168,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 241169,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 241170,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-12 13:23:22",
+        "createDate": "2020-05-12 13:23:22",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 10,
+        "name": "94e7fbfde41044fda6d69512b2d9a871",
+        "id": 14465,
+        "udi": "umb://document/1973bb78eb6f4dd7812c914324b0108a",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "1973bb78-eb6f-4dd7-812c-914324b0108a",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14465",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 241129,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 241130,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 241131,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-12 11:40:52",
+        "createDate": "2020-05-12 11:40:52",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 9,
+        "name": "422eaf56bd2b489cbf90efec514d0452",
+        "id": 14452,
+        "udi": "umb://document/845f5a8bc5a042b68c07b77e361cf443",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "845f5a8b-c5a0-42b6-8c07-b77e361cf443",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14452",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 241094,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 241095,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 241096,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-12 11:37:47",
+        "createDate": "2020-05-12 11:37:47",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 8,
+        "name": "1e913bb9f0064f08b68b50d225f7e729",
+        "id": 14449,
+        "udi": "umb://document/7ccb7eb78a8a4c25b29947ee37f7a8e6",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "7ccb7eb7-8a8a-4c25-b299-47ee37f7a8e6",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14449",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 241080,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 241081,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 241082,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-12 11:35:07",
+        "createDate": "2020-05-12 11:35:07",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 7,
+        "name": "f230a65e8bb94da0bb11180901b29ec8",
+        "id": 14448,
+        "udi": "umb://document/2f7083cebc4e47d2801c42090ae41b1d",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "2f7083ce-bc4e-47d2-801c-42090ae41b1d",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14448",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 240901,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 240902,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 240903,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-12 11:23:39",
+        "createDate": "2020-05-12 11:23:39",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 6,
+        "name": "af7b18007e1e47d7b4d301dd4358e08c",
+        "id": 14444,
+        "udi": "umb://document/672e5f23d593418a8a06678faeeb14a2",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "672e5f23-d593-418a-8a06-678faeeb14a2",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14444",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 240643,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 240644,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 240645,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-12 11:06:55",
+        "createDate": "2020-05-12 11:06:55",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 5,
+        "name": "f40e26b902494703b24af03b543cd554",
+        "id": 14437,
+        "udi": "umb://document/d309f311606e4c8499d328115faef713",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "d309f311-606e-4c84-99d3-28115faef713",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14437",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 240456,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 240457,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 240458,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-12 10:24:21",
+        "createDate": "2020-05-12 10:24:21",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 4,
+        "name": "af34026b5b6642239e7238a28525035f",
+        "id": 14423,
+        "udi": "umb://document/a306b4d0ca4143adb7bbb4c3521f317a",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "a306b4d0-ca41-43ad-b7bb-b4c3521f317a",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14423",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 240035,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 240036,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 240037,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-11 19:45:33",
+        "createDate": "2020-05-11 19:45:33",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 3,
+        "name": "18613cb9fb6d492eb43881f3bfd965f9",
+        "id": 14334,
+        "udi": "umb://document/c9431be9c57d4dbb9c2227fc50434548",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "c9431be9-c57d-4dbb-9c22-27fc50434548",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14334",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 240023,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 240024,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 240025,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-11 19:42:06",
+        "createDate": "2020-05-11 19:42:06",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 2,
+        "name": "caad38ed2fd54450a46df7fd1798264b",
+        "id": 14330,
+        "udi": "umb://document/ba9894bbbbb14922abd17e3db8adc5ba",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "ba9894bb-bbb1-4922-abd1-7e3db8adc5ba",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14330",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 239289,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 239290,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 239291,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/235f1fc530b448b1bf351c34043b56b4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-11 14:27:27",
+        "createDate": "2020-05-11 14:27:27",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 1,
+        "name": "8ece9e8b37ed41c39a5a98cb546a5f99",
+        "id": 14242,
+        "udi": "umb://document/3ff361038c89455a88dc5efb03936eb3",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "3ff36103-8c89-455a-88dc-5efb03936eb3",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14242",
+        "metaData": {}
+      },
+      {
+        "properties": [
+          {
+            "id": 239043,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "id": 239044,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "id": 239045,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/608bd8e891e34a32ada7d9531026a30d",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          }
+        ],
+        "updateDate": "2020-05-11 14:09:44",
+        "createDate": "2020-05-11 14:09:44",
+        "published": true,
+        "hasPublishedVersion": true,
+        "owner": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "updater": {
+          "id": 0,
+          "name": "Martin H. Schläger"
+        },
+        "contentTypeAlias": "statsEntry",
+        "sortOrder": 0,
+        "name": "12173a8e03be476d83f47d7af67dddad",
+        "id": 14237,
+        "udi": "umb://document/7a32dc3b2ddc4c448cc9360465aef348",
+        "icon": "icon-nodes color-black",
+        "trashed": false,
+        "key": "7a32dc3b-2ddc-4c44-8cc9-360465aef348",
+        "parentId": 14218,
+        "alias": null,
+        "path": "-1,1067,14217,14218,14237",
+        "metaData": {}
+      }
+    ]
+  }
+]

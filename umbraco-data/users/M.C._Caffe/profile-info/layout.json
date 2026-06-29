@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "M.C. Caffe",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "M.C. Caffe",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3707/mc-caffe_final_300.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3708/mccaffe-3-of-61-kiibee.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["69"],
+  "coverTextPositionClass": "block",
+  "headline": "Rap Med M.C. Caffe",
+  "description": "Velkommen \r\nMit navn er M.C. Caffe\r\n\r\nJeg har lavet denne her side, for at hjælpe dig med at komme i gang med at rappe. På siden vil du løbende finde, kurser, workshops og anden form for rap læring. Alt materiale vil være i video, PDF, eller anden form for dokument.\r\n\r\nJeg har rappet i 20 år, med mine mange års erfaring, som comedy rapper og rap underviser, er turen nu kommet til denne digitale platform. Siden var planlagt til rap for begyndere, men alle er velkommen til at lege med.\r\n@mccaffe89",
+  "css": "",
+  "javaScript": ""
+}

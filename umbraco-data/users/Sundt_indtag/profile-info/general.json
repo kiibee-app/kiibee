@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "Sundt indtag",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/1d6f6fd1c6b643e4aec4d2985b58d867",
+  "emailReceipt": "",
+  "supportEmail": ""
+}

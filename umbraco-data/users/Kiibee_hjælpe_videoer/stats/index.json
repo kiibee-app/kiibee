@@ -1,0 +1,104 @@
+{
+  "exportedAt": "2026-06-02T09:16:57.872Z",
+  "collectionName": "Stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2827",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 2827,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": []
+  },
+  "parent": {
+    "id": 2827,
+    "key": "86618d14-4c7e-4a02-a1ec-2db0dcbd045a",
+    "udi": "umb://document/86618d144c7e4a02a1ec2db0dcbd045a",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/kiibee-hjaelpe-videoer/stats/"
+    ],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": [
+      "_umb_containerView"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 548,
+    "childrenFetched": 548,
+    "detailIdsRequested": 548,
+    "detailsFetched": 548,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 548
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 548
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 548
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 548
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 548
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 48,
+      "totalItems": 548
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

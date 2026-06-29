@@ -1,0 +1,52 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/dd98d0a15d8b4ea9a403aa491eaadda5",
+      "key": "dd98d0a1-5d8b-4ea9-a403-aa491eaadda5",
+      "resolved": true,
+      "id": 117518,
+      "name": "Molly og \"Cykelstiens Hemmeligheder\"",
+      "title": "Molly og \"Cykelstiens Hemmeligheder\"",
+      "urls": [
+        "/nethe-nomonde-dalgaard/molly-og-cykelstiens-hemmeligheder/molly-og-cykelstiens-hemmeligheder/"
+      ],
+      "contentTypeAlias": "media",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "/media/5097/molly_og_cykelstiens_hemmeligheder.pdf",
+      "webContentURL": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/5099/molly.png",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "purchasePrice": "45",
+      "rentalPrice": "",
+      "purchaseEntryCount": 5,
+      "purchaseOrderCount": 5,
+      "nonPurchaseEntryCount": 0,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2026-01-12 13:13:26",
+      "lastPurchaseAt": "2026-03-20 17:23:05",
+      "samplePurchaseIds": [120123, 117657, 117595, 117569, 117521]
+    }
+  ],
+  "unresolvedMedia": []
+}

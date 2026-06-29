@@ -1,0 +1,23 @@
+{
+  "tab": "Subscription",
+  "name": "Red Barnet",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "subscription": "umb://document/5ba7f17c7cf64beea5db1176fd45d365",
+  "price": "",
+  "price3": "",
+  "price6": "",
+  "price12": "",
+  "maxFiles": 20,
+  "kiibeeCut": 20,
+  "transactionFee": 6,
+  "paymentPeriod": ["1"]
+}

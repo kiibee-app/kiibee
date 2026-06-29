@@ -1,0 +1,70 @@
+{
+  "tab": "Layout",
+  "name": "Publika",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Bilplan",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4781/6.gif",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "0PN8"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4782/budget.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0PNC"
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4783/budget.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600,
+        "$$hashKey": "0PNG"
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Nemt bilbudget",
+  "description": "Få overblik over din biløkonomi fra start med vores detaljerede og brugervenlige Excel skabeloner. \r\n\r\nDu kan vælge mellem vores to skabeloner til henholdsvis Elbil og til Benzin/Diesel biler.\r\n\r\nBemærk at alle skabeloner kræver Excel.",
+  "css": "",
+  "javaScript": ""
+}

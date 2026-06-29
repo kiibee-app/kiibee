@@ -1,0 +1,67 @@
+{
+  "tab": "Layout",
+  "name": "Thomas Wivel",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Forlaget AKKA",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4640/akka-logo.jpeg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4645/coverbillede.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4651/hoejformat-billede-til-top.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Velkommen til Hammel – kanten",
+  "description": "Forlaget AKKA udgiver primært lokalhistoriske publikationer, frembragt af mennesker, der har rødder på Hammel egnen. Forlaget er en selvejende institution, hvor ingen kan få andel i overskuddet, der alene skal anvendes til udgivelse af nye publikationer. Her på siden findes er udvalg af publikationerne i elektronisk form.",
+  "css": "",
+  "javaScript": ""
+}

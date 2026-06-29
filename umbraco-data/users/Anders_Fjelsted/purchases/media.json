@@ -1,0 +1,92 @@
+[
+  {
+    "udi": "umb://document/0eddf83f560f4d70829e4461764e66af",
+    "key": "0eddf83f-560f-4d70-829e-4461764e66af",
+    "resolved": true,
+    "id": 42518,
+    "name": "Lige ved og voksen",
+    "title": "Lige ved og voksen ",
+    "urls": ["/anders-fjelsted/shows/lige-ved-og-voksen/"],
+    "contentTypeAlias": "media",
+    "videoID": "1f333c5332a2582c07245c39905a67bd",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/1f333c5332a2582c07245c39905a67bd/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3140/fjelle_400x600.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 4,
+    "purchaseOrderCount": 4,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 9,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2021-06-05 08:31:34",
+    "lastPurchaseAt": "2026-04-04 20:00:15",
+    "samplePurchaseIds": [120678, 107771, 68102, 46808]
+  },
+  {
+    "udi": "umb://document/d0f27e4eb7044d1bab4621d8852c3aff",
+    "key": "d0f27e4e-b704-4d1b-ab46-21d8852c3aff",
+    "resolved": true,
+    "id": 42517,
+    "name": "Barnligt Voksen",
+    "title": "Barnligt Voksen ",
+    "urls": ["/anders-fjelsted/shows/barnligt-voksen/"],
+    "contentTypeAlias": "media",
+    "videoID": "49612bd7fb8e4fcc20b6c1d750c650a0",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/49612bd7fb8e4fcc20b6c1d750c650a0/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3139/fjelsted_dvd_packshot.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 3,
+    "purchaseOrderCount": 3,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 2,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2021-06-05 08:42:29",
+    "lastPurchaseAt": "2025-03-24 23:54:54",
+    "samplePurchaseIds": [107769, 64176, 46811]
+  }
+]

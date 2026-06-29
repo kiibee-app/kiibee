@@ -1,25 +1,42 @@
 import 'dotenv/config';
 import { seedContentCategories } from './contentCategories.seed';
 import { seedContentTypes } from './contentTypes.seed';
-import { seedCreatorAccounts } from './creatorAccounts.seed';
+import { resetSeedData } from './resetSeedData';
 import { seedPlans } from './subscriptionPlan.seed';
 import { seedTags } from './tags.seed';
+import { seedUmbracoLogs } from './umbracoLogs.seed';
+import { seedUmbracoPayouts } from './umbracoPayouts.seed';
 import { seedUmbracoProfiles } from './umbracoProfiles.seed';
+import { seedUmbracoPurchases } from './umbracoPurchases.seed';
 import { seedUmbracoShows } from './umbracoShows.seed';
+import { seedUmbracoStats } from './umbracoStats.seed';
 import { seedUsers } from './users.seed';
+import { backfillMissingPasswordHashes } from './backfillPasswordHashes.seed';
 
 async function main() {
-  // Reference data first
+  // Optional full wipe — skipped by default so re-runs merge new umbraco-data
+  await resetSeedData();
+
+  // Reference data required by Umbraco content/profile seeds
   await seedContentCategories();
   await seedContentTypes();
   await seedTags();
   await seedPlans();
 
-  // Base users, then creator accounts that depend on plans
+  // Only admin account; creators/viewers come from umbraco-data
   await seedUsers();
-  await seedCreatorAccounts();
+
+  // Creator profiles & content from umbraco-data
   await seedUmbracoProfiles();
   await seedUmbracoShows();
+
+  // Commerce, analytics, and activity logs from umbraco-data
+  await seedUmbracoPurchases();
+  await seedUmbracoLogs();
+  await seedUmbracoPayouts();
+  await seedUmbracoStats();
+
+  await backfillMissingPasswordHashes();
 
   console.log('All seeds completed successfully');
   process.exit();

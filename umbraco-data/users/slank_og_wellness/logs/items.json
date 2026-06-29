@@ -1,0 +1,293 @@
+[
+  {
+    "id": 2082,
+    "key": "6c0b611e-db1f-4b94-a2a9-74dde7985db1",
+    "udi": "umb://document/6c0b611edb1f4b94a2a974dde7985db1",
+    "name": "bq7828092019210918",
+    "contentTypeAlias": "logEntry",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2019-09-28 21:10:17",
+    "updateDate": "2019-10-05 20:51:53",
+    "parentId": 2073,
+    "path": "-1,1067,2072,2073,2082",
+    "sortOrder": 0,
+    "urls": [
+      "/slank-og-wellness/log/bq7828092019210918/"
+    ],
+    "fields": {
+      "fullName": "Tina Kristensen",
+      "price": "19",
+      "isPurchase": "1",
+      "acquirer": "",
+      "paytype": "1",
+      "email": "tina.gistrup@hotmail.com",
+      "transactionID": "230478537",
+      "media": ""
+    },
+    "fieldDetails": {
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Tina Kristensen"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "19"
+      },
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1"
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "tina.gistrup@hotmail.com"
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "230478537"
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": ""
+      }
+    },
+    "fieldOrder": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ],
+    "fullValues": {
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "230478537",
+        "booleanValue": null,
+        "displayValue": "230478537",
+        "resolvedReference": null
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "19",
+        "booleanValue": null,
+        "displayValue": "19",
+        "resolvedReference": null
+      },
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Tina Kristensen",
+        "booleanValue": null,
+        "displayValue": "Tina Kristensen",
+        "resolvedReference": null
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "tina.gistrup@hotmail.com",
+        "booleanValue": null,
+        "displayValue": "tina.gistrup@hotmail.com",
+        "resolvedReference": null
+      }
+    },
+    "fullValueRows": [
+      {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "tab": "General",
+        "editor": "boolean",
+        "value": "1",
+        "booleanValue": true,
+        "displayValue": "true",
+        "resolvedReference": null
+      },
+      {
+        "alias": "media",
+        "label": "Media",
+        "tab": "General",
+        "editor": "contentpicker",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "230478537",
+        "booleanValue": null,
+        "displayValue": "230478537",
+        "resolvedReference": null
+      },
+      {
+        "alias": "paytype",
+        "label": "Paytype",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "1",
+        "booleanValue": null,
+        "displayValue": "1",
+        "resolvedReference": null
+      },
+      {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "",
+        "booleanValue": null,
+        "displayValue": "",
+        "resolvedReference": null
+      },
+      {
+        "alias": "price",
+        "label": "Price",
+        "tab": "General",
+        "editor": "decimal",
+        "value": "19",
+        "booleanValue": null,
+        "displayValue": "19",
+        "resolvedReference": null
+      },
+      {
+        "alias": "fullName",
+        "label": "Name",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "Tina Kristensen",
+        "booleanValue": null,
+        "displayValue": "Tina Kristensen",
+        "resolvedReference": null
+      },
+      {
+        "alias": "email",
+        "label": "Email",
+        "tab": "General",
+        "editor": "textbox",
+        "value": "tina.gistrup@hotmail.com",
+        "booleanValue": null,
+        "displayValue": "tina.gistrup@hotmail.com",
+        "resolvedReference": null
+      }
+    ]
+  }
+]

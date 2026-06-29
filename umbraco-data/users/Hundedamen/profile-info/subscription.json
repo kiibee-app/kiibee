@@ -1,0 +1,23 @@
+{
+  "tab": "Subscription",
+  "name": "Hundedamen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "subscription": "umb://document/6ae38a0b56144a55ac017545e006b9a4",
+  "price": "",
+  "price3": "",
+  "price6": "",
+  "price12": "",
+  "maxFiles": 30,
+  "kiibeeCut": "",
+  "transactionFee": "",
+  "paymentPeriod": ["388"]
+}

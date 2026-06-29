@@ -1,0 +1,28 @@
+{
+  "tab": "Layout",
+  "name": "CamComm",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "CamComm",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": "",
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "",
+  "description": "",
+  "css": "",
+  "javaScript": ""
+}

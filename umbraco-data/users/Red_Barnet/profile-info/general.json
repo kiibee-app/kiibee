@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "Red Barnet",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/82f54dcd2e27453c8597e14b2c23b61e",
+  "emailReceipt": "",
+  "supportEmail": "info@kiibee.dk"
+}

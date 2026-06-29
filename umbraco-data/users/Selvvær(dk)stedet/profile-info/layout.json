@@ -1,0 +1,46 @@
+{
+  "tab": "Layout",
+  "name": "Selvvær(dk)stedet",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "62"
+  ],
+  "logoText": "Selvvær(dk)stedet",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1897/received_792741987927399.jpeg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "U6S"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "bottom",
+  "headline": "Selvvær(dk)stedet",
+  "description": "Velkommen i selvvær(dk)stedet.\r\n\r\nHer vil jeg guide dig til personlig udvikling og et styrket selvværd.\r\nDu vil få mulighed for, at købe forskellige workshops.\r\nGod fornøjelse.\r\nBetina Skou Gjesing",
+  "css": "",
+  "javaScript": ""
+}

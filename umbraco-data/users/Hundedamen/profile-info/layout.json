@@ -1,0 +1,70 @@
+{
+  "tab": "Layout",
+  "name": "Hundedamen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Hundedamen",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2537/logo.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "YYK"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2535/img_9547-cropped-a-lot.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "YYO"
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3607/hundedamen3.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600,
+        "$$hashKey": "YYS"
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["69"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Online kurser i hundetræning ",
+  "description": "Velkommen til mine online kurser. På mine kurser kan du lære din hund de ting du skal bruge, for at gøre din dagligdag behagelig og harmonisk sammen med din hund.",
+  "css": "body { background-color: #3d5577; color: white ; }\nh5 { background-color: #3d5577; white ; }\nh6 { background-color: #3d5577; color: white; }\n.line { background-color: #858889; }\nmain .cover { background-color: #3d5577; color: white; }\n/* Hide blur effekt */\n.media__blur { display: none; }/*main .media__blur:after { background-image: -webkit-gradient(linear, left bottom, left top, from(#1d1d1d), color-stop(30%, rgba(29, 29, 29, 0.8)), to(rgba(29, 29, 29, 0))); background-image: linear-gradient(to top, \n#1d1d1d 0%, rgba(29, 29, 29, 0.8) 30%, rgba(29, 29, 29, 0) 100%); }\n */main .media .purchases .purchase { background-color:#4274c1; color: white; }\nmain .media .purchases .purchase .grey { color: white; }",
+  "javaScript": ""
+}

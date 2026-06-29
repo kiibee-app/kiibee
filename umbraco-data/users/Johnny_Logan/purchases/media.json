@@ -1,0 +1,29 @@
+[
+  {
+    "udi": "umb://document/19c770e3fd7246e88ef4df31a3e72996",
+    "key": "19c770e3-fd72-46e8-8ef4-df31a3e72996",
+    "resolved": true,
+    "id": 42418,
+    "name": "The Invincible Concert ",
+    "title": "The Invincible Concert ",
+    "urls": ["/johnny-logan/the-invincible-concert/the-invincible-concert/"],
+    "contentTypeAlias": "media",
+    "videoID": "",
+    "videoStatus": "",
+    "videoThumbnailURL": "",
+    "videoDownloadURL": "",
+    "rawFile": "",
+    "webContentURL": "https://vimeo.com/536329038",
+    "thumbnail": "/media/3123/logan-kiibee-1920x1080-thumbnail.jpg",
+    "purchasePrice": "59",
+    "rentalPrice": "",
+    "purchaseEntryCount": 11,
+    "purchaseOrderCount": 11,
+    "nonPurchaseEntryCount": 0,
+    "totalDownloads": 0,
+    "totalStreams": 0,
+    "firstPurchaseAt": "2021-05-01 17:41:11",
+    "lastPurchaseAt": "2021-05-10 23:55:25",
+    "samplePurchaseIds": [45319, 45264, 45254, 45220, 44750]
+  }
+]

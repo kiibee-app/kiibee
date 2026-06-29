@@ -1,0 +1,153 @@
+[
+  {
+    "id": 42559,
+    "key": "1866cad3-65ba-4742-8b71-7d505c365345",
+    "udi": "umb://document/1866cad365ba47428b717d505c365345",
+    "name": "MØRK",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2021-04-10 10:16:42",
+    "updateDate": "2024-01-15 22:57:12",
+    "parentId": 42320,
+    "path": "-1,1067,42313,42320,42559",
+    "sortOrder": 0,
+    "urls": [
+      "/brian-moerk/shows/mørk/"
+    ],
+    "properties": {
+      "purchasePrice": "39",
+      "access": [
+        "58"
+      ],
+      "rentalPrice": "29",
+      "code": "",
+      "metaDescription": "",
+      "metaTitle": "",
+      "type": [
+        "73"
+      ],
+      "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+      "rawFile": "",
+      "videoStatus": "ready",
+      "hidden": "0",
+      "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+      "videoID": "5bc404d30326108638ef1becedb42fdd",
+      "openWebContentInNewWindows": "0",
+      "trailer": "",
+      "openWebContentFromList": "0",
+      "webContentURL": "",
+      "orderID": "0",
+      "videoSize": "1203737647",
+      "productLink": "",
+      "expandedDescription": "",
+      "production": "FBI.DK",
+      "year": "2010",
+      "description": "<h2>Stream Brian Mørks MØRK - lej eller køb online</h2>\nHans første one man show ”MØRK” imponerede både anmeldere og fans ved at handle om så store emner som økonomi, religion, videnskab og demokrati. Brian Mørk formåede over måde at gøre disse voksne emner både alvorlige og dybt morsomme.\n\nGlæd dig til begavet og vanvittig morsom stand-up fra en af Danmarks bedste komikere.\n\nPolitiken gav fire hjerter og skrev \"fornem komik\".\nJyllands-Posten bakkede op med \"begavet og underholdende",
+      "productionLink": "",
+      "thumbnail": {
+        "focalPoint": {
+          "left": 0.5,
+          "top": 0.5
+        },
+        "src": "/media/3142/mork_400x600.jpg",
+        "crops": [
+          {
+            "alias": "Wide",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "alias": "High",
+            "width": 650,
+            "height": 920
+          }
+        ]
+      },
+      "title": "MØRK ",
+      "badge": "",
+      "length": "124",
+      "tags": "MØRK,Comedy,Brian Mørk,Stand-up",
+      "hidePlay": "0",
+      "hideDownload": "0",
+      "siteMapOption": ""
+    },
+    "type": [
+      "73"
+    ],
+    "rawFile": "",
+    "videoID": "5bc404d30326108638ef1becedb42fdd",
+    "videoStatus": "ready",
+    "videoSize": "1203737647",
+    "videoThumbnailURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/5bc404d30326108638ef1becedb42fdd/downloads/default.mp4",
+    "trailer": "",
+    "webContentURL": "",
+    "openWebContentInNewWindows": false,
+    "openWebContentFromList": false,
+    "hidden": false,
+    "orderID": "0",
+    "title": "MØRK ",
+    "description": "<h2>Stream Brian Mørks MØRK - lej eller køb online</h2>\nHans første one man show ”MØRK” imponerede både anmeldere og fans ved at handle om så store emner som økonomi, religion, videnskab og demokrati. Brian Mørk formåede over måde at gøre disse voksne emner både alvorlige og dybt morsomme.\n\nGlæd dig til begavet og vanvittig morsom stand-up fra en af Danmarks bedste komikere.\n\nPolitiken gav fire hjerter og skrev \"fornem komik\".\nJyllands-Posten bakkede op med \"begavet og underholdende",
+    "expandedDescription": "",
+    "year": "2010",
+    "length": "124",
+    "badge": "",
+    "production": "FBI.DK",
+    "productionLink": "",
+    "tags": "MØRK,Comedy,Brian Mørk,Stand-up",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3142/mork_400x600.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "productLink": "",
+    "access": [
+      "58"
+    ],
+    "rentalPrice": "29",
+    "purchasePrice": "39",
+    "code": "",
+    "hidePlay": false,
+    "hideDownload": false,
+    "siteMapOption": "",
+    "metaTitle": "",
+    "metaDescription": "",
+    "statsMatched": true,
+    "statsEntryCount": 40,
+    "statsPlayCount": 22,
+    "statsNonPlayCount": 18,
+    "firstStatAt": "2021-05-31 16:34:50",
+    "lastStatAt": "2026-03-26 23:10:10",
+    "stats": {
+      "mediaUdi": "umb://document/1866cad365ba47428b717d505c365345",
+      "mediaKey": "1866cad3-65ba-4742-8b71-7d505c365345",
+      "entryCount": 40,
+      "playCount": 22,
+      "nonPlayCount": 18,
+      "firstEntryAt": "2021-05-31 16:34:50",
+      "lastEntryAt": "2026-03-26 23:10:10",
+      "sampleEntryIds": [
+        120318,
+        120311,
+        120310,
+        118799,
+        118692
+      ]
+    }
+  }
+]

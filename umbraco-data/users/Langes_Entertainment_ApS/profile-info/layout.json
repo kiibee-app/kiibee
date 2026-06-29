@@ -1,0 +1,67 @@
+{
+  "tab": "Layout",
+  "name": "Langes Entertainment ApS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Langes Entertainment ApS",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2906/skaermbillede-2021-02-01-kl-174547.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2893/den-brede-lange-bremen.jpeg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3393/nicolaj-lange0009-2.jpeg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "Nicolaj Lange er fuldtidskomiker og en af landets mest foretrukne stand-up komikere til alt fra firmafester, julefrokoster, jubilæer og de store private events. Med op mod 200 optrædener om året er Lange et sikkert kort at spille. Den lange Nordjyde er en mester i levende illustrationer om hverdagens trivialiter krydret med nordjysk charme og masser af selvironi.\r\nNicolaj Lange er også kendt fra de sociale medier, hvor hans videoer er gået viralt om livet som forsmået ægtemand, gør det selvmand, ",
+  "css": "",
+  "javaScript": ""
+}

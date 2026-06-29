@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Familier fødes - familiens psykolog gennem hele rejsen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2023-10-17",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": []
+}

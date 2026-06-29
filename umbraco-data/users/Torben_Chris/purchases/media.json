@@ -1,0 +1,137 @@
+[
+  {
+    "udi": "umb://document/5197f1d39e9446199449ce69c0f87b74",
+    "key": "5197f1d3-9e94-4619-9449-ce69c0f87b74",
+    "resolved": true,
+    "id": 43127,
+    "name": "ABC",
+    "title": "ABC",
+    "urls": ["/torben-chris/shows/abc/"],
+    "contentTypeAlias": "media",
+    "videoID": "2015e3a68e353c33cd9e1c8b6b4cda7e",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/2015e3a68e353c33cd9e1c8b6b4cda7e/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/2015e3a68e353c33cd9e1c8b6b4cda7e/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3209/tc_abc_web_ikon-628x890.jpeg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 124,
+    "purchaseOrderCount": 90,
+    "nonPurchaseEntryCount": 34,
+    "totalDownloads": 116,
+    "totalStreams": 85,
+    "firstPurchaseAt": "2021-05-22 21:24:32",
+    "lastPurchaseAt": "2026-05-15 03:04:48",
+    "samplePurchaseIds": [123279, 123266, 120432, 120390, 120346]
+  },
+  {
+    "udi": "umb://document/23d9bbd8d555421d959ab41a04749f74",
+    "key": "23d9bbd8-d555-421d-959a-b41a04749f74",
+    "resolved": true,
+    "id": 42574,
+    "name": "Jydelogik",
+    "title": "Jydelogik ",
+    "urls": ["/torben-chris/shows/jydelogik/"],
+    "contentTypeAlias": "media",
+    "videoID": "84559d895a0a0a90af66b1a7d057fe9d",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/84559d895a0a0a90af66b1a7d057fe9d/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/84559d895a0a0a90af66b1a7d057fe9d/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3145/141364_tc_facing_400x556.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 65,
+    "purchaseOrderCount": 50,
+    "nonPurchaseEntryCount": 15,
+    "totalDownloads": 49,
+    "totalStreams": 34,
+    "firstPurchaseAt": "2021-05-22 19:43:38",
+    "lastPurchaseAt": "2026-05-15 02:54:05",
+    "samplePurchaseIds": [123276, 123038, 120086, 119823, 118894]
+  },
+  {
+    "udi": "umb://document/9692937eea1e423482275d67b6d46dea",
+    "key": "9692937e-ea1e-4234-8227-5d67b6d46dea",
+    "resolved": true,
+    "id": 44290,
+    "name": "Rage Against The Mainstream",
+    "title": "Rage Against The Mainstream",
+    "urls": ["/torben-chris/shows/rage-against-the-mainstream/"],
+    "contentTypeAlias": "media",
+    "videoID": "8b4502350628dd76198fc7be2a9ca503",
+    "videoStatus": "ready",
+    "videoThumbnailURL": "https://videodelivery.net/8b4502350628dd76198fc7be2a9ca503/thumbnails/thumbnail.jpg",
+    "videoDownloadURL": "https://videodelivery.net/8b4502350628dd76198fc7be2a9ca503/downloads/default.mp4",
+    "rawFile": "",
+    "webContentURL": "",
+    "thumbnail": {
+      "focalPoint": {
+        "left": 0.5,
+        "top": 0.5
+      },
+      "src": "/media/3302/ratm-facing.jpg",
+      "crops": [
+        {
+          "alias": "Wide",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "alias": "High",
+          "width": 650,
+          "height": 920
+        }
+      ]
+    },
+    "purchasePrice": "39",
+    "rentalPrice": "29",
+    "purchaseEntryCount": 43,
+    "purchaseOrderCount": 36,
+    "nonPurchaseEntryCount": 7,
+    "totalDownloads": 48,
+    "totalStreams": 5,
+    "firstPurchaseAt": "2021-05-26 17:36:12",
+    "lastPurchaseAt": "2026-05-10 15:46:31",
+    "samplePurchaseIds": [123106, 121055, 120089, 119016, 117984]
+  }
+]

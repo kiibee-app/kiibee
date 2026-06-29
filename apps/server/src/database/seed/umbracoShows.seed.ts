@@ -1,5 +1,5 @@
 import { createHash } from 'crypto';
-import { existsSync, readdirSync, readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { eq } from 'drizzle-orm';
 
@@ -9,6 +9,7 @@ import { db } from '../db';
 import {
   inferContentCategoryId,
   loadProfileCategoryContext,
+  loadUmbracoProfileKeys,
   resolveProfileDefaultCategoryId,
   resolveUmbracoMediaUrl,
   resolveUmbracoShowThumbnails,
@@ -409,11 +410,8 @@ function readShowsFile(profileKey: string, root: string): UmbracoShow[] | null {
 }
 
 function loadProfileShows(root: string): LoadedProfileShows[] {
-  return readdirSync(root, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
+  return loadUmbracoProfileKeys(root)
     .filter((profileKey) => readShowsFile(profileKey, root))
-    .sort((left, right) => left.localeCompare(right))
     .map((profileKey) => ({
       profileKey,
       shows: readShowsFile(profileKey, root) ?? [],
@@ -490,6 +488,8 @@ export const seedUmbracoShows = async () => {
     console.log(`Umbraco shows seed skipped (no shows found in ${root})`);
     return;
   }
+
+  const defaultSeedPasswordHash = await hashPassword('123456');
 
   let profilesProcessed = 0;
   let showsProcessed = 0;
@@ -577,7 +577,11 @@ export const seedUmbracoShows = async () => {
         });
       const trailerUrl = resolveMediaUrl(show.trailer);
       const accessCode = textOrNull(show.code);
-      const passwordHash = accessCode ? await hashPassword(accessCode) : null;
+      const passwordHash = accessCode
+        ? await hashPassword(accessCode)
+        : accessType === 'password'
+          ? defaultSeedPasswordHash
+          : null;
       const mediaFileId = showSeedUuid('media', profile.profileKey, showKey);
       const collectionItemId = showSeedUuid(
         'collection-item',

@@ -1,0 +1,58 @@
+{
+  "tab": "Layout",
+  "name": "Stopsygefravær.nu",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "62"
+  ],
+  "logoText": "Johnny Logan ",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3122/johnny-logan-logo.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3121/logan-kiibee-2000x600-banner.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "block",
+  "headline": "",
+  "description": "",
+  "css": "header { background-color: black; color: #272424; }",
+  "javaScript": ""
+}

@@ -1,0 +1,58 @@
+{
+  "tab": "Layout",
+  "name": "Granli Velvære",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": [
+    "62"
+  ],
+  "logoText": "Torben Chris ",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3157/torben-chris-final.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3391/torben-chris-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": [
+    "67"
+  ],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Torben Chris - Danmarks hurtigsnakkende comedy-komet</h1>\n<p>Torben Chris er en af Danmarks mest populære stand-up komikere. Med sin førsteklasses jyske speedsnak leverer han show efter show med humor, der går langt over stregen - men altid på en charmerende og morsom måde.</p>",
+  "css": "",
+  "javaScript": ""
+}

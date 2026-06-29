@@ -1,0 +1,106 @@
+{
+  "exportedAt": "2026-06-02T09:17:54.719Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2755",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 2755,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden",
+      "type",
+      "rawFile",
+      "videoID",
+      "videoStatus",
+      "videoSize",
+      "videoThumbnailURL",
+      "videoDownloadURL",
+      "trailer",
+      "webContentURL",
+      "openWebContentInNewWindows",
+      "openWebContentFromList",
+      "description",
+      "expandedDescription",
+      "year",
+      "length",
+      "badge",
+      "production",
+      "productionLink",
+      "tags",
+      "thumbnail",
+      "productLink",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending"
+  },
+  "parent": {
+    "id": 2755,
+    "key": "babb27a4-5b8a-4387-bb8e-6d9dd3da33fe",
+    "udi": "umb://document/babb27a45b8a4387bb8e6d9dd3da33fe",
+    "name": "Gratis E bog med intro. Bliv hørt forstået og respekteret",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/elsebeth-fogh/gratis-e-bog-med-intro-bliv-hoert-forstaaet-og-respekteret/"
+    ],
+    "path": "-1,1067,2717,2755",
+    "properties": {
+      "_umb_containerView": null,
+      "orderID": "6",
+      "access": [],
+      "rentalPrice": "",
+      "purchasePrice": "",
+      "code": "",
+      "period": "",
+      "headline": "",
+      "description": "",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "0",
+      "columnAmount": "4",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 1,
+    "childrenFetched": 1,
+    "detailsFetched": 1,
+    "detailErrors": 0,
+    "statsEntriesRead": 13,
+    "uniqueStatsMedia": 0,
+    "showsMatchedToStats": 0,
+    "showsWithoutStats": 1,
+    "statsMediaWithoutShow": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 1,
+      "totalItems": 1
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "statsMatch": "stats-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "stats mediaUdi equals show UDI derived from show key",
+    "statsSource": "umbraco-data/users/Elsebeth_Fogh/stats/items.json",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "tab": "Layout",
+  "name": "Vital New Software ApS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Vital New Software ApS",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4208/kiibee-test-2000x600.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0GTW"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "",
+  "description": "",
+  "css": "",
+  "javaScript": ""
+}

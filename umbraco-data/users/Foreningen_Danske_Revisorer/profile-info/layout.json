@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "Foreningen Danske Revisorer",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Foreningen Danske Revisorer",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4096/fdr-logo-blackred-rgb.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "0H8J"
+      }
+    ]
+  },
+  "useCoverImage": "0",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4097/fdr-logo-blackred-rgb.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0H8N"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "FDR - Foreningen Danske Revisorer",
+  "description": "FDR afholder løbende webinarer af en varighed på 1-2 timer. Nogle af disse bliver efterfølgende lagt til salg her. ",
+  "css": "",
+  "javaScript": ""
+}

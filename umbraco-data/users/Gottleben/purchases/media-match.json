@@ -1,0 +1,60 @@
+{
+  "matchedMedia": [
+    {
+      "udi": "umb://document/8a1655167bef4401ae64348bb43d53d8",
+      "key": "8a165516-7bef-4401-ae64-348bb43d53d8",
+      "resolved": true,
+      "id": 55084,
+      "name": "KURSUS I FORHANDLINGSTEKNIK",
+      "title": "KURSUS I FORHANDLINGSTEKNIK",
+      "urls": ["/gottleben/kursus-i-forhandlingsteknik/"],
+      "contentTypeAlias": "collection",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "",
+      "rentalPrice": "",
+      "purchaseEntryCount": 14,
+      "purchaseOrderCount": 0,
+      "nonPurchaseEntryCount": 14,
+      "totalDownloads": 0,
+      "totalStreams": 266,
+      "firstPurchaseAt": "2022-06-08 21:02:00",
+      "lastPurchaseAt": "2024-08-05 09:38:58",
+      "samplePurchaseIds": [99372, 93619, 93334, 86696, 78121]
+    }
+  ],
+  "unresolvedMedia": [
+    {
+      "udi": "umb://document/f396a1a206504e3a8fa7a67fa35ab4fb",
+      "key": "f396a1a2-0650-4e3a-8fa7-a67fa35ab4fb",
+      "resolved": false,
+      "id": null,
+      "name": "",
+      "title": "",
+      "urls": [],
+      "contentTypeAlias": "",
+      "videoID": "",
+      "videoStatus": "",
+      "videoThumbnailURL": "",
+      "videoDownloadURL": "",
+      "rawFile": "",
+      "webContentURL": "",
+      "thumbnail": "",
+      "purchasePrice": "",
+      "rentalPrice": "",
+      "purchaseEntryCount": 1,
+      "purchaseOrderCount": 0,
+      "nonPurchaseEntryCount": 1,
+      "totalDownloads": 0,
+      "totalStreams": 0,
+      "firstPurchaseAt": "2021-06-23 11:09:21",
+      "lastPurchaseAt": "2021-06-23 11:09:21",
+      "samplePurchaseIds": [47650]
+    }
+  ]
+}

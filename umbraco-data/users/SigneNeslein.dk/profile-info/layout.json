@@ -1,0 +1,67 @@
+{
+  "tab": "Layout",
+  "name": "SigneNeslein.dk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "A5 Forlag ApS",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4187/a5.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4185/2000x800-cover_2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4186/640x600.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "DET' HELT VILDT ",
+  "description": "Her kan du købe DET' HELT VILDT bøgerne i den digitale udgave. Hver bog er med én vildtart. Rådyr, fasan og Vildsvin. Alle bøger er flyldt med flotte billeder og gode beskrivelser af hver enkelt køddel på dyret.\r\n\r\nBøgerne giver jægeren og kokken et godt indblik i hvordan hele dyret kan bruges, og hvordan man får mest ud af kødstykkerne. \r\n\r\nPodcast\r\nDe to vildtkokke Christian og Erik giver tips og tricks til hvordan du får mest ud af vildtet, lige fra skud til servering.",
+  "css": "",
+  "javaScript": ""
+}

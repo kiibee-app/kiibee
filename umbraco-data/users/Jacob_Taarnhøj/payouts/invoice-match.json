@@ -1,0 +1,203 @@
+{
+  "matched": [
+    {
+      "id": 97750,
+      "key": "71ebd905-1f8e-4f9c-b9f4-8dc90cc32245",
+      "udi": "umb://document/71ebd9051f8e4f9cb9f48dc90cc32245",
+      "name": "KBF-1533",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/97750",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2024-06-11 08:51:43",
+      "updateDate": "2024-06-11 08:54:01",
+      "parentId": 75782,
+      "path": "-1,1067,75778,75782,97750",
+      "sortOrder": 3,
+      "urls": [
+        "/jacob-taarnhoej/payouts/kbf-1533/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1533/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1533/",
+      "amount": "763.2",
+      "amountNumber": 763.2,
+      "isPaid": true,
+      "payoutCreateDate": "2024-06-11 08:51:43",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1533/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1533/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "10",
+        "transactionFee": "6",
+        "kiibeeCut": "20",
+        "rentAmount": "12",
+        "from": "2023-05-30 12:03:51",
+        "rawEarnings": "1280",
+        "amount": "763.2",
+        "isPaid": "1",
+        "to": "2024-06-11 08:51:35",
+        "transactionAmount": "76.8",
+        "kiibeeCutAmount": "440"
+      }
+    },
+    {
+      "id": 92942,
+      "key": "3cc1650b-e876-4437-bbf9-f93d56c8b0c5",
+      "udi": "umb://document/3cc1650be8764437bbf9f93d56c8b0c5",
+      "name": "KBF-1470",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/92942",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-12-08 10:25:01",
+      "updateDate": "2023-12-08 10:27:44",
+      "parentId": 75782,
+      "path": "-1,1067,75778,75782,92942",
+      "sortOrder": 2,
+      "urls": [
+        "/jacob-taarnhoej/payouts/kbf-1470/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1470/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1470/",
+      "amount": "528.76",
+      "amountNumber": 528.76,
+      "isPaid": true,
+      "payoutCreateDate": "2023-12-08 10:25:01",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1470/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1470/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "6",
+        "transactionFee": "6",
+        "kiibeeCut": "15",
+        "rentAmount": "6",
+        "from": "2023-05-30 12:03:51",
+        "rawEarnings": "754",
+        "amount": "528.76",
+        "isPaid": "1",
+        "to": "2023-12-08 10:24:15",
+        "transactionAmount": "45.24",
+        "kiibeeCutAmount": "180"
+      }
+    },
+    {
+      "id": 85265,
+      "key": "1f6b9eee-af8c-4ac8-93dd-2cf720b70d60",
+      "udi": "umb://document/1f6b9eeeaf8c4ac893dd2cf720b70d60",
+      "name": "KBF-1422",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/85265",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-05-30 12:04:03",
+      "updateDate": "2023-05-30 12:11:16",
+      "parentId": 75782,
+      "path": "-1,1067,75778,75782,85265",
+      "sortOrder": 1,
+      "urls": [
+        "/jacob-taarnhoej/payouts/kbf-1422/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1422/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1422/",
+      "amount": "1239.14",
+      "amountNumber": 1239.14,
+      "isPaid": true,
+      "payoutCreateDate": "2023-05-30 12:04:03",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1422/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1422/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "17",
+        "transactionFee": "6",
+        "kiibeeCut": "15",
+        "rentAmount": "12",
+        "from": "2023-03-20 09:28:09",
+        "rawEarnings": "1781",
+        "amount": "1239.14",
+        "isPaid": "1",
+        "to": "2023-05-30 12:03:51",
+        "transactionAmount": "106.86",
+        "kiibeeCutAmount": "435"
+      }
+    },
+    {
+      "id": 79259,
+      "key": "05f38d78-a356-4e60-9a8d-cbd9befb9f3e",
+      "udi": "umb://document/05f38d78a3564e609a8dcbd9befb9f3e",
+      "name": "KBF-1395",
+      "editUrl": "https://kiibee.dk/umbraco#/content/content/edit/79259",
+      "contentTypeAlias": "payout",
+      "published": true,
+      "hasPublishedVersion": true,
+      "createDate": "2023-03-20 09:28:44",
+      "updateDate": "2023-03-21 12:58:00",
+      "parentId": 75782,
+      "path": "-1,1067,75778,75782,79259",
+      "sortOrder": 0,
+      "urls": [
+        "/jacob-taarnhoej/payouts/kbf-1395/"
+      ],
+      "publicPayoutUrls": [
+        "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1395/"
+      ],
+      "publicPayoutUrl": "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1395/",
+      "amount": "1074.28",
+      "amountNumber": 1074.28,
+      "isPaid": true,
+      "payoutCreateDate": "2023-03-20 09:28:44",
+      "candidateInvoiceProperties": [],
+      "candidateInvoiceUrls": [],
+      "directInvoiceUrls": [],
+      "invoiceUdis": [],
+      "invoiceEntities": [],
+      "invoiceUrls": [
+        "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1395/"
+      ],
+      "invoiceUrl": "https://kiibee.dk/jacob-taarnhoej/payouts/kbf-1395/",
+      "invoiceMatchStatus": "matched-public-payout-url",
+      "properties": {
+        "salesAmount": "14",
+        "transactionFee": "6",
+        "kiibeeCut": "15",
+        "rentAmount": "6",
+        "from": "2022-12-09 09:41:38",
+        "rawEarnings": "1462",
+        "amount": "1074.28",
+        "isPaid": "1",
+        "to": "2023-03-20 09:28:09",
+        "transactionAmount": "87.72",
+        "kiibeeCutAmount": "300"
+      }
+    }
+  ],
+  "unmatched": [],
+  "linkedEntities": [],
+  "errors": []
+}

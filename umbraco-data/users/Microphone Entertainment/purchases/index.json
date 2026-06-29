@@ -1,0 +1,113 @@
+{
+  "exportedAt": "2026-06-02T09:14:59.042Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1898",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1898,
+    "includeProperties": [
+      "fullName",
+      "email",
+      "isPurchase",
+      "downloads",
+      "streams",
+      "createDate"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 1898,
+    "key": "b0aa6d2a-edf1-4098-a2a0-6598e2905189",
+    "udi": "umb://document/b0aa6d2aedf14098a2a06598e2905189",
+    "name": "Purchases",
+    "contentTypeAlias": "purchases",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/microphone-entertainment/purchases/"
+    ],
+    "path": "-1,1067,1894,1898",
+    "properties": {
+      "_umb_containerView": null
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 521,
+    "childrenFetched": 521,
+    "detailsFetched": 521,
+    "detailErrors": 0,
+    "purchaseEntries": 308,
+    "nonPurchaseEntries": 213,
+    "entriesWithDownloads": 183,
+    "entriesWithStreams": 95,
+    "totalDownloads": 501,
+    "totalStreams": 273,
+    "uniqueMediaUdis": 8,
+    "mediaResolvedFromCache": 0,
+    "mediaResolvedFromApi": 8,
+    "mediaResolved": 8,
+    "mediaUnresolved": 0,
+    "mediaResolveErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 100,
+      "totalItems": 521
+    },
+    {
+      "pageNumber": 2,
+      "itemCount": 100,
+      "totalItems": 521
+    },
+    {
+      "pageNumber": 3,
+      "itemCount": 100,
+      "totalItems": 521
+    },
+    {
+      "pageNumber": 4,
+      "itemCount": 100,
+      "totalItems": 521
+    },
+    {
+      "pageNumber": 5,
+      "itemCount": 100,
+      "totalItems": 521
+    },
+    {
+      "pageNumber": 6,
+      "itemCount": 21,
+      "totalItems": 521
+    }
+  ],
+  "mediaCache": [
+    {
+      "path": "umbraco-data/users/Microphone Entertainment/purchases/media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Microphone Entertainment\\purchases\\media.json'"
+    },
+    {
+      "path": "umbraco-data/users/Microphone Entertainment/shows/items.json",
+      "count": 7
+    },
+    {
+      "path": "umbraco-data/users/Microphone Entertainment/stats/media.json",
+      "count": 0,
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Microphone Entertainment\\stats\\media.json'"
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "media": "media.json",
+    "mediaMatch": "media-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "purchase media content picker UDI matched to Umbraco media document UDI",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

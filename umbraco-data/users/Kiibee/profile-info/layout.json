@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Kiibee",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Firma navn ",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1864/kiibee-logo-meget-lille.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1491/action-adult-aperture-blur-320617.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["69"],
+  "coverTextPositionClass": "noblock",
+  "headline": "Test site for Online Streaming & LIVE streaming ",
+  "description": "",
+  "css": "@media only screen and (max-width: 1023px) {\n.covertext h1, .covertext .teaser {\ncolor: #1d1d1d !important;\n}\n}\n@media only screen and (min-width: 1024px) {\n.covertext-container { \nbackground-color: rgba(30, 30, 30, 0.65); \npadding: 1em 1.25em; \nborder-radius: .25em;\ncolor: white !important; \n}\n}",
+  "javaScript": ""
+}

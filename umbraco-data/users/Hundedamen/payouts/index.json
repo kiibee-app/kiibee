@@ -1,0 +1,62 @@
+{
+  "exportedAt": "2026-06-02T10:59:02.913Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/21050",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "contentDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "mediaDetailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Media/GetById",
+    "parentId": 21050,
+    "includeProperties": ["amount", "isPaid", "createDate"],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true
+  },
+  "parent": {
+    "id": 21050,
+    "key": "4dc79abc-d7dd-4eba-8395-b1080c5e5825",
+    "udi": "umb://document/4dc79abcd7dd4eba8395b1080c5e5825",
+    "name": "Payouts",
+    "contentTypeAlias": "payouts",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/hundedamen/payouts/"],
+    "path": "-1,1067,21046,21050",
+    "properties": {
+      "_umb_containerView": null,
+      "lastPayoutDateTime": "2024-08-12 16:17:22"
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 25,
+    "childrenFetched": 25,
+    "detailsFetched": 25,
+    "detailErrors": 0,
+    "paidPayouts": 25,
+    "unpaidPayouts": 0,
+    "totalAmount": 15049.029999999999,
+    "entriesWithCandidateInvoiceProperties": 0,
+    "entriesWithPublicPayoutUrl": 25,
+    "entriesWithInvoiceLink": 25,
+    "entriesWithoutInvoiceLink": 0,
+    "uniqueInvoiceUdis": 0,
+    "invoiceEntitiesResolved": 0,
+    "invoiceEntityErrors": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 25,
+      "totalItems": 25
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "invoiceMatch": "invoice-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "invoice-like payout properties matched by direct URL or linked Umbraco document/media UDI, with the public payout URL used as the invoice link fallback",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin/env and are not written to disk."
+  }
+}

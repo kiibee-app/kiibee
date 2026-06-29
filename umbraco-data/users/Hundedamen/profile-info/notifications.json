@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Hundedamen",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2026-04-26",
+  "frequency": 30,
+  "notificationsType": "1",
+  "emails": ["christin@hundedamen.dk"]
+}

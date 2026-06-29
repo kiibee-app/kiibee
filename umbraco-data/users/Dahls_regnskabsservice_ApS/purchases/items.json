@@ -1,0 +1,200 @@
+[
+  {
+    "id": 122781,
+    "key": "cc7c7bd0-6ac5-497c-96e6-ceec1b63c6e2",
+    "udi": "umb://document/cc7c7bd06ac5497c96e6ceec1b63c6e2",
+    "name": "9dp729042026234208",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-04-29 23:42:46",
+    "updateDate": "2026-04-29 23:42:46",
+    "parentId": 117539,
+    "path": "-1,1067,117534,117539,122781",
+    "sortOrder": 1,
+    "urls": ["/dahls-regnskabsservice-aps/purchases/9dp729042026234208/"],
+    "fullName": "Charlotte Madsen",
+    "email": "okopartner@gmail.com",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "199",
+    "expireDate": "2026-05-13 23:42:44",
+    "message": "Tak for dit køb af Bogføring for begyndere.\r\n\r\nDu kan downloade e-bogen via linket i denne mail.\r\n\r\nJeg håber, bogen giver dig mere overblik og ro omkring din bogføring.\r\nHar du spørgsmål undervejs, er du altid velkommen til at kontakte mig.\r\n\r\nVenlig hilsen\r\n\r\nDahls regnskabsservice ApS\r\nKontakt@dahl-grp.dk",
+    "orderCreateDate": "2026-04-29 23:42:46",
+    "mediaRelationUdis": ["umb://document/5cb217d5684349049196134742f875f7"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/5cb217d5684349049196134742f875f7"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/5cb217d5684349049196134742f875f7",
+        "key": "5cb217d5-6843-4904-9196-134742f875f7",
+        "resolved": true,
+        "id": 117543,
+        "name": "Bogføring for begyndere – e-bog til enkeltmandsvirksomheder",
+        "title": "Bogføring for begyndere – e-bog til enkeltmandsvirksomheder",
+        "urls": [
+          "/dahls-regnskabsservice-aps/e-bog/bogfoering-for-begyndere-e-bog-til-enkeltmandsvirksomheder/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/5100/bogfoering-for-nybegyndere-pdf.pdf",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/5101/skaermbillede-2026-01-12-232915.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "199",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Bogføring for begyndere – e-bog til enkeltmandsvirksomheder"
+    ],
+    "mediaUrls": [
+      "/dahls-regnskabsservice-aps/e-bog/bogfoering-for-begyndere-e-bog-til-enkeltmandsvirksomheder/"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "okopartner@gmail.com",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2026-05-13 23:42:44",
+      "price": "199",
+      "fullName": "Charlotte Madsen",
+      "message": "Tak for dit køb af Bogføring for begyndere.\r\n\r\nDu kan downloade e-bogen via linket i denne mail.\r\n\r\nJeg håber, bogen giver dig mere overblik og ro omkring din bogføring.\r\nHar du spørgsmål undervejs, er du altid velkommen til at kontakte mig.\r\n\r\nVenlig hilsen\r\n\r\nDahls regnskabsservice ApS\r\nKontakt@dahl-grp.dk",
+      "media": "umb://document/5cb217d5684349049196134742f875f7"
+    }
+  },
+  {
+    "id": 117972,
+    "key": "eeae7d32-2975-4a4a-8011-8adec1dcf18e",
+    "udi": "umb://document/eeae7d3229754a4a80118adec1dcf18e",
+    "name": "s36527012026133137",
+    "contentTypeAlias": "purchase",
+    "published": true,
+    "hasPublishedVersion": true,
+    "createDate": "2026-01-27 13:32:01",
+    "updateDate": "2026-01-27 13:32:01",
+    "parentId": 117539,
+    "path": "-1,1067,117534,117539,117972",
+    "sortOrder": 0,
+    "urls": ["/dahls-regnskabsservice-aps/purchases/s36527012026133137/"],
+    "fullName": "Malene Rosgaard ",
+    "email": "kontakt@malenerosgaard.dk",
+    "isPurchase": true,
+    "downloads": 0,
+    "streams": 0,
+    "price": "199",
+    "expireDate": "2026-02-10 13:32:00",
+    "message": "Tak for dit køb af Bogføring for begyndere.\r\n\r\nDu kan downloade e-bogen via linket i denne mail.\r\n\r\nJeg håber, bogen giver dig mere overblik og ro omkring din bogføring.\r\nHar du spørgsmål undervejs, er du altid velkommen til at kontakte mig.\r\n\r\nVenlig hilsen\r\n\r\nDahls regnskabsservice ApS\r\nKontakt@dahl-grp.dk",
+    "orderCreateDate": "2026-01-27 13:32:01",
+    "mediaRelationUdis": ["umb://document/5cb217d5684349049196134742f875f7"],
+    "downloadUdis": [],
+    "streamUdis": [],
+    "mediaUdis": ["umb://document/5cb217d5684349049196134742f875f7"],
+    "downloadMediaCount": 0,
+    "streamMediaCount": 0,
+    "mediaCount": 1,
+    "media": [
+      {
+        "udi": "umb://document/5cb217d5684349049196134742f875f7",
+        "key": "5cb217d5-6843-4904-9196-134742f875f7",
+        "resolved": true,
+        "id": 117543,
+        "name": "Bogføring for begyndere – e-bog til enkeltmandsvirksomheder",
+        "title": "Bogføring for begyndere – e-bog til enkeltmandsvirksomheder",
+        "urls": [
+          "/dahls-regnskabsservice-aps/e-bog/bogfoering-for-begyndere-e-bog-til-enkeltmandsvirksomheder/"
+        ],
+        "contentTypeAlias": "media",
+        "videoID": "",
+        "videoStatus": "",
+        "videoThumbnailURL": "",
+        "videoDownloadURL": "",
+        "rawFile": "/media/5100/bogfoering-for-nybegyndere-pdf.pdf",
+        "webContentURL": "",
+        "thumbnail": {
+          "focalPoint": {
+            "left": 0.5,
+            "top": 0.5
+          },
+          "src": "/media/5101/skaermbillede-2026-01-12-232915.png",
+          "crops": [
+            {
+              "alias": "Wide",
+              "width": 1920,
+              "height": 1080
+            },
+            {
+              "alias": "High",
+              "width": 650,
+              "height": 920
+            }
+          ]
+        },
+        "purchasePrice": "199",
+        "rentalPrice": ""
+      }
+    ],
+    "downloadMedia": [],
+    "streamMedia": [],
+    "mediaNames": [
+      "Bogføring for begyndere – e-bog til enkeltmandsvirksomheder"
+    ],
+    "mediaUrls": [
+      "/dahls-regnskabsservice-aps/e-bog/bogfoering-for-begyndere-e-bog-til-enkeltmandsvirksomheder/"
+    ],
+    "videoDownloadURLs": [],
+    "downloadMediaNames": [],
+    "downloadMediaUrls": [],
+    "downloadVideoDownloadURLs": [],
+    "streamMediaNames": [],
+    "streamMediaUrls": [],
+    "streamVideoDownloadURLs": [],
+    "properties": {
+      "videoID": "",
+      "email": "kontakt@malenerosgaard.dk",
+      "streams": "",
+      "downloads": "",
+      "isPurchase": "1",
+      "expireDate": "2026-02-10 13:32:00",
+      "price": "199",
+      "fullName": "Malene Rosgaard ",
+      "message": "Tak for dit køb af Bogføring for begyndere.\r\n\r\nDu kan downloade e-bogen via linket i denne mail.\r\n\r\nJeg håber, bogen giver dig mere overblik og ro omkring din bogføring.\r\nHar du spørgsmål undervejs, er du altid velkommen til at kontakte mig.\r\n\r\nVenlig hilsen\r\n\r\nDahls regnskabsservice ApS\r\nKontakt@dahl-grp.dk",
+      "media": "umb://document/5cb217d5684349049196134742f875f7"
+    }
+  }
+]

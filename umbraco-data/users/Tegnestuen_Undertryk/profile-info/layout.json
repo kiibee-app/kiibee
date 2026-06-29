@@ -1,0 +1,41 @@
+{
+  "tab": "Layout",
+  "name": "Tegnestuen Undertryk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Britta Koch - Dansk medicinsk Qigong forening",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2207/touann-gatouillat-vergos-nnmclx_eor4-unsplash.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "1",
+  "textColor": ["67"],
+  "coverTextPositionClass": "block",
+  "headline": "Bøger og film",
+  "description": "Her kan du købe adgang til min film om Qigong. \r\n\r\nEnten som streaming, eller som et link til download.\r\nVed streaming får du adgang til filmen i 48 timer, ved download kan du hente filmen ned på din egen computer, og se den når det passer dig...\r\n\r\nDETTE ER EN TEST, SÅ DU BØR IKKE GENNEMFØRE ET KØB!!!",
+  "css": "",
+  "javaScript": ""
+}

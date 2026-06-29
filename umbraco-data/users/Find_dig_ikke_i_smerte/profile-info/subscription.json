@@ -1,0 +1,23 @@
+{
+  "tab": "Subscription",
+  "name": "Find dig ikke i smerte",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "subscription": "",
+  "price": "",
+  "price3": "",
+  "price6": "",
+  "price12": 125,
+  "maxFiles": 15,
+  "kiibeeCut": 20,
+  "transactionFee": 6,
+  "paymentPeriod": ["388"]
+}

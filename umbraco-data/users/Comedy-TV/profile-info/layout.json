@@ -1,0 +1,67 @@
+{
+  "tab": "Layout",
+  "name": "Comedy-TV",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Jacob Taarnhøj ",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4250/skaermbillede-2022-12-09-kl-100644.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4248/jacob-taarnhoej-cover.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4249/jacob-taarnhoej.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Jacob Taarnhøj - stort komisk talent",
+  "description": "<p>Jacob Taarnhøj er en talentfuld og ambitiøs komiker, der er på vej frem i dansk stand-up comedy. Han har udviklet en intelligent og humoristisk fortællestil, hvor han med sproglig præcision fremhæver absurditeter fra hverdagen. Dette får publikum til både at grine og tænke over tingene på en ny måde.</p>",
+  "css": "header { background-color: black; color: #272424; }",
+  "javaScript": ""
+}

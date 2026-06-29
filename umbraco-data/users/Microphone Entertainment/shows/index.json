@@ -1,0 +1,112 @@
+{
+  "exportedAt": "2026-06-02T09:14:38.224Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/1900",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 1900,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden",
+      "type",
+      "rawFile",
+      "videoID",
+      "videoStatus",
+      "videoSize",
+      "videoThumbnailURL",
+      "videoDownloadURL",
+      "trailer",
+      "webContentURL",
+      "openWebContentInNewWindows",
+      "openWebContentFromList",
+      "description",
+      "expandedDescription",
+      "year",
+      "length",
+      "badge",
+      "production",
+      "productionLink",
+      "tags",
+      "thumbnail",
+      "productLink",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending"
+  },
+  "parent": {
+    "id": 1900,
+    "key": "16ee44dc-70d5-49a4-8dd9-73aea5b0544f",
+    "udi": "umb://document/16ee44dc70d549a48dd973aea5b0544f",
+    "name": "Shows",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/microphone-entertainment/shows/"
+    ],
+    "path": "-1,1067,1894,1900",
+    "properties": {
+      "_umb_containerView": null,
+      "orderID": "0",
+      "access": [
+        "58"
+      ],
+      "rentalPrice": "99",
+      "purchasePrice": "199",
+      "code": "",
+      "period": "1",
+      "headline": "Alle Mick Øgendahls shows",
+      "description": "Få adgang til hele Mick`s bagkatalog og mange timers sjov underholdning til en samlet pris. Du får alle de klassiske Mick Øgendahl shows til en skarp pris!",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "0",
+      "columnAmount": "4",
+      "siteMapOption": {
+        "priority": 0.5,
+        "frequency": 2,
+        "exclude": false
+      },
+      "metaTitle": "Stream alle Mick Øgendahls shows - Køb eller lej",
+      "metaDescription": ""
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 7,
+    "childrenFetched": 7,
+    "detailsFetched": 7,
+    "detailErrors": 0,
+    "statsEntriesRead": 1301,
+    "uniqueStatsMedia": 0,
+    "showsMatchedToStats": 0,
+    "showsWithoutStats": 7,
+    "statsMediaWithoutShow": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 7,
+      "totalItems": 7
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "statsMatch": "stats-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "stats mediaUdi equals show UDI derived from show key",
+    "statsSource": "umbraco-data/users/Microphone Entertainment/stats/items.json",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

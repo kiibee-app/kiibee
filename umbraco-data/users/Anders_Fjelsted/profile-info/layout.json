@@ -1,0 +1,54 @@
+{
+  "tab": "Layout",
+  "name": "Anders Fjelsted",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "Anders Fjelsted",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3158/anders-fjelsted-final-top.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3388/anders-fjelsted-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "",
+  "description": "<h1>Anders Fjelsted - Rutineret comedy-veteran</h1>\n<p>Med over 20 år i branchen er Anders Fjelsted en af de mest erfarne og rutinerede komikere på den danske comedy-scene. Han leverer altid et veltimet og morsomt show med sin charmerende og afslappede stil.</p>",
+  "css": "header { background-color: black; color: #272424; }",
+  "javaScript": ""
+}

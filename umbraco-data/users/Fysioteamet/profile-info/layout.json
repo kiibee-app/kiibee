@@ -1,0 +1,76 @@
+{
+  "tab": "Layout",
+  "name": "Fysioteamet",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["62"],
+  "logoText": "FYSIOTEAMET",
+  "useLogoImage": "0",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1620/ft_logo_tag_pos.gif",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "coordinates": {
+          "x1": 0,
+          "y1": 0.07804878048780482,
+          "x2": 0,
+          "y2": 0
+        },
+        "$$hashKey": "8PP"
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1165/massage-cover-kiibee-2.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "8PT"
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3761/wellcome_modeller67498-2-1.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600,
+        "$$hashKey": "8PX"
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["69"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Fysioteamet",
+  "description": "Velkommen til Fysioteamets platform for viden og inspiration ",
+  "css": "body { background-color: #949490; color: white ; }\nh5 { background-color: #949490; white ; }\nh6 { background-color: #949490;color: white; }\n.line { background-color: #9d9e9e; }\nmain .cover { background-color: #949490; color: white; }\n/* Hide blur effekt */\n.media__blur { display: none; }/*main .media__blur:after { background-image: -webkit-gradient(linear, left bottom, left top, from(#1d1d1d), color-stop(30%, rgba(29, 29, 29, 0.8)), to(rgba(29, 29, 29, 0))); background-image: linear-gradient(to top, \n#1d1d1d 0%, rgba(29, 29, 29, 0.8) 30%, rgba(29, 29, 29, 0) 100%); } */",
+  "javaScript": ""
+}

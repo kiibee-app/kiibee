@@ -1,0 +1,118 @@
+[
+  {
+    "id": 2082,
+    "key": "6c0b611e-db1f-4b94-a2a9-74dde7985db1",
+    "udi": "umb://document/6c0b611edb1f4b94a2a974dde7985db1",
+    "name": "bq7828092019210918",
+    "fields": {
+      "fullName": "Tina Kristensen",
+      "price": "19",
+      "isPurchase": "1",
+      "acquirer": "",
+      "paytype": "1",
+      "email": "tina.gistrup@hotmail.com",
+      "transactionID": "230478537",
+      "media": ""
+    },
+    "fieldDetails": {
+      "fullName": {
+        "alias": "fullName",
+        "label": "Name",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "Tina Kristensen"
+      },
+      "price": {
+        "alias": "price",
+        "label": "Price",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": "19"
+      },
+      "isPurchase": {
+        "alias": "isPurchase",
+        "label": "Purchase",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "acquirer": {
+        "alias": "acquirer",
+        "label": "Acquirer",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "paytype": {
+        "alias": "paytype",
+        "label": "Paytype",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "1"
+      },
+      "email": {
+        "alias": "email",
+        "label": "Email",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "tina.gistrup@hotmail.com"
+      },
+      "transactionID": {
+        "alias": "transactionID",
+        "label": "Transaction ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": "230478537"
+      },
+      "media": {
+        "alias": "media",
+        "label": "Media",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "contentpicker",
+        "value": ""
+      }
+    },
+    "fieldOrder": [
+      "fullName",
+      "price",
+      "isPurchase",
+      "acquirer",
+      "paytype",
+      "email",
+      "transactionID",
+      "media"
+    ]
+  }
+]

@@ -1,0 +1,80 @@
+{
+  "exportedAt": "2026-06-02T10:57:25.987Z",
+  "collectionName": "stats",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/16445",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 16445,
+    "includeProperties": [
+      "isPlay",
+      "uID",
+      "media"
+    ],
+    "orderBy": "createDate",
+    "orderDirection": "Descending",
+    "orderBySystemField": true,
+    "extraDetailIds": [],
+    "fetchDetails": false
+  },
+  "parent": {
+    "id": 16445,
+    "key": "8d1c3808-d096-401a-9d57-f58db870ff24",
+    "udi": "umb://document/8d1c3808d096401a9d57f58db870ff24",
+    "name": "Stats",
+    "contentTypeAlias": "stats",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/selvvaer-dk-stedet/stats/"
+    ],
+    "fields": {
+      "_umb_containerView": null
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      }
+    },
+    "fieldOrder": [
+      "_umb_containerView"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 31,
+    "childrenFetched": 31,
+    "detailIdsRequested": 0,
+    "detailsFetched": 0,
+    "errors": 0,
+    "fieldCount": 4
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 31,
+      "totalItems": 31
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

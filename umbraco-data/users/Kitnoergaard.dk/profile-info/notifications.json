@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Kitnoergaard.dk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2024-01-08",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": []
+}

@@ -761,6 +761,15 @@ export function resolveUmbracoShowThumbnails(
   title: string,
   fallbacks: UmbracoShowThumbnailFallbacks = {},
 ): { thumbnailUrl: string; thumbnailLandscapeUrl: string } {
+  const videoId =
+    extractCloudflareVideoId(getUmbracoShowValue(show, 'videoID')) ??
+    extractCloudflareVideoId(getUmbracoShowValue(show, 'videoDownloadURL')) ??
+    extractCloudflareVideoId(getUmbracoShowValue(show, 'contentUrl'));
+
+  const cloudflareThumbnail = videoId
+    ? buildCloudflareVideoThumbnailUrl(videoId)
+    : null;
+
   const rawFile = textOrNull(getUmbracoShowValue(show, 'rawFile'));
   const rawFileImageUrl =
     rawFile && isImageMediaPath(rawFile)
@@ -769,6 +778,10 @@ export function resolveUmbracoShowThumbnails(
 
   const thumbnailUrl =
     resolveUmbracoThumbnailMediaUrl(getUmbracoShowValue(show, 'thumbnail')) ??
+    resolveUmbracoThumbnailMediaUrl(
+      getUmbracoShowValue(show, 'videoThumbnailURL'),
+    ) ??
+    cloudflareThumbnail ??
     rawFileImageUrl ??
     fallbacks.creatorCoverImageUrl ??
     fallbacks.creatorLogoUrl ??
@@ -778,6 +791,7 @@ export function resolveUmbracoShowThumbnails(
     resolveUmbracoThumbnailMediaUrl(
       getUmbracoShowValue(show, 'videoThumbnailURL'),
     ) ??
+    cloudflareThumbnail ??
     resolveUmbracoThumbnailMediaUrl(getUmbracoShowValue(show, 'thumbnail')) ??
     rawFileImageUrl ??
     thumbnailUrl;

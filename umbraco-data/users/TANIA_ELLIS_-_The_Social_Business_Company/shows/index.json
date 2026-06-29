@@ -1,0 +1,108 @@
+{
+  "exportedAt": "2026-06-02T09:15:50.073Z",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/2434",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 2434,
+    "includeProperties": [
+      "title",
+      "orderID",
+      "hidden",
+      "type",
+      "rawFile",
+      "videoID",
+      "videoStatus",
+      "videoSize",
+      "videoThumbnailURL",
+      "videoDownloadURL",
+      "trailer",
+      "webContentURL",
+      "openWebContentInNewWindows",
+      "openWebContentFromList",
+      "description",
+      "expandedDescription",
+      "year",
+      "length",
+      "badge",
+      "production",
+      "productionLink",
+      "tags",
+      "thumbnail",
+      "productLink",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "hidePlay",
+      "hideDownload",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending"
+  },
+  "parent": {
+    "id": 2434,
+    "key": "90fc1e89-3e42-4966-b8a7-ccd3758d85aa",
+    "udi": "umb://document/90fc1e893e424966b8a7ccd3758d85aa",
+    "name": "Miniconference: Sustainable Disruption & Corporate Social Entrepreneurship",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": [
+      "/tania-ellis-the-social-business-company/miniconference-sustainable-disruption-corporate-social-entrepreneurship/"
+    ],
+    "path": "-1,1067,1957,2434",
+    "properties": {
+      "_umb_containerView": null,
+      "orderID": "3",
+      "access": [
+        "57"
+      ],
+      "rentalPrice": "",
+      "purchasePrice": "",
+      "code": "",
+      "period": "",
+      "headline": "",
+      "description": "",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "1",
+      "columnAmount": "5",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    }
+  },
+  "counts": {
+    "totalItemsFromApi": 6,
+    "childrenFetched": 6,
+    "detailsFetched": 6,
+    "detailErrors": 0,
+    "statsEntriesRead": 42,
+    "uniqueStatsMedia": 0,
+    "showsMatchedToStats": 0,
+    "showsWithoutStats": 6,
+    "statsMediaWithoutShow": 0
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 6,
+      "totalItems": 6
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "statsMatch": "stats-match.json",
+    "errors": "errors.json"
+  },
+  "dataQuality": {
+    "matchedBy": "stats mediaUdi equals show UDI derived from show key",
+    "statsSource": "umbraco-data/users/TANIA_ELLIS_-_The_Social_Business_Company/stats/items.json",
+    "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
+  }
+}

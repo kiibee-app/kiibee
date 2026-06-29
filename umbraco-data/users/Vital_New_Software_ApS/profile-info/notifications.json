@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Vital New Software ApS",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2022-09-05",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": []
+}

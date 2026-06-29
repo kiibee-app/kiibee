@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Simon Talbot",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2023-01-30",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": []
+}

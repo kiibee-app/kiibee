@@ -1,0 +1,17 @@
+{
+  "tab": "General",
+  "name": "Kiibee Comedy",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "owner": "umb://member/cdc52dd6df8141db971563556c25a065",
+  "emailReceipt": "",
+  "supportEmail": "info@kiibee.com"
+}

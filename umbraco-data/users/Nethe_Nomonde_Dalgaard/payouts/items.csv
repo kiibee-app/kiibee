@@ -1,0 +1,2 @@
+id,key,udi,name,amount,amountNumber,isPaid,createDate,payoutCreateDate,publicPayoutUrl,invoiceMatchStatus,invoiceUrl,invoiceUrls,invoiceUdis,candidateInvoiceProperties
+123153,788183b5-effb-4369-98ff-d5d495683647,umb://document/788183b5effb436998ffd5d495683647,KBF-1744,166.5,166.5,true,2026-05-12 06:19:00,2026-05-12 06:19:00,https://kiibee.dk/nethe-nomonde-dalgaard/payouts/kbf-1744/,matched-public-payout-url,https://kiibee.dk/nethe-nomonde-dalgaard/payouts/kbf-1744/,https://kiibee.dk/nethe-nomonde-dalgaard/payouts/kbf-1744/,,

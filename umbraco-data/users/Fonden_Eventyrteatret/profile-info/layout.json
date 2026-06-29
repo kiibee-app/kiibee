@@ -1,0 +1,67 @@
+{
+  "tab": "Layout",
+  "name": "Fonden Eventyrteatret",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "Fonden Eventyrteatret",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4593/eventyrteatret-2013_gulguld_med-overgang_srgb.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "1",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4594/ny-banner-27-juni-2024-2.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4595/640x600.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
+  "headline": "Eventyrteatrets musicals",
+  "description": "Velkommen til vores eventyrlige univers!\r\n Her kan du streame Eventyrteatrets magiske musicals og opleve Eventyrteatrets prisbelønnede børn og unge vække fortryllende fortællinger til live.",
+  "css": "",
+  "javaScript": ""
+}

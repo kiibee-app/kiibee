@@ -1,0 +1,2810 @@
+{
+  "2946": {
+    "publishDate": "2020-03-04 19:35:37",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/749a2e447b45478ba627b4435f40d9e5/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/e6b8202ae7af4fb2baaa4ef04eaaa84b",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 138200,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 138202,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 138201,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 138200,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 138202,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 138201,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2020-03-04 19:35:37",
+    "createDate": "2020-03-04 19:35:37",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 0,
+    "name": "749a2e447b45478ba627b4435f40d9e5",
+    "id": 2946,
+    "udi": "umb://document/e6b8202ae7af4fb2baaa4ef04eaaa84b",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "e6b8202a-e7af-4fb2-baaa-4ef04eaaa84b",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,2946",
+    "metaData": {}
+  },
+  "3390": {
+    "publishDate": "2020-03-23 09:31:56",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/c75049196aa44bab82171220c89f0902/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/3b9e6df1494641b485b9a940ba746eef",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147284,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147286,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147285,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147284,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147286,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147285,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2020-03-23 09:31:56",
+    "createDate": "2020-03-23 09:31:56",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 1,
+    "name": "c75049196aa44bab82171220c89f0902",
+    "id": 3390,
+    "udi": "umb://document/3b9e6df1494641b485b9a940ba746eef",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "3b9e6df1-4946-41b4-85b9-a940ba746eef",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,3390",
+    "metaData": {}
+  },
+  "3391": {
+    "publishDate": "2020-03-23 09:34:24",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/4ec5de7267b74ab591d851097052998a/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/6dfb759f1b5a4292b82cb1b32b35a978",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147287,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147289,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147288,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147287,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147289,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147288,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2020-03-23 09:34:24",
+    "createDate": "2020-03-23 09:34:24",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 2,
+    "name": "4ec5de7267b74ab591d851097052998a",
+    "id": 3391,
+    "udi": "umb://document/6dfb759f1b5a4292b82cb1b32b35a978",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "6dfb759f-1b5a-4292-b82c-b1b32b35a978",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,3391",
+    "metaData": {}
+  },
+  "3392": {
+    "publishDate": "2020-03-23 09:35:57",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/238057d445b649aba1b49db0d718a9a4/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/9c298972914c46e0a0c0ae9f2cfd69a0",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147290,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147292,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147291,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147290,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147292,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147291,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2020-03-23 09:35:57",
+    "createDate": "2020-03-23 09:35:57",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 3,
+    "name": "238057d445b649aba1b49db0d718a9a4",
+    "id": 3392,
+    "udi": "umb://document/9c298972914c46e0a0c0ae9f2cfd69a0",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "9c298972-914c-46e0-a0c0-ae9f2cfd69a0",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,3392",
+    "metaData": {}
+  },
+  "3393": {
+    "publishDate": "2020-03-23 09:36:51",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/d05b810b127d4b7c972b960fb0d60818/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/46f1f13ad389441f8fa4f1c6c8ef4657",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147293,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147295,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 147294,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147293,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147295,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 147294,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2020-03-23 09:36:51",
+    "createDate": "2020-03-23 09:36:51",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 4,
+    "name": "d05b810b127d4b7c972b960fb0d60818",
+    "id": 3393,
+    "udi": "umb://document/46f1f13ad389441f8fa4f1c6c8ef4657",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "46f1f13a-d389-441f-8fa4-f1c6c8ef4657",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,3393",
+    "metaData": {}
+  },
+  "22252": {
+    "publishDate": "2020-11-14 16:04:09",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/d96a22c2bf72416e8be44d9a7f68b994/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/eabea0cb17c54b9fa315e275dbcbc8b8",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 408240,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 408242,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/7a4ac20dde4f4d84a1ac2f29de45c9a1",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 408241,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 408240,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 408242,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/7a4ac20dde4f4d84a1ac2f29de45c9a1",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 408241,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2020-11-14 16:04:09",
+    "createDate": "2020-11-14 16:04:09",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 5,
+    "name": "d96a22c2bf72416e8be44d9a7f68b994",
+    "id": 22252,
+    "udi": "umb://document/eabea0cb17c54b9fa315e275dbcbc8b8",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "eabea0cb-17c5-4b9f-a315-e275dbcbc8b8",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,22252",
+    "metaData": {}
+  },
+  "23080": {
+    "publishDate": "2020-12-04 13:25:25",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/8a67306463cf4ef19a76678ff0c88d4a/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/6a7d1e2333b84e89a918efdc797eecb7",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 426538,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 426540,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 426539,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 426538,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 426540,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 426539,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2020-12-04 13:25:25",
+    "createDate": "2020-12-04 13:25:25",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 6,
+    "name": "8a67306463cf4ef19a76678ff0c88d4a",
+    "id": 23080,
+    "udi": "umb://document/6a7d1e2333b84e89a918efdc797eecb7",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "6a7d1e23-33b8-4e89-a918-efdc797eecb7",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,23080",
+    "metaData": {}
+  },
+  "23081": {
+    "publishDate": "2020-12-04 13:31:37",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/840ba2ec1ce04ce1adf8d44398a6bb05/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/2796693d96884a0fb4a72105dfe34007",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 426541,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 426543,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 426542,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 426541,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 426543,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 426542,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2020-12-04 13:31:37",
+    "createDate": "2020-12-04 13:31:37",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 7,
+    "name": "840ba2ec1ce04ce1adf8d44398a6bb05",
+    "id": 23081,
+    "udi": "umb://document/2796693d96884a0fb4a72105dfe34007",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "2796693d-9688-4a0f-b4a7-2105dfe34007",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,23081",
+    "metaData": {}
+  },
+  "23083": {
+    "publishDate": "2020-12-04 13:34:28",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/e4840c156b6a408f8026a9a7aa04e43e/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/7c4352b02b644fffadfc404db6556da0",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 426547,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 426549,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 426548,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 426547,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 426549,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 426548,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2020-12-04 13:34:28",
+    "createDate": "2020-12-04 13:34:28",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 8,
+    "name": "e4840c156b6a408f8026a9a7aa04e43e",
+    "id": 23083,
+    "udi": "umb://document/7c4352b02b644fffadfc404db6556da0",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "7c4352b0-2b64-4fff-adfc-404db6556da0",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,23083",
+    "metaData": {}
+  },
+  "23451": {
+    "publishDate": "2020-12-09 08:03:11",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/2eba60f9380540929c4f5d9707d051ff/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/865ccbd5efbf491b980dc62b25f5100e",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 431582,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 431584,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 431583,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 431582,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 431584,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 431583,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2020-12-09 08:03:11",
+    "createDate": "2020-12-09 08:03:11",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 9,
+    "name": "2eba60f9380540929c4f5d9707d051ff",
+    "id": 23451,
+    "udi": "umb://document/865ccbd5efbf491b980dc62b25f5100e",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "865ccbd5-efbf-491b-980d-c62b25f5100e",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,23451",
+    "metaData": {}
+  },
+  "50232": {
+    "publishDate": "2021-09-23 11:40:50",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/8699f09a26354cb89fb1b134722fdef4/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/af918311687c4ccfb3de93363fc966ee",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 937778,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 937780,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 937779,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 937778,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 937780,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 937779,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2021-09-23 11:40:50",
+    "createDate": "2021-09-23 11:40:50",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 10,
+    "name": "8699f09a26354cb89fb1b134722fdef4",
+    "id": 50232,
+    "udi": "umb://document/af918311687c4ccfb3de93363fc966ee",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "af918311-687c-4ccf-b3de-93363fc966ee",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,50232",
+    "metaData": {}
+  },
+  "50421": {
+    "publishDate": "2021-09-28 15:41:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/a9e3c11f09844f598d07399313d5c824/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/12273c7ef8e24f0ca14c2e5f2d65a853",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 940751,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 940753,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 940752,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 940751,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 940753,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 940752,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2021-09-28 15:41:21",
+    "createDate": "2021-09-28 15:41:21",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 11,
+    "name": "a9e3c11f09844f598d07399313d5c824",
+    "id": 50421,
+    "udi": "umb://document/12273c7ef8e24f0ca14c2e5f2d65a853",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "12273c7e-f8e2-4f0c-a14c-2e5f2d65a853",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,50421",
+    "metaData": {}
+  },
+  "50422": {
+    "publishDate": "2021-09-28 15:49:21",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "statsEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2020-02-27 19:21:35",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Stats Entry",
+      "id": 2786,
+      "udi": "umb://document-type/ea1b1160ab294dc48961dc3f6e777ae9",
+      "icon": "icon-nodes color-black",
+      "trashed": false,
+      "key": "ea1b1160-ab29-4dc4-8961-dc3f6e777ae9",
+      "parentId": -1,
+      "path": "-1,2786",
+      "metaData": {}
+    },
+    "urls": ["/elsebeth-fogh/stats/fbed1263bd624551a25afa582b4036d9/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/cf9f68c14ed941e1a07860ef8b701fe2",
+    "contentTypeName": "Stats Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 65,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Is Play",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 940754,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "0",
+            "alias": "isPlay",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 940756,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "UID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 940755,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "uID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Is Play",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 940754,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "0",
+        "alias": "isPlay",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 940756,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/43931aa8966e4ee79f997c435f9c1f62",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "UID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 940755,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "uID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2021-09-28 15:49:21",
+    "createDate": "2021-09-28 15:49:21",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "statsEntry",
+    "sortOrder": 12,
+    "name": "fbed1263bd624551a25afa582b4036d9",
+    "id": 50422,
+    "udi": "umb://document/cf9f68c14ed941e1a07860ef8b701fe2",
+    "icon": "icon-nodes color-black",
+    "trashed": false,
+    "key": "cf9f68c1-4ed9-41e1-a078-60ef8b701fe2",
+    "parentId": 2814,
+    "alias": null,
+    "path": "-1,1067,2717,2814,50422",
+    "metaData": {}
+  }
+}

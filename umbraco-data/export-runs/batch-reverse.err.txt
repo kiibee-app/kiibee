@@ -1,0 +1,5 @@
+Error: UNKNOWN: unknown error, open 'C:\Users\sera\Desktop\kiibee\umbraco-data\export-runs\latest.json'
+    at async open (node:internal/fs/promises:1281:25)
+    at async writeFile (node:internal/fs/promises:1899:14)
+    at async writeReport (file:///C:/Users/sera/Desktop/kiibee/scripts/export-umbraco-all-users.mjs:359:3)
+    at async main (file:///C:/Users/sera/Desktop/kiibee/scripts/export-umbraco-all-users.mjs:496:5)

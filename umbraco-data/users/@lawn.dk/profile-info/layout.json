@@ -1,0 +1,56 @@
+{
+  "tab": "Layout",
+  "name": "@lawn.dk",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
+  "logoText": "",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4376/skaermbillede-2023-04-09-kl-094110.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60,
+        "$$hashKey": "0KFV"
+      }
+    ]
+  },
+  "useCoverImage": "0",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/4377/unavngivet.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600,
+        "$$hashKey": "0KFZ"
+      }
+    ]
+  },
+  "coverImageMobile": "",
+  "fadeCoverImage": "0",
+  "textColor": ["68"],
+  "coverTextPositionClass": "block",
+  "headline": "",
+  "description": "",
+  "css": "",
+  "javaScript": ""
+}

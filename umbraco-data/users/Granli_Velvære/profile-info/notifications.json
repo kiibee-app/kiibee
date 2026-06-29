@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Granli Velvære",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2022-07-04",
+  "frequency": 90,
+  "notificationsType": "0",
+  "emails": []
+}

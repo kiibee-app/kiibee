@@ -1,0 +1,18 @@
+{
+  "tab": "Notifications",
+  "name": "Per Vers",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "lastNotificationDate": "2023-10-29",
+  "frequency": 30,
+  "notificationsType": "0",
+  "emails": []
+}

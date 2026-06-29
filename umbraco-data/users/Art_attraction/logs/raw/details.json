@@ -1,0 +1,1214 @@
+{
+  "2092": {
+    "publishDate": "2019-10-05 20:52:26",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "logEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2019-03-04 21:24:42",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Log Entry",
+      "id": 1087,
+      "udi": "umb://document-type/e4e1bf3dda31425183f8cd19bf6348cd",
+      "icon": "icon-tactics color-black",
+      "trashed": false,
+      "key": "e4e1bf3d-da31-4251-83f8-cd19bf6348cd",
+      "parentId": -1,
+      "path": "-1,1087",
+      "metaData": {}
+    },
+    "urls": ["/art-attraction/log/em1e03102019101009/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/9ac971b529394c60a9160cf139cd31fb",
+    "contentTypeName": "Log Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 19,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Purchase",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77201,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPurchase",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77206,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "Transaction ID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77205,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "231226421",
+            "alias": "transactionID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Paytype",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77203,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "1",
+            "alias": "paytype",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Acquirer",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77202,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "acquirer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77200,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "5",
+            "alias": "price",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Name",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77199,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "anders halfter",
+            "alias": "fullName",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Email",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77204,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "a.halfter@gmail.com",
+            "alias": "email",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Purchase",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77201,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "1",
+        "alias": "isPurchase",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77206,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "Transaction ID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77205,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "231226421",
+        "alias": "transactionID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Paytype",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77203,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "1",
+        "alias": "paytype",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Acquirer",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77202,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "acquirer",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77200,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "5",
+        "alias": "price",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Name",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77199,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "anders halfter",
+        "alias": "fullName",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Email",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77204,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "a.halfter@gmail.com",
+        "alias": "email",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2019-10-05 20:52:26",
+    "createDate": "2019-10-03 10:10:31",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "logEntry",
+    "sortOrder": 0,
+    "name": "em1e03102019101009",
+    "id": 2092,
+    "udi": "umb://document/9ac971b529394c60a9160cf139cd31fb",
+    "icon": "icon-tactics color-black",
+    "trashed": false,
+    "key": "9ac971b5-2939-4c60-a916-0cf139cd31fb",
+    "parentId": 1982,
+    "alias": null,
+    "path": "-1,1067,1981,1982,2092",
+    "metaData": {}
+  },
+  "2094": {
+    "publishDate": "2019-10-05 20:52:38",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "logEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2019-03-04 21:24:42",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Log Entry",
+      "id": 1087,
+      "udi": "umb://document-type/e4e1bf3dda31425183f8cd19bf6348cd",
+      "icon": "icon-tactics color-black",
+      "trashed": false,
+      "key": "e4e1bf3d-da31-4251-83f8-cd19bf6348cd",
+      "parentId": -1,
+      "path": "-1,1087",
+      "metaData": {}
+    },
+    "urls": ["/art-attraction/log/2p3103102019101631/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/a049577ba5f0499ebe8398f386d8823b",
+    "contentTypeName": "Log Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 19,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Purchase",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77209,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPurchase",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77214,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "Transaction ID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77213,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "231227235",
+            "alias": "transactionID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Paytype",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77211,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "1",
+            "alias": "paytype",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Acquirer",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77210,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "acquirer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77208,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "5",
+            "alias": "price",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Name",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77207,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Helle Buttrup",
+            "alias": "fullName",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Email",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 77212,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "helle@praktiskpraksis.dk",
+            "alias": "email",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Purchase",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77209,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "1",
+        "alias": "isPurchase",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77214,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/7b4a8704d55a47158a80c0d6298d54f4",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "Transaction ID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77213,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "231227235",
+        "alias": "transactionID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Paytype",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77211,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "1",
+        "alias": "paytype",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Acquirer",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77210,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "acquirer",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77208,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "5",
+        "alias": "price",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Name",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77207,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "Helle Buttrup",
+        "alias": "fullName",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Email",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 77212,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "helle@praktiskpraksis.dk",
+        "alias": "email",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2019-10-05 20:52:38",
+    "createDate": "2019-10-03 10:17:25",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "logEntry",
+    "sortOrder": 1,
+    "name": "2p3103102019101631",
+    "id": 2094,
+    "udi": "umb://document/a049577ba5f0499ebe8398f386d8823b",
+    "icon": "icon-tactics color-black",
+    "trashed": false,
+    "key": "a049577b-a5f0-499e-be83-98f386d8823b",
+    "parentId": 1982,
+    "alias": null,
+    "path": "-1,1067,1981,1982,2094",
+    "metaData": {}
+  },
+  "116601": {
+    "publishDate": "2025-12-20 15:58:13",
+    "releaseDate": null,
+    "removeDate": null,
+    "template": null,
+    "templateId": 0,
+    "allowedTemplates": {},
+    "documentType": {
+      "alias": "logEntry",
+      "updateDate": "0001-01-01 00:00:00",
+      "createDate": "2019-03-04 21:24:42",
+      "description": null,
+      "thumbnail": "folder.png",
+      "iconIsClass": true,
+      "iconFilePath": "",
+      "thumbnailIsClass": false,
+      "thumbnailFilePath": "/umbraco/images/thumbnails/folder.png",
+      "blueprints": {},
+      "name": "Log Entry",
+      "id": 1087,
+      "udi": "umb://document-type/e4e1bf3dda31425183f8cd19bf6348cd",
+      "icon": "icon-tactics color-black",
+      "trashed": false,
+      "key": "e4e1bf3d-da31-4251-83f8-cd19bf6348cd",
+      "parentId": -1,
+      "path": "-1,1087",
+      "metaData": {}
+    },
+    "urls": ["/art-attraction/log/734h20122025155758/"],
+    "allowPreview": true,
+    "allowedActions": [
+      "C",
+      "A",
+      "D",
+      "M",
+      "O",
+      "S",
+      "K",
+      "T",
+      "P",
+      "I",
+      "U",
+      "R",
+      "Z",
+      ":",
+      "5",
+      "F",
+      "7",
+      "ï"
+    ],
+    "isBlueprint": false,
+    "isChildOfListView": true,
+    "treeNodeUrl": "/umbraco/backoffice/UmbracoTrees/ContentTree/GetTreeNode/9c435eff78594ff1bfd790dee16d64e1",
+    "contentTypeName": "Log Entry",
+    "isContainer": false,
+    "notifications": [],
+    "ModelState": {},
+    "tabs": [
+      {
+        "id": 19,
+        "active": true,
+        "label": "General",
+        "alias": "General",
+        "properties": [
+          {
+            "label": "Purchase",
+            "description": null,
+            "view": "boolean",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2102182,
+            "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+            "value": "1",
+            "alias": "isPurchase",
+            "editor": "Umbraco.TrueFalse",
+            "isSensitive": false
+          },
+          {
+            "label": "Media",
+            "description": null,
+            "view": "contentpicker",
+            "config": {
+              "startNodeId": "-1",
+              "showOpenButton": "0",
+              "showEditButton": "0",
+              "showPathOnHover": "0",
+              "ignoreUserStartNodes": "0",
+              "idType": "udi"
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2102187,
+            "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+            "value": "umb://document/e2d636e78e8b484595c63fa2256cbc9f",
+            "alias": "media",
+            "editor": "Umbraco.ContentPicker2",
+            "isSensitive": false
+          },
+          {
+            "label": "Transaction ID",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2102186,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "397942185",
+            "alias": "transactionID",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Paytype",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2102184,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "1",
+            "alias": "paytype",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Acquirer",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2102183,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "",
+            "alias": "acquirer",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Price",
+            "description": null,
+            "view": "decimal",
+            "config": {
+              "min": null,
+              "step": null,
+              "max": null
+            },
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2102181,
+            "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+            "value": "25",
+            "alias": "price",
+            "editor": "Umbraco.Decimal",
+            "isSensitive": false
+          },
+          {
+            "label": "Name",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2102180,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "Frank Thomsen",
+            "alias": "fullName",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          },
+          {
+            "label": "Email",
+            "description": null,
+            "view": "textbox",
+            "config": {},
+            "hideLabel": false,
+            "validation": {
+              "mandatory": false,
+              "pattern": null
+            },
+            "readonly": false,
+            "id": 2102185,
+            "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+            "value": "frankabild@gmail.com",
+            "alias": "email",
+            "editor": "Umbraco.Textbox",
+            "isSensitive": false
+          }
+        ]
+      }
+    ],
+    "properties": [
+      {
+        "label": "Purchase",
+        "description": null,
+        "view": "boolean",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2102182,
+        "dataTypeId": "92897bc6-a5f3-4ffe-ae27-f2e7e33dda49",
+        "value": "1",
+        "alias": "isPurchase",
+        "editor": "Umbraco.TrueFalse",
+        "isSensitive": false
+      },
+      {
+        "label": "Media",
+        "description": null,
+        "view": "contentpicker",
+        "config": {
+          "startNodeId": "-1",
+          "showOpenButton": "0",
+          "showEditButton": "0",
+          "showPathOnHover": "0",
+          "ignoreUserStartNodes": "0",
+          "idType": "udi"
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2102187,
+        "dataTypeId": "fd1e0da5-5606-4862-b679-5d0cf3a52a59",
+        "value": "umb://document/e2d636e78e8b484595c63fa2256cbc9f",
+        "alias": "media",
+        "editor": "Umbraco.ContentPicker2",
+        "isSensitive": false
+      },
+      {
+        "label": "Transaction ID",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2102186,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "397942185",
+        "alias": "transactionID",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Paytype",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2102184,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "1",
+        "alias": "paytype",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Acquirer",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2102183,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "",
+        "alias": "acquirer",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Price",
+        "description": null,
+        "view": "decimal",
+        "config": {
+          "min": null,
+          "step": null,
+          "max": null
+        },
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2102181,
+        "dataTypeId": "249cea49-f65e-4ebe-b255-9160b4bbd41e",
+        "value": "25",
+        "alias": "price",
+        "editor": "Umbraco.Decimal",
+        "isSensitive": false
+      },
+      {
+        "label": "Name",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2102180,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "Frank Thomsen",
+        "alias": "fullName",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      },
+      {
+        "label": "Email",
+        "description": null,
+        "view": "textbox",
+        "config": {},
+        "hideLabel": false,
+        "validation": {
+          "mandatory": false,
+          "pattern": null
+        },
+        "readonly": false,
+        "id": 2102185,
+        "dataTypeId": "0cc0eba1-9960-42c9-bf9b-60e150b429ae",
+        "value": "frankabild@gmail.com",
+        "alias": "email",
+        "editor": "Umbraco.Textbox",
+        "isSensitive": false
+      }
+    ],
+    "updateDate": "2025-12-20 15:58:13",
+    "createDate": "2025-12-20 15:58:13",
+    "published": true,
+    "hasPublishedVersion": true,
+    "owner": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "updater": {
+      "id": 0,
+      "name": "Martin H. Schläger"
+    },
+    "contentTypeAlias": "logEntry",
+    "sortOrder": 2,
+    "name": "734h20122025155758",
+    "id": 116601,
+    "udi": "umb://document/9c435eff78594ff1bfd790dee16d64e1",
+    "icon": "icon-tactics color-black",
+    "trashed": false,
+    "key": "9c435eff-7859-4ff1-bfd7-90dee16d64e1",
+    "parentId": 1982,
+    "alias": null,
+    "path": "-1,1067,1981,1982,116601",
+    "metaData": {}
+  }
+}
