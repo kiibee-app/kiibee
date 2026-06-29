@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { creatorPlans, plans } from 'src/database/schema';
 import {
@@ -7,6 +7,7 @@ import {
   NORMAL_TEXT,
   PAYMENT_TEXT,
   PAYMENT_TYPES,
+  STATUS,
   TIMEOUT,
 } from 'src/utils/constant';
 
@@ -48,6 +49,16 @@ export const createSubscriptionService = async ({
     if (!user) throw new Error('User not found');
 
     if (plan.price === 0) {
+      await db
+        .update(creatorPlans)
+        .set({ status: STATUS.INACTIVE })
+        .where(
+          and(
+            eq(creatorPlans.creatorId, userId),
+            eq(creatorPlans.status, STATUS.ACTIVE),
+          ),
+        );
+
       await db
         .insert(creatorPlans)
         .values({

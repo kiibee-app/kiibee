@@ -21,6 +21,8 @@ import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import type { PlanKey } from "@/utils/pricingPlanKeys";
+import { useTranslation } from "react-i18next";
+import { FREE_LABEL, VARIANT } from "@/utils/Constants";
 
 type CreateSubscriptionResponse = {
   success: boolean;
@@ -58,6 +60,7 @@ export default function PlanCard({
   planId,
   isCurrentPlan = false,
 }: PlanCardProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   const user = useStoredLoginUser();
   const isLoggedIn = !!user;
@@ -76,7 +79,7 @@ export default function PlanCard({
     }
 
     if (!user?.id || !planId) {
-      toast.error("Plan not found");
+      toast.error(t("pricingPlans.planNotFound"));
       return;
     }
 
@@ -87,18 +90,15 @@ export default function PlanCard({
         planId,
       });
 
-      if (response.type === "FREE") {
-        toast.success(response.message || "Subscription activated!");
-        router.push(PATHS.DASHBOARD_CREATOR);
+      if (response.type?.toLowerCase() === FREE_LABEL) {
+        toast.success(t("pricingPlans.subscriptionActivated"));
         return;
       }
 
       const paymentUrl = response?.data?.paymentWindowUrl;
-      if (!paymentUrl) {
-        throw new Error("Payment URL missing");
+      if (paymentUrl) {
+        window.location.assign(paymentUrl);
       }
-
-      window.location.assign(paymentUrl);
     } catch (error) {
       const message = getErrorMessage(error, "errors.saveChangesFailed");
       toast.error(message);
@@ -128,7 +128,7 @@ export default function PlanCard({
 
       <PlanButton
         type="button"
-        variant={isCurrentPlan ? "secondary" : "primary"}
+        variant={isCurrentPlan ? VARIANT.SECONDARY : VARIANT.PRIMARY}
         onClick={isCurrentPlan ? undefined : handlePlanClick}
         disabled={isSubmitting || isCurrentPlan}
         isLoading={isSubmitting}

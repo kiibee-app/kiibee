@@ -87,10 +87,10 @@ export default function PricingPlansSection({
                 }
                 cta={
                   isCurrentPlan
-                    ? t("pricingPlans.active", "Active")
+                    ? t("pricingPlans.active")
                     : t("pricingPlans.cta")
                 }
-                highlight={planKey === "growth"}
+                highlight={planKey === planOrder[1]}
                 planKey={planKey}
                 planId={apiPlan?.id}
                 isCurrentPlan={isCurrentPlan}

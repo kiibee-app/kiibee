@@ -791,6 +791,9 @@
   "pricingPlans": {
     "title": "Oversigt over prisplaner",
     "cta": "Kom i gang",
+    "active": "Aktiv",
+    "planNotFound": "Planen blev ikke fundet",
+    "subscriptionActivated": "Abonnementet er aktiveret!",
     "plans": {
       "launch": {
         "title": "Launch",
@@ -872,6 +875,21 @@
       "emailInvalid": "Indtast en gyldig e-mailadresse",
       "passwordMinLength": "Adgangskoden skal være mindst 6 tegn",
       "passwordMismatch": "Adgangskoderne matcher ikke"
+    },
+    "success": {
+      "title": "Betaling gennemført",
+      "checking": "Tjekker din betalingsstatus...",
+      "unlocking": "Låser dit abonnement op nu. Du viderestilles om et øjeblik.",
+      "hint": "Dette tager normalt et par sekunder. Behold denne side åben.",
+      "goToDashboard": "Gå til dashboard",
+      "verifyErrorTitle": "Kan ikke bekræfte abonnement",
+      "verifyError": "Der gik noget galt under tjek af dit abonnement. Opdater siden eller prøv igen om et øjeblik.",
+      "refreshPage": "Opdater siden"
+    },
+    "failure": {
+      "title": "Betalingen blev ikke gennemført",
+      "message": "Din betaling blev ikke gennemført, og der blev ikke trukket nogen beløb. Du kan prøve igen fra din prisplan-side.",
+      "viewPlans": "Se planer"
     }
   },
   "pricingFaq": {

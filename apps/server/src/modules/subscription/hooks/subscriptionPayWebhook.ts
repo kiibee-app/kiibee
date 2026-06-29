@@ -7,7 +7,7 @@ import {
 } from 'src/database/schema';
 import { eq, and } from 'drizzle-orm';
 import { randomUUID } from 'crypto';
-import { ORDER_STATUS, PAYMENT_STATUS } from 'src/utils/constant';
+import { ORDER_STATUS, PAYMENT_STATUS, STATUS } from 'src/utils/constant';
 import { logger } from 'src/logger/logger';
 
 export async function handleSubscriptionPayment(body: any) {
@@ -31,6 +31,16 @@ export async function handleSubscriptionPayment(body: any) {
     } = transaction;
 
     if (state !== PAYMENT_STATUS.PAYMENT_SUCCESS) return;
+
+    const existingPayment =
+      await db.query.subscriptionPaymentsHistory.findFirst({
+        where: (t) => eq(t.transactionId, transactionId),
+      });
+
+    if (existingPayment) {
+      logger.info('⚠️ Duplicate webhook ignored');
+      return;
+    }
 
     let plan: any;
     const [foundPlan] = await db
@@ -74,6 +84,16 @@ export async function handleSubscriptionPayment(body: any) {
       return;
     }
 
+    await db
+      .update(creatorPlans)
+      .set({ status: STATUS.INACTIVE })
+      .where(
+        and(
+          eq(creatorPlans.creatorId, customerId),
+          eq(creatorPlans.status, STATUS.ACTIVE),
+        ),
+      );
+
     let creatorPlanId: string;
     const [creatorPlan] = await db
       .select()
@@ -88,23 +108,18 @@ export async function handleSubscriptionPayment(body: any) {
 
     if (creatorPlan) {
       creatorPlanId = creatorPlan.id;
+      await db
+        .update(creatorPlans)
+        .set({ status: STATUS.ACTIVE })
+        .where(eq(creatorPlans.id, creatorPlanId));
     } else {
       creatorPlanId = randomUUID();
       await db.insert(creatorPlans).values({
         id: creatorPlanId,
         creatorId: customerId,
         planId: plan.id,
+        status: STATUS.ACTIVE,
       });
-    }
-
-    const existingPayment =
-      await db.query.subscriptionPaymentsHistory.findFirst({
-        where: (t) => eq(t.transactionId, transactionId),
-      });
-
-    if (existingPayment) {
-      logger.info('⚠️ Duplicate webhook ignored');
-      return;
     }
 
     const formattedAmount = (amount / 100).toString();
@@ -114,7 +129,7 @@ export async function handleSubscriptionPayment(body: any) {
     });
 
     const baseData = {
-      planId: reference,
+      planId: plan.id,
       creatorId: customerId,
       amount: formattedAmount,
       currency,
