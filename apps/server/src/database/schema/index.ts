@@ -42,6 +42,7 @@ export * from './commerce/payments.schema';
 export * from './commerce/viewerPaymentMethods.schema';
 export * from './commerce/creatorPayouts.schema';
 export * from './commerce/creatorBankAccounts.schema';
+export * from './commerce/userCardInfo.schema';
 
 // Coupons
 export * from './coupons/coupons.schema';
@@ -67,4 +68,5 @@ export * from './integrations/externalImports.schema';
 // System
 export * from './system/auditLogs.schema';
 export * from './system/notifications.schema';
+export * from './system/notificationSettings.schema';
 export * from './system/supportContactMessages.schema';

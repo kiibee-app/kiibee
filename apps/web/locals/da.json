@@ -9,7 +9,7 @@
     "exploreCreators": "Udforsk",
     "about": "Om Kiibee",
     "login": "Log ind",
-    "dashboard": "Kontrolpanel",
+    "dashboard": "Instrumentbræt",
     "accountProfile": "Profil",
     "logout": "Log ud",
     "profileMenu": "Kontomenu",
@@ -34,7 +34,7 @@
         "video": "Video",
         "audio": "Audio",
         "pdf": "PDF",
-        "epub": "ePub",
+        "epub": "Epub",
         "web": "Webindhold"
       },
       "categoryTitle": "Kategori",
@@ -415,7 +415,7 @@
       "rightItems": [
         "Se statistik over visninger og salg",
         "Vis indhold på alle enheder — mobil, tablet og desktop",
-        "Sælg flere formater (video, PDF, ePub, MP3, lyd)",
+        "Sælg flere formater (video, PDF, Epub, MP3, lyd)",
         "Opbevar indhold sikkert på danske servere, fuldt GDPR-kompatibelt",
         "Få skræddersyede løsninger baseret på dine behov",
         "Sælg og vis dit indhold hvor som helst på nettet",
@@ -608,6 +608,7 @@
     "userGuides": "Brugervejledninger",
     "contactUs": "Kontakt os",
     "support": "Support",
+    "creatorTerms": "Betingelser for skabere",
     "privacyPolicy": "Privatlivspolitik",
     "termsOfService": "Servicevilkår",
     "cookieSettings": "Cookie-indstillinger",
@@ -669,7 +670,11 @@
     "prevAriaLabel": "Forrige udtalelse",
     "nextAriaLabel": "Næste udtalelse",
     "quote": "Som grafisk designer søger jeg altid at udvikle mine færdigheder og holde mig inspireret. Kiibe har været en gamechanger for mig. Indholdet er praktisk, kreativt og let at følge. Jeg har lært nye teknikker og designtips, som jeg ikke ville have fundet andre steder. Det er som at have et mini-designværksted lige ved hånden!",
-    "author": "Kamma, freelance grafisk designer"
+    "author": "Kamma, freelance grafisk designer",
+    "quote2": "Kiibee har gjort det utroligt nemt at pakke mine online tutorials og sælge dem direkte til mit publikum. Jeg behøver ikke bekymre mig om at administrere abonnementsplatforme eller betalingssystemer; det virker bare. Jeg gik fra nul indtjening til en stabil sideindkomst på få uger!",
+    "author2": "Sarah, online indholdsskaber",
+    "quote3": "Som underviser ønskede jeg en simpel måde at distribuere mine kodningskurser på uden at tvinge mine studerende ind i et månedligt abonnement. Kiibees udlejningsmodel er præcis, hvad vi havde brug for. Afspilningen er glat, og opsætningen var problemfri.",
+    "author3": "Marcus, teknologi-underviser"
   },
   "securePayment": {
     "title": "Sikker og øjeblikkelig betaling med MobilePay",
@@ -1047,13 +1052,17 @@
     "bgAlt": "CTA background"
   },
   "legalPages": {
+    "common": {
+      "email": "Email",
+      "cvr": "CVR"
+    },
     "privacyPolicy": {
       "updatedAt": "Sidst opdateret: Juni 16, 2026",
       "intro": "Hos KIIBEE ApS respekterer vi dine personlige oplysninger og derfor deler vi dem ikke med en tredjemand.\n\nDenne privatpolitik regulerer måden, hvorpå KIIBEE ApS indsamler, opbevarer og anvender oplysninger indsamlet fra brugere (herefter kaldet \"Brugere\") af hjemmesiden www.kiibee.dk / www.kiibee.com (herefter kaldet \"Hjemmesiden\"). Denne privatpolitik omfatter Hjemmesiden og alle produkter tilbudt af KIIBEE ApS",
       "sections": {
         "collect": {
           "title": "Personlige oplysninger",
-          "body": "Vi kan indsamle personlige oplysninger fra Brugere enten via nyhedsbrev sign-up eller ved køb/leje af en service.\nBrugere kan blive spurgt om navn, e-mail, postadresse, tlf. nr. virksomhedsoplysninger og kreditkortoplysninger efter behov.\nVed indsendelse af kontaktformular, giver du KIIBEE samtykke til, at må opbevare dine fremsendte oplysninger. Du kan til enhver tid tilbagekalde dette samtykke ved at kontakte os på info@kiibee.dk.\nBrugere kan til enhver tid besøge hjemmesiden anonymt og vi vil kun indsamle data fra Brugere, når de frivilligt giver sådanne oplysninger til os. Brugere kan opleve, at de ikke vil kunne tilgå alle dele af hjemmesiden, hvis de vælger ikke at give personlige oplysninger."
+          "body": "Vi kan indsamle personlige oplysninger fra Brugere enten via nyhedsbrev sign-up eller ved køb/leje af en service.\n\nBrugere kan blive spurgt om navn, e-mail, postadresse, tlf. nr. virksomhedsoplysninger og kreditkortoplysninger efter behov.\n\nVed indsendelse af kontaktformular, giver du KIIBEE samtykke til, at må opbevare dine fremsendte oplysninger. Du kan til enhver tid tilbagekalde dette samtykke ved at kontakte os på info@kiibee.dk.\n\nBrugere kan til enhver tid besøge hjemmesiden anonymt og vi vil kun indsamle data fra Brugere, når de frivilligt giver sådanne oplysninger til os. Brugere kan opleve, at de ikke vil kunne tilgå alle dele af hjemmesiden, hvis de vælger ikke at give personlige oplysninger."
         },
         "nonPersonal": {
           "title": "Ikke-personlige oplysninger",
@@ -1065,7 +1074,7 @@
         },
         "use": {
           "title": "Anvendelse af personlige oplysninger",
-          "body": "Opfyldelse af vores salgsrelaterede forpligtelser: Det omfatter opfyldelse af vores forpligtelser over for dig som kunde, herunder levering, relevant service, kundeopfølgning og besvarelse af spørgsmål samt opfyldelse af vores forpligtelser i henhold til gældende lov.\nRelevante råd samt tilbud til dig om opfølgning og tilbud: Vi vil benytte dine personoplysninger til at give dig relevante råd, opfølgning og tilbud på produkter og tjenester relateret til det, du allerede har købt hos os.\nOprette kundeprofil: Vi vil kunne oprette en kundeprofil baseret på købshistorik og tilgængelige oplysninger som grundlag for nyhedsbreve, produktinformationer, tilpasset markedsføring og købsanalyser.\nAdministration af brugerprofiler: Vi har adgang til din brugerprofil for at kunne administrere dine kontaktoplysninger og eventuelle samtykker til at modtage vores nyhedsbrev, deltagelse i kampagner eller lignende.\nVidereudvikling af tjenester og sikker drift: For at kunne videreudvikle vores tjenester og drive hjemmesiden på en god og forsvarlig måde er vi bl.a. afhængige af at kunne producere statistik om ting som trafik, køb og adfærd på hjemmesiden. Vi vil også kunne få brug for at få viden om svindel og at træffe modforanstaltninger.\nKampagner og undersøgelser: Hvis du vælger at deltage i en undersøgelse, kampagne eller gå ind på hjemmesiden, kan du blive bedt om at angive personoplysninger såsom navn, adresse og/eller telefonnummer. Formålet er at kunne identificere dig, hvis du f.eks. vinder en præmie.\nBrug af eksterne leverandører: Hvis du bestiller eksterne tjenester, vil kontaktoplysninger og andre relevante oplysninger, vi har registreret om dig, kunne blive udleveret til leverandøren."
+          "body": "Opfyldelse af vores salgsrelaterede forpligtelser: Det omfatter opfyldelse af vores forpligtelser over for dig som kunde, herunder levering, relevant service, kundeopfølgning og besvarelse af spørgsmål samt opfyldelse af vores forpligtelser i henhold til gældende lov.\n\nRelevante råd samt tilbud til dig om opfølgning og tilbud: Vi vil benytte dine personoplysninger til at give dig relevante råd, opfølgning og tilbud på produkter og tjenester relateret til det, du allerede har købt hos os.\n\nOprette kundeprofil: Vi vil kunne oprette en kundeprofil baseret på købshistorik og tilgængelige oplysninger som grundlag for nyhedsbreve, produktinformationer, tilpasset markedsføring og købsanalyser.\n\nAdministration af brugerprofiler: Vi har adgang til din brugerprofil for at kunne administrere dine kontaktoplysninger og eventuelle samtykker til at modtage vores nyhedsbrev, deltagelse i kampagner eller lignende.\n\nVidereudvikling af tjenester og sikker drift: For at kunne videreudvikle vores tjenester og drive hjemmesiden på en god og forsvarlig måde er vi bl.a. afhængige af at kunne producere statistik om ting som trafik, køb og adfærd på hjemmesiden. Vi vil også kunne få brug for at få viden om svindel og at træffe modforanstaltninger.\n\nKampagner og undersøgelser: Hvis du vælger at deltage i en undersøgelse, kampagne eller gå ind på hjemmesiden, kan du blive bedt om at angive personoplysninger såsom navn, adresse og/eller telefonnummer. Formålet er at kunne identificere dig, hvis du f.eks. vinder en præmie.\n\nBrug af eksterne leverandører: Hvis du bestiller eksterne tjenester, vil kontaktoplysninger og andre relevante oplysninger, vi har registreret om dig, kunne blive udleveret til leverandøren."
         },
         "share": {
           "title": "Beskyttelse af din personoplysninger",
@@ -1083,9 +1092,16 @@
           "title": "Din accept",
           "body": "Ved at anvende Hjemmesiden, acceptere du denne politik og vilkår for vores service. Hvis du ikke accepterer denne politik, bedes Brugeren ikke benytte Hjemmesiden. Den fortsatte brug af denne Hjemmeside vil anses for accept af sådanne ændringer."
         },
+        "publisherGdpr": {
+          "title": "Persondata for udgivere (GDPR)",
+          "body": "Behandling af personoplysninger sker i henhold til gældende databeskyttelseslovgivning, herunder EU's generelle databeskyttelsesforordning (GDPR).\nKIIBEE indsamler og behandler personoplysninger med det formål at:\n- Drifte og vedligeholde Platformen\n- Behandle betalinger og udbetalinger til udgivere\n- Overholde juridiske forpligtelser\n- Kommunikere med udgivere vedrørende deres konto og indhold\nUdgivere har ret til at:\n- Få adgang til deres personoplysninger\n- Anmode om rettelse af unøjagtige oplysninger\n- Anmode om sletning af deres data\n- Gøre indsigelse mod behandling af deres oplysninger\nHvis du har spørgsmål til behandlingen af dine personoplysninger, bedes du kontakte os på info@kiibee.dk."
+        },
         "contact": {
           "title": "Kontakt os",
-          "body": "Hvis du har spørgsmål angående denne privatpolitik eller andet, bedes du kontakte os på:\nKIIBEE ApS\nEmail: info@kiibee.dk\n\nDenne privatpolitik er opdateret den 16 Juni 2026"
+          "intro": "Hvis du har spørgsmål angående denne privatpolitik eller andet, bedes du kontakte os på:",
+          "company": "KIIBEE ApS",
+          "email": "info@kiibee.dk",
+          "footer": "Denne privatpolitik er opdateret den 16 Juni 2026"
         }
       }
     },
@@ -1119,7 +1135,7 @@
         },
         "platform": {
           "title": "Platform og ansvar",
-          "body": "KIIBEE ApS ejer og driver platformen www.kiibee.dk, herunder domænerne kiibee.dk og kiibee.com.\nPlatformen stiller software til rådighed, som gør det muligt at distribuere digitalt indhold.\nKIIBEE forbeholder sig retten til at:\n- Fjerne indhold, der krænker rettigheder\n- Fjerne indhold, der er vildledende eller stødende\n- Lukke eller begrænse adgang til brugere, der overtræder betingelserne\nKIIBEE kan ikke holdes ansvarlig for indirekte tab, følgeskader eller tab som følge af brug af platformen."
+          "body": "KIIBEE ApS ejer og driver platformen www.kiibee.dk, herunder domænerne kiibee.dk og kiibee.com.\nPlatformen stiller software til rådighed, som gør det muligt at distribuere digitalt indhold.\nKIIBEE forbeholder sig retten til at:\n- Fjerne indhold, der krænker rettigheder\n- Fjerne indhold, der er vildledende eller stødende\n- Lukke eller begrænse adgang til brugere, der overtræder betingelserne\nKIIBEE er ikke ansvarlig for indirekte tab, herunder:\n- driftstab\n- tabt fortjeneste\n- datatab"
         },
         "liability": {
           "title": "Ansvarsfraskrivelse",
@@ -1129,9 +1145,44 @@
           "title": "Lovvalg og væmeting",
           "body": "Disse betingelser er underlagt dansk ret.\nEventuelle tvister skal afgøres ved danske domstole."
         },
+        "publisherAccount": {
+          "title": "Udgiverkonto og brugeransvar",
+          "body": "For at anvende Platformen som udgiver skal du oprette en konto.\nDu er ansvarlig for:\n- at holde dine loginoplysninger fortrolige\n- alle aktiviteter, der sker via din Konto\n- at afgive korrekte og opdaterede oplysninger\nKIIBEE er ikke ansvarlig for tab som følge af uautoriseret brug af din Konto. Du skal straks kontakte KIIBEE ved mistanke om misbrug."
+        },
+        "publisherContent": {
+          "title": "Indhold og brugergenereret materiale",
+          "body": "Du kan via Platformen uploade og dele indhold.\nDu er eneansvarlig for dit indhold og garanterer, at:\n- du har alle nødvendige rettigheder\n- indholdet ikke krænker tredjeparts rettigheder\n- indholdet overholder gældende lovgivning\n- indholdet ikke er af stødende karakter\nKIIBEE kan til enhver tid, uden varsel:\n- afvise, redigere eller fjerne indhold\n- suspendere eller lukke konti ved misligholdelse\nVed fejl, misvisende indhold eller snyd kan betalinger tilbageholdes eller tilbageføres."
+        },
+        "useOfService": {
+          "title": "Brug af tjenesten",
+          "body": "Du må ikke:\n- forsøge at omgå eller bryde sikkerheden\n- foretage reverse engineering, dekompilering eller lignende\n- anvende Platformen i strid med gældende lovgivning\nKIIBEE forbeholder sig ret til at overvåge brugen og håndhæve disse regler uden varsel."
+        },
+        "publisherRole": {
+          "title": "KIIBEE's rolle som udgiverplatform",
+          "body": "KIIBEE fungerer som en platform for formidling af digitalt indhold mellem brugere og slutkunder.\nKIIBEE er ikke ansvarlig for:\n- kvaliteten af det indhold, der udbydes af brugere\n- aftaler indgået mellem bruger og slutkunde\nKIIBEE har dog ret til at fjerne indhold, der ikke lever op til platformens krav."
+        },
+        "publisherFees": {
+          "title": "Betingelser og gebyrer for udgivere",
+          "body": "Ved salg via platformen: KIIBEE overfører dit udbytte fra salg af digitale materialer, når du ønsker det, med op til 5-7 bankdage. Dit udbytte udbetales efter der er trukket et gebyr og indsættes på din bankkonto. Gebyret indeholder blandt andet udgifter til betalingsudbyder: Dankort/MasterCard/Visa & MobilePay for indløsning.\nKIIBEE tager et gebyr per solgt materiale til blandt andet afholdelse af udgifter til udvikling/hosting og vedligeholdelse af softwaren. KIIBEE's gebyr per solgt vare ses under aktuelle priser: kiibee.dk/pricing.\nKIIBEE kan tilbageholde betaling ved:\n- mistanke om snyd\n- klager fra slutkunder\n- manglende levering af indhold\nAbonnementer opkræves løbende og manglende betaling kan medføre lukning af konto."
+        },
+        "publisherMarketing": {
+          "title": "E-mail og markedsføring",
+          "body": "Ved indsamling af e-mails via platformen skal du:\n- Overholde markedsføringsloven (§6)\n- Sikre samtykke\n- Give mulighed for afmelding\nDet er ikke tilladt at videregive e-mails til tredjepart uden samtykke."
+        },
+        "publisherTermination": {
+          "title": "Opsigelse af udgiverkonto",
+          "body": "KIIBEE kan til enhver tid:\n- suspendere eller lukke din konto ved misligholdelse\n- ændre eller ophøre Platformen med rimeligt varsel\n- opsige din konto med en måneds varsel, betalt abonnement vil ikke blive refunderet, hvorefter din konto nedlægges og dine data og indhold slettes."
+        },
+        "amendments": {
+          "title": "Ændringer",
+          "body": "KIIBEE kan ændre disse Betingelser med rimeligt varsel.\nFortsat brug af Platformen udgør accept af ændringerne."
+        },
         "contact": {
           "title": "Kontakt",
-          "body": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:\nKIIBEE ApS\nEmail: info@kiibee.dk"
+          "intro": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:",
+          "company": "KIIBEE ApS",
+          "cvr": "34898634",
+          "email": "info@kiibee.dk"
         }
       }
     },
@@ -1175,7 +1226,75 @@
         },
         "contact": {
           "title": "Kontakt",
-          "body": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:\nKIIBEE ApS\nEmail: info@kiibee.dk"
+          "intro": "Hvis du har spørgsmål til disse handelsbetingelser, kan du kontakte:",
+          "company": "KIIBEE ApS",
+          "email": "info@kiibee.dk"
+        }
+      }
+    },
+    "creatorTerms": {
+      "pageTitle": "KIIBEE – Betingelser for skabere",
+      "updatedAt": "Sidst opdateret: 26. juni 2026",
+      "sections": {
+        "general": {
+          "title": "Generelt",
+          "body": "Disse betingelser (\"Betingelserne\") regulerer din brug af KIIBEE ApS' platform, herunder kiibee.dk & kiibee.com samt tilhørende software og tjenester (\"Platformen\").\n\nVed at oprette en konto eller anvende Platformen accepterer du disse Betingelser. Hvis du ikke accepterer Betingelserne, må du ikke anvende Platformen."
+        },
+        "account": {
+          "title": "Konto og brugeransvar",
+          "body": "For at anvende Platformen skal du oprette en konto (\"Konto\").\nDu er ansvarlig for:\n- at holde dine loginoplysninger fortrolige\n- alle aktiviteter, der sker via din Konto\n- at afgive korrekte og opdaterede oplysninger\nKIIBEE er ikke ansvarlig for tab som følge af uautoriseret brug af din Konto. Du skal straks kontakte KIIBEE ved mistanke om misbrug."
+        },
+        "useOfService": {
+          "title": "Brug af tjenesten",
+          "body": "Du må ikke:\n- forsøge at omgå eller bryde sikkerheden\n- foretage reverse engineering, dekompilering eller lignende\n- anvende Platformen i strid med gældende lovgivning\nKIIBEE forbeholder sig ret til at overvåge brugen og håndhæve disse regler uden varsel."
+        },
+        "content": {
+          "title": "Indhold og brugergenereret materiale",
+          "body": "Du kan via Platformen uploade og dele indhold (\"Indhold\").\nDu er eneansvarlig for dit Indhold og garanterer, at:\n- du har alle nødvendige rettigheder\n- indholdet ikke krænker tredjeparts rettigheder\n- indholdet overholder gældende lovgivning\n- Indhold ikke er af stødende karakter\nKIIBEE kan til enhver tid, uden varsel:\n- afvise, redigere eller fjerne indhold\n- suspendere eller lukke konti ved misligholdelse\nVed fejl, misvisende indhold eller snyd kan betalinger tilbageholdes eller tilbageføres."
+        },
+        "role": {
+          "title": "KIIBEE's rolle",
+          "body": "KIIBEE fungerer som en platform for formidling af digitalt indhold mellem brugere og slutkunder.\nKIIBEE er ikke ansvarlig for:\n- kvaliteten af det indhold, der udbydes af brugere\n- aftaler indgået mellem bruger og slutkunde\nKIIBEE har dog ret til at fjerne indhold, der ikke lever op til platformens krav."
+        },
+        "thirdParty": {
+          "title": "Tredjepartsindhold",
+          "body": "Platformen kan indeholde links eller adgang til tredjepartsindhold.\nKIIBEE er ikke ansvarlig for:\n- indholdets rigtighed\n- tredjeparts produkter eller services\nBrug heraf sker på eget ansvar."
+        },
+        "payment": {
+          "title": "Betaling og gebyrer",
+          "body": "Ved salg via platformen: KIIBEE overfører, dit udbytte fra salg af digitale materialer når du ønsker det med op til 5-7 bankdage. Dit udbytte udbetales efter der er trukket et gebyr og indsættes på din bankkonto. Gebyret indeholder blandt andet udgifter til betalingsudbyder: Dankort/MasterCard/Visa & MobilePay for indløsning. KIIBEE tager et gebyr per solgt materiale til blandt andet afholdelse af udgifter til udvikling/hosting og vedligeholdelse af softwaren. KIIBBEE's gebyr per solgt vare ses under aktuelle priser: Kiibbee.dk/pricing.\nKIIBEE kan tilbageholde betaling ved:\n- mistanke om snyd\n- klager fra slutkunder\n- manglende levering af indhold\nAbonnementer opkræves løbende og manglende betaling kan medføre lukning af konto."
+        },
+        "emailMarketing": {
+          "title": "E-mail og markedsføring",
+          "body": "Ved indsamling af e-mails via platformen skal du:\n- Overholde markedsføringsloven (§6)\n- Sikre samtykke.\n- Give mulighed for afmelding\nDet er ikke tilladt at videregive e-mails til tredjepart uden samtykke."
+        },
+        "intellectualProperty": {
+          "title": "Immaterielle rettigheder",
+          "body": "Alle rettigheder til Platformen tilhører KIIBEE ApS.\nDu må ikke kopiere, distribuere eller misbruge platformen eller dens indhold uden tilladelse."
+        },
+        "limitationOfLiability": {
+          "title": "Ansvarsbegrænsning",
+          "body": "KIIBEE er ikke ansvarlig for indirekte tab, herunder:\n- driftstab\n- tabt fortjeneste\n- datatab"
+        },
+        "termination": {
+          "title": "11. Opsigelse",
+          "body": "KIIBEE kan til enhver tid:\n- suspendere eller lukke din konto ved misligholdelse\n- ændre eller ophøre Platformen med rimeligt varsel\n- Opsige din konto med en måneds varsel, betalt abonnement vil ikke blive refunderet, hvorefter din konto nedlægges og dine data og indhold slettes."
+        },
+        "changes": {
+          "title": "12. Ændringer",
+          "body": "KIIBEE kan ændre disse Betingelser med rimeligt varsel. Fortsat brug af Platformen udgør accept af ændringerne."
+        },
+        "personalData": {
+          "title": "13. Persondata (GDPR)",
+          "body": "Behandling af personoplysninger sker i henhold til KIIBEE's privatlivspolitik."
+        },
+        "governingLaw": {
+          "title": "14. Lovvalg og værneting",
+          "body": "Betingelserne er underlagt dansk ret. Enhver tvist afgøres ved danske domstole."
+        },
+        "contact": {
+          "title": "Kontakt",
+          "body": "KIIBEE ApS\nCVR: 34898634\nE-mail: info@kiibee.dk"
         }
       }
     }
@@ -1237,7 +1356,8 @@
         "collections": "Samlinger",
         "videos": "Videoer",
         "audios": "Lydfiler",
-        "pdf": "PDF"
+        "pdf": "PDF",
+        "web": "Weblink"
       },
       "buttons": {
         "seeContent": "Se indhold"
@@ -1645,6 +1765,7 @@
       "trailerLink": "Trailer-link",
       "trailerLinkHint": "Hvis du vil tilfoje en trailer, skal du indtaste linket her.",
       "trailerLinkPlaceholder": "Tilfoj YouTube- eller Video-link",
+      "trailerLinkInvalid": "Indtast venligst en gyldig URL (fx: https://example.com)",
       "visibility": "Synlighed",
       "visibilityHint": "Styr om denne trailer er synlig for brugere.",
       "public": "Offentlig",
@@ -1776,6 +1897,7 @@
     "metadata": {
       "validation": {
         "required": "Dette felt er obligatorisk.",
+        "numbersOnly": "Kun tal er tilladt.",
         "mediaCardThumbnail": "Miniature til mediekortet er obligatorisk.",
         "portraitThumbnail": "Portraetminiature er obligatorisk."
       },
@@ -2011,9 +2133,11 @@
     "playVideo": "Afspil video",
     "playAudio": "Afspil lyd",
     "openPdf": "Åben PDF",
+    "openWeb": "Åben link",
     "mediaLabelVideo": "Video",
     "mediaLabelAudio": "Lyd",
     "mediaLabelPdf": "PDF",
+    "mediaLabelWeb": "Weblink",
     "expired": "Udløbet",
     "expiresInHours": "Udløber om {{count}} timer",
     "expiresInDays": "Udløber om {{count}} dage",

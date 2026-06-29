@@ -20,18 +20,10 @@ import CouponTable from "./coupon";
 import CollectionTable from "./Collections";
 import { COLLECTION_TABLE_TYPE, CollectionTableType } from "@/utils/collection";
 import { CollectionContentRow, CollectionRow } from "@/types/collectionsType";
-import {
-  EmptyCollectionCard,
-  EmptyCollectionsView,
-  EmptyCollectionFolderIcon,
-  EmptyCollectionText,
-  EmptyCollectionTitle,
-  PlaceholderLine,
-} from "./styles";
-import { MonoText } from "@/components/UI/Monotext";
+import { PlaceholderLine } from "./styles";
+import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import GeneralContent from "./General";
 import DeleteModals from "./CollectionDeleteModal";
-import AuthBackButton from "../Auth/AuthBackButton";
 import { useRouter } from "next/navigation";
 import { pathPublishedContent } from "@/utils/path";
 import MetaData from "./MetaData";
@@ -75,7 +67,6 @@ type Props = {
   collectionAccessDuration?: AccessDurationValue;
   setCollectionAccessDuration?: (value: AccessDurationValue) => void;
   onPasswordValidationChange?: (hasError: boolean) => void;
-  onBack?: () => void;
 };
 
 export default function ContentTabPanel({
@@ -108,7 +99,6 @@ export default function ContentTabPanel({
   collectionAccessDuration,
   setCollectionAccessDuration,
   onPasswordValidationChange,
-  onBack,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -168,20 +158,10 @@ export default function ContentTabPanel({
 
       if (!data || data.length === 0) {
         return (
-          <>
-            {onBack && <AuthBackButton marginBottom="0px" onClick={onBack} />}
-            <EmptyCollectionCard>
-              <EmptyCollectionFolderIcon />
-              <EmptyCollectionText>
-                <EmptyCollectionTitle>
-                  {t("contents.emptyCollection.title")}
-                </EmptyCollectionTitle>
-                <MonoText $use="Body_Medium">
-                  {t("contents.emptyCollection.description")}
-                </MonoText>
-              </EmptyCollectionText>
-            </EmptyCollectionCard>
-          </>
+          <GenericEmptyState
+            title={t("contents.emptyCollection.title")}
+            description={t("contents.emptyCollection.description")}
+          />
         );
       }
 
@@ -214,16 +194,10 @@ export default function ContentTabPanel({
 
     if (collections.length === 0) {
       return (
-        <EmptyCollectionsView>
-          <EmptyCollectionText>
-            <EmptyCollectionTitle>
-              {t("contents.emptyCollection.title")}
-            </EmptyCollectionTitle>
-            <MonoText $use="Body_Medium">
-              {t("contents.emptyCollection.description")}
-            </MonoText>
-          </EmptyCollectionText>
-        </EmptyCollectionsView>
+        <GenericEmptyState
+          title={t("contents.emptyCollection.title")}
+          description={t("contents.emptyCollection.description")}
+        />
       );
     }
 

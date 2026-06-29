@@ -81,17 +81,7 @@ export const CardsGrid = styled.div<{ $isFetching?: boolean }>`
 
 export const ResultsState = styled.div`
   grid-column: 1 / -1;
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-  border-radius: ${({ theme }) => theme.radius.md};
-  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
-  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
-  border: 1px dashed ${({ theme }) => theme.colors.neutral.GRAY_300};
+  width: 100%;
 `;
 
 export const LoadMoreContainer = styled.div`

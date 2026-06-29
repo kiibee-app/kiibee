@@ -8,11 +8,13 @@ import {
   SortValue,
   mapSortValueToExploreSort,
 } from "@/utils/sortOptions";
+import { EXPLORE_PAGE_SIZE } from "@/utils/Constants";
 
 export function useFormatContent(formatId: string) {
   const { t } = useTranslation();
   const [sortBy, setSortBy] = useState<SortValue>(DEFAULT_SORT);
   const [searchQuery, setSearchQuery] = useState("");
+  const [limit, setLimit] = useState(EXPLORE_PAGE_SIZE);
 
   const exploreSort = useMemo(() => {
     return mapSortValueToExploreSort(sortBy);
@@ -20,6 +22,7 @@ export function useFormatContent(formatId: string) {
 
   const { tutorials, isLoading, isError } = useExploreContent({
     sort: exploreSort,
+    limit,
     filters: {
       contentTypeId: [formatId],
     },
@@ -47,6 +50,12 @@ export function useFormatContent(formatId: string) {
     return translated;
   }, [formatId, t]);
 
+  const showLoadMoreButton = tutorials.length >= limit;
+
+  const handleLoadMore = () => {
+    setLimit((prev) => prev + EXPLORE_PAGE_SIZE);
+  };
+
   return {
     tutorials: filteredTutorials,
     isLoading,
@@ -56,5 +65,7 @@ export function useFormatContent(formatId: string) {
     searchQuery,
     setSearchQuery,
     formatTitle,
+    showLoadMoreButton,
+    handleLoadMore,
   };
 }

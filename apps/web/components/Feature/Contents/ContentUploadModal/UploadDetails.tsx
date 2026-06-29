@@ -5,7 +5,7 @@ import InputFields from "@/components/UI/InputFields";
 import { INPUT_TYPE } from "@/utils/ui";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
 import { UploadHint } from "@/components/UI/ImageUploadCropModal/styles";
-import { AddButtom, UploadHelperText, UploadSuccess } from "./styles";
+import { AddButtom, UploadSuccess } from "./styles";
 import { useTranslation } from "react-i18next";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MonoText } from "@/components/UI/Monotext";
@@ -36,7 +36,6 @@ export default function ContentUploadDetails({
   successMessage,
   isSuccess,
   isSubmitting,
-  errorMessage,
   uploadType,
 }: Props) {
   const { t } = useTranslation();
@@ -100,7 +99,6 @@ export default function ContentUploadDetails({
         >
           {submitLabel}
         </GenericButton>
-        {errorMessage && <UploadHelperText>{errorMessage}</UploadHelperText>}
       </AddButtom>
     </>
   );

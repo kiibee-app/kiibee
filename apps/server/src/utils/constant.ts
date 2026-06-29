@@ -128,6 +128,7 @@ export const CONTENT_TYPES = {
   VIDEO: 'Video',
   AUDIO: 'Audio',
   PDF: 'PDF',
+  WEB: 'Web Link',
 } as const;
 
 export const PAYMENT_TYPES = {
@@ -139,3 +140,4 @@ export const NORMAL_TEXT = 'NORMAL';
 export const TIMEOUT = 120;
 export const MAX_ATTEMPTS = 25;
 export const MAX_DURATION_SECONDS = 7200;
+export const UNSCHEDULED_TYPE = 'UNSCHEDULED';

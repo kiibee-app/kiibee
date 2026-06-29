@@ -24,6 +24,7 @@ import {
   SETTINGS,
   ContentTab,
   PAYMENT_DEFAULT_ACCESS_DURATION,
+  isValidUrl,
 } from "@/utils/common";
 import {
   AdmissionRequirementValue,
@@ -48,6 +49,7 @@ import {
   mockSizeFallback,
   buildContentUpdatePayload,
   GENERAL_FORM_FIELDS,
+  NUMERIC_ONLY_REGEX,
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
@@ -365,21 +367,28 @@ export function useContentFormActions({
     }
     if (!formState.publishedYear.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = requiredMessage;
+    } else if (!NUMERIC_ONLY_REGEX.test(formState.publishedYear)) {
+      nextErrors[CONTENT_FORM_FIELDS.PUBLISHED_YEAR] = t(
+        "contents.metadata.validation.numbersOnly",
+      );
     }
     if (!formState.duration.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.DURATION] = requiredMessage;
+    } else if (!NUMERIC_ONLY_REGEX.test(formState.duration)) {
+      nextErrors[CONTENT_FORM_FIELDS.DURATION] = t(
+        "contents.metadata.validation.numbersOnly",
+      );
     }
     if (!formState.category.trim()) {
       nextErrors[CONTENT_FORM_FIELDS.CATEGORY] = requiredMessage;
     }
-    if (!formState.productionCompany.trim()) {
-      nextErrors[CONTENT_FORM_FIELDS.PRODUCTION_COMPANY] = requiredMessage;
-    }
-    if (!formState.manufacturerLink.trim()) {
-      nextErrors[CONTENT_FORM_FIELDS.MANUFACTURER_LINK] = requiredMessage;
-    }
-    if (!formState.tags.trim()) {
-      nextErrors[CONTENT_FORM_FIELDS.TAGS] = requiredMessage;
+    if (
+      formState.manufacturerLink.trim() &&
+      !isValidUrl(formState.manufacturerLink)
+    ) {
+      nextErrors[CONTENT_FORM_FIELDS.MANUFACTURER_LINK] = t(
+        "contents.general.trailerLinkInvalid",
+      );
     }
     if (!formState.mediaCardThumbnail) {
       nextErrors.mediaCardThumbnail = t(
@@ -396,6 +405,29 @@ export function useContentFormActions({
 
     if (Object.keys(nextErrors).length > 0) {
       toast.error(t("errors.metadataValidationFailed"));
+      return false;
+    }
+
+    return true;
+  };
+
+  const validateGeneralForm = () => {
+    const nextErrors: Partial<ContentFormErrors> = {};
+
+    if (formState.trailerLink.trim() && !isValidUrl(formState.trailerLink)) {
+      nextErrors.trailerLink = t("contents.general.trailerLinkInvalid");
+    }
+
+    setFormErrors((prev) => {
+      const rest = { ...prev };
+      delete rest.trailerLink;
+      return nextErrors.trailerLink
+        ? { ...rest, trailerLink: nextErrors.trailerLink }
+        : rest;
+    });
+
+    if (Object.keys(nextErrors).length > 0) {
+      toast.error(t("authForm.errors.fixHighlightedFields"));
       return false;
     }
 
@@ -466,6 +498,10 @@ export function useContentFormActions({
       (activeTab === ADD_CONTENT_TABS.METADATA || isPublic) &&
       !validateMetadataForm()
     ) {
+      return;
+    }
+
+    if (!validateGeneralForm()) {
       return;
     }
 

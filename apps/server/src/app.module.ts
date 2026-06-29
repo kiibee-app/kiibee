@@ -19,6 +19,7 @@ import { ExportModule } from './modules/export/export.module';
 import { CreatorOverviewModule } from './modules/creator-overview/creator-overview.module';
 import { SupportModule } from './modules/support/support.module';
 import { PayoutModule } from './modules/payout/payout.module';
+import { NotificationSettingsModule } from './modules/notification-settings/notification-settings.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { PayoutModule } from './modules/payout/payout.module';
     CreatorOverviewModule,
     SupportModule,
     PayoutModule,
+    NotificationSettingsModule,
   ],
 })
 export class AppModule {}

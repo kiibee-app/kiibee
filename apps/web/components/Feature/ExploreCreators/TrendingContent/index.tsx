@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTrendingContent } from "@/hooks/feed/useTrendingContent";
-import { LOAD_MORE_SIZE, SKELETON_COUNT } from "@/utils/Constants";
+import { SKELETON_COUNT } from "@/utils/Constants";
 import {
   Section,
   SectionTag,
@@ -24,7 +24,7 @@ import {
 } from "../../TutorialVideos/TutorialContent/styles";
 import { Grid } from "../../TutorialVideos/TutorialsShowcase/styles";
 import { useTranslation } from "react-i18next";
-import { LoadMoreContainer, LoadMoreButton } from "./styles";
+
 import { LeftIcon } from "@/assets/icons";
 import {
   SkeletonCard,
@@ -37,20 +37,14 @@ import {
 
 export default function TrendingContent() {
   const { t } = useTranslation();
-  const [limit, setLimit] = useState(LOAD_MORE_SIZE);
   const [pageStart, setPageStart] = useState(0);
-  const { tutorials, isLoading } = useTrendingContent(limit);
-  const hasMore = tutorials.length >= limit;
+  const { tutorials, isLoading } = useTrendingContent();
 
   const totalItems = tutorials.length;
   const { canSlide, canGoPrev, canGoNext } = getPaginationState(
     totalItems,
     pageStart,
   );
-
-  const handleLoadMore = () => {
-    setLimit((prev) => prev + LOAD_MORE_SIZE);
-  };
 
   const movePrev = useCallback(() => {
     setPageStart((prev) => Math.max(prev - FEED_CONTENT_PAGE_SIZE, 0));
@@ -141,17 +135,6 @@ export default function TrendingContent() {
               <TutorialCard key={tutorial.id} tutorial={tutorial} />
             ))}
       </Grid>
-      {hasMore && !isLoading && (
-        <LoadMoreContainer>
-          <LoadMoreButton
-            variant="primary"
-            type="button"
-            onClick={handleLoadMore}
-          >
-            {t("creators.loadMore")}
-          </LoadMoreButton>
-        </LoadMoreContainer>
-      )}
     </Section>
   );
 }

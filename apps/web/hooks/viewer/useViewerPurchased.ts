@@ -40,6 +40,7 @@ type PurchasedDataResponse = {
     videos: PurchasedMediaResponse[];
     audios: PurchasedMediaResponse[];
     pdfs: PurchasedMediaResponse[];
+    webs?: PurchasedMediaResponse[];
     collections: PurchasedCollectionResponse[];
   };
 };
@@ -81,6 +82,7 @@ export const useViewerPurchased = (enabled: boolean = true) => {
       videos: (responseData.videos || []).map(mapMediaItem),
       audios: (responseData.audios || []).map(mapMediaItem),
       pdfs: (responseData.pdfs || []).map(mapMediaItem),
+      webs: (responseData.webs || []).map(mapMediaItem),
       collections: (responseData.collections || []).map(mapCollectionItem),
     };
   }, [query.data]);

@@ -38,6 +38,7 @@ export const PATHS = {
   CONTENT: "/content",
   SUPPORT: "/support",
   TERMS: "/terms-of-service",
+  CREATOR_TERMS: "/creator-terms",
   PRIVACY_POLICY: "/privacy-policy",
   SUBSCRIPTION_TERMS: "/subscription-terms",
   CREATOR_PROFILE: "/creator",

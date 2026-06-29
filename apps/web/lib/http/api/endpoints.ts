@@ -94,6 +94,10 @@ export const API = {
   support: {
     contact: "/support/contact",
   },
+  notificationSettings: {
+    get: "/notification-settings",
+    update: "/notification-settings",
+  },
   viewer: {
     purchasedData: "/viewer/purchased-data",
     rentedData: "/viewer/rented-data",

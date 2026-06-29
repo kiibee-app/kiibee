@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
-import creator from "@/assets/images/testimonial/creator.webp";
+import Carousel from "@/components/UI/Carousel";
+import { testimonialSlides } from "@/utils/data";
 import {
   Author,
   Background,
@@ -9,31 +10,44 @@ import {
   Quote,
   Section,
   SectionInner,
+  SlideWrapper,
 } from "./styles";
-import ScrollReveal from "@/components/UI/ScrollReveal";
-import { LANDING_REVEAL } from "@/utils/landingUtils";
 
 export default function TestimonialSection() {
   const { t } = useTranslation();
 
+  const slides = testimonialSlides.map((slide) => ({
+    ...slide,
+    quote: t(slide.quoteKey),
+    author: t(slide.authorKey),
+  }));
+
   return (
     <Section>
-      <Background
-        $src={creator.src}
-        role="img"
-        aria-label={t("testimonial.backgroundAlt")}
-      />
+      <Carousel
+        items={slides}
+        transitionType="fade"
+        prevAriaLabel={t("testimonial.prevAriaLabel")}
+        nextAriaLabel={t("testimonial.nextAriaLabel")}
+        renderItem={(item) => (
+          <SlideWrapper>
+            <Background
+              $src={item.image.src}
+              $bgPosition={item.bgPosition}
+              $bgPositionMobile={item.bgPositionMobile}
+              role="img"
+              aria-label={t("testimonial.backgroundAlt")}
+            />
 
-      <SectionInner>
-        <Card>
-          <ScrollReveal>
-            <Quote>{t("testimonial.quote")}</Quote>
-          </ScrollReveal>
-          <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
-            <Author>{t("testimonial.author")}</Author>
-          </ScrollReveal>
-        </Card>
-      </SectionInner>
+            <SectionInner>
+              <Card>
+                <Quote>{item.quote}</Quote>
+                <Author>{item.author}</Author>
+              </Card>
+            </SectionInner>
+          </SlideWrapper>
+        )}
+      />
     </Section>
   );
 }
