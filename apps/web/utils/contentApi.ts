@@ -307,14 +307,7 @@ export const getSingleContentProps = (
               },
             }
           : isVideo && mediaUrl
-            ? {
-                media: {
-                  type: FORMAT_TYPE.VIDEO,
-                  src: mediaUrl,
-                  title,
-                },
-                contentUrl: mediaUrl,
-              }
+            ? { contentUrl: mediaUrl }
             : {}),
       categoryLabel: categories[0],
       mediaLabel: getContentTypeLabel(contentType),

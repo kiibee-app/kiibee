@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState, type RefObject } from "react";
+import { useTranslation } from "react-i18next";
 import PdfIcon from "@/assets/icons/PdfIcon";
 import type { SingleContentHeroSectionProps } from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
@@ -19,11 +20,13 @@ import {
   HeroMediaText,
   HeroTag,
   HeroTagText,
+  NoTrailerTooltip,
   Preview,
   PreviewDocument,
   PreviewVideo,
   TrailerButton,
   TrailerText,
+  TrailerWrapper,
 } from "./styles";
 
 type SingleContentHeroViewProps = SingleContentHeroSectionProps & {
@@ -194,6 +197,7 @@ export default function SingleContentHeroView({
   hero,
   isPdfLayout = false,
 }: SingleContentHeroViewProps) {
+  const { t } = useTranslation();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hasStartedPlayback, setHasStartedPlayback] = useState(false);
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
@@ -204,6 +208,7 @@ export default function SingleContentHeroView({
   const isThirdPartyVideo =
     isVideoMedia && isThirdPartyVideoUrl(hero.media?.src ?? "");
   const deferCloudflareEmbed = isCloudflareVideo && Boolean(hero.trailerLabel);
+  const hasTrailerLink = Boolean(hero.media?.src);
 
   const handleVideoPlay = () => {
     if (isVideoMedia) {
@@ -249,6 +254,7 @@ export default function SingleContentHeroView({
   };
 
   const handleTrailerButtonClick = () => {
+    if (!hasTrailerLink) return;
     hero.onTrailerClick?.();
     void handleTrailerClick();
   };
@@ -258,6 +264,8 @@ export default function SingleContentHeroView({
     !hasStartedPlayback &&
     !isTrailerPlaying &&
     !isCloudflarePlaying;
+
+  const noTrailerTooltip = showTrailerButton && !hasTrailerLink;
 
   return (
     <Hero $isPdf={isPdfLayout}>
@@ -302,18 +310,29 @@ export default function SingleContentHeroView({
       ) : null}
 
       {showTrailerButton ? (
-        <TrailerButton onClick={handleTrailerButtonClick} type="button">
-          {hero.trailerIcon ? (
-            <Image
-              src={hero.trailerIcon}
-              alt={hero.trailerIconAlt ?? ""}
-              width={15}
-              height={15}
-              priority
-            />
+        <TrailerWrapper>
+          {noTrailerTooltip ? (
+            <NoTrailerTooltip>
+              {t("singleContent.noTrailerAvailable")}
+            </NoTrailerTooltip>
           ) : null}
-          <TrailerText>{hero.trailerLabel}</TrailerText>
-        </TrailerButton>
+          <TrailerButton
+            onClick={handleTrailerButtonClick}
+            $noTrailer={!hasTrailerLink}
+            type="button"
+          >
+            {hero.trailerIcon ? (
+              <Image
+                src={hero.trailerIcon}
+                alt={hero.trailerIconAlt ?? ""}
+                width={15}
+                height={15}
+                priority
+              />
+            ) : null}
+            <TrailerText>{hero.trailerLabel}</TrailerText>
+          </TrailerButton>
+        </TrailerWrapper>
       ) : null}
     </Hero>
   );
