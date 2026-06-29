@@ -18,6 +18,7 @@ import {
   PageShell,
   StatusCard,
 } from "../../payment/success/styles";
+import { STATUS_TONE } from "@/utils/Constants";
 
 function SubscriptionFailureContent() {
   const { t } = useTranslation();
@@ -27,10 +28,16 @@ function SubscriptionFailureContent() {
     <PageShell>
       <StatusCard aria-live="polite">
         <BrandMark>
-          <Image src={logo} alt="Kiibee" width={32} height={32} priority />
+          <Image
+            src={logo}
+            alt={t("subscriptionPage.logoAlt")}
+            width={32}
+            height={32}
+            priority
+          />
         </BrandMark>
 
-        <IconRing $tone="error">
+        <IconRing $tone={STATUS_TONE.ERROR}>
           <QuestionIcon width={36} height={36} color={COLORS.primary.RED} />
         </IconRing>
 

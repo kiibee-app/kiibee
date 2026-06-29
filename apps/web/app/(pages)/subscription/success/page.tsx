@@ -81,7 +81,13 @@ function SubscriptionSuccessContent() {
       <PageShell>
         <StatusCard aria-live="polite">
           <BrandMark>
-            <Image src={logo} alt="Kiibee" width={32} height={32} priority />
+            <Image
+              src={logo}
+              alt={t("subscriptionPage.logoAlt")}
+              width={32}
+              height={32}
+              priority
+            />
           </BrandMark>
           <IconRing $tone={STATUS_TONE.ERROR}>
             <QuestionIcon width={36} height={36} color={COLORS.primary.RED} />
