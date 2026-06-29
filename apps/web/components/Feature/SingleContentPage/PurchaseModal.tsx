@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import { GenericModal } from "@/components/UI/Modals";
 import GenericButton from "@/components/UI/GenericButton";
@@ -10,6 +10,7 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import { useTranslation } from "react-i18next";
 import { extractPriceNumber } from "@/utils/contentPricingActions";
 import { usePostAPI } from "@/lib/http/api/postApi";
+import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
 import {
@@ -33,6 +34,12 @@ import {
   PurchaseModalPriceLabel,
   PurchaseModalPriceValue,
   PurchaseModalButtonWrapper,
+  PurchaseModalPaymentMethod,
+  PurchaseModalPaymentMethodHint,
+  PurchaseModalPaymentMethodList,
+  PurchaseModalPaymentMethodOption,
+  PurchaseModalPaymentMethodRadio,
+  PurchaseModalPaymentMethodTitle,
 } from "./styles";
 import { COUPON_DISCOUNT_PERCENTAGE, CouponDiscountType } from "@/utils/common";
 
@@ -48,10 +55,26 @@ type VerifyCouponResponse = {
   };
 };
 
+type SavedCard = {
+  id: string;
+  ePaySubscriptionId: string;
+  cardNo: string;
+  expireDate: string;
+  cardType: string;
+  isDefault?: boolean;
+};
+
+type SavedCardsResponse = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: SavedCard[] | null;
+};
+
 export type PurchaseModalProps = {
   visible: boolean;
   onClose: () => void;
-  onPurchase: (couponCode?: string) => void;
+  onPurchase: (couponCode?: string, subscriptionId?: string) => void;
   title: string;
   image?: string;
   imageAlt?: string;
@@ -81,11 +104,47 @@ export default function PurchaseModal({
   const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
+  const [selectedSubscriptionId, setSelectedSubscriptionId] =
+    useState<string>();
 
   const verifyCouponMutation = usePostAPI<
     VerifyCouponResponse,
     { code: string; contentId?: string }
   >(API.coupon.verify);
+
+  const savedCardsQuery = useGetAPI<SavedCardsResponse>(
+    API.payment.cards,
+    undefined,
+    {
+      enabled: visible,
+      retry: 1,
+    },
+  );
+
+  const savedCards = useMemo(
+    () =>
+      (savedCardsQuery.data?.data ?? []).filter(
+        (card) => card.ePaySubscriptionId,
+      ),
+    [savedCardsQuery.data?.data],
+  );
+
+  const defaultSubscriptionId = useMemo(() => {
+    if (savedCards.length === 0) return undefined;
+
+    const defaultCard = savedCards.find((card) => card.isDefault);
+    return defaultCard?.ePaySubscriptionId ?? savedCards[0].ePaySubscriptionId;
+  }, [savedCards]);
+
+  const selectedCardExists = savedCards.some(
+    (card) => card.ePaySubscriptionId === selectedSubscriptionId,
+  );
+  const effectiveSubscriptionId =
+    selectedSubscriptionId === ""
+      ? ""
+      : selectedCardExists
+        ? selectedSubscriptionId
+        : defaultSubscriptionId;
 
   const priceNumber = extractPriceNumber(priceLabel);
   const total = priceNumber - discount;
@@ -167,6 +226,69 @@ export default function PurchaseModal({
         </PurchaseModalCardBody>
       </PurchaseModalCard>
 
+      {savedCards.length > 0 ? (
+        <PurchaseModalPaymentMethod>
+          <PurchaseModalPaymentMethodTitle>
+            <MonoText $use="Body_Bold">
+              {t("singleContent.pricing.paymentMethod")}
+            </MonoText>
+          </PurchaseModalPaymentMethodTitle>
+          <PurchaseModalPaymentMethodList>
+            {savedCards.map((card) => {
+              const isSelected =
+                effectiveSubscriptionId === card.ePaySubscriptionId;
+              return (
+                <PurchaseModalPaymentMethodOption
+                  key={card.id}
+                  type="button"
+                  $selected={isSelected}
+                  onClick={() =>
+                    setSelectedSubscriptionId(card.ePaySubscriptionId)
+                  }
+                >
+                  <PurchaseModalPaymentMethodRadio $selected={isSelected} />
+                  <span>
+                    <MonoText $use="Body_Bold">
+                      {card.cardType || t("singleContent.pricing.savedCard")}{" "}
+                      {card.cardNo}
+                    </MonoText>
+                    <PurchaseModalPaymentMethodHint>
+                      <MonoText $use="Body_Medium">
+                        {t("singleContent.pricing.expires", {
+                          date: card.expireDate,
+                        })}
+                        {card.isDefault
+                          ? ` ${t("singleContent.pricing.defaultCard")}`
+                          : ""}
+                      </MonoText>
+                    </PurchaseModalPaymentMethodHint>
+                  </span>
+                </PurchaseModalPaymentMethodOption>
+              );
+            })}
+            <PurchaseModalPaymentMethodOption
+              type="button"
+              $selected={effectiveSubscriptionId === ""}
+              onClick={() => setSelectedSubscriptionId("")}
+            >
+              <PurchaseModalPaymentMethodRadio
+                $selected={effectiveSubscriptionId === ""}
+              />
+              <span>
+                <MonoText $use="Body_Bold">
+                  {t("singleContent.pricing.useNewCard")}
+                </MonoText>
+                <PurchaseModalPaymentMethodHint>
+                  <MonoText $use="Body_Medium">
+                    {t("singleContent.pricing.useNewCardHint")}
+                  </MonoText>
+                </PurchaseModalPaymentMethodHint>
+              </span>
+            </PurchaseModalPaymentMethodOption>
+          </PurchaseModalPaymentMethodList>
+        </PurchaseModalPaymentMethod>
+      ) : null}
+
       <PurchaseModalDiscountSection>
         <PurchaseModalDiscountLabel>
           <MonoText $use="Body_Bold">
@@ -240,7 +362,12 @@ export default function PurchaseModal({
         <GenericButton
           variant={VARIANT.PRIMARY}
           fullWidth
-          onClick={() => onPurchase(appliedCode || undefined)}
+          onClick={() =>
+            onPurchase(
+              appliedCode || undefined,
+              effectiveSubscriptionId || undefined,
+            )
+          }
           disabled={loading}
           isLoading={loading}
         >

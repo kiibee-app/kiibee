@@ -575,6 +575,63 @@ export const PurchaseModalRentalItem = styled.li`
   }
 `;
 
+export const PurchaseModalPaymentMethod = styled.div`
+  padding: 1.25rem 1.5rem;
+`;
+
+export const PurchaseModalPaymentMethodTitle = styled.div`
+  margin-bottom: 0.75rem;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalPaymentMethodList = styled.div`
+  display: grid;
+  gap: 0.75rem;
+`;
+
+export const PurchaseModalPaymentMethodOption = styled.button<{
+  $selected?: boolean;
+}>`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 64px;
+  padding: 0.875rem 1rem;
+  border: 1px solid
+    ${({ theme, $selected }) =>
+      $selected ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_300};
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primary.BLACK};
+  }
+`;
+
+export const PurchaseModalPaymentMethodRadio = styled.span<{
+  $selected?: boolean;
+}>`
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin-top: 2px;
+  border: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+  border-radius: 50%;
+  background: ${({ theme, $selected }) =>
+    $selected ? theme.colors.primary.BLACK : theme.colors.neutral.WHITE};
+  box-shadow: inset 0 0 0 3px ${({ theme }) => theme.colors.neutral.WHITE};
+`;
+
+export const PurchaseModalPaymentMethodHint = styled.span`
+  display: block;
+  margin-top: 0.2rem;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+`;
+
 export const PurchaseModalDiscountSection = styled.div`
   padding: 0 1.5rem 1.25rem;
 `;

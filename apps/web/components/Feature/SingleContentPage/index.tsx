@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { PATHS } from "@/utils/path";
@@ -89,6 +88,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     contentId: string;
     collectionId?: string;
     itemType: OrderItemType;
+    couponCode?: string;
+    subscriptionId?: string;
   };
 
   type CreateOrderResponse = {
@@ -97,7 +98,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     message: string;
     data: {
       orderId: string;
-      url: string;
+      url?: string;
     };
   };
 
@@ -220,7 +221,10 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     router.back();
   };
 
-  const handlePurchaseConfirm = async (couponCode?: string) => {
+  const handlePurchaseConfirm = async (
+    couponCode?: string,
+    subscriptionId?: string,
+  ) => {
     if (!selectedAction || !contentId) return;
 
     try {
@@ -231,8 +235,16 @@ export default function SingleContentPage(props: SingleContentPageProps) {
           ? ORDER_TYPES.PURCHASE
           : ORDER_TYPES.RENTAL,
         ...(couponCode ? { couponCode } : {}),
+        ...(subscriptionId ? { subscriptionId } : {}),
       });
       const paymentUrl = response?.data?.url;
+      const orderId = response?.data?.orderId;
+      if (!paymentUrl && subscriptionId && orderId) {
+        setShowPurchaseModal(false);
+        setSelectedAction(null);
+        router.push(`/payment/success?orderId=${encodeURIComponent(orderId)}`);
+        return;
+      }
       if (!paymentUrl) {
         throw new Error("Payment URL missing");
       }
