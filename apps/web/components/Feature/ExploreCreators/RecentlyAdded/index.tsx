@@ -38,7 +38,7 @@ import { SKELETON_COUNT } from "@/utils/Constants";
 
 export default function RecentlyAdded() {
   const { t } = useTranslation();
-  const { tutorials, isLoading } = useRecentContent();
+  const { tutorials, isLoading } = useRecentContent({ limit: 999 });
   const [pageStart, setPageStart] = useState(0);
 
   const totalItems = tutorials.length;
