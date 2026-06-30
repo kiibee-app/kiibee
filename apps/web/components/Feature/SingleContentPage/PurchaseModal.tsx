@@ -9,6 +9,7 @@ import { VARIANT } from "@/utils/Constants";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { useTranslation } from "react-i18next";
 import { extractPriceNumber } from "@/utils/contentPricingActions";
+import { formatCardExpiry } from "@/utils/formatDate";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -41,7 +42,11 @@ import {
   PurchaseModalPaymentMethodRadio,
   PurchaseModalPaymentMethodTitle,
 } from "./styles";
-import { COUPON_DISCOUNT_PERCENTAGE, CouponDiscountType } from "@/utils/common";
+import {
+  COUPON_DISCOUNT_PERCENTAGE,
+  CouponDiscountType,
+  formatSavedCardLabel as formatSavedCardLabelUtil,
+} from "@/utils/common";
 
 type VerifyCouponResponse = {
   success: boolean;
@@ -149,6 +154,13 @@ export default function PurchaseModal({
   const priceNumber = extractPriceNumber(priceLabel);
   const total = priceNumber - discount;
 
+  const formatSavedCardLabel = (card: SavedCard) =>
+    formatSavedCardLabelUtil(
+      card.cardNo,
+      card.cardType,
+      t("singleContent.pricing.savedCard"),
+    );
+
   const handleApplyDiscount = async () => {
     if (!discountCode.trim()) return;
 
@@ -249,17 +261,13 @@ export default function PurchaseModal({
                   <PurchaseModalPaymentMethodRadio $selected={isSelected} />
                   <span>
                     <MonoText $use="Body_Bold">
-                      {card.cardType || t("singleContent.pricing.savedCard")}{" "}
-                      {card.cardNo}
+                      {formatSavedCardLabel(card)}
                     </MonoText>
                     <PurchaseModalPaymentMethodHint>
                       <MonoText $use="Body_Medium">
                         {t("singleContent.pricing.expires", {
-                          date: card.expireDate,
+                          date: formatCardExpiry(card.expireDate),
                         })}
-                        {card.isDefault
-                          ? ` ${t("singleContent.pricing.defaultCard")}`
-                          : ""}
                       </MonoText>
                     </PurchaseModalPaymentMethodHint>
                   </span>
