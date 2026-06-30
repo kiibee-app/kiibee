@@ -16,9 +16,7 @@ export async function getPayoutStatsService(creatorId: string) {
   try {
     const totalEarnings = await db
       .select({
-        total: sql<number>`coalesce(sum(${payments.amount}), 0)`.mapWith(
-          Number,
-        ),
+        total: sql<number>`coalesce(sum(${orders.price}), 0)`.mapWith(Number),
         purchases:
           sql<number>`count(case when ${orders.itemType} = 'purchase' then 1 end)`.mapWith(
             Number,
