@@ -99,3 +99,52 @@ export const CloseButton = styled.button`
   align-items: center;
   justify-content: center;
 `;
+
+export const ShareContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+`;
+
+export const ShareTitle = styled.div`
+  margin-bottom: 0.5rem;
+`;
+
+export const UrlRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+`;
+
+export const UrlText = styled.span`
+  flex: 1;
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const CopyButton = styled.button<{ $copied?: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  border: none;
+  background: ${({ theme, $copied }) =>
+    $copied ? theme.colors.primary.GREEN : theme.colors.secondary.MEDIUM_GREEN};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  cursor: pointer;
+  ${({ theme }) => theme.typography.Body_Bold};
+  transition: background 200ms ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.GREEN};
+  }
+`;

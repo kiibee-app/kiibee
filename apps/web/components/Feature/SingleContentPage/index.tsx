@@ -32,6 +32,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import useShare from "@/hooks/useShare";
 import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
+import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
 import { GenericModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
@@ -207,7 +208,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ? [modifiedPrimaryAction]
         : undefined;
 
-  const { share } = useShare();
+  const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
   const resolvedContentType = hero?.contentType ?? hero?.media?.type;
   const isPdfLayout =
     Boolean(resolvedContentType) && resolvedContentType !== FORMAT_TYPE.VIDEO;
@@ -329,6 +330,12 @@ export default function SingleContentPage(props: SingleContentPageProps) {
           </ModalDescription>
         </ModalContentWrapper>
       </GenericModal>
+
+      <ShareModal
+        visible={showShareModal}
+        url={shareUrl}
+        onClose={() => setShowShareModal(false)}
+      />
     </Wrapper>
   );
 }
