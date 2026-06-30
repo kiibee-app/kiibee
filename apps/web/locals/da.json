@@ -1019,6 +1019,13 @@
       "discount": "Rabat",
       "total": "Total",
       "purchase": "Køb",
+      "paymentMethod": "Betalingsmetode",
+      "savedCard": "Gemt kort",
+      "selectCard": "Vælg et gemt kort",
+      "expires": "Udløber {{date}}",
+      "defaultCard": "(standard)",
+      "useNewCard": "Brug et nyt kort",
+      "useNewCardHint": "Du bliver videresendt for at fuldføre betalingen.",
       "couponApplied": "Kupon anvendt",
       "couponInvalid": "Ugyldig kuponkode"
     },

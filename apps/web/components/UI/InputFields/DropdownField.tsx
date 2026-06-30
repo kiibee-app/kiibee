@@ -19,7 +19,7 @@ import { useDropdownKeyboard } from "@/hooks/useDropdownKeyboard";
 
 export type OptionItem = {
   value: string;
-  label?: string;
+  label?: React.ReactNode;
   labelKey?: string;
 };
 

@@ -1019,6 +1019,13 @@
       "discount": "Discount",
       "total": "Total",
       "purchase": "Purchase",
+      "paymentMethod": "Payment method",
+      "savedCard": "Saved card",
+      "selectCard": "Select a saved card",
+      "expires": "Expires {{date}}",
+      "defaultCard": "(default)",
+      "useNewCard": "Use a new card",
+      "useNewCardHint": "You will be redirected to complete your payment with a new card.",
       "couponApplied": "Coupon applied successfully",
       "couponInvalid": "Invalid coupon code"
     },
