@@ -39,6 +39,9 @@ import {
   PurchaseModalPaymentMethodTitle,
   PurchaseModalPaymentMethodOption,
   PurchaseModalPaymentMethodRadio,
+  PurchaseModalPaymentMethodSelected,
+  PurchaseModalPaymentMethodDefaultBadge,
+  PurchaseModalPaymentMethodPrimary,
   PurchaseModalPaymentMethodText,
   PurchaseModalPaymentMethodHint,
 } from "./styles";
@@ -159,9 +162,25 @@ export default function PurchaseModal({
   const dropdownOptions = useMemo(() => {
     return savedCards.map((card) => ({
       value: card.ePaySubscriptionId,
-      label: `${formatSavedCardLabel(card)} (Expires ${formatCardExpiry(card.expireDate)})`,
+      label: (
+        <PurchaseModalPaymentMethodSelected>
+          <PurchaseModalPaymentMethodPrimary>
+            <MonoText $use="Body_Medium">{formatSavedCardLabel(card)}</MonoText>
+            {card.isDefault ? (
+              <PurchaseModalPaymentMethodDefaultBadge>
+                {t("dashboard.viewerBillings.paymentMethods.defaultBadge")}
+              </PurchaseModalPaymentMethodDefaultBadge>
+            ) : null}
+          </PurchaseModalPaymentMethodPrimary>
+          <MonoText $use="Body_Medium">
+            {t("singleContent.pricing.expires", {
+              date: formatCardExpiry(card.expireDate),
+            })}
+          </MonoText>
+        </PurchaseModalPaymentMethodSelected>
+      ),
     }));
-  }, [savedCards, formatSavedCardLabel]);
+  }, [savedCards, formatSavedCardLabel, t]);
 
   const handlePurchase = () => {
     onPurchase(appliedCode || undefined, effectiveSubscriptionId || undefined);

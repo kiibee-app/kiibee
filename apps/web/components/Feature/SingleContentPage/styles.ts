@@ -630,6 +630,33 @@ export const PurchaseModalPaymentMethodText = styled.div`
   flex-direction: column;
 `;
 
+export const PurchaseModalPaymentMethodSelected = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+`;
+
+export const PurchaseModalPaymentMethodPrimary = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+`;
+
+export const PurchaseModalPaymentMethodDefaultBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: ${({ theme }) => theme.colors.primary.PALE_GREEN};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  ${({ theme }) => theme.typography.Body_Small}
+  white-space: nowrap;
+`;
+
 export const PurchaseModalPaymentMethodHint = styled.span`
   display: block;
   margin-top: 0.2rem;
