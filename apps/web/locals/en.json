@@ -912,6 +912,8 @@
   "common": {
     "confirmationModalError": "ConfirmationModal onConfirm error:",
     "share": "Share",
+    "copied": "Copied!",
+    "copyLink": "Copy Link",
     "search": "Search",
     "clearSearch": "Clear search",
     "noResults": "No results found",

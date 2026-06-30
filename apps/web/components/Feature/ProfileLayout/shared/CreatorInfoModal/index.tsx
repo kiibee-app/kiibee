@@ -15,6 +15,7 @@ import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import useShare from "@/hooks/useShare";
+import ShareModal from "@/components/UI/Modals/ShareModal";
 import {
   CloseIconButton,
   CreatorInfoContent,
@@ -68,7 +69,7 @@ export default function CreatorInfoModal({
 }: CreatorInfoModalProps) {
   const { t } = useTranslation();
   const { displayName, about } = useCreatorChannelProfile();
-  const { share } = useShare();
+  const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
 
   const title = displayName ?? "";
   const body = about?.description ?? "";
@@ -146,6 +147,12 @@ export default function CreatorInfoModal({
           <MonoText $use="Body_Medium">{t(COMMON.share)}</MonoText>
         </ShareButton>
       </CreatorInfoContent>
+
+      <ShareModal
+        visible={showShareModal}
+        url={shareUrl}
+        onClose={() => setShowShareModal(false)}
+      />
     </GenericModal>
   );
 }

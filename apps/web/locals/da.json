@@ -912,6 +912,8 @@
   "common": {
     "confirmationModalError": "Fejl ved bekræftelsesmodal:",
     "share": "Del",
+    "copied": "Kopieret!",
+    "copyLink": "Kopier link",
     "search": "Søg",
     "clearSearch": "Ryd søgning",
     "noResults": "Ingen resultater fundet",

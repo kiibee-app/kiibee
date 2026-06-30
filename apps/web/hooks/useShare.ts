@@ -4,12 +4,21 @@ import { useCallback, useState } from "react";
 import { isBrowser } from "@/utils/ui";
 import { SHARE_STATUS, ShareStatus } from "@/utils/Constants";
 
-export default function useShare(url?: string) {
+type UseShareReturn = {
+  share: () => Promise<void>;
+  status: ShareStatus;
+  shareUrl: string;
+  showShareModal: boolean;
+  setShowShareModal: (show: boolean) => void;
+};
+
+export default function useShare(url?: string): UseShareReturn {
   const [status, setStatus] = useState<ShareStatus>(SHARE_STATUS.IDLE);
+  const [showShareModal, setShowShareModal] = useState(false);
+
+  const shareUrl = url ?? (isBrowser ? window.location.href : "");
 
   const share = useCallback(async () => {
-    const shareUrl = url ?? (isBrowser ? window.location.href : "");
-
     if (!shareUrl) return;
 
     const copyFallback = async () => {
@@ -24,11 +33,11 @@ export default function useShare(url?: string) {
         return;
       }
 
-      await copyFallback();
+      setShowShareModal(true);
     } catch {
       await copyFallback().catch(() => setStatus(SHARE_STATUS.FAILED));
     }
-  }, [url]);
+  }, [shareUrl]);
 
-  return { share, status };
+  return { share, status, shareUrl, showShareModal, setShowShareModal };
 }
