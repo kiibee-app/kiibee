@@ -34,11 +34,13 @@ import {
   SkeletonBadge,
   SkeletonFooter,
 } from "../Creators/styles";
-import { SKELETON_COUNT } from "@/utils/Constants";
+import { RECENT_CONTENT_LIMIT, SKELETON_COUNT } from "@/utils/Constants";
 
 export default function RecentlyAdded() {
   const { t } = useTranslation();
-  const { tutorials, isLoading } = useRecentContent({ limit: 999 });
+  const { tutorials, isLoading } = useRecentContent({
+    limit: RECENT_CONTENT_LIMIT,
+  });
   const [pageStart, setPageStart] = useState(0);
 
   const totalItems = tutorials.length;
