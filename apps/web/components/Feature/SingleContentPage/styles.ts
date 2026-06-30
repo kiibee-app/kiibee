@@ -612,19 +612,6 @@ export const PurchaseModalPaymentMethodOption = styled.button<{
   }
 `;
 
-export const PurchaseModalPaymentMethodRadio = styled.span<{
-  $selected?: boolean;
-}>`
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
-  border: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
-  border-radius: 50%;
-  background: ${({ theme, $selected }) =>
-    $selected ? theme.colors.primary.BLACK : theme.colors.neutral.WHITE};
-  box-shadow: inset 0 0 0 3px ${({ theme }) => theme.colors.neutral.WHITE};
-`;
-
 export const PurchaseModalPaymentMethodText = styled.div`
   display: flex;
   flex-direction: column;

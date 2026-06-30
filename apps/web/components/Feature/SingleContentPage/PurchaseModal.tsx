@@ -14,6 +14,7 @@ import { usePostAPI } from "@/lib/http/api/postApi";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
+import { SelectedCheckIcon } from "@/assets/icons";
 import {
   PurchaseModalCard,
   PurchaseModalCardHeader,
@@ -38,7 +39,6 @@ import {
   PurchaseModalPaymentMethod,
   PurchaseModalPaymentMethodTitle,
   PurchaseModalPaymentMethodOption,
-  PurchaseModalPaymentMethodRadio,
   PurchaseModalPaymentMethodSelected,
   PurchaseModalPaymentMethodDefaultBadge,
   PurchaseModalPaymentMethodPrimary,
@@ -283,8 +283,9 @@ export default function PurchaseModal({
               $selected={effectiveSubscriptionId === ""}
               onClick={() => setSelectedSubscriptionId("")}
             >
-              <PurchaseModalPaymentMethodRadio
-                $selected={effectiveSubscriptionId === ""}
+              <SelectedCheckIcon
+                selected={effectiveSubscriptionId === ""}
+                size={20}
               />
               <PurchaseModalPaymentMethodText>
                 <MonoText $use="Body_Bold">
