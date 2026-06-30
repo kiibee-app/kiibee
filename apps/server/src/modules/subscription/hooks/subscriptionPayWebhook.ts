@@ -4,6 +4,7 @@ import {
   subscriptions,
   subscriptionPaymentsHistory,
   creatorPlans,
+  userCardInfo,
 } from 'src/database/schema';
 import { eq, and } from 'drizzle-orm';
 import { randomUUID } from 'crypto';
@@ -28,6 +29,7 @@ export async function handleSubscriptionPayment(body: any) {
       paymentMethodType,
       subscriptionId,
       textOnStatement,
+      paymentMethodId,
     } = transaction;
 
     if (state !== PAYMENT_STATUS.PAYMENT_SUCCESS) return;
@@ -179,6 +181,30 @@ export async function handleSubscriptionPayment(body: any) {
       rawPayload: body,
       processedAt: new Date(),
     });
+
+    const existingCard = await db.query.userCardInfo.findFirst({
+      where: and(
+        eq(userCardInfo.userId, customerId || ''),
+        eq(userCardInfo.paymentMethodId, paymentMethodId),
+      ),
+    });
+
+    if (!existingCard) {
+      const firstCard = await db.query.userCardInfo.findFirst({
+        where: eq(userCardInfo.userId, customerId),
+      });
+
+      await db.insert(userCardInfo).values({
+        id: randomUUID(),
+        userId: customerId,
+        paymentMethodId,
+        cardNo: paymentMethodDisplayText,
+        expireDate: paymentMethodExpiry,
+        cardType: paymentMethodSubType,
+        ePaySubscriptionId: subscriptionId || '',
+        isDefault: !firstCard,
+      });
+    }
 
     logger.info('✅ Subscription processed successfully');
   } catch (error: any) {
