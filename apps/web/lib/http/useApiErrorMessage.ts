@@ -66,7 +66,10 @@ const extractFieldErrors = (payload: unknown): ApiFieldErrors => {
 export const useApiErrorMessage = () => {
   const { t } = useTranslation();
 
-  const mapKnownApiMessage = (message: string): string => {
+  const mapKnownApiMessage = (
+    message: string,
+    fallbackKey?: string,
+  ): string => {
     const normalized = message.trim().toLowerCase();
 
     if (normalized === "reset link has expired") {
@@ -78,6 +81,17 @@ export const useApiErrorMessage = () => {
       normalized === "token already used"
     ) {
       return t("resetPassword.invalidLink");
+    }
+
+    if (normalized === "invalid email or password") {
+      return t("authForm.errors.invalidCredentials");
+    }
+
+    if (
+      normalized === "internal server error" &&
+      fallbackKey === "authForm.errors.submitFailed"
+    ) {
+      return t("authForm.errors.invalidCredentials");
     }
 
     return message;
@@ -92,7 +106,7 @@ export const useApiErrorMessage = () => {
     }
 
     const message = normalizedError.message || fallbackMessage;
-    return t(mapKnownApiMessage(message));
+    return t(mapKnownApiMessage(message, fallbackKey));
   };
 
   const getFieldErrors = (error: unknown): ApiFieldErrors => {
