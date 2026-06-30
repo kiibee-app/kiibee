@@ -113,13 +113,14 @@ export default function PurchaseModal({
   const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
-  const [selectedSubscriptionId, setSelectedSubscriptionId] =
-    useState<string>("");
+  const [selectedSubscriptionId, setSelectedSubscriptionId] = useState<
+    string | null
+  >(null);
   const [prevVisible, setPrevVisible] = useState(visible);
 
   if (visible !== prevVisible) {
     setPrevVisible(visible);
-    setSelectedSubscriptionId("");
+    setSelectedSubscriptionId(null);
   }
 
   const verifyCouponMutation = usePostAPI<
@@ -144,7 +145,14 @@ export default function PurchaseModal({
     [savedCardsQuery.data?.data],
   );
 
-  const effectiveSubscriptionId = selectedSubscriptionId;
+  const defaultSavedCard = useMemo(
+    () => savedCards.find((card) => card.isDefault) ?? savedCards[0] ?? null,
+    [savedCards],
+  );
+
+  const effectiveSubscriptionId =
+    selectedSubscriptionId ?? defaultSavedCard?.ePaySubscriptionId ?? "";
+  const isUsingNewCard = selectedSubscriptionId === "";
 
   const priceNumber = extractPriceNumber(priceLabel);
   const total = priceNumber - discount;
@@ -270,23 +278,26 @@ export default function PurchaseModal({
               {t("singleContent.pricing.paymentMethod")}
             </MonoText>
           </PurchaseModalPaymentMethodTitle>
-          <DropdownField
-            value={effectiveSubscriptionId}
-            onChange={setSelectedSubscriptionId}
-            options={dropdownOptions}
-            placeholder={t("singleContent.pricing.selectCard")}
-            showSelectedIndicator
-          />
+          {!isUsingNewCard ? (
+            <DropdownField
+              value={effectiveSubscriptionId}
+              onChange={setSelectedSubscriptionId}
+              options={dropdownOptions}
+              placeholder={t("singleContent.pricing.selectCard")}
+              showSelectedIndicator
+            />
+          ) : null}
           <div style={{ marginTop: "0.75rem" }}>
             <PurchaseModalPaymentMethodOption
               type="button"
-              $selected={effectiveSubscriptionId === ""}
-              onClick={() => setSelectedSubscriptionId("")}
+              $selected={isUsingNewCard}
+              onClick={() =>
+                setSelectedSubscriptionId((current) =>
+                  current === "" ? null : "",
+                )
+              }
             >
-              <SelectedCheckIcon
-                selected={effectiveSubscriptionId === ""}
-                size={20}
-              />
+              <SelectedCheckIcon selected={isUsingNewCard} size={20} />
               <PurchaseModalPaymentMethodText>
                 <MonoText $use="Body_Bold">
                   {t("singleContent.pricing.useNewCard")}
