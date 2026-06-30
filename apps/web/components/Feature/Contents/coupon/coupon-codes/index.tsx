@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useId, useState } from "react";
+import React, { useId } from "react";
 import { useTranslation } from "react-i18next";
 import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import { COUPON_CODES_LIMIT } from "@/utils/common";
+import TagsInput from "@/components/UI/InputFields/TagsInput";
 import {
   BackButton,
   FieldGroup,
@@ -15,12 +16,7 @@ import {
   ModalTitle,
   NextButton,
 } from "../styles";
-import {
-  CodesHelperText,
-  CodesLimitText,
-  CodesMetaRow,
-  CouponCodesInput,
-} from "./styles";
+import { CodesHelperText, CodesLimitText, CodesMetaRow } from "./styles";
 import { CreateCouponPayload } from "@/types/couponType";
 
 type CouponCodesModalProps = {
@@ -43,21 +39,17 @@ export default function CouponCodesModal({
   const { t } = useTranslation();
   const codesId = useId();
   const helperId = useId();
-  const [codesText, setCodesText] = useState("");
-
-  React.useEffect(() => {
-    if (visible) {
-      setCodesText(form.codes?.join(", ") || "");
-    }
-  }, [visible, form.codes]);
+  const currentCount = form.codes?.length || 0;
+  const isLimitExceeded = currentCount > COUPON_CODES_LIMIT;
+  const canContinue = currentCount > 0 && !isLimitExceeded;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (!canContinue) return;
     onNext();
   };
 
   const handleChange = (value: string) => {
-    setCodesText(value);
     setForm((prev) => ({
       ...prev,
       codes: value
@@ -95,23 +87,27 @@ export default function CouponCodesModal({
               {t("contents.couponCodes.fields.discountCodes")}
             </FieldLabel>
             <HelperText>{t("contents.couponCodes.description")}</HelperText>
-            <CouponCodesInput
-              id={codesId}
-              value={codesText}
-              maxLength={COUPON_CODES_LIMIT}
-              aria-describedby={helperId}
+            <TagsInput
+              value={form.codes?.join(", ") || ""}
+              onChange={handleChange}
               placeholder={t("contents.couponCodes.placeholders.codes")}
-              onChange={(e) => handleChange(e.target.value)}
+              maxLength={2000}
+              hasError={isLimitExceeded}
+              separateOnSpace={true}
             />
             <CodesMetaRow id={helperId}>
               <CodesHelperText>
                 {t("contents.couponCodes.helper")}
               </CodesHelperText>
-              <CodesLimitText>{COUPON_CODES_LIMIT}</CodesLimitText>
+              <CodesLimitText $hasError={isLimitExceeded}>
+                {`${currentCount} / ${COUPON_CODES_LIMIT}`}
+              </CodesLimitText>
             </CodesMetaRow>
           </FieldGroup>
 
-          <NextButton type="submit">{t("common.next")}</NextButton>
+          <NextButton type="submit" disabled={!canContinue}>
+            {t("common.next")}
+          </NextButton>
         </FormShell>
       </ModalContent>
     </GenericModal>
