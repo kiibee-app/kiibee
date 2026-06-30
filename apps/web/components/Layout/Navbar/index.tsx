@@ -44,8 +44,10 @@ import {
   DrawerContent,
   DrawerMenu,
   DrawerMenuItem,
+  DrawerMenuRow,
   DrawerMenuLink,
   DrawerMenuButton,
+  DrawerMenuToggleButton,
   DrawerSubMenu,
   DrawerSubMenuColumn,
   DrawerSubMenuTitle,
@@ -513,17 +515,37 @@ export default function NavBar({
     if (item.children?.length) {
       return (
         <>
-          <DrawerMenuButton
-            type="button"
-            $isActive={isRouteActive}
-            $expanded={isSubMenuOpen}
-            onClick={() => toggleMobileSubMenu(item.key)}
-          >
-            {renderItemLabel(item)}
-            <ArrowIcon
-              direction={isSubMenuOpen ? Directions.UP : Directions.DOWN}
-            />
-          </DrawerMenuButton>
+          <DrawerMenuRow>
+            {item.href ? (
+              <DrawerMenuLink
+                href={item.href}
+                $isActive={isRouteActive}
+                onClick={collapseSidebar}
+              >
+                {renderItemLabel(item)}
+              </DrawerMenuLink>
+            ) : (
+              <DrawerMenuButton
+                type="button"
+                $isActive={isRouteActive}
+                onClick={() => toggleMobileSubMenu(item.key)}
+              >
+                {renderItemLabel(item)}
+              </DrawerMenuButton>
+            )}
+            <DrawerMenuToggleButton
+              type="button"
+              aria-label={t(item.key)}
+              aria-expanded={isSubMenuOpen}
+              $isActive={isRouteActive}
+              $expanded={isSubMenuOpen}
+              onClick={() => toggleMobileSubMenu(item.key)}
+            >
+              <ArrowIcon
+                direction={isSubMenuOpen ? Directions.UP : Directions.DOWN}
+              />
+            </DrawerMenuToggleButton>
+          </DrawerMenuRow>
           {renderDrawerSubMenu(item, isSubMenuOpen)}
         </>
       );
