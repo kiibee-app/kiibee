@@ -791,6 +791,9 @@
   "pricingPlans": {
     "title": "Pricing plans overview",
     "cta": "Get started",
+    "active": "Active",
+    "planNotFound": "Plan not found",
+    "subscriptionActivated": "Subscription activated!",
     "plans": {
       "launch": {
         "title": "Launch",
@@ -872,6 +875,21 @@
       "emailInvalid": "Enter a valid email address",
       "passwordMinLength": "Password must be at least 6 characters",
       "passwordMismatch": "Passwords do not match"
+    },
+    "success": {
+      "title": "Payment successful",
+      "checking": "Checking your payment status...",
+      "unlocking": "Unlocking your subscription now. You will be redirected shortly.",
+      "hint": "This usually takes a few seconds. Please keep this page open.",
+      "goToDashboard": "Go to Dashboard",
+      "verifyErrorTitle": "Unable to verify subscription",
+      "verifyError": "Something went wrong while checking your subscription. Please refresh the page or try again in a moment.",
+      "refreshPage": "Refresh page"
+    },
+    "failure": {
+      "title": "Payment not completed",
+      "message": "Your payment was not successful and no charges were made. You can try again from your pricing page.",
+      "viewPlans": "View Plans"
     }
   },
   "pricingFaq": {
