@@ -1002,6 +1002,7 @@
       "purchase": "Purchase",
       "paymentMethod": "Payment method",
       "savedCard": "Saved card",
+      "selectCard": "Select a saved card",
       "expires": "Expires {{date}}",
       "defaultCard": "(default)",
       "useNewCard": "Use a new card",

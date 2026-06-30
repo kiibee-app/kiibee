@@ -1002,6 +1002,7 @@
       "purchase": "Køb",
       "paymentMethod": "Betalingsmetode",
       "savedCard": "Gemt kort",
+      "selectCard": "Vælg et gemt kort",
       "expires": "Udløber {{date}}",
       "defaultCard": "(standard)",
       "useNewCard": "Brug et nyt kort",

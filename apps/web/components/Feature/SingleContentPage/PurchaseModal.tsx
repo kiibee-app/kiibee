@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 import { GenericModal } from "@/components/UI/Modals";
 import GenericButton from "@/components/UI/GenericButton";
@@ -36,18 +36,18 @@ import {
   PurchaseModalPriceValue,
   PurchaseModalButtonWrapper,
   PurchaseModalPaymentMethod,
-  PurchaseModalPaymentMethodHint,
-  PurchaseModalPaymentMethodList,
+  PurchaseModalPaymentMethodTitle,
   PurchaseModalPaymentMethodOption,
   PurchaseModalPaymentMethodRadio,
-  PurchaseModalPaymentMethodTitle,
   PurchaseModalPaymentMethodText,
+  PurchaseModalPaymentMethodHint,
 } from "./styles";
 import {
   COUPON_DISCOUNT_PERCENTAGE,
   CouponDiscountType,
   formatSavedCardLabel as formatSavedCardLabelUtil,
 } from "@/utils/common";
+import DropdownField from "@/components/UI/InputFields/DropdownField";
 
 type VerifyCouponResponse = {
   success: boolean;
@@ -111,7 +111,13 @@ export default function PurchaseModal({
   const [discount, setDiscount] = useState(0);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
   const [selectedSubscriptionId, setSelectedSubscriptionId] =
-    useState<string>();
+    useState<string>("");
+  const [prevVisible, setPrevVisible] = useState(visible);
+
+  if (visible !== prevVisible) {
+    setPrevVisible(visible);
+    setSelectedSubscriptionId("");
+  }
 
   const verifyCouponMutation = usePostAPI<
     VerifyCouponResponse,
@@ -135,33 +141,27 @@ export default function PurchaseModal({
     [savedCardsQuery.data?.data],
   );
 
-  const defaultSubscriptionId = useMemo(() => {
-    if (savedCards.length === 0) return undefined;
-
-    const defaultCard = savedCards.find((card) => card.isDefault);
-    return defaultCard?.ePaySubscriptionId ?? savedCards[0].ePaySubscriptionId;
-  }, [savedCards]);
-
-  const selectedCardExists = savedCards.some(
-    (card) => card.ePaySubscriptionId === selectedSubscriptionId,
-  );
-  const fallbackAwareSubscriptionId = selectedCardExists
-    ? selectedSubscriptionId
-    : defaultSubscriptionId;
-
-  const effectiveSubscriptionId = selectedSubscriptionId
-    ? fallbackAwareSubscriptionId
-    : "";
+  const effectiveSubscriptionId = selectedSubscriptionId;
 
   const priceNumber = extractPriceNumber(priceLabel);
   const total = priceNumber - discount;
 
-  const formatSavedCardLabel = (card: SavedCard) =>
-    formatSavedCardLabelUtil(
-      card.cardNo,
-      card.cardType,
-      t("singleContent.pricing.savedCard"),
-    );
+  const formatSavedCardLabel = useCallback(
+    (card: SavedCard) =>
+      formatSavedCardLabelUtil(
+        card.cardNo,
+        card.cardType,
+        t("singleContent.pricing.savedCard"),
+      ),
+    [t],
+  );
+
+  const dropdownOptions = useMemo(() => {
+    return savedCards.map((card) => ({
+      value: card.ePaySubscriptionId,
+      label: `${formatSavedCardLabel(card)} (Expires ${formatCardExpiry(card.expireDate)})`,
+    }));
+  }, [savedCards, formatSavedCardLabel]);
 
   const handlePurchase = () => {
     onPurchase(appliedCode || undefined, effectiveSubscriptionId || undefined);
@@ -251,35 +251,14 @@ export default function PurchaseModal({
               {t("singleContent.pricing.paymentMethod")}
             </MonoText>
           </PurchaseModalPaymentMethodTitle>
-          <PurchaseModalPaymentMethodList>
-            {savedCards.map((card) => {
-              const isSelected =
-                effectiveSubscriptionId === card.ePaySubscriptionId;
-              return (
-                <PurchaseModalPaymentMethodOption
-                  key={card.id}
-                  type="button"
-                  $selected={isSelected}
-                  onClick={() =>
-                    setSelectedSubscriptionId(card.ePaySubscriptionId)
-                  }
-                >
-                  <PurchaseModalPaymentMethodRadio $selected={isSelected} />
-                  <PurchaseModalPaymentMethodText>
-                    <MonoText $use="Body_Bold">
-                      {formatSavedCardLabel(card)}
-                    </MonoText>
-                    <PurchaseModalPaymentMethodHint>
-                      <MonoText $use="Body_Medium">
-                        {t("singleContent.pricing.expires", {
-                          date: formatCardExpiry(card.expireDate),
-                        })}
-                      </MonoText>
-                    </PurchaseModalPaymentMethodHint>
-                  </PurchaseModalPaymentMethodText>
-                </PurchaseModalPaymentMethodOption>
-              );
-            })}
+          <DropdownField
+            value={effectiveSubscriptionId}
+            onChange={setSelectedSubscriptionId}
+            options={dropdownOptions}
+            placeholder={t("singleContent.pricing.selectCard")}
+            showSelectedIndicator
+          />
+          <div style={{ marginTop: "0.75rem" }}>
             <PurchaseModalPaymentMethodOption
               type="button"
               $selected={effectiveSubscriptionId === ""}
@@ -299,7 +278,7 @@ export default function PurchaseModal({
                 </PurchaseModalPaymentMethodHint>
               </PurchaseModalPaymentMethodText>
             </PurchaseModalPaymentMethodOption>
-          </PurchaseModalPaymentMethodList>
+          </div>
         </PurchaseModalPaymentMethod>
       ) : null}
 
