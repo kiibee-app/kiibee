@@ -630,10 +630,17 @@ export const DrawerMenuItem = styled.div`
   flex-direction: column;
 `;
 
+export const DrawerMenuRow = styled.div`
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+`;
+
 export const DrawerMenuLink = styled(Link)<{ $isActive?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex: 1 1 auto;
   padding: 12px 16px;
   border-radius: 10px;
   background: ${({ $isActive, theme }) =>
@@ -675,6 +682,29 @@ export const DrawerMenuButton = styled.button<{
     transform: ${({ $expanded }) =>
       $expanded ? "rotate(180deg)" : "rotate(0)"};
     transition: transform 0.2s ease;
+  }
+`;
+
+export const DrawerMenuToggleButton = styled.button<{
+  $isActive?: boolean;
+  $expanded?: boolean;
+}>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 48px;
+  width: 48px;
+  padding: 12px;
+  border-radius: 10px;
+  background: ${({ $isActive, theme }) =>
+    $isActive ? theme.colors.primary.GRAY : "transparent"};
+  border: none;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.GRAY};
   }
 `;
 
