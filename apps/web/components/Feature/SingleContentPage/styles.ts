@@ -625,6 +625,11 @@ export const PurchaseModalPaymentMethodRadio = styled.span<{
   box-shadow: inset 0 0 0 3px ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
+export const PurchaseModalPaymentMethodText = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const PurchaseModalPaymentMethodHint = styled.span`
   display: block;
   margin-top: 0.2rem;

@@ -41,6 +41,7 @@ import {
   PurchaseModalPaymentMethodOption,
   PurchaseModalPaymentMethodRadio,
   PurchaseModalPaymentMethodTitle,
+  PurchaseModalPaymentMethodText,
 } from "./styles";
 import {
   COUPON_DISCOUNT_PERCENTAGE,
@@ -144,12 +145,13 @@ export default function PurchaseModal({
   const selectedCardExists = savedCards.some(
     (card) => card.ePaySubscriptionId === selectedSubscriptionId,
   );
-  const effectiveSubscriptionId =
-    selectedSubscriptionId === ""
-      ? ""
-      : selectedCardExists
-        ? selectedSubscriptionId
-        : defaultSubscriptionId;
+  const fallbackAwareSubscriptionId = selectedCardExists
+    ? selectedSubscriptionId
+    : defaultSubscriptionId;
+
+  const effectiveSubscriptionId = selectedSubscriptionId
+    ? fallbackAwareSubscriptionId
+    : "";
 
   const priceNumber = extractPriceNumber(priceLabel);
   const total = priceNumber - discount;
@@ -160,6 +162,10 @@ export default function PurchaseModal({
       card.cardType,
       t("singleContent.pricing.savedCard"),
     );
+
+  const handlePurchase = () => {
+    onPurchase(appliedCode || undefined, effectiveSubscriptionId || undefined);
+  };
 
   const handleApplyDiscount = async () => {
     if (!discountCode.trim()) return;
@@ -259,7 +265,7 @@ export default function PurchaseModal({
                   }
                 >
                   <PurchaseModalPaymentMethodRadio $selected={isSelected} />
-                  <span>
+                  <PurchaseModalPaymentMethodText>
                     <MonoText $use="Body_Bold">
                       {formatSavedCardLabel(card)}
                     </MonoText>
@@ -270,7 +276,7 @@ export default function PurchaseModal({
                         })}
                       </MonoText>
                     </PurchaseModalPaymentMethodHint>
-                  </span>
+                  </PurchaseModalPaymentMethodText>
                 </PurchaseModalPaymentMethodOption>
               );
             })}
@@ -282,7 +288,7 @@ export default function PurchaseModal({
               <PurchaseModalPaymentMethodRadio
                 $selected={effectiveSubscriptionId === ""}
               />
-              <span>
+              <PurchaseModalPaymentMethodText>
                 <MonoText $use="Body_Bold">
                   {t("singleContent.pricing.useNewCard")}
                 </MonoText>
@@ -291,7 +297,7 @@ export default function PurchaseModal({
                     {t("singleContent.pricing.useNewCardHint")}
                   </MonoText>
                 </PurchaseModalPaymentMethodHint>
-              </span>
+              </PurchaseModalPaymentMethodText>
             </PurchaseModalPaymentMethodOption>
           </PurchaseModalPaymentMethodList>
         </PurchaseModalPaymentMethod>
@@ -370,12 +376,7 @@ export default function PurchaseModal({
         <GenericButton
           variant={VARIANT.PRIMARY}
           fullWidth
-          onClick={() =>
-            onPurchase(
-              appliedCode || undefined,
-              effectiveSubscriptionId || undefined,
-            )
-          }
+          onClick={handlePurchase}
           disabled={loading}
           isLoading={loading}
         >
