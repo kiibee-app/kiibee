@@ -503,3 +503,8 @@ export const getNavigationArrows = (
       Icon: RightArrow,
     },
   ] as const;
+
+export const CURSOR = {
+  POINTER: "pointer",
+  DEFAULT: "default",
+} as const;

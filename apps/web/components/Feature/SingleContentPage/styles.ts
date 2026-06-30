@@ -1,7 +1,7 @@
 import { media } from "@repo/ui/breakpoints";
 import styled, { css } from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT } from "@/utils/Constants";
+import { CURSOR, VARIANT } from "@/utils/Constants";
 
 export const Wrapper = styled.section`
   width: 100%;
@@ -171,11 +171,7 @@ export const HeroMediaText = styled.span`
   ${({ theme }) => theme.typography.Body_Bold}
 `;
 
-export const TrailerButton = styled.button`
-  position: absolute;
-  right: 1.5rem;
-  bottom: 1.5rem;
-  z-index: 2;
+export const TrailerButton = styled.button<{ $noTrailer?: boolean }>`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -184,7 +180,19 @@ export const TrailerButton = styled.button`
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.neutral.WHITE};
   padding: 0.65rem 1rem;
-  cursor: pointer;
+  cursor: ${({ $noTrailer }) => ($noTrailer ? CURSOR.DEFAULT : CURSOR.POINTER)};
+`;
+
+export const TrailerText = styled.span`
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  ${({ theme }) => theme.typography.Body_Medium}
+`;
+
+export const TrailerWrapper = styled.div<{ $noTrailer?: boolean }>`
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 2;
 
   ${media.tablet} {
     right: 1rem;
@@ -192,9 +200,23 @@ export const TrailerButton = styled.button`
   }
 `;
 
-export const TrailerText = styled.span`
+export const NoTrailerTooltip = styled.span`
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.5rem);
+  z-index: 3;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.neutral.WHITE};
-  ${({ theme }) => theme.typography.Body_Medium}
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+
+  ${TrailerWrapper}:hover & {
+    opacity: 1;
+  }
 `;
 
 export const ContentShell = styled.div<{ $isPdf?: boolean }>`
