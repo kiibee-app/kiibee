@@ -606,6 +606,7 @@ export const PurchaseModalPaymentMethodOption = styled.button<{
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-align: left;
   cursor: pointer;
+  margin-top: 0.75rem;
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary.BLACK};

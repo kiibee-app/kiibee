@@ -190,6 +190,10 @@ export default function PurchaseModal({
     }));
   }, [savedCards, formatSavedCardLabel, t]);
 
+  const handleToggleNewCard = useCallback(() => {
+    setSelectedSubscriptionId((current) => (current === "" ? null : ""));
+  }, []);
+
   const handlePurchase = () => {
     onPurchase(appliedCode || undefined, effectiveSubscriptionId || undefined);
   };
@@ -287,29 +291,23 @@ export default function PurchaseModal({
               showSelectedIndicator
             />
           ) : null}
-          <div style={{ marginTop: "0.75rem" }}>
-            <PurchaseModalPaymentMethodOption
-              type="button"
-              $selected={isUsingNewCard}
-              onClick={() =>
-                setSelectedSubscriptionId((current) =>
-                  current === "" ? null : "",
-                )
-              }
-            >
-              <SelectedCheckIcon selected={isUsingNewCard} size={20} />
-              <PurchaseModalPaymentMethodText>
-                <MonoText $use="Body_Bold">
-                  {t("singleContent.pricing.useNewCard")}
+          <PurchaseModalPaymentMethodOption
+            type="button"
+            $selected={isUsingNewCard}
+            onClick={handleToggleNewCard}
+          >
+            <SelectedCheckIcon selected={isUsingNewCard} size={20} />
+            <PurchaseModalPaymentMethodText>
+              <MonoText $use="Body_Bold">
+                {t("singleContent.pricing.useNewCard")}
+              </MonoText>
+              <PurchaseModalPaymentMethodHint>
+                <MonoText $use="Body_Medium">
+                  {t("singleContent.pricing.useNewCardHint")}
                 </MonoText>
-                <PurchaseModalPaymentMethodHint>
-                  <MonoText $use="Body_Medium">
-                    {t("singleContent.pricing.useNewCardHint")}
-                  </MonoText>
-                </PurchaseModalPaymentMethodHint>
-              </PurchaseModalPaymentMethodText>
-            </PurchaseModalPaymentMethodOption>
-          </div>
+              </PurchaseModalPaymentMethodHint>
+            </PurchaseModalPaymentMethodText>
+          </PurchaseModalPaymentMethodOption>
         </PurchaseModalPaymentMethod>
       ) : null}
 
