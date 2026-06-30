@@ -10,7 +10,7 @@ export const Wrapper = styled.section`
   height: auto;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 7rem 1.5rem 4rem;
+  padding: 6rem 1.5rem 4rem;
 
   ${media.tablet} {
     padding: 6rem 1rem 3rem;
@@ -76,38 +76,90 @@ export const ShareText = styled.span`
   ${({ theme }) => theme.typography.Body_Medium}
 `;
 
-export const Hero = styled.div<{ $isPdf?: boolean }>`
+export const Hero = styled.div<{ $isPdf?: boolean; $isVideoPoster?: boolean }>`
   position: relative;
-  width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 900px)")};
-  max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "none")};
+  width: ${({ $isPdf, $isVideoPoster }) =>
+    $isPdf ? "100%" : $isVideoPoster ? "min(100%, 900px)" : "min(100%, 900px)"};
+  max-width: ${({ $isPdf, $isVideoPoster }) =>
+    $isPdf ? "376px" : $isVideoPoster ? "900px" : "none"};
   height: auto;
-  aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
+  aspect-ratio: ${({ $isPdf, $isVideoPoster }) =>
+    $isPdf ? "376 / 530" : $isVideoPoster ? "auto" : "90 / 49"};
+  ${({ $isVideoPoster }) =>
+    $isVideoPoster &&
+    css`
+      height: clamp(360px, 44vw, 490px);
+    `}
   margin: 0 auto ${({ $isPdf }) => ($isPdf ? "0" : "2.25rem")};
   border-radius: 12px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${media.desktopSm} {
-    max-width: none;
+    max-width: ${({ $isPdf, $isVideoPoster }) =>
+      $isPdf ? "376px" : $isVideoPoster ? "900px" : "none"};
     margin: 0 auto ${({ $isPdf }) => ($isPdf ? "1.5rem" : "2.25rem")};
   }
 
   ${media.tablet} {
     width: 100%;
-    max-width: none;
+    max-width: ${({ $isPdf, $isVideoPoster }) =>
+      $isPdf ? "376px" : $isVideoPoster ? "100%" : "none"};
     height: auto;
-    aspect-ratio: ${({ $isPdf }) => ($isPdf ? "376 / 530" : "90 / 49")};
+    aspect-ratio: ${({ $isPdf, $isVideoPoster }) =>
+      $isPdf ? "376 / 530" : $isVideoPoster ? "auto" : "90 / 49"};
+    ${({ $isVideoPoster }) =>
+      $isVideoPoster &&
+      css`
+        height: clamp(320px, 56vw, 480px);
+      `}
   }
 `;
 
-export const Preview = styled.div`
+export const PreviewBackdrop = styled.div`
   position: absolute;
   inset: 0;
+  z-index: 0;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
 
   img {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%) scale(1.05);
     object-fit: cover;
+    object-position: center;
+    filter: blur(8px);
+  }
+`;
+
+export const PosterFrame = styled.div`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-width: 100%;
+  z-index: 1;
+
+  img {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
   }
 `;
 
@@ -118,19 +170,42 @@ export const PreviewVideo = styled.video`
   background: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
+export const PreviewDocument = styled.iframe`
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+`;
+
+export const Preview = styled.div<{ $isVideoPoster?: boolean }>`
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  ${({ $isVideoPoster }) =>
+    $isVideoPoster &&
+    css`
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    `}
+
+  > img,
+  ${PreviewVideo},
+  ${PreviewDocument} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
 export const PreviewAudio = styled.audio`
   width: min(760px, calc(100% - 48px));
   position: absolute;
   left: 50%;
   bottom: 40%;
   transform: translateX(-50%);
-`;
-
-export const PreviewDocument = styled.iframe`
-  width: 100%;
-  height: 100%;
-  border: 0;
-  background: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
 export const HeroTag = styled.span`
@@ -195,6 +270,49 @@ export const TrailerButton = styled.button`
 export const TrailerText = styled.span`
   color: ${({ theme }) => theme.colors.neutral.WHITE};
   ${({ theme }) => theme.typography.Body_Medium}
+`;
+
+export const HeroPosterCategoryTag = styled(HeroTag)`
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 2;
+
+  ${media.tablet} {
+    top: 1rem;
+    left: 1rem;
+  }
+`;
+
+export const HeroPosterActionRow = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 1.5rem;
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
+
+  ${media.tablet} {
+    padding: 1rem;
+  }
+`;
+
+export const HeroPosterMediaTag = styled(HeroMediaTag)`
+  position: static;
+  margin: 0;
+`;
+
+export const HeroPosterTrailerButton = styled(TrailerButton)`
+  position: static;
+  margin: 0;
 `;
 
 export const ContentShell = styled.div<{ $isPdf?: boolean }>`

@@ -19,7 +19,13 @@ import {
   HeroMediaText,
   HeroTag,
   HeroTagText,
+  HeroPosterActionRow,
+  HeroPosterCategoryTag,
+  HeroPosterMediaTag,
+  HeroPosterTrailerButton,
+  PosterFrame,
   Preview,
+  PreviewBackdrop,
   PreviewDocument,
   PreviewVideo,
   TrailerButton,
@@ -104,7 +110,7 @@ function getMediaContent(
   }
 }
 
-const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
+function useHeroImageSrc(hero: SingleContentPreviewProps["hero"]) {
   const primarySrc = resolveImageUrl(hero.image);
   const [fallbackForSrc, setFallbackForSrc] = useState<string | null>(null);
   const src =
@@ -118,6 +124,53 @@ const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
     }
   };
 
+  return { src, handleError };
+}
+
+const HeroBackdropImage = ({
+  hero,
+}: {
+  hero: SingleContentPreviewProps["hero"];
+}) => {
+  const { src, handleError } = useHeroImageSrc(hero);
+
+  if (!src) return null;
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- decorative blurred backdrop
+    <img src={src} alt="" aria-hidden decoding="async" onError={handleError} />
+  );
+};
+
+const HeroPosterImage = ({
+  hero,
+}: {
+  hero: SingleContentPreviewProps["hero"];
+}) => {
+  const { src, handleError } = useHeroImageSrc(hero);
+
+  if (!src) return null;
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- height-based contain layout needs native img sizing
+    <img src={src} alt={hero.imageAlt} decoding="async" onError={handleError} />
+  );
+};
+
+const HeroImage = ({
+  hero,
+  objectFit = "cover",
+}: {
+  hero: SingleContentPreviewProps["hero"];
+  objectFit?: "cover" | "contain";
+}) => {
+  const { src, handleError } = useHeroImageSrc(hero);
+  const imageStyle = { objectFit } as const;
+
+  if (objectFit === "contain") {
+    return <HeroPosterImage hero={hero} />;
+  }
+
   if (isRemoteImageSource(src)) {
     return (
       // eslint-disable-next-line @next/next/no-img-element -- full-res remote poster URLs render sharper than scaled Next/Image
@@ -126,6 +179,7 @@ const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
         alt={hero.imageAlt}
         decoding="async"
         onError={handleError}
+        style={imageStyle}
       />
     );
   }
@@ -138,7 +192,7 @@ const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
         fill
         priority
         sizes="(max-width: 900px) 100vw, 900px"
-        style={{ objectFit: "cover" }}
+        style={imageStyle}
         onError={handleError}
       />
     );
@@ -151,7 +205,7 @@ const HeroImage = ({ hero }: { hero: SingleContentPreviewProps["hero"] }) => {
       fill
       priority
       sizes="(max-width: 900px) 100vw, 900px"
-      style={{ objectFit: "cover" }}
+      style={imageStyle}
       unoptimized
       onError={handleError}
     />
@@ -168,10 +222,12 @@ function SingleContentPreview({
   isTrailerPlaying,
   isCloudflarePlaying,
   deferCloudflareEmbed,
+  showVideoPosterLayout,
 }: SingleContentPreviewProps & {
   isTrailerPlaying: boolean;
   isCloudflarePlaying: boolean;
   deferCloudflareEmbed: boolean;
+  showVideoPosterLayout: boolean;
 }) {
   const mediaContent = getMediaContent(
     hero,
@@ -187,7 +243,149 @@ function SingleContentPreview({
     deferCloudflareEmbed,
   );
 
-  return mediaContent ?? <HeroImage hero={hero} />;
+  if (mediaContent) return mediaContent;
+
+  if (showVideoPosterLayout) {
+    return (
+      <PosterFrame>
+        <HeroImage hero={hero} objectFit="contain" />
+      </PosterFrame>
+    );
+  }
+
+  return <HeroImage hero={hero} />;
+}
+
+function VideoPosterActions({
+  hero,
+  isVideoMedia,
+  hasStartedPlayback,
+  isTrailerPlaying,
+  showTrailerButton,
+  onTrailerButtonClick,
+}: {
+  hero: SingleContentHeroViewProps["hero"];
+  isVideoMedia: boolean;
+  hasStartedPlayback: boolean;
+  isTrailerPlaying: boolean;
+  showTrailerButton: boolean;
+  onTrailerButtonClick: () => void;
+}) {
+  const showMediaLabel =
+    hero.mediaLabel &&
+    (!isVideoMedia || (!hasStartedPlayback && !isTrailerPlaying));
+
+  if (!showMediaLabel && !showTrailerButton && !hero.categoryLabel) return null;
+
+  return (
+    <>
+      {hero.categoryLabel ? (
+        <HeroPosterCategoryTag>
+          <HeroTagText>{hero.categoryLabel}</HeroTagText>
+        </HeroPosterCategoryTag>
+      ) : null}
+
+      {showMediaLabel || showTrailerButton ? (
+        <HeroPosterActionRow>
+          {showMediaLabel ? (
+            <HeroPosterMediaTag>
+              {hero.media?.type === FORMAT_TYPE.PDF ? (
+                <PdfIcon width={16} height={16} />
+              ) : hero.mediaIcon ? (
+                <Image
+                  src={hero.mediaIcon}
+                  alt={hero.mediaIconAlt ?? ""}
+                  width={16}
+                  height={16}
+                  priority
+                />
+              ) : null}
+              <HeroMediaText>{hero.mediaLabel}</HeroMediaText>
+            </HeroPosterMediaTag>
+          ) : (
+            <span />
+          )}
+
+          {showTrailerButton ? (
+            <HeroPosterTrailerButton
+              onClick={onTrailerButtonClick}
+              type="button"
+            >
+              {hero.trailerIcon ? (
+                <Image
+                  src={hero.trailerIcon}
+                  alt={hero.trailerIconAlt ?? ""}
+                  width={15}
+                  height={15}
+                  priority
+                />
+              ) : null}
+              <TrailerText>{hero.trailerLabel}</TrailerText>
+            </HeroPosterTrailerButton>
+          ) : null}
+        </HeroPosterActionRow>
+      ) : null}
+    </>
+  );
+}
+
+function HeroOverlays({
+  hero,
+  isVideoMedia,
+  hasStartedPlayback,
+  isTrailerPlaying,
+  showTrailerButton,
+  onTrailerButtonClick,
+}: {
+  hero: SingleContentHeroViewProps["hero"];
+  isVideoMedia: boolean;
+  hasStartedPlayback: boolean;
+  isTrailerPlaying: boolean;
+  showTrailerButton: boolean;
+  onTrailerButtonClick: () => void;
+}) {
+  return (
+    <>
+      {hero.categoryLabel ? (
+        <HeroTag>
+          <HeroTagText>{hero.categoryLabel}</HeroTagText>
+        </HeroTag>
+      ) : null}
+
+      {hero.mediaLabel &&
+      (!isVideoMedia || (!hasStartedPlayback && !isTrailerPlaying)) ? (
+        <HeroMediaTag>
+          {hero.media?.type === FORMAT_TYPE.PDF ? (
+            <PdfIcon width={16} height={16} />
+          ) : hero.mediaIcon ? (
+            <Image
+              src={hero.mediaIcon}
+              alt={hero.mediaIconAlt ?? ""}
+              width={16}
+              height={16}
+              priority
+            />
+          ) : null}
+          <HeroMediaText>{hero.mediaLabel}</HeroMediaText>
+        </HeroMediaTag>
+      ) : null}
+
+      {showTrailerButton ? (
+        <TrailerButton onClick={onTrailerButtonClick} type="button">
+          {hero.trailerIcon ? (
+            <Image
+              src={hero.trailerIcon}
+              alt={hero.trailerIconAlt ?? ""}
+              width={15}
+              height={15}
+              priority
+            />
+          ) : null}
+          <TrailerText>{hero.trailerLabel}</TrailerText>
+        </TrailerButton>
+      ) : null}
+    </>
+  );
 }
 
 export default function SingleContentHeroView({
@@ -259,9 +457,23 @@ export default function SingleContentHeroView({
     !isTrailerPlaying &&
     !isCloudflarePlaying;
 
+  const isVideoContent = hero.contentType === FORMAT_TYPE.VIDEO || isVideoMedia;
+  const showVideoPosterLayout =
+    !isPdfLayout &&
+    isVideoContent &&
+    !hasStartedPlayback &&
+    !isTrailerPlaying &&
+    !isCloudflarePlaying;
+
   return (
-    <Hero $isPdf={isPdfLayout}>
-      <Preview>
+    <Hero $isPdf={isPdfLayout} $isVideoPoster={showVideoPosterLayout}>
+      {showVideoPosterLayout ? (
+        <PreviewBackdrop>
+          <HeroBackdropImage hero={hero} />
+        </PreviewBackdrop>
+      ) : null}
+
+      <Preview $isVideoPoster={showVideoPosterLayout}>
         <SingleContentPreview
           hero={hero}
           showVideoControls={
@@ -274,46 +486,30 @@ export default function SingleContentHeroView({
           isTrailerPlaying={isTrailerPlaying}
           isCloudflarePlaying={isCloudflarePlaying}
           deferCloudflareEmbed={deferCloudflareEmbed}
+          showVideoPosterLayout={showVideoPosterLayout}
         />
       </Preview>
 
-      {hero.categoryLabel ? (
-        <HeroTag>
-          <HeroTagText>{hero.categoryLabel}</HeroTagText>
-        </HeroTag>
+      {showVideoPosterLayout ? (
+        <VideoPosterActions
+          hero={hero}
+          isVideoMedia={isVideoMedia}
+          hasStartedPlayback={hasStartedPlayback}
+          isTrailerPlaying={isTrailerPlaying}
+          showTrailerButton={Boolean(showTrailerButton)}
+          onTrailerButtonClick={handleTrailerButtonClick}
+        />
       ) : null}
 
-      {hero.mediaLabel &&
-      (!isVideoMedia || (!hasStartedPlayback && !isTrailerPlaying)) ? (
-        <HeroMediaTag>
-          {hero.media?.type === FORMAT_TYPE.PDF ? (
-            <PdfIcon width={16} height={16} />
-          ) : hero.mediaIcon ? (
-            <Image
-              src={hero.mediaIcon}
-              alt={hero.mediaIconAlt ?? ""}
-              width={16}
-              height={16}
-              priority
-            />
-          ) : null}
-          <HeroMediaText>{hero.mediaLabel}</HeroMediaText>
-        </HeroMediaTag>
-      ) : null}
-
-      {showTrailerButton ? (
-        <TrailerButton onClick={handleTrailerButtonClick} type="button">
-          {hero.trailerIcon ? (
-            <Image
-              src={hero.trailerIcon}
-              alt={hero.trailerIconAlt ?? ""}
-              width={15}
-              height={15}
-              priority
-            />
-          ) : null}
-          <TrailerText>{hero.trailerLabel}</TrailerText>
-        </TrailerButton>
+      {!showVideoPosterLayout ? (
+        <HeroOverlays
+          hero={hero}
+          isVideoMedia={isVideoMedia}
+          hasStartedPlayback={hasStartedPlayback}
+          isTrailerPlaying={isTrailerPlaying}
+          showTrailerButton={Boolean(showTrailerButton)}
+          onTrailerButtonClick={handleTrailerButtonClick}
+        />
       ) : null}
     </Hero>
   );
