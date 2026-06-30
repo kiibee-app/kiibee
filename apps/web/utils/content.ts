@@ -145,6 +145,7 @@ export const COUPON_STEPS = {
   DETAILS: "details",
   CODES: "codes",
   APPLICABLE_PRODUCTS: "applicable-products",
+  VALIDITY: "validity",
   PREVIEW: "preview",
 } as const;
 
@@ -154,6 +155,7 @@ export const STEP_ORDER: CouponStep[] = [
   COUPON_STEPS.DETAILS,
   COUPON_STEPS.CODES,
   COUPON_STEPS.APPLICABLE_PRODUCTS,
+  COUPON_STEPS.VALIDITY,
   COUPON_STEPS.PREVIEW,
 ];
 

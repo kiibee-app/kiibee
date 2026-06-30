@@ -1651,16 +1651,30 @@
         "contents": "Indhold"
       }
     },
+    "couponValidity": {
+      "title": "Kuponens gyldighed (valgfrit)",
+      "description": "Indstil en aktiverings- og udløbsdato, eller lad det være tomt for at holde kuponen tilgængelig på ubestemt tid.",
+      "fields": {
+        "startDate": "Vælg startdato",
+        "endDate": "Vælg slutdato"
+      },
+      "placeholders": {
+        "startDate": "Vælg tidsperiode",
+        "endDate": "Vælg slutdato"
+      }
+    },
     "couponPreview": {
       "title": "Kupon forhåndsvisning",
       "confirm": "Bekræft",
       "uploading": "Uploader kupon",
+      "indefinite": "Ubestemt",
       "fields": {
         "title": "Titel",
         "discountType": "Rabattype",
         "amount": "Beløb",
         "codes": "Rabatkoder",
-        "applicableProducts": "Gældende produkter"
+        "applicableProducts": "Gældende produkter",
+        "validity": "Gyldighed"
       }
     },
     "tabs": {

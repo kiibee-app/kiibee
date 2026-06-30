@@ -31,7 +31,7 @@ import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
 import { useSuccessAutoClose } from "@/hooks/useSuccessAutoClose";
 import { CollectionRow } from "@/types/collectionsType";
 import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
-import { formatDateUSShort } from "@/utils/formatDate";
+import { formatDate, formatDateUSShort } from "@/utils/formatDate";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { COUPON_MODE, CouponMode } from "@/utils/content";
 
@@ -202,6 +202,21 @@ export default function CouponPreviewModal({
                     <Chip key={i}>{item}</Chip>
                   ))}
                 </ChipList>
+              </Section>
+
+              <Section>
+                <SectionLabel>
+                  {t("contents.couponPreview.fields.validity")}
+                </SectionLabel>
+                <SectionValue>
+                  {data.startDate || data.endDate
+                    ? `${data.startDate ? formatDate(data.startDate) : ""} - ${
+                        data.endDate
+                          ? formatDate(data.endDate)
+                          : t("contents.couponPreview.indefinite")
+                      }`
+                    : t("contents.couponPreview.indefinite")}
+                </SectionValue>
               </Section>
             </SelectorList>
 

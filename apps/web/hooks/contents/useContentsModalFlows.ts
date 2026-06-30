@@ -92,6 +92,7 @@ export const useContentsModalFlows = (
       details: couponStep === COUPON_STEPS.DETAILS,
       codes: couponStep === COUPON_STEPS.CODES,
       applicableProducts: couponStep === COUPON_STEPS.APPLICABLE_PRODUCTS,
+      validity: couponStep === COUPON_STEPS.VALIDITY,
       preview: couponStep === COUPON_STEPS.PREVIEW,
     },
   };
