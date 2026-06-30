@@ -100,6 +100,7 @@ export const WEBSITE = "website";
 export const OPEN_GRAPH_LOCALE_DA_DK = "da_DK";
 export const TWITTER_CARD_SUMMARY_LARGE_IMAGE = "summary_large_image";
 export const KIIBEE_LANDING_PAGE_PREVIEW_ALT = "Kiibee landing page preview";
+export const RECENT_CONTENT_LIMIT = 999;
 
 export const CARD_BRANDS = {
   VISA: "visa",
