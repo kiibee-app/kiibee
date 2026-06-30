@@ -41,7 +41,6 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
-  formatPriceLabel,
   getContentDetailPricingActions,
   getPricingLabels,
   isBuyActionLabel,
