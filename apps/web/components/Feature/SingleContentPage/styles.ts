@@ -641,3 +641,29 @@ export const PurchaseModalPriceValue = styled.span`
 export const PurchaseModalButtonWrapper = styled.div`
   padding: 0 1.5rem 1.5rem;
 `;
+
+export const PurchaseModalCardVisual = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 1.5rem 0;
+
+  svg {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+`;
+
+export const PurchaseModalPaymentIcons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 1.5rem 1.25rem;
+
+  img {
+    height: 23px;
+    width: 34px;
+    object-fit: contain;
+  }
+`;

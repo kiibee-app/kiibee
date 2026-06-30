@@ -23,6 +23,7 @@ import {
   PurchaseModalCardTitle,
   PurchaseModalCardCreator,
   PurchaseModalCardPrice,
+  PurchaseModalPaymentIcons,
   PurchaseModalDiscountSection,
   PurchaseModalDiscountLabel,
   PurchaseModalDiscountRow,
@@ -35,6 +36,7 @@ import {
   PurchaseModalButtonWrapper,
 } from "./styles";
 import { COUPON_DISCOUNT_PERCENTAGE, CouponDiscountType } from "@/utils/common";
+import { PAYMENT_ICONS } from "../../../utils/paymentIcons";
 
 type VerifyCouponResponse = {
   success: boolean;
@@ -235,6 +237,18 @@ export default function PurchaseModal({
           </PurchaseModalPriceValue>
         </PurchaseModalPriceRowTotal>
       </PurchaseModalPriceSummary>
+
+      <PurchaseModalPaymentIcons>
+        {PAYMENT_ICONS.map((icon) => (
+          <Image
+            key={icon.alt}
+            src={icon.src}
+            alt={icon.alt}
+            width={34}
+            height={23}
+          />
+        ))}
+      </PurchaseModalPaymentIcons>
 
       <PurchaseModalButtonWrapper>
         <GenericButton
