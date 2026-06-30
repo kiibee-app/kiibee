@@ -1734,7 +1734,8 @@
         "desktopSize": "Brug billedstørrelse 1440 × 224 pixels",
         "mobileSize": "Brug billedstørrelse 640 × 600 pixels",
         "desktopAlt": "Desktop forsidebillede",
-        "mobileAlt": "Mobil forsidebillede"
+        "mobileAlt": "Mobil forsidebillede",
+        "resolutionWarning": "Dette billede er mindre end den anbefalede størrelse ({{width}} × {{height}} px). Det kan fremstå sløret."
       },
       "description": {
         "label": "Beskrivelse",

@@ -49,6 +49,7 @@ type Props = {
   cropHeight?: number;
   recommendedText?: boolean;
   maxSize?: number;
+  onImageSelected?: (imageDataUrl: string) => void;
 };
 
 export default function ImageUploadCropModal({
@@ -63,6 +64,7 @@ export default function ImageUploadCropModal({
   cropHeight = DEFAULT_CROP_SIZE,
   recommendedText = false,
   maxSize = MAX_IMAGE_SIZE,
+  onImageSelected,
 }: Props) {
   const { t } = useTranslation();
   const [pendingImage, setPendingImage] = useState<string | null>(image);
@@ -171,6 +173,16 @@ export default function ImageUploadCropModal({
     fileInputRef.current?.click();
   }, []);
 
+  const setSelectedImage = useCallback(
+    (imageDataUrl: string) => {
+      onImageSelected?.(imageDataUrl);
+      setPendingImage(imageDataUrl);
+      setNaturalSize({ width: 0, height: 0 });
+      dragMovedRef.current = false;
+    },
+    [dragMovedRef, onImageSelected],
+  );
+
   const handleSelectFile = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
@@ -187,12 +199,10 @@ export default function ImageUploadCropModal({
       readFileAsDataUrl(file).then((imageDataUrl) => {
         if (!imageDataUrl) return;
 
-        setPendingImage(imageDataUrl);
-        setNaturalSize({ width: 0, height: 0 });
-        dragMovedRef.current = false;
+        setSelectedImage(imageDataUrl);
       });
     },
-    [maxSize, t, dragMovedRef],
+    [maxSize, setSelectedImage, t],
   );
 
   const handleDragEnter = (e: React.DragEvent) => {
@@ -232,12 +242,10 @@ export default function ImageUploadCropModal({
       readFileAsDataUrl(file).then((imageDataUrl) => {
         if (!imageDataUrl) return;
 
-        setPendingImage(imageDataUrl);
-        setNaturalSize({ width: 0, height: 0 });
-        dragMovedRef.current = false;
+        setSelectedImage(imageDataUrl);
       });
     },
-    [maxSize, t, dragMovedRef],
+    [maxSize, setSelectedImage, t],
   );
 
   const handlePreviewClick = () => {

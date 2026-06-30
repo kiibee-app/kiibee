@@ -1751,7 +1751,8 @@
         "desktopSize": "Use size 1440 × 224 pixel image",
         "mobileSize": "Use size 640 × 600 pixel image",
         "desktopAlt": "Desktop cover image",
-        "mobileAlt": "Mobile cover image"
+        "mobileAlt": "Mobile cover image",
+        "resolutionWarning": "This image is smaller than the recommended size ({{width}} × {{height}} px). It may appear blurry."
       },
       "description": {
         "label": "Description",
