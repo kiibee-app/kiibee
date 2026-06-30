@@ -593,7 +593,7 @@ export const PurchaseModalPaymentMethodOption = styled.button<{
   $selected?: boolean;
 }>`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.75rem;
   width: 100%;
   min-height: 64px;
@@ -618,7 +618,6 @@ export const PurchaseModalPaymentMethodRadio = styled.span<{
   width: 18px;
   height: 18px;
   flex: 0 0 18px;
-  margin-top: 2px;
   border: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
   border-radius: 50%;
   background: ${({ theme, $selected }) =>

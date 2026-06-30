@@ -1005,7 +1005,7 @@
       "expires": "Expires {{date}}",
       "defaultCard": "(default)",
       "useNewCard": "Use a new card",
-      "useNewCardHint": "You will be redirected to complete payment.",
+      "useNewCardHint": "You will be redirected to complete your payment with a new card.",
       "couponApplied": "Coupon applied successfully",
       "couponInvalid": "Invalid coupon code"
     },
