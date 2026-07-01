@@ -6,6 +6,7 @@ import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import DatePickerField from "@/components/UI/InputFields/DatePickerField";
 import { CreateCouponPayload } from "@/types/couponType";
+import { COUPON_VALIDITY_FIELDS, CouponValidityField } from "@/utils/Constants";
 import { BackButton, FieldGroup, ModalTitle, NextButton } from "../styles";
 import {
   TitleHelperText,
@@ -38,17 +39,10 @@ export default function CouponValidityModal({
     onNext();
   };
 
-  const handleStartDateChange = (val: string) => {
+  const handleDateChange = (key: CouponValidityField) => (val: string) => {
     setForm((prev) => ({
       ...prev,
-      startDate: val,
-    }));
-  };
-
-  const handleEndDateChange = (val: string) => {
-    setForm((prev) => ({
-      ...prev,
-      endDate: val,
+      [key]: val,
     }));
   };
 
@@ -86,7 +80,7 @@ export default function CouponValidityModal({
                   "contents.couponValidity.placeholders.startDate",
                 )}
                 value={form.startDate}
-                onChange={handleStartDateChange}
+                onChange={handleDateChange(COUPON_VALIDITY_FIELDS.START_DATE)}
               />
             </FieldGroup>
 
@@ -95,7 +89,7 @@ export default function CouponValidityModal({
                 label={t("contents.couponValidity.fields.endDate")}
                 placeholder={t("contents.couponValidity.placeholders.endDate")}
                 value={form.endDate}
-                onChange={handleEndDateChange}
+                onChange={handleDateChange(COUPON_VALIDITY_FIELDS.END_DATE)}
               />
             </FieldGroup>
           </FieldsWrapper>
