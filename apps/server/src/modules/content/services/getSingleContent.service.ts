@@ -8,6 +8,7 @@ import {
   userContentAccess,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
+import { insertPageVisitService } from 'src/modules/creator-overview/services/insertPageVisit.service';
 import { ACCRESS_TYPES, Time } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
@@ -82,6 +83,8 @@ export const getSingleContentService = async (
             ...(isRented && { timeLeftText }),
           }
         : null;
+
+    await insertPageVisitService(content.creatorId, content.id, null);
 
     return success(
       {
