@@ -1005,6 +1005,7 @@
     "seeContent": "See content",
     "playVideo": "Play video",
     "playTrailer": "Play trailer",
+    "videoPlaybackError": "Video playback could not be started. Please try again.",
     "noTrailerAvailable": "There is no trailer available.",
     "pricing": {
       "downloadFiles": "Download files",
