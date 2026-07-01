@@ -94,6 +94,7 @@ export const API = {
   payment: {
     cards: "/payment/cards",
     card: (subscriptionId: string) => `/payment/card/${subscriptionId}`,
+    cardDefault: (cardId: string) => `/payment/card/default/${cardId}`,
   },
   support: {
     contact: "/support/contact",
@@ -108,7 +109,5 @@ export const API = {
     previouslyRentedData: "/viewer/previously-rented-data",
     paymentMethods: "/viewer/payment-methods",
     paymentMethod: (id: string) => `/viewer/payment-methods/${id}`,
-    paymentMethodDefault: (id: string) =>
-      `/viewer/payment-methods/${id}/default`,
   },
 } as const;

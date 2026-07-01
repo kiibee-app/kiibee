@@ -2,7 +2,7 @@ import { HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { userCardInfo } from 'src/database/schema';
 import { fail, success } from 'src/utils/sendResponse';
-import { eq } from 'drizzle-orm';
+import { eq, desc } from 'drizzle-orm';
 import { logger } from 'src/logger/logger';
 
 export const getUserSavedCard = async (userId: string) => {
@@ -13,7 +13,8 @@ export const getUserSavedCard = async (userId: string) => {
     const savedCards = await db
       .select()
       .from(userCardInfo)
-      .where(eq(userCardInfo.userId, userId));
+      .where(eq(userCardInfo.userId, userId))
+      .orderBy(desc(userCardInfo.createdAt));
 
     if (!savedCards || savedCards.length === 0) {
       return success(
