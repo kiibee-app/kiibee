@@ -31,7 +31,8 @@ function decodeJwtPayload(token?: string) {
     );
 
     return JSON.parse(atob(paddedPayload)) as { role?: string };
-  } catch {
+  } catch (error) {
+    console.error("Failed to decode JWT payload:", error);
     return null;
   }
 }
@@ -50,7 +51,9 @@ function getSessionRole(request: NextRequest) {
       ? (JSON.parse(decodeURIComponent(rawUser)) as { role?: string })
       : null;
     if (user?.role) return user.role.trim().toLowerCase();
-  } catch {}
+  } catch (error) {
+    console.error("Failed to parse user cookie for role lookup:", error);
+  }
 
   const accessToken = request.cookies.get(AUTH_STORAGE_KEYS.accessToken)?.value;
   const tokenRole = decodeJwtPayload(accessToken)?.role;
