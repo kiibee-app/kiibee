@@ -2113,7 +2113,8 @@
     "saveSettingsFailed": "Failed to save settings",
     "loadDetailsFailed": "Failed to load content details",
     "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
-    "imageUploadFailed": "Image upload failed"
+    "imageUploadFailed": "Image upload failed",
+    "exportRequestFailed": "Failed to request export. Please try again."
   },
   "accessGate": {
     "pageCodeTitle": "This page requires a code to access",

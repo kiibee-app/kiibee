@@ -2112,7 +2112,8 @@
     "saveSettingsFailed": "Kunne ikke gemme indstillinger",
     "loadDetailsFailed": "Kunne ikke indlæse indholdsdetaljer",
     "imageTooLarge": "Uploadede billeder er for store. Upload venligst et mindre billede.",
-    "imageUploadFailed": "Billedupload mislykkedes"
+    "imageUploadFailed": "Billedupload mislykkedes",
+    "exportRequestFailed": "Kunne ikke anmode om eksport. Prøv igen."
   },
   "sidebar": {
     "users": "Brugere",

@@ -3,12 +3,13 @@
 import React, { useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import { Card, CardTop, TextBlock, Section, FieldBox } from "./styles";
 import { SETTINGS } from "@/utils/translationKeys";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
 import DateRangeField from "@/components/UI/InputFields/DateRangeField";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT } from "@/utils/Constants";
+import { ERROR_MESSAGES, VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { EXPORT_TYPE_OPTIONS } from "@/utils/exportOptions";
 import { GenericModal } from "@/components/UI/Modals";
@@ -32,7 +33,9 @@ export default function ExportContent() {
         endDate: endDate || undefined,
       });
       setShowSuccessModal(true);
-    } catch {}
+    } catch {
+      toast.error(t(ERROR_MESSAGES.EXPORT_REQUEST_FAILED));
+    }
   };
 
   return (

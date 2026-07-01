@@ -247,6 +247,7 @@ export const ERROR_MESSAGES = {
   SAVE_CHANGES_FAILED: "errors.saveChangesFailed",
   SAVE_SETTINGS_FAILED: "errors.saveSettingsFailed",
   LOAD_DETAILS_FAILED: "errors.loadDetailsFailed",
+  EXPORT_REQUEST_FAILED: "errors.exportRequestFailed",
 };
 
 export const UI_TITLE_FALLBACK = "Content Details";
