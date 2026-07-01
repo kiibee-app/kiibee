@@ -74,7 +74,14 @@ function rewriteKiibeeMediaUrl(url: string): string {
     ) {
       return buildCdnMediaUrl(parsed.pathname) ?? url;
     }
-  } catch {
+  } catch (error) {
+    if (process.env.NODE_ENV === "development") {
+      console.warn(
+        "[media.ts] Failed to rewrite Kiibee media URL:",
+        url,
+        error,
+      );
+    }
     return url;
   }
 
@@ -265,7 +272,14 @@ export function extractCloudflareStreamVideoId(
 
     const pathId = pathname.replace(/^\/+/, "").split("/")[0];
     return pathId || null;
-  } catch {
+  } catch (error) {
+    if (process.env.NODE_ENV === "development") {
+      console.warn(
+        "[media.ts] Failed to extract Cloudflare stream video ID from URL:",
+        trimmedUrl,
+        error,
+      );
+    }
     return null;
   }
 }
@@ -304,7 +318,11 @@ const URL_PATTERN = /^https?:\/\/.+/i;
 
 function safeParseUrl(url: string): URL | null {
   if (!URL_PATTERN.test(url)) return null;
-  return new URL(url);
+  try {
+    return new URL(url);
+  } catch {
+    return null;
+  }
 }
 
 export function isYouTubeUrl(url?: string | null): boolean {
