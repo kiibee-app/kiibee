@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { API, useGetAPI } from "@/lib/http/api";
+import { formatPayoutAmount } from "@/utils/payout";
 
 export type PayoutStats = {
   balance: string;
@@ -19,7 +20,13 @@ export const usePayoutStats = () => {
   const query = useGetAPI<PayoutStatsResponse>(API.payout.stats);
 
   const stats = useMemo((): PayoutStats | null => {
-    return query.data?.data ?? null;
+    const data = query.data?.data;
+    if (!data) return null;
+
+    return {
+      ...data,
+      balance: formatPayoutAmount(data.balance),
+    };
   }, [query.data]);
 
   return {
