@@ -21,12 +21,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import SearchBar from "@/components/UI/SearchBar";
 import Table from "@/components/UI/Table";
 import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
-import {
-  DeleteIcon,
-  EditProfileIcon,
-  ThreeDotIcon,
-  CardIcon,
-} from "@/assets/icons";
+import { DeleteIcon, ThreeDotIcon, CardIcon } from "@/assets/icons";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
 import {
@@ -34,11 +29,7 @@ import {
   BILLING_HISTORY_KEY_MAP,
   buildHeaderMap,
 } from "@/utils/tableHeader";
-import {
-  CARD_BRAND_LOGOS,
-  CARD_FORM_MODE,
-  type ViewerPaymentMethod,
-} from "@/types/cardTypes";
+import { CARD_BRAND_LOGOS, type ViewerPaymentMethod } from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
@@ -75,7 +66,6 @@ import {
   RowNumber,
   SearchFilterWrap,
 } from "./styles";
-import CardModal from "./CardModal";
 import InvoiceModal from "./InvoiceModal";
 
 export default function ClientViewerBillings() {
@@ -93,12 +83,9 @@ export default function ClientViewerBillings() {
   const {
     paymentMethods,
     isLoading: isPaymentMethodsLoading,
-    updateCard,
     deleteCard,
     markAsDefault,
   } = useViewerPaymentMethods();
-  const [showEditCardModal, setShowEditCardModal] = useState(false);
-  const [showEditSuccessModal, setShowEditSuccessModal] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<ViewerPaymentMethod | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -111,16 +98,6 @@ export default function ClientViewerBillings() {
   const handleDeleteClick = (method: ViewerPaymentMethod) => {
     setSelectedPaymentMethod(method);
     setShowDeleteModal(true);
-  };
-
-  const handleEditClick = (method: ViewerPaymentMethod) => {
-    setSelectedPaymentMethod(method);
-    setShowEditCardModal(true);
-  };
-
-  const handleEditClose = () => {
-    setShowEditCardModal(false);
-    setSelectedPaymentMethod(null);
   };
 
   const handleDeleteConfirm = async () => {
@@ -363,15 +340,6 @@ export default function ClientViewerBillings() {
                     <IconButton
                       type="button"
                       aria-label={t(
-                        DASHBOARD_VIEWER_BILLINGS.paymentMethods.edit,
-                      )}
-                      onClick={() => handleEditClick(method)}
-                    >
-                      <EditProfileIcon color={COLORS.neutral.GRAY} />
-                    </IconButton>
-                    <IconButton
-                      type="button"
-                      aria-label={t(
                         DASHBOARD_VIEWER_BILLINGS.paymentMethods.delete,
                       )}
                       onClick={() => handleDeleteClick(method)}
@@ -406,20 +374,6 @@ export default function ClientViewerBillings() {
           setSelectedBillingId(null);
         }}
       />
-      {selectedPaymentMethod ? (
-        <CardModal
-          key={`edit-${selectedPaymentMethod.id}-${showEditCardModal ? "open" : "closed"}`}
-          mode={CARD_FORM_MODE.EDIT}
-          visible={showEditCardModal}
-          paymentMethod={selectedPaymentMethod}
-          onClose={handleEditClose}
-          onSubmit={async (payload) => {
-            await updateCard(selectedPaymentMethod.id, payload);
-            setShowEditCardModal(false);
-            setShowEditSuccessModal(true);
-          }}
-        />
-      ) : null}
       <GenericModal
         visible={showDeleteModal}
         onClose={() => {
@@ -465,28 +419,6 @@ export default function ClientViewerBillings() {
         }}
         onConfirm={() => {
           setShowDeleteSuccessModal(false);
-          setSelectedPaymentMethod(null);
-        }}
-        showCloseButton={false}
-      />
-      <GenericModal
-        visible={showEditSuccessModal}
-        icon={<SuccessModalIcon />}
-        title={t(
-          DASHBOARD_VIEWER_BILLINGS.paymentMethods.editSuccessModal.title,
-        )}
-        message={t(
-          DASHBOARD_VIEWER_BILLINGS.paymentMethods.editSuccessModal.message,
-        )}
-        confirmLabel={t(
-          DASHBOARD_VIEWER_BILLINGS.paymentMethods.editSuccessModal.confirm,
-        )}
-        onClose={() => {
-          setShowEditSuccessModal(false);
-          setSelectedPaymentMethod(null);
-        }}
-        onConfirm={() => {
-          setShowEditSuccessModal(false);
           setSelectedPaymentMethod(null);
         }}
         showCloseButton={false}
