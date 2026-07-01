@@ -25,7 +25,13 @@ import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
 import { useLoginForm } from "@/hooks/auth/useLoginForm";
 
-export default function LoginForm() {
+export default function LoginForm({
+  onSuccess,
+  onSwitchMode,
+}: {
+  onSuccess?: (response: unknown) => void;
+  onSwitchMode?: () => void;
+} = {}) {
   const { t } = useTranslation();
 
   const {
@@ -39,7 +45,7 @@ export default function LoginForm() {
     handleFieldChange,
     togglePassword,
     handleSubmit,
-  } = useLoginForm();
+  } = useLoginForm({ onSuccessOverride: onSuccess });
 
   return (
     <Wrapper>
@@ -97,8 +103,16 @@ export default function LoginForm() {
         </ForgotLink>
         <FooterText>
           <MonoText $use="Body_Medium"> {t("authForm.footer")}</MonoText>
-          <SignUpLink href={PATHS.AUTH_SIGNUP}>
-            <MonoText $use="Body_Medium">{t("authForm.signUp")}</MonoText>
+          <SignUpLink
+            href={PATHS.AUTH_SIGNUP}
+            onClick={(e) => {
+              if (onSwitchMode) {
+                e.preventDefault();
+                onSwitchMode();
+              }
+            }}
+          >
+            <MonoText $use="Body_Medium">{t("authForm.signup")}</MonoText>
           </SignUpLink>
         </FooterText>
       </Card>

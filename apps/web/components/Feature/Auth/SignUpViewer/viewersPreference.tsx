@@ -6,14 +6,19 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import GenericButton from "@/components/UI/GenericButton";
-import { ContentWrap } from "@/app/auth/signup-creator/styles";
 import { VIEWER_SIGNUP_PREFERENCE } from "@/utils/translationKeys";
 import { PREF_STEP, ViewerPreferenceStep } from "@/utils/preferenceOptions";
 import { PATHS } from "@/utils/path";
-import { PrepCard, PreContentWrap } from "./styles";
+import { PrepCard, PreContentWrap, ContentWrap } from "./styles";
 import PreferenceStepContent from "./PreferenceStepContent";
 
-export default function ViewerPreference() {
+export default function ViewerPreference({
+  onComplete,
+  onBack,
+}: {
+  onComplete?: () => void;
+  onBack?: () => void;
+} = {}) {
   const router = useRouter();
   const { t } = useTranslation();
   const theme = useTheme();
@@ -48,15 +53,24 @@ export default function ViewerPreference() {
       return;
     }
 
-    router.push(PATHS.DASHBOARD_VIEWER);
+    if (onComplete) {
+      onComplete();
+    } else {
+      router.push(PATHS.DASHBOARD_VIEWER);
+    }
   };
 
+  const isModal = !!onComplete;
+
   return (
-    <PreContentWrap>
-      <ContentWrap>
-        <AuthBackButton href={PATHS.AUTH_SIGNUP_VIEWER} />
+    <PreContentWrap $isModal={isModal}>
+      <ContentWrap $isModal={isModal}>
+        <AuthBackButton
+          href={!onBack ? PATHS.AUTH_SIGNUP_VIEWER : undefined}
+          onClick={onBack}
+        />
       </ContentWrap>
-      <PrepCard>
+      <PrepCard $isModal={isModal}>
         <PreferenceStepContent
           step={step}
           onStepBack={() =>

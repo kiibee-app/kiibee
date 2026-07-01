@@ -42,7 +42,13 @@ const isPasswordField = (
 ): fieldKey is PasswordFieldKey =>
   PASSWORD_FIELD_KEYS.includes(fieldKey as PasswordFieldKey);
 
-export default function SignUpViewer() {
+export default function SignUpViewer({
+  onSuccess,
+  onSwitchMode,
+}: {
+  onSuccess?: (response: unknown) => void;
+  onSwitchMode?: () => void;
+} = {}) {
   const { t } = useTranslation();
 
   const {
@@ -55,7 +61,7 @@ export default function SignUpViewer() {
     updateField,
     togglePassword,
     handleSubmit,
-  } = useViewerSignUpForm();
+  } = useViewerSignUpForm({ onSuccessOverride: onSuccess });
 
   const agreedValue = useWatch({
     control: methods.control,
@@ -159,7 +165,15 @@ export default function SignUpViewer() {
             <MonoText $use="Body_Medium">
               {t("viewerSignup.haveAccount")}
             </MonoText>
-            <LoginLink href={PATHS.AUTH_LOGIN}>
+            <LoginLink
+              href={PATHS.AUTH_LOGIN}
+              onClick={(e) => {
+                if (onSwitchMode) {
+                  e.preventDefault();
+                  onSwitchMode();
+                }
+              }}
+            >
               <MonoText $use="Body_Medium">{t("viewerSignup.login")}</MonoText>
             </LoginLink>
           </LoginRow>
