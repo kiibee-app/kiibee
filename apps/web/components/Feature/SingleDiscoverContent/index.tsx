@@ -17,6 +17,7 @@ export default function SingleDiscoverContent({ item }: Props) {
 
   return (
     <SingleContentPage
+      contentId={String(item.id)}
       title={t(item.titleKey)}
       tags={[t(item.categoryKey)]}
       creator={{

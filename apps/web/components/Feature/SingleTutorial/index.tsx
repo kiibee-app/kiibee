@@ -84,6 +84,7 @@ export default function SingleTutorial({
   return (
     <>
       <SingleContentPage
+        contentId={tutorial.id}
         title={tutorial.title}
         descriptions={[
           tutorial.focus,
