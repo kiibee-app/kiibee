@@ -7,13 +7,13 @@ import {
   DateText,
   DateFieldActions,
   DateCalendarButton,
-  DatePopupActions,
   CancelButton,
   DatePopup,
-  DatePopupScroll,
-  DatePopupBody,
   DatePopupWrapper,
   BorderedDateDisplay,
+  DatePopupScrollCustom,
+  DatePopupBodyCustom,
+  DatePopupActionsCustom,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import SingleCalendar from "@/components/UI/Calendar/SingleCalendar";
@@ -119,13 +119,11 @@ export default function DatePickerField({
           createPortal(
             <DatePopupWrapper ref={popupRef}>
               <DatePopup $top={pos.top} $left={pos.left}>
-                <DatePopupScroll style={{ padding: "16px" }}>
-                  <DatePopupBody
-                    style={{ paddingBottom: 0, borderBottom: "none" }}
-                  >
+                <DatePopupScrollCustom>
+                  <DatePopupBodyCustom>
                     <SingleCalendar value={tempValue} onChange={setTempValue} />
-                  </DatePopupBody>
-                  <DatePopupActions style={{ marginTop: "12px" }}>
+                  </DatePopupBodyCustom>
+                  <DatePopupActionsCustom>
                     <CancelButton type="button" onClick={handleCancel}>
                       {t("common.cancel")}
                     </CancelButton>
@@ -137,8 +135,8 @@ export default function DatePickerField({
                     >
                       {t("common.save")}
                     </GenericButton>
-                  </DatePopupActions>
-                </DatePopupScroll>
+                  </DatePopupActionsCustom>
+                </DatePopupScrollCustom>
               </DatePopup>
             </DatePopupWrapper>,
             document.body,

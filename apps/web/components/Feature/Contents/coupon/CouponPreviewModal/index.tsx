@@ -101,6 +101,21 @@ export default function CouponPreviewModal({
       ? contentIds.map((id) => getLabel(id, contentOptions))
       : ["-"];
 
+  const formatValidity = () => {
+    if (!data.startDate && !data.endDate) {
+      return t("contents.couponPreview.indefinite");
+    }
+    const startStr = data.startDate ? formatDate(data.startDate) : "";
+    const endStr = data.endDate
+      ? formatDate(data.endDate)
+      : t("contents.couponPreview.indefinite");
+    return `${startStr} - ${endStr}`;
+  };
+
+  const renderChips = (items: string[]) => {
+    return items.map((item, i) => <Chip key={i}>{item}</Chip>);
+  };
+
   return (
     <GenericModal
       visible={visible}
@@ -186,11 +201,7 @@ export default function CouponPreviewModal({
                 <SectionLabel>
                   {t("contents.couponPreview.fields.codes")}
                 </SectionLabel>
-                <ChipList>
-                  {codes.map((code, i) => (
-                    <Chip key={i}>{code}</Chip>
-                  ))}
-                </ChipList>
+                <ChipList>{renderChips(codes)}</ChipList>
               </Section>
 
               <Section>
@@ -198,9 +209,7 @@ export default function CouponPreviewModal({
                   {t("contents.couponPreview.fields.applicableProducts")}
                 </SectionLabel>
                 <ChipList>
-                  {[...collectionLabels, ...contentLabels].map((item, i) => (
-                    <Chip key={i}>{item}</Chip>
-                  ))}
+                  {renderChips([...collectionLabels, ...contentLabels])}
                 </ChipList>
               </Section>
 
@@ -208,15 +217,7 @@ export default function CouponPreviewModal({
                 <SectionLabel>
                   {t("contents.couponPreview.fields.validity")}
                 </SectionLabel>
-                <SectionValue>
-                  {data.startDate || data.endDate
-                    ? `${data.startDate ? formatDate(data.startDate) : ""} - ${
-                        data.endDate
-                          ? formatDate(data.endDate)
-                          : t("contents.couponPreview.indefinite")
-                      }`
-                    : t("contents.couponPreview.indefinite")}
-                </SectionValue>
+                <SectionValue>{formatValidity()}</SectionValue>
               </Section>
             </SelectorList>
 

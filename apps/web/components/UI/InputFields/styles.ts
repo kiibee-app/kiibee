@@ -534,3 +534,16 @@ export const TagsInputField = styled.input`
     color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   }
 `;
+
+export const DatePopupScrollCustom = styled(DatePopupScroll)`
+  padding: 16px;
+`;
+
+export const DatePopupBodyCustom = styled(DatePopupBody)`
+  padding-bottom: 0;
+  border-bottom: none;
+`;
+
+export const DatePopupActionsCustom = styled(DatePopupActions)`
+  margin-top: 12px;
+`;
