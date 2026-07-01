@@ -89,6 +89,12 @@
         "confirmLabel": "Opret konto",
         "message": "For at fortsætte med dit køb, skal du logge ind på din Kiibee-konto. Hvis du ikke har en konto endnu, kan du oprette en på et øjeblik."
       },
+      "purchaseConfirmationModal": {
+        "title": "Klar til at gennemføre dit køb?",
+        "message": "Du er klar til at fortsætte med dit køb. Klik nedenfor for at afslutte din ordre og få adgang til dit indhold.",
+        "defaultAccessLabel": "Dit køb",
+        "continueLabel": "Fortsæt"
+      },
       "seeContent": "Se indhold",
       "buy": "Køb 99 kr"
     }

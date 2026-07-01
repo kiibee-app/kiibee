@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -33,13 +33,13 @@ import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
-import { GenericModal } from "@/components/UI/Modals";
-import { MonoText } from "@/components/UI/Monotext";
-import { MODAL_ALIGN } from "@/utils/ui";
+
 import {
-  ModalContentWrapper,
-  ModalDescription,
-} from "@/components/Feature/ProfileLayout/shared/LatestUpload/styles";
+  LoginRequiredModal,
+  PurchaseConfirmationModal,
+} from "@/components/UI/Modals";
+
+import { useSearchParams } from "next/navigation";
 
 export type {
   SingleContentHeroProps,
@@ -48,7 +48,6 @@ export type {
 } from "@/types/contentTypes";
 
 export default function SingleContentPage(props: SingleContentPageProps) {
-  const { t } = useTranslation();
   const {
     contentId,
     collectionId,
@@ -71,19 +70,28 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     accessGate,
   } = props;
   const router = useRouter();
+  const searchParams = useSearchParams();
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
   const handleCloseLoginModal = () => setLoginModalVisible(false);
-  const handleLoginRedirect = () => {
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
+  const getNextUrlWithIntent = () => {
+    const currentUrl = window.location.pathname + window.location.search;
+    if (currentUrl.includes("intent=purchase")) {
+      return encodeURIComponent(currentUrl);
+    }
+    const separator = window.location.search ? "&" : "?";
+    return encodeURIComponent(currentUrl + separator + "intent=purchase");
   };
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
+
+  const handleLoginRedirect = () => {
+    router.push(`${PATHS.AUTH_LOGIN}?next=${getNextUrlWithIntent()}`);
+  };
+  const handleCreateAccount = () => {
+    router.push(`${PATHS.AUTH_SIGNUP_VIEWER}?next=${getNextUrlWithIntent()}`);
+  };
 
   type CreateOrderPayload = {
     contentId: string;
@@ -145,6 +153,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   }, [contentId, createOrderMutation, primaryAction, primaryActions, user?.id]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [showPurchaseConfirmationModal, setShowPurchaseConfirmationModal] =
+    useState(false);
   const [selectedAction, setSelectedAction] = useState<{
     label: string;
     subtitle?: string;
@@ -157,6 +167,25 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     hero?.contentType === FORMAT_TYPE.EPUB ||
     hero?.contentType === FORMAT_TYPE.VIDEO ||
     hero?.contentType === FORMAT_TYPE.AUDIO;
+
+  useEffect(() => {
+    if (searchParams?.get("intent") === "purchase" && primaryActions?.length) {
+      const action = primaryActions[0];
+      setSelectedAction({
+        label: action.label,
+        subtitle: action.subtitle,
+        isPurchase: action.label.toLowerCase().includes("buy"),
+      });
+      setShowPurchaseConfirmationModal(true);
+
+      const newUrl =
+        window.location.pathname +
+        window.location.search
+          .replace(/&?intent=purchase/, "")
+          .replace(/\?$/, "");
+      window.history.replaceState({}, "", newUrl);
+    }
+  }, [searchParams, primaryActions]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
 
@@ -262,6 +291,10 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     setShowPurchaseModal(false);
     setSelectedAction(null);
   };
+  const handleClosePurchaseConfirmationModal = () => {
+    setShowPurchaseConfirmationModal(false);
+    setSelectedAction(null);
+  };
 
   return (
     <Wrapper>
@@ -317,31 +350,26 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         loading={createOrderMutation.isPending}
       />
 
-      <GenericModal
+      <PurchaseConfirmationModal
+        visible={showPurchaseConfirmationModal}
+        onClose={handleClosePurchaseConfirmationModal}
+        onConfirm={() => handlePurchaseConfirm()}
+        title={title}
+        image={hero.image ? resolveImageUrl(hero.image) : undefined}
+        imageAlt={hero.imageAlt}
+        creator={creator?.name}
+        contentType={hero.contentType || hero.media?.type}
+        priceLabel={selectedAction?.label || ""}
+        accessLabel={selectedAction?.subtitle}
+        loading={createOrderMutation.isPending}
+      />
+
+      <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onCancel={handleLoginRedirect}
-        onConfirm={handleCreateAccount}
-        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-        confirmLabel={t(
-          "createProfileHome.latestUpload.loginModal.confirmLabel",
-        )}
-        buttonRow
-        buttonAlign={MODAL_ALIGN.CENTER}
-        fullWidthButtons={false}
-        size="sm"
-        spacing="start"
-        showCloseButton
-      >
-        <ModalContentWrapper>
-          <MonoText $use="Heading3">
-            {t("createProfileHome.latestUpload.loginModal.title")}
-          </MonoText>
-          <ModalDescription $use="Body_Medium">
-            {t("createProfileHome.latestUpload.loginModal.message")}
-          </ModalDescription>
-        </ModalContentWrapper>
-      </GenericModal>
+        onLogin={handleLoginRedirect}
+        onCreateAccount={handleCreateAccount}
+      />
 
       <ShareModal
         visible={showShareModal}
