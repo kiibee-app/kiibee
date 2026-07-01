@@ -4,7 +4,6 @@ import {
   Container,
   Label,
   InputWrapper,
-  DateDisplay,
   DateText,
   DateFieldActions,
   DateCalendarButton,
