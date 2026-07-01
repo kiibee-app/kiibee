@@ -33,7 +33,10 @@ import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
 
-import { LoginRequiredModal } from "@/components/UI/Modals";
+import {
+  LoginRequiredModal,
+  PurchaseConfirmationModal,
+} from "@/components/UI/Modals";
 
 import { useSearchParams } from "next/navigation";
 
@@ -137,13 +140,18 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             subtitle: action.subtitle,
             isPurchase,
           });
-          setShowPurchaseModal(true);
+          if (!user?.id) {
+            handleShowLoginModal();
+          } else {
+            setShowPurchaseModal(true);
+          }
         },
       };
     });
   }, [contentId, createOrderMutation, primaryAction, primaryActions, user?.id]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
     label: string;
     subtitle?: string;
@@ -160,23 +168,26 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     hero?.contentType === FORMAT_TYPE.AUDIO;
 
   useEffect(() => {
-    if (searchParams?.get("intent") === "purchase" && primaryActions?.length) {
-      const action = primaryActions[0];
-      setSelectedAction({
-        label: action.label,
-        subtitle: action.subtitle,
-        isPurchase: action.label.toLowerCase().includes("buy"),
-      });
-      setShowPurchaseModal(true);
+    if (searchParams?.get("intent") === "purchase") {
+      const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
+      if (actions.length) {
+        const action = actions[0];
+        setSelectedAction({
+          label: action.label,
+          subtitle: action.subtitle,
+          isPurchase: action.label.toLowerCase().includes("buy"),
+        });
+        setShowConfirmationModal(true);
 
-      const newUrl =
-        window.location.pathname +
-        window.location.search
-          .replace(/&?intent=purchase/, "")
-          .replace(/\?$/, "");
-      window.history.replaceState({}, "", newUrl);
+        const newUrl =
+          window.location.pathname +
+          window.location.search
+            .replace(/&?intent=purchase/, "")
+            .replace(/\?$/, "");
+        window.history.replaceState({}, "", newUrl);
+      }
     }
-  }, [searchParams, primaryActions]);
+  }, [searchParams, primaryActions, primaryAction]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
 
@@ -268,6 +279,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       const orderId = response?.data?.orderId;
       if (!paymentUrl && subscriptionId && orderId) {
         setShowPurchaseModal(false);
+        setShowConfirmationModal(false);
         setSelectedAction(null);
         router.push(`/payment/success?orderId=${encodeURIComponent(orderId)}`);
         return;
@@ -276,6 +288,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         throw new Error("Payment URL missing");
       }
       setShowPurchaseModal(false);
+      setShowConfirmationModal(false);
       setSelectedAction(null);
       window.location.assign(paymentUrl);
     } catch (error) {
@@ -286,6 +299,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
+    setSelectedAction(null);
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setShowConfirmationModal(false);
     setSelectedAction(null);
   };
 
@@ -343,11 +361,31 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         loading={createOrderMutation.isPending}
       />
 
+      <PurchaseConfirmationModal
+        visible={showConfirmationModal}
+        onClose={handleCloseConfirmationModal}
+        onConfirm={() => handlePurchaseConfirm()}
+        title={title}
+        image={hero.image ? resolveImageUrl(hero.image) : undefined}
+        imageAlt={hero.imageAlt}
+        creator={creator?.name}
+        contentType={hero.contentType || hero.media?.type}
+        priceLabel={selectedAction?.label || ""}
+        accessLabel={selectedAction?.subtitle}
+        loading={createOrderMutation.isPending}
+      />
+
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
         onSuccess={() => {
-          if (pendingAction) {
+          if (selectedAction) {
+            const currentParams = new URLSearchParams(window.location.search);
+            currentParams.set("intent", "purchase");
+            router.replace(
+              `${window.location.pathname}?${currentParams.toString()}`,
+            );
+          } else if (pendingAction) {
             if (pendingAction.onClick) {
               pendingAction.onClick();
             }
