@@ -76,9 +76,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
       {role === ROLE_VIEWER && (
         <Nav>
           <NavItem href={PATHS.HOW_IT_WORKS}>{t("nav.howItWorks")}</NavItem>
-          <NavItem href={PATHS.EXPLORE_CREATORS}>
-            {t("nav.exploreCreators")}
-          </NavItem>
+          <NavItem href={PATHS.EXPLORE}>{t("nav.exploreCreators")}</NavItem>
           <NavItem href={PATHS.ABOUT}>{t("nav.about")}</NavItem>
         </Nav>
       )}

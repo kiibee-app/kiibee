@@ -2,11 +2,11 @@ import { HttpStatus } from '@nestjs/common';
 import { and, eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
-  creatorPayouts,
   mediaFiles,
   collections,
   orders,
   payments,
+  creatorWallets,
 } from 'src/database/schema';
 import { ORDER_STATUS } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
@@ -14,9 +14,19 @@ import { logger } from 'src/logger/logger';
 
 export async function getPayoutStatsService(creatorId: string) {
   try {
-    const totalEarnings = await db
+    if (!creatorId) {
+      return fail('Creator ID is required', HttpStatus.BAD_REQUEST);
+    }
+    const [currentBalance] = await db
       .select({
-        total: sql<number>`coalesce(sum(${orders.price}), 0)`.mapWith(Number),
+        amount: creatorWallets.amount,
+      })
+      .from(creatorWallets)
+      .where(eq(creatorWallets.creatorId, creatorId));
+
+    const balance = Number(currentBalance?.amount ?? 0);
+    const totalCount = await db
+      .select({
         purchases:
           sql<number>`count(case when ${orders.itemType} = 'purchase' then 1 end)`.mapWith(
             Number,
@@ -38,28 +48,13 @@ export async function getPayoutStatsService(creatorId: string) {
         ),
       );
 
-    const totalPaidOut = await db
-      .select({
-        total: sql<number>`coalesce(sum(${creatorPayouts.amount}), 0)`.mapWith(
-          Number,
-        ),
-      })
-      .from(creatorPayouts)
-      .where(
-        and(
-          eq(creatorPayouts.creatorId, creatorId),
-          eq(creatorPayouts.status, 'completed'),
-        ),
-      );
-
-    const earnings = totalEarnings[0]?.total ?? 0;
-    const paidOut = totalPaidOut[0]?.total ?? 0;
-    const balance = earnings - paidOut;
+    const purchases = totalCount[0]?.purchases ?? 0;
+    const rentals = totalCount[0]?.rentals ?? 0;
 
     const stats = {
       balance: `${balance.toFixed(2)} kr.`,
-      purchases: totalEarnings[0]?.purchases ?? 0,
-      rentals: totalEarnings[0]?.rentals ?? 0,
+      purchases,
+      rentals,
     };
 
     return success(stats, 'Payout stats retrieved successfully', HttpStatus.OK);

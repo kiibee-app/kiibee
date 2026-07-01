@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { ImageSource } from "@/utils/Constants";
 import {
@@ -42,7 +41,6 @@ import { MODAL_ALIGN } from "@/utils/ui";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
-  formatPriceLabel,
   getContentDetailPricingActions,
   getPricingLabels,
   isBuyActionLabel,
@@ -51,6 +49,7 @@ import {
 } from "@/utils/contentPricingActions";
 import { authStorage } from "@/lib/auth/authStorage";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
+import { ROLE_CREATOR } from "@/utils/Constants";
 
 type LatestUploadAction = {
   title: string;
@@ -111,11 +110,8 @@ export default function LatestUpload({ data }: LatestUploadProps) {
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const { navigateToContent } = useProtectedContentNavigation();
-  const { publicCreatorId } = useCreatorChannelProfile();
   const storedUser = useStoredLoginUser();
-  const isCreator = Boolean(
-    publicCreatorId && storedUser?.id && storedUser.id === publicCreatorId,
-  );
+  const isCreator = storedUser?.role === ROLE_CREATOR;
 
   const computedActions = useMemo((): ComputedAction[] => {
     if (data.contentId) {
@@ -127,12 +123,9 @@ export default function LatestUpload({ data }: LatestUploadProps) {
       };
 
       if (isFreeContentItem(pricingItem)) {
-        const buyLabel =
-          formatPriceLabel(t("pricingLabels.buy"), data.buyPrice) ||
-          t("createProfileHome.latestUpload.buy");
         return [
           {
-            title: buyLabel,
+            title: t("pricingLabels.free"),
             subtitle: t("singleContent.pricing.downloadFiles"),
             href: `${pathPublishedContent(data.contentId)}#buy`,
           },

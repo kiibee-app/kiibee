@@ -1,6 +1,12 @@
 import { and, desc, eq, gte, lte, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { collections, mediaFiles, orders, users } from 'src/database/schema';
+import {
+  collections,
+  mediaFiles,
+  orders,
+  payments,
+  users,
+} from 'src/database/schema';
 import {
   formatDisplayDate,
   formatSalePrice,
@@ -32,17 +38,19 @@ export const buildSalesReportVariables = async (
       lastName: users.lastName,
       email: users.email,
       itemType: orders.itemType,
-      price: orders.price,
+      price: payments.amount,
       currency: orders.currency,
       createdAt: orders.createdAt,
     })
     .from(orders)
     .innerJoin(users, eq(orders.userId, users.id))
+    .innerJoin(payments, eq(payments.orderId, orders.id))
     .leftJoin(mediaFiles, eq(orders.mediaFileId, mediaFiles.id))
     .leftJoin(collections, eq(orders.collectionId, collections.id))
     .where(
       and(
         eq(orders.status, ORDER_STATUS.COMPLETED),
+        eq(payments.status, ORDER_STATUS.COMPLETED),
         or(
           eq(mediaFiles.creatorId, creatorId),
           eq(collections.creatorId, creatorId),

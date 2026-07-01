@@ -15,6 +15,7 @@ import {
   ORDER_TYPES,
   PAYMENT_STATUS,
 } from 'src/utils/constant';
+import { addWallet } from 'src/services/addWallet';
 
 export async function handleEpayPayment(body: any) {
   const {
@@ -93,6 +94,8 @@ export async function handleEpayPayment(body: any) {
           : ACCRESS_TYPES.RENTED,
       rentExpiresAt,
     } as any);
+
+    await addWallet(contentInfo[0].creatorId, resolvedAmount, currency);
 
     const existingCard = await db.query.userCardInfo.findFirst({
       where: and(

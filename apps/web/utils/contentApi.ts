@@ -208,7 +208,7 @@ const getContentHeroImages = (
 
   return {
     image: candidates[0] ?? contentFallbackImage,
-    ...(candidates[1] ? { imageFallback: candidates[1] } : {}),
+    imageFallback: candidates[1] ?? contentFallbackImage.src,
   };
 };
 

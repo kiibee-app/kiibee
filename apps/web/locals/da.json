@@ -791,6 +791,9 @@
   "pricingPlans": {
     "title": "Oversigt over prisplaner",
     "cta": "Kom i gang",
+    "active": "Aktiv",
+    "planNotFound": "Planen blev ikke fundet",
+    "subscriptionActivated": "Abonnementet er aktiveret!",
     "plans": {
       "launch": {
         "title": "Launch",
@@ -872,6 +875,21 @@
       "emailInvalid": "Indtast en gyldig e-mailadresse",
       "passwordMinLength": "Adgangskoden skal være mindst 6 tegn",
       "passwordMismatch": "Adgangskoderne matcher ikke"
+    },
+    "success": {
+      "title": "Betaling gennemført",
+      "checking": "Tjekker din betalingsstatus...",
+      "unlocking": "Låser dit abonnement op nu. Du viderestilles om et øjeblik.",
+      "hint": "Dette tager normalt et par sekunder. Behold denne side åben.",
+      "goToDashboard": "Gå til dashboard",
+      "verifyErrorTitle": "Kan ikke bekræfte abonnement",
+      "verifyError": "Der gik noget galt under tjek af dit abonnement. Opdater siden eller prøv igen om et øjeblik.",
+      "refreshPage": "Opdater siden"
+    },
+    "failure": {
+      "title": "Betalingen blev ikke gennemført",
+      "message": "Din betaling blev ikke gennemført, og der blev ikke trukket nogen beløb. Du kan prøve igen fra din prisplan-side.",
+      "viewPlans": "Se planer"
     }
   },
   "pricingFaq": {
@@ -894,6 +912,8 @@
   "common": {
     "confirmationModalError": "Fejl ved bekræftelsesmodal:",
     "share": "Del",
+    "copied": "Kopieret!",
+    "copyLink": "Kopier link",
     "search": "Søg",
     "clearSearch": "Ryd søgning",
     "noResults": "Ingen resultater fundet",
@@ -985,6 +1005,7 @@
     "seeContent": "Se indhold",
     "playVideo": "Afspil video",
     "playTrailer": "Afspil trailer",
+    "noTrailerAvailable": "Der er ingen trailer tilgængelig.",
     "pricing": {
       "downloadFiles": "Download filer",
       "accessDefault": "Adgang i 3 måneder",
@@ -1000,6 +1021,13 @@
       "discount": "Rabat",
       "total": "Total",
       "purchase": "Køb",
+      "paymentMethod": "Betalingsmetode",
+      "savedCard": "Gemt kort",
+      "selectCard": "Vælg et gemt kort",
+      "expires": "Udløber {{date}}",
+      "defaultCard": "(standard)",
+      "useNewCard": "Brug et nyt kort",
+      "useNewCardHint": "Du bliver videresendt for at fuldføre betalingen.",
       "couponApplied": "Kupon anvendt",
       "couponInvalid": "Ugyldig kuponkode"
     },
@@ -1748,7 +1776,8 @@
         "desktopSize": "Brug billedstørrelse 1440 × 224 pixels",
         "mobileSize": "Brug billedstørrelse 640 × 600 pixels",
         "desktopAlt": "Desktop forsidebillede",
-        "mobileAlt": "Mobil forsidebillede"
+        "mobileAlt": "Mobil forsidebillede",
+        "resolutionWarning": "Dette billede er mindre end den anbefalede størrelse ({{width}} × {{height}} px). Det kan fremstå sløret."
       },
       "description": {
         "label": "Beskrivelse",

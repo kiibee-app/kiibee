@@ -27,11 +27,10 @@ import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
 export function useCreatorChannelProfile(enabled = true) {
   const searchParams = useSearchParams();
   const publicCreatorId = searchParams.get(CREATOR_ID_PARAM);
-  const isPublicView = Boolean(publicCreatorId);
-
   const storedUser = useStoredLoginUser();
   const isOwnerOfPublicView =
-    isPublicView && storedUser?.id === publicCreatorId;
+    Boolean(publicCreatorId) && storedUser?.id === publicCreatorId;
+  const isPublicView = Boolean(publicCreatorId) && !isOwnerOfPublicView;
   const { creator: publicCreator, isLoading: isLoadingPublic } =
     useCreatorPublicProfile(publicCreatorId);
 

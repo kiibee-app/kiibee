@@ -24,6 +24,7 @@ export const creatorPayouts = pgTable(
 
     creditNo: varchar('credit_no', { length: 50 }),
     bankAccountInfo: text('bank_account_info'),
+    cardNo: varchar('cardNo', { length: 50 }),
     payoutDate: timestamp('payout_date', { withTimezone: true }),
 
     ...baseTimestamps,

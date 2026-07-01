@@ -24,7 +24,6 @@ import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
 import {
   DeleteIcon,
   EditProfileIcon,
-  PlusIcon,
   ThreeDotIcon,
   CardIcon,
 } from "@/assets/icons";
@@ -53,7 +52,6 @@ import { LOADER_VARIANT } from "@/utils/ui";
 
 import {
   Actions,
-  AddCardButton,
   BillingHeader,
   BillingShell,
   BillingTableSection,
@@ -95,12 +93,10 @@ export default function ClientViewerBillings() {
   const {
     paymentMethods,
     isLoading: isPaymentMethodsLoading,
-    addCard,
     updateCard,
     deleteCard,
     markAsDefault,
   } = useViewerPaymentMethods();
-  const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [showEditCardModal, setShowEditCardModal] = useState(false);
   const [showEditSuccessModal, setShowEditSuccessModal] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
@@ -111,10 +107,6 @@ export default function ClientViewerBillings() {
     null,
   );
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
-
-  const handleCloseModal = () => {
-    setShowAddCardModal(false);
-  };
 
   const handleDeleteClick = (method: ViewerPaymentMethod) => {
     setSelectedPaymentMethod(method);
@@ -313,15 +305,6 @@ export default function ClientViewerBillings() {
             <MonoText $use="H4_Medium">
               {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.title)}
             </MonoText>
-            <AddCardButton
-              type="button"
-              onClick={() => setShowAddCardModal(true)}
-            >
-              <PlusIcon width={12} height={12} />
-              <MonoText $use="Body_Medium" color={COLORS.primary.WHITE}>
-                {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)}
-              </MonoText>
-            </AddCardButton>
           </PaymentHeader>
 
           {isPaymentMethodsLoading ? (
@@ -415,19 +398,6 @@ export default function ClientViewerBillings() {
           )}
         </>
       )}
-      <CardModal
-        mode={CARD_FORM_MODE.ADD}
-        visible={showAddCardModal}
-        onClose={handleCloseModal}
-        onSubmit={async (payload) => {
-          if (!payload.cardNumber) return;
-          await addCard({
-            cardNumber: payload.cardNumber,
-            expiryDate: payload.expiryDate,
-            securityCode: payload.securityCode,
-          });
-        }}
-      />
       <InvoiceModal
         visible={showInvoiceModal}
         billingId={selectedBillingId}
