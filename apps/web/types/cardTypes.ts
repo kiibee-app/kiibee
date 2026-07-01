@@ -23,6 +23,7 @@ export type PaymentMethodPayload = {
 
 export type ViewerPaymentMethod = {
   id: string;
+  subscriptionId: string;
   brand: CardBrand;
   label: string;
   cardNumber: string;

@@ -93,6 +93,7 @@ export const API = {
   },
   payment: {
     cards: "/payment/cards",
+    card: (subscriptionId: string) => `/payment/card/${subscriptionId}`,
   },
   support: {
     contact: "/support/contact",

@@ -6,6 +6,7 @@ import { API, useGetAPI } from "@/lib/http/api";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { CARD, CARD_BRANDS, type CardBrand } from "@/utils/Constants";
 import { formatSavedCardLabel } from "@/utils/common";
+import { formatCardExpiry } from "@/utils/formatDate";
 import type {
   BackendPaymentMethod,
   PaymentMethodPayload,
@@ -25,10 +26,11 @@ function resolveCardBrand(brand?: string): CardBrand {
 function toPaymentMethod(item: BackendPaymentMethod): ViewerPaymentMethod {
   return {
     id: item.id,
+    subscriptionId: item.ePaySubscriptionId,
     brand: resolveCardBrand(item.cardType),
     label: formatSavedCardLabel(item.cardNo, item.cardType, CARD),
     cardNumber: item.cardNo,
-    expiresAt: item.expireDate,
+    expiresAt: formatCardExpiry(item.expireDate),
     isDefault: item.isDefault,
   };
 }
