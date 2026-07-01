@@ -230,6 +230,45 @@ export function getDisplayUrl(url: string): string {
     .replace(URL_TRAILING_SLASH_REGEX, "");
 }
 
+const MAILTO_PREFIX = "mailto:";
+const HTTP_PREFIX = "http://";
+const HTTPS_PREFIX = "https://";
+
+export function isCreatorWebsiteLink(url: string): boolean {
+  const trimmed = toTrimmedString(url);
+  if (!trimmed) return false;
+  if (trimmed.toLowerCase().startsWith(MAILTO_PREFIX)) return false;
+
+  try {
+    const withProtocol =
+      trimmed.startsWith(HTTP_PREFIX) || trimmed.startsWith(HTTPS_PREFIX)
+        ? trimmed
+        : `${HTTPS_PREFIX}${trimmed}`;
+    const parsed = new URL(withProtocol);
+    const hostname = parsed.hostname.toLowerCase();
+    if (!hostname.includes(".")) return false;
+
+    const tld = hostname.split(".").at(-1) ?? "";
+    if (tld.length < 2) return false;
+
+    const display = getDisplayUrl(trimmed);
+    if (!display.includes(".")) return false;
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function resolveCreatorContactEmail(
+  supportEmail?: string | null,
+  accountEmail?: string | null,
+): string {
+  const support = toTrimmedString(supportEmail);
+  if (support) return support;
+  return toTrimmedString(accountEmail);
+}
+
 export function matchSocialPlatform(
   url: string,
   entries: SocialIconEntry[],
