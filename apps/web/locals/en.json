@@ -133,6 +133,7 @@
       "emailInvalid": "Enter a valid email address",
       "passwordRequired": "Password is required",
       "fixHighlightedFields": "Please fix the highlighted fields.",
+      "invalidCredentials": "Invalid email or password",
       "submitFailed": "We couldn't log you in right now. Please try again."
     }
   },

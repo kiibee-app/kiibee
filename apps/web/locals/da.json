@@ -133,6 +133,7 @@
       "emailInvalid": "Indtast en gyldig e-mailadresse",
       "passwordRequired": "Adgangskode er påkrævet",
       "fixHighlightedFields": "Ret venligst de fremhævede felter.",
+      "invalidCredentials": "Ugyldig e-mail eller adgangskode",
       "submitFailed": "Vi kunne ikke logge dig ind lige nu. Prøv igen."
     }
   },
