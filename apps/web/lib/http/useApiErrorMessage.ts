@@ -1,6 +1,7 @@
 import { FieldPath, FieldValues, UseFormSetError } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { ApiError, normalizeApiError } from "@/lib/http/errors/apiError";
+import { ERROR_TRANSLATIONS } from "@/utils/errors";
 
 type ApiFieldErrors = Record<string, string>;
 
@@ -66,35 +67,23 @@ const extractFieldErrors = (payload: unknown): ApiFieldErrors => {
 export const useApiErrorMessage = () => {
   const { t } = useTranslation();
 
-  const mapKnownApiMessage = (
-    message: string,
+  const mapKnownApiError = (
+    code?: string,
+    message?: string,
     fallbackKey?: string,
-  ): string => {
-    const normalized = message.trim().toLowerCase();
-
-    if (normalized === "reset link has expired") {
-      return t("resetPassword.expiredLink");
+  ) => {
+    if (code && ERROR_TRANSLATIONS[code]) {
+      return t(ERROR_TRANSLATIONS[code]);
     }
 
     if (
-      normalized === "invalid or expired token" ||
-      normalized === "token already used"
-    ) {
-      return t("resetPassword.invalidLink");
-    }
-
-    if (normalized === "invalid email or password") {
-      return t("authForm.errors.invalidCredentials");
-    }
-
-    if (
-      normalized === "internal server error" &&
+      code === "INTERNAL_SERVER_ERROR" &&
       fallbackKey === "authForm.errors.submitFailed"
     ) {
       return t("authForm.errors.invalidCredentials");
     }
 
-    return message;
+    return message ?? "";
   };
 
   const getErrorMessage = (error: unknown, fallbackKey: string): string => {
@@ -105,8 +94,16 @@ export const useApiErrorMessage = () => {
       return t("errors.imageTooLarge");
     }
 
+    const payload = normalizedError.payload as
+      | Record<string, unknown>
+      | undefined;
+    const errorCode =
+      payload && typeof payload.error === "string"
+        ? payload.error
+        : normalizedError.code;
     const message = normalizedError.message || fallbackMessage;
-    return t(mapKnownApiMessage(message, fallbackKey));
+
+    return mapKnownApiError(errorCode, message, fallbackKey);
   };
 
   const getFieldErrors = (error: unknown): ApiFieldErrors => {
@@ -140,6 +137,7 @@ export const useApiErrorMessage = () => {
   };
 
   return {
+    mapKnownApiError,
     getErrorMessage,
     getFieldErrors,
     applyFieldErrors,
