@@ -11,9 +11,10 @@ import {
   DaySelected,
   MonthNav,
   WeekDayCell,
+  SingleCalendarWrapper,
+  MonthNavLeft,
+  MonthNavRight,
 } from "./styles";
-import styled from "styled-components";
-import { CalendarWrapper as BaseWrapper } from "./styles";
 import { ArrowWrap } from "../InputFields/styles";
 import { ArrowIcon } from "@/assets/icons";
 import { Directions, WEEK_DAYS } from "@/utils/ui";
@@ -25,25 +26,10 @@ import {
   toISO,
 } from "@/utils/formatDate";
 
-const SingleCalendarWrapper = styled(BaseWrapper)`
-  gap: 0;
-  &::before {
-    display: none;
-  }
-`;
-
 type Props = {
   value?: string;
   onChange?: (iso: string) => void;
 };
-
-const MonthNavLeft = styled(MonthNav)`
-  margin-right: auto;
-`;
-
-const MonthNavRight = styled(MonthNav)`
-  margin-left: auto;
-`;
 
 export default function SingleCalendar({ value, onChange }: Props) {
   const initialMonth = useMemo(() => {

@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import {
   Container,
   Label,
@@ -9,18 +10,23 @@ import {
   DateCalendarButton,
   DatePopupActions,
   CancelButton,
+  DatePopup,
+  DatePopupScroll,
+  DatePopupBody,
+  DatePopupWrapper,
+  BorderedDateDisplay,
 } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import SingleCalendar from "@/components/UI/Calendar/SingleCalendar";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
+import COLORS from "@repo/ui/colors";
 import { CalendarIcon } from "@/assets/icons";
 import { CrossIcon } from "@/assets/icons/crossIcon";
-import COLORS from "@repo/ui/colors";
 import { formatDate } from "@/utils/formatDate";
 import { useTranslation } from "react-i18next";
 import { MOUSE_DOWN } from "@/utils/common";
-import styled from "styled-components";
+import { canUseDOM } from "@/utils/ui";
 
 type Props = {
   label?: React.ReactNode;
@@ -29,19 +35,7 @@ type Props = {
   placeholder?: string;
 };
 
-const BorderedDateDisplay = styled(DateDisplay)`
-  border: 1px solid ${COLORS.neutral.GRAY_200};
-`;
-
-const FlowCalendarWrapper = styled.div`
-  width: 100%;
-  background: ${({ theme }) => theme.colors.primary.WHITE};
-  border-radius: 12px;
-  border: 1px solid ${COLORS.neutral.GRAY_200};
-  margin-top: 8px;
-  overflow: hidden;
-  padding: 16px;
-`;
+// FlowCalendarWrapper is no longer used, as we render via Portal with absolute positioning.
 
 export default function DatePickerField({
   label,
@@ -50,9 +44,11 @@ export default function DatePickerField({
   placeholder,
 }: Props) {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const popupRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [tempValue, setTempValue] = useState(value || "");
+  const [pos, setPos] = useState({ top: 0, left: 0 });
 
   const hasValue = !!value;
   const displayText = hasValue
@@ -65,6 +61,7 @@ export default function DatePickerField({
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
       if (wrapperRef.current?.contains(target)) return;
+      if (popupRef.current?.contains(target)) return;
       setOpen(false);
     };
 
@@ -73,6 +70,14 @@ export default function DatePickerField({
   }, [open]);
 
   const openPopup = () => {
+    const rect = wrapperRef.current?.getBoundingClientRect();
+
+    if (rect) {
+      setPos({
+        top: rect.bottom + window.scrollY + 8,
+        left: rect.left + window.scrollX,
+      });
+    }
     setTempValue(value || "");
     setOpen(true);
   };
@@ -132,23 +137,34 @@ export default function DatePickerField({
           </DateFieldActions>
         </BorderedDateDisplay>
 
-        {open && (
-          <FlowCalendarWrapper>
-            <SingleCalendar value={tempValue} onChange={setTempValue} />
-            <DatePopupActions>
-              <CancelButton type="button" onClick={handleCancel}>
-                {t("common.cancel")}
-              </CancelButton>
-              <GenericButton
-                type="button"
-                variant={VARIANT.PRIMARY}
-                onClick={handleSave}
-              >
-                {t("common.save")}
-              </GenericButton>
-            </DatePopupActions>
-          </FlowCalendarWrapper>
-        )}
+        {open &&
+          canUseDOM &&
+          createPortal(
+            <DatePopupWrapper ref={popupRef}>
+              <DatePopup $top={pos.top} $left={pos.left}>
+                <DatePopupScroll style={{ padding: "16px" }}>
+                  <DatePopupBody
+                    style={{ paddingBottom: 0, borderBottom: "none" }}
+                  >
+                    <SingleCalendar value={tempValue} onChange={setTempValue} />
+                  </DatePopupBody>
+                  <DatePopupActions style={{ marginTop: "12px" }}>
+                    <CancelButton type="button" onClick={handleCancel}>
+                      {t("common.cancel")}
+                    </CancelButton>
+                    <GenericButton
+                      type="button"
+                      variant={VARIANT.PRIMARY}
+                      onClick={handleSave}
+                    >
+                      {t("common.save")}
+                    </GenericButton>
+                  </DatePopupActions>
+                </DatePopupScroll>
+              </DatePopup>
+            </DatePopupWrapper>,
+            document.body,
+          )}
       </InputWrapper>
     </Container>
   );

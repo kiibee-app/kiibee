@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import COLORS from "@repo/ui/colors";
 import { MonoText } from "../Monotext";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
@@ -319,6 +320,10 @@ export const DateDisplay = styled.div`
   min-height: 44px;
   border: 1px solid transparent;
   cursor: pointer;
+`;
+
+export const BorderedDateDisplay = styled(DateDisplay)`
+  border: 1px solid ${COLORS.neutral.GRAY_200};
 `;
 
 export const DateText = styled.div<{ $isPlaceholder?: boolean }>`

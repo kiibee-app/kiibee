@@ -6,31 +6,13 @@ import { BackButtonIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import DatePickerField from "@/components/UI/InputFields/DatePickerField";
 import { CreateCouponPayload } from "@/types/couponType";
+import { BackButton, FieldGroup, ModalTitle, NextButton } from "../styles";
 import {
-  BackButton,
-  FieldGroup,
-  FormShell,
+  TitleHelperText,
+  FieldsWrapper,
   ModalContent,
-  ModalTitle,
-  NextButton,
-} from "../styles";
-import styled from "styled-components";
-import { MonoText } from "@/components/UI/Monotext";
-import COLORS from "@repo/ui/colors";
-
-const TitleHelperText = styled(MonoText).attrs({
-  $use: "Body_Medium",
-})`
-  color: ${COLORS.neutral.GRAY};
-  text-align: center;
-  margin-bottom: 24px;
-`;
-
-const FieldsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
+  FormShell,
+} from "./styles";
 
 type Props = {
   visible: boolean;
@@ -75,6 +57,7 @@ export default function CouponValidityModal({
       visible={visible}
       onClose={onClose}
       width="670px"
+      height="577px"
       padding="20px"
       borderRadius="20px"
     >
