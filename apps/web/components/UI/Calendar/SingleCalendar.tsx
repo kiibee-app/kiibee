@@ -20,10 +20,10 @@ import { ArrowIcon } from "@/assets/icons";
 import { Directions, WEEK_DAYS } from "@/utils/ui";
 import {
   addMonths,
-  daysInMonth,
   fromISO,
   startOfMonth,
-  toISO,
+  getCalendarDays,
+  formatMonthYear,
 } from "@/utils/formatDate";
 
 type Props = {
@@ -40,20 +40,7 @@ export default function SingleCalendar({ value, onChange }: Props) {
   const [currentMonth, setCurrentMonth] = useState<Date>(initialMonth);
 
   const renderMonth = (monthDate: Date) => {
-    const days: Array<{ date: Date; iso: string; isOutside: boolean }> = [];
-
-    const firstDay = startOfMonth(monthDate);
-    const total = daysInMonth(monthDate);
-    const startWeekday = firstDay.getDay();
-
-    for (let i = 0; i < startWeekday; i++) {
-      days.push({ date: new Date(0), iso: "", isOutside: true });
-    }
-
-    for (let d = 1; d <= total; d++) {
-      const dt = new Date(monthDate.getFullYear(), monthDate.getMonth(), d);
-      days.push({ date: dt, iso: toISO(dt), isOutside: false });
-    }
+    const days = getCalendarDays(monthDate);
 
     return (
       <CalendarMonth>
@@ -63,12 +50,7 @@ export default function SingleCalendar({ value, onChange }: Props) {
               <ArrowIcon width={15} height={10} direction={Directions.LEFT} />
             </ArrowWrap>
           </MonthNavLeft>
-          <MonthTitle>
-            {monthDate.toLocaleString("en-US", {
-              month: "long",
-              year: "numeric",
-            })}
-          </MonthTitle>
+          <MonthTitle>{formatMonthYear(monthDate)}</MonthTitle>
           <MonthNavRight>
             <ArrowWrap onClick={() => setCurrentMonth((m) => addMonths(m, 1))}>
               <ArrowIcon width={15} height={10} direction={Directions.RIGHT} />
