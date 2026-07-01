@@ -1679,16 +1679,30 @@
         "contents": "Contents"
       }
     },
+    "couponValidity": {
+      "title": "Coupon Validity (optional)",
+      "description": "Set an activation and expiration date, or leave it blank to keep the coupon available indefinitely.",
+      "fields": {
+        "startDate": "Select start date",
+        "endDate": "Select end date"
+      },
+      "placeholders": {
+        "startDate": "Select time period",
+        "endDate": "Select end date"
+      }
+    },
     "couponPreview": {
       "title": "Coupon preview",
       "confirm": "Confirm",
       "uploading": "Uploading coupon",
+      "indefinite": "Indefinite",
       "fields": {
         "title": "Title",
         "discountType": "Discount type",
         "amount": "Amount",
         "codes": "Discount codes",
-        "applicableProducts": "Applicable products"
+        "applicableProducts": "Applicable products",
+        "validity": "Validity"
       }
     },
     "tabs": {

@@ -15,6 +15,8 @@ export type CreateCouponPayload = {
   codes: string[];
   collectionIds?: string[];
   contentIds?: string[];
+  startDate?: string;
+  endDate?: string;
 };
 
 export const COUPON_STATUS = {
@@ -37,6 +39,8 @@ export type CouponEntity = {
     collectionIds?: string[] | null;
     contentIds?: string[] | null;
   };
+  startDate?: string;
+  endDate?: string;
 };
 
 export type CouponListResponse = {

@@ -195,6 +195,22 @@ export const THUMBNAIL_MIN_DIMENSIONS = {
 export const isBrowser = typeof window !== "undefined";
 export const canUseDOM = typeof document !== "undefined";
 
+export interface PopupPosition {
+  top: number;
+  left: number;
+}
+
+export function getPopupPosition(
+  rect?: DOMRect | null,
+  offsetY = 8,
+): PopupPosition {
+  if (!rect || typeof window === "undefined") return { top: 0, left: 0 };
+  return {
+    top: rect.bottom + window.scrollY + offsetY,
+    left: rect.left + window.scrollX,
+  };
+}
+
 export const COLLECTION = "collection_";
 export const CONTENT = "content_";
 

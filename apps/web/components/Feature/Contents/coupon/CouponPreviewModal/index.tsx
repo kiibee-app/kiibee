@@ -31,7 +31,7 @@ import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
 import { useSuccessAutoClose } from "@/hooks/useSuccessAutoClose";
 import { CollectionRow } from "@/types/collectionsType";
 import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
-import { formatDateUSShort } from "@/utils/formatDate";
+import { formatDate, formatDateUSShort } from "@/utils/formatDate";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { COUPON_MODE, CouponMode } from "@/utils/content";
 
@@ -100,6 +100,21 @@ export default function CouponPreviewModal({
     contentIds.length > 0
       ? contentIds.map((id) => getLabel(id, contentOptions))
       : ["-"];
+
+  const formatValidity = () => {
+    if (!data.startDate && !data.endDate) {
+      return t("contents.couponPreview.indefinite");
+    }
+    const startStr = data.startDate ? formatDate(data.startDate) : "";
+    const endStr = data.endDate
+      ? formatDate(data.endDate)
+      : t("contents.couponPreview.indefinite");
+    return `${startStr} - ${endStr}`;
+  };
+
+  const renderChips = (items: string[]) => {
+    return items.map((item, i) => <Chip key={i}>{item}</Chip>);
+  };
 
   return (
     <GenericModal
@@ -186,11 +201,7 @@ export default function CouponPreviewModal({
                 <SectionLabel>
                   {t("contents.couponPreview.fields.codes")}
                 </SectionLabel>
-                <ChipList>
-                  {codes.map((code, i) => (
-                    <Chip key={i}>{code}</Chip>
-                  ))}
-                </ChipList>
+                <ChipList>{renderChips(codes)}</ChipList>
               </Section>
 
               <Section>
@@ -198,10 +209,15 @@ export default function CouponPreviewModal({
                   {t("contents.couponPreview.fields.applicableProducts")}
                 </SectionLabel>
                 <ChipList>
-                  {[...collectionLabels, ...contentLabels].map((item, i) => (
-                    <Chip key={i}>{item}</Chip>
-                  ))}
+                  {renderChips([...collectionLabels, ...contentLabels])}
                 </ChipList>
+              </Section>
+
+              <Section>
+                <SectionLabel>
+                  {t("contents.couponPreview.fields.validity")}
+                </SectionLabel>
+                <SectionValue>{formatValidity()}</SectionValue>
               </Section>
             </SelectorList>
 

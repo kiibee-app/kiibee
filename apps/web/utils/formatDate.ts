@@ -83,6 +83,38 @@ export function convertRentDurationToHours(
   return Number.isFinite(num) ? num : null;
 }
 
+export interface CalendarDay {
+  date: Date;
+  iso: string;
+  isOutside: boolean;
+}
+
+export function getCalendarDays(monthDate: Date): CalendarDay[] {
+  const days: CalendarDay[] = [];
+
+  const firstDay = startOfMonth(monthDate);
+  const total = daysInMonth(monthDate);
+  const startWeekday = firstDay.getDay();
+
+  for (let i = 0; i < startWeekday; i++) {
+    days.push({ date: new Date(0), iso: "", isOutside: true });
+  }
+
+  for (let d = 1; d <= total; d++) {
+    const dt = new Date(monthDate.getFullYear(), monthDate.getMonth(), d);
+    days.push({ date: dt, iso: toISO(dt), isOutside: false });
+  }
+
+  return days;
+}
+
+export function formatMonthYear(date: Date): string {
+  return date.toLocaleString("en-US", {
+    month: "long",
+    year: "numeric",
+  } as const);
+}
+
 export function formatCardExpiry(dateString?: string | null): string {
   if (!dateString) return "";
   const parts = dateString.split("-");

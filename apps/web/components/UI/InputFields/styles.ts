@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import COLORS from "@repo/ui/colors";
 import { MonoText } from "../Monotext";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
@@ -321,6 +322,10 @@ export const DateDisplay = styled.div`
   cursor: pointer;
 `;
 
+export const BorderedDateDisplay = styled(DateDisplay)`
+  border: 1px solid ${COLORS.neutral.GRAY_200};
+`;
+
 export const DateText = styled.div<{ $isPlaceholder?: boolean }>`
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ $isPlaceholder, theme }) =>
@@ -528,4 +533,17 @@ export const TagsInputField = styled.input`
   &::placeholder {
     color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   }
+`;
+
+export const DatePopupScrollCustom = styled(DatePopupScroll)`
+  padding: 16px;
+`;
+
+export const DatePopupBodyCustom = styled(DatePopupBody)`
+  padding-bottom: 0;
+  border-bottom: none;
+`;
+
+export const DatePopupActionsCustom = styled(DatePopupActions)`
+  margin-top: 12px;
 `;

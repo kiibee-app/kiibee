@@ -120,6 +120,14 @@ export function toTrimmedString(value: unknown): string {
 export const COUPON_ACTION_EDIT = "edit";
 export const COUPON_ACTION_STATUS = "status";
 export const COUPON_ACTION_DELETE = "delete";
+export const COUPON_VALIDITY_FIELDS = {
+  START_DATE: "startDate",
+  END_DATE: "endDate",
+} as const;
+
+export type CouponValidityField =
+  (typeof COUPON_VALIDITY_FIELDS)[keyof typeof COUPON_VALIDITY_FIELDS];
+
 export const PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT = "markAsDefault";
 export const PROFILE_HOME_SECTION = {
   LATEST_UPLOAD: "latestUpload",

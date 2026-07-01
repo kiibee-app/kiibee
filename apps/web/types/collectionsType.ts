@@ -78,4 +78,6 @@ export const INITIAL_COUPON_FORM: CreateCouponPayload = {
   codes: [],
   collectionIds: [],
   contentIds: [],
+  startDate: "",
+  endDate: "",
 };
