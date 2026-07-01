@@ -62,7 +62,7 @@ export const useViewerPaymentMethods = () => {
   };
 
   const deleteCard = async (id: string) => {
-    await axiosClient.delete(API.viewer.paymentMethod(id));
+    await axiosClient.delete(API.payment.card(id));
     await invalidate();
   };
 
