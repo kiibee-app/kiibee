@@ -113,6 +113,8 @@ export function formatMonthYear(date: Date): string {
     month: "long",
     year: "numeric",
   } as const);
+}
+
 export function formatCardExpiry(dateString?: string | null): string {
   if (!dateString) return "";
   const parts = dateString.split("-");
