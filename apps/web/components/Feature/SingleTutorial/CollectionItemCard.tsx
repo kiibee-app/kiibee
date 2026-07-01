@@ -20,13 +20,7 @@ import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNaviga
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { GenericModal, LoginRequiredModal } from "@/components/UI/Modals";
-import { MODAL_ALIGN } from "@/utils/ui";
-import { MonoText } from "@/components/UI/Monotext";
-import {
-  ModalContentWrapper,
-  ModalDescription,
-} from "@/components/Feature/ProfileLayout/shared/LatestUpload/styles";
+import { LoginRequiredModal } from "@/components/UI/Modals";
 import {
   CollectionActionRow,
   CollectionAuthor,
@@ -114,13 +108,6 @@ export default function CollectionItemCard({ video }: Props) {
     setLoginModalVisible(true);
   };
   const handleCloseLoginModal = () => setLoginModalVisible(false);
-  const handleLoginRedirect = () => {
-    const next = encodeURIComponent(
-      pendingRedirectUrl || window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   const FormatIcon =
     formatIconMap[video.formatType ?? FORMAT_TYPE.VIDEO] ?? VideoIcon;

@@ -6,7 +6,6 @@ import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 
-import { PATHS } from "@/utils/path";
 import { ActionRow, CardLink, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
@@ -62,20 +61,6 @@ function TutorialCard({
     setLoginModalVisible(true);
   };
   const handleCloseLoginModal = () => setLoginModalVisible(false);
-  const getNextUrlWithIntent = () => {
-    const base =
-      pendingRedirectUrl || window.location.pathname + window.location.search;
-    if (base.includes("intent=purchase")) return encodeURIComponent(base);
-    const separator = base.includes("?") ? "&" : "?";
-    return encodeURIComponent(base + separator + "intent=purchase");
-  };
-
-  const handleLoginRedirect = () => {
-    router.push(`${PATHS.AUTH_LOGIN}?next=${getNextUrlWithIntent()}`);
-  };
-  const handleCreateAccount = () => {
-    router.push(`${PATHS.AUTH_SIGNUP_VIEWER}?next=${getNextUrlWithIntent()}`);
-  };
 
   const imageUrl = useMemo(
     () => resolveImageUrl(tutorial.image),

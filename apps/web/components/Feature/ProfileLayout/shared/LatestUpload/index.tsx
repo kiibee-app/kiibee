@@ -22,8 +22,6 @@ import {
   UploadImage,
   RightControlButton,
   LeftControlButton,
-  ModalContentWrapper,
-  ModalDescription,
 } from "./styles";
 import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
@@ -35,9 +33,8 @@ import {
   WebIcon,
 } from "@/assets/icons";
 import { useIsMobile } from "@/utils/useIsMobile";
-import { GenericModal, LoginRequiredModal } from "@/components/UI/Modals";
-import { PATHS, pathPublishedContent } from "@/utils/path";
-import { MODAL_ALIGN } from "@/utils/ui";
+import { LoginRequiredModal } from "@/components/UI/Modals";
+import { pathPublishedContent } from "@/utils/path";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
@@ -172,13 +169,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
 
   const [primaryAction, secondaryAction] = visibleActions;
   const [pendingHref, setPendingHref] = useState<string | null>(null);
-  const handleLogin = () => {
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
+
   const handleSecondaryActionClick = () => {
     if (secondaryAction?.href) {
       navigateToContent(secondaryAction.href, true);

@@ -3,7 +3,6 @@
 import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { PATHS } from "@/utils/path";
 import {
   ACCESS_TYPE_FREE,
   ACCESS_KEYWORD_EN,
@@ -76,21 +75,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
   const handleCloseLoginModal = () => setLoginModalVisible(false);
-  const getNextUrlWithIntent = () => {
-    const currentUrl = window.location.pathname + window.location.search;
-    if (currentUrl.includes("intent=purchase")) {
-      return encodeURIComponent(currentUrl);
-    }
-    const separator = window.location.search ? "&" : "?";
-    return encodeURIComponent(currentUrl + separator + "intent=purchase");
-  };
-
-  const handleLoginRedirect = () => {
-    router.push(`${PATHS.AUTH_LOGIN}?next=${getNextUrlWithIntent()}`);
-  };
-  const handleCreateAccount = () => {
-    router.push(`${PATHS.AUTH_SIGNUP_VIEWER}?next=${getNextUrlWithIntent()}`);
-  };
 
   type CreateOrderPayload = {
     contentId: string;
