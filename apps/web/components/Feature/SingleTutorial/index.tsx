@@ -17,7 +17,7 @@ import {
   ACCESS_TYPE_FREE,
 } from "@/utils/Constants";
 import CollectionItems from "./CollectionItems";
-import { GenericModal } from "@/components/UI/Modals";
+import { GenericModal, LoginRequiredModal } from "@/components/UI/Modals";
 import { MonoText } from "@/components/UI/Monotext";
 import { MODAL_ALIGN } from "@/utils/ui";
 import {
@@ -150,31 +150,10 @@ export default function SingleTutorial({
         ) : null}
       </SingleContentPage>
 
-      <GenericModal
+      <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onCancel={handleLoginRedirect}
-        onConfirm={handleCreateAccount}
-        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-        confirmLabel={t(
-          "createProfileHome.latestUpload.loginModal.confirmLabel",
-        )}
-        buttonRow
-        buttonAlign={MODAL_ALIGN.CENTER}
-        fullWidthButtons={false}
-        size="sm"
-        spacing="start"
-        showCloseButton
-      >
-        <ModalContentWrapper>
-          <MonoText $use="Heading3">
-            {t("createProfileHome.latestUpload.loginModal.title")}
-          </MonoText>
-          <ModalDescription $use="Body_Medium">
-            {t("createProfileHome.latestUpload.loginModal.message")}
-          </ModalDescription>
-        </ModalContentWrapper>
-      </GenericModal>
+      />
     </>
   );
 }

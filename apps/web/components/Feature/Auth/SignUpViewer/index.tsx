@@ -107,10 +107,12 @@ export default function SignUpViewer({
     );
   };
 
+  const isModal = !!onSuccess || !!onSwitchMode;
+
   return (
-    <ContentWrap>
-      <AuthBackButton href="/auth/signup" />
-      <Wrapper>
+    <ContentWrap $isModal={isModal}>
+      {!isModal && <AuthBackButton href="/auth/signup" />}
+      <Wrapper $isModal={isModal}>
         <Card>
           <Image src={logo} alt="Kiibee Logo" width={42} height={42} priority />
           <Title>

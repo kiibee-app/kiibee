@@ -20,7 +20,7 @@ import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNaviga
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { GenericModal } from "@/components/UI/Modals";
+import { GenericModal, LoginRequiredModal } from "@/components/UI/Modals";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { MonoText } from "@/components/UI/Monotext";
 import {
@@ -200,31 +200,16 @@ export default function CollectionItemCard({ video }: Props) {
           </CollectionActionRow>
         ) : null}
       </CollectionCardBody>
-      <GenericModal
+      <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onCancel={handleLoginRedirect}
-        onConfirm={handleCreateAccount}
-        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-        confirmLabel={t(
-          "createProfileHome.latestUpload.loginModal.confirmLabel",
-        )}
-        buttonRow
-        buttonAlign={MODAL_ALIGN.CENTER}
-        fullWidthButtons={false}
-        size="sm"
-        spacing="start"
-        showCloseButton
-      >
-        <ModalContentWrapper>
-          <MonoText $use="Heading3">
-            {t("createProfileHome.latestUpload.loginModal.title")}
-          </MonoText>
-          <ModalDescription $use="Body_Medium">
-            {t("createProfileHome.latestUpload.loginModal.message")}
-          </ModalDescription>
-        </ModalContentWrapper>
-      </GenericModal>
+        onSuccess={() => {
+          if (pendingRedirectUrl) {
+            navigateToContent(pendingRedirectUrl, true);
+            setPendingRedirectUrl("");
+          }
+        }}
+      />
     </CollectionCard>
   );
 }

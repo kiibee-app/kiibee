@@ -9,12 +9,12 @@ export const ContentWrap = styled.section<{ $isModal?: boolean }>`
   padding: ${({ $isModal }) => ($isModal ? "0 0 1rem 0" : "30px 24px 96px")};
 `;
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.section<{ $isModal?: boolean }>`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1rem;
+  padding: ${({ $isModal }) => ($isModal ? "0" : "0 1rem")};
 `;
 
 export const Card = styled.div`

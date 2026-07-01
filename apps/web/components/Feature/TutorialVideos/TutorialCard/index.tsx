@@ -237,8 +237,12 @@ function TutorialCard({
     <LoginRequiredModal
       visible={isLoginModalVisible}
       onClose={handleCloseLoginModal}
-      onLogin={handleLoginRedirect}
-      onCreateAccount={handleCreateAccount}
+      onSuccess={() => {
+        if (pendingRedirectUrl) {
+          navigateToContent(pendingRedirectUrl, true);
+          setPendingRedirectUrl("");
+        }
+      }}
     />
   );
 

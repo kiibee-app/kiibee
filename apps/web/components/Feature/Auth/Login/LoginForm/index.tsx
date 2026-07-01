@@ -47,8 +47,10 @@ export default function LoginForm({
     handleSubmit,
   } = useLoginForm({ onSuccessOverride: onSuccess });
 
+  const isModal = !!onSuccess || !!onSwitchMode;
+
   return (
-    <Wrapper>
+    <Wrapper $isModal={isModal}>
       <Card>
         <Image src={logo} alt="Kiibee Logo" width={42} height={42} priority />
         <Title>

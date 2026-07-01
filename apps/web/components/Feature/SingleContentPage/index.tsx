@@ -33,10 +33,7 @@ import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
 
-import {
-  LoginRequiredModal,
-  PurchaseConfirmationModal,
-} from "@/components/UI/Modals";
+import { LoginRequiredModal } from "@/components/UI/Modals";
 
 import { useSearchParams } from "next/navigation";
 
@@ -135,11 +132,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
-          if (!user?.id) {
-            handleShowLoginModal();
-            return;
-          }
-
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
@@ -152,13 +144,13 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   }, [contentId, createOrderMutation, primaryAction, primaryActions, user?.id]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-  const [showPurchaseConfirmationModal, setShowPurchaseConfirmationModal] =
-    useState(false);
   const [selectedAction, setSelectedAction] = useState<{
     label: string;
     subtitle?: string;
     isPurchase: boolean;
   } | null>(null);
+  const [pendingAction, setPendingAction] =
+    useState<SingleContentAction | null>(null);
 
   const isPreviewableType =
     hero?.contentType === FORMAT_TYPE.PDF ||
@@ -175,7 +167,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         subtitle: action.subtitle,
         isPurchase: action.label.toLowerCase().includes("buy"),
       });
-      setShowPurchaseConfirmationModal(true);
+      setShowPurchaseModal(true);
 
       const newUrl =
         window.location.pathname +
@@ -219,6 +211,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     const isLoggedIn = Boolean(user && user.id);
 
     if (isPaid && !isLoggedIn) {
+      setPendingAction(primaryAction || null);
       handleShowLoginModal();
     }
   };
@@ -256,6 +249,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   ) => {
     if (!selectedAction || !contentId) return;
 
+    if (!user?.id) {
+      handleShowLoginModal();
+      return;
+    }
+
     try {
       const response = await createOrderMutation.mutateAsync({
         contentId,
@@ -288,10 +286,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
-    setSelectedAction(null);
-  };
-  const handleClosePurchaseConfirmationModal = () => {
-    setShowPurchaseConfirmationModal(false);
     setSelectedAction(null);
   };
 
@@ -349,25 +343,17 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         loading={createOrderMutation.isPending}
       />
 
-      <PurchaseConfirmationModal
-        visible={showPurchaseConfirmationModal}
-        onClose={handleClosePurchaseConfirmationModal}
-        onConfirm={() => handlePurchaseConfirm()}
-        title={title}
-        image={hero.image ? resolveImageUrl(hero.image) : undefined}
-        imageAlt={hero.imageAlt}
-        creator={creator?.name}
-        contentType={hero.contentType || hero.media?.type}
-        priceLabel={selectedAction?.label || ""}
-        accessLabel={selectedAction?.subtitle}
-        loading={createOrderMutation.isPending}
-      />
-
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onLogin={handleLoginRedirect}
-        onCreateAccount={handleCreateAccount}
+        onSuccess={() => {
+          if (pendingAction) {
+            if (pendingAction.onClick) {
+              pendingAction.onClick();
+            }
+            setPendingAction(null);
+          }
+        }}
       />
 
       <ShareModal

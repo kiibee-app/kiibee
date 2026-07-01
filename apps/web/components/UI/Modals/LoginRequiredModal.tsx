@@ -19,6 +19,7 @@ import { useSearchParams } from "next/navigation";
 type LoginRequiredModalProps = {
   visible: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
 };
 
 const ButtonGroup = styled.div<{ $row?: boolean; $align?: string }>`
@@ -37,6 +38,7 @@ const ButtonGroup = styled.div<{ $row?: boolean; $align?: string }>`
 export default function LoginRequiredModal({
   visible,
   onClose,
+  onSuccess,
 }: LoginRequiredModalProps) {
   const { t } = useTranslation();
   const [view, setView] = useState<
@@ -53,7 +55,9 @@ export default function LoginRequiredModal({
 
   const handleSuccess = () => {
     onClose();
-    if (searchParams?.get("intent") === "purchase") {
+    if (onSuccess) {
+      onSuccess();
+    } else if (searchParams?.get("intent") === "purchase") {
       router.refresh();
     } else {
       router.refresh();

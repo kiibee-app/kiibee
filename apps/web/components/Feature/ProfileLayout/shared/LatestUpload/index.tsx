@@ -35,7 +35,7 @@ import {
   WebIcon,
 } from "@/assets/icons";
 import { useIsMobile } from "@/utils/useIsMobile";
-import { GenericModal } from "@/components/UI/Modals";
+import { GenericModal, LoginRequiredModal } from "@/components/UI/Modals";
 import { PATHS, pathPublishedContent } from "@/utils/path";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
@@ -171,6 +171,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
   }, [computedActions, isCreator]);
 
   const [primaryAction, secondaryAction] = visibleActions;
+  const [pendingHref, setPendingHref] = useState<string | null>(null);
   const handleLogin = () => {
     const next = encodeURIComponent(
       window.location.pathname + window.location.search,
@@ -190,6 +191,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
     }
 
     if (isBuyActionLabel(primaryAction.title) && !authStorage.hasSession()) {
+      setPendingHref(primaryAction.href);
       setLoginModalVisible(true);
       return;
     }
@@ -301,31 +303,16 @@ export default function LatestUpload({ data }: LatestUploadProps) {
         </TextSection>
       </ContentWrapper>
 
-      <GenericModal
+      <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={() => setLoginModalVisible(false)}
-        onCancel={handleLogin}
-        onConfirm={handleCreateAccount}
-        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-        confirmLabel={t(
-          "createProfileHome.latestUpload.loginModal.confirmLabel",
-        )}
-        buttonRow
-        buttonAlign={MODAL_ALIGN.CENTER}
-        fullWidthButtons={false}
-        size="sm"
-        spacing="start"
-        showCloseButton
-      >
-        <ModalContentWrapper>
-          <MonoText $use="Heading3">
-            {t("createProfileHome.latestUpload.loginModal.title")}
-          </MonoText>
-          <ModalDescription $use="Body_Medium">
-            {t("createProfileHome.latestUpload.loginModal.message")}
-          </ModalDescription>
-        </ModalContentWrapper>
-      </GenericModal>
+        onSuccess={() => {
+          if (pendingHref) {
+            navigateToContent(pendingHref, true);
+            setPendingHref(null);
+          }
+        }}
+      />
     </Section>
   );
 }
