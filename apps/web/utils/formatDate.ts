@@ -82,3 +82,20 @@ export function convertRentDurationToHours(
   const num = Number(rentDuration);
   return Number.isFinite(num) ? num : null;
 }
+
+export function formatCardExpiry(dateString?: string | null): string {
+  if (!dateString) return "";
+  const parts = dateString.split("-");
+  if (parts.length >= 2 && parts[0].length === 4) {
+    const year = parts[0].slice(-2);
+    const month = parts[1];
+    return `${month}/${year}`;
+  }
+  const date = new Date(dateString);
+  if (!isNaN(date.getTime())) {
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = String(date.getFullYear()).slice(-2);
+    return `${month}/${year}`;
+  }
+  return dateString;
+}

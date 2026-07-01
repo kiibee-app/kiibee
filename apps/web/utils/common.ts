@@ -216,3 +216,13 @@ export function useMounted() {
 export const alpha = (color: string, opacity: number): string => {
   return `color-mix(in srgb, ${color} ${Math.round(opacity * 100)}%, transparent)`;
 };
+
+export const formatSavedCardLabel = (
+  cardNo: string,
+  cardType: string | null | undefined,
+  fallbackLabel: string,
+): string => {
+  const brand = (cardType || fallbackLabel).toUpperCase();
+  const lastDigits = cardNo.replace(/\D/g, "").slice(-3);
+  return `${brand} **** ${lastDigits}`;
+};

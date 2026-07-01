@@ -12,6 +12,7 @@ import { CARD_BRAND_LOGOS } from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { useViewerBillingInvoice } from "@/hooks/useViewerBillingInvoice";
 import useShare from "@/hooks/useShare";
+import ShareModal from "@/components/UI/Modals/ShareModal";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { LOADER_VARIANT } from "@/utils/ui";
 import {
@@ -40,7 +41,7 @@ export default function InvoiceModal({
   onClose,
 }: InvoiceModalProps) {
   const { t } = useTranslation();
-  const { share } = useShare();
+  const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
   const { invoice, isLoading } = useViewerBillingInvoice(billingId ?? "");
 
   const { contentTitle, contentImage, creatorName } =
@@ -168,6 +169,12 @@ export default function InvoiceModal({
           </InvoiceShareButton>
         </InvoiceCard>
       )}
+
+      <ShareModal
+        visible={showShareModal}
+        url={shareUrl}
+        onClose={() => setShowShareModal(false)}
+      />
     </GenericModal>
   );
 }

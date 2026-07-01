@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 import { GenericModal } from "@/components/UI/Modals";
 import GenericButton from "@/components/UI/GenericButton";
@@ -9,9 +9,12 @@ import { VARIANT } from "@/utils/Constants";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { useTranslation } from "react-i18next";
 import { extractPriceNumber } from "@/utils/contentPricingActions";
+import { formatCardExpiry } from "@/utils/formatDate";
 import { usePostAPI } from "@/lib/http/api/postApi";
+import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
+import { SelectedCheckIcon } from "@/assets/icons";
 import {
   PurchaseModalCard,
   PurchaseModalCardHeader,
@@ -34,9 +37,23 @@ import {
   PurchaseModalPriceLabel,
   PurchaseModalPriceValue,
   PurchaseModalButtonWrapper,
+  PurchaseModalPaymentMethod,
+  PurchaseModalPaymentMethodTitle,
+  PurchaseModalPaymentMethodOption,
+  PurchaseModalPaymentMethodSelected,
+  PurchaseModalPaymentMethodDefaultBadge,
+  PurchaseModalPaymentMethodPrimary,
+  PurchaseModalPaymentMethodText,
+  PurchaseModalPaymentMethodHint,
 } from "./styles";
 import { COUPON_DISCOUNT_PERCENTAGE, CouponDiscountType } from "@/utils/common";
 import { PAYMENT_ICONS } from "../../../utils/paymentIcons";
+import {
+  COUPON_DISCOUNT_PERCENTAGE,
+  CouponDiscountType,
+  formatSavedCardLabel as formatSavedCardLabelUtil,
+} from "@/utils/common";
+import DropdownField from "@/components/UI/InputFields/DropdownField";
 
 type VerifyCouponResponse = {
   success: boolean;
@@ -50,10 +67,26 @@ type VerifyCouponResponse = {
   };
 };
 
+type SavedCard = {
+  id: string;
+  ePaySubscriptionId: string;
+  cardNo: string;
+  expireDate: string;
+  cardType: string;
+  isDefault?: boolean;
+};
+
+type SavedCardsResponse = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: SavedCard[] | null;
+};
+
 export type PurchaseModalProps = {
   visible: boolean;
   onClose: () => void;
-  onPurchase: (couponCode?: string) => void;
+  onPurchase: (couponCode?: string, subscriptionId?: string) => void;
   title: string;
   image?: string;
   imageAlt?: string;
@@ -83,14 +116,90 @@ export default function PurchaseModal({
   const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
+  const [selectedSubscriptionId, setSelectedSubscriptionId] = useState<
+    string | null
+  >(null);
+  const [prevVisible, setPrevVisible] = useState(visible);
+
+  if (visible !== prevVisible) {
+    setPrevVisible(visible);
+    setSelectedSubscriptionId(null);
+  }
 
   const verifyCouponMutation = usePostAPI<
     VerifyCouponResponse,
     { code: string; contentId?: string }
   >(API.coupon.verify);
 
+  const savedCardsQuery = useGetAPI<SavedCardsResponse>(
+    API.payment.cards,
+    undefined,
+    {
+      enabled: visible,
+      retry: 1,
+    },
+  );
+
+  const savedCards = useMemo(
+    () =>
+      (savedCardsQuery.data?.data ?? []).filter(
+        (card) => card.ePaySubscriptionId,
+      ),
+    [savedCardsQuery.data?.data],
+  );
+
+  const defaultSavedCard = useMemo(
+    () => savedCards.find((card) => card.isDefault) ?? savedCards[0] ?? null,
+    [savedCards],
+  );
+
+  const effectiveSubscriptionId =
+    selectedSubscriptionId ?? defaultSavedCard?.ePaySubscriptionId ?? "";
+  const isUsingNewCard = selectedSubscriptionId === "";
+
   const priceNumber = extractPriceNumber(priceLabel);
   const total = priceNumber - discount;
+
+  const formatSavedCardLabel = useCallback(
+    (card: SavedCard) =>
+      formatSavedCardLabelUtil(
+        card.cardNo,
+        card.cardType,
+        t("singleContent.pricing.savedCard"),
+      ),
+    [t],
+  );
+
+  const dropdownOptions = useMemo(() => {
+    return savedCards.map((card) => ({
+      value: card.ePaySubscriptionId,
+      label: (
+        <PurchaseModalPaymentMethodSelected>
+          <PurchaseModalPaymentMethodPrimary>
+            <MonoText $use="Body_Medium">{formatSavedCardLabel(card)}</MonoText>
+            {card.isDefault ? (
+              <PurchaseModalPaymentMethodDefaultBadge>
+                {t("dashboard.viewerBillings.paymentMethods.defaultBadge")}
+              </PurchaseModalPaymentMethodDefaultBadge>
+            ) : null}
+          </PurchaseModalPaymentMethodPrimary>
+          <MonoText $use="Body_Medium">
+            {t("singleContent.pricing.expires", {
+              date: formatCardExpiry(card.expireDate),
+            })}
+          </MonoText>
+        </PurchaseModalPaymentMethodSelected>
+      ),
+    }));
+  }, [savedCards, formatSavedCardLabel, t]);
+
+  const handleToggleNewCard = useCallback(() => {
+    setSelectedSubscriptionId((current) => (current === "" ? null : ""));
+  }, []);
+
+  const handlePurchase = () => {
+    onPurchase(appliedCode || undefined, effectiveSubscriptionId || undefined);
+  };
 
   const handleApplyDiscount = async () => {
     if (!discountCode.trim()) return;
@@ -168,6 +277,42 @@ export default function PurchaseModal({
           </PurchaseModalCardInfo>
         </PurchaseModalCardBody>
       </PurchaseModalCard>
+
+      {savedCards.length > 0 ? (
+        <PurchaseModalPaymentMethod>
+          <PurchaseModalPaymentMethodTitle>
+            <MonoText $use="Body_Bold">
+              {t("singleContent.pricing.paymentMethod")}
+            </MonoText>
+          </PurchaseModalPaymentMethodTitle>
+          {!isUsingNewCard ? (
+            <DropdownField
+              value={effectiveSubscriptionId}
+              onChange={setSelectedSubscriptionId}
+              options={dropdownOptions}
+              placeholder={t("singleContent.pricing.selectCard")}
+              showSelectedIndicator
+            />
+          ) : null}
+          <PurchaseModalPaymentMethodOption
+            type="button"
+            $selected={isUsingNewCard}
+            onClick={handleToggleNewCard}
+          >
+            <SelectedCheckIcon selected={isUsingNewCard} size={20} />
+            <PurchaseModalPaymentMethodText>
+              <MonoText $use="Body_Bold">
+                {t("singleContent.pricing.useNewCard")}
+              </MonoText>
+              <PurchaseModalPaymentMethodHint>
+                <MonoText $use="Body_Medium">
+                  {t("singleContent.pricing.useNewCardHint")}
+                </MonoText>
+              </PurchaseModalPaymentMethodHint>
+            </PurchaseModalPaymentMethodText>
+          </PurchaseModalPaymentMethodOption>
+        </PurchaseModalPaymentMethod>
+      ) : null}
 
       <PurchaseModalDiscountSection>
         <PurchaseModalDiscountLabel>
@@ -254,7 +399,7 @@ export default function PurchaseModal({
         <GenericButton
           variant={VARIANT.PRIMARY}
           fullWidth
-          onClick={() => onPurchase(appliedCode || undefined)}
+          onClick={handlePurchase}
           disabled={loading}
           isLoading={loading}
         >

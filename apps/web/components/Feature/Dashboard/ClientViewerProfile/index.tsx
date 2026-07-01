@@ -24,9 +24,8 @@ import { CREATOR_PROFILE } from "@/utils/translationKeys";
 import PasswordSection from "../CreatorProfile/PasswordSection";
 import { useViewerProfile } from "@/hooks/useViewerProfile";
 import { QuestionIcon } from "@/assets/icons/questionIcon";
-import { useRouter } from "next/navigation";
+import { useLogout } from "@/hooks/auth/useLogout";
 import { VIEWER_PROFILE_FIELDS } from "@/utils/profile";
-import { PATHS } from "@/utils/path";
 import {
   forgotPwEmail,
   forgotPwError,
@@ -37,7 +36,7 @@ import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 
 export default function ClientViewerProfile() {
   const { t } = useTranslation();
-  const router = useRouter();
+  const { logout } = useLogout();
 
   const getInitial = useCallback((name: string, email: string) => {
     const trimmed = name.trim();
@@ -211,8 +210,8 @@ export default function ClientViewerProfile() {
         title={t("creatorProfile.passwordSuccessTitle")}
         message={t("creatorProfile.passwordSuccessMessage")}
         confirmLabel={t("nav.login")}
-        onClose={() => setShowPasswordSuccessModal(false)}
-        onConfirm={() => router.push(PATHS.AUTH_LOGIN)}
+        onClose={() => void logout()}
+        onConfirm={() => void logout()}
         width="480px"
         showCloseButton={false}
       />

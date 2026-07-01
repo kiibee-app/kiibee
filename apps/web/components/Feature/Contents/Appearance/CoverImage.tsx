@@ -37,6 +37,7 @@ import { FORM_FIELDS } from "@/utils/appearance";
 import { useAppearanceForm } from "./AppearanceFormContext";
 import { ErrorText } from "../MetaData/styles";
 import { RequiredIndicator } from "@/components/UI/InputFields/styles";
+import { useThumbnailWarning } from "./useThumbnailWarning";
 
 const imageFieldMap = {
   [IMAGE_TYPE.MEDIA_CARD]: "mediaCardThumbnail",
@@ -71,6 +72,7 @@ export default function CoverImageSection({
     [IMAGE_TYPE.MEDIA_CARD]: null,
     [IMAGE_TYPE.PORTRAIT]: null,
   });
+  const { validateImageDataUrl } = useThumbnailWarning();
 
   const handleOpenModal = (config: UploadConfig) => {
     setSelectedConfig(config);
@@ -119,6 +121,11 @@ export default function CoverImageSection({
         [type]: null,
       }));
     }
+  };
+
+  const handleImageSelected = (imageDataUrl: string) => {
+    if (!selectedConfig) return;
+    validateImageDataUrl(selectedConfig.type, imageDataUrl);
   };
 
   const getCurrentImage = () => {
@@ -239,6 +246,7 @@ export default function CoverImageSection({
           cropWidth={selectedConfig.cropWidth}
           cropHeight={selectedConfig.cropHeight}
           recommendedText={true}
+          onImageSelected={handleImageSelected}
         />
       )}
     </AppearancePanel>

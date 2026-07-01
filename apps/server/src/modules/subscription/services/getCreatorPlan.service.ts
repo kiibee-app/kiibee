@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, desc } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { creatorPlans, plans } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
@@ -19,16 +19,17 @@ export const getCreatorPlan = async (creatorId: string) => {
           eq(creatorPlans.status, 'active'),
         ),
       )
+      .orderBy(desc(creatorPlans.createdAt))
       .limit(1);
 
     if (!creatorCurrentPlan || creatorCurrentPlan.length === 0) {
-      const plan = await db
+      const [freePlan] = await db
         .select()
         .from(plans)
         .where(eq(plans.price, 0))
         .limit(1);
       return success(
-        plan,
+        freePlan ? [freePlan] : [],
         'Creator plan retrieved successfully',
         HttpStatus.OK,
       );
@@ -43,7 +44,11 @@ export const getCreatorPlan = async (creatorId: string) => {
       return fail('Plan details not found', HttpStatus.NOT_FOUND);
     }
 
-    return success(plan, 'Creator plan retrieved successfully', HttpStatus.OK);
+    return success(
+      [plan],
+      'Creator plan retrieved successfully',
+      HttpStatus.OK,
+    );
   } catch (error) {
     logger.error('Error setting up creator account:', error);
 
