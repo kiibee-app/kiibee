@@ -22,6 +22,7 @@ export const CREATOR_CHANNEL_AVATAR_TEXT = {
 } as const satisfies Record<string, keyof typeof typography>;
 export const UNKNOWN = "Unknown";
 export const CREATOR = "Creator";
+export const CARD = "Card";
 
 export type CreatorChannelAvatarTextUse =
   (typeof CREATOR_CHANNEL_AVATAR_TEXT)[keyof typeof CREATOR_CHANNEL_AVATAR_TEXT];

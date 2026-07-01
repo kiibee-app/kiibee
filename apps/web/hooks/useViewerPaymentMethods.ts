@@ -4,7 +4,9 @@ import { useMemo } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { API, useGetAPI } from "@/lib/http/api";
 import { axiosClient } from "@/lib/http/axiosClient";
-import { CARD_BRANDS, type CardBrand } from "@/utils/Constants";
+import { CARD, CARD_BRANDS, type CardBrand } from "@/utils/Constants";
+import { formatSavedCardLabel } from "@/utils/common";
+import { formatCardExpiry } from "@/utils/formatDate";
 import type {
   BackendPaymentMethod,
   PaymentMethodPayload,
@@ -24,10 +26,11 @@ function resolveCardBrand(brand?: string): CardBrand {
 function toPaymentMethod(item: BackendPaymentMethod): ViewerPaymentMethod {
   return {
     id: item.id,
-    brand: resolveCardBrand(item.brand),
-    label: item.label,
-    cardNumber: item.cardNumber,
-    expiresAt: item.expiresAt,
+    subscriptionId: item.ePaySubscriptionId,
+    brand: resolveCardBrand(item.cardType),
+    label: formatSavedCardLabel(item.cardNo, item.cardType, CARD),
+    cardNumber: item.cardNo,
+    expiresAt: formatCardExpiry(item.expireDate),
     isDefault: item.isDefault,
   };
 }
@@ -35,7 +38,7 @@ function toPaymentMethod(item: BackendPaymentMethod): ViewerPaymentMethod {
 export const useViewerPaymentMethods = () => {
   const queryClient = useQueryClient();
 
-  const query = useGetAPI<PaymentMethodsResponse>(API.viewer.paymentMethods);
+  const query = useGetAPI<PaymentMethodsResponse>(API.payment.cards);
 
   const paymentMethods = useMemo((): ViewerPaymentMethod[] => {
     const items = query.data?.data;
@@ -45,7 +48,7 @@ export const useViewerPaymentMethods = () => {
 
   const invalidate = () =>
     queryClient.invalidateQueries({
-      queryKey: [API.viewer.paymentMethods],
+      queryKey: [API.payment.cards],
     });
 
   const addCard = async (payload: PaymentMethodPayload) => {
@@ -59,7 +62,7 @@ export const useViewerPaymentMethods = () => {
   };
 
   const deleteCard = async (id: string) => {
-    await axiosClient.delete(API.viewer.paymentMethod(id));
+    await axiosClient.delete(API.payment.card(id));
     await invalidate();
   };
 

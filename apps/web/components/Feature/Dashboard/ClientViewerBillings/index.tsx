@@ -126,7 +126,7 @@ export default function ClientViewerBillings() {
   const handleDeleteConfirm = async () => {
     if (!selectedPaymentMethod) return;
 
-    await deleteCard(selectedPaymentMethod.id);
+    await deleteCard(selectedPaymentMethod.subscriptionId);
     setShowDeleteModal(false);
     setShowDeleteSuccessModal(true);
   };
