@@ -1005,6 +1005,7 @@
     "seeContent": "Se indhold",
     "playVideo": "Afspil video",
     "playTrailer": "Afspil trailer",
+    "videoPlaybackError": "Videoen kunne ikke startes. Prøv venligst igen.",
     "noTrailerAvailable": "Der er ingen trailer tilgængelig.",
     "pricing": {
       "downloadFiles": "Download filer",
