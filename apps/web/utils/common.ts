@@ -1,7 +1,7 @@
 import React from "react";
 
 export const ALERT = "alert";
-
+export const isProduction = process.env.NODE_ENV === "production";
 export const COLLECTIONS = "collections";
 export const ABOUT = "about";
 export const APPEARANCE = "appearance";
@@ -18,6 +18,7 @@ export const PAGE_SIZE_OPTIONS = [10, 20, 50];
 export const DA = "da";
 export const EN = "en";
 export const SUPPORTED_LANGS = ["da", "en"];
+export const LOG_PREFIX = "[kiibee]";
 export const STORAGE_KEY = "kiibee_language";
 export const RESOURCE_NAMESPACE = "translation";
 export const LANGUAGE_CHANGED_EVENT = "languageChanged";
