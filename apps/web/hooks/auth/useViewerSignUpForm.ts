@@ -2,19 +2,27 @@
 
 import { PATHS } from "@/utils/path";
 import { PasswordVisibility } from "@/utils/signup";
-import { useViewerSignUp } from "./useViewerSignUp";
+import { useViewerSignUp, ViewerSignUpResponse } from "./useViewerSignUp";
 import { useAuthSession } from "./useAuthSession";
 import { useAuthForm } from "./useAuthForm";
 import { viewerSignUpFormBase } from "./authFormConfigs";
 
-export function useViewerSignUpForm() {
+export type SignUpOptions = {
+  onSuccess?: (response: ViewerSignUpResponse) => void;
+};
+
+export function useViewerSignUpForm(options?: SignUpOptions) {
   const { setSession } = useAuthSession();
   const form = useAuthForm({
     ...viewerSignUpFormBase,
     useMutation: useViewerSignUp,
     onSuccess: (response, { router }) => {
       setSession(response);
-      router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
+      if (options?.onSuccess) {
+        options.onSuccess(response);
+      } else {
+        router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
+      }
     },
   });
 

@@ -18,7 +18,11 @@ function getPostLoginDestination(response: LoginResponse) {
   return isSafePostLoginPath(nextPath) ? nextPath : getPostLoginPath(response);
 }
 
-export function useLoginForm() {
+export type LoginOptions = {
+  onSuccess?: (response: LoginResponse) => void;
+};
+
+export function useLoginForm(options?: LoginOptions) {
   const { setSession } = useAuthSession();
   const [remember, setRemember] = useState(false);
   const form = useAuthForm({
@@ -31,7 +35,11 @@ export function useLoginForm() {
           : AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
       });
 
-      router.push(getPostLoginDestination(response));
+      if (options?.onSuccess) {
+        options.onSuccess(response);
+      } else {
+        router.push(getPostLoginDestination(response));
+      }
     },
   });
 

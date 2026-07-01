@@ -752,3 +752,147 @@ export const PurchaseModalPriceValue = styled.span`
 export const PurchaseModalButtonWrapper = styled.div`
   padding: 0 1.5rem 1.5rem;
 `;
+
+export const InlineAuthWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.5rem;
+  width: 100%;
+  text-align: center;
+`;
+
+export const InlineAuthLogo = styled.div`
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const InlineAuthTitle = styled.h3`
+  margin: 0 0 0.5rem 0;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.H4_SemiBold}
+`;
+
+export const InlineAuthDescription = styled.p`
+  margin: 0 0 1.5rem 0;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  ${({ theme }) => theme.typography.Body_Medium}
+`;
+
+export const InlineAuthForm = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+`;
+
+export const InlineAuthOptionsRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0.5rem 0 1rem;
+`;
+
+export const InlineAuthRememberLabel = styled.label`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  ${({ theme }) => theme.typography.Body_Medium}
+
+  input {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+    accent-color: ${({ theme }) => theme.colors.primary.BLACK};
+    cursor: pointer;
+  }
+`;
+
+export const InlineAuthForgotLink = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  text-decoration: underline;
+  cursor: pointer;
+  ${({ theme }) => theme.typography.Body_Medium}
+`;
+
+export const InlineAuthFooter = styled.div`
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+export const InlineAuthFooterText = styled.span`
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  ${({ theme }) => theme.typography.Body_Medium}
+`;
+
+export const InlineAuthFooterLink = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  ${({ theme }) => theme.typography.Body_Medium}
+`;
+
+export const InlineAuthCheckboxRow = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0.5rem 0 1rem;
+  text-align: left;
+`;
+
+export const InlineAuthCheckbox = styled.input`
+  margin-top: 0.2rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
+  accent-color: ${({ theme }) => theme.colors.primary.BLACK};
+  cursor: pointer;
+`;
+
+export const InlineAuthConsentText = styled.label`
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+  ${({ theme }) => theme.typography.Body_Small}
+  line-height: 1.4;
+
+  a {
+    color: ${({ theme }) => theme.colors.primary.BLACK};
+    text-decoration: underline;
+    font-weight: 500;
+  }
+`;
+
+export const InlineAuthBackButtonWrapper = styled.div`
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 10;
+`;
+
+export const InlineAuthFormError = styled.div`
+  width: 100%;
+  color: ${({ theme }) => theme.colors.primary.RED || "red"};
+  ${({ theme }) => theme.typography.Body_Medium}
+  text-align: left;
+  margin-top: -0.25rem;
+  margin-bottom: 0.5rem;
+`;

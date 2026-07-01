@@ -128,11 +128,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
-          if (!user?.id) {
-            handleShowLoginModal();
-            return;
-          }
-
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
@@ -142,7 +137,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         },
       };
     });
-  }, [contentId, createOrderMutation, primaryAction, primaryActions, user?.id]);
+  }, [contentId, createOrderMutation, primaryAction, primaryActions]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
@@ -306,6 +301,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         visible={showPurchaseModal}
         onClose={handleClosePurchaseModal}
         onPurchase={handlePurchaseConfirm}
+        isLoggedIn={Boolean(user?.id)}
         title={title}
         image={hero.image ? resolveImageUrl(hero.image) : undefined}
         imageAlt={hero.imageAlt}
