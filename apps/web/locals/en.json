@@ -89,6 +89,12 @@
         "confirmLabel": "Create account",
         "message": "To continue with your purchase, please log in to your Kiibee account. If you don't have an account yet, you can create one in just a moment."
       },
+      "purchaseConfirmationModal": {
+        "title": "Ready to complete your purchase?",
+        "message": "You're ready to continue with your purchase. Click below to finalize your order and get access to your content.",
+        "defaultAccessLabel": "Your purchase",
+        "continueLabel": "Continue"
+      },
       "seeContent": "See content",
       "buy": "Buy 99 kr"
     }

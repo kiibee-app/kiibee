@@ -4,13 +4,8 @@ import { memo, useMemo, useState, type MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
-import { GenericModal } from "@/components/UI/Modals";
-import { MODAL_ALIGN } from "@/utils/ui";
-import { PATHS } from "@/utils/path";
-import {
-  ModalContentWrapper,
-  ModalDescription,
-} from "@/components/Feature/ProfileLayout/shared/LatestUpload/styles";
+import { LoginRequiredModal } from "@/components/UI/Modals";
+
 import { ActionRow, CardLink, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
@@ -66,13 +61,6 @@ function TutorialCard({
     setLoginModalVisible(true);
   };
   const handleCloseLoginModal = () => setLoginModalVisible(false);
-  const handleLoginRedirect = () => {
-    const next = encodeURIComponent(
-      pendingRedirectUrl || window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   const imageUrl = useMemo(
     () => resolveImageUrl(tutorial.image),
@@ -231,29 +219,16 @@ function TutorialCard({
   );
 
   const loginModal = (
-    <GenericModal
+    <LoginRequiredModal
       visible={isLoginModalVisible}
       onClose={handleCloseLoginModal}
-      onCancel={handleLoginRedirect}
-      onConfirm={handleCreateAccount}
-      cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-      confirmLabel={t("createProfileHome.latestUpload.loginModal.confirmLabel")}
-      buttonRow
-      buttonAlign={MODAL_ALIGN.CENTER}
-      fullWidthButtons={false}
-      size="sm"
-      spacing="start"
-      showCloseButton
-    >
-      <ModalContentWrapper>
-        <MonoText $use="Heading3">
-          {t("createProfileHome.latestUpload.loginModal.title")}
-        </MonoText>
-        <ModalDescription $use="Body_Medium">
-          {t("createProfileHome.latestUpload.loginModal.message")}
-        </ModalDescription>
-      </ModalContentWrapper>
-    </GenericModal>
+      onSuccess={() => {
+        if (pendingRedirectUrl) {
+          navigateToContent(pendingRedirectUrl, true);
+          setPendingRedirectUrl("");
+        }
+      }}
+    />
   );
 
   if (isCardLinked) {

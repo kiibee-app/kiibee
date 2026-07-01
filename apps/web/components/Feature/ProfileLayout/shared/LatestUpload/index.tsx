@@ -22,8 +22,6 @@ import {
   UploadImage,
   RightControlButton,
   LeftControlButton,
-  ModalContentWrapper,
-  ModalDescription,
 } from "./styles";
 import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
@@ -35,9 +33,8 @@ import {
   WebIcon,
 } from "@/assets/icons";
 import { useIsMobile } from "@/utils/useIsMobile";
-import { GenericModal } from "@/components/UI/Modals";
-import { PATHS, pathPublishedContent } from "@/utils/path";
-import { MODAL_ALIGN } from "@/utils/ui";
+import { LoginRequiredModal } from "@/components/UI/Modals";
+import { pathPublishedContent } from "@/utils/path";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
@@ -171,13 +168,8 @@ export default function LatestUpload({ data }: LatestUploadProps) {
   }, [computedActions, isCreator]);
 
   const [primaryAction, secondaryAction] = visibleActions;
-  const handleLogin = () => {
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
+  const [pendingHref, setPendingHref] = useState<string | null>(null);
+
   const handleSecondaryActionClick = () => {
     if (secondaryAction?.href) {
       navigateToContent(secondaryAction.href, true);
@@ -190,6 +182,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
     }
 
     if (isBuyActionLabel(primaryAction.title) && !authStorage.hasSession()) {
+      setPendingHref(primaryAction.href);
       setLoginModalVisible(true);
       return;
     }
@@ -301,31 +294,16 @@ export default function LatestUpload({ data }: LatestUploadProps) {
         </TextSection>
       </ContentWrapper>
 
-      <GenericModal
+      <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={() => setLoginModalVisible(false)}
-        onCancel={handleLogin}
-        onConfirm={handleCreateAccount}
-        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-        confirmLabel={t(
-          "createProfileHome.latestUpload.loginModal.confirmLabel",
-        )}
-        buttonRow
-        buttonAlign={MODAL_ALIGN.CENTER}
-        fullWidthButtons={false}
-        size="sm"
-        spacing="start"
-        showCloseButton
-      >
-        <ModalContentWrapper>
-          <MonoText $use="Heading3">
-            {t("createProfileHome.latestUpload.loginModal.title")}
-          </MonoText>
-          <ModalDescription $use="Body_Medium">
-            {t("createProfileHome.latestUpload.loginModal.message")}
-          </ModalDescription>
-        </ModalContentWrapper>
-      </GenericModal>
+        onSuccess={() => {
+          if (pendingHref) {
+            navigateToContent(pendingHref, true);
+            setPendingHref(null);
+          }
+        }}
+      />
     </Section>
   );
 }

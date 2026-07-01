@@ -2,19 +2,19 @@ import Link from "next/link";
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 
-export const ContentWrap = styled.section`
+export const ContentWrap = styled.section<{ $isModal?: boolean }>`
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
-  padding: 30px 24px 96px;
+  padding: ${({ $isModal }) => ($isModal ? "0 0 1rem 0" : "30px 24px 96px")};
 `;
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.section<{ $isModal?: boolean }>`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1rem;
+  padding: ${({ $isModal }) => ($isModal ? "0" : "0 1rem")};
 `;
 
 export const Card = styled.div`
@@ -114,11 +114,12 @@ export const Description = styled.p`
   padding-bottom: 30px;
 `;
 
-export const PrepCard = styled(Card)`
+export const PrepCard = styled(Card)<{ $isModal?: boolean }>`
   box-sizing: border-box;
-  padding: 3.625rem 5.125rem;
-  background: ${({ theme }) => theme.colors.neutral.WHITE};
-  border-radius: 12px;
+  padding: ${({ $isModal }) => ($isModal ? "1rem 0" : "3.625rem 5.125rem")};
+  background: ${({ theme, $isModal }) =>
+    $isModal ? "transparent" : theme.colors.neutral.WHITE};
+  border-radius: ${({ $isModal }) => ($isModal ? "0" : "12px")};
   width: min(100%, 620px);
   max-width: none;
   margin: 0 auto;
@@ -252,13 +253,14 @@ export const TypeLabel = styled.span`
   line-height: 1;
 `;
 
-export const PreContentWrap = styled.div`
-  background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+export const PreContentWrap = styled.div<{ $isModal?: boolean }>`
+  background: ${({ theme, $isModal }) =>
+    $isModal ? "transparent" : theme.colors.neutral.OFF_WHITE};
   width: 100%;
-  min-height: 100dvh;
-  padding-bottom: 1rem;
+  min-height: ${({ $isModal }) => ($isModal ? "auto" : "100dvh")};
+  padding-bottom: ${({ $isModal }) => ($isModal ? "0" : "1rem")};
 
   ${media.tablet} {
-    padding: 1rem;
+    padding: ${({ $isModal }) => ($isModal ? "0" : "1rem")};
   }
 `;

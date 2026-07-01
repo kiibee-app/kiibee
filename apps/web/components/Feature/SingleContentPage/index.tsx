@@ -1,10 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { PATHS } from "@/utils/path";
 import {
   ACCESS_TYPE_FREE,
   ACCESS_KEYWORD_EN,
@@ -33,13 +31,13 @@ import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
-import { GenericModal } from "@/components/UI/Modals";
-import { MonoText } from "@/components/UI/Monotext";
-import { MODAL_ALIGN } from "@/utils/ui";
+
 import {
-  ModalContentWrapper,
-  ModalDescription,
-} from "@/components/Feature/ProfileLayout/shared/LatestUpload/styles";
+  LoginRequiredModal,
+  PurchaseConfirmationModal,
+} from "@/components/UI/Modals";
+
+import { useSearchParams } from "next/navigation";
 
 export type {
   SingleContentHeroProps,
@@ -48,7 +46,6 @@ export type {
 } from "@/types/contentTypes";
 
 export default function SingleContentPage(props: SingleContentPageProps) {
-  const { t } = useTranslation();
   const {
     contentId,
     collectionId,
@@ -71,19 +68,13 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     accessGate,
   } = props;
   const router = useRouter();
+  const searchParams = useSearchParams();
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
   const handleCloseLoginModal = () => setLoginModalVisible(false);
-  const handleLoginRedirect = () => {
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   type CreateOrderPayload = {
     contentId: string;
@@ -128,28 +119,30 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
-          if (!user?.id) {
-            handleShowLoginModal();
-            return;
-          }
-
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
             isPurchase,
           });
-          setShowPurchaseModal(true);
+          if (!user?.id) {
+            handleShowLoginModal();
+          } else {
+            setShowPurchaseModal(true);
+          }
         },
       };
     });
   }, [contentId, createOrderMutation, primaryAction, primaryActions, user?.id]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
     label: string;
     subtitle?: string;
     isPurchase: boolean;
   } | null>(null);
+  const [pendingAction, setPendingAction] =
+    useState<SingleContentAction | null>(null);
 
   const isPreviewableType =
     hero?.contentType === FORMAT_TYPE.PDF ||
@@ -157,6 +150,28 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     hero?.contentType === FORMAT_TYPE.EPUB ||
     hero?.contentType === FORMAT_TYPE.VIDEO ||
     hero?.contentType === FORMAT_TYPE.AUDIO;
+
+  useEffect(() => {
+    if (searchParams?.get("intent") === "purchase") {
+      const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
+      if (actions.length) {
+        const action = actions[0];
+        setSelectedAction({
+          label: action.label,
+          subtitle: action.subtitle,
+          isPurchase: action.label.toLowerCase().includes("buy"),
+        });
+        setShowConfirmationModal(true);
+
+        const newUrl =
+          window.location.pathname +
+          window.location.search
+            .replace(/&?intent=purchase/, "")
+            .replace(/\?$/, "");
+        window.history.replaceState({}, "", newUrl);
+      }
+    }
+  }, [searchParams, primaryActions, primaryAction]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
 
@@ -191,6 +206,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     const isLoggedIn = Boolean(user && user.id);
 
     if (isPaid && !isLoggedIn) {
+      setPendingAction(primaryAction || null);
       handleShowLoginModal();
     }
   };
@@ -228,6 +244,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   ) => {
     if (!selectedAction || !contentId) return;
 
+    if (!user?.id) {
+      handleShowLoginModal();
+      return;
+    }
+
     try {
       const response = await createOrderMutation.mutateAsync({
         contentId,
@@ -242,6 +263,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       const orderId = response?.data?.orderId;
       if (!paymentUrl && subscriptionId && orderId) {
         setShowPurchaseModal(false);
+        setShowConfirmationModal(false);
         setSelectedAction(null);
         router.push(`/payment/success?orderId=${encodeURIComponent(orderId)}`);
         return;
@@ -250,6 +272,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         throw new Error("Payment URL missing");
       }
       setShowPurchaseModal(false);
+      setShowConfirmationModal(false);
       setSelectedAction(null);
       window.location.assign(paymentUrl);
     } catch (error) {
@@ -260,6 +283,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
+    setSelectedAction(null);
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setShowConfirmationModal(false);
     setSelectedAction(null);
   };
 
@@ -317,31 +345,38 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         loading={createOrderMutation.isPending}
       />
 
-      <GenericModal
+      <PurchaseConfirmationModal
+        visible={showConfirmationModal}
+        onClose={handleCloseConfirmationModal}
+        onConfirm={() => handlePurchaseConfirm()}
+        title={title}
+        image={hero.image ? resolveImageUrl(hero.image) : undefined}
+        imageAlt={hero.imageAlt}
+        creator={creator?.name}
+        contentType={hero.contentType || hero.media?.type}
+        priceLabel={selectedAction?.label || ""}
+        accessLabel={selectedAction?.subtitle}
+        loading={createOrderMutation.isPending}
+      />
+
+      <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onCancel={handleLoginRedirect}
-        onConfirm={handleCreateAccount}
-        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-        confirmLabel={t(
-          "createProfileHome.latestUpload.loginModal.confirmLabel",
-        )}
-        buttonRow
-        buttonAlign={MODAL_ALIGN.CENTER}
-        fullWidthButtons={false}
-        size="sm"
-        spacing="start"
-        showCloseButton
-      >
-        <ModalContentWrapper>
-          <MonoText $use="Heading3">
-            {t("createProfileHome.latestUpload.loginModal.title")}
-          </MonoText>
-          <ModalDescription $use="Body_Medium">
-            {t("createProfileHome.latestUpload.loginModal.message")}
-          </ModalDescription>
-        </ModalContentWrapper>
-      </GenericModal>
+        onSuccess={() => {
+          if (selectedAction) {
+            const currentParams = new URLSearchParams(window.location.search);
+            currentParams.set("intent", "purchase");
+            router.replace(
+              `${window.location.pathname}?${currentParams.toString()}`,
+            );
+          } else if (pendingAction) {
+            if (pendingAction.onClick) {
+              pendingAction.onClick();
+            }
+            setPendingAction(null);
+          }
+        }}
+      />
 
       <ShareModal
         visible={showShareModal}

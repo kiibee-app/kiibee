@@ -14,6 +14,7 @@ import { usePostAPI } from "@/lib/http/api/postApi";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { SelectedCheckIcon } from "@/assets/icons";
 import {
   PurchaseModalCard,
@@ -110,6 +111,7 @@ export default function PurchaseModal({
   loading = false,
 }: PurchaseModalProps) {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
   const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
@@ -132,7 +134,7 @@ export default function PurchaseModal({
     API.payment.cards,
     undefined,
     {
-      enabled: visible,
+      enabled: visible && Boolean(user?.id),
       retry: 1,
     },
   );

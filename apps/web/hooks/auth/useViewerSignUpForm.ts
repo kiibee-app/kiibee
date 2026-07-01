@@ -7,14 +7,20 @@ import { useAuthSession } from "./useAuthSession";
 import { useAuthForm } from "./useAuthForm";
 import { viewerSignUpFormBase } from "./authFormConfigs";
 
-export function useViewerSignUpForm() {
+export function useViewerSignUpForm(options?: {
+  onSuccessOverride?: (response: unknown) => void;
+}) {
   const { setSession } = useAuthSession();
   const form = useAuthForm({
     ...viewerSignUpFormBase,
     useMutation: useViewerSignUp,
     onSuccess: (response, { router }) => {
       setSession(response);
-      router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
+      if (options?.onSuccessOverride) {
+        options.onSuccessOverride(response);
+      } else {
+        router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
+      }
     },
   });
 
