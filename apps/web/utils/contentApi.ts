@@ -203,7 +203,6 @@ const getContentHeroImages = (
   const candidates = resolveContentThumbnailCandidates(
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL],
-    { preferLandscape: true },
   );
 
   return {
