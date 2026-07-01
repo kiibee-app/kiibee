@@ -22,11 +22,10 @@ import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { CalendarIcon } from "@/assets/icons";
-import { CrossIcon } from "@/assets/icons/crossIcon";
-import { formatDate } from "@/utils/formatDate";
+import { formatDate, toISO } from "@/utils/formatDate";
 import { useTranslation } from "react-i18next";
 import { MOUSE_DOWN } from "@/utils/common";
-import { canUseDOM } from "@/utils/ui";
+import { canUseDOM, getPopupPosition } from "@/utils/ui";
 
 type Props = {
   label?: React.ReactNode;
@@ -34,8 +33,6 @@ type Props = {
   onChange?: (value: string) => void;
   placeholder?: string;
 };
-
-// FlowCalendarWrapper is no longer used, as we render via Portal with absolute positioning.
 
 export default function DatePickerField({
   label,
@@ -47,7 +44,7 @@ export default function DatePickerField({
   const popupRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [tempValue, setTempValue] = useState(value || "");
+  const [tempValue, setTempValue] = useState(value || toISO(new Date()));
   const [pos, setPos] = useState({ top: 0, left: 0 });
 
   const hasValue = !!value;
@@ -73,28 +70,22 @@ export default function DatePickerField({
     const rect = wrapperRef.current?.getBoundingClientRect();
 
     if (rect) {
-      setPos({
-        top: rect.bottom + window.scrollY + 8,
-        left: rect.left + window.scrollX,
-      });
+      setPos(getPopupPosition(rect));
     }
-    setTempValue(value || "");
+    setTempValue(value || toISO(new Date()));
     setOpen(true);
   };
 
   const handleSave = () => {
-    onChange?.(tempValue);
-    setOpen(false);
+    if (tempValue) {
+      onChange?.(tempValue);
+      setOpen(false);
+    }
   };
 
   const handleCancel = () => {
-    setTempValue(value || "");
+    setTempValue(value || toISO(new Date()));
     setOpen(false);
-  };
-
-  const handleClear = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    onChange?.("");
   };
 
   const handleCalendarClick = (event: React.MouseEvent) => {
@@ -114,19 +105,6 @@ export default function DatePickerField({
         <BorderedDateDisplay onClick={openPopup}>
           <DateText $isPlaceholder={!hasValue}>{displayText}</DateText>
           <DateFieldActions>
-            {hasValue && (
-              <DateCalendarButton
-                type="button"
-                aria-label={t("common.clearSearch")}
-                onClick={handleClear}
-              >
-                <CrossIcon
-                  width={18}
-                  height={18}
-                  crossColor={COLORS.neutral.GRAY_400}
-                />
-              </DateCalendarButton>
-            )}
             <DateCalendarButton
               type="button"
               aria-label={placeholder || t("common.selectDate")}
@@ -156,6 +134,7 @@ export default function DatePickerField({
                       type="button"
                       variant={VARIANT.PRIMARY}
                       onClick={handleSave}
+                      disabled={!tempValue}
                     >
                       {t("common.save")}
                     </GenericButton>
