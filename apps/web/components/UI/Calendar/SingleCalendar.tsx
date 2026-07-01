@@ -9,7 +9,6 @@ import {
   DayButtonBase,
   DayButton,
   DaySelected,
-  MonthNav,
   WeekDayCell,
   SingleCalendarWrapper,
   MonthNavLeft,
@@ -24,7 +23,17 @@ import {
   startOfMonth,
   getCalendarDays,
   formatMonthYear,
+  CalendarDay,
 } from "@/utils/formatDate";
+
+const renderDayContent = (iso: string, isSelected: boolean) => {
+  const dayNumber = new Date(iso).getDate();
+  return isSelected ? (
+    <DaySelected>{dayNumber}</DaySelected>
+  ) : (
+    <DayButton>{dayNumber}</DayButton>
+  );
+};
 
 type Props = {
   value?: string;
@@ -38,6 +47,24 @@ export default function SingleCalendar({ value, onChange }: Props) {
   }, [value]);
 
   const [currentMonth, setCurrentMonth] = useState<Date>(initialMonth);
+
+  const renderDay = (d: CalendarDay, index: number) => {
+    if (d.isOutside) return <div key={`blank-${index}`} />;
+
+    const isSelected = value === d.iso;
+
+    return (
+      <DayCell key={d.iso}>
+        <DayButtonBase
+          type="button"
+          onClick={() => onChange?.(d.iso)}
+          aria-pressed={isSelected}
+        >
+          {renderDayContent(d.iso, isSelected)}
+        </DayButtonBase>
+      </DayCell>
+    );
+  };
 
   const renderMonth = (monthDate: Date) => {
     const days = getCalendarDays(monthDate);
@@ -64,30 +91,7 @@ export default function SingleCalendar({ value, onChange }: Props) {
           ))}
         </WeekDays>
 
-        <DaysGrid>
-          {days.map((d, i) => {
-            if (d.isOutside) return <div key={`blank-${i}`} />;
-
-            const iso = d.iso;
-            const isSelected = value === iso;
-
-            return (
-              <DayCell key={iso}>
-                <DayButtonBase
-                  type="button"
-                  onClick={() => onChange?.(iso)}
-                  aria-pressed={isSelected}
-                >
-                  {isSelected ? (
-                    <DaySelected>{new Date(iso).getDate()}</DaySelected>
-                  ) : (
-                    <DayButton>{new Date(iso).getDate()}</DayButton>
-                  )}
-                </DayButtonBase>
-              </DayCell>
-            );
-          })}
-        </DaysGrid>
+        <DaysGrid>{days.map(renderDay)}</DaysGrid>
       </CalendarMonth>
     );
   };
