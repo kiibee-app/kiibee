@@ -1,10 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { GetObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { SIGNED_URL_EXPIRY } from 'src/utils/constant';
 import { s3 } from 'src/services/s3.client';
-
+import { eq } from 'drizzle-orm';
 import { ResolveImportedMediaUrlService } from './resolveImportedMediaUrl.service';
+import { db } from 'src/database/db';
+import { mediaFiles } from 'src/database/schema';
+import { fail } from 'src/utils/sendResponse';
+import { insertContentViewService } from 'src/modules/creator-overview/services/insertContentView.service';
 
 @Injectable()
 export class GetMediaByKeyService {
@@ -43,6 +47,24 @@ export class GetMediaByKeyService {
       ResponseContentDisposition: disposition,
       ResponseContentType: contentType || (isVideo ? 'video/mp4' : undefined),
     });
+
+    const [mediaInfo] = await db
+      .select({
+        creatorId: mediaFiles.creatorId,
+        mediaFileId: mediaFiles.id,
+      })
+      .from(mediaFiles)
+      .where(eq(mediaFiles.fileKey, key));
+
+    if (!mediaInfo) {
+      return fail('Media file not found', HttpStatus.NOT_FOUND);
+    }
+
+    await insertContentViewService(
+      mediaInfo.creatorId,
+      mediaInfo.mediaFileId,
+      null,
+    );
 
     return getSignedUrl(s3, command, { expiresIn });
   }
