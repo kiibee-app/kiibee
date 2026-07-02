@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
   ACCESS_TYPE_FREE,
@@ -68,6 +69,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     accessGate,
   } = props;
   const router = useRouter();
+  const { t } = useTranslation();
   const searchParams = useSearchParams();
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
@@ -108,8 +110,12 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
     return actions.map((action) => {
       const normalizedLabel = action.label.toLowerCase();
-      const isPurchase = normalizedLabel.includes("buy");
-      const isRental = normalizedLabel.includes("rent");
+      const isPurchase = normalizedLabel.includes(
+        t("pricingLabels.buy").toLowerCase(),
+      );
+      const isRental = normalizedLabel.includes(
+        t("pricingLabels.rent").toLowerCase(),
+      );
 
       if (!isPurchase && !isRental) {
         return action;
@@ -124,15 +130,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             subtitle: action.subtitle,
             isPurchase,
           });
-          if (!user?.id) {
-            handleShowLoginModal();
-          } else {
-            setShowPurchaseModal(true);
-          }
+          setShowPurchaseModal(true);
         },
       };
     });
-  }, [contentId, createOrderMutation, primaryAction, primaryActions, user?.id]);
+  }, [contentId, createOrderMutation, primaryAction, primaryActions, t]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -141,8 +143,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     subtitle?: string;
     isPurchase: boolean;
   } | null>(null);
-  const [pendingAction, setPendingAction] =
-    useState<SingleContentAction | null>(null);
 
   const isPreviewableType =
     hero?.contentType === FORMAT_TYPE.PDF ||
@@ -159,7 +159,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         setSelectedAction({
           label: action.label,
           subtitle: action.subtitle,
-          isPurchase: action.label.toLowerCase().includes("buy"),
+          isPurchase: action.label
+            .toLowerCase()
+            .includes(t("pricingLabels.buy").toLowerCase()),
         });
         setShowConfirmationModal(true);
 
@@ -171,7 +173,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         window.history.replaceState({}, "", newUrl);
       }
     }
-  }, [searchParams, primaryActions, primaryAction]);
+  }, [searchParams, primaryActions, primaryAction, t]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
 
@@ -203,11 +205,23 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       accessMeta &&
       typeof accessMeta.value === STRING &&
       accessMeta.value !== ACCESS_TYPE_FREE;
-    const isLoggedIn = Boolean(user && user.id);
 
-    if (isPaid && !isLoggedIn) {
-      setPendingAction(primaryAction || null);
-      handleShowLoginModal();
+    const actionLabel = primaryAction?.label?.toLowerCase();
+    const isPurchaseAction = Boolean(
+      actionLabel?.includes(t("pricingLabels.buy").toLowerCase()),
+    );
+    const isRentalAction = Boolean(
+      actionLabel?.includes(t("pricingLabels.rent").toLowerCase()),
+    );
+
+    if (isPaid || isPurchaseAction || isRentalAction) {
+      setSelectedAction({
+        label: primaryAction?.label as string,
+        subtitle: primaryAction?.subtitle,
+        isPurchase: isPurchaseAction,
+      });
+
+      setShowPurchaseModal(true);
     }
   };
 
@@ -334,6 +348,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         visible={showPurchaseModal}
         onClose={handleClosePurchaseModal}
         onPurchase={handlePurchaseConfirm}
+        onRequireLogin={handleShowLoginModal}
+        isLoggedIn={Boolean(user?.id)}
         title={title}
         image={hero.image ? resolveImageUrl(hero.image) : undefined}
         imageAlt={hero.imageAlt}
@@ -363,18 +379,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
         onSuccess={() => {
-          if (selectedAction) {
-            const currentParams = new URLSearchParams(window.location.search);
-            currentParams.set("intent", "purchase");
-            router.replace(
-              `${window.location.pathname}?${currentParams.toString()}`,
-            );
-          } else if (pendingAction) {
-            if (pendingAction.onClick) {
-              pendingAction.onClick();
-            }
-            setPendingAction(null);
-          }
+          handleCloseLoginModal();
         }}
       />
 

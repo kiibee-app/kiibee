@@ -85,6 +85,8 @@ export type PurchaseModalProps = {
   visible: boolean;
   onClose: () => void;
   onPurchase: (couponCode?: string, subscriptionId?: string) => void;
+  onRequireLogin?: () => void;
+  isLoggedIn?: boolean;
   title: string;
   image?: string;
   imageAlt?: string;
@@ -100,6 +102,8 @@ export default function PurchaseModal({
   visible,
   onClose,
   onPurchase,
+  onRequireLogin,
+  isLoggedIn,
   title,
   image,
   imageAlt,
@@ -197,6 +201,10 @@ export default function PurchaseModal({
   }, []);
 
   const handlePurchase = () => {
+    if (!isLoggedIn && onRequireLogin) {
+      onRequireLogin();
+      return;
+    }
     onPurchase(appliedCode || undefined, effectiveSubscriptionId || undefined);
   };
 
