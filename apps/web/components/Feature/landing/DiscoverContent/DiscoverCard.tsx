@@ -40,6 +40,12 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   const { t } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const targetHref = pathPublishedContent(item.contentKey);
+
+  const safeT = (key: string | undefined | null) => {
+    if (!key) return "";
+    return key.includes("discoverContent.") ? t(key) : key;
+  };
+
   const handleOpen = () => {
     navigateToContent(targetHref, false);
   };
@@ -53,11 +59,15 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   };
 
   return (
-    <Card aria-label={t(item.titleKey)} onClick={handleOpen} $clickable={true}>
+    <Card
+      aria-label={safeT(item.titleKey)}
+      onClick={handleOpen}
+      $clickable={true}
+    >
       <ImageContainer>
         <CategoryBadge>
           <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
-            {t(item.categoryKey)}
+            {safeT(item.categoryKey)}
           </MonoText>
         </CategoryBadge>
         <ImageReveal
@@ -67,7 +77,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
         >
           <Image
             src={item.image}
-            alt={t(item.titleKey)}
+            alt={safeT(item.titleKey)}
             fill={LANDING_IMAGE_FLAGS.fill}
             sizes={IMAGE_SIZES.discoverCard}
             style={discoverCardImageStyle}
@@ -78,16 +88,16 @@ function DiscoverCard({ item }: DiscoverCardProps) {
 
       <TextSection>
         <CardTitle>
-          <MonoText $use="H5_Medium">{t(item.titleKey)}</MonoText>
+          <MonoText $use="H5_Medium">{safeT(item.titleKey)}</MonoText>
         </CardTitle>
         <CardAuthor>
           <MonoText $use="Body_Medium" color={COLORS.primary.BLACK_90}>
-            {t(item.authorKey)}
+            {safeT(item.authorKey)}
           </MonoText>
         </CardAuthor>
         <CardDate>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-            {t(item.dateKey)}
+            {safeT(item.dateKey)}
           </MonoText>
         </CardDate>
 
@@ -104,7 +114,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
             )}
           </IconFrame>
           <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
-            {t(item.mediaTypeKey)}
+            {safeT(item.mediaTypeKey)}
           </MonoText>
         </MediaTypeBox>
       </TextSection>
@@ -118,7 +128,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
               handleActionClick(item.actions[0].href ?? targetHref)
             }
           >
-            {t(item.actions[0].labelKey)}
+            {safeT(item.actions[0].labelKey)}
           </SingleActionButton>
         ) : (
           item.actions.map((action) => (
@@ -128,7 +138,7 @@ function DiscoverCard({ item }: DiscoverCardProps) {
               variant={VARIANT.SOFT_OUTLINE}
               onClick={() => handleActionClick(action.href ?? targetHref)}
             >
-              {t(action.labelKey)}
+              {safeT(action.labelKey)}
             </GenericButton>
           ))
         )}
