@@ -92,15 +92,17 @@ export default function CouponPreviewModal({
 
   const codes = data.codes ?? [];
 
-  const collectionLabels =
-    collectionIds.length > 0
-      ? collectionIds.map((id) => getLabel(id, collectionOptions))
-      : ["-"];
+  const normalizedCollectionIds = collectionIds.filter(Boolean);
+  const normalizedContentIds = contentIds.filter(Boolean);
+  const hasApplicableProducts =
+    normalizedCollectionIds.length > 0 || normalizedContentIds.length > 0;
 
-  const contentLabels =
-    contentIds.length > 0
-      ? contentIds.map((id) => getLabel(id, contentOptions))
-      : ["-"];
+  const applicableProductLabels = hasApplicableProducts
+    ? [
+        ...normalizedCollectionIds.map((id) => getLabel(id, collectionOptions)),
+        ...normalizedContentIds.map((id) => getLabel(id, contentOptions)),
+      ]
+    : [t("contents.couponPreview.allContents")];
 
   const formatValidity = () => {
     const startDate =
@@ -216,9 +218,7 @@ export default function CouponPreviewModal({
                 <SectionLabel>
                   {t("contents.couponPreview.fields.applicableProducts")}
                 </SectionLabel>
-                <ChipList>
-                  {renderChips([...collectionLabels, ...contentLabels])}
-                </ChipList>
+                <ChipList>{renderChips(applicableProductLabels)}</ChipList>
               </Section>
 
               <Section>
