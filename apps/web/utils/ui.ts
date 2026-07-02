@@ -182,6 +182,14 @@ export const IMAGE_TYPE = {
 export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
 export const THUMBNAIL_MIN_DIMENSIONS = {
+  [IMAGE_TYPE.DESKTOP]: {
+    width: 1440,
+    height: 224,
+  },
+  [IMAGE_TYPE.MOBILE]: {
+    width: 640,
+    height: 600,
+  },
   [IMAGE_TYPE.MEDIA_CARD]: {
     width: 250,
     height: 190,
