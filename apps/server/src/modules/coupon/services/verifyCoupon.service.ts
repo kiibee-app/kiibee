@@ -1,4 +1,4 @@
-import { HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
@@ -99,6 +99,10 @@ export const verifyCouponService = async (code: string, contentId?: string) => {
       HttpStatus.OK,
     );
   } catch (error) {
+    if (error instanceof HttpException) {
+      throw error;
+    }
+
     logger.error('Error verifying coupon:', error);
 
     return fail('Failed to verify coupon', HttpStatus.INTERNAL_SERVER_ERROR);

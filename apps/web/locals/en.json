@@ -1031,8 +1031,15 @@
       "useNewCard": "Use a new card",
       "useNewCardHint": "You will be redirected to complete your payment with a new card.",
       "couponApplied": "Coupon applied successfully",
-      "couponInvalid": "Invalid coupon code",
-      "couponValidUntil": "This coupon is valid until {{date}}"
+      "couponInvalid": "This coupon code is not valid",
+      "couponExpired": "This coupon has expired",
+      "couponNotYetValid": "This coupon is not active yet",
+      "couponAlreadyUsed": "This coupon has already been used",
+      "couponInactive": "This coupon is no longer active",
+      "couponMaxUses": "This coupon has reached its usage limit",
+      "couponNotApplicable": "This coupon cannot be used for this content",
+      "couponVerifyFailed": "Unable to verify this coupon. Please try again",
+      "couponValidUntil": "Your discount is active until {{date}}"
     },
     "meta": {
       "category": "Category:",

@@ -14,7 +14,7 @@ import { usePostAPI } from "@/lib/http/api/postApi";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
-import { SelectedCheckIcon } from "@/assets/icons";
+import { SelectedCheckIcon, InfoIcon } from "@/assets/icons";
 import {
   PurchaseModalCard,
   PurchaseModalCardHeader,
@@ -30,7 +30,8 @@ import {
   PurchaseModalDiscountLabel,
   PurchaseModalDiscountRow,
   PurchaseModalDiscountInput,
-  PurchaseModalCouponNotice,
+  PurchaseModalCouponError,
+  PurchaseModalCouponValidityNotice,
   PurchaseModalPriceSummary,
   PurchaseModalPriceRow,
   PurchaseModalPriceRowTotal,
@@ -54,6 +55,8 @@ import {
 } from "@/utils/common";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
 import { PAYMENT_ICONS } from "@/utils/paymentIcons";
+import COLORS from "@repo/ui/colors";
+import { getCouponErrorMessage } from "@/utils/couponErrors";
 
 type VerifyCouponResponse = {
   success: boolean;
@@ -130,6 +133,14 @@ export default function PurchaseModal({
   if (visible !== prevVisible) {
     setPrevVisible(visible);
     setSelectedSubscriptionId(null);
+
+    if (!visible) {
+      setDiscountCode("");
+      setDiscount(0);
+      setAppliedCode(null);
+      setCouponValidityNotice(null);
+      setCouponError(null);
+    }
   }
 
   const verifyCouponMutation = usePostAPI<
@@ -238,14 +249,7 @@ export default function PurchaseModal({
         }
       }
     } catch (error) {
-      const err = error as {
-        response?: { data?: { message?: string } };
-        message?: string;
-      };
-      const apiError =
-        err?.response?.data?.message ||
-        err?.message ||
-        t("singleContent.pricing.couponInvalid");
+      const apiError = getCouponErrorMessage(error, t);
 
       setDiscount(0);
       setAppliedCode(null);
@@ -380,14 +384,20 @@ export default function PurchaseModal({
           )}
         </PurchaseModalDiscountRow>
         {couponError ? (
-          <PurchaseModalCouponNotice>
-            <MonoText $use="Body_Medium">{couponError}</MonoText>
-          </PurchaseModalCouponNotice>
+          <PurchaseModalCouponError role="alert">
+            <InfoIcon size={16} color={COLORS.primary.RED} />
+            <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
+              {couponError}
+            </MonoText>
+          </PurchaseModalCouponError>
         ) : null}
         {couponValidityNotice ? (
-          <PurchaseModalCouponNotice>
-            <MonoText $use="Body_Medium">{couponValidityNotice}</MonoText>
-          </PurchaseModalCouponNotice>
+          <PurchaseModalCouponValidityNotice role="status">
+            <InfoIcon size={16} />
+            <MonoText $use="Body_Medium" color={COLORS.primary.ORANGE}>
+              {couponValidityNotice}
+            </MonoText>
+          </PurchaseModalCouponValidityNotice>
         ) : null}
       </PurchaseModalDiscountSection>
 

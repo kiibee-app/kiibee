@@ -1031,8 +1031,15 @@
       "useNewCard": "Brug et nyt kort",
       "useNewCardHint": "Du bliver videresendt for at fuldføre betalingen.",
       "couponApplied": "Kupon anvendt",
-      "couponInvalid": "Ugyldig kuponkode",
-      "couponValidUntil": "Denne kupon er gyldig indtil {{date}}"
+      "couponInvalid": "Denne kuponkode er ikke gyldig",
+      "couponExpired": "Denne kupon er udløbet",
+      "couponNotYetValid": "Denne kupon er endnu ikke aktiv",
+      "couponAlreadyUsed": "Denne kupon er allerede brugt",
+      "couponInactive": "Denne kupon er ikke længere aktiv",
+      "couponMaxUses": "Denne kupon har nået sin brugsgrænse",
+      "couponNotApplicable": "Denne kupon kan ikke bruges til dette indhold",
+      "couponVerifyFailed": "Kuponen kunne ikke verificeres. Prøv igen",
+      "couponValidUntil": "Din rabat er aktiv indtil {{date}}"
     },
     "meta": {
       "category": "Kategori:",
