@@ -20,19 +20,21 @@ import { logger } from './logger/logger';
 
 async function bootstrap() {
   try {
-    await pool.connect();
-    console.log('✅ Database connected');
-
-    const app = await NestFactory.create<NestFastifyApplication>(
-      AppModule,
-      new FastifyAdapter({
-        logger: false,
-        bodyLimit: FILE_SIZE_LIMIT,
+    const [app] = await Promise.all([
+      NestFactory.create<NestFastifyApplication>(
+        AppModule,
+        new FastifyAdapter({
+          logger: false,
+          bodyLimit: FILE_SIZE_LIMIT,
+        }),
+        {
+          logger: ['log', 'error', 'warn', 'debug', 'verbose'],
+        },
+      ),
+      pool.connect().then(() => {
+        console.log('✅ Database connected');
       }),
-      {
-        logger: ['log', 'error', 'warn', 'debug', 'verbose'],
-      },
-    );
+    ]);
 
     await app.register(multipart, {
       limits: { fileSize: FILE_SIZE_LIMIT },
