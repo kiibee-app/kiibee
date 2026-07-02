@@ -1,6 +1,12 @@
 import masterCardLogo from "@/assets/icons/masterCard.svg";
 import visaLogo from "@/assets/icons/visa.svg";
 import { type CardBrand, CARD_BRANDS } from "@/utils/Constants";
+import {
+  AudioFileIcon,
+  EpubIcon,
+  PdfFileIcon,
+  VideoIcon,
+} from "@/assets/icons";
 
 export const CARD_FORM_MODE = {
   ADD: "add",
@@ -54,3 +60,21 @@ export const CARD_BRAND_LOGOS: Record<CardBrand, string> = {
 
 export type CardFormPayload = PaymentMethodPayload;
 export type AddCardErrors = CardFormErrors;
+
+export type TaxonomyItem = {
+  id: string;
+  name: string;
+};
+
+export type ContentTypeItem = {
+  key: string;
+  name: string;
+  icon: React.FC;
+};
+
+export const TYPE_ICON_MAP: Record<string, React.FC> = {
+  video: VideoIcon,
+  audio: AudioFileIcon,
+  pdf: PdfFileIcon,
+  epub: EpubIcon,
+};
