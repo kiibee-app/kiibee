@@ -68,13 +68,15 @@ export default function ImageUploadCropModal({
 }: Props) {
   const { t } = useTranslation();
   const [pendingImage, setPendingImage] = useState<string | null>(image);
-  const [prevVisible, setPrevVisible] = useState(visible);
-  if (visible !== prevVisible) {
-    setPrevVisible(visible);
+
+  useEffect(() => {
     if (visible) {
-      setPendingImage(image);
+      const handle = requestAnimationFrame(() => {
+        setPendingImage(image);
+      });
+      return () => cancelAnimationFrame(handle);
     }
-  }
+  }, [visible, image]);
   const [sizeError, setSizeError] = useState<string | null>(null);
   const [naturalSize, setNaturalSize] = useState({ width: 0, height: 0 });
   const [frameSize, setFrameSize] = useState({
