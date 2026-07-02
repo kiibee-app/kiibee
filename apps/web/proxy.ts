@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { AUTH_STORAGE_KEYS } from "@/lib/auth/storageKeys";
 import { getDashboardPathForRole, PATHS } from "@/utils/path";
 import { ROLE_ADMIN, ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
+import { logger } from "./lib/logger";
 
 const PROTECTED_PATHS = [PATHS.DASHBOARD_CREATOR, PATHS.DASHBOARD_VIEWER];
 
@@ -32,7 +33,7 @@ function decodeJwtPayload(token?: string) {
 
     return JSON.parse(atob(paddedPayload)) as { role?: string };
   } catch (error) {
-    console.error("Failed to decode JWT payload:", error);
+    logger.error("Failed to decode JWT payload:", error);
     return null;
   }
 }
@@ -52,7 +53,7 @@ function getSessionRole(request: NextRequest) {
       : null;
     if (user?.role) return user.role.trim().toLowerCase();
   } catch (error) {
-    console.error("Failed to parse user cookie for role lookup:", error);
+    logger.error("Failed to parse user cookie for role lookup:", error);
   }
 
   const accessToken = request.cookies.get(AUTH_STORAGE_KEYS.accessToken)?.value;
