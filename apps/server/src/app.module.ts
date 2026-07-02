@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { DiscoveryModule } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { HealthModule } from './modules/health/health.module';
@@ -20,9 +21,11 @@ import { CreatorOverviewModule } from './modules/creator-overview/creator-overvi
 import { SupportModule } from './modules/support/support.module';
 import { PayoutModule } from './modules/payout/payout.module';
 import { NotificationSettingsModule } from './modules/notification-settings/notification-settings.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
+    DiscoveryModule,
     ConfigModule.forRoot({
       isGlobal: true,
       validate: validateAppEnv,
@@ -47,5 +50,6 @@ import { NotificationSettingsModule } from './modules/notification-settings/noti
     PayoutModule,
     NotificationSettingsModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
