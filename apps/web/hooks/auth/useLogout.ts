@@ -4,6 +4,7 @@ import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import { PATHS } from "@/utils/path";
+import { toast } from "react-toastify";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import { useLogoutMutation } from "@/hooks/auth/useLogin";
 
@@ -16,7 +17,8 @@ export const useLogout = () => {
   const logout = useCallback(async () => {
     try {
       await logoutRequest();
-    } catch {
+    } catch (error) {
+      toast.error("Logout failed. Please try again.");
     } finally {
       clearSession();
       queryClient.clear();

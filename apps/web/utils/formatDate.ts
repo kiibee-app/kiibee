@@ -115,19 +115,34 @@ export function formatMonthYear(date: Date): string {
   } as const);
 }
 
+const MM_YYYY = /^(\d{2})\/(\d{4})$/;
+const MM_YY = /^(\d{2})\/(\d{2})$/;
+const YYYY_MM = /^(\d{4})-(\d{2})/;
+
 export function formatCardExpiry(dateString?: string | null): string {
   if (!dateString) return "";
-  const parts = dateString.split("-");
-  if (parts.length >= 2 && parts[0].length === 4) {
-    const year = parts[0].slice(-2);
-    const month = parts[1];
+  const value = dateString.trim();
+
+  if (MM_YYYY.test(value)) return value;
+
+  const mmYy = value.match(MM_YY);
+  if (mmYy) {
+    const [, month, year] = mmYy;
+    return `${month}/20${year}`;
+  }
+
+  const yyyyMm = value.match(YYYY_MM);
+  if (yyyyMm) {
+    const [, year, month] = yyyyMm;
     return `${month}/${year}`;
   }
-  const date = new Date(dateString);
-  if (!isNaN(date.getTime())) {
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = String(date.getFullYear()).slice(-2);
+
+  const parsedDate = new Date(value);
+  if (!Number.isNaN(parsedDate.getTime())) {
+    const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+    const year = String(parsedDate.getFullYear());
     return `${month}/${year}`;
   }
-  return dateString;
+
+  return value;
 }

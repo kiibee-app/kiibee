@@ -139,6 +139,7 @@
       "emailInvalid": "Enter a valid email address",
       "passwordRequired": "Password is required",
       "fixHighlightedFields": "Please fix the highlighted fields.",
+      "invalidCredentials": "Invalid email or password",
       "submitFailed": "We couldn't log you in right now. Please try again."
     }
   },
@@ -1011,6 +1012,7 @@
     "seeContent": "See content",
     "playVideo": "Play video",
     "playTrailer": "Play trailer",
+    "videoPlaybackError": "Video playback could not be started. Please try again.",
     "noTrailerAvailable": "There is no trailer available.",
     "pricing": {
       "downloadFiles": "Download files",
@@ -1800,7 +1802,7 @@
         "mobileSize": "Use size 640 × 600 pixel image",
         "desktopAlt": "Desktop cover image",
         "mobileAlt": "Mobile cover image",
-        "resolutionWarning": "This image is smaller than the recommended size ({{width}} × {{height}} px). It may appear blurry."
+        "resolutionWarning": "Image too small. Choose at least {{width}} × {{height}} px."
       },
       "description": {
         "label": "Description",
@@ -2119,7 +2121,8 @@
     "saveSettingsFailed": "Failed to save settings",
     "loadDetailsFailed": "Failed to load content details",
     "imageTooLarge": "Uploaded pictures too big in size. Please upload a smaller picture.",
-    "imageUploadFailed": "Image upload failed"
+    "imageUploadFailed": "Image upload failed",
+    "exportRequestFailed": "Failed to request export. Please try again."
   },
   "accessGate": {
     "pageCodeTitle": "This page requires a code to access",

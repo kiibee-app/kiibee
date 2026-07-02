@@ -45,6 +45,7 @@ import {
   PurchaseModalPaymentMethodPrimary,
   PurchaseModalPaymentMethodText,
   PurchaseModalPaymentMethodHint,
+  PurchaseModalPaymentIcons,
 } from "./styles";
 import {
   COUPON_DISCOUNT_PERCENTAGE,
@@ -52,6 +53,7 @@ import {
   formatSavedCardLabel as formatSavedCardLabelUtil,
 } from "@/utils/common";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
+import { PAYMENT_ICONS } from "@/utils/paymentIcons";
 
 type VerifyCouponResponse = {
   success: boolean;
@@ -387,6 +389,18 @@ export default function PurchaseModal({
           </PurchaseModalPriceValue>
         </PurchaseModalPriceRowTotal>
       </PurchaseModalPriceSummary>
+
+      <PurchaseModalPaymentIcons>
+        {PAYMENT_ICONS.map((icon) => (
+          <Image
+            key={icon.alt}
+            src={icon.src}
+            alt={icon.alt}
+            width={34}
+            height={23}
+          />
+        ))}
+      </PurchaseModalPaymentIcons>
 
       <PurchaseModalButtonWrapper>
         <GenericButton

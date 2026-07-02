@@ -21,17 +21,11 @@ import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
 
 import {
-  CONTENT_MEDIA_QUERY_KEYS,
   CONTENT_TRANSLATION_KEYS,
-  type ContentMediaUrlResponse,
   type ContentDetailResponse,
-  getContentMediaKey,
-  getContentType,
   getContentDetail,
   getSingleContentProps,
-  resolveContentPlaybackUrl,
 } from "@/utils/contentApi";
-import { FORMAT_TYPE } from "@/utils/types";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
@@ -87,8 +81,6 @@ function PublishedContentDetail() {
     },
   );
   const content = getContentDetail(data);
-  const contentType = getContentType(content);
-  const mediaKey = getContentMediaKey(content);
   const { creator: publicCreator } = useCreatorPublicProfile(
     content?.creatorId ?? null,
   );
@@ -97,23 +89,6 @@ function PublishedContentDetail() {
     {
       enabled: Boolean(normalizedContentKey) && !fallback,
     },
-  );
-  const mediaEndpoint =
-    contentType === FORMAT_TYPE.VIDEO
-      ? API.media.videoStream
-      : API.media.fileSignedUrl;
-  const shouldFetchSignedMediaUrl =
-    Boolean(mediaKey) && contentType !== FORMAT_TYPE.WEB;
-  const { data: mediaResponse } = useGetAPI<ContentMediaUrlResponse>(
-    mediaEndpoint,
-    { [CONTENT_MEDIA_QUERY_KEYS.KEY]: mediaKey },
-    {
-      enabled: shouldFetchSignedMediaUrl,
-    },
-  );
-  const mediaUrl = resolveContentPlaybackUrl(
-    content,
-    mediaResponse?.url || mediaResponse?.iframeUrl,
   );
   const {
     gateType: activeGateType,
@@ -196,10 +171,11 @@ function PublishedContentDetail() {
       {paymentSuccessModal}
       <Section>
         <SingleContentPage
-          {...getSingleContentProps(content, t, mediaUrl, {
+          {...getSingleContentProps(content, t, {
             inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
             viewerId: resolvedUserId,
           })}
+          content={content}
           creator={
             publicCreator
               ? {

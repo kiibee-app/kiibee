@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { keepPreviousData } from "@tanstack/react-query";
 import { API, useGetAPI } from "@/lib/http/api";
 import { formatDateUSShort } from "@/utils/formatDate";
+import { formatPayoutAmount } from "@/utils/payout";
 
 export type SettlementItem = {
   id: string;
@@ -32,7 +33,7 @@ type SettlementHistoryResponse = {
 function toSettlementItem(item: BackendSettlementItem): SettlementItem {
   return {
     id: item.id,
-    amount: item.amount,
+    amount: formatPayoutAmount(item.amount),
     status: item.status,
     creditNo: item.creditNo ?? "-",
     bank: item.bank ?? "-",

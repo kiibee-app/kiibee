@@ -26,6 +26,8 @@ export type ExploreCreatorItem = {
   createdAt: string;
   contentDescription: string | null;
   exampleWorkLink: string | null;
+  supportEmail: string | null;
+  accountEmail: string | null;
   accessType: string | null;
   layout: string | null;
 };
@@ -116,6 +118,8 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
         else ${creatorInfo.contentDescription}
       end`.as('content_description'),
       exampleWorkLink: creatorInfo.exampleWorkLink,
+      supportEmail: contentAppearance.supportEmail,
+      accountEmail: users.email,
       accessType: contentSettings.accessType,
       layout: contentAppearance.layout,
     })
@@ -149,6 +153,8 @@ const mapCreatorRow = (row: {
   createdAt: Date | string;
   contentDescription: string | null;
   exampleWorkLink: string | null;
+  supportEmail: string | null;
+  accountEmail: string | null;
   accessType: string | null;
   layout: string | null;
 }): ExploreCreatorItem => ({
@@ -166,6 +172,8 @@ const mapCreatorRow = (row: {
       : String(row.createdAt),
   contentDescription: row.contentDescription,
   exampleWorkLink: row.exampleWorkLink,
+  supportEmail: row.supportEmail,
+  accountEmail: row.accountEmail,
   accessType: row.accessType,
   layout: row.layout,
 });

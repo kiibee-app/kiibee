@@ -52,6 +52,19 @@ type Props = {
   onImageSelected?: (imageDataUrl: string) => void;
 };
 
+const loadImageDimensions = (imageDataUrl: string) =>
+  new Promise<{ width: number; height: number }>((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      resolve({
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+      });
+    };
+    img.onerror = reject;
+    img.src = imageDataUrl;
+  });
+
 export default function ImageUploadCropModal({
   visible,
   titleUpload,
@@ -68,15 +81,18 @@ export default function ImageUploadCropModal({
 }: Props) {
   const { t } = useTranslation();
   const [pendingImage, setPendingImage] = useState<string | null>(image);
-  const [prevVisible, setPrevVisible] = useState(visible);
-  if (visible !== prevVisible) {
-    setPrevVisible(visible);
-    if (visible) {
-      setPendingImage(image);
-    }
-  }
   const [sizeError, setSizeError] = useState<string | null>(null);
   const [naturalSize, setNaturalSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (visible) {
+      const handle = requestAnimationFrame(() => {
+        setPendingImage(image);
+        setNaturalSize({ width: 0, height: 0 });
+      });
+      return () => cancelAnimationFrame(handle);
+    }
+  }, [visible, image]);
   const [frameSize, setFrameSize] = useState({
     width: PREVIEW_FRAME_SIZE,
     height: PREVIEW_FRAME_SIZE,
@@ -106,14 +122,39 @@ export default function ImageUploadCropModal({
 
   const prevNaturalSizeRef = useRef({ width: 0, height: 0 });
   const fitZoomRef = useRef(IMAGE_ZOOM.DEFAULT);
+  const imageLoadIdRef = useRef(0);
+
+  const loadSelectedImageSize = useCallback((imageDataUrl: string) => {
+    const loadId = imageLoadIdRef.current + 1;
+    imageLoadIdRef.current = loadId;
+
+    fitZoomRef.current = IMAGE_ZOOM.DEFAULT;
+    setNaturalSize({ width: 0, height: 0 });
+
+    const img = new Image();
+    img.onload = () => {
+      if (imageLoadIdRef.current !== loadId) return;
+
+      setNaturalSize({
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+      });
+    };
+    img.src = imageDataUrl;
+  }, []);
 
   useEffect(() => {
     if (!pendingImage) return;
+
+    const loadId = imageLoadIdRef.current + 1;
+    imageLoadIdRef.current = loadId;
 
     fitZoomRef.current = IMAGE_ZOOM.DEFAULT;
 
     const img = new Image();
     img.onload = () => {
+      if (imageLoadIdRef.current !== loadId) return;
+
       setNaturalSize({
         width: img.naturalWidth,
         height: img.naturalHeight,
@@ -175,12 +216,47 @@ export default function ImageUploadCropModal({
 
   const setSelectedImage = useCallback(
     (imageDataUrl: string) => {
-      onImageSelected?.(imageDataUrl);
       setPendingImage(imageDataUrl);
-      setNaturalSize({ width: 0, height: 0 });
+      loadSelectedImageSize(imageDataUrl);
       dragMovedRef.current = false;
     },
-    [dragMovedRef, onImageSelected],
+    [dragMovedRef, loadSelectedImageSize],
+  );
+
+  const handleImageFile = useCallback(
+    (file: File) => {
+      if (file.size > maxSize) {
+        setSizeError(t("errors.imageTooLarge"));
+        return;
+      }
+
+      setSizeError(null);
+
+      readFileAsDataUrl(file).then(async (imageDataUrl) => {
+        if (!imageDataUrl) return;
+
+        const dimensions = recommendedText
+          ? await loadImageDimensions(imageDataUrl)
+          : null;
+        const isLowResolution = dimensions
+          ? dimensions.width < cropWidth || dimensions.height < cropHeight
+          : false;
+
+        onImageSelected?.(imageDataUrl);
+        if (isLowResolution) return;
+
+        setSelectedImage(imageDataUrl);
+      });
+    },
+    [
+      cropHeight,
+      cropWidth,
+      maxSize,
+      onImageSelected,
+      recommendedText,
+      setSelectedImage,
+      t,
+    ],
   );
 
   const handleSelectFile = useCallback(
@@ -189,20 +265,9 @@ export default function ImageUploadCropModal({
       if (!file) return;
 
       event.target.value = "";
-      if (file.size > maxSize) {
-        setSizeError(t("errors.imageTooLarge"));
-        return;
-      }
-
-      setSizeError(null);
-
-      readFileAsDataUrl(file).then((imageDataUrl) => {
-        if (!imageDataUrl) return;
-
-        setSelectedImage(imageDataUrl);
-      });
+      handleImageFile(file);
     },
-    [maxSize, setSelectedImage, t],
+    [handleImageFile],
   );
 
   const handleDragEnter = (e: React.DragEvent) => {
@@ -232,20 +297,9 @@ export default function ImageUploadCropModal({
       const file = e.dataTransfer.files?.[0];
       if (!file) return;
 
-      if (file.size > maxSize) {
-        setSizeError(t("errors.imageTooLarge"));
-        return;
-      }
-
-      setSizeError(null);
-
-      readFileAsDataUrl(file).then((imageDataUrl) => {
-        if (!imageDataUrl) return;
-
-        setSelectedImage(imageDataUrl);
-      });
+      handleImageFile(file);
     },
-    [maxSize, setSelectedImage, t],
+    [handleImageFile],
   );
 
   const handlePreviewClick = () => {
@@ -281,8 +335,15 @@ export default function ImageUploadCropModal({
     };
   }, [pendingImage]);
 
+  const isImageSizeReady = naturalSize.width > 0 && naturalSize.height > 0;
+  const isNaturalSizeSmaller =
+    naturalSize.width < cropWidth || naturalSize.height < cropHeight;
+  const isBelowRecommendedSize =
+    Boolean(recommendedText) && isImageSizeReady && isNaturalSizeSmaller;
+  const isApplyDisabled = !isImageSizeReady || isBelowRecommendedSize;
+
   const applyCrop = useCallback(async () => {
-    if (!pendingImage || !previewFrameRef.current) return;
+    if (!pendingImage || !previewFrameRef.current || isApplyDisabled) return;
 
     const { width, height } = previewFrameRef.current.getBoundingClientRect();
 
@@ -297,7 +358,16 @@ export default function ImageUploadCropModal({
 
     onApply(cropped);
     onClose();
-  }, [pendingImage, cropWidth, cropHeight, position, zoom, onApply, onClose]);
+  }, [
+    pendingImage,
+    cropWidth,
+    cropHeight,
+    position,
+    zoom,
+    onApply,
+    onClose,
+    isApplyDisabled,
+  ]);
 
   const frameW = frameSize.width;
   const frameH = frameSize.height;
@@ -349,9 +419,18 @@ export default function ImageUploadCropModal({
           </UploadDropZone>
         ) : (
           <>
-            <CropCanvas>
+            <CropCanvas
+              onDragEnter={handleDragEnter}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
               <ImagePreviewWrapper
                 ref={previewFrameRef}
+                onDragEnter={handleDragEnter}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onMouseUp={stopDragging}
@@ -401,7 +480,11 @@ export default function ImageUploadCropModal({
               <GenericButton variant={VARIANT.SECONDARY} onClick={resetState}>
                 {t("common.cancel")}
               </GenericButton>
-              <GenericButton variant={VARIANT.PRIMARY} onClick={applyCrop}>
+              <GenericButton
+                variant={VARIANT.PRIMARY}
+                onClick={applyCrop}
+                disabled={isApplyDisabled}
+              >
                 {t("creatorProfile.apply")}
               </GenericButton>
             </ModalActions>

@@ -22,6 +22,7 @@ export const CREATOR_CHANNEL_AVATAR_TEXT = {
 } as const satisfies Record<string, keyof typeof typography>;
 export const UNKNOWN = "Unknown";
 export const CREATOR = "Creator";
+export const CARD = "Card";
 
 export type CreatorChannelAvatarTextUse =
   (typeof CREATOR_CHANNEL_AVATAR_TEXT)[keyof typeof CREATOR_CHANNEL_AVATAR_TEXT];
@@ -247,6 +248,7 @@ export const ERROR_MESSAGES = {
   SAVE_CHANGES_FAILED: "errors.saveChangesFailed",
   SAVE_SETTINGS_FAILED: "errors.saveSettingsFailed",
   LOAD_DETAILS_FAILED: "errors.loadDetailsFailed",
+  EXPORT_REQUEST_FAILED: "errors.exportRequestFailed",
 };
 
 export const UI_TITLE_FALLBACK = "Content Details";

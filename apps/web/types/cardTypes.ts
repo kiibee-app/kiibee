@@ -23,6 +23,7 @@ export type PaymentMethodPayload = {
 
 export type ViewerPaymentMethod = {
   id: string;
+  subscriptionId: string;
   brand: CardBrand;
   label: string;
   cardNumber: string;
@@ -32,18 +33,18 @@ export type ViewerPaymentMethod = {
 
 export type BackendPaymentMethod = {
   id: string;
-  brand: string;
-  label: string;
-  lastFour: string;
-  cardNumber: string;
-  expiresAt: string;
-  isDefault: boolean;
+  ePaySubscriptionId: string;
+  cardNo: string;
+  expireDate: string;
+  cardType: string;
+  isDefault?: boolean;
 };
 
 export type PaymentMethodsResponse = {
-  data: BackendPaymentMethod[];
-  message: string;
+  success: boolean;
   statusCode: number;
+  message: string;
+  data: BackendPaymentMethod[] | null;
 };
 
 export const CARD_BRAND_LOGOS: Record<CardBrand, string> = {
