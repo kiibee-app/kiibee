@@ -219,7 +219,6 @@ const getCategoryNames = (content: ContentDetailItem) =>
 export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
-  mediaUrl?: string,
   options?: { inCollection?: boolean; viewerId?: string },
 ): SingleContentPageProps => {
   const title =
@@ -295,19 +294,8 @@ export const getSingleContentProps = (
               src: trailerUrl,
               title,
             },
-            contentUrl: mediaUrl,
           }
-        : mediaUrl && !isVideo
-          ? {
-              media: {
-                type: contentType,
-                src: mediaUrl,
-                title,
-              },
-            }
-          : isVideo && mediaUrl
-            ? { contentUrl: mediaUrl }
-            : {}),
+        : {}),
       categoryLabel: categories[0],
       mediaLabel: getContentTypeLabel(contentType),
       ...(isVideo || showTrailerInHero

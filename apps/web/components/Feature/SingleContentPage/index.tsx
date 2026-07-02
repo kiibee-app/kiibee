@@ -16,6 +16,7 @@ import {
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { useContentMediaUrl } from "@/hooks/useContentMediaUrl";
 import { toast } from "react-toastify";
 import {
   SingleContentBody,
@@ -52,6 +53,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const {
     contentId,
     collectionId,
+    content,
     title,
     descriptions = [],
     tags = [],
@@ -151,47 +153,66 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     isPurchase: boolean;
   } | null>(null);
 
-  const isPreviewableType =
-    hero?.contentType === FORMAT_TYPE.PDF ||
-    hero?.contentType === FORMAT_TYPE.WEB ||
-    hero?.contentType === FORMAT_TYPE.EPUB ||
-    hero?.contentType === FORMAT_TYPE.VIDEO ||
-    hero?.contentType === FORMAT_TYPE.AUDIO;
+  const {
+    contentType,
+    previewMediaUrl,
+    isLoading: isMediaLoading,
+    canFetchMedia,
+    fetchMediaUrl,
+  } = useContentMediaUrl(content);
+  const previewContentType = contentType ?? hero.contentType;
 
-  const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
+  const isPreviewableType =
+    previewContentType === FORMAT_TYPE.PDF ||
+    previewContentType === FORMAT_TYPE.WEB ||
+    previewContentType === FORMAT_TYPE.EPUB ||
+    previewContentType === FORMAT_TYPE.VIDEO ||
+    previewContentType === FORMAT_TYPE.AUDIO;
+
+  const isWebType = previewContentType === FORMAT_TYPE.WEB;
 
   const canPreview =
-    isPreviewableType && Boolean(hero?.media?.src || hero?.contentUrl);
+    isPreviewableType &&
+    (Boolean(hero?.media?.src || hero?.contentUrl) ||
+      canFetchMedia ||
+      Boolean(previewMediaUrl));
 
-  const handlePrimaryActionClick = () => {
-    if (isWebType && hero?.media?.src) {
-      window.open(hero.media.src, "_blank", "noopener,noreferrer");
+  const handlePrimaryActionClick = async () => {
+    if (isWebType && previewMediaUrl) {
+      window.open(previewMediaUrl, "_blank", "noopener,noreferrer");
       return;
     }
 
-    if (canPreview) {
+    if (!canPreview) {
+      if (primaryAction?.onClick) {
+        primaryAction.onClick();
+        return;
+      }
+
+      const accessMeta = metaItems.find(
+        (item) =>
+          item.label.toLowerCase().includes(ACCESS_KEYWORD_EN) ||
+          item.label.toLowerCase().includes(ACCESS_KEYWORD_DA),
+      );
+      const isPaid =
+        accessMeta &&
+        typeof accessMeta.value === STRING &&
+        accessMeta.value !== ACCESS_TYPE_FREE;
+
+      if (isPaid && !user?.id) {
+        handleShowLoginModal();
+      }
+      return;
+    }
+
+    if (!canFetchMedia) {
       setShowPreviewModal(true);
       return;
     }
 
-    if (primaryAction?.onClick) {
-      primaryAction.onClick();
-      return;
-    }
-
-    const accessMeta = metaItems.find(
-      (item) =>
-        item.label.toLowerCase().includes(ACCESS_KEYWORD_EN) ||
-        item.label.toLowerCase().includes(ACCESS_KEYWORD_DA),
-    );
-    const isPaid =
-      accessMeta &&
-      typeof accessMeta.value === STRING &&
-      accessMeta.value !== ACCESS_TYPE_FREE;
-    const isLoggedIn = Boolean(user && user.id);
-
-    if (isPaid && !isLoggedIn) {
-      handleShowLoginModal();
+    const mediaUrl = await fetchMediaUrl();
+    if (mediaUrl) {
+      setShowPreviewModal(true);
     }
   };
 
@@ -199,6 +220,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     ? {
         ...primaryAction,
         onClick: handlePrimaryActionClick,
+        disabled: primaryAction.disabled || isMediaLoading,
       }
     : undefined;
 
@@ -210,9 +232,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         : undefined;
 
   const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
-  const resolvedContentType = hero?.contentType ?? hero?.media?.type;
   const isPdfLayout =
-    Boolean(resolvedContentType) && resolvedContentType !== FORMAT_TYPE.VIDEO;
+    Boolean(previewContentType) && previewContentType !== FORMAT_TYPE.VIDEO;
 
   const handleBack = () => {
     if (onBack) {
@@ -292,15 +313,17 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       </Card>
 
       {children}
-      {canPreview && (
-        <ContentPreviewModal
-          visible={showPreviewModal}
-          onClose={() => setShowPreviewModal(false)}
-          src={hero.contentUrl || hero.media?.src || ""}
-          type={hero.contentType || hero.media?.type || FORMAT_TYPE.VIDEO}
-          title={title}
-        />
-      )}
+      {canPreview &&
+        showPreviewModal &&
+        (previewMediaUrl || hero.contentUrl || hero.media?.src) && (
+          <ContentPreviewModal
+            visible={showPreviewModal}
+            onClose={() => setShowPreviewModal(false)}
+            src={previewMediaUrl || hero.contentUrl || hero.media?.src || ""}
+            type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}
+            title={title}
+          />
+        )}
 
       <PurchaseModal
         visible={showPurchaseModal}
