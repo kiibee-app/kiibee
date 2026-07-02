@@ -152,7 +152,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     hero?.contentType === FORMAT_TYPE.AUDIO;
 
   useEffect(() => {
-    if (searchParams?.get("intent") === "purchase") {
+    const intent = searchParams?.get("intent");
+    if (intent) {
       const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
       if (actions.length) {
         const action = actions[0];
@@ -168,7 +169,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         const newUrl =
           window.location.pathname +
           window.location.search
-            .replace(/&?intent=purchase/, "")
+            .replace(new RegExp(`&?intent=${intent}`), "")
             .replace(/\?$/, "");
         window.history.replaceState({}, "", newUrl);
       }
