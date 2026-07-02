@@ -1,6 +1,7 @@
 import { Controller, Get, RequestMethod } from '@nestjs/common';
 import { DiscoveryService, MetadataScanner } from '@nestjs/core';
 import { PATH_METADATA, METHOD_METADATA } from '@nestjs/common/constants';
+import { ENVIRONMENT } from './utils/constant';
 
 @Controller()
 export class AppController {
@@ -21,7 +22,7 @@ export class AppController {
 
   @Get('api/v1')
   getRoutes() {
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV !== ENVIRONMENT.DEVELOPMENT) {
       return {
         status: 'success',
         routes: [],
@@ -61,7 +62,6 @@ export class AppController {
           let fullPath = `${controllerPrefix}${subPath}`.replace(/\/+/g, '/');
           if (fullPath === '') fullPath = '/';
 
-          // Prepend global prefix if not excluded
           const isExcluded = fullPath === '/' || fullPath === '/api/v1';
           if (!isExcluded) {
             fullPath = `/api/v1${fullPath}`;

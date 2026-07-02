@@ -3,6 +3,7 @@ import { sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import * as fs from 'fs';
 import * as path from 'path';
+import { ENVIRONMENT } from 'src/utils/constant';
 
 @Injectable()
 export class HealthService {
@@ -40,7 +41,7 @@ export class HealthService {
       status: isHealthy ? ('up' as const) : ('down' as const),
       timestamp: new Date().toISOString(),
       version: this.version,
-      environment: process.env.NODE_ENV || 'development',
+      environment: process.env.NODE_ENV || ENVIRONMENT.DEVELOPMENT,
       system: {
         uptime: Math.round(process.uptime() * 100) / 100,
         nodeVersion: process.version,
