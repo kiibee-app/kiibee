@@ -1,6 +1,7 @@
 import type { ReactNode, Dispatch, SetStateAction } from "react";
 import type { ImageSource, Variant } from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
+import type { ContentDetailItem } from "@/utils/contentApi";
 
 export type SingleContentMetaItem = {
   label: string;
@@ -40,6 +41,7 @@ export type SingleContentHeroProps = {
 export type SingleContentPageProps = {
   contentId?: string;
   collectionId?: string;
+  content?: ContentDetailItem;
   title: string;
   descriptions?: string[];
   tags?: string[];
