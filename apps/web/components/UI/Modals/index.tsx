@@ -19,7 +19,14 @@ import { MonoText } from "../Monotext";
 import { BUTTON, ESCAPE, KEYDOWN, VARIANT } from "@/utils/Constants";
 import { Variant } from "@/utils/Constants";
 import { CrossIcon } from "@/assets/icons/crossIcon";
-import { canUseDOM, MODAL_ALIGN, ModalAlign } from "@/utils/ui";
+import {
+  canUseDOM,
+  LOGIN_REQUIRED_MODAL_INITIAL_HEIGHT,
+  LOGIN_REQUIRED_MODAL_OVERLAY_Z_INDEX,
+  LOGIN_REQUIRED_MODAL_WIDTH,
+  MODAL_ALIGN,
+  ModalAlign,
+} from "@/utils/ui";
 import { useTranslation } from "react-i18next";
 import {
   MODAL_PADDINGS,
@@ -60,6 +67,7 @@ type GenericModalProps = {
   confirmVariant?: Variant;
   closeOnConfirm?: boolean;
   confirmLoading?: boolean;
+  overlayZIndex?: number;
 };
 
 export const GenericModal: React.FC<GenericModalProps> = ({
@@ -91,6 +99,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   confirmVariant = VARIANT.PRIMARY,
   closeOnConfirm = true,
   confirmLoading = false,
+  overlayZIndex,
 }) => {
   const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
@@ -139,6 +148,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
       aria-labelledby={title ? "generic-modal-title" : undefined}
       aria-describedby="generic-modal-message"
       data-test-id="generic-modal-overlay"
+      style={overlayZIndex ? { zIndex: overlayZIndex } : undefined}
     >
       <ModalContainer
         $width={width || (size ? MODAL_WIDTHS[size] : undefined)}
@@ -235,12 +245,16 @@ type LoginRequiredModalProps = {
   visible: boolean;
   onClose: () => void;
   onSuccess?: () => void;
+  width?: string;
+  initialHeight?: string;
 };
 
 export function LoginRequiredModal({
   visible,
   onClose,
   onSuccess,
+  width = LOGIN_REQUIRED_MODAL_WIDTH,
+  initialHeight = LOGIN_REQUIRED_MODAL_INITIAL_HEIGHT,
 }: LoginRequiredModalProps) {
   const { t } = useTranslation();
   const [view, setView] = useState<LoginViewState>(LOGIN_VIEW_STATES.INITIAL);
@@ -273,15 +287,16 @@ export function LoginRequiredModal({
     <GenericModal
       visible={visible}
       onClose={onClose}
-      size="sm"
+      width={width}
       spacing={isInitialView ? "lg" : "start"}
       textAlign={isInitialView ? MODAL_ALIGN.CENTER : MODAL_ALIGN.START}
       showCloseButton
       maxHeight="85vh"
       contentMarginBottom="0"
+      overlayZIndex={LOGIN_REQUIRED_MODAL_OVERLAY_Z_INDEX}
     >
       {isInitialView && (
-        <LoginRequiredBody>
+        <LoginRequiredBody style={{ minHeight: initialHeight }}>
           <MonoText $use="H5_Medium">
             {t("createProfileHome.latestUpload.loginModal.title")}
           </MonoText>
