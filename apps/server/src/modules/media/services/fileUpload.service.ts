@@ -7,6 +7,10 @@ import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { s3 } from 'src/services/s3.client';
 
 import { ResolveImportedMediaUrlService } from './resolveImportedMediaUrl.service';
+import { insertContentViewService } from 'src/modules/creator-overview/services/insertContentView.service';
+import { mediaFiles } from 'src/database/schema';
+import { eq } from 'drizzle-orm/sql/expressions/conditions';
+import { db } from 'src/database/db';
 
 type FileType = 'documents' | 'audio' | 'ebooks';
 
@@ -66,6 +70,20 @@ export class FileUploadService {
 
   async getSignedUrl(key: string) {
     const externalUrl = await this.resolveImportedMediaUrl.findExternalUrl(key);
+    const [mediaInfo] = await db
+      .select({
+        creatorId: mediaFiles.creatorId,
+        mediaFileId: mediaFiles.id,
+      })
+      .from(mediaFiles)
+      .where(eq(mediaFiles.fileKey, key));
+
+    await insertContentViewService(
+      mediaInfo.creatorId,
+      mediaInfo.mediaFileId,
+      null,
+    );
+
     if (externalUrl) {
       return externalUrl;
     }
