@@ -1,13 +1,63 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, inArray } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   couponCodes,
   coupons,
   couponApplicableItems,
+  collectionItems,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
+import {
+  COUPON_DISCOUNT_TYPE_PERCENTAGE,
+  MAX_COUPON_PERCENTAGE_DISCOUNT,
+} from 'src/utils/coupon';
+
+const isCouponApplicableToContent = async (
+  couponId: string,
+  contentId: string,
+) => {
+  const applicableItems = await db
+    .select({
+      mediaFileId: couponApplicableItems.mediaFileId,
+      collectionId: couponApplicableItems.collectionId,
+    })
+    .from(couponApplicableItems)
+    .where(eq(couponApplicableItems.couponId, couponId));
+
+  if (applicableItems.length === 0) {
+    return true;
+  }
+
+  const hasDirectMatch = applicableItems.some(
+    (item) => item.mediaFileId === contentId,
+  );
+  if (hasDirectMatch) {
+    return true;
+  }
+
+  const collectionIds = applicableItems
+    .map((item) => item.collectionId)
+    .filter((id): id is string => Boolean(id));
+
+  if (collectionIds.length === 0) {
+    return false;
+  }
+
+  const [collectionMatch] = await db
+    .select({ id: collectionItems.id })
+    .from(collectionItems)
+    .where(
+      and(
+        eq(collectionItems.mediaFileId, contentId),
+        inArray(collectionItems.collectionId, collectionIds),
+      ),
+    )
+    .limit(1);
+
+  return Boolean(collectionMatch);
+};
 
 export const verifyCouponService = async (code: string, contentId?: string) => {
   try {
@@ -56,35 +106,31 @@ export const verifyCouponService = async (code: string, contentId?: string) => {
     }
 
     if (contentId) {
-      const [applicableItem] = await db
-        .select()
-        .from(couponApplicableItems)
-        .where(
-          and(
-            eq(couponApplicableItems.couponId, coupon.id),
-            eq(couponApplicableItems.mediaFileId, contentId),
-          ),
-        )
-        .limit(1);
+      const isApplicable = await isCouponApplicableToContent(
+        coupon.id,
+        contentId,
+      );
 
-      if (!applicableItem) {
-        const [anyItem] = await db
-          .select()
-          .from(couponApplicableItems)
-          .where(eq(couponApplicableItems.couponId, coupon.id))
-          .limit(1);
-
-        if (!anyItem) {
-          return fail(
-            'Coupon is not applicable to this content',
-            HttpStatus.BAD_REQUEST,
-          );
-        }
+      if (!isApplicable) {
+        return fail(
+          'Coupon is not applicable to this content',
+          HttpStatus.BAD_REQUEST,
+        );
       }
     }
 
     const discountValue = Number(coupon.discountValue);
     const discountType = coupon.discountType;
+
+    if (
+      discountType === COUPON_DISCOUNT_TYPE_PERCENTAGE &&
+      discountValue > MAX_COUPON_PERCENTAGE_DISCOUNT
+    ) {
+      return fail(
+        `Percentage discount cannot be greater than ${MAX_COUPON_PERCENTAGE_DISCOUNT}`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
 
     return success(
       {

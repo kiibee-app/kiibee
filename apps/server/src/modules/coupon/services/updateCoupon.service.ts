@@ -12,6 +12,7 @@ import {
   APPLICABLE_PRODUCT_KEYS,
   ApplicableProductKey,
   COUPON_DISCOUNT_TYPE_PERCENTAGE,
+  MAX_COUPON_PERCENTAGE_DISCOUNT,
   normalizeCouponDiscountType,
   normalizeCouponStatus,
 } from 'src/utils/coupon';
@@ -60,6 +61,11 @@ export const updateCouponService = async (
       payload.discountValue !== undefined
         ? Number(payload.discountValue)
         : undefined;
+    const effectiveDiscountValue =
+      parsedDiscountValue !== undefined
+        ? parsedDiscountValue
+        : Number(existing.discountValue);
+
     if (payload.discountValue !== undefined) {
       if (
         parsedDiscountValue === undefined ||
@@ -71,15 +77,17 @@ export const updateCouponService = async (
           HttpStatus.BAD_REQUEST,
         );
       }
-      if (
-        nextDiscountType === COUPON_DISCOUNT_TYPE_PERCENTAGE &&
-        parsedDiscountValue > 100
-      ) {
-        return fail(
-          'Percentage discount cannot be greater than 100',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
+    }
+
+    if (
+      nextDiscountType === COUPON_DISCOUNT_TYPE_PERCENTAGE &&
+      !Number.isNaN(effectiveDiscountValue) &&
+      effectiveDiscountValue > MAX_COUPON_PERCENTAGE_DISCOUNT
+    ) {
+      return fail(
+        `Percentage discount cannot be greater than ${MAX_COUPON_PERCENTAGE_DISCOUNT}`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     const updateData = pickDefined({

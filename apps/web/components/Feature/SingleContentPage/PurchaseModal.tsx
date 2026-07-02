@@ -51,6 +51,7 @@ import {
 import {
   COUPON_DISCOUNT_PERCENTAGE,
   CouponDiscountType,
+  MAX_COUPON_PERCENTAGE_DISCOUNT,
   formatSavedCardLabel as formatSavedCardLabelUtil,
 } from "@/utils/common";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
@@ -234,7 +235,11 @@ export default function PurchaseModal({
         const { discountType, discountValue, validUntil } = response.data;
         const calculatedDiscount =
           discountType === COUPON_DISCOUNT_PERCENTAGE
-            ? Math.round((priceNumber * discountValue) / 100)
+            ? Math.round(
+                (priceNumber *
+                  Math.min(discountValue, MAX_COUPON_PERCENTAGE_DISCOUNT)) /
+                  100,
+              )
             : discountValue;
         setDiscount(Math.min(calculatedDiscount, priceNumber));
         setAppliedCode(response.data.code);

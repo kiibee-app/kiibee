@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useId, useMemo } from "react";
+import React, { useId, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { BackButtonIcon } from "@/assets/icons";
+import { BackButtonIcon, InfoIcon } from "@/assets/icons";
 import { GenericModal } from "@/components/UI/Modals";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
 import {
   COUPON_DISCOUNT_FIXED_AMOUNT,
   COUPON_DISCOUNT_PERCENTAGE,
+  MAX_COUPON_PERCENTAGE_DISCOUNT,
   type CouponDiscountType,
 } from "@/utils/common";
 import {
@@ -20,9 +21,11 @@ import {
   ModalTitle,
   NextButton,
 } from "../styles";
-import { CouponInput, SectionTitle } from "./styles";
-import { sanitizeDecimal, sanitizePercentage } from "@/utils/numericFields";
+import { CouponInput, SectionTitle, DiscountWarningNotice } from "./styles";
+import { sanitizeDecimal, sanitizeDigits } from "@/utils/numericFields";
 import { CreateCouponPayload } from "@/types/couponType";
+import COLORS from "@repo/ui/colors";
+import { MonoText } from "@/components/UI/Monotext";
 
 type CouponDetailsModalProps = {
   visible: boolean;
@@ -44,6 +47,18 @@ export default function CouponDetailsModal({
   const { t } = useTranslation();
   const titleId = useId();
   const discountId = useId();
+  const [percentageWarning, setPercentageWarning] = useState<string | null>(
+    null,
+  );
+  const [prevVisible, setPrevVisible] = useState(visible);
+
+  if (visible !== prevVisible) {
+    setPrevVisible(visible);
+    if (!visible) {
+      setPercentageWarning(null);
+    }
+  }
+
   const discountTypeOptions = useMemo(
     () => [
       {
@@ -59,14 +74,63 @@ export default function CouponDetailsModal({
   );
 
   const canContinue =
-    form.title.trim().length > 0 && form.discountValue.trim().length > 0;
+    form.title.trim().length > 0 &&
+    form.discountValue.trim().length > 0 &&
+    !percentageWarning;
+
+  const showPercentageLimitWarning = (max = MAX_COUPON_PERCENTAGE_DISCOUNT) => {
+    setPercentageWarning(
+      t("contents.couponDetails.maxPercentageError", { max }),
+    );
+  };
 
   const handleDiscountChange = (raw: string) => {
-    const value =
-      form.discountType === COUPON_DISCOUNT_PERCENTAGE
-        ? sanitizePercentage(raw)
-        : sanitizeDecimal(raw);
-    setForm((prev) => ({ ...prev, discountValue: value }));
+    if (form.discountType !== COUPON_DISCOUNT_PERCENTAGE) {
+      setPercentageWarning(null);
+      setForm((prev) => ({ ...prev, discountValue: sanitizeDecimal(raw) }));
+      return;
+    }
+
+    const digits = sanitizeDigits(raw);
+    if (!digits) {
+      setPercentageWarning(null);
+      setForm((prev) => ({ ...prev, discountValue: "" }));
+      return;
+    }
+
+    const parsed = Number.parseInt(digits, 10);
+    if (parsed > MAX_COUPON_PERCENTAGE_DISCOUNT) {
+      setForm((prev) => ({ ...prev, discountValue: "" }));
+      showPercentageLimitWarning();
+      return;
+    }
+
+    setPercentageWarning(null);
+    setForm((prev) => ({ ...prev, discountValue: digits }));
+  };
+
+  const handleDiscountTypeChange = (value: CouponDiscountType) => {
+    if (value !== COUPON_DISCOUNT_PERCENTAGE) {
+      setPercentageWarning(null);
+      setForm((prev) => ({ ...prev, discountType: value }));
+      return;
+    }
+
+    const digits = sanitizeDigits(form.discountValue);
+    const parsed = digits ? Number.parseInt(digits, 10) : NaN;
+
+    if (parsed > MAX_COUPON_PERCENTAGE_DISCOUNT) {
+      showPercentageLimitWarning();
+      setForm((prev) => ({ ...prev, discountType: value, discountValue: "" }));
+      return;
+    }
+
+    setPercentageWarning(null);
+    setForm((prev) => ({
+      ...prev,
+      discountType: value,
+      discountValue: digits,
+    }));
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -116,16 +180,19 @@ export default function CouponDetailsModal({
           <SectionTitle>
             {t("contents.couponDetails.discountValue")}
           </SectionTitle>
-          <HelperText>{t("contents.couponDetails.discountHelp")}</HelperText>
+          <HelperText>
+            {form.discountType === COUPON_DISCOUNT_PERCENTAGE
+              ? t("contents.couponDetails.discountHelpPercentage", {
+                  max: MAX_COUPON_PERCENTAGE_DISCOUNT,
+                })
+              : t("contents.couponDetails.discountHelp")}
+          </HelperText>
 
           <DropdownField
             options={discountTypeOptions}
             value={form.discountType}
             onChange={(value) =>
-              setForm((prev) => ({
-                ...prev,
-                discountType: value as CouponDiscountType,
-              }))
+              handleDiscountTypeChange(value as CouponDiscountType)
             }
           />
 
@@ -141,6 +208,14 @@ export default function CouponDetailsModal({
                 : "contents.couponDetails.placeholders.discountAmount",
             )}
           />
+          {percentageWarning ? (
+            <DiscountWarningNotice role="status">
+              <InfoIcon size={16} />
+              <MonoText $use="Body_Medium" color={COLORS.primary.ORANGE}>
+                {percentageWarning}
+              </MonoText>
+            </DiscountWarningNotice>
+          ) : null}
 
           <NextButton type="submit" disabled={!canContinue}>
             {t("common.next")}

@@ -11,6 +11,8 @@ const COUPON_ERROR_MESSAGE_KEYS: Record<string, string> = {
   "Coupon is not applicable to this content":
     "singleContent.pricing.couponNotApplicable",
   "Failed to verify coupon": "singleContent.pricing.couponVerifyFailed",
+  "Percentage discount cannot be greater than 50":
+    "singleContent.pricing.couponMaxPercentage",
 };
 
 export function getCouponErrorMessage(

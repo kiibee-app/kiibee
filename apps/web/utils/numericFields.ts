@@ -48,11 +48,15 @@ export function sanitizeDecimal(value: string): string {
   return `${whole}.${fraction}`;
 }
 
-export function sanitizePercentage(value: string): string {
+export function sanitizePercentage(value: string, max = 100): string {
   const digits = sanitizeDigits(value);
   if (!digits) return "";
   const parsed = Number.parseInt(digits, 10);
-  return String(Math.min(100, parsed));
+  return String(Math.min(max, parsed));
+}
+
+export function sanitizeCouponPercentage(value: string): string {
+  return sanitizePercentage(value, 50);
 }
 
 export function sanitizeDigitsField(field: string, value: string): string {

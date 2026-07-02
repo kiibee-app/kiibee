@@ -1037,8 +1037,9 @@
       "couponAlreadyUsed": "Denne kupon er allerede brugt",
       "couponInactive": "Denne kupon er ikke længere aktiv",
       "couponMaxUses": "Denne kupon har nået sin brugsgrænse",
-      "couponNotApplicable": "Denne kupon kan ikke bruges til dette indhold",
+      "couponNotApplicable": "Denne kupon kan kun bruges på udvalgte produkter",
       "couponVerifyFailed": "Kuponen kunne ikke verificeres. Prøv igen",
+      "couponMaxPercentage": "Denne kupon overstiger den maksimale rabat på 50%",
       "couponValidUntil": "Din rabat er aktiv indtil {{date}}"
     },
     "meta": {
@@ -1654,6 +1655,8 @@
       },
       "discountValue": "Rabatvaerdi",
       "discountHelp": "Indtast det rabatbeloeb eller den procentdel, du vil tilbyde.",
+      "discountHelpPercentage": "Indtast en procentrabat op til {{max}}%.",
+      "maxPercentageError": "Maksimal rabat er {{max}}%.",
       "discountType": {
         "fixedAmount": "Fast beloeb",
         "percentage": "Procent"
@@ -1706,6 +1709,7 @@
       "confirm": "Bekræft",
       "uploading": "Uploader kupon",
       "indefinite": "Ubestemt",
+      "allContents": "Alt indhold",
       "fields": {
         "title": "Titel",
         "discountType": "Rabattype",
