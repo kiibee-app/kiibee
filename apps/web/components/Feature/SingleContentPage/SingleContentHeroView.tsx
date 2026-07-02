@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRef, useState, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import PdfIcon from "@/assets/icons/PdfIcon";
 import type { SingleContentHeroSectionProps } from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
@@ -271,6 +272,7 @@ export default function SingleContentHeroView({
       setHasStartedPlayback(true);
     } catch {
       setHasStartedPlayback(false);
+      toast.error(t("singleContent.videoPlaybackError"));
     }
   };
 
