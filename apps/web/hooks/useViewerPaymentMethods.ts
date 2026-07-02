@@ -67,7 +67,7 @@ export const useViewerPaymentMethods = () => {
   };
 
   const markAsDefault = async (id: string) => {
-    await axiosClient.patch(API.viewer.paymentMethodDefault(id));
+    await axiosClient.put(API.payment.cardDefault(id));
     await invalidate();
   };
 
