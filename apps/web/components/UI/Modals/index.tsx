@@ -40,6 +40,7 @@ type GenericModalProps = {
   onClose?: () => void;
   width?: string;
   height?: string;
+  maxHeight?: string;
   padding?: string;
   size?: ModalSize;
   spacing?: ModalPadding;
@@ -70,6 +71,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   onClose,
   width,
   height,
+  maxHeight,
   padding,
   size,
   spacing,
@@ -135,6 +137,7 @@ export const GenericModal: React.FC<GenericModalProps> = ({
       <ModalContainer
         $width={width || (size ? MODAL_WIDTHS[size] : undefined)}
         $height={height}
+        $maxHeight={maxHeight}
         $padding={
           resolvedPadding || (spacing ? MODAL_PADDINGS[spacing] : undefined)
         }

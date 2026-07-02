@@ -51,10 +51,10 @@ export default function LoginRequiredModal({
 
   const handleSuccess = () => {
     onClose();
-    onSuccess 
-      ? onSuccess() 
+    onSuccess
+      ? onSuccess()
       : searchParams?.get("intent") === INTENT_PURCHASE
-        ? router.refresh() 
+        ? router.refresh()
         : router.refresh();
   };
 
@@ -62,9 +62,10 @@ export default function LoginRequiredModal({
     <GenericModal
       visible={visible}
       onClose={onClose}
-      size={view === VIEW_STATES.INITIAL ? "sm" : "md"}
+      size="sm"
       spacing="start"
       showCloseButton
+      maxHeight="85vh"
     >
       {view === VIEW_STATES.INITIAL && (
         <ModalContentWrapper>

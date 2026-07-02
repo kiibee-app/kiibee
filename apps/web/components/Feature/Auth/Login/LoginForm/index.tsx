@@ -114,7 +114,7 @@ export default function LoginForm({
               }
             }}
           >
-            <MonoText $use="Body_Medium">{t("authForm.signup")}</MonoText>
+            <MonoText $use="Body_Medium">{t("authForm.signUp")}</MonoText>
           </SignUpLink>
         </FooterText>
       </Card>
