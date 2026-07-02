@@ -9,7 +9,7 @@ import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, type ImageSource } from "@/utils/Constants";
 import { resolveImageUrl, resolvePublicMediaUrl } from "@/utils/media";
-import { pathPublishedContent, PATHS } from "@/utils/path";
+import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import {
   FORMAT_TYPE,

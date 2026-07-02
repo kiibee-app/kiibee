@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { ImageSource } from "@/utils/Constants";
@@ -103,7 +102,6 @@ type ComputedAction = {
 
 export default function LatestUpload({ data }: LatestUploadProps) {
   const { t } = useTranslation();
-  const router = useRouter();
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const { navigateToContent } = useProtectedContentNavigation();
