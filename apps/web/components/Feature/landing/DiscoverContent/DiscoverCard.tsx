@@ -5,7 +5,7 @@ import { memo, type MouseEvent } from "react";
 import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { EbookIcon, VideoIcon } from "@/assets/icons";
-import { MEDIA_TYPE, VARIANT } from "@/utils/Constants";
+import { MEDIA_TYPE, VARIANT, STRING_EMPTY } from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { MonoText } from "@/components/UI/Monotext";
@@ -41,9 +41,9 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   const { navigateToContent } = useProtectedContentNavigation();
   const targetHref = pathPublishedContent(item.contentKey);
 
-  const safeT = (key: string | undefined | null) => {
-    if (!key) return "";
-    return key.includes("discoverContent.") ? t(key) : key;
+  const safeT = (key: string | undefined | null): string => {
+    if (!key) return STRING_EMPTY;
+    return t(key);
   };
 
   const handleOpen = () => {
