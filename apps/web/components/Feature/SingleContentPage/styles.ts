@@ -721,6 +721,11 @@ export const PurchaseModalDiscountInput = styled.input`
   }
 `;
 
+export const PurchaseModalCouponNotice = styled.p`
+  margin: 0.5rem 0 0;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
+`;
+
 export const PurchaseModalPriceSummary = styled.div`
   padding: 0 1.5rem 1.25rem;
 `;

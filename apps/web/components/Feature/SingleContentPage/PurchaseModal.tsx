@@ -9,7 +9,7 @@ import { VARIANT } from "@/utils/Constants";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { useTranslation } from "react-i18next";
 import { extractPriceNumber } from "@/utils/contentPricingActions";
-import { formatCardExpiry } from "@/utils/formatDate";
+import { formatCardExpiry, formatDate } from "@/utils/formatDate";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -30,6 +30,7 @@ import {
   PurchaseModalDiscountLabel,
   PurchaseModalDiscountRow,
   PurchaseModalDiscountInput,
+  PurchaseModalCouponNotice,
   PurchaseModalPriceSummary,
   PurchaseModalPriceRow,
   PurchaseModalPriceRowTotal,
@@ -63,6 +64,8 @@ type VerifyCouponResponse = {
     discountValue: number;
     code: string;
     title: string;
+    validFrom?: string | null;
+    validUntil?: string | null;
   };
 };
 
@@ -115,6 +118,10 @@ export default function PurchaseModal({
   const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
+  const [couponValidityNotice, setCouponValidityNotice] = useState<
+    string | null
+  >(null);
+  const [couponError, setCouponError] = useState<string | null>(null);
   const [selectedSubscriptionId, setSelectedSubscriptionId] = useState<
     string | null
   >(null);
@@ -203,6 +210,9 @@ export default function PurchaseModal({
   const handleApplyDiscount = async () => {
     if (!discountCode.trim()) return;
 
+    setCouponError(null);
+    setCouponValidityNotice(null);
+
     try {
       const response = await verifyCouponMutation.mutateAsync({
         code: discountCode.trim(),
@@ -210,7 +220,7 @@ export default function PurchaseModal({
       });
 
       if (response.success && response.data) {
-        const { discountType, discountValue } = response.data;
+        const { discountType, discountValue, validUntil } = response.data;
         const calculatedDiscount =
           discountType === COUPON_DISCOUNT_PERCENTAGE
             ? Math.round((priceNumber * discountValue) / 100)
@@ -218,11 +228,30 @@ export default function PurchaseModal({
         setDiscount(Math.min(calculatedDiscount, priceNumber));
         setAppliedCode(response.data.code);
         toast.success(t("singleContent.pricing.couponApplied"));
+
+        if (validUntil) {
+          setCouponValidityNotice(
+            t("singleContent.pricing.couponValidUntil", {
+              date: formatDate(validUntil),
+            }),
+          );
+        }
       }
-    } catch {
+    } catch (error) {
+      const err = error as {
+        response?: { data?: { message?: string } };
+        message?: string;
+      };
+      const apiError =
+        err?.response?.data?.message ||
+        err?.message ||
+        t("singleContent.pricing.couponInvalid");
+
       setDiscount(0);
       setAppliedCode(null);
-      toast.error(t("singleContent.pricing.couponInvalid"));
+      setCouponValidityNotice(null);
+      setCouponError(apiError);
+      toast.error(apiError);
     }
   };
 
@@ -230,6 +259,8 @@ export default function PurchaseModal({
     setDiscountCode("");
     setDiscount(0);
     setAppliedCode(null);
+    setCouponValidityNotice(null);
+    setCouponError(null);
   };
 
   return (
@@ -324,7 +355,10 @@ export default function PurchaseModal({
             type="text"
             placeholder={t("singleContent.pricing.enterCode")}
             value={discountCode}
-            onChange={(e) => setDiscountCode(e.target.value)}
+            onChange={(e) => {
+              setDiscountCode(e.target.value);
+              if (couponError) setCouponError(null);
+            }}
             disabled={!!appliedCode}
           />
           {appliedCode ? (
@@ -345,6 +379,16 @@ export default function PurchaseModal({
             </GenericButton>
           )}
         </PurchaseModalDiscountRow>
+        {couponError ? (
+          <PurchaseModalCouponNotice>
+            <MonoText $use="Body_Medium">{couponError}</MonoText>
+          </PurchaseModalCouponNotice>
+        ) : null}
+        {couponValidityNotice ? (
+          <PurchaseModalCouponNotice>
+            <MonoText $use="Body_Medium">{couponValidityNotice}</MonoText>
+          </PurchaseModalCouponNotice>
+        ) : null}
       </PurchaseModalDiscountSection>
 
       <PurchaseModalPriceSummary>

@@ -32,6 +32,7 @@ import { useSuccessAutoClose } from "@/hooks/useSuccessAutoClose";
 import { CollectionRow } from "@/types/collectionsType";
 import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
 import { formatDate, formatDateUSShort } from "@/utils/formatDate";
+import { toFormDate } from "@/utils/couponDates";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { COUPON_MODE, CouponMode } from "@/utils/content";
 
@@ -102,12 +103,19 @@ export default function CouponPreviewModal({
       : ["-"];
 
   const formatValidity = () => {
-    if (!data.startDate && !data.endDate) {
+    const startDate =
+      (data as CreateCouponPayload).startDate ||
+      toFormDate((data as CouponEntity).validFrom);
+    const endDate =
+      (data as CreateCouponPayload).endDate ||
+      toFormDate((data as CouponEntity).validUntil);
+
+    if (!startDate && !endDate) {
       return t("contents.couponPreview.indefinite");
     }
-    const startStr = data.startDate ? formatDate(data.startDate) : "";
-    const endStr = data.endDate
-      ? formatDate(data.endDate)
+    const startStr = startDate ? formatDate(startDate) : "";
+    const endStr = endDate
+      ? formatDate(endDate)
       : t("contents.couponPreview.indefinite");
     return `${startStr} - ${endStr}`;
   };

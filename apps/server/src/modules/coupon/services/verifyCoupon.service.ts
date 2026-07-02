@@ -92,6 +92,8 @@ export const verifyCouponService = async (code: string, contentId?: string) => {
         discountType,
         discountValue,
         title: coupon.title,
+        validFrom: coupon.validFrom,
+        validUntil: coupon.validUntil,
       },
       'Coupon verified successfully',
       HttpStatus.OK,

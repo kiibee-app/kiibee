@@ -1031,7 +1031,8 @@
       "useNewCard": "Brug et nyt kort",
       "useNewCardHint": "Du bliver videresendt for at fuldføre betalingen.",
       "couponApplied": "Kupon anvendt",
-      "couponInvalid": "Ugyldig kuponkode"
+      "couponInvalid": "Ugyldig kuponkode",
+      "couponValidUntil": "Denne kupon er gyldig indtil {{date}}"
     },
     "meta": {
       "category": "Kategori:",

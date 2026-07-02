@@ -1031,7 +1031,8 @@
       "useNewCard": "Use a new card",
       "useNewCardHint": "You will be redirected to complete your payment with a new card.",
       "couponApplied": "Coupon applied successfully",
-      "couponInvalid": "Invalid coupon code"
+      "couponInvalid": "Invalid coupon code",
+      "couponValidUntil": "This coupon is valid until {{date}}"
     },
     "meta": {
       "category": "Category:",
