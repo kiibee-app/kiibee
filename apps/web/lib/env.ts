@@ -1,3 +1,4 @@
+import { isProduction } from "@/utils/common";
 import { z } from "zod";
 
 const requiredApiUrlSchema = z.preprocess(
@@ -43,10 +44,7 @@ const productionPublicEnvSchema = basePublicEnvSchema.extend({
 });
 
 function resolveApiBaseUrl(): string {
-  const schema =
-    process.env.NODE_ENV === "production"
-      ? productionPublicEnvSchema
-      : basePublicEnvSchema;
+  const schema = isProduction ? productionPublicEnvSchema : basePublicEnvSchema;
 
   const parsed = schema.safeParse({
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,

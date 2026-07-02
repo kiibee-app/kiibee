@@ -7,6 +7,7 @@ import { API_FIELD_KEYS, JAVASCRIPT_TYPE } from "@/utils/collection";
 import { isString, toTrimmedString } from "@/utils/Constants";
 import { VIEWER_PROFILE_FIELDS } from "@/utils/profile";
 import { isBrowser } from "@/utils/ui";
+import { logger } from "@/lib/logger";
 
 const notifyStoredLoginUserUpdated = () => {
   if (!isBrowser) return;
@@ -54,7 +55,8 @@ const getCookie = (name: string) => {
 
   try {
     return decodeURIComponent(value);
-  } catch {
+  } catch (error) {
+    logger.error("Failed to decode cookie:", name, error);
     return value;
   }
 };
@@ -64,7 +66,8 @@ const getJsonValue = (value: string | null) => {
 
   try {
     return JSON.parse(value) as Record<string, unknown>;
-  } catch {
+  } catch (error) {
+    logger.error("Failed to parse JSON value:", error);
     return null;
   }
 };
@@ -83,7 +86,8 @@ const decodeJwtPayload = (token: string | null) => {
     );
 
     return JSON.parse(window.atob(paddedPayload)) as Record<string, unknown>;
-  } catch {
+  } catch (error) {
+    logger.error("Failed to decode JWT payload:", error);
     return null;
   }
 };
