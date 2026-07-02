@@ -15,6 +15,7 @@ import {
 import { FORMAT_TYPE } from "@/utils/types";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { logger } from "@/lib/logger";
 
 type Params = {
   contentType: ContentType | null;
@@ -198,7 +199,8 @@ export function useContentUpload({ contentType }: Params) {
       const uploaded = await uploadSelectedFile(file);
       setUploadedFile(uploaded);
       setUploadComplete(true);
-    } catch {
+    } catch (error) {
+      logger.error("[useContentUpload] Upload failed:", error);
       setSelectedFile(null);
       setUploadedFile(null);
       setUploadComplete(false);
