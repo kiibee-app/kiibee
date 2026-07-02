@@ -38,7 +38,9 @@ async function bootstrap() {
       limits: { fileSize: FILE_SIZE_LIMIT },
     });
 
-    app.setGlobalPrefix('api/v1');
+    app.setGlobalPrefix('api/v1', {
+      exclude: ['/', 'api/v1'],
+    });
 
     app.useGlobalPipes(
       new ValidationPipe({
