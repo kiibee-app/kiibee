@@ -9,12 +9,12 @@ import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT } from "@/utils/Constants";
 import { MODAL_ALIGN } from "@/utils/ui";
-import styled from "styled-components";
 import LoginForm from "@/components/Feature/Auth/Login/LoginForm";
 import SignUpViewer from "@/components/Feature/Auth/SignUpViewer";
 import ViewerPreference from "@/components/Feature/Auth/SignUpViewer/viewersPreference";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { ButtonGroup } from "./styles";
 
 type LoginRequiredModalProps = {
   visible: boolean;
@@ -22,18 +22,16 @@ type LoginRequiredModalProps = {
   onSuccess?: () => void;
 };
 
-const ButtonGroup = styled.div<{ $row?: boolean; $align?: string }>`
-  display: flex;
-  flex-direction: ${({ $row }) => ($row ? "row" : "column")};
-  gap: 12px;
-  justify-content: ${({ $align }) =>
-    $align === MODAL_ALIGN.CENTER
-      ? "center"
-      : $align === MODAL_ALIGN.START
-        ? "flex-start"
-        : "flex-end"};
-  margin-top: 24px;
-`;
+const VIEW_STATES = {
+  INITIAL: "initial",
+  LOGIN: "login",
+  REGISTER: "register",
+  PREFERENCES: "preferences",
+} as const;
+
+type ViewState = (typeof VIEW_STATES)[keyof typeof VIEW_STATES];
+
+const INTENT_PURCHASE = "purchase";
 
 export default function LoginRequiredModal({
   visible,
@@ -41,38 +39,34 @@ export default function LoginRequiredModal({
   onSuccess,
 }: LoginRequiredModalProps) {
   const { t } = useTranslation();
-  const [view, setView] = useState<
-    "initial" | "login" | "register" | "preferences"
-  >("initial");
+  const [view, setView] = useState<ViewState>(VIEW_STATES.INITIAL);
   const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
     if (!visible) {
-      setTimeout(() => setView("initial"), 300);
+      setTimeout(() => setView(VIEW_STATES.INITIAL), 300);
     }
   }, [visible]);
 
   const handleSuccess = () => {
     onClose();
-    if (onSuccess) {
-      onSuccess();
-    } else if (searchParams?.get("intent") === "purchase") {
-      router.refresh();
-    } else {
-      router.refresh();
-    }
+    onSuccess 
+      ? onSuccess() 
+      : searchParams?.get("intent") === INTENT_PURCHASE
+        ? router.refresh() 
+        : router.refresh();
   };
 
   return (
     <GenericModal
       visible={visible}
       onClose={onClose}
-      size={view === "initial" ? "sm" : "md"}
+      size={view === VIEW_STATES.INITIAL ? "sm" : "md"}
       spacing="start"
       showCloseButton
     >
-      {view === "initial" && (
+      {view === VIEW_STATES.INITIAL && (
         <ModalContentWrapper>
           <MonoText $use="Heading3">
             {t("createProfileHome.latestUpload.loginModal.title")}
@@ -84,13 +78,13 @@ export default function LoginRequiredModal({
           <ButtonGroup $row={true} $align={MODAL_ALIGN.CENTER}>
             <GenericButton
               variant={VARIANT.PRIMARY}
-              onClick={() => setView("login")}
+              onClick={() => setView(VIEW_STATES.LOGIN)}
             >
               {t("createProfileHome.latestUpload.loginModal.cancelLabel")}
             </GenericButton>
             <GenericButton
               variant={VARIANT.PRIMARY}
-              onClick={() => setView("register")}
+              onClick={() => setView(VIEW_STATES.REGISTER)}
             >
               {t("createProfileHome.latestUpload.loginModal.confirmLabel")}
             </GenericButton>
@@ -98,23 +92,23 @@ export default function LoginRequiredModal({
         </ModalContentWrapper>
       )}
 
-      {view === "login" && (
+      {view === VIEW_STATES.LOGIN && (
         <LoginForm
           onSuccess={handleSuccess}
-          onSwitchMode={() => setView("register")}
+          onSwitchMode={() => setView(VIEW_STATES.REGISTER)}
         />
       )}
 
-      {view === "register" && (
+      {view === VIEW_STATES.REGISTER && (
         <SignUpViewer
-          onSuccess={() => setView("preferences")}
-          onSwitchMode={() => setView("login")}
+          onSuccess={() => setView(VIEW_STATES.PREFERENCES)}
+          onSwitchMode={() => setView(VIEW_STATES.LOGIN)}
         />
       )}
-      {view === "preferences" && (
+      {view === VIEW_STATES.PREFERENCES && (
         <ViewerPreference
           onComplete={handleSuccess}
-          onBack={() => setView("register")}
+          onBack={() => setView(VIEW_STATES.REGISTER)}
         />
       )}
     </GenericModal>
