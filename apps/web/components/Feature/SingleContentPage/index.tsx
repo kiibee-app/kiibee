@@ -33,10 +33,7 @@ import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
 
-import {
-  LoginRequiredModal,
-  PurchaseConfirmationModal,
-} from "@/components/UI/Modals";
+import { LoginRequiredModal } from "@/components/UI/Modals";
 
 import { useSearchParams } from "next/navigation";
 
@@ -137,7 +134,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   }, [contentId, createOrderMutation, primaryAction, primaryActions, t]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
     label: string;
     subtitle?: string;
@@ -164,7 +160,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             .toLowerCase()
             .includes(t("pricingLabels.buy").toLowerCase()),
         });
-        setShowConfirmationModal(true);
+        setShowPurchaseModal(true);
 
         const newUrl =
           window.location.pathname +
@@ -278,7 +274,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       const orderId = response?.data?.orderId;
       if (!paymentUrl && subscriptionId && orderId) {
         setShowPurchaseModal(false);
-        setShowConfirmationModal(false);
         setSelectedAction(null);
         router.push(`/payment/success?orderId=${encodeURIComponent(orderId)}`);
         return;
@@ -287,7 +282,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         throw new Error("Payment URL missing");
       }
       setShowPurchaseModal(false);
-      setShowConfirmationModal(false);
       setSelectedAction(null);
       window.location.assign(paymentUrl);
     } catch (error) {
@@ -298,11 +292,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const handleClosePurchaseModal = () => {
     setShowPurchaseModal(false);
-    setSelectedAction(null);
-  };
-
-  const handleCloseConfirmationModal = () => {
-    setShowConfirmationModal(false);
     setSelectedAction(null);
   };
 
@@ -359,20 +348,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         priceLabel={selectedAction?.label || ""}
         accessLabel={selectedAction?.subtitle}
         contentId={contentId}
-        loading={createOrderMutation.isPending}
-      />
-
-      <PurchaseConfirmationModal
-        visible={showConfirmationModal}
-        onClose={handleCloseConfirmationModal}
-        onConfirm={() => handlePurchaseConfirm()}
-        title={title}
-        image={hero.image ? resolveImageUrl(hero.image) : undefined}
-        imageAlt={hero.imageAlt}
-        creator={creator?.name}
-        contentType={hero.contentType || hero.media?.type}
-        priceLabel={selectedAction?.label || ""}
-        accessLabel={selectedAction?.subtitle}
         loading={createOrderMutation.isPending}
       />
 

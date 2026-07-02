@@ -213,4 +213,3 @@ export const GenericModal: React.FC<GenericModalProps> = ({
   );
 };
 export { default as LoginRequiredModal } from "./LoginRequiredModal";
-export { default as PurchaseConfirmationModal } from "./PurchaseConfirmationModal";
