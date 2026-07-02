@@ -184,7 +184,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   }, [searchParams, primaryActions, primaryAction, t]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
-  const isWebType = previewContentType === FORMAT_TYPE.WEB;
 
   const canPreview =
     isPreviewableType &&
@@ -251,9 +250,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       });
 
       setShowPurchaseModal(true);
-    const mediaUrl = await fetchMediaUrl();
-    if (mediaUrl) {
-      setShowPreviewModal(true);
+    } else {
+      const mediaUrl = await fetchMediaUrl();
+      if (mediaUrl) {
+        setShowPreviewModal(true);
+      }
     }
   };
 
