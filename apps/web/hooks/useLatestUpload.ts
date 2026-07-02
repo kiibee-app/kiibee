@@ -140,7 +140,11 @@ export function useLatestUpload(publicCreatorId: string | null = null) {
             parentCollection?.rentDuration,
           ),
         };
-      } catch {
+      } catch (error) {
+        console.error(
+          "Failed to fetch content details for latest upload:",
+          error,
+        );
         return {
           ...latest,
           title: latest.name || "",
