@@ -90,6 +90,24 @@ export const ButtonGroup = styled.div<{
   }
 `;
 
+export const LoginRequiredBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  width: 100%;
+
+  ${ButtonGroup} {
+    margin-top: 8px;
+  }
+`;
+
+export const LoginRequiredDescription = styled.div`
+  max-width: 420px;
+  line-height: 1.6;
+`;
+
 export const CloseButton = styled.button`
   position: absolute;
   top: 16px;

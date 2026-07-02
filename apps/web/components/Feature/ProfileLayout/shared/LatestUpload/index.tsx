@@ -33,6 +33,7 @@ import {
 } from "@/assets/icons";
 import { useIsMobile } from "@/utils/useIsMobile";
 import { LoginRequiredModal } from "@/components/UI/Modals";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { pathPublishedContent } from "@/utils/path";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
@@ -44,7 +45,6 @@ import {
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
 import { authStorage } from "@/lib/auth/authStorage";
-import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { ROLE_CREATOR } from "@/utils/Constants";
 
 type LatestUploadAction = {

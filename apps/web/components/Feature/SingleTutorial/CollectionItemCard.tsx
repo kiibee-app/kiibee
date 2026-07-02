@@ -7,6 +7,9 @@ import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import GenericButton from "@/components/UI/GenericButton";
+import { LoginRequiredModal } from "@/components/UI/Modals";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { VARIANT, type ImageSource } from "@/utils/Constants";
 import { resolveImageUrl, resolvePublicMediaUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
@@ -16,11 +19,8 @@ import {
   type FormatType,
   type TutorialVideo,
 } from "@/utils/types";
-import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { LoginRequiredModal } from "@/components/UI/Modals";
 import {
   CollectionActionRow,
   CollectionAuthor,

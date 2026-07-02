@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Overlay,
   ModalContainer,
@@ -10,13 +11,15 @@ import {
   ButtonGroup,
   IconWrapper,
   CloseButton,
+  LoginRequiredBody,
+  LoginRequiredDescription,
 } from "./styles";
 import GenericButton from "../GenericButton";
 import { MonoText } from "../Monotext";
 import { BUTTON, ESCAPE, KEYDOWN, VARIANT } from "@/utils/Constants";
 import { Variant } from "@/utils/Constants";
 import { CrossIcon } from "@/assets/icons/crossIcon";
-import { canUseDOM, ModalAlign } from "@/utils/ui";
+import { canUseDOM, MODAL_ALIGN, ModalAlign } from "@/utils/ui";
 import { useTranslation } from "react-i18next";
 import {
   MODAL_PADDINGS,
@@ -24,6 +27,9 @@ import {
   ModalPadding,
   ModalSize,
 } from "@/lib/theme/tokens";
+import LoginForm from "@/components/Feature/Auth/Login/LoginForm";
+import SignUpViewer from "@/components/Feature/Auth/SignUpViewer";
+import ViewerPreference from "@/components/Feature/Auth/SignUpViewer/viewersPreference";
 
 type GenericModalProps = {
   visible: boolean;
@@ -212,4 +218,115 @@ export const GenericModal: React.FC<GenericModalProps> = ({
     document.body,
   );
 };
-export { default as LoginRequiredModal } from "./LoginRequiredModal";
+
+const LOGIN_VIEW_STATES = {
+  INITIAL: "initial",
+  LOGIN: "login",
+  REGISTER: "register",
+  PREFERENCES: "preferences",
+} as const;
+
+type LoginViewState =
+  (typeof LOGIN_VIEW_STATES)[keyof typeof LOGIN_VIEW_STATES];
+
+const INTENT_PURCHASE = "purchase";
+
+type LoginRequiredModalProps = {
+  visible: boolean;
+  onClose: () => void;
+  onSuccess?: () => void;
+};
+
+export function LoginRequiredModal({
+  visible,
+  onClose,
+  onSuccess,
+}: LoginRequiredModalProps) {
+  const { t } = useTranslation();
+  const [view, setView] = useState<LoginViewState>(LOGIN_VIEW_STATES.INITIAL);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const isInitialView = view === LOGIN_VIEW_STATES.INITIAL;
+
+  useEffect(() => {
+    if (!visible) {
+      setTimeout(() => setView(LOGIN_VIEW_STATES.INITIAL), 300);
+    }
+  }, [visible]);
+
+  const handleSuccess = () => {
+    onClose();
+    if (onSuccess) {
+      onSuccess();
+      return;
+    }
+
+    if (searchParams?.get("intent") === INTENT_PURCHASE) {
+      router.refresh();
+      return;
+    }
+
+    router.refresh();
+  };
+
+  return (
+    <GenericModal
+      visible={visible}
+      onClose={onClose}
+      size="sm"
+      spacing={isInitialView ? "lg" : "start"}
+      textAlign={isInitialView ? MODAL_ALIGN.CENTER : MODAL_ALIGN.START}
+      showCloseButton
+      maxHeight="85vh"
+      contentMarginBottom="0"
+    >
+      {isInitialView && (
+        <LoginRequiredBody>
+          <MonoText $use="H5_Medium">
+            {t("createProfileHome.latestUpload.loginModal.title")}
+          </MonoText>
+          <LoginRequiredDescription>
+            <MonoText $use="Body_Medium">
+              {t("createProfileHome.latestUpload.loginModal.message")}
+            </MonoText>
+          </LoginRequiredDescription>
+          <ButtonGroup $row $align={MODAL_ALIGN.CENTER}>
+            <GenericButton
+              variant={VARIANT.PRIMARY}
+              onClick={() => setView(LOGIN_VIEW_STATES.LOGIN)}
+            >
+              {t("createProfileHome.latestUpload.loginModal.cancelLabel")}
+            </GenericButton>
+            <GenericButton
+              variant={VARIANT.SECONDARY}
+              onClick={() => setView(LOGIN_VIEW_STATES.REGISTER)}
+            >
+              {t("createProfileHome.latestUpload.loginModal.confirmLabel")}
+            </GenericButton>
+          </ButtonGroup>
+        </LoginRequiredBody>
+      )}
+
+      {view === LOGIN_VIEW_STATES.LOGIN && (
+        <LoginForm
+          onSuccess={handleSuccess}
+          onSwitchMode={() => setView(LOGIN_VIEW_STATES.REGISTER)}
+        />
+      )}
+
+      {view === LOGIN_VIEW_STATES.REGISTER && (
+        <SignUpViewer
+          onSuccess={() => setView(LOGIN_VIEW_STATES.PREFERENCES)}
+          onSwitchMode={() => setView(LOGIN_VIEW_STATES.LOGIN)}
+        />
+      )}
+
+      {view === LOGIN_VIEW_STATES.PREFERENCES && (
+        <ViewerPreference
+          onComplete={handleSuccess}
+          onBack={() => setView(LOGIN_VIEW_STATES.REGISTER)}
+        />
+      )}
+    </GenericModal>
+  );
+}

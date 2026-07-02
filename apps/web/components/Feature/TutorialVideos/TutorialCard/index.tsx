@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
-
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { ActionRow, CardLink, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
@@ -20,7 +20,6 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent } from "@/utils/path";
-import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 
 type TutorialCardProps = {
