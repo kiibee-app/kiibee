@@ -266,9 +266,7 @@ export default function PurchaseModal({
 
           <PurchaseModalCardInfo>
             <PurchaseModalCardBadge>
-              <MonoText $use="Body_Bold">
-                {contentType?.toUpperCase() || "PDF"}
-              </MonoText>
+              <MonoText $use="Body_Bold">{contentType?.toUpperCase()}</MonoText>
             </PurchaseModalCardBadge>
             <PurchaseModalCardTitle>
               <MonoText $use="Body_Bold">{title}</MonoText>

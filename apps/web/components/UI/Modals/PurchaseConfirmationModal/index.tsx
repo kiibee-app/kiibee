@@ -93,7 +93,7 @@ export default function PurchaseConfirmationModal({
             <PurchaseModalCardInfo>
               <PurchaseModalCardBadge>
                 <MonoText $use="Body_Bold">
-                  {contentType?.toUpperCase() || "PDF"}
+                  {contentType?.toUpperCase()}
                 </MonoText>
               </PurchaseModalCardBadge>
               <PurchaseModalCardTitle>
