@@ -62,6 +62,7 @@ import {
 import type { ContentFormErrors } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
 import type { SaveContentSettingPayload } from "@/hooks/contents/useContentSettings";
+import { logger } from "@/lib/logger";
 
 type SettingsSnapshot = {
   accessType: AdmissionRequirementValue;
@@ -628,7 +629,11 @@ export function useContentFormActions({
         queryKey: [API.collection.getAll],
       });
       setShowSaveSuccessModal(true);
-    } catch {
+    } catch (error) {
+      logger.error(
+        "[useContentFormActions] Failed to save collection settings:",
+        error,
+      );
       toast.error(t(ERROR_MESSAGES.SAVE_SETTINGS_FAILED));
     }
   };
@@ -665,7 +670,11 @@ export function useContentFormActions({
       });
 
       setShowSaveSuccessModal(true);
-    } catch {
+    } catch (error) {
+      logger.error(
+        "[useContentFormActions] Failed to save content settings:",
+        error,
+      );
       toast.error(t(ERROR_MESSAGES.SAVE_SETTINGS_FAILED));
     }
   };
@@ -880,7 +889,8 @@ export function useContentFormActions({
         setFormState(nextFormState);
         setSavedFormState(nextFormState);
       }
-    } catch {
+    } catch (error) {
+      logger.error("[useContentFormActions] Failed to load details:", error);
       toast.error(t(ERROR_MESSAGES.LOAD_DETAILS_FAILED));
     } finally {
       setIsEditingLoading(false);
