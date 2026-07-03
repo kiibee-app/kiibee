@@ -432,9 +432,12 @@ export default function NavBar({
           }
           event.preventDefault();
           event.stopPropagation();
-          openMegaKey === item.key
-            ? closeMenu()
-            : ((wasOpenedViaTouchRef.current = true), openMenu(item.key));
+          if (openMegaKey === item.key) {
+            closeMenu();
+          } else {
+            wasOpenedViaTouchRef.current = true;
+            openMenu(item.key);
+          }
         }
       }
     },
