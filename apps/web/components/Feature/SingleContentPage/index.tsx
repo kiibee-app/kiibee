@@ -159,15 +159,17 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
 
   const canPreview =
-    isPreviewableType && Boolean(hero?.media?.src || hero?.contentUrl);
+    isPreviewableType && Boolean(hero?.contentUrl || hero?.media?.src);
+
+  const previewSrc = hero?.contentUrl || hero?.media?.src || "";
 
   const handlePrimaryActionClick = () => {
-    if (isWebType && hero?.media?.src) {
-      window.open(hero.media.src, "_blank", "noopener,noreferrer");
+    if (isWebType && previewSrc) {
+      window.open(previewSrc, "_blank", "noopener,noreferrer");
       return;
     }
 
-    if (canPreview) {
+    if (canPreview && previewSrc) {
       setShowPreviewModal(true);
       return;
     }
@@ -279,11 +281,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       </Card>
 
       {children}
-      {canPreview && (
+      {canPreview && previewSrc && (
         <ContentPreviewModal
           visible={showPreviewModal}
           onClose={() => setShowPreviewModal(false)}
-          src={hero.contentUrl || hero.media?.src || ""}
+          src={previewSrc}
           type={hero.contentType || hero.media?.type || FORMAT_TYPE.VIDEO}
           title={title}
         />

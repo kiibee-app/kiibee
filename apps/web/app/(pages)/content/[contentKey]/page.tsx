@@ -112,7 +112,7 @@ function PublishedContentDetail() {
   );
   const mediaUrl = resolveContentPlaybackUrl(
     content,
-    mediaResponse?.url || mediaResponse?.iframeUrl,
+    mediaResponse?.url || mediaResponse?.iframeUrl || mediaResponse?.streamUrl,
   );
   const {
     gateType: activeGateType,

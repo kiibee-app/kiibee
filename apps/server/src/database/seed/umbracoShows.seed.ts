@@ -7,6 +7,8 @@ import { hashPassword } from 'src/utils/passwordHash';
 
 import { db } from '../db';
 import {
+  extractCloudflareVideoId,
+  getUmbracoShowValue,
   inferContentCategoryId,
   loadProfileCategoryContext,
   loadUmbracoProfileKeys,
@@ -237,15 +239,19 @@ function firstLegacyId(
   return ids[0] ?? fallback;
 }
 
+function showValue(show: UmbracoShow, key: string): unknown {
+  return getUmbracoShowValue(show as JsonRecord, key);
+}
+
 function inferContentTypeId(show: UmbracoShow): string {
-  const legacyTypeId = firstLegacyId(show.type);
+  const legacyTypeId = firstLegacyId(showValue(show, 'type'));
   const mapped = legacyTypeId ? LEGACY_TYPE_IDS[legacyTypeId] : null;
 
   if (mapped) {
     return mapped;
   }
 
-  const rawFile = textOrNull(show.rawFile) ?? '';
+  const rawFile = textOrNull(showValue(show, 'rawFile')) ?? '';
   const lowerRawFile = rawFile.toLowerCase();
 
   if (lowerRawFile.endsWith('.pdf')) {
@@ -264,11 +270,14 @@ function inferContentTypeId(show: UmbracoShow): string {
     return 'epub';
   }
 
-  if (textOrNull(show.webContentURL)) {
+  if (textOrNull(showValue(show, 'webContentURL'))) {
     return 'web';
   }
 
-  if (textOrNull(show.videoID) || textOrNull(show.videoDownloadURL)) {
+  if (
+    textOrNull(showValue(show, 'videoID')) ||
+    textOrNull(showValue(show, 'videoDownloadURL'))
+  ) {
     return 'video';
   }
 
@@ -278,21 +287,21 @@ function inferContentTypeId(show: UmbracoShow): string {
 function resolveAccessType(
   show: UmbracoShow,
 ): 'free' | 'paid' | 'password' | 'email_gated' {
-  const legacyAccessId = firstLegacyId(show.access);
+  const legacyAccessId = firstLegacyId(showValue(show, 'access'));
   const mapped = legacyAccessId ? LEGACY_ACCESS_IDS[legacyAccessId] : null;
 
   if (mapped) {
     return mapped;
   }
 
-  const buyPrice = textOrNull(show.purchasePrice);
-  const rentPrice = textOrNull(show.rentalPrice);
+  const buyPrice = textOrNull(showValue(show, 'purchasePrice'));
+  const rentPrice = textOrNull(showValue(show, 'rentalPrice'));
 
   if (buyPrice || rentPrice) {
     return 'paid';
   }
 
-  if (textOrNull(show.code)) {
+  if (textOrNull(showValue(show, 'code'))) {
     return 'password';
   }
 
@@ -302,7 +311,7 @@ function resolveAccessType(
 function resolveVisibility(
   show: UmbracoShow,
 ): 'public' | 'hidden' | 'draft' | 'private' {
-  if (isEnabled(show.hidden)) {
+  if (isEnabled(showValue(show, 'hidden'))) {
     return 'hidden';
   }
 
@@ -334,10 +343,12 @@ function parseDecimal(value: unknown): string | null {
 }
 
 function resolveContentFields(show: UmbracoShow, contentTypeId: string) {
-  const videoId = textOrNull(show.videoID);
-  const rawFile = textOrNull(show.rawFile);
-  const webContentUrl = textOrNull(show.webContentURL);
-  const videoDownloadUrl = textOrNull(show.videoDownloadURL);
+  const videoDownloadUrl = textOrNull(showValue(show, 'videoDownloadURL'));
+  const videoId =
+    extractCloudflareVideoId(showValue(show, 'videoID')) ??
+    extractCloudflareVideoId(videoDownloadUrl);
+  const rawFile = textOrNull(showValue(show, 'rawFile'));
+  const webContentUrl = textOrNull(showValue(show, 'webContentURL'));
 
   if (contentTypeId === 'web') {
     return {
@@ -351,7 +362,7 @@ function resolveContentFields(show: UmbracoShow, contentTypeId: string) {
     return {
       fileKey: videoId,
       contentUrl: videoDownloadUrl,
-      fileSize: parseInteger(show.videoSize),
+      fileSize: parseInteger(showValue(show, 'videoSize')),
     };
   }
 
@@ -533,12 +544,12 @@ export const seedUmbracoShows = async () => {
       profile.profileKey,
       profileContextText,
       profile.shows.map((show) => ({
-        tags: parseTags(show.tags),
-        title: textOrNull(show.title) ?? textOrNull(show.name),
+        tags: parseTags(showValue(show, 'tags')),
+        title: textOrNull(showValue(show, 'title')) ?? textOrNull(show.name),
         description:
           stripHtml(
-            textOrNull(show.expandedDescription) ??
-              textOrNull(show.description),
+            textOrNull(showValue(show, 'expandedDescription')) ??
+              textOrNull(showValue(show, 'description')),
           ) ?? null,
         contentTypeId: inferContentTypeId(show),
       })),
@@ -556,27 +567,32 @@ export const seedUmbracoShows = async () => {
       const visibility = resolveVisibility(show);
       const contentFields = resolveContentFields(show, contentTypeId);
       const title = truncate(
-        textOrNull(show.title) ?? textOrNull(show.name) ?? 'Untitled',
+        textOrNull(showValue(show, 'title')) ??
+          textOrNull(show.name) ??
+          'Untitled',
         500,
       );
       const description =
         stripHtml(
-          textOrNull(show.expandedDescription) ?? textOrNull(show.description),
+          textOrNull(showValue(show, 'expandedDescription')) ??
+            textOrNull(showValue(show, 'description')),
         ) ?? '';
       const slug = buildContentSlug(channelSlug, { ...show, key: showKey });
       const sortOrder =
-        parseInteger(show.orderID) ?? parseInteger(show.sortOrder) ?? 0;
-      const publishedYear = parseInteger(show.year);
-      const duration = parseInteger(show.length);
-      const buyPrice = parseDecimal(show.purchasePrice);
-      const rentPrice = parseDecimal(show.rentalPrice);
+        parseInteger(showValue(show, 'orderID')) ??
+        parseInteger(show.sortOrder) ??
+        0;
+      const publishedYear = parseInteger(showValue(show, 'year'));
+      const duration = parseInteger(showValue(show, 'length'));
+      const buyPrice = parseDecimal(showValue(show, 'purchasePrice'));
+      const rentPrice = parseDecimal(showValue(show, 'rentalPrice'));
       const { thumbnailUrl, thumbnailLandscapeUrl } =
         resolveUmbracoShowThumbnails(show, title, {
           creatorCoverImageUrl: channel.coverImageUrl,
           creatorLogoUrl: channel.logoUrl,
         });
-      const trailerUrl = resolveMediaUrl(show.trailer);
-      const accessCode = textOrNull(show.code);
+      const trailerUrl = resolveMediaUrl(showValue(show, 'trailer'));
+      const accessCode = textOrNull(showValue(show, 'code'));
       const passwordHash = accessCode
         ? await hashPassword(accessCode)
         : accessType === 'password'
@@ -595,7 +611,7 @@ export const seedUmbracoShows = async () => {
         profileKey: profile.profileKey,
         profileContextText,
         profileDefaultCategoryId,
-        tags: parseTags(show.tags),
+        tags: parseTags(showValue(show, 'tags')),
         title,
         description: description || null,
         contentTypeId,
@@ -624,10 +640,10 @@ export const seedUmbracoShows = async () => {
             thumbnailUrl,
             thumbnailLandscapeUrl,
             trailerUrl,
-            production_company: textOrNull(show.production),
+            production_company: textOrNull(showValue(show, 'production')),
             manufacturerLink:
-              resolveMediaUrl(show.productionLink) ??
-              textOrNull(show.productionLink),
+              resolveMediaUrl(showValue(show, 'productionLink')) ??
+              textOrNull(showValue(show, 'productionLink')),
             visibility,
             accessType,
             buyPrice,
@@ -638,9 +654,10 @@ export const seedUmbracoShows = async () => {
                 : null,
             currency: 'DKK',
             physicalProductLink:
-              resolveMediaUrl(show.productLink) ?? textOrNull(show.productLink),
+              resolveMediaUrl(showValue(show, 'productLink')) ??
+              textOrNull(showValue(show, 'productLink')),
             passwordHash,
-            isDownloadable: !isEnabled(show.hideDownload),
+            isDownloadable: !isEnabled(showValue(show, 'hideDownload')),
             sortOrder,
             isPublished,
             publishedAt,
@@ -662,10 +679,10 @@ export const seedUmbracoShows = async () => {
               thumbnailUrl,
               thumbnailLandscapeUrl,
               trailerUrl,
-              production_company: textOrNull(show.production),
+              production_company: textOrNull(showValue(show, 'production')),
               manufacturerLink:
-                resolveMediaUrl(show.productionLink) ??
-                textOrNull(show.productionLink),
+                resolveMediaUrl(showValue(show, 'productionLink')) ??
+                textOrNull(showValue(show, 'productionLink')),
               visibility,
               accessType,
               buyPrice,
@@ -675,10 +692,10 @@ export const seedUmbracoShows = async () => {
                   ? DEFAULT_RENT_DURATION_HOURS
                   : null,
               physicalProductLink:
-                resolveMediaUrl(show.productLink) ??
-                textOrNull(show.productLink),
+                resolveMediaUrl(showValue(show, 'productLink')) ??
+                textOrNull(showValue(show, 'productLink')),
               passwordHash,
-              isDownloadable: !isEnabled(show.hideDownload),
+              isDownloadable: !isEnabled(showValue(show, 'hideDownload')),
               sortOrder,
               isPublished,
               updatedAt: now,
@@ -697,7 +714,7 @@ export const seedUmbracoShows = async () => {
           })
           .onConflictDoNothing({ target: collectionItems.id });
 
-        const showTags = parseTags(show.tags);
+        const showTags = parseTags(showValue(show, 'tags'));
         for (const tagName of showTags) {
           const tagSlug = truncate(`${channelSlug}-${slugify(tagName)}`, 255);
           const tagId = showSeedUuid('tag', profile.profileKey, tagSlug);

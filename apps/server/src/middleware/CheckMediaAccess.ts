@@ -19,10 +19,6 @@ export class CheckMediaAccessGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const userId = request.user?.userId || request.user?.id;
 
-    if (!userId) {
-      throw new UnauthorizedException('Authentication required');
-    }
-
     const mediaId =
       request.params?.id ||
       request.params?.mediaId ||
@@ -56,6 +52,10 @@ export class CheckMediaAccessGuard implements CanActivate {
     if (mediaFile.accessType === ACCESS_TYPE.FREE) {
       request.mediaFile = mediaFile;
       return true;
+    }
+
+    if (!userId) {
+      throw new UnauthorizedException('Authentication required');
     }
 
     if (mediaFile.creatorId === userId) {
