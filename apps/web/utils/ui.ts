@@ -205,6 +205,8 @@ export const THUMBNAIL_MIN_DIMENSIONS = {
 } as const;
 
 export const isBrowser = typeof window !== "undefined";
+export const isTouchDevice =
+  isBrowser && window.matchMedia("(hover: none)").matches;
 export const canUseDOM = typeof document !== "undefined";
 
 export interface PopupPosition {

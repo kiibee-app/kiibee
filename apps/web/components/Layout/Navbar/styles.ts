@@ -18,7 +18,13 @@ export const Header = styled.header<HeaderProps>`
     min-height 240ms cubic-bezier(0.22, 1, 0.36, 1),
     background 180ms ease,
     backdrop-filter 180ms ease;
-  z-index: 50;
+  z-index: 1100;
+
+  --navbar-height: ${({ $navbarHeight }) => $navbarHeight ?? "76px"};
+
+  ${media.desktop} {
+    --navbar-height: ${({ $navbarHeight }) => $navbarHeight ?? "68px"};
+  }
 
   ${media.mobileMd} {
     height: var(--navbar-height, 73px);
@@ -35,7 +41,7 @@ export const Inner = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 1024px) {
+  ${media.desktop} {
     padding: var(--navbar-inner-tablet-padding, 0.9rem 1.5rem);
   }
 

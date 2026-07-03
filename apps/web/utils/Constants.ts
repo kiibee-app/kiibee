@@ -493,6 +493,7 @@ export const CAROUSEL_DEFAULT_SHOW_DOTS = true;
 export const CAROUSEL_DEFAULT_TRANSITION_TYPE = CAROUSEL_TRANSITION_TYPES.FADE;
 export const CAROUSEL_DEFAULT_PREV_ARIA_LABEL = "Previous slide";
 export const CAROUSEL_DEFAULT_NEXT_ARIA_LABEL = "Next slide";
+export const TOUCH_TAP_DELAY_MS = 300;
 
 export const getNavigationArrows = (
   prevSlide: () => void,

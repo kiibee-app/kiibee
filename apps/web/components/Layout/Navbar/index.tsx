@@ -66,6 +66,7 @@ import {
   TONE_LIGHT,
   DRAWER_SIDE,
   DRAWER_VARIANT,
+  TOUCH_TAP_DELAY_MS,
 } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import type { NavBarItem, NavBarProps } from "@/utils/profile";
@@ -83,7 +84,7 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 import { HomeIcon } from "@/assets/icons/homeIcon";
 import { LogoutIcon } from "@/assets/icons/logoutIcon";
 import { ArrowIcon } from "@/assets/icons";
-import { Directions, isBrowser } from "@/utils/ui";
+import { Directions, isBrowser, isTouchDevice } from "@/utils/ui";
 import {
   InitialAvatar,
   ProfileAvatarImage,
@@ -318,6 +319,7 @@ export default function NavBar({
   const megaMenuRef = useRef<HTMLDivElement | null>(null);
   const closeTimerRef = useRef<number | null>(null);
   const unmountTimerRef = useRef<number | null>(null);
+  const lastOpenedRef = useRef<number>(0);
   const innerStyle = useMemo(() => {
     const style: CSSProperties & Record<string, string> = {};
 
@@ -385,6 +387,7 @@ export default function NavBar({
     (key: string) => {
       clearCloseTimer();
       clearUnmountTimer();
+      lastOpenedRef.current = Date.now();
       setRenderedMegaKey(key);
       setOpenMegaKey(key);
     },
@@ -392,6 +395,9 @@ export default function NavBar({
   );
 
   const scheduleCloseMenu = useCallback(() => {
+    if (isTouchDevice) {
+      return;
+    }
     clearCloseTimer();
     closeTimerRef.current = window.setTimeout(() => {
       closeMenu();
@@ -409,6 +415,25 @@ export default function NavBar({
       closeMenu();
     },
     [closeMenu, openMenu],
+  );
+
+  const handleNavItemClick = useCallback(
+    (item: NavBarItem, event: React.MouseEvent) => {
+      if (item.children) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const timeSinceOpen = Date.now() - lastOpenedRef.current;
+        if (openMegaKey === item.key) {
+          if (timeSinceOpen > TOUCH_TAP_DELAY_MS) {
+            closeMenu();
+          }
+        } else {
+          openMenu(item.key);
+        }
+      }
+    },
+    [openMegaKey, openMenu, closeMenu],
   );
 
   const handleGlobalClick = useCallback(
@@ -471,20 +496,34 @@ export default function NavBar({
     );
   };
 
-  const renderDefaultNavItem = (item: NavBarItem) =>
-    item.onClick ? (
-      <button
-        type="button"
-        onClick={(event) => {
-          event.stopPropagation();
-          item.onClick?.();
-        }}
-      >
-        {renderItemLabel(item)}
-      </button>
-    ) : (
-      <Link href={getItemHref(item)}>{renderItemLabel(item)}</Link>
-    );
+  const renderDefaultNavItem = (item: NavBarItem) => {
+    if (item.onClick) {
+      return (
+        <button
+          type="button"
+          onClick={(event) => {
+            event.stopPropagation();
+            item.onClick?.();
+          }}
+        >
+          {renderItemLabel(item)}
+        </button>
+      );
+    }
+
+    if (item.children) {
+      return (
+        <Link
+          href={getItemHref(item)}
+          onClick={(event) => handleNavItemClick(item, event)}
+        >
+          {renderItemLabel(item)}
+        </Link>
+      );
+    }
+
+    return <Link href={getItemHref(item)}>{renderItemLabel(item)}</Link>;
+  };
 
   const renderDrawerSubMenu = (item: NavBarItem, open: boolean) =>
     open && item.children ? (
