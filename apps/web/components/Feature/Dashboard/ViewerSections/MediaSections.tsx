@@ -127,6 +127,7 @@ export default function MediaSections({
               {sectionItems[section.key].map((item) => (
                 <GenericCard
                   key={item.id}
+                  coverImage
                   image={item.thumbSrc}
                   title={<MonoText $use="H5_Medium">{item.title}</MonoText>}
                   subtitle={
