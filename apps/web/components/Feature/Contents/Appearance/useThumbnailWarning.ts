@@ -10,22 +10,29 @@ export function useThumbnailWarning() {
   const { t } = useTranslation();
 
   const validateImageDataUrl = React.useCallback(
-    (type: ImageType, imageDataUrl: string) => {
+    (
+      type: ImageType,
+      imageDataUrl: string,
+      customWidth?: number,
+      customHeight?: number,
+    ) => {
       if (!(type in THUMBNAIL_MIN_DIMENSIONS)) return;
       const recommendation =
         THUMBNAIL_MIN_DIMENSIONS[type as keyof typeof THUMBNAIL_MIN_DIMENSIONS];
 
+      const minWidth = customWidth ?? recommendation.width;
+      const minHeight = customHeight ?? recommendation.height;
+
       const img = new Image();
       img.onload = () => {
         const isLowResolution =
-          img.naturalWidth < recommendation.width ||
-          img.naturalHeight < recommendation.height;
+          img.naturalWidth < minWidth || img.naturalHeight < minHeight;
         if (!isLowResolution) return;
 
         toast.warning(
           t(CONTENTS.appearance.coverImage.resolutionWarning, {
-            width: recommendation.width,
-            height: recommendation.height,
+            width: minWidth,
+            height: minHeight,
           }),
           {
             toastId: `thumbnail-resolution-${type}`,
