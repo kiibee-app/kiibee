@@ -1037,7 +1037,16 @@
       "useNewCard": "Use a new card",
       "useNewCardHint": "You will be redirected to complete your payment with a new card.",
       "couponApplied": "Coupon applied successfully",
-      "couponInvalid": "Invalid coupon code"
+      "couponInvalid": "This coupon code is not valid",
+      "couponExpired": "This coupon has expired",
+      "couponNotYetValid": "This coupon is not active yet",
+      "couponAlreadyUsed": "This coupon has already been used",
+      "couponInactive": "This coupon is no longer active",
+      "couponMaxUses": "This coupon has reached its usage limit",
+      "couponNotApplicable": "This coupon can only be used on selected products",
+      "couponVerifyFailed": "Unable to verify this coupon. Please try again",
+      "couponMaxPercentage": "This coupon exceeds the maximum discount of 50%",
+      "couponValidUntil": "Your discount is active until {{date}}"
     },
     "meta": {
       "category": "Category:",
@@ -1652,6 +1661,8 @@
       },
       "discountValue": "Discount Value",
       "discountHelp": "Enter the discount amount or percentage you want to offer.",
+      "discountHelpPercentage": "Enter a percentage discount up to {{max}}%.",
+      "maxPercentageError": "Maximum discount is {{max}}%.",
       "discountType": {
         "fixedAmount": "Fixed amount",
         "percentage": "Percentage"
@@ -1704,6 +1715,7 @@
       "confirm": "Confirm",
       "uploading": "Uploading coupon",
       "indefinite": "Indefinite",
+      "allContents": "All contents",
       "fields": {
         "title": "Title",
         "discountType": "Discount type",

@@ -35,6 +35,7 @@ export { default as DirectionIcon } from "./DirectionIcon";
 export { default as FolderIcon } from "./FolderIcon";
 export { default as ThreeDotIcon } from "./ThreeDotIcon";
 export { default as SelectedCheckIcon } from "./SelectedCheckIcon";
+export { default as InfoIcon } from "./InfoIcon";
 export { default as ChipCloseIcon } from "./ChipCloseIcon";
 export { default as RatingStarPathIcon } from "./RatingStarPathIcon";
 export { default as UploadAudioIcon } from "./UploadAudioIcon";

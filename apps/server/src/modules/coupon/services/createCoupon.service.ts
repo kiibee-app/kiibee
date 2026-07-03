@@ -10,6 +10,7 @@ import { logger } from 'src/logger/logger';
 import { success } from 'src/utils/sendResponse';
 import {
   COUPON_DISCOUNT_TYPE_PERCENTAGE,
+  MAX_COUPON_PERCENTAGE_DISCOUNT,
   normalizeCouponDiscountType,
   normalizeCouponStatus,
 } from 'src/utils/coupon';
@@ -79,10 +80,10 @@ export const createCouponService = async (
 
     if (
       normalizedDiscountType === COUPON_DISCOUNT_TYPE_PERCENTAGE &&
-      parsedDiscountValue > 100
+      parsedDiscountValue > MAX_COUPON_PERCENTAGE_DISCOUNT
     ) {
       throw new HttpException(
-        'Percentage discount cannot be greater than 100',
+        `Percentage discount cannot be greater than ${MAX_COUPON_PERCENTAGE_DISCOUNT}`,
         HttpStatus.BAD_REQUEST,
       );
     }

@@ -30,3 +30,18 @@ export const CouponInput = styled.input`
     background: ${COLORS.primary.WHITE};
   }
 `;
+
+export const DiscountWarningNotice = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 8px;
+  padding: 0.625rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(255, 140, 66, 0.12);
+  color: ${COLORS.primary.ORANGE};
+
+  svg {
+    flex-shrink: 0;
+  }
+`;

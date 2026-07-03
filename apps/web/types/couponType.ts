@@ -39,6 +39,8 @@ export type CouponEntity = {
     collectionIds?: string[] | null;
     contentIds?: string[] | null;
   };
+  validFrom?: string | null;
+  validUntil?: string | null;
   startDate?: string;
   endDate?: string;
 };

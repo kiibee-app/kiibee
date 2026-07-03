@@ -55,7 +55,11 @@ export async function createOrderService(
 
     let discountAmount = 0;
     if (couponCode) {
-      const couponInfo = await verifyCouponService(couponCode, contentId);
+      const couponInfo = await verifyCouponService(
+        couponCode,
+        contentId,
+        collectionId,
+      );
       discountAmount = Number(couponInfo.data.discountValue) || 0;
     }
     const resolvedPrice = (Number(price) - discountAmount) * 100;

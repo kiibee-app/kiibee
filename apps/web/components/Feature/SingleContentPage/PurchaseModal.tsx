@@ -9,13 +9,13 @@ import { VARIANT } from "@/utils/Constants";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { useTranslation } from "react-i18next";
 import { extractPriceNumber } from "@/utils/contentPricingActions";
-import { formatCardExpiry } from "@/utils/formatDate";
+import { formatCardExpiry, formatDate } from "@/utils/formatDate";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
+import { SelectedCheckIcon, InfoIcon } from "@/assets/icons";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { SelectedCheckIcon } from "@/assets/icons";
 import {
   PurchaseModalCard,
   PurchaseModalCardHeader,
@@ -31,6 +31,8 @@ import {
   PurchaseModalDiscountLabel,
   PurchaseModalDiscountRow,
   PurchaseModalDiscountInput,
+  PurchaseModalCouponError,
+  PurchaseModalCouponValidityNotice,
   PurchaseModalPriceSummary,
   PurchaseModalPriceRow,
   PurchaseModalPriceRowTotal,
@@ -50,10 +52,13 @@ import {
 import {
   COUPON_DISCOUNT_PERCENTAGE,
   CouponDiscountType,
+  MAX_COUPON_PERCENTAGE_DISCOUNT,
   formatSavedCardLabel as formatSavedCardLabelUtil,
 } from "@/utils/common";
 import DropdownField from "@/components/UI/InputFields/DropdownField";
 import { PAYMENT_ICONS } from "@/utils/paymentIcons";
+import COLORS from "@repo/ui/colors";
+import { getCouponErrorMessage } from "@/utils/couponErrors";
 
 type VerifyCouponResponse = {
   success: boolean;
@@ -64,6 +69,8 @@ type VerifyCouponResponse = {
     discountValue: number;
     code: string;
     title: string;
+    validFrom?: string | null;
+    validUntil?: string | null;
   };
 };
 
@@ -121,6 +128,10 @@ export default function PurchaseModal({
   const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
+  const [couponValidityNotice, setCouponValidityNotice] = useState<
+    string | null
+  >(null);
+  const [couponError, setCouponError] = useState<string | null>(null);
   const [selectedSubscriptionId, setSelectedSubscriptionId] = useState<
     string | null
   >(null);
@@ -129,6 +140,14 @@ export default function PurchaseModal({
   if (visible !== prevVisible) {
     setPrevVisible(visible);
     setSelectedSubscriptionId(null);
+
+    if (!visible) {
+      setDiscountCode("");
+      setDiscount(0);
+      setAppliedCode(null);
+      setCouponValidityNotice(null);
+      setCouponError(null);
+    }
   }
 
   const verifyCouponMutation = usePostAPI<
@@ -213,6 +232,9 @@ export default function PurchaseModal({
   const handleApplyDiscount = async () => {
     if (!discountCode.trim()) return;
 
+    setCouponError(null);
+    setCouponValidityNotice(null);
+
     try {
       const response = await verifyCouponMutation.mutateAsync({
         code: discountCode.trim(),
@@ -220,19 +242,35 @@ export default function PurchaseModal({
       });
 
       if (response.success && response.data) {
-        const { discountType, discountValue } = response.data;
+        const { discountType, discountValue, validUntil } = response.data;
         const calculatedDiscount =
           discountType === COUPON_DISCOUNT_PERCENTAGE
-            ? Math.round((priceNumber * discountValue) / 100)
+            ? Math.round(
+                (priceNumber *
+                  Math.min(discountValue, MAX_COUPON_PERCENTAGE_DISCOUNT)) /
+                  100,
+              )
             : discountValue;
         setDiscount(Math.min(calculatedDiscount, priceNumber));
         setAppliedCode(response.data.code);
         toast.success(t("singleContent.pricing.couponApplied"));
+
+        if (validUntil) {
+          setCouponValidityNotice(
+            t("singleContent.pricing.couponValidUntil", {
+              date: formatDate(validUntil),
+            }),
+          );
+        }
       }
-    } catch {
+    } catch (error) {
+      const apiError = getCouponErrorMessage(error, t);
+
       setDiscount(0);
       setAppliedCode(null);
-      toast.error(t("singleContent.pricing.couponInvalid"));
+      setCouponValidityNotice(null);
+      setCouponError(apiError);
+      toast.error(apiError);
     }
   };
 
@@ -240,6 +278,8 @@ export default function PurchaseModal({
     setDiscountCode("");
     setDiscount(0);
     setAppliedCode(null);
+    setCouponValidityNotice(null);
+    setCouponError(null);
   };
 
   return (
@@ -332,7 +372,10 @@ export default function PurchaseModal({
             type="text"
             placeholder={t("singleContent.pricing.enterCode")}
             value={discountCode}
-            onChange={(e) => setDiscountCode(e.target.value)}
+            onChange={(e) => {
+              setDiscountCode(e.target.value);
+              if (couponError) setCouponError(null);
+            }}
             disabled={!!appliedCode}
           />
           {appliedCode ? (
@@ -353,6 +396,22 @@ export default function PurchaseModal({
             </GenericButton>
           )}
         </PurchaseModalDiscountRow>
+        {couponError ? (
+          <PurchaseModalCouponError role="alert">
+            <InfoIcon size={16} color={COLORS.primary.RED} />
+            <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
+              {couponError}
+            </MonoText>
+          </PurchaseModalCouponError>
+        ) : null}
+        {couponValidityNotice ? (
+          <PurchaseModalCouponValidityNotice role="status">
+            <InfoIcon size={16} />
+            <MonoText $use="Body_Medium" color={COLORS.primary.ORANGE}>
+              {couponValidityNotice}
+            </MonoText>
+          </PurchaseModalCouponValidityNotice>
+        ) : null}
       </PurchaseModalDiscountSection>
 
       <PurchaseModalPriceSummary>

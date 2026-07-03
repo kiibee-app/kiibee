@@ -721,6 +721,36 @@ export const PurchaseModalDiscountInput = styled.input`
   }
 `;
 
+export const PurchaseModalCouponError = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(220, 38, 38, 0.1);
+  color: ${({ theme }) => theme.colors.primary.RED};
+
+  svg {
+    flex-shrink: 0;
+  }
+`;
+
+export const PurchaseModalCouponValidityNotice = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(255, 140, 66, 0.12);
+  color: ${({ theme }) => theme.colors.primary.ORANGE};
+
+  svg {
+    flex-shrink: 0;
+  }
+`;
+
 export const PurchaseModalPriceSummary = styled.div`
   padding: 0 1.5rem 1.25rem;
 `;
