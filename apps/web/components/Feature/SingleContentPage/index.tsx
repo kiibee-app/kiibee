@@ -36,8 +36,6 @@ import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
 
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
-import GenericButton from "@/components/UI/GenericButton";
-import { MonoText } from "@/components/UI/Monotext";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { PATHS } from "@/utils/path";
 
@@ -85,22 +83,19 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const { logout, isPending: isLoggingOut } = useLogout();
   const [showCreatorModal1, setShowCreatorModal1] = useState(false);
   const [showCreatorModal2, setShowCreatorModal2] = useState(false);
-
-  const handleCreateViewerAccount = async () => {
-    const returnUrl =
-      typeof window !== "undefined"
-        ? window.location.pathname + window.location.search
-        : "";
-    const redirectUrl = `${PATHS.AUTH_SIGNUP_VIEWER}?next=${encodeURIComponent(returnUrl)}`;
-    await logout(redirectUrl);
-  };
+  const [creatorModal2Action, setCreatorModal2Action] = useState<
+    "login" | "signup" | null
+  >(null);
 
   const handleConfirmModal2 = async () => {
     const returnUrl =
       typeof window !== "undefined"
         ? window.location.pathname + window.location.search
         : "";
-    const redirectUrl = `${PATHS.AUTH_LOGIN}?next=${encodeURIComponent(returnUrl)}`;
+    const redirectUrl =
+      creatorModal2Action === "signup"
+        ? `${PATHS.AUTH_SIGNUP_VIEWER}?next=${encodeURIComponent(returnUrl)}`
+        : `${PATHS.AUTH_LOGIN}?next=${encodeURIComponent(returnUrl)}`;
     await logout(redirectUrl);
   };
 
@@ -453,96 +448,37 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         visible={showCreatorModal1}
         onClose={() => setShowCreatorModal1(false)}
         title={t("creatorPurchaseFlow.modal1.title")}
-        showCloseButton
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
-            alignItems: "center",
-          }}
-        >
-          <MonoText $use="Body_Medium" style={{ marginBottom: "8px" }}>
-            {t("creatorPurchaseFlow.modal1.message")}
-          </MonoText>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "12px",
-              width: "100%",
-              alignItems: "center",
-            }}
-          >
-            <GenericButton
-              variant="primary"
-              onClick={() => {
-                setShowCreatorModal1(false);
-                setShowCreatorModal2(true);
-              }}
-              style={{ width: "100%", maxWidth: "320px", height: "49px" }}
-            >
-              {t("creatorPurchaseFlow.modal1.primaryBtn")}
-            </GenericButton>
-            <GenericButton
-              variant="secondary"
-              onClick={handleCreateViewerAccount}
-              disabled={isLoggingOut}
-              style={{ width: "100%", maxWidth: "320px", height: "49px" }}
-            >
-              {t("creatorPurchaseFlow.modal1.secondaryBtn")}
-            </GenericButton>
-          </div>
-        </div>
-      </GenericModal>
+        message={t("creatorPurchaseFlow.modal1.message")}
+        confirmLabel={t("creatorPurchaseFlow.modal1.primaryBtn")}
+        cancelLabel={t("creatorPurchaseFlow.modal1.secondaryBtn")}
+        onConfirm={() => {
+          setCreatorModal2Action("login");
+          setShowCreatorModal2(true);
+        }}
+        onCancel={() => {
+          setCreatorModal2Action("signup");
+          setShowCreatorModal2(true);
+        }}
+        buttonRow={false}
+        fullWidthButtons
+      />
 
       <GenericModal
         visible={showCreatorModal2}
         onClose={() => setShowCreatorModal2(false)}
         title={t("creatorPurchaseFlow.modal2.title")}
-        showCloseButton
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
-            alignItems: "center",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "12px",
-              width: "100%",
-              alignItems: "center",
-            }}
-          >
-            <GenericButton
-              variant="primary"
-              onClick={handleConfirmModal2}
-              isLoading={isLoggingOut}
-              disabled={isLoggingOut}
-              style={{ width: "100%", maxWidth: "320px", height: "49px" }}
-            >
-              {t("creatorPurchaseFlow.modal2.primaryBtn")}
-            </GenericButton>
-            <GenericButton
-              variant="secondary"
-              onClick={() => {
-                setShowCreatorModal2(false);
-                setShowCreatorModal1(true);
-              }}
-              disabled={isLoggingOut}
-              style={{ width: "100%", maxWidth: "320px", height: "49px" }}
-            >
-              {t("creatorPurchaseFlow.modal2.secondaryBtn")}
-            </GenericButton>
-          </div>
-        </div>
-      </GenericModal>
+        confirmLabel={t("creatorPurchaseFlow.modal2.primaryBtn")}
+        cancelLabel={t("creatorPurchaseFlow.modal2.secondaryBtn")}
+        onConfirm={handleConfirmModal2}
+        onCancel={() => {
+          setShowCreatorModal1(true);
+        }}
+        confirmLoading={isLoggingOut}
+        confirmDisabled={isLoggingOut}
+        buttonRow={true}
+        fullWidthButtons
+        closeOnConfirm={false}
+      />
     </Wrapper>
   );
 }

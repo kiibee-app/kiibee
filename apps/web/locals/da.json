@@ -2217,8 +2217,8 @@
       "secondaryBtn": "Opret seerkonto"
     },
     "modal2": {
-      "title": "Log ind som seer vil logge dig ud af din nuværende skaberkonto og logge dig ind med en seerkonto. Vil du fortsætte?",
-      "primaryBtn": "OK",
+      "title": "Du vil blive logget ud af din skaberkonto og logget ind som seer.",
+      "primaryBtn": "Fortsæt",
       "secondaryBtn": "Annuller"
     }
   }

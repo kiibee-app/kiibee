@@ -2209,8 +2209,8 @@
       "secondaryBtn": "Create Viewer Account"
     },
     "modal2": {
-      "title": "Signing in as a Viewer will log you out of your current Creator account and sign you in with a Viewer account. Do you want to continue?",
-      "primaryBtn": "OK",
+      "title": "You'll be signed out of your Creator account and signed in as a Viewer.",
+      "primaryBtn": "Continue",
       "secondaryBtn": "Cancel"
     }
   }
