@@ -26,17 +26,17 @@ export const CoverFrame = styled.div`
   position: relative;
   width: min(100%, 1380px);
   margin: 0 auto;
-  height: 265px;
+  height: 320px;
   overflow: hidden;
   border-radius: 22px;
 
   ${({ theme }) => theme.media.desktopSm} {
-    height: 220px;
+    height: 280px;
     border-radius: 18px;
   }
 
   ${({ theme }) => theme.media.mobileMd} {
-    height: 170px;
+    height: 220px;
     border-radius: 14px;
   }
 `;
@@ -44,20 +44,20 @@ export const CoverFrame = styled.div`
 export const CoverFrameFull = styled.div`
   position: relative;
   width: 100%;
-  height: 290px;
+  height: 340px;
   overflow: hidden;
 
   ${({ theme }) => theme.media.desktopSm} {
-    height: 250px;
+    height: 300px;
   }
 
   ${({ theme }) => theme.media.mobileMd} {
-    height: 210px;
+    height: 240px;
   }
 `;
 
 export const CoverImage = styled(Image)`
-  ${imageCoverStyles}
+  object-fit: fill;
 `;
 
 export const AvatarImage = styled(Image)`
