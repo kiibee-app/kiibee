@@ -11,6 +11,7 @@ import { PREF_STEP, ViewerPreferenceStep } from "@/utils/preferenceOptions";
 import { PATHS, isSafePostLoginPath } from "@/utils/path";
 import { PrepCard, PreContentWrap, ContentWrap } from "./styles";
 import PreferenceStepContent from "./PreferenceStepContent";
+import { UNDEFINED_STRING, REDIRECT_NEXT_QUERY_PARAM } from "@/utils/Constants";
 
 export default function ViewerPreference({
   onComplete,
@@ -57,8 +58,10 @@ export default function ViewerPreference({
       onComplete();
     } else {
       const nextPath =
-        typeof window !== "undefined"
-          ? new URLSearchParams(window.location.search).get("next")
+        typeof window !== UNDEFINED_STRING
+          ? new URLSearchParams(window.location.search).get(
+              REDIRECT_NEXT_QUERY_PARAM,
+            )
           : null;
       if (nextPath && isSafePostLoginPath(nextPath)) {
         router.push(nextPath);

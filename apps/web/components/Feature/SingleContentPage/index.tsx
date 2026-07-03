@@ -12,6 +12,10 @@ import {
   type OrderItemType,
   STRING,
   ROLE_CREATOR,
+  UNDEFINED_STRING,
+  REDIRECT_NEXT_QUERY_PARAM,
+  ACTION_LOGIN,
+  ACTION_SIGNUP,
 } from "@/utils/Constants";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -84,18 +88,18 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const [showCreatorModal1, setShowCreatorModal1] = useState(false);
   const [showCreatorModal2, setShowCreatorModal2] = useState(false);
   const [creatorModal2Action, setCreatorModal2Action] = useState<
-    "login" | "signup" | null
+    typeof ACTION_LOGIN | typeof ACTION_SIGNUP | null
   >(null);
 
   const handleConfirmModal2 = async () => {
     const returnUrl =
-      typeof window !== "undefined"
+      typeof window !== UNDEFINED_STRING
         ? window.location.pathname + window.location.search
         : "";
     const redirectUrl =
-      creatorModal2Action === "signup"
-        ? `${PATHS.AUTH_SIGNUP_VIEWER}?next=${encodeURIComponent(returnUrl)}`
-        : `${PATHS.AUTH_LOGIN}?next=${encodeURIComponent(returnUrl)}`;
+      creatorModal2Action === ACTION_SIGNUP
+        ? `${PATHS.AUTH_SIGNUP_VIEWER}?${REDIRECT_NEXT_QUERY_PARAM}=${encodeURIComponent(returnUrl)}`
+        : `${PATHS.AUTH_LOGIN}?${REDIRECT_NEXT_QUERY_PARAM}=${encodeURIComponent(returnUrl)}`;
     await logout(redirectUrl);
   };
 
@@ -452,11 +456,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         confirmLabel={t("creatorPurchaseFlow.modal1.primaryBtn")}
         cancelLabel={t("creatorPurchaseFlow.modal1.secondaryBtn")}
         onConfirm={() => {
-          setCreatorModal2Action("login");
+          setCreatorModal2Action(ACTION_LOGIN);
           setShowCreatorModal2(true);
         }}
         onCancel={() => {
-          setCreatorModal2Action("signup");
+          setCreatorModal2Action(ACTION_SIGNUP);
           setShowCreatorModal2(true);
         }}
         buttonRow={false}

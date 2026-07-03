@@ -462,6 +462,11 @@ export const STATUS_TONE = {
   LOADING: "loading",
 } as const;
 
+export const UNDEFINED_STRING = "undefined";
+export const REDIRECT_NEXT_QUERY_PARAM = "next";
+export const ACTION_LOGIN = "login";
+export const ACTION_SIGNUP = "signup";
+
 export type StatusTone = (typeof STATUS_TONE)[keyof typeof STATUS_TONE];
 
 export const PAYMENT_QUERY_KEY = "payment";
