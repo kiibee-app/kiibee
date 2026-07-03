@@ -36,6 +36,10 @@ export class CreateContentDto {
   @IsString()
   @IsNotEmpty()
   collectionId!: string;
+
+  @IsOptional()
+  @IsInt()
+  fileSize?: number;
 }
 
 export class UpdateContentDto {

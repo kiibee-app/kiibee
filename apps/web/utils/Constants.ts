@@ -304,6 +304,7 @@ export const contentTypeSizeMap: Record<string, number> = {
 };
 
 export const mockSizeFallback = 12 * 1024 * 1024;
+export const IS_FALLBACK_SIZE = "isFallbackSize";
 
 export function buildContentUpdatePayload(formState: ContentFormState) {
   const isPaymentAdmission =

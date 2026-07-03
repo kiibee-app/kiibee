@@ -40,7 +40,7 @@ import { useContentForm } from "../ContentFormContext";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import InputField from "@/components/UI/InputFields";
 import { Checkbox } from "@/app/auth/signup-creator/styles";
-import { BLANK } from "@/utils/Constants";
+import { BLANK, IS_FALLBACK_SIZE } from "@/utils/Constants";
 
 type Props = {
   id: string;
@@ -211,9 +211,11 @@ export default function GeneralContent({
 
               <InfoColumn>
                 <MonoText $use="Body_Medium">{uploadedFile.name}</MonoText>
-                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-                  {formatFileSize(uploadedFile.size)}
-                </MonoText>
+                {!(IS_FALLBACK_SIZE in uploadedFile) && (
+                  <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+                    {formatFileSize(uploadedFile.size)}
+                  </MonoText>
+                )}
               </InfoColumn>
             </FileRow>
 

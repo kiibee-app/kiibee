@@ -50,6 +50,7 @@ import {
   buildContentUpdatePayload,
   GENERAL_FORM_FIELDS,
   NUMERIC_ONLY_REGEX,
+  IS_FALLBACK_SIZE,
 } from "@/utils/Constants";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
@@ -783,6 +784,7 @@ export function useContentFormActions({
         physicalProductLink?: string;
         openInNewWindow?: boolean;
         openDirectFromList?: boolean;
+        fileSize?: number | null;
       }
 
       const response = await axiosClient.get(API.content.get(id));
@@ -814,8 +816,13 @@ export function useContentFormActions({
             MIME_TYPE_APPLICATION_PDF,
         });
         const mockSize =
-          contentTypeSizeMap[resolvedContentType] ?? mockSizeFallback;
+          fullContent.fileSize ||
+          contentTypeSizeMap[resolvedContentType] ||
+          mockSizeFallback;
         Object.defineProperty(mockFile, "size", { value: mockSize });
+        if (!fullContent.fileSize) {
+          Object.defineProperty(mockFile, IS_FALLBACK_SIZE, { value: true });
+        }
 
         setUploadedFile(mockFile);
 
