@@ -18,6 +18,7 @@ import { FORMAT_TYPE } from "@/utils/types";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
@@ -35,6 +36,10 @@ export default function ProfileHomeSections({
   const { searchQuery, isCollectionsPage } = useCreatorProfileUi();
   const { isPublicView, publicCreatorId, displayName } =
     useCreatorChannelProfile();
+  const storedUser = useStoredLoginUser();
+  const isOwner =
+    !isPublicView ||
+    (Boolean(publicCreatorId) && storedUser?.id === publicCreatorId);
   const { gateType } = useCreatorAccessGate();
   const {
     latestUpload: latestConfig,
@@ -140,11 +145,11 @@ export default function ProfileHomeSections({
     wrapLatestUpload ? (
       <SectionWrapper>
         <ContentAdjust>
-          <LatestUpload data={latestUploadData} />
+          <LatestUpload data={latestUploadData} isOwner={isOwner} />
         </ContentAdjust>
       </SectionWrapper>
     ) : (
-      <LatestUpload data={latestUploadData} />
+      <LatestUpload data={latestUploadData} isOwner={isOwner} />
     )
   ) : null;
 
