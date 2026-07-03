@@ -80,9 +80,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+  const [pendingPlaybackAfterLogin, setPendingPlaybackAfterLogin] =
+    useState(false);
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
-  const handleCloseLoginModal = () => setLoginModalVisible(false);
+  const handleCloseLoginModal = () => {
+    setLoginModalVisible(false);
+    setPendingPlaybackAfterLogin(false);
+  };
 
   const { logout, isPending: isLoggingOut } = useLogout();
   const [showCreatorModal1, setShowCreatorModal1] = useState(false);
@@ -246,12 +251,35 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     setShowPreviewModal(true);
   };
 
-  const handlePrimaryActionClick = async () => {
+  const playContent = async () => {
     if (isWebType && fallbackPlaybackSrc) {
       window.open(fallbackPlaybackSrc, "_blank", "noopener,noreferrer");
       return;
     }
 
+    await openPreview();
+  };
+
+  const requireLoginForPlayback = () => {
+    if (user?.id) {
+      return false;
+    }
+
+    setPendingPlaybackAfterLogin(true);
+    handleShowLoginModal();
+    return true;
+  };
+
+  const handleLoginSuccess = async () => {
+    const shouldPlay = pendingPlaybackAfterLogin;
+    setPendingPlaybackAfterLogin(false);
+
+    if (shouldPlay) {
+      await playContent();
+    }
+  };
+
+  const handlePrimaryActionClick = async () => {
     if (!canPreview) {
       if (primaryAction?.onClick) {
         primaryAction.onClick();
@@ -307,7 +335,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    await openPreview();
+    if (requireLoginForPlayback()) {
+      return;
+    }
+
+    await playContent();
   };
 
   const modifiedPrimaryAction = primaryAction
@@ -445,9 +477,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onSuccess={() => {
-          handleCloseLoginModal();
-        }}
+        onSuccess={handleLoginSuccess}
       />
 
       <ShareModal
