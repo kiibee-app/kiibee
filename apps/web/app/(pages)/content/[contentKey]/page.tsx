@@ -9,6 +9,7 @@ import Footer from "@/components/Layout/Footer";
 import { Main, PageContainer, Section } from "../../../styles";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericSpinner from "@/components/UI/GenericSpinner";
+import LazySection from "@/components/UI/LazySection";
 import { ErrorBoundary } from "react-error-boundary";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
@@ -245,7 +246,9 @@ export default function PublishedContentPage() {
       <Main>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Suspense fallback={<PublishedContentLoading />}>
-            <PublishedContentDetail />
+            <LazySection minHeight={480} rootMargin="0px">
+              <PublishedContentDetail />
+            </LazySection>
           </Suspense>
         </ErrorBoundary>
       </Main>
