@@ -5,6 +5,12 @@ import { ROLE_ADMIN, ROLE_CREATOR, ROLE_VIEWER } from "@/utils/Constants";
 import { logger } from "./lib/logger";
 
 const PROTECTED_PATHS = [PATHS.DASHBOARD_CREATOR, PATHS.DASHBOARD_VIEWER];
+const AUTH_REDIRECT_PATHS = [
+  PATHS.AUTH_LOGIN,
+  PATHS.AUTH_SIGNUP,
+  PATHS.AUTH_SIGNUP_CREATOR,
+  PATHS.AUTH_SIGNUP_VIEWER,
+];
 
 function hasAuthSession(request: NextRequest) {
   const hasSessionCookie = Boolean(
@@ -72,6 +78,12 @@ function isProtectedPath(pathname: string) {
   );
 }
 
+function isAuthRedirectPath(pathname: string) {
+  return AUTH_REDIRECT_PATHS.includes(
+    pathname as (typeof AUTH_REDIRECT_PATHS)[number],
+  );
+}
+
 function canAccessDashboard(requiredRole: string, sessionRole: string) {
   if (sessionRole === requiredRole) return true;
   if (requiredRole === ROLE_CREATOR && sessionRole === ROLE_ADMIN) {
@@ -102,7 +114,7 @@ export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const isLoggedIn = hasAuthSession(request);
 
-  if (pathname === PATHS.AUTH_LOGIN && isLoggedIn) {
+  if (isAuthRedirectPath(pathname) && isLoggedIn) {
     return NextResponse.redirect(
       new URL(getDashboardPath(request), request.url),
     );
