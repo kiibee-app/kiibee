@@ -17,9 +17,9 @@ import {
   type ContentDetailResponse,
 } from "@/utils/contentApi";
 import { tutorialVideos } from "@/utils/data";
-import { QUERY_KEYS } from "@/utils/Constants";
-import { buildPricingButtonsForContent } from "@/utils/contentPricingActions";
+import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
 import { type TutorialVideo } from "@/utils/types";
+import { pathPublishedContent } from "@/utils/path";
 
 export type CollectionWithCards = {
   id: string;
@@ -75,11 +75,13 @@ export function useProfileHomeCollections(displayName: string, enabled = true) {
                 });
               const contentDetail = getContentDetail(contentData);
 
-              const buttons = buildPricingButtonsForContent(
-                content.id,
-                contentDetail,
-                seeContentLabel,
-              );
+              const buttons = [
+                {
+                  label: seeContentLabel,
+                  variant: VARIANT.SECONDARY,
+                  href: pathPublishedContent(content.id),
+                },
+              ];
 
               return {
                 ...fallbackTemplate,
