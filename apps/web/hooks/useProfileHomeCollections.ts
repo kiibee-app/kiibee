@@ -16,7 +16,7 @@ import {
   getContentDetail,
   type ContentDetailResponse,
 } from "@/utils/contentApi";
-import { tutorialVideos } from "@/utils/data";
+import { tutorialVideoCardFallback } from "@/utils/data";
 import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
 import { type TutorialVideo } from "@/utils/types";
 import { pathPublishedContent } from "@/utils/path";
@@ -57,11 +57,8 @@ export function useProfileHomeCollections(displayName: string, enabled = true) {
           );
 
           const cards = await Promise.all(
-            contentRows.map(async (content, contentIndex) => {
-              const fallbackTemplate =
-                tutorialVideos[
-                  (collectionIndex + contentIndex) % tutorialVideos.length
-                ];
+            contentRows.map(async (content) => {
+              const fallbackTemplate = tutorialVideoCardFallback;
 
               const contentData =
                 await queryClient.ensureQueryData<ContentDetailResponse>({

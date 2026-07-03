@@ -2,16 +2,13 @@
 
 import { memo, useMemo, useState, type MouseEvent } from "react";
 import { useRouter } from "next/navigation";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
-import { LoginRequiredModal } from "@/components/UI/Modals";
-import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { ActionRow, CardLink, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { ComponentType } from "react";
-import type { FormatType, TutorialButton, TutorialVideo } from "@/utils/types";
+import type { FormatType, TutorialVideo } from "@/utils/types";
 import { FORMAT_TYPE } from "@/utils/types";
 import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
@@ -21,6 +18,7 @@ import COLORS from "@repo/ui/colors";
 import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -50,21 +48,33 @@ function TutorialCard({
 }: TutorialCardProps) {
   const { t } = useTranslation();
   const router = useRouter();
-  const user = useStoredLoginUser();
-  const { navigateToContent } = useProtectedContentNavigation();
-  const [isLoginModalVisible, setLoginModalVisible] = useState(false);
-  const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
 
-  const handleShowLoginModal = (url: string) => {
-    setPendingRedirectUrl(url);
-    setLoginModalVisible(true);
+  const thumbnailCandidates = useMemo(() => {
+    if (tutorial.videoUrl) {
+      return resolveTutorialThumbnailCandidates({
+        videoUrl: tutorial.videoUrl,
+        trailerUrl: tutorial.trailerUrl,
+      });
+    }
+
+    const staticImage = resolveImageUrl(tutorial.image);
+    return staticImage ? [staticImage] : [];
+  }, [tutorial.image, tutorial.trailerUrl, tutorial.videoUrl]);
+
+  const [thumbnailIndex, setThumbnailIndex] = useState(0);
+
+  const image =
+    thumbnailCandidates[thumbnailIndex] ??
+    resolveImageUrl(tutorial.image) ??
+    undefined;
+  const imageFallback = thumbnailCandidates[thumbnailIndex + 1];
+
+  const handleThumbnailError = () => {
+    setThumbnailIndex((current) => {
+      const nextIndex = current + 1;
+      return nextIndex < thumbnailCandidates.length ? nextIndex : current;
+    });
   };
-  const handleCloseLoginModal = () => setLoginModalVisible(false);
-
-  const imageUrl = useMemo(
-    () => resolveImageUrl(tutorial.image),
-    [tutorial.image],
-  );
 
   const FormatIcon = useMemo(() => {
     const formatType: FormatType = tutorial.formatType ?? FORMAT_TYPE.VIDEO;
@@ -76,25 +86,19 @@ function TutorialCard({
     [tutorial.id],
   );
 
-  const buttons = useMemo(() => {
-    const defaultButton: TutorialButton = {
-      label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
-      variant: VARIANT.SECONDARY,
-      href: singleTutorialHref,
-    };
-    return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
-  }, [tutorial.buttons, t, singleTutorialHref]);
-
-  const resolveButtonHref = (href?: string) => {
-    if (!href) return singleTutorialHref;
-    if (href.startsWith("/tutorial-videos")) return singleTutorialHref;
-    return href;
-  };
-
+  const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
   const isCardLinked = !onPlayClick;
 
   const stopCardNavigation = (event: MouseEvent) => {
     event.stopPropagation();
+  };
+
+  const openContent = () => {
+    if (onPlayClick) {
+      onPlayClick(tutorial.id);
+      return;
+    }
+    router.push(singleTutorialHref);
   };
 
   const openCreatorProfile = (event: MouseEvent) => {
@@ -134,81 +138,45 @@ function TutorialCard({
     <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
   );
 
-  const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const isLoggedIn = Boolean(user && user.id);
-    const targetHref = resolveButtonHref(button.href);
-
-    if (button.requiresAuth && !isLoggedIn) {
-      handleShowLoginModal(targetHref);
-      return;
-    }
-
-    navigateToContent(targetHref, button.requiresAuth ?? false);
-  };
-
   const card = (
     <GenericCard
       coverImage
-      image={imageUrl}
-      imageFallback={tutorial.imageFallback}
+      image={image}
+      imageFallback={imageFallback}
+      onImageError={handleThumbnailError}
+      alt={tutorial.title}
       badge={
-        <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
-          {tutorial.category}
-        </MonoText>
+        tutorial.category ? (
+          <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
+            {tutorial.category}
+          </MonoText>
+        ) : undefined
       }
-      title={<MonoText $use="H5_Medium">{tutorial.title}</MonoText>}
+      title={<MonoText $use="Body_Medium">{tutorial.title}</MonoText>}
       subtitle={creatorSubtitle}
       footer={
         <ActionRow onClick={stopCardNavigation}>
-          {buttons.map((button, index) =>
-            onPlayClick ? (
-              <GenericButton
-                key={`${button.label}-${index}`}
-                type="button"
-                variant={button.variant ?? VARIANT.SECONDARY}
-                fullWidth={button.fullWidth}
-                size={button.size}
-                minWidth={button.minWidth}
-                aria-pressed={isSelected}
-                onClick={() => onPlayClick(tutorial.id)}
-              >
-                {button.label}
-              </GenericButton>
-            ) : button.href ? (
-              <GenericButton
-                key={`${button.label}-${index}`}
-                type="button"
-                variant={button.variant ?? VARIANT.SECONDARY}
-                fullWidth={button.fullWidth}
-                size={button.size}
-                minWidth={button.minWidth}
-                onClick={(event) => handleButtonClick(event, button)}
-              >
-                {button.label}
-              </GenericButton>
-            ) : (
-              <GenericButton
-                key={`${button.label}-${index}`}
-                type="button"
-                variant={button.variant ?? VARIANT.SECONDARY}
-                fullWidth={button.fullWidth}
-                size={button.size}
-                minWidth={button.minWidth}
-                onClick={button.onClick}
-              >
-                {button.label}
-              </GenericButton>
-            ),
-          )}
+          <GenericButton
+            type="button"
+            variant={VARIANT.SECONDARY}
+            fullWidth
+            aria-pressed={isSelected}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              openContent();
+            }}
+          >
+            {freeLabel}
+          </GenericButton>
         </ActionRow>
       }
     >
-      <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-        {tutorial.published}
-      </MonoText>
+      {tutorial.published ? (
+        <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+          {tutorial.published}
+        </MonoText>
+      ) : null}
 
       <VideoBox>
         <FormatIcon width={22} height={22} color={COLORS.neutral.BLACK} />
@@ -217,40 +185,19 @@ function TutorialCard({
     </GenericCard>
   );
 
-  const loginModal = (
-    <LoginRequiredModal
-      visible={isLoginModalVisible}
-      onClose={handleCloseLoginModal}
-      onSuccess={() => {
-        if (pendingRedirectUrl) {
-          navigateToContent(pendingRedirectUrl, true);
-          setPendingRedirectUrl("");
-        }
-      }}
-    />
-  );
-
   if (isCardLinked) {
     return (
-      <>
-        <CardLink
-          href={singleTutorialHref}
-          $clickable
-          aria-label={tutorial.title}
-        >
-          {card}
-        </CardLink>
-        {loginModal}
-      </>
+      <CardLink
+        href={singleTutorialHref}
+        $clickable
+        aria-label={tutorial.title}
+      >
+        {card}
+      </CardLink>
     );
   }
 
-  return (
-    <>
-      {card}
-      {loginModal}
-    </>
-  );
+  return card;
 }
 
 export default memo(TutorialCard);

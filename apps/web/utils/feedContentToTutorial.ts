@@ -131,6 +131,7 @@ export function feedContentToTutorial(
 }
 
 export const FEED_CONTENT_PAGE_SIZE = 4;
+export const TUTORIAL_VIDEOS_PAGE_SIZE = 3;
 
 export function getFeedPageSlice<T>(
   items: T[],

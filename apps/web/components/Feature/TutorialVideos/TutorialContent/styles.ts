@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const HeroBlock = styled.section`
   gap: 0.75rem;
-  padding: 4rem 0;
+  padding: 3rem 0 1rem 0;
   text-align: center;
 `;
 export const HeroTitle = styled.h1`

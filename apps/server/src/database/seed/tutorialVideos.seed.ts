@@ -1,0 +1,190 @@
+import { db } from '../db';
+import { tutorialVideoSections } from '../schema/content/tutorialVideoSections.schema';
+import { tutorialVideos } from '../schema/content/tutorialVideos.schema';
+
+const QUALITY_NOTE =
+  'Skulle videokvaliteten være grumset, kan det skyldes at din netforbindelse er dårlig. Du forbedre kvaliteten ved at trykke på tandhjulet i playeren og sætte opløsningen til 1080p i Chrome, Firefox og Microsoft Edge / Explorer browsere.';
+
+const CTA_NOTE = 'Klik på TRAILER eller SE INDHOLD.';
+
+const sections = [
+  {
+    id: 'intro-videos',
+    title: 'Intro videoer',
+    sortOrder: 0,
+    gridMaxWidth: null,
+  },
+  {
+    id: 'help-videos',
+    title: 'Hjælpevideoer',
+    sortOrder: 1,
+    gridMaxWidth: null,
+  },
+] as const;
+
+const videos = [
+  {
+    id: 'setting-up-online-courses',
+    sectionId: 'intro-videos',
+    title: 'Opsætning af Online kurser eller samlinger',
+    description: `I denne video viser vi hvordan du opsætter online kurser eller samlinger i Kiibee. ${CTA_NOTE}`,
+    descriptionSecondary: QUALITY_NOTE,
+    publisher: 'Kiibee ApS',
+    publishedYear: '2020',
+    duration: '3 min',
+    tags: JSON.stringify(['Brugervejledning', 'Intro video']),
+    videoUrl:
+      'https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/18992dd8ee10f96272eca42b498a017a/watch',
+    trailerUrl: 'https://youtu.be/5vyLZMJc7Ko?si=s-buQSsNUhN8D7mm',
+    sortOrder: 0,
+  },
+  {
+    id: 'get-started-in-3-minutes',
+    sectionId: 'intro-videos',
+    title: 'Kom igang på 3 minutter',
+    description: `Kom hurtigt i gang med Kiibee på kun få minutter. ${CTA_NOTE}`,
+    descriptionSecondary: QUALITY_NOTE,
+    publisher: 'Kiibee ApS',
+    publishedYear: '2020',
+    duration: '3 min',
+    tags: JSON.stringify(['Brugervejledning', 'Intro video']),
+    videoUrl:
+      'https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/2442e3ea2dbbedb43ae12d5279acc3dd/watch',
+    trailerUrl: 'https://youtu.be/MKBEJ9rYiwY?si=_5pYACxEwKkx4PTO',
+    sortOrder: 1,
+  },
+  {
+    id: 'help-producing-content',
+    sectionId: 'intro-videos',
+    title: 'Har du brug for hjælp til at få produceret dit indhold?',
+    description: `Få hjælp til at producere dit indhold, så du kan komme hurtigt i gang på Kiibee. ${CTA_NOTE}`,
+    descriptionSecondary: QUALITY_NOTE,
+    publisher: 'Kiibee ApS',
+    publishedYear: '2020',
+    duration: '2 min',
+    tags: JSON.stringify(['Brugervejledning', 'Intro video']),
+    videoUrl:
+      'https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/2e056ca460aab279c08d3643ec5bc93f/watch',
+    trailerUrl: null,
+    sortOrder: 2,
+  },
+  {
+    id: 'part-1-creating-profile-and-channel',
+    sectionId: 'help-videos',
+    title: 'Del 1. Oprettelse af profil og kanal & site',
+    description: `I denne video viser vi hvordan du starter op efter oprettelse og tilpasser din site eller kanal. ${CTA_NOTE}`,
+    descriptionSecondary: QUALITY_NOTE,
+    publisher: 'Kiibee ApS',
+    publishedYear: '2019',
+    duration: '2 min',
+    tags: JSON.stringify(['Brugervejledning', 'Hjælpe video']),
+    videoUrl:
+      'https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/6984433561199a0a9e8705ee0308cd9d/watch',
+    trailerUrl: 'https://youtu.be/QRrfnCMmECY?si=reWj8iZU4Co_8KKm',
+    sortOrder: 0,
+  },
+  {
+    id: 'part-2-content-and-broadcast',
+    sectionId: 'help-videos',
+    title: 'Del 2. Indhold og udsende',
+    description: `I denne video viser vi hvordan du uploader dit indhold til systemet og tilpasser det til et flot site eller kanal. ${CTA_NOTE}`,
+    descriptionSecondary: QUALITY_NOTE,
+    publisher: 'Kiibee ApS',
+    publishedYear: '2019',
+    duration: '2 min',
+    tags: JSON.stringify(['Brugervejledning', 'Hjælpevideoer']),
+    videoUrl:
+      'https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/f6c0a96b509773eb570209b1291aafb7/watch',
+    trailerUrl: 'https://youtu.be/qbFJGE3n8po?si=Us9XWX2mnwpEkTI-',
+    sortOrder: 1,
+  },
+  {
+    id: 'part-3-styling-and-managing-collection',
+    sectionId: 'help-videos',
+    title: 'Del 3. Styling og styring af din samling',
+    description:
+      'Vi viser i denne video hvordan du sætter din samling op, samt tilpasser den. Klik på TRAILER eller SE INDHOLD',
+    descriptionSecondary:
+      'Skulle videokvaliteten være grumset, kan det skyldes at din netforbindelse er en smule dårlig. Du forbedre kvaliteten ved at trykke på tandhjulet i playeren og sætte opløsningen til 1080p i Chrome, Firefox og Microsoft Edge / Explorer browsere.',
+    publisher: 'Kiibee ApS',
+    publishedYear: '2019',
+    duration: '2 min',
+    tags: JSON.stringify(['Hjælpe videoer', 'Brugervejledning']),
+    videoUrl:
+      'https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/0cd63e31aadd1b9153d969dbadb4525e/watch',
+    trailerUrl: 'https://youtu.be/bYQ7LQtdwTg?si=7-F4PmjqWyIBEtav',
+    sortOrder: 2,
+  },
+  {
+    id: 'part-4-payment-module',
+    sectionId: 'help-videos',
+    title: 'Del 4. Betalingsmodulet',
+    description:
+      'Hvis du vil anvende systemets betalingsløsning, kan denne video vise dig hvordan du kommer igang. Klik på TRAILER eller SE INDHOLD',
+    descriptionSecondary: QUALITY_NOTE,
+    publisher: 'Kiibee ApS',
+    publishedYear: '2019',
+    duration: '3 min',
+    tags: JSON.stringify(['Brugervejledning', 'Hjælpe videoer']),
+    videoUrl:
+      'https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/14e9f02299edbf3e77606db6446655d0/watch',
+    trailerUrl: 'https://youtu.be/Ae6DbHGh_hw?si=ijuhTNi1sjyStJol',
+    sortOrder: 3,
+  },
+  {
+    id: 'part-5-payout-notifications-exports',
+    sectionId: 'help-videos',
+    title: 'Del 5. Udbetaling, notifikationer og eksporter',
+    description:
+      'I denne video viser vi hvordan du kan får notifikationer på solgte varer og får udbetalt penge når dine digitale varer er solgt. Og ikke mindst hvis du har modtaget e-mails fra dit publikum, hvordan du henter dem ud af systemet. Klik på TRAILER eller SE INDHOLD',
+    descriptionSecondary: QUALITY_NOTE,
+    publisher: 'Kiibee ApS',
+    publishedYear: '2019',
+    duration: '3 min',
+    tags: JSON.stringify(['Hjælpe video', 'Brugervejledning']),
+    videoUrl:
+      'https://customer-y2jwwmt8niw6h9rt.cloudflarestream.com/48e22d16e6f18806f5a12c564cfcbcc5/watch',
+    trailerUrl: 'https://youtu.be/FfiANR0Xgg0?si=GPvCrq65fNHMccZc',
+    sortOrder: 4,
+  },
+] as const;
+
+export const seedTutorialVideos = async () => {
+  for (const section of sections) {
+    await db
+      .insert(tutorialVideoSections)
+      .values(section)
+      .onConflictDoUpdate({
+        target: tutorialVideoSections.id,
+        set: {
+          title: section.title,
+          sortOrder: section.sortOrder,
+          gridMaxWidth: section.gridMaxWidth,
+        },
+      });
+  }
+
+  for (const video of videos) {
+    await db
+      .insert(tutorialVideos)
+      .values(video)
+      .onConflictDoUpdate({
+        target: tutorialVideos.id,
+        set: {
+          sectionId: video.sectionId,
+          title: video.title,
+          description: video.description,
+          descriptionSecondary: video.descriptionSecondary,
+          publisher: video.publisher,
+          publishedYear: video.publishedYear,
+          duration: video.duration,
+          tags: video.tags,
+          videoUrl: video.videoUrl,
+          trailerUrl: video.trailerUrl,
+          sortOrder: video.sortOrder,
+        },
+      });
+  }
+
+  console.log('Tutorial videos seeded successfully');
+};

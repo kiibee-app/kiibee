@@ -18,7 +18,7 @@ import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { CREATOR, resolveImageUrl } from "@/utils/Constants";
-import { tutorialVideos } from "@/utils/data";
+import { tutorialVideoCardFallback } from "@/utils/data";
 import {
   RENTED_MODES,
   type CollectionAction,
@@ -166,7 +166,7 @@ export default function CollectionList() {
     if (!privateCollectionsResponse) return [];
     const rows = getCollectionRows(privateCollectionsResponse);
 
-    return rows.map((row, index) => {
+    return rows.map((row) => {
       const firstContentId = collectionContentsMap?.[row.id];
       const contentHref = firstContentId
         ? pathPublishedContent(firstContentId)
@@ -185,9 +185,7 @@ export default function CollectionList() {
         title: row.name,
         author: displayName,
         elementCount: row.contentsCount,
-        coverSrc: resolveImageUrl(
-          tutorialVideos[index % tutorialVideos.length]?.image ?? "",
-        ),
+        coverSrc: resolveImageUrl(tutorialVideoCardFallback.image),
         hideBadge: true,
         href: contentHref,
         actions,
