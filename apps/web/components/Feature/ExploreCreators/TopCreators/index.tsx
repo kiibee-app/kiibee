@@ -12,6 +12,9 @@ import {
   CREATOR_CHANNEL_AVATAR_TEXT,
   SKELETON_COUNT,
   TOP_CREATORS_LIMIT,
+  TOP_CREATORS_NAME_LIMIT,
+  TOP_CREATORS_NAME_START,
+  ELLIPSIS_FOUR_DOTS,
 } from "@/utils/Constants";
 import { formatUploadCount } from "@/hooks/creators/useExploreCreators";
 import { useExploreTopCreators } from "@/hooks/feed/useExploreContent";
@@ -84,7 +87,11 @@ export default function TopCreators() {
                   />
                 </Avatar>
 
-                <MonoText $use="Body_Medium">{creator.name}</MonoText>
+                <MonoText $use="Body_Medium">
+                  {creator.name.length > TOP_CREATORS_NAME_LIMIT
+                    ? `${creator.name.substring(TOP_CREATORS_NAME_START, TOP_CREATORS_NAME_LIMIT)}${ELLIPSIS_FOUR_DOTS}`
+                    : creator.name}
+                </MonoText>
                 <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
                   {t(CREATORS.topCreatorUploads, {
                     count: creator.uploadCount,
