@@ -44,7 +44,7 @@ export const CoverFrame = styled.div`
 export const CoverFrameFull = styled.div`
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 350px;
   overflow: hidden;
   ${({ theme }) => theme.media.desktopSm} {
     height: 250px;
