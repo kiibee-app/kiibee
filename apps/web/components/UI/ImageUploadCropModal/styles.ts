@@ -43,9 +43,7 @@ export const UploadOrText = styled(MonoText).attrs({
 
 export const CropCanvas = styled.div`
   width: 100%;
-  height: 320px;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,18 +57,43 @@ export const ModalActions = styled.div`
   gap: 8px;
 `;
 
-export const ImagePreviewWrapper = styled.div`
+export const ImagePreviewWrapper = styled.div<{
+  $cropWidth: number;
+  $cropHeight: number;
+}>`
   position: relative;
   width: 100%;
-  max-width: 320px;
-  aspect-ratio: 1 / 1;
+  max-width: ${({ $cropWidth, $cropHeight }) =>
+    `min(100%, calc(320px * ${$cropWidth} / ${$cropHeight}))`};
+  aspect-ratio: ${({ $cropWidth, $cropHeight }) =>
+    `${$cropWidth} / ${$cropHeight}`};
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
+  background: radial-gradient(
+    circle,
+    ${({ theme }) => theme.colors.neutral.GRAY_700 || "#2a2b2f"} 0%,
+    ${({ theme }) => theme.colors.gradient.NEAR_BLACK || "#060606"} 100%
+  );
+  box-shadow: ${({ theme }) => theme.shadows.lg};
 
   &:active {
     cursor: grabbing;
   }
+`;
+
+export const BlurredBackground = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(20px) brightness(0.55);
+  transform: scale(1.15);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
 `;
 
 export const ImagePreview = styled.img<{
@@ -87,13 +110,16 @@ export const ImagePreview = styled.img<{
   height: ${({ $height }) => $height}px;
   max-width: none;
   max-height: none;
-  object-fit: fill;
+  object-fit: cover;
   pointer-events: none;
   user-select: none;
+  z-index: 2;
   transform: ${({ $x, $y }) =>
     `translate(calc(-50% + ${$x}px), calc(-50% + ${$y}px))`};
   transition: ${({ $isDragging }) =>
-    $isDragging ? "none" : "transform 0.1s ease-out"};
+    $isDragging
+      ? "none"
+      : "transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), width 0.2s cubic-bezier(0.25, 1, 0.5, 1), height 0.2s cubic-bezier(0.25, 1, 0.5, 1)"};
 `;
 
 export const ChangePhotoHint = styled(MonoText).attrs({
@@ -110,17 +136,20 @@ export const CropOverlay = styled.div<{
   $height: number;
 }>`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: ${({ $width }) => `${$width}px`};
-  height: ${({ $height }) => `${$height}px`};
-  transform: translate(-50%, -50%);
-  border-radius: ${({ $shape }) =>
-    $shape === CROP_SHAPE.CIRCLE ? "50%" : "0"};
-  box-shadow: 0 0 0 9999px ${({ theme }) => theme.colors.neutral.GRAY_400};
-  border: 2px solid transparent;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
   pointer-events: none;
-  z-index: 2;
+  box-sizing: border-box;
+  z-index: 3;
+
+  ${({ $shape, theme }) =>
+    $shape === CROP_SHAPE.CIRCLE &&
+    `
+    border-radius: 50%;
+    box-shadow: 0 0 0 9999px ${theme.colors.neutral.OVERLAY};
+  `}
 `;
 
 export const ZoomContainer = styled.div`
