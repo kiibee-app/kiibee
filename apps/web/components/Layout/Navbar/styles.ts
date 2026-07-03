@@ -35,7 +35,7 @@ export const Inner = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 1024px) {
+  ${media.desktop} {
     padding: var(--navbar-inner-tablet-padding, 0.9rem 1.5rem);
   }
 

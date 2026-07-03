@@ -7,6 +7,7 @@ export const ESCAPE = "Escape";
 export const KEYDOWN = "keydown";
 export const BUTTON = "button";
 export const POINTER_DOWN = "pointerdown";
+export const TOUCH = "touch";
 export const KEY_TAB = "Tab";
 export const MODAL_CONTAINER_SELECTOR =
   '[data-test-id="generic-modal-container"]';
