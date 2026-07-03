@@ -56,7 +56,7 @@ export default function ClientViewerProfile() {
     onChange,
     onPasswordChange,
     showPasswordSuccessModal,
-    setShowPasswordSuccessModal,
+
     showProfileSavedModal,
     setShowProfileSavedModal,
     handleSave,

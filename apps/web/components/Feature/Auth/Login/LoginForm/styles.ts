@@ -2,13 +2,13 @@ import Link from "next/link";
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
 import { SIZE } from "@/utils/Constants";
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ $isModal?: boolean }>`
   width: 100%;
-  min-height: 100%;
+  min-height: ${({ $isModal }) => ($isModal ? "auto" : "100%")};
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem 1rem;
+  padding: ${({ $isModal }) => ($isModal ? "1rem" : "3rem 1rem")};
 `;
 export const Card = styled.div`
   width: 100%;

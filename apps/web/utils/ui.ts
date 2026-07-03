@@ -113,6 +113,10 @@ export const MODAL_ALIGN = {
 } as const;
 export type ModalAlign = (typeof MODAL_ALIGN)[keyof typeof MODAL_ALIGN];
 
+export const LOGIN_REQUIRED_MODAL_WIDTH = "560px";
+export const LOGIN_REQUIRED_MODAL_INITIAL_HEIGHT = "360px";
+export const LOGIN_REQUIRED_MODAL_OVERLAY_Z_INDEX = 1000;
+
 export const WEEK_DAYS = [
   "SUN",
   "MON",

@@ -1,10 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { PATHS } from "@/utils/path";
 import {
   ACCESS_TYPE_FREE,
   ACCESS_KEYWORD_EN,
@@ -34,13 +33,10 @@ import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
-import { GenericModal } from "@/components/UI/Modals";
-import { MonoText } from "@/components/UI/Monotext";
-import { MODAL_ALIGN } from "@/utils/ui";
-import {
-  ModalContentWrapper,
-  ModalDescription,
-} from "@/components/Feature/ProfileLayout/shared/LatestUpload/styles";
+
+import { LoginRequiredModal } from "@/components/UI/Modals";
+
+import { useSearchParams } from "next/navigation";
 
 export type {
   SingleContentHeroProps,
@@ -49,7 +45,6 @@ export type {
 } from "@/types/contentTypes";
 
 export default function SingleContentPage(props: SingleContentPageProps) {
-  const { t } = useTranslation();
   const {
     contentId,
     collectionId,
@@ -73,19 +68,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     accessGate,
   } = props;
   const router = useRouter();
+  const { t } = useTranslation();
+  const searchParams = useSearchParams();
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
   const handleCloseLoginModal = () => setLoginModalVisible(false);
-  const handleLoginRedirect = () => {
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   type CreateOrderPayload = {
     contentId: string;
@@ -119,8 +109,12 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
     return actions.map((action) => {
       const normalizedLabel = action.label.toLowerCase();
-      const isPurchase = normalizedLabel.includes("buy");
-      const isRental = normalizedLabel.includes("rent");
+      const isPurchase = normalizedLabel.includes(
+        t("pricingLabels.buy").toLowerCase(),
+      );
+      const isRental = normalizedLabel.includes(
+        t("pricingLabels.rent").toLowerCase(),
+      );
 
       if (!isPurchase && !isRental) {
         return action;
@@ -130,11 +124,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
-          if (!user?.id) {
-            handleShowLoginModal();
-            return;
-          }
-
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
@@ -144,7 +133,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         },
       };
     });
-  }, [contentId, createOrderMutation, primaryAction, primaryActions, user?.id]);
+  }, [contentId, createOrderMutation, primaryAction, primaryActions, t]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
@@ -169,7 +158,32 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     previewContentType === FORMAT_TYPE.VIDEO ||
     previewContentType === FORMAT_TYPE.AUDIO;
 
-  const isWebType = previewContentType === FORMAT_TYPE.WEB;
+  useEffect(() => {
+    const intent = searchParams?.get("intent");
+    if (intent) {
+      const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
+      if (actions.length) {
+        const action = actions[0];
+        setSelectedAction({
+          label: action.label,
+          subtitle: action.subtitle,
+          isPurchase: action.label
+            .toLowerCase()
+            .includes(t("pricingLabels.buy").toLowerCase()),
+        });
+        setShowPurchaseModal(true);
+
+        const newUrl =
+          window.location.pathname +
+          window.location.search
+            .replace(new RegExp(`&?intent=${intent}`), "")
+            .replace(/\?$/, "");
+        window.history.replaceState({}, "", newUrl);
+      }
+    }
+  }, [searchParams, primaryActions, primaryAction, t]);
+
+  const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
 
   const canPreview =
     isPreviewableType &&
@@ -210,9 +224,37 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    const mediaUrl = await fetchMediaUrl();
-    if (mediaUrl) {
-      setShowPreviewModal(true);
+    const accessMeta = metaItems.find(
+      (item) =>
+        item.label.toLowerCase().includes(ACCESS_KEYWORD_EN) ||
+        item.label.toLowerCase().includes(ACCESS_KEYWORD_DA),
+    );
+    const isPaid =
+      accessMeta &&
+      typeof accessMeta.value === STRING &&
+      accessMeta.value !== ACCESS_TYPE_FREE;
+
+    const actionLabel = primaryAction?.label?.toLowerCase();
+    const isPurchaseAction = Boolean(
+      actionLabel?.includes(t("pricingLabels.buy").toLowerCase()),
+    );
+    const isRentalAction = Boolean(
+      actionLabel?.includes(t("pricingLabels.rent").toLowerCase()),
+    );
+
+    if (isPaid || isPurchaseAction || isRentalAction) {
+      setSelectedAction({
+        label: primaryAction?.label as string,
+        subtitle: primaryAction?.subtitle,
+        isPurchase: isPurchaseAction,
+      });
+
+      setShowPurchaseModal(true);
+    } else {
+      const mediaUrl = await fetchMediaUrl();
+      if (mediaUrl) {
+        setShowPreviewModal(true);
+      }
     }
   };
 
@@ -248,6 +290,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     subscriptionId?: string,
   ) => {
     if (!selectedAction || !contentId) return;
+
+    if (!user?.id) {
+      handleShowLoginModal();
+      return;
+    }
 
     try {
       const response = await createOrderMutation.mutateAsync({
@@ -329,6 +376,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         visible={showPurchaseModal}
         onClose={handleClosePurchaseModal}
         onPurchase={handlePurchaseConfirm}
+        onRequireLogin={handleShowLoginModal}
+        isLoggedIn={Boolean(user?.id)}
         title={title}
         image={hero.image ? resolveImageUrl(hero.image) : undefined}
         imageAlt={hero.imageAlt}
@@ -340,31 +389,13 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         loading={createOrderMutation.isPending}
       />
 
-      <GenericModal
+      <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onCancel={handleLoginRedirect}
-        onConfirm={handleCreateAccount}
-        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-        confirmLabel={t(
-          "createProfileHome.latestUpload.loginModal.confirmLabel",
-        )}
-        buttonRow
-        buttonAlign={MODAL_ALIGN.CENTER}
-        fullWidthButtons={false}
-        size="sm"
-        spacing="start"
-        showCloseButton
-      >
-        <ModalContentWrapper>
-          <MonoText $use="Heading3">
-            {t("createProfileHome.latestUpload.loginModal.title")}
-          </MonoText>
-          <ModalDescription $use="Body_Medium">
-            {t("createProfileHome.latestUpload.loginModal.message")}
-          </ModalDescription>
-        </ModalContentWrapper>
-      </GenericModal>
+        onSuccess={() => {
+          handleCloseLoginModal();
+        }}
+      />
 
       <ShareModal
         visible={showShareModal}
