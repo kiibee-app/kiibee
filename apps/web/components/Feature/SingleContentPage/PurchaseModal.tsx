@@ -14,6 +14,7 @@ import { usePostAPI } from "@/lib/http/api/postApi";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { SelectedCheckIcon } from "@/assets/icons";
 import {
   PurchaseModalCard,
@@ -86,6 +87,8 @@ export type PurchaseModalProps = {
   visible: boolean;
   onClose: () => void;
   onPurchase: (couponCode?: string, subscriptionId?: string) => void;
+  onRequireLogin?: () => void;
+  isLoggedIn?: boolean;
   title: string;
   image?: string;
   imageAlt?: string;
@@ -101,6 +104,8 @@ export default function PurchaseModal({
   visible,
   onClose,
   onPurchase,
+  onRequireLogin,
+  isLoggedIn,
   title,
   image,
   imageAlt,
@@ -112,6 +117,7 @@ export default function PurchaseModal({
   loading = false,
 }: PurchaseModalProps) {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
   const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
@@ -134,7 +140,7 @@ export default function PurchaseModal({
     API.payment.cards,
     undefined,
     {
-      enabled: visible,
+      enabled: visible && Boolean(user?.id),
       retry: 1,
     },
   );
@@ -197,6 +203,10 @@ export default function PurchaseModal({
   }, []);
 
   const handlePurchase = () => {
+    if (!isLoggedIn && onRequireLogin) {
+      onRequireLogin();
+      return;
+    }
     onPurchase(appliedCode || undefined, effectiveSubscriptionId || undefined);
   };
 
@@ -258,9 +268,7 @@ export default function PurchaseModal({
 
           <PurchaseModalCardInfo>
             <PurchaseModalCardBadge>
-              <MonoText $use="Body_Bold">
-                {contentType?.toUpperCase() || "PDF"}
-              </MonoText>
+              <MonoText $use="Body_Bold">{contentType?.toUpperCase()}</MonoText>
             </PurchaseModalCardBadge>
             <PurchaseModalCardTitle>
               <MonoText $use="Body_Bold">{title}</MonoText>

@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
-import { PATHS } from "@/utils/path";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { TutorialVideo } from "@/utils/types";
 import logo from "@/assets/images/logo.png";
@@ -17,13 +16,7 @@ import {
   ACCESS_TYPE_FREE,
 } from "@/utils/Constants";
 import CollectionItems from "./CollectionItems";
-import { GenericModal } from "@/components/UI/Modals";
-import { MonoText } from "@/components/UI/Monotext";
-import { MODAL_ALIGN } from "@/utils/ui";
-import {
-  ModalContentWrapper,
-  ModalDescription,
-} from "@/components/Feature/ProfileLayout/shared/LatestUpload/styles";
+import { LoginRequiredModal } from "@/components/UI/Modals";
 
 type Props = {
   tutorial: TutorialVideo;
@@ -43,13 +36,6 @@ export default function SingleTutorial({
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
   const handleCloseLoginModal = () => setLoginModalVisible(false);
-  const handleLoginRedirect = () => {
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   const handleSeeContent = () => {
     const isPaid = tutorial.level !== ADMISSION_REQUIREMENT_FREE;
@@ -98,6 +84,7 @@ export default function SingleTutorial({
   return (
     <>
       <SingleContentPage
+        contentId={tutorial.id}
         title={tutorial.title}
         descriptions={[
           tutorial.focus,
@@ -150,31 +137,10 @@ export default function SingleTutorial({
         ) : null}
       </SingleContentPage>
 
-      <GenericModal
+      <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onCancel={handleLoginRedirect}
-        onConfirm={handleCreateAccount}
-        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-        confirmLabel={t(
-          "createProfileHome.latestUpload.loginModal.confirmLabel",
-        )}
-        buttonRow
-        buttonAlign={MODAL_ALIGN.CENTER}
-        fullWidthButtons={false}
-        size="sm"
-        spacing="start"
-        showCloseButton
-      >
-        <ModalContentWrapper>
-          <MonoText $use="Heading3">
-            {t("createProfileHome.latestUpload.loginModal.title")}
-          </MonoText>
-          <ModalDescription $use="Body_Medium">
-            {t("createProfileHome.latestUpload.loginModal.message")}
-          </ModalDescription>
-        </ModalContentWrapper>
-      </GenericModal>
+      />
     </>
   );
 }

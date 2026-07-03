@@ -77,6 +77,7 @@ function PublishedContentDetail() {
     {
       enabled: Boolean(normalizedContentKey) && !fallback,
       refetchInterval: isPaymentSuccess ? 1500 : false,
+      placeholderData: (previousData) => previousData,
     },
   );
   const content = getContentDetail(data);
@@ -125,7 +126,7 @@ function PublishedContentDetail() {
     />
   );
 
-  if (isLoading || gateLoading) {
+  if ((isLoading && !data && !fallback) || gateLoading) {
     return (
       <GenericSpinner
         isOverlay
