@@ -24,10 +24,7 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import { formatFileSize } from "@/utils/file";
 import { FORMAT_TYPE } from "@/utils/types";
-import {
-  resolvePublicMediaUrl,
-  extractCloudflareStreamVideoId,
-} from "@/utils/media";
+import { resolvePublicMediaUrl, getFallbackThumbnailUrl } from "@/utils/media";
 import {
   PlayCircleIcon,
   UploadAudioIcon,
@@ -71,15 +68,7 @@ export default function GeneralContent({
   const thumbnailUrl = resolvePublicMediaUrl(
     formState.mediaCardThumbnail || formState.portraitThumbnail,
   );
-  const getFallbackThumbnail = () => {
-    if (!previewUrl) return null;
-    const cfVideoId = extractCloudflareStreamVideoId(undefined, previewUrl);
-    if (cfVideoId) {
-      return `https://videodelivery.net/${cfVideoId}/thumbnails/thumbnail.jpg`;
-    }
-    return null;
-  };
-  const resolvedThumbnail = thumbnailUrl || getFallbackThumbnail();
+  const resolvedThumbnail = thumbnailUrl || getFallbackThumbnailUrl(previewUrl);
 
   const renderWebSection = () => {
     if (uploadType !== FORMAT_TYPE.WEB) return null;

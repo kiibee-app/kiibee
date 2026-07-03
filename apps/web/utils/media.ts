@@ -363,3 +363,14 @@ export function getThirdPartyEmbedUrl(src: string): string {
   if (isVimeoUrl(src)) return `${getVimeoEmbedUrl(src)}?autoplay=1`;
   return src;
 }
+
+export function getFallbackThumbnailUrl(
+  previewUrl?: string | null,
+): string | null {
+  if (!previewUrl) return null;
+  const cfVideoId = extractCloudflareStreamVideoId(undefined, previewUrl);
+  if (cfVideoId) {
+    return `https://videodelivery.net/${cfVideoId}/thumbnails/thumbnail.jpg`;
+  }
+  return null;
+}
