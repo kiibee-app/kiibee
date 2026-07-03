@@ -89,6 +89,7 @@ export const NAME = "name";
 export const PAGE_VISITS = "pageVisits";
 export const CLICKS = "clicks";
 export const VIEWS = "views";
+export const TOTAL = "total";
 export const MOUSE_DOWN = "mousedown";
 export const CLICK = "click";
 export const IMG = "img";
