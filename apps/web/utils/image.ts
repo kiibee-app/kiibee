@@ -2,7 +2,7 @@ import { authStorage } from "@/lib/auth/authStorage";
 import { API } from "@/lib/http/api/endpoints";
 import { API_BASE_URL } from "@/lib/http/config";
 import { canUseDOM, isBrowser } from "./ui";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 
 export const readFileAsDataUrl = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
