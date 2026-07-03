@@ -115,7 +115,7 @@ export default function ImageUploadCropModal({
           effectiveFrameH / naturalSize.height,
         )
       : 1;
-  // Capping cover scale to 1.0 to prevent stretching (maintains high quality of smaller images)
+
   const coverScale = Math.min(1, rawCoverScale);
   const displayW = naturalSize.width * coverScale * zoom;
   const displayH = naturalSize.height * coverScale * zoom;

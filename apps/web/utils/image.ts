@@ -233,7 +233,6 @@ export function useImageDrag(
     [dimensions],
   );
 
-  // Clamp position if it is out of bounds (e.g. when dimensions change)
   const clamped = clampPosition(position.x, position.y);
   if (clamped.x !== position.x || clamped.y !== position.y) {
     setPosition(clamped);
