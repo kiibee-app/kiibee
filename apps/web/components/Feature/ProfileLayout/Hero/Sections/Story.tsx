@@ -39,7 +39,6 @@ export default function StorySection() {
             alt="Creator workspace"
             fill
             sizes="(max-width: 900px) 100vw, 70vw"
-            style={{ objectFit: "cover", objectPosition: "center" }}
             priority
           />
         </HeroMedia>

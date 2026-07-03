@@ -17,8 +17,8 @@ export const HeroWrapper = styled.section`
 
 export const HeroWrapperCentered = styled.section`
   width: 100%;
-  margin-top: 70px;
-  padding: 10px;
+  margin-top: 0;
+  padding: 0;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
@@ -44,9 +44,8 @@ export const CoverFrame = styled.div`
 export const CoverFrameFull = styled.div`
   position: relative;
   width: 100%;
-  height: 290px;
+  height: 300px;
   overflow: hidden;
-
   ${({ theme }) => theme.media.desktopSm} {
     height: 250px;
   }
@@ -58,6 +57,10 @@ export const CoverFrameFull = styled.div`
 
 export const CoverImage = styled(Image)`
   ${imageCoverStyles}
+`;
+
+export const CoverImageTop = styled(CoverImage)`
+  object-position: center top;
 `;
 
 export const AvatarImage = styled(Image)`
@@ -249,8 +252,8 @@ export const HeroFrame = styled.section`
   position: relative;
   width: 100%;
   height: 500px;
-  margin: 70px 0 0;
-  padding: 0 10px;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
@@ -373,12 +376,6 @@ export const HeroMedia = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-  }
-
-  ${({ theme }) => theme.media.mobileMd} {
-    img {
-      object-position: center top;
-    }
+    object-position: center top;
   }
 `;
