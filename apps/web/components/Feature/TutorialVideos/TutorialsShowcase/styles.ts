@@ -5,6 +5,7 @@ export const Grid = styled.div<{
   $maxWidth?: string;
   $columnMax?: string;
   $columns?: number;
+  $alignStart?: boolean;
 }>`
   width: 100%;
   max-width: ${({ $maxWidth, $columnMax, $columns }) =>
@@ -21,7 +22,7 @@ export const Grid = styled.div<{
     return "repeat(4, minmax(0, 1fr))";
   }};
   gap: ${({ $columnMax }) => ($columnMax ? "1.25rem" : "20px")};
-  justify-content: center;
+  justify-content: ${({ $alignStart }) => ($alignStart ? "start" : "center")};
 
   ${media.desktop} {
     grid-template-columns: ${({ $columnMax, $columns }) => {

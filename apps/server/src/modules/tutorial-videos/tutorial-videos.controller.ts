@@ -10,6 +10,11 @@ export class TutorialVideosController {
     return this.tutorialVideosService.getTutorialVideosService();
   }
 
+  @Get('quickguides')
+  getTutorialQuickguides() {
+    return this.tutorialVideosService.getTutorialQuickguidesService();
+  }
+
   @Get(':id')
   getTutorialVideoById(@Param('id') id: string) {
     return this.tutorialVideosService.getTutorialVideoByIdService(id);

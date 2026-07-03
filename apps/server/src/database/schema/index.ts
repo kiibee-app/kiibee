@@ -32,6 +32,7 @@ export * from './content/contentAppearance.schema';
 export * from './content/contentSetting.schema';
 export * from './content/tutorialVideoSections.schema';
 export * from './content/tutorialVideos.schema';
+export * from './content/tutorialQuickguides.schema';
 
 // Subscription & Billing
 export * from './subscription/plans.schema';

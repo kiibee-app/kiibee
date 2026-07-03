@@ -38,6 +38,7 @@ import {
   TUTORIAL_VIDEOS_PAGE_SIZE,
 } from "@/utils/feedContentToTutorial";
 import type { TutorialCollection } from "@/utils/tutorialCollections";
+import QuickguidesSection from "../QuickguidesSection";
 
 function scrollToSectionHash() {
   const id = window.location.hash.slice(1);
@@ -187,6 +188,7 @@ export default function TutorialContent() {
       {collections.map((section) => (
         <TutorialSectionRow key={section.id} section={section} />
       ))}
+      <QuickguidesSection />
     </Content>
   );
 }

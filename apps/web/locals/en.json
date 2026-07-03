@@ -763,7 +763,8 @@
     "sectionTag": "Getting started",
     "sectionLabel": "Foundational chapters",
     "sectionLink": "View playlist",
-    "buttonFreeLabel": "Free"
+    "buttonFreeLabel": "Free",
+    "quickguidesTitle": "User guide - Quickguides"
   },
   "callToAction": {
     "logoAlt": "Kiibee",
