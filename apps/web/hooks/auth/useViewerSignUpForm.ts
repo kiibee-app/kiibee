@@ -19,7 +19,17 @@ export function useViewerSignUpForm(options?: {
       if (options?.onSuccessOverride) {
         options.onSuccessOverride(response);
       } else {
-        router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
+        const nextPath =
+          typeof window !== "undefined"
+            ? new URLSearchParams(window.location.search).get("next")
+            : null;
+        if (nextPath) {
+          router.push(
+            `${PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES}?next=${encodeURIComponent(nextPath)}`,
+          );
+        } else {
+          router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
+        }
       }
     },
   });

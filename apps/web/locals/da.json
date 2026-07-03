@@ -2208,5 +2208,18 @@
       "title": "Titel",
       "elements": "Elementer"
     }
+  },
+  "creatorPurchaseFlow": {
+    "modal1": {
+      "title": "Du er logget ind som skaber",
+      "message": "For at købe eller leje indhold skal du bruge en seerkonto. Log ind med en eksisterende seerkonto eller opret en ny for at fortsætte.",
+      "primaryBtn": "Log ind som seer",
+      "secondaryBtn": "Opret seerkonto"
+    },
+    "modal2": {
+      "title": "Log ind som seer vil logge dig ud af din nuværende skaberkonto og logge dig ind med en seerkonto. Vil du fortsætte?",
+      "primaryBtn": "OK",
+      "secondaryBtn": "Annuller"
+    }
   }
 }

@@ -11,6 +11,7 @@ import {
   ORDER_TYPES,
   type OrderItemType,
   STRING,
+  ROLE_CREATOR,
 } from "@/utils/Constants";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -34,7 +35,11 @@ import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
 
-import { LoginRequiredModal } from "@/components/UI/Modals";
+import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
+import GenericButton from "@/components/UI/GenericButton";
+import { MonoText } from "@/components/UI/Monotext";
+import { useLogout } from "@/hooks/auth/useLogout";
+import { PATHS } from "@/utils/path";
 
 import { useSearchParams } from "next/navigation";
 
@@ -76,6 +81,28 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
   const handleCloseLoginModal = () => setLoginModalVisible(false);
+
+  const { logout, isPending: isLoggingOut } = useLogout();
+  const [showCreatorModal1, setShowCreatorModal1] = useState(false);
+  const [showCreatorModal2, setShowCreatorModal2] = useState(false);
+
+  const handleCreateViewerAccount = async () => {
+    const returnUrl =
+      typeof window !== "undefined"
+        ? window.location.pathname + window.location.search
+        : "";
+    const redirectUrl = `${PATHS.AUTH_SIGNUP_VIEWER}?next=${encodeURIComponent(returnUrl)}`;
+    await logout(redirectUrl);
+  };
+
+  const handleConfirmModal2 = async () => {
+    const returnUrl =
+      typeof window !== "undefined"
+        ? window.location.pathname + window.location.search
+        : "";
+    const redirectUrl = `${PATHS.AUTH_LOGIN}?next=${encodeURIComponent(returnUrl)}`;
+    await logout(redirectUrl);
+  };
 
   type CreateOrderPayload = {
     contentId: string;
@@ -124,6 +151,10 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
+          if (user?.role === ROLE_CREATOR) {
+            setShowCreatorModal1(true);
+            return;
+          }
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
@@ -133,7 +164,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         },
       };
     });
-  }, [contentId, createOrderMutation, primaryAction, primaryActions, t]);
+  }, [
+    contentId,
+    createOrderMutation,
+    primaryAction,
+    primaryActions,
+    t,
+    user?.role,
+  ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
@@ -164,14 +202,18 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
       if (actions.length) {
         const action = actions[0];
-        setSelectedAction({
-          label: action.label,
-          subtitle: action.subtitle,
-          isPurchase: action.label
-            .toLowerCase()
-            .includes(t("pricingLabels.buy").toLowerCase()),
-        });
-        setShowPurchaseModal(true);
+        if (user?.role === ROLE_CREATOR) {
+          setShowCreatorModal1(true);
+        } else {
+          setSelectedAction({
+            label: action.label,
+            subtitle: action.subtitle,
+            isPurchase: action.label
+              .toLowerCase()
+              .includes(t("pricingLabels.buy").toLowerCase()),
+          });
+          setShowPurchaseModal(true);
+        }
 
         const newUrl =
           window.location.pathname +
@@ -181,7 +223,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         window.history.replaceState({}, "", newUrl);
       }
     }
-  }, [searchParams, primaryActions, primaryAction, t]);
+  }, [searchParams, primaryActions, primaryAction, t, user?.role]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
 
@@ -243,6 +285,10 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     );
 
     if (isPaid || isPurchaseAction || isRentalAction) {
+      if (user?.role === ROLE_CREATOR) {
+        setShowCreatorModal1(true);
+        return;
+      }
       setSelectedAction({
         label: primaryAction?.label as string,
         subtitle: primaryAction?.subtitle,
@@ -402,6 +448,101 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         url={shareUrl}
         onClose={() => setShowShareModal(false)}
       />
+
+      <GenericModal
+        visible={showCreatorModal1}
+        onClose={() => setShowCreatorModal1(false)}
+        title={t("creatorPurchaseFlow.modal1.title")}
+        showCloseButton
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+            alignItems: "center",
+          }}
+        >
+          <MonoText $use="Body_Medium" style={{ marginBottom: "8px" }}>
+            {t("creatorPurchaseFlow.modal1.message")}
+          </MonoText>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+              width: "100%",
+              alignItems: "center",
+            }}
+          >
+            <GenericButton
+              variant="primary"
+              onClick={() => {
+                setShowCreatorModal1(false);
+                setShowCreatorModal2(true);
+              }}
+              style={{ width: "100%", maxWidth: "320px", height: "49px" }}
+            >
+              {t("creatorPurchaseFlow.modal1.primaryBtn")}
+            </GenericButton>
+            <GenericButton
+              variant="secondary"
+              onClick={handleCreateViewerAccount}
+              disabled={isLoggingOut}
+              style={{ width: "100%", maxWidth: "320px", height: "49px" }}
+            >
+              {t("creatorPurchaseFlow.modal1.secondaryBtn")}
+            </GenericButton>
+          </div>
+        </div>
+      </GenericModal>
+
+      <GenericModal
+        visible={showCreatorModal2}
+        onClose={() => setShowCreatorModal2(false)}
+        title={t("creatorPurchaseFlow.modal2.title")}
+        showCloseButton
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+              width: "100%",
+              alignItems: "center",
+            }}
+          >
+            <GenericButton
+              variant="primary"
+              onClick={handleConfirmModal2}
+              isLoading={isLoggingOut}
+              disabled={isLoggingOut}
+              style={{ width: "100%", maxWidth: "320px", height: "49px" }}
+            >
+              {t("creatorPurchaseFlow.modal2.primaryBtn")}
+            </GenericButton>
+            <GenericButton
+              variant="secondary"
+              onClick={() => {
+                setShowCreatorModal2(false);
+                setShowCreatorModal1(true);
+              }}
+              disabled={isLoggingOut}
+              style={{ width: "100%", maxWidth: "320px", height: "49px" }}
+            >
+              {t("creatorPurchaseFlow.modal2.secondaryBtn")}
+            </GenericButton>
+          </div>
+        </div>
+      </GenericModal>
     </Wrapper>
   );
 }

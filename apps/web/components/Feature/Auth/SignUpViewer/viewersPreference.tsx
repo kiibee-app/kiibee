@@ -8,7 +8,7 @@ import AuthBackButton from "@/components/Feature/Auth/AuthBackButton";
 import GenericButton from "@/components/UI/GenericButton";
 import { VIEWER_SIGNUP_PREFERENCE } from "@/utils/translationKeys";
 import { PREF_STEP, ViewerPreferenceStep } from "@/utils/preferenceOptions";
-import { PATHS } from "@/utils/path";
+import { PATHS, isSafePostLoginPath } from "@/utils/path";
 import { PrepCard, PreContentWrap, ContentWrap } from "./styles";
 import PreferenceStepContent from "./PreferenceStepContent";
 
@@ -56,7 +56,15 @@ export default function ViewerPreference({
     if (onComplete) {
       onComplete();
     } else {
-      router.push(PATHS.DASHBOARD_VIEWER);
+      const nextPath =
+        typeof window !== "undefined"
+          ? new URLSearchParams(window.location.search).get("next")
+          : null;
+      if (nextPath && isSafePostLoginPath(nextPath)) {
+        router.push(nextPath);
+      } else {
+        router.push(PATHS.DASHBOARD_VIEWER);
+      }
     }
   };
 

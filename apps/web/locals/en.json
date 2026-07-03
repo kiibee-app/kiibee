@@ -2200,5 +2200,18 @@
       "title": "Title",
       "elements": "Elements"
     }
+  },
+  "creatorPurchaseFlow": {
+    "modal1": {
+      "title": "You're signed in as a Creator",
+      "message": "To purchase or rent content, you'll need a Viewer account. Sign in with an existing Viewer account or create a new one to continue.",
+      "primaryBtn": "Sign in as Viewer",
+      "secondaryBtn": "Create Viewer Account"
+    },
+    "modal2": {
+      "title": "Signing in as a Viewer will log you out of your current Creator account and sign you in with a Viewer account. Do you want to continue?",
+      "primaryBtn": "OK",
+      "secondaryBtn": "Cancel"
+    }
   }
 }

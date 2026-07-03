@@ -14,17 +14,20 @@ export const useLogout = () => {
   const { clearSession } = useAuthSession();
   const { mutateAsync: logoutRequest, isPending } = useLogoutMutation();
 
-  const logout = useCallback(async () => {
-    try {
-      await logoutRequest();
-    } catch (error) {
-      toast.error("Logout failed. Please try again.");
-    } finally {
-      clearSession();
-      queryClient.clear();
-      router.push(PATHS.AUTH_LOGIN);
-    }
-  }, [clearSession, logoutRequest, queryClient, router]);
+  const logout = useCallback(
+    async (redirectTo?: string) => {
+      try {
+        await logoutRequest();
+      } catch (error) {
+        toast.error("Logout failed. Please try again.");
+      } finally {
+        clearSession();
+        queryClient.clear();
+        router.push(redirectTo || PATHS.AUTH_LOGIN);
+      }
+    },
+    [clearSession, logoutRequest, queryClient, router],
+  );
 
   return {
     logout,
