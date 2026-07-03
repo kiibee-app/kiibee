@@ -42,8 +42,14 @@ export class CouponController {
   }
 
   @Post('verify')
-  async verifyCoupon(@Body() body: { code: string; contentId?: string }) {
-    return this.couponService.verifyCoupon(body.code, body.contentId);
+  async verifyCoupon(
+    @Body() body: { code: string; contentId?: string; collectionId?: string },
+  ) {
+    return this.couponService.verifyCoupon(
+      body.code,
+      body.contentId,
+      body.collectionId,
+    );
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)

@@ -54,7 +54,7 @@ export class CouponService {
     return deleteCouponService(creatorId, couponId);
   }
 
-  async verifyCoupon(code: string, contentId?: string) {
-    return verifyCouponService(code, contentId);
+  async verifyCoupon(code: string, contentId?: string, collectionId?: string) {
+    return verifyCouponService(code, contentId, collectionId);
   }
 }

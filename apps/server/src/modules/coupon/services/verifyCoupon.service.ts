@@ -6,6 +6,8 @@ import {
   coupons,
   couponApplicableItems,
   collectionItems,
+  mediaFiles,
+  collections,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
@@ -16,8 +18,19 @@ import {
 
 const isCouponApplicableToContent = async (
   couponId: string,
+  creatorId: string,
   contentId: string,
 ) => {
+  const [content] = await db
+    .select({ creatorId: mediaFiles.creatorId })
+    .from(mediaFiles)
+    .where(eq(mediaFiles.id, contentId))
+    .limit(1);
+
+  if (!content || content.creatorId !== creatorId) {
+    return false;
+  }
+
   const applicableItems = await db
     .select({
       mediaFileId: couponApplicableItems.mediaFileId,
@@ -59,7 +72,41 @@ const isCouponApplicableToContent = async (
   return Boolean(collectionMatch);
 };
 
-export const verifyCouponService = async (code: string, contentId?: string) => {
+const isCouponApplicableToCollection = async (
+  couponId: string,
+  creatorId: string,
+  collectionId: string,
+) => {
+  const [collection] = await db
+    .select({ creatorId: collections.creatorId })
+    .from(collections)
+    .where(eq(collections.id, collectionId))
+    .limit(1);
+
+  if (!collection || collection.creatorId !== creatorId) {
+    return false;
+  }
+
+  const applicableItems = await db
+    .select({
+      mediaFileId: couponApplicableItems.mediaFileId,
+      collectionId: couponApplicableItems.collectionId,
+    })
+    .from(couponApplicableItems)
+    .where(eq(couponApplicableItems.couponId, couponId));
+
+  if (applicableItems.length === 0) {
+    return true;
+  }
+
+  return applicableItems.some((item) => item.collectionId === collectionId);
+};
+
+export const verifyCouponService = async (
+  code: string,
+  contentId?: string,
+  collectionId?: string,
+) => {
   try {
     const [couponCode] = await db
       .select()
@@ -105,11 +152,18 @@ export const verifyCouponService = async (code: string, contentId?: string) => {
       return fail('Coupon has reached maximum uses', HttpStatus.BAD_REQUEST);
     }
 
-    if (contentId) {
-      const isApplicable = await isCouponApplicableToContent(
-        coupon.id,
-        contentId,
-      );
+    if (contentId || collectionId) {
+      const isApplicable = contentId
+        ? await isCouponApplicableToContent(
+            coupon.id,
+            coupon.creatorId,
+            contentId,
+          )
+        : await isCouponApplicableToCollection(
+            coupon.id,
+            coupon.creatorId,
+            collectionId!,
+          );
 
       if (!isApplicable) {
         return fail(
