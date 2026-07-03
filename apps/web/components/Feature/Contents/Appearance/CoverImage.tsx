@@ -125,7 +125,12 @@ export default function CoverImageSection({
 
   const handleImageSelected = (imageDataUrl: string) => {
     if (!selectedConfig) return;
-    validateImageDataUrl(selectedConfig.type, imageDataUrl);
+    validateImageDataUrl(
+      selectedConfig.type,
+      imageDataUrl,
+      selectedConfig.cropWidth,
+      selectedConfig.cropHeight,
+    );
   };
 
   const getCurrentImage = () => {
