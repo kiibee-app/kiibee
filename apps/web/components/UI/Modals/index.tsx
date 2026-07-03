@@ -269,18 +269,15 @@ export function LoginRequiredModal({
   }, [visible]);
 
   const handleSuccess = () => {
-    onClose();
     if (onSuccess) {
       onSuccess();
-      return;
-    }
-
-    if (searchParams?.get("intent") === INTENT_PURCHASE) {
+    } else if (searchParams?.get("intent") === INTENT_PURCHASE) {
       router.refresh();
-      return;
+    } else {
+      router.refresh();
     }
 
-    router.refresh();
+    onClose();
   };
 
   return (

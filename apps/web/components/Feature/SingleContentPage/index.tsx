@@ -80,9 +80,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+  const [pendingPlaybackAfterLogin, setPendingPlaybackAfterLogin] =
+    useState(false);
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
-  const handleCloseLoginModal = () => setLoginModalVisible(false);
+  const handleCloseLoginModal = () => {
+    setLoginModalVisible(false);
+    setPendingPlaybackAfterLogin(false);
+  };
 
   const { logout, isPending: isLoggingOut } = useLogout();
   const [showCreatorModal1, setShowCreatorModal1] = useState(false);
@@ -172,6 +177,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     user?.role,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [activePlaybackSrc, setActivePlaybackSrc] = useState("");
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
     label: string;
@@ -225,19 +231,55 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   }, [searchParams, primaryActions, primaryAction, t, user?.role]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
+  const hasViewerAccess = Boolean(content?.accessInfo);
+  const fallbackPlaybackSrc =
+    previewMediaUrl || hero.contentUrl || hero.media?.src || "";
 
   const canPreview =
-    isPreviewableType &&
-    (Boolean(hero?.media?.src || hero?.contentUrl) ||
-      canFetchMedia ||
-      Boolean(previewMediaUrl));
+    isPreviewableType && Boolean(fallbackPlaybackSrc || canFetchMedia);
 
-  const handlePrimaryActionClick = async () => {
-    if (isWebType && previewMediaUrl) {
-      window.open(previewMediaUrl, "_blank", "noopener,noreferrer");
+  const openPreview = async () => {
+    const playbackSrc = canFetchMedia
+      ? (await fetchMediaUrl()) || fallbackPlaybackSrc
+      : fallbackPlaybackSrc;
+
+    if (!playbackSrc) {
       return;
     }
 
+    setActivePlaybackSrc(playbackSrc);
+    setShowPreviewModal(true);
+  };
+
+  const playContent = async () => {
+    if (isWebType && fallbackPlaybackSrc) {
+      window.open(fallbackPlaybackSrc, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    await openPreview();
+  };
+
+  const requireLoginForPlayback = () => {
+    if (user?.id) {
+      return false;
+    }
+
+    setPendingPlaybackAfterLogin(true);
+    handleShowLoginModal();
+    return true;
+  };
+
+  const handleLoginSuccess = async () => {
+    const shouldPlay = pendingPlaybackAfterLogin;
+    setPendingPlaybackAfterLogin(false);
+
+    if (shouldPlay) {
+      await playContent();
+    }
+  };
+
+  const handlePrimaryActionClick = async () => {
     if (!canPreview) {
       if (primaryAction?.onClick) {
         primaryAction.onClick();
@@ -260,11 +302,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    if (!canFetchMedia) {
-      setShowPreviewModal(true);
-      return;
-    }
-
     const accessMeta = metaItems.find(
       (item) =>
         item.label.toLowerCase().includes(ACCESS_KEYWORD_EN) ||
@@ -283,7 +320,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       actionLabel?.includes(t("pricingLabels.rent").toLowerCase()),
     );
 
-    if (isPaid || isPurchaseAction || isRentalAction) {
+    if ((isPaid || isPurchaseAction || isRentalAction) && !hasViewerAccess) {
       if (user?.role === ROLE_CREATOR) {
         setShowCreatorModal1(true);
         return;
@@ -295,12 +332,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       });
 
       setShowPurchaseModal(true);
-    } else {
-      const mediaUrl = await fetchMediaUrl();
-      if (mediaUrl) {
-        setShowPreviewModal(true);
-      }
+      return;
     }
+
+    if (requireLoginForPlayback()) {
+      return;
+    }
+
+    await playContent();
   };
 
   const modifiedPrimaryAction = primaryAction
@@ -405,17 +444,18 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       </Card>
 
       {children}
-      {canPreview &&
-        showPreviewModal &&
-        (previewMediaUrl || hero.contentUrl || hero.media?.src) && (
-          <ContentPreviewModal
-            visible={showPreviewModal}
-            onClose={() => setShowPreviewModal(false)}
-            src={previewMediaUrl || hero.contentUrl || hero.media?.src || ""}
-            type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}
-            title={title}
-          />
-        )}
+      {showPreviewModal && activePlaybackSrc && (
+        <ContentPreviewModal
+          visible={showPreviewModal}
+          onClose={() => {
+            setShowPreviewModal(false);
+            setActivePlaybackSrc("");
+          }}
+          src={activePlaybackSrc}
+          type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}
+          title={title}
+        />
+      )}
 
       <PurchaseModal
         visible={showPurchaseModal}
@@ -437,9 +477,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onSuccess={() => {
-          handleCloseLoginModal();
-        }}
+        onSuccess={handleLoginSuccess}
       />
 
       <ShareModal
