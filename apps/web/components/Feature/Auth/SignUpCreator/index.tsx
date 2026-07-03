@@ -135,7 +135,7 @@ export default function SignUpCreatorSection() {
             <ConsentText htmlFor="creator-consent">
               <MonoText $use="Body_Small">
                 {t("authCreator.form.consentPrefix")}
-                <TermsLink href={PATHS.TERMS}>
+                <TermsLink href={PATHS.CREATOR_TERMS}>
                   {t("authCreator.form.terms")}
                 </TermsLink>
                 {t("authCreator.form.and")}

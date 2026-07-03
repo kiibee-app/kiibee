@@ -15,6 +15,7 @@ import COLORS from "@repo/ui/colors";
 import { useTranslation } from "react-i18next";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import useShare from "@/hooks/useShare";
+import ShareModal from "@/components/UI/Modals/ShareModal";
 import {
   CloseIconButton,
   CreatorInfoContent,
@@ -30,6 +31,7 @@ import {
 import { MODAL_PADDINGS } from "@/lib/theme/tokens";
 import {
   getDisplayUrl,
+  isCreatorWebsiteLink,
   matchSocialPlatform,
   type SocialIconEntry,
 } from "@/utils/creatorProfile";
@@ -68,13 +70,18 @@ export default function CreatorInfoModal({
 }: CreatorInfoModalProps) {
   const { t } = useTranslation();
   const { displayName, about } = useCreatorChannelProfile();
-  const { share } = useShare();
+  const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
 
   const title = displayName ?? "";
   const body = about?.description ?? "";
   const joinedDate = about?.joinedDate ?? "";
   const uploadsCount = about?.uploadCount ?? 0;
-  const links = about?.websiteLink ? [about.websiteLink] : [];
+  const links =
+    about?.websiteLink && isCreatorWebsiteLink(about.websiteLink)
+      ? [about.websiteLink]
+      : [];
+  const contactEmail = about?.contactEmail ?? "";
+  const showLinksSection = links.length > 0 || Boolean(contactEmail);
 
   return (
     <GenericModal
@@ -118,7 +125,7 @@ export default function CreatorInfoModal({
           </InfoList>
         </Section>
 
-        {links.length > 0 && (
+        {showLinksSection && (
           <Section>
             <SectionTitle>
               <MonoText $use="H5_Medium">
@@ -137,6 +144,12 @@ export default function CreatorInfoModal({
                   <MonoText $use="Body_Medium">{getDisplayUrl(url)}</MonoText>
                 </LinkItem>
               ))}
+              {contactEmail ? (
+                <LinkItem href={`mailto:${contactEmail}`}>
+                  <LinkIcon {...ICON_SIZE} color={ICON_COLOR} />
+                  <MonoText $use="Body_Medium">{contactEmail}</MonoText>
+                </LinkItem>
+              ) : null}
             </LinksList>
           </Section>
         )}
@@ -146,6 +159,12 @@ export default function CreatorInfoModal({
           <MonoText $use="Body_Medium">{t(COMMON.share)}</MonoText>
         </ShareButton>
       </CreatorInfoContent>
+
+      <ShareModal
+        visible={showShareModal}
+        url={shareUrl}
+        onClose={() => setShowShareModal(false)}
+      />
     </GenericModal>
   );
 }

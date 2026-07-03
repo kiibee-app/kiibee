@@ -1,4 +1,6 @@
 import type { typography } from "@repo/ui/typography";
+import { LeftArrow, RightArrow } from "@/assets/icons/carouselArrows";
+import { Directions } from "./ui";
 import { COLLECTIONS, HOME } from "./common";
 import { EXPLORE } from "./translationKeys";
 import { NavBarProps } from "./profile";
@@ -20,6 +22,7 @@ export const CREATOR_CHANNEL_AVATAR_TEXT = {
 } as const satisfies Record<string, keyof typeof typography>;
 export const UNKNOWN = "Unknown";
 export const CREATOR = "Creator";
+export const CARD = "Card";
 
 export type CreatorChannelAvatarTextUse =
   (typeof CREATOR_CHANNEL_AVATAR_TEXT)[keyof typeof CREATOR_CHANNEL_AVATAR_TEXT];
@@ -98,6 +101,7 @@ export const WEBSITE = "website";
 export const OPEN_GRAPH_LOCALE_DA_DK = "da_DK";
 export const TWITTER_CARD_SUMMARY_LARGE_IMAGE = "summary_large_image";
 export const KIIBEE_LANDING_PAGE_PREVIEW_ALT = "Kiibee landing page preview";
+export const RECENT_CONTENT_LIMIT = 999;
 
 export const CARD_BRANDS = {
   VISA: "visa",
@@ -117,6 +121,14 @@ export function toTrimmedString(value: unknown): string {
 export const COUPON_ACTION_EDIT = "edit";
 export const COUPON_ACTION_STATUS = "status";
 export const COUPON_ACTION_DELETE = "delete";
+export const COUPON_VALIDITY_FIELDS = {
+  START_DATE: "startDate",
+  END_DATE: "endDate",
+} as const;
+
+export type CouponValidityField =
+  (typeof COUPON_VALIDITY_FIELDS)[keyof typeof COUPON_VALIDITY_FIELDS];
+
 export const PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT = "markAsDefault";
 export const PROFILE_HOME_SECTION = {
   LATEST_UPLOAD: "latestUpload",
@@ -236,6 +248,7 @@ export const ERROR_MESSAGES = {
   SAVE_CHANGES_FAILED: "errors.saveChangesFailed",
   SAVE_SETTINGS_FAILED: "errors.saveSettingsFailed",
   LOAD_DETAILS_FAILED: "errors.loadDetailsFailed",
+  EXPORT_REQUEST_FAILED: "errors.exportRequestFailed",
 };
 
 export const UI_TITLE_FALLBACK = "Content Details";
@@ -464,3 +477,45 @@ export const ACCESS_STATUS_EXPIRED = "expired";
 
 export const NUMERIC_ONLY_REGEX = /^\d+$/;
 export const NON_DIGIT_REGEX = /\D/g;
+
+export const CAROUSEL_TRANSITION_TYPES = {
+  FADE: "fade",
+  SLIDE: "slide",
+} as const;
+
+export type CarouselTransitionType =
+  (typeof CAROUSEL_TRANSITION_TYPES)[keyof typeof CAROUSEL_TRANSITION_TYPES];
+
+export const CAROUSEL_DEFAULT_AUTOPLAY = true;
+export const CAROUSEL_DEFAULT_AUTOPLAY_INTERVAL = 6000;
+export const CAROUSEL_DEFAULT_SHOW_ARROWS = true;
+export const CAROUSEL_DEFAULT_SHOW_DOTS = true;
+export const CAROUSEL_DEFAULT_TRANSITION_TYPE = CAROUSEL_TRANSITION_TYPES.FADE;
+export const CAROUSEL_DEFAULT_PREV_ARIA_LABEL = "Previous slide";
+export const CAROUSEL_DEFAULT_NEXT_ARIA_LABEL = "Next slide";
+
+export const getNavigationArrows = (
+  prevSlide: () => void,
+  nextSlide: () => void,
+  prevAriaLabel?: string,
+  nextAriaLabel?: string,
+) =>
+  [
+    {
+      direction: Directions.LEFT,
+      onClick: prevSlide,
+      label: prevAriaLabel,
+      Icon: LeftArrow,
+    },
+    {
+      direction: Directions.RIGHT,
+      onClick: nextSlide,
+      label: nextAriaLabel,
+      Icon: RightArrow,
+    },
+  ] as const;
+
+export const CURSOR = {
+  POINTER: "pointer",
+  DEFAULT: "default",
+} as const;

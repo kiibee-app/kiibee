@@ -254,12 +254,12 @@ export const ModalContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 120px 24px 24px;
+  padding: 16px 0 0;
   box-sizing: border-box;
   gap: 10px;
 
   ${media.tablet} {
-    padding: 80px 16px 16px;
+    padding: 12px 0 0;
   }
 `;
 

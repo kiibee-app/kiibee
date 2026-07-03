@@ -240,6 +240,11 @@ export const CTAButton = styled(GenericButton).attrs({
 })`
   margin-top: 0;
   border-radius: 8px;
+
+  &:not([type="submit"]):hover {
+    color: ${({ theme }) => theme.colors.primary.WHITE};
+    border-color: ${({ theme }) => theme.colors.primary.WHITE};
+  }
 `;
 
 export function getRevealCardStyle(

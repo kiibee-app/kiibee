@@ -82,12 +82,26 @@ export const API = {
       `/order/billing-history/${billingId}`,
     // confirmPayment: (orderId: string) => `/order/${orderId}/confirm-payment`,
   },
+  subscription: {
+    create: "/subscription/create",
+    plans: "/subscription/plans",
+    creatorPlan: "/subscription/creator/plan",
+  },
   payout: {
     settlementHistory: "/payout/settlement-history",
     stats: "/payout/stats",
   },
+  payment: {
+    cards: "/payment/cards",
+    card: (subscriptionId: string) => `/payment/card/${subscriptionId}`,
+    cardDefault: (cardId: string) => `/payment/card/default/${cardId}`,
+  },
   support: {
     contact: "/support/contact",
+  },
+  notificationSettings: {
+    get: "/notification-settings",
+    update: "/notification-settings",
   },
   viewer: {
     purchasedData: "/viewer/purchased-data",
@@ -95,7 +109,5 @@ export const API = {
     previouslyRentedData: "/viewer/previously-rented-data",
     paymentMethods: "/viewer/payment-methods",
     paymentMethod: (id: string) => `/viewer/payment-methods/${id}`,
-    paymentMethodDefault: (id: string) =>
-      `/viewer/payment-methods/${id}/default`,
   },
 } as const;

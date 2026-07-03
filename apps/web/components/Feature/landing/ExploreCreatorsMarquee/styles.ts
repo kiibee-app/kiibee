@@ -119,20 +119,17 @@ export const MarqueeTrackRight = styled.div`
 export const CreatorCard = styled.article`
   background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
   border-radius: 16px;
-  padding: 24px;
   width: 440px;
   height: 220px;
   display: flex;
-  gap: 20px;
   box-shadow: 0 4px 18px ${({ theme }) => theme.colors.neutral.GRAY_250};
   flex-shrink: 0;
   box-sizing: border-box;
+  overflow: hidden;
 
   ${media.tablet} {
     width: 380px;
     height: 200px;
-    padding: 16px;
-    gap: 12px;
   }
 `;
 
@@ -142,7 +139,12 @@ export const CardLeft = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  padding: 24px 16px 24px 24px;
   box-sizing: border-box;
+
+  ${media.tablet} {
+    padding: 16px 12px 16px 16px;
+  }
 `;
 
 export const CardHeader = styled.div`
@@ -182,8 +184,7 @@ export const CategoryBadge = styled.span`
 
 export const CardDescription = styled.p`
   margin: 8px 0 12px;
-  font-size: 0.8125rem;
-  line-height: 1.4;
+  ${({ theme }) => theme.typography.Body_SemiMedium};
   color: ${({ theme }) => theme.colors.neutral.GRAY};
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -191,7 +192,6 @@ export const CardDescription = styled.p`
   overflow: hidden;
 
   ${media.tablet} {
-    font-size: 0.75rem;
     margin: 6px 0 10px;
     -webkit-line-clamp: 2;
   }
@@ -220,15 +220,14 @@ export const ProfileButton = styled.a`
 `;
 
 export const CardRight = styled.div`
-  width: 120px;
+  width: 150px;
   height: 100%;
   position: relative;
-  border-radius: 12px;
   overflow: hidden;
   flex-shrink: 0;
 
   ${media.tablet} {
-    width: 90px;
+    width: 110px;
   }
 `;
 

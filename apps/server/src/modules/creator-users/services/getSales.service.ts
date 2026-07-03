@@ -1,7 +1,13 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, desc, eq, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { collections, mediaFiles, orders, users } from 'src/database/schema';
+import {
+  collections,
+  mediaFiles,
+  orders,
+  payments,
+  users,
+} from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { ORDER_STATUS } from 'src/utils/constant';
 import { success } from 'src/utils/sendResponse';
@@ -17,7 +23,7 @@ export const getSalesService = async (creatorId: string) => {
     const rows = await db
       .select({
         id: orders.id,
-        price: orders.price,
+        price: payments.amount,
         currency: orders.currency,
         itemType: orders.itemType,
         createdAt: orders.createdAt,
@@ -28,11 +34,13 @@ export const getSalesService = async (creatorId: string) => {
       })
       .from(orders)
       .innerJoin(users, eq(orders.userId, users.id))
+      .innerJoin(payments, eq(payments.orderId, orders.id))
       .leftJoin(mediaFiles, eq(orders.mediaFileId, mediaFiles.id))
       .leftJoin(collections, eq(orders.collectionId, collections.id))
       .where(
         and(
           eq(orders.status, ORDER_STATUS.COMPLETED),
+          eq(payments.status, ORDER_STATUS.COMPLETED),
           or(
             eq(mediaFiles.creatorId, creatorId),
             eq(collections.creatorId, creatorId),

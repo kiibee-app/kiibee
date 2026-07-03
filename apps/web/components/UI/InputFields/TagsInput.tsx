@@ -29,6 +29,7 @@ export type TagsInputProps = {
   variant?: InputVariant;
   hasError?: boolean;
   disabled?: boolean;
+  separateOnSpace?: boolean;
 };
 
 export default function TagsInput({
@@ -39,6 +40,7 @@ export default function TagsInput({
   variant = INPUT_VARIANTS.PRIMARY_GRAY,
   hasError = false,
   disabled = false,
+  separateOnSpace = false,
 }: TagsInputProps) {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -72,7 +74,7 @@ export default function TagsInput({
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === KEY_ENTER) {
+    if (e.key === KEY_ENTER || (separateOnSpace && e.key === " ")) {
       e.preventDefault();
       addTag(inputValue);
     }
@@ -80,11 +82,12 @@ export default function TagsInput({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    if (!TAG_DELIMITER.test(newValue)) {
+    const delimiter = separateOnSpace ? /[\n, ]+/ : TAG_DELIMITER;
+    if (!delimiter.test(newValue)) {
       setInputValue(newValue);
       return;
     }
-    const parts = newValue.split(TAG_DELIMITER);
+    const parts = newValue.split(delimiter);
     parts.slice(0, -1).forEach(addTag);
     setInputValue(parts.at(-1) ?? "");
   };

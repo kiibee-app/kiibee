@@ -12,10 +12,10 @@ export const Overlay = styled.div`
   align-items: center;
   z-index: 999;
 `;
-
 export const ModalContainer = styled.div<{
   $width?: string;
   $height?: string;
+  $maxHeight?: string;
   $padding?: string;
   $borderRadius?: string;
   $align?: ModalAlign;
@@ -26,6 +26,8 @@ export const ModalContainer = styled.div<{
   width: 100%;
   max-width: ${({ $width }) => $width || MODAL_WIDTHS.sm};
   min-height: ${({ $height }) => $height || "auto"};
+  max-height: ${({ $maxHeight }) => $maxHeight || "none"};
+  overflow-y: ${({ $maxHeight }) => ($maxHeight ? "auto" : "visible")};
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: ${({ $borderRadius }) => $borderRadius || "12px"};
   padding: ${({ $padding, $align }) =>
@@ -88,6 +90,25 @@ export const ButtonGroup = styled.div<{
   }
 `;
 
+export const LoginRequiredBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  width: 100%;
+
+  ${ButtonGroup} {
+    margin-top: 8px;
+  }
+`;
+
+export const LoginRequiredDescription = styled.div`
+  max-width: 420px;
+  line-height: 1.6;
+`;
+
 export const CloseButton = styled.button`
   position: absolute;
   top: 16px;
@@ -98,4 +119,53 @@ export const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const ShareContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+`;
+
+export const ShareTitle = styled.div`
+  margin-bottom: 0.5rem;
+`;
+
+export const UrlRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+`;
+
+export const UrlText = styled.span`
+  flex: 1;
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const CopyButton = styled.button<{ $copied?: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  border: none;
+  background: ${({ theme, $copied }) =>
+    $copied ? theme.colors.primary.GREEN : theme.colors.secondary.MEDIUM_GREEN};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  cursor: pointer;
+  ${({ theme }) => theme.typography.Body_Bold};
+  transition: background 200ms ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary.GREEN};
+  }
 `;

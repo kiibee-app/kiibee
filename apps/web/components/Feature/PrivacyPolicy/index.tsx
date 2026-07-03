@@ -1,34 +1,45 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import FormattedBody from "../Shared/FormattedBody";
+import LegalContactSection from "../Shared/LegalContactSection";
 import {
   Body,
-  ContactCard,
   Description,
-  Intro,
+  FormattedDescription,
+  Header,
+  IntroArea,
   Meta,
   Section,
   SectionTitle,
   Title,
   Wrap,
-} from "./styles";
+} from "../Shared/legalPageStyles";
 
 export default function PrivacyPolicySection() {
   const { t } = useTranslation();
 
   return (
     <Wrap>
-      <Title>{t("footer.privacyPolicy")}</Title>
-      <Meta>{t("legalPages.privacyPolicy.updatedAt")}</Meta>
-      <Intro>{t("legalPages.privacyPolicy.intro")}</Intro>
+      <Header>
+        <Title>{t("footer.privacyPolicy")}</Title>
+        <Meta>{t("legalPages.privacyPolicy.updatedAt")}</Meta>
+      </Header>
+      <IntroArea>
+        <FormattedDescription>
+          <FormattedBody text={t("legalPages.privacyPolicy.intro")} />
+        </FormattedDescription>
+      </IntroArea>
       <Body>
         <Section>
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.collect.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.privacyPolicy.sections.collect.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.privacyPolicy.sections.collect.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Section>
           <SectionTitle>
@@ -50,9 +61,11 @@ export default function PrivacyPolicySection() {
           <SectionTitle>
             {t("legalPages.privacyPolicy.sections.use.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.privacyPolicy.sections.use.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.privacyPolicy.sections.use.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Section>
           <SectionTitle>
@@ -86,14 +99,17 @@ export default function PrivacyPolicySection() {
             {t("legalPages.privacyPolicy.sections.acceptance.body")}
           </Description>
         </Section>
-        <ContactCard>
+        <Section>
           <SectionTitle>
-            {t("legalPages.privacyPolicy.sections.contact.title")}
+            {t("legalPages.privacyPolicy.sections.publisherGdpr.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.privacyPolicy.sections.contact.body")}
-          </Description>
-        </ContactCard>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.privacyPolicy.sections.publisherGdpr.body")}
+            />
+          </FormattedDescription>
+        </Section>
+        <LegalContactSection translationPrefix="legalPages.privacyPolicy.sections.contact" />
       </Body>
     </Wrap>
   );

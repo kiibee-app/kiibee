@@ -28,6 +28,8 @@ export type ExploreCreator = {
   createdAt: string;
   contentDescription?: string | null;
   exampleWorkLink?: string | null;
+  supportEmail?: string | null;
+  accountEmail?: string | null;
   accessType?: string | null;
   layout?: CreatorLayoutKey | null;
 };

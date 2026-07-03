@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 import { BackButtonIcon } from "@/assets/icons";
@@ -111,6 +112,7 @@ export default function ContentUploadModal({
     API.content.create,
   );
   const isEditing = mode === CONTENT_UPLOAD_MODE.EDIT;
+  const [isDragActive, setIsDragActive] = useState(false);
   const {
     fileInputRef,
     selectedFile,
@@ -126,6 +128,29 @@ export default function ContentUploadModal({
     handleDrop,
     reset,
   } = useContentUpload({ contentType });
+
+  const handleDragEnter = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(true);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragActive(false);
+  };
+
+  const handleDropWrapper = (e: React.DragEvent<HTMLDivElement>) => {
+    setIsDragActive(false);
+    handleDrop(e);
+  };
 
   const helperLineOne = t(
     `contents.contentUploadModal.${uploadType}.helperLineOne`,
@@ -156,6 +181,7 @@ export default function ContentUploadModal({
     setCreateError(null);
     setPendingUploadSuccess(null);
     setShowDetails(false);
+    setIsDragActive(false);
     callback();
   };
 
@@ -230,7 +256,7 @@ export default function ContentUploadModal({
           error instanceof Error
             ? error.message
             : t(CONTENT_TRANSLATION_KEYS.updateError);
-        setCreateError(message);
+        toast.error(message);
         return;
       }
 
@@ -292,7 +318,7 @@ export default function ContentUploadModal({
         error instanceof Error
           ? error.message
           : t("contents.contentUploadModal.createError");
-      setCreateError(message);
+      toast.error(message);
       return;
     }
   };
@@ -391,8 +417,11 @@ export default function ContentUploadModal({
             />
           ) : !selectedFile ? (
             <ContentUploadDropZone
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={handleDrop}
+              onDragEnter={handleDragEnter}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDropWrapper}
+              $isDragActive={isDragActive}
             >
               <UploadHint>
                 {t("contents.contentUploadModal.dragFileHere")}

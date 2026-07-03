@@ -9,6 +9,7 @@ export const INDEXABLE_ROUTES = [
   "/",
   "/about-kiibee",
   "/cookie-settings",
+  "/creator-terms",
   "/explore",
   "/explore-creators",
   "/for-creators",

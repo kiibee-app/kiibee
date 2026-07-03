@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import InputFields from "@/components/UI/InputFields";
 import GenericButton from "@/components/UI/GenericButton";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
+import { isValidUrl } from "@/utils/common";
 import {
   WebContentForm,
   WebContentNextButton,
@@ -27,6 +28,9 @@ export default function WebContentLinkForm({
     onChange(Array.isArray(nextValue) ? nextValue.join("") : nextValue);
   };
 
+  const hasInput = value.trim().length > 0;
+  const isValid = !hasInput || isValidUrl(value);
+
   return (
     <WebContentForm>
       <WebContentTitle>
@@ -39,13 +43,17 @@ export default function WebContentLinkForm({
         variant={INPUT_VARIANTS.PRIMARY_GRAY}
         onChange={handleChange}
         label={t("contents.contentUploadModal.webForm.label")}
+        hasError={!isValid}
+        errorMessage={
+          !isValid ? t("contents.general.trailerLinkInvalid") : undefined
+        }
       />
       <WebContentNextButton>
         <GenericButton
           variant={VARIANT.PRIMARY}
           minWidth="182px"
           onClick={onNext}
-          disabled={!value.trim()}
+          disabled={!value.trim() || !isValid}
         >
           {t("common.next")}
         </GenericButton>

@@ -17,6 +17,6 @@ export const Grid = styled.div<{ $maxWidth?: string; $columnMax?: string }>`
   }
 
   ${media.tablet} {
-    grid-template-columns: none;
+    grid-template-columns: 1fr;
   }
 `;

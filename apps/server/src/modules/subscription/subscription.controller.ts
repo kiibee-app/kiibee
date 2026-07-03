@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpException,
   HttpStatus,
@@ -46,5 +47,12 @@ export class SubscriptionController {
   async getCreatorPlan(@Req() req: any) {
     const creatorId = req.user.userId;
     return this.subscriptionService.getCreatorPlan(creatorId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Delete('delete')
+  async deleteSubscription(@Req() req: any) {
+    const userId = req.user.userId;
+    return this.subscriptionService.deleteSubscriptionService(userId);
   }
 }

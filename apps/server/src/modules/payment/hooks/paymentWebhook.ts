@@ -1,8 +1,13 @@
 import { db } from 'src/database/db';
 import { randomUUID } from 'crypto';
 import { orders } from 'src/database/schema/commerce/orders.schema';
-import { eq } from 'drizzle-orm';
-import { mediaFiles, payments, userContentAccess } from 'src/database/schema';
+import { and, eq } from 'drizzle-orm';
+import {
+  mediaFiles,
+  payments,
+  userCardInfo,
+  userContentAccess,
+} from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import {
   ACCRESS_TYPES,
@@ -10,6 +15,7 @@ import {
   ORDER_TYPES,
   PAYMENT_STATUS,
 } from 'src/utils/constant';
+import { addWallet } from 'src/services/addWallet';
 
 export async function handleEpayPayment(body: any) {
   const {
@@ -21,6 +27,8 @@ export async function handleEpayPayment(body: any) {
     paymentMethodExpiry,
     paymentMethodSubType,
     paymentMethodType,
+    paymentMethodId,
+    subscriptionId,
   } = body.data.transaction;
 
   const orderId = reference;
@@ -86,25 +94,51 @@ export async function handleEpayPayment(body: any) {
           : ACCRESS_TYPES.RENTED,
       rentExpiresAt,
     } as any);
-  }
 
-  if (status === PAYMENT_STATUS.PAYMENT_FAILED) {
-    logger.error('❌ Payment failed:', orderId);
-    await db
-      .update(orders)
-      .set({ status: ORDER_STATUS.FAILED, rentExpiresAt: null })
-      .where(eq(orders.id, orderId));
-    return;
-  }
+    await addWallet(contentInfo[0].creatorId, resolvedAmount, currency);
 
-  if (status === PAYMENT_STATUS.PAYMENT_EXPIRED) {
-    logger.info('⏰ Payment expired:', orderId);
-    await db
-      .update(orders)
-      .set({ status: ORDER_STATUS.FAILED, rentExpiresAt: null })
-      .where(eq(orders.id, orderId));
-    return;
-  }
+    const existingCard = await db.query.userCardInfo.findFirst({
+      where: and(
+        eq(userCardInfo.userId, orderInfo?.userId || ''),
+        eq(userCardInfo.paymentMethodId, paymentMethodId),
+      ),
+    });
 
-  logger.info('ℹ️ Unhandled status:', status);
+    if (!existingCard) {
+      const firstCard = await db.query.userCardInfo.findFirst({
+        where: eq(userCardInfo.userId, orderInfo?.userId || ''),
+      });
+
+      await db.insert(userCardInfo).values({
+        id: randomUUID(),
+        userId: orderInfo?.userId || '',
+        paymentMethodId,
+        cardNo: paymentMethodDisplayText,
+        expireDate: paymentMethodExpiry,
+        cardType: paymentMethodSubType,
+        ePaySubscriptionId: subscriptionId || '',
+        isDefault: !firstCard,
+      });
+    }
+
+    if (status === PAYMENT_STATUS.PAYMENT_FAILED) {
+      logger.error('❌ Payment failed:', orderId);
+      await db
+        .update(orders)
+        .set({ status: ORDER_STATUS.FAILED, rentExpiresAt: null })
+        .where(eq(orders.id, orderId));
+      return;
+    }
+
+    if (status === PAYMENT_STATUS.PAYMENT_EXPIRED) {
+      logger.info('⏰ Payment expired:', orderId);
+      await db
+        .update(orders)
+        .set({ status: ORDER_STATUS.FAILED, rentExpiresAt: null })
+        .where(eq(orders.id, orderId));
+      return;
+    }
+
+    logger.info('ℹ️ Unhandled status:', status);
+  }
 }

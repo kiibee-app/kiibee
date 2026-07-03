@@ -19,6 +19,7 @@ import {
   type CouponListResponse,
   type CouponRow,
 } from "@/types/couponType";
+import { toFormDate } from "@/utils/couponDates";
 
 type UseCouponActionsParams = {
   activeTab: ContentTab;
@@ -53,6 +54,8 @@ export const useCouponActions = ({
       codes: coupon.codes ?? [],
       collectionIds: coupon.applicableProducts?.collectionIds ?? [],
       contentIds: coupon.applicableProducts?.contentIds ?? [],
+      startDate: toFormDate(coupon.validFrom ?? coupon.startDate),
+      endDate: toFormDate(coupon.validUntil ?? coupon.endDate),
     };
   };
 

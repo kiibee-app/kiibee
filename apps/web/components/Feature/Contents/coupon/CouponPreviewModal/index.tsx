@@ -31,7 +31,8 @@ import { useAllContentsOptions } from "@/hooks/contents/useAllContentsOptions";
 import { useSuccessAutoClose } from "@/hooks/useSuccessAutoClose";
 import { CollectionRow } from "@/types/collectionsType";
 import { CouponEntity, CreateCouponPayload } from "@/types/couponType";
-import { formatDateUSShort } from "@/utils/formatDate";
+import { formatDate, formatDateUSShort } from "@/utils/formatDate";
+import { toFormDate } from "@/utils/couponDates";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { COUPON_MODE, CouponMode } from "@/utils/content";
 
@@ -91,15 +92,39 @@ export default function CouponPreviewModal({
 
   const codes = data.codes ?? [];
 
-  const collectionLabels =
-    collectionIds.length > 0
-      ? collectionIds.map((id) => getLabel(id, collectionOptions))
-      : ["-"];
+  const normalizedCollectionIds = collectionIds.filter(Boolean);
+  const normalizedContentIds = contentIds.filter(Boolean);
+  const hasApplicableProducts =
+    normalizedCollectionIds.length > 0 || normalizedContentIds.length > 0;
 
-  const contentLabels =
-    contentIds.length > 0
-      ? contentIds.map((id) => getLabel(id, contentOptions))
-      : ["-"];
+  const applicableProductLabels = hasApplicableProducts
+    ? [
+        ...normalizedCollectionIds.map((id) => getLabel(id, collectionOptions)),
+        ...normalizedContentIds.map((id) => getLabel(id, contentOptions)),
+      ]
+    : [t("contents.couponPreview.allContents")];
+
+  const formatValidity = () => {
+    const startDate =
+      (data as CreateCouponPayload).startDate ||
+      toFormDate((data as CouponEntity).validFrom);
+    const endDate =
+      (data as CreateCouponPayload).endDate ||
+      toFormDate((data as CouponEntity).validUntil);
+
+    if (!startDate && !endDate) {
+      return t("contents.couponPreview.indefinite");
+    }
+    const startStr = startDate ? formatDate(startDate) : "";
+    const endStr = endDate
+      ? formatDate(endDate)
+      : t("contents.couponPreview.indefinite");
+    return `${startStr} - ${endStr}`;
+  };
+
+  const renderChips = (items: string[]) => {
+    return items.map((item, i) => <Chip key={i}>{item}</Chip>);
+  };
 
   return (
     <GenericModal
@@ -186,22 +211,21 @@ export default function CouponPreviewModal({
                 <SectionLabel>
                   {t("contents.couponPreview.fields.codes")}
                 </SectionLabel>
-                <ChipList>
-                  {codes.map((code, i) => (
-                    <Chip key={i}>{code}</Chip>
-                  ))}
-                </ChipList>
+                <ChipList>{renderChips(codes)}</ChipList>
               </Section>
 
               <Section>
                 <SectionLabel>
                   {t("contents.couponPreview.fields.applicableProducts")}
                 </SectionLabel>
-                <ChipList>
-                  {[...collectionLabels, ...contentLabels].map((item, i) => (
-                    <Chip key={i}>{item}</Chip>
-                  ))}
-                </ChipList>
+                <ChipList>{renderChips(applicableProductLabels)}</ChipList>
+              </Section>
+
+              <Section>
+                <SectionLabel>
+                  {t("contents.couponPreview.fields.validity")}
+                </SectionLabel>
+                <SectionValue>{formatValidity()}</SectionValue>
               </Section>
             </SelectorList>
 

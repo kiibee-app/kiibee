@@ -1,9 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { ImageSource } from "@/utils/Constants";
 import {
@@ -23,8 +21,6 @@ import {
   UploadImage,
   RightControlButton,
   LeftControlButton,
-  ModalContentWrapper,
-  ModalDescription,
 } from "./styles";
 import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
@@ -36,13 +32,12 @@ import {
   WebIcon,
 } from "@/assets/icons";
 import { useIsMobile } from "@/utils/useIsMobile";
-import { GenericModal } from "@/components/UI/Modals";
-import { PATHS, pathPublishedContent } from "@/utils/path";
-import { MODAL_ALIGN } from "@/utils/ui";
+import { LoginRequiredModal } from "@/components/UI/Modals";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
+import { pathPublishedContent } from "@/utils/path";
 import { ContentType, normalizeContentTypeValue } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
-  formatPriceLabel,
   getContentDetailPricingActions,
   getPricingLabels,
   isBuyActionLabel,
@@ -50,7 +45,7 @@ import {
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
 import { authStorage } from "@/lib/auth/authStorage";
-import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
+import { ROLE_CREATOR } from "@/utils/Constants";
 
 type LatestUploadAction = {
   title: string;
@@ -107,15 +102,11 @@ type ComputedAction = {
 
 export default function LatestUpload({ data }: LatestUploadProps) {
   const { t } = useTranslation();
-  const router = useRouter();
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const { navigateToContent } = useProtectedContentNavigation();
-  const { publicCreatorId } = useCreatorChannelProfile();
   const storedUser = useStoredLoginUser();
-  const isCreator = Boolean(
-    publicCreatorId && storedUser?.id && storedUser.id === publicCreatorId,
-  );
+  const isCreator = storedUser?.role === ROLE_CREATOR;
 
   const computedActions = useMemo((): ComputedAction[] => {
     if (data.contentId) {
@@ -127,12 +118,9 @@ export default function LatestUpload({ data }: LatestUploadProps) {
       };
 
       if (isFreeContentItem(pricingItem)) {
-        const buyLabel =
-          formatPriceLabel(t("pricingLabels.buy"), data.buyPrice) ||
-          t("createProfileHome.latestUpload.buy");
         return [
           {
-            title: buyLabel,
+            title: t("pricingLabels.free"),
             subtitle: t("singleContent.pricing.downloadFiles"),
             href: `${pathPublishedContent(data.contentId)}#buy`,
           },
@@ -178,13 +166,8 @@ export default function LatestUpload({ data }: LatestUploadProps) {
   }, [computedActions, isCreator]);
 
   const [primaryAction, secondaryAction] = visibleActions;
-  const handleLogin = () => {
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
+  const [pendingHref, setPendingHref] = useState<string | null>(null);
+
   const handleSecondaryActionClick = () => {
     if (secondaryAction?.href) {
       navigateToContent(secondaryAction.href, true);
@@ -197,6 +180,7 @@ export default function LatestUpload({ data }: LatestUploadProps) {
     }
 
     if (isBuyActionLabel(primaryAction.title) && !authStorage.hasSession()) {
+      setPendingHref(primaryAction.href);
       setLoginModalVisible(true);
       return;
     }
@@ -308,32 +292,16 @@ export default function LatestUpload({ data }: LatestUploadProps) {
         </TextSection>
       </ContentWrapper>
 
-      <GenericModal
+      <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={() => setLoginModalVisible(false)}
-        onCancel={handleLogin}
-        onConfirm={handleCreateAccount}
-        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-        confirmLabel={t(
-          "createProfileHome.latestUpload.loginModal.confirmLabel",
-        )}
-        buttonRow
-        buttonAlign={MODAL_ALIGN.CENTER}
-        fullWidthButtons={false}
-        size="md"
-        height={isMobile ? "400px" : "570.941px"}
-        spacing="start"
-        showCloseButton
-      >
-        <ModalContentWrapper>
-          <MonoText $use="Heading3">
-            {t("createProfileHome.latestUpload.loginModal.title")}
-          </MonoText>
-          <ModalDescription $use="Body_Medium">
-            {t("createProfileHome.latestUpload.loginModal.message")}
-          </ModalDescription>
-        </ModalContentWrapper>
-      </GenericModal>
+        onSuccess={() => {
+          if (pendingHref) {
+            navigateToContent(pendingHref, true);
+            setPendingHref(null);
+          }
+        }}
+      />
     </Section>
   );
 }

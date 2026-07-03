@@ -123,6 +123,23 @@ export const notificationTypeEnum = pgEnum('notification_type', [
   'system',
 ]);
 
+export const notificationSettingTypeEnum = pgEnum('notification_setting_type', [
+  'overview',
+  'form',
+  'sales',
+]);
+
+export const notificationFrequencyEnum = pgEnum('notification_frequency', [
+  'monthly',
+  'weekly',
+  'daily',
+]);
+
+export const notificationRecipientEnum = pgEnum('notification_recipient', [
+  'account_email',
+  'other_email',
+]);
+
 export const layoutEnum = pgEnum('layout', ['layout1', 'layout2', 'layout3']);
 
 export const layoutEnumValues = ['layout1', 'layout2', 'layout3'] as const;

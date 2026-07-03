@@ -1,7 +1,7 @@
 import React from "react";
 
 export const ALERT = "alert";
-
+export const isProduction = process.env.NODE_ENV === "production";
 export const COLLECTIONS = "collections";
 export const ABOUT = "about";
 export const APPEARANCE = "appearance";
@@ -12,12 +12,14 @@ export const VIEWER_PAYMENT_METHODS_TAB = "payment-methods";
 export const HELP = "Help";
 export const COUPON_DISCOUNT_FIXED_AMOUNT = "fixed_amount";
 export const COUPON_DISCOUNT_PERCENTAGE = "percentage";
+export const MAX_COUPON_PERCENTAGE_DISCOUNT = 50;
 export const COUPON_CODES_LIMIT = 100;
 export const QUERY_REFETCH_TYPE_ACTIVE = "active";
 export const PAGE_SIZE_OPTIONS = [10, 20, 50];
 export const DA = "da";
 export const EN = "en";
 export const SUPPORTED_LANGS = ["da", "en"];
+export const LOG_PREFIX = "[kiibee]";
 export const STORAGE_KEY = "kiibee_language";
 export const RESOURCE_NAMESPACE = "translation";
 export const LANGUAGE_CHANGED_EVENT = "languageChanged";
@@ -25,6 +27,8 @@ export const LANGUAGE_CHANGED_EVENT = "languageChanged";
 export const SYNC_LANGUAGE_SCRIPT = `(function(){var v=localStorage.getItem('${STORAGE_KEY}');document.cookie='${STORAGE_KEY}='+(v==='${EN}'?'${EN}':'${DA}')+';path=/;max-age=31536000;SameSite=Lax';})()`;
 export const UNDEFINED = "undefined";
 export const RESOURCES = "resources";
+export const TRENDING_LIMIT = 100;
+export const TRENDING = "trending";
 
 type ContentTabItem = {
   key: ContentTab;
@@ -166,6 +170,18 @@ export function toCamelCaseKey(value: string): string {
 
 export const URL_PROTOCOL_REGEX = /^https?:\/\//i;
 
+export const URL_REGEX = /(https?:\/\/[^\s<>"]+|www\.[^\s<>"]+)/g;
+
+export const LINE_BREAK = "\n";
+
+export const LIST_PREFIX = "- ";
+export const SPACE = " ";
+
+export const getHrefFromUrl = (url: string): string =>
+  url.startsWith("www.") ? `https://${url}` : url;
+
+export const INITIAL_INDEX = 0;
+
 export const isValidUrl = (url?: string | null): boolean => {
   if (!url) return false;
   return URL_PROTOCOL_REGEX.test(url);
@@ -198,3 +214,17 @@ export function useMounted() {
     () => false,
   );
 }
+
+export const alpha = (color: string, opacity: number): string => {
+  return `color-mix(in srgb, ${color} ${Math.round(opacity * 100)}%, transparent)`;
+};
+
+export const formatSavedCardLabel = (
+  cardNo: string,
+  cardType: string | null | undefined,
+  fallbackLabel: string,
+): string => {
+  const brand = (cardType || fallbackLabel).toUpperCase();
+  const lastDigits = cardNo.replace(/\D/g, "").slice(-3);
+  return `${brand} **** ${lastDigits}`;
+};

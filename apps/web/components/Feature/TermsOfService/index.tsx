@@ -1,26 +1,34 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import FormattedBody from "../Shared/FormattedBody";
+import LegalContactSection from "../Shared/LegalContactSection";
 import {
   Body,
-  ContactCard,
   Description,
+  FormattedDescription,
+  Header,
   Intro,
+  IntroArea,
   Meta,
   Section,
   SectionTitle,
   Title,
   Wrap,
-} from "./styles";
+} from "../Shared/legalPageStyles";
 
 export default function TermsOfServiceSection() {
   const { t } = useTranslation();
 
   return (
     <Wrap>
-      <Title>{t("footer.termsOfService")}</Title>
-      <Meta>{t("legalPages.termsOfService.updatedAt")}</Meta>
-      <Intro>{t("legalPages.termsOfService.intro")}</Intro>
+      <Header>
+        <Title>{t("footer.termsOfService")}</Title>
+        <Meta>{t("legalPages.termsOfService.updatedAt")}</Meta>
+      </Header>
+      <IntroArea>
+        <Intro>{t("legalPages.termsOfService.intro")}</Intro>
+      </IntroArea>
       <Body>
         <Section>
           <SectionTitle>
@@ -34,9 +42,13 @@ export default function TermsOfServiceSection() {
           <SectionTitle>
             {t("legalPages.termsOfService.sections.intellectualProperty.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.termsOfService.sections.intellectualProperty.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t(
+                "legalPages.termsOfService.sections.intellectualProperty.body",
+              )}
+            />
+          </FormattedDescription>
         </Section>
         <Section>
           <SectionTitle>
@@ -58,33 +70,43 @@ export default function TermsOfServiceSection() {
           <SectionTitle>
             {t("legalPages.termsOfService.sections.digitalPurchase.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.termsOfService.sections.digitalPurchase.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t(
+                "legalPages.termsOfService.sections.digitalPurchase.body",
+              )}
+            />
+          </FormattedDescription>
         </Section>
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.payments.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.termsOfService.sections.payments.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.termsOfService.sections.payments.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.platform.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.termsOfService.sections.platform.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.termsOfService.sections.platform.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Section>
           <SectionTitle>
             {t("legalPages.termsOfService.sections.liability.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.termsOfService.sections.liability.body")}
-          </Description>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.termsOfService.sections.liability.body")}
+            />
+          </FormattedDescription>
         </Section>
         <Section>
           <SectionTitle>
@@ -94,14 +116,95 @@ export default function TermsOfServiceSection() {
             {t("legalPages.termsOfService.sections.governingLaw.body")}
           </Description>
         </Section>
-        <ContactCard>
+        <Section>
           <SectionTitle>
-            {t("legalPages.termsOfService.sections.contact.title")}
+            {t("legalPages.termsOfService.sections.publisherAccount.title")}
           </SectionTitle>
-          <Description>
-            {t("legalPages.termsOfService.sections.contact.body")}
-          </Description>
-        </ContactCard>
+          <FormattedDescription>
+            <FormattedBody
+              text={t(
+                "legalPages.termsOfService.sections.publisherAccount.body",
+              )}
+            />
+          </FormattedDescription>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.publisherContent.title")}
+          </SectionTitle>
+          <FormattedDescription>
+            <FormattedBody
+              text={t(
+                "legalPages.termsOfService.sections.publisherContent.body",
+              )}
+            />
+          </FormattedDescription>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.useOfService.title")}
+          </SectionTitle>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.termsOfService.sections.useOfService.body")}
+            />
+          </FormattedDescription>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.publisherRole.title")}
+          </SectionTitle>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.termsOfService.sections.publisherRole.body")}
+            />
+          </FormattedDescription>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.publisherFees.title")}
+          </SectionTitle>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.termsOfService.sections.publisherFees.body")}
+            />
+          </FormattedDescription>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.publisherMarketing.title")}
+          </SectionTitle>
+          <FormattedDescription>
+            <FormattedBody
+              text={t(
+                "legalPages.termsOfService.sections.publisherMarketing.body",
+              )}
+            />
+          </FormattedDescription>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.publisherTermination.title")}
+          </SectionTitle>
+          <FormattedDescription>
+            <FormattedBody
+              text={t(
+                "legalPages.termsOfService.sections.publisherTermination.body",
+              )}
+            />
+          </FormattedDescription>
+        </Section>
+        <Section>
+          <SectionTitle>
+            {t("legalPages.termsOfService.sections.amendments.title")}
+          </SectionTitle>
+          <FormattedDescription>
+            <FormattedBody
+              text={t("legalPages.termsOfService.sections.amendments.body")}
+            />
+          </FormattedDescription>
+        </Section>
+        <LegalContactSection translationPrefix="legalPages.termsOfService.sections.contact" />
       </Body>
     </Wrap>
   );

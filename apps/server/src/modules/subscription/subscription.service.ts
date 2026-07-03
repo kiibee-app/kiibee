@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { getAllSubscriptionPlansService } from './services/getAllSubscriptionPlans.service';
 import { createSubscriptionService } from './services/createSubscription.service';
 import { getCreatorPlan } from './services/getCreatorPlan.service';
+import { deleteSubscriptionService } from './services/deleteSubscription.service';
 
 @Injectable()
 export class SubscriptionService {
@@ -18,6 +19,11 @@ export class SubscriptionService {
 
   async getCreatorPlan(creatorId: string) {
     const result = await getCreatorPlan(creatorId);
+    return result;
+  }
+
+  async deleteSubscriptionService(userId: string) {
+    const result = await deleteSubscriptionService(userId);
     return result;
   }
 }

@@ -26,6 +26,7 @@ import {
 } from "./styles";
 import { resolveImageUrl } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
+import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
 
 export default function CreatorsSection() {
   const { t } = useTranslation();
@@ -33,6 +34,8 @@ export default function CreatorsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
   const cards = getCreatorCards(t);
+  const dashboardPath = useSessionDashboardPath();
+  const isLoggedIn = !!dashboardPath;
   const {
     activeCardIndex,
     handleMouseEnter,
@@ -86,14 +89,16 @@ export default function CreatorsSection() {
                 {t(CREATORS.heading.lineThree)}
               </HeadingLine>
             </Heading>
-            <CTAButton
-              asAnchor
-              href={PATHS.AUTH_SIGNUP}
-              data-creator-hero-animate
-              data-creator-hero-cta
-            >
-              {t(CREATORS.cta)}
-            </CTAButton>
+            {!isLoggedIn && (
+              <CTAButton
+                asAnchor
+                href={PATHS.AUTH_SIGNUP}
+                data-creator-hero-animate
+                data-creator-hero-cta
+              >
+                {t(CREATORS.cta)}
+              </CTAButton>
+            )}
           </CopyBlock>
         </LeftColumn>
 

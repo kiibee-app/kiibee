@@ -69,10 +69,15 @@ export const Card = styled.article<{ $clickable?: boolean }>`
 export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 200px;
+  aspect-ratio: 1 / 1;
+  min-height: 220px;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 1rem;
+
+  ${media.tablet} {
+    min-height: 200px;
+  }
 `;
 
 export const CategoryBadge = styled.span`

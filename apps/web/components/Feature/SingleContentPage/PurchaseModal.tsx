@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 import { GenericModal } from "@/components/UI/Modals";
 import GenericButton from "@/components/UI/GenericButton";
@@ -9,9 +9,13 @@ import { VARIANT } from "@/utils/Constants";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { useTranslation } from "react-i18next";
 import { extractPriceNumber } from "@/utils/contentPricingActions";
+import { formatCardExpiry, formatDate } from "@/utils/formatDate";
 import { usePostAPI } from "@/lib/http/api/postApi";
+import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { toast } from "react-toastify";
+import { SelectedCheckIcon, InfoIcon } from "@/assets/icons";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import {
   PurchaseModalCard,
   PurchaseModalCardHeader,
@@ -27,14 +31,34 @@ import {
   PurchaseModalDiscountLabel,
   PurchaseModalDiscountRow,
   PurchaseModalDiscountInput,
+  PurchaseModalCouponError,
+  PurchaseModalCouponValidityNotice,
   PurchaseModalPriceSummary,
   PurchaseModalPriceRow,
   PurchaseModalPriceRowTotal,
   PurchaseModalPriceLabel,
   PurchaseModalPriceValue,
   PurchaseModalButtonWrapper,
+  PurchaseModalPaymentMethod,
+  PurchaseModalPaymentMethodTitle,
+  PurchaseModalPaymentMethodOption,
+  PurchaseModalPaymentMethodSelected,
+  PurchaseModalPaymentMethodDefaultBadge,
+  PurchaseModalPaymentMethodPrimary,
+  PurchaseModalPaymentMethodText,
+  PurchaseModalPaymentMethodHint,
+  PurchaseModalPaymentIcons,
 } from "./styles";
-import { COUPON_DISCOUNT_PERCENTAGE, CouponDiscountType } from "@/utils/common";
+import {
+  COUPON_DISCOUNT_PERCENTAGE,
+  CouponDiscountType,
+  MAX_COUPON_PERCENTAGE_DISCOUNT,
+  formatSavedCardLabel as formatSavedCardLabelUtil,
+} from "@/utils/common";
+import DropdownField from "@/components/UI/InputFields/DropdownField";
+import { PAYMENT_ICONS } from "@/utils/paymentIcons";
+import COLORS from "@repo/ui/colors";
+import { getCouponErrorMessage } from "@/utils/couponErrors";
 
 type VerifyCouponResponse = {
   success: boolean;
@@ -45,13 +69,33 @@ type VerifyCouponResponse = {
     discountValue: number;
     code: string;
     title: string;
+    validFrom?: string | null;
+    validUntil?: string | null;
   };
+};
+
+type SavedCard = {
+  id: string;
+  ePaySubscriptionId: string;
+  cardNo: string;
+  expireDate: string;
+  cardType: string;
+  isDefault?: boolean;
+};
+
+type SavedCardsResponse = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: SavedCard[] | null;
 };
 
 export type PurchaseModalProps = {
   visible: boolean;
   onClose: () => void;
-  onPurchase: (couponCode?: string) => void;
+  onPurchase: (couponCode?: string, subscriptionId?: string) => void;
+  onRequireLogin?: () => void;
+  isLoggedIn?: boolean;
   title: string;
   image?: string;
   imageAlt?: string;
@@ -67,6 +111,8 @@ export default function PurchaseModal({
   visible,
   onClose,
   onPurchase,
+  onRequireLogin,
+  isLoggedIn,
   title,
   image,
   imageAlt,
@@ -78,20 +124,116 @@ export default function PurchaseModal({
   loading = false,
 }: PurchaseModalProps) {
   const { t } = useTranslation();
+  const user = useStoredLoginUser();
   const [discountCode, setDiscountCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
+  const [couponValidityNotice, setCouponValidityNotice] = useState<
+    string | null
+  >(null);
+  const [couponError, setCouponError] = useState<string | null>(null);
+  const [selectedSubscriptionId, setSelectedSubscriptionId] = useState<
+    string | null
+  >(null);
+  const [prevVisible, setPrevVisible] = useState(visible);
+
+  if (visible !== prevVisible) {
+    setPrevVisible(visible);
+    setSelectedSubscriptionId(null);
+
+    if (!visible) {
+      setDiscountCode("");
+      setDiscount(0);
+      setAppliedCode(null);
+      setCouponValidityNotice(null);
+      setCouponError(null);
+    }
+  }
 
   const verifyCouponMutation = usePostAPI<
     VerifyCouponResponse,
     { code: string; contentId?: string }
   >(API.coupon.verify);
 
+  const savedCardsQuery = useGetAPI<SavedCardsResponse>(
+    API.payment.cards,
+    undefined,
+    {
+      enabled: visible && Boolean(user?.id),
+      retry: 1,
+    },
+  );
+
+  const savedCards = useMemo(
+    () =>
+      (savedCardsQuery.data?.data ?? []).filter(
+        (card) => card.ePaySubscriptionId,
+      ),
+    [savedCardsQuery.data?.data],
+  );
+
+  const defaultSavedCard = useMemo(
+    () => savedCards.find((card) => card.isDefault) ?? savedCards[0] ?? null,
+    [savedCards],
+  );
+
+  const effectiveSubscriptionId =
+    selectedSubscriptionId ?? defaultSavedCard?.ePaySubscriptionId ?? "";
+  const isUsingNewCard = selectedSubscriptionId === "";
+
   const priceNumber = extractPriceNumber(priceLabel);
   const total = priceNumber - discount;
 
+  const formatSavedCardLabel = useCallback(
+    (card: SavedCard) =>
+      formatSavedCardLabelUtil(
+        card.cardNo,
+        card.cardType,
+        t("singleContent.pricing.savedCard"),
+      ),
+    [t],
+  );
+
+  const dropdownOptions = useMemo(() => {
+    return savedCards.map((card) => ({
+      value: card.ePaySubscriptionId,
+      label: (
+        <PurchaseModalPaymentMethodSelected>
+          <PurchaseModalPaymentMethodPrimary>
+            <MonoText $use="Body_Medium">{formatSavedCardLabel(card)}</MonoText>
+            {card.isDefault ? (
+              <PurchaseModalPaymentMethodDefaultBadge>
+                {t("dashboard.viewerBillings.paymentMethods.defaultBadge")}
+              </PurchaseModalPaymentMethodDefaultBadge>
+            ) : null}
+          </PurchaseModalPaymentMethodPrimary>
+          <MonoText $use="Body_Medium">
+            {t("singleContent.pricing.expires", {
+              date: formatCardExpiry(card.expireDate),
+            })}
+          </MonoText>
+        </PurchaseModalPaymentMethodSelected>
+      ),
+    }));
+  }, [savedCards, formatSavedCardLabel, t]);
+
+  const handleToggleNewCard = useCallback(() => {
+    setSelectedSubscriptionId((current) => (current === "" ? null : ""));
+  }, []);
+
+  const handlePurchase = () => {
+    if (!isLoggedIn && onRequireLogin) {
+      onRequireLogin();
+      return;
+    }
+    onPurchase(appliedCode || undefined, effectiveSubscriptionId || undefined);
+  };
+
   const handleApplyDiscount = async () => {
     if (!discountCode.trim()) return;
+
+    setCouponError(null);
+    setCouponValidityNotice(null);
 
     try {
       const response = await verifyCouponMutation.mutateAsync({
@@ -100,19 +242,35 @@ export default function PurchaseModal({
       });
 
       if (response.success && response.data) {
-        const { discountType, discountValue } = response.data;
+        const { discountType, discountValue, validUntil } = response.data;
         const calculatedDiscount =
           discountType === COUPON_DISCOUNT_PERCENTAGE
-            ? Math.round((priceNumber * discountValue) / 100)
+            ? Math.round(
+                (priceNumber *
+                  Math.min(discountValue, MAX_COUPON_PERCENTAGE_DISCOUNT)) /
+                  100,
+              )
             : discountValue;
         setDiscount(Math.min(calculatedDiscount, priceNumber));
         setAppliedCode(response.data.code);
         toast.success(t("singleContent.pricing.couponApplied"));
+
+        if (validUntil) {
+          setCouponValidityNotice(
+            t("singleContent.pricing.couponValidUntil", {
+              date: formatDate(validUntil),
+            }),
+          );
+        }
       }
-    } catch {
+    } catch (error) {
+      const apiError = getCouponErrorMessage(error, t);
+
       setDiscount(0);
       setAppliedCode(null);
-      toast.error(t("singleContent.pricing.couponInvalid"));
+      setCouponValidityNotice(null);
+      setCouponError(apiError);
+      toast.error(apiError);
     }
   };
 
@@ -120,6 +278,8 @@ export default function PurchaseModal({
     setDiscountCode("");
     setDiscount(0);
     setAppliedCode(null);
+    setCouponValidityNotice(null);
+    setCouponError(null);
   };
 
   return (
@@ -148,9 +308,7 @@ export default function PurchaseModal({
 
           <PurchaseModalCardInfo>
             <PurchaseModalCardBadge>
-              <MonoText $use="Body_Bold">
-                {contentType?.toUpperCase() || "PDF"}
-              </MonoText>
+              <MonoText $use="Body_Bold">{contentType?.toUpperCase()}</MonoText>
             </PurchaseModalCardBadge>
             <PurchaseModalCardTitle>
               <MonoText $use="Body_Bold">{title}</MonoText>
@@ -167,6 +325,42 @@ export default function PurchaseModal({
         </PurchaseModalCardBody>
       </PurchaseModalCard>
 
+      {savedCards.length > 0 ? (
+        <PurchaseModalPaymentMethod>
+          <PurchaseModalPaymentMethodTitle>
+            <MonoText $use="Body_Bold">
+              {t("singleContent.pricing.paymentMethod")}
+            </MonoText>
+          </PurchaseModalPaymentMethodTitle>
+          {!isUsingNewCard ? (
+            <DropdownField
+              value={effectiveSubscriptionId}
+              onChange={setSelectedSubscriptionId}
+              options={dropdownOptions}
+              placeholder={t("singleContent.pricing.selectCard")}
+              showSelectedIndicator
+            />
+          ) : null}
+          <PurchaseModalPaymentMethodOption
+            type="button"
+            $selected={isUsingNewCard}
+            onClick={handleToggleNewCard}
+          >
+            <SelectedCheckIcon selected={isUsingNewCard} size={20} />
+            <PurchaseModalPaymentMethodText>
+              <MonoText $use="Body_Bold">
+                {t("singleContent.pricing.useNewCard")}
+              </MonoText>
+              <PurchaseModalPaymentMethodHint>
+                <MonoText $use="Body_Medium">
+                  {t("singleContent.pricing.useNewCardHint")}
+                </MonoText>
+              </PurchaseModalPaymentMethodHint>
+            </PurchaseModalPaymentMethodText>
+          </PurchaseModalPaymentMethodOption>
+        </PurchaseModalPaymentMethod>
+      ) : null}
+
       <PurchaseModalDiscountSection>
         <PurchaseModalDiscountLabel>
           <MonoText $use="Body_Bold">
@@ -178,7 +372,10 @@ export default function PurchaseModal({
             type="text"
             placeholder={t("singleContent.pricing.enterCode")}
             value={discountCode}
-            onChange={(e) => setDiscountCode(e.target.value)}
+            onChange={(e) => {
+              setDiscountCode(e.target.value);
+              if (couponError) setCouponError(null);
+            }}
             disabled={!!appliedCode}
           />
           {appliedCode ? (
@@ -199,6 +396,22 @@ export default function PurchaseModal({
             </GenericButton>
           )}
         </PurchaseModalDiscountRow>
+        {couponError ? (
+          <PurchaseModalCouponError role="alert">
+            <InfoIcon size={16} color={COLORS.primary.RED} />
+            <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
+              {couponError}
+            </MonoText>
+          </PurchaseModalCouponError>
+        ) : null}
+        {couponValidityNotice ? (
+          <PurchaseModalCouponValidityNotice role="status">
+            <InfoIcon size={16} />
+            <MonoText $use="Body_Medium" color={COLORS.primary.ORANGE}>
+              {couponValidityNotice}
+            </MonoText>
+          </PurchaseModalCouponValidityNotice>
+        ) : null}
       </PurchaseModalDiscountSection>
 
       <PurchaseModalPriceSummary>
@@ -236,11 +449,23 @@ export default function PurchaseModal({
         </PurchaseModalPriceRowTotal>
       </PurchaseModalPriceSummary>
 
+      <PurchaseModalPaymentIcons>
+        {PAYMENT_ICONS.map((icon) => (
+          <Image
+            key={icon.alt}
+            src={icon.src}
+            alt={icon.alt}
+            width={34}
+            height={23}
+          />
+        ))}
+      </PurchaseModalPaymentIcons>
+
       <PurchaseModalButtonWrapper>
         <GenericButton
           variant={VARIANT.PRIMARY}
           fullWidth
-          onClick={() => onPurchase(appliedCode || undefined)}
+          onClick={handlePurchase}
           disabled={loading}
           isLoading={loading}
         >

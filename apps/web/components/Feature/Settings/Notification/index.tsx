@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import InputField from "@/components/UI/InputFields";
@@ -15,29 +15,48 @@ import {
   NOTIFICATION_TYPE,
   notificationSettings,
   NotificationSettingKey,
+  NotificationValues,
 } from "@/utils/notificationSettings";
 import { INPUT_TYPE } from "@/utils/ui";
 import { INPUT_VARIANTS } from "@/utils/Constants";
 
-export default function NotificationContent() {
+type NotificationContentProps = {
+  values: NotificationValues;
+  onChange: (values: NotificationValues) => void;
+};
+
+export default function NotificationContent({
+  values,
+  onChange,
+}: NotificationContentProps) {
   const { t } = useTranslation();
-  const [values, setValues] = useState(DEFAULT_NOTIFICATION_VALUES);
   const isFormType = values.type === NOTIFICATION_TYPE.FORM;
   const isOtherEmail = values.recipient === NOTIFICATION_RECIPIENT.OTHER_EMAIL;
 
   const handleSettingChange = (key: NotificationSettingKey, value: string) => {
-    setValues((prev) => ({
-      ...prev,
+    onChange({
+      ...values,
       [key]: value,
-    }));
+      ...(key === NOTIFICATION_FIELD.TYPE && value === NOTIFICATION_TYPE.FORM
+        ? {
+            frequency: DEFAULT_NOTIFICATION_VALUES.frequency,
+            recipient: DEFAULT_NOTIFICATION_VALUES.recipient,
+            otherEmail: "",
+          }
+        : {}),
+      ...(key === NOTIFICATION_FIELD.RECIPIENT &&
+      value === NOTIFICATION_RECIPIENT.ACCOUNT_EMAIL
+        ? { otherEmail: "" }
+        : {}),
+    } as NotificationValues);
   };
 
   const handleOtherEmailChange = (value: string | string[]) => {
     const normalizedValue = Array.isArray(value) ? value[0] : value;
-    setValues((prev) => ({
-      ...prev,
+    onChange({
+      ...values,
       otherEmail: normalizedValue,
-    }));
+    });
   };
 
   return (

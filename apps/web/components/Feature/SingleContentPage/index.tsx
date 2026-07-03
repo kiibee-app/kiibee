@@ -1,11 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { PATHS } from "@/utils/path";
 import {
   ACCESS_TYPE_FREE,
   ACCESS_KEYWORD_EN,
@@ -17,6 +15,7 @@ import {
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { useContentMediaUrl } from "@/hooks/useContentMediaUrl";
 import { toast } from "react-toastify";
 import {
   SingleContentBody,
@@ -32,14 +31,12 @@ import { FORMAT_TYPE } from "@/utils/types";
 import useShare from "@/hooks/useShare";
 import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
+import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
-import { GenericModal } from "@/components/UI/Modals";
-import { MonoText } from "@/components/UI/Monotext";
-import { MODAL_ALIGN } from "@/utils/ui";
-import {
-  ModalContentWrapper,
-  ModalDescription,
-} from "@/components/Feature/ProfileLayout/shared/LatestUpload/styles";
+
+import { LoginRequiredModal } from "@/components/UI/Modals";
+
+import { useSearchParams } from "next/navigation";
 
 export type {
   SingleContentHeroProps,
@@ -48,10 +45,10 @@ export type {
 } from "@/types/contentTypes";
 
 export default function SingleContentPage(props: SingleContentPageProps) {
-  const { t } = useTranslation();
   const {
     contentId,
     collectionId,
+    content,
     title,
     descriptions = [],
     tags = [],
@@ -71,24 +68,21 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     accessGate,
   } = props;
   const router = useRouter();
+  const { t } = useTranslation();
+  const searchParams = useSearchParams();
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
   const handleCloseLoginModal = () => setLoginModalVisible(false);
-  const handleLoginRedirect = () => {
-    const next = encodeURIComponent(
-      window.location.pathname + window.location.search,
-    );
-    router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-  };
-  const handleCreateAccount = () => router.push(PATHS.AUTH_SIGNUP);
 
   type CreateOrderPayload = {
     contentId: string;
     collectionId?: string;
     itemType: OrderItemType;
+    couponCode?: string;
+    subscriptionId?: string;
   };
 
   type CreateOrderResponse = {
@@ -97,7 +91,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     message: string;
     data: {
       orderId: string;
-      url: string;
+      url?: string;
     };
   };
 
@@ -115,8 +109,12 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
     return actions.map((action) => {
       const normalizedLabel = action.label.toLowerCase();
-      const isPurchase = normalizedLabel.includes("buy");
-      const isRental = normalizedLabel.includes("rent");
+      const isPurchase = normalizedLabel.includes(
+        t("pricingLabels.buy").toLowerCase(),
+      );
+      const isRental = normalizedLabel.includes(
+        t("pricingLabels.rent").toLowerCase(),
+      );
 
       if (!isPurchase && !isRental) {
         return action;
@@ -126,11 +124,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
-          if (!user?.id) {
-            handleShowLoginModal();
-            return;
-          }
-
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
@@ -140,7 +133,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         },
       };
     });
-  }, [contentId, createOrderMutation, primaryAction, primaryActions, user?.id]);
+  }, [contentId, createOrderMutation, primaryAction, primaryActions, t]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
@@ -149,33 +142,85 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     isPurchase: boolean;
   } | null>(null);
 
+  const {
+    contentType,
+    previewMediaUrl,
+    isLoading: isMediaLoading,
+    canFetchMedia,
+    fetchMediaUrl,
+  } = useContentMediaUrl(content);
+  const previewContentType = contentType ?? hero.contentType;
+
   const isPreviewableType =
-    hero?.contentType === FORMAT_TYPE.PDF ||
-    hero?.contentType === FORMAT_TYPE.WEB ||
-    hero?.contentType === FORMAT_TYPE.EPUB ||
-    hero?.contentType === FORMAT_TYPE.VIDEO ||
-    hero?.contentType === FORMAT_TYPE.AUDIO;
+    previewContentType === FORMAT_TYPE.PDF ||
+    previewContentType === FORMAT_TYPE.WEB ||
+    previewContentType === FORMAT_TYPE.EPUB ||
+    previewContentType === FORMAT_TYPE.VIDEO ||
+    previewContentType === FORMAT_TYPE.AUDIO;
+
+  useEffect(() => {
+    const intent = searchParams?.get("intent");
+    if (intent) {
+      const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
+      if (actions.length) {
+        const action = actions[0];
+        setSelectedAction({
+          label: action.label,
+          subtitle: action.subtitle,
+          isPurchase: action.label
+            .toLowerCase()
+            .includes(t("pricingLabels.buy").toLowerCase()),
+        });
+        setShowPurchaseModal(true);
+
+        const newUrl =
+          window.location.pathname +
+          window.location.search
+            .replace(new RegExp(`&?intent=${intent}`), "")
+            .replace(/\?$/, "");
+        window.history.replaceState({}, "", newUrl);
+      }
+    }
+  }, [searchParams, primaryActions, primaryAction, t]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
 
   const canPreview =
-    isPreviewableType && Boolean(hero?.contentUrl || hero?.media?.src);
+    isPreviewableType &&
+    (Boolean(hero?.media?.src || hero?.contentUrl) ||
+      canFetchMedia ||
+      Boolean(previewMediaUrl));
 
-  const previewSrc = hero?.contentUrl || hero?.media?.src || "";
-
-  const handlePrimaryActionClick = () => {
-    if (isWebType && previewSrc) {
-      window.open(previewSrc, "_blank", "noopener,noreferrer");
+  const handlePrimaryActionClick = async () => {
+    if (isWebType && previewMediaUrl) {
+      window.open(previewMediaUrl, "_blank", "noopener,noreferrer");
       return;
     }
 
-    if (canPreview && previewSrc) {
+    if (!canPreview) {
+      if (primaryAction?.onClick) {
+        primaryAction.onClick();
+        return;
+      }
+
+      const accessMeta = metaItems.find(
+        (item) =>
+          item.label.toLowerCase().includes(ACCESS_KEYWORD_EN) ||
+          item.label.toLowerCase().includes(ACCESS_KEYWORD_DA),
+      );
+      const isPaid =
+        accessMeta &&
+        typeof accessMeta.value === STRING &&
+        accessMeta.value !== ACCESS_TYPE_FREE;
+
+      if (isPaid && !user?.id) {
+        handleShowLoginModal();
+      }
+      return;
+    }
+
+    if (!canFetchMedia) {
       setShowPreviewModal(true);
-      return;
-    }
-
-    if (primaryAction?.onClick) {
-      primaryAction.onClick();
       return;
     }
 
@@ -188,10 +233,28 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       accessMeta &&
       typeof accessMeta.value === STRING &&
       accessMeta.value !== ACCESS_TYPE_FREE;
-    const isLoggedIn = Boolean(user && user.id);
 
-    if (isPaid && !isLoggedIn) {
-      handleShowLoginModal();
+    const actionLabel = primaryAction?.label?.toLowerCase();
+    const isPurchaseAction = Boolean(
+      actionLabel?.includes(t("pricingLabels.buy").toLowerCase()),
+    );
+    const isRentalAction = Boolean(
+      actionLabel?.includes(t("pricingLabels.rent").toLowerCase()),
+    );
+
+    if (isPaid || isPurchaseAction || isRentalAction) {
+      setSelectedAction({
+        label: primaryAction?.label as string,
+        subtitle: primaryAction?.subtitle,
+        isPurchase: isPurchaseAction,
+      });
+
+      setShowPurchaseModal(true);
+    } else {
+      const mediaUrl = await fetchMediaUrl();
+      if (mediaUrl) {
+        setShowPreviewModal(true);
+      }
     }
   };
 
@@ -199,6 +262,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     ? {
         ...primaryAction,
         onClick: handlePrimaryActionClick,
+        disabled: primaryAction.disabled || isMediaLoading,
       }
     : undefined;
 
@@ -209,10 +273,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ? [modifiedPrimaryAction]
         : undefined;
 
-  const { share } = useShare();
-  const resolvedContentType = hero?.contentType ?? hero?.media?.type;
+  const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
   const isPdfLayout =
-    Boolean(resolvedContentType) && resolvedContentType !== FORMAT_TYPE.VIDEO;
+    Boolean(previewContentType) && previewContentType !== FORMAT_TYPE.VIDEO;
 
   const handleBack = () => {
     if (onBack) {
@@ -222,8 +285,16 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     router.back();
   };
 
-  const handlePurchaseConfirm = async (couponCode?: string) => {
+  const handlePurchaseConfirm = async (
+    couponCode?: string,
+    subscriptionId?: string,
+  ) => {
     if (!selectedAction || !contentId) return;
+
+    if (!user?.id) {
+      handleShowLoginModal();
+      return;
+    }
 
     try {
       const response = await createOrderMutation.mutateAsync({
@@ -233,8 +304,16 @@ export default function SingleContentPage(props: SingleContentPageProps) {
           ? ORDER_TYPES.PURCHASE
           : ORDER_TYPES.RENTAL,
         ...(couponCode ? { couponCode } : {}),
+        ...(subscriptionId ? { subscriptionId } : {}),
       });
       const paymentUrl = response?.data?.url;
+      const orderId = response?.data?.orderId;
+      if (!paymentUrl && subscriptionId && orderId) {
+        setShowPurchaseModal(false);
+        setSelectedAction(null);
+        router.push(`/payment/success?orderId=${encodeURIComponent(orderId)}`);
+        return;
+      }
       if (!paymentUrl) {
         throw new Error("Payment URL missing");
       }
@@ -281,20 +360,24 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       </Card>
 
       {children}
-      {canPreview && previewSrc && (
-        <ContentPreviewModal
-          visible={showPreviewModal}
-          onClose={() => setShowPreviewModal(false)}
-          src={previewSrc}
-          type={hero.contentType || hero.media?.type || FORMAT_TYPE.VIDEO}
-          title={title}
-        />
-      )}
+      {canPreview &&
+        showPreviewModal &&
+        (previewMediaUrl || hero.contentUrl || hero.media?.src) && (
+          <ContentPreviewModal
+            visible={showPreviewModal}
+            onClose={() => setShowPreviewModal(false)}
+            src={previewMediaUrl || hero.contentUrl || hero.media?.src || ""}
+            type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}
+            title={title}
+          />
+        )}
 
       <PurchaseModal
         visible={showPurchaseModal}
         onClose={handleClosePurchaseModal}
         onPurchase={handlePurchaseConfirm}
+        onRequireLogin={handleShowLoginModal}
+        isLoggedIn={Boolean(user?.id)}
         title={title}
         image={hero.image ? resolveImageUrl(hero.image) : undefined}
         imageAlt={hero.imageAlt}
@@ -306,31 +389,19 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         loading={createOrderMutation.isPending}
       />
 
-      <GenericModal
+      <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onCancel={handleLoginRedirect}
-        onConfirm={handleCreateAccount}
-        cancelLabel={t("createProfileHome.latestUpload.loginModal.cancelLabel")}
-        confirmLabel={t(
-          "createProfileHome.latestUpload.loginModal.confirmLabel",
-        )}
-        buttonRow
-        buttonAlign={MODAL_ALIGN.CENTER}
-        fullWidthButtons={false}
-        size="md"
-        spacing="start"
-        showCloseButton
-      >
-        <ModalContentWrapper>
-          <MonoText $use="Heading3">
-            {t("createProfileHome.latestUpload.loginModal.title")}
-          </MonoText>
-          <ModalDescription $use="Body_Medium">
-            {t("createProfileHome.latestUpload.loginModal.message")}
-          </ModalDescription>
-        </ModalContentWrapper>
-      </GenericModal>
+        onSuccess={() => {
+          handleCloseLoginModal();
+        }}
+      />
+
+      <ShareModal
+        visible={showShareModal}
+        url={shareUrl}
+        onClose={() => setShowShareModal(false)}
+      />
     </Wrapper>
   );
 }

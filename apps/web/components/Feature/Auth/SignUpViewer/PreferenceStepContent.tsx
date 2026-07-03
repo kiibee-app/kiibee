@@ -18,12 +18,8 @@ import {
   TypeGrid,
   TypeLabel,
 } from "./styles";
-import {
-  CONTENT_CATEGORY_OPTIONS,
-  CONTENT_TYPE_ITEMS,
-  PREF_STEP,
-  ViewerPreferenceStep,
-} from "@/utils/preferenceOptions";
+import { PREF_STEP, ViewerPreferenceStep } from "@/utils/preferenceOptions";
+import { useViewerPreferences } from "@/hooks/useViewerPreferences";
 
 type PreferenceStepContentProps = {
   step: ViewerPreferenceStep;
@@ -48,6 +44,8 @@ export default function PreferenceStepContent({
   backIconBg,
   backIconStroke,
 }: PreferenceStepContentProps) {
+  const { categories, contentTypes } = useViewerPreferences();
+
   if (step === PREF_STEP.INTRO) {
     return (
       <>
@@ -97,14 +95,14 @@ export default function PreferenceStepContent({
         </StepSubtitle>
 
         <CategoryGrid>
-          {CONTENT_CATEGORY_OPTIONS.map(({ key, translationKey }) => (
+          {categories.map(({ key, name }) => (
             <CategoryChip
               key={key}
               type="button"
               $selected={selectedCategories.includes(key)}
               onClick={() => onToggleCategory(key)}
             >
-              {t(translationKey)}
+              {name}
             </CategoryChip>
           ))}
         </CategoryGrid>
@@ -142,19 +140,17 @@ export default function PreferenceStepContent({
       </StepSubtitle>
 
       <TypeGrid>
-        {CONTENT_TYPE_ITEMS.map(
-          ({ key, icon: IconComponent, translationKey }) => (
-            <TypeCard
-              key={key}
-              type="button"
-              $selected={selectedTypes.includes(key)}
-              onClick={() => onToggleType(key)}
-            >
-              <IconComponent />
-              <TypeLabel>{t(translationKey)}</TypeLabel>
-            </TypeCard>
-          ),
-        )}
+        {contentTypes.map(({ key, name, icon: IconComponent }) => (
+          <TypeCard
+            key={key}
+            type="button"
+            $selected={selectedTypes.includes(key)}
+            onClick={() => onToggleType(key)}
+          >
+            <IconComponent />
+            <TypeLabel>{name}</TypeLabel>
+          </TypeCard>
+        ))}
       </TypeGrid>
     </>
   );

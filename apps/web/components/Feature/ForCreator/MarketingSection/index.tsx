@@ -31,6 +31,7 @@ import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
 import { LANDING_REVEAL, LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
+import { useSessionDashboardPath } from "@/hooks/auth/useSessionDashboardPath";
 
 const IMAGE_REVEAL_STYLE = {
   height: "100%",
@@ -38,6 +39,8 @@ const IMAGE_REVEAL_STYLE = {
 
 export default function MarketingSection() {
   const { t } = useTranslation();
+  const dashboardPath = useSessionDashboardPath();
+  const isLoggedIn = !!dashboardPath;
 
   return (
     <Section>
@@ -77,11 +80,13 @@ export default function MarketingSection() {
           <ScrollReveal delay={LANDING_REVEAL.shortDelay * 4}>
             <Summary>{t("creators.marketing.summary")}</Summary>
           </ScrollReveal>
-          <ScrollReveal delay={LANDING_REVEAL.shortDelay * 5}>
-            <CtaButton asAnchor href={PATHS.AUTH_SIGNUP}>
-              {t("creators.marketing.cta")}
-            </CtaButton>
-          </ScrollReveal>
+          {!isLoggedIn && (
+            <ScrollReveal delay={LANDING_REVEAL.shortDelay * 5}>
+              <CtaButton asAnchor href={PATHS.AUTH_SIGNUP}>
+                {t("creators.marketing.cta")}
+              </CtaButton>
+            </ScrollReveal>
+          )}
         </TextColumn>
 
         <ImagesColumn>

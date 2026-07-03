@@ -1,6 +1,5 @@
 "use client";
 
-import GenericButton from "@/components/UI/GenericButton";
 import { trendingContentSteps } from "@/utils/steps";
 import {
   Section,
@@ -14,6 +13,7 @@ import {
   StepCard,
   StepDescription,
   CTAWrapper,
+  CTAButton,
   NumberPart,
   watchingStepsPreviewImageStyle,
 } from "./styles";
@@ -22,7 +22,6 @@ import { useTranslation } from "react-i18next";
 import Steps from "@/assets/images/steps.webp";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
@@ -93,13 +92,9 @@ export default function WatchingSteps() {
               </StepCard>
             ))}
             <CTAWrapper>
-              <GenericButton
-                asAnchor
-                href={PATHS.HOW_IT_WORKS}
-                variant={VARIANT.PRIMARY}
-              >
+              <CTAButton asAnchor href={PATHS.HOW_IT_WORKS}>
                 {t("watchingSteps.cta")}
-              </GenericButton>
+              </CTAButton>
             </CTAWrapper>
           </StepsColumn>
         </Layout>

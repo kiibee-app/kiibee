@@ -421,6 +421,7 @@ export const CONTENTS = {
       mobileSize: "contents.appearance.coverImage.mobileSize",
       desktopAlt: "contents.appearance.coverImage.desktopAlt",
       mobileAlt: "contents.appearance.coverImage.mobileAlt",
+      resolutionWarning: "contents.appearance.coverImage.resolutionWarning",
     },
     description: {
       label: "contents.appearance.description.label",

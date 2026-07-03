@@ -9,6 +9,7 @@ import Footer from "@/components/Layout/Footer";
 import { Main, PageContainer, Section } from "../../../styles";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericSpinner from "@/components/UI/GenericSpinner";
+import LazySection from "@/components/UI/LazySection";
 import { ErrorBoundary } from "react-error-boundary";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
@@ -21,17 +22,11 @@ import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveContentViewerId } from "@/utils/path";
 
 import {
-  CONTENT_MEDIA_QUERY_KEYS,
   CONTENT_TRANSLATION_KEYS,
-  type ContentMediaUrlResponse,
   type ContentDetailResponse,
-  getContentMediaKey,
-  getContentType,
   getContentDetail,
   getSingleContentProps,
-  resolveContentPlaybackUrl,
 } from "@/utils/contentApi";
-import { FORMAT_TYPE } from "@/utils/types";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
 import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
@@ -83,11 +78,10 @@ function PublishedContentDetail() {
     {
       enabled: Boolean(normalizedContentKey) && !fallback,
       refetchInterval: isPaymentSuccess ? 1500 : false,
+      placeholderData: (previousData) => previousData,
     },
   );
   const content = getContentDetail(data);
-  const contentType = getContentType(content);
-  const mediaKey = getContentMediaKey(content);
   const { creator: publicCreator } = useCreatorPublicProfile(
     content?.creatorId ?? null,
   );
@@ -96,23 +90,6 @@ function PublishedContentDetail() {
     {
       enabled: Boolean(normalizedContentKey) && !fallback,
     },
-  );
-  const mediaEndpoint =
-    contentType === FORMAT_TYPE.VIDEO
-      ? API.media.videoStream
-      : API.media.fileSignedUrl;
-  const shouldFetchSignedMediaUrl =
-    Boolean(mediaKey) && contentType !== FORMAT_TYPE.WEB;
-  const { data: mediaResponse } = useGetAPI<ContentMediaUrlResponse>(
-    mediaEndpoint,
-    { [CONTENT_MEDIA_QUERY_KEYS.KEY]: mediaKey },
-    {
-      enabled: shouldFetchSignedMediaUrl,
-    },
-  );
-  const mediaUrl = resolveContentPlaybackUrl(
-    content,
-    mediaResponse?.url || mediaResponse?.iframeUrl || mediaResponse?.streamUrl,
   );
   const {
     gateType: activeGateType,
@@ -150,7 +127,7 @@ function PublishedContentDetail() {
     />
   );
 
-  if (isLoading || gateLoading) {
+  if ((isLoading && !data && !fallback) || gateLoading) {
     return (
       <GenericSpinner
         isOverlay
@@ -195,10 +172,11 @@ function PublishedContentDetail() {
       {paymentSuccessModal}
       <Section>
         <SingleContentPage
-          {...getSingleContentProps(content, t, mediaUrl, {
+          {...getSingleContentProps(content, t, {
             inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
             viewerId: resolvedUserId,
           })}
+          content={content}
           creator={
             publicCreator
               ? {
@@ -268,7 +246,9 @@ export default function PublishedContentPage() {
       <Main>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Suspense fallback={<PublishedContentLoading />}>
-            <PublishedContentDetail />
+            <LazySection minHeight={480} rootMargin="0px">
+              <PublishedContentDetail />
+            </LazySection>
           </Suspense>
         </ErrorBoundary>
       </Main>

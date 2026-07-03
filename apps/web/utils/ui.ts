@@ -113,6 +113,10 @@ export const MODAL_ALIGN = {
 } as const;
 export type ModalAlign = (typeof MODAL_ALIGN)[keyof typeof MODAL_ALIGN];
 
+export const LOGIN_REQUIRED_MODAL_WIDTH = "560px";
+export const LOGIN_REQUIRED_MODAL_INITIAL_HEIGHT = "360px";
+export const LOGIN_REQUIRED_MODAL_OVERLAY_Z_INDEX = 1000;
+
 export const WEEK_DAYS = [
   "SUN",
   "MON",
@@ -181,8 +185,43 @@ export const IMAGE_TYPE = {
 } as const;
 export type ImageType = (typeof IMAGE_TYPE)[keyof typeof IMAGE_TYPE];
 
+export const THUMBNAIL_MIN_DIMENSIONS = {
+  [IMAGE_TYPE.DESKTOP]: {
+    width: 1440,
+    height: 224,
+  },
+  [IMAGE_TYPE.MOBILE]: {
+    width: 640,
+    height: 600,
+  },
+  [IMAGE_TYPE.MEDIA_CARD]: {
+    width: 250,
+    height: 190,
+  },
+  [IMAGE_TYPE.PORTRAIT]: {
+    width: 376,
+    height: 530,
+  },
+} as const;
+
 export const isBrowser = typeof window !== "undefined";
 export const canUseDOM = typeof document !== "undefined";
+
+export interface PopupPosition {
+  top: number;
+  left: number;
+}
+
+export function getPopupPosition(
+  rect?: DOMRect | null,
+  offsetY = 8,
+): PopupPosition {
+  if (!rect || typeof window === "undefined") return { top: 0, left: 0 };
+  return {
+    top: rect.bottom + window.scrollY + offsetY,
+    left: rect.left + window.scrollX,
+  };
+}
 
 export const COLLECTION = "collection_";
 export const CONTENT = "content_";

@@ -67,7 +67,7 @@ const variants = {
 export const Pill = styled(MonoText)<{
   $variant: keyof typeof variants;
 }>`
-  ${({ theme }) => theme.typography.Body_Medium};
+  ${({ theme }) => theme.typography.Body_SemiMedium};
   display: inline-block;
   padding: 0.8rem 1.6rem;
   border-radius: 999px;

@@ -16,7 +16,12 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { toTrimmedString } from "@/utils/Constants";
 import { formatJoinedDate } from "@/utils/formatDate";
-import { displayCreatorName, getAvatarUrl } from "@/utils/creatorProfile";
+import {
+  displayCreatorName,
+  getAvatarUrl,
+  isCreatorWebsiteLink,
+  resolveCreatorContactEmail,
+} from "@/utils/creatorProfile";
 import {
   type CollectionsApiResponse,
   getCollectionRows,
@@ -27,11 +32,10 @@ import type { ContentAppearanceResponse } from "@/types/contentAppearanceType";
 export function useCreatorChannelProfile(enabled = true) {
   const searchParams = useSearchParams();
   const publicCreatorId = searchParams.get(CREATOR_ID_PARAM);
-  const isPublicView = Boolean(publicCreatorId);
-
   const storedUser = useStoredLoginUser();
   const isOwnerOfPublicView =
-    isPublicView && storedUser?.id === publicCreatorId;
+    Boolean(publicCreatorId) && storedUser?.id === publicCreatorId;
+  const isPublicView = Boolean(publicCreatorId) && !isOwnerOfPublicView;
   const { creator: publicCreator, isLoading: isLoadingPublic } =
     useCreatorPublicProfile(publicCreatorId);
 
@@ -120,6 +124,9 @@ export function useCreatorChannelProfile(enabled = true) {
       const customDesc = hasAppearance
         ? (appearanceQuery.data?.data?.description ?? "")
         : undefined;
+      const supportEmail = hasAppearance
+        ? appearanceQuery.data?.data?.supportEmail
+        : publicCreator.supportEmail;
       return {
         description:
           customDesc !== undefined
@@ -127,7 +134,13 @@ export function useCreatorChannelProfile(enabled = true) {
             : (publicCreator.contentDescription ?? ""),
         joinedDate: formatJoinedDate(publicCreator.createdAt),
         uploadCount: publicCreator.uploadCount ?? 0,
-        websiteLink: publicCreator.exampleWorkLink ?? "",
+        websiteLink: isCreatorWebsiteLink(publicCreator.exampleWorkLink ?? "")
+          ? (publicCreator.exampleWorkLink ?? "")
+          : "",
+        contactEmail: resolveCreatorContactEmail(
+          supportEmail,
+          publicCreator.accountEmail,
+        ),
       };
     }
 
@@ -138,7 +151,15 @@ export function useCreatorChannelProfile(enabled = true) {
         : (profile.creatorInfo?.contentDescription ?? ""),
       joinedDate: formatJoinedDate(profile.user?.createdAt),
       uploadCount: uploadCountPrivate,
-      websiteLink: profile.creatorInfo?.exampleWorkLink ?? "",
+      websiteLink: isCreatorWebsiteLink(
+        profile.creatorInfo?.exampleWorkLink ?? "",
+      )
+        ? (profile.creatorInfo?.exampleWorkLink ?? "")
+        : "",
+      contactEmail: resolveCreatorContactEmail(
+        appearanceQuery.data?.data?.supportEmail,
+        profile.user?.email,
+      ),
     };
   }, [
     isPublicView,

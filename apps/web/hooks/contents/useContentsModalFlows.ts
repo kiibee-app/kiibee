@@ -23,6 +23,7 @@ import {
 } from "@/utils/content";
 import { FORMAT_TYPE } from "@/utils/types";
 import { COLLECTION, CONTENT } from "@/utils/ui";
+import { toValidFrom, toValidUntil } from "@/utils/couponDates";
 
 export const useContentsModalFlows = (
   activeTab: ContentTab,
@@ -63,6 +64,8 @@ export const useContentsModalFlows = (
     codes: (form.codes ?? []).map((code) => code.trim()).filter(Boolean),
     collectionIds: form.collectionIds ?? [],
     contentIds: form.contentIds ?? [],
+    startDate: form.startDate?.trim() ?? "",
+    endDate: form.endDate?.trim() ?? "",
   });
 
   const hasCouponChanges =
@@ -92,6 +95,7 @@ export const useContentsModalFlows = (
       details: couponStep === COUPON_STEPS.DETAILS,
       codes: couponStep === COUPON_STEPS.CODES,
       applicableProducts: couponStep === COUPON_STEPS.APPLICABLE_PRODUCTS,
+      validity: couponStep === COUPON_STEPS.VALIDITY,
       preview: couponStep === COUPON_STEPS.PREVIEW,
     },
   };
@@ -272,7 +276,7 @@ export const useContentsModalFlows = (
       .map((id) => id.trim())
       .filter((id) => id.length > 0 && !id.startsWith(CONTENT));
 
-    const payload: CreateCouponPayload = {
+    const payload = {
       title: couponForm.title.trim(),
       discountType:
         couponForm.discountType === COUPON_DISCOUNT_FIXED_AMOUNT
@@ -286,6 +290,8 @@ export const useContentsModalFlows = (
           : undefined,
       contentIds:
         normalizedContentIds.length > 0 ? normalizedContentIds : undefined,
+      validFrom: toValidFrom(couponForm.startDate),
+      validUntil: toValidUntil(couponForm.endDate),
     };
 
     const submitRequest = editingCouponId

@@ -4,6 +4,7 @@ import { CollectionRow } from "@/types/collectionsType";
 import CouponDetailsModal from "@/components/Feature/Contents/coupon/coupon-details";
 import CouponCodesModal from "@/components/Feature/Contents/coupon/coupon-codes";
 import CouponApplicableProductsModal from "@/components/Feature/Contents/coupon/coupon-applicable-products";
+import CouponValidityModal from "./coupon-validity";
 import CouponPreviewModal from "./CouponPreviewModal";
 import { CreateCouponPayload } from "@/types/couponType";
 
@@ -12,6 +13,7 @@ type CouponFlowState = {
     details: boolean;
     codes: boolean;
     applicableProducts: boolean;
+    validity: boolean;
     preview: boolean;
   };
   next: () => void;
@@ -65,6 +67,15 @@ export default function CouponFlowModals({
         visible={couponFlow.isOpen.applicableProducts}
         form={couponForm}
         collections={collections}
+        setForm={setCouponForm}
+        onBack={couponFlow.back}
+        onClose={requestCloseCouponFlow}
+        onNext={couponFlow.next}
+      />
+
+      <CouponValidityModal
+        visible={couponFlow.isOpen.validity}
+        form={couponForm}
         setForm={setCouponForm}
         onBack={couponFlow.back}
         onClose={requestCloseCouponFlow}

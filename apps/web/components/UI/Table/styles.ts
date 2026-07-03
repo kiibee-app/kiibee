@@ -189,7 +189,9 @@ export const ValueText = styled.span`
 
 export const NoDataCell = styled.div`
   text-align: center;
-  padding: 30px;
+  padding: 48px 24px;
+  color: ${({ theme }) => theme.colors.neutral.GRAY};
+  ${({ theme }) => theme.typography.Body_Regular};
 `;
 
 export const RightSection = styled.div`

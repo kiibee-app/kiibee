@@ -203,12 +203,11 @@ const getContentHeroImages = (
   const candidates = resolveContentThumbnailCandidates(
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL],
-    { preferLandscape: true },
   );
 
   return {
     image: candidates[0] ?? contentFallbackImage,
-    ...(candidates[1] ? { imageFallback: candidates[1] } : {}),
+    imageFallback: candidates[1] ?? contentFallbackImage.src,
   };
 };
 
@@ -220,7 +219,6 @@ const getCategoryNames = (content: ContentDetailItem) =>
 export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
-  mediaUrl?: string,
   options?: { inCollection?: boolean; viewerId?: string },
 ): SingleContentPageProps => {
   const title =
@@ -296,19 +294,8 @@ export const getSingleContentProps = (
               src: trailerUrl,
               title,
             },
-            contentUrl: mediaUrl,
           }
-        : mediaUrl && !isVideo
-          ? {
-              media: {
-                type: contentType,
-                src: mediaUrl,
-                title,
-              },
-            }
-          : isVideo && mediaUrl
-            ? { contentUrl: mediaUrl }
-            : {}),
+        : {}),
       categoryLabel: categories[0],
       mediaLabel: getContentTypeLabel(contentType),
       ...(isVideo || showTrailerInHero

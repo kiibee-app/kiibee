@@ -14,11 +14,16 @@ import {
 } from "@/components/Feature/ExploreCreators/Creators/styles";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
 import { MonoText } from "@/components/UI/Monotext";
-import { ResultsState } from "@/components/Feature/ExploreCreators/LatestRelease/styles";
+import {
+  ResultsState,
+  LoadMoreContainer,
+  LoadMoreButton,
+} from "@/components/Feature/ExploreCreators/LatestRelease/styles";
+
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import SearchBar from "@/components/UI/SearchBar";
 import SortDropdown from "@/components/UI/SortDropdown";
-import { DEFAULT_SORT, SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
+import { SORT_OPTIONS, SortValue } from "@/utils/sortOptions";
 import { CREATORS } from "@/utils/translationKeys";
 import {
   Hero,
@@ -38,10 +43,13 @@ function FormatPageContent() {
   const {
     tutorials: filteredTutorials,
     isLoading,
+    sortBy,
     setSortBy,
     searchQuery,
     setSearchQuery,
     formatTitle,
+    showLoadMoreButton,
+    handleLoadMore,
   } = useFormatContent(id);
 
   return (
@@ -64,7 +72,7 @@ function FormatPageContent() {
                     />
                     <SortDropdown
                       options={SORT_OPTIONS}
-                      value={DEFAULT_SORT}
+                      value={sortBy}
                       onChange={setSortBy}
                       label={t(CREATORS.sort)}
                       renderSelectedLabel={(value) =>
@@ -100,6 +108,17 @@ function FormatPageContent() {
                   title={t("nav.explore.noResults")}
                   bg="white"
                 />
+              )}
+              {showLoadMoreButton && !isLoading && (
+                <LoadMoreContainer>
+                  <LoadMoreButton
+                    variant="primary"
+                    type="button"
+                    onClick={handleLoadMore}
+                  >
+                    {t("creators.loadMore")}
+                  </LoadMoreButton>
+                </LoadMoreContainer>
               )}
             </PageWrapper>
           </div>

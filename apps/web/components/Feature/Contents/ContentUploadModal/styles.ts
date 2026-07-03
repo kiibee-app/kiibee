@@ -17,7 +17,8 @@ export const UploadBody = styled.div`
 export const ContentUploadDropZone = styled(UploadDropZone)`
   height: 268px;
   padding: 28px 20px;
-  border-color: ${({ theme }) => theme.colors.neutral.GRAY_300};
+  border-color: ${({ theme, $isDragActive }) =>
+    $isDragActive ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_300};
   gap: 10px;
 `;
 

@@ -140,3 +140,9 @@ export const NORMAL_TEXT = 'NORMAL';
 export const TIMEOUT = 120;
 export const MAX_ATTEMPTS = 25;
 export const MAX_DURATION_SECONDS = 7200;
+export const UNSCHEDULED_TYPE = 'UNSCHEDULED';
+export const ENVIRONMENT = {
+  DEVELOPMENT: 'development',
+  PRODUCTION: 'production',
+  STAGING: 'staging',
+} as const;

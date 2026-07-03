@@ -7,7 +7,7 @@ import NavBar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 import { PageContainer, Main, Section } from "../../styles";
 import SingleCollectionHero from "@/components/Feature/SingleCollectionHero";
-import { MonoText } from "@/components/UI/Monotext";
+
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
@@ -24,7 +24,7 @@ import {
 } from "@/components/Feature/SingleCollectionHero/styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
-import { NAV } from "@/utils/translationKeys";
+
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
 function SingleCollectionContent() {

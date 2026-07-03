@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT, SIZE } from "@/utils/Constants";
+import { SIZE } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 import { typography } from "@repo/ui/typography";
 
@@ -178,7 +178,6 @@ export const FeatureText = styled.span`
 `;
 
 export const PlanButton = styled(GenericButton).attrs({
-  variant: VARIANT.PRIMARY,
   size: SIZE.MD,
 })`
   margin-top: 20px;

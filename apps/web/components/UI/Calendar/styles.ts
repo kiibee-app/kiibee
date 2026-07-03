@@ -25,7 +25,7 @@ export const CalendarWrapper = styled.div`
 `;
 
 export const CalendarMonth = styled.div`
-  min-width: 300px;
+  min-width: 260px;
   flex: 1;
 
   ${media.mobileMd} {
@@ -79,8 +79,8 @@ export const DayButtonBase = styled.button`
 `;
 
 export const DayButton = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: transparent;
   color: ${({ theme }) => theme.colors.primary.BLACK};
@@ -88,16 +88,11 @@ export const DayButton = styled.div`
   align-items: center;
   justify-content: center;
   ${({ theme }) => theme.typography.Body_Regular};
-
-  ${media.mobileMd} {
-    width: 32px;
-    height: 32px;
-  }
 `;
 
 export const DaySelected = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE};
@@ -105,16 +100,11 @@ export const DaySelected = styled.div`
   align-items: center;
   justify-content: center;
   ${({ theme }) => theme.typography.Body_Regular};
-
-  ${media.mobileMd} {
-    width: 32px;
-    height: 32px;
-  }
 `;
 
 export const DayInRange = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 999px;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   color: ${({ theme }) => theme.colors.primary.BLACK};
@@ -122,11 +112,6 @@ export const DayInRange = styled.div`
   align-items: center;
   justify-content: center;
   ${({ theme }) => theme.typography.Body_Regular};
-
-  ${media.mobileMd} {
-    width: 32px;
-    height: 32px;
-  }
 `;
 
 export const MonthNav = styled.div`
@@ -137,4 +122,19 @@ export const MonthNav = styled.div`
 
 export const WeekDayCell = styled.div`
   text-align: center;
+`;
+
+export const SingleCalendarWrapper = styled(CalendarWrapper)`
+  gap: 0;
+  &::before {
+    display: none;
+  }
+`;
+
+export const MonthNavLeft = styled(MonthNav)`
+  margin-right: auto;
+`;
+
+export const MonthNavRight = styled(MonthNav)`
+  margin-left: auto;
 `;
