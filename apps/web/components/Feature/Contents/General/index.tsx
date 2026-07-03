@@ -11,6 +11,7 @@ import {
   FileRow,
   PreviewBox,
   PreviewVideo,
+  PreviewImage,
   PlayOverlay,
   ShareCircle,
   WebSection,
@@ -23,6 +24,10 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import { formatFileSize } from "@/utils/file";
 import { FORMAT_TYPE } from "@/utils/types";
+import {
+  resolvePublicMediaUrl,
+  extractCloudflareStreamVideoId,
+} from "@/utils/media";
 import {
   PlayCircleIcon,
   UploadAudioIcon,
@@ -63,6 +68,18 @@ export default function GeneralContent({
 
   const uploadType = formState.contentTypeId;
   const previewUrl = uploadedPreview;
+  const thumbnailUrl = resolvePublicMediaUrl(
+    formState.mediaCardThumbnail || formState.portraitThumbnail,
+  );
+  const getFallbackThumbnail = () => {
+    if (!previewUrl) return null;
+    const cfVideoId = extractCloudflareStreamVideoId(undefined, previewUrl);
+    if (cfVideoId) {
+      return `https://videodelivery.net/${cfVideoId}/thumbnails/thumbnail.jpg`;
+    }
+    return null;
+  };
+  const resolvedThumbnail = thumbnailUrl || getFallbackThumbnail();
 
   const renderWebSection = () => {
     if (uploadType !== FORMAT_TYPE.WEB) return null;
@@ -129,14 +146,22 @@ export default function GeneralContent({
       case FORMAT_TYPE.VIDEO:
         return (
           <PreviewBox onClick={handlePreviewClick}>
-            {previewUrl && (
-              <PreviewVideo src={previewUrl} controls={false} preload="none" />
+            {resolvedThumbnail ? (
+              <PreviewImage src={resolvedThumbnail} alt={uploadedFile.name} />
+            ) : (
+              previewUrl && (
+                <PreviewVideo
+                  src={previewUrl}
+                  controls={false}
+                  preload="metadata"
+                />
+              )
             )}
             <PlayOverlay>
               <PlayCircleIcon
                 width={40}
                 height={40}
-                color={COLORS.neutral.GRAY_200}
+                color={COLORS.neutral.OFF_WHITE}
               />
             </PlayOverlay>
           </PreviewBox>
