@@ -70,11 +70,30 @@ export const ImagePreviewWrapper = styled.div<{
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  background-color: #000000;
+  background: radial-gradient(
+    circle,
+    ${({ theme }) => theme.colors.neutral.GRAY_700 || "#2a2b2f"} 0%,
+    ${({ theme }) => theme.colors.gradient.NEAR_BLACK || "#060606"} 100%
+  );
+  box-shadow: ${({ theme }) => theme.shadows.lg};
 
   &:active {
     cursor: grabbing;
   }
+`;
+
+export const BlurredBackground = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(20px) brightness(0.55);
+  transform: scale(1.15);
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
 `;
 
 export const ImagePreview = styled.img<{
@@ -94,10 +113,13 @@ export const ImagePreview = styled.img<{
   object-fit: cover;
   pointer-events: none;
   user-select: none;
+  z-index: 2;
   transform: ${({ $x, $y }) =>
     `translate(calc(-50% + ${$x}px), calc(-50% + ${$y}px))`};
   transition: ${({ $isDragging }) =>
-    $isDragging ? "none" : "transform 0.1s ease-out"};
+    $isDragging
+      ? "none"
+      : "transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), width 0.2s cubic-bezier(0.25, 1, 0.5, 1), height 0.2s cubic-bezier(0.25, 1, 0.5, 1)"};
 `;
 
 export const ChangePhotoHint = styled(MonoText).attrs({
@@ -114,24 +136,20 @@ export const CropOverlay = styled.div<{
   $height: number;
 }>`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
   pointer-events: none;
   box-sizing: border-box;
+  z-index: 3;
 
-  ${({ $shape }) =>
-    $shape === CROP_SHAPE.CIRCLE
-      ? `
-        border-radius: 50%;
-        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
-        border: 2px solid rgba(255, 255, 255, 0.85);
-      `
-      : `
-        border: 2px solid rgba(255, 255, 255, 0.85);
-        box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
-      `}
+  ${({ $shape, theme }) =>
+    $shape === CROP_SHAPE.CIRCLE &&
+    `
+    border-radius: 50%;
+    box-shadow: 0 0 0 9999px ${theme.colors.neutral.OVERLAY};
+  `}
 `;
 
 export const ZoomContainer = styled.div`

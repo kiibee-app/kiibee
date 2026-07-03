@@ -17,6 +17,7 @@ import {
   UploadNoteText,
   ChangePhotoHint,
   UploadErrorText,
+  BlurredBackground,
 } from "./styles";
 import { GenericModal } from "@/components/UI/Modals";
 import GenericButton from "@/components/UI/GenericButton";
@@ -103,6 +104,22 @@ export default function ImageUploadCropModal({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const previewFrameRef = useRef<HTMLDivElement | null>(null);
 
+  const frameW = frameSize.width;
+  const frameH = frameSize.height;
+  const effectiveFrameW = Math.max(1, frameW - 40);
+  const effectiveFrameH = Math.max(1, frameH - 40);
+  const rawCoverScale =
+    naturalSize.width > 0 && naturalSize.height > 0
+      ? Math.max(
+          effectiveFrameW / naturalSize.width,
+          effectiveFrameH / naturalSize.height,
+        )
+      : 1;
+  // Capping cover scale to 1.0 to prevent stretching (maintains high quality of smaller images)
+  const coverScale = Math.min(1, rawCoverScale);
+  const displayW = naturalSize.width * coverScale * zoom;
+  const displayH = naturalSize.height * coverScale * zoom;
+
   const {
     position,
     dragging,
@@ -114,7 +131,12 @@ export default function ImageUploadCropModal({
     stopDragging,
     resetDragPosition,
     setPosition,
-  } = useImageDrag(pendingImage, DRAG_CLICK_THRESHOLD_PX);
+  } = useImageDrag(pendingImage, DRAG_CLICK_THRESHOLD_PX, {
+    displayW,
+    displayH,
+    frameW: effectiveFrameW,
+    frameH: effectiveFrameH,
+  });
 
   const step: ImageModalStep = pendingImage
     ? IMAGE_MODAL.EDIT
@@ -369,15 +391,6 @@ export default function ImageUploadCropModal({
     isApplyDisabled,
   ]);
 
-  const frameW = frameSize.width;
-  const frameH = frameSize.height;
-  const coverScale =
-    naturalSize.width > 0 && naturalSize.height > 0
-      ? Math.max(frameW / naturalSize.width, frameH / naturalSize.height)
-      : 1;
-  const displayW = naturalSize.width * coverScale * zoom;
-  const displayH = naturalSize.height * coverScale * zoom;
-
   return (
     <GenericModal
       visible={visible}
@@ -443,6 +456,13 @@ export default function ImageUploadCropModal({
                 onClick={handlePreviewClick}
                 title={t("creatorProfile.clickPhotoToChange")}
               >
+                {pendingImage && (
+                  <BlurredBackground
+                    src={pendingImage}
+                    alt=""
+                    draggable={false}
+                  />
+                )}
                 {pendingImage && displayW > 0 && displayH > 0 && (
                   <ImagePreview
                     src={pendingImage}

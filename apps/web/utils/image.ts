@@ -2,7 +2,7 @@ import { authStorage } from "@/lib/auth/authStorage";
 import { API } from "@/lib/http/api/endpoints";
 import { API_BASE_URL } from "@/lib/http/config";
 import { canUseDOM, isBrowser } from "./ui";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export const readFileAsDataUrl = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -62,15 +62,6 @@ export const getCroppedImg = (
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
 
-      const coverScale = Math.max(containerWidth / iw, containerHeight / ih);
-      const baseW = iw * coverScale;
-      const baseH = ih * coverScale;
-      const displayW = baseW * safeZoom;
-      const displayH = baseH * safeZoom;
-
-      const imgLeft = containerWidth / 2 + position.x - displayW / 2;
-      const imgTop = containerHeight / 2 + position.y - displayH / 2;
-
       const cropAspect = cropWidth / cropHeight;
       let displayCropW = cropWidth;
       let displayCropH = cropHeight;
@@ -82,29 +73,21 @@ export const getCroppedImg = (
         displayCropH = containerHeight;
         displayCropW = containerHeight * cropAspect;
       }
-      const cropLeft = (containerWidth - displayCropW) / 2;
-      const cropTop = (containerHeight - displayCropH) / 2;
 
-      const scaleX = iw / displayW;
-      const scaleY = ih / displayH;
+      const cropLeft = (containerWidth - displayCropW) / 2 + 20;
+      const cropTop = (containerHeight - displayCropH) / 2 + 20;
+      const actualCropW = Math.max(1, displayCropW - 40);
+      const actualCropH = Math.max(1, displayCropH - 40);
 
-      let sourceX = (cropLeft - imgLeft) * scaleX;
-      let sourceY = (cropTop - imgTop) * scaleY;
-      let sourceW = displayCropW * scaleX;
-      let sourceH = displayCropH * scaleY;
+      const rawCoverScale = Math.max(actualCropW / iw, actualCropH / ih);
+      const coverScale = Math.min(1, rawCoverScale);
+      const baseW = iw * coverScale;
+      const baseH = ih * coverScale;
+      const displayW = baseW * safeZoom;
+      const displayH = baseH * safeZoom;
 
-      if (sourceX < 0) {
-        sourceW += sourceX;
-        sourceX = 0;
-      }
-      if (sourceY < 0) {
-        sourceH += sourceY;
-        sourceY = 0;
-      }
-      sourceW = Math.min(sourceW, iw - sourceX);
-      sourceH = Math.min(sourceH, ih - sourceY);
-      sourceW = Math.max(1, sourceW);
-      sourceH = Math.max(1, sourceH);
+      const imgLeft = containerWidth / 2 + position.x - displayW / 2;
+      const imgTop = containerHeight / 2 + position.y - displayH / 2;
 
       const outputScale = Math.max(
         3,
@@ -117,7 +100,44 @@ export const getCroppedImg = (
       canvas.height = outH;
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = "high";
-      ctx.drawImage(img, sourceX, sourceY, sourceW, sourceH, 0, 0, outW, outH);
+
+      ctx.save();
+      ctx.filter = "blur(20px)";
+      const canvasAspect = outW / outH;
+      const imgAspect = iw / ih;
+      let drawW = outW;
+      let drawH = outH;
+      if (imgAspect > canvasAspect) {
+        drawW = outH * imgAspect;
+      } else {
+        drawH = outW / imgAspect;
+      }
+      const scaleFactor = 1.15;
+      ctx.translate(outW / 2, outH / 2);
+      ctx.scale(scaleFactor, scaleFactor);
+      ctx.drawImage(img, -drawW / 2, -drawH / 2, drawW, drawH);
+      ctx.restore();
+
+      ctx.fillStyle = "rgba(0, 0, 0, 0.45)";
+      ctx.fillRect(0, 0, outW, outH);
+
+      const canvasScaleX = outW / actualCropW;
+      const canvasScaleY = outH / actualCropH;
+      const imgLeftRel = imgLeft - cropLeft;
+      const imgTopRel = imgTop - cropTop;
+
+      const destX = imgLeftRel * canvasScaleX;
+      const destY = imgTopRel * canvasScaleY;
+      const destW = displayW * canvasScaleX;
+      const destH = displayH * canvasScaleY;
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(0, 0, outW, outH);
+      ctx.clip();
+      ctx.drawImage(img, destX, destY, destW, destH);
+      ctx.restore();
+
       resolve(canvas.toDataURL("image/jpeg", 0.85));
     };
     img.onerror = () => reject(new Error("Failed to load image"));
@@ -161,9 +181,17 @@ export async function resolveProfileAvatarUrl(
 
 export type DragPosition = { x: number; y: number };
 
+export interface DragDimensions {
+  displayW: number;
+  displayH: number;
+  frameW: number;
+  frameH: number;
+}
+
 export function useImageDrag(
   pendingImage: string | null,
   dragClickThresholdPx: number = 8,
+  dimensions?: DragDimensions,
 ) {
   const [position, setPosition] = useState<DragPosition>({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
@@ -175,6 +203,41 @@ export function useImageDrag(
     originX: number;
     originY: number;
   } | null>(null);
+
+  const clampPosition = useCallback(
+    (x: number, y: number) => {
+      if (!dimensions) return { x, y };
+      const { displayW, displayH, frameW, frameH } = dimensions;
+      if (displayW === 0 || displayH === 0 || frameW === 0 || frameH === 0) {
+        return { x, y };
+      }
+      let clampedX = x;
+      let clampedY = y;
+
+      if (displayW > frameW) {
+        const maxBoundX = (displayW - frameW) / 2;
+        clampedX = Math.max(-maxBoundX, Math.min(maxBoundX, x));
+      } else {
+        clampedX = 0;
+      }
+
+      if (displayH > frameH) {
+        const maxBoundY = (displayH - frameH) / 2;
+        clampedY = Math.max(-maxBoundY, Math.min(maxBoundY, y));
+      } else {
+        clampedY = 0;
+      }
+
+      return { x: clampedX, y: clampedY };
+    },
+    [dimensions],
+  );
+
+  // Clamp position if it is out of bounds (e.g. when dimensions change)
+  const clamped = clampPosition(position.x, position.y);
+  if (clamped.x !== position.x || clamped.y !== position.y) {
+    setPosition(clamped);
+  }
 
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
@@ -204,12 +267,14 @@ export function useImageDrag(
         dragMovedRef.current = true;
       }
 
-      setPosition({
-        x: dragRef.current.originX + dx,
-        y: dragRef.current.originY + dy,
-      });
+      setPosition(
+        clampPosition(
+          dragRef.current.originX + dx,
+          dragRef.current.originY + dy,
+        ),
+      );
     },
-    [dragClickThresholdPx],
+    [dragClickThresholdPx, clampPosition],
   );
 
   const handleTouchStart = useCallback(
@@ -242,12 +307,14 @@ export function useImageDrag(
         dragMovedRef.current = true;
       }
 
-      setPosition({
-        x: dragRef.current.originX + dx,
-        y: dragRef.current.originY + dy,
-      });
+      setPosition(
+        clampPosition(
+          dragRef.current.originX + dx,
+          dragRef.current.originY + dy,
+        ),
+      );
     },
-    [dragClickThresholdPx],
+    [dragClickThresholdPx, clampPosition],
   );
 
   const stopDragging = useCallback(() => {
