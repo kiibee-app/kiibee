@@ -373,7 +373,7 @@ export default function ImageUploadCropModal({
   const frameH = frameSize.height;
   const coverScale =
     naturalSize.width > 0 && naturalSize.height > 0
-      ? Math.min(frameW / naturalSize.width, frameH / naturalSize.height)
+      ? Math.max(frameW / naturalSize.width, frameH / naturalSize.height)
       : 1;
   const displayW = naturalSize.width * coverScale * zoom;
   const displayH = naturalSize.height * coverScale * zoom;
@@ -427,6 +427,8 @@ export default function ImageUploadCropModal({
             >
               <ImagePreviewWrapper
                 ref={previewFrameRef}
+                $cropWidth={cropWidth}
+                $cropHeight={cropHeight}
                 onDragEnter={handleDragEnter}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}

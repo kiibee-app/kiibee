@@ -43,9 +43,7 @@ export const UploadOrText = styled(MonoText).attrs({
 
 export const CropCanvas = styled.div`
   width: 100%;
-  height: 320px;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.primary.BLACK};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,14 +57,20 @@ export const ModalActions = styled.div`
   gap: 8px;
 `;
 
-export const ImagePreviewWrapper = styled.div`
+export const ImagePreviewWrapper = styled.div<{
+  $cropWidth: number;
+  $cropHeight: number;
+}>`
   position: relative;
   width: 100%;
-  max-width: 320px;
-  aspect-ratio: 1 / 1;
+  max-width: ${({ $cropWidth, $cropHeight }) =>
+    `min(100%, calc(320px * ${$cropWidth} / ${$cropHeight}))`};
+  aspect-ratio: ${({ $cropWidth, $cropHeight }) =>
+    `${$cropWidth} / ${$cropHeight}`};
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
+  background-color: #000000;
 
   &:active {
     cursor: grabbing;
@@ -87,7 +91,7 @@ export const ImagePreview = styled.img<{
   height: ${({ $height }) => $height}px;
   max-width: none;
   max-height: none;
-  object-fit: fill;
+  object-fit: cover;
   pointer-events: none;
   user-select: none;
   transform: ${({ $x, $y }) =>
@@ -110,17 +114,24 @@ export const CropOverlay = styled.div<{
   $height: number;
 }>`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: ${({ $width }) => `${$width}px`};
-  height: ${({ $height }) => `${$height}px`};
-  transform: translate(-50%, -50%);
-  border-radius: ${({ $shape }) =>
-    $shape === CROP_SHAPE.CIRCLE ? "50%" : "0"};
-  box-shadow: 0 0 0 9999px ${({ theme }) => theme.colors.neutral.GRAY_400};
-  border: 2px solid transparent;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  z-index: 2;
+  box-sizing: border-box;
+
+  ${({ $shape }) =>
+    $shape === CROP_SHAPE.CIRCLE
+      ? `
+        border-radius: 50%;
+        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(255, 255, 255, 0.85);
+      `
+      : `
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+      `}
 `;
 
 export const ZoomContainer = styled.div`
