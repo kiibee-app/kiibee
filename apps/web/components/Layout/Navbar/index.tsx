@@ -505,12 +505,14 @@ export default function NavBar({
   };
 
   const renderDefaultNavItem = (item: NavBarItem) => {
+    const href = getItemHref(item);
+
     if (item.onClick) {
       return (
         <button
           type="button"
-          onClick={(event) => {
-            event.stopPropagation();
+          onClick={(e) => {
+            e.stopPropagation();
             item.onClick?.();
           }}
         >
@@ -519,18 +521,11 @@ export default function NavBar({
       );
     }
 
-    if (item.children) {
-      return (
-        <Link
-          href={getItemHref(item)}
-          onClick={(event) => handleNavItemClick(item, event)}
-        >
-          {renderItemLabel(item)}
-        </Link>
-      );
-    }
-
-    return <Link href={getItemHref(item)}>{renderItemLabel(item)}</Link>;
+    return (
+      <Link href={href} onClick={(e) => handleNavItemClick(item, e)}>
+        {renderItemLabel(item)}
+      </Link>
+    );
   };
 
   const renderDrawerSubMenu = (item: NavBarItem, open: boolean) =>
