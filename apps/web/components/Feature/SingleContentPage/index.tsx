@@ -135,6 +135,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     });
   }, [contentId, createOrderMutation, primaryAction, primaryActions, t]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [activePlaybackSrc, setActivePlaybackSrc] = useState("");
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
     label: string;
@@ -184,16 +185,29 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   }, [searchParams, primaryActions, primaryAction, t]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
+  const hasViewerAccess = Boolean(content?.accessInfo);
+  const fallbackPlaybackSrc =
+    previewMediaUrl || hero.contentUrl || hero.media?.src || "";
 
   const canPreview =
-    isPreviewableType &&
-    (Boolean(hero?.media?.src || hero?.contentUrl) ||
-      canFetchMedia ||
-      Boolean(previewMediaUrl));
+    isPreviewableType && Boolean(fallbackPlaybackSrc || canFetchMedia);
+
+  const openPreview = async () => {
+    const playbackSrc = canFetchMedia
+      ? (await fetchMediaUrl()) || fallbackPlaybackSrc
+      : fallbackPlaybackSrc;
+
+    if (!playbackSrc) {
+      return;
+    }
+
+    setActivePlaybackSrc(playbackSrc);
+    setShowPreviewModal(true);
+  };
 
   const handlePrimaryActionClick = async () => {
-    if (isWebType && previewMediaUrl) {
-      window.open(previewMediaUrl, "_blank", "noopener,noreferrer");
+    if (isWebType && fallbackPlaybackSrc) {
+      window.open(fallbackPlaybackSrc, "_blank", "noopener,noreferrer");
       return;
     }
 
@@ -219,11 +233,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    if (!canFetchMedia) {
-      setShowPreviewModal(true);
-      return;
-    }
-
     const accessMeta = metaItems.find(
       (item) =>
         item.label.toLowerCase().includes(ACCESS_KEYWORD_EN) ||
@@ -242,7 +251,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       actionLabel?.includes(t("pricingLabels.rent").toLowerCase()),
     );
 
-    if (isPaid || isPurchaseAction || isRentalAction) {
+    if ((isPaid || isPurchaseAction || isRentalAction) && !hasViewerAccess) {
       setSelectedAction({
         label: primaryAction?.label as string,
         subtitle: primaryAction?.subtitle,
@@ -250,12 +259,10 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       });
 
       setShowPurchaseModal(true);
-    } else {
-      const mediaUrl = await fetchMediaUrl();
-      if (mediaUrl) {
-        setShowPreviewModal(true);
-      }
+      return;
     }
+
+    await openPreview();
   };
 
   const modifiedPrimaryAction = primaryAction
@@ -360,17 +367,18 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       </Card>
 
       {children}
-      {canPreview &&
-        showPreviewModal &&
-        (previewMediaUrl || hero.contentUrl || hero.media?.src) && (
-          <ContentPreviewModal
-            visible={showPreviewModal}
-            onClose={() => setShowPreviewModal(false)}
-            src={previewMediaUrl || hero.contentUrl || hero.media?.src || ""}
-            type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}
-            title={title}
-          />
-        )}
+      {showPreviewModal && activePlaybackSrc && (
+        <ContentPreviewModal
+          visible={showPreviewModal}
+          onClose={() => {
+            setShowPreviewModal(false);
+            setActivePlaybackSrc("");
+          }}
+          src={activePlaybackSrc}
+          type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}
+          title={title}
+        />
+      )}
 
       <PurchaseModal
         visible={showPurchaseModal}

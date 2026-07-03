@@ -287,6 +287,7 @@ export const getSingleContentProps = (
       ...getContentHeroImages(content),
       imageAlt: title,
       contentType,
+      contentUrl: getContentUrl(content) || undefined,
       ...(showTrailerInHero && trailerUrl
         ? {
             media: {
