@@ -394,6 +394,9 @@ export const TOP_CREATORS_LIMIT = 6;
 export const LOAD_MORE_SIZE = 12;
 export const CATEGORY_ALL = "all";
 export const SKELETON_COUNT = 5;
+export const TOP_CREATORS_NAME_LIMIT = 16;
+export const TOP_CREATORS_NAME_START = 0;
+export const ELLIPSIS_FOUR_DOTS = "....";
 
 export const SORT_OPTION_NEW = "new";
 export const SORT_OPTION_POPULAR = "popular";
