@@ -47,6 +47,7 @@ type CreateContentPayload = {
   collectionId: string;
   fileKey?: string;
   contentUrl?: string;
+  fileSize?: number;
 };
 
 export type MediaUrlResponse = {
@@ -280,7 +281,9 @@ export default function ContentUploadModal({
       description: trimmedDescription,
       contentTypeId: contentType,
       collectionId,
-      ...(isWebContent ? { contentUrl: trimmedContentUrl } : { fileKey }),
+      ...(isWebContent
+        ? { contentUrl: trimmedContentUrl }
+        : { fileKey, fileSize: selectedFile?.size }),
     };
 
     setCreateError(null);

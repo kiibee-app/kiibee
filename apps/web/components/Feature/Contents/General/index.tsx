@@ -11,6 +11,7 @@ import {
   FileRow,
   PreviewBox,
   PreviewVideo,
+  PreviewImage,
   PlayOverlay,
   ShareCircle,
   WebSection,
@@ -23,6 +24,7 @@ import {
 import { MonoText } from "@/components/UI/Monotext";
 import { formatFileSize } from "@/utils/file";
 import { FORMAT_TYPE } from "@/utils/types";
+import { resolvePublicMediaUrl, getFallbackThumbnailUrl } from "@/utils/media";
 import {
   PlayCircleIcon,
   UploadAudioIcon,
@@ -38,7 +40,7 @@ import { useContentForm } from "../ContentFormContext";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import InputField from "@/components/UI/InputFields";
 import { Checkbox } from "@/app/auth/signup-creator/styles";
-import { BLANK } from "@/utils/Constants";
+import { BLANK, IS_FALLBACK_SIZE } from "@/utils/Constants";
 
 type Props = {
   id: string;
@@ -63,6 +65,10 @@ export default function GeneralContent({
 
   const uploadType = formState.contentTypeId;
   const previewUrl = uploadedPreview;
+  const thumbnailUrl = resolvePublicMediaUrl(
+    formState.mediaCardThumbnail || formState.portraitThumbnail,
+  );
+  const resolvedThumbnail = thumbnailUrl || getFallbackThumbnailUrl(previewUrl);
 
   const renderWebSection = () => {
     if (uploadType !== FORMAT_TYPE.WEB) return null;
@@ -129,14 +135,22 @@ export default function GeneralContent({
       case FORMAT_TYPE.VIDEO:
         return (
           <PreviewBox onClick={handlePreviewClick}>
-            {previewUrl && (
-              <PreviewVideo src={previewUrl} controls={false} preload="none" />
+            {resolvedThumbnail ? (
+              <PreviewImage src={resolvedThumbnail} alt={uploadedFile.name} />
+            ) : (
+              previewUrl && (
+                <PreviewVideo
+                  src={previewUrl}
+                  controls={false}
+                  preload="metadata"
+                />
+              )
             )}
             <PlayOverlay>
               <PlayCircleIcon
                 width={40}
                 height={40}
-                color={COLORS.neutral.GRAY_200}
+                color={COLORS.neutral.OFF_WHITE}
               />
             </PlayOverlay>
           </PreviewBox>
@@ -197,9 +211,11 @@ export default function GeneralContent({
 
               <InfoColumn>
                 <MonoText $use="Body_Medium">{uploadedFile.name}</MonoText>
-                <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-                  {formatFileSize(uploadedFile.size)}
-                </MonoText>
+                {!(IS_FALLBACK_SIZE in uploadedFile) && (
+                  <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+                    {formatFileSize(uploadedFile.size)}
+                  </MonoText>
+                )}
               </InfoColumn>
             </FileRow>
 

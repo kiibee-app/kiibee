@@ -23,6 +23,7 @@ export const createContent = async (
       fileKey,
       contentUrl,
       contentTypeId,
+      fileSize,
     } = dto;
 
     const contentId = crypto.randomUUID();
@@ -38,6 +39,7 @@ export const createContent = async (
         contentUrl,
         contentTypeId,
         creatorId,
+        fileSize,
       });
 
       await tx.insert(collectionItems).values({
@@ -54,6 +56,7 @@ export const createContent = async (
         fileKey,
         contentUrl,
         contentTypeId,
+        fileSize,
       };
     });
 
