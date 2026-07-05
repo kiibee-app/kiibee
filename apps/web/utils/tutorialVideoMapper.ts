@@ -179,12 +179,6 @@ export function tutorialSectionsToCollections(
     }));
 }
 
-export function findQuickguidesSection(
-  sections: TutorialVideoSectionApiItem[],
-) {
-  return sections.find((section) => section.id === QUICKGUIDES_SECTION_ID);
-}
-
 export function findTutorialVideoInSections(
   sections: TutorialVideoSectionApiItem[],
   videoId: string | null | undefined,
@@ -226,4 +220,4 @@ export function findTutorialCollectionById(
   return collections.find((collection) => collection.id === collectionId);
 }
 
-export { getQuickguideItems };
+export { getQuickguideItems, getVideoItems };

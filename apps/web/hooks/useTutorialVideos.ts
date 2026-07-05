@@ -33,6 +33,7 @@ export function useTutorialVideos() {
   return {
     sections,
     collections,
+    freeLabel,
     isLoading,
     isError,
   };

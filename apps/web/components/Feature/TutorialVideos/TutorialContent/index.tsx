@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { LeftIcon } from "@/assets/icons";
 import {
   Content,
@@ -18,6 +18,10 @@ import { useRouter } from "next/navigation";
 import { SCROLL_TO_START_OPTIONS } from "@/utils/Constants";
 import { useTutorialVideos } from "@/hooks/useTutorialVideos";
 import Skeleton from "@/components/UI/Skeleton";
+import GenericCard from "@/components/UI/GenericCard";
+import COLORS from "@repo/ui/colors";
+import ContentPreviewModal from "@/components/Feature/SingleContentPage/ContentPreviewModal";
+import { FORMAT_TYPE, type TutorialVideo } from "@/utils/types";
 import { Grid } from "../TutorialsShowcase/styles";
 import {
   SkeletonCard,
@@ -37,8 +41,14 @@ import {
   getPaginationState,
   TUTORIAL_VIDEOS_PAGE_SIZE,
 } from "@/utils/feedContentToTutorial";
-import type { TutorialCollection } from "@/utils/tutorialCollections";
-import QuickguidesSection from "../QuickguidesSection";
+import {
+  getQuickguideItems,
+  getVideoItems,
+  QUICKGUIDES_SECTION_ID,
+  tutorialVideoApiToCard,
+  type TutorialQuickguideApiItem,
+  type TutorialVideoSectionApiItem,
+} from "@/utils/tutorialVideoMapper";
 
 function scrollToSectionHash() {
   const id = window.location.hash.slice(1);
@@ -46,10 +56,10 @@ function scrollToSectionHash() {
   document.getElementById(id)?.scrollIntoView(SCROLL_TO_START_OPTIONS);
 }
 
-function TutorialSectionSkeleton() {
+function TutorialSectionSkeleton({ columns = TUTORIAL_VIDEOS_PAGE_SIZE }) {
   return (
-    <Grid $columns={TUTORIAL_VIDEOS_PAGE_SIZE}>
-      {Array.from({ length: TUTORIAL_VIDEOS_PAGE_SIZE }).map((_, index) => (
+    <Grid $columns={columns}>
+      {Array.from({ length: columns }).map((_, index) => (
         <SkeletonCard key={index}>
           <SkeletonImage />
           <SkeletonBadge />
@@ -62,10 +72,62 @@ function TutorialSectionSkeleton() {
   );
 }
 
-function TutorialSectionRow({ section }: { section: TutorialCollection }) {
+function QuickguideItemCard({
+  guide,
+  freeLabel,
+}: {
+  guide: TutorialQuickguideApiItem;
+  freeLabel: string;
+}) {
+  const [showPdf, setShowPdf] = useState(false);
+
+  return (
+    <>
+      <GenericCard
+        coverImage
+        image={guide.thumbnailUrl ?? undefined}
+        imageInitials={guide.thumbnailUrl ? undefined : "PDF"}
+        alt={guide.title}
+        title={<MonoText $use="Body_Medium">{guide.title}</MonoText>}
+        subtitle={
+          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+            {freeLabel}
+          </MonoText>
+        }
+        onClick={() => setShowPdf(true)}
+      />
+
+      <ContentPreviewModal
+        visible={showPdf}
+        onClose={() => setShowPdf(false)}
+        src={guide.pdfUrl}
+        type={FORMAT_TYPE.PDF}
+        title={guide.title}
+      />
+    </>
+  );
+}
+
+function TutorialSectionRow({
+  section,
+  freeLabel,
+}: {
+  section: TutorialVideoSectionApiItem;
+  freeLabel: string;
+}) {
   const router = useRouter();
+  const isQuickguides = section.id === QUICKGUIDES_SECTION_ID;
+  const videoItems = getVideoItems(section);
+  const quickguideItems = getQuickguideItems(section);
+  const tutorials = useMemo(
+    (): TutorialVideo[] =>
+      videoItems.map((video) =>
+        tutorialVideoApiToCard(video, section.title, freeLabel),
+      ),
+    [videoItems, section.title, freeLabel],
+  );
   const [pageStart, setPageStart] = useState(0);
-  const totalItems = section.tutorials.length;
+  const totalItems = tutorials.length;
   const maxPageStart = Math.max(0, totalItems - TUTORIAL_VIDEOS_PAGE_SIZE);
   const effectivePageStart = Math.min(pageStart, maxPageStart);
   const { canSlide, canGoPrev, canGoNext } = getPaginationState(
@@ -74,7 +136,7 @@ function TutorialSectionRow({ section }: { section: TutorialCollection }) {
     TUTORIAL_VIDEOS_PAGE_SIZE,
   );
   const visibleTutorials = getFeedPageSlice(
-    section.tutorials,
+    tutorials,
     effectivePageStart,
     TUTORIAL_VIDEOS_PAGE_SIZE,
   );
@@ -95,6 +157,31 @@ function TutorialSectionRow({ section }: { section: TutorialCollection }) {
       ),
     );
   }, [canSlide, totalItems]);
+
+  if (isQuickguides) {
+    if (quickguideItems.length === 0) return null;
+
+    return (
+      <TutorialSection id={section.id}>
+        <SectionHeader>
+          <SectionTag>
+            <MonoText $use="H4_Medium">{section.title}</MonoText>
+          </SectionTag>
+        </SectionHeader>
+        <Grid $columnMax="350px" $alignStart>
+          {quickguideItems.map((guide) => (
+            <QuickguideItemCard
+              key={guide.id}
+              guide={guide}
+              freeLabel={freeLabel}
+            />
+          ))}
+        </Grid>
+      </TutorialSection>
+    );
+  }
+
+  if (tutorials.length === 0) return null;
 
   return (
     <TutorialSection id={section.id}>
@@ -132,7 +219,7 @@ function TutorialSectionRow({ section }: { section: TutorialCollection }) {
       </SectionHeader>
       <Grid
         $columns={TUTORIAL_VIDEOS_PAGE_SIZE}
-        $maxWidth={section.gridMaxWidth}
+        $maxWidth={section.gridMaxWidth ?? undefined}
       >
         {visibleTutorials.map((tutorial) => (
           <TutorialCard key={tutorial.id} tutorial={tutorial} />
@@ -144,7 +231,7 @@ function TutorialSectionRow({ section }: { section: TutorialCollection }) {
 
 export default function TutorialContent() {
   const { t } = useTranslation();
-  const { collections, isLoading } = useTutorialVideos();
+  const { sections, freeLabel, isLoading } = useTutorialVideos();
 
   useEffect(() => {
     scrollToSectionHash();
@@ -185,10 +272,13 @@ export default function TutorialContent() {
           </MonoText>
         </HeroSubtitle>
       </HeroBlock>
-      {collections.map((section) => (
-        <TutorialSectionRow key={section.id} section={section} />
+      {sections.map((section) => (
+        <TutorialSectionRow
+          key={section.id}
+          section={section}
+          freeLabel={freeLabel}
+        />
       ))}
-      <QuickguidesSection />
     </Content>
   );
 }
