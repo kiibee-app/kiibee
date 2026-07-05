@@ -2,36 +2,33 @@
 
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { API, useGetAPI } from "@/lib/http/api";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
+import { useTutorialVideos } from "@/hooks/useTutorialVideos";
+import {
+  findQuickguidesSection,
+  getQuickguideItems,
+  type TutorialQuickguideApiItem,
+} from "@/utils/tutorialVideoMapper";
 
-export type TutorialQuickguideApiItem = {
-  id: string;
-  title: string;
-  pdfUrl: string;
-  thumbnailUrl?: string | null;
-  sortOrder: number;
-};
-
-type TutorialQuickguidesApiResponse = {
-  success?: boolean;
-  data?: TutorialQuickguideApiItem[] | null;
-};
+export type { TutorialQuickguideApiItem };
 
 export function useTutorialQuickguides() {
   const { t } = useTranslation();
   const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
+  const { sections, isLoading, isError } = useTutorialVideos();
 
-  const { data, isLoading, isError } =
-    useGetAPI<TutorialQuickguidesApiResponse>(API.tutorialVideos.quickguides);
+  const guides = useMemo(() => {
+    const quickguidesSection = findQuickguidesSection(sections);
+    if (!quickguidesSection) return [];
 
-  const guides = useMemo(() => data?.data ?? [], [data?.data]);
-
-  return {
-    guides: guides.map((guide) => ({
+    return getQuickguideItems(quickguidesSection).map((guide) => ({
       ...guide,
       freeLabel,
-    })),
+    }));
+  }, [sections, freeLabel]);
+
+  return {
+    guides,
     isLoading,
     isError,
   };

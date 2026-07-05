@@ -64,7 +64,6 @@ export const API = {
   },
   tutorialVideos: {
     list: "/tutorial-videos",
-    quickguides: "/tutorial-videos/quickguides",
     byId: (id: string) => `/tutorial-videos/${id}`,
   },
   creatorUsers: {

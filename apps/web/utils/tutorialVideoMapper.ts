@@ -8,6 +8,7 @@ import {
 } from "@/utils/types";
 
 export type TutorialVideoApiItem = {
+  type: "video";
   id: string;
   title: string;
   videoUrl: string;
@@ -21,12 +22,25 @@ export type TutorialVideoApiItem = {
   tags?: string[];
 };
 
+export type TutorialQuickguideApiItem = {
+  type: "quickguide";
+  id: string;
+  title: string;
+  pdfUrl: string;
+  thumbnailUrl?: string | null;
+  sortOrder: number;
+};
+
+export type TutorialItemApiItem =
+  | TutorialVideoApiItem
+  | TutorialQuickguideApiItem;
+
 export type TutorialVideoSectionApiItem = {
   id: string;
   title: string;
   sortOrder: number;
   gridMaxWidth?: string | null;
-  videos: TutorialVideoApiItem[];
+  items: TutorialItemApiItem[];
 };
 
 type ApiResponse<T> = {
@@ -37,6 +51,26 @@ type ApiResponse<T> = {
 export type TutorialVideosApiResponse = ApiResponse<
   TutorialVideoSectionApiItem[]
 >;
+
+export const QUICKGUIDES_SECTION_ID = "quickguides";
+
+function isVideoItem(item: TutorialItemApiItem): item is TutorialVideoApiItem {
+  return item.type === "video";
+}
+
+function isQuickguideItem(
+  item: TutorialItemApiItem,
+): item is TutorialQuickguideApiItem {
+  return item.type === "quickguide";
+}
+
+function getVideoItems(section: TutorialVideoSectionApiItem) {
+  return section.items.filter(isVideoItem);
+}
+
+function getQuickguideItems(section: TutorialVideoSectionApiItem) {
+  return section.items.filter(isQuickguideItem);
+}
 
 function getYouTubeThumbnailUrl(url: string): string | null {
   try {
@@ -132,15 +166,23 @@ export function tutorialSectionsToCollections(
   sections: TutorialVideoSectionApiItem[],
   freeLabel: string,
 ): Array<TutorialVideoSection & { tutorials: TutorialVideo[] }> {
-  return sections.map((section) => ({
-    id: section.id,
-    title: section.title,
-    videoIds: section.videos.map((video) => video.id),
-    gridMaxWidth: section.gridMaxWidth ?? undefined,
-    tutorials: section.videos.map((video) =>
-      tutorialVideoApiToCard(video, section.title, freeLabel),
-    ),
-  }));
+  return sections
+    .filter((section) => section.id !== QUICKGUIDES_SECTION_ID)
+    .map((section) => ({
+      id: section.id,
+      title: section.title,
+      videoIds: getVideoItems(section).map((video) => video.id),
+      gridMaxWidth: section.gridMaxWidth ?? undefined,
+      tutorials: getVideoItems(section).map((video) =>
+        tutorialVideoApiToCard(video, section.title, freeLabel),
+      ),
+    }));
+}
+
+export function findQuickguidesSection(
+  sections: TutorialVideoSectionApiItem[],
+) {
+  return sections.find((section) => section.id === QUICKGUIDES_SECTION_ID);
 }
 
 export function findTutorialVideoInSections(
@@ -151,7 +193,7 @@ export function findTutorialVideoInSections(
   if (!videoId) return undefined;
 
   for (const section of sections) {
-    const match = section.videos.find((video) => video.id === videoId);
+    const match = getVideoItems(section).find((video) => video.id === videoId);
     if (match) {
       return tutorialVideoApiToCard(match, section.title, freeLabel);
     }
@@ -183,3 +225,5 @@ export function findTutorialCollectionById(
   const collections = tutorialSectionsToCollections(sections, freeLabel);
   return collections.find((collection) => collection.id === collectionId);
 }
+
+export { getQuickguideItems };

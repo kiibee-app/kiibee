@@ -1,6 +1,6 @@
-import { asc, eq } from 'drizzle-orm';
+import { and, asc, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { tutorialVideoSections, tutorialVideos } from 'src/database/schema';
+import { tutorialItems } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { success, fail } from 'src/utils/sendResponse';
 import { HttpStatus } from '@nestjs/common';
@@ -18,43 +18,61 @@ function parseTags(raw: string | null | undefined): string[] {
   }
 }
 
-function mapVideoRow(video: typeof tutorialVideos.$inferSelect) {
+function mapVideoItem(item: typeof tutorialItems.$inferSelect) {
   return {
-    id: video.id,
-    title: video.title,
-    description: video.description,
-    descriptionSecondary: video.descriptionSecondary,
-    publisher: video.publisher,
-    publishedYear: video.publishedYear,
-    duration: video.duration,
-    tags: parseTags(video.tags),
-    videoUrl: video.videoUrl,
-    trailerUrl: video.trailerUrl,
-    sortOrder: video.sortOrder,
+    type: 'video' as const,
+    id: item.id,
+    title: item.title,
+    description: item.description,
+    descriptionSecondary: item.descriptionSecondary,
+    publisher: item.publisher,
+    publishedYear: item.publishedYear,
+    duration: item.duration,
+    tags: parseTags(item.tags),
+    videoUrl: item.videoUrl!,
+    trailerUrl: item.trailerUrl,
+    sortOrder: item.sortOrder,
+  };
+}
+
+function mapQuickguideItem(item: typeof tutorialItems.$inferSelect) {
+  return {
+    type: 'quickguide' as const,
+    id: item.id,
+    title: item.title,
+    pdfUrl: item.pdfUrl!,
+    thumbnailUrl: item.thumbnailUrl,
+    sortOrder: item.sortOrder,
   };
 }
 
 export const getTutorialVideosService = async () => {
   try {
-    const sections = await db
+    const rows = await db
       .select()
-      .from(tutorialVideoSections)
-      .orderBy(asc(tutorialVideoSections.sortOrder));
+      .from(tutorialItems)
+      .orderBy(asc(tutorialItems.sortOrder));
 
-    const videos = await db
-      .select()
-      .from(tutorialVideos)
-      .orderBy(asc(tutorialVideos.sortOrder));
+    const sections = rows.filter((row) => row.type === 'section');
+    const children = rows.filter((row) => row.type !== 'section');
 
-    const data = sections.map((section) => ({
-      id: section.id,
-      title: section.title,
-      sortOrder: section.sortOrder,
-      gridMaxWidth: section.gridMaxWidth,
-      videos: videos
-        .filter((video) => video.sectionId === section.id)
-        .map(mapVideoRow),
-    }));
+    const data = sections.map((section) => {
+      const sectionChildren = children.filter(
+        (child) => child.parentId === section.id,
+      );
+
+      return {
+        id: section.id,
+        title: section.title,
+        sortOrder: section.sortOrder,
+        gridMaxWidth: section.gridMaxWidth,
+        items: sectionChildren.map((child) =>
+          child.type === 'quickguide'
+            ? mapQuickguideItem(child)
+            : mapVideoItem(child),
+        ),
+      };
+    });
 
     return success(data, 'Tutorial videos fetched successfully', HttpStatus.OK);
   } catch (error) {
@@ -70,24 +88,38 @@ export const getTutorialVideoByIdService = async (id: string) => {
   try {
     const [video] = await db
       .select()
-      .from(tutorialVideos)
-      .where(eq(tutorialVideos.id, id))
+      .from(tutorialItems)
+      .where(and(eq(tutorialItems.id, id), eq(tutorialItems.type, 'video')))
       .limit(1);
 
     if (!video) {
       return fail('Tutorial video not found', HttpStatus.NOT_FOUND);
     }
 
-    const [section] = await db
-      .select()
-      .from(tutorialVideoSections)
-      .where(eq(tutorialVideoSections.id, video.sectionId))
-      .limit(1);
+    const [section] = video.parentId
+      ? await db
+          .select()
+          .from(tutorialItems)
+          .where(
+            and(
+              eq(tutorialItems.id, video.parentId),
+              eq(tutorialItems.type, 'section'),
+            ),
+          )
+          .limit(1)
+      : [];
 
     return success(
       {
-        ...mapVideoRow(video),
-        section: section ?? null,
+        ...mapVideoItem(video),
+        section: section
+          ? {
+              id: section.id,
+              title: section.title,
+              sortOrder: section.sortOrder,
+              gridMaxWidth: section.gridMaxWidth,
+            }
+          : null,
       },
       'Tutorial video fetched successfully',
       HttpStatus.OK,

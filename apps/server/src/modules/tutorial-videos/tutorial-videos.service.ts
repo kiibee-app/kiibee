@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { getTutorialQuickguidesService } from './services/getTutorialQuickguides.service';
 import {
   getTutorialVideoByIdService,
   getTutorialVideosService,
@@ -9,10 +8,6 @@ import {
 export class TutorialVideosService {
   getTutorialVideosService() {
     return getTutorialVideosService();
-  }
-
-  getTutorialQuickguidesService() {
-    return getTutorialQuickguidesService();
   }
 
   getTutorialVideoByIdService(id: string) {

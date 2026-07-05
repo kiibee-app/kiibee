@@ -6,7 +6,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import ContentPreviewModal from "@/components/Feature/SingleContentPage/ContentPreviewModal";
 import { FORMAT_TYPE } from "@/utils/types";
-import type { TutorialQuickguideApiItem } from "@/hooks/useTutorialQuickguides";
+import type { TutorialQuickguideApiItem } from "@/utils/tutorialVideoMapper";
 
 type QuickguideCardProps = {
   guide: TutorialQuickguideApiItem & { freeLabel: string };
