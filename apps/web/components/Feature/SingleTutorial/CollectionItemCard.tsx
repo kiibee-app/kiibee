@@ -19,8 +19,6 @@ import {
   type FormatType,
   type TutorialVideo,
 } from "@/utils/types";
-import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
 import {
   CollectionActionRow,
   CollectionAuthor,
@@ -96,8 +94,6 @@ type Props = {
 };
 
 export default function CollectionItemCard({ video }: Props) {
-  const { t } = useTranslation();
-  const router = useRouter();
   const user = useStoredLoginUser();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);

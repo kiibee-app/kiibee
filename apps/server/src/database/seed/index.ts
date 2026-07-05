@@ -6,6 +6,7 @@ import { seedPlans } from './subscriptionPlan.seed';
 import { seedTags } from './tags.seed';
 import { seedUmbracoProfiles } from './umbracoProfiles.seed';
 import { seedUmbracoShows } from './umbracoShows.seed';
+import { seedTutorialItems } from './tutorialItems.seed';
 import { seedUsers } from './users.seed';
 
 async function main() {
@@ -14,6 +15,7 @@ async function main() {
   await seedContentTypes();
   await seedTags();
   await seedPlans();
+  await seedTutorialItems();
 
   // Base users, then creator accounts that depend on plans
   await seedUsers();

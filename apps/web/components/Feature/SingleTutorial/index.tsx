@@ -1,22 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { TutorialVideo } from "@/utils/types";
 import logo from "@/assets/images/logo.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
 import SingleContentPage from "@/components/Feature/SingleContentPage";
-import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
-import {
-  VARIANT,
-  ADMISSION_REQUIREMENT_FREE,
-  ACCESS_TYPE_FREE,
-} from "@/utils/Constants";
+import { FORMAT_TYPE } from "@/utils/types";
+import { resolveCloudflareStreamPlaybackUrl } from "@/utils/media";
+import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
 import CollectionItems from "./CollectionItems";
-import { LoginRequiredModal } from "@/components/UI/Modals";
 
 type Props = {
   tutorial: TutorialVideo;
@@ -30,117 +24,108 @@ export default function SingleTutorial({
   collectionId,
 }: Props) {
   const { t } = useTranslation();
-  const router = useRouter();
-  const user = useStoredLoginUser();
-  const [isLoginModalVisible, setLoginModalVisible] = useState(false);
 
-  const handleShowLoginModal = () => setLoginModalVisible(true);
-  const handleCloseLoginModal = () => setLoginModalVisible(false);
+  const playbackUrl = useMemo(
+    () => resolveCloudflareStreamPlaybackUrl(null, tutorial.videoUrl),
+    [tutorial.videoUrl],
+  );
+  const hasTrailer = Boolean(tutorial.trailerUrl?.trim());
+  const heroThumbnails = useMemo(
+    () =>
+      tutorial.videoUrl
+        ? resolveTutorialThumbnailCandidates({
+            videoUrl: tutorial.videoUrl,
+            trailerUrl: tutorial.trailerUrl,
+          })
+        : [],
+    [tutorial.trailerUrl, tutorial.videoUrl],
+  );
 
-  const handleSeeContent = () => {
-    const isPaid = tutorial.level !== ADMISSION_REQUIREMENT_FREE;
-    const isLoggedIn = Boolean(user && user.id);
-    if (isPaid && !isLoggedIn) {
-      handleShowLoginModal();
+  const descriptions = useMemo(() => {
+    const items = [
+      tutorial.description ?? tutorial.focus,
+      tutorial.descriptionSecondary,
+    ].filter((value): value is string => Boolean(value?.trim()));
+
+    if (items.length > 0) {
+      return items;
     }
-  };
-  const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
-  const isFreeContent = useMemo(() => {
-    if (tutorial.isFree != null) {
-      return tutorial.isFree;
+
+    return [t("singleTutorial.descriptionSecondary")];
+  }, [t, tutorial.description, tutorial.descriptionSecondary, tutorial.focus]);
+
+  const displayTags = useMemo(() => {
+    if (tutorial.tags?.length) {
+      return tutorial.tags;
     }
 
-    const firstButtonLabel = tutorial.buttons?.[0]?.label?.trim().toLowerCase();
-    return (
-      !tutorial.buttons?.length ||
-      firstButtonLabel === ACCESS_TYPE_FREE ||
-      firstButtonLabel === freeLabel.trim().toLowerCase()
+    return [tutorial.category, t("singleTutorial.tags.tutorials")].filter(
+      Boolean,
     );
-  }, [freeLabel, tutorial.buttons, tutorial.isFree]);
-  const primaryActions = useMemo(() => {
-    if (isFreeContent) {
-      return undefined;
-    }
+  }, [t, tutorial.category, tutorial.tags]);
 
-    return (tutorial.buttons ?? []).map((button) => {
-      const normalizedLabel = button.label.toLowerCase();
-      const isBuy = normalizedLabel.includes("buy");
-      const isRent = normalizedLabel.includes("rent");
-
-      return {
-        label: button.label,
-        subtitle: isBuy
-          ? t("singleContent.pricing.downloadFiles")
-          : isRent
-            ? t("singleContent.pricing.accessDefault")
-            : undefined,
-        variant: isBuy ? VARIANT.PRIMARY : VARIANT.SOFT_OUTLINE,
-        onClick: button.onClick,
-        disabled: false,
-      };
-    });
-  }, [isFreeContent, t, tutorial.buttons]);
+  const publisherName = tutorial.publisher ?? tutorial.creator;
+  const publishedValue = tutorial.publishedYear ?? tutorial.published;
+  const durationValue =
+    tutorial.duration ?? t("singleTutorial.meta.durationValue");
 
   return (
-    <>
-      <SingleContentPage
-        contentId={tutorial.id}
-        title={tutorial.title}
-        descriptions={[
-          tutorial.focus,
-          t("singleTutorial.descriptionSecondary"),
-        ]}
-        tags={[tutorial.category, t("singleTutorial.tags.tutorials")]}
-        creator={{
-          id: tutorial.creatorId,
-          name: tutorial.creator,
-          avatar: logo,
-        }}
-        hero={{
-          image: tutorial.image,
-          imageAlt: tutorial.title,
-          categoryLabel: tutorial.category,
-          mediaLabel: tutorial.formatLabel,
-          mediaIcon: playCircleIcon,
-          mediaIconAlt: "Play circle",
-          trailerLabel: t("singleTutorial.playTrailer"),
-          trailerIcon: playIcon,
-          trailerIconAlt: "Play",
-        }}
-        primaryAction={
-          isFreeContent
-            ? {
-                label: t("singleTutorial.seeContent"),
-                onClick: handleSeeContent,
-              }
-            : undefined
-        }
-        primaryActions={primaryActions}
-        metaItems={[
-          {
-            label: t("singleTutorial.meta.publishedLabel"),
-            value: tutorial.published,
-          },
-          {
-            label: t("singleTutorial.meta.publishedByLabel"),
-            value: <strong>{tutorial.creator}</strong>,
-          },
-          {
-            label: t("singleTutorial.meta.durationLabel"),
-            value: t("singleTutorial.meta.durationValue"),
-          },
-        ]}
-        shareLabel={t("common.share")}
-      >
-        {relatedVideos.length ? (
-          <CollectionItems videos={relatedVideos} collectionId={collectionId} />
-        ) : null}
-      </SingleContentPage>
-
-      <LoginRequiredModal
-        visible={isLoginModalVisible}
-        onClose={handleCloseLoginModal}
-      />
-    </>
+    <SingleContentPage
+      contentId={tutorial.id}
+      publicPlayback
+      title={tutorial.title}
+      descriptions={descriptions}
+      tags={displayTags}
+      creator={{
+        id: tutorial.creatorId,
+        name: publisherName,
+        avatar: logo,
+      }}
+      hero={{
+        image: heroThumbnails[0] ?? tutorial.image,
+        imageFallback: heroThumbnails[1] ?? tutorial.imageFallback,
+        imageAlt: tutorial.title,
+        contentType: FORMAT_TYPE.VIDEO,
+        contentUrl: playbackUrl || undefined,
+        ...(hasTrailer && tutorial.trailerUrl
+          ? {
+              media: {
+                type: FORMAT_TYPE.VIDEO,
+                src: tutorial.trailerUrl,
+                title: tutorial.title,
+              },
+              trailerLabel: t("singleTutorial.playTrailer"),
+              trailerIcon: playIcon,
+              trailerIconAlt: t("singleTutorial.playTrailer"),
+            }
+          : {}),
+        categoryLabel: tutorial.category,
+        mediaLabel: tutorial.formatLabel,
+        mediaIcon: playCircleIcon,
+        mediaIconAlt: t("singleTutorial.seeContent"),
+      }}
+      primaryAction={{
+        label: t("singleTutorial.seeContent"),
+      }}
+      metaItems={[
+        {
+          label: t("singleTutorial.meta.publishedLabel"),
+          value: publishedValue,
+        },
+        {
+          label: t("singleTutorial.meta.publishedByLabel"),
+          value: <strong>{publisherName}</strong>,
+        },
+        {
+          label: t("singleTutorial.meta.durationLabel"),
+          value: durationValue,
+        },
+      ]}
+      shareLabel={t("common.share")}
+    >
+      {relatedVideos.length ? (
+        <CollectionItems videos={relatedVideos} collectionId={collectionId} />
+      ) : null}
+    </SingleContentPage>
   );
 }

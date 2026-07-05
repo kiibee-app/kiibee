@@ -18,7 +18,7 @@ export const useLogout = () => {
     async (redirectTo?: string) => {
       try {
         await logoutRequest();
-      } catch (error) {
+      } catch {
         toast.error("Logout failed. Please try again.");
       } finally {
         clearSession();

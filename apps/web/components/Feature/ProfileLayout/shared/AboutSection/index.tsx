@@ -16,7 +16,7 @@ import {
   SectionTag,
 } from "@/components/Feature/ExploreCreators/RecentlyAdded/styles";
 import { VARIANT } from "@/utils/Constants";
-import { tutorialVideos } from "@/utils/data";
+import { tutorialVideoCardFallback } from "@/utils/data";
 import { FORMAT_TYPE, type TutorialVideo } from "@/utils/types";
 import {
   ABOUT_VIDEO_OVERRIDES,
@@ -33,9 +33,9 @@ export default function AboutSection() {
   const clothesVideos = useMemo<TutorialVideo[]>(
     () =>
       CLOTHES_DATA.map(
-        (item, index) =>
+        (item) =>
           ({
-            ...tutorialVideos[index],
+            ...tutorialVideoCardFallback,
             ...item,
           }) as unknown as TutorialVideo,
       ),
@@ -44,8 +44,8 @@ export default function AboutSection() {
 
   const aboutVideos = useMemo<TutorialVideo[]>(
     () =>
-      ABOUT_VIDEO_OVERRIDES.map((item, index) => ({
-        ...tutorialVideos[index],
+      ABOUT_VIDEO_OVERRIDES.map((item) => ({
+        ...tutorialVideoCardFallback,
         ...item,
         formatLabel: t("createProfileHome.latestUpload.video"),
         formatType: FORMAT_TYPE.VIDEO,

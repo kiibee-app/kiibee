@@ -763,7 +763,8 @@
     "sectionTag": "Kom godt i gang",
     "sectionLabel": "Grundlæggende kapitler",
     "sectionLink": "Se playliste",
-    "buttonFreeLabel": "Gratis"
+    "buttonFreeLabel": "Gratis",
+    "quickguidesTitle": "Brugervejledning - Quickguides"
   },
   "callToAction": {
     "logoAlt": "Kiibee",
@@ -1072,7 +1073,7 @@
     "title": "Del 1. Oprettelse af profil og kanal & site",
     "descriptionPrimary": "I denne video viser vi hvordan du starter op efter oprettelse og tilpasser din site eller kanal.",
     "descriptionSecondary": "Skulle videokvaliteten være grumset, kan det skyldes at din netforbindelse er dårlig. Du forbedre kvaliteten ved at trykke på tandhjulet i playeren og sætte opløsningen til 1080p i Chrome, Firefox og Microsoft Edge / Explorer browsere.",
-    "playTrailer": "Afspil trailer",
+    "playTrailer": "Se trailer",
     "seeContent": "Se indhold",
     "notFound": "Tutorial blev ikke fundet",
     "otherItemsInCollection": "Andre elementer i denne samling",

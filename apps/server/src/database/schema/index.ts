@@ -30,6 +30,7 @@ export * from './content/mediaFileVersions.schema';
 export * from './content/contentAccess.schema';
 export * from './content/contentAppearance.schema';
 export * from './content/contentSetting.schema';
+export * from './content/tutorialItems.schema';
 
 // Subscription & Billing
 export * from './subscription/plans.schema';

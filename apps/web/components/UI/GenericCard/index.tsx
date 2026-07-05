@@ -37,6 +37,7 @@ type GenericCardProps = {
   width?: string;
   imagePriority?: boolean;
   onClick?: () => void;
+  onImageError?: () => void;
 };
 
 function applySoftOutlineToFooterButtons(node: ReactNode): ReactNode {
@@ -77,6 +78,7 @@ export default function GenericCard({
   width,
   imagePriority = false,
   onClick,
+  onImageError,
 }: GenericCardProps) {
   const imageKey = image ? (typeof image === "string" ? image : image.src) : "";
   const [failedImageKey, setFailedImageKey] = useState<string | null>(null);
@@ -103,6 +105,7 @@ export default function GenericCard({
       return;
     }
     setFailedImageKey(imageKey);
+    onImageError?.();
   };
 
   const posterImageStyle = coverImage

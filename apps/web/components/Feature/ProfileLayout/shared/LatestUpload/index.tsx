@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { ImageSource } from "@/utils/Constants";
 import {
   ReadMoreButton,
@@ -45,7 +44,6 @@ import {
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
 import { authStorage } from "@/lib/auth/authStorage";
-import { ROLE_CREATOR } from "@/utils/Constants";
 
 type LatestUploadAction = {
   title: string;
@@ -106,8 +104,6 @@ export default function LatestUpload({ data, isOwner }: LatestUploadProps) {
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const { navigateToContent } = useProtectedContentNavigation();
-  const storedUser = useStoredLoginUser();
-  const isCreator = storedUser?.role === ROLE_CREATOR;
 
   const computedActions = useMemo((): ComputedAction[] => {
     if (data.contentId) {

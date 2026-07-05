@@ -1,6 +1,5 @@
 "use client";
 
-import { tutorialVideos } from "@/utils/data";
 import { Grid } from "./styles";
 import TutorialCard from "../TutorialCard";
 import type { TutorialVideo } from "@/utils/types";
@@ -13,7 +12,7 @@ interface TutorialsShowcaseProps {
 }
 
 export default function TutorialsShowcase({
-  videos = tutorialVideos,
+  videos = [],
   maxWidth,
   selectedVideoId = null,
   onSelectVideo,

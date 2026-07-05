@@ -73,6 +73,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     onShare,
     children,
     accessGate,
+    publicPlayback = false,
   } = props;
   const router = useRouter();
   const { t } = useTranslation();
@@ -261,7 +262,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   };
 
   const requireLoginForPlayback = () => {
-    if (user?.id) {
+    if (publicPlayback || user?.id) {
       return false;
     }
 
