@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "@repo/ui/breakpoints";
+import { media, breakpoints } from "@repo/ui/breakpoints";
 import { alpha } from "@/utils/common";
 import {
   CarouselTransitionType,
@@ -12,6 +12,7 @@ export const CarouselContainer = styled.div`
   height: 100%;
   overflow: hidden;
   outline: none;
+  container-type: inline-size;
 `;
 
 export const SlideTrack = styled.div<{
@@ -113,6 +114,24 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
       width: 16px;
       height: 16px;
     }
+  }
+
+  ${media.mobileLg} {
+    ${({ $direction }) =>
+      $direction === "left" ? "left: 8px;" : "right: 8px;"}
+  }
+
+  ${media.mobileSm} {
+    display: none;
+  }
+
+  @container (max-width: ${breakpoints.mobileLg}) {
+    ${({ $direction }) =>
+      $direction === "left" ? "left: 8px;" : "right: 8px;"}
+  }
+
+  @container (max-width: ${breakpoints.mobileSm}) {
+    display: none;
   }
 `;
 
