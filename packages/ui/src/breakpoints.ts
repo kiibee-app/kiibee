@@ -1,5 +1,6 @@
 export const breakpoints = {
   mobile: "320px",
+  mobileSm: "360px",
   mobileLg: "540px",
   mobileMd: "640px",
   tablet: "768px",
@@ -11,6 +12,7 @@ export const breakpoints = {
 
 export const media = {
   mobile: `@media (max-width: ${breakpoints.mobile})`,
+  mobileSm: `@media (max-width: ${breakpoints.mobileSm})`,
   mobileLg: `@media (max-width: ${breakpoints.mobileLg})`,
   mobileMd: `@media (max-width: ${breakpoints.mobileMd})`,
   tablet: `@media (max-width: ${breakpoints.tablet})`,
