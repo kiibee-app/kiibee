@@ -422,26 +422,23 @@ export default function NavBar({
 
   const handleNavItemClick = useCallback(
     (item: NavBarItem, event: React.MouseEvent) => {
-      if (item.children) {
-        const pointerType = (event.nativeEvent as PointerEvent).pointerType;
-        const isTouch = pointerType === TOUCH;
-        if (isTouch) {
-          const timeSinceOpen = Date.now() - lastOpenedRef.current;
-          if (openMegaKey === item.key && timeSinceOpen > TOUCH_TAP_DELAY_MS) {
-            return;
-          }
-          event.preventDefault();
-          event.stopPropagation();
-          if (openMegaKey === item.key) {
-            closeMenu();
-          } else {
-            wasOpenedViaTouchRef.current = true;
-            openMenu(item.key);
-          }
-        }
+      if (!item.children) {
+        return;
       }
+      const isMenuOpen = openMegaKey === item.key;
+      if (isMenuOpen) {
+        return;
+      }
+      const pointerType = (event.nativeEvent as PointerEvent).pointerType;
+      if (pointerType !== TOUCH) {
+        return;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+      wasOpenedViaTouchRef.current = true;
+      openMenu(item.key);
     },
-    [openMegaKey, openMenu, closeMenu],
+    [openMegaKey, openMenu],
   );
 
   const handleGlobalClick = useCallback(
