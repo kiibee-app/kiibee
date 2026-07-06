@@ -18,7 +18,7 @@ export const Header = styled.header<HeaderProps>`
     min-height 240ms cubic-bezier(0.22, 1, 0.36, 1),
     background 180ms ease,
     backdrop-filter 180ms ease;
-  z-index: 50;
+  z-index: ${({ theme }) => theme.zIndex.sticky};
 
   ${media.mobileMd} {
     height: var(--navbar-height, 73px);
@@ -211,7 +211,7 @@ export const MegaMenu = styled.div<{
     background 180ms ease,
     backdrop-filter 180ms ease;
   pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
-  z-index: 1000;
+  z-index: ${({ theme }) => theme.zIndex.dropdown};
 
   ${({ $textTone, theme }) =>
     $textTone === "light" &&
@@ -362,14 +362,14 @@ export const Actions = styled.div<{
 export const NavAccountHost = styled.div<{ $open?: boolean }>`
   position: relative;
   display: inline-flex;
-  z-index: ${({ $open }) => ($open ? 1200 : "auto")};
+  z-index: ${({ $open, theme }) => ($open ? theme.zIndex.dropdown : "auto")};
 `;
 
 export const NavAccountDropdown = styled.div`
   position: absolute;
   right: 0;
   top: calc(100% + 10px);
-  z-index: 1100;
+  z-index: ${({ theme }) => theme.zIndex.dropdown};
   min-width: 200px;
   padding: 8px;
   border-radius: 14px;
@@ -409,7 +409,7 @@ export const NavAccountDropdown = styled.div`
     right: 0;
     top: calc(100% + 10px);
     bottom: auto;
-    z-index: 1200;
+    z-index: ${({ theme }) => theme.zIndex.dropdown};
     animation: none;
 
     &::before {

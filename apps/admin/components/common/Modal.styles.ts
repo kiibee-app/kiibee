@@ -7,7 +7,7 @@ export const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1100;
+  z-index: ${({ theme }) => theme.zIndex.modal};
   padding: 24px;
 
   @media (max-width: 768px) {

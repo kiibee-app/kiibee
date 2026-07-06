@@ -5,6 +5,16 @@ import breakpoints from "./breakpoints";
 export type BreakPoints = typeof breakpoints;
 export type TypographyOptions = typeof TypographySystem;
 
+export const zIndex = {
+  dropdown: 1000,
+  sticky: 1100,
+  modal: 2000,
+  popover: 3000,
+  tooltip: 4000,
+} as const;
+
+export type ZIndex = typeof zIndex;
+
 export interface Theme {
   colors: ColorPalette;
   typography: TypographyOptions;
@@ -15,6 +25,7 @@ export interface Theme {
   shadows: Record<string, string>;
   animations: Record<string, string>;
   heights: Record<string, string>;
+  zIndex: ZIndex;
 }
 
 const spacingScale = [0, 4, 8, 12, 16, 20, 24, 32, 40, 48];
@@ -76,6 +87,7 @@ export const theme: Theme = {
   shadows,
   animations,
   heights,
+  zIndex,
 };
 
 export default theme;
