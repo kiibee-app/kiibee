@@ -1,14 +1,16 @@
 "use client";
 
 import { memo, useMemo, useState, type MouseEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
+import { LoginRequiredModal } from "@/components/UI/Modals";
+import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { ActionRow, CardLink, VideoBox } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { ComponentType } from "react";
-import type { FormatType, TutorialVideo } from "@/utils/types";
+import type { FormatType, TutorialButton, TutorialVideo } from "@/utils/types";
 import { FORMAT_TYPE } from "@/utils/types";
 import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
@@ -47,7 +49,16 @@ function TutorialCard({
   isSelected = false,
 }: TutorialCardProps) {
   const { t } = useTranslation();
-  const router = useRouter();
+  const user = useStoredLoginUser();
+  const { navigateToContent } = useProtectedContentNavigation();
+  const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+  const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
+
+  const handleShowLoginModal = (url: string) => {
+    setPendingRedirectUrl(url);
+    setLoginModalVisible(true);
+  };
+  const handleCloseLoginModal = () => setLoginModalVisible(false);
 
   const thumbnailCandidates = useMemo(() => {
     if (tutorial.videoUrl) {
@@ -86,19 +97,25 @@ function TutorialCard({
     [tutorial.id],
   );
 
-  const freeLabel = t(TUTORIAL_VIDEOS.buttonFreeLabel);
+  const buttons = useMemo(() => {
+    const defaultButton: TutorialButton = {
+      label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
+      variant: VARIANT.SECONDARY,
+      href: singleTutorialHref,
+    };
+    return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
+  }, [tutorial.buttons, t, singleTutorialHref]);
+
+  const resolveButtonHref = (href?: string) => {
+    if (!href) return singleTutorialHref;
+    if (href.startsWith("/tutorial-videos")) return singleTutorialHref;
+    return href;
+  };
+
   const isCardLinked = !onPlayClick;
 
   const stopCardNavigation = (event: MouseEvent) => {
     event.stopPropagation();
-  };
-
-  const openContent = () => {
-    if (onPlayClick) {
-      onPlayClick(tutorial.id);
-      return;
-    }
-    router.push(singleTutorialHref);
   };
 
   const openCreatorProfile = (event: MouseEvent) => {
@@ -111,6 +128,21 @@ function TutorialCard({
       "_blank",
       "noopener,noreferrer",
     );
+  };
+
+  const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const isLoggedIn = Boolean(user && user.id);
+    const targetHref = resolveButtonHref(button.href);
+
+    if (button.requiresAuth && !isLoggedIn) {
+      handleShowLoginModal(targetHref);
+      return;
+    }
+
+    navigateToContent(targetHref, button.requiresAuth ?? false);
   };
 
   const creatorSubtitle = tutorial.creatorId ? (
@@ -156,19 +188,46 @@ function TutorialCard({
       subtitle={creatorSubtitle}
       footer={
         <ActionRow onClick={stopCardNavigation}>
-          <GenericButton
-            type="button"
-            variant={VARIANT.SECONDARY}
-            fullWidth
-            aria-pressed={isSelected}
-            onClick={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-              openContent();
-            }}
-          >
-            {freeLabel}
-          </GenericButton>
+          {buttons.map((button, index) =>
+            onPlayClick ? (
+              <GenericButton
+                key={`${button.label}-${index}`}
+                type="button"
+                variant={button.variant ?? VARIANT.SECONDARY}
+                fullWidth={button.fullWidth}
+                size={button.size}
+                minWidth={button.minWidth}
+                aria-pressed={isSelected}
+                onClick={() => onPlayClick(tutorial.id)}
+              >
+                {button.label}
+              </GenericButton>
+            ) : button.href ? (
+              <GenericButton
+                key={`${button.label}-${index}`}
+                type="button"
+                variant={button.variant ?? VARIANT.SECONDARY}
+                fullWidth={button.fullWidth}
+                size={button.size}
+                minWidth={button.minWidth}
+                onClick={(event) => handleButtonClick(event, button)}
+              >
+                {button.label}
+              </GenericButton>
+            ) : (
+              <GenericButton
+                key={`${button.label}-${index}`}
+                type="button"
+                variant={button.variant ?? VARIANT.SECONDARY}
+                fullWidth={button.fullWidth}
+                size={button.size}
+                minWidth={button.minWidth}
+                onClick={button.onClick}
+              >
+                {button.label}
+              </GenericButton>
+            ),
+          )}
         </ActionRow>
       }
     >
@@ -185,19 +244,40 @@ function TutorialCard({
     </GenericCard>
   );
 
+  const loginModal = (
+    <LoginRequiredModal
+      visible={isLoginModalVisible}
+      onClose={handleCloseLoginModal}
+      onSuccess={() => {
+        if (pendingRedirectUrl) {
+          navigateToContent(pendingRedirectUrl, true);
+          setPendingRedirectUrl("");
+        }
+      }}
+    />
+  );
+
   if (isCardLinked) {
     return (
-      <CardLink
-        href={singleTutorialHref}
-        $clickable
-        aria-label={tutorial.title}
-      >
-        {card}
-      </CardLink>
+      <>
+        <CardLink
+          href={singleTutorialHref}
+          $clickable
+          aria-label={tutorial.title}
+        >
+          {card}
+        </CardLink>
+        {loginModal}
+      </>
     );
   }
 
-  return card;
+  return (
+    <>
+      {card}
+      {loginModal}
+    </>
+  );
 }
 
 export default memo(TutorialCard);
