@@ -100,21 +100,15 @@ export const StyledInput = styled.input<{
           ? theme.colors.neutral.GRAY_400
           : theme.colors.primary.BLACK};
   }
-
-  ${media.mobile} {
-    &:focus-visible {
-      outline: 2px solid
-        ${({ $hasError, $locked, theme }) =>
-          $hasError
-            ? theme.colors.primary.RED
-            : $locked
-              ? theme.colors.neutral.GRAY_400
-              : theme.colors.primary.BLACK};
-      outline-offset: 2px;
-    }
-  }
-
-  ${media.mobile} {
+  &:focus-visible {
+    outline: 2px solid
+      ${({ $hasError, $locked, theme }) =>
+        $hasError
+          ? theme.colors.primary.RED
+          : $locked
+            ? theme.colors.neutral.GRAY_400
+            : theme.colors.primary.BLACK};
+    outline-offset: 2px;
   }
 
   &[type="number"] {
@@ -174,14 +168,11 @@ export const StyledTextArea = styled.textarea<{
     border-color: ${({ $hasError, theme }) =>
       $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
   }
-
-  ${media.mobile} {
-    &:focus-visible {
-      outline: 2px solid
-        ${({ $hasError, theme }) =>
-          $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
-      outline-offset: 2px;
-    }
+  &:focus-visible {
+    outline: 2px solid
+      ${({ $hasError, theme }) =>
+        $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
+    outline-offset: 2px;
   }
 
   &::placeholder {
