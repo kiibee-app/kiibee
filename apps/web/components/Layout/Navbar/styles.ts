@@ -267,15 +267,23 @@ export const ColumnItem = styled.a`
   display: block;
   padding: 5px !important;
   margin: 0;
+  border-radius: 0.375rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-decoration: none;
   transition:
+    background 120ms ease,
     color 120ms ease,
     transform 120ms ease;
 
   &:hover {
+    background: ${({ theme }) => theme.colors.primary.WHITE_18};
     color: ${({ theme }) => theme.colors.primary.BLACK};
     transform: translateX(0px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
   }
 `;
 
