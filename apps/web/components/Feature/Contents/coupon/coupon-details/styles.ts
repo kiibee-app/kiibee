@@ -38,7 +38,7 @@ export const DiscountWarningNotice = styled.div`
   margin-top: 8px;
   padding: 0.625rem 0.75rem;
   border-radius: 8px;
-  background: rgba(255, 140, 66, 0.12);
+  background: color-mix(in srgb, ${COLORS.primary.ORANGE} 12%, transparent);
   color: ${COLORS.primary.ORANGE};
 
   svg {

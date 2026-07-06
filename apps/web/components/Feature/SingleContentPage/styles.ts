@@ -739,7 +739,8 @@ export const PurchaseModalCouponError = styled.div`
   margin-top: 0.625rem;
   padding: 0.625rem 0.75rem;
   border-radius: 8px;
-  background: rgba(220, 38, 38, 0.1);
+  background: ${({ theme }) =>
+    `color-mix(in srgb, ${theme.colors.primary.RED} 10%, transparent)`};
   color: ${({ theme }) => theme.colors.primary.RED};
 
   svg {
@@ -754,7 +755,8 @@ export const PurchaseModalCouponValidityNotice = styled.div`
   margin-top: 0.625rem;
   padding: 0.625rem 0.75rem;
   border-radius: 8px;
-  background: rgba(255, 140, 66, 0.12);
+  background: ${({ theme }) =>
+    `color-mix(in srgb, ${theme.colors.primary.ORANGE} 12%, transparent)`};
   color: ${({ theme }) => theme.colors.primary.ORANGE};
 
   svg {
