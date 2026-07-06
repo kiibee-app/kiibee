@@ -188,46 +188,43 @@ function TutorialCard({
       subtitle={creatorSubtitle}
       footer={
         <ActionRow onClick={stopCardNavigation}>
-          {buttons.map((button, index) =>
-            onPlayClick ? (
+          {buttons.map((button, index) => {
+            const buttonKey = `${button.label}-${index}`;
+            const commonProps = {
+              type: "button" as const,
+              variant: button.variant ?? VARIANT.SECONDARY,
+              fullWidth: button.fullWidth,
+              size: button.size,
+              minWidth: button.minWidth,
+            };
+
+            if (onPlayClick) {
+              return (
+                <GenericButton
+                  key={buttonKey}
+                  {...commonProps}
+                  aria-pressed={isSelected}
+                  onClick={() => onPlayClick(tutorial.id)}
+                >
+                  {button.label}
+                </GenericButton>
+              );
+            }
+
+            return (
               <GenericButton
-                key={`${button.label}-${index}`}
-                type="button"
-                variant={button.variant ?? VARIANT.SECONDARY}
-                fullWidth={button.fullWidth}
-                size={button.size}
-                minWidth={button.minWidth}
-                aria-pressed={isSelected}
-                onClick={() => onPlayClick(tutorial.id)}
+                key={buttonKey}
+                {...commonProps}
+                onClick={
+                  button.href
+                    ? (event) => handleButtonClick(event, button)
+                    : button.onClick
+                }
               >
                 {button.label}
               </GenericButton>
-            ) : button.href ? (
-              <GenericButton
-                key={`${button.label}-${index}`}
-                type="button"
-                variant={button.variant ?? VARIANT.SECONDARY}
-                fullWidth={button.fullWidth}
-                size={button.size}
-                minWidth={button.minWidth}
-                onClick={(event) => handleButtonClick(event, button)}
-              >
-                {button.label}
-              </GenericButton>
-            ) : (
-              <GenericButton
-                key={`${button.label}-${index}`}
-                type="button"
-                variant={button.variant ?? VARIANT.SECONDARY}
-                fullWidth={button.fullWidth}
-                size={button.size}
-                minWidth={button.minWidth}
-                onClick={button.onClick}
-              >
-                {button.label}
-              </GenericButton>
-            ),
-          )}
+            );
+          })}
         </ActionRow>
       }
     >
