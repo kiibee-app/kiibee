@@ -33,10 +33,10 @@ export const Section = styled.section`
   width: 100%;
   margin: 0 auto;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  minHeight: "60vh",
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
 
   ${media.desktopMd} {
     max-width: 100%;
