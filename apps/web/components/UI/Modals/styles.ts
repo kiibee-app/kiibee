@@ -119,6 +119,11 @@ export const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
+  }
 `;
 
 export const ShareContent = styled.div`

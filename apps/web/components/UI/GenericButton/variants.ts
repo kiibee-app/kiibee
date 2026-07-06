@@ -42,6 +42,11 @@ export const shared = css<ButtonStyleProps>`
   transition: all 120ms ease;
   ${({ $size }) => sizeStyles[$size]}
 
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
+  }
+
   &:disabled,
   &[aria-disabled="true"] {
     cursor: not-allowed;
