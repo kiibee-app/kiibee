@@ -93,28 +93,19 @@ export const StyledInput = styled.input<{
   }
 
   &:focus {
+    outline: none;
+    background: ${({ $hasError, $locked, theme }) =>
+      $hasError
+        ? `color-mix(in srgb, ${theme.colors.primary.RED} 8%, transparent)`
+        : $locked
+          ? theme.colors.neutral.GRAY_200
+          : theme.colors.primary.WHITE};
     border-color: ${({ $hasError, $locked, theme }) =>
       $hasError
         ? theme.colors.primary.RED
         : $locked
           ? theme.colors.neutral.GRAY_400
-          : theme.colors.primary.BLACK};
-  }
-
-  ${media.mobile} {
-    &:focus-visible {
-      outline: 2px solid
-        ${({ $hasError, $locked, theme }) =>
-          $hasError
-            ? theme.colors.primary.RED
-            : $locked
-              ? theme.colors.neutral.GRAY_400
-              : theme.colors.primary.BLACK};
-      outline-offset: 2px;
-    }
-  }
-
-  ${media.mobile} {
+          : theme.colors.neutral.GRAY_500};
   }
 
   &[type="number"] {
@@ -171,17 +162,15 @@ export const StyledTextArea = styled.textarea<{
     background-color 150ms ease;
 
   &:focus {
+    outline: none;
+    background: ${({ $hasError, $locked, theme }) =>
+      $hasError
+        ? `color-mix(in srgb, ${theme.colors.primary.RED} 8%, transparent)`
+        : $locked
+          ? theme.colors.neutral.GRAY_200
+          : theme.colors.primary.WHITE};
     border-color: ${({ $hasError, theme }) =>
-      $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
-  }
-
-  ${media.mobile} {
-    &:focus-visible {
-      outline: 2px solid
-        ${({ $hasError, theme }) =>
-          $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
-      outline-offset: 2px;
-    }
+      $hasError ? theme.colors.primary.RED : theme.colors.neutral.GRAY_500};
   }
 
   &::placeholder {
