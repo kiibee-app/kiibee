@@ -141,7 +141,6 @@ export default function GenericCard({
         >
           {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
           {showRemoteImage ? (
-            // eslint-disable-next-line @next/next/no-img-element -- arbitrary remote URLs may fall outside Next image remotePatterns
             <img
               src={imageSrc ?? undefined}
               alt={alt || "card image"}
