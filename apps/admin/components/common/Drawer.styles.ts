@@ -23,6 +23,7 @@ export const Overlay = styled.div`
   position: fixed;
   inset: 0;
   background: ${({ theme }) => theme.colors.neutral.OVERLAY};
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   display: flex;
   justify-content: flex-end;

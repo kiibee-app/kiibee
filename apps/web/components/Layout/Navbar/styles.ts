@@ -12,11 +12,13 @@ export const Header = styled.header<HeaderProps>`
   min-height: ${({ $isMegaOpen }) =>
     $isMegaOpen ? "300px" : "var(--navbar-height)"};
   display: block;
+  -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
   background: ${({ theme }) => theme.colors.primary.WHITE_10};
   transition:
     min-height 240ms cubic-bezier(0.22, 1, 0.36, 1),
     background 180ms ease,
+    -webkit-backdrop-filter 180ms ease,
     backdrop-filter 180ms ease;
   z-index: 50;
 
@@ -201,6 +203,8 @@ export const MegaMenu = styled.div<{
   visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
   transform: translateY(${({ $isOpen }) => ($isOpen ? "0" : "-10px")});
   transform-origin: top center;
+  -webkit-backdrop-filter: ${({ $isOpen }) =>
+    $isOpen ? "blur(16px) saturate(30%)" : "blur(0) saturate(100%)"};
   backdrop-filter: ${({ $isOpen }) =>
     $isOpen ? "blur(16px) saturate(30%)" : "blur(0) saturate(100%)"};
   background: transparent;
@@ -209,6 +213,7 @@ export const MegaMenu = styled.div<{
     transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
     visibility 0ms linear ${({ $isOpen }) => ($isOpen ? "0ms" : "240ms")},
     background 180ms ease,
+    -webkit-backdrop-filter 180ms ease,
     backdrop-filter 180ms ease;
   pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
   z-index: 1000;
