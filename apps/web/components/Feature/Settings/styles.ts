@@ -52,8 +52,12 @@ export const Button = styled.button`
   border: none;
   cursor: pointer;
   &:disabled {
-    opacity: 0.6;
+    background: ${(p) => p.theme.colors.neutral.GRAY_200};
+    color: ${(p) => p.theme.colors.neutral.GRAY_400};
+    border-color: ${(p) => p.theme.colors.neutral.GRAY_200};
     cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
   }
   ${MonoText} {
     color: inherit;
