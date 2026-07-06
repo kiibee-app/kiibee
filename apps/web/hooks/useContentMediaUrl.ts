@@ -38,21 +38,23 @@ export function useContentMediaUrl(content: ContentDetailItem | undefined) {
 
   const previewMediaUrl = useMemo(() => {
     if (!content) return undefined;
-    const signedUrl = mediaResponse?.url || mediaResponse?.iframeUrl;
+    const signedUrl =
+      mediaResponse?.url ||
+      mediaResponse?.iframeUrl ||
+      mediaResponse?.streamUrl;
 
-    if (canFetchMedia) {
-      return signedUrl;
-    }
-
-    return resolveContentPlaybackUrl(content, signedUrl);
-  }, [content, canFetchMedia, mediaResponse]);
+    return resolveContentPlaybackUrl(content, signedUrl) || undefined;
+  }, [content, mediaResponse]);
 
   const fetchMediaUrl = useCallback(async () => {
     if (!canFetchMedia) return previewMediaUrl;
 
     const result = await refetch();
-    return result.data?.url || result.data?.iframeUrl;
-  }, [canFetchMedia, previewMediaUrl, refetch]);
+    const signedUrl =
+      result.data?.url || result.data?.iframeUrl || result.data?.streamUrl;
+
+    return resolveContentPlaybackUrl(content, signedUrl) || previewMediaUrl;
+  }, [canFetchMedia, content, previewMediaUrl, refetch]);
 
   return {
     contentType,

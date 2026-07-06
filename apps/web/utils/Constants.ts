@@ -304,6 +304,7 @@ export const contentTypeSizeMap: Record<string, number> = {
 };
 
 export const mockSizeFallback = 12 * 1024 * 1024;
+export const IS_FALLBACK_SIZE = "isFallbackSize";
 
 export function buildContentUpdatePayload(formState: ContentFormState) {
   const isPaymentAdmission =
@@ -393,6 +394,9 @@ export const TOP_CREATORS_LIMIT = 6;
 export const LOAD_MORE_SIZE = 12;
 export const CATEGORY_ALL = "all";
 export const SKELETON_COUNT = 5;
+export const TOP_CREATORS_NAME_LIMIT = 16;
+export const TOP_CREATORS_NAME_START = 0;
+export const ELLIPSIS_FOUR_DOTS = "....";
 
 export const SORT_OPTION_NEW = "new";
 export const SORT_OPTION_POPULAR = "popular";
@@ -461,6 +465,11 @@ export const STATUS_TONE = {
   ERROR: "error",
   LOADING: "loading",
 } as const;
+
+export const UNDEFINED_STRING = "undefined";
+export const REDIRECT_NEXT_QUERY_PARAM = "next";
+export const ACTION_LOGIN = "login";
+export const ACTION_SIGNUP = "signup";
 
 export type StatusTone = (typeof STATUS_TONE)[keyof typeof STATUS_TONE];
 

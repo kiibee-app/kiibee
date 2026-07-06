@@ -67,6 +67,7 @@ export type SingleContentPageProps = {
   onShare?: () => void;
   children?: ReactNode;
   accessGate?: ReactNode;
+  publicPlayback?: boolean;
 };
 
 export type SingleContentTopBarProps = {

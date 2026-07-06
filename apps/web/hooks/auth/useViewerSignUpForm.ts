@@ -7,6 +7,8 @@ import { useAuthSession } from "./useAuthSession";
 import { useAuthForm } from "./useAuthForm";
 import { viewerSignUpFormBase } from "./authFormConfigs";
 
+import { UNDEFINED_STRING, REDIRECT_NEXT_QUERY_PARAM } from "@/utils/Constants";
+
 export function useViewerSignUpForm(options?: {
   onSuccessOverride?: (response: unknown) => void;
 }) {
@@ -19,7 +21,19 @@ export function useViewerSignUpForm(options?: {
       if (options?.onSuccessOverride) {
         options.onSuccessOverride(response);
       } else {
-        router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
+        const nextPath =
+          typeof window !== UNDEFINED_STRING
+            ? new URLSearchParams(window.location.search).get(
+                REDIRECT_NEXT_QUERY_PARAM,
+              )
+            : null;
+        if (nextPath) {
+          router.push(
+            `${PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES}?${REDIRECT_NEXT_QUERY_PARAM}=${encodeURIComponent(nextPath)}`,
+          );
+        } else {
+          router.push(PATHS.AUTH_SIGNUP_VIEWER_PREFERENCES);
+        }
       }
     },
   });

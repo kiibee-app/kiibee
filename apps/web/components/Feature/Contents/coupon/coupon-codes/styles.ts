@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { typography } from "@repo/ui/typography";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
 

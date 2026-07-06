@@ -66,18 +66,28 @@ export const InfoColumn = styled.div`
 `;
 
 export const PreviewBox = styled.div`
-  height: clamp(80px, 9.8vw, 90px);
+  width: 153px;
+  height: 100px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+`;
+
+export const PreviewImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 `;
 
 export const PreviewVideo = styled.video`
   width: 100%;
   height: 100%;
-  min-width: 100px;
   object-fit: cover;
   border-radius: 8px;
 `;

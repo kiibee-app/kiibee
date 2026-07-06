@@ -15,7 +15,7 @@ import {
   getContentDetail,
   type ContentDetailResponse,
 } from "@/utils/contentApi";
-import { tutorialVideos } from "@/utils/data";
+import { tutorialVideoCardFallback } from "@/utils/data";
 import type { TutorialVideo } from "@/utils/types";
 import { useCreatorChannelProfile } from "./useCreatorChannelProfile";
 
@@ -70,8 +70,8 @@ export function useRelatedCollectionContent(
       if (!relatedRows.length) return null;
 
       const relatedCards = await Promise.all(
-        relatedRows.map(async (row, index) => {
-          const fallback = tutorialVideos[index % tutorialVideos.length];
+        relatedRows.map(async (row) => {
+          const fallback = tutorialVideoCardFallback;
           const response = await axiosClient.get<ContentDetailResponse>(
             API.content.get(row.id),
           );

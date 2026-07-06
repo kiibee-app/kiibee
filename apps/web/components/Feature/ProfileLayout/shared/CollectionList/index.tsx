@@ -18,7 +18,7 @@ import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { CREATOR, resolveImageUrl } from "@/utils/Constants";
-import { tutorialVideos } from "@/utils/data";
+import { tutorialVideoCardFallback } from "@/utils/data";
 import {
   RENTED_MODES,
   type CollectionAction,
@@ -27,12 +27,6 @@ import {
 import { CollectionListInner, CollectionListShell } from "./styles";
 import { authStorage } from "@/lib/auth/authStorage";
 import { PATHS, pathPublishedContent } from "@/utils/path";
-import {
-  getContentPricingActions,
-  getPricingLabels,
-  isFreeContentItem,
-  resolveContentActionHref,
-} from "@/utils/contentPricingActions";
 import { QUERY_KEYS } from "@/utils/Constants";
 import { VARIANT } from "@/utils/variants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
@@ -172,51 +166,26 @@ export default function CollectionList() {
     if (!privateCollectionsResponse) return [];
     const rows = getCollectionRows(privateCollectionsResponse);
 
-    return rows.map((row, index) => {
+    return rows.map((row) => {
       const firstContentId = collectionContentsMap?.[row.id];
       const contentHref = firstContentId
         ? pathPublishedContent(firstContentId)
         : `/single-collection?id=${row.id}`;
 
-      const pricingItem = {
-        accessType: row.accessType,
-        buyPrice: row.buyPrice,
-        rentPrice: row.rentPrice,
-      };
-
-      const pricingActions = getContentPricingActions(
-        pricingItem,
-        t("createProfileHome.latestUpload.seeContent"),
+      const actions = [
         {
-          inCollection: true,
-          labels: getPricingLabels(t),
+          label: t("createProfileHome.latestUpload.seeContent"),
+          variant: VARIANT.SECONDARY,
+          href: contentHref,
         },
-      );
-
-      const isFree = isFreeContentItem(pricingItem);
-
-      const actions = pricingActions.map((action) => ({
-        label: action.label,
-        variant: isFree ? VARIANT.SECONDARY : VARIANT.PRIMARY,
-        href: firstContentId
-          ? resolveContentActionHref(
-              firstContentId,
-              action.label,
-              pricingItem,
-              pricingActions.length,
-              { inCollection: true, labels: getPricingLabels(t) },
-            )
-          : contentHref,
-      }));
+      ];
 
       return {
         id: row.id,
         title: row.name,
         author: displayName,
         elementCount: row.contentsCount,
-        coverSrc: resolveImageUrl(
-          tutorialVideos[index % tutorialVideos.length]?.image ?? "",
-        ),
+        coverSrc: resolveImageUrl(tutorialVideoCardFallback.image),
         hideBadge: true,
         href: contentHref,
         actions,

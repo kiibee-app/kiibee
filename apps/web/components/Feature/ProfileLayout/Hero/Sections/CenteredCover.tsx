@@ -12,7 +12,7 @@ import {
   BioText,
   BioMoreButton,
   CoverFrameFull,
-  CoverImage,
+  CoverImageTop,
   HeroWrapperCentered,
   InfoSection,
   NameText,
@@ -32,7 +32,7 @@ export default function CenteredCoverSection() {
   return (
     <HeroWrapperCentered>
       <CoverFrameFull>
-        <CoverImage
+        <CoverImageTop
           src={coverImageUrl || coverImage}
           alt={t(CREATE_PROFILE_HOME.title)}
           fill

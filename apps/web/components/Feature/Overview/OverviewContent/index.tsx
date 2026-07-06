@@ -30,7 +30,7 @@ import OVERVIEW_STATS, {
 } from "@/utils/dummyData/overviewData";
 import { renderContentIcon } from "@/utils/overviewContent";
 import OverviewActivityChart from "./OverviewActivityChart";
-import { CLICKS, NAME, PAGE_VISITS, VIEWS } from "@/utils/common";
+import { CLICKS, NAME, PAGE_VISITS, VIEWS, TOTAL } from "@/utils/common";
 import { useContentPerformance } from "@/hooks/overview/useContentPerformance";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { LOADER_VARIANT } from "@/utils/ui";
@@ -80,7 +80,9 @@ export default function OverviewContent() {
               <StatLabel>{t(s.labelKey)}</StatLabel>
             </StatRow>
             <StatValue>
-              {overviewStats[s.id as keyof typeof overviewStats]}
+              {s.id === TOTAL
+                ? contentPerformanceRows.length
+                : overviewStats[s.id as keyof typeof overviewStats]}
             </StatValue>
           </StatCard>
         ))}

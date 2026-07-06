@@ -39,6 +39,14 @@ export type TutorialVideo = {
   buttons?: TutorialButton[];
   image: ImageSource;
   imageFallback?: string;
+  videoUrl?: string;
+  trailerUrl?: string | null;
+  description?: string | null;
+  descriptionSecondary?: string | null;
+  publisher?: string | null;
+  publishedYear?: string | null;
+  duration?: string | null;
+  tags?: string[];
 };
 
 export type TutorialVideoSection = {

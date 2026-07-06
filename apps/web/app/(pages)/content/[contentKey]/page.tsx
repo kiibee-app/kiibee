@@ -29,7 +29,7 @@ import {
 } from "@/utils/contentApi";
 import SingleTutorial from "@/components/Feature/SingleTutorial";
 import SingleDiscoverContent from "@/components/Feature/SingleDiscoverContent";
-import { getTutorialCollectionByVideoId } from "@/utils/tutorialCollections";
+import { useTutorialVideoLookup } from "@/hooks/useTutorialVideos";
 import { usePublicRelatedCollectionContent } from "@/hooks/usePublicRelatedCollectionContent";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import CollectionItems from "@/components/Feature/SingleTutorial/CollectionItems";
@@ -66,17 +66,22 @@ function PublishedContentDetail() {
   const contentViewRoute = normalizedContentKey
     ? API.content.view(normalizedContentKey, viewerId)
     : API.content.create;
-  const fallback = resolvePublishedContentByKey(normalizedContentKey);
-  const tutorialCollection =
-    getTutorialCollectionByVideoId(normalizedContentKey);
-  const relatedTutorials = (tutorialCollection?.tutorials ?? []).filter(
-    (video) => video.id !== normalizedContentKey,
-  );
+  const discoverFallback = resolvePublishedContentByKey(normalizedContentKey);
+  const {
+    tutorial,
+    relatedVideos,
+    collection: tutorialCollection,
+    isLoading: isTutorialLoading,
+  } = useTutorialVideoLookup(normalizedContentKey);
   const { data, isLoading, isError } = useGetAPI<ContentDetailResponse>(
     contentViewRoute,
     undefined,
     {
-      enabled: Boolean(normalizedContentKey) && !fallback,
+      enabled:
+        Boolean(normalizedContentKey) &&
+        !discoverFallback &&
+        !tutorial &&
+        !isTutorialLoading,
       refetchInterval: isPaymentSuccess ? 1500 : false,
       placeholderData: (previousData) => previousData,
     },
@@ -88,7 +93,7 @@ function PublishedContentDetail() {
   const relatedCollectionQuery = usePublicRelatedCollectionContent(
     normalizedContentKey,
     {
-      enabled: Boolean(normalizedContentKey) && !fallback,
+      enabled: Boolean(normalizedContentKey) && !discoverFallback && !tutorial,
     },
   );
   const {
@@ -127,7 +132,11 @@ function PublishedContentDetail() {
     />
   );
 
-  if ((isLoading && !data && !fallback) || gateLoading) {
+  if (
+    (isTutorialLoading && !discoverFallback) ||
+    (isLoading && !data && !discoverFallback && !tutorial) ||
+    gateLoading
+  ) {
     return (
       <GenericSpinner
         isOverlay
@@ -137,25 +146,25 @@ function PublishedContentDetail() {
     );
   }
 
+  if (tutorial) {
+    return (
+      <Section>
+        <SingleTutorial
+          tutorial={tutorial}
+          relatedVideos={relatedVideos}
+          collectionId={tutorialCollection?.id}
+        />
+      </Section>
+    );
+  }
+
   if (isError || !content) {
-    if (fallback) {
-      if (fallback.kind === CONTENT_KIND.TUTORIAL) {
-        return (
-          <Section>
-            <SingleTutorial
-              tutorial={fallback.tutorial}
-              relatedVideos={relatedTutorials}
-              collectionId={tutorialCollection?.id}
-            />
-          </Section>
-        );
-      } else if (fallback.kind === CONTENT_KIND.DISCOVER) {
-        return (
-          <Section>
-            <SingleDiscoverContent item={fallback.item} />
-          </Section>
-        );
-      }
+    if (discoverFallback?.kind === CONTENT_KIND.DISCOVER) {
+      return (
+        <Section>
+          <SingleDiscoverContent item={discoverFallback.item} />
+        </Section>
+      );
     }
 
     return (

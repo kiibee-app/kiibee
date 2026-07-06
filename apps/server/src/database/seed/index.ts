@@ -10,6 +10,7 @@ import { seedUmbracoProfiles } from './umbracoProfiles.seed';
 import { seedUmbracoPurchases } from './umbracoPurchases.seed';
 import { seedUmbracoShows } from './umbracoShows.seed';
 import { seedUmbracoStats } from './umbracoStats.seed';
+import { seedTutorialItems } from './tutorialItems.seed';
 import { seedUsers } from './users.seed';
 import { backfillMissingPasswordHashes } from './backfillPasswordHashes.seed';
 
@@ -22,6 +23,7 @@ async function main() {
   await seedContentTypes();
   await seedTags();
   await seedPlans();
+  await seedTutorialItems();
 
   // Only admin account; creators/viewers come from umbraco-data
   await seedUsers();

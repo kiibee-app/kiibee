@@ -763,7 +763,8 @@
     "sectionTag": "Getting started",
     "sectionLabel": "Foundational chapters",
     "sectionLink": "View playlist",
-    "buttonFreeLabel": "Free"
+    "buttonFreeLabel": "Free",
+    "quickguidesTitle": "User guide - Quickguides"
   },
   "callToAction": {
     "logoAlt": "Kiibee",
@@ -2211,6 +2212,19 @@
       "creator": "Creator name",
       "title": "Title",
       "elements": "Elements"
+    }
+  },
+  "creatorPurchaseFlow": {
+    "modal1": {
+      "title": "You're signed in as a Creator",
+      "message": "To purchase or rent content, you'll need a Viewer account. Sign in with an existing Viewer account or create a new one to continue.",
+      "primaryBtn": "Sign in as Viewer",
+      "secondaryBtn": "Create Viewer Account"
+    },
+    "modal2": {
+      "title": "You'll be signed out of your Creator account and signed in as a Viewer.",
+      "primaryBtn": "Continue",
+      "secondaryBtn": "Cancel"
     }
   }
 }

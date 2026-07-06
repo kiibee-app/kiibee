@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import type { ImageSource } from "@/utils/Constants";
 import {
   ReadMoreButton,
@@ -45,7 +44,6 @@ import {
   resolveContentActionHref,
 } from "@/utils/contentPricingActions";
 import { authStorage } from "@/lib/auth/authStorage";
-import { ROLE_CREATOR } from "@/utils/Constants";
 
 type LatestUploadAction = {
   title: string;
@@ -84,6 +82,7 @@ export type LatestUploadData = {
 
 type LatestUploadProps = {
   data: LatestUploadData;
+  isOwner?: boolean;
 };
 
 const contentIconMap = {
@@ -100,16 +99,23 @@ type ComputedAction = {
   href?: string;
 };
 
-export default function LatestUpload({ data }: LatestUploadProps) {
+export default function LatestUpload({ data, isOwner }: LatestUploadProps) {
   const { t } = useTranslation();
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const { navigateToContent } = useProtectedContentNavigation();
-  const storedUser = useStoredLoginUser();
-  const isCreator = storedUser?.role === ROLE_CREATOR;
 
   const computedActions = useMemo((): ComputedAction[] => {
     if (data.contentId) {
+      if (isOwner) {
+        return [
+          {
+            title: t("createProfileHome.latestUpload.seeContent"),
+            href: pathPublishedContent(data.contentId),
+          },
+        ];
+      }
+
       const pricingItem = {
         accessType: data.accessType,
         buyPrice: data.buyPrice,
@@ -158,12 +164,9 @@ export default function LatestUpload({ data }: LatestUploadProps) {
       subtitle: action.subtitle,
       href: undefined as string | undefined,
     }));
-  }, [data, t]);
+  }, [data, t, isOwner]);
 
-  const visibleActions = useMemo(() => {
-    if (!isCreator) return computedActions;
-    return computedActions.filter((action) => !action.href?.includes("#buy"));
-  }, [computedActions, isCreator]);
+  const visibleActions = computedActions;
 
   const [primaryAction, secondaryAction] = visibleActions;
   const [pendingHref, setPendingHref] = useState<string | null>(null);

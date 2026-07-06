@@ -1,7 +1,4 @@
 import design from "../assets/images/design.webp";
-import design1 from "../assets/images/design1.webp";
-import design2 from "../assets/images/design2.webp";
-import education from "../assets/images/education.webp";
 import loginSlide from "../assets/images/auth/loginSlide.webp";
 import loginSlide1 from "../assets/images/auth/loginSlide1.webp";
 import loginSlide2 from "../assets/images/auth/loginSlide2.webp";
@@ -14,111 +11,24 @@ import ctaImage from "@/assets/images/cta-buttom1.webp";
 
 import type {
   LayoutCardConfig,
-  TutorialVideo,
-  TutorialVideoSection,
   TestimonialSlideConfig,
+  TutorialVideo,
 } from "./types";
+import { FORMAT_TYPE } from "./types";
 
-export const tutorialVideos: TutorialVideo[] = [
-  {
-    id: "del-2",
-    title: "Del 2. Indhold og udsende",
-    category: "Design",
-    creator: "Kiibee",
-    published: "9 months ago",
-    focus: "Plan content, scenes, and publishing cadence before you go live.",
-    level: "Free",
-    formatLabel: "Video",
-    formatType: "video",
-    buttons: [
-      {
-        label: "Free",
-        variant: "secondary",
-        href: "/tutorial-videos/del-2",
-      },
-    ],
-    image: design,
-  },
-  {
-    id: "del-3",
-    title: "Del 3: Styling og styring af flow",
-    category: "Design",
-    creator: "Kiibee",
-    published: "4 days ago",
-    focus:
-      "Fine-tune the look and pacing of your livestream and on-demand drops.",
-    level: "Free",
-    formatLabel: "Video",
-    formatType: "video",
-    buttons: [
-      {
-        label: "Free",
-        variant: "secondary",
-        href: "/tutorial-videos/del-3",
-      },
-    ],
-    image: design1,
-  },
-  {
-    id: "del-4",
-    title: "Del 4: Betalingsmodul og sikkerhed",
-    category: "Educational",
-    creator: "Kiibee",
-    published: "1 year ago",
-    focus:
-      "Connect billing, payouts, and compliance tools for a smooth launch.",
-    level: "Free",
-    formatLabel: "Video",
-    formatType: "video",
-    buttons: [
-      {
-        label: "Free",
-        variant: "secondary",
-        href: "/tutorial-videos/del-4",
-      },
-    ],
-    image: design2,
-  },
-  {
-    id: "del-5",
-    title: "Del 5: Udbetaling, notifikationer og",
-    category: "Educational",
-    creator: "Kiibee",
-    published: "1 year ago",
-    focus:
-      "Connect billing, payouts, and compliance tools for a smooth launch.",
-    level: "Free",
-    formatLabel: "Video",
-    formatType: "video",
-    buttons: [
-      {
-        label: "Free",
-        variant: "secondary",
-        href: "/tutorial-videos/del-5",
-      },
-    ],
-    image: education,
-  },
-];
-
-export const tutorialVideoSections: TutorialVideoSection[] = [
-  {
-    id: "getting-started",
-    title: "Getting started",
-    videoIds: ["del-2", "del-3", "del-4", "del-5"],
-  },
-  {
-    id: "how-to-videos",
-    title: "How-to-videos",
-    videoIds: ["del-2", "del-3", "del-4", "del-5"],
-  },
-  {
-    id: "user-guides",
-    title: "User guides",
-    videoIds: ["del-4", "del-5"],
-    gridMaxWidth: "min(640px, 100%)",
-  },
-];
+/** Minimal card shape for profile/collection previews when merging API content. */
+export const tutorialVideoCardFallback: TutorialVideo = {
+  id: "placeholder",
+  title: "",
+  category: "",
+  creator: "Kiibee",
+  published: "",
+  focus: "",
+  level: "Free",
+  formatLabel: "Video",
+  formatType: FORMAT_TYPE.VIDEO,
+  image: design,
+};
 
 export const layoutCards: LayoutCardConfig[] = [
   {

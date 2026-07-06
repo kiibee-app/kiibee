@@ -62,6 +62,10 @@ export const API = {
     trending: "/feed/trending",
     recent: "/feed/recent",
   },
+  tutorialVideos: {
+    list: "/tutorial-videos",
+    byId: (id: string) => `/tutorial-videos/${id}`,
+  },
   creatorUsers: {
     registrations: "/creator-users/registrations",
     sales: "/creator-users/sales",

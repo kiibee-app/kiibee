@@ -12,7 +12,7 @@ import GenericSpinner from "@/components/UI/GenericSpinner";
 import Image from "@/components/UI/SafeImage";
 import { useTranslation } from "react-i18next";
 import CollectionContent from "@/components/Feature/SingleCollectionHero/CollectionContent";
-import { getTutorialCollectionById } from "@/utils/tutorialCollections";
+import { useTutorialCollectionLookup } from "@/hooks/useTutorialVideos";
 import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
@@ -32,7 +32,8 @@ function SingleCollectionContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  const staticSection = getTutorialCollectionById(id);
+  const { collection: staticSection, isLoading: isTutorialCollectionLoading } =
+    useTutorialCollectionLookup(id);
   const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
     !staticSection ? id : null,
   );
@@ -44,6 +45,10 @@ function SingleCollectionContent() {
   } = usePublicCollectionContent(
     !staticSection && !gateType && !isGateLoading ? id : null,
   );
+
+  if (isTutorialCollectionLoading && !staticSection) {
+    return <GenericSpinner isOverlay size={48} label={t("common.loading")} />;
+  }
 
   if (staticSection) {
     return (
