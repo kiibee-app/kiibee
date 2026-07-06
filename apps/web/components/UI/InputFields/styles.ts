@@ -264,8 +264,22 @@ export const Menu = styled.div`
   touch-action: pan-y;
   width: 100%;
   z-index: 1200;
+  -webkit-overflow-scrolling: touch;
   ${media.tablet} {
     max-height: 150px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    border-radius: 3px;
   }
 `;
 
