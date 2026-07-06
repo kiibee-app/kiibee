@@ -7,7 +7,7 @@ import { MonoText } from "../Monotext";
 export const TableContainer = styled.div`
   width: 100%;
   background-color: transparent;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.radius.md};
 
   ${media.tablet} {
     background: transparent;
@@ -20,7 +20,7 @@ export const TableWrapper = styled.table`
   width: 100%;
   border-collapse: collapse;
   background-color: transparent;
-  border-radius: 16px;
+  border-radius: ${({ theme }) => theme.radius.xxl};
 
   ${media.tablet} {
     display: flex;
