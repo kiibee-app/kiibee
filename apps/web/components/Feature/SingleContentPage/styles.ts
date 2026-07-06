@@ -1,6 +1,7 @@
 import { media } from "@repo/ui/breakpoints";
 import styled, { css } from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
+import { pulse } from "@/utils/animations";
 import { CURSOR, VARIANT } from "@/utils/Constants";
 
 export const Wrapper = styled.section`
@@ -76,7 +77,7 @@ export const ShareText = styled.span`
   ${({ theme }) => theme.typography.Body_Medium}
 `;
 
-export const Hero = styled.div<{ $isPdf?: boolean }>`
+export const Hero = styled.div<{ $isPdf?: boolean; $isLoading?: boolean }>`
   position: relative;
   width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 900px)")};
   max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "none")};
@@ -86,6 +87,16 @@ export const Hero = styled.div<{ $isPdf?: boolean }>`
   border-radius: 12px;
   overflow: hidden;
   background-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
+
+  @supports not (aspect-ratio: 1 / 1) {
+    padding-bottom: ${({ $isPdf }) => ($isPdf ? "140.96%" : "54.44%")};
+  }
+
+  ${({ $isLoading }) =>
+    $isLoading &&
+    css`
+      animation: ${pulse} 1.5s ease-in-out infinite;
+    `}
 
   ${media.desktopSm} {
     max-width: none;
