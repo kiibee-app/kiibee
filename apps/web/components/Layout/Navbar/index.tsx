@@ -66,7 +66,6 @@ import {
   TONE_LIGHT,
   DRAWER_SIDE,
   DRAWER_VARIANT,
-  TOUCH_TAP_DELAY_MS,
   TOUCH,
 } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
