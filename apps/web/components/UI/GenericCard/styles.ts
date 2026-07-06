@@ -22,15 +22,14 @@ export const Card = styled.div<{
     return "315px";
   }};
   width: ${({ $width }) => $width || "100%"};
-  box-shadow: 0 0 10.483px 0 ${({ theme }) => theme.colors.neutral.GRAY_300};
+  box-shadow: ${({ theme }) => theme.shadows.frame};
   transition:
     transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
     box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 24px -10px
-      ${({ theme }) => theme.colors.neutral.GRAY_400};
+    box-shadow: ${({ theme }) => theme.shadows.lg};
   }
 
   &:hover img {

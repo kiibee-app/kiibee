@@ -68,19 +68,19 @@ export const Card = styled.article<{ $highlight?: boolean }>`
       $highlight
         ? theme.colors.secondary.MEDIUM_GREEN
         : theme.colors.neutral.GRAY_200};
-  box-shadow: ${({ $highlight }) =>
+  box-shadow: ${({ theme, $highlight }) =>
     $highlight
-      ? "0 8px 32px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(146, 179, 129, 0.15)"
-      : "0 4px 24px rgba(0, 0, 0, 0.06)"};
+      ? `${theme.shadows.md}, 0 0 0 1px color-mix(in srgb, ${theme.colors.secondary.MEDIUM_GREEN} 15%, transparent)`
+      : theme.shadows.sm};
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease;
 
   &:hover {
-    box-shadow: ${({ $highlight }) =>
+    box-shadow: ${({ theme, $highlight }) =>
       $highlight
-        ? "0 12px 36px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(146, 179, 129, 0.2)"
-        : "0 8px 28px rgba(0, 0, 0, 0.08)"};
+        ? `${theme.shadows.lg}, 0 0 0 1px color-mix(in srgb, ${theme.colors.secondary.MEDIUM_GREEN} 20%, transparent)`
+        : theme.shadows.md};
   }
 `;
 
