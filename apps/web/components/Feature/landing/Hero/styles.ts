@@ -16,6 +16,10 @@ export const Hero = styled.section`
     inset: 0;
     z-index: 1;
   }
+
+  ${media.tablet} {
+    min-height: auto;
+  }
 `;
 
 export const Inner = styled.div`
@@ -33,6 +37,10 @@ export const Inner = styled.div`
     padding: 3rem 1.25rem;
     align-items: center;
     justify-content: center;
+  }
+
+  ${media.mobileLg} {
+    padding: 2rem 1rem;
   }
 `;
 

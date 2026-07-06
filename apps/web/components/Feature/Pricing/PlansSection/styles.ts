@@ -12,6 +12,14 @@ export const Section = styled.section`
   align-items: center;
   padding: 34px 20px 50px;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+
+  ${media.tablet} {
+    padding: 28px 16px 40px;
+  }
+
+  ${media.mobileLg} {
+    padding: 20px 12px 32px;
+  }
 `;
 
 export const SectionTitle = styled.h2`
@@ -29,6 +37,10 @@ export const SectionTitle = styled.h2`
   ${media.tablet} {
     margin-bottom: 28px;
   }
+
+  ${media.mobileLg} {
+    margin-bottom: 20px;
+  }
 `;
 
 export const CardsWrapper = styled.div`
@@ -45,6 +57,19 @@ export const CardsWrapper = styled.div`
     max-width: 340px;
     display: flex;
     flex: 1 1 280px;
+
+    ${media.mobileLg} {
+      max-width: 100%;
+      flex: 1 1 100%;
+    }
+  }
+
+  ${media.tablet} {
+    gap: 16px;
+  }
+
+  ${media.mobileLg} {
+    gap: 12px;
   }
 `;
 
@@ -81,6 +106,15 @@ export const Card = styled.article<{ $highlight?: boolean }>`
       $highlight
         ? "0 12px 36px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(146, 179, 129, 0.2)"
         : "0 8px 28px rgba(0, 0, 0, 0.08)"};
+  }
+
+  ${media.tablet} {
+    padding: 24px 20px 22px;
+  }
+
+  ${media.mobileLg} {
+    padding: 20px 16px 18px;
+    max-width: 100%;
   }
 `;
 
