@@ -10,17 +10,20 @@ export const Header = styled.header<HeaderProps>`
   left: 0;
   width: 100%;
   min-height: ${({ $isMegaOpen }) =>
-    $isMegaOpen ? "300px" : "var(--navbar-height)"};
+    $isMegaOpen ? "300px" : "var(--navbar-height, 73px)"};
+  height: ${({ $isMegaOpen }) =>
+    $isMegaOpen ? "auto" : "var(--navbar-height, 73px)"};
   display: block;
   -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
   background: ${({ theme }) => theme.colors.primary.WHITE_10};
   transition:
     min-height 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 240ms cubic-bezier(0.22, 1, 0.36, 1),
     background 180ms ease,
     -webkit-backdrop-filter 180ms ease,
     backdrop-filter 180ms ease;
-  z-index: ${({ theme }) => theme.zIndex.navbar};
+    z-index: ${({ theme }) => theme.zIndex.navbar};
 
   ${media.mobileMd} {
     height: var(--navbar-height, 73px);
@@ -31,8 +34,11 @@ export const Inner = styled.div`
   position: relative;
   max-width: var(--navbar-inner-max-width, 1440px);
   width: 100%;
+  height: var(--navbar-height, 73px);
+  min-height: var(--navbar-height, 73px);
   margin: 0 auto;
   padding: var(--navbar-inner-padding, 1rem 1.5rem);
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,9 +73,9 @@ export const Logo = styled.span`
   align-items: center;
 
   img {
-    ${media.mobileMd} {
-      max-height: 32px !important;
-    }
+    max-height: calc(var(--navbar-height, 73px) - 2rem) !important;
+    width: auto;
+    height: auto;
   }
 `;
 

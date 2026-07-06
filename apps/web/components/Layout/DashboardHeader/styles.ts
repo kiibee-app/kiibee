@@ -5,7 +5,8 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export const HeaderWrapper = styled.header`
-  height: 70px;
+  min-height: 70px;
+  height: auto;
   width: 100%;
   position: fixed;
   top: 0;
@@ -23,6 +24,7 @@ export const HeaderWrapper = styled.header`
   }
 
   ${media.mobileMd} {
+    min-height: 60px;
     padding: 12px 10px;
   }
 `;
