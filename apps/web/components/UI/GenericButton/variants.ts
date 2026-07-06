@@ -124,6 +124,11 @@ export const shared = css<ButtonStyleProps>`
         `;
     }
   }}
+
+  &:active {
+    transform: scale(0.98) translateY(0);
+    opacity: 0.8;
+  }
 `;
 
 const buttonVariants = {};
