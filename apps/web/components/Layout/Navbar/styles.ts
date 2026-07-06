@@ -447,8 +447,11 @@ const navAccountMenuItemStyles = css`
   }
 
   &:disabled {
-    opacity: 0.55;
+    background: transparent;
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
     cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
   }
 `;
 

@@ -311,8 +311,11 @@ export const CollectionSectionArrow = styled.button`
   }
 
   &:disabled {
-    opacity: 0.35;
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
     cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
   }
 `;
 

@@ -140,8 +140,11 @@ export const PaginationNavButton = styled.button`
     opacity 0.2s ease;
 
   &:disabled {
-    opacity: 0.45;
+    background: ${(p) => p.theme.colors.neutral.GRAY_200};
+    color: ${(p) => p.theme.colors.neutral.GRAY_400};
     cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
   }
 `;
 

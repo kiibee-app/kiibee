@@ -52,9 +52,9 @@ export const Button = styled.button`
   border: none;
   cursor: pointer;
   &:disabled {
-    background: ${(p) => p.theme.colors.neutral.GRAY_200};
-    color: ${(p) => p.theme.colors.neutral.GRAY_400};
-    border-color: ${(p) => p.theme.colors.neutral.GRAY_200};
+    background: ${({ theme }) => theme.colors.neutral.GRAY};
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    border-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
     cursor: not-allowed;
     opacity: 1;
     pointer-events: none;

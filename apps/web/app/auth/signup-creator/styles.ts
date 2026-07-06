@@ -118,11 +118,6 @@ export const SubmitButton = styled(GenericButton).attrs({
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 600;
-
-  &:disabled {
-    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
-    cursor: not-allowed;
-  }
 `;
 
 export const LinkRow = styled.p`
