@@ -13,7 +13,7 @@ export const HeroWrapper = styled.div`
     padding: 88px 1.5rem 0;
   }
 
-  @media (max-width: 640px) {
+  ${media.mobileMd} {
     padding: 84px 1rem 0;
   }
 `;
@@ -61,7 +61,7 @@ export const TopBar = styled.div`
     padding-bottom: 16px;
   }
 
-  @media (max-width: 640px) {
+  ${media.mobileMd} {
     flex-wrap: wrap;
   }
 `;
@@ -125,7 +125,7 @@ export const Header = styled.div`
   gap: 16px;
   flex-wrap: wrap;
 
-  @media (max-width: 640px) {
+  ${media.mobileMd} {
     align-items: stretch;
   }
 `;
@@ -140,7 +140,7 @@ export const Section = styled.div`
     padding: 0 1.5rem;
   }
 
-  @media (max-width: 640px) {
+  ${media.mobileMd} {
     padding: 0 1rem;
   }
 `;
