@@ -38,8 +38,8 @@ const SpinnerOverlay = styled.div<{
         inset: 0;
         z-index: 9999;
         background-color: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(${$blurAmount});
         -webkit-backdrop-filter: blur(${$blurAmount});
+        backdrop-filter: blur(${$blurAmount});
       `;
     }
     if ($isLocal) {
@@ -48,8 +48,8 @@ const SpinnerOverlay = styled.div<{
         inset: 0;
         z-index: 50;
         background-color: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(${$blurAmount});
         -webkit-backdrop-filter: blur(${$blurAmount});
+        backdrop-filter: blur(${$blurAmount});
       `;
     }
     return `

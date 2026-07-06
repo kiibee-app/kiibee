@@ -42,6 +42,11 @@ export const shared = css<ButtonStyleProps>`
   transition: all 120ms ease;
   ${({ $size }) => sizeStyles[$size]}
 
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
+  }
+
   &:disabled,
   &[aria-disabled="true"] {
     cursor: not-allowed;
@@ -56,7 +61,7 @@ export const shared = css<ButtonStyleProps>`
           background: ${({ theme }) => theme.colors.primary.BLACK};
           color: ${({ theme }) => theme.colors.primary.WHITE};
           border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
-          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+          box-shadow: ${({ theme }) => theme.shadows.lg};
           &:not([type="submit"]):hover {
             background: transparent;
             color: ${({ theme }) => theme.colors.primary.BLACK};
@@ -117,13 +122,18 @@ export const shared = css<ButtonStyleProps>`
             background: ${({ theme }) => theme.colors.primary.BLACK};
             color: ${({ theme }) => theme.colors.primary.WHITE};
             border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+            box-shadow: ${({ theme }) => theme.shadows.lg};
             transform: translateY(-1px);
             opacity: 0.98;
           }
         `;
     }
   }}
+
+  &:active {
+    transform: scale(0.98) translateY(0);
+    opacity: 0.8;
+  }
 `;
 
 const buttonVariants = {};

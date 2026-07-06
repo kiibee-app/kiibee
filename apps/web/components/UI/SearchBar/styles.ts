@@ -16,6 +16,15 @@ export const Wrapper = styled.div<{ $width?: string }>`
 
   ${media.tablet} {
     flex: 1;
+    padding: 12px 14px;
+    max-height: 46px;
+  }
+
+  ${media.mobileLg} {
+    padding: 10px 12px;
+    max-height: 42px;
+    gap: 8px;
+    border-radius: 0.5rem;
   }
 `;
 

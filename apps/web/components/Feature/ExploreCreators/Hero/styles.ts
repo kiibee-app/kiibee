@@ -104,6 +104,12 @@ export const FilterBtn = styled.button<{ $active: boolean }>`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   white-space: nowrap;
+  transition: all 0.2s ease;
+
+  &:active {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
 
   svg {
     width: 20px;

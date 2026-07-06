@@ -22,12 +22,12 @@ export const SkeletonBase = styled.div`
   border-radius: 8px;
   background: linear-gradient(
     90deg,
-    ${({ theme }) => theme.colors.neutral.GRAY_100} 25%,
-    ${({ theme }) => theme.colors.neutral.GRAY_200} 37%,
-    ${({ theme }) => theme.colors.neutral.GRAY_100} 63%
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 25%,
+    ${({ theme }) => theme.colors.neutral.GRAY_100} 50%,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 75%
   );
   background-size: 200% 100%;
-  animation: ${shimmer} 1.4s infinite ease-in-out;
+  animation: ${shimmer} 1.5s infinite ease-in-out;
 `;
 
 export const SkeletonImage = styled(SkeletonBase)`

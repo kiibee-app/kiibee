@@ -14,14 +14,20 @@ export const Header = styled.header<HeaderProps>`
   height: ${({ $isMegaOpen }) =>
     $isMegaOpen ? "auto" : "var(--navbar-height, 73px)"};
   display: block;
+  -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
   background: ${({ theme }) => theme.colors.primary.WHITE_10};
   transition:
     min-height 240ms cubic-bezier(0.22, 1, 0.36, 1),
     height 240ms cubic-bezier(0.22, 1, 0.36, 1),
     background 180ms ease,
+    -webkit-backdrop-filter 180ms ease,
     backdrop-filter 180ms ease;
-  z-index: 50;
+    z-index: ${({ theme }) => theme.zIndex.navbar};
+
+  ${media.mobileMd} {
+    height: var(--navbar-height, 73px);
+  }
 `;
 
 export const Inner = styled.div`
@@ -37,7 +43,7 @@ export const Inner = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 1024px) {
+  ${media.desktop} {
     padding: var(--navbar-inner-tablet-padding, 0.9rem 1.5rem);
   }
 
@@ -203,6 +209,8 @@ export const MegaMenu = styled.div<{
   visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
   transform: translateY(${({ $isOpen }) => ($isOpen ? "0" : "-10px")});
   transform-origin: top center;
+  -webkit-backdrop-filter: ${({ $isOpen }) =>
+    $isOpen ? "blur(16px) saturate(30%)" : "blur(0) saturate(100%)"};
   backdrop-filter: ${({ $isOpen }) =>
     $isOpen ? "blur(16px) saturate(30%)" : "blur(0) saturate(100%)"};
   background: transparent;
@@ -211,9 +219,10 @@ export const MegaMenu = styled.div<{
     transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
     visibility 0ms linear ${({ $isOpen }) => ($isOpen ? "0ms" : "240ms")},
     background 180ms ease,
+    -webkit-backdrop-filter 180ms ease,
     backdrop-filter 180ms ease;
   pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
-  z-index: 1000;
+  z-index: ${({ theme }) => theme.zIndex.modal};
 
   ${({ $textTone, theme }) =>
     $textTone === "light" &&
@@ -269,15 +278,23 @@ export const ColumnItem = styled.a`
   display: block;
   padding: 5px !important;
   margin: 0;
+  border-radius: 0.375rem;
   color: ${({ theme }) => theme.colors.primary.BLACK};
   text-decoration: none;
   transition:
+    background 120ms ease,
     color 120ms ease,
     transform 120ms ease;
 
   &:hover {
+    background: ${({ theme }) => theme.colors.primary.WHITE_18};
     color: ${({ theme }) => theme.colors.primary.BLACK};
     transform: translateX(0px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
   }
 `;
 
@@ -364,14 +381,14 @@ export const Actions = styled.div<{
 export const NavAccountHost = styled.div<{ $open?: boolean }>`
   position: relative;
   display: inline-flex;
-  z-index: ${({ $open }) => ($open ? 1200 : "auto")};
+  z-index: ${({ $open, theme }) => ($open ? theme.zIndex.tooltip : "auto")};
 `;
 
 export const NavAccountDropdown = styled.div`
   position: absolute;
   right: 0;
   top: calc(100% + 10px);
-  z-index: 1100;
+  z-index: ${({ theme }) => theme.zIndex.popover};
   min-width: 200px;
   padding: 8px;
   border-radius: 14px;
@@ -411,7 +428,7 @@ export const NavAccountDropdown = styled.div`
     right: 0;
     top: calc(100% + 10px);
     bottom: auto;
-    z-index: 1200;
+    z-index: ${({ theme }) => theme.zIndex.tooltip};
     animation: none;
 
     &::before {
@@ -540,7 +557,7 @@ export const DrawerOverlay = styled.div<{
     bottom: 0;
     background: ${({ $variant, theme }) =>
       $variant === "dropdown" ? "transparent" : theme.colors.neutral.OVERLAY};
-    z-index: 85;
+    z-index: ${({ theme }) => theme.zIndex.drawerOverlay};
     animation: fadeIn 0.2s ease;
   }
 
@@ -573,7 +590,7 @@ export const DrawerPanel = styled.aside<{
       100dvh - var(--navbar-height, 73px) - var(--navbar-top-offset, 0px)
     );
     background: ${({ theme }) => theme.colors.primary.WHITE};
-    z-index: 95;
+    z-index: ${({ theme }) => theme.zIndex.drawerExpanded};
     transform: ${({ $open, $side }) =>
       $open
         ? "translateX(0)"

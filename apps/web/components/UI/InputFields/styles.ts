@@ -93,28 +93,19 @@ export const StyledInput = styled.input<{
   }
 
   &:focus {
+    outline: none;
+    background: ${({ $hasError, $locked, theme }) =>
+      $hasError
+        ? `color-mix(in srgb, ${theme.colors.primary.RED} 8%, transparent)`
+        : $locked
+          ? theme.colors.neutral.GRAY_200
+          : theme.colors.primary.WHITE};
     border-color: ${({ $hasError, $locked, theme }) =>
       $hasError
         ? theme.colors.primary.RED
         : $locked
           ? theme.colors.neutral.GRAY_400
-          : theme.colors.primary.BLACK};
-  }
-
-  ${media.mobile} {
-    &:focus-visible {
-      outline: 2px solid
-        ${({ $hasError, $locked, theme }) =>
-          $hasError
-            ? theme.colors.primary.RED
-            : $locked
-              ? theme.colors.neutral.GRAY_400
-              : theme.colors.primary.BLACK};
-      outline-offset: 2px;
-    }
-  }
-
-  ${media.mobile} {
+          : theme.colors.neutral.GRAY_500};
   }
 
   &[type="number"] {
@@ -171,17 +162,15 @@ export const StyledTextArea = styled.textarea<{
     background-color 150ms ease;
 
   &:focus {
+    outline: none;
+    background: ${({ $hasError, $locked, theme }) =>
+      $hasError
+        ? `color-mix(in srgb, ${theme.colors.primary.RED} 8%, transparent)`
+        : $locked
+          ? theme.colors.neutral.GRAY_200
+          : theme.colors.primary.WHITE};
     border-color: ${({ $hasError, theme }) =>
-      $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
-  }
-
-  ${media.mobile} {
-    &:focus-visible {
-      outline: 2px solid
-        ${({ $hasError, theme }) =>
-          $hasError ? theme.colors.primary.RED : theme.colors.primary.BLACK};
-      outline-offset: 2px;
-    }
+      $hasError ? theme.colors.primary.RED : theme.colors.neutral.GRAY_500};
   }
 
   &::placeholder {
@@ -263,7 +252,7 @@ export const Menu = styled.div`
   overscroll-behavior: contain;
   touch-action: pan-y;
   width: 100%;
-  z-index: 1200;
+  z-index: ${({ theme }) => theme.zIndex.tooltip};
   ${media.tablet} {
     max-height: 150px;
   }
@@ -365,7 +354,7 @@ export const DatePopup = styled.div<{
   border-radius: 12px;
   box-shadow: 0 12px 30px ${({ theme }) => theme.colors.neutral.GRAY_300};
   max-width: 92vw;
-  z-index: 1400;
+  z-index: ${({ theme }) => theme.zIndex.dropdownMax};
   overflow: hidden;
 
   ${media.mobileMd} {
@@ -431,16 +420,22 @@ export const CancelButton = styled.button`
   cursor: pointer;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  transition: all 0.2s ease;
 
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
+
+  &:active {
+    transform: scale(0.98);
+    opacity: 0.8;
   }
 `;
 
 export const DatePopupWrapper = styled.div`
   position: absolute;
   inset: 0;
-  z-index: 1400;
+  z-index: ${({ theme }) => theme.zIndex.dropdownMax};
 
   ${media.mobileMd} {
     display: flex;

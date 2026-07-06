@@ -10,7 +10,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: ${({ theme }) => theme.zIndex.modal};
 `;
 export const ModalContainer = styled.div<{
   $width?: string;
@@ -119,6 +119,11 @@ export const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
+  }
 `;
 
 export const ShareContent = styled.div`

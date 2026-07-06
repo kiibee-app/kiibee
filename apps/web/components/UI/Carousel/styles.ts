@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { media } from "@repo/ui/breakpoints";
+import { media, breakpoints } from "@repo/ui/breakpoints";
 import { alpha } from "@/utils/common";
 import {
   CarouselTransitionType,
@@ -12,6 +12,7 @@ export const CarouselContainer = styled.div`
   height: 100%;
   overflow: hidden;
   outline: none;
+  container-type: inline-size;
 `;
 
 export const SlideTrack = styled.div<{
@@ -64,8 +65,8 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
   height: 48px;
   border-radius: 50%;
   background: ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.15)};
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   border: 1px solid ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.25)};
   color: ${({ theme }) => theme.colors.primary.WHITE};
   display: flex;
@@ -88,8 +89,8 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 3px
-      ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.4)};
+    outline: 2px solid ${({ theme }) => theme.colors.primary.WHITE};
+    outline-offset: 2px;
   }
 
   svg {
@@ -113,6 +114,24 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
       width: 16px;
       height: 16px;
     }
+  }
+
+  ${media.mobileLg} {
+    ${({ $direction }) =>
+      $direction === "left" ? "left: 8px;" : "right: 8px;"}
+  }
+
+  ${media.mobileSm} {
+    display: none;
+  }
+
+  @container (max-width: ${breakpoints.mobileLg}) {
+    ${({ $direction }) =>
+      $direction === "left" ? "left: 8px;" : "right: 8px;"}
+  }
+
+  @container (max-width: ${breakpoints.mobileSm}) {
+    display: none;
   }
 `;
 
@@ -150,7 +169,7 @@ export const Dot = styled.button<{ $active: boolean }>`
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px
-      ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.4)};
+    outline: 2px solid ${({ theme }) => theme.colors.primary.WHITE};
+    outline-offset: 2px;
   }
 `;
