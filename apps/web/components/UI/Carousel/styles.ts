@@ -88,8 +88,8 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 3px
-      ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.4)};
+    outline: 2px solid ${({ theme }) => theme.colors.primary.WHITE};
+    outline-offset: 2px;
   }
 
   svg {
@@ -150,7 +150,7 @@ export const Dot = styled.button<{ $active: boolean }>`
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px
-      ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.4)};
+    outline: 2px solid ${({ theme }) => theme.colors.primary.WHITE};
+    outline-offset: 2px;
   }
 `;
