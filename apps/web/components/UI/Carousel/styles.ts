@@ -64,8 +64,8 @@ export const NavigationArrow = styled.button<{ $direction: "left" | "right" }>`
   height: 48px;
   border-radius: 50%;
   background: ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.15)};
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   border: 1px solid ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.25)};
   color: ${({ theme }) => theme.colors.primary.WHITE};
   display: flex;
