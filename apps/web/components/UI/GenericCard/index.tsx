@@ -86,6 +86,15 @@ export default function GenericCard({
     forKey: string;
     url: string;
   } | null>(null);
+  const [imageLoading, setImageLoading] = useState(true);
+
+  const [prevImageKey, setPrevImageKey] = useState(imageKey);
+
+  if (imageKey !== prevImageKey) {
+    setPrevImageKey(imageKey);
+    setImageLoading(true);
+  }
+
   const activeFallback =
     fallbackState?.forKey === imageKey ? fallbackState.url : null;
   const imageFailed = failedImageKey === imageKey && !activeFallback;
@@ -105,12 +114,16 @@ export default function GenericCard({
       return;
     }
     setFailedImageKey(imageKey);
+    setImageLoading(false);
     onImageError?.();
   };
 
   const posterImageStyle = coverImage
     ? CONTENT_POSTER_IMAGE_STYLE
     : REMOTE_COVER_IMAGE_STYLE;
+
+  const isCurrentlyLoading =
+    imageLoading && !showInitials && !imageFailed && Boolean(imageSrc);
 
   return (
     <Card
@@ -121,7 +134,11 @@ export default function GenericCard({
       style={onClick ? { cursor: "pointer" } : undefined}
     >
       {(image || imageInitials) && (
-        <ImageWrapper $compact={compact} $coverImage={coverImage}>
+        <ImageWrapper
+          $compact={compact}
+          $coverImage={coverImage}
+          $isLoading={isCurrentlyLoading}
+        >
           {badge && <Badge $variant={badgeVariant}>{badge}</Badge>}
           {showRemoteImage ? (
             // eslint-disable-next-line @next/next/no-img-element -- arbitrary remote URLs may fall outside Next image remotePatterns
@@ -131,6 +148,7 @@ export default function GenericCard({
               style={posterImageStyle}
               loading={imagePriority ? "eager" : "lazy"}
               decoding="async"
+              onLoad={() => setImageLoading(false)}
               onError={handleImageError}
             />
           ) : showOptimizedImage ? (
@@ -141,6 +159,7 @@ export default function GenericCard({
               sizes="(max-width: 767px) 100vw, 50vw"
               style={posterImageStyle}
               priority={imagePriority}
+              onLoad={() => setImageLoading(false)}
               onError={handleImageError}
             />
           ) : showInitials ? (

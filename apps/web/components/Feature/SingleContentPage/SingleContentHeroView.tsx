@@ -112,10 +112,12 @@ const HeroImage = ({
   hero,
   currentSrc,
   onImageError,
+  onLoad,
 }: {
   hero: SingleContentPreviewProps["hero"];
   currentSrc: string;
   onImageError: () => void;
+  onLoad: () => void;
 }) => {
   if (isStaticImageData(hero.image)) {
     const imageToRender =
@@ -129,6 +131,7 @@ const HeroImage = ({
         sizes="(max-width: 900px) 100vw, 900px"
         style={{ objectFit: "contain" }}
         onError={onImageError}
+        onLoad={onLoad}
       />
     );
   }
@@ -143,6 +146,7 @@ const HeroImage = ({
       style={{ objectFit: "contain" }}
       unoptimized
       onError={onImageError}
+      onLoad={onLoad}
     />
   );
 };
@@ -159,12 +163,14 @@ function SingleContentPreview({
   deferCloudflareEmbed,
   currentSrc,
   onImageError,
+  onLoad,
 }: SingleContentPreviewProps & {
   isTrailerPlaying: boolean;
   isCloudflarePlaying: boolean;
   deferCloudflareEmbed: boolean;
   currentSrc: string;
   onImageError: () => void;
+  onLoad: () => void;
 }) {
   const mediaContent = getMediaContent(
     hero,
@@ -186,6 +192,7 @@ function SingleContentPreview({
         hero={hero}
         currentSrc={currentSrc}
         onImageError={onImageError}
+        onLoad={onLoad}
       />
     )
   );
@@ -200,6 +207,7 @@ export default function SingleContentHeroView({
   const [hasStartedPlayback, setHasStartedPlayback] = useState(false);
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
   const [isCloudflarePlaying, setIsCloudflarePlaying] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
   const isVideoMedia = hero.media?.type === FORMAT_TYPE.VIDEO;
   const isCloudflareVideo =
     isVideoMedia && isCloudflareStreamEmbedUrl(hero.media?.src);
@@ -216,10 +224,17 @@ export default function SingleContentHeroView({
       ? resolveImageUrl(hero.imageFallback)
       : primarySrc;
 
+  const [prevSrc, setPrevSrc] = useState(currentSrc);
+  if (currentSrc !== prevSrc) {
+    setPrevSrc(currentSrc);
+    setImageLoading(true);
+  }
+
   const handleImageError = () => {
     if (hero.imageFallback && fallbackForSrc !== primarySrc) {
       setFallbackForSrc(primarySrc);
     }
+    setImageLoading(false);
   };
 
   const getCssUrl = (urlStr: string) => {
@@ -290,8 +305,16 @@ export default function SingleContentHeroView({
 
   const noTrailerTooltip = showTrailerButton && !hasTrailerLink;
 
+  const isImageDisplayed =
+    !hero.media?.src ||
+    hero.media?.type !== FORMAT_TYPE.VIDEO ||
+    (isCloudflareVideo && deferCloudflareEmbed && !isCloudflarePlaying) ||
+    (isThirdPartyVideo && !isTrailerPlaying);
+
+  const isHeroLoading = isImageDisplayed && imageLoading;
+
   return (
-    <Hero $isPdf={isPdfLayout}>
+    <Hero $isPdf={isPdfLayout} $isLoading={isHeroLoading}>
       {encodedBlurSrc && (
         <HeroBlurBg style={{ backgroundImage: `url("${encodedBlurSrc}")` }} />
       )}
@@ -310,6 +333,7 @@ export default function SingleContentHeroView({
           deferCloudflareEmbed={deferCloudflareEmbed}
           currentSrc={currentSrc}
           onImageError={handleImageError}
+          onLoad={() => setImageLoading(false)}
         />
       </Preview>
 

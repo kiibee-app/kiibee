@@ -1,6 +1,7 @@
 import { media } from "@repo/ui/breakpoints";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
+import { pulse } from "@/utils/animations";
 
 export const Card = styled.div<{
   $width?: string;
@@ -41,6 +42,7 @@ export const Card = styled.div<{
 export const ImageWrapper = styled.div<{
   $compact?: boolean;
   $coverImage?: boolean;
+  $isLoading?: boolean;
 }>`
   position: relative;
   width: 100%;
@@ -51,14 +53,31 @@ export const ImageWrapper = styled.div<{
     if ($compact) return "104px";
     return "190px";
   }};
-  aspect-ratio: ${({ $coverImage }) => ($coverImage ? "1 / 1" : "auto")};
+  aspect-ratio: ${({ $coverImage }) => ($coverImage ? "1 / 1" : "16 / 9")};
+
+  @supports not (aspect-ratio: 1 / 1) {
+    padding-bottom: ${({ $coverImage }) => ($coverImage ? "100%" : "56.25%")};
+  }
+
   padding: ${({ $compact, $coverImage }) =>
     $coverImage || $compact ? "0" : "12px 178px 154px 10px"};
   align-items: center;
   align-self: stretch;
   border-radius: 12px 12px 0 0;
+  background-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
+
+  ${({ $isLoading }) =>
+    $isLoading &&
+    css`
+      animation: ${pulse} 1.5s ease-in-out infinite;
+    `}
 
   img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
     object-fit: cover;
     object-position: ${({ $coverImage }) =>
