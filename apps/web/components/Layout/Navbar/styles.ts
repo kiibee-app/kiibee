@@ -20,7 +20,7 @@ export const Header = styled.header<HeaderProps>`
     background 180ms ease,
     -webkit-backdrop-filter 180ms ease,
     backdrop-filter 180ms ease;
-  z-index: 50;
+  z-index: ${({ theme }) => theme.zIndex.navbar};
 
   ${media.mobileMd} {
     height: var(--navbar-height, 73px);
@@ -216,7 +216,7 @@ export const MegaMenu = styled.div<{
     -webkit-backdrop-filter 180ms ease,
     backdrop-filter 180ms ease;
   pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
-  z-index: 1000;
+  z-index: ${({ theme }) => theme.zIndex.modal};
 
   ${({ $textTone, theme }) =>
     $textTone === "light" &&
@@ -367,14 +367,14 @@ export const Actions = styled.div<{
 export const NavAccountHost = styled.div<{ $open?: boolean }>`
   position: relative;
   display: inline-flex;
-  z-index: ${({ $open }) => ($open ? 1200 : "auto")};
+  z-index: ${({ $open, theme }) => ($open ? theme.zIndex.tooltip : "auto")};
 `;
 
 export const NavAccountDropdown = styled.div`
   position: absolute;
   right: 0;
   top: calc(100% + 10px);
-  z-index: 1100;
+  z-index: ${({ theme }) => theme.zIndex.popover};
   min-width: 200px;
   padding: 8px;
   border-radius: 14px;
@@ -414,7 +414,7 @@ export const NavAccountDropdown = styled.div`
     right: 0;
     top: calc(100% + 10px);
     bottom: auto;
-    z-index: 1200;
+    z-index: ${({ theme }) => theme.zIndex.tooltip};
     animation: none;
 
     &::before {
@@ -543,7 +543,7 @@ export const DrawerOverlay = styled.div<{
     bottom: 0;
     background: ${({ $variant, theme }) =>
       $variant === "dropdown" ? "transparent" : theme.colors.neutral.OVERLAY};
-    z-index: 85;
+    z-index: ${({ theme }) => theme.zIndex.drawerOverlay};
     animation: fadeIn 0.2s ease;
   }
 
@@ -576,7 +576,7 @@ export const DrawerPanel = styled.aside<{
       100dvh - var(--navbar-height, 73px) - var(--navbar-top-offset, 0px)
     );
     background: ${({ theme }) => theme.colors.primary.WHITE};
-    z-index: 95;
+    z-index: ${({ theme }) => theme.zIndex.drawerExpanded};
     transform: ${({ $open, $side }) =>
       $open
         ? "translateX(0)"

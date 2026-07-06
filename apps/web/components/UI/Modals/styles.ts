@@ -10,7 +10,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: ${({ theme }) => theme.zIndex.modal};
 `;
 export const ModalContainer = styled.div<{
   $width?: string;
