@@ -263,7 +263,7 @@ export const Menu = styled.div`
   overscroll-behavior: contain;
   touch-action: pan-y;
   width: 100%;
-  z-index: 1200;
+  z-index: ${({ theme }) => theme.zIndex.tooltip};
   ${media.tablet} {
     max-height: 150px;
   }
@@ -365,7 +365,7 @@ export const DatePopup = styled.div<{
   border-radius: 12px;
   box-shadow: 0 12px 30px ${({ theme }) => theme.colors.neutral.GRAY_300};
   max-width: 92vw;
-  z-index: 1400;
+  z-index: ${({ theme }) => theme.zIndex.dropdownMax};
   overflow: hidden;
 
   ${media.mobileMd} {
@@ -440,7 +440,7 @@ export const CancelButton = styled.button`
 export const DatePopupWrapper = styled.div`
   position: absolute;
   inset: 0;
-  z-index: 1400;
+  z-index: ${({ theme }) => theme.zIndex.dropdownMax};
 
   ${media.mobileMd} {
     display: flex;

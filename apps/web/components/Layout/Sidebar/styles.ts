@@ -18,7 +18,7 @@ export const SidebarWrapper = styled.aside<{ $expanded: boolean }>`
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.colors.primary.WHITE};
-  z-index: 90;
+  z-index: ${({ theme }) => theme.zIndex.drawer};
   transition:
     width 0.3s ease,
     filter 0.3s ease;
@@ -30,7 +30,8 @@ export const SidebarWrapper = styled.aside<{ $expanded: boolean }>`
     transition:
       transform 0.3s ease,
       filter 0.3s ease;
-    z-index: ${({ $expanded }) => ($expanded ? 95 : 90)};
+    z-index: ${({ $expanded, theme }) =>
+      $expanded ? theme.zIndex.drawerExpanded : theme.zIndex.drawer};
     filter: ${({ $expanded }) =>
       $expanded ? "drop-shadow(6px 0 24px rgba(15, 23, 42, 0.12))" : "none"};
   }
@@ -78,7 +79,7 @@ export const Overlay = styled.div<{ $expanded: boolean }>`
     position: fixed;
     inset: 0;
     background: ${({ theme }) => theme.colors.neutral.OVERLAY};
-    z-index: 85;
+    z-index: ${({ theme }) => theme.zIndex.drawerOverlay};
   }
 `;
 
@@ -211,7 +212,7 @@ export const SidebarDropdown = styled.div`
   position: absolute;
   left: calc(100% - 10px);
   top: 0;
-  z-index: 100;
+  z-index: ${({ theme }) => theme.zIndex.dropdown};
   min-width: 220px;
   padding: 4px 0;
   border-radius: 12px;
