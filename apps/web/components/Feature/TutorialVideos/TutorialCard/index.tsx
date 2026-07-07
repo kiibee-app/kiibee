@@ -221,6 +221,16 @@ function TutorialCard({
     <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
   );
 
+  const rentedItem = useMemo(() => {
+    if (!isLoggedIn) return undefined;
+    return [
+      ...(rentedData?.videos ?? []),
+      ...(rentedData?.audios ?? []),
+      ...(rentedData?.pdfs ?? []),
+      ...(rentedData?.webs ?? []),
+    ].find((item) => item.id === tutorial.id);
+  }, [isLoggedIn, rentedData, tutorial.id]);
+
   const card = (
     <GenericCard
       coverImage
@@ -279,6 +289,12 @@ function TutorialCard({
         </ActionRow>
       }
     >
+      {rentedItem?.expiryText ? (
+        <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
+          {rentedItem.expiryText}
+        </MonoText>
+      ) : null}
+
       {tutorial.published ? (
         <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
           {tutorial.published}
