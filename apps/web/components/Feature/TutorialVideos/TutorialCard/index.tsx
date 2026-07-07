@@ -21,6 +21,9 @@ import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
+import { useViewerPurchased } from "@/hooks/viewer/useViewerPurchased";
+import { useViewerRentedData } from "@/hooks/useViewerRented";
+import { RENTED_MODES } from "@/utils/viewerRented";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -41,6 +44,31 @@ const formatIconMap: Record<FormatType, IconComponent> = {
   pdf: PdfFileIcon,
   epub: EpubIcon,
   web: WebIcon,
+};
+
+interface OwnershipItem {
+  id: string;
+}
+
+const hasItem = (
+  data:
+    | {
+        videos?: OwnershipItem[];
+        audios?: OwnershipItem[];
+        pdfs?: OwnershipItem[];
+        webs?: OwnershipItem[];
+      }
+    | undefined,
+  id: string,
+) => {
+  if (!data) return false;
+  return (
+    data.videos?.some((item) => item.id === id) ||
+    data.audios?.some((item) => item.id === id) ||
+    data.pdfs?.some((item) => item.id === id) ||
+    data.webs?.some((item) => item.id === id) ||
+    false
+  );
 };
 
 function TutorialCard({
@@ -92,19 +120,42 @@ function TutorialCard({
     return formatIconMap[formatType];
   }, [tutorial.formatType]);
 
+  const isLoggedIn = Boolean(user && user.id);
+  const { data: purchasedData } = useViewerPurchased(isLoggedIn);
+  const { sources: rentedData } = useViewerRentedData(
+    RENTED_MODES.CURRENTLY,
+    isLoggedIn,
+  );
+
+  const isOwned = useMemo(() => {
+    if (!isLoggedIn) return false;
+    return (
+      hasItem(purchasedData, tutorial.id) || hasItem(rentedData, tutorial.id)
+    );
+  }, [isLoggedIn, purchasedData, rentedData, tutorial.id]);
+
   const singleTutorialHref = useMemo(
     () => pathPublishedContent(tutorial.id),
     [tutorial.id],
   );
 
   const buttons = useMemo(() => {
+    if (isOwned) {
+      return [
+        {
+          label: t("createProfileHome.latestUpload.seeContent"),
+          variant: VARIANT.SECONDARY,
+          href: singleTutorialHref,
+        },
+      ];
+    }
     const defaultButton: TutorialButton = {
       label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
       variant: VARIANT.SECONDARY,
       href: singleTutorialHref,
     };
     return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
-  }, [tutorial.buttons, t, singleTutorialHref]);
+  }, [isOwned, tutorial.buttons, t, singleTutorialHref]);
 
   const resolveButtonHref = (href?: string) => {
     if (!href) return singleTutorialHref;
