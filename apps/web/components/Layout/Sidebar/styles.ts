@@ -42,7 +42,7 @@ export const SidebarMenu = styled.div<{ $expanded?: boolean }>`
   flex-direction: column;
   flex-shrink: 0;
   padding: ${({ $expanded }) =>
-    $expanded ? "30px 16px 16px" : "30px 8px 16px"};
+    $expanded ? "53px 19px 16px" : "53px 8px 16px"};
   gap: 16px;
 `;
 
@@ -62,7 +62,7 @@ export const BottomMenu = styled.div<{ $expanded?: boolean }>`
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  padding: ${({ $expanded }) => ($expanded ? "16px" : "16px 8px")};
+  padding: ${({ $expanded }) => ($expanded ? "16px 19px" : "16px 8px")};
   gap: 16px;
   padding-bottom: 16px;
   border-top: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
