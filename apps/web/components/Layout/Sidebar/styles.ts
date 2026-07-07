@@ -41,7 +41,8 @@ export const SidebarMenu = styled.div<{ $expanded?: boolean }>`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  padding: ${({ $expanded }) => ($expanded ? "16px" : "16px 8px")};
+  padding: ${({ $expanded }) =>
+    $expanded ? "30px 16px 16px" : "30px 8px 16px"};
   gap: 16px;
 `;
 
