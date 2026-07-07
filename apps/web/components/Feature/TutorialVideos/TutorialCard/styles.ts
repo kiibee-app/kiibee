@@ -99,7 +99,7 @@ export const ImageWrapper = styled.div`
   width: 100%;
   aspect-ratio: 25 / 19;
   overflow: hidden;
-  border-radius: 0.75rem 0.75rem 0 0;
+  border-radius: ${({ theme }) => `${theme.radius.lg} ${theme.radius.lg} 0 0`};
 `;
 
 export const VideoBox = styled.div`

@@ -35,9 +35,10 @@ export const Spinner = styled.div<{ $size: LoaderSize }>`
   width: ${({ $size }) => sizeMap[$size].spinner}px;
   height: ${({ $size }) => sizeMap[$size].spinner}px;
   border: ${({ $size }) => sizeMap[$size].border}px solid
-    ${({ theme }) => theme.colors.neutral.GRAY_100};
-  border-top-color: ${({ theme }) => theme.colors.primary.GREEN};
+    ${({ theme }) => theme.colors.primary.GREEN};
+  border-top-color: transparent;
   border-radius: 50%;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
   animation: ${spin} 0.8s linear infinite;
 `;
 

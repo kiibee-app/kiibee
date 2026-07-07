@@ -10,7 +10,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: ${({ theme }) => theme.zIndex.modal};
 `;
 export const ModalContainer = styled.div<{
   $width?: string;
@@ -78,14 +78,12 @@ export const ButtonGroup = styled.div<{
     width: ${({ $fullWidthButtons }) => ($fullWidthButtons ? "100%" : "176px")};
     flex: ${({ $fullWidthButtons }) =>
       $fullWidthButtons ? "1 1 0" : "0 0 auto"};
-    height: 49px;
   }
 
   ${media.tablet} {
     & > button {
       width: ${({ $fullWidthButtons }) =>
         $fullWidthButtons ? "100%" : "auto"};
-      height: 30px;
     }
   }
 `;
@@ -119,6 +117,11 @@ export const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:focus-visible {
+    outline: 2px solid ${({ theme }) => theme.colors.primary.BLACK};
+    outline-offset: 2px;
+  }
 `;
 
 export const ShareContent = styled.div`
@@ -163,7 +166,8 @@ export const CopyButton = styled.button<{ $copied?: boolean }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   cursor: pointer;
   ${({ theme }) => theme.typography.Body_Bold};
-  transition: background 200ms ease;
+  transition: background ${({ theme }) => theme.animations.fast}
+    ${({ theme }) => theme.animations.easing};
 
   &:hover {
     background: ${({ theme }) => theme.colors.primary.GREEN};

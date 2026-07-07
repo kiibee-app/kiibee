@@ -1,6 +1,7 @@
 import COLORS, { ColorPalette } from "./colors";
 import { typography as TypographySystem } from "./typography";
 import breakpoints from "./breakpoints";
+import zIndex from "./zIndex";
 
 export type BreakPoints = typeof breakpoints;
 export type TypographyOptions = typeof TypographySystem;
@@ -15,6 +16,7 @@ export interface Theme {
   shadows: Record<string, string>;
   animations: Record<string, string>;
   heights: Record<string, string>;
+  zIndex: typeof zIndex;
 }
 
 const spacingScale = [0, 4, 8, 12, 16, 20, 24, 32, 40, 48];
@@ -36,6 +38,7 @@ const borderRadius = {
   xl: "6px",
   md: "8px",
   lg: "12px",
+  xxl: "16px",
   full: "9999px",
 };
 
@@ -53,9 +56,10 @@ const shadows = {
 };
 
 const animations = {
-  fast: "150ms ease",
-  normal: "300ms ease",
-  slow: "500ms ease",
+  fast: "150ms",
+  normal: "300ms",
+  slow: "500ms",
+  easing: "cubic-bezier(0.4, 0, 0.2, 1)",
 };
 
 const heights = {
@@ -76,6 +80,7 @@ export const theme: Theme = {
   shadows,
   animations,
   heights,
+  zIndex,
 };
 
 export default theme;

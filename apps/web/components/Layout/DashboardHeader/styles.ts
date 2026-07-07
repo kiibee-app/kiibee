@@ -5,7 +5,8 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export const HeaderWrapper = styled.header`
-  height: 70px;
+  min-height: 70px;
+  height: auto;
   width: 100%;
   position: fixed;
   top: 0;
@@ -23,6 +24,7 @@ export const HeaderWrapper = styled.header`
   }
 
   ${media.mobileMd} {
+    min-height: 60px;
     padding: 12px 10px;
   }
 `;
@@ -176,11 +178,21 @@ export const ProfileButton = styled.button`
 `;
 
 export const ChannelLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
   text-decoration: none;
   color: inherit;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 
-  &:hover {
-    text-decoration: underline;
+  &:hover,
+  &:focus-visible {
+    background: ${({ theme }) => theme.colors.primary.GRAY};
+    outline: none;
   }
 `;
 
@@ -193,11 +205,15 @@ export const RightProfileWrapper = styled(Link)`
   color: inherit;
   border: none;
   background: transparent;
-  padding: 0;
+  padding: 6px 8px;
+  border-radius: 10px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 
-  &:focus,
+  &:hover,
   &:focus-visible {
+    background: ${({ theme }) => theme.colors.primary.GRAY};
     outline: none;
-    box-shadow: none;
   }
 `;

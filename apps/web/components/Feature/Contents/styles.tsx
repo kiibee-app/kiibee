@@ -84,6 +84,14 @@ export const CreateButton = styled.button`
   padding: 16px 22px;
   min-height: 48px;
   cursor: pointer;
+
+  &:disabled {
+    background: ${COLORS.neutral.GRAY_200};
+    color: ${COLORS.neutral.GRAY_400};
+    cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
+  }
 `;
 
 export const HeaderActions = styled.div`
@@ -105,8 +113,12 @@ export const CancelButton = styled.button`
   color: ${COLORS.primary.BLACK};
 
   &:disabled {
-    opacity: 0.55;
+    background: ${COLORS.neutral.GRAY_200};
+    color: ${COLORS.neutral.GRAY_400};
+    border-color: ${COLORS.neutral.GRAY_200};
     cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
   }
 `;
 
@@ -114,11 +126,6 @@ export const SaveButton = styled(CreateButton)`
   padding: 8px 24px;
   min-height: 36px;
   border-radius: 8px;
-
-  &:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
-  }
 `;
 
 export const PlusMark = styled.span`

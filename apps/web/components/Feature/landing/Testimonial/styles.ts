@@ -69,8 +69,8 @@ export const Card = styled.div`
   gap: 25px;
   border-radius: 20px;
   background: ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.42)};
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: 1px solid ${({ theme }) => alpha(theme.colors.primary.WHITE, 0.35)};
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
