@@ -23,7 +23,7 @@ export const Card = styled.div<{
     return "315px";
   }};
   width: ${({ $width }) => $width || "100%"};
-  box-shadow: ${({ theme }) => theme.shadows.frame};
+  box-shadow: ${({ theme }) => theme.shadows.xl};
   transition:
     transform ${({ theme }) => theme.animations.normal}
       ${({ theme }) => theme.animations.easing},
