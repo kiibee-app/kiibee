@@ -43,7 +43,7 @@ export const shared = css<ButtonStyleProps>`
   white-space: nowrap;
   width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "auto")};
   min-width: ${({ $minWidth }) => $minWidth ?? "0"};
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.radius.md};
   cursor: pointer;
   text-decoration: none;
   transition: all 120ms ease;
@@ -87,7 +87,7 @@ export const shared = css<ButtonStyleProps>`
           background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
           color: ${({ theme }) => theme.colors.primary.BLACK};
           border: 1px solid transparent;
-          border-radius: 0.5rem;
+          border-radius: ${({ theme }) => theme.radius.md};
           &:not([type="submit"]):hover {
             background: transparent;
             border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
@@ -100,7 +100,7 @@ export const shared = css<ButtonStyleProps>`
           background: ${({ theme }) => theme.colors.primary.RED};
           color: ${({ theme }) => theme.colors.primary.WHITE};
           border: 1px solid ${({ theme }) => theme.colors.primary.RED};
-          border-radius: 8px;
+          border-radius: ${({ theme }) => theme.radius.md};
 
           &:not([type="submit"]):hover {
             background: ${({ theme }) => theme.colors.primary.WHITE};
@@ -115,7 +115,7 @@ export const shared = css<ButtonStyleProps>`
           background: ${({ theme }) => theme.colors.neutral.WHITE};
           color: ${({ theme }) => theme.colors.primary.BLACK};
           border: 1.3px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
-          border-radius: 999px;
+          border-radius: ${({ theme }) => theme.radius.full};
 
           &:not([type="submit"]):hover {
             background: ${({ theme }) => theme.colors.neutral.GRAY_100};

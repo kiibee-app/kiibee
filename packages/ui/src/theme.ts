@@ -38,6 +38,7 @@ const borderRadius = {
   xl: "6px",
   md: "8px",
   lg: "12px",
+  xxl: "16px",
   full: "9999px",
 };
 
