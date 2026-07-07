@@ -38,6 +38,10 @@ import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
+import {
+  isBuyActionLabel,
+  isRentActionLabel,
+} from "@/utils/contentPricingActions";
 
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import { useLogout } from "@/hooks/auth/useLogout";
@@ -140,13 +144,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     }
 
     return actions.map((action) => {
-      const normalizedLabel = action.label.toLowerCase();
-      const isPurchase = normalizedLabel.includes(
-        t("pricingLabels.buy").toLowerCase(),
-      );
-      const isRental = normalizedLabel.includes(
-        t("pricingLabels.rent").toLowerCase(),
-      );
+      const isPurchase = isBuyActionLabel(action.label);
+      const isRental = isRentActionLabel(action.label);
 
       if (!isPurchase && !isRental) {
         return action;
@@ -214,9 +213,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
-            isPurchase: action.label
-              .toLowerCase()
-              .includes(t("pricingLabels.buy").toLowerCase()),
+            isPurchase: isBuyActionLabel(action.label),
           });
           setShowPurchaseModal(true);
         }
@@ -313,12 +310,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       typeof accessMeta.value === STRING &&
       accessMeta.value !== ACCESS_TYPE_FREE;
 
-    const actionLabel = primaryAction?.label?.toLowerCase();
     const isPurchaseAction = Boolean(
-      actionLabel?.includes(t("pricingLabels.buy").toLowerCase()),
+      primaryAction?.label && isBuyActionLabel(primaryAction.label),
     );
     const isRentalAction = Boolean(
-      actionLabel?.includes(t("pricingLabels.rent").toLowerCase()),
+      primaryAction?.label && isRentActionLabel(primaryAction.label),
     );
 
     if ((isPaid || isPurchaseAction || isRentalAction) && !hasViewerAccess) {
