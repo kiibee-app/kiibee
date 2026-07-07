@@ -78,14 +78,12 @@ export const ButtonGroup = styled.div<{
     width: ${({ $fullWidthButtons }) => ($fullWidthButtons ? "100%" : "176px")};
     flex: ${({ $fullWidthButtons }) =>
       $fullWidthButtons ? "1 1 0" : "0 0 auto"};
-    height: 49px;
   }
 
   ${media.tablet} {
     & > button {
       width: ${({ $fullWidthButtons }) =>
         $fullWidthButtons ? "100%" : "auto"};
-      height: 30px;
     }
   }
 `;

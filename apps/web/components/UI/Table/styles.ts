@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { TABLE_STATUS } from "@/utils/tableStatus";
 import { TABLE_ALIGN, TableAlign } from "@/utils/ui";
 import { MonoText } from "../Monotext";
+import { BUTTON_HEIGHTS } from "../GenericButton/variants";
 
 export const TableContainer = styled.div`
   width: 100%;
@@ -265,7 +266,7 @@ export const PaginationMetaSelectWrap = styled.div`
 export const PaginationMetaSelectTrigger = styled.button`
   position: relative;
   width: 56px;
-  height: 32px;
+  height: ${BUTTON_HEIGHTS.sm};
   padding: 0 24px 0 12px;
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
@@ -350,9 +351,9 @@ export const PaginationButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  width: 32px;
-  height: 32px;
+  min-width: ${BUTTON_HEIGHTS.sm};
+  width: ${BUTTON_HEIGHTS.sm};
+  height: ${BUTTON_HEIGHTS.sm};
   padding: 0;
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
@@ -375,17 +376,17 @@ export const PaginationEllipsis = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  width: 32px;
-  height: 32px;
+  min-width: ${BUTTON_HEIGHTS.sm};
+  width: ${BUTTON_HEIGHTS.sm};
+  height: ${BUTTON_HEIGHTS.sm};
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   ${({ theme }) => theme.typography.Body_Medium};
   user-select: none;
 `;
 
 export const PageNumberButton = styled(PaginationButton)<{ $active?: boolean }>`
-  min-width: 32px;
-  width: 32px;
+  min-width: ${BUTTON_HEIGHTS.sm};
+  width: ${BUTTON_HEIGHTS.sm};
   color: ${({ $active, theme }) =>
     $active ? theme.colors.primary.WHITE : theme.colors.neutral.GRAY_500};
   background: ${({ $active, theme }) =>
