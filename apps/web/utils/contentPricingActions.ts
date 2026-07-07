@@ -83,7 +83,7 @@ function resolvePricingPrefixes(labels?: PricingLabels) {
   return {
     rentPrefix: labels?.rent ?? RENT_PREFIX,
     buyPrefix: labels?.buy ?? BUY_PREFIX,
-    buyCollectionPrefix: labels?.buyCollection ?? BUY_COLLECTION_PREFIX,
+    buyCollectionPrefix: labels?.buy ?? BUY_PREFIX,
   };
 }
 

@@ -1,17 +1,18 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ComponentType } from "react";
+import { useState, type ComponentType } from "react";
 import Link from "next/link";
 import recentCreator from "@/assets/images/creators/recent_creator.webp";
 import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
 import PdfFileIcon from "@/assets/icons/PdfFileIcon";
+import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
-import { VARIANT, type ImageSource } from "@/utils/Constants";
-import { resolveImageUrl, resolvePublicMediaUrl } from "@/utils/media";
+import { VARIANT } from "@/utils/Constants";
+import { resolveImageUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import {
@@ -20,14 +21,8 @@ import {
   type TutorialVideo,
 } from "@/utils/types";
 import {
-  CollectionActionRow,
   CollectionAuthor,
-  CollectionBadge,
   CollectionBadgeText,
-  CollectionCard,
-  CollectionCardBody,
-  CollectionCoverImage,
-  CollectionImageArea,
   CollectionTime,
   CollectionTitle,
   CollectionVideoIconBox,
@@ -52,43 +47,6 @@ const formatIconMap: Record<FormatType, IconComponent> = {
 
 const FALLBACK_THUMBNAIL_SRC = resolveImageUrl(recentCreator);
 
-function resolveThumbnailSrc(image: ImageSource): string {
-  if (typeof image === "string") {
-    return resolvePublicMediaUrl(image) ?? image;
-  }
-
-  return resolveImageUrl(image);
-}
-
-function CollectionThumbnail({
-  image,
-  alt,
-}: {
-  image: ImageSource;
-  alt: string;
-}) {
-  const initialSrc = useMemo(() => resolveThumbnailSrc(image), [image]);
-  const [src, setSrc] = useState(initialSrc);
-
-  useEffect(() => {
-    setSrc(initialSrc);
-  }, [initialSrc]);
-
-  return (
-    <CollectionCoverImage
-      src={src}
-      alt={alt}
-      loading="lazy"
-      decoding="async"
-      onError={() => {
-        if (src !== FALLBACK_THUMBNAIL_SRC) {
-          setSrc(FALLBACK_THUMBNAIL_SRC);
-        }
-      }}
-    />
-  );
-}
-
 type Props = {
   video: TutorialVideo;
 };
@@ -109,37 +67,67 @@ export default function CollectionItemCard({ video }: Props) {
     formatIconMap[video.formatType ?? FORMAT_TYPE.VIDEO] ?? VideoIcon;
   const contentHref = pathPublishedContent(video.id);
   const buttons = video.buttons?.length ? video.buttons : [];
+  const title = (
+    <CollectionTitle as={Link} href={contentHref}>
+      {video.title}
+    </CollectionTitle>
+  );
+  const subtitle = video.creatorId ? (
+    <CollectionAuthor
+      as={Link}
+      href={getPublicCreatorProfilePath(video.creatorId)}
+    >
+      {video.creator}
+    </CollectionAuthor>
+  ) : (
+    <CollectionAuthor>{video.creator}</CollectionAuthor>
+  );
+  const footer = buttons.length ? (
+    <>
+      {buttons.map((button, index) => (
+        <GenericButton
+          key={`${button.label}-${index}`}
+          type="button"
+          variant={button.variant ?? VARIANT.SOFT_OUTLINE}
+          onClick={() => {
+            if (button.onClick) {
+              button.onClick();
+              return;
+            }
+
+            const isLoggedIn = Boolean(user && user.id);
+            const targetHref = button.href ?? contentHref;
+
+            if (button.requiresAuth && !isLoggedIn) {
+              handleShowLoginModal(targetHref);
+              return;
+            }
+
+            navigateToContent(targetHref, button.requiresAuth);
+          }}
+        >
+          {button.label}
+        </GenericButton>
+      ))}
+    </>
+  ) : null;
 
   return (
-    <CollectionCard>
-      <CollectionImageArea
-        as={Link}
-        href={contentHref}
-        tabIndex={-1}
-        aria-hidden="true"
-      >
-        <CollectionThumbnail image={video.image} alt={video.title} />
-        {video.category?.trim() ? (
-          <CollectionBadge>
+    <>
+      <GenericCard
+        image={video.image}
+        imageFallback={FALLBACK_THUMBNAIL_SRC}
+        coverImage
+        alt={video.title}
+        title={title}
+        subtitle={subtitle}
+        badge={
+          video.category?.trim() ? (
             <CollectionBadgeText>{video.category}</CollectionBadgeText>
-          </CollectionBadge>
-        ) : null}
-      </CollectionImageArea>
-
-      <CollectionCardBody>
-        <CollectionTitle as={Link} href={contentHref}>
-          {video.title}
-        </CollectionTitle>
-        {video.creatorId ? (
-          <CollectionAuthor
-            as={Link}
-            href={getPublicCreatorProfilePath(video.creatorId)}
-          >
-            {video.creator}
-          </CollectionAuthor>
-        ) : (
-          <CollectionAuthor>{video.creator}</CollectionAuthor>
-        )}
+          ) : null
+        }
+        footer={footer}
+      >
         <CollectionTime>{video.published}</CollectionTime>
 
         <CollectionVideoPill>
@@ -150,39 +138,7 @@ export default function CollectionItemCard({ video }: Props) {
             {video.formatLabel}
           </CollectionVideoLabelText>
         </CollectionVideoPill>
-
-        {buttons.length ? (
-          <CollectionActionRow>
-            {buttons.map((button, index) => (
-              <GenericButton
-                key={`${button.label}-${index}`}
-                type="button"
-                variant={button.variant ?? VARIANT.SOFT_OUTLINE}
-                fullWidth
-                size="sm"
-                onClick={() => {
-                  if (button.onClick) {
-                    button.onClick();
-                    return;
-                  }
-
-                  const isLoggedIn = Boolean(user && user.id);
-                  const targetHref = button.href ?? contentHref;
-
-                  if (button.requiresAuth && !isLoggedIn) {
-                    handleShowLoginModal(targetHref);
-                    return;
-                  }
-
-                  navigateToContent(targetHref, button.requiresAuth);
-                }}
-              >
-                {button.label}
-              </GenericButton>
-            ))}
-          </CollectionActionRow>
-        ) : null}
-      </CollectionCardBody>
+      </GenericCard>
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
@@ -193,6 +149,6 @@ export default function CollectionItemCard({ video }: Props) {
           }
         }}
       />
-    </CollectionCard>
+    </>
   );
 }
