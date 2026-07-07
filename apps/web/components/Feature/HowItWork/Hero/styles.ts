@@ -8,6 +8,15 @@ export const Hero = styled.section`
   align-items: center;
   min-height: 90vh;
 
+  ${media.tablet} {
+    min-height: 70vh;
+  }
+
+  ${media.mobileLg} {
+    min-height: auto;
+    padding: 60px 0;
+  }
+
   &::before {
     content: "";
     position: absolute;

@@ -211,11 +211,6 @@ export const ContinueButton = styled(GenericButton)`
   width: 312px;
   margin-top: 20px;
   border: none;
-
-  &:disabled {
-    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
-    color: ${({ theme }) => theme.colors.primary.WHITE};
-  }
 `;
 
 export const FullWidthContinueButton = styled(GenericButton)`
@@ -224,11 +219,6 @@ export const FullWidthContinueButton = styled(GenericButton)`
   width: 100%;
   margin-top: ${({ theme }) => theme.spacing(2)};
   border-radius: ${({ theme }) => theme.radius.lg};
-
-  &:disabled {
-    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
-    color: ${({ theme }) => theme.colors.primary.WHITE};
-  }
 `;
 
 export const StyledInputField = styled(InputField)`

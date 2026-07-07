@@ -83,6 +83,24 @@ export const Dropdown = styled.div<{
   gap: 8px;
   z-index: 100;
   box-shadow: ${({ theme }) => theme.shadows.lg};
+
+  max-height: 240px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    border-radius: 3px;
+  }
 `;
 
 export const DropdownItem = styled.div<{

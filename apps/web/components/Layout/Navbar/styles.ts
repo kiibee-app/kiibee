@@ -23,7 +23,7 @@ export const Header = styled.header<HeaderProps>`
     background 180ms ease,
     -webkit-backdrop-filter 180ms ease,
     backdrop-filter 180ms ease;
-    z-index: ${({ theme }) => theme.zIndex.navbar};
+  z-index: ${({ theme }) => theme.zIndex.navbar};
 
   ${media.mobileMd} {
     height: var(--navbar-height, 73px);
@@ -466,8 +466,11 @@ const navAccountMenuItemStyles = css`
   }
 
   &:disabled {
-    opacity: 0.55;
+    background: transparent;
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
     cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
   }
 `;
 

@@ -63,7 +63,10 @@ export const SectionArrow = styled.button`
   transition: opacity 120ms ease;
 
   &:disabled {
-    opacity: 0.35;
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
     cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
   }
 `;

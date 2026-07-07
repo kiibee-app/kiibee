@@ -3,6 +3,12 @@ import { css } from "styled-components";
 
 export type ButtonSize = "sm" | "md" | "lg";
 
+export const BUTTON_HEIGHTS: Record<ButtonSize, string> = {
+  sm: "32px",
+  md: "40px",
+  lg: "48px",
+};
+
 type ButtonStyleProps = {
   $variant: Variant;
   $size: ButtonSize;
@@ -12,18 +18,18 @@ type ButtonStyleProps = {
 
 export const sizeStyles = {
   sm: css`
-    min-height: 23px;
-    padding: 6px 14px;
+    height: ${BUTTON_HEIGHTS.sm};
+    padding: 0 12px;
     ${({ theme }) => theme.typography.Body_Bold}
   `,
   md: css`
-    min-height: 40px;
-    padding: 7px 18px;
+    height: ${BUTTON_HEIGHTS.md};
+    padding: 0 16px;
     ${({ theme }) => theme.typography.Body_Medium}
   `,
   lg: css`
-    min-height: 49px;
-    padding: 14px 24px;
+    height: ${BUTTON_HEIGHTS.lg};
+    padding: 0 24px;
     ${({ theme }) => theme.typography.Body_Medium}
   `,
 };
@@ -33,10 +39,11 @@ export const shared = css<ButtonStyleProps>`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  box-sizing: border-box;
   white-space: nowrap;
   width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "auto")};
   min-width: ${({ $minWidth }) => $minWidth ?? "0"};
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.radius.md};
   cursor: pointer;
   text-decoration: none;
   transition: all 120ms ease;
@@ -49,8 +56,12 @@ export const shared = css<ButtonStyleProps>`
 
   &:disabled,
   &[aria-disabled="true"] {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    border-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    box-shadow: none;
     cursor: not-allowed;
-    opacity: 0.55;
+    opacity: 1;
     pointer-events: none;
   }
 
@@ -76,7 +87,7 @@ export const shared = css<ButtonStyleProps>`
           background: ${({ theme }) => theme.colors.secondary.MEDIUM_GREEN};
           color: ${({ theme }) => theme.colors.primary.BLACK};
           border: 1px solid transparent;
-          border-radius: 0.5rem;
+          border-radius: ${({ theme }) => theme.radius.md};
           &:not([type="submit"]):hover {
             background: transparent;
             border: 1px solid ${({ theme }) => theme.colors.primary.BLACK};
@@ -89,7 +100,7 @@ export const shared = css<ButtonStyleProps>`
           background: ${({ theme }) => theme.colors.primary.RED};
           color: ${({ theme }) => theme.colors.primary.WHITE};
           border: 1px solid ${({ theme }) => theme.colors.primary.RED};
-          border-radius: 8px;
+          border-radius: ${({ theme }) => theme.radius.md};
 
           &:not([type="submit"]):hover {
             background: ${({ theme }) => theme.colors.primary.WHITE};
@@ -104,7 +115,7 @@ export const shared = css<ButtonStyleProps>`
           background: ${({ theme }) => theme.colors.neutral.WHITE};
           color: ${({ theme }) => theme.colors.primary.BLACK};
           border: 1.3px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
-          border-radius: 999px;
+          border-radius: ${({ theme }) => theme.radius.full};
 
           &:not([type="submit"]):hover {
             background: ${({ theme }) => theme.colors.neutral.GRAY_100};

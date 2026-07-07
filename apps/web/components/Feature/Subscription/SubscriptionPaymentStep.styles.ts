@@ -123,10 +123,4 @@ export const SubmitButton = styled(GenericButton).attrs({
   border: 0;
   border-radius: 10px;
   box-shadow: none;
-
-  &:disabled {
-    background: ${({ theme }) => theme.colors.neutral.GRAY};
-    border-color: ${({ theme }) => theme.colors.neutral.GRAY};
-    opacity: 1;
-  }
 `;
