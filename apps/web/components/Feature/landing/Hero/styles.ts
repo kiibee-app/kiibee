@@ -15,10 +15,11 @@ export const Hero = styled.section`
     position: absolute;
     inset: 0;
     z-index: 1;
+    pointer-events: none;
   }
 
   ${media.tablet} {
-    min-height: auto;
+    min-height: 85vh;
   }
 `;
 
@@ -34,13 +35,13 @@ export const Inner = styled.div`
   justify-content: flex-start;
 
   ${media.tablet} {
-    padding: 3rem 1.25rem;
+    padding: 6rem 1.25rem 3rem;
     align-items: center;
     justify-content: center;
   }
 
   ${media.mobileLg} {
-    padding: 2rem 1rem;
+    padding: 7rem 1rem 3rem;
   }
 `;
 
@@ -71,15 +72,26 @@ export const Content = styled.div`
 export const Title = styled.h1`
   margin: 0 0 1rem 0;
   color: ${({ theme }) => theme.colors.primary.WHITE};
-
-  max-width: 64px;
   max-width: 58rem;
+  text-shadow: 0 2px 8px ${({ theme }) => theme.colors.primary.BLACK};
 
   ${media.tablet} {
-    max-width: 22rem;
+    max-width: 100%;
 
-    > * {
-      ${({ theme }) => theme.typography.Heading2};
+    && > span {
+      font-size: ${({ theme }) =>
+        theme.typography.Heading2.fontSize} !important;
+      line-height: ${({ theme }) =>
+        theme.typography.Heading2.lineHeight} !important;
+    }
+  }
+
+  ${media.mobileLg} {
+    && > span {
+      font-size: ${({ theme }) =>
+        theme.typography.Heading3.fontSize} !important;
+      line-height: ${({ theme }) =>
+        theme.typography.Heading3.lineHeight} !important;
     }
   }
 `;
