@@ -31,7 +31,7 @@ export const PageWrap = styled.div<{ $expandedCollections?: boolean }>`
 
   ${media.tablet} {
     padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "20px 0 16px" : "16px 10px"};
+      $expandedCollections ? "20px 0 16px" : "16px 20px"};
   }
 
   ${media.mobileLg} {
