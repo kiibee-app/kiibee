@@ -131,6 +131,15 @@ export const CreatorCard = styled.article`
     width: 380px;
     height: 200px;
   }
+
+  ${media.mobileMd} {
+    width: calc(100vw - 48px);
+    max-width: 380px;
+  }
+
+  ${media.mobileSm} {
+    width: calc(100vw - 32px);
+  }
 `;
 
 export const CardLeft = styled.div`
