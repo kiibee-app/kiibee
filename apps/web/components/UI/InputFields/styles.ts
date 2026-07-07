@@ -253,6 +253,21 @@ export const Menu = styled.div`
   touch-action: pan-y;
   width: 100%;
   z-index: ${({ theme }) => theme.zIndex.tooltip};
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    border-radius: 3px;
+  }
+
   ${media.tablet} {
     max-height: 150px;
   }
