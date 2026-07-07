@@ -34,7 +34,8 @@ export const Section = styled.section`
   margin: 0 auto;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: center;
   min-height: 60vh;
 
