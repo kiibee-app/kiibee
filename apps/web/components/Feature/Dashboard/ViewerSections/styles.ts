@@ -27,25 +27,21 @@ export const PageHeader = styled.div`
 
 export const PageWrap = styled.div<{ $expandedCollections?: boolean }>`
   padding: ${({ $expandedCollections }) =>
-    $expandedCollections ? "40px 30px 40px" : "40px 30px"};
-  margin-right: 30px;
-  margin-left: 20px;
+    $expandedCollections ? "20px 0 20px" : "10px 31px"};
 
   ${media.tablet} {
     padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "20px 16px 16px" : "16px"};
-    margin-right: 0;
-    margin-left: 0;
+      $expandedCollections ? "20px 0 16px" : "16px 10px"};
   }
 
   ${media.mobileLg} {
     padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "16px 12px 12px" : "14px 16px"};
+      $expandedCollections ? "16px 0 12px" : "20px 20px"};
   }
 
   ${media.mobile} {
     padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "14px 10px 10px" : "10px 12px"};
+      $expandedCollections ? "14px 0 10px" : "20px 20px"};
   }
 `;
 

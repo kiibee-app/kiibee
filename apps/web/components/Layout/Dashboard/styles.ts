@@ -39,7 +39,7 @@ export const ContentWrapper = styled.main<{ $contentPadding?: string }>`
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: ${({ $contentPadding }) => $contentPadding ?? "20px"};
+  padding: 10px;
   overflow-y: auto;
   overscroll-behavior: contain;
 
