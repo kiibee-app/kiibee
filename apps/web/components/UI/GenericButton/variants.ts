@@ -3,6 +3,12 @@ import { css } from "styled-components";
 
 export type ButtonSize = "sm" | "md" | "lg";
 
+export const BUTTON_HEIGHTS: Record<ButtonSize, string> = {
+  sm: "32px",
+  md: "40px",
+  lg: "48px",
+};
+
 type ButtonStyleProps = {
   $variant: Variant;
   $size: ButtonSize;
@@ -12,18 +18,18 @@ type ButtonStyleProps = {
 
 export const sizeStyles = {
   sm: css`
-    min-height: 23px;
-    padding: 6px 14px;
+    height: ${BUTTON_HEIGHTS.sm};
+    padding: 0 12px;
     ${({ theme }) => theme.typography.Body_Bold}
   `,
   md: css`
-    min-height: 40px;
-    padding: 7px 18px;
+    height: ${BUTTON_HEIGHTS.md};
+    padding: 0 16px;
     ${({ theme }) => theme.typography.Body_Medium}
   `,
   lg: css`
-    min-height: 49px;
-    padding: 14px 24px;
+    height: ${BUTTON_HEIGHTS.lg};
+    padding: 0 24px;
     ${({ theme }) => theme.typography.Body_Medium}
   `,
 };
@@ -33,6 +39,7 @@ export const shared = css<ButtonStyleProps>`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  box-sizing: border-box;
   white-space: nowrap;
   width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "auto")};
   min-width: ${({ $minWidth }) => $minWidth ?? "0"};
