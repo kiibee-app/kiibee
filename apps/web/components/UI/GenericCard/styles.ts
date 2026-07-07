@@ -13,7 +13,7 @@ export const Card = styled.div<{
   display: flex;
   flex-direction: column;
   padding: ${({ $compact }) => ($compact ? "12px 14px" : "18px 20px")};
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.radius.lg};
   gap: ${({ $compact }) => ($compact ? "6px" : "8px")};
   align-items: stretch;
   height: 100%;
@@ -62,7 +62,7 @@ export const ImageWrapper = styled.div<{
     $coverImage || $compact ? "0" : "12px 178px 154px 10px"};
   align-items: center;
   align-self: stretch;
-  border-radius: 12px 12px 0 0;
+  border-radius: ${({ theme }) => `${theme.radius.lg} ${theme.radius.lg} 0 0`};
   background-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${({ $isLoading }) =>
