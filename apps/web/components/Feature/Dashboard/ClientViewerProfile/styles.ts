@@ -5,7 +5,7 @@ import { MonoText } from "@/components/UI/Monotext";
 
 export const Container = styled.section`
   width: 100%;
-  padding: 20px 20px 36px;
+  padding: 30px 30px;
 
   ${media.tablet} {
     padding: 16px 12px 28px;

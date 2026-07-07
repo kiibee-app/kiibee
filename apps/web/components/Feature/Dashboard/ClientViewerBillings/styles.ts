@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const BillingShell = styled.section`
   width: 100%;
   box-sizing: border-box;
-  padding: 40px 30px 30px;
+  padding: 30px 30px;
 
   ${media.tablet} {
     padding: 24px 20px 20px;
