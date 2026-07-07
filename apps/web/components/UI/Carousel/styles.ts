@@ -23,11 +23,11 @@ export const SlideTrack = styled.div<{
   width: 100%;
   height: 100%;
 
-  ${({ $transitionType, $activeIndex }) =>
+  ${({ theme, $transitionType, $activeIndex }) =>
     $transitionType === CAROUSEL_TRANSITION_TYPES.SLIDE &&
     `
     display: flex;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform ${theme.animations.slow} ${theme.animations.easing};
     transform: translateX(-${$activeIndex * 100}%);
   `}
 `;

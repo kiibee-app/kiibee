@@ -168,7 +168,8 @@ export const CopyButton = styled.button<{ $copied?: boolean }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
   cursor: pointer;
   ${({ theme }) => theme.typography.Body_Bold};
-  transition: background 200ms ease;
+  transition: background ${({ theme }) => theme.animations.fast}
+    ${({ theme }) => theme.animations.easing};
 
   &:hover {
     background: ${({ theme }) => theme.colors.primary.GREEN};
