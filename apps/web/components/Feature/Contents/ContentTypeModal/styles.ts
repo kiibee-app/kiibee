@@ -121,9 +121,11 @@ export const ContinueButton = styled.button`
   justify-content: center;
 
   &:disabled {
-    background: ${({ theme }) => theme.colors.neutral.GRAY};
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
     cursor: not-allowed;
     opacity: 1;
+    pointer-events: none;
   }
 
   ${media.tablet} {

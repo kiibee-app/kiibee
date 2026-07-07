@@ -362,8 +362,12 @@ export const PaginationButton = styled.button`
   color: ${({ theme }) => theme.colors.neutral.GRAY_500};
 
   &:disabled {
-    opacity: 0.45;
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    border-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
     cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
   }
 `;
 

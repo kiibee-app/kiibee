@@ -49,8 +49,12 @@ export const shared = css<ButtonStyleProps>`
 
   &:disabled,
   &[aria-disabled="true"] {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+    border-color: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    box-shadow: none;
     cursor: not-allowed;
-    opacity: 0.55;
+    opacity: 1;
     pointer-events: none;
   }
 

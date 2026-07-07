@@ -196,18 +196,18 @@ export const Action = styled.div`
 export const Button = styled.button`
   padding: 10px 22px;
   border-radius: 10px;
-  background: ${(p) => p.theme.colors.neutral.GRAY};
+  background: ${(p) => p.theme.colors.primary.BLACK};
   color: ${(p) => p.theme.colors.neutral.OFF_WHITE};
   border: none;
   cursor: pointer;
 
-  &:not(:disabled) {
-    background: ${(p) => p.theme.colors.primary.BLACK};
-  }
-
   &:disabled {
-    opacity: 0.6;
+    background: ${(p) => p.theme.colors.neutral.GRAY_200};
+    color: ${(p) => p.theme.colors.neutral.GRAY_400};
+    border-color: ${(p) => p.theme.colors.neutral.GRAY_200};
     cursor: not-allowed;
+    opacity: 1;
+    pointer-events: none;
   }
 
   ${MonoText} {
