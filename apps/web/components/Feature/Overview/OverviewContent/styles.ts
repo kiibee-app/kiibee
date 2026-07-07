@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 
 export const Wrapper = styled.div`
-  padding: 8px 28px;
+  padding: 30px 30px;
 
   ${media.tablet} {
     padding: 8px 20px;

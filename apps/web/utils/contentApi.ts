@@ -267,6 +267,12 @@ export const getSingleContentProps = (
 
   const pricingActions = getContentDetailPricingActions(pricingItem, t, {
     inCollection: options?.inCollection,
+    labels: {
+      rent: t("pricingLabels.rent"),
+      buy: t("pricingLabels.buy"),
+      buyCollection: t("pricingLabels.buyCollection"),
+      free: t("pricingLabels.free"),
+    },
   });
 
   const trailerUrl = toTrimmedString(
