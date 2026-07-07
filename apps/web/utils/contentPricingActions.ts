@@ -12,6 +12,11 @@ import { pathPublishedContent } from "./path";
 import type { FeedContentItem } from "./feedContentToTutorial";
 import type { TutorialButton } from "./types";
 import { CONTENT_RESPONSE_KEYS } from "./contentApi";
+import { ACCESS_TYPE_PURCHASED, ACCESS_TYPE_RENTED } from "./Constants";
+
+export type ViewerContentAccessType =
+  | typeof ACCESS_TYPE_PURCHASED
+  | typeof ACCESS_TYPE_RENTED;
 
 export type PricingLabels = {
   rent: string;
@@ -272,6 +277,32 @@ function extractPricingFromRecord(record: Record<string, unknown>) {
       (record[CONTENT_RESPONSE_KEYS.RENT_PRICE] as string | number | null) ??
       undefined,
   };
+}
+
+export function buildViewerAccessButtons(
+  contentId: string,
+  seeContentLabel: string,
+): TutorialButton[] {
+  return [
+    {
+      label: seeContentLabel,
+      variant: VARIANT.SECONDARY,
+      href: pathPublishedContent(contentId),
+      requiresAuth: true,
+      fullWidth: true,
+    },
+  ];
+}
+
+export function getViewerAccessStatusLabel(
+  accessType: ViewerContentAccessType,
+  t: (key: string) => string,
+): string {
+  if (accessType === ACCESS_TYPE_RENTED) {
+    return t("viewerRented.inRental");
+  }
+
+  return t("viewerRented.owned");
 }
 
 export function buildPricingButtonsForContent(

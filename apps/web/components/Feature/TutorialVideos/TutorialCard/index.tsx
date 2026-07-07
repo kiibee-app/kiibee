@@ -21,6 +21,11 @@ import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
+import { useViewerContentAccess } from "@/hooks/viewer/useViewerContentAccess";
+import {
+  buildViewerAccessButtons,
+  getViewerAccessStatusLabel,
+} from "@/utils/contentPricingActions";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -50,6 +55,7 @@ function TutorialCard({
 }: TutorialCardProps) {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
+  const { getAccessType } = useViewerContentAccess();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
@@ -97,14 +103,27 @@ function TutorialCard({
     [tutorial.id],
   );
 
+  const viewerAccessType = getAccessType(tutorial.id);
+
   const buttons = useMemo(() => {
+    if (viewerAccessType) {
+      return buildViewerAccessButtons(
+        tutorial.id,
+        t("viewerRented.seeContent"),
+      );
+    }
+
     const defaultButton: TutorialButton = {
       label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
       variant: VARIANT.SECONDARY,
       href: singleTutorialHref,
     };
     return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
-  }, [tutorial.buttons, t, singleTutorialHref]);
+  }, [tutorial.buttons, tutorial.id, t, singleTutorialHref, viewerAccessType]);
+
+  const accessStatusLabel = viewerAccessType
+    ? getViewerAccessStatusLabel(viewerAccessType, t)
+    : null;
 
   const resolveButtonHref = (href?: string) => {
     if (!href) return singleTutorialHref;
@@ -178,12 +197,17 @@ function TutorialCard({
       onImageError={handleThumbnailError}
       alt={tutorial.title}
       badge={
-        tutorial.category ? (
+        accessStatusLabel ? (
+          <MonoText $use="Body_Bold" color={COLORS.neutral.WHITE}>
+            {accessStatusLabel}
+          </MonoText>
+        ) : tutorial.category ? (
           <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
             {tutorial.category}
           </MonoText>
         ) : undefined
       }
+      badgeVariant={viewerAccessType ? "owned" : "default"}
       title={<MonoText $use="Body_Medium">{tutorial.title}</MonoText>}
       subtitle={creatorSubtitle}
       footer={
