@@ -71,27 +71,22 @@ export const Content = styled.div`
 
 export const Title = styled.h1`
   margin: 0 0 1rem 0;
-  color: ${({ theme }) => theme.colors.primary.WHITE};
+  color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   max-width: 58rem;
-  text-shadow: 0 2px 8px ${({ theme }) => theme.colors.primary.BLACK};
 
   ${media.tablet} {
     max-width: 100%;
 
     && > span {
-      font-size: ${({ theme }) =>
-        theme.typography.Heading2.fontSize} !important;
-      line-height: ${({ theme }) =>
-        theme.typography.Heading2.lineHeight} !important;
+      font-size: ${({ theme }) => theme.typography.Heading2.fontSize};
+      line-height: ${({ theme }) => theme.typography.Heading2.lineHeight};
     }
   }
 
   ${media.mobileLg} {
     && > span {
-      font-size: ${({ theme }) =>
-        theme.typography.Heading3.fontSize} !important;
-      line-height: ${({ theme }) =>
-        theme.typography.Heading3.lineHeight} !important;
+      font-size: ${({ theme }) => theme.typography.Heading3.fontSize};
+      line-height: ${({ theme }) => theme.typography.Heading3.lineHeight};
     }
   }
 `;
