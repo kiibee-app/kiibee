@@ -76,10 +76,11 @@ export default function ViewerPreference({
   const handleBack = () => {
     if (onBack) {
       onBack();
-    } else {
-      clearSession();
-      router.push(PATHS.AUTH_LOGIN);
+      return;
     }
+
+    clearSession();
+    router.push(PATHS.AUTH_LOGIN);
   };
 
   const isModal = !!onComplete;
