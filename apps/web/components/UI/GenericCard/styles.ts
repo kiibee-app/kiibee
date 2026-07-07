@@ -25,8 +25,10 @@ export const Card = styled.div<{
   width: ${({ $width }) => $width || "100%"};
   box-shadow: ${({ theme }) => theme.shadows.frame};
   transition:
-    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-    box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transform ${({ theme }) => theme.animations.normal}
+      ${({ theme }) => theme.animations.easing},
+    box-shadow ${({ theme }) => theme.animations.normal}
+      ${({ theme }) => theme.animations.easing};
 
   &:hover {
     transform: translateY(-5px);
