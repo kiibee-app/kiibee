@@ -175,15 +175,22 @@ export const RequestSentFormPanel = styled.section`
 `;
 
 export const RequestSentSlidePanel = styled.section`
-  width: clamp(420px, 34vw, 560px);
+  width: 650px;
+  flex: 0 0 650px;
   background: ${({ theme }) => theme.colors.gradient.DEEP_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 180px 55px 90px;
 
+  @media (max-width: ${breakpoints.desktop}) {
+    width: clamp(420px, 34vw, 560px);
+    flex: 0 1 auto;
+  }
+
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
+    flex: 0 0 auto;
     padding: 2.5rem 1.5rem;
   }
 `;
