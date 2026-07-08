@@ -269,8 +269,8 @@ export const CreatorRow = styled.div`
 
 export const CreatorAvatar = styled.span`
   position: relative;
-  width: 30px;
-  height: 30px;
+  width: 1.875rem;
+  height: 1.875rem;
   flex: 0 0 30px;
   border-radius: 6px;
   overflow: hidden;
