@@ -2182,6 +2182,7 @@
     "rented": "Rented",
     "activeRental": "Active rental",
     "expiresIn": "Expires in 2 days",
+    "expiresInDate": "Expires in {{date}}",
     "seeContent": "See content",
     "buyPlaceholder": "Buy xx kr",
     "searchPurchased": "Search Purchased Content",

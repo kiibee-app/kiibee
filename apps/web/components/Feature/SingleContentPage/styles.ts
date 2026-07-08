@@ -354,6 +354,47 @@ export const MainAction = styled(GenericButton).attrs({
   margin-bottom: 1.5rem;
 `;
 
+export const MainActionRow = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+
+  ${MainAction} {
+    margin-bottom: 0;
+  }
+`;
+
+export const MainActionRentalBadge = styled.div`
+  display: inline-flex;
+  min-width: 160px;
+  min-height: 51px;
+  padding: 8px 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  box-sizing: border-box;
+`;
+
+export const MainActionRentalTitle = styled.span`
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  font-size: 14px;
+  line-height: 1.1;
+`;
+
+export const MainActionExpiryText = styled.span`
+  ${({ theme }) => theme.typography.Body_Medium};
+  color: ${({ theme }) => theme.colors.primary.RED};
+  font-size: 12px;
+  line-height: 1.1;
+`;
+
 export const PricingCtaRow = styled.div`
   display: inline-flex;
   align-items: stretch;

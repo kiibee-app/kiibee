@@ -1,4 +1,5 @@
 import React from "react";
+import type { TFunction } from "i18next";
 import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
@@ -30,7 +31,7 @@ import {
 import { FORMAT_TYPE } from "@/utils/types";
 import { URL_PROTOCOL_REGEX, isValidUrl } from "@/utils/common";
 
-type Translate = (key: string) => string;
+type Translate = TFunction;
 type UnknownRecord = Record<string, unknown>;
 
 export const CONTENT_RESPONSE_KEYS = {
@@ -226,6 +227,17 @@ const getCategoryNames = (content: ContentDetailItem) =>
     .map((category) => toTrimmedString(category.name))
     .filter(Boolean);
 
+const formatRentalExpiryDate = (rentExpiresAt?: string | null) => {
+  if (!rentExpiresAt) return "";
+
+  const date = new Date(rentExpiresAt);
+  if (isNaN(date.getTime())) return "";
+
+  return `${date.getDate()} ${date.toLocaleString(undefined, {
+    month: "long",
+  })} ${date.getFullYear()}`;
+};
+
 export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
@@ -256,6 +268,11 @@ export const getSingleContentProps = (
   const isRented = content.accessInfo?.accessType === ACCESS_TYPE_RENTED;
   const isExpired =
     isRented && content.accessInfo?.timeLeftText === ACCESS_STATUS_EXPIRED;
+  const expiryDate = formatRentalExpiryDate(content.accessInfo?.rentExpiresAt);
+  const expiryLabel =
+    isRented && !isExpired && expiryDate
+      ? t("viewerRented.expiresInDate", { date: expiryDate })
+      : "";
 
   let statusLabel: string | undefined = undefined;
   if (content.accessInfo && !isExpired) {
@@ -299,6 +316,14 @@ export const getSingleContentProps = (
     descriptions: description ? [description] : [],
     tags: categories,
     statusLabel: statusLabel,
+    ...(expiryLabel
+      ? {
+          expiry: {
+            label: expiryLabel,
+            tone: "urgent",
+          } as const,
+        }
+      : {}),
     hero: {
       ...getContentHeroImages(content),
       imageAlt: title,
