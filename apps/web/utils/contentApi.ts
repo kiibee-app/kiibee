@@ -28,6 +28,7 @@ import {
   getContentDetailPricingActions,
   isFreeContentItem,
 } from "@/utils/contentPricingActions";
+import { formatExpiryText } from "@/utils/viewerRented";
 import { FORMAT_TYPE } from "@/utils/types";
 import { URL_PROTOCOL_REGEX, isValidUrl } from "@/utils/common";
 
@@ -227,15 +228,11 @@ const getCategoryNames = (content: ContentDetailItem) =>
     .map((category) => toTrimmedString(category.name))
     .filter(Boolean);
 
-const formatRentalExpiryDate = (rentExpiresAt?: string | null) => {
-  if (!rentExpiresAt) return "";
-
-  const date = new Date(rentExpiresAt);
-  if (isNaN(date.getTime())) return "";
-
-  return `${date.getDate()} ${date.toLocaleString(undefined, {
-    month: "long",
-  })} ${date.getFullYear()}`;
+const addExpiryColon = (label: string) => {
+  if (!label) return "";
+  return label
+    .replace(/^Expires in\s+/, "Expires in: ")
+    .replace(/^Udløber om\s+/, "Udløber om: ");
 };
 
 export const getSingleContentProps = (
@@ -268,11 +265,9 @@ export const getSingleContentProps = (
   const isRented = content.accessInfo?.accessType === ACCESS_TYPE_RENTED;
   const isExpired =
     isRented && content.accessInfo?.timeLeftText === ACCESS_STATUS_EXPIRED;
-  const expiryDate = formatRentalExpiryDate(content.accessInfo?.rentExpiresAt);
+  const expiryText = formatExpiryText(content.accessInfo?.rentExpiresAt, t);
   const expiryLabel =
-    isRented && !isExpired && expiryDate
-      ? t("viewerRented.expiresInDate", { date: expiryDate })
-      : "";
+    isRented && !isExpired && expiryText ? addExpiryColon(expiryText) : "";
 
   let statusLabel: string | undefined = undefined;
   if (content.accessInfo && !isExpired) {

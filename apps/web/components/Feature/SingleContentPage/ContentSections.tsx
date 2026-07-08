@@ -33,8 +33,6 @@ import {
   InfoTagText,
   MainAction,
   MainActionExpiryText,
-  MainActionRentalBadge,
-  MainActionRentalTitle,
   MainActionRow,
   MainActionText,
   MainTitle,
@@ -192,12 +190,7 @@ export function SingleContentBody({
                 <MainActionText>{actions[0].label}</MainActionText>
               </MainAction>
               {expiry ? (
-                <MainActionRentalBadge>
-                  <MainActionRentalTitle>
-                    {t("viewerRented.activeRental")}
-                  </MainActionRentalTitle>
-                  <MainActionExpiryText>{expiry.label}</MainActionExpiryText>
-                </MainActionRentalBadge>
+                <MainActionExpiryText>{expiry.label}</MainActionExpiryText>
               ) : null}
             </MainActionRow>
           ) : null}

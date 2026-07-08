@@ -2190,7 +2190,6 @@
     "rented": "Lejet",
     "activeRental": "Aktiv leje",
     "expiresIn": "Udløber om 2 dage",
-    "expiresInDate": "Udløber {{date}}",
     "seeContent": "Se indhold",
     "buyPlaceholder": "Køb xx kr",
     "searchPurchased": "Søg i købt indhold",
