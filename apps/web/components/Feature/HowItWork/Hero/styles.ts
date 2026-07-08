@@ -82,7 +82,7 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${({ theme }) => theme.typography.Heading1};
+  ${({ theme }) => theme.typography.Heading2};
   margin: 0 0 0.75rem 0;
 
   ${media.tablet} {
@@ -91,7 +91,7 @@ export const Title = styled.h1`
 `;
 
 export const Subtitle = styled.p`
-  ${({ theme }) => theme.typography.H4_Medium};
+  ${({ theme }) => theme.typography.Body_Regular};
   margin: 0 0 1.25rem 0;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.primary.BLACK};
