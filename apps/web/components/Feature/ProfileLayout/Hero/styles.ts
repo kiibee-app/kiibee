@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Image from "next/image";
 import { MonoText } from "@/components/UI/Monotext";
+import { media } from "@repo/ui/breakpoints";
 
 const imageCoverStyles = css`
   object-fit: cover;
@@ -103,16 +104,16 @@ export const AvatarWrap = styled.div`
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   flex: 0 0 auto;
 
-  ${({ theme }) => theme.media.desktopSm} {
-    width: 130px;
-    height: 130px;
+  ${media.desktop} {
+    width: 120px;
+    height: 120px;
     margin-top: -20px;
     border-width: 6px;
   }
 
-  ${({ theme }) => theme.media.mobileMd} {
-    width: 108px;
-    height: 108px;
+  ${media.tablet} {
+    width: 100px;
+    height: 100px;
     margin-top: -16px;
     border-width: 5px;
   }

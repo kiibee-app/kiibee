@@ -276,6 +276,13 @@ export const CreatorAvatar = styled.span`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
+  ${media.tablet} {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    border-radius: 5px;
+  }
+
   img {
     object-fit: cover;
   }
