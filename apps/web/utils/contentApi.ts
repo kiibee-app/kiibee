@@ -228,13 +228,6 @@ const getCategoryNames = (content: ContentDetailItem) =>
     .map((category) => toTrimmedString(category.name))
     .filter(Boolean);
 
-const addExpiryColon = (label: string) => {
-  if (!label) return "";
-  return label
-    .replace(/^Expires in\s+/, "Expires in: ")
-    .replace(/^Udløber om\s+/, "Udløber om: ");
-};
-
 export const getSingleContentProps = (
   content: ContentDetailItem,
   t: Translate,
@@ -266,8 +259,7 @@ export const getSingleContentProps = (
   const isExpired =
     isRented && content.accessInfo?.timeLeftText === ACCESS_STATUS_EXPIRED;
   const expiryText = formatExpiryText(content.accessInfo?.rentExpiresAt, t);
-  const expiryLabel =
-    isRented && !isExpired && expiryText ? addExpiryColon(expiryText) : "";
+  const expiryLabel = isRented && !isExpired ? expiryText : "";
 
   let statusLabel: string | undefined = undefined;
   if (content.accessInfo && !isExpired) {
