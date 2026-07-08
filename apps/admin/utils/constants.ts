@@ -92,3 +92,5 @@ export const CREATOR_PLAN_FILTER_OPTIONS = [
   "Start-up",
   "Pro",
 ] as const;
+
+export const ADMIN_ROLE = "admin";
