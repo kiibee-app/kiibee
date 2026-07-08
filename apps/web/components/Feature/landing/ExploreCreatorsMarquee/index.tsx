@@ -89,9 +89,13 @@ export default function ExploreCreatorsMarquee() {
               src={imageUrl}
               alt={creator.name}
               fill
-              width={150}
-              height={220}
-              style={{ objectFit: "cover", objectPosition: "center" }}
+              width={243}
+              height={340}
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+                flexShrink: 0,
+              }}
               sizes="(max-width: 768px) 110px, 150px"
             />
           ) : null}
