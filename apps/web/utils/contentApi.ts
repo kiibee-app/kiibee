@@ -1,4 +1,5 @@
 import React from "react";
+import type { TFunction } from "i18next";
 import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
@@ -27,10 +28,11 @@ import {
   getContentDetailPricingActions,
   isFreeContentItem,
 } from "@/utils/contentPricingActions";
+import { formatExpiryText } from "@/utils/viewerRented";
 import { FORMAT_TYPE } from "@/utils/types";
 import { URL_PROTOCOL_REGEX, isValidUrl } from "@/utils/common";
 
-type Translate = (key: string) => string;
+type Translate = TFunction;
 type UnknownRecord = Record<string, unknown>;
 
 export const CONTENT_RESPONSE_KEYS = {
@@ -257,6 +259,8 @@ export const getSingleContentProps = (
   const isRented = content.accessInfo?.accessType === ACCESS_TYPE_RENTED;
   const isExpired =
     isRented && content.accessInfo?.timeLeftText === ACCESS_STATUS_EXPIRED;
+  const expiryText = formatExpiryText(content.accessInfo?.rentExpiresAt, t);
+  const expiryLabel = isRented && !isExpired ? expiryText : "";
 
   let statusLabel: string | undefined = undefined;
   if (content.accessInfo && !isExpired) {
@@ -300,6 +304,14 @@ export const getSingleContentProps = (
     descriptions: description ? [description] : [],
     tags: categories,
     statusLabel: statusLabel,
+    ...(expiryLabel
+      ? {
+          expiry: {
+            label: expiryLabel,
+            tone: "urgent",
+          } as const,
+        }
+      : {}),
     hero: {
       ...getContentHeroImages(content),
       imageAlt: title,

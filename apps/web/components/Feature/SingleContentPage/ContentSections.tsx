@@ -32,6 +32,8 @@ import {
   InfoTag,
   InfoTagText,
   MainAction,
+  MainActionExpiryText,
+  MainActionRow,
   MainActionText,
   MainTitle,
   MetaKey,
@@ -178,14 +180,19 @@ export function SingleContentBody({
       ) : (
         <>
           {actions.length === 1 ? (
-            <MainAction
-              onClick={actions[0].onClick}
-              type="button"
-              disabled={actions[0].disabled}
-              aria-label={actions[0].ariaLabel ?? actions[0].label}
-            >
-              <MainActionText>{actions[0].label}</MainActionText>
-            </MainAction>
+            <MainActionRow>
+              <MainAction
+                onClick={actions[0].onClick}
+                type="button"
+                disabled={actions[0].disabled}
+                aria-label={actions[0].ariaLabel ?? actions[0].label}
+              >
+                <MainActionText>{actions[0].label}</MainActionText>
+              </MainAction>
+              {expiry ? (
+                <MainActionExpiryText>{expiry.label}</MainActionExpiryText>
+              ) : null}
+            </MainActionRow>
           ) : null}
 
           {actions.length > 1 ? (
@@ -226,7 +233,7 @@ export function SingleContentBody({
         </>
       )}
 
-      {expiry ? (
+      {expiry && actions.length !== 1 ? (
         <ExpiryText $tone={expiry.tone}>{expiry.label}</ExpiryText>
       ) : null}
 

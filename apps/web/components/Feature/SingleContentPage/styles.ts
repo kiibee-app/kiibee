@@ -354,6 +354,25 @@ export const MainAction = styled(GenericButton).attrs({
   margin-bottom: 1.5rem;
 `;
 
+export const MainActionRow = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+
+  ${MainAction} {
+    margin-bottom: 0;
+  }
+`;
+
+export const MainActionExpiryText = styled.p`
+  ${({ theme }) => theme.typography.Body_Medium};
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary.RED};
+`;
+
 export const PricingCtaRow = styled.div`
   display: inline-flex;
   align-items: stretch;
