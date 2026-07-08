@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "@/components/UI/SafeImage";
 import {
   Hero,
@@ -14,7 +13,6 @@ import {
 import heroImg from "@/assets/images/hero2.webp";
 import GenericButton from "@/components/UI/GenericButton";
 import { useTranslation } from "react-i18next";
-import { MonoText } from "@/components/UI/Monotext";
 import { VARIANT } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
@@ -47,15 +45,11 @@ export default function HowHero() {
       <Inner>
         <Content>
           <ScrollReveal>
-            <Title>
-              <MonoText $use="Heading1">{t("how.title")}</MonoText>
-            </Title>
+            <Title>{t("how.title")}</Title>
           </ScrollReveal>
 
           <ScrollReveal delay={LANDING_REVEAL.shortDelay}>
-            <Subtitle>
-              <MonoText $use="H5_Medium">{t("how.subtitle")}</MonoText>
-            </Subtitle>
+            <Subtitle>{t("how.subtitle")}</Subtitle>
           </ScrollReveal>
 
           <ScrollReveal delay={LANDING_REVEAL.mediumDelay}>

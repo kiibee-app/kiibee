@@ -87,6 +87,7 @@ export const Title = styled.h1`
 
   ${media.tablet} {
     max-width: 100%;
+    ${({ theme }) => theme.typography.Heading2};
   }
 `;
 
