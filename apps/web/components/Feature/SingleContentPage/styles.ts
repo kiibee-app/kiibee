@@ -267,24 +267,20 @@ export const CreatorRow = styled.div`
   }
 `;
 
-export const CreatorAvatar = styled.span`
+export const AvatarWrap = styled.div`
   position: relative;
-  width: 30px;
-  height: 30px;
-  flex: 0 0 30px;
+  width: 9.5rem;
+  height: 9.5rem;
+  margin-top: -1.5625rem;
   border-radius: 6px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${media.tablet} {
-    width: 24px;
-    height: 24px;
-    flex: 0 0 24px;
-    border-radius: 5px;
-  }
-
-  img {
-    object-fit: cover;
+    width: 6.25rem;
+    height: 6.25rem;
+    margin-top: -1rem;
+    border-width: 0.3125rem;
   }
 `;
 

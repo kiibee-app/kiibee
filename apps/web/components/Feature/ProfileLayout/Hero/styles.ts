@@ -95,27 +95,27 @@ export const ProfileSection = styled.div`
 
 export const AvatarWrap = styled.div`
   position: relative;
-  width: 152px;
-  height: 152px;
-  margin-top: -25px;
+  width: 9.5rem;
+  height: 9.5rem;
+  margin-top: -1.5625rem;
   border-radius: 50%;
   overflow: hidden;
-  border: 8px solid ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+  border: 0.5rem solid ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   flex: 0 0 auto;
 
   ${media.desktop} {
-    width: 120px;
-    height: 120px;
-    margin-top: -20px;
-    border-width: 6px;
+    width: 7.5rem;
+    height: 7.5rem;
+    margin-top: -1.25rem;
+    border-width: 0.375rem;
   }
 
   ${media.tablet} {
-    width: 100px;
-    height: 100px;
-    margin-top: -16px;
-    border-width: 5px;
+    width: 6.25rem;
+    height: 6.25rem;
+    margin-top: -1rem;
+    border-width: 0.3125rem;
   }
 `;
 
