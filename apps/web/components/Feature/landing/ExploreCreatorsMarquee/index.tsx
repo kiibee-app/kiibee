@@ -36,7 +36,7 @@ export default function ExploreCreatorsMarquee() {
   const { t } = useTranslation();
   const { creators: allCreators } = useExploreCreators();
   const creators = allCreators
-    .filter((c) => Boolean(c.profileImageUrl))
+    .filter((c) => Boolean(c.profileImageUrl) && Boolean(c.contentDescription))
     .slice(0, MARQUEE_LIMIT);
   const displayCreators = [...creators, ...creators];
 
@@ -89,6 +89,8 @@ export default function ExploreCreatorsMarquee() {
               src={imageUrl}
               alt={creator.name}
               fill
+              width={150}
+              height={220}
               style={{ objectFit: "cover", objectPosition: "center" }}
               sizes="(max-width: 768px) 110px, 150px"
             />
