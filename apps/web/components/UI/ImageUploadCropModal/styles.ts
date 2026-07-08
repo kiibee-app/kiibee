@@ -64,9 +64,13 @@ export const ImagePreviewWrapper = styled.div<{
   position: relative;
   width: 100%;
   max-width: ${({ $cropWidth, $cropHeight }) =>
-    `min(100%, calc(320px * ${$cropWidth} / ${$cropHeight}))`};
+    $cropHeight > 0 && $cropWidth > 0
+      ? `min(100%, calc(320px * ${$cropWidth} / ${$cropHeight}))`
+      : "100%"};
   aspect-ratio: ${({ $cropWidth, $cropHeight }) =>
-    `${$cropWidth} / ${$cropHeight}`};
+    $cropHeight > 0 && $cropWidth > 0
+      ? `${$cropWidth} / ${$cropHeight}`
+      : "auto"};
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
