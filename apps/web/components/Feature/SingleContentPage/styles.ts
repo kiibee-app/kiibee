@@ -267,7 +267,7 @@ export const CreatorRow = styled.div`
   }
 `;
 
-export const AvatarWrap = styled.div`
+export const CreatorAvatar = styled.span`
   position: relative;
   width: 9.5rem;
   height: 9.5rem;
@@ -275,6 +275,10 @@ export const AvatarWrap = styled.div`
   border-radius: 6px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+
+  img {
+    object-fit: cover;
+  }
 
   ${media.tablet} {
     width: 6.25rem;
