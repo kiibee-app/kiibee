@@ -240,6 +240,7 @@ export const CTAButton = styled(GenericButton).attrs({
 })`
   margin-top: 0;
   border-radius: 8px;
+  padding: 12px 24px;
 
   &:not([type="submit"]):hover {
     color: ${({ theme }) => theme.colors.primary.WHITE};
