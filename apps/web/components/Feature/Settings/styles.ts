@@ -31,6 +31,30 @@ export const Settlement = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.colors.neutral.GRAY_400};
+  }
+
+  mask-image: linear-gradient(
+    to right,
+    black calc(100% - 24px),
+    transparent 100%
+  );
 `;
 export const Header = styled.div`
   display: flex;
