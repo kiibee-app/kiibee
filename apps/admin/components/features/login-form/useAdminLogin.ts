@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useLogin } from "../../../hooks/api/use-login";
-import { decodeToken, hasAdminRole, setTokens } from "../../../utils/token";
+import { setTokens } from "../../../utils/token";
 
 export function useAdminLogin() {
   const router = useRouter();
@@ -19,13 +19,6 @@ export function useAdminLogin() {
       { email, password: pin },
       {
         onSuccess: (data) => {
-          const decodedToken = decodeToken(data.accessToken);
-
-          if (!hasAdminRole(decodedToken)) {
-            toast.error("Access denied. Admin role required.");
-            return;
-          }
-
           const safeFullName =
             data.fullName?.trim() ||
             (data.email.includes("@") ? data.email.split("@")[0] : "Admin");

@@ -10,12 +10,24 @@ import {
   REMEMBERED_AUTH_SESSION_COOKIE_MAX_AGE_SECONDS,
 } from "@/lib/auth/storageKeys";
 import { isSafePostLoginPath } from "@/utils/path";
+import { ROLE_ADMIN, STRING } from "@/utils/Constants";
 
 function getPostLoginDestination(response: LoginResponse) {
   if (typeof window === "undefined") return getPostLoginPath(response);
 
   const nextPath = new URLSearchParams(window.location.search).get("next");
   return isSafePostLoginPath(nextPath) ? nextPath : getPostLoginPath(response);
+}
+
+function resolveRole(response: LoginResponse): string | undefined {
+  const roles = [
+    response.user?.role,
+    response.data?.user?.role,
+    response.role,
+    response.data?.role,
+  ];
+
+  return roles.find((role): role is string => typeof role === STRING);
 }
 
 export function useLoginForm(options?: {
@@ -27,6 +39,12 @@ export function useLoginForm(options?: {
     ...loginFormBase,
     useMutation: useLogin,
     onSuccess: (response, { router }) => {
+      const role = resolveRole(response);
+
+      if (role === ROLE_ADMIN) {
+        throw new Error("Admin accounts are not permitted to log in here");
+      }
+
       setSession(response, {
         maxAgeSeconds: remember
           ? REMEMBERED_AUTH_SESSION_COOKIE_MAX_AGE_SECONDS

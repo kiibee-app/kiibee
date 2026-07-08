@@ -1,7 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import type { LoginPayload, LoginResponse } from "../../types/api";
-import { API_ENDPOINTS, ERROR_MESSAGES } from "../../utils/constants";
+import {
+  ADMIN_ROLE,
+  API_ENDPOINTS,
+  ERROR_MESSAGES,
+} from "../../utils/constants";
 
 export function useLogin() {
   return useMutation({
@@ -17,6 +21,10 @@ export function useLogin() {
 
       if (!response.data) {
         throw new Error("Login response data is missing");
+      }
+
+      if (response.data.role !== ADMIN_ROLE) {
+        throw new Error("Access denied. Only admin accounts can log in here.");
       }
 
       return response.data;
