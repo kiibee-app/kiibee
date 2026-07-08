@@ -4,20 +4,20 @@ import { MonoText } from "@/components/UI/Monotext";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 24px;
+  gap: ${({ theme }) => theme.spacing(3)};
+  padding: ${({ theme }) => theme.spacing(6)};
 
   ${({ theme }) => theme.media.tablet} {
-    padding: 20px;
+    padding: ${({ theme }) => theme.spacing(5)};
   }
 
   ${({ theme }) => theme.media.mobile} {
-    padding: 16px;
+    padding: ${({ theme }) => theme.spacing(4)};
   }
 `;
 
 export const Content = styled.div`
-  margin-top: 8px;
+  margin-top: ${({ theme }) => theme.spacing(2)};
 `;
 
 export const Settlement = styled.div`
@@ -25,12 +25,12 @@ export const Settlement = styled.div`
   background-color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   border-radius: 16px;
   overflow-x: auto;
-  margin-top: 20px;
-  padding: 20px 16px;
+  margin-top: ${({ theme }) => theme.spacing(5)};
+  padding: ${({ theme }) => `${theme.spacing(5)} ${theme.spacing(4)}`};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
+  gap: ${({ theme }) => theme.spacing(6)};
 `;
 export const Header = styled.div`
   display: flex;
@@ -40,12 +40,12 @@ export const Header = styled.div`
 
 export const HeaderActions = styled.div`
   display: flex;
-  gap: 12px;
+  gap: ${({ theme }) => theme.spacing(3)};
   align-items: center;
 `;
 
 export const Button = styled.button`
-  padding: 10px 20px;
+  padding: ${({ theme }) => `${theme.spacing(2.5)} ${theme.spacing(5)}`};
   border-radius: 12px;
   background: ${(p) => p.theme.colors.primary.BLACK};
   color: ${(p) => p.theme.colors.neutral.OFF_WHITE};
@@ -71,7 +71,7 @@ export const SecondaryButton = styled(Button)`
 `;
 
 export const Title = styled.h2`
-  margin: 0 0 8px 0;
+  margin: 0 0 ${({ theme }) => theme.spacing(2)} 0;
   ${({ theme }) => theme.typography.H4_SemiBold};
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
