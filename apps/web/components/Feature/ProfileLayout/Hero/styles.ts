@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import Image from "next/image";
 import { MonoText } from "@/components/UI/Monotext";
-import { media } from "@repo/ui/breakpoints";
 
 const imageCoverStyles = css`
   object-fit: cover;

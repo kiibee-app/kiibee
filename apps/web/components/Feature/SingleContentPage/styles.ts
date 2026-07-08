@@ -271,20 +271,13 @@ export const CreatorAvatar = styled.span`
   position: relative;
   width: 9.5rem;
   height: 9.5rem;
-  margin-top: -1.5625rem;
+  flex: 0 0 30px;
   border-radius: 6px;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   img {
     object-fit: cover;
-  }
-
-  ${media.tablet} {
-    width: 6.25rem;
-    height: 6.25rem;
-    margin-top: -1rem;
-    border-width: 0.3125rem;
   }
 `;
 
