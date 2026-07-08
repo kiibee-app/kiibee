@@ -132,14 +132,9 @@ export const ChangePhotoHint = styled(MonoText).attrs({
 
 export const CropOverlay = styled.div<{
   $shape: CropShapeType;
-  $width: number;
-  $height: number;
 }>`
   position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
+  inset: 0;
   pointer-events: none;
   box-sizing: border-box;
   z-index: 3;
