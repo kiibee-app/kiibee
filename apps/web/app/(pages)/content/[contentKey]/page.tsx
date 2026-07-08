@@ -214,6 +214,7 @@ function PublishedContentDetail() {
             <CollectionItems
               videos={relatedCollectionQuery.data.videos}
               collectionId={relatedCollectionQuery.data.collectionId}
+              ownerCreatorId={content.creatorId}
             />
           ) : null}
         </SingleContentPage>
