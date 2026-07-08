@@ -104,16 +104,16 @@ export const AvatarWrap = styled.div`
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   flex: 0 0 auto;
 
-  ${media.desktop} {
-    width: 7.5rem;
-    height: 7.5rem;
+  ${({ theme }) => theme.media.desktopSm} {
+    width: 8.125rem;
+    height: 8.125rem;
     margin-top: -1.25rem;
     border-width: 0.375rem;
   }
 
-  ${media.tablet} {
-    width: 6.25rem;
-    height: 6.25rem;
+  ${({ theme }) => theme.media.mobileMd} {
+    width: 6.75rem;
+    height: 6.75rem;
     margin-top: -1rem;
     border-width: 0.3125rem;
   }
