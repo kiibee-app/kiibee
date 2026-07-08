@@ -152,6 +152,7 @@ export const UrlText = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 100%;
 `;
 
 export const CopyButton = styled.button<{ $copied?: boolean }>`

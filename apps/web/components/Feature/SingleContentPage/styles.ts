@@ -586,6 +586,7 @@ export const PurchaseModalCardTitle = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
 `;
 
 export const PurchaseModalCardCreator = styled.div`
