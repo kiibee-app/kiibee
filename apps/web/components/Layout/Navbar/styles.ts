@@ -23,7 +23,7 @@ export const Header = styled.header<HeaderProps>`
     background 180ms ease,
     -webkit-backdrop-filter 180ms ease,
     backdrop-filter 180ms ease;
-    z-index: ${({ theme }) => theme.zIndex.navbar};
+  z-index: ${({ theme }) => theme.zIndex.navbar};
 
   ${media.mobileMd} {
     height: var(--navbar-height, 73px);
@@ -366,7 +366,6 @@ export const Actions = styled.div<{
             a,
             button {
               min-height: 30px;
-              padding: 4px 10px;
               font-size: 12px;
             }
           }
