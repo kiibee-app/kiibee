@@ -12,6 +12,7 @@ import {
   type OrderItemType,
   STRING,
   ROLE_CREATOR,
+  VARIANT,
   UNDEFINED_STRING,
   REDIRECT_NEXT_QUERY_PARAM,
   ACTION_LOGIN,
@@ -173,7 +174,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     createOrderMutation,
     primaryAction,
     primaryActions,
-    t,
     user?.role,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
@@ -230,6 +230,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
   const hasViewerAccess = Boolean(content?.accessInfo);
+  const isOwner = Boolean(user?.id && content?.creatorId === user.id);
   const fallbackPlaybackSrc =
     previewMediaUrl || hero.contentUrl || hero.media?.src || "";
 
@@ -351,7 +352,24 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     primaryActions != null
       ? actionsWithPayment
       : modifiedPrimaryAction
-        ? [modifiedPrimaryAction]
+        ? isOwner
+          ? [
+              {
+                label: t("singleContent.openInDashboard"),
+                variant: VARIANT.PRIMARY,
+                onClick: () => {},
+              },
+              {
+                ...modifiedPrimaryAction,
+                variant: VARIANT.SECONDARY,
+              },
+            ]
+          : [
+              {
+                ...modifiedPrimaryAction,
+                variant: hasViewerAccess ? VARIANT.SECONDARY : undefined,
+              },
+            ]
         : undefined;
 
   const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
