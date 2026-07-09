@@ -363,10 +363,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
     if (collectionId) {
       params.set(CONTENT_COLLECTION_QUERY_KEY, collectionId);
-    }
-
-    if (collectionId && contentId) {
-      params.set(CONTENT_ITEM_QUERY_KEY, contentId);
+      if (contentId) {
+        params.set(CONTENT_ITEM_QUERY_KEY, contentId);
+      }
     }
 
     router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
