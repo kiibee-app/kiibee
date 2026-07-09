@@ -33,7 +33,7 @@ export const Label = styled(MonoText).attrs<{
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.Body_Regular};
   ${media.mobile} {
-    margin-bottom: ${({ theme }) => theme.spacing[4]};
+    margin-bottom: ${({ theme }) => theme.spacing(4)};
   }
 `;
 
@@ -51,7 +51,8 @@ export const StyledInput = styled.input<{
   $hasIcon?: boolean;
   $variant?: InputVariant;
 }>`
-  padding: 11px 10px 11px 16px;
+  padding: ${({ theme }) =>
+    `${theme.spacing(3)} ${theme.spacing(2.5)} ${theme.spacing(3)} ${theme.spacing(4)}`};
   ${({ $hasIcon }) =>
     $hasIcon &&
     css`
@@ -179,7 +180,7 @@ export const StyledTextArea = styled.textarea<{
   }
 
   ${media.mobile} {
-    padding: ${({ theme }) => theme.spacing[4]};
+    padding: ${({ theme }) => theme.spacing(4)};
   }
 `;
 
@@ -212,7 +213,7 @@ export const RequiredIndicator = styled.span`
 export const Field = styled.div`
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: 8px;
-  padding: 10px 14px;
+  padding: ${({ theme }) => `${theme.spacing(2.5)} ${theme.spacing(3.5)}`};
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
   display: flex;
   align-items: center;
@@ -278,14 +279,14 @@ export const Item = styled.button`
   background: none;
   border: none;
   text-align: left;
-  padding: 12px 14px;
+  padding: ${({ theme }) => `${theme.spacing(3)} ${theme.spacing(3.5)}`};
   cursor: pointer;
   ${({ theme }) => theme.typography.Body_Regular};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: ${({ theme }) => theme.spacing(2.5)};
   &:hover {
     background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   }
@@ -316,7 +317,7 @@ export const ItemCheckIndicator = styled.span`
 export const DateDisplay = styled.div`
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border-radius: ${({ theme }) => theme.radius.lg};
-  padding: 10px 14px;
+  padding: ${({ theme }) => `${theme.spacing(2.5)} ${theme.spacing(3.5)}`};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -343,7 +344,7 @@ export const DateText = styled.div<{ $isPlaceholder?: boolean }>`
 export const DateFieldActions = styled.div`
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: ${({ theme }) => theme.spacing(1.5)};
   flex-shrink: 0;
 `;
 
@@ -395,16 +396,16 @@ export const DatePopupScroll = styled.div`
 
 export const DatePopupBody = styled.div`
   display: flex;
-  gap: 18px;
-  margin-bottom: 18px;
-  padding-bottom: 18px;
+  gap: ${({ theme }) => theme.spacing(4.5)};
+  margin-bottom: ${({ theme }) => theme.spacing(4.5)};
+  padding-bottom: ${({ theme }) => theme.spacing(4.5)};
   border-bottom: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
 `;
 
 export const DatePopupActions = styled.div`
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
+  gap: ${({ theme }) => theme.spacing(3)};
 `;
 
 export const CalendarNavButton = styled.button`
@@ -428,7 +429,7 @@ export const ArrowWrap = styled.span`
 `;
 
 export const CancelButton = styled.button`
-  padding: 10px 18px;
+  padding: ${({ theme }) => `${theme.spacing(2.5)} ${theme.spacing(4.5)}`};
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
   background: transparent;
