@@ -80,6 +80,7 @@ export default function Payment() {
     value: string | string[],
   ) => {
     const text = toText(value);
+    if (text.includes("-")) return;
     updateField(field, text);
     if (!isValidPaymentAmount(text)) {
       setFieldError(field, t("contents.payment.common.invalidNumber"));
@@ -129,6 +130,7 @@ export default function Payment() {
                       placeholder={t("contents.payment.common.enterAmount")}
                       variant={INPUT_VARIANTS.PRIMARY_GRAY}
                       inputMode="decimal"
+                      min={0}
                       hasError={Boolean(formErrors.rentalAmount)}
                       errorMessage={formErrors.rentalAmount}
                     />
@@ -149,6 +151,7 @@ export default function Payment() {
                       placeholder={t("contents.payment.common.enterAmount")}
                       variant={INPUT_VARIANTS.PRIMARY_GRAY}
                       inputMode="decimal"
+                      min={0}
                       hasError={Boolean(formErrors.purchaseAmount)}
                       errorMessage={formErrors.purchaseAmount}
                     />
