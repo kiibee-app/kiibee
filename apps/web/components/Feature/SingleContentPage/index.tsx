@@ -318,7 +318,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       primaryAction?.label && isRentActionLabel(primaryAction.label),
     );
 
-    if ((isPaid || isPurchaseAction || isRentalAction) && !hasViewerAccess) {
+    if (
+      (isPaid || isPurchaseAction || isRentalAction) &&
+      !hasViewerAccess &&
+      !isOwner
+    ) {
       if (user?.role === ROLE_CREATOR) {
         setShowCreatorModal1(true);
         return;
