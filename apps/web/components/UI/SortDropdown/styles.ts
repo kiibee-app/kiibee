@@ -123,12 +123,20 @@ export const DropdownItem = styled.div<{
   justify-content: flex-start;
   cursor: pointer;
   transition: all 0.2s ease;
+  color: ${({ theme, $active }) =>
+    $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_500};
+
+  span {
+    color: inherit;
+  }
+
   background: ${({ theme, $variant, $active }) =>
     $variant === SORT_DROPDOWN_VARIANT.SUCCESS && $active
       ? theme.colors.neutral.OFF_WHITE
       : "transparent"};
 
   &:hover {
+    color: ${({ theme }) => theme.colors.primary.BLACK};
     background: ${({ theme, $variant }) =>
       $variant === SORT_DROPDOWN_VARIANT.SUCCESS
         ? theme.colors.neutral.GRAY_100
