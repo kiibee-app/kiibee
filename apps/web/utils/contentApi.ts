@@ -262,15 +262,13 @@ export const getSingleContentProps = (
     content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
   );
 
-  let statusLabel: string | undefined = undefined;
-  if (isOwner) {
-    statusLabel = t("singleContent.myContent");
-  } else if (content.accessInfo && !isExpired) {
-    statusLabel =
-      content.accessInfo.accessType === ACCESS_TYPE_RENTED
+  const statusLabel: string | undefined = isOwner
+    ? t("singleContent.myContent")
+    : content.accessInfo && !isExpired
+      ? content.accessInfo.accessType === ACCESS_TYPE_RENTED
         ? t("viewerRented.inRental")
-        : t("viewerRented.owned");
-  }
+        : t("viewerRented.owned")
+      : undefined;
 
   const pricingActions = getContentDetailPricingActions(pricingItem, t, {
     inCollection: options?.inCollection,
