@@ -31,7 +31,7 @@ export const ControlWrap = styled.div`
 
 export const FeeNote = styled.p`
   margin: 0;
-  color: ${({ theme }) => theme.colors.neutral.GRAY_600};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
   ${({ theme }) => theme.typography.Body_Small}
 `;
 

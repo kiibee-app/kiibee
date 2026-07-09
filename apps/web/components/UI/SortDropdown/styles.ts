@@ -124,7 +124,7 @@ export const DropdownItem = styled.div<{
   cursor: pointer;
   transition: all 0.2s ease;
   color: ${({ theme, $active }) =>
-    $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_600};
+    $active ? theme.colors.primary.BLACK : theme.colors.neutral.GRAY_500};
 
   span {
     color: inherit;
