@@ -275,16 +275,37 @@ export const CollectionHeader = styled.div`
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1.25rem;
+
+  ${media.mobile} {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  ${media.mobileLg} {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
 `;
 
 export const CollectionHeaderActions = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+
+  ${media.mobileLg} {
+    width: 100%;
+    justify-content: space-between;
+  }
 `;
 
 export const CollectionSearchBar = styled.div`
   width: min(216px, 100%);
+
+  ${media.mobileLg} {
+    flex: 1;
+    width: auto;
+  }
 `;
 
 export const CollectionSectionArrows = styled.div`
@@ -345,6 +366,10 @@ export const CollectionGrid = styled.div`
 
   ${media.tablet} {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  ${media.mobileLg} {
+    grid-template-columns: 1fr;
   }
 
   ${media.mobile} {
