@@ -35,6 +35,12 @@ export const SidebarWrapper = styled.aside<{ $expanded: boolean }>`
     filter: ${({ $expanded }) =>
       $expanded ? "drop-shadow(6px 0 24px rgba(15, 23, 42, 0.12))" : "none"};
   }
+
+  ${media.mobileMd} {
+    top: 60px;
+    height: calc(100dvh - 60px);
+    min-height: calc(100dvh - 60px);
+  }
 `;
 
 export const SidebarMenu = styled.div<{ $expanded?: boolean }>`
