@@ -186,6 +186,7 @@ function PublishedContentDetail() {
             viewerId: resolvedUserId,
           })}
           content={content}
+          collectionId={relatedCollectionQuery.data?.collectionId}
           creator={
             publicCreator
               ? {

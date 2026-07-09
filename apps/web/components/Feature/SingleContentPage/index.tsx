@@ -17,6 +17,9 @@ import {
   REDIRECT_NEXT_QUERY_PARAM,
   ACTION_LOGIN,
   ACTION_SIGNUP,
+  CONTENT_COLLECTION_QUERY_KEY,
+  CONTENT_ITEM_QUERY_KEY,
+  VIEW,
 } from "@/utils/Constants";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -47,6 +50,7 @@ import {
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { PATHS } from "@/utils/path";
+import { CREATORS_LABELS } from "@/utils/SidebarItems";
 
 import { useSearchParams } from "next/navigation";
 
@@ -352,6 +356,22 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       }
     : undefined;
 
+  const openOwnerContentInDashboard = () => {
+    const params = new URLSearchParams({
+      [VIEW]: CREATORS_LABELS.CONTENTS,
+    });
+
+    if (collectionId) {
+      params.set(CONTENT_COLLECTION_QUERY_KEY, collectionId);
+    }
+
+    if (collectionId && contentId) {
+      params.set(CONTENT_ITEM_QUERY_KEY, contentId);
+    }
+
+    router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
+  };
+
   const bodyPrimaryActions: SingleContentAction[] | undefined =
     primaryActions != null
       ? actionsWithPayment
@@ -361,7 +381,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
               {
                 label: t("singleContent.openInDashboard"),
                 variant: VARIANT.PRIMARY,
-                onClick: () => {},
+                onClick: openOwnerContentInDashboard,
               },
               {
                 ...modifiedPrimaryAction,
