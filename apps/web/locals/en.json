@@ -2077,7 +2077,8 @@
       "common": {
         "enterAmount": "Enter amount",
         "feeNote": "Minimum DKK 8, as Kiibee charges DKK 5 in transaction fees",
-        "invalidNumber": "Please enter a valid number."
+        "invalidNumber": "Please enter a valid number.",
+        "requiredAmount": "Amount is required."
       },
       "physicalLink": {
         "title": "Physical product",
