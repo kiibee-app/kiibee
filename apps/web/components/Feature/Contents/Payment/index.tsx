@@ -35,6 +35,7 @@ import {
   getAdmissionOptions,
   getDownloadLimitOptions,
   getPaymentContentTexts,
+  hasNegativeAmountInput,
   isValidPaymentAmount,
   getPhysicalProductConfig,
   PAYMENTS_FORM_FIELDS,
@@ -80,7 +81,7 @@ export default function Payment() {
     value: string | string[],
   ) => {
     const text = toText(value);
-    if (text.includes("-")) return;
+    if (hasNegativeAmountInput(text)) return;
     updateField(field, text);
     if (!isValidPaymentAmount(text)) {
       setFieldError(field, t("contents.payment.common.invalidNumber"));
