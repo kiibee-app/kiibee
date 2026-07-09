@@ -31,7 +31,7 @@ export const ControlWrap = styled.div`
 
 export const FeeNote = styled.p`
   margin: 0;
-  color: ${({ theme }) => theme.colors.primary.BLACK};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_600};
   ${({ theme }) => theme.typography.Body_Small}
 `;
 
@@ -44,7 +44,7 @@ export const SectionTitle = styled.h3`
 
 export const SectionText = styled.p`
   margin: 0;
-  color: ${({ theme }) => theme.colors.neutral.GRAY};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_700};
   ${({ theme }) => theme.typography.Body_Medium}
   padding-bottom: 12px;
 `;
