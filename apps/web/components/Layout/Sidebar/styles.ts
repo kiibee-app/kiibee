@@ -210,8 +210,9 @@ export const DropdownHost = styled.div`
 
 export const SidebarDropdown = styled.div`
   position: absolute;
-  left: calc(100% - 10px);
-  top: 0;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
   z-index: ${({ theme }) => theme.zIndex.dropdown};
   min-width: 220px;
   padding: 4px 0;
@@ -219,20 +220,6 @@ export const SidebarDropdown = styled.div`
   background: ${({ theme }) => theme.colors.primary.WHITE};
   box-shadow: ${({ theme }) => theme.shadows.frame};
   border: 1px solid ${({ theme }) => theme.colors.gradient.FRAME_BORDER};
-
-  ${media.desktopSm} {
-    left: 50px;
-    top: auto;
-    bottom: calc(100% + 10px);
-    transform: none;
-  }
-
-  ${media.tablet} {
-    left: 50px;
-    top: auto;
-    bottom: calc(100% + 10px);
-    transform: none;
-  }
 
   ${media.mobileMd} {
     left: 50px;
