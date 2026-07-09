@@ -7,7 +7,7 @@ export const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 80px 20px;
   box-sizing: border-box;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
@@ -46,7 +46,8 @@ export const Item = styled.button`
   box-sizing: border-box;
   cursor: pointer;
   background: ${({ theme }) => theme.colors.primary.GREEN_100};
-  text-align: left;
+  text-align: center;
+  align-items: center;
 `;
 
 export const Question = styled.h3`
@@ -80,4 +81,5 @@ export const Answer = styled.p<{ $open: boolean }>`
   line-height: 1.5;
   opacity: ${({ $open }) => ($open ? 1 : 0)};
   transition: opacity ${({ theme }) => theme.animations.normal};
+  text-align: center;
 `;
