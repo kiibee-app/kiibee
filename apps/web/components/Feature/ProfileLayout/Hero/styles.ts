@@ -11,7 +11,6 @@ export const HeroWrapper = styled.section`
   width: 100%;
   max-width: 100%;
   margin: 70px auto 0;
-  padding: 20px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 `;
 
@@ -99,7 +98,6 @@ export const AvatarWrap = styled.div`
   margin-top: -1.5625rem;
   border-radius: 50%;
   overflow: hidden;
-  border: 0.5rem solid ${({ theme }) => theme.colors.neutral.OFF_WHITE};
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   flex: 0 0 auto;
 
