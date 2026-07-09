@@ -1,10 +1,10 @@
-import dashboardImage from "@/assets/images/creator-dashboard.webp";
-import creatorRequestAccess from "@/assets/images/creator-request-access.webp";
-import creatorApproved from "@/assets/images/creator-approved.webp";
-import creatorCollections from "@/assets/images/creator-collections.webp";
-import creatorAnalytics from "@/assets/images/creator-analytics.webp";
-import creatorPayouts from "@/assets/images/creator-payouts.webp";
-import creatorProfile from "@/assets/images/creator-profile.webp";
+import imgRequestAccess from "@/assets/images/request-access.webp";
+import imgGetApproved from "@/assets/images/get-approved-choose-a-plan.webp";
+import imgDashboardOverview from "@/assets/images/dashboard-overview.webp";
+import imgContentCollections from "@/assets/images/content-collections.webp";
+import imgUsersSales from "@/assets/images/users-and-sales.webp";
+import imgSettingsPayouts from "@/assets/images/settings-and-payouts.webp";
+import imgProfile from "@/assets/images/profile.webp";
 import step1 from "../assets/images/steps/step1.webp";
 import step2 from "../assets/images/steps/step2.webp";
 import step3 from "../assets/images/steps/step3.webp";
@@ -19,19 +19,19 @@ export const creatorOnboardingSteps: CreatorOnboardingStep[] = [
     id: 1,
     titleKey: "creators.howToGetStarted.steps.requestAccess.title",
     descriptionKey: "creators.howToGetStarted.steps.requestAccess.description",
-    image: creatorRequestAccess,
+    image: imgRequestAccess,
   },
   {
     id: 2,
     titleKey: "creators.howToGetStarted.steps.getApproved.title",
     descriptionKey: "creators.howToGetStarted.steps.getApproved.description",
-    image: creatorApproved,
+    image: imgGetApproved,
   },
   {
     id: 3,
     titleKey: "creators.howToGetStarted.steps.dashboard.title",
     descriptionKey: "creators.howToGetStarted.steps.dashboard.description",
-    image: dashboardImage,
+    image: imgDashboardOverview,
   },
   {
     id: 4,
@@ -39,28 +39,28 @@ export const creatorOnboardingSteps: CreatorOnboardingStep[] = [
     descriptionKey:
       "creators.howToGetStarted.steps.contentCollections.description",
     listKey: "creators.howToGetStarted.steps.contentCollections.list",
-    image: creatorCollections,
+    image: imgContentCollections,
   },
   {
     id: 5,
     titleKey: "creators.howToGetStarted.steps.usersSales.title",
     descriptionKey: "creators.howToGetStarted.steps.usersSales.description",
     listKey: "creators.howToGetStarted.steps.usersSales.list",
-    image: creatorAnalytics,
+    image: imgUsersSales,
   },
   {
     id: 6,
     titleKey: "creators.howToGetStarted.steps.settingsPayouts.title",
     descriptionKey:
       "creators.howToGetStarted.steps.settingsPayouts.description",
-    image: creatorPayouts,
+    image: imgSettingsPayouts,
   },
   {
     id: 7,
     titleKey: "creators.howToGetStarted.steps.profileSettings.title",
     descriptionKey:
       "creators.howToGetStarted.steps.profileSettings.description",
-    image: creatorProfile,
+    image: imgProfile,
   },
 ];
 
