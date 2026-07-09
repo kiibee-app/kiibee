@@ -257,8 +257,15 @@ export const getSingleContentProps = (
   const isExpired =
     isRented && content.accessInfo?.timeLeftText === ACCESS_STATUS_EXPIRED;
 
+  const isOwner = Boolean(
+    options?.viewerId &&
+    content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
+  );
+
   let statusLabel: string | undefined = undefined;
-  if (content.accessInfo && !isExpired) {
+  if (isOwner) {
+    statusLabel = t("singleContent.myContent");
+  } else if (content.accessInfo && !isExpired) {
     statusLabel =
       content.accessInfo.accessType === ACCESS_TYPE_RENTED
         ? t("viewerRented.inRental")
@@ -281,10 +288,6 @@ export const getSingleContentProps = (
 
   const isVideo = contentType === FORMAT_TYPE.VIDEO;
   const showTrailerInHero = Boolean(trailerUrl);
-  const isOwner = Boolean(
-    options?.viewerId &&
-    content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
-  );
 
   const productionCompany = toTrimmedString(
     content[CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY],
