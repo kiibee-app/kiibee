@@ -484,6 +484,7 @@
     "filters": {
       "title": "Filtre",
       "showMore": "Vis flere",
+      "seeLess": "Vis færre",
       "sections": {
         "creators": "Skabere",
         "categories": "Kategorier",
