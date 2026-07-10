@@ -55,9 +55,7 @@ export function buildRenderFilterSections({
   listSections,
   renderOptionList,
   priceTitle,
-  ratingTitle,
   priceContent,
-  ratingContent,
 }: BuildRenderFilterSectionsParams): RenderFilterSectionItem[] {
   return [
     ...listSections.map((section) => ({
