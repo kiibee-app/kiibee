@@ -244,7 +244,7 @@ export function SingleContentBody({
               <MetaKey>
                 <MetaLabelText>{item.label}</MetaLabelText>
               </MetaKey>
-              <MetaValueText $strong={index === 1}>{item.value}</MetaValueText>
+              <MetaValueText>{item.value}</MetaValueText>
             </MetaRow>
           ))}
         </MetaSection>
