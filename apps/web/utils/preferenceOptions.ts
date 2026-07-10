@@ -10,6 +10,7 @@ export const PREF_STEP = {
   INTRO: "intro",
   CONTENT: "content",
   TYPES: "types",
+  READY: "ready",
 } as const;
 
 export type ViewerPreferenceStep = (typeof PREF_STEP)[keyof typeof PREF_STEP];

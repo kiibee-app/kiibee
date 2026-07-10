@@ -110,6 +110,53 @@ export default function PreferenceStepContent({
     );
   }
 
+  if (step === PREF_STEP.TYPES) {
+    return (
+      <>
+        <CardHeader>
+          <InlineBackButton
+            type="button"
+            onClick={onStepBack}
+            aria-label={t(AUTH_CREATOR.backAria, "Back")}
+          >
+            <BackButtonIcon
+              size={28}
+              backgroundColor={backIconBg}
+              strokeColor={backIconStroke}
+              strokeWidth={2.5}
+            />
+          </InlineBackButton>
+        </CardHeader>
+
+        <Title>
+          <MonoText $use="H4_Medium">
+            {t(VIEWER_SIGNUP_PREFERENCE.types.title)}
+          </MonoText>
+        </Title>
+
+        <StepSubtitle>
+          <MonoText $use="Body_Medium">
+            {t(VIEWER_SIGNUP_PREFERENCE.types.subtitle)}
+          </MonoText>
+        </StepSubtitle>
+
+        <TypeGrid>
+          {contentTypes.map(({ key, name, icon: IconComponent }) => (
+            <TypeCard
+              key={key}
+              type="button"
+              $selected={selectedTypes.includes(key)}
+              onClick={() => onToggleType(key)}
+            >
+              <IconComponent />
+              <TypeLabel>{name}</TypeLabel>
+            </TypeCard>
+          ))}
+        </TypeGrid>
+      </>
+    );
+  }
+
   return (
     <>
       <CardHeader>
@@ -129,29 +176,15 @@ export default function PreferenceStepContent({
 
       <Title>
         <MonoText $use="H4_Medium">
-          {t(VIEWER_SIGNUP_PREFERENCE.types.title)}
+          {t(VIEWER_SIGNUP_PREFERENCE.ready.title)}
         </MonoText>
       </Title>
 
       <StepSubtitle>
         <MonoText $use="Body_Medium">
-          {t(VIEWER_SIGNUP_PREFERENCE.types.subtitle)}
+          {t(VIEWER_SIGNUP_PREFERENCE.ready.subtitle)}
         </MonoText>
       </StepSubtitle>
-
-      <TypeGrid>
-        {contentTypes.map(({ key, name, icon: IconComponent }) => (
-          <TypeCard
-            key={key}
-            type="button"
-            $selected={selectedTypes.includes(key)}
-            onClick={() => onToggleType(key)}
-          >
-            <IconComponent />
-            <TypeLabel>{name}</TypeLabel>
-          </TypeCard>
-        ))}
-      </TypeGrid>
     </>
   );
 }

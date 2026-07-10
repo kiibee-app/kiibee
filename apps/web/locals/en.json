@@ -192,6 +192,11 @@
           "pdf": "PDF",
           "epub": "EPUB"
         }
+      },
+      "ready": {
+        "title": "Your profile is ready!",
+        "subtitle": "Enjoy exploring creators and content tailored just for you.",
+        "submit": "Go to profile"
       }
     },
     "form": {
