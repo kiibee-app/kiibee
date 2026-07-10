@@ -1010,6 +1010,8 @@
     "notFound": "This content could not be found.",
     "loading": "Loading content...",
     "imageAlt": "Content preview",
+    "openInDashboard": "Open in Dashboard",
+    "myContent": "My content",
     "seeContent": "See content",
     "playVideo": "Play video",
     "playTrailer": "Play trailer",

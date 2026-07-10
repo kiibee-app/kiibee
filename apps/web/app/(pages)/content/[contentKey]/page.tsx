@@ -186,6 +186,7 @@ function PublishedContentDetail() {
             viewerId: resolvedUserId,
           })}
           content={content}
+          collectionId={relatedCollectionQuery.data?.collectionId}
           creator={
             publicCreator
               ? {
@@ -214,6 +215,7 @@ function PublishedContentDetail() {
             <CollectionItems
               videos={relatedCollectionQuery.data.videos}
               collectionId={relatedCollectionQuery.data.collectionId}
+              ownerCreatorId={content.creatorId}
             />
           ) : null}
         </SingleContentPage>
