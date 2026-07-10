@@ -617,6 +617,7 @@ export default function NavBar({
       $topOffset={topOffset}
       $navbarHeight={navbarHeight}
       $isMegaOpen={isMegaOpen}
+      $textTone={navTextTone}
       onMouseEnter={clearCloseTimer}
       onMouseLeave={scheduleCloseMenu}
     >
