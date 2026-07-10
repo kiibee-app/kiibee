@@ -45,7 +45,6 @@ type ValidateTokenResponse = {
     userId?: string;
     type?: string;
     token?: string;
-    email?: string | null;
   };
 };
 
@@ -152,13 +151,6 @@ export const useSubscriptionFlow = (
     CreateSubscriptionResponse,
     CreateSubscriptionPayload
   >(API.subscription.create);
-
-  useEffect(() => {
-    const inviteEmail = validateTokenData?.data?.email;
-    if (inviteEmail && !email) {
-      setEmail(inviteEmail);
-    }
-  }, [validateTokenData?.data?.email, email]);
 
   useEffect(() => {
     if (

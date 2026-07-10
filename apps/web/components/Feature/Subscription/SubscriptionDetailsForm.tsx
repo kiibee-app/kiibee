@@ -88,7 +88,6 @@ export default function SubscriptionDetailsForm() {
           placeholder={t(SUBSCRIPTION.creatorDetails.email)}
           value={email}
           onChange={(value) => onEmailChange(String(value))}
-          locked={isCreatorInviteFlow}
           errorMessage={
             email && !isEmailValid
               ? t("subscriptionPage.invite.emailInvalid")

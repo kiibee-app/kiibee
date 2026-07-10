@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { db } from 'src/database/db';
-import { users, usersToken } from 'src/database/schema';
+import { usersToken } from 'src/database/schema';
 import { success } from 'src/utils/sendResponse';
 import { and, eq, gt } from 'drizzle-orm/sql/expressions/conditions';
 import { logger } from 'src/logger/logger';
@@ -29,17 +29,10 @@ export const validateTokenService = async (token: string) => {
         HttpStatus.UNAUTHORIZED,
       );
     }
-    const [user] = await db
-      .select({ email: users.email })
-      .from(users)
-      .where(eq(users.id, tokenData[0].userId))
-      .limit(1);
-
     const responseData = {
       userId: tokenData[0].userId,
       type: tokenData[0].type,
       token,
-      email: user?.email ?? null,
     };
 
     return success(responseData, 'Token is valid', HttpStatus.OK);

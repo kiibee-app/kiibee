@@ -34,7 +34,8 @@ function SubscriptionSectionInner() {
   const showInviteSubmitError =
     isCreatorInviteFlow &&
     Boolean(inviteSubmitError) &&
-    (currentStep === SUBSCRIPTION_STEP.DETAILS ||
+    (currentStep === SUBSCRIPTION_STEP.PLAN ||
+      currentStep === SUBSCRIPTION_STEP.DETAILS ||
       currentStep === SUBSCRIPTION_STEP.PAYMENT);
 
   return (
