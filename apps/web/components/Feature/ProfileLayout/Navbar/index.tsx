@@ -45,7 +45,7 @@ const navConfigByVariant: Record<
   }
 > = {
   [LAYOUT_1]: {
-    navTextTone: TONE_LIGHT,
+    navTextTone: TONE_DARK,
     showNavItems: false,
     hasSearch: false,
   },
