@@ -56,6 +56,11 @@ export default function ViewerPreference({
       return;
     }
 
+    if (step === PREF_STEP.TYPES) {
+      setStep(PREF_STEP.READY);
+      return;
+    }
+
     if (onComplete) {
       onComplete();
     } else {
@@ -95,7 +100,11 @@ export default function ViewerPreference({
           step={step}
           onStepBack={() =>
             setStep(
-              step === PREF_STEP.TYPES ? PREF_STEP.CONTENT : PREF_STEP.INTRO,
+              step === PREF_STEP.READY
+                ? PREF_STEP.TYPES
+                : step === PREF_STEP.TYPES
+                  ? PREF_STEP.CONTENT
+                  : PREF_STEP.INTRO,
             )
           }
           onToggleCategory={toggleCategory}
@@ -112,9 +121,11 @@ export default function ViewerPreference({
           onClick={handleContinue}
         >
           {t(
-            step === PREF_STEP.TYPES
-              ? VIEWER_SIGNUP_PREFERENCE.types.submit
-              : VIEWER_SIGNUP_PREFERENCE.submit,
+            step === PREF_STEP.READY
+              ? VIEWER_SIGNUP_PREFERENCE.ready.submit
+              : step === PREF_STEP.TYPES
+                ? VIEWER_SIGNUP_PREFERENCE.types.submit
+                : VIEWER_SIGNUP_PREFERENCE.submit,
           )}
         </GenericButton>
       </PrepCard>

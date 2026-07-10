@@ -192,6 +192,11 @@
           "pdf": "PDF",
           "epub": "EPUB"
         }
+      },
+      "ready": {
+        "title": "Din profil er klar!",
+        "subtitle": "Nyd at udforske skabere og indhold, der er skræddersyet til dig.",
+        "submit": "Gå til profil"
       }
     },
     "form": {
