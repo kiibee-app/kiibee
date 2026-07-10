@@ -71,7 +71,7 @@ export default function PreferenceStepContent({
           <InlineBackButton
             type="button"
             onClick={onStepBack}
-            aria-label={t(AUTH_CREATOR.backAria, "Back")}
+            aria-label={t(AUTH_CREATOR.backAria)}
           >
             <BackButtonIcon
               size={28}
@@ -117,7 +117,7 @@ export default function PreferenceStepContent({
           <InlineBackButton
             type="button"
             onClick={onStepBack}
-            aria-label={t(AUTH_CREATOR.backAria, "Back")}
+            aria-label={t(AUTH_CREATOR.backAria)}
           >
             <BackButtonIcon
               size={28}
@@ -163,7 +163,7 @@ export default function PreferenceStepContent({
         <InlineBackButton
           type="button"
           onClick={onStepBack}
-          aria-label={t(AUTH_CREATOR.backAria, "Back")}
+          aria-label={t(AUTH_CREATOR.backAria)}
         >
           <BackButtonIcon
             size={28}
