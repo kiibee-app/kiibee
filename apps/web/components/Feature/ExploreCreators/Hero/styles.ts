@@ -234,10 +234,22 @@ export const FilterSectionBodyInner = styled.div<{ $open: boolean }>`
   padding: ${({ $open }) => ($open ? "0 0 16px" : "0")};
 `;
 
-export const OptionList = styled.div`
+export const OptionList = styled.div<{ $scrollable?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-height: ${({ $scrollable }) => ($scrollable ? "328px" : "none")};
+  overflow-y: ${({ $scrollable }) => ($scrollable ? "auto" : "visible")};
+  padding-right: ${({ $scrollable }) => ($scrollable ? "6px" : "0")};
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: ${({ theme }) => theme.colors.neutral.GRAY_300};
+  }
 `;
 
 export const OptionLabel = styled.label`

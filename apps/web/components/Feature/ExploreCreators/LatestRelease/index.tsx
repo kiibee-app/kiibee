@@ -115,10 +115,12 @@ export default function LatestRelease() {
     isFilterOpen,
     expandedSection,
     showAllCreators,
+    showAllCategories,
     selectedOptions,
     priceRange,
     selectedRating,
     setShowAllCreators,
+    setShowAllCategories,
     setSelectedRating,
     toggleFilter,
     toggleSection,
@@ -130,10 +132,6 @@ export default function LatestRelease() {
     formatOptions,
     initialSelectedOptions,
   });
-
-  const visibleCreators = showAllCreators
-    ? allCreatorLabels
-    : allCreatorLabels.slice(0, DEFAULT_VISIBLE_CREATORS);
 
   const selectedCategoryIds = useMemo(
     () => withoutAllFilterOption(selectedOptions.categories),
@@ -180,6 +178,7 @@ export default function LatestRelease() {
     isFilterOpen,
     expandedSection,
     showAllCreators,
+    showAllCategories,
     selectedOptions,
     priceRange,
     selectedRating,
@@ -188,6 +187,7 @@ export default function LatestRelease() {
   const filterActions = {
     toggleFilter,
     setShowAllCreators,
+    setShowAllCategories,
     setSelectedRating,
     toggleSection: (section: FilterSectionKey) => toggleSection(section),
     toggleOption,
@@ -227,7 +227,7 @@ export default function LatestRelease() {
             actions={filterActions}
             categoryLabels={categoryLabels}
             formatLabels={formatLabels}
-            creatorLabels={visibleCreators}
+            creatorLabels={allCreatorLabels}
             defaultVisibleCreators={DEFAULT_VISIBLE_CREATORS}
             showButton={false}
             forceOpen

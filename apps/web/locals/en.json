@@ -479,6 +479,7 @@
     "filters": {
       "title": "Filters",
       "showMore": "Show more",
+      "seeLess": "See less",
       "sections": {
         "creators": "Creators",
         "categories": "Categories",

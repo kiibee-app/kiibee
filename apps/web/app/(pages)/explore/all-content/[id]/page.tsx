@@ -66,10 +66,12 @@ function AllContentExplorePageContent() {
     isFilterOpen,
     expandedSection,
     showAllCreators,
+    showAllCategories,
     selectedOptions,
     priceRange,
     selectedRating,
     setShowAllCreators,
+    setShowAllCategories,
     setSelectedRating,
     toggleFilter,
     toggleSection,
@@ -112,6 +114,7 @@ function AllContentExplorePageContent() {
     isFilterOpen,
     expandedSection,
     showAllCreators,
+    showAllCategories,
     selectedOptions,
     priceRange,
     selectedRating,
@@ -120,17 +123,12 @@ function AllContentExplorePageContent() {
   const filterActions = {
     toggleFilter,
     setShowAllCreators,
+    setShowAllCategories,
     setSelectedRating: (rating: number) => setSelectedRating(rating),
     toggleSection,
     toggleOption,
     handlePriceChange,
   };
-
-  const visibleCreators = useMemo(() => {
-    return showAllCreators
-      ? allCreatorLabels
-      : allCreatorLabels.slice(0, DEFAULT_VISIBLE_CREATORS);
-  }, [allCreatorLabels, showAllCreators, DEFAULT_VISIBLE_CREATORS]);
 
   const renderContent = () => {
     if (isLoading) {
@@ -176,7 +174,7 @@ function AllContentExplorePageContent() {
                     actions={filterActions}
                     categoryLabels={categoryLabels}
                     formatLabels={formatLabels}
-                    creatorLabels={visibleCreators}
+                    creatorLabels={allCreatorLabels}
                     defaultVisibleCreators={DEFAULT_VISIBLE_CREATORS}
                     showButton={true}
                   />
