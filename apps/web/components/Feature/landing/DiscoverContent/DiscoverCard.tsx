@@ -1,40 +1,20 @@
 "use client";
 
-import Image from "next/image";
 import { memo, type MouseEvent } from "react";
 import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import { EbookIcon, VideoIcon } from "@/assets/icons";
-import { MEDIA_TYPE, VARIANT, STRING_EMPTY } from "@/utils/Constants";
+import { MEDIA_TYPE, STRING_EMPTY } from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
-import {
-  Card,
-  ImageContainer,
-  CategoryBadge,
-  TextSection,
-  CardTitle,
-  CardAuthor,
-  CardDate,
-  MediaTypeBox,
-  ActionsContainer,
-  SingleActionButton,
-  IconFrame,
-  discoverCardRevealStyle,
-  discoverCardImageStyle,
-} from "./styles";
-import ImageReveal from "@/components/UI/ImageReveal";
+import { MediaTypeBox, IconFrame, DiscoverContainer } from "./styles";
 import GenericButton from "@/components/UI/GenericButton";
 import { type DiscoverCardProps } from "@/utils/landingShared";
-import { LANDING_REVEAL } from "@/utils/landingUtils";
-import { IMAGE_SIZES } from "@/utils/landingShared";
-import {
-  LANDING_IMAGE_DIMENSIONS,
-  LANDING_IMAGE_FLAGS,
-  LANDING_REVEAL_VARIANTS,
-} from "@/utils/landingUtils";
+import { LANDING_IMAGE_DIMENSIONS } from "@/utils/landingUtils";
+import GenericCard from "@/components/UI/GenericCard";
+
 function DiscoverCard({ item }: DiscoverCardProps) {
   const theme = useTheme();
   const { t } = useTranslation();
@@ -59,91 +39,60 @@ function DiscoverCard({ item }: DiscoverCardProps) {
   };
 
   return (
-    <Card
-      aria-label={safeT(item.titleKey)}
-      onClick={handleOpen}
-      $clickable={true}
-    >
-      <ImageContainer>
-        <CategoryBadge>
-          <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
+    <GenericCard
+      coverImage
+      image={item.image}
+      alt={safeT(item.titleKey)}
+      badge={
+        safeT(item.categoryKey) ? (
+          <MonoText $use="Body_Bold" color={COLORS.neutral.GRAY}>
             {safeT(item.categoryKey)}
           </MonoText>
-        </CategoryBadge>
-        <ImageReveal
-          variant={LANDING_REVEAL_VARIANTS.fadeScale}
-          duration={LANDING_REVEAL.revealDuration}
-          style={discoverCardRevealStyle}
-        >
-          <Image
-            src={item.image}
-            alt={safeT(item.titleKey)}
-            fill={LANDING_IMAGE_FLAGS.fill}
-            sizes={IMAGE_SIZES.discoverCard}
-            style={discoverCardImageStyle}
-            priority={LANDING_IMAGE_FLAGS.priority}
-          />
-        </ImageReveal>
-      </ImageContainer>
-
-      <TextSection>
-        <CardTitle>
-          <MonoText $use="H5_Medium">{safeT(item.titleKey)}</MonoText>
-        </CardTitle>
-        <CardAuthor>
-          <MonoText $use="Body_Medium" color={COLORS.primary.BLACK_90}>
-            {safeT(item.authorKey)}
-          </MonoText>
-        </CardAuthor>
-        <CardDate>
-          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
-            {safeT(item.dateKey)}
-          </MonoText>
-        </CardDate>
-
-        <MediaTypeBox>
-          <IconFrame>
-            {item.mediaType === MEDIA_TYPE.EPUB ? (
-              <EbookIcon
-                width={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.width}
-                height={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.height}
-                color={theme.colors.neutral.BLACK}
-              />
-            ) : (
-              <VideoIcon color={theme.colors.neutral.BLACK} />
-            )}
-          </IconFrame>
-          <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
-            {safeT(item.mediaTypeKey)}
-          </MonoText>
-        </MediaTypeBox>
-      </TextSection>
-
-      <ActionsContainer onClick={stopCardNavigation}>
-        {item.actions.length === 1 ? (
-          <SingleActionButton
-            key={item.actions[0].labelKey}
-            type="button"
-            onClick={() =>
-              handleActionClick(item.actions[0].href ?? targetHref)
-            }
-          >
-            {safeT(item.actions[0].labelKey)}
-          </SingleActionButton>
-        ) : (
-          item.actions.map((action) => (
+        ) : undefined
+      }
+      title={<MonoText $use="Body_Medium">{safeT(item.titleKey)}</MonoText>}
+      subtitle={
+        <MonoText $use="Body_Medium" color={COLORS.primary.BLACK_90}>
+          {safeT(item.authorKey)}
+        </MonoText>
+      }
+      onClick={handleOpen}
+      footer={
+        <DiscoverContainer onClick={stopCardNavigation}>
+          {item.actions.map((action) => (
             <GenericButton
               key={action.labelKey}
               type="button"
-              variant={VARIANT.SOFT_OUTLINE}
               onClick={() => handleActionClick(action.href ?? targetHref)}
+              style={{ flex: 1, minWidth: 0 }}
             >
               {safeT(action.labelKey)}
             </GenericButton>
-          ))
-        )}
-      </ActionsContainer>
-    </Card>
+          ))}
+        </DiscoverContainer>
+      }
+    >
+      <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
+        {safeT(item.dateKey)}
+      </MonoText>
+
+      <MediaTypeBox>
+        <IconFrame>
+          {item.mediaType === MEDIA_TYPE.EPUB ? (
+            <EbookIcon
+              width={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.width}
+              height={LANDING_IMAGE_DIMENSIONS.discoverMediaIcon.height}
+              color={theme.colors.neutral.BLACK}
+            />
+          ) : (
+            <VideoIcon color={theme.colors.neutral.BLACK} />
+          )}
+        </IconFrame>
+        <MonoText $use="Body_Bold" color={COLORS.primary.BLACK_90}>
+          {safeT(item.mediaTypeKey)}
+        </MonoText>
+      </MediaTypeBox>
+    </GenericCard>
   );
 }
 

@@ -190,3 +190,10 @@ export const discoverCardImageStyle: CSSProperties = {
   objectFit: "cover",
   objectPosition: "center top",
 };
+
+export const DiscoverContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  flex-wrap: wrap;
+`;
