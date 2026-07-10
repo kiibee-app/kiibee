@@ -188,7 +188,7 @@ export const CategoryBadge = styled.span`
 `;
 
 export const CardDescription = styled.p`
-  margin: 8px 0;
+  margin: 8px 0 12px;
   ${({ theme }) => theme.typography.Body_SemiMedium};
   color: ${({ theme }) => theme.colors.neutral.GRAY};
   display: -webkit-box;
