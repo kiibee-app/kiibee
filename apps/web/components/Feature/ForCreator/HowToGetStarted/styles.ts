@@ -105,7 +105,7 @@ export const StepWrapper = styled.div`
   padding-bottom: 7.5rem;
 
   &:last-child {
-    padding-bottom: 0;
+    padding-bottom: 30vh;
   }
 
   @media (min-width: ${breakpoints.tablet}) {
@@ -113,7 +113,7 @@ export const StepWrapper = styled.div`
     padding-bottom: 7.75rem;
 
     &:last-child {
-      padding-bottom: 0;
+      padding-bottom: 40vh;
     }
   }
 `;
