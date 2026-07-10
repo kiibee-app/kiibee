@@ -108,46 +108,6 @@ export function normalizeEmail(value: unknown): string | null {
   return email?.includes('@') ? email : null;
 }
 
-export const UMBRACO_PROFILE_EMAIL_DOMAIN = 'umbraco-profile.local';
-
-function slugifyProfileKey(value: string): string {
-  return (
-    value
-      .normalize('NFKD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
-      .replace(/&/g, ' and ')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '') || 'umbraco-profile'
-  );
-}
-
-export function uniqueSyntheticEmail(profileKey: string): string {
-  const slug = slugifyProfileKey(profileKey).slice(0, 48);
-  const suffix = createHash('sha256')
-    .update(profileKey)
-    .digest('hex')
-    .slice(0, 8);
-
-  return `${slug}-${suffix}@${UMBRACO_PROFILE_EMAIL_DOMAIN}`;
-}
-
-export function plusAddressEmail(
-  baseEmail: string,
-  profileKey: string,
-): string | null {
-  const atIndex = baseEmail.lastIndexOf('@');
-  if (atIndex <= 0 || atIndex === baseEmail.length - 1) {
-    return null;
-  }
-
-  const localPart = baseEmail.slice(0, atIndex);
-  const domain = baseEmail.slice(atIndex + 1);
-  const slug = slugifyProfileKey(profileKey).slice(0, 40);
-
-  return `${localPart}+${slug}@${domain}`;
-}
-
 /** Notification inboxes first — supportEmail is often shared (e.g. info@kiibee.dk). */
 export function collectProfileEmailCandidates(
   supportEmail: unknown,
@@ -175,12 +135,170 @@ export function collectProfileEmailCandidates(
   return candidates;
 }
 
+export type CmsMemberRecord = {
+  nodeId: number;
+  email?: string;
+  Email?: string;
+  loginName?: string;
+  LoginName?: string;
+  profileKey?: string | null;
+  Password?: string;
+};
+
+const CONTENT_NODE_ID_OFFSET = 1;
+
+function cmsMemberEmail(record: CmsMemberRecord): string | null {
+  return normalizeEmail(record.email ?? record.Email);
+}
+
+function parseOwnerNodeId(owner: unknown): number | null {
+  const text = textOrNull(owner);
+  if (!text || !/^\d+$/.test(text)) {
+    return null;
+  }
+
+  return Number(text);
+}
+
+export function findCmsMembersFile(): string | null {
+  const envPath = process.env.UMBRACO_CMS_MEMBERS_PATH?.trim();
+  const candidates = [
+    ...(envPath ? [resolve(envPath)] : []),
+    resolve(process.cwd(), 'umbraco-data', 'cms-members.json'),
+    resolve(process.cwd(), '..', 'umbraco-data', 'cms-members.json'),
+    resolve(process.cwd(), '..', '..', 'umbraco-data', 'cms-members.json'),
+  ];
+
+  return candidates.find((candidate) => existsSync(candidate)) ?? null;
+}
+
+export function findUmbracoExportRunFile(): string | null {
+  const envPath = process.env.UMBRACO_EXPORT_RUN_PATH?.trim();
+  const candidates = [
+    ...(envPath ? [resolve(envPath)] : []),
+    resolve(process.cwd(), 'umbraco-data', 'export-runs', 'latest.json'),
+    resolve(process.cwd(), '..', 'umbraco-data', 'export-runs', 'latest.json'),
+    resolve(
+      process.cwd(),
+      '..',
+      '..',
+      'umbraco-data',
+      'export-runs',
+      'latest.json',
+    ),
+  ];
+
+  return candidates.find((candidate) => existsSync(candidate)) ?? null;
+}
+
+export function loadCmsMembersByNodeId(): Map<number, string> {
+  const filePath = findCmsMembersFile();
+  if (!filePath) {
+    return new Map();
+  }
+
+  const parsed = JSON.parse(readFileSync(filePath, 'utf8')) as {
+    cmsMember?: CmsMemberRecord[];
+  };
+  const map = new Map<number, string>();
+
+  for (const member of parsed.cmsMember ?? []) {
+    const email = cmsMemberEmail(member);
+    if (email) {
+      map.set(member.nodeId, email);
+    }
+  }
+
+  return map;
+}
+
+export function loadContentUserIdByProfileKey(): Map<string, number> {
+  const exportRunFile = findUmbracoExportRunFile();
+  if (!exportRunFile) {
+    return new Map();
+  }
+
+  const parsed = JSON.parse(readFileSync(exportRunFile, 'utf8')) as {
+    users?: Array<{ userDir?: string; userId?: number }>;
+  };
+  const map = new Map<string, number>();
+
+  for (const user of parsed.users ?? []) {
+    if (user.userDir && user.userId) {
+      map.set(user.userDir, user.userId);
+    }
+  }
+
+  return map;
+}
+
+/** Match a profile to its Umbraco CMS member login email. */
+export function resolveProfileCmsMemberEmail(
+  owner: unknown,
+  contentUserId: number | undefined,
+  cmsByNodeId: Map<number, string>,
+): string | null {
+  const byContent = contentUserId
+    ? (cmsByNodeId.get(contentUserId - CONTENT_NODE_ID_OFFSET) ?? null)
+    : null;
+  const ownerNodeId = parseOwnerNodeId(owner);
+  const byOwner = ownerNodeId ? (cmsByNodeId.get(ownerNodeId) ?? null) : null;
+
+  if (byOwner && byContent && byOwner !== byContent) {
+    return byContent;
+  }
+
+  return byOwner ?? byContent ?? null;
+}
+
+/** Umbraco CMS member login emails keyed by exported profile directory name. */
+export function loadCmsMemberEmailByProfileKey(
+  umbracoUsersRoot: string,
+): Map<string, string> {
+  const cmsByNodeId = loadCmsMembersByNodeId();
+  if (!cmsByNodeId.size) {
+    return new Map();
+  }
+
+  const contentUserIdByProfileKey = loadContentUserIdByProfileKey();
+  const map = new Map<string, string>();
+
+  for (const profileKey of loadUmbracoProfileKeys(umbracoUsersRoot)) {
+    const generalPath = join(
+      umbracoUsersRoot,
+      profileKey,
+      'profile-info',
+      'general.json',
+    );
+    const general = JSON.parse(readFileSync(generalPath, 'utf8')) as JsonRecord;
+    const email = resolveProfileCmsMemberEmail(
+      general.owner,
+      contentUserIdByProfileKey.get(profileKey),
+      cmsByNodeId,
+    );
+
+    if (email) {
+      map.set(profileKey, email);
+    }
+  }
+
+  return map;
+}
+
+/** Resolve a real Umbraco creator email, or null when none is available. */
 export function resolveCreatorEmailFromUmbraco(
   profileKey: string,
   supportEmail: unknown,
   notificationEmails: unknown,
   usedEmails: Set<string>,
-): string {
+  cmsMemberEmailByProfileKey: Map<string, string> = new Map(),
+): string | null {
+  const cmsMemberEmail = cmsMemberEmailByProfileKey.get(profileKey);
+  if (cmsMemberEmail && !usedEmails.has(cmsMemberEmail)) {
+    usedEmails.add(cmsMemberEmail);
+    return cmsMemberEmail;
+  }
+
   const candidates = collectProfileEmailCandidates(
     supportEmail,
     notificationEmails,
@@ -193,18 +311,7 @@ export function resolveCreatorEmailFromUmbraco(
     }
   }
 
-  const primaryUmbracoEmail = candidates[0];
-  if (primaryUmbracoEmail) {
-    const plusEmail = plusAddressEmail(primaryUmbracoEmail, profileKey);
-    if (plusEmail && !usedEmails.has(plusEmail)) {
-      usedEmails.add(plusEmail);
-      return plusEmail;
-    }
-  }
-
-  const synthetic = uniqueSyntheticEmail(profileKey);
-  usedEmails.add(synthetic);
-  return synthetic;
+  return null;
 }
 
 export function slugFromUrls(urls: unknown): string | null {

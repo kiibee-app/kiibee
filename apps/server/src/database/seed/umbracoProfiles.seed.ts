@@ -5,8 +5,6 @@ import { eq, sql } from 'drizzle-orm';
 
 import { hashPassword } from 'src/utils/passwordHash';
 
-import { resolvePublicMediaUrl } from 'src/utils/resolvePublicMediaUrl';
-
 import { db } from '../db';
 import {
   auditLogs,
@@ -17,6 +15,7 @@ import {
   users,
 } from '../schema';
 import {
+  loadCmsMemberEmailByProfileKey,
   loadUmbracoProfileKeys,
   resolveCreatorEmailFromUmbraco,
   resolveUmbracoMediaUrl,
@@ -276,7 +275,8 @@ function findUmbracoProfileRoot(): string | null {
 function resolveCreatorEmail(
   profile: LoadedProfile,
   usedEmails: Set<string>,
-): string {
+  cmsMemberEmailByProfileKey: Map<string, string>,
+): string | null {
   const general = profile.files['general.json'] ?? {};
   const notifications = profile.files['notifications.json'] ?? {};
 
@@ -285,6 +285,7 @@ function resolveCreatorEmail(
     general.supportEmail,
     notifications.emails,
     usedEmails,
+    cmsMemberEmailByProfileKey,
   );
 }
 
@@ -351,7 +352,7 @@ function buildUniqueChannelSlugs(
 function mapProfile(
   profile: LoadedProfile,
   channelSlug: string,
-  usedEmails: Set<string>,
+  email: string,
 ): MappedProfile {
   const general = profile.files['general.json'] ?? {};
   const layout = profile.files['layout.json'] ?? {};
@@ -382,7 +383,7 @@ function mapProfile(
     creatorChannelId: seedUuid('creator-channel', profile.profileKey),
     creatorPlanId: seedUuid('creator-plan', profile.profileKey),
     auditLogId: seedUuid('audit-log', profile.profileKey),
-    email: resolveCreatorEmail(profile, usedEmails),
+    email,
     firstName,
     lastName,
     fullName: name,
@@ -445,14 +446,29 @@ export const seedUmbracoProfiles = async () => {
     process.env.CREATOR_SEED_PASSWORD_HASH?.trim() ||
     (await hashPassword('123456'));
   const usedEmails = new Set<string>(['admin@gmail.com']);
+  const cmsMemberEmailByProfileKey = loadCmsMemberEmailByProfileKey(root);
 
   let processed = 0;
+  let skippedNoEmail = 0;
 
   for (const profile of profiles) {
+    const email = resolveCreatorEmail(
+      profile,
+      usedEmails,
+      cmsMemberEmailByProfileKey,
+    );
+    if (!email) {
+      skippedNoEmail += 1;
+      console.warn(
+        `Umbraco profile seed skipped (${profile.profileKey}): no Umbraco creator email found`,
+      );
+      continue;
+    }
+
     const mapped = mapProfile(
       profile,
       channelSlugs.get(profile.profileKey) ?? slugify(profile.profileKey),
-      usedEmails,
+      email,
     );
     const planId = await resolvePlanId(mapped.desiredPlanName);
     const now = new Date();
@@ -595,6 +611,6 @@ export const seedUmbracoProfiles = async () => {
   }
 
   console.log(
-    `Umbraco profile seed completed (${processed} profiles processed from ${root})`,
+    `Umbraco profile seed completed (${processed} profiles processed, ${skippedNoEmail} skipped without real email, from ${root})`,
   );
 };
