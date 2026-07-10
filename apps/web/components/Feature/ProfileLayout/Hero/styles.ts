@@ -34,7 +34,7 @@ export const CoverFrame = styled.div`
     border-radius: 18px;
   }
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     height: 170px;
     border-radius: 14px;
   }
@@ -49,7 +49,7 @@ export const CoverFrameFull = styled.div`
     height: 250px;
   }
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     height: 210px;
   }
 `;
@@ -83,7 +83,7 @@ export const ProfileSection = styled.div`
     margin-top: 20px;
   }
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     align-items: center;
     flex-direction: column-reverse;
     gap: 12px;
@@ -108,7 +108,7 @@ export const AvatarWrap = styled.div`
     border-width: 0.375rem;
   }
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     width: 6.75rem;
     height: 6.75rem;
     margin-top: -1rem;
@@ -125,7 +125,7 @@ export const AvatarWrapCentered = styled.div`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     width: 136px;
     height: 136px;
     margin-top: -66px;
@@ -137,7 +137,7 @@ export const ProfileMeta = styled.div`
   padding-bottom: 8px;
   max-width: 760px;
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     padding-bottom: 0;
   }
 `;
@@ -231,7 +231,7 @@ export const TabsWrapper = styled.div`
   margin-top: 24px;
   padding: 0 6px 12px;
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     margin-top: 16px;
     padding-bottom: 10px;
   }
@@ -259,7 +259,7 @@ export const HeroFrame = styled.section`
     height: 460px;
   }
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     height: 420px;
   }
 `;
@@ -292,7 +292,7 @@ export const HeroContent = styled.div`
     padding: 0 28px;
   }
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     padding: 0 10px;
   }
 `;
@@ -318,7 +318,7 @@ export const StoryPanel = styled.aside`
     padding: 32px 0;
   }
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     width: 100%;
     padding: 24px 0 18px;
     gap: 8px;
@@ -345,7 +345,7 @@ export const StoryDescription = styled.div`
   max-width: 520px;
   margin-top: 0;
 
-  ${({ theme }) => theme.media.mobileMd} {
+  ${({ theme }) => theme.media.mobileXl} {
     max-width: 100%;
   }
 `;

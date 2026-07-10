@@ -373,7 +373,7 @@ export const DatePopup = styled.div<{
   z-index: ${({ theme }) => theme.zIndex.dropdownMax};
   overflow: hidden;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     position: fixed;
     top: auto;
     bottom: 2px;
@@ -389,7 +389,7 @@ export const DatePopupScroll = styled.div`
   overflow: auto;
   padding: 20px;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     max-height: calc(100vh - 160px - 2px);
   }
 `;
@@ -453,7 +453,7 @@ export const DatePopupWrapper = styled.div`
   inset: 0;
   z-index: ${({ theme }) => theme.zIndex.dropdownMax};
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     display: flex;
     align-items: center;
     justify-content: center;

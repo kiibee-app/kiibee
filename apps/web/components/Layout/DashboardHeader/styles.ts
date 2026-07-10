@@ -22,7 +22,7 @@ export const HeaderWrapper = styled.header`
     padding: 0 16px;
   }
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     height: 60px;
     padding: 0 10px;
   }
@@ -74,7 +74,7 @@ export const Right = styled.div`
     gap: 12px;
   }
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     gap: 8px;
   }
 `;

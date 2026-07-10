@@ -103,7 +103,7 @@ export const GridContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     grid-template-columns: 1fr;
   }
 `;
