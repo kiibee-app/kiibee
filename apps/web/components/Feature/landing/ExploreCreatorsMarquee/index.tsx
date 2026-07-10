@@ -58,12 +58,7 @@ export default function ExploreCreatorsMarquee() {
             </CardTitle>
             {creator.category && (
               <CategoryBadge>
-                <MonoText
-                  $use="Body_SemiMedium"
-                  style={{ fontSize: "inherit", color: "inherit" }}
-                >
-                  {creator.category}
-                </MonoText>
+                <MonoText $use="Body_SemiMedium">{creator.category}</MonoText>
               </CategoryBadge>
             )}
           </CardHeader>
