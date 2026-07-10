@@ -55,9 +55,7 @@ export function buildRenderFilterSections({
   listSections,
   renderOptionList,
   priceTitle,
-  ratingTitle,
   priceContent,
-  ratingContent,
 }: BuildRenderFilterSectionsParams): RenderFilterSectionItem[] {
   return [
     ...listSections.map((section) => ({
@@ -75,10 +73,11 @@ export function buildRenderFilterSections({
       title: priceTitle,
       content: priceContent,
     },
-    {
-      key: FILTER_PANEL_SECTIONS.RATING,
-      title: ratingTitle,
-      content: ratingContent,
-    },
+    // BUG (WEB): Rating Is Visible on the Explore Page - hidden per request
+    // {
+    //   key: FILTER_PANEL_SECTIONS.RATING,
+    //   title: ratingTitle,
+    //   content: ratingContent,
+    // },
   ];
 }
