@@ -6,7 +6,6 @@ import {
   Patch,
   Req,
   Headers,
-  Query,
   UnauthorizedException,
   UseGuards,
   Param,
@@ -188,19 +187,6 @@ export class AuthController {
   @Get('all-creator-requests')
   async getCreatorRequests() {
     const result = await this.authService.getCreatorRequests();
-    return result;
-  }
-
-  @UseGuards(JwtAuthGuard, AdminGuard)
-  @Get('all-creators')
-  async getAllExistingCreators(
-    @Query('search') search?: string,
-    @Query('plan') plan?: string,
-  ) {
-    const result = await this.authService.getAllExistingCreators(
-      search?.trim() || undefined,
-      plan?.trim() || undefined,
-    );
     return result;
   }
 

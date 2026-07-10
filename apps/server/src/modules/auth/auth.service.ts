@@ -14,7 +14,6 @@ import { success } from 'src/utils/sendResponse';
 import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { creatorRequestService } from './services/creatorRequest.service';
 import { approveCreatorRequestService } from './services/approvCreatorRequest.service';
-import { getAllExistingCreatorsService } from './services/getAllExistingCreators.service';
 import { getCreatorByIdService } from './services/getCreatorById.service';
 import { getAllViewersService } from './services/getAllViewers.service';
 import { getViewerByIdService } from './services/getViewerById.service';
@@ -159,9 +158,6 @@ export class AuthService {
   }
   async getCreatorRequests() {
     return getCreatorRequestService();
-  }
-  async getAllExistingCreators(search?: string, plan?: string) {
-    return getAllExistingCreatorsService({ search, plan });
   }
   async getCreatorById(creatorId: string) {
     return getCreatorByIdService(creatorId);
