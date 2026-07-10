@@ -7,7 +7,7 @@ export const StepsSection = styled.section`
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   padding: 118px 112px;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     padding: 80px 24px;
   }
 `;

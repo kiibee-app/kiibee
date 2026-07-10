@@ -36,7 +36,7 @@ export const SidebarWrapper = styled.aside<{ $expanded: boolean }>`
       $expanded ? "drop-shadow(6px 0 24px rgba(15, 23, 42, 0.12))" : "none"};
   }
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     top: 60px;
     height: calc(100dvh - 60px);
     min-height: calc(100dvh - 60px);
@@ -227,7 +227,7 @@ export const SidebarDropdown = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.frame};
   border: 1px solid ${({ theme }) => theme.colors.gradient.FRAME_BORDER};
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     left: 50px;
     top: auto;
     bottom: calc(100% + 10px);

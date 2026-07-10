@@ -28,7 +28,7 @@ export const Brand = styled(Link)`
   color: inherit;
   min-width: 0;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     max-width: calc(100vw - 92px);
   }
 `;
@@ -57,7 +57,7 @@ export const BrandName = styled.span<{
       ? theme.colors.primary.WHITE_90
       : theme.colors.primary.BLACK};
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     max-width: 100%;
   }
 `;

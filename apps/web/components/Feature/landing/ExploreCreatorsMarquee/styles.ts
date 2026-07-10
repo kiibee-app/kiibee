@@ -132,7 +132,7 @@ export const CreatorCard = styled.article`
     height: 200px;
   }
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     width: calc(100vw - 48px);
     max-width: 380px;
   }

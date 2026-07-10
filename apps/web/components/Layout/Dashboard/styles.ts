@@ -33,7 +33,7 @@ export const MainWrapper = styled.div<{ $sidebarExpanded: boolean }>`
     margin-left: 0;
   }
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     padding-top: 60px;
   }
 `;
