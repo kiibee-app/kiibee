@@ -15,7 +15,17 @@ export type SupportContactResponse = {
   success: boolean;
   statusCode: number;
   message: string;
-  data: null;
+  data: {
+    id: string;
+    firstName: string;
+    lastName: string | null;
+    companyName: string | null;
+    phoneNumber: string | null;
+    email: string;
+    message: string;
+    createdAt: string;
+    updatedAt: string;
+  };
 };
 
 export const useSupportContact = () =>

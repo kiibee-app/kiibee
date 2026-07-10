@@ -69,7 +69,10 @@ export const submitSupportContactService = async (
       message,
     };
 
-    await db.insert(supportContactMessages).values(record);
+    const [createdMessage] = await db
+      .insert(supportContactMessages)
+      .values(record)
+      .returning();
 
     try {
       await getEmailTransporter().sendMail({
@@ -94,7 +97,7 @@ export const submitSupportContactService = async (
     }
 
     return success(
-      null,
+      createdMessage,
       'Support message submitted successfully',
       HttpStatus.CREATED,
     );
