@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import {
@@ -8,6 +8,7 @@ import {
 } from "@/utils/Constants";
 import {
   isFreeSubscriptionPlan,
+  subscriptionPlanSlugToDbName,
   subscriptionPlans,
 } from "@/utils/subscriptionPlans";
 import { isValidEmail, MIN_PASSWORD_LENGTH } from "@/utils/common";
@@ -21,11 +22,31 @@ import { API } from "@/lib/http/api/endpoints";
 import { useLogin, getPostLoginPath } from "@/hooks/auth/useLogin";
 import { useAuthSession } from "@/hooks/auth/useAuthSession";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
+import { saveCreatorInvitePostPayment } from "@/lib/subscription/inviteFlowStorage";
+
+type CreateSubscriptionResponse = {
+  success?: boolean;
+  data?: {
+    paymentWindowUrl?: string;
+  };
+  type?: string;
+  message?: string;
+};
+
+type CreateSubscriptionPayload = {
+  userId: string;
+  planId: string;
+};
 
 type ValidateTokenResponse = {
   success?: boolean;
   message?: string;
-  data?: { userId?: string; type?: string; token?: string };
+  data?: {
+    userId?: string;
+    type?: string;
+    token?: string;
+    email?: string | null;
+  };
 };
 
 type CreatorSetupResponse = {
@@ -42,8 +63,21 @@ type CreatorSetupPayload = {
   confirmPassword: string;
 };
 
+type ApiPlan = {
+  id: string;
+  name: string;
+  price: number;
+};
+
+type PlansResponse = {
+  success?: boolean;
+  data?: ApiPlan[];
+};
+
 export const useSubscriptionFlow = (
   setupToken?: string,
+  initialStep: SubscriptionStep = SUBSCRIPTION_STEP.PLAN,
+  initialPlanId?: string | null,
 ): SubscriptionContextValue => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -58,6 +92,7 @@ export const useSubscriptionFlow = (
     : "/auth/validate-token/__unused__";
 
   const {
+    data: validateTokenData,
     isFetching: isValidatingInviteToken,
     isSuccess: isInviteTokenValid,
     isError: isInviteTokenInvalid,
@@ -66,6 +101,8 @@ export const useSubscriptionFlow = (
     enabled: isCreatorInviteFlow,
     retry: false,
   });
+
+  const { data: plansData } = useGetAPI<PlansResponse>(API.subscription.plans);
 
   const inviteTokenError = useMemo(() => {
     if (!isCreatorInviteFlow) return null;
@@ -88,21 +125,21 @@ export const useSubscriptionFlow = (
     t,
   ]);
 
+  const inviteUserId = validateTokenData?.data?.userId;
+
   const [selectedPlan, setSelectedPlan] = useState(subscriptionPlans[1].id);
-  const [currentStep, setCurrentStep] = useState<SubscriptionStep>(
-    SUBSCRIPTION_STEP.PLAN,
-  );
+  const [currentStep, setCurrentStep] = useState<SubscriptionStep>(initialStep);
   const [passwordVisibility, setPasswordVisibility] = useState({
     [PASSWORD_VISIBILITY_KEY.PASSWORD]: false,
     [PASSWORD_VISIBILITY_KEY.REPEAT_PASSWORD]: false,
   });
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
   const [inviteSubmitError, setInviteSubmitError] = useState<string | null>(
     null,
   );
   const [inviteSignupFlowBusy, setInviteSignupFlowBusy] = useState(false);
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
 
   const {
     mutateAsync: postCreatorSetup,
@@ -111,6 +148,40 @@ export const useSubscriptionFlow = (
     API.auth.creatorSetup,
   );
   const { mutateAsync: loginMutate } = useLogin();
+  const { mutateAsync: createSubscription } = usePostAPI<
+    CreateSubscriptionResponse,
+    CreateSubscriptionPayload
+  >(API.subscription.create);
+
+  useEffect(() => {
+    const inviteEmail = validateTokenData?.data?.email;
+    if (inviteEmail && !email) {
+      setEmail(inviteEmail);
+    }
+  }, [validateTokenData?.data?.email, email]);
+
+  useEffect(() => {
+    if (
+      initialPlanId &&
+      subscriptionPlans.some((plan) => plan.id === initialPlanId)
+    ) {
+      setSelectedPlan(initialPlanId);
+    }
+  }, [initialPlanId]);
+
+  const resolvePlanDbId = useCallback(
+    (planSlug: string) => {
+      const planName = subscriptionPlanSlugToDbName[planSlug];
+      if (!planName) return null;
+
+      return (
+        plansData?.data?.find(
+          (plan) => plan.name.toLowerCase() === planName.toLowerCase(),
+        )?.id ?? null
+      );
+    },
+    [plansData?.data],
+  );
 
   const { isEmailValid, isPasswordValid, passwordsMatch, validationError } =
     useMemo(() => {
@@ -154,11 +225,72 @@ export const useSubscriptionFlow = (
     return plan ? t(plan.priceKey) : "";
   };
 
-  const handleContinue = () => {
-    if (currentStep === SUBSCRIPTION_STEP.PLAN) {
-      setCurrentStep(SUBSCRIPTION_STEP.DETAILS);
+  const startPaidInviteCheckout = useCallback(async () => {
+    if (!isCreatorInviteFlow || !inviteUserId) return;
+
+    setInviteSignupFlowBusy(true);
+    try {
+      setInviteSubmitError(null);
+
+      const dbPlanId = resolvePlanDbId(selectedPlan);
+      if (!dbPlanId) {
+        setInviteSubmitError(t("subscriptionPage.invite.setupFailed"));
+        return;
+      }
+
+      const subscriptionResponse = await createSubscription({
+        userId: inviteUserId,
+        planId: dbPlanId,
+      });
+
+      const paymentUrl = subscriptionResponse?.data?.paymentWindowUrl;
+      if (!paymentUrl) {
+        setInviteSubmitError(t("subscriptionPage.invite.setupFailed"));
+        return;
+      }
+
+      saveCreatorInvitePostPayment({
+        token: trimmedInviteToken,
+        planId: selectedPlan,
+      });
+
+      window.location.assign(paymentUrl);
+    } catch (error) {
+      setInviteSubmitError(
+        getErrorMessage(error, "subscriptionPage.invite.setupFailed"),
+      );
+    } finally {
+      setInviteSignupFlowBusy(false);
     }
-  };
+  }, [
+    isCreatorInviteFlow,
+    inviteUserId,
+    selectedPlan,
+    resolvePlanDbId,
+    createSubscription,
+    trimmedInviteToken,
+    getErrorMessage,
+    t,
+  ]);
+
+  const handleContinue = useCallback(async () => {
+    if (currentStep !== SUBSCRIPTION_STEP.PLAN) return;
+
+    if (isCreatorInviteFlow && !isFreeSubscriptionPlan(selectedPlan)) {
+      if (!isInviteTokenValid || isValidatingInviteToken) return;
+      await startPaidInviteCheckout();
+      return;
+    }
+
+    setCurrentStep(SUBSCRIPTION_STEP.DETAILS);
+  }, [
+    currentStep,
+    isCreatorInviteFlow,
+    selectedPlan,
+    isInviteTokenValid,
+    isValidatingInviteToken,
+    startPaidInviteCheckout,
+  ]);
 
   const completeCreatorInviteSignup = useCallback(async () => {
     if (!isCreatorInviteFlow) return;
@@ -238,11 +370,6 @@ export const useSubscriptionFlow = (
           return;
         }
 
-        if (!isFreeSubscriptionPlan(selectedPlan)) {
-          setCurrentStep(SUBSCRIPTION_STEP.PAYMENT);
-          return;
-        }
-
         await completeCreatorInviteSignup();
         return;
       }
@@ -253,7 +380,6 @@ export const useSubscriptionFlow = (
       isCreatorInviteFlow,
       isInviteTokenValid,
       isValidatingInviteToken,
-      selectedPlan,
       completeCreatorInviteSignup,
     ],
   );
@@ -264,6 +390,11 @@ export const useSubscriptionFlow = (
       [key]: !prev[key],
     }));
   };
+
+  const isPostPaymentSetup =
+    isCreatorInviteFlow &&
+    initialStep === SUBSCRIPTION_STEP.DETAILS &&
+    !isFreeSubscriptionPlan(selectedPlan);
 
   return {
     selectedPlan,
@@ -299,5 +430,6 @@ export const useSubscriptionFlow = (
     isInviteSubmitting: isPostCreatorSetupPending || inviteSignupFlowBusy,
     inviteTokenError,
     inviteSubmitError,
+    isPostPaymentSetup,
   };
 };

@@ -5,7 +5,7 @@ import { success } from 'src/utils/sendResponse';
 import { db } from 'src/database/db';
 import { creatorPlans, plans, users, usersToken } from 'src/database/schema';
 import { and, eq } from 'drizzle-orm/sql/expressions/conditions';
-import { ACCOUNT_STATUS } from 'src/utils/constant';
+import { ACCOUNT_STATUS, STATUS } from 'src/utils/constant';
 import { hashPassword } from 'src/utils/passwordHash';
 import { logger } from 'src/logger/logger';
 
@@ -133,11 +133,29 @@ export const setupCreatorAccountService = async (
         })
         .where(eq(users.id, userId));
 
-      await tx.insert(creatorPlans).values({
-        id: randomUUID(),
-        planId: planUuid,
-        creatorId: userId,
-      });
+      const [existingCreatorPlan] = await tx
+        .select()
+        .from(creatorPlans)
+        .where(
+          and(
+            eq(creatorPlans.creatorId, userId),
+            eq(creatorPlans.planId, planUuid),
+          ),
+        )
+        .limit(1);
+
+      if (!existingCreatorPlan) {
+        await tx.insert(creatorPlans).values({
+          id: randomUUID(),
+          planId: planUuid,
+          creatorId: userId,
+        });
+      } else if (existingCreatorPlan.status !== STATUS.ACTIVE) {
+        await tx
+          .update(creatorPlans)
+          .set({ status: STATUS.ACTIVE })
+          .where(eq(creatorPlans.id, existingCreatorPlan.id));
+      }
 
       await tx
         .update(usersToken)

@@ -121,10 +121,12 @@ export default function SubscriptionPaymentStep() {
     }
   };
 
+  const usesExternalCheckout = isCreatorInviteFlow && !isFreePlan;
+
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (isFreePlan) {
+    if (isFreePlan || usesExternalCheckout) {
       onSubmit();
       return;
     }
@@ -133,7 +135,8 @@ export default function SubscriptionPaymentStep() {
   };
 
   const isSubmitDisabled =
-    (!isFreePlan && !isValid) || (isCreatorInviteFlow && isInviteSubmitting);
+    (!isFreePlan && !usesExternalCheckout && !isValid) ||
+    (isCreatorInviteFlow && isInviteSubmitting);
 
   return (
     <PaymentCard>
@@ -164,7 +167,7 @@ export default function SubscriptionPaymentStep() {
             />
           </PlanSelectWrap>
 
-          {!isFreePlan && (
+          {!isFreePlan && !usesExternalCheckout && (
             <>
               <PaymentMethods
                 role="group"
@@ -292,7 +295,9 @@ export default function SubscriptionPaymentStep() {
             disabled={isSubmitDisabled}
             isLoading={isCreatorInviteFlow && isInviteSubmitting}
           >
-            {t("creatorFinalSteps.submit")}
+            {usesExternalCheckout
+              ? t("subscriptionPage.continue")
+              : t("creatorFinalSteps.submit")}
           </SubmitButton>
         </Form>
       </FormProvider>

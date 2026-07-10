@@ -45,6 +45,8 @@ export default function SubscriptionDetailsForm() {
     isPasswordValid,
     passwordsMatch,
     validationError,
+    isCreatorInviteFlow,
+    isPostPaymentSetup,
   } = useSubscriptionContext();
 
   const planOptions = useMemo(
@@ -62,7 +64,7 @@ export default function SubscriptionDetailsForm() {
         <SortDropdown
           options={planOptions}
           value={selectedPlan}
-          onChange={onSelectPlan}
+          onChange={isPostPaymentSetup ? undefined : onSelectPlan}
           renderSelectedLabel={(_, option) =>
             option ? `${option.label} (${getPlanPriceLabel(option.value)})` : ""
           }
@@ -86,6 +88,7 @@ export default function SubscriptionDetailsForm() {
           placeholder={t(SUBSCRIPTION.creatorDetails.email)}
           value={email}
           onChange={(value) => onEmailChange(String(value))}
+          locked={isCreatorInviteFlow}
           errorMessage={
             email && !isEmailValid
               ? t("subscriptionPage.invite.emailInvalid")

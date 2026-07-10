@@ -30,6 +30,7 @@ export default function SubscriptionPlanStep() {
     isCreatorInviteFlow,
     isValidatingInviteToken,
     inviteTokenError,
+    isInviteSubmitting,
   } = useSubscriptionContext();
 
   const continueDisabled =
@@ -73,8 +74,9 @@ export default function SubscriptionPlanStep() {
 
       <FullWidthContinueButton
         type={BUTTON}
-        onClick={handleContinue}
+        onClick={() => void handleContinue()}
         disabled={continueDisabled}
+        isLoading={isInviteSubmitting}
       >
         {t(SUBSCRIPTION.continue)}
       </FullWidthContinueButton>
