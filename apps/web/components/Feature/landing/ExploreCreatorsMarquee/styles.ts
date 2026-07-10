@@ -178,21 +178,17 @@ export const CategoryBadge = styled.span`
   display: inline-block;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   color: ${({ theme }) => theme.colors.neutral.GRAY};
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  width: fit-content;
+  padding: 5px 10px;
+  border-radius: ${({ theme }) => theme.radius.full};
+  text-transform: capitalize;
 
   ${media.tablet} {
     padding: 2px 8px;
-    font-size: 0.6875rem;
   }
 `;
 
 export const CardDescription = styled.p`
-  margin: 8px 0 12px;
+  margin: 8px 0;
   ${({ theme }) => theme.typography.Body_SemiMedium};
   color: ${({ theme }) => theme.colors.neutral.GRAY};
   display: -webkit-box;
