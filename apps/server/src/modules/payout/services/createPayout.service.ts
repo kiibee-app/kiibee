@@ -10,6 +10,7 @@ import {
   users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
+import { STATUS } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
 const PLATFORM_FEE_PERCENTAGES: Record<number, number> = {
@@ -159,7 +160,7 @@ export const createPayoutService = async (
         rawAmount: amount.toString(),
         amount: payoutAmount.toString(),
         currency: wallet.currency,
-        status: 'pending',
+        status: STATUS.PENDING,
         creditNo: data?.creditNo ?? null,
         bankAccountInfo: data?.bankAccountInfo ?? null,
         cardNo: data?.cardNo ?? null,

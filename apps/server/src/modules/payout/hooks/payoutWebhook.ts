@@ -3,7 +3,7 @@ import { eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { creatorPayouts, creatorWallets } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { ORDER_STATUS, STATUS } from 'src/utils/constant';
+import { ORDER_STATUS, PAYMENT_STATUS, STATUS } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const handlePayoutWebhookService = async (payload: any) => {
@@ -35,12 +35,15 @@ export const handlePayoutWebhookService = async (payload: any) => {
 
     const status = String(payload?.status || '').toLowerCase();
 
-    if (status === ORDER_STATUS.COMPLETED || status === 'success') {
+    if (
+      status === ORDER_STATUS.COMPLETED ||
+      status === PAYMENT_STATUS.PAYMENT_SUCCESS
+    ) {
       await db.transaction(async (tx) => {
         await tx
           .update(creatorPayouts)
           .set({
-            status: 'completed',
+            status: ORDER_STATUS.COMPLETED,
             creditNo: payload?.creditNo ?? payout.creditNo,
             cardNo: payload?.cardNo ?? payout.cardNo,
             bankAccountInfo: payload?.bankAccountInfo ?? payout.bankAccountInfo,
