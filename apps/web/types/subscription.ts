@@ -43,7 +43,7 @@ export interface SubscriptionContextValue {
   validationError: string | null;
   setSelectedPlan: (planId: string) => void;
   setCurrentStep: (step: SubscriptionStep) => void;
-  handleContinue: () => void;
+  handleContinue: () => void | Promise<void>;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   handleTogglePasswordVisibility: (key: PasswordVisibilityKey) => void;
   setEmail: (value: string) => void;
@@ -65,4 +65,5 @@ export interface SubscriptionContextValue {
   isInviteSubmitting: boolean;
   inviteTokenError: string | null;
   inviteSubmitError: string | null;
+  isPostPaymentSetup: boolean;
 }

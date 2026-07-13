@@ -10,6 +10,12 @@ export const FREE_SUBSCRIPTION_PLAN_ID = "try-kiibee" as const;
 export const isFreeSubscriptionPlan = (planId: string) =>
   planId === FREE_SUBSCRIPTION_PLAN_ID;
 
+export const subscriptionPlanSlugToDbName: Record<string, string> = {
+  "try-kiibee": "Try Kiibee",
+  "start-up": "Start-up",
+  pro: "Pro",
+};
+
 export const subscriptionPlans: SubscriptionPlan[] = [
   {
     id: "try-kiibee",

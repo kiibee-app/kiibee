@@ -10,18 +10,21 @@ interface SubscriptionBackRowProps {
   currentStep: SubscriptionStep;
   onBack: (step: SubscriptionStep) => void;
   onPaymentBack?: () => void;
+  hideDetailsBack?: boolean;
 }
 
 export default function SubscriptionBackRow({
   currentStep,
   onBack,
   onPaymentBack,
+  hideDetailsBack = false,
 }: SubscriptionBackRowProps) {
   const { t } = useTranslation();
   const theme = useTheme();
 
   const getTargetStep = (): SubscriptionStep | null => {
     if (currentStep === SUBSCRIPTION_STEP.DETAILS) {
+      if (hideDetailsBack) return null;
       return SUBSCRIPTION_STEP.PLAN;
     }
     return null;
