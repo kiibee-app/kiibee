@@ -17,7 +17,13 @@ import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { useGetAPI } from "@/lib/http/api/getApi";
-import { CREATOR, resolveImageUrl } from "@/utils/Constants";
+import {
+  CREATOR,
+  HASH_RENT,
+  HASH_BUY,
+  STRING_EMPTY,
+  resolveImageUrl,
+} from "@/utils/Constants";
 import { tutorialVideoCardFallback } from "@/utils/data";
 import {
   RENTED_MODES,
@@ -143,22 +149,17 @@ export default function CollectionList() {
         );
 
         actions = pricingActions.map((action) => {
-          let href = `/single-collection?id=${row.id}`;
-          if (action.label && isRentActionLabel(action.label)) {
-            href = `${href}#rent`;
-          } else if (action.label && isBuyActionLabel(action.label)) {
-            href = `${href}#buy`;
-          } else {
-            href = contentHref;
-          }
+          const label = action.label ?? STRING_EMPTY;
+          const hash = isRentActionLabel(label)
+            ? HASH_RENT
+            : isBuyActionLabel(label)
+              ? HASH_BUY
+              : STRING_EMPTY;
 
           return {
-            label: action.label,
-            variant:
-              isRentActionLabel(action.label) || isBuyActionLabel(action.label)
-                ? VARIANT.PRIMARY
-                : VARIANT.SECONDARY,
-            href,
+            label,
+            variant: hash ? VARIANT.PRIMARY : VARIANT.SECONDARY,
+            href: hash ? `/single-collection?id=${row.id}${hash}` : contentHref,
           };
         });
       } else {
