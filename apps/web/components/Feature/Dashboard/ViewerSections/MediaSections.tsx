@@ -57,36 +57,20 @@ type Props = {
   onOpenSection?: (section: Exclude<RentedSectionKey, "collections">) => void;
 };
 
+const MEDIA_TYPE_ICON: Record<
+  string,
+  React.ComponentType<{ width: number; height: number; color: string }>
+> = {
+  [RENTED_SECTION_KEYS.AUDIOS]: AudioFileIcon,
+  [RENTED_SECTION_KEYS.PDFS]: PdfFileIcon,
+  [RENTED_SECTION_KEYS.WEBS]: WebIcon,
+  [RENTED_SECTION_KEYS.VIDEOS]: VideoIcon,
+};
+
 function MediaTypeIcon({ type }: { type: RentedSectionKey }) {
-  if (type === RENTED_SECTION_KEYS.AUDIOS) {
-    return (
-      <AudioFileIcon
-        width={MEDIA_ICON_SIZE}
-        height={MEDIA_ICON_SIZE}
-        color={COLORS.neutral.BLACK}
-      />
-    );
-  }
-  if (type === RENTED_SECTION_KEYS.PDFS) {
-    return (
-      <PdfFileIcon
-        width={MEDIA_ICON_SIZE}
-        height={MEDIA_ICON_SIZE}
-        color={COLORS.neutral.BLACK}
-      />
-    );
-  }
-  if (type === RENTED_SECTION_KEYS.WEBS) {
-    return (
-      <WebIcon
-        width={MEDIA_ICON_SIZE}
-        height={MEDIA_ICON_SIZE}
-        color={COLORS.neutral.BLACK}
-      />
-    );
-  }
+  const Icon = MEDIA_TYPE_ICON[type] ?? VideoIcon;
   return (
-    <VideoIcon
+    <Icon
       width={MEDIA_ICON_SIZE}
       height={MEDIA_ICON_SIZE}
       color={COLORS.neutral.BLACK}
