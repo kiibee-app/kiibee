@@ -94,3 +94,7 @@ export const CREATOR_PLAN_FILTER_OPTIONS = [
 ] as const;
 
 export const ADMIN_ROLE = "admin";
+
+export const ROUTES = {
+  PENDING_REQUESTS: "/pending-requests",
+} as const;
