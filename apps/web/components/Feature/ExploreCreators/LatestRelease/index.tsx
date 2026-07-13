@@ -10,6 +10,7 @@ import {
   EXPLORE_TABS,
   URL_FORMAT_IDS,
   VARIANT,
+  SCROLL_ANIMATION_SELECTORS,
 } from "@/utils/Constants";
 import Skeleton from "@/components/UI/Skeleton";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
@@ -161,10 +162,9 @@ export default function LatestRelease() {
   });
 
   useScrollAnimation({
-    sidebarSelector: "[data-sidebar]",
-    innerSelector: "[data-sidebar] > div",
-    cardsSelector:
-      "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
+    sidebarSelector: SCROLL_ANIMATION_SELECTORS.SIDEBAR,
+    innerSelector: SCROLL_ANIMATION_SELECTORS.INNER,
+    cardsSelector: SCROLL_ANIMATION_SELECTORS.CARDS,
     trigger: tutorials,
   });
 
