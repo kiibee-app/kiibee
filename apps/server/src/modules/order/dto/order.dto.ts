@@ -19,6 +19,21 @@ export class CreateOrderInputDto {
   @IsString()
   subscriptionId?: string;
 }
+export class CreateCollectionOrderInputDto {
+  @IsString()
+  collectionId!: string;
+
+  @IsString()
+  itemType!: string;
+
+  @IsOptional()
+  @IsString()
+  couponCode?: string;
+
+  @IsOptional()
+  @IsString()
+  subscriptionId?: string;
+}
 
 export class BillingHistoryQueryDto {
   @IsOptional()

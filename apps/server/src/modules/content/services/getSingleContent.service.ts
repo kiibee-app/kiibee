@@ -1,7 +1,8 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq, and } from 'drizzle-orm';
+import { eq, and, gt, isNull, or } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
+  collectionItems,
   mediaFiles,
   mediaFileCategories,
   contentCategories,
@@ -21,7 +22,9 @@ export const getSingleContentService = async (
       return fail('Content ID is required', HttpStatus.BAD_REQUEST);
     }
 
-    const [access, content] = await Promise.all([
+    const now = new Date();
+
+    const [directAccess, collectionAccess, content] = await Promise.all([
       db
         .select()
         .from(userContentAccess)
@@ -29,6 +32,35 @@ export const getSingleContentService = async (
           and(
             eq(userContentAccess.userId, userId),
             eq(userContentAccess.mediaFileId, contentId),
+            or(
+              isNull(userContentAccess.rentExpiresAt),
+              gt(userContentAccess.rentExpiresAt, now),
+            ),
+          ),
+        )
+        .limit(1)
+        .then((r) => r[0]),
+
+      db
+        .select({
+          accessType: userContentAccess.accessType,
+          rentExpiresAt: userContentAccess.rentExpiresAt,
+          grantedAt: userContentAccess.grantedAt,
+        })
+        .from(userContentAccess)
+        .innerJoin(
+          collectionItems,
+          eq(collectionItems.collectionId, userContentAccess.collectionId),
+        )
+        .where(
+          and(
+            eq(userContentAccess.userId, userId),
+            isNull(userContentAccess.mediaFileId),
+            eq(collectionItems.mediaFileId, contentId),
+            or(
+              isNull(userContentAccess.rentExpiresAt),
+              gt(userContentAccess.rentExpiresAt, now),
+            ),
           ),
         )
         .limit(1)
@@ -45,6 +77,8 @@ export const getSingleContentService = async (
     if (!content) {
       return fail('Content not found', HttpStatus.NOT_FOUND);
     }
+
+    const access = directAccess ?? collectionAccess;
 
     const categories = await db
       .select({
