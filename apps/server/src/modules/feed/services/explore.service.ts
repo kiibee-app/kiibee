@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
-import { mediaFiles } from 'src/database/schema';
+import { mediaFiles, mediaFileCategories } from 'src/database/schema';
 import type { SQL } from 'drizzle-orm';
 import { sql, desc } from 'drizzle-orm';
 import { success, fail } from 'src/utils/sendResponse';
@@ -39,6 +39,25 @@ export const exploreService = async (
     ]);
 
     const extra: SQL[] = [];
+
+    if (filter?.categoryId) {
+      const ids = (
+        Array.isArray(filter.categoryId)
+          ? filter.categoryId
+          : [filter.categoryId]
+      ).filter(Boolean);
+
+      if (ids.length) {
+        extra.push(
+          sql`${mediaFiles.id} IN (
+            SELECT ${mediaFileCategories.mediaFileId} FROM ${mediaFileCategories} WHERE ${mediaFileCategories.categoryId} IN (${sql.join(
+              ids.map((id) => sql`${id}`),
+              sql`, `,
+            )})
+          )`,
+        );
+      }
+    }
 
     if (filter?.contentTypeId) {
       const ids = (
