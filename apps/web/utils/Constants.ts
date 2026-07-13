@@ -92,6 +92,10 @@ export const VIEW = "view";
 export const VIEWER_SECTION = "section";
 export const VIEWER_SECTION_VALUES = {
   COLLECTIONS: "collections",
+  VIDEOS: "videos",
+  AUDIOS: "audios",
+  PDFS: "pdfs",
+  WEBS: "webs",
 } as const;
 export const ROLE_CREATOR = "creator";
 export const ROLE_VIEWER = "viewer";

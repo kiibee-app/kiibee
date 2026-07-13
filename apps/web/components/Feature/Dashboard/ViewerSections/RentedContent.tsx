@@ -9,13 +9,14 @@ import {
   RENTED_SECTION_KEYS,
   RENTED_MODES,
   type RentedMode,
+  type RentedSectionKey,
   type RentedCollectionItem,
   type RentedMediaItem,
   filterCollections,
   filterMedia,
   getRentedMediaSectionItems,
-  isViewerCollectionsSectionExpanded,
-  syncViewerCollectionsSectionParam,
+  getViewerExpandedSection,
+  syncViewerExpandedSectionParam,
 } from "@/utils/viewerRented";
 import {
   CONTENT_COLLECTION_QUERY_KEY,
@@ -35,13 +36,13 @@ import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNaviga
 type Props = {
   title: string;
   mode: RentedMode;
-  initialCollectionsExpanded?: boolean;
+  initialExpandedSection?: string | null;
 };
 
 export default function RentedContent({
   title,
   mode,
-  initialCollectionsExpanded = false,
+  initialExpandedSection = null,
 }: Props) {
   const router = useRouter();
   const pathname = usePathname();
@@ -53,19 +54,17 @@ export default function RentedContent({
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const isCollectionsExpanded = useMemo(() => {
+  const expandedSection = useMemo(() => {
     if (searchParamsString) {
-      return isViewerCollectionsSectionExpanded(
-        new URLSearchParams(searchParamsString),
-      );
+      return getViewerExpandedSection(new URLSearchParams(searchParamsString));
     }
-    return initialCollectionsExpanded;
-  }, [searchParamsString, initialCollectionsExpanded]);
+    return initialExpandedSection as RentedSectionKey | null;
+  }, [searchParamsString, initialExpandedSection]);
 
-  const setCollectionsExpanded = useCallback(
-    (expanded: boolean) => {
+  const setExpandedSection = useCallback(
+    (sectionKey: RentedSectionKey | null) => {
       const params = new URLSearchParams(searchParamsString);
-      syncViewerCollectionsSectionParam(params, expanded);
+      syncViewerExpandedSectionParam(params, sectionKey);
 
       const query = params.toString();
       const nextUrl = query ? `${pathname}?${query}` : pathname;
@@ -259,7 +258,9 @@ export default function RentedContent({
   }
 
   return (
-    <PageWrap $expandedCollections={isCollectionsExpanded}>
+    <PageWrap
+      $expandedCollections={expandedSection === RENTED_SECTION_KEYS.COLLECTIONS}
+    >
       <RentedHeader
         title={title}
         mode={mode}
@@ -269,9 +270,7 @@ export default function RentedContent({
         onToggleSearch={() => setIsSearchOpen((prev) => !prev)}
         searchInputRef={searchInputRef}
         onBackClick={
-          isCollectionsExpanded
-            ? () => setCollectionsExpanded(false)
-            : undefined
+          expandedSection ? () => setExpandedSection(null) : undefined
         }
       />
 
@@ -287,36 +286,66 @@ export default function RentedContent({
         <ViewerEmptyState mode={mode} variant="search" />
       ) : (
         <>
-          {filteredCollections.length > 0 && (
-            <SectionBlock>
-              <CollectionsSection
-                mode={mode}
-                items={
-                  isCollectionsExpanded
-                    ? filteredCollections
-                    : visibleCollections
-                }
-                totalItems={filteredCollections.length}
-                canSlide={canSlide}
-                canGoPrev={canGoPrev}
-                canGoNext={canGoNext}
-                movePrev={movePrev}
-                moveNext={moveNext}
-                onOpenSection={() => setCollectionsExpanded(true)}
-                showOpenSectionArrow={!isCollectionsExpanded}
-                showExpandedMetaHeader={isCollectionsExpanded}
-                onCollectionPrimaryAction={(item) =>
-                  handleOpenCollection(item.id)
-                }
-                onCollectionClick={(item) => handleCardClick(item.id)}
-              />
-            </SectionBlock>
-          )}
+          {filteredCollections.length > 0 &&
+            (!expandedSection ||
+              expandedSection === RENTED_SECTION_KEYS.COLLECTIONS) && (
+              <SectionBlock>
+                <CollectionsSection
+                  mode={mode}
+                  items={
+                    expandedSection === RENTED_SECTION_KEYS.COLLECTIONS
+                      ? filteredCollections
+                      : visibleCollections
+                  }
+                  totalItems={filteredCollections.length}
+                  canSlide={canSlide}
+                  canGoPrev={canGoPrev}
+                  canGoNext={canGoNext}
+                  movePrev={movePrev}
+                  moveNext={moveNext}
+                  onOpenSection={() =>
+                    setExpandedSection(RENTED_SECTION_KEYS.COLLECTIONS)
+                  }
+                  showOpenSectionArrow={
+                    expandedSection !== RENTED_SECTION_KEYS.COLLECTIONS
+                  }
+                  showExpandedMetaHeader={
+                    expandedSection === RENTED_SECTION_KEYS.COLLECTIONS
+                  }
+                  onCollectionPrimaryAction={(item) =>
+                    handleOpenCollection(item.id)
+                  }
+                  onCollectionClick={(item) => handleCardClick(item.id)}
+                />
+              </SectionBlock>
+            )}
 
-          {isCollectionsExpanded ? null : (
+          {expandedSection === RENTED_SECTION_KEYS.COLLECTIONS ? null : (
             <MediaSections
               mode={mode}
-              sectionItems={sectionItems}
+              sectionItems={
+                expandedSection
+                  ? {
+                      [RENTED_SECTION_KEYS.VIDEOS]:
+                        expandedSection === RENTED_SECTION_KEYS.VIDEOS
+                          ? filteredVideos
+                          : [],
+                      [RENTED_SECTION_KEYS.AUDIOS]:
+                        expandedSection === RENTED_SECTION_KEYS.AUDIOS
+                          ? filteredAudios
+                          : [],
+                      [RENTED_SECTION_KEYS.PDFS]:
+                        expandedSection === RENTED_SECTION_KEYS.PDFS
+                          ? filteredPdfs
+                          : [],
+                      [RENTED_SECTION_KEYS.WEBS]:
+                        expandedSection === RENTED_SECTION_KEYS.WEBS
+                          ? filteredWebs
+                          : [],
+                    }
+                  : sectionItems
+              }
+              expandedSection={expandedSection || null}
               sectionTotals={sectionTotals}
               canSlide={canSlide}
               canGoPrev={canGoPrev}
@@ -325,8 +354,8 @@ export default function RentedContent({
               moveNext={moveNext}
               onMediaPrimaryAction={handleOpenMediaDetail}
               onCardClick={(item) => handleCardClick(item.id)}
-              onOpenSection={(_, item) => {
-                if (item) handleOpenMediaDetail(item);
+              onOpenSection={(sectionKey) => {
+                setExpandedSection(sectionKey);
               }}
             />
           )}

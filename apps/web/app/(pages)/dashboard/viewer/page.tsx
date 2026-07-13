@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import type { Metadata } from "next";
 import ClientDashboardViewer from "@/components/Feature/Dashboard/ClientDashboardViewer";
 import { WEBSITE } from "@/utils/Constants";
-import { isViewerCollectionsSectionExpanded } from "@/utils/viewerRented";
+import { getViewerExpandedSection } from "@/utils/viewerRented";
 
 const title = "Viewer Dashboard";
 const description =
@@ -28,13 +28,11 @@ type PageProps = {
 
 export default async function DashboardViewerPage({ searchParams }: PageProps) {
   const params = await searchParams;
-  const initialCollectionsExpanded = isViewerCollectionsSectionExpanded(params);
+  const initialExpandedSection = getViewerExpandedSection(params);
 
   return (
     <Suspense fallback={<div />}>
-      <ClientDashboardViewer
-        initialCollectionsExpanded={initialCollectionsExpanded}
-      />
+      <ClientDashboardViewer initialExpandedSection={initialExpandedSection} />
     </Suspense>
   );
 }

@@ -42,11 +42,11 @@ const ROUTABLE_VIEWER_VIEWS = new Set<string>([
 ]);
 
 type Props = {
-  initialCollectionsExpanded?: boolean;
+  initialExpandedSection?: string | null;
 };
 
 export default function ClientDashboardViewer({
-  initialCollectionsExpanded = false,
+  initialExpandedSection = null,
 }: Props) {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
@@ -164,21 +164,21 @@ export default function ClientDashboardViewer({
           key={RENTED_MODES.PURCHASED}
           title={sectionTitle}
           mode={RENTED_MODES.PURCHASED}
-          initialCollectionsExpanded={initialCollectionsExpanded}
+          initialExpandedSection={initialExpandedSection}
         />
       ) : activePage === VIEWER_LABELS.CURRENTLY_RENTED ? (
         <RentedContent
           key={RENTED_MODES.CURRENTLY}
           title={sectionTitle}
           mode={RENTED_MODES.CURRENTLY}
-          initialCollectionsExpanded={initialCollectionsExpanded}
+          initialExpandedSection={initialExpandedSection}
         />
       ) : activePage === VIEWER_LABELS.PREVIOUSLY_RENTED ? (
         <RentedContent
           key={RENTED_MODES.PREVIOUSLY}
           title={sectionTitle}
           mode={RENTED_MODES.PREVIOUSLY}
-          initialCollectionsExpanded={initialCollectionsExpanded}
+          initialExpandedSection={initialExpandedSection}
         />
       ) : activePage === VIEWER_LABELS.BILLINGS ? (
         <ClientViewerBillings />
