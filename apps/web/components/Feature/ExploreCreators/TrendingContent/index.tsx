@@ -35,10 +35,10 @@ import {
   SkeletonFooter,
 } from "../Creators/styles";
 
-export default function TrendingContent() {
+export default function TrendingContent({ search }: { search?: string }) {
   const { t } = useTranslation();
   const [pageStart, setPageStart] = useState(0);
-  const { tutorials, isLoading } = useTrendingContent();
+  const { tutorials, isLoading } = useTrendingContent({ search });
 
   const totalItems = tutorials.length;
   const { canSlide, canGoPrev, canGoNext } = getPaginationState(

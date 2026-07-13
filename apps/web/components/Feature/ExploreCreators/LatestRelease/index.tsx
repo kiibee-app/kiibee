@@ -63,7 +63,7 @@ function getInitialExploreSort(
   return EXPLORE_CONTENT_SORT.NEW;
 }
 
-export default function LatestRelease() {
+export default function LatestRelease({ search }: { search?: string }) {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
   useScrollAnimation({
@@ -165,6 +165,7 @@ export default function LatestRelease() {
     sort: activeExploreSort,
     filters: exploreFilters,
     limit,
+    search,
   });
 
   const hasMore = tutorials.length >= limit;

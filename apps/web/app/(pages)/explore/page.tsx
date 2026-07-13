@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import NavBar from "@/components/Layout/Navbar";
 import GenericSpinner from "@/components/UI/GenericSpinner";
 import { ExploreContentWrapper, ExploreSection, Main } from "@/app/styles";
@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 import { useExploreNavTone } from "@/hooks/useExploreNavTone";
 import { LocalPageContainer } from "./category/[categoryName]/styles";
 import { useMounted } from "@/utils/common";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const LatestRelease = dynamic(
   () => import("@/components/Feature/ExploreCreators/LatestRelease"),
@@ -22,6 +23,8 @@ const LatestRelease = dynamic(
 export default function ExplorePage() {
   const { heroRef, trendingRef, navTextTone } = useExploreNavTone();
   const mounted = useMounted();
+  const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery);
 
   return (
     <LocalPageContainer $navTextTone={navTextTone}>
@@ -29,18 +32,22 @@ export default function ExplorePage() {
       <Main>
         <ExploreSection>
           <div ref={heroRef}>
-            <ExploreCreatorsHero showControls={false} />
+            <ExploreCreatorsHero
+              showControls={false}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
           </div>
           <div ref={trendingRef}>
-            <TrendingContent />
+            <TrendingContent search={debouncedSearchQuery} />
           </div>
-          <TopCreators />
+          <TopCreators search={debouncedSearchQuery} />
           <Suspense fallback={<GenericSpinner isLocal size={40} />}>
             <ExploreContentWrapper>
-              <LatestRelease />
+              <LatestRelease search={debouncedSearchQuery} />
             </ExploreContentWrapper>
           </Suspense>
-          <RecentlyAdded />
+          <RecentlyAdded search={debouncedSearchQuery} />
         </ExploreSection>
       </Main>
       <Footer />

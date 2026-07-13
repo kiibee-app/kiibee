@@ -36,10 +36,11 @@ import {
 } from "../Creators/styles";
 import { RECENT_CONTENT_LIMIT, SKELETON_COUNT } from "@/utils/Constants";
 
-export default function RecentlyAdded() {
+export default function RecentlyAdded({ search }: { search?: string }) {
   const { t } = useTranslation();
   const { tutorials, isLoading } = useRecentContent({
     limit: RECENT_CONTENT_LIMIT,
+    search,
   });
   const [pageStart, setPageStart] = useState(0);
 
