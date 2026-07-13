@@ -66,13 +66,6 @@ function getInitialExploreSort(
 export default function LatestRelease() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
-  useScrollAnimation({
-    sidebarSelector: "[data-sidebar]",
-    innerSelector: "[data-sidebar] > div",
-    cardsSelector:
-      "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
-  });
-
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const filterOverlayRef = useRef<HTMLDivElement>(null);
 
@@ -165,6 +158,14 @@ export default function LatestRelease() {
     sort: activeExploreSort,
     filters: exploreFilters,
     limit,
+  });
+
+  useScrollAnimation({
+    sidebarSelector: "[data-sidebar]",
+    innerSelector: "[data-sidebar] > div",
+    cardsSelector:
+      "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
+    trigger: tutorials,
   });
 
   const hasMore = tutorials.length >= limit;
