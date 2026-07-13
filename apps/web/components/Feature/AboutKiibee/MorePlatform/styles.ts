@@ -56,6 +56,11 @@ export const Card = styled.div`
     transform 0.3s ease,
     box-shadow 0.3s ease;
 
+  & > div {
+    position: absolute;
+    inset: 0;
+  }
+
   &:hover {
     transform: translateY(-8px);
     box-shadow: ${({ theme }) => theme.shadows.lg};
@@ -94,3 +99,5 @@ export const platformRevealStyle: CSSProperties = {
 export const platformImageStyle: CSSProperties = {
   objectFit: "cover",
 };
+
+export const PLATFORM_IMAGE_SIZES = "(max-width: 767px) 116px, 126px" as const;

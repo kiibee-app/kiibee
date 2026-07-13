@@ -23,6 +23,8 @@ import {
   ListItem,
   Bullet,
   Spacer,
+  stepImageStyle,
+  STEP_IMAGE_SIZES,
 } from "./styles";
 
 export default function HowToGetStarted() {
@@ -65,7 +67,8 @@ export default function HowToGetStarted() {
                   src={step.image}
                   alt={t(step.titleKey)}
                   fill
-                  style={{ objectFit: "cover", objectPosition: "center" }}
+                  sizes={STEP_IMAGE_SIZES.desktop}
+                  style={stepImageStyle}
                   priority={index === 0}
                 />
               </ImageWrapper>
@@ -89,7 +92,8 @@ export default function HowToGetStarted() {
                       src={step.image}
                       alt={t(step.titleKey)}
                       fill
-                      style={{ objectFit: "cover", objectPosition: "center" }}
+                      sizes={STEP_IMAGE_SIZES.mobile}
+                      style={stepImageStyle}
                     />
                   </MobileStepImage>
 
