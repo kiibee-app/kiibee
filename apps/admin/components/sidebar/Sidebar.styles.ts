@@ -97,3 +97,19 @@ export const IconWrap = styled.span`
   display: flex;
   align-items: center;
 `;
+
+export const NotificationBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: ${({ theme }) => theme.radius.full};
+  background-color: ${({ theme }) => theme.colors.primary.RED};
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  margin-left: auto;
+  box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.neutral.WHITE};
+`;
