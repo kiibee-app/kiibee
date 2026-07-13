@@ -21,6 +21,7 @@ import {
 import {
   CONTENT_COLLECTION_QUERY_KEY,
   CONTENT_ITEM_QUERY_KEY,
+  LOADING_TEXT_FALLBACK,
 } from "@/utils/Constants";
 import { useViewerRentedSectionPagination } from "@/hooks/RentedSectionPagination";
 import { useViewerRentedData } from "@/hooks/useViewerRented";
@@ -277,7 +278,7 @@ export default function RentedContent({
       {(mode === RENTED_MODES.PURCHASED ? isPurchasedLoading : isLoading) ? (
         <EmptyState>
           <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
-            Loading...
+            {LOADING_TEXT_FALLBACK}
           </MonoText>
         </EmptyState>
       ) : isDataEmpty ? (

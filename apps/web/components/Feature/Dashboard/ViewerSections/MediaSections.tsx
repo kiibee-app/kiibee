@@ -5,7 +5,7 @@ import { useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT } from "@/utils/Constants";
+import { VARIANT, SORT_ARROW_UP, SORT_ARROW_DOWN } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
@@ -25,6 +25,7 @@ import {
   MEDIA_SORT_KEY_LIST,
   sortViewerMedia,
   type CollectionSortKey,
+  MEDIA_ICON_SIZE,
 } from "@/utils/viewerRented";
 import {
   MediaGrid,
@@ -59,16 +60,38 @@ type Props = {
 function MediaTypeIcon({ type }: { type: RentedSectionKey }) {
   if (type === RENTED_SECTION_KEYS.AUDIOS) {
     return (
-      <AudioFileIcon width={22} height={22} color={COLORS.neutral.BLACK} />
+      <AudioFileIcon
+        width={MEDIA_ICON_SIZE}
+        height={MEDIA_ICON_SIZE}
+        color={COLORS.neutral.BLACK}
+      />
     );
   }
   if (type === RENTED_SECTION_KEYS.PDFS) {
-    return <PdfFileIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
+    return (
+      <PdfFileIcon
+        width={MEDIA_ICON_SIZE}
+        height={MEDIA_ICON_SIZE}
+        color={COLORS.neutral.BLACK}
+      />
+    );
   }
   if (type === RENTED_SECTION_KEYS.WEBS) {
-    return <WebIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
+    return (
+      <WebIcon
+        width={MEDIA_ICON_SIZE}
+        height={MEDIA_ICON_SIZE}
+        color={COLORS.neutral.BLACK}
+      />
+    );
   }
-  return <VideoIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
+  return (
+    <VideoIcon
+      width={MEDIA_ICON_SIZE}
+      height={MEDIA_ICON_SIZE}
+      color={COLORS.neutral.BLACK}
+    />
+  );
 }
 
 export default function MediaSections({
@@ -148,8 +171,8 @@ export default function MediaSections({
                       >
                         {t(`collections.sort.${key}`)}
                         <CollectionMetaSortArrow aria-hidden>
-                          <span>↑</span>
-                          <span>↓</span>
+                          <span>{SORT_ARROW_UP}</span>
+                          <span>{SORT_ARROW_DOWN}</span>
                         </CollectionMetaSortArrow>
                       </CollectionMetaHeaderItem>
                     );

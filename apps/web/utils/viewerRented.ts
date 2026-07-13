@@ -1,6 +1,9 @@
 import type { TFunction } from "i18next";
 import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
+import { MILLISECONDS_IN_HOUR, HOURS_IN_DAY } from "@/utils/Constants";
+
+export const MEDIA_ICON_SIZE = 22;
 
 export type CollectionAction = {
   label: string;
@@ -360,12 +363,14 @@ export function formatExpiryText(
 ): string {
   if (!rentExpiresAt) return "";
   const hrs = Math.round(
-    (new Date(rentExpiresAt).getTime() - Date.now()) / 36e5,
+    (new Date(rentExpiresAt).getTime() - Date.now()) / MILLISECONDS_IN_HOUR,
   );
   if (hrs <= 0) return t("viewerRented.expired");
-  return hrs < 24
+  return hrs < HOURS_IN_DAY
     ? t("viewerRented.expiresInHours", { count: hrs })
-    : t("viewerRented.expiresInDays", { count: Math.round(hrs / 24) });
+    : t("viewerRented.expiresInDays", {
+        count: Math.round(hrs / HOURS_IN_DAY),
+      });
 }
 
 export function formatExpiredText(

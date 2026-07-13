@@ -533,3 +533,13 @@ export const CURSOR = {
   POINTER: "pointer",
   DEFAULT: "default",
 } as const;
+
+export const VIEWER_DASHBOARD_TITLE = "Viewer Dashboard";
+export const VIEWER_DASHBOARD_DESCRIPTION =
+  "Manage your purchased content and viewer activity on Kiibee.";
+export const LOADING_TEXT_FALLBACK = "Loading...";
+export const DASHBOARD_NO_PADDING = "0";
+export const SORT_ARROW_UP = "↑";
+export const SORT_ARROW_DOWN = "↓";
+export const MILLISECONDS_IN_HOUR = 36e5;
+export const HOURS_IN_DAY = 24;
