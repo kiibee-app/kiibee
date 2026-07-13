@@ -4,9 +4,7 @@ import styled, { css } from "styled-components";
 import Link from "next/link";
 import { media } from "@repo/ui/breakpoints";
 
-export const Header = styled.header<
-  HeaderProps & { $textTone?: typeof TONE_DARK | typeof TONE_LIGHT }
->`
+export const Header = styled.header<HeaderProps>`
   position: ${({ $position }) => $position};
   top: ${({ $topOffset }) => $topOffset};
   left: 0;
@@ -18,10 +16,7 @@ export const Header = styled.header<
   display: block;
   -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
-  background: ${({ theme, $textTone }) =>
-    $textTone === TONE_LIGHT
-      ? theme.colors.primary.WHITE_10
-      : theme.colors.primary.WHITE};
+  background: ${({ theme }) => theme.colors.primary.WHITE_10};
   transition:
     min-height 240ms cubic-bezier(0.22, 1, 0.36, 1),
     height 240ms cubic-bezier(0.22, 1, 0.36, 1),
