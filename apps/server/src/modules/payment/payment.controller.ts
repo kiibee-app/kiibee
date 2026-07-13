@@ -13,6 +13,7 @@ import {
 import { PaymentService } from './payment.service';
 import { handleEpayPayment } from './hooks/paymentWebhook';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { handleAddCardWebhook } from './hooks/cardAddedWebhook';
 
 @Controller('payment')
 export class PaymentController {
@@ -27,6 +28,13 @@ export class PaymentController {
     }
 
     await handleEpayPayment(body);
+
+    return { received: true };
+  }
+
+  @Post('webhook/card')
+  async handleAddCardWebhook(@Body() body: any, @Req() req: any) {
+    await handleAddCardWebhook(body);
 
     return { received: true };
   }
@@ -52,5 +60,12 @@ export class PaymentController {
     const userId = req.user?.userId;
     const cardId = req.params.cardId;
     return this.paymentService.setDefaultCard(userId, cardId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('card/add')
+  async addNewCard(@Req() req: any) {
+    const userId = req.user?.userId;
+    return this.paymentService.addNewCard(userId);
   }
 }
