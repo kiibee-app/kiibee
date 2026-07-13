@@ -543,3 +543,9 @@ export const SORT_ARROW_UP = "↑";
 export const SORT_ARROW_DOWN = "↓";
 export const MILLISECONDS_IN_HOUR = 36e5;
 export const HOURS_IN_DAY = 24;
+
+export const SCROLL_ANIMATION_SELECTORS = {
+  SIDEBAR: "[data-sidebar]",
+  INNER: "[data-sidebar] > div",
+  CARDS: "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
+} as const;

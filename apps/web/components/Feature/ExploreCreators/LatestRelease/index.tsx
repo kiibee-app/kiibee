@@ -10,6 +10,7 @@ import {
   EXPLORE_TABS,
   URL_FORMAT_IDS,
   VARIANT,
+  SCROLL_ANIMATION_SELECTORS,
 } from "@/utils/Constants";
 import Skeleton from "@/components/UI/Skeleton";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
@@ -66,13 +67,6 @@ function getInitialExploreSort(
 export default function LatestRelease() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
-  useScrollAnimation({
-    sidebarSelector: "[data-sidebar]",
-    innerSelector: "[data-sidebar] > div",
-    cardsSelector:
-      "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
-  });
-
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const filterOverlayRef = useRef<HTMLDivElement>(null);
 
@@ -165,6 +159,13 @@ export default function LatestRelease() {
     sort: activeExploreSort,
     filters: exploreFilters,
     limit,
+  });
+
+  useScrollAnimation({
+    sidebarSelector: SCROLL_ANIMATION_SELECTORS.SIDEBAR,
+    innerSelector: SCROLL_ANIMATION_SELECTORS.INNER,
+    cardsSelector: SCROLL_ANIMATION_SELECTORS.CARDS,
+    trigger: tutorials,
   });
 
   const hasMore = tutorials.length >= limit;

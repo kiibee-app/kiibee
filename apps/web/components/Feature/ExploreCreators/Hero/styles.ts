@@ -347,8 +347,8 @@ export const PriceFieldLabel = styled(MonoText).attrs({
 `;
 
 export const PriceInputWrapper = styled.div`
-  min-height: 68px;
-  padding: 10px 14px;
+  min-height: 46px;
+  padding: 4px 10px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -357,10 +357,10 @@ export const PriceInputWrapper = styled.div`
 `;
 
 export const PriceValue = styled(MonoText).attrs({
-  $use: "Body_Medium",
+  $use: "Body_Small",
 })`
-  width: 42px;
-  height: 42px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -375,11 +375,11 @@ export const PriceInput = styled.input`
   border: none;
   outline: none;
   background: ${({ theme }) => theme.colors.gradient.TRANSPARENT};
-  ${({ theme }) => theme.typography.Heading3};
+  ${({ theme }) => theme.typography.Body_Medium};
   color: ${({ theme }) => theme.colors.neutral.GRAY_400};
 
   &::placeholder {
-    ${({ theme }) => theme.typography.Heading3};
+    ${({ theme }) => theme.typography.Body_Medium};
     color: ${({ theme }) => theme.colors.neutral.GRAY_400};
   }
 `;
