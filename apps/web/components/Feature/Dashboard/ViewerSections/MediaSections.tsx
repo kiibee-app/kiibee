@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
+
 import { MonoText } from "@/components/UI/Monotext";
 import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT } from "@/utils/Constants";
+import { VARIANT, SORT_ARROW_UP, SORT_ARROW_DOWN } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import { VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
@@ -20,6 +22,10 @@ import {
   type RentedMediaSectionItems,
   getMediaAction,
   getMediaLabel,
+  MEDIA_SORT_KEY_LIST,
+  sortViewerMedia,
+  type CollectionSortKey,
+  MEDIA_ICON_SIZE,
 } from "@/utils/viewerRented";
 import {
   MediaGrid,
@@ -30,6 +36,9 @@ import {
   InlineSectionArrow,
   TwoButtonRow,
   SectionBlock,
+  CollectionMetaHeader,
+  CollectionMetaHeaderItem,
+  CollectionMetaSortArrow,
 } from "./styles";
 import SectionPaginationArrows from "./SectionPaginationArrows";
 
@@ -44,25 +53,45 @@ type Props = {
   moveNext: (section: RentedSectionKey, totalItems: number) => void;
   onMediaPrimaryAction?: (item: RentedMediaItem) => void;
   onCardClick?: (item: RentedMediaItem) => void;
-  onOpenSection?: (
-    section: Exclude<RentedSectionKey, "collections">,
-    item: RentedMediaItem | undefined,
-  ) => void;
+  expandedSection?: Exclude<RentedSectionKey, "collections"> | null;
+  onOpenSection?: (section: Exclude<RentedSectionKey, "collections">) => void;
 };
 
 function MediaTypeIcon({ type }: { type: RentedSectionKey }) {
   if (type === RENTED_SECTION_KEYS.AUDIOS) {
     return (
-      <AudioFileIcon width={22} height={22} color={COLORS.neutral.BLACK} />
+      <AudioFileIcon
+        width={MEDIA_ICON_SIZE}
+        height={MEDIA_ICON_SIZE}
+        color={COLORS.neutral.BLACK}
+      />
     );
   }
   if (type === RENTED_SECTION_KEYS.PDFS) {
-    return <PdfFileIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
+    return (
+      <PdfFileIcon
+        width={MEDIA_ICON_SIZE}
+        height={MEDIA_ICON_SIZE}
+        color={COLORS.neutral.BLACK}
+      />
+    );
   }
   if (type === RENTED_SECTION_KEYS.WEBS) {
-    return <WebIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
+    return (
+      <WebIcon
+        width={MEDIA_ICON_SIZE}
+        height={MEDIA_ICON_SIZE}
+        color={COLORS.neutral.BLACK}
+      />
+    );
   }
-  return <VideoIcon width={22} height={22} color={COLORS.neutral.BLACK} />;
+  return (
+    <VideoIcon
+      width={MEDIA_ICON_SIZE}
+      height={MEDIA_ICON_SIZE}
+      color={COLORS.neutral.BLACK}
+    />
+  );
 }
 
 export default function MediaSections({
@@ -76,9 +105,18 @@ export default function MediaSections({
   moveNext,
   onMediaPrimaryAction,
   onCardClick,
+  expandedSection,
   onOpenSection,
 }: Props) {
   const { t } = useTranslation();
+  const [activeSortKey, setActiveSortKey] = useState<CollectionSortKey | null>(
+    null,
+  );
+
+  const toggleSort = (key: CollectionSortKey) => {
+    setActiveSortKey((prev) => (prev === key ? null : key));
+  };
+
   const isCurrent = mode === RENTED_MODES.CURRENTLY;
   const canOpenMediaDetail = Boolean(onMediaPrimaryAction);
   const shouldShowAccessCta =
@@ -92,39 +130,68 @@ export default function MediaSections({
           sectionItems[section.key].length === 0
         )
           return null;
+
+        const effectiveSortKey =
+          expandedSection === section.key ? activeSortKey : null;
+        const displayItems = effectiveSortKey
+          ? sortViewerMedia(sectionItems[section.key], effectiveSortKey)
+          : sectionItems[section.key];
+
         return (
           <SectionBlock key={section.title}>
             <SectionHeader>
               <SectionTitleRow>
                 <SectionTitle>{section.title}</SectionTitle>
-                {canOpenMediaDetail &&
+                {!expandedSection &&
+                canOpenMediaDetail &&
                 (section.key === RENTED_SECTION_KEYS.VIDEOS ||
                   section.key === RENTED_SECTION_KEYS.AUDIOS ||
                   section.key === RENTED_SECTION_KEYS.PDFS ||
                   section.key === RENTED_SECTION_KEYS.WEBS) ? (
                   <InlineSectionArrow
                     type="button"
-                    aria-label={`Open ${section.title} details`}
-                    onClick={() =>
-                      onOpenSection?.(section.key, sectionItems[section.key][0])
-                    }
+                    aria-label={`Expand ${section.title} section`}
+                    onClick={() => onOpenSection?.(section.key)}
                   >
                     <LeftIcon />
                   </InlineSectionArrow>
                 ) : null}
               </SectionTitleRow>
-              <SectionPaginationArrows
-                sectionKey={section.key}
-                totalItems={sectionTotals[section.key]}
-                canSlide={canSlide}
-                canGoPrev={canGoPrev}
-                canGoNext={canGoNext}
-                movePrev={movePrev}
-                moveNext={moveNext}
-              />
+              {expandedSection === section.key ? (
+                <CollectionMetaHeader>
+                  {MEDIA_SORT_KEY_LIST.map((key) => {
+                    const isActive = effectiveSortKey === key;
+                    return (
+                      <CollectionMetaHeaderItem
+                        key={key}
+                        type="button"
+                        $active={isActive}
+                        aria-pressed={isActive}
+                        onClick={() => toggleSort(key)}
+                      >
+                        {t(`collections.sort.${key}`)}
+                        <CollectionMetaSortArrow aria-hidden>
+                          <span>{SORT_ARROW_UP}</span>
+                          <span>{SORT_ARROW_DOWN}</span>
+                        </CollectionMetaSortArrow>
+                      </CollectionMetaHeaderItem>
+                    );
+                  })}
+                </CollectionMetaHeader>
+              ) : !expandedSection ? (
+                <SectionPaginationArrows
+                  sectionKey={section.key}
+                  totalItems={sectionTotals[section.key]}
+                  canSlide={canSlide}
+                  canGoPrev={canGoPrev}
+                  canGoNext={canGoNext}
+                  movePrev={movePrev}
+                  moveNext={moveNext}
+                />
+              ) : null}
             </SectionHeader>
             <MediaGrid>
-              {sectionItems[section.key].map((item) => (
+              {displayItems.map((item) => (
                 <GenericCard
                   key={item.id}
                   coverImage
