@@ -18,6 +18,7 @@ export const Page = styled.main`
   width: 100%;
   overflow-x: clip;
   background: ${({ theme }) => theme.colors.primary.WHITE};
+  display: flow-root;
 `;
 
 export const Brand = styled(Link)`
