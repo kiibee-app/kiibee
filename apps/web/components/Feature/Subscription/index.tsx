@@ -17,6 +17,7 @@ import { Content, SubscriptionPageInner, SubscriptionShell } from "./styles";
 import { MonoText } from "@/components/UI/Monotext";
 import COLORS from "@repo/ui/colors";
 import { ALERT } from "@/utils/common";
+import type { SubscriptionStep } from "@/types/subscription";
 
 function SubscriptionSectionInner() {
   const { t } = useTranslation();
@@ -27,12 +28,14 @@ function SubscriptionSectionInner() {
     inviteSubmitError,
     isCreatorInviteFlow,
     backFromPaymentStep,
+    isPostPaymentSetup,
   } = useSubscriptionContext();
 
   const showInviteSubmitError =
     isCreatorInviteFlow &&
     Boolean(inviteSubmitError) &&
-    (currentStep === SUBSCRIPTION_STEP.DETAILS ||
+    (currentStep === SUBSCRIPTION_STEP.PLAN ||
+      currentStep === SUBSCRIPTION_STEP.DETAILS ||
       currentStep === SUBSCRIPTION_STEP.PAYMENT);
 
   return (
@@ -42,6 +45,7 @@ function SubscriptionSectionInner() {
           currentStep={currentStep}
           onBack={setCurrentStep}
           onPaymentBack={backFromPaymentStep}
+          hideDetailsBack={isPostPaymentSetup}
         />
 
         <Content>
@@ -97,11 +101,19 @@ function SubscriptionSectionInner() {
 
 export default function SubscriptionSection({
   setupToken,
+  initialStep,
+  initialPlanId,
 }: {
   setupToken?: string | null;
+  initialStep?: SubscriptionStep;
+  initialPlanId?: string | null;
 }) {
   return (
-    <SubscriptionProvider setupToken={setupToken}>
+    <SubscriptionProvider
+      setupToken={setupToken}
+      initialStep={initialStep}
+      initialPlanId={initialPlanId}
+    >
       <SubscriptionSectionInner />
     </SubscriptionProvider>
   );

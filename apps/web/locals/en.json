@@ -192,6 +192,11 @@
           "pdf": "PDF",
           "epub": "EPUB"
         }
+      },
+      "ready": {
+        "title": "Your profile is ready!",
+        "subtitle": "Enjoy exploring creators and content tailored just for you.",
+        "submit": "Go to profile"
       }
     },
     "form": {
@@ -479,6 +484,7 @@
     "filters": {
       "title": "Filters",
       "showMore": "Show more",
+      "seeLess": "See less",
       "sections": {
         "creators": "Creators",
         "categories": "Categories",
@@ -1010,6 +1016,8 @@
     "notFound": "This content could not be found.",
     "loading": "Loading content...",
     "imageAlt": "Content preview",
+    "openInDashboard": "Open in Dashboard",
+    "myContent": "My content",
     "seeContent": "See content",
     "playVideo": "Play video",
     "playTrailer": "Play trailer",
@@ -2077,7 +2085,8 @@
       "common": {
         "enterAmount": "Enter amount",
         "feeNote": "Minimum DKK 8, as Kiibee charges DKK 5 in transaction fees",
-        "invalidNumber": "Please enter a valid number."
+        "invalidNumber": "Please enter a valid number.",
+        "requiredAmount": "Amount is required."
       },
       "physicalLink": {
         "title": "Physical product",

@@ -32,6 +32,10 @@ export const MainWrapper = styled.div<{ $sidebarExpanded: boolean }>`
   ${media.desktop} {
     margin-left: 0;
   }
+
+  ${media.mobileXl} {
+    padding-top: 60px;
+  }
 `;
 
 export const ContentWrapper = styled.main<{ $contentPadding?: string }>`

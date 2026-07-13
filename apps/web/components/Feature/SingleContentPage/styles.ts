@@ -269,8 +269,8 @@ export const CreatorRow = styled.div`
 
 export const CreatorAvatar = styled.span`
   position: relative;
-  width: 30px;
-  height: 30px;
+  width: 1.875rem;
+  height: 1.875rem;
   flex: 0 0 30px;
   border-radius: 6px;
   overflow: hidden;
@@ -352,6 +352,25 @@ export const MainAction = styled(GenericButton).attrs({
   min-height: 51px;
   padding: 10px 20px;
   margin-bottom: 1.5rem;
+`;
+
+export const MainActionRow = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
+
+  ${MainAction} {
+    margin-bottom: 0;
+  }
+`;
+
+export const MainActionExpiryText = styled.p`
+  ${({ theme }) => theme.typography.Body_Medium};
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary.RED};
 `;
 
 export const PricingCtaRow = styled.div`
@@ -586,6 +605,7 @@ export const PurchaseModalCardTitle = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
 `;
 
 export const PurchaseModalCardCreator = styled.div`

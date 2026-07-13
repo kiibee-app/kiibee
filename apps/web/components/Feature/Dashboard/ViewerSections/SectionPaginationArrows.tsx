@@ -24,8 +24,8 @@ export default function SectionPaginationArrows({
   moveNext,
 }: Props) {
   const showPrev = canGoPrev(sectionKey);
-  const disableNext =
-    !canSlide(sectionKey, totalItems) || !canGoNext(sectionKey, totalItems);
+  const showNext =
+    canSlide(sectionKey, totalItems) && canGoNext(sectionKey, totalItems);
 
   return (
     <SectionArrows>
@@ -37,14 +37,14 @@ export default function SectionPaginationArrows({
           <LeftIcon style={{ transform: "rotate(180deg)" }} />
         </SectionArrow>
       )}
-      <SectionArrow
-        type="button"
-        disabled={disableNext}
-        aria-disabled={disableNext}
-        onClick={() => moveNext(sectionKey, totalItems)}
-      >
-        <LeftIcon />
-      </SectionArrow>
+      {showNext && (
+        <SectionArrow
+          type="button"
+          onClick={() => moveNext(sectionKey, totalItems)}
+        >
+          <LeftIcon />
+        </SectionArrow>
+      )}
     </SectionArrows>
   );
 }

@@ -64,9 +64,13 @@ export const ImagePreviewWrapper = styled.div<{
   position: relative;
   width: 100%;
   max-width: ${({ $cropWidth, $cropHeight }) =>
-    `min(100%, calc(320px * ${$cropWidth} / ${$cropHeight}))`};
+    $cropHeight > 0 && $cropWidth > 0
+      ? `min(100%, calc(320px * ${$cropWidth} / ${$cropHeight}))`
+      : "100%"};
   aspect-ratio: ${({ $cropWidth, $cropHeight }) =>
-    `${$cropWidth} / ${$cropHeight}`};
+    $cropHeight > 0 && $cropWidth > 0
+      ? `${$cropWidth} / ${$cropHeight}`
+      : "auto"};
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
@@ -132,14 +136,9 @@ export const ChangePhotoHint = styled(MonoText).attrs({
 
 export const CropOverlay = styled.div<{
   $shape: CropShapeType;
-  $width: number;
-  $height: number;
 }>`
   position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
+  inset: 0;
   pointer-events: none;
   box-sizing: border-box;
   z-index: 3;

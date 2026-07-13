@@ -34,7 +34,9 @@ export const FormPanel = styled.section`
 `;
 
 export const SlidePanel = styled.section`
-  max-width: 560px;
+  width: 650px;
+  max-width: 650px;
+  flex: 0 0 650px;
   background: ${({ theme }) => theme.colors.gradient.DEEP_GREEN};
   display: flex;
   align-items: center;
@@ -42,6 +44,12 @@ export const SlidePanel = styled.section`
   padding: 180px 55px 90px;
   border-radius: 0 0 0 0;
   position: relative;
+
+  ${media.desktop} {
+    width: auto;
+    max-width: 560px;
+    flex: 0 1 560px;
+  }
 
   ${media.tablet} {
     width: 100%;

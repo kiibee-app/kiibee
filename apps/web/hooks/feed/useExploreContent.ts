@@ -5,7 +5,7 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { API, useGetAPI } from "@/lib/http/api";
-import type { ExploreCreator } from "@/hooks/creators/useExploreCreators";
+import type { ExploreCreator } from "@/types/exploreCreators";
 import {
   dedupeFeedContentItems,
   feedContentToTutorial,

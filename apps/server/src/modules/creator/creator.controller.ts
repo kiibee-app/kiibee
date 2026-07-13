@@ -1,5 +1,7 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
 import { CreatorService } from './creator.service';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { AdminGuard } from '../auth/guards/admin.guard';
 
 @Controller('creators')
 export class CreatorController {
@@ -22,6 +24,22 @@ export class CreatorController {
       limit ? safeLimit : undefined,
       search?.trim() || undefined,
     );
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/all-creators')
+  async getAdminCreators(
+    @Query('search') search?: string,
+    @Query('plan') plan?: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    return this.creatorService.getAdminCreators({
+      search: search?.trim() || undefined,
+      plan: plan?.trim() || undefined,
+      page: page ? Number(page) : undefined,
+      limit: limit ? Number(limit) : undefined,
+    });
   }
 
   @Get(':id')

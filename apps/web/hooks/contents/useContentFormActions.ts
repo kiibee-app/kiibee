@@ -56,8 +56,10 @@ import { resolveProfileAvatarUrl } from "@/utils/image";
 import { FORMAT_TYPE, type FormatType } from "@/utils/types";
 import {
   ADMISSION_TYPE,
+  getPaymentContentTexts,
   isValidPaymentAmount,
   PAYMENT_AMOUNT_FIELDS,
+  PAYMENTS_FORM_FIELDS,
   parsePaymentAmount,
 } from "@/utils/paymentRequirements";
 import type { ContentFormErrors } from "@/types/contentTypes";
@@ -449,10 +451,18 @@ export function useContentFormActions({
     }
 
     const invalidNumberMessage = t("contents.payment.common.invalidNumber");
+    const requiredMessage = t("contents.payment.common.requiredAmount");
+    const paymentTexts = getPaymentContentTexts(t, formState.contentTypeId);
+    const requiredFields = [
+      paymentTexts.rentalTitle ? PAYMENTS_FORM_FIELDS.RENTAL_AMOUNT : null,
+      paymentTexts.purchaseTitle ? PAYMENTS_FORM_FIELDS.PURCHASE_AMOUNT : null,
+    ].filter(Boolean) as (typeof PAYMENT_AMOUNT_FIELDS)[number][];
     const nextErrors: Partial<ContentFormErrors> = {};
 
-    PAYMENT_AMOUNT_FIELDS.forEach((field) => {
-      if (!isValidPaymentAmount(formState[field])) {
+    requiredFields.forEach((field) => {
+      if (!formState[field].trim()) {
+        nextErrors[field] = requiredMessage;
+      } else if (!isValidPaymentAmount(formState[field])) {
         nextErrors[field] = invalidNumberMessage;
       }
     });
@@ -465,7 +475,7 @@ export function useContentFormActions({
     });
 
     if (Object.keys(nextErrors).length > 0) {
-      toast.error(invalidNumberMessage);
+      toast.error(t("authForm.errors.fixHighlightedFields"));
       return false;
     }
 
@@ -477,8 +487,16 @@ export function useContentFormActions({
       return true;
     }
 
+    const requiredMessage = t("contents.payment.common.requiredAmount");
     const hasInvalidRental = !isValidPaymentAmount(collectionRentalAmount);
     const hasInvalidPurchase = !isValidPaymentAmount(collectionPurchaseAmount);
+    const hasMissingAmount =
+      !collectionRentalAmount.trim() || !collectionPurchaseAmount.trim();
+
+    if (hasMissingAmount) {
+      toast.error(requiredMessage);
+      return false;
+    }
 
     if (hasInvalidRental || hasInvalidPurchase) {
       toast.error(t("contents.payment.common.invalidNumber"));

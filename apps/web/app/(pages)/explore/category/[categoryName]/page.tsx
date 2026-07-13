@@ -143,8 +143,9 @@ function CategoryExplorePageContent() {
   const renderOptionList = (
     group: typeof FILTER_SECTION_CREATORS | typeof FILTER_SECTION_FORMATS,
     options: typeof allCreatorLabels,
+    isScrollable = false,
   ) => (
-    <OptionList>
+    <OptionList $scrollable={isScrollable}>
       {options.map((option) => {
         const isSelected = selectedOptions[group].includes(option.key);
 
@@ -221,19 +222,25 @@ function CategoryExplorePageContent() {
                             {renderOptionList(
                               FILTER_SECTION_CREATORS,
                               visibleCreators,
+                              showAllCreators,
                             )}
                             {allCreatorLabels.length >
-                              DEFAULT_VISIBLE_CREATORS &&
-                              !showAllCreators && (
-                                <ShowMoreButton
-                                  type="button"
-                                  onClick={() => setShowAllCreators(true)}
-                                >
-                                  <ShowMoreText>
-                                    {t("creators.filters.showMore")}
-                                  </ShowMoreText>
-                                </ShowMoreButton>
-                              )}
+                              DEFAULT_VISIBLE_CREATORS && (
+                              <ShowMoreButton
+                                type="button"
+                                onClick={() =>
+                                  setShowAllCreators(!showAllCreators)
+                                }
+                              >
+                                <ShowMoreText>
+                                  {t(
+                                    showAllCreators
+                                      ? "creators.filters.seeLess"
+                                      : "creators.filters.showMore",
+                                  )}
+                                </ShowMoreText>
+                              </ShowMoreButton>
+                            )}
                           </FilterAccordionSection>
 
                           <FilterAccordionSection

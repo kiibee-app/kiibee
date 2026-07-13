@@ -2,6 +2,7 @@
 
 import { useState, type ComponentType } from "react";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 import recentCreator from "@/assets/images/creators/recent_creator.webp";
 import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
@@ -9,8 +10,8 @@ import PdfFileIcon from "@/assets/icons/PdfFileIcon";
 import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
 import { LoginRequiredModal } from "@/components/UI/Modals";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 import { VARIANT } from "@/utils/Constants";
 import { resolveImageUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
@@ -18,6 +19,7 @@ import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import {
   FORMAT_TYPE,
   type FormatType,
+  type TutorialButton,
   type TutorialVideo,
 } from "@/utils/types";
 import {
@@ -49,13 +51,18 @@ const FALLBACK_THUMBNAIL_SRC = resolveImageUrl(recentCreator);
 
 type Props = {
   video: TutorialVideo;
+  ownerCreatorId?: string | null;
 };
 
-export default function CollectionItemCard({ video }: Props) {
-  const user = useStoredLoginUser();
+export default function CollectionItemCard({ video, ownerCreatorId }: Props) {
+  const { t } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
+  const { user, hasAccess } = useViewerContentAccess(
+    video.id,
+    video.creatorId ?? ownerCreatorId,
+  );
 
   const handleShowLoginModal = (url: string) => {
     setPendingRedirectUrl(url);
@@ -66,7 +73,17 @@ export default function CollectionItemCard({ video }: Props) {
   const FormatIcon =
     formatIconMap[video.formatType ?? FORMAT_TYPE.VIDEO] ?? VideoIcon;
   const contentHref = pathPublishedContent(video.id);
-  const buttons = video.buttons?.length ? video.buttons : [];
+  const buttons: TutorialButton[] = hasAccess
+    ? [
+        {
+          label: t("createProfileHome.latestUpload.seeContent"),
+          variant: VARIANT.SECONDARY,
+          href: contentHref,
+        },
+      ]
+    : video.buttons?.length
+      ? video.buttons
+      : [];
   const title = (
     <CollectionTitle as={Link} href={contentHref}>
       {video.title}

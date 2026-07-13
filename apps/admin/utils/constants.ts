@@ -5,7 +5,7 @@ export const API_ENDPOINTS = {
   USER_PROFILE: "/auth/user/profile",
   APPROVE_CREATOR: "/auth/approve-creator",
   REJECT_CREATOR: "/auth/reject-creator",
-  ALL_CREATORS: "/auth/all-creators",
+  ALL_CREATORS: "/creators/admin/all-creators",
   CREATOR_BY_ID: (creatorId: string) => `/auth/all-creators/${creatorId}`,
   ALL_CREATOR_REQUESTS: "/auth/all-creator-requests",
   ALL_VIEWERS: "/auth/all-viewers",
@@ -92,3 +92,5 @@ export const CREATOR_PLAN_FILTER_OPTIONS = [
   "Start-up",
   "Pro",
 ] as const;
+
+export const ADMIN_ROLE = "admin";

@@ -68,7 +68,11 @@ export const parsePaymentAmount = (
 };
 
 export const isValidPaymentAmount = (value: string): boolean =>
-  !value.trim() || parsePaymentAmount(value) !== null;
+  !value.trim() ||
+  (parsePaymentAmount(value) !== null && Number(value.trim()) > 0);
+
+export const hasNegativeAmountInput = (value: string): boolean =>
+  value.includes("-");
 
 export const getPhysicalProductConfig = (t: TFunction) => ({
   title: t("contents.payment.physicalProduct.title"),

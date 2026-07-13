@@ -13,6 +13,8 @@ import {
   useCreatorProfileUi,
 } from "@/hooks/useCreatorChannelLayout";
 import { usePublicCreatorLayoutRedirect } from "@/hooks/usePublicCreatorLayoutRedirect";
+import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
+import GenericSpinner from "@/components/UI/GenericSpinner";
 
 type ProfileShellProps = {
   variant: ProfileLayoutVariant;
@@ -28,9 +30,10 @@ function ProfileAboutModal() {
 export default function ProfileShell({ variant, children }: ProfileShellProps) {
   useProfileSync();
   const isLayoutPending = usePublicCreatorLayoutRedirect(variant);
+  const { isLoadingProfile } = useCreatorChannelProfile();
 
-  if (isLayoutPending) {
-    return null;
+  if (isLayoutPending || isLoadingProfile) {
+    return <GenericSpinner isOverlay />;
   }
 
   return (

@@ -1,7 +1,6 @@
 "use client";
 
 import { memo, useMemo, useState, type MouseEvent } from "react";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
@@ -21,9 +20,7 @@ import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
-import { useViewerPurchased } from "@/hooks/viewer/useViewerPurchased";
-import { useViewerRentedData } from "@/hooks/useViewerRented";
-import { RENTED_MODES } from "@/utils/viewerRented";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -46,41 +43,19 @@ const formatIconMap: Record<FormatType, IconComponent> = {
   web: WebIcon,
 };
 
-interface OwnershipItem {
-  id: string;
-}
-
-const hasItem = (
-  data:
-    | {
-        videos?: OwnershipItem[];
-        audios?: OwnershipItem[];
-        pdfs?: OwnershipItem[];
-        webs?: OwnershipItem[];
-      }
-    | undefined,
-  id: string,
-) => {
-  if (!data) return false;
-  return (
-    data.videos?.some((item) => item.id === id) ||
-    data.audios?.some((item) => item.id === id) ||
-    data.pdfs?.some((item) => item.id === id) ||
-    data.webs?.some((item) => item.id === id) ||
-    false
-  );
-};
-
 function TutorialCard({
   tutorial,
   onPlayClick,
   isSelected = false,
 }: TutorialCardProps) {
   const { t } = useTranslation();
-  const user = useStoredLoginUser();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
+  const { user, hasAccess, rentedItem } = useViewerContentAccess(
+    tutorial.id,
+    tutorial.creatorId,
+  );
 
   const handleShowLoginModal = (url: string) => {
     setPendingRedirectUrl(url);
@@ -120,27 +95,13 @@ function TutorialCard({
     return formatIconMap[formatType];
   }, [tutorial.formatType]);
 
-  const isLoggedIn = Boolean(user && user.id);
-  const { data: purchasedData } = useViewerPurchased(isLoggedIn);
-  const { sources: rentedData } = useViewerRentedData(
-    RENTED_MODES.CURRENTLY,
-    isLoggedIn,
-  );
-
-  const isOwned = useMemo(() => {
-    if (!isLoggedIn) return false;
-    return (
-      hasItem(purchasedData, tutorial.id) || hasItem(rentedData, tutorial.id)
-    );
-  }, [isLoggedIn, purchasedData, rentedData, tutorial.id]);
-
   const singleTutorialHref = useMemo(
     () => pathPublishedContent(tutorial.id),
     [tutorial.id],
   );
 
   const buttons = useMemo(() => {
-    if (isOwned) {
+    if (hasAccess) {
       return [
         {
           label: t("createProfileHome.latestUpload.seeContent"),
@@ -155,7 +116,7 @@ function TutorialCard({
       href: singleTutorialHref,
     };
     return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
-  }, [isOwned, tutorial.buttons, t, singleTutorialHref]);
+  }, [hasAccess, tutorial.buttons, t, singleTutorialHref]);
 
   const resolveButtonHref = (href?: string) => {
     if (!href) return singleTutorialHref;
@@ -220,16 +181,6 @@ function TutorialCard({
   ) : (
     <MonoText $use="Body_Medium">{tutorial.creator}</MonoText>
   );
-
-  const rentedItem = useMemo(() => {
-    if (!isLoggedIn) return undefined;
-    return [
-      ...(rentedData?.videos ?? []),
-      ...(rentedData?.audios ?? []),
-      ...(rentedData?.pdfs ?? []),
-      ...(rentedData?.webs ?? []),
-    ].find((item) => item.id === tutorial.id);
-  }, [isLoggedIn, rentedData, tutorial.id]);
 
   const card = (
     <GenericCard

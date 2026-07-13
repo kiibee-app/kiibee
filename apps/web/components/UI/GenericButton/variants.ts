@@ -118,8 +118,8 @@ export const shared = css<ButtonStyleProps>`
           border-radius: ${({ theme }) => theme.radius.full};
 
           &:not([type="submit"]):hover {
-            background: ${({ theme }) => theme.colors.neutral.GRAY_100};
-            border-color: ${({ theme }) => theme.colors.neutral.GRAY_300};
+            background: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
+            border-color: ${({ theme }) => theme.colors.neutral.PALE_GREEN};
             opacity: 1;
           }
         `;

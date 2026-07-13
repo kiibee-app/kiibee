@@ -25,7 +25,7 @@ export const Header = styled.header<HeaderProps>`
     backdrop-filter 180ms ease;
   z-index: ${({ theme }) => theme.zIndex.navbar};
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     height: var(--navbar-height, 73px);
   }
 `;
@@ -47,7 +47,7 @@ export const Inner = styled.div`
     padding: var(--navbar-inner-tablet-padding, 0.9rem 1.5rem);
   }
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     flex-direction: row;
     padding: var(--navbar-inner-mobile-padding, 0.75rem 1.25rem);
     gap: 0.5rem;
@@ -59,7 +59,7 @@ export const Left = styled.div`
   align-items: center;
   gap: 1rem;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     flex: 1 1 auto;
     min-width: 0;
   }
@@ -135,7 +135,7 @@ export const Nav = styled.nav<NavStyleProps & { $routeActiveItems?: boolean }>`
       }
     `}
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     display: none;
   }
 `;
@@ -359,20 +359,19 @@ export const Actions = styled.div<{
   ${({ $showOnMobile }) =>
     $showOnMobile
       ? css`
-          ${media.mobileMd} {
+          ${media.mobileXl} {
             gap: 0.5rem;
             margin-left: auto;
 
             a,
             button {
               min-height: 30px;
-              padding: 4px 10px;
               font-size: 12px;
             }
           }
         `
       : css`
-          ${media.mobileMd} {
+          ${media.mobileXl} {
             display: none;
           }
         `}
@@ -423,7 +422,7 @@ export const NavAccountDropdown = styled.div`
     }
   }
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     position: absolute;
     right: 0;
     top: calc(100% + 10px);
@@ -523,7 +522,7 @@ export const HamburgerButton = styled.button`
   cursor: pointer;
   padding: 0;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     display: inline-flex;
   }
 `;
@@ -538,7 +537,7 @@ export const HamburgerLine = styled.span`
 export const MobileDrawerTriggerWrap = styled.div`
   display: none;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     display: inline-flex;
     margin-left: auto;
     flex: 0 0 auto;
@@ -551,7 +550,7 @@ export const DrawerOverlay = styled.div<{
 }>`
   display: none;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     display: ${({ $open }) => ($open ? "block" : "none")};
     position: fixed;
     top: calc(var(--navbar-height, 73px) + var(--navbar-top-offset, 0px));
@@ -581,7 +580,7 @@ export const DrawerPanel = styled.aside<{
 }>`
   display: none;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     display: flex;
     flex-direction: column;
     position: fixed;

@@ -58,6 +58,8 @@ function SafeImageInner({
       <img
         alt={alt}
         src={imgSrc}
+        width={rest.width}
+        height={rest.height}
         decoding={rest.decoding ?? SAFE_IMAGE_DECODING}
         className={className}
         style={{
@@ -84,9 +86,15 @@ function SafeImageInner({
     );
   }
 
+  const nextImageProps = { ...rest };
+  if (nextImageProps.fill) {
+    delete nextImageProps.width;
+    delete nextImageProps.height;
+  }
+
   return (
     <NextImage
-      {...rest}
+      {...nextImageProps}
       alt={alt}
       src={imgSrc}
       decoding={rest.decoding ?? SAFE_IMAGE_DECODING}

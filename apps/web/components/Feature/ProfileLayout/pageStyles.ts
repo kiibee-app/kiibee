@@ -18,6 +18,7 @@ export const Page = styled.main`
   width: 100%;
   overflow-x: clip;
   background: ${({ theme }) => theme.colors.primary.WHITE};
+  display: flow-root;
 `;
 
 export const Brand = styled(Link)`
@@ -28,7 +29,7 @@ export const Brand = styled(Link)`
   color: inherit;
   min-width: 0;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     max-width: calc(100vw - 92px);
   }
 `;
@@ -57,7 +58,7 @@ export const BrandName = styled.span<{
       ? theme.colors.primary.WHITE_90
       : theme.colors.primary.BLACK};
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     max-width: 100%;
   }
 `;

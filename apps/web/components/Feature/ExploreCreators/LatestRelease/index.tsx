@@ -10,6 +10,7 @@ import {
   EXPLORE_TABS,
   URL_FORMAT_IDS,
   VARIANT,
+  SCROLL_ANIMATION_SELECTORS,
 } from "@/utils/Constants";
 import Skeleton from "@/components/UI/Skeleton";
 import { useCreatorFilters } from "@/hooks/useCreatorFilters";
@@ -66,13 +67,6 @@ function getInitialExploreSort(
 export default function LatestRelease() {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
-  useScrollAnimation({
-    sidebarSelector: "[data-sidebar]",
-    innerSelector: "[data-sidebar] > div",
-    cardsSelector:
-      "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
-  });
-
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const filterOverlayRef = useRef<HTMLDivElement>(null);
 
@@ -115,10 +109,12 @@ export default function LatestRelease() {
     isFilterOpen,
     expandedSection,
     showAllCreators,
+    showAllCategories,
     selectedOptions,
     priceRange,
     selectedRating,
     setShowAllCreators,
+    setShowAllCategories,
     setSelectedRating,
     toggleFilter,
     toggleSection,
@@ -130,10 +126,6 @@ export default function LatestRelease() {
     formatOptions,
     initialSelectedOptions,
   });
-
-  const visibleCreators = showAllCreators
-    ? allCreatorLabels
-    : allCreatorLabels.slice(0, DEFAULT_VISIBLE_CREATORS);
 
   const selectedCategoryIds = useMemo(
     () => withoutAllFilterOption(selectedOptions.categories),
@@ -169,6 +161,13 @@ export default function LatestRelease() {
     limit,
   });
 
+  useScrollAnimation({
+    sidebarSelector: SCROLL_ANIMATION_SELECTORS.SIDEBAR,
+    innerSelector: SCROLL_ANIMATION_SELECTORS.INNER,
+    cardsSelector: SCROLL_ANIMATION_SELECTORS.CARDS,
+    trigger: tutorials,
+  });
+
   const hasMore = tutorials.length >= limit;
 
   const handleLoadMore = () => {
@@ -180,6 +179,7 @@ export default function LatestRelease() {
     isFilterOpen,
     expandedSection,
     showAllCreators,
+    showAllCategories,
     selectedOptions,
     priceRange,
     selectedRating,
@@ -188,6 +188,7 @@ export default function LatestRelease() {
   const filterActions = {
     toggleFilter,
     setShowAllCreators,
+    setShowAllCategories,
     setSelectedRating,
     toggleSection: (section: FilterSectionKey) => toggleSection(section),
     toggleOption,
@@ -227,7 +228,7 @@ export default function LatestRelease() {
             actions={filterActions}
             categoryLabels={categoryLabels}
             formatLabels={formatLabels}
-            creatorLabels={visibleCreators}
+            creatorLabels={allCreatorLabels}
             defaultVisibleCreators={DEFAULT_VISIBLE_CREATORS}
             showButton={false}
             forceOpen

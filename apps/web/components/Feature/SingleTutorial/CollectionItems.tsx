@@ -30,9 +30,14 @@ export const COLLECTION_ITEMS_PAGE_SIZE = 4;
 type Props = {
   videos: TutorialVideo[];
   collectionId?: string;
+  ownerCreatorId?: string | null;
 };
 
-export default function CollectionItems({ videos, collectionId }: Props) {
+export default function CollectionItems({
+  videos,
+  collectionId,
+  ownerCreatorId,
+}: Props) {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
   const isLoggedIn = Boolean(user?.id);
@@ -127,7 +132,7 @@ export default function CollectionItems({ videos, collectionId }: Props) {
       <CollectionGrid>
         {visibleVideos.map((video) => (
           <CollectionCardWrap key={video.id}>
-            <CollectionItemCard video={video} />
+            <CollectionItemCard video={video} ownerCreatorId={ownerCreatorId} />
           </CollectionCardWrap>
         ))}
       </CollectionGrid>

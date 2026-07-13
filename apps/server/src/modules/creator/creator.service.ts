@@ -5,6 +5,7 @@ import {
 } from './services/getExploreCreators.service';
 import { topCreatorsService } from './services/topCreators.service';
 import { allCreatorsService } from './services/getAllCreators.service';
+import { getAdminCreatorsService } from './services/getAllExistingCreators.service';
 
 @Injectable()
 export class CreatorService {
@@ -34,5 +35,14 @@ export class CreatorService {
       sortBy,
       search,
     });
+  }
+
+  getAdminCreators(options?: {
+    search?: string;
+    plan?: string;
+    page?: number;
+    limit?: number;
+  }) {
+    return getAdminCreatorsService(options);
   }
 }
