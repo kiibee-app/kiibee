@@ -9,10 +9,12 @@ export type ScrollAnimationOptions = {
   startOffset?: string;
   unpinOffset?: number;
   minWidth?: string;
+  trigger?: unknown;
 };
 
 export function useScrollAnimation({
   cardsSelector = "article, [class*='Card']",
+  trigger,
 }: ScrollAnimationOptions = {}) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -71,5 +73,5 @@ export function useScrollAnimation({
       if (refreshTimeout) clearTimeout(refreshTimeout);
       if (ctx) ctx.revert();
     };
-  }, [cardsSelector]);
+  }, [cardsSelector, trigger]);
 }

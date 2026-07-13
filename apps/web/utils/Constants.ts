@@ -529,3 +529,9 @@ export const CURSOR = {
   POINTER: "pointer",
   DEFAULT: "default",
 } as const;
+
+export const SCROLL_ANIMATION_SELECTORS = {
+  SIDEBAR: "[data-sidebar]",
+  INNER: "[data-sidebar] > div",
+  CARDS: "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
+} as const;
