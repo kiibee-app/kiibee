@@ -25,7 +25,10 @@ import PasswordSection from "../CreatorProfile/PasswordSection";
 import { useViewerProfile } from "@/hooks/useViewerProfile";
 import { QuestionIcon } from "@/assets/icons/questionIcon";
 import { useLogout } from "@/hooks/auth/useLogout";
-import { VIEWER_PROFILE_FIELDS } from "@/utils/profile";
+import {
+  VIEWER_PROFILE_FIELDS,
+  PROFILE_FORM_VALIDATION,
+} from "@/utils/profile";
 import {
   forgotPwEmail,
   forgotPwError,
@@ -119,7 +122,7 @@ export default function ClientViewerProfile() {
           labelMarginTop="0"
           value={form.name}
           onChange={onChange(VIEWER_PROFILE_FIELDS.NAME)}
-          max={200}
+          max={PROFILE_FORM_VALIDATION.NAME_MAX_LENGTH}
         />
         <InputField
           label={t("dashboard.viewerProfile.email")}
