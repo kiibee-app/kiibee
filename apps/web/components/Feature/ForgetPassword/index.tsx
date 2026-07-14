@@ -22,29 +22,39 @@ import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
 import { useForgetPassword } from "@/hooks/auth/useForgetPassword";
 import { ApiError } from "@/lib/http/errors/apiError";
-import { ALERT } from "@/utils/common";
+import { ALERT, isValidEmail } from "@/utils/common";
 
 export default function ForgetPasswordForm() {
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [isSent, setIsSent] = useState(false);
+  const [emailError, setEmailError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { mutateAsync: forgetPassword, isPending } = useForgetPassword();
 
   const resetState = useCallback(() => {
     setEmail("");
     setIsSent(false);
+    setEmailError("");
     setErrorMessage("");
   }, []);
 
   const handleSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      if (!email.trim()) return;
+      const trimmedEmail = email.trim();
+      if (!trimmedEmail) return;
+
+      if (!isValidEmail(trimmedEmail)) {
+        setEmailError(t("authForm.errors.emailInvalid"));
+        return;
+      }
+
+      setEmailError("");
       setErrorMessage("");
 
       try {
-        await forgetPassword({ email: email.trim() });
+        await forgetPassword({ email: trimmedEmail });
         setIsSent(true);
       } catch (error) {
         const fallback = t("forgotPassword.submitFailed");
@@ -57,6 +67,20 @@ export default function ForgetPasswordForm() {
   const handleResend = useCallback(() => {
     resetState();
   }, [resetState]);
+
+  const handleEmailChange = useCallback(
+    (value: string | string[]) => {
+      const nextEmail = String(value);
+      setEmail(nextEmail);
+      setEmailError(
+        nextEmail.trim() && !isValidEmail(nextEmail)
+          ? t("authForm.errors.emailInvalid")
+          : "",
+      );
+      setErrorMessage("");
+    },
+    [t],
+  );
 
   return (
     <Wrapper>
@@ -71,13 +95,15 @@ export default function ForgetPasswordForm() {
           <>
             <Title>{t("forgotPassword.title")}</Title>
             <Description>{t("forgotPassword.description")}</Description>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} noValidate>
               <InputField
                 id="forgot-password-email"
                 type={INPUT_TYPE.EMAIL}
                 placeholder={t("forgotPassword.emailLabel")}
                 value={email}
-                onChange={(v) => setEmail(v as string)}
+                onChange={handleEmailChange}
+                hasError={Boolean(emailError)}
+                errorMessage={emailError}
                 autoComplete={INPUT_TYPE.EMAIL}
               />
               {errorMessage && (
@@ -87,7 +113,7 @@ export default function ForgetPasswordForm() {
               <GenericButton
                 type="submit"
                 isLoading={isPending}
-                disabled={!email.trim() || isPending}
+                disabled={!isValidEmail(email) || isPending}
               >
                 {t("forgotPassword.submit")}
               </GenericButton>
