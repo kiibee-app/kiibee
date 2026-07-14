@@ -1,27 +1,20 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { randomUUID } from 'crypto';
 import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
-  creatorPayouts,
   creatorPlans,
   creatorWallets,
   plans,
   users,
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
-import { STATUS } from 'src/utils/constant';
+import { PLATFORM_FEE_PERCENTAGES } from 'src/utils/fees';
 import { fail, success } from 'src/utils/sendResponse';
-
-const PLATFORM_FEE_PERCENTAGES: Record<number, number> = {
-  0: 0.4,
-  99: 0.25,
-  299: 0.18,
-};
 
 export const createPayoutService = async (
   creatorId: string,
   amount: number,
+  payoutId: string,
   paymentMethodId: string,
 ) => {
   try {
@@ -102,8 +95,6 @@ export const createPayoutService = async (
       return fail('Minimum payout amount is 1 DKK', HttpStatus.BAD_REQUEST);
     }
 
-    const payoutId = randomUUID();
-
     const payload = {
       amount: Math.round(payoutAmount * 100),
 
@@ -156,28 +147,12 @@ export const createPayoutService = async (
       return fail(data?.message ?? 'Failed to create payout', response.status);
     }
 
-    const [payoutRecord] = await db
-      .insert(creatorPayouts)
-      .values({
-        id: payoutId,
-        creatorId,
-        rawAmount: amount.toString(),
-        amount: payoutAmount.toString(),
-        currency: wallet.currency,
-        status: STATUS.PENDING,
-        creditNo: data?.creditNo ?? null,
-        bankAccountInfo: data?.bankAccountInfo ?? null,
-        cardNo: data?.cardNo ?? null,
-        payoutDate: data?.payoutDate ? new Date(data.payoutDate) : null,
-      })
-      .returning();
-
-    logger.info(`Payout created successfully: ${payoutRecord.id}`);
+    logger.info(`Payout created successfully: ${data.id}`);
 
     return success(
       {
         ...data,
-        payoutRecord,
+        amount,
         payoutAmount,
         processingFee,
         platformFee,

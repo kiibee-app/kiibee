@@ -1,7 +1,11 @@
 import { HttpStatus } from '@nestjs/common';
 import { eq, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { creatorPayouts, creatorWallets } from 'src/database/schema';
+import {
+  creatorPayoutRequests,
+  creatorPayouts,
+  creatorWallets,
+} from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { ORDER_STATUS, PAYMENT_STATUS, STATUS } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
@@ -65,6 +69,14 @@ export const handlePayoutWebhookService = async (payload: any) => {
             updatedAt: new Date(),
           })
           .where(eq(creatorPayouts.id, payout.id));
+
+        await tx
+          .update(creatorPayoutRequests)
+          .set({
+            status: ORDER_STATUS.COMPLETED,
+            updatedAt: new Date(),
+          })
+          .where(eq(creatorPayoutRequests.payoutId, payoutId));
 
         await tx
           .update(creatorWallets)
