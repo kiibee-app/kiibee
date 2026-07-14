@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
-import { mediaFiles } from 'src/database/schema';
+import { mediaFiles, mediaFileCategories } from 'src/database/schema';
 import type { SQL } from 'drizzle-orm';
 import { sql, desc } from 'drizzle-orm';
 import { success, fail } from 'src/utils/sendResponse';
@@ -47,6 +47,7 @@ export const exploreService = async (
     const searchCondition = buildSearch(search);
     const contentTypeIds = cleanArray(filter?.contentTypeId);
     const creatorIds = cleanArray(filter?.creatorId);
+    const categoryIds = cleanArray(filter?.categoryId);
     const minPrice = cleanNumber(filter?.minPrice) || undefined;
     const maxPrice = cleanNumber(filter?.maxPrice) || undefined;
     const baseConditions: SQL[] = [
@@ -62,6 +63,19 @@ export const exploreService = async (
 
     pushCondition(extra, mediaFiles.contentTypeId, contentTypeIds);
     pushCondition(extra, mediaFiles.creatorId, creatorIds);
+
+    if (categoryIds.length) {
+      extra.push(
+        sql`${mediaFiles.id} IN (
+          SELECT ${mediaFileCategories.mediaFileId}
+          FROM ${mediaFileCategories}
+          WHERE ${mediaFileCategories.categoryId} IN (${sql.join(
+            categoryIds.map((id) => sql`${id}`),
+            sql`, `,
+          )})
+        )`,
+      );
+    }
 
     if (minPrice !== undefined) {
       extra.push(sql`CAST(${mediaFiles.buyPrice} AS NUMERIC) >= ${minPrice}`);
