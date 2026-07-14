@@ -98,7 +98,7 @@ export default function TrendingContent({ search }: { search?: string }) {
         <HeaderActions>
           {canSlide && (
             <SectionArrows>
-              {canGoPrev ? (
+              {canGoPrev && (
                 <SectionArrow
                   type="button"
                   onClick={movePrev}
@@ -106,16 +106,16 @@ export default function TrendingContent({ search }: { search?: string }) {
                 >
                   <LeftIcon style={{ transform: "rotate(180deg)" }} />
                 </SectionArrow>
-              ) : null}
-              <SectionArrow
-                type="button"
-                disabled={!canGoNext}
-                aria-disabled={!canGoNext}
-                onClick={moveNext}
-                aria-label="Next"
-              >
-                <LeftIcon />
-              </SectionArrow>
+              )}
+              {canGoNext && (
+                <SectionArrow
+                  type="button"
+                  onClick={moveNext}
+                  aria-label="Next"
+                >
+                  <LeftIcon />
+                </SectionArrow>
+              )}
             </SectionArrows>
           )}
         </HeaderActions>
