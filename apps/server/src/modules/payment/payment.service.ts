@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { getUserSavedCard } from './services/getUserSaveCard.service';
 import { deleteSubscriptionService } from './services/deleteUserCard.service';
 import { setDefaultCard } from './services/setDefaultCard.service';
+import { addNewCardService } from './services/addNewCard.service';
 
 @Injectable()
 export class PaymentService {
@@ -15,5 +16,9 @@ export class PaymentService {
 
   async setDefaultCard(userId: string, cardId: string) {
     return setDefaultCard(userId, cardId);
+  }
+
+  async addNewCard(userId: string): Promise<any> {
+    return addNewCardService(userId);
   }
 }

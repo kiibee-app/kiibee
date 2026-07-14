@@ -146,3 +146,8 @@ export const ENVIRONMENT = {
   PRODUCTION: 'production',
   STAGING: 'staging',
 } as const;
+export const CURRENCY = {
+  DKK: 'DKK',
+  USD: 'USD',
+  EUR: 'EUR',
+} as const;
