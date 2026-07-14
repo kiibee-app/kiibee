@@ -22,6 +22,10 @@ export const Section = styled.section`
     visibility: hidden;
   }
 
+  ${media.desktop} {
+    min-height: unset;
+  }
+
   ${media.tablet} {
     padding: 6.25rem 0 2.5rem;
   }
@@ -142,6 +146,7 @@ export const RightColumn = styled.div`
   ${media.desktop} {
     width: 100%;
     justify-content: flex-start;
+    flex: none;
   }
 
   ${media.tablet} {

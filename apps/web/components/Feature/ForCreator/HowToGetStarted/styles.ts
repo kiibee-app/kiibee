@@ -102,11 +102,11 @@ export const StepWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-height: 20vh;
-  padding-bottom: 7.5rem;
+  min-height: 0;
+  padding-bottom: 3rem;
 
   &:last-child {
-    padding-bottom: 30vh;
+    padding-bottom: 0;
   }
 
   @media (min-width: ${breakpoints.tablet}) {
