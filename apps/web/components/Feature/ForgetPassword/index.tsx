@@ -22,7 +22,7 @@ import { PATHS } from "@/utils/path";
 import { INPUT_TYPE } from "@/utils/ui";
 import { useForgetPassword } from "@/hooks/auth/useForgetPassword";
 import { ApiError } from "@/lib/http/errors/apiError";
-import { ALERT, isValidEmail } from "@/utils/common";
+import { isValidEmail } from "@/utils/common";
 
 export default function ForgetPasswordForm() {
   const { t } = useTranslation();
@@ -102,13 +102,10 @@ export default function ForgetPasswordForm() {
                 placeholder={t("forgotPassword.emailLabel")}
                 value={email}
                 onChange={handleEmailChange}
-                hasError={Boolean(emailError)}
-                errorMessage={emailError}
+                hasError={Boolean(emailError || errorMessage)}
+                errorMessage={emailError || errorMessage}
                 autoComplete={INPUT_TYPE.EMAIL}
               />
-              {errorMessage && (
-                <Description role={ALERT}>{errorMessage}</Description>
-              )}
 
               <GenericButton
                 type="submit"
