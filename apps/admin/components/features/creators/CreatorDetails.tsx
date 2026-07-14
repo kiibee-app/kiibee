@@ -12,6 +12,7 @@ import {
 import { formatRequestedAt } from "../../../utils/date";
 import { AccountStatusBadge } from "../all-creators/AllCreators.styles";
 import { CreatorContentGrid } from "./CreatorContentGrid";
+import { ChannelLink } from "../../common/ChannelLink";
 import {
   BackLink,
   DetailsLayout,
@@ -155,7 +156,12 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
             <InfoItem>
               <InfoLabel>Channel</InfoLabel>
               <InfoValue>
-                {creator.channelName || existingCreatorLabels.noChannel}
+                <ChannelLink
+                  creatorId={creator.id}
+                  channelName={creator.channelName}
+                  companyName={creator.companyName}
+                  fallbackLabel={existingCreatorLabels.noChannel}
+                />
               </InfoValue>
             </InfoItem>
             <InfoItem>
