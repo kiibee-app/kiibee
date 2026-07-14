@@ -8,7 +8,7 @@ export const API_ENDPOINTS = {
   ALL_CREATORS: "/creators/admin/all-creators",
   CREATOR_BY_ID: (creatorId: string) => `/auth/all-creators/${creatorId}`,
   ALL_CREATOR_REQUESTS: "/auth/all-creator-requests",
-  ALL_VIEWERS: "/auth/all-viewers",
+  ALL_VIEWERS: "/viewer/admin/all-viewers",
   VIEWER_BY_ID: (viewerId: string) => `/auth/all-viewers/${viewerId}`,
   DASHBOARD_STATS: "/auth/dashboard-stats",
   CREATOR_UPLOADS: "/content/all",

@@ -6,6 +6,7 @@ import { useViewers } from "../../../hooks/api";
 import { usePagination } from "../../../hooks/ui/use-pagination";
 import { useDebounce } from "@/hooks/ui/use-debounce";
 import { PLACEHOLDERS, STORAGE_KEYS } from "@/utils/constants";
+import { DEFAULT_PAGE_SIZE, getInitialPageSize } from "@/utils/pagination";
 import { ViewersTable } from "../all-creators/ViewersTable";
 import { CreatorPagination } from "../all-creators/CreatorPagination";
 import { CreatorRequestsTableSkeleton } from "../all-creators/CreatorRequestsTableSkeleton";
@@ -27,35 +28,43 @@ import {
 export function ViewersList() {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(() =>
+    getInitialPageSize(STORAGE_KEYS.PAGE_SIZE_VIEWERS, DEFAULT_PAGE_SIZE),
+  );
   const debouncedSearch = useDebounce(searchTerm);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const viewersQuery = useViewers();
+  const viewersQuery = useViewers({
+    search: debouncedSearch,
+    page: currentPage,
+    limit: pageSize,
+  });
+
+  const viewers = viewersQuery.data?.items ?? [];
+  const pagination = viewersQuery.data?.pagination;
+  const totalViewers = pagination?.totalItems ?? 0;
+  const viewersPagination = usePagination({
+    data: viewers,
+    totalItems: totalViewers,
+    initialPageSize: DEFAULT_PAGE_SIZE,
+    storageKey: STORAGE_KEYS.PAGE_SIZE_VIEWERS,
+    mode: "server",
+    currentPage: pagination?.page ?? currentPage,
+    pageSize: pagination?.limit ?? pageSize,
+    onPageChange: setCurrentPage,
+    onPageSizeChange: setPageSize,
+  });
 
   const handleSearchClear = () => {
     setSearchTerm("");
+    viewersPagination.onPageChange(1);
     searchInputRef.current?.focus();
   };
 
-  const debouncedSearchLower = debouncedSearch.toLowerCase().trim();
-  const viewers = viewersQuery.data ?? [];
-
-  const filteredViewers = viewers.filter((viewer) => {
-    if (!debouncedSearchLower) return true;
-    return (
-      viewer.fullName?.toLowerCase().includes(debouncedSearchLower) ||
-      viewer.firstName?.toLowerCase().includes(debouncedSearchLower) ||
-      viewer.lastName?.toLowerCase().includes(debouncedSearchLower) ||
-      viewer.email.toLowerCase().includes(debouncedSearchLower)
-    );
-  });
-
-  const totalViewers = filteredViewers.length;
-  const viewersPagination = usePagination({
-    data: filteredViewers,
-    totalItems: totalViewers,
-    initialPageSize: 10,
-    storageKey: STORAGE_KEYS.PAGE_SIZE_VIEWERS,
-  });
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    viewersPagination.onPageChange(1);
+  };
 
   const renderContent = () => {
     if (viewersQuery.isLoading) {
@@ -107,7 +116,7 @@ export function ViewersList() {
             ref={searchInputRef}
             placeholder={PLACEHOLDERS.SEARCH_VIEWERS}
             value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
+            onChange={(event) => handleSearchChange(event.target.value)}
           />
           {searchTerm ? (
             <SearchClearButton
