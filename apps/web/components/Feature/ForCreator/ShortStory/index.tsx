@@ -14,12 +14,14 @@ import {
   Paragraph,
   ReadMoreButton,
 } from "./styles";
-import { resolveImageUrl, MOBILE_BREAKPOINT } from "@/utils/Constants";
+import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
 import { useIsMobile } from "@/utils/useIsMobile";
 import { PATHS } from "@/utils/path";
 import ScrollReveal from "@/components/UI/ScrollReveal";
 import ImageReveal from "@/components/UI/ImageReveal";
 import { LANDING_REVEAL, LANDING_REVEAL_VARIANTS } from "@/utils/landingUtils";
+import { CTAWrap } from "../../HowItWork/CustomerSection/styles";
+import GenericButton from "@/components/UI/GenericButton";
 
 export default function ShortStory() {
   const { t } = useTranslation();
@@ -54,9 +56,15 @@ export default function ShortStory() {
           </ScrollReveal>
 
           <ScrollReveal delay={LANDING_REVEAL.shortDelay * 3}>
-            <ReadMoreButton asAnchor href={PATHS.ABOUT}>
-              {t(CREATORS.shortStory.cta)}
-            </ReadMoreButton>
+            <CTAWrap>
+              <GenericButton
+                asAnchor
+                href={PATHS.ABOUT}
+                variant={VARIANT.PRIMARY}
+              >
+                {t(CREATORS.shortStory.cta)}
+              </GenericButton>
+            </CTAWrap>
           </ScrollReveal>
         </TextSection>
       </ContentWrapper>
