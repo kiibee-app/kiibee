@@ -57,13 +57,12 @@ export default function GeneralContent({
 }: Props) {
   const { t } = useTranslation();
   const { formState, updateField } = useContentForm();
-  if (!uploadedFile) return null;
+  const uploadType = formState.contentTypeId;
+  if (!uploadedFile && uploadType !== FORMAT_TYPE.WEB) return null;
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     onDelete?.(id);
   };
-
-  const uploadType = formState.contentTypeId;
   const previewUrl = uploadedPreview;
   const thumbnailUrl = resolvePublicMediaUrl(
     formState.mediaCardThumbnail || formState.portraitThumbnail,
@@ -136,7 +135,10 @@ export default function GeneralContent({
         return (
           <PreviewBox onClick={handlePreviewClick}>
             {resolvedThumbnail ? (
-              <PreviewImage src={resolvedThumbnail} alt={uploadedFile.name} />
+              <PreviewImage
+                src={resolvedThumbnail}
+                alt={uploadedFile?.name ?? BLANK}
+              />
             ) : (
               previewUrl && (
                 <PreviewVideo
@@ -210,8 +212,10 @@ export default function GeneralContent({
               {renderPreview()}
 
               <InfoColumn>
-                <MonoText $use="Body_Medium">{uploadedFile.name}</MonoText>
-                {!(IS_FALLBACK_SIZE in uploadedFile) && (
+                <MonoText $use="Body_Medium">
+                  {uploadedFile?.name ?? formState.webLink}
+                </MonoText>
+                {uploadedFile && !(IS_FALLBACK_SIZE in uploadedFile) && (
                   <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
                     {formatFileSize(uploadedFile.size)}
                   </MonoText>

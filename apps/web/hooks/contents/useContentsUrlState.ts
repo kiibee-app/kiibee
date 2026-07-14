@@ -131,6 +131,7 @@ export function useContentsUrlState({
   const syncContentIdToUrl = useCallback(
     (id: string, tab?: string | null) => {
       storage.set(CONTENT_LAST_EDITED_STORAGE_KEY, id);
+      hasRestoredContentRef.current = true;
       replaceQuery({
         collectionId: selectedCollection?.id ?? queryCollectionId ?? null,
         contentId: id,
