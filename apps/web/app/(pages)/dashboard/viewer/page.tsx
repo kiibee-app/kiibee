@@ -1,12 +1,15 @@
 import React, { Suspense } from "react";
 import type { Metadata } from "next";
 import ClientDashboardViewer from "@/components/Feature/Dashboard/ClientDashboardViewer";
-import { WEBSITE } from "@/utils/Constants";
-import { isViewerCollectionsSectionExpanded } from "@/utils/viewerRented";
+import {
+  WEBSITE,
+  VIEWER_DASHBOARD_TITLE,
+  VIEWER_DASHBOARD_DESCRIPTION,
+} from "@/utils/Constants";
+import { getViewerExpandedSection } from "@/utils/viewerRented";
 
-const title = "Viewer Dashboard";
-const description =
-  "Manage your purchased content and viewer activity on Kiibee.";
+const title = VIEWER_DASHBOARD_TITLE;
+const description = VIEWER_DASHBOARD_DESCRIPTION;
 
 export const metadata: Metadata = {
   title,
@@ -28,13 +31,11 @@ type PageProps = {
 
 export default async function DashboardViewerPage({ searchParams }: PageProps) {
   const params = await searchParams;
-  const initialCollectionsExpanded = isViewerCollectionsSectionExpanded(params);
+  const initialExpandedSection = getViewerExpandedSection(params);
 
   return (
     <Suspense fallback={<div />}>
-      <ClientDashboardViewer
-        initialCollectionsExpanded={initialCollectionsExpanded}
-      />
+      <ClientDashboardViewer initialExpandedSection={initialExpandedSection} />
     </Suspense>
   );
 }

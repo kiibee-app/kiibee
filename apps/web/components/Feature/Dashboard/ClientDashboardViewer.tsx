@@ -12,6 +12,7 @@ import {
   VIEWER_SECTION,
   CONTENT_COLLECTION_QUERY_KEY,
   ROLE_VIEWER,
+  DASHBOARD_NO_PADDING,
 } from "@/utils/Constants";
 import {
   VIEWER_LABEL_TO_VIEW,
@@ -42,11 +43,11 @@ const ROUTABLE_VIEWER_VIEWS = new Set<string>([
 ]);
 
 type Props = {
-  initialCollectionsExpanded?: boolean;
+  initialExpandedSection?: string | null;
 };
 
 export default function ClientDashboardViewer({
-  initialCollectionsExpanded = false,
+  initialExpandedSection = null,
 }: Props) {
   const { t } = useTranslation();
   const { sidebarExpanded, toggleSidebar, collapseSidebar } =
@@ -144,7 +145,7 @@ export default function ClientDashboardViewer({
         activePage === VIEWER_LABELS.PURCHASED ||
         activePage === VIEWER_LABELS.CURRENTLY_RENTED ||
         activePage === VIEWER_LABELS.PREVIOUSLY_RENTED
-          ? "0"
+          ? DASHBOARD_NO_PADDING
           : undefined
       }
       sidebar={
@@ -164,21 +165,21 @@ export default function ClientDashboardViewer({
           key={RENTED_MODES.PURCHASED}
           title={sectionTitle}
           mode={RENTED_MODES.PURCHASED}
-          initialCollectionsExpanded={initialCollectionsExpanded}
+          initialExpandedSection={initialExpandedSection}
         />
       ) : activePage === VIEWER_LABELS.CURRENTLY_RENTED ? (
         <RentedContent
           key={RENTED_MODES.CURRENTLY}
           title={sectionTitle}
           mode={RENTED_MODES.CURRENTLY}
-          initialCollectionsExpanded={initialCollectionsExpanded}
+          initialExpandedSection={initialExpandedSection}
         />
       ) : activePage === VIEWER_LABELS.PREVIOUSLY_RENTED ? (
         <RentedContent
           key={RENTED_MODES.PREVIOUSLY}
           title={sectionTitle}
           mode={RENTED_MODES.PREVIOUSLY}
-          initialCollectionsExpanded={initialCollectionsExpanded}
+          initialExpandedSection={initialExpandedSection}
         />
       ) : activePage === VIEWER_LABELS.BILLINGS ? (
         <ClientViewerBillings />

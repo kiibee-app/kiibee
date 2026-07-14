@@ -1,6 +1,9 @@
 import type { TFunction } from "i18next";
 import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
+import { MILLISECONDS_IN_HOUR, HOURS_IN_DAY } from "@/utils/Constants";
+
+export const MEDIA_ICON_SIZE = 22;
 
 export type CollectionAction = {
   label: string;
@@ -257,29 +260,33 @@ type ViewerSearchParamsInput =
   | URLSearchParams
   | Record<string, string | string[] | undefined>;
 
-export function isViewerCollectionsSectionExpanded(
+export function getViewerExpandedSection(
   params: ViewerSearchParamsInput,
-): boolean {
+): RentedSectionKey | null {
   const value =
     params instanceof URLSearchParams
       ? params.get(VIEWER_SECTION)
       : params[VIEWER_SECTION];
 
-  if (Array.isArray(value)) {
-    return value.includes(VIEWER_SECTION_VALUES.COLLECTIONS);
+  const stringValue = Array.isArray(value) ? value[0] : value;
+  const validSections: string[] = Object.values(VIEWER_SECTION_VALUES);
+
+  if (stringValue && validSections.includes(stringValue)) {
+    return stringValue as RentedSectionKey;
   }
 
-  return value === VIEWER_SECTION_VALUES.COLLECTIONS;
+  return null;
 }
 
-export function syncViewerCollectionsSectionParam(
+export function syncViewerExpandedSectionParam(
   params: URLSearchParams,
-  expanded: boolean,
+  sectionKey: RentedSectionKey | null,
 ): void {
-  const sync = expanded
-    ? () => params.set(VIEWER_SECTION, VIEWER_SECTION_VALUES.COLLECTIONS)
-    : () => params.delete(VIEWER_SECTION);
-  sync();
+  if (sectionKey) {
+    params.set(VIEWER_SECTION, sectionKey);
+  } else {
+    params.delete(VIEWER_SECTION);
+  }
 }
 
 export const COLLECTION_SORT_KEYS = {
@@ -324,18 +331,46 @@ export function sortViewerCollections(
   return sorted;
 }
 
+export const MEDIA_SORT_KEY_LIST: CollectionSortKey[] = [
+  COLLECTION_SORT_KEYS.CREATOR,
+  COLLECTION_SORT_KEYS.TITLE,
+];
+
+export function sortViewerMedia(
+  items: RentedMediaItem[],
+  sortKey: CollectionSortKey | null,
+): RentedMediaItem[] {
+  if (!sortKey) return items;
+
+  const sorted = [...items];
+  sorted.sort((a, b) => {
+    if (sortKey === COLLECTION_SORT_KEYS.CREATOR) {
+      return a.author.localeCompare(b.author, undefined, {
+        sensitivity: "base",
+      });
+    }
+    if (sortKey === COLLECTION_SORT_KEYS.TITLE) {
+      return a.title.localeCompare(b.title, undefined, { sensitivity: "base" });
+    }
+    return 0;
+  });
+  return sorted;
+}
+
 export function formatExpiryText(
   rentExpiresAt: string | null | undefined,
   t: TFunction,
 ): string {
   if (!rentExpiresAt) return "";
   const hrs = Math.round(
-    (new Date(rentExpiresAt).getTime() - Date.now()) / 36e5,
+    (new Date(rentExpiresAt).getTime() - Date.now()) / MILLISECONDS_IN_HOUR,
   );
   if (hrs <= 0) return t("viewerRented.expired");
-  return hrs < 24
+  return hrs < HOURS_IN_DAY
     ? t("viewerRented.expiresInHours", { count: hrs })
-    : t("viewerRented.expiresInDays", { count: Math.round(hrs / 24) });
+    : t("viewerRented.expiresInDays", {
+        count: Math.round(hrs / HOURS_IN_DAY),
+      });
 }
 
 export function formatExpiredText(

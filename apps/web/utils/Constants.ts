@@ -92,6 +92,10 @@ export const VIEW = "view";
 export const VIEWER_SECTION = "section";
 export const VIEWER_SECTION_VALUES = {
   COLLECTIONS: "collections",
+  VIDEOS: "videos",
+  AUDIOS: "audios",
+  PDFS: "pdfs",
+  WEBS: "webs",
 } as const;
 export const ROLE_CREATOR = "creator";
 export const ROLE_VIEWER = "viewer";
@@ -529,6 +533,16 @@ export const CURSOR = {
   POINTER: "pointer",
   DEFAULT: "default",
 } as const;
+
+export const VIEWER_DASHBOARD_TITLE = "Viewer Dashboard";
+export const VIEWER_DASHBOARD_DESCRIPTION =
+  "Manage your purchased content and viewer activity on Kiibee.";
+export const LOADING_TEXT_FALLBACK = "Loading...";
+export const DASHBOARD_NO_PADDING = "0";
+export const SORT_ARROW_UP = "↑";
+export const SORT_ARROW_DOWN = "↓";
+export const MILLISECONDS_IN_HOUR = 36e5;
+export const HOURS_IN_DAY = 24;
 
 export const SCROLL_ANIMATION_SELECTORS = {
   SIDEBAR: "[data-sidebar]",
