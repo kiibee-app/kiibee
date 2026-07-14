@@ -11,7 +11,11 @@ import {
 import { OrderService } from './order.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AdminGuard } from '../auth/guards/admin.guard';
-import { BillingHistoryQueryDto, CreateOrderInputDto } from './dto/order.dto';
+import {
+  BillingHistoryQueryDto,
+  CreateCollectionOrderInputDto,
+  CreateOrderInputDto,
+} from './dto/order.dto';
 
 @Controller('order')
 export class OrderController {
@@ -22,6 +26,16 @@ export class OrderController {
   async createOrder(@Req() req: any, @Body() dto: CreateOrderInputDto) {
     const userId = req.user.userId;
     return this.orderService.createOrder(userId, dto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('collection/create')
+  async createCollectionOrder(
+    @Req() req: any,
+    @Body() dto: CreateCollectionOrderInputDto,
+  ) {
+    const userId = req.user.userId;
+    return this.orderService.createCollectionOrder(userId, dto);
   }
 
   @UseGuards(JwtAuthGuard)
