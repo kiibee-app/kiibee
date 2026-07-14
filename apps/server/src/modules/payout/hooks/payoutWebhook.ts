@@ -10,7 +10,12 @@ export const handlePayoutWebhookService = async (payload: any) => {
   try {
     logger.info('ePay payout webhook received', payload);
 
-    const payoutId = payload?.attributes?.payoutId;
+    const transaction = payload?.data?.transaction ?? payload ?? {};
+
+    const payoutId =
+      transaction.reference ??
+      transaction.attributes?.payoutId ??
+      payload?.attributes?.payoutId;
 
     if (!payoutId) {
       return fail(
@@ -33,23 +38,30 @@ export const handlePayoutWebhookService = async (payload: any) => {
       return success(payout, 'Payout already processed');
     }
 
-    const status = String(payload?.status || '').toLowerCase();
+    const status = String(transaction.state ?? payload?.status ?? '');
 
     if (
       status === ORDER_STATUS.COMPLETED ||
       status === PAYMENT_STATUS.PAYMENT_SUCCESS
     ) {
+      const cardNo =
+        transaction.paymentMethodDisplayText ??
+        transaction.cardNo ??
+        payout.cardNo;
+      const payoutDate = transaction.createdAt
+        ? new Date(transaction.createdAt)
+        : payout.payoutDate;
+
       await db.transaction(async (tx) => {
         await tx
           .update(creatorPayouts)
           .set({
             status: ORDER_STATUS.COMPLETED,
-            creditNo: payload?.creditNo ?? payout.creditNo,
-            cardNo: payload?.cardNo ?? payout.cardNo,
-            bankAccountInfo: payload?.bankAccountInfo ?? payout.bankAccountInfo,
-            payoutDate: payload?.payoutDate
-              ? new Date(payload.payoutDate)
-              : payout.payoutDate,
+            creditNo: transaction.creditNo ?? payout.creditNo,
+            cardNo,
+            bankAccountInfo:
+              transaction.bankAccountInfo ?? payout.bankAccountInfo,
+            payoutDate,
             updatedAt: new Date(),
           })
           .where(eq(creatorPayouts.id, payout.id));
@@ -57,7 +69,7 @@ export const handlePayoutWebhookService = async (payload: any) => {
         await tx
           .update(creatorWallets)
           .set({
-            amount: sql`${creatorWallets.amount} - ${creatorPayouts.rawAmount}`,
+            amount: sql`${creatorWallets.amount} - ${payout.rawAmount}`,
             updatedAt: new Date(),
           })
           .where(eq(creatorWallets.creatorId, payout.creatorId));
@@ -68,17 +80,25 @@ export const handlePayoutWebhookService = async (payload: any) => {
       return success({}, 'Payout completed');
     }
 
-    await db
-      .update(creatorPayouts)
-      .set({
-        status: STATUS.REJECTED,
-        updatedAt: new Date(),
-      })
-      .where(eq(creatorPayouts.id, payout.id));
+    const failedStates = ['FAILED', 'REJECTED', 'ERROR', 'DECLINED'];
 
-    logger.warn(`Payout ${payout.id} failed`);
+    if (failedStates.includes(status)) {
+      await db
+        .update(creatorPayouts)
+        .set({
+          status: STATUS.REJECTED,
+          updatedAt: new Date(),
+        })
+        .where(eq(creatorPayouts.id, payout.id));
 
-    return success({}, 'Payout marked as failed');
+      logger.warn(`Payout ${payout.id} failed`);
+
+      return success({}, 'Payout marked as failed');
+    }
+
+    logger.info(`Payout ${payout.id} received unhandled state: ${status}`);
+
+    return success({}, 'Payout state ignored');
   } catch (error) {
     logger.error('Payout webhook processing failed', error);
 

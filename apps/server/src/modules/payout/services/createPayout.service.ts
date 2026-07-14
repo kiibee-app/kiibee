@@ -102,16 +102,20 @@ export const createPayoutService = async (
       return fail('Minimum payout amount is 1 DKK', HttpStatus.BAD_REQUEST);
     }
 
+    const payoutId = randomUUID();
+
     const payload = {
       amount: Math.round(payoutAmount * 100),
 
       currency: wallet.currency,
       pointOfSaleId: process.env.EPAY_POINT_OF_SALE_ID!,
       paymentMethodId,
+      reference: payoutId,
       notificationUrl: process.env.EPAY_PAYOUT_NOTIFICATION_URL!,
 
       attributes: {
         creatorId,
+        payoutId,
       },
 
       customer: {
@@ -155,7 +159,7 @@ export const createPayoutService = async (
     const [payoutRecord] = await db
       .insert(creatorPayouts)
       .values({
-        id: randomUUID(),
+        id: payoutId,
         creatorId,
         rawAmount: amount.toString(),
         amount: payoutAmount.toString(),
