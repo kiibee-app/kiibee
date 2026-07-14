@@ -198,13 +198,6 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
-  @Get('all-viewers')
-  async getAllViewers() {
-    const result = await this.authService.getAllViewers();
-    return result;
-  }
-
-  @UseGuards(JwtAuthGuard, AdminGuard)
   @Get('all-viewers/:viewerId')
   async getViewerById(@Param('viewerId') viewerId: string) {
     const result = await this.authService.getViewerById(viewerId);
