@@ -12,7 +12,6 @@ import {
   TextSection,
   Title,
   Paragraph,
-  ReadMoreButton,
 } from "./styles";
 import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
 import { useIsMobile } from "@/utils/useIsMobile";
