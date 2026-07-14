@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import breakpoints from "@repo/ui/breakpoints";
 import COLORS from "@repo/ui/colors";
+import { type CSSProperties } from "react";
 
 export const Section = styled.div`
   display: flex;
@@ -217,3 +218,13 @@ export const Spacer = styled.div`
     display: none;
   }
 `;
+
+export const stepImageStyle: CSSProperties = {
+  objectFit: "cover",
+  objectPosition: "center",
+};
+
+export const STEP_IMAGE_SIZES = {
+  desktop: "(max-width: 767px) 100vw, 45vw",
+  mobile: "100vw",
+} as const;

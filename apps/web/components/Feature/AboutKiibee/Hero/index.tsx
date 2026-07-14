@@ -12,6 +12,7 @@ import {
   CTAWrap,
   heroRevealStyle,
   heroImageStyle,
+  HERO_IMAGE_SIZES,
 } from "./styles";
 import heroImg from "@/assets/images/hero3.webp";
 import GenericButton from "@/components/UI/GenericButton";
@@ -46,7 +47,7 @@ export default function AboutHero() {
             alt={t("how.heroAlt")}
             fill
             priority
-            sizes="100vw"
+            sizes={HERO_IMAGE_SIZES}
             style={heroImageStyle}
           />
         </ImageReveal>
