@@ -113,7 +113,7 @@ export default function ForgetPasswordForm() {
               <GenericButton
                 type="submit"
                 isLoading={isPending}
-                disabled={!email.trim() || isPending}
+                disabled={!isValidEmail(email) || isPending}
               >
                 {t("forgotPassword.submit")}
               </GenericButton>
