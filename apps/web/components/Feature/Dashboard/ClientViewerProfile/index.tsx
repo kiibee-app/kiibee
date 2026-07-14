@@ -119,6 +119,7 @@ export default function ClientViewerProfile() {
           labelMarginTop="0"
           value={form.name}
           onChange={onChange(VIEWER_PROFILE_FIELDS.NAME)}
+          max={200}
         />
         <InputField
           label={t("dashboard.viewerProfile.email")}

@@ -150,6 +150,7 @@ export default function CreatorProfile() {
                 labelMarginTop={index ? "16px" : undefined}
                 hasError={!!errorMessage}
                 errorMessage={errorMessage}
+                max={field.max}
               />
             );
           })}
