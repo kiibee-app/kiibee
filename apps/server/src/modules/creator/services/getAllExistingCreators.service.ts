@@ -17,7 +17,7 @@ import {
   DEFAULT_LIMIT,
   getSafePositiveInteger,
   MAX_LIMIT,
-} from '../utils/pagination';
+} from 'src/utils/pagination';
 
 export const getAdminCreatorsService = async ({
   search,
