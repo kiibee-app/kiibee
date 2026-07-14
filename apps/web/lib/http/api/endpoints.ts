@@ -48,6 +48,8 @@ export const API = {
   },
   collection: {
     getAll: "/collection",
+    getPublicByCreator: (creatorId: string) =>
+      `/collection/public/${creatorId}`,
     create: "/collection/create",
     update: (id: string) => `/collection/${id}`,
     delete: (id: string) => `/collection/${id}`,
