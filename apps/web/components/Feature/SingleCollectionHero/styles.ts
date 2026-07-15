@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
+import { Wrapper as SearchBarWrapper } from "@/components/UI/SearchBar/styles";
 import { SIZE, VARIANT } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
@@ -119,8 +120,8 @@ export const ContentRow = styled.div`
 
 export const HeroImage = styled.div`
   position: relative;
-  width: 500px;
-  height: 350px;
+  width: 33.75rem;
+  height: 23.125rem;
   flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
@@ -164,7 +165,7 @@ export const CreatorAvatar = styled.span`
 `;
 
 export const Description = styled(MonoText)`
-  max-width: 35rem;
+  max-width: 43.125rem;
   white-space: pre-line;
 `;
 
@@ -181,6 +182,11 @@ export const Header = styled.div`
   margin: 24px 0;
   gap: 16px;
   flex-wrap: wrap;
+
+  ${SearchBarWrapper} {
+    height: 42px;
+    padding: 10px 16px;
+  }
 
   ${media.mobileXl} {
     align-items: stretch;
