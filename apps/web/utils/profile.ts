@@ -70,3 +70,7 @@ export const VIEWER_PROFILE_FIELDS = {
 
 export type ViewerProfileField =
   (typeof VIEWER_PROFILE_FIELDS)[keyof typeof VIEWER_PROFILE_FIELDS];
+
+export const PROFILE_FORM_VALIDATION = {
+  NAME_MAX_LENGTH: 200,
+} as const;
