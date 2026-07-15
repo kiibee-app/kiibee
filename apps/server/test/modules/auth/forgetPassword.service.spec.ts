@@ -18,6 +18,7 @@ jest.mock('crypto', () => ({
 import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { Time } from 'src/utils/constant';
+import { HttpStatus } from '@nestjs/common';
 
 // Import after mocks
 import { forgetPasswordService } from 'src/modules/auth/services/forgetPassword.service';
@@ -64,7 +65,7 @@ describe('forgetPasswordService', () => {
     );
   });
 
-  it('should return generic success when user is not found', async () => {
+  it('should throw not found when user is not found', async () => {
     const mockSelect = jest.fn().mockReturnValue({
       from: jest.fn().mockReturnValue({
         where: jest.fn().mockReturnValue({
@@ -74,11 +75,15 @@ describe('forgetPasswordService', () => {
     });
     mockDb.select = mockSelect;
 
-    const result = await forgetPasswordService('nonexistent@example.com');
-    expect(result.message).toBe('Password reset link sent if user exists');
+    await expect(
+      forgetPasswordService('nonexistent@example.com'),
+    ).rejects.toMatchObject({
+      message: 'No account found with this email',
+      status: HttpStatus.NOT_FOUND,
+    });
   });
 
-  it('should return generic success when user is deleted', async () => {
+  it('should throw not found when user is deleted', async () => {
     // Since the query filters out deleted users, it should return []
     const mockSelect = jest.fn().mockReturnValue({
       from: jest.fn().mockReturnValue({
@@ -89,8 +94,12 @@ describe('forgetPasswordService', () => {
     });
     mockDb.select = mockSelect;
 
-    const result = await forgetPasswordService('test@example.com');
-    expect(result.message).toBe('Password reset link sent if user exists');
+    await expect(
+      forgetPasswordService('test@example.com'),
+    ).rejects.toMatchObject({
+      message: 'No account found with this email',
+      status: HttpStatus.NOT_FOUND,
+    });
   });
 
   it('should successfully send password reset link', async () => {
