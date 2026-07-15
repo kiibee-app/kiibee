@@ -138,6 +138,7 @@ export const AddCardButton = styled.button`
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE};
   cursor: pointer;
+  margin-left: auto;
 
   ${media.mobileLg} {
     width: auto;

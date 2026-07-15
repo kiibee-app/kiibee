@@ -313,18 +313,20 @@ export default function ClientViewerBillings({
       ) : (
         <>
           <PaymentHeader>
-            {!onlyPaymentMethods && (
-              <MonoText $use="H4_Medium">
-                {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.title)}
-              </MonoText>
+            <MonoText $use="H4_Medium">
+              {creatorPaymentMethods
+                ? t("settings.payoutMethods.title")
+                : t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.title)}
+            </MonoText>
+            {creatorPaymentMethods && (
+              <AddCardButton
+                type="button"
+                onClick={() => setShowAddCardModal(true)}
+              >
+                <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
+                {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)}
+              </AddCardButton>
             )}
-            <AddCardButton
-              type="button"
-              onClick={() => setShowAddCardModal(true)}
-            >
-              <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
-              {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)}
-            </AddCardButton>
           </PaymentHeader>
 
           {isPaymentMethodsLoading ? (

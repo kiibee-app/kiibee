@@ -1588,7 +1588,8 @@
       "title": "Udbetalingsmetoder",
       "subtitle": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine indtægter.",
       "regLabel": "Reg. nr.",
-      "accountLabel": "Kontonr."
+      "accountLabel": "Kontonr.",
+      "addPayoutMethod": "Tilføj udbetalingsmetode"
     },
     "notifications": {
       "title": "Notifikationer",
