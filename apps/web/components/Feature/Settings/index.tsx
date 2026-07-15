@@ -205,11 +205,6 @@ export default function SettingsContent() {
     [activeTab],
   );
 
-  const isPayoutMethodsTab = useMemo(
-    () => activeTab === TAB_KEYS.payoutMethods,
-    [activeTab],
-  );
-
   const closeModal = useCallback(() => {
     setModalType(null);
   }, []);
