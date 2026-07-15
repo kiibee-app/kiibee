@@ -31,8 +31,7 @@ import {
   type RentedCollectionItem,
 } from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
-import { authStorage } from "@/lib/auth/authStorage";
-import { PATHS, pathPublishedContent } from "@/utils/path";
+import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import { QUERY_KEYS } from "@/utils/Constants";
 import { VARIANT } from "@/utils/variants";
 import {
@@ -102,13 +101,6 @@ export default function CollectionList() {
 
   const handleBuyClick = useCallback(
     (item: RentedCollectionItem) => {
-      if (!authStorage.hasSession()) {
-        const next = encodeURIComponent(
-          window.location.pathname + window.location.search,
-        );
-        router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-        return;
-      }
       if (item.href) {
         router.push(item.href);
       }
@@ -131,9 +123,13 @@ export default function CollectionList() {
 
     return rows.map((row) => {
       const firstContentId = collectionContentsMap?.[row.id];
+      const collectionHref = pathPublicCollection(
+        row.id,
+        isPublicView ? publicCreatorId : undefined,
+      );
       const contentHref = firstContentId
         ? pathPublishedContent(firstContentId)
-        : `/single-collection?id=${row.id}`;
+        : collectionHref;
 
       let actions: CollectionAction[] | undefined = undefined;
 
@@ -159,7 +155,9 @@ export default function CollectionList() {
           return {
             label,
             variant: hash ? VARIANT.PRIMARY : VARIANT.SECONDARY,
-            href: hash ? `/single-collection?id=${row.id}${hash}` : contentHref,
+            href: hash
+              ? pathPublicCollection(row.id, publicCreatorId)
+              : contentHref,
           };
         });
       } else {
@@ -181,7 +179,7 @@ export default function CollectionList() {
           ? resolveImageUrl(row.coverImageUrl)
           : resolveImageUrl(tutorialVideoCardFallback.image),
         hideBadge: true,
-        href: contentHref,
+        href: isPublicView ? collectionHref : contentHref,
         actions,
       };
     });
@@ -190,6 +188,7 @@ export default function CollectionList() {
     collectionsResponse,
     collectionContentsMap,
     displayName,
+    publicCreatorId,
     t,
   ]);
 

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT, SIZE } from "@/utils/Constants";
+import { MonoText } from "@/components/UI/Monotext";
+import { SIZE, VARIANT } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const HeroWrapper = styled.div`
@@ -49,6 +50,27 @@ export const ActionButton = styled(GenericButton).attrs({
   }
 `;
 
+export const PricingActions = styled.div`
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+`;
+
+export const PricingButtonContent = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+
+  small {
+    font-size: 10px;
+    line-height: 1.2;
+    opacity: 0.72;
+  }
+`;
+
 export const TopBar = styled.div`
   width: 100%;
   display: flex;
@@ -86,18 +108,17 @@ export const ContentRow = styled.div`
 `;
 
 export const HeroImage = styled.div`
-  flex: 1;
   position: relative;
-  width: 100%;
-  min-width: 500px;
-  aspect-ratio: 16 / 10;
+  width: 500px;
+  height: 350px;
+  flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
-  max-height: 350px;
 
   ${media.tablet} {
-    min-width: 100%;
-    max-height: 280px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
   }
 `;
 
@@ -109,6 +130,30 @@ export const LogoRow = styled.div`
   ${media.tablet} {
     gap: 6px;
   }
+`;
+
+export const CreatorRow = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+`;
+
+export const CreatorAvatar = styled.span`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: ${({ theme }) => theme.colors.primary.GREEN_50};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_SemiMedium}
+`;
+
+export const Description = styled(MonoText)`
+  max-width: 35rem;
+  white-space: pre-line;
 `;
 
 export const TitleGroup = styled.div`

@@ -59,6 +59,19 @@ export function pathPublishedContent(contentKey: string): string {
   return `${PATHS.CONTENT}/${encodeURIComponent(contentKey)}`;
 }
 
+export function pathPublicCollection(
+  collectionId: string,
+  creatorId?: string | null,
+): string {
+  const params = new URLSearchParams({ id: collectionId });
+
+  if (creatorId) {
+    params.set("creatorId", creatorId);
+  }
+
+  return `/single-collection?${params.toString()}`;
+}
+
 export function resolveContentViewerId(userId?: string | null): string {
   const trimmed = String(userId ?? "").trim();
   return trimmed || ANONYMOUS_VIEWER_ID;

@@ -1,6 +1,7 @@
 import type { TFunction } from "i18next";
 import {
   ACCESS_TYPE_FREE,
+  BUY_COLLECTION_PREFIX,
   BUY_KEYWORDS,
   BUY_PREFIX,
   FREE_LABEL,
@@ -87,7 +88,7 @@ function resolvePricingPrefixes(labels?: PricingLabels) {
   return {
     rentPrefix: labels?.rent ?? RENT_PREFIX,
     buyPrefix: labels?.buy ?? BUY_PREFIX,
-    buyCollectionPrefix: labels?.buy ?? BUY_PREFIX,
+    buyCollectionPrefix: labels?.buyCollection ?? BUY_COLLECTION_PREFIX,
   };
 }
 

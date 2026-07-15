@@ -7,6 +7,11 @@ import {
   ActionButton,
   HeroImage,
   LogoRow,
+  CreatorRow,
+  CreatorAvatar,
+  Description,
+  PricingActions,
+  PricingButtonContent,
   ContentRow,
   TopBar,
   BackButtonWrapper,
@@ -24,15 +29,35 @@ import { VARIANT } from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
 import useShare from "@/hooks/useShare";
 import ShareModal from "@/components/UI/Modals/ShareModal";
+import {
+  getContentDetailPricingActions,
+  getPricingLabels,
+} from "@/utils/contentPricingActions";
+import type { CollectionAccessType } from "@/utils/Constants";
 
 type Props = {
   title: string;
+  description?: string | null;
+  creatorName?: string;
+  image?: string;
+  imageFallback?: string;
   primaryContentId?: string;
+  pricing?: {
+    accessType?: CollectionAccessType;
+    buyPrice?: number | null;
+    rentPrice?: number | null;
+    rentDurationHours?: number | null;
+  };
 };
 
 export default function SingleCollectionHero({
   title,
+  description,
+  creatorName,
+  image,
+  imageFallback,
   primaryContentId,
+  pricing,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -43,6 +68,12 @@ export default function SingleCollectionHero({
   const primaryContentHref = primaryContentId
     ? pathPublishedContent(primaryContentId)
     : undefined;
+  const pricingActions = pricing
+    ? getContentDetailPricingActions(pricing, t, {
+        labels: getPricingLabels(t),
+      })
+    : [];
+  const creatorInitial = creatorName?.trim().charAt(0).toUpperCase();
 
   return (
     <HeroWrapper>
@@ -57,33 +88,55 @@ export default function SingleCollectionHero({
       </TopBar>
       <ContentRow>
         <HeroContent>
-          <LogoRow>
-            <Image
-              src={logo}
-              alt="Kiibee Logo"
-              width={30}
-              height={30}
-              priority
-            />
-            <MonoText $use="H4_Medium">{t(NAV.logoAlt)}</MonoText>
-          </LogoRow>
+          {creatorName ? (
+            <CreatorRow>
+              <CreatorAvatar aria-hidden>{creatorInitial}</CreatorAvatar>
+              <MonoText $use="Body_Medium">{creatorName}</MonoText>
+            </CreatorRow>
+          ) : (
+            <LogoRow>
+              <Image
+                src={logo}
+                alt="Kiibee Logo"
+                width={30}
+                height={30}
+                priority
+              />
+              <MonoText $use="H4_Medium">{t(NAV.logoAlt)}</MonoText>
+            </LogoRow>
+          )}
 
           <MonoText $use="Heading2">{title}</MonoText>
-          <MonoText $use="Body_Medium">
-            {t("singleCollection.subtitle")}
-          </MonoText>
-          <ActionButton
-            asAnchor
-            href={primaryContentHref}
-            disabled={!primaryContentHref}
-          >
-            {t("singleCollection.seeContent")}
-          </ActionButton>
+          <Description $use="Body_Medium">
+            {description || t("singleCollection.subtitle")}
+          </Description>
+
+          {pricingActions.length > 0 ? (
+            <PricingActions>
+              {pricingActions.map((action) => (
+                <ActionButton key={action.label} variant={action.variant}>
+                  <PricingButtonContent>
+                    <span>{action.label}</span>
+                    {action.subtitle ? <small>{action.subtitle}</small> : null}
+                  </PricingButtonContent>
+                </ActionButton>
+              ))}
+            </PricingActions>
+          ) : (
+            <ActionButton
+              asAnchor
+              href={primaryContentHref}
+              disabled={!primaryContentHref}
+            >
+              {t("singleCollection.seeContent")}
+            </ActionButton>
+          )}
         </HeroContent>
 
         <HeroImage>
           <Image
-            src={collection}
+            src={image || collection}
+            fallback={imageFallback}
             alt={title}
             fill
             sizes="(max-width: 768px) 100vw, 560px"

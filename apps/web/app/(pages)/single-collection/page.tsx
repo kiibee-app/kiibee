@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import NavBar from "@/components/Layout/Navbar";
@@ -24,6 +24,14 @@ import {
 } from "@/components/Feature/SingleCollectionHero/styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
+import { useGetAPI } from "@/lib/http/api/getApi";
+import { API } from "@/lib/http/api/endpoints";
+import {
+  type CollectionsApiResponse,
+  getCollectionRows,
+} from "@/hooks/contents/collectionApi";
+import { convertRentDurationToHours } from "@/utils/formatDate";
+import { resolvePublicMediaUrl } from "@/utils/media";
 
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -32,8 +40,26 @@ function SingleCollectionContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const publicCreatorId = searchParams.get("creatorId");
   const { collection: staticSection, isLoading: isTutorialCollectionLoading } =
     useTutorialCollectionLookup(id);
+  const publicCollectionsQuery = useGetAPI<CollectionsApiResponse>(
+    publicCreatorId
+      ? API.collection.getPublicByCreator(publicCreatorId)
+      : API.collection.getAll,
+    undefined,
+    {
+      enabled: Boolean(id && publicCreatorId && !staticSection),
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  );
+  const selectedCollection = useMemo(() => {
+    if (!id || !publicCollectionsQuery.data) return undefined;
+    return getCollectionRows(publicCollectionsQuery.data).find(
+      (collection) => collection.id === id,
+    );
+  }, [id, publicCollectionsQuery.data]);
   const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
     !staticSection ? id : null,
   );
@@ -73,7 +99,24 @@ function SingleCollectionContent() {
     return (
       <Section>
         <SingleCollectionHero
-          title={dynamicSection?.name ?? ""}
+          title={dynamicSection?.name ?? selectedCollection?.name ?? ""}
+          description={selectedCollection?.description}
+          image={
+            resolvePublicMediaUrl(selectedCollection?.coverImageUrl) ??
+            undefined
+          }
+          pricing={
+            selectedCollection
+              ? {
+                  accessType: selectedCollection.accessType,
+                  buyPrice: selectedCollection.buyPrice,
+                  rentPrice: selectedCollection.rentPrice,
+                  rentDurationHours: convertRentDurationToHours(
+                    selectedCollection.rentDuration,
+                  ),
+                }
+              : undefined
+          }
           primaryContentId={dynamicSection?.videos?.[0]?.id}
         />
         <AccessGate
@@ -121,7 +164,28 @@ function SingleCollectionContent() {
     <Section>
       <SingleCollectionHero
         title={dynamicSection.name}
+        description={
+          dynamicSection.description ?? selectedCollection?.description
+        }
+        creatorName={dynamicSection.creatorName}
+        image={
+          resolvePublicMediaUrl(selectedCollection?.coverImageUrl) ??
+          dynamicSection.heroImage
+        }
+        imageFallback={dynamicSection.heroImageFallback}
         primaryContentId={dynamicSection.videos[0]?.id}
+        pricing={
+          selectedCollection
+            ? {
+                accessType: selectedCollection.accessType,
+                buyPrice: selectedCollection.buyPrice,
+                rentPrice: selectedCollection.rentPrice,
+                rentDurationHours: convertRentDurationToHours(
+                  selectedCollection.rentDuration,
+                ),
+              }
+            : undefined
+        }
       />
       <CollectionContent videos={dynamicSection.videos} />
     </Section>

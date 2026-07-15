@@ -10,6 +10,7 @@ import { CreateCouponPayload } from "./couponType";
 
 export type CollectionRow = {
   id: string;
+  creatorId?: string;
   name: string;
   contentsCount: number;
   createdAt: string;
