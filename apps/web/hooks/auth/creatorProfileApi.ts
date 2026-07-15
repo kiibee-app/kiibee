@@ -37,6 +37,7 @@ export type CreatorProfileInfo = {
 };
 
 export type CreatorProfileBankAccount = {
+  id?: string | null;
   registrationNumber?: string | null;
   accountNumber?: string | null;
 };

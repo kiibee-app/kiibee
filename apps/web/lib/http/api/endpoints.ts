@@ -96,6 +96,8 @@ export const API = {
   payout: {
     settlementHistory: "/payout/settlement-history",
     stats: "/payout/stats",
+    calculate: "/payout/calculate",
+    request: "/payout/request",
   },
   payment: {
     cards: "/payment/cards",

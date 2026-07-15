@@ -3,6 +3,16 @@ export type PayoutRow = {
   value: string;
 };
 
+export function parsePayoutBalance(value?: string | null): number {
+  if (!value) return 0;
+
+  const match = value.match(/(-?\d+(?:[.,]\d+)?)/);
+  if (!match) return 0;
+
+  const amount = Number(match[1].replace(",", "."));
+  return Number.isNaN(amount) ? 0 : amount;
+}
+
 export function formatPayoutAmount(value: string): string {
   const match = value.match(/^(-?\d+(?:[.,]\d+)?)\s*kr\.?$/i);
 
@@ -16,6 +26,10 @@ export function formatPayoutAmount(value: string): string {
     return value;
   }
 
+  return formatPayoutNumber(amount);
+}
+
+export function formatPayoutNumber(amount: number): string {
   const formattedAmount = new Intl.NumberFormat("da-DK", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
@@ -24,24 +38,9 @@ export function formatPayoutAmount(value: string): string {
   return `${formattedAmount} kr.`;
 }
 
-export const payoutRows: PayoutRow[] = [
-  {
-    label: "Earnings\n(Based on 94 purchases and 39 rentals)",
-    value: formatPayoutAmount("149.00 kr."),
-  },
-  {
-    label: "Transaction fee (1% per sale)",
-    value: formatPayoutAmount("-1.49 kr."),
-  },
-  {
-    label: "Kiibee payment (per sale)",
-    value: formatPayoutAmount("-133 kr."),
-  },
-];
-
-export const payoutTotal = {
-  label: "Total payout amount",
-  value: formatPayoutAmount("14.51 kr."),
-};
+export function formatFeePercent(ratio: number): string {
+  const percent = Number((ratio * 100).toFixed(2));
+  return `${percent}%`;
+}
 
 export const CENTER_ALIGNED_HEADERS = ["Status", "Credit No", "Bank", "Date"];

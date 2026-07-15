@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@repo/ui/breakpoints";
 
 export const Card = styled.div`
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
@@ -13,12 +14,21 @@ export const CardTop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+
+  ${media.mobileXl} {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 `;
 
 export const TextBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0;
+  flex: 1;
 `;
 
 export const Stats = styled.div`
