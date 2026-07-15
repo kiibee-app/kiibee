@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   VIEWER_BILLING_HISTORY_TAB,
+  VIEWER_PAYMENT_METHODS_TAB,
   VIEWER_BILLING_TABS,
   type ViewerBillingTab,
 } from "@/utils/common";
@@ -68,7 +69,13 @@ import {
 } from "./styles";
 import InvoiceModal from "./InvoiceModal";
 
-export default function ClientViewerBillings() {
+type ClientViewerBillingsProps = {
+  onlyPaymentMethods?: boolean;
+};
+
+export default function ClientViewerBillings({
+  onlyPaymentMethods = false,
+}: ClientViewerBillingsProps) {
   const { t } = useTranslation();
   const [searchContent, setSearchContent] = useState("");
   const [searchCreator, setSearchCreator] = useState("");
@@ -135,8 +142,10 @@ export default function ClientViewerBillings() {
 
   const { activeTab, setActiveTabAndQuery } =
     useQuerySyncedTab<ViewerBillingTab>({
-      queryKey: BILLING_TAB,
-      defaultTab: VIEWER_BILLING_HISTORY_TAB,
+      queryKey: onlyPaymentMethods ? "dummy-tab" : BILLING_TAB,
+      defaultTab: onlyPaymentMethods
+        ? VIEWER_PAYMENT_METHODS_TAB
+        : VIEWER_BILLING_HISTORY_TAB,
       validTabs: VIEWER_BILLING_TABS.map((tab) => tab.key),
     });
   const billingHistoryKeys = DASHBOARD_VIEWER_BILLINGS.billingHistory;
@@ -159,20 +168,22 @@ export default function ClientViewerBillings() {
   });
 
   return (
-    <BillingShell>
-      <BillingHeader>
-        <MonoText $use="H4_SemiBold">
-          {t(DASHBOARD_VIEWER_BILLINGS.title)}
-        </MonoText>
-        <GenericTabs
-          tabs={VIEWER_BILLING_TABS.map((tab) => ({
-            key: tab.key,
-            label: t(tab.labelKey),
-          }))}
-          activeTab={activeTab}
-          onTabChange={setActiveTabAndQuery}
-        />
-      </BillingHeader>
+    <BillingShell $onlyPaymentMethods={onlyPaymentMethods}>
+      {!onlyPaymentMethods && (
+        <BillingHeader>
+          <MonoText $use="H4_SemiBold">
+            {t(DASHBOARD_VIEWER_BILLINGS.title)}
+          </MonoText>
+          <GenericTabs
+            tabs={VIEWER_BILLING_TABS.map((tab) => ({
+              key: tab.key,
+              label: t(tab.labelKey),
+            }))}
+            activeTab={activeTab}
+            onTabChange={setActiveTabAndQuery}
+          />
+        </BillingHeader>
+      )}
 
       {activeTab === VIEWER_BILLING_HISTORY_TAB ? (
         isBillingHistoryLoading ? (
@@ -278,11 +289,13 @@ export default function ClientViewerBillings() {
         )
       ) : (
         <>
-          <PaymentHeader>
-            <MonoText $use="H4_Medium">
-              {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.title)}
-            </MonoText>
-          </PaymentHeader>
+          {!onlyPaymentMethods && (
+            <PaymentHeader>
+              <MonoText $use="H4_Medium">
+                {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.title)}
+              </MonoText>
+            </PaymentHeader>
+          )}
 
           {isPaymentMethodsLoading ? (
             <GenericLoader variant={LOADER_VARIANT.INLINE} />
