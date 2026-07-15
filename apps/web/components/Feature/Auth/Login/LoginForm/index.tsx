@@ -101,7 +101,7 @@ export default function LoginForm({
           </Form>
         </FormProvider>
         <ForgotLink href="/auth/forget-password">
-          <MonoText $use="Body_Small">{t("authForm.forgot")}</MonoText>
+          {t("authForm.forgot")}
         </ForgotLink>
         <FooterText>
           <MonoText $use="Body_Medium"> {t("authForm.footer")}</MonoText>

@@ -74,13 +74,15 @@ export const ResendText = styled(MonoText).attrs({
   margin-top: 1rem;
 `;
 
-export const LinkButton = styled(MonoText).attrs({
-  $use: "Body_Bold",
-})`
+export const LinkButton = styled.button`
   display: inline;
   background: none;
   border: none;
   color: ${({ theme }) => theme.colors.primary.BLACK};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
   cursor: pointer;
   text-decoration: none;
 
