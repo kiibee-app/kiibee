@@ -191,14 +191,14 @@ export const Section = styled.div`
   width: 100%;
   max-width: var(--navbar-inner-max-width, 1440px);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 2.5rem 1.5rem;
 
   ${media.tablet} {
-    padding: 0 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
   ${media.mobileXl} {
-    padding: 0 1rem;
+    padding: 1.5rem 1rem;
   }
 `;
 
