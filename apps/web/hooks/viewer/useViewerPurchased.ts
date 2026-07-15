@@ -26,10 +26,12 @@ type PurchasedMediaResponse = {
 type PurchasedCollectionResponse = {
   id: string;
   creatorId: string;
+  creatorName: string | null;
   name: string;
   slug: string;
   coverImageUrl: string | null;
   description: string | null;
+  elementCount: number;
   purchasedAt: string | null;
 };
 
@@ -60,8 +62,8 @@ const mapMediaItem = (item: PurchasedMediaResponse) => ({
 const mapCollectionItem = (item: PurchasedCollectionResponse) => ({
   id: item.id,
   title: item.name,
-  author: item.creatorId || "",
-  elementCount: 0,
+  author: item.creatorName || "",
+  elementCount: item.elementCount ?? 0,
   coverSrc: resolvePublicMediaUrl(item.coverImageUrl) || "",
 });
 
