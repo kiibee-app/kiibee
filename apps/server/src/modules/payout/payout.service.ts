@@ -7,6 +7,10 @@ import { handlePayoutWebhookService } from './hooks/payoutWebhook';
 import { payoutCalculationService } from './services/payoutCalculation.service';
 import { payoutRequestCalculationService } from './services/createPayoutRequest.service';
 import { getPayoutRequestService } from './services/getPayoutReques.service';
+import { getPayoutRequestByIdService } from './services/getPayoutRequestById.service';
+import { rejectPayoutRequestService } from './services/rejectPayoutRequest.service';
+import { getPayoutHistoryByCreatorIdService } from './services/getPayoutHistoryByCreator.service';
+import { getAllPayoutHistoryService } from './services/getAllPayoutHistory.service';
 
 @Injectable()
 export class PayoutService {
@@ -48,5 +52,24 @@ export class PayoutService {
 
   async getPayoutRequestService() {
     return getPayoutRequestService();
+  }
+
+  async getPayoutRequestByIdService(requestId: string) {
+    return getPayoutRequestByIdService(requestId);
+  }
+
+  async rejectPayoutRequestService(requestId: string) {
+    return rejectPayoutRequestService(requestId);
+  }
+
+  async getPayoutHistoryByCreatorIdService(
+    creatorId: string,
+    query?: SettlementHistoryQueryDto,
+  ) {
+    return getPayoutHistoryByCreatorIdService(creatorId, query);
+  }
+
+  async getAllPayoutHistoryService(query?: SettlementHistoryQueryDto) {
+    return getAllPayoutHistoryService(query);
   }
 }
