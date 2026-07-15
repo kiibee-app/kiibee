@@ -1580,8 +1580,15 @@
     "title": "Indstillinger",
     "tabs": {
       "payout": "Udbetaling",
+      "payoutMethods": "Udbetalingsmetoder",
       "notifications": "Notifikationer",
       "export": "Eksport"
+    },
+    "payoutMethods": {
+      "title": "Udbetalingsmetoder",
+      "subtitle": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine indtægter.",
+      "regLabel": "Reg. nr.",
+      "accountLabel": "Kontonr."
     },
     "notifications": {
       "title": "Notifikationer",

@@ -1580,8 +1580,15 @@
     "title": "Settings",
     "tabs": {
       "payout": "Payout",
+      "payoutMethods": "Payout methods",
       "notifications": "Notifications",
       "export": "Export"
+    },
+    "payoutMethods": {
+      "title": "Payout methods",
+      "subtitle": "We need your payment information so we can pay out your earnings.",
+      "regLabel": "Reg. no.",
+      "accountLabel": "Account no."
     },
     "notifications": {
       "title": "Notifications",

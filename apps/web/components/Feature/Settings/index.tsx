@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import NotificationContent from "./Notification";
 import PayoutContent from "./Payout";
 import ExportContent from "./Export";
+import PayoutMethodsContent from "./PayoutMethods";
 import GenericTabs from "@/components/UI/GenericTabs";
 import NotificationModals from "./Notification/notificationModals";
 import { settlementData, settlementHeaders } from "@/utils/dummyData/payout";
@@ -109,10 +110,22 @@ export default function SettingsContent() {
       ...EXPORT_TYPE_OPTIONS(t).map((o) => o.label),
     ].map((k) => k.toLowerCase());
 
+    const payoutMethodsKeywords = [
+      t("settings.tabs.payoutMethods"),
+      t("settings.payoutMethods.title"),
+      t("settings.payoutMethods.subtitle"),
+      t("settings.payoutMethods.regLabel"),
+      t("settings.payoutMethods.accountLabel"),
+    ].map((k) => k.toLowerCase());
+
     return [
       {
         tab: TAB_KEYS.payout,
         keywords: payoutKeywords,
+      },
+      {
+        tab: TAB_KEYS.payoutMethods,
+        keywords: payoutMethodsKeywords,
       },
       {
         tab: TAB_KEYS.notifications,
@@ -189,6 +202,11 @@ export default function SettingsContent() {
 
   const isNotificationTab = useMemo(
     () => activeTab === TAB_KEYS.notifications,
+    [activeTab],
+  );
+
+  const isPayoutMethodsTab = useMemo(
+    () => activeTab === TAB_KEYS.payoutMethods,
     [activeTab],
   );
 
@@ -289,6 +307,7 @@ export default function SettingsContent() {
 
       <Content id="settings-content-area">
         {activeTab === TAB_KEYS.payout && <PayoutContent />}
+        {activeTab === TAB_KEYS.payoutMethods && <PayoutMethodsContent />}
         {activeTab === TAB_KEYS.notifications && (
           <>
             {saveError && (
