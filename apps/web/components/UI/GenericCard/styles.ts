@@ -113,7 +113,11 @@ export const Badge = styled.span<{ $variant?: "default" | "owned" }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover {
+  transition: background ${({ theme }) => theme.animations.normal}
+    ${({ theme }) => theme.animations.easing};
+
+  &:hover,
+  ${Card}:has(:is(button, a):hover) & {
     background: ${({ $variant = "default", theme }) =>
       $variant === "owned"
         ? theme.colors.primary.GREEN
