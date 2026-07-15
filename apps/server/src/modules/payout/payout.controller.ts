@@ -2,9 +2,11 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   Query,
   Req,
+  Put,
   UseGuards,
 } from '@nestjs/common';
 import type { Request } from 'express';
@@ -85,5 +87,36 @@ export class PayoutController {
   @Get('requests')
   async getPayoutRequests() {
     return this.payoutService.getPayoutRequestService();
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('requests/:id')
+  async getPayoutRequestById(@Param('id') id: string) {
+    return this.payoutService.getPayoutRequestByIdService(id);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Put('requests/:id/reject')
+  async rejectPayoutRequest(@Param('id') id: string) {
+    return this.payoutService.rejectPayoutRequestService(id);
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('history/:creatorId')
+  getPayoutHistory(
+    @Req() req: AuthenticatedRequest,
+    @Query() query: SettlementHistoryQueryDto,
+    @Param('creatorId') creatorId: string,
+  ) {
+    return this.payoutService.getPayoutHistoryByCreatorIdService(
+      creatorId,
+      query,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('all-history')
+  getAllPayoutHistory(@Query() query: SettlementHistoryQueryDto) {
+    return this.payoutService.getAllPayoutHistoryService(query);
   }
 }
