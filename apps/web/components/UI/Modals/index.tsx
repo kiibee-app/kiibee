@@ -263,9 +263,11 @@ export function LoginRequiredModal({
   const isInitialView = view === LOGIN_VIEW_STATES.INITIAL;
 
   useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
     if (!visible) {
-      setTimeout(() => setView(LOGIN_VIEW_STATES.INITIAL), 300);
+      timeout = setTimeout(() => setView(LOGIN_VIEW_STATES.INITIAL), 300);
     }
+    return () => clearTimeout(timeout);
   }, [visible]);
 
   const handleSuccess = () => {

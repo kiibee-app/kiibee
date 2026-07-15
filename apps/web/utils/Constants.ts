@@ -551,4 +551,20 @@ export const SCROLL_ANIMATION_SELECTORS = {
   SIDEBAR: "[data-sidebar]",
   INNER: "[data-sidebar] > div",
   CARDS: "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
+  DEFAULT_CARDS: "article, [class*='Card']",
+} as const;
+
+export const SCROLL_ANIMATION_CONFIG = {
+  MAX_INIT_ATTEMPTS: 60,
+  INIT_RETRY_INTERVAL_MS: 50,
+  REFRESH_DELAY_MS: 600,
+  ANIMATION_Y_OFFSET: 40,
+  ANIMATION_Y_END: 0,
+  ANIMATION_DURATION: 0.6,
+  ANIMATION_OPACITY_START: 0,
+  ANIMATION_OPACITY_END: 1,
+  ANIMATION_EASE: "power2.out",
+  TRIGGER_START: "top 90%",
+  TOGGLE_ACTIONS: "play none none reverse",
+  EVENT_SCROLL: "scroll",
 } as const;
