@@ -11,6 +11,7 @@ import {
 import {
   BILLING_TAB,
   CARD_BRANDS,
+  DUMMY_TAB,
   PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT,
   SORT_DROPDOWN_VARIANT,
 } from "@/utils/Constants";
@@ -165,7 +166,7 @@ export default function ClientViewerBillings({
 
   const { activeTab, setActiveTabAndQuery } =
     useQuerySyncedTab<ViewerBillingTab>({
-      queryKey: onlyPaymentMethods ? "dummy-tab" : BILLING_TAB,
+      queryKey: onlyPaymentMethods ? DUMMY_TAB : BILLING_TAB,
       defaultTab: onlyPaymentMethods
         ? VIEWER_PAYMENT_METHODS_TAB
         : VIEWER_BILLING_HISTORY_TAB,
