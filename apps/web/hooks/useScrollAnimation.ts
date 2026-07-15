@@ -12,6 +12,10 @@ export type ScrollAnimationOptions = {
   trigger?: unknown;
 };
 
+const MAX_INIT_ATTEMPTS = 60;
+const INIT_RETRY_INTERVAL_MS = 50;
+const REFRESH_DELAY_MS = 600;
+
 export function useScrollAnimation({
   cardsSelector = "article, [class*='Card']",
   trigger,
@@ -19,15 +23,20 @@ export function useScrollAnimation({
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let ctx: gsap.Context;
-    let checkInterval: NodeJS.Timeout;
-    let refreshTimeout: NodeJS.Timeout;
-    let refreshOnScroll: (() => void) | undefined;
+    let ctx: gsap.Context | undefined;
+    let checkInterval: ReturnType<typeof setInterval> | undefined;
+    let refreshTimeout: ReturnType<typeof setTimeout> | undefined;
+    let refreshOnScroll: () => void = () => {};
 
-    const initGSAP = () => {
+    const initGSAP = (): boolean => {
+      let foundCards = false;
+
       ctx = gsap.context(() => {
         const cards = gsap.utils.toArray<HTMLElement>(cardsSelector);
         if (cards.length === 0) return;
+
+        foundCards = true;
+
         cards.forEach((card) => {
           gsap.fromTo(
             card,
@@ -46,36 +55,42 @@ export function useScrollAnimation({
           );
         });
       });
+
+      if (!foundCards) {
+        ctx.revert();
+        ctx = undefined;
+        return false;
+      }
+
       refreshTimeout = setTimeout(() => {
         ScrollTrigger.refresh();
-      }, 600);
+      }, REFRESH_DELAY_MS);
+
       refreshOnScroll = () => {
         ScrollTrigger.refresh();
-        if (refreshOnScroll)
-          window.removeEventListener("scroll", refreshOnScroll);
+        window.removeEventListener("scroll", refreshOnScroll);
       };
       window.addEventListener("scroll", refreshOnScroll, { passive: true });
 
       return true;
     };
 
-    const success = initGSAP();
-    if (!success) {
+    if (!initGSAP()) {
       let attempts = 0;
       checkInterval = setInterval(() => {
         attempts++;
-        if (initGSAP() || attempts > 60) {
+        if (initGSAP() || attempts >= MAX_INIT_ATTEMPTS) {
           clearInterval(checkInterval);
+          checkInterval = undefined;
         }
-      }, 50);
+      }, INIT_RETRY_INTERVAL_MS);
     }
 
     return () => {
-      if (checkInterval) clearInterval(checkInterval);
-      if (refreshTimeout) clearTimeout(refreshTimeout);
-      if (ctx) ctx.revert();
-      if (refreshOnScroll)
-        window.removeEventListener("scroll", refreshOnScroll);
+      clearInterval(checkInterval);
+      clearTimeout(refreshTimeout);
+      ctx?.revert();
+      window.removeEventListener("scroll", refreshOnScroll);
     };
   }, [cardsSelector, trigger]);
 }
