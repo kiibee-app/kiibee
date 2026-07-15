@@ -58,7 +58,6 @@ export function usePublicRelatedCollectionContent(
         collectionId: payload.collectionId,
         videos: payload.items.map((item) =>
           feedContentToTutorial(item, freeLabel, {
-            inCollection: true,
             labels: getPricingLabels(t),
           }),
         ),

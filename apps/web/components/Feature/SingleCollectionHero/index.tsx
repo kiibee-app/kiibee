@@ -5,6 +5,7 @@ import {
   HeroWrapper,
   HeroContent,
   ActionButton,
+  PricingActionButton,
   HeroImage,
   LogoRow,
   CreatorRow,
@@ -12,6 +13,7 @@ import {
   Description,
   PricingActions,
   PricingButtonContent,
+  PricingButtonSubtitle,
   ContentRow,
   TopBar,
   BackButtonWrapper,
@@ -70,6 +72,7 @@ export default function SingleCollectionHero({
     : undefined;
   const pricingActions = pricing
     ? getContentDetailPricingActions(pricing, t, {
+        inCollection: true,
         labels: getPricingLabels(t),
       })
     : [];
@@ -114,12 +117,19 @@ export default function SingleCollectionHero({
           {pricingActions.length > 0 ? (
             <PricingActions>
               {pricingActions.map((action) => (
-                <ActionButton key={action.label} variant={action.variant}>
+                <PricingActionButton
+                  key={action.label}
+                  variant={action.variant}
+                >
                   <PricingButtonContent>
                     <span>{action.label}</span>
-                    {action.subtitle ? <small>{action.subtitle}</small> : null}
+                    {action.subtitle ? (
+                      <PricingButtonSubtitle>
+                        {action.subtitle}
+                      </PricingButtonSubtitle>
+                    ) : null}
                   </PricingButtonContent>
-                </ActionButton>
+                </PricingActionButton>
               ))}
             </PricingActions>
           ) : (

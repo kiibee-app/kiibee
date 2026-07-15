@@ -81,7 +81,6 @@ export function usePublicCollectionContent(
         heroImageFallback: heroImages[1],
         videos: items.map((item) =>
           feedContentToTutorial(item, freeLabel, {
-            inCollection: true,
             labels: getPricingLabels(t),
           }),
         ),

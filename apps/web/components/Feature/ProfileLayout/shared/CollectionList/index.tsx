@@ -141,7 +141,7 @@ export default function CollectionList() {
             rentPrice: row.rentPrice,
           },
           t("createProfileHome.latestUpload.seeContent"),
-          { labels: getPricingLabels(t) },
+          { inCollection: true, labels: getPricingLabels(t) },
         );
 
         actions = pricingActions.map((action) => {

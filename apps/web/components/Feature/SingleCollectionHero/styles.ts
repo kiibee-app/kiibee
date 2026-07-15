@@ -50,6 +50,18 @@ export const ActionButton = styled(GenericButton).attrs({
   }
 `;
 
+export const PricingActionButton = styled(GenericButton)`
+  width: fit-content;
+  padding: 8px 15px;
+  border-radius: 12px;
+  border: none;
+  height: auto;
+
+  &:hover {
+    opacity: 0.85;
+  }
+`;
+
 export const PricingActions = styled.div`
   display: flex;
   align-items: stretch;
@@ -61,14 +73,14 @@ export const PricingActions = styled.div`
 export const PricingButtonContent = styled.span`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
+  align-items: center;
+  gap: 4px;
+`;
 
-  small {
-    font-size: 10px;
-    line-height: 1.2;
-    opacity: 0.72;
-  }
+export const PricingButtonSubtitle = styled.small`
+  font-size: 10px;
+  line-height: 1.2;
+  opacity: 0.72;
 `;
 
 export const TopBar = styled.div`
