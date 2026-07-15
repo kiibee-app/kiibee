@@ -182,7 +182,6 @@ function PublishedContentDetail() {
       <Section>
         <SingleContentPage
           {...getSingleContentProps(content, t, {
-            inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
             viewerId: resolvedUserId,
           })}
           content={content}

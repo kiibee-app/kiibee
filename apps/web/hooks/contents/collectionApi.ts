@@ -23,6 +23,7 @@ const EMPTY_ACTION = "";
 
 export type CollectionsApiItem = {
   [API_FIELD_KEYS.ID]?: string | number;
+  creatorId?: string;
   [API_FIELD_KEYS.NAME]?: string;
   [API_FIELD_KEYS.CONTENTS_COUNT]?: number;
   [API_FIELD_KEYS.CONTENT_QTY]?: number;
@@ -138,6 +139,7 @@ export const getCollectionRows = (
     )
     .map((item) => ({
       id: String(item[API_FIELD_KEYS.ID]),
+      creatorId: item.creatorId,
       name: item[API_FIELD_KEYS.NAME] as string,
       contentsCount: Number(
         item[API_FIELD_KEYS.CONTENTS_COUNT] ??

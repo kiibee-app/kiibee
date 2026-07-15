@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT, SIZE } from "@/utils/Constants";
+import { MonoText } from "@/components/UI/Monotext";
+import { Wrapper as SearchBarWrapper } from "@/components/UI/SearchBar/styles";
+import { SIZE, VARIANT } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
 
 export const HeroWrapper = styled.div`
@@ -49,6 +51,37 @@ export const ActionButton = styled(GenericButton).attrs({
   }
 `;
 
+export const PricingActionButton = styled(GenericButton)`
+  width: fit-content;
+  padding: 8px 15px;
+  border-radius: 12px;
+  height: auto;
+
+  &:hover {
+    opacity: 0.85;
+  }
+`;
+
+export const PricingActions = styled.div`
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+`;
+
+export const PricingButtonContent = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+`;
+
+export const PricingButtonSubtitle = styled.small`
+  font-size: 10px;
+  opacity: 0.72;
+`;
+
 export const TopBar = styled.div`
   width: 100%;
   display: flex;
@@ -86,18 +119,17 @@ export const ContentRow = styled.div`
 `;
 
 export const HeroImage = styled.div`
-  flex: 1;
   position: relative;
-  width: 100%;
-  min-width: 500px;
-  aspect-ratio: 16 / 10;
+  width: 33.75rem;
+  height: 23.125rem;
+  flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
-  max-height: 350px;
 
   ${media.tablet} {
-    min-width: 100%;
-    max-height: 280px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
   }
 `;
 
@@ -109,6 +141,32 @@ export const LogoRow = styled.div`
   ${media.tablet} {
     gap: 6px;
   }
+`;
+
+export const CreatorRow = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+`;
+
+export const CreatorAvatar = styled.span`
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_SemiMedium}
+`;
+
+export const Description = styled(MonoText)`
+  max-width: 43.125rem;
+  white-space: pre-line;
 `;
 
 export const TitleGroup = styled.div`
@@ -125,6 +183,11 @@ export const Header = styled.div`
   gap: 16px;
   flex-wrap: wrap;
 
+  ${SearchBarWrapper} {
+    height: 42px;
+    padding: 10px 16px;
+  }
+
   ${media.mobileXl} {
     align-items: stretch;
   }
@@ -134,14 +197,14 @@ export const Section = styled.div`
   width: 100%;
   max-width: var(--navbar-inner-max-width, 1440px);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 2.5rem 1.5rem;
 
   ${media.tablet} {
-    padding: 0 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
   ${media.mobileXl} {
-    padding: 0 1rem;
+    padding: 1.5rem 1rem;
   }
 `;
 
