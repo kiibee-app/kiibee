@@ -239,6 +239,41 @@ export class AuthController {
     return result;
   }
 
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('creator-deletion-requests')
+  async getCreatorDeletionRequests() {
+    const result = await this.authService.getCreatorDeletionRequests();
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('approve-creator-deletion')
+  async approveCreatorDeletionRequest(
+    @Body() body: CreatorRequestActionDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    const approverUserId = req.user.userId;
+    const result = await this.authService.approveCreatorDeletionRequest(
+      body.requestId,
+      approverUserId,
+    );
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('reject-creator-deletion')
+  async rejectCreatorDeletionRequest(
+    @Body() body: CreatorRequestActionDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    const approverUserId = req.user.userId;
+    const result = await this.authService.rejectCreatorDeletionRequest(
+      body.requestId,
+      approverUserId,
+    );
+    return result;
+  }
+
   @Get('validate-token/:token')
   async validateToken(@Param('token') token: string) {
     const result = await this.authService.validateToken(token);
