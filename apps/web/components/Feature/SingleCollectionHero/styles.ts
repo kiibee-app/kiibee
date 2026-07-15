@@ -54,7 +54,6 @@ export const PricingActionButton = styled(GenericButton)`
   width: fit-content;
   padding: 8px 15px;
   border-radius: 12px;
-  border: none;
   height: auto;
 
   &:hover {
@@ -151,14 +150,16 @@ export const CreatorRow = styled.div`
 `;
 
 export const CreatorAvatar = styled.span`
+  position: relative;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 6px;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  background: ${({ theme }) => theme.colors.primary.GREEN_50};
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   color: ${({ theme }) => theme.colors.primary.BLACK};
   ${({ theme }) => theme.typography.Body_SemiMedium}
 `;

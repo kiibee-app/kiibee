@@ -27,10 +27,11 @@ import { useRouter } from "next/navigation";
 import { ShareIcon } from "@/assets/icons/shareIcon";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
-import { VARIANT } from "@/utils/Constants";
+import { VARIANT, CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
 import { pathPublishedContent } from "@/utils/path";
 import useShare from "@/hooks/useShare";
 import ShareModal from "@/components/UI/Modals/ShareModal";
+import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import {
   getContentDetailPricingActions,
   getPricingLabels,
@@ -41,6 +42,7 @@ type Props = {
   title: string;
   description?: string | null;
   creatorName?: string;
+  creatorAvatar?: string;
   image?: string;
   imageFallback?: string;
   primaryContentId?: string;
@@ -56,6 +58,7 @@ export default function SingleCollectionHero({
   title,
   description,
   creatorName,
+  creatorAvatar,
   image,
   imageFallback,
   primaryContentId,
@@ -76,7 +79,7 @@ export default function SingleCollectionHero({
         labels: getPricingLabels(t),
       })
     : [];
-  const creatorInitial = creatorName?.trim().charAt(0).toUpperCase();
+  const creatorInitial = creatorName?.trim().charAt(0).toUpperCase() || "";
 
   return (
     <HeroWrapper>
@@ -93,7 +96,15 @@ export default function SingleCollectionHero({
         <HeroContent>
           {creatorName ? (
             <CreatorRow>
-              <CreatorAvatar aria-hidden>{creatorInitial}</CreatorAvatar>
+              <CreatorAvatar>
+                <CreatorChannelAvatar
+                  avatarUrl={creatorAvatar || null}
+                  initial={creatorInitial}
+                  alt={creatorName}
+                  sizes="30px"
+                  initialUse={CREATOR_CHANNEL_AVATAR_TEXT.COMPACT}
+                />
+              </CreatorAvatar>
               <MonoText $use="Body_Medium">{creatorName}</MonoText>
             </CreatorRow>
           ) : (

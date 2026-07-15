@@ -32,6 +32,7 @@ import {
 } from "@/hooks/contents/collectionApi";
 import { convertRentDurationToHours } from "@/utils/formatDate";
 import { resolvePublicMediaUrl } from "@/utils/media";
+import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -51,6 +52,10 @@ function SingleCollectionContent() {
   } = usePublicCollectionContent(!staticSection ? id : null);
 
   const resolvedCreatorId = publicCreatorId || dynamicSection?.creatorId;
+
+  const { creator: publicCreator } = useCreatorPublicProfile(
+    resolvedCreatorId ?? null,
+  );
 
   const publicCollectionsQuery = useGetAPI<CollectionsApiResponse>(
     resolvedCreatorId
@@ -102,6 +107,12 @@ function SingleCollectionContent() {
         <SingleCollectionHero
           title={dynamicSection?.name ?? selectedCollection?.name ?? ""}
           description={selectedCollection?.description}
+          creatorName={publicCreator?.name || dynamicSection?.creatorName}
+          creatorAvatar={
+            resolvePublicMediaUrl(
+              publicCreator?.profileImageUrl ?? publicCreator?.coverImageUrl,
+            ) ?? undefined
+          }
           image={
             resolvePublicMediaUrl(selectedCollection?.coverImageUrl) ??
             undefined
@@ -168,7 +179,12 @@ function SingleCollectionContent() {
         description={
           dynamicSection.description ?? selectedCollection?.description
         }
-        creatorName={dynamicSection.creatorName}
+        creatorName={publicCreator?.name || dynamicSection.creatorName}
+        creatorAvatar={
+          resolvePublicMediaUrl(
+            publicCreator?.profileImageUrl ?? publicCreator?.coverImageUrl,
+          ) ?? undefined
+        }
         image={
           resolvePublicMediaUrl(selectedCollection?.coverImageUrl) ??
           dynamicSection.heroImage
