@@ -63,7 +63,8 @@ export const buildAccessMap = (ordersData: any[]) => {
 
   for (const o of ordersData) {
     if (o.mediaFileId) mediaMap.set(o.mediaFileId, o.purchasedAt);
-    if (o.collectionId) collectionMap.set(o.collectionId, o.purchasedAt);
+    if (o.collectionId && !o.mediaFileId)
+      collectionMap.set(o.collectionId, o.purchasedAt);
     if (o.mediaFileId && o.rentExpiresAt)
       expiresMap.set(o.mediaFileId, o.rentExpiresAt);
   }
