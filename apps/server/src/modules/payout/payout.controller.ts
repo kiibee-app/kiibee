@@ -10,7 +10,7 @@ import {
 import type { Request } from 'express';
 import { PayoutService } from './payout.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { CreatorGuard } from '../auth/guards/admin.guard';
+import { AdminGuard, CreatorGuard } from '../auth/guards/admin.guard';
 import { SettlementHistoryQueryDto } from './dto/payout.dto';
 import { handlePayoutWebhookService } from './hooks/payoutWebhook';
 
@@ -40,21 +40,50 @@ export class PayoutController {
     return this.payoutService.getPayoutStats(req.user.userId);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, AdminGuard)
   @Post('create')
   createPayout(
     @Req() req: AuthenticatedRequest,
+    @Body('creatorId') creatorId: string,
     @Body('amount') amount: number,
+    @Body('payoutId') payoutId: string,
     @Body('paymentMethodId') paymentMethodId: string,
   ) {
     return this.payoutService.createPayoutService(
-      req.user.userId,
+      creatorId,
       amount,
+      payoutId,
       paymentMethodId,
     );
   }
   @Post('webhook')
   async payoutNotification(@Body() payload: any) {
     return handlePayoutWebhookService(payload);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Get('calculate')
+  async payoutCalculation(@Req() req: AuthenticatedRequest) {
+    return this.payoutService.payoutCalculationService(req.user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard, CreatorGuard)
+  @Post('request')
+  async payoutRequestCalculationService(
+    @Req() req: AuthenticatedRequest,
+    @Body('amount') amount: number,
+    @Body('paymentMethodId') paymentMethodId: string,
+  ) {
+    return this.payoutService.payoutRequestCalculationService(
+      req.user.userId,
+      amount,
+      paymentMethodId,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('requests')
+  async getPayoutRequests() {
+    return this.payoutService.getPayoutRequestService();
   }
 }
