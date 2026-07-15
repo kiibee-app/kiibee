@@ -22,6 +22,7 @@ export function useScrollAnimation({
     let ctx: gsap.Context;
     let checkInterval: NodeJS.Timeout;
     let refreshTimeout: NodeJS.Timeout;
+    let refreshOnScroll: (() => void) | undefined;
 
     const initGSAP = () => {
       ctx = gsap.context(() => {
@@ -48,9 +49,10 @@ export function useScrollAnimation({
       refreshTimeout = setTimeout(() => {
         ScrollTrigger.refresh();
       }, 600);
-      const refreshOnScroll = () => {
+      refreshOnScroll = () => {
         ScrollTrigger.refresh();
-        window.removeEventListener("scroll", refreshOnScroll);
+        if (refreshOnScroll)
+          window.removeEventListener("scroll", refreshOnScroll);
       };
       window.addEventListener("scroll", refreshOnScroll, { passive: true });
 
@@ -72,6 +74,8 @@ export function useScrollAnimation({
       if (checkInterval) clearInterval(checkInterval);
       if (refreshTimeout) clearTimeout(refreshTimeout);
       if (ctx) ctx.revert();
+      if (refreshOnScroll)
+        window.removeEventListener("scroll", refreshOnScroll);
     };
   }, [cardsSelector, trigger]);
 }
