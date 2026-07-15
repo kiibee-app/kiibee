@@ -6,28 +6,13 @@ import { API, useGetAPI } from "@/lib/http/api";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { CARD_BRANDS, type CardBrand } from "@/utils/Constants";
 import type {
+  CreatorPaymentMethodResponse,
+  CreatorPaymentMethodsApiResponse,
   PaymentMethodPayload,
   ViewerPaymentMethod,
 } from "@/types/cardTypes";
 
 export type { ViewerPaymentMethod } from "@/types/cardTypes";
-
-type CreatorPaymentMethodResponse = {
-  id: string;
-  brand: string;
-  label: string;
-  lastFour: string;
-  cardNumber: string;
-  expiresAt: string;
-  isDefault: boolean;
-};
-
-type CreatorPaymentMethodsApiResponse = {
-  success: boolean;
-  statusCode: number;
-  message: string;
-  data: CreatorPaymentMethodResponse[] | null;
-};
 
 function resolveCardBrand(brand?: string): CardBrand {
   if (brand?.toLowerCase() === CARD_BRANDS.MASTERCARD) {

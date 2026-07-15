@@ -53,6 +53,23 @@ export type PaymentMethodsResponse = {
   data: BackendPaymentMethod[] | null;
 };
 
+export type CreatorPaymentMethodResponse = {
+  id: string;
+  brand: string;
+  label: string;
+  lastFour: string;
+  cardNumber: string;
+  expiresAt: string;
+  isDefault: boolean;
+};
+
+export type CreatorPaymentMethodsApiResponse = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: CreatorPaymentMethodResponse[] | null;
+};
+
 export const CARD_BRAND_LOGOS: Record<CardBrand, string> = {
   [CARD_BRANDS.VISA]: visaLogo,
   [CARD_BRANDS.MASTERCARD]: masterCardLogo,
