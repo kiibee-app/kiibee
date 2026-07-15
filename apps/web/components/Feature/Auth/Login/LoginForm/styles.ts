@@ -71,7 +71,16 @@ export const RememberLabel = styled.label`
 `;
 export const ForgotLink = styled(Link)`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  text-decoration: underline;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
   margin: 1.25rem 0 3.75rem 0;
 `;
 export const SubmitButton = styled(GenericButton).attrs({
