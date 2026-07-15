@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import {
   Container,
   Title,
@@ -87,6 +88,7 @@ export default function CreatorProfile() {
   const handleDeleteRequest = () => {
     setShowDeleteModal(false);
     setShowDeleteSuccessModal(true);
+    toast.success(t(CREATOR_PROFILE.deleteToastMessage));
   };
 
   const handleDeleteClose = () => {

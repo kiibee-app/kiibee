@@ -984,14 +984,15 @@
     "confirmPassword": "Indtast ny adgangskode igen",
     "newPasswordSameAsCurrent": "Den nye adgangskode skal være forskellig fra den nuværende",
     "accountDeletionTitle": "Slet konto",
-    "accountDeletionText": "Hvis du ønsker at slette din konto, klik på [Slet konto] nedenfor, og der sendes en besked til administratoren, som vil foretage en opgørelse og derefter slette din konto.",
+    "accountDeletionText": "Hvis du ønsker at slette din konto, skal du klikke på 'Slet konto' nedenfor. En anmodning vil blive sendt til administratoren til gennemgang og godkendelse.",
     "deleteAccount": "Slet konto",
     "deleteModal": {
-      "title": "Slet konto?",
-      "message": "Er du sikker på, at du vil slette din konto? Denne handling er permanent og kan ikke fortrydes.",
+      "title": "Anmod om sletning af konto?",
+      "message": "Er du sikker på, at du vil anmode om at slette din konto? En administrator vil gennemse og behandle din anmodning.",
       "cancel": "Annuller",
-      "confirm": "Slet konto"
+      "confirm": "Anmod om sletning"
     },
+    "deleteToastMessage": "Anmodning om kontosletning er sendt. Vent venligst på administratorens godkendelse.",
     "deleteSuccessModal": {
       "title": "Anmodning om kontosletning sendt",
       "message": "Din anmodning er sendt. En administrator gennemgår den og fuldfører kontosletningen. Du får besked, når det er gjort.",
