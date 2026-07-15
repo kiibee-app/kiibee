@@ -78,7 +78,6 @@ export const PricingButtonContent = styled.span`
 
 export const PricingButtonSubtitle = styled.small`
   font-size: 10px;
-  line-height: 1.2;
   opacity: 0.72;
 `;
 

@@ -33,6 +33,7 @@ import {
 import { convertRentDurationToHours } from "@/utils/formatDate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
+import { NAV } from "@/utils/translationKeys";
 
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -74,6 +75,37 @@ function SingleCollectionContent() {
       (collection) => collection.id === id,
     );
   }, [id, publicCollectionsQuery.data]);
+
+  const resolvedPricing = useMemo(() => {
+    if (!selectedCollection) return undefined;
+    return {
+      accessType: selectedCollection.accessType,
+      buyPrice: selectedCollection.buyPrice,
+      rentPrice: selectedCollection.rentPrice,
+      rentDurationHours: convertRentDurationToHours(
+        selectedCollection.rentDuration,
+      ),
+    };
+  }, [selectedCollection]);
+
+  const resolvedDescription =
+    dynamicSection?.description ?? selectedCollection?.description;
+
+  const resolvedCreatorName =
+    publicCreator?.name || dynamicSection?.creatorName;
+
+  const resolvedCreatorAvatar = useMemo(() => {
+    return (
+      resolvePublicMediaUrl(
+        publicCreator?.profileImageUrl ?? publicCreator?.coverImageUrl,
+      ) ?? undefined
+    );
+  }, [publicCreator]);
+
+  const resolvedImage =
+    resolvePublicMediaUrl(selectedCollection?.coverImageUrl) ??
+    dynamicSection?.heroImage;
+
   const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
     !staticSection ? id : null,
   );
@@ -106,29 +138,11 @@ function SingleCollectionContent() {
       <Section>
         <SingleCollectionHero
           title={dynamicSection?.name ?? selectedCollection?.name ?? ""}
-          description={selectedCollection?.description}
-          creatorName={publicCreator?.name || dynamicSection?.creatorName}
-          creatorAvatar={
-            resolvePublicMediaUrl(
-              publicCreator?.profileImageUrl ?? publicCreator?.coverImageUrl,
-            ) ?? undefined
-          }
-          image={
-            resolvePublicMediaUrl(selectedCollection?.coverImageUrl) ??
-            undefined
-          }
-          pricing={
-            selectedCollection
-              ? {
-                  accessType: selectedCollection.accessType,
-                  buyPrice: selectedCollection.buyPrice,
-                  rentPrice: selectedCollection.rentPrice,
-                  rentDurationHours: convertRentDurationToHours(
-                    selectedCollection.rentDuration,
-                  ),
-                }
-              : undefined
-          }
+          description={resolvedDescription}
+          creatorName={resolvedCreatorName}
+          creatorAvatar={resolvedCreatorAvatar}
+          image={resolvedImage}
+          pricing={resolvedPricing}
           primaryContentId={dynamicSection?.videos?.[0]?.id}
         />
         <AccessGate
@@ -161,7 +175,7 @@ function SingleCollectionContent() {
           icon={
             <Image
               src={logo}
-              alt="Kiibee Logo"
+              alt={t(NAV.logoAlt)}
               width={30}
               height={30}
               priority
@@ -176,33 +190,13 @@ function SingleCollectionContent() {
     <Section>
       <SingleCollectionHero
         title={dynamicSection.name}
-        description={
-          dynamicSection.description ?? selectedCollection?.description
-        }
-        creatorName={publicCreator?.name || dynamicSection.creatorName}
-        creatorAvatar={
-          resolvePublicMediaUrl(
-            publicCreator?.profileImageUrl ?? publicCreator?.coverImageUrl,
-          ) ?? undefined
-        }
-        image={
-          resolvePublicMediaUrl(selectedCollection?.coverImageUrl) ??
-          dynamicSection.heroImage
-        }
+        description={resolvedDescription}
+        creatorName={resolvedCreatorName}
+        creatorAvatar={resolvedCreatorAvatar}
+        image={resolvedImage}
         imageFallback={dynamicSection.heroImageFallback}
         primaryContentId={dynamicSection.videos[0]?.id}
-        pricing={
-          selectedCollection
-            ? {
-                accessType: selectedCollection.accessType,
-                buyPrice: selectedCollection.buyPrice,
-                rentPrice: selectedCollection.rentPrice,
-                rentDurationHours: convertRentDurationToHours(
-                  selectedCollection.rentDuration,
-                ),
-              }
-            : undefined
-        }
+        pricing={resolvedPricing}
       />
       <CollectionContent videos={dynamicSection.videos} />
     </Section>

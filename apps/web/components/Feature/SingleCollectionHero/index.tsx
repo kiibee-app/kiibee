@@ -111,7 +111,7 @@ export default function SingleCollectionHero({
             <LogoRow>
               <Image
                 src={logo}
-                alt="Kiibee Logo"
+                alt={t(NAV.logoAlt)}
                 width={30}
                 height={30}
                 priority
