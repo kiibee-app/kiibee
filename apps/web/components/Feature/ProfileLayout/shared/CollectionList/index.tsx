@@ -62,6 +62,13 @@ export default function CollectionList() {
       },
     );
 
+  const nonEmptyCollections = useMemo(() => {
+    if (!collectionsResponse) return [];
+    return getCollectionRows(collectionsResponse).filter(
+      (row) => row.contentsCount > 0,
+    );
+  }, [collectionsResponse]);
+
   const { data: collectionContentsMap } = useQuery<Record<string, string>>({
     queryKey: [
       QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW,
@@ -70,8 +77,7 @@ export default function CollectionList() {
       publicCreatorId,
     ],
     queryFn: async () => {
-      if (!collectionsResponse) return {};
-      const collections = getCollectionRows(collectionsResponse);
+      const collections = nonEmptyCollections;
       if (!collections.length) return {};
 
       const contentsResponses = await Promise.all(
@@ -95,7 +101,7 @@ export default function CollectionList() {
       });
       return map;
     },
-    enabled: Boolean(collectionsResponse),
+    enabled: nonEmptyCollections.length > 0,
     refetchOnWindowFocus: false,
   });
 
@@ -118,8 +124,7 @@ export default function CollectionList() {
   );
 
   const items = useMemo<RentedCollectionItem[]>(() => {
-    if (!collectionsResponse) return [];
-    const rows = getCollectionRows(collectionsResponse);
+    const rows = nonEmptyCollections;
 
     return rows.map((row) => {
       const firstContentId = collectionContentsMap?.[row.id];
@@ -180,7 +185,7 @@ export default function CollectionList() {
     });
   }, [
     isPublicView,
-    collectionsResponse,
+    nonEmptyCollections,
     collectionContentsMap,
     displayName,
     t,
