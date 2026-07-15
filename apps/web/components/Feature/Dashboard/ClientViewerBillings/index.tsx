@@ -4,12 +4,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   VIEWER_BILLING_HISTORY_TAB,
+  VIEWER_PAYMENT_METHODS_TAB,
   VIEWER_BILLING_TABS,
   type ViewerBillingTab,
 } from "@/utils/common";
 import {
   BILLING_TAB,
   CARD_BRANDS,
+  DUMMY_TAB,
   PAYMENT_METHOD_ACTION_MARK_AS_DEFAULT,
   SORT_DROPDOWN_VARIANT,
 } from "@/utils/Constants";
@@ -21,7 +23,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import SearchBar from "@/components/UI/SearchBar";
 import Table from "@/components/UI/Table";
 import SortDropdown, { DropdownOption } from "@/components/UI/SortDropdown";
-import { DeleteIcon, ThreeDotIcon, CardIcon } from "@/assets/icons";
+import { DeleteIcon, ThreeDotIcon, CardIcon, PlusIcon } from "@/assets/icons";
 import SafeImage from "@/components/UI/SafeImage";
 import COLORS from "@repo/ui/colors";
 import {
@@ -29,7 +31,12 @@ import {
   BILLING_HISTORY_KEY_MAP,
   buildHeaderMap,
 } from "@/utils/tableHeader";
-import { CARD_BRAND_LOGOS, type ViewerPaymentMethod } from "@/types/cardTypes";
+import {
+  CARD_BRAND_LOGOS,
+  CARD_FORM_MODE,
+  type PaymentMethodPayload,
+  type ViewerPaymentMethod,
+} from "@/types/cardTypes";
 import { DASHBOARD_VIEWER_BILLINGS } from "@/utils/translationKeys";
 import { GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
@@ -43,6 +50,7 @@ import { LOADER_VARIANT } from "@/utils/ui";
 
 import {
   Actions,
+  AddCardButton,
   BillingHeader,
   BillingShell,
   BillingTableSection,
@@ -66,9 +74,26 @@ import {
   RowNumber,
   SearchFilterWrap,
 } from "./styles";
+import CardModal from "./CardModal";
 import InvoiceModal from "./InvoiceModal";
 
-export default function ClientViewerBillings() {
+export type PaymentMethodsData = {
+  paymentMethods: ViewerPaymentMethod[];
+  isLoading: boolean;
+  addCard: (payload: PaymentMethodPayload) => Promise<void>;
+  deleteCard: (id: string) => Promise<void>;
+  markAsDefault: (id: string) => Promise<void>;
+};
+
+type ClientViewerBillingsProps = {
+  onlyPaymentMethods?: boolean;
+  creatorPaymentMethods?: PaymentMethodsData;
+};
+
+export default function ClientViewerBillings({
+  onlyPaymentMethods = false,
+  creatorPaymentMethods,
+}: ClientViewerBillingsProps) {
   const { t } = useTranslation();
   const [searchContent, setSearchContent] = useState("");
   const [searchCreator, setSearchCreator] = useState("");
@@ -80,12 +105,15 @@ export default function ClientViewerBillings() {
       searchContent: debouncedSearchContent || undefined,
       searchCreator: debouncedSearchCreator || undefined,
     });
+  const viewerPaymentMethods = useViewerPaymentMethods();
   const {
     paymentMethods,
     isLoading: isPaymentMethodsLoading,
+    addCard,
     deleteCard,
     markAsDefault,
-  } = useViewerPaymentMethods();
+  } = creatorPaymentMethods ?? viewerPaymentMethods;
+  const [showAddCardModal, setShowAddCardModal] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<ViewerPaymentMethod | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -103,7 +131,10 @@ export default function ClientViewerBillings() {
   const handleDeleteConfirm = async () => {
     if (!selectedPaymentMethod) return;
 
-    await deleteCard(selectedPaymentMethod.subscriptionId);
+    const deleteId = creatorPaymentMethods
+      ? selectedPaymentMethod.id
+      : selectedPaymentMethod.subscriptionId;
+    await deleteCard(deleteId);
     setShowDeleteModal(false);
     setShowDeleteSuccessModal(true);
   };
@@ -135,8 +166,10 @@ export default function ClientViewerBillings() {
 
   const { activeTab, setActiveTabAndQuery } =
     useQuerySyncedTab<ViewerBillingTab>({
-      queryKey: BILLING_TAB,
-      defaultTab: VIEWER_BILLING_HISTORY_TAB,
+      queryKey: onlyPaymentMethods ? DUMMY_TAB : BILLING_TAB,
+      defaultTab: onlyPaymentMethods
+        ? VIEWER_PAYMENT_METHODS_TAB
+        : VIEWER_BILLING_HISTORY_TAB,
       validTabs: VIEWER_BILLING_TABS.map((tab) => tab.key),
     });
   const billingHistoryKeys = DASHBOARD_VIEWER_BILLINGS.billingHistory;
@@ -159,20 +192,22 @@ export default function ClientViewerBillings() {
   });
 
   return (
-    <BillingShell>
-      <BillingHeader>
-        <MonoText $use="H4_SemiBold">
-          {t(DASHBOARD_VIEWER_BILLINGS.title)}
-        </MonoText>
-        <GenericTabs
-          tabs={VIEWER_BILLING_TABS.map((tab) => ({
-            key: tab.key,
-            label: t(tab.labelKey),
-          }))}
-          activeTab={activeTab}
-          onTabChange={setActiveTabAndQuery}
-        />
-      </BillingHeader>
+    <BillingShell $onlyPaymentMethods={onlyPaymentMethods}>
+      {!onlyPaymentMethods && (
+        <BillingHeader>
+          <MonoText $use="H4_SemiBold">
+            {t(DASHBOARD_VIEWER_BILLINGS.title)}
+          </MonoText>
+          <GenericTabs
+            tabs={VIEWER_BILLING_TABS.map((tab) => ({
+              key: tab.key,
+              label: t(tab.labelKey),
+            }))}
+            activeTab={activeTab}
+            onTabChange={setActiveTabAndQuery}
+          />
+        </BillingHeader>
+      )}
 
       {activeTab === VIEWER_BILLING_HISTORY_TAB ? (
         isBillingHistoryLoading ? (
@@ -280,8 +315,19 @@ export default function ClientViewerBillings() {
         <>
           <PaymentHeader>
             <MonoText $use="H4_Medium">
-              {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.title)}
+              {creatorPaymentMethods
+                ? t("settings.payoutMethods.title")
+                : t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.title)}
             </MonoText>
+            {creatorPaymentMethods && (
+              <AddCardButton
+                type="button"
+                onClick={() => setShowAddCardModal(true)}
+              >
+                <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
+                {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)}
+              </AddCardButton>
+            )}
           </PaymentHeader>
 
           {isPaymentMethodsLoading ? (
@@ -422,6 +468,12 @@ export default function ClientViewerBillings() {
           setSelectedPaymentMethod(null);
         }}
         showCloseButton={false}
+      />
+      <CardModal
+        mode={CARD_FORM_MODE.ADD}
+        visible={showAddCardModal}
+        onClose={() => setShowAddCardModal(false)}
+        onSubmit={addCard}
       />
     </BillingShell>
   );
