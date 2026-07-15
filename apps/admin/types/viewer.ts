@@ -27,6 +27,16 @@ export type Viewer = {
   rentalCount: number;
 };
 
+export type ViewersResponse = {
+  items: Viewer[];
+  pagination: {
+    page: number;
+    limit: number;
+    totalItems: number;
+    totalPages: number;
+  };
+};
+
 export type ViewerMediaItem = {
   id: string;
   title: string;

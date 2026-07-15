@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
-import type { Viewer } from "../../types/viewer";
+import type { ViewersResponse } from "../../types/viewer";
 import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
 
 const VIEWERS_QUERY_KEY = [QUERY_KEY.VIEWERS];
@@ -23,15 +23,39 @@ async function ensureSuccess<T>(
   return response.data;
 }
 
-export function useViewers() {
+type ViewersQuery = {
+  search?: string;
+  page: number;
+  limit: number;
+};
+
+export function useViewers({ search, page, limit }: ViewersQuery) {
   return useQuery({
-    queryKey: VIEWERS_QUERY_KEY,
+    queryKey: [...VIEWERS_QUERY_KEY, { search, page, limit }],
     queryFn: async () => {
-      const data = await ensureSuccess<Viewer[]>(
-        apiClient<Viewer[]>(API_ENDPOINTS.ALL_VIEWERS),
+      const params = new URLSearchParams({
+        page: String(page),
+        limit: String(limit),
+        ...(search && { search }),
+      });
+
+      const data = await ensureSuccess<ViewersResponse>(
+        apiClient<ViewersResponse>(
+          `${API_ENDPOINTS.ALL_VIEWERS}?${params.toString()}`,
+        ),
       );
 
-      return data ?? [];
+      return (
+        data ?? {
+          items: [],
+          pagination: {
+            page,
+            limit,
+            totalItems: 0,
+            totalPages: 1,
+          },
+        }
+      );
     },
   });
 }
