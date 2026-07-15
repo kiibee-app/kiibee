@@ -20,23 +20,36 @@ import SettlementInvoiceModal from "./SettlementInvoiceModal";
 import Table from "@/components/UI/Table";
 import { SettlementRow } from "@/types/tableContract";
 import { settlementHeaders } from "@/utils/dummyData/payout";
-import { CENTER_ALIGNED_HEADERS } from "@/utils/payout";
+import { CENTER_ALIGNED_HEADERS, parsePayoutBalance } from "@/utils/payout";
 import { Settlement } from "../styles";
 import { Directions, MODAL_ALIGN } from "@/utils/ui";
 import { useSettlementHistory } from "@/hooks/useSettlementHistory";
 import { usePayoutStats } from "@/hooks/usePayoutStats";
+import { GenericModal } from "@/components/UI/Modals";
+import { InfoIcon } from "@/assets/icons";
 
 export default function PayoutContent() {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
+  const [openDetails, setOpenDetails] = useState(false);
+  const [openZeroBalance, setOpenZeroBalance] = useState(false);
   const [selectedRow, setSelectedRow] = useState<SettlementRow | null>(null);
 
   const { stats } = usePayoutStats();
   const { settlements } = useSettlementHistory();
 
   const balanceValue = stats?.balance ?? "";
+  const balanceAmount = parsePayoutBalance(balanceValue);
   const purchasesValue = stats?.purchases ?? 0;
   const rentalsValue = stats?.rentals ?? 0;
+
+  const handlePayoutClick = () => {
+    if (balanceAmount <= 0) {
+      setOpenZeroBalance(true);
+      return;
+    }
+
+    setOpenDetails(true);
+  };
 
   return (
     <>
@@ -52,10 +65,7 @@ export default function PayoutContent() {
             </MonoText>
           </TextBlock>
 
-          <GenericButton
-            variant={VARIANT.PRIMARY}
-            onClick={() => setOpen(true)}
-          >
+          <GenericButton variant={VARIANT.PRIMARY} onClick={handlePayoutClick}>
             {t("settings.payout.title")}
           </GenericButton>
         </CardTop>
@@ -118,7 +128,27 @@ export default function PayoutContent() {
         />
       </Settlement>
 
-      <PayoutDetailsModal open={open} onClose={() => setOpen(false)} />
+      <GenericModal
+        visible={openZeroBalance}
+        icon={<InfoIcon size={48} color={COLORS.primary.GREEN_200} />}
+        iconMargin="0 auto 12px"
+        textAlign={MODAL_ALIGN.CENTER}
+        title={t("settings.payout.zeroBalanceModal.title")}
+        message={t("settings.payout.zeroBalanceModal.message")}
+        confirmLabel={t("settings.payout.zeroBalanceModal.done")}
+        onClose={() => setOpenZeroBalance(false)}
+        onConfirm={() => setOpenZeroBalance(false)}
+        size="sm"
+        spacing="xs"
+        showCloseButton={false}
+      />
+
+      <PayoutDetailsModal
+        open={openDetails}
+        onClose={() => setOpenDetails(false)}
+        purchases={purchasesValue}
+        rentals={rentalsValue}
+      />
 
       <SettlementInvoiceModal
         open={!!selectedRow}

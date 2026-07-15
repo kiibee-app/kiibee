@@ -1634,6 +1634,23 @@
         "creditNo": "Credit No",
         "bank": "Bank",
         "date": "Date"
+      },
+      "modal": {
+        "title": "Payment details",
+        "loading": "Calculating payout…",
+        "earnings": "Earnings\n(Based on {{purchases}} purchases and {{rentals}} rentals)",
+        "processingFee": "Transaction fee ({{percent}})",
+        "platformFee": "Kiibee payment ({{percent}})",
+        "total": "Total payout amount",
+        "success": "Payout request submitted successfully.",
+        "calculateError": "Unable to calculate payout. Please try again.",
+        "requestError": "Unable to submit payout request. Please try again.",
+        "missingBankAccount": "Add your bank account details in your profile before requesting a payout."
+      },
+      "zeroBalanceModal": {
+        "title": "No balance to pay out",
+        "message": "Your payout balance is currently 0,00 kr. Once you earn from purchases or rentals, you can request a payout here.",
+        "done": "Got it"
       }
     },
     "export": {

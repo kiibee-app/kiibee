@@ -1634,6 +1634,23 @@
         "creditNo": "Kreditnr.",
         "bank": "Bank",
         "date": "Dato"
+      },
+      "modal": {
+        "title": "Betalingsdetaljer",
+        "loading": "Beregner udbetaling…",
+        "earnings": "Indtjening\n(Baseret på {{purchases}} køb og {{rentals}} leje)",
+        "processingFee": "Transaktionsgebyr ({{percent}})",
+        "platformFee": "Kiibee-betaling ({{percent}})",
+        "total": "Samlet udbetalingsbeløb",
+        "success": "Udbetalingsanmodning er indsendt.",
+        "calculateError": "Kunne ikke beregne udbetaling. Prøv igen.",
+        "requestError": "Kunne ikke indsende udbetalingsanmodning. Prøv igen.",
+        "missingBankAccount": "Tilføj dine bankoplysninger i din profil, før du anmoder om en udbetaling."
+      },
+      "zeroBalanceModal": {
+        "title": "Ingen saldo at udbetale",
+        "message": "Din udbetalingssaldo er i øjeblikket 0,00 kr. Når du tjener på køb eller leje, kan du anmode om en udbetaling her.",
+        "done": "Forstået"
       }
     },
     "export": {
