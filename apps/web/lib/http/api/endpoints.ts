@@ -115,5 +115,7 @@ export const API = {
     previouslyRentedData: "/viewer/previously-rented-data",
     paymentMethods: "/viewer/payment-methods",
     paymentMethod: (id: string) => `/viewer/payment-methods/${id}`,
+    paymentMethodDefault: (id: string) =>
+      `/viewer/payment-methods/${id}/default`,
   },
 } as const;
