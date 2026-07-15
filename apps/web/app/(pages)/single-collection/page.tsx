@@ -43,13 +43,22 @@ function SingleCollectionContent() {
   const publicCreatorId = searchParams.get("creatorId");
   const { collection: staticSection, isLoading: isTutorialCollectionLoading } =
     useTutorialCollectionLookup(id);
+
+  const {
+    data: dynamicSection,
+    isLoading: isDynamicLoading,
+    isError,
+  } = usePublicCollectionContent(!staticSection ? id : null);
+
+  const resolvedCreatorId = publicCreatorId || dynamicSection?.creatorId;
+
   const publicCollectionsQuery = useGetAPI<CollectionsApiResponse>(
-    publicCreatorId
-      ? API.collection.getPublicByCreator(publicCreatorId)
+    resolvedCreatorId
+      ? API.collection.getPublicByCreator(resolvedCreatorId)
       : API.collection.getAll,
     undefined,
     {
-      enabled: Boolean(id && publicCreatorId && !staticSection),
+      enabled: Boolean(id && resolvedCreatorId && !staticSection),
       retry: false,
       refetchOnWindowFocus: false,
     },
@@ -62,14 +71,6 @@ function SingleCollectionContent() {
   }, [id, publicCollectionsQuery.data]);
   const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
     !staticSection ? id : null,
-  );
-
-  const {
-    data: dynamicSection,
-    isLoading: isDynamicLoading,
-    isError,
-  } = usePublicCollectionContent(
-    !staticSection && !gateType && !isGateLoading ? id : null,
   );
 
   if (isTutorialCollectionLoading && !staticSection) {

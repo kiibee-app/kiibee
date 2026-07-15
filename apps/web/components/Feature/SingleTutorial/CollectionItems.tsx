@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LeftIcon } from "@/assets/icons";
 import type { TutorialVideo } from "@/utils/types";
+import { pathPublicCollection } from "@/utils/path";
 import {
   getFeedPageSlice,
   getPaginationState,
@@ -77,7 +78,7 @@ export default function CollectionItems({
   if (!videos.length) return null;
 
   const href = collectionId
-    ? `/single-collection?id=${collectionId}`
+    ? pathPublicCollection(collectionId)
     : "/tutorial-videos";
 
   const visibleVideos = getFeedPageSlice(

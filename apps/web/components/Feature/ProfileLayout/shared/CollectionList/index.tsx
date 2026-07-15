@@ -123,10 +123,7 @@ export default function CollectionList() {
 
     return rows.map((row) => {
       const firstContentId = collectionContentsMap?.[row.id];
-      const collectionHref = pathPublicCollection(
-        row.id,
-        isPublicView ? publicCreatorId : undefined,
-      );
+      const collectionHref = pathPublicCollection(row.id);
       const contentHref = firstContentId
         ? pathPublishedContent(firstContentId)
         : collectionHref;
@@ -155,9 +152,7 @@ export default function CollectionList() {
           return {
             label,
             variant: hash ? VARIANT.PRIMARY : VARIANT.SECONDARY,
-            href: hash
-              ? pathPublicCollection(row.id, publicCreatorId)
-              : contentHref,
+            href: hash ? pathPublicCollection(row.id) : contentHref,
           };
         });
       } else {
@@ -188,7 +183,6 @@ export default function CollectionList() {
     collectionsResponse,
     collectionContentsMap,
     displayName,
-    publicCreatorId,
     t,
   ]);
 
