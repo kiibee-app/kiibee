@@ -1,3 +1,5 @@
+import { PAYOUT_BALANCE_API_ERRORS } from "@/utils/Constants";
+
 export type PayoutRow = {
   label: string;
   value: string;
@@ -41,6 +43,15 @@ export function formatPayoutNumber(amount: number): string {
 export function formatFeePercent(ratio: number): string {
   const percent = Number((ratio * 100).toFixed(2));
   return `${percent}%`;
+}
+
+export function isPayoutBalanceError(message?: string | null): boolean {
+  if (!message) return false;
+
+  const normalized = message.trim().toLowerCase();
+  return PAYOUT_BALANCE_API_ERRORS.some(
+    (errorMessage) => errorMessage.toLowerCase() === normalized,
+  );
 }
 
 export const CENTER_ALIGNED_HEADERS = ["Status", "Credit No", "Bank", "Date"];

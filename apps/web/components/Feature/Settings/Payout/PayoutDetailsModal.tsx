@@ -8,6 +8,7 @@ import { PayoutWrapper, Row, Divider, FooterNote } from "./styles";
 import {
   formatFeePercent,
   formatPayoutNumber,
+  isPayoutBalanceError,
   type PayoutRow,
 } from "@/utils/payout";
 import { MODAL_ALIGN } from "@/utils/ui";
@@ -84,12 +85,7 @@ export default function PayoutDetailsModal({
   const calcErrorMessage = (() => {
     if (!isError) return "";
 
-    const raw = (error?.message || "").toLowerCase();
-    if (
-      raw.includes("wallet") ||
-      raw.includes("insufficient") ||
-      raw.includes("balance")
-    ) {
+    if (isPayoutBalanceError(error?.message)) {
       return t("settings.payout.zeroBalanceModal.message");
     }
 

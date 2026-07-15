@@ -255,6 +255,12 @@ export const ERROR_MESSAGES = {
   EXPORT_REQUEST_FAILED: "errors.exportRequestFailed",
 };
 
+export const PAYOUT_BALANCE_API_ERRORS = [
+  "Creator wallet not found",
+  "Insufficient wallet balance",
+  "Invalid wallet balance",
+] as const;
+
 export const UI_TITLE_FALLBACK = "Content Details";
 
 export const SCROLL_BEHAVIOR = {
