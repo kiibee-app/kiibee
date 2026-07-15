@@ -984,14 +984,15 @@
     "confirmPassword": "Re-enter new password",
     "newPasswordSameAsCurrent": "New password must be different from your current password",
     "accountDeletionTitle": "Account deletion",
-    "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
+    "accountDeletionText": "To delete your account, click 'Delete account' below. A request will be sent to the administrator for review and approval.",
     "deleteAccount": "Delete account",
     "deleteModal": {
-      "title": "Delete Account?",
-      "message": "Are you sure you want to delete your account? This action is permanent and cannot be undone.",
+      "title": "Request Account Deletion?",
+      "message": "Are you sure you want to request account deletion? An administrator will review and process your request.",
       "cancel": "Cancel",
-      "confirm": "Delete Account"
+      "confirm": "Request Deletion"
     },
+    "deleteToastMessage": "Account deletion request sent. Please wait for administrator approval.",
     "deleteSuccessModal": {
       "title": "Request Sent for Account Deletion",
       "message": "Your request has been submitted. An administrator will review it and complete the account deletion process. You'll be notified once it's done.",
