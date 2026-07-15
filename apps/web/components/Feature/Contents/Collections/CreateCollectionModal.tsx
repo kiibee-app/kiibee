@@ -73,7 +73,9 @@ export default function CreateCollectionModal({
         onCancel={handleClose}
         onClose={handleClose}
         onConfirm={onConfirm}
-        confirmDisabled={!collectionName.trim()}
+        confirmDisabled={
+          !collectionName.trim() || collectionName.trim() === initialName.trim()
+        }
         closeOnConfirm={false}
         size="md"
         spacing="start"
