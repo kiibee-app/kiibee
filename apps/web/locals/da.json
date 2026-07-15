@@ -2215,7 +2215,9 @@
     "expired": "Udløbet",
     "expiresInHours": "Udløber om {{count}} timer",
     "expiresInDays": "Udløber om {{count}} dage",
-    "expiredOn": "Udløbet den {{date}}"
+    "expiredOn": "Udløbet den {{date}}",
+    "purchased": "Købt",
+    "purchasedOn": "Købt den {{date}}"
   },
   "explore": {
     "sortNew": "Ny",

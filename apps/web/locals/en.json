@@ -2207,7 +2207,9 @@
     "expired": "Expired",
     "expiresInHours": "Expires in {{count}} hrs",
     "expiresInDays": "Expires in {{count}} days",
-    "expiredOn": "Expired on {{date}}"
+    "expiredOn": "Expired on {{date}}",
+    "purchased": "Purchased",
+    "purchasedOn": "Purchased on {{date}}"
   },
   "explore": {
     "sortNew": "New",
