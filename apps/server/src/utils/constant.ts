@@ -151,3 +151,30 @@ export const CURRENCY = {
   USD: 'USD',
   EUR: 'EUR',
 } as const;
+
+export const SUBSCRIPTION_PLAN = {
+  TRY_KIIBEE: 'Try Kiibee',
+  START_UP: 'Start-up',
+  PRO: 'Pro',
+} as const;
+
+export const SUBSCRIPTION_PLAN_ORDER = [
+  SUBSCRIPTION_PLAN.TRY_KIIBEE,
+  SUBSCRIPTION_PLAN.START_UP,
+  SUBSCRIPTION_PLAN.PRO,
+] as const;
+
+export const SUBSCRIPTION_PLAN_SLUG_TO_NAME: Record<string, string> = {
+  'try-kiibee': SUBSCRIPTION_PLAN.TRY_KIIBEE,
+  'start-up': SUBSCRIPTION_PLAN.START_UP,
+  pro: SUBSCRIPTION_PLAN.PRO,
+};
+
+export const DEFAULT_CHANNEL_NAME = 'Creator';
+export const DEFAULT_CHANNEL_SLUG = 'channel';
+export const CHANNEL_NAME_MAX_LENGTH = 255;
+export const CHANNEL_SLUG_MAX_LENGTH = 255;
+export const CHANNEL_SLUG_BASE_MAX_LENGTH = 220;
+export const CHANNEL_SLUG_SUFFIX_LENGTH = 8;
+export const CHANNEL_SLUG_UNIQUE_ATTEMPTS = 20;
+export const SLUG_AMPERSAND_REPLACEMENT = ' and ';

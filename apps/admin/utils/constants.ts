@@ -107,11 +107,44 @@ export const PLACEHOLDERS = {
   SEARCH_VIEWERS: "Search viewers...",
 } as const;
 
+export const SUBSCRIPTION_PLAN = {
+  TRY_KIIBEE: "Try Kiibee",
+  START_UP: "Start-up",
+  PRO: "Pro",
+} as const;
+
 export const CREATOR_PLAN_FILTER_OPTIONS = [
-  "Try Kiibee",
-  "Start-up",
-  "Pro",
+  SUBSCRIPTION_PLAN.TRY_KIIBEE,
+  SUBSCRIPTION_PLAN.START_UP,
+  SUBSCRIPTION_PLAN.PRO,
 ] as const;
+
+export const DEFAULT_WEB_APP_URL = "http://localhost:3000";
+
+export const CREATOR_ID_QUERY_PARAM = "creatorId";
+
+export const CREATOR_PROFILE_PATH = "/creator";
+
+export const CREATOR_LAYOUT_PARAM = {
+  LAYOUT1: "1",
+  LAYOUT2: "2",
+  LAYOUT3: "3",
+} as const;
+
+export const CREATOR_LAYOUT_KEY = {
+  LAYOUT1: "layout1",
+  LAYOUT2: "layout2",
+  LAYOUT3: "layout3",
+} as const;
+
+export const CREATOR_LAYOUT_KEY_TO_PARAM: Record<string, string> = {
+  [CREATOR_LAYOUT_KEY.LAYOUT1]: CREATOR_LAYOUT_PARAM.LAYOUT1,
+  [CREATOR_LAYOUT_KEY.LAYOUT2]: CREATOR_LAYOUT_PARAM.LAYOUT2,
+  [CREATOR_LAYOUT_KEY.LAYOUT3]: CREATOR_LAYOUT_PARAM.LAYOUT3,
+  [CREATOR_LAYOUT_PARAM.LAYOUT1]: CREATOR_LAYOUT_PARAM.LAYOUT1,
+  [CREATOR_LAYOUT_PARAM.LAYOUT2]: CREATOR_LAYOUT_PARAM.LAYOUT2,
+  [CREATOR_LAYOUT_PARAM.LAYOUT3]: CREATOR_LAYOUT_PARAM.LAYOUT3,
+};
 
 export const ADMIN_ROLE = "admin";
 

@@ -4,6 +4,7 @@ import { join, resolve } from 'path';
 import { eq } from 'drizzle-orm';
 
 import { resolvePublicMediaUrl } from 'src/utils/resolvePublicMediaUrl';
+import { SUBSCRIPTION_PLAN } from 'src/utils/constant';
 
 import { db } from '../db';
 import {
@@ -26,13 +27,14 @@ const PROFILE_FILES = [
   'subscription.json',
 ] as const;
 
-const FALLBACK_PLAN_NAME = 'Pro';
+const FALLBACK_PLAN_NAME = SUBSCRIPTION_PLAN.PRO;
 const UMBRACO_PROFILE_EMAIL_DOMAIN = 'umbraco-profile.local';
 
 const LEGACY_PLAN_DOCUMENT_NAMES: Record<string, string> = {
-  'umb://document/5ba7f17c7cf64beea5db1176fd45d365': 'Try Kiibee',
-  'umb://document/6ae38a0b56144a55ac017545e006b9a4': 'Pro',
-  'umb://document/e46ced3f3b544a3ead6838c69a79ac8f': 'Pro',
+  'umb://document/5ba7f17c7cf64beea5db1176fd45d365':
+    SUBSCRIPTION_PLAN.TRY_KIIBEE,
+  'umb://document/6ae38a0b56144a55ac017545e006b9a4': SUBSCRIPTION_PLAN.PRO,
+  'umb://document/e46ced3f3b544a3ead6838c69a79ac8f': SUBSCRIPTION_PLAN.PRO,
 };
 
 type JsonRecord = Record<string, any>;
@@ -213,7 +215,9 @@ function subscriptionKey(subscription: unknown): string | null {
   }
 
   const record = subscription as JsonRecord;
-  return textOrNull(record.name) ?? textOrNull(record.path);
+  return (
+    textOrNull(record.path) ?? textOrNull(record.udi) ?? textOrNull(record.name)
+  );
 }
 
 function resolveDesiredPlanName(subscription: unknown): string {
@@ -232,17 +236,20 @@ function resolveDesiredPlanName(subscription: unknown): string {
   if (
     normalized.includes('try-kiibee') ||
     normalized.includes('proev-kiibee') ||
-    normalized.includes('prov-kiibee')
+    normalized.includes('prov-kiibee') ||
+    normalized.includes('prv-kiibee') ||
+    normalized === 'proev-kiibee' ||
+    normalized.endsWith('/proev-kiibee')
   ) {
-    return 'Try Kiibee';
+    return SUBSCRIPTION_PLAN.TRY_KIIBEE;
   }
 
   if (normalized.includes('start')) {
-    return 'Start-up';
+    return SUBSCRIPTION_PLAN.START_UP;
   }
 
   if (normalized.includes('pro')) {
-    return 'Pro';
+    return SUBSCRIPTION_PLAN.PRO;
   }
 
   return FALLBACK_PLAN_NAME;
@@ -462,7 +469,7 @@ function mapProfile(
   const headline = textOrNull(layout.headline) ?? textOrNull(seo.metaTitle);
   const description =
     headline ?? textOrNull(seo.metaDescription) ?? truncate(bio ?? '', 500);
-  const channelName = truncate(textOrNull(layout.logoText) ?? name, 255);
+  const channelName = truncate(name, 255);
   const desiredPlanName = resolveDesiredPlanName(subscription.subscription);
 
   return {
@@ -647,7 +654,13 @@ export const seedUmbracoProfiles = async () => {
           createdAt: now,
           updatedAt: now,
         })
-        .onConflictDoNothing({ target: creatorPlans.id });
+        .onConflictDoUpdate({
+          target: creatorPlans.id,
+          set: {
+            planId,
+            updatedAt: now,
+          },
+        });
 
       await tx
         .insert(auditLogs)

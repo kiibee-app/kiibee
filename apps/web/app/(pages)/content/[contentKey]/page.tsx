@@ -192,10 +192,8 @@ function PublishedContentDetail() {
                   id: publicCreator.id,
                   name: publicCreator.name,
                   avatar:
-                    resolvePublicMediaUrl(
-                      publicCreator.profileImageUrl ??
-                        publicCreator.coverImageUrl,
-                    ) ?? undefined,
+                    resolvePublicMediaUrl(publicCreator.profileImageUrl) ??
+                    undefined,
                   avatarAlt: publicCreator.name,
                 }
               : undefined
