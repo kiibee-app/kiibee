@@ -86,6 +86,7 @@ export function ExistingCreatorsTable({
                       creatorId={creator.id}
                       channelName={creator.channelName}
                       companyName={creator.companyName}
+                      layout={creator.layout}
                       fallbackLabel={existingCreatorLabels.noChannel}
                       onClick={(e) => e.stopPropagation()}
                     >

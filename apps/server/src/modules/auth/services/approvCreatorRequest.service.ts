@@ -12,6 +12,7 @@ import { runInBackground } from 'src/utils/backgroundTask';
 import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
 import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 import { logger } from 'src/logger/logger';
+import { ensureCreatorChannel } from './ensureCreatorChannel.service';
 
 function isPostgresUniqueViolation(error: unknown): boolean {
   if (!error || typeof error !== 'object') {
@@ -99,6 +100,10 @@ export const approveCreatorRequestService = async (
     await db.transaction(async (tx) => {
       await tx.insert(users).values(userData);
       await tx.insert(creatorInfo).values(creatorData);
+      await ensureCreatorChannel(tx, {
+        creatorId: userData.id,
+        channelName: userData.fullName || userData.firstName,
+      });
       await tx
         .update(creatorApplicationRequests)
         .set({

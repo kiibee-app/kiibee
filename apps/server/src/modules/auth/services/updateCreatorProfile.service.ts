@@ -10,6 +10,7 @@ import { UpdateCreatorProfileDto } from '../dto/updateCreatorProfile.dto';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 import { isValidAvatarUrl } from 'src/utils/constant';
+import { ensureCreatorChannel } from './ensureCreatorChannel.service';
 
 export const updateCreatorProfileService = async (
   userId: string,
@@ -89,16 +90,23 @@ export const updateCreatorProfileService = async (
           },
         });
 
+      const fullName = [firstName, lastName].filter(Boolean).join(' ');
+
       await trx
         .update(users)
         .set({
           firstName,
           lastName,
-          fullName: [firstName, lastName].filter(Boolean).join(' '),
+          fullName,
           avatarUrl,
           updatedAt: now,
         })
         .where(eq(users.id, userId));
+
+      await ensureCreatorChannel(trx, {
+        creatorId: userId,
+        channelName: fullName || companyName,
+      });
     });
 
     return success(

@@ -95,11 +95,7 @@ function SingleCollectionContent() {
     publicCreator?.name || dynamicSection?.creatorName;
 
   const resolvedCreatorAvatar = useMemo(() => {
-    return (
-      resolvePublicMediaUrl(
-        publicCreator?.profileImageUrl ?? publicCreator?.coverImageUrl,
-      ) ?? undefined
-    );
+    return resolvePublicMediaUrl(publicCreator?.profileImageUrl) ?? undefined;
   }, [publicCreator]);
 
   const resolvedImage =

@@ -5,6 +5,7 @@ import {
   creatorChannels,
   creatorInfo,
   creatorPlans,
+  contentAppearance,
   emailSubscribers,
   mediaFiles,
   plans,
@@ -18,6 +19,7 @@ import {
   getSafePositiveInteger,
   MAX_LIMIT,
 } from 'src/utils/pagination';
+import { reconcileMissingCreatorChannels } from 'src/database/seed/reconcileCreatorChannels.seed';
 
 export const getAdminCreatorsService = async ({
   search,
@@ -31,6 +33,7 @@ export const getAdminCreatorsService = async ({
   limit?: number;
 } = {}) => {
   try {
+    await reconcileMissingCreatorChannels();
     const uploadCountSql = sql<number>`
       COUNT(DISTINCT ${mediaFiles.id})::int
     `;
@@ -97,6 +100,7 @@ export const getAdminCreatorsService = async ({
         channelName: creatorChannels.name,
         channelSlug: creatorChannels.slug,
         isPublished: creatorChannels.isPublished,
+        layout: contentAppearance.layout,
         planName: planNameSql,
         uploadCount: uploadCountSql,
         subscriberCount: subscriberCountSql,
@@ -104,6 +108,7 @@ export const getAdminCreatorsService = async ({
       .from(users)
       .leftJoin(creatorInfo, eq(creatorInfo.userId, users.id))
       .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
+      .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
       .leftJoin(creatorPlans, eq(creatorPlans.creatorId, users.id))
       .leftJoin(plans, eq(plans.id, creatorPlans.planId))
       .leftJoin(mediaFiles, eq(mediaFiles.creatorId, users.id))
@@ -125,6 +130,7 @@ export const getAdminCreatorsService = async ({
         creatorChannels.name,
         creatorChannels.slug,
         creatorChannels.isPublished,
+        contentAppearance.layout,
       )
       .orderBy(desc(users.createdAt))
       .limit(pageSize)

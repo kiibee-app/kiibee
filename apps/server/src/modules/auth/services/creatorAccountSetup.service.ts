@@ -5,15 +5,13 @@ import { success } from 'src/utils/sendResponse';
 import { db } from 'src/database/db';
 import { creatorPlans, plans, users, usersToken } from 'src/database/schema';
 import { and, eq } from 'drizzle-orm/sql/expressions/conditions';
-import { ACCOUNT_STATUS } from 'src/utils/constant';
+import {
+  ACCOUNT_STATUS,
+  SUBSCRIPTION_PLAN_SLUG_TO_NAME,
+} from 'src/utils/constant';
 import { hashPassword } from 'src/utils/passwordHash';
 import { logger } from 'src/logger/logger';
-
-const FRONTEND_PLAN_SLUG_TO_DB_NAME: Record<string, string> = {
-  'try-kiibee': 'Try Kiibee',
-  'start-up': 'Start-up',
-  pro: 'Pro',
-};
+import { ensureCreatorChannel } from './ensureCreatorChannel.service';
 
 const UUID_REGEX =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -90,7 +88,7 @@ export const setupCreatorAccountService = async (
 
       let planUuid = planId.trim();
       if (!isDatabaseUuid(planUuid)) {
-        const planName = FRONTEND_PLAN_SLUG_TO_DB_NAME[planUuid];
+        const planName = SUBSCRIPTION_PLAN_SLUG_TO_NAME[planUuid];
         if (!planName) {
           throw new HttpException(
             'Invalid subscription plan',
@@ -137,6 +135,29 @@ export const setupCreatorAccountService = async (
         id: randomUUID(),
         planId: planUuid,
         creatorId: userId,
+      });
+
+      const [creatorUser] = await tx
+        .select({
+          fullName: users.fullName,
+          firstName: users.firstName,
+          lastName: users.lastName,
+        })
+        .from(users)
+        .where(eq(users.id, userId))
+        .limit(1);
+
+      const channelName =
+        creatorUser?.fullName?.trim() ||
+        [creatorUser?.firstName, creatorUser?.lastName]
+          .filter(Boolean)
+          .join(' ')
+          .trim() ||
+        normalizedConfirmEmail.split('@')[0];
+
+      await ensureCreatorChannel(tx, {
+        creatorId: userId,
+        channelName,
       });
 
       await tx
