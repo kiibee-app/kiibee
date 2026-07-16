@@ -384,7 +384,6 @@ describe('setupCreatorAccountService', () => {
 
     await setupCreatorAccountService(mockPayload);
 
-    // Check that token was marked as used - should be the second update call
     expect(capturedTx.update).toHaveBeenCalledTimes(2);
     const tokenUpdateResult = capturedTx.update.mock.results[1].value;
     expect(tokenUpdateResult.set).toHaveBeenCalledWith({ isUsed: true });

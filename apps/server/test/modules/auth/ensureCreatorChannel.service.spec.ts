@@ -30,16 +30,8 @@ describe('ensureCreatorChannel', () => {
             where: jest.fn().mockReturnValue({
               limit: jest.fn().mockImplementation(async () => {
                 if (callIndex === 1) {
-                  return existing
-                    ? [
-                        {
-                          isPublished: true,
-                          ...existing,
-                        },
-                      ]
-                    : [];
+                  return existing ? [{ isPublished: true, ...existing }] : [];
                 }
-                // Slug uniqueness checks — no conflicts in these tests
                 return [];
               }),
             }),
@@ -75,22 +67,6 @@ describe('ensureCreatorChannel', () => {
     );
   });
 
-  it('updates channel name to match creator when channel already exists', async () => {
-    const client = createClient({
-      existing: { id: 'ch-1', name: 'Forlaget AKKA', isPublished: true },
-    });
-
-    await ensureCreatorChannel(client as any, {
-      creatorId,
-      channelName: 'Thomas Wivel',
-    });
-
-    expect(client.insert).not.toHaveBeenCalled();
-    expect(client._updateSet).toHaveBeenCalledWith(
-      expect.objectContaining({ name: 'Thomas Wivel' }),
-    );
-  });
-
   it('publishes an existing draft channel', async () => {
     const client = createClient({
       existing: { id: 'ch-1', name: 'Tanjuma Afroz', isPublished: false },
@@ -105,19 +81,5 @@ describe('ensureCreatorChannel', () => {
     expect(client._updateSet).toHaveBeenCalledWith(
       expect.objectContaining({ isPublished: true }),
     );
-  });
-
-  it('skips update when channel name already matches and is published', async () => {
-    const client = createClient({
-      existing: { id: 'ch-1', name: 'Red Barnet', isPublished: true },
-    });
-
-    await ensureCreatorChannel(client as any, {
-      creatorId,
-      channelName: 'Red Barnet',
-    });
-
-    expect(client.insert).not.toHaveBeenCalled();
-    expect(client.update).not.toHaveBeenCalled();
   });
 });

@@ -4,7 +4,6 @@ import { db } from 'src/database/db';
 import { users, creatorInfo, creatorBankAccounts } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
-import { ensureCreatorChannel } from './ensureCreatorChannel.service';
 
 export const getCreatorProfileService = async (userId: string) => {
   try {
@@ -28,22 +27,8 @@ export const getCreatorProfileService = async (userId: string) => {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
 
-    const creatorUser = user[0];
-    const channelName =
-      creatorUser.fullName?.trim() ||
-      [creatorUser.firstName, creatorUser.lastName]
-        .filter(Boolean)
-        .join(' ')
-        .trim() ||
-      creator[0]?.companyName;
-
-    await ensureCreatorChannel(db, {
-      creatorId: userId,
-      channelName,
-    });
-
     const responseData = {
-      user: creatorUser || null,
+      user: user[0] || null,
       creatorInfo: creator[0] || null,
       bankAccount: bankAccount[0] || null,
     };

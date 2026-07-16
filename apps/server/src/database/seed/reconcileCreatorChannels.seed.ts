@@ -24,8 +24,6 @@ export const reconcileMissingCreatorChannels = async () => {
       ),
     );
 
-  let fixed = 0;
-
   for (const creator of needingChannel) {
     const channelName =
       creator.fullName?.trim() ||
@@ -36,8 +34,5 @@ export const reconcileMissingCreatorChannels = async () => {
       creatorId: creator.id,
       channelName,
     });
-    fixed += 1;
   }
-
-  return fixed;
 };

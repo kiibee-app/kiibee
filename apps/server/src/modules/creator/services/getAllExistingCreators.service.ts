@@ -19,7 +19,6 @@ import {
   getSafePositiveInteger,
   MAX_LIMIT,
 } from 'src/utils/pagination';
-import { reconcileMissingCreatorChannels } from 'src/database/seed/reconcileCreatorChannels.seed';
 
 export const getAdminCreatorsService = async ({
   search,
@@ -33,7 +32,6 @@ export const getAdminCreatorsService = async ({
   limit?: number;
 } = {}) => {
   try {
-    await reconcileMissingCreatorChannels();
     const uploadCountSql = sql<number>`
       COUNT(DISTINCT ${mediaFiles.id})::int
     `;
