@@ -1,4 +1,7 @@
-export type CreatorDeletionRequestStatus = "pending" | "approved" | "rejected";
+import { CREATOR_DELETION_REQUEST_STATUS } from "../utils/constants";
+
+export type CreatorDeletionRequestStatus =
+  (typeof CREATOR_DELETION_REQUEST_STATUS)[keyof typeof CREATOR_DELETION_REQUEST_STATUS];
 
 export type CreatorDeletionRequestUser = {
   id: string;

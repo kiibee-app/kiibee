@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { CreatorDeletionRequest } from "./creator-deletion-request";
+import { CREATOR_DELETION_REQUEST_ACTION } from "../utils/constants";
 
 export interface DeletionRequestsTableProps {
   requests: CreatorDeletionRequest[];
@@ -18,7 +19,8 @@ export interface CreatorDeletionRequestColumn {
   ) => ReactNode;
 }
 
-export type CreatorDeletionRequestAction = "approve" | "reject";
+export type CreatorDeletionRequestAction =
+  (typeof CREATOR_DELETION_REQUEST_ACTION)[keyof typeof CREATOR_DELETION_REQUEST_ACTION];
 
 export interface CreatorDeletionRequestActionConfig {
   activeAction: CreatorDeletionRequestAction | null;

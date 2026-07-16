@@ -3,7 +3,11 @@
 import type { MouseEvent } from "react";
 import type { CreatorDeletionRequest } from "../../../types/creator-deletion-request";
 import type { CreatorDeletionRequestActionConfig } from "../../../types/deletion-requests-table";
-import { ACTION_ICONS } from "../../../utils/constants";
+import {
+  ACTION_ICONS,
+  CREATOR_DELETION_REQUEST_ACTION,
+  CREATOR_DELETION_REQUEST_STATUS,
+} from "../../../utils/constants";
 import {
   ActionIcon,
   RowActionButton,
@@ -22,9 +26,13 @@ export function CreatorDeletionRequestActions({
   const { status, id } = request;
   const { activeAction, activeRequestId } = actions;
 
-  const isPending = status === "pending";
-  const isApproving = activeAction === "approve" && activeRequestId === id;
-  const isRejecting = activeAction === "reject" && activeRequestId === id;
+  const isPending = status === CREATOR_DELETION_REQUEST_STATUS.PENDING;
+  const isApproving =
+    activeAction === CREATOR_DELETION_REQUEST_ACTION.APPROVE &&
+    activeRequestId === id;
+  const isRejecting =
+    activeAction === CREATOR_DELETION_REQUEST_ACTION.REJECT &&
+    activeRequestId === id;
   const isActionDisabled = isApproving || isRejecting;
 
   const handleClick = (
@@ -39,23 +47,27 @@ export function CreatorDeletionRequestActions({
     <RowActionGroup>
       {isPending ? (
         <RowActionButton
-          $variant="approve"
+          $variant={CREATOR_DELETION_REQUEST_ACTION.APPROVE}
           type="button"
           disabled={isActionDisabled}
           onClick={(event) => handleClick(event, actions.onApproveRequest)}
         >
-          <ActionIcon $variant="approve">{ACTION_ICONS.APPROVE}</ActionIcon>
+          <ActionIcon $variant={CREATOR_DELETION_REQUEST_ACTION.APPROVE}>
+            {ACTION_ICONS.APPROVE}
+          </ActionIcon>
           {isApproving ? "Approving..." : "Approve"}
         </RowActionButton>
       ) : null}
       {isPending ? (
         <RowActionButton
-          $variant="reject"
+          $variant={CREATOR_DELETION_REQUEST_ACTION.REJECT}
           type="button"
           disabled={isActionDisabled}
           onClick={(event) => handleClick(event, actions.onRejectRequest)}
         >
-          <ActionIcon $variant="reject">{ACTION_ICONS.REJECT}</ActionIcon>
+          <ActionIcon $variant={CREATOR_DELETION_REQUEST_ACTION.REJECT}>
+            {ACTION_ICONS.REJECT}
+          </ActionIcon>
           {isRejecting ? "Rejecting..." : "Reject"}
         </RowActionButton>
       ) : null}

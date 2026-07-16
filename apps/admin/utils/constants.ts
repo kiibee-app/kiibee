@@ -39,6 +39,17 @@ export const ACTION_ICONS = {
   REJECT: "✕",
 } as const;
 
+export const CREATOR_DELETION_REQUEST_STATUS = {
+  PENDING: "pending",
+  APPROVED: "approved",
+  REJECTED: "rejected",
+} as const;
+
+export const CREATOR_DELETION_REQUEST_ACTION = {
+  APPROVE: "approve",
+  REJECT: "reject",
+} as const;
+
 export const STORAGE_KEYS = {
   PAGE_SIZE_ALL_CREATORS: "kiibee.admin.allCreators.pageSize",
   PAGE_SIZE_CREATOR_REQUESTS: "kiibee.admin.creatorRequests.pageSize",

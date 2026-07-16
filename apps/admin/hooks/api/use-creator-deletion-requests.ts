@@ -3,7 +3,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import type { CreatorDeletionRequest } from "../../types/creator-deletion-request";
-import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
+import type { CreatorDeletionRequestAction } from "../../types/deletion-requests-table";
+import {
+  API_ENDPOINTS,
+  CREATOR_DELETION_REQUEST_ACTION,
+  QUERY_KEY,
+} from "../../utils/constants";
 
 const CREATOR_DELETION_REQUESTS_QUERY_KEY = [
   QUERY_KEY.CREATOR_DELETION_REQUESTS,
@@ -13,14 +18,14 @@ type CreatorDeletionRequestActionPayload = {
   requestId: string;
 };
 
-type CreatorDeletionRequestAction = "approve" | "reject";
-
 const CREATOR_DELETION_REQUEST_ACTION_ENDPOINT: Record<
   CreatorDeletionRequestAction,
   string
 > = {
-  approve: API_ENDPOINTS.APPROVE_CREATOR_DELETION,
-  reject: API_ENDPOINTS.REJECT_CREATOR_DELETION,
+  [CREATOR_DELETION_REQUEST_ACTION.APPROVE]:
+    API_ENDPOINTS.APPROVE_CREATOR_DELETION,
+  [CREATOR_DELETION_REQUEST_ACTION.REJECT]:
+    API_ENDPOINTS.REJECT_CREATOR_DELETION,
 };
 
 async function ensureSuccess<T>(

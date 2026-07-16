@@ -4,6 +4,10 @@ import toast from "react-hot-toast";
 import type { CreatorDeletionRequest } from "../../../types/creator-deletion-request";
 import { useCreatorDeletionRequestAction } from "../../../hooks/api";
 import type { CreatorDeletionRequestAction } from "../../../types/deletion-requests-table";
+import {
+  CREATOR_DELETION_REQUEST_ACTION,
+  CREATOR_DELETION_REQUEST_STATUS,
+} from "../../../utils/constants";
 
 type UseDeletionRequestActionsOptions = {
   onRequestUpdated: (request: CreatorDeletionRequest) => CreatorDeletionRequest;
@@ -12,14 +16,18 @@ type UseDeletionRequestActionsOptions = {
 export function useDeletionRequestActions({
   onRequestUpdated,
 }: UseDeletionRequestActionsOptions) {
-  const approveRequestMutation = useCreatorDeletionRequestAction("approve");
-  const rejectRequestMutation = useCreatorDeletionRequestAction("reject");
+  const approveRequestMutation = useCreatorDeletionRequestAction(
+    CREATOR_DELETION_REQUEST_ACTION.APPROVE,
+  );
+  const rejectRequestMutation = useCreatorDeletionRequestAction(
+    CREATOR_DELETION_REQUEST_ACTION.REJECT,
+  );
 
   const activeAction: CreatorDeletionRequestAction | null =
     approveRequestMutation.isPending
-      ? "approve"
+      ? CREATOR_DELETION_REQUEST_ACTION.APPROVE
       : rejectRequestMutation.isPending
-        ? "reject"
+        ? CREATOR_DELETION_REQUEST_ACTION.REJECT
         : null;
 
   const activeRequestId =
@@ -34,7 +42,7 @@ export function useDeletionRequestActions({
         onSuccess: () => {
           onRequestUpdated({
             ...request,
-            status: "approved",
+            status: CREATOR_DELETION_REQUEST_STATUS.APPROVED,
           });
 
           toast.success("Deletion request approved successfully");
@@ -53,7 +61,7 @@ export function useDeletionRequestActions({
         onSuccess: () => {
           onRequestUpdated({
             ...request,
-            status: "rejected",
+            status: CREATOR_DELETION_REQUEST_STATUS.REJECTED,
           });
 
           toast.success("Deletion request rejected successfully");
