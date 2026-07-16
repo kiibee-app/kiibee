@@ -102,6 +102,7 @@ export const API = {
   },
   payment: {
     cards: "/payment/cards",
+    cardAdd: "/payment/card/add",
     card: (subscriptionId: string) => `/payment/card/${subscriptionId}`,
     cardDefault: (cardId: string) => `/payment/card/default/${cardId}`,
   },

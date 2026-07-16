@@ -27,6 +27,9 @@ export const API_ENDPOINTS = {
     `/viewer/admin/rented-data/${viewerId}`,
   VIEWER_EXPIRED_RENTED_DATA: (viewerId: string) =>
     `/viewer/admin/previously-rented-data/${viewerId}`,
+  ALL_PAYOUT_REQUESTS: "/payout/requests",
+  PAYOUT_REQUEST_BY_ID: (id: string) => `/payout/requests/${id}`,
+  CREATE_PAYOUT: "/payout/create",
 } as const;
 
 export const ERROR_MESSAGES = {
@@ -83,6 +86,8 @@ export const QUERY_KEY = {
   CREATOR_DETAIL: "creator-detail",
   CREATOR_CONTENTS: "creator-contents",
   CONTENT_ENGAGEMENT: "content-engagement",
+  PAYOUT_REQUESTS: "payout-requests",
+  PAYOUT_REQUEST_DETAIL: "payout-request-detail",
 } as const;
 
 export const DASHBOARD_STAT_KEY = {
@@ -113,4 +118,5 @@ export const ADMIN_ROLE = "admin";
 export const ROUTES = {
   PENDING_REQUESTS: "/pending-requests",
   DELETION_REQUESTS: "/deletion-requests",
+  PAYOUT_REQUESTS: "/payout-requests",
 } as const;

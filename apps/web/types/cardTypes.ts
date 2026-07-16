@@ -29,6 +29,7 @@ export type PaymentMethodPayload = {
 
 export type ViewerPaymentMethod = {
   id: string;
+  paymentMethodId?: string;
   subscriptionId: string;
   brand: CardBrand;
   label: string;
@@ -39,6 +40,7 @@ export type ViewerPaymentMethod = {
 
 export type BackendPaymentMethod = {
   id: string;
+  paymentMethodId: string;
   ePaySubscriptionId: string;
   cardNo: string;
   expireDate: string;

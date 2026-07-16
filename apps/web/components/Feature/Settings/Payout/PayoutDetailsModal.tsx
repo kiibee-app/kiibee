@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { GenericModal } from "@/components/UI/Modals";
+import DropdownField from "@/components/UI/InputFields/DropdownField";
 import { PayoutWrapper, Row, Divider, FooterNote } from "./styles";
 import {
   formatFeePercent,
@@ -19,6 +20,7 @@ import { usePayoutRequest } from "@/hooks/usePayoutRequest";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { API, useGetAPI } from "@/lib/http/api";
 import type { GetCreatorProfileResponse } from "@/hooks/auth/creatorProfileApi";
+import { useCreatorPaymentMethods } from "@/hooks/useCreatorPaymentMethods";
 
 type Props = {
   open: boolean;
@@ -37,6 +39,8 @@ export default function PayoutDetailsModal({
   const { getErrorMessage } = useApiErrorMessage();
   const { calculation, isLoading, isError, error } = usePayoutCalculate(open);
   const { requestPayout, isPending } = usePayoutRequest();
+  const { paymentMethods, isLoading: isPaymentMethodsLoading } =
+    useCreatorPaymentMethods();
 
   const profileQuery = useGetAPI<GetCreatorProfileResponse>(
     API.auth.creatorProfile,
@@ -47,10 +51,52 @@ export default function PayoutDetailsModal({
     },
   );
 
-  const paymentMethodId =
-    profileQuery.data?.data?.bankAccount?.id?.trim() || "";
-  const isProfileLoading = profileQuery.isLoading || profileQuery.isFetching;
+  const bankAccount = profileQuery.data?.data?.bankAccount;
+  const isProfileLoading =
+    profileQuery.isLoading ||
+    profileQuery.isFetching ||
+    isPaymentMethodsLoading;
   const isBusy = isLoading || isProfileLoading;
+
+  const paymentOptions = useMemo(() => {
+    const options: { value: string; label: string }[] = [];
+    if (bankAccount?.id) {
+      options.push({
+        value: bankAccount.id,
+        label: t("settings.payoutMethods.bankAccountLabel", "Bank Account"),
+      });
+    }
+    paymentMethods.forEach((pm) => {
+      if (!pm.paymentMethodId) return;
+
+      options.push({
+        value: pm.paymentMethodId,
+        label: `${pm.brand} ${pm.label}`,
+      });
+    });
+    return options;
+  }, [bankAccount, paymentMethods, t]);
+
+  const [selectedMethodId, setSelectedMethodId] = useState<string>("");
+
+  const defaultMethodId = useMemo(() => {
+    const defaultPaymentMethod = paymentMethods.find((p) => p.isDefault);
+    return (
+      defaultPaymentMethod?.paymentMethodId ?? paymentOptions[0]?.value ?? ""
+    );
+  }, [paymentMethods, paymentOptions]);
+
+  const selectedOptionExists = paymentOptions.some(
+    (option) => option.value === selectedMethodId,
+  );
+  const activeMethodId = selectedOptionExists
+    ? selectedMethodId
+    : defaultMethodId;
+
+  const handleClose = () => {
+    setSelectedMethodId("");
+    onClose();
+  };
 
   const payoutRows = useMemo((): PayoutRow[] => {
     if (!calculation) return [];
@@ -95,15 +141,15 @@ export default function PayoutDetailsModal({
   const canConfirm =
     !!calculation &&
     calculation.payableAmount > 0 &&
-    !!paymentMethodId &&
+    !!activeMethodId &&
     !isBusy &&
     !isPending;
 
   const handleConfirm = async () => {
-    if (!calculation || !paymentMethodId) {
+    if (!calculation || !activeMethodId) {
       toast.error(
         t(
-          paymentMethodId
+          activeMethodId
             ? "settings.payout.modal.calculateError"
             : "settings.payout.modal.missingBankAccount",
         ),
@@ -114,10 +160,10 @@ export default function PayoutDetailsModal({
     try {
       await requestPayout({
         amount: calculation.amount,
-        paymentMethodId,
+        paymentMethodId: activeMethodId,
       });
       toast.success(t("settings.payout.modal.success"));
-      onClose();
+      handleClose();
     } catch (err) {
       toast.error(getErrorMessage(err, "settings.payout.modal.requestError"));
     }
@@ -130,8 +176,8 @@ export default function PayoutDetailsModal({
       textAlign={MODAL_ALIGN.START}
       confirmLabel={`${t("settings.payout.title")}${totalValue ? ` ${totalValue}` : ""}`}
       cancelLabel={t("common.cancel")}
-      onClose={onClose}
-      onCancel={onClose}
+      onClose={handleClose}
+      onCancel={handleClose}
       onConfirm={handleConfirm}
       closeOnConfirm={false}
       confirmDisabled={!canConfirm}
@@ -153,10 +199,24 @@ export default function PayoutDetailsModal({
           </MonoText>
         )}
 
-        {!isBusy && !isError && !paymentMethodId && (
+        {!isBusy && !isError && paymentOptions.length === 0 && (
           <MonoText $use="Body_Regular" color={COLORS.primary.RED}>
             {t("settings.payout.modal.missingBankAccount")}
           </MonoText>
+        )}
+
+        {!isBusy && paymentOptions.length > 0 && (
+          <div style={{ marginBottom: 16 }}>
+            <DropdownField
+              label={t(
+                "settings.payout.modal.selectMethod",
+                "Select Payout Method",
+              )}
+              options={paymentOptions}
+              value={activeMethodId}
+              onChange={(val) => setSelectedMethodId(val)}
+            />
+          </div>
         )}
 
         {!isBusy &&
