@@ -62,7 +62,7 @@ import {
   PAYMENTS_FORM_FIELDS,
   parsePaymentAmount,
 } from "@/utils/paymentRequirements";
-import type { ContentFormErrors } from "@/types/contentTypes";
+import type { ContentFormErrors, ContentFormState } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
 import type { SaveContentSettingPayload } from "@/hooks/contents/useContentSettings";
 import { logger } from "@/lib/logger";
@@ -761,6 +761,10 @@ export function useContentFormActions({
     collectionPurchaseAmount !== savedSettings.purchaseAmount ||
     collectionAccessDuration !== savedSettings.accessDuration;
 
+  const hasUploadUnsavedChanges = (
+    Object.keys(formState) as Array<keyof ContentFormState>
+  ).some((key) => formState[key] !== savedFormState[key]);
+
   const closeContentUpload = () => {
     contentTypeFlow.close();
   };
@@ -949,6 +953,7 @@ export function useContentFormActions({
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
     hasSettingsUnsavedChanges,
+    hasUploadUnsavedChanges,
     handleUploadSuccess,
     handleBackToBase,
     handleBackToBaseStateOnly,

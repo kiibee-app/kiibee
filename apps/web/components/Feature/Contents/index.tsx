@@ -296,6 +296,7 @@ function CreatorsContentsInner() {
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
     hasSettingsUnsavedChanges,
+    hasUploadUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
     resetUploadState,
@@ -385,17 +386,31 @@ function CreatorsContentsInner() {
     }
   };
 
-  const handleUploadBackClick = useCallback(() => {
-    const isPostCreateContent =
-      Boolean(postCreateContentId) && queryContentId === postCreateContentId;
-
-    if (isPostCreateContent) {
-      setShowPostCreateModal(true);
-      return;
+  const handleCancel = useCallback(() => {
+    if (isUploadMode) {
+      if (hasUploadUnsavedChanges) {
+        openDiscardModal();
+      } else {
+        handleBack();
+      }
+    } else {
+      handleHeaderCancel();
     }
+  }, [
+    isUploadMode,
+    hasUploadUnsavedChanges,
+    openDiscardModal,
+    handleBack,
+    handleHeaderCancel,
+  ]);
 
-    handleBack();
-  }, [handleBack, postCreateContentId, queryContentId]);
+  const handleUploadBackClick = useCallback(() => {
+    if (hasUploadUnsavedChanges) {
+      openDiscardModal();
+    } else {
+      handleBack();
+    }
+  }, [hasUploadUnsavedChanges, openDiscardModal, handleBack]);
 
   const handleDeleteSuccessClose = useCallback(() => {
     if (!isUploadMode && !editingContent?.id) return;
@@ -430,7 +445,7 @@ function CreatorsContentsInner() {
         <ContentsHeaderAction
           activeTab={activeTab}
           onCreate={handleCreate}
-          onCancel={handleHeaderCancel}
+          onCancel={handleCancel}
           onCreateCoupon={couponFlow.open}
           onSave={handleHeaderSave}
           isSaveDisabled={
