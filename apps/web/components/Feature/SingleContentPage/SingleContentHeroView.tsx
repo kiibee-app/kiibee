@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type RefObject } from "react";
+import { useRef, useState, type RefObject, type MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import { toast } from "react-toastify";
@@ -315,6 +315,11 @@ export default function SingleContentHeroView({
     void handleTrailerClick();
   };
 
+  const handleCenteredPlayClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    primaryAction?.onClick?.();
+  };
+
   const showTrailerButton =
     hero.trailerLabel &&
     !hasStartedPlayback &&
@@ -358,10 +363,7 @@ export default function SingleContentHeroView({
         />
         {showPlayButton ? (
           <CenteredPlayButton
-            onClick={(e) => {
-              e.stopPropagation();
-              primaryAction?.onClick?.();
-            }}
+            onClick={handleCenteredPlayClick}
             type="button"
             aria-label="Play video"
           >
