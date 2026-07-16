@@ -58,17 +58,19 @@ describe('setupCreatorAccountService', () => {
 
   function mockSelectChain(...results: unknown[]): jest.Mock {
     const select = jest.fn();
-    for (const result of results) {
-      select.mockReturnValueOnce({
-        from: jest.fn().mockReturnValue({
-          where: jest.fn().mockReturnValue({
+
+    results.forEach((result) => {
+      select.mockImplementationOnce(() => ({
+        from: jest.fn(() => ({
+          where: jest.fn(() => ({
             limit: jest
               .fn()
               .mockResolvedValue(Array.isArray(result) ? result : [result]),
-          }),
-        }),
-      });
-    }
+          })),
+        })),
+      }));
+    });
+
     return select;
   }
 
