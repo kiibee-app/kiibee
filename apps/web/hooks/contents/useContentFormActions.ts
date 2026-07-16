@@ -40,6 +40,7 @@ import {
   CONTENT_LAST_EDITED_STORAGE_KEY,
   VISIBILITY_PUBLIC_UPPER,
   VISIBILITY_PUBLIC_LOWER,
+  VISIBILITY_DRAFT_UPPER,
   CATEGORY_EDUCATION_LOWER,
   MIME_TYPE_APPLICATION_PDF,
   apiToUiAccessTypeMap,
@@ -314,7 +315,7 @@ export function useContentFormActions({
         contentType:
           contentTypeFlow.selectedContentType ??
           (CONTENT_TYPE_FALLBACK as ContentType),
-        visibility: VISIBILITY_PUBLIC_UPPER,
+        visibility: VISIBILITY_DRAFT_UPPER,
         createdAt: new Date().toISOString(),
         actions: "",
       });
@@ -870,7 +871,9 @@ export function useContentFormActions({
           title: fullContent.title || "",
           description: fullContent.description || "",
           trailerLink: fullContent.trailerUrl || "",
-          visibility: fullContent.visibility || VISIBILITY_PUBLIC_LOWER,
+          visibility: (
+            fullContent.visibility || VISIBILITY_PUBLIC_LOWER
+          ).toLowerCase(),
           publishedYear: fullContent.publishedYear
             ? String(fullContent.publishedYear)
             : "",

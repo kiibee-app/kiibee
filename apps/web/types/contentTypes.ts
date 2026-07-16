@@ -1,6 +1,7 @@
 import type { ReactNode, Dispatch, SetStateAction } from "react";
 import type { ImageSource, Variant } from "@/utils/Constants";
-import type { ContentType } from "@/utils/content";
+import { TRAILER_VISIBILITY, type ContentType } from "@/utils/content";
+import { ADMISSION_TYPE } from "@/utils/paymentRequirements";
 import type { ContentDetailItem } from "@/utils/contentApi";
 
 export type SingleContentMetaItem = {
@@ -147,7 +148,7 @@ export const defaultState: ContentFormState = {
   title: "",
   description: "",
   trailerLink: "",
-  visibility: "Public",
+  visibility: TRAILER_VISIBILITY.DRAFT,
   publishedYear: "",
   duration: "",
   category: "education",
@@ -156,7 +157,7 @@ export const defaultState: ContentFormState = {
   tags: "",
   mediaCardThumbnail: null,
   portraitThumbnail: null,
-  admissionRequirement: "payment",
+  admissionRequirement: ADMISSION_TYPE.FREE,
   rentalAmount: "",
   purchaseAmount: "",
   maxDownloadLimit: "5",
