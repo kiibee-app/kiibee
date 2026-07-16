@@ -906,6 +906,16 @@
       "viewPlans": "Se planer"
     }
   },
+  "cardFailurePage": {
+    "title": "Kortet blev ikke tilføjet",
+    "message": "Kortopsætningen blev ikke fuldført. Vi tager dig tilbage til udbetalingsmetoder.",
+    "hint": "Du kan prøve at tilføje kortet igen fra indstillinger."
+  },
+  "cardSuccessPage": {
+    "title": "Kortet blev tilføjet med succes",
+    "message": "Dit kort er blevet tilføjet. Vi tager dig tilbage til udbetalingsmetoder.",
+    "hint": "Dette tager normalt et par sekunder."
+  },
   "pricingFaq": {
     "title": "FAQ",
     "items": [

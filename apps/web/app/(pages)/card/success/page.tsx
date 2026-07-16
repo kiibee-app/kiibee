@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 import Image from "@/components/UI/SafeImage";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
@@ -24,6 +25,7 @@ const PAYOUT_METHODS_PATH =
 
 export default function CardSuccessPage() {
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -37,16 +39,20 @@ export default function CardSuccessPage() {
     <PageShell>
       <StatusCard aria-live="polite">
         <BrandMark>
-          <Image src={logo} alt="Kiibee" width={32} height={32} priority />
+          <Image
+            src={logo}
+            alt={t("subscriptionPage.logoAlt")}
+            width={32}
+            height={32}
+            priority
+          />
         </BrandMark>
         <IconRing $tone={STATUS_TONE.SUCCESS}>
           <SuccessModalIcon size={36} />
         </IconRing>
-        <CardTitle>Card added successfully</CardTitle>
-        <CardMessage>
-          Your card has been added. We are taking you back to payout methods.
-        </CardMessage>
-        <CardHint>This usually takes a few seconds.</CardHint>
+        <CardTitle>{t("cardSuccessPage.title")}</CardTitle>
+        <CardMessage>{t("cardSuccessPage.message")}</CardMessage>
+        <CardHint>{t("cardSuccessPage.hint")}</CardHint>
         <ProgressDots aria-hidden="true">
           <ProgressDot $active />
           <ProgressDot $active />

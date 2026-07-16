@@ -29,15 +29,7 @@ import {
   StatusBadge,
 } from "../all-creators/AllCreators.styles";
 import type { PayoutRequest } from "../../../types/payout-request";
-import type { CreatorStatus } from "../../../types/creator-request";
-
-const toCreatorStatus = (status: string): CreatorStatus => {
-  if (status === "approved" || status === "rejected") {
-    return status;
-  }
-
-  return "pending";
-};
+import { toCreatorStatus } from "../../../utils/status";
 
 export function PayoutRequestsList() {
   const [searchTerm, setSearchTerm] = useState("");

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 import Image from "@/components/UI/SafeImage";
 import { QuestionIcon } from "@/assets/icons/questionIcon";
@@ -25,6 +26,7 @@ const PAYOUT_METHODS_PATH =
 
 export default function CardFailurePage() {
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -38,17 +40,20 @@ export default function CardFailurePage() {
     <PageShell>
       <StatusCard aria-live="polite">
         <BrandMark>
-          <Image src={logo} alt="Kiibee" width={32} height={32} priority />
+          <Image
+            src={logo}
+            alt={t("subscriptionPage.logoAlt")}
+            width={32}
+            height={32}
+            priority
+          />
         </BrandMark>
         <IconRing $tone={STATUS_TONE.ERROR}>
           <QuestionIcon width={36} height={36} color={COLORS.primary.RED} />
         </IconRing>
-        <CardTitle>Card was not added</CardTitle>
-        <CardMessage>
-          The card setup was not completed. We are taking you back to payout
-          methods.
-        </CardMessage>
-        <CardHint>You can try adding the card again from settings.</CardHint>
+        <CardTitle>{t("cardFailurePage.title")}</CardTitle>
+        <CardMessage>{t("cardFailurePage.message")}</CardMessage>
+        <CardHint>{t("cardFailurePage.hint")}</CardHint>
         <ProgressDots aria-hidden="true">
           <ProgressDot $active />
           <ProgressDot />
