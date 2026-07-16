@@ -728,7 +728,9 @@ export function useContentFormActions({
 
   const handleHeaderCancel = () => {
     if (activeTab === APPEARANCE) {
-      cancelAppearance();
+      if (hasAppearanceChanges) {
+        openDiscardModal();
+      }
       return;
     }
     if (activeTab === SETTINGS) {
@@ -970,6 +972,7 @@ export function useContentFormActions({
     resetUploadState,
     handleHeaderSave,
     handleHeaderCancel,
+    cancelAppearance,
     handleEditContent,
     closeContentUpload,
     handleContentUploadBack,
