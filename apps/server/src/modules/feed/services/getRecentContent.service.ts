@@ -35,11 +35,17 @@ const publishedPublicWhere = and(
   eq(mediaFiles.isDeleted, false),
 );
 
+const activeCreatorJoin = and(
+  eq(users.id, mediaFiles.creatorId),
+  eq(users.isDeleted, false),
+);
+
 export const getRecentContentService = async (limit = 10) => {
   try {
     const recentIds = await db
       .select({ id: mediaFiles.id })
       .from(mediaFiles)
+      .innerJoin(users, activeCreatorJoin)
       .where(publishedPublicWhere)
       .orderBy(desc(mediaFiles.createdAt))
       .limit(limit);
@@ -53,7 +59,7 @@ export const getRecentContentService = async (limit = 10) => {
     const rows = await db
       .select(recentSelect)
       .from(mediaFiles)
-      .leftJoin(users, eq(users.id, mediaFiles.creatorId))
+      .innerJoin(users, activeCreatorJoin)
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(
         mediaFileCategories,
@@ -63,7 +69,7 @@ export const getRecentContentService = async (limit = 10) => {
         contentCategories,
         eq(contentCategories.id, mediaFileCategories.categoryId),
       )
-      .where(inArray(mediaFiles.id, ids));
+      .where(and(inArray(mediaFiles.id, ids), publishedPublicWhere));
 
     const recentContent = orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
 
