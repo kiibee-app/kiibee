@@ -295,6 +295,7 @@ function CreatorsContentsInner() {
     hasUnsavedChanges,
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
+    hasPaymentUnsavedChanges,
     hasSettingsUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
@@ -440,7 +441,9 @@ function CreatorsContentsInner() {
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
               !hasGeneralUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.METADATA &&
-              !hasMetadataUnsavedChanges)
+              !hasMetadataUnsavedChanges) ||
+            (activeTab === ADD_CONTENT_TABS.PAYMENT &&
+              !hasPaymentUnsavedChanges)
           }
           isSaving={isSaving}
           isCollectionContentMode={isCollectionContentMode}
