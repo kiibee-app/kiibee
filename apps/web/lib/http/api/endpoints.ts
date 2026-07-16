@@ -11,6 +11,7 @@ export const API = {
     userProfile: "/auth/user/profile",
     changePassword: "/auth/user/password",
     creatorProfile: "/auth/creator/profile",
+    deleteUser: "/auth/delete-user",
   },
   coupon: {
     create: "/coupons/create",
