@@ -123,10 +123,11 @@ export const HeroBlurBg = styled.div`
   user-select: none;
 `;
 
-export const Preview = styled.div`
+export const Preview = styled.div<{ $clickable?: boolean }>`
   position: absolute;
   inset: 0;
   z-index: 1;
+  cursor: ${({ $clickable }) => ($clickable ? "pointer" : "default")};
 
   img {
     width: 100%;
@@ -241,6 +242,39 @@ export const NoTrailerTooltip = styled.span`
 
   ${TrailerWrapper}:hover & {
     opacity: 1;
+  }
+`;
+
+export const CenteredPlayButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px ${({ theme }) => theme.colors.neutral.GRAY_400};
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  svg {
+    margin-left: 4px;
+  }
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  &:active {
+    transform: translate(-50%, -50%) scale(0.95);
   }
 `;
 
