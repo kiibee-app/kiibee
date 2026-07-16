@@ -33,6 +33,7 @@ import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
+import { openInNewTab } from "@/utils/common";
 
 import { LoginRequiredModal } from "@/components/UI/Modals";
 
@@ -193,7 +194,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const handlePrimaryActionClick = async () => {
     if (isWebType && previewMediaUrl) {
-      window.open(previewMediaUrl, "_blank", "noopener,noreferrer");
+      openInNewTab(previewMediaUrl);
       return;
     }
 
