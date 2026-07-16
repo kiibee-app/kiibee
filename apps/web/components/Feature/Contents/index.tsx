@@ -386,31 +386,15 @@ function CreatorsContentsInner() {
     }
   };
 
-  const handleCancel = useCallback(() => {
-    if (isUploadMode) {
-      if (hasUploadUnsavedChanges) {
-        openDiscardModal();
-      } else {
-        handleBack();
-      }
-    } else {
-      handleHeaderCancel();
-    }
-  }, [
-    isUploadMode,
-    hasUploadUnsavedChanges,
-    openDiscardModal,
-    handleBack,
-    handleHeaderCancel,
-  ]);
-
-  const handleUploadBackClick = useCallback(() => {
-    if (hasUploadUnsavedChanges) {
-      openDiscardModal();
-    } else {
-      handleBack();
-    }
+  const handleDiscardOrBack = useCallback(() => {
+    hasUploadUnsavedChanges ? openDiscardModal() : handleBack();
   }, [hasUploadUnsavedChanges, openDiscardModal, handleBack]);
+
+  const handleUploadBackClick = handleDiscardOrBack;
+
+  const handleCancel = useCallback(() => {
+    isUploadMode ? handleDiscardOrBack() : handleHeaderCancel();
+  }, [isUploadMode, handleDiscardOrBack, handleHeaderCancel]);
 
   const handleDeleteSuccessClose = useCallback(() => {
     if (!isUploadMode && !editingContent?.id) return;
