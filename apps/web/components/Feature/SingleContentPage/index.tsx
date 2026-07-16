@@ -11,15 +11,6 @@ import {
   ORDER_TYPES,
   type OrderItemType,
   STRING,
-  ROLE_CREATOR,
-  VARIANT,
-  UNDEFINED_STRING,
-  REDIRECT_NEXT_QUERY_PARAM,
-  ACTION_LOGIN,
-  ACTION_SIGNUP,
-  CONTENT_COLLECTION_QUERY_KEY,
-  CONTENT_ITEM_QUERY_KEY,
-  VIEW,
 } from "@/utils/Constants";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -42,15 +33,9 @@ import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
-import {
-  isBuyActionLabel,
-  isRentActionLabel,
-} from "@/utils/contentPricingActions";
+import { openInNewTab } from "@/utils/common";
 
-import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
-import { useLogout } from "@/hooks/auth/useLogout";
-import { PATHS } from "@/utils/path";
-import { CREATORS_LABELS } from "@/utils/SidebarItems";
+import { LoginRequiredModal } from "@/components/UI/Modals";
 
 import { useSearchParams } from "next/navigation";
 
@@ -82,7 +67,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     onShare,
     children,
     accessGate,
-    publicPlayback = false,
   } = props;
   const router = useRouter();
   const { t } = useTranslation();
@@ -90,33 +74,9 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
-  const [pendingPlaybackAfterLogin, setPendingPlaybackAfterLogin] =
-    useState(false);
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
-  const handleCloseLoginModal = () => {
-    setLoginModalVisible(false);
-    setPendingPlaybackAfterLogin(false);
-  };
-
-  const { logout, isPending: isLoggingOut } = useLogout();
-  const [showCreatorModal1, setShowCreatorModal1] = useState(false);
-  const [showCreatorModal2, setShowCreatorModal2] = useState(false);
-  const [creatorModal2Action, setCreatorModal2Action] = useState<
-    typeof ACTION_LOGIN | typeof ACTION_SIGNUP | null
-  >(null);
-
-  const handleConfirmModal2 = async () => {
-    const returnUrl =
-      typeof window !== UNDEFINED_STRING
-        ? window.location.pathname + window.location.search
-        : "";
-    const redirectUrl =
-      creatorModal2Action === ACTION_SIGNUP
-        ? `${PATHS.AUTH_SIGNUP_VIEWER}?${REDIRECT_NEXT_QUERY_PARAM}=${encodeURIComponent(returnUrl)}`
-        : `${PATHS.AUTH_LOGIN}?${REDIRECT_NEXT_QUERY_PARAM}=${encodeURIComponent(returnUrl)}`;
-    await logout(redirectUrl);
-  };
+  const handleCloseLoginModal = () => setLoginModalVisible(false);
 
   type CreateOrderPayload = {
     contentId: string;
@@ -149,8 +109,13 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     }
 
     return actions.map((action) => {
-      const isPurchase = isBuyActionLabel(action.label);
-      const isRental = isRentActionLabel(action.label);
+      const normalizedLabel = action.label.toLowerCase();
+      const isPurchase = normalizedLabel.includes(
+        t("pricingLabels.buy").toLowerCase(),
+      );
+      const isRental = normalizedLabel.includes(
+        t("pricingLabels.rent").toLowerCase(),
+      );
 
       if (!isPurchase && !isRental) {
         return action;
@@ -160,10 +125,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
-          if (user?.role === ROLE_CREATOR) {
-            setShowCreatorModal1(true);
-            return;
-          }
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
@@ -173,15 +134,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         },
       };
     });
-  }, [
-    contentId,
-    createOrderMutation,
-    primaryAction,
-    primaryActions,
-    user?.role,
-  ]);
+  }, [contentId, createOrderMutation, primaryAction, primaryActions, t]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
-  const [activePlaybackSrc, setActivePlaybackSrc] = useState("");
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
     label: string;
@@ -211,16 +165,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
       if (actions.length) {
         const action = actions[0];
-        if (user?.role === ROLE_CREATOR) {
-          setShowCreatorModal1(true);
-        } else {
-          setSelectedAction({
-            label: action.label,
-            subtitle: action.subtitle,
-            isPurchase: isBuyActionLabel(action.label),
-          });
-          setShowPurchaseModal(true);
-        }
+        setSelectedAction({
+          label: action.label,
+          subtitle: action.subtitle,
+          isPurchase: action.label
+            .toLowerCase()
+            .includes(t("pricingLabels.buy").toLowerCase()),
+        });
+        setShowPurchaseModal(true);
 
         const newUrl =
           window.location.pathname +
@@ -230,59 +182,22 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         window.history.replaceState({}, "", newUrl);
       }
     }
-  }, [searchParams, primaryActions, primaryAction, t, user?.role]);
+  }, [searchParams, primaryActions, primaryAction, t]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
-  const hasViewerAccess = Boolean(content?.accessInfo);
-  const isOwner = Boolean(user?.id && content?.creatorId === user.id);
-  const fallbackPlaybackSrc =
-    previewMediaUrl || hero.contentUrl || hero.media?.src || "";
 
   const canPreview =
-    isPreviewableType && Boolean(fallbackPlaybackSrc || canFetchMedia);
-
-  const openPreview = async () => {
-    const playbackSrc = canFetchMedia
-      ? (await fetchMediaUrl()) || fallbackPlaybackSrc
-      : fallbackPlaybackSrc;
-
-    if (!playbackSrc) {
-      return;
-    }
-
-    setActivePlaybackSrc(playbackSrc);
-    setShowPreviewModal(true);
-  };
-
-  const playContent = async () => {
-    if (isWebType && fallbackPlaybackSrc) {
-      window.open(fallbackPlaybackSrc, "_blank", "noopener,noreferrer");
-      return;
-    }
-
-    await openPreview();
-  };
-
-  const requireLoginForPlayback = () => {
-    if (publicPlayback || user?.id) {
-      return false;
-    }
-
-    setPendingPlaybackAfterLogin(true);
-    handleShowLoginModal();
-    return true;
-  };
-
-  const handleLoginSuccess = async () => {
-    const shouldPlay = pendingPlaybackAfterLogin;
-    setPendingPlaybackAfterLogin(false);
-
-    if (shouldPlay) {
-      await playContent();
-    }
-  };
+    isPreviewableType &&
+    (Boolean(hero?.media?.src || hero?.contentUrl) ||
+      canFetchMedia ||
+      Boolean(previewMediaUrl));
 
   const handlePrimaryActionClick = async () => {
+    if (isWebType && previewMediaUrl) {
+      openInNewTab(previewMediaUrl);
+      return;
+    }
+
     if (!canPreview) {
       if (primaryAction?.onClick) {
         primaryAction.onClick();
@@ -305,32 +220,20 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       return;
     }
 
-    const accessMeta = metaItems.find(
-      (item) =>
-        item.label.toLowerCase().includes(ACCESS_KEYWORD_EN) ||
-        item.label.toLowerCase().includes(ACCESS_KEYWORD_DA),
-    );
-    const isPaid =
-      accessMeta &&
-      typeof accessMeta.value === STRING &&
-      accessMeta.value !== ACCESS_TYPE_FREE;
+    if (!canFetchMedia) {
+      setShowPreviewModal(true);
+      return;
+    }
 
+    const actionLabel = primaryAction?.label?.toLowerCase();
     const isPurchaseAction = Boolean(
-      primaryAction?.label && isBuyActionLabel(primaryAction.label),
+      actionLabel?.includes(t("pricingLabels.buy").toLowerCase()),
     );
     const isRentalAction = Boolean(
-      primaryAction?.label && isRentActionLabel(primaryAction.label),
+      actionLabel?.includes(t("pricingLabels.rent").toLowerCase()),
     );
 
-    if (
-      (isPaid || isPurchaseAction || isRentalAction) &&
-      !hasViewerAccess &&
-      !isOwner
-    ) {
-      if (user?.role === ROLE_CREATOR) {
-        setShowCreatorModal1(true);
-        return;
-      }
+    if (isPurchaseAction || isRentalAction) {
       setSelectedAction({
         label: primaryAction?.label as string,
         subtitle: primaryAction?.subtitle,
@@ -338,14 +241,12 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       });
 
       setShowPurchaseModal(true);
-      return;
+    } else {
+      const mediaUrl = await fetchMediaUrl();
+      if (mediaUrl) {
+        setShowPreviewModal(true);
+      }
     }
-
-    if (requireLoginForPlayback()) {
-      return;
-    }
-
-    await playContent();
   };
 
   const modifiedPrimaryAction = primaryAction
@@ -356,48 +257,18 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       }
     : undefined;
 
-  const openOwnerContentInDashboard = () => {
-    const params = new URLSearchParams({
-      [VIEW]: CREATORS_LABELS.CONTENTS,
-    });
-
-    if (collectionId) {
-      params.set(CONTENT_COLLECTION_QUERY_KEY, collectionId);
-      if (contentId) {
-        params.set(CONTENT_ITEM_QUERY_KEY, contentId);
-      }
-    }
-
-    router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
-  };
-
   const bodyPrimaryActions: SingleContentAction[] | undefined =
     primaryActions != null
       ? actionsWithPayment
       : modifiedPrimaryAction
-        ? isOwner
-          ? [
-              {
-                label: t("singleContent.openInDashboard"),
-                variant: VARIANT.PRIMARY,
-                onClick: openOwnerContentInDashboard,
-              },
-              {
-                ...modifiedPrimaryAction,
-                variant: VARIANT.SECONDARY,
-              },
-            ]
-          : [
-              {
-                ...modifiedPrimaryAction,
-                variant: hasViewerAccess ? VARIANT.SECONDARY : undefined,
-              },
-            ]
+        ? [modifiedPrimaryAction]
         : undefined;
 
   const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
   const isPdfLayout =
-    Boolean(previewContentType) && previewContentType !== FORMAT_TYPE.VIDEO;
+    Boolean(previewContentType) &&
+    previewContentType !== FORMAT_TYPE.VIDEO &&
+    previewContentType !== FORMAT_TYPE.AUDIO;
 
   const handleBack = () => {
     if (onBack) {
@@ -482,18 +353,17 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       </Card>
 
       {children}
-      {showPreviewModal && activePlaybackSrc && (
-        <ContentPreviewModal
-          visible={showPreviewModal}
-          onClose={() => {
-            setShowPreviewModal(false);
-            setActivePlaybackSrc("");
-          }}
-          src={activePlaybackSrc}
-          type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}
-          title={title}
-        />
-      )}
+      {canPreview &&
+        showPreviewModal &&
+        (previewMediaUrl || hero.contentUrl || hero.media?.src) && (
+          <ContentPreviewModal
+            visible={showPreviewModal}
+            onClose={() => setShowPreviewModal(false)}
+            src={previewMediaUrl || hero.contentUrl || hero.media?.src || ""}
+            type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}
+            title={title}
+          />
+        )}
 
       <PurchaseModal
         visible={showPurchaseModal}
@@ -515,49 +385,15 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
-        onSuccess={handleLoginSuccess}
+        onSuccess={() => {
+          handleCloseLoginModal();
+        }}
       />
 
       <ShareModal
         visible={showShareModal}
         url={shareUrl}
         onClose={() => setShowShareModal(false)}
-      />
-
-      <GenericModal
-        visible={showCreatorModal1}
-        onClose={() => setShowCreatorModal1(false)}
-        title={t("creatorPurchaseFlow.modal1.title")}
-        message={t("creatorPurchaseFlow.modal1.message")}
-        confirmLabel={t("creatorPurchaseFlow.modal1.primaryBtn")}
-        cancelLabel={t("creatorPurchaseFlow.modal1.secondaryBtn")}
-        onConfirm={() => {
-          setCreatorModal2Action(ACTION_LOGIN);
-          setShowCreatorModal2(true);
-        }}
-        onCancel={() => {
-          setCreatorModal2Action(ACTION_SIGNUP);
-          setShowCreatorModal2(true);
-        }}
-        buttonRow={false}
-        fullWidthButtons
-      />
-
-      <GenericModal
-        visible={showCreatorModal2}
-        onClose={() => setShowCreatorModal2(false)}
-        title={t("creatorPurchaseFlow.modal2.title")}
-        confirmLabel={t("creatorPurchaseFlow.modal2.primaryBtn")}
-        cancelLabel={t("creatorPurchaseFlow.modal2.secondaryBtn")}
-        onConfirm={handleConfirmModal2}
-        onCancel={() => {
-          setShowCreatorModal1(true);
-        }}
-        confirmLoading={isLoggingOut}
-        confirmDisabled={isLoggingOut}
-        buttonRow={true}
-        fullWidthButtons
-        closeOnConfirm={false}
       />
     </Wrapper>
   );

@@ -229,3 +229,8 @@ export const formatSavedCardLabel = (
   const lastDigits = cardNo.replace(/\D/g, "").slice(-3);
   return `${brand} **** ${lastDigits}`;
 };
+
+export const openInNewTab = (url: string): Window | null => {
+  if (typeof window === "undefined") return null;
+  return window.open(url, "_blank", "noopener,noreferrer");
+};

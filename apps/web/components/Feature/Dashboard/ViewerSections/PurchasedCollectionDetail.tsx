@@ -86,7 +86,8 @@ export default function PurchasedCollectionDetail({
   );
   const isPdfLayout =
     Boolean(selectedMedia?.mediaType) &&
-    selectedMedia?.mediaType !== PURCHASED_MEDIA_TYPES.VIDEO;
+    selectedMedia?.mediaType !== PURCHASED_MEDIA_TYPES.VIDEO &&
+    selectedMedia?.mediaType !== PURCHASED_MEDIA_TYPES.AUDIO;
   const hasSearchText = Boolean(searchValue.trim());
 
   const filteredTutorials = useMemo(() => {
