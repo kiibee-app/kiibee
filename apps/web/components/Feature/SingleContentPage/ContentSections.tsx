@@ -243,7 +243,7 @@ export function SingleContentBody({
 
       {safeMeta.length ? (
         <MetaSection>
-          {safeMeta.map((item, index) => (
+          {safeMeta.map((item) => (
             <MetaRow key={item.label}>
               <MetaKey>
                 <MetaLabelText>{item.label}</MetaLabelText>
