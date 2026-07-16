@@ -906,6 +906,16 @@
       "viewPlans": "View Plans"
     }
   },
+  "cardFailurePage": {
+    "title": "Card was not added",
+    "message": "The card setup was not completed. We are taking you back to payout methods.",
+    "hint": "You can try adding the card again from settings."
+  },
+  "cardSuccessPage": {
+    "title": "Card added successfully",
+    "message": "Your card has been added. We are taking you back to payout methods.",
+    "hint": "This usually takes a few seconds."
+  },
   "pricingFaq": {
     "title": "FAQ",
     "items": [

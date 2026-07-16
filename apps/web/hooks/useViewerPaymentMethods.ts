@@ -26,6 +26,7 @@ function resolveCardBrand(brand?: string): CardBrand {
 function toPaymentMethod(item: BackendPaymentMethod): ViewerPaymentMethod {
   return {
     id: item.id,
+    paymentMethodId: item.paymentMethodId,
     subscriptionId: item.ePaySubscriptionId,
     brand: resolveCardBrand(item.cardType),
     label: formatSavedCardLabel(item.cardNo, item.cardType, CARD),
