@@ -183,6 +183,7 @@ export const HeroMediaTag = styled.span`
   padding: 0.4rem 0.7rem;
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 
   ${media.tablet} {
     left: 1rem;

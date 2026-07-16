@@ -346,7 +346,8 @@ export default function SingleContentHeroView({
       {hero.mediaLabel &&
       (!isVideoMedia || (!hasStartedPlayback && !isTrailerPlaying)) ? (
         <HeroMediaTag>
-          {hero.media?.type === FORMAT_TYPE.PDF ? (
+          {hero.media?.type === FORMAT_TYPE.PDF ||
+          hero.contentType === FORMAT_TYPE.PDF ? (
             <PdfIcon width={16} height={16} />
           ) : hero.mediaIcon ? (
             <Image
