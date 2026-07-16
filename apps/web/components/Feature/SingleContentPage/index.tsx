@@ -335,7 +335,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       />
       <Card>
         <ContentLayout $isPdf={isPdfLayout}>
-          <SingleContentHero hero={hero} isPdfLayout={isPdfLayout} />
+          <SingleContentHero
+            hero={hero}
+            isPdfLayout={isPdfLayout}
+            primaryAction={modifiedPrimaryAction}
+          />
 
           <SingleContentBody
             creator={creator}

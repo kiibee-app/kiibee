@@ -9,6 +9,7 @@ import type {
   SingleContentCreatorProps,
   SingleContentHeroProps,
   SingleContentTopBarProps,
+  SingleContentAction,
 } from "@/types/contentTypes";
 import GenericButton from "@/components/UI/GenericButton";
 import { MonoText } from "@/components/UI/Monotext";
@@ -88,9 +89,11 @@ export function SingleContentTopBar({
 export function SingleContentHero({
   hero,
   isPdfLayout = false,
+  primaryAction,
 }: {
   hero: SingleContentHeroProps;
   isPdfLayout?: boolean;
+  primaryAction?: SingleContentAction;
 }) {
   const heroKey = hero.media?.src ?? resolveImageUrl(hero.image);
 
@@ -99,6 +102,7 @@ export function SingleContentHero({
       key={heroKey}
       hero={hero}
       isPdfLayout={isPdfLayout}
+      primaryAction={primaryAction}
     />
   );
 }
