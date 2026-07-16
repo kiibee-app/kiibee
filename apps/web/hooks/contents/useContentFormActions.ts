@@ -753,6 +753,12 @@ export function useContentFormActions({
     formState.mediaCardThumbnail !== savedFormState.mediaCardThumbnail ||
     formState.portraitThumbnail !== savedFormState.portraitThumbnail;
 
+  const hasPaymentUnsavedChanges = Object.values(PAYMENTS_FORM_FIELDS).some(
+    (field) =>
+      formState[field as keyof typeof formState] !==
+      savedFormState[field as keyof typeof savedFormState],
+  );
+
   const hasSettingsUnsavedChanges =
     collectionAccessType !== savedSettings.accessType ||
     collectionPasswords !== savedSettings.passwords ||
@@ -948,6 +954,7 @@ export function useContentFormActions({
     hasUnsavedChanges: hasAppearanceChanges,
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
+    hasPaymentUnsavedChanges,
     hasSettingsUnsavedChanges,
     handleUploadSuccess,
     handleBackToBase,
