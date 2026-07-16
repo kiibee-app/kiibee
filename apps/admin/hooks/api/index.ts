@@ -5,6 +5,10 @@ export {
   useCreatorRequests,
   useExistingCreators,
 } from "./use-creator-requests";
+export {
+  useCreatorDeletionRequests,
+  useCreatorDeletionRequestAction,
+} from "./use-creator-deletion-requests";
 export { useCreatorUploads, type UploadItem } from "./use-creator-uploads";
 export { useCreator } from "./use-creator";
 export { useCreatorContents } from "./use-creator-contents";
