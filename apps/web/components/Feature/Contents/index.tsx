@@ -297,6 +297,7 @@ function CreatorsContentsInner() {
     hasMetadataUnsavedChanges,
     hasPaymentUnsavedChanges,
     hasSettingsUnsavedChanges,
+    hasUploadUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
     resetUploadState,
@@ -386,17 +387,15 @@ function CreatorsContentsInner() {
     }
   };
 
-  const handleUploadBackClick = useCallback(() => {
-    const isPostCreateContent =
-      Boolean(postCreateContentId) && queryContentId === postCreateContentId;
+  const handleDiscardOrBack = useCallback(() => {
+    hasUploadUnsavedChanges ? openDiscardModal() : handleBack();
+  }, [hasUploadUnsavedChanges, openDiscardModal, handleBack]);
 
-    if (isPostCreateContent) {
-      setShowPostCreateModal(true);
-      return;
-    }
+  const handleUploadBackClick = handleDiscardOrBack;
 
-    handleBack();
-  }, [handleBack, postCreateContentId, queryContentId]);
+  const handleCancel = useCallback(() => {
+    isUploadMode ? handleDiscardOrBack() : handleHeaderCancel();
+  }, [isUploadMode, handleDiscardOrBack, handleHeaderCancel]);
 
   const handleDeleteSuccessClose = useCallback(() => {
     if (!isUploadMode && !editingContent?.id) return;
@@ -431,7 +430,7 @@ function CreatorsContentsInner() {
         <ContentsHeaderAction
           activeTab={activeTab}
           onCreate={handleCreate}
-          onCancel={handleHeaderCancel}
+          onCancel={handleCancel}
           onCreateCoupon={couponFlow.open}
           onSave={handleHeaderSave}
           isSaveDisabled={
