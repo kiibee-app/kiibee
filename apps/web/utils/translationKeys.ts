@@ -193,6 +193,7 @@ export const CREATOR_PROFILE = {
     confirm: "creatorProfile.deleteModal.confirm",
   },
   deleteToastMessage: "creatorProfile.deleteToastMessage",
+  deleteErrorMessage: "creatorProfile.deleteErrorMessage",
   deleteSuccessModal: {
     title: "creatorProfile.deleteSuccessModal.title",
     message: "creatorProfile.deleteSuccessModal.message",
