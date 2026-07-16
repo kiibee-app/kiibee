@@ -1,13 +1,19 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { users, creatorInfo, creatorBankAccounts } from 'src/database/schema';
+import {
+  users,
+  creatorInfo,
+  creatorBankAccounts,
+  creatorDeletionRequests,
+} from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
+import { STATUS } from 'src/utils/constant';
 
 export const getCreatorProfileService = async (userId: string) => {
   try {
-    const [user, creator, bankAccount] = await Promise.all([
+    const [user, creator, bankAccount, pendingDeletion] = await Promise.all([
       db.select().from(users).where(eq(users.id, userId)).limit(1),
 
       db
@@ -21,6 +27,18 @@ export const getCreatorProfileService = async (userId: string) => {
         .from(creatorBankAccounts)
         .where(eq(creatorBankAccounts.creatorId, userId))
         .limit(1),
+
+      db
+        .select({ id: creatorDeletionRequests.id })
+        .from(creatorDeletionRequests)
+        .where(
+          and(
+            eq(creatorDeletionRequests.userId, userId),
+            eq(creatorDeletionRequests.status, STATUS.PENDING),
+            eq(creatorDeletionRequests.isDeleted, false),
+          ),
+        )
+        .limit(1),
     ]);
 
     if (!user.length) {
@@ -31,6 +49,7 @@ export const getCreatorProfileService = async (userId: string) => {
       user: user[0] || null,
       creatorInfo: creator[0] || null,
       bankAccount: bankAccount[0] || null,
+      hasPendingDeletionRequest: pendingDeletion.length > 0,
     };
 
     return success(

@@ -32,6 +32,7 @@ import { ProfileForm } from "@/utils/creatorProfile";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { GenericModal } from "@/components/UI/Modals";
 import ConfirmationModal from "@/components/UI/ConfirmationModal";
+import { InfoIcon } from "@/assets/icons";
 import { QuestionIcon } from "@/assets/icons/questionIcon";
 import { useRouter } from "next/navigation";
 import ImageUploader from "./ImageUploader";
@@ -39,6 +40,7 @@ import { PATHS } from "@/utils/path";
 import { useCreatorProfile } from "@/hooks/auth/useCreatorProfile";
 import { useDeleteAPI } from "@/lib/http/api";
 import { API } from "@/lib/http/api/endpoints";
+import { normalizeApiError } from "@/lib/http/errors/apiError";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import {
   getDisplayFirstLetter,
@@ -59,6 +61,8 @@ export default function CreatorProfile() {
   const { getErrorMessage } = useApiErrorMessage();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+  const [showDeletePendingModal, setShowDeletePendingModal] = useState(false);
+  const [locallyPendingDeletion, setLocallyPendingDeletion] = useState(false);
   const user = useStoredLoginUser();
   const deleteUserMutation = useDeleteAPI<DeleteUserResponse, void>(
     API.auth.deleteUser,
@@ -89,17 +93,37 @@ export default function CreatorProfile() {
     isChangingPassword,
     canSubmitPassword,
     profileFieldErrors,
+    hasPendingDeletionRequest: profileHasPendingDeletion,
   } = useCreatorProfile();
 
+  const hasPendingDeletionRequest =
+    locallyPendingDeletion || profileHasPendingDeletion;
+
   const fields = useMemo(() => getProfileFields(t), [t]);
+
+  const handleDeleteClick = () => {
+    if (hasPendingDeletionRequest) {
+      setShowDeletePendingModal(true);
+      return;
+    }
+    setShowDeleteModal(true);
+  };
 
   const handleDeleteRequest = async () => {
     try {
       await deleteUserMutation.mutateAsync();
       setShowDeleteModal(false);
+      setLocallyPendingDeletion(true);
       setShowDeleteSuccessModal(true);
       toast.success(t(CREATOR_PROFILE.deleteToastMessage));
     } catch (error) {
+      const apiError = normalizeApiError(error);
+      if (apiError.status === 409) {
+        setShowDeleteModal(false);
+        setLocallyPendingDeletion(true);
+        setShowDeletePendingModal(true);
+        return;
+      }
       toast.error(getErrorMessage(error, CREATOR_PROFILE.deleteErrorMessage));
     }
   };
@@ -110,6 +134,10 @@ export default function CreatorProfile() {
 
   const handleDeleteSuccessClose = () => {
     setShowDeleteSuccessModal(false);
+  };
+
+  const handleDeletePendingClose = () => {
+    setShowDeletePendingModal(false);
   };
 
   return (
@@ -187,7 +215,7 @@ export default function CreatorProfile() {
         fieldErrors={profileFieldErrors}
       />
       <PaymentSection form={form} onChange={onChange} t={t} />
-      <DeleteSection onDelete={() => setShowDeleteModal(true)} />
+      <DeleteSection onDelete={handleDeleteClick} />
 
       <GenericModal
         visible={showPassword}
@@ -268,6 +296,20 @@ export default function CreatorProfile() {
         onClose={handleDeleteSuccessClose}
         onConfirm={handleDeleteSuccessClose}
         size="sm"
+        showCloseButton={false}
+      />
+      <GenericModal
+        visible={showDeletePendingModal}
+        icon={<InfoIcon size={48} color={COLORS.primary.GREEN_200} />}
+        iconMargin="0 auto 12px"
+        textAlign={MODAL_ALIGN.CENTER}
+        title={t(CREATOR_PROFILE.deletePendingModal.title)}
+        message={t(CREATOR_PROFILE.deletePendingModal.message)}
+        confirmLabel={t(CREATOR_PROFILE.deletePendingModal.confirm)}
+        onClose={handleDeletePendingClose}
+        onConfirm={handleDeletePendingClose}
+        size="sm"
+        spacing="xs"
         showCloseButton={false}
       />
       <GenericModal

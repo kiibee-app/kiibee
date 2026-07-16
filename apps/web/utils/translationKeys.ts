@@ -199,6 +199,11 @@ export const CREATOR_PROFILE = {
     message: "creatorProfile.deleteSuccessModal.message",
     confirm: "creatorProfile.deleteSuccessModal.confirm",
   },
+  deletePendingModal: {
+    title: "creatorProfile.deletePendingModal.title",
+    message: "creatorProfile.deletePendingModal.message",
+    confirm: "creatorProfile.deletePendingModal.confirm",
+  },
 };
 
 export const DASHBOARD_USERS = {

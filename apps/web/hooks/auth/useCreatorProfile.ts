@@ -252,5 +252,7 @@ export const useCreatorProfile = () => {
     isLoadingProfile: profileQuery.isLoading,
     canSubmitPassword: base.canSubmitPassword,
     profileFieldErrors,
+    hasPendingDeletionRequest:
+      !!profileQuery.data?.data?.hasPendingDeletionRequest,
   };
 };
