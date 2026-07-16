@@ -5,6 +5,9 @@ export const API_ENDPOINTS = {
   USER_PROFILE: "/auth/user/profile",
   APPROVE_CREATOR: "/auth/approve-creator",
   REJECT_CREATOR: "/auth/reject-creator",
+  CREATOR_DELETION_REQUESTS: "/auth/creator-deletion-requests",
+  APPROVE_CREATOR_DELETION: "/auth/approve-creator-deletion",
+  REJECT_CREATOR_DELETION: "/auth/reject-creator-deletion",
   ALL_CREATORS: "/creators/admin/all-creators",
   CREATOR_BY_ID: (creatorId: string) => `/auth/all-creators/${creatorId}`,
   ALL_CREATOR_REQUESTS: "/auth/all-creator-requests",
@@ -56,6 +59,7 @@ export type StatAccent = (typeof STAT_ACCENT)[keyof typeof STAT_ACCENT];
 
 export const QUERY_KEY = {
   CREATOR_REQUESTS: "creator-requests",
+  CREATOR_DELETION_REQUESTS: "creator-deletion-requests",
   EXISTING_CREATORS: "existing-creators",
   VIEWERS: "viewers",
   VIEWER_DETAIL: "viewer-detail",
@@ -97,4 +101,5 @@ export const ADMIN_ROLE = "admin";
 
 export const ROUTES = {
   PENDING_REQUESTS: "/pending-requests",
+  DELETION_REQUESTS: "/deletion-requests",
 } as const;
