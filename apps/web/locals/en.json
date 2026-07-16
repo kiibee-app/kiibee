@@ -1008,6 +1008,11 @@
       "message": "Your request has been submitted. An administrator will review it and complete the account deletion process. You'll be notified once it's done.",
       "confirm": "Done"
     },
+    "deletePendingModal": {
+      "title": "Delete request is in progress",
+      "message": "Your account deletion request is already pending. An administrator will review it and notify you once it's done.",
+      "confirm": "Done"
+    },
     "forgotPass": "Forgot Password?",
     "passwordSuccessTitle": "Password updated",
     "passwordSuccessMessage": "Your password was successfully updated. Please log in again to continue.",

@@ -46,6 +46,7 @@ export type CreatorProfileApiData = {
   user?: CreatorProfileUser | null;
   creatorInfo?: CreatorProfileInfo | null;
   bankAccount?: CreatorProfileBankAccount | null;
+  hasPendingDeletionRequest?: boolean;
 };
 
 export type GetCreatorProfileResponse = {

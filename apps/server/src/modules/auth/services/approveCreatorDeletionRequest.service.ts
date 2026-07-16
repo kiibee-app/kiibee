@@ -11,6 +11,9 @@ import { success } from 'src/utils/sendResponse';
 import { STATUS } from 'src/utils/constant';
 import { and, eq } from 'drizzle-orm';
 import { deleteSubscriptionService } from 'src/modules/subscription/services/deleteSubscription.service';
+import { runInBackground } from 'src/utils/backgroundTask';
+import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
+import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
 export const approveCreatorDeletionRequestService = async (
   requestId: string,
@@ -25,8 +28,14 @@ export const approveCreatorDeletionRequestService = async (
     }
 
     const [pendingRequest] = await db
-      .select({ userId: creatorDeletionRequests.userId })
+      .select({
+        userId: creatorDeletionRequests.userId,
+        userEmail: users.email,
+        userFirstName: users.firstName,
+        userFullName: users.fullName,
+      })
       .from(creatorDeletionRequests)
+      .leftJoin(users, eq(creatorDeletionRequests.userId, users.id))
       .where(
         and(
           eq(creatorDeletionRequests.id, requestId),
@@ -45,7 +54,7 @@ export const approveCreatorDeletionRequestService = async (
 
     const targetUserId = pendingRequest.userId;
 
-    if (!targetUserId) {
+    if (!targetUserId || !pendingRequest.userEmail) {
       throw new HttpException(
         'Creator account associated with this request no longer exists',
         HttpStatus.BAD_REQUEST,
@@ -128,6 +137,20 @@ export const approveCreatorDeletionRequestService = async (
           .where(eq(subscriptions.id, activeSubscription.id));
       }
     });
+
+    runInBackground(
+      sendTemplateEmail({
+        to: pendingRequest.userEmail,
+        subject: mailSubject.APPROVED_CREATOR_DELETION,
+        templateName: templateName.APPROVED_CREATOR_DELETION,
+        variables: {
+          name:
+            pendingRequest.userFirstName ||
+            pendingRequest.userFullName ||
+            'there',
+        },
+      }),
+    );
 
     return success(
       null,
