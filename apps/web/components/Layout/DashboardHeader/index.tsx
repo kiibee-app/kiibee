@@ -66,7 +66,7 @@ const DashboardHeader = ({ role, onToggleSidebar, onProfileClick }: Props) => {
           <Image
             src={logo}
             alt={t("nav.logoAlt")}
-            width={112}
+            width={80}
             height={25}
             priority
           />
