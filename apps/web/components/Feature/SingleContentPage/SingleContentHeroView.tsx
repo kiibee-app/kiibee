@@ -226,10 +226,11 @@ export default function SingleContentHeroView({
   const hasTrailerLink = Boolean(hero.media?.src);
 
   const isVideo = hero.contentType === FORMAT_TYPE.VIDEO;
+  const isAudio = hero.contentType === FORMAT_TYPE.AUDIO;
   const isPurchased = Boolean(primaryAction);
   const showPlayButton =
     isPurchased &&
-    isVideo &&
+    (isVideo || isAudio) &&
     !hasStartedPlayback &&
     !isTrailerPlaying &&
     !isCloudflarePlaying;
@@ -365,7 +366,7 @@ export default function SingleContentHeroView({
           <CenteredPlayButton
             onClick={handleCenteredPlayClick}
             type="button"
-            aria-label="Play video"
+            aria-label={isAudio ? "Play audio" : "Play video"}
           >
             <PlayIcon
               width={28}
