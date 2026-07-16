@@ -13,7 +13,6 @@ import {
 } from "@/utils/appearanceApi";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
 import { writeSavedCreatorLayout } from "@/utils/creatorChannel";
-import { CONTENTS } from "@/utils/translationKeys";
 import { resolveProfileAvatarUrl } from "@/utils/image";
 import type { AppearanceFormContextValue } from "./appearanceFormTypes";
 import { useAppearanceDraft } from "./useAppearanceDraft";
@@ -52,7 +51,6 @@ export function AppearanceFormProvider({
     errors,
     clearFieldError,
     validateField: validateFieldState,
-    validateAll,
     syncErrors,
     resetErrors,
   } = useAppearanceValidation();
@@ -71,11 +69,6 @@ export function AppearanceFormProvider({
   );
 
   const saveAppearance = useCallback(async () => {
-    const nextErrors = validateAll(values);
-    if (Object.keys(nextErrors).length > 0) {
-      throw new Error(CONTENTS.appearance.validation.fixErrors);
-    }
-
     const payload = mapAppearanceToApi(values);
 
     const [logoUrl, desktopCoverImageUrl, mobileCoverImageUrl] =
@@ -117,7 +110,6 @@ export function AppearanceFormProvider({
     resetDraft,
     resetErrors,
     setSelectedLayout,
-    validateAll,
     values,
     storedUser,
   ]);
