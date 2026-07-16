@@ -1,7 +1,6 @@
 "use client";
 
 import { memo, useMemo, useState, type MouseEvent } from "react";
-import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
 import { resolveImageUrl, VARIANT } from "@/utils/Constants";
 import { LoginRequiredModal } from "@/components/UI/Modals";
 import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
@@ -21,6 +20,7 @@ import GenericCard from "@/components/UI/GenericCard";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { resolveTutorialThumbnailCandidates } from "@/utils/tutorialVideoMapper";
+import { useViewerContentAccess } from "@/hooks/useViewerContentAccess";
 
 type TutorialCardProps = {
   tutorial: TutorialVideo;
@@ -49,10 +49,13 @@ function TutorialCard({
   isSelected = false,
 }: TutorialCardProps) {
   const { t } = useTranslation();
-  const user = useStoredLoginUser();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
   const [pendingRedirectUrl, setPendingRedirectUrl] = useState("");
+  const { user, hasAccess, rentedItem } = useViewerContentAccess(
+    tutorial.id,
+    tutorial.creatorId,
+  );
 
   const handleShowLoginModal = (url: string) => {
     setPendingRedirectUrl(url);
@@ -98,13 +101,22 @@ function TutorialCard({
   );
 
   const buttons = useMemo(() => {
+    if (hasAccess) {
+      return [
+        {
+          label: t("createProfileHome.latestUpload.seeContent"),
+          variant: VARIANT.SECONDARY,
+          href: singleTutorialHref,
+        },
+      ];
+    }
     const defaultButton: TutorialButton = {
       label: t(TUTORIAL_VIDEOS.buttonFreeLabel),
       variant: VARIANT.SECONDARY,
       href: singleTutorialHref,
     };
     return tutorial.buttons?.length ? tutorial.buttons : [defaultButton];
-  }, [tutorial.buttons, t, singleTutorialHref]);
+  }, [hasAccess, tutorial.buttons, t, singleTutorialHref]);
 
   const resolveButtonHref = (href?: string) => {
     if (!href) return singleTutorialHref;
@@ -228,6 +240,12 @@ function TutorialCard({
         </ActionRow>
       }
     >
+      {rentedItem?.expiryText ? (
+        <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
+          {rentedItem.expiryText}
+        </MonoText>
+      ) : null}
+
       {tutorial.published ? (
         <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
           {tutorial.published}

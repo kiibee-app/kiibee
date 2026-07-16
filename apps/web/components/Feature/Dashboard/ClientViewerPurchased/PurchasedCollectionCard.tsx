@@ -34,7 +34,9 @@ export default function PurchasedCollectionCard({ item }: Props) {
     <CollectionCard>
       <CollectionImageWrap>
         <CollectionBadge>{getCollectionBadgeText(mode, t)}</CollectionBadge>
-        <CollectionImage src={item.coverSrc} alt={item.title} />
+        {item.coverSrc ? (
+          <CollectionImage src={item.coverSrc} alt={item.title} />
+        ) : null}
       </CollectionImageWrap>
 
       <CollectionBody>

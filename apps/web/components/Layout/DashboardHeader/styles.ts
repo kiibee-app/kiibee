@@ -5,14 +5,13 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export const HeaderWrapper = styled.header`
-  min-height: 70px;
-  height: auto;
+  height: 70px;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 200;
-  padding: 18px 25px;
+  padding: 0 25px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,12 +19,12 @@ export const HeaderWrapper = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary.GRAY};
 
   ${media.desktop} {
-    padding: 12px 16px;
+    padding: 0 16px;
   }
 
-  ${media.mobileMd} {
-    min-height: 60px;
-    padding: 12px 10px;
+  ${media.mobileXl} {
+    height: 60px;
+    padding: 0 10px;
   }
 `;
 
@@ -75,7 +74,7 @@ export const Right = styled.div`
     gap: 12px;
   }
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     gap: 8px;
   }
 `;

@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import {
   Container,
   Title,
@@ -36,6 +37,9 @@ import { useRouter } from "next/navigation";
 import ImageUploader from "./ImageUploader";
 import { PATHS } from "@/utils/path";
 import { useCreatorProfile } from "@/hooks/auth/useCreatorProfile";
+import { useDeleteAPI } from "@/lib/http/api";
+import { API } from "@/lib/http/api/endpoints";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import {
   getDisplayFirstLetter,
   useStoredLoginUser,
@@ -47,13 +51,18 @@ import {
   forgotPwIsSuccess,
 } from "@/utils/viewerProfile";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import { DeleteUserResponse } from "@/types/auth";
 
 export default function CreatorProfile() {
   const { t } = useTranslation();
   const router = useRouter();
+  const { getErrorMessage } = useApiErrorMessage();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
   const user = useStoredLoginUser();
+  const deleteUserMutation = useDeleteAPI<DeleteUserResponse, void>(
+    API.auth.deleteUser,
+  );
 
   const {
     form,
@@ -84,9 +93,15 @@ export default function CreatorProfile() {
 
   const fields = useMemo(() => getProfileFields(t), [t]);
 
-  const handleDeleteRequest = () => {
-    setShowDeleteModal(false);
-    setShowDeleteSuccessModal(true);
+  const handleDeleteRequest = async () => {
+    try {
+      await deleteUserMutation.mutateAsync();
+      setShowDeleteModal(false);
+      setShowDeleteSuccessModal(true);
+      toast.success(t(CREATOR_PROFILE.deleteToastMessage));
+    } catch (error) {
+      toast.error(getErrorMessage(error, CREATOR_PROFILE.deleteErrorMessage));
+    }
   };
 
   const handleDeleteClose = () => {
@@ -95,7 +110,6 @@ export default function CreatorProfile() {
 
   const handleDeleteSuccessClose = () => {
     setShowDeleteSuccessModal(false);
-    router.push(PATHS.AUTH_LOGIN);
   };
 
   return (
@@ -150,6 +164,7 @@ export default function CreatorProfile() {
                 labelMarginTop={index ? "16px" : undefined}
                 hasError={!!errorMessage}
                 errorMessage={errorMessage}
+                max={field.max}
               />
             );
           })}
@@ -235,6 +250,7 @@ export default function CreatorProfile() {
         cancelLabel={t(CREATOR_PROFILE.deleteModal.cancel)}
         confirmLabel={t(CREATOR_PROFILE.deleteModal.confirm)}
         onConfirm={handleDeleteRequest}
+        isLoading={deleteUserMutation.isPending}
         confirmVariant={VARIANT.DANGER}
         size="sm"
         spacing="xs"

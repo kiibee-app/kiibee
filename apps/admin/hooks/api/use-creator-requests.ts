@@ -2,7 +2,7 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
-import type { ExistingCreator } from "../../types/existing-creator";
+import type { ExistingCreatorsResponse } from "../../types/existing-creator";
 import type { CreatorRequest } from "../../types/creator-request";
 import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
 
@@ -49,27 +49,46 @@ export function useCreatorRequests() {
   });
 }
 
-export function useExistingCreators(search?: string, plan?: string) {
+type ExistingCreatorsQuery = {
+  search?: string;
+  plan?: string;
+  page: number;
+  limit: number;
+};
+
+export function useExistingCreators({
+  search,
+  plan,
+  page,
+  limit,
+}: ExistingCreatorsQuery) {
   return useQuery({
-    queryKey:
-      search || plan
-        ? [...EXISTING_CREATORS_QUERY_KEY, { search, plan }]
-        : EXISTING_CREATORS_QUERY_KEY,
+    queryKey: [...EXISTING_CREATORS_QUERY_KEY, { search, plan, page, limit }],
     queryFn: async () => {
       const params = new URLSearchParams({
+        page: String(page),
+        limit: String(limit),
         ...(search && { search }),
         ...(plan && { plan }),
       });
 
-      const query = params.toString();
-      const url = query
-        ? `${API_ENDPOINTS.ALL_CREATORS}?${query}`
-        : API_ENDPOINTS.ALL_CREATORS;
-      const data = await ensureSuccess<ExistingCreator[]>(
-        apiClient<ExistingCreator[]>(url),
+      const data = await ensureSuccess<ExistingCreatorsResponse>(
+        apiClient<ExistingCreatorsResponse>(
+          `${API_ENDPOINTS.ALL_CREATORS}?${params.toString()}`,
+        ),
       );
 
-      return data ?? [];
+      return (
+        data ?? {
+          items: [],
+          pagination: {
+            page,
+            limit,
+            totalItems: 0,
+            totalPages: 1,
+          },
+        }
+      );
     },
   });
 }

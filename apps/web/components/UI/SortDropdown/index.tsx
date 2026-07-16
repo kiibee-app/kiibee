@@ -126,7 +126,7 @@ function SortDropdown<T extends string = string>({
           direction={open ? Directions.UP : Directions.DOWN}
           color={
             variant === SORT_DROPDOWN_VARIANT.SURFACE
-              ? theme.colors.neutral.GRAY_400
+              ? theme.colors.neutral.GRAY_500
               : theme.colors.primary.BLACK
           }
         />

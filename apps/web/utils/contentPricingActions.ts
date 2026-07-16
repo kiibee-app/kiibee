@@ -1,10 +1,10 @@
 import type { TFunction } from "i18next";
 import {
   ACCESS_TYPE_FREE,
-  BUY_COLLECTION_PREFIX,
   BUY_KEYWORDS,
   BUY_PREFIX,
   FREE_LABEL,
+  RENT_KEYWORDS,
   RENT_PREFIX,
   VARIANT,
 } from "./Constants";
@@ -69,6 +69,10 @@ export function isBuyActionLabel(label: string): boolean {
   return BUY_KEYWORDS.some((keyword) => label.toLowerCase().includes(keyword));
 }
 
+export function isRentActionLabel(label: string): boolean {
+  return RENT_KEYWORDS.some((keyword) => label.toLowerCase().includes(keyword));
+}
+
 export function isFreeContentItem(
   item: Pick<FeedContentItem, "accessType" | "rentPrice" | "buyPrice">,
 ): boolean {
@@ -83,7 +87,7 @@ function resolvePricingPrefixes(labels?: PricingLabels) {
   return {
     rentPrefix: labels?.rent ?? RENT_PREFIX,
     buyPrefix: labels?.buy ?? BUY_PREFIX,
-    buyCollectionPrefix: labels?.buyCollection ?? BUY_COLLECTION_PREFIX,
+    buyCollectionPrefix: labels?.buy ?? BUY_PREFIX,
   };
 }
 

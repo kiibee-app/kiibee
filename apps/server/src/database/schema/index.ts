@@ -7,6 +7,7 @@ export * from './users/userProfiles.schema';
 export * from './users/userSessions.schema';
 export * from './users/accountSetupTokens.schema';
 export * from './users/creatorApplicationRequests.schema';
+export * from './users/creatorDeletionRequests.schema';
 export * from './users/revokedTokens.schema';
 export * from './users/userContentTypes.shema';
 export * from './users/userContentCategories.shema';
@@ -45,6 +46,7 @@ export * from './commerce/creatorPayouts.schema';
 export * from './commerce/creatorBankAccounts.schema';
 export * from './commerce/userCardInfo.schema';
 export * from './commerce/creatorWallets.schema';
+export * from './commerce/creatorPayoutRequests.schema';
 
 // Coupons
 export * from './coupons/coupons.schema';

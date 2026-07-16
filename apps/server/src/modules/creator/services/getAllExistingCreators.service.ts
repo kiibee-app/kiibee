@@ -13,13 +13,22 @@ import {
 import { logger } from 'src/logger/logger';
 import { ROLE } from 'src/utils/constant';
 import { success } from 'src/utils/sendResponse';
+import {
+  DEFAULT_LIMIT,
+  getSafePositiveInteger,
+  MAX_LIMIT,
+} from 'src/utils/pagination';
 
-export const getAllExistingCreatorsService = async ({
+export const getAdminCreatorsService = async ({
   search,
   plan,
+  page,
+  limit,
 }: {
   search?: string;
   plan?: string;
+  page?: number;
+  limit?: number;
 } = {}) => {
   try {
     const uploadCountSql = sql<number>`
@@ -34,6 +43,8 @@ export const getAllExistingCreatorsService = async ({
     const searchTerm = search?.trim();
     const searchPattern = searchTerm ? `%${searchTerm}%` : undefined;
     const planTerm = plan?.trim();
+    const requestedPage = getSafePositiveInteger(page, 1);
+    const pageSize = getSafePositiveInteger(limit, DEFAULT_LIMIT, MAX_LIMIT);
     const filters = [eq(users.role, ROLE.CREATOR), eq(users.isDeleted, false)];
 
     if (searchPattern) {
@@ -52,6 +63,18 @@ export const getAllExistingCreatorsService = async ({
     if (planTerm) {
       filters.push(ilike(plans.name, planTerm));
     }
+
+    const [totalResult] = await db
+      .select({ count: sql<number>`COUNT(DISTINCT ${users.id})::int` })
+      .from(users)
+      .leftJoin(creatorPlans, eq(creatorPlans.creatorId, users.id))
+      .leftJoin(plans, eq(plans.id, creatorPlans.planId))
+      .where(and(...filters));
+
+    const totalItems = Number(totalResult?.count ?? 0);
+    const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+    const currentPage = Math.min(requestedPage, totalPages);
+    const offset = (currentPage - 1) * pageSize;
 
     const creators = await db
       .select({
@@ -103,14 +126,24 @@ export const getAllExistingCreatorsService = async ({
         creatorChannels.slug,
         creatorChannels.isPublished,
       )
-      .orderBy(desc(users.createdAt));
+      .orderBy(desc(users.createdAt))
+      .limit(pageSize)
+      .offset(offset);
 
     return success(
-      creators.map((creator) => ({
-        ...creator,
-        uploadCount: Number(creator.uploadCount ?? 0),
-        subscriberCount: Number(creator.subscriberCount ?? 0),
-      })),
+      {
+        items: creators.map((creator) => ({
+          ...creator,
+          uploadCount: Number(creator.uploadCount ?? 0),
+          subscriberCount: Number(creator.subscriberCount ?? 0),
+        })),
+        pagination: {
+          page: currentPage,
+          limit: pageSize,
+          totalItems,
+          totalPages,
+        },
+      },
       'Creators fetched successfully',
       HttpStatus.OK,
     );

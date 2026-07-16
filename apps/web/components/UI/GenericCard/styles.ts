@@ -23,7 +23,7 @@ export const Card = styled.div<{
     return "315px";
   }};
   width: ${({ $width }) => $width || "100%"};
-  box-shadow: ${({ theme }) => theme.shadows.frame};
+  box-shadow: ${({ theme }) => theme.shadows.xl};
   transition:
     transform ${({ theme }) => theme.animations.normal}
       ${({ theme }) => theme.animations.easing},
@@ -113,7 +113,11 @@ export const Badge = styled.span<{ $variant?: "default" | "owned" }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover {
+  transition: background ${({ theme }) => theme.animations.normal}
+    ${({ theme }) => theme.animations.easing};
+
+  &:hover,
+  ${Card}:has(:is(button, a):hover) & {
     background: ${({ $variant = "default", theme }) =>
       $variant === "owned"
         ? theme.colors.primary.GREEN

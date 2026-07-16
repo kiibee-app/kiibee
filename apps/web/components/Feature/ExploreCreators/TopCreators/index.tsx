@@ -26,9 +26,9 @@ import {
 } from "../Creators/styles";
 import Skeleton from "@/components/UI/Skeleton";
 
-export default function TopCreators() {
+export default function TopCreators({ search }: { search?: string }) {
   const { t } = useTranslation();
-  const { creators, isLoading } = useExploreTopCreators();
+  const { creators, isLoading } = useExploreTopCreators(6, search);
 
   if (isLoading) {
     return (

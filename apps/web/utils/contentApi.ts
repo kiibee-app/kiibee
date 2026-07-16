@@ -1,4 +1,5 @@
 import React from "react";
+import type { TFunction } from "i18next";
 import contentFallbackImage from "@/assets/images/single-tutorial/Content image.png";
 import playIcon from "@/assets/images/single-tutorial/Play.svg";
 import playCircleIcon from "@/assets/images/single-tutorial/solar_play-circle-bold.svg";
@@ -27,10 +28,11 @@ import {
   getContentDetailPricingActions,
   isFreeContentItem,
 } from "@/utils/contentPricingActions";
+import { formatExpiryText } from "@/utils/viewerRented";
 import { FORMAT_TYPE } from "@/utils/types";
 import { URL_PROTOCOL_REGEX, isValidUrl } from "@/utils/common";
 
-type Translate = (key: string) => string;
+type Translate = TFunction;
 type UnknownRecord = Record<string, unknown>;
 
 export const CONTENT_RESPONSE_KEYS = {
@@ -211,6 +213,7 @@ const getContentHeroImages = (
   const candidates = resolveContentThumbnailCandidates(
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_URL],
     content[CONTENT_RESPONSE_KEYS.THUMBNAIL_LANDSCAPE_URL],
+    { preferLandscape: true },
   );
 
   const fallback = isDraft ? draftFallbackImage : contentFallbackImage;
@@ -256,17 +259,30 @@ export const getSingleContentProps = (
   const isRented = content.accessInfo?.accessType === ACCESS_TYPE_RENTED;
   const isExpired =
     isRented && content.accessInfo?.timeLeftText === ACCESS_STATUS_EXPIRED;
+  const expiryText = formatExpiryText(content.accessInfo?.rentExpiresAt, t);
+  const expiryLabel = isRented && !isExpired ? expiryText : "";
 
-  let statusLabel: string | undefined = undefined;
-  if (content.accessInfo && !isExpired) {
-    statusLabel =
-      content.accessInfo.accessType === ACCESS_TYPE_RENTED
+  const isOwner = Boolean(
+    options?.viewerId &&
+    content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
+  );
+
+  const statusLabel: string | undefined = isOwner
+    ? t("singleContent.myContent")
+    : content.accessInfo && !isExpired
+      ? content.accessInfo.accessType === ACCESS_TYPE_RENTED
         ? t("viewerRented.inRental")
-        : t("viewerRented.owned");
-  }
+        : t("viewerRented.owned")
+      : undefined;
 
   const pricingActions = getContentDetailPricingActions(pricingItem, t, {
     inCollection: options?.inCollection,
+    labels: {
+      rent: t("pricingLabels.rent"),
+      buy: t("pricingLabels.buy"),
+      buyCollection: t("pricingLabels.buyCollection"),
+      free: t("pricingLabels.free"),
+    },
   });
 
   const trailerUrl = toTrimmedString(
@@ -275,10 +291,6 @@ export const getSingleContentProps = (
 
   const isVideo = contentType === FORMAT_TYPE.VIDEO;
   const showTrailerInHero = Boolean(trailerUrl);
-  const isOwner = Boolean(
-    options?.viewerId &&
-    content[CONTENT_RESPONSE_KEYS.CREATOR_ID] === options.viewerId,
-  );
 
   const productionCompany = toTrimmedString(
     content[CONTENT_RESPONSE_KEYS.PRODUCTION_COMPANY],
@@ -293,6 +305,14 @@ export const getSingleContentProps = (
     descriptions: description ? [description] : [],
     tags: categories,
     statusLabel: statusLabel,
+    ...(expiryLabel
+      ? {
+          expiry: {
+            label: expiryLabel,
+            tone: "urgent",
+          } as const,
+        }
+      : {}),
     hero: {
       ...getContentHeroImages(content),
       imageAlt: title,

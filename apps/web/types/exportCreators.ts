@@ -29,6 +29,7 @@ export type CreatorFiltersControlState = {
   isFilterOpen: boolean;
   expandedSection: FilterSectionKey | null;
   showAllCreators: boolean;
+  showAllCategories: boolean;
   selectedOptions: Record<FilterGroupKey, string[]>;
   priceRange: { min: string; max: string };
   selectedRating: number | null;
@@ -37,6 +38,7 @@ export type CreatorFiltersControlState = {
 export type CreatorFiltersControlActions = {
   toggleFilter: () => void;
   setShowAllCreators: (show: boolean) => void;
+  setShowAllCategories: (show: boolean) => void;
   setSelectedRating: (rating: number) => void;
   toggleSection: (section: FilterSectionKey) => void;
   toggleOption: (group: FilterGroupKey, option: string) => void;
@@ -59,6 +61,7 @@ export type ListSectionItem = {
   sectionKey: FilterGroupKey;
   title: string;
   options: OptionItem[];
+  isScrollable?: boolean;
   footer?: React.ReactNode;
 };
 
@@ -69,13 +72,16 @@ export type BuildListSectionsParams = {
   formatLabels: OptionItem[];
   defaultVisibleCreators: number;
   showAllCreators: boolean;
+  showAllCategories: boolean;
   setShowAllCreators: (show: boolean) => void;
+  setShowAllCategories: (show: boolean) => void;
 };
 
 export type RenderFilterSectionItem = {
   key: FilterSectionKey;
   title: string;
   content: React.ReactNode;
+  isScrollable?: boolean;
 };
 
 export type BuildRenderFilterSectionsParams = {
@@ -83,6 +89,7 @@ export type BuildRenderFilterSectionsParams = {
   renderOptionList: (
     group: FilterGroupKey,
     options: OptionItem[],
+    isScrollable?: boolean,
   ) => React.ReactNode;
   priceTitle: string;
   ratingTitle: string;

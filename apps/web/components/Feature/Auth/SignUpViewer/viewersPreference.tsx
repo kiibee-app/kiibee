@@ -12,6 +12,7 @@ import { PATHS, isSafePostLoginPath } from "@/utils/path";
 import { PrepCard, PreContentWrap, ContentWrap } from "./styles";
 import PreferenceStepContent from "./PreferenceStepContent";
 import { UNDEFINED_STRING, REDIRECT_NEXT_QUERY_PARAM } from "@/utils/Constants";
+import { useAuthSession } from "@/hooks/auth/useAuthSession";
 
 export default function ViewerPreference({
   onComplete,
@@ -23,6 +24,7 @@ export default function ViewerPreference({
   const router = useRouter();
   const { t } = useTranslation();
   const theme = useTheme();
+  const { clearSession } = useAuthSession();
   const [step, setStep] = useState<ViewerPreferenceStep>(PREF_STEP.INTRO);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
@@ -54,6 +56,11 @@ export default function ViewerPreference({
       return;
     }
 
+    if (step === PREF_STEP.TYPES) {
+      setStep(PREF_STEP.READY);
+      return;
+    }
+
     if (onComplete) {
       onComplete();
     } else {
@@ -71,22 +78,33 @@ export default function ViewerPreference({
     }
   };
 
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+      return;
+    }
+
+    clearSession();
+    router.push(PATHS.AUTH_LOGIN);
+  };
+
   const isModal = !!onComplete;
 
   return (
     <PreContentWrap $isModal={isModal}>
       <ContentWrap $isModal={isModal}>
-        <AuthBackButton
-          href={!onBack ? PATHS.AUTH_SIGNUP_VIEWER : undefined}
-          onClick={onBack}
-        />
+        <AuthBackButton onClick={handleBack} />
       </ContentWrap>
       <PrepCard $isModal={isModal}>
         <PreferenceStepContent
           step={step}
           onStepBack={() =>
             setStep(
-              step === PREF_STEP.TYPES ? PREF_STEP.CONTENT : PREF_STEP.INTRO,
+              step === PREF_STEP.READY
+                ? PREF_STEP.TYPES
+                : step === PREF_STEP.TYPES
+                  ? PREF_STEP.CONTENT
+                  : PREF_STEP.INTRO,
             )
           }
           onToggleCategory={toggleCategory}
@@ -103,9 +121,11 @@ export default function ViewerPreference({
           onClick={handleContinue}
         >
           {t(
-            step === PREF_STEP.TYPES
-              ? VIEWER_SIGNUP_PREFERENCE.types.submit
-              : VIEWER_SIGNUP_PREFERENCE.submit,
+            step === PREF_STEP.READY
+              ? VIEWER_SIGNUP_PREFERENCE.ready.submit
+              : step === PREF_STEP.TYPES
+                ? VIEWER_SIGNUP_PREFERENCE.types.submit
+                : VIEWER_SIGNUP_PREFERENCE.submit,
           )}
         </GenericButton>
       </PrepCard>

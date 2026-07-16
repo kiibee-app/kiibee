@@ -182,10 +182,10 @@ function PublishedContentDetail() {
       <Section>
         <SingleContentPage
           {...getSingleContentProps(content, t, {
-            inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
             viewerId: resolvedUserId,
           })}
           content={content}
+          collectionId={relatedCollectionQuery.data?.collectionId}
           creator={
             publicCreator
               ? {
@@ -214,6 +214,7 @@ function PublishedContentDetail() {
             <CollectionItems
               videos={relatedCollectionQuery.data.videos}
               collectionId={relatedCollectionQuery.data.collectionId}
+              ownerCreatorId={content.creatorId}
             />
           ) : null}
         </SingleContentPage>

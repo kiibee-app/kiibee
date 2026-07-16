@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
-import { mediaFiles } from 'src/database/schema';
+import { mediaFiles, mediaFileCategories } from 'src/database/schema';
 import type { SQL } from 'drizzle-orm';
 import { sql, desc } from 'drizzle-orm';
 import { success, fail } from 'src/utils/sendResponse';
@@ -14,62 +14,67 @@ import {
   getTopCreatorsQuery,
 } from '../feed.query';
 
+const cleanArray = (value?: string[] | string | null) => {
+  if (!value) return [];
+
+  const values = Array.isArray(value) ? value : [value];
+
+  return values.filter((item): item is string => Boolean(item));
+};
+
+const pushCondition = (
+  conditions: SQL[],
+  column: typeof mediaFiles.contentTypeId | typeof mediaFiles.creatorId,
+  values: string[],
+) => {
+  if (!values.length) return;
+
+  conditions.push(
+    sql`${column} IN (${sql.join(
+      values.map((id) => sql`${id}`),
+      sql`, `,
+    )})`,
+  );
+};
+
 export const exploreService = async (
   limit?: number,
   search?: string,
   filter?: any,
 ) => {
   try {
+    const resolvedLimit = limit ?? FIXED_LIMIT;
     const searchCondition = buildSearch(search);
+    const contentTypeIds = cleanArray(filter?.contentTypeId);
+    const creatorIds = cleanArray(filter?.creatorId);
+    const categoryIds = cleanArray(filter?.categoryId);
     const minPrice = cleanNumber(filter?.minPrice) || undefined;
     const maxPrice = cleanNumber(filter?.maxPrice) || undefined;
-
-    const baseWhere = sql`
-      ${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}
-      AND ${mediaFiles.isPublished} = true
-      AND ${mediaFiles.isDeleted} = false
-    `;
-
-    const resolvedLimit = limit ?? FIXED_LIMIT;
-
-    const [trending, recent, topCreators] = await Promise.all([
-      getTrendingQuery(baseWhere, resolvedLimit),
-      getRecentQuery(baseWhere, resolvedLimit),
-      getTopCreatorsQuery(),
-    ]);
-
+    const baseConditions: SQL[] = [
+      sql`${mediaFiles.visibility} = ${CONTENT_VISIBILITY.PUBLIC}`,
+      sql`${mediaFiles.isPublished} = true`,
+      sql`${mediaFiles.isDeleted} = false`,
+    ];
     const extra: SQL[] = [];
 
-    if (filter?.contentTypeId) {
-      const ids = (
-        Array.isArray(filter.contentTypeId)
-          ? filter.contentTypeId
-          : [filter.contentTypeId]
-      ).filter(Boolean);
-
-      if (ids.length) {
-        extra.push(
-          sql`${mediaFiles.contentTypeId} IN (${sql.join(
-            ids.map((id) => sql`${id}`),
-            sql`, `,
-          )})`,
-        );
-      }
+    if (searchCondition) {
+      baseConditions.push(searchCondition);
     }
 
-    if (filter?.creatorId) {
-      const ids = (
-        Array.isArray(filter.creatorId) ? filter.creatorId : [filter.creatorId]
-      ).filter(Boolean);
+    pushCondition(extra, mediaFiles.contentTypeId, contentTypeIds);
+    pushCondition(extra, mediaFiles.creatorId, creatorIds);
 
-      if (ids.length) {
-        extra.push(
-          sql`${mediaFiles.creatorId} IN (${sql.join(
-            ids.map((id) => sql`${id}`),
+    if (categoryIds.length) {
+      extra.push(
+        sql`${mediaFiles.id} IN (
+          SELECT ${mediaFileCategories.mediaFileId}
+          FROM ${mediaFileCategories}
+          WHERE ${mediaFileCategories.categoryId} IN (${sql.join(
+            categoryIds.map((id) => sql`${id}`),
             sql`, `,
-          )})`,
-        );
-      }
+          )})
+        )`,
+      );
     }
 
     if (minPrice !== undefined) {
@@ -79,27 +84,23 @@ export const exploreService = async (
     if (maxPrice !== undefined) {
       extra.push(
         sql`(
-      CAST(${mediaFiles.buyPrice} AS NUMERIC) <= ${maxPrice}
-      OR ${mediaFiles.buyPrice} IS NULL
-    )`,
+          CAST(${mediaFiles.buyPrice} AS NUMERIC) <= ${maxPrice}
+          OR ${mediaFiles.buyPrice} IS NULL
+        )`,
       );
     }
 
-    let latestWhere = baseWhere;
+    const baseWhere = sql.join(baseConditions, sql` AND `);
+    const latestWhere = extra.length
+      ? sql`${baseWhere} AND ${sql.join(extra, sql` AND `)}`
+      : baseWhere;
 
-    if (searchCondition) {
-      latestWhere = sql`${latestWhere} AND ${searchCondition}`;
-    }
-
-    if (extra.length) {
-      latestWhere = sql`${latestWhere} AND ${sql.join(extra, sql` AND `)}`;
-    }
-
-    const latest = await getLatestQuery(
-      latestWhere,
-      desc(mediaFiles.publishedAt),
-      resolvedLimit,
-    );
+    const [trending, recent, latest, topCreators] = await Promise.all([
+      getTrendingQuery(baseWhere, resolvedLimit),
+      getRecentQuery(baseWhere, resolvedLimit),
+      getLatestQuery(latestWhere, desc(mediaFiles.publishedAt), resolvedLimit),
+      getTopCreatorsQuery(),
+    ]);
 
     return success(
       {

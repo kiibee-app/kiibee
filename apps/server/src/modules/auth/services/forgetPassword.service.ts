@@ -23,10 +23,9 @@ export const forgetPasswordService = async (email: string) => {
       .limit(1);
 
     if (!user || user.length === 0) {
-      return success(
-        null,
-        'Password reset link sent if user exists',
-        HttpStatus.CREATED,
+      throw new HttpException(
+        'No account found with this email',
+        HttpStatus.NOT_FOUND,
       );
     }
 

@@ -29,3 +29,13 @@ export type ExistingCreator = {
   uploadCount: number;
   subscriberCount: number;
 };
+
+export type ExistingCreatorsResponse = {
+  items: ExistingCreator[];
+  pagination: {
+    page: number;
+    limit: number;
+    totalItems: number;
+    totalPages: number;
+  };
+};

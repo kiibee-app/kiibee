@@ -91,8 +91,13 @@ const ENDPOINT_MAP: Record<RentedMode, string> = {
   [RENTED_MODES.PURCHASED]: API.viewer.purchasedData,
 };
 
-export const useViewerRentedData = (mode: RentedMode) => {
-  const query = useGetAPI<ViewerDataResponse>(ENDPOINT_MAP[mode]);
+export const useViewerRentedData = (
+  mode: RentedMode,
+  enabled: boolean = true,
+) => {
+  const query = useGetAPI<ViewerDataResponse>(ENDPOINT_MAP[mode], undefined, {
+    enabled,
+  });
   const { t } = useTranslation();
 
   const sources = useMemo(() => {

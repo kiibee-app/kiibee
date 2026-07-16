@@ -106,8 +106,8 @@ export default function ImageUploadCropModal({
 
   const frameW = frameSize.width;
   const frameH = frameSize.height;
-  const effectiveFrameW = Math.max(1, frameW - 40);
-  const effectiveFrameH = Math.max(1, frameH - 40);
+  const effectiveFrameW = Math.max(1, frameW);
+  const effectiveFrameH = Math.max(1, frameH);
   const rawCoverScale =
     naturalSize.width > 0 && naturalSize.height > 0
       ? Math.max(
@@ -116,7 +116,7 @@ export default function ImageUploadCropModal({
         )
       : 1;
 
-  const coverScale = Math.min(1, rawCoverScale);
+  const coverScale = rawCoverScale;
   const displayW = naturalSize.width * coverScale * zoom;
   const displayH = naturalSize.height * coverScale * zoom;
 
@@ -345,7 +345,7 @@ export default function ImageUploadCropModal({
       setZoom((prevZoom) => {
         const newZoom = Math.min(
           IMAGE_ZOOM.MAX,
-          Math.max(IMAGE_ZOOM.MIN, prevZoom + zoomDirection * zoomStep),
+          Math.max(IMAGE_ZOOM.DEFAULT, prevZoom + zoomDirection * zoomStep),
         );
         return Number(newZoom.toFixed(2));
       });
@@ -475,11 +475,7 @@ export default function ImageUploadCropModal({
                     draggable={false}
                   />
                 )}
-                <CropOverlay
-                  $shape={shape}
-                  $width={Math.max(cropWidth, frameW)}
-                  $height={Math.max(cropHeight, frameH)}
-                />
+                <CropOverlay $shape={shape} />
               </ImagePreviewWrapper>
             </CropCanvas>
 
@@ -490,7 +486,7 @@ export default function ImageUploadCropModal({
             <ZoomContainer>
               <ZoomSlider
                 type="range"
-                min={IMAGE_ZOOM.MIN}
+                min={IMAGE_ZOOM.DEFAULT}
                 max={IMAGE_ZOOM.MAX}
                 step={IMAGE_ZOOM.STEP}
                 value={zoom}

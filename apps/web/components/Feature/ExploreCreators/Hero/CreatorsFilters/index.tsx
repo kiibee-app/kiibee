@@ -62,6 +62,7 @@ function CreatorFiltersControl({
     isFilterOpen,
     expandedSection,
     showAllCreators,
+    showAllCategories,
     selectedOptions,
     priceRange,
     selectedRating,
@@ -69,6 +70,7 @@ function CreatorFiltersControl({
   const {
     toggleFilter,
     setShowAllCreators,
+    setShowAllCategories,
     setSelectedRating,
     toggleSection,
     toggleOption,
@@ -91,8 +93,8 @@ function CreatorFiltersControl({
   );
 
   const renderOptionList = React.useCallback(
-    (group: FilterGroupKey, options: OptionItem[]) => (
-      <OptionList>
+    (group: FilterGroupKey, options: OptionItem[], isScrollable?: boolean) => (
+      <OptionList $scrollable={isScrollable}>
         {options.map((option) => {
           const isSelected = selectedOptions[group].includes(option.key);
 
@@ -122,7 +124,9 @@ function CreatorFiltersControl({
         formatLabels,
         defaultVisibleCreators,
         showAllCreators,
+        showAllCategories,
         setShowAllCreators,
+        setShowAllCategories,
       }),
     [
       t,
@@ -131,7 +135,9 @@ function CreatorFiltersControl({
       formatLabels,
       defaultVisibleCreators,
       showAllCreators,
+      showAllCategories,
       setShowAllCreators,
+      setShowAllCategories,
     ],
   );
 

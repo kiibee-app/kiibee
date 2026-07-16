@@ -5,7 +5,7 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { API, useGetAPI } from "@/lib/http/api";
-import type { ExploreCreator } from "@/hooks/creators/useExploreCreators";
+import type { ExploreCreator } from "@/types/exploreCreators";
 import {
   dedupeFeedContentItems,
   feedContentToTutorial,
@@ -240,14 +240,20 @@ export const useExploreContent = ({
     sort,
   });
 
-export const useExploreTrendingContent = (limit?: number) =>
-  useExploreTutorialSection(TRENDING, { limit: limit ?? TRENDING_LIMIT });
+export const useExploreTrendingContent = (params?: {
+  limit?: number;
+  search?: string;
+}) =>
+  useExploreTutorialSection(TRENDING, {
+    limit: params?.limit ?? TRENDING_LIMIT,
+    search: params?.search,
+  });
 
 export const useExploreRecentContent = (params?: UseExploreContentParams) =>
   useExploreTutorialSection("recent", params);
 
-export const useExploreTopCreators = (limit = 6) => {
-  const query = useExploreFeed();
+export const useExploreTopCreators = (limit = 6, search?: string) => {
+  const query = useExploreFeed({ limit, search });
 
   const creators = useMemo((): ExploreTopCreator[] => {
     const items = query.data?.data?.topCreators;

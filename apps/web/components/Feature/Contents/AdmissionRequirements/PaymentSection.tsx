@@ -11,6 +11,7 @@ import {
 } from "@/utils/Constants";
 import { AccessDurationValue } from "@/utils/common";
 import {
+  hasNegativeAmountInput,
   isValidPaymentAmount,
   PAYMENTS_FORM_FIELDS,
   toText,
@@ -60,6 +61,7 @@ const AmountBlock = ({
 
   const handleChange = (v: string | string[]) => {
     const text = toText(v);
+    if (hasNegativeAmountInput(text)) return;
     updateField(field, text);
     if (!isValidPaymentAmount(text)) {
       setError(t("contents.payment.common.invalidNumber"));
@@ -78,6 +80,7 @@ const AmountBlock = ({
           placeholder={placeholder}
           variant={INPUT_VARIANTS.PRIMARY_GRAY}
           inputMode="decimal"
+          min={0}
           hasError={Boolean(error)}
           errorMessage={error}
         />

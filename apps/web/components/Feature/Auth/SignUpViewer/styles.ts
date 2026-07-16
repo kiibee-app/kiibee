@@ -111,10 +111,13 @@ export const LoginLink = styled(Link)`
 export const Description = styled.p`
   color: ${({ theme }) => theme.colors.secondary.muted};
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 0;
 `;
 
-export const PrepCard = styled(Card)<{ $isModal?: boolean }>`
+export const PrepCard = styled(Card)<{
+  $isModal?: boolean;
+  $isReady?: boolean;
+}>`
   box-sizing: border-box;
   padding: ${({ $isModal }) => ($isModal ? "1rem 0" : "3.625rem 5.125rem")};
   background: ${({ theme, $isModal }) =>
@@ -126,7 +129,7 @@ export const PrepCard = styled(Card)<{ $isModal?: boolean }>`
 
   .preference-continue-btn {
     width: min(100%, 300px);
-    margin-top: 0.75rem;
+    margin-top: 47px;
   }
 
   ${media.tablet} {
@@ -140,7 +143,7 @@ export const PrepCard = styled(Card)<{ $isModal?: boolean }>`
 
     .preference-continue-btn {
       width: min(100%, 260px);
-      margin-top: 0.5rem;
+      margin-top: 47px;
     }
   }
 `;
@@ -178,7 +181,7 @@ export const CategoryGrid = styled.div`
   justify-content: center;
   gap: 0.625rem;
   padding-top: 1.5rem;
-  margin: 0.5rem auto 1rem;
+  margin: 0.5rem auto 0;
 
   ${media.mobile} {
     gap: 0.5rem;
@@ -210,7 +213,7 @@ export const TypeGrid = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.625rem;
-  margin: 0.875rem 0 1rem;
+  margin: 0.875rem 0 0;
 
   ${media.mobile} {
     gap: 0.5rem;

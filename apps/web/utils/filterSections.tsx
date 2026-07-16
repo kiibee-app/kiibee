@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CREATOR_OPTIONS, filterGroupMap } from "@/utils/creatorFilters";
+import { filterGroupMap } from "@/utils/creatorFilters";
 import {
   ShowMoreButton,
   ShowMoreText,
@@ -21,27 +21,59 @@ export function buildListSections({
   formatLabels,
   defaultVisibleCreators,
   showAllCreators,
+  showAllCategories,
   setShowAllCreators,
+  setShowAllCategories,
 }: BuildListSectionsParams): ListSectionItem[] {
+  const visibleCreatorLabels = showAllCreators
+    ? creatorLabels
+    : creatorLabels.slice(0, defaultVisibleCreators);
+  const visibleCategoryLabels = showAllCategories
+    ? categoryLabels
+    : categoryLabels.slice(0, defaultVisibleCreators);
+
   return [
     {
       sectionKey: filterGroupMap.creators,
       title: t("creators.filters.sections.creators"),
-      options: creatorLabels,
+      options: visibleCreatorLabels,
+      isScrollable: showAllCreators,
       footer:
-        CREATOR_OPTIONS.length > defaultVisibleCreators && !showAllCreators ? (
+        creatorLabels.length > defaultVisibleCreators ? (
           <ShowMoreButton
             type="button"
-            onClick={() => setShowAllCreators(true)}
+            onClick={() => setShowAllCreators(!showAllCreators)}
           >
-            <ShowMoreText>{t("creators.filters.showMore")}</ShowMoreText>
+            <ShowMoreText>
+              {t(
+                showAllCreators
+                  ? "creators.filters.seeLess"
+                  : "creators.filters.showMore",
+              )}
+            </ShowMoreText>
           </ShowMoreButton>
         ) : undefined,
     },
     {
       sectionKey: filterGroupMap.categories,
       title: t("creators.filters.sections.categories"),
-      options: categoryLabels,
+      options: visibleCategoryLabels,
+      isScrollable: showAllCategories,
+      footer:
+        categoryLabels.length > defaultVisibleCreators ? (
+          <ShowMoreButton
+            type="button"
+            onClick={() => setShowAllCategories(!showAllCategories)}
+          >
+            <ShowMoreText>
+              {t(
+                showAllCategories
+                  ? "creators.filters.seeLess"
+                  : "creators.filters.showMore",
+              )}
+            </ShowMoreText>
+          </ShowMoreButton>
+        ) : undefined,
     },
     {
       sectionKey: filterGroupMap.formats,
@@ -55,9 +87,7 @@ export function buildRenderFilterSections({
   listSections,
   renderOptionList,
   priceTitle,
-  ratingTitle,
   priceContent,
-  ratingContent,
 }: BuildRenderFilterSectionsParams): RenderFilterSectionItem[] {
   return [
     ...listSections.map((section) => ({
@@ -65,7 +95,11 @@ export function buildRenderFilterSections({
       title: section.title,
       content: (
         <>
-          {renderOptionList(section.sectionKey, section.options)}
+          {renderOptionList(
+            section.sectionKey,
+            section.options,
+            section.isScrollable,
+          )}
           {section.footer}
         </>
       ),
@@ -75,10 +109,11 @@ export function buildRenderFilterSections({
       title: priceTitle,
       content: priceContent,
     },
-    {
-      key: FILTER_PANEL_SECTIONS.RATING,
-      title: ratingTitle,
-      content: ratingContent,
-    },
+    // BUG (WEB): Rating Is Visible on the Explore Page - hidden per request
+    // {
+    //   key: FILTER_PANEL_SECTIONS.RATING,
+    //   title: ratingTitle,
+    //   content: ratingContent,
+    // },
   ];
 }

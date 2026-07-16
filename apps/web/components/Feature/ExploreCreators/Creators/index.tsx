@@ -20,10 +20,8 @@ import { useTranslation } from "react-i18next";
 import { CREATORS } from "@/utils/translationKeys";
 import { VARIANT } from "@/utils/Constants";
 import GenericCard from "@/components/UI/GenericCard";
-import {
-  type ExploreCreator,
-  getCreatorCardImage,
-} from "@/hooks/creators/useExploreCreators";
+import { getCreatorCardImage } from "@/hooks/creators/useExploreCreators";
+import type { ExploreCreator } from "@/types/exploreCreators";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
 import { getNameInitials } from "@/hooks/auth/useStoredLoginUser";
 

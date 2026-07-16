@@ -36,7 +36,7 @@ export default function ExploreCreatorsMarquee() {
   const { t } = useTranslation();
   const { creators: allCreators } = useExploreCreators();
   const creators = allCreators
-    .filter((c) => Boolean(c.profileImageUrl))
+    .filter((c) => Boolean(c.profileImageUrl) && Boolean(c.contentDescription))
     .slice(0, MARQUEE_LIMIT);
   const displayCreators = [...creators, ...creators];
 
@@ -58,12 +58,7 @@ export default function ExploreCreatorsMarquee() {
             </CardTitle>
             {creator.category && (
               <CategoryBadge>
-                <MonoText
-                  $use="Body_SemiMedium"
-                  style={{ fontSize: "inherit", color: "inherit" }}
-                >
-                  {creator.category}
-                </MonoText>
+                <MonoText $use="Body_SemiMedium">{creator.category}</MonoText>
               </CategoryBadge>
             )}
           </CardHeader>
@@ -89,7 +84,13 @@ export default function ExploreCreatorsMarquee() {
               src={imageUrl}
               alt={creator.name}
               fill
-              style={{ objectFit: "cover", objectPosition: "center" }}
+              width={243}
+              height={340}
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+                flexShrink: 0,
+              }}
               sizes="(max-width: 768px) 110px, 150px"
             />
           ) : null}

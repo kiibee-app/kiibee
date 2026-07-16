@@ -13,6 +13,7 @@ import {
   Subtitle,
   platformRevealStyle,
   platformImageStyle,
+  PLATFORM_IMAGE_SIZES,
 } from "./styles";
 import img1 from "@/assets/images/platform/platform1.webp";
 import img2 from "@/assets/images/platform/platform2.webp";
@@ -57,7 +58,7 @@ export default function MoreThanPlatformSection() {
                   alt="platform"
                   fill
                   style={platformImageStyle}
-                  sizes="(max-width: 767px) 116px, 126px"
+                  sizes={PLATFORM_IMAGE_SIZES}
                 />
               </ImageReveal>
             </Card>

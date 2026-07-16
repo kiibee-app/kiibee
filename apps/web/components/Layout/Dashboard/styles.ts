@@ -32,6 +32,10 @@ export const MainWrapper = styled.div<{ $sidebarExpanded: boolean }>`
   ${media.desktop} {
     margin-left: 0;
   }
+
+  ${media.mobileXl} {
+    padding-top: 60px;
+  }
 `;
 
 export const ContentWrapper = styled.main<{ $contentPadding?: string }>`
@@ -39,7 +43,7 @@ export const ContentWrapper = styled.main<{ $contentPadding?: string }>`
   min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: ${({ $contentPadding }) => $contentPadding ?? "20px"};
+  padding: 10px;
   overflow-y: auto;
   overscroll-behavior: contain;
 

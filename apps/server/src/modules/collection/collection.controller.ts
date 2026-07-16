@@ -46,6 +46,11 @@ export class CollectionController {
     return this.collectionService.getAllCollectionsService(req.user.userId);
   }
 
+  @Get('public/:creatorId')
+  async getPublicCollections(@Param('creatorId') creatorId: string) {
+    return this.collectionService.getAllCollectionsService(creatorId);
+  }
+
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Get(':id')
   async getCollectionById(

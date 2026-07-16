@@ -10,6 +10,7 @@ import {
   PLACEHOLDERS,
   STORAGE_KEYS,
 } from "@/utils/constants";
+import { DEFAULT_PAGE_SIZE, getInitialPageSize } from "@/utils/pagination";
 import { ExistingCreatorsTable } from "./ExistingCreatorsTable";
 import { CreatorPagination } from "./CreatorPagination";
 import { CreatorRequestsTableSkeleton } from "./CreatorRequestsTableSkeleton";
@@ -32,26 +33,49 @@ export function ExistingCreatorsList() {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPlan, setSelectedPlan] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(() =>
+    getInitialPageSize(STORAGE_KEYS.PAGE_SIZE_ALL_CREATORS, DEFAULT_PAGE_SIZE),
+  );
   const debouncedSearch = useDebounce(searchTerm);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const existingCreatorsQuery = useExistingCreators(
-    debouncedSearch,
-    selectedPlan || undefined,
-  );
+  const existingCreatorsQuery = useExistingCreators({
+    search: debouncedSearch,
+    plan: selectedPlan || undefined,
+    page: currentPage,
+    limit: pageSize,
+  });
 
   const handleSearchClear = () => {
     setSearchTerm("");
+    existingCreatorsPagination.onPageChange(1);
     searchInputRef.current?.focus();
   };
 
-  const existingCreators = existingCreatorsQuery.data ?? [];
-  const totalExistingCreators = existingCreators.length;
+  const existingCreators = existingCreatorsQuery.data?.items ?? [];
+  const pagination = existingCreatorsQuery.data?.pagination;
+  const totalExistingCreators = pagination?.totalItems ?? 0;
   const existingCreatorsPagination = usePagination({
     data: existingCreators,
     totalItems: totalExistingCreators,
-    initialPageSize: 10,
+    initialPageSize: DEFAULT_PAGE_SIZE,
     storageKey: STORAGE_KEYS.PAGE_SIZE_ALL_CREATORS,
+    mode: "server",
+    currentPage: pagination?.page ?? currentPage,
+    pageSize: pagination?.limit ?? pageSize,
+    onPageChange: setCurrentPage,
+    onPageSizeChange: setPageSize,
   });
+
+  const handlePlanChange = (plan: string) => {
+    setSelectedPlan(plan);
+    existingCreatorsPagination.onPageChange(1);
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    existingCreatorsPagination.onPageChange(1);
+  };
 
   const renderContent = () => {
     if (existingCreatorsQuery.isLoading) {
@@ -101,7 +125,7 @@ export function ExistingCreatorsList() {
           <PlanFilterSelect
             aria-label="Filter creators by plan"
             value={selectedPlan}
-            onChange={(event) => setSelectedPlan(event.target.value)}
+            onChange={(event) => handlePlanChange(event.target.value)}
           >
             <option value="">All plans</option>
             {CREATOR_PLAN_FILTER_OPTIONS.map((plan) => (
@@ -119,7 +143,7 @@ export function ExistingCreatorsList() {
               ref={searchInputRef}
               placeholder={PLACEHOLDERS.SEARCH_USERS}
               value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
+              onChange={(event) => handleSearchChange(event.target.value)}
             />
             {searchTerm ? (
               <SearchClearButton

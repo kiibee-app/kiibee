@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 
 export const TAB_KEYS = {
   payout: "payout",
+  payoutMethods: "payoutMethods",
   notifications: "notifications",
   export: "export",
   search: "search",
@@ -21,6 +22,10 @@ export const TABS: TabItem[] = [
   {
     key: TAB_KEYS.payout,
     labelKey: "settings.tabs.payout",
+  },
+  {
+    key: TAB_KEYS.payoutMethods,
+    labelKey: "settings.tabs.payoutMethods",
   },
   {
     key: TAB_KEYS.notifications,

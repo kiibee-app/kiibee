@@ -22,7 +22,7 @@ export async function getSettlementHistoryService(
     const paidSettlements = await db
       .select({
         id: creatorPayouts.id,
-        amount: creatorPayouts.amount,
+        amount: creatorPayouts.rawAmount,
         status: creatorPayouts.status,
         creditNo: creatorPayouts.creditNo,
         bankName: creatorBankAccounts.bankName,

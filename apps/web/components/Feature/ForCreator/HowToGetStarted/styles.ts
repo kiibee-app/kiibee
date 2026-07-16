@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import breakpoints from "@repo/ui/breakpoints";
 import COLORS from "@repo/ui/colors";
+import { type CSSProperties } from "react";
 
 export const Section = styled.div`
   display: flex;
@@ -101,8 +102,8 @@ export const StepWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-height: 20vh;
-  padding-bottom: 7.5rem;
+  min-height: 0;
+  padding-bottom: 3rem;
 
   &:last-child {
     padding-bottom: 0;
@@ -113,7 +114,7 @@ export const StepWrapper = styled.div`
     padding-bottom: 7.75rem;
 
     &:last-child {
-      padding-bottom: 0;
+      padding-bottom: 40vh;
     }
   }
 `;
@@ -217,3 +218,13 @@ export const Spacer = styled.div`
     display: none;
   }
 `;
+
+export const stepImageStyle: CSSProperties = {
+  objectFit: "cover",
+  objectPosition: "center",
+};
+
+export const STEP_IMAGE_SIZES = {
+  desktop: "(max-width: 767px) 100vw, 45vw",
+  mobile: "100vw",
+} as const;

@@ -10,7 +10,7 @@ export const PageShell = styled.div`
   flex-direction: column;
   gap: 16px;
   min-height: calc(100vh - 110px);
-  padding: 24px;
+  padding: 24px 30px;
 
   ${({ theme }) => theme.media.tablet} {
     gap: 14px;

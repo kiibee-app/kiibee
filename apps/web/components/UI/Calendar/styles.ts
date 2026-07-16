@@ -18,7 +18,7 @@ export const CalendarWrapper = styled.div`
     background: ${({ theme }) => theme.colors.neutral.GRAY_200};
     transform: translateX(-50%);
 
-    ${media.mobileMd} {
+    ${media.mobileXl} {
       display: none;
     }
   }
@@ -28,13 +28,13 @@ export const CalendarMonth = styled.div`
   min-width: 260px;
   flex: 1;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     min-width: unset;
   }
 `;
 
 export const DesktopOnly = styled.div`
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     display: none;
   }
 `;

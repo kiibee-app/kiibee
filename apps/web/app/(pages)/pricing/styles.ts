@@ -4,6 +4,7 @@ import styled from "styled-components";
 import GenericButton from "@/components/UI/GenericButton";
 import { VARIANT, SIZE } from "@/utils/Constants";
 import { typography } from "@repo/ui/typography";
+import breakpoints from "@repo/ui/breakpoints";
 import { type CSSProperties } from "react";
 
 export const Hero = styled.section`
@@ -15,6 +16,10 @@ export const Hero = styled.section`
   justify-content: center;
   font-family: ${({ theme }) => theme.typography.Heading1.fontFamily};
   overflow: hidden;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    height: 70vh;
+  }
 `;
 
 export const Background = styled.div`
@@ -22,6 +27,13 @@ export const Background = styled.div`
   inset: 0;
   z-index: 0;
   overflow: hidden;
+
+  & > div {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const Overlay = styled.div`

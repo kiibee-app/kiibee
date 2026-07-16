@@ -16,6 +16,7 @@ export const Section = styled.section`
   ${media.desktop} {
     display: flex;
     padding: 2.5rem 1.25rem;
+    min-height: unset;
   }
 `;
 

@@ -12,10 +12,14 @@ import {
   type OrderItemType,
   STRING,
   ROLE_CREATOR,
+  VARIANT,
   UNDEFINED_STRING,
   REDIRECT_NEXT_QUERY_PARAM,
   ACTION_LOGIN,
   ACTION_SIGNUP,
+  CONTENT_COLLECTION_QUERY_KEY,
+  CONTENT_ITEM_QUERY_KEY,
+  VIEW,
 } from "@/utils/Constants";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -38,10 +42,15 @@ import ContentPreviewModal from "./ContentPreviewModal";
 import PurchaseModal from "./PurchaseModal";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
+import {
+  isBuyActionLabel,
+  isRentActionLabel,
+} from "@/utils/contentPricingActions";
 
 import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import { useLogout } from "@/hooks/auth/useLogout";
 import { PATHS } from "@/utils/path";
+import { CREATORS_LABELS } from "@/utils/SidebarItems";
 
 import { useSearchParams } from "next/navigation";
 
@@ -140,13 +149,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     }
 
     return actions.map((action) => {
-      const normalizedLabel = action.label.toLowerCase();
-      const isPurchase = normalizedLabel.includes(
-        t("pricingLabels.buy").toLowerCase(),
-      );
-      const isRental = normalizedLabel.includes(
-        t("pricingLabels.rent").toLowerCase(),
-      );
+      const isPurchase = isBuyActionLabel(action.label);
+      const isRental = isRentActionLabel(action.label);
 
       if (!isPurchase && !isRental) {
         return action;
@@ -174,7 +178,6 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     createOrderMutation,
     primaryAction,
     primaryActions,
-    t,
     user?.role,
   ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
@@ -214,9 +217,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
-            isPurchase: action.label
-              .toLowerCase()
-              .includes(t("pricingLabels.buy").toLowerCase()),
+            isPurchase: isBuyActionLabel(action.label),
           });
           setShowPurchaseModal(true);
         }
@@ -233,6 +234,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
   const hasViewerAccess = Boolean(content?.accessInfo);
+  const isOwner = Boolean(user?.id && content?.creatorId === user.id);
   const fallbackPlaybackSrc =
     previewMediaUrl || hero.contentUrl || hero.media?.src || "";
 
@@ -313,15 +315,18 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       typeof accessMeta.value === STRING &&
       accessMeta.value !== ACCESS_TYPE_FREE;
 
-    const actionLabel = primaryAction?.label?.toLowerCase();
     const isPurchaseAction = Boolean(
-      actionLabel?.includes(t("pricingLabels.buy").toLowerCase()),
+      primaryAction?.label && isBuyActionLabel(primaryAction.label),
     );
     const isRentalAction = Boolean(
-      actionLabel?.includes(t("pricingLabels.rent").toLowerCase()),
+      primaryAction?.label && isRentActionLabel(primaryAction.label),
     );
 
-    if ((isPaid || isPurchaseAction || isRentalAction) && !hasViewerAccess) {
+    if (
+      (isPaid || isPurchaseAction || isRentalAction) &&
+      !hasViewerAccess &&
+      !isOwner
+    ) {
       if (user?.role === ROLE_CREATOR) {
         setShowCreatorModal1(true);
         return;
@@ -351,11 +356,43 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       }
     : undefined;
 
+  const openOwnerContentInDashboard = () => {
+    const params = new URLSearchParams({
+      [VIEW]: CREATORS_LABELS.CONTENTS,
+    });
+
+    if (collectionId) {
+      params.set(CONTENT_COLLECTION_QUERY_KEY, collectionId);
+      if (contentId) {
+        params.set(CONTENT_ITEM_QUERY_KEY, contentId);
+      }
+    }
+
+    router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
+  };
+
   const bodyPrimaryActions: SingleContentAction[] | undefined =
     primaryActions != null
       ? actionsWithPayment
       : modifiedPrimaryAction
-        ? [modifiedPrimaryAction]
+        ? isOwner
+          ? [
+              {
+                label: t("singleContent.openInDashboard"),
+                variant: VARIANT.PRIMARY,
+                onClick: openOwnerContentInDashboard,
+              },
+              {
+                ...modifiedPrimaryAction,
+                variant: VARIANT.SECONDARY,
+              },
+            ]
+          : [
+              {
+                ...modifiedPrimaryAction,
+                variant: hasViewerAccess ? VARIANT.SECONDARY : undefined,
+              },
+            ]
         : undefined;
 
   const { share, shareUrl, showShareModal, setShowShareModal } = useShare();

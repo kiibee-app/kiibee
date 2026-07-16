@@ -100,6 +100,11 @@ export const VIEWER_SIGNUP_PREFERENCE = {
     submit: "viewerSignup.preference.types.submit",
     option: (key: string) => `viewerSignup.preference.types.options.${key}`,
   },
+  ready: {
+    title: "viewerSignup.preference.ready.title",
+    subtitle: "viewerSignup.preference.ready.subtitle",
+    submit: "viewerSignup.preference.ready.submit",
+  },
 };
 
 export const CREATORS = {
@@ -187,6 +192,8 @@ export const CREATOR_PROFILE = {
     cancel: "creatorProfile.deleteModal.cancel",
     confirm: "creatorProfile.deleteModal.confirm",
   },
+  deleteToastMessage: "creatorProfile.deleteToastMessage",
+  deleteErrorMessage: "creatorProfile.deleteErrorMessage",
   deleteSuccessModal: {
     title: "creatorProfile.deleteSuccessModal.title",
     message: "creatorProfile.deleteSuccessModal.message",

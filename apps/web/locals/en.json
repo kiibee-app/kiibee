@@ -192,6 +192,11 @@
           "pdf": "PDF",
           "epub": "EPUB"
         }
+      },
+      "ready": {
+        "title": "Your profile is ready!",
+        "subtitle": "Enjoy exploring creators and content tailored just for you.",
+        "submit": "Go to profile"
       }
     },
     "form": {
@@ -479,6 +484,7 @@
     "filters": {
       "title": "Filters",
       "showMore": "Show more",
+      "seeLess": "See less",
       "sections": {
         "creators": "Creators",
         "categories": "Categories",
@@ -978,14 +984,15 @@
     "confirmPassword": "Re-enter new password",
     "newPasswordSameAsCurrent": "New password must be different from your current password",
     "accountDeletionTitle": "Account deletion",
-    "accountDeletionText": "If you wish to delete your account, click below on [Delete account] and a message will be sent to the administrator, who will make an inventory and then delete your account.",
+    "accountDeletionText": "To delete your account, click 'Delete account' below. A request will be sent to the administrator for review and approval.",
     "deleteAccount": "Delete account",
     "deleteModal": {
-      "title": "Delete Account?",
-      "message": "Are you sure you want to delete your account? This action is permanent and cannot be undone.",
+      "title": "Request Account Deletion?",
+      "message": "Are you sure you want to request account deletion? An administrator will review and process your request.",
       "cancel": "Cancel",
-      "confirm": "Delete Account"
+      "confirm": "Request Deletion"
     },
+    "deleteToastMessage": "Account deletion request sent. Please wait for administrator approval.",
     "deleteSuccessModal": {
       "title": "Request Sent for Account Deletion",
       "message": "Your request has been submitted. An administrator will review it and complete the account deletion process. You'll be notified once it's done.",
@@ -1010,6 +1017,8 @@
     "notFound": "This content could not be found.",
     "loading": "Loading content...",
     "imageAlt": "Content preview",
+    "openInDashboard": "Open in Dashboard",
+    "myContent": "My content",
     "seeContent": "See content",
     "playVideo": "Play video",
     "playTrailer": "Play trailer",
@@ -1572,8 +1581,16 @@
     "title": "Settings",
     "tabs": {
       "payout": "Payout",
+      "payoutMethods": "Payout methods",
       "notifications": "Notifications",
       "export": "Export"
+    },
+    "payoutMethods": {
+      "title": "Payout methods",
+      "subtitle": "We need your payment information so we can pay out your earnings.",
+      "regLabel": "Reg. no.",
+      "accountLabel": "Account no.",
+      "addPayoutMethod": "Add payout method"
     },
     "notifications": {
       "title": "Notifications",
@@ -1618,6 +1635,23 @@
         "creditNo": "Credit No",
         "bank": "Bank",
         "date": "Date"
+      },
+      "modal": {
+        "title": "Payment details",
+        "loading": "Calculating payout…",
+        "earnings": "Earnings\n(Based on {{purchases}} purchases and {{rentals}} rentals)",
+        "processingFee": "Transaction fee ({{percent}})",
+        "platformFee": "Kiibee payment ({{percent}})",
+        "total": "Total payout amount",
+        "success": "Payout request submitted successfully.",
+        "calculateError": "Unable to calculate payout. Please try again.",
+        "requestError": "Unable to submit payout request. Please try again.",
+        "missingBankAccount": "Add your bank account details in your profile before requesting a payout."
+      },
+      "zeroBalanceModal": {
+        "title": "No balance to pay out",
+        "message": "Your payout balance is currently 0,00 kr. Once you earn from purchases or rentals, you can request a payout here.",
+        "done": "Got it"
       }
     },
     "export": {
@@ -2077,7 +2111,8 @@
       "common": {
         "enterAmount": "Enter amount",
         "feeNote": "Minimum DKK 8, as Kiibee charges DKK 5 in transaction fees",
-        "invalidNumber": "Please enter a valid number."
+        "invalidNumber": "Please enter a valid number.",
+        "requiredAmount": "Amount is required."
       },
       "physicalLink": {
         "title": "Physical product",
@@ -2198,7 +2233,9 @@
     "expired": "Expired",
     "expiresInHours": "Expires in {{count}} hrs",
     "expiresInDays": "Expires in {{count}} days",
-    "expiredOn": "Expired on {{date}}"
+    "expiredOn": "Expired on {{date}}",
+    "purchased": "Purchased",
+    "purchasedOn": "Purchased on {{date}}"
   },
   "explore": {
     "sortNew": "New",

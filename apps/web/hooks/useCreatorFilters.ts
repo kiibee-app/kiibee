@@ -171,10 +171,13 @@ function useRatingFilter() {
 
 function useCreatorVisibility() {
   const [showAllCreators, setShowAllCreators] = useState(false);
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
   return {
     showAllCreators,
+    showAllCategories,
     setShowAllCreators,
+    setShowAllCategories,
   };
 }
 

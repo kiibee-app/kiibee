@@ -19,6 +19,7 @@ export const CONTENTS_VIEW_QUERY_KEYS = [
 const USERS_TAB_KEYS = new Set(USER_TABS.map((tab) => tab.key));
 const SETTINGS_TAB_KEYS = new Set<string>([
   TAB_KEYS.payout,
+  TAB_KEYS.payoutMethods,
   TAB_KEYS.notifications,
   TAB_KEYS.export,
 ]);

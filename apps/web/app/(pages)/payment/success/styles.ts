@@ -1,17 +1,8 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
 import { MonoText } from "@/components/UI/Monotext";
 import { STATUS_TONE, type StatusTone } from "@/utils/Constants";
-
-const spin = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-`;
-
-const pulse = keyframes`
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(0.98); }
-`;
+import { spin, cardPulse } from "@/utils/animations";
 
 export const PageShell = styled.main`
   min-height: 100vh;
@@ -80,7 +71,8 @@ export const IconRing = styled.div<{ $tone?: StatusTone }>`
         : $tone === STATUS_TONE.SUCCESS
           ? theme.colors.secondary.MEDIUM_GREEN
           : theme.colors.gradient.FRAME_BORDER};
-  animation: ${({ $tone }) => ($tone === STATUS_TONE.LOADING ? pulse : "none")}
+  animation: ${({ $tone }) =>
+      $tone === STATUS_TONE.LOADING ? cardPulse : "none"}
     2s ease-in-out infinite;
 `;
 

@@ -1,12 +1,29 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, desc, eq, sql } from 'drizzle-orm';
+import { and, desc, eq, ilike, or, sql } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { orders, userProfiles, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { ORDER_STATUS, ORDER_TYPES, ROLE } from 'src/utils/constant';
+import {
+  DEFAULT_LIMIT,
+  getSafePositiveInteger,
+  MAX_LIMIT,
+} from 'src/utils/pagination';
 import { success } from 'src/utils/sendResponse';
 
-export const getAllViewersService = async () => {
+function escapeLikePattern(value: string) {
+  return value.replace(/[\\%_]/g, (match) => `\\${match}`);
+}
+
+export const getAllViewersService = async ({
+  search,
+  page,
+  limit,
+}: {
+  search?: string;
+  page?: number;
+  limit?: number;
+} = {}) => {
   try {
     const purchaseCountSql = sql<number>`
       COUNT(DISTINCT CASE
@@ -22,6 +39,40 @@ export const getAllViewersService = async () => {
         THEN ${orders.id}
       END)::int
     `;
+
+    const searchTerm = search?.trim();
+    const searchPattern = searchTerm
+      ? `%${escapeLikePattern(searchTerm)}%`
+      : undefined;
+    const requestedPage = getSafePositiveInteger(page, 1);
+    const pageSize = getSafePositiveInteger(limit, DEFAULT_LIMIT, MAX_LIMIT);
+    const filters = [
+      eq(users.role, ROLE.VIEWER),
+      eq(users.isDeleted, false),
+    ];
+
+    if (searchPattern) {
+      const searchFilter = or(
+        ilike(users.firstName, searchPattern),
+        ilike(users.lastName, searchPattern),
+        ilike(users.fullName, searchPattern),
+        ilike(users.email, searchPattern),
+      );
+
+      if (searchFilter) {
+        filters.push(searchFilter);
+      }
+    }
+
+    const [totalResult] = await db
+      .select({ count: sql<number>`COUNT(DISTINCT ${users.id})::int` })
+      .from(users)
+      .where(and(...filters));
+
+    const totalItems = Number(totalResult?.count ?? 0);
+    const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+    const currentPage = Math.min(requestedPage, totalPages);
+    const offset = (currentPage - 1) * pageSize;
 
     const viewers = await db
       .select({
@@ -48,7 +99,7 @@ export const getAllViewersService = async () => {
       .from(users)
       .leftJoin(userProfiles, eq(userProfiles.userId, users.id))
       .leftJoin(orders, eq(orders.userId, users.id))
-      .where(and(eq(users.role, ROLE.VIEWER), eq(users.isDeleted, false)))
+      .where(and(...filters))
       .groupBy(
         users.id,
         userProfiles.phone,
@@ -57,14 +108,24 @@ export const getAllViewersService = async () => {
         userProfiles.city,
         userProfiles.postalCode,
       )
-      .orderBy(desc(users.createdAt));
+      .orderBy(desc(users.createdAt))
+      .limit(pageSize)
+      .offset(offset);
 
     return success(
-      viewers.map((viewer) => ({
-        ...viewer,
-        purchaseCount: Number(viewer.purchaseCount ?? 0),
-        rentalCount: Number(viewer.rentalCount ?? 0),
-      })),
+      {
+        items: viewers.map((viewer) => ({
+          ...viewer,
+          purchaseCount: Number(viewer.purchaseCount ?? 0),
+          rentalCount: Number(viewer.rentalCount ?? 0),
+        })),
+        pagination: {
+          page: currentPage,
+          limit: pageSize,
+          totalItems,
+          totalPages,
+        },
+      },
       'Viewers fetched successfully',
       HttpStatus.OK,
     );

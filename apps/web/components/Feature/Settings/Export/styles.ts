@@ -15,7 +15,7 @@ export const CardTop = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  ${media.mobileMd} {
+  ${media.mobileXl} {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;

@@ -51,6 +51,11 @@ export const ImageWrapper = styled.div`
   min-height: 519px;
   border-radius: 8px;
   overflow: hidden;
+
+  & > div {
+    position: absolute;
+    inset: 0;
+  }
 `;
 
 export const beliefRevealStyle: CSSProperties = {
@@ -63,3 +68,5 @@ export const beliefRevealStyle: CSSProperties = {
 export const beliefImageStyle: CSSProperties = {
   objectFit: "cover",
 };
+
+export const BELIEF_IMAGE_SIZES = "(max-width: 767px) 100vw, 50vw" as const;

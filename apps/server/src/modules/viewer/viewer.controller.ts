@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -20,6 +21,20 @@ import {
 @Controller('viewer')
 export class ViewerController {
   constructor(private readonly viewerService: ViewerService) {}
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('admin/all-viewers')
+  async getAllViewers(
+    @Query('search') search?: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    return this.viewerService.getAllViewers({
+      search: search?.trim() || undefined,
+      page: page ? Number(page) : undefined,
+      limit: limit ? Number(limit) : undefined,
+    });
+  }
 
   @UseGuards(JwtAuthGuard)
   @Get('purchased-data')

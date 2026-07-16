@@ -2,12 +2,15 @@
 
 import type { LucideIcon } from "lucide-react";
 import { X } from "lucide-react";
+import { ROUTES } from "../../utils/constants";
+import { useDashboardStats } from "../../hooks/api/use-dashboard-stats";
 import {
   BrandText,
   CloseButton,
   IconWrap,
   MenuItem,
   MenuList,
+  NotificationBadge,
   SidebarRoot,
   SidebarTop,
 } from "./Sidebar.styles";
@@ -26,6 +29,9 @@ interface SidebarProps {
 }
 
 export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
+  const statsQuery = useDashboardStats();
+  const pendingCount = statsQuery.data?.pendingRequests ?? 0;
+
   return (
     <SidebarRoot $isOpen={isOpen}>
       <SidebarTop>
@@ -42,6 +48,8 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
               : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
           const Icon = item.icon;
+          const showBadge =
+            item.href === ROUTES.PENDING_REQUESTS && pendingCount > 0;
 
           return (
             <MenuItem
@@ -55,6 +63,9 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
                 <Icon size={16} />
               </IconWrap>
               <span>{item.label}</span>
+              {showBadge && (
+                <NotificationBadge>{pendingCount}</NotificationBadge>
+              )}
             </MenuItem>
           );
         })}

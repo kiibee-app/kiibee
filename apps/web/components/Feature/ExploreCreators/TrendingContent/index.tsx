@@ -35,10 +35,10 @@ import {
   SkeletonFooter,
 } from "../Creators/styles";
 
-export default function TrendingContent() {
+export default function TrendingContent({ search }: { search?: string }) {
   const { t } = useTranslation();
   const [pageStart, setPageStart] = useState(0);
-  const { tutorials, isLoading } = useTrendingContent();
+  const { tutorials, isLoading } = useTrendingContent({ search });
 
   const totalItems = tutorials.length;
   const { canSlide, canGoPrev, canGoNext } = getPaginationState(
@@ -98,7 +98,7 @@ export default function TrendingContent() {
         <HeaderActions>
           {canSlide && (
             <SectionArrows>
-              {canGoPrev ? (
+              {canGoPrev && (
                 <SectionArrow
                   type="button"
                   onClick={movePrev}
@@ -106,16 +106,16 @@ export default function TrendingContent() {
                 >
                   <LeftIcon style={{ transform: "rotate(180deg)" }} />
                 </SectionArrow>
-              ) : null}
-              <SectionArrow
-                type="button"
-                disabled={!canGoNext}
-                aria-disabled={!canGoNext}
-                onClick={moveNext}
-                aria-label="Next"
-              >
-                <LeftIcon />
-              </SectionArrow>
+              )}
+              {canGoNext && (
+                <SectionArrow
+                  type="button"
+                  onClick={moveNext}
+                  aria-label="Next"
+                >
+                  <LeftIcon />
+                </SectionArrow>
+              )}
             </SectionArrows>
           )}
         </HeaderActions>

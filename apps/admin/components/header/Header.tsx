@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 import { Menu } from "lucide-react";
 import { apiClient, useAdminProfile } from "../../hooks/api";
 import { API_ENDPOINTS } from "../../utils/constants";
@@ -29,6 +30,7 @@ interface HeaderProps {
 
 export function Header({ title, description, onToggleSidebar }: HeaderProps) {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const profileQuery = useAdminProfile();
   const [open, setOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -59,6 +61,7 @@ export function Header({ title, description, onToggleSidebar }: HeaderProps) {
         });
       }
     } finally {
+      queryClient.clear();
       clearTokens();
       router.replace("/login");
     }

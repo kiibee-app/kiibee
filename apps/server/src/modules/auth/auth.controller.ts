@@ -6,7 +6,6 @@ import {
   Patch,
   Req,
   Headers,
-  Query,
   UnauthorizedException,
   UseGuards,
   Param,
@@ -192,29 +191,9 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
-  @Get('all-creators')
-  async getAllExistingCreators(
-    @Query('search') search?: string,
-    @Query('plan') plan?: string,
-  ) {
-    const result = await this.authService.getAllExistingCreators(
-      search?.trim() || undefined,
-      plan?.trim() || undefined,
-    );
-    return result;
-  }
-
-  @UseGuards(JwtAuthGuard, AdminGuard)
   @Get('all-creators/:creatorId')
   async getCreatorById(@Param('creatorId') creatorId: string) {
     const result = await this.authService.getCreatorById(creatorId);
-    return result;
-  }
-
-  @UseGuards(JwtAuthGuard, AdminGuard)
-  @Get('all-viewers')
-  async getAllViewers() {
-    const result = await this.authService.getAllViewers();
     return result;
   }
 
@@ -254,6 +233,41 @@ export class AuthController {
   ) {
     const approverUserId = req.user.userId;
     const result = await this.authService.rejectCreatorRequest(
+      body.requestId,
+      approverUserId,
+    );
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('creator-deletion-requests')
+  async getCreatorDeletionRequests() {
+    const result = await this.authService.getCreatorDeletionRequests();
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('approve-creator-deletion')
+  async approveCreatorDeletionRequest(
+    @Body() body: CreatorRequestActionDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    const approverUserId = req.user.userId;
+    const result = await this.authService.approveCreatorDeletionRequest(
+      body.requestId,
+      approverUserId,
+    );
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('reject-creator-deletion')
+  async rejectCreatorDeletionRequest(
+    @Body() body: CreatorRequestActionDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    const approverUserId = req.user.userId;
+    const result = await this.authService.rejectCreatorDeletionRequest(
       body.requestId,
       approverUserId,
     );

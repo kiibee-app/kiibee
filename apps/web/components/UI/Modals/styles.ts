@@ -42,7 +42,7 @@ export const ModalContainer = styled.div<{
 `;
 
 export const IconWrapper = styled.div<{ $margin?: string }>`
-  margin: ${({ $margin }) => $margin || "0 auto 16px"};
+  margin: ${({ $margin, theme }) => $margin || `0 auto ${theme.spacing(4)}`};
   width: 64px;
   height: 64px;
   border-radius: 50%;
@@ -53,12 +53,13 @@ export const IconWrapper = styled.div<{ $margin?: string }>`
 
 export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  margin: 0 0 8px;
+  margin: 0 0 ${({ theme }) => theme.spacing(2)};
 `;
 
 export const Message = styled.div<{ $marginBottom?: string }>`
   color: ${({ theme }) => theme.colors.primary.BLACK};
-  margin-bottom: ${({ $marginBottom }) => $marginBottom || "24px"};
+  margin-bottom: ${({ $marginBottom, theme }) =>
+    $marginBottom || theme.spacing(6)};
 `;
 
 export const ButtonGroup = styled.div<{
@@ -69,15 +70,15 @@ export const ButtonGroup = styled.div<{
   display: flex;
   margin-top: auto;
   flex-direction: ${({ $row }) => ($row ? "row" : "column")};
-  gap: 12px;
+  gap: ${({ theme }) => theme.spacing(3)};
   justify-content: ${({ $align }) => $align || MODAL_ALIGN.CENTER};
   align-items: center;
   width: ${({ $fullWidthButtons }) => ($fullWidthButtons ? "100%" : "auto")};
 
   & > button {
     width: ${({ $fullWidthButtons }) => ($fullWidthButtons ? "100%" : "176px")};
-    flex: ${({ $fullWidthButtons }) =>
-      $fullWidthButtons ? "1 1 0" : "0 0 auto"};
+    flex: ${({ $fullWidthButtons, $row }) =>
+      $fullWidthButtons && $row ? "1 1 0" : "0 0 auto"};
   }
 
   ${media.tablet} {
@@ -94,11 +95,11 @@ export const LoginRequiredBody = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacing(4)};
   width: 100%;
 
   ${ButtonGroup} {
-    margin-top: 8px;
+    margin-top: ${({ theme }) => theme.spacing(2)};
   }
 `;
 
@@ -109,8 +110,8 @@ export const LoginRequiredDescription = styled.div`
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: ${({ theme }) => theme.spacing(4)};
+  right: ${({ theme }) => theme.spacing(4)};
   background: transparent;
   border: none;
   cursor: pointer;
@@ -127,19 +128,19 @@ export const CloseButton = styled.button`
 export const ShareContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: ${({ theme }) => theme.spacing(4)};
   width: 100%;
 `;
 
 export const ShareTitle = styled.div`
-  margin-bottom: 0.5rem;
+  margin-bottom: ${({ theme }) => theme.spacing(2)};
 `;
 
 export const UrlRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  gap: ${({ theme }) => theme.spacing(2)};
+  padding: ${({ theme }) => `${theme.spacing(3)} ${theme.spacing(4)}`};
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
@@ -152,13 +153,14 @@ export const UrlText = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 100%;
 `;
 
 export const CopyButton = styled.button<{ $copied?: boolean }>`
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
+  gap: ${({ theme }) => theme.spacing(2)};
+  padding: ${({ theme }) => `${theme.spacing(3)} ${theme.spacing(5)}`};
   border-radius: 8px;
   border: none;
   background: ${({ theme, $copied }) =>

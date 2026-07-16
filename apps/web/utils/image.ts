@@ -62,25 +62,13 @@ export const getCroppedImg = (
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
 
-      const cropAspect = cropWidth / cropHeight;
-      let displayCropW = cropWidth;
-      let displayCropH = cropHeight;
-      if (displayCropW > containerWidth) {
-        displayCropW = containerWidth;
-        displayCropH = containerWidth / cropAspect;
-      }
-      if (displayCropH > containerHeight) {
-        displayCropH = containerHeight;
-        displayCropW = containerHeight * cropAspect;
-      }
-
-      const cropLeft = (containerWidth - displayCropW) / 2 + 20;
-      const cropTop = (containerHeight - displayCropH) / 2 + 20;
-      const actualCropW = Math.max(1, displayCropW - 40);
-      const actualCropH = Math.max(1, displayCropH - 40);
+      const actualCropW = Math.max(1, containerWidth);
+      const actualCropH = Math.max(1, containerHeight);
+      const cropLeft = 0;
+      const cropTop = 0;
 
       const rawCoverScale = Math.max(actualCropW / iw, actualCropH / ih);
-      const coverScale = Math.min(1, rawCoverScale);
+      const coverScale = rawCoverScale;
       const baseW = iw * coverScale;
       const baseH = ih * coverScale;
       const displayW = baseW * safeZoom;
@@ -89,12 +77,8 @@ export const getCroppedImg = (
       const imgLeft = containerWidth / 2 + position.x - displayW / 2;
       const imgTop = containerHeight / 2 + position.y - displayH / 2;
 
-      const outputScale = Math.max(
-        3,
-        Math.min(4, window.devicePixelRatio || 3),
-      );
-      const outW = Math.round(cropWidth * outputScale);
-      const outH = Math.round(cropHeight * outputScale);
+      const outW = Math.round(cropWidth);
+      const outH = Math.round(cropHeight);
 
       canvas.width = outW;
       canvas.height = outH;

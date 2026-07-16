@@ -77,7 +77,7 @@ export default function CollectionContent({
         {filteredVideos.length > 0 ? (
           <TutorialsShowcase
             videos={filteredVideos}
-            maxWidth={maxWidth}
+            maxWidth={maxWidth || "100%"}
             selectedVideoId={selectedVideoId}
             onSelectVideo={onSelectVideo}
           />

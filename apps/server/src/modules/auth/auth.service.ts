@@ -14,9 +14,7 @@ import { success } from 'src/utils/sendResponse';
 import { ViewerSignUpDto } from './dto/viewerSignUp.dto';
 import { creatorRequestService } from './services/creatorRequest.service';
 import { approveCreatorRequestService } from './services/approvCreatorRequest.service';
-import { getAllExistingCreatorsService } from './services/getAllExistingCreators.service';
 import { getCreatorByIdService } from './services/getCreatorById.service';
-import { getAllViewersService } from './services/getAllViewers.service';
 import { getViewerByIdService } from './services/getViewerById.service';
 import { getAdminDashboardStatsService } from './services/getAdminDashboardStats.service';
 import { getCreatorRequestService } from './services/getCreatorRequest.service';
@@ -37,6 +35,9 @@ import { UpdateCreatorProfileDto } from './dto/updateCreatorProfile.dto';
 import { updateCreatorProfileService } from './services/updateCreatorProfile.service';
 import { getCreatorProfileService } from './services/getCreatorProfile.service';
 import { deleteUserService } from './services/deleteUser.service';
+import { getCreatorDeletionRequestsService } from './services/getCreatorDeletionRequests.service';
+import { approveCreatorDeletionRequestService } from './services/approveCreatorDeletionRequest.service';
+import { rejectCreatorDeletionRequestService } from './services/rejectCreatorDeletionRequest.service';
 
 @Injectable()
 export class AuthService {
@@ -160,14 +161,8 @@ export class AuthService {
   async getCreatorRequests() {
     return getCreatorRequestService();
   }
-  async getAllExistingCreators(search?: string, plan?: string) {
-    return getAllExistingCreatorsService({ search, plan });
-  }
   async getCreatorById(creatorId: string) {
     return getCreatorByIdService(creatorId);
-  }
-  async getAllViewers() {
-    return getAllViewersService();
   }
   async getViewerById(viewerId: string) {
     return getViewerByIdService(viewerId);
@@ -229,5 +224,23 @@ export class AuthService {
 
   async deleteUserService(userId: string, jti?: string, exp?: number) {
     return deleteUserService(userId, jti, exp);
+  }
+
+  async getCreatorDeletionRequests() {
+    return getCreatorDeletionRequestsService();
+  }
+
+  async approveCreatorDeletionRequest(
+    requestId: string,
+    approverUserId: string,
+  ) {
+    return approveCreatorDeletionRequestService(requestId, approverUserId);
+  }
+
+  async rejectCreatorDeletionRequest(
+    requestId: string,
+    approverUserId: string,
+  ) {
+    return rejectCreatorDeletionRequestService(requestId, approverUserId);
   }
 }

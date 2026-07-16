@@ -1,4 +1,6 @@
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 import { API, useGetAPI } from "@/lib/http/api";
 import { RentedContentSources } from "@/utils/viewerRented";
 import { resolvePublicMediaUrl } from "@/utils/media";
@@ -26,10 +28,12 @@ type PurchasedMediaResponse = {
 type PurchasedCollectionResponse = {
   id: string;
   creatorId: string;
+  creatorName: string | null;
   name: string;
   slug: string;
   coverImageUrl: string | null;
   description: string | null;
+  elementCount: number;
   purchasedAt: string | null;
 };
 
@@ -45,7 +49,7 @@ type PurchasedDataResponse = {
   };
 };
 
-const mapMediaItem = (item: PurchasedMediaResponse) => ({
+const mapMediaItem = (item: PurchasedMediaResponse, t: TFunction) => ({
   id: item.id,
   mediaType: item.contentType,
   category: item.categoryName || UNKNOWN,
@@ -53,15 +57,17 @@ const mapMediaItem = (item: PurchasedMediaResponse) => ({
   title: item.title,
   author: item.creatorName || "",
   expiryText: item.purchasedAt
-    ? `Purchased on ${new Date(item.purchasedAt).toLocaleDateString()}`
-    : "Purchased",
+    ? t("viewerRented.purchasedOn", {
+        date: new Date(item.purchasedAt).toLocaleDateString(),
+      })
+    : t("viewerRented.purchased"),
 });
 
 const mapCollectionItem = (item: PurchasedCollectionResponse) => ({
   id: item.id,
   title: item.name,
-  author: item.creatorId || "",
-  elementCount: 0,
+  author: item.creatorName || "",
+  elementCount: item.elementCount ?? 0,
   coverSrc: resolvePublicMediaUrl(item.coverImageUrl) || "",
 });
 
@@ -73,19 +79,20 @@ export const useViewerPurchased = (enabled: boolean = true) => {
       enabled,
     },
   );
+  const { t } = useTranslation();
 
   const data = useMemo((): RentedContentSources | undefined => {
     const responseData = query.data?.data;
     if (!responseData) return undefined;
 
     return {
-      videos: (responseData.videos || []).map(mapMediaItem),
-      audios: (responseData.audios || []).map(mapMediaItem),
-      pdfs: (responseData.pdfs || []).map(mapMediaItem),
-      webs: (responseData.webs || []).map(mapMediaItem),
+      videos: (responseData.videos || []).map((item) => mapMediaItem(item, t)),
+      audios: (responseData.audios || []).map((item) => mapMediaItem(item, t)),
+      pdfs: (responseData.pdfs || []).map((item) => mapMediaItem(item, t)),
+      webs: (responseData.webs || []).map((item) => mapMediaItem(item, t)),
       collections: (responseData.collections || []).map(mapCollectionItem),
     };
-  }, [query.data]);
+  }, [query.data, t]);
 
   return {
     data,

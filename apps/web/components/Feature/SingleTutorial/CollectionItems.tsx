@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LeftIcon } from "@/assets/icons";
 import type { TutorialVideo } from "@/utils/types";
+import { pathPublicCollection } from "@/utils/path";
 import {
   getFeedPageSlice,
   getPaginationState,
@@ -30,9 +31,14 @@ export const COLLECTION_ITEMS_PAGE_SIZE = 4;
 type Props = {
   videos: TutorialVideo[];
   collectionId?: string;
+  ownerCreatorId?: string | null;
 };
 
-export default function CollectionItems({ videos, collectionId }: Props) {
+export default function CollectionItems({
+  videos,
+  collectionId,
+  ownerCreatorId,
+}: Props) {
   const { t } = useTranslation();
   const user = useStoredLoginUser();
   const isLoggedIn = Boolean(user?.id);
@@ -72,7 +78,7 @@ export default function CollectionItems({ videos, collectionId }: Props) {
   if (!videos.length) return null;
 
   const href = collectionId
-    ? `/single-collection?id=${collectionId}`
+    ? pathPublicCollection(collectionId)
     : "/tutorial-videos";
 
   const visibleVideos = getFeedPageSlice(
@@ -127,7 +133,7 @@ export default function CollectionItems({ videos, collectionId }: Props) {
       <CollectionGrid>
         {visibleVideos.map((video) => (
           <CollectionCardWrap key={video.id}>
-            <CollectionItemCard video={video} />
+            <CollectionItemCard video={video} ownerCreatorId={ownerCreatorId} />
           </CollectionCardWrap>
         ))}
       </CollectionGrid>

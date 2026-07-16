@@ -1,10 +1,15 @@
 import { useMemo, useState } from "react";
-import { isBrowser } from "../../utils/constants";
+import { getInitialPageSize, getPageNumbers } from "../../utils/pagination";
 
 interface UsePaginationOptions {
   totalItems: number;
   initialPageSize?: number;
   storageKey?: string;
+  mode?: "client" | "server";
+  currentPage?: number;
+  pageSize?: number;
+  onPageChange?: (page: number) => void;
+  onPageSizeChange?: (size: number) => void;
 }
 
 export function usePagination<T>({
@@ -12,46 +17,58 @@ export function usePagination<T>({
   totalItems,
   initialPageSize = 5,
   storageKey,
+  mode = "client",
+  currentPage: controlledCurrentPage,
+  pageSize: controlledPageSize,
+  onPageChange: controlledOnPageChange,
+  onPageSizeChange: controlledOnPageSizeChange,
 }: UsePaginationOptions & { data: T[] }) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(() => {
-    if (isBrowser && storageKey) {
-      const saved = localStorage.getItem(storageKey);
-      const parsed = Number(saved);
-      if (!isNaN(parsed) && parsed > 0) return parsed;
-    }
-    return initialPageSize;
-  });
+  const [uncontrolledCurrentPage, setUncontrolledCurrentPage] = useState(1);
+  const [uncontrolledPageSize, setUncontrolledPageSize] = useState(() =>
+    getInitialPageSize(storageKey, initialPageSize),
+  );
 
+  const currentPage = controlledCurrentPage ?? uncontrolledCurrentPage;
+  const pageSize = controlledPageSize ?? uncontrolledPageSize;
   const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
-  const safePage = Math.min(currentPage, totalPages);
+  const safePage = Math.min(Math.max(1, currentPage), totalPages);
   const startIndex = (safePage - 1) * pageSize;
-  const endIndex = Math.min(startIndex + pageSize, totalItems);
-  const paginatedData = data.slice(startIndex, endIndex);
+  const endIndex = Math.min(
+    startIndex + (mode === "server" ? data.length : pageSize),
+    totalItems,
+  );
+  const paginatedData =
+    mode === "server" ? data : data.slice(startIndex, endIndex);
 
-  const pageNumbers = useMemo(() => {
-    if (totalPages <= 5) {
-      return Array.from({ length: totalPages }, (_, index) => index + 1);
-    }
-
-    if (safePage <= 3) {
-      return [1, 2, 3];
-    }
-
-    if (safePage >= totalPages - 2) {
-      return [totalPages - 2, totalPages - 1, totalPages];
-    }
-
-    return [safePage - 1, safePage, safePage + 1];
-  }, [safePage, totalPages]);
+  const pageNumbers = useMemo(
+    () => getPageNumbers(safePage, totalPages),
+    [safePage, totalPages],
+  );
 
   const onPageChange = (page: number) => {
-    setCurrentPage(Math.min(Math.max(1, page), totalPages));
+    const nextPage = Math.min(Math.max(1, page), totalPages);
+
+    if (controlledOnPageChange) {
+      controlledOnPageChange(nextPage);
+      return;
+    }
+
+    setUncontrolledCurrentPage(nextPage);
   };
 
   const onPageSizeChange = (size: number) => {
-    setPageSize(size);
-    setCurrentPage(1);
+    if (controlledOnPageSizeChange) {
+      controlledOnPageSizeChange(size);
+    } else {
+      setUncontrolledPageSize(size);
+    }
+
+    if (controlledOnPageChange) {
+      controlledOnPageChange(1);
+    } else {
+      setUncontrolledCurrentPage(1);
+    }
+
     if (storageKey) {
       try {
         localStorage.setItem(storageKey, String(size));

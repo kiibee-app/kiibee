@@ -11,6 +11,7 @@ export const API = {
     userProfile: "/auth/user/profile",
     changePassword: "/auth/user/password",
     creatorProfile: "/auth/creator/profile",
+    deleteUser: "/auth/delete-user",
   },
   coupon: {
     create: "/coupons/create",
@@ -48,6 +49,8 @@ export const API = {
   },
   collection: {
     getAll: "/collection",
+    getPublicByCreator: (creatorId: string) =>
+      `/collection/public/${creatorId}`,
     create: "/collection/create",
     update: (id: string) => `/collection/${id}`,
     delete: (id: string) => `/collection/${id}`,
@@ -94,6 +97,8 @@ export const API = {
   payout: {
     settlementHistory: "/payout/settlement-history",
     stats: "/payout/stats",
+    calculate: "/payout/calculate",
+    request: "/payout/request",
   },
   payment: {
     cards: "/payment/cards",
@@ -113,5 +118,7 @@ export const API = {
     previouslyRentedData: "/viewer/previously-rented-data",
     paymentMethods: "/viewer/payment-methods",
     paymentMethod: (id: string) => `/viewer/payment-methods/${id}`,
+    paymentMethodDefault: (id: string) =>
+      `/viewer/payment-methods/${id}/default`,
   },
 } as const;

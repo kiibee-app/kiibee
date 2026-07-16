@@ -2,17 +2,20 @@ import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
-export const BillingShell = styled.section`
+export const BillingShell = styled.section<{ $onlyPaymentMethods?: boolean }>`
   width: 100%;
   box-sizing: border-box;
-  padding: 40px 30px 30px;
+  padding: ${({ $onlyPaymentMethods }) =>
+    $onlyPaymentMethods ? "0" : "30px 30px"};
 
   ${media.tablet} {
-    padding: 24px 20px 20px;
+    padding: ${({ $onlyPaymentMethods }) =>
+      $onlyPaymentMethods ? "0" : "24px 20px 20px"};
   }
 
   ${media.mobileLg} {
-    padding: 20px 16px 16px;
+    padding: ${({ $onlyPaymentMethods }) =>
+      $onlyPaymentMethods ? "0" : "20px 16px 16px"};
   }
 `;
 
@@ -135,6 +138,7 @@ export const AddCardButton = styled.button`
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.primary.WHITE};
   cursor: pointer;
+  margin-left: auto;
 
   ${media.mobileLg} {
     width: auto;
