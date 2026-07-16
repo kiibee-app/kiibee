@@ -14,6 +14,7 @@ import {
   getVimeoEmbedUrl,
 } from "@/utils/media";
 import EpubViewer from "@/utils/EpubViewer";
+import AudioPlayer from "./AudioPlayer";
 import {
   PreviewOverlay,
   PreviewModalContainer,
@@ -30,6 +31,7 @@ type ContentPreviewModalProps = {
   src: string;
   type: ContentType;
   title: string;
+  coverImage?: string;
 };
 
 export default function ContentPreviewModal({
@@ -38,6 +40,7 @@ export default function ContentPreviewModal({
   src,
   type,
   title,
+  coverImage,
 }: ContentPreviewModalProps) {
   useEffect(() => {
     if (!visible) return;
@@ -120,24 +123,7 @@ export default function ContentPreviewModal({
           />
         );
       case FORMAT_TYPE.AUDIO:
-        return (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            <audio
-              src={src}
-              controls
-              preload="metadata"
-              style={{ width: "80%" }}
-            />
-          </div>
-        );
+        return <AudioPlayer src={src} title={title} coverImage={coverImage} />;
       default:
         return null;
     }

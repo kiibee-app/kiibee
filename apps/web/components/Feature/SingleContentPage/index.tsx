@@ -366,6 +366,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
             src={previewMediaUrl || hero.contentUrl || hero.media?.src || ""}
             type={previewContentType || hero.media?.type || FORMAT_TYPE.VIDEO}
             title={title}
+            coverImage={hero.image ? resolveImageUrl(hero.image) : undefined}
           />
         )}
 

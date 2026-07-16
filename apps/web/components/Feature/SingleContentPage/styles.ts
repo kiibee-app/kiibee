@@ -572,6 +572,219 @@ export const PreviewContent = styled.div`
   }
 `;
 
+export const AudioPlayerRoot = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(
+    165deg,
+    ${({ theme }) => theme.colors.gradient.CANVAS_BG} 0%,
+    ${({ theme }) => theme.colors.primary.GREEN_100} 48%,
+    ${({ theme }) => theme.colors.neutral.DUSTY_TEAL} 100%
+  );
+`;
+
+export const AudioBlurBg = styled.div`
+  position: absolute;
+  inset: -20%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(40px) brightness(0.45) saturate(1.15);
+  transform: scale(1.15);
+  pointer-events: none;
+`;
+
+export const AudioPlayerBody = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  width: min(420px, calc(100% - 3rem));
+  padding: 2rem 0;
+
+  ${media.tablet} {
+    gap: 1.25rem;
+    width: min(320px, calc(100% - 2rem));
+  }
+`;
+
+export const AudioArtwork = styled.div<{ $playing?: boolean }>`
+  position: relative;
+  width: min(280px, 55vw);
+  aspect-ratio: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 48px ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
+  transition: transform 0.35s ease;
+
+  ${({ $playing }) =>
+    $playing &&
+    css`
+      transform: scale(1.02);
+    `}
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+`;
+
+export const AudioArtworkFallback = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.primary.WHITE_10};
+`;
+
+export const AudioBars = styled.div`
+  position: absolute;
+  inset: auto 0 1rem 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 5px;
+  height: 2rem;
+  pointer-events: none;
+`;
+
+export const AudioBar = styled.span<{ $delay?: number }>`
+  width: 5px;
+  height: 100%;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  opacity: 0.9;
+  transform-origin: bottom;
+  animation: audioBarPulse 0.9s ease-in-out infinite;
+  animation-delay: ${({ $delay = 0 }) => `${$delay}s`};
+
+  @keyframes audioBarPulse {
+    0%,
+    100% {
+      transform: scaleY(0.35);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+  }
+`;
+
+export const AudioMeta = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+  width: 100%;
+`;
+
+export const AudioLabel = styled.span`
+  color: ${({ theme }) => theme.colors.primary.WHITE_80};
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+`;
+
+export const AudioTitle = styled.h2`
+  margin: 0;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+  ${({ theme }) => theme.typography.Heading3};
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
+export const AudioPlayButton = styled.button<{ $playing?: boolean }>`
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  border: none;
+  background: ${({ theme }) => theme.colors.neutral.WHITE};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  svg {
+    margin-left: ${({ $playing }) => ($playing ? "0" : "3px")};
+  }
+
+  &:hover {
+    transform: scale(1.08);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+`;
+export const AudioControls = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+`;
+
+export const AudioTime = styled.span`
+  color: ${({ theme }) => theme.colors.primary.WHITE_80};
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 2.5rem;
+`;
+
+export const AudioProgressTrack = styled.div`
+  position: relative;
+  height: 28px;
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 6px;
+    border-radius: 999px;
+    background: ${({ theme }) => theme.colors.primary.WHITE_18};
+  }
+`;
+
+export const AudioProgressFill = styled.div`
+  position: absolute;
+  left: 0;
+  height: 6px;
+  border-radius: 999px;
+  background: ${({ theme }) => theme.colors.primary.GREEN};
+  pointer-events: none;
+  z-index: 1;
+`;
+
+export const AudioProgressInput = styled.input`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  appearance: none;
+  z-index: 2;
+`;
+
 export const PurchaseModalCard = styled.div`
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
   border-radius: 12px;

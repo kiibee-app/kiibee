@@ -14,6 +14,8 @@ export { default as VideoIcon } from "./VideoIcon";
 export { default as PlayCircleIcon } from "./PlayCircleIcon";
 export { default as BackButtonIcon } from "./BackButtonIcon";
 export { default as PlayIcon } from "./PlayIcon";
+export { default as PauseIcon } from "./PauseIcon";
+
 export { default as BookIcon } from "./BookIcon";
 export { default as SuccessArcIcon } from "./SuccessArcIcon";
 export { default as SuccessCheckIcon } from "./SuccessCheckIcon";
