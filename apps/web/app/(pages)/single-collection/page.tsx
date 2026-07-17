@@ -48,7 +48,7 @@ import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { toast } from "react-toastify";
-import { PATHS } from "@/utils/path";
+import { PATHS, COLLECTION_ROUTE } from "@/utils/path";
 
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -211,7 +211,7 @@ function SingleCollectionContent() {
     const nextParams = new URLSearchParams(searchParams.toString());
     nextParams.delete(PAYMENT_QUERY_KEY);
     const next = nextParams.toString();
-    router.replace(next ? `/single-collection?${next}` : "/single-collection", {
+    router.replace(next ? `${COLLECTION_ROUTE}?${next}` : COLLECTION_ROUTE, {
       scroll: false,
     });
   };
