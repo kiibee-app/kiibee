@@ -142,7 +142,17 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     .select({
       id: collections.id,
       name: collections.name,
-      coverImageUrl: collections.coverImageUrl,
+      coverImageUrl: sql<string>`COALESCE(
+        (
+          SELECT COALESCE(mf.thumbnail_landscape_url, mf.thumbnail_url)
+          FROM collection_items ci
+          JOIN media_files mf ON mf.id = ci.media_file_id
+          WHERE ci.collection_id = collections.id
+          ORDER BY ci.sort_order ASC
+          LIMIT 1
+        ),
+        ${collections.coverImageUrl}
+      )`.as('coverImageUrl'),
       description: collections.description,
       creatorId: collections.creatorId,
       creatorName: users.fullName,
