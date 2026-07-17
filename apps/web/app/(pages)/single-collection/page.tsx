@@ -37,6 +37,7 @@ import {
   type CollectionsApiResponse,
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
+import type { PricingAction } from "@/types/collectionsType";
 import { convertRentDurationToHours } from "@/utils/formatDate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
@@ -62,11 +63,9 @@ function SingleCollectionContent() {
 
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
-  const [selectedAction, setSelectedAction] = useState<{
-    label: string;
-    subtitle?: string;
-    isPurchase: boolean;
-  } | null>(null);
+  const [selectedAction, setSelectedAction] = useState<PricingAction | null>(
+    null,
+  );
 
   const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);
   const isPaymentSuccess = paymentStatus === STATUS_TONE.SUCCESS;
@@ -138,11 +137,7 @@ function SingleCollectionContent() {
 
   const createCollectionOrderMutation = useCreateCollectionOrder();
 
-  const handlePricingActionClick = (action: {
-    label: string;
-    subtitle?: string;
-    isPurchase: boolean;
-  }) => {
+  const handlePricingActionClick = (action: PricingAction) => {
     if (!user?.id) {
       setLoginModalVisible(true);
       return;
