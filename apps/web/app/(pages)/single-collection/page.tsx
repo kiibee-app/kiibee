@@ -19,7 +19,6 @@ import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
 import {
   VARIANT_CONTENT,
   ORDER_TYPES,
-  VARIANT,
   PAYMENT_QUERY_KEY,
   STATUS_TONE,
 } from "@/utils/Constants";
