@@ -16,7 +16,13 @@ import { useTutorialCollectionLookup } from "@/hooks/useTutorialVideos";
 import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
-import { VARIANT_CONTENT, ORDER_TYPES } from "@/utils/Constants";
+import {
+  VARIANT_CONTENT,
+  ORDER_TYPES,
+  VARIANT,
+  PAYMENT_QUERY_KEY,
+  STATUS_TONE,
+} from "@/utils/Constants";
 import {
   HeroWrapper,
   TopBar,
@@ -25,9 +31,9 @@ import {
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
 import { useGetAPI } from "@/lib/http/api/getApi";
-import { usePostAPI } from "@/lib/http/api/postApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { API } from "@/lib/http/api/endpoints";
+import { useCreateCollectionOrder } from "@/hooks/useCreateCollectionOrder";
 import {
   type CollectionsApiResponse,
   getCollectionRows,
@@ -63,8 +69,8 @@ function SingleCollectionContent() {
     isPurchase: boolean;
   } | null>(null);
 
-  const paymentStatus = searchParams.get("payment");
-  const isPaymentSuccess = paymentStatus === "success";
+  const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);
+  const isPaymentSuccess = paymentStatus === STATUS_TONE.SUCCESS;
   const [dismissedPaymentSuccess, setDismissedPaymentSuccess] = useState(false);
 
   const { collection: staticSection, isLoading: isTutorialCollectionLoading } =
@@ -131,23 +137,7 @@ function SingleCollectionContent() {
     !staticSection ? id : null,
   );
 
-  const createCollectionOrderMutation = usePostAPI<
-    {
-      success: boolean;
-      statusCode: number;
-      message: string;
-      data: {
-        orderId: string;
-        url?: string;
-      };
-    },
-    {
-      collectionId: string;
-      itemType: string;
-      couponCode?: string;
-      subscriptionId?: string;
-    }
-  >(API.order.createCollection);
+  const createCollectionOrderMutation = useCreateCollectionOrder();
 
   const handlePricingActionClick = (action: {
     label: string;
@@ -216,7 +206,7 @@ function SingleCollectionContent() {
   const handlePaymentSuccessClose = () => {
     setDismissedPaymentSuccess(true);
     const nextParams = new URLSearchParams(searchParams.toString());
-    nextParams.delete("payment");
+    nextParams.delete(PAYMENT_QUERY_KEY);
     const next = nextParams.toString();
     router.replace(next ? `/single-collection?${next}` : "/single-collection", {
       scroll: false,
