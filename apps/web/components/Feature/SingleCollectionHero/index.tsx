@@ -52,6 +52,8 @@ type Props = {
     rentPrice?: number | null;
     rentDurationHours?: number | null;
   };
+  isOwner?: boolean;
+  onOpenDashboard?: () => void;
 };
 
 export default function SingleCollectionHero({
@@ -63,6 +65,8 @@ export default function SingleCollectionHero({
   imageFallback,
   primaryContentId,
   pricing,
+  isOwner,
+  onOpenDashboard,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -125,7 +129,15 @@ export default function SingleCollectionHero({
             {description || t("singleCollection.subtitle")}
           </Description>
 
-          {pricingActions.length > 0 ? (
+          {isOwner ? (
+            <PricingActions style={{ marginTop: 0 }}>
+              {onOpenDashboard && (
+                <ActionButton onClick={onOpenDashboard}>
+                  {t("singleContent.openInDashboard")}
+                </ActionButton>
+              )}
+            </PricingActions>
+          ) : pricingActions.length > 0 ? (
             <PricingActions>
               {pricingActions.map((action) => (
                 <PricingActionButton

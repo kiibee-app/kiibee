@@ -16,7 +16,14 @@ import { useTutorialCollectionLookup } from "@/hooks/useTutorialVideos";
 import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
-import { VARIANT_CONTENT } from "@/utils/Constants";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { PATHS } from "@/utils/path";
+import { CREATORS_LABELS } from "@/utils/SidebarItems";
+import {
+  VARIANT_CONTENT,
+  VIEW,
+  CONTENT_COLLECTION_QUERY_KEY,
+} from "@/utils/Constants";
 import {
   HeroWrapper,
   TopBar,
@@ -53,6 +60,19 @@ function SingleCollectionContent() {
   } = usePublicCollectionContent(!staticSection ? id : null);
 
   const resolvedCreatorId = publicCreatorId || dynamicSection?.creatorId;
+
+  const user = useStoredLoginUser();
+  const isOwner = Boolean(user?.id && resolvedCreatorId === user.id);
+
+  const handleOpenDashboard = () => {
+    const params = new URLSearchParams({
+      [VIEW]: CREATORS_LABELS.CONTENTS,
+    });
+    if (id) {
+      params.set(CONTENT_COLLECTION_QUERY_KEY, id);
+    }
+    router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
+  };
 
   const { creator: publicCreator } = useCreatorPublicProfile(
     resolvedCreatorId ?? null,
@@ -140,6 +160,8 @@ function SingleCollectionContent() {
           image={resolvedImage}
           pricing={resolvedPricing}
           primaryContentId={dynamicSection?.videos?.[0]?.id}
+          isOwner={isOwner}
+          onOpenDashboard={handleOpenDashboard}
         />
         <AccessGate
           type={gateType}
@@ -193,6 +215,8 @@ function SingleCollectionContent() {
         imageFallback={dynamicSection.heroImageFallback}
         primaryContentId={dynamicSection.videos[0]?.id}
         pricing={resolvedPricing}
+        isOwner={isOwner}
+        onOpenDashboard={handleOpenDashboard}
       />
       <CollectionContent videos={dynamicSection.videos} />
     </Section>
