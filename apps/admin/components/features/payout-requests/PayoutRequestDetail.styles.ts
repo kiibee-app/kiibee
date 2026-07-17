@@ -24,19 +24,59 @@ export const ActionRow = styled.div`
   margin-bottom: 24px;
 `;
 
+export const ButtonGroup = styled.div`
+  display: inline-flex;
+  align-items: center;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_100};
+  padding: 6px;
+  gap: 8px;
+`;
+
 export const ApproveButton = styled.button`
   background: ${({ theme }) => theme.colors.primary.GREEN};
-  color: ${({ theme }) => theme.colors.neutral.WHITE};
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+  color: ${({ theme }) => theme.colors.primary.WHITE};
+  border: 1px solid ${({ theme }) => theme.colors.primary.GREEN};
+  padding: 8px 20px;
+  border-radius: 9999px; /* Pill shape */
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
 
   &:hover:not(:disabled) {
-    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: ${({ theme }) => theme.shadows.md};
+    filter: brightness(1.05);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+`;
+
+export const RejectButton = styled.button`
+  background: ${({ theme }) => theme.colors.primary.WHITE};
+  color: ${({ theme }) => theme.colors.primary.RED};
+  border: 1px solid ${({ theme }) => theme.colors.primary.RED};
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+
+  &:hover:not(:disabled) {
+    background: color-mix(
+      in srgb,
+      ${({ theme }) => theme.colors.primary.RED} 10%,
+      ${({ theme }) => theme.colors.primary.WHITE}
+    );
+    transform: translateY(-1px);
+    box-shadow: ${({ theme }) => theme.shadows.md};
   }
 
   &:disabled {
