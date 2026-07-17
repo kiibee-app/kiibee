@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Table from "@/components/UI/Table";
+import Pagination from "@/components/UI/Table/TablePagination";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { DASHBOARD_USERS } from "@/utils/translationKeys";
@@ -11,7 +12,7 @@ import { SalesRow } from "@/types/creatorUsers";
 import { buildHeaderMap, SALES_TABLE_HEADER_KEYS } from "@/utils/tableHeader";
 import { useTableSort } from "@/hooks/useTableSort";
 import { LOADER_VARIANT } from "@/utils/ui";
-import { filterUsersByName } from "@/utils/filterUsersByName";
+import { getPaginationItems } from "@/utils/pagination";
 import { useSales } from "@/hooks/users/useCreatorUsers";
 import UsersEmptyState from "../EmptyState";
 import {
@@ -26,13 +27,26 @@ import {
 
 type SalestTabContentProps = {
   searchValue: string;
+  page: number;
+  onPageChange: (page: number) => void;
 };
+
+const DEFAULT_SALES_LIMIT = 10;
 
 export default function SalesTabContent({
   searchValue,
+  page,
+  onPageChange,
 }: SalestTabContentProps) {
   const { t } = useTranslation();
-  const { rows, isLoading } = useSales();
+  const [limit, setLimit] = useState(DEFAULT_SALES_LIMIT);
+  const search = searchValue.trim();
+  const { rows, isLoading, pagination } = useSales({
+    search: search || undefined,
+    page,
+    limit,
+  });
+
   const headers = SALES_TABLE_HEADER_KEYS.map((headerKey) =>
     t(DASHBOARD_USERS.salest.tableHeaders[headerKey]),
   );
@@ -40,19 +54,26 @@ export default function SalesTabContent({
     headers,
     SALES_TABLE_HEADER_KEYS,
   );
-  const filteredSalesData = useMemo(() => {
-    return filterUsersByName(rows, searchValue);
-  }, [rows, searchValue]);
 
   const {
     sortedData: sortedSalesData,
     isHeaderSortable,
     getHeaderSortDirection,
     toggleSort,
-  } = useTableSort(filteredSalesData, {
+  } = useTableSort(rows, {
     sortableHeader: headers[0],
     sortBy: (item) => item.name,
   });
+
+  const paginationItems = getPaginationItems(
+    pagination?.page ?? page,
+    pagination?.totalPages ?? 1,
+  );
+
+  const handleRowsPerPageChange = (rowsPerPage: number) => {
+    setLimit(rowsPerPage);
+    onPageChange(1);
+  };
 
   if (isLoading) {
     return (
@@ -60,7 +81,7 @@ export default function SalesTabContent({
     );
   }
 
-  if (rows.length === 0) {
+  if (rows.length === 0 && !search) {
     return (
       <>
         <EmptySectionHeader>
@@ -93,7 +114,7 @@ export default function SalesTabContent({
         <Table<SalesRow>
           headers={headers}
           data={sortedSalesData}
-          rowsPerPage={10}
+          hidePagination
           headerToKey={(header) => headerMap[header]}
           onHeaderClick={toggleSort}
           isHeaderSortable={isHeaderSortable}
@@ -118,6 +139,18 @@ export default function SalesTabContent({
             );
           }}
         />
+
+        {pagination && pagination.totalItems > DEFAULT_SALES_LIMIT && (
+          <Pagination
+            totalPages={pagination.totalPages}
+            totalItems={pagination.totalItems}
+            currentPage={pagination.page}
+            paginationItems={paginationItems}
+            rowsPerPage={pagination.limit}
+            onRowsPerPageChange={handleRowsPerPageChange}
+            onChange={onPageChange}
+          />
+        )}
       </TableSection>
     </>
   );

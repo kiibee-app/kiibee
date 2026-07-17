@@ -23,14 +23,16 @@ export default function Table<T extends Record<string, unknown>>({
   onHeaderClick,
   isHeaderSortable,
   getHeaderSortDirection,
+  hidePagination = false,
 }: TableProps<T>) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentRowsPerPage, setCurrentRowsPerPage] = useState(rowsPerPage);
   const shouldDisablePagination = data.length <= 10;
-  const rowsPerPageForPagination = shouldDisablePagination
-    ? Math.max(data.length, 1)
-    : currentRowsPerPage;
+  const rowsPerPageForPagination =
+    hidePagination || shouldDisablePagination
+      ? Math.max(data.length, 1)
+      : currentRowsPerPage;
 
   const {
     paginatedData,
@@ -104,16 +106,18 @@ export default function Table<T extends Record<string, unknown>>({
           getHeaderSortDirection={getHeaderSortDirection}
         />
       </TableContainer>
-      <Pagination
-        totalPages={totalPages}
-        totalItems={data.length}
-        currentPage={safeCurrentPage}
-        paginationItems={paginationItems}
-        rowsPerPage={rowsPerPageForPagination}
-        disablePagination={shouldDisablePagination}
-        onRowsPerPageChange={handleRowsPerPageChange}
-        onChange={handlePageChange}
-      />
+      {!hidePagination && (
+        <Pagination
+          totalPages={totalPages}
+          totalItems={data.length}
+          currentPage={safeCurrentPage}
+          paginationItems={paginationItems}
+          rowsPerPage={rowsPerPageForPagination}
+          disablePagination={shouldDisablePagination}
+          onRowsPerPageChange={handleRowsPerPageChange}
+          onChange={handlePageChange}
+        />
+      )}
     </>
   );
 }

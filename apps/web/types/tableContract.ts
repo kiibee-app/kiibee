@@ -24,6 +24,7 @@ export type BaseTableProps<T> = {
   emptyText?: string;
   hasData?: boolean | undefined;
   rowsPerPage?: number;
+  hidePagination?: boolean;
   pagination?: {
     safeCurrentPage?: number;
     effectiveRowsPerPage?: number;
