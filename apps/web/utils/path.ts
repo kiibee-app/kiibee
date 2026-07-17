@@ -45,6 +45,8 @@ export const PATHS = {
   CREATOR_PLANS: "/creator-plans",
 } as const;
 
+export const COLLECTION_ROUTE = "/single-collection";
+
 const VIEWER_ROLE = "viewer";
 
 export const ANONYMOUS_VIEWER_ID = "anonymous";

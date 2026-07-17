@@ -52,6 +52,11 @@ type Props = {
     rentPrice?: number | null;
     rentDurationHours?: number | null;
   };
+  onActionClick?: (action: {
+    label: string;
+    subtitle?: string;
+    isPurchase: boolean;
+  }) => void;
 };
 
 export default function SingleCollectionHero({
@@ -63,6 +68,7 @@ export default function SingleCollectionHero({
   imageFallback,
   primaryContentId,
   pricing,
+  onActionClick,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -80,6 +86,20 @@ export default function SingleCollectionHero({
       })
     : [];
   const creatorInitial = creatorName?.trim().charAt(0).toUpperCase() || "";
+
+  const handlePricingActionClick = (
+    action: (typeof pricingActions)[number],
+  ) => {
+    if (!onActionClick) return;
+    const isPurchase = action.label
+      .toLowerCase()
+      .includes(t("pricingLabels.buy").toLowerCase());
+    onActionClick({
+      label: action.label,
+      subtitle: action.subtitle,
+      isPurchase,
+    });
+  };
 
   return (
     <HeroWrapper>
@@ -131,6 +151,7 @@ export default function SingleCollectionHero({
                 <PricingActionButton
                   key={action.label}
                   variant={action.variant}
+                  onClick={() => handlePricingActionClick(action)}
                 >
                   <PricingButtonContent>
                     <span>{action.label}</span>

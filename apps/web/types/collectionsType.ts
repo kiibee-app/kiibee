@@ -66,6 +66,12 @@ export type CollectionTableProps =
       onOther?: (id: string) => void;
     };
 
+export type PricingAction = {
+  label: string;
+  subtitle?: string;
+  isPurchase: boolean;
+};
+
 export function isCollectionContentRow(
   row: CollectionRow | CollectionContentRow,
 ): row is CollectionContentRow {

@@ -1029,6 +1029,14 @@
     "profilePhotoAlt": "Profilfoto"
   },
   "singleContent": {
+    "purchaseSuccessModal": {
+      "title": "Køb gennemført!",
+      "contentMessage": "Betaling bekræftet — du ejer nu dette indhold og kan få adgang til det når som helst i dit bibliotek.",
+      "collectionMessage": "Betaling bekræftet — du ejer nu denne samling og kan få adgang til den når som helst i dit bibliotek.",
+      "goBack": "Gå tilbage",
+      "goToContent": "Gå til indhold",
+      "goToCollection": "Gå til samling"
+    },
     "notFound": "Dette indhold blev ikke fundet.",
     "loading": "Indhold indlaeses...",
     "imageAlt": "Forhaandsvisning af indhold",

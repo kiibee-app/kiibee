@@ -1029,6 +1029,14 @@
     "profilePhotoAlt": "Profile photo"
   },
   "singleContent": {
+    "purchaseSuccessModal": {
+      "title": "Purchase Successful!",
+      "contentMessage": "Payment confirmed — you now own this content and can access it anytime in your library.",
+      "collectionMessage": "Payment confirmed — you now own this collection and can access it anytime in your library.",
+      "goBack": "Go back",
+      "goToContent": "Go to content",
+      "goToCollection": "Go to collection"
+    },
     "notFound": "This content could not be found.",
     "loading": "Loading content...",
     "imageAlt": "Content preview",

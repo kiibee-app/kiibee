@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import NavBar from "@/components/Layout/Navbar";
@@ -16,7 +16,12 @@ import { useTutorialCollectionLookup } from "@/hooks/useTutorialVideos";
 import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
-import { VARIANT_CONTENT } from "@/utils/Constants";
+import {
+  VARIANT_CONTENT,
+  ORDER_TYPES,
+  PAYMENT_QUERY_KEY,
+  STATUS_TONE,
+} from "@/utils/Constants";
 import {
   HeroWrapper,
   TopBar,
@@ -25,15 +30,25 @@ import {
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
 import { useGetAPI } from "@/lib/http/api/getApi";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { API } from "@/lib/http/api/endpoints";
+import { useCreateCollectionOrder } from "@/hooks/useCreateCollectionOrder";
 import {
   type CollectionsApiResponse,
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
+import type { PricingAction } from "@/types/collectionsType";
 import { convertRentDurationToHours } from "@/utils/formatDate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { NAV } from "@/utils/translationKeys";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import PurchaseModal from "@/components/Feature/SingleContentPage/PurchaseModal";
+import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
+import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
+import { MODAL_ALIGN } from "@/utils/ui";
+import { toast } from "react-toastify";
+import { PATHS, COLLECTION_ROUTE } from "@/utils/path";
 
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -43,6 +58,19 @@ function SingleCollectionContent() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const publicCreatorId = searchParams.get("creatorId");
+  const user = useStoredLoginUser();
+  const { getErrorMessage } = useApiErrorMessage();
+
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+  const [selectedAction, setSelectedAction] = useState<PricingAction | null>(
+    null,
+  );
+
+  const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);
+  const isPaymentSuccess = paymentStatus === STATUS_TONE.SUCCESS;
+  const [dismissedPaymentSuccess, setDismissedPaymentSuccess] = useState(false);
+
   const { collection: staticSection, isLoading: isTutorialCollectionLoading } =
     useTutorialCollectionLookup(id);
 
@@ -69,6 +97,7 @@ function SingleCollectionContent() {
       refetchOnWindowFocus: false,
     },
   );
+
   const selectedCollection = useMemo(() => {
     if (!id || !publicCollectionsQuery.data) return undefined;
     return getCollectionRows(publicCollectionsQuery.data).find(
@@ -106,6 +135,138 @@ function SingleCollectionContent() {
     !staticSection ? id : null,
   );
 
+  const createCollectionOrderMutation = useCreateCollectionOrder();
+
+  const handlePricingActionClick = (action: PricingAction) => {
+    if (!user?.id) {
+      setLoginModalVisible(true);
+      return;
+    }
+    setSelectedAction(action);
+    setShowPurchaseModal(true);
+  };
+
+  const handlePurchaseConfirm = (
+    couponCode?: string,
+    subscriptionId?: string,
+  ) => {
+    if (!selectedAction || !id) return;
+
+    if (!user?.id) {
+      setLoginModalVisible(true);
+      return;
+    }
+
+    createCollectionOrderMutation.mutate(
+      {
+        collectionId: id,
+        itemType: selectedAction.isPurchase
+          ? ORDER_TYPES.PURCHASE
+          : ORDER_TYPES.RENTAL,
+        ...(couponCode ? { couponCode } : {}),
+        ...(subscriptionId ? { subscriptionId } : {}),
+      },
+      {
+        onSuccess: (response) => {
+          const paymentUrl = response?.data?.url;
+          const orderId = response?.data?.orderId;
+
+          if (!paymentUrl && subscriptionId && orderId) {
+            setShowPurchaseModal(false);
+            setSelectedAction(null);
+            router.push(
+              `/payment/success?orderId=${encodeURIComponent(orderId)}`,
+            );
+            return;
+          }
+
+          if (!paymentUrl) {
+            const error = new Error("Payment URL missing");
+            const message = getErrorMessage(error, "errors.saveChangesFailed");
+            toast.error(message);
+            return;
+          }
+
+          setShowPurchaseModal(false);
+          setSelectedAction(null);
+          window.location.assign(paymentUrl);
+        },
+        onError: (error) => {
+          const message = getErrorMessage(error, "errors.saveChangesFailed");
+          toast.error(message);
+        },
+      },
+    );
+  };
+
+  const handleClosePurchaseModal = () => {
+    setShowPurchaseModal(false);
+    setSelectedAction(null);
+  };
+
+  const handleCloseLoginModal = () => setLoginModalVisible(false);
+
+  const handlePaymentSuccessClose = () => {
+    setDismissedPaymentSuccess(true);
+    const nextParams = new URLSearchParams(searchParams.toString());
+    nextParams.delete(PAYMENT_QUERY_KEY);
+    const next = nextParams.toString();
+    router.replace(next ? `${COLLECTION_ROUTE}?${next}` : COLLECTION_ROUTE, {
+      scroll: false,
+    });
+  };
+
+  const handlePaymentSuccessConfirm = () => {
+    setDismissedPaymentSuccess(true);
+    router.push(PATHS.DASHBOARD_VIEWER);
+  };
+
+  const purchaseModals = (
+    <>
+      <PurchaseModal
+        visible={showPurchaseModal}
+        onClose={handleClosePurchaseModal}
+        onPurchase={handlePurchaseConfirm}
+        onRequireLogin={() => setLoginModalVisible(true)}
+        isLoggedIn={Boolean(user?.id)}
+        title={dynamicSection?.name ?? selectedCollection?.name ?? ""}
+        image={resolvedImage}
+        imageAlt={dynamicSection?.name ?? selectedCollection?.name ?? ""}
+        creator={resolvedCreatorName}
+        contentType="collection"
+        priceLabel={selectedAction?.label || ""}
+        accessLabel={selectedAction?.subtitle}
+        collectionId={id || undefined}
+        loading={createCollectionOrderMutation.isPending}
+      />
+
+      <LoginRequiredModal
+        visible={isLoginModalVisible}
+        onClose={handleCloseLoginModal}
+        onSuccess={() => {
+          handleCloseLoginModal();
+        }}
+      />
+
+      <GenericModal
+        visible={isPaymentSuccess && !gateType && !dismissedPaymentSuccess}
+        icon={<SuccessModalIcon />}
+        iconMargin="0 auto 8px"
+        textAlign={MODAL_ALIGN.CENTER}
+        title={t("singleContent.purchaseSuccessModal.title")}
+        message={t("singleContent.purchaseSuccessModal.collectionMessage")}
+        cancelLabel={t("singleContent.purchaseSuccessModal.goBack")}
+        confirmLabel={t("singleContent.purchaseSuccessModal.goToCollection")}
+        onCancel={handlePaymentSuccessClose}
+        onConfirm={handlePaymentSuccessConfirm}
+        onClose={handlePaymentSuccessClose}
+        buttonRow={true}
+        size="sm"
+        showCloseButton={false}
+      />
+    </>
+  );
+
   if (isTutorialCollectionLoading && !staticSection) {
     return <GenericSpinner isOverlay size={48} label={t("common.loading")} />;
   }
@@ -140,6 +301,7 @@ function SingleCollectionContent() {
           image={resolvedImage}
           pricing={resolvedPricing}
           primaryContentId={dynamicSection?.videos?.[0]?.id}
+          onActionClick={handlePricingActionClick}
         />
         <AccessGate
           type={gateType}
@@ -154,6 +316,7 @@ function SingleCollectionContent() {
             }
           }}
         />
+        {purchaseModals}
       </Section>
     );
   }
@@ -193,8 +356,10 @@ function SingleCollectionContent() {
         imageFallback={dynamicSection.heroImageFallback}
         primaryContentId={dynamicSection.videos[0]?.id}
         pricing={resolvedPricing}
+        onActionClick={handlePricingActionClick}
       />
       <CollectionContent videos={dynamicSection.videos} />
+      {purchaseModals}
     </Section>
   );
 }

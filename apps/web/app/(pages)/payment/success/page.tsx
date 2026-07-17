@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
-import { PATHS } from "@/utils/path";
+import { PATHS, pathPublicCollection } from "@/utils/path";
 import {
   COMPLETED,
   FAILED,
@@ -36,6 +36,7 @@ type OrderRecord = {
   id: string;
   status: "pending" | "completed" | "failed";
   mediaFileId?: string | null;
+  collectionId?: string | null;
 };
 
 type OrderByIdResponse = {
@@ -76,15 +77,20 @@ function PaymentSuccessContent() {
   );
 
   useEffect(() => {
-    if (order?.status === COMPLETED && order.mediaFileId) {
-      const paymentParams = new URLSearchParams({
-        [PAYMENT_QUERY_KEY]: STATUS_TONE.SUCCESS,
-      });
-      router.replace(
-        `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}?${paymentParams.toString()}`,
-      );
+    if (order?.status !== COMPLETED) return;
+
+    const paymentStatus = STATUS_TONE.SUCCESS;
+
+    const redirectUrl = order.mediaFileId
+      ? `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}?${PAYMENT_QUERY_KEY}=${paymentStatus}`
+      : order.collectionId
+        ? `${pathPublicCollection(order.collectionId)}&&${PAYMENT_QUERY_KEY}=${paymentStatus}`
+        : undefined;
+
+    if (redirectUrl) {
+      router.replace(redirectUrl);
     }
-  }, [order?.status, order?.mediaFileId, router]);
+  }, [order?.status, order?.mediaFileId, order?.collectionId, router]);
 
   if (!orderId) {
     return (
