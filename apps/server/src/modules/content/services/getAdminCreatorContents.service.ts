@@ -1,5 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 import { and, desc, eq, sql } from 'drizzle-orm';
+
 import { db } from 'src/database/db';
 import {
   analyticsEvents,
@@ -14,24 +15,35 @@ import { fail, success } from 'src/utils/sendResponse';
 export const getAdminCreatorContentsService = async (creatorId: string) => {
   try {
     const purchaseCountSql = sql<number>`
-      COUNT(DISTINCT CASE
-        WHEN ${orders.itemType} = ${ORDER_TYPES.PURCHASE}
+      (
+        SELECT COUNT(*)
+        FROM ${orders}
+        WHERE
+          ${orders.mediaFileId} = ${mediaFiles.id}
+          AND ${orders.itemType} = ${ORDER_TYPES.PURCHASE}
           AND ${orders.status} = ${ORDER_STATUS.COMPLETED}
-        THEN ${orders.id}
-      END)::int
+      )
     `;
+
     const rentalCountSql = sql<number>`
-      COUNT(DISTINCT CASE
-        WHEN ${orders.itemType} = ${ORDER_TYPES.RENTAL}
+      (
+        SELECT COUNT(*)
+        FROM ${orders}
+        WHERE
+          ${orders.mediaFileId} = ${mediaFiles.id}
+          AND ${orders.itemType} = ${ORDER_TYPES.RENTAL}
           AND ${orders.status} = ${ORDER_STATUS.COMPLETED}
-        THEN ${orders.id}
-      END)::int
+      )
     `;
+
     const downloadCountSql = sql<number>`
-      COUNT(DISTINCT CASE
-        WHEN ${analyticsEvents.eventType} = 'download'
-        THEN ${analyticsEvents.id}
-      END)::int
+      (
+        SELECT COUNT(*)
+        FROM ${analyticsEvents}
+        WHERE
+          ${analyticsEvents.mediaFileId} = ${mediaFiles.id}
+          AND ${analyticsEvents.eventType} = 'download'
+      )
     `;
 
     const rows = await db
@@ -54,15 +66,12 @@ export const getAdminCreatorContentsService = async (creatorId: string) => {
       })
       .from(mediaFiles)
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
-      .leftJoin(orders, eq(orders.mediaFileId, mediaFiles.id))
-      .leftJoin(analyticsEvents, eq(analyticsEvents.mediaFileId, mediaFiles.id))
       .where(
         and(
           eq(mediaFiles.creatorId, creatorId),
           eq(mediaFiles.isDeleted, false),
         ),
       )
-      .groupBy(mediaFiles.id, contentTypes.name)
       .orderBy(desc(mediaFiles.createdAt));
 
     return success(
@@ -77,6 +86,7 @@ export const getAdminCreatorContentsService = async (creatorId: string) => {
     );
   } catch (error) {
     logger.error('Failed to fetch admin creator contents:', error);
+
     return fail(
       'Failed to fetch creator contents',
       HttpStatus.INTERNAL_SERVER_ERROR,
