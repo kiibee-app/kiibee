@@ -19,7 +19,7 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { resolveContentViewerId } from "@/utils/path";
+import { PATHS, resolveContentViewerId } from "@/utils/path";
 
 import {
   CONTENT_TRANSLATION_KEYS,
@@ -116,6 +116,11 @@ function PublishedContentDetail() {
     router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
   };
 
+  const handlePaymentSuccessConfirm = () => {
+    setDismissedPaymentSuccess(true);
+    router.push(PATHS.DASHBOARD_VIEWER);
+  };
+
   const paymentSuccessModal = (
     <GenericModal
       visible={showPaymentSuccessModal}
@@ -127,7 +132,7 @@ function PublishedContentDetail() {
       cancelLabel="Go back"
       confirmLabel="Go to content"
       onCancel={handlePaymentSuccessClose}
-      onConfirm={handlePaymentSuccessClose}
+      onConfirm={handlePaymentSuccessConfirm}
       onClose={handlePaymentSuccessClose}
       buttonRow={true}
       size="sm"

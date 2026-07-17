@@ -16,7 +16,7 @@ import { useTutorialCollectionLookup } from "@/hooks/useTutorialVideos";
 import { usePublicCollectionContent } from "@/hooks/usePublicCollectionContent";
 import AccessGate from "@/components/Feature/AccessGate";
 import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
-import { VARIANT_CONTENT, ORDER_TYPES, VARIANT } from "@/utils/Constants";
+import { VARIANT_CONTENT, ORDER_TYPES } from "@/utils/Constants";
 import {
   HeroWrapper,
   TopBar,
@@ -42,6 +42,7 @@ import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { toast } from "react-toastify";
+import { PATHS } from "@/utils/path";
 
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -222,6 +223,11 @@ function SingleCollectionContent() {
     });
   };
 
+  const handlePaymentSuccessConfirm = () => {
+    setDismissedPaymentSuccess(true);
+    router.push(PATHS.DASHBOARD_VIEWER);
+  };
+
   const purchaseModals = (
     <>
       <PurchaseModal
@@ -259,7 +265,7 @@ function SingleCollectionContent() {
         cancelLabel="Go back"
         confirmLabel="Go to collection"
         onCancel={handlePaymentSuccessClose}
-        onConfirm={handlePaymentSuccessClose}
+        onConfirm={handlePaymentSuccessConfirm}
         onClose={handlePaymentSuccessClose}
         buttonRow={true}
         size="sm"
