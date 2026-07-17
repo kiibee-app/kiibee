@@ -87,6 +87,20 @@ export default function SingleCollectionHero({
     : [];
   const creatorInitial = creatorName?.trim().charAt(0).toUpperCase() || "";
 
+  const handlePricingActionClick = (
+    action: (typeof pricingActions)[number],
+  ) => {
+    if (!onActionClick) return;
+    const isPurchase = action.label
+      .toLowerCase()
+      .includes(t("pricingLabels.buy").toLowerCase());
+    onActionClick({
+      label: action.label,
+      subtitle: action.subtitle,
+      isPurchase,
+    });
+  };
+
   return (
     <HeroWrapper>
       <TopBar>
@@ -137,18 +151,7 @@ export default function SingleCollectionHero({
                 <PricingActionButton
                   key={action.label}
                   variant={action.variant}
-                  onClick={() => {
-                    if (onActionClick) {
-                      const isPurchase = action.label
-                        .toLowerCase()
-                        .includes(t("pricingLabels.buy").toLowerCase());
-                      onActionClick({
-                        label: action.label,
-                        subtitle: action.subtitle,
-                        isPurchase,
-                      });
-                    }
-                  }}
+                  onClick={() => handlePricingActionClick(action)}
                 >
                   <PricingButtonContent>
                     <span>{action.label}</span>
