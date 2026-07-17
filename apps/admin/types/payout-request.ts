@@ -15,3 +15,11 @@ export interface PayoutRequest {
   walletBalance: string | null;
   walletCurrency: string | null;
 }
+
+export type PayoutCreatePayload = {
+  requestId: string;
+  creatorId: string;
+  amount: string;
+  payoutId: string;
+  paymentMethodId: string;
+};

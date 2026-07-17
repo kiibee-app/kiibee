@@ -30,6 +30,7 @@ export const API_ENDPOINTS = {
   ALL_PAYOUT_REQUESTS: "/payout/requests",
   PAYOUT_REQUEST_BY_ID: (id: string) => `/payout/requests/${id}`,
   CREATE_PAYOUT: "/payout/create",
+  REJECT_PAYOUT_REQUEST: (id: string) => `/payout/requests/${id}/reject`,
 } as const;
 
 export const ERROR_MESSAGES = {

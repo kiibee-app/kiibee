@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { usePayoutRequest, useCreatePayout } from "../../../hooks/api";
-import toast from "react-hot-toast";
+import { usePayoutRequest } from "../../../hooks/api";
+import { usePayoutActions } from "./usePayoutActions";
 import {
   AllCreatorsLayout,
   AllCreatorsPanel,
@@ -24,35 +24,17 @@ import { toCreatorStatus } from "../../../utils/status";
 import {
   BackButton,
   ActionRow,
+  ButtonGroup,
   ApproveButton,
+  RejectButton,
   ContentWrapper,
 } from "./PayoutRequestDetail.styles";
 
 export function PayoutRequestDetail({ id }: { id: string }) {
   const router = useRouter();
   const { data: request, isLoading, isError, error } = usePayoutRequest(id);
-  const { mutate: createPayout, isPending: isApproving } = useCreatePayout();
-
-  const handleApprove = () => {
-    if (!request) return;
-
-    createPayout(
-      {
-        creatorId: request.creatorId,
-        amount: request.rawAmount,
-        payoutId: request.payoutId,
-        paymentMethodId: request.paymentMethodId,
-      },
-      {
-        onSuccess: () => {
-          toast.success("Payout successfully created and approved.");
-        },
-        onError: (err) => {
-          toast.error(err.message || "Failed to approve payout.");
-        },
-      },
-    );
-  };
+  const { handleApprove, handleReject, isApproving, isRejecting } =
+    usePayoutActions(request);
 
   if (isLoading) {
     return (
@@ -95,9 +77,20 @@ export function PayoutRequestDetail({ id }: { id: string }) {
         <ContentWrapper>
           {request.status === "pending" && (
             <ActionRow>
-              <ApproveButton onClick={handleApprove} disabled={isApproving}>
-                {isApproving ? "Approving..." : "Approve Payout"}
-              </ApproveButton>
+              <ButtonGroup>
+                <RejectButton
+                  onClick={handleReject}
+                  disabled={isApproving || isRejecting}
+                >
+                  {isRejecting ? "Rejecting..." : "Reject Request"}
+                </RejectButton>
+                <ApproveButton
+                  onClick={handleApprove}
+                  disabled={isApproving || isRejecting}
+                >
+                  {isApproving ? "Approving..." : "Approve Payout"}
+                </ApproveButton>
+              </ButtonGroup>
             </ActionRow>
           )}
 

@@ -4,6 +4,7 @@ import type { LucideIcon } from "lucide-react";
 import { X } from "lucide-react";
 import { ROUTES } from "../../utils/constants";
 import { useDashboardStats } from "../../hooks/api/use-dashboard-stats";
+import { usePayoutRequests } from "../../hooks/api/use-payout-requests";
 import {
   BrandText,
   CloseButton,
@@ -30,7 +31,9 @@ interface SidebarProps {
 
 export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
   const statsQuery = useDashboardStats();
+  const payoutRequestsQuery = usePayoutRequests();
   const pendingCount = statsQuery.data?.pendingRequests ?? 0;
+  const pendingPayoutCount = payoutRequestsQuery.data?.length ?? 0;
 
   return (
     <SidebarRoot $isOpen={isOpen}>
@@ -48,8 +51,13 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
               : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
           const Icon = item.icon;
-          const showBadge =
-            item.href === ROUTES.PENDING_REQUESTS && pendingCount > 0;
+          const badgeCount =
+            item.href === ROUTES.PENDING_REQUESTS
+              ? pendingCount
+              : item.href === ROUTES.PAYOUT_REQUESTS
+                ? pendingPayoutCount
+                : 0;
+          const showBadge = badgeCount > 0;
 
           return (
             <MenuItem
@@ -63,9 +71,7 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
                 <Icon size={16} />
               </IconWrap>
               <span>{item.label}</span>
-              {showBadge && (
-                <NotificationBadge>{pendingCount}</NotificationBadge>
-              )}
+              {showBadge && <NotificationBadge>{badgeCount}</NotificationBadge>}
             </MenuItem>
           );
         })}
