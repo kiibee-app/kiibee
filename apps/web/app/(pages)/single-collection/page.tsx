@@ -21,6 +21,8 @@ import {
   ORDER_TYPES,
   PAYMENT_QUERY_KEY,
   STATUS_TONE,
+  VIEW,
+  CONTENT_COLLECTION_QUERY_KEY,
 } from "@/utils/Constants";
 import {
   HeroWrapper,
@@ -49,6 +51,7 @@ import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { toast } from "react-toastify";
 import { PATHS, COLLECTION_ROUTE } from "@/utils/path";
+import { CREATORS_LABELS } from "@/utils/SidebarItems";
 
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -81,6 +84,18 @@ function SingleCollectionContent() {
   } = usePublicCollectionContent(!staticSection ? id : null);
 
   const resolvedCreatorId = publicCreatorId || dynamicSection?.creatorId;
+
+  const isOwner = Boolean(user?.id && resolvedCreatorId === user.id);
+
+  const handleOpenDashboard = () => {
+    const params = new URLSearchParams({
+      [VIEW]: CREATORS_LABELS.CONTENTS,
+    });
+    if (id) {
+      params.set(CONTENT_COLLECTION_QUERY_KEY, id);
+    }
+    router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
+  };
 
   const { creator: publicCreator } = useCreatorPublicProfile(
     resolvedCreatorId ?? null,
@@ -302,6 +317,8 @@ function SingleCollectionContent() {
           pricing={resolvedPricing}
           primaryContentId={dynamicSection?.videos?.[0]?.id}
           onActionClick={handlePricingActionClick}
+          isOwner={isOwner}
+          onOpenDashboard={handleOpenDashboard}
         />
         <AccessGate
           type={gateType}
@@ -357,6 +374,8 @@ function SingleCollectionContent() {
         primaryContentId={dynamicSection.videos[0]?.id}
         pricing={resolvedPricing}
         onActionClick={handlePricingActionClick}
+        isOwner={isOwner}
+        onOpenDashboard={handleOpenDashboard}
       />
       <CollectionContent videos={dynamicSection.videos} />
       {purchaseModals}

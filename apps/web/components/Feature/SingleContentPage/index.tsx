@@ -11,7 +11,13 @@ import {
   ORDER_TYPES,
   type OrderItemType,
   STRING,
+  VIEW,
+  CONTENT_COLLECTION_QUERY_KEY,
+  CONTENT_ITEM_QUERY_KEY,
+  VARIANT,
 } from "@/utils/Constants";
+import { PATHS } from "@/utils/path";
+import { CREATORS_LABELS } from "@/utils/SidebarItems";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
@@ -257,11 +263,46 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       }
     : undefined;
 
+  const isOwner = Boolean(user?.id && content?.creatorId === user.id);
+  const hasViewerAccess = Boolean(content?.accessInfo);
+
+  const openOwnerContentInDashboard = () => {
+    const params = new URLSearchParams({
+      [VIEW]: CREATORS_LABELS.CONTENTS,
+    });
+
+    if (collectionId) {
+      params.set(CONTENT_COLLECTION_QUERY_KEY, collectionId);
+      if (contentId) {
+        params.set(CONTENT_ITEM_QUERY_KEY, contentId);
+      }
+    }
+
+    router.push(`${PATHS.DASHBOARD_CREATOR}?${params.toString()}`);
+  };
+
   const bodyPrimaryActions: SingleContentAction[] | undefined =
     primaryActions != null
       ? actionsWithPayment
       : modifiedPrimaryAction
-        ? [modifiedPrimaryAction]
+        ? isOwner
+          ? [
+              {
+                label: t("singleContent.openInDashboard"),
+                variant: VARIANT.PRIMARY,
+                onClick: openOwnerContentInDashboard,
+              },
+              {
+                ...modifiedPrimaryAction,
+                variant: VARIANT.SECONDARY,
+              },
+            ]
+          : [
+              {
+                ...modifiedPrimaryAction,
+                variant: hasViewerAccess ? VARIANT.SECONDARY : undefined,
+              },
+            ]
         : undefined;
 
   const { share, shareUrl, showShareModal, setShowShareModal } = useShare();

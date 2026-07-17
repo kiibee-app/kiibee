@@ -70,6 +70,10 @@ export const PricingActions = styled.div`
   margin-top: 8px;
 `;
 
+export const OwnerActions = styled(PricingActions)`
+  margin-top: 0;
+`;
+
 export const PricingButtonContent = styled.span`
   display: flex;
   flex-direction: column;
