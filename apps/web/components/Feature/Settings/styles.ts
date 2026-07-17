@@ -60,6 +60,7 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 58px;
 `;
 
 export const HeaderActions = styled.div`
