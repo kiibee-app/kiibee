@@ -84,7 +84,7 @@ function PaymentSuccessContent() {
     const redirectUrl = order.mediaFileId
       ? `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}?${PAYMENT_QUERY_KEY}=${paymentStatus}`
       : order.collectionId
-        ? `${pathPublicCollection(order.collectionId)}&${PAYMENT_QUERY_KEY}=${paymentStatus}`
+        ? `${pathPublicCollection(order.collectionId)}&&${PAYMENT_QUERY_KEY}=${paymentStatus}`
         : undefined;
 
     if (redirectUrl) {
