@@ -12,6 +12,7 @@ import {
   CreatorAvatar,
   Description,
   PricingActions,
+  OwnerActions,
   PricingButtonContent,
   PricingButtonSubtitle,
   ContentRow,
@@ -130,13 +131,13 @@ export default function SingleCollectionHero({
           </Description>
 
           {isOwner ? (
-            <PricingActions style={{ marginTop: 0 }}>
+            <OwnerActions>
               {onOpenDashboard && (
                 <ActionButton onClick={onOpenDashboard}>
                   {t("singleContent.openInDashboard")}
                 </ActionButton>
               )}
-            </PricingActions>
+            </OwnerActions>
           ) : pricingActions.length > 0 ? (
             <PricingActions>
               {pricingActions.map((action) => (
