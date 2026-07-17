@@ -3,19 +3,15 @@
 import { useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
 import CollectionsSection from "@/components/Feature/Dashboard/ViewerSections/CollectionsSection";
 import {
   CollectionsApiResponse,
-  CollectionContentsApiResponse,
   getCollectionRows,
-  getCollectionContentRows,
 } from "@/hooks/contents/collectionApi";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { API } from "@/lib/http/api/endpoints";
-import { axiosClient } from "@/lib/http/axiosClient";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import {
   CREATOR,
@@ -31,8 +27,7 @@ import {
   type RentedCollectionItem,
 } from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
-import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
-import { QUERY_KEYS } from "@/utils/Constants";
+import { pathPublicCollection } from "@/utils/path";
 import { VARIANT } from "@/utils/variants";
 import {
   getContentPricingActions,
@@ -69,42 +64,6 @@ export default function CollectionList() {
     );
   }, [collectionsResponse]);
 
-  const { data: collectionContentsMap } = useQuery<Record<string, string>>({
-    queryKey: [
-      QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW,
-      "contents",
-      isPublicView,
-      publicCreatorId,
-    ],
-    queryFn: async () => {
-      const collections = nonEmptyCollections;
-      if (!collections.length) return {};
-
-      const contentsResponses = await Promise.all(
-        collections.map((item) =>
-          axiosClient.get<CollectionContentsApiResponse>(
-            isPublicView
-              ? API.content.publicCollection(item.id)
-              : API.content.collection(item.id),
-          ),
-        ),
-      );
-
-      const map: Record<string, string> = {};
-      collections.forEach((collection, index) => {
-        const contentRows = getCollectionContentRows(
-          contentsResponses[index]?.data,
-        );
-        if (contentRows.length > 0) {
-          map[collection.id] = contentRows[0].id;
-        }
-      });
-      return map;
-    },
-    enabled: nonEmptyCollections.length > 0,
-    refetchOnWindowFocus: false,
-  });
-
   const handleBuyClick = useCallback(
     (item: RentedCollectionItem) => {
       if (item.href) {
@@ -127,11 +86,7 @@ export default function CollectionList() {
     const rows = nonEmptyCollections;
 
     return rows.map((row) => {
-      const firstContentId = collectionContentsMap?.[row.id];
       const collectionHref = pathPublicCollection(row.id);
-      const contentHref = firstContentId
-        ? pathPublishedContent(firstContentId)
-        : collectionHref;
 
       let actions: CollectionAction[] | undefined = undefined;
 
@@ -157,7 +112,7 @@ export default function CollectionList() {
           return {
             label,
             variant: hash ? VARIANT.PRIMARY : VARIANT.SECONDARY,
-            href: hash ? pathPublicCollection(row.id) : contentHref,
+            href: collectionHref,
           };
         });
       } else {
@@ -165,7 +120,7 @@ export default function CollectionList() {
           {
             label: t("createProfileHome.latestUpload.seeContent"),
             variant: VARIANT.SECONDARY,
-            href: contentHref,
+            href: collectionHref,
           },
         ];
       }
@@ -179,17 +134,11 @@ export default function CollectionList() {
           ? resolveImageUrl(row.coverImageUrl)
           : resolveImageUrl(tutorialVideoCardFallback.image),
         hideBadge: true,
-        href: isPublicView ? collectionHref : contentHref,
+        href: collectionHref,
         actions,
       };
     });
-  }, [
-    isPublicView,
-    nonEmptyCollections,
-    collectionContentsMap,
-    displayName,
-    t,
-  ]);
+  }, [isPublicView, nonEmptyCollections, displayName, t]);
 
   const filteredItems = useMemo(() => {
     if (!searchQuery.trim()) return items;

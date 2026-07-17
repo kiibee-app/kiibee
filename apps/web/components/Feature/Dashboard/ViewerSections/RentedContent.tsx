@@ -316,7 +316,7 @@ export default function RentedContent({
                   onCollectionPrimaryAction={(item) =>
                     handleOpenCollection(item.id)
                   }
-                  onCollectionClick={(item) => handleCardClick(item.id)}
+                  onCollectionClick={(item) => handleOpenCollection(item.id)}
                 />
               </SectionBlock>
             )}
