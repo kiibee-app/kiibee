@@ -163,6 +163,7 @@ export default function SingleCollectionHero({
             sizes="(max-width: 768px) 100vw, 560px"
             style={{ objectFit: "cover" }}
             priority
+            unoptimized={Boolean(image)}
           />
         </HeroImage>
       </ContentRow>
