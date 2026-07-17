@@ -19,7 +19,7 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
 import { readStoredLoginUser } from "@/hooks/auth/useLogin";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
-import { PATHS, resolveContentViewerId } from "@/utils/path";
+import { resolveContentViewerId } from "@/utils/path";
 
 import {
   CONTENT_TRANSLATION_KEYS,
@@ -116,25 +116,17 @@ function PublishedContentDetail() {
     router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
   };
 
-  const handlePaymentSuccessConfirm = () => {
-    setDismissedPaymentSuccess(true);
-    router.push(PATHS.DASHBOARD_VIEWER);
-  };
-
   const paymentSuccessModal = (
     <GenericModal
       visible={showPaymentSuccessModal}
       icon={<SuccessModalIcon />}
       iconMargin="0 auto 8px"
       textAlign={MODAL_ALIGN.CENTER}
-      title="Purchase Successful!"
-      message="Payment confirmed — you now own this content and can access it anytime in your library."
-      cancelLabel="Go back"
-      confirmLabel="Go to content"
-      onCancel={handlePaymentSuccessClose}
-      onConfirm={handlePaymentSuccessConfirm}
+      title="Payment successful!"
+      message="Your content is now unlocked. You can start enjoying it right away."
+      confirmLabel="Start watching"
       onClose={handlePaymentSuccessClose}
-      buttonRow={true}
+      onConfirm={handlePaymentSuccessClose}
       size="sm"
       showCloseButton={false}
     />

@@ -260,10 +260,10 @@ function SingleCollectionContent() {
         icon={<SuccessModalIcon />}
         iconMargin="0 auto 8px"
         textAlign={MODAL_ALIGN.CENTER}
-        title="Purchase Successful!"
-        message="Payment confirmed — you now own this collection and can access it anytime in your library."
-        cancelLabel="Go back"
-        confirmLabel="Go to collection"
+        title={t("singleContent.purchaseSuccessModal.title")}
+        message={t("singleContent.purchaseSuccessModal.collectionMessage")}
+        cancelLabel={t("singleContent.purchaseSuccessModal.goBack")}
+        confirmLabel={t("singleContent.purchaseSuccessModal.goToCollection")}
         onCancel={handlePaymentSuccessClose}
         onConfirm={handlePaymentSuccessConfirm}
         onClose={handlePaymentSuccessClose}
