@@ -64,7 +64,7 @@ function getInitialExploreSort(
   return EXPLORE_CONTENT_SORT.NEW;
 }
 
-export default function LatestRelease() {
+export default function LatestRelease({ search }: { search?: string }) {
   const { t } = useTranslation();
   const searchParams = useSearchParams();
   const filterButtonRef = useRef<HTMLButtonElement>(null);
@@ -159,6 +159,7 @@ export default function LatestRelease() {
     sort: activeExploreSort,
     filters: exploreFilters,
     limit,
+    search,
   });
 
   useScrollAnimation({

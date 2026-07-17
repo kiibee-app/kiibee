@@ -11,6 +11,8 @@ import {
 } from "@/utils/feedContentToTutorial";
 import { TUTORIAL_VIDEOS } from "@/utils/translationKeys";
 import type { TutorialVideo } from "@/utils/types";
+import { resolveContentThumbnailCandidates } from "@/utils/media";
+import { getPricingLabels } from "@/utils/contentPricingActions";
 
 type ApiResponse<T> = {
   success?: boolean;
@@ -28,6 +30,10 @@ export type PublicCollectionResult = {
   collectionId: string;
   name: string;
   description?: string | null;
+  creatorId?: string;
+  creatorName?: string;
+  heroImage?: string;
+  heroImageFallback?: string;
   videos: TutorialVideo[];
 };
 
@@ -57,12 +63,26 @@ export function usePublicCollectionContent(
         return null;
       }
 
+      const items = payload.items || [];
+      const primaryItem = items[0];
+      const heroImages = resolveContentThumbnailCandidates(
+        primaryItem?.thumbnailUrl,
+        primaryItem?.thumbnailLandscapeUrl,
+        { preferLandscape: true },
+      );
+
       return {
         collectionId: payload.collectionId,
         name: payload.name,
         description: payload.description,
-        videos: (payload.items || []).map((item) =>
-          feedContentToTutorial(item, freeLabel, { inCollection: true }),
+        creatorId: primaryItem?.creatorId,
+        creatorName: primaryItem?.creatorName ?? undefined,
+        heroImage: heroImages[0],
+        heroImageFallback: heroImages[1],
+        videos: items.map((item) =>
+          feedContentToTutorial(item, freeLabel, {
+            labels: getPricingLabels(t),
+          }),
         ),
       };
     },

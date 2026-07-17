@@ -5,10 +5,13 @@ export const API_ENDPOINTS = {
   USER_PROFILE: "/auth/user/profile",
   APPROVE_CREATOR: "/auth/approve-creator",
   REJECT_CREATOR: "/auth/reject-creator",
+  CREATOR_DELETION_REQUESTS: "/auth/creator-deletion-requests",
+  APPROVE_CREATOR_DELETION: "/auth/approve-creator-deletion",
+  REJECT_CREATOR_DELETION: "/auth/reject-creator-deletion",
   ALL_CREATORS: "/creators/admin/all-creators",
   CREATOR_BY_ID: (creatorId: string) => `/auth/all-creators/${creatorId}`,
   ALL_CREATOR_REQUESTS: "/auth/all-creator-requests",
-  ALL_VIEWERS: "/auth/all-viewers",
+  ALL_VIEWERS: "/viewer/admin/all-viewers",
   VIEWER_BY_ID: (viewerId: string) => `/auth/all-viewers/${viewerId}`,
   DASHBOARD_STATS: "/auth/dashboard-stats",
   CREATOR_UPLOADS: "/content/all",
@@ -24,6 +27,10 @@ export const API_ENDPOINTS = {
     `/viewer/admin/rented-data/${viewerId}`,
   VIEWER_EXPIRED_RENTED_DATA: (viewerId: string) =>
     `/viewer/admin/previously-rented-data/${viewerId}`,
+  ALL_PAYOUT_REQUESTS: "/payout/requests",
+  PAYOUT_REQUEST_BY_ID: (id: string) => `/payout/requests/${id}`,
+  CREATE_PAYOUT: "/payout/create",
+  REJECT_PAYOUT_REQUEST: (id: string) => `/payout/requests/${id}/reject`,
 } as const;
 
 export const ERROR_MESSAGES = {
@@ -34,6 +41,17 @@ export const ERROR_MESSAGES = {
 export const ACTION_ICONS = {
   APPROVE: "✓",
   REJECT: "✕",
+} as const;
+
+export const CREATOR_DELETION_REQUEST_STATUS = {
+  PENDING: "pending",
+  APPROVED: "approved",
+  REJECTED: "rejected",
+} as const;
+
+export const CREATOR_DELETION_REQUEST_ACTION = {
+  APPROVE: "approve",
+  REJECT: "reject",
 } as const;
 
 export const STORAGE_KEYS = {
@@ -56,6 +74,7 @@ export type StatAccent = (typeof STAT_ACCENT)[keyof typeof STAT_ACCENT];
 
 export const QUERY_KEY = {
   CREATOR_REQUESTS: "creator-requests",
+  CREATOR_DELETION_REQUESTS: "creator-deletion-requests",
   EXISTING_CREATORS: "existing-creators",
   VIEWERS: "viewers",
   VIEWER_DETAIL: "viewer-detail",
@@ -68,6 +87,8 @@ export const QUERY_KEY = {
   CREATOR_DETAIL: "creator-detail",
   CREATOR_CONTENTS: "creator-contents",
   CONTENT_ENGAGEMENT: "content-engagement",
+  PAYOUT_REQUESTS: "payout-requests",
+  PAYOUT_REQUEST_DETAIL: "payout-request-detail",
 } as const;
 
 export const DASHBOARD_STAT_KEY = {
@@ -87,10 +108,49 @@ export const PLACEHOLDERS = {
   SEARCH_VIEWERS: "Search viewers...",
 } as const;
 
+export const SUBSCRIPTION_PLAN = {
+  TRY_KIIBEE: "Try Kiibee",
+  START_UP: "Start-up",
+  PRO: "Pro",
+} as const;
+
 export const CREATOR_PLAN_FILTER_OPTIONS = [
-  "Try Kiibee",
-  "Start-up",
-  "Pro",
+  SUBSCRIPTION_PLAN.TRY_KIIBEE,
+  SUBSCRIPTION_PLAN.START_UP,
+  SUBSCRIPTION_PLAN.PRO,
 ] as const;
 
+export const DEFAULT_WEB_APP_URL = "http://localhost:3000";
+
+export const CREATOR_ID_QUERY_PARAM = "creatorId";
+
+export const CREATOR_PROFILE_PATH = "/creator";
+
+export const CREATOR_LAYOUT_PARAM = {
+  LAYOUT1: "1",
+  LAYOUT2: "2",
+  LAYOUT3: "3",
+} as const;
+
+export const CREATOR_LAYOUT_KEY = {
+  LAYOUT1: "layout1",
+  LAYOUT2: "layout2",
+  LAYOUT3: "layout3",
+} as const;
+
+export const CREATOR_LAYOUT_KEY_TO_PARAM: Record<string, string> = {
+  [CREATOR_LAYOUT_KEY.LAYOUT1]: CREATOR_LAYOUT_PARAM.LAYOUT1,
+  [CREATOR_LAYOUT_KEY.LAYOUT2]: CREATOR_LAYOUT_PARAM.LAYOUT2,
+  [CREATOR_LAYOUT_KEY.LAYOUT3]: CREATOR_LAYOUT_PARAM.LAYOUT3,
+  [CREATOR_LAYOUT_PARAM.LAYOUT1]: CREATOR_LAYOUT_PARAM.LAYOUT1,
+  [CREATOR_LAYOUT_PARAM.LAYOUT2]: CREATOR_LAYOUT_PARAM.LAYOUT2,
+  [CREATOR_LAYOUT_PARAM.LAYOUT3]: CREATOR_LAYOUT_PARAM.LAYOUT3,
+};
+
 export const ADMIN_ROLE = "admin";
+
+export const ROUTES = {
+  PENDING_REQUESTS: "/pending-requests",
+  DELETION_REQUESTS: "/deletion-requests",
+  PAYOUT_REQUESTS: "/payout-requests",
+} as const;

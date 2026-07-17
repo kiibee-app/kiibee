@@ -198,13 +198,6 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard, AdminGuard)
-  @Get('all-viewers')
-  async getAllViewers() {
-    const result = await this.authService.getAllViewers();
-    return result;
-  }
-
-  @UseGuards(JwtAuthGuard, AdminGuard)
   @Get('all-viewers/:viewerId')
   async getViewerById(@Param('viewerId') viewerId: string) {
     const result = await this.authService.getViewerById(viewerId);
@@ -240,6 +233,41 @@ export class AuthController {
   ) {
     const approverUserId = req.user.userId;
     const result = await this.authService.rejectCreatorRequest(
+      body.requestId,
+      approverUserId,
+    );
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Get('creator-deletion-requests')
+  async getCreatorDeletionRequests() {
+    const result = await this.authService.getCreatorDeletionRequests();
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('approve-creator-deletion')
+  async approveCreatorDeletionRequest(
+    @Body() body: CreatorRequestActionDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    const approverUserId = req.user.userId;
+    const result = await this.authService.approveCreatorDeletionRequest(
+      body.requestId,
+      approverUserId,
+    );
+    return result;
+  }
+
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @Post('reject-creator-deletion')
+  async rejectCreatorDeletionRequest(
+    @Body() body: CreatorRequestActionDto,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    const approverUserId = req.user.userId;
+    const result = await this.authService.rejectCreatorDeletionRequest(
       body.requestId,
       approverUserId,
     );

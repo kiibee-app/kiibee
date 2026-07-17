@@ -36,10 +36,11 @@ import {
 } from "../Creators/styles";
 import { RECENT_CONTENT_LIMIT, SKELETON_COUNT } from "@/utils/Constants";
 
-export default function RecentlyAdded() {
+export default function RecentlyAdded({ search }: { search?: string }) {
   const { t } = useTranslation();
   const { tutorials, isLoading } = useRecentContent({
     limit: RECENT_CONTENT_LIMIT,
+    search,
   });
   const [pageStart, setPageStart] = useState(0);
 
@@ -101,7 +102,7 @@ export default function RecentlyAdded() {
         <HeaderActions>
           {canSlide ? (
             <SectionArrows>
-              {canGoPrev ? (
+              {canGoPrev && (
                 <SectionArrow
                   type="button"
                   onClick={movePrev}
@@ -109,16 +110,16 @@ export default function RecentlyAdded() {
                 >
                   <LeftIcon style={{ transform: "rotate(180deg)" }} />
                 </SectionArrow>
-              ) : null}
-              <SectionArrow
-                type="button"
-                disabled={!canGoNext}
-                aria-disabled={!canGoNext}
-                onClick={moveNext}
-                aria-label="Next"
-              >
-                <LeftIcon />
-              </SectionArrow>
+              )}
+              {canGoNext && (
+                <SectionArrow
+                  type="button"
+                  onClick={moveNext}
+                  aria-label="Next"
+                >
+                  <LeftIcon />
+                </SectionArrow>
+              )}
             </SectionArrows>
           ) : (
             <SectionLink href={PATHS.TUTORIAL_VIDEOS}>

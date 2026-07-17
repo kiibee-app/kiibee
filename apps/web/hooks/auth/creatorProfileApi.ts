@@ -37,6 +37,7 @@ export type CreatorProfileInfo = {
 };
 
 export type CreatorProfileBankAccount = {
+  id?: string | null;
   registrationNumber?: string | null;
   accountNumber?: string | null;
 };
@@ -45,6 +46,7 @@ export type CreatorProfileApiData = {
   user?: CreatorProfileUser | null;
   creatorInfo?: CreatorProfileInfo | null;
   bankAccount?: CreatorProfileBankAccount | null;
+  hasPendingDeletionRequest?: boolean;
 };
 
 export type GetCreatorProfileResponse = {

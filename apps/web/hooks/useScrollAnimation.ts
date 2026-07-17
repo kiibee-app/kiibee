@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  SCROLL_ANIMATION_CONFIG,
+  SCROLL_ANIMATION_SELECTORS,
+} from "@/utils/Constants";
 
 export type ScrollAnimationOptions = {
   sidebarSelector?: string;
@@ -13,65 +17,96 @@ export type ScrollAnimationOptions = {
 };
 
 export function useScrollAnimation({
-  cardsSelector = "article, [class*='Card']",
+  cardsSelector = SCROLL_ANIMATION_SELECTORS.DEFAULT_CARDS,
   trigger,
 }: ScrollAnimationOptions = {}) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let ctx: gsap.Context;
-    let checkInterval: NodeJS.Timeout;
-    let refreshTimeout: NodeJS.Timeout;
+    let ctx: gsap.Context | undefined;
+    let checkInterval: ReturnType<typeof setInterval> | undefined;
+    let refreshTimeout: ReturnType<typeof setTimeout> | undefined;
+    let refreshOnScroll: () => void = () => {};
 
-    const initGSAP = () => {
+    const initGSAP = (): boolean => {
+      let foundCards = false;
+
       ctx = gsap.context(() => {
         const cards = gsap.utils.toArray<HTMLElement>(cardsSelector);
         if (cards.length === 0) return;
+
+        foundCards = true;
+
         cards.forEach((card) => {
           gsap.fromTo(
             card,
-            { opacity: 0, y: 40 },
             {
-              opacity: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power2.out",
+              opacity: SCROLL_ANIMATION_CONFIG.ANIMATION_OPACITY_START,
+              y: SCROLL_ANIMATION_CONFIG.ANIMATION_Y_OFFSET,
+            },
+            {
+              opacity: SCROLL_ANIMATION_CONFIG.ANIMATION_OPACITY_END,
+              y: SCROLL_ANIMATION_CONFIG.ANIMATION_Y_END,
+              duration: SCROLL_ANIMATION_CONFIG.ANIMATION_DURATION,
+              ease: SCROLL_ANIMATION_CONFIG.ANIMATION_EASE,
               scrollTrigger: {
                 trigger: card,
-                start: "top 90%",
-                toggleActions: "play none none reverse",
+                start: SCROLL_ANIMATION_CONFIG.TRIGGER_START,
+                toggleActions: SCROLL_ANIMATION_CONFIG.TOGGLE_ACTIONS,
               },
             },
           );
         });
       });
+
+      if (!foundCards) {
+        ctx.revert();
+        ctx = undefined;
+        return false;
+      }
+
       refreshTimeout = setTimeout(() => {
         ScrollTrigger.refresh();
-      }, 600);
-      const refreshOnScroll = () => {
+      }, SCROLL_ANIMATION_CONFIG.REFRESH_DELAY_MS);
+
+      refreshOnScroll = () => {
         ScrollTrigger.refresh();
-        window.removeEventListener("scroll", refreshOnScroll);
+        window.removeEventListener(
+          SCROLL_ANIMATION_CONFIG.EVENT_SCROLL,
+          refreshOnScroll,
+        );
       };
-      window.addEventListener("scroll", refreshOnScroll, { passive: true });
+      window.addEventListener(
+        SCROLL_ANIMATION_CONFIG.EVENT_SCROLL,
+        refreshOnScroll,
+        { passive: true },
+      );
 
       return true;
     };
 
-    const success = initGSAP();
-    if (!success) {
+    if (!initGSAP()) {
       let attempts = 0;
       checkInterval = setInterval(() => {
         attempts++;
-        if (initGSAP() || attempts > 60) {
+        if (
+          initGSAP() ||
+          attempts >= SCROLL_ANIMATION_CONFIG.MAX_INIT_ATTEMPTS
+        ) {
           clearInterval(checkInterval);
+          checkInterval = undefined;
         }
-      }, 50);
+      }, SCROLL_ANIMATION_CONFIG.INIT_RETRY_INTERVAL_MS);
     }
 
     return () => {
-      if (checkInterval) clearInterval(checkInterval);
-      if (refreshTimeout) clearTimeout(refreshTimeout);
-      if (ctx) ctx.revert();
+      clearInterval(checkInterval);
+      clearTimeout(refreshTimeout);
+      ctx?.revert();
+      window.removeEventListener(
+        SCROLL_ANIMATION_CONFIG.EVENT_SCROLL,
+        refreshOnScroll,
+      );
     };
   }, [cardsSelector, trigger]);
 }

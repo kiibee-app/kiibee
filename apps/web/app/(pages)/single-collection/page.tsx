@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import NavBar from "@/components/Layout/Navbar";
@@ -24,6 +24,16 @@ import {
 } from "@/components/Feature/SingleCollectionHero/styles";
 import GenericEmptyState from "@/components/UI/GenericEmptyState";
 import { BackButtonIcon } from "@/assets/icons";
+import { useGetAPI } from "@/lib/http/api/getApi";
+import { API } from "@/lib/http/api/endpoints";
+import {
+  type CollectionsApiResponse,
+  getCollectionRows,
+} from "@/hooks/contents/collectionApi";
+import { convertRentDurationToHours } from "@/utils/formatDate";
+import { resolvePublicMediaUrl } from "@/utils/media";
+import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
+import { NAV } from "@/utils/translationKeys";
 
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -32,18 +42,68 @@ function SingleCollectionContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const publicCreatorId = searchParams.get("creatorId");
   const { collection: staticSection, isLoading: isTutorialCollectionLoading } =
     useTutorialCollectionLookup(id);
-  const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
-    !staticSection ? id : null,
-  );
 
   const {
     data: dynamicSection,
     isLoading: isDynamicLoading,
     isError,
-  } = usePublicCollectionContent(
-    !staticSection && !gateType && !isGateLoading ? id : null,
+  } = usePublicCollectionContent(!staticSection ? id : null);
+
+  const resolvedCreatorId = publicCreatorId || dynamicSection?.creatorId;
+
+  const { creator: publicCreator } = useCreatorPublicProfile(
+    resolvedCreatorId ?? null,
+  );
+
+  const publicCollectionsQuery = useGetAPI<CollectionsApiResponse>(
+    resolvedCreatorId
+      ? API.collection.getPublicByCreator(resolvedCreatorId)
+      : API.collection.getAll,
+    undefined,
+    {
+      enabled: Boolean(id && resolvedCreatorId && !staticSection),
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  );
+  const selectedCollection = useMemo(() => {
+    if (!id || !publicCollectionsQuery.data) return undefined;
+    return getCollectionRows(publicCollectionsQuery.data).find(
+      (collection) => collection.id === id,
+    );
+  }, [id, publicCollectionsQuery.data]);
+
+  const resolvedPricing = useMemo(() => {
+    if (!selectedCollection) return undefined;
+    return {
+      accessType: selectedCollection.accessType,
+      buyPrice: selectedCollection.buyPrice,
+      rentPrice: selectedCollection.rentPrice,
+      rentDurationHours: convertRentDurationToHours(
+        selectedCollection.rentDuration,
+      ),
+    };
+  }, [selectedCollection]);
+
+  const resolvedDescription =
+    dynamicSection?.description ?? selectedCollection?.description;
+
+  const resolvedCreatorName =
+    publicCreator?.name || dynamicSection?.creatorName;
+
+  const resolvedCreatorAvatar = useMemo(() => {
+    return resolvePublicMediaUrl(publicCreator?.profileImageUrl) ?? undefined;
+  }, [publicCreator]);
+
+  const resolvedImage =
+    resolvePublicMediaUrl(selectedCollection?.coverImageUrl) ??
+    dynamicSection?.heroImage;
+
+  const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
+    !staticSection ? id : null,
   );
 
   if (isTutorialCollectionLoading && !staticSection) {
@@ -73,7 +133,12 @@ function SingleCollectionContent() {
     return (
       <Section>
         <SingleCollectionHero
-          title={dynamicSection?.name ?? ""}
+          title={dynamicSection?.name ?? selectedCollection?.name ?? ""}
+          description={resolvedDescription}
+          creatorName={resolvedCreatorName}
+          creatorAvatar={resolvedCreatorAvatar}
+          image={resolvedImage}
+          pricing={resolvedPricing}
           primaryContentId={dynamicSection?.videos?.[0]?.id}
         />
         <AccessGate
@@ -106,7 +171,7 @@ function SingleCollectionContent() {
           icon={
             <Image
               src={logo}
-              alt="Kiibee Logo"
+              alt={t(NAV.logoAlt)}
               width={30}
               height={30}
               priority
@@ -121,7 +186,13 @@ function SingleCollectionContent() {
     <Section>
       <SingleCollectionHero
         title={dynamicSection.name}
+        description={resolvedDescription}
+        creatorName={resolvedCreatorName}
+        creatorAvatar={resolvedCreatorAvatar}
+        image={resolvedImage}
+        imageFallback={dynamicSection.heroImageFallback}
         primaryContentId={dynamicSection.videos[0]?.id}
+        pricing={resolvedPricing}
       />
       <CollectionContent videos={dynamicSection.videos} />
     </Section>

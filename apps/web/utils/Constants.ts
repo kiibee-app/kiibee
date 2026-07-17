@@ -45,6 +45,7 @@ export const CONTENT_ITEM_QUERY_KEY = "contentId";
 export const QUERY_KEY_FORMAT = "format";
 export const CONTENT_LAST_EDITED_STORAGE_KEY = "contents:lastEditedContentId";
 export const BILLING_TAB = "billingTab";
+export const DUMMY_TAB = "dummy-tab";
 export const LEGACY_DASHBOARD_TAB_QUERY_KEYS = [
   "settingsTab",
   "usersTab",
@@ -92,6 +93,10 @@ export const VIEW = "view";
 export const VIEWER_SECTION = "section";
 export const VIEWER_SECTION_VALUES = {
   COLLECTIONS: "collections",
+  VIDEOS: "videos",
+  AUDIOS: "audios",
+  PDFS: "pdfs",
+  WEBS: "webs",
 } as const;
 export const ROLE_CREATOR = "creator";
 export const ROLE_VIEWER = "viewer";
@@ -251,6 +256,12 @@ export const ERROR_MESSAGES = {
   EXPORT_REQUEST_FAILED: "errors.exportRequestFailed",
 };
 
+export const PAYOUT_BALANCE_API_ERRORS = [
+  "Creator wallet not found",
+  "Insufficient wallet balance",
+  "Invalid wallet balance",
+] as const;
+
 export const UI_TITLE_FALLBACK = "Content Details";
 
 export const SCROLL_BEHAVIOR = {
@@ -383,6 +394,8 @@ export function parseTags(value: string): string[] {
 export const MEDIA_TYPE_VIDEO_KEY = "discoverContent.mediaTypes.video";
 export const MEDIA_TYPE_EPUB_KEY = "discoverContent.mediaTypes.epub";
 export const FREE_LABEL = "Free";
+export const HASH_RENT = "#rent";
+export const HASH_BUY = "#buy";
 export const RENT_PREFIX = "Rent";
 export const BUY_PREFIX = "Buy";
 export const BUY_COLLECTION_PREFIX = "Buy collection";
@@ -530,8 +543,34 @@ export const CURSOR = {
   DEFAULT: "default",
 } as const;
 
+export const VIEWER_DASHBOARD_TITLE = "Viewer Dashboard";
+export const VIEWER_DASHBOARD_DESCRIPTION =
+  "Manage your purchased content and viewer activity on Kiibee.";
+export const LOADING_TEXT_FALLBACK = "Loading...";
+export const DASHBOARD_NO_PADDING = "0";
+export const SORT_ARROW_UP = "↑";
+export const SORT_ARROW_DOWN = "↓";
+export const MILLISECONDS_IN_HOUR = 36e5;
+export const HOURS_IN_DAY = 24;
+
 export const SCROLL_ANIMATION_SELECTORS = {
   SIDEBAR: "[data-sidebar]",
   INNER: "[data-sidebar] > div",
   CARDS: "[data-sidebar] ~ * article, [data-sidebar] ~ * [class*='Card']",
+  DEFAULT_CARDS: "article, [class*='Card']",
+} as const;
+
+export const SCROLL_ANIMATION_CONFIG = {
+  MAX_INIT_ATTEMPTS: 60,
+  INIT_RETRY_INTERVAL_MS: 50,
+  REFRESH_DELAY_MS: 600,
+  ANIMATION_Y_OFFSET: 40,
+  ANIMATION_Y_END: 0,
+  ANIMATION_DURATION: 0.6,
+  ANIMATION_OPACITY_START: 0,
+  ANIMATION_OPACITY_END: 1,
+  ANIMATION_EASE: "power2.out",
+  TRIGGER_START: "top 90%",
+  TOGGLE_ACTIONS: "play none none reverse",
+  EVENT_SCROLL: "scroll",
 } as const;

@@ -27,6 +27,13 @@ export const Background = styled.div`
   inset: 0;
   z-index: 0;
   overflow: hidden;
+
+  & > div {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const Overlay = styled.div`

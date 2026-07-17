@@ -9,6 +9,7 @@ import {
   getExistingCreatorDisplayName,
   getExistingCreatorInitials,
 } from "../../../utils/existingCreatorsConfig";
+import { ChannelLink } from "../../common/ChannelLink";
 import {
   AccountStatusBadge,
   CreatorAvatar,
@@ -81,11 +82,20 @@ export function ExistingCreatorsTable({
                 </TableBodyCell>
                 <TableBodyCell>
                   <CreatorCell>
-                    <CreatorName>
-                      {creator.channelName ||
-                        creator.companyName ||
-                        existingCreatorLabels.noChannel}
-                    </CreatorName>
+                    <ChannelLink
+                      creatorId={creator.id}
+                      channelName={creator.channelName}
+                      companyName={creator.companyName}
+                      layout={creator.layout}
+                      fallbackLabel={existingCreatorLabels.noChannel}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <CreatorName>
+                        {creator.channelName ||
+                          creator.companyName ||
+                          existingCreatorLabels.noChannel}
+                      </CreatorName>
+                    </ChannelLink>
                     <MiniText>
                       {creator.channelSlug
                         ? `/${creator.channelSlug}`

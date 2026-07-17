@@ -32,7 +32,12 @@ import { useContentsDataState } from "@/hooks/contents/useContentsDataState";
 import { useContentsModalFlows } from "@/hooks/contents/useContentsModalFlows";
 import DeleteModals from "./CollectionDeleteModal";
 import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
-import { ADD_CONTENT_TABS, APPEARANCE, SETTINGS } from "@/utils/common";
+import {
+  ADD_CONTENT_TABS,
+  APPEARANCE,
+  ContentTab,
+  SETTINGS,
+} from "@/utils/common";
 import { ADMISSION_REQUIREMENTS } from "@/utils/admissionRequirements";
 import {
   CONTENT_MODAL_KEY_FALLBACK,
@@ -295,12 +300,15 @@ function CreatorsContentsInner() {
     hasUnsavedChanges,
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
+    hasPaymentUnsavedChanges,
     hasSettingsUnsavedChanges,
+    hasUploadUnsavedChanges,
     handleUploadSuccess,
     handleBackToBaseStateOnly,
     resetUploadState,
     handleHeaderSave,
     handleHeaderCancel,
+    cancelAppearance,
     handleEditContent,
     closeContentUpload,
     handleContentUploadBack,
@@ -320,6 +328,8 @@ function CreatorsContentsInner() {
   });
 
   const [hasPasswordError, setHasPasswordError] = useState(false);
+  const [pendingAppearanceTab, setPendingAppearanceTab] =
+    useState<ContentTab | null>(null);
 
   const searchParams = useSearchParams();
   const queryContentId = searchParams?.get(CONTENT_ITEM_QUERY_KEY);
@@ -385,17 +395,65 @@ function CreatorsContentsInner() {
     }
   };
 
-  const handleUploadBackClick = useCallback(() => {
-    const isPostCreateContent =
-      Boolean(postCreateContentId) && queryContentId === postCreateContentId;
+  const handleDiscardOrBack = useCallback(() => {
+    hasUploadUnsavedChanges ? openDiscardModal() : handleBack();
+  }, [hasUploadUnsavedChanges, openDiscardModal, handleBack]);
 
-    if (isPostCreateContent) {
-      setShowPostCreateModal(true);
-      return;
+  const handleUploadBackClick = handleDiscardOrBack;
+
+  const handleCancel = useCallback(() => {
+    isUploadMode ? handleDiscardOrBack() : handleHeaderCancel();
+  }, [isUploadMode, handleDiscardOrBack, handleHeaderCancel]);
+
+  const handleAppearanceAwareTabChange = useCallback(
+    (tabKey: ContentTab) => {
+      if (
+        activeTab === APPEARANCE &&
+        hasUnsavedChanges &&
+        tabKey !== APPEARANCE
+      ) {
+        setPendingAppearanceTab(tabKey);
+        openDiscardModal();
+        return;
+      }
+      handleTabChange(tabKey);
+    },
+    [activeTab, hasUnsavedChanges, handleTabChange, openDiscardModal],
+  );
+
+  const handleCloseDiscardModal = useCallback(() => {
+    setPendingAppearanceTab(null);
+    closeDiscardModal();
+  }, [closeDiscardModal]);
+
+  const handleConfirmDiscard = useCallback(() => {
+    if (isCouponDiscardPending) {
+      closeCouponFlow();
     }
-
-    handleBack();
-  }, [handleBack, postCreateContentId, queryContentId]);
+    if (isUploadMode) {
+      setPostCreateContentId(null);
+      handleBack();
+    }
+    if (activeTab === APPEARANCE && hasUnsavedChanges) {
+      cancelAppearance();
+      if (pendingAppearanceTab) {
+        handleTabChange(pendingAppearanceTab);
+      }
+    }
+    setPendingAppearanceTab(null);
+    closeDiscardModal();
+  }, [
+    isCouponDiscardPending,
+    closeCouponFlow,
+    isUploadMode,
+    handleBack,
+    activeTab,
+    hasUnsavedChanges,
+    cancelAppearance,
+    pendingAppearanceTab,
+    handleTabChange,
+    closeDiscardModal,
+  ]);
 
   const handleDeleteSuccessClose = useCallback(() => {
     if (!isUploadMode && !editingContent?.id) return;
@@ -430,7 +488,7 @@ function CreatorsContentsInner() {
         <ContentsHeaderAction
           activeTab={activeTab}
           onCreate={handleCreate}
-          onCancel={handleHeaderCancel}
+          onCancel={handleCancel}
           onCreateCoupon={couponFlow.open}
           onSave={handleHeaderSave}
           isSaveDisabled={
@@ -440,7 +498,9 @@ function CreatorsContentsInner() {
             (activeTab === ADD_CONTENT_TABS.GENERAL &&
               !hasGeneralUnsavedChanges) ||
             (activeTab === ADD_CONTENT_TABS.METADATA &&
-              !hasMetadataUnsavedChanges)
+              !hasMetadataUnsavedChanges) ||
+            (activeTab === ADD_CONTENT_TABS.PAYMENT &&
+              !hasPaymentUnsavedChanges)
           }
           isSaving={isSaving}
           isCollectionContentMode={isCollectionContentMode}
@@ -455,7 +515,7 @@ function CreatorsContentsInner() {
               label: t(getTabLabelKey(tab)),
             }))}
             activeTab={activeTab}
-            onTabChange={handleTabChange}
+            onTabChange={handleAppearanceAwareTabChange}
             search={
               isUploadMode
                 ? undefined
@@ -576,21 +636,12 @@ function CreatorsContentsInner() {
       {showDiscardModal && (
         <ConfirmationModal
           isOpen={showDiscardModal}
-          onClose={closeDiscardModal}
+          onClose={handleCloseDiscardModal}
           title={t("settings.notifications.discardModal.title")}
           body={t("settings.notifications.discardModal.message")}
           cancelLabel={t("settings.notifications.discardModal.goBack")}
           confirmLabel={t("settings.notifications.discardModal.discard")}
-          onConfirm={() => {
-            if (isCouponDiscardPending) {
-              closeCouponFlow();
-            }
-            if (isUploadMode) {
-              setPostCreateContentId(null);
-              handleBack();
-            }
-            closeDiscardModal();
-          }}
+          onConfirm={handleConfirmDiscard}
           size="sm"
           spacing="md"
           fullWidthButtons

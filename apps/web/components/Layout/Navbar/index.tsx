@@ -109,8 +109,8 @@ const NAV_TWO_COLUMN_CLASS_NAME = "twoCol";
 
 const LOGO_BASE_STYLE = {
   width: "auto",
-  height: "auto",
-  maxHeight: 40,
+  height: "25px",
+  maxHeight: 80,
 } satisfies CSSProperties;
 
 const LOGO_FILTER_BY_TONE = {

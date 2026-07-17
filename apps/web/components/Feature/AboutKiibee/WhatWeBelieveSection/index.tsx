@@ -12,6 +12,7 @@ import {
   Inner,
   beliefRevealStyle,
   beliefImageStyle,
+  BELIEF_IMAGE_SIZES,
 } from "./styles";
 
 import beliefImg from "@/assets/images/believe.webp";
@@ -40,7 +41,7 @@ export default function WhatWeBelieveSection() {
                   alt={t("about.believe.alt")}
                   fill
                   loading="eager"
-                  sizes="(max-width: 767px) 100vw, 50vw"
+                  sizes={BELIEF_IMAGE_SIZES}
                   style={beliefImageStyle}
                 />
               </ImageReveal>

@@ -1,8 +1,15 @@
-import { Allow, IsEmail, IsOptional, IsString } from 'class-validator';
+import {
+  Allow,
+  IsEmail,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from 'class-validator';
 
 export class UpdateViewerProfileDto {
   @IsOptional()
   @IsString()
+  @MaxLength(200)
   fullName?: string;
 
   @IsOptional()

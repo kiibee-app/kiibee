@@ -25,6 +25,7 @@ export type ExistingCreator = {
   channelName: string | null;
   channelSlug: string | null;
   isPublished: boolean | null;
+  layout: string | null;
   planName: string | null;
   uploadCount: number;
   subscriberCount: number;

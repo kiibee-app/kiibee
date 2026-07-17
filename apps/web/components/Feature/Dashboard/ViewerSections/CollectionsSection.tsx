@@ -175,7 +175,9 @@ export default function CollectionsSection({
                   {getCollectionBadgeText(mode, t)}
                 </CollectionBadge>
               )}
-              <CollectionImage src={item.coverSrc} alt={item.title} />
+              {item.coverSrc ? (
+                <CollectionImage src={item.coverSrc} alt={item.title} />
+              ) : null}
             </CollectionImageWrap>
 
             <CollectionBody>

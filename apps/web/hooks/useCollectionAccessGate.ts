@@ -29,13 +29,15 @@ export function useCollectionAccessGate(customCollectionId?: string | null): {
   const queryId = searchParams.get(ID_QUERY_PARAM);
   const id = customCollectionId !== undefined ? customCollectionId : queryId;
 
-  const { isPublicView } = useCreatorChannelProfile();
+  const { isPublicView, publicCreatorId } = useCreatorChannelProfile();
 
   const collectionsQuery = useGetAPI<CollectionsApiResponse>(
-    API.collection.getAll,
+    isPublicView && publicCreatorId
+      ? API.collection.getPublicByCreator(publicCreatorId)
+      : API.collection.getAll,
     undefined,
     {
-      enabled: Boolean(id),
+      enabled: Boolean(id) && (!isPublicView || Boolean(publicCreatorId)),
       retry: false,
       refetchOnWindowFocus: false,
     },

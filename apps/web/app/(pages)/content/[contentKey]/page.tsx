@@ -182,7 +182,6 @@ function PublishedContentDetail() {
       <Section>
         <SingleContentPage
           {...getSingleContentProps(content, t, {
-            inCollection: Boolean(relatedCollectionQuery.data?.collectionId),
             viewerId: resolvedUserId,
           })}
           content={content}
@@ -193,10 +192,8 @@ function PublishedContentDetail() {
                   id: publicCreator.id,
                   name: publicCreator.name,
                   avatar:
-                    resolvePublicMediaUrl(
-                      publicCreator.profileImageUrl ??
-                        publicCreator.coverImageUrl,
-                    ) ?? undefined,
+                    resolvePublicMediaUrl(publicCreator.profileImageUrl) ??
+                    undefined,
                   avatarAlt: publicCreator.name,
                 }
               : undefined

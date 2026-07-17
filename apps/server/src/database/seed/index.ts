@@ -8,20 +8,22 @@ import { seedUmbracoProfiles } from './umbracoProfiles.seed';
 import { seedUmbracoShows } from './umbracoShows.seed';
 import { seedTutorialItems } from './tutorialItems.seed';
 import { seedUsers } from './users.seed';
+import { reconcileCreatorPlansWithContent } from './reconcileCreatorPlans.seed';
+import { reconcileMissingCreatorChannels } from './reconcileCreatorChannels.seed';
 
 async function main() {
-  // Reference data first
   await seedContentCategories();
   await seedContentTypes();
   await seedTags();
   await seedPlans();
   await seedTutorialItems();
 
-  // Base users, then creator accounts that depend on plans
   await seedUsers();
   await seedCreatorAccounts();
   await seedUmbracoProfiles();
   await seedUmbracoShows();
+  await reconcileCreatorPlansWithContent();
+  await reconcileMissingCreatorChannels();
 
   console.log('All seeds completed successfully');
   process.exit();

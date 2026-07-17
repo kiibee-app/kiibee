@@ -192,10 +192,17 @@ export const CREATOR_PROFILE = {
     cancel: "creatorProfile.deleteModal.cancel",
     confirm: "creatorProfile.deleteModal.confirm",
   },
+  deleteToastMessage: "creatorProfile.deleteToastMessage",
+  deleteErrorMessage: "creatorProfile.deleteErrorMessage",
   deleteSuccessModal: {
     title: "creatorProfile.deleteSuccessModal.title",
     message: "creatorProfile.deleteSuccessModal.message",
     confirm: "creatorProfile.deleteSuccessModal.confirm",
+  },
+  deletePendingModal: {
+    title: "creatorProfile.deletePendingModal.title",
+    message: "creatorProfile.deletePendingModal.message",
+    confirm: "creatorProfile.deletePendingModal.confirm",
   },
 };
 

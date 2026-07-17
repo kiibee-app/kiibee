@@ -17,7 +17,9 @@ export const creatorPayouts = pgTable(
     creatorId: text('creator_id')
       .notNull()
       .references(() => users.id, { onDelete: 'restrict' }),
-
+    rawAmount: numeric('raw_amount', { precision: 10, scale: 2 })
+      .default('0')
+      .notNull(),
     amount: numeric('amount', { precision: 10, scale: 2 }).notNull(),
     currency: varchar('currency', { length: 10 }).notNull().default('DKK'),
     status: payoutStatusEnum('status').notNull().default('pending'),

@@ -17,7 +17,13 @@ import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
 import { useGetAPI } from "@/lib/http/api/getApi";
-import { CREATOR, resolveImageUrl } from "@/utils/Constants";
+import {
+  CREATOR,
+  HASH_RENT,
+  HASH_BUY,
+  STRING_EMPTY,
+  resolveImageUrl,
+} from "@/utils/Constants";
 import { tutorialVideoCardFallback } from "@/utils/data";
 import {
   RENTED_MODES,
@@ -25,11 +31,15 @@ import {
   type RentedCollectionItem,
 } from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
-import { authStorage } from "@/lib/auth/authStorage";
-import { PATHS, pathPublishedContent } from "@/utils/path";
+import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import { QUERY_KEYS } from "@/utils/Constants";
 import { VARIANT } from "@/utils/variants";
-import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
+import {
+  getContentPricingActions,
+  getPricingLabels,
+  isRentActionLabel,
+  isBuyActionLabel,
+} from "@/utils/contentPricingActions";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
 
 export default function CollectionList() {
@@ -39,22 +49,43 @@ export default function CollectionList() {
     useCreatorChannelProfile();
   const router = useRouter();
 
-  const { data: privateCollectionsResponse, isLoading: isPrivateLoading } =
-    useGetAPI<CollectionsApiResponse>(API.collection.getAll, undefined, {
-      enabled: !isPublicView,
-    });
+  const { data: collectionsResponse, isLoading: isCollectionsLoading } =
+    useGetAPI<CollectionsApiResponse>(
+      isPublicView && publicCreatorId
+        ? API.collection.getPublicByCreator(publicCreatorId)
+        : API.collection.getAll,
+      undefined,
+      {
+        enabled: !isPublicView || Boolean(publicCreatorId),
+        retry: false,
+        refetchOnWindowFocus: false,
+      },
+    );
+
+  const nonEmptyCollections = useMemo(() => {
+    if (!collectionsResponse) return [];
+    return getCollectionRows(collectionsResponse).filter(
+      (row) => row.contentsCount > 0,
+    );
+  }, [collectionsResponse]);
 
   const { data: collectionContentsMap } = useQuery<Record<string, string>>({
-    queryKey: [QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW, "contents"],
+    queryKey: [
+      QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW,
+      "contents",
+      isPublicView,
+      publicCreatorId,
+    ],
     queryFn: async () => {
-      if (!privateCollectionsResponse) return {};
-      const collections = getCollectionRows(privateCollectionsResponse);
+      const collections = nonEmptyCollections;
       if (!collections.length) return {};
 
       const contentsResponses = await Promise.all(
         collections.map((item) =>
           axiosClient.get<CollectionContentsApiResponse>(
-            API.content.collection(item.id),
+            isPublicView
+              ? API.content.publicCollection(item.id)
+              : API.content.collection(item.id),
           ),
         ),
       );
@@ -70,22 +101,12 @@ export default function CollectionList() {
       });
       return map;
     },
-    enabled: Boolean(privateCollectionsResponse),
+    enabled: nonEmptyCollections.length > 0,
     refetchOnWindowFocus: false,
   });
 
-  const { tutorials: publicTutorials, isLoading: isPublicLoading } =
-    usePublicCreatorContent(isPublicView ? publicCreatorId : null);
-
   const handleBuyClick = useCallback(
     (item: RentedCollectionItem) => {
-      if (!authStorage.hasSession()) {
-        const next = encodeURIComponent(
-          window.location.pathname + window.location.search,
-        );
-        router.push(`${PATHS.AUTH_LOGIN}?next=${next}`);
-        return;
-      }
       if (item.href) {
         router.push(item.href);
       }
@@ -103,98 +124,68 @@ export default function CollectionList() {
   );
 
   const items = useMemo<RentedCollectionItem[]>(() => {
-    if (isPublicView) {
-      const groups: Record<
-        string,
-        {
-          title: string;
-          count: number;
-          coverSrc: string;
-          firstContentId?: string;
-          firstTutorial?: (typeof publicTutorials)[number];
-        }
-      > = {};
-
-      publicTutorials.forEach((tutorial) => {
-        const cat = tutorial.category || "Content";
-        if (!groups[cat]) {
-          groups[cat] = {
-            title: cat,
-            count: 0,
-            coverSrc: resolveImageUrl(tutorial.image),
-            firstContentId: tutorial.id,
-            firstTutorial: tutorial,
-          };
-        }
-        groups[cat].count += 1;
-      });
-
-      return Object.entries(groups).map(([id, group]) => {
-        const actions = group.firstTutorial?.buttons?.length
-          ? group.firstTutorial.buttons.map((button) => {
-              const action: CollectionAction = {
-                label: button.label,
-                variant:
-                  button.variant === VARIANT.SECONDARY
-                    ? VARIANT.SECONDARY
-                    : VARIANT.PRIMARY,
-                href:
-                  button.href ??
-                  (group.firstContentId
-                    ? pathPublishedContent(group.firstContentId)
-                    : `/single-collection?id=${id}`),
-              };
-              return action;
-            })
-          : undefined;
-
-        return {
-          id,
-          title: group.title,
-          author: displayName || CREATOR,
-          elementCount: group.count,
-          coverSrc: group.coverSrc,
-          hideBadge: true,
-          href: group.firstContentId
-            ? pathPublishedContent(group.firstContentId)
-            : `/single-collection?id=${id}`,
-          actions,
-        };
-      });
-    }
-
-    if (!privateCollectionsResponse) return [];
-    const rows = getCollectionRows(privateCollectionsResponse);
+    const rows = nonEmptyCollections;
 
     return rows.map((row) => {
       const firstContentId = collectionContentsMap?.[row.id];
+      const collectionHref = pathPublicCollection(row.id);
       const contentHref = firstContentId
         ? pathPublishedContent(firstContentId)
-        : `/single-collection?id=${row.id}`;
+        : collectionHref;
 
-      const actions = [
-        {
-          label: t("createProfileHome.latestUpload.seeContent"),
-          variant: VARIANT.SECONDARY,
-          href: contentHref,
-        },
-      ];
+      let actions: CollectionAction[] | undefined = undefined;
+
+      if (isPublicView) {
+        const pricingActions = getContentPricingActions(
+          {
+            accessType: row.accessType,
+            buyPrice: row.buyPrice,
+            rentPrice: row.rentPrice,
+          },
+          t("createProfileHome.latestUpload.seeContent"),
+          { inCollection: true, labels: getPricingLabels(t) },
+        );
+
+        actions = pricingActions.map((action) => {
+          const label = action.label ?? STRING_EMPTY;
+          const hash = isRentActionLabel(label)
+            ? HASH_RENT
+            : isBuyActionLabel(label)
+              ? HASH_BUY
+              : STRING_EMPTY;
+
+          return {
+            label,
+            variant: hash ? VARIANT.PRIMARY : VARIANT.SECONDARY,
+            href: hash ? pathPublicCollection(row.id) : contentHref,
+          };
+        });
+      } else {
+        actions = [
+          {
+            label: t("createProfileHome.latestUpload.seeContent"),
+            variant: VARIANT.SECONDARY,
+            href: contentHref,
+          },
+        ];
+      }
 
       return {
         id: row.id,
         title: row.name,
-        author: displayName,
+        author: displayName || CREATOR,
         elementCount: row.contentsCount,
-        coverSrc: resolveImageUrl(tutorialVideoCardFallback.image),
+        coverSrc: row.coverImageUrl
+          ? resolveImageUrl(row.coverImageUrl)
+          : resolveImageUrl(tutorialVideoCardFallback.image),
         hideBadge: true,
-        href: contentHref,
+        href: isPublicView ? collectionHref : contentHref,
         actions,
       };
     });
   }, [
     isPublicView,
-    publicTutorials,
-    privateCollectionsResponse,
+    nonEmptyCollections,
     collectionContentsMap,
     displayName,
     t,
@@ -207,7 +198,7 @@ export default function CollectionList() {
     );
   }, [items, searchQuery]);
 
-  const isLoading = isPublicView ? isPublicLoading : isPrivateLoading;
+  const isLoading = isCollectionsLoading;
 
   return (
     <CollectionListShell>

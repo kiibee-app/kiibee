@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
+import { collectionItems } from 'src/database/schema/content/collectionItems.schema';
 import { userContentAccess } from 'src/database/schema/access/userContentAccess.schema';
 import { and, eq, or, isNull, gt } from 'drizzle-orm';
 import { ACCESS_TYPE } from 'src/utils/constant';
@@ -64,7 +65,7 @@ export class CheckMediaAccessGuard implements CanActivate {
     }
 
     const now = new Date();
-    const hasAccess = await db
+    const hasDirectAccess = await db
       .select()
       .from(userContentAccess)
       .where(
@@ -79,7 +80,32 @@ export class CheckMediaAccessGuard implements CanActivate {
       )
       .limit(1);
 
-    if (!hasAccess.length) {
+    if (hasDirectAccess.length) {
+      request.mediaFile = mediaFile;
+      return true;
+    }
+
+    const hasCollectionAccess = await db
+      .select({ id: userContentAccess.id })
+      .from(userContentAccess)
+      .innerJoin(
+        collectionItems,
+        eq(collectionItems.collectionId, userContentAccess.collectionId),
+      )
+      .where(
+        and(
+          eq(userContentAccess.userId, userId),
+          isNull(userContentAccess.mediaFileId),
+          eq(collectionItems.mediaFileId, mediaFile.id),
+          or(
+            isNull(userContentAccess.rentExpiresAt),
+            gt(userContentAccess.rentExpiresAt, now),
+          ),
+        ),
+      )
+      .limit(1);
+
+    if (!hasCollectionAccess.length) {
       throw new ForbiddenException(
         'Access denied. You do not have permission to access this media.',
       );

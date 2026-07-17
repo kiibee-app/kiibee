@@ -97,6 +97,7 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
       slug: creatorChannels.slug,
       profileImageUrl: sql<string | null>`coalesce(
           nullif(${creatorChannels.logoUrl}, ''),
+          nullif(${contentAppearance.logoUrl}, ''),
           nullif(${users.avatarUrl}, '')
         )`.as('profile_image_url'),
       coverImageUrl: sql<string | null>`coalesce(

@@ -2,12 +2,17 @@
 
 import type { LucideIcon } from "lucide-react";
 import { X } from "lucide-react";
+import { ROUTES } from "../../utils/constants";
+import { useDashboardStats } from "../../hooks/api/use-dashboard-stats";
+import { usePayoutRequests } from "../../hooks/api/use-payout-requests";
+import { useCreatorDeletionRequests } from "../../hooks/api/use-creator-deletion-requests";
 import {
   BrandText,
   CloseButton,
   IconWrap,
   MenuItem,
   MenuList,
+  NotificationBadge,
   SidebarRoot,
   SidebarTop,
 } from "./Sidebar.styles";
@@ -26,6 +31,13 @@ interface SidebarProps {
 }
 
 export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
+  const statsQuery = useDashboardStats();
+  const payoutRequestsQuery = usePayoutRequests();
+  const deletionRequestsQuery = useCreatorDeletionRequests();
+  const pendingCount = statsQuery.data?.pendingRequests ?? 0;
+  const pendingPayoutCount = payoutRequestsQuery.data?.length ?? 0;
+  const pendingDeletionCount = deletionRequestsQuery.data?.length ?? 0;
+
   return (
     <SidebarRoot $isOpen={isOpen}>
       <SidebarTop>
@@ -42,6 +54,15 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
               : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
           const Icon = item.icon;
+          const badgeCount =
+            item.href === ROUTES.PENDING_REQUESTS
+              ? pendingCount
+              : item.href === ROUTES.DELETION_REQUESTS
+                ? pendingDeletionCount
+                : item.href === ROUTES.PAYOUT_REQUESTS
+                  ? pendingPayoutCount
+                  : 0;
+          const showBadge = badgeCount > 0;
 
           return (
             <MenuItem
@@ -55,6 +76,7 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
                 <Icon size={16} />
               </IconWrap>
               <span>{item.label}</span>
+              {showBadge && <NotificationBadge>{badgeCount}</NotificationBadge>}
             </MenuItem>
           );
         })}

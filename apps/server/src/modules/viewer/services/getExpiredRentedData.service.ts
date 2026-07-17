@@ -26,6 +26,7 @@ export const getExpiredRentedData = async (userId: string) => {
       .filter(Boolean) as string[];
 
     const collectionIds = ordersData
+      .filter((o) => !o.mediaFileId)
       .map((o) => o.collectionId)
       .filter(Boolean) as string[];
 

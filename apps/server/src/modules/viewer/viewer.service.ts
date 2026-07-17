@@ -7,6 +7,7 @@ import { createPaymentMethodService } from './services/createPaymentMethod.servi
 import { updatePaymentMethodService } from './services/updatePaymentMethod.service';
 import { deletePaymentMethodService } from './services/deletePaymentMethod.service';
 import { setDefaultPaymentMethodService } from './services/setDefaultPaymentMethod.service';
+import { getAllViewersService } from './services/getAllViewers.service';
 import {
   CreatePaymentMethodDto,
   UpdatePaymentMethodDto,
@@ -14,6 +15,14 @@ import {
 
 @Injectable()
 export class ViewerService {
+  async getAllViewers(options?: {
+    search?: string;
+    page?: number;
+    limit?: number;
+  }) {
+    return getAllViewersService(options);
+  }
+
   async getPurchasedDataService(userId: string) {
     return getPurchasedData(userId);
   }

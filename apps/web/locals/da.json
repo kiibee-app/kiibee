@@ -906,6 +906,16 @@
       "viewPlans": "Se planer"
     }
   },
+  "cardFailurePage": {
+    "title": "Kortet blev ikke tilføjet",
+    "message": "Kortopsætningen blev ikke fuldført. Vi tager dig tilbage til udbetalingsmetoder.",
+    "hint": "Du kan prøve at tilføje kortet igen fra indstillinger."
+  },
+  "cardSuccessPage": {
+    "title": "Kortet blev tilføjet med succes",
+    "message": "Dit kort er blevet tilføjet. Vi tager dig tilbage til udbetalingsmetoder.",
+    "hint": "Dette tager normalt et par sekunder."
+  },
   "pricingFaq": {
     "title": "FAQ",
     "items": [
@@ -984,17 +994,23 @@
     "confirmPassword": "Indtast ny adgangskode igen",
     "newPasswordSameAsCurrent": "Den nye adgangskode skal være forskellig fra den nuværende",
     "accountDeletionTitle": "Slet konto",
-    "accountDeletionText": "Hvis du ønsker at slette din konto, klik på [Slet konto] nedenfor, og der sendes en besked til administratoren, som vil foretage en opgørelse og derefter slette din konto.",
+    "accountDeletionText": "Hvis du ønsker at slette din konto, skal du klikke på 'Slet konto' nedenfor. En anmodning vil blive sendt til administratoren til gennemgang og godkendelse.",
     "deleteAccount": "Slet konto",
     "deleteModal": {
-      "title": "Slet konto?",
-      "message": "Er du sikker på, at du vil slette din konto? Denne handling er permanent og kan ikke fortrydes.",
+      "title": "Anmod om sletning af konto?",
+      "message": "Er du sikker på, at du vil anmode om at slette din konto? En administrator vil gennemse og behandle din anmodning.",
       "cancel": "Annuller",
-      "confirm": "Slet konto"
+      "confirm": "Anmod om sletning"
     },
+    "deleteToastMessage": "Anmodning om kontosletning er sendt. Vent venligst på administratorens godkendelse.",
     "deleteSuccessModal": {
       "title": "Anmodning om kontosletning sendt",
       "message": "Din anmodning er sendt. En administrator gennemgår den og fuldfører kontosletningen. Du får besked, når det er gjort.",
+      "confirm": "Færdig"
+    },
+    "deletePendingModal": {
+      "title": "Sletteanmodning er i gang",
+      "message": "Din anmodning om kontosletning afventer allerede. En administrator gennemgår den og giver dig besked, når det er gjort.",
       "confirm": "Færdig"
     },
     "forgotPass": "Glemt adgangskode?",
@@ -1580,8 +1596,16 @@
     "title": "Indstillinger",
     "tabs": {
       "payout": "Udbetaling",
+      "payoutMethods": "Udbetalingsmetoder",
       "notifications": "Notifikationer",
       "export": "Eksport"
+    },
+    "payoutMethods": {
+      "title": "Udbetalingsmetoder",
+      "subtitle": "Vi har brug for dine betalingsoplysninger, så vi kan udbetale dine indtægter.",
+      "regLabel": "Reg. nr.",
+      "accountLabel": "Kontonr.",
+      "addPayoutMethod": "Tilføj udbetalingsmetode"
     },
     "notifications": {
       "title": "Notifikationer",
@@ -1626,6 +1650,23 @@
         "creditNo": "Kreditnr.",
         "bank": "Bank",
         "date": "Dato"
+      },
+      "modal": {
+        "title": "Betalingsdetaljer",
+        "loading": "Beregner udbetaling…",
+        "earnings": "Indtjening\n(Baseret på {{purchases}} køb og {{rentals}} leje)",
+        "processingFee": "Transaktionsgebyr ({{percent}})",
+        "platformFee": "Kiibee-betaling ({{percent}})",
+        "total": "Samlet udbetalingsbeløb",
+        "success": "Udbetalingsanmodning er indsendt.",
+        "calculateError": "Kunne ikke beregne udbetaling. Prøv igen.",
+        "requestError": "Kunne ikke indsende udbetalingsanmodning. Prøv igen.",
+        "missingBankAccount": "Tilføj dine bankoplysninger i din profil, før du anmoder om en udbetaling."
+      },
+      "zeroBalanceModal": {
+        "title": "Ingen saldo at udbetale",
+        "message": "Din udbetalingssaldo er i øjeblikket 0,00 kr. Når du tjener på køb eller leje, kan du anmode om en udbetaling her.",
+        "done": "Forstået"
       }
     },
     "export": {
@@ -2215,7 +2256,9 @@
     "expired": "Udløbet",
     "expiresInHours": "Udløber om {{count}} timer",
     "expiresInDays": "Udløber om {{count}} dage",
-    "expiredOn": "Udløbet den {{date}}"
+    "expiredOn": "Udløbet den {{date}}",
+    "purchased": "Købt",
+    "purchasedOn": "Købt den {{date}}"
   },
   "explore": {
     "sortNew": "Ny",
