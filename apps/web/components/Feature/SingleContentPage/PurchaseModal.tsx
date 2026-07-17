@@ -104,6 +104,7 @@ export type PurchaseModalProps = {
   priceLabel: string;
   accessLabel?: string;
   contentId?: string;
+  collectionId?: string;
   loading?: boolean;
 };
 
@@ -121,6 +122,7 @@ export default function PurchaseModal({
   priceLabel,
   accessLabel,
   contentId,
+  collectionId,
   loading = false,
 }: PurchaseModalProps) {
   const { t } = useTranslation();
@@ -152,7 +154,7 @@ export default function PurchaseModal({
 
   const verifyCouponMutation = usePostAPI<
     VerifyCouponResponse,
-    { code: string; contentId?: string }
+    { code: string; contentId?: string; collectionId?: string }
   >(API.coupon.verify);
 
   const savedCardsQuery = useGetAPI<SavedCardsResponse>(
@@ -239,6 +241,7 @@ export default function PurchaseModal({
       const response = await verifyCouponMutation.mutateAsync({
         code: discountCode.trim(),
         contentId,
+        collectionId,
       });
 
       if (response.success && response.data) {
