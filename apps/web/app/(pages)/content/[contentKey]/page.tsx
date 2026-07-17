@@ -122,11 +122,14 @@ function PublishedContentDetail() {
       icon={<SuccessModalIcon />}
       iconMargin="0 auto 8px"
       textAlign={MODAL_ALIGN.CENTER}
-      title="Payment successful!"
-      message="Your content is now unlocked. You can start enjoying it right away."
-      confirmLabel="Start watching"
-      onClose={handlePaymentSuccessClose}
+      title="Purchase Successful!"
+      message="Payment confirmed — you now own this content and can access it anytime in your library."
+      cancelLabel="Go back"
+      confirmLabel="Go to content"
+      onCancel={handlePaymentSuccessClose}
       onConfirm={handlePaymentSuccessClose}
+      onClose={handlePaymentSuccessClose}
+      buttonRow={true}
       size="sm"
       showCloseButton={false}
     />

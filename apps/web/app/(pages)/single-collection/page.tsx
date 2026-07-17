@@ -254,17 +254,17 @@ function SingleCollectionContent() {
         icon={<SuccessModalIcon />}
         iconMargin="0 auto 8px"
         textAlign={MODAL_ALIGN.CENTER}
-        title="Payment successful!"
-        onClose={handlePaymentSuccessClose}
-        confirmLabel="Start watching"
-        confirmVariant={VARIANT.PRIMARY}
+        title="Purchase Successful!"
+        message="Payment confirmed — you now own this collection and can access it anytime in your library."
+        cancelLabel="Go back"
+        confirmLabel="Go to collection"
+        onCancel={handlePaymentSuccessClose}
         onConfirm={handlePaymentSuccessClose}
-        showCloseButton
-      >
-        <div style={{ color: "#666", fontSize: "14px" }}>
-          Your collection has been unlocked. Enjoy!
-        </div>
-      </GenericModal>
+        onClose={handlePaymentSuccessClose}
+        buttonRow={true}
+        size="sm"
+        showCloseButton={false}
+      />
     </>
   );
 
