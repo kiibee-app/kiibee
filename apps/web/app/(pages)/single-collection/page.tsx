@@ -146,7 +146,7 @@ function SingleCollectionContent() {
     setShowPurchaseModal(true);
   };
 
-  const handlePurchaseConfirm = async (
+  const handlePurchaseConfirm = (
     couponCode?: string,
     subscriptionId?: string,
   ) => {
@@ -157,37 +157,46 @@ function SingleCollectionContent() {
       return;
     }
 
-    try {
-      const response = await createCollectionOrderMutation.mutateAsync({
+    createCollectionOrderMutation.mutate(
+      {
         collectionId: id,
         itemType: selectedAction.isPurchase
           ? ORDER_TYPES.PURCHASE
           : ORDER_TYPES.RENTAL,
         ...(couponCode ? { couponCode } : {}),
         ...(subscriptionId ? { subscriptionId } : {}),
-      });
+      },
+      {
+        onSuccess: (response) => {
+          const paymentUrl = response?.data?.url;
+          const orderId = response?.data?.orderId;
 
-      const paymentUrl = response?.data?.url;
-      const orderId = response?.data?.orderId;
+          if (!paymentUrl && subscriptionId && orderId) {
+            setShowPurchaseModal(false);
+            setSelectedAction(null);
+            router.push(
+              `/payment/success?orderId=${encodeURIComponent(orderId)}`,
+            );
+            return;
+          }
 
-      if (!paymentUrl && subscriptionId && orderId) {
-        setShowPurchaseModal(false);
-        setSelectedAction(null);
-        router.push(`/payment/success?orderId=${encodeURIComponent(orderId)}`);
-        return;
-      }
+          if (!paymentUrl) {
+            const error = new Error("Payment URL missing");
+            const message = getErrorMessage(error, "errors.saveChangesFailed");
+            toast.error(message);
+            return;
+          }
 
-      if (!paymentUrl) {
-        throw new Error("Payment URL missing");
-      }
-
-      setShowPurchaseModal(false);
-      setSelectedAction(null);
-      window.location.assign(paymentUrl);
-    } catch (error) {
-      const message = getErrorMessage(error, "errors.saveChangesFailed");
-      toast.error(message);
-    }
+          setShowPurchaseModal(false);
+          setSelectedAction(null);
+          window.location.assign(paymentUrl);
+        },
+        onError: (error) => {
+          const message = getErrorMessage(error, "errors.saveChangesFailed");
+          toast.error(message);
+        },
+      },
+    );
   };
 
   const handleClosePurchaseModal = () => {

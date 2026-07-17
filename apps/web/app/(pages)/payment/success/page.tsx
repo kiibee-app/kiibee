@@ -77,19 +77,18 @@ function PaymentSuccessContent() {
   );
 
   useEffect(() => {
-    if (order?.status === COMPLETED) {
-      const paymentParams = new URLSearchParams({
-        [PAYMENT_QUERY_KEY]: STATUS_TONE.SUCCESS,
-      });
-      if (order.mediaFileId) {
-        router.replace(
-          `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}?${paymentParams.toString()}`,
-        );
-      } else if (order.collectionId) {
-        router.replace(
-          `${pathPublicCollection(order.collectionId)}&${paymentParams.toString()}`,
-        );
-      }
+    if (order?.status !== COMPLETED) return;
+
+    const paymentStatus = STATUS_TONE.SUCCESS;
+
+    const redirectUrl = order.mediaFileId
+      ? `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}?${PAYMENT_QUERY_KEY}=${paymentStatus}`
+      : order.collectionId
+        ? `${pathPublicCollection(order.collectionId)}&${PAYMENT_QUERY_KEY}=${paymentStatus}`
+        : undefined;
+
+    if (redirectUrl) {
+      router.replace(redirectUrl);
     }
   }, [order?.status, order?.mediaFileId, order?.collectionId, router]);
 
