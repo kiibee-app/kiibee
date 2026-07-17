@@ -160,6 +160,7 @@ export function CreatorDetails({ creatorId }: CreatorDetailsProps) {
                   creatorId={creator.id}
                   channelName={creator.channelName}
                   companyName={creator.companyName}
+                  layout={creator.layout}
                   fallbackLabel={existingCreatorLabels.noChannel}
                 />
               </InfoValue>

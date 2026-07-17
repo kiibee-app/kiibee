@@ -10,12 +10,17 @@ jest.mock('src/database/db', () => ({
 
 jest.mock('src/utils/passwordHash');
 
+jest.mock('src/modules/auth/services/ensureCreatorChannel.service', () => ({
+  ensureCreatorChannel: jest.fn().mockResolvedValue(undefined),
+}));
+
 jest.mock('crypto', () => ({
   randomUUID: jest.fn().mockReturnValue('plan-id-123'),
 }));
 
 import { db as mockDb } from 'src/database/db';
 import { hashPassword as mockHashPassword } from 'src/utils/passwordHash';
+import { ensureCreatorChannel } from 'src/modules/auth/services/ensureCreatorChannel.service';
 import { randomUUID } from 'crypto';
 
 describe('setupCreatorAccountService', () => {
@@ -40,12 +45,40 @@ describe('setupCreatorAccountService', () => {
   const mockUser = {
     id: 'user-id',
     email: 'test@example.com',
+    fullName: 'Test Creator',
+    firstName: 'Test',
+    lastName: 'Creator',
   };
+
+  const mockCreatorNameRow = {
+    fullName: 'Test Creator',
+    firstName: 'Test',
+    lastName: 'Creator',
+  };
+
+  function mockSelectChain(...results: unknown[]): jest.Mock {
+    const select = jest.fn();
+
+    results.forEach((result) => {
+      select.mockImplementationOnce(() => ({
+        from: jest.fn(() => ({
+          where: jest.fn(() => ({
+            limit: jest
+              .fn()
+              .mockResolvedValue(Array.isArray(result) ? result : [result]),
+          })),
+        })),
+      }));
+    });
+
+    return select;
+  }
 
   beforeEach(() => {
     jest.clearAllMocks();
     (mockHashPassword as jest.Mock).mockResolvedValue('hashed-password');
     (randomUUID as jest.Mock).mockReturnValue('plan-id-123');
+    (ensureCreatorChannel as jest.Mock).mockResolvedValue(undefined);
   });
 
   it('should throw error when required fields are missing', async () => {
@@ -214,29 +247,12 @@ describe('setupCreatorAccountService', () => {
   it('should successfully setup creator account', async () => {
     const mockTransaction = jest.fn().mockImplementation(async (callback) => {
       const tx = {
-        select: jest
-          .fn()
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([mockTokenData]),
-              }),
-            }),
-          })
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([mockUser]),
-              }),
-            }),
-          })
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([{ id: TEST_PLAN_UUID }]),
-              }),
-            }),
-          }),
+        select: mockSelectChain(
+          mockTokenData,
+          mockUser,
+          { id: TEST_PLAN_UUID },
+          mockCreatorNameRow,
+        ),
         update: jest.fn().mockReturnValue({
           set: jest.fn().mockReturnValue({
             where: jest.fn().mockResolvedValue(undefined),
@@ -254,11 +270,15 @@ describe('setupCreatorAccountService', () => {
     const result = await setupCreatorAccountService(mockPayload);
 
     expect(mockHashPassword).toHaveBeenCalledWith('password123');
+    expect(ensureCreatorChannel).toHaveBeenCalledWith(expect.anything(), {
+      creatorId: 'user-id',
+      channelName: 'Test Creator',
+    });
 
     expect(result).toEqual({
       success: true,
       message: 'Creator account setup successfully',
-      statusCode: 200,
+      statusCode: 201,
       data: {
         userId: 'user-id',
         email: 'test@example.com',
@@ -272,29 +292,12 @@ describe('setupCreatorAccountService', () => {
 
     const mockTransaction = jest.fn().mockImplementation(async (callback) => {
       capturedTx = {
-        select: jest
-          .fn()
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([mockTokenData]),
-              }),
-            }),
-          })
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([mockUser]),
-              }),
-            }),
-          })
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([{ id: TEST_PLAN_UUID }]),
-              }),
-            }),
-          }),
+        select: mockSelectChain(
+          mockTokenData,
+          mockUser,
+          { id: TEST_PLAN_UUID },
+          mockCreatorNameRow,
+        ),
         update: jest.fn().mockReturnValue({
           set: jest.fn().mockReturnValue({
             where: jest.fn().mockResolvedValue(undefined),
@@ -325,29 +328,12 @@ describe('setupCreatorAccountService', () => {
 
     const mockTransaction = jest.fn().mockImplementation(async (callback) => {
       capturedTx = {
-        select: jest
-          .fn()
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([mockTokenData]),
-              }),
-            }),
-          })
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([mockUser]),
-              }),
-            }),
-          })
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([{ id: TEST_PLAN_UUID }]),
-              }),
-            }),
-          }),
+        select: mockSelectChain(
+          mockTokenData,
+          mockUser,
+          { id: TEST_PLAN_UUID },
+          mockCreatorNameRow,
+        ),
         update: jest.fn().mockReturnValue({
           set: jest.fn().mockReturnValue({
             where: jest.fn().mockResolvedValue(undefined),
@@ -378,29 +364,12 @@ describe('setupCreatorAccountService', () => {
 
     const mockTransaction = jest.fn().mockImplementation(async (callback) => {
       capturedTx = {
-        select: jest
-          .fn()
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([mockTokenData]),
-              }),
-            }),
-          })
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([mockUser]),
-              }),
-            }),
-          })
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([{ id: TEST_PLAN_UUID }]),
-              }),
-            }),
-          }),
+        select: mockSelectChain(
+          mockTokenData,
+          mockUser,
+          { id: TEST_PLAN_UUID },
+          mockCreatorNameRow,
+        ),
         update: jest.fn().mockReturnValue({
           set: jest.fn().mockReturnValue({
             where: jest.fn().mockResolvedValue(undefined),
@@ -417,7 +386,6 @@ describe('setupCreatorAccountService', () => {
 
     await setupCreatorAccountService(mockPayload);
 
-    // Check that token was marked as used - should be the second update call
     expect(capturedTx.update).toHaveBeenCalledTimes(2);
     const tokenUpdateResult = capturedTx.update.mock.results[1].value;
     expect(tokenUpdateResult.set).toHaveBeenCalledWith({ isUsed: true });
@@ -432,29 +400,12 @@ describe('setupCreatorAccountService', () => {
 
     const mockTransaction = jest.fn().mockImplementation(async (callback) => {
       capturedTx = {
-        select: jest
-          .fn()
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([mockTokenData]),
-              }),
-            }),
-          })
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([mockUser]),
-              }),
-            }),
-          })
-          .mockReturnValueOnce({
-            from: jest.fn().mockReturnValue({
-              where: jest.fn().mockReturnValue({
-                limit: jest.fn().mockResolvedValue([{ id: resolvedUuid }]),
-              }),
-            }),
-          }),
+        select: mockSelectChain(
+          mockTokenData,
+          mockUser,
+          { id: resolvedUuid },
+          mockCreatorNameRow,
+        ),
         update: jest.fn().mockReturnValue({
           set: jest.fn().mockReturnValue({
             where: jest.fn().mockResolvedValue(undefined),

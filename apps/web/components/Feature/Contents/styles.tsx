@@ -38,6 +38,7 @@ export const PageHeader = styled.div`
   z-index: 10;
   margin: 0 -24px;
   padding: 0 24px 2px;
+  min-height: 58px;
   background: ${({ theme }) => theme.colors.primary.WHITE};
 
   ${({ theme }) => theme.media.tablet} {

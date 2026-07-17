@@ -4,6 +4,7 @@ export type ChannelLinkProps = {
   creatorId: string;
   channelName?: string | null;
   companyName?: string | null;
+  layout?: string | null;
   fallbackLabel?: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   children?: ReactNode;

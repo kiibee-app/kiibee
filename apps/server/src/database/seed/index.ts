@@ -13,26 +13,25 @@ import { seedUmbracoStats } from './umbracoStats.seed';
 import { seedTutorialItems } from './tutorialItems.seed';
 import { seedUsers } from './users.seed';
 import { backfillMissingPasswordHashes } from './backfillPasswordHashes.seed';
+import { reconcileCreatorPlansWithContent } from './reconcileCreatorPlans.seed';
+import { reconcileMissingCreatorChannels } from './reconcileCreatorChannels.seed';
 
 async function main() {
-  // Optional full wipe — skipped by default so re-runs merge new umbraco-data
   await resetSeedData();
 
-  // Reference data required by Umbraco content/profile seeds
   await seedContentCategories();
   await seedContentTypes();
   await seedTags();
   await seedPlans();
   await seedTutorialItems();
 
-  // Only admin account; creators/viewers come from umbraco-data
   await seedUsers();
 
-  // Creator profiles & content from umbraco-data
   await seedUmbracoProfiles();
   await seedUmbracoShows();
+  await reconcileCreatorPlansWithContent();
+  await reconcileMissingCreatorChannels();
 
-  // Commerce, analytics, and activity logs from umbraco-data
   await seedUmbracoPurchases();
   await seedUmbracoLogs();
   await seedUmbracoPayouts();

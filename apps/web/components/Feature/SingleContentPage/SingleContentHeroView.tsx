@@ -1,11 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, type RefObject } from "react";
+import { useRef, useState, type RefObject, type MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "styled-components";
 import { toast } from "react-toastify";
 import PdfIcon from "@/assets/icons/PdfIcon";
-import type { SingleContentHeroSectionProps } from "@/types/contentTypes";
+import { PlayIcon } from "@/assets/icons";
+import type {
+  SingleContentHeroSectionProps,
+  SingleContentAction,
+} from "@/types/contentTypes";
 import { FORMAT_TYPE } from "@/utils/types";
 import {
   getThirdPartyEmbedUrl,
@@ -28,10 +33,12 @@ import {
   TrailerButton,
   TrailerText,
   TrailerWrapper,
+  CenteredPlayButton,
 } from "./styles";
 
 type SingleContentHeroViewProps = SingleContentHeroSectionProps & {
   isPdfLayout?: boolean;
+  primaryAction?: SingleContentAction;
 };
 
 type SingleContentPreviewProps = SingleContentHeroSectionProps & {
@@ -201,8 +208,10 @@ function SingleContentPreview({
 export default function SingleContentHeroView({
   hero,
   isPdfLayout = false,
+  primaryAction,
 }: SingleContentHeroViewProps) {
   const { t } = useTranslation();
+  const theme = useTheme();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hasStartedPlayback, setHasStartedPlayback] = useState(false);
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
@@ -215,6 +224,16 @@ export default function SingleContentHeroView({
     isVideoMedia && isThirdPartyVideoUrl(hero.media?.src ?? "");
   const deferCloudflareEmbed = isCloudflareVideo && Boolean(hero.trailerLabel);
   const hasTrailerLink = Boolean(hero.media?.src);
+
+  const isVideo = hero.contentType === FORMAT_TYPE.VIDEO;
+  const isAudio = hero.contentType === FORMAT_TYPE.AUDIO;
+  const isPurchased = Boolean(primaryAction);
+  const showPlayButton =
+    isPurchased &&
+    (isVideo || isAudio) &&
+    !hasStartedPlayback &&
+    !isTrailerPlaying &&
+    !isCloudflarePlaying;
 
   const primarySrc = resolveImageUrl(hero.image);
   const [fallbackForSrc, setFallbackForSrc] = useState<string | null>(null);
@@ -297,6 +316,11 @@ export default function SingleContentHeroView({
     void handleTrailerClick();
   };
 
+  const handleCenteredPlayClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    primaryAction?.onClick?.();
+  };
+
   const showTrailerButton =
     hero.trailerLabel &&
     !hasStartedPlayback &&
@@ -318,7 +342,10 @@ export default function SingleContentHeroView({
       {encodedBlurSrc && (
         <HeroBlurBg style={{ backgroundImage: `url("${encodedBlurSrc}")` }} />
       )}
-      <Preview>
+      <Preview
+        onClick={showPlayButton ? primaryAction?.onClick : undefined}
+        $clickable={showPlayButton}
+      >
         <SingleContentPreview
           hero={hero}
           showVideoControls={
@@ -335,6 +362,19 @@ export default function SingleContentHeroView({
           onImageError={handleImageError}
           onLoad={() => setImageLoading(false)}
         />
+        {showPlayButton ? (
+          <CenteredPlayButton
+            onClick={handleCenteredPlayClick}
+            type="button"
+            aria-label={isAudio ? "Play audio" : "Play video"}
+          >
+            <PlayIcon
+              width={28}
+              height={28}
+              fg={theme.colors.neutral.GRAY_500}
+            />
+          </CenteredPlayButton>
+        ) : null}
       </Preview>
 
       {hero.categoryLabel ? (
@@ -346,7 +386,8 @@ export default function SingleContentHeroView({
       {hero.mediaLabel &&
       (!isVideoMedia || (!hasStartedPlayback && !isTrailerPlaying)) ? (
         <HeroMediaTag>
-          {hero.media?.type === FORMAT_TYPE.PDF ? (
+          {hero.media?.type === FORMAT_TYPE.PDF ||
+          hero.contentType === FORMAT_TYPE.PDF ? (
             <PdfIcon width={16} height={16} />
           ) : hero.mediaIcon ? (
             <Image

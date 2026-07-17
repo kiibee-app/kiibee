@@ -40,6 +40,7 @@ import {
   CONTENT_LAST_EDITED_STORAGE_KEY,
   VISIBILITY_PUBLIC_UPPER,
   VISIBILITY_PUBLIC_LOWER,
+  VISIBILITY_DRAFT_UPPER,
   CATEGORY_EDUCATION_LOWER,
   MIME_TYPE_APPLICATION_PDF,
   apiToUiAccessTypeMap,
@@ -62,7 +63,7 @@ import {
   PAYMENTS_FORM_FIELDS,
   parsePaymentAmount,
 } from "@/utils/paymentRequirements";
-import type { ContentFormErrors } from "@/types/contentTypes";
+import type { ContentFormErrors, ContentFormState } from "@/types/contentTypes";
 import { defaultState } from "@/types/contentTypes";
 import type { SaveContentSettingPayload } from "@/hooks/contents/useContentSettings";
 import { logger } from "@/lib/logger";
@@ -314,7 +315,7 @@ export function useContentFormActions({
         contentType:
           contentTypeFlow.selectedContentType ??
           (CONTENT_TYPE_FALLBACK as ContentType),
-        visibility: VISIBILITY_PUBLIC_UPPER,
+        visibility: VISIBILITY_DRAFT_UPPER,
         createdAt: new Date().toISOString(),
         actions: "",
       });
@@ -727,7 +728,9 @@ export function useContentFormActions({
 
   const handleHeaderCancel = () => {
     if (activeTab === APPEARANCE) {
-      cancelAppearance();
+      if (hasAppearanceChanges) {
+        openDiscardModal();
+      }
       return;
     }
     if (activeTab === SETTINGS) {
@@ -753,6 +756,12 @@ export function useContentFormActions({
     formState.mediaCardThumbnail !== savedFormState.mediaCardThumbnail ||
     formState.portraitThumbnail !== savedFormState.portraitThumbnail;
 
+  const hasPaymentUnsavedChanges = Object.values(PAYMENTS_FORM_FIELDS).some(
+    (field) =>
+      formState[field as keyof typeof formState] !==
+      savedFormState[field as keyof typeof savedFormState],
+  );
+
   const hasSettingsUnsavedChanges =
     collectionAccessType !== savedSettings.accessType ||
     collectionPasswords !== savedSettings.passwords ||
@@ -760,6 +769,10 @@ export function useContentFormActions({
     collectionRentalAmount !== savedSettings.rentalAmount ||
     collectionPurchaseAmount !== savedSettings.purchaseAmount ||
     collectionAccessDuration !== savedSettings.accessDuration;
+
+  const hasUploadUnsavedChanges = (
+    Object.keys(formState) as Array<keyof ContentFormState>
+  ).some((key) => formState[key] !== savedFormState[key]);
 
   const closeContentUpload = () => {
     contentTypeFlow.close();
@@ -870,7 +883,9 @@ export function useContentFormActions({
           title: fullContent.title || "",
           description: fullContent.description || "",
           trailerLink: fullContent.trailerUrl || "",
-          visibility: fullContent.visibility || VISIBILITY_PUBLIC_LOWER,
+          visibility: (
+            fullContent.visibility || VISIBILITY_PUBLIC_LOWER
+          ).toLowerCase(),
           publishedYear: fullContent.publishedYear
             ? String(fullContent.publishedYear)
             : "",
@@ -948,13 +963,16 @@ export function useContentFormActions({
     hasUnsavedChanges: hasAppearanceChanges,
     hasGeneralUnsavedChanges,
     hasMetadataUnsavedChanges,
+    hasPaymentUnsavedChanges,
     hasSettingsUnsavedChanges,
+    hasUploadUnsavedChanges,
     handleUploadSuccess,
     handleBackToBase,
     handleBackToBaseStateOnly,
     resetUploadState,
     handleHeaderSave,
     handleHeaderCancel,
+    cancelAppearance,
     handleEditContent,
     closeContentUpload,
     handleContentUploadBack,

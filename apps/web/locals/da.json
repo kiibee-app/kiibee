@@ -906,6 +906,16 @@
       "viewPlans": "Se planer"
     }
   },
+  "cardFailurePage": {
+    "title": "Kortet blev ikke tilføjet",
+    "message": "Kortopsætningen blev ikke fuldført. Vi tager dig tilbage til udbetalingsmetoder.",
+    "hint": "Du kan prøve at tilføje kortet igen fra indstillinger."
+  },
+  "cardSuccessPage": {
+    "title": "Kortet blev tilføjet med succes",
+    "message": "Dit kort er blevet tilføjet. Vi tager dig tilbage til udbetalingsmetoder.",
+    "hint": "Dette tager normalt et par sekunder."
+  },
   "pricingFaq": {
     "title": "FAQ",
     "items": [
@@ -996,6 +1006,11 @@
     "deleteSuccessModal": {
       "title": "Anmodning om kontosletning sendt",
       "message": "Din anmodning er sendt. En administrator gennemgår den og fuldfører kontosletningen. Du får besked, når det er gjort.",
+      "confirm": "Færdig"
+    },
+    "deletePendingModal": {
+      "title": "Sletteanmodning er i gang",
+      "message": "Din anmodning om kontosletning afventer allerede. En administrator gennemgår den og giver dig besked, når det er gjort.",
       "confirm": "Færdig"
     },
     "forgotPass": "Glemt adgangskode?",

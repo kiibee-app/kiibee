@@ -35,11 +35,17 @@ const publishedPublicWhere = and(
   eq(mediaFiles.isDeleted, false),
 );
 
+const activeCreatorJoin = and(
+  eq(users.id, mediaFiles.creatorId),
+  eq(users.isDeleted, false),
+);
+
 export const getTrendingContentService = async (limit = 10) => {
   try {
     const trendingIds = await db
       .select({ id: mediaFiles.id })
       .from(mediaFiles)
+      .innerJoin(users, activeCreatorJoin)
       .where(publishedPublicWhere)
       .orderBy(sql`RANDOM()`)
       .limit(limit);
@@ -57,7 +63,7 @@ export const getTrendingContentService = async (limit = 10) => {
     const rows = await db
       .select(trendingSelect)
       .from(mediaFiles)
-      .leftJoin(users, eq(users.id, mediaFiles.creatorId))
+      .innerJoin(users, activeCreatorJoin)
       .leftJoin(contentTypes, eq(contentTypes.id, mediaFiles.contentTypeId))
       .leftJoin(
         mediaFileCategories,
@@ -67,7 +73,7 @@ export const getTrendingContentService = async (limit = 10) => {
         contentCategories,
         eq(contentCategories.id, mediaFileCategories.categoryId),
       )
-      .where(inArray(mediaFiles.id, ids));
+      .where(and(inArray(mediaFiles.id, ids), publishedPublicWhere));
 
     const trendingContent = orderFeedMediaByIds(dedupeFeedMediaById(rows), ids);
 

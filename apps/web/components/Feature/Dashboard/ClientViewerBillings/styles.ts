@@ -140,6 +140,11 @@ export const AddCardButton = styled.button`
   cursor: pointer;
   margin-left: auto;
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
   ${media.mobileLg} {
     width: auto;
   }

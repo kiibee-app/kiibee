@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 import {
   VIEWER_BILLING_HISTORY_TAB,
   VIEWER_PAYMENT_METHODS_TAB,
@@ -45,6 +46,8 @@ import {
   type ViewerBillingHistoryItem,
 } from "@/hooks/useViewerBillingHistory";
 import { useViewerPaymentMethods } from "@/hooks/useViewerPaymentMethods";
+import { useAddPaymentCard } from "@/hooks/useAddPaymentCard";
+import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { LOADER_VARIANT } from "@/utils/ui";
 
@@ -95,6 +98,7 @@ export default function ClientViewerBillings({
   creatorPaymentMethods,
 }: ClientViewerBillingsProps) {
   const { t } = useTranslation();
+  const { getErrorMessage } = useApiErrorMessage();
   const [searchContent, setSearchContent] = useState("");
   const [searchCreator, setSearchCreator] = useState("");
   const debouncedSearchContent = useDebounce(searchContent);
@@ -106,6 +110,8 @@ export default function ClientViewerBillings({
       searchCreator: debouncedSearchCreator || undefined,
     });
   const viewerPaymentMethods = useViewerPaymentMethods();
+  const { addHostedCard, isPending: isAddHostedCardPending } =
+    useAddPaymentCard();
   const {
     paymentMethods,
     isLoading: isPaymentMethodsLoading,
@@ -131,9 +137,8 @@ export default function ClientViewerBillings({
   const handleDeleteConfirm = async () => {
     if (!selectedPaymentMethod) return;
 
-    const deleteId = creatorPaymentMethods
-      ? selectedPaymentMethod.id
-      : selectedPaymentMethod.subscriptionId;
+    const deleteId =
+      selectedPaymentMethod.subscriptionId || selectedPaymentMethod.id;
     await deleteCard(deleteId);
     setShowDeleteModal(false);
     setShowDeleteSuccessModal(true);
@@ -146,6 +151,27 @@ export default function ClientViewerBillings({
 
   const handleMarkAsDefault = async (method: ViewerPaymentMethod) => {
     await markAsDefault(method.id);
+  };
+
+  const handleAddCardClick = async () => {
+    if (!creatorPaymentMethods) {
+      setShowAddCardModal(true);
+      return;
+    }
+
+    try {
+      const response = await addHostedCard();
+      const paymentUrl = response?.paymentWindowUrl;
+
+      if (!paymentUrl) {
+        toast.error(t("errors.saveChangesFailed"));
+        return;
+      }
+
+      window.location.assign(paymentUrl);
+    } catch (error) {
+      toast.error(getErrorMessage(error, "errors.saveChangesFailed"));
+    }
   };
 
   const getMethodActions = (): DropdownOption<string>[] => [
@@ -322,7 +348,8 @@ export default function ClientViewerBillings({
             {creatorPaymentMethods && (
               <AddCardButton
                 type="button"
-                onClick={() => setShowAddCardModal(true)}
+                onClick={handleAddCardClick}
+                disabled={isAddHostedCardPending}
               >
                 <PlusIcon width={16} height={16} color={COLORS.primary.WHITE} />
                 {t(DASHBOARD_VIEWER_BILLINGS.paymentMethods.addCard)}
@@ -471,7 +498,7 @@ export default function ClientViewerBillings({
       />
       <CardModal
         mode={CARD_FORM_MODE.ADD}
-        visible={showAddCardModal}
+        visible={!creatorPaymentMethods && showAddCardModal}
         onClose={() => setShowAddCardModal(false)}
         onSubmit={addCard}
       />

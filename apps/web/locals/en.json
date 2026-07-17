@@ -906,6 +906,16 @@
       "viewPlans": "View Plans"
     }
   },
+  "cardFailurePage": {
+    "title": "Card was not added",
+    "message": "The card setup was not completed. We are taking you back to payout methods.",
+    "hint": "You can try adding the card again from settings."
+  },
+  "cardSuccessPage": {
+    "title": "Card added successfully",
+    "message": "Your card has been added. We are taking you back to payout methods.",
+    "hint": "This usually takes a few seconds."
+  },
   "pricingFaq": {
     "title": "FAQ",
     "items": [
@@ -996,6 +1006,11 @@
     "deleteSuccessModal": {
       "title": "Request Sent for Account Deletion",
       "message": "Your request has been submitted. An administrator will review it and complete the account deletion process. You'll be notified once it's done.",
+      "confirm": "Done"
+    },
+    "deletePendingModal": {
+      "title": "Delete request is in progress",
+      "message": "Your account deletion request is already pending. An administrator will review it and notify you once it's done.",
       "confirm": "Done"
     },
     "forgotPass": "Forgot Password?",

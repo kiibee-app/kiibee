@@ -1,14 +1,16 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import { API, useGetAPI } from "@/lib/http/api";
 import { axiosClient } from "@/lib/http/axiosClient";
-import { CARD_BRANDS, type CardBrand } from "@/utils/Constants";
+import { CARD, CARD_BRANDS, type CardBrand } from "@/utils/Constants";
+import { formatSavedCardLabel } from "@/utils/common";
+import { formatCardExpiry } from "@/utils/formatDate";
 import type {
-  CreatorPaymentMethodResponse,
-  CreatorPaymentMethodsApiResponse,
-  PaymentMethodPayload,
+  BackendPaymentMethod,
+  PaymentMethodsResponse,
   ViewerPaymentMethod,
 } from "@/types/cardTypes";
 
@@ -21,26 +23,52 @@ function resolveCardBrand(brand?: string): CardBrand {
   return CARD_BRANDS.VISA;
 }
 
-function toPaymentMethod(
-  item: CreatorPaymentMethodResponse,
-): ViewerPaymentMethod {
+function toPaymentMethod(item: BackendPaymentMethod): ViewerPaymentMethod {
   return {
     id: item.id,
-    subscriptionId: "",
-    brand: resolveCardBrand(item.brand),
-    label: item.label || `**** ${item.lastFour}`,
-    cardNumber: item.cardNumber,
-    expiresAt: item.expiresAt,
+    paymentMethodId: item.paymentMethodId,
+    subscriptionId: item.ePaySubscriptionId,
+    brand: resolveCardBrand(item.cardType),
+    label: formatSavedCardLabel(item.cardNo, item.cardType, CARD),
+    cardNumber: item.cardNo,
+    expiresAt: formatCardExpiry(item.expireDate),
     isDefault: item.isDefault,
   };
 }
 
 export const useCreatorPaymentMethods = () => {
   const queryClient = useQueryClient();
+  const searchParams = useSearchParams();
+  const cardStatus = searchParams.get("card");
 
-  const query = useGetAPI<CreatorPaymentMethodsApiResponse>(
-    API.viewer.paymentMethods,
+  const query = useGetAPI<PaymentMethodsResponse>(
+    API.payment.cards,
+    undefined,
+    {
+      refetchOnMount: "always",
+      refetchOnWindowFocus: true,
+      staleTime: 0,
+    },
   );
+  const { refetch } = query;
+
+  useEffect(() => {
+    if (cardStatus !== "success") return;
+
+    refetch();
+
+    const intervalId = window.setInterval(() => {
+      refetch();
+    }, 1500);
+    const timeoutId = window.setTimeout(() => {
+      window.clearInterval(intervalId);
+    }, 12000);
+
+    return () => {
+      window.clearInterval(intervalId);
+      window.clearTimeout(timeoutId);
+    };
+  }, [cardStatus, refetch]);
 
   const paymentMethods = useMemo((): ViewerPaymentMethod[] => {
     const items = query.data?.data;
@@ -50,21 +78,20 @@ export const useCreatorPaymentMethods = () => {
 
   const invalidate = () =>
     queryClient.invalidateQueries({
-      queryKey: [API.viewer.paymentMethods],
+      queryKey: [API.payment.cards],
     });
 
-  const addCard = async (payload: PaymentMethodPayload) => {
-    await axiosClient.post(API.viewer.paymentMethods, payload);
+  const addCard = async () => {
     await invalidate();
   };
 
-  const deleteCard = async (id: string) => {
-    await axiosClient.delete(API.viewer.paymentMethod(id));
+  const deleteCard = async (subscriptionId: string) => {
+    await axiosClient.delete(API.payment.card(subscriptionId));
     await invalidate();
   };
 
   const markAsDefault = async (id: string) => {
-    await axiosClient.patch(API.viewer.paymentMethodDefault(id));
+    await axiosClient.put(API.payment.cardDefault(id));
     await invalidate();
   };
 
@@ -75,5 +102,6 @@ export const useCreatorPaymentMethods = () => {
     addCard,
     deleteCard,
     markAsDefault,
+    refetch,
   };
 };

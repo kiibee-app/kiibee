@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, getTableColumns } from 'drizzle-orm';
 import { db } from 'src/database/db';
-import { collections, orders } from 'src/database/schema';
+import { collections, orders, users } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { verifyCouponService } from 'src/modules/coupon/services/verifyCoupon.service';
 import { createPayment } from 'src/modules/payment/services/createPayment.service';
@@ -12,6 +12,7 @@ import { fail, success } from 'src/utils/sendResponse';
 import { CreateCollectionOrderInputDto } from '../dto/order.dto';
 
 const COLLECTION_CURRENCY = 'DKK';
+const collectionColumns = getTableColumns(collections);
 
 const calculateDiscountAmount = async (
   couponCode: string | undefined,
@@ -55,10 +56,15 @@ export async function createCollectionOrderService(
         : ORDER_TYPES.RENTAL;
 
     const [collectionInfo] = await db
-      .select()
+      .select(collectionColumns)
       .from(collections)
+      .innerJoin(users, eq(users.id, collections.creatorId))
       .where(
-        and(eq(collections.id, collectionId), eq(collections.isDeleted, false)),
+        and(
+          eq(collections.id, collectionId),
+          eq(collections.isDeleted, false),
+          eq(users.isDeleted, false),
+        ),
       )
       .limit(1);
 

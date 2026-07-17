@@ -94,16 +94,16 @@ export function useCreatorChannelProfile(enabled = true) {
   }, [publicCreator, profile, storedUser]);
 
   const avatarUrl = useMemo(() => {
-    const publicAvatar = getAvatarUrl(
-      publicCreator?.profileImageUrl ?? publicCreator?.coverImageUrl,
+    if (isPublicView) {
+      return getAvatarUrl(publicCreator?.profileImageUrl);
+    }
+
+    return (
+      getAvatarUrl(appearanceQuery.data?.data?.logoUrl) ||
+      getAvatarUrl(profile?.user?.avatarUrl) ||
+      getAvatarUrl(storedUser?.avatarUrl)
     );
-    if (publicAvatar) return publicAvatar;
-
-    const fromApi = getAvatarUrl(profile?.user?.avatarUrl);
-    if (fromApi) return fromApi;
-
-    return getAvatarUrl(storedUser?.avatarUrl);
-  }, [publicCreator, profile, storedUser]);
+  }, [isPublicView, publicCreator, appearanceQuery.data, profile, storedUser]);
 
   const coverImageUrl = useMemo(() => {
     if (isPublicView) {

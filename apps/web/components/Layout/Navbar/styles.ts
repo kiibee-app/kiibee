@@ -73,9 +73,9 @@ export const Logo = styled.span`
   align-items: center;
 
   img {
-    max-height: calc(var(--navbar-height, 73px) - 2rem) !important;
+    max-height: 5rem !important;
     width: auto;
-    height: auto;
+    height: 25px;
   }
 `;
 
