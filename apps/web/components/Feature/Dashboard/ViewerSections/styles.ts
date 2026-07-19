@@ -228,12 +228,14 @@ export const HeaderBackButton = styled.button`
 
 export const CollectionGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  padding-inline: 0;
+  padding-inline: 30px;
 
   ${media.mobileLg} {
     gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+    padding-inline: 30px;
   }
 `;
 
