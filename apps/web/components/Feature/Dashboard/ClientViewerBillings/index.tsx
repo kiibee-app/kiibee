@@ -51,11 +51,11 @@ import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import GenericLoader from "@/components/UI/GenericLoader";
 import { LOADER_VARIANT } from "@/utils/ui";
 
+import { DashboardPageWrapper as BillingShell } from "@/components/Layout/Dashboard/styles";
 import {
   Actions,
   AddCardButton,
   BillingHeader,
-  BillingShell,
   BillingTableSection,
   CardIdentity,
   CardLabel,
@@ -218,7 +218,7 @@ export default function ClientViewerBillings({
   });
 
   return (
-    <BillingShell $onlyPaymentMethods={onlyPaymentMethods}>
+    <BillingShell $noPadding={onlyPaymentMethods}>
       {!onlyPaymentMethods && (
         <BillingHeader>
           <MonoText $use="H4_SemiBold">

@@ -26,23 +26,7 @@ export const PageHeader = styled.div`
 `;
 
 export const PageWrap = styled.div<{ $expandedCollections?: boolean }>`
-  padding: ${({ $expandedCollections }) =>
-    $expandedCollections ? "20px 0 20px" : "10px 31px"};
-
-  ${media.tablet} {
-    padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "20px 0 16px" : "16px 20px"};
-  }
-
-  ${media.mobileLg} {
-    padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "16px 0 12px" : "20px 20px"};
-  }
-
-  ${media.mobile} {
-    padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "14px 0 10px" : "20px 20px"};
-  }
+  width: 100%;
 `;
 
 export const SectionBlock = styled.section`
@@ -230,12 +214,10 @@ export const CollectionGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  padding-inline: 30px;
 
   ${media.mobileLg} {
     gap: 10px;
     grid-template-columns: repeat(1, 1fr);
-    padding-inline: 30px;
   }
 `;
 
@@ -428,7 +410,6 @@ export const MediaGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
-  padding-left: 10px;
   align-items: stretch;
 
   > * {
@@ -445,7 +426,6 @@ export const MediaGrid = styled.div`
 
   ${media.tablet} {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding-left: 0;
     gap: 12px;
   }
 

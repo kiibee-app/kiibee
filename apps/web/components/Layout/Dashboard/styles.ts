@@ -51,3 +51,17 @@ export const ContentWrapper = styled.main<{ $contentPadding?: string }>`
     padding: ${({ $contentPadding }) => $contentPadding ?? "8px 0 20px"};
   }
 `;
+
+export const DashboardPageWrapper = styled.div<{ $noPadding?: boolean }>`
+  width: 100%;
+  box-sizing: border-box;
+  padding: ${({ $noPadding }) => ($noPadding ? "0" : "30px 30px")};
+
+  ${media.tablet} {
+    padding: ${({ $noPadding }) => ($noPadding ? "0" : "24px 20px 20px")};
+  }
+
+  ${media.mobileLg} {
+    padding: ${({ $noPadding }) => ($noPadding ? "0" : "20px 16px 16px")};
+  }
+`;

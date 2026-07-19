@@ -2,23 +2,6 @@ import { MonoText } from "@/components/UI/Monotext";
 import { media } from "@repo/ui/breakpoints";
 import styled from "styled-components";
 
-export const BillingShell = styled.section<{ $onlyPaymentMethods?: boolean }>`
-  width: 100%;
-  box-sizing: border-box;
-  padding: ${({ $onlyPaymentMethods }) =>
-    $onlyPaymentMethods ? "0" : "30px 30px"};
-
-  ${media.tablet} {
-    padding: ${({ $onlyPaymentMethods }) =>
-      $onlyPaymentMethods ? "0" : "24px 20px 20px"};
-  }
-
-  ${media.mobileLg} {
-    padding: ${({ $onlyPaymentMethods }) =>
-      $onlyPaymentMethods ? "0" : "20px 16px 16px"};
-  }
-`;
-
 export const BillingHeader = styled.div`
   display: flex;
   flex-direction: column;
