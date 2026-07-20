@@ -135,8 +135,6 @@ export const enrichMedia = (
   });
 };
 
-import { getCollectionCoverImageUrlSql } from '../collection/collection.helper';
-
 export const getCollectionsWithDetails = async (collectionIds: string[]) => {
   if (!collectionIds.length) return [];
 
@@ -144,7 +142,7 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     .select({
       id: collections.id,
       name: collections.name,
-      coverImageUrl: getCollectionCoverImageUrlSql(collections.coverImageUrl),
+      coverImageUrl: collections.coverImageUrl,
       description: collections.description,
       creatorId: collections.creatorId,
       creatorName: users.fullName,
@@ -152,6 +150,43 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     .from(collections)
     .leftJoin(users, eq(collections.creatorId, users.id))
     .where(inArray(collections.id, collectionIds));
+
+  // Fetch first items for collections that don't have coverImageUrl
+  const collectionsWithoutCover = items
+    .filter((item) => !item.coverImageUrl)
+    .map((item) => item.id);
+  if (collectionsWithoutCover.length > 0) {
+    const firstItems = await db
+      .select({
+        collectionId: collectionItems.collectionId,
+        thumbnailUrl: mediaFiles.thumbnailUrl,
+        thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
+      })
+      .from(collectionItems)
+      .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
+      .where(inArray(collectionItems.collectionId, collectionsWithoutCover))
+      .orderBy(collectionItems.sortOrder);
+
+    const firstItemMap = new Map<
+      string,
+      { thumbnailUrl: string | null; thumbnailLandscapeUrl: string | null }
+    >();
+    for (const item of firstItems) {
+      if (item.collectionId && !firstItemMap.has(item.collectionId)) {
+        firstItemMap.set(item.collectionId, item);
+      }
+    }
+
+    for (const col of items) {
+      if (!col.coverImageUrl) {
+        const firstItem = firstItemMap.get(col.id);
+        if (firstItem) {
+          col.coverImageUrl =
+            firstItem.thumbnailUrl || firstItem.thumbnailLandscapeUrl || null;
+        }
+      }
+    }
+  }
 
   const counts = await db
     .select({
