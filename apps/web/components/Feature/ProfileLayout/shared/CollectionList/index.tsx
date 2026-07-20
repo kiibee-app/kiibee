@@ -3,6 +3,7 @@
 import { useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { useQueries } from "@tanstack/react-query";
 import CollectionsSection from "@/components/Feature/Dashboard/ViewerSections/CollectionsSection";
 import {
   CollectionsApiResponse,
@@ -13,6 +14,7 @@ import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
+import { axiosClient } from "@/lib/http/axiosClient";
 import {
   CREATOR,
   HASH_RENT,
@@ -36,6 +38,12 @@ import {
   isBuyActionLabel,
 } from "@/utils/contentPricingActions";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
+
+type PublicCollectionResponse = {
+  data?: {
+    items?: unknown[];
+  } | null;
+};
 
 export default function CollectionList() {
   const { t } = useTranslation();
@@ -64,6 +72,31 @@ export default function CollectionList() {
     );
   }, [collectionsResponse]);
 
+  const publicContentQueries = useQueries({
+    queries: nonEmptyCollections.map((collection) => ({
+      queryKey: [API.content.publicCollection(collection.id)],
+      queryFn: async () => {
+        const response = await axiosClient.get<PublicCollectionResponse>(
+          API.content.publicCollection(collection.id),
+        );
+        return response.data;
+      },
+      retry: false,
+      refetchOnWindowFocus: false,
+    })),
+  });
+
+  const collectionsWithPublicContent = useMemo(
+    () =>
+      nonEmptyCollections.flatMap((collection, index) => {
+        const publicItems = publicContentQueries[index]?.data?.data?.items;
+        if (!publicItems?.length) return [];
+
+        return [{ ...collection, contentsCount: publicItems.length }];
+      }),
+    [nonEmptyCollections, publicContentQueries],
+  );
+
   const handleBuyClick = useCallback(
     (item: RentedCollectionItem) => {
       if (item.href) {
@@ -83,7 +116,7 @@ export default function CollectionList() {
   );
 
   const items = useMemo<RentedCollectionItem[]>(() => {
-    const rows = nonEmptyCollections;
+    const rows = collectionsWithPublicContent;
 
     return rows.map((row) => {
       const collectionHref = pathPublicCollection(row.id);
@@ -138,7 +171,7 @@ export default function CollectionList() {
         actions,
       };
     });
-  }, [isPublicView, nonEmptyCollections, displayName, t]);
+  }, [isPublicView, collectionsWithPublicContent, displayName, t]);
 
   const filteredItems = useMemo(() => {
     if (!searchQuery.trim()) return items;
@@ -147,7 +180,9 @@ export default function CollectionList() {
     );
   }, [items, searchQuery]);
 
-  const isLoading = isCollectionsLoading;
+  const isLoading =
+    isCollectionsLoading ||
+    publicContentQueries.some((query) => query.isLoading);
 
   return (
     <CollectionListShell>
