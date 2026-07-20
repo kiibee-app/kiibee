@@ -17,15 +17,15 @@ export const getAllCollections = async (creatorId: string) => {
         ...restColumns,
         contentQty: count(collectionItems.id),
         coverImageUrl: sql<string>`COALESCE(
+          ${coverImageUrl},
           (
-            SELECT COALESCE(mf.thumbnail_landscape_url, mf.thumbnail_url)
+            SELECT COALESCE(mf.thumbnail_url, mf.thumbnail_landscape_url)
             FROM collection_items ci
             JOIN media_files mf ON mf.id = ci.media_file_id
             WHERE ci.collection_id = collections.id
             ORDER BY ci.sort_order ASC
             LIMIT 1
-          ),
-          ${coverImageUrl}
+          )
         )`.as('coverImageUrl'),
       })
       .from(collections)
