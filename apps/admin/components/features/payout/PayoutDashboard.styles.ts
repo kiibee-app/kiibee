@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { media } from "@repo/ui/breakpoints";
+import { StatusBadge } from "../all-creators/AllCreators.styles";
+import type { BadgeStatus } from "../../../types/payout-request";
 
 export const PayoutToolbar = styled.div`
   display: flex;
@@ -51,4 +53,17 @@ export const PayoutHint = styled.span`
   color: ${({ theme }) => theme.colors.secondary.muted};
   font-size: 13px;
   font-weight: ${({ theme }) => theme.typography.Body_Medium.fontWeight};
+`;
+
+export const PayoutStatusBadge = styled(StatusBadge)<{
+  $status: BadgeStatus;
+}>`
+  ${({ $status, theme }) =>
+    $status === "rejected"
+      ? `
+        background: ${theme.colors.primary.WHITE};
+        color: ${theme.colors.primary.RED};
+        border: 1px solid ${theme.colors.primary.RED};
+      `
+      : ""}
 `;

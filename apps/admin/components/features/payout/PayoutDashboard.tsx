@@ -49,7 +49,11 @@ import {
   TableHeaderCell,
   TableScrollWrapper,
 } from "../all-creators/AllCreators.styles";
-import { PayoutHint, PayoutToolbar } from "./PayoutDashboard.styles";
+import {
+  PayoutHint,
+  PayoutStatusBadge,
+  PayoutToolbar,
+} from "./PayoutDashboard.styles";
 
 function HistoryTable({
   items,
@@ -128,9 +132,9 @@ function HistoryTable({
                   </CreatorName>
                 </TableBodyCell>
                 <TableBodyCell>
-                  <StatusBadge $status={toPayoutBadgeStatus(item.status)}>
+                  <PayoutStatusBadge $status={toPayoutBadgeStatus(item.status)}>
                     {item.status}
-                  </StatusBadge>
+                  </PayoutStatusBadge>
                 </TableBodyCell>
                 <TableBodyCell>
                   <MiniText>
