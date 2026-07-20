@@ -69,11 +69,24 @@ async function bootstrap() {
       .map((origin) => origin.trim())
       .filter(Boolean);
 
+    const nodeEnv = configService.get('NODE_ENV');
+    const isProduction = nodeEnv === 'production';
+
     app.enableCors({
-      origin: corsOrigins,
+      origin: (origin, callback) => {
+        if (!isProduction || !origin || corsOrigins.includes(origin)) {
+          callback(null, true);
+          return;
+        }
+
+        logger.warn(`Blocked CORS origin: ${origin}`);
+        callback(new Error('Not allowed by CORS'), false);
+      },
       credentials: true,
       methods: CORS_HTTP_METHODS,
       allowedHeaders: CORS_ALLOWED_HEADERS,
+      exposedHeaders: ['X-Total-Count'],
+      maxAge: 3600,
     });
 
     await app.register(helmet);
