@@ -9,6 +9,10 @@ import {
 import { logger } from 'src/logger/logger';
 import { ORDER_STATUS, PAYMENT_STATUS, STATUS } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
+import { payoutInfoService } from '../services/payoutInfo.service';
+import { runInBackground } from 'src/utils/backgroundTask';
+import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
+import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
 export const handlePayoutWebhookService = async (payload: any) => {
   try {
@@ -88,6 +92,26 @@ export const handlePayoutWebhookService = async (payload: any) => {
       });
 
       logger.info(`Payout ${payout.id} completed successfully`);
+      const payoutInfo = await payoutInfoService(payoutId);
+
+      runInBackground(
+        sendTemplateEmail({
+          to: payoutInfo.creator.email ?? '',
+          subject: mailSubject.APPROVED_PAYOUT,
+          templateName: templateName.APPROVED_PAYOUT,
+          variables: {
+            creator: {
+              fullName: payoutInfo.creator.fullName,
+            },
+            payoutId: payoutInfo.payoutId,
+            rawAmount: payoutInfo.rawAmount,
+            processingFee: payoutInfo.processingFee,
+            platformFee: payoutInfo.platformFee,
+            payableAmount: payoutInfo.payableAmount,
+            currency: payoutInfo.currency,
+          },
+        }),
+      );
 
       return success({}, 'Payout completed');
     }

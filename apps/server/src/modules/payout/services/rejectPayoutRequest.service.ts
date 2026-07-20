@@ -5,6 +5,10 @@ import { creatorPayoutRequests, creatorPayouts } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { STATUS } from 'src/utils/constant';
 import { fail, success } from 'src/utils/sendResponse';
+import { payoutInfoService } from './payoutInfo.service';
+import { runInBackground } from 'src/utils/backgroundTask';
+import { sendTemplateEmail } from 'src/lib/sendTemplateEmail';
+import { mailSubject, templateName } from 'src/utils/mailServiceConstant';
 
 export const rejectPayoutRequestService = async (requestId: string) => {
   try {
@@ -64,6 +68,26 @@ export const rejectPayoutRequestService = async (requestId: string) => {
     });
 
     logger.info(`Payout request ${requestId} rejected`);
+
+    const payoutInfo = await payoutInfoService(result.payoutId);
+    runInBackground(
+      sendTemplateEmail({
+        to: payoutInfo.creator.email ?? '',
+        subject: mailSubject.REJECTED_PAYOUT,
+        templateName: templateName.REJECTED_PAYOUT,
+        variables: {
+          creator: {
+            fullName: payoutInfo.creator.fullName,
+          },
+          payoutId: payoutInfo.payoutId,
+          rawAmount: payoutInfo.rawAmount,
+          processingFee: payoutInfo.processingFee,
+          platformFee: payoutInfo.platformFee,
+          payableAmount: payoutInfo.payableAmount,
+          currency: payoutInfo.currency,
+        },
+      }),
+    );
 
     return success(
       result,
