@@ -37,14 +37,14 @@ import {
   getContentDetailPricingActions,
   getPricingLabels,
 } from "@/utils/contentPricingActions";
-import type { CollectionAccessType } from "@/utils/Constants";
+import type { CollectionAccessType, ImageSource } from "@/utils/Constants";
 
 type Props = {
   title: string;
   description?: string | null;
   creatorName?: string;
   creatorAvatar?: string;
-  image?: string;
+  image?: ImageSource;
   imageFallback?: string;
   primaryContentId?: string;
   pricing?: {
@@ -197,6 +197,7 @@ export default function SingleCollectionHero({
             sizes="(max-width: 768px) 100vw, 560px"
             style={{ objectFit: "cover" }}
             priority
+            unoptimized={Boolean(image)}
           />
         </HeroImage>
       </ContentRow>
