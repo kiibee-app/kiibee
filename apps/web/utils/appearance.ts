@@ -34,7 +34,7 @@ export const FALLBACK_HEX = "#000000";
 export const HEX_COLOR_RE = /^#[0-9a-f]{6}$/i;
 export const HEX_COLOR_INPUT_RE = /^#?[0-9a-f]{6}$/i;
 
-export function normalizeHexColor(value, fallback): string {
+export function normalizeHexColor(value, fallback) {
   const fb = (fallback.startsWith("#") ? fallback : `#${fallback}`).trim();
   const v = String(value).trim();
   if (/^#[0-9A-Fa-f]{6}$/i.test(v)) return v.toLowerCase();
