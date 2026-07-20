@@ -151,7 +151,6 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     .leftJoin(users, eq(collections.creatorId, users.id))
     .where(inArray(collections.id, collectionIds));
 
-  // Fetch first items for collections that don't have coverImageUrl
   const collectionsWithoutCover = items
     .filter((item) => !item.coverImageUrl)
     .map((item) => item.id);
