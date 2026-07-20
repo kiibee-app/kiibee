@@ -29,4 +29,9 @@ export {
   useRejectPayoutRequest,
 } from "./use-payout-requests";
 export { useLogin } from "./use-login";
-export { setTokens, clearTokens, getAccessToken } from "../../utils/token";
+export {
+  setTokens,
+  clearTokens,
+  getAccessToken,
+  useAdminTokens,
+} from "../../utils/token";
