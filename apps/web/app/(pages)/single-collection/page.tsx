@@ -40,7 +40,10 @@ import {
   getCollectionRows,
 } from "@/hooks/contents/collectionApi";
 import type { PricingAction } from "@/types/collectionsType";
-import { convertRentDurationToHours } from "@/utils/formatDate";
+import {
+  convertRentDurationToHours,
+  calculateRentalExpiryDate,
+} from "@/utils/formatDate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
 import { NAV } from "@/utils/translationKeys";
@@ -66,9 +69,9 @@ function SingleCollectionContent() {
 
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
-  const [selectedAction, setSelectedAction] = useState<PricingAction | null>(
-    null,
-  );
+  const [selectedAction, setSelectedAction] = useState<
+    (PricingAction & { rentalExpiresAt?: string }) | null
+  >(null);
 
   const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);
   const isPaymentSuccess = paymentStatus === STATUS_TONE.SUCCESS;
@@ -158,7 +161,12 @@ function SingleCollectionContent() {
       setLoginModalVisible(true);
       return;
     }
-    setSelectedAction(action);
+    const durationHours = resolvedPricing?.rentDurationHours;
+    const rentalExpiresAt = !action.isPurchase
+      ? calculateRentalExpiryDate(durationHours)
+      : undefined;
+
+    setSelectedAction({ ...action, rentalExpiresAt });
     setShowPurchaseModal(true);
   };
 
@@ -253,6 +261,14 @@ function SingleCollectionContent() {
         priceLabel={selectedAction?.label || ""}
         accessLabel={selectedAction?.subtitle}
         collectionId={id || undefined}
+        elementCount={
+          selectedCollection?.contentsCount ||
+          dynamicSection?.videos.length ||
+          0
+        }
+        isCollectionPurchase={Boolean(selectedAction?.isPurchase)}
+        rentalDurationHours={resolvedPricing?.rentDurationHours}
+        rentalExpiresAt={selectedAction?.rentalExpiresAt}
         loading={createCollectionOrderMutation.isPending}
       />
 

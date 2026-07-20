@@ -50,6 +50,19 @@ export function formatDateUSShort(iso?: string) {
   });
 }
 
+export function formatDateSlashShort(iso?: string) {
+  if (!iso) return "";
+
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = String(date.getFullYear()).slice(-2);
+
+  return `${day}/${month}/${year}`;
+}
+
 const ORDINAL_SUFFIXES = new Map([
   ["one", "st"],
   ["two", "nd"],
@@ -145,4 +158,18 @@ export function formatCardExpiry(dateString?: string | null): string {
   }
 
   return value;
+}
+
+export function convertRentDurationHoursToMonths(
+  hours?: number | null,
+): number {
+  if (!hours) return 0;
+  return Math.round(hours / (30 * 24));
+}
+
+export function calculateRentalExpiryDate(
+  durationHours?: number | null,
+): string | undefined {
+  if (!durationHours) return undefined;
+  return new Date(Date.now() + durationHours * 3_600_000).toISOString();
 }
