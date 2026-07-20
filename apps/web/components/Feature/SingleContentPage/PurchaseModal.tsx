@@ -37,6 +37,7 @@ import {
   PurchaseModalCollectionBenefits,
   PurchaseModalCollectionBenefitsTitle,
   PurchaseModalCollectionBenefitsList,
+  PurchaseModalCollectionBenefitsItem,
   PurchaseModalDiscountSection,
   PurchaseModalDiscountLabel,
   PurchaseModalDiscountRow,
@@ -401,21 +402,21 @@ export default function PurchaseModal({
       {isCollectionPurchase ? (
         <PurchaseModalCollectionBenefits>
           <PurchaseModalCollectionBenefitsTitle>
-            <MonoText $use="Body_Medium">
+            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
               {t("singleContent.pricing.collectionPurchaseTitle")}
             </MonoText>
           </PurchaseModalCollectionBenefitsTitle>
           <PurchaseModalCollectionBenefitsList>
-            <li>
+            <PurchaseModalCollectionBenefitsItem>
               <MonoText $use="Body_Medium">
                 {t("singleContent.pricing.collectionPurchaseAccess")}
               </MonoText>
-            </li>
-            <li>
+            </PurchaseModalCollectionBenefitsItem>
+            <PurchaseModalCollectionBenefitsItem>
               <MonoText $use="Body_Medium">
                 {t("singleContent.pricing.collectionPurchaseFees")}
               </MonoText>
-            </li>
+            </PurchaseModalCollectionBenefitsItem>
           </PurchaseModalCollectionBenefitsList>
         </PurchaseModalCollectionBenefits>
       ) : null}
@@ -423,21 +424,21 @@ export default function PurchaseModal({
       {isCollectionRental ? (
         <PurchaseModalCollectionBenefits>
           <PurchaseModalCollectionBenefitsTitle>
-            <MonoText $use="Body_Medium">
+            <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY_400}>
               {t("singleContent.pricing.collectionRentalTitle")}
             </MonoText>
           </PurchaseModalCollectionBenefitsTitle>
           <PurchaseModalCollectionBenefitsList>
-            <li>
+            <PurchaseModalCollectionBenefitsItem>
               <MonoText $use="Body_Medium">
                 {t("singleContent.pricing.collectionRentalStreaming")}
               </MonoText>
-            </li>
-            <li>
+            </PurchaseModalCollectionBenefitsItem>
+            <PurchaseModalCollectionBenefitsItem>
               <MonoText $use="Body_Medium">
                 {t("singleContent.pricing.collectionPurchaseFees")}
               </MonoText>
-            </li>
+            </PurchaseModalCollectionBenefitsItem>
           </PurchaseModalCollectionBenefitsList>
         </PurchaseModalCollectionBenefits>
       ) : null}

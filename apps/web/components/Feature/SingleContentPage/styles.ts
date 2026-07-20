@@ -908,7 +908,7 @@ export const PurchaseModalCollectionBenefits = styled.section`
 export const PurchaseModalCollectionBenefitsTitle = styled.div`
   margin-bottom: 0.5rem;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
 `;
 
 export const PurchaseModalCollectionBenefitsList = styled.ul`
@@ -916,6 +916,10 @@ export const PurchaseModalCollectionBenefitsList = styled.ul`
   gap: 0.375rem;
   margin: 0;
   padding-left: 1.25rem;
+`;
+
+export const PurchaseModalCollectionBenefitsItem = styled.li`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
 export const PurchaseModalRentalInfo = styled.div`
