@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+"$SCRIPT_DIR/checks.sh"
+
 # Prevents force-pushing or pushing to protected branches
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
