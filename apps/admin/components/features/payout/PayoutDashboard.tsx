@@ -291,22 +291,31 @@ function AllHistoryTab() {
   const [searchTerm, setSearchTerm] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
   const debouncedSearch = useDebounce(searchTerm);
+  const isStatusFiltered = Boolean(status);
   const historyQuery = useAllPayoutHistory({
-    page,
-    limit: pageSize,
-    status: status || undefined,
+    page: isStatusFiltered ? 1 : page,
+    limit: isStatusFiltered ? 100 : pageSize,
     search: debouncedSearch.trim() || undefined,
   });
 
   const response = historyQuery.data;
-  const items = response?.items ?? [];
-  const totalItems = response?.pagination.totalItems ?? 0;
+  const allItems = response?.items ?? [];
+  const items = status
+    ? allItems.filter(
+        (item) => item.status.toLowerCase() === status.toLowerCase(),
+      )
+    : allItems;
+  const totalItems = isStatusFiltered
+    ? items.length
+    : (response?.pagination.totalItems ?? 0);
   const historyPagination = usePagination({
     data: items,
     totalItems,
-    mode: "server",
-    currentPage: response?.pagination.page ?? page,
-    pageSize: response?.pagination.limit ?? pageSize,
+    mode: isStatusFiltered ? "client" : "server",
+    currentPage: isStatusFiltered ? page : (response?.pagination.page ?? page),
+    pageSize: isStatusFiltered
+      ? pageSize
+      : (response?.pagination.limit ?? pageSize),
     onPageChange: setPage,
     onPageSizeChange: setPageSize,
     storageKey: "kiibee.admin.allPayoutHistory.pageSize",
