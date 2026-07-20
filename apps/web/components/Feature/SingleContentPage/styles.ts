@@ -879,6 +879,31 @@ export const PurchaseModalCollectionCardBody = styled(PurchaseModalCardBody)`
   padding: 1.25rem;
 `;
 
+export const PurchaseModalCollectionRentalHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem 0;
+`;
+
+export const PurchaseModalCollectionRentalPeriod = styled.div`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_SemiMedium}
+`;
+
+export const PurchaseModalCollectionRentalExpires = styled.div`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  text-align: right;
+  ${({ theme }) => theme.typography.Body_SemiMedium}
+`;
+
+export const PurchaseModalCollectionRentalCardBody = styled(
+  PurchaseModalCollectionCardBody,
+)`
+  padding-top: 0.75rem;
+`;
+
 export const PurchaseModalCollectionCardImage = styled(PurchaseModalCardImage)`
   height: 90px;
 `;
@@ -899,6 +924,10 @@ export const PurchaseModalCollectionMeta = styled.div`
   display: flex;
   align-items: center;
   gap: 0.375rem;
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+  border-radius: 5px;
 `;
 
 export const PurchaseModalCollectionBenefits = styled.section`

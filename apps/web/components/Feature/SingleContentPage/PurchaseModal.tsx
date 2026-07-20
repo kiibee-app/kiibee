@@ -9,7 +9,12 @@ import { VARIANT } from "@/utils/Constants";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { useTranslation } from "react-i18next";
 import { extractPriceNumber } from "@/utils/contentPricingActions";
-import { formatCardExpiry, formatDate } from "@/utils/formatDate";
+import {
+  formatCardExpiry,
+  formatDate,
+  formatDateSlashShort,
+  convertRentDurationHoursToMonths,
+} from "@/utils/formatDate";
 import { usePostAPI } from "@/lib/http/api/postApi";
 import { useGetAPI } from "@/lib/http/api/getApi";
 import { API } from "@/lib/http/api/endpoints";
@@ -30,6 +35,10 @@ import {
   PurchaseModalCardPrice,
   PurchaseModalCollectionCard,
   PurchaseModalCollectionCardBody,
+  PurchaseModalCollectionRentalHeader,
+  PurchaseModalCollectionRentalPeriod,
+  PurchaseModalCollectionRentalExpires,
+  PurchaseModalCollectionRentalCardBody,
   PurchaseModalCollectionCardImage,
   PurchaseModalCollectionCardBadge,
   PurchaseModalCollectionCardInfo,
@@ -118,6 +127,8 @@ export type PurchaseModalProps = {
   collectionId?: string;
   elementCount?: number;
   isCollectionPurchase?: boolean;
+  rentalDurationHours?: number | null;
+  rentalExpiresAt?: string;
   loading?: boolean;
 };
 
@@ -138,6 +149,8 @@ export default function PurchaseModal({
   collectionId,
   elementCount = 0,
   isCollectionPurchase = false,
+  rentalDurationHours,
+  rentalExpiresAt,
   loading = false,
 }: PurchaseModalProps) {
   const { t } = useTranslation();
@@ -203,12 +216,15 @@ export default function PurchaseModal({
   const isCollectionRental = Boolean(collectionId && !isCollectionPurchase);
   const isCollectionPricing = isCollectionPurchase || isCollectionRental;
   const displayPrice = isCollectionPricing ? `${priceNumber} kr` : priceLabel;
+  const rentalMonths = convertRentDurationHoursToMonths(rentalDurationHours);
   const ModalCard = isCollectionPricing
     ? PurchaseModalCollectionCard
     : PurchaseModalCard;
-  const ModalCardBody = isCollectionPricing
-    ? PurchaseModalCollectionCardBody
-    : PurchaseModalCardBody;
+  const ModalCardBody = isCollectionRental
+    ? PurchaseModalCollectionRentalCardBody
+    : isCollectionPurchase
+      ? PurchaseModalCollectionCardBody
+      : PurchaseModalCardBody;
   const ModalCardImage = isCollectionPricing
     ? PurchaseModalCollectionCardImage
     : PurchaseModalCardImage;
@@ -319,7 +335,7 @@ export default function PurchaseModal({
       visible={visible}
       onClose={onClose}
       size="md"
-      width={isCollectionPricing ? "672px" : undefined}
+      width={isCollectionPurchase ? "672px" : undefined}
       padding="0"
       borderRadius="16px"
       showCloseButton={true}
@@ -345,6 +361,23 @@ export default function PurchaseModal({
               {accessLabel || t("singleContent.pricing.rental")}
             </PurchaseModalCardHeaderLabel>
           </PurchaseModalCardHeader>
+        ) : null}
+
+        {isCollectionRental && rentalMonths > 0 ? (
+          <PurchaseModalCollectionRentalHeader>
+            <PurchaseModalCollectionRentalPeriod>
+              {t("singleContent.pricing.collectionRentalPeriod", {
+                count: rentalMonths,
+              })}
+            </PurchaseModalCollectionRentalPeriod>
+            {rentalExpiresAt ? (
+              <PurchaseModalCollectionRentalExpires>
+                {t("singleContent.pricing.collectionRentalExpires", {
+                  date: formatDateSlashShort(rentalExpiresAt),
+                })}
+              </PurchaseModalCollectionRentalExpires>
+            ) : null}
+          </PurchaseModalCollectionRentalHeader>
         ) : null}
 
         <ModalCardBody>
@@ -431,7 +464,9 @@ export default function PurchaseModal({
           <PurchaseModalCollectionBenefitsList>
             <PurchaseModalCollectionBenefitsItem>
               <MonoText $use="Body_Medium">
-                {t("singleContent.pricing.collectionRentalStreaming")}
+                {t("singleContent.pricing.collectionRentalStreaming", {
+                  count: rentalMonths,
+                })}
               </MonoText>
             </PurchaseModalCollectionBenefitsItem>
             <PurchaseModalCollectionBenefitsItem>
