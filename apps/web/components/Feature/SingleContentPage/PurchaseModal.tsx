@@ -90,6 +90,8 @@ type SavedCardsResponse = {
   data: SavedCard[] | null;
 };
 
+import type { StaticImageData } from "next/image";
+
 export type PurchaseModalProps = {
   visible: boolean;
   onClose: () => void;
@@ -97,7 +99,7 @@ export type PurchaseModalProps = {
   onRequireLogin?: () => void;
   isLoggedIn?: boolean;
   title: string;
-  image?: string;
+  image?: string | StaticImageData;
   imageAlt?: string;
   creator?: string;
   contentType?: string;

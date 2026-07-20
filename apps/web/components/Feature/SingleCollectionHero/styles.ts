@@ -4,6 +4,7 @@ import { MonoText } from "@/components/UI/Monotext";
 import { Wrapper as SearchBarWrapper } from "@/components/UI/SearchBar/styles";
 import { SIZE, VARIANT } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
+import { shimmer } from "@/components/UI/Skeleton/styles";
 
 export const HeroWrapper = styled.div`
   width: 100%;
@@ -129,6 +130,14 @@ export const HeroImage = styled.div`
   flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 25%,
+    ${({ theme }) => theme.colors.neutral.GRAY_100} 50%,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 75%
+  );
+  background-size: 200% 100%;
+  animation: ${shimmer} 1.5s infinite ease-in-out;
 
   ${media.tablet} {
     width: 100%;

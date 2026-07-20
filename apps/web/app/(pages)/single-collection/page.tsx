@@ -144,7 +144,8 @@ function SingleCollectionContent() {
 
   const resolvedImage =
     resolvePublicMediaUrl(selectedCollection?.coverImageUrl) ??
-    dynamicSection?.heroImage;
+    dynamicSection?.heroImage ??
+    dynamicSection?.videos?.[0]?.image;
 
   const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
     !staticSection ? id : null,
