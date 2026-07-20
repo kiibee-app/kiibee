@@ -6,7 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Menu } from "lucide-react";
 import { apiClient, useAdminProfile } from "../../hooks/api";
 import { API_ENDPOINTS } from "../../utils/constants";
-import { clearTokens, getAccessToken } from "../../utils/token";
+import { useAdminTokens } from "../../utils/token";
 import {
   AvatarFrame,
   AvatarText,
@@ -32,6 +32,7 @@ export function Header({ title, description, onToggleSidebar }: HeaderProps) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const profileQuery = useAdminProfile();
+  const { clearTokens, getAccessToken } = useAdminTokens();
   const [open, setOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
