@@ -23,6 +23,8 @@ export { useDashboardStats } from "./use-dashboard-stats";
 export {
   usePayoutRequests,
   usePayoutRequest,
+  usePayoutHistoryByCreator,
+  useAllPayoutHistory,
   useCreatePayout,
   useRejectPayoutRequest,
 } from "./use-payout-requests";
