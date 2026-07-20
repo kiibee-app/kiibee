@@ -17,7 +17,7 @@ import {
   CreateOrderInputDto,
 } from './dto/order.dto';
 
-@Controller('order')
+@Controller({ path: 'order', version: '1' })
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 

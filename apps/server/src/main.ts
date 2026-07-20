@@ -1,5 +1,9 @@
 import 'dotenv/config';
-import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import {
+  BadRequestException,
+  ValidationPipe,
+  VersioningType,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import {
@@ -40,8 +44,13 @@ async function bootstrap() {
       limits: { fileSize: FILE_SIZE_LIMIT },
     });
 
-    app.setGlobalPrefix('api/v1', {
-      exclude: ['/', 'api/v1'],
+    app.enableVersioning({
+      type: VersioningType.URI,
+      defaultVersion: '1',
+    });
+
+    app.setGlobalPrefix('api', {
+      exclude: ['/', 'health'],
     });
 
     app.useGlobalPipes(
@@ -94,7 +103,8 @@ async function bootstrap() {
     const port = Number(process.env.PORT) || 4001;
     await app.listen(port, '0.0.0.0');
 
-    console.log(`🚀 API running at http://localhost:${port}/api/v1`);
+    console.log(`🚀 API v1 running at http://localhost:${port}/api/v1`);
+    console.log(`📚 API Documentation: http://localhost:${port}/api/docs`);
   } catch (error) {
     logger.error('❌ Failed to start server:', error);
     process.exit(1);

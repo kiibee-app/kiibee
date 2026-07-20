@@ -15,7 +15,7 @@ import { handleEpayPayment } from './hooks/paymentWebhook';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { handleAddCardWebhook } from './hooks/cardAddedWebhook';
 
-@Controller('payment')
+@Controller({ path: 'payment', version: '1' })
 export class PaymentController {
   constructor(private paymentService: PaymentService) {}
 
