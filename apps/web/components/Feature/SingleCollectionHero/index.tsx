@@ -37,13 +37,14 @@ import {
   getPricingLabels,
 } from "@/utils/contentPricingActions";
 import type { CollectionAccessType } from "@/utils/Constants";
+import { type ImageSource } from "@/utils/media";
 
 type Props = {
   title: string;
   description?: string | null;
   creatorName?: string;
   creatorAvatar?: string;
-  image?: string;
+  image?: ImageSource;
   imageFallback?: string;
   primaryContentId?: string;
   pricing?: {
