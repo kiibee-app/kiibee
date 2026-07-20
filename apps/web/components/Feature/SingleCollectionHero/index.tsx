@@ -12,6 +12,7 @@ import {
   CreatorAvatar,
   Description,
   PricingActions,
+  OwnerActions,
   PricingButtonContent,
   PricingButtonSubtitle,
   ContentRow,
@@ -57,6 +58,8 @@ type Props = {
     subtitle?: string;
     isPurchase: boolean;
   }) => void;
+  isOwner?: boolean;
+  onOpenDashboard?: () => void;
 };
 
 export default function SingleCollectionHero({
@@ -69,6 +72,8 @@ export default function SingleCollectionHero({
   primaryContentId,
   pricing,
   onActionClick,
+  isOwner,
+  onOpenDashboard,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -145,7 +150,15 @@ export default function SingleCollectionHero({
             {description || t("singleCollection.subtitle")}
           </Description>
 
-          {pricingActions.length > 0 ? (
+          {isOwner ? (
+            <OwnerActions>
+              {onOpenDashboard && (
+                <ActionButton onClick={onOpenDashboard}>
+                  {t("singleContent.openInDashboard")}
+                </ActionButton>
+              )}
+            </OwnerActions>
+          ) : pricingActions.length > 0 ? (
             <PricingActions>
               {pricingActions.map((action) => (
                 <PricingActionButton
