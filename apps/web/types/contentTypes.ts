@@ -69,6 +69,7 @@ export type SingleContentPageProps = {
   children?: ReactNode;
   accessGate?: ReactNode;
   publicPlayback?: boolean;
+  embedded?: boolean;
 };
 
 export type SingleContentTopBarProps = {

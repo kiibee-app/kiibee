@@ -29,15 +29,15 @@ export const Footer = styled.footer`
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
 `;
 
-export const Section = styled.section`
+export const Section = styled.section<{ $embedded?: boolean }>`
   width: 100%;
   margin: 0 auto;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: center;
-  min-height: 60vh;
+  justify-content: ${({ $embedded }) => ($embedded ? "flex-start" : "center")};
+  min-height: ${({ $embedded }) => ($embedded ? "0" : "60vh")};
 
   ${media.desktopMd} {
     max-width: 100%;

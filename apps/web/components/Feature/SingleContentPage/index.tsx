@@ -73,6 +73,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     onShare,
     children,
     accessGate,
+    embedded = false,
   } = props;
   const router = useRouter();
   const { t } = useTranslation();
@@ -366,13 +367,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   };
 
   return (
-    <Wrapper>
+    <Wrapper $embedded={embedded}>
       <SingleContentTopBar
         showBack={showBack}
         showShare={showShare}
         shareLabel={shareLabel}
         onBackClick={handleBack}
         onShare={onShare ?? share}
+        embedded={embedded}
       />
       <Card>
         <ContentLayout $isPdf={isPdfLayout}>

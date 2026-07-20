@@ -11,6 +11,7 @@ import {
   VIEW,
   VIEWER_SECTION,
   CONTENT_COLLECTION_QUERY_KEY,
+  CONTENT_ITEM_QUERY_KEY,
   ROLE_VIEWER,
   DASHBOARD_NO_PADDING,
 } from "@/utils/Constants";
@@ -73,6 +74,7 @@ export default function ClientDashboardViewer({
 
       params.delete(VIEWER_SECTION);
       params.delete(CONTENT_COLLECTION_QUERY_KEY);
+      params.delete(CONTENT_ITEM_QUERY_KEY);
 
       if (label === VIEWER_LABELS.PURCHASED) {
         params.delete(VIEW);

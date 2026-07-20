@@ -4,17 +4,17 @@ import GenericButton from "@/components/UI/GenericButton";
 import { pulse } from "@/utils/animations";
 import { CURSOR, VARIANT } from "@/utils/Constants";
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.section<{ $embedded?: boolean }>`
   width: 100%;
-  max-width: 1300px;
-  min-height: 100vh;
+  max-width: ${({ $embedded }) => ($embedded ? "none" : "1300px")};
+  min-height: ${({ $embedded }) => ($embedded ? "0" : "100vh")};
   height: auto;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 7rem 1.5rem 4rem;
+  padding: ${({ $embedded }) => ($embedded ? "0" : "7rem 1.5rem 4rem")};
 
   ${media.tablet} {
-    padding: 6rem 1rem 3rem;
+    padding: ${({ $embedded }) => ($embedded ? "0" : "6rem 1rem 3rem")};
   }
 `;
 
@@ -45,12 +45,12 @@ export const ContentLayout = styled.div<{ $isPdf?: boolean }>`
   }
 `;
 
-export const TopBar = styled.div`
+export const TopBar = styled.div<{ $embedded?: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 1.75rem;
+  margin-bottom: ${({ $embedded }) => ($embedded ? "1rem" : "1.75rem")};
 `;
 
 export const BackButton = styled.button`
@@ -77,7 +77,10 @@ export const ShareText = styled.span`
   ${({ theme }) => theme.typography.Body_Medium}
 `;
 
-export const Hero = styled.div<{ $isPdf?: boolean; $isLoading?: boolean }>`
+export const Hero = styled.div<{
+  $isPdf?: boolean;
+  $isLoading?: boolean;
+}>`
   position: relative;
   width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 900px)")};
   max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "none")};
