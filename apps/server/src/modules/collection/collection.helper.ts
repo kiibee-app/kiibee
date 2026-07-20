@@ -1,11 +1,11 @@
-import { sql } from 'drizzle-orm';
+import { sql, type SQLWrapper } from 'drizzle-orm';
 
 export const slugGenerator = (name: string) => {
   return `${name.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}`;
 };
 
 export const getCollectionCoverImageUrlSql = (
-  coverImageUrlColumn: any = sql`collections.cover_image_url`,
+  coverImageUrlColumn: SQLWrapper = sql`collections.cover_image_url`,
 ) => {
   return sql<string>`COALESCE(
     ${coverImageUrlColumn},
