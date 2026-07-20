@@ -237,6 +237,12 @@ function SingleCollectionContent() {
         priceLabel={selectedAction?.label || ""}
         accessLabel={selectedAction?.subtitle}
         collectionId={id || undefined}
+        elementCount={
+          selectedCollection?.contentsCount ||
+          dynamicSection?.videos.length ||
+          0
+        }
+        isCollectionPurchase={Boolean(selectedAction?.isPurchase)}
         loading={createCollectionOrderMutation.isPending}
       />
 

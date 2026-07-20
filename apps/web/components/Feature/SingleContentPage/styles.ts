@@ -866,6 +866,58 @@ export const PurchaseModalCardPrice = styled.div`
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 
+export const PurchaseModalHeading = styled.div`
+  padding: 2rem 1.875rem 0.875rem;
+`;
+
+export const PurchaseModalCollectionCard = styled(PurchaseModalCard)`
+  margin: 0 1.875rem;
+  border-radius: 8px;
+`;
+
+export const PurchaseModalCollectionCardBody = styled(PurchaseModalCardBody)`
+  padding: 1.25rem;
+`;
+
+export const PurchaseModalCollectionCardImage = styled(PurchaseModalCardImage)`
+  height: 90px;
+`;
+
+export const PurchaseModalCollectionCardBadge = styled(PurchaseModalCardBadge)`
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1;
+`;
+
+export const PurchaseModalCollectionCardInfo = styled(PurchaseModalCardInfo)`
+  flex: 1;
+  justify-content: center;
+`;
+
+export const PurchaseModalCollectionMeta = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+`;
+
+export const PurchaseModalCollectionBenefits = styled.section`
+  padding: 1rem 1.875rem 1.5rem;
+`;
+
+export const PurchaseModalCollectionBenefitsTitle = styled.div`
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
+`;
+
+export const PurchaseModalCollectionBenefitsList = styled.ul`
+  display: grid;
+  gap: 0.375rem;
+  margin: 0;
+  padding-left: 1.25rem;
+`;
+
 export const PurchaseModalRentalInfo = styled.div`
   padding: 1.25rem 1.5rem;
 `;
