@@ -1,11 +1,13 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, sql, getTableColumns } from 'drizzle-orm';
+import { and, eq, getTableColumns } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
 import { collections } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
+
+import { getCollectionCoverImageUrlSql } from '../collection.helper';
 
 export const getCollectionById = async (id: string, creatorId: string) => {
   try {
@@ -15,17 +17,7 @@ export const getCollectionById = async (id: string, creatorId: string) => {
     const [collection] = await db
       .select({
         ...restColumns,
-        coverImageUrl: sql<string>`COALESCE(
-          ${coverImageUrl},
-          (
-            SELECT COALESCE(mf.thumbnail_url, mf.thumbnail_landscape_url)
-            FROM collection_items ci
-            JOIN media_files mf ON mf.id = ci.media_file_id
-            WHERE ci.collection_id = collections.id
-            ORDER BY ci.sort_order ASC
-            LIMIT 1
-          )
-        )`.as('coverImageUrl'),
+        coverImageUrl: getCollectionCoverImageUrlSql(coverImageUrl),
       })
       .from(collections)
       .where(
