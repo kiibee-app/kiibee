@@ -28,6 +28,7 @@ export default function UsersContent() {
   });
   const [searchValue, setSearchValue] = useState("");
   const [openSearch, setOpenSearch] = useState(false);
+  const [salesPage, setSalesPage] = useState(1);
 
   const tabs = useMemo(
     () =>
@@ -56,6 +57,14 @@ export default function UsersContent() {
     setActiveTabAndQuery(tabKey);
   };
 
+  const handleSearchChange = (value: string) => {
+    if (searchValue.trim() !== value.trim()) {
+      setSalesPage(1);
+    }
+
+    setSearchValue(value);
+  };
+
   return (
     <Wrapper>
       <Title>Users</Title>
@@ -70,14 +79,18 @@ export default function UsersContent() {
           placeholder: t(DASHBOARD_USERS.search),
           ariaLabel: t(DASHBOARD_USERS.search),
           onToggle: () => setOpenSearch((prev) => !prev),
-          onChange: setSearchValue,
+          onChange: handleSearchChange,
         }}
       />
       {activeTab === USER_TAB_KEYS.registrations && (
         <RegistrationsTabContent searchValue={searchValue} />
       )}
       {activeTab === USER_TAB_KEYS.sales && (
-        <SalesTabContent searchValue={searchValue} />
+        <SalesTabContent
+          searchValue={searchValue}
+          page={salesPage}
+          onPageChange={setSalesPage}
+        />
       )}
     </Wrapper>
   );
