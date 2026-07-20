@@ -4,7 +4,8 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import COLORS from "@repo/ui/colors";
 import { MonoText } from "@/components/UI/Monotext";
-import { PageWrap, SectionBlock, EmptyState } from "./styles";
+import { SectionBlock, EmptyState } from "./styles";
+import { DashboardPageWrapper } from "@/components/Layout/Dashboard/styles";
 import {
   RENTED_SECTION_KEYS,
   RENTED_MODES,
@@ -244,7 +245,7 @@ export default function RentedContent({
 
   if (selectedCollectionId) {
     return (
-      <PageWrap>
+      <DashboardPageWrapper>
         <PurchasedCollectionDetail
           collection={selectedCollection}
           mediaItems={selectedCollectionMedia}
@@ -254,14 +255,12 @@ export default function RentedContent({
           title={title}
           mode={mode}
         />
-      </PageWrap>
+      </DashboardPageWrapper>
     );
   }
 
   return (
-    <PageWrap
-      $expandedCollections={expandedSection === RENTED_SECTION_KEYS.COLLECTIONS}
-    >
+    <DashboardPageWrapper>
       <RentedHeader
         title={title}
         mode={mode}
@@ -362,6 +361,6 @@ export default function RentedContent({
           )}
         </>
       )}
-    </PageWrap>
+    </DashboardPageWrapper>
   );
 }

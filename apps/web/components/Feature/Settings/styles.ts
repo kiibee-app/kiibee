@@ -1,19 +1,11 @@
 import styled from "styled-components";
 import { MonoText } from "@/components/UI/Monotext";
+import { DashboardPageWrapper } from "@/components/Layout/Dashboard/styles";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(DashboardPageWrapper)`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(3)};
-  padding: ${({ theme }) => theme.spacing(6)};
-
-  ${({ theme }) => theme.media.tablet} {
-    padding: ${({ theme }) => theme.spacing(5)};
-  }
-
-  ${({ theme }) => theme.media.mobile} {
-    padding: ${({ theme }) => theme.spacing(4)};
-  }
 `;
 
 export const Content = styled.div`

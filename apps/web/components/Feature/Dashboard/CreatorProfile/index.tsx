@@ -3,8 +3,8 @@
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { DashboardPageWrapper as Container } from "@/components/Layout/Dashboard/styles";
 import {
-  Container,
   Title,
   Card,
   Row,

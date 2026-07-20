@@ -6,8 +6,8 @@ import InputField from "@/components/UI/InputFields";
 import { MonoText } from "@/components/UI/Monotext";
 import { INPUT_VARIANTS, VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
+import { DashboardPageWrapper as Container } from "@/components/Layout/Dashboard/styles";
 import {
-  Container,
   Form,
   HeaderRow,
   InlineLabel,
