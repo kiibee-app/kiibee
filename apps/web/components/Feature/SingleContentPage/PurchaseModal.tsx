@@ -199,19 +199,21 @@ export default function PurchaseModal({
 
   const priceNumber = extractPriceNumber(priceLabel);
   const total = priceNumber - discount;
-  const ModalCard = isCollectionPurchase
+  const isCollectionRental = Boolean(collectionId && !isCollectionPurchase);
+  const isCollectionPricing = isCollectionPurchase || isCollectionRental;
+  const displayPrice = isCollectionPricing ? `${priceNumber} kr` : priceLabel;
+  const ModalCard = isCollectionPricing
     ? PurchaseModalCollectionCard
     : PurchaseModalCard;
-  const ModalCardBody = isCollectionPurchase
+  const ModalCardBody = isCollectionPricing
     ? PurchaseModalCollectionCardBody
     : PurchaseModalCardBody;
-  const ModalCardImage = isCollectionPurchase
+  const ModalCardImage = isCollectionPricing
     ? PurchaseModalCollectionCardImage
     : PurchaseModalCardImage;
-  const ModalCardInfo = isCollectionPurchase
+  const ModalCardInfo = isCollectionPricing
     ? PurchaseModalCollectionCardInfo
     : PurchaseModalCardInfo;
-
   const formatSavedCardLabel = useCallback(
     (card: SavedCard) =>
       formatSavedCardLabelUtil(
@@ -316,23 +318,27 @@ export default function PurchaseModal({
       visible={visible}
       onClose={onClose}
       size="md"
-      width={isCollectionPurchase ? "672px" : undefined}
+      width={isCollectionPricing ? "672px" : undefined}
       padding="0"
       borderRadius="16px"
       showCloseButton={true}
       textAlign={MODAL_ALIGN.START}
-      contentMarginBottom={isCollectionPurchase ? "0" : undefined}
+      contentMarginBottom={isCollectionPricing ? "0" : undefined}
     >
-      {isCollectionPurchase ? (
+      {isCollectionPricing ? (
         <PurchaseModalHeading>
           <MonoText $use="H4_Medium">
-            {t("singleContent.pricing.purchaseTitle")}
+            {t(
+              isCollectionRental
+                ? "singleContent.pricing.rentalTitle"
+                : "singleContent.pricing.purchaseTitle",
+            )}
           </MonoText>
         </PurchaseModalHeading>
       ) : null}
 
       <ModalCard>
-        {!isCollectionPurchase ? (
+        {!isCollectionPricing ? (
           <PurchaseModalCardHeader>
             <PurchaseModalCardHeaderLabel>
               {accessLabel || t("singleContent.pricing.rental")}
@@ -343,7 +349,7 @@ export default function PurchaseModal({
         <ModalCardBody>
           {image ? (
             <ModalCardImage>
-              {isCollectionPurchase ? (
+              {isCollectionPricing ? (
                 <PurchaseModalCollectionCardBadge>
                   <MonoText $use="Body_Bold">
                     {contentType?.toUpperCase()}
@@ -355,7 +361,7 @@ export default function PurchaseModal({
           ) : null}
 
           <ModalCardInfo>
-            {isCollectionPurchase ? (
+            {isCollectionPricing ? (
               <PurchaseModalCollectionMeta>
                 <PlaylistIcon width={14} height={14} />
                 <MonoText $use="Body_Bold">
@@ -371,7 +377,7 @@ export default function PurchaseModal({
             )}
             <PurchaseModalCardTitle>
               <MonoText
-                $use={isCollectionPurchase ? "Body_SemiBold" : "Body_Bold"}
+                $use={isCollectionPricing ? "Body_SemiBold" : "Body_Bold"}
               >
                 {title}
               </MonoText>
@@ -383,9 +389,9 @@ export default function PurchaseModal({
             ) : null}
             <PurchaseModalCardPrice>
               <MonoText
-                $use={isCollectionPurchase ? "Body_SemiMedium" : "Body_Bold"}
+                $use={isCollectionPricing ? "Body_SemiMedium" : "Body_Bold"}
               >
-                {priceLabel}
+                {displayPrice}
               </MonoText>
             </PurchaseModalCardPrice>
           </ModalCardInfo>
@@ -403,6 +409,28 @@ export default function PurchaseModal({
             <li>
               <MonoText $use="Body_Medium">
                 {t("singleContent.pricing.collectionPurchaseAccess")}
+              </MonoText>
+            </li>
+            <li>
+              <MonoText $use="Body_Medium">
+                {t("singleContent.pricing.collectionPurchaseFees")}
+              </MonoText>
+            </li>
+          </PurchaseModalCollectionBenefitsList>
+        </PurchaseModalCollectionBenefits>
+      ) : null}
+
+      {isCollectionRental ? (
+        <PurchaseModalCollectionBenefits>
+          <PurchaseModalCollectionBenefitsTitle>
+            <MonoText $use="Body_Medium">
+              {t("singleContent.pricing.collectionRentalTitle")}
+            </MonoText>
+          </PurchaseModalCollectionBenefitsTitle>
+          <PurchaseModalCollectionBenefitsList>
+            <li>
+              <MonoText $use="Body_Medium">
+                {t("singleContent.pricing.collectionRentalStreaming")}
               </MonoText>
             </li>
             <li>
@@ -511,7 +539,7 @@ export default function PurchaseModal({
             </MonoText>
           </PurchaseModalPriceLabel>
           <PurchaseModalPriceValue>
-            <MonoText $use="Body_Medium">{priceLabel}</MonoText>
+            <MonoText $use="Body_Medium">{displayPrice}</MonoText>
           </PurchaseModalPriceValue>
         </PurchaseModalPriceRow>
         <PurchaseModalPriceRow>
@@ -560,7 +588,9 @@ export default function PurchaseModal({
         >
           {isCollectionPurchase
             ? t("singleContent.pricing.buyTotal", { total })
-            : t("singleContent.pricing.purchase")}
+            : isCollectionRental
+              ? t("singleContent.pricing.rentTotal", { total })
+              : t("singleContent.pricing.purchase")}
         </GenericButton>
       </PurchaseModalButtonWrapper>
     </GenericModal>
