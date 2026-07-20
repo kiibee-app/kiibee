@@ -10,7 +10,6 @@ export const PageHeader = styled.div`
   gap: ${({ theme }) => theme.spacing(2)};
   flex-wrap: wrap;
   margin-bottom: 35px;
-  margin-top: 15px;
   width: 100%;
 
   ${media.tablet} {
