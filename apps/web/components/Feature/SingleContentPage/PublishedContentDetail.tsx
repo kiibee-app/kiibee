@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
@@ -67,6 +67,13 @@ export default function PublishedContentDetail({
   const [dismissedPaymentSuccess, setDismissedPaymentSuccess] = useState(false);
   const normalizedContentKey = contentKey.replaceAll(":", "-");
   const viewerId = resolveContentViewerId(resolvedUserId);
+
+  useEffect(() => {
+    if (!embedded) {
+      window.scrollTo(0, 0);
+    }
+  }, [normalizedContentKey, embedded]);
+
   const contentViewRoute = normalizedContentKey
     ? API.content.view(normalizedContentKey, viewerId)
     : API.content.create;
