@@ -4,9 +4,27 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "./api-client";
 import { API_ENDPOINTS, QUERY_KEY } from "../../utils/constants";
 import type {
+  AllPayoutHistoryResponse,
+  PayoutHistoryItem,
+  PayoutHistoryQuery,
   PayoutRequest,
   PayoutCreatePayload,
 } from "../../types/payout-request";
+
+function withQuery(endpoint: string, query?: PayoutHistoryQuery) {
+  if (!query) return endpoint;
+
+  const params = new URLSearchParams();
+
+  Object.entries(query)
+    .filter(([, value]) => Boolean(value))
+    .forEach(([key, value]) => {
+      params.set(key, String(value));
+    });
+
+  const queryString = params.toString();
+  return queryString ? `${endpoint}?${queryString}` : endpoint;
+}
 
 async function ensureSuccess<T>(
   promise: Promise<{
@@ -62,6 +80,48 @@ export function usePayoutRequest(id: string) {
       return data;
     },
     enabled: !!id,
+  });
+}
+
+export function usePayoutHistoryByCreator(
+  creatorId: string,
+  query?: PayoutHistoryQuery,
+) {
+  return useQuery({
+    queryKey: [QUERY_KEY.PAYOUT_HISTORY_BY_CREATOR, creatorId, query],
+    queryFn: async () => {
+      const data = await ensureSuccess<PayoutHistoryItem[]>(
+        apiClient<PayoutHistoryItem[]>(
+          withQuery(API_ENDPOINTS.PAYOUT_HISTORY_BY_CREATOR(creatorId), query),
+        ),
+      );
+      return data ?? [];
+    },
+    enabled: Boolean(creatorId.trim()),
+  });
+}
+
+export function useAllPayoutHistory(query?: PayoutHistoryQuery) {
+  return useQuery({
+    queryKey: [QUERY_KEY.ALL_PAYOUT_HISTORY, query],
+    queryFn: async () => {
+      const data = await ensureSuccess<AllPayoutHistoryResponse>(
+        apiClient<AllPayoutHistoryResponse>(
+          withQuery(API_ENDPOINTS.ALL_PAYOUT_HISTORY, query),
+        ),
+      );
+      return (
+        data ?? {
+          items: [],
+          pagination: {
+            page: query?.page ?? 1,
+            limit: query?.limit ?? 10,
+            totalItems: 0,
+            totalPages: 1,
+          },
+        }
+      );
+    },
   });
 }
 
