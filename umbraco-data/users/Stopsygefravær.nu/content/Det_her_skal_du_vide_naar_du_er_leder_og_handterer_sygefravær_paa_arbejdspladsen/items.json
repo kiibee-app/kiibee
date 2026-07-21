@@ -1,0 +1,41 @@
+[
+  {
+    "id": 39092,
+    "key": "03ceada6-36ca-4731-8dbb-1d7a81a4359d",
+    "udi": "umb://document/03ceada636ca47318dbb1d7a81a4359d",
+    "name": "Håndtering af sygefravær kalder på dine ledelseskompetencer.",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "sortOrder": 0,
+    "urls": [
+      "/stopsygefravaernu/det-her-skal-du-vide-naar-du-er-leder-og-haandterer-sygefravaer-paa-arbejdsppladsen/haandtering-af-sygefravaer-kalder-paa-dine-ledelseskompetencer/"
+    ],
+    "fields": {
+      "title": "Håndtering af sygefravær kalder på dine ledelseskompetencer.",
+      "access": [
+        "60"
+      ],
+      "type": [
+        "73"
+      ],
+      "hidden": "0",
+      "orderID": "0",
+      "purchasePrice": "0",
+      "rentalPrice": "",
+      "thumbnail": "",
+      "description": "",
+      "videoID": "",
+      "videoDownloadURL": "https://vimeo.com/518561594",
+      "webContentURL": "https://vimeo.com/518561594",
+      "rawFile": "",
+      "hideDownload": "0",
+      "hidePlay": "0"
+    },
+    "sourceFolder": "Det her skal du vide når du er leder og håndterer sygefravær på arbejdspladsen!",
+    "videoDownloadURL": "https://vimeo.com/518561594",
+    "webContentURL": "https://vimeo.com/518561594",
+    "rawFile": "",
+    "title": "Håndtering af sygefravær kalder på dine ledelseskompetencer."
+  }
+]

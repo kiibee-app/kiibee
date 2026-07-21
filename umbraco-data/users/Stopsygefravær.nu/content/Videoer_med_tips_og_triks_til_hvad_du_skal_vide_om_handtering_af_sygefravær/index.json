@@ -1,0 +1,17 @@
+{
+  "exportedAt": "2026-07-21T17:18:35.133549+00:00",
+  "collectionName": "Videoer med tips og triks til hvad du skal vide om håndtering af sygefravær.",
+  "parent": {
+    "id": 19339,
+    "name": "Videoer med tips og triks til hvad du skal vide om håndtering af sygefravær.",
+    "key": "f32c3da7-2c55-4a1e-8768-2056aa6a9968"
+  },
+  "status": "ok",
+  "source": "public-site-scrape+purchase-fallback",
+  "counts": {
+    "totalItemsFromApi": 5,
+    "childrenFetched": 5,
+    "detailsFetched": 5,
+    "errors": 0
+  }
+}

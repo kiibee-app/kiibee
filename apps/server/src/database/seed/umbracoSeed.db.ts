@@ -6,6 +6,8 @@ import {
   creatorPayoutRequests,
   creatorPayouts,
   creatorWallets,
+  orders,
+  payments,
   subscriptionPaymentsHistory,
   subscriptions,
   users,
@@ -72,6 +74,16 @@ export async function removeSkippedUmbracoProfiles(): Promise<number> {
     .delete(subscriptionPaymentsHistory)
     .where(inArray(subscriptionPaymentsHistory.creatorId, ids));
   await db.delete(subscriptions).where(inArray(subscriptions.creatorId, ids));
+
+  // payments → orders is RESTRICT; wipe payments for these users' orders first.
+  const userOrders = await db
+    .select({ id: orders.id })
+    .from(orders)
+    .where(inArray(orders.userId, ids));
+  const orderIds = userOrders.map((row) => row.id);
+  if (orderIds.length) {
+    await db.delete(payments).where(inArray(payments.orderId, orderIds));
+  }
 
   await db.delete(users).where(inArray(users.id, ids));
 

@@ -487,6 +487,12 @@ export const UMBRACO_SKIP_PROFILE_KEYS = new Set([
   'Fredensborg_Sundhedscenter',
   'Galleri_EVIG',
   'Go_Video',
+  'Kiibee',
+  'Kiibee_(1)',
+  'Kiibee_Comedy',
+  'Kiibee_hjælpe_videoer',
+  'Kort_&_Dokumentar_Filmskolen',
+  'Letsmove_-_Motion_i_Centrum',
   'LindaAndrews',
   'Maria_Birch_Rasmussen',
   'Maximilian_Nielsen',
@@ -505,7 +511,6 @@ export function isSkippedUmbracoProfile(profileKey: string): boolean {
   return UMBRACO_SKIP_PROFILE_KEYS.has(profileKey);
 }
 
-/** Umbraco profiles that have exported profile-info (real creator data). */
 export function loadUmbracoProfileKeys(root: string): string[] {
   return readdirSync(root, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())

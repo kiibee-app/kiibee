@@ -4,39 +4,50 @@
   "userId": 14217,
   "status": "found",
   "folderCount": 6,
-  "missingFolders": [
-    "Det her skal du vide når du er leder og håndterer sygefravær på arbejdspladsen!"
-  ],
+  "missingFolders": [],
   "folders": [
-    {
-      "name": "E-BOG i to forskellige formater PDF-format  eller E-PUB format, som kan læses direkte i e-bogs appén.",
-      "id": 14230,
-      "status": "ok"
-    },
     {
       "name": "2 i ÉN løsning",
       "id": 14914,
-      "status": "ok"
+      "status": "ok",
+      "itemCount": 1,
+      "dir": "2_i_EN_løsning"
     },
     {
       "name": "3 i ÉN løsning",
       "id": 14925,
-      "status": "ok"
+      "status": "ok",
+      "itemCount": 1,
+      "dir": "3_i_EN_løsning"
+    },
+    {
+      "name": "Det her skal du vide når du er leder og håndterer sygefravær på arbejdspladsen!",
+      "id": 39091,
+      "status": "ok",
+      "itemCount": 1,
+      "dir": "Det_her_skal_du_vide_naar_du_er_leder_og_handterer_sygefravær_paa_arbejdspladsen"
+    },
+    {
+      "name": "E-BOG i to forskellige formater PDF-format  eller E-PUB format, som kan læses direkte i e-bogs appén.",
+      "id": 14230,
+      "status": "ok",
+      "itemCount": 1,
+      "dir": "E-BOG_i_to_forskellige_formater_PDF-format_eller_E-PUB_format_som_kan_læses_direkte_i_e-bogs_appen"
     },
     {
       "name": "Introduktionsvideo",
       "id": 14931,
-      "status": "ok"
+      "status": "ok",
+      "itemCount": 0,
+      "dir": "Introduktionsvideo"
     },
     {
       "name": "Videoer med tips og triks til hvad du skal vide om håndtering af sygefravær.",
       "id": 19339,
-      "status": "ok"
-    },
-    {
-      "name": "Løsninger der virker.",
-      "id": 49340,
-      "status": "ok"
+      "status": "ok",
+      "itemCount": 5,
+      "dir": "Videoer_med_tips_og_triks_til_hvad_du_skal_vide_om_handtering_af_sygefravær"
     }
-  ]
+  ],
+  "note": "Includes public scrape for missing folders; 2_i/3_i kept from prior export"
 }

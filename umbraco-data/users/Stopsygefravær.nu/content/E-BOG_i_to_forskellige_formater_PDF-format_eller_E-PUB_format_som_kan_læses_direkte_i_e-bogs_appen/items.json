@@ -1,0 +1,79 @@
+[
+  {
+    "id": 14438,
+    "key": "7d978cca-c261-419e-80d1-d316b3f8937c",
+    "udi": "umb://document/7d978ccac261419e80d1d316b3f8937c",
+    "name": "PDF: Succes med at håndtere sygefravær i din forretning.",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "sortOrder": 0,
+    "urls": [
+      "/stopsygefravaernu/e-bog-i-to-forskellige-formater-pdf-format-eller-e-pub-format-som-kan-laeses-direkte-i-e-bogs-appen/pdf-succes-med-at-haandtere-sygefravaer-i-din-forretning/"
+    ],
+    "fields": {
+      "title": "PDF: Succes med at håndtere sygefravær i din forretning.",
+      "access": [
+        "58"
+      ],
+      "type": [
+        "75"
+      ],
+      "hidden": "0",
+      "orderID": "0",
+      "purchasePrice": "199",
+      "rentalPrice": "",
+      "thumbnail": "/media/1844/konkret-viden.png",
+      "description": "",
+      "videoID": "",
+      "videoDownloadURL": "",
+      "webContentURL": "",
+      "rawFile": "/media/1841/stopsygefravaer-e-bog-pdf-version.pdf",
+      "hideDownload": "0",
+      "hidePlay": "0"
+    },
+    "sourceFolder": "E-BOG i to forskellige formater PDF-format  eller E-PUB format, som kan læses direkte i e-bogs appén.",
+    "videoDownloadURL": "",
+    "webContentURL": "",
+    "rawFile": "/media/1841/stopsygefravaer-e-bog-pdf-version.pdf",
+    "title": "PDF: Succes med at håndtere sygefravær i din forretning."
+  },
+  {
+    "id": 14441,
+    "key": "9ca9fb7c-0c6d-4665-8af7-7ec71b7a3f38",
+    "udi": "umb://document/9ca9fb7c0c6d46658af77ec71b7a3f38",
+    "name": "E-PUB: Succes med at håndtere sygefravær i din forretning.",
+    "title": "E-PUB: Succes med at håndtere sygefravær i din forretning.",
+    "contentTypeAlias": "media",
+    "published": true,
+    "hasPublishedVersion": true,
+    "sortOrder": 1,
+    "urls": [
+      "/stopsygefravaernu/e-bog-i-to-forskellige-formater-pdf-format-eller-e-pub-format-som-kan-laeses-direkte-i-e-bogs-appen/e-pub-succes-med-at-haandtere-sygefravaer-i-din-forretning/"
+    ],
+    "fields": {
+      "title": "E-PUB: Succes med at håndtere sygefravær i din forretning.",
+      "access": [
+        "58"
+      ],
+      "type": [
+        "74"
+      ],
+      "hidden": "0",
+      "orderID": "1",
+      "purchasePrice": "149",
+      "rentalPrice": "",
+      "thumbnail": "/media/1845/konkret-viden.png",
+      "description": "E-PUB format – kan læses direkte i e-bogs app.",
+      "videoID": "",
+      "videoDownloadURL": "",
+      "webContentURL": "https://kiibee.dk/stopsygefravaernu/e-bog-i-to-forskellige-formater-pdf-format-eller-e-pub-format-som-kan-laeses-direkte-i-e-bogs-appen/e-pub-succes-med-at-haandtere-sygefravaer-i-din-forretning/",
+      "rawFile": "",
+      "hideDownload": "0",
+      "hidePlay": "0"
+    },
+    "sourceFolder": "E-BOG i to forskellige formater PDF-format  eller E-PUB format, som kan læses direkte i e-bogs appén.",
+    "webContentURL": "https://kiibee.dk/stopsygefravaernu/e-bog-i-to-forskellige-formater-pdf-format-eller-e-pub-format-som-kan-laeses-direkte-i-e-bogs-appen/e-pub-succes-med-at-haandtere-sygefravaer-i-din-forretning/",
+    "rawFile": ""
+  }
+]

@@ -34,6 +34,7 @@ const DEFAULT_COLLECTION_KEY = 'default';
 
 const LEGACY_TYPE_IDS: Record<string, string> = {
   '73': 'video',
+  '74': 'epub',
   '75': 'pdf',
   '76': 'audio',
   '264': 'web',
@@ -265,15 +266,22 @@ function showValue(show: UmbracoShow, key: string): unknown {
 }
 
 function inferContentTypeId(show: UmbracoShow): string {
-  const legacyTypeId = firstLegacyId(showValue(show, 'type'));
-  const mapped = legacyTypeId ? LEGACY_TYPE_IDS[legacyTypeId] : null;
-
-  if (mapped) {
-    return mapped;
-  }
-
   const rawFile = textOrNull(showValue(show, 'rawFile')) ?? '';
   const lowerRawFile = rawFile.toLowerCase();
+  const title = (
+    textOrNull(showValue(show, 'title')) ??
+    textOrNull(show.name) ??
+    ''
+  ).toLowerCase();
+
+  // File extension / title beat legacy Umbraco type ids (many ebooks are typed as 75/pdf).
+  if (
+    lowerRawFile.endsWith('.epub') ||
+    title.includes('e-pub') ||
+    title.includes('epub')
+  ) {
+    return 'epub';
+  }
 
   if (lowerRawFile.endsWith('.pdf')) {
     return 'pdf';
@@ -287,8 +295,11 @@ function inferContentTypeId(show: UmbracoShow): string {
     return 'audio';
   }
 
-  if (lowerRawFile.endsWith('.epub')) {
-    return 'epub';
+  const legacyTypeId = firstLegacyId(showValue(show, 'type'));
+  const mapped = legacyTypeId ? LEGACY_TYPE_IDS[legacyTypeId] : null;
+
+  if (mapped) {
+    return mapped;
   }
 
   if (textOrNull(showValue(show, 'webContentURL'))) {
@@ -387,9 +398,10 @@ function resolveContentFields(show: UmbracoShow, contentTypeId: string) {
     };
   }
 
+  // pdf / epub / audio — prefer uploaded file, fall back to web URL when export has no rawFile
   return {
     fileKey: rawFile?.replace(/^\//, '') ?? null,
-    contentUrl: resolveMediaUrl(rawFile),
+    contentUrl: resolveMediaUrl(rawFile) ?? webContentUrl,
     fileSize: null,
   };
 }
