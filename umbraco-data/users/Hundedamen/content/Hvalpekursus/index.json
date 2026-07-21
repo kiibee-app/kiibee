@@ -1,0 +1,269 @@
+{
+  "exportedAt": "2026-07-21T19:26:28.245Z",
+  "collectionName": "Hvalpekursus ",
+  "source": {
+    "parentEditUrl": "https://kiibee.dk/umbraco#/content/content/edit/47653",
+    "childrenApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetChildren",
+    "detailApi": "https://kiibee.dk/umbraco/backoffice/UmbracoApi/Content/GetById",
+    "parentId": 47653,
+    "includeProperties": ["title", "orderID", "hidden"],
+    "orderBy": "orderID",
+    "orderDirection": "Ascending",
+    "orderBySystemField": false,
+    "extraDetailIds": [],
+    "fetchDetails": true
+  },
+  "parent": {
+    "id": 47653,
+    "key": "75966d10-f61a-4bcc-85c0-42a95c9492f7",
+    "udi": "umb://document/75966d10f61a4bcc85c042a95c9492f7",
+    "name": "Hvalpekursus ",
+    "contentTypeAlias": "collection",
+    "published": true,
+    "hasPublishedVersion": true,
+    "urls": ["/hundedamen/hvalpekursus/"],
+    "fields": {
+      "_umb_containerView": null,
+      "orderID": "0",
+      "access": ["59"],
+      "rentalPrice": "",
+      "purchasePrice": "",
+      "code": "fiona25",
+      "period": "",
+      "headline": "",
+      "description": "Det er utrolig vigtigt at man kommer godt fra start med sin hvalp. På mit onlie hvalpe kursus lære du og din hvalp de fundametale ting som; Gå pænt i snor, sitte, dække, blive, komme når du kalder, slippe noget den ikke må tage samt en samhørigheds øvelse, som er med til at skabe et stærkt bånd mellem dig og din hund.<br/><br/>Husk IKKE at sige \"NEJ \" i en indlærings fase og at tålmodighed er en dyd.<br/><br/>For hunde er træning lig med leg  <br/><br/>Rigtig god træning fra Hundedamen  <br/>",
+      "coverImage": "",
+      "fadeCoverImage": "0",
+      "thumbnailWide": "1",
+      "columnAmount": "4",
+      "siteMapOption": "",
+      "metaTitle": "",
+      "metaDescription": ""
+    },
+    "fieldDetails": {
+      "_umb_containerView": {
+        "alias": "_umb_containerView",
+        "label": "",
+        "description": "",
+        "tab": "Undersider",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "listview",
+        "value": null
+      },
+      "orderID": {
+        "alias": "orderID",
+        "label": "Order ID",
+        "description": "",
+        "tab": "General",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "0"
+      },
+      "access": {
+        "alias": "access",
+        "label": "Access",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "dropdownFlexible",
+        "value": ["59"]
+      },
+      "rentalPrice": {
+        "alias": "rentalPrice",
+        "label": "Rental Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "purchasePrice": {
+        "alias": "purchasePrice",
+        "label": "Purchase Price",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "decimal",
+        "value": ""
+      },
+      "code": {
+        "alias": "code",
+        "label": "Code",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "fiona25"
+      },
+      "period": {
+        "alias": "period",
+        "label": "Period",
+        "description": "",
+        "tab": "Access & Price",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": ""
+      },
+      "headline": {
+        "alias": "headline",
+        "label": "Headline",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "description": {
+        "alias": "description",
+        "label": "Description",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textarea",
+        "value": "Det er utrolig vigtigt at man kommer godt fra start med sin hvalp. På mit onlie hvalpe kursus lære du og din hvalp de fundametale ting som; Gå pænt i snor, sitte, dække, blive, komme når du kalder, slippe noget den ikke må tage samt en samhørigheds øvelse, som er med til at skabe et stærkt bånd mellem dig og din hund.<br/><br/>Husk IKKE at sige \"NEJ \" i en indlærings fase og at tålmodighed er en dyd.<br/><br/>For hunde er træning lig med leg  <br/><br/>Rigtig god træning fra Hundedamen  <br/>"
+      },
+      "coverImage": {
+        "alias": "coverImage",
+        "label": "Cover Image",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "imagecropper",
+        "value": ""
+      },
+      "fadeCoverImage": {
+        "alias": "fadeCoverImage",
+        "label": "Fade Cover Image",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "0"
+      },
+      "thumbnailWide": {
+        "alias": "thumbnailWide",
+        "label": "Thumbnail Wide",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "boolean",
+        "value": "1"
+      },
+      "columnAmount": {
+        "alias": "columnAmount",
+        "label": "Column Amount",
+        "description": "",
+        "tab": "Layout",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "integer",
+        "value": "4"
+      },
+      "siteMapOption": {
+        "alias": "siteMapOption",
+        "label": "siteMapOption",
+        "description": "",
+        "tab": "SiteMap",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "/App_Plugins/MBran.SitemapXml/sitemap.html",
+        "value": ""
+      },
+      "metaTitle": {
+        "alias": "metaTitle",
+        "label": "Title",
+        "description": "Max 64 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      },
+      "metaDescription": {
+        "alias": "metaDescription",
+        "label": "Description",
+        "description": "Max 160 characters",
+        "tab": "SEO",
+        "variant": "",
+        "culture": null,
+        "source": "detail",
+        "editor": "textbox",
+        "value": ""
+      }
+    },
+    "fieldOrder": [
+      "_umb_containerView",
+      "orderID",
+      "access",
+      "rentalPrice",
+      "purchasePrice",
+      "code",
+      "period",
+      "headline",
+      "description",
+      "coverImage",
+      "fadeCoverImage",
+      "thumbnailWide",
+      "columnAmount",
+      "siteMapOption",
+      "metaTitle",
+      "metaDescription"
+    ]
+  },
+  "counts": {
+    "totalItemsFromApi": 7,
+    "childrenFetched": 7,
+    "detailIdsRequested": 7,
+    "detailsFetched": 7,
+    "errors": 0,
+    "fieldCount": 40
+  },
+  "pagination": [
+    {
+      "pageNumber": 1,
+      "itemCount": 7,
+      "totalItems": 7
+    }
+  ],
+  "files": {
+    "items": "items.json",
+    "itemsCsv": "items.csv",
+    "fieldsByItem": "fields-by-item.json",
+    "fieldCatalog": "field-catalog.json",
+    "errors": "errors.json",
+    "rawParent": "raw/parent.json",
+    "rawChildrenPages": "raw/children-pages.json",
+    "rawDetails": "raw/details.json"
+  },
+  "dataQuality": {
+    "fieldExtraction": "Each field value is extracted from Umbraco property value/Value/values/Values, including nested variant value entries.",
+    "credentials": "Authenticated Umbraco cookies are read from stdin or environment and are not written to disk."
+  }
+}

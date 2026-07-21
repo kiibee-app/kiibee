@@ -1,0 +1,25 @@
+{
+  "requestedName": "Fysioteamet",
+  "liveName": "Fysioteamet",
+  "userId": 1790,
+  "status": "found",
+  "folderCount": 3,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Funktionel Neurologi for Behandlere og Trænere",
+      "id": 1858,
+      "status": "ok"
+    },
+    {
+      "name": "Z-Health - Bevægekontrol øvelser",
+      "id": 1877,
+      "status": "ok"
+    },
+    {
+      "name": "Niels Brock",
+      "id": 42062,
+      "status": "ok"
+    }
+  ]
+}
