@@ -245,7 +245,9 @@ export function getCollectionBadgeText(mode: RentedMode, t: TFunction) {
 }
 
 export function getCollectionPrimaryActionText(mode: RentedMode, t: TFunction) {
-  if (mode === RENTED_MODES.PURCHASED) return t("viewerRented.seeContent");
+  if (mode === RENTED_MODES.PURCHASED || mode === RENTED_MODES.CURRENTLY) {
+    return t("viewerRented.seeContent");
+  }
   return t("viewerRented.buyPlaceholder");
 }
 

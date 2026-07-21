@@ -133,7 +133,11 @@ export default function CollectionItems({
       <CollectionGrid>
         {visibleVideos.map((video) => (
           <CollectionCardWrap key={video.id}>
-            <CollectionItemCard video={video} ownerCreatorId={ownerCreatorId} />
+            <CollectionItemCard
+              video={video}
+              ownerCreatorId={ownerCreatorId}
+              collectionId={collectionId}
+            />
           </CollectionCardWrap>
         ))}
       </CollectionGrid>

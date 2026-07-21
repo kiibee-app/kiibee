@@ -39,6 +39,9 @@ import {
   isBuyActionLabel,
 } from "@/utils/contentPricingActions";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { useViewerPurchased } from "@/hooks/viewer/useViewerPurchased";
+import { useViewerRentedData } from "@/hooks/useViewerRented";
 
 type PublicCollectionResponse = {
   data?: {
@@ -116,6 +119,25 @@ export default function CollectionList() {
     [router],
   );
 
+  const user = useStoredLoginUser();
+  const isLoggedIn = Boolean(user?.id);
+  const { data: purchasedData } = useViewerPurchased(isLoggedIn);
+  const { sources: rentedData } = useViewerRentedData(
+    RENTED_MODES.CURRENTLY,
+    isLoggedIn,
+  );
+
+  const accessibleCollectionIds = useMemo(() => {
+    const collectionIdSet = new Set<string>();
+    purchasedData?.collections?.forEach((collectionItem) =>
+      collectionIdSet.add(collectionItem.id),
+    );
+    rentedData?.collections?.forEach((collectionItem) =>
+      collectionIdSet.add(collectionItem.id),
+    );
+    return collectionIdSet;
+  }, [purchasedData, rentedData]);
+
   const items = useMemo<RentedCollectionItem[]>(() => {
     const rows = collectionsWithPublicContent;
 
@@ -124,7 +146,9 @@ export default function CollectionList() {
 
       let actions: CollectionAction[] | undefined = undefined;
 
-      if (isPublicView) {
+      const hasCollectionAccess = accessibleCollectionIds.has(row.id);
+
+      if (isPublicView && !hasCollectionAccess) {
         const pricingActions = getContentPricingActions(
           {
             accessType: row.accessType,
@@ -173,7 +197,13 @@ export default function CollectionList() {
         actions,
       };
     });
-  }, [isPublicView, collectionsWithPublicContent, displayName, t]);
+  }, [
+    isPublicView,
+    collectionsWithPublicContent,
+    displayName,
+    t,
+    accessibleCollectionIds,
+  ]);
 
   const filteredItems = useMemo(() => {
     if (!searchQuery.trim()) return items;

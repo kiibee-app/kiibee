@@ -80,6 +80,12 @@ export default function TagsInput({
     }
   };
 
+  const handleBlur = () => {
+    if (inputValue.trim()) {
+      addTag(inputValue);
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     const delimiter = separateOnSpace ? /[\n, ]+/ : TAG_DELIMITER;
@@ -120,6 +126,7 @@ export default function TagsInput({
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
+          onBlur={handleBlur}
           placeholder={tags.length === 0 ? placeholder : ""}
           disabled={disabled}
         />

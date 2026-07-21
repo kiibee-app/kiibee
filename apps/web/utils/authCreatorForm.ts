@@ -27,6 +27,7 @@ export type CreatorFieldConfig = {
   type?: InputType;
   inputMode?: InputModeValue;
   placeholderKey?: string;
+  max?: number;
 };
 
 export const INITIAL_CREATOR_FORM: CreatorFormValues = {
@@ -102,4 +103,5 @@ export const CONTENT_FIELD: CreatorFieldConfig = {
   type: INPUT_TYPE.TEXTAREA,
   placeholderKey: "authCreator.form.contentPlaceholder",
   required: true,
+  max: 500,
 };

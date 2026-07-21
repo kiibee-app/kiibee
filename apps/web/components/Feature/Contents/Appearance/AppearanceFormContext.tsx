@@ -51,6 +51,7 @@ export function AppearanceFormProvider({
     errors,
     clearFieldError,
     validateField: validateFieldState,
+    validateAll,
     syncErrors,
     resetErrors,
   } = useAppearanceValidation();
@@ -69,6 +70,11 @@ export function AppearanceFormProvider({
   );
 
   const saveAppearance = useCallback(async () => {
+    const validationErrors = validateAll(values);
+    if (Object.keys(validationErrors).length > 0) {
+      throw new Error("contents.appearance.validation.fixErrors");
+    }
+
     const payload = mapAppearanceToApi(values);
 
     const [logoUrl, desktopCoverImageUrl, mobileCoverImageUrl] =
@@ -110,6 +116,7 @@ export function AppearanceFormProvider({
     resetDraft,
     resetErrors,
     setSelectedLayout,
+    validateAll,
     values,
     storedUser,
   ]);

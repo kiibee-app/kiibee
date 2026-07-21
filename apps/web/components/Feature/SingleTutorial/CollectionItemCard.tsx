@@ -69,9 +69,14 @@ const FooterActions = styled.div`
 type Props = {
   video: TutorialVideo;
   ownerCreatorId?: string | null;
+  collectionId?: string | null;
 };
 
-export default function CollectionItemCard({ video, ownerCreatorId }: Props) {
+export default function CollectionItemCard({
+  video,
+  ownerCreatorId,
+  collectionId = null,
+}: Props) {
   const { t } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
@@ -79,6 +84,7 @@ export default function CollectionItemCard({ video, ownerCreatorId }: Props) {
   const { user, hasAccess } = useViewerContentAccess(
     video.id,
     video.creatorId ?? ownerCreatorId,
+    collectionId,
   );
 
   const handleShowLoginModal = (url: string) => {

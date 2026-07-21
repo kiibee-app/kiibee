@@ -22,9 +22,18 @@ const hasItem = (data: RentedContentSources | undefined, id: string) => {
   );
 };
 
+const hasCollection = (
+  data: RentedContentSources | undefined,
+  collectionId?: string | null,
+) => {
+  if (!data || !collectionId) return false;
+  return data.collections?.some((item) => item.id === collectionId) ?? false;
+};
+
 export function useViewerContentAccess(
   contentId: string,
   creatorId?: string | null,
+  collectionId?: string | null,
 ) {
   const user = useStoredLoginUser();
   const isLoggedIn = Boolean(user?.id);
@@ -46,17 +55,61 @@ export function useViewerContentAccess(
     ].find((item) => item.id === contentId);
   }, [contentId, isLoggedIn, rentedData]);
 
+  const hasCollectionAccess = useMemo(() => {
+    if (!isLoggedIn || !collectionId) return false;
+    return (
+      hasCollection(purchasedData, collectionId) ||
+      hasCollection(rentedData, collectionId)
+    );
+  }, [collectionId, isLoggedIn, purchasedData, rentedData]);
+
   const hasAccess = useMemo(() => {
     if (!isLoggedIn) return false;
 
-    return isOwner || hasItem(purchasedData, contentId) || Boolean(rentedItem);
-  }, [contentId, isLoggedIn, isOwner, purchasedData, rentedItem]);
+    return (
+      isOwner ||
+      hasItem(purchasedData, contentId) ||
+      Boolean(rentedItem) ||
+      hasCollectionAccess
+    );
+  }, [
+    contentId,
+    hasCollectionAccess,
+    isLoggedIn,
+    isOwner,
+    purchasedData,
+    rentedItem,
+  ]);
 
   return {
     isLoggedIn,
     hasAccess,
+    hasCollectionAccess,
     isOwner,
     rentedItem,
     user,
+  };
+}
+
+export function useViewerCollectionAccess(collectionId?: string | null) {
+  const user = useStoredLoginUser();
+  const isLoggedIn = Boolean(user?.id);
+  const { data: purchasedData } = useViewerPurchased(isLoggedIn);
+  const { sources: rentedData } = useViewerRentedData(
+    RENTED_MODES.CURRENTLY,
+    isLoggedIn,
+  );
+
+  const hasAccess = useMemo(() => {
+    if (!isLoggedIn || !collectionId) return false;
+    return (
+      hasCollection(purchasedData, collectionId) ||
+      hasCollection(rentedData, collectionId)
+    );
+  }, [collectionId, isLoggedIn, purchasedData, rentedData]);
+
+  return {
+    isLoggedIn,
+    hasAccess,
   };
 }

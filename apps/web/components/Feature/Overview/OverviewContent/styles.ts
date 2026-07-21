@@ -345,7 +345,7 @@ export const StatRow = styled.div`
 `;
 
 export const Title = styled.h2`
-  margin: 0 0 8px 0;
+  margin: 0;
   ${({ theme }) => theme.typography.H5_Medium};
   font-weight: 700;
   color: ${(p) => p.theme.colors.primary.BLACK};

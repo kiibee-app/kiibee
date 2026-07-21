@@ -233,38 +233,26 @@ export default function CollectionsSection({
                       </Button>
                     );
                   })
-                ) : isPurchased ? (
-                  <CollectionBuyButton
-                    className="collection-cta"
-                    onClick={(e: React.MouseEvent) => {
-                      e.stopPropagation();
-                      if (onCollectionPrimaryAction) {
-                        onCollectionPrimaryAction(item);
-                      }
-                    }}
-                  >
-                    <CollectionCtaContent>
-                      <MonoText
-                        $use="Body_SemiBold"
-                        color={COLORS.primary.WHITE}
-                      >
-                        {getCollectionPrimaryActionText(mode, t)}
-                      </MonoText>
-                    </CollectionCtaContent>
-                  </CollectionBuyButton>
-                ) : (
+                ) : isPurchased || isCurrent ? (
                   <>
-                    <GenericButton
-                      variant={VARIANT.PRIMARY}
-                      size="md"
-                      onClick={
-                        isPurchased && onCollectionPrimaryAction
-                          ? () => onCollectionPrimaryAction(item)
-                          : undefined
-                      }
+                    <CollectionBuyButton
+                      className="collection-cta"
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation();
+                        if (onCollectionPrimaryAction) {
+                          onCollectionPrimaryAction(item);
+                        }
+                      }}
                     >
-                      {getCollectionPrimaryActionText(mode, t)}
-                    </GenericButton>
+                      <CollectionCtaContent>
+                        <MonoText
+                          $use="Body_SemiBold"
+                          color={COLORS.primary.WHITE}
+                        >
+                          {getCollectionPrimaryActionText(mode, t)}
+                        </MonoText>
+                      </CollectionCtaContent>
+                    </CollectionBuyButton>
                     {isCurrent ? (
                       <PassiveActionBlock>
                         <MonoText
@@ -277,11 +265,16 @@ export default function CollectionsSection({
                           {t("viewerRented.expiresIn")}
                         </MonoText>
                       </PassiveActionBlock>
-                    ) : isPurchased ? null : (
-                      <GenericButton variant={VARIANT.SOFT_OUTLINE} size="md">
-                        {t("pricingLabels.rent")}
-                      </GenericButton>
-                    )}
+                    ) : null}
+                  </>
+                ) : (
+                  <>
+                    <GenericButton variant={VARIANT.PRIMARY} size="md">
+                      {getCollectionPrimaryActionText(mode, t)}
+                    </GenericButton>
+                    <GenericButton variant={VARIANT.SOFT_OUTLINE} size="md">
+                      {t("pricingLabels.rent")}
+                    </GenericButton>
                   </>
                 )}
               </CollectionActionRow>
