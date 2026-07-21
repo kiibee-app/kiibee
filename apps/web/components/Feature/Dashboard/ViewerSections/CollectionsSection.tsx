@@ -3,8 +3,6 @@
 import { useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
-import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import PlaylistIcon from "@/assets/icons/PlaylistIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
@@ -113,6 +111,20 @@ export default function CollectionsSection({
     },
     [navigateToContent],
   );
+
+  const handlePrimaryClick = useCallback(
+    (e: React.MouseEvent, item: RentedCollectionItem) => {
+      e.stopPropagation();
+      if (onCollectionPrimaryAction) {
+        onCollectionPrimaryAction(item);
+      }
+    },
+    [onCollectionPrimaryAction],
+  );
+
+  const handleStopPropagation = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+  }, []);
 
   return (
     <>
@@ -236,35 +248,36 @@ export default function CollectionsSection({
                 ) : isPurchased ? (
                   <CollectionBuyButton
                     className="collection-cta"
-                    onClick={(e: React.MouseEvent) => {
-                      e.stopPropagation();
-                      if (onCollectionPrimaryAction) {
-                        onCollectionPrimaryAction(item);
-                      }
-                    }}
+                    onClick={(e: React.MouseEvent) =>
+                      handlePrimaryClick(e, item)
+                    }
                   >
                     <CollectionCtaContent>
                       <MonoText
                         $use="Body_SemiBold"
                         color={COLORS.primary.WHITE}
                       >
-                        {getCollectionPrimaryActionText(mode, t)}
+                        {getCollectionPrimaryActionText(mode, t, item)}
                       </MonoText>
                     </CollectionCtaContent>
                   </CollectionBuyButton>
                 ) : (
                   <>
-                    <GenericButton
-                      variant={VARIANT.PRIMARY}
-                      size="md"
-                      onClick={
-                        isPurchased && onCollectionPrimaryAction
-                          ? () => onCollectionPrimaryAction(item)
-                          : undefined
+                    <CollectionBuyButton
+                      className="collection-cta"
+                      onClick={(e: React.MouseEvent) =>
+                        handlePrimaryClick(e, item)
                       }
                     >
-                      {getCollectionPrimaryActionText(mode, t)}
-                    </GenericButton>
+                      <CollectionCtaContent>
+                        <MonoText
+                          $use="Body_SemiBold"
+                          color={COLORS.primary.WHITE}
+                        >
+                          {getCollectionPrimaryActionText(mode, t, item)}
+                        </MonoText>
+                      </CollectionCtaContent>
+                    </CollectionBuyButton>
                     {isCurrent ? (
                       <PassiveActionBlock>
                         <MonoText
@@ -278,9 +291,19 @@ export default function CollectionsSection({
                         </MonoText>
                       </PassiveActionBlock>
                     ) : isPurchased ? null : (
-                      <GenericButton variant={VARIANT.SOFT_OUTLINE} size="md">
-                        {t("pricingLabels.rent")}
-                      </GenericButton>
+                      <CollectionRentButton
+                        className="collection-cta"
+                        onClick={handleStopPropagation}
+                      >
+                        <CollectionCtaContent>
+                          <MonoText
+                            $use="Body_SemiBold"
+                            color={COLORS.primary.BLACK}
+                          >
+                            {t("pricingLabels.rent")}
+                          </MonoText>
+                        </CollectionCtaContent>
+                      </CollectionRentButton>
                     )}
                   </>
                 )}

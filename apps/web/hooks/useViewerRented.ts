@@ -41,6 +41,7 @@ type BackendCollectionItem = {
   creatorName?: string;
   elementCount?: number;
   purchasedAt?: string | null;
+  buyPrice?: string | number | null;
 };
 
 type ViewerDataResponse = {
@@ -82,6 +83,7 @@ function toCollectionItem(item: BackendCollectionItem): RentedCollectionItem {
     author: item.creatorName ?? "",
     elementCount: item.elementCount ?? 0,
     coverSrc: resolvePublicMediaUrl(item.coverImageUrl) ?? "",
+    buyPrice: item.buyPrice,
   };
 }
 

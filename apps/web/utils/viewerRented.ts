@@ -18,6 +18,7 @@ export type RentedCollectionItem = {
   author: string;
   elementCount: number;
   coverSrc: string;
+  buyPrice?: string | number | null;
   actions?: CollectionAction[];
   hideBadge?: boolean;
   href?: string;
@@ -244,8 +245,24 @@ export function getCollectionBadgeText(mode: RentedMode, t: TFunction) {
   return t("viewerRented.rented");
 }
 
-export function getCollectionPrimaryActionText(mode: RentedMode, t: TFunction) {
+export function getCollectionPrimaryActionText(
+  mode: RentedMode,
+  t: TFunction,
+  item?: { buyPrice?: string | number | null } | Record<string, unknown>,
+) {
   if (mode === RENTED_MODES.PURCHASED) return t("viewerRented.seeContent");
+
+  if (item?.buyPrice != null && item.buyPrice !== "") {
+    const num = Number(item.buyPrice);
+    if (!Number.isNaN(num) && num > 0) {
+      const amount = Number.isInteger(num)
+        ? String(num)
+        : String(Math.round(num));
+      const buyPrefix = t("pricingLabels.buy", { defaultValue: "Buy" });
+      return `${buyPrefix} ${amount} kr`;
+    }
+  }
+
   return t("viewerRented.buyPlaceholder");
 }
 

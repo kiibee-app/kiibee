@@ -146,6 +146,7 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
       description: collections.description,
       creatorId: collections.creatorId,
       creatorName: users.fullName,
+      buyPrice: collections.buyPrice,
     })
     .from(collections)
     .leftJoin(users, eq(collections.creatorId, users.id))
