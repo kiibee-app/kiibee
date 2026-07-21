@@ -15,31 +15,30 @@ export class HealthController {
     return res.status(statusCode).send(health);
   }
   @Get('ready')
+  private async runCheck(check: () => Promise<unknown>): Promise<boolean> {
+    try {
+      await check();
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   async readiness() {
-    const checks: Record<string, boolean> = {};
-
-    try {
-      await pool.query('SELECT 1');
-      checks.database = true;
-    } catch {
-      checks.database = false;
-    }
-    try {
-      const s3 = new S3Client();
-      await s3.send(
-        new HeadBucketCommand({
-          Bucket: process.env.DO_BUCKET,
-        }),
-      );
-      checks.s3 = true;
-    } catch {
-      checks.s3 = false;
-    }
-
-    const allHealthy = Object.values(checks).every((v) => v);
+    const checks = {
+      database: await this.runCheck(() => pool.query('SELECT 1')),
+      s3: await this.runCheck(async () => {
+        const s3 = new S3Client();
+        await s3.send(
+          new HeadBucketCommand({
+            Bucket: process.env.DO_BUCKET,
+          }),
+        );
+      }),
+    };
 
     return {
-      status: allHealthy ? 'ok' : 'error',
+      status: Object.values(checks).every(Boolean) ? 'ok' : 'error',
       checks,
       timestamp: new Date().toISOString(),
     };
