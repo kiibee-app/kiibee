@@ -8,6 +8,8 @@ export const pool = new Pool({
   ssl: {
     rejectUnauthorized: false,
   },
+  statement_timeout: 15000,
+  query_timeout: 15000,
 });
 
 export const db = drizzle(pool, { schema });

@@ -26,6 +26,9 @@ async function bootstrap() {
         new FastifyAdapter({
           logger: false,
           bodyLimit: FILE_SIZE_LIMIT,
+          requestTimeout: 30000,
+          connectionTimeout: 5000,
+          keepAliveTimeout: 72000,
         }),
         {
           logger: ['log', 'error', 'warn', 'debug', 'verbose'],
