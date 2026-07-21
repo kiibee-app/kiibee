@@ -20,6 +20,7 @@ import { useCollectionAccessGate } from "@/hooks/useCollectionAccessGate";
 import {
   VARIANT_CONTENT,
   ORDER_TYPES,
+  PAYMENT_ITEM_TYPE_QUERY_KEY,
   PAYMENT_QUERY_KEY,
   STATUS_TONE,
   VIEW,
@@ -57,7 +58,7 @@ import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { toast } from "react-toastify";
 import { PATHS, COLLECTION_ROUTE } from "@/utils/path";
-import { CREATORS_LABELS } from "@/utils/SidebarItems";
+import { CREATORS_LABELS, VIEWER_VIEW_VALUES } from "@/utils/SidebarItems";
 
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -78,6 +79,7 @@ function SingleCollectionContent() {
   >(null);
 
   const paymentStatus = searchParams.get(PAYMENT_QUERY_KEY);
+  const paymentItemType = searchParams.get(PAYMENT_ITEM_TYPE_QUERY_KEY);
   const isPaymentSuccess = paymentStatus === STATUS_TONE.SUCCESS;
   const [dismissedPaymentSuccess, setDismissedPaymentSuccess] = useState(false);
 
@@ -238,6 +240,7 @@ function SingleCollectionContent() {
     setDismissedPaymentSuccess(true);
     const nextParams = new URLSearchParams(searchParams.toString());
     nextParams.delete(PAYMENT_QUERY_KEY);
+    nextParams.delete(PAYMENT_ITEM_TYPE_QUERY_KEY);
     const next = nextParams.toString();
     router.replace(next ? `${COLLECTION_ROUTE}?${next}` : COLLECTION_ROUTE, {
       scroll: false,
@@ -246,13 +249,16 @@ function SingleCollectionContent() {
 
   const handlePaymentSuccessConfirm = () => {
     setDismissedPaymentSuccess(true);
+    const isRental = paymentItemType === ORDER_TYPES.RENTAL;
     queryClient.removeQueries({
-      queryKey: [API.viewer.purchasedData],
+      queryKey: [isRental ? API.viewer.rentedData : API.viewer.purchasedData],
       exact: true,
     });
-    const params = new URLSearchParams({
-      [VIEWER_SECTION]: VIEWER_SECTION_VALUES.COLLECTIONS,
-    });
+    const params = new URLSearchParams(
+      isRental
+        ? { [VIEW]: VIEWER_VIEW_VALUES.CURRENTLY_RENTED }
+        : { [VIEWER_SECTION]: VIEWER_SECTION_VALUES.COLLECTIONS },
+    );
 
     if (id) {
       params.set(CONTENT_COLLECTION_QUERY_KEY, id);

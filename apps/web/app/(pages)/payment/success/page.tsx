@@ -9,6 +9,8 @@ import { PATHS, pathPublicCollection } from "@/utils/path";
 import {
   COMPLETED,
   FAILED,
+  ORDER_TYPES,
+  PAYMENT_ITEM_TYPE_QUERY_KEY,
   PAYMENT_QUERY_KEY,
   STATUS_TONE,
 } from "@/utils/Constants";
@@ -37,6 +39,7 @@ type OrderRecord = {
   status: "pending" | "completed" | "failed";
   mediaFileId?: string | null;
   collectionId?: string | null;
+  itemType: (typeof ORDER_TYPES)[keyof typeof ORDER_TYPES];
 };
 
 type OrderByIdResponse = {
@@ -81,16 +84,27 @@ function PaymentSuccessContent() {
 
     const paymentStatus = STATUS_TONE.SUCCESS;
 
+    const paymentParams = new URLSearchParams({
+      [PAYMENT_QUERY_KEY]: paymentStatus,
+      [PAYMENT_ITEM_TYPE_QUERY_KEY]: order.itemType,
+    });
+
     const redirectUrl = order.mediaFileId
-      ? `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}?${PAYMENT_QUERY_KEY}=${paymentStatus}`
+      ? `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}?${paymentParams.toString()}`
       : order.collectionId
-        ? `${pathPublicCollection(order.collectionId)}&&${PAYMENT_QUERY_KEY}=${paymentStatus}`
+        ? `${pathPublicCollection(order.collectionId)}&${paymentParams.toString()}`
         : undefined;
 
     if (redirectUrl) {
       router.replace(redirectUrl);
     }
-  }, [order?.status, order?.mediaFileId, order?.collectionId, router]);
+  }, [
+    order?.status,
+    order?.mediaFileId,
+    order?.collectionId,
+    order?.itemType,
+    router,
+  ]);
 
   if (!orderId) {
     return (
