@@ -15,6 +15,7 @@ import {
   CORS_ALLOWED_HEADERS,
   CORS_HTTP_METHODS,
   FILE_SIZE_LIMIT,
+  SERVER_TIMEOUT,
 } from './utils/constant';
 import { logger } from './logger/logger';
 
@@ -26,9 +27,9 @@ async function bootstrap() {
         new FastifyAdapter({
           logger: false,
           bodyLimit: FILE_SIZE_LIMIT,
-          requestTimeout: 30000,
-          connectionTimeout: 5000,
-          keepAliveTimeout: 72000,
+          requestTimeout: SERVER_TIMEOUT.REQUEST,
+          connectionTimeout: SERVER_TIMEOUT.CONNECTION,
+          keepAliveTimeout: SERVER_TIMEOUT.KEEP_ALIVE,
         }),
         {
           logger: ['log', 'error', 'warn', 'debug', 'verbose'],
