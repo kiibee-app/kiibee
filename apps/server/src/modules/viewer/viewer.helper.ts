@@ -10,6 +10,7 @@ import {
   collections,
   collectionItems,
 } from 'src/database/schema';
+import { populateMissingCollectionCovers } from 'src/utils/populateMissingCollectionCovers';
 
 export const getUserOrders = async (
   userId: string,
@@ -151,41 +152,7 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     .leftJoin(users, eq(collections.creatorId, users.id))
     .where(inArray(collections.id, collectionIds));
 
-  const collectionsWithoutCover = items
-    .filter((item) => !item.coverImageUrl)
-    .map((item) => item.id);
-  if (collectionsWithoutCover.length > 0) {
-    const firstItems = await db
-      .select({
-        collectionId: collectionItems.collectionId,
-        thumbnailUrl: mediaFiles.thumbnailUrl,
-        thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
-      })
-      .from(collectionItems)
-      .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
-      .where(inArray(collectionItems.collectionId, collectionsWithoutCover))
-      .orderBy(collectionItems.sortOrder);
-
-    const firstItemMap = new Map<
-      string,
-      { thumbnailUrl: string | null; thumbnailLandscapeUrl: string | null }
-    >();
-    for (const item of firstItems) {
-      if (item.collectionId && !firstItemMap.has(item.collectionId)) {
-        firstItemMap.set(item.collectionId, item);
-      }
-    }
-
-    for (const col of items) {
-      if (!col.coverImageUrl) {
-        const firstItem = firstItemMap.get(col.id);
-        if (firstItem) {
-          col.coverImageUrl =
-            firstItem.thumbnailUrl || firstItem.thumbnailLandscapeUrl || null;
-        }
-      }
-    }
-  }
+  await populateMissingCollectionCovers(db, items);
 
   const counts = await db
     .select({

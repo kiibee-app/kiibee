@@ -1,10 +1,11 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { and, eq, desc, count, getTableColumns, inArray } from 'drizzle-orm';
+import { and, eq, desc, count, getTableColumns } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
-import { collections, collectionItems, mediaFiles } from 'src/database/schema';
+import { collections, collectionItems } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
+import { populateMissingCollectionCovers } from 'src/utils/populateMissingCollectionCovers';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const getAllCollections = async (creatorId: string) => {
@@ -30,39 +31,7 @@ export const getAllCollections = async (creatorId: string) => {
       .groupBy(collections.id)
       .orderBy(desc(collections.sortOrder));
 
-    const collectionIds = result.map((c) => c.id);
-    if (collectionIds.length > 0) {
-      const firstItems = await db
-        .select({
-          collectionId: collectionItems.collectionId,
-          thumbnailUrl: mediaFiles.thumbnailUrl,
-          thumbnailLandscapeUrl: mediaFiles.thumbnailLandscapeUrl,
-        })
-        .from(collectionItems)
-        .innerJoin(mediaFiles, eq(mediaFiles.id, collectionItems.mediaFileId))
-        .where(inArray(collectionItems.collectionId, collectionIds))
-        .orderBy(collectionItems.sortOrder);
-
-      const firstItemMap = new Map<
-        string,
-        { thumbnailUrl: string | null; thumbnailLandscapeUrl: string | null }
-      >();
-      for (const item of firstItems) {
-        if (item.collectionId && !firstItemMap.has(item.collectionId)) {
-          firstItemMap.set(item.collectionId, item);
-        }
-      }
-
-      for (const col of result) {
-        if (!col.coverImageUrl) {
-          const firstItem = firstItemMap.get(col.id);
-          if (firstItem) {
-            col.coverImageUrl =
-              firstItem.thumbnailUrl || firstItem.thumbnailLandscapeUrl || null;
-          }
-        }
-      }
-    }
+    await populateMissingCollectionCovers(db, result);
 
     return success(result, 'Collections retrieved successfully');
   } catch (error) {
