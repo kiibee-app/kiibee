@@ -12,6 +12,12 @@ const USERS_DIR = "umbraco-data/users";
 const RUNS_DIR = "umbraco-data/export-runs";
 
 const TASKS = {
+  customFolders: {
+    script: "scripts/export-umbraco-collection.mjs",
+    folder: "content",
+    parentMatchers: [],
+    dataFiles: [],
+  },
   stats: {
     script: "scripts/export-umbraco-collection.mjs",
     folder: "stats",
@@ -261,6 +267,25 @@ function findParent(task, childNodes) {
   });
 }
 
+const SYSTEM_FOLDER_NAMES = new Set([
+  "stats", "log", "logs", "invoice", "invoices", "payout", "payouts",
+  "purchase", "purchases", "subscriber", "subscribers",
+]);
+
+function isRequestedUser(node, userDir, requestedUsers) {
+  if (!requestedUsers.length) return true;
+  const liveKeys = [nodeName(node), userDir, ...(nodeUrls(node)[0]?.split("/").filter(Boolean) || [])]
+    .map(compareKey).filter(Boolean);
+  return requestedUsers.some((requested) => {
+    const key = compareKey(requested.replace(/\([^)]*@[^)]*\)/g, ""));
+    return liveKeys.some((liveKey) => liveKey === key || liveKey.startsWith(key) || key.startsWith(liveKey));
+  });
+}
+
+function customFolderDir(node) {
+  return dirNameFromUser(node) || `folder-${nodeId(node)}`;
+}
+
 async function fileHasData(filePath) {
   try {
     const info = await stat(filePath);
@@ -478,7 +503,7 @@ async function main() {
     const matchedDir = findExistingDir(userNode, dirs);
     const userDir = matchedDir || dirNameFromUser(userNode);
 
-    if (config.requestedUsers.length && !config.requestedUsers.includes(userDir) && !config.requestedUsers.includes(liveName)) {
+    if (!isRequestedUser(userNode, userDir, config.requestedUsers)) {
       continue;
     }
 
@@ -507,6 +532,42 @@ async function main() {
         report.results.push(result);
         report.counts.skipped += 1;
         console.log(resultLine(result));
+        continue;
+      }
+
+      if (taskName === "customFolders") {
+        const folders = childNodes.filter((node) => !SYSTEM_FOLDER_NAMES.has(compareKey(nodeName(node))));
+        const contentDir = path.join(USERS_DIR, userDir, "content");
+        await mkdir(contentDir, { recursive: true });
+        const folderResults = [];
+        userRanTask = true;
+
+        for (const folder of folders) {
+          const folderId = nodeId(folder);
+          const folderName = nodeName(folder);
+          const folderDir = customFolderDir(folder);
+          const scriptResult = await runScript(task.script, {
+            cookie: config.cookie,
+            xsrfToken: config.xsrfToken,
+            parentId: folderId,
+            collectionName: folderName,
+            outDir: path.join(contentDir, folderDir),
+            detailConcurrency: 8,
+            fetchDetails: true,
+          });
+          const status = scriptResult.code === 0 ? "ok" : "error";
+          const output = parseStdoutJson(scriptResult.stdout);
+          folderResults.push({ folderId, folderName, folderDir, status, items: output?.items ?? null, stderr: scriptResult.stderr });
+          report.counts[status] += 1;
+          console.log(`  [${status}] custom folder ${folderName} (${folderId})`);
+        }
+
+        await writeFile(path.join(contentDir, "index.json"), `${JSON.stringify({
+          exportedAt: new Date().toISOString(), userId, liveName,
+          folderCount: folders.length, folders: folderResults,
+        }, null, 2)}\n`);
+        report.results.push({ userDir, liveName, userId, task: taskName, status: "ok", folderCount: folders.length, folders: folderResults });
+        await writeReport(paths, report);
         continue;
       }
 
