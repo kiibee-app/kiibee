@@ -46,7 +46,9 @@ export const createViewerSignupSchema = (messages: {
 
 export const createCreatorRequestSchema = (messages: {
   firstNameRequired: string;
+  firstNameMax: string;
   lastNameRequired: string;
+  lastNameMax: string;
   emailRequired: string;
   emailInvalid: string;
   addressRequired: string;
@@ -60,8 +62,16 @@ export const createCreatorRequestSchema = (messages: {
 }) =>
   z
     .object({
-      firstName: z.string().trim().min(1, messages.firstNameRequired),
-      lastName: z.string().trim().min(1, messages.lastNameRequired),
+      firstName: z
+        .string()
+        .trim()
+        .min(1, messages.firstNameRequired)
+        .max(50, messages.firstNameMax),
+      lastName: z
+        .string()
+        .trim()
+        .min(1, messages.lastNameRequired)
+        .max(50, messages.lastNameMax),
       email: z
         .string()
         .trim()
@@ -91,13 +101,23 @@ export const createCreatorRequestSchema = (messages: {
 
 export const createCreatorProfileSchema = (messages: {
   firstNameRequired: string;
+  firstNameMax: string;
   lastNameRequired: string;
+  lastNameMax: string;
   cvrInvalid: string;
 }) =>
   z
     .object({
-      firstName: z.string().trim().min(1, messages.firstNameRequired),
-      lastName: z.string().trim().min(1, messages.lastNameRequired),
+      firstName: z
+        .string()
+        .trim()
+        .min(1, messages.firstNameRequired)
+        .max(50, messages.firstNameMax),
+      lastName: z
+        .string()
+        .trim()
+        .min(1, messages.lastNameRequired)
+        .max(50, messages.lastNameMax),
       cvr: z
         .string()
         .trim()
