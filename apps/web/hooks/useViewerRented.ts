@@ -89,6 +89,7 @@ function toCollectionItem(
     elementCount: item.elementCount ?? 0,
     coverSrc: resolvePublicMediaUrl(item.coverImageUrl) ?? "",
     buyPrice: item.buyPrice,
+    rentExpiresAt: item.rentExpiresAt,
     expiryText:
       mode === RENTED_MODES.PREVIOUSLY
         ? formatExpiredText(item.rentExpiresAt, t)

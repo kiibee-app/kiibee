@@ -18,6 +18,7 @@ import {
   getCollectionBadgeText,
   getCollectionPrimaryActionText,
   sortViewerCollections,
+  isUrgentExpiry,
 } from "@/utils/viewerRented";
 import {
   CollectionActionRow,
@@ -279,7 +280,14 @@ export default function CollectionsSection({
                         >
                           {t("viewerRented.activeRental")}
                         </MonoText>
-                        <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
+                        <MonoText
+                          $use="Body_Medium"
+                          color={
+                            isUrgentExpiry(item.rentExpiresAt)
+                              ? COLORS.primary.RED
+                              : COLORS.neutral.GRAY_400
+                          }
+                        >
                           {item.expiryText || t("viewerRented.expiresIn")}
                         </MonoText>
                       </PassiveActionBlock>

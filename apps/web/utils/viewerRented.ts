@@ -21,6 +21,7 @@ export type RentedCollectionItem = {
   coverSrc: string;
   buyPrice?: string | number | null;
   expiryText?: string;
+  rentExpiresAt?: string | null;
   actions?: CollectionAction[];
   hideBadge?: boolean;
   href?: string;
@@ -410,4 +411,12 @@ export function formatExpiredText(
   return t("viewerRented.expiredOn", {
     date: `${d.getDate()} ${d.toLocaleString(undefined, { month: "long" })} ${d.getFullYear()}`,
   });
+}
+
+export function isUrgentExpiry(rentExpiresAt?: string | null): boolean {
+  if (!rentExpiresAt) return false;
+  const expiryDate = new Date(rentExpiresAt);
+  if (isNaN(expiryDate.getTime())) return false;
+  const daysLeft = (expiryDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24);
+  return daysLeft <= 7;
 }
