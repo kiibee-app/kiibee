@@ -26,6 +26,7 @@ type TutorialCardProps = {
   tutorial: TutorialVideo;
   onPlayClick?: (videoId: string) => void;
   isSelected?: boolean;
+  collectionId?: string | null;
 };
 
 type IconComponent = ComponentType<{
@@ -47,6 +48,7 @@ function TutorialCard({
   tutorial,
   onPlayClick,
   isSelected = false,
+  collectionId = null,
 }: TutorialCardProps) {
   const { t } = useTranslation();
   const { navigateToContent } = useProtectedContentNavigation();
@@ -55,6 +57,7 @@ function TutorialCard({
   const { user, hasAccess, rentedItem } = useViewerContentAccess(
     tutorial.id,
     tutorial.creatorId,
+    collectionId,
   );
 
   const handleShowLoginModal = (url: string) => {

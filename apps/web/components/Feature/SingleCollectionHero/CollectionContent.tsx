@@ -24,6 +24,7 @@ type Props = {
   embedded?: boolean;
   selectedVideoId?: string | null;
   onSelectVideo?: (videoId: string) => void;
+  collectionId?: string | null;
 };
 
 export default function CollectionContent({
@@ -32,6 +33,7 @@ export default function CollectionContent({
   embedded = false,
   selectedVideoId = null,
   onSelectVideo,
+  collectionId = null,
 }: Props) {
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
@@ -80,6 +82,7 @@ export default function CollectionContent({
             maxWidth={maxWidth || "100%"}
             selectedVideoId={selectedVideoId}
             onSelectVideo={onSelectVideo}
+            collectionId={collectionId}
           />
         ) : (
           <GenericEmptyState title={t("singleCollection.noResults")} />

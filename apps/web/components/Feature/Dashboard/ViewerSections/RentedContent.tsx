@@ -37,9 +37,9 @@ import { useViewerPurchased } from "@/hooks/viewer/useViewerPurchased";
 import RentedHeader from "./RentedHeader";
 import CollectionsSection from "./CollectionsSection";
 import MediaSections from "./MediaSections";
-import PurchasedCollectionDetail from "./PurchasedCollectionDetail";
 import ViewerEmptyState from "./ViewerEmptyState";
 import PublishedContentDetail from "@/components/Feature/SingleContentPage/PublishedContentDetail";
+import SingleCollectionDetail from "@/components/Feature/SingleCollectionHero/SingleCollectionDetail";
 import { DetailTopWrap } from "./purchasedCollectionDetail.styles";
 
 type Props = {
@@ -169,27 +169,6 @@ export default function RentedContent({
     [selectedCollectionId, sources.collections],
   );
 
-  const selectedCollectionMedia = useMemo(() => {
-    if (!selectedCollection) return [];
-
-    return [
-      ...sources.videos,
-      ...sources.audios,
-      ...sources.pdfs,
-      ...(sources.webs || []),
-    ].filter(
-      (item) =>
-        item.author === selectedCollection.author ||
-        item.title === selectedCollection.title,
-    );
-  }, [
-    selectedCollection,
-    sources.audios,
-    sources.pdfs,
-    sources.videos,
-    sources.webs,
-  ]);
-
   const openMediaInDashboard = useCallback(
     (item: RentedMediaItem) => {
       const params = new URLSearchParams(searchParamsString);
@@ -223,10 +202,17 @@ export default function RentedContent({
     router.replace(nextUrl, { scroll: false });
   }, [pathname, router, searchParamsString]);
 
+  const handleCloseContentDetail = useCallback(() => {
+    const params = new URLSearchParams(searchParamsString);
+    params.delete(CONTENT_ITEM_QUERY_KEY);
+    const query = params.toString();
+    const nextUrl = query ? `${pathname}?${query}` : pathname;
+    router.replace(nextUrl, { scroll: false });
+  }, [pathname, router, searchParamsString]);
+
   const handleSelectDetailMedia = useCallback(
     (mediaId: string) => {
       const params = new URLSearchParams(searchParamsString);
-      params.delete(CONTENT_COLLECTION_QUERY_KEY);
       params.set(CONTENT_ITEM_QUERY_KEY, mediaId);
       const query = params.toString();
       const nextUrl = query ? `${pathname}?${query}` : pathname;
@@ -263,7 +249,11 @@ export default function RentedContent({
               <HeaderBackButton
                 type="button"
                 aria-label={t("common.back")}
-                onClick={handleCloseDetail}
+                onClick={
+                  selectedCollectionId
+                    ? handleCloseContentDetail
+                    : handleCloseDetail
+                }
               >
                 <LeftIcon style={{ transform: "rotate(180deg)" }} />
               </HeaderBackButton>
@@ -272,7 +262,11 @@ export default function RentedContent({
           </PageHeader>
           <PublishedContentDetail
             contentKey={selectedContentId}
-            onBack={handleCloseDetail}
+            onBack={
+              selectedCollectionId
+                ? handleCloseContentDetail
+                : handleCloseDetail
+            }
             showBack={false}
             embedded
           />
@@ -284,15 +278,27 @@ export default function RentedContent({
   if (selectedCollectionId) {
     return (
       <DashboardPageWrapper>
-        <PurchasedCollectionDetail
-          collection={selectedCollection}
-          mediaItems={selectedCollectionMedia}
-          onBack={handleCloseDetail}
-          initialSelectedMediaId={null}
-          onSelectMedia={handleSelectDetailMedia}
-          title={title}
-          mode={mode}
-        />
+        <DetailTopWrap>
+          <PageHeader $compact>
+            <HeaderTitleWrap>
+              <HeaderBackButton
+                type="button"
+                aria-label={t("common.back")}
+                onClick={handleCloseDetail}
+              >
+                <LeftIcon style={{ transform: "rotate(180deg)" }} />
+              </HeaderBackButton>
+              <MonoText $use="H4_SemiBold">{title}</MonoText>
+            </HeaderTitleWrap>
+          </PageHeader>
+          <SingleCollectionDetail
+            collectionId={selectedCollectionId}
+            onBack={handleCloseDetail}
+            showBack={false}
+            embedded
+            onSelectContent={handleSelectDetailMedia}
+          />
+        </DetailTopWrap>
       </DashboardPageWrapper>
     );
   }
