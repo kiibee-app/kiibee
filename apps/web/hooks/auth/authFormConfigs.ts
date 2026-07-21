@@ -91,6 +91,7 @@ export const creatorRequestFormBase = {
     workLinkRequired: translate("authCreator.form.workLink"),
     workLinkInvalid: translate("authCreator.form.workLinkInvalid"),
     contentDescriptionRequired: translate("authCreator.form.contentLabel"),
+    contentDescriptionMax: translate("authCreator.form.contentMax"),
     consentRequired: translate("authCreator.form.consentPrefix"),
   }),
   mapValues: (values: CreatorRequestValues) => ({
