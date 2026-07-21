@@ -4,22 +4,23 @@ import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { SIZE, VARIANT } from "@/utils/Constants";
 
-export const PageHeader = styled.div`
+export const PageHeader = styled.div<{ $compact?: boolean }>`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing(2)};
   flex-wrap: wrap;
-  margin-bottom: 35px;
+  margin-bottom: ${({ $compact }) => ($compact ? "12px" : "35px")};
+  margin-top: ${({ $compact }) => ($compact ? "0" : "15px")};
   width: 100%;
 
   ${media.tablet} {
-    margin-bottom: 20px;
-    margin-top: 8px;
+    margin-bottom: ${({ $compact }) => ($compact ? "10px" : "20px")};
+    margin-top: ${({ $compact }) => ($compact ? "0" : "8px")};
   }
 
   ${media.mobileLg} {
-    margin-bottom: 16px;
-    margin-top: 4px;
+    margin-bottom: ${({ $compact }) => ($compact ? "8px" : "16px")};
+    margin-top: ${({ $compact }) => ($compact ? "0" : "4px")};
     gap: 10px;
   }
 `;

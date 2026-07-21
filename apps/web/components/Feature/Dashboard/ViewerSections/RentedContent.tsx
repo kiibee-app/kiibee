@@ -2,16 +2,23 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import COLORS from "@repo/ui/colors";
+import LeftIcon from "@/assets/icons/LeftIcon";
 import { MonoText } from "@/components/UI/Monotext";
-import { SectionBlock, EmptyState } from "./styles";
+import {
+  SectionBlock,
+  EmptyState,
+  HeaderBackButton,
+  HeaderTitleWrap,
+  PageHeader,
+} from "./styles";
 import { DashboardPageWrapper } from "@/components/Layout/Dashboard/styles";
 import {
   RENTED_SECTION_KEYS,
   RENTED_MODES,
   type RentedMode,
   type RentedSectionKey,
-  type RentedCollectionItem,
   type RentedMediaItem,
   filterCollections,
   filterMedia,
@@ -32,8 +39,8 @@ import CollectionsSection from "./CollectionsSection";
 import MediaSections from "./MediaSections";
 import PurchasedCollectionDetail from "./PurchasedCollectionDetail";
 import ViewerEmptyState from "./ViewerEmptyState";
-import { pathPublishedContent } from "@/utils/path";
-import { useProtectedContentNavigation } from "@/hooks/useProtectedContentNavigation";
+import PublishedContentDetail from "@/components/Feature/SingleContentPage/PublishedContentDetail";
+import { DetailTopWrap } from "./purchasedCollectionDetail.styles";
 
 type Props = {
   title: string;
@@ -46,11 +53,11 @@ export default function RentedContent({
   mode,
   initialExpandedSection = null,
 }: Props) {
+  const { t } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchParamsString = searchParams?.toString() ?? "";
-  const { navigateToContent } = useProtectedContentNavigation();
 
   const [searchValue, setSearchValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -183,13 +190,16 @@ export default function RentedContent({
     sources.webs,
   ]);
 
-  const findMatchingCollection = useCallback(
-    (item: RentedMediaItem): RentedCollectionItem | undefined =>
-      sources.collections.find(
-        (collection) =>
-          collection.title === item.title && collection.author === item.author,
-      ),
-    [sources.collections],
+  const openMediaInDashboard = useCallback(
+    (item: RentedMediaItem) => {
+      const params = new URLSearchParams(searchParamsString);
+      params.delete(CONTENT_COLLECTION_QUERY_KEY);
+      params.set(CONTENT_ITEM_QUERY_KEY, item.id);
+      const query = params.toString();
+      const nextUrl = query ? `${pathname}?${query}` : pathname;
+      router.replace(nextUrl, { scroll: false });
+    },
+    [pathname, router, searchParamsString],
   );
 
   const handleOpenCollection = useCallback(
@@ -204,29 +214,7 @@ export default function RentedContent({
     [pathname, router, searchParamsString],
   );
 
-  const handleOpenMediaDetail = useCallback(
-    (item: RentedMediaItem) => {
-      const collection = findMatchingCollection(item);
-      if (!collection) return;
-
-      const params = new URLSearchParams(searchParamsString);
-      params.set(CONTENT_COLLECTION_QUERY_KEY, collection.id);
-      params.set(CONTENT_ITEM_QUERY_KEY, item.id);
-      const query = params.toString();
-      const nextUrl = query ? `${pathname}?${query}` : pathname;
-      router.replace(nextUrl, { scroll: false });
-    },
-    [findMatchingCollection, pathname, router, searchParamsString],
-  );
-
-  const handleCardClick = useCallback(
-    (id: string) => {
-      navigateToContent(pathPublishedContent(id), true);
-    },
-    [navigateToContent],
-  );
-
-  const handleCloseCollection = useCallback(() => {
+  const handleCloseDetail = useCallback(() => {
     const params = new URLSearchParams(searchParamsString);
     params.delete(CONTENT_COLLECTION_QUERY_KEY);
     params.delete(CONTENT_ITEM_QUERY_KEY);
@@ -238,6 +226,7 @@ export default function RentedContent({
   const handleSelectDetailMedia = useCallback(
     (mediaId: string) => {
       const params = new URLSearchParams(searchParamsString);
+      params.delete(CONTENT_COLLECTION_QUERY_KEY);
       params.set(CONTENT_ITEM_QUERY_KEY, mediaId);
       const query = params.toString();
       const nextUrl = query ? `${pathname}?${query}` : pathname;
@@ -265,14 +254,41 @@ export default function RentedContent({
     );
   }
 
+  if (selectedContentId) {
+    return (
+      <DashboardPageWrapper>
+        <DetailTopWrap>
+          <PageHeader $compact>
+            <HeaderTitleWrap>
+              <HeaderBackButton
+                type="button"
+                aria-label={t("common.back")}
+                onClick={handleCloseDetail}
+              >
+                <LeftIcon style={{ transform: "rotate(180deg)" }} />
+              </HeaderBackButton>
+              <MonoText $use="H4_SemiBold">{title}</MonoText>
+            </HeaderTitleWrap>
+          </PageHeader>
+          <PublishedContentDetail
+            contentKey={selectedContentId}
+            onBack={handleCloseDetail}
+            showBack={false}
+            embedded
+          />
+        </DetailTopWrap>
+      </DashboardPageWrapper>
+    );
+  }
+
   if (selectedCollectionId) {
     return (
       <DashboardPageWrapper>
         <PurchasedCollectionDetail
           collection={selectedCollection}
           mediaItems={selectedCollectionMedia}
-          onBack={handleCloseCollection}
-          initialSelectedMediaId={selectedContentId}
+          onBack={handleCloseDetail}
+          initialSelectedMediaId={null}
           onSelectMedia={handleSelectDetailMedia}
           title={title}
           mode={mode}
@@ -374,8 +390,8 @@ export default function RentedContent({
               canGoNext={canGoNext}
               movePrev={movePrev}
               moveNext={moveNext}
-              onMediaPrimaryAction={handleOpenMediaDetail}
-              onCardClick={(item) => handleCardClick(item.id)}
+              onMediaPrimaryAction={openMediaInDashboard}
+              onCardClick={openMediaInDashboard}
               onOpenSection={(sectionKey) => {
                 setExpandedSection(sectionKey);
               }}

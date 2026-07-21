@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, type ComponentType } from "react";
+import { useState, type ComponentType, type MouseEvent } from "react";
 import Link from "next/link";
+import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import recentCreator from "@/assets/images/creators/recent_creator.webp";
 import { EpubIcon, VideoIcon, WebIcon } from "@/assets/icons";
@@ -16,6 +17,7 @@ import { VARIANT } from "@/utils/Constants";
 import { resolveImageUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import { KEY_ENTER, KEY_SPACE } from "@/utils/keyboard";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -48,6 +50,21 @@ const formatIconMap: Record<FormatType, IconComponent> = {
 };
 
 const FALLBACK_THUMBNAIL_SRC = resolveImageUrl(recentCreator);
+
+const CardLink = styled(Link)`
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+`;
+
+const FooterActions = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+`;
 
 type Props = {
   video: TutorialVideo;
@@ -84,15 +101,53 @@ export default function CollectionItemCard({ video, ownerCreatorId }: Props) {
     : video.buttons?.length
       ? video.buttons
       : [];
-  const title = (
-    <CollectionTitle as={Link} href={contentHref}>
-      {video.title}
-    </CollectionTitle>
-  );
+
+  const stopCardNavigation = (event: MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
+  const handleButtonClick = (event: MouseEvent, button: TutorialButton) => {
+    stopCardNavigation(event);
+
+    if (button.onClick) {
+      button.onClick();
+      return;
+    }
+
+    const isLoggedIn = Boolean(user && user.id);
+    const targetHref = button.href ?? contentHref;
+
+    if (button.requiresAuth && !isLoggedIn) {
+      handleShowLoginModal(targetHref);
+      return;
+    }
+
+    navigateToContent(targetHref, button.requiresAuth ?? false);
+  };
+
+  const openCreatorProfile = (event: MouseEvent) => {
+    if (!video.creatorId) return;
+    stopCardNavigation(event);
+    window.open(
+      getPublicCreatorProfilePath(video.creatorId),
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
+
+  const title = <CollectionTitle>{video.title}</CollectionTitle>;
   const subtitle = video.creatorId ? (
     <CollectionAuthor
-      as={Link}
-      href={getPublicCreatorProfilePath(video.creatorId)}
+      onClick={openCreatorProfile}
+      role="link"
+      tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === KEY_ENTER || event.key === KEY_SPACE) {
+          openCreatorProfile(event as unknown as MouseEvent);
+        }
+      }}
+      style={{ cursor: "pointer" }}
     >
       {video.creator}
     </CollectionAuthor>
@@ -100,62 +155,50 @@ export default function CollectionItemCard({ video, ownerCreatorId }: Props) {
     <CollectionAuthor>{video.creator}</CollectionAuthor>
   );
   const footer = buttons.length ? (
-    <>
+    <FooterActions onClick={stopCardNavigation}>
       {buttons.map((button, index) => (
         <GenericButton
           key={`${button.label}-${index}`}
           type="button"
           variant={button.variant ?? VARIANT.SOFT_OUTLINE}
-          onClick={() => {
-            if (button.onClick) {
-              button.onClick();
-              return;
-            }
-
-            const isLoggedIn = Boolean(user && user.id);
-            const targetHref = button.href ?? contentHref;
-
-            if (button.requiresAuth && !isLoggedIn) {
-              handleShowLoginModal(targetHref);
-              return;
-            }
-
-            navigateToContent(targetHref, button.requiresAuth);
-          }}
+          fullWidth={button.fullWidth}
+          onClick={(event) => handleButtonClick(event, button)}
         >
           {button.label}
         </GenericButton>
       ))}
-    </>
+    </FooterActions>
   ) : null;
 
   return (
     <>
-      <GenericCard
-        image={video.image}
-        imageFallback={FALLBACK_THUMBNAIL_SRC}
-        coverImage
-        alt={video.title}
-        title={title}
-        subtitle={subtitle}
-        badge={
-          video.category?.trim() ? (
-            <CollectionBadgeText>{video.category}</CollectionBadgeText>
-          ) : null
-        }
-        footer={footer}
-      >
-        <CollectionTime>{video.published}</CollectionTime>
+      <CardLink href={contentHref} aria-label={video.title}>
+        <GenericCard
+          image={video.image}
+          imageFallback={FALLBACK_THUMBNAIL_SRC}
+          coverImage
+          alt={video.title}
+          title={title}
+          subtitle={subtitle}
+          badge={
+            video.category?.trim() ? (
+              <CollectionBadgeText>{video.category}</CollectionBadgeText>
+            ) : null
+          }
+          footer={footer}
+        >
+          <CollectionTime>{video.published}</CollectionTime>
 
-        <CollectionVideoPill>
-          <CollectionVideoIconBox>
-            <FormatIcon width={10} height={10} />
-          </CollectionVideoIconBox>
-          <CollectionVideoLabelText>
-            {video.formatLabel}
-          </CollectionVideoLabelText>
-        </CollectionVideoPill>
-      </GenericCard>
+          <CollectionVideoPill>
+            <CollectionVideoIconBox>
+              <FormatIcon width={10} height={10} />
+            </CollectionVideoIconBox>
+            <CollectionVideoLabelText>
+              {video.formatLabel}
+            </CollectionVideoLabelText>
+          </CollectionVideoPill>
+        </GenericCard>
+      </CardLink>
       <LoginRequiredModal
         visible={isLoginModalVisible}
         onClose={handleCloseLoginModal}
