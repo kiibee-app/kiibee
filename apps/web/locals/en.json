@@ -2269,6 +2269,7 @@
     "expired": "Expired",
     "expiresInHours": "Expires in {{count}} hrs",
     "expiresInDays": "Expires in {{count}} days",
+    "expiresDate": "Expires {{date}}",
     "expiredOn": "Expired on {{date}}",
     "purchased": "Purchased",
     "purchasedOn": "Purchased on {{date}}"

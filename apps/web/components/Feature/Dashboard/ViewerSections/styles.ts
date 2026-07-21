@@ -265,6 +265,7 @@ export const CollectionBadge = styled.span`
   left: 10px;
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.primary.GREEN_50};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
   padding: 6px 10px;
   ${({ theme }) => theme.typography.Body_Bold};
 `;
@@ -359,6 +360,8 @@ export const CollectionBuyButton = styled(GenericButton).attrs({
   variant: VARIANT.PRIMARY,
   size: SIZE.SM,
 })`
+  height: auto;
+  min-height: 52px;
   min-width: 120px;
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
@@ -380,6 +383,8 @@ export const CollectionRentButton = styled(GenericButton).attrs({
   variant: VARIANT.SECONDARY,
   size: SIZE.SM,
 })`
+  height: auto;
+  min-height: 52px;
   min-width: 120px;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   color: ${({ theme }) => theme.colors.primary.BLACK};
@@ -398,12 +403,17 @@ export const CollectionRentButton = styled(GenericButton).attrs({
 `;
 
 export const PassiveActionBlock = styled.div`
-  border-radius: 10px;
+  border-radius: 0.75rem;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
-  padding: 8px 10px;
+  padding: 8px 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: auto;
+  min-height: 52px;
+  box-sizing: border-box;
 `;
 
 export const MediaGrid = styled.div`

@@ -68,6 +68,8 @@ export const buildAccessMap = (ordersData: any[]) => {
       collectionMap.set(o.collectionId, o.purchasedAt);
     if (o.mediaFileId && o.rentExpiresAt)
       expiresMap.set(o.mediaFileId, o.rentExpiresAt);
+    if (o.collectionId && !o.mediaFileId && o.rentExpiresAt)
+      expiresMap.set(o.collectionId, o.rentExpiresAt);
   }
 
   return { mediaMap, collectionMap, expiresMap };
@@ -147,6 +149,7 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
       description: collections.description,
       creatorId: collections.creatorId,
       creatorName: users.fullName,
+      buyPrice: collections.buyPrice,
     })
     .from(collections)
     .leftJoin(users, eq(collections.creatorId, users.id))

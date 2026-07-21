@@ -41,6 +41,8 @@ type BackendCollectionItem = {
   creatorName?: string;
   elementCount?: number;
   purchasedAt?: string | null;
+  buyPrice?: string | number | null;
+  rentExpiresAt?: string | null;
 };
 
 type ViewerDataResponse = {
@@ -75,13 +77,23 @@ function toMediaItem(
   };
 }
 
-function toCollectionItem(item: BackendCollectionItem): RentedCollectionItem {
+function toCollectionItem(
+  item: BackendCollectionItem,
+  mode: RentedMode,
+  t: TFunction,
+): RentedCollectionItem {
   return {
     id: item.id,
     title: item.name ?? "",
     author: item.creatorName ?? "",
     elementCount: item.elementCount ?? 0,
     coverSrc: resolvePublicMediaUrl(item.coverImageUrl) ?? "",
+    buyPrice: item.buyPrice,
+    rentExpiresAt: item.rentExpiresAt,
+    expiryText:
+      mode === RENTED_MODES.PREVIOUSLY
+        ? formatExpiredText(item.rentExpiresAt, t)
+        : formatExpiryText(item.rentExpiresAt, t),
   };
 }
 
@@ -106,7 +118,9 @@ export const useViewerRentedData = (
       return { collections: [], videos: [], audios: [], pdfs: [], webs: [] };
 
     return {
-      collections: data.collections.map(toCollectionItem),
+      collections: data.collections.map((item) =>
+        toCollectionItem(item, mode, t),
+      ),
       videos: data.videos.map((item) => toMediaItem(item, mode, t)),
       audios: data.audios.map((item) => toMediaItem(item, mode, t)),
       pdfs: data.pdfs.map((item) => toMediaItem(item, mode, t)),

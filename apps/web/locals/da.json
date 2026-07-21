@@ -2277,6 +2277,7 @@
     "expired": "Udløbet",
     "expiresInHours": "Udløber om {{count}} timer",
     "expiresInDays": "Udløber om {{count}} dage",
+    "expiresDate": "Udløber {{date}}",
     "expiredOn": "Udløbet den {{date}}",
     "purchased": "Købt",
     "purchasedOn": "Købt den {{date}}"
