@@ -1,37 +1,22 @@
 {
-  "startedAt": "2026-07-21T14:28:09.984Z",
+  "startedAt": "2026-07-21T15:25:09.665Z",
   "users": [
     {
-      "requestedName": "TANIA ELLIS - The Social Business Company",
-      "liveName": "TANIA ELLIS - The Social Business Company",
-      "userId": 1957,
+      "requestedName": "Per Vers",
+      "liveName": "Per Vers",
+      "userId": 91682,
       "status": "found",
-      "folderCount": 4,
+      "folderCount": 1,
       "missingFolders": [],
       "folders": [
         {
-          "name": "Miniconference: CSR crises & Dilemmas",
-          "id": 2384,
-          "status": "ok"
-        },
-        {
-          "name": "Miniconference: Sustainability & Tech",
-          "id": 2424,
-          "status": "ok"
-        },
-        {
-          "name": "Miniconference: Passion, Purpose & Personal Sustainability",
-          "id": 2429,
-          "status": "ok"
-        },
-        {
-          "name": "Miniconference: Sustainable Disruption & Corporate Social Entrepreneurship",
-          "id": 2434,
+          "name": "Film",
+          "id": 91714,
           "status": "ok"
         }
       ]
     }
   ],
   "missingUsers": [],
-  "finishedAt": "2026-07-21T14:28:16.252Z"
+  "finishedAt": "2026-07-21T15:25:10.839Z"
 }

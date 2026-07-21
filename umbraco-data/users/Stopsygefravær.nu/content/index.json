@@ -1,0 +1,42 @@
+{
+  "requestedName": "Stopsygefravær.nu",
+  "liveName": "Stopsygefravær.nu",
+  "userId": 14217,
+  "status": "found",
+  "folderCount": 6,
+  "missingFolders": [
+    "Det her skal du vide når du er leder og håndterer sygefravær på arbejdspladsen!"
+  ],
+  "folders": [
+    {
+      "name": "E-BOG i to forskellige formater PDF-format  eller E-PUB format, som kan læses direkte i e-bogs appén.",
+      "id": 14230,
+      "status": "ok"
+    },
+    {
+      "name": "2 i ÉN løsning",
+      "id": 14914,
+      "status": "ok"
+    },
+    {
+      "name": "3 i ÉN løsning",
+      "id": 14925,
+      "status": "ok"
+    },
+    {
+      "name": "Introduktionsvideo",
+      "id": 14931,
+      "status": "ok"
+    },
+    {
+      "name": "Videoer med tips og triks til hvad du skal vide om håndtering af sygefravær.",
+      "id": 19339,
+      "status": "ok"
+    },
+    {
+      "name": "Løsninger der virker.",
+      "id": 49340,
+      "status": "ok"
+    }
+  ]
+}
