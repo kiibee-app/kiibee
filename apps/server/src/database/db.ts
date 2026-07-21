@@ -5,9 +5,12 @@ import { env } from 'src/config/env';
 
 export const pool = new Pool({
   connectionString: env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ssl:
+    env.NODE_ENV === 'production'
+      ? true
+      : {
+          rejectUnauthorized: false,
+        },
 });
 
 export const db = drizzle(pool, { schema });
