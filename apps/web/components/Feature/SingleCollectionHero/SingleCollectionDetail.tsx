@@ -17,6 +17,7 @@ import {
   VARIANT_CONTENT,
   ORDER_TYPES,
   PAYMENT_QUERY_KEY,
+  PAYMENT_ITEM_TYPE_QUERY_KEY,
   STATUS_TONE,
   VIEW,
   CONTENT_COLLECTION_QUERY_KEY,
@@ -54,7 +55,7 @@ import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { toast } from "react-toastify";
 import { PATHS, COLLECTION_ROUTE } from "@/utils/path";
-import { CREATORS_LABELS } from "@/utils/SidebarItems";
+import { CREATORS_LABELS, VIEWER_VIEW_VALUES } from "@/utils/SidebarItems";
 import { Section } from "@/app/styles";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -270,13 +271,24 @@ export default function SingleCollectionDetail({
 
   const handlePaymentSuccessConfirm = () => {
     setDismissedPaymentSuccess(true);
+
+    const paymentItemType = searchParams?.get(PAYMENT_ITEM_TYPE_QUERY_KEY);
+    const isRental =
+      paymentItemType === ORDER_TYPES.RENTAL ||
+      (paymentItemType == null && selectedAction?.isPurchase === false);
+
     queryClient.removeQueries({
-      queryKey: [API.viewer.purchasedData],
+      queryKey: [isRental ? API.viewer.rentedData : API.viewer.purchasedData],
       exact: true,
     });
+
     const params = new URLSearchParams({
       [VIEWER_SECTION]: VIEWER_SECTION_VALUES.COLLECTIONS,
     });
+
+    if (isRental) {
+      params.set(VIEW, VIEWER_VIEW_VALUES.CURRENTLY_RENTED);
+    }
 
     if (id) {
       params.set(CONTENT_COLLECTION_QUERY_KEY, id);
