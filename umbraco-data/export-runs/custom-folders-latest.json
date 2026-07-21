@@ -1,22 +1,27 @@
 {
-  "startedAt": "2026-07-21T15:42:35.728Z",
+  "startedAt": "2026-07-21T15:58:25.368Z",
   "users": [
     {
-      "requestedName": "NSCCM ApS",
-      "liveName": "NSCCM ApS",
-      "userId": 50069,
+      "requestedName": "A5 Forlag ApS",
+      "liveName": "A5 Forlag ApS",
+      "userId": 73339,
       "status": "found",
-      "folderCount": 1,
+      "folderCount": 2,
       "missingFolders": [],
       "folders": [
         {
-          "name": "LOG904-172 Contract and Commercial Management 2022 (1)",
-          "id": 72531,
+          "name": "Vildtkok Podcast",
+          "id": 73346,
+          "status": "ok"
+        },
+        {
+          "name": "DET´ HELT VILDT - Opskrifter",
+          "id": 73842,
           "status": "ok"
         }
       ]
     }
   ],
   "missingUsers": [],
-  "finishedAt": "2026-07-21T15:42:36.931Z"
+  "finishedAt": "2026-07-21T15:58:27.583Z"
 }
