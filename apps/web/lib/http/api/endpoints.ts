@@ -83,6 +83,7 @@ export const API = {
   },
   order: {
     create: "/order/create",
+    createCollection: "/order/collection/create",
     getById: (orderId: string) => `/order/${orderId}`,
     billingHistory: "/order/billing-history",
     billingInvoice: (billingId: string) =>

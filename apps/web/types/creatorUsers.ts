@@ -15,7 +15,22 @@ export type SalesRow = {
   date: string;
 };
 
+export type PaginationMeta = {
+  page: number;
+  limit: number;
+  totalItems: number;
+  totalPages: number;
+};
+
 export type CreatorUsersListResponse<T> = {
   success?: boolean;
   data?: T[];
+};
+
+export type CreatorUsersSalesResponse = {
+  success?: boolean;
+  data?: {
+    sales: SalesRow[];
+    pagination: PaginationMeta;
+  };
 };

@@ -3,23 +3,27 @@ import { randomUUID } from 'crypto';
 import { eq, lt } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { revokedTokens } from 'src/database/schema';
+import { logger } from 'src/logger/logger';
 
 @Injectable()
 export class TokenDenylistService {
-  async revoke(jti: string, exp: number): Promise<void> {
+  async revoke(jti: string, expiresAt: Date): Promise<void> {
     if (!jti) return;
-    const expiresAt = new Date(exp * 1000);
     try {
-      await db.insert(revokedTokens).values({
-        id: randomUUID(),
-        jti,
-        expiresAt,
-      });
-    } catch {
       await db
-        .update(revokedTokens)
-        .set({ expiresAt })
-        .where(eq(revokedTokens.jti, jti));
+        .insert(revokedTokens)
+        .values({
+          id: randomUUID(),
+          jti,
+          expiresAt,
+        })
+        .onConflictDoUpdate({
+          target: revokedTokens.jti,
+          set: { expiresAt },
+        });
+    } catch (error) {
+      logger.error('Failed to revoke access token', error);
+      throw error;
     }
   }
 
@@ -41,24 +45,19 @@ export class TokenDenylistService {
 export const revokeAccessToken = async (jti: string, expiresAt: Date) => {
   if (!jti) return;
   try {
-    await db.insert(revokedTokens).values({
-      id: randomUUID(),
-      jti,
-      expiresAt,
-    });
-  } catch {
     await db
-      .update(revokedTokens)
-      .set({ expiresAt })
-      .where(eq(revokedTokens.jti, jti));
+      .insert(revokedTokens)
+      .values({
+        id: randomUUID(),
+        jti,
+        expiresAt,
+      })
+      .onConflictDoUpdate({
+        target: revokedTokens.jti,
+        set: { expiresAt },
+      });
+  } catch (error) {
+    logger.error('Failed to revoke access token', error);
+    throw error;
   }
-};
-
-export const isAccessTokenRevoked = async (jti: string): Promise<boolean> => {
-  if (!jti) return false;
-  const record = await db.query.revokedTokens.findFirst({
-    where: eq(revokedTokens.jti, jti),
-    columns: { id: true },
-  });
-  return !!record;
 };

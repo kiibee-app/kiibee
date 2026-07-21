@@ -48,10 +48,15 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
       </SidebarTop>
       <MenuList>
         {items.map((item) => {
+          const isPayoutItem = item.href === ROUTES.PAYOUT;
           const isActive =
             item.href === "/"
               ? pathname === "/"
-              : pathname === item.href || pathname.startsWith(`${item.href}/`);
+              : pathname === item.href ||
+                pathname.startsWith(`${item.href}/`) ||
+                (isPayoutItem &&
+                  (pathname === ROUTES.PAYOUT_REQUESTS ||
+                    pathname.startsWith(`${ROUTES.PAYOUT_REQUESTS}/`)));
 
           const Icon = item.icon;
           const badgeCount =
@@ -59,7 +64,8 @@ export function Sidebar({ items, pathname, isOpen, onClose }: SidebarProps) {
               ? pendingCount
               : item.href === ROUTES.DELETION_REQUESTS
                 ? pendingDeletionCount
-                : item.href === ROUTES.PAYOUT_REQUESTS
+                : item.href === ROUTES.PAYOUT ||
+                    item.href === ROUTES.PAYOUT_REQUESTS
                   ? pendingPayoutCount
                   : 0;
           const showBadge = badgeCount > 0;

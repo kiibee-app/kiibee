@@ -9,8 +9,11 @@ export class CreatorUsersService {
     return getRegistrationsService(creatorId);
   }
 
-  getSales(creatorId: string) {
-    return getSalesService(creatorId);
+  getSales(
+    creatorId: string,
+    params?: { search?: string; page?: number; limit?: number },
+  ) {
+    return getSalesService(creatorId, params);
   }
 
   deleteRegistration(creatorId: string, id: string) {

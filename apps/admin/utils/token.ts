@@ -1,33 +1,57 @@
 "use client";
 
+import { useCallback } from "react";
 import type { DecodedToken } from "../types/auth";
 
+const ACCESS_TOKEN_KEY = "accessToken";
+const REFRESH_TOKEN_KEY = "refreshToken";
+const ADMIN_LOGGED_IN_KEY = "adminLoggedIn";
+const AUTH_PAYLOAD_KEY = "admin.authPayload";
+
+function getCookieAttributes() {
+  const secure =
+    typeof window !== "undefined" && window.location.protocol === "https:"
+      ? "; Secure"
+      : "";
+  return `Path=/; SameSite=Strict${secure}`;
+}
+
+function clearCookie(name: string) {
+  document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Strict`;
+  document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax`;
+}
+
 export function setTokens(accessToken: string, refreshToken: string) {
-  document.cookie = `accessToken=${accessToken}; Path=/; Max-Age=86400; SameSite=Lax`;
-  document.cookie = `refreshToken=${refreshToken}; Path=/; Max-Age=604800; SameSite=Lax`;
-  document.cookie = `adminLoggedIn=true; Path=/; Max-Age=86400; SameSite=Lax`;
-  localStorage.setItem("accessToken", accessToken);
-  localStorage.setItem("refreshToken", refreshToken);
+  clearCookie(ACCESS_TOKEN_KEY);
+  clearCookie(REFRESH_TOKEN_KEY);
+  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  localStorage.removeItem(REFRESH_TOKEN_KEY);
+
+  document.cookie = `${ADMIN_LOGGED_IN_KEY}=true; ${getCookieAttributes()}`;
+  sessionStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
+  sessionStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
 }
 
 export function clearTokens() {
-  document.cookie = "accessToken=; Path=/; Max-Age=0; SameSite=Lax";
-  document.cookie = "refreshToken=; Path=/; Max-Age=0; SameSite=Lax";
-  document.cookie = "adminLoggedIn=; Path=/; Max-Age=0; SameSite=Lax";
-  localStorage.removeItem("accessToken");
-  localStorage.removeItem("refreshToken");
-  localStorage.removeItem("adminLoggedIn");
-  localStorage.removeItem("admin.authPayload");
+  clearCookie(ACCESS_TOKEN_KEY);
+  clearCookie(REFRESH_TOKEN_KEY);
+  clearCookie(ADMIN_LOGGED_IN_KEY);
+  localStorage.removeItem(ACCESS_TOKEN_KEY);
+  localStorage.removeItem(REFRESH_TOKEN_KEY);
+  localStorage.removeItem(ADMIN_LOGGED_IN_KEY);
+  localStorage.removeItem(AUTH_PAYLOAD_KEY);
+  sessionStorage.removeItem(ACCESS_TOKEN_KEY);
+  sessionStorage.removeItem(REFRESH_TOKEN_KEY);
 }
 
 export function getAccessToken(): string | null {
   if (typeof window === "undefined") return null;
-  return localStorage.getItem("accessToken");
+  return sessionStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
 export function getRefreshToken(): string | null {
   if (typeof window === "undefined") return null;
-  return localStorage.getItem("refreshToken");
+  return sessionStorage.getItem(REFRESH_TOKEN_KEY);
 }
 
 export function decodeToken(token: string): DecodedToken | null {
@@ -54,4 +78,27 @@ export function isTokenExpired(token: string): boolean {
 
 export function hasAdminRole(decodedToken: DecodedToken | null): boolean {
   return decodedToken?.role === "admin";
+}
+
+export function useAdminTokens() {
+  const saveTokens = useCallback(
+    (accessToken: string, refreshToken: string) => {
+      setTokens(accessToken, refreshToken);
+    },
+    [],
+  );
+
+  const removeTokens = useCallback(() => {
+    clearTokens();
+  }, []);
+
+  const readAccessToken = useCallback(() => getAccessToken(), []);
+  const readRefreshToken = useCallback(() => getRefreshToken(), []);
+
+  return {
+    setTokens: saveTokens,
+    clearTokens: removeTokens,
+    getAccessToken: readAccessToken,
+    getRefreshToken: readRefreshToken,
+  };
 }

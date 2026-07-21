@@ -2,6 +2,7 @@ import type { TFunction } from "i18next";
 import { VIEWER_SECTION, VIEWER_SECTION_VALUES } from "@/utils/Constants";
 import type { ContentType } from "@/utils/content";
 import { MILLISECONDS_IN_HOUR, HOURS_IN_DAY } from "@/utils/Constants";
+import { formatPriceLabel } from "@/utils/contentPricingActions";
 
 export const MEDIA_ICON_SIZE = 22;
 
@@ -18,6 +19,9 @@ export type RentedCollectionItem = {
   author: string;
   elementCount: number;
   coverSrc: string;
+  buyPrice?: string | number | null;
+  expiryText?: string;
+  rentExpiresAt?: string | null;
   actions?: CollectionAction[];
   hideBadge?: boolean;
   href?: string;
@@ -244,9 +248,19 @@ export function getCollectionBadgeText(mode: RentedMode, t: TFunction) {
   return t("viewerRented.rented");
 }
 
-export function getCollectionPrimaryActionText(mode: RentedMode, t: TFunction) {
+export function getCollectionPrimaryActionText(
+  mode: RentedMode,
+  t: TFunction,
+  item?: { buyPrice?: string | number | null } | Record<string, unknown>,
+) {
   if (mode === RENTED_MODES.PURCHASED) return t("viewerRented.seeContent");
-  return t("viewerRented.buyPlaceholder");
+
+  const buyPriceLabel = formatPriceLabel(
+    t("pricingLabels.buy", { defaultValue: "Buy" }),
+    item?.buyPrice as string | number | null | undefined,
+  );
+
+  return buyPriceLabel ?? t("viewerRented.buyPlaceholder");
 }
 
 export function getSearchPlaceholder(mode: RentedMode, t: TFunction) {
@@ -361,16 +375,30 @@ export function formatExpiryText(
   rentExpiresAt: string | null | undefined,
   t: TFunction,
 ): string {
-  if (!rentExpiresAt) return "";
+  const expiryDate = rentExpiresAt ? new Date(rentExpiresAt) : null;
+  if (!expiryDate || isNaN(expiryDate.getTime())) return "";
+
   const hrs = Math.round(
-    (new Date(rentExpiresAt).getTime() - Date.now()) / MILLISECONDS_IN_HOUR,
+    (expiryDate.getTime() - Date.now()) / MILLISECONDS_IN_HOUR,
   );
+  const days = Math.round(hrs / HOURS_IN_DAY);
+
   if (hrs <= 0) return t("viewerRented.expired");
-  return hrs < HOURS_IN_DAY
-    ? t("viewerRented.expiresInHours", { count: hrs })
-    : t("viewerRented.expiresInDays", {
-        count: Math.round(hrs / HOURS_IN_DAY),
-      });
+  if (days > 7) {
+    const date = `${expiryDate.getDate()} ${expiryDate.toLocaleString(undefined, { month: "short" })} ${expiryDate.getFullYear()}`;
+    return t("viewerRented.expiresDate", {
+      date,
+      defaultValue: `Expires ${date}`,
+    });
+  }
+
+  const isHours = hrs < HOURS_IN_DAY;
+  return t(
+    isHours ? "viewerRented.expiresInHours" : "viewerRented.expiresInDays",
+    {
+      count: isHours ? hrs : days,
+    },
+  );
 }
 
 export function formatExpiredText(
@@ -383,4 +411,12 @@ export function formatExpiredText(
   return t("viewerRented.expiredOn", {
     date: `${d.getDate()} ${d.toLocaleString(undefined, { month: "long" })} ${d.getFullYear()}`,
   });
+}
+
+export function isUrgentExpiry(rentExpiresAt?: string | null): boolean {
+  if (!rentExpiresAt) return false;
+  const expiryDate = new Date(rentExpiresAt);
+  if (isNaN(expiryDate.getTime())) return false;
+  const daysLeft = (expiryDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24);
+  return daysLeft <= 7;
 }

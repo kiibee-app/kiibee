@@ -4,45 +4,29 @@ import { MonoText } from "@/components/UI/Monotext";
 import GenericButton from "@/components/UI/GenericButton";
 import { SIZE, VARIANT } from "@/utils/Constants";
 
-export const PageHeader = styled.div`
+export const PageHeader = styled.div<{ $compact?: boolean }>`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing(2)};
   flex-wrap: wrap;
-  margin-bottom: 35px;
-  margin-top: 15px;
+  margin-bottom: ${({ $compact }) => ($compact ? "12px" : "35px")};
+  margin-top: ${({ $compact }) => ($compact ? "0" : "15px")};
   width: 100%;
 
   ${media.tablet} {
-    margin-bottom: 20px;
-    margin-top: 8px;
+    margin-bottom: ${({ $compact }) => ($compact ? "10px" : "20px")};
+    margin-top: ${({ $compact }) => ($compact ? "0" : "8px")};
   }
 
   ${media.mobileLg} {
-    margin-bottom: 16px;
-    margin-top: 4px;
+    margin-bottom: ${({ $compact }) => ($compact ? "8px" : "16px")};
+    margin-top: ${({ $compact }) => ($compact ? "0" : "4px")};
     gap: 10px;
   }
 `;
 
 export const PageWrap = styled.div<{ $expandedCollections?: boolean }>`
-  padding: ${({ $expandedCollections }) =>
-    $expandedCollections ? "20px 0 20px" : "10px 31px"};
-
-  ${media.tablet} {
-    padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "20px 0 16px" : "16px 20px"};
-  }
-
-  ${media.mobileLg} {
-    padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "16px 0 12px" : "20px 20px"};
-  }
-
-  ${media.mobile} {
-    padding: ${({ $expandedCollections }) =>
-      $expandedCollections ? "14px 0 10px" : "20px 20px"};
-  }
+  width: 100%;
 `;
 
 export const SectionBlock = styled.section`
@@ -228,12 +212,12 @@ export const HeaderBackButton = styled.button`
 
 export const CollectionGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  padding-inline: 0;
 
   ${media.mobileLg} {
     gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 
@@ -281,6 +265,7 @@ export const CollectionBadge = styled.span`
   left: 10px;
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.primary.GREEN_50};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
   padding: 6px 10px;
   ${({ theme }) => theme.typography.Body_Bold};
 `;
@@ -375,6 +360,8 @@ export const CollectionBuyButton = styled(GenericButton).attrs({
   variant: VARIANT.PRIMARY,
   size: SIZE.SM,
 })`
+  height: auto;
+  min-height: 52px;
   min-width: 120px;
   background: ${({ theme }) => theme.colors.primary.BLACK};
   color: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
@@ -396,6 +383,8 @@ export const CollectionRentButton = styled(GenericButton).attrs({
   variant: VARIANT.SECONDARY,
   size: SIZE.SM,
 })`
+  height: auto;
+  min-height: 52px;
   min-width: 120px;
   background: ${({ theme }) => theme.colors.neutral.GRAY_200};
   color: ${({ theme }) => theme.colors.primary.BLACK};
@@ -414,19 +403,23 @@ export const CollectionRentButton = styled(GenericButton).attrs({
 `;
 
 export const PassiveActionBlock = styled.div`
-  border-radius: 10px;
+  border-radius: 0.75rem;
   background: ${({ theme }) => theme.colors.neutral.GRAY_100};
-  padding: 8px 10px;
+  padding: 8px 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: auto;
+  min-height: 52px;
+  box-sizing: border-box;
 `;
 
 export const MediaGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
-  padding-left: 10px;
   align-items: stretch;
 
   > * {
@@ -443,7 +436,6 @@ export const MediaGrid = styled.div`
 
   ${media.tablet} {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding-left: 0;
     gap: 12px;
   }
 

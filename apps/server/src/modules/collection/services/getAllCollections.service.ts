@@ -5,6 +5,7 @@ import { db } from 'src/database/db';
 import { collections, collectionItems } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
+import { populateMissingCollectionCovers } from 'src/utils/populateMissingCollectionCovers';
 import { fail, success } from 'src/utils/sendResponse';
 
 export const getAllCollections = async (creatorId: string) => {
@@ -29,6 +30,8 @@ export const getAllCollections = async (creatorId: string) => {
       )
       .groupBy(collections.id)
       .orderBy(desc(collections.sortOrder));
+
+    await populateMissingCollectionCovers(db, result);
 
     return success(result, 'Collections retrieved successfully');
   } catch (error) {

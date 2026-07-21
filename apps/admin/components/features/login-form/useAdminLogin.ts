@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useLogin } from "../../../hooks/api/use-login";
-import { setTokens } from "../../../utils/token";
+import { useAdminTokens } from "../../../utils/token";
 
 export function useAdminLogin() {
   const router = useRouter();
@@ -13,6 +13,7 @@ export function useAdminLogin() {
   const [email, setEmail] = useState("");
   const [pin, setPin] = useState("");
   const loginMutation = useLogin();
+  const { setTokens } = useAdminTokens();
 
   const handleLogin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

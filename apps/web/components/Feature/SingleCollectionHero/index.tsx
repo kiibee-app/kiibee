@@ -12,6 +12,7 @@ import {
   CreatorAvatar,
   Description,
   PricingActions,
+  OwnerActions,
   PricingButtonContent,
   PricingButtonSubtitle,
   ContentRow,
@@ -36,14 +37,14 @@ import {
   getContentDetailPricingActions,
   getPricingLabels,
 } from "@/utils/contentPricingActions";
-import type { CollectionAccessType } from "@/utils/Constants";
+import type { CollectionAccessType, ImageSource } from "@/utils/Constants";
 
 type Props = {
   title: string;
   description?: string | null;
   creatorName?: string;
   creatorAvatar?: string;
-  image?: string;
+  image?: ImageSource;
   imageFallback?: string;
   primaryContentId?: string;
   pricing?: {
@@ -52,6 +53,17 @@ type Props = {
     rentPrice?: number | null;
     rentDurationHours?: number | null;
   };
+  onActionClick?: (action: {
+    label: string;
+    subtitle?: string;
+    isPurchase: boolean;
+  }) => void;
+  isOwner?: boolean;
+  onOpenDashboard?: () => void;
+  onBack?: () => void;
+  showBack?: boolean;
+  onSeeContent?: () => void;
+  embedded?: boolean;
 };
 
 export default function SingleCollectionHero({
@@ -63,11 +75,22 @@ export default function SingleCollectionHero({
   imageFallback,
   primaryContentId,
   pricing,
+  onActionClick,
+  isOwner,
+  onOpenDashboard,
+  onBack,
+  showBack = true,
+  onSeeContent,
+  embedded = false,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
   const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
   const handleBack = () => {
+    if (onBack) {
+      onBack();
+      return;
+    }
     router.back();
   };
   const primaryContentHref = primaryContentId
@@ -81,12 +104,30 @@ export default function SingleCollectionHero({
     : [];
   const creatorInitial = creatorName?.trim().charAt(0).toUpperCase() || "";
 
+  const handlePricingActionClick = (
+    action: (typeof pricingActions)[number],
+  ) => {
+    if (!onActionClick) return;
+    const isPurchase = action.label
+      .toLowerCase()
+      .includes(t("pricingLabels.buy").toLowerCase());
+    onActionClick({
+      label: action.label,
+      subtitle: action.subtitle,
+      isPurchase,
+    });
+  };
+
   return (
-    <HeroWrapper>
-      <TopBar>
-        <BackButtonWrapper onClick={handleBack}>
-          <BackButtonIcon />
-        </BackButtonWrapper>
+    <HeroWrapper $embedded={embedded}>
+      <TopBar $embedded={embedded}>
+        {showBack ? (
+          <BackButtonWrapper onClick={handleBack}>
+            <BackButtonIcon />
+          </BackButtonWrapper>
+        ) : (
+          <span />
+        )}
         <GenericButton variant={VARIANT.PRIMARY_LITE} onClick={share}>
           <ShareIcon />
           {t("common.share")}
@@ -125,12 +166,21 @@ export default function SingleCollectionHero({
             {description || t("singleCollection.subtitle")}
           </Description>
 
-          {pricingActions.length > 0 ? (
+          {isOwner ? (
+            <OwnerActions>
+              {onOpenDashboard && (
+                <ActionButton onClick={onOpenDashboard}>
+                  {t("singleContent.openInDashboard")}
+                </ActionButton>
+              )}
+            </OwnerActions>
+          ) : pricingActions.length > 0 ? (
             <PricingActions>
               {pricingActions.map((action) => (
                 <PricingActionButton
                   key={action.label}
                   variant={action.variant}
+                  onClick={() => handlePricingActionClick(action)}
                 >
                   <PricingButtonContent>
                     <span>{action.label}</span>
@@ -143,6 +193,10 @@ export default function SingleCollectionHero({
                 </PricingActionButton>
               ))}
             </PricingActions>
+          ) : onSeeContent ? (
+            <ActionButton onClick={onSeeContent} disabled={!primaryContentId}>
+              {t("singleCollection.seeContent")}
+            </ActionButton>
           ) : (
             <ActionButton
               asAnchor
@@ -163,6 +217,7 @@ export default function SingleCollectionHero({
             sizes="(max-width: 768px) 100vw, 560px"
             style={{ objectFit: "cover" }}
             priority
+            unoptimized={Boolean(image)}
           />
         </HeroImage>
       </ContentRow>

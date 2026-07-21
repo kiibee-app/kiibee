@@ -79,6 +79,7 @@ export default function SignUpCreatorSection() {
       placeholder={field.placeholderKey ? t(field.placeholderKey) : undefined}
       onChange={(value) => updateField(field.key, normalizeFieldValue(value))}
       required={field.required}
+      max={field.max}
     />
   );
 

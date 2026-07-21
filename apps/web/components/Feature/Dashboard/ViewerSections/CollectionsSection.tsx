@@ -3,8 +3,6 @@
 import { useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
-import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT } from "@/utils/Constants";
 import COLORS from "@repo/ui/colors";
 import PlaylistIcon from "@/assets/icons/PlaylistIcon";
 import LeftIcon from "@/assets/icons/LeftIcon";
@@ -20,6 +18,7 @@ import {
   getCollectionBadgeText,
   getCollectionPrimaryActionText,
   sortViewerCollections,
+  isUrgentExpiry,
 } from "@/utils/viewerRented";
 import {
   CollectionActionRow,
@@ -91,27 +90,40 @@ export default function CollectionsSection({
     [items, effectiveSortKey],
   );
 
-  const toggleSort = (key: CollectionSortKey) => {
-    setActiveSortKey((prev) => (prev === key ? null : key));
-  };
+  const handleSortToggle = useCallback(
+    (key: CollectionSortKey) => () => {
+      setActiveSortKey((prev) => (prev === key ? null : key));
+    },
+    [],
+  );
+
+  const stopPropagation = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+  }, []);
 
   const handleCardClick = useCallback(
-    (item: RentedCollectionItem) => {
-      if (onCollectionClick) {
-        onCollectionClick(item);
-      }
+    (item: RentedCollectionItem) => () => {
+      onCollectionClick?.(item);
     },
     [onCollectionClick],
   );
 
   const handleActionClick = useCallback(
-    (e: React.MouseEvent, href?: string) => {
-      e.stopPropagation();
+    (href?: string) => (e: React.MouseEvent) => {
+      stopPropagation(e);
       if (href) {
         navigateToContent(href, false);
       }
     },
-    [navigateToContent],
+    [navigateToContent, stopPropagation],
+  );
+
+  const handlePrimaryClick = useCallback(
+    (item: RentedCollectionItem) => (e: React.MouseEvent) => {
+      stopPropagation(e);
+      onCollectionPrimaryAction?.(item);
+    },
+    [onCollectionPrimaryAction, stopPropagation],
   );
 
   return (
@@ -139,7 +151,7 @@ export default function CollectionsSection({
                   type="button"
                   $active={isActive}
                   aria-pressed={isActive}
-                  onClick={() => toggleSort(key)}
+                  onClick={handleSortToggle(key)}
                 >
                   {t(`collections.sort.${key}`)}
                   <CollectionMetaSortArrow aria-hidden>
@@ -166,7 +178,7 @@ export default function CollectionsSection({
         {displayItems.map((item) => (
           <CollectionCard
             key={item.id}
-            onClick={() => handleCardClick(item)}
+            onClick={handleCardClick(item)}
             style={{ cursor: onCollectionClick ? "pointer" : undefined }}
           >
             <CollectionImageWrap>
@@ -214,9 +226,7 @@ export default function CollectionsSection({
                       <Button
                         key={`${item.id}-${action.label}`}
                         className="collection-cta"
-                        onClick={(e: React.MouseEvent) =>
-                          handleActionClick(e, action.href)
-                        }
+                        onClick={handleActionClick(action.href)}
                       >
                         <CollectionCtaContent>
                           <MonoText $use="Body_Medium" color={labelColor}>
@@ -236,35 +246,32 @@ export default function CollectionsSection({
                 ) : isPurchased ? (
                   <CollectionBuyButton
                     className="collection-cta"
-                    onClick={(e: React.MouseEvent) => {
-                      e.stopPropagation();
-                      if (onCollectionPrimaryAction) {
-                        onCollectionPrimaryAction(item);
-                      }
-                    }}
+                    onClick={handlePrimaryClick(item)}
                   >
                     <CollectionCtaContent>
                       <MonoText
                         $use="Body_SemiBold"
                         color={COLORS.primary.WHITE}
                       >
-                        {getCollectionPrimaryActionText(mode, t)}
+                        {getCollectionPrimaryActionText(mode, t, item)}
                       </MonoText>
                     </CollectionCtaContent>
                   </CollectionBuyButton>
                 ) : (
                   <>
-                    <GenericButton
-                      variant={VARIANT.PRIMARY}
-                      size="md"
-                      onClick={
-                        isPurchased && onCollectionPrimaryAction
-                          ? () => onCollectionPrimaryAction(item)
-                          : undefined
-                      }
+                    <CollectionBuyButton
+                      className="collection-cta"
+                      onClick={handlePrimaryClick(item)}
                     >
-                      {getCollectionPrimaryActionText(mode, t)}
-                    </GenericButton>
+                      <CollectionCtaContent>
+                        <MonoText
+                          $use="Body_SemiBold"
+                          color={COLORS.primary.WHITE}
+                        >
+                          {getCollectionPrimaryActionText(mode, t, item)}
+                        </MonoText>
+                      </CollectionCtaContent>
+                    </CollectionBuyButton>
                     {isCurrent ? (
                       <PassiveActionBlock>
                         <MonoText
@@ -273,14 +280,31 @@ export default function CollectionsSection({
                         >
                           {t("viewerRented.activeRental")}
                         </MonoText>
-                        <MonoText $use="Body_Medium" color={COLORS.primary.RED}>
-                          {t("viewerRented.expiresIn")}
+                        <MonoText
+                          $use="Body_Small"
+                          color={
+                            isUrgentExpiry(item.rentExpiresAt)
+                              ? COLORS.primary.RED
+                              : COLORS.neutral.GRAY_400
+                          }
+                        >
+                          {item.expiryText || t("viewerRented.expiresIn")}
                         </MonoText>
                       </PassiveActionBlock>
                     ) : isPurchased ? null : (
-                      <GenericButton variant={VARIANT.SOFT_OUTLINE} size="md">
-                        {t("pricingLabels.rent")}
-                      </GenericButton>
+                      <CollectionRentButton
+                        className="collection-cta"
+                        onClick={stopPropagation}
+                      >
+                        <CollectionCtaContent>
+                          <MonoText
+                            $use="Body_SemiBold"
+                            color={COLORS.primary.BLACK}
+                          >
+                            {t("pricingLabels.rent")}
+                          </MonoText>
+                        </CollectionCtaContent>
+                      </CollectionRentButton>
                     )}
                   </>
                 )}
