@@ -64,6 +64,7 @@ export const getExpiredRentedData = async (userId: string) => {
         collections: collectionsData.map((c) => ({
           ...c,
           purchasedAt: collectionMap.get(c.id) ?? null,
+          rentExpiresAt: expiresMap.get(c.id) ?? null,
         })),
       },
     };
