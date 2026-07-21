@@ -60,6 +60,10 @@ type Props = {
   }) => void;
   isOwner?: boolean;
   onOpenDashboard?: () => void;
+  onBack?: () => void;
+  showBack?: boolean;
+  onSeeContent?: () => void;
+  embedded?: boolean;
 };
 
 export default function SingleCollectionHero({
@@ -74,11 +78,19 @@ export default function SingleCollectionHero({
   onActionClick,
   isOwner,
   onOpenDashboard,
+  onBack,
+  showBack = true,
+  onSeeContent,
+  embedded = false,
 }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
   const { share, shareUrl, showShareModal, setShowShareModal } = useShare();
   const handleBack = () => {
+    if (onBack) {
+      onBack();
+      return;
+    }
     router.back();
   };
   const primaryContentHref = primaryContentId
@@ -107,11 +119,15 @@ export default function SingleCollectionHero({
   };
 
   return (
-    <HeroWrapper>
-      <TopBar>
-        <BackButtonWrapper onClick={handleBack}>
-          <BackButtonIcon />
-        </BackButtonWrapper>
+    <HeroWrapper $embedded={embedded}>
+      <TopBar $embedded={embedded}>
+        {showBack ? (
+          <BackButtonWrapper onClick={handleBack}>
+            <BackButtonIcon />
+          </BackButtonWrapper>
+        ) : (
+          <span />
+        )}
         <GenericButton variant={VARIANT.PRIMARY_LITE} onClick={share}>
           <ShareIcon />
           {t("common.share")}
@@ -177,6 +193,10 @@ export default function SingleCollectionHero({
                 </PricingActionButton>
               ))}
             </PricingActions>
+          ) : onSeeContent ? (
+            <ActionButton onClick={onSeeContent} disabled={!primaryContentId}>
+              {t("singleCollection.seeContent")}
+            </ActionButton>
           ) : (
             <ActionButton
               asAnchor

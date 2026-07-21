@@ -9,6 +9,7 @@ interface TutorialsShowcaseProps {
   maxWidth?: string;
   selectedVideoId?: string | null;
   onSelectVideo?: (videoId: string) => void;
+  collectionId?: string | null;
 }
 
 export default function TutorialsShowcase({
@@ -16,6 +17,7 @@ export default function TutorialsShowcase({
   maxWidth,
   selectedVideoId = null,
   onSelectVideo,
+  collectionId = null,
 }: TutorialsShowcaseProps) {
   return (
     <Grid $maxWidth={maxWidth}>
@@ -25,6 +27,7 @@ export default function TutorialsShowcase({
           tutorial={tutorial}
           onPlayClick={onSelectVideo}
           isSelected={selectedVideoId === tutorial.id}
+          collectionId={collectionId}
         />
       ))}
     </Grid>
