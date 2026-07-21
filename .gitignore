@@ -40,3 +40,4 @@ yarn-error.log*
 # Local Umbraco migration credentials
 migration/config.mjs
 migration/cookies*.txt
+!migration/cookies.example.txt
