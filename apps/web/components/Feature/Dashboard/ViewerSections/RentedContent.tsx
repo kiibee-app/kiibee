@@ -91,8 +91,11 @@ export default function RentedContent({
     canGoNext,
   } = useViewerRentedSectionPagination();
   const { sources: rentedSources, isLoading } = useViewerRentedData(mode);
-  const { data: purchasedData, isLoading: isPurchasedLoading } =
-    useViewerPurchased(mode === RENTED_MODES.PURCHASED);
+  const {
+    data: purchasedData,
+    isLoading: isPurchasedLoading,
+    isFetching: isPurchasedFetching,
+  } = useViewerPurchased(mode === RENTED_MODES.PURCHASED);
 
   const sources = useMemo(() => {
     if (mode === RENTED_MODES.PURCHASED) {
@@ -231,6 +234,25 @@ export default function RentedContent({
     },
     [pathname, router, searchParamsString],
   );
+
+  const isSelectedCollectionLoading = Boolean(
+    selectedCollectionId &&
+    mode === RENTED_MODES.PURCHASED &&
+    !selectedCollection &&
+    (isPurchasedLoading || isPurchasedFetching),
+  );
+
+  if (isSelectedCollectionLoading) {
+    return (
+      <DashboardPageWrapper>
+        <EmptyState>
+          <MonoText $use="Body_Medium" color={COLORS.neutral.GRAY}>
+            {LOADING_TEXT_FALLBACK}
+          </MonoText>
+        </EmptyState>
+      </DashboardPageWrapper>
+    );
+  }
 
   if (selectedContentId) {
     return (

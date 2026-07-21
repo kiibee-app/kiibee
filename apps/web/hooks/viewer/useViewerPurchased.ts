@@ -97,6 +97,7 @@ export const useViewerPurchased = (enabled: boolean = true) => {
   return {
     data,
     isLoading: query.isLoading,
+    isFetching: query.isFetching,
     isError: query.isError,
   };
 };

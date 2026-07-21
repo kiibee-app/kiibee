@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useMemo, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import NavBar from "@/components/Layout/Navbar";
@@ -23,6 +24,8 @@ import {
   STATUS_TONE,
   VIEW,
   CONTENT_COLLECTION_QUERY_KEY,
+  VIEWER_SECTION,
+  VIEWER_SECTION_VALUES,
 } from "@/utils/Constants";
 import {
   HeroWrapper,
@@ -62,6 +65,7 @@ import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 function SingleCollectionContent() {
   const { t } = useTranslation();
   const router = useRouter();
+  const queryClient = useQueryClient();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const publicCreatorId = searchParams.get("creatorId");
@@ -245,7 +249,19 @@ function SingleCollectionContent() {
 
   const handlePaymentSuccessConfirm = () => {
     setDismissedPaymentSuccess(true);
-    router.push(PATHS.DASHBOARD_VIEWER);
+    queryClient.removeQueries({
+      queryKey: [API.viewer.purchasedData],
+      exact: true,
+    });
+    const params = new URLSearchParams({
+      [VIEWER_SECTION]: VIEWER_SECTION_VALUES.COLLECTIONS,
+    });
+
+    if (id) {
+      params.set(CONTENT_COLLECTION_QUERY_KEY, id);
+    }
+
+    router.push(`${PATHS.DASHBOARD_VIEWER}?${params.toString()}`);
   };
 
   const purchaseModals = (
@@ -295,6 +311,7 @@ function SingleCollectionContent() {
         onCancel={handlePaymentSuccessClose}
         onConfirm={handlePaymentSuccessConfirm}
         onClose={handlePaymentSuccessClose}
+        closeOnConfirm={false}
         buttonRow={true}
         size="sm"
         showCloseButton={false}
