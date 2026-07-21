@@ -281,7 +281,7 @@ export default function CollectionsSection({
                           {t("viewerRented.activeRental")}
                         </MonoText>
                         <MonoText
-                          $use="Body_Medium"
+                          $use="Body_Small"
                           color={
                             isUrgentExpiry(item.rentExpiresAt)
                               ? COLORS.primary.RED

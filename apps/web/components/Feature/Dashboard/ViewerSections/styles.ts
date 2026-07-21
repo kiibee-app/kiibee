@@ -408,6 +408,8 @@ export const PassiveActionBlock = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
   height: auto;
   min-height: 52px;
   box-sizing: border-box;
