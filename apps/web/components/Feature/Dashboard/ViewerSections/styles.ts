@@ -265,6 +265,7 @@ export const CollectionBadge = styled.span`
   left: 10px;
   border-radius: 6px;
   background: ${({ theme }) => theme.colors.primary.GREEN_50};
+  color: ${({ theme }) => theme.colors.neutral.GRAY_500};
   padding: 6px 10px;
   ${({ theme }) => theme.typography.Body_Bold};
 `;
