@@ -1,0 +1,60 @@
+{
+  "requestedName": "Pædagogisk Psykologisk Tidsskrift",
+  "liveName": "Pædagogisk Psykologisk Tidsskrift",
+  "userId": 16702,
+  "status": "found",
+  "folderCount": 10,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Pædagogisk Psykologisk Tidsskrift 2020",
+      "id": 16709,
+      "status": "ok"
+    },
+    {
+      "name": "Pædagogisk Psykologisk Tidsskrift 2019",
+      "id": 16710,
+      "status": "ok"
+    },
+    {
+      "name": "Pædagogisk Psykologisk Tidsskrift 2018",
+      "id": 16711,
+      "status": "ok"
+    },
+    {
+      "name": "Pædagogisk Psykologisk Tidsskrift 2017",
+      "id": 16712,
+      "status": "ok"
+    },
+    {
+      "name": "Pædagogisk Psykologisk Tidsskrift 2016",
+      "id": 16713,
+      "status": "ok"
+    },
+    {
+      "name": "Blå Serie B33: Børns trivsel, læring og udvikling i små og store daginstitutioner",
+      "id": 19839,
+      "status": "ok"
+    },
+    {
+      "name": "Blå Serie B34: NÅR FORÆLDRE SØGER HJÆLP ",
+      "id": 19879,
+      "status": "ok"
+    },
+    {
+      "name": "Rød Serie  R40: SOCIAL ULIGHED - Fra studieværkstedet",
+      "id": 19881,
+      "status": "ok"
+    },
+    {
+      "name": "Pædagogisk Psykologisk Tidsskrift 2021",
+      "id": 39763,
+      "status": "ok"
+    },
+    {
+      "name": "Pædagogisk Psykologisk Tidsskrift 2022",
+      "id": 61341,
+      "status": "ok"
+    }
+  ]
+}
