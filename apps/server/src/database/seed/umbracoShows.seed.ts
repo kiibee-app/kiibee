@@ -420,6 +420,204 @@ function hasSeedableMediaPayload(show: UmbracoShow): boolean {
   );
 }
 
+function normalizePurchaseMediaToShow(entry: JsonRecord): UmbracoShow | null {
+  const key =
+    textOrNull(entry.key) ??
+    textOrNull(entry.udi)?.replace(/^umb:\/\/document\//i, '') ??
+    null;
+  if (!key) {
+    return null;
+  }
+
+  const normalizedKey = key.includes('-')
+    ? key.toLowerCase()
+    : [
+        key.slice(0, 8),
+        key.slice(8, 12),
+        key.slice(12, 16),
+        key.slice(16, 20),
+        key.slice(20, 32),
+      ]
+        .filter(Boolean)
+        .join('-')
+        .toLowerCase();
+
+  const urls = Array.isArray(entry.urls)
+    ? entry.urls.map((url) => String(url))
+    : undefined;
+
+  return {
+    id: typeof entry.id === 'number' ? entry.id : undefined,
+    key: normalizedKey,
+    udi: textOrNull(entry.udi) ?? undefined,
+    name: textOrNull(entry.name) ?? undefined,
+    title: textOrNull(entry.title) ?? textOrNull(entry.name) ?? undefined,
+    urls,
+    contentTypeAlias: textOrNull(entry.contentTypeAlias) ?? undefined,
+    videoID: textOrNull(entry.videoID) ?? undefined,
+    videoDownloadURL: textOrNull(entry.videoDownloadURL) ?? undefined,
+    videoThumbnailURL: textOrNull(entry.videoThumbnailURL) ?? undefined,
+    rawFile: textOrNull(entry.rawFile) ?? undefined,
+    webContentURL: textOrNull(entry.webContentURL) ?? undefined,
+    thumbnail: entry.thumbnail,
+    purchasePrice: textOrNull(entry.purchasePrice) ?? undefined,
+    rentalPrice: textOrNull(entry.rentalPrice) ?? undefined,
+    published: true,
+    hasPublishedVersion: true,
+    hidden: false,
+    sourceFolder: collectionNameFromUrls(urls) ?? DEFAULT_COLLECTION_NAME,
+  };
+}
+
+function collectionNameFromUrls(urls: string[] | undefined): string | null {
+  const url = urls?.[0];
+  if (!url || url.toLowerCase().includes('endnu ikke')) {
+    return null;
+  }
+
+  const parts = url.split('/').filter(Boolean);
+  if (parts.length < 2) {
+    return null;
+  }
+
+  return parts[1]
+    .split('-')
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
+function enrichPurchaseMediaFromPurchases(
+  profileKey: string,
+  root: string,
+  media: UmbracoShow[],
+): UmbracoShow[] {
+  const purchasesPath = join(root, profileKey, 'purchases', 'items.json');
+  const purchases = readShowsArray(purchasesPath) as unknown as JsonRecord[];
+  if (!purchases.length) {
+    return media;
+  }
+
+  const byMediaKey = new Map<string, JsonRecord>();
+  for (const purchase of purchases) {
+    const mediaList = Array.isArray(purchase.media) ? purchase.media : [];
+    for (const mediaEntry of mediaList) {
+      const record = mediaEntry as JsonRecord;
+      const key = textOrNull(record.key)?.toLowerCase();
+      if (key) {
+        byMediaKey.set(key, purchase);
+      }
+    }
+
+    const relationUdis = Array.isArray(purchase.mediaUdis)
+      ? purchase.mediaUdis
+      : [];
+    for (const udi of relationUdis) {
+      const key = String(udi)
+        .replace(/^umb:\/\/document\//i, '')
+        .toLowerCase();
+      const normalized = key.includes('-')
+        ? key
+        : [
+            key.slice(0, 8),
+            key.slice(8, 12),
+            key.slice(12, 16),
+            key.slice(16, 20),
+            key.slice(20, 32),
+          ]
+            .filter(Boolean)
+            .join('-');
+      byMediaKey.set(normalized, purchase);
+    }
+  }
+
+  return media.map((show) => {
+    if (hasSeedableMediaPayload(show)) {
+      return show;
+    }
+
+    const purchase = byMediaKey.get(show.key.toLowerCase());
+    if (!purchase) {
+      return show;
+    }
+
+    const props = (purchase.properties as JsonRecord | undefined) ?? {};
+    const videoID =
+      textOrNull(props.videoID) ?? textOrNull(purchase.videoID) ?? undefined;
+    const rawFile =
+      textOrNull(props.rawFile) ?? textOrNull(purchase.rawFile) ?? undefined;
+    const webContentURL =
+      textOrNull(props.webContentURL) ??
+      textOrNull(purchase.webContentURL) ??
+      undefined;
+    const name =
+      textOrNull(show.name) ||
+      textOrNull(purchase.name) ||
+      textOrNull(props.fullName) ||
+      'Untitled';
+
+    return {
+      ...show,
+      name,
+      title: textOrNull(show.title) || name,
+      videoID: textOrNull(show.videoID) || videoID,
+      rawFile: textOrNull(show.rawFile) || rawFile,
+      webContentURL: textOrNull(show.webContentURL) || webContentURL,
+      contentTypeAlias: textOrNull(show.contentTypeAlias) || 'media',
+    };
+  });
+}
+
+function readPurchaseMediaAsShows(
+  profileKey: string,
+  root: string,
+): UmbracoShow[] {
+  const mediaPath = join(root, profileKey, 'purchases', 'media.json');
+  const parsed = readJsonFile(mediaPath);
+  if (!Array.isArray(parsed) || !parsed.length) {
+    return [];
+  }
+
+  const shows = parsed
+    .map((entry) => normalizePurchaseMediaToShow(entry as JsonRecord))
+    .filter((show): show is UmbracoShow => Boolean(show));
+
+  return enrichPurchaseMediaFromPurchases(profileKey, root, shows).filter(
+    hasSeedableMediaPayload,
+  );
+}
+
+function collectSeededShowKeys(collections: LoadedCollection[]): Set<string> {
+  const keys = new Set<string>();
+  for (const collection of collections) {
+    for (const item of collection.items) {
+      if (item.key) {
+        keys.add(item.key.toLowerCase());
+      }
+    }
+  }
+  return keys;
+}
+
+function mergePurchaseMediaCollections(
+  existing: LoadedCollection[],
+  purchaseShows: UmbracoShow[],
+): LoadedCollection[] {
+  if (!purchaseShows.length) {
+    return existing;
+  }
+
+  const knownKeys = collectSeededShowKeys(existing);
+  const missing = purchaseShows.filter(
+    (show) => !knownKeys.has(show.key.toLowerCase()),
+  );
+  if (!missing.length) {
+    return existing;
+  }
+
+  return [...existing, ...groupShowsBySourceFolder(missing)];
+}
+
 function findUmbracoUsersRoot(): string | null {
   const envRoot = process.env.UMBRACO_DATA_USERS_PATH?.trim();
   const candidates = [
@@ -536,50 +734,62 @@ function readContentCollections(
   profileKey: string,
   root: string,
 ): LoadedCollection[] {
-  const contentDir = join(root, profileKey, 'content');
-  if (!existsSync(contentDir)) {
+  const contentDirs = [
+    join(root, profileKey, 'content'),
+    ...(profileKey === 'Rikke_Brünner'
+      ? [join(root, 'Rikke_Brunner', 'content')]
+      : []),
+  ].filter((dir, index, all) => existsSync(dir) && all.indexOf(dir) === index);
+
+  if (!contentDirs.length) {
     return [];
   }
 
-  const folderEntries = readdirSync(contentDir, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .sort((left, right) => left.name.localeCompare(right.name));
+  const loadedByKey = new Map<string, LoadedCollection>();
 
-  const loaded: LoadedCollection[] = [];
+  for (const contentDir of contentDirs) {
+    const folderEntries = readdirSync(contentDir, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .sort((left, right) => left.name.localeCompare(right.name));
 
-  for (const [index, entry] of folderEntries.entries()) {
-    const folderDir = join(contentDir, entry.name);
-    const items = readShowsArray(join(folderDir, 'items.json')).filter(
-      hasSeedableMediaPayload,
-    );
-    if (!items.length) {
-      continue;
+    for (const [index, entry] of folderEntries.entries()) {
+      const folderDir = join(contentDir, entry.name);
+      const items = readShowsArray(join(folderDir, 'items.json')).filter(
+        hasSeedableMediaPayload,
+      );
+      if (!items.length) {
+        continue;
+      }
+
+      const indexJson = readJsonFile(
+        join(folderDir, 'index.json'),
+      ) as JsonRecord | null;
+      const parent = (indexJson?.parent as JsonRecord | undefined) ?? null;
+      const collectionName =
+        textOrNull(indexJson?.collectionName) ||
+        textOrNull(parent?.name) ||
+        entry.name.replace(/_/g, ' ');
+      const parentKey = textOrNull(parent?.key)?.toLowerCase();
+      const collectionKey = parentKey || slugify(entry.name) || entry.name;
+
+      if (loadedByKey.has(collectionKey)) {
+        continue;
+      }
+
+      loadedByKey.set(collectionKey, {
+        ...buildCollectionMetaFromParent(
+          collectionKey,
+          collectionName,
+          parent,
+          index,
+        ),
+        name: collectionName,
+        items,
+      });
     }
-
-    const indexJson = readJsonFile(
-      join(folderDir, 'index.json'),
-    ) as JsonRecord | null;
-    const parent = (indexJson?.parent as JsonRecord | undefined) ?? null;
-    const collectionName =
-      textOrNull(indexJson?.collectionName) ||
-      textOrNull(parent?.name) ||
-      entry.name.replace(/_/g, ' ');
-    const parentKey = textOrNull(parent?.key)?.toLowerCase();
-    const collectionKey = parentKey || slugify(entry.name) || entry.name;
-
-    loaded.push({
-      ...buildCollectionMetaFromParent(
-        collectionKey,
-        collectionName,
-        parent,
-        index,
-      ),
-      name: collectionName,
-      items,
-    });
   }
 
-  return loaded;
+  return [...loadedByKey.values()];
 }
 
 function groupShowsBySourceFolder(shows: UmbracoShow[]): LoadedCollection[] {
@@ -616,18 +826,43 @@ function loadProfileShows(root: string): LoadedProfileShows[] {
   return loadUmbracoProfileKeys(root)
     .map((profileKey) => {
       const fromContent = readContentCollections(profileKey, root);
+      const fromPurchaseMedia = readPurchaseMediaAsShows(profileKey, root);
+
       if (fromContent.length) {
-        return { profileKey, collections: fromContent };
+        return {
+          profileKey,
+          collections: mergePurchaseMediaCollections(
+            fromContent,
+            fromPurchaseMedia,
+          ),
+        };
       }
 
       const fromShows = readShowsFile(profileKey, root);
-      if (!fromShows.length) {
+      const combined = (() => {
+        if (!fromShows.length) {
+          return fromPurchaseMedia;
+        }
+        if (!fromPurchaseMedia.length) {
+          return fromShows;
+        }
+
+        const known = new Set(fromShows.map((show) => show.key.toLowerCase()));
+        return [
+          ...fromShows,
+          ...fromPurchaseMedia.filter(
+            (show) => !known.has(show.key.toLowerCase()),
+          ),
+        ];
+      })();
+
+      if (!combined.length) {
         return { profileKey, collections: [] };
       }
 
       return {
         profileKey,
-        collections: groupShowsBySourceFolder(fromShows),
+        collections: groupShowsBySourceFolder(combined),
       };
     })
     .filter((profile) => profile.collections.length > 0);
@@ -664,8 +899,11 @@ async function ensureCollection(
     profileKey,
     collection.collectionKey,
   );
+  const nameSlug = slugify(collection.name) || 'collection';
   const collectionSlug = truncate(
-    `${channelSlug}-${slugify(collection.name) || collection.collectionKey}`,
+    collection.collectionKey === DEFAULT_COLLECTION_KEY
+      ? `${channelSlug}-${nameSlug}`
+      : `${channelSlug}-${nameSlug}-${slugify(collection.collectionKey) || collection.collectionKey}`,
     500,
   );
   const passwordHash =

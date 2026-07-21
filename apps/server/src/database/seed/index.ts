@@ -15,9 +15,11 @@ import { seedUsers } from './users.seed';
 import { backfillMissingPasswordHashes } from './backfillPasswordHashes.seed';
 import { reconcileCreatorPlansWithContent } from './reconcileCreatorPlans.seed';
 import { reconcileMissingCreatorChannels } from './reconcileCreatorChannels.seed';
+import { removeSkippedUmbracoProfiles } from './umbracoSeed.db';
 
 async function main() {
   await resetSeedData();
+  await removeSkippedUmbracoProfiles();
 
   await seedContentCategories();
   await seedContentTypes();
