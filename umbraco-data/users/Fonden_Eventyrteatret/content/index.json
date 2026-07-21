@@ -1,0 +1,30 @@
+{
+  "requestedName": "Fonden Eventyrteatret",
+  "liveName": "Fonden Eventyrteatret",
+  "userId": 96011,
+  "status": "found",
+  "folderCount": 4,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Eventyrteatrets musicals",
+      "id": 96020,
+      "status": "ok"
+    },
+    {
+      "name": "Kommer snart",
+      "id": 100628,
+      "status": "ok"
+    },
+    {
+      "name": "Anmeldereksemplar",
+      "id": 101671,
+      "status": "ok"
+    },
+    {
+      "name": "Nyligt tilføjet",
+      "id": 118909,
+      "status": "ok"
+    }
+  ]
+}

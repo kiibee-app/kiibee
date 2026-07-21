@@ -354,6 +354,9 @@ function resolveVisibility(
   return 'draft';
 }
 
+const PG_INT4_MAX = 2_147_483_647;
+const PG_INT4_MIN = -2_147_483_648;
+
 function parseInteger(value: unknown): number | null {
   const text = textOrNull(value);
   if (!text) {
@@ -361,7 +364,16 @@ function parseInteger(value: unknown): number | null {
   }
 
   const parsed = Number.parseInt(text, 10);
-  return Number.isFinite(parsed) ? parsed : null;
+  if (!Number.isFinite(parsed)) {
+    return null;
+  }
+
+  // Postgres integer columns reject values outside int4 (e.g. large videoSize).
+  if (parsed > PG_INT4_MAX || parsed < PG_INT4_MIN) {
+    return null;
+  }
+
+  return parsed;
 }
 
 function parseDecimal(value: unknown): string | null {

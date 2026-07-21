@@ -1,0 +1,20 @@
+{
+  "requestedName": "Find dig ikke i smerte",
+  "liveName": "Find dig ikke i smerte",
+  "userId": 13618,
+  "status": "found",
+  "folderCount": 2,
+  "missingFolders": [],
+  "folders": [
+    {
+      "name": "Online kurser & uddannelser",
+      "id": 16693,
+      "status": "ok"
+    },
+    {
+      "name": "8 små online kurser",
+      "id": 16794,
+      "status": "ok"
+    }
+  ]
+}
