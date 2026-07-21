@@ -89,42 +89,41 @@ export default function CollectionsSection({
     [items, effectiveSortKey],
   );
 
-  const toggleSort = (key: CollectionSortKey) => {
-    setActiveSortKey((prev) => (prev === key ? null : key));
-  };
+  const handleSortToggle = useCallback(
+    (key: CollectionSortKey) => () => {
+      setActiveSortKey((prev) => (prev === key ? null : key));
+    },
+    [],
+  );
+
+  const stopPropagation = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+  }, []);
 
   const handleCardClick = useCallback(
-    (item: RentedCollectionItem) => {
-      if (onCollectionClick) {
-        onCollectionClick(item);
-      }
+    (item: RentedCollectionItem) => () => {
+      onCollectionClick?.(item);
     },
     [onCollectionClick],
   );
 
   const handleActionClick = useCallback(
-    (e: React.MouseEvent, href?: string) => {
-      e.stopPropagation();
+    (href?: string) => (e: React.MouseEvent) => {
+      stopPropagation(e);
       if (href) {
         navigateToContent(href, false);
       }
     },
-    [navigateToContent],
+    [navigateToContent, stopPropagation],
   );
 
   const handlePrimaryClick = useCallback(
-    (e: React.MouseEvent, item: RentedCollectionItem) => {
-      e.stopPropagation();
-      if (onCollectionPrimaryAction) {
-        onCollectionPrimaryAction(item);
-      }
+    (item: RentedCollectionItem) => (e: React.MouseEvent) => {
+      stopPropagation(e);
+      onCollectionPrimaryAction?.(item);
     },
-    [onCollectionPrimaryAction],
+    [onCollectionPrimaryAction, stopPropagation],
   );
-
-  const handleStopPropagation = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-  }, []);
 
   return (
     <>
@@ -151,7 +150,7 @@ export default function CollectionsSection({
                   type="button"
                   $active={isActive}
                   aria-pressed={isActive}
-                  onClick={() => toggleSort(key)}
+                  onClick={handleSortToggle(key)}
                 >
                   {t(`collections.sort.${key}`)}
                   <CollectionMetaSortArrow aria-hidden>
@@ -178,7 +177,7 @@ export default function CollectionsSection({
         {displayItems.map((item) => (
           <CollectionCard
             key={item.id}
-            onClick={() => handleCardClick(item)}
+            onClick={handleCardClick(item)}
             style={{ cursor: onCollectionClick ? "pointer" : undefined }}
           >
             <CollectionImageWrap>
@@ -226,9 +225,7 @@ export default function CollectionsSection({
                       <Button
                         key={`${item.id}-${action.label}`}
                         className="collection-cta"
-                        onClick={(e: React.MouseEvent) =>
-                          handleActionClick(e, action.href)
-                        }
+                        onClick={handleActionClick(action.href)}
                       >
                         <CollectionCtaContent>
                           <MonoText $use="Body_Medium" color={labelColor}>
@@ -248,9 +245,7 @@ export default function CollectionsSection({
                 ) : isPurchased ? (
                   <CollectionBuyButton
                     className="collection-cta"
-                    onClick={(e: React.MouseEvent) =>
-                      handlePrimaryClick(e, item)
-                    }
+                    onClick={handlePrimaryClick(item)}
                   >
                     <CollectionCtaContent>
                       <MonoText
@@ -265,9 +260,7 @@ export default function CollectionsSection({
                   <>
                     <CollectionBuyButton
                       className="collection-cta"
-                      onClick={(e: React.MouseEvent) =>
-                        handlePrimaryClick(e, item)
-                      }
+                      onClick={handlePrimaryClick(item)}
                     >
                       <CollectionCtaContent>
                         <MonoText
@@ -293,7 +286,7 @@ export default function CollectionsSection({
                     ) : isPurchased ? null : (
                       <CollectionRentButton
                         className="collection-cta"
-                        onClick={handleStopPropagation}
+                        onClick={stopPropagation}
                       >
                         <CollectionCtaContent>
                           <MonoText
