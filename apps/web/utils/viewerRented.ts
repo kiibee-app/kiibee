@@ -31,6 +31,8 @@ export type RentedMediaItem = {
   title: string;
   author: string;
   expiryText: string;
+  buyPrice?: string | null;
+  rentPrice?: string | null;
 };
 import {
   CURRENT_RENTED_AUDIOS,
