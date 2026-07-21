@@ -22,6 +22,7 @@ import {
   STRING_EMPTY,
   resolveImageUrl,
 } from "@/utils/Constants";
+import { resolvePublicMediaUrl } from "@/utils/media";
 import { tutorialVideoCardFallback } from "@/utils/data";
 import {
   RENTED_MODES,
@@ -164,7 +165,8 @@ export default function CollectionList() {
         author: displayName || CREATOR,
         elementCount: row.contentsCount,
         coverSrc: row.coverImageUrl
-          ? resolveImageUrl(row.coverImageUrl)
+          ? resolvePublicMediaUrl(row.coverImageUrl) ||
+            resolveImageUrl(tutorialVideoCardFallback.image)
           : resolveImageUrl(tutorialVideoCardFallback.image),
         hideBadge: true,
         href: collectionHref,

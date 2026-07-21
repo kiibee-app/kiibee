@@ -10,6 +10,7 @@ import {
   collections,
   collectionItems,
 } from 'src/database/schema';
+import { populateMissingCollectionCovers } from 'src/utils/populateMissingCollectionCovers';
 
 export const getUserOrders = async (
   userId: string,
@@ -150,6 +151,8 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
     .from(collections)
     .leftJoin(users, eq(collections.creatorId, users.id))
     .where(inArray(collections.id, collectionIds));
+
+  await populateMissingCollectionCovers(db, items);
 
   const counts = await db
     .select({
