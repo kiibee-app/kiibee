@@ -55,6 +55,7 @@ export const createCreatorRequestSchema = (messages: {
   workLinkRequired: string;
   workLinkInvalid: string;
   contentDescriptionRequired: string;
+  contentDescriptionMax: string;
   consentRequired: string;
 }) =>
   z
@@ -79,7 +80,8 @@ export const createCreatorRequestSchema = (messages: {
       contentDescription: z
         .string()
         .trim()
-        .min(1, messages.contentDescriptionRequired),
+        .min(1, messages.contentDescriptionRequired)
+        .max(500, messages.contentDescriptionMax),
       agreed: z.boolean(),
     })
     .refine((values) => values.agreed, {
