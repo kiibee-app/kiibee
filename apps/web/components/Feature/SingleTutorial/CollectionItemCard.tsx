@@ -17,6 +17,7 @@ import { VARIANT } from "@/utils/Constants";
 import { resolveImageUrl } from "@/utils/media";
 import { pathPublishedContent } from "@/utils/path";
 import { getPublicCreatorProfilePath } from "@/utils/creatorChannel";
+import { KEY_ENTER, KEY_SPACE } from "@/utils/keyboard";
 import {
   FORMAT_TYPE,
   type FormatType,
@@ -142,7 +143,7 @@ export default function CollectionItemCard({ video, ownerCreatorId }: Props) {
       role="link"
       tabIndex={0}
       onKeyDown={(event) => {
-        if (event.key === "Enter" || event.key === " ") {
+        if (event.key === KEY_ENTER || event.key === KEY_SPACE) {
           openCreatorProfile(event as unknown as MouseEvent);
         }
       }}

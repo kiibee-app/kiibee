@@ -1,5 +1,5 @@
-const KEY_SPACE = " ";
-const KEY_SPACEBAR = "Spacebar";
+export const KEY_SPACE = " ";
+export const KEY_SPACEBAR = "Spacebar";
 
 export const KEY_ENTER = "Enter";
 export const KEY_BACKSPACE = "Backspace";
