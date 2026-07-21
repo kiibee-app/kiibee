@@ -10,8 +10,10 @@ import {
   COMPLETED,
   FAILED,
   PAYMENT_QUERY_KEY,
+  RETURN_URL_QUERY_KEY,
   STATUS_TONE,
 } from "@/utils/Constants";
+import { consumePaymentReturnUrl } from "@/utils/paymentReturn";
 import Image from "@/components/UI/SafeImage";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import GenericButton from "@/components/UI/GenericButton";
@@ -79,18 +81,28 @@ function PaymentSuccessContent() {
   useEffect(() => {
     if (order?.status !== COMPLETED) return;
 
-    const paymentStatus = STATUS_TONE.SUCCESS;
+    const fallbackUrl =
+      searchParams.get(RETURN_URL_QUERY_KEY) ||
+      (order.mediaFileId
+        ? `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}`
+        : order.collectionId
+          ? pathPublicCollection(order.collectionId)
+          : PATHS.HOME);
 
-    const redirectUrl = order.mediaFileId
-      ? `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}?${PAYMENT_QUERY_KEY}=${paymentStatus}`
-      : order.collectionId
-        ? `${pathPublicCollection(order.collectionId)}&&${PAYMENT_QUERY_KEY}=${paymentStatus}`
-        : undefined;
+    const redirectUrl = consumePaymentReturnUrl(
+      fallbackUrl,
+      PAYMENT_QUERY_KEY,
+      STATUS_TONE.SUCCESS,
+    );
 
-    if (redirectUrl) {
-      router.replace(redirectUrl);
-    }
-  }, [order?.status, order?.mediaFileId, order?.collectionId, router]);
+    router.replace(redirectUrl);
+  }, [
+    order?.status,
+    order?.mediaFileId,
+    order?.collectionId,
+    router,
+    searchParams,
+  ]);
 
   if (!orderId) {
     return (

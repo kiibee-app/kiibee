@@ -22,6 +22,7 @@ import { usePostAPI } from "@/lib/http/api/postApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { useContentMediaUrl } from "@/hooks/useContentMediaUrl";
+import { savePaymentReturnUrl } from "@/utils/paymentReturn";
 import { toast } from "react-toastify";
 import {
   SingleContentBody,
@@ -332,6 +333,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     }
 
     try {
+      savePaymentReturnUrl();
       const response = await createOrderMutation.mutateAsync({
         contentId,
         collectionId,

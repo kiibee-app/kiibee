@@ -488,6 +488,7 @@ export const ACTION_SIGNUP = "signup";
 export type StatusTone = (typeof STATUS_TONE)[keyof typeof STATUS_TONE];
 
 export const PAYMENT_QUERY_KEY = "payment";
+export const RETURN_URL_QUERY_KEY = "returnUrl";
 
 export const BILLING_TYPES = {
   RENTED: { value: "rented", label: "Rented" },

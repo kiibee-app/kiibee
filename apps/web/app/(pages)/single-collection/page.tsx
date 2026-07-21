@@ -35,6 +35,7 @@ import { useGetAPI } from "@/lib/http/api/getApi";
 import { useApiErrorMessage } from "@/lib/http/useApiErrorMessage";
 import { API } from "@/lib/http/api/endpoints";
 import { useCreateCollectionOrder } from "@/hooks/useCreateCollectionOrder";
+import { savePaymentReturnUrl } from "@/utils/paymentReturn";
 import {
   type CollectionsApiResponse,
   getCollectionRows,
@@ -180,6 +181,8 @@ function SingleCollectionContent() {
       setLoginModalVisible(true);
       return;
     }
+
+    savePaymentReturnUrl();
 
     createCollectionOrderMutation.mutate(
       {
