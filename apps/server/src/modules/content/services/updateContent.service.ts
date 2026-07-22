@@ -4,6 +4,7 @@ import { db } from 'src/database/db';
 import { fail, success } from 'src/utils/sendResponse';
 import { logger } from 'src/logger/logger';
 import { UpdateContentDto } from '../content.dto';
+import { checkDuplicateContentTitle } from '../content.helper';
 import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
 import {
   collectionItems,
@@ -106,6 +107,24 @@ export const updateContentService = async (
 
       if (!existing) {
         throw new HttpException('Content not found', HttpStatus.NOT_FOUND);
+      }
+
+      if (
+        dto.title !== undefined &&
+        dto.title.toLowerCase() !== existing.title.toLowerCase()
+      ) {
+        const isDuplicate = await checkDuplicateContentTitle(
+          creatorId,
+          dto.title,
+          existing.contentTypeId,
+          contentId,
+        );
+        if (isDuplicate) {
+          return fail(
+            'You already have content with this name and media type',
+            HttpStatus.CONFLICT,
+          );
+        }
       }
 
       const updatePayload = pickDefined({
