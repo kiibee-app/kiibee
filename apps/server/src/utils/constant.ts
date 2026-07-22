@@ -178,6 +178,7 @@ export const CHANNEL_SLUG_BASE_MAX_LENGTH = 220;
 export const CHANNEL_SLUG_SUFFIX_LENGTH = 8;
 export const CHANNEL_SLUG_UNIQUE_ATTEMPTS = 20;
 export const SLUG_AMPERSAND_REPLACEMENT = ' and ';
+export const STRING = 'string' as const;
 
 export const SERVER_TIMEOUT = {
   REQUEST: 30000,
