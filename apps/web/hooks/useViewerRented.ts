@@ -131,6 +131,7 @@ export const useViewerRentedData = (
   return {
     sources,
     isLoading: query.isLoading,
+    isFetching: query.isFetching,
     isError: query.isError,
   };
 };

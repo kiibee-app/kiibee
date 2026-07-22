@@ -9,6 +9,8 @@ import { PATHS, pathPublicCollection } from "@/utils/path";
 import {
   COMPLETED,
   FAILED,
+  ORDER_TYPES,
+  PAYMENT_ITEM_TYPE_QUERY_KEY,
   PAYMENT_QUERY_KEY,
   RETURN_URL_QUERY_KEY,
   STATUS_TONE,
@@ -39,6 +41,7 @@ type OrderRecord = {
   status: "pending" | "completed" | "failed";
   mediaFileId?: string | null;
   collectionId?: string | null;
+  itemType: (typeof ORDER_TYPES)[keyof typeof ORDER_TYPES];
 };
 
 type OrderByIdResponse = {
@@ -93,6 +96,9 @@ function PaymentSuccessContent() {
       fallbackUrl,
       PAYMENT_QUERY_KEY,
       STATUS_TONE.SUCCESS,
+      {
+        [PAYMENT_ITEM_TYPE_QUERY_KEY]: order.itemType,
+      },
     );
 
     router.replace(redirectUrl);
@@ -100,6 +106,7 @@ function PaymentSuccessContent() {
     order?.status,
     order?.mediaFileId,
     order?.collectionId,
+    order?.itemType,
     router,
     searchParams,
   ]);
