@@ -9,8 +9,9 @@ export const avatarFrameCss = css`
   width: 44px;
   height: 44px;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 50%;
   flex: 0 0 auto;
+  background: transparent;
 `;
 
 export const Page = styled.main`
@@ -39,12 +40,13 @@ export const BrandAvatar = styled.span`
 `;
 
 export const BrandAvatarImage = styled(Image)`
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   width: 100%;
   height: 100%;
+  padding: 12% 8%;
+  box-sizing: border-box;
 `;
-
 export const BrandName = styled.span<{
   $textTone?: typeof TONE_DARK | typeof TONE_LIGHT;
 }>`
@@ -79,5 +81,4 @@ export const MobileProfileTriggerAvatar = styled.span`
   ${avatarFrameCss};
   width: 36px;
   height: 36px;
-  border-radius: 8px;
 `;

@@ -10,6 +10,7 @@ import { seedTutorialItems } from './tutorialItems.seed';
 import { seedUsers } from './users.seed';
 import { reconcileCreatorPlansWithContent } from './reconcileCreatorPlans.seed';
 import { reconcileMissingCreatorChannels } from './reconcileCreatorChannels.seed';
+import { reconcileMissingContentAppearance } from './reconcileContentAppearance.seed';
 
 async function main() {
   await seedContentCategories();
@@ -24,6 +25,7 @@ async function main() {
   await seedUmbracoShows();
   await reconcileCreatorPlansWithContent();
   await reconcileMissingCreatorChannels();
+  await reconcileMissingContentAppearance();
 
   console.log('All seeds completed successfully');
   process.exit();

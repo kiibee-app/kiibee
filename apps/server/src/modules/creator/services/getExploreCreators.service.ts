@@ -95,15 +95,19 @@ const buildCreatorsQuery = (creatorId?: string, search?: string) => {
       id: users.id,
       name: creatorDisplayNameSql.as('name'),
       slug: creatorChannels.slug,
-      profileImageUrl: sql<string | null>`coalesce(
-          nullif(${creatorChannels.logoUrl}, ''),
-          nullif(${contentAppearance.logoUrl}, ''),
-          nullif(${users.avatarUrl}, '')
-        )`.as('profile_image_url'),
-      coverImageUrl: sql<string | null>`coalesce(
-          nullif(${creatorChannels.coverImageUrl}, ''),
-          nullif(${contentAppearance.desktopCoverImageUrl}, '')
-        )`.as('cover_image_url'),
+      profileImageUrl: sql<string | null>`case
+          when ${contentAppearance.userId} is not null
+            then nullif(${contentAppearance.logoUrl}, '')
+          else coalesce(
+            nullif(${creatorChannels.logoUrl}, ''),
+            nullif(${users.avatarUrl}, '')
+          )
+        end`.as('profile_image_url'),
+      coverImageUrl: sql<string | null>`case
+          when ${contentAppearance.userId} is not null
+            then nullif(${contentAppearance.desktopCoverImageUrl}, '')
+          else nullif(${creatorChannels.coverImageUrl}, '')
+        end`.as('cover_image_url'),
       category: sql<string | null>`null`.as('category'),
       uploadCount:
         sql<number>`coalesce(${uploadCounts.uploadCount}, 0)::int`.as(

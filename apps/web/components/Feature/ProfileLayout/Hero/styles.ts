@@ -98,21 +98,19 @@ export const AvatarWrap = styled.div`
   margin-top: -1.5625rem;
   border-radius: 50%;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: transparent;
   flex: 0 0 auto;
 
   ${({ theme }) => theme.media.desktopSm} {
     width: 8.125rem;
     height: 8.125rem;
     margin-top: -1.25rem;
-    border-width: 0.375rem;
   }
 
   ${({ theme }) => theme.media.mobileXl} {
     width: 6.75rem;
     height: 6.75rem;
     margin-top: -1rem;
-    border-width: 0.3125rem;
   }
 `;
 
@@ -123,16 +121,14 @@ export const AvatarWrapCentered = styled.div`
   margin-top: -82px;
   border-radius: 999px;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: transparent;
 
   ${({ theme }) => theme.media.mobileXl} {
     width: 136px;
     height: 136px;
     margin-top: -66px;
-    border-width: 6px;
   }
 `;
-
 export const ProfileMeta = styled.div`
   padding-bottom: 8px;
   max-width: 760px;

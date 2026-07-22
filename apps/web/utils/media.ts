@@ -208,6 +208,17 @@ export const REMOTE_COVER_IMAGE_STYLE: CSSProperties = {
   objectPosition: "center",
 };
 
+export const REMOTE_CONTAIN_IMAGE_STYLE: CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+  objectFit: "contain",
+  objectPosition: "center",
+  padding: "14% 8%",
+  boxSizing: "border-box",
+};
+
 /** Content cards — fill frame, keep poster title/top visible. */
 export const CONTENT_POSTER_IMAGE_STYLE: CSSProperties = {
   ...REMOTE_COVER_IMAGE_STYLE,
