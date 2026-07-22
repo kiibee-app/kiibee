@@ -250,17 +250,19 @@ export const HeroFrame = styled.section`
   position: relative;
   width: 100%;
   height: 500px;
-  margin: 0;
+  margin: 0 0 48px;
   padding: 0;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   ${({ theme }) => theme.media.desktopSm} {
     height: 460px;
+    margin-bottom: 36px;
   }
 
   ${({ theme }) => theme.media.mobileXl} {
     height: 420px;
+    margin-bottom: 24px;
   }
 `;
 
@@ -368,6 +370,16 @@ export const HeroMedia = styled.div`
   position: absolute;
   inset: 0;
   overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: ${({ theme }) =>
+      `linear-gradient(262deg, ${theme.colors.gradient.TRANSPARENT} 36.41%, ${theme.colors.primary.BLACK_90} 100%)`};
+    pointer-events: none;
+    z-index: 1;
+  }
 
   img {
     filter: saturate(0.95) contrast(0.96);
