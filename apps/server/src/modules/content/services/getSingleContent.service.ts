@@ -69,9 +69,7 @@ export const getSingleContentService = async (
       db
         .select()
         .from(mediaFiles)
-        .where(
-          and(eq(mediaFiles.id, contentId), eq(mediaFiles.isDeleted, false)),
-        )
+        .where(eq(mediaFiles.id, contentId))
         .limit(1)
         .then((r) => r[0]),
     ]);
@@ -81,6 +79,15 @@ export const getSingleContentService = async (
     }
 
     const access = directAccess ?? collectionAccess;
+
+    const hasActiveAccess =
+      access &&
+      (!access.rentExpiresAt ||
+        new Date(access.rentExpiresAt).getTime() > now.getTime());
+
+    if (content.isDeleted && content.creatorId !== userId && !hasActiveAccess) {
+      return fail('Content not found', HttpStatus.NOT_FOUND);
+    }
 
     const categories = await db
       .select({

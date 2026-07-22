@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { db } from 'src/database/db';
 import { mediaFiles } from 'src/database/schema';
-import { and, eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { fail } from 'src/utils/sendResponse';
 import { insertContentViewService } from 'src/modules/creator-overview/services/insertContentView.service';
 @Injectable()
@@ -43,9 +43,7 @@ export class VideoStreamService {
         mediaFileId: mediaFiles.id,
       })
       .from(mediaFiles)
-      .where(
-        and(eq(mediaFiles.fileKey, videoId), eq(mediaFiles.isDeleted, false)),
-      );
+      .where(eq(mediaFiles.fileKey, videoId));
 
     if (!mediaInfo) {
       return fail('Media file not found', HttpStatus.NOT_FOUND);

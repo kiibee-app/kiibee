@@ -3,7 +3,7 @@ import { GetObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { SIGNED_URL_EXPIRY } from 'src/utils/constant';
 import { s3 } from 'src/services/s3.client';
-import { and, eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { ResolveImportedMediaUrlService } from './resolveImportedMediaUrl.service';
 import { db } from 'src/database/db';
 import { mediaFiles } from 'src/database/schema';
@@ -54,7 +54,7 @@ export class GetMediaByKeyService {
         mediaFileId: mediaFiles.id,
       })
       .from(mediaFiles)
-      .where(and(eq(mediaFiles.fileKey, key), eq(mediaFiles.isDeleted, false)));
+      .where(eq(mediaFiles.fileKey, key));
 
     if (!mediaInfo) {
       return fail('Media file not found', HttpStatus.NOT_FOUND);

@@ -3,6 +3,7 @@ import { and, eq, ne } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import {
   collectionItems,
+  collections,
   contentCategories,
   contentTypes,
   mediaFileCategories,
@@ -45,6 +46,13 @@ export const getRelatedCollectionContentService = async (contentId: string) => {
     const [collectionItem] = await db
       .select({ collectionId: collectionItems.collectionId })
       .from(collectionItems)
+      .innerJoin(
+        collections,
+        and(
+          eq(collections.id, collectionItems.collectionId),
+          eq(collections.isDeleted, false),
+        ),
+      )
       .where(eq(collectionItems.mediaFileId, contentId))
       .limit(1);
 

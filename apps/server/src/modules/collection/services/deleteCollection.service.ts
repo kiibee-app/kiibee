@@ -37,13 +37,13 @@ export const deleteCollection = async (id: string, creatorId: string) => {
     await db.transaction(async (tx) => {
       await tx
         .update(collections)
-        .set({ isDeleted: true })
+        .set({ isDeleted: true, deletedAt: new Date() })
         .where(eq(collections.id, id));
 
       if (mediaFileIds.length > 0) {
         await tx
           .update(mediaFiles)
-          .set({ isDeleted: true })
+          .set({ isDeleted: true, deletedAt: new Date() })
           .where(inArray(mediaFiles.id, mediaFileIds));
       }
     });

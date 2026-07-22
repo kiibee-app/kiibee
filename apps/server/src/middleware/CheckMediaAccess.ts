@@ -38,8 +38,8 @@ export class CheckMediaAccessGuard implements CanActivate {
     }
 
     const whereClause = mediaId
-      ? and(eq(mediaFiles.id, mediaId), eq(mediaFiles.isDeleted, false))
-      : and(eq(mediaFiles.fileKey, mediaKey), eq(mediaFiles.isDeleted, false));
+      ? eq(mediaFiles.id, mediaId)
+      : eq(mediaFiles.fileKey, mediaKey);
 
     const mediaFile = await db.query.mediaFiles.findFirst({
       where: whereClause,
@@ -47,16 +47,12 @@ export class CheckMediaAccessGuard implements CanActivate {
         id: true,
         creatorId: true,
         accessType: true,
+        isDeleted: true,
       },
     });
 
     if (!mediaFile) {
       throw new NotFoundException('Media not found');
-    }
-
-    if (mediaFile.accessType === ACCESS_TYPE.FREE) {
-      request.mediaFile = mediaFile;
-      return true;
     }
 
     if (mediaFile.creatorId === userId) {
@@ -65,53 +61,70 @@ export class CheckMediaAccessGuard implements CanActivate {
     }
 
     const now = new Date();
-    const hasDirectAccess = await db
-      .select()
-      .from(userContentAccess)
-      .where(
-        and(
-          eq(userContentAccess.userId, userId),
-          eq(userContentAccess.mediaFileId, mediaFile.id),
-          or(
-            isNull(userContentAccess.rentExpiresAt),
-            gt(userContentAccess.rentExpiresAt, now),
+    const hasDirectAccess = async () => {
+      const rows = await db
+        .select()
+        .from(userContentAccess)
+        .where(
+          and(
+            eq(userContentAccess.userId, userId),
+            eq(userContentAccess.mediaFileId, mediaFile.id),
+            or(
+              isNull(userContentAccess.rentExpiresAt),
+              gt(userContentAccess.rentExpiresAt, now),
+            ),
           ),
-        ),
-      )
-      .limit(1);
+        )
+        .limit(1);
+      return rows.length > 0;
+    };
 
-    if (hasDirectAccess.length) {
+    const hasCollectionAccess = async () => {
+      const rows = await db
+        .select({ id: userContentAccess.id })
+        .from(userContentAccess)
+        .innerJoin(
+          collectionItems,
+          eq(collectionItems.collectionId, userContentAccess.collectionId),
+        )
+        .where(
+          and(
+            eq(userContentAccess.userId, userId),
+            isNull(userContentAccess.mediaFileId),
+            eq(collectionItems.mediaFileId, mediaFile.id),
+            or(
+              isNull(userContentAccess.rentExpiresAt),
+              gt(userContentAccess.rentExpiresAt, now),
+            ),
+          ),
+        )
+        .limit(1);
+      return rows.length > 0;
+    };
+
+    if (mediaFile.isDeleted) {
+      const hasAccess =
+        (await hasDirectAccess()) || (await hasCollectionAccess());
+      if (!hasAccess) {
+        throw new NotFoundException('Media not found');
+      }
+
       request.mediaFile = mediaFile;
       return true;
     }
 
-    const hasCollectionAccess = await db
-      .select({ id: userContentAccess.id })
-      .from(userContentAccess)
-      .innerJoin(
-        collectionItems,
-        eq(collectionItems.collectionId, userContentAccess.collectionId),
-      )
-      .where(
-        and(
-          eq(userContentAccess.userId, userId),
-          isNull(userContentAccess.mediaFileId),
-          eq(collectionItems.mediaFileId, mediaFile.id),
-          or(
-            isNull(userContentAccess.rentExpiresAt),
-            gt(userContentAccess.rentExpiresAt, now),
-          ),
-        ),
-      )
-      .limit(1);
-
-    if (!hasCollectionAccess.length) {
-      throw new ForbiddenException(
-        'Access denied. You do not have permission to access this media.',
-      );
+    if (mediaFile.accessType === ACCESS_TYPE.FREE) {
+      request.mediaFile = mediaFile;
+      return true;
     }
 
-    request.mediaFile = mediaFile;
-    return true;
+    if ((await hasDirectAccess()) || (await hasCollectionAccess())) {
+      request.mediaFile = mediaFile;
+      return true;
+    }
+
+    throw new ForbiddenException(
+      'Access denied. You do not have permission to access this media.',
+    );
   }
 }
