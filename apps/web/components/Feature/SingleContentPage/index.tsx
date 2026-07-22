@@ -15,6 +15,11 @@ import {
   CONTENT_COLLECTION_QUERY_KEY,
   CONTENT_ITEM_QUERY_KEY,
   VARIANT,
+  ROLE_CREATOR,
+  UNDEFINED_STRING,
+  REDIRECT_NEXT_QUERY_PARAM,
+  ACTION_LOGIN,
+  ACTION_SIGNUP,
 } from "@/utils/Constants";
 import { PATHS } from "@/utils/path";
 import { CREATORS_LABELS } from "@/utils/SidebarItems";
@@ -42,7 +47,8 @@ import ShareModal from "@/components/UI/Modals/ShareModal";
 import { resolveImageUrl } from "@/utils/media";
 import { openInNewTab } from "@/utils/common";
 
-import { LoginRequiredModal } from "@/components/UI/Modals";
+import { LoginRequiredModal, GenericModal } from "@/components/UI/Modals";
+import { useLogout } from "@/hooks/auth/useLogout";
 
 import { useSearchParams } from "next/navigation";
 
@@ -82,6 +88,35 @@ export default function SingleContentPage(props: SingleContentPageProps) {
   const user = useStoredLoginUser();
   const { getErrorMessage } = useApiErrorMessage();
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+
+  const [showCreatorModal1, setShowCreatorModal1] = useState(false);
+  const [showCreatorModal2, setShowCreatorModal2] = useState(false);
+  const [creatorModal2Action, setCreatorModal2Action] = useState<
+    typeof ACTION_LOGIN | typeof ACTION_SIGNUP | null
+  >(null);
+  const { logout, isPending: isLoggingOut } = useLogout();
+
+  const handleConfirmModal2 = async () => {
+    const returnUrl =
+      typeof window !== UNDEFINED_STRING
+        ? window.location.pathname + window.location.search
+        : "";
+    const redirectUrl =
+      creatorModal2Action === ACTION_SIGNUP
+        ? `${PATHS.AUTH_SIGNUP_VIEWER}?${REDIRECT_NEXT_QUERY_PARAM}=${encodeURIComponent(returnUrl)}`
+        : `${PATHS.AUTH_LOGIN}?${REDIRECT_NEXT_QUERY_PARAM}=${encodeURIComponent(returnUrl)}`;
+    await logout(redirectUrl);
+  };
+
+  const handleCreatorModal1Confirm = () => {
+    setCreatorModal2Action(ACTION_LOGIN);
+    setShowCreatorModal2(true);
+  };
+
+  const handleCreatorModal1Cancel = () => {
+    setCreatorModal2Action(ACTION_SIGNUP);
+    setShowCreatorModal2(true);
+  };
 
   const handleShowLoginModal = () => setLoginModalVisible(true);
   const handleCloseLoginModal = () => setLoginModalVisible(false);
@@ -133,6 +168,10 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         ...action,
         disabled: action.disabled || createOrderMutation.isPending,
         onClick: async () => {
+          if (user?.role === ROLE_CREATOR) {
+            setShowCreatorModal1(true);
+            return;
+          }
           setSelectedAction({
             label: action.label,
             subtitle: action.subtitle,
@@ -142,7 +181,14 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         },
       };
     });
-  }, [contentId, createOrderMutation, primaryAction, primaryActions, t]);
+  }, [
+    contentId,
+    createOrderMutation,
+    primaryAction,
+    primaryActions,
+    t,
+    user?.role,
+  ]);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [selectedAction, setSelectedAction] = useState<{
@@ -173,6 +219,11 @@ export default function SingleContentPage(props: SingleContentPageProps) {
       const actions = primaryActions ?? (primaryAction ? [primaryAction] : []);
       if (actions.length) {
         const action = actions[0];
+        if (user?.role === ROLE_CREATOR) {
+          setShowCreatorModal1(true);
+          return;
+        }
+
         setSelectedAction({
           label: action.label,
           subtitle: action.subtitle,
@@ -190,7 +241,7 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         window.history.replaceState({}, "", newUrl);
       }
     }
-  }, [searchParams, primaryActions, primaryAction, t]);
+  }, [searchParams, primaryActions, primaryAction, t, user?.role]);
 
   const isWebType = hero?.contentType === FORMAT_TYPE.WEB;
 
@@ -242,6 +293,10 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     );
 
     if (isPurchaseAction || isRentalAction) {
+      if (user?.role === ROLE_CREATOR) {
+        setShowCreatorModal1(true);
+        return;
+      }
       setSelectedAction({
         label: primaryAction?.label as string,
         subtitle: primaryAction?.subtitle,
@@ -444,6 +499,36 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         visible={showShareModal}
         url={shareUrl}
         onClose={() => setShowShareModal(false)}
+      />
+
+      <GenericModal
+        visible={showCreatorModal1}
+        onClose={() => setShowCreatorModal1(false)}
+        title={t("creatorPurchaseFlow.modal1.title")}
+        message={t("creatorPurchaseFlow.modal1.message")}
+        confirmLabel={t("creatorPurchaseFlow.modal1.primaryBtn")}
+        cancelLabel={t("creatorPurchaseFlow.modal1.secondaryBtn")}
+        onConfirm={handleCreatorModal1Confirm}
+        onCancel={handleCreatorModal1Cancel}
+        buttonRow={false}
+        fullWidthButtons
+      />
+
+      <GenericModal
+        visible={showCreatorModal2}
+        onClose={() => setShowCreatorModal2(false)}
+        title={t("creatorPurchaseFlow.modal2.title")}
+        confirmLabel={t("creatorPurchaseFlow.modal2.primaryBtn")}
+        cancelLabel={t("creatorPurchaseFlow.modal2.secondaryBtn")}
+        onConfirm={handleConfirmModal2}
+        onCancel={() => {
+          setShowCreatorModal1(true);
+        }}
+        confirmLoading={isLoggingOut}
+        confirmDisabled={isLoggingOut}
+        buttonRow={true}
+        fullWidthButtons
+        closeOnConfirm={false}
       />
     </Wrapper>
   );
