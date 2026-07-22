@@ -155,7 +155,7 @@ export default function CollectionList() {
             buyPrice: row.buyPrice,
             rentPrice: row.rentPrice,
           },
-          t("createProfileHome.latestUpload.seeContent"),
+          t("pricingLabels.free"),
           { inCollection: true, labels: getPricingLabels(t) },
         );
 

@@ -2227,7 +2227,9 @@
     "rent": "Rent",
     "buy": "Buy",
     "buyCollection": "Buy collection",
-    "free": "Free"
+    "free": "Free",
+    "accessCodeRequired": "Access code required",
+    "emailRequired": "Email required"
   },
   "viewerRented": {
     "emptyStates": {

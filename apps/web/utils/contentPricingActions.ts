@@ -1,11 +1,15 @@
 import type { TFunction } from "i18next";
 import {
+  ACCESS_TYPE_EMAIL_GATED,
   ACCESS_TYPE_FREE,
+  ACCESS_TYPE_PASSWORD,
   BUY_KEYWORDS,
   BUY_PREFIX,
   FREE_LABEL,
   RENT_KEYWORDS,
   RENT_PREFIX,
+  REQUEST_EMAIL_ACCESS,
+  SET_PASSWORD_ACCESS,
   VARIANT,
 } from "./Constants";
 import { pathPublishedContent } from "./path";
@@ -13,11 +17,16 @@ import type { FeedContentItem } from "./feedContentToTutorial";
 import type { TutorialButton } from "./types";
 import { CONTENT_RESPONSE_KEYS } from "./contentApi";
 
+export const ACCESS_CODE_REQUIRED_LABEL = "Access code required";
+export const EMAIL_REQUIRED_LABEL = "Email required";
+
 export type PricingLabels = {
   rent: string;
   buy: string;
   buyCollection: string;
   free: string;
+  accessCodeRequired: string;
+  emailRequired: string;
 };
 
 export function getPricingLabels(t: TFunction): PricingLabels {
@@ -26,7 +35,22 @@ export function getPricingLabels(t: TFunction): PricingLabels {
     buy: t("pricingLabels.buy"),
     buyCollection: t("pricingLabels.buyCollection"),
     free: t("pricingLabels.free"),
+    accessCodeRequired: t("pricingLabels.accessCodeRequired"),
+    emailRequired: t("pricingLabels.emailRequired"),
   };
+}
+
+function isPasswordAccessType(accessType?: string | null): boolean {
+  return (
+    accessType === ACCESS_TYPE_PASSWORD || accessType === SET_PASSWORD_ACCESS
+  );
+}
+
+function isEmailAccessType(accessType?: string | null): boolean {
+  return (
+    accessType === ACCESS_TYPE_EMAIL_GATED ||
+    accessType === REQUEST_EMAIL_ACCESS
+  );
 }
 
 export type ContentPricingAction = {
@@ -76,6 +100,13 @@ export function isRentActionLabel(label: string): boolean {
 export function isFreeContentItem(
   item: Pick<FeedContentItem, "accessType" | "rentPrice" | "buyPrice">,
 ): boolean {
+  if (
+    isPasswordAccessType(item.accessType) ||
+    isEmailAccessType(item.accessType)
+  ) {
+    return false;
+  }
+
   return (
     item.accessType === ACCESS_TYPE_FREE ||
     (!formatPriceLabel(RENT_PREFIX, item.rentPrice) &&
@@ -139,6 +170,25 @@ export function getContentPricingActions(
   freeLabel: string = FREE_LABEL,
   options?: { inCollection?: boolean; labels?: PricingLabels },
 ): ContentPricingAction[] {
+  if (isPasswordAccessType(item.accessType)) {
+    return [
+      {
+        label:
+          options?.labels?.accessCodeRequired ?? ACCESS_CODE_REQUIRED_LABEL,
+        fullWidth: true,
+      },
+    ];
+  }
+
+  if (isEmailAccessType(item.accessType)) {
+    return [
+      {
+        label: options?.labels?.emailRequired ?? EMAIL_REQUIRED_LABEL,
+        fullWidth: true,
+      },
+    ];
+  }
+
   if (isFreeContentItem(item)) {
     return [{ label: freeLabel, fullWidth: true }];
   }
