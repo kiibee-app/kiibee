@@ -17,12 +17,19 @@ import {
   VARIANT_CONTENT,
   ORDER_TYPES,
   PAYMENT_QUERY_KEY,
+  PAYMENT_ITEM_TYPE_QUERY_KEY,
   STATUS_TONE,
   VIEW,
   CONTENT_COLLECTION_QUERY_KEY,
   VIEWER_SECTION,
   VIEWER_SECTION_VALUES,
+  ROLE_CREATOR,
+  UNDEFINED_STRING,
+  REDIRECT_NEXT_QUERY_PARAM,
+  ACTION_LOGIN,
+  ACTION_SIGNUP,
 } from "@/utils/Constants";
+import { useLogout } from "@/hooks/auth/useLogout";
 import {
   HeroWrapper,
   TopBar,
@@ -54,7 +61,7 @@ import SuccessModalIcon from "@/components/UI/Modals/SuccessModalIcon";
 import { MODAL_ALIGN } from "@/utils/ui";
 import { toast } from "react-toastify";
 import { PATHS, COLLECTION_ROUTE } from "@/utils/path";
-import { CREATORS_LABELS } from "@/utils/SidebarItems";
+import { CREATORS_LABELS, VIEWER_VIEW_VALUES } from "@/utils/SidebarItems";
 import { Section } from "@/app/styles";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 
@@ -86,6 +93,35 @@ export default function SingleCollectionDetail({
 
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
+  const [showCreatorModal1, setShowCreatorModal1] = useState(false);
+  const [showCreatorModal2, setShowCreatorModal2] = useState(false);
+  const [creatorModal2Action, setCreatorModal2Action] = useState<
+    typeof ACTION_LOGIN | typeof ACTION_SIGNUP | null
+  >(null);
+  const { logout, isPending: isLoggingOut } = useLogout();
+
+  const handleConfirmModal2 = async () => {
+    const returnUrl =
+      typeof window !== UNDEFINED_STRING
+        ? window.location.pathname + window.location.search
+        : "";
+    const redirectUrl =
+      creatorModal2Action === ACTION_SIGNUP
+        ? `${PATHS.AUTH_SIGNUP_VIEWER}?${REDIRECT_NEXT_QUERY_PARAM}=${encodeURIComponent(returnUrl)}`
+        : `${PATHS.AUTH_LOGIN}?${REDIRECT_NEXT_QUERY_PARAM}=${encodeURIComponent(returnUrl)}`;
+    await logout(redirectUrl);
+  };
+
+  const handleCreatorModal1Confirm = () => {
+    setCreatorModal2Action(ACTION_LOGIN);
+    setShowCreatorModal2(true);
+  };
+
+  const handleCreatorModal1Cancel = () => {
+    setCreatorModal2Action(ACTION_SIGNUP);
+    setShowCreatorModal2(true);
+  };
+
   const [selectedAction, setSelectedAction] = useState<
     (PricingAction & { rentalExpiresAt?: string }) | null
   >(null);
@@ -179,6 +215,10 @@ export default function SingleCollectionDetail({
       setLoginModalVisible(true);
       return;
     }
+    if (user?.role === ROLE_CREATOR) {
+      setShowCreatorModal1(true);
+      return;
+    }
     const durationHours = resolvedPricing?.rentDurationHours;
     const rentalExpiresAt = !action.isPurchase
       ? calculateRentalExpiryDate(durationHours)
@@ -270,13 +310,24 @@ export default function SingleCollectionDetail({
 
   const handlePaymentSuccessConfirm = () => {
     setDismissedPaymentSuccess(true);
+
+    const paymentItemType = searchParams?.get(PAYMENT_ITEM_TYPE_QUERY_KEY);
+    const isRental =
+      paymentItemType === ORDER_TYPES.RENTAL ||
+      (paymentItemType == null && selectedAction?.isPurchase === false);
+
     queryClient.removeQueries({
-      queryKey: [API.viewer.purchasedData],
+      queryKey: [isRental ? API.viewer.rentedData : API.viewer.purchasedData],
       exact: true,
     });
+
     const params = new URLSearchParams({
       [VIEWER_SECTION]: VIEWER_SECTION_VALUES.COLLECTIONS,
     });
+
+    if (isRental) {
+      params.set(VIEW, VIEWER_VIEW_VALUES.CURRENTLY_RENTED);
+    }
 
     if (id) {
       params.set(CONTENT_COLLECTION_QUERY_KEY, id);
@@ -360,6 +411,36 @@ export default function SingleCollectionDetail({
         buttonRow={true}
         size="sm"
         showCloseButton={false}
+      />
+
+      <GenericModal
+        visible={showCreatorModal1}
+        onClose={() => setShowCreatorModal1(false)}
+        title={t("creatorPurchaseFlow.modal1.title")}
+        message={t("creatorPurchaseFlow.modal1.message")}
+        confirmLabel={t("creatorPurchaseFlow.modal1.primaryBtn")}
+        cancelLabel={t("creatorPurchaseFlow.modal1.secondaryBtn")}
+        onConfirm={handleCreatorModal1Confirm}
+        onCancel={handleCreatorModal1Cancel}
+        buttonRow={false}
+        fullWidthButtons
+      />
+
+      <GenericModal
+        visible={showCreatorModal2}
+        onClose={() => setShowCreatorModal2(false)}
+        title={t("creatorPurchaseFlow.modal2.title")}
+        confirmLabel={t("creatorPurchaseFlow.modal2.primaryBtn")}
+        cancelLabel={t("creatorPurchaseFlow.modal2.secondaryBtn")}
+        onConfirm={handleConfirmModal2}
+        onCancel={() => {
+          setShowCreatorModal1(true);
+        }}
+        confirmLoading={isLoggingOut}
+        confirmDisabled={isLoggingOut}
+        buttonRow={true}
+        fullWidthButtons
+        closeOnConfirm={false}
       />
     </>
   );

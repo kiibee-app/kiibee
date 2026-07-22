@@ -82,7 +82,9 @@ export const creatorRequestFormBase = {
   createSchema: createCreatorRequestSchema,
   getSchemaMessages: (translate: (key: string) => string) => ({
     firstNameRequired: translate("authCreator.form.firstName"),
+    firstNameMax: translate("authCreator.form.firstNameMax"),
     lastNameRequired: translate("authCreator.form.lastName"),
+    lastNameMax: translate("authCreator.form.lastNameMax"),
     emailRequired: translate("authForm.errors.emailRequired"),
     emailInvalid: translate("authForm.errors.emailInvalid"),
     addressRequired: translate("authCreator.form.address"),

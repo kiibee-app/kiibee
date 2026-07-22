@@ -15,19 +15,6 @@ export const latestUploadDataLayout1: LatestUploadData = {
     { title: "Buy 99 kr", subtitle: "Download file" },
     { title: "Rent 50 kr", subtitle: "Access for 3 months" },
   ],
-  imageStyle: {
-    width: "376px",
-    height: "530px",
-    padding: "14px 295px 15px 14px",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    gap: "445px",
-  },
-  containerStyle: {
-    maxWidth: "100%",
-    padding: "0",
-  },
 };
 
 export const latestUploadDataLayout2: LatestUploadData = {

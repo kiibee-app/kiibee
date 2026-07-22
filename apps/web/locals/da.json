@@ -241,7 +241,9 @@
     "login": "Log ind",
     "form": {
       "firstName": "Fornavn",
+      "firstNameMax": "Fornavn må højst være 50 tegn",
       "lastName": "Efternavn",
+      "lastNameMax": "Efternavn må højst være 50 tegn",
       "email": "E-mailadresse",
       "phone": "Telefonnummer (valgfrit)",
       "cvr": "CVR (valgfrit)",
@@ -973,8 +975,10 @@
     "title": "Min konto",
     "firstName": "Fornavn",
     "firstNameRequired": "Fornavn er påkrævet",
+    "firstNameMax": "Fornavn må højst være 50 tegn",
     "lastName": "Efternavn",
     "lastNameRequired": "Efternavn er påkrævet",
+    "lastNameMax": "Efternavn må højst være 50 tegn",
     "cvrInvalid": "CVR skal være på mindst 8 cifre",
     "passwordLabel": "Adgangskode",
     "changePassword": "Skift adgangskode",
@@ -2235,7 +2239,9 @@
     "rent": "Lej",
     "buy": "Køb",
     "buyCollection": "Køb samling",
-    "free": "Gratis"
+    "free": "Gratis",
+    "accessCodeRequired": "Adgangskode påkrævet",
+    "emailRequired": "E-mail påkrævet"
   },
   "viewerRented": {
     "emptyStates": {

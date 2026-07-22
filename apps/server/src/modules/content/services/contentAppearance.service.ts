@@ -1,9 +1,13 @@
-import { contentAppearance } from 'src/database/schema';
+import { contentAppearance, creatorChannels, users } from 'src/database/schema';
 import { ContentAppearanceDto } from '../dto/contentAppearance.dto';
 import { db } from 'src/database/db';
 import { randomUUID } from 'crypto';
 import { logger } from 'src/logger/logger';
 import { HttpException, HttpStatus } from '@nestjs/common';
+import {
+  resolveFallbackLogoUrl,
+  resolveLogoType,
+} from 'src/utils/contentAppearance';
 import { fail, success } from 'src/utils/sendResponse';
 import { eq } from 'drizzle-orm';
 
@@ -69,12 +73,48 @@ export const contentAppearanceService = async (
 export const getContentAppearanceService = async (userId: string) => {
   try {
     const [result] = await db
-      .select()
-      .from(contentAppearance)
-      .where(eq(contentAppearance.userId, userId))
+      .select({
+        appearance: contentAppearance,
+        channelLogoUrl: creatorChannels.logoUrl,
+        channelCoverImageUrl: creatorChannels.coverImageUrl,
+        userAvatarUrl: users.avatarUrl,
+        accountEmail: users.email,
+      })
+      .from(users)
+      .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
+      .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
+      .where(eq(users.id, userId))
       .limit(1);
 
-    return success(result ?? null, 'Appearance fetched successfully');
+    if (!result) {
+      return success(null, 'Appearance fetched successfully');
+    }
+
+    if (result.appearance) {
+      return success(
+        {
+          ...result.appearance,
+          supportEmail:
+            result.appearance.supportEmail?.trim() || result.accountEmail,
+        },
+        'Appearance fetched successfully',
+      );
+    }
+
+    const fallbackLogoUrl = resolveFallbackLogoUrl(
+      result.channelLogoUrl,
+      result.userAvatarUrl,
+    );
+
+    return success(
+      {
+        logoType: resolveLogoType(fallbackLogoUrl),
+        logoUrl: fallbackLogoUrl,
+        desktopCoverImageUrl: result.channelCoverImageUrl?.trim() || null,
+        supportEmail: result.accountEmail,
+      },
+      'Appearance fetched successfully',
+    );
   } catch (error) {
     logger.error('Failed to fetch appearance:', error);
 

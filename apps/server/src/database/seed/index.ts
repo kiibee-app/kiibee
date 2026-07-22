@@ -16,6 +16,7 @@ import { backfillMissingPasswordHashes } from './backfillPasswordHashes.seed';
 import { reconcileCreatorPlansWithContent } from './reconcileCreatorPlans.seed';
 import { reconcileMissingCreatorChannels } from './reconcileCreatorChannels.seed';
 import { removeSkippedUmbracoProfiles } from './umbracoSeed.db';
+import { reconcileMissingContentAppearance } from './reconcileContentAppearance.seed';
 
 async function main() {
   await resetSeedData();
@@ -33,6 +34,7 @@ async function main() {
   await seedUmbracoShows();
   await reconcileCreatorPlansWithContent();
   await reconcileMissingCreatorChannels();
+  await reconcileMissingContentAppearance();
 
   await seedUmbracoPurchases();
   await seedUmbracoLogs();

@@ -9,7 +9,10 @@ import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
 import { collectionItems } from 'src/database/schema/content/collectionItems.schema';
 
 import { CreateContentDto } from '../content.dto';
-import { contentSlugGenerator } from '../content.helper';
+import {
+  checkDuplicateContentTitle,
+  contentSlugGenerator,
+} from '../content.helper';
 
 export const createContent = async (
   dto: CreateContentDto,
@@ -25,6 +28,16 @@ export const createContent = async (
       contentTypeId,
       fileSize,
     } = dto;
+
+    const isDuplicate = await checkDuplicateContentTitle(
+      creatorId,
+      title,
+      contentTypeId,
+    );
+
+    if (isDuplicate) {
+      return fail('Content title is already in use', HttpStatus.CONFLICT);
+    }
 
     const contentId = crypto.randomUUID();
     const slug = await contentSlugGenerator(title);

@@ -90,7 +90,11 @@ export default function RentedContent({
     canGoPrev,
     canGoNext,
   } = useViewerRentedSectionPagination();
-  const { sources: rentedSources, isLoading } = useViewerRentedData(mode);
+  const {
+    sources: rentedSources,
+    isLoading,
+    isFetching,
+  } = useViewerRentedData(mode);
   const {
     data: purchasedData,
     isLoading: isPurchasedLoading,
@@ -223,9 +227,10 @@ export default function RentedContent({
 
   const isSelectedCollectionLoading = Boolean(
     selectedCollectionId &&
-    mode === RENTED_MODES.PURCHASED &&
     !selectedCollection &&
-    (isPurchasedLoading || isPurchasedFetching),
+    (mode === RENTED_MODES.PURCHASED
+      ? isPurchasedLoading || isPurchasedFetching
+      : isLoading || isFetching),
   );
 
   if (isSelectedCollectionLoading) {

@@ -2,12 +2,20 @@ import { createHash } from 'crypto';
 import { existsSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { eq, sql } from 'drizzle-orm';
+
+import {
+  DEFAULT_CONTENT_APPEARANCE_LAYOUT,
+  resolveLogoName,
+  resolveLogoType,
+  truncateContentAppearanceDescription,
+} from 'src/utils/contentAppearance';
+import { ROLE, SUBSCRIPTION_PLAN } from 'src/utils/constant';
 import { hashPassword } from 'src/utils/passwordHash';
-import { SUBSCRIPTION_PLAN } from 'src/utils/constant';
 
 import { db } from '../db';
 import {
   auditLogs,
+  contentAppearance,
   creatorChannels,
   creatorInfo,
   creatorPlans,
@@ -58,6 +66,7 @@ type MappedProfile = {
   userId: string;
   creatorInfoId: string;
   creatorChannelId: string;
+  contentAppearanceId: string;
   creatorPlanId: string;
   auditLogId: string;
   email: string;
@@ -393,6 +402,7 @@ function mapProfile(
     userId: seedUuid('user', profile.profileKey),
     creatorInfoId: seedUuid('creator-info', profile.profileKey),
     creatorChannelId: seedUuid('creator-channel', profile.profileKey),
+    contentAppearanceId: seedUuid('content-appearance', profile.profileKey),
     creatorPlanId: seedUuid('creator-plan', profile.profileKey),
     auditLogId: seedUuid('audit-log', profile.profileKey),
     email,
@@ -495,7 +505,7 @@ export const seedUmbracoProfiles = async () => {
           firstName: mapped.firstName,
           lastName: mapped.lastName,
           fullName: mapped.fullName,
-          role: 'creator',
+          role: ROLE.CREATOR,
           status: 'active',
           avatarUrl: mapped.logoUrl,
           isEmailVerified: true,
@@ -510,7 +520,7 @@ export const seedUmbracoProfiles = async () => {
             firstName: mapped.firstName,
             lastName: mapped.lastName,
             fullName: mapped.fullName,
-            role: 'creator',
+            role: ROLE.CREATOR,
             status: 'active',
             avatarUrl: mapped.logoUrl,
             isEmailVerified: true,
@@ -580,6 +590,26 @@ export const seedUmbracoProfiles = async () => {
             updatedAt: now,
           },
         });
+
+      await tx
+        .insert(contentAppearance)
+        .values({
+          id: mapped.contentAppearanceId,
+          userId: mapped.userId,
+          logoType: resolveLogoType(mapped.logoUrl),
+          logoName: resolveLogoName(mapped.logoUrl, mapped.channelName),
+          logoUrl: mapped.logoUrl,
+          description: truncateContentAppearanceDescription(
+            mapped.bio ?? mapped.description ?? mapped.headline ?? '',
+          ),
+          layout: DEFAULT_CONTENT_APPEARANCE_LAYOUT,
+          desktopCoverImageUrl: mapped.coverImageUrl,
+          mobileCoverImageUrl: null,
+          supportEmail: mapped.supportEmail ?? '',
+          createdAt: now,
+          updatedAt: now,
+        })
+        .onConflictDoNothing({ target: contentAppearance.userId });
 
       await tx
         .insert(creatorPlans)

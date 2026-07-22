@@ -17,6 +17,7 @@ export const consumePaymentReturnUrl = (
   fallbackUrl: string,
   statusKey: string,
   statusValue: string,
+  extraParams: Record<string, string | null | undefined> = {},
 ): string => {
   if (!isBrowser) return fallbackUrl;
   const stored = sessionStorage.getItem(KEY);
@@ -26,5 +27,10 @@ export const consumePaymentReturnUrl = (
   const [pathname, query = ""] = target.split("?");
   const params = new URLSearchParams(query);
   params.set(statusKey, statusValue);
+  Object.entries(extraParams).forEach(([key, value]) => {
+    if (value) {
+      params.set(key, value);
+    }
+  });
   return `${pathname}?${params.toString()}`;
 };

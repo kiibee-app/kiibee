@@ -44,7 +44,9 @@ export const useCreatorProfile = () => {
     () =>
       createCreatorProfileSchema({
         firstNameRequired: t("creatorProfile.firstNameRequired"),
+        firstNameMax: t("creatorProfile.firstNameMax"),
         lastNameRequired: t("creatorProfile.lastNameRequired"),
+        lastNameMax: t("creatorProfile.lastNameMax"),
         cvrInvalid: t("creatorProfile.cvrInvalid"),
       }),
     [t],

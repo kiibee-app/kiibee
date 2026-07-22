@@ -4,6 +4,7 @@ import { logger } from 'src/logger/logger';
 
 import {
   getExpiredRentalOrders,
+  getUserOrders,
   buildAccessMap,
   getMediaByType,
   getMediaCategories,
@@ -11,7 +12,7 @@ import {
   getCollectionsWithDetails,
   emptyPurchasedResult,
 } from '../viewer.helper';
-import { CONTENT_TYPES } from 'src/utils/constant';
+import { CONTENT_TYPES, ORDER_TYPES } from 'src/utils/constant';
 
 export const getExpiredRentedData = async (userId: string) => {
   try {
@@ -19,15 +20,81 @@ export const getExpiredRentedData = async (userId: string) => {
       return fail('User ID is required', HttpStatus.BAD_REQUEST);
     }
 
-    const ordersData = await getExpiredRentalOrders(userId);
+    const expiredRentalOrders = await getExpiredRentalOrders(userId);
 
-    const mediaIds = ordersData
-      .map((o) => o.mediaFileId)
+    if (!expiredRentalOrders.length) {
+      return {
+        success: true,
+        message: 'Expired rented data retrieved successfully',
+        data: emptyPurchasedResult(),
+      };
+    }
+
+    const [purchasedOrders, activeRentalOrders] = await Promise.all([
+      getUserOrders(userId, ORDER_TYPES.PURCHASE),
+      getUserOrders(userId, ORDER_TYPES.RENTAL),
+    ]);
+
+    const activeMediaIds = new Set([
+      ...purchasedOrders.map((order) => order.mediaFileId).filter(Boolean),
+      ...activeRentalOrders.map((order) => order.mediaFileId).filter(Boolean),
+    ]);
+
+    const activeCollectionIds = new Set([
+      ...purchasedOrders.map((order) => order.collectionId).filter(Boolean),
+      ...activeRentalOrders.map((order) => order.collectionId).filter(Boolean),
+    ]);
+
+    const latestExpiredOrderMap = new Map<
+      string,
+      (typeof expiredRentalOrders)[0]
+    >();
+
+    for (const order of expiredRentalOrders) {
+      const key = order.mediaFileId
+        ? `media_${order.mediaFileId}`
+        : `collection_${order.collectionId}`;
+
+      const existing = latestExpiredOrderMap.get(key);
+
+      if (
+        !existing ||
+        (order.rentExpiresAt &&
+          existing.rentExpiresAt &&
+          new Date(order.rentExpiresAt).getTime() >
+            new Date(existing.rentExpiresAt).getTime())
+      ) {
+        latestExpiredOrderMap.set(key, order);
+      }
+    }
+
+    const uniqueExpiredRentalOrders = Array.from(
+      latestExpiredOrderMap.values(),
+    );
+
+    const onlyExpiredRentalOrders = uniqueExpiredRentalOrders.filter(
+      (order) => {
+        const isMediaActive =
+          order.mediaFileId && activeMediaIds.has(order.mediaFileId);
+        const isCollectionActive =
+          order.collectionId &&
+          !order.mediaFileId &&
+          activeCollectionIds.has(order.collectionId);
+
+        if (isMediaActive || isCollectionActive) {
+          return false;
+        }
+        return true;
+      },
+    );
+
+    const mediaIds = onlyExpiredRentalOrders
+      .map((order) => order.mediaFileId)
       .filter(Boolean) as string[];
 
-    const collectionIds = ordersData
-      .filter((o) => !o.mediaFileId)
-      .map((o) => o.collectionId)
+    const collectionIds = onlyExpiredRentalOrders
+      .filter((order) => !order.mediaFileId)
+      .map((order) => order.collectionId)
       .filter(Boolean) as string[];
 
     if (!mediaIds.length && !collectionIds.length) {
@@ -38,7 +105,9 @@ export const getExpiredRentedData = async (userId: string) => {
       };
     }
 
-    const { mediaMap, collectionMap, expiresMap } = buildAccessMap(ordersData);
+    const { mediaMap, collectionMap, expiresMap } = buildAccessMap(
+      onlyExpiredRentalOrders,
+    );
 
     const [videos, audios, pdfs, webs, collectionsData] = await Promise.all([
       getMediaByType(mediaIds, CONTENT_TYPES.VIDEO),

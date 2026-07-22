@@ -9,6 +9,7 @@ import {
 } from "@/hooks/auth/creatorProfileApi";
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
+import { authStorage } from "@/lib/auth/authStorage";
 import {
   displayCreatorName,
   getAvatarUrl,
@@ -23,7 +24,7 @@ export function useProfileSync() {
     API.auth.creatorProfile,
     undefined,
     {
-      enabled: !publicCreatorId,
+      enabled: !publicCreatorId && authStorage.hasSession(),
       retry: false,
       refetchOnWindowFocus: false,
     },

@@ -7,6 +7,15 @@ export const appEnvSchema = smtpEnvSchema.extend({
     .default('development'),
   PORT: z.coerce.number().int().positive().default(4001),
   DATABASE_URL: z.string().trim().min(1, 'DATABASE_URL is required'),
+  DB_POOL_MAX: z.coerce.number().int().positive().default(20),
+  DB_POOL_MIN: z.coerce.number().int().positive().default(5),
+  DB_CONNECTION_TIMEOUT: z.coerce.number().int().positive().default(5000),
+  DB_IDLE_TIMEOUT: z.coerce.number().int().positive().default(10000),
+  DB_KEEP_ALIVE_INITIAL_DELAY: z.coerce
+    .number()
+    .int()
+    .positive()
+    .default(10000),
   JWT_ACCESS_SECRET: z.string().trim().min(1, 'JWT_ACCESS_SECRET is required'),
   JWT_REFRESH_SECRET: z
     .string()
