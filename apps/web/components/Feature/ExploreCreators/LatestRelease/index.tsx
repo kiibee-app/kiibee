@@ -234,7 +234,7 @@ export default function LatestRelease({ search }: { search?: string }) {
             showButton={false}
             forceOpen
             inlineOverlay
-            overlayMaxWidth="15.5rem"
+            overlayMaxWidth="100%"
             inlineOverlayWidth="100%"
           />
         </FiltersColumn>

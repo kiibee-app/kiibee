@@ -2160,6 +2160,7 @@
         "enterAmount": "Indtast beløb",
         "feeNote": "Minimum DKK 8, da Kiibee opkræver DKK 5 i transaktionsgebyr",
         "invalidNumber": "Indtast et gyldigt tal.",
+        "minAmount": "Minimumsbeløb er DKK 8.",
         "requiredAmount": "Beløb er påkrævet."
       },
       "physicalLink": {
