@@ -52,6 +52,7 @@ export const HeroTitleText = styled(MonoText).attrs({
 export const FilterControlWrap = styled.div`
   position: relative;
   flex: 0 0 auto;
+  width: 100%;
   z-index: 200;
 `;
 
@@ -156,17 +157,19 @@ export const FilterOverlay = styled.div<{
       ? `0 18px 32px ${theme.colors.gradient.CARD_SHADOW}`
       : `0 28px 60px ${theme.colors.gradient.CARD_SHADOW}`};
 
-  ${({ $inline, $inlineWidth }) =>
+  ${({ $inline, $inlineWidth, $maxWidth }) =>
     $inline
       ? `
     width: ${$inlineWidth ?? "100%"};
-    max-width: 100%;
+    max-width: ${$maxWidth ?? "100%"};
     max-height: none;
   `
       : ""}
 
   ${media.tablet} {
-    width: min(24rem, calc(100vw - 32px));
+    width: ${({ $inline }) =>
+      $inline ? "100%" : "min(24rem, calc(100vw - 32px))"};
+    max-width: 100%;
     padding: 22px 20px 18px;
   }
 `;

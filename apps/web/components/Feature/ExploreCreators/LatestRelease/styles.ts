@@ -112,7 +112,8 @@ export const FiltersColumn = styled.aside`
   width: 100%;
   max-width: 260px;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: flex-start;
   position: sticky;
   top: 120px;
