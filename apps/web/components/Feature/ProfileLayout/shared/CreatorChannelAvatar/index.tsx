@@ -6,10 +6,16 @@ import {
 } from "@/utils/Constants";
 import {
   isRemoteImageSource,
+  REMOTE_CONTAIN_IMAGE_STYLE,
   REMOTE_COVER_IMAGE_STYLE,
   resolvePublicMediaUrl,
 } from "@/utils/media";
-import { AvatarImage, AvatarInitial, RemoteAvatarImage } from "./styles";
+import {
+  AvatarImage,
+  AvatarInitial,
+  RemoteAvatarImage,
+  type AvatarFit,
+} from "./styles";
 
 type CreatorChannelAvatarProps = {
   avatarUrl: string | null;
@@ -17,6 +23,8 @@ type CreatorChannelAvatarProps = {
   alt: string;
   sizes: string;
   initialUse?: CreatorChannelAvatarTextUse;
+  /** Channel logos are wide wordmarks — default `contain` keeps the full mark visible. */
+  fit?: AvatarFit;
 };
 
 export default function CreatorChannelAvatar({
@@ -25,6 +33,7 @@ export default function CreatorChannelAvatar({
   alt,
   sizes,
   initialUse = CREATOR_CHANNEL_AVATAR_TEXT.HERO,
+  fit = "contain",
 }: CreatorChannelAvatarProps) {
   const resolvedAvatarUrl = resolvePublicMediaUrl(avatarUrl);
 
@@ -34,7 +43,12 @@ export default function CreatorChannelAvatar({
         <RemoteAvatarImage
           src={resolvedAvatarUrl}
           alt={alt}
-          style={REMOTE_COVER_IMAGE_STYLE}
+          $fit={fit}
+          style={
+            fit === "contain"
+              ? REMOTE_CONTAIN_IMAGE_STYLE
+              : REMOTE_COVER_IMAGE_STYLE
+          }
           loading="lazy"
           decoding="async"
         />
@@ -48,6 +62,7 @@ export default function CreatorChannelAvatar({
         fill
         sizes={sizes}
         unoptimized
+        $fit={fit}
       />
     );
   }
