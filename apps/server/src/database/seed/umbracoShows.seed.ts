@@ -391,6 +391,24 @@ function parseDecimal(value: unknown): string | null {
   return Number.isFinite(parsed) ? parsed.toFixed(2) : null;
 }
 
+function normalizeStorageFileKey(value: string | null): string | null {
+  if (!value) {
+    return null;
+  }
+
+  let key = value.replace(/^\/+/, '').trim();
+  if (!key) {
+    return null;
+  }
+
+  // Umbraco paths are `/media/<id>/<file>`; DO Spaces object keys omit the `media/` prefix.
+  if (/^media\//i.test(key)) {
+    key = key.replace(/^media\//i, '');
+  }
+
+  return key || null;
+}
+
 function resolveContentFields(show: UmbracoShow, contentTypeId: string) {
   const videoDownloadUrl = textOrNull(showValue(show, 'videoDownloadURL'));
   const videoId =
@@ -400,6 +418,7 @@ function resolveContentFields(show: UmbracoShow, contentTypeId: string) {
   const webContentUrl = textOrNull(showValue(show, 'webContentURL'));
 
   if (contentTypeId === 'web') {
+    // External links (YouTube, product pages) — no storage key; URL is required.
     return {
       fileKey: null,
       contentUrl: webContentUrl,
@@ -410,15 +429,17 @@ function resolveContentFields(show: UmbracoShow, contentTypeId: string) {
   if (contentTypeId === 'video') {
     return {
       fileKey: videoId,
-      contentUrl: videoDownloadUrl,
+      // Playback via Cloudflare stream from fileKey; do not store public download URLs.
+      contentUrl: null,
       fileSize: parseInteger(showValue(show, 'videoSize')),
     };
   }
 
-  // pdf / epub / audio — prefer uploaded file, fall back to web URL when export has no rawFile
+  // pdf / epub / audio — signed URL from fileKey; keep web URL only when no file exists.
+  const fileKey = normalizeStorageFileKey(rawFile);
   return {
-    fileKey: rawFile?.replace(/^\//, '') ?? null,
-    contentUrl: resolveMediaUrl(rawFile) ?? webContentUrl,
+    fileKey,
+    contentUrl: fileKey ? null : webContentUrl,
     fileSize: null,
   };
 }
