@@ -578,3 +578,13 @@ export const SCROLL_ANIMATION_CONFIG = {
   TOGGLE_ACTIONS: "play none none reverse",
   EVENT_SCROLL: "scroll",
 } as const;
+
+export const REGISTER_SOURCE = {
+  CONTENT: "content",
+  COLLECTION: "collection",
+  CREATOR_PAGE: "creator_page",
+  EMAIL_GATE: "email_gate",
+} as const;
+
+export type RegisterSource =
+  (typeof REGISTER_SOURCE)[keyof typeof REGISTER_SOURCE];
