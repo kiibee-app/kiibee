@@ -28,8 +28,10 @@ import {
   REDIRECT_NEXT_QUERY_PARAM,
   ACTION_LOGIN,
   ACTION_SIGNUP,
+  REGISTER_SOURCE,
 } from "@/utils/Constants";
 import { useLogout } from "@/hooks/auth/useLogout";
+import { axiosClient } from "@/lib/http/axiosClient";
 import {
   HeroWrapper,
   TopBar,
@@ -496,8 +498,19 @@ export default function SingleCollectionDetail({
         <AccessGate
           type={gateType}
           variant={VARIANT_CONTENT}
-          onSuccess={() => {
+          onSuccess={async (email, name) => {
             if (id) {
+              if (email && resolvedCreatorId) {
+                try {
+                  await axiosClient.post(API.creatorUsers.register, {
+                    creatorId: resolvedCreatorId,
+                    email,
+                    name,
+                    source: REGISTER_SOURCE.COLLECTION,
+                    sourceId: id,
+                  });
+                } catch {}
+              }
               window.localStorage.setItem(
                 `kiibee:gate:unlocked:collection:${id}`,
                 "true",

@@ -71,6 +71,7 @@ export const API = {
   },
   creatorUsers: {
     registrations: "/creator-users/registrations",
+    register: "/creator-users/register",
     sales: "/creator-users/sales",
     deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
   },
