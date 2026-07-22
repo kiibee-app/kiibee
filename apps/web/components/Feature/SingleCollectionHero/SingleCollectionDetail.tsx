@@ -30,6 +30,7 @@ import {
   ACTION_SIGNUP,
 } from "@/utils/Constants";
 import { useLogout } from "@/hooks/auth/useLogout";
+import { COLLECTION_ACCESS_STATUS } from "@/utils/viewerRented";
 import {
   HeroWrapper,
   TopBar,
@@ -206,7 +207,17 @@ export default function SingleCollectionDetail({
   const { gateType, isLoading: isGateLoading } = useCollectionAccessGate(
     !staticSection ? id : null,
   );
-  const { hasAccess: hasCollectionAccess } = useViewerCollectionAccess(id);
+  const {
+    hasAccess: hasCollectionAccess,
+    isPurchased,
+    isRented,
+  } = useViewerCollectionAccess(id);
+
+  const userAccessStatus = isPurchased
+    ? COLLECTION_ACCESS_STATUS.PURCHASED
+    : isRented
+      ? COLLECTION_ACCESS_STATUS.RENTED
+      : null;
 
   const createCollectionOrderMutation = useCreateCollectionOrder();
 
@@ -344,21 +355,7 @@ export default function SingleCollectionDetail({
     router.push(`/content/${encodeURIComponent(contentId)}`);
   };
 
-  const handleSeeContent = () => {
-    const primaryId =
-      dynamicSection?.videos?.[0]?.id ?? staticSection?.tutorials?.[0]?.id;
-    if (!primaryId) return;
-
-    if (onSelectContent) {
-      onSelectContent(primaryId);
-      return;
-    }
-
-    router.push(`/content/${encodeURIComponent(primaryId)}`);
-  };
-
   const heroPricing = hasCollectionAccess ? undefined : resolvedPricing;
-  const showSeeContent = hasCollectionAccess || embedded;
 
   const purchaseModals = (
     <>
@@ -454,10 +451,8 @@ export default function SingleCollectionDetail({
       <Section $embedded={embedded}>
         <SingleCollectionHero
           title={staticSection.title}
-          primaryContentId={staticSection.tutorials[0]?.id}
           onBack={onBack}
           showBack={showBack}
-          onSeeContent={showSeeContent ? handleSeeContent : undefined}
           embedded={embedded}
         />
         <CollectionContent
@@ -485,7 +480,6 @@ export default function SingleCollectionDetail({
           creatorAvatar={resolvedCreatorAvatar}
           image={resolvedImage}
           pricing={resolvedPricing}
-          primaryContentId={dynamicSection?.videos?.[0]?.id}
           onActionClick={handlePricingActionClick}
           isOwner={isOwner}
           onOpenDashboard={handleOpenDashboard}
@@ -546,16 +540,15 @@ export default function SingleCollectionDetail({
         creatorAvatar={resolvedCreatorAvatar}
         image={resolvedImage}
         imageFallback={dynamicSection.heroImageFallback}
-        primaryContentId={dynamicSection.videos[0]?.id}
         pricing={heroPricing}
         onActionClick={
           hasCollectionAccess ? undefined : handlePricingActionClick
         }
         isOwner={isOwner}
+        userAccessStatus={userAccessStatus}
         onOpenDashboard={handleOpenDashboard}
         onBack={onBack}
         showBack={showBack}
-        onSeeContent={showSeeContent ? handleSeeContent : undefined}
         embedded={embedded}
       />
       <CollectionContent

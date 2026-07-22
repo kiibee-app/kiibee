@@ -64,6 +64,29 @@ export const PricingActionButton = styled(GenericButton)`
   }
 `;
 
+export const DisabledAccessButton = styled(GenericButton)`
+  display: flex;
+  height: 51px;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  border-radius: ${({ theme }) => theme.radius?.lg || "12px"};
+  border: none;
+  background: ${({ theme }) => theme.colors.neutral.GRAY};
+  color: ${({ theme }) => theme.colors.neutral.WHITE};
+  cursor: not-allowed;
+  opacity: 1;
+
+  &:disabled {
+    background: ${({ theme }) => theme.colors.neutral.GRAY};
+    color: ${({ theme }) => theme.colors.neutral.WHITE};
+    opacity: 1;
+    cursor: not-allowed;
+  }
+`;
+
 export const PricingActions = styled.div`
   display: flex;
   align-items: stretch;

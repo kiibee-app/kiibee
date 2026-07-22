@@ -6,6 +6,7 @@ import {
   HeroContent,
   ActionButton,
   PricingActionButton,
+  DisabledAccessButton,
   HeroImage,
   LogoRow,
   CreatorRow,
@@ -29,7 +30,6 @@ import { ShareIcon } from "@/assets/icons/shareIcon";
 import { useTranslation } from "react-i18next";
 import { NAV } from "@/utils/translationKeys";
 import { VARIANT, CREATOR_CHANNEL_AVATAR_TEXT } from "@/utils/Constants";
-import { pathPublishedContent } from "@/utils/path";
 import useShare from "@/hooks/useShare";
 import ShareModal from "@/components/UI/Modals/ShareModal";
 import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
@@ -38,6 +38,10 @@ import {
   getPricingLabels,
 } from "@/utils/contentPricingActions";
 import type { CollectionAccessType, ImageSource } from "@/utils/Constants";
+import {
+  COLLECTION_ACCESS_STATUS,
+  type CollectionAccessStatus,
+} from "@/utils/viewerRented";
 
 type Props = {
   title: string;
@@ -46,7 +50,6 @@ type Props = {
   creatorAvatar?: string;
   image?: ImageSource;
   imageFallback?: string;
-  primaryContentId?: string;
   pricing?: {
     accessType?: CollectionAccessType;
     buyPrice?: number | null;
@@ -59,10 +62,10 @@ type Props = {
     isPurchase: boolean;
   }) => void;
   isOwner?: boolean;
+  userAccessStatus?: CollectionAccessStatus | null;
   onOpenDashboard?: () => void;
   onBack?: () => void;
   showBack?: boolean;
-  onSeeContent?: () => void;
   embedded?: boolean;
 };
 
@@ -73,14 +76,13 @@ export default function SingleCollectionHero({
   creatorAvatar,
   image,
   imageFallback,
-  primaryContentId,
   pricing,
   onActionClick,
   isOwner,
+  userAccessStatus,
   onOpenDashboard,
   onBack,
   showBack = true,
-  onSeeContent,
   embedded = false,
 }: Props) {
   const { t } = useTranslation();
@@ -93,9 +95,6 @@ export default function SingleCollectionHero({
     }
     router.back();
   };
-  const primaryContentHref = primaryContentId
-    ? pathPublishedContent(primaryContentId)
-    : undefined;
   const pricingActions = pricing
     ? getContentDetailPricingActions(pricing, t, {
         inCollection: true,
@@ -117,6 +116,13 @@ export default function SingleCollectionHero({
       isPurchase,
     });
   };
+
+  const userAccessLabel =
+    userAccessStatus === COLLECTION_ACCESS_STATUS.PURCHASED
+      ? t("viewerRented.purchased")
+      : userAccessStatus === COLLECTION_ACCESS_STATUS.RENTED
+        ? t("viewerRented.rented")
+        : null;
 
   return (
     <HeroWrapper $embedded={embedded}>
@@ -174,6 +180,12 @@ export default function SingleCollectionHero({
                 </ActionButton>
               )}
             </OwnerActions>
+          ) : userAccessLabel ? (
+            <PricingActions>
+              <DisabledAccessButton disabled>
+                {userAccessLabel}
+              </DisabledAccessButton>
+            </PricingActions>
           ) : pricingActions.length > 0 ? (
             <PricingActions>
               {pricingActions.map((action) => (
@@ -193,19 +205,7 @@ export default function SingleCollectionHero({
                 </PricingActionButton>
               ))}
             </PricingActions>
-          ) : onSeeContent ? (
-            <ActionButton onClick={onSeeContent} disabled={!primaryContentId}>
-              {t("singleCollection.seeContent")}
-            </ActionButton>
-          ) : (
-            <ActionButton
-              asAnchor
-              href={primaryContentHref}
-              disabled={!primaryContentHref}
-            >
-              {t("singleCollection.seeContent")}
-            </ActionButton>
-          )}
+          ) : null}
         </HeroContent>
 
         <HeroImage>
