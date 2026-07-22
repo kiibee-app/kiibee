@@ -34,11 +34,6 @@ function toCdnMediaPath(pathname: string): string {
   return path;
 }
 
-/**
- * DO Spaces object keys for legacy Umbraco media use Unicode NFD
- * (e.g. `e` + combining grave), not NFC (`è`). Percent-encode each segment
- * so browsers/Next Image hit the same key.
- */
 export function encodeSpacesMediaPath(pathname: string): string {
   const path = pathname.startsWith('/') ? pathname : `/${pathname}`;
 
@@ -94,7 +89,7 @@ function rewriteAbsoluteMediaUrl(url: string): string {
       KIIBEE_MEDIA_HOSTS.has(parsed.hostname) &&
       KIIBEE_MEDIA_PATH_PREFIX.test(pathname)
     ) {
-      return buildCdnMediaUrl(pathname) ?? url;
+      return `${KIIBEE_MEDIA_BASE_URL}${pathname}`;
     }
 
     if (SPACES_HOST_PATTERN.test(parsed.hostname)) {

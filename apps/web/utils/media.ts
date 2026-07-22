@@ -108,7 +108,7 @@ function rewriteAbsoluteMediaUrl(url: string): string {
       KIIBEE_MEDIA_HOSTS.has(parsed.hostname) &&
       isLegacyKiibeeMediaPath(pathname)
     ) {
-      return buildCdnMediaUrl(pathname) ?? url;
+      return `${KIIBEE_MEDIA_BASE_URL}${pathname}`;
     }
 
     if (SPACES_HOST_PATTERN.test(parsed.hostname)) {
