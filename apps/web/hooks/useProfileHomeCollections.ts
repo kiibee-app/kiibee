@@ -20,6 +20,11 @@ import { tutorialVideoCardFallback } from "@/utils/data";
 import { QUERY_KEYS, VARIANT } from "@/utils/Constants";
 import { type TutorialVideo } from "@/utils/types";
 import { pathPublishedContent } from "@/utils/path";
+import {
+  feedContentToTutorial,
+  type FeedContentItem,
+} from "@/utils/feedContentToTutorial";
+import { getPricingLabels } from "@/utils/contentPricingActions";
 
 export type CollectionWithCards = {
   id: string;
@@ -27,20 +32,58 @@ export type CollectionWithCards = {
   cards: TutorialVideo[];
 };
 
-export function useProfileHomeCollections(displayName: string, enabled = true) {
+type PublicCollectionContentResponse = {
+  data?: {
+    items?: FeedContentItem[];
+  } | null;
+};
+
+export function useProfileHomeCollections(
+  displayName: string,
+  enabled = true,
+  publicCreatorId?: string | null,
+) {
   const { t } = useTranslation();
   const seeContentLabel = t("createProfileHome.latestUpload.seeContent");
   const queryClient = useQueryClient();
 
   return useQuery<CollectionWithCards[]>({
-    queryKey: [QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW, { displayName }],
+    queryKey: [
+      QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW,
+      { displayName, publicCreatorId },
+    ],
     queryFn: async () => {
       const collectionsResponse = await axiosClient.get<CollectionsApiResponse>(
-        API.collection.getAll,
+        publicCreatorId
+          ? API.collection.getPublicByCreator(publicCreatorId)
+          : API.collection.getAll,
       );
       const collections = getCollectionRows(collectionsResponse.data);
 
       if (!collections.length) return [];
+
+      if (publicCreatorId) {
+        const publicContentResponses = await Promise.all(
+          collections.map((collection) =>
+            axiosClient.get<PublicCollectionContentResponse>(
+              API.content.publicCollection(collection.id),
+            ),
+          ),
+        );
+
+        return collections
+          .map((collection, index) => ({
+            id: collection.id,
+            name: collection.name,
+            cards: (publicContentResponses[index]?.data?.data?.items ?? []).map(
+              (item) =>
+                feedContentToTutorial(item, seeContentLabel, {
+                  labels: getPricingLabels(t),
+                }),
+            ),
+          }))
+          .filter((collection) => collection.cards.length > 0);
+      }
 
       const contentsResponses = await Promise.all(
         collections.map((item) =>
