@@ -2225,6 +2225,10 @@
     "emailPlaceholder": "Email",
     "submitCode": "Access content",
     "submitEmail": "Access content",
+    "invalidCodeTitle": "Invalid Access Code",
+    "invalidCodeMessage": "The code you entered is incorrect. Please check it and try again.",
+    "cancel": "Cancel",
+    "tryAgain": "Try Again",
     "consentText": "By submitting my email to Kiibee, I hereby subscribe to {{creatorName}}'s newsletter. I can unsubscribe from these at any time through Kiibee."
   },
   "pricingLabels": {

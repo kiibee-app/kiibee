@@ -15,6 +15,8 @@ import {
 } from "@/utils/Constants";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
 import type { ContentDetailItem } from "@/utils/contentApi";
+import { axiosClient } from "@/lib/http/axiosClient";
+import { API } from "@/lib/http/api/endpoints";
 
 export function useContentAccessGate(
   content: ContentDetailItem | undefined,
@@ -22,7 +24,7 @@ export function useContentAccessGate(
 ): {
   gateType: AccessGateType | null;
   isLoading: boolean;
-  handleSuccess: () => void;
+  handleSuccess: (value: string) => Promise<boolean>;
 } {
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
@@ -73,7 +75,11 @@ export function useContentAccessGate(
       ? gateParam
       : resolvedGateType;
 
-  const handleSuccess = () => {
+  const handleSuccess = async (value: string) => {
+    await (finalGateType === TYPE_CODE && content?.id
+      ? axiosClient.post(API.content.verifyCode(content.id), { code: value })
+      : Promise.resolve());
+
     if (!isOwner) {
       if (isContentLocked && content?.id) {
         window.localStorage.setItem(
@@ -93,6 +99,7 @@ export function useContentAccessGate(
       }
     }
     window.location.reload();
+    return true;
   };
 
   return {

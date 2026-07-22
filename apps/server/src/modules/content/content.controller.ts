@@ -160,6 +160,17 @@ export class ContentController {
     );
   }
 
+  @Post(':id/verify-code')
+  async verifyContentAccessCode(
+    @Param('id') contentId: string,
+    @Body() body: { code?: string },
+  ) {
+    const code = body.code?.trim();
+    if (!code)
+      return this.contentService.verifyContentAccessCode(contentId, '');
+    return this.contentService.verifyContentAccessCode(contentId, code);
+  }
+
   @Get(':contentId/related-collection')
   async getRelatedCollectionContent(@Req() req: any) {
     const contentId = req.params.contentId;
