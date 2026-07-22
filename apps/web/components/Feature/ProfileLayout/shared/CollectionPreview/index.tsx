@@ -15,9 +15,9 @@ import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { type TutorialVideo } from "@/utils/types";
-import { VARIANT } from "@/utils/Constants";
+import { VARIANT, COLLECTION_PREVIEW_LIMIT } from "@/utils/Constants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
-import { pathPublishedContent } from "@/utils/path";
+import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import {
   CollectionSection,
   CollectionSectionTag,
@@ -58,25 +58,34 @@ function PrivateCollectionPreview({
 
   return (
     <>
-      {visibleSections.map((collection) => (
-        <CollectionSection key={collection.id} $variant={variant}>
-          <SectionHeader>
-            <SectionLabel>
-              <CollectionSectionTag>
-                <MonoText $use="H4_Medium">{collection.name}</MonoText>
-              </CollectionSectionTag>
-            </SectionLabel>
-            <SectionLink href={`/single-collection?id=${collection.id}`}>
-              <LeftIcon />
-            </SectionLink>
-          </SectionHeader>
-          <FourColumnGrid>
-            {collection.cards.map((tutorial) => (
-              <TutorialCard key={tutorial.id} tutorial={tutorial} />
-            ))}
-          </FourColumnGrid>
-        </CollectionSection>
-      ))}
+      {visibleSections.map((collection) => {
+        const hasMore = collection.cards.length > COLLECTION_PREVIEW_LIMIT;
+        const displayedCards = collection.cards.slice(
+          0,
+          COLLECTION_PREVIEW_LIMIT,
+        );
+        return (
+          <CollectionSection key={collection.id} $variant={variant}>
+            <SectionHeader>
+              <SectionLabel>
+                <CollectionSectionTag>
+                  <MonoText $use="H4_Medium">{collection.name}</MonoText>
+                </CollectionSectionTag>
+              </SectionLabel>
+              {hasMore && (
+                <SectionLink href={`/single-collection?id=${collection.id}`}>
+                  <LeftIcon />
+                </SectionLink>
+              )}
+            </SectionHeader>
+            <FourColumnGrid>
+              {displayedCards.map((tutorial) => (
+                <TutorialCard key={tutorial.id} tutorial={tutorial} />
+              ))}
+            </FourColumnGrid>
+          </CollectionSection>
+        );
+      })}
     </>
   );
 }
@@ -122,6 +131,9 @@ function PublicCollectionPreview({
 
   if (isLoading || !visibleCards.length) return null;
 
+  const hasMore = visibleCards.length > COLLECTION_PREVIEW_LIMIT;
+  const displayedCards = visibleCards.slice(0, COLLECTION_PREVIEW_LIMIT);
+
   return (
     <CollectionSection $variant={variant}>
       <SectionHeader>
@@ -132,9 +144,14 @@ function PublicCollectionPreview({
             </MonoText>
           </CollectionSectionTag>
         </SectionLabel>
+        {hasMore && (
+          <SectionLink href={pathPublicCollection(publicCreatorId)}>
+            <LeftIcon />
+          </SectionLink>
+        )}
       </SectionHeader>
       <FourColumnGrid>
-        {visibleCards.map((tutorial) => (
+        {displayedCards.map((tutorial) => (
           <TutorialCard key={tutorial.id} tutorial={tutorial} />
         ))}
       </FourColumnGrid>
