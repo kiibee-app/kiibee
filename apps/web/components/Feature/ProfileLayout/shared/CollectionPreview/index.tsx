@@ -15,7 +15,11 @@ import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { type TutorialVideo } from "@/utils/types";
-import { VARIANT, COLLECTION_PREVIEW_LIMIT } from "@/utils/Constants";
+import {
+  VARIANT,
+  COLLECTION_PREVIEW_LIMIT,
+  COLLECTION_PREVIEW_START,
+} from "@/utils/Constants";
 import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
 import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
 import {
@@ -61,7 +65,7 @@ function PrivateCollectionPreview({
       {visibleSections.map((collection) => {
         const hasMore = collection.cards.length > COLLECTION_PREVIEW_LIMIT;
         const displayedCards = collection.cards.slice(
-          0,
+          COLLECTION_PREVIEW_START,
           COLLECTION_PREVIEW_LIMIT,
         );
         return (
@@ -132,7 +136,10 @@ function PublicCollectionPreview({
   if (isLoading || !visibleCards.length) return null;
 
   const hasMore = visibleCards.length > COLLECTION_PREVIEW_LIMIT;
-  const displayedCards = visibleCards.slice(0, COLLECTION_PREVIEW_LIMIT);
+  const displayedCards = visibleCards.slice(
+    COLLECTION_PREVIEW_START,
+    COLLECTION_PREVIEW_LIMIT,
+  );
 
   return (
     <CollectionSection $variant={variant}>
