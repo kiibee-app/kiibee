@@ -65,19 +65,6 @@ export type LatestUploadData = {
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
   rentDurationHours?: string | number | null;
-  imageStyle?: {
-    width?: string;
-    height?: string;
-    padding?: string;
-    flexDirection?: string;
-    justifyContent?: string;
-    alignItems?: string;
-    gap?: string;
-  };
-  containerStyle?: {
-    padding?: string;
-    maxWidth?: string;
-  };
 };
 
 type LatestUploadProps = {
@@ -199,22 +186,11 @@ export default function LatestUpload({ data, isOwner }: LatestUploadProps) {
   const TypeIcon = contentIconMap[normalizedContentType];
 
   return (
-    <Section
-      $padding={data.containerStyle?.padding}
-      $maxWidth={data.containerStyle?.maxWidth}
-    >
+    <Section $isPdf={!isMediaPlayable}>
       <MonoText $use="H4_Medium">{data.sectionTitle}</MonoText>
 
       <ContentWrapper $isMobile={isMobile}>
-        <ImageSection
-          $width={data.imageStyle?.width}
-          $height={data.imageStyle?.height}
-          $padding={data.imageStyle?.padding}
-          $flexDirection={data.imageStyle?.flexDirection}
-          $justifyContent={data.imageStyle?.justifyContent}
-          $alignItems={data.imageStyle?.alignItems}
-          $gap={data.imageStyle?.gap}
-        >
+        <ImageSection $isPdf={!isMediaPlayable}>
           <Badge>{data.badge}</Badge>
 
           <UploadImage src={resolveImageUrl(data.image)} alt={data.imageAlt} />
