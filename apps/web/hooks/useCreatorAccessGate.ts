@@ -40,8 +40,11 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
   const { data: privateSettings, isLoading: isLoadingPrivate } =
     useContentSettings();
 
-  const storageKey = publicCreatorId
-    ? `kiibee:gate:unlocked:creator:${publicCreatorId}`
+  const targetCreatorId = publicCreatorId || publicCreator?.id;
+  const currentUserId = storedUser?.id;
+
+  const storageKey = targetCreatorId
+    ? `kiibee:gate:unlocked:creator:creator=${targetCreatorId}${currentUserId ? `:user=${currentUserId}` : ""}`
     : "";
   const isUnlocked =
     typeof window !== "undefined" && storageKey
@@ -50,9 +53,9 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
 
   const isOwner =
     !isPublicView ||
-    (Boolean(publicCreatorId) &&
+    (Boolean(targetCreatorId) &&
       storedUser &&
-      storedUser.id === publicCreatorId);
+      storedUser.id === targetCreatorId);
 
   if (isUnlocked) {
     return { gateType: null, isLoading: false };

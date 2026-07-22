@@ -133,22 +133,22 @@ export default function ProfileHomeSections({
         variant={VARIANT_PAGE}
         creatorName={displayName ?? undefined}
         onSuccess={async (email, name) => {
-          if (publicCreatorId) {
+          const targetCreatorId = publicCreatorId;
+          const currentUserId = storedUser?.id;
+          if (targetCreatorId) {
             if (email) {
               try {
                 await axiosClient.post(API.creatorUsers.register, {
-                  creatorId: publicCreatorId,
+                  creatorId: targetCreatorId,
                   email,
                   name,
                   source: REGISTER_SOURCE.CREATOR_PAGE,
-                  sourceId: publicCreatorId,
+                  sourceId: targetCreatorId,
                 });
               } catch {}
             }
-            window.localStorage.setItem(
-              `kiibee:gate:unlocked:creator:${publicCreatorId}`,
-              "true",
-            );
+            const storageKey = `kiibee:gate:unlocked:creator:creator=${targetCreatorId}${currentUserId ? `:user=${currentUserId}` : ""}`;
+            window.localStorage.setItem(storageKey, "true");
             window.location.reload();
           }
         }}

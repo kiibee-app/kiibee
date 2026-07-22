@@ -105,10 +105,10 @@ export function useContentAccessGate(
           "true",
         );
       } else if (!hasContentGate && creatorGateType && content?.creatorId) {
-        window.localStorage.setItem(
-          `kiibee:gate:unlocked:creator:${content.creatorId}`,
-          "true",
-        );
+        const targetCreatorId = content.creatorId;
+        const currentUserId = storedUser?.id;
+        const storageKey = `kiibee:gate:unlocked:creator:creator=${targetCreatorId}${currentUserId ? `:user=${currentUserId}` : ""}`;
+        window.localStorage.setItem(storageKey, "true");
       }
     }
     window.location.reload();
