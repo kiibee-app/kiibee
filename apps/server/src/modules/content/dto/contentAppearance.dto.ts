@@ -30,7 +30,7 @@ export class ContentAppearanceDto {
 
   @IsOptional()
   @IsString()
-  logoUrl?: string;
+  logoUrl?: string | null;
 
   @IsOptional()
   @IsString()
@@ -49,9 +49,9 @@ export class ContentAppearanceDto {
 
   @IsOptional()
   @IsString()
-  desktopCoverImageUrl?: string;
+  desktopCoverImageUrl?: string | null;
 
   @IsOptional()
   @IsString()
-  mobileCoverImageUrl?: string;
+  mobileCoverImageUrl?: string | null;
 }

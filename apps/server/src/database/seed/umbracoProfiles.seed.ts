@@ -9,6 +9,7 @@ import { SUBSCRIPTION_PLAN } from 'src/utils/constant';
 import { db } from '../db';
 import {
   auditLogs,
+  contentAppearance,
   creatorChannels,
   creatorInfo,
   creatorPlans,
@@ -53,6 +54,7 @@ type MappedProfile = {
   userId: string;
   creatorInfoId: string;
   creatorChannelId: string;
+  contentAppearanceId: string;
   creatorPlanId: string;
   auditLogId: string;
   email: string;
@@ -477,6 +479,7 @@ function mapProfile(
     userId: seedUuid('user', profile.profileKey),
     creatorInfoId: seedUuid('creator-info', profile.profileKey),
     creatorChannelId: seedUuid('creator-channel', profile.profileKey),
+    contentAppearanceId: seedUuid('content-appearance', profile.profileKey),
     creatorPlanId: seedUuid('creator-plan', profile.profileKey),
     auditLogId: seedUuid('audit-log', profile.profileKey),
     email: uniqueSyntheticEmail(profile.profileKey),
@@ -644,6 +647,27 @@ export const seedUmbracoProfiles = async () => {
             updatedAt: now,
           },
         });
+
+      await tx
+        .insert(contentAppearance)
+        .values({
+          id: mapped.contentAppearanceId,
+          userId: mapped.userId,
+          logoType: mapped.logoUrl ? 'picture' : 'text',
+          logoName: mapped.logoUrl ? '' : mapped.channelName,
+          logoUrl: mapped.logoUrl,
+          description: truncate(
+            mapped.bio ?? mapped.description ?? mapped.headline ?? '',
+            500,
+          ),
+          layout: 'layout1',
+          desktopCoverImageUrl: mapped.coverImageUrl,
+          mobileCoverImageUrl: null,
+          supportEmail: mapped.supportEmail ?? '',
+          createdAt: now,
+          updatedAt: now,
+        })
+        .onConflictDoNothing({ target: contentAppearance.userId });
 
       await tx
         .insert(creatorPlans)
