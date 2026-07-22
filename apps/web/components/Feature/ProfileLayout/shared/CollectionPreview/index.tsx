@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { useTranslation } from "react-i18next";
 import { useProfileHomeCollections } from "@/hooks/useProfileHomeCollections";
 import { LeftIcon } from "@/assets/icons";
 import TutorialCard from "@/components/Feature/TutorialVideos/TutorialCard";
@@ -14,14 +13,11 @@ import { MonoText } from "@/components/UI/Monotext";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
-import { type TutorialVideo } from "@/utils/types";
 import {
-  VARIANT,
   COLLECTION_PREVIEW_LIMIT,
   COLLECTION_PREVIEW_START,
 } from "@/utils/Constants";
-import { usePublicCreatorContent } from "@/hooks/creators/usePublicCreatorContent";
-import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
+import { pathPublicCollection } from "@/utils/path";
 import {
   CollectionSection,
   CollectionSectionTag,
@@ -98,76 +94,72 @@ function PublicCollectionPreview({
   variant,
   publicCreatorId,
   searchQuery,
-  seeContentLabel,
+  displayName,
 }: {
   variant: ProfileLayoutVariant;
   publicCreatorId: string;
   searchQuery: string;
-  seeContentLabel: string;
+  displayName: string;
 }) {
-  const { t } = useTranslation();
-  const { tutorials, isLoading } = usePublicCreatorContent(publicCreatorId);
+  const { data: tutorials = [], isLoading } = useProfileHomeCollections(
+    displayName,
+    true,
+    publicCreatorId,
+  );
 
-  const cardsWithSeeContent = useMemo((): TutorialVideo[] => {
-    return tutorials.map((tutorial) => {
-      if (tutorial.isFree) {
-        return {
-          ...tutorial,
-          buttons: [
-            {
-              label: seeContentLabel,
-              variant: VARIANT.SECONDARY,
-              href: pathPublishedContent(tutorial.id),
-            },
-          ],
-        };
-      }
-      return tutorial;
-    });
-  }, [tutorials, seeContentLabel]);
+  const cardsWithSeeContent = useMemo(() => tutorials, [tutorials]);
 
-  const visibleCards = useMemo((): TutorialVideo[] => {
-    if (!searchQuery.trim()) return cardsWithSeeContent;
-    return cardsWithSeeContent.filter((card) =>
-      matchesProfileSearch(searchQuery, card.title),
+  const visibleCards = useMemo(() => {
+    const limited = cardsWithSeeContent.slice(
+      COLLECTION_PREVIEW_START,
+      COLLECTION_PREVIEW_LIMIT,
     );
+    if (!searchQuery.trim()) return limited;
+
+    return limited
+      .map((section) => ({
+        ...section,
+        cards: section.cards.filter((card) =>
+          matchesProfileSearch(searchQuery, card.title),
+        ),
+      }))
+      .filter((section) => section.cards.length > 0);
   }, [cardsWithSeeContent, searchQuery]);
 
   if (isLoading || !visibleCards.length) return null;
 
-  const hasMore = visibleCards.length > COLLECTION_PREVIEW_LIMIT;
-  const displayedCards = visibleCards.slice(
-    COLLECTION_PREVIEW_START,
-    COLLECTION_PREVIEW_LIMIT,
-  );
-
   return (
-    <CollectionSection $variant={variant}>
-      <SectionHeader>
-        <SectionLabel>
-          <CollectionSectionTag>
-            <MonoText $use="H4_Medium">
-              {t("createProfileHome.latestUpload.seeContent")}
-            </MonoText>
-          </CollectionSectionTag>
-        </SectionLabel>
-        {hasMore && (
-          <SectionLink href={pathPublicCollection(publicCreatorId)}>
-            <LeftIcon />
-          </SectionLink>
-        )}
-      </SectionHeader>
-      <FourColumnGrid>
-        {displayedCards.map((tutorial) => (
-          <TutorialCard key={tutorial.id} tutorial={tutorial} />
-        ))}
-      </FourColumnGrid>
-    </CollectionSection>
+    <>
+      {visibleCards.map((collection) => (
+        <CollectionSection key={collection.id} $variant={variant}>
+          <SectionHeader>
+            <SectionLabel>
+              <CollectionSectionTag>
+                <MonoText $use="H4_Medium">{collection.name}</MonoText>
+              </CollectionSectionTag>
+            </SectionLabel>
+            {collection.cards.length > COLLECTION_PREVIEW_LIMIT && (
+              <SectionLink
+                href={pathPublicCollection(collection.id, publicCreatorId)}
+              >
+                <LeftIcon />
+              </SectionLink>
+            )}
+          </SectionHeader>
+          <FourColumnGrid>
+            {collection.cards
+              .slice(COLLECTION_PREVIEW_START, COLLECTION_PREVIEW_LIMIT)
+              .map((tutorial) => (
+                <TutorialCard key={tutorial.id} tutorial={tutorial} />
+              ))}
+          </FourColumnGrid>
+        </CollectionSection>
+      ))}
+    </>
   );
 }
 
 export default function CollectionPreview({ variant }: Props) {
-  const { t } = useTranslation();
   const { searchQuery } = useCreatorProfileUi();
   const { displayName, isPublicView, publicCreatorId } =
     useCreatorChannelProfile();
@@ -178,7 +170,7 @@ export default function CollectionPreview({ variant }: Props) {
         variant={variant}
         publicCreatorId={publicCreatorId}
         searchQuery={searchQuery}
-        seeContentLabel={t("createProfileHome.latestUpload.seeContent")}
+        displayName={displayName}
       />
     );
   }
