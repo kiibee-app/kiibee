@@ -57,6 +57,7 @@ export const ImageSection = styled.div<{
   border-radius: 0.5rem;
   overflow: hidden;
   flex: 0 0 auto;
+  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
 
   ${media.tablet} {
     width: 100%;
@@ -81,10 +82,23 @@ export const UploadImage = styled.img`
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
   z-index: 1;
+`;
+
+export const UploadBackgroundImage = styled.img`
+  position: absolute;
+  width: calc(100% + 24px);
+  height: calc(100% + 24px);
+  object-fit: cover;
+  object-position: center;
+  filter: blur(10px);
+  transform: scale(1.04);
+  opacity: 0.65;
+  display: block;
+  z-index: 0;
 `;
 
 export const TextSection = styled.div`

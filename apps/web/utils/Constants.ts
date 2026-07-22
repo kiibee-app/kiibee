@@ -34,6 +34,10 @@ export * from "@/lib/subscription/constants";
 export const EXPORT_DATE_RANGE_KEY = "export-date-range";
 export const BLANK = "_blank";
 export const SVG_XMLNS = "http://www.w3.org/2000/svg";
+export const DECORATIVE_IMAGE_PROPS = {
+  alt: "",
+  "aria-hidden": true,
+} as const;
 export const DEFAULT_WINDOW_WIDTH = 1200;
 export const MOBILE_BREAKPOINT = 860;
 export const SIDEBAR_COLLAPSE_BREAKPOINT = 1024;

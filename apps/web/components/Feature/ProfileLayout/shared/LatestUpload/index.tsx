@@ -18,10 +18,16 @@ import {
   ImageOverlay,
   BottomControls,
   UploadImage,
+  UploadBackgroundImage,
   RightControlButton,
   LeftControlButton,
 } from "./styles";
-import { resolveImageUrl, MOBILE_BREAKPOINT, VARIANT } from "@/utils/Constants";
+import {
+  DECORATIVE_IMAGE_PROPS,
+  resolveImageUrl,
+  MOBILE_BREAKPOINT,
+  VARIANT,
+} from "@/utils/Constants";
 import { MonoText } from "@/components/UI/Monotext";
 import {
   EpubIcon,
@@ -198,6 +204,7 @@ export default function LatestUpload({
     normalizedContentType === FORMAT_TYPE.VIDEO ||
     normalizedContentType === FORMAT_TYPE.AUDIO;
   const TypeIcon = contentIconMap[normalizedContentType];
+  const uploadImageUrl = resolveImageUrl(data.image);
 
   return (
     <Section $variant={variant}>
@@ -207,7 +214,11 @@ export default function LatestUpload({
         <ImageSection $isPdf={!isMediaPlayable}>
           <Badge>{data.badge}</Badge>
 
-          <UploadImage src={resolveImageUrl(data.image)} alt={data.imageAlt} />
+          <UploadBackgroundImage
+            src={uploadImageUrl}
+            {...DECORATIVE_IMAGE_PROPS}
+          />
+          <UploadImage src={uploadImageUrl} alt={data.imageAlt} />
 
           <ImageOverlay>
             <BottomControls>
