@@ -77,6 +77,7 @@ export const ensureCreatorChannel = async (
     .select({
       id: creatorChannels.id,
       name: creatorChannels.name,
+      slug: creatorChannels.slug,
       isPublished: creatorChannels.isPublished,
     })
     .from(creatorChannels)
@@ -84,19 +85,38 @@ export const ensureCreatorChannel = async (
     .limit(1);
 
   if (existing) {
-    const updates: { name?: string; isPublished?: boolean; updatedAt: Date } = {
+    const updates: {
+      name?: string;
+      slug?: string;
+      isPublished?: boolean;
+      updatedAt: Date;
+    } = {
       updatedAt: now,
     };
 
+    const nextSlug = await allocateUniqueChannelSlug(
+      client,
+      name,
+      params.creatorId,
+    );
+
     if (existing.name !== name) {
       updates.name = name;
+    }
+
+    if (existing.slug !== nextSlug) {
+      updates.slug = nextSlug;
     }
 
     if (!existing.isPublished) {
       updates.isPublished = true;
     }
 
-    if (updates.name === undefined && updates.isPublished === undefined) {
+    if (
+      updates.name === undefined &&
+      updates.slug === undefined &&
+      updates.isPublished === undefined
+    ) {
       return;
     }
 
