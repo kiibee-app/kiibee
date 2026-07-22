@@ -118,6 +118,13 @@ export default function SingleCollectionHero({
     });
   };
 
+  const userAccessLabel =
+    userAccessStatus === COLLECTION_ACCESS_STATUS.PURCHASED
+      ? t("viewerRented.purchased")
+      : userAccessStatus === COLLECTION_ACCESS_STATUS.RENTED
+        ? t("viewerRented.rented")
+        : null;
+
   return (
     <HeroWrapper $embedded={embedded}>
       <TopBar $embedded={embedded}>
@@ -174,16 +181,10 @@ export default function SingleCollectionHero({
                 </ActionButton>
               )}
             </OwnerActions>
-          ) : userAccessStatus === COLLECTION_ACCESS_STATUS.PURCHASED ? (
+          ) : userAccessLabel ? (
             <PricingActions>
               <DisabledAccessButton disabled>
-                {t("viewerRented.purchased")}
-              </DisabledAccessButton>
-            </PricingActions>
-          ) : userAccessStatus === COLLECTION_ACCESS_STATUS.RENTED ? (
-            <PricingActions>
-              <DisabledAccessButton disabled>
-                {t("viewerRented.rented")}
+                {userAccessLabel}
               </DisabledAccessButton>
             </PricingActions>
           ) : pricingActions.length > 0 ? (
