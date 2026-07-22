@@ -100,16 +100,22 @@ export function useViewerCollectionAccess(collectionId?: string | null) {
     isLoggedIn,
   );
 
-  const hasAccess = useMemo(() => {
+  const isPurchased = useMemo(() => {
     if (!isLoggedIn || !collectionId) return false;
-    return (
-      hasCollection(purchasedData, collectionId) ||
-      hasCollection(rentedData, collectionId)
-    );
-  }, [collectionId, isLoggedIn, purchasedData, rentedData]);
+    return hasCollection(purchasedData, collectionId);
+  }, [collectionId, isLoggedIn, purchasedData]);
+
+  const isRented = useMemo(() => {
+    if (!isLoggedIn || !collectionId) return false;
+    return hasCollection(rentedData, collectionId);
+  }, [collectionId, isLoggedIn, rentedData]);
+
+  const hasAccess = isPurchased || isRented;
 
   return {
     isLoggedIn,
     hasAccess,
+    isPurchased,
+    isRented,
   };
 }

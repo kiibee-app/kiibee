@@ -68,6 +68,14 @@ export const RENTED_MODES = {
   PREVIOUSLY: "previously",
 } as const;
 
+export const COLLECTION_ACCESS_STATUS = {
+  PURCHASED: "purchased",
+  RENTED: "rented",
+} as const;
+
+export type CollectionAccessStatus =
+  (typeof COLLECTION_ACCESS_STATUS)[keyof typeof COLLECTION_ACCESS_STATUS];
+
 export type RentedMode = (typeof RENTED_MODES)[keyof typeof RENTED_MODES];
 export type RentedMediaType = ContentType;
 
