@@ -12,11 +12,12 @@ import {
   ACCESS_TYPE_EMAIL_GATED,
   SET_PASSWORD_ACCESS,
   REQUEST_EMAIL_ACCESS,
+  REGISTER_SOURCE,
 } from "@/utils/Constants";
+import { API } from "@/lib/http/api/endpoints";
+import { axiosClient } from "@/lib/http/axiosClient";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
 import type { ContentDetailItem } from "@/utils/contentApi";
-import { axiosClient } from "@/lib/http/axiosClient";
-import { API } from "@/lib/http/api/endpoints";
 
 export function useContentAccessGate(
   content: ContentDetailItem | undefined,
@@ -24,7 +25,7 @@ export function useContentAccessGate(
 ): {
   gateType: AccessGateType | null;
   isLoading: boolean;
-  handleSuccess: (value: string) => Promise<boolean>;
+  handleSuccess: (value: string, name?: string) => Promise<boolean>;
 } {
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
@@ -75,12 +76,24 @@ export function useContentAccessGate(
       ? gateParam
       : resolvedGateType;
 
-  const handleSuccess = async (value: string) => {
+  const handleSuccess = async (value: string, name?: string) => {
     await (finalGateType === TYPE_CODE && content?.id
       ? axiosClient.post(API.content.verifyCode(content.id), { code: value })
       : Promise.resolve());
 
     if (!isOwner) {
+      if (finalGateType === TYPE_EMAIL && value && content?.creatorId) {
+        await axiosClient
+          .post(API.creatorUsers.register, {
+            creatorId: content.creatorId,
+            email: value,
+            name,
+            source: REGISTER_SOURCE.CONTENT,
+            sourceId: content.id,
+          })
+          .catch(() => undefined);
+      }
+
       if (isContentLocked && content?.id) {
         window.localStorage.setItem(
           `kiibee:gate:unlocked:content:${content.id}`,
