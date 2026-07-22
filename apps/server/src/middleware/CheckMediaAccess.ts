@@ -100,17 +100,17 @@ export class CheckMediaAccessGuard implements CanActivate {
 
     const hasCollectionAccess = collectionAccessRows.length > 0;
 
-    if (mediaFile.isDeleted) {
-      if (!hasDirectAccess && !hasCollectionAccess) {
-        throw new NotFoundException('Media not found');
-      }
+    const hasImmediateAccess =
+      mediaFile.accessType === ACCESS_TYPE.FREE ||
+      (mediaFile.isDeleted && (hasDirectAccess || hasCollectionAccess));
+
+    if (hasImmediateAccess) {
       request.mediaFile = mediaFile;
       return true;
     }
 
-    if (mediaFile.accessType === ACCESS_TYPE.FREE) {
-      request.mediaFile = mediaFile;
-      return true;
+    if (mediaFile.isDeleted) {
+      throw new NotFoundException('Media not found');
     }
 
     if (!hasDirectAccess && !hasCollectionAccess) {
