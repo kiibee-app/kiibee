@@ -108,6 +108,16 @@ export default function SingleContentPage(props: SingleContentPageProps) {
     await logout(redirectUrl);
   };
 
+  const handleCreatorModal1Confirm = () => {
+    setCreatorModal2Action(ACTION_LOGIN);
+    setShowCreatorModal2(true);
+  };
+
+  const handleCreatorModal1Cancel = () => {
+    setCreatorModal2Action(ACTION_SIGNUP);
+    setShowCreatorModal2(true);
+  };
+
   const handleShowLoginModal = () => setLoginModalVisible(true);
   const handleCloseLoginModal = () => setLoginModalVisible(false);
 
@@ -211,16 +221,17 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         const action = actions[0];
         if (user?.role === ROLE_CREATOR) {
           setShowCreatorModal1(true);
-        } else {
-          setSelectedAction({
-            label: action.label,
-            subtitle: action.subtitle,
-            isPurchase: action.label
-              .toLowerCase()
-              .includes(t("pricingLabels.buy").toLowerCase()),
-          });
-          setShowPurchaseModal(true);
+          return;
         }
+
+        setSelectedAction({
+          label: action.label,
+          subtitle: action.subtitle,
+          isPurchase: action.label
+            .toLowerCase()
+            .includes(t("pricingLabels.buy").toLowerCase()),
+        });
+        setShowPurchaseModal(true);
 
         const newUrl =
           window.location.pathname +
@@ -497,14 +508,8 @@ export default function SingleContentPage(props: SingleContentPageProps) {
         message={t("creatorPurchaseFlow.modal1.message")}
         confirmLabel={t("creatorPurchaseFlow.modal1.primaryBtn")}
         cancelLabel={t("creatorPurchaseFlow.modal1.secondaryBtn")}
-        onConfirm={() => {
-          setCreatorModal2Action(ACTION_LOGIN);
-          setShowCreatorModal2(true);
-        }}
-        onCancel={() => {
-          setCreatorModal2Action(ACTION_SIGNUP);
-          setShowCreatorModal2(true);
-        }}
+        onConfirm={handleCreatorModal1Confirm}
+        onCancel={handleCreatorModal1Cancel}
         buttonRow={false}
         fullWidthButtons
       />

@@ -112,6 +112,16 @@ export default function SingleCollectionDetail({
     await logout(redirectUrl);
   };
 
+  const handleCreatorModal1Confirm = () => {
+    setCreatorModal2Action(ACTION_LOGIN);
+    setShowCreatorModal2(true);
+  };
+
+  const handleCreatorModal1Cancel = () => {
+    setCreatorModal2Action(ACTION_SIGNUP);
+    setShowCreatorModal2(true);
+  };
+
   const [selectedAction, setSelectedAction] = useState<
     (PricingAction & { rentalExpiresAt?: string }) | null
   >(null);
@@ -410,14 +420,8 @@ export default function SingleCollectionDetail({
         message={t("creatorPurchaseFlow.modal1.message")}
         confirmLabel={t("creatorPurchaseFlow.modal1.primaryBtn")}
         cancelLabel={t("creatorPurchaseFlow.modal1.secondaryBtn")}
-        onConfirm={() => {
-          setCreatorModal2Action(ACTION_LOGIN);
-          setShowCreatorModal2(true);
-        }}
-        onCancel={() => {
-          setCreatorModal2Action(ACTION_SIGNUP);
-          setShowCreatorModal2(true);
-        }}
+        onConfirm={handleCreatorModal1Confirm}
+        onCancel={handleCreatorModal1Cancel}
         buttonRow={false}
         fullWidthButtons
       />
