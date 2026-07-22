@@ -14,16 +14,6 @@ import { userContentAccess } from 'src/database/schema/access/userContentAccess.
 import { and, eq, or, isNull, gt } from 'drizzle-orm';
 import { ACCESS_TYPE } from 'src/utils/constant';
 
-/**
- * Guard that checks if a user has access to a media file.
- * Access is granted if:
- * - User is the creator of the media
- * - Media is free and not deleted
- * - User has direct purchase/rental access to the media
- * - User has collection-level access (purchased/rented the collection containing the media)
- *
- * For deleted media, only the creator or users with valid access can access it.
- */
 @Injectable()
 export class CheckMediaAccessGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -65,15 +55,12 @@ export class CheckMediaAccessGuard implements CanActivate {
       throw new NotFoundException('Media not found');
     }
 
-    // Creator always has access
     if (mediaFile.creatorId === userId) {
       request.mediaFile = mediaFile;
       return true;
     }
 
     const now = new Date();
-
-    // Check direct access
     const directAccessRows = await db
       .select({ id: userContentAccess.id })
       .from(userContentAccess)
@@ -91,7 +78,6 @@ export class CheckMediaAccessGuard implements CanActivate {
 
     const hasDirectAccess = directAccessRows.length > 0;
 
-    // Check collection access
     const collectionAccessRows = await db
       .select({ id: userContentAccess.id })
       .from(userContentAccess)
@@ -114,7 +100,6 @@ export class CheckMediaAccessGuard implements CanActivate {
 
     const hasCollectionAccess = collectionAccessRows.length > 0;
 
-    // For deleted media, only creator or users with access can view it
     if (mediaFile.isDeleted) {
       if (!hasDirectAccess && !hasCollectionAccess) {
         throw new NotFoundException('Media not found');
@@ -123,13 +108,11 @@ export class CheckMediaAccessGuard implements CanActivate {
       return true;
     }
 
-    // Free media is accessible to everyone
     if (mediaFile.accessType === ACCESS_TYPE.FREE) {
       request.mediaFile = mediaFile;
       return true;
     }
 
-    // Check if user has purchased/rented the media or its collection
     if (!hasDirectAccess && !hasCollectionAccess) {
       throw new ForbiddenException(
         'Access denied. You do not have permission to access this media.',
