@@ -57,6 +57,8 @@ export type AdmissionValue =
 export const toText = (value: string | string[]) =>
   Array.isArray(value) ? value.join("") : value;
 
+export const MIN_PAYMENT_AMOUNT = 8;
+
 export const parsePaymentAmount = (
   value: string | null | undefined,
 ): number | null => {
@@ -67,9 +69,28 @@ export const parsePaymentAmount = (
   return Number.isFinite(amount) ? amount : null;
 };
 
-export const isValidPaymentAmount = (value: string): boolean =>
-  !value.trim() ||
-  (parsePaymentAmount(value) !== null && Number(value.trim()) > 0);
+export const isValidPaymentAmount = (value: string): boolean => {
+  const normalized = value.trim();
+  if (!normalized) return true;
+  const amount = parsePaymentAmount(normalized);
+  return amount !== null && amount >= MIN_PAYMENT_AMOUNT;
+};
+
+export const getPaymentAmountErrorMessage = (
+  value: string,
+  t: (key: string) => string,
+): string | null => {
+  const normalized = value.trim();
+  if (!normalized) return null;
+  const amount = parsePaymentAmount(normalized);
+  if (amount === null) {
+    return t("contents.payment.common.invalidNumber");
+  }
+  if (amount < MIN_PAYMENT_AMOUNT) {
+    return t("contents.payment.common.minAmount");
+  }
+  return null;
+};
 
 export const hasNegativeAmountInput = (value: string): boolean =>
   value.includes("-");
