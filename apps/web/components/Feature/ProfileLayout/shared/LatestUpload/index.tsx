@@ -70,6 +70,7 @@ export type LatestUploadData = {
 type LatestUploadProps = {
   data: LatestUploadData;
   isOwner?: boolean;
+  variant?: import("@/components/Feature/ProfileLayout/config").ProfileLayoutVariant;
 };
 
 const contentIconMap = {
@@ -86,7 +87,11 @@ type ComputedAction = {
   href?: string;
 };
 
-export default function LatestUpload({ data, isOwner }: LatestUploadProps) {
+export default function LatestUpload({
+  data,
+  isOwner,
+  variant,
+}: LatestUploadProps) {
   const { t } = useTranslation();
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
@@ -195,7 +200,7 @@ export default function LatestUpload({ data, isOwner }: LatestUploadProps) {
   const TypeIcon = contentIconMap[normalizedContentType];
 
   return (
-    <Section $isPdf={!isMediaPlayable}>
+    <Section $variant={variant}>
       <MonoText $use="H4_Medium">{data.sectionTitle}</MonoText>
 
       <ContentWrapper $isMobile={isMobile}>
