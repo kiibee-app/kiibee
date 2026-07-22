@@ -87,8 +87,6 @@ export default function ProfileHomeSections({
         rentDurationHours:
           (latest as { rentDurationHours?: string | number | null })
             .rentDurationHours ?? null,
-        imageStyle: latestConfig.imageStyle,
-        containerStyle: latestConfig.containerStyle,
       }
     : null;
 
