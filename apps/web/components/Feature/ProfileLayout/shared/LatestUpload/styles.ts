@@ -6,16 +6,18 @@ import { MonoText } from "@/components/UI/Monotext";
 
 type ReadMoreTone = typeof VARIANT.PRIMARY | typeof VARIANT.SECONDARY;
 
+import { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
+
 export const Section = styled.section<{
-  $isPdf?: boolean;
+  $variant?: ProfileLayoutVariant;
 }>`
-  width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 1300px)")};
-  margin: 0 auto;
+  width: min(100%, 1300px);
+  margin: ${({ $variant }) => ($variant === "1" ? "0" : "0 auto")};
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  padding: ${({ $isPdf }) => ($isPdf ? "0" : "10px")};
+  padding: 10px;
 
   ${media.tablet} {
     width: 100%;

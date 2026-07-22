@@ -143,11 +143,19 @@ export default function ProfileHomeSections({
     wrapLatestUpload ? (
       <SectionWrapper>
         <ContentAdjust>
-          <LatestUpload data={latestUploadData} isOwner={isOwner} />
+          <LatestUpload
+            data={latestUploadData}
+            isOwner={isOwner}
+            variant={variant}
+          />
         </ContentAdjust>
       </SectionWrapper>
     ) : (
-      <LatestUpload data={latestUploadData} isOwner={isOwner} />
+      <LatestUpload
+        data={latestUploadData}
+        isOwner={isOwner}
+        variant={variant}
+      />
     )
   ) : null;
 
