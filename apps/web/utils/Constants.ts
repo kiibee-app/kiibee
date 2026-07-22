@@ -144,6 +144,9 @@ export const PROFILE_HOME_SECTION = {
 export type ProfileHomeSectionKey =
   (typeof PROFILE_HOME_SECTION)[keyof typeof PROFILE_HOME_SECTION];
 
+export const COLLECTION_PREVIEW_START = 0;
+export const COLLECTION_PREVIEW_LIMIT = 4;
+
 export type CouponAction =
   | typeof COUPON_ACTION_EDIT
   | typeof COUPON_ACTION_STATUS
