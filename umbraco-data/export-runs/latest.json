@@ -396,7 +396,7 @@
       "userId": 123336
     },
     {
-      "userDir": "Microphone Entertainment",
+      "userDir": "Microphone_Entertainment",
       "liveName": "Microphone Entertainment",
       "userId": 1894
     },
@@ -4902,7 +4902,7 @@
       "reason": "section not found in Umbraco"
     },
     {
-      "userDir": "Microphone Entertainment",
+      "userDir": "Microphone_Entertainment",
       "liveName": "Microphone Entertainment",
       "userId": 1894,
       "task": "stats",
@@ -4910,7 +4910,7 @@
       "reason": "data already exists"
     },
     {
-      "userDir": "Microphone Entertainment",
+      "userDir": "Microphone_Entertainment",
       "liveName": "Microphone Entertainment",
       "userId": 1894,
       "task": "shows",
@@ -4918,7 +4918,7 @@
       "reason": "data already exists"
     },
     {
-      "userDir": "Microphone Entertainment",
+      "userDir": "Microphone_Entertainment",
       "liveName": "Microphone Entertainment",
       "userId": 1894,
       "task": "purchases",
@@ -4926,7 +4926,7 @@
       "reason": "data already exists"
     },
     {
-      "userDir": "Microphone Entertainment",
+      "userDir": "Microphone_Entertainment",
       "liveName": "Microphone Entertainment",
       "userId": 1894,
       "task": "payouts",
@@ -4934,7 +4934,7 @@
       "reason": "data already exists"
     },
     {
-      "userDir": "Microphone Entertainment",
+      "userDir": "Microphone_Entertainment",
       "liveName": "Microphone Entertainment",
       "userId": 1894,
       "task": "logs",

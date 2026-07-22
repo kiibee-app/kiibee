@@ -12,6 +12,7 @@ import {
   inferContentCategoryId,
   loadProfileCategoryContext,
   loadUmbracoProfileKeys,
+  profileSeedKey,
   resolveProfileDefaultCategoryId,
   resolveUmbracoMediaUrl,
   resolveUmbracoShowThumbnails,
@@ -133,7 +134,9 @@ function deterministicUuid(value: string): string {
 }
 
 function profileUserId(profileKey: string): string {
-  return deterministicUuid(`umbraco-profile:user:${profileKey}`);
+  return deterministicUuid(
+    `umbraco-profile:user:${profileSeedKey(profileKey)}`,
+  );
 }
 
 function showSeedUuid(
@@ -141,7 +144,9 @@ function showSeedUuid(
   profileKey: string,
   showKey: string,
 ): string {
-  return deterministicUuid(`umbraco-show:${scope}:${profileKey}:${showKey}`);
+  return deterministicUuid(
+    `umbraco-show:${scope}:${profileSeedKey(profileKey)}:${showKey}`,
+  );
 }
 
 function textOrNull(value: unknown): string | null {
