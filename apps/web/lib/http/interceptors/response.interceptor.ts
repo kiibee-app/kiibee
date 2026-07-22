@@ -89,12 +89,14 @@ export const attachResponseInterceptor = (client: AxiosInstance) => {
         | undefined;
       const requestUrl = originalRequest?.url ?? "";
       const isRefreshRequest = requestUrl.includes(API.auth.refresh);
+      const isLogoutRequest = requestUrl.includes(API.auth.logout);
 
       if (
         status !== HTTP_STATUS_UNAUTHORIZED ||
         !originalRequest ||
         originalRequest._retry ||
-        isRefreshRequest
+        isRefreshRequest ||
+        isLogoutRequest
       ) {
         return Promise.reject(normalizeApiError(error));
       }
