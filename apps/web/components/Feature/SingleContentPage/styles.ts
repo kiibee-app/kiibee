@@ -81,7 +81,9 @@ export const Hero = styled.div<{
   $isPdf?: boolean;
   $isLoading?: boolean;
 }>`
-  position: relative;
+  position: ${({ $isPdf }) => ($isPdf ? "sticky" : "relative")};
+  top: ${({ $isPdf }) => ($isPdf ? "6rem" : "auto")};
+  z-index: 2;
   width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 900px)")};
   max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "none")};
   height: auto;
@@ -102,11 +104,15 @@ export const Hero = styled.div<{
     `}
 
   ${media.desktopSm} {
+    position: relative;
+    top: auto;
     max-width: none;
     margin: 0 auto ${({ $isPdf }) => ($isPdf ? "1.5rem" : "2.25rem")};
   }
 
   ${media.tablet} {
+    position: relative;
+    top: auto;
     width: 100%;
     max-width: none;
     height: auto;
