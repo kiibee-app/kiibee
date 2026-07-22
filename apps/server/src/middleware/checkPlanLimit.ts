@@ -5,10 +5,17 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { eq, sql } from 'drizzle-orm';
+import { and, eq, isNull, or, sql } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
-import { creatorPlans, mediaFiles, plans, users } from 'src/database/schema';
+import {
+  collectionItems,
+  collections,
+  creatorPlans,
+  mediaFiles,
+  plans,
+  users,
+} from 'src/database/schema';
 import { ROLE } from 'src/utils/constant';
 
 @Injectable()
@@ -51,10 +58,18 @@ export class CheckPlanLimit implements CanActivate {
 
     const [existingContentCount] = await db
       .select({
-        count: sql<number>`count(*)`,
+        count: sql<number>`count(distinct ${mediaFiles.id})`,
       })
       .from(mediaFiles)
-      .where(eq(mediaFiles.creatorId, userId));
+      .leftJoin(collectionItems, eq(collectionItems.mediaFileId, mediaFiles.id))
+      .leftJoin(collections, eq(collections.id, collectionItems.collectionId))
+      .where(
+        and(
+          eq(mediaFiles.creatorId, userId),
+          eq(mediaFiles.isDeleted, false),
+          or(isNull(collections.id), eq(collections.isDeleted, false)),
+        ),
+      );
 
     if (Number(existingContentCount.count) >= plan.maxFiles) {
       throw new ForbiddenException(
