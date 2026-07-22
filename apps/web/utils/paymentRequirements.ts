@@ -82,14 +82,17 @@ export const getPaymentAmountErrorMessage = (
 ): string | null => {
   const normalized = value.trim();
   if (!normalized) return null;
+
   const amount = parsePaymentAmount(normalized);
-  if (amount === null) {
-    return t("contents.payment.common.invalidNumber");
-  }
-  if (amount < MIN_PAYMENT_AMOUNT) {
-    return t("contents.payment.common.minAmount");
-  }
-  return null;
+
+  const errorKey =
+    amount === null
+      ? "contents.payment.common.invalidNumber"
+      : amount < MIN_PAYMENT_AMOUNT
+        ? "contents.payment.common.minAmount"
+        : null;
+
+  return errorKey ? t(errorKey) : null;
 };
 
 export const hasNegativeAmountInput = (value: string): boolean =>
