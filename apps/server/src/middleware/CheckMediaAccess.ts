@@ -38,8 +38,8 @@ export class CheckMediaAccessGuard implements CanActivate {
     }
 
     const whereClause = mediaId
-      ? eq(mediaFiles.id, mediaId)
-      : eq(mediaFiles.fileKey, mediaKey);
+      ? and(eq(mediaFiles.id, mediaId), eq(mediaFiles.isDeleted, false))
+      : and(eq(mediaFiles.fileKey, mediaKey), eq(mediaFiles.isDeleted, false));
 
     const mediaFile = await db.query.mediaFiles.findFirst({
       where: whereClause,

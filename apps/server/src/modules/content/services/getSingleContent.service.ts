@@ -69,7 +69,9 @@ export const getSingleContentService = async (
       db
         .select()
         .from(mediaFiles)
-        .where(eq(mediaFiles.id, contentId))
+        .where(
+          and(eq(mediaFiles.id, contentId), eq(mediaFiles.isDeleted, false)),
+        )
         .limit(1)
         .then((r) => r[0]),
     ]);

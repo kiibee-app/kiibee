@@ -1,8 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { and, eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { mediaFiles } from 'src/database/schema/content/mediaFiles.schema';
-import { mediaFileCategories } from 'src/database/schema/content/mediaFileCategories.schema';
 import { logger } from 'src/logger/logger';
 import { fail, success } from 'src/utils/sendResponse';
 
@@ -16,7 +15,9 @@ export const deleteContentService = async (contentId: string) => {
       const [existing] = await trx
         .select()
         .from(mediaFiles)
-        .where(eq(mediaFiles.id, contentId))
+        .where(
+          and(eq(mediaFiles.id, contentId), eq(mediaFiles.isDeleted, false)),
+        )
         .limit(1);
 
       if (!existing) {
@@ -24,17 +25,16 @@ export const deleteContentService = async (contentId: string) => {
       }
 
       await trx
-        .delete(mediaFileCategories)
-        .where(eq(mediaFileCategories.mediaFileId, contentId));
-
-      await trx.delete(mediaFiles).where(eq(mediaFiles.id, contentId));
+        .update(mediaFiles)
+        .set({ isDeleted: true, deletedAt: new Date() })
+        .where(eq(mediaFiles.id, contentId));
 
       return existing;
     });
 
     return success(
       { id: result.id },
-      'Content permanently deleted',
+      'Content deleted successfully',
       HttpStatus.OK,
     );
   } catch (error) {
