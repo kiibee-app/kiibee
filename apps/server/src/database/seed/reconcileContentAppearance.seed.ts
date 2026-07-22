@@ -8,6 +8,16 @@ import {
   creatorInfo,
   users,
 } from '../schema';
+import { ROLE } from 'src/utils/constant';
+import {
+  DEFAULT_CONTENT_APPEARANCE_LAYOUT,
+  RECONCILIATION_COMPLETED_MESSAGE,
+  RECONCILIATION_SKIPPED_MESSAGE,
+  resolveFallbackLogoUrl,
+  resolveLogoName,
+  resolveLogoType,
+  truncateContentAppearanceDescription,
+} from 'src/utils/contentAppearance';
 
 export const reconcileMissingContentAppearance = async () => {
   const creators = await db
@@ -23,10 +33,10 @@ export const reconcileMissingContentAppearance = async () => {
     .leftJoin(creatorChannels, eq(creatorChannels.creatorId, users.id))
     .leftJoin(creatorInfo, eq(creatorInfo.userId, users.id))
     .leftJoin(contentAppearance, eq(contentAppearance.userId, users.id))
-    .where(and(eq(users.role, 'creator'), isNull(contentAppearance.userId)));
+    .where(and(eq(users.role, ROLE.CREATOR), isNull(contentAppearance.userId)));
 
   if (creators.length === 0) {
-    console.log('Content appearance reconciliation skipped (none missing)');
+    console.log(RECONCILIATION_SKIPPED_MESSAGE);
     return;
   }
 
@@ -34,17 +44,21 @@ export const reconcileMissingContentAppearance = async () => {
     .insert(contentAppearance)
     .values(
       creators.map((creator) => {
-        const logoUrl =
-          creator.channelLogoUrl?.trim() || creator.avatarUrl?.trim() || null;
+        const logoUrl = resolveFallbackLogoUrl(
+          creator.channelLogoUrl,
+          creator.avatarUrl,
+        );
 
         return {
           id: randomUUID(),
           userId: creator.userId,
-          logoType: logoUrl ? 'picture' : 'text',
-          logoName: logoUrl ? '' : (creator.channelName ?? ''),
+          logoType: resolveLogoType(logoUrl),
+          logoName: resolveLogoName(logoUrl, creator.channelName),
           logoUrl,
-          description: (creator.description ?? '').slice(0, 500),
-          layout: 'layout1' as const,
+          description: truncateContentAppearanceDescription(
+            creator.description,
+          ),
+          layout: DEFAULT_CONTENT_APPEARANCE_LAYOUT,
           desktopCoverImageUrl: creator.channelCoverImageUrl?.trim() || null,
         };
       }),
@@ -52,6 +66,6 @@ export const reconcileMissingContentAppearance = async () => {
     .onConflictDoNothing({ target: contentAppearance.userId });
 
   console.log(
-    `Content appearance reconciliation completed (${creators.length} creators)`,
+    `${RECONCILIATION_COMPLETED_MESSAGE} (${creators.length} creators)`,
   );
 };

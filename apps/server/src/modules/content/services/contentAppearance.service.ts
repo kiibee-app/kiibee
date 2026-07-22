@@ -4,6 +4,10 @@ import { db } from 'src/database/db';
 import { randomUUID } from 'crypto';
 import { logger } from 'src/logger/logger';
 import { HttpException, HttpStatus } from '@nestjs/common';
+import {
+  resolveFallbackLogoUrl,
+  resolveLogoType,
+} from 'src/utils/contentAppearance';
 import { fail, success } from 'src/utils/sendResponse';
 import { eq } from 'drizzle-orm';
 
@@ -97,12 +101,14 @@ export const getContentAppearanceService = async (userId: string) => {
       );
     }
 
-    const fallbackLogoUrl =
-      result.channelLogoUrl?.trim() || result.userAvatarUrl?.trim() || null;
+    const fallbackLogoUrl = resolveFallbackLogoUrl(
+      result.channelLogoUrl,
+      result.userAvatarUrl,
+    );
 
     return success(
       {
-        logoType: fallbackLogoUrl ? 'picture' : 'text',
+        logoType: resolveLogoType(fallbackLogoUrl),
         logoUrl: fallbackLogoUrl,
         desktopCoverImageUrl: result.channelCoverImageUrl?.trim() || null,
         supportEmail: result.accountEmail,

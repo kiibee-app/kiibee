@@ -3,8 +3,14 @@ import { existsSync, readdirSync, readFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { eq } from 'drizzle-orm';
 
+import {
+  DEFAULT_CONTENT_APPEARANCE_LAYOUT,
+  resolveLogoName,
+  resolveLogoType,
+  truncateContentAppearanceDescription,
+} from 'src/utils/contentAppearance';
 import { resolvePublicMediaUrl } from 'src/utils/resolvePublicMediaUrl';
-import { SUBSCRIPTION_PLAN } from 'src/utils/constant';
+import { ROLE, SUBSCRIPTION_PLAN } from 'src/utils/constant';
 
 import { db } from '../db';
 import {
@@ -563,7 +569,7 @@ export const seedUmbracoProfiles = async () => {
           firstName: mapped.firstName,
           lastName: mapped.lastName,
           fullName: mapped.fullName,
-          role: 'creator',
+          role: ROLE.CREATOR,
           status: 'active',
           avatarUrl: mapped.logoUrl,
           isEmailVerified: true,
@@ -578,7 +584,7 @@ export const seedUmbracoProfiles = async () => {
             firstName: mapped.firstName,
             lastName: mapped.lastName,
             fullName: mapped.fullName,
-            role: 'creator',
+            role: ROLE.CREATOR,
             status: 'active',
             avatarUrl: mapped.logoUrl,
             isEmailVerified: true,
@@ -653,14 +659,13 @@ export const seedUmbracoProfiles = async () => {
         .values({
           id: mapped.contentAppearanceId,
           userId: mapped.userId,
-          logoType: mapped.logoUrl ? 'picture' : 'text',
-          logoName: mapped.logoUrl ? '' : mapped.channelName,
+          logoType: resolveLogoType(mapped.logoUrl),
+          logoName: resolveLogoName(mapped.logoUrl, mapped.channelName),
           logoUrl: mapped.logoUrl,
-          description: truncate(
+          description: truncateContentAppearanceDescription(
             mapped.bio ?? mapped.description ?? mapped.headline ?? '',
-            500,
           ),
-          layout: 'layout1',
+          layout: DEFAULT_CONTENT_APPEARANCE_LAYOUT,
           desktopCoverImageUrl: mapped.coverImageUrl,
           mobileCoverImageUrl: null,
           supportEmail: mapped.supportEmail ?? '',
