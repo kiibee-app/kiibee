@@ -1,7 +1,19 @@
 {
   "tab": "SiteMap",
   "name": "Uffe Holm",
-  "excludeFromSitemap": false,
-  "sitemapFrequency": "Daily",
-  "sitemapPriority": 0.5
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "siteMapOption": {
+    "priority": 0.5,
+    "frequency": 2,
+    "exclude": false
+  }
 }

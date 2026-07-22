@@ -35,13 +35,7 @@
       "top": 0.5
     },
     "src": "/media/2893/den-brede-lange-bremen.jpeg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": {
     "focalPoint": {
@@ -49,13 +43,7 @@
       "top": 0.5
     },
     "src": "/media/3393/nicolaj-lange0009-2.jpeg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 640,
-        "height": 600
-      }
-    ]
+    "crops": []
   },
   "fadeCoverImage": "0",
   "textColor": ["67"],

@@ -1,24 +1,23 @@
 {
   "tab": "Subscription",
   "name": "Uffe Holm",
-  "subscription": {
-    "name": "Pr\u00f8v Kiibee",
-    "path": "/settings/subscriptions/proev-kiibee/"
-  },
-  "prices": {
-    "price1Month": "",
-    "price3Months": "",
-    "price6Months": "",
-    "price12Months": ""
-  },
-  "maxFiles": 10,
-  "kiibeeCut": {
-    "value": 16,
-    "unit": "DKK"
-  },
-  "transactionFee": {
-    "value": 6,
-    "unit": "percent"
-  },
-  "paymentPeriod": 1
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "subscription": "umb://document/5ba7f17c7cf64beea5db1176fd45d365",
+  "price": "",
+  "price3": "",
+  "price6": "",
+  "price12": "",
+  "maxFiles": "10",
+  "kiibeeCut": "16",
+  "transactionFee": "6",
+  "paymentPeriod": ["385"]
 }

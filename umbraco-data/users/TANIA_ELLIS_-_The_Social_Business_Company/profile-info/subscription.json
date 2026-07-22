@@ -16,8 +16,8 @@
   "price3": "",
   "price6": "",
   "price12": "",
-  "maxFiles": 50,
-  "kiibeeCut": 10,
-  "transactionFee": 3,
+  "maxFiles": "20",
+  "kiibeeCut": "10",
+  "transactionFee": "5",
   "paymentPeriod": ["385"]
 }

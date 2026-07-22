@@ -11,18 +11,44 @@
     "SEO",
     "Info"
   ],
-  "skin": ["63"],
-  "logoText": "CamComm",
+  "skin": ["62"],
+  "logoText": "Jacob Wilson ",
   "useLogoImage": "0",
   "logoImage": "",
   "useCoverImage": "1",
-  "coverImage": "",
-  "coverImageMobile": "",
+  "coverImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3501/wilson-top-web.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
+  },
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3502/wilson-top-mobile.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
   "fadeCoverImage": "0",
   "textColor": ["67"],
-  "coverTextPositionClass": "block",
+  "coverTextPositionClass": "bottom",
   "headline": "",
-  "description": "",
+  "description": "<h1>Jacob Wilson - Skarp og satirisk stand-up komiker</h1>\n<p>Jacob Wilson er især kendt som den hurtige og kvikke nyhedsoplæser fra TV 2-programmet \"Live fra Bremen\". De seneste år har han dog helliget sig fuldt ud til stand-up comedy.</p>",
   "css": "",
   "javaScript": ""
 }

@@ -22,13 +22,7 @@
       "top": 0.5
     },
     "src": "/media/5135/billede333.jpg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": "",
   "fadeCoverImage": "0",

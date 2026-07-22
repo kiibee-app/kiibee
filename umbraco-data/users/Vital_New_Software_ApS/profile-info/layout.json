@@ -22,14 +22,7 @@
       "top": 0.5
     },
     "src": "/media/4208/kiibee-test-2000x600.jpg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600,
-        "$$hashKey": "0GTW"
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": "",
   "fadeCoverImage": "0",

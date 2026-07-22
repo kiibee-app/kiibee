@@ -12,7 +12,7 @@
     "Info"
   ],
   "lastNotificationDate": "2025-10-08",
-  "frequency": 30,
+  "frequency": "30",
   "notificationsType": "0",
-  "emails": []
+  "emails": ""
 }

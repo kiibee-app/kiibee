@@ -20,14 +20,7 @@
       "top": 0.5
     },
     "src": "/media/4781/6.gif",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60,
-        "$$hashKey": "0PN8"
-      }
-    ]
+    "crops": []
   },
   "useCoverImage": "1",
   "coverImage": {
@@ -36,14 +29,7 @@
       "top": 0.5
     },
     "src": "/media/4782/budget.jpg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600,
-        "$$hashKey": "0PNC"
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": {
     "focalPoint": {
@@ -51,14 +37,7 @@
       "top": 0.5
     },
     "src": "/media/4783/budget.jpg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 640,
-        "height": 600,
-        "$$hashKey": "0PNG"
-      }
-    ]
+    "crops": []
   },
   "fadeCoverImage": "0",
   "textColor": ["67"],

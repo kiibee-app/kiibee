@@ -28,8 +28,12 @@
       {
         "alias": "Image",
         "width": 2000,
-        "height": 600,
-        "$$hashKey": "U6S"
+        "height": 600
+      },
+      {
+        "alias": "Cover",
+        "width": 2000,
+        "height": 600
       }
     ]
   },

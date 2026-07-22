@@ -24,8 +24,7 @@
       {
         "alias": "Image",
         "width": 250,
-        "height": 60,
-        "$$hashKey": "05B3"
+        "height": 60
       }
     ]
   },
@@ -40,8 +39,7 @@
       {
         "alias": "Image",
         "width": 2000,
-        "height": 600,
-        "$$hashKey": "05B7"
+        "height": 600
       }
     ]
   },
@@ -55,8 +53,7 @@
       {
         "alias": "Image",
         "width": 640,
-        "height": 600,
-        "$$hashKey": "05BB"
+        "height": 600
       }
     ]
   },

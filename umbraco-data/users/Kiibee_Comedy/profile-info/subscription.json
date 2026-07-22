@@ -1,6 +1,6 @@
 {
   "tab": "Subscription",
-  "name": "Kiibee Comedy",
+  "name": "Kiibee",
   "tabsVisible": [
     "General",
     "Subscription",
@@ -16,8 +16,8 @@
   "price3": "",
   "price6": "",
   "price12": "",
-  "maxFiles": 50,
-  "kiibeeCut": "",
-  "transactionFee": "",
-  "paymentPeriod": ["1"]
+  "maxFiles": "40",
+  "kiibeeCut": "1",
+  "transactionFee": "1",
+  "paymentPeriod": ["385"]
 }

@@ -1,6 +1,6 @@
 {
   "tab": "SiteMap",
-  "name": "Rikke Brünner",
+  "name": "Rikke Brünner ",
   "tabsVisible": [
     "General",
     "Subscription",
@@ -11,9 +11,5 @@
     "SEO",
     "Info"
   ],
-  "siteMapOption": {
-    "priority": 0.5,
-    "frequency": 2,
-    "exclude": false
-  }
+  "siteMapOption": ""
 }

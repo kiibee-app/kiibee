@@ -11,30 +11,17 @@
     "SEO",
     "Info"
   ],
-  "skin": ["63"],
-  "logoText": "",
-  "useLogoImage": "1",
-  "logoImage": {
-    "focalPoint": {
-      "left": 0.5,
-      "top": 0.5
-    },
-    "src": "/media/4376/skaermbillede-2023-04-09-kl-094110.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60
-      }
-    ]
-  },
-  "useCoverImage": "0",
+  "skin": ["62"],
+  "logoText": "Tobias Dybvad ",
+  "useLogoImage": "0",
+  "logoImage": "",
+  "useCoverImage": "1",
   "coverImage": {
     "focalPoint": {
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/4377/unavngivet.png",
+    "src": "/media/3125/tobias-dybvad-prange.png",
     "crops": [
       {
         "alias": "Image",
@@ -43,12 +30,25 @@
       }
     ]
   },
-  "coverImageMobile": "",
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3385/tobias-dybvad-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
   "fadeCoverImage": "0",
-  "textColor": ["68"],
-  "coverTextPositionClass": "block",
+  "textColor": ["67"],
+  "coverTextPositionClass": "bottom",
   "headline": "",
-  "description": "",
-  "css": "",
+  "description": "<h1>Tobias Dybvad - Populær nytænkende stand-up</h1>\n<p>Tobias Dybvad er en af tidens mest populære komikere. Med velbesøgte one-man shows og ekstremt populære TV-programmer som \"Dyvaaaaad\" og \"Verdensmænd\" i bagagen, er Tobias en sand publikumsyndling.</p>",
+  "css": "header { background-color: black; color: #272424; }",
   "javaScript": ""
 }

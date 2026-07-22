@@ -22,14 +22,7 @@
       "top": 0.5
     },
     "src": "/media/4564/img_0346.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600,
-        "$$hashKey": "0MGF"
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": "",
   "fadeCoverImage": "1",

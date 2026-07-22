@@ -12,14 +12,14 @@
     "Info"
   ],
   "skin": ["63"],
-  "logoText": "ElStudio ",
+  "logoText": "TANIA ELLIS - The Social Business Company",
   "useLogoImage": "1",
   "logoImage": {
     "focalPoint": {
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/1614/elstudio.png",
+    "src": "/media/1417/stort-logo.jpg",
     "crops": [
       {
         "alias": "Image",
@@ -34,7 +34,7 @@
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/1613/elstudio.jpg",
+    "src": "/media/1418/kiibee-cover.png",
     "crops": [
       {
         "alias": "Image",
@@ -46,9 +46,9 @@
   "coverImageMobile": "",
   "fadeCoverImage": "0",
   "textColor": ["68"],
-  "coverTextPositionClass": "noblock",
-  "headline": "ElStudio`s online danseundervisning ",
-  "description": "Vi tilbyder alle vores medlemmer undervisning via vores danse kanal. \r\nFor at få adgang til undervisningsvideoerne skal du have en kode. \r\n\r\nVi laver også live undervisning. Her skal du være med i en af vores facebook grupper. Grupperne finder du på facebook, søg på (Online classes with ElStudio)",
+  "coverTextPositionClass": "block",
+  "headline": "Videos from The Social Business Club ",
+  "description": "Watch videos from our previous miniconferences here!\n\nLearn more about The Social Business Club and become \na free member today at: www.taniaellis.com/club",
   "css": "",
   "javaScript": ""
 }

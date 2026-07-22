@@ -11,30 +11,17 @@
     "SEO",
     "Info"
   ],
-  "skin": ["63"],
-  "logoText": "Forlaget AKKA",
-  "useLogoImage": "1",
-  "logoImage": {
-    "focalPoint": {
-      "left": 0.5,
-      "top": 0.5
-    },
-    "src": "/media/4640/akka-logo.jpeg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60
-      }
-    ]
-  },
+  "skin": ["62"],
+  "logoText": "Thomas Wivel",
+  "useLogoImage": "0",
+  "logoImage": "",
   "useCoverImage": "1",
   "coverImage": {
     "focalPoint": {
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/4645/coverbillede.jpg",
+    "src": "/media/3134/thomas-wivel.png",
     "crops": [
       {
         "alias": "Image",
@@ -48,7 +35,7 @@
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/4651/hoejformat-billede-til-top.jpg",
+    "src": "/media/3386/thomas-wivel-mobil.png",
     "crops": [
       {
         "alias": "Image",
@@ -60,8 +47,8 @@
   "fadeCoverImage": "0",
   "textColor": ["67"],
   "coverTextPositionClass": "bottom",
-  "headline": "Velkommen til Hammel – kanten",
-  "description": "Forlaget AKKA udgiver primært lokalhistoriske publikationer, frembragt af mennesker, der har rødder på Hammel egnen. Forlaget er en selvejende institution, hvor ingen kan få andel i overskuddet, der alene skal anvendes til udgivelse af nye publikationer. Her på siden findes er udvalg af publikationerne i elektronisk form.",
+  "headline": "",
+  "description": "<h1>Thomas Wivel</h1>\n<p>Thomas Wivel har i over 25 år været en af de mest markante skikkelser i dansk comedy. Han begyndte sin karriere i starten af 1990'erne, hvor stand-up comedy stadig var en relativt ny genre herhjemme. Wivel var blandt de første danske komikere, der for alvor satsede på at leve af at optræde på comedyscener rundt omkring i landet.</p>",
   "css": "",
   "javaScript": ""
 }

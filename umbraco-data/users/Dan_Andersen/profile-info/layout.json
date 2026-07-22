@@ -11,8 +11,8 @@
     "SEO",
     "Info"
   ],
-  "skin": ["63"],
-  "logoText": "Velkommen til Boostcampen",
+  "skin": ["62"],
+  "logoText": "Dan Andersen ",
   "useLogoImage": "0",
   "logoImage": "",
   "useCoverImage": "1",
@@ -21,7 +21,7 @@
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/4564/img_0346.png",
+    "src": "/media/3124/dan-anders.png",
     "crops": [
       {
         "alias": "Image",
@@ -30,12 +30,25 @@
       }
     ]
   },
-  "coverImageMobile": "",
-  "fadeCoverImage": "1",
-  "textColor": ["69"],
+  "coverImageMobile": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/3387/dan-andersen-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
+  },
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
   "coverTextPositionClass": "bottom",
-  "headline": "Smutvejen til at få motivationen igen!",
-  "description": "Ønsker du at komme i form og spise sundere, men har svært ved at finde motivationen til at handle på det? Denne minipakke, som inkluderer en dybdegående søvnhypnose og en 'HVORFOR'-skabelon, er designet til at hjælpe dig med at få motivationen til at opnå mål. Definér dit mål, lyt til hypnosen, og lad dit ubevidste sind arbejde for dig.\r\n\r\nKlik på de enkelte produkter for at læse mere om indholdet. ",
-  "css": "",
+  "headline": "",
+  "description": "<h1>Dan Andersen - Danmarks charmerende one-man-band</h1>\n<p>Dan Andersen er hele Danmarks yndlingskomiker og musiker. Med sin guitar og egen-komponerede sangtekster spreder han glæde hos både unge og gamle.</p>",
+  "css": "header { background-color: black; color: #272424; }",
   "javaScript": ""
 }

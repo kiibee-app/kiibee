@@ -1,6 +1,6 @@
 {
   "tab": "SiteMap",
-  "name": "Kiibee Comedy",
+  "name": "Kiibee",
   "tabsVisible": [
     "General",
     "Subscription",
@@ -14,6 +14,6 @@
   "siteMapOption": {
     "priority": 0.5,
     "frequency": 2,
-    "exclude": false
+    "exclude": true
   }
 }

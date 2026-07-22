@@ -12,47 +12,52 @@
     "Info"
   ],
   "skin": [
-    "62"
+    "63"
   ],
-  "logoText": "Torben Chris ",
+  "logoText": "Granli Velvære v/ Lene Korsåsen",
   "useLogoImage": "0",
-  "logoImage": "",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2220/gv_logo.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
   "useCoverImage": "1",
   "coverImage": {
     "focalPoint": {
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/3157/torben-chris-final.png",
+    "src": "/media/2233/krop-og-sind-forside.png",
     "crops": [
       {
         "alias": "Image",
         "width": 2000,
         "height": 600
-      }
-    ]
-  },
-  "coverImageMobile": {
-    "focalPoint": {
-      "left": 0.5,
-      "top": 0.5
-    },
-    "src": "/media/3391/torben-chris-mobil.png",
-    "crops": [
+      },
       {
-        "alias": "Image",
-        "width": 640,
+        "alias": "Cover",
+        "width": 2000,
         "height": 600
       }
     ]
   },
+  "coverImageMobile": "",
   "fadeCoverImage": "0",
   "textColor": [
     "67"
   ],
-  "coverTextPositionClass": "bottom",
-  "headline": "",
-  "description": "<h1>Torben Chris - Danmarks hurtigsnakkende comedy-komet</h1>\n<p>Torben Chris er en af Danmarks mest populære stand-up komikere. Med sin førsteklasses jyske speedsnak leverer han show efter show med humor, der går langt over stregen - men altid på en charmerende og morsom måde.</p>",
+  "coverTextPositionClass": "block",
+  "headline": "Velkommen til Granli Velvære",
+  "description": "Hos Granli velvære er der fokus på at skabe balance i krop og sind, både hos børn og voksne.\r\n\r\nHer finder du sansemotorisk træning til børn og snart også afspænding og meditaion for voksne.\r\n\r\nVidere kommer der snart kurser med redskaber og metoder for genoprettelse af balancen i dit liv. \r\nVelkommen til et liv i balance.",
   "css": "",
   "javaScript": ""
 }

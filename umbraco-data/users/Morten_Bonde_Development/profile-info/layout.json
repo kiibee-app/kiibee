@@ -12,7 +12,7 @@
     "Info"
   ],
   "skin": ["62"],
-  "logoText": "Dan Andersen ",
+  "logoText": "Morten Bonde",
   "useLogoImage": "0",
   "logoImage": "",
   "useCoverImage": "1",
@@ -21,7 +21,7 @@
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/3124/dan-anders.png",
+    "src": "/media/1850/kiibee-forside.jpg",
     "crops": [
       {
         "alias": "Image",
@@ -30,25 +30,12 @@
       }
     ]
   },
-  "coverImageMobile": {
-    "focalPoint": {
-      "left": 0.5,
-      "top": 0.5
-    },
-    "src": "/media/3387/dan-andersen-mobil.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 640,
-        "height": 600
-      }
-    ]
-  },
-  "fadeCoverImage": "0",
+  "coverImageMobile": "",
+  "fadeCoverImage": "1",
   "textColor": ["67"],
-  "coverTextPositionClass": "bottom",
+  "coverTextPositionClass": "block",
   "headline": "",
-  "description": "<h1>Dan Andersen - Danmarks charmerende one-man-band</h1>\n<p>Dan Andersen er hele Danmarks yndlingskomiker og musiker. Med sin guitar og egen-komponerede sangtekster spreder han glæde hos både unge og gamle.</p>",
-  "css": "header { background-color: black; color: #272424; }",
+  "description": "",
+  "css": "",
   "javaScript": ""
 }

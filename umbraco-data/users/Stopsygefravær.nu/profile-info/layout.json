@@ -12,16 +12,16 @@
     "Info"
   ],
   "skin": [
-    "62"
+    "63"
   ],
-  "logoText": "Johnny Logan ",
-  "useLogoImage": "0",
+  "logoText": "Stopsygefravær.nu",
+  "useLogoImage": "1",
   "logoImage": {
     "focalPoint": {
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/3122/johnny-logan-logo.png",
+    "src": "/media/1833/logo-stopsygefravaer-3.png",
     "crops": [
       {
         "alias": "Image",
@@ -36,7 +36,7 @@
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/3121/logan-kiibee-2000x600-banner.jpg",
+    "src": "/media/1834/kirsten-loevschall-sygefravaer-pa-formel.jpg",
     "crops": [
       {
         "alias": "Image",
@@ -51,8 +51,8 @@
     "67"
   ],
   "coverTextPositionClass": "block",
-  "headline": "",
-  "description": "",
-  "css": "header { background-color: black; color: #272424; }",
+  "headline": "Velkommen til online ydelser fra Stopsygefravær.nu",
+  "description": " Har du spørgsmål, så hold dig ikke tilbage. Vi er kun en mail eller et telefonopkald fra at kunne besvare dine spørgsmål.\r\n\r\nMail: kontakt@stopsygefravaer.nu\r\nTelefon: 51408114",
+  "css": ".footer-identity {display:none !important;}",
   "javaScript": ""
 }

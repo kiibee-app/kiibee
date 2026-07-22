@@ -106,7 +106,7 @@
   },
   "dataQuality": {
     "matchedBy": "stats mediaUdi equals show UDI derived from show key",
-    "statsSource": "umbraco-data/users/Microphone Entertainment/stats/items.json",
+    "statsSource": "umbraco-data/users/Microphone_Entertainment/stats/items.json",
     "note": "The export uses authenticated Umbraco backoffice JSON APIs. Credentials are read from stdin and are not written to disk."
   }
 }

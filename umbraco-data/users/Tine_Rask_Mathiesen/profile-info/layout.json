@@ -20,14 +20,7 @@
       "top": 0.5
     },
     "src": "/media/5034/nissevers-billede-1-tre-der-duer-2.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60,
-        "$$hashKey": "0ZV6"
-      }
-    ]
+    "crops": []
   },
   "useCoverImage": "1",
   "coverImage": {
@@ -36,14 +29,7 @@
       "top": 0.5
     },
     "src": "/media/5035/file_00000000ef3c7209a9559b260a13f87d-2.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600,
-        "$$hashKey": "0ZVA"
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": "",
   "fadeCoverImage": "0",

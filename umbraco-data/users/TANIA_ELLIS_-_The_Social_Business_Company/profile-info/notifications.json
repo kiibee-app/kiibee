@@ -11,8 +11,8 @@
     "SEO",
     "Info"
   ],
-  "lastNotificationDate": "2022-08-23",
-  "frequency": 30,
+  "lastNotificationDate": "2022-08-28",
+  "frequency": "30",
   "notificationsType": "0",
-  "emails": ["anders@kiibee.com"]
+  "emails": ""
 }

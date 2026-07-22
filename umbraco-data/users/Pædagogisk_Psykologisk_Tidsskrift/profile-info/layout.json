@@ -12,18 +12,31 @@
     "Info"
   ],
   "skin": [
-    "62"
+    "63"
   ],
-  "logoText": "Jacob Tingleff",
-  "useLogoImage": "0",
-  "logoImage": "",
-  "useCoverImage": "1",
+  "logoText": "",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/1909/logo-streamer-2000-600.jpg",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
+  "useCoverImage": "0",
   "coverImage": {
     "focalPoint": {
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/3160/jacob-tigleff-top.png",
+    "src": "/media/1910/logo-streamer-2000-6000.jpg",
     "crops": [
       {
         "alias": "Image",
@@ -32,27 +45,14 @@
       }
     ]
   },
-  "coverImageMobile": {
-    "focalPoint": {
-      "left": 0.5,
-      "top": 0.5
-    },
-    "src": "/media/3384/jacob-tingleff-mobil.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 640,
-        "height": 600
-      }
-    ]
-  },
-  "fadeCoverImage": "0",
+  "coverImageMobile": "",
+  "fadeCoverImage": "1",
   "textColor": [
     "67"
   ],
   "coverTextPositionClass": "bottom",
-  "headline": "",
-  "description": "<h1>Jacob Tingleff - Stilfærdigt geni på comedy-scenen</h1>\n<p>Med sin rolige facon og stilfærdige tilstedeværelse er Jacob Tingleff lidt af en outsider i comedy-branchen. Alligevel regnes han som en af de absolut bedste til at skrive jokes og levere gennemtænkte shows med både hjerne og hjerte.</p>",
+  "headline": "Køb enkeltartikler - \"Pædagogisk Psykologisk Tidsskrift\" ",
+  "description": "",
   "css": "",
   "javaScript": ""
 }

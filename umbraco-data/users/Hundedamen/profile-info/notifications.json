@@ -11,8 +11,8 @@
     "SEO",
     "Info"
   ],
-  "lastNotificationDate": "2026-04-26",
-  "frequency": 30,
+  "lastNotificationDate": "2026-06-25",
+  "frequency": "30",
   "notificationsType": "1",
-  "emails": ["christin@hundedamen.dk"]
+  "emails": "christin@hundedamen.dk"
 }

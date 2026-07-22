@@ -30,8 +30,7 @@
           "y1": 0.07804878048780482,
           "x2": 0,
           "y2": 0
-        },
-        "$$hashKey": "8PP"
+        }
       }
     ]
   },
@@ -42,14 +41,7 @@
       "top": 0.5
     },
     "src": "/media/1165/massage-cover-kiibee-2.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600,
-        "$$hashKey": "8PT"
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": {
     "focalPoint": {
@@ -61,8 +53,7 @@
       {
         "alias": "Image",
         "width": 640,
-        "height": 600,
-        "$$hashKey": "8PX"
+        "height": 600
       }
     ]
   },

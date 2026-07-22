@@ -20,13 +20,7 @@
       "top": 0.5
     },
     "src": "/media/4363/colorful-kids-playground-logo.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60
-      }
-    ]
+    "crops": []
   },
   "useCoverImage": "0",
   "coverImage": "",

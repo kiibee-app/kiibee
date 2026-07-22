@@ -11,8 +11,8 @@
     "SEO",
     "Info"
   ],
-  "lastNotificationDate": "2022-09-05",
-  "frequency": 7,
-  "notificationsType": "0",
-  "emails": ["gymstream.dk@gmail.com"]
+  "lastNotificationDate": "2026-06-25",
+  "frequency": "30",
+  "notificationsType": "1",
+  "emails": ""
 }

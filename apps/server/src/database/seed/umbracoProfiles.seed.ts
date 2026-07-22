@@ -17,6 +17,7 @@ import {
 import {
   loadCmsMemberEmailByProfileKey,
   loadUmbracoProfileKeys,
+  profileSeedKey,
   resolveCreatorEmailFromUmbraco,
   resolveUmbracoMediaUrl,
 } from './umbracoSeed.helpers';
@@ -95,7 +96,9 @@ function deterministicUuid(value: string): string {
 }
 
 function seedUuid(scope: string, profileKey: string): string {
-  return deterministicUuid(`umbraco-profile:${scope}:${profileKey}`);
+  return deterministicUuid(
+    `umbraco-profile:${scope}:${profileSeedKey(profileKey)}`,
+  );
 }
 
 function textOrNull(value: unknown): string | null {
@@ -164,6 +167,11 @@ function splitName(fullName: string): {
 }
 
 function imageUrl(value: unknown): string | null {
+  // Umbraco may return a plain "/media/..." string or a crop object with src.
+  if (typeof value === 'string') {
+    return resolveUmbracoMediaUrl(value);
+  }
+
   if (!value || typeof value !== 'object') {
     return null;
   }
@@ -367,12 +375,10 @@ function mapProfile(
   const subscription = profile.files['subscription.json'] ?? {};
   const name = truncate(profileName(profile), 200);
   const { firstName, lastName } = splitName(name);
-  const logoUrl = isEnabled(layout.useLogoImage)
-    ? imageUrl(layout.logoImage)
-    : null;
-  const coverImageUrl = isEnabled(layout.useCoverImage)
-    ? imageUrl(layout.coverImage)
-    : null;
+  // Prefer real media src when present — Umbraco often keeps the file even
+  // when useCoverImage / useLogoImage is "0".
+  const logoUrl = imageUrl(layout.logoImage);
+  const coverImageUrl = imageUrl(layout.coverImage);
   const descriptionHtml =
     textOrNull(layout.descriptionHtml) ?? textOrNull(layout.description);
   const bio = stripHtml(descriptionHtml);

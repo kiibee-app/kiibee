@@ -12,14 +12,14 @@
     "Info"
   ],
   "skin": ["62"],
-  "logoText": "Jacob Taarnhøj ",
-  "useLogoImage": "0",
+  "logoText": "Comedy-TV",
+  "useLogoImage": "1",
   "logoImage": {
     "focalPoint": {
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/4250/skaermbillede-2022-12-09-kl-100644.png",
+    "src": "/media/3028/nyt-comedy-tv.png",
     "crops": [
       {
         "alias": "Image",
@@ -34,7 +34,7 @@
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/4248/jacob-taarnhoej-cover.png",
+    "src": "/media/3027/comedy-top-final.png",
     "crops": [
       {
         "alias": "Image",
@@ -48,7 +48,7 @@
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/4249/jacob-taarnhoej.png",
+    "src": "/media/3278/top-coemdy-cover-640x600-v2.png",
     "crops": [
       {
         "alias": "Image",
@@ -60,8 +60,8 @@
   "fadeCoverImage": "0",
   "textColor": ["67"],
   "coverTextPositionClass": "bottom",
-  "headline": "Jacob Taarnhøj - stort komisk talent",
-  "description": "<p>Jacob Taarnhøj er en talentfuld og ambitiøs komiker, der er på vej frem i dansk stand-up comedy. Han har udviklet en intelligent og humoristisk fortællestil, hvor han med sproglig præcision fremhæver absurditeter fra hverdagen. Dette får publikum til både at grine og tænke over tingene på en ny måde.</p>",
-  "css": "header { background-color: black; color: #272424; }",
+  "headline": "Få dit yndlings comedy show fra Danmarks sjoveste komikere",
+  "description": "Du kan nemt og enkelt leje eller købe shows med alle dine favorit komikere & artister. Nem betaling med MobilePay og Dankort.  \r\nStream eller download og se film & shows hjemme på din skærm. God fornøjelse!",
+  "css": "",
   "javaScript": ""
 }

@@ -1,6 +1,6 @@
 {
   "tab": "Layout",
-  "name": "Rikke Brünner",
+  "name": "Rikke Brünner ",
   "tabsVisible": [
     "General",
     "Subscription",
@@ -22,14 +22,7 @@
       "top": 0.5
     },
     "src": "/media/4118/logo_simpelt.jpg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60,
-        "$$hashKey": "0HN9"
-      }
-    ]
+    "crops": []
   },
   "useCoverImage": "1",
   "coverImage": {
@@ -38,14 +31,7 @@
       "top": 0.5
     },
     "src": "/media/4119/rikke-47.jpg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600,
-        "$$hashKey": "0HND"
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": "",
   "fadeCoverImage": "1",

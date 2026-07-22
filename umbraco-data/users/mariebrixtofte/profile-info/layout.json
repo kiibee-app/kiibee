@@ -12,16 +12,29 @@
     "Info"
   ],
   "skin": ["62"],
-  "logoText": "TjelesVenner",
-  "useLogoImage": "0",
-  "logoImage": "",
+  "logoText": "Foredragsfilm: Marie Brixtofte",
+  "useLogoImage": "1",
+  "logoImage": {
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
+    },
+    "src": "/media/2625/brix-logo-test-final.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
+  },
   "useCoverImage": "1",
   "coverImage": {
     "focalPoint": {
       "left": 0.5,
       "top": 0.5
     },
-    "src": "/media/3700/kopi-af-kopi-af-foredragsfilm-meditationer-til-dig.png",
+    "src": "/media/2614/kiibee-top-stoet.png",
     "crops": [
       {
         "alias": "Image",
@@ -30,25 +43,12 @@
       }
     ]
   },
-  "coverImageMobile": {
-    "focalPoint": {
-      "left": 0.5,
-      "top": 0.5
-    },
-    "src": "/media/3701/kopi-af-foredragsfilm-meditationer-til-dig-og-din-sindsro.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 640,
-        "height": 600
-      }
-    ]
-  },
+  "coverImageMobile": "",
   "fadeCoverImage": "0",
   "textColor": ["67"],
-  "coverTextPositionClass": "bottom",
-  "headline": "Stream eller download film, bøger, Apps & meditationer",
-  "description": "Her kan du downloade stærke foredragsfilm og bøger om afhængighed. Du kan også få adgang til vores samling med guidede meditationer (serie på 6 afsnit med meditationer som lydfiler). Alle indtægter går til foreningen Tjeles Venners arbejde med at hjælpe familier i behandling for deres afhængighed.  ",
+  "coverTextPositionClass": "block",
+  "headline": "Foredragsfilm: Marie Brixtofte - \"Barn af en alkoholiker\"",
+  "description": "Se Marie Brixtoftes rørende foredrag om hendes opvækst med sin far - Farums kendte borgmester - Peter Brixtofte. Om stor kærlighed og store skuffelser. Om senfølger samt om værktøjer til at komme godt videre i livet.\r\n\r\nMed dit køb af filmen støtter du \"De Små Skuldre\" som er et gratis behandlingstilbud til børn og unge fra familier med misbrugsproblemer. ALLE indtægter går ubeskåret til projekter hos \"De Små Skuldre\". Du vælger selv om du vil give 99 kr eller 199 kr i støtte for at se filmen.",
   "css": "",
   "javaScript": ""
 }

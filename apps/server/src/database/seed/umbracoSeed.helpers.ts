@@ -22,8 +22,23 @@ export function deterministicUuid(value: string): string {
   ].join('-');
 }
 
+/**
+ * Directory renames for filesystem safety (e.g. spaces → underscores).
+ * Seed UUIDs keep the legacy key so existing DB rows stay linked.
+ */
+const PROFILE_SEED_KEY_ALIASES: Record<string, string> = {
+  Microphone_Entertainment: 'Microphone Entertainment',
+};
+
+/** Canonical key used for deterministic seed UUIDs. */
+export function profileSeedKey(profileKey: string): string {
+  return PROFILE_SEED_KEY_ALIASES[profileKey] ?? profileKey;
+}
+
 export function profileUserId(profileKey: string): string {
-  return deterministicUuid(`umbraco-profile:user:${profileKey}`);
+  return deterministicUuid(
+    `umbraco-profile:user:${profileSeedKey(profileKey)}`,
+  );
 }
 
 export function viewerUserId(email: string): string {
@@ -35,7 +50,9 @@ export function showSeedUuid(
   profileKey: string,
   showKey: string,
 ): string {
-  return deterministicUuid(`umbraco-show:${scope}:${profileKey}:${showKey}`);
+  return deterministicUuid(
+    `umbraco-show:${scope}:${profileSeedKey(profileKey)}:${showKey}`,
+  );
 }
 
 export function umbracoSeedUuid(
@@ -43,7 +60,9 @@ export function umbracoSeedUuid(
   profileKey: string,
   itemKey: string,
 ): string {
-  return deterministicUuid(`umbraco-${scope}:${profileKey}:${itemKey}`);
+  return deterministicUuid(
+    `umbraco-${scope}:${profileSeedKey(profileKey)}:${itemKey}`,
+  );
 }
 
 /** Resolve Umbraco media paths/URLs via shared CDN rewrite logic. */
@@ -226,6 +245,11 @@ export function loadContentUserIdByProfileKey(): Map<string, number> {
   for (const user of parsed.users ?? []) {
     if (user.userDir && user.userId) {
       map.set(user.userDir, user.userId);
+      // Also index renamed dirs (spaces → underscores).
+      const underscored = user.userDir.replace(/ /g, '_');
+      if (underscored !== user.userDir) {
+        map.set(underscored, user.userId);
+      }
     }
   }
 
@@ -482,6 +506,7 @@ export const UMBRACO_SKIP_PROFILE_KEYS = new Set([
   'ADHDFOKUS',
   'APHypnose',
   'Ahmed_Mittani',
+  'CamComm',
   'Diy_for_børn',
   'Foreningen_Danske_Revisorer',
   'Fredensborg_Sundhedscenter',
@@ -610,6 +635,7 @@ const PROFILE_CATEGORY_OVERRIDES: Record<string, string> = {
   Sundt_indtag: 'food',
   slank_og_wellness: 'wellness',
   'TANIA_ELLIS_-_The_Social_Business_Company': 'education',
+  Microphone_Entertainment: 'comedy',
   'Microphone Entertainment': 'comedy',
   'FBI.DK': 'comedy',
 };

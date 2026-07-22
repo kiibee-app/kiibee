@@ -22,14 +22,7 @@
       "top": 0.5
     },
     "src": "/media/4487/logo.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60,
-        "$$hashKey": "0KU9"
-      }
-    ]
+    "crops": []
   },
   "useCoverImage": "0",
   "coverImage": {
@@ -38,14 +31,7 @@
       "top": 0.5
     },
     "src": "/media/4488/logo.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600,
-        "$$hashKey": "0KUD"
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": "",
   "fadeCoverImage": "0",

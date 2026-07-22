@@ -20,13 +20,7 @@
       "top": 0.5
     },
     "src": "/media/3707/mc-caffe_final_300.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60
-      }
-    ]
+    "crops": []
   },
   "useCoverImage": "1",
   "coverImage": {
@@ -35,13 +29,7 @@
       "top": 0.5
     },
     "src": "/media/3708/mccaffe-3-of-61-kiibee.jpg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": "",
   "fadeCoverImage": "0",

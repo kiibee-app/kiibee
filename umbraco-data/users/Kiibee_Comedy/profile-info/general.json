@@ -1,6 +1,6 @@
 {
   "tab": "General",
-  "name": "Kiibee Comedy",
+  "name": "Kiibee",
   "tabsVisible": [
     "General",
     "Subscription",
@@ -11,7 +11,7 @@
     "SEO",
     "Info"
   ],
-  "owner": "umb://member/cdc52dd6df8141db971563556c25a065",
-  "emailReceipt": "",
-  "supportEmail": "info@kiibee.com"
+  "owner": "umb://member/c992e13638734db88265709d762261bb",
+  "emailReceipt": "Mange tak for dit køb, vi håber du bliver tilfreds med indholdet.\r\nHvis du har spørgsmål er du velkommen til at kontakte os (-;    ",
+  "supportEmail": "dit@firma.dk"
 }

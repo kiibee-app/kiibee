@@ -11,8 +11,8 @@
     "SEO",
     "Info"
   ],
-  "lastNotificationDate": "2026-05-10",
-  "frequency": 60,
+  "lastNotificationDate": "2026-07-09",
+  "frequency": "60",
   "notificationsType": "1",
-  "emails": ["amin@aminjensen.dk", "anders@kiibee.com"]
+  "emails": "amin@aminjensen.dk,anders@kiibee.com"
 }

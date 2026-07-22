@@ -85,18 +85,18 @@
   ],
   "mediaCache": [
     {
-      "path": "umbraco-data/users/Microphone Entertainment/purchases/media.json",
+      "path": "umbraco-data/users/Microphone_Entertainment/purchases/media.json",
       "count": 0,
-      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Microphone Entertainment\\purchases\\media.json'"
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Microphone_Entertainment\\purchases\\media.json'"
     },
     {
-      "path": "umbraco-data/users/Microphone Entertainment/shows/items.json",
+      "path": "umbraco-data/users/Microphone_Entertainment/shows/items.json",
       "count": 7
     },
     {
-      "path": "umbraco-data/users/Microphone Entertainment/stats/media.json",
+      "path": "umbraco-data/users/Microphone_Entertainment/stats/media.json",
       "count": 0,
-      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Microphone Entertainment\\stats\\media.json'"
+      "error": "ENOENT: no such file or directory, open 'C:\\Users\\sera\\Desktop\\kiibee\\umbraco-data\\users\\Microphone_Entertainment\\stats\\media.json'"
     }
   ],
   "files": {

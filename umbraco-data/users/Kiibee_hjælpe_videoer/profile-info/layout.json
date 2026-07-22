@@ -1,6 +1,6 @@
 {
   "tab": "Layout",
-  "name": "Kiibee hjælpe videoer",
+  "name": "Kiibee",
   "tabsVisible": [
     "General",
     "Subscription",
@@ -12,31 +12,18 @@
     "Info"
   ],
   "skin": [
-    "62"
+    "63"
   ],
-  "logoText": "Åndedrætstræner Adal Faragalla",
+  "logoText": "Dit firmanavn eller logo",
   "useLogoImage": "0",
-  "logoImage": {
-    "focalPoint": {
-      "left": 0.5,
-      "top": 0.5
-    },
-    "src": "/media/1957/logo-stort-graa.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60
-      }
-    ]
-  },
+  "logoImage": "",
   "useCoverImage": "1",
   "coverImage": {
     "focalPoint": {
       "left": 0.5,
-      "top": 0.5
+      "top": 0.5011389521640092
     },
-    "src": "/media/1958/facebook-cover-photo.png",
+    "src": "/media/1171/card-coffee-cup-1449082.jpg",
     "crops": [
       {
         "alias": "Image",
@@ -45,27 +32,14 @@
       }
     ]
   },
-  "coverImageMobile": {
-    "focalPoint": {
-      "left": 0.5,
-      "top": 0.5
-    },
-    "src": "/media/3630/original.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 640,
-        "height": 600
-      }
-    ]
-  },
+  "coverImageMobile": "",
   "fadeCoverImage": "0",
   "textColor": [
-    "67"
+    "69"
   ],
-  "coverTextPositionClass": "bottom",
-  "headline": "Der findes ingen quickfixes!",
-  "description": "Vi kan vælge at se alt der sker i vores liv, som noget der sker imod os\r\n.....eller som noget vi kan lære noget af.\r\n\r\nDet hele afhænger af perspektiv! \r\n\r\nÅndedrættet er vejen til at genskabe kontrollen over din tilstand.  \r\nHvordan du trækker vejret kan også gøre dig bevidst om din tilstand. Jeg vil give dig nogle simple værktøjer, der er nemme at implementere i din hverdag. De kan reducere stress i kroppen og give dig adgang til gemte ressourcer.\r\n\r\nVelkommen!\r\n",
+  "coverTextPositionClass": "noblock",
+  "headline": "Velkommen til din kanal for digitalt indhold  ",
+  "description": "På sitet her kan du se eksempler på forskellige måder at præsentere og sælge digitalt indhold på.",
   "css": "",
   "javaScript": ""
 }

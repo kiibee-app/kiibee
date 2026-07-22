@@ -20,14 +20,7 @@
       "top": 0.5
     },
     "src": "/media/4493/pertv-logo-2.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60,
-        "$$hashKey": "0L90"
-      }
-    ]
+    "crops": []
   },
   "useCoverImage": "1",
   "coverImage": {
@@ -36,14 +29,7 @@
       "top": 0.5
     },
     "src": "/media/4494/biografitop3.jpeg",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600,
-        "$$hashKey": "0L94"
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": "",
   "fadeCoverImage": "1",

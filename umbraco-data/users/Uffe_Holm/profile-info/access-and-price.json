@@ -1,7 +1,17 @@
 {
   "tab": "Access & Price",
   "name": "Uffe Holm",
-  "access": "Free",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "access": ["57"],
   "rentalPrice": "",
   "purchasePrice": "",
   "code": ""

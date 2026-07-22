@@ -20,13 +20,7 @@
       "top": 0.5
     },
     "src": "/media/4772/opnaa-dine-maal-laer-at-holde-aftaler-med-dig-selv-4.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 250,
-        "height": 60
-      }
-    ]
+    "crops": []
   },
   "useCoverImage": "1",
   "coverImage": {
@@ -35,13 +29,7 @@
       "top": 0.5
     },
     "src": "/media/4756/opnaa-dine-maal-laer-at-holde-aftaler-med-dig-selv-2.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 2000,
-        "height": 600
-      }
-    ]
+    "crops": []
   },
   "coverImageMobile": {
     "focalPoint": {
@@ -49,13 +37,7 @@
       "top": 0.5
     },
     "src": "/media/4757/design-uden-navn-6.png",
-    "crops": [
-      {
-        "alias": "Image",
-        "width": 640,
-        "height": 600
-      }
-    ]
+    "crops": []
   },
   "fadeCoverImage": "0",
   "textColor": ["67"],

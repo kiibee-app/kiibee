@@ -1,6 +1,6 @@
 {
   "tab": "Notifications",
-  "name": "Kiibee hjælpe videoer",
+  "name": "Kiibee",
   "tabsVisible": [
     "General",
     "Subscription",
@@ -11,10 +11,8 @@
     "SEO",
     "Info"
   ],
-  "lastNotificationDate": "2026-05-24",
-  "frequency": 7,
-  "notificationsType": "1",
-  "emails": [
-    "contact@adalfaragalla.com"
-  ]
+  "lastNotificationDate": "2026-07-18",
+  "frequency": "30",
+  "notificationsType": "2",
+  "emails": ""
 }

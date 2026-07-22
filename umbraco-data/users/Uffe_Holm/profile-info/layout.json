@@ -1,44 +1,67 @@
 {
   "tab": "Layout",
   "name": "Uffe Holm",
-  "skin": "Light",
+  "tabsVisible": [
+    "General",
+    "Subscription",
+    "Access & Price",
+    "Layout",
+    "Notifications",
+    "SiteMap",
+    "SEO",
+    "Info"
+  ],
+  "skin": ["63"],
   "logoText": "Uffe Holm - Shows til download",
-  "useLogoImage": true,
+  "useLogoImage": "1",
   "logoImage": {
-    "presentInScreenshot": true,
-    "dimensions": {
-      "widthPx": 250,
-      "heightPx": 60
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
     },
-    "visibleText": "Uffe Holm",
-    "sourceFileAvailable": false
+    "src": "/media/1618/uh_logo.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 250,
+        "height": 60
+      }
+    ]
   },
-  "useCoverImage": true,
+  "useCoverImage": "1",
   "coverImage": {
-    "presentInScreenshot": true,
-    "dimensions": {
-      "widthPx": 2200,
-      "heightPx": 400
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
     },
-    "visibleText": "InstaChamp Uffe Holms Stand-up Tour 2019",
-    "visualDescription": "Wide turquoise cover with Uffe Holm wearing a blue helmet on the right.",
-    "sourceFileAvailable": false
+    "src": "/media/1221/uffe-cover-1.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 2000,
+        "height": 600
+      }
+    ]
   },
   "coverImageMobile": {
-    "presentInScreenshot": true,
-    "dimensions": {
-      "widthPx": 600,
-      "heightPx": 600
+    "focalPoint": {
+      "left": 0.5,
+      "top": 0.5
     },
-    "visibleText": "UFFE HOLM Shows til stream og download",
-    "visualDescription": "Square turquoise mobile cover with Uffe Holm wearing a blue helmet on the left.",
-    "sourceFileAvailable": false
+    "src": "/media/3392/uffe-holm-mobil.png",
+    "crops": [
+      {
+        "alias": "Image",
+        "width": 640,
+        "height": 600
+      }
+    ]
   },
-  "fadeCoverImage": false,
-  "textColor": "Use Theme",
+  "fadeCoverImage": "0",
+  "textColor": ["67"],
   "coverTextPositionClass": "bottom",
   "headline": "",
-  "descriptionHtml": "<h1>Uffe Holm - Danmarks rutinerede comedy-komet</h1>\n<p>Uffe Holm er en af Danmarks mest rutinerede og popul\u00e6re stand-up komikere. Allerede som 17-\u00e5rig debuterede han p\u00e5 den danske comedy scene, og gennem sin lange karriere er han blevet ekspert i at l\u00e6se sit publikum og balancere p\u00e5 kanten af det tilladte.</p>",
+  "description": "<h1>Uffe Holm - Danmarks rutinerede comedy-komet</h1>\n<p>Uffe Holm er en af Danmarks mest rutinerede og populære stand-up komikere. Allerede som 17-årig debuterede han på den danske comedyscene, og gennem sin lange karriere er han blevet ekspert i at læse sit publikum og balancere på kanten af det tilladte.</p>",
   "css": "",
   "javaScript": ""
 }
