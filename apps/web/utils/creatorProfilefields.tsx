@@ -9,12 +9,12 @@ export const getProfileFields = (t: (k: string) => string) => [
   {
     key: FORM_KEYS.firstName,
     label: t(CREATOR_PROFILE.firstName),
-    max: 100,
+    max: 50,
   },
   {
     key: FORM_KEYS.lastName,
     label: t(CREATOR_PROFILE.lastName),
-    max: 100,
+    max: 50,
   },
 ];
 

@@ -8,6 +8,7 @@ import {
   IsString,
   ValidateIf,
   IsArray,
+  IsUrl,
 } from 'class-validator';
 
 export class CreateContentDto {
@@ -132,6 +133,7 @@ export class UpdateContentDto {
 
   @IsOptional()
   @IsString()
+  @IsUrl({}, { message: 'Physical product link must be a valid URL' })
   physicalProductLink?: string;
 
   @IsOptional()
