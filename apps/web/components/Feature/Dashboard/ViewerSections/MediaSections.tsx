@@ -5,7 +5,14 @@ import { useState } from "react";
 import { MonoText } from "@/components/UI/Monotext";
 import GenericCard from "@/components/UI/GenericCard";
 import GenericButton from "@/components/UI/GenericButton";
-import { VARIANT, SORT_ARROW_UP, SORT_ARROW_DOWN } from "@/utils/Constants";
+import {
+  VARIANT,
+  SORT_ARROW_UP,
+  SORT_ARROW_DOWN,
+  BUY_PREFIX,
+  RENT_PREFIX,
+} from "@/utils/Constants";
+import { formatPriceLabel } from "@/utils/contentPricingActions";
 import COLORS from "@repo/ui/colors";
 import { VideoIcon, WebIcon } from "@/assets/icons";
 import AudioFileIcon from "@/assets/icons/AudioFileIcon";
@@ -207,14 +214,16 @@ export default function MediaSections({
                           size="md"
                           fullWidth
                         >
-                          {t("pricingLabels.buy")}
+                          {formatPriceLabel(BUY_PREFIX, item.buyPrice) ??
+                            t("pricingLabels.buy")}
                         </GenericButton>
                         <GenericButton
                           variant={VARIANT.SECONDARY}
                           size="md"
                           fullWidth
                         >
-                          {t("pricingLabels.rent")}
+                          {formatPriceLabel(RENT_PREFIX, item.rentPrice) ??
+                            t("pricingLabels.rent")}
                         </GenericButton>
                       </TwoButtonRow>
                     )
