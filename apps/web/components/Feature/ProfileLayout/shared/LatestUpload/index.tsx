@@ -128,6 +128,15 @@ export default function LatestUpload({ data, isOwner }: LatestUploadProps) {
         labels: getPricingLabels(t),
       });
 
+      if (pricingActions.length === 0) {
+        return [
+          {
+            title: t("createProfileHome.latestUpload.seeContent"),
+            href: pathPublishedContent(data.contentId),
+          },
+        ];
+      }
+
       return pricingActions.map((action) => ({
         title: action.label,
         subtitle: action.subtitle,

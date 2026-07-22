@@ -2239,7 +2239,9 @@
     "rent": "Lej",
     "buy": "Køb",
     "buyCollection": "Køb samling",
-    "free": "Gratis"
+    "free": "Gratis",
+    "accessCodeRequired": "Adgangskode påkrævet",
+    "emailRequired": "E-mail påkrævet"
   },
   "viewerRented": {
     "emptyStates": {
