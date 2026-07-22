@@ -241,7 +241,9 @@
     "login": "Log ind",
     "form": {
       "firstName": "Fornavn",
+      "firstNameMax": "Fornavn må højst være 50 tegn",
       "lastName": "Efternavn",
+      "lastNameMax": "Efternavn må højst være 50 tegn",
       "email": "E-mailadresse",
       "phone": "Telefonnummer (valgfrit)",
       "cvr": "CVR (valgfrit)",
@@ -253,6 +255,7 @@
       "workLinkInvalid": "Indtast venligst en gyldig URL (fx: https://example.com)",
       "contentLabel": "Fortæl os om dit indhold",
       "contentPlaceholder": "Fortæl lidt om dit indhold, og hvad du gerne vil dele på Kiibee.",
+      "contentMax": "Beskrivelsen skal være kortere end eller lig med 500 tegn.",
       "consentPrefix": "Jeg accepterer Kiibees",
       "terms": "Vilkår for brug",
       "and": "og",
@@ -972,8 +975,10 @@
     "title": "Min konto",
     "firstName": "Fornavn",
     "firstNameRequired": "Fornavn er påkrævet",
+    "firstNameMax": "Fornavn må højst være 50 tegn",
     "lastName": "Efternavn",
     "lastNameRequired": "Efternavn er påkrævet",
+    "lastNameMax": "Efternavn må højst være 50 tegn",
     "cvrInvalid": "CVR skal være på mindst 8 cifre",
     "passwordLabel": "Adgangskode",
     "changePassword": "Skift adgangskode",
@@ -1029,6 +1034,14 @@
     "profilePhotoAlt": "Profilfoto"
   },
   "singleContent": {
+    "purchaseSuccessModal": {
+      "title": "Køb gennemført!",
+      "contentMessage": "Betaling bekræftet — du ejer nu dette indhold og kan få adgang til det når som helst i dit bibliotek.",
+      "collectionMessage": "Betaling bekræftet — du ejer nu denne samling og kan få adgang til den når som helst i dit bibliotek.",
+      "goBack": "Gå tilbage",
+      "goToContent": "Gå til indhold",
+      "goToCollection": "Gå til samling"
+    },
     "notFound": "Dette indhold blev ikke fundet.",
     "loading": "Indhold indlaeses...",
     "imageAlt": "Forhaandsvisning af indhold",
@@ -1046,6 +1059,17 @@
       "accessDays": "Adgang i {{count}} dage",
       "accessHours": "Adgang i {{count}} timer",
       "rental": "48 timers leje",
+      "purchaseTitle": "Dit køb",
+      "rentalTitle": "Din leje",
+      "collectionPurchaseTitle": "Køb af samling",
+      "collectionPurchaseAccess": "Få adgang til dit indhold når som helst i din profil.",
+      "collectionPurchaseFees": "Prisen inkluderer moms og kortgebyr.",
+      "buyTotal": "Køb {{total}} kr",
+      "rentTotal": "Lej {{total}} kr",
+      "collectionRentalTitle": "Leje af samling",
+      "collectionRentalPeriod": "{{count}} måneders leje",
+      "collectionRentalStreaming": "{{count}} måneders streaming",
+      "collectionRentalExpires": "Udløber den {{date}}",
       "discountCode": "Rabatkode",
       "enterCode": "Indtast kode",
       "apply": "Anvend",
@@ -1831,6 +1855,7 @@
         "invalidHex": "Indtast en gyldig hex-farve som #1a2b3c.",
         "invalidSupportEmail": "Indtast en gyldig support e-mailadresse.",
         "fixErrors": "Ret fejlene i appearance-sektionen, fÃ¸r du gemmer.",
+        "descriptionMax": "Beskrivelsen skal være kortere end eller lig med {{max}} tegn.",
         "descriptionRequired": "Beskrivelse er påkrævet.",
         "logoNameRequired": "Logotekst er påkrævet.",
         "logoImageRequired": "Upload venligst et logobillede.",
@@ -2214,7 +2239,9 @@
     "rent": "Lej",
     "buy": "Køb",
     "buyCollection": "Køb samling",
-    "free": "Gratis"
+    "free": "Gratis",
+    "accessCodeRequired": "Adgangskode påkrævet",
+    "emailRequired": "E-mail påkrævet"
   },
   "viewerRented": {
     "emptyStates": {
@@ -2256,6 +2283,7 @@
     "expired": "Udløbet",
     "expiresInHours": "Udløber om {{count}} timer",
     "expiresInDays": "Udløber om {{count}} dage",
+    "expiresDate": "Udløber {{date}}",
     "expiredOn": "Udløbet den {{date}}",
     "purchased": "Købt",
     "purchasedOn": "Købt den {{date}}"

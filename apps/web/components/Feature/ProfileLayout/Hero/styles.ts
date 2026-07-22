@@ -98,21 +98,19 @@ export const AvatarWrap = styled.div`
   margin-top: -1.5625rem;
   border-radius: 50%;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: transparent;
   flex: 0 0 auto;
 
   ${({ theme }) => theme.media.desktopSm} {
     width: 8.125rem;
     height: 8.125rem;
     margin-top: -1.25rem;
-    border-width: 0.375rem;
   }
 
   ${({ theme }) => theme.media.mobileXl} {
     width: 6.75rem;
     height: 6.75rem;
     margin-top: -1rem;
-    border-width: 0.3125rem;
   }
 `;
 
@@ -123,16 +121,14 @@ export const AvatarWrapCentered = styled.div`
   margin-top: -82px;
   border-radius: 999px;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.neutral.GRAY_200};
+  background: transparent;
 
   ${({ theme }) => theme.media.mobileXl} {
     width: 136px;
     height: 136px;
     margin-top: -66px;
-    border-width: 6px;
   }
 `;
-
 export const ProfileMeta = styled.div`
   padding-bottom: 8px;
   max-width: 760px;
@@ -250,17 +246,19 @@ export const HeroFrame = styled.section`
   position: relative;
   width: 100%;
   height: 500px;
-  margin: 0;
+  margin: 0 0 48px;
   padding: 0;
   overflow: hidden;
   background: ${({ theme }) => theme.colors.neutral.WHITE};
 
   ${({ theme }) => theme.media.desktopSm} {
     height: 460px;
+    margin-bottom: 36px;
   }
 
   ${({ theme }) => theme.media.mobileXl} {
     height: 420px;
+    margin-bottom: 24px;
   }
 `;
 
@@ -368,6 +366,16 @@ export const HeroMedia = styled.div`
   position: absolute;
   inset: 0;
   overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: ${({ theme }) =>
+      `linear-gradient(262deg, ${theme.colors.gradient.TRANSPARENT} 36.41%, ${theme.colors.primary.BLACK_90} 100%)`};
+    pointer-events: none;
+    z-index: 1;
+  }
 
   img {
     filter: saturate(0.95) contrast(0.96);

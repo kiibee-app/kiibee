@@ -46,7 +46,9 @@ export const createViewerSignupSchema = (messages: {
 
 export const createCreatorRequestSchema = (messages: {
   firstNameRequired: string;
+  firstNameMax: string;
   lastNameRequired: string;
+  lastNameMax: string;
   emailRequired: string;
   emailInvalid: string;
   addressRequired: string;
@@ -55,12 +57,21 @@ export const createCreatorRequestSchema = (messages: {
   workLinkRequired: string;
   workLinkInvalid: string;
   contentDescriptionRequired: string;
+  contentDescriptionMax: string;
   consentRequired: string;
 }) =>
   z
     .object({
-      firstName: z.string().trim().min(1, messages.firstNameRequired),
-      lastName: z.string().trim().min(1, messages.lastNameRequired),
+      firstName: z
+        .string()
+        .trim()
+        .min(1, messages.firstNameRequired)
+        .max(50, messages.firstNameMax),
+      lastName: z
+        .string()
+        .trim()
+        .min(1, messages.lastNameRequired)
+        .max(50, messages.lastNameMax),
       email: z
         .string()
         .trim()
@@ -79,7 +90,8 @@ export const createCreatorRequestSchema = (messages: {
       contentDescription: z
         .string()
         .trim()
-        .min(1, messages.contentDescriptionRequired),
+        .min(1, messages.contentDescriptionRequired)
+        .max(500, messages.contentDescriptionMax),
       agreed: z.boolean(),
     })
     .refine((values) => values.agreed, {
@@ -89,13 +101,23 @@ export const createCreatorRequestSchema = (messages: {
 
 export const createCreatorProfileSchema = (messages: {
   firstNameRequired: string;
+  firstNameMax: string;
   lastNameRequired: string;
+  lastNameMax: string;
   cvrInvalid: string;
 }) =>
   z
     .object({
-      firstName: z.string().trim().min(1, messages.firstNameRequired),
-      lastName: z.string().trim().min(1, messages.lastNameRequired),
+      firstName: z
+        .string()
+        .trim()
+        .min(1, messages.firstNameRequired)
+        .max(50, messages.firstNameMax),
+      lastName: z
+        .string()
+        .trim()
+        .min(1, messages.lastNameRequired)
+        .max(50, messages.lastNameMax),
       cvr: z
         .string()
         .trim()

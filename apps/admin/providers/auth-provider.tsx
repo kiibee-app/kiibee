@@ -4,12 +4,7 @@ import { createContext, useContext, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import type { AuthContextType, User } from "../types/auth";
-import {
-  getAccessToken,
-  decodeToken,
-  isTokenExpired,
-  clearTokens,
-} from "../utils/token";
+import { decodeToken, isTokenExpired, useAdminTokens } from "../utils/token";
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
@@ -24,11 +19,12 @@ export function useAuth() {
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const { clearTokens, getAccessToken } = useAdminTokens();
 
   const logout = useCallback(() => {
     clearTokens();
     router.push("/login");
-  }, [router]);
+  }, [clearTokens, router]);
 
   let user: User | null = null;
   let shouldRedirect = false;
@@ -62,7 +58,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       toast.error("Access denied. Admin role required.");
     }
     router.push("/login");
-  }, [router, shouldRedirect, shouldShowAccessDeniedToast]);
+  }, [clearTokens, router, shouldRedirect, shouldShowAccessDeniedToast]);
 
   return (
     <AuthContext.Provider

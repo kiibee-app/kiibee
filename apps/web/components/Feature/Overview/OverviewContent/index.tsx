@@ -56,9 +56,8 @@ export default function OverviewContent() {
 
   return (
     <Wrapper>
-      <Title>{t("dashboard.overview")}</Title>
       <TopRow>
-        <div />
+        <Title>{t("dashboard.overview")}</Title>
         <RangeGroup>
           {OVERVIEW_RANGES.map((r) => (
             <RangeButton

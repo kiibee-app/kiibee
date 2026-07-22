@@ -1,5 +1,5 @@
 import { db } from 'src/database/db';
-import { eq, ilike, or } from 'drizzle-orm';
+import { and, eq, ilike, isNull, ne, or, sql, SQL } from 'drizzle-orm';
 import { mediaFiles, users } from 'src/database/schema';
 import { formatTimeAgo } from 'src/utils/formatTimeAgo';
 import {
@@ -31,6 +31,38 @@ export const contentSlugGenerator = async (title: string) => {
   }
 
   return slug;
+};
+
+export const checkDuplicateContentTitle = async (
+  creatorId: string,
+  title: string,
+  contentTypeId: string | null | undefined,
+  excludeContentId?: string,
+) => {
+  const conditions: SQL[] = [
+    eq(mediaFiles.creatorId, creatorId),
+    sql`LOWER(${mediaFiles.title}) = LOWER(${title})`,
+  ];
+
+  if (contentTypeId === null || contentTypeId === undefined) {
+    conditions.push(isNull(mediaFiles.contentTypeId));
+  } else {
+    conditions.push(eq(mediaFiles.contentTypeId, contentTypeId));
+  }
+
+  conditions.push(eq(mediaFiles.isDeleted, false));
+
+  if (excludeContentId) {
+    conditions.push(ne(mediaFiles.id, excludeContentId));
+  }
+
+  const existing = await db
+    .select({ id: mediaFiles.id })
+    .from(mediaFiles)
+    .where(and(...conditions))
+    .limit(1);
+
+  return existing.length > 0;
 };
 
 export const baseConditions = (CONTENT_VISIBILITY: any) => [

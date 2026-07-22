@@ -4,19 +4,21 @@ import { MonoText } from "@/components/UI/Monotext";
 import { Wrapper as SearchBarWrapper } from "@/components/UI/SearchBar/styles";
 import { SIZE, VARIANT } from "@/utils/Constants";
 import { media } from "@repo/ui/breakpoints";
+import { shimmer } from "@/components/UI/Skeleton/styles";
 
-export const HeroWrapper = styled.div`
+export const HeroWrapper = styled.div<{ $embedded?: boolean }>`
   width: 100%;
-  max-width: var(--navbar-inner-max-width, 1440px);
+  max-width: ${({ $embedded }) =>
+    $embedded ? "none" : "var(--navbar-inner-max-width, 1440px)"};
   margin: 0 auto;
-  padding: 110px 1.5rem 0;
+  padding: ${({ $embedded }) => ($embedded ? "0" : "110px 1.5rem 0")};
 
   ${media.tablet} {
-    padding: 88px 1.5rem 0;
+    padding: ${({ $embedded }) => ($embedded ? "0" : "88px 1.5rem 0")};
   }
 
   ${media.mobileXl} {
-    padding: 84px 1rem 0;
+    padding: ${({ $embedded }) => ($embedded ? "0" : "84px 1rem 0")};
   }
 `;
 
@@ -70,6 +72,10 @@ export const PricingActions = styled.div`
   margin-top: 8px;
 `;
 
+export const OwnerActions = styled(PricingActions)`
+  margin-top: 0;
+`;
+
 export const PricingButtonContent = styled.span`
   display: flex;
   flex-direction: column;
@@ -82,16 +88,16 @@ export const PricingButtonSubtitle = styled.small`
   opacity: 0.72;
 `;
 
-export const TopBar = styled.div`
+export const TopBar = styled.div<{ $embedded?: boolean }>`
   width: 100%;
   display: flex;
   align-items: center;
-  padding-bottom: 20px;
+  padding-bottom: ${({ $embedded }) => ($embedded ? "12px" : "20px")};
   justify-content: space-between;
   gap: 12px;
 
   ${media.tablet} {
-    padding-bottom: 16px;
+    padding-bottom: ${({ $embedded }) => ($embedded ? "10px" : "16px")};
   }
 
   ${media.mobileXl} {
@@ -125,6 +131,14 @@ export const HeroImage = styled.div`
   flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 25%,
+    ${({ theme }) => theme.colors.neutral.GRAY_100} 50%,
+    ${({ theme }) => theme.colors.neutral.GRAY_200} 75%
+  );
+  background-size: 200% 100%;
+  animation: ${shimmer} 1.5s infinite ease-in-out;
 
   ${media.tablet} {
     width: 100%;

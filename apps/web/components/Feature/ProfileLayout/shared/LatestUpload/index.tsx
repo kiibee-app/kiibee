@@ -65,24 +65,12 @@ export type LatestUploadData = {
   buyPrice?: string | number | null;
   rentPrice?: string | number | null;
   rentDurationHours?: string | number | null;
-  imageStyle?: {
-    width?: string;
-    height?: string;
-    padding?: string;
-    flexDirection?: string;
-    justifyContent?: string;
-    alignItems?: string;
-    gap?: string;
-  };
-  containerStyle?: {
-    padding?: string;
-    maxWidth?: string;
-  };
 };
 
 type LatestUploadProps = {
   data: LatestUploadData;
   isOwner?: boolean;
+  variant?: import("@/components/Feature/ProfileLayout/config").ProfileLayoutVariant;
 };
 
 const contentIconMap = {
@@ -99,7 +87,11 @@ type ComputedAction = {
   href?: string;
 };
 
-export default function LatestUpload({ data, isOwner }: LatestUploadProps) {
+export default function LatestUpload({
+  data,
+  isOwner,
+  variant,
+}: LatestUploadProps) {
   const { t } = useTranslation();
   const isMobile = useIsMobile(MOBILE_BREAKPOINT);
   const [isLoginModalVisible, setLoginModalVisible] = useState(false);
@@ -140,6 +132,15 @@ export default function LatestUpload({ data, isOwner }: LatestUploadProps) {
       const pricingActions = getContentDetailPricingActions(pricingItem, t, {
         labels: getPricingLabels(t),
       });
+
+      if (pricingActions.length === 0) {
+        return [
+          {
+            title: t("createProfileHome.latestUpload.seeContent"),
+            href: pathPublishedContent(data.contentId),
+          },
+        ];
+      }
 
       return pricingActions.map((action) => ({
         title: action.label,
@@ -199,22 +200,11 @@ export default function LatestUpload({ data, isOwner }: LatestUploadProps) {
   const TypeIcon = contentIconMap[normalizedContentType];
 
   return (
-    <Section
-      $padding={data.containerStyle?.padding}
-      $maxWidth={data.containerStyle?.maxWidth}
-    >
+    <Section $variant={variant}>
       <MonoText $use="H4_Medium">{data.sectionTitle}</MonoText>
 
       <ContentWrapper $isMobile={isMobile}>
-        <ImageSection
-          $width={data.imageStyle?.width}
-          $height={data.imageStyle?.height}
-          $padding={data.imageStyle?.padding}
-          $flexDirection={data.imageStyle?.flexDirection}
-          $justifyContent={data.imageStyle?.justifyContent}
-          $alignItems={data.imageStyle?.alignItems}
-          $gap={data.imageStyle?.gap}
-        >
+        <ImageSection $isPdf={!isMediaPlayable}>
           <Badge>{data.badge}</Badge>
 
           <UploadImage src={resolveImageUrl(data.image)} alt={data.imageAlt} />

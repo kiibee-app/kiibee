@@ -144,6 +144,9 @@ export const PROFILE_HOME_SECTION = {
 export type ProfileHomeSectionKey =
   (typeof PROFILE_HOME_SECTION)[keyof typeof PROFILE_HOME_SECTION];
 
+export const COLLECTION_PREVIEW_START = 0;
+export const COLLECTION_PREVIEW_LIMIT = 4;
+
 export type CouponAction =
   | typeof COUPON_ACTION_EDIT
   | typeof COUPON_ACTION_STATUS
@@ -488,6 +491,8 @@ export const ACTION_SIGNUP = "signup";
 export type StatusTone = (typeof STATUS_TONE)[keyof typeof STATUS_TONE];
 
 export const PAYMENT_QUERY_KEY = "payment";
+export const RETURN_URL_QUERY_KEY = "returnUrl";
+export const PAYMENT_ITEM_TYPE_QUERY_KEY = "itemType";
 
 export const BILLING_TYPES = {
   RENTED: { value: "rented", label: "Rented" },
@@ -547,7 +552,6 @@ export const VIEWER_DASHBOARD_TITLE = "Viewer Dashboard";
 export const VIEWER_DASHBOARD_DESCRIPTION =
   "Manage your purchased content and viewer activity on Kiibee.";
 export const LOADING_TEXT_FALLBACK = "Loading...";
-export const DASHBOARD_NO_PADDING = "0";
 export const SORT_ARROW_UP = "↑";
 export const SORT_ARROW_DOWN = "↓";
 export const MILLISECONDS_IN_HOUR = 36e5;

@@ -98,8 +98,12 @@ export function useCreatorChannelProfile(enabled = true) {
       return getAvatarUrl(publicCreator?.profileImageUrl);
     }
 
+    const appearance = appearanceQuery.data?.data;
+    if (appearance) {
+      return getAvatarUrl(appearance.logoUrl);
+    }
+
     return (
-      getAvatarUrl(appearanceQuery.data?.data?.logoUrl) ||
       getAvatarUrl(profile?.user?.avatarUrl) ||
       getAvatarUrl(storedUser?.avatarUrl)
     );

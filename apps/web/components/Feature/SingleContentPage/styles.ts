@@ -4,17 +4,17 @@ import GenericButton from "@/components/UI/GenericButton";
 import { pulse } from "@/utils/animations";
 import { CURSOR, VARIANT } from "@/utils/Constants";
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.section<{ $embedded?: boolean }>`
   width: 100%;
-  max-width: 1300px;
-  min-height: 100vh;
+  max-width: ${({ $embedded }) => ($embedded ? "none" : "1300px")};
+  min-height: ${({ $embedded }) => ($embedded ? "0" : "100vh")};
   height: auto;
   box-sizing: border-box;
   margin: 0 auto;
-  padding: 7rem 1.5rem 4rem;
+  padding: ${({ $embedded }) => ($embedded ? "0" : "7rem 1.5rem 4rem")};
 
   ${media.tablet} {
-    padding: 6rem 1rem 3rem;
+    padding: ${({ $embedded }) => ($embedded ? "0" : "6rem 1rem 3rem")};
   }
 `;
 
@@ -45,12 +45,12 @@ export const ContentLayout = styled.div<{ $isPdf?: boolean }>`
   }
 `;
 
-export const TopBar = styled.div`
+export const TopBar = styled.div<{ $embedded?: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 1.75rem;
+  margin-bottom: ${({ $embedded }) => ($embedded ? "1rem" : "1.75rem")};
 `;
 
 export const BackButton = styled.button`
@@ -77,7 +77,10 @@ export const ShareText = styled.span`
   ${({ theme }) => theme.typography.Body_Medium}
 `;
 
-export const Hero = styled.div<{ $isPdf?: boolean; $isLoading?: boolean }>`
+export const Hero = styled.div<{
+  $isPdf?: boolean;
+  $isLoading?: boolean;
+}>`
   position: relative;
   width: ${({ $isPdf }) => ($isPdf ? "100%" : "min(100%, 900px)")};
   max-width: ${({ $isPdf }) => ($isPdf ? "376px" : "none")};
@@ -863,6 +866,91 @@ export const PurchaseModalCardCreator = styled.div`
 
 export const PurchaseModalCardPrice = styled.div`
   ${({ theme }) => theme.typography.Body_Bold}
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+`;
+
+export const PurchaseModalHeading = styled.div`
+  padding: 2rem 1.875rem 0.875rem;
+`;
+
+export const PurchaseModalCollectionCard = styled(PurchaseModalCard)`
+  margin: 0 1.875rem;
+  border-radius: 8px;
+`;
+
+export const PurchaseModalCollectionCardBody = styled(PurchaseModalCardBody)`
+  padding: 1.25rem;
+`;
+
+export const PurchaseModalCollectionRentalHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem 0;
+`;
+
+export const PurchaseModalCollectionRentalPeriod = styled.div`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  ${({ theme }) => theme.typography.Body_SemiMedium}
+`;
+
+export const PurchaseModalCollectionRentalExpires = styled.div`
+  color: ${({ theme }) => theme.colors.primary.BLACK};
+  text-align: right;
+  ${({ theme }) => theme.typography.Body_SemiMedium}
+`;
+
+export const PurchaseModalCollectionRentalCardBody = styled(
+  PurchaseModalCollectionCardBody,
+)`
+  padding-top: 0.75rem;
+`;
+
+export const PurchaseModalCollectionCardImage = styled(PurchaseModalCardImage)`
+  height: 90px;
+`;
+
+export const PurchaseModalCollectionCardBadge = styled(PurchaseModalCardBadge)`
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1;
+`;
+
+export const PurchaseModalCollectionCardInfo = styled(PurchaseModalCardInfo)`
+  flex: 1;
+  justify-content: center;
+`;
+
+export const PurchaseModalCollectionMeta = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_200};
+  border-radius: 5px;
+`;
+
+export const PurchaseModalCollectionBenefits = styled.section`
+  padding: 1rem 1.875rem 1.5rem;
+`;
+
+export const PurchaseModalCollectionBenefitsTitle = styled.div`
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.neutral.GRAY_400};
+`;
+
+export const PurchaseModalCollectionBenefitsList = styled.ul`
+  display: grid;
+  gap: 0.375rem;
+  margin: 0;
+  padding-left: 1.25rem;
+`;
+
+export const PurchaseModalCollectionBenefitsItem = styled.li`
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 

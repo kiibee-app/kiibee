@@ -82,7 +82,9 @@ export const creatorRequestFormBase = {
   createSchema: createCreatorRequestSchema,
   getSchemaMessages: (translate: (key: string) => string) => ({
     firstNameRequired: translate("authCreator.form.firstName"),
+    firstNameMax: translate("authCreator.form.firstNameMax"),
     lastNameRequired: translate("authCreator.form.lastName"),
+    lastNameMax: translate("authCreator.form.lastNameMax"),
     emailRequired: translate("authForm.errors.emailRequired"),
     emailInvalid: translate("authForm.errors.emailInvalid"),
     addressRequired: translate("authCreator.form.address"),
@@ -91,6 +93,7 @@ export const creatorRequestFormBase = {
     workLinkRequired: translate("authCreator.form.workLink"),
     workLinkInvalid: translate("authCreator.form.workLinkInvalid"),
     contentDescriptionRequired: translate("authCreator.form.contentLabel"),
+    contentDescriptionMax: translate("authCreator.form.contentMax"),
     consentRequired: translate("authCreator.form.consentPrefix"),
   }),
   mapValues: (values: CreatorRequestValues) => ({

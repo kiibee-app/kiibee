@@ -6,18 +6,18 @@ import { MonoText } from "@/components/UI/Monotext";
 
 type ReadMoreTone = typeof VARIANT.PRIMARY | typeof VARIANT.SECONDARY;
 
+import { ProfileLayoutVariant } from "@/components/Feature/ProfileLayout/config";
+
 export const Section = styled.section<{
-  $padding?: string;
-  $maxWidth?: string;
+  $variant?: ProfileLayoutVariant;
 }>`
-  width: ${({ $maxWidth }) =>
-    $maxWidth ? `min(100%, ${$maxWidth})` : "min(100%, 1300px)"};
-  margin: 0 auto;
+  width: min(100%, 1300px);
+  margin: ${({ $variant }) => ($variant === "1" ? "0" : "0 auto")};
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  padding: ${({ $padding }) => $padding || "10px"};
+  padding: 10px;
 
   ${media.tablet} {
     width: 100%;
@@ -42,25 +42,18 @@ export const ContentWrapper = styled.div<{ $isMobile: boolean }>`
 `;
 
 export const ImageSection = styled.div<{
-  $width?: string;
-  $height?: string;
-  $padding?: string;
-  $flexDirection?: string;
-  $justifyContent?: string;
-  $alignItems?: string;
-  $gap?: string;
+  $isPdf?: boolean;
 }>`
   position: relative;
-  width: ${({ $width }) => $width || "min(100%, 640px)"};
-  height: ${({ $height }) => $height || "auto"};
-  ${({ $width, $height }) =>
-    !$width || !$height ? "aspect-ratio: 39.5724 / 21.5625;" : ""}
-  padding: ${({ $padding }) => $padding || "0"};
+  width: ${({ $isPdf }) => ($isPdf ? "376px" : "min(100%, 640px)")};
+  height: ${({ $isPdf }) => ($isPdf ? "530px" : "auto")};
+  ${({ $isPdf }) => (!$isPdf ? "aspect-ratio: 39.5724 / 21.5625;" : "")}
+  padding: ${({ $isPdf }) => ($isPdf ? "14px 295px 15px 14px" : "0")};
   display: flex;
-  flex-direction: ${({ $flexDirection }) => $flexDirection || "column"};
-  justify-content: ${({ $justifyContent }) => $justifyContent || "flex-end"};
-  align-items: ${({ $alignItems }) => $alignItems || "stretch"};
-  gap: ${({ $gap }) => $gap || "0"};
+  flex-direction: column;
+  justify-content: ${({ $isPdf }) => ($isPdf ? "center" : "flex-end")};
+  align-items: ${({ $isPdf }) => ($isPdf ? "flex-start" : "stretch")};
+  gap: ${({ $isPdf }) => ($isPdf ? "445px" : "0")};
   border-radius: 0.5rem;
   overflow: hidden;
   flex: 0 0 auto;

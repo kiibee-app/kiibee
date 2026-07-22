@@ -61,9 +61,10 @@ export function SingleContentTopBar({
   shareLabel,
   onBackClick,
   onShare,
-}: SingleContentTopBarProps) {
+  embedded = false,
+}: SingleContentTopBarProps & { embedded?: boolean }) {
   return (
-    <TopBar>
+    <TopBar $embedded={embedded}>
       {showBack ? (
         <BackButton
           onClick={onBackClick}

@@ -108,6 +108,9 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
+    "setupFiles": [
+      "<rootDir>/test/setup-env.ts"
+    ],
     "moduleNameMapper": {
       "^src/(.*)$": "<rootDir>/src/$1"
     }

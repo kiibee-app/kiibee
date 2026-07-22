@@ -11,8 +11,8 @@ import {
   VIEW,
   VIEWER_SECTION,
   CONTENT_COLLECTION_QUERY_KEY,
+  CONTENT_ITEM_QUERY_KEY,
   ROLE_VIEWER,
-  DASHBOARD_NO_PADDING,
 } from "@/utils/Constants";
 import {
   VIEWER_LABEL_TO_VIEW,
@@ -73,6 +73,7 @@ export default function ClientDashboardViewer({
 
       params.delete(VIEWER_SECTION);
       params.delete(CONTENT_COLLECTION_QUERY_KEY);
+      params.delete(CONTENT_ITEM_QUERY_KEY);
 
       if (label === VIEWER_LABELS.PURCHASED) {
         params.delete(VIEW);
@@ -140,13 +141,6 @@ export default function ClientDashboardViewer({
           onToggleSidebar={toggleSidebar}
           onProfileClick={() => handleSelect(VIEWER_LABELS.MY_PROFILE)}
         />
-      }
-      contentPadding={
-        activePage === VIEWER_LABELS.PURCHASED ||
-        activePage === VIEWER_LABELS.CURRENTLY_RENTED ||
-        activePage === VIEWER_LABELS.PREVIOUSLY_RENTED
-          ? DASHBOARD_NO_PADDING
-          : undefined
       }
       sidebar={
         <Sidebar

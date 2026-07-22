@@ -1,4 +1,12 @@
-import { Controller, Delete, Get, Param, Req, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Query,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import type { Request } from 'express';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreatorGuard } from '../auth/guards/admin.guard';
@@ -23,8 +31,17 @@ export class CreatorUsersController {
 
   @UseGuards(JwtAuthGuard, CreatorGuard)
   @Get('sales')
-  getSales(@Req() req: AuthenticatedRequest) {
-    return this.creatorUsersService.getSales(req.user.userId);
+  getSales(
+    @Req() req: AuthenticatedRequest,
+    @Query('search') search?: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    return this.creatorUsersService.getSales(req.user.userId, {
+      search: search?.trim() || undefined,
+      page: page ? Number(page) : undefined,
+      limit: limit ? Number(limit) : undefined,
+    });
   }
 
   @UseGuards(JwtAuthGuard, CreatorGuard)

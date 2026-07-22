@@ -26,6 +26,7 @@ import {
 } from "@/utils/media";
 import {
   getContentDetailPricingActions,
+  getPricingLabels,
   isFreeContentItem,
 } from "@/utils/contentPricingActions";
 import { formatExpiryText } from "@/utils/viewerRented";
@@ -277,13 +278,11 @@ export const getSingleContentProps = (
 
   const pricingActions = getContentDetailPricingActions(pricingItem, t, {
     inCollection: options?.inCollection,
-    labels: {
-      rent: t("pricingLabels.rent"),
-      buy: t("pricingLabels.buy"),
-      buyCollection: t("pricingLabels.buyCollection"),
-      free: t("pricingLabels.free"),
-    },
+    labels: getPricingLabels(t),
   });
+
+  const showSeeContentAction =
+    isFree || hasViewerAccess || isOwner || pricingActions.length === 0;
 
   const trailerUrl = toTrimmedString(
     content[CONTENT_RESPONSE_KEYS.TRAILER_URL],
@@ -339,7 +338,7 @@ export const getSingleContentProps = (
           }
         : {}),
     },
-    ...(isFree || hasViewerAccess || isOwner
+    ...(showSeeContentAction
       ? {
           primaryAction: {
             label: t(CONTENT_TRANSLATION_KEYS.seeContent),

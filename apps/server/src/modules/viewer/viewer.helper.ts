@@ -10,6 +10,7 @@ import {
   collections,
   collectionItems,
 } from 'src/database/schema';
+import { populateMissingCollectionCovers } from 'src/utils/populateMissingCollectionCovers';
 
 export const getUserOrders = async (
   userId: string,
@@ -67,6 +68,8 @@ export const buildAccessMap = (ordersData: any[]) => {
       collectionMap.set(o.collectionId, o.purchasedAt);
     if (o.mediaFileId && o.rentExpiresAt)
       expiresMap.set(o.mediaFileId, o.rentExpiresAt);
+    if (o.collectionId && !o.mediaFileId && o.rentExpiresAt)
+      expiresMap.set(o.collectionId, o.rentExpiresAt);
   }
 
   return { mediaMap, collectionMap, expiresMap };
@@ -146,10 +149,13 @@ export const getCollectionsWithDetails = async (collectionIds: string[]) => {
       description: collections.description,
       creatorId: collections.creatorId,
       creatorName: users.fullName,
+      buyPrice: collections.buyPrice,
     })
     .from(collections)
     .leftJoin(users, eq(collections.creatorId, users.id))
     .where(inArray(collections.id, collectionIds));
+
+  await populateMissingCollectionCovers(db, items);
 
   const counts = await db
     .select({

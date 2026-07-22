@@ -3,20 +3,18 @@
 import { useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
 import CollectionsSection from "@/components/Feature/Dashboard/ViewerSections/CollectionsSection";
 import {
   CollectionsApiResponse,
-  CollectionContentsApiResponse,
   getCollectionRows,
-  getCollectionContentRows,
 } from "@/hooks/contents/collectionApi";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorProfileUi } from "@/hooks/useCreatorChannelLayout";
 import { matchesProfileSearch } from "@/utils/creatorChannel";
 import { API } from "@/lib/http/api/endpoints";
-import { axiosClient } from "@/lib/http/axiosClient";
 import { useGetAPI } from "@/lib/http/api/getApi";
+import { axiosClient } from "@/lib/http/axiosClient";
 import {
   CREATOR,
   HASH_RENT,
@@ -24,6 +22,7 @@ import {
   STRING_EMPTY,
   resolveImageUrl,
 } from "@/utils/Constants";
+import { resolvePublicMediaUrl } from "@/utils/media";
 import { tutorialVideoCardFallback } from "@/utils/data";
 import {
   RENTED_MODES,
@@ -31,8 +30,7 @@ import {
   type RentedCollectionItem,
 } from "@/utils/viewerRented";
 import { CollectionListInner, CollectionListShell } from "./styles";
-import { pathPublishedContent, pathPublicCollection } from "@/utils/path";
-import { QUERY_KEYS } from "@/utils/Constants";
+import { pathPublicCollection } from "@/utils/path";
 import { VARIANT } from "@/utils/variants";
 import {
   getContentPricingActions,
@@ -41,6 +39,15 @@ import {
   isBuyActionLabel,
 } from "@/utils/contentPricingActions";
 import ProfileEmptyState from "@/components/Feature/ProfileLayout/shared/ProfileEmptyState";
+import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { useViewerPurchased } from "@/hooks/viewer/useViewerPurchased";
+import { useViewerRentedData } from "@/hooks/useViewerRented";
+
+type PublicCollectionResponse = {
+  data?: {
+    items?: unknown[];
+  } | null;
+};
 
 export default function CollectionList() {
   const { t } = useTranslation();
@@ -69,41 +76,30 @@ export default function CollectionList() {
     );
   }, [collectionsResponse]);
 
-  const { data: collectionContentsMap } = useQuery<Record<string, string>>({
-    queryKey: [
-      QUERY_KEYS.PROFILE_HOME_COLLECTIONS_PREVIEW,
-      "contents",
-      isPublicView,
-      publicCreatorId,
-    ],
-    queryFn: async () => {
-      const collections = nonEmptyCollections;
-      if (!collections.length) return {};
-
-      const contentsResponses = await Promise.all(
-        collections.map((item) =>
-          axiosClient.get<CollectionContentsApiResponse>(
-            isPublicView
-              ? API.content.publicCollection(item.id)
-              : API.content.collection(item.id),
-          ),
-        ),
-      );
-
-      const map: Record<string, string> = {};
-      collections.forEach((collection, index) => {
-        const contentRows = getCollectionContentRows(
-          contentsResponses[index]?.data,
+  const publicContentQueries = useQueries({
+    queries: nonEmptyCollections.map((collection) => ({
+      queryKey: [API.content.publicCollection(collection.id)],
+      queryFn: async () => {
+        const response = await axiosClient.get<PublicCollectionResponse>(
+          API.content.publicCollection(collection.id),
         );
-        if (contentRows.length > 0) {
-          map[collection.id] = contentRows[0].id;
-        }
-      });
-      return map;
-    },
-    enabled: nonEmptyCollections.length > 0,
-    refetchOnWindowFocus: false,
+        return response.data;
+      },
+      retry: false,
+      refetchOnWindowFocus: false,
+    })),
   });
+
+  const collectionsWithPublicContent = useMemo(
+    () =>
+      nonEmptyCollections.flatMap((collection, index) => {
+        const publicItems = publicContentQueries[index]?.data?.data?.items;
+        if (!publicItems?.length) return [];
+
+        return [{ ...collection, contentsCount: publicItems.length }];
+      }),
+    [nonEmptyCollections, publicContentQueries],
+  );
 
   const handleBuyClick = useCallback(
     (item: RentedCollectionItem) => {
@@ -123,26 +119,43 @@ export default function CollectionList() {
     [router],
   );
 
+  const user = useStoredLoginUser();
+  const isLoggedIn = Boolean(user?.id);
+  const { data: purchasedData } = useViewerPurchased(isLoggedIn);
+  const { sources: rentedData } = useViewerRentedData(
+    RENTED_MODES.CURRENTLY,
+    isLoggedIn,
+  );
+
+  const accessibleCollectionIds = useMemo(() => {
+    const collectionIdSet = new Set<string>();
+    purchasedData?.collections?.forEach((collectionItem) =>
+      collectionIdSet.add(collectionItem.id),
+    );
+    rentedData?.collections?.forEach((collectionItem) =>
+      collectionIdSet.add(collectionItem.id),
+    );
+    return collectionIdSet;
+  }, [purchasedData, rentedData]);
+
   const items = useMemo<RentedCollectionItem[]>(() => {
-    const rows = nonEmptyCollections;
+    const rows = collectionsWithPublicContent;
 
     return rows.map((row) => {
-      const firstContentId = collectionContentsMap?.[row.id];
       const collectionHref = pathPublicCollection(row.id);
-      const contentHref = firstContentId
-        ? pathPublishedContent(firstContentId)
-        : collectionHref;
 
       let actions: CollectionAction[] | undefined = undefined;
 
-      if (isPublicView) {
+      const hasCollectionAccess = accessibleCollectionIds.has(row.id);
+
+      if (isPublicView && !hasCollectionAccess) {
         const pricingActions = getContentPricingActions(
           {
             accessType: row.accessType,
             buyPrice: row.buyPrice,
             rentPrice: row.rentPrice,
           },
-          t("createProfileHome.latestUpload.seeContent"),
+          t("pricingLabels.free"),
           { inCollection: true, labels: getPricingLabels(t) },
         );
 
@@ -157,7 +170,7 @@ export default function CollectionList() {
           return {
             label,
             variant: hash ? VARIANT.PRIMARY : VARIANT.SECONDARY,
-            href: hash ? pathPublicCollection(row.id) : contentHref,
+            href: collectionHref,
           };
         });
       } else {
@@ -165,7 +178,7 @@ export default function CollectionList() {
           {
             label: t("createProfileHome.latestUpload.seeContent"),
             variant: VARIANT.SECONDARY,
-            href: contentHref,
+            href: collectionHref,
           },
         ];
       }
@@ -176,19 +189,20 @@ export default function CollectionList() {
         author: displayName || CREATOR,
         elementCount: row.contentsCount,
         coverSrc: row.coverImageUrl
-          ? resolveImageUrl(row.coverImageUrl)
+          ? resolvePublicMediaUrl(row.coverImageUrl) ||
+            resolveImageUrl(tutorialVideoCardFallback.image)
           : resolveImageUrl(tutorialVideoCardFallback.image),
         hideBadge: true,
-        href: isPublicView ? collectionHref : contentHref,
+        href: collectionHref,
         actions,
       };
     });
   }, [
     isPublicView,
-    nonEmptyCollections,
-    collectionContentsMap,
+    collectionsWithPublicContent,
     displayName,
     t,
+    accessibleCollectionIds,
   ]);
 
   const filteredItems = useMemo(() => {
@@ -198,7 +212,9 @@ export default function CollectionList() {
     );
   }, [items, searchQuery]);
 
-  const isLoading = isCollectionsLoading;
+  const isLoading =
+    isCollectionsLoading ||
+    publicContentQueries.some((query) => query.isLoading);
 
   return (
     <CollectionListShell>

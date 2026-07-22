@@ -5,13 +5,17 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { API } from "@/lib/http/api/endpoints";
 import { useGetAPI } from "@/lib/http/api/getApi";
-import { PATHS } from "@/utils/path";
+import { PATHS, pathPublicCollection } from "@/utils/path";
 import {
   COMPLETED,
   FAILED,
+  ORDER_TYPES,
+  PAYMENT_ITEM_TYPE_QUERY_KEY,
   PAYMENT_QUERY_KEY,
+  RETURN_URL_QUERY_KEY,
   STATUS_TONE,
 } from "@/utils/Constants";
+import { consumePaymentReturnUrl } from "@/utils/paymentReturn";
 import Image from "@/components/UI/SafeImage";
 import logo from "@/assets/icons/Kiibee_logo_mark_black.svg";
 import GenericButton from "@/components/UI/GenericButton";
@@ -36,6 +40,8 @@ type OrderRecord = {
   id: string;
   status: "pending" | "completed" | "failed";
   mediaFileId?: string | null;
+  collectionId?: string | null;
+  itemType: (typeof ORDER_TYPES)[keyof typeof ORDER_TYPES];
 };
 
 type OrderByIdResponse = {
@@ -76,15 +82,34 @@ function PaymentSuccessContent() {
   );
 
   useEffect(() => {
-    if (order?.status === COMPLETED && order.mediaFileId) {
-      const paymentParams = new URLSearchParams({
-        [PAYMENT_QUERY_KEY]: STATUS_TONE.SUCCESS,
-      });
-      router.replace(
-        `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}?${paymentParams.toString()}`,
-      );
-    }
-  }, [order?.status, order?.mediaFileId, router]);
+    if (order?.status !== COMPLETED) return;
+
+    const fallbackUrl =
+      searchParams.get(RETURN_URL_QUERY_KEY) ||
+      (order.mediaFileId
+        ? `${PATHS.CONTENT}/${encodeURIComponent(order.mediaFileId)}`
+        : order.collectionId
+          ? pathPublicCollection(order.collectionId)
+          : PATHS.HOME);
+
+    const redirectUrl = consumePaymentReturnUrl(
+      fallbackUrl,
+      PAYMENT_QUERY_KEY,
+      STATUS_TONE.SUCCESS,
+      {
+        [PAYMENT_ITEM_TYPE_QUERY_KEY]: order.itemType,
+      },
+    );
+
+    router.replace(redirectUrl);
+  }, [
+    order?.status,
+    order?.mediaFileId,
+    order?.collectionId,
+    order?.itemType,
+    router,
+    searchParams,
+  ]);
 
   if (!orderId) {
     return (
