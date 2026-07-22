@@ -18,23 +18,25 @@ import {
 } from './utils/constant';
 import { logger } from './logger/logger';
 
+let app: NestFastifyApplication;
+
 async function bootstrap() {
   try {
-    const [app] = await Promise.all([
-      NestFactory.create<NestFastifyApplication>(
-        AppModule,
-        new FastifyAdapter({
-          logger: false,
-          bodyLimit: FILE_SIZE_LIMIT,
-        }),
-        {
-          logger: ['log', 'error', 'warn', 'debug', 'verbose'],
-        },
-      ),
-      pool.connect().then(() => {
-        console.log('✅ Database connected');
+    app = await NestFactory.create<NestFastifyApplication>(
+      AppModule,
+      new FastifyAdapter({
+        logger: false,
+        bodyLimit: FILE_SIZE_LIMIT,
       }),
-    ]);
+      {
+        logger: ['error'],
+      },
+    );
+
+    await pool.connect().then((client) => {
+      console.log('✅ Database connected');
+      client.release();
+    });
 
     await app.register(multipart, {
       limits: { fileSize: FILE_SIZE_LIMIT },
@@ -96,7 +98,7 @@ async function bootstrap() {
 
     console.log(`🚀 API running at http://localhost:${port}/api/v1`);
   } catch (error) {
-    logger.error('❌ Failed to start server:', error);
+    logger.error('❌ Failed to start server:', error as Error);
     process.exit(1);
   }
 }
