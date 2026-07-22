@@ -144,13 +144,17 @@ export const FilterOverlay = styled.div<{
   top: ${({ $inline }) => ($inline ? "auto" : "calc(100% + 12px)")};
   left: ${({ $inline }) => ($inline ? "auto" : "0")};
   z-index: 210;
+  box-sizing: border-box;
   width: min(${({ $maxWidth }) => $maxWidth ?? "26rem"}, calc(100vw - 40px));
   max-height: min(70vh, 720px);
   overflow-y: auto;
   padding: 24px 24px 18px;
   border-radius: 20px;
   background: ${({ theme }) => theme.colors.neutral.OFF_WHITE};
-  box-shadow: 0 28px 60px ${({ theme }) => theme.colors.gradient.CARD_SHADOW};
+  box-shadow: ${({ $inline, theme }) =>
+    $inline
+      ? `0 18px 32px ${theme.colors.gradient.CARD_SHADOW}`
+      : `0 28px 60px ${theme.colors.gradient.CARD_SHADOW}`};
 
   ${({ $inline, $inlineWidth }) =>
     $inline
@@ -254,6 +258,8 @@ export const OptionList = styled.div<{ $scrollable?: boolean }>`
 
 export const OptionLabel = styled.label`
   position: relative;
+  width: 100%;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -273,6 +279,8 @@ export const RatingOption = styled.label`
 export const OptionText = styled(MonoText).attrs({
   $use: "Body_Regular",
 })`
+  min-width: 0;
+  overflow-wrap: anywhere;
   color: ${({ theme }) => theme.colors.primary.BLACK};
 `;
 

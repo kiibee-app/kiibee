@@ -87,7 +87,8 @@ export const TabButton = styled(GenericButton)<{ $active?: boolean }>`
 export const ContentGrid = styled.div`
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
-  gap: 1rem;
+  column-gap: 3.5rem;
+  row-gap: 1rem;
   align-items: start;
 
   ${media.desktopMd} {
@@ -102,6 +103,7 @@ export const ContentGrid = styled.div`
 
   ${media.tablet} {
     grid-template-columns: 1fr;
+    row-gap: 1.5rem;
     padding: 0;
   }
 `;
