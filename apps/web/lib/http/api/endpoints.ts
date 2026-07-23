@@ -40,6 +40,7 @@ export const API = {
     collection: (id: string) => `/content/collection/${id}`,
     get: (id: string) => `/content/${id}`,
     view: (id: string, userId: string) => `/content/${id}/${userId}`,
+    verifyCode: (id: string) => `/content/${id}/verify-code`,
     relatedCollection: (id: string) => `/content/${id}/related-collection`,
     publicCollection: (id: string, viewerId?: string) =>
       viewerId

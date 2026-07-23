@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import type { AccessGateType } from "@/components/Feature/AccessGate";
-
+import { isBrowser } from "@/utils/ui";
 import {
   GATE_QUERY_PARAM,
   TYPE_CODE,
@@ -11,16 +11,24 @@ import {
   REQUEST_EMAIL_ACCESS,
   ACCESS_TYPE_PASSWORD,
   ACCESS_TYPE_EMAIL_GATED,
+  REGISTER_SOURCE,
+  STRING_TRUE,
 } from "@/utils/Constants";
 import { useContentSettings } from "@/hooks/contents/useContentSettings";
 import { useCreatorChannelProfile } from "@/hooks/useCreatorChannelProfile";
 import { useCreatorPublicProfile } from "@/hooks/creators/useExploreCreators";
-
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
+import { API } from "@/lib/http/api/endpoints";
+import { axiosClient } from "@/lib/http/axiosClient";
+import {
+  getCreatorUnlockStorageKey,
+  unlockCreatorAccessGate,
+} from "@/utils/accessGate";
 
 export function useCreatorAccessGate(customCreatorId?: string | null): {
   gateType: AccessGateType | null;
   isLoading: boolean;
+  handleSuccess: (value: string, name?: string) => Promise<boolean>;
 } {
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
@@ -40,43 +48,28 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
   const { data: privateSettings, isLoading: isLoadingPrivate } =
     useContentSettings();
 
-  const storageKey = publicCreatorId
-    ? `kiibee:gate:unlocked:creator:${publicCreatorId}`
-    : "";
+  const targetCreatorId = publicCreatorId || publicCreator?.id;
+  const currentUserId = storedUser?.id;
+
+  const storageKey = getCreatorUnlockStorageKey(targetCreatorId, currentUserId);
   const isUnlocked =
-    typeof window !== "undefined" && storageKey
-      ? window.localStorage.getItem(storageKey) === "true"
+    isBrowser && storageKey
+      ? window.localStorage.getItem(storageKey) === STRING_TRUE
       : false;
 
   const isOwner =
     !isPublicView ||
-    (Boolean(publicCreatorId) &&
+    (Boolean(targetCreatorId) &&
       storedUser &&
-      storedUser.id === publicCreatorId);
-
-  if (isUnlocked) {
-    return { gateType: null, isLoading: false };
-  }
-
-  if (isOwner) {
-    return { gateType: null, isLoading: false };
-  }
-
-  if (gateParam === TYPE_CODE || gateParam === TYPE_EMAIL) {
-    return { gateType: gateParam, isLoading: false };
-  }
+      storedUser.id === targetCreatorId);
 
   const isLoading = isPublicView ? isLoadingPublic : isLoadingPrivate;
-
-  if (isLoading) {
-    return { gateType: null, isLoading: true };
-  }
 
   const accessType = isPublicView
     ? publicCreator?.accessType
     : privateSettings?.data?.accessType;
 
-  const gateType: AccessGateType | null =
+  const resolvedGateType: AccessGateType | null =
     accessType === SET_PASSWORD_ACCESS || accessType === ACCESS_TYPE_PASSWORD
       ? TYPE_CODE
       : accessType === REQUEST_EMAIL_ACCESS ||
@@ -84,5 +77,35 @@ export function useCreatorAccessGate(customCreatorId?: string | null): {
         ? TYPE_EMAIL
         : null;
 
-  return { gateType, isLoading: false };
+  const finalGateType: AccessGateType | null =
+    isUnlocked || isOwner
+      ? null
+      : gateParam === TYPE_CODE || gateParam === TYPE_EMAIL
+        ? gateParam
+        : isLoading
+          ? null
+          : resolvedGateType;
+
+  const handleSuccess = async (value: string, name?: string) => {
+    if (!targetCreatorId || !finalGateType) return false;
+
+    const request =
+      finalGateType === TYPE_CODE
+        ? axiosClient.post(API.content.verifyCode(targetCreatorId), {
+            code: value,
+          })
+        : axiosClient.post(API.creatorUsers.register, {
+            creatorId: targetCreatorId,
+            email: value,
+            name,
+            source: REGISTER_SOURCE.CREATOR_PAGE,
+            sourceId: targetCreatorId,
+          });
+
+    await request;
+    unlockCreatorAccessGate(targetCreatorId, currentUserId);
+    return true;
+  };
+
+  return { gateType: finalGateType, isLoading, handleSuccess };
 }

@@ -98,7 +98,7 @@ export const AvatarWrap = styled.div`
   margin-top: -1.5625rem;
   border-radius: 50%;
   overflow: hidden;
-  background: transparent;
+  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
   flex: 0 0 auto;
 
   ${({ theme }) => theme.media.desktopSm} {
@@ -121,7 +121,7 @@ export const AvatarWrapCentered = styled.div`
   margin-top: -82px;
   border-radius: 999px;
   overflow: hidden;
-  background: transparent;
+  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
 
   ${({ theme }) => theme.media.mobileXl} {
     width: 136px;

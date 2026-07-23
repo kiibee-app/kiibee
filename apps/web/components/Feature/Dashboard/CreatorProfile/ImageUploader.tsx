@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { Avatar, AvatarImage, AvatarEditButton } from "./styles";
+import { Avatar, AvatarEditButton } from "./styles";
 import { EditProfileIcon } from "@/assets/icons";
-import { MonoText } from "@/components/UI/Monotext";
 import ImageUploadCropModal from "@/components/UI/ImageUploadCropModal";
 import { BUTTON } from "@/utils/Constants";
+import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 
 type Props = {
   image: string | null;
@@ -28,12 +28,19 @@ export default function ImageUploader({
 
   return (
     <>
-      <Avatar onClick={() => setOpen(true)} role={BUTTON} tabIndex={0}>
-        {image ? (
-          <AvatarImage src={image} alt={alt} />
-        ) : (
-          <MonoText $use="Heading2">{fallback}</MonoText>
-        )}
+      <Avatar
+        $hasImage={Boolean(image)}
+        onClick={() => setOpen(true)}
+        role={BUTTON}
+        tabIndex={0}
+      >
+        <CreatorChannelAvatar
+          avatarUrl={image}
+          initial={fallback}
+          alt={alt}
+          sizes="(max-width: 767px) 88px, 120px"
+          fit="contain"
+        />
 
         <AvatarEditButton
           type={BUTTON}

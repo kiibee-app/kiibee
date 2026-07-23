@@ -2,7 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 import { and, eq, desc, count, getTableColumns } from 'drizzle-orm';
 
 import { db } from 'src/database/db';
-import { collections, collectionItems } from 'src/database/schema';
+import { collections, collectionItems, mediaFiles } from 'src/database/schema';
 
 import { logger } from 'src/logger/logger';
 import { populateMissingCollectionCovers } from 'src/utils/populateMissingCollectionCovers';
@@ -15,12 +15,19 @@ export const getAllCollections = async (creatorId: string) => {
     const result = await db
       .select({
         ...collectionColumns,
-        contentQty: count(collectionItems.id),
+        contentQty: count(mediaFiles.id),
       })
       .from(collections)
       .leftJoin(
         collectionItems,
         eq(collectionItems.collectionId, collections.id),
+      )
+      .leftJoin(
+        mediaFiles,
+        and(
+          eq(mediaFiles.id, collectionItems.mediaFileId),
+          eq(mediaFiles.isDeleted, false),
+        ),
       )
       .where(
         and(

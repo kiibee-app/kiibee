@@ -12,17 +12,19 @@ const fitStyles = css<{ $fit: AvatarFit }>`
   ${({ $fit }) =>
     $fit === "contain" &&
     css`
-      padding: 14% 8%;
+      padding: 12% 10%;
       box-sizing: border-box;
     `}
 `;
 
 export const AvatarImage = styled(Image)<{ $fit: AvatarFit }>`
   ${fitStyles}
+  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
 `;
 
 export const RemoteAvatarImage = styled.img<{ $fit: AvatarFit }>`
   ${fitStyles}
+  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
 `;
 
 export const AvatarInitial = styled(MonoText)`

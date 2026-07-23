@@ -8,6 +8,7 @@ import {
 } from 'src/database/schema';
 import { logger } from 'src/logger/logger';
 import { success } from 'src/utils/sendResponse';
+import { toMidnight } from 'src/utils/date';
 import {
   COUPON_DISCOUNT_TYPE_PERCENTAGE,
   MAX_COUPON_PERCENTAGE_DISCOUNT,
@@ -90,6 +91,26 @@ export const createCouponService = async (
 
     const validFrom = payload.validFrom ? new Date(payload.validFrom) : null;
     const validUntil = payload.validUntil ? new Date(payload.validUntil) : null;
+
+    if (validFrom) {
+      const today = toMidnight(new Date());
+      if (toMidnight(validFrom) < today) {
+        throw new HttpException(
+          'Start date must be today or a future date',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    }
+
+    if (validUntil) {
+      const today = toMidnight(new Date());
+      if (toMidnight(validUntil) < today) {
+        throw new HttpException(
+          'End date must be today or a future date',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    }
 
     if (validFrom && validUntil && validFrom >= validUntil) {
       throw new HttpException(

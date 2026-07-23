@@ -573,6 +573,10 @@ export const ACCESS_GATE = {
   submitCode: "accessGate.submitCode",
   submitEmail: "accessGate.submitEmail",
   consentText: "accessGate.consentText",
+  invalidCodeTitle: "accessGate.invalidCodeTitle",
+  invalidCodeMessage: "accessGate.invalidCodeMessage",
+  cancel: "accessGate.cancel",
+  tryAgain: "accessGate.tryAgain",
 } as const;
 
 const TRANSLATION_KEYS = {

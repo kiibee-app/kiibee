@@ -21,7 +21,10 @@ import {
   HASH_BUY,
   STRING_EMPTY,
   resolveImageUrl,
+  VARIANT_PAGE,
 } from "@/utils/Constants";
+import AccessGate from "@/components/Feature/AccessGate";
+import { useCreatorAccessGate } from "@/hooks/useCreatorAccessGate";
 import { resolvePublicMediaUrl } from "@/utils/media";
 import { tutorialVideoCardFallback } from "@/utils/data";
 import {
@@ -55,6 +58,9 @@ export default function CollectionList() {
   const { displayName, isPublicView, publicCreatorId } =
     useCreatorChannelProfile();
   const router = useRouter();
+  const user = useStoredLoginUser();
+
+  const { gateType, handleSuccess } = useCreatorAccessGate();
 
   const { data: collectionsResponse, isLoading: isCollectionsLoading } =
     useGetAPI<CollectionsApiResponse>(
@@ -63,7 +69,7 @@ export default function CollectionList() {
         : API.collection.getAll,
       undefined,
       {
-        enabled: !isPublicView || Boolean(publicCreatorId),
+        enabled: !gateType && (!isPublicView || Boolean(publicCreatorId)),
         retry: false,
         refetchOnWindowFocus: false,
       },
@@ -119,7 +125,6 @@ export default function CollectionList() {
     [router],
   );
 
-  const user = useStoredLoginUser();
   const isLoggedIn = Boolean(user?.id);
   const { data: purchasedData } = useViewerPurchased(isLoggedIn);
   const { sources: rentedData } = useViewerRentedData(
@@ -215,6 +220,17 @@ export default function CollectionList() {
   const isLoading =
     isCollectionsLoading ||
     publicContentQueries.some((query) => query.isLoading);
+
+  if (gateType) {
+    return (
+      <AccessGate
+        type={gateType}
+        variant={VARIANT_PAGE}
+        creatorName={displayName ?? undefined}
+        onSuccess={handleSuccess}
+      />
+    );
+  }
 
   return (
     <CollectionListShell>

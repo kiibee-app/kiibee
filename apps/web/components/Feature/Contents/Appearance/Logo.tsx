@@ -40,6 +40,18 @@ export default function LogoSection() {
   const { values, errors, updateField, clearFieldError, validateField } =
     useAppearanceForm();
   const [open, setOpen] = React.useState(false);
+  const [logoFit, setLogoFit] = React.useState<"cover" | "contain">("cover");
+
+  const handleLogoLoad = useCallback(
+    (e: React.SyntheticEvent<HTMLImageElement>) => {
+      const img = e.currentTarget;
+      if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+        const ar = img.naturalWidth / img.naturalHeight;
+        setLogoFit(ar > 1.25 || ar < 0.8 ? "contain" : "cover");
+      }
+    },
+    [],
+  );
 
   const texts = useMemo(
     () => ({
@@ -136,11 +148,21 @@ export default function LogoSection() {
                 </GenericButton>
 
                 {values.logoUrl && (
-                  <PreviewWrapper>
-                    <LogoImage src={values.logoUrl} />
+                  <PreviewWrapper
+                    onClick={() => setOpen(true)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <LogoImage
+                      src={values.logoUrl}
+                      $fit={logoFit}
+                      onLoad={handleLogoLoad}
+                    />
                     <DeleteImageButton
                       type="button"
-                      onClick={handleImageDelete}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleImageDelete();
+                      }}
                     >
                       <DeleteIcon width={14} height={16} />
                     </DeleteImageButton>
@@ -170,10 +192,9 @@ export default function LogoSection() {
         image={values.logoUrl}
         onClose={() => setOpen(false)}
         onApply={handleImageApply}
-        shape={CROP_SHAPE.RECT}
-        cropWidth={250}
-        cropHeight={60}
-        recommendedText={true}
+        shape={CROP_SHAPE.CIRCLE}
+        recommendedText={false}
+        uploadAsIs={true}
       />
     </AppearancePanel>
   );

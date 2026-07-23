@@ -106,6 +106,9 @@ export const LoadMoreButton = styled(GenericButton)`
 `;
 
 export const SortDropdownWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
   ${SortBox} {
     width: auto;
     max-width: 280px;
@@ -114,7 +117,7 @@ export const SortDropdownWrapper = styled.div`
 
 export const LocalControls = styled.div`
   display: flex;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;

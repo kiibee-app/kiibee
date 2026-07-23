@@ -85,13 +85,14 @@ export const AvatarEditButton = styled.button`
   z-index: 2;
 `;
 
-export const Avatar = styled.div`
+export const Avatar = styled.div<{ $hasImage: boolean }>`
   position: relative;
   width: 120px;
   height: 120px;
   flex-shrink: 0;
   border-radius: 9999px;
-  background: ${(p) => p.theme.colors.gradient.PALE_GREEN};
+  background: ${({ $hasImage, theme }) =>
+    $hasImage ? "transparent" : theme.colors.gradient.PALE_GREEN};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,12 +121,6 @@ export const Avatar = styled.div`
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
   }
-`;
-
-export const AvatarImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 export const Fields = styled.div`

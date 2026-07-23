@@ -11,7 +11,7 @@ export const avatarFrameCss = css`
   overflow: hidden;
   border-radius: 50%;
   flex: 0 0 auto;
-  background: transparent;
+  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
 `;
 
 export const Page = styled.main`

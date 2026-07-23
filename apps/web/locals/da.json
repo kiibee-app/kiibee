@@ -1099,6 +1099,9 @@
       "couponNotApplicable": "Denne kupon kan kun bruges på udvalgte produkter",
       "couponVerifyFailed": "Kuponen kunne ikke verificeres. Prøv igen",
       "couponMaxPercentage": "Denne kupon overstiger den maksimale rabat på 50%",
+      "couponStartDatePast": "Startdato skal være i dag eller en fremtidig dato",
+      "couponEndDatePast": "Slutdato skal være i dag eller en fremtidig dato",
+      "couponEndDateBeforeStart": "Slutdato skal være senere end startdato",
       "couponValidUntil": "Din rabat er aktiv indtil {{date}}"
     },
     "meta": {
@@ -2238,6 +2241,10 @@
     "emailPlaceholder": "E-mail",
     "submitCode": "Tilgå indhold",
     "submitEmail": "Tilgå indhold",
+    "invalidCodeTitle": "Ugyldig adgangskode",
+    "invalidCodeMessage": "Den kode, du indtastede, er forkert. Kontrollér den, og prøv igen.",
+    "cancel": "Annuller",
+    "tryAgain": "Prøv igen",
     "consentText": "Ved at indsende min e-mail til Kiibee abonnerer jeg hermed på {{creatorName}}s nyhedsbrev. Jeg kan til enhver tid afmelde mig via Kiibee."
   },
   "pricingLabels": {

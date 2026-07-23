@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { CollectionRow, INITIAL_COUPON_FORM } from "@/types/collectionsType";
 import {
@@ -24,6 +25,7 @@ import {
 import { FORMAT_TYPE } from "@/utils/types";
 import { COLLECTION, CONTENT } from "@/utils/ui";
 import { toValidFrom, toValidUntil } from "@/utils/couponDates";
+import { getCouponErrorMessage } from "@/utils/couponErrors";
 
 export const useContentsModalFlows = (
   activeTab: ContentTab,
@@ -33,6 +35,7 @@ export const useContentsModalFlows = (
   resetAfterRefetch: () => void,
 ) => {
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [couponForm, setCouponForm] = useState(INITIAL_COUPON_FORM);
   const [couponInitialForm, setCouponInitialForm] =
@@ -293,14 +296,18 @@ export const useContentsModalFlows = (
       validUntil: toValidUntil(couponForm.endDate),
     };
 
-    const submitRequest = editingCouponId
-      ? axiosClient.patch(API.coupon.update(editingCouponId), payload)
-      : createCouponMutation.mutateAsync(payload);
+    try {
+      const submitRequest = editingCouponId
+        ? axiosClient.patch(API.coupon.update(editingCouponId), payload)
+        : createCouponMutation.mutateAsync(payload);
 
-    await submitRequest;
+      await submitRequest;
 
-    await queryClient.invalidateQueries({ queryKey: [API.coupon.getAll] });
-    setIsCouponSuccess(true);
+      await queryClient.invalidateQueries({ queryKey: [API.coupon.getAll] });
+      setIsCouponSuccess(true);
+    } catch (error) {
+      toast.error(getCouponErrorMessage(error, t));
+    }
   };
 
   const handleCreateClick = () => {

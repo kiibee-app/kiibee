@@ -207,8 +207,8 @@ export function getContentPricingActions(
   }
 
   const actions: ContentPricingAction[] = [];
-  if (rent) actions.push({ label: rent });
   if (buy) actions.push({ label: buy });
+  if (rent) actions.push({ label: rent });
 
   if (actions.length === 1) {
     actions[0] = { ...actions[0], fullWidth: true };
