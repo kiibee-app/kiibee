@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, rm } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
@@ -598,7 +598,30 @@ function buildFieldCatalog(parent, items) {
 }
 
 async function writeJson(filePath, data) {
-  await writeFile(filePath, `${JSON.stringify(data, null, 2)}\n`);
+  const content = `${JSON.stringify(data, null, 2)}\n`;
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    try { await rm(filePath, { force: true }); } catch {}
+    try {
+      await writeFile(filePath, content);
+      return;
+    } catch (error) {
+      if (attempt === 5) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+  }
+}
+
+async function safeWriteFile(filePath, data) {
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    try { await rm(filePath, { force: true }); } catch {}
+    try {
+      await writeFile(filePath, data);
+      return;
+    } catch (error) {
+      if (attempt === 5) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+  }
 }
 
 async function main() {
@@ -703,7 +726,7 @@ async function main() {
 
   await writeJson(path.join(outDir, "index.json"), index);
   await writeJson(path.join(outDir, "items.json"), items);
-  await writeFile(path.join(outDir, "items.csv"), `${toCsv(items, fieldColumns)}\n`);
+  await safeWriteFile(path.join(outDir, "items.csv"), `${toCsv(items, fieldColumns)}\n`);
   await writeJson(path.join(outDir, "fields-by-item.json"), fieldsByItem);
   await writeJson(path.join(outDir, "field-catalog.json"), fieldCatalog);
   await writeJson(path.join(outDir, "errors.json"), {

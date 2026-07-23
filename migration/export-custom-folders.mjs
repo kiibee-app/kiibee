@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { spawn } from "node:child_process";
-import { access, mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile, rm } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import config from "./config.mjs";
@@ -16,10 +16,23 @@ const safe = (value) => String(value || "unnamed").normalize("NFKD").replace(/[\
 const idOf = (node) => node?.id ?? node?.Id;
 const nameOf = (node) => String(node?.name ?? node?.Name ?? "");
 
+async function safeWriteFile(filePath, data) {
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    try { await rm(filePath, { force: true }); } catch {}
+    try {
+      await writeFile(filePath, data);
+      return;
+    } catch (error) {
+      if (attempt === 5) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    }
+  }
+}
+
 let auth;
 
 function parseCookies(text) {
-  const wanted = new Set(["UMB_UCONTEXT", "UMB_UCONTEXT_C", "UMB-XSRF-TOKEN", "UMB-XSRF-V"]);
+  const wanted = new Set(["UMB_UCONTEXT", "UMB-XSRF-TOKEN", "UMB-XSRF-V"]);
   const values = new Map();
   for (const line of text.split(/\r?\n/)) {
     const trimmed = line.trim();
@@ -123,7 +136,7 @@ async function main() {
       const contentDir = path.join(config.outputDir || "umbraco-data/users", userDir, "content");
       const result = { requestedName: selection.name, liveName: null, userId: null, status: "missing", folderCount: 0, folders: [] };
       await mkdir(contentDir, { recursive: true });
-      await writeFile(path.join(contentDir, "index.json"), `${JSON.stringify(result, null, 2)}\n`);
+      await safeWriteFile(path.join(contentDir, "index.json"), `${JSON.stringify(result, null, 2)}\n`);
       report.missingUsers.push(selection.name);
       report.users.push(result);
       console.log(`[missing] ${selection.name} (empty local content folder created)`);
@@ -147,13 +160,13 @@ async function main() {
     }
     const contentDir = path.join(config.outputDir || "umbraco-data/users", userDir, "content");
     await mkdir(contentDir, { recursive: true });
-    await writeFile(path.join(contentDir, "index.json"), `${JSON.stringify(result, null, 2)}\n`);
+    await safeWriteFile(path.join(contentDir, "index.json"), `${JSON.stringify(result, null, 2)}\n`);
     report.users.push(result);
   }
 
   report.finishedAt = new Date().toISOString();
   await mkdir("umbraco-data/export-runs", { recursive: true });
-  await writeFile("umbraco-data/export-runs/custom-folders-latest.json", `${JSON.stringify(report, null, 2)}\n`);
+  await safeWriteFile("umbraco-data/export-runs/custom-folders-latest.json", `${JSON.stringify(report, null, 2)}\n`);
   console.log(`Done: ${report.users.length} users, ${report.users.reduce((sum, user) => sum + user.folderCount, 0)} folders`);
 }
 

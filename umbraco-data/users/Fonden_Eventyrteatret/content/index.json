@@ -9,22 +9,22 @@
     {
       "name": "Eventyrteatrets musicals",
       "id": 96020,
-      "status": "ok"
+      "status": "skipped"
     },
     {
       "name": "Kommer snart",
       "id": 100628,
-      "status": "ok"
+      "status": "skipped"
     },
     {
       "name": "Anmeldereksemplar",
       "id": 101671,
-      "status": "ok"
+      "status": "skipped"
     },
     {
       "name": "Nyligt tilføjet",
       "id": 118909,
-      "status": "ok"
+      "status": "skipped"
     }
   ]
 }
