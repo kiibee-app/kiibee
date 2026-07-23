@@ -52,7 +52,7 @@ export const sendCreatorApprovalEmail = ({
         approvalLink: `${env.FRONTEND_URL}/access-request/approve?token=${encodeURIComponent(token)}`,
       },
     },
-    'Could not send approval email',
+    'Failed to send content access approval email',
   );
 
 export const sendViewerAccessEmail = (request: AccessRequest, token: string) =>
@@ -67,6 +67,6 @@ export const sendViewerAccessEmail = (request: AccessRequest, token: string) =>
         contentLink: `${env.FRONTEND_URL}/content/${encodeURIComponent(request.contentId)}?approvedAccess=${encodeURIComponent(token)}`,
       },
     },
-    'Approved, but the viewer email could not be sent',
+    'Failed to send content access email to viewer',
     () => resetPendingRequest(request.id),
   );

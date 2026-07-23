@@ -50,7 +50,9 @@ export const getAccessRequest = async (token: string) => {
     )
     .limit(1);
 
-  return request ?? fail('Invalid approval link', HttpStatus.NOT_FOUND);
+  return (
+    request ?? fail('Content access request not found', HttpStatus.NOT_FOUND)
+  );
 };
 
 export type AccessRequest = Awaited<ReturnType<typeof getAccessRequest>>;

@@ -40,7 +40,7 @@ export const requestContentAccessService = async (
 
   return success(
     { status: STATUS.PENDING },
-    'Access request sent to the creator',
+    'Content access request sent successfully',
     HttpStatus.ACCEPTED,
   );
 };
@@ -51,20 +51,23 @@ export const approveContentAccessService = async (token: string) => {
   if (request.status === STATUS.APPROVED) {
     return success(
       { status: STATUS.APPROVED },
-      'Access was already approved',
+      'Content access request already approved',
       HttpStatus.OK,
     );
   }
 
   if (request.expiresAt.getTime() < Date.now()) {
-    throw new HttpException('Approval link has expired', HttpStatus.GONE);
+    throw new HttpException(
+      'Content access request has expired',
+      HttpStatus.GONE,
+    );
   }
   await grantContentAccess(request);
   await sendViewerAccessEmail(request, token);
 
   return success(
     { status: STATUS.APPROVED },
-    'Access approved and the content link was emailed to the viewer',
+    'Content access approved successfully',
     HttpStatus.OK,
   );
 };

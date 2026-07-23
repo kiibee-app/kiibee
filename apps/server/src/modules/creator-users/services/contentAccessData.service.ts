@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 import { eq } from 'drizzle-orm';
 import { db } from 'src/database/db';
 import { contentAccessRequests, emailSubscribers } from 'src/database/schema';
-import { STATUS, Time } from 'src/utils/constant';
+import { EMAIL_SUBSCRIBER_SOURCE, STATUS, Time } from 'src/utils/constant';
 import { hashApprovalToken } from 'src/utils/contentAccess';
 import { AccessRequest } from './contentAccessQuery.service';
 
@@ -56,7 +56,7 @@ export const grantContentAccess = async (request: AccessRequest) => {
   const now = new Date();
   const subscriberValues = {
     name: request.viewerName,
-    source: 'content',
+    source: EMAIL_SUBSCRIBER_SOURCE.CONTENT,
     sourceId: request.contentId,
     isActive: true,
   };
