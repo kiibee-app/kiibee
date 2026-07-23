@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useCreatorAccessGate } from "./useCreatorAccessGate";
 import { useCollectionAccessGate } from "./useCollectionAccessGate";
 import { useStoredLoginUser } from "@/hooks/auth/useStoredLoginUser";
@@ -12,7 +13,6 @@ import {
   ACCESS_TYPE_EMAIL_GATED,
   SET_PASSWORD_ACCESS,
   REQUEST_EMAIL_ACCESS,
-  REGISTER_SOURCE,
 } from "@/utils/Constants";
 import { API } from "@/lib/http/api/endpoints";
 import { axiosClient } from "@/lib/http/axiosClient";
@@ -34,6 +34,13 @@ export function useContentAccessGate(
 } {
   const searchParams = useSearchParams();
   const gateParam = searchParams.get(GATE_QUERY_PARAM);
+  const approvedAccessToken = searchParams.get("approvedAccess");
+  const [failedApprovalToken, setFailedApprovalToken] = useState<string | null>(
+    null,
+  );
+  const isApprovingAccess = Boolean(
+    approvedAccessToken && failedApprovalToken !== approvedAccessToken,
+  );
   const storedUser = useStoredLoginUser();
 
   const { gateType: creatorGateType, isLoading: creatorLoading } =
@@ -59,6 +66,21 @@ export function useContentAccessGate(
   const isOwner = Boolean(
     storedUser?.id && content?.creatorId === storedUser.id,
   );
+
+  useEffect(() => {
+    if (!approvedAccessToken || !content?.id || !contentStorageKey) return;
+    axiosClient
+      .get(API.creatorUsers.approveContentAccess, {
+        params: { token: approvedAccessToken },
+      })
+      .then(() => {
+        window.localStorage.setItem(contentStorageKey, "true");
+        const url = new URL(window.location.href);
+        url.searchParams.delete("approvedAccess");
+        window.location.replace(url.toString());
+      })
+      .catch(() => setFailedApprovalToken(approvedAccessToken));
+  }, [approvedAccessToken, content?.id, contentStorageKey]);
 
   const hasContentGate = isContentCode || isContentEmail;
   const isContentLocked = hasContentGate && !isContentUnlocked;
@@ -99,13 +121,13 @@ export function useContentAccessGate(
       value &&
       content?.creatorId
     ) {
-      await axiosClient.post(API.creatorUsers.register, {
+      await axiosClient.post(API.creatorUsers.requestContentAccess, {
         creatorId: content.creatorId,
+        contentId: content.id,
         email: value,
         name,
-        source: REGISTER_SOURCE.CONTENT,
-        sourceId: content.id,
       });
+      return true;
     }
 
     const unlockStorageKey = [
@@ -129,7 +151,7 @@ export function useContentAccessGate(
 
   return {
     gateType: finalGateType,
-    isLoading: creatorLoading || collectionLoading,
+    isLoading: creatorLoading || collectionLoading || isApprovingAccess,
     handleSuccess,
   };
 }

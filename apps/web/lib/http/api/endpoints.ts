@@ -76,6 +76,8 @@ export const API = {
   creatorUsers: {
     registrations: "/creator-users/registrations",
     register: "/creator-users/register",
+    requestContentAccess: "/creator-users/content-access/request",
+    approveContentAccess: "/creator-users/content-access/approve",
     sales: "/creator-users/sales",
     deleteRegistration: (id: string) => `/creator-users/registrations/${id}`,
   },
