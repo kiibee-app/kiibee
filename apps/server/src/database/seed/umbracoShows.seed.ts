@@ -537,6 +537,54 @@ function collectionNameFromUrls(urls: string[] | undefined): string | null {
     .join(' ');
 }
 
+function looksLikeUmbracoOrderCode(value: string): boolean {
+  const trimmed = value.trim();
+  // Compact alphanumeric with BOTH letters and digits (e.g. 54l827102024162452).
+  return /^(?=.*[a-z])(?=.*\d)[a-z0-9]{12,28}$/i.test(trimmed);
+}
+
+function isHumanContentTitle(
+  value: string | null | undefined,
+): value is string {
+  if (!value) {
+    return false;
+  }
+
+  const trimmed = value.trim();
+  if (!trimmed || trimmed.toLowerCase() === 'untitled') {
+    return false;
+  }
+
+  return !looksLikeUmbracoOrderCode(trimmed);
+}
+
+function firstPurchaseMediaName(purchase: JsonRecord): string | null {
+  const candidates: unknown[] = [];
+  if (Array.isArray(purchase.mediaNames)) {
+    candidates.push(...purchase.mediaNames);
+  }
+
+  const props = (purchase.properties as JsonRecord | undefined) ?? {};
+  if (Array.isArray(props.mediaNames)) {
+    candidates.push(...props.mediaNames);
+  }
+
+  const mediaList = Array.isArray(purchase.media) ? purchase.media : [];
+  for (const entry of mediaList) {
+    const record = entry as JsonRecord;
+    candidates.push(record.name, record.title);
+  }
+
+  for (const candidate of candidates) {
+    const name = textOrNull(candidate);
+    if (isHumanContentTitle(name)) {
+      return name;
+    }
+  }
+
+  return null;
+}
+
 function enrichPurchaseMediaFromPurchases(
   profileKey: string,
   root: string,
@@ -582,7 +630,9 @@ function enrichPurchaseMediaFromPurchases(
   }
 
   return media.map((show) => {
-    if (hasSeedableMediaPayload(show)) {
+    const existingTitle =
+      textOrNull(show.title) || textOrNull(show.name) || null;
+    if (hasSeedableMediaPayload(show) && isHumanContentTitle(existingTitle)) {
       return show;
     }
 
@@ -600,11 +650,14 @@ function enrichPurchaseMediaFromPurchases(
       textOrNull(props.webContentURL) ??
       textOrNull(purchase.webContentURL) ??
       undefined;
+
     const name =
-      textOrNull(show.name) ||
-      textOrNull(purchase.name) ||
-      textOrNull(props.fullName) ||
-      'Untitled';
+      (isHumanContentTitle(existingTitle) ? existingTitle : null) ||
+      firstPurchaseMediaName(purchase);
+
+    if (!isHumanContentTitle(name)) {
+      return show;
+    }
 
     return {
       ...show,
@@ -633,7 +686,9 @@ function readPurchaseMediaAsShows(
     .filter((show): show is UmbracoShow => Boolean(show));
 
   return enrichPurchaseMediaFromPurchases(profileKey, root, shows).filter(
-    hasSeedableMediaPayload,
+    (show) =>
+      hasSeedableMediaPayload(show) &&
+      isHumanContentTitle(textOrNull(show.title) || textOrNull(show.name)),
   );
 }
 
@@ -1110,6 +1165,10 @@ export const seedUmbracoShows = async () => {
             'Untitled',
           500,
         );
+        if (!isHumanContentTitle(title)) {
+          showsSkipped += 1;
+          continue;
+        }
         const description =
           stripHtml(
             textOrNull(showValue(show, 'expandedDescription')) ??
