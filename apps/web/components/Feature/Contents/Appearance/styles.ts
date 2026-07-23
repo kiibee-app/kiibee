@@ -256,11 +256,18 @@ export const LayoutImage = styled(Image)`
   object-position: top center;
 `;
 
-export const LogoImage = styled.img`
-  width: 160px;
-  height: 56px;
-  object-fit: cover;
-  border-radius: 8px;
+export const LogoImage = styled.img<{ $fit?: "cover" | "contain" }>`
+  width: 68px;
+  height: 68px;
+  object-fit: ${({ $fit }) => $fit ?? "cover"};
+  ${({ $fit }) =>
+    $fit === "contain" &&
+    `
+      padding: 12% 10%;
+      box-sizing: border-box;
+    `}
+  border-radius: 50%;
+  background: ${({ theme }) => theme.colors.gradient.PALE_GREEN};
 `;
 
 export const LogoUploadWrap = styled.div`
@@ -279,12 +286,12 @@ export const PreviewWrapper = styled.div`
 
 export const DeleteImageButton = styled.button`
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: -4px;
+  right: -4px;
   background: ${({ theme }) => theme.colors.primary.WHITE};
   border: 1px solid ${({ theme }) => theme.colors.neutral.GRAY_300};
   border-radius: 50%;
-  padding: 6px;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;

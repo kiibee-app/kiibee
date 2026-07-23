@@ -8,7 +8,8 @@ import {
 } from "@/components/Layout/Navbar/styles";
 import { ProfileIcon } from "@/assets/icons/profileIcon";
 import AccountMenu from "./AccountMenu";
-import { ProfileAvatarImage, ProfileButton } from "./styles";
+import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
+import { ProfileButton } from "./styles";
 
 type ViewerHeaderRightProps = {
   initial: string;
@@ -33,14 +34,12 @@ const ViewerHeaderRight = ({
           aria-expanded={open}
           onClick={toggle}
         >
-          {avatarUrl ? (
-            <ProfileAvatarImage
-              src={avatarUrl}
-              alt={t("common.viewerProfile")}
-            />
-          ) : (
-            initial
-          )}
+          <CreatorChannelAvatar
+            avatarUrl={avatarUrl}
+            initial={initial}
+            alt={t("common.viewerProfile")}
+            sizes="44px"
+          />
         </ProfileButton>
       )}
       profileAction={(closeMenu) => (

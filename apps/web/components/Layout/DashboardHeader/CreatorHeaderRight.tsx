@@ -4,13 +4,12 @@ import { useTranslation } from "react-i18next";
 import { MonoText } from "@/components/UI/Monotext";
 import { PATHS } from "@/utils/path";
 import { useCreatorChannelLayout } from "@/hooks/useCreatorChannelLayout";
+import CreatorChannelAvatar from "@/components/Feature/ProfileLayout/shared/CreatorChannelAvatar";
 import {
   ChannelLink,
   ChannelText,
   Divider,
   EmailWrapper,
-  InitialAvatar,
-  ProfileAvatarImage,
   ProfileCircle,
   RightProfileWrapper,
 } from "./styles";
@@ -42,14 +41,12 @@ const CreatorHeaderRight = ({
         aria-label={t("common.creatorProfile")}
       >
         <ProfileCircle>
-          {avatarUrl ? (
-            <ProfileAvatarImage
-              src={avatarUrl}
-              alt={t("common.creatorProfile")}
-            />
-          ) : (
-            <InitialAvatar>{initial}</InitialAvatar>
-          )}
+          <CreatorChannelAvatar
+            avatarUrl={avatarUrl}
+            initial={initial}
+            alt={t("common.creatorProfile")}
+            sizes="44px"
+          />
         </ProfileCircle>
         <EmailWrapper>
           <MonoText $use="Body_Medium">{email}</MonoText>
